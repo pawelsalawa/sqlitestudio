@@ -173,6 +173,7 @@ SqlResultsPtr DbQt::execInternal(const QString &query, const QHash<QString, QVar
     dbQuery.exec();
     return SqlResultsPtr(new SqlResultsQt(dbQuery, this, args));
 }
+
 SqlResultsPtr DbQt::execInternalSqlite2(const QString& query, const QList<QVariant>& args)
 {
     // Sqlite2 seems to be dealing with only the '?' parameter placeholders. We need to update all of them.
@@ -183,7 +184,7 @@ SqlResultsPtr DbQt::execInternalSqlite2(const QString& query, const QList<QVaria
         token->value = "?";
 
     QString newQuery = tokens.detokenize();
-    return execInternal(newQuery, args);
+    return DbQt::execInternal(newQuery, args);
 }
 
 SqlResultsPtr DbQt::execInternalSqlite2(const QString& query, const QHash<QString, QVariant>& args)
@@ -217,7 +218,7 @@ SqlResultsPtr DbQt::execInternalSqlite2(const QString& query, const QHash<QStrin
     }
 
     QString newQuery = tokens.detokenize();
-    return execInternal(newQuery, newArgs);
+    return DbQt::execInternal(newQuery, newArgs);
 }
 
 QString DbQt::getTypeLabel()
