@@ -1,0 +1,129 @@
+* support WITH clause
+
+* inkrementacja schema_version?
+* config dla linuksa w ~/.config/sqlitestudio?
+* add nice api for accessing menus and toolbars, so plugins can easly add/remove from them
+* check performance for millions of rows
+* przenoszenie obiektow przez d&d
+* rejestracja funkcji przy otwieraniu bazy, ustawianie niektorych pragm
+* custom SQL functions
+* custom collations
+* data sorting more sophisticated - multi column and allow to choose order at the begining - maybe a dialog for sorting?
+* populating tables
+* option to view full db path in window title
+* generating INSERT/UPDATE/DELETE/SELECT basing on table definition
+
+* auto updates
+* bug reporting
+* crash management
+
+* W select trzeba jeszcze konteksty dla WHERE, HAVING i GROUP BY obsluzyc - mozna je zrobic razem, bo wszystkie uzywaja expr
+* CompletionHelper: smarter suggestions for UPDATE, DELETE and INSERT, just like for SELECT.
+* sql edit in trigger dialog should understand (highlight and suggest) the 'new' and 'old' keywords.
+* Idea for next versions: think of some smart "revert" or "backup", so users are protected from accidentaly deleting table,
+  or data in table.
+* SqlEditor::refreshValidObjects() doesn't add valid object names from other databases (not yet attached). It might be tricky to implement.
+
+UNIT TESTS:
+Parser::parse: jakies skomplikowane zapytania, wykrywanie bledow
+Lexer::detokenize
+utils_sql (dla splitQueries uwglednic create trigger)
+utils
+SelectResolver
+SchemaResolver
+
+* Advanced syntax error checks:
+- many idxColumns are not allowed for column FK
+- autoincrement not allowed for not integer type
+
+
+* sortowanie po wielu kolumnach w grid view:
+  "when sorting a column the sorting algorithm does not conserve the present sorting sequence,
+  making it impossible to sort a data set by simply clicking several column headers in the first place.
+  Instead you have to formulate a query that uses 'order by' to do that. Not dramatical,
+  but slightly clumsy."
+
+* "Search in database(s)" - okno dialogowe z drzewkiem: bazy->tabele - wszystkie z checkboxami, zaznacza sie gdzie sie chce wyszukac, a nastepnie szukana fraza (tekst, lub regexp) i szukana jest fraza we wszystkich wskazanych tabelach.
+
+* 3.0 musi importowac ustawienia z 2.1:
+  - lista baz
+  - funkcje sql
+  - historie sql
+
+
+#include "sqlite3.h"
+typedef int (*Sqlite3CreateFunction)(sqlite3*,const char*,int,int,void*,
+        void (*xFunc)(sqlite3_context*,int,sqlite3_value**),
+        void (*xStep)(sqlite3_context*,int,sqlite3_value**),
+        void (*xFinal)(sqlite3_context*)
+      );
+
+
+* Kroki query executora ponazywac (w QObject) i udostepnic mozliwosc rejestracji nowych krokow
+  umiejscawiajac je po/przed krokami o danych nazwach. W ten sposob bedzie mozna rozszerzac
+  query executora pluginami.
+
+* Major 2vs3 diffs:
+- column constraints don't have CONSTRAINT name as separate ccons in v2.
+- references action hasn't got "NO ACTION" as possible action in v2.
+- no AutoIncr
+- no "if exists" or "if not exists"
+- views can be created only in the main database.
+- index can be created only in the main database, but can refer to table from other db
+- trigger can be created only in the main database, but can refer to table from other db
+- datetime functions cannot occur as DEFAULT argument.
+- no CAST in expr
+- no COLLATE in expr
+- COLLATE in sortlist
+- no EXISTS in expr
+- no COLLATE in CREATE INDEX
+
+
+
+
+
+
+
+
+
+
+
+Qt mingw:
+Not an easy task. I got Perl, Python, Ruby and MinGw/bin in path and
+use this line
+
+configure -opensource -confirm-license -platform win32-g++ -make libs
+-qt-libjpeg -qt-libpng -no-openssl -no-icu  -qt-zlib -qt-pcre
+-no-iconv -nomake examples -nomake tests -qt-style-windowsxp
+-qt-style-windowsvista -opengl
+desktop
+
+
+
+SQLiteStudio3 win32:
+1. Checkout svn://sqlitestudio.pl/sqlitestudio3/SQLiteStudio3/trunk
+2. Checkout svn://sqlitestudio.pl/sqlitestudio3/plugins/DbSqlite3/trunk
+3. Checkout svn://sqlitestudio.pl/sqlitestudio3/plugins/DbSqlite2/trunk
+4. Run QtCreator and open project from SQLiteStudio3.pro file. Open plugin projects the same way.
+5. Change project binaries output to: {project path}\output\SQLiteStudio3
+   Do the same for plugin projects as well.
+   6. Create "include" directory next to SQLiteStudio3 directory.
+   7. Create "lib" directory at the same level, next to "include" dir.
+   8. Copy libtecla.h, curses.h, sqlite.h and sqlite3.h into include directory.
+   9. Copy pdcurses.dll, pdcurses.lib and libtecla.a to lib directory.
+   10. Compile everything.
+   11. On projects page of SQLiteStudio project add env variables for running environment:
+   SQLITESTUDIO_ICONS -> {prk}\SQLiteStudio3\SQLiteStudio\img (C:\projects2\SQLiteStudio3\SQLiteStudio\img)
+   SQLITESTUDIO_PLUGINS -> {prk}\output\DbSqlite3\debug;{prk}\output\DbSqlite2\debug (C:\projects2\output\DbSqlite3\debug;C:\projects2\output\DbSqlite2\debug)
+
+   DbSqlite2 win32:
+   1. Download qtbase sourcecode and unpack it.
+   2. Get sqlite.h, sqlite.def and sqlite.dll. Put them into the lib directory of SQLiteStudio3 projects workspace.
+   3. Edit sqlite.def and add at the end:
+   sqlite_encoding
+   4. Go to {prj}/lib and execute:
+   dlltool --input-def sqlite.def --dllname sqlite.dll --output-lib libsqlite.a -k
+   5. Go to qtbase-opensource-src-5.1.1\src\plugins\sqldrivers\sqlite2
+   6. Execute: qmake "INCLUDEPATH+={prj}/include" "LIBS+=-L{prj}/lib -lsqlite"
+   7. Execute: mingw32-make
+   7. Execute: mingw32-make install

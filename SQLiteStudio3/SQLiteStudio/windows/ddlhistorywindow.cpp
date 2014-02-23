@@ -1,0 +1,124 @@
+#include "ddlhistorywindow.h"
+#include "ui_ddlhistorywindow.h"
+#include "config.h"
+#include "common/userinputfilter.h"
+#include "common/extlineedit.h"
+#include "dblistmodel.h"
+#include "ddlhistorymodel.h"
+#include "unused.h"
+#include <QDate>
+#include <QLineEdit>
+#include <QStringListModel>
+
+DdlHistoryWindow::DdlHistoryWindow(QWidget *parent) :
+    MdiChild(parent),
+    ui(new Ui::DdlHistoryWindow)
+{
+    init();
+}
+
+DdlHistoryWindow::~DdlHistoryWindow()
+{
+    delete ui;
+}
+
+void DdlHistoryWindow::changeEvent(QEvent *e)
+{
+    QWidget::changeEvent(e);
+    switch (e->type()) {
+        case QEvent::LanguageChange:
+            ui->retranslateUi(this);
+            break;
+        default:
+            break;
+    }
+}
+
+void DdlHistoryWindow::init()
+{
+    ui->setupUi(this);
+
+    dataModel = CFG->getDdlHistoryModel();
+
+    dbListModel = new QStringListModel(this);
+    QStringList dbList = dataModel->getDbNames();
+    dbList.prepend("");
+    dbListModel->setStringList(dbList);
+    ui->comboBox->setModel(dbListModel);
+    ui->comboBox->setCurrentIndex(-1);
+    connect(ui->comboBox, SIGNAL(currentTextChanged(QString)), this, SLOT(applyFilter(QString)));
+    connect(dataModel, SIGNAL(refreshed()), this, SLOT(refreshDbList()));
+
+    ui->tableView->setModel(dataModel);
+    ui->tableView->horizontalHeader()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
+    ui->tableView->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
+    ui->tableView->horizontalHeader()->setSectionResizeMode(2, QHeaderView::ResizeToContents);
+    ui->tableView->horizontalHeader()->setSectionResizeMode(3, QHeaderView::ResizeToContents);
+
+    connect(ui->tableView->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
+            this, SLOT(activated(QModelIndex,QModelIndex)));
+}
+
+void DdlHistoryWindow::activated(const QModelIndex& current, const QModelIndex& previous)
+{
+    UNUSED(previous);
+
+    int row = current.row();
+    QString dbName = dataModel->data(dataModel->index(row, 0)).toString();
+    QString dbFile = dataModel->data(dataModel->index(row, 1)).toString();
+    QString dateString = dataModel->data(dataModel->index(row, 2)).toString();
+    QDate date = QDate::fromString(dateString, "yyyy-MM-dd");
+
+    static const QString templ = tr("-- Queries executed on database %1 (%2)\n"
+                                    "-- Date and time of execution: %3\n"
+                                    "%4");
+
+    QStringList contentEntries;
+    QList<Config::DdlHistoryEntryPtr> entries = CFG->getDdlHistoryFor(dbName, dbFile, date);
+    foreach (Config::DdlHistoryEntryPtr entry, entries)
+    {
+        contentEntries << templ.arg(entry->dbName).arg(entry->dbFile)
+                          .arg(entry->timestamp.toString("yyyy-MM-dd HH:mm:ss"))
+                          .arg(entry->queries);
+    }
+
+    ui->ddlEdit->setPlainText(contentEntries.join("\n\n"));
+}
+
+void DdlHistoryWindow::applyFilter(const QString& filterValue)
+{
+    dataModel->setDbNameForFilter(filterValue);
+}
+
+void DdlHistoryWindow::refreshDbList()
+{
+    QStringList dbList = dataModel->getDbNames();
+    dbList.prepend("");
+    dbListModel->setStringList(dbList);
+}
+
+bool DdlHistoryWindow::restoreSessionNextTime()
+{
+    return false;
+}
+
+QVariant DdlHistoryWindow::saveSession()
+{
+    return QVariant();
+}
+
+bool DdlHistoryWindow::restoreSession(const QVariant& sessionValue)
+{
+    UNUSED(sessionValue);
+    return true;
+}
+
+QString DdlHistoryWindow::getIconNameForMdiWindow()
+{
+    return "ddl_history";
+}
+
+QString DdlHistoryWindow::getTitleForMdiWindow()
+{
+    return tr("DDL history");
+}

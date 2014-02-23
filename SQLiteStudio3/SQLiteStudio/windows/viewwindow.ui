@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ViewWindow</class>
+ <widget class="QWidget" name="ViewWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>621</width>
+    <height>468</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="margin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="queryTab">
+      <attribute name="title">
+       <string>Query</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QToolBar" name="queryToolbar"/>
+       </item>
+       <item>
+        <widget class="QWidget" name="nameWidget" native="true">
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <property name="margin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="nameLabel">
+            <property name="text">
+             <string>View name:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="nameEdit"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="SqlEditor" name="queryEdit"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="dataTab">
+      <attribute name="title">
+       <string>Data</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="DataView" name="dataView"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="triggersTab">
+      <attribute name="title">
+       <string>Triggers</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QToolBar" name="triggersToolbar"/>
+       </item>
+       <item>
+        <widget class="QTableWidget" name="triggersList">
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <property name="alternatingRowColors">
+          <bool>true</bool>
+         </property>
+         <property name="selectionMode">
+          <enum>QAbstractItemView::SingleSelection</enum>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
+         </property>
+         <property name="horizontalScrollMode">
+          <enum>QAbstractItemView::ScrollPerPixel</enum>
+         </property>
+         <attribute name="horizontalHeaderStretchLastSection">
+          <bool>true</bool>
+         </attribute>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="ddl">
+      <attribute name="title">
+       <string>DDL</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <widget class="SqlView" name="ddlEdit">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>DataView</class>
+   <extends>QTabWidget</extends>
+   <header>dataview.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>SqlEditor</class>
+   <extends>QPlainTextEdit</extends>
+   <header>sqleditor.h</header>
+  </customwidget>
+  <customwidget>
+   <class>SqlView</class>
+   <extends>QPlainTextEdit</extends>
+   <header>sqlview.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

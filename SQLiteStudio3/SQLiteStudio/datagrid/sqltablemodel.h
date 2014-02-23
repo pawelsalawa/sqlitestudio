@@ -1,0 +1,49 @@
+#ifndef SQLTABLEMODEL_H
+#define SQLTABLEMODEL_H
+
+#include "sqlquerymodel.h"
+
+class SqlTableModel : public SqlQueryModel
+{
+        Q_OBJECT
+    public:
+        explicit SqlTableModel(QObject *parent = 0);
+
+        QString getDatabase() const;
+        QString getTable() const;
+        void setDatabaseAndTable(const QString& database, const QString& table);
+
+        Features features() const;
+        void applySqlFilter(const QString& value);
+        void applyStringFilter(const QString& value);
+        void applyRegExpFilter(const QString& value);
+        void resetFilter();
+
+    protected:
+        bool commitAddedRow(const QList<SqlQueryItem*>& itemsInRow);
+        bool commitDeletedRow(const QList<SqlQueryItem*>& itemsInRow);
+
+    private:
+        class CommitDeleteQueryBuilder : public CommitUpdateQueryBuilder
+        {
+            public:
+                QString build();
+        };
+
+
+        void updateColumnsAndValuesWithDefaultValues(const QList<SqlQueryModelColumnPtr>& modelColumns, QStringList& colNameList,
+                                                     QStringList& sqlValues, QList<QVariant>& args);
+        void updateColumnsAndValues(const QList<SqlQueryItem*>& itemsInRow, const QList<SqlQueryModelColumnPtr>& modelColumns,
+                                    QStringList& colNameList, QStringList& sqlValues, QList<QVariant>& args);
+        QString getInsertSql(const QList<SqlQueryModelColumnPtr>& modelColumns, QStringList& colNameList, QStringList& sqlValues,
+                             QList<QVariant>& args);
+        void updateRowAfterInsert(const QList<SqlQueryItem*>& itemsInRow, const QList<SqlQueryModelColumnPtr>& modelColumns, RowId rowId);
+        QString getDatabasePrefix();
+        QString getDataSource();
+
+        QString table;
+        QString database;
+        bool isWithOutRowIdTable = false;
+};
+
+#endif // SQLTABLEMODEL_H
