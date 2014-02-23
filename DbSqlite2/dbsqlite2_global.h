@@ -1,0 +1,12 @@
+#ifndef DBSQLITE2_GLOBAL_H
+#define DBSQLITE2_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(DBSQLITE2_LIBRARY)
+#  define DBSQLITE2SHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define DBSQLITE2SHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // DBSQLITE2_GLOBAL_H
