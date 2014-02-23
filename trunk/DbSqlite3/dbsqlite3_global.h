@@ -1,0 +1,12 @@
+#ifndef DBSQLITE3_GLOBAL_H
+#define DBSQLITE3_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(DBSQLITE3_LIBRARY)
+#  define DBSQLITE3SHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define DBSQLITE3SHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // DBSQLITE3_GLOBAL_H

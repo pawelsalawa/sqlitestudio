@@ -1,0 +1,44 @@
+Compiling sqlite2 under Linux 64-bit:
+    For 64-bit edit config.h and change SQLITE_PTR_SZ to have value 8
+
+
+Under Linux:
+
+1. Go to Qt plugin sourcecode dir, like:
+    cd /opt/qt5/qtbase-opensource-src-5.1.0/src/plugins/sqldrivers/sqlite
+
+2.a. For dunamic linking run qmake like this:
+    /opt/qt5/qt/5.1.0/gcc/bin/qmake "INCLUDEPATH+=/usr/local/include" "LIBS+=-L/usr/local/lib -lsqlite -ldl"
+
+2.a. As an alternative to 2.a, for static linking with sqlite, make a symlink to libsqlite3.a with unique name,
+like: libsqlite3static.a, then run qmake like this:
+    /opt/qt5/qt/5.1.0/gcc/bin/qmake "INCLUDEPATH+=/usr/local/include" "LIBS+=-L/usr/local/lib -lsqlite3static -ldl"
+
+3. Run make
+
+4. Run make install
+
+Under Windows:
+1. Make sure that g++ is in the PATH. If not, update it:
+    set "PATH=%PATH%;c:\Qt\Qt5.2.0\Tools\mingw48_32\bin"
+
+1.a)
+New step:
+    Check if marking "sqlite_encoding" symbol to export in header works.
+
+Old step:
+    For SQLite2 you need to add 1 line to qsql_sqlite2.cpp:
+        cd c:\Qt\Qt5.2.0\5.2.0\Src\qtbase\src\sql\drivers\sqlite2
+        edit qsql_sqlite2.cpp
+        add: const char sqlite_encoding[] = "UTF-8";
+    This line is declared in header as extern, but is defined only in main.c and tclmain.c for SQLite 2.
+
+2. Go to plugin dir:
+    c:\Qt\Qt5.2.0\5.2.0\Src\qtbase\src\plugins\sqldrivers\sqlite
+
+3. Execute qmake with sqlite paths for dll and header:
+    c:\Qt\Qt5.2.0\5.2.0\mingw48_32\bin\qmake "LIBS+=-Lc:\projects2\output\SQLiteStudio -lsqlite3" "INCLUDEPATH+=c:\projects2\include"
+
+4. Execute make & make install:
+    c:\Qt\Qt5.2.0\Tools\mingw48_32\bin\mingw32-make.exe
+    c:\Qt\Qt5.2.0\Tools\mingw48_32\bin\mingw32-make.exe install
