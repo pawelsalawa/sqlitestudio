@@ -1,0 +1,183 @@
+#ifndef CONFIG_H
+#define CONFIG_H
+
+#include "coreSQLiteStudio_global.h"
+#include "global.h"
+#include "cfginternals.h"
+#include "sqlitestudio.h"
+#include <QObject>
+#include <QVariant>
+#include <QHash>
+#include <QStringList>
+#include <QSharedPointer>
+#include <QDateTime>
+
+const int SQLITESTUDIO_CONFIG_VERSION = 1;
+
+CFG_CATEGORIES(Core,
+    CFG_CATEGORY(General,
+         CFG_ENTRY(int, SqlHistorySize, "SqlHistorySize", 10000)
+         CFG_ENTRY(int, DdlHistorySize, "DdlHistorySize", 1000)
+         CFG_ENTRY(QString, LoadedPlugins, "LoadedPlugins", "")
+         CFG_ENTRY(QString, ActiveSqlFormatter, "ActiveSqlFormatterPluginName", QString())
+    )
+)
+
+CFG_DECLARE(Core)
+#define CFG_CORE CFG_INSTANCE(Core)
+
+class QSqlDatabase;
+class QAbstractItemModel;
+class DdlHistoryModel;
+class QSqlQuery;
+
+class API_EXPORT Config : public QObject
+{
+    Q_OBJECT
+
+    public:
+        struct CfgDb
+        {
+            QString name;
+            QString path;
+            QHash<QString,QVariant> options;
+        };
+
+        typedef QSharedPointer<CfgDb> CfgDbPtr;
+
+        struct DbGroup;
+        typedef QSharedPointer<DbGroup> DbGroupPtr;
+
+        struct DbGroup
+        {
+            qint64 id;
+            QString referencedDbName;
+            QString name;
+            QList<DbGroupPtr> childs;
+            int order;
+            bool open = false;
+        };
+
+        struct SqlHistoryEntry
+        {
+            QString query;
+            QString dbName;
+            int rowsAffected;
+            int unixtime;
+        };
+
+        typedef QSharedPointer<SqlHistoryEntry> SqlHistoryEntryPtr;
+
+        struct DdlHistoryEntry
+        {
+            QString dbName;
+            QString dbFile;
+            QDateTime timestamp;
+            QString queries;
+        };
+
+        struct Function
+        {
+            static_char* AGGREGATE_TYPE = "AGGREGATE";
+            static_char* SCALAR_TYPE = "SCALAR";
+
+            QString name;
+            QString lang;
+            QString code;
+            bool aggregate = false;
+            bool undefinedArgs = true;
+            bool allDatabases = true;
+            QStringList arguments;
+            QStringList databases;
+        };
+
+        typedef QSharedPointer<DdlHistoryEntry> DdlHistoryEntryPtr;
+
+        explicit Config(QObject *parent = 0);
+        virtual ~Config();
+
+        void init();
+        void cleanUp();
+        const QString& getConfigDir();
+
+        void beginMassSave();
+        void commitMassSave();
+        void rollbackMassSave();
+        void set(const QString& group, const QString& key, const QVariant& value);
+        QVariant get(const QString& group, const QString& key);
+        QHash<QString,QVariant> getAll();
+
+        bool addDb(const QString& name, const QString& path, const QHash<QString, QVariant> &options);
+        bool updateDb(const QString& name, const QString &newName, const QString& path, const QHash<QString, QVariant> &options);
+        bool removeDb(const QString& name);
+        bool isDbInConfig(const QString& name);
+        QString getLastErrorString() const;
+
+        /**
+         * @brief Provides list of all registered databases.
+         * @return List of database entries.
+         *
+         * Registered databases are those that user added to the application. They are not necessary valid or supported.
+         * They can be inexisting or unsupported, but they are kept in registry in case user fixes file path,
+         * or loads plugin to support it.
+         */
+        QList<CfgDbPtr> dbList();
+        CfgDbPtr getDb(const QString& dbName);
+
+        void storeGroups(const QList<DbGroupPtr>& groups);
+        QList<DbGroupPtr> getGroups();
+        DbGroupPtr getDbGroup(const QString& dbName);
+
+        qint64 addSqlHistory(const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected);
+        void updateSqlHistory(qint64 id, const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected);
+        void clearSqlHistory();
+        QAbstractItemModel* getSqlHistoryModel();
+
+        void addDdlHistory(const QString& queries, const QString& dbName, const QString& dbFile);
+        QList<DdlHistoryEntryPtr> getDdlHistoryFor(const QString& dbName, const QString& dbFile, const QDate& date);
+        DdlHistoryModel* getDdlHistoryModel();
+        void clearDdlHistory();
+
+        bool setFunctions(const QList<Function>& functions);
+        QList<Function> getFunctions() const;
+
+        void begin();
+        void commit();
+        void rollback();
+
+    private:
+        /**
+         * @brief Stores error from query in class member.
+         * @param query Query to get error from.
+         * @return true if the query had any error set, or false if not.
+         *
+         * If the error was defined in the query, its message is stored in lastQueryError.
+         */
+        bool storeErrorAndReturn(const QSqlQuery& query);
+        void printErrorIfSet(const QSqlQuery& query);
+        void storeGroup(const DbGroupPtr& group, const QVariant &parentId);
+        void readGroupRecursively(DbGroupPtr group);
+        QString getConfigPath();
+        QString getPortableConfigPath();
+        void initTables();
+        void initDbFile();
+        bool tryInitDbFile(const QString& dbPath);
+        QVariant deserializeValue(const QVariant& value);
+
+
+        QSqlDatabase *db = nullptr;
+        QString configDir;
+        QString lastQueryError;
+        QAbstractItemModel* sqlHistoryModel = nullptr;
+        DdlHistoryModel* ddlHistoryModel = nullptr;
+
+    signals:
+        void massSaveCommited();
+
+    public slots:
+
+};
+
+#define CFG SQLiteStudio::getInstance()->getConfig()
+
+#endif // CONFIG_H

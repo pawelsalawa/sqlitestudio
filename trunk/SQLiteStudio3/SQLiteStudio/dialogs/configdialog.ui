@@ -1,0 +1,1494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ConfigDialog</class>
+ <widget class="QDialog" name="ConfigDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>770</width>
+    <height>539</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Configuration</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_5">
+   <item row="0" column="0">
+    <widget class="QWidget" name="mainWidget" native="true">
+     <property name="contextMenuPolicy">
+      <enum>Qt::PreventContextMenu</enum>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_5">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QSplitter" name="splitter">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <widget class="QWidget" name="categoriesWidget" native="true">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>1</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QLineEdit" name="categoriesFilter">
+            <property name="placeholderText">
+             <string>Search</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTreeWidget" name="categoriesTree">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>150</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="verticalScrollMode">
+             <enum>QAbstractItemView::ScrollPerPixel</enum>
+            </property>
+            <attribute name="headerVisible">
+             <bool>false</bool>
+            </attribute>
+            <column>
+             <property name="text">
+              <string notr="true">1</string>
+             </property>
+            </column>
+            <item>
+             <property name="text">
+              <string>General</string>
+             </property>
+             <property name="statusTip">
+              <string>generalPage</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Look &amp; feel</string>
+             </property>
+             <property name="statusTip">
+              <string>lookAndFeelPage</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>Style</string>
+              </property>
+              <property name="statusTip">
+               <string>stylePage</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Fonts</string>
+              </property>
+              <property name="statusTip">
+               <string>fontsPage</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Colors</string>
+              </property>
+              <property name="statusTip">
+               <string>colorsPage</string>
+              </property>
+             </item>
+            </item>
+            <item>
+             <property name="text">
+              <string>Plugins</string>
+             </property>
+             <property name="statusTip">
+              <string>pluginsPage</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>SQL formatter</string>
+              </property>
+              <property name="statusTip">
+               <string>formatterPluginsPage</string>
+              </property>
+             </item>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QStackedWidget" name="stackedWidget">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>5</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="currentIndex">
+          <number>2</number>
+         </property>
+         <widget class="QWidget" name="generalPage">
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QGroupBox" name="dbListGroup">
+             <property name="title">
+              <string>Database list</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout">
+              <item row="0" column="0">
+               <widget class="QCheckBox" name="expandTablesCheck">
+                <property name="statusTip">
+                 <string>General.ExpandTables</string>
+                </property>
+                <property name="text">
+                 <string>Expand tables node when connected to a database</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QCheckBox" name="expandViewsCheck">
+                <property name="statusTip">
+                 <string>General.ExpandViews</string>
+                </property>
+                <property name="text">
+                 <string>Expand views node when connected to a database</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QCheckBox" name="sortObjects">
+                <property name="toolTip">
+                 <string>If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</string>
+                </property>
+                <property name="statusTip">
+                 <string>General.SortObjects</string>
+                </property>
+                <property name="text">
+                 <string>Sort objects (tables, indexes, triggers and views) alphabetically</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QCheckBox" name="sortColumns">
+                <property name="toolTip">
+                 <string>If switched off, then columns will be sorted in the order they are typed in CREATE TABLE statement.</string>
+                </property>
+                <property name="statusTip">
+                 <string>General.SortColumns</string>
+                </property>
+                <property name="text">
+                 <string>Sort table columns alphabetically</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="schemaEditingGroup">
+             <property name="title">
+              <string>Schema editing</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_12">
+              <item row="1" column="1">
+               <widget class="QSpinBox" name="ddlHistorySizeSpin">
+                <property name="maximumSize">
+                 <size>
+                  <width>150</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="toolTip">
+                 <string>Number of DDL changes kept in history.</string>
+                </property>
+                <property name="statusTip">
+                 <string>General.DdlHistorySize</string>
+                </property>
+                <property name="maximum">
+                 <number>9999999</number>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="ddlHistorySizeLabel">
+                <property name="text">
+                 <string>DDL history size:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0" colspan="2">
+               <widget class="QCheckBox" name="dontShowDdlPreview">
+                <property name="statusTip">
+                 <string>General.DontShowDdlPreview</string>
+                </property>
+                <property name="text">
+                 <string>Don't show queries preview dialog when commiting schema changes</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="dataBrowsingGroup">
+             <property name="title">
+              <string>Data browsing and editing</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_2">
+              <item row="0" column="0">
+               <widget class="QLabel" name="rowsPerPageLabel">
+                <property name="text">
+                 <string>Number of rows per page:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QSpinBox" name="rowsPerPageSpin">
+                <property name="maximumSize">
+                 <size>
+                  <width>150</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="statusTip">
+                 <string>General.NumberOfRowsPerPage</string>
+                </property>
+                <property name="minimum">
+                 <number>1</number>
+                </property>
+                <property name="maximum">
+                 <number>99999</number>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QCheckBox" name="openTablesOnDataCheck">
+                <property name="toolTip">
+                 <string>When enabled, Table Windows will show up with the data tab, instead of the structure tab.</string>
+                </property>
+                <property name="statusTip">
+                 <string>General.OpenTablesOnData</string>
+                </property>
+                <property name="text">
+                 <string>Open Table Windows on data tab</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0" colspan="2">
+               <widget class="QCheckBox" name="openViewsOnDataCheck">
+                <property name="toolTip">
+                 <string>When enabled, View Windows will show up with the data tab, instead of the structure tab.</string>
+                </property>
+                <property name="statusTip">
+                 <string>General.OpenViewsOnData</string>
+                </property>
+                <property name="text">
+                 <string>Open View Windows on data tab</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="sqlQueriesGroup">
+             <property name="title">
+              <string>SQL queries</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_4">
+              <item row="1" column="1">
+               <widget class="QSpinBox" name="queryHistorySizeSpin">
+                <property name="maximumSize">
+                 <size>
+                  <width>150</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="toolTip">
+                 <string>Number of queries kept in the history.</string>
+                </property>
+                <property name="statusTip">
+                 <string>General.SqlHistorySize</string>
+                </property>
+                <property name="maximum">
+                 <number>999999</number>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="queryHistorySizeLabel">
+                <property name="toolTip">
+                 <string>Number of queries kept in the history.</string>
+                </property>
+                <property name="text">
+                 <string>History size:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QCheckBox" name="checkBox">
+                <property name="toolTip">
+                 <string>If there is more than one query in the SQL editor window, then (if this option is enabled) only a single query will be executed - the one under the keyboard insertion cursor. Otherwise all queries will be executed. You can always limit queries to be executed by selecting those queries before calling to execute.</string>
+                </property>
+                <property name="statusTip">
+                 <string>General.ExecuteCurrentQueryOnly</string>
+                </property>
+                <property name="text">
+                 <string>Execute only the query under the cursor</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="lookAndFeelPage">
+          <layout class="QVBoxLayout" name="verticalLayout_7">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="pluginsPage">
+          <layout class="QGridLayout" name="gridLayout_18">
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item row="0" column="1">
+            <widget class="QLabel" name="pluginsPageInfoLabel">
+             <property name="text">
+              <string>Plugins are loaded/unloaded immediately when checked/unchecked, but modified list of plugins to load at startup is not saved until you commit the whole configuration dialog.</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="pluginsPageInfoIcon">
+             <property name="maximumSize">
+              <size>
+               <width>20</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" colspan="2">
+            <widget class="QTreeWidget" name="pluginsList">
+             <property name="editTriggers">
+              <set>QAbstractItemView::NoEditTriggers</set>
+             </property>
+             <property name="showDropIndicator" stdset="0">
+              <bool>false</bool>
+             </property>
+             <property name="verticalScrollMode">
+              <enum>QAbstractItemView::ScrollPerPixel</enum>
+             </property>
+             <property name="indentation">
+              <number>0</number>
+             </property>
+             <property name="rootIsDecorated">
+              <bool>false</bool>
+             </property>
+             <property name="expandsOnDoubleClick">
+              <bool>false</bool>
+             </property>
+             <property name="columnCount">
+              <number>2</number>
+             </property>
+             <attribute name="headerVisible">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="headerStretchLastSection">
+              <bool>false</bool>
+             </attribute>
+             <column>
+              <property name="text">
+               <string notr="true">1</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string notr="true">2</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="stylePage">
+          <layout class="QVBoxLayout" name="verticalLayout_6">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QWidget" name="activeStyleWidget" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout">
+              <item>
+               <widget class="QLabel" name="activeStyleLabel">
+                <property name="text">
+                 <string>Current style:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="activeStyleCombo">
+                <property name="statusTip">
+                 <string>General.Style</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="activeStylePreviewGroup">
+             <property name="title">
+              <string>Preview</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_8">
+              <item>
+               <widget class="QTabWidget" name="previewTabs">
+                <property name="currentIndex">
+                 <number>0</number>
+                </property>
+                <widget class="QWidget" name="previewTab1">
+                 <attribute name="title">
+                  <string>Enabled</string>
+                 </attribute>
+                 <layout class="QVBoxLayout" name="verticalLayout_2">
+                  <item>
+                   <widget class="QWidget" name="previewWidget" native="true">
+                    <layout class="QGridLayout" name="gridLayout_8">
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
+                     <item row="2" column="0">
+                      <widget class="QProgressBar" name="previewProgressBar">
+                       <property name="value">
+                        <number>24</number>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="6">
+                      <widget class="QCheckBox" name="previewCheckBox">
+                       <property name="text">
+                        <string>CheckBox</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1" rowspan="4">
+                      <widget class="QSlider" name="previewVerticalSlider">
+                       <property name="value">
+                        <number>50</number>
+                       </property>
+                       <property name="orientation">
+                        <enum>Qt::Vertical</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="2" rowspan="4">
+                      <widget class="QScrollBar" name="previewVerticalScrollBar">
+                       <property name="orientation">
+                        <enum>Qt::Vertical</enum>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="3" colspan="2">
+                      <widget class="QPushButton" name="previewPushButton">
+                       <property name="text">
+                        <string>PushButton</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="3" colspan="3">
+                      <widget class="QSpinBox" name="previewSpinBox"/>
+                     </item>
+                     <item row="2" column="3" colspan="5">
+                      <widget class="QProgressBar" name="progressBar">
+                       <property name="maximum">
+                        <number>0</number>
+                       </property>
+                       <property name="value">
+                        <number>0</number>
+                       </property>
+                       <property name="alignment">
+                        <set>Qt::AlignCenter</set>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="0">
+                      <widget class="QTreeWidget" name="previewTreeWidget">
+                       <column>
+                        <property name="text">
+                         <string>Column</string>
+                        </property>
+                       </column>
+                       <item>
+                        <property name="text">
+                         <string>123</string>
+                        </property>
+                        <item>
+                         <property name="text">
+                          <string>11111</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>22222</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>33333</string>
+                         </property>
+                        </item>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>456</string>
+                        </property>
+                        <item>
+                         <property name="text">
+                          <string>44444</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>55555</string>
+                         </property>
+                        </item>
+                        <item>
+                         <property name="text">
+                          <string>66666</string>
+                         </property>
+                        </item>
+                       </item>
+                      </widget>
+                     </item>
+                     <item row="0" column="5">
+                      <widget class="QToolButton" name="previewToolButton">
+                       <property name="text">
+                        <string>...</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="0">
+                      <widget class="QLineEdit" name="previewLineEdit"/>
+                     </item>
+                     <item row="0" column="6">
+                      <widget class="QRadioButton" name="previewRadioButton">
+                       <property name="text">
+                        <string>RadioButton</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="0">
+                      <widget class="QComboBox" name="previewComboBox">
+                       <item>
+                        <property name="text">
+                         <string>ABC</string>
+                        </property>
+                       </item>
+                       <item>
+                        <property name="text">
+                         <string>XYZ</string>
+                        </property>
+                       </item>
+                      </widget>
+                     </item>
+                     <item row="3" column="3" colspan="5">
+                      <widget class="QTextEdit" name="previewTextEdit">
+                       <property name="html">
+                        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt;&quot;&gt;Abcdefgh&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+                <widget class="QWidget" name="previewTab2">
+                 <attribute name="title">
+                  <string>Disabled</string>
+                 </attribute>
+                 <layout class="QGridLayout" name="gridLayout_7"/>
+                </widget>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="formatterPluginsPage">
+          <layout class="QVBoxLayout" name="verticalLayout_17">
+           <item>
+            <widget class="QGroupBox" name="activeFormatterGroup">
+             <property name="title">
+              <string>Active SQL formatter plugin</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_11">
+              <item row="0" column="0">
+               <widget class="QComboBox" name="activeFormatterCombo">
+                <property name="statusTip">
+                 <string>General.ActiveSqlFormatter</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QPushButton" name="activeFormatterConfigButton">
+                <property name="text">
+                 <string>Configure plugin</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_4">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="fontsPage">
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <item>
+            <widget class="QScrollArea" name="fontsScrollArea">
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="lineWidth">
+              <number>0</number>
+             </property>
+             <property name="widgetResizable">
+              <bool>true</bool>
+             </property>
+             <widget class="QWidget" name="fontsWidget">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>259</width>
+                <height>291</height>
+               </rect>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_9">
+               <item>
+                <widget class="QGroupBox" name="sqlEditorFontGroup">
+                 <property name="title">
+                  <string>SQL editor font</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_10">
+                  <item>
+                   <widget class="FontEdit" name="sqlEditorFont" native="true">
+                    <property name="statusTip">
+                     <string>Fonts.SqlEditor</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="dbTreeFontGroup">
+                 <property name="title">
+                  <string>Database list font</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_13">
+                  <item>
+                   <widget class="FontEdit" name="dbTreeFont" native="true">
+                    <property name="statusTip">
+                     <string>Fonts.DbTree</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="dbTreeLabelGroup">
+                 <property name="title">
+                  <string>Database list additional label font</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_14">
+                  <item>
+                   <widget class="FontEdit" name="dbTreeLabelFont" native="true">
+                    <property name="statusTip">
+                     <string>Fonts.DbTreeLabel</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="dataViewFontGroup">
+                 <property name="title">
+                  <string>Data view font</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_15">
+                  <item>
+                   <widget class="FontEdit" name="dataViewFont" native="true">
+                    <property name="statusTip">
+                     <string>Fonts.DataView</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="statusFieldFontGroup">
+                 <property name="title">
+                  <string>Status field font</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_16">
+                  <item>
+                   <widget class="FontEdit" name="statusFieldfont" native="true">
+                    <property name="statusTip">
+                     <string>Fonts.StatusField</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <spacer name="verticalSpacer_2">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="colorsPage">
+          <layout class="QVBoxLayout" name="verticalLayout_11">
+           <item>
+            <widget class="QScrollArea" name="scrollArea">
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="lineWidth">
+              <number>0</number>
+             </property>
+             <property name="widgetResizable">
+              <bool>true</bool>
+             </property>
+             <widget class="QWidget" name="colorsWidget">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>312</width>
+                <height>689</height>
+               </rect>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_12">
+               <item>
+                <widget class="QGroupBox" name="sqlEditorColorsGroup">
+                 <property name="title">
+                  <string>SQL editor colors</string>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_3">
+                  <item row="14" column="0">
+                   <widget class="QLabel" name="sqlEditorCurrLineBgLabel">
+                    <property name="text">
+                     <string>Current line background</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="0">
+                   <widget class="QLabel" name="sqlEditorStringFgLabel">
+                    <property name="toolTip">
+                     <string>&lt;p&gt;SQL strings are enclosed with single quote characters.&lt;/p&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>String foreground</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="1">
+                   <widget class="ColorButton" name="sqlEditorKeywordFgButton">
+                    <property name="maximumSize">
+                     <size>
+                      <width>50</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="statusTip">
+                     <string>Colors.SqlEditorKeywordFg</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="1">
+                   <widget class="ColorButton" name="sqlEditorStringFgButton">
+                    <property name="maximumSize">
+                     <size>
+                      <width>50</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="statusTip">
+                     <string>Colors.SqlEditorStringFg</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="9" column="1">
+                   <widget class="ColorButton" name="sqlEditorCommentFgButton">
+                    <property name="maximumSize">
+                     <size>
+                      <width>50</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="statusTip">
+                     <string>Colors.SqlEditorCommentFg</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="1">
+                   <widget class="ColorButton" name="sqlEditorRegularFgButton">
+                    <property name="maximumSize">
+                     <size>
+                      <width>50</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="statusTip">
+                     <string>Colors.SqlEditorForeground</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="14" column="1">
+                   <widget class="ColorButton" name="sqlEditorCurrLineBgButton">
+                    <property name="maximumSize">
+                     <size>
+                      <width>50</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="statusTip">
+                     <string>Colors.SqlEditorCurrentLineBg</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="16" column="1">
+                   <widget class="ColorButton" name="sqlEditorLineNumAreaBgButton">
+                    <property name="maximumSize">
+                     <size>
+                      <width>50</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="statusTip">
+                     <string>Colors.SqlEditorLineNumAreaBg</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="12" column="0">
+                   <widget class="QLabel" name="sqlEditorBindParamFgLabel">
+                    <property name="toolTip">
+                     <string>&lt;p&gt;Bind parameters are placeholders for values yet to be provided by the user. They have one of the forms:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;:param_name&lt;/li&gt;&lt;li&gt;$param_name&lt;/li&gt;&lt;li&gt;@param_name&lt;/li&gt;&lt;li&gt;?&lt;/li&gt;&lt;/ul&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>Bind parameter foreground</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="15" column="1">
+                   <widget class="ColorButton" name="sqlEditorParBgButton">
+                    <property name="maximumSize">
+                     <size>
+                      <width>50</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="statusTip">
+                     <string>Colors.SqlEditorParenthesisBg</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="15" column="0">
+                   <widget class="QLabel" name="sqlEditorParBgLabel">
+                    <property name="text">
+                     <string>Highlighted parenthesis background</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="11" column="0">
+                   <widget class="QLabel" name="sqlEditorBlobFgLabel">
+                    <property name="toolTip">
+                     <string>&lt;p&gt;BLOB values are binary values represented as hexadecimal numbers, like:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;X'12B4'&lt;/li&gt;&lt;li&gt;x'46A2F4'&lt;/li&gt;&lt;/ul&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>BLOB value foreground</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="0">
+                   <widget class="QLabel" name="sqlEditorRegularFgLabel">
+                    <property name="text">
+                     <string>Regular foreground</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="16" column="0">
+                   <widget class="QLabel" name="sqlEditorLineNumAreaBgLabel">
+                    <property name="text">
+                     <string>Line numbers area background</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="11" column="1">
+                   <widget class="ColorButton" name="sqlEditorBlobFgButton">
+                    <property name="maximumSize">
+                     <size>
+                      <width>50</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="statusTip">
+                     <string>Colors.SqlEditorBlobFg</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="0">
+                   <widget class="QLabel" name="sqlEditorKeywordFgLabel">
+                    <property name="text">
+                     <string>Keyword foreground</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="10" column="0">
+                   <widget class="QLabel" name="sqlEditorNumberFgLabel">
+                    <property name="toolTip">
+                     <string>&lt;p&gt;Bind parameters are placeholders for values yet to be provided by the user. They have one of the forms:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;:param_name&lt;/li&gt;&lt;li&gt;$param_name&lt;/li&gt;&lt;li&gt;@param_name&lt;/li&gt;&lt;li&gt;?&lt;/li&gt;&lt;/ul&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>Number foreground</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="9" column="0">
+                   <widget class="QLabel" name="sqlEditorCommentFgLabel">
+                    <property name="toolTip">
+                     <string>&lt;p&gt;Bind parameters are placeholders for values yet to be provided by the user. They have one of the forms:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;:param_name&lt;/li&gt;&lt;li&gt;$param_name&lt;/li&gt;&lt;li&gt;@param_name&lt;/li&gt;&lt;li&gt;?&lt;/li&gt;&lt;/ul&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>Comment foreground</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="10" column="1">
+                   <widget class="ColorButton" name="sqlEditorNumberFgButton">
+                    <property name="maximumSize">
+                     <size>
+                      <width>50</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="statusTip">
+                     <string>Colors.SqlEditorNumberFg</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="12" column="1">
+                   <widget class="ColorButton" name="sqlEditorBindParamFgButton">
+                    <property name="maximumSize">
+                     <size>
+                      <width>50</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="statusTip">
+                     <string>Colors.SqlEditorBindParamFg</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="13" column="0">
+                   <widget class="QLabel" name="sqlEditorValidObjectsLabel">
+                    <property name="toolTip">
+                     <string>&lt;p&gt;Valid objects are name of tables, indexes, triggers, or views that exist in the SQLite database.&lt;/p&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>Valid objects foreground</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="13" column="1">
+                   <widget class="ColorButton" name="sqlEditorValidObjectsButton">
+                    <property name="maximumSize">
+                     <size>
+                      <width>50</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="statusTip">
+                     <string>Colors.SqlEditorValidObject</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="dataViewGroup">
+                 <property name="title">
+                  <string>Data view colors</string>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_6">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="dataViewUncommitedLabel">
+                    <property name="toolTip">
+                     <string>&lt;p&gt;Any data changes will be outlined with this color, until they're commited to the database.&lt;/p&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>Uncommited data outline color</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="ColorButton" name="dataViewUncommitedButton">
+                    <property name="maximumSize">
+                     <size>
+                      <width>50</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="statusTip">
+                     <string>Colors.DataUncommited</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="dataViewErrorLabel">
+                    <property name="toolTip">
+                     <string>&lt;p&gt;In case of error while commiting data changes, the problematic cell will be outlined with this color.&lt;/p&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>Commit error outline color</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="ColorButton" name="dataViewErrorButton">
+                    <property name="maximumSize">
+                     <size>
+                      <width>50</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="statusTip">
+                     <string>Colors.DataUncommitedError</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="dataViewNullFgLabel">
+                    <property name="text">
+                     <string>NULL value foreground</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="ColorButton" name="dataViewNullFgButton">
+                    <property name="maximumSize">
+                     <size>
+                      <width>50</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="statusTip">
+                     <string>Colors.DataNullFg</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QLabel" name="dataViewDeletedRowBgLabel">
+                    <property name="text">
+                     <string>Deleted row background</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="ColorButton" name="dataViewDeletedRowBgButton">
+                    <property name="maximumSize">
+                     <size>
+                      <width>50</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="statusTip">
+                     <string>Colors.DataDeletedBg</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="dbTreeGroup">
+                 <property name="title">
+                  <string>Database list colors</string>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_9">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="dbTreeLabelsLabel">
+                    <property name="toolTip">
+                     <string>&lt;p&gt;Additional labels are those which tell you SQLite version, number of objects deeper in the tree, etc.&lt;/p&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>Additional labels foreground</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="ColorButton" name="dbTreeLabelsButton">
+                    <property name="maximumSize">
+                     <size>
+                      <width>50</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="statusTip">
+                     <string>Colors.DbTreeLabelsFg</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="statusFieldGroup">
+                 <property name="title">
+                  <string>Status field colors</string>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_10">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="statusFieldInfoLabel">
+                    <property name="text">
+                     <string>Information message foreground</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="ColorButton" name="statusFieldInfoButton">
+                    <property name="maximumSize">
+                     <size>
+                      <width>50</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="statusTip">
+                     <string>Colors.StatusFieldInfoFg</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="statusFieldWarnLabel">
+                    <property name="text">
+                     <string>Warning message foreground</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="ColorButton" name="statusFieldWarnButton">
+                    <property name="maximumSize">
+                     <size>
+                      <width>50</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="statusTip">
+                     <string>Colors.StatusFieldWarnFg</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="statusFieldErrorLabel">
+                    <property name="text">
+                     <string>Error message foreground</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="ColorButton" name="statusFieldErrorButton">
+                    <property name="maximumSize">
+                     <size>
+                      <width>50</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="statusTip">
+                     <string>Colors.StatusFieldErrorFg</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <spacer name="verticalSpacer_3">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>FontEdit</class>
+   <extends>QWidget</extends>
+   <header>common/fontedit.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ColorButton</class>
+   <extends>QPushButton</extends>
+   <header>common/colorbutton.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>ConfigDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>ConfigDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

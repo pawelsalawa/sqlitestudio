@@ -1,0 +1,207 @@
+#ifndef SQLITESELECT_H
+#define SQLITESELECT_H
+
+#include "sqlitequery.h"
+#include "sqliteexpr.h"
+#include "sqlitelimit.h"
+#include "sqliteorderby.h"
+
+#include <QList>
+
+/**
+ * @addtogroup sqlite_statement
+ * @brief The SqliteSelect class
+ */
+class API_EXPORT SqliteSelect : public SqliteQuery
+{
+    public:
+        enum class CompoundOperator
+        {
+            UNION,
+            UNION_ALL,
+            INTERSECT,
+            EXCEPT,
+            null
+        };
+
+        class API_EXPORT Core : public SqliteStatement
+        {
+            public:
+                class API_EXPORT ResultColumn : public SqliteStatement
+                {
+                    public:
+                        ResultColumn();
+                        ResultColumn(const ResultColumn& other);
+                        ResultColumn(SqliteExpr* expr, bool asKw, const QString& alias);
+                        ResultColumn(bool star, const QString& table);
+                        explicit ResultColumn(bool star);
+
+                        bool isRowId();
+
+                        SqliteExpr* expr = nullptr;
+                        bool star = false;
+                        bool asKw = false;
+                        QString alias = QString::null;
+                        QString table = QString::null;
+
+                    protected:
+                        QStringList getTablesInStatement();
+                        TokenList getTableTokensInStatement();
+                        QList<FullObject> getFullObjectsInStatement();
+                        TokenList rebuildTokensFromContents();
+                };
+
+                class JoinSource; // forward declaration
+
+                class API_EXPORT SingleSource : public SqliteStatement
+                {
+                    public:
+                        SingleSource();
+                        SingleSource(const SingleSource& other);
+                        SingleSource(const QString& name1, const QString& name2,
+                                     bool asKw, const QString& alias, bool notIndexedKw, const QString& indexedBy);
+                        SingleSource(SqliteSelect* select, bool asKw, const QString& alias);
+                        SingleSource(JoinSource* src, bool asKw, const QString& alias);
+
+                        QString database = QString::null;
+                        QString table = QString::null;
+                        QString alias = QString::null;
+                        bool asKw = false;
+                        bool indexedByKw = false;
+                        bool notIndexedKw = false;
+                        QString indexedBy = QString::null;
+                        SqliteSelect* select = nullptr;
+                        JoinSource* joinSource = nullptr;
+
+                    protected:
+                        QStringList getTablesInStatement();
+                        QStringList getDatabasesInStatement();
+                        TokenList getTableTokensInStatement();
+                        TokenList getDatabaseTokensInStatement();
+                        QList<FullObject> getFullObjectsInStatement();
+                        TokenList rebuildTokensFromContents();
+                };
+
+                class API_EXPORT JoinOp : public SqliteStatement
+                {
+                    public:
+                        JoinOp();
+                        JoinOp(const JoinOp& other);
+                        explicit JoinOp(bool comma);
+                        explicit JoinOp(const QString& joinToken);
+                        JoinOp(const QString& joinToken, const QString& word1);
+                        JoinOp(const QString& joinToken, const QString& word1, const QString& word2);
+
+                    private:
+                        void init(const QString& str);
+
+                    public:
+                        bool comma = false;
+                        bool joinKw = false;
+                        bool naturalKw = false;
+                        bool leftKw = false;
+                        bool outerKw = false;
+                        bool innerKw = false;
+                        bool crossKw = false;
+                        bool rightKw = false;
+                        bool fullKw = false;
+                        QString customKw1 = QString::null;
+                        QString customKw2 = QString::null;
+                        QString customKw3 = QString::null;
+
+                    protected:
+                        TokenList rebuildTokensFromContents();
+
+                    private:
+                        TokenList rebuildTokensForSqlite2();
+                        TokenList rebuildTokensForSqlite3();
+                };
+
+                class API_EXPORT JoinConstraint : public SqliteStatement
+                {
+                    public:
+                        JoinConstraint();
+                        JoinConstraint(const JoinConstraint& other);
+                        explicit JoinConstraint(SqliteExpr* expr);
+                        explicit JoinConstraint(const QList<QString>& strList);
+
+                        SqliteExpr* expr = nullptr;
+                        QList<QString> columnNames;
+
+                    protected:
+                        QStringList getColumnsInStatement();
+                        TokenList getColumnTokensInStatement();
+                        TokenList rebuildTokensFromContents();
+                };
+
+                class API_EXPORT JoinSourceOther : public SqliteStatement
+                {
+                    public:
+                        JoinSourceOther();
+                        JoinSourceOther(const JoinSourceOther& other);
+                        JoinSourceOther(SqliteSelect::Core::JoinOp *op,
+                                        SqliteSelect::Core::SingleSource* src,
+                                        SqliteSelect::Core::JoinConstraint* constr);
+
+                        JoinOp* joinOp = nullptr;
+                        SingleSource* singleSource = nullptr;
+                        JoinConstraint* joinConstraint = nullptr;
+
+                    protected:
+                        TokenList rebuildTokensFromContents();
+                };
+
+                class API_EXPORT JoinSource : public SqliteStatement
+                {
+                    public:
+                        JoinSource();
+                        JoinSource(const JoinSource& other);
+                        JoinSource(SingleSource* singleSource, const QList<JoinSourceOther*>& list);
+
+                        SingleSource* singleSource = nullptr;
+                        QList<JoinSourceOther*> otherSources;
+
+                    protected:
+                        TokenList rebuildTokensFromContents();
+                };
+
+                Core();
+                Core(const Core& other);
+                Core(int distinct, const QList<ResultColumn*>& resCols, JoinSource* src, SqliteExpr* where,
+                     const QList<SqliteExpr*>& groupBy, SqliteExpr* having, const QList<SqliteOrderBy*>& orderBy,
+                     SqliteLimit* limit);
+
+                CompoundOperator compoundOp = CompoundOperator::null;
+                QList<ResultColumn*> resultColumns;
+                JoinSource* from = nullptr;
+                bool distinctKw = false;
+                bool allKw = false;
+                SqliteExpr* where = nullptr;
+                SqliteExpr* having = nullptr;
+                QList<SqliteExpr*> groupBy;
+                QList<SqliteOrderBy*> orderBy;
+                SqliteLimit* limit = nullptr;
+
+            protected:
+                TokenList rebuildTokensFromContents();
+        };
+
+        SqliteSelect();
+        SqliteSelect(const SqliteSelect& other);
+
+        static SqliteSelect* append(SqliteSelect::Core* core);
+        static SqliteSelect* append(SqliteSelect* select, CompoundOperator op, SqliteSelect::Core* core);
+
+        QString compoundOperator(CompoundOperator op);
+        CompoundOperator compoundOperator(const QString& op);
+        void reset();
+
+        QList<Core*> coreSelects;
+
+    protected:
+        TokenList rebuildTokensFromContents();
+};
+
+typedef QSharedPointer<SqliteSelect> SqliteSelectPtr;
+
+#endif // SQLITESELECT_H

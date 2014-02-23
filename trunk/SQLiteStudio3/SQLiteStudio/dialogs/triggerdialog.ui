@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TriggerDialog</class>
+ <widget class="QDialog" name="TriggerDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>490</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="triggerTab">
+      <attribute name="title">
+       <string>Trigger</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="2" column="2">
+        <widget class="QLabel" name="onLabel">
+         <property name="text">
+          <string>On table:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QComboBox" name="whenCombo"/>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="actionLabel">
+         <property name="text">
+          <string>Action:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QComboBox" name="actionCombo"/>
+       </item>
+       <item row="3" column="2">
+        <widget class="QComboBox" name="onCombo"/>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QLineEdit" name="nameEdit"/>
+       </item>
+       <item row="6" column="0" colspan="3">
+        <widget class="QCheckBox" name="preconditionCheck">
+         <property name="toolTip">
+          <string>&lt;p&gt;SQL condition that will be evaluated before the actual trigger code. In case the condition returns false, the trigger will not be fired for that row.&lt;/p&gt;</string>
+         </property>
+         <property name="text">
+          <string>Pre-condition:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0" colspan="3">
+        <widget class="QComboBox" name="scopeCombo">
+         <property name="toolTip">
+          <string>The scope is still not fully supported by the SQLite database.</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="nameLabel">
+         <property name="text">
+          <string>Trigger name:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="whenLabel">
+         <property name="text">
+          <string>When:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QToolButton" name="actionColumns">
+         <property name="toolTip">
+          <string>List of columns for UPDATE OF action.</string>
+         </property>
+         <property name="text">
+          <string>...</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0" colspan="3">
+        <widget class="QLabel" name="scopeLabel">
+         <property name="text">
+          <string>Scope:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="0">
+        <widget class="QLabel" name="codeLabel">
+         <property name="text">
+          <string>Code:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="0" colspan="3">
+        <widget class="SqlEditor" name="codeEdit">
+         <property name="toolTip">
+          <string>Trigger statements to be executed.</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0" colspan="3">
+        <widget class="SqlEditor" name="preconditionEdit">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>80</height>
+          </size>
+         </property>
+         <property name="toolTip">
+          <string>&lt;p&gt;SQL condition that will be evaluated before the actual trigger code. In case the condition returns false, the trigger will not be fired for that row.&lt;/p&gt;</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="ddlTab">
+      <attribute name="title">
+       <string>DDL</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="SqlView" name="ddlEdit"/>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>SqlEditor</class>
+   <extends>QPlainTextEdit</extends>
+   <header>sqleditor.h</header>
+  </customwidget>
+  <customwidget>
+   <class>SqlView</class>
+   <extends>QPlainTextEdit</extends>
+   <header>sqlview.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>TriggerDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>TriggerDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

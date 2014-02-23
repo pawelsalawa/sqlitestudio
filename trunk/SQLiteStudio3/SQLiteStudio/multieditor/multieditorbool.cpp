@@ -1,0 +1,144 @@
+#include "multieditorbool.h"
+#include <QVBoxLayout>
+#include <QCheckBox>
+#include <QVariant>
+
+QStringList MultiEditorBool::validValues;
+
+MultiEditorBool::MultiEditorBool(QWidget* parent)
+    : MultiEditorWidget(parent)
+{
+    setLayout(new QVBoxLayout());
+    checkBox = new QCheckBox();
+    layout()->addWidget(checkBox);
+    connect(checkBox, &QCheckBox::stateChanged, this, &MultiEditorBool::stateChanged);
+}
+
+void MultiEditorBool::staticInit()
+{
+    validValues << "true" << "false"
+                << "yes" << "no"
+                << "on" << "off"
+                << "1" << "0";
+}
+
+void MultiEditorBool::setValue(const QVariant& value)
+{
+    switch (value.userType())
+    {
+        case QVariant::Bool:
+        case QVariant::Int:
+        case QVariant::LongLong:
+        case QVariant::UInt:
+        case QVariant::ULongLong:
+            boolValue = value.toBool();
+            upperCaseValue = false;
+            valueFormat = BOOL;
+            break;
+        default:
+            boolValue = valueFromString(value.toString());
+            break;
+    }
+
+    updateLabel();
+    checkBox->setChecked(boolValue);
+}
+
+bool MultiEditorBool::valueFromString(const QString& strValue)
+{
+    if (strValue.isEmpty())
+    {
+        upperCaseValue = false;
+        valueFormat = BOOL;
+        return false;
+    }
+
+    int idx = validValues.indexOf(strValue.toLower());
+    if (idx < 0)
+    {
+        upperCaseValue = false;
+        valueFormat = BOOL;
+        return true;
+    }
+
+    upperCaseValue = strValue[0].isUpper();
+    switch (idx)
+    {
+        case 0:
+        case 1:
+            valueFormat = TRUE_FALSE;
+            break;
+        case 2:
+        case 3:
+            valueFormat = YES_NO;
+            break;
+        case 4:
+        case 5:
+            valueFormat = ON_OFF;
+            break;
+        case 6:
+        case 7:
+            valueFormat = ONE_ZERO;
+            break;
+    }
+    return !(bool)(idx % 2);
+}
+
+QVariant MultiEditorBool::getValue()
+{
+    QString value;
+    switch (valueFormat)
+    {
+        case MultiEditorBool::TRUE_FALSE:
+            value = boolValue ? "true" : "false";
+            break;
+        case MultiEditorBool::ON_OFF:
+            value = boolValue ? "on" : "off";
+            break;
+        case MultiEditorBool::YES_NO:
+            value = boolValue ? "yes" : "no";
+            break;
+        case MultiEditorBool::ONE_ZERO:
+        case MultiEditorBool::BOOL:
+            value = boolValue ? "1" : "0";
+            break;
+    }
+
+    if (value.isNull())
+        value = boolValue ? "1" : "0";
+
+    if (upperCaseValue)
+        value = value.toUpper();
+
+    return value;
+}
+
+void MultiEditorBool::setReadOnly(bool value)
+{
+    readOnly = value;
+}
+
+QList<QWidget*> MultiEditorBool::getNoScrollWidgets()
+{
+    QList<QWidget*> list;
+    list << checkBox;
+    return list;
+}
+
+void MultiEditorBool::updateLabel()
+{
+    checkBox->setText(getValue().toString());
+}
+
+void MultiEditorBool::stateChanged(int state)
+{
+    if (readOnly && ((bool)state) != boolValue)
+    {
+        checkBox->setChecked(boolValue);
+        return;
+    }
+
+    boolValue = checkBox->isChecked();
+    updateLabel();
+    emit valueModified();
+}

@@ -1,0 +1,12 @@
+#ifndef TESTUTILS_GLOBAL_H
+#define TESTUTILS_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(TESTUTILS_LIBRARY)
+#  define TESTUTILSSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define TESTUTILSSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // TESTUTILS_GLOBAL_H

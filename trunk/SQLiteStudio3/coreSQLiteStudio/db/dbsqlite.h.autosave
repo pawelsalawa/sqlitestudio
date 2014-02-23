@@ -1,0 +1,72 @@
+#ifndef DBSQLITE_H
+#define DBSQLITE_H
+
+#include "db.h"
+#include "../returncode.h"
+#include "sqlerror.h"
+#include "sqlresults.h"
+#include "../dialect.h"
+
+#include <QObject>
+#include <QSqlDatabase>
+#include <QVariant>
+#include <QList>
+#include <QMap>
+#include <QHash>
+#include <QMutex>
+#include <QRunnable>
+
+class AsyncQueryRunner;
+
+class DbSqlite : public Db
+{
+    Q_OBJECT
+
+    public:
+        virtual ~DbSqlite();
+
+        static DbPtr getInstance(const QString &name, const QString& path,
+                                 const QString &options = QString::null);
+
+        QString getName();
+        QString getPath();
+        quint8 getVersion();
+        virtual QString driver() = 0;
+        Dialect getDialect();
+
+        quint32 asyncExec(const QString& query, const QVariant& arg1 = QVariant(),
+                          const QVariant& arg2 = QVariant(), const QVariant& arg3 = QVariant());
+        quint32 asyncExecStr(const QString& query, const QVariant& arg1 = QVariant(),
+                          const QVariant& arg2 = QVariant(), const QVariant& arg3 = QVariant());
+        quint32 asyncExecArgs(const QString& query, const QList<QVariant>& args);
+        quint32 asyncExecArgs(const QString& query, const QMap<QString,QVariant>& args);
+
+        void begin();
+        bool commit();
+        void rollback();
+        QString getType();
+        SqlError lastError();
+
+    protected:
+        Db();
+
+        void cleanUp();
+        QString generateUniqueDbName();
+        bool isOpenNoLock();
+        quint32 asyncExec(AsyncQueryRunner* runner);
+        SqlResultsPtr execInternal(const QString& query, const QList<QVariant>& args,
+                                                bool singleCell);
+        SqlResultsPtr execInternal(const QString& query, const QMap<QString,QVariant>& args,
+                                                bool singleCell);
+        bool init();
+
+        QSqlDatabase db;
+        quint8 version = 0;
+
+    public slots:
+        bool openQuiet();
+        bool closeQuiet();
+
+};
+
+#endif // DBSQLITE_H
