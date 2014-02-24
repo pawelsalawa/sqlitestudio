@@ -8,8 +8,8 @@ INCLUDEPATH += $$PWD/SQLiteStudio
 DEPENDPATH += $$PWD/coreSQLiteStudio
 
 win32: {
-    INCLUDEPATH += $$PWD/../include
-    LIBS += -L$$PWD/../lib -L$$DESTDIR/.. -lcoreSQLiteStudio
+    INCLUDEPATH += $$PWD/../../include
+    LIBS += -L$$PWD/../../lib -L$$DESTDIR/.. -lcoreSQLiteStudio
 }
 
 unix: {
