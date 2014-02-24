@@ -7,7 +7,7 @@
 class QWidget;
 class QSyntaxHighlighter;
 
-class API_EXPORT SyntaxHighlighterPlugin : virtual public Plugin
+class SyntaxHighlighterPlugin : virtual public Plugin
 {
     public:
         virtual QString getLanguageName() const = 0;
