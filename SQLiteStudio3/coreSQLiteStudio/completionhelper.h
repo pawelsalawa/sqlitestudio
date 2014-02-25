@@ -42,13 +42,14 @@ class API_EXPORT CompletionHelper : public QObject
             NONE,
             SELECT_RESULT_COLUMN,
             SELECT_FROM,
-            SELECT_WHERE, // TODO SELECT_WHERE completer context
-            SELECT_GROUP_BY, // TODO SELECT_GROUP_BY completer context
-            SELECT_HAVING, // TODO SELECT_HAVING completer context
-            SELECT_ORDER_BY, // TODO ORDER_BY completer context
+            SELECT_WHERE,
+            SELECT_GROUP_BY,
+            SELECT_HAVING,
+            SELECT_ORDER_BY,
             UPDATE_COLUMN,
             CREATE_TABLE,
-            CREATE_TRIGGER
+            CREATE_TRIGGER,
+            EXPR
         };
 
         CompletionHelper(const QString& sql, quint32 cursorPos, Db* db);
@@ -110,12 +111,47 @@ class API_EXPORT CompletionHelper : public QObject
         void extractTableAliasMap();
         void extractCreateTableColumns();
         void detectSelectContext();
-        bool isInResCols(SqliteSelect::Core *core);
-        bool isInFromClause(SqliteSelect::Core *core);
         bool isInUpdateColumn();
         bool isInCreateTable();
         bool isInCreateTrigger();
+        bool isInExpr();
         bool testQueryToken(int tokenPosition, Token::Type type, const QString& value, Qt::CaseSensitivity cs = Qt::CaseInsensitive);
+
+        template <class T>
+        bool fitsInCollection(const QList<T*>& collection)
+        {
+            if (collection.size() == 0)
+                return false;
+
+            T* firstStmt = collection.first();
+            T* lastStmt = collection.last();
+
+            int startIdx = -1;
+            int endIdx = -1;
+            if (firstStmt->tokens.size() > 0)
+                startIdx = firstStmt->tokens.first()->start;
+
+            if (lastStmt->tokens.size() > 0)
+                endIdx = lastStmt->tokens.last()->end;
+
+            if (startIdx < 0 || endIdx < 0)
+                return false;
+
+            return (cursorPosition >= startIdx && cursorPosition <= endIdx);
+        }
+
+        template <class T>
+        bool fitsInStatement(T* stmt)
+        {
+            if (stmt->tokens.size() == 0)
+                return false;
+
+            int startIdx = stmt->tokens.first()->start;
+            int endIdx = stmt->tokens.last()->end;
+
+            return (cursorPosition >= startIdx && cursorPosition <= endIdx);
+        }
+
 
         Context context = Context::NONE;
         Db* db = nullptr;

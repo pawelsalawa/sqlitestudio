@@ -1024,102 +1024,33 @@ void CompletionHelper::extractQueryAdditionalInfo()
     {
         context = Context::CREATE_TRIGGER;
     }
+    else if (isInExpr())
+    {
+        context = Context::EXPR;
+    }
 }
 
 void CompletionHelper::detectSelectContext()
 {
-    if (isInResCols(currentSelectCore))
-    {
+    if (fitsInCollection(currentSelectCore->resultColumns))
         context = Context::SELECT_RESULT_COLUMN;
-        return;
-    }
-
-    if (isInFromClause(currentSelectCore))
-    {
+    else if (fitsInStatement(currentSelectCore->from))
         context = Context::SELECT_FROM;
-        return;
-    }
-}
-
-bool CompletionHelper::isInResCols(SqliteSelect::Core* core)
-{
-    if (core->tokens.isEmpty())
-    {
-        qWarning() << "Empty tokens of select core in call to CompletionHelper::isInResCols().";
-        return false;
-    }
-
-    if (cursorPosition <= core->tokens.first()->end)
-        return false; // still in SELECT token
-
-    // The end index is not the last token in results columns, but first token in any statement,
-    // that is not results columns. If there's no other statement, then it means that cursor
-    // is in results column, cause there's nothing after them.
-    qint64 endIdx = -1;
-    const char* tokensMapKeys[] = {"from", "where_opt", "groupby_opt", "having_opt"};
-    for (const char* tokensMapKey : tokensMapKeys)
-    {
-        if (core->tokensMap[tokensMapKey].size() > 0)
-        {
-            endIdx = core->tokensMap[tokensMapKey].first()->start;
-            break;
-        }
-    }
-
-    if (endIdx == -1)
-        return true;
-
-    if (cursorPosition >= endIdx)
-        return false;
-
-    return true;
-}
-
-bool CompletionHelper::isInFromClause(SqliteSelect::Core *core)
-{
-    if (core->tokens.isEmpty())
-    {
-        qWarning() << "Empty tokens of select core in call to CompletionHelper::isInFromClause().";
-        return false;
-    }
-
-    TokenPtr from = core->tokensMap["from"].find(Token::KEYWORD, "FROM", Qt::CaseInsensitive);
-    if (!from)
-    {
-        // No from, so no FROM context.
-        return false;
-    }
-
-    if (cursorPosition <= from->end)
-    {
-        // Still in FROM word
-        return false;
-    }
-
-    qint64 endIdx = -1;
-    const char* tokensMapKeys[] = {"where_opt", "groupby_opt", "having_opt"};
-    for (const char* tokensMapKey : tokensMapKeys)
-    {
-        if (core->tokensMap[tokensMapKey].size() > 0)
-        {
-            endIdx = core->tokensMap[tokensMapKey].first()->start;
-            break;
-        }
-    }
-
-    if (endIdx == -1)
-        return true;
-
-    if (cursorPosition >= endIdx)
-        return false;
-
-    return true;
+    else if (fitsInStatement(currentSelectCore->where))
+        context = Context::SELECT_WHERE;
+    else if (fitsInStatement(currentSelectCore->having))
+        context = Context::SELECT_HAVING;
+    else if (fitsInCollection(currentSelectCore->groupBy))
+        context = Context::SELECT_GROUP_BY;
+    else if (fitsInCollection(currentSelectCore->orderBy))
+        context = Context::SELECT_ORDER_BY;
 }
 
 bool CompletionHelper::isInUpdateColumn()
 {
-    // TODO need to check if we're not in any subquery, because this disqualifies update column context
-    // and raises opportunity for any kind of select context.
+    // We will never get here if the subquery SELECT was used anywhere in the query,
+    // (and the cursor position is in that subselect), because in that case the extractSelectCore()
+    // will take over the flow before it reaches here.
 
     if (!parsedQuery)
         return false;
@@ -1173,6 +1104,22 @@ bool CompletionHelper::isInCreateTrigger()
         return false;
 
     return true;
+}
+
+bool CompletionHelper::isInExpr()
+{
+    if (!parsedQuery)
+        return false;
+
+    // Finding in which statement the cursor is positioned
+    // We're looking for curPos - 1, because tokens indexing ends in the same, with -1 index.
+    SqliteStatement* stmt = parsedQuery->findStatementWithPosition(cursorPosition - 1);
+
+    // Now going up in statements tree in order to find first expr
+    while (stmt && !dynamic_cast<SqliteExpr*>(stmt))
+        stmt = stmt->parentStatement();
+
+    return (stmt && dynamic_cast<SqliteExpr*>(stmt));
 }
 
 bool CompletionHelper::testQueryToken(int tokenPosition, Token::Type type, const QString& value, Qt::CaseSensitivity cs)
