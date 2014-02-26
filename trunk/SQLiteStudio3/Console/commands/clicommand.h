@@ -24,8 +24,9 @@ class CliCommand : public QObject
         /**
          * @brief execute
          * @param args Command arguments.
+         * @return true if the execution is asynchonous and execComplete() signal should be awaited, false for synchronous commands.
          */
-        virtual void execute(QStringList args) = 0;
+        virtual bool execute(QStringList args) = 0;
 
         /**
          * @brief validate
@@ -42,6 +43,9 @@ class CliCommand : public QObject
         DbManager* dbManager;
         CLI* cli;
         Config* config;
+
+    signals:
+        void execComplete();
 };
 
 #endif // CLICOMMAND_H

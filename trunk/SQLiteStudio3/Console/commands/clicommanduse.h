@@ -8,7 +8,7 @@ class CliCommandUse : public CliCommand
     public:
         static CliCommandUse* create();
 
-        void execute(QStringList args);
+        bool execute(QStringList args);
         bool validate(QStringList args);
 };
 

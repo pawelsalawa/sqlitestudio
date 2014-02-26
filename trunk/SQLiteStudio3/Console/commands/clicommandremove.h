@@ -8,7 +8,7 @@ class CliCommandRemove : public CliCommand
     public:
         static CliCommandRemove* create();
 
-        void execute(QStringList args);
+        bool execute(QStringList args);
         bool validate(QStringList args);
 };
 

@@ -5,8 +5,6 @@
 #include <QObject>
 #include <QTextStream>
 #include <QStringList>
-#include <QWaitCondition>
-#include <QMutex>
 
 class QThread;
 class QFile;
@@ -36,11 +34,8 @@ class CLI : public QObject
         QThread* thread;
         Db* currentDb = nullptr;
         quint32 maxResultColumnLength = 20;
-        QMutex waitMutex;
-        QWaitCondition waitForExec;
         bool executionFinished = false;
         bool doExit = false;
-        QString prompt;
 
     signals:
         void execCommand(CliCommand* cmd, QStringList args);

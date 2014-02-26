@@ -8,7 +8,17 @@ CliCommandExecutor::CliCommandExecutor(QObject *parent) :
 
 void CliCommandExecutor::execCommand(CliCommand* cmd, QStringList args)
 {
-    cmd->execute(args);
-    delete cmd;
+    connect(cmd, SIGNAL(execComplete()), this, SLOT(asyncExecutionComplete()));
+    bool async = cmd->execute(args);
+    if (!async)
+    {
+        delete cmd;
+        emit executionComplete();
+    }
+}
+
+void CliCommandExecutor::asyncExecutionComplete()
+{
+    sender()->deleteLater();
     emit executionComplete();
 }

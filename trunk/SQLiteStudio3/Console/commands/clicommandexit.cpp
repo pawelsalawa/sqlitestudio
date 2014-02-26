@@ -7,10 +7,12 @@ CliCommandExit *CliCommandExit::create()
     return new CliCommandExit();
 }
 
-void CliCommandExit::execute(QStringList args)
+bool CliCommandExit::execute(QStringList args)
 {
     UNUSED(args);
     cli->exit();
+
+    return false;
 }
 
 bool CliCommandExit::validate(QStringList args)
