@@ -15,15 +15,15 @@ QHash<QString,CliCommandFactory::CliCommandCreatorFunc> CliCommandFactory::mappi
 
 void CliCommandFactory::init()
 {
-    REGISTER_CMD("add", CliCommandAdd);
+    REGISTER_CMD("add",    CliCommandAdd);
     REGISTER_CMD("remove", CliCommandRemove);
-    REGISTER_CMD("exit", CliCommandExit);
-    REGISTER_CMD("quit", CliCommandExit);
+    REGISTER_CMD("exit",   CliCommandExit);
+    REGISTER_CMD("quit",   CliCommandExit);
     REGISTER_CMD("dblist", CliCommandDbList);
-    REGISTER_CMD("use", CliCommandUse);
-    REGISTER_CMD("open", CliCommandOpen);
-    REGISTER_CMD("close", CliCommandClose);
-    REGISTER_CMD("query", CliCommandSql);
+    REGISTER_CMD("use",    CliCommandUse);
+    REGISTER_CMD("open",   CliCommandOpen);
+    REGISTER_CMD("close",  CliCommandClose);
+    REGISTER_CMD("query",  CliCommandSql);
 }
 
 CliCommand *CliCommandFactory::getCommand(const QString &cmdName)
