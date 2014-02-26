@@ -3,11 +3,6 @@
 #include "db/db.h"
 #include "db/dbmanager.h"
 
-CliCommandClose *CliCommandClose::create()
-{
-    return new CliCommandClose();
-}
-
 bool CliCommandClose::execute(QStringList args)
 {
     if (args.size() == 1)

@@ -9,18 +9,21 @@
 #include "clicommandclose.h"
 #include "clicommandsql.h"
 
-QHash<QString,CliCommandCreatorFunc> CliCommandFactory::mapping;
+QHash<QString,CliCommandFactory::CliCommandCreatorFunc> CliCommandFactory::mapping;
+
+#define REGISTER_CMD(Str, Cmd) mapping[Str] = []() -> CliCommand* {return new Cmd();}
 
 void CliCommandFactory::init()
 {
-    registerCommand("add", (CliCommandCreatorFunc)&CliCommandAdd::create);
-    registerCommand("remove", (CliCommandCreatorFunc)&CliCommandRemove::create);
-    registerCommand("exit", (CliCommandCreatorFunc)&CliCommandExit::create);
-    registerCommand("quit", (CliCommandCreatorFunc)&CliCommandExit::create);
-    registerCommand("dblist", (CliCommandCreatorFunc)&CliCommandDbList::create);
-    registerCommand("use", (CliCommandCreatorFunc)&CliCommandUse::create);
-    registerCommand("open", (CliCommandCreatorFunc)&CliCommandOpen::create);
-    registerCommand("close", (CliCommandCreatorFunc)&CliCommandClose::create);
+    REGISTER_CMD("add", CliCommandAdd);
+    REGISTER_CMD("remove", CliCommandRemove);
+    REGISTER_CMD("exit", CliCommandExit);
+    REGISTER_CMD("quit", CliCommandExit);
+    REGISTER_CMD("dblist", CliCommandDbList);
+    REGISTER_CMD("use", CliCommandUse);
+    REGISTER_CMD("open", CliCommandOpen);
+    REGISTER_CMD("close", CliCommandClose);
+    REGISTER_CMD("query", CliCommandSql);
 }
 
 CliCommand *CliCommandFactory::getCommand(const QString &cmdName)
@@ -30,15 +33,3 @@ CliCommand *CliCommandFactory::getCommand(const QString &cmdName)
 
     return mapping[cmdName]();
 }
-
-CliCommand *CliCommandFactory::getSqlCommand()
-{
-    return CliCommandSql::create();
-}
-
-void CliCommandFactory::registerCommand(const QString &name, CliCommandCreatorFunc creator)
-{
-    mapping[name] = creator;
-}
-
-

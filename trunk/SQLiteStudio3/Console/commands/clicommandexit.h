@@ -6,8 +6,6 @@
 class CliCommandExit : public CliCommand
 {
     public:
-        static CliCommandExit* create();
-
         bool execute(QStringList args);
         bool validate(QStringList args);
 };

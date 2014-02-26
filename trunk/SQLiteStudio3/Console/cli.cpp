@@ -139,7 +139,7 @@ void CLI::doWork()
         }
         else
         {
-            cliCommand = CliCommandFactory::getSqlCommand();
+            cliCommand = CliCommandFactory::getCommand("query");
             cmdArgs.clear();
             cmdArgs << line;
         }

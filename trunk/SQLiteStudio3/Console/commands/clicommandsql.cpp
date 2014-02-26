@@ -13,11 +13,6 @@
 #include <QSqlField>
 #include <QList>
 
-CliCommandSql *CliCommandSql::create()
-{
-    return new CliCommandSql();
-}
-
 bool CliCommandSql::execute(QStringList args)
 {
     Db* db = cli->getCurrentDb();

@@ -5,11 +5,6 @@
 #include "../cli_config.h"
 #include "db/dbmanager.h"
 
-CliCommandUse *CliCommandUse::create()
-{
-    return new CliCommandUse();
-}
-
 bool CliCommandUse::execute(QStringList args)
 {
     if (args.size() == 0)

@@ -2,11 +2,6 @@
 #include "cli.h"
 #include "unused.h"
 
-CliCommandExit *CliCommandExit::create()
-{
-    return new CliCommandExit();
-}
-
 bool CliCommandExit::execute(QStringList args)
 {
     UNUSED(args);

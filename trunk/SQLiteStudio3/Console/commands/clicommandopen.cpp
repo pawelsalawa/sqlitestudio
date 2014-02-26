@@ -3,11 +3,6 @@
 #include "db/dbmanager.h"
 #include <QDebug>
 
-CliCommandOpen *CliCommandOpen::create()
-{
-    return new CliCommandOpen();
-}
-
 bool CliCommandOpen::execute(QStringList args)
 {
     Db* db = nullptr;
