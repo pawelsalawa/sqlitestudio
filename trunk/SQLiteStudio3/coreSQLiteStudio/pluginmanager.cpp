@@ -359,7 +359,7 @@ void PluginManager::pluginLoaded(PluginManager::PluginContainer* container)
 
 
     emit loaded(container->plugin, container->type);
-    qDebug() << container->type->getName() << "/" << container->name << "loaded:" << container->filePath;
+    qDebug() << container->name << "loaded:" << container->filePath;
 }
 
 void PluginManager::readMetadata(Plugin* plugin, PluginManager::PluginContainer* container)

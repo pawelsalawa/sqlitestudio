@@ -31,7 +31,6 @@ class CLI : public QObject
     private:
         void println(const QString& msg);
         void waitForExecution();
-        void printPrompt();
 
         DbManager* dbManager;
         QThread* thread;
