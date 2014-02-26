@@ -8,7 +8,7 @@ CliCommandClose *CliCommandClose::create()
     return new CliCommandClose();
 }
 
-void CliCommandClose::execute(QStringList args)
+bool CliCommandClose::execute(QStringList args)
 {
     if (args.size() == 1)
     {
@@ -20,6 +20,8 @@ void CliCommandClose::execute(QStringList args)
     }
     else if (cli->getCurrentDb())
         cli->getCurrentDb()->close();
+
+    return false;
 }
 
 bool CliCommandClose::validate(QStringList args)

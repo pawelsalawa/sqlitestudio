@@ -7,15 +7,17 @@ CliCommandAdd *CliCommandAdd::create()
     return new CliCommandAdd();
 }
 
-void CliCommandAdd::execute(QStringList args)
+bool CliCommandAdd::execute(QStringList args)
 {
     if (!dbManager->addDb(args[0], args[1]))
     {
         println(QString("Could not add database %1 to list.").arg(args[1]));
-        return;
+        return false;
     }
 
     cli->setCurrentDb(dbManager->getByName(args[0]));
+
+    return false;
 }
 
 bool CliCommandAdd::validate(QStringList args)

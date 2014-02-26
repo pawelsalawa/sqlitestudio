@@ -18,6 +18,9 @@ class CliCommandExecutor : public QObject
 
     public slots:
         void execCommand(CliCommand* cmd, QStringList args);
+
+    private slots:
+        void asyncExecutionComplete();
 };
 
 #endif // CLICOMMANDEXECUTOR_H

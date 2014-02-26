@@ -8,7 +8,7 @@ CliCommandOpen *CliCommandOpen::create()
     return new CliCommandOpen();
 }
 
-void CliCommandOpen::execute(QStringList args)
+bool CliCommandOpen::execute(QStringList args)
 {
     Db* db = nullptr;
     if (args.size() == 1)
@@ -20,7 +20,7 @@ void CliCommandOpen::execute(QStringList args)
             if (!dbManager->addDb(newName, args[0], false))
             {
                 println(QString("Could not add database %1 to list.").arg(args[1]));
-                return;
+                return false;
             }
             db = dbManager->getByName(args[0]);
             Q_ASSERT(db != nullptr);
@@ -32,17 +32,18 @@ void CliCommandOpen::execute(QStringList args)
         if (!db)
         {
             qCritical() << "Default database is not in the list!";
-            return;
+            return false;
         }
     }
 
     if (!db->open())
     {
         println(db->getErrorText());
-        return;
+        return false;
     }
 
     cli->setCurrentDb(db);
+    return false;
 }
 
 bool CliCommandOpen::validate(QStringList args)

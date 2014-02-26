@@ -18,19 +18,20 @@ CliCommandSql *CliCommandSql::create()
     return new CliCommandSql();
 }
 
-void CliCommandSql::execute(QStringList args)
+bool CliCommandSql::execute(QStringList args)
 {
     Db* db = cli->getCurrentDb();
     if (!db || !db->isOpen())
     {
         println("Database is not open.");
-        return;
+        return false;
     }
 
     quint32 maxLength = 20; // TODO
 
     // Executor deletes itself later when called with lambda.
     QueryExecutor *executor = new QueryExecutor(db, args[0]);
+    connect(executor, SIGNAL(executionFinished(SqlResultsPtr)), this, SIGNAL(execComplete()));
 
     executor->exec([=](SqlResultsPtr results)
     {
@@ -46,7 +47,6 @@ void CliCommandSql::execute(QStringList args)
             qOut << resCol->displayName.left(maxLength) << "|";
 
         qOut << "\n";
-        qOut.flush();
 
         // Data
         SqlResultsRowPtr row;
@@ -56,9 +56,11 @@ void CliCommandSql::execute(QStringList args)
                 qOut << value.toString().left(maxLength) << "|";
 
             qOut << "\n";
-            qOut.flush();
         }
+        qOut.flush();
     });
+
+    return true;
 }
 
 bool CliCommandSql::validate(QStringList args)

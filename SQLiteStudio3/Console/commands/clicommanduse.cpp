@@ -10,25 +10,25 @@ CliCommandUse *CliCommandUse::create()
     return new CliCommandUse();
 }
 
-void CliCommandUse::execute(QStringList args)
+bool CliCommandUse::execute(QStringList args)
 {
     if (args.size() == 0)
     {
         if (!cli->getCurrentDb())
         {
             println("No current database selected.");
-            return;
+            return false;
         }
         println("Current database:");
         println(cli->getCurrentDb()->getName());
-        return;
+        return false;
     }
 
     Db* db = dbManager->getByName(args[0]);
     if (!db)
     {
         println("No such database: "+args[0]);
-        return;
+        return false;
     }
 
     cli->setCurrentDb(db);
@@ -36,6 +36,8 @@ void CliCommandUse::execute(QStringList args)
 
     println("Current database:");
     println(db->getName());
+
+    return false;
 }
 
 bool CliCommandUse::validate(QStringList args)

@@ -92,19 +92,17 @@ void CLI::println(const QString &msg)
 
 void CLI::waitForExecution()
 {
-    waitMutex.lock();
     executionFinished = false;
     while (!executionFinished)
     {
         qApp->processEvents();
-        waitForExec.wait(&waitMutex, 20);
+        QThread::usleep(20);
     }
-    waitMutex.unlock();
 }
 
 void CLI::doWork()
 {
-    prompt = "%1>";
+    static const QString prompt = "%1>";
 
     CliCommand* cliCommand;
     QString cmd;
@@ -169,5 +167,4 @@ void CLI::done()
 void CLI::executionComplete()
 {
     executionFinished = true;
-    waitForExec.wakeAll();
 }

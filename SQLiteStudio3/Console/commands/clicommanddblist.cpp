@@ -10,7 +10,7 @@ CliCommandDbList *CliCommandDbList::create()
     return new CliCommandDbList();
 }
 
-void CliCommandDbList::execute(QStringList args)
+bool CliCommandDbList::execute(QStringList args)
 {
     UNUSED(args);
     QString currentName;
@@ -33,6 +33,8 @@ void CliCommandDbList::execute(QStringList args)
         }
         println(msg.arg(db->getName()).arg(path).arg(open ? "Open" : "Closed"));
     }
+
+    return false;
 }
 
 bool CliCommandDbList::validate(QStringList args)

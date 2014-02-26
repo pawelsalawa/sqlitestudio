@@ -8,13 +8,13 @@ CliCommandRemove *CliCommandRemove::create()
     return new CliCommandRemove();
 }
 
-void CliCommandRemove::execute(QStringList args)
+bool CliCommandRemove::execute(QStringList args)
 {
     Db* db = dbManager->getByName(args[0]);
     if (!db)
     {
         println("No such database.");
-        return;
+        return false;
     }
 
     dbManager->removeDb(db);
@@ -24,6 +24,8 @@ void CliCommandRemove::execute(QStringList args)
         cli->setCurrentDb(dblist[0]);
     else
         cli->setCurrentDb(nullptr);
+
+    return false;
 }
 
 bool CliCommandRemove::validate(QStringList args)

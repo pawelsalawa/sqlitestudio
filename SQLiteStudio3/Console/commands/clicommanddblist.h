@@ -8,7 +8,7 @@ class CliCommandDbList : public CliCommand
     public:
         static CliCommandDbList* create();
 
-        void execute(QStringList args);
+        bool execute(QStringList args);
         bool validate(QStringList args);
 
 };
