@@ -6,8 +6,6 @@
 class CliCommandAdd : public CliCommand
 {
     public:
-        static CliCommandAdd* create();
-
         bool execute(QStringList args);
         bool validate(QStringList args);
 };

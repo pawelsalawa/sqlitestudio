@@ -2,13 +2,7 @@
 #include "cli.h"
 #include "db/dbmanager.h"
 #include "unused.h"
-
 #include <QList>
-
-CliCommandDbList *CliCommandDbList::create()
-{
-    return new CliCommandDbList();
-}
 
 bool CliCommandDbList::execute(QStringList args)
 {

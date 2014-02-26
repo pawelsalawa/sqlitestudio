@@ -2,11 +2,6 @@
 #include "cli.h"
 #include "db/dbmanager.h"
 
-CliCommandAdd *CliCommandAdd::create()
-{
-    return new CliCommandAdd();
-}
-
 bool CliCommandAdd::execute(QStringList args)
 {
     if (!dbManager->addDb(args[0], args[1]))

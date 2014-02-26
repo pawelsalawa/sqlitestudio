@@ -6,8 +6,6 @@
 class CliCommandClose : public CliCommand
 {
     public:
-        static CliCommandClose* create();
-
         bool execute(QStringList args);
         bool validate(QStringList args);
 };

@@ -6,8 +6,6 @@
 class CliCommandSql : public CliCommand
 {
     public:
-        static CliCommandSql* create();
-
         bool execute(QStringList args);
         bool validate(QStringList args);
 };

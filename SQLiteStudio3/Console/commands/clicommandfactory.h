@@ -6,17 +6,15 @@
 
 class CliCommand;
 
-typedef CliCommand* (*CliCommandCreatorFunc)();
-
 class CliCommandFactory
 {
     public:
         static void init();
         static CliCommand* getCommand(const QString& cmdName);
-        static CliCommand* getSqlCommand();
-        static void registerCommand(const QString& name, CliCommandCreatorFunc creator);
 
     private:
+        typedef CliCommand* (*CliCommandCreatorFunc)();
+
         static QHash<QString,CliCommandCreatorFunc> mapping;
 };
 

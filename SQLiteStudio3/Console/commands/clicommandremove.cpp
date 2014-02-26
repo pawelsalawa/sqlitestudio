@@ -3,11 +3,6 @@
 #include "db/dbmanager.h"
 #include "db/db.h"
 
-CliCommandRemove *CliCommandRemove::create()
-{
-    return new CliCommandRemove();
-}
-
 bool CliCommandRemove::execute(QStringList args)
 {
     Db* db = dbManager->getByName(args[0]);
