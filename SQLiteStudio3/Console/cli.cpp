@@ -6,7 +6,7 @@
 #include "commands/clicommandfactory.h"
 #include "commands/clicommand.h"
 #include "qio.h"
-#include "lineedit.h"
+#include "readline.h"
 #include <QCoreApplication>
 #include <QThread>
 #include <QFile>
@@ -48,6 +48,13 @@ void CLI::start()
         else
             currentDb = nullptr;
     }
+
+    if (currentDb)
+        qOut << tr("Current database: %1").arg(currentDb->getName()) << "\n\n";
+    else
+        qOut << tr("No current working database is set.") << "\n\n";
+
+    qOut.flush();
 
     thread->start();
 }
@@ -95,72 +102,63 @@ void CLI::waitForExecution()
     waitMutex.unlock();
 }
 
-void CLI::printPrompt()
-{
-    qOut << prompt;
-    qOut.flush();
-}
-
 void CLI::doWork()
 {
-        prompt = "SQLiteStudio> ";
+    prompt = "%1>";
 
-        DESC* fd = lineeditInit(NULL);
+    CliCommand* cliCommand;
+    QString cmd;
+    QStringList cmdArgs;
+    QString cPrompt;
+    QString line;
+    char *cline;
+    while (!doExit)
+    {
+        line.clear();
 
-        CliCommand* cliCommand;
-        QString cmd;
-        QStringList cmdArgs;
-        QString line;
-        char *cline;
-        while (!doExit)
+        while (!doExit && line.isEmpty())
         {
-            line.clear();
-            printPrompt();
+            cPrompt = currentDb ? prompt.arg(currentDb->getName()) : "";
+            cline = readline(cPrompt.toLatin1().data());
+            line = cline;
+            free(cline);
 
-            while (!doExit && line.isEmpty())
+            line = line.trimmed();
+        }
+        add_history(line.toLatin1().data());
+
+        if (line.startsWith("."))
+        {
+
+            cmdArgs = line.mid(1).split(QRegExp("\\s+"));
+            cmd = cmdArgs.takeAt(0);
+            cliCommand = CliCommandFactory::getCommand(cmd);
+            if (!cliCommand)
             {
-                qApp->processEvents();
-                thread->usleep(20000);
-
-                cline = lineedit(fd, prompt.toLatin1().data());
-                line = cline;
-                free(cline);
-
-                line = line.trimmed();
-            }
-
-            if (line.startsWith("."))
-            {
-
-                cmdArgs = line.mid(1).split(QRegExp("\\s+"));
-                cmd = cmdArgs.takeAt(0);
-                cliCommand = CliCommandFactory::getCommand(cmd);
-                if (!cliCommand)
-                {
-                    println("No such command.");
-                    continue;
-                }
-            }
-            else
-            {
-                cliCommand = CliCommandFactory::getSqlCommand();
-                cmdArgs.clear();
-                cmdArgs << line;
-            }
-
-            cliCommand->setup(this);
-            if (!cliCommand->validate(cmdArgs))
-            {
-                delete cliCommand;
+                println("No such command.");
                 continue;
             }
-
-            cliCommand->moveToThread(qApp->thread());
-            emit execCommand(cliCommand, cmdArgs);
-            waitForExecution();
+        }
+        else
+        {
+            cliCommand = CliCommandFactory::getSqlCommand();
+            cmdArgs.clear();
+            cmdArgs << line;
         }
 
-        thread->quit();
+        cliCommand->setup(this);
+        if (!cliCommand->validate(cmdArgs))
+        {
+            delete cliCommand;
+            continue;
+        }
+
+        cliCommand->moveToThread(qApp->thread());
+        emit execCommand(cliCommand, cmdArgs);
+        waitForExecution();
+    }
+
+    thread->quit();
 }
 
 void CLI::done()

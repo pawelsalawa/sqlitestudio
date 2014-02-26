@@ -34,10 +34,18 @@ SOURCES += main.cpp \
     commands/clicommandclose.cpp \
     commands/clicommandsql.cpp \
     clicommandexecutor.cpp \
-    cli_config.cpp \
-    lineedit.c
+    cli_config.cpp
 
 LIBS += -lcoreSQLiteStudio
+
+win32: {
+    INCLUDEPATH += $$PWD/../../../include
+    LIBS += -L$$PWD/../../../lib -ledit_static
+}
+
+unix: {
+    LIBS += -lreadline
+}
 
 HEADERS += \
     cli.h \
@@ -52,5 +60,4 @@ HEADERS += \
     commands/clicommandclose.h \
     commands/clicommandsql.h \
     cli_config.h \
-    clicommandexecutor.h \
-    lineedit.h
+    clicommandexecutor.h

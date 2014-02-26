@@ -27,6 +27,8 @@ void CliCommandSql::execute(QStringList args)
         return;
     }
 
+    quint32 maxLength = 20; // TODO
+
     // Executor deletes itself later when called with lambda.
     QueryExecutor *executor = new QueryExecutor(db, args[0]);
 
@@ -39,11 +41,9 @@ void CliCommandSql::execute(QStringList args)
             return;
         }
 
-        quint32 maxLength = cli->getMaxColLength();
-
         // Columns
-        foreach (QString colName, results->getColumnNames())
-            qOut << colName.left(maxLength) << "|";
+        foreach (const QueryExecutor::ResultColumnPtr& resCol, executor->getResultColumns())
+            qOut << resCol->displayName.left(maxLength) << "|";
 
         qOut << "\n";
         qOut.flush();
