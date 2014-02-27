@@ -67,6 +67,7 @@ QueryExecutor::ResultColumnPtr QueryExecutorColumns::getResultColumn(const Selec
         resultColumn->displayName = resolvedColumn.displayName;
         resultColumn->column = resolvedColumn.column;
         resultColumn->alias = resolvedColumn.alias;
+        resultColumn->expression = true;
         resultColumn->queryExecutorAlias = getNextColName();
     }
     else
@@ -106,8 +107,12 @@ SqliteSelect::Core::ResultColumn* QueryExecutorColumns::getResultColumnForSelect
 {
     SqliteSelect::Core::ResultColumn* selectResultColumn = new SqliteSelect::Core::ResultColumn();
 
+    QString colString = resultColumn->column;
+    if (!resultColumn->expression)
+        colString = wrapObjIfNeeded(colString, dialect);
+
     Parser parser(dialect);
-    SqliteExpr* expr = parser.parseExpr(wrapObjIfNeeded(resultColumn->column, dialect));
+    SqliteExpr* expr = parser.parseExpr(colString);
     expr->setParent(selectResultColumn);
     selectResultColumn->expr = expr;
 

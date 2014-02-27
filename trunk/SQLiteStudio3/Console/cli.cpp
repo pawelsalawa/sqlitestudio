@@ -6,7 +6,12 @@
 #include "commands/clicommandfactory.h"
 #include "commands/clicommand.h"
 #include "qio.h"
+#ifdef Q_OS_WIN32
 #include "readline.h"
+#else
+#include <readline/readline.h>
+#include <readline/history.h>
+#endif
 #include <QCoreApplication>
 #include <QThread>
 #include <QFile>
