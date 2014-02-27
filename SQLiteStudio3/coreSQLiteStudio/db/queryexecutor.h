@@ -297,6 +297,16 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
              * If the set is empty, it means that the column can be edited.
              */
             QSet<ColumnEditionForbiddenReason> editionForbiddenReasons;
+
+            /**
+             * @brief Flag indicating that the column is actually an expression.
+             *
+             * Column representing an expression is not just a column and it should not be ever wrapped with
+             * quoting wrapper ([], "", ``). Such a column is for example call to the SQL function.
+             *
+             * For regular columns this will be false.
+             */
+            bool expression = false;
         };
 
         /**
