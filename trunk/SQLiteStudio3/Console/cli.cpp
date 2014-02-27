@@ -42,7 +42,7 @@ void CLI::start()
     connect(thread, &QThread::finished, this, &CLI::done);
     this->moveToThread(thread);
 
-    Db* db = dbManager->getByName(CLI_CFG.General.DefaultDatabase.get());
+    Db* db = dbManager->getByName(CFG_CLI.General.DefaultDatabase.get());
     if (db)
         currentDb = db;
     else

@@ -18,7 +18,7 @@ bool CliCommandSql::execute(QStringList args)
     Db* db = cli->getCurrentDb();
     if (!db || !db->isOpen())
     {
-        println("Database is not open.");
+        println(tr("Database is not open."));
         return false;
     }
 
@@ -61,15 +61,39 @@ bool CliCommandSql::execute(QStringList args)
 bool CliCommandSql::validate(QStringList args)
 {
     if (args.size() != 1)
+    {
+        printUsage();
         return false;
+    }
 
     if (!cli->getCurrentDb())
     {
-        println("No working database is set.");
-        println("Call .use command to set working database.");
-        println("Call .dblist to see list of all databases.");
+        println(tr("No working database is set.\n"
+                   "Call .use command to set working database.\n"
+                   "Call .dblist to see list of all databases."));
+
         return false;
     }
 
     return true;
+}
+
+QString CliCommandSql::shortHelp() const
+{
+    return tr("executes SQL query");
+}
+
+QString CliCommandSql::fullHelp() const
+{
+    return tr(
+                "This command is executed every time you enter SQL query in command prompt. "
+                "It executes the query on the current working database (see help for .use for details). "
+                "There's no sense in executing this command explicitly. Instead just type the SQL query "
+                "in the command prompt, without any command prefixed."
+             );
+}
+
+QString CliCommandSql::usage() const
+{
+    return tr("query <sql>");
 }

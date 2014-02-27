@@ -15,3 +15,20 @@ bool CliCommandExit::validate(QStringList args)
     UNUSED(args);
     return true;
 }
+
+QString CliCommandExit::shortHelp() const
+{
+    return tr("quits the application");
+}
+
+QString CliCommandExit::fullHelp() const
+{
+    return tr(
+                "Quits the application. Settings are stored in configuration file and will be restored on next startup."
+             );
+}
+
+QString CliCommandExit::usage() const
+{
+    return tr("exit or .quit");
+}

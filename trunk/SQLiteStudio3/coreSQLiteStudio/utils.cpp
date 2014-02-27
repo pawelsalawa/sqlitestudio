@@ -129,6 +129,92 @@ int indexOf(const QStringList& list, const QString& value, int from, Qt::CaseSen
     return -1;
 }
 
+QString pad(const QString& str, int length, const QChar& fillChar)
+{
+    if (str.length() >= abs(length))
+        return str;
+
+    QString result = str;
+    QString fill = QString(fillChar).repeated(abs(length) - str.length());
+    if (length >= 0)
+        return result.append(fill);
+    else
+        return result.prepend(fill);
+}
+
+QString longest(const QStringList& strList)
+{
+    int max = 0;
+    QString result;
+    foreach (const QString str, strList)
+    {
+        if (str.size() > max)
+        {
+            result = str;
+            max = str.size();
+        }
+    }
+    return result;
+}
+
+QString shortest(const QStringList& strList)
+{
+    int max = INT_MAX;
+    QString result;
+    foreach (const QString str, strList)
+    {
+        if (str.size() < max)
+        {
+            result = str;
+            max = str.size();
+        }
+    }
+    return result;
+}
+
+QStringList applyMargin(const QString& str, int margin)
+{
+    QStringList lines;
+    QString line;
+    foreach (QString word, str.split(" "))
+    {
+        if (((line + word).length() + 1) > margin)
+        {
+            if (!line.isEmpty())
+            {
+                lines << line;
+                line.clear();
+            }
+
+            while ((line + word).length() > margin)
+            {
+                line += word.left(margin);
+                lines << line;
+                word = word.mid(margin);
+            }
+        }
+
+        if (!line.isEmpty())
+            line += " ";
+
+        line += word;
+
+        if (line.endsWith("\n"))
+        {
+            lines << line.trimmed();
+            line.clear();
+        }
+    }
+
+    if (!line.isEmpty())
+        lines << line;
+
+    if (lines.size() == 0)
+        lines << QString();
+
+    return lines;
+}
+
 QDateTime toGregorian(double julianDateTime)
 {
     int Z = (int)julianDateTime;
