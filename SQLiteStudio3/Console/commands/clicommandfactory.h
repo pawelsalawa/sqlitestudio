@@ -11,6 +11,7 @@ class CliCommandFactory
     public:
         static void init();
         static CliCommand* getCommand(const QString& cmdName);
+        static QHash<QString,CliCommand*> getAllCommands();
 
     private:
         typedef CliCommand* (*CliCommandCreatorFunc)();

@@ -8,6 +8,7 @@
 #include "clicommandopen.h"
 #include "clicommandclose.h"
 #include "clicommandsql.h"
+#include "clicommandhelp.h"
 
 QHash<QString,CliCommandFactory::CliCommandCreatorFunc> CliCommandFactory::mapping;
 
@@ -24,6 +25,7 @@ void CliCommandFactory::init()
     REGISTER_CMD("open",   CliCommandOpen);
     REGISTER_CMD("close",  CliCommandClose);
     REGISTER_CMD("query",  CliCommandSql);
+    REGISTER_CMD("help",   CliCommandHelp);
 }
 
 CliCommand *CliCommandFactory::getCommand(const QString &cmdName)
@@ -32,4 +34,17 @@ CliCommand *CliCommandFactory::getCommand(const QString &cmdName)
         return nullptr;
 
     return mapping[cmdName]();
+}
+
+QHash<QString,CliCommand*> CliCommandFactory::getAllCommands()
+{
+    QHash<QString,CliCommand*> results;
+    QHashIterator<QString,CliCommandFactory::CliCommandCreatorFunc> it(mapping);
+    while (it.hasNext())
+    {
+        it.next();
+        results[it.key()] = it.value()();
+    }
+
+    return results;
 }

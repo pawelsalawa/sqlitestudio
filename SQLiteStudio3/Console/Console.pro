@@ -34,7 +34,9 @@ SOURCES += main.cpp \
     commands/clicommandclose.cpp \
     commands/clicommandsql.cpp \
     clicommandexecutor.cpp \
-    cli_config.cpp
+    cli_config.cpp \
+    commands/clicommandhelp.cpp \
+    cliutils.cpp
 
 LIBS += -lcoreSQLiteStudio
 
@@ -60,4 +62,6 @@ HEADERS += \
     commands/clicommandclose.h \
     commands/clicommandsql.h \
     cli_config.h \
-    clicommandexecutor.h
+    clicommandexecutor.h \
+    commands/clicommandhelp.h \
+    cliutils.h

@@ -5,11 +5,12 @@
 
 CFG_CATEGORIES(Cli,
     CFG_CATEGORY(General,
-        CFG_ENTRY(QString, DefaultDatabase, "CliDefaultDatabase", QString())
+        CFG_ENTRY(QString, DefaultDatabase,   "CliDefaultDatabase", QString())
+        CFG_ENTRY(QString, CommandPrefixChar, "CommandPrefixChar",  ".")
     )
 )
 
 CFG_DECLARE(Cli)
-#define CLI_CFG CFG_INSTANCE(Cli)
+#define CFG_CLI CFG_INSTANCE(Cli)
 
 #endif // CLI_CONFIG_H
