@@ -66,7 +66,15 @@ bool isObjectWrapped(const QChar& c)
     return !doesObjectNeedWrapping(c);
 }
 
-QString& wrapObjIfNeeded(QString& obj, Dialect dialect, NameWrapper favWrapper)
+//QString& wrapObjIfNeeded(QString& obj, Dialect dialect, NameWrapper favWrapper)
+//{
+//    if (doesObjectNeedWrapping(obj, dialect))
+//        return wrapObjName(obj, dialect, favWrapper);
+
+//    return obj;
+//}
+
+QString wrapObjIfNeeded(const QString& obj, Dialect dialect, NameWrapper favWrapper)
 {
     if (doesObjectNeedWrapping(obj, dialect))
         return wrapObjName(obj, dialect, favWrapper);
@@ -74,33 +82,39 @@ QString& wrapObjIfNeeded(QString& obj, Dialect dialect, NameWrapper favWrapper)
     return obj;
 }
 
-QString wrapObjIfNeeded(const QString& obj, Dialect dialect, NameWrapper favWrapper)
-{
-    QString newObj = obj;
-    return wrapObjIfNeeded(newObj, dialect, favWrapper);
-}
+//QString& wrapObjName(QString& obj, Dialect dialect, NameWrapper favWrapper)
+//{
+//    if (obj.isNull())
+//        obj = "";
 
-QString& wrapObjName(QString& obj, Dialect dialect, NameWrapper favWrapper)
-{
-    if (obj.isNull())
-        obj = "";
+//    QPair<QChar,QChar> wrapChars = getQuoteCharacter(obj, dialect, favWrapper);
 
-    QPair<QChar,QChar> wrapChars = getQuoteCharacter(obj, dialect, favWrapper);
-
-    if (wrapChars.first.isNull() || wrapChars.second.isNull())
-    {
-        qDebug() << "No quote character possible for object name: " << obj;
-        return obj;
-    }
-    obj.prepend(wrapChars.first);
-    obj.append(wrapChars.second);
-    return obj;
-}
+//    if (wrapChars.first.isNull() || wrapChars.second.isNull())
+//    {
+//        qDebug() << "No quote character possible for object name: " << obj;
+//        return obj;
+//    }
+//    obj.prepend(wrapChars.first);
+//    obj.append(wrapChars.second);
+//    return obj;
+//}
 
 QString wrapObjName(const QString& obj, Dialect dialect, NameWrapper favWrapper)
 {
-    QString newObj = obj;
-    return wrapObjName(newObj, dialect, favWrapper);
+    QString result =  obj;
+    if (result.isNull())
+        result = "";
+
+    QPair<QChar,QChar> wrapChars = getQuoteCharacter(result, dialect, favWrapper);
+
+    if (wrapChars.first.isNull() || wrapChars.second.isNull())
+    {
+        qDebug() << "No quote character possible for object name: " << result;
+        return result;
+    }
+    result.prepend(wrapChars.first);
+    result.append(wrapChars.second);
+    return result;
 }
 
 QPair<QChar,QChar> getQuoteCharacter(QString& obj, Dialect dialect, NameWrapper favWrapper)
@@ -130,25 +144,28 @@ QPair<QChar,QChar> getQuoteCharacter(QString& obj, Dialect dialect, NameWrapper 
     return QPair<QChar,QChar>();
 }
 
-QList<QString>& wrapObjNames(QList<QString>& objList, Dialect dialect)
+QList<QString> wrapObjNames(const QList<QString>& objList, Dialect dialect)
 {
+    QList<QString> results;
     for (int i = 0; i < objList.size(); i++)
-        wrapObjName(objList[i], dialect);
+        results << wrapObjName(objList[i], dialect);
 
-    return objList;
+    return results;
 }
 
-QString& wrapString(QString& str)
-{
-    str.prepend("'");
-    str.append("'");
-    return str;
-}
+//QString& wrapString(QString& str)
+//{
+//    str.prepend("'");
+//    str.append("'");
+//    return str;
+//}
 
 QString wrapString(const QString& str)
 {
     QString result = str;
-    return wrapString(result);
+    result.prepend("'");
+    result.append("'");
+    return result;
 }
 
 bool doesStringNeedWrapping(const QString& str)
@@ -161,18 +178,20 @@ bool isStringWrapped(const QString& str)
     return !doesStringNeedWrapping(str);
 }
 
-QString& wrapStringIfNeeded(QString& str)
+//QString& wrapStringIfNeeded(QString& str)
+//{
+//    if (isStringWrapped(str))
+//        return wrapString(str);
+
+//    return str;
+//}
+
+QString wrapStringIfNeeded(const QString& str)
 {
     if (isStringWrapped(str))
         return wrapString(str);
 
     return str;
-}
-
-QString wrapStringIfNeeded(const QString& str)
-{
-    QString result = str;
-    return wrapStringIfNeeded(result);
 }
 
 QString escapeString(QString& str)

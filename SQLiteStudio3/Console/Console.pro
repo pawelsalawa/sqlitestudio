@@ -44,7 +44,7 @@ win32: {
 }
 
 unix: {
-    LIBS += -lreadline
+    LIBS += -lreadline -ltermcap
 }
 
 HEADERS += \
