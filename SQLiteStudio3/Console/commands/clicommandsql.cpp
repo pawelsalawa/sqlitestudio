@@ -7,6 +7,7 @@
 #include "db/sqlresults.h"
 #include "qio.h"
 #include "unused.h"
+#include "cli_config.h"
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QSqlError>
@@ -22,7 +23,7 @@ bool CliCommandSql::execute(QStringList args)
         return false;
     }
 
-    quint32 maxLength = 20; // TODO
+    quint32 maxLength = CFG_CLI.Console.ColumnMaxWidth.get();
 
     // Executor deletes itself later when called with lambda.
     QueryExecutor *executor = new QueryExecutor(db, args[0]);

@@ -16,10 +16,10 @@ const int SQLITESTUDIO_CONFIG_VERSION = 1;
 
 CFG_CATEGORIES(Core,
     CFG_CATEGORY(General,
-         CFG_ENTRY(int, SqlHistorySize, "SqlHistorySize", 10000)
-         CFG_ENTRY(int, DdlHistorySize, "DdlHistorySize", 1000)
-         CFG_ENTRY(QString, LoadedPlugins, "LoadedPlugins", "")
-         CFG_ENTRY(QString, ActiveSqlFormatter, "ActiveSqlFormatterPluginName", QString())
+         CFG_ENTRY(int,     SqlHistorySize,         10000)
+         CFG_ENTRY(int,     DdlHistorySize,         1000)
+         CFG_ENTRY(QString, LoadedPlugins,          "")
+         CFG_ENTRY(QString, ActiveSqlFormatter,     QString())
     )
 )
 

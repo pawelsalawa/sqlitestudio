@@ -5,8 +5,9 @@
 
 CFG_CATEGORIES(Cli,
     CFG_CATEGORY(Console,
-        CFG_ENTRY(QString, DefaultDatabase,   "DefaultDatabase", QString())
-        CFG_ENTRY(QString, CommandPrefixChar, "CommandPrefixChar",  ".")
+        CFG_ENTRY(QString, DefaultDatabase,   QString())
+        CFG_ENTRY(QString, CommandPrefixChar, ".")
+        CFG_ENTRY(int,     ColumnMaxWidth,    20)
     )
 )
 
