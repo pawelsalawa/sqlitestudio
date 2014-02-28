@@ -36,8 +36,8 @@ QString CliCommandAdd::fullHelp() const
     return tr(
                 "Adds given database pointed by <path> with given <name> to list the databases list. "
                 "The <name> is just a symbolic name that you can later refer to. Just pick any unique name. "
-                "For list of databases already on the list use .dblist command."
-             );
+                "For list of databases already on the list use %1 command."
+             ).arg(cmdName("dblist"));
 }
 
 QString CliCommandAdd::usage() const

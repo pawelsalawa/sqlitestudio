@@ -62,8 +62,10 @@ class CliCommand : public QObject
         virtual QStringList aliases() const;
 
     protected:
-        void println(const QString& str = "");
-        void printBox(const QString& str);
+        static void println(const QString& str = "");
+        static void printBox(const QString& str);
+        static QString cmdName(const QString& cmd) const;
+
         void printUsage();
 
         DbManager* dbManager;

@@ -22,8 +22,6 @@ class CLI : public QObject
         void start();
         void setCurrentDb(Db* db);
         Db* getCurrentDb();
-        quint32 getMaxColLength();
-        void setMaxColLength(quint32 value);
         void exit();
 
     private:
@@ -34,7 +32,6 @@ class CLI : public QObject
         DbManager* dbManager;
         QThread* thread;
         Db* currentDb = nullptr;
-        quint32 maxResultColumnLength = 20;
         bool executionFinished = false;
         bool doExit = false;
 

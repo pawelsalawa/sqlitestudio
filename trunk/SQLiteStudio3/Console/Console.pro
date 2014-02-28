@@ -38,7 +38,8 @@ SOURCES += main.cpp \
     commands/clicommandhelp.cpp \
     cliutils.cpp \
     commands/clicommandtables.cpp \
-    climsghandler.cpp
+    climsghandler.cpp \
+    commands/clicommandmode.cpp
 
 LIBS += -lcoreSQLiteStudio
 
@@ -68,4 +69,5 @@ HEADERS += \
     commands/clicommandhelp.h \
     cliutils.h \
     commands/clicommandtables.h \
-    climsghandler.h
+    climsghandler.h \
+    commands/clicommandmode.h

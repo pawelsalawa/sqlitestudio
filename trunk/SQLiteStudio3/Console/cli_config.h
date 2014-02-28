@@ -3,11 +3,22 @@
 
 #include "cfginternals.h"
 
+namespace CliResultsDisplay
+{
+    enum Mode
+    {
+        CLASSIC = 0,
+        FIXED = 1,
+        ROW_BY_ROW = 2
+    };
+}
+
 CFG_CATEGORIES(Cli,
     CFG_CATEGORY(Console,
-        CFG_ENTRY(QString, DefaultDatabase,   QString())
-        CFG_ENTRY(QString, CommandPrefixChar, ".")
-        CFG_ENTRY(int,     ColumnMaxWidth,    20)
+        CFG_ENTRY(QString,                 DefaultDatabase,    QString())
+        CFG_ENTRY(QString,                 CommandPrefixChar,  ".")
+        CFG_ENTRY(int,                     ColumnMaxWidth,     20)
+        CFG_ENTRY(CliResultsDisplay::Mode, ResultsDisplayMode, CliResultsDisplay::CLASSIC)
     )
 )
 

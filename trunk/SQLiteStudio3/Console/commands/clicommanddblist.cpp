@@ -47,8 +47,8 @@ QString CliCommandDbList::fullHelp() const
     return tr(
                 "Prints list of databases registered in the SQLiteStudio. Each database on the list can be in open or closed state "
                 "and .dblist tells you that. The current working database (aka default database) is also marked on the list. "
-                "See help for .use command to learn about the default database."
-                );
+                "See help for %1 command to learn about the default database."
+                ).arg(cmdName("use"));
 }
 
 QString CliCommandDbList::usage() const

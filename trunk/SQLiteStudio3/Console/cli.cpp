@@ -26,7 +26,6 @@ CLI::CLI(QObject *parent) :
     QObject(parent)
 {
     currentDb = nullptr;
-    maxResultColumnLength = 50;
 }
 
 CLI::~CLI()
@@ -77,16 +76,6 @@ void CLI::setCurrentDb(Db* db)
 Db* CLI::getCurrentDb()
 {
     return currentDb;
-}
-
-quint32 CLI::getMaxColLength()
-{
-    return maxResultColumnLength;
-}
-
-void CLI::setMaxColLength(quint32 value)
-{
-    maxResultColumnLength = value;
 }
 
 void CLI::exit()
