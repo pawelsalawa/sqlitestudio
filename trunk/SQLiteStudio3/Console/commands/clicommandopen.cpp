@@ -89,5 +89,5 @@ QString CliCommandOpen::fullHelp() const
 
 QString CliCommandOpen::usage() const
 {
-    return tr("open [<name|path>]");
+    return "open "+tr("[<name|path>]");
 }

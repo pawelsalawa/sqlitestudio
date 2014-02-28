@@ -72,5 +72,5 @@ QString CliCommandUse::fullHelp() const
 
 QString CliCommandUse::usage() const
 {
-    return tr("use <name>");
+    return "use "+tr("<name>");
 }

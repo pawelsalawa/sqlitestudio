@@ -21,6 +21,11 @@ void CliCommand::setup(CLI *cli)
     this->dbManager = SQLiteStudio::getInstance()->getDbManager();
 }
 
+QStringList CliCommand::aliases() const
+{
+    return QStringList();
+}
+
 void CliCommand::println(const QString &str)
 {
     qOut << str << "\n";

@@ -30,5 +30,10 @@ QString CliCommandExit::fullHelp() const
 
 QString CliCommandExit::usage() const
 {
-    return tr("exit or .quit");
+    return "exit";
+}
+
+QStringList CliCommandExit::aliases() const
+{
+    return {"quit"};
 }

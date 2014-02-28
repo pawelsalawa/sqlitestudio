@@ -57,5 +57,5 @@ QString CliCommandRemove::fullHelp() const
 
 QString CliCommandRemove::usage() const
 {
-    return tr("remove <name>");
+    return "remove "+tr("<name>");
 }

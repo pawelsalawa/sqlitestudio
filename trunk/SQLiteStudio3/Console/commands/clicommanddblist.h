@@ -11,6 +11,7 @@ class CliCommandDbList : public CliCommand
         QString shortHelp() const;
         QString fullHelp() const;
         QString usage() const;
+        QStringList aliases() const;
 };
 
 #endif // CLICOMMANDDBLIST_H

@@ -55,8 +55,14 @@ class CliCommand : public QObject
          */
         virtual QString usage() const = 0;
 
+        /**
+         * @brief Additional aliases for this command.
+         * @return List of other available names of this command.
+         */
+        virtual QStringList aliases() const;
+
     protected:
-        void println(const QString& str);
+        void println(const QString& str = "");
         void printBox(const QString& str);
         void printUsage();
 

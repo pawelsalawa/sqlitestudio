@@ -53,7 +53,7 @@ API_EXPORT QString getPrefixDb(const QString& origDbName, Dialect dialect);
 API_EXPORT bool isSystemTable(const QString& name);
 API_EXPORT bool isSystemIndex(const QString& name, Dialect dialect);
 API_EXPORT QString removeComments(const QString& value);
-API_EXPORT QStringList splitQueries(const QString& sql, Dialect dialect);
+API_EXPORT QStringList splitQueries(const QString& sql, Dialect dialect, bool* complete = nullptr);
 API_EXPORT QString getQueryWithPosition(const QStringList& queries, int position, int* startPos = nullptr);
 API_EXPORT QString getQueryWithPosition(const QString& queries, int position, Dialect dialect, int* startPos = nullptr);
 

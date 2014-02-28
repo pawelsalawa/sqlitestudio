@@ -6,18 +6,21 @@
 #include "commands/clicommandfactory.h"
 #include "commands/clicommand.h"
 #include "qio.h"
-#ifdef Q_OS_WIN32
-#include "readline.h"
-#else
-#include <readline/readline.h>
-#include <readline/history.h>
-#endif
+#include "utils.h"
+#include "utils_sql.h"
 #include <QCoreApplication>
 #include <QThread>
 #include <QFile>
 #include <QSet>
 #include <QStringList>
 #include <QLibrary>
+
+#if defined(Q_OS_WIN32)
+#include "readline.h"
+#elif defined(Q_OS_UNIX)
+#include <readline/readline.h>
+#include <readline/history.h>
+#endif
 
 CLI::CLI(QObject *parent) :
     QObject(parent)
@@ -44,7 +47,9 @@ void CLI::start()
 
     Db* db = dbManager->getByName(CFG_CLI.General.DefaultDatabase.get());
     if (db)
+    {
         currentDb = db;
+    }
     else
     {
         QList<Db*> dbList = dbManager->getDbList();
@@ -105,6 +110,17 @@ void CLI::waitForExecution()
     }
 }
 
+bool CLI::isComplete(const QString& contents) const
+{
+    Dialect dialect = Dialect::Sqlite3;
+    if (currentDb)
+        dialect = currentDb->getDialect();
+
+    bool complete;
+    splitQueries(contents, dialect, &complete);
+    return complete;
+}
+
 void CLI::doWork()
 {
     static const QString prompt = "%1>";
@@ -119,14 +135,15 @@ void CLI::doWork()
     {
         line.clear();
 
-        while (!doExit && line.isEmpty())
+        while (!doExit && (line.isEmpty() || !isComplete(line)))
         {
             cPrompt = currentDb ? prompt.arg(currentDb->getName()) : "";
-            cline = readline(cPrompt.toLatin1().data());
-            line = cline;
-            free(cline);
+            if (!line.isEmpty())
+                cPrompt = pad("->", -cPrompt.length(), ' ');
 
-            line = line.trimmed();
+            cline = readline(cPrompt.toLatin1().data());
+            line += cline;
+            free(cline);
         }
         add_history(line.toLatin1().data());
 
