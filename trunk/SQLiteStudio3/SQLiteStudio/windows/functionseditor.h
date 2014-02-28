@@ -4,6 +4,7 @@
 #include "mdichild.h"
 #include "common/extactioncontainer.h"
 #include "config.h"
+#include "functionmanager.h"
 #include <QItemSelection>
 #include <QSortFilterProxyModel>
 
@@ -72,23 +73,26 @@ class FunctionsEditor : public MdiChild, public ExtActionContainer
         };
 
         void init();
-        QString getCurrentFunctionName() const;
-        void functionDeselected(const QString& name);
-        void functionSelected(const QString& name);
+        int getCurrentFunctionRow() const;
+        void functionDeselected(int row);
+        void functionSelected(int row);
         void clearEdits();
-        void selectFunction(const QString& name);
+        void selectFunction(int row);
         QModelIndex getSelectedArg() const;
         QStringList getCurrentArgList() const;
         QStringList getCurrentDatabases() const;
+        FunctionManager::Function::Type getCurrentFunctionType() const;
 
         Ui::FunctionsEditor *ui;
         FunctionsEditorModel* model;
+        QSortFilterProxyModel* functionFilterModel;
         bool currentModified = false;
         QHash<QString,SqlFunctionPlugin*> functionPlugins;
         QHash<QString,SyntaxHighlighterPlugin*> highlighterPlugins;
         DbModel* dbListModel;
         QString currentHighlighterLang;
-        QSyntaxHighlighter* currentHighlighter = nullptr;
+        QSyntaxHighlighter* currentMainHighlighter = nullptr;
+        QSyntaxHighlighter* currentFinalHighlighter = nullptr;
 
     private slots:
         void commit();
@@ -106,6 +110,7 @@ class FunctionsEditor : public MdiChild, public ExtActionContainer
         void moveFunctionArgUp();
         void moveFunctionArgDown();
         void updateArgsState();
+        void applyFilter(const QString& value);
 };
 
 #endif // FUNCTIONSEDITOR_H

@@ -662,6 +662,10 @@ class API_EXPORT Db : public QObject
          */
         virtual void initialDbSetup();
 
+        virtual bool deregisterFunction(const QString& name, int argCount) = 0;
+        virtual bool registerScalarFunction(const QString& name, int argCount) = 0;
+        virtual bool registerAggregateFunction(const QString& name, int argCount) = 0;
+
         /**
          * @brief Database name.
          *

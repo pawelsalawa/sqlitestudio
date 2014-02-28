@@ -72,7 +72,7 @@ QString PluginManager::getFilePath(Plugin* plugin) const
 
 bool PluginManager::loadBuiltInPlugin(Plugin* plugin)
 {
-    initPlugin(nullptr, QString::null, plugin);
+    return initPlugin(nullptr, QString::null, plugin);
 }
 
 PluginType* PluginManager::getPluginType(Plugin* plugin) const

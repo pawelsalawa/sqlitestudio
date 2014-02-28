@@ -19,12 +19,16 @@
 /**
  * @brief The Db class implemented with Qt's database framework.
  *
- * Use this class if you don't want to implement whole Db interface by yourself
- * and your implementation can rely on QtSql module.
+ * Use DbQt2 or DbQt3 if you don't want to implement whole Db interface by yourself
+ * and your implementation can rely on QtSql module. DbQt2 and DbQt3 inherit from this class.
  *
- * It implements all necessary methods of Db interface.
- * It still an abstract class and you will have to inherit and implement it,
+ * It implements most of the necessary methods of Db interface.
+ * It still an abstract class and you will have to inherit and implement DbQt2 or DbQt3,
  * but it's way simpler than implementing entire Db interface.
+ *
+ * Don't inherit DbQt directly. Instead inherit DbQt2 for SQLite2 implementation
+ * and DbQt3 for SQLite3 implementation. They provide some implementation specialized
+ * to their SQLite versions.
  */
 class API_EXPORT DbQt : public Db
 {
@@ -58,37 +62,13 @@ class API_EXPORT DbQt : public Db
         void interruptExecution();
         QString getErrorTextInternal();
         int getErrorCodeInternal();
+        bool deregisterFunction(const QString& name, int argCount);
+        bool registerScalarFunction(const QString& name, int argCount);
+        bool registerAggregateFunction(const QString& name, int argCount);
 
-        /**
-         * @brief Common internal execution routing for SQLite 2.
-         * @param query Query to be executed.
-         * @param args Arguments for query.
-         * @return Execution results.
-         *
-         * This is a replacement method for the regular execInternal(), except it should be called
-         * from DbQt instances implementing SQLite 2. It adds named parameter placeholders support
-         * for SQLite 2, which normally doesn't support them.
-         *
-         * The usual usecase would be to reimplement execInternal() in the derived class and
-         * as an implementation call this method. For example:
-         * @code
-         * SqlResultsPtr DbSqlite2Instance::execInternal(const QString& query, const QList<QVariant>& args)
-         * {
-         *     return DbQt::execInternalSqlite2(newQuery, args);
-         * }
-         *
-         * SqlResultsPtr DbSqlite2Instance::execInternal(const QString& query, const QHash<QString, QVariant>& args)
-         * {
-         *     return DbQt::execInternalSqlite2(newQuery, newArgs);
-         * }
-         * @endcode
-         */
-        SqlResultsPtr execInternalSqlite2(const QString &query, const QList<QVariant> &args);
-
-        /**
-         * @overload SqlResultsPtr execInternalSqlite2(const QString &query, const QHash<QString, QVariant> &args)
-         */
-        SqlResultsPtr execInternalSqlite2(const QString &query, const QHash<QString, QVariant> &args);
+        virtual bool deregisterFunction(const QVariant& handle, const QString& name, int argCount) = 0;
+        virtual bool registerScalarFunction(const QVariant& handle, const QString& name, int argCount) = 0;
+        virtual bool registerAggregateFunction(const QVariant& handle, const QString& name, int argCount) = 0;
 
         /**
          * @brief Executes sqlite interrupt on the database handle.

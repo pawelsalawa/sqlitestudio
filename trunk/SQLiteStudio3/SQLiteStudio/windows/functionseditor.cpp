@@ -12,6 +12,7 @@
 #include "iconmanager.h"
 #include "syntaxhighlighterplugin.h"
 #include "sqlitesyntaxhighlighter.h"
+#include "common/userinputfilter.h"
 #include <QDebug>
 
 FunctionsEditor::FunctionsEditor(QWidget *parent) :
@@ -72,23 +73,29 @@ void FunctionsEditor::init()
 {
     ui->setupUi(this);
     clearEdits();
+    ui->finalCodeGroup->setVisible(false);
 
     model = new FunctionsEditorModel(this);
-    ui->list->setModel(model);
+    functionFilterModel = new QSortFilterProxyModel(this);
+    functionFilterModel->setSourceModel(model);
+    ui->list->setModel(functionFilterModel);
 
     dbListModel = new DbModel(this);
     dbListModel->setSourceModel(DBTREE->getModel());
     ui->databasesList->setModel(dbListModel);
     ui->databasesList->expandAll();
 
-    ui->typeCombo->addItem(tr("Scalar"));
-    ui->typeCombo->addItem(tr("Aggregate"));
+    ui->typeCombo->addItem(tr("Scalar"), FunctionManager::Function::SCALAR);
+    ui->typeCombo->addItem(tr("Aggregate"), FunctionManager::Function::AGGREGATE);
+
+    new UserInputFilter(ui->functionFilterEdit, this, SLOT(applyFilter(QString)));
+    functionFilterModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
 
     initActions();
 
     connect(ui->list->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(functionSelected(QItemSelection,QItemSelection)));
     connect(ui->list->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(updateState()));
-    connect(ui->edit, SIGNAL(textChanged()), this, SLOT(updateModified()));
+    connect(ui->mainCodeEdit, SIGNAL(textChanged()), this, SLOT(updateModified()));
     connect(ui->nameEdit, SIGNAL(textChanged(QString)), this, SLOT(validateName()));
     connect(ui->nameEdit, SIGNAL(textChanged(QString)), this, SLOT(updateModified()));
     connect(ui->undefArgsCheck, SIGNAL(clicked()), this, SLOT(updateModified()));
@@ -105,7 +112,7 @@ void FunctionsEditor::init()
 
     connect(dbListModel, SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(updateModified()));
 
-    model->setData(CFG->getFunctions());
+    model->setData(FUNCTIONS->getAllFunctions());
 
     // Language plugins
     foreach (SqlFunctionPlugin* plugin, PLUGINS->getLoadedPlugins<SqlFunctionPlugin>())
@@ -120,33 +127,51 @@ void FunctionsEditor::init()
     updateState();
 }
 
-QString FunctionsEditor::getCurrentFunctionName() const
+int FunctionsEditor::getCurrentFunctionRow() const
 {
     QModelIndexList idxList = ui->list->selectionModel()->selectedIndexes();
     if (idxList.size() == 0)
-        return QString::null;
+        return -1;
 
-    return idxList.first().data().toString();
+    return idxList.first().row();
 }
 
-void FunctionsEditor::functionDeselected(const QString& name)
+void FunctionsEditor::functionDeselected(int row)
 {
-    UNUSED(name);
-    model->setModified(name, currentModified);
+    model->setName(row, ui->nameEdit->text());
+    model->setLang(row, ui->langCombo->currentText());
+    model->setType(row, getCurrentFunctionType());
+    model->setUndefinedArgs(row, ui->undefArgsCheck->isChecked());
+    model->setAllDatabases(row, ui->allDatabasesRadio->isChecked());
+    model->setCode(row, ui->mainCodeEdit->toPlainText());
+    model->setModified(row, currentModified);
+
+    if (model->isAggregate(row))
+        model->setFinalCode(row, ui->finalCodeEdit->toPlainText());
+    else
+        model->setFinalCode(row, QString::null);
+
+    if (!ui->undefArgsCheck->isChecked())
+        model->setArguments(row, getCurrentArgList());
+
+    if (ui->selDatabasesRadio->isChecked())
+        model->setDatabases(row, getCurrentDatabases());
+
     model->validateNames();
 }
 
-void FunctionsEditor::functionSelected(const QString& name)
+void FunctionsEditor::functionSelected(int row)
 {
-    ui->nameEdit->setText(model->getName(name));
-    ui->edit->setPlainText(model->getCode(name));
-    ui->undefArgsCheck->setChecked(model->getUndefinedArgs(name));
-    ui->langCombo->setCurrentText(model->getLang(name));
+    ui->nameEdit->setText(model->getName(row));
+    ui->mainCodeEdit->setPlainText(model->getCode(row));
+    ui->finalCodeEdit->setPlainText(model->getFinalCode(row));
+    ui->undefArgsCheck->setChecked(model->getUndefinedArgs(row));
+    ui->langCombo->setCurrentText(model->getLang(row));
 
     // Arguments
     ui->argsList->clear();
     QListWidgetItem* item;
-    foreach (const QString& arg, model->getArguments(name))
+    foreach (const QString& arg, model->getArguments(row))
     {
         item = new QListWidgetItem(arg);
         item->setFlags(item->flags() | Qt::ItemIsEditable);
@@ -154,20 +179,24 @@ void FunctionsEditor::functionSelected(const QString& name)
     }
 
     // Databases
-    dbListModel->setDatabases(model->getDatabases(name));
+    dbListModel->setDatabases(model->getDatabases(row));
     ui->databasesList->expandAll();
 
-    if (model->getAllDatabases(name))
+    if (model->getAllDatabases(row))
         ui->allDatabasesRadio->setChecked(true);
     else
         ui->selDatabasesRadio->setChecked(true);
 
     // Type
-    QString  type = model->getType(name);
-    if (type == Config::Function::AGGREGATE_TYPE)
-        ui->typeCombo->setCurrentText(tr("Aggregate"));
-    else
-        ui->typeCombo->setCurrentText(tr("Scalar"));
+    FunctionManager::Function::Type type = model->getType(row);
+    for (int i = 0; i < ui->typeCombo->count(); i++)
+    {
+        if (ui->typeCombo->itemData(i).toInt() == type)
+        {
+            ui->typeCombo->setCurrentIndex(i);
+            break;
+        }
+    }
 
     currentModified = false;
 
@@ -177,21 +206,21 @@ void FunctionsEditor::functionSelected(const QString& name)
 void FunctionsEditor::clearEdits()
 {
     ui->nameEdit->setText(QString::null);
-    ui->edit->setPlainText(QString::null);
+    ui->mainCodeEdit->setPlainText(QString::null);
     ui->langCombo->setCurrentText(QString::null);
     ui->undefArgsCheck->setChecked(true);
     ui->argsList->clear();
     ui->allDatabasesRadio->setChecked(true);
-    ui->typeCombo->setCurrentText(tr("Scalar"));
+    ui->typeCombo->setCurrentIndex(0);
     ui->langCombo->setCurrentIndex(-1);
 }
 
-void FunctionsEditor::selectFunction(const QString& name)
+void FunctionsEditor::selectFunction(int row)
 {
-    if (!model->getFunctionNames().contains(name))
+    if (!model->isValidRow(row))
         return;
 
-    ui->list->selectionModel()->setCurrentIndex(model->indexOf(name), QItemSelectionModel::SelectCurrent);
+    ui->list->selectionModel()->setCurrentIndex(model->index(row), QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent);
 }
 
 
@@ -219,27 +248,39 @@ QStringList FunctionsEditor::getCurrentDatabases() const
     return dbListModel->getDatabases();
 }
 
+FunctionManager::Function::Type FunctionsEditor::getCurrentFunctionType() const
+{
+    int intValue = ui->typeCombo->itemData(ui->typeCombo->currentIndex()).toInt();
+    return static_cast<FunctionManager::Function::Type>(intValue);
+}
+
 void FunctionsEditor::commit()
 {
-    QList<Config::Function> configFunctions = model->getConfigFunctions();
+    int row = getCurrentFunctionRow();
+    if (model->isValidRow(row))
+        functionDeselected(row);
 
-    if (CFG->setFunctions(configFunctions))
-    {
-        model->clearModified();
-        currentModified = false;
-    }
+    QList<FunctionManager::FunctionPtr> functions = model->getFunctions();
+
+    FUNCTIONS->setFunctions(functions);
+    model->clearModified();
+    currentModified = false;
+
+    if (model->isValidRow(row))
+        selectFunction(row);
+
     updateState();
 }
 
 void FunctionsEditor::rollback()
 {
-    QString selectedBefore = getCurrentFunctionName();
+    int selectedBefore = getCurrentFunctionRow();
 
-    model->setData(CFG->getFunctions());
+    model->setData(FUNCTIONS->getAllFunctions());
     currentModified = false;
     clearEdits();
 
-    if (!selectedBefore.isNull() && model->getFunctionNames().contains(selectedBefore))
+    if (model->isValidRow(selectedBefore))
         selectFunction(selectedBefore);
 
     updateState();
@@ -250,42 +291,43 @@ void FunctionsEditor::newFunction()
     if (ui->langCombo->currentIndex() == -1 && ui->langCombo->count() > 0)
         ui->langCombo->setCurrentIndex(0);
 
-    Config::Function func;
-    func.name = generateUniqueName("function", model->getFunctionNames());
+    FunctionManager::FunctionPtr func = FunctionManager::FunctionPtr::create();
+    func->name = generateUniqueName("function", model->getFunctionNames());
 
     if (ui->langCombo->currentIndex() > -1)
-        func.lang = ui->langCombo->currentText();
+        func->lang = ui->langCombo->currentText();
 
     model->addFunction(func);
 
-    selectFunction(func.name);
+    selectFunction(model->rowCount() - 1);
 }
 
 void FunctionsEditor::deleteFunction()
 {
-    QString name = getCurrentFunctionName();
-    model->deleteFunction(name);
+    int row = getCurrentFunctionRow();
+    model->deleteFunction(row);
     clearEdits();
+
+    row = getCurrentFunctionRow();
+    if (model->isValidRow(row))
+        functionSelected(row);
 
     updateState();
 }
 
 void FunctionsEditor::updateModified()
 {
-    QString name = getCurrentFunctionName();
-    if (!name.isNull())
+    int row = getCurrentFunctionRow();
+    if (model->isValidRow(row))
     {
-        bool nameDiff = name != ui->nameEdit->text();
-        bool codeDiff = model->getCode(name) != ui->edit->toPlainText();
-        bool langDiff = model->getLang(name) != ui->langCombo->currentText();
-        bool undefArgsDiff = model->getUndefinedArgs(name) != ui->undefArgsCheck->isChecked();
-        bool allDatabasesDiff = model->getAllDatabases(name) != ui->allDatabasesRadio->isChecked();
-        bool argDiff = getCurrentArgList() != model->getArguments(name);
-        bool dbDiff = getCurrentDatabases().toSet() != model->getDatabases(name).toSet(); // QSet to ignore order
-
-        QString type = model->getType(name);
-        int expectedIndex = (type == Config::Function::AGGREGATE_TYPE) ? 1 : 0;
-        bool typeDiff = expectedIndex != ui->typeCombo->currentIndex();
+        bool nameDiff = model->getName(row) != ui->nameEdit->text();
+        bool codeDiff = model->getCode(row) != ui->mainCodeEdit->toPlainText();
+        bool langDiff = model->getLang(row) != ui->langCombo->currentText();
+        bool undefArgsDiff = model->getUndefinedArgs(row) != ui->undefArgsCheck->isChecked();
+        bool allDatabasesDiff = model->getAllDatabases(row) != ui->allDatabasesRadio->isChecked();
+        bool argDiff = getCurrentArgList() != model->getArguments(row);
+        bool dbDiff = getCurrentDatabases().toSet() != model->getDatabases(row).toSet(); // QSet to ignore order
+        bool typeDiff = model->getType(row) != getCurrentFunctionType();
 
         currentModified = (nameDiff || codeDiff || typeDiff || langDiff || undefArgsDiff || allDatabasesDiff || argDiff || dbDiff);
     }
@@ -306,7 +348,9 @@ void FunctionsEditor::updateState()
 
 void FunctionsEditor::updateCurrentFunctionState()
 {
-    QString name = getCurrentFunctionName();
+    int row = getCurrentFunctionRow();
+
+    QString name = model->getName(row);
     bool nameOk = !name.isNull();
 
     setValidStyle(ui->langLabel, true);
@@ -316,7 +360,8 @@ void FunctionsEditor::updateCurrentFunctionState()
         return;
 
     bool langOk = ui->langCombo->currentIndex() >= 0;
-    ui->bottomWidget->setEnabled(langOk);
+    ui->mainCodeGroup->setEnabled(langOk);
+    ui->finalCodeGroup->setEnabled(langOk);
     ui->argsGroup->setEnabled(langOk);
     ui->databasesGroup->setEnabled(langOk);
     ui->nameEdit->setEnabled(langOk);
@@ -325,20 +370,39 @@ void FunctionsEditor::updateCurrentFunctionState()
     ui->typeLabel->setEnabled(langOk);
     setValidStyle(ui->langLabel, langOk);
 
+    bool aggregate = getCurrentFunctionType() == FunctionManager::Function::AGGREGATE;
+    ui->finalCodeGroup->setVisible(aggregate);
+    ui->mainCodeGroup->setTitle(aggregate ? tr("Per step code:") : tr("Function implementation code:"));
+
     ui->databasesList->setEnabled(ui->selDatabasesRadio->isChecked());
 
     // Syntax highlighter
     QString lang = ui->langCombo->currentText();
     if (lang != currentHighlighterLang)
     {
-        if (currentHighlighter)
+        if (currentMainHighlighter)
         {
-            delete currentHighlighter;
-            currentHighlighter = nullptr;
+            // A little pointers swap to local var - this is necessary, cause deleting highlighter
+            // triggers textChanged on QPlainTextEdit, which then calls this method,
+            // so it becomes an infinite recursion with deleting the same pointer.
+            // We set the pointer to null first, then delete it. That way it's safe.
+            QSyntaxHighlighter* highlighter = currentMainHighlighter;
+            currentMainHighlighter = nullptr;
+            delete highlighter;
+        }
+
+        if (currentFinalHighlighter)
+        {
+            QSyntaxHighlighter* highlighter = currentFinalHighlighter;
+            currentFinalHighlighter = nullptr;
+            delete highlighter;
         }
 
         if (langOk && highlighterPlugins.contains(lang))
-            currentHighlighter = highlighterPlugins[lang]->createSyntaxHighlighter(ui->edit);
+        {
+            currentMainHighlighter = highlighterPlugins[lang]->createSyntaxHighlighter(ui->mainCodeEdit);
+            currentFinalHighlighter = highlighterPlugins[lang]->createSyntaxHighlighter(ui->finalCodeEdit);
+        }
 
         currentHighlighterLang = lang;
     }
@@ -352,10 +416,10 @@ void FunctionsEditor::functionSelected(const QItemSelection& selected, const QIt
     int selCnt = selected.indexes().size();
 
     if (deselCnt > 0)
-        functionDeselected(deselected.indexes().first().data().toString());
+        functionDeselected(deselected.indexes().first().row());
 
     if (selCnt > 0)
-        functionSelected(selected.indexes().first().data().toString());
+        functionSelected(selected.indexes().first().row());
 
     if (deselCnt > 0 && selCnt == 0)
     {
@@ -366,7 +430,7 @@ void FunctionsEditor::functionSelected(const QItemSelection& selected, const QIt
 
 void FunctionsEditor::validateName()
 {
-    bool valid = model->isAllowedName(getCurrentFunctionName(), ui->nameEdit->text());
+    bool valid = model->isAllowedName(getCurrentFunctionRow(), ui->nameEdit->text());
     setValidStyle(ui->nameEdit, valid);
 }
 
@@ -455,6 +519,23 @@ void FunctionsEditor::updateArgsState()
     actionMap[ARG_MOVE_UP]->setEnabled(argsEnabled && canMoveUp);
     actionMap[ARG_MOVE_DOWN]->setEnabled(argsEnabled && canMoveDown);
     ui->argsList->setEnabled(argsEnabled);
+}
+
+void FunctionsEditor::applyFilter(const QString& value)
+{
+    // Remembering old selection, clearing it and restoring afterwards is a workaround for a problem,
+    // which causees application to crash, when the item was selected, but after applying filter string,
+    // item was about to disappear.
+    // This must have something to do with the underlying model (FunctionsEditorModel) implementation,
+    // but for now I don't really know what is that.
+    // I have tested simple Qt application with the same routine, but the underlying model was QStandardItemModel
+    // and everything worked fine.
+    int row = getCurrentFunctionRow();
+    ui->list->selectionModel()->clearSelection();
+
+    functionFilterModel->setFilterFixedString(value);
+
+    selectFunction(row);
 }
 
 QVariant FunctionsEditor::saveSession()
