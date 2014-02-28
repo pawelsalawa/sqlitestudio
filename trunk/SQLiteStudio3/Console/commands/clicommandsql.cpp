@@ -123,7 +123,7 @@ void CliCommandSql::printResultsFixed(QueryExecutor* executor, SqlResultsPtr res
     int termCols = getCliColumns();
     int colWidth = termCols / resultColumns.size() - 1; // -1 for the separator
 
-    if (colWidths == 0)
+    if (colWidth == 0)
     {
         qOut << tr("Too many columns in results to display in the FIXED mode. "
                    "Either execute query with less columns in results, or enlarge console window, "

@@ -53,7 +53,7 @@ void CliCommand::printUsage()
     println("");
 }
 
-QString CliCommand::cmdName(const QString& cmd) const
+QString CliCommand::cmdName(const QString& cmd)
 {
     return CFG_CLI.Console.CommandPrefixChar.get()+cmd;
 }
