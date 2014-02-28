@@ -33,8 +33,9 @@ QString CliCommandHelp::fullHelp() const
 {
     return tr(
                 "Use %1 to learn about certain commands supported by the command line interface (CLI) of the SQLiteStudio.\n"
-                "To see list of supported commands, type %2 without any arguments."
-             ).arg(cmdName("help")).arg(cmdName("help"));
+                "To see list of supported commands, type %2 without any arguments.\n\n"
+                "When passing <command> name, you can skip special prefix character ('%3')."
+             ).arg(cmdName("help")).arg(cmdName("help")).arg(CFG_CLI.Console.CommandPrefixChar.get());
 }
 
 QString CliCommandHelp::usage() const
@@ -78,11 +79,11 @@ void CliCommandHelp::printHelp()
     int width = longest(names).size();
 
     names.sort();
-    QString msg;
+    QStringList msgList;
     foreach (const QString& cmd, names)
     {
-        msg += CFG_CLI.Console.CommandPrefixChar.get() + pad(cmd, width, ' ') + " - " + allCommands[cmd]->shortHelp() + "\n";
+        msgList << (CFG_CLI.Console.CommandPrefixChar.get() + pad(cmd, width, ' ') + " - " + allCommands[cmd]->shortHelp());
         delete allCommands[cmd];
     }
-    printBox(msg);
+    printBox(msgList.join("\n"));
 }
