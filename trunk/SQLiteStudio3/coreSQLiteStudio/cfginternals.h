@@ -88,7 +88,7 @@ template <class T>
 class CfgTypedEntry : public CfgEntry
 {
     public:
-        explicit CfgTypedEntry(const QString& name, const QString &value, DefaultValueProviderFunc func) :
+        CfgTypedEntry(const QString& name, const QString &value, DefaultValueProviderFunc func) :
             CfgEntry(name, value, QVariant())
         {
             defineDefaultValueFunction(func);
@@ -133,7 +133,7 @@ class CfgTypedEntry : public CfgEntry
         };\
     }
 
-#define CFG_ENTRY(Type, Name, DbName, ...) CfgTypedEntry<Type> Name = CfgTypedEntry<Type>(#Name, DbName, ##__VA_ARGS__);
+#define CFG_ENTRY(Type, Name, ...) CfgTypedEntry<Type> Name = CfgTypedEntry<Type>(#Name, #Name, ##__VA_ARGS__);
 
 #define CFG_DECLARE(Type) \
     namespace Cfg\
