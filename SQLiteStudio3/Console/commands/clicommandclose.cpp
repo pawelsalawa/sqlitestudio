@@ -14,7 +14,7 @@ bool CliCommandClose::execute(QStringList args)
             println(tr("Connection to database %1 closed.").arg(db->getName()));
         }
         else
-            println(tr("No such database: %1. Use .dblist to see list of known databases.").arg(args[0]));
+            println(tr("No such database: %1. Use %2 to see list of known databases.").arg(args[0]).arg(cmdName("dblist")));
     }
     else if (cli->getCurrentDb())
     {
@@ -35,7 +35,8 @@ bool CliCommandClose::validate(QStringList args)
 
     if (args.size() == 0 && !cli->getCurrentDb())
     {
-        println(tr("Cannot call .close when no database is set to be current. Specify current database with .use command or pass database name to .close."));
+        println(tr("Cannot call %1 when no database is set to be current. Specify current database with .use command or pass database name to %2.")
+                .arg(cmdName("close")).arg(cmdName("close")));
         return false;
     }
 
@@ -51,9 +52,9 @@ QString CliCommandClose::fullHelp() const
 {
     return tr(
                 "Closes database connection. If the database was already closed, nothing happens. "
-                "If <name> is provided, it should be name of the database to close (as printed by .dblist command). "
-                "The the <name> is not provided, then current working database is closed (see help for .use for details). "
-             );
+                "If <name> is provided, it should be name of the database to close (as printed by %1 command). "
+                "The the <name> is not provided, then current working database is closed (see help for %2 for details)."
+             ).arg(cmdName("dblist")).arg(cmdName("use"));
 }
 
 QString CliCommandClose::usage() const

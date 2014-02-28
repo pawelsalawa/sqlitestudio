@@ -61,13 +61,13 @@ QString CliCommandUse::fullHelp() const
                 "The default database is always defined (unless there is no database on the list at all).\n"
                 "\n"
                 "The default database can be selected in various ways:\n"
-                "- using .use command,\n"
+                "- using %1 command,\n"
                 "- by passing database file name to the application startup parameters,\n"
                 "- by passing registered database name to the application startup parameters,\n"
                 "- by restoring previously selected default database from saved configuration,\n"
                 "- or when default database was not selected by any of the above, then first database from the registered databases list "
                 "becomes the default one."
-             );
+             ).arg(cmdName("use"));
 }
 
 QString CliCommandUse::usage() const

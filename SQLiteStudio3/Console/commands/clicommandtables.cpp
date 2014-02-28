@@ -61,7 +61,8 @@ bool CliCommandTables::validate(QStringList args)
 
     if (args.size() == 0 && !cli->getCurrentDb())
     {
-        println(tr("Cannot call .tables when no database is set to be current. Specify current database with .use command or pass database name to .tables."));
+        println(tr("Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.")
+                .arg(cmdName("tables")).arg(cmdName("use")).arg(cmdName("tables")));
         return false;
     }
 
@@ -77,9 +78,9 @@ QString CliCommandTables::fullHelp() const
 {
     return tr(
                 "Prints list of tables in given <database> or in the current working database. "
-                "Note, that the <database> should be the name of the registered database (see .dblist). "
+                "Note, that the <database> should be the name of the registered database (see %1). "
                 "The output list includes all tables from any other databases attached to the queried database."
-             );
+             ).arg(cmdName("use"));
 }
 
 QString CliCommandTables::usage() const

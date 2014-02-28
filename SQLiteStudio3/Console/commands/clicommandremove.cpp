@@ -50,9 +50,9 @@ QString CliCommandRemove::fullHelp() const
 {
     return tr(
                 "Removes <name> database from the list of registered databases. "
-                "If the database was not on the list (see .dblist command), then error message is printed "
+                "If the database was not on the list (see %1 command), then error message is printed "
                 "and nothing more happens."
-             );
+             ).arg(cmdName("dblist"));
 }
 
 QString CliCommandRemove::usage() const

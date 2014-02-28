@@ -32,9 +32,9 @@ QString CliCommandHelp::shortHelp() const
 QString CliCommandHelp::fullHelp() const
 {
     return tr(
-                "Use .help to learn about certain commands supported by the command line interface (CLI) of the SQLiteStudio.\n"
-                "To see list of supported commands, type .help without any arguments."
-             );
+                "Use %1 to learn about certain commands supported by the command line interface (CLI) of the SQLiteStudio.\n"
+                "To see list of supported commands, type %2 without any arguments."
+             ).arg(cmdName("help")).arg(cmdName("help"));
 }
 
 QString CliCommandHelp::usage() const
@@ -49,7 +49,7 @@ void CliCommandHelp::printHelp(const QString& cmd)
     if (!command)
     {
         println(tr("No such command: %1").arg(cmd));
-        println(tr("Type '.help' for list of available commands."));
+        println(tr("Type '%1' for list of available commands.").arg(cmdName("help")));
         println("");
         return;
     }

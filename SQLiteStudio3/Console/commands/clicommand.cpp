@@ -52,3 +52,8 @@ void CliCommand::printUsage()
     println(tr("Usage: %1%2").arg(CFG_CLI.Console.CommandPrefixChar.get()).arg(usage()));
     println("");
 }
+
+QString CliCommand::cmdName(const QString& cmd) const
+{
+    return CFG_CLI.Console.CommandPrefixChar.get()+cmd;
+}

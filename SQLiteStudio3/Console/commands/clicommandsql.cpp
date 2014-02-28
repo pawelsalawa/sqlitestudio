@@ -4,10 +4,10 @@
 #include "parser/parser.h"
 #include "parser/parsererror.h"
 #include "db/queryexecutor.h"
-#include "db/sqlresults.h"
 #include "qio.h"
 #include "unused.h"
 #include "cli_config.h"
+#include "cliutils.h"
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QSqlError>
@@ -23,8 +23,6 @@ bool CliCommandSql::execute(QStringList args)
         return false;
     }
 
-    quint32 maxLength = CFG_CLI.Console.ColumnMaxWidth.get();
-
     // Executor deletes itself later when called with lambda.
     QueryExecutor *executor = new QueryExecutor(db, args[0]);
     connect(executor, SIGNAL(executionFinished(SqlResultsPtr)), this, SIGNAL(execComplete()));
@@ -36,22 +34,18 @@ bool CliCommandSql::execute(QStringList args)
         if (results->isError())
             return; // should not happen, since results handler function is called only for successful executions
 
-        // Columns
-        foreach (const QueryExecutor::ResultColumnPtr& resCol, executor->getResultColumns())
-            qOut << resCol->displayName.left(maxLength) << "|";
-
-        qOut << "\n";
-
-        // Data
-        SqlResultsRowPtr row;
-        while (!(row = results->next()).isNull())
-        {
-            foreach (QVariant value, row->valueList())
-                qOut << value.toString().left(maxLength) << "|";
-
-            qOut << "\n";
-        }
-        qOut.flush();
+//        switch (CFG_CLI.Console.ResultsDisplayMode.get())
+//        {
+//            case CliResultsDisplay::FIXED:
+                printResultsFixed(executor, results);
+//                break;
+//            case CliResultsDisplay::ROW_BY_ROW:
+//                printResultsRowByRow(executor, results);
+//                break;
+//            default:
+//                printResultsClassic(executor, results);
+//                break;
+//        }
     });
 
     return true;
@@ -68,8 +62,9 @@ bool CliCommandSql::validate(QStringList args)
     if (!cli->getCurrentDb())
     {
         println(tr("No working database is set.\n"
-                   "Call .use command to set working database.\n"
-                   "Call .dblist to see list of all databases."));
+                   "Call %1 command to set working database.\n"
+                   "Call %2 to see list of all databases.")
+                .arg(cmdName("use")).arg(cmdName("dblist")));
 
         return false;
     }
@@ -95,6 +90,98 @@ QString CliCommandSql::fullHelp() const
 QString CliCommandSql::usage() const
 {
     return "query "+tr("<sql>");
+}
+
+void CliCommandSql::printResultsClassic(QueryExecutor* executor, SqlResultsPtr results)
+{
+    quint32 maxLength = CFG_CLI.Console.ColumnMaxWidth.get();
+    int rowIdColumns = executor->getRowIdResultColumns().size();
+
+    // Columns
+    foreach (const QueryExecutor::ResultColumnPtr& resCol, executor->getResultColumns())
+        qOut << resCol->displayName.left(maxLength) << "|";
+
+    qOut << "\n";
+
+    // Data
+    SqlResultsRowPtr row;
+    while (!(row = results->next()).isNull())
+    {
+        foreach (QVariant value, row->valueList().mid(rowIdColumns))
+            qOut << value.toString().left(maxLength) << "|";
+
+        qOut << "\n";
+    }
+    qOut.flush();
+}
+
+void CliCommandSql::printResultsFixed(QueryExecutor* executor, SqlResultsPtr results)
+{
+    QList<QueryExecutor::ResultColumnPtr> resultColumns = executor->getResultColumns();
+    int resultColumnsCount = resultColumns.size();
+    int rowIdColumns = executor->getRowIdResultColumns().size();
+    int termCols = getCliColumns();
+    int colWidth = termCols / resultColumns.size() - 1; // -1 for the separator
+
+    if (colWidths == 0)
+    {
+        qOut << tr("Too many columns in results to display in the FIXED mode. "
+                   "Either execute query with less columns in results, or enlarge console window, "
+                   "or switch to different results display mode (see %1 command).").arg(cmdName("mode")) << "\n";
+        return;
+    }
+
+    int i;
+    int* widths = new int[resultColumnsCount];
+    for (i = 0; i < resultColumnsCount; i++)
+    {
+        widths[i] = colWidth;
+        if (i+1 == resultColumnsCount)
+            widths[i] += (termCols - resultColumnsCount * (colWidth + 1));
+    }
+
+    // Columns
+    QStringList line;
+    i = 0;
+    foreach (const QueryExecutor::ResultColumnPtr& resCol, executor->getResultColumns())
+    {
+        line << pad(resCol->displayName.left(widths[i]), widths[i], ' ');
+        i++;
+    }
+
+    qOut << line.join("|") << "\n";
+
+    line.clear();
+    QString hline("-");
+    for (i = 0; i < resultColumnsCount; i++)
+    {
+        line << hline.repeated(widths[i]);
+    }
+
+    qOut << line.join("+") << "\n";
+
+    // Data
+    SqlResultsRowPtr row;
+    while (!(row = results->next()).isNull())
+    {
+        i = 0;
+        line.clear();
+        foreach (QVariant value, row->valueList().mid(rowIdColumns))
+        {
+            line << pad(value.toString().left(widths[i]), widths[i], ' ');
+            i++;
+        }
+
+        qOut << line.join("|") << "\n";
+    }
+    qOut.flush();
+
+    delete[] widths;
+}
+
+void CliCommandSql::printResultsRowByRow(QueryExecutor* executor, SqlResultsPtr results)
+{
+
 }
 
 void CliCommandSql::executionFailed(int code, const QString& msg)
