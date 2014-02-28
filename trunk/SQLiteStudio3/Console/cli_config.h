@@ -4,8 +4,8 @@
 #include "cfginternals.h"
 
 CFG_CATEGORIES(Cli,
-    CFG_CATEGORY(General,
-        CFG_ENTRY(QString, DefaultDatabase,   "CliDefaultDatabase", QString())
+    CFG_CATEGORY(Console,
+        CFG_ENTRY(QString, DefaultDatabase,   "DefaultDatabase", QString())
         CFG_ENTRY(QString, CommandPrefixChar, "CommandPrefixChar",  ".")
     )
 )

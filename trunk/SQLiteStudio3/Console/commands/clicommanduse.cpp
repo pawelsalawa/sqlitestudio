@@ -26,7 +26,7 @@ bool CliCommandUse::execute(QStringList args)
     }
 
     cli->setCurrentDb(db);
-    CFG_CLI.General.DefaultDatabase.set(db->getName());
+    CFG_CLI.Console.DefaultDatabase.set(db->getName());
 
     println(tr("Current database: %1").arg(db->getName()));
 

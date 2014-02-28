@@ -54,7 +54,7 @@ void CliCommandHelp::printHelp(const QString& cmd)
         return;
     }
     QStringList aliases = command->aliases();
-    QString prefix = CFG_CLI.General.CommandPrefixChar.get();
+    QString prefix = CFG_CLI.Console.CommandPrefixChar.get();
 
     QString msg;
     msg += tr("Usage: %1%2").arg(prefix).arg(command->usage());
@@ -81,7 +81,7 @@ void CliCommandHelp::printHelp()
     QString msg;
     foreach (const QString& cmd, names)
     {
-        msg += CFG_CLI.General.CommandPrefixChar.get() + pad(cmd, width, ' ') + " - " + allCommands[cmd]->shortHelp() + "\n";
+        msg += CFG_CLI.Console.CommandPrefixChar.get() + pad(cmd, width, ' ') + " - " + allCommands[cmd]->shortHelp() + "\n";
         delete allCommands[cmd];
     }
     printBox(msg);

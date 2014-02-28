@@ -1,26 +1,23 @@
-#include <QCoreApplication>
-
 #include "cli.h"
 #include "clicommandexecutor.h"
 #include "sqlitestudio.h"
 #include "commands/clicommand.h"
 #include "cli_config.h"
 #include "qio.h"
+#include "climsghandler.h"
+#include <QCoreApplication>
+#include <QtGlobal>
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
     qOut << QString("SQLiteStudio (%1)\n------------------------\n\n").arg("x.x.x");
-    qOut << QObject::tr("Initialization:") << "\n";
-    qOut << "------------------------\n\n";
     qOut.flush();
+
+    qInstallMessageHandler(cliMessageHandler);
 
     SQLiteStudio::getInstance()->init(a.arguments());
-
-    qOut << "\n" << QObject::tr("Done.") << "\n";
-    qOut << "------------------------\n\n";
-    qOut.flush();
 
     CliCommandExecutor executor;
 
