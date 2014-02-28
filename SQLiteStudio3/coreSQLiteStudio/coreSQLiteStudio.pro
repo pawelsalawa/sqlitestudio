@@ -135,7 +135,10 @@ SOURCES += sqlitestudio.cpp \
     datatype.cpp \
     table.cpp \
     column.cpp \
-    dbattacher.cpp
+    dbattacher.cpp \
+    db/dbqt2.cpp \
+    functionmanager.cpp \
+    db/dbqt3.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -262,7 +265,10 @@ HEADERS += sqlitestudio.h\
     strhash.h \
     dbattacher.h \
     bistrhash.h \
-    sqlfunctionplugin.h
+    sqlfunctionplugin.h \
+    db/dbqt2.h \
+    functionmanager.h \
+    db/dbqt3.h
 
 unix:!symbian {
     maemo5 {

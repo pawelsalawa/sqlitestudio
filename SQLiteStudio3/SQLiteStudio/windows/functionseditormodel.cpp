@@ -18,13 +18,14 @@ void FunctionsEditorModel::clearModified()
         func->modified = false;
 
     listModified = false;
+    originalFunctionList = functionList;
 
     endResetModel();
 }
 
 bool FunctionsEditorModel::isModified() const
 {
-    if (listModified)
+    if (functionList != originalFunctionList)
         return true;
 
     foreach (Function* func, functionList)
@@ -35,188 +36,210 @@ bool FunctionsEditorModel::isModified() const
     return false;
 }
 
-bool FunctionsEditorModel::isModified(const QString& name) const
+bool FunctionsEditorModel::isModified(int row) const
 {
-    if (!functionMap.contains(name))
+    if (!isValidRow(row))
         return false;
 
-    return functionMap[name]->modified;
+    return functionList[row]->modified;
 }
 
-void FunctionsEditorModel::setModified(const QString& name, bool modified)
+void FunctionsEditorModel::setModified(int row, bool modified)
 {
-    if (!functionMap.contains(name))
+    if (!isValidRow(row))
         return;
 
-    functionMap[name]->modified = modified;
-    emitDataChanged(name);
+    functionList[row]->modified = modified;
+    emitDataChanged(row);
 }
 
-bool FunctionsEditorModel::isValid(const QString& name) const
+bool FunctionsEditorModel::isValid(int row) const
 {
-    if (!functionMap.contains(name))
+    if (!isValidRow(row))
         return false;
 
-    return functionMap[name]->valid;
+    return functionList[row]->valid;
 }
 
-void FunctionsEditorModel::setValid(const QString& name, bool valid)
+void FunctionsEditorModel::setValid(int row, bool valid)
 {
-    if (!functionMap.contains(name))
+    if (!isValidRow(row))
         return;
 
-    functionMap[name]->valid = valid;
-    emitDataChanged(name);
+    functionList[row]->valid = valid;
+    emitDataChanged(row);
 }
 
-void FunctionsEditorModel::setCode(const QString& name, const QString& code)
+void FunctionsEditorModel::setCode(int row, const QString& code)
 {
-    if (!functionMap.contains(name))
+    if (!isValidRow(row))
         return;
 
-    functionMap[name]->code = code;
-    emitDataChanged(name);
+    functionList[row]->data->code = code;
+    emitDataChanged(row);
 }
 
-QString FunctionsEditorModel::getCode(const QString& name) const
+QString FunctionsEditorModel::getCode(int row) const
 {
-    if (!functionMap.contains(name))
+    if (!isValidRow(row))
         return QString::null;
 
-    return functionMap[name]->code;
+    return functionList[row]->data->code;
 }
 
-void FunctionsEditorModel::setName(const QString& name, const QString& newName)
+void FunctionsEditorModel::setFinalCode(int row, const QString& code)
 {
-    if (!functionMap.contains(name))
+    if (!isValidRow(row))
         return;
 
-    functionMap[name]->name = newName;
-    emitDataChanged(name);
+    functionList[row]->data->finalCode = code;
+    emitDataChanged(row);
 }
 
-QString FunctionsEditorModel::getName(const QString& name) const
+QString FunctionsEditorModel::getFinalCode(int row) const
 {
-    if (!functionMap.contains(name))
+    if (!isValidRow(row))
         return QString::null;
 
-    return functionMap[name]->name;
+    return functionList[row]->data->finalCode;
 }
 
-void FunctionsEditorModel::setLang(const QString& name, const QString& lang)
+void FunctionsEditorModel::setName(int row, const QString& newName)
 {
-    if (!functionMap.contains(name))
+    if (!isValidRow(row))
         return;
 
-    functionMap[name]->lang = lang;
-    emitDataChanged(name);
+    functionList[row]->data->name = newName;
+    emitDataChanged(row);
 }
 
-QString FunctionsEditorModel::getLang(const QString& name) const
+QString FunctionsEditorModel::getName(int row) const
 {
-    if (!functionMap.contains(name))
+    if (!isValidRow(row))
         return QString::null;
 
-    return functionMap[name]->lang;
+    return functionList[row]->data->name;
 }
 
-bool FunctionsEditorModel::getUndefinedArgs(const QString& name) const
+void FunctionsEditorModel::setLang(int row, const QString& lang)
 {
-    if (!functionMap.contains(name))
+    if (!isValidRow(row))
+        return;
+
+    functionList[row]->data->lang = lang;
+    emitDataChanged(row);
+}
+
+QString FunctionsEditorModel::getLang(int row) const
+{
+    if (!isValidRow(row))
+        return QString::null;
+
+    return functionList[row]->data->lang;
+}
+
+bool FunctionsEditorModel::getUndefinedArgs(int row) const
+{
+    if (!isValidRow(row))
         return true;
 
-    return functionMap[name]->undefinedArgs;
+    return functionList[row]->data->undefinedArgs;
 }
 
-void FunctionsEditorModel::setUndefinedArgs(const QString& name, bool value)
+void FunctionsEditorModel::setUndefinedArgs(int row, bool value)
 {
-    if (!functionMap.contains(name))
+    if (!isValidRow(row))
         return;
 
-    functionMap[name]->undefinedArgs = value;
-    emitDataChanged(name);
+    functionList[row]->data->undefinedArgs = value;
+    emitDataChanged(row);
 }
 
-bool FunctionsEditorModel::getAllDatabases(const QString& name) const
+bool FunctionsEditorModel::getAllDatabases(int row) const
 {
-    if (!functionMap.contains(name))
+    if (!isValidRow(row))
         return true;
 
-    return functionMap[name]->allDatabases;
+    return functionList[row]->data->allDatabases;
 }
 
-void FunctionsEditorModel::setAllDatabases(const QString& name, bool value)
+void FunctionsEditorModel::setAllDatabases(int row, bool value)
 {
-    if (!functionMap.contains(name))
+    if (!isValidRow(row))
         return;
 
-    functionMap[name]->allDatabases = value;
-    emitDataChanged(name);
+    functionList[row]->data->allDatabases = value;
+    emitDataChanged(row);
 }
 
-QString FunctionsEditorModel::getType(const QString& name) const
+FunctionManager::Function::Type FunctionsEditorModel::getType(int row) const
 {
-    if (!functionMap.contains(name))
-        return Config::Function::SCALAR_TYPE;
+    if (!isValidRow(row))
+        return FunctionManager::Function::SCALAR;
 
-    switch (functionMap[name]->type)
-    {
-        case FunctionsEditorModel::Function::SCALAR:
-            return Config::Function::SCALAR_TYPE;
-        case FunctionsEditorModel::Function::AGGREGATE:
-            return Config::Function::AGGREGATE_TYPE;
-    }
-    return Config::Function::SCALAR_TYPE;
+    return functionList[row]->data->type;
 }
 
-void FunctionsEditorModel::setType(const QString& name, const QString& value)
+void FunctionsEditorModel::setType(int row, FunctionManager::Function::Type type)
 {
-    if (!functionMap.contains(name))
+    if (!isValidRow(row))
         return;
 
-    if (value == Config::Function::AGGREGATE_TYPE)
-        functionMap[name]->type = Function::AGGREGATE;
-    else
-        functionMap[name]->type = Function::SCALAR;
-
-    emitDataChanged(name);
+    functionList[row]->data->type = type;
+    emitDataChanged(row);
 }
 
-QStringList FunctionsEditorModel::getArguments(const QString& name) const
+bool FunctionsEditorModel::isAggregate(int row) const
 {
-    if (!functionMap.contains(name))
+    if (!isValidRow(row))
+        return false;
+
+    return functionList[row]->data->type == FunctionManager::Function::AGGREGATE;
+}
+
+bool FunctionsEditorModel::isScalar(int row) const
+{
+    if (!isValidRow(row))
+        return false;
+
+    return functionList[row]->data->type == FunctionManager::Function::SCALAR;
+}
+
+QStringList FunctionsEditorModel::getArguments(int row) const
+{
+    if (!isValidRow(row))
         return QStringList();
 
-    return functionMap[name]->arguments;
+    return functionList[row]->data->arguments;
 }
 
-void FunctionsEditorModel::setArguments(const QString& name, const QStringList& value)
+void FunctionsEditorModel::setArguments(int row, const QStringList& value)
 {
-    if (!functionMap.contains(name))
+    if (!isValidRow(row))
         return;
 
-    functionMap[name]->arguments = value;
-    emitDataChanged(name);
+    functionList[row]->data->arguments = value;
+    emitDataChanged(row);
 }
 
-QStringList FunctionsEditorModel::getDatabases(const QString& name) const
+QStringList FunctionsEditorModel::getDatabases(int row) const
 {
-    if (!functionMap.contains(name))
+    if (!isValidRow(row))
         return QStringList();
 
-    return functionMap[name]->databases;
+    return functionList[row]->data->databases;
 }
 
-void FunctionsEditorModel::setDatabases(const QString& name, const QStringList& value)
+void FunctionsEditorModel::setDatabases(int row, const QStringList& value)
 {
-    if (!functionMap.contains(name))
+    if (!isValidRow(row))
         return;
 
-    functionMap[name]->databases = value;
-    emitDataChanged(name);
+    functionList[row]->data->databases = value;
+    emitDataChanged(row);
 }
 
-void FunctionsEditorModel::setData(const QList<Config::Function>& functions)
+void FunctionsEditorModel::setData(const QList<FunctionManager::FunctionPtr>& functions)
 {
     beginResetModel();
 
@@ -225,112 +248,81 @@ void FunctionsEditorModel::setData(const QList<Config::Function>& functions)
         delete functionPtr;
 
     functionList.clear();
-    functionMap.clear();
 
-    foreach (const Config::Function& func, functions)
-    {
-        functionPtr = new Function(func);
-        functionMap[func.name] = functionPtr;
-    }
-    updateSortedList();
+    foreach (const FunctionManager::FunctionPtr& func, functions)
+        functionList << new Function(func);
 
     listModified = false;
+    originalFunctionList = functionList;
 
     endResetModel();
 }
 
-void FunctionsEditorModel::addFunction(const Config::Function& function)
+void FunctionsEditorModel::addFunction(const FunctionManager::FunctionPtr& function)
 {
-    beginResetModel();
+    int row = functionList.size();
 
-    Function* functionPtr = new Function(function);
-    functionMap[function.name] = functionPtr;
-    updateSortedList();
+    beginInsertRows(QModelIndex(), row, row);
+
+    functionList << new Function(function);
+    listModified = true;
+
+    endInsertRows();
+}
+
+void FunctionsEditorModel::deleteFunction(int row)
+{
+    if (!isValidRow(row))
+        return;
+
+    beginRemoveRows(QModelIndex(), row, row);
+
+    delete functionList[row];
+    functionList.removeAt(row);
 
     listModified = true;
 
-    endResetModel();
+    endRemoveRows();
 }
 
-void FunctionsEditorModel::deleteFunction(const QString& name)
+QList<FunctionManager::FunctionPtr> FunctionsEditorModel::getFunctions() const
 {
-    if (!functionMap.contains(name))
-        return;
-
-    beginResetModel();
-
-    Function* functionPtr = functionMap[name];
-    functionList.removeOne(functionPtr);
-    functionMap.remove(name);
-    delete functionPtr;
-
-    listModified = true;
-
-    endResetModel();
-}
-
-void FunctionsEditorModel::updateFunction(const QString& name, const Config::Function& function)
-{
-    if (!functionMap.contains(name))
-        return;
-
-    Function* functionPtr = functionMap[name];
-    functionPtr->name = function.name;
-    functionPtr->lang = function.lang;
-    functionPtr->code = function.code;
-
-    emitDataChanged(name);
-}
-
-QList<Config::Function> FunctionsEditorModel::getConfigFunctions() const
-{
-    QList<Config::Function> configFunctions;
+    QList<FunctionManager::FunctionPtr> results;
 
     foreach (Function* func, functionList)
-        configFunctions << func->toConfigFunction();
+        results << func->data;
 
-    return configFunctions;
-}
-
-QModelIndex FunctionsEditorModel::indexOf(const QString& name)
-{
-    int i = 0;
-    foreach (Function* func, functionList)
-    {
-        if (func->name == name)
-            return index(i);
-
-        i++;
-    }
-
-    return QModelIndex();
+    return results;
 }
 
 QStringList FunctionsEditorModel::getFunctionNames() const
 {
-    return functionMap.keys();
+    QStringList names;
+    foreach (Function* func, functionList)
+        names << func->data->name;
+
+    return names;
 }
 
 void FunctionsEditorModel::validateNames()
 {
-    StrHash<QStringList> counter;
+    StrHash<QList<int>> counter;
 
-    QHashIterator<QString,Function*> it(functionMap);
-    while (it.hasNext())
+    int row = 0;
+    foreach (Function* func, functionList)
     {
-        it.next();
-        it.value()->valid = true;
-        counter[it.value()->name] << it.key();
+        func->valid = true;
+        counter[func->data->name] << row++;
     }
 
-    QHashIterator<QString,QStringList> cntIt = counter.iterator();
+    QHashIterator<QString,QList<int>> cntIt = counter.iterator();
     while (cntIt.hasNext())
     {
         cntIt.next();
         if (cntIt.value().size() > 1)
         {
-            foreach (const QString& name, cntIt.value())
-                setValid(name, false);
+            foreach (int cntRow, cntIt.value())
+                setValid(cntRow, false);
         }
     }
 
@@ -342,17 +334,17 @@ void FunctionsEditorModel::validateNames()
     }
 }
 
-bool FunctionsEditorModel::isAllowedName(const QString& name, const QString& nameToValidate)
+bool FunctionsEditorModel::isAllowedName(int rowToSkip, const QString& nameToValidate)
 {
     QStringList names;
-    QHashIterator<QString,Function*> it(functionMap);
-    while (it.hasNext())
+    int row = -1;
+    foreach (Function* func, functionList)
     {
-        it.next();
-        if (it.key() == name)
+        row++;
+        if (row == rowToSkip)
             continue;
 
-        names << it.value()->name;
+        names << func->data->name;
     }
     return !names.contains(nameToValidate, Qt::CaseInsensitive);
 }
@@ -365,14 +357,19 @@ int FunctionsEditorModel::rowCount(const QModelIndex& parent) const
 
 QVariant FunctionsEditorModel::data(const QModelIndex& index, int role) const
 {
-    if (!index.isValid() || !isValidIndex(index.row()))
+    if (!index.isValid() || !isValidRow(index.row()))
         return QVariant();
 
     if (role == Qt::DisplayRole)
-        return functionList[index.row()]->name;
+    {
+        static const QString format = "%1(%2)";
+        Function* fn = functionList[index.row()];
+        QString args = fn->data->undefinedArgs ? "..." : fn->data->arguments.join(", ");
+        return format.arg(fn->data->name).arg(args);
+    }
 
-    if (role == Qt::DecorationRole && langToIcon.contains(functionList[index.row()]->lang))
-        return langToIcon[functionList[index.row()]->lang];
+    if (role == Qt::DecorationRole && langToIcon.contains(functionList[index.row()]->data->lang))
+        return langToIcon[functionList[index.row()]->data->lang];
 
     return QVariant();
 }
@@ -389,56 +386,24 @@ void FunctionsEditorModel::init()
     }
 }
 
-bool FunctionsEditorModel::isValidIndex(int row) const
+bool FunctionsEditorModel::isValidRow(int row) const
 {
     return (row >= 0 && row < functionList.size());
 }
 
-void FunctionsEditorModel::updateSortedList()
+void FunctionsEditorModel::emitDataChanged(int row)
 {
-    functionList.clear();
-    QStringList names = functionMap.keys();
-    qSort(names);
-    foreach (const QString& name, names)
-        functionList << functionMap[name];
-}
-
-void FunctionsEditorModel::emitDataChanged(const QString& name)
-{
-    QModelIndex idx = indexOf(name);
+    QModelIndex idx = index(row);
     emit dataChanged(idx, idx);
 }
 
 FunctionsEditorModel::Function::Function()
 {
+    data = FunctionManager::FunctionPtr::create();
 }
 
-FunctionsEditorModel::Function::Function(const Config::Function& other)
+FunctionsEditorModel::Function::Function(const FunctionManager::FunctionPtr& other)
 {
-    name = other.name;
-    lang = other.lang;
-    code = other.code;
-    databases = other.databases;
-    allDatabases = other.allDatabases;
-    arguments = other.arguments;
-    undefinedArgs = other.undefinedArgs;
-
-    if (other.aggregate)
-        type = AGGREGATE;
-    else
-        type = SCALAR;
-}
-
-Config::Function FunctionsEditorModel::Function::toConfigFunction() const
-{
-    Config::Function func;
-    func.name = name;
-    func.lang = lang;
-    func.code = code;
-    func.databases = databases;
-    func.allDatabases = allDatabases;
-    func.arguments = arguments;
-    func.undefinedArgs = undefinedArgs;
-    func.aggregate = (type == AGGREGATE);
-    return func;
+    data = FunctionManager::FunctionPtr::create(*other);
+    originalName = data->name;
 }

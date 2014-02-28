@@ -4,6 +4,7 @@
 #include "db.h"
 #include "coreSQLiteStudio_global.h"
 #include "strhash.h"
+#include "sqlitestudio.h"
 #include <QObject>
 #include <QList>
 #include <QHash>

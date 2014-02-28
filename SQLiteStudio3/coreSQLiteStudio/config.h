@@ -5,6 +5,7 @@
 #include "global.h"
 #include "cfginternals.h"
 #include "sqlitestudio.h"
+#include "functionmanager.h"
 #include <QObject>
 #include <QVariant>
 #include <QHash>
@@ -76,21 +77,6 @@ class API_EXPORT Config : public QObject
             QString queries;
         };
 
-        struct Function
-        {
-            static_char* AGGREGATE_TYPE = "AGGREGATE";
-            static_char* SCALAR_TYPE = "SCALAR";
-
-            QString name;
-            QString lang;
-            QString code;
-            bool aggregate = false;
-            bool undefinedArgs = true;
-            bool allDatabases = true;
-            QStringList arguments;
-            QStringList databases;
-        };
-
         typedef QSharedPointer<DdlHistoryEntry> DdlHistoryEntryPtr;
 
         explicit Config(QObject *parent = 0);
@@ -138,8 +124,8 @@ class API_EXPORT Config : public QObject
         DdlHistoryModel* getDdlHistoryModel();
         void clearDdlHistory();
 
-        bool setFunctions(const QList<Function>& functions);
-        QList<Function> getFunctions() const;
+        bool setFunctions(const QList<FunctionManager::FunctionPtr>& functions);
+        QList<FunctionManager::FunctionPtr> getFunctions() const;
 
         void begin();
         void commit();

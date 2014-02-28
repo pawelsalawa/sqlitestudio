@@ -15,6 +15,7 @@
 #include "sqlfunctionplugin.h"
 #include "db/dbplugin.h"
 #include "unused.h"
+#include "functionmanager.h"
 #include <QProcessEnvironment>
 #include <QThreadPool>
 
@@ -43,6 +44,11 @@ void SQLiteStudio::parseCmdLineArgs()
 NotifyManager *SQLiteStudio::getNotifyManager() const
 {
     return notifyManager;
+}
+
+FunctionManager*SQLiteStudio::getFunctionManager() const
+{
+    return functionManager;
 }
 
 SqlFormatter *SQLiteStudio::getSqlFormatter() const
@@ -111,6 +117,8 @@ void SQLiteStudio::init(const QStringList& cmdListArguments)
 
     pluginManager->init();
 
+    functionManager = new FunctionManager();
+
     connect(PLUGINS, SIGNAL(loaded(Plugin*,PluginType*)), this, SLOT(pluginLoaded(Plugin*,PluginType*)));
     connect(PLUGINS, SIGNAL(aboutToUnload(Plugin*,PluginType*)), this, SLOT(pluginToBeUnloaded(Plugin*,PluginType*)));
     connect(PLUGINS, SIGNAL(unloaded(QString,PluginType*)), this, SLOT(pluginUnloaded(QString,PluginType*)));
@@ -120,11 +128,18 @@ void SQLiteStudio::init(const QStringList& cmdListArguments)
 
 void SQLiteStudio::cleanUp()
 {
+    if (functionManager)
+    {
+        delete functionManager;
+        functionManager = nullptr;
+    }
+
     if (dbManager)
     {
         delete dbManager;
         dbManager = nullptr;
     }
+
     if (config)
     {
         delete config;

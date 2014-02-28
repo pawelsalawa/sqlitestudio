@@ -4,6 +4,7 @@
 #include "coreSQLiteStudio_global.h"
 #include "plugin.h"
 #include "plugintype.h"
+#include "sqlitestudio.h"
 #include <QPluginLoader>
 #include <QStringList>
 #include <QHash>

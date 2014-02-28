@@ -2,6 +2,7 @@
 #define FUNCTIONSEDITORMODEL_H
 
 #include "config.h"
+#include "functionmanager.h"
 #include <QIcon>
 #include <QAbstractListModel>
 
@@ -22,72 +23,68 @@ class FunctionsEditorModel : public QAbstractListModel
 
         void clearModified();
         bool isModified() const;
-        bool isModified(const QString& name) const;
-        void setModified(const QString& name, bool modified);
-        bool isValid(const QString& name) const;
-        void setValid(const QString& name, bool valid);
-        void setCode(const QString& name, const QString& code);
-        QString getCode(const QString& name) const;
-        void setName(const QString& name, const QString& newName);
-        QString getName(const QString& name) const;
-        void setLang(const QString& name, const QString& lang);
-        QString getLang(const QString& name) const;
-        QStringList getDatabases(const QString& name) const;
-        void setDatabases(const QString& name, const QStringList& value);
-        QStringList getArguments(const QString& name) const;
-        void setArguments(const QString& name, const QStringList& value);
-        QString getType(const QString& name) const;
-        void setType(const QString& name, const QString& value);
-        bool getUndefinedArgs(const QString& name) const;
-        void setUndefinedArgs(const QString& name, bool value);
-        bool getAllDatabases(const QString& name) const;
-        void setAllDatabases(const QString& name, bool value);
-        void setData(const QList<Config::Function>& functions);
-        void addFunction(const Config::Function& function);
-        void deleteFunction(const QString& name);
-        void updateFunction(const QString& name, const Config::Function& function);
-        QList<Config::Function> getConfigFunctions() const;
-        QModelIndex indexOf(const QString& name);
+        bool isModified(int row) const;
+        void setModified(int row, bool modified);
+        bool isValid(int row) const;
+        void setValid(int row, bool valid);
+        void setCode(int row, const QString& code);
+        QString getCode(int row) const;
+        void setFinalCode(int row, const QString& code);
+        QString getFinalCode(int row) const;
+        void setName(int row, const QString& newName);
+        QString getName(int row) const;
+        void setLang(int row, const QString& lang);
+        QString getLang(int row) const;
+        QStringList getDatabases(int row) const;
+        void setDatabases(int row, const QStringList& value);
+        QStringList getArguments(int row) const;
+        void setArguments(int row, const QStringList& value);
+        FunctionManager::Function::Type getType(int row) const;
+        void setType(int row, FunctionManager::Function::Type type);
+        bool isAggregate(int row) const;
+        bool isScalar(int row) const;
+        bool getUndefinedArgs(int row) const;
+        void setUndefinedArgs(int row, bool value);
+        bool getAllDatabases(int row) const;
+        void setAllDatabases(int row, bool value);
+        void setData(const QList<FunctionManager::FunctionPtr>& functions);
+        void addFunction(const FunctionManager::FunctionPtr& function);
+        void deleteFunction(int row);
+        QList<FunctionManager::FunctionPtr> getFunctions() const;
         QStringList getFunctionNames() const;
         void validateNames();
-        bool isAllowedName(const QString& name, const QString& nameToValidate);
+        bool isAllowedName(int row, const QString& nameToValidate);
+        bool isValidRow(int row) const;
 
-        int rowCount(const QModelIndex& parent) const;
+        int rowCount(const QModelIndex& parent = QModelIndex()) const;
         QVariant data(const QModelIndex& index, int role) const;
 
     private:
         struct Function
         {
-            enum Type
-            {
-                SCALAR,
-                AGGREGATE
-            };
-
             Function();
-            Function(const Config::Function& other);
+            Function(const FunctionManager::FunctionPtr& other);
 
-            Config::Function toConfigFunction() const;
-
-            QString name;
-            QString lang;
-            QString code;
-            QStringList databases;
-            QStringList arguments;
-            Type type = SCALAR;
-            bool undefinedArgs = true;
-            bool allDatabases = true;
+            FunctionManager::FunctionPtr data;
             bool modified = false;
             bool valid = true;
+            QString originalName;
         };
 
         void init();
-        bool isValidIndex(int row) const;
-        void updateSortedList();
-        void emitDataChanged(const QString& name);
+        void emitDataChanged(int row);
 
         QList<Function*> functionList;
-        QHash<QString,Function*> functionMap;
+
+        /**
+         * @brief List of function pointers before modifications.
+         *
+         * This list is kept to check for modifications in the overall list of functions.
+         * Pointers on this list may be already deleted, so don't use them!
+         * It's only used to compare list of pointers to functionList, so it can tell you
+         * if the list was modified in regards of adding or deleting functions.
+         */
+        QList<Function*> originalFunctionList;
         QHash<QString,QIcon> langToIcon;
         bool listModified = false;
 };

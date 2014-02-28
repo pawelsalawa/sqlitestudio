@@ -124,7 +124,10 @@ bool Config::storeErrorAndReturn(const QSqlQuery& query)
 void Config::printErrorIfSet(const QSqlQuery& query)
 {
     if (!query.isValid() && query.lastError().isValid())
+    {
         qCritical() << "Config error while executing query:" << query.lastQuery() << ";\nError details:" << query.lastError().text();
+        storeErrorAndReturn(query);
+    }
 }
 
 bool Config::addDb(const QString& name, const QString& path, const QHash<QString,QVariant>& options)
@@ -420,7 +423,7 @@ void Config::clearDdlHistory()
         ddlHistoryModel->refresh();
 }
 
-bool Config::setFunctions(const QList<Config::Function>& functions)
+bool Config::setFunctions(const QList<FunctionManager::FunctionPtr>& functions)
 {
     if (!db->transaction())
     {
@@ -435,30 +438,31 @@ bool Config::setFunctions(const QList<Config::Function>& functions)
     functionQuery.prepare("DELETE FROM functions");
     functionQuery.exec();
 
-    functionQuery.prepare("INSERT INTO functions (name, lang, code, type, for_all_databases, undefined_args) "
-                          "VALUES (:name, :lang, :code, :type, :for_all_databases, :undefined_args)");
+    functionQuery.prepare("INSERT INTO functions (name, lang, code, final_code, type, for_all_databases, undefined_args) "
+                          "VALUES (:name, :lang, :code, :final_code, :type, :for_all_databases, :undefined_args)");
 
     fnArgsQuery.prepare("INSERT INTO function_args (function, name) VALUES (:function, :name)");
 
-    funcToDbQuery.prepare("INSERT INTO func_to_dbname (function, dbname) VALUES (:function, :dbname)");
+    funcToDbQuery.prepare("INSERT INTO func_to_db (function, dbname) VALUES (:function, :dbname)");
 
-    foreach (const Function& func, functions)
+    foreach (const FunctionManager::FunctionPtr& func, functions)
     {
-        functionQuery.bindValue(":name", func.name);
-        functionQuery.bindValue(":lang", func.lang);
-        functionQuery.bindValue(":code", func.code);
-        functionQuery.bindValue(":type", func.aggregate ? Function::AGGREGATE_TYPE : Function::SCALAR_TYPE);
-        functionQuery.bindValue(":for_all_databases", func.allDatabases);
-        functionQuery.bindValue(":undefined_args", func.undefinedArgs);
+        functionQuery.bindValue(":name", func->name);
+        functionQuery.bindValue(":lang", func->lang);
+        functionQuery.bindValue(":code", func->code);
+        functionQuery.bindValue(":final_code", func->finalCode);
+        functionQuery.bindValue(":type", FunctionManager::Function::typeString(func->type));
+        functionQuery.bindValue(":for_all_databases", func->allDatabases);
+        functionQuery.bindValue(":undefined_args", func->undefinedArgs);
         functionQuery.exec();
         printErrorIfSet(functionQuery);
 
         // Arguments
-        if (!func.allDatabases)
+        if (!func->allDatabases)
         {
-            foreach (const QString arg, func.arguments)
+            foreach (const QString arg, func->arguments)
             {
-                fnArgsQuery.bindValue(":function", func.name);
+                fnArgsQuery.bindValue(":function", func->name);
                 fnArgsQuery.bindValue(":name", arg);
                 fnArgsQuery.exec();
                 printErrorIfSet(fnArgsQuery);
@@ -466,11 +470,11 @@ bool Config::setFunctions(const QList<Config::Function>& functions)
         }
 
         // Databases
-        if (!func.allDatabases)
+        if (!func->allDatabases)
         {
-            foreach (const QString dbName, func.databases)
+            foreach (const QString dbName, func->databases)
             {
-                funcToDbQuery.bindValue(":function", func.name);
+                funcToDbQuery.bindValue(":function", func->name);
                 funcToDbQuery.bindValue(":dbname", dbName);
                 funcToDbQuery.exec();
                 printErrorIfSet(funcToDbQuery);
@@ -487,7 +491,7 @@ bool Config::setFunctions(const QList<Config::Function>& functions)
     return true;
 }
 
-QList<Config::Function> Config::getFunctions() const
+QList<FunctionManager::FunctionPtr> Config::getFunctions() const
 {
     // Read function arguments
     QHash<QString,QStringList> arguments;
@@ -510,18 +514,20 @@ QList<Config::Function> Config::getFunctions() const
     query.prepare("SELECT * FROM functions");
     query.exec();
 
-    QList<Function> funcList;
-    Function func;
+    QList<FunctionManager::FunctionPtr> funcList;
+    FunctionManager::FunctionPtr func;
     while (query.next())
     {
-        func.name = query.value("name").toString();
-        func.lang = query.value("lang").toString();
-        func.code = query.value("code").toString();
-        func.aggregate = (query.value("type").toString() == Function::AGGREGATE_TYPE);
-        func.allDatabases = query.value("for_all_databases").toBool();
-        func.undefinedArgs = query.value("undefined_args").toBool();
-        func.arguments = arguments[func.name];
-        func.databases = databases[func.name];
+        func = FunctionManager::FunctionPtr::create();
+        func->name = query.value("name").toString();
+        func->lang = query.value("lang").toString();
+        func->code = query.value("code").toString();
+        func->finalCode = query.value("final_code").toString();
+        func->type = FunctionManager::Function::typeString(query.value("type").toString());
+        func->allDatabases = query.value("for_all_databases").toBool();
+        func->undefinedArgs = query.value("undefined_args").toBool();
+        func->arguments = arguments[func->name];
+        func->databases = databases[func->name];
         funcList << func;
     }
     return funcList;
@@ -639,8 +645,8 @@ void Config::initTables()
                  "queries TEXT)");
 
     if (!tables.contains("functions"))
-        db->exec("CREATE TABLE functions (name TEXT PRIMARY KEY, lang TEXT, code TEXT, type TEXT CHECK (type IN ('SCALAR', 'AGGREGATE')), "
-                 "for_all_databases BOOLEAN, undefined_args BOOLEAN)");
+        db->exec("CREATE TABLE functions (name TEXT PRIMARY KEY, lang TEXT, code TEXT, final_code TEXT, "
+                 "type TEXT CHECK (type IN ('SCALAR', 'AGGREGATE')), for_all_databases BOOLEAN, undefined_args BOOLEAN)");
 
     if (!tables.contains("function_args"))
         db->exec("CREATE TABLE function_args (function TEXT REFERENCES functions (name) ON UPDATE CASCADE ON DELETE CASCADE, "

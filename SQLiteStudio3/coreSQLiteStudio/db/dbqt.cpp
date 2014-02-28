@@ -8,7 +8,6 @@
 #include "utils_sql.h"
 #include "parser/ast/sqliteinsert.h"
 #include "schemaresolver.h"
-#include "parser/lexer.h"
 
 #include <QDebug>
 #include <QSqlQuery>
@@ -51,6 +50,51 @@ int DbQt::getErrorCodeInternal()
         return 0;
 
     return db->lastError().number();
+}
+
+bool DbQt::deregisterFunction(const QString& name, int argCount)
+{
+    if (!isOpenInternal())
+        return false;
+
+    QVariant handle = db->driver()->handle();
+    if (!handle.isValid())
+    {
+        qWarning() << "Call to deregisterFunction() on db object, but driver handle is invalid QVariant.";
+        return false;
+    }
+
+    return deregisterFunction(handle, name, argCount);
+}
+
+bool DbQt::registerScalarFunction(const QString& name, int argCount)
+{
+    if (!isOpenInternal())
+        return false;
+
+    QVariant handle = db->driver()->handle();
+    if (!handle.isValid())
+    {
+        qWarning() << "Call to registerScalarFunction() on db object, but driver handle is invalid QVariant.";
+        return false;
+    }
+
+    return registerScalarFunction(handle, name, argCount);
+}
+
+bool DbQt::registerAggregateFunction(const QString& name, int argCount)
+{
+    if (!isOpenInternal())
+        return false;
+
+    QVariant handle = db->driver()->handle();
+    if (!handle.isValid())
+    {
+        qWarning() << "Call to registerAggregateFunction() on db object, but driver handle is invalid QVariant.";
+        return false;
+    }
+
+    return registerAggregateFunction(handle, name, argCount);
 }
 
 bool DbQt::openInternal()
@@ -172,53 +216,6 @@ SqlResultsPtr DbQt::execInternal(const QString &query, const QHash<QString, QVar
     }
     dbQuery.exec();
     return SqlResultsPtr(new SqlResultsQt(dbQuery, this, args));
-}
-
-SqlResultsPtr DbQt::execInternalSqlite2(const QString& query, const QList<QVariant>& args)
-{
-    // Sqlite2 seems to be dealing with only the '?' parameter placeholders. We need to update all of them.
-    Lexer lexer(Dialect::Sqlite2);
-    TokenList tokens = lexer.tokenize(query);
-    TokenList filteredTokens = tokens.filter(Token::BIND_PARAM);
-    foreach (TokenPtr token, filteredTokens)
-        token->value = "?";
-
-    QString newQuery = tokens.detokenize();
-    return DbQt::execInternal(newQuery, args);
-}
-
-SqlResultsPtr DbQt::execInternalSqlite2(const QString& query, const QHash<QString, QVariant>& args)
-{
-    QList<QVariant> newArgs;
-
-    Lexer lexer(Dialect::Sqlite2);
-    TokenList tokens = lexer.tokenize(query);
-    TokenList filteredTokens = tokens.filter(Token::BIND_PARAM);
-    QString key;
-    foreach (TokenPtr token, filteredTokens)
-    {
-        if (token->value.length() > 1)
-        {
-            key = token->value.mid(1);
-            if (!args.contains(key))
-            {
-                qCritical() << "Named bind paramter cannot be found in hash (DbSqlite2Instance::execInternal()).";
-                newArgs << QVariant();
-            }
-            else
-                newArgs << args[key];
-        }
-        else
-        {
-            qCritical() << "Unnamed bind paramter but execInternal() called with hash (DbSqlite2Instance::execInternal()).";
-            newArgs << QVariant();
-        }
-
-        token->value = "?";
-    }
-
-    QString newQuery = tokens.detokenize();
-    return DbQt::execInternal(newQuery, newArgs);
 }
 
 QString DbQt::getTypeLabel()

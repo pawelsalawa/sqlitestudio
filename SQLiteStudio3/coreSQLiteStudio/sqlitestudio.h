@@ -15,6 +15,7 @@ class NotifyManager;
 class SqlFormatter;
 class Plugin;
 class PluginType;
+class FunctionManager;
 
 /** @file */
 
@@ -73,6 +74,12 @@ class API_EXPORT SQLiteStudio : public QObject
         NotifyManager* getNotifyManager() const;
 
         /**
+         * @brief Gets custom SQL functions manager.
+         * @return Function manager object, never null.
+         */
+        FunctionManager* getFunctionManager() const;
+
+        /**
          * @brief Gets current SQL formatter instance.
          * @return Currently configured SQL formatter instance, or first available formatter (if it's not yet configured), or null if there is no formatter available.
          */
@@ -81,6 +88,7 @@ class API_EXPORT SQLiteStudio : public QObject
         /**
          * @brief Initializes SQLiteStudio object.
          * @param cmdListArguments Command line arguments.
+         *
          * Initialization process involves creating of all internal objects (managers, etc.)
          * and reading necessary configuration. It also interpreted command line arguments
          * and applies them.
@@ -93,6 +101,7 @@ class API_EXPORT SQLiteStudio : public QObject
          * @param name Name of the environment variable.
          * @param defaultValue Default value to be returned if the environment variable is not defined.
          * @return Either value of the environment variable - if defined - or the value passed as defaultValue.
+         *
          * This method provides cross-platform way to get environment variable value.
          * Internally it uses QProcessEnvironment, but while it's expensive to initialize it every time you access environment,
          * it keeps the single instance of that object and lets you query variables by name.
@@ -102,25 +111,29 @@ class API_EXPORT SQLiteStudio : public QObject
     private:
         /**
          * @brief Creates singleton instance.
+         *
          * It doesn't initialize anything, just constructs object.
          * Initialization of member data is done by init() method.
          */
         SQLiteStudio();
 
         /**
-         * @brief ~SQLiteStudio() Deinitializes object.
+         * @brief Deinitializes object.
+         *
          * Calls cleanUp().
          */
         ~SQLiteStudio();
 
         /**
          * @brief Cleans up all internal objects.
+         *
          * Deletes all internal objects. It's called from destructor.
          */
         void cleanUp();
 
         /**
          * @brief Parses command line arguments.
+         *
          * It parses and applies command line arguments.
          * TODO: describe options
          */
@@ -134,24 +147,35 @@ class API_EXPORT SQLiteStudio : public QObject
 
         /**
          * @brief Database manager instance.
+         *
          * Created in init() and returned by getDbManager().
          */
         DbManager* dbManager = nullptr;
 
         /**
          * @brief Plugin manager instance.
+         *
          * Created in init() and returned by getPluginManager().
          */
         PluginManager* pluginManager = nullptr;
 
         /**
          * @brief Notification manager instance.
-         * Create in init() and returned by getNotifyManager().
+         *
+         * Created in init() and returned by getNotifyManager().
          */
         NotifyManager* notifyManager = nullptr;
 
         /**
+         * @brief Custom SQL functions manager.
+         *
+         * Created in init() and returned by getFunctionManager().
+         */
+        FunctionManager* functionManager= nullptr;
+
+        /**
          * @brief Configuration manager instance.
+         *
          * Created in init() and returned by getConfig().
          * Also used internaly to read some configuration settings,
          * such as current SQL formatter, etc.
@@ -160,6 +184,7 @@ class API_EXPORT SQLiteStudio : public QObject
 
         /**
          * @brief Current SQL formatter instance.
+         *
          * SQL formatter is created from SqlFormatterPlugin.
          * Current sqlFormatter value is picked from collection of formatters
          * delivered by plugins by configuration entry.
@@ -171,6 +196,7 @@ class API_EXPORT SQLiteStudio : public QObject
 
         /**
          * @brief The application environment.
+         *
          * This variable represents environment of the application.
          * It provides access to environment variables.
          */
@@ -178,6 +204,7 @@ class API_EXPORT SQLiteStudio : public QObject
 
         /**
          * @brief List of command line arguments.
+         *
          * It's a copy of arguments passed to application in command line.
          */
         QStringList cmdLineArgs;
@@ -201,6 +228,7 @@ class API_EXPORT SQLiteStudio : public QObject
 /**
  * @def SQLITESTUDIO
  * @brief Global entry point for application services.
+ *
  * This macro actually calls SQLiteStudio::getInstance(), which returns singleton instance
  * of the main class, which is SQLiteStudio. Use this class as starting point
  * to access all services of the application (database manager, plugins manager, etc).
