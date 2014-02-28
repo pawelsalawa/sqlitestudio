@@ -112,6 +112,9 @@ void CLI::waitForExecution()
 
 bool CLI::isComplete(const QString& contents) const
 {
+    if (contents.startsWith(CFG_CLI.General.CommandPrefixChar.get()))
+        return true;
+
     Dialect dialect = Dialect::Sqlite3;
     if (currentDb)
         dialect = currentDb->getDialect();
