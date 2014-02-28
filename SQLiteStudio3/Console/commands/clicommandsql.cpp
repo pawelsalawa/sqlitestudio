@@ -6,7 +6,7 @@
 #include "db/queryexecutor.h"
 #include "db/sqlresults.h"
 #include "qio.h"
-
+#include "unused.h"
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QSqlError>
@@ -27,15 +27,13 @@ bool CliCommandSql::execute(QStringList args)
     // Executor deletes itself later when called with lambda.
     QueryExecutor *executor = new QueryExecutor(db, args[0]);
     connect(executor, SIGNAL(executionFinished(SqlResultsPtr)), this, SIGNAL(execComplete()));
+    connect(executor, SIGNAL(executionFailed(int,QString)), this, SLOT(executionFailed(int,QString)));
+    connect(executor, SIGNAL(executionFailed(int,QString)), this, SIGNAL(execComplete()));
 
     executor->exec([=](SqlResultsPtr results)
     {
         if (results->isError())
-        {
-            qOut << "Error " << results->getErrorCode() << ": " << results->getErrorText() << "\n";
-            qOut.flush();
-            return;
-        }
+            return; // should not happen, since results handler function is called only for successful executions
 
         // Columns
         foreach (const QueryExecutor::ResultColumnPtr& resCol, executor->getResultColumns())
@@ -96,4 +94,11 @@ QString CliCommandSql::fullHelp() const
 QString CliCommandSql::usage() const
 {
     return "query "+tr("<sql>");
+}
+
+void CliCommandSql::executionFailed(int code, const QString& msg)
+{
+    UNUSED(code);
+    qOut << tr("Query execution error: %1").arg(msg) << "\n\n";
+    qOut.flush();
 }

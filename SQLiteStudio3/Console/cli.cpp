@@ -45,7 +45,7 @@ void CLI::start()
     connect(thread, &QThread::finished, this, &CLI::done);
     this->moveToThread(thread);
 
-    Db* db = dbManager->getByName(CFG_CLI.General.DefaultDatabase.get());
+    Db* db = dbManager->getByName(CFG_CLI.Console.DefaultDatabase.get());
     if (db)
     {
         currentDb = db;
@@ -112,7 +112,7 @@ void CLI::waitForExecution()
 
 bool CLI::isComplete(const QString& contents) const
 {
-    if (contents.startsWith(CFG_CLI.General.CommandPrefixChar.get()))
+    if (contents.startsWith(CFG_CLI.Console.CommandPrefixChar.get()))
         return true;
 
     Dialect dialect = Dialect::Sqlite3;
@@ -142,7 +142,10 @@ void CLI::doWork()
         {
             cPrompt = currentDb ? prompt.arg(currentDb->getName()) : "";
             if (!line.isEmpty())
+            {
                 cPrompt = pad("->", -cPrompt.length(), ' ');
+                line += "\n";
+            }
 
             cline = readline(cPrompt.toLatin1().data());
             line += cline;
