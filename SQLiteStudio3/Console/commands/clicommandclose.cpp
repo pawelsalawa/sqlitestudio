@@ -14,7 +14,7 @@ bool CliCommandClose::execute(QStringList args)
             println(tr("Connection to database %1 closed.").arg(db->getName()));
         }
         else
-            println(tr("Database %s is unknown. Use .dblist to see list of known databases.").arg(args[0]));
+            println(tr("No such database: %1. Use .dblist to see list of known databases.").arg(args[0]));
     }
     else if (cli->getCurrentDb())
     {
@@ -58,5 +58,5 @@ QString CliCommandClose::fullHelp() const
 
 QString CliCommandClose::usage() const
 {
-    return tr("close [<name>]");
+    return "close "+tr("[<name>]");
 }

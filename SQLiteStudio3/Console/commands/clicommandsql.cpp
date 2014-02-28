@@ -95,5 +95,5 @@ QString CliCommandSql::fullHelp() const
 
 QString CliCommandSql::usage() const
 {
-    return tr("query <sql>");
+    return "query "+tr("<sql>");
 }

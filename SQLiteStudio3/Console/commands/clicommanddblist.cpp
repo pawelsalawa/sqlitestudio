@@ -53,5 +53,10 @@ QString CliCommandDbList::fullHelp() const
 
 QString CliCommandDbList::usage() const
 {
-    return tr("dblist");
+    return "dblist";
+}
+
+QStringList CliCommandDbList::aliases() const
+{
+    return {"databases"};
 }

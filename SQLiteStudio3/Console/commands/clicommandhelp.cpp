@@ -39,7 +39,7 @@ QString CliCommandHelp::fullHelp() const
 
 QString CliCommandHelp::usage() const
 {
-    return tr("help [<command>]");
+    return "help "+tr("[<command>]");
 }
 
 void CliCommandHelp::printHelp(const QString& cmd)
@@ -53,9 +53,18 @@ void CliCommandHelp::printHelp(const QString& cmd)
         println("");
         return;
     }
+    QStringList aliases = command->aliases();
+    QString prefix = CFG_CLI.General.CommandPrefixChar.get();
+
     QString msg;
-    msg += tr("Usage: %1%2").arg(CFG_CLI.General.CommandPrefixChar.get()).arg(command->usage());
-    msg += "\n\n";
+    msg += tr("Usage: %1%2").arg(prefix).arg(command->usage());
+    msg += "\n";
+    if (aliases.size() > 0)
+    {
+        msg += tr("Aliases: %1").arg(prefix + aliases.join(", " + prefix));
+        msg += "\n";
+    }
+    msg += "\n";
     msg += command->fullHelp();
     delete command;
 

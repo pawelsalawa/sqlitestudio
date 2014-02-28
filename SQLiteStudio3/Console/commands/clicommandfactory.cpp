@@ -9,6 +9,7 @@
 #include "clicommandclose.h"
 #include "clicommandsql.h"
 #include "clicommandhelp.h"
+#include "clicommandtables.h"
 
 QHash<QString,CliCommandFactory::CliCommandCreatorFunc> CliCommandFactory::mapping;
 
@@ -16,16 +17,18 @@ QHash<QString,CliCommandFactory::CliCommandCreatorFunc> CliCommandFactory::mappi
 
 void CliCommandFactory::init()
 {
-    REGISTER_CMD("add",    CliCommandAdd);
-    REGISTER_CMD("remove", CliCommandRemove);
-    REGISTER_CMD("exit",   CliCommandExit);
-    REGISTER_CMD("quit",   CliCommandExit);
-    REGISTER_CMD("dblist", CliCommandDbList);
-    REGISTER_CMD("use",    CliCommandUse);
-    REGISTER_CMD("open",   CliCommandOpen);
-    REGISTER_CMD("close",  CliCommandClose);
-    REGISTER_CMD("query",  CliCommandSql);
-    REGISTER_CMD("help",   CliCommandHelp);
+    REGISTER_CMD("add",       CliCommandAdd);
+    REGISTER_CMD("remove",    CliCommandRemove);
+    REGISTER_CMD("exit",      CliCommandExit);
+    REGISTER_CMD("quit",      CliCommandExit);
+    REGISTER_CMD("dblist",    CliCommandDbList);
+    REGISTER_CMD("databases", CliCommandDbList);
+    REGISTER_CMD("use",       CliCommandUse);
+    REGISTER_CMD("open",      CliCommandOpen);
+    REGISTER_CMD("close",     CliCommandClose);
+    REGISTER_CMD("query",     CliCommandSql);
+    REGISTER_CMD("help",      CliCommandHelp);
+    REGISTER_CMD("tables",    CliCommandTables);
 }
 
 CliCommand *CliCommandFactory::getCommand(const QString &cmdName)

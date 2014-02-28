@@ -29,6 +29,7 @@ class CLI : public QObject
     private:
         void println(const QString& msg);
         void waitForExecution();
+        bool isComplete(const QString& contents) const;
 
         DbManager* dbManager;
         QThread* thread;

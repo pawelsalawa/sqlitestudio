@@ -42,5 +42,5 @@ QString CliCommandAdd::fullHelp() const
 
 QString CliCommandAdd::usage() const
 {
-    return tr("add <name> <path>");
+    return "add "+tr("<name> <path>");
 }

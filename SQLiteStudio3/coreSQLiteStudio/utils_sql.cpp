@@ -354,7 +354,7 @@ QString removeComments(const QString& value)
     return tokens.detokenize();
 }
 
-QStringList splitQueries(const QString& sql, Dialect dialect)
+QStringList splitQueries(const QString& sql, Dialect dialect, bool* complete)
 {
     TokenList tokens = Lexer::tokenize(sql, dialect);
 
@@ -363,13 +363,20 @@ QStringList splitQueries(const QString& sql, Dialect dialect)
     QString value;
     int createTriggerMeter = 0;
     bool insideTrigger = false;
+    bool completeQuery = false;
     foreach (const TokenPtr& token, tokens)
     {
         value = token->value.toUpper();
+        if (!token->isWhitespace())
+            completeQuery = false;
+
         if (insideTrigger)
         {
             if (token->type == Token::KEYWORD && value == "END")
+            {
                 insideTrigger = false;
+                completeQuery = true;
+            }
 
             currentQueryTokens << token;
             continue;
@@ -391,6 +398,7 @@ QStringList splitQueries(const QString& sql, Dialect dialect)
             currentQueryTokens << token;
             queries << currentQueryTokens.detokenize();
             currentQueryTokens.clear();
+            completeQuery = true;
         }
         else
         {
@@ -400,6 +408,9 @@ QStringList splitQueries(const QString& sql, Dialect dialect)
 
     if (currentQueryTokens.size() > 0)
         queries << currentQueryTokens.detokenize();
+
+    if (complete)
+        *complete = completeQuery;
 
     return queries;
 }
