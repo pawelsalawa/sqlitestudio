@@ -41,7 +41,7 @@ FunctionManager::FunctionPtr FunctionManager::getFunction(const QString& name)
 
 QVariant FunctionManager::evaluateScalar(const QString& name, int argCount, const QList<QVariant>& args, Db* db, bool& ok)
 {
-
+    return 1;
 }
 
 void FunctionManager::evaluateAggregateStep(const QString& name, int argCount, const QList<QVariant>& args, Db* db)
@@ -51,7 +51,7 @@ void FunctionManager::evaluateAggregateStep(const QString& name, int argCount, c
 
 QVariant FunctionManager::evaluateAggregateFinal(const QString& name, int argCount, Db* db, bool& ok)
 {
-
+    return 2;
 }
 
 QString FunctionManager::Function::typeString(Type type)

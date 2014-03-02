@@ -110,14 +110,16 @@ void SQLiteStudio::init(const QStringList& cmdListArguments)
     connect(CFG_CORE.General.ActiveSqlFormatter, SIGNAL(changed(QVariant)), this, SLOT(updateSqlFormatter()));
     connect(pluginManager, SIGNAL(pluginsInitiallyLoaded()), this, SLOT(updateSqlFormatter()));
 
+    // FunctionManager needs to be set up before DbManager, cause when DbManager starts up, databases make their
+    // connections and register functions.
+    functionManager = new FunctionManager();
+
     dbManager = new DbManager();
     cmdLineArgs = cmdListArguments;
 
     connect(pluginManager, SIGNAL(pluginsInitiallyLoaded()), dbManager, SLOT(loadDbListFromConfig()));
 
     pluginManager->init();
-
-    functionManager = new FunctionManager();
 
     connect(PLUGINS, SIGNAL(loaded(Plugin*,PluginType*)), this, SLOT(pluginLoaded(Plugin*,PluginType*)));
     connect(PLUGINS, SIGNAL(aboutToUnload(Plugin*,PluginType*)), this, SLOT(pluginToBeUnloaded(Plugin*,PluginType*)));

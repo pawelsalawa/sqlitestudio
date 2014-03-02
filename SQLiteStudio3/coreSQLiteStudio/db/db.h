@@ -4,6 +4,7 @@
 #include "../returncode.h"
 #include "sqlresults.h"
 #include "../dialect.h"
+#include "functionmanager.h"
 #include "readwritelocker.h"
 #include "coreSQLiteStudio_global.h"
 #include <QObject>
@@ -730,6 +731,33 @@ class API_EXPORT Db : public QObject
 
     private:
         /**
+         * @brief Represents single function that is registered in the database.
+         *
+         * Registered custom SQL functions are diversed by SQLite by their name, arguments count and their type,
+         * so this structure has exactly those parameters.
+         */
+        struct RegisteredFunction
+        {
+            /**
+             * @brief Function name.
+             */
+            QString name;
+
+            /**
+             * @brief Arguments count (-1 for undefined count).
+             */
+            int argCount;
+
+            /**
+             * @brief Function type.
+             */
+            FunctionManager::Function::Type type;
+        };
+
+        friend int qHash(const Db::RegisteredFunction& fn);
+        friend bool operator==(const Db::RegisteredFunction& fn1, const Db::RegisteredFunction& fn2);
+
+        /**
          * @brief Applies execution flags and executes query.
          * @param query Query to be executed.
          * @param args Query parameters.
@@ -786,6 +814,16 @@ class API_EXPORT Db : public QObject
         bool handleResultInternally(quint32 asyncId, SqlResultsPtr results);
 
         /**
+         * @brief Registers single custom SQL function.
+         * @param function Function to register.
+         *
+         * If function got registered successfly, it's added to registeredFunctions.
+         * If there was a function with the same name, argument count and type already registered,
+         * it will be overwritten (both in SQLite and in registeredFunctions).
+         */
+        void registerFunction(const RegisteredFunction& function);
+
+        /**
          * @brief Database operation lock.
          *
          * This lock is set whenever any operation on the actual database is performed (i.e. call to
@@ -821,6 +859,11 @@ class API_EXPORT Db : public QObject
          * was returned in SqlResultsPtr.
          */
         QString lastErrorText;
+
+        /**
+         * @brief List of all functions currently registered in this database.
+         */
+        QSet<RegisteredFunction> registeredFunctions;
 
     signals:
         /**
@@ -920,10 +963,36 @@ class API_EXPORT Db : public QObject
          */
         bool closeQuiet();
 
+        /**
+         * @brief Deregisters all funtions registered in the database and registers new (possibly the same) functions.
+         *
+         * This slot is called from openAndSetup() and then every time user modifies custom SQL functions and commits changes to them.
+         * It deregisters all functions registered before in this database and registers new functions, currently defined for
+         * this database.
+         *
+         * @see FunctionManager
+         */
+        void registerAllFunctions();
 };
 
 QDataStream &operator<<(QDataStream &out, const Db* myObj);
 QDataStream &operator>>(QDataStream &in, Db*& myObj);
+
+/**
+ * @brief Standard function required by QHash.
+ * @param fn Function to calculate hash for.
+ * @return Hash value calculated from all members of Db::RegisteredFunction.
+ */
+int qHash(const Db::RegisteredFunction& fn);
+
+/**
+ * @brief Simple comparator operator, compares all members.
+ * @param other Other function to compare.
+ * @return true if \p other is equal, false otherwise.
+ *
+ * This function had to be declared/defined outside of the Db::RegisteredFunction, because QSet/QHash requires this.
+ */
+bool operator==(const Db::RegisteredFunction& fn1, const Db::RegisteredFunction& fn2);
 
 Q_DECLARE_METATYPE(Db*)
 Q_DECLARE_OPERATORS_FOR_FLAGS(Db::Flags)

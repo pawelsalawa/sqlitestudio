@@ -44,7 +44,7 @@ bool DbSqlite3Instance::registerScalarFunction(const QVariant& handle, const QSt
                                          nullptr,
                                          &DbSqlite3Instance::deleteUserData);
 
-    return res != 0;
+    return res == SQLITE_OK;
 }
 
 bool DbSqlite3Instance::registerAggregateFunction(const QVariant& handle, const QString& name, int argCount)
@@ -64,7 +64,7 @@ bool DbSqlite3Instance::registerAggregateFunction(const QVariant& handle, const 
                                          &DbSqlite3Instance::evaluateAggregateFinal,
                                          &DbSqlite3Instance::deleteUserData);
 
-    return res != 0;
+    return res == SQLITE_OK;
 }
 
 void DbSqlite3Instance::initialDbSetup()
