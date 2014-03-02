@@ -43,7 +43,7 @@ bool DbSqlite2Instance::registerScalarFunction(const QVariant& handle, const QSt
     int res = sqlite_create_function(sqliteHnd, name.toLatin1().data(), argCount,
                                      &DbSqlite2Instance::evaluateScalar, userData);
 
-    return res != 0;
+    return res == SQLITE_OK;
 }
 
 bool DbSqlite2Instance::registerAggregateFunction(const QVariant& handle, const QString& name, int argCount)
@@ -62,7 +62,7 @@ bool DbSqlite2Instance::registerAggregateFunction(const QVariant& handle, const 
                                       &DbSqlite2Instance::evaluateAggregateFinal,
                                       userData);
 
-    return res != 0;
+    return res == SQLITE_OK;
 }
 
 void DbSqlite2Instance::storeResult(sqlite_func* func, const QVariant& result, bool ok)

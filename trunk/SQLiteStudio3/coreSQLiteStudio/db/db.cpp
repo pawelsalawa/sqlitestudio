@@ -79,7 +79,28 @@ bool Db::closeQuiet()
     interruptExecution();
     bool res = closeInternal();
     clearAttaches();
+    registeredFunctions.clear();
     return res;
+}
+
+void Db::registerAllFunctions()
+{
+    foreach (const RegisteredFunction& regFn, registeredFunctions)
+    {
+        if (!deregisterFunction(regFn.name, regFn.argCount))
+            qWarning() << "Failed to deregister custom SQL function:" << regFn.name;
+    }
+
+    registeredFunctions.clear();
+
+    RegisteredFunction regFn;
+    foreach (const FunctionManager::FunctionPtr& fnPtr, FUNCTIONS->getFunctionsForDatabase(getName()))
+    {
+        regFn.argCount = fnPtr->undefinedArgs ? -1 : fnPtr->arguments.count();
+        regFn.name = fnPtr->name;
+        regFn.type = fnPtr->type;
+        registerFunction(regFn);
+    }
 }
 
 bool Db::isOpen()
@@ -296,6 +317,7 @@ bool Db::openAndSetup()
         return result;
 
     initialDbSetup();
+    registerAllFunctions();
     return result;
 }
 
@@ -573,6 +595,32 @@ bool Db::handleResultInternally(quint32 asyncId, SqlResultsPtr results)
     return true;
 }
 
+void Db::registerFunction(const Db::RegisteredFunction& function)
+{
+    if (registeredFunctions.contains(function))
+    {
+        qCritical() << "Function" << function.name << function.argCount << "is already registered!"
+                    << "It should already be deregistered while call to register is being made.";
+        return;
+    }
+
+    bool successful = false;
+    switch (function.type)
+    {
+        case FunctionManager::Function::SCALAR:
+            successful = registerScalarFunction(function.name, function.argCount);
+            break;
+        case FunctionManager::Function::AGGREGATE:
+            successful = registerAggregateFunction(function.name, function.argCount);
+            break;
+    }
+
+    if (successful)
+        registeredFunctions << function;
+    else
+        qCritical() << "Could not register SQL function:" << function.name << function.argCount << function.type;
+}
+
 QDataStream &operator <<(QDataStream &out, const Db* myObj)
 {
     out << reinterpret_cast<quint64>(myObj);
@@ -586,4 +634,19 @@ QDataStream &operator >>(QDataStream &in, Db*& myObj)
     in >> ptr;
     myObj = reinterpret_cast<Db*>(ptr);
     return in;
+}
+
+int qHash(const Db::RegisteredFunction& fn)
+{
+    return qHash(fn.name) ^ fn.argCount ^ fn.type;
+}
+
+//bool Db::RegisteredFunction::operator==(const Db::RegisteredFunction& other)
+//{
+//    return other.name == name && other.argCount == argCount && other.type == type;
+//}
+
+bool operator==(const Db::RegisteredFunction& fn1, const Db::RegisteredFunction& fn2)
+{
+    return fn1.name == fn2.name && fn1.argCount == fn2.argCount && fn1.type == fn2.type;
 }
