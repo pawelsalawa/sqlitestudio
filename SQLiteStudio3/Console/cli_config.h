@@ -9,9 +9,19 @@ namespace CliResultsDisplay
     {
         CLASSIC = 0,
         FIXED = 1,
-        ROW_BY_ROW = 2
+        ROW = 2
     };
+
+    Mode mode(const QString& mode);
+    QString mode(Mode mode);
+    void staticInit();
+
 }
+
+QDataStream &operator<<(QDataStream &out, const CliResultsDisplay::Mode& mode);
+QDataStream &operator>>(QDataStream &in, CliResultsDisplay::Mode& mode);
+
+Q_DECLARE_METATYPE(CliResultsDisplay::Mode)
 
 CFG_CATEGORIES(Cli,
     CFG_CATEGORY(Console,
