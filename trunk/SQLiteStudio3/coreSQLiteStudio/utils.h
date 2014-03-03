@@ -65,6 +65,8 @@ API_EXPORT int indexOf(const QStringList& list, const QString& value, Qt::CaseSe
  */
 API_EXPORT QString pad(const QString& str, int length, const QChar& fillChar);
 
+API_EXPORT QString center(const QString& str, int length, const QChar& fillChar);
+
 /**
  * @brief Picks the longest string from the list.
  * @param strList List to pick from.

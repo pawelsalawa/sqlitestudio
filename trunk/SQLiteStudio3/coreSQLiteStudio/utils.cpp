@@ -142,6 +142,20 @@ QString pad(const QString& str, int length, const QChar& fillChar)
         return result.prepend(fill);
 }
 
+QString center(const QString& str, int length, const QChar& fillChar)
+{
+    if (str.length() >= length)
+        return str;
+
+    QString result = str;
+    QString fillLeft = QString(fillChar).repeated((length - str.length()) / 2);
+    QString fillRight = fillLeft;
+    if ((fillLeft.length() + fillRight.length() + str.length()) < length)
+        fillLeft += fillChar;
+
+    return result.prepend(fillLeft).append(fillRight);
+}
+
 QString longest(const QStringList& strList)
 {
     int max = 0;

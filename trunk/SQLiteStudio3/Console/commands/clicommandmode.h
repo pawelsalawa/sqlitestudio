@@ -11,10 +11,6 @@ class CliCommandMode : public CliCommand
         QString shortHelp() const;
         QString fullHelp() const;
         QString usage() const;
-
-    private:
-        QStringList getModes() const;
-        QString getModesHelp() const;
 };
 
 #endif // CLICOMMANDMODE_H

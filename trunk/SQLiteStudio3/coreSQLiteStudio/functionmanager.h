@@ -9,12 +9,12 @@
 
 class Db;
 
-class FunctionManager : public QObject
+class API_EXPORT FunctionManager : public QObject
 {
     Q_OBJECT
 
     public:
-        struct Function
+        struct API_EXPORT Function
         {
             enum Type
             {

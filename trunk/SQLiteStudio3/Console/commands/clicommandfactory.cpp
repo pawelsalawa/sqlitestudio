@@ -10,6 +10,7 @@
 #include "clicommandsql.h"
 #include "clicommandhelp.h"
 #include "clicommandtables.h"
+#include "clicommandmode.h"
 
 QHash<QString,CliCommandFactory::CliCommandCreatorFunc> CliCommandFactory::mapping;
 
@@ -29,6 +30,7 @@ void CliCommandFactory::init()
     REGISTER_CMD("query",     CliCommandSql);
     REGISTER_CMD("help",      CliCommandHelp);
     REGISTER_CMD("tables",    CliCommandTables);
+    REGISTER_CMD("mode",      CliCommandMode);
 }
 
 CliCommand *CliCommandFactory::getCommand(const QString &cmdName)

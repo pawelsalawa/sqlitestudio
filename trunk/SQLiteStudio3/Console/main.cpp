@@ -17,6 +17,8 @@ int main(int argc, char *argv[])
 
     qInstallMessageHandler(cliMessageHandler);
 
+    CliResultsDisplay::staticInit();
+
     SQLiteStudio::getInstance()->init(a.arguments());
 
     CliCommandExecutor executor;

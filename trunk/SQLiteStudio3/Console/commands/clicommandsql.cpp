@@ -34,18 +34,18 @@ bool CliCommandSql::execute(QStringList args)
         if (results->isError())
             return; // should not happen, since results handler function is called only for successful executions
 
-//        switch (CFG_CLI.Console.ResultsDisplayMode.get())
-//        {
-//            case CliResultsDisplay::FIXED:
+        switch (CFG_CLI.Console.ResultsDisplayMode.get())
+        {
+            case CliResultsDisplay::FIXED:
                 printResultsFixed(executor, results);
-//                break;
-//            case CliResultsDisplay::ROW_BY_ROW:
-//                printResultsRowByRow(executor, results);
-//                break;
-//            default:
-//                printResultsClassic(executor, results);
-//                break;
-//        }
+                break;
+            case CliResultsDisplay::ROW:
+                printResultsRowByRow(executor, results);
+                break;
+            default:
+                printResultsClassic(executor, results);
+                break;
+        }
     });
 
     return true;
@@ -81,10 +81,10 @@ QString CliCommandSql::fullHelp() const
 {
     return tr(
                 "This command is executed every time you enter SQL query in command prompt. "
-                "It executes the query on the current working database (see help for .use for details). "
+                "It executes the query on the current working database (see help for %1 for details). "
                 "There's no sense in executing this command explicitly. Instead just type the SQL query "
                 "in the command prompt, without any command prefixed."
-             );
+             ).arg(cmdName("use"));
 }
 
 QString CliCommandSql::usage() const
@@ -181,7 +181,39 @@ void CliCommandSql::printResultsFixed(QueryExecutor* executor, SqlResultsPtr res
 
 void CliCommandSql::printResultsRowByRow(QueryExecutor* executor, SqlResultsPtr results)
 {
+    // Columns
+    int rowIdColumns = executor->getRowIdResultColumns().size();
+    int colWidth = 0;
+    foreach (const QueryExecutor::ResultColumnPtr& resCol, executor->getResultColumns())
+    {
+        if (resCol->displayName.length() > colWidth)
+            colWidth = resCol->displayName.length();
+    }
 
+    QStringList columns;
+    foreach (const QueryExecutor::ResultColumnPtr& resCol, executor->getResultColumns())
+        columns << pad(resCol->displayName, -colWidth, ' ');
+
+    // Data
+    static const QString rowCntTemplate = tr("Row %1");
+    int termWidth = getCliColumns();
+    QString rowCntString;
+    int i;
+    int rowCnt = 1;
+    SqlResultsRowPtr row;
+    while (!(row = results->next()).isNull())
+    {
+        i = 0;
+        rowCntString = " " + rowCntTemplate.arg(rowCnt) + " ";
+        qOut << center(rowCntString, termWidth - 1, '-') << "\n";
+        foreach (QVariant value, row->valueList().mid(rowIdColumns))
+        {
+            qOut << columns[i] + ": " + value.toString() << "\n";
+            i++;
+        }
+        rowCnt++;
+    }
+    qOut.flush();
 }
 
 void CliCommandSql::executionFailed(int code, const QString& msg)
