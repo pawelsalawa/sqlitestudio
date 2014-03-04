@@ -12,6 +12,7 @@
 #include "clicommandtables.h"
 #include "clicommandmode.h"
 #include "clicommandnullvalue.h"
+#include "clicommandhistory.h"
 
 QHash<QString,CliCommandFactory::CliCommandCreatorFunc> CliCommandFactory::mapping;
 
@@ -33,7 +34,8 @@ void CliCommandFactory::init()
     REGISTER_CMD("tables",    CliCommandTables);
     REGISTER_CMD("mode",      CliCommandMode);
     REGISTER_CMD("null",      CliCommandNullValue);
-    REGISTER_CMD("nullValue", CliCommandNullValue);
+    REGISTER_CMD("nullvalue", CliCommandNullValue);
+    REGISTER_CMD("history",   CliCommandHistory);
 }
 
 CliCommand *CliCommandFactory::getCommand(const QString &cmdName)

@@ -23,11 +23,14 @@ class CLI : public QObject
         void setCurrentDb(Db* db);
         Db* getCurrentDb();
         void exit();
+        QStringList getHistory() const;
 
     private:
         void println(const QString& msg);
         void waitForExecution();
         bool isComplete(const QString& contents) const;
+        void loadHistory();
+        void saveHistory();
 
         DbManager* dbManager;
         QThread* thread;
@@ -42,6 +45,7 @@ class CLI : public QObject
         void doWork();
         void done();
         void executionComplete();
+        void clearHistory();
 };
 
 #endif // CLI_H
