@@ -8,6 +8,7 @@
 #include "qio.h"
 #include "utils.h"
 #include "utils_sql.h"
+#include "climsghandler.h"
 #include <QCoreApplication>
 #include <QThread>
 #include <QFile>
@@ -25,7 +26,7 @@
 CLI::CLI(QObject *parent) :
     QObject(parent)
 {
-    currentDb = nullptr;
+    setCurrentDb(nullptr);
 
     using_history();
     loadHistory();
@@ -38,8 +39,6 @@ CLI::~CLI()
 
 void CLI::start()
 {
-    dbManager =  SQLiteStudio::getInstance()->getDbManager();
-
     thread = new QThread(this);
 
     CliCommandFactory::init();
@@ -48,22 +47,28 @@ void CLI::start()
     connect(thread, &QThread::finished, this, &CLI::done);
     this->moveToThread(thread);
 
-    Db* db = dbManager->getByName(CFG_CLI.Console.DefaultDatabase.get());
-    if (db)
+    if (!getCurrentDb()) // it could be set by openDbFile() from main().
     {
-        currentDb = db;
-    }
-    else
-    {
-        QList<Db*> dbList = dbManager->getDbList();
-        if (dbList.size() > 0)
-            currentDb = dbList[0];
+        Db* db = DBLIST->getByName(CFG_CLI.Console.DefaultDatabase.get());
+        if (db)
+        {
+            setCurrentDb(db);
+        }
         else
-            currentDb = nullptr;
+        {
+            QList<Db*> dbList = DBLIST->getDbList();
+            if (dbList.size() > 0)
+                setCurrentDb(dbList[0]);
+            else
+                setCurrentDb(nullptr);
+        }
     }
 
-    if (currentDb)
-        qOut << tr("Current database: %1").arg(currentDb->getName()) << "\n\n";
+    qOut << QString("\n%1 (%2)\n------------------------\n\n").arg(QCoreApplication::applicationName()).arg(QCoreApplication::applicationVersion());
+    qOut.flush();
+
+    if (getCurrentDb())
+        qOut << tr("Current database: %1").arg(getCurrentDb()->getName()) << "\n\n";
     else
         qOut << tr("No current working database is set.") << "\n\n";
 
@@ -75,9 +80,11 @@ void CLI::start()
 void CLI::setCurrentDb(Db* db)
 {
     currentDb = db;
+    if (db && !db->isOpen())
+        db->open();
 }
 
-Db* CLI::getCurrentDb()
+Db* CLI::getCurrentDb() const
 {
     return currentDb;
 }
@@ -134,8 +141,8 @@ bool CLI::isComplete(const QString& contents) const
         return true;
 
     Dialect dialect = Dialect::Sqlite3;
-    if (currentDb)
-        dialect = currentDb->getDialect();
+    if (getCurrentDb())
+        dialect = getCurrentDb()->getDialect();
 
     bool complete;
     splitQueries(contents, dialect, &complete);
@@ -161,6 +168,18 @@ void CLI::saveHistory()
     CFG_CLI.Console.History.set(cfgHistory);
 }
 
+void CLI::openDbFile(const QString& path)
+{
+    QString newName = DbManager::generateDbName(path);
+    if (!DBLIST->addDb(newName, path, false))
+    {
+        println(tr("Could not add database %1 to list.").arg(path));
+        return;
+    }
+    Db* db = DBLIST->getByName(newName);
+    setCurrentDb(db);
+}
+
 void CLI::doWork()
 {
     static const QString prompt = "%1>";
@@ -177,7 +196,17 @@ void CLI::doWork()
 
         while (!doExit && (line.isEmpty() || !isComplete(line)))
         {
-            cPrompt = currentDb ? prompt.arg(currentDb->getName()) : "";
+            if (getCurrentDb())
+            {
+                cPrompt = getCurrentDb()->getName();
+                if (!getCurrentDb()->isOpen())
+                    cPrompt += " ["+tr("closed")+"]";
+
+                cPrompt = prompt.arg(cPrompt);
+            }
+            else
+                cPrompt = prompt.arg("");
+
             if (!line.isEmpty())
             {
                 cPrompt = pad("->", -cPrompt.length(), ' ');
@@ -193,7 +222,7 @@ void CLI::doWork()
         if (history_length() > CFG_CLI.Console.HistorySize.get())
             free_history_entry(remove_history(0));
 
-        if (line.startsWith("."))
+        if (line.startsWith(CFG_CLI.Console.CommandPrefixChar.get()))
         {
 
             cmdArgs = tokenizeArgs(line.mid(1));

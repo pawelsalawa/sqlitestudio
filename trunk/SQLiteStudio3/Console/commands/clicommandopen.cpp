@@ -10,18 +10,18 @@ bool CliCommandOpen::execute(QStringList args)
     Db* db = nullptr;
     if (args.size() == 1)
     {
-        db = dbManager->getByName(args[0]);
+        db = DBLIST->getByName(args[0]);
         if (!db)
         {
             if (QFile::exists(args[0]))
             {
                 QString newName = DbManager::generateDbName(args[0]);
-                if (!dbManager->addDb(newName, args[0], false))
+                if (!DBLIST->addDb(newName, args[0], false))
                 {
                     println(tr("Could not add database %1 to list.").arg(args[1]));
                     return false;
                 }
-                db = dbManager->getByName(args[0]);
+                db = DBLIST->getByName(args[0]);
                 Q_ASSERT(db != nullptr);
             }
             else
@@ -50,7 +50,7 @@ bool CliCommandOpen::execute(QStringList args)
     }
 
     cli->setCurrentDb(db);
-    println(tr("Database %1 is now open and set to the current working database.").arg(db->getName()));
+    println(tr("Database %1 has been open and set as the current working database.").arg(db->getName()));
 
     return false;
 }

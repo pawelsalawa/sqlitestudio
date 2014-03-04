@@ -4,13 +4,13 @@
 
 bool CliCommandAdd::execute(QStringList args)
 {
-    if (!dbManager->addDb(args[0], args[1]))
+    if (!DBLIST->addDb(args[0], args[1]))
     {
         println(tr("Could not add database %1 to list.").arg(args[1]));
         return false;
     }
 
-    cli->setCurrentDb(dbManager->getByName(args[0]));
+    cli->setCurrentDb(DBLIST->getByName(args[0]));
     println(tr("Database added: %1").arg(cli->getCurrentDb()->getName()));
 
     return false;

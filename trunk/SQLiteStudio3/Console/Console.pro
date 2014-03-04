@@ -41,7 +41,10 @@ SOURCES += main.cpp \
     climsghandler.cpp \
     commands/clicommandmode.cpp \
     commands/clicommandnullvalue.cpp \
-    commands/clicommandhistory.cpp
+    commands/clicommandhistory.cpp \
+    commands/clicommanddir.cpp \
+    commands/clicommandpwd.cpp \
+    commands/clicommandcd.cpp
 
 LIBS += -lcoreSQLiteStudio
 
@@ -74,4 +77,7 @@ HEADERS += \
     climsghandler.h \
     commands/clicommandmode.h \
     commands/clicommandnullvalue.h \
-    commands/clicommandhistory.h
+    commands/clicommandhistory.h \
+    commands/clicommanddir.h \
+    commands/clicommandpwd.h \
+    commands/clicommandcd.h
