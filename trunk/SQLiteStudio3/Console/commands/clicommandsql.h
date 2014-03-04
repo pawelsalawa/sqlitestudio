@@ -18,9 +18,11 @@ class CliCommandSql : public CliCommand
         QString usage() const;
 
     private:
-        static void printResultsClassic(QueryExecutor *executor, SqlResultsPtr results);
-        static void printResultsFixed(QueryExecutor *executor, SqlResultsPtr results);
-        static void printResultsRowByRow(QueryExecutor *executor, SqlResultsPtr results);
+        void printResultsClassic(QueryExecutor *executor, SqlResultsPtr results);
+        void printResultsFixed(QueryExecutor *executor, SqlResultsPtr results);
+        void printResultsRowByRow(QueryExecutor *executor, SqlResultsPtr results);
+
+        QString getValueString(const QVariant& value);
 
     private slots:
         void executionFailed(int code, const QString& msg);

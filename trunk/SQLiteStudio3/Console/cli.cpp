@@ -145,7 +145,7 @@ void CLI::doWork()
         if (line.startsWith("."))
         {
 
-            cmdArgs = line.mid(1).split(QRegExp("\\s+"));
+            cmdArgs = tokenizeArgs(line.mid(1));
             cmd = cmdArgs.takeAt(0);
             cliCommand = CliCommandFactory::getCommand(cmd);
             if (!cliCommand)

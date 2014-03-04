@@ -108,7 +108,7 @@ void CliCommandSql::printResultsClassic(QueryExecutor* executor, SqlResultsPtr r
     while (!(row = results->next()).isNull())
     {
         foreach (QVariant value, row->valueList().mid(rowIdColumns))
-            qOut << value.toString().left(maxLength) << "|";
+            qOut << getValueString(value).left(maxLength) << "|";
 
         qOut << "\n";
     }
@@ -168,7 +168,7 @@ void CliCommandSql::printResultsFixed(QueryExecutor* executor, SqlResultsPtr res
         line.clear();
         foreach (QVariant value, row->valueList().mid(rowIdColumns))
         {
-            line << pad(value.toString().left(widths[i]), widths[i], ' ');
+            line << pad(getValueString(value).left(widths[i]), widths[i], ' ');
             i++;
         }
 
@@ -208,12 +208,20 @@ void CliCommandSql::printResultsRowByRow(QueryExecutor* executor, SqlResultsPtr 
         qOut << center(rowCntString, termWidth - 1, '-') << "\n";
         foreach (QVariant value, row->valueList().mid(rowIdColumns))
         {
-            qOut << columns[i] + ": " + value.toString() << "\n";
+            qOut << columns[i] + ": " + getValueString(value) << "\n";
             i++;
         }
         rowCnt++;
     }
     qOut.flush();
+}
+
+QString CliCommandSql::getValueString(const QVariant& value)
+{
+    if (value.isValid() && !value.isNull())
+        return value.toString();
+
+    return CFG_CLI.Console.NullValue.get();
 }
 
 void CliCommandSql::executionFailed(int code, const QString& msg)

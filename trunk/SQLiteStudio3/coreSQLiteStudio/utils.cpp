@@ -111,6 +111,64 @@ QString rStrip(const QString& str)
     return "";
 }
 
+QStringList tokenizeArgs(const QString& str)
+{
+    QStringList results;
+    QString token;
+    bool quote = false;
+    bool escape = false;
+    QChar c;
+    for (int i = 0; i < str.length(); i++)
+    {
+        c = str[i];
+        if (escape)
+        {
+            token += c;
+        }
+        else if (c == '\\')
+        {
+            escape = true;
+        }
+        else if (quote)
+        {
+            if (c == '"')
+            {
+                results << token;
+                token.clear();
+                quote = false;
+            }
+            else
+            {
+                token += c;
+            }
+        }
+        else if (c == '"')
+        {
+            if (token.length() > 0)
+                token += c;
+            else
+                quote = true;
+        }
+        else if (c.isSpace())
+        {
+            if (token.length() > 0)
+            {
+                results << token;
+                token.clear();
+            }
+        }
+        else
+        {
+            token += c;
+        }
+    }
+
+    if (token.length() > 0)
+        results << token;
+
+    return results;
+}
+
 int indexOf(const QStringList& list, const QString& value, Qt::CaseSensitivity cs)
 {
     return indexOf(list, value, 0, cs);
