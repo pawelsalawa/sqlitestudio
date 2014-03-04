@@ -29,6 +29,7 @@ CFG_CATEGORIES(Cli,
         CFG_ENTRY(QString,                 CommandPrefixChar,  ".")
         CFG_ENTRY(int,                     ColumnMaxWidth,     20)
         CFG_ENTRY(CliResultsDisplay::Mode, ResultsDisplayMode, CliResultsDisplay::CLASSIC)
+        CFG_ENTRY(QString,                 NullValue,          "")
     )
 )
 
