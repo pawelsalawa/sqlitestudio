@@ -5,7 +5,7 @@
 
 bool CliCommandRemove::execute(QStringList args)
 {
-    Db* db = dbManager->getByName(args[0]);
+    Db* db = DBLIST->getByName(args[0]);
     if (!db)
     {
         println(tr("No such database: %1").arg(args[0]));
@@ -15,10 +15,10 @@ bool CliCommandRemove::execute(QStringList args)
     bool isCurrent = cli->getCurrentDb() == db;
     QString name = db->getName();
 
-    dbManager->removeDb(db);
+    DBLIST->removeDb(db);
     println(tr("Database removed: %1").arg(name));
 
-    QList<Db*> dblist = dbManager->getDbList();
+    QList<Db*> dblist = DBLIST->getDbList();
     if (isCurrent && dblist.size() > 0)
     {
         cli->setCurrentDb(dblist[0]);

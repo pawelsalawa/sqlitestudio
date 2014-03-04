@@ -9,7 +9,7 @@
  * Inherit this when implementing Db for SQLite 3.
  * See DbQt for more details.
  */
-class DbQt3 : public DbQt
+class API_EXPORT DbQt3 : public DbQt
 {
     public:
         /**

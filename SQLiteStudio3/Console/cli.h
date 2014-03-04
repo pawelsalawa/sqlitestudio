@@ -21,7 +21,7 @@ class CLI : public QObject
 
         void start();
         void setCurrentDb(Db* db);
-        Db* getCurrentDb();
+        Db* getCurrentDb() const;
         void exit();
         QStringList getHistory() const;
 
@@ -32,7 +32,6 @@ class CLI : public QObject
         void loadHistory();
         void saveHistory();
 
-        DbManager* dbManager;
         QThread* thread;
         Db* currentDb = nullptr;
         bool executionFinished = false;
@@ -46,6 +45,7 @@ class CLI : public QObject
         void done();
         void executionComplete();
         void clearHistory();
+        void openDbFile(const QString& path);
 };
 
 #endif // CLI_H

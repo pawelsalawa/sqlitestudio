@@ -68,7 +68,6 @@ class CliCommand : public QObject
 
         void printUsage();
 
-        DbManager* dbManager;
         CLI* cli;
         Config* config;
 

@@ -18,7 +18,6 @@ void CliCommand::setup(CLI *cli)
 {
     this->cli = cli;
     this->config = SQLiteStudio::getInstance()->getConfig();
-    this->dbManager = SQLiteStudio::getInstance()->getDbManager();
 }
 
 QStringList CliCommand::aliases() const

@@ -9,7 +9,7 @@ bool CliCommandTables::execute(QStringList args)
     Db* db = nullptr;
     if (args.size() > 0)
     {
-        db = dbManager->getByName(args[0]);
+        db = DBLIST->getByName(args[0]);
         if (!db)
         {
             println(tr("No such database: %1. Use .dblist to see list of known databases.").arg(args[0]));

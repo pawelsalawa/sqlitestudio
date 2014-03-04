@@ -7,7 +7,7 @@ bool CliCommandClose::execute(QStringList args)
 {
     if (args.size() == 1)
     {
-        Db* db = dbManager->getByName(args[0]);
+        Db* db = DBLIST->getByName(args[0]);
         if (db)
         {
             db->close();

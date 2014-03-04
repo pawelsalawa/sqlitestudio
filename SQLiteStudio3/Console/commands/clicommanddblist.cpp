@@ -12,7 +12,7 @@ bool CliCommandDbList::execute(QStringList args)
         currentName = cli->getCurrentDb()->getName();
 
     println(tr("Databases:"));
-    QList<Db*> dbList = dbManager->getDbList();
+    QList<Db*> dbList = DBLIST->getDbList();
     QString path;
     QString msg;
     QString genericMsg = "%1 (%2) <%3>";

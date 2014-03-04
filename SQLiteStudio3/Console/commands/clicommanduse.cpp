@@ -18,7 +18,7 @@ bool CliCommandUse::execute(QStringList args)
         return false;
     }
 
-    Db* db = dbManager->getByName(args[0]);
+    Db* db = DBLIST->getByName(args[0]);
     if (!db)
     {
         println(tr("No such database: %1").arg(args[0]));
