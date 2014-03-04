@@ -40,7 +40,8 @@ SOURCES += main.cpp \
     commands/clicommandtables.cpp \
     climsghandler.cpp \
     commands/clicommandmode.cpp \
-    commands/clicommandnullvalue.cpp
+    commands/clicommandnullvalue.cpp \
+    commands/clicommandhistory.cpp
 
 LIBS += -lcoreSQLiteStudio
 
@@ -72,4 +73,5 @@ HEADERS += \
     commands/clicommandtables.h \
     climsghandler.h \
     commands/clicommandmode.h \
-    commands/clicommandnullvalue.h
+    commands/clicommandnullvalue.h \
+    commands/clicommandhistory.h
