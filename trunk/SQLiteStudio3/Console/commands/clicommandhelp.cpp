@@ -47,13 +47,13 @@ void CliCommandHelp::printHelp(const QString& cmd)
     QString prefix = CFG_CLI.Console.CommandPrefixChar.get();
 
     QString msg;
-    msg += tr("Usage: %1%2").arg(prefix).arg(command->usage(cmd));
+    msg += tr("Usage: %1%2").arg(prefix).arg(command->usage(cmdStr));
     msg += "\n";
     if (aliases.size() > 0)
     {
-        if (aliases.contains(cmd))
+        if (aliases.contains(cmdStr))
         {
-            aliases.removeOne(cmd);
+            aliases.removeOne(cmdStr);
             aliases << command->getName();
         }
 

@@ -3,6 +3,7 @@
 #include "sqlitestudio.h"
 #include "commands/clicommand.h"
 #include "cli_config.h"
+#include "cliutils.h"
 #include "qio.h"
 #include "climsghandler.h"
 #include <QCoreApplication>
@@ -45,6 +46,7 @@ int main(int argc, char *argv[])
     QString dbToOpen = cliHandleCmdLineArgs();
 
     CliResultsDisplay::staticInit();
+    initCliUtils();
 
     SQLiteStudio::getInstance()->init(a.arguments());
 
