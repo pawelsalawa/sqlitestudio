@@ -1,7 +1,7 @@
 #include "clicommanddir.h"
 #include <QDir>
 
-bool CliCommandDir::execute(QStringList args)
+void CliCommandDir::execute(const QStringList& args)
 {
     QDir dir;
     QFileInfoList entries;
@@ -20,18 +20,6 @@ bool CliCommandDir::execute(QStringList args)
 
         println(name);
     }
-
-    return false;
-}
-
-bool CliCommandDir::validate(QStringList args)
-{
-    if (args.size() > 1)
-    {
-        printUsage();
-        return false;
-    }
-    return true;
 }
 
 QString CliCommandDir::shortHelp() const
@@ -45,15 +33,12 @@ QString CliCommandDir::fullHelp() const
                 "This is very similar to 'dir' command known from Windows and 'ls' command from Unix systems.\n"
                 "\n"
                 "You can pass <pattern> with wildcard characters to filter output.\n"
-             );
+                );
 }
 
-QString CliCommandDir::usage() const
+void CliCommandDir::defineSyntax()
 {
-    return "dir "+tr("[<pattern>]");
-}
-
-QStringList CliCommandDir::aliases() const
-{
-    return {"ls"};
+    syntax.setName("dir");
+    syntax.addAlias("ls");
+    syntax.addArgument(PATTERN, tr("pattern"), false);
 }

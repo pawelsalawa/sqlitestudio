@@ -1,6 +1,7 @@
 #ifndef CLICOMMAND_H
 #define CLICOMMAND_H
 
+#include "clicommandsyntax.h"
 #include <QStringList>
 #include <QTextStream>
 #include <QObject>
@@ -24,18 +25,8 @@ class CliCommand : public QObject
         /**
          * @brief execute
          * @param args Command arguments.
-         * @return true if the execution is asynchonous and execComplete() signal should be awaited, false for synchronous commands.
          */
-        virtual bool execute(QStringList args) = 0;
-
-        /**
-         * @brief validate
-         * @param args Command arguments.
-         * @return true if given arguments are okay for the command, or false otherwise.
-         * This method should validate input arguments for the command. If they are
-         * invalid it should print usage help message and return false.
-         */
-        virtual bool validate(QStringList args) = 0;
+        virtual void execute(const QStringList& args) = 0;
 
         /**
          * @brief Short help displayed in commands index.
@@ -49,19 +40,31 @@ class CliCommand : public QObject
          */
         virtual QString fullHelp() const = 0;
 
-        /**
-         * @brief Usage is the correct syntax definition for the user.
-         * @return Syntax in form ".command <argument> [<optional argument>]".
-         */
-        virtual QString usage() const = 0;
+        virtual bool isAsyncExecution() const;
 
-        /**
-         * @brief Additional aliases for this command.
-         * @return List of other available names of this command.
-         */
-        virtual QStringList aliases() const;
+        virtual void defineSyntax() = 0;
+
+        QStringList aliases() const;
+        bool parseArgs(const QStringList& args);
+        QString usage() const;
+        QString usage(const QString& alias) const;
+        QString getName() const;
 
     protected:
+        enum ArgIds
+        {
+            FILE_NAME,
+            DB_NAME,
+            DB_NAME_OR_FILE,
+            FILE_PATH,
+            PATTERN,
+            DIR_PATH,
+            CMD_NAME,
+            OPER_TYPE,
+            MODE,
+            STRING
+        };
+
         static void println(const QString& str = "");
         static void printBox(const QString& str);
         static QString cmdName(const QString& cmd);
@@ -70,6 +73,7 @@ class CliCommand : public QObject
 
         CLI* cli;
         Config* config;
+        CliCommandSyntax syntax;
 
     signals:
         void execComplete();

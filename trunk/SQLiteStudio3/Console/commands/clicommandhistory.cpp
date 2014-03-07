@@ -3,41 +3,23 @@
 #include "utils.h"
 #include "cliutils.h"
 
-bool CliCommandHistory::execute(QStringList args)
+void CliCommandHistory::execute(const QStringList& args)
 {
-    if (args.size() == 0)
+    if (args.size() == 1)
     {
-        int cols = getCliColumns();
-        QString hline = pad("", cols-1, '-');
-        foreach (const QString& line, cli->getHistory())
-        {
-            println(hline);
-            println(line);
-        }
+        cli->clearHistory();
+        println(tr("Console history erased."));
+        return;
+    }
+
+    int cols = getCliColumns();
+    QString hline = pad("", cols-1, '-');
+    foreach (const QString& line, cli->getHistory())
+    {
         println(hline);
-        return false;
+        println(line);
     }
-
-    cli->clearHistory();
-    println(tr("Console history erased."));
-    return false;
-}
-
-bool CliCommandHistory::validate(QStringList args)
-{
-    if (args.size() > 1)
-    {
-        printUsage();
-        return false;
-    }
-
-    if (args.size() == 1 && args[0] != "clear")
-    {
-        printUsage();
-        return false;
-    }
-
-    return true;
+    println(hline);
 }
 
 QString CliCommandHistory::shortHelp() const
@@ -52,10 +34,11 @@ QString CliCommandHistory::fullHelp() const
                 "Every history entry is separated with a horizontal line, so multiline entries are easier to read.\n"
                 "\n"
                 "When the 'clear' argument is passed, then the history gets erased."
-             );
+                );
 }
 
-QString CliCommandHistory::usage() const
+void CliCommandHistory::defineSyntax()
 {
-    return "history "+tr("[clear]");
+    syntax.setName("history");
+    syntax.addStrictArgument(OPER_TYPE, {"clear"}, false);
 }

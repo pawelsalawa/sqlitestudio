@@ -242,7 +242,7 @@ void CLI::doWork()
         }
 
         cliCommand->setup(this);
-        if (!cliCommand->validate(cmdArgs))
+        if (!cliCommand->parseArgs(cmdArgs))
         {
             delete cliCommand;
             continue;

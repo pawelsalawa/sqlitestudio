@@ -5,42 +5,30 @@
 #include "../cli_config.h"
 #include "db/dbmanager.h"
 
-bool CliCommandUse::execute(QStringList args)
+void CliCommandUse::execute(const QStringList& args)
 {
     if (args.size() == 0)
     {
         if (!cli->getCurrentDb())
         {
             println(tr("No current database selected."));
-            return false;
+            return;
         }
         println(tr("Current database: %1").arg(cli->getCurrentDb()->getName()));
-        return false;
+        return;
     }
 
     Db* db = DBLIST->getByName(args[0]);
     if (!db)
     {
         println(tr("No such database: %1").arg(args[0]));
-        return false;
+        return;
     }
 
     cli->setCurrentDb(db);
     CFG_CLI.Console.DefaultDatabase.set(db->getName());
 
     println(tr("Current database: %1").arg(db->getName()));
-
-    return false;
-}
-
-bool CliCommandUse::validate(QStringList args)
-{
-    if (args.size() > 1)
-    {
-        printUsage();
-        return false;
-    }
-    return true;
 }
 
 QString CliCommandUse::shortHelp() const
@@ -67,10 +55,11 @@ QString CliCommandUse::fullHelp() const
                 "- by restoring previously selected default database from saved configuration,\n"
                 "- or when default database was not selected by any of the above, then first database from the registered databases list "
                 "becomes the default one."
-             ).arg(cmdName("use"));
+                ).arg(cmdName("use"));
 }
 
-QString CliCommandUse::usage() const
+void CliCommandUse::defineSyntax()
 {
-    return "use "+tr("<name>");
+    syntax.setName("use");
+    syntax.addArgument(DB_NAME, tr("name", "CLI command syntax"), false);
 }

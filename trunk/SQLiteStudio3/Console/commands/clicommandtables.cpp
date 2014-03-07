@@ -4,7 +4,7 @@
 #include "db/dbmanager.h"
 #include "utils.h"
 
-bool CliCommandTables::execute(QStringList args)
+void CliCommandTables::execute(const QStringList& args)
 {
     Db* db = nullptr;
     if (args.size() > 0)
@@ -13,18 +13,24 @@ bool CliCommandTables::execute(QStringList args)
         if (!db)
         {
             println(tr("No such database: %1. Use .dblist to see list of known databases.").arg(args[0]));
-            return false;
+            return;
         }
     }
     else if (cli->getCurrentDb())
+    {
         db = cli->getCurrentDb();
+    }
     else
-        return false; // should not happen, cause it was checked in validate()
+    {
+        println(tr("Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.")
+                .arg(cmdName("tables")).arg(cmdName("use")).arg(cmdName("tables")));
+        return;
+    }
 
     if (!db->isOpen())
     {
         println(tr("Database %1 is closed.").arg(db->getName()));
-        return false;
+        return;
     }
 
     println();
@@ -47,26 +53,6 @@ bool CliCommandTables::execute(QStringList args)
     }
 
     println();
-
-    return false;
-}
-
-bool CliCommandTables::validate(QStringList args)
-{
-    if (args.size() > 1)
-    {
-        printUsage();
-        return false;
-    }
-
-    if (args.size() == 0 && !cli->getCurrentDb())
-    {
-        println(tr("Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.")
-                .arg(cmdName("tables")).arg(cmdName("use")).arg(cmdName("tables")));
-        return false;
-    }
-
-    return true;
 }
 
 QString CliCommandTables::shortHelp() const
@@ -80,10 +66,11 @@ QString CliCommandTables::fullHelp() const
                 "Prints list of tables in given <database> or in the current working database. "
                 "Note, that the <database> should be the name of the registered database (see %1). "
                 "The output list includes all tables from any other databases attached to the queried database."
-             ).arg(cmdName("use"));
+                ).arg(cmdName("use"));
 }
 
-QString CliCommandTables::usage() const
+void CliCommandTables::defineSyntax()
 {
-    return "tables "+tr("[<database>]");
+    syntax.setName("tables");
+    syntax.addArgument(DB_NAME, tr("database", "CLI command syntax"), false);
 }

@@ -14,13 +14,23 @@
 #include <QSqlField>
 #include <QList>
 
-bool CliCommandSql::execute(QStringList args)
+void CliCommandSql::execute(const QStringList& args)
 {
+    if (!cli->getCurrentDb())
+    {
+        println(tr("No working database is set.\n"
+                   "Call %1 command to set working database.\n"
+                   "Call %2 to see list of all databases.")
+                .arg(cmdName("use")).arg(cmdName("dblist")));
+
+        return;
+    }
+
     Db* db = cli->getCurrentDb();
     if (!db || !db->isOpen())
     {
         println(tr("Database is not open."));
-        return false;
+        return;
     }
 
     // Executor deletes itself later when called with lambda.
@@ -47,29 +57,6 @@ bool CliCommandSql::execute(QStringList args)
                 break;
         }
     });
-
-    return true;
-}
-
-bool CliCommandSql::validate(QStringList args)
-{
-    if (args.size() != 1)
-    {
-        printUsage();
-        return false;
-    }
-
-    if (!cli->getCurrentDb())
-    {
-        println(tr("No working database is set.\n"
-                   "Call %1 command to set working database.\n"
-                   "Call %2 to see list of all databases.")
-                .arg(cmdName("use")).arg(cmdName("dblist")));
-
-        return false;
-    }
-
-    return true;
 }
 
 QString CliCommandSql::shortHelp() const
@@ -84,12 +71,19 @@ QString CliCommandSql::fullHelp() const
                 "It executes the query on the current working database (see help for %1 for details). "
                 "There's no sense in executing this command explicitly. Instead just type the SQL query "
                 "in the command prompt, without any command prefixed."
-             ).arg(cmdName("use"));
+                ).arg(cmdName("use"));
 }
 
-QString CliCommandSql::usage() const
+bool CliCommandSql::isAsyncExecution() const
 {
-    return "query "+tr("<sql>");
+    return true;
+}
+
+void CliCommandSql::defineSyntax()
+{
+    syntax.setName("query");
+    syntax.addArgument(STRING, tr("sql", "CLI command syntax"));
+    syntax.setStrictArgumentCount(false);
 }
 
 void CliCommandSql::printResultsClassic(QueryExecutor* executor, SqlResultsPtr results)

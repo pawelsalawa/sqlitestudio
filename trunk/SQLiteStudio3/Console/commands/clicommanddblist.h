@@ -6,12 +6,10 @@
 class CliCommandDbList : public CliCommand
 {
     public:
-        bool execute(QStringList args);
-        bool validate(QStringList args);
+        void execute(const QStringList& args);
         QString shortHelp() const;
         QString fullHelp() const;
-        QString usage() const;
-        QStringList aliases() const;
+        void defineSyntax();
 };
 
 #endif // CLICOMMANDDBLIST_H
