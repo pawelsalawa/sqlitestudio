@@ -37,7 +37,37 @@ void CliCommandSyntax::addAlternatedArgument(int id, const QStringList& names, b
     addArgumentInternal(id, names, mandatory, Argument::ALTERNATED);
 }
 
-CliCommandSyntax::Argument*CliCommandSyntax::addArgumentInternal(int id, const QStringList& names, bool mandatory, Argument::Type type)
+void CliCommandSyntax::addOptionShort(int id, const QString& shortName)
+{
+    addOptionInternal(id, shortName, QString(), QString());
+}
+
+void CliCommandSyntax::addOptionLong(int id, const QString& longName)
+{
+    addOptionInternal(id, QString(), longName, QString());
+}
+
+void CliCommandSyntax::addOption(int id, const QString& shortName, const QString& longName)
+{
+    addOptionInternal(id, shortName, longName, QString());
+}
+
+void CliCommandSyntax::addOptionWithArgShort(int id, const QString& shortName, const QString& argName)
+{
+    addOptionInternal(id, shortName, QString(), argName);
+}
+
+void CliCommandSyntax::addOptionWithArgLong(int id, const QString& longName, const QString& argName)
+{
+    addOptionInternal(id, QString(), longName, argName);
+}
+
+void CliCommandSyntax::addOptionWithArg(int id, const QString& shortName, const QString& longName, const QString& argName)
+{
+    addOptionInternal(id, shortName, longName, argName);
+}
+
+CliCommandSyntax::Argument* CliCommandSyntax::addArgumentInternal(int id, const QStringList& names, bool mandatory, Argument::Type type)
 {
     checkNewArgument(mandatory);
 
@@ -50,6 +80,21 @@ CliCommandSyntax::Argument*CliCommandSyntax::addArgumentInternal(int id, const Q
     argumentMap[id] = arg;
     return arg;
 }
+
+CliCommandSyntax::Option* CliCommandSyntax::addOptionInternal(int id, const QString& shortName, const QString& longName, const QString& argName)
+{
+    Option* opt = new Option;
+    opt->shortName = shortName;
+    opt->longName = longName;
+    opt->id = id;
+    opt->argName = argName;
+    optionMap[id] = opt;
+    options << opt;
+    optionsShortNameMap[shortName] = opt;
+    optionsLongNameMap[longName] = opt;
+    return opt;
+}
+
 bool CliCommandSyntax::getStrictArgumentCount() const
 {
     return strictArgumentCount;
@@ -60,24 +105,6 @@ void CliCommandSyntax::setStrictArgumentCount(bool value)
     strictArgumentCount = value;
 }
 
-
-void CliCommandSyntax::addOption(int id, const QString& longName, const QString& argName)
-{
-    addOption(id, QString::null, longName, argName);
-}
-
-void CliCommandSyntax::addOption(int id, const QString& shortName, const QString& longName, const QString& argName)
-{
-    Option* opt = new Option;
-    opt->shortName = shortName;
-    opt->longName = longName;
-    opt->argName = argName;
-    opt->id = id;
-    optionMap[id] = opt;
-    options << opt;
-    optionsShortNameMap[shortName] = opt;
-    optionsLongNameMap[longName] = opt;
-}
 
 bool CliCommandSyntax::parse(const QStringList& args)
 {
@@ -93,17 +120,19 @@ bool CliCommandSyntax::parse(const QStringList& args)
         {
             res = parseArg(arg);
         }
+        else if (arg == "--")
+        {
+            pastOptions = true;
+            res = true;
+        }
+        else if (arg.startsWith("-"))
+        {
+            res = parseOpt(arg, args, argIdx);
+        }
         else
         {
-            if (arg.startsWith("-"))
-            {
-                res = parseOpt(arg, args, argIdx);
-            }
-            else
-            {
-                pastOptions = true;
-                res = parseArg(arg);
-            }
+            pastOptions = true;
+            res = parseArg(arg);
         }
 
         if (!res)
@@ -150,13 +179,18 @@ QString CliCommandSyntax::getSyntaxDefinition(const QString& usedName) const
     words << usedName;
 
     QString optName;
+    QStringList optNameParts;
     foreach (Option* opt, options)
     {
-        optName.clear();
+        optNameParts.clear();;
         if (!opt->shortName.isEmpty())
-            optName += opt->shortName + "|";
+            optNameParts << "-"+opt->shortName;
 
-        optName += opt->longName;
+        if (!opt->longName.isEmpty())
+            optNameParts += "--"+opt->longName;
+
+        optName = optNameParts.join("|");
+
         words << (opt->argName.isEmpty() ? optionTempl.arg(optName) : optionWithArgTempl.arg(optName).arg(opt->argName));
     }
 

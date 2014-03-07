@@ -268,7 +268,8 @@ HEADERS += sqlitestudio.h\
     sqlfunctionplugin.h \
     db/dbqt2.h \
     functionmanager.h \
-    db/dbqt3.h
+    db/dbqt3.h \
+    sortedhash.h
 
 unix:!symbian {
     maemo5 {

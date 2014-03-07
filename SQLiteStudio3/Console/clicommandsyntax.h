@@ -14,8 +14,12 @@ class CliCommandSyntax
         void addArgument(int id, const QString& name, bool mandatory = true);
         void addStrictArgument(int id, const QStringList& values, bool mandatory = true);
         void addAlternatedArgument(int id, const QStringList& names, bool mandatory = true);
-        void addOption(int id, const QString& longName, const QString& argName = QString());
-        void addOption(int id, const QString& shortName, const QString& longName, const QString& argName = QString());
+        void addOptionShort(int id, const QString& shortName);
+        void addOptionLong(int id, const QString& longName);
+        void addOption(int id, const QString& shortName, const QString& longName);
+        void addOptionWithArgShort(int id, const QString& shortName, const QString& argName);
+        void addOptionWithArgLong(int id, const QString& longName, const QString& argName);
+        void addOptionWithArg(int id, const QString& shortName, const QString& longName, const QString& argName);
 
         bool parse(const QStringList& args);
         QString getErrorText() const;
@@ -71,6 +75,7 @@ class CliCommandSyntax
         int requiredArguments() const;
         void checkNewArgument(bool mandatory);
         Argument* addArgumentInternal(int id, const QStringList& names, bool mandatory, Argument::Type type);
+        Option* addOptionInternal(int id, const QString& shortName, const QString& longName, const QString& argName);
 
         int argPosition = 0;
         QString parsingErrorText;
