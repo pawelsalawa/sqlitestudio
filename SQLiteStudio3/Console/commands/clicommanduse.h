@@ -6,11 +6,10 @@
 class CliCommandUse : public CliCommand
 {
     public:
-        bool execute(QStringList args);
-        bool validate(QStringList args);
+        void execute(const QStringList& args);
         QString shortHelp() const;
         QString fullHelp() const;
-        QString usage() const;
+        void defineSyntax();
 };
 
 #endif // CLICOMMANDUSE_H

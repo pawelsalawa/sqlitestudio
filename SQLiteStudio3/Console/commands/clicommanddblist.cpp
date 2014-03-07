@@ -4,12 +4,16 @@
 #include "unused.h"
 #include <QList>
 
-bool CliCommandDbList::execute(QStringList args)
+void CliCommandDbList::execute(const QStringList& args)
 {
     UNUSED(args);
-    QString currentName;
-    if (cli->getCurrentDb())
-        currentName = cli->getCurrentDb()->getName();
+    if (!cli->getCurrentDb())
+    {
+        println(tr("No current working database defined."));
+        return;
+    }
+
+    QString currentName = cli->getCurrentDb()->getName();
 
     println(tr("Databases:"));
     QList<Db*> dbList = DBLIST->getDbList();
@@ -27,14 +31,6 @@ bool CliCommandDbList::execute(QStringList args)
         }
         println(msg.arg(db->getName()).arg(path).arg(open ? tr("Open") : tr("Closed")));
     }
-
-    return false;
-}
-
-bool CliCommandDbList::validate(QStringList args)
-{
-    UNUSED(args);
-    return true;
 }
 
 QString CliCommandDbList::shortHelp() const
@@ -51,12 +47,8 @@ QString CliCommandDbList::fullHelp() const
                 ).arg(cmdName("use"));
 }
 
-QString CliCommandDbList::usage() const
+void CliCommandDbList::defineSyntax()
 {
-    return "dblist";
-}
-
-QStringList CliCommandDbList::aliases() const
-{
-    return {"databases"};
+    syntax.setName("dblist");
+    syntax.addAlias("databases");
 }

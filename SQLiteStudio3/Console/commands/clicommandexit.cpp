@@ -2,18 +2,10 @@
 #include "cli.h"
 #include "unused.h"
 
-bool CliCommandExit::execute(QStringList args)
+void CliCommandExit::execute(const QStringList& args)
 {
     UNUSED(args);
     cli->exit();
-
-    return false;
-}
-
-bool CliCommandExit::validate(QStringList args)
-{
-    UNUSED(args);
-    return true;
 }
 
 QString CliCommandExit::shortHelp() const
@@ -28,12 +20,8 @@ QString CliCommandExit::fullHelp() const
              );
 }
 
-QString CliCommandExit::usage() const
+void CliCommandExit::defineSyntax()
 {
-    return "exit";
-}
-
-QStringList CliCommandExit::aliases() const
-{
-    return {"quit"};
+    syntax.setName("exit");
+    syntax.addAlias("quit");
 }

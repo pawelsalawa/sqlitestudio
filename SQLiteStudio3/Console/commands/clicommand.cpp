@@ -7,7 +7,6 @@
 
 CliCommand::CliCommand()
 {
-
 }
 
 CliCommand::~CliCommand()
@@ -18,11 +17,45 @@ void CliCommand::setup(CLI *cli)
 {
     this->cli = cli;
     this->config = SQLiteStudio::getInstance()->getConfig();
+    defineSyntax();
+}
+
+bool CliCommand::isAsyncExecution() const
+{
+    return false;
+}
+
+bool CliCommand::parseArgs(const QStringList& args)
+{
+    bool res = syntax.parse(args);
+
+    if (!res)
+    {
+        println(syntax.getErrorText());
+        println();
+    }
+
+    return res;
+}
+
+QString CliCommand::usage() const
+{
+    return syntax.getSyntaxDefinition();
+}
+
+QString CliCommand::usage(const QString& alias) const
+{
+    return syntax.getSyntaxDefinition(alias);
+}
+
+QString CliCommand::getName() const
+{
+    return syntax.getName();
 }
 
 QStringList CliCommand::aliases() const
 {
-    return QStringList();
+    return syntax.getAliases();
 }
 
 void CliCommand::println(const QString &str)

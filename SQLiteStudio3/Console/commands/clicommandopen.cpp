@@ -5,8 +5,15 @@
 #include <QDir>
 #include <QDebug>
 
-bool CliCommandOpen::execute(QStringList args)
+void CliCommandOpen::execute(const QStringList& args)
 {
+    if (args.size() == 0 && !cli->getCurrentDb())
+    {
+        println(tr("Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.")
+                .arg(cmdName("open")).arg(cmdName("use")).arg(cmdName("open")));
+        return;
+    }
+
     Db* db = nullptr;
     if (args.size() == 1)
     {
@@ -19,7 +26,7 @@ bool CliCommandOpen::execute(QStringList args)
                 if (!DBLIST->addDb(newName, args[0], false))
                 {
                     println(tr("Could not add database %1 to list.").arg(args[1]));
-                    return false;
+                    return;
                 }
                 db = DBLIST->getByName(args[0]);
                 Q_ASSERT(db != nullptr);
@@ -29,7 +36,7 @@ bool CliCommandOpen::execute(QStringList args)
                 println(tr("File %1 doesn't exist in %2. Cannot open inexisting database with %3 command. "
                                 "To create a new database, use %4 command.").arg(args[1]).arg(QDir::currentPath())
                         .arg(cmdName("open")).arg(cmdName("add")));
-                return false;
+                return;
             }
         }
     }
@@ -39,38 +46,18 @@ bool CliCommandOpen::execute(QStringList args)
         if (!db)
         {
             qCritical() << "Default database is not in the list!";
-            return false;
+            return ;
         }
     }
 
     if (!db->open())
     {
         println(db->getErrorText());
-        return false;
+        return;
     }
 
     cli->setCurrentDb(db);
     println(tr("Database %1 has been open and set as the current working database.").arg(db->getName()));
-
-    return false;
-}
-
-bool CliCommandOpen::validate(QStringList args)
-{
-    if (args.size() > 1)
-    {
-        printUsage();
-        return false;
-    }
-
-    if (args.size() == 0 && !cli->getCurrentDb())
-    {
-        println(tr("Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.")
-                .arg(cmdName("open")).arg(cmdName("use")).arg(cmdName("open")));
-        return false;
-    }
-
-    return true;
 }
 
 QString CliCommandOpen::shortHelp() const
@@ -89,7 +76,8 @@ QString CliCommandOpen::fullHelp() const
              ).arg(cmdName("use"));
 }
 
-QString CliCommandOpen::usage() const
+void CliCommandOpen::defineSyntax()
 {
-    return "open "+tr("[<name|path>]");
+    syntax.setName("open");
+    syntax.addAlternatedArgument(DB_NAME_OR_FILE, {tr("name", "CLI command syntax"), tr("path", "CLI command syntax")}, false);
 }

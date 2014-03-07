@@ -16,33 +16,30 @@
 #include "clicommanddir.h"
 #include "clicommandpwd.h"
 #include "clicommandcd.h"
+#include <QDebug>
 
 QHash<QString,CliCommandFactory::CliCommandCreatorFunc> CliCommandFactory::mapping;
 
-#define REGISTER_CMD(Str, Cmd) mapping[Str] = []() -> CliCommand* {return new Cmd();}
+#define REGISTER_CMD(Cmd) registerCommand([]() -> CliCommand* {return new Cmd();})
 
 void CliCommandFactory::init()
 {
-    REGISTER_CMD("add",       CliCommandAdd);
-    REGISTER_CMD("remove",    CliCommandRemove);
-    REGISTER_CMD("exit",      CliCommandExit);
-    REGISTER_CMD("quit",      CliCommandExit);
-    REGISTER_CMD("dblist",    CliCommandDbList);
-    REGISTER_CMD("databases", CliCommandDbList);
-    REGISTER_CMD("use",       CliCommandUse);
-    REGISTER_CMD("open",      CliCommandOpen);
-    REGISTER_CMD("close",     CliCommandClose);
-    REGISTER_CMD("query",     CliCommandSql);
-    REGISTER_CMD("help",      CliCommandHelp);
-    REGISTER_CMD("tables",    CliCommandTables);
-    REGISTER_CMD("mode",      CliCommandMode);
-    REGISTER_CMD("null",      CliCommandNullValue);
-    REGISTER_CMD("nullvalue", CliCommandNullValue);
-    REGISTER_CMD("history",   CliCommandHistory);
-    REGISTER_CMD("dir",       CliCommandDir);
-    REGISTER_CMD("ls",        CliCommandDir);
-    REGISTER_CMD("pwd",       CliCommandPwd);
-    REGISTER_CMD("cd",        CliCommandCd);
+    REGISTER_CMD(CliCommandAdd);
+    REGISTER_CMD(CliCommandRemove);
+    REGISTER_CMD(CliCommandExit);
+    REGISTER_CMD(CliCommandDbList);
+    REGISTER_CMD(CliCommandUse);
+    REGISTER_CMD(CliCommandOpen);
+    REGISTER_CMD(CliCommandClose);
+    REGISTER_CMD(CliCommandSql);
+    REGISTER_CMD(CliCommandHelp);
+    REGISTER_CMD(CliCommandTables);
+    REGISTER_CMD(CliCommandMode);
+    REGISTER_CMD(CliCommandNullValue);
+    REGISTER_CMD(CliCommandHistory);
+    REGISTER_CMD(CliCommandDir);
+    REGISTER_CMD(CliCommandPwd);
+    REGISTER_CMD(CliCommandCd);
 }
 
 CliCommand *CliCommandFactory::getCommand(const QString &cmdName)
@@ -64,4 +61,16 @@ QHash<QString,CliCommand*> CliCommandFactory::getAllCommands()
     }
 
     return results;
+}
+
+void CliCommandFactory::registerCommand(CliCommandCreatorFunc func)
+{
+    CliCommand* cmd = func();
+    cmd->defineSyntax();
+
+    mapping[cmd->getName()] = func;
+    foreach (const QString& alias, cmd->aliases())
+        mapping[alias] = func;
+
+    delete cmd;
 }

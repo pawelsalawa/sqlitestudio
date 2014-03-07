@@ -2,28 +2,16 @@
 #include "cli.h"
 #include "db/dbmanager.h"
 
-bool CliCommandAdd::execute(QStringList args)
+void CliCommandAdd::execute(const QStringList& args)
 {
     if (!DBLIST->addDb(args[0], args[1]))
     {
         println(tr("Could not add database %1 to list.").arg(args[1]));
-        return false;
+        return;
     }
 
     cli->setCurrentDb(DBLIST->getByName(args[0]));
     println(tr("Database added: %1").arg(cli->getCurrentDb()->getName()));
-
-    return false;
-}
-
-bool CliCommandAdd::validate(QStringList args)
-{
-    if (args.size() != 2)
-    {
-        printUsage();
-        return false;
-    }
-    return true;
 }
 
 QString CliCommandAdd::shortHelp() const
@@ -40,7 +28,9 @@ QString CliCommandAdd::fullHelp() const
              ).arg(cmdName("dblist"));
 }
 
-QString CliCommandAdd::usage() const
+void CliCommandAdd::defineSyntax()
 {
-    return "add "+tr("<name> <path>");
+    syntax.setName("add");
+    syntax.addArgument(DB_NAME, tr("name", "CLI command syntax"));
+    syntax.addArgument(FILE_PATH, tr("path", "CLI command syntax"));
 }

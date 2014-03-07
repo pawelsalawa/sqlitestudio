@@ -16,6 +16,8 @@ class CliCommandFactory
     private:
         typedef CliCommand* (*CliCommandCreatorFunc)();
 
+        static void registerCommand(CliCommandCreatorFunc func);
+
         static QHash<QString,CliCommandCreatorFunc> mapping;
 };
 

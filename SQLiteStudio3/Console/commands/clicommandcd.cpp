@@ -2,7 +2,7 @@
 #include <QCoreApplication>
 #include <QDir>
 
-bool CliCommandCd::execute(QStringList args)
+void CliCommandCd::execute(const QStringList& args)
 {
     QDir dir;
     dir.cd(args[0]);
@@ -10,18 +10,6 @@ bool CliCommandCd::execute(QStringList args)
         println(tr("Changed directory to: %1").arg(QDir::currentPath()));
     else
         println(tr("Could not change directory to: %1").arg(QDir::currentPath()));
-
-    return false;
-}
-
-bool CliCommandCd::validate(QStringList args)
-{
-    if (args.size() != 1)
-    {
-        printUsage();
-        return false;
-    }
-    return true;
 }
 
 QString CliCommandCd::shortHelp() const
@@ -39,7 +27,8 @@ QString CliCommandCd::fullHelp() const
              );
 }
 
-QString CliCommandCd::usage() const
+void CliCommandCd::defineSyntax()
 {
-    return "cd "+tr("<path>");
+    syntax.setName("cd");
+    syntax.addArgument(DIR_PATH, tr("path", "CLI command syntax"));
 }

@@ -44,7 +44,8 @@ SOURCES += main.cpp \
     commands/clicommandhistory.cpp \
     commands/clicommanddir.cpp \
     commands/clicommandpwd.cpp \
-    commands/clicommandcd.cpp
+    commands/clicommandcd.cpp \
+    clicommandsyntax.cpp
 
 LIBS += -lcoreSQLiteStudio
 
@@ -80,4 +81,5 @@ HEADERS += \
     commands/clicommandhistory.h \
     commands/clicommanddir.h \
     commands/clicommandpwd.h \
-    commands/clicommandcd.h
+    commands/clicommandcd.h \
+    clicommandsyntax.h

@@ -3,25 +3,12 @@
 #include "utils.h"
 #include "cli_config.h"
 
-bool CliCommandHelp::execute(QStringList args)
+void CliCommandHelp::execute(const QStringList& args)
 {
     if (args.size() == 1)
         printHelp(args[0]);
     else
         printHelp();
-
-    return false;
-}
-
-bool CliCommandHelp::validate(QStringList args)
-{
-    if (args.size() > 1)
-    {
-        printUsage();
-        return false;
-    }
-
-    return true;
 }
 
 QString CliCommandHelp::shortHelp() const
@@ -35,12 +22,13 @@ QString CliCommandHelp::fullHelp() const
                 "Use %1 to learn about certain commands supported by the command line interface (CLI) of the SQLiteStudio.\n"
                 "To see list of supported commands, type %2 without any arguments.\n\n"
                 "When passing <command> name, you can skip special prefix character ('%3')."
-             ).arg(cmdName("help")).arg(cmdName("help")).arg(CFG_CLI.Console.CommandPrefixChar.get());
+                ).arg(cmdName("help")).arg(cmdName("help")).arg(CFG_CLI.Console.CommandPrefixChar.get());
 }
 
-QString CliCommandHelp::usage() const
+void CliCommandHelp::defineSyntax()
 {
-    return "help "+tr("[<command>]");
+    syntax.setName("help");
+    syntax.addArgument(CMD_NAME, tr("command", "CLI command syntax"), false);
 }
 
 void CliCommandHelp::printHelp(const QString& cmd)
@@ -54,14 +42,21 @@ void CliCommandHelp::printHelp(const QString& cmd)
         println("");
         return;
     }
+    command->defineSyntax();
     QStringList aliases = command->aliases();
     QString prefix = CFG_CLI.Console.CommandPrefixChar.get();
 
     QString msg;
-    msg += tr("Usage: %1%2").arg(prefix).arg(command->usage());
+    msg += tr("Usage: %1%2").arg(prefix).arg(command->usage(cmd));
     msg += "\n";
     if (aliases.size() > 0)
     {
+        if (aliases.contains(cmd))
+        {
+            aliases.removeOne(cmd);
+            aliases << command->getName();
+        }
+
         msg += tr("Aliases: %1").arg(prefix + aliases.join(", " + prefix));
         msg += "\n";
     }

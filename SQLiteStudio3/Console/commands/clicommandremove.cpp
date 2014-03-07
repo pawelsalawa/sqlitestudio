@@ -3,13 +3,13 @@
 #include "db/dbmanager.h"
 #include "db/db.h"
 
-bool CliCommandRemove::execute(QStringList args)
+void CliCommandRemove::execute(const QStringList& args)
 {
     Db* db = DBLIST->getByName(args[0]);
     if (!db)
     {
         println(tr("No such database: %1").arg(args[0]));
-        return false;
+        return;
     }
 
     bool isCurrent = cli->getCurrentDb() == db;
@@ -27,18 +27,6 @@ bool CliCommandRemove::execute(QStringList args)
     }
     else
         cli->setCurrentDb(nullptr);
-
-    return false;
-}
-
-bool CliCommandRemove::validate(QStringList args)
-{
-    if (args.size() != 1)
-    {
-        printUsage();
-        return false;
-    }
-    return true;
 }
 
 QString CliCommandRemove::shortHelp() const
@@ -52,10 +40,11 @@ QString CliCommandRemove::fullHelp() const
                 "Removes <name> database from the list of registered databases. "
                 "If the database was not on the list (see %1 command), then error message is printed "
                 "and nothing more happens."
-             ).arg(cmdName("dblist"));
+                ).arg(cmdName("dblist"));
 }
 
-QString CliCommandRemove::usage() const
+void CliCommandRemove::defineSyntax()
 {
-    return "remove "+tr("<name>");
+    syntax.setName("remove");
+    syntax.addArgument(DB_NAME, tr("name", "CLI command syntax"));
 }
