@@ -34,7 +34,8 @@ class FunctionsEditor : public MdiChild, public ExtActionContainer
             ARG_EDIT,
             ARG_DEL,
             ARG_MOVE_UP,
-            ARG_MOVE_DOWN
+            ARG_MOVE_DOWN,
+            HELP
         };
 
         explicit FunctionsEditor(QWidget *parent = 0);
@@ -112,6 +113,7 @@ class FunctionsEditor : public MdiChild, public ExtActionContainer
         void moveFunctionArgDown();
         void updateArgsState();
         void applyFilter(const QString& value);
+        void help();
 };
 
 #endif // FUNCTIONSEDITOR_H

@@ -228,3 +228,81 @@ QString DbQt::getTypeLabel()
 {
     return type;
 }
+
+QHash<QString, QVariant> DbQt::getAggregateContext(void* memPtr)
+{
+    if (!memPtr)
+    {
+        qCritical() << "Could not allocate aggregate context.";
+        return QHash<QString, QVariant>();
+    }
+
+    QHash<QString,QVariant>** aggCtxPtr = reinterpret_cast<QHash<QString,QVariant>**>(memPtr);
+    if (!*aggCtxPtr)
+        *aggCtxPtr = new QHash<QString,QVariant>();
+
+    return **aggCtxPtr;
+}
+
+void DbQt::setAggregateContext(void* memPtr, const QHash<QString, QVariant>& aggregateContext)
+{
+    if (!memPtr)
+    {
+        qCritical() << "Could not extract aggregate context.";
+        return;
+    }
+
+    QHash<QString,QVariant>** aggCtxPtr = reinterpret_cast<QHash<QString,QVariant>**>(memPtr);
+    **aggCtxPtr = aggregateContext;
+}
+
+void DbQt::releaseAggregateContext(void* memPtr)
+{
+    if (!memPtr)
+    {
+        qCritical() << "Could not release aggregate context.";
+        return;
+    }
+
+    QHash<QString,QVariant>** aggCtxPtr = reinterpret_cast<QHash<QString,QVariant>**>(memPtr);
+    delete *aggCtxPtr;
+}
+
+QVariant DbQt::evaluateScalar(void* dataPtr, const QList<QVariant>& argList, bool& ok)
+{
+    if (!dataPtr)
+        return QVariant();
+
+    FunctionUserData* userData = reinterpret_cast<FunctionUserData*>(dataPtr);
+
+    return FUNCTIONS->evaluateScalar(userData->name, userData->argCount, argList, userData->db, ok);
+}
+
+void DbQt::evaluateAggregateStep(void* dataPtr, QHash<QString,QVariant>& aggregateContext, QList<QVariant> argList)
+{
+    if (!dataPtr)
+        return;
+
+    FunctionUserData* userData = reinterpret_cast<FunctionUserData*>(dataPtr);
+
+    QHash<QString,QVariant> storage = aggregateContext["storage"].toHash();
+    if (!aggregateContext.contains("initExecuted"))
+    {
+        FUNCTIONS->evaluateAggregateInitial(userData->name, userData->argCount, userData->db, storage);
+        aggregateContext["initExecuted"] = true;
+    }
+
+    FUNCTIONS->evaluateAggregateStep(userData->name, userData->argCount, argList, userData->db, storage);
+    aggregateContext["storage"] = storage;
+}
+
+QVariant DbQt::evaluateAggregateFinal(void* dataPtr, QHash<QString,QVariant>& aggregateContext, bool& ok)
+{
+    if (!dataPtr)
+        return QVariant();
+
+    FunctionUserData* userData = reinterpret_cast<FunctionUserData*>(dataPtr);
+    QHash<QString,QVariant> storage = aggregateContext["storage"].toHash();
+
+    return FUNCTIONS->evaluateAggregateFinal(userData->name, userData->argCount, userData->db, ok, storage);
+}

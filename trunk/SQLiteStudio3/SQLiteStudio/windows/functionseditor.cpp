@@ -14,6 +14,7 @@
 #include "sqlitesyntaxhighlighter.h"
 #include "common/userinputfilter.h"
 #include <QDebug>
+#include <QDesktopServices>
 
 FunctionsEditor::FunctionsEditor(QWidget *parent) :
     MdiChild(parent),
@@ -55,6 +56,8 @@ void FunctionsEditor::createActions()
     ui->toolBar->addSeparator();
     createAction(ADD, "new_function", tr("Create new function"), this, SLOT(newFunction()), ui->toolBar);
     createAction(DELETE, "delete_function", tr("Delete selected function"), this, SLOT(deleteFunction()), ui->toolBar);
+    ui->toolBar->addSeparator();
+    createAction(HELP, "help", tr("Custom SQL functions manual"), this, SLOT(help()), ui->toolBar);
 
     // Args toolbar
     createAction(ARG_ADD, "insert_fn_arg", tr("Add function argument"), this, SLOT(addFunctionArg()), ui->argsToolBar);
@@ -560,6 +563,12 @@ void FunctionsEditor::applyFilter(const QString& value)
     functionFilterModel->setFilterFixedString(value);
 
     selectFunction(row);
+}
+
+void FunctionsEditor::help()
+{
+    static const QString url = QStringLiteral("http://sqlitestudio.pl/wiki/index.php/User_Manual#Custom_SQL_functions");
+    QDesktopServices::openUrl(QUrl(url, QUrl::StrictMode));
 }
 
 QVariant FunctionsEditor::saveSession()
