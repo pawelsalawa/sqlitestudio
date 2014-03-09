@@ -46,6 +46,20 @@ class API_EXPORT DbQt : public Db
         QString getTypeLabel();
 
     protected:
+        struct FunctionUserData
+        {
+            QString name;
+            int argCount = 0;
+            Db* db = nullptr;
+        };
+
+        static QHash<QString,QVariant> getAggregateContext(void* memPtr);
+        static void setAggregateContext(void* memPtr, const QHash<QString,QVariant>& aggregateContext);
+        static void releaseAggregateContext(void* memPtr);
+        static QVariant evaluateScalar(void* dataPtr, const QList<QVariant>& argList, bool& ok);
+        static void evaluateAggregateStep(void* dataPtr, QHash<QString, QVariant>& aggregateContext, QList<QVariant> argList);
+        static QVariant evaluateAggregateFinal(void* dataPtr, QHash<QString, QVariant>& aggregateContext, bool& ok);
+
         /**
          * @brief Creates database object based on Qt database framework.
          * @param driverName Driver names as passed to QSqlDatabase::addDatabase().

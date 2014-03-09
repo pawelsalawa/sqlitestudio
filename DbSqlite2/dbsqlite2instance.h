@@ -6,40 +6,12 @@
 struct sqlite;
 typedef struct sqlite_func sqlite_func;
 
-class DbSqlite2Instance : public DbQt2
+class Sqlite2 {};
+
+class DbSqlite2Instance : public DbQt2<Sqlite2>
 {
     public:
         DbSqlite2Instance(const QString& driverName, const QString& type);
-
-    protected:
-        void interruptExecutionOnHandle(const QVariant& handle);
-        bool deregisterFunction(const QVariant& handle, const QString& name, int argCount);
-        bool registerScalarFunction(const QVariant& handle, const QString& name, int argCount);
-        bool registerAggregateFunction(const QVariant& handle, const QString& name, int argCount);
-
-    private:
-        struct FunctionUserData
-        {
-            QString name;
-            int argCount = 0;
-            Db* db = nullptr;
-            QVariant aggregateStorage;
-            bool aggregateInitialExecuted = false;
-        };
-
-        static void storeResult(sqlite_func* func, const QVariant& result, bool ok);
-        static QList<QVariant> getArgs(int argCount, const char** args);
-        static void evaluateScalar(sqlite_func* func, int argCount, const char** args);
-        static void evaluateAggregateStep(sqlite_func* func, int argCount, const char** args);
-        static void evaluateAggregateFinal(sqlite_func* func);
-        static void deleteUserData(FunctionUserData* userData);
-        static QHash<QString,QVariant> getAggregateContext(sqlite_func* func);
-        static void setAggregateContext(sqlite_func* func, const QHash<QString,QVariant>& aggregateContext);
-        static void releaseAggregateContext(sqlite_func* func);
-
-        sqlite* getHandle(const QVariant& handle);
-
-        QList<FunctionUserData*> userDataList;
 };
 
 #endif // DBSQLITE2INSTANCE_H
