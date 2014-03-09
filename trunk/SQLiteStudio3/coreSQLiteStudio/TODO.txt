@@ -1,7 +1,6 @@
 * support WITH clause
+* context menu for taskbar
 
-* inkrementacja schema_version?
-* config dla linuksa w ~/.config/sqlitestudio?
 * add nice api for accessing menus and toolbars, so plugins can easly add/remove from them
 * check performance for millions of rows
 * przenoszenie obiektow przez d&d

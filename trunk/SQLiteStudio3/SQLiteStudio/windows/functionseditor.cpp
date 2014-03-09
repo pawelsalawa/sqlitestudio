@@ -16,6 +16,8 @@
 #include <QDebug>
 #include <QDesktopServices>
 
+// TODO handle plugin loading/unloading to update editor state
+
 FunctionsEditor::FunctionsEditor(QWidget *parent) :
     MdiChild(parent),
     ui(new Ui::FunctionsEditor)

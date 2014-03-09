@@ -587,7 +587,7 @@ QString Config::getConfigPath()
     else
         return SQLiteStudio::getInstance()->getEnv("HOME")+"/sqlitestudio";
 #else
-    return SQLiteStudio::getInstance()->getEnv("HOME")+"/.sqlitestudio";
+    return SQLiteStudio::getInstance()->getEnv("HOME")+"/.config/sqlitestudio";
 #endif
 }
 
