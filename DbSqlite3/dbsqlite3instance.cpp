@@ -173,7 +173,7 @@ void DbSqlite3Instance::evaluateScalar(sqlite3_context* context, int argCount, s
     QList<QVariant> argList = getArgs(argCount, args);
 
     bool ok;
-    QVariant result = FUNCTIONS->evaluateScalar(userData->name, argCount, argList, userData->db, ok);
+    QVariant result = FUNCTIONS->evaluateScalar(userData->name, userData->argCount, argList, userData->db, ok);
 
     storeResult(context, result, ok);
 }
@@ -187,7 +187,17 @@ void DbSqlite3Instance::evaluateAggregateStep(sqlite3_context* context, int argC
     FunctionUserData* userData = reinterpret_cast<FunctionUserData*>(dataPtr);
     QList<QVariant> argList = getArgs(argCount, args);
 
-    FUNCTIONS->evaluateAggregateStep(userData->name, argCount, argList, userData->db);
+    QHash<QString,QVariant> aggregateContext = getAggregateContext(context);
+    QHash<QString,QVariant> storage = aggregateContext["storage"].toHash();
+    if (!aggregateContext.contains("initExecuted"))
+    {
+        FUNCTIONS->evaluateAggregateInitial(userData->name, userData->argCount, userData->db, storage);
+        aggregateContext["initExecuted"] = true;
+    }
+
+    FUNCTIONS->evaluateAggregateStep(userData->name, userData->argCount, argList, userData->db, storage);
+    aggregateContext["storage"] = storage;
+    setAggregateContext(context, aggregateContext);
 }
 
 void DbSqlite3Instance::evaluateAggregateFinal(sqlite3_context* context)
@@ -197,14 +207,15 @@ void DbSqlite3Instance::evaluateAggregateFinal(sqlite3_context* context)
         return;
 
     FunctionUserData* userData = reinterpret_cast<FunctionUserData*>(dataPtr);
+    QHash<QString,QVariant> aggregateContext = getAggregateContext(context);
+    QHash<QString,QVariant> storage = aggregateContext["storage"].toHash();
 
     bool ok;
-    QVariant result = FUNCTIONS->evaluateAggregateFinal(userData->name, userData->argCount, userData->db, ok);
-
-    if (!ok)
-        return;
+    QVariant result = FUNCTIONS->evaluateAggregateFinal(userData->name, userData->argCount, userData->db, ok, storage);
 
     storeResult(context, result, ok);
+
+    releaseAggregateContext(context);
 }
 
 void DbSqlite3Instance::deleteUserData(void* dataPtr)
@@ -214,6 +225,48 @@ void DbSqlite3Instance::deleteUserData(void* dataPtr)
 
     FunctionUserData* userData = reinterpret_cast<FunctionUserData*>(dataPtr);
     delete userData;
+}
+
+QHash<QString, QVariant> DbSqlite3Instance::getAggregateContext(sqlite3_context* context)
+{
+    void* memPtr = sqlite3_aggregate_context(context, sizeof(QHash<QString,QVariant>**));
+    if (!memPtr)
+    {
+        qCritical() << "Could not allocate aggregate context.";
+        return QHash<QString, QVariant>();
+    }
+
+    QHash<QString,QVariant>** aggCtxPtr = reinterpret_cast<QHash<QString,QVariant>**>(memPtr);
+    if (!*aggCtxPtr)
+        *aggCtxPtr = new QHash<QString,QVariant>();
+
+    return **aggCtxPtr;
+}
+
+void DbSqlite3Instance::setAggregateContext(sqlite3_context* context, const QHash<QString, QVariant>& aggregateContext)
+{
+    void* memPtr = sqlite3_aggregate_context(context, sizeof(QHash<QString,QVariant>**));
+    if (!memPtr)
+    {
+        qCritical() << "Could not extract aggregate context.";
+        return;
+    }
+
+    QHash<QString,QVariant>** aggCtxPtr = reinterpret_cast<QHash<QString,QVariant>**>(memPtr);
+    **aggCtxPtr = aggregateContext;
+}
+
+void DbSqlite3Instance::releaseAggregateContext(sqlite3_context* context)
+{
+    void* memPtr = sqlite3_aggregate_context(context, sizeof(QHash<QString,QVariant>**));
+    if (!memPtr)
+    {
+        qCritical() << "Could not release aggregate context.";
+        return;
+    }
+
+    QHash<QString,QVariant>** aggCtxPtr = reinterpret_cast<QHash<QString,QVariant>**>(memPtr);
+    delete *aggCtxPtr;
 }
 
 sqlite3* DbSqlite3Instance::getHandle(const QVariant& handle)

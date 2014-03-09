@@ -26,6 +26,19 @@ bool DbSqlite2Instance::deregisterFunction(const QVariant& handle, const QString
 
     sqlite_create_function(sqliteHnd, name.toLatin1().data(), argCount, nullptr, nullptr);
     sqlite_create_aggregate(sqliteHnd, name.toLatin1().data(), argCount, nullptr, nullptr, nullptr);
+
+    FunctionUserData* userData = nullptr;
+    QMutableListIterator<FunctionUserData*> it(userDataList);
+    while (it.hasNext())
+    {
+        userData = it.next();
+        if (userData->name == name && userData->argCount == argCount)
+        {
+            it.remove();
+            delete userData;
+        }
+    }
+
     return true;
 }
 
@@ -139,7 +152,7 @@ void DbSqlite2Instance::evaluateScalar(sqlite_func* func, int argCount, const ch
     QList<QVariant> argList = getArgs(argCount, args);
 
     bool ok;
-    QVariant result = FUNCTIONS->evaluateScalar(userData->name, argCount, argList, userData->db, ok);
+    QVariant result = FUNCTIONS->evaluateScalar(userData->name, userData->argCount, argList, userData->db, ok);
 
     storeResult(func, result, ok);
 }
@@ -153,7 +166,17 @@ void DbSqlite2Instance::evaluateAggregateStep(sqlite_func* func, int argCount, c
     FunctionUserData* userData = reinterpret_cast<FunctionUserData*>(dataPtr);
     QList<QVariant> argList = getArgs(argCount, args);
 
-    FUNCTIONS->evaluateAggregateStep(userData->name, argCount, argList, userData->db);
+    QHash<QString,QVariant> aggregateContext = getAggregateContext(func);
+    QHash<QString,QVariant> storage = aggregateContext["storage"].toHash();
+    if (!aggregateContext.contains("initExecuted"))
+    {
+        FUNCTIONS->evaluateAggregateInitial(userData->name, userData->argCount, userData->db, storage);
+        aggregateContext["initExecuted"] = true;
+    }
+
+    FUNCTIONS->evaluateAggregateStep(userData->name, userData->argCount, argList, userData->db, storage);
+    aggregateContext["storage"] = storage;
+    setAggregateContext(func, aggregateContext);
 }
 
 void DbSqlite2Instance::evaluateAggregateFinal(sqlite_func* func)
@@ -163,23 +186,65 @@ void DbSqlite2Instance::evaluateAggregateFinal(sqlite_func* func)
         return;
 
     FunctionUserData* userData = reinterpret_cast<FunctionUserData*>(dataPtr);
+    QHash<QString,QVariant> aggregateContext = getAggregateContext(func);
+    QHash<QString,QVariant> storage = aggregateContext["storage"].toHash();
 
     bool ok;
-    QVariant result = FUNCTIONS->evaluateAggregateFinal(userData->name, userData->argCount, userData->db, ok);
-
-    if (!ok)
-        return;
+    QVariant result = FUNCTIONS->evaluateAggregateFinal(userData->name, userData->argCount, userData->db, ok, storage);
 
     storeResult(func, result, ok);
+
+    releaseAggregateContext(func);
 }
 
-void DbSqlite2Instance::deleteUserData(void* dataPtr)
+void DbSqlite2Instance::deleteUserData(FunctionUserData* userData)
 {
-    if (!dataPtr)
+    if (!userData)
         return;
 
-    FunctionUserData* userData = reinterpret_cast<FunctionUserData*>(dataPtr);
     delete userData;
+}
+
+QHash<QString, QVariant> DbSqlite2Instance::getAggregateContext(sqlite_func* func)
+{
+    void* memPtr = sqlite_aggregate_context(func, sizeof(QHash<QString,QVariant>**));
+    if (!memPtr)
+    {
+        qCritical() << "Could not allocate aggregate context.";
+        return QHash<QString, QVariant>();
+    }
+
+    QHash<QString,QVariant>** aggCtxPtr = reinterpret_cast<QHash<QString,QVariant>**>(memPtr);
+    if (!*aggCtxPtr)
+        *aggCtxPtr = new QHash<QString,QVariant>();
+
+    return **aggCtxPtr;
+}
+
+void DbSqlite2Instance::setAggregateContext(sqlite_func* func, const QHash<QString, QVariant>& aggregateContext)
+{
+    void* memPtr = sqlite_aggregate_context(func, sizeof(QHash<QString,QVariant>**));
+    if (!memPtr)
+    {
+        qCritical() << "Could not extract aggregate context.";
+        return;
+    }
+
+    QHash<QString,QVariant>** aggCtxPtr = reinterpret_cast<QHash<QString,QVariant>**>(memPtr);
+    **aggCtxPtr = aggregateContext;
+}
+
+void DbSqlite2Instance::releaseAggregateContext(sqlite_func* func)
+{
+    void* memPtr = sqlite_aggregate_context(func, sizeof(QHash<QString,QVariant>**));
+    if (!memPtr)
+    {
+        qCritical() << "Could not release aggregate context.";
+        return;
+    }
+
+    QHash<QString,QVariant>** aggCtxPtr = reinterpret_cast<QHash<QString,QVariant>**>(memPtr);
+    delete *aggCtxPtr;
 }
 
 sqlite* DbSqlite2Instance::getHandle(const QVariant& handle)

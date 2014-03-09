@@ -46,6 +46,7 @@ class API_EXPORT CompletionHelper : public QObject
             SELECT_GROUP_BY,
             SELECT_HAVING,
             SELECT_ORDER_BY,
+            SELECT_LIMIT,
             UPDATE_COLUMN,
             CREATE_TABLE,
             CREATE_TRIGGER,
@@ -116,9 +117,11 @@ class API_EXPORT CompletionHelper : public QObject
         bool isInCreateTrigger();
         bool isInExpr();
         bool testQueryToken(int tokenPosition, Token::Type type, const QString& value, Qt::CaseSensitivity cs = Qt::CaseInsensitive);
+        bool cursorAfterTokenMaps(SqliteStatement* stmt, const QStringList& mapNames);
+        bool cursorBeforeTokenMaps(SqliteStatement* stmt, const QStringList& mapNames);
 
         template <class T>
-        bool fitsInCollection(const QList<T*>& collection)
+        bool cursorFitsInCollection(const QList<T*>& collection)
         {
             if (collection.size() == 0)
                 return false;
@@ -128,10 +131,10 @@ class API_EXPORT CompletionHelper : public QObject
 
             int startIdx = -1;
             int endIdx = -1;
-            if (firstStmt->tokens.size() > 0)
+            if (firstStmt && firstStmt->tokens.size() > 0)
                 startIdx = firstStmt->tokens.first()->start;
 
-            if (lastStmt->tokens.size() > 0)
+            if (lastStmt && lastStmt->tokens.size() > 0)
                 endIdx = lastStmt->tokens.last()->end;
 
             if (startIdx < 0 || endIdx < 0)
@@ -141,9 +144,9 @@ class API_EXPORT CompletionHelper : public QObject
         }
 
         template <class T>
-        bool fitsInStatement(T* stmt)
+        bool cursorFitsInStatement(T* stmt)
         {
-            if (stmt->tokens.size() == 0)
+            if (!stmt || stmt->tokens.size() == 0)
                 return false;
 
             int startIdx = stmt->tokens.first()->start;

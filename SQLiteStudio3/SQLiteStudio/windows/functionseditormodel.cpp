@@ -104,6 +104,23 @@ QString FunctionsEditorModel::getFinalCode(int row) const
     return functionList[row]->data->finalCode;
 }
 
+void FunctionsEditorModel::setInitCode(int row, const QString& code)
+{
+    if (!isValidRow(row))
+        return;
+
+    functionList[row]->data->initCode = code;
+    emitDataChanged(row);
+}
+
+QString FunctionsEditorModel::getInitCode(int row) const
+{
+    if (!isValidRow(row))
+        return QString::null;
+
+    return functionList[row]->data->initCode;
+}
+
 void FunctionsEditorModel::setName(int row, const QString& newName)
 {
     if (!isValidRow(row))

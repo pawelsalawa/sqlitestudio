@@ -192,6 +192,9 @@ SqlResultsPtr DbQt::execInternal(const QString &query, const QList<QVariant> &ar
         dbQuery.addBindValue(arg);
 
     dbQuery.exec();
+    if (dbQuery.lastError().number() != -1)
+        return SqlResultsPtr(new SqlResultsQt(dbQuery, this, args));
+
     return SqlResultsPtr(new SqlResultsQt(dbQuery, this, args));
 }
 
@@ -215,6 +218,9 @@ SqlResultsPtr DbQt::execInternal(const QString &query, const QHash<QString, QVar
         dbQuery.bindValue(i.key(), i.value());
     }
     dbQuery.exec();
+    if (dbQuery.lastError().number() != -1)
+        return SqlResultsPtr(new SqlResultsQt(dbQuery, this, args));
+
     return SqlResultsPtr(new SqlResultsQt(dbQuery, this, args));
 }
 

@@ -31,6 +31,8 @@ class FunctionsEditorModel : public QAbstractListModel
         QString getCode(int row) const;
         void setFinalCode(int row, const QString& code);
         QString getFinalCode(int row) const;
+        void setInitCode(int row, const QString& code);
+        QString getInitCode(int row) const;
         void setName(int row, const QString& newName);
         QString getName(int row) const;
         void setLang(int row, const QString& lang);
