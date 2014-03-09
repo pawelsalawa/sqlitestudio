@@ -386,18 +386,27 @@ QVariant FunctionsEditorModel::data(const QModelIndex& index, int role) const
     }
 
     if (role == Qt::DecorationRole && langToIcon.contains(functionList[index.row()]->data->lang))
-        return langToIcon[functionList[index.row()]->data->lang];
+    {
+        QString lang = functionList[index.row()]->data->lang;
+        qDebug() << "for row" << index.row() << "lang is" << lang;
+        langToIcon[lang].pixmap(16, 16).toImage().save("/tmp/img"+QString::number(index.row())+".png");
+        return langToIcon[lang];
+    }
 
     return QVariant();
 }
 
 void FunctionsEditorModel::init()
 {
-    QPixmap pixmap;
     QByteArray data;
     foreach (SqlFunctionPlugin* plugin, PLUGINS->getLoadedPlugins<SqlFunctionPlugin>())
     {
         data = QByteArray::fromBase64(plugin->getIconData());
+
+        // The pixmap needs to be created per each iteration, so the pixmap is always loaded from scratch,
+        // otherwise the first icon was used for all icons. It seems that loadFromData() appends the data
+        // to the end of current data.
+        QPixmap pixmap;
         if (pixmap.loadFromData(data))
             langToIcon[plugin->getLanguageName()] = QIcon(pixmap);
     }
