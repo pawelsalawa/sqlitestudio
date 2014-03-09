@@ -11,7 +11,7 @@ MOC_DIR = $$MOC_DIR/coreSQLiteStudio
 UI_DIR = $$UI_DIR/coreSQLiteStudio
 
 QT       -= gui
-QT       += sql
+QT       += sql script
 
 TARGET = coreSQLiteStudio
 TEMPLATE = lib
@@ -138,7 +138,8 @@ SOURCES += sqlitestudio.cpp \
     dbattacher.cpp \
     db/dbqt2.cpp \
     functionmanager.cpp \
-    db/dbqt3.cpp
+    db/dbqt3.cpp \
+    scriptingqt.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -269,7 +270,9 @@ HEADERS += sqlitestudio.h\
     db/dbqt2.h \
     functionmanager.h \
     db/dbqt3.h \
-    sortedhash.h
+    sortedhash.h \
+    scriptingplugin.h \
+    scriptingqt.h
 
 unix:!symbian {
     maemo5 {

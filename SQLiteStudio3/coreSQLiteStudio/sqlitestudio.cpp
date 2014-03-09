@@ -16,6 +16,8 @@
 #include "db/dbplugin.h"
 #include "unused.h"
 #include "functionmanager.h"
+#include "scriptingplugin.h"
+#include "scriptingqt.h"
 #include <QProcessEnvironment>
 #include <QThreadPool>
 
@@ -95,6 +97,8 @@ void SQLiteStudio::init(const QStringList& cmdListArguments)
     Lexer::staticInit();
     CompletionHelper::init();
 
+    qRegisterMetaType<ScriptingPlugin::Context*>();
+
     notifyManager = new NotifyManager();
 
     config = new Config();
@@ -105,6 +109,9 @@ void SQLiteStudio::init(const QStringList& cmdListArguments)
     pluginManager->registerPluginType<DbPlugin>(QObject::tr("Database support"));
     pluginManager->registerPluginType<SqlFormatterPlugin>(QObject::tr("SQL formatter"), "formatterPluginsPage");
     pluginManager->registerPluginType<SqlFunctionPlugin>(QObject::tr("SQL function"));
+    pluginManager->registerPluginType<ScriptingPlugin>(QObject::tr("Scripting languages"));
+
+    PLUGINS->loadBuiltInPlugin(new ScriptingQt);
 
     sqlFormatter = new SqlFormatter();
     connect(CFG_CORE.General.ActiveSqlFormatter, SIGNAL(changed(QVariant)), this, SLOT(updateSqlFormatter()));
