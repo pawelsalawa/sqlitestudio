@@ -73,6 +73,7 @@ void FunctionsEditor::init()
 {
     ui->setupUi(this);
     clearEdits();
+    ui->initCodeGroup->setVisible(false);
     ui->finalCodeGroup->setVisible(false);
 
     model = new FunctionsEditorModel(this);
@@ -95,7 +96,9 @@ void FunctionsEditor::init()
 
     connect(ui->list->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(functionSelected(QItemSelection,QItemSelection)));
     connect(ui->list->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(updateState()));
+    connect(ui->initCodeEdit, SIGNAL(textChanged()), this, SLOT(updateModified()));
     connect(ui->mainCodeEdit, SIGNAL(textChanged()), this, SLOT(updateModified()));
+    connect(ui->finalCodeEdit, SIGNAL(textChanged()), this, SLOT(updateModified()));
     connect(ui->nameEdit, SIGNAL(textChanged(QString)), this, SLOT(validateName()));
     connect(ui->nameEdit, SIGNAL(textChanged(QString)), this, SLOT(updateModified()));
     connect(ui->undefArgsCheck, SIGNAL(clicked()), this, SLOT(updateModified()));
@@ -147,9 +150,15 @@ void FunctionsEditor::functionDeselected(int row)
     model->setModified(row, currentModified);
 
     if (model->isAggregate(row))
+    {
+        model->setInitCode(row, ui->initCodeEdit->toPlainText());
         model->setFinalCode(row, ui->finalCodeEdit->toPlainText());
+    }
     else
+    {
+        model->setInitCode(row, QString::null);
         model->setFinalCode(row, QString::null);
+    }
 
     if (!ui->undefArgsCheck->isChecked())
         model->setArguments(row, getCurrentArgList());
@@ -163,6 +172,7 @@ void FunctionsEditor::functionDeselected(int row)
 void FunctionsEditor::functionSelected(int row)
 {
     ui->nameEdit->setText(model->getName(row));
+    ui->initCodeEdit->setPlainText(model->getInitCode(row));
     ui->mainCodeEdit->setPlainText(model->getCode(row));
     ui->finalCodeEdit->setPlainText(model->getFinalCode(row));
     ui->undefArgsCheck->setChecked(model->getUndefinedArgs(row));
@@ -322,6 +332,8 @@ void FunctionsEditor::updateModified()
     {
         bool nameDiff = model->getName(row) != ui->nameEdit->text();
         bool codeDiff = model->getCode(row) != ui->mainCodeEdit->toPlainText();
+        bool initCodeDiff = model->getInitCode(row) != ui->initCodeEdit->toPlainText();
+        bool finalCodeDiff = model->getFinalCode(row) != ui->finalCodeEdit->toPlainText();
         bool langDiff = model->getLang(row) != ui->langCombo->currentText();
         bool undefArgsDiff = model->getUndefinedArgs(row) != ui->undefArgsCheck->isChecked();
         bool allDatabasesDiff = model->getAllDatabases(row) != ui->allDatabasesRadio->isChecked();
@@ -329,7 +341,8 @@ void FunctionsEditor::updateModified()
         bool dbDiff = getCurrentDatabases().toSet() != model->getDatabases(row).toSet(); // QSet to ignore order
         bool typeDiff = model->getType(row) != getCurrentFunctionType();
 
-        currentModified = (nameDiff || codeDiff || typeDiff || langDiff || undefArgsDiff || allDatabasesDiff || argDiff || dbDiff);
+        currentModified = (nameDiff || codeDiff || typeDiff || langDiff || undefArgsDiff || allDatabasesDiff || argDiff || dbDiff ||
+                           initCodeDiff || finalCodeDiff);
     }
 
     updateState();
@@ -360,6 +373,7 @@ void FunctionsEditor::updateCurrentFunctionState()
         return;
 
     bool langOk = ui->langCombo->currentIndex() >= 0;
+    ui->initCodeGroup->setEnabled(langOk);
     ui->mainCodeGroup->setEnabled(langOk);
     ui->finalCodeGroup->setEnabled(langOk);
     ui->argsGroup->setEnabled(langOk);
@@ -371,8 +385,9 @@ void FunctionsEditor::updateCurrentFunctionState()
     setValidStyle(ui->langLabel, langOk);
 
     bool aggregate = getCurrentFunctionType() == FunctionManager::Function::AGGREGATE;
-    ui->finalCodeGroup->setVisible(aggregate);
+    ui->initCodeGroup->setVisible(aggregate);
     ui->mainCodeGroup->setTitle(aggregate ? tr("Per step code:") : tr("Function implementation code:"));
+    ui->finalCodeGroup->setVisible(aggregate);
 
     ui->databasesList->setEnabled(ui->selDatabasesRadio->isChecked());
 
@@ -380,26 +395,35 @@ void FunctionsEditor::updateCurrentFunctionState()
     QString lang = ui->langCombo->currentText();
     if (lang != currentHighlighterLang)
     {
+        QSyntaxHighlighter* highlighter;
         if (currentMainHighlighter)
         {
-            // A little pointers swap to local var - this is necessary, cause deleting highlighter
+            // A pointers swap with local var - this is necessary, cause deleting highlighter
             // triggers textChanged on QPlainTextEdit, which then calls this method,
             // so it becomes an infinite recursion with deleting the same pointer.
             // We set the pointer to null first, then delete it. That way it's safe.
-            QSyntaxHighlighter* highlighter = currentMainHighlighter;
+            highlighter = currentMainHighlighter;
             currentMainHighlighter = nullptr;
             delete highlighter;
         }
 
         if (currentFinalHighlighter)
         {
-            QSyntaxHighlighter* highlighter = currentFinalHighlighter;
+            highlighter = currentFinalHighlighter;
             currentFinalHighlighter = nullptr;
+            delete highlighter;
+        }
+
+        if (currentInitHighlighter)
+        {
+            highlighter = currentInitHighlighter;
+            currentInitHighlighter = nullptr;
             delete highlighter;
         }
 
         if (langOk && highlighterPlugins.contains(lang))
         {
+            currentInitHighlighter = highlighterPlugins[lang]->createSyntaxHighlighter(ui->initCodeEdit);
             currentMainHighlighter = highlighterPlugins[lang]->createSyntaxHighlighter(ui->mainCodeEdit);
             currentFinalHighlighter = highlighterPlugins[lang]->createSyntaxHighlighter(ui->finalCodeEdit);
         }

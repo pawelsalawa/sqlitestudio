@@ -17,9 +17,15 @@ class SQLFUNCTIONSQLSHARED_EXPORT SqlFunctionSql : public GenericPlugin, public 
         SQLITESTUDIO_PLUGIN_AUTHOR("sqlitestudio.pl")
 
     public:
-        QVariant evaluate(Db* db, const QString& function, const QString& code, const QList<QVariant>& args, bool& success);
+        QVariant evaluateScalar(Db* db, const QString& function, const QString& code, const QList<QVariant>& args, bool& success);
+        void evaluateAggregateInitial(Db* db, const QString& function, int argCount, const QString& code, QHash<QString, QVariant>& aggregateStorage);
+        void evaluateAggregateStep(Db* db, const QString& function, const QString& code, const QList<QVariant>& args, QHash<QString, QVariant>& aggregateStorage);
+        QVariant evaluateAggregateFinal(Db* db, const QString& function, int argCount, const QString& code, bool& success, QHash<QString, QVariant>& aggregateStorage);
         QString getLanguageName() const;
         QByteArray getIconData() const;
+
+    private:
+        QList<QVariant> getArgsForQuery(Db* db, const QString& query, const QList<QVariant>& args);
 };
 
 #endif // SQLFUNCTIONSQL_H

@@ -34,6 +34,9 @@ class DbSqlite3Instance : public DbQt3
         static void evaluateAggregateStep(sqlite3_context* context, int argCount, sqlite3_value** args);
         static void evaluateAggregateFinal(sqlite3_context* context);
         static void deleteUserData(void* dataPtr);
+        static QHash<QString,QVariant> getAggregateContext(sqlite3_context* context);
+        static void setAggregateContext(sqlite3_context* context, const QHash<QString,QVariant>& aggregateContext);
+        static void releaseAggregateContext(sqlite3_context* context);
 
         sqlite3* getHandle(const QVariant& handle);
 };

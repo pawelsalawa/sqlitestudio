@@ -93,6 +93,7 @@ class FunctionsEditor : public MdiChild, public ExtActionContainer
         QString currentHighlighterLang;
         QSyntaxHighlighter* currentMainHighlighter = nullptr;
         QSyntaxHighlighter* currentFinalHighlighter = nullptr;
+        QSyntaxHighlighter* currentInitHighlighter = nullptr;
 
     private slots:
         void commit();

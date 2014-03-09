@@ -98,7 +98,12 @@ QStringList CLI::getHistory() const
 {
     QStringList cfgHistory;
 
+#if defined(Q_OS_WIN)
     int length = history_length();
+#elif defined(Q_OS_UNIX)
+    int length = history_length;
+#endif
+
     QString line;
     HIST_ENTRY* entry;
     for (int i = 0; i < length; i++)
@@ -189,6 +194,7 @@ void CLI::doWork()
     QStringList cmdArgs;
     QString cPrompt;
     QString line;
+    int hist_length = 0;
     char *cline;
     while (!doExit)
     {
@@ -219,7 +225,13 @@ void CLI::doWork()
         }
         add_history(line.toLatin1().data());
 
-        if (history_length() > CFG_CLI.Console.HistorySize.get())
+#if defined(Q_OS_WIN)
+        hist_length = history_length();
+#elif defined(Q_OS_UNIX)
+        hist_length = history_length;
+#endif
+
+        if (hist_length > CFG_CLI.Console.HistorySize.get())
             free_history_entry(remove_history(0));
 
         if (line.startsWith(CFG_CLI.Console.CommandPrefixChar.get()))

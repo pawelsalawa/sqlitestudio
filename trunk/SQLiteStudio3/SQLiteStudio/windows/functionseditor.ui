@@ -107,7 +107,10 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_4">
+         <layout class="QVBoxLayout" name="verticalLayout_8">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
           <property name="topMargin">
            <number>0</number>
           </property>
@@ -142,9 +145,6 @@
               <property name="bottomMargin">
                <number>0</number>
               </property>
-              <item row="2" column="3">
-               <widget class="QComboBox" name="langCombo"/>
-              </item>
               <item row="0" column="0">
                <widget class="QLabel" name="nameLabel">
                 <property name="text">
@@ -152,12 +152,28 @@
                 </property>
                </widget>
               </item>
+              <item row="2" column="2">
+               <widget class="QComboBox" name="typeCombo"/>
+              </item>
               <item row="0" column="3">
                <widget class="QLabel" name="langLabel">
                 <property name="text">
                  <string>Implementation language:</string>
                 </property>
                </widget>
+              </item>
+              <item row="2" column="0" colspan="2">
+               <widget class="QLineEdit" name="nameEdit"/>
+              </item>
+              <item row="0" column="2">
+               <widget class="QLabel" name="typeLabel">
+                <property name="text">
+                 <string>Type:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="3">
+               <widget class="QComboBox" name="langCombo"/>
               </item>
               <item row="4" column="0">
                <widget class="QGroupBox" name="argsGroup">
@@ -207,16 +223,6 @@
                 </layout>
                </widget>
               </item>
-              <item row="0" column="2">
-               <widget class="QLabel" name="typeLabel">
-                <property name="text">
-                 <string>Type:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="2">
-               <widget class="QComboBox" name="typeCombo"/>
-              </item>
               <item row="4" column="1" colspan="3">
                <widget class="QGroupBox" name="databasesGroup">
                 <property name="sizePolicy">
@@ -259,8 +265,21 @@
                 </layout>
                </widget>
               </item>
-              <item row="2" column="0" colspan="2">
-               <widget class="QLineEdit" name="nameEdit"/>
+             </layout>
+            </widget>
+            <widget class="QGroupBox" name="initCodeGroup">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>2</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="title">
+              <string>Initialization code:</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_4">
+              <item>
+               <widget class="QPlainTextEdit" name="initCodeEdit"/>
               </item>
              </layout>
             </widget>
@@ -281,6 +300,12 @@
              </layout>
             </widget>
             <widget class="QGroupBox" name="finalCodeGroup">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>2</verstretch>
+              </sizepolicy>
+             </property>
              <property name="title">
               <string>Final step implementation code:</string>
              </property>

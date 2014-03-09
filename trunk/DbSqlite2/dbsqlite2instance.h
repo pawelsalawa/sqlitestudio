@@ -23,6 +23,8 @@ class DbSqlite2Instance : public DbQt2
             QString name;
             int argCount = 0;
             Db* db = nullptr;
+            QVariant aggregateStorage;
+            bool aggregateInitialExecuted = false;
         };
 
         static void storeResult(sqlite_func* func, const QVariant& result, bool ok);
@@ -30,9 +32,14 @@ class DbSqlite2Instance : public DbQt2
         static void evaluateScalar(sqlite_func* func, int argCount, const char** args);
         static void evaluateAggregateStep(sqlite_func* func, int argCount, const char** args);
         static void evaluateAggregateFinal(sqlite_func* func);
-        static void deleteUserData(void* dataPtr);
+        static void deleteUserData(FunctionUserData* userData);
+        static QHash<QString,QVariant> getAggregateContext(sqlite_func* func);
+        static void setAggregateContext(sqlite_func* func, const QHash<QString,QVariant>& aggregateContext);
+        static void releaseAggregateContext(sqlite_func* func);
 
         sqlite* getHandle(const QVariant& handle);
+
+        QList<FunctionUserData*> userDataList;
 };
 
 #endif // DBSQLITE2INSTANCE_H

@@ -8,6 +8,7 @@
 #include <QObject>
 
 class Db;
+class SqlFunctionPlugin;
 
 class API_EXPORT FunctionManager : public QObject
 {
@@ -30,6 +31,7 @@ class API_EXPORT FunctionManager : public QObject
             QString name;
             QString lang;
             QString code;
+            QString initCode;
             QString finalCode;
             QStringList databases;
             QStringList arguments;
@@ -44,22 +46,46 @@ class API_EXPORT FunctionManager : public QObject
         void setFunctions(const QList<FunctionPtr>& newFunctions);
         QList<FunctionPtr> getAllFunctions() const;
         QList<FunctionPtr> getFunctionsForDatabase(const QString& dbName) const;
-        FunctionPtr getFunction(const QString& name);
         QVariant evaluateScalar(const QString& name, int argCount, const QList<QVariant>& args, Db* db, bool& ok);
-        void evaluateAggregateStep(const QString& name, int argCount, const QList<QVariant>& args, Db* db);
-        QVariant evaluateAggregateFinal(const QString& name, int argCount, Db* db, bool& ok);
+        void evaluateAggregateInitial(const QString& name, int argCount, Db* db, QHash<QString, QVariant>& aggregateStorage);
+        void evaluateAggregateStep(const QString& name, int argCount, const QList<QVariant>& args, Db* db, QHash<QString, QVariant>& aggregateStorage);
+        QVariant evaluateAggregateFinal(const QString& name, int argCount, Db* db, bool& ok, QHash<QString, QVariant>& aggregateStorage);
 
     private:
+        struct Key
+        {
+            Key();
+            Key(FunctionPtr function);
+
+            QString name;
+            int argCount;
+            Function::Type type;
+        };
+
+        friend int qHash(const FunctionManager::Key& key);
+        friend bool operator==(const FunctionManager::Key& key1, const FunctionManager::Key& key2);
+
         void init();
-        void refreshFunctionsByName();
+        void refreshFunctionsByKey();
         void storeInConfig();
+        QString cannotFindFunctionError(const QString& name, int argCount);
+        QString langUnsupportedError(const QString& name, int argCount, const QString& lang);
+        static QStringList getArgMarkers(int argCount);
 
         QList<FunctionPtr> functions;
-        StrHash<FunctionPtr> functionsByName;
+        QHash<Key,FunctionPtr> functionsByKey;
+        QHash<QString,SqlFunctionPlugin*> functionPlugins;
+
+    private slots:
+        void pluginLoaded(Plugin* plugin, PluginType* type);
+        void pluginUnloaded(Plugin* plugin, PluginType* type);
 
     signals:
         void functionListChanged();
 };
+
+int qHash(const FunctionManager::Key& key);
+bool operator==(const FunctionManager::Key& key1, const FunctionManager::Key& key2);
 
 #define FUNCTIONS SQLiteStudio::getInstance()->getFunctionManager()
 

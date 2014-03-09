@@ -18,6 +18,8 @@
 
 CFG_DEFINE(Core)
 
+static const QString DB_FILE_NAME = QStringLiteral("settings3");
+
 Config::Config(QObject *parent) :
     QObject(parent)
 {
@@ -438,8 +440,8 @@ bool Config::setFunctions(const QList<FunctionManager::FunctionPtr>& functions)
     functionQuery.prepare("DELETE FROM functions");
     functionQuery.exec();
 
-    functionQuery.prepare("INSERT INTO functions (name, lang, code, final_code, type, for_all_databases, undefined_args) "
-                          "VALUES (:name, :lang, :code, :final_code, :type, :for_all_databases, :undefined_args)");
+    functionQuery.prepare("INSERT INTO functions (name, lang, initial_code, code, final_code, type, for_all_databases, undefined_args) "
+                          "VALUES (:name, :lang, :initial_code, :code, :final_code, :type, :for_all_databases, :undefined_args)");
 
     fnArgsQuery.prepare("INSERT INTO function_args (function, name) VALUES (:function, :name)");
 
@@ -449,6 +451,7 @@ bool Config::setFunctions(const QList<FunctionManager::FunctionPtr>& functions)
     {
         functionQuery.bindValue(":name", func->name);
         functionQuery.bindValue(":lang", func->lang);
+        functionQuery.bindValue(":initial_code", func->initCode);
         functionQuery.bindValue(":code", func->code);
         functionQuery.bindValue(":final_code", func->finalCode);
         functionQuery.bindValue(":type", FunctionManager::Function::typeString(func->type));
@@ -458,7 +461,7 @@ bool Config::setFunctions(const QList<FunctionManager::FunctionPtr>& functions)
         printErrorIfSet(functionQuery);
 
         // Arguments
-        if (!func->allDatabases)
+        if (!func->undefinedArgs)
         {
             foreach (const QString arg, func->arguments)
             {
@@ -521,6 +524,7 @@ QList<FunctionManager::FunctionPtr> Config::getFunctions() const
         func = FunctionManager::FunctionPtr::create();
         func->name = query.value("name").toString();
         func->lang = query.value("lang").toString();
+        func->initCode = query.value("initial_code").toString();
         func->code = query.value("code").toString();
         func->finalCode = query.value("final_code").toString();
         func->type = FunctionManager::Function::typeString(query.value("type").toString());
@@ -645,7 +649,7 @@ void Config::initTables()
                  "queries TEXT)");
 
     if (!tables.contains("functions"))
-        db->exec("CREATE TABLE functions (name TEXT PRIMARY KEY, lang TEXT, code TEXT, final_code TEXT, "
+        db->exec("CREATE TABLE functions (name TEXT PRIMARY KEY, lang TEXT, initial_code TEXT, code TEXT, final_code TEXT, "
                  "type TEXT CHECK (type IN ('SCALAR', 'AGGREGATE')), for_all_databases BOOLEAN, undefined_args BOOLEAN)");
 
     if (!tables.contains("function_args"))
@@ -676,22 +680,22 @@ void Config::initDbFile()
     {
         if (QFileInfo(portablePath).exists())
         {
-            paths << portablePath+"/settings";
-            paths << globalPath+"/settings";
+            paths << portablePath+"/"+DB_FILE_NAME;
+            paths << globalPath+"/"+DB_FILE_NAME;
         }
         else
         {
-            paths << globalPath+"/settings";
-            paths << portablePath+"/settings";
+            paths << globalPath+"/"+DB_FILE_NAME;
+            paths << portablePath+"/"+DB_FILE_NAME;
         }
     }
     else if (!globalPath.isNull())
     {
-        paths << globalPath+"/settings";
+        paths << globalPath+"/"+DB_FILE_NAME;
     }
     else if (!portablePath.isNull())
     {
-        paths << portablePath+"/settings";
+        paths << portablePath+"/"+DB_FILE_NAME;
     }
 
     // Create global config directory if not existing

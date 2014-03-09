@@ -1032,18 +1032,21 @@ void CompletionHelper::extractQueryAdditionalInfo()
 
 void CompletionHelper::detectSelectContext()
 {
-    if (fitsInCollection(currentSelectCore->resultColumns))
-        context = Context::SELECT_RESULT_COLUMN;
-    else if (fitsInStatement(currentSelectCore->from))
-        context = Context::SELECT_FROM;
-    else if (fitsInStatement(currentSelectCore->where))
-        context = Context::SELECT_WHERE;
-    else if (fitsInStatement(currentSelectCore->having))
-        context = Context::SELECT_HAVING;
-    else if (fitsInCollection(currentSelectCore->groupBy))
-        context = Context::SELECT_GROUP_BY;
-    else if (fitsInCollection(currentSelectCore->orderBy))
-        context = Context::SELECT_ORDER_BY;
+    QStringList mapNames = {"SELECT", "distinct", "selcollist", "from", "where_opt", "groupby_opt", "having_opt", "orderby_opt", "limit_opt"};
+    QList<Context> contexts = {Context::SELECT_RESULT_COLUMN, Context::SELECT_FROM, Context::SELECT_WHERE, Context::SELECT_GROUP_BY,
+                              Context::SELECT_HAVING, Context::SELECT_ORDER_BY, Context::SELECT_LIMIT};
+
+    // Assert that we have exactly 2 more map names, than defined contexts, cause we will start with 3rd map name and 1st context.
+    Q_ASSERT((mapNames.size() - 2) == contexts.size());
+
+    for (int i = 2; i < mapNames.size(); i++)
+    {
+        if (cursorAfterTokenMaps(currentSelectCore, mapNames.mid(0, i)) && cursorBeforeTokenMaps(currentSelectCore, mapNames.mid(i+1)))
+        {
+            context = contexts[i-2];
+            break;
+        }
+    }
 }
 
 bool CompletionHelper::isInUpdateColumn()
@@ -1132,6 +1135,44 @@ bool CompletionHelper::testQueryToken(int tokenPosition, Token::Type type, const
 
     TokenPtr token = queryTokens[tokenPosition];
     return (token->type == type && token->value.compare(value, cs) == 0);
+}
+
+bool CompletionHelper::cursorAfterTokenMaps(SqliteStatement* stmt, const QStringList& mapNames)
+{
+    TokenList tokens;
+    foreach (const QString& name, mapNames)
+    {
+        if (!stmt->tokensMap.contains(name) || stmt->tokensMap[name].size() == 0)
+            continue;
+
+        tokens = stmt->tokensMap[name];
+        tokens.trimRight();
+        if (tokens.size() == 0)
+            continue;
+
+        if (tokens.last()->end >= cursorPosition)
+            return false;
+    }
+    return true;
+}
+
+bool CompletionHelper::cursorBeforeTokenMaps(SqliteStatement* stmt, const QStringList& mapNames)
+{
+    TokenList tokens;
+    foreach (const QString& name, mapNames)
+    {
+        if (!stmt->tokensMap.contains(name) || stmt->tokensMap[name].size() == 0)
+            continue;
+
+        tokens = stmt->tokensMap[name];
+        tokens.trimLeft();
+        if (tokens.size() == 0)
+            continue;
+
+        if (tokens.first()->start < cursorPosition)
+            return false;
+    }
+    return true;
 }
 
 bool CompletionHelper::extractSelectCore()

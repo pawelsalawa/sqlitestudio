@@ -49,7 +49,7 @@ QString Db::flagsToString(Db::Flags flags)
 
 bool Db::open()
 {
-    bool res = openQuiet();
+    bool res = isOpen() || openQuiet();
     if (res)
         emit connected();
 
@@ -58,7 +58,7 @@ bool Db::open()
 
 bool Db::close()
 {
-    bool res = closeQuiet();
+    bool res = !isOpen() || closeQuiet();
     if (res)
         emit disconnected();
 
@@ -80,6 +80,7 @@ bool Db::closeQuiet()
     bool res = closeInternal();
     clearAttaches();
     registeredFunctions.clear();
+    disconnect(FUNCTIONS, SIGNAL(functionListChanged()), this, SLOT(registerAllFunctions()));
     return res;
 }
 
@@ -318,6 +319,7 @@ bool Db::openAndSetup()
 
     initialDbSetup();
     registerAllFunctions();
+    connect(FUNCTIONS, SIGNAL(functionListChanged()), this, SLOT(registerAllFunctions()));
     return result;
 }
 
