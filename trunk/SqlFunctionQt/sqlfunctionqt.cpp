@@ -27,6 +27,14 @@ void SqlFunctionQt::evaluateAggregateInitial(Db* db, const QString& function, in
 
     ScriptingPlugin::Context* ctx = getEngine()->createContext();
     aggregateStorage["context"] = QVariant::fromValue(ctx);
+
+    getEngine()->evaluate(ctx, code, {});
+
+    if (getEngine()->hasError(ctx))
+    {
+        aggregateStorage["error"] = true;
+        aggregateStorage["errorMessage"] = getEngine()->getErrorMessage(ctx);
+    }
 }
 
 void SqlFunctionQt::evaluateAggregateStep(Db* db, const QString& function, const QString& code, const QList<QVariant>& args, QHash<QString, QVariant>& aggregateStorage)
@@ -38,8 +46,7 @@ void SqlFunctionQt::evaluateAggregateStep(Db* db, const QString& function, const
         return;
 
     ScriptingPlugin::Context* ctx = aggregateStorage["context"].value<ScriptingPlugin::Context*>();
-    getEngine()->setVariable(ctx, "args", args);
-    getEngine()->evaluate(ctx, code);
+    getEngine()->evaluate(ctx, code, args);
 
     if (getEngine()->hasError(ctx))
     {
@@ -62,7 +69,7 @@ QVariant SqlFunctionQt::evaluateAggregateFinal(Db* db, const QString& function, 
         return aggregateStorage["errorMessage"];
     }
 
-    QVariant result = getEngine()->evaluate(ctx, code);
+    QVariant result = getEngine()->evaluate(ctx, code, {});
 
     if (getEngine()->hasError(ctx))
     {

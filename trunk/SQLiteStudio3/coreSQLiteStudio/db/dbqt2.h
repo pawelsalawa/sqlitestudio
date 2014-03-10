@@ -231,7 +231,7 @@ class DbQt2 : public DbQt
         static void evaluateScalar(sqlite_func* func, int argCount, const char** args)
         {
             QList<QVariant> argList = getArgs(argCount, args);
-            bool ok;
+            bool ok = true;
             QVariant result = DbQt::evaluateScalar(sqlite_user_data(func), argList, ok);
             storeResult(func, result, ok);
         }
@@ -252,7 +252,7 @@ class DbQt2 : public DbQt
             void* dataPtr = sqlite_user_data(func);
             QHash<QString,QVariant> aggregateContext = getAggregateContext(func);
 
-            bool ok;
+            bool ok = true;
             QVariant result = DbQt::evaluateAggregateFinal(dataPtr, aggregateContext, ok);
 
             storeResult(func, result, ok);
