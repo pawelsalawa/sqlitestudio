@@ -35,10 +35,10 @@ QStringList SchemaResolver::getTables(const QString &database)
     return tables;
 }
 
-QStringList SchemaResolver::getIndexes(const QString &database, bool includeSystemIndexes)
+QStringList SchemaResolver::getIndexes(const QString &database)
 {
     QStringList indexes = getObjects(database, "index");
-    if (!includeSystemIndexes)
+    if (ignoreSystemObjects)
         filterSystemIndexes(indexes);
 
     return indexes;
@@ -427,18 +427,28 @@ QStringList SchemaResolver::getFkReferencingTables(const QString& database, cons
     return theList;
 }
 
-QStringList SchemaResolver::getIndexesForTable(const QString& database, const QString& table, bool includeSystemIndexes)
+QStringList SchemaResolver::getIndexesForTable(const QString& database, const QString& table)
 {
     QStringList names;
-    foreach (SqliteCreateIndexPtr idx, getParsedIndexesForTable(database, table, includeSystemIndexes))
+    foreach (SqliteCreateIndexPtr idx, getParsedIndexesForTable(database, table))
         names << idx->index;
 
     return names;
 }
 
-QStringList SchemaResolver::getIndexesForTable(const QString& table, bool includeSystemIndexes)
+QStringList SchemaResolver::getIndexesForTable(const QString& table)
 {
-    return getIndexesForTable("main", table, includeSystemIndexes);
+    return getIndexesForTable("main", table);
+}
+
+QStringList SchemaResolver::getIndexesForView(const QString& database, const QString& table)
+{
+    return getIndexesForTable(database, table);
+}
+
+QStringList SchemaResolver::getIndexesForView(const QString& table)
+{
+    return getIndexesForTable(table);
 }
 
 QStringList SchemaResolver::getTriggersForTable(const QString& database, const QString& table)
@@ -469,11 +479,11 @@ QStringList SchemaResolver::getViewsForTable(const QString& table)
     return getViewsForTable("main", table);
 }
 
-QList<SqliteCreateIndexPtr> SchemaResolver::getParsedIndexesForTable(const QString& database, const QString& table, bool includeSystemIndexes)
+QList<SqliteCreateIndexPtr> SchemaResolver::getParsedIndexesForTable(const QString& database, const QString& table)
 {
     QList<SqliteCreateIndexPtr> createIndexList;
 
-    QStringList indexes = getIndexes(database, includeSystemIndexes);
+    QStringList indexes = getIndexes(database);
     SqliteQueryPtr query;
     SqliteCreateIndexPtr createIndex;
     foreach (const QString& index, indexes)
@@ -495,9 +505,9 @@ QList<SqliteCreateIndexPtr> SchemaResolver::getParsedIndexesForTable(const QStri
     return createIndexList;
 }
 
-QList<SqliteCreateIndexPtr> SchemaResolver::getParsedIndexesForTable(const QString& table, bool includeSystemIndexes)
+QList<SqliteCreateIndexPtr> SchemaResolver::getParsedIndexesForTable(const QString& table)
 {
-    return getParsedIndexesForTable("main", table, includeSystemIndexes);
+    return getParsedIndexesForTable("main", table);
 }
 
 QList<SqliteCreateTriggerPtr> SchemaResolver::getParsedTriggersForTable(const QString& database, const QString& table,

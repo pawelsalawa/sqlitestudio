@@ -164,14 +164,14 @@ class API_EXPORT DbManager : public QObject
          * @param name Symbolic name of the database.
          * @param path Database file path.
          * @param options Database options, such as password, etc.
+         * @param errorMessages If not null, then the error messages from DbPlugins are stored in that string (in case this method returns null).
          * @return Database object, or null pointer.
          *
          * This method is used internally by addDb() methods. It goes through all DbPlugin instances
          * and checks if any of them supports given file path and options and returns a database object.
          * First plugin that provides database object is accepted and its result is returned from the method.
          */
-        Db* createDbObj(const QString &name, const QString &path,
-                          const QHash<QString, QVariant> &options);
+        Db* createDbObj(const QString &name, const QString &path, const QHash<QString, QVariant> &options, QString* errorMessages = nullptr);
 
         /**
          * @brief Registered databases list. Both permanent and transient databases.

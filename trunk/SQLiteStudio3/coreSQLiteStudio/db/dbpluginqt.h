@@ -22,7 +22,7 @@ class API_EXPORT DbPluginQt : public DbPlugin, public GenericPlugin
         DbPluginQt();
         ~DbPluginQt();
 
-        Db* getInstance(const QString& path, const QHash<QString, QVariant> &options);
+        Db* getInstance(const QString& path, const QHash<QString, QVariant> &options, QString* errorMessage = 0);
         QString generateDbName(const QVariant& baseValue);
         QList<DbPluginOption> getOptionsList() const;
         bool isRemote() const;
@@ -49,12 +49,13 @@ class API_EXPORT DbPluginQt : public DbPlugin, public GenericPlugin
          * @brief Tests if given database file is valid for this plugin implementation.
          * @param path Database file.
          * @param options Connection options (passed from getInstance()).
+         * @param errorMessage If the result is false and this pointer is not null, the error message will be stored in it.
          * @return true if the database file is valid, or false otherwise.
          *
          * This method opens given file and executes "<tt>SELECT * FROM sqlite_master;</tt>" query.
          * If that's successful, it returns true. Otherwise it returns false.
          */
-        bool probe(const QString& path, const QHash<QString, QVariant> &options);
+        bool probe(const QString& path, const QHash<QString, QVariant> &options, QString* errorMessage = 0);
 
         /**
          * @brief Defines QSqlDatabase for probing databases.

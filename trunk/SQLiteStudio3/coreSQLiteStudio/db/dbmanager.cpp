@@ -25,9 +25,13 @@ bool DbManager::addDb(const QString &name, const QString &path, bool permanent)
 
 bool DbManager::addDb(const QString &name, const QString &path, const QHash<QString,QVariant>& options, bool permanent)
 {
-    Db* db = createDbObj(name, path, options);
+    QString errorMessage;
+    Db* db = createDbObj(name, path, options, &errorMessage);
     if (!db)
+    {
+        notifyError(tr("Could not add database %1: %2").arg(path).arg(errorMessage));
         return false;
+    }
 
     listLock.lockForWrite();
     addDbInternal(db, permanent);
@@ -203,18 +207,35 @@ void DbManager::addDbInternal(Db* db, bool alsoToConfig)
     connect(db, &Db::disconnected, this, &DbManager::dbDisconnectedSlot);
 }
 
-Db* DbManager::createDbObj(const QString &name, const QString &path, const QHash<QString,QVariant> &options)
+Db* DbManager::createDbObj(const QString &name, const QString &path, const QHash<QString,QVariant> &options, QString* errorMessages)
 {
     QList<DbPlugin*> dbPlugins = PLUGINS->getLoadedPlugins<DbPlugin>();
     DbPlugin* dbPlugin;
+    Db* db;
+    QStringList messages;
+    QString message;
     foreach (dbPlugin, dbPlugins)
     {
-        Db* db = dbPlugin->getInstance(path, options);
-        if (!db)
+        if (options.contains("plugin") && options["plugin"] != dbPlugin->getName())
             continue;
+
+        db = dbPlugin->getInstance(path, options, &message);
+        if (!db)
+        {
+            messages << message;
+            continue;
+        }
 
         db->init(name, path, options);
         return db;
+    }
+
+    if (errorMessages)
+    {
+        if (messages.size() == 0)
+            messages << tr("No suitable database driver plugin found.");
+
+        *errorMessages = messages.join("; ");
     }
 
     return nullptr;

@@ -387,10 +387,7 @@ QVariant FunctionsEditorModel::data(const QModelIndex& index, int role) const
 
     if (role == Qt::DecorationRole && langToIcon.contains(functionList[index.row()]->data->lang))
     {
-        QString lang = functionList[index.row()]->data->lang;
-        qDebug() << "for row" << index.row() << "lang is" << lang;
-        langToIcon[lang].pixmap(16, 16).toImage().save("/tmp/img"+QString::number(index.row())+".png");
-        return langToIcon[lang];
+        return langToIcon[functionList[index.row()]->data->lang];
     }
 
     return QVariant();

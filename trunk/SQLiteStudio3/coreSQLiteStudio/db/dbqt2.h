@@ -13,7 +13,7 @@
  * See DbQt for more details.
  */
 template <class T>
-class API_EXPORT DbQt2 : public DbQt
+class DbQt2 : public DbQt
 {
     public:
         /**

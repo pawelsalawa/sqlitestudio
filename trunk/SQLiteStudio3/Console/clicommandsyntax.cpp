@@ -260,11 +260,13 @@ bool CliCommandSyntax::parseArg(const QString& arg)
         case CliCommandSyntax::Argument::ALTERNATED:
         {
             arguments[argPosition]->value = arg;
+            arguments[argPosition]->defined = true;
             break;
         }
         case CliCommandSyntax::Argument::REGULAR:
         {
             arguments[argPosition]->value = arg;
+            arguments[argPosition]->defined = true;
             break;
         }
         case CliCommandSyntax::Argument::STRICT:
@@ -277,6 +279,7 @@ bool CliCommandSyntax::parseArg(const QString& arg)
                 return false;
             }
             arguments[argPosition]->value = arg;
+            arguments[argPosition]->defined = true;
             break;
         }
         default:
@@ -309,6 +312,8 @@ bool CliCommandSyntax::parseOpt(const QString& arg, const QStringList& args, int
         parsingErrorText = QObject::tr("Unknown option: %1", "CLI command syntax").arg(arg);
         return false;
     }
+
+    opt->requested = true;
 
     if (!opt->argName.isEmpty())
     {

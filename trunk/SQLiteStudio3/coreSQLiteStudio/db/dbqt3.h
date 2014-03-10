@@ -11,7 +11,7 @@
  * to create one public constructor, which forwards parameters to the DbQt3 constructor.
  */
 template <class T>
-class API_EXPORT DbQt3 : public DbQt
+class DbQt3 : public DbQt
 {
     public:
         /**

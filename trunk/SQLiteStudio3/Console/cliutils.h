@@ -10,7 +10,13 @@ void initCliUtils();
 int getCliColumns();
 int getCliRows();
 
-typedef SortedHash<QString, QVariant> AsciiTree;
+struct AsciiTree
+{
+    QList<AsciiTree> childs;
+    QString label;
+};
+
+//typedef SortedHash<QString, QVariant> AsciiTree;
 Q_DECLARE_METATYPE(AsciiTree)
 
 QString toAsciiTree(const AsciiTree& tree);
