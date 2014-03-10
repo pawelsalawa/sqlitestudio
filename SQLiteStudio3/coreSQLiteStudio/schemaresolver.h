@@ -22,7 +22,7 @@ class API_EXPORT SchemaResolver
         virtual ~SchemaResolver();
 
         QStringList getTables(const QString& database = QString::null);
-        QStringList getIndexes(const QString& database = QString::null, bool includeSystemIndexes = true);
+        QStringList getIndexes(const QString& database = QString::null);
         QStringList getTriggers(const QString& database = QString::null);
         QStringList getViews(const QString& database = QString::null);
         QMap<QString, QStringList> getGroupedIndexes(const QString& database = QString::null);
@@ -37,15 +37,17 @@ class API_EXPORT SchemaResolver
         QStringList getFkReferencingTables(const QString& table);
         QStringList getFkReferencingTables(const QString& database, const QString& table);
 
-        QStringList getIndexesForTable(const QString& database, const QString& table, bool includeSystemIndexes = true);
-        QStringList getIndexesForTable(const QString& table, bool includeSystemIndexes = true);
+        QStringList getIndexesForTable(const QString& database, const QString& table);
+        QStringList getIndexesForTable(const QString& table);
+        QStringList getIndexesForView(const QString& database, const QString& table);
+        QStringList getIndexesForView(const QString& table);
         QStringList getTriggersForTable(const QString& database, const QString& table);
         QStringList getTriggersForTable(const QString& table);
         QStringList getViewsForTable(const QString& database, const QString& table);
         QStringList getViewsForTable(const QString& table);
 
-        QList<SqliteCreateIndexPtr> getParsedIndexesForTable(const QString& database, const QString& table, bool includeSystemIndexes = true);
-        QList<SqliteCreateIndexPtr> getParsedIndexesForTable(const QString& table, bool includeSystemIndexes = true);
+        QList<SqliteCreateIndexPtr> getParsedIndexesForTable(const QString& database, const QString& table);
+        QList<SqliteCreateIndexPtr> getParsedIndexesForTable(const QString& table);
         QList<SqliteCreateTriggerPtr> getParsedTriggersForTable(const QString& database, const QString& table, bool includeContentReferences = false);
         QList<SqliteCreateTriggerPtr> getParsedTriggersForTable(const QString& table, bool includeContentReferences = false);
         QList<SqliteCreateViewPtr> getParsedViewsForTable(const QString& database, const QString& table);

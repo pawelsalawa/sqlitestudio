@@ -44,20 +44,6 @@ class DbDialog : public QDialog
         void changeEvent(QEvent *e);
         void showEvent(QShowEvent* e);
 
-    private slots:
-        void typeChanged(int index);
-        void valueForNameGenerationChanged();
-        void nameChanged();
-        void browseForFile();
-        void on_generateCheckBox_toggled(bool checked);
-        void on_fileEdit_textChanged(const QString &arg1);
-        void on_browseLocalButton_clicked();
-        void on_browseRemoteButton_clicked();
-        void on_testConnButton_clicked();
-        void propertyChanged();
-        void on_typeCombo_activated(int index);
-        void on_nameEdit_textChanged(const QString &arg1);
-
     private:
         void init();
         void updateOptions();
@@ -80,6 +66,23 @@ class DbDialog : public QDialog
         QHash<QString,QWidget*> optionKeyToWidget;
         QHash<QString,DbPluginOption::Type> optionKeyToType;
         QHash<QWidget*,QString> helperToKey;
+
+    private slots:
+        void typeChanged(int index);
+        void valueForNameGenerationChanged();
+        void nameChanged();
+        void browseForFile();
+        void on_generateCheckBox_toggled(bool checked);
+        void on_fileEdit_textChanged(const QString &arg1);
+        void on_browseLocalButton_clicked();
+        void on_browseRemoteButton_clicked();
+        void on_testConnButton_clicked();
+        void propertyChanged();
+        void on_typeCombo_activated(int index);
+        void on_nameEdit_textChanged(const QString &arg1);
+
+    public slots:
+        void accept();
 };
 
 #endif // DBDIALOG_H

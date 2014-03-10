@@ -17,11 +17,12 @@ class API_EXPORT DbPlugin : virtual public Plugin
          * @brief Creates database instance defined by the plugin.
          * @param path Path to the database file.
          * @param options Options for the database passed while registering the database in the application.
+         * @param errorMessage If the result is null (on failure) and this pointer is not null, the error message will be stored in it.
          * @return Database instance on success, or null pointer on failure.
          *
          * Options can contain for example password for an encrypted database, or other connection options.
          */
-        virtual Db* getInstance(const QString& path, const QHash<QString,QVariant> &options) = 0;
+        virtual Db* getInstance(const QString& path, const QHash<QString,QVariant> &options, QString* errorMessage = 0) = 0;
 
         /**
          * @brief Provides label of what type is the database.

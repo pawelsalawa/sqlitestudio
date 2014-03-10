@@ -42,63 +42,54 @@ int getCliRows()
 
 #endif
 
-QStringList toAsciiTree(const AsciiTree& hash, QList<bool> indents)
+QStringList toAsciiTree(const AsciiTree& tree, const QList<bool>& indents, bool topLevel, bool lastNode)
 {
-    if (hash.size() == 0)
-        return QStringList();
-
-    static const QString indentStr = "|   ";
+    static const QString indentStr = "  | ";
     static const QString indentStrEmpty = "    ";
-    static const QString branchStr = "+-";
-    static const QString branchStrLast = "`-";
+    static const QString branchStr = "  +-";
+    static const QString branchStrLast = "  `-";
+
     QStringList lines;
     QString line;
-    bool isLast = false;
-    QString lastKey = hash.lastKey();
-    QList<bool> subIndents;
-    AsciiTree subHash;
-    foreach (const QString& key, hash.keys())
-    {
-        isLast = (key == lastKey);
 
-        foreach (bool indent, indents.mid(0, indents.size() - 1))
+    if (!topLevel)
+    {
+        // Draw indent before this node
+        foreach (bool indent, indents)
             line += (indent ? indentStr : indentStrEmpty);
 
-        line += (isLast ? branchStrLast : branchStr);
-        line += key;
-
-        lines << line;
-
-        if (!hash[key].isNull())
-        {
-            subHash = hash[key].value<AsciiTree>();
-            subIndents = indents;
-            subIndents << !isLast;
-            lines += toAsciiTree(subHash, subIndents);
-        }
+        // Draw node prefix
+        line += (lastNode ? branchStrLast : branchStr);
     }
+
+    // Draw label
+    line += tree.label;
+    lines << line;
+
+    if (tree.childs.size() == 0)
+        return lines;
+
+    // Draw childs
+    int i = 0;
+    int lastIdx = tree.childs.size() - 1;
+    QList<bool> subIndents = indents;
+
+    if (!topLevel)
+        subIndents << (lastNode ? false : true);
+
+    foreach (const AsciiTree& subTree, tree.childs)
+    {
+        lines += toAsciiTree(subTree, subIndents, false, i == lastIdx);
+        i++;
+    }
+
     return lines;
 }
 
 QString toAsciiTree(const AsciiTree& tree)
 {
-    QStringList lines;
-    QString lastKey = tree.lastKey();
-    AsciiTree subHash;
     QList<bool> subIndents;
-    bool isLast;
-    foreach (const QString& key, tree.keys())
-    {
-        isLast = (key == lastKey);
-        lines << key;
-
-        if (!tree[key].isNull())
-        {
-            subHash = tree[key].value<AsciiTree>();
-            subIndents = {!isLast};
-            lines += toAsciiTree(subHash, subIndents);
-        }
-    }
+    QStringList lines = toAsciiTree(tree, subIndents, true, true);
     return lines.join("\n");
 }
 

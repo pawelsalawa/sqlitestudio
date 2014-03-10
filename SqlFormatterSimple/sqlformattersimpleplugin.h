@@ -9,8 +9,8 @@
 
 CFG_CATEGORIES(SqlFormatterSimpleConfig,
      CFG_CATEGORY(SqlFormatterSimple,
-         CFG_ENTRY(bool, UpperCaseKeywords, "upperCaseKeywords", true)
-         CFG_ENTRY(bool, TrimLongSpaces,    "trimLongSpaces", true)
+         CFG_ENTRY(bool, UpperCaseKeywords, true)
+         CFG_ENTRY(bool, TrimLongSpaces,    true)
      )
 )
 

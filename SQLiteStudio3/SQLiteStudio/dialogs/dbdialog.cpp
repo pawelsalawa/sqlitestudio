@@ -318,6 +318,13 @@ QHash<QString, QVariant> DbDialog::collectOptions()
     foreach (QString key, optionKeyToWidget.keys())
         options[key] = getValueFrom(optionKeyToType[key], optionKeyToWidget[key]);
 
+    DbPlugin* plugin = nullptr;
+    if (dbPlugins.count() > 0)
+    {
+        plugin = dbPlugins[ui->typeCombo->currentIndex()];
+        options["plugin"] = plugin->getName();
+    }
+
     return options;
 }
 
@@ -454,4 +461,20 @@ void DbDialog::on_nameEdit_textChanged(const QString &arg1)
 {
     UNUSED(arg1);
     updateState();
+}
+
+void DbDialog::accept()
+{
+    QString name = getName();
+    QString path = getPath();
+    QHash<QString, QVariant> options = collectOptions();
+    bool perm = isPermanent();
+    bool result;
+    if (mode == ADD)
+        result = DBLIST->addDb(name, path, options, perm);
+    else
+        result = DBLIST->updateDb(db, name, path, options, perm);
+
+    if (result)
+        QDialog::accept();
 }

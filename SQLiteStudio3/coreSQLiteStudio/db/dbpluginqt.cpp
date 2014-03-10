@@ -15,9 +15,9 @@ DbPluginQt::~DbPluginQt()
         QSqlDatabase::removeDatabase(probeConnName);
 }
 
-Db* DbPluginQt::getInstance(const QString &path, const QHash<QString,QVariant> &options)
+Db* DbPluginQt::getInstance(const QString &path, const QHash<QString,QVariant> &options, QString* errorMessage)
 {
-    if (!probe(path, options))
+    if (!probe(path, options, errorMessage))
         return nullptr;
 
     return getInstance();
@@ -48,7 +48,7 @@ void DbPluginQt::deinit()
 {
 }
 
-bool DbPluginQt::probe(const QString &path, const QHash<QString,QVariant> &options)
+bool DbPluginQt::probe(const QString &path, const QHash<QString,QVariant> &options, QString* errorMessage)
 {
     if (probeConnName.isNull())
         initProbeConnection();
@@ -64,6 +64,8 @@ bool DbPluginQt::probe(const QString &path, const QHash<QString,QVariant> &optio
     bool ok = false;
     if (probeDb.lastError().type() == QSqlError::NoError)
         ok = true;
+    else if (errorMessage)
+        *errorMessage = probeDb.lastError().text();
 
     probeDb.close();
     return ok;

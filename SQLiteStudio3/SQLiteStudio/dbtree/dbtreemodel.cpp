@@ -747,7 +747,7 @@ DbTreeItem *DbTreeModel::findItem(QStandardItem* parentItem, DbTreeItem::Type ty
         if (item->getType() != type)
             continue;
 
-        if (item->getDb() != db)
+        if (item->text() != db->getName())
             continue;
 
         return item;

@@ -522,13 +522,9 @@ void DbTree::addDb()
         return;
 
     QString name = dialog.getName();
-    QString path = dialog.getPath();
-    QHash<QString, QVariant> options = dialog.collectOptions();
-    bool perm = dialog.isPermanent();
-    bool result = DBLIST->addDb(name, path, options, perm);
 
     // If we created db in some group, move it there
-    if (result && currItem && currItem->getType() == DbTreeItem::Type::DIR)
+    if (currItem && currItem->getType() == DbTreeItem::Type::DIR)
     {
         DbTreeItem* dbItem = dynamic_cast<DbTreeItem*>(treeModel->findItem(DbTreeItem::Type::DB, name));
         if (!dbItem)
@@ -551,14 +547,7 @@ void DbTree::editDb()
     DbDialog dialog(DbDialog::EDIT, this);
     dialog.setDb(db);
     dialog.setPermanent(perm);
-    if (!dialog.exec())
-        return;
-
-    QString name = dialog.getName();
-    QString path = dialog.getPath();
-    QHash<QString, QVariant> options = dialog.collectOptions();
-    perm = dialog.isPermanent();
-    DBLIST->updateDb(db, name, path, options, perm);
+    dialog.exec();
 }
 
 void DbTree::removeDb()
