@@ -10,6 +10,7 @@
 * populating tables
 * option to view full db path in window title
 * generating INSERT/UPDATE/DELETE/SELECT basing on table definition
+* http://forum.sqlitestudio.pl/viewtopic.php?f=11&t=884
 
 * auto updates
 * bug reporting
