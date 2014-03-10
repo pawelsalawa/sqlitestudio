@@ -1,8 +1,20 @@
 #include "scriptingqt.h"
+#include "unused.h"
 #include <QScriptEngine>
 #include <QMutex>
 #include <QMutexLocker>
 #include <QDebug>
+
+static QScriptValue scriptingQtDebug(QScriptContext *context, QScriptEngine *engine)
+{
+    UNUSED(engine);
+    QStringList args;
+    for (int i = 0; i < context->argumentCount(); i++)
+        args << context->argument(i).toString();
+
+    qDebug() << "[ScriptingQt]" << args;
+    return QScriptValue();
+}
 
 ScriptingQt::ScriptingQt()
 {
@@ -26,8 +38,8 @@ QString ScriptingQt::getLanguage() const
 ScriptingPlugin::Context* ScriptingQt::createContext()
 {
     ContextQt* ctx = new ContextQt;
-    ctx->engine = new QScriptEngine();
     ctx->engine->pushContext();
+    ctx->scriptCache.setMaxCost(cacheSize);
     contexts << ctx;
     return ctx;
 }
@@ -39,7 +51,6 @@ void ScriptingQt::releaseContext(ScriptingPlugin::Context* context)
         return;
 
     contexts.removeOne(ctx);
-    delete ctx->engine;
     delete ctx;
 }
 
@@ -53,53 +64,56 @@ void ScriptingQt::resetContext(ScriptingPlugin::Context* context)
     ctx->engine->pushContext();
 }
 
-QVariant ScriptingQt::evaluate(const QString& code, const QList<QVariant>& args, QString* errorMessage) const
+QVariant ScriptingQt::evaluate(const QString& code, const QList<QVariant>& args, QString* errorMessage)
 {
     QMutexLocker locker(mainEngineMutex);
 
-    QScriptContext* engineContext = mainEngine->pushContext();
+    // Enter a new context
+    QScriptContext* engineContext = mainContext->engine->pushContext();
 
-    if (args.size() > 0)
-    {
-        engineContext->activationObject().setProperty("args", mainEngine->newVariant(args));
-    }
-    else
-    {
-        engineContext->activationObject().setProperty("args", mainEngine->nullValue());
-    }
+    // Call the function
+    QVariant result = evaluate(mainContext, engineContext, code, args);
 
-    QScriptValue value = mainEngine->evaluate(code);
-    if (errorMessage && mainEngine->hasUncaughtException())
-    {
-        *errorMessage = mainEngine->uncaughtException().toString() + "\n";
-        *errorMessage += mainEngine->uncaughtExceptionBacktrace().join("\n");
-    }
+    // Handle errors
+    if (!mainContext->error.isEmpty())
+        *errorMessage = mainContext->error.isEmpty();
 
-    mainEngine->popContext();
-    return value.toVariant();
+    // Leave the context to reset "this".
+    mainContext->engine->popContext();
+
+    return result;
 }
 
-QVariant ScriptingQt::evaluate(ScriptingPlugin::Context* context, const QString& code) const
+QVariant ScriptingQt::evaluate(ScriptingPlugin::Context* context, const QString& code, const QList<QVariant>& args)
 {
     ContextQt* ctx = getContext(context);
     if (!ctx)
         return QVariant();
 
-    QScriptValue value = ctx->engine->evaluate(code);
-    if (mainEngine->hasUncaughtException())
-    {
-        ctx->error = mainEngine->uncaughtException().toString() + "\n";
-        ctx->error += mainEngine->uncaughtExceptionBacktrace().join("\n");
-    }
-    else
-    {
-        ctx->error.clear();
-    }
-
-    return value.toVariant();
+    return evaluate(ctx, ctx->engine->currentContext(), code, args);
 }
 
-void ScriptingQt::setVariable(ScriptingPlugin::Context* context, const QString& name, const QVariant& value) const
+QVariant ScriptingQt::evaluate(ContextQt* ctx, QScriptContext* engineContext, const QString& code, const QList<QVariant>& args)
+{
+    // Define function to call
+    QScriptValue functionValue = getFunctionValue(ctx, code);
+
+    // Call the function
+    QScriptValue result;
+    if (args.size() > 0)
+        result = functionValue.call(engineContext->activationObject(), ctx->engine->toScriptValue(args));
+    else
+        result = functionValue.call(engineContext->activationObject());
+
+    // Handle errors
+    ctx->error.clear();
+    if (ctx->engine->hasUncaughtException())
+        ctx->error = ctx->engine->uncaughtException().toString();
+
+    return result.toVariant();
+}
+
+void ScriptingQt::setVariable(ScriptingPlugin::Context* context, const QString& name, const QVariant& value)
 {
     ContextQt* ctx = getContext(context);
     if (!ctx)
@@ -108,7 +122,7 @@ void ScriptingQt::setVariable(ScriptingPlugin::Context* context, const QString& 
     ctx->engine->globalObject().setProperty(name, ctx->engine->newVariant(value));
 }
 
-QVariant ScriptingQt::getVariable(ScriptingPlugin::Context* context, const QString& name) const
+QVariant ScriptingQt::getVariable(ScriptingPlugin::Context* context, const QString& name)
 {
     ContextQt* ctx = getContext(context);
     if (!ctx)
@@ -139,24 +153,22 @@ QString ScriptingQt::getErrorMessage(ScriptingPlugin::Context* context) const
 bool ScriptingQt::init()
 {
     QMutexLocker locker(mainEngineMutex);
-    mainEngine = new QScriptEngine();
+    mainContext = new ContextQt;
     return true;
 }
 
 void ScriptingQt::deinit()
 {
     foreach (Context* ctx, contexts)
-    {
-        delete dynamic_cast<ContextQt*>(ctx)->engine;
         delete ctx;
-    }
+
     contexts.clear();
 
     QMutexLocker locker(mainEngineMutex);
-    if (mainEngine)
+    if (mainContext)
     {
-        delete mainEngine;
-        mainEngine = nullptr;
+        delete mainContext;
+        mainContext = nullptr;
     }
 }
 
@@ -167,4 +179,36 @@ ScriptingQt::ContextQt* ScriptingQt::getContext(ScriptingPlugin::Context* contex
         qDebug() << "Invalid context passed to ScriptingQt:" << context;
 
     return ctx;
+}
+
+QScriptValue ScriptingQt::getFunctionValue(ContextQt* ctx, const QString& code)
+{
+    static const QString fnDef = QStringLiteral("(function () {%1\n})");
+
+    QScriptProgram* prog = nullptr;
+    if (!ctx->scriptCache.contains(code))
+    {
+        prog = new QScriptProgram(fnDef.arg(code));
+        ctx->scriptCache.insert(code, prog);
+    }
+    else
+    {
+        prog = ctx->scriptCache[code];
+    }
+    return ctx->engine->evaluate(*prog);
+}
+
+ScriptingQt::ContextQt::ContextQt()
+{
+    engine = new QScriptEngine();
+    engine->globalObject().setProperty("debug", engine->newFunction(scriptingQtDebug));
+}
+
+ScriptingQt::ContextQt::~ContextQt()
+{
+    if (engine)
+    {
+        delete engine;
+        engine = nullptr;
+    }
 }
