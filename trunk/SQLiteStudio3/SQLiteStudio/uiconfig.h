@@ -44,6 +44,15 @@ CFG_CATEGORIES(Ui,
         CFG_ENTRY(QColor,       StatusFieldInfoFg,       Qt::darkBlue)
         CFG_ENTRY(QColor,       StatusFieldWarnFg,       Qt::black)
         CFG_ENTRY(QColor,       StatusFieldErrorFg,      Qt::red)
+        CFG_ENTRY(QColor,       JavaScriptFg,            "#000000")
+        CFG_ENTRY(QColor,       JavaScriptComment,       "#808080")
+        CFG_ENTRY(QColor,       JavaScriptNumber,        "#008000")
+        CFG_ENTRY(QColor,       JavaScriptString,        "#800000")
+        CFG_ENTRY(QColor,       JavaScriptOperator,      "#808000")
+        CFG_ENTRY(QColor,       JavaScriptIdentifier,    "#000020")
+        CFG_ENTRY(QColor,       JavaScriptKeyword,       "#000080")
+        CFG_ENTRY(QColor,       JavaScriptBuiltIn,       "#008080")
+        CFG_ENTRY(QColor,       JavaScriptMarker,        "#ffff00")
     )
 
     CFG_CATEGORY(General,

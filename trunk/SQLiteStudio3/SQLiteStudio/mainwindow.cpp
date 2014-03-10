@@ -18,6 +18,7 @@
 #include "formmanager.h"
 #include "customconfigwidgetplugin.h"
 #include "sqlitesyntaxhighlighter.h"
+#include "javascriptsyntaxhighlighter.h"
 #include <QMdiSubWindow>
 #include <QDebug>
 #include <QStyleFactory>
@@ -73,6 +74,7 @@ void MainWindow::init()
     PLUGINS->registerPluginType<CustomConfigWidgetPlugin>(tr("Configuration widgets"));
     PLUGINS->registerPluginType<SyntaxHighlighterPlugin>(tr("Syntax highlighting engines"));
     PLUGINS->loadBuiltInPlugin(new SqliteHighlighterPlugin);
+    PLUGINS->loadBuiltInPlugin(new JavaScriptHighlighterPlugin);
 }
 
 EditorWindow* MainWindow::openSqlEditor()

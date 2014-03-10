@@ -17,7 +17,6 @@ class ScriptingQt : public GenericPlugin, public ScriptingPlugin
 {
     Q_OBJECT
 
-    SQLITESTUDIO_PLUGIN
     SQLITESTUDIO_PLUGIN_TITLE("Qt scripting")
     SQLITESTUDIO_PLUGIN_DESC("Qt scripting support.")
     SQLITESTUDIO_PLUGIN_VERSION(10000)

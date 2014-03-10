@@ -117,7 +117,8 @@ SOURCES += main.cpp\
     datagrid/sqlqueryrownummodel.cpp \
     windows/functionseditor.cpp \
     windows/functionseditormodel.cpp \
-    sqlitesyntaxhighlighter.cpp
+    sqlitesyntaxhighlighter.cpp \
+    javascriptsyntaxhighlighter.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -220,7 +221,8 @@ HEADERS  += mainwindow.h \
     windows/functionseditor.h \
     windows/functionseditormodel.h \
     syntaxhighlighterplugin.h \
-    sqlitesyntaxhighlighter.h
+    sqlitesyntaxhighlighter.h \
+    javascriptsyntaxhighlighter.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \

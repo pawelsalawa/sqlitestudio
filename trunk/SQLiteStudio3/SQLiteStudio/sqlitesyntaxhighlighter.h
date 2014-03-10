@@ -162,7 +162,6 @@ class SqliteHighlighterPlugin : public GenericPlugin, public SyntaxHighlighterPl
 {
     Q_OBJECT
 
-    SQLITESTUDIO_PLUGIN
     SQLITESTUDIO_PLUGIN_TITLE("SQL highlighter")
     SQLITESTUDIO_PLUGIN_DESC("SQL (SQLite) syntax highlighter.")
     SQLITESTUDIO_PLUGIN_VERSION(10000)
