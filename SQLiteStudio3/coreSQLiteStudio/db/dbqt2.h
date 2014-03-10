@@ -9,8 +9,18 @@
 /**
  * @brief Variation of DbQt for SQLite 2.
  *
- * Inherit this when implementing Db for SQLite 2.
- * See DbQt for more details.
+ * Inherit this when implementing Db for SQLite 2. In most cases you will only need
+ * to create one public constructor, which forwards parameters to the DbQt3 constructor.
+ * This be sufficient to implement SQLite 2 database plugin.
+ * Just link it with proper SQLite library.
+ *
+ * The template parameter is currently not used for anything specific, so pass any unique type name.
+ * The best would be to define empty class/structure just for this purpose.
+ * The parameter is there, so this class becomes a template class.
+ * We need a template class so we can provide common code base for all SQLite 2 plugins, while the
+ * code doesn't introduce dependency to SQLite 2 library, until it's used, which is in SQLite 2 plugins.
+ *
+ * @see DbQt
  */
 template <class T>
 class DbQt2 : public DbQt
@@ -247,14 +257,6 @@ class DbQt2 : public DbQt
 
             storeResult(func, result, ok);
             releaseAggregateContext(func);
-        }
-
-        static void deleteUserData(FunctionUserData* userData)
-        {
-            if (!userData)
-                return;
-
-            delete userData;
         }
 
         static void* getContextMemPtr(sqlite_func* func)
