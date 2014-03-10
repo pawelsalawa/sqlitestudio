@@ -56,6 +56,19 @@ class API_EXPORT DbQt : public Db
         static QHash<QString,QVariant> getAggregateContext(void* memPtr);
         static void setAggregateContext(void* memPtr, const QHash<QString,QVariant>& aggregateContext);
         static void releaseAggregateContext(void* memPtr);
+
+        /**
+         * @brief Evaluates requested function using defined implementation code and provides result.
+         * @param dataPtr SQL function user data (defined when registering function). Must be of FunctionUserData* type, or descendant.
+         * @param argList List of arguments passed to the function.
+         * @param[out] ok true (default) to indicate successful execution, or false to report an error.
+         * @return Result returned from the plugin handling function implementation.
+         *
+         * This method is aware of the implementation language and the code defined for it,
+         * so it delegates the execution to the proper plugin handling that language.
+         *
+         * This method is called for scalar functions.
+         */
         static QVariant evaluateScalar(void* dataPtr, const QList<QVariant>& argList, bool& ok);
         static void evaluateAggregateStep(void* dataPtr, QHash<QString, QVariant>& aggregateContext, QList<QVariant> argList);
         static QVariant evaluateAggregateFinal(void* dataPtr, QHash<QString, QVariant>& aggregateContext, bool& ok);

@@ -136,9 +136,7 @@ SOURCES += sqlitestudio.cpp \
     table.cpp \
     column.cpp \
     dbattacher.cpp \
-    db/dbqt2.cpp \
     functionmanager.cpp \
-    db/dbqt3.cpp \
     scriptingqt.cpp
 
 HEADERS += sqlitestudio.h\
