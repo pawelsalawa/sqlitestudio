@@ -1,5 +1,6 @@
 * support WITH clause
 * context menu for taskbar
+* CLI history in table, inserting per each execution
 
 * add nice api for accessing menus and toolbars, so plugins can easly add/remove from them
 * check performance for millions of rows

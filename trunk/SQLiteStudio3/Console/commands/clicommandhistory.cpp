@@ -13,10 +13,10 @@ void CliCommandHistory::execute()
     }
 
     int cols = getCliColumns();
-    QString hline = pad("", cols-1, '-');
+    QString hline = pad("", cols, '-');
     foreach (const QString& line, cli->getHistory())
     {
-        println(hline);
+        print(hline);
         println(line);
     }
     println(hline);

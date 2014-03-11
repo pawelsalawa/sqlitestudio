@@ -83,6 +83,12 @@ void CliCommand::println(const QString &str)
     qOut.flush();
 }
 
+void CliCommand::print(const QString& str)
+{
+    qOut << str;
+    qOut.flush();
+}
+
 void CliCommand::printBox(const QString& str)
 {
     int cols = getCliColumns();

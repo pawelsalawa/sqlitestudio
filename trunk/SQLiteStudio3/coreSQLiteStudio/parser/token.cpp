@@ -145,6 +145,21 @@ bool Token::isWhitespace() const
     return (type == SPACE || type == COMMENT);
 }
 
+bool Token::isSeparating() const
+{
+    switch (type)
+    {
+        case Token::SPACE:
+        case Token::PAR_LEFT:
+        case Token::PAR_RIGHT:
+        case Token::OPERATOR:
+            return true;
+        default:
+            break;
+    }
+    return false;
+}
+
 bool Token::isDbObjectType() const
 {
     return ((type & TOKEN_TYPE_MASK_DB_OBJECT) == TOKEN_TYPE_MASK_DB_OBJECT);
