@@ -10,6 +10,15 @@ class CliCommandMode : public CliCommand
         QString shortHelp() const;
         QString fullHelp() const;
         void defineSyntax();
+
+    protected:
+        QStringList getCompletionValuesFor(int id);
+
+    private:
+        enum ArgIgs
+        {
+            MODE
+        };
 };
 
 #endif // CLICOMMANDMODE_H

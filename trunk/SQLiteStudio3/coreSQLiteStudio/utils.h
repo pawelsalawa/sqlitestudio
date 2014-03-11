@@ -86,6 +86,13 @@ API_EXPORT QString longest(const QStringList& strList);
 API_EXPORT QString shortest(const QStringList& strList);
 
 /**
+ * @brief Finds the longest common part of all strings.
+ * @param strList List to compare strings from.
+ * @return Longest common string (looking from the begining of each string) from the list.
+ */
+API_EXPORT QString longestCommonPart(const QStringList& strList);
+
+/**
  * @brief Applies margin of given number of characters to the string, splitting it into lines.
  * @param str String to apply the margin to.
  * @param margin Number of characters allows in single line.

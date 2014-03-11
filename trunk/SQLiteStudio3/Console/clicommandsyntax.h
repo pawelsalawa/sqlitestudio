@@ -23,6 +23,8 @@ class CliCommandSyntax
 
         bool parse(const QStringList& args);
         QString getErrorText() const;
+        QStringList getStrictArgumentCandidates();
+        QList<int> getRegularArgumentCandidates();
 
         void addAlias(const QString& alias);
         QStringList getAliases() const;
@@ -45,9 +47,9 @@ class CliCommandSyntax
     private:
         struct Argument
         {
-                enum Type
-                {
-                    REGULAR,
+            enum Type
+            {
+                REGULAR,
                 STRICT,
                 ALTERNATED
             };
@@ -80,11 +82,13 @@ class CliCommandSyntax
         int argPosition = 0;
         QString parsingErrorText;
         bool strictArgumentCount = true;
+        bool pastOptions = false;
         QString name;
         QStringList aliases;
         QList<Argument*> arguments;
         QHash<int,Argument*> argumentMap;
         QList<Option*> options;
+        Option* lastParsedOption = nullptr;
         QHash<int,Option*> optionMap;
         QHash<QString,Option*> optionsShortNameMap;
         QHash<QString,Option*> optionsLongNameMap;

@@ -49,20 +49,18 @@ class CliCommand : public QObject
         QString usage() const;
         QString usage(const QString& alias) const;
         QString getName() const;
+        QStringList complete(const QStringList& args);
 
     protected:
         enum ArgIds
         {
-            FILE_NAME,
-            DB_NAME,
-            DB_NAME_OR_FILE,
-            FILE_PATH,
-            PATTERN,
-            DIR_PATH,
-            CMD_NAME,
-            OPER_TYPE,
-            MODE,
-            STRING
+            DB_NAME         = 1000,
+            DB_NAME_OR_FILE = 1001,
+            FILE_PATH       = 1002,
+            PATTERN         = 1003,
+            DIR_PATH        = 1004,
+            CMD_NAME        = 1005,
+            STRING          = 1006
         };
 
         static void println(const QString& str = "");
@@ -70,6 +68,7 @@ class CliCommand : public QObject
         static QString cmdName(const QString& cmd);
 
         void printUsage();
+        virtual QStringList getCompletionValuesFor(int id);
 
         CLI* cli;
         Config* config;

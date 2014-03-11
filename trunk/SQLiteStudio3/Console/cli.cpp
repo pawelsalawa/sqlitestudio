@@ -17,6 +17,7 @@
 #include <QLibrary>
 
 #if defined(Q_OS_WIN32)
+#include "clicompleter.h"
 #include "readline.h"
 #elif defined(Q_OS_UNIX)
 #include <readline/readline.h>
@@ -30,6 +31,7 @@ CLI::CLI(QObject *parent) :
 
     using_history();
     loadHistory();
+    CliCompleter::getInstance()->init(this);
 }
 
 CLI::~CLI()
@@ -173,6 +175,11 @@ void CLI::saveHistory()
     CFG_CLI.Console.History.set(cfgHistory);
 }
 
+QString CLI::getLine() const
+{
+    return line;
+}
+
 void CLI::openDbFile(const QString& path)
 {
     QString newName = DbManager::generateDbName(path);
@@ -193,7 +200,6 @@ void CLI::doWork()
     QString cmd;
     QStringList cmdArgs;
     QString cPrompt;
-    QString line;
     int hist_length = 0;
     char *cline;
     while (!doExit)
@@ -220,6 +226,7 @@ void CLI::doWork()
             }
 
             cline = readline(cPrompt.toLatin1().data());
+
             line += cline;
             free(cline);
         }
