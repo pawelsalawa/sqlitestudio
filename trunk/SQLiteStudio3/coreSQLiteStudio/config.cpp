@@ -342,6 +342,63 @@ QAbstractItemModel* Config::getSqlHistoryModel()
     return sqlHistoryModel;
 }
 
+void Config::addCliHistory(const QString& text)
+{
+    static const QString insertQuery = QStringLiteral("INSERT INTO cli_history (text) VALUES (:text)");
+
+    QSqlQuery query(*db);
+    query.prepare(insertQuery);
+    query.bindValue(":text", text);
+    query.exec();
+
+    if (query.lastError().isValid())
+        qWarning() << "Error while adding CLI history:" << query.lastError().text();
+
+    applyCliHistoryLimit();
+}
+
+void Config::applyCliHistoryLimit()
+{
+    static const QString limitQuery = QStringLiteral("DELETE FROM cli_history WHERE id >= (SELECT id FROM cli_history ORDER BY id LIMIT 1 OFFSET %1)");
+
+    QSqlQuery query(*db);
+    query.exec(limitQuery.arg(CFG_CORE.Console.HistorySize.get()));
+
+    if (query.lastError().isValid())
+        qWarning() << "Error while limiting CLI history:" << query.lastError().text();
+
+}
+
+void Config::clearCliHistory()
+{
+    static const QString clearQuery = QStringLiteral("DELETE FROM cli_history");
+
+    QSqlQuery query(*db);
+    query.prepare(clearQuery);
+    query.exec();
+
+    if (query.lastError().isValid())
+        qWarning() << "Error while clearing CLI history:" << query.lastError().text();
+}
+
+QStringList Config::getCliHistory() const
+{
+    static const QString selectQuery = QStringLiteral("SELECT text FROM cli_history ORDER BY id");
+
+    QSqlQuery query(*db);
+    query.prepare(selectQuery);
+    query.exec();
+
+    if (query.lastError().isValid())
+        qWarning() << "Error while getting CLI history:" << query.lastError().text();
+
+    QStringList list;
+    while (query.next())
+        list << query.value("text").toString();
+
+    return list;
+}
+
 void Config::addDdlHistory(const QString& queries, const QString& dbName, const QString& dbFile)
 {
     QSqlQuery query(*db);
@@ -667,6 +724,9 @@ void Config::initTables()
                  "SELECT RAISE(ROLLBACK, 'Cannot assign function to database, because it is marked for all databases.'); "
                  "END");
     }
+
+    if (!tables.contains("cli_history"))
+        db->exec("CREATE TABLE cli_history (id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT)");
 }
 
 void Config::initDbFile()

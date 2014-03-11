@@ -30,8 +30,6 @@ CFG_CATEGORIES(Cli,
         CFG_ENTRY(int,                     ColumnMaxWidth,     20)
         CFG_ENTRY(CliResultsDisplay::Mode, ResultsDisplayMode, CliResultsDisplay::CLASSIC)
         CFG_ENTRY(QString,                 NullValue,          "")
-        CFG_ENTRY(QStringList,             History,            QStringList())
-        CFG_ENTRY(int,                     HistorySize,        100)
     )
 )
 

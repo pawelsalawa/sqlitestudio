@@ -170,6 +170,9 @@ QStringList CliCommandSyntax::getStrictArgumentCandidates()
     QStringList results;
     if (!pastOptions)
     {
+        if (lastParsedOption && !lastParsedOption->argName.isEmpty())
+            return results; // this case is covered by getRegularArgumentCandidates()
+
         foreach (Option* opt, options)
         {
             if (opt->requested)
@@ -195,7 +198,11 @@ QList<int> CliCommandSyntax::getRegularArgumentCandidates()
     QList<int> results;
 
     if (!pastOptions && lastParsedOption && !lastParsedOption->argName.isEmpty())
+    {
+        // We're exactly at the spot where the option argument is expected
         results << lastParsedOption->id;
+        return results;
+    }
 
     if (argPosition < arguments.size())
     {
@@ -362,7 +369,7 @@ bool CliCommandSyntax::parseOpt(const QString& arg, const QStringList& args, int
     }
     else
     {
-        QString shortName = arg.mid(1, 1);
+        QString shortName = arg.mid(1);
         if (optionsShortNameMap.contains(shortName))
             opt = optionsShortNameMap.value(shortName);
     }
@@ -378,7 +385,7 @@ bool CliCommandSyntax::parseOpt(const QString& arg, const QStringList& args, int
 
     if (!opt->argName.isEmpty())
     {
-        if (args.size() < (argIdx + 1))
+        if (args.size() <= (argIdx + 1))
         {
             parsingErrorText = QObject::tr("Option %1 requires an argument.", "CLI command syntax").arg(arg);
             return false;

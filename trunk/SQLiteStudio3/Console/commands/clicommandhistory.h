@@ -14,8 +14,13 @@ class CliCommandHistory : public CliCommand
     private:
         enum ArgIds
         {
-            OPER_TYPE
+            OPER_TYPE,
+            HIST_LIMIT,
+            SHOW_LIMIT
         };
+
+        void clear();
+        void setMax(const QString& arg);
 };
 
 #endif // CLICOMMANDHISTORY_H
