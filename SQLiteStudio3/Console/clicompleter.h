@@ -17,6 +17,7 @@ class CliCompleter
         CliCompleter();
         QStringList completeInternal(const QString& toBeReplaced, const QString& text, int curPos);
         QStringList completeCommand(const QString& str, int curPos);
+        QStringList completeQuery(const QString& toBeReplaced, const QString& str, int curPos);
         bool doKeepOriginalStr(const QString& str, int curPos);
 
         static char** toCharArray(const QStringList& list);

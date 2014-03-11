@@ -9,6 +9,7 @@
 #include "utils.h"
 #include "utils_sql.h"
 #include "climsghandler.h"
+#include "clicompleter.h"
 #include <QCoreApplication>
 #include <QThread>
 #include <QFile>
@@ -17,7 +18,6 @@
 #include <QLibrary>
 
 #if defined(Q_OS_WIN32)
-#include "clicompleter.h"
 #include "readline.h"
 #elif defined(Q_OS_UNIX)
 #include <readline/readline.h>
@@ -37,7 +37,6 @@ CLI::CLI()
 
 CLI::~CLI()
 {
-    saveHistory();
 }
 
 CLI* CLI::getInstance()
@@ -286,6 +285,7 @@ void CLI::doWork()
 
 void CLI::done()
 {
+    saveHistory();
     deleteLater();
     qApp->exit();
 }

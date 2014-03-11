@@ -5,17 +5,27 @@
 #include "unused.h"
 #include "commands/clicommand.h"
 #include "parser/lexer.h"
+#include "commands/clicommandfactory.h"
 #include <QString>
 #include <QDebug>
 
 #if defined(Q_OS_WIN32)
 #include "readline.h"
-#include <commands/clicommandfactory.h>
 #elif defined(Q_OS_UNIX)
 #include <readline/readline.h>
 #endif
 
 CliCompleter* CliCompleter::instance = nullptr;
+
+CliCompleter::CliCompleter()
+{
+}
+
+void CliCompleter::init(CLI* value)
+{
+    rl_attempted_completion_function = CliCompleter::complete;
+    cli = value;
+}
 
 CliCompleter* CliCompleter::getInstance()
 {
@@ -28,6 +38,12 @@ CliCompleter* CliCompleter::getInstance()
 char** CliCompleter::complete(const char* text, int start, int end)
 {
     UNUSED(start);
+
+#ifdef Q_OS_UNIX
+    // Unix readline needs this to disable the completion using rl_completion_entry_function
+    rl_attempted_completion_over = 1;
+#endif
+
     return toCharArray(getInstance()->completeInternal(QString::fromLocal8Bit(text), QString::fromLocal8Bit(rl_line_buffer), end));
 }
 
@@ -42,33 +58,24 @@ QStringList CliCompleter::completeInternal(const QString& toBeReplaced, const QS
 
     str += text;
 
-    if (str.startsWith(CFG_CLI.Console.CommandPrefixChar.get()))
-        return completeCommand(str, curPos);
-
-    bool keepOriginalStr = doKeepOriginalStr(str, curPos);
-
-    CompletionHelper::Results results = CompletionHelper::getExpectedTokens(str, curPos, cli->getCurrentDb());
-    QList<ExpectedTokenPtr> expectedTokens = results.filtered();
-
     QStringList list;
-    foreach (const ExpectedTokenPtr& token, expectedTokens)
-        list << token->value;
-
-    list.removeAll("");
-    if (list.size() > 1)
-        list.removeOne(";"); // we don't want it together with other proposals, cause it introduces problems when proposed by completer
+    if (str.startsWith(CFG_CLI.Console.CommandPrefixChar.get()))
+        list = completeCommand(str, curPos);
+    else
+        list = completeQuery(toBeReplaced, str, curPos);
 
     list.removeDuplicates();
 
-    if (keepOriginalStr)
-    {
-        QMutableStringListIterator it(list);
-        while (it.hasNext())
-            it.next().prepend(toBeReplaced);
-    }
-
+#ifdef Q_OS_WIN
     if (list.size() == 1)
         list[0] += " ";
+#endif
+
+#ifdef Q_OS_UNIX
+    // Unix readline treats first element in the list as a common value of all elements
+    if (list.size() > 0)
+        list.prepend(longestCommonPart(list));
+#endif
 
     return list;
 }
@@ -103,12 +110,31 @@ QStringList CliCompleter::completeCommand(const QString& str, int curPos)
             results << CFG_CLI.Console.CommandPrefixChar.get() + cmdName;
     }
 
-    results.removeDuplicates();
-
-    if (results.size() == 1)
-        results[0] += " ";
-
     return results;
+}
+
+QStringList CliCompleter::completeQuery(const QString& toBeReplaced, const QString& str, int curPos)
+{
+    QStringList list;
+    bool keepOriginalStr = doKeepOriginalStr(str, curPos);
+
+    CompletionHelper::Results results = CompletionHelper::getExpectedTokens(str, curPos, cli->getCurrentDb());
+    QList<ExpectedTokenPtr> expectedTokens = results.filtered();
+
+    foreach (const ExpectedTokenPtr& token, expectedTokens)
+        list << token->value;
+
+    list.removeAll("");
+    if (list.size() > 1)
+        list.removeOne(";"); // we don't want it together with other proposals, cause it introduces problems when proposed by completer
+
+    if (keepOriginalStr)
+    {
+        QMutableStringListIterator it(list);
+        while (it.hasNext())
+            it.next().prepend(toBeReplaced);
+    }
+    return list;
 }
 
 bool CliCompleter::doKeepOriginalStr(const QString& str, int curPos)
@@ -121,38 +147,24 @@ bool CliCompleter::doKeepOriginalStr(const QString& str, int curPos)
     if (tokens.size() == 0)
         return false;
 
-    switch (tokens.last()->type)
-    {
-        case Token::SPACE:
-        case Token::PAR_LEFT:
-        case Token::PAR_RIGHT:
-        case Token::OPERATOR:
-            return true;
-        default:
-            break;
-    }
-    return false;
+    return tokens.last()->isSeparating();
 }
 
 char** CliCompleter::toCharArray(const QStringList& list)
 {
+    if (list.size() == 0)
+        return nullptr;
+
     char** array = (char**)malloc((list.size() + 1) * sizeof(char*));
     array[list.size()] = nullptr;
 
     int i = 0;
     foreach (const QString& str, list)
+#if defined(Q_OS_WIN)
         array[i++] = _strdup(str.toLocal8Bit().data());
+#elif defined(Q_OS_UNIX)
+        array[i++] = strdup(str.toLocal8Bit().data());
+#endif
 
     return array;
 }
-
-CliCompleter::CliCompleter()
-{
-}
-
-void CliCompleter::init(CLI* value)
-{
-    rl_attempted_completion_function = CliCompleter::complete;
-    cli = value;
-}
-

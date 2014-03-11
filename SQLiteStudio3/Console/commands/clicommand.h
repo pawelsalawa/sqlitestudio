@@ -69,6 +69,7 @@ class CliCommand : public QObject
         };
 
         static void println(const QString& str = "");
+        static void print(const QString& str = "");
         static void printBox(const QString& str);
         static QString cmdName(const QString& cmd);
 

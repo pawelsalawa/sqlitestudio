@@ -193,6 +193,12 @@ struct API_EXPORT Token
     bool isWhitespace() const;
 
     /**
+     * @brief Tests whether this token represents separating value (like an operator, or parenthesis) in SQL understanding.
+     * @return true if it's a separating token, or false otherwise.
+     */
+    bool isSeparating() const;
+
+    /**
      * @brief Tests whether this token is representing any kind of database object name.
      * @return true if the token is the name an object, or false otherwise.
      *
