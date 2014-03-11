@@ -10,6 +10,12 @@ class CliCommandHistory : public CliCommand
         QString shortHelp() const;
         QString fullHelp() const;
         void defineSyntax();
+
+    private:
+        enum ArgIds
+        {
+            OPER_TYPE
+        };
 };
 
 #endif // CLICOMMANDHISTORY_H

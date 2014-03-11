@@ -108,7 +108,8 @@ void CliCommandSyntax::setStrictArgumentCount(bool value)
 
 bool CliCommandSyntax::parse(const QStringList& args)
 {
-    bool pastOptions = false;
+    pastOptions = (options.size() == 0);
+    lastParsedOption = nullptr;
     QString arg;
     bool res = false;
     int argCnt = args.size();
@@ -151,6 +152,54 @@ bool CliCommandSyntax::parse(const QStringList& args)
 QString CliCommandSyntax::getErrorText() const
 {
     return parsingErrorText;
+}
+
+QStringList CliCommandSyntax::getStrictArgumentCandidates()
+{
+    QStringList results;
+    if (!pastOptions)
+    {
+        foreach (Option* opt, options)
+        {
+            if (opt->requested)
+                continue;
+
+            if (!opt->shortName.isEmpty())
+                results << "-"+opt->shortName;
+
+            if (!opt->longName.isEmpty())
+                results << "--"+opt->longName;
+        }
+        results << "--";
+    }
+
+    if (argPosition < arguments.size() && arguments[argPosition]->type == Argument::STRICT)
+        results += arguments[argPosition]->names;
+
+    return results;
+}
+
+QList<int> CliCommandSyntax::getRegularArgumentCandidates()
+{
+    QList<int> results;
+
+    if (!pastOptions && lastParsedOption && !lastParsedOption->argName.isEmpty())
+        results << lastParsedOption->id;
+
+    if (argPosition < arguments.size())
+    {
+        switch (arguments[argPosition]->type)
+        {
+            case Argument::REGULAR:
+            case Argument::ALTERNATED:
+                results << arguments[argPosition]->id;
+                break;
+            case Argument::STRICT:
+                break;
+        }
+    }
+
+    return results;
 }
 
 void CliCommandSyntax::addAlias(const QString& alias)
@@ -314,6 +363,7 @@ bool CliCommandSyntax::parseOpt(const QString& arg, const QStringList& args, int
     }
 
     opt->requested = true;
+    lastParsedOption = opt;
 
     if (!opt->argName.isEmpty())
     {

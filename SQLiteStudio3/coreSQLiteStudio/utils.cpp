@@ -244,6 +244,25 @@ QString shortest(const QStringList& strList)
     return result;
 }
 
+QString longestCommonPart(const QStringList& strList)
+{
+   if (strList.size() == 0)
+       return QString::null;
+
+   QString common;
+   QString first = strList.first();
+   for (int i = 0; i < first.length(); i++)
+   {
+       common += first[i];
+       foreach (const QString& str, strList)
+       {
+           if (!str.startsWith(common))
+               return common.left(i);
+       }
+   }
+   return common;
+}
+
 QStringList applyMargin(const QString& str, int margin)
 {
     QStringList lines;

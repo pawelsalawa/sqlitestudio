@@ -54,3 +54,13 @@ void CliCommandMode::defineSyntax()
     syntax.setName("mode");
     syntax.addArgument(MODE, tr("mode", "CLI command syntax"), false);
 }
+
+QStringList CliCommandMode::getCompletionValuesFor(int id)
+{
+    QStringList results;
+    if (id == MODE)
+    {
+        results << "classic" << "fixed" << "row";
+    }
+    return results;
+}

@@ -65,6 +65,11 @@ QHash<QString,CliCommand*> CliCommandFactory::getAllCommands()
     return results;
 }
 
+QStringList CliCommandFactory::getCommandNames()
+{
+    return mapping.keys();
+}
+
 void CliCommandFactory::registerCommand(CliCommandCreatorFunc func)
 {
     CliCommand* cmd = func();

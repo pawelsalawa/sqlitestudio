@@ -4,6 +4,7 @@
 #include "cli_config.h"
 #include "cliutils.h"
 #include "utils.h"
+#include "clicommandfactory.h"
 
 CliCommand::CliCommand()
 {
@@ -53,6 +54,18 @@ QString CliCommand::getName() const
     return syntax.getName();
 }
 
+QStringList CliCommand::complete(const QStringList& args)
+{
+    syntax.parse(args.mid(0, args.size() - 1));
+
+    QStringList results;
+    results += syntax.getStrictArgumentCandidates();
+    foreach (int id, syntax.getRegularArgumentCandidates())
+        results += getCompletionValuesFor(id);
+
+    return results;
+}
+
 QStringList CliCommand::aliases() const
 {
     return syntax.getAliases();
@@ -83,6 +96,34 @@ void CliCommand::printUsage()
 {
     println(tr("Usage: %1%2").arg(CFG_CLI.Console.CommandPrefixChar.get()).arg(usage()));
     println("");
+}
+
+QStringList CliCommand::getCompletionValuesFor(int id)
+{
+    QStringList results;
+    if (id < 1000) // this base implementation is only for local enum values (>= 1000).
+        return results;
+
+    switch (static_cast<ArgIds>(id))
+    {
+        case CliCommand::DB_NAME:
+            break;
+        case CliCommand::DB_NAME_OR_FILE:
+            break;
+        case CliCommand::FILE_PATH:
+            break;
+        case CliCommand::DIR_PATH:
+            break;
+        case CliCommand::CMD_NAME:
+            results += CliCommandFactory::getCommandNames();
+            break;
+        case CliCommand::PATTERN:
+            results += "*";
+        case CliCommand::STRING:
+            break;
+    }
+
+    return results;
 }
 
 QString CliCommand::cmdName(const QString& cmd)

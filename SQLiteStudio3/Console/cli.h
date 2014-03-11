@@ -24,18 +24,20 @@ class CLI : public QObject
         Db* getCurrentDb() const;
         void exit();
         QStringList getHistory() const;
+        QString getLine() const;
 
     private:
-        void println(const QString& msg);
         void waitForExecution();
         bool isComplete(const QString& contents) const;
         void loadHistory();
         void saveHistory();
+        void println(const QString& msg = QString());
 
         QThread* thread;
         Db* currentDb = nullptr;
         bool executionFinished = false;
         bool doExit = false;
+        QString line;
 
     signals:
         void execCommand(CliCommand* cmd, QStringList args);
