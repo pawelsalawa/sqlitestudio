@@ -1,13 +1,16 @@
 #include "clicommanddir.h"
 #include <QDir>
 
-void CliCommandDir::execute(const QStringList& args)
+void CliCommandDir::execute()
 {
     QDir dir;
     QFileInfoList entries;
 
-    if (args.size() == 1)
-        entries = dir.entryInfoList({args[0]}, QDir::AllEntries|QDir::NoDotAndDotDot, QDir::DirsFirst|QDir::LocaleAware|QDir::Name);
+    if (syntax.isArgumentSet(DIR_OR_FILE))
+    {
+        QString filter = getFilterAndFixDir(dir, syntax.getArgument(DIR_OR_FILE));
+        entries = dir.entryInfoList({filter}, QDir::AllEntries|QDir::NoDotAndDotDot, QDir::DirsFirst|QDir::LocaleAware|QDir::Name);
+    }
     else
         entries = dir.entryInfoList(QDir::AllEntries|QDir::NoDotAndDotDot, QDir::DirsFirst|QDir::LocaleAware|QDir::Name);
 
@@ -17,6 +20,9 @@ void CliCommandDir::execute(const QStringList& args)
         name = entry.fileName();
         if (entry.isDir())
             name += "/";
+
+        if (dir != QDir::current())
+            name.prepend(dir.path()+"/");
 
         println(name);
     }
@@ -32,13 +38,13 @@ QString CliCommandDir::fullHelp() const
     return tr(
                 "This is very similar to 'dir' command known from Windows and 'ls' command from Unix systems.\n"
                 "\n"
-                "You can pass <pattern> with wildcard characters to filter output.\n"
-                );
+                "You can pass <pattern> with wildcard characters to filter output."
+             );
 }
 
 void CliCommandDir::defineSyntax()
 {
     syntax.setName("dir");
     syntax.addAlias("ls");
-    syntax.addArgument(PATTERN, tr("pattern"), false);
+    syntax.addArgument(DIR_OR_FILE, tr("pattern"), false);
 }

@@ -3,9 +3,9 @@
 #include "utils.h"
 #include "cliutils.h"
 
-void CliCommandHistory::execute(const QStringList& args)
+void CliCommandHistory::execute()
 {
-    if (args.size() == 1)
+    if (syntax.isArgumentSet(OPER_TYPE))
     {
         cli->clearHistory();
         println(tr("Console history erased."));

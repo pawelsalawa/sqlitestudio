@@ -2,9 +2,8 @@
 #include "cli.h"
 #include "unused.h"
 
-void CliCommandExit::execute(const QStringList& args)
+void CliCommandExit::execute()
 {
-    UNUSED(args);
     cli->exit();
 }
 

@@ -16,8 +16,9 @@ class CLI : public QObject
     Q_OBJECT
 
     public:
-        explicit CLI(QObject *parent = 0);
         ~CLI();
+
+        static CLI* getInstance();
 
         void start();
         void setCurrentDb(Db* db);
@@ -27,11 +28,15 @@ class CLI : public QObject
         QString getLine() const;
 
     private:
+        CLI();
+
         void waitForExecution();
         bool isComplete(const QString& contents) const;
         void loadHistory();
         void saveHistory();
         void println(const QString& msg = QString());
+
+        static CLI* instance;
 
         QThread* thread;
         Db* currentDb = nullptr;
@@ -40,7 +45,7 @@ class CLI : public QObject
         QString line;
 
     signals:
-        void execCommand(CliCommand* cmd, QStringList args);
+        void execCommand(CliCommand* cmd);
 
     public slots:
         void doWork();

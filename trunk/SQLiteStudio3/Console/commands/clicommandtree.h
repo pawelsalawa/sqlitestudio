@@ -8,7 +8,7 @@
 class CliCommandTree : public CliCommand
 {
     public:
-        void execute(const QStringList& args);
+        void execute();
         QString shortHelp() const;
         QString fullHelp() const;
         void defineSyntax();

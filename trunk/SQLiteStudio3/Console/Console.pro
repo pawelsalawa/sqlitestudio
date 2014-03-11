@@ -47,7 +47,8 @@ SOURCES += main.cpp \
     commands/clicommandcd.cpp \
     clicommandsyntax.cpp \
     commands/clicommandtree.cpp \
-    clicompleter.cpp
+    clicompleter.cpp \
+    commands/clicommanddesc.cpp
 
 LIBS += -lcoreSQLiteStudio
 
@@ -86,4 +87,5 @@ HEADERS += \
     commands/clicommandcd.h \
     clicommandsyntax.h \
     commands/clicommandtree.h \
-    clicompleter.h
+    clicompleter.h \
+    commands/clicommanddesc.h

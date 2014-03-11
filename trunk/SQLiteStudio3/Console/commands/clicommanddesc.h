@@ -1,15 +1,16 @@
-#ifndef CLICOMMANDPWD_H
-#define CLICOMMANDPWD_H
+#ifndef CLICOMMANDDESC_H
+#define CLICOMMANDDESC_H
 
 #include "clicommand.h"
 
-class CliCommandPwd : public CliCommand
+class CliCommandDesc : public CliCommand
 {
     public:
+        CliCommandDesc();
         void execute();
         QString shortHelp() const;
         QString fullHelp() const;
         void defineSyntax();
 };
 
-#endif // CLICOMMANDPWD_H
+#endif // CLICOMMANDDESC_H

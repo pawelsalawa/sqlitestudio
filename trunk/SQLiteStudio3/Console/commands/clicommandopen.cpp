@@ -5,9 +5,9 @@
 #include <QDir>
 #include <QDebug>
 
-void CliCommandOpen::execute(const QStringList& args)
+void CliCommandOpen::execute()
 {
-    if (args.size() == 0 && !cli->getCurrentDb())
+    if (!syntax.isArgumentSet(DB_NAME_OR_FILE) && !cli->getCurrentDb())
     {
         println(tr("Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.")
                 .arg(cmdName("open")).arg(cmdName("use")).arg(cmdName("open")));
@@ -15,26 +15,27 @@ void CliCommandOpen::execute(const QStringList& args)
     }
 
     Db* db = nullptr;
-    if (args.size() == 1)
+    if (syntax.isArgumentSet(DB_NAME_OR_FILE))
     {
-        db = DBLIST->getByName(args[0]);
+        QString arg = syntax.getArgument(DB_NAME_OR_FILE);
+        db = DBLIST->getByName(arg);
         if (!db)
         {
-            if (QFile::exists(args[0]))
+            if (QFile::exists(arg))
             {
-                QString newName = DbManager::generateDbName(args[0]);
-                if (!DBLIST->addDb(newName, args[0], false))
+                QString newName = DbManager::generateDbName(arg);
+                if (!DBLIST->addDb(newName, arg, false))
                 {
-                    println(tr("Could not add database %1 to list.").arg(args[1]));
+                    println(tr("Could not add database %1 to list.").arg(arg));
                     return;
                 }
-                db = DBLIST->getByName(args[0]);
+                db = DBLIST->getByName(arg);
                 Q_ASSERT(db != nullptr);
             }
             else
             {
                 println(tr("File %1 doesn't exist in %2. Cannot open inexisting database with %3 command. "
-                                "To create a new database, use %4 command.").arg(args[1]).arg(QDir::currentPath())
+                                "To create a new database, use %4 command.").arg(arg).arg(QDir::currentPath())
                         .arg(cmdName("open")).arg(cmdName("add")));
                 return;
             }

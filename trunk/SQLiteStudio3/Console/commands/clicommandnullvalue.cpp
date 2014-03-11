@@ -1,10 +1,10 @@
 #include "clicommandnullvalue.h"
 #include "cli_config.h"
 
-void CliCommandNullValue::execute(const QStringList& args)
+void CliCommandNullValue::execute()
 {
-    if (args.size() == 1)
-        CFG_CLI.Console.NullValue.set(args[0]);
+    if (syntax.isArgumentSet(STRING))
+        CFG_CLI.Console.NullValue.set(syntax.getArgument(STRING));
 
     println(tr("Current NULL representation string: %1").arg(CFG_CLI.Console.NullValue.get()));
     return;

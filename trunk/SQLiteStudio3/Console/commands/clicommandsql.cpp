@@ -14,7 +14,7 @@
 #include <QSqlField>
 #include <QList>
 
-void CliCommandSql::execute(const QStringList& args)
+void CliCommandSql::execute()
 {
     if (!cli->getCurrentDb())
     {
@@ -34,7 +34,7 @@ void CliCommandSql::execute(const QStringList& args)
     }
 
     // Executor deletes itself later when called with lambda.
-    QueryExecutor *executor = new QueryExecutor(db, args[0]);
+    QueryExecutor *executor = new QueryExecutor(db, syntax.getArgument(STRING));
     connect(executor, SIGNAL(executionFinished(SqlResultsPtr)), this, SIGNAL(execComplete()));
     connect(executor, SIGNAL(executionFailed(int,QString)), this, SLOT(executionFailed(int,QString)));
     connect(executor, SIGNAL(executionFailed(int,QString)), this, SIGNAL(execComplete()));

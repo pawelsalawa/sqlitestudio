@@ -52,14 +52,13 @@ int main(int argc, char *argv[])
 
     CliCommandExecutor executor;
 
-    CLI cli;
-    QObject::connect(&cli, &CLI::execCommand, &executor, &CliCommandExecutor::execCommand);
-    QObject::connect(&executor, &CliCommandExecutor::executionComplete, &cli, &CLI::executionComplete);
+    QObject::connect(CLI::getInstance(), &CLI::execCommand, &executor, &CliCommandExecutor::execCommand);
+    QObject::connect(&executor, &CliCommandExecutor::executionComplete, CLI::getInstance(), &CLI::executionComplete);
 
     if (!dbToOpen.isEmpty())
-        cli.openDbFile(dbToOpen);
+        CLI::getInstance()->openDbFile(dbToOpen);
 
-    cli.start();
+    CLI::getInstance()->start();
 
     return a.exec();
 }

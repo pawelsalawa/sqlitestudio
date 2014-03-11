@@ -2,18 +2,18 @@
 #include "unused.h"
 #include "cli_config.h"
 
-void CliCommandMode::execute(const QStringList& args)
+void CliCommandMode::execute()
 {
-    if (args.size() == 0)
+    if (!syntax.isArgumentSet(MODE))
     {
         println(tr("Current results printing mode: %1").arg(CliResultsDisplay::mode(CFG_CLI.Console.ResultsDisplayMode.get())));
         return;
     }
 
-    CliResultsDisplay::Mode mode = CliResultsDisplay::mode(args[0].toUpper());
-    if (args[0].toUpper() != CliResultsDisplay::mode(mode))
+    CliResultsDisplay::Mode mode = CliResultsDisplay::mode(syntax.getArgument(MODE).toUpper());
+    if (syntax.getArgument(MODE).toUpper() != CliResultsDisplay::mode(mode))
     {
-        println(tr("Invalid results printing mode: %1").arg(args[0].toUpper()));
+        println(tr("Invalid results printing mode: %1").arg(syntax.getArgument(MODE).toUpper()));
         return;
     }
 
@@ -55,8 +55,9 @@ void CliCommandMode::defineSyntax()
     syntax.addArgument(MODE, tr("mode", "CLI command syntax"), false);
 }
 
-QStringList CliCommandMode::getCompletionValuesFor(int id)
+QStringList CliCommandMode::getCompletionValuesFor(int id, const QString& partialValue)
 {
+    UNUSED(partialValue);
     QStringList results;
     if (id == MODE)
     {
