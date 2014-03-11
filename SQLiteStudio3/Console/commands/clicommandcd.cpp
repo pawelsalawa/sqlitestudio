@@ -2,10 +2,10 @@
 #include <QCoreApplication>
 #include <QDir>
 
-void CliCommandCd::execute(const QStringList& args)
+void CliCommandCd::execute()
 {
     QDir dir;
-    dir.cd(args[0]);
+    dir.cd(syntax.getArgument(DIR_PATH));
     if (QDir::setCurrent(dir.absolutePath()))
         println(tr("Changed directory to: %1").arg(QDir::currentPath()));
     else

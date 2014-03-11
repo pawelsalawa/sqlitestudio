@@ -11,7 +11,7 @@ class CliCommandSql : public CliCommand
         Q_OBJECT
 
     public:
-        void execute(const QStringList& args);
+        void execute();
         QString shortHelp() const;
         QString fullHelp() const;
         bool isAsyncExecution() const;

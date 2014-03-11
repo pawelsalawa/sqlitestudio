@@ -4,9 +4,8 @@
 #include "unused.h"
 #include <QList>
 
-void CliCommandDbList::execute(const QStringList& args)
+void CliCommandDbList::execute()
 {
-    UNUSED(args);
     if (!cli->getCurrentDb())
     {
         println(tr("No current working database defined."));

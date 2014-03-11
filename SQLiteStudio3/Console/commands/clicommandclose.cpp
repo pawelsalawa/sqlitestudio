@@ -3,25 +3,25 @@
 #include "db/db.h"
 #include "db/dbmanager.h"
 
-void CliCommandClose::execute(const QStringList& args)
+void CliCommandClose::execute()
 {
-    if (args.size() == 0 && !cli->getCurrentDb())
+    if (!syntax.isArgumentSet(DB_NAME) && !cli->getCurrentDb())
     {
         println(tr("Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.")
                 .arg(cmdName("close")).arg(cmdName("use")).arg(cmdName("close")));
         return;
     }
 
-    if (args.size() == 1)
+    if (syntax.isArgumentSet(DB_NAME))
     {
-        Db* db = DBLIST->getByName(args[0]);
+        Db* db = DBLIST->getByName(syntax.getArgument(DB_NAME));
         if (db)
         {
             db->close();
             println(tr("Connection to database %1 closed.").arg(db->getName()));
         }
         else
-            println(tr("No such database: %1. Use %2 to see list of known databases.").arg(args[0]).arg(cmdName("dblist")));
+            println(tr("No such database: %1. Use %2 to see list of known databases.").arg(syntax.getArgument(DB_NAME)).arg(cmdName("dblist")));
     }
     else if (cli->getCurrentDb())
     {
@@ -47,5 +47,5 @@ QString CliCommandClose::fullHelp() const
 void CliCommandClose::defineSyntax()
 {
     syntax.setName("close");
-    syntax.addArgument(DB_NAME, tr("name", "CLI command syntax"));
+    syntax.addArgument(DB_NAME, tr("name", "CLI command syntax"), false);
 }

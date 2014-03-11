@@ -5,9 +5,8 @@
 
 const QString CliCommandTree::metaNodeNameTemplate = "<%1>";
 
-void CliCommandTree::execute(const QStringList& args)
+void CliCommandTree::execute()
 {
-    UNUSED(args);
     if (!cli->getCurrentDb())
     {
         println(tr("No current working database is selected. Use %1 to define one and then run %2.").arg(cmdName("use")).arg(cmdName("tree")));
@@ -21,9 +20,9 @@ void CliCommandTree::execute(const QStringList& args)
     resolver.setIgnoreSystemObjects(!printSystemObjects);
 
     QStringList databases;
-    if (syntax.isArgumentSet(DB_NAME))
+    if (syntax.isArgumentSet(INTRNAL_DB))
     {
-        databases << syntax.getArgument(DB_NAME);
+        databases << syntax.getArgument(INTRNAL_DB);
     }
     else
     {
@@ -151,5 +150,5 @@ void CliCommandTree::defineSyntax()
     syntax.setName("tree");
     syntax.addOptionShort(COLUMNS, "c");
     syntax.addOptionShort(SYSTEM_OBJECTS, "s");
-    syntax.addArgument(DB_NAME, "database", false);
+    syntax.addArgument(INTRNAL_DB, "database", false);
 }

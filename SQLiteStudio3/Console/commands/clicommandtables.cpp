@@ -4,15 +4,15 @@
 #include "db/dbmanager.h"
 #include "utils.h"
 
-void CliCommandTables::execute(const QStringList& args)
+void CliCommandTables::execute()
 {
     Db* db = nullptr;
-    if (args.size() > 0)
+    if (syntax.isArgumentSet(DB_NAME))
     {
-        db = DBLIST->getByName(args[0]);
+        db = DBLIST->getByName(syntax.getArgument(DB_NAME));
         if (!db)
         {
-            println(tr("No such database: %1. Use .dblist to see list of known databases.").arg(args[0]));
+            println(tr("No such database: %1. Use .dblist to see list of known databases.").arg(syntax.getArgument(DB_NAME)));
             return;
         }
     }
@@ -36,6 +36,7 @@ void CliCommandTables::execute(const QStringList& args)
     println();
 
     SchemaResolver resolver(db);
+    resolver.setIgnoreSystemObjects(!syntax.isOptionSet(SHOW_SYSTEM_TABLES));
     QSet<QString> dbList;
     dbList << "main" << "temp";
     dbList += resolver.getDatabases();
@@ -65,7 +66,8 @@ QString CliCommandTables::fullHelp() const
     return tr(
                 "Prints list of tables in given <database> or in the current working database. "
                 "Note, that the <database> should be the name of the registered database (see %1). "
-                "The output list includes all tables from any other databases attached to the queried database."
+                "The output list includes all tables from any other databases attached to the queried database.\n"
+                "When the -s option is given, then system tables are also listed."
                 ).arg(cmdName("use"));
 }
 
@@ -73,4 +75,5 @@ void CliCommandTables::defineSyntax()
 {
     syntax.setName("tables");
     syntax.addArgument(DB_NAME, tr("database", "CLI command syntax"), false);
+    syntax.addOptionShort(SHOW_SYSTEM_TABLES, "s");
 }

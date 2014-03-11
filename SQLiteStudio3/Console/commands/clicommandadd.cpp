@@ -2,15 +2,15 @@
 #include "cli.h"
 #include "db/dbmanager.h"
 
-void CliCommandAdd::execute(const QStringList& args)
+void CliCommandAdd::execute()
 {
-    if (!DBLIST->addDb(args[0], args[1]))
+    if (!DBLIST->addDb(syntax.getArgument(DB_NAME), syntax.getArgument(FILE_PATH)))
     {
-        println(tr("Could not add database %1 to list.").arg(args[1]));
+        println(tr("Could not add database %1 to list.").arg(syntax.getArgument(FILE_PATH)));
         return;
     }
 
-    cli->setCurrentDb(DBLIST->getByName(args[0]));
+    cli->setCurrentDb(DBLIST->getByName(syntax.getArgument(DB_NAME)));
     println(tr("Database added: %1").arg(cli->getCurrentDb()->getName()));
 }
 

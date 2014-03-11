@@ -41,6 +41,7 @@ API_EXPORT QString generateUniqueName(const QString& prefix, const QStringList& 
 API_EXPORT bool isNumeric(const QVariant& value);
 API_EXPORT QString rStrip(const QString& str);
 API_EXPORT QStringList tokenizeArgs(const QString& str);
+API_EXPORT QStringList prefixEach(const QString& prefix, const QStringList& list);
 /**
   * @brief indexOf Extension to QStringList::indexOf().
   *

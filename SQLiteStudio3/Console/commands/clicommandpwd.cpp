@@ -2,9 +2,8 @@
 #include "unused.h"
 #include <QDir>
 
-void CliCommandPwd::execute(const QStringList& args)
+void CliCommandPwd::execute()
 {
-    UNUSED(args);
     QDir dir;
     println(dir.absolutePath());
 }

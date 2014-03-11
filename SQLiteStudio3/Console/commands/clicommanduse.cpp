@@ -5,9 +5,9 @@
 #include "../cli_config.h"
 #include "db/dbmanager.h"
 
-void CliCommandUse::execute(const QStringList& args)
+void CliCommandUse::execute()
 {
-    if (args.size() == 0)
+    if (syntax.isArgumentSet(DB_NAME))
     {
         if (!cli->getCurrentDb())
         {
@@ -18,10 +18,10 @@ void CliCommandUse::execute(const QStringList& args)
         return;
     }
 
-    Db* db = DBLIST->getByName(args[0]);
+    Db* db = DBLIST->getByName(syntax.getArgument(DB_NAME));
     if (!db)
     {
-        println(tr("No such database: %1").arg(args[0]));
+        println(tr("No such database: %1").arg(syntax.getArgument(DB_NAME)));
         return;
     }
 

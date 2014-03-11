@@ -1,4 +1,7 @@
 #include "clicommandsyntax.h"
+#include "commands/clicommand.h"
+#include "commands/clicommandfactory.h"
+#include "cli.h"
 #include <QDebug>
 
 CliCommandSyntax::CliCommandSyntax()
@@ -117,7 +120,15 @@ bool CliCommandSyntax::parse(const QStringList& args)
     {
         arg = args[argIdx];
 
-        if (pastOptions)
+        if (arg == "--help")
+        {
+            CliCommand* help = CliCommandFactory::getCommand("help");
+            help->setup(CLI::getInstance());
+            help->parseArgs({getName()});
+            help->execute();
+            return false;
+        }
+        else if (pastOptions)
         {
             res = parseArg(arg);
         }

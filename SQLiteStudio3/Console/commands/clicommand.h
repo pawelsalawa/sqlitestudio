@@ -5,6 +5,7 @@
 #include <QStringList>
 #include <QTextStream>
 #include <QObject>
+#include <QDir>
 
 class QFile;
 class SQLiteStudio;
@@ -24,9 +25,8 @@ class CliCommand : public QObject
 
         /**
          * @brief execute
-         * @param args Command arguments.
          */
-        virtual void execute(const QStringList& args) = 0;
+        virtual void execute() = 0;
 
         /**
          * @brief Short help displayed in commands index.
@@ -57,10 +57,15 @@ class CliCommand : public QObject
             DB_NAME         = 1000,
             DB_NAME_OR_FILE = 1001,
             FILE_PATH       = 1002,
-            PATTERN         = 1003,
+            DIR_OR_FILE     = 1003,
             DIR_PATH        = 1004,
             CMD_NAME        = 1005,
-            STRING          = 1006
+            INTRNAL_DB      = 1006,
+            STRING          = 1007,
+            TABLE           = 1008,
+            INDEX           = 1009,
+            TRIGGER         = 1010,
+            VIEW            = 1011
         };
 
         static void println(const QString& str = "");
@@ -68,7 +73,18 @@ class CliCommand : public QObject
         static QString cmdName(const QString& cmd);
 
         void printUsage();
-        virtual QStringList getCompletionValuesFor(int id);
+        QString getFilterAndFixDir(QDir& dir, const QString& path);
+        QStringList getCompletionDbNames();
+        QStringList getCompletionTables();
+        QStringList getCompletionIndexes();
+        QStringList getCompletionTriggers();
+        QStringList getCompletionViews();
+        QStringList getCompletionDbNamesOrFiles(const QString& partialValue);
+        QStringList getCompletionFiles(const QString& partialValue);
+        QStringList getCompletionDirs(const QString& partialValue);
+        QStringList getCompletionDirsOrFiles(const QString& partialValue);
+        QStringList getCompletionInternalDbs();
+        virtual QStringList getCompletionValuesFor(int id, const QString& partialValue);
 
         CLI* cli;
         Config* config;

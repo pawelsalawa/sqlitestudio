@@ -3,12 +3,13 @@
 #include "db/dbmanager.h"
 #include "db/db.h"
 
-void CliCommandRemove::execute(const QStringList& args)
+void CliCommandRemove::execute()
 {
-    Db* db = DBLIST->getByName(args[0]);
+    QString dbName = syntax.getArgument(DB_NAME);
+    Db* db = DBLIST->getByName(dbName);
     if (!db)
     {
-        println(tr("No such database: %1").arg(args[0]));
+        println(tr("No such database: %1").arg(dbName));
         return;
     }
 

@@ -17,6 +17,7 @@
 #include "clicommandpwd.h"
 #include "clicommandcd.h"
 #include "clicommandtree.h"
+#include "clicommanddesc.h"
 #include <QDebug>
 
 QHash<QString,CliCommandFactory::CliCommandCreatorFunc> CliCommandFactory::mapping;
@@ -42,6 +43,7 @@ void CliCommandFactory::init()
     REGISTER_CMD(CliCommandPwd);
     REGISTER_CMD(CliCommandCd);
     REGISTER_CMD(CliCommandTree);
+    REGISTER_CMD(CliCommandDesc);
 }
 
 CliCommand *CliCommandFactory::getCommand(const QString &cmdName)

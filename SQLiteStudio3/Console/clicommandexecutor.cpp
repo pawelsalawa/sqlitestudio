@@ -6,10 +6,10 @@ CliCommandExecutor::CliCommandExecutor(QObject *parent) :
 {
 }
 
-void CliCommandExecutor::execCommand(CliCommand* cmd, QStringList args)
+void CliCommandExecutor::execCommand(CliCommand* cmd)
 {
     connect(cmd, SIGNAL(execComplete()), this, SLOT(asyncExecutionComplete()));
-    cmd->execute(args);
+    cmd->execute();
     if (!cmd->isAsyncExecution())
     {
         delete cmd;

@@ -3,10 +3,10 @@
 #include "utils.h"
 #include "cli_config.h"
 
-void CliCommandHelp::execute(const QStringList& args)
+void CliCommandHelp::execute()
 {
-    if (args.size() == 1)
-        printHelp(args[0]);
+    if (syntax.isArgumentSet(CMD_NAME))
+        printHelp(syntax.getArgument(CMD_NAME));
     else
         printHelp();
 }
@@ -21,8 +21,10 @@ QString CliCommandHelp::fullHelp() const
     return tr(
                 "Use %1 to learn about certain commands supported by the command line interface (CLI) of the SQLiteStudio.\n"
                 "To see list of supported commands, type %2 without any arguments.\n\n"
-                "When passing <command> name, you can skip special prefix character ('%3')."
-                ).arg(cmdName("help")).arg(cmdName("help")).arg(CFG_CLI.Console.CommandPrefixChar.get());
+                "When passing <command> name, you can skip special prefix character ('%3').\n\n"
+                "You can always execute any command with exactly single '--help' option to see help for that command. "
+                "It's an alternative for typing: %1 <command>."
+                ).arg(cmdName("help")).arg(cmdName("help")).arg(CFG_CLI.Console.CommandPrefixChar.get()).arg(cmdName("help"));
 }
 
 void CliCommandHelp::defineSyntax()

@@ -24,8 +24,9 @@
 #include <readline/history.h>
 #endif
 
-CLI::CLI(QObject *parent) :
-    QObject(parent)
+CLI* CLI::instance = nullptr;
+
+CLI::CLI()
 {
     setCurrentDb(nullptr);
 
@@ -37,6 +38,14 @@ CLI::CLI(QObject *parent) :
 CLI::~CLI()
 {
     saveHistory();
+}
+
+CLI* CLI::getInstance()
+{
+    if (!instance)
+        instance = new CLI();
+
+    return instance;
 }
 
 void CLI::start()
@@ -268,7 +277,7 @@ void CLI::doWork()
         }
 
         cliCommand->moveToThread(qApp->thread());
-        emit execCommand(cliCommand, cmdArgs);
+        emit execCommand(cliCommand);
         waitForExecution();
     }
 
@@ -277,6 +286,7 @@ void CLI::doWork()
 
 void CLI::done()
 {
+    deleteLater();
     qApp->exit();
 }
 

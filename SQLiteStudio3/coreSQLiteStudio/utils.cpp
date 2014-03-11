@@ -169,6 +169,15 @@ QStringList tokenizeArgs(const QString& str)
     return results;
 }
 
+QStringList prefixEach(const QString& prefix, const QStringList& list)
+{
+    QStringList result;
+    foreach (const QString& item, list)
+        result << (prefix + item);
+
+    return result;
+}
+
 int indexOf(const QStringList& list, const QString& value, Qt::CaseSensitivity cs)
 {
     return indexOf(list, value, 0, cs);
