@@ -26,15 +26,17 @@ class CLI : public QObject
         void exit();
         QStringList getHistory() const;
         QString getLine() const;
+        void applyHistoryLimit();
 
     private:
-        CLI();
+        explicit CLI(QObject* parent = nullptr);
 
         void waitForExecution();
         bool isComplete(const QString& contents) const;
         void loadHistory();
-        void saveHistory();
+        void addHistory(const QString& text);
         void println(const QString& msg = QString());
+        int historyLength() const;
 
         static CLI* instance;
 

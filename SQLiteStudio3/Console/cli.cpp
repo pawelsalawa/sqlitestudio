@@ -26,11 +26,18 @@
 
 CLI* CLI::instance = nullptr;
 
-CLI::CLI()
+CLI::CLI(QObject* parent) :
+    QObject(parent)
 {
     setCurrentDb(nullptr);
 
     using_history();
+
+#ifdef Q_OS_UNIX
+    history_base = 0; // for some reason this was set to 1 under Unix, making 1st history entry to be always ommited
+#endif
+
+
     loadHistory();
     CliCompleter::getInstance()->init(this);
 }
@@ -108,11 +115,7 @@ QStringList CLI::getHistory() const
 {
     QStringList cfgHistory;
 
-#if defined(Q_OS_WIN)
-    int length = history_length();
-#elif defined(Q_OS_UNIX)
-    int length = history_length;
-#endif
+    int length = historyLength();
 
     QString line;
     HIST_ENTRY* entry;
@@ -121,7 +124,7 @@ QStringList CLI::getHistory() const
         entry = history_get(i);
         if (!entry)
         {
-            qWarning() << "Readline history entry returned null.";
+            qWarning() << "Null history entry for i =" << i;
             continue;
         }
 
@@ -138,6 +141,15 @@ void CLI::println(const QString &msg)
 {
     qOut << msg << "\n";
     qOut.flush();
+}
+
+int CLI::historyLength() const
+{
+#if defined(Q_OS_WIN)
+    return history_length();
+#elif defined(Q_OS_UNIX)
+    return history_length;
+#endif
 }
 
 void CLI::waitForExecution()
@@ -166,26 +178,33 @@ bool CLI::isComplete(const QString& contents) const
 
 void CLI::loadHistory()
 {
-    foreach (const QString& line, CFG_CLI.Console.History.get())
+    foreach (const QString& line, CFG->getCliHistory())
     {
         if (!line.isEmpty())
             add_history(line.toLocal8Bit().data());
     }
 }
 
-void CLI::saveHistory()
+void CLI::addHistory(const QString& text)
 {
-    QStringList cfgHistory = getHistory();
+    CFG->addCliHistory(text);
 
-    while (cfgHistory.size() > CFG_CLI.Console.HistorySize.get())
-        cfgHistory.removeFirst();
+    add_history(text.toLocal8Bit().data());
 
-    CFG_CLI.Console.History.set(cfgHistory);
+    if (historyLength() > CFG_CORE.Console.HistorySize.get())
+        free_history_entry(remove_history(0));
 }
 
 QString CLI::getLine() const
 {
     return line;
+}
+
+void CLI::applyHistoryLimit()
+{
+    CFG->applyCliHistoryLimit();
+    while (historyLength() > CFG_CORE.Console.HistorySize.get())
+        free_history_entry(remove_history(0));
 }
 
 void CLI::openDbFile(const QString& path)
@@ -208,7 +227,6 @@ void CLI::doWork()
     QString cmd;
     QStringList cmdArgs;
     QString cPrompt;
-    int hist_length = 0;
     char *cline;
     while (!doExit)
     {
@@ -233,21 +251,12 @@ void CLI::doWork()
                 line += "\n";
             }
 
-            cline = readline(cPrompt.toLatin1().data());
+            cline = readline(cPrompt.toLocal8Bit().data());
 
             line += cline;
             free(cline);
         }
-        add_history(line.toLatin1().data());
-
-#if defined(Q_OS_WIN)
-        hist_length = history_length();
-#elif defined(Q_OS_UNIX)
-        hist_length = history_length;
-#endif
-
-        if (hist_length > CFG_CLI.Console.HistorySize.get())
-            free_history_entry(remove_history(0));
+        addHistory(line);
 
         if (line.startsWith(CFG_CLI.Console.CommandPrefixChar.get()))
         {
@@ -285,8 +294,6 @@ void CLI::doWork()
 
 void CLI::done()
 {
-    saveHistory();
-    deleteLater();
     qApp->exit();
 }
 
@@ -298,5 +305,5 @@ void CLI::executionComplete()
 void CLI::clearHistory()
 {
     clear_history();
-    CFG_CLI.Console.History.set(QStringList());
+    CFG->clearCliHistory();
 }

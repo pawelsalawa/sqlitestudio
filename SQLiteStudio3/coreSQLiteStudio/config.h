@@ -17,10 +17,13 @@ const int SQLITESTUDIO_CONFIG_VERSION = 1;
 
 CFG_CATEGORIES(Core,
     CFG_CATEGORY(General,
-         CFG_ENTRY(int,     SqlHistorySize,         10000)
-         CFG_ENTRY(int,     DdlHistorySize,         1000)
-         CFG_ENTRY(QString, LoadedPlugins,          "")
-         CFG_ENTRY(QString, ActiveSqlFormatter,     QString())
+        CFG_ENTRY(int,     SqlHistorySize,     10000)
+        CFG_ENTRY(int,     DdlHistorySize,     1000)
+        CFG_ENTRY(QString, LoadedPlugins,      "")
+        CFG_ENTRY(QString, ActiveSqlFormatter, QString())
+    )
+    CFG_CATEGORY(Console,
+        CFG_ENTRY(int,     HistorySize,        100)
     )
 )
 
@@ -118,6 +121,11 @@ class API_EXPORT Config : public QObject
         void updateSqlHistory(qint64 id, const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected);
         void clearSqlHistory();
         QAbstractItemModel* getSqlHistoryModel();
+
+        void addCliHistory(const QString& text);
+        void applyCliHistoryLimit();
+        void clearCliHistory();
+        QStringList getCliHistory() const;
 
         void addDdlHistory(const QString& queries, const QString& dbName, const QString& dbFile);
         QList<DdlHistoryEntryPtr> getDdlHistoryFor(const QString& dbName, const QString& dbFile, const QDate& date);
