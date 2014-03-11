@@ -4,7 +4,6 @@
 #include "coreSQLiteStudio_global.h"
 #include "global.h"
 #include "cfginternals.h"
-#include "sqlitestudio.h"
 #include "functionmanager.h"
 #include <QObject>
 #include <QVariant>
@@ -38,6 +37,8 @@ class QSqlQuery;
 class API_EXPORT Config : public QObject
 {
     Q_OBJECT
+
+    DECLARE_SINGLETON(Config)
 
     public:
         struct CfgDb
@@ -81,9 +82,6 @@ class API_EXPORT Config : public QObject
         };
 
         typedef QSharedPointer<DdlHistoryEntry> DdlHistoryEntryPtr;
-
-        explicit Config(QObject *parent = 0);
-        virtual ~Config();
 
         void init();
         void cleanUp();
@@ -140,6 +138,9 @@ class API_EXPORT Config : public QObject
         void rollback();
 
     private:
+        explicit Config(QObject *parent = 0);
+        virtual ~Config();
+
         /**
          * @brief Stores error from query in class member.
          * @param query Query to get error from.
@@ -158,7 +159,7 @@ class API_EXPORT Config : public QObject
         bool tryInitDbFile(const QString& dbPath);
         QVariant deserializeValue(const QVariant& value);
 
-
+        static Config* instance;
         QSqlDatabase *db = nullptr;
         QString configDir;
         QString lastQueryError;
@@ -172,6 +173,6 @@ class API_EXPORT Config : public QObject
 
 };
 
-#define CFG SQLiteStudio::getInstance()->getConfig()
+#define CFG Config::getInstance()
 
 #endif // CONFIG_H

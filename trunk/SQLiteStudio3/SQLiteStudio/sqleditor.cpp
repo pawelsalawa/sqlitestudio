@@ -1,7 +1,6 @@
 #include "sqleditor.h"
 #include "uiconfig.h"
 #include "config.h"
-#include "sqlitestudio.h"
 #include "iconmanager.h"
 #include "completer/completerwindow.h"
 #include "completionhelper.h"
@@ -15,6 +14,7 @@
 #include "dbobjectdialogs.h"
 #include "searchtextlocator.h"
 #include "sqlformatter.h"
+#include "sqlitestudio.h"
 #include <QAction>
 #include <QMenu>
 #include <QTimer>
@@ -392,7 +392,8 @@ void SqlEditor::complete()
         curPos += virtualSqlOffset;
     }
 
-    CompletionHelper::Results result = CompletionHelper::getExpectedTokens(sql, curPos, db);
+    CompletionHelper completionHelper(sql, curPos, db);
+    CompletionHelper::Results result = completionHelper.getExpectedTokens();
     if (result.filtered().size() == 0)
         return;
 
@@ -968,7 +969,7 @@ void SqlEditor::formatSql()
         dialect = db->getDialect();
 
     QString sql = hasSelection() ? getSelectedText() : toPlainText();
-    sql = SQLiteStudio::getInstance()->getSqlFormatter()->format(sql, dialect);
+    sql = SQLITESTUDIO->getSqlFormatter()->format(sql, dialect);
 
     if (!hasSelection())
         selectAll();

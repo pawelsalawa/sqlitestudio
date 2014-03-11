@@ -1,8 +1,8 @@
 #include "config.h"
-#include "sqlitestudio.h"
 #include "sqlhistorymodel.h"
 #include "ddlhistorymodel.h"
 #include "notifymanager.h"
+#include "sqlitestudio.h"
 #include <QtGlobal>
 #include <QDebug>
 #include <QSqlQuery>
@@ -19,6 +19,8 @@
 CFG_DEFINE(Core)
 
 static const QString DB_FILE_NAME = QStringLiteral("settings3");
+
+DEFINE_SINGLETON(Config)
 
 Config::Config(QObject *parent) :
     QObject(parent)
@@ -640,11 +642,11 @@ QString Config::getConfigPath()
 {
 #ifdef Q_OS_WIN
     if (QSysInfo::windowsVersion() & QSysInfo::WV_NT_based)
-        return SQLiteStudio::getInstance()->getEnv("APPDATA")+"/sqlitestudio";
+        return SQLITESTUDIO->getEnv("APPDATA")+"/sqlitestudio";
     else
-        return SQLiteStudio::getInstance()->getEnv("HOME")+"/sqlitestudio";
+        return SQLITESTUDIO->getEnv("HOME")+"/sqlitestudio";
 #else
-    return SQLiteStudio::getInstance()->getEnv("HOME")+"/.config/sqlitestudio";
+    return SQLITESTUDIO->getEnv("HOME")+"/.config/sqlitestudio";
 #endif
 }
 

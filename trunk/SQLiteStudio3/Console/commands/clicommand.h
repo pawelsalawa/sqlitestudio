@@ -88,7 +88,6 @@ class CliCommand : public QObject
         virtual QStringList getCompletionValuesFor(int id, const QString& partialValue);
 
         CLI* cli;
-        Config* config;
         CliCommandSyntax syntax;
 
     signals:

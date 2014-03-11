@@ -118,8 +118,8 @@ QStringList CliCompleter::completeQuery(const QString& toBeReplaced, const QStri
     QStringList list;
     bool keepOriginalStr = doKeepOriginalStr(str, curPos);
 
-    CompletionHelper::Results results = CompletionHelper::getExpectedTokens(str, curPos, cli->getCurrentDb());
-    QList<ExpectedTokenPtr> expectedTokens = results.filtered();
+    CompletionHelper completer(str, curPos, cli->getCurrentDb());
+    QList<ExpectedTokenPtr> expectedTokens = completer.getExpectedTokens().filtered();
 
     foreach (const ExpectedTokenPtr& token, expectedTokens)
         list << token->value;

@@ -4,7 +4,7 @@
 #include "db.h"
 #include "coreSQLiteStudio_global.h"
 #include "strhash.h"
-#include "sqlitestudio.h"
+#include "global.h"
 #include <QObject>
 #include <QList>
 #include <QHash>
@@ -20,22 +20,20 @@ class PluginType;
 
 /**
  * @brief Database registry manager.
+ *
  * Manages list of databases in SQLiteStudio core.
  * Also keeps list of supported database types
  * (QSqlDriver names), like "QSQLITE", etc.
- * It's created and managed by SQLiteStudio.
+ *
+ * It's a singleton asseccible with DBLIST macro.
  */
 class API_EXPORT DbManager : public QObject
 {
     Q_OBJECT
 
-    public:
-        /**
-         * @brief Creates database manager.
-         * @param parent Parent object passed to QObject constructor.
-         */
-        explicit DbManager(QObject *parent = 0);
+    DECLARE_SINGLETON(DbManager)
 
+    public:
         /**
          * @brief Adds database to the manager.
          * @param name Symbolic name of the database, as it will be presented in the application.
@@ -133,6 +131,17 @@ class API_EXPORT DbManager : public QObject
 
     private:
         /**
+         * @brief Creates database manager.
+         * @param parent Parent object passed to QObject constructor.
+         */
+        explicit DbManager(QObject *parent = 0);
+
+        /**
+         * @brief Default destructor.
+         */
+        ~DbManager();
+
+        /**
          * @brief Internal manager initialization.
          *
          * Called from any constructor.
@@ -177,6 +186,10 @@ class API_EXPORT DbManager : public QObject
          * @brief Registered databases list. Both permanent and transient databases.
          */
         QList<Db*> dbList;
+
+        /**
+         * @brief Database ame to database instance mapping, with keys being case insensitive.
+         */
         StrHash<Db*> nameToDb;
 
         /**
@@ -314,6 +327,6 @@ class API_EXPORT DbManager : public QObject
  * @brief Database manager.
  * Provides direct access to database manager.
  */
-#define DBLIST SQLiteStudio::getInstance()->getDbManager()
+#define DBLIST DbManager::getInstance()
 
 #endif // DBMANAGER_H

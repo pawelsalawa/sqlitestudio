@@ -1,6 +1,5 @@
 #include "cfginternals.h"
 #include "config.h"
-#include "sqlitestudio.h"
 #include <QDebug>
 
 CfgCategory* lastCreatedCfgCategory = nullptr;
@@ -81,7 +80,7 @@ QVariant CfgEntry::get() const
     if (cached)
         return cachedValue;
 
-    QVariant cfgVal = SQLiteStudio::getInstance()->getConfig()->get(parent->toString(), dbKey);
+    QVariant cfgVal = CFG->get(parent->toString(), dbKey);
     if (!cfgVal.isValid())
     {
         if (defValueFunc)
@@ -105,7 +104,7 @@ QVariant CfgEntry::getDefultValue() const
 
 void CfgEntry::set(const QVariant &value)
 {
-    SQLiteStudio::getInstance()->getConfig()->set(parent->toString(), this->dbKey, value);
+    CFG->set(parent->toString(), this->dbKey, value);
     cachedValue = value;
     cached = true;
     emit changed(value);

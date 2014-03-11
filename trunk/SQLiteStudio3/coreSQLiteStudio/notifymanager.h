@@ -1,14 +1,17 @@
 #ifndef NOTIFYMANAGER_H
 #define NOTIFYMANAGER_H
 
-#include "sqlitestudio.h"
 #include "db/db.h"
+#include "global.h"
 #include <QStringList>
 #include <QObject>
 
 class API_EXPORT NotifyManager : public QObject
 {
     Q_OBJECT
+
+    DECLARE_SINGLETON(NotifyManager)
+
     public:
         explicit NotifyManager(QObject *parent = 0);
 

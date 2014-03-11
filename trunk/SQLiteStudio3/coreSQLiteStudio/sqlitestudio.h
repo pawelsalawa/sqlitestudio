@@ -2,6 +2,7 @@
 #define SQLITESTUDIO_H
 
 #include "coreSQLiteStudio_global.h"
+#include "global.h"
 #include <QString>
 #include <QStringList>
 #include <QObject>
@@ -42,43 +43,9 @@ class API_EXPORT SQLiteStudio : public QObject
 {
         Q_OBJECT
 
+        DECLARE_SINGLETON(SQLiteStudio)
+
     public:
-        /**
-         * @brief Gets the singleton instance.
-         * @return Always the same instance of the class. Never null.
-         */
-        static SQLiteStudio* getInstance();
-
-        /**
-         * @brief Gets the database manager.
-         * @return Database manager. Never null.
-         */
-        DbManager* getDbManager() const;
-
-        /**
-         * @brief Gets the plugin manager.
-         * @return Plugin manager. Never null.
-         */
-        PluginManager* getPluginManager() const;
-
-        /**
-         * @brief Gets the configuration manager.
-         * @return Configuration management object. Never null.
-         */
-        Config* getConfig() const;
-
-        /**
-         * @brief Gets the notify manager.
-         * @return Notify manager object. Never null.
-         */
-        NotifyManager* getNotifyManager() const;
-
-        /**
-         * @brief Gets custom SQL functions manager.
-         * @return Function manager object, never null.
-         */
-        FunctionManager* getFunctionManager() const;
-
         /**
          * @brief Gets current SQL formatter instance.
          * @return Currently configured SQL formatter instance, or first available formatter (if it's not yet configured), or null if there is no formatter available.
@@ -138,49 +105,6 @@ class API_EXPORT SQLiteStudio : public QObject
          * TODO: describe options
          */
         void parseCmdLineArgs();
-
-
-        /**
-         * @brief Singleton instance.
-         */
-        static SQLiteStudio* instance;
-
-        /**
-         * @brief Database manager instance.
-         *
-         * Created in init() and returned by getDbManager().
-         */
-        DbManager* dbManager = nullptr;
-
-        /**
-         * @brief Plugin manager instance.
-         *
-         * Created in init() and returned by getPluginManager().
-         */
-        PluginManager* pluginManager = nullptr;
-
-        /**
-         * @brief Notification manager instance.
-         *
-         * Created in init() and returned by getNotifyManager().
-         */
-        NotifyManager* notifyManager = nullptr;
-
-        /**
-         * @brief Custom SQL functions manager.
-         *
-         * Created in init() and returned by getFunctionManager().
-         */
-        FunctionManager* functionManager= nullptr;
-
-        /**
-         * @brief Configuration manager instance.
-         *
-         * Created in init() and returned by getConfig().
-         * Also used internaly to read some configuration settings,
-         * such as current SQL formatter, etc.
-         */
-        Config* config = nullptr;
 
         /**
          * @brief Current SQL formatter instance.

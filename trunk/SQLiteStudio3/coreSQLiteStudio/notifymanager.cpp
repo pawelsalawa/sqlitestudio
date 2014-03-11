@@ -1,5 +1,7 @@
 #include "notifymanager.h"
 
+DEFINE_SINGLETON(NotifyManager)
+
 NotifyManager::NotifyManager(QObject *parent) :
     QObject(parent)
 {
@@ -69,15 +71,15 @@ QList<QString> NotifyManager::getRecentErrors() const
 
 void notifyError(const QString &msg)
 {
-    SQLiteStudio::getInstance()->getNotifyManager()->error(msg);
+    NotifyManager::getInstance()->error(msg);
 }
 
 void notifyWarn(const QString &msg)
 {
-    SQLiteStudio::getInstance()->getNotifyManager()->warn(msg);
+    NotifyManager::getInstance()->warn(msg);
 }
 
 void notifyInfo(const QString &msg)
 {
-    SQLiteStudio::getInstance()->getNotifyManager()->info(msg);
+    NotifyManager::getInstance()->info(msg);
 }

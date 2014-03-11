@@ -8,7 +8,6 @@
 #include "windows/ddlhistorywindow.h"
 #include "mdiarea.h"
 #include "statusfield.h"
-#include "sqlitestudio.h"
 #include "uiconfig.h"
 #include "common/extaction.h"
 #include "dbobjectdialogs.h"

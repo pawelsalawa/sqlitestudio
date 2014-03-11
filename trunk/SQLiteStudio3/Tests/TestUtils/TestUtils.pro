@@ -32,4 +32,4 @@ unix:!symbian {
     INSTALLS += target
 }
 
-LIBS += -lcoreSQLiteStudio
+LIBS += -lcoreSQLiteStudio -lsqlite3

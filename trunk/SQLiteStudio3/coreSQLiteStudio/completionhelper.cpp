@@ -10,7 +10,6 @@
 #include "utils.h"
 #include "utils_sql.h"
 #include "db/dbmanager.h"
-#include "sqlitestudio.h"
 #include <QStringList>
 #include <QDebug>
 
@@ -19,23 +18,20 @@ QStringList sqlite2Pragmas;
 QStringList sqlite3Functions;
 QStringList sqlite2Functions;
 
-CompletionHelper::Results CompletionHelper::getExpectedTokens(const QString &sql, Db* db)
-{
-    if (!db)
-        return Results();
+// TODO smarter suggestions for UPDATE, DELETE and INSERT, just like for SELECT.
 
-    return getExpectedTokens(sql, sql.length(), db);
+CompletionHelper::CompletionHelper(const QString &sql, Db* db)
+    : CompletionHelper(sql, sql.length(), db)
+{
 }
 
-CompletionHelper::Results CompletionHelper::getExpectedTokens(const QString& sql, qint32 cursorPos, Db* db)
+CompletionHelper::CompletionHelper(const QString &sql, quint32 cursorPos, Db* db)
+    : db(db), cursorPosition(cursorPos), fullSql(sql)
 {
-    if (!db)
-        return Results();
-
-    // TODO smarter suggestions for UPDATE, DELETE and INSERT, just like for SELECT.
-
-    CompletionHelper helper(sql, cursorPos, db);
-    return helper.getExpectedTokens();
+    schemaResolver = new SchemaResolver(db);
+    selectResolver = new SelectResolver(db, fullSql);
+    selectResolver->ignoreInvalidNames = true;
+    dbAttacher = new DbAttacher(db);
 }
 
 void CompletionHelper::init()
@@ -92,15 +88,6 @@ void CompletionHelper::init()
     sqlite3Functions.sort();
 }
 
-CompletionHelper::CompletionHelper(const QString &sql, quint32 cursorPos, Db* db)
-    : db(db), cursorPosition(cursorPos), fullSql(sql)
-{
-    schemaResolver = new SchemaResolver(db);
-    selectResolver = new SelectResolver(db, fullSql);
-    selectResolver->ignoreInvalidNames = true;
-    dbAttacher = new DbAttacher(db);
-}
-
 CompletionHelper::~CompletionHelper()
 {
     if (schemaResolver)
@@ -124,6 +111,9 @@ CompletionHelper::~CompletionHelper()
 
 CompletionHelper::Results CompletionHelper::getExpectedTokens()
 {
+    if (!db)
+        return Results();
+
     // Get SQL up to the current cursor position.
     QString adjustedSql = fullSql.mid(0, cursorPosition);
 
@@ -1174,6 +1164,19 @@ bool CompletionHelper::cursorBeforeTokenMaps(SqliteStatement* stmt, const QStrin
     }
     return true;
 }
+DbAttacher* CompletionHelper::getDbAttacher() const
+{
+    return dbAttacher;
+}
+
+void CompletionHelper::setDbAttacher(DbAttacher* value)
+{
+    if (dbAttacher)
+        delete dbAttacher;
+
+    dbAttacher = value;
+}
+
 
 bool CompletionHelper::extractSelectCore()
 {

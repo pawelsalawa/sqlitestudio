@@ -4,7 +4,7 @@
 #include "coreSQLiteStudio_global.h"
 #include "plugin.h"
 #include "plugintype.h"
-#include "sqlitestudio.h"
+#include "global.h"
 #include <QPluginLoader>
 #include <QStringList>
 #include <QHash>
@@ -17,7 +17,7 @@ class Plugin;
 /**
  * @brief The plugin manager.
  *
- * It's a singleton accessible from SQLiteStudio class.
+ * It's a singleton accessible with PLUGINS macro.
  *
  * It provides methods to load, unload and query plugins. It stores loaded
  * plugins in configuration on application close and loads that plugins during next startup.
@@ -80,19 +80,11 @@ class Plugin;
  */
 class API_EXPORT PluginManager : public QObject
 {
-        Q_OBJECT
+    Q_OBJECT
+
+    DECLARE_SINGLETON(PluginManager)
 
     public:
-        /**
-         * @brief Creates plugin manager.
-         */
-        PluginManager();
-
-        /**
-         * @brief Deletes plugin manager.
-         */
-        ~PluginManager();
-
         /**
          * @brief Loads all plugins.
          *
@@ -426,6 +418,16 @@ class API_EXPORT PluginManager : public QObject
         typedef QList<PluginContainer*> PluginContainerList;
 
         /**
+         * @brief Creates plugin manager.
+         */
+        PluginManager();
+
+        /**
+         * @brief Deletes plugin manager.
+         */
+        ~PluginManager();
+
+        /**
          * @brief Loads plugins defined in configuration.
          *
          * It loads all plugins that are available to the application
@@ -499,6 +501,11 @@ class API_EXPORT PluginManager : public QObject
         bool shouldAutoLoad(Plugin* plugin);
 
         /**
+         * @brief Singleton instance of this class.
+         */
+        static PluginManager* instance;
+
+        /**
          * @brief List of plugin directories (not necessarily absolute paths).
          */
         QStringList pluginDirs;
@@ -569,13 +576,13 @@ class API_EXPORT PluginManager : public QObject
  * Since SQLiteStudio creates only one instance of PluginsManager,
  * there is a standard method for accessing it, using code:
  * @code
- * QList<PluginType*> types = SQLiteStudio::getInstance()->getPluginManager()->getPluginTypes();
+ * QList<PluginType*> types = PluginManager::getInstance()->getPluginTypes();
  * @endcode
  * or there is simplified method, using this macro:
  * @code
  * QList<PluginType*> types = PLUGINS->getPluginTypes();
  * @endcode
  */
-#define PLUGINS SQLiteStudio::getInstance()->getPluginManager()
+#define PLUGINS PluginManager::getInstance()
 
 #endif // PLUGINMANAGER_H

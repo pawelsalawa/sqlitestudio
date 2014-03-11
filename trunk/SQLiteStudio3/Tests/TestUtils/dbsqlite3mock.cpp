@@ -3,7 +3,7 @@
 #include <QDebug>
 
 DbSqlite3Mock::DbSqlite3Mock(const QString &name, const QString &path, const QHash<QString,QVariant> &options)
-    : DbQt("QSQLITE", "SQLite3")
+    : DbQt3<Sqlite3Mock>("QSQLITE", "SQLite3")
 {
     Db::init(name, path, options);
 }

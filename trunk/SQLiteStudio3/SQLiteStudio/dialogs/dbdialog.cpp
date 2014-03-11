@@ -1,6 +1,5 @@
 #include "dbdialog.h"
 #include "ui_dbdialog.h"
-#include "sqlitestudio.h"
 #include "pluginmanager.h"
 #include "db/dbplugin.h"
 #include "uiutils.h"
@@ -116,7 +115,7 @@ void DbDialog::init()
 {
     ui->browseLocalButton->setIcon(ICON("database_file"));
     ui->browseRemoteButton->setIcon(ICON("database_network"));
-    dbPlugins = SQLiteStudio::getInstance()->getPluginManager()->getLoadedPlugins<DbPlugin>();
+    dbPlugins = PLUGINS->getLoadedPlugins<DbPlugin>();
     int remotes = 0;
     int locals = 0;
     foreach (DbPlugin* dbPlugin, dbPlugins)

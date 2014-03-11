@@ -9,7 +9,6 @@
 #include "common/intvalidator.h"
 #include "common/extaction.h"
 #include "iconmanager.h"
-#include "sqlitestudio.h"
 #include "uiconfig.h"
 #include <QDebug>
 #include <QHeaderView>

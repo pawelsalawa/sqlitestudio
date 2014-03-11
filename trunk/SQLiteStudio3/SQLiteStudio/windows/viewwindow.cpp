@@ -447,8 +447,7 @@ void ViewWindow::changesFailedToCommit(int errorCode, const QString& errorText)
 
     widgetCover->hide();
 
-    NotifyManager* notifyManager = SQLiteStudio::getInstance()->getNotifyManager();
-    notifyManager->error(tr("Could not commit view changes. Error message: %1", "view window").arg(errorText));
+    NotifyManager::getInstance()->error(tr("Could not commit view changes. Error message: %1", "view window").arg(errorText));
 }
 
 void ViewWindow::updateTriggersState()
