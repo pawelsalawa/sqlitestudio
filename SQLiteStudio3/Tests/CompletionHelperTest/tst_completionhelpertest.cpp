@@ -166,7 +166,8 @@ int CompletionHelperTest::find(const QList<ExpectedTokenPtr> &tokens, ExpectedTo
 void CompletionHelperTest::testFrom1()
 {
     QString sql = "select * FROM ";
-    QList<ExpectedTokenPtr> tokens = CompletionHelper::getExpectedTokens(sql, db).filtered();
+    CompletionHelper helper(sql, db);
+    QList<ExpectedTokenPtr> tokens = helper.getExpectedTokens().filtered();
 
     QVERIFY(contains(tokens, ExpectedToken::TABLE, "test"));
     QVERIFY(contains(tokens, ExpectedToken::TABLE, "sqlite_master"));
@@ -177,9 +178,10 @@ void CompletionHelperTest::testFrom1()
 void CompletionHelperTest::testFrom2()
 {
     QString sql = "select id from abc, ";
-    QList<ExpectedTokenPtr> tokens = CompletionHelper::getExpectedTokens(sql, db).filtered();
+    CompletionHelper helper(sql, db);
+    QList<ExpectedTokenPtr> tokens = helper.getExpectedTokens().filtered();
 
-    QList<ExpectedToken*> entries = getEntryList(tokens);
+//    QList<ExpectedToken*> entries = getEntryList(tokens);
 
     QVERIFY(contains(tokens, ExpectedToken::TABLE));
     QVERIFY(contains(tokens, ExpectedToken::DATABASE));
@@ -200,7 +202,8 @@ void CompletionHelperTest::testFrom2()
 void CompletionHelperTest::testResCol1()
 {
     QString sql = "select main.test.";
-    QList<ExpectedTokenPtr> tokens = CompletionHelper::getExpectedTokens(sql, db).filtered();
+    CompletionHelper helper(sql, db);
+    QList<ExpectedTokenPtr> tokens = helper.getExpectedTokens().filtered();
 
     QVERIFY(!contains(tokens, ExpectedToken::COLUMN, "name"));
     QVERIFY(contains(tokens, ExpectedToken::COLUMN, "id"));
@@ -210,7 +213,8 @@ void CompletionHelperTest::testResCol1()
 void CompletionHelperTest::testResCol2()
 {
     QString sql = "select ";
-    QList<ExpectedTokenPtr> tokens = CompletionHelper::getExpectedTokens(sql, db).filtered();
+    CompletionHelper helper(sql, db);
+    QList<ExpectedTokenPtr> tokens = helper.getExpectedTokens().filtered();
 
     //QList<ExpectedToken*> entries = getEntryList(tokens);
 
@@ -233,7 +237,8 @@ void CompletionHelperTest::testResCol2()
 void CompletionHelperTest::testResCol3()
 {
     QString sql = "select  from test";
-    QList<ExpectedTokenPtr> tokens = CompletionHelper::getExpectedTokens(sql, 7, db).filtered();
+    CompletionHelper helper(sql, 7, db);
+    QList<ExpectedTokenPtr> tokens = helper.getExpectedTokens().filtered();
 
     //QList<ExpectedToken*> entries = getEntryList(tokens);
 
@@ -257,7 +262,8 @@ void CompletionHelperTest::testResCol3()
 void CompletionHelperTest::testResCol4()
 {
     QString sql = "select test.id, from test";
-    QList<ExpectedTokenPtr> tokens = CompletionHelper::getExpectedTokens(sql, 15, db).filtered();
+    CompletionHelper helper(sql, 15, db);
+    QList<ExpectedTokenPtr> tokens = helper.getExpectedTokens().filtered();
 
     //QList<ExpectedToken*> entries = getEntryList(tokens);
 
@@ -279,7 +285,8 @@ void CompletionHelperTest::testResCol4()
 void CompletionHelperTest::testResCol5()
 {
     QString sql = "select test.id, val from test";
-    QList<ExpectedTokenPtr> tokens = CompletionHelper::getExpectedTokens(sql, 15, db).filtered();
+    CompletionHelper helper(sql, 15, db);
+    QList<ExpectedTokenPtr> tokens = helper.getExpectedTokens().filtered();
 
     //QList<ExpectedToken*> entries = getEntryList(tokens);
 
@@ -301,7 +308,8 @@ void CompletionHelperTest::testResCol5()
 void CompletionHelperTest::testResCol6()
 {
     QString sql = "select (select  from sqlite_master as S, sqlite_master as S2) from test as A";
-    QList<ExpectedTokenPtr> tokens = CompletionHelper::getExpectedTokens(sql, 15, db).filtered();
+    CompletionHelper helper(sql, 15, db);
+    QList<ExpectedTokenPtr> tokens = helper.getExpectedTokens().filtered();
 
     //QList<ExpectedToken*> entries = getEntryList(tokens);
 
@@ -330,7 +338,8 @@ void CompletionHelperTest::testResCol6()
 void CompletionHelperTest::testFromKw()
 {
     QString sql = "select * FR";
-    QList<ExpectedTokenPtr> tokens = CompletionHelper::getExpectedTokens(sql, db).filtered();
+    CompletionHelper helper(sql, db);
+    QList<ExpectedTokenPtr> tokens = helper.getExpectedTokens().filtered();
 
     QVERIFY(contains(tokens, ExpectedToken::KEYWORD, "FROM"));
     QVERIFY(!contains(tokens, ExpectedToken::COLUMN));
@@ -340,7 +349,8 @@ void CompletionHelperTest::testFromKw()
 void CompletionHelperTest::testUpdateTable()
 {
     QString sql = "update ";
-    QList<ExpectedTokenPtr> tokens = CompletionHelper::getExpectedTokens(sql, db).filtered();
+    CompletionHelper helper(sql, db);
+    QList<ExpectedTokenPtr> tokens = helper.getExpectedTokens().filtered();
 
     QVERIFY(contains(tokens, ExpectedToken::TABLE));
 }
@@ -348,7 +358,8 @@ void CompletionHelperTest::testUpdateTable()
 void CompletionHelperTest::testUpdateCols1()
 {
     QString sql = "update test set id = 5, ";
-    QList<ExpectedTokenPtr> tokens = CompletionHelper::getExpectedTokens(sql, db).filtered();
+    CompletionHelper helper(sql, db);
+    QList<ExpectedTokenPtr> tokens = helper.getExpectedTokens().filtered();
 
     // TODO if table is provided and there is at least one column in proposal for it, then skip columns from other tables.
     // TODO Make the context more precise - distinguish between left side column from right side expression

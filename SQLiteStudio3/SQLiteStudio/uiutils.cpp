@@ -1,5 +1,4 @@
 #include "uiutils.h"
-#include "sqlitestudio.h"
 #include "config.h"
 #include <QObject>
 #include <QCheckBox>
@@ -13,7 +12,7 @@ QString getDbPath(const QString &startWith)
 {
     QString dir = startWith;
     if (dir.isNull())
-        dir = SQLiteStudio::getInstance()->getConfig()->get("dialogCache", "lastDbDir").toString();
+        dir = CFG->get("dialogCache", "lastDbDir").toString();
 
     QStringList filters;
     filters += QObject::tr("All SQLite databases")+" (*.db *.sdb *.sqlite *.db3 *.s3db *.sqlite3 *.sl3 *.db2 *.s2db *.sqlite2 *.sl2)";
@@ -25,7 +24,7 @@ QString getDbPath(const QString &startWith)
     QString path = QFileDialog::getSaveFileName(0, QObject::tr("Database file"), dir, filter, &filters[0], QFileDialog::DontConfirmOverwrite);
 
     if (!path.isNull())
-        SQLiteStudio::getInstance()->getConfig()->set("dialogCache", "lastDbDir", QFileInfo(path).dir().absolutePath());
+        CFG->set("dialogCache", "lastDbDir", QFileInfo(path).dir().absolutePath());
 
     return path;
 }

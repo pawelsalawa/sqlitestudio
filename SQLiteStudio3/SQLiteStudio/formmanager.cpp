@@ -1,7 +1,7 @@
 #include "formmanager.h"
-#include "sqlitestudio.h"
 #include "config.h"
 #include "pluginmanager.h"
+#include "sqlitestudio.h"
 #include <QFile>
 #include <QDir>
 #include <QRegularExpression>

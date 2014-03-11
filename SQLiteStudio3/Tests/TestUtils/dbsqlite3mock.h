@@ -1,9 +1,11 @@
 #ifndef DBSQLITE3MOCK_H
 #define DBSQLITE3MOCK_H
 
-#include "db/dbqt.h"
+#include "db/dbqt3.h"
 
-class DbSqlite3Mock : public DbQt
+class Sqlite3Mock;
+
+class DbSqlite3Mock : public DbQt3<Sqlite3Mock>
 {
     Q_OBJECT
     public:

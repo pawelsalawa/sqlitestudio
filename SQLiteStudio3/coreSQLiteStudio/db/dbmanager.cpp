@@ -1,6 +1,5 @@
 #include "dbmanager.h"
 #include "db.h"
-#include "sqlitestudio.h"
 #include "config.h"
 #include "dbplugin.h"
 #include "pluginmanager.h"
@@ -12,10 +11,16 @@
 #include <QPluginLoader>
 #include <QDebug>
 
+DEFINE_SINGLETON(DbManager)
+
 DbManager::DbManager(QObject *parent) :
     QObject(parent)
 {
     init();
+}
+
+DbManager::~DbManager()
+{
 }
 
 bool DbManager::addDb(const QString &name, const QString &path, bool permanent)

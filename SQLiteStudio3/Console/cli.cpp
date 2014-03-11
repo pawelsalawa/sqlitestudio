@@ -1,5 +1,4 @@
 #include "cli.h"
-#include "sqlitestudio.h"
 #include "config.h"
 #include "cli_config.h"
 #include "db/dbmanager.h"

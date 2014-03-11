@@ -1,5 +1,4 @@
 #include "dblistmodel.h"
-#include "sqlitestudio.h"
 #include "db/dbmanager.h"
 #include "dbtree/dbtree.h"
 #include "dbtree/dbtreemodel.h"
@@ -9,11 +8,10 @@
 DbListModel::DbListModel(QObject *parent) :
     QAbstractListModel(parent)
 {
-    DbManager* dbManager = SQLiteStudio::getInstance()->getDbManager();
-    unsortedList = dbManager->getConnectedDbList();
+    unsortedList = DBLIST->getConnectedDbList();
 
-    connect(dbManager, &DbManager::dbConnected, this, &DbListModel::dbConnected);
-    connect(dbManager, &DbManager::dbDisconnected, this, &DbListModel::dbDisconnected);
+    connect(DBLIST, &DbManager::dbConnected, this, &DbListModel::dbConnected);
+    connect(DBLIST, &DbManager::dbDisconnected, this, &DbListModel::dbDisconnected);
 
     setSortMode(CFG_UI.General.SqlEditorDbListOrder.get());
 }

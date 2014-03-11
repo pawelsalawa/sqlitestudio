@@ -1,7 +1,6 @@
 #include "db.h"
 #include "dbqt.h"
 #include "dbremote.h"
-#include "sqlitestudio.h"
 #include "dbmanager.h"
 #include "utils.h"
 #include "asyncqueryrunner.h"

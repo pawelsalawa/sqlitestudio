@@ -30,11 +30,17 @@ class API_EXPORT CompletionHelper : public QObject
             bool wrappedToken = false;
         };
 
-        static Results getExpectedTokens(const QString& sql, Db* db);
-        static Results getExpectedTokens(const QString& sql, qint32 cursorPos, Db* db);
-        static void applyFilter(QList<ExpectedTokenPtr> &results, const QString &filter);
+        CompletionHelper(const QString& sql, Db* db);
+        CompletionHelper(const QString& sql, quint32 cursorPos, Db* db);
+        ~CompletionHelper();
 
+        static void applyFilter(QList<ExpectedTokenPtr> &results, const QString &filter);
         static void init();
+
+        Results getExpectedTokens();
+
+        DbAttacher* getDbAttacher() const;
+        void setDbAttacher(DbAttacher* value);
 
     private:
         enum class Context
@@ -52,11 +58,6 @@ class API_EXPORT CompletionHelper : public QObject
             CREATE_TRIGGER,
             EXPR
         };
-
-        CompletionHelper(const QString& sql, quint32 cursorPos, Db* db);
-        ~CompletionHelper();
-
-        Results getExpectedTokens();
 
         QList<ExpectedTokenPtr> getExpectedTokens(TokenPtr token);
         ExpectedTokenPtr getExpectedToken(ExpectedToken::Type type);

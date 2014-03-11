@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-#include "sqlitestudio.h"
 #include "iconmanager.h"
 #include "dbtree/dbtreeitem.h"
 #include "datagrid/sqlquerymodelcolumn.h"
@@ -14,6 +13,7 @@
 #include "multieditor/multieditordate.h"
 #include "multieditor/multieditorbool.h"
 #include "uiconfig.h"
+#include "sqlitestudio.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
     DbTreeItem::initMeta();
     SqlQueryModelColumn::initMeta();
     SqlQueryModel::staticInit();
-    SQLiteStudio::getInstance()->init(a.arguments());
+    SQLITESTUDIO->init(a.arguments());
     IconManager::getInstance();
     DataView::staticInit();
     EditorWindow::staticInit();

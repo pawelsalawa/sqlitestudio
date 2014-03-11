@@ -2,7 +2,6 @@
 #include "dbtreeitem.h"
 #include "ui_dbtree.h"
 #include "utils_sql.h"
-#include "sqlitestudio.h"
 #include "dbtreemodel.h"
 #include "dialogs/dbdialog.h"
 #include "db/dbmanager.h"
@@ -542,7 +541,7 @@ void DbTree::editDb()
     if (!db)
         return;
 
-    bool perm = SQLiteStudio::getInstance()->getConfig()->isDbInConfig(db->getName());
+    bool perm = CFG->isDbInConfig(db->getName());
 
     DbDialog dialog(DbDialog::EDIT, this);
     dialog.setDb(db);

@@ -1,8 +1,8 @@
 #include "tablewindow.h"
 #include "ui_tablewindow.h"
-#include "sqlitestudio.h"
 #include "db/dbmanager.h"
 #include "notifymanager.h"
+#include "sqlitestudio.h"
 #include "schemaresolver.h"
 #include "iconmanager.h"
 #include "common/intvalidator.h"
@@ -725,7 +725,7 @@ void TableWindow::changesSuccessfullyCommited()
             tableModifier->getModifiedTriggers(),
             tableModifier->getModifiedViews()
         };
-        NotifyManager* notifyManager = SQLiteStudio::getInstance()->getNotifyManager();
+        NotifyManager* notifyManager = NotifyManager::getInstance();
         foreach (const QStringList& objList, modifiedObjects)
         {
             foreach (const QString& obj, objList)
@@ -946,7 +946,7 @@ void TableWindow::applyInitialTab()
 
 void TableWindow::updateDdlTab()
 {
-    SqlFormatter* formatter = SQLiteStudio::getInstance()->getSqlFormatter();
+    SqlFormatter* formatter = SQLITESTUDIO->getSqlFormatter();
     createTable->rebuildTokens();
     ui->ddlEdit->setPlainText(formatter->format(createTable));
 }

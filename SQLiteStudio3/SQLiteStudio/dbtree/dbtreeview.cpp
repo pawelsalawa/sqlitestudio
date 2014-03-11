@@ -3,7 +3,6 @@
 #include "actionentry.h"
 #include "dbtreeitemdelegate.h"
 #include "mainwindow.h"
-#include "sqlitestudio.h"
 #include "db/dbmanager.h"
 #include "unused.h"
 #include <QDragMoveEvent>

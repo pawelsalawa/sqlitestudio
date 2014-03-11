@@ -1,8 +1,8 @@
 #include "ddlpreviewdialog.h"
 #include "ui_ddlpreviewdialog.h"
-#include "sqlitestudio.h"
 #include "sqlformatter.h"
 #include "uiconfig.h"
+#include "sqlitestudio.h"
 
 DdlPreviewDialog::DdlPreviewDialog(Dialect dialect, QWidget *parent) :
     QDialog(parent),

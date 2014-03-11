@@ -56,10 +56,9 @@ IconManager::IconManager()
 
 void IconManager::init()
 {
-    SQLiteStudio* sqliteStudio = SQLiteStudio::getInstance();
     iconDirs += qApp->applicationDirPath() + "/img";
 
-    QString envDirs = sqliteStudio->getEnv("SQLITESTUDIO_ICONS");
+    QString envDirs = SQLITESTUDIO->getEnv("SQLITESTUDIO_ICONS");
     if (!envDirs.isNull())
         iconDirs += envDirs.split(PATH_LIST_SEPARATOR);
 

@@ -4,7 +4,6 @@
 #include "uiconfig.h"
 #include "iconmanager.h"
 #include "common/tablewidget.h"
-#include "sqlitestudio.h"
 #include "notifymanager.h"
 #include <QMenu>
 #include <QAction>
@@ -19,7 +18,7 @@ StatusField::StatusField(QWidget *parent) :
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(1, QHeaderView::ResizeToContents);
     ui->tableWidget->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
-    NotifyManager* nm = SQLITESTUDIO->getNotifyManager();
+    NotifyManager* nm = NotifyManager::getInstance();
     connect(nm, SIGNAL(notifyInfo(QString)), this, SLOT(info(QString)));
     connect(nm, SIGNAL(notifyError(QString)), this, SLOT(error(QString)));
     connect(nm, SIGNAL(notifyWarning(QString)), this, SLOT(warn(QString)));
@@ -116,13 +115,13 @@ void StatusField::setupMenu()
 
 void StatusField::readRecentMessages()
 {
-    foreach (const QString& msg, SQLITESTUDIO->getNotifyManager()->getRecentInfos())
+    foreach (const QString& msg, NotifyManager::getInstance()->getRecentInfos())
         info(msg);
 
-    foreach (const QString& msg, SQLITESTUDIO->getNotifyManager()->getRecentWarnings())
+    foreach (const QString& msg, NotifyManager::getInstance()->getRecentWarnings())
         warn(msg);
 
-    foreach (const QString& msg, SQLITESTUDIO->getNotifyManager()->getRecentErrors())
+    foreach (const QString& msg, NotifyManager::getInstance()->getRecentErrors())
         error(msg);
 }
 

@@ -2,17 +2,22 @@
 #define FUNCTIONMANAGER_H
 
 #include "strhash.h"
-#include "sqlitestudio.h"
+#include "coreSQLiteStudio_global.h"
+#include "global.h"
 #include <QList>
 #include <QSharedPointer>
 #include <QObject>
 
 class Db;
 class SqlFunctionPlugin;
+class Plugin;
+class PluginType;
 
 class API_EXPORT FunctionManager : public QObject
 {
     Q_OBJECT
+
+    DECLARE_SINGLETON(FunctionManager)
 
     public:
         struct API_EXPORT Function
@@ -87,6 +92,6 @@ class API_EXPORT FunctionManager : public QObject
 int qHash(const FunctionManager::Key& key);
 bool operator==(const FunctionManager::Key& key1, const FunctionManager::Key& key2);
 
-#define FUNCTIONS SQLiteStudio::getInstance()->getFunctionManager()
+#define FUNCTIONS FunctionManager::getInstance()
 
 #endif // FUNCTIONMANAGER_H

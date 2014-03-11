@@ -1,5 +1,4 @@
 #include "clicommand.h"
-#include "sqlitestudio.h"
 #include "qio.h"
 #include "cli_config.h"
 #include "cliutils.h"
@@ -23,7 +22,6 @@ CliCommand::~CliCommand()
 void CliCommand::setup(CLI *cli)
 {
     this->cli = cli;
-    this->config = SQLiteStudio::getInstance()->getConfig();
     defineSyntax();
 }
 

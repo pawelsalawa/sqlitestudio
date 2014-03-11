@@ -2,7 +2,6 @@
 #include "parser/parser.h"
 #include "sqlformatterplugin.h"
 #include "pluginmanager.h"
-#include "sqlitestudio.h"
 #include <QDebug>
 
 QString SqlFormatter::format(const QString &sql, Dialect dialect)

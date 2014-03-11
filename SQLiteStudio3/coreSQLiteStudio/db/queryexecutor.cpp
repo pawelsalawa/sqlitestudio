@@ -1,7 +1,6 @@
 #include "queryexecutor.h"
 #include "sqlerrorresults.h"
 #include "sqlerrorcodes.h"
-#include "sqlitestudio.h"
 #include "db/dbmanager.h"
 #include "db/sqlerrorcodes.h"
 #include "queryexecutorsteps/queryexecutoraddrowids.h"

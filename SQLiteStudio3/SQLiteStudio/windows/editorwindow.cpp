@@ -11,7 +11,6 @@
 #include "mdiarea.h"
 #include "unused.h"
 #include "common/extaction.h"
-#include "sqlitestudio.h"
 #include "uiconfig.h"
 #include "config.h"
 #include "parser/lexer.h"
@@ -79,8 +78,7 @@ void EditorWindow::init()
     connect(resultsModel, &SqlQueryModel::totalRowsAndPagesAvailable, this, &EditorWindow::totalRowsAndPagesAvailable);
 
     // SQL history list
-    Config* config = SQLiteStudio::getInstance()->getConfig();
-    ui->historyList->setModel(config->getSqlHistoryModel());
+    ui->historyList->setModel(CFG->getSqlHistoryModel());
     ui->historyList->resizeColumnToContents(1);
     connect(ui->historyList->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
             this, SLOT(historyEntrySelected(QModelIndex,QModelIndex)));
@@ -415,8 +413,7 @@ void EditorWindow::executionSuccessful()
     QString time = QString::number(secs, 'f', 3);
     notifyInfo(tr("Query finished in %2 second(s).").arg(time));
 
-    Config* config = SQLiteStudio::getInstance()->getConfig();
-    lastQueryHistoryId = config->addSqlHistory(resultsModel->getQuery(), resultsModel->getDb()->getName(), resultsModel->getExecutionTime(), 0);
+    lastQueryHistoryId = CFG->addSqlHistory(resultsModel->getQuery(), resultsModel->getDb()->getName(), resultsModel->getExecutionTime(), 0);
 
     // If we added first history entry - resize dates column.
     if (ui->historyList->model()->rowCount() == 1)
@@ -443,8 +440,7 @@ void EditorWindow::totalRowsAndPagesAvailable()
     else
         rows = rowsAffected;
 
-    Config* config = SQLiteStudio::getInstance()->getConfig();
-    config->updateSqlHistory(lastQueryHistoryId, resultsModel->getQuery(), resultsModel->getDb()->getName(), resultsModel->getExecutionTime(), rows);
+    CFG->updateSqlHistory(lastQueryHistoryId, resultsModel->getQuery(), resultsModel->getDb()->getName(), resultsModel->getExecutionTime(), rows);
 }
 
 void EditorWindow::prevDb()
@@ -512,8 +508,7 @@ void EditorWindow::historyEntryActivated(const QModelIndex& current)
 
 void EditorWindow::clearHistory()
 {
-    Config* config = SQLiteStudio::getInstance()->getConfig();
-    config->clearSqlHistory();
+    CFG->clearSqlHistory();
 }
 
 void EditorWindow::exportResults()

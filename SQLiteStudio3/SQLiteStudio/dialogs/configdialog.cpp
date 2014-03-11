@@ -13,6 +13,7 @@
 #include "common/userinputfilter.h"
 #include "mainwindow.h"
 #include "unused.h"
+#include "sqlitestudio.h"
 #include <QSignalMapper>
 #include <QLineEdit>
 #include <QSpinBox>

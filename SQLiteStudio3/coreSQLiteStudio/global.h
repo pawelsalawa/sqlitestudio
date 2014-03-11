@@ -17,6 +17,37 @@
         F << _new##T; \
     }
 
+#define safe_delete(var) \
+    if (var) \
+    { \
+        delete var; \
+        var = nullptr; \
+    }
+
 #define static_char static constexpr const char
+
+#define DECLARE_SINGLETON(Cls) \
+    public: \
+        static Cls* getInstance(); \
+        static void destroy(); \
+    \
+    private: \
+        static Cls* _instance;
+
+#define DEFINE_SINGLETON(Cls) \
+    Cls* Cls::_instance = nullptr; \
+    \
+    Cls* Cls::getInstance() \
+    { \
+        if (!_instance) \
+            _instance = new Cls(); \
+    \
+        return _instance; \
+    } \
+    \
+    void Cls::destroy() \
+    { \
+        safe_delete(_instance); \
+    }
 
 #endif // GLOBAL_H

@@ -4,6 +4,8 @@
 #include "sqlfunctionplugin.h"
 #include "pluginmanager.h"
 
+DEFINE_SINGLETON(FunctionManager)
+
 FunctionManager::FunctionManager()
 {
     init();

@@ -8,6 +8,8 @@
 #include <QDir>
 #include <QMetaClassInfo>
 
+DEFINE_SINGLETON(PluginManager)
+
 PluginManager::PluginManager()
 {
 }
@@ -18,11 +20,10 @@ PluginManager::~PluginManager()
 
 void PluginManager::init()
 {
-    SQLiteStudio* sqliteStudio = SQLiteStudio::getInstance();
     pluginDirs += qApp->applicationDirPath() + "/plugins";
-    pluginDirs += QDir(sqliteStudio->getConfig()->getConfigDir()).absoluteFilePath("plugins");
+    pluginDirs += QDir(CFG->getConfigDir()).absoluteFilePath("plugins");
 
-    QString envDirs = sqliteStudio->getEnv("SQLITESTUDIO_PLUGINS");
+    QString envDirs = SQLITESTUDIO->getEnv("SQLITESTUDIO_PLUGINS");
     if (!envDirs.isNull())
         pluginDirs += envDirs.split(PATH_LIST_SEPARATOR);
 

@@ -21,7 +21,7 @@
 #include <QProcessEnvironment>
 #include <QThreadPool>
 
-SQLiteStudio* SQLiteStudio::instance = nullptr;
+DEFINE_SINGLETON(SQLiteStudio)
 
 SQLiteStudio::SQLiteStudio()
 {
@@ -43,44 +43,9 @@ void SQLiteStudio::parseCmdLineArgs()
     }
 }
 
-NotifyManager *SQLiteStudio::getNotifyManager() const
-{
-    return notifyManager;
-}
-
-FunctionManager*SQLiteStudio::getFunctionManager() const
-{
-    return functionManager;
-}
-
 SqlFormatter *SQLiteStudio::getSqlFormatter() const
 {
     return sqlFormatter;
-}
-
-SQLiteStudio *SQLiteStudio::getInstance()
-{
-    if (!instance)
-    {
-        instance = new SQLiteStudio();
-    }
-
-    return instance;
-}
-
-DbManager *SQLiteStudio::getDbManager() const
-{
-    return dbManager;
-}
-
-PluginManager *SQLiteStudio::getPluginManager() const
-{
-    return pluginManager;
-}
-
-Config *SQLiteStudio::getConfig() const
-{
-    return config;
 }
 
 void SQLiteStudio::init(const QStringList& cmdListArguments)
@@ -99,12 +64,11 @@ void SQLiteStudio::init(const QStringList& cmdListArguments)
 
     qRegisterMetaType<ScriptingPlugin::Context*>();
 
-    notifyManager = new NotifyManager();
+    NotifyManager::getInstance();
 
-    config = new Config();
-    config->init();
+    CFG->init();
 
-    pluginManager = new PluginManager();
+    PluginManager* pluginManager = PluginManager::getInstance();
     pluginManager->registerPluginType<GeneralPurposePlugin>(QObject::tr("General purpose"));
     pluginManager->registerPluginType<DbPlugin>(QObject::tr("Database support"));
     pluginManager->registerPluginType<SqlFormatterPlugin>(QObject::tr("SQL formatter"), "formatterPluginsPage");
@@ -119,12 +83,11 @@ void SQLiteStudio::init(const QStringList& cmdListArguments)
 
     // FunctionManager needs to be set up before DbManager, cause when DbManager starts up, databases make their
     // connections and register functions.
-    functionManager = new FunctionManager();
+    FunctionManager::getInstance();
 
-    dbManager = new DbManager();
     cmdLineArgs = cmdListArguments;
 
-    connect(pluginManager, SIGNAL(pluginsInitiallyLoaded()), dbManager, SLOT(loadDbListFromConfig()));
+    connect(pluginManager, SIGNAL(pluginsInitiallyLoaded()), DBLIST, SLOT(loadDbListFromConfig()));
 
     pluginManager->init();
 
@@ -137,52 +100,18 @@ void SQLiteStudio::init(const QStringList& cmdListArguments)
 
 void SQLiteStudio::cleanUp()
 {
-    if (functionManager)
-    {
-        delete functionManager;
-        functionManager = nullptr;
-    }
-
-    if (dbManager)
-    {
-        delete dbManager;
-        dbManager = nullptr;
-    }
-
-    if (config)
-    {
-        delete config;
-        config = nullptr;
-    }
-
-    if (pluginManager)
-    {
-        delete pluginManager;
-        pluginManager = nullptr;
-    }
-
-    if (sqlFormatter)
-    {
-        delete sqlFormatter;
-        sqlFormatter = nullptr;
-    }
-
-    if (env)
-    {
-        delete env;
-        env = nullptr;
-    }
-
-    if (notifyManager)
-    {
-        delete notifyManager;
-        notifyManager = nullptr;
-    }
+    FunctionManager::destroy();
+    DbManager::destroy();
+    Config::destroy();
+    PluginManager::destroy();
+    safe_delete(sqlFormatter)
+    safe_delete(env)
+    NotifyManager::destroy();
 }
 
 void SQLiteStudio::updateSqlFormatter()
 {
-    QList<SqlFormatterPlugin *> sqlFormatterPlugins = pluginManager->getLoadedPlugins<SqlFormatterPlugin>();
+    QList<SqlFormatterPlugin *> sqlFormatterPlugins = PLUGINS->getLoadedPlugins<SqlFormatterPlugin>();
     QString activeFormatterName = CFG_CORE.General.ActiveSqlFormatter.get();
     foreach (SqlFormatterPlugin* plugin, sqlFormatterPlugins)
     {

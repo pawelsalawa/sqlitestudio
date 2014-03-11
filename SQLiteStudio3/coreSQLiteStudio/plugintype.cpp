@@ -1,7 +1,6 @@
 #include "plugin.h"
 #include "plugintype.h"
 #include "pluginmanager.h"
-#include "sqlitestudio.h"
 
 PluginType::PluginType(const QString& title, const QString& form) :
     title(title), configUiForm(form)

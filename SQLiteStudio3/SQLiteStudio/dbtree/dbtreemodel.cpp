@@ -1,6 +1,5 @@
 #include "dbtreemodel.h"
 #include "db/dbmanager.h"
-#include "sqlitestudio.h"
 #include "dbtreeview.h"
 #include "iconmanager.h"
 #include "uiconfig.h"
