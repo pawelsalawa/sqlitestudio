@@ -181,6 +181,8 @@ JavaScriptSyntaxHighlighter::JavaScriptSyntaxHighlighter(QTextDocument *parent)
     m_knownIds << "window";
     m_knownIds << "navigator";
     m_knownIds << "userAgent";
+
+    keywordsFormat.setFontWeight(QFont::Bold);
 }
 
 void JavaScriptSyntaxHighlighter::highlightBlock(const QString &text)
@@ -248,7 +250,10 @@ void JavaScriptSyntaxHighlighter::highlightBlock(const QString &text)
             if (ch.isSpace() || !(ch.isDigit() || ch.isLetter() || ch == '_')) {
                 QString token = text.mid(start, i - start).trimmed();
                 if (m_keywords.contains(token))
-                    setFormat(start, i - start, CFG_UI.Colors.JavaScriptKeyword.get());
+                {
+                    keywordsFormat.setForeground(CFG_UI.Colors.JavaScriptKeyword.get());
+                    setFormat(start, i - start, keywordsFormat);
+                }
                 else if (m_knownIds.contains(token))
                     setFormat(start, i - start, CFG_UI.Colors.JavaScriptBuiltIn.get());
                 state = Start;

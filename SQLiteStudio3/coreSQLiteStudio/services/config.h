@@ -164,6 +164,9 @@ class API_EXPORT Config : public QObject
         QString lastQueryError;
         QAbstractItemModel* sqlHistoryModel = nullptr;
         DdlHistoryModel* ddlHistoryModel = nullptr;
+
+    signals:
+        void massSaveCommited();
 };
 
 #define CFG Config::getInstance()

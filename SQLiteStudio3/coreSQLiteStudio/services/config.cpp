@@ -58,6 +58,7 @@ void Config::beginMassSave()
 void Config::commitMassSave()
 {
     db->exec("COMMIT;");
+    emit massSaveCommited();
 }
 
 void Config::rollbackMassSave()
