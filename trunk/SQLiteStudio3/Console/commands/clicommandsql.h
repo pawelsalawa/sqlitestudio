@@ -18,9 +18,44 @@ class CliCommandSql : public CliCommand
         void defineSyntax();
 
     private:
+        class SortedColumnWidth
+        {
+            public:
+                SortedColumnWidth();
+
+                bool operator<(const SortedColumnWidth& other);
+
+                int getHeaderWidth() const;
+                void setHeaderWidth(int value);
+                void setMaxHeaderWidth(int value);
+                void incrHeaderWidth(int value = 1);
+                void decrHeaderWidth(int value = 1);
+
+                int getDataWidth() const;
+                void setDataWidth(int value);
+                void setMinDataWidth(int value);
+                void incrDataWidth(int value = 1);
+                void decrDataWidth(int value = 1);
+
+                void incrWidth(int value = 0);
+                int getWidth() const;
+                bool isHeaderLonger() const;
+
+            private:
+                void updateWidth();
+
+                int width;
+                int headerWidth;
+                int dataWidth;
+        };
+
         void printResultsClassic(QueryExecutor *executor, SqlResultsPtr results);
         void printResultsFixed(QueryExecutor *executor, SqlResultsPtr results);
+        void printResultsColumns(QueryExecutor *executor, SqlResultsPtr results);
         void printResultsRowByRow(QueryExecutor *executor, SqlResultsPtr results);
+        void shrinkColumns(QList<SortedColumnWidth*>& columnWidths, int termCols, int resultColumnsCount, int totalWidth);
+        void printColumnHeader(const QList<int>& widths, const QStringList& columns);
+        void printColumnDataRow(const QList<int>& widths, const SqlResultsRowPtr& row, int rowIdOffset);
 
         QString getValueString(const QVariant& value);
 
