@@ -2,9 +2,9 @@
 #define CONFIG_H
 
 #include "coreSQLiteStudio_global.h"
-#include "common/global.h"
 #include "cfginternals.h"
 #include "services/functionmanager.h"
+#include "sqlitestudio.h"
 #include <QObject>
 #include <QVariant>
 #include <QHash>
@@ -37,8 +37,6 @@ class QSqlQuery;
 class API_EXPORT Config : public QObject
 {
     Q_OBJECT
-
-    DECLARE_SINGLETON(Config)
 
     public:
         virtual ~Config();
@@ -85,22 +83,22 @@ class API_EXPORT Config : public QObject
 
         typedef QSharedPointer<DdlHistoryEntry> DdlHistoryEntryPtr;
 
-        void init();
-        void cleanUp();
-        const QString& getConfigDir();
+        virtual void init() = 0;
+        virtual void cleanUp() = 0;
+        virtual const QString& getConfigDir() = 0;
 
-        void beginMassSave();
-        void commitMassSave();
-        void rollbackMassSave();
-        void set(const QString& group, const QString& key, const QVariant& value);
-        QVariant get(const QString& group, const QString& key);
-        QHash<QString,QVariant> getAll();
+        virtual void beginMassSave() = 0;
+        virtual void commitMassSave() = 0;
+        virtual void rollbackMassSave() = 0;
+        virtual void set(const QString& group, const QString& key, const QVariant& value) = 0;
+        virtual QVariant get(const QString& group, const QString& key) = 0;
+        virtual QHash<QString,QVariant> getAll() = 0;
 
-        bool addDb(const QString& name, const QString& path, const QHash<QString, QVariant> &options);
-        bool updateDb(const QString& name, const QString &newName, const QString& path, const QHash<QString, QVariant> &options);
-        bool removeDb(const QString& name);
-        bool isDbInConfig(const QString& name);
-        QString getLastErrorString() const;
+        virtual bool addDb(const QString& name, const QString& path, const QHash<QString, QVariant> &options) = 0;
+        virtual bool updateDb(const QString& name, const QString &newName, const QString& path, const QHash<QString, QVariant> &options) = 0;
+        virtual bool removeDb(const QString& name) = 0;
+        virtual bool isDbInConfig(const QString& name) = 0;
+        virtual QString getLastErrorString() const = 0;
 
         /**
          * @brief Provides list of all registered databases.
@@ -110,65 +108,39 @@ class API_EXPORT Config : public QObject
          * They can be inexisting or unsupported, but they are kept in registry in case user fixes file path,
          * or loads plugin to support it.
          */
-        QList<CfgDbPtr> dbList();
-        CfgDbPtr getDb(const QString& dbName);
+        virtual QList<CfgDbPtr> dbList() = 0;
+        virtual CfgDbPtr getDb(const QString& dbName) = 0;
 
-        void storeGroups(const QList<DbGroupPtr>& groups);
-        QList<DbGroupPtr> getGroups();
-        DbGroupPtr getDbGroup(const QString& dbName);
+        virtual void storeGroups(const QList<DbGroupPtr>& groups) = 0;
+        virtual QList<DbGroupPtr> getGroups() = 0;
+        virtual DbGroupPtr getDbGroup(const QString& dbName) = 0;
 
-        qint64 addSqlHistory(const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected);
-        void updateSqlHistory(qint64 id, const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected);
-        void clearSqlHistory();
-        QAbstractItemModel* getSqlHistoryModel();
+        virtual qint64 addSqlHistory(const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected) = 0;
+        virtual void updateSqlHistory(qint64 id, const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected) = 0;
+        virtual void clearSqlHistory() = 0;
+        virtual QAbstractItemModel* getSqlHistoryModel() = 0;
 
-        void addCliHistory(const QString& text);
-        void applyCliHistoryLimit();
-        void clearCliHistory();
-        QStringList getCliHistory() const;
+        virtual void addCliHistory(const QString& text) = 0;
+        virtual void applyCliHistoryLimit() = 0;
+        virtual void clearCliHistory() = 0;
+        virtual QStringList getCliHistory() const = 0;
 
-        void addDdlHistory(const QString& queries, const QString& dbName, const QString& dbFile);
-        QList<DdlHistoryEntryPtr> getDdlHistoryFor(const QString& dbName, const QString& dbFile, const QDate& date);
-        DdlHistoryModel* getDdlHistoryModel();
-        void clearDdlHistory();
+        virtual void addDdlHistory(const QString& queries, const QString& dbName, const QString& dbFile) = 0;
+        virtual QList<DdlHistoryEntryPtr> getDdlHistoryFor(const QString& dbName, const QString& dbFile, const QDate& date) = 0;
+        virtual DdlHistoryModel* getDdlHistoryModel() = 0;
+        virtual void clearDdlHistory() = 0;
 
-        bool setFunctions(const QList<FunctionManager::FunctionPtr>& functions);
-        QList<FunctionManager::FunctionPtr> getFunctions() const;
+        virtual bool setFunctions(const QList<FunctionManager::FunctionPtr>& functions) = 0;
+        virtual QList<FunctionManager::FunctionPtr> getFunctions() const = 0;
 
-        void begin();
-        void commit();
-        void rollback();
-
-    private:
-        /**
-         * @brief Stores error from query in class member.
-         * @param query Query to get error from.
-         * @return true if the query had any error set, or false if not.
-         *
-         * If the error was defined in the query, its message is stored in lastQueryError.
-         */
-        bool storeErrorAndReturn(const QSqlQuery& query);
-        void printErrorIfSet(const QSqlQuery& query);
-        void storeGroup(const DbGroupPtr& group, const QVariant &parentId);
-        void readGroupRecursively(DbGroupPtr group);
-        QString getConfigPath();
-        QString getPortableConfigPath();
-        void initTables();
-        void initDbFile();
-        bool tryInitDbFile(const QString& dbPath);
-        QVariant deserializeValue(const QVariant& value);
-
-        static Config* instance;
-        QSqlDatabase *db = nullptr;
-        QString configDir;
-        QString lastQueryError;
-        QAbstractItemModel* sqlHistoryModel = nullptr;
-        DdlHistoryModel* ddlHistoryModel = nullptr;
+        virtual void begin() = 0;
+        virtual void commit() = 0;
+        virtual void rollback() = 0;
 
     signals:
         void massSaveCommited();
 };
 
-#define CFG Config::getInstance()
+#define CFG SQLITESTUDIO->getConfig()
 
 #endif // CONFIG_H

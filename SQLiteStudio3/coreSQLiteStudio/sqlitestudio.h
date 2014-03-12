@@ -3,6 +3,7 @@
 
 #include "coreSQLiteStudio_global.h"
 #include "common/global.h"
+#include "services/config.h"
 #include <QString>
 #include <QStringList>
 #include <QObject>
@@ -75,6 +76,9 @@ class API_EXPORT SQLiteStudio : public QObject
          */
         QString getEnv(const QString& name, const QString& defaultValue = QString());
 
+        Config* getConfig() const;
+        void setConfig(Config* value);
+
     private:
         /**
          * @brief Creates singleton instance.
@@ -132,6 +136,8 @@ class API_EXPORT SQLiteStudio : public QObject
          * It's a copy of arguments passed to application in command line.
          */
         QStringList cmdLineArgs;
+
+        Config* config = nullptr;
 
     private slots:
         void pluginLoaded(Plugin* plugin,PluginType* pluginType);
