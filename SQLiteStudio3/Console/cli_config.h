@@ -9,7 +9,8 @@ namespace CliResultsDisplay
     {
         CLASSIC = 0,
         FIXED = 1,
-        ROW = 2
+        ROW = 2,
+        COLUMNS = 3
     };
 
     Mode mode(const QString& mode);
@@ -27,7 +28,6 @@ CFG_CATEGORIES(Cli,
     CFG_CATEGORY(Console,
         CFG_ENTRY(QString,                 DefaultDatabase,    QString())
         CFG_ENTRY(QString,                 CommandPrefixChar,  ".")
-        CFG_ENTRY(int,                     ColumnMaxWidth,     20)
         CFG_ENTRY(CliResultsDisplay::Mode, ResultsDisplayMode, CliResultsDisplay::CLASSIC)
         CFG_ENTRY(QString,                 NullValue,          "")
     )

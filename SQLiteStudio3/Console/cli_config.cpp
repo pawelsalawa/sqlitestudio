@@ -10,6 +10,9 @@ CliResultsDisplay::Mode CliResultsDisplay::mode(const QString& mode)
     if (mode == "FIXED")
         return FIXED;
 
+    if (mode == "COLUMNS")
+        return COLUMNS;
+
     return CLASSIC;
 }
 
@@ -23,6 +26,8 @@ QString CliResultsDisplay::mode(CliResultsDisplay::Mode mode)
             return "FIXED";
         case CLASSIC:
             return "CLASSIC";
+        case COLUMNS:
+            return "COLUMNS";
     }
     return "CLASSIC";
 }
