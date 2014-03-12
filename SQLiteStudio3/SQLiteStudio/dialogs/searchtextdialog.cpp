@@ -1,7 +1,7 @@
 #include "searchtextdialog.h"
 #include "ui_searchtextdialog.h"
 #include "searchtextlocator.h"
-#include "unused.h"
+#include "common/unused.h"
 
 SearchTextDialog::SearchTextDialog(SearchTextLocator* textLocator, QWidget *parent) :
     QDialog(parent),

@@ -1,10 +1,10 @@
 #ifndef DBMANAGER_H
 #define DBMANAGER_H
 
-#include "db.h"
+#include "db/db.h"
 #include "coreSQLiteStudio_global.h"
-#include "strhash.h"
-#include "global.h"
+#include "common/strhash.h"
+#include "common/global.h"
 #include <QObject>
 #include <QList>
 #include <QHash>

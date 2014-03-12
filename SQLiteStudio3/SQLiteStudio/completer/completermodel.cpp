@@ -1,6 +1,6 @@
 #include "completermodel.h"
 #include "iconmanager.h"
-#include "unused.h"
+#include "common/unused.h"
 #include "completerview.h"
 #include <QIcon>
 #include <QVariant>

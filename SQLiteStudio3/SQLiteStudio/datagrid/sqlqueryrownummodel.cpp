@@ -1,5 +1,5 @@
 #include "sqlqueryrownummodel.h"
-#include "unused.h"
+#include "common/unused.h"
 
 SqlQueryRowNumModel::SqlQueryRowNumModel(QAbstractItemModel *value, QObject *parent) :
     QAbstractItemModel(parent)

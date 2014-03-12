@@ -1,10 +1,10 @@
 #include "triggerdialog.h"
 #include "ui_triggerdialog.h"
 #include "parser/ast/sqliteselect.h"
-#include "notifymanager.h"
+#include "services/notifymanager.h"
 #include "parser/ast/sqliteexpr.h"
 #include "triggercolumnsdialog.h"
-#include "utils_sql.h"
+#include "common/utils_sql.h"
 #include "schemaresolver.h"
 #include "parser/parser.h"
 #include "iconmanager.h"
@@ -12,7 +12,7 @@
 #include "dbtree/dbtree.h"
 #include "ddlpreviewdialog.h"
 #include "uiconfig.h"
-#include "config.h"
+#include "services/config.h"
 #include "uiutils.h"
 #include <QDebug>
 #include <QMessageBox>

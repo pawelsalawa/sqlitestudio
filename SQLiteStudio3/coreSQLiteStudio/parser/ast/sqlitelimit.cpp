@@ -1,7 +1,7 @@
 #include "sqlitelimit.h"
 #include "sqliteexpr.h"
 #include "parser/statementtokenbuilder.h"
-#include "global.h"
+#include "common/global.h"
 
 SqliteLimit::SqliteLimit()
 {

@@ -1,9 +1,9 @@
 #include "completerwindow.h"
 #include "ui_completerwindow.h"
 #include "completermodel.h"
-#include "unused.h"
+#include "common/unused.h"
 #include "sqleditor.h"
-#include "utils_sql.h"
+#include "common/utils_sql.h"
 #include <QKeyEvent>
 #include <QListView>
 #include <QDebug>

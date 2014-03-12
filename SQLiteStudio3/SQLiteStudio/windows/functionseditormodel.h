@@ -1,8 +1,8 @@
 #ifndef FUNCTIONSEDITORMODEL_H
 #define FUNCTIONSEDITORMODEL_H
 
-#include "config.h"
-#include "functionmanager.h"
+#include "services/config.h"
+#include "services/functionmanager.h"
 #include <QIcon>
 #include <QAbstractListModel>
 

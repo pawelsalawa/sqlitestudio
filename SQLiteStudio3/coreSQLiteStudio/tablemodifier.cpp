@@ -1,5 +1,5 @@
 #include "tablemodifier.h"
-#include "utils_sql.h"
+#include "common/utils_sql.h"
 #include "parser/parser.h"
 #include "schemaresolver.h"
 #include "selectresolver.h"

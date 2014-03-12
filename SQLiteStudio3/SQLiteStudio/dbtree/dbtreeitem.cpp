@@ -1,7 +1,7 @@
 #include "dbtreeitem.h"
 #include "iconmanager.h"
 #include "dbtreemodel.h"
-#include "db/dbmanager.h"
+#include "services/dbmanager.h"
 #include <QDebug>
 
 DbTreeItem::DbTreeItem(DbTreeItem::Type type, const QString& icon, const QString& nodeName, QObject* parent)

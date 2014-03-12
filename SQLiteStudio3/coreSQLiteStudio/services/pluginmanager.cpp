@@ -1,7 +1,7 @@
-#include "db/dbplugin.h"
-#include "pluginmanager.h"
-#include "sqlformatterplugin.h"
-#include "config.h"
+#include "plugins/dbplugin.h"
+#include "services/pluginmanager.h"
+#include "plugins/sqlformatterplugin.h"
+#include "services/config.h"
 #include "sqlitestudio.h"
 #include <QProcessEnvironment>
 #include <QCoreApplication>

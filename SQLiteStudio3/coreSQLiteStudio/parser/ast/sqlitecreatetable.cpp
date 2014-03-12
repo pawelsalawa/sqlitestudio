@@ -1,7 +1,7 @@
 #include "sqlitecreatetable.h"
 #include "parser/statementtokenbuilder.h"
-#include "utils_sql.h"
-#include "global.h"
+#include "common/utils_sql.h"
+#include "common/global.h"
 
 SqliteCreateTable::SqliteCreateTable()
 {

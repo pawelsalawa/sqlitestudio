@@ -1,11 +1,11 @@
 #include "ddlhistorywindow.h"
 #include "ui_ddlhistorywindow.h"
-#include "config.h"
+#include "services/config.h"
 #include "common/userinputfilter.h"
 #include "common/extlineedit.h"
 #include "dblistmodel.h"
 #include "ddlhistorymodel.h"
-#include "unused.h"
+#include "common/unused.h"
 #include <QDate>
 #include <QLineEdit>
 #include <QStringListModel>

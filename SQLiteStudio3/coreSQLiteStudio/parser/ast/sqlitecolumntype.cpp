@@ -1,6 +1,6 @@
 #include "sqlitecolumntype.h"
 #include "parser/statementtokenbuilder.h"
-#include "utils_sql.h"
+#include "common/utils_sql.h"
 
 SqliteColumnType::SqliteColumnType()
 {

@@ -1,7 +1,7 @@
 #ifndef TOKEN_H
 #define TOKEN_H
 
-#include "../utils.h"
+#include "common/utils.h"
 #include <QString>
 #include <QList>
 #include <QSharedPointer>

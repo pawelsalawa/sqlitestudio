@@ -1,7 +1,7 @@
 #ifndef CUSTOMCONFIGWIDGETPLUGIN_H
 #define CUSTOMCONFIGWIDGETPLUGIN_H
 
-#include "plugin.h"
+#include "plugins/plugin.h"
 #include <QVariant>
 
 class CfgEntry;

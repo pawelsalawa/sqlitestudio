@@ -1,7 +1,7 @@
 #include "queryexecutoraddrowids.h"
 #include "parser/ast/sqliteselect.h"
 #include "selectresolver.h"
-#include "utils_sql.h"
+#include "common/utils_sql.h"
 #include "parser/ast/sqlitecreatetable.h"
 #include "schemaresolver.h"
 #include <QDebug>

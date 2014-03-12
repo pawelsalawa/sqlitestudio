@@ -1,8 +1,8 @@
 #include "clicommandhistory.h"
 #include "cli.h"
-#include "utils.h"
+#include "common/utils.h"
 #include "cliutils.h"
-#include "config.h"
+#include "services/config.h"
 
 void CliCommandHistory::execute()
 {

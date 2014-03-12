@@ -1,9 +1,9 @@
 #ifndef FUNCTIONMANAGER_H
 #define FUNCTIONMANAGER_H
 
-#include "strhash.h"
+#include "common/strhash.h"
 #include "coreSQLiteStudio_global.h"
-#include "global.h"
+#include "common/global.h"
 #include <QList>
 #include <QSharedPointer>
 #include <QObject>

@@ -1,7 +1,7 @@
-#include "config.h"
+#include "services/config.h"
 #include "sqlhistorymodel.h"
 #include "ddlhistorymodel.h"
-#include "notifymanager.h"
+#include "services/notifymanager.h"
 #include "sqlitestudio.h"
 #include <QtGlobal>
 #include <QDebug>
@@ -21,11 +21,6 @@ CFG_DEFINE(Core)
 static const QString DB_FILE_NAME = QStringLiteral("settings3");
 
 DEFINE_SINGLETON(Config)
-
-Config::Config(QObject *parent) :
-    QObject(parent)
-{
-}
 
 Config::~Config()
 {
@@ -63,7 +58,6 @@ void Config::beginMassSave()
 void Config::commitMassSave()
 {
     db->exec("COMMIT;");
-    emit massSaveCommited();
 }
 
 void Config::rollbackMassSave()
@@ -791,7 +785,7 @@ void Config::initDbFile()
     if (configDir == ":memory:")
     {
         paths.removeLast();
-        notifyError(tr("Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart."
+        notifyError(QObject::tr("Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart."
                        " Tried to initialize the file at following localizations: %1.").arg(paths.join(", ")));
     }
 

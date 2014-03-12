@@ -2,10 +2,10 @@
 #include "qio.h"
 #include "cli_config.h"
 #include "cliutils.h"
-#include "utils.h"
-#include "utils_sql.h"
+#include "common/utils.h"
+#include "common/utils_sql.h"
 #include "clicommandfactory.h"
-#include "db/dbmanager.h"
+#include "services/dbmanager.h"
 #include "schemaresolver.h"
 #include "cli.h"
 

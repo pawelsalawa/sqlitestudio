@@ -1,7 +1,7 @@
 #include "tablewindow.h"
 #include "ui_tablewindow.h"
-#include "db/dbmanager.h"
-#include "notifymanager.h"
+#include "services/dbmanager.h"
+#include "services/notifymanager.h"
 #include "sqlitestudio.h"
 #include "schemaresolver.h"
 #include "iconmanager.h"
@@ -28,7 +28,7 @@
 #include "sqlformatter.h"
 #include "uiconfig.h"
 #include "dialogs/ddlpreviewdialog.h"
-#include "config.h"
+#include "services/config.h"
 #include <QMenu>
 #include <QToolButton>
 #include <QLabel>

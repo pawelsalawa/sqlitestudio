@@ -1,7 +1,7 @@
 #include "constrainttabmodel.h"
-#include "unused.h"
+#include "common/unused.h"
 #include "iconmanager.h"
-#include "utils_sql.h"
+#include "common/utils_sql.h"
 #include <QDebug>
 
 ConstraintTabModel::ConstraintTabModel(QObject *parent) :

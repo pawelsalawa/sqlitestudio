@@ -9,8 +9,8 @@
 #include "parser/ast/sqliteselect.h"
 #include "parser/token.h"
 #include "db/db.h"
-#include "strhash.h"
-#include "table.h"
+#include "common/strhash.h"
+#include "common/table.h"
 #include <QObject>
 #include <QSet>
 

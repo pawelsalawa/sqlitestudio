@@ -2,9 +2,9 @@
 #define CONFIG_H
 
 #include "coreSQLiteStudio_global.h"
-#include "global.h"
+#include "common/global.h"
 #include "cfginternals.h"
-#include "functionmanager.h"
+#include "services/functionmanager.h"
 #include <QObject>
 #include <QVariant>
 #include <QHash>
@@ -41,6 +41,8 @@ class API_EXPORT Config : public QObject
     DECLARE_SINGLETON(Config)
 
     public:
+        virtual ~Config();
+
         struct CfgDb
         {
             QString name;
@@ -138,9 +140,6 @@ class API_EXPORT Config : public QObject
         void rollback();
 
     private:
-        explicit Config(QObject *parent = 0);
-        virtual ~Config();
-
         /**
          * @brief Stores error from query in class member.
          * @param query Query to get error from.
@@ -165,12 +164,6 @@ class API_EXPORT Config : public QObject
         QString lastQueryError;
         QAbstractItemModel* sqlHistoryModel = nullptr;
         DdlHistoryModel* ddlHistoryModel = nullptr;
-
-    signals:
-        void massSaveCommited();
-
-    public slots:
-
 };
 
 #define CFG Config::getInstance()

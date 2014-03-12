@@ -27,12 +27,12 @@ QMAKE_CXXFLAGS += -std=c++11 -pedantic
 
 SOURCES += sqlitestudio.cpp \
     returncode.cpp \
-    config.cpp \
-    nulldevice.cpp \
+    services/config.cpp \
+    common/nulldevice.cpp \
     parser/lexer_low_lev.cpp \
-    utils.cpp \
+    common/utils.cpp \
     parser/keywords.cpp \
-    utils_sql.cpp \
+    common/utils_sql.cpp \
     parser/token.cpp \
     parser/lexer.cpp \
     parser/sqlite3_parse.cpp \
@@ -83,7 +83,7 @@ SOURCES += sqlitestudio.cpp \
     schemaresolver.cpp \
     parser/ast/sqlitequerytype.cpp \
     db/db.cpp \
-    db/dbmanager.cpp \
+    services/dbmanager.cpp \
     db/sqlresults.cpp \
     db/sqlresultsrow.cpp \
     db/asyncqueryrunner.cpp \
@@ -91,12 +91,12 @@ SOURCES += sqlitestudio.cpp \
     completionhelper.cpp \
     completioncomparer.cpp \
     db/dbqt.cpp \
-    db/dbpluginqt.cpp \
-    pluginmanager.cpp \
+    plugins/dbpluginqt.cpp \
+    services/pluginmanager.cpp \
     db/sqlresultsqt.cpp \
     db/queryexecutor.cpp \
     qio.cpp \
-    pluginsymbolresolver.cpp \
+    plugins/pluginsymbolresolver.cpp \
     db/sqlresultsrowqt.cpp \
     db/sqlerrorresults.cpp \
     db/queryexecutorsteps/queryexecutorstep.cpp \
@@ -110,7 +110,7 @@ SOURCES += sqlitestudio.cpp \
     db/queryexecutorsteps/queryexecutorcellsize.cpp \
     db/queryexecutorsteps/queryexecutororder.cpp \
     db/sqlerrorcodes.cpp \
-    readwritelocker.cpp \
+    common/readwritelocker.cpp \
     db/queryexecutorsteps/queryexecutorwrapdistinctresults.cpp \
     csvformat.cpp \
     csvserializer.cpp \
@@ -118,7 +118,7 @@ SOURCES += sqlitestudio.cpp \
     expectedtoken.cpp \
     sqlhistorymodel.cpp \
     db/queryexecutorsteps/queryexecutorexplainmode.cpp \
-    notifymanager.cpp \
+    services/notifymanager.cpp \
     parser/statementtokenbuilder.cpp \
     parser/ast/sqlitedeferrable.cpp \
     tablemodifier.cpp \
@@ -128,27 +128,27 @@ SOURCES += sqlitestudio.cpp \
     sqlformatter.cpp \
     viewmodifier.cpp \
     log.cpp \
-    plugintype.cpp \
-    genericplugin.cpp \
-    memoryusage.cpp \
+    plugins/plugintype.cpp \
+    plugins/genericplugin.cpp \
+    common/memoryusage.cpp \
     ddlhistorymodel.cpp \
     datatype.cpp \
-    table.cpp \
-    column.cpp \
+    common/table.cpp \
+    common/column.cpp \
     dbattacher.cpp \
-    functionmanager.cpp \
-    scriptingqt.cpp
+    services/functionmanager.cpp \
+    plugins/scriptingqt.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
     returncode.h \
-    config.h \
-    nulldevice.h \
+    services/config.h \
+    common/nulldevice.h \
     parser/lexer_low_lev.h \
-    utils.h \
+    common/utils.h \
     parser/keywords.h \
     parser/token.h \
-    utils_sql.h \
+    common/utils_sql.h \
     parser/lexer.h \
     parser/sqlite3_parse.h \
     parser/parsercontext.h \
@@ -196,12 +196,12 @@ HEADERS += sqlitestudio.h\
     parser/ast/sqlitelimit.h \
     parser/ast/sqliteattach.h \
     parser/parsererror.h \
-    objectpool.h \
+    common/objectpool.h \
     selectresolver.h \
     schemaresolver.h \
     dialect.h \
     db/db.h \
-    db/dbmanager.h \
+    services/dbmanager.h \
     db/sqlresults.h \
     db/sqlresultsrow.h \
     db/asyncqueryrunner.h \
@@ -210,16 +210,16 @@ HEADERS += sqlitestudio.h\
     expectedtoken.h \
     completioncomparer.h \
     db/dbqt.h \
-    db/dbplugin.h \
-    db/dbpluginqt.h \
-    pluginmanager.h \
+    plugins/dbplugin.h \
+    plugins/dbpluginqt.h \
+    services/pluginmanager.h \
     db/sqlresultsqt.h \
     db/queryexecutor.h \
     qio.h \
     db/dbpluginoption.h \
-    global.h \
+    common/global.h \
     parser/ast/sqlitetablerelatedddl.h \
-    pluginsymbolresolver.h \
+    plugins/pluginsymbolresolver.h \
     db/sqlresultsrowqt.h \
     db/sqlerrorresults.h \
     db/sqlerrorcodes.h \
@@ -232,45 +232,45 @@ HEADERS += sqlitestudio.h\
     db/queryexecutorsteps/queryexecutorlimit.h \
     db/queryexecutorsteps/queryexecutorcolumns.h \
     db/queryexecutorsteps/queryexecutorcellsize.h \
-    unused.h \
+    common/unused.h \
     db/queryexecutorsteps/queryexecutororder.h \
-    readwritelocker.h \
+    common/readwritelocker.h \
     db/queryexecutorsteps/queryexecutorwrapdistinctresults.h \
     csvformat.h \
     csvserializer.h \
     db/queryexecutorsteps/queryexecutordatasources.h \
     sqlhistorymodel.h \
     db/queryexecutorsteps/queryexecutorexplainmode.h \
-    notifymanager.h \
+    services/notifymanager.h \
     parser/statementtokenbuilder.h \
     tablemodifier.h \
     db/chainexecutor.h \
     db/queryexecutorsteps/queryexecutorreplaceviews.h \
     cfginternals.h \
-    sqlformatterplugin.h \
+    plugins/sqlformatterplugin.h \
     sqlformatter.h \
     viewmodifier.h \
     log.h \
-    plugintype.h \
-    plugin.h \
-    genericplugin.h \
-    memoryusage.h \
+    plugins/plugintype.h \
+    plugins/plugin.h \
+    plugins/genericplugin.h \
+    common/memoryusage.h \
     ddlhistorymodel.h \
     datatype.h \
-    generalpurposeplugin.h \
-    table.h \
-    column.h \
-    bihash.h \
-    strhash.h \
+    plugins/generalpurposeplugin.h \
+    common/table.h \
+    common/column.h \
+    common/bihash.h \
+    common/strhash.h \
     dbattacher.h \
-    bistrhash.h \
-    sqlfunctionplugin.h \
+    common/bistrhash.h \
+    plugins/sqlfunctionplugin.h \
     db/dbqt2.h \
-    functionmanager.h \
+    services/functionmanager.h \
     db/dbqt3.h \
-    sortedhash.h \
-    scriptingplugin.h \
-    scriptingqt.h
+    common/sortedhash.h \
+    plugins/scriptingplugin.h \
+    plugins/scriptingqt.h
 
 unix:!symbian {
     maemo5 {

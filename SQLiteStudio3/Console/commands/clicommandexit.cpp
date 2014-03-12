@@ -1,6 +1,6 @@
 #include "clicommandexit.h"
 #include "cli.h"
-#include "unused.h"
+#include "common/unused.h"
 
 void CliCommandExit::execute()
 {

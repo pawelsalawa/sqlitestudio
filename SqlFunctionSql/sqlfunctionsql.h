@@ -2,8 +2,8 @@
 #define SQLFUNCTIONSQL_H
 
 #include "sqlfunctionsql_global.h"
-#include "genericplugin.h"
-#include "sqlfunctionplugin.h"
+#include "plugins/genericplugin.h"
+#include "plugins/sqlfunctionplugin.h"
 #include <QObject>
 
 class SQLFUNCTIONSQLSHARED_EXPORT SqlFunctionSql : public GenericPlugin, public SqlFunctionPlugin

@@ -1,5 +1,5 @@
 #include "numericspinbox.h"
-#include "unused.h"
+#include "common/unused.h"
 #include <QLineEdit>
 #include <QVariant>
 #include <QDebug>

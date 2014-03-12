@@ -30,7 +30,7 @@
   THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "genericplugin.h"
+#include "plugins/genericplugin.h"
 #include "syntaxhighlighterplugin.h"
 #include <QSyntaxHighlighter>
 #include <QtGui>

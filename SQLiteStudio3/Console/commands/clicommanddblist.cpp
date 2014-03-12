@@ -1,7 +1,7 @@
 #include "clicommanddblist.h"
 #include "cli.h"
-#include "db/dbmanager.h"
-#include "unused.h"
+#include "services/dbmanager.h"
+#include "common/unused.h"
 #include <QList>
 
 void CliCommandDbList::execute()

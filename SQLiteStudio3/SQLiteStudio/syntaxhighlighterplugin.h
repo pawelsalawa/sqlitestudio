@@ -2,7 +2,7 @@
 #define SYNTAXHIGHLIGHTERPLUGIN_H
 
 #include "coreSQLiteStudio_global.h"
-#include "plugin.h"
+#include "plugins/plugin.h"
 
 class QWidget;
 class QSyntaxHighlighter;

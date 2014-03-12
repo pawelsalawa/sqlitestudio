@@ -1,6 +1,6 @@
 #include "formmanager.h"
-#include "config.h"
-#include "pluginmanager.h"
+#include "services/config.h"
+#include "services/pluginmanager.h"
 #include "sqlitestudio.h"
 #include <QFile>
 #include <QDir>

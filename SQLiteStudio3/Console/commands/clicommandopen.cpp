@@ -1,6 +1,6 @@
 #include "clicommandopen.h"
 #include "cli.h"
-#include "db/dbmanager.h"
+#include "services/dbmanager.h"
 #include <QFile>
 #include <QDir>
 #include <QDebug>

@@ -1,6 +1,6 @@
 #include "clicommandadd.h"
 #include "cli.h"
-#include "db/dbmanager.h"
+#include "services/dbmanager.h"
 
 void CliCommandAdd::execute()
 {

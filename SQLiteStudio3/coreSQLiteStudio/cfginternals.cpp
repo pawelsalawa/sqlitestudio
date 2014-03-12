@@ -1,5 +1,5 @@
 #include "cfginternals.h"
-#include "config.h"
+#include "services/config.h"
 #include <QDebug>
 
 CfgCategory* lastCreatedCfgCategory = nullptr;

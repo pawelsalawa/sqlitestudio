@@ -1,5 +1,5 @@
 #include "userinputfilter.h"
-#include "unused.h"
+#include "common/unused.h"
 #include <QTimer>
 #include <QLineEdit>
 

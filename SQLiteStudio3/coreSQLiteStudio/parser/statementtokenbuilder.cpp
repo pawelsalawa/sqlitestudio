@@ -1,6 +1,6 @@
 #include "statementtokenbuilder.h"
 #include "parser/ast/sqlitestatement.h"
-#include "utils_sql.h"
+#include "common/utils_sql.h"
 #include <QVariant>
 
 StatementTokenBuilder& StatementTokenBuilder::withKeyword(const QString& value)

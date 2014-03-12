@@ -3,7 +3,7 @@
 #include "sqliteexpr.h"
 #include "sqliteselect.h"
 #include "parser/statementtokenbuilder.h"
-#include "global.h"
+#include "common/global.h"
 
 SqliteInsert::SqliteInsert()
 {

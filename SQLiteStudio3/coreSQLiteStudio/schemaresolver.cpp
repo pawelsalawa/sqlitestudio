@@ -1,6 +1,6 @@
 #include "schemaresolver.h"
 #include "db/db.h"
-#include "utils_sql.h"
+#include "common/utils_sql.h"
 #include "parser/parsererror.h"
 #include "parser/ast/sqlitecreatetable.h"
 #include "parser/ast/sqlitecreateindex.h"

@@ -5,7 +5,7 @@
 #include "parser/parsererror.h"
 #include "db/queryexecutor.h"
 #include "qio.h"
-#include "unused.h"
+#include "common/unused.h"
 #include "cli_config.h"
 #include "cliutils.h"
 #include <QSqlQuery>

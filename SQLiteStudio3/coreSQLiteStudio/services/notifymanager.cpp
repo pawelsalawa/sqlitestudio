@@ -1,4 +1,4 @@
-#include "notifymanager.h"
+#include "services/notifymanager.h"
 
 DEFINE_SINGLETON(NotifyManager)
 

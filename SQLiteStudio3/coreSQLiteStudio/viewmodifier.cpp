@@ -1,10 +1,10 @@
 #include "viewmodifier.h"
-#include "utils_sql.h"
+#include "common/utils_sql.h"
 #include "parser/parser.h"
 #include "schemaresolver.h"
 #include "selectresolver.h"
 #include "parser/ast/sqlitecreatetrigger.h"
-#include "unused.h"
+#include "common/unused.h"
 
 ViewModifier::ViewModifier(Db* db, const QString& view) :
     ViewModifier(db, "main", view)

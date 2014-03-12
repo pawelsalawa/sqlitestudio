@@ -1,9 +1,9 @@
 #ifndef DBPLUGIN_H
 #define DBPLUGIN_H
 
-#include "db.h"
-#include "dbpluginoption.h"
-#include "plugin.h"
+#include "db/db.h"
+#include "db/dbpluginoption.h"
+#include "plugins/plugin.h"
 
 /**
  * @brief Interface for database plugins

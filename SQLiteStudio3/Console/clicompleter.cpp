@@ -2,7 +2,7 @@
 #include "completionhelper.h"
 #include "cli.h"
 #include "cli_config.h"
-#include "unused.h"
+#include "common/unused.h"
 #include "commands/clicommand.h"
 #include "parser/lexer.h"
 #include "commands/clicommandfactory.h"

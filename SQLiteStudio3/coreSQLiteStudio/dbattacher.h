@@ -2,8 +2,8 @@
 #define DBATTACHER_H
 
 #include "parser/ast/sqlitequery.h"
-#include "bistrhash.h"
-#include "strhash.h"
+#include "common/bistrhash.h"
+#include "common/strhash.h"
 #include <QList>
 
 class Db;

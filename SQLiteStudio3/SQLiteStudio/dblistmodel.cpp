@@ -1,5 +1,5 @@
 #include "dblistmodel.h"
-#include "db/dbmanager.h"
+#include "services/dbmanager.h"
 #include "dbtree/dbtree.h"
 #include "dbtree/dbtreemodel.h"
 #include "uiconfig.h"

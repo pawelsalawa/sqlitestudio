@@ -1,8 +1,8 @@
-#include "functionmanager.h"
-#include "notifymanager.h"
-#include "config.h"
-#include "sqlfunctionplugin.h"
-#include "pluginmanager.h"
+#include "services/functionmanager.h"
+#include "services/notifymanager.h"
+#include "services/config.h"
+#include "plugins/sqlfunctionplugin.h"
+#include "services/pluginmanager.h"
 
 DEFINE_SINGLETON(FunctionManager)
 
