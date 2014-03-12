@@ -55,6 +55,7 @@ class JavaScriptSyntaxHighlighter : public QSyntaxHighlighter
         QSet<QString> m_knownIds;
         QString m_markString;
         Qt::CaseSensitivity m_markCaseSensitivity;
+        QTextCharFormat keywordsFormat;
 };
 
 class JavaScriptHighlighterPlugin : public GenericPlugin, public SyntaxHighlighterPlugin
