@@ -34,7 +34,7 @@ bool CliCommand::parseArgs(const QStringList& args)
 {
     bool res = syntax.parse(args);
 
-    if (!res)
+    if (!res && !syntax.getErrorText().isEmpty())
     {
         println(syntax.getErrorText());
         println();

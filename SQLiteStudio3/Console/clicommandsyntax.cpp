@@ -108,7 +108,6 @@ void CliCommandSyntax::setStrictArgumentCount(bool value)
     strictArgumentCount = value;
 }
 
-
 bool CliCommandSyntax::parse(const QStringList& args)
 {
     pastOptions = (options.size() == 0);
@@ -239,6 +238,8 @@ QString CliCommandSyntax::getSyntaxDefinition(const QString& usedName) const
 {
     static const QString mandatoryArgTempl = "<%1>";
     static const QString optionalArgTempl = "[<%1>]";
+    static const QString mandatoryStrictTempl = "%1";
+    static const QString optionalStrictTempl = "[%1]";
     static const QString optionTempl = "[%1]";
     static const QString optionWithArgTempl = "[%1 <%2>]";
 
@@ -261,9 +262,11 @@ QString CliCommandSyntax::getSyntaxDefinition(const QString& usedName) const
         words << (opt->argName.isEmpty() ? optionTempl.arg(optName) : optionWithArgTempl.arg(optName).arg(opt->argName));
     }
 
+    QString templ;
     QString argName;
     foreach (Argument* arg, arguments)
     {
+        templ = (arg->mandatory ? mandatoryArgTempl : optionalArgTempl);
         switch (arg->type)
         {
             case CliCommandSyntax::Argument::ALTERNATED:
@@ -274,9 +277,10 @@ QString CliCommandSyntax::getSyntaxDefinition(const QString& usedName) const
                 break;
             case CliCommandSyntax::Argument::STRICT:
                 argName = arg->names.join("|");
+                templ = (arg->mandatory ? mandatoryStrictTempl : optionalStrictTempl);
                 break;
         }
-        words << (arg->mandatory ? mandatoryArgTempl.arg(argName) : optionalArgTempl.arg(argName));
+        words << templ.arg(argName);
     }
 
     return words.join(" ");

@@ -11,9 +11,6 @@ class CliCommandMode : public CliCommand
         QString fullHelp() const;
         void defineSyntax();
 
-    protected:
-        QStringList getCompletionValuesFor(int id, const QString& partialValue);
-
     private:
         enum ArgIgs
         {
