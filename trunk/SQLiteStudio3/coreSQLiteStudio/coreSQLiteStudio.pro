@@ -137,7 +137,8 @@ SOURCES += sqlitestudio.cpp \
     common/column.cpp \
     dbattacher.cpp \
     services/functionmanager.cpp \
-    plugins/scriptingqt.cpp
+    plugins/scriptingqt.cpp \
+    services/impl/configimpl.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -270,7 +271,8 @@ HEADERS += sqlitestudio.h\
     db/dbqt3.h \
     common/sortedhash.h \
     plugins/scriptingplugin.h \
-    plugins/scriptingqt.h
+    plugins/scriptingqt.h \
+    services/impl/configimpl.h
 
 unix:!symbian {
     maemo5 {

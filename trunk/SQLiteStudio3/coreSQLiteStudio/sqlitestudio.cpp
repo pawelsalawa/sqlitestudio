@@ -20,6 +20,7 @@
 #include "plugins/scriptingqt.h"
 #include <QProcessEnvironment>
 #include <QThreadPool>
+#include <services/impl/configimpl.h>
 
 DEFINE_SINGLETON(SQLiteStudio)
 
@@ -42,6 +43,16 @@ void SQLiteStudio::parseCmdLineArgs()
         }
     }
 }
+Config* SQLiteStudio::getConfig() const
+{
+    return config;
+}
+
+void SQLiteStudio::setConfig(Config* value)
+{
+    config = value;
+}
+
 
 SqlFormatter *SQLiteStudio::getSqlFormatter() const
 {
@@ -66,7 +77,8 @@ void SQLiteStudio::init(const QStringList& cmdListArguments)
 
     NotifyManager::getInstance();
 
-    CFG->init();
+    config = new ConfigImpl();
+    config->init();
 
     PluginManager* pluginManager = PluginManager::getInstance();
     pluginManager->registerPluginType<GeneralPurposePlugin>(QObject::tr("General purpose"));
@@ -102,7 +114,7 @@ void SQLiteStudio::cleanUp()
 {
     FunctionManager::destroy();
     DbManager::destroy();
-    Config::destroy();
+    safe_delete(config)
     PluginManager::destroy();
     safe_delete(sqlFormatter)
     safe_delete(env)
