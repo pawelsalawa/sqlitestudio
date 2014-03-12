@@ -2,9 +2,9 @@
 #define SQLFORMATTERSIMPLEPLUGIN_H
 
 #include "sqlformattersimple_global.h"
-#include "sqlformatterplugin.h"
+#include "plugins/sqlformatterplugin.h"
 #include "cfginternals.h"
-#include "genericplugin.h"
+#include "plugins/genericplugin.h"
 #include <QObject>
 
 CFG_CATEGORIES(SqlFormatterSimpleConfig,

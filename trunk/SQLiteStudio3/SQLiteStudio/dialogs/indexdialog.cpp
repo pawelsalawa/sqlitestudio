@@ -2,13 +2,13 @@
 #include "ui_indexdialog.h"
 #include "schemaresolver.h"
 #include "parser/ast/sqliteindexedcolumn.h"
-#include "notifymanager.h"
-#include "utils_sql.h"
+#include "services/notifymanager.h"
+#include "common/utils_sql.h"
 #include "db/chainexecutor.h"
 #include "dbtree/dbtree.h"
 #include "ddlpreviewdialog.h"
 #include "uiconfig.h"
-#include "config.h"
+#include "services/config.h"
 #include "uiutils.h"
 #include <QDebug>
 #include <QGridLayout>

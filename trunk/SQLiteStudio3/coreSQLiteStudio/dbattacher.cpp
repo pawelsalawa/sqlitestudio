@@ -1,9 +1,9 @@
 #include "dbattacher.h"
 #include "db/db.h"
-#include "db/dbmanager.h"
+#include "services/dbmanager.h"
 #include "parser/parser.h"
-#include "notifymanager.h"
-#include "utils_sql.h"
+#include "services/notifymanager.h"
+#include "common/utils_sql.h"
 #include <QDebug>
 
 DbAttacher::DbAttacher(Db* db)

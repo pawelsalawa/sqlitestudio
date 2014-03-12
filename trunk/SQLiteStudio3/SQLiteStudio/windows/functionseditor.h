@@ -3,8 +3,8 @@
 
 #include "mdichild.h"
 #include "common/extactioncontainer.h"
-#include "config.h"
-#include "functionmanager.h"
+#include "services/config.h"
+#include "services/functionmanager.h"
 #include <QItemSelection>
 #include <QSortFilterProxyModel>
 

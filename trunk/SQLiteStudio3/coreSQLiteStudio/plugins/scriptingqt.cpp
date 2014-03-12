@@ -1,5 +1,5 @@
 #include "scriptingqt.h"
-#include "unused.h"
+#include "common/unused.h"
 #include <QScriptEngine>
 #include <QMutex>
 #include <QMutexLocker>

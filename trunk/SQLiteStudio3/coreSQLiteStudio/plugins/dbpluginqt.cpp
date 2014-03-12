@@ -1,5 +1,5 @@
 #include "dbpluginqt.h"
-#include "dbqt.h"
+#include "db/dbqt.h"
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QSqlDatabase>

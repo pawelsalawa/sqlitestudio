@@ -1,5 +1,5 @@
 #include "multieditortext.h"
-#include "unused.h"
+#include "common/unused.h"
 #include <QPlainTextEdit>
 #include <QVariant>
 #include <QVBoxLayout>

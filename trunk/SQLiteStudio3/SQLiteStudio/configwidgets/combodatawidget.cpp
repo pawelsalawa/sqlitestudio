@@ -1,5 +1,5 @@
 #include "combodatawidget.h"
-#include "unused.h"
+#include "common/unused.h"
 #include "cfginternals.h"
 #include "dialogs/configdialog.h"
 #include <QComboBox>

@@ -5,7 +5,7 @@
 #include "parser/token.h"
 #include "selectresolver.h"
 #include "coreSQLiteStudio_global.h"
-#include "bistrhash.h"
+#include "common/bistrhash.h"
 #include <QObject>
 #include <QHash>
 #include <QMutex>

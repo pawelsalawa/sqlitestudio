@@ -1,7 +1,7 @@
 #include "dbtreeitemdelegate.h"
 #include "dbtreeitem.h"
 #include "dbtreemodel.h"
-#include "utils_sql.h"
+#include "common/utils_sql.h"
 #include "uiconfig.h"
 #include <QPainter>
 #include <QDebug>

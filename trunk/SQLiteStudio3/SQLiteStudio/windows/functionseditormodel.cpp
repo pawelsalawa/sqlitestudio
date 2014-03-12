@@ -1,8 +1,8 @@
 #include "functionseditormodel.h"
-#include "strhash.h"
-#include "unused.h"
-#include "pluginmanager.h"
-#include "sqlfunctionplugin.h"
+#include "common/strhash.h"
+#include "common/unused.h"
+#include "services/pluginmanager.h"
+#include "plugins/sqlfunctionplugin.h"
 #include <QDebug>
 
 FunctionsEditorModel::FunctionsEditorModel(QObject *parent) :

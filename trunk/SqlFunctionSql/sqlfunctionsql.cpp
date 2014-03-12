@@ -1,9 +1,9 @@
 #include "sqlfunctionsql.h"
 #include "db/db.h"
-#include "unused.h"
-#include "pluginmanager.h"
-#include "utils.h"
-#include "utils_sql.h"
+#include "common/unused.h"
+#include "services/pluginmanager.h"
+#include "common/utils.h"
+#include "common/utils_sql.h"
 #include <QDir>
 #include <parser/lexer.h>
 

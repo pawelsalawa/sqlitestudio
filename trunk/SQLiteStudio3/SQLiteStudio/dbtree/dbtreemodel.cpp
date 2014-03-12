@@ -1,13 +1,13 @@
 #include "dbtreemodel.h"
-#include "db/dbmanager.h"
+#include "services/dbmanager.h"
 #include "dbtreeview.h"
 #include "iconmanager.h"
 #include "uiconfig.h"
 #include "schemaresolver.h"
 #include "dbtreeitemfactory.h"
-#include "unused.h"
-#include "pluginmanager.h"
-#include "db/dbplugin.h"
+#include "common/unused.h"
+#include "services/pluginmanager.h"
+#include "plugins/dbplugin.h"
 #include <QMimeData>
 #include <QDebug>
 #include <QFile>

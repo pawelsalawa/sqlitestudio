@@ -1,13 +1,13 @@
 #include "viewwindow.h"
 #include "ui_viewwindow.h"
 #include "schemaresolver.h"
-#include "notifymanager.h"
-#include "db/dbmanager.h"
+#include "services/notifymanager.h"
+#include "services/dbmanager.h"
 #include "mainwindow.h"
 #include "mdiarea.h"
 #include "sqlitesyntaxhighlighter.h"
 #include "datagrid/sqlquerymodel.h"
-#include "utils_sql.h"
+#include "common/utils_sql.h"
 #include "viewmodifier.h"
 #include "common/widgetcover.h"
 #include "db/chainexecutor.h"
@@ -17,7 +17,7 @@
 #include "dbobjectdialogs.h"
 #include "dialogs/ddlpreviewdialog.h"
 #include "uiconfig.h"
-#include "config.h"
+#include "services/config.h"
 #include <QPushButton>
 #include <QProgressBar>
 #include <QDebug>

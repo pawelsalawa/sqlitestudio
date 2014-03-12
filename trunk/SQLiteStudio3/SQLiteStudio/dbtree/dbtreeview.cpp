@@ -3,8 +3,8 @@
 #include "actionentry.h"
 #include "dbtreeitemdelegate.h"
 #include "mainwindow.h"
-#include "db/dbmanager.h"
-#include "unused.h"
+#include "services/dbmanager.h"
+#include "common/unused.h"
 #include <QDragMoveEvent>
 #include <QMenu>
 #include <QList>

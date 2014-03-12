@@ -2,8 +2,8 @@
 #define DBSQLITE3_H
 
 #include "dbsqlite3_global.h"
-#include "plugin.h"
-#include "db/dbpluginqt.h"
+#include "plugins/plugin.h"
+#include "plugins/dbpluginqt.h"
 
 class DBSQLITE3SHARED_EXPORT DbSqlite3 : public DbPluginQt
 {

@@ -1,5 +1,5 @@
 #include "sqlqueryitem.h"
-#include "utils_sql.h"
+#include "common/utils_sql.h"
 #include "sqlquerymodel.h"
 #include "iconmanager.h"
 #include "uiconfig.h"

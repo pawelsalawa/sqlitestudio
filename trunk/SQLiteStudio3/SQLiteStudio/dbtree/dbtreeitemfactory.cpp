@@ -1,6 +1,6 @@
 #include "dbtreeitemfactory.h"
 #include "iconmanager.h"
-#include "unused.h"
+#include "common/unused.h"
 
 DbTreeItem *DbTreeItemFactory::createDir(const QString &name, QObject *parent)
 {

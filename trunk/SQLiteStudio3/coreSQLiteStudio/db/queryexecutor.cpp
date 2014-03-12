@@ -1,7 +1,7 @@
 #include "queryexecutor.h"
 #include "sqlerrorresults.h"
 #include "sqlerrorcodes.h"
-#include "db/dbmanager.h"
+#include "services/dbmanager.h"
 #include "db/sqlerrorcodes.h"
 #include "queryexecutorsteps/queryexecutoraddrowids.h"
 #include "queryexecutorsteps/queryexecutorcolumns.h"
@@ -16,7 +16,7 @@
 #include "queryexecutorsteps/queryexecutordatasources.h"
 #include "queryexecutorsteps/queryexecutorexplainmode.h"
 #include "queryexecutorsteps/queryexecutorreplaceviews.h"
-#include "unused.h"
+#include "common/unused.h"
 #include <QMutexLocker>
 #include <QDateTime>
 #include <QThreadPool>

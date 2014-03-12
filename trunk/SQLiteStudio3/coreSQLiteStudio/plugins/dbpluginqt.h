@@ -2,7 +2,7 @@
 #define DBPLUGINQT_H
 
 #include "dbplugin.h"
-#include "genericplugin.h"
+#include "plugins/genericplugin.h"
 
 class DbQt;
 

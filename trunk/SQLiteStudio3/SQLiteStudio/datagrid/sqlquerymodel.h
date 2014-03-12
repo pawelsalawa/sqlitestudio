@@ -5,7 +5,7 @@
 #include "db/queryexecutor.h"
 #include "sqlquerymodelcolumn.h"
 #include "parser/ast/sqlitecreatetable.h"
-#include "column.h"
+#include "common/column.h"
 #include <QStandardItemModel>
 #include <QItemSelection>
 

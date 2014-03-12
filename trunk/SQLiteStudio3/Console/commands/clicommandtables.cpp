@@ -1,8 +1,8 @@
 #include "clicommandtables.h"
 #include "cli.h"
 #include "schemaresolver.h"
-#include "db/dbmanager.h"
-#include "utils.h"
+#include "services/dbmanager.h"
+#include "common/utils.h"
 
 void CliCommandTables::execute()
 {

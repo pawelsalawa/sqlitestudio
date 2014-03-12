@@ -1,5 +1,5 @@
 #include "searchtextlocator.h"
-#include "unused.h"
+#include "common/unused.h"
 #include <QTextCursor>
 #include <QTextBlock>
 #include <QRegExp>

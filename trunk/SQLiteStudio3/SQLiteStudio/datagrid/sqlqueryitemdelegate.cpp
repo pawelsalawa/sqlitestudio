@@ -1,8 +1,8 @@
 #include "sqlqueryitemdelegate.h"
 #include "sqlquerymodel.h"
 #include "sqlqueryitem.h"
-#include "unused.h"
-#include "notifymanager.h"
+#include "common/unused.h"
+#include "services/notifymanager.h"
 #include "uiconfig.h"
 #include <QPainter>
 #include <QEvent>

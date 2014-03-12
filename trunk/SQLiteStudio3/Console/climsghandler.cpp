@@ -1,7 +1,7 @@
 #include "climsghandler.h"
 #include "qio.h"
 #include "cli_config.h"
-#include "unused.h"
+#include "common/unused.h"
 
 bool cliDebug = false;
 

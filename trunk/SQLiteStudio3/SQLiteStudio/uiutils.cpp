@@ -1,5 +1,5 @@
 #include "uiutils.h"
-#include "config.h"
+#include "services/config.h"
 #include <QObject>
 #include <QCheckBox>
 #include <QSpinBox>

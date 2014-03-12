@@ -2,9 +2,9 @@
 #define PLUGINMANAGER_H
 
 #include "coreSQLiteStudio_global.h"
-#include "plugin.h"
-#include "plugintype.h"
-#include "global.h"
+#include "plugins/plugin.h"
+#include "plugins/plugintype.h"
+#include "common/global.h"
 #include <QPluginLoader>
 #include <QStringList>
 #include <QHash>

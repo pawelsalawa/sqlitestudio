@@ -1,5 +1,5 @@
 #include "columndialogconstraintsmodel.h"
-#include "unused.h"
+#include "common/unused.h"
 #include "iconmanager.h"
 
 ColumnDialogConstraintsModel::ColumnDialogConstraintsModel(QObject *parent) :

@@ -7,9 +7,9 @@
 #include "parser/ast/sqlitecreatetable.h"
 #include "parser/ast/sqlitecreatetrigger.h"
 #include "dbattacher.h"
-#include "utils.h"
-#include "utils_sql.h"
-#include "db/dbmanager.h"
+#include "common/utils.h"
+#include "common/utils_sql.h"
+#include "services/dbmanager.h"
 #include <QStringList>
 #include <QDebug>
 

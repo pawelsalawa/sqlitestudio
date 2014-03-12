@@ -1,6 +1,6 @@
-#include "strhash.h"
-#include "bistrhash.h"
-#include "bihash.h"
+#include "common/strhash.h"
+#include "common/bistrhash.h"
+#include "common/bihash.h"
 #include <QString>
 #include <QtTest>
 #include <QDebug>

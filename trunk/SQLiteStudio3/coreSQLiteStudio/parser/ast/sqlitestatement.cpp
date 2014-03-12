@@ -1,7 +1,7 @@
 #include "sqlitestatement.h"
 #include "../token.h"
 #include "../lexer.h"
-#include "unused.h"
+#include "common/unused.h"
 #include <QDebug>
 
 SqliteStatement::SqliteStatement()

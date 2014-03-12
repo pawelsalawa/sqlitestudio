@@ -1,6 +1,6 @@
 #include "styleconfigwidget.h"
 #include "uiconfig.h"
-#include "unused.h"
+#include "common/unused.h"
 #include "dialogs/configdialog.h"
 #include <QDebug>
 #include <QComboBox>

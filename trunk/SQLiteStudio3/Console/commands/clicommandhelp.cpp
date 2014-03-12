@@ -1,6 +1,6 @@
 #include "clicommandhelp.h"
 #include "clicommandfactory.h"
-#include "utils.h"
+#include "common/utils.h"
 #include "cli_config.h"
 
 void CliCommandHelp::execute()

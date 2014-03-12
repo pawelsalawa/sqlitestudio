@@ -1,7 +1,7 @@
 #ifndef SQLITESTATEMENT_H
 #define SQLITESTATEMENT_H
 
-#include "utils.h"
+#include "common/utils.h"
 #include "parser/token.h"
 #include "dialect.h"
 #include <QList>

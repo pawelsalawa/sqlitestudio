@@ -1,7 +1,7 @@
 #ifndef STYLECONFIGWIDGET_H
 #define STYLECONFIGWIDGET_H
 
-#include "genericplugin.h"
+#include "plugins/genericplugin.h"
 #include "customconfigwidgetplugin.h"
 
 class StyleConfigWidget : public GenericPlugin, public CustomConfigWidgetPlugin

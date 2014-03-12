@@ -1,7 +1,7 @@
 #include "clicommandtree.h"
 #include "cli.h"
-#include "sortedhash.h"
-#include "unused.h"
+#include "common/sortedhash.h"
+#include "common/unused.h"
 
 const QString CliCommandTree::metaNodeNameTemplate = "<%1>";
 

@@ -3,7 +3,7 @@
 #include "sqliteindexedcolumn.h"
 #include "parser/statementtokenbuilder.h"
 #include "parser/ast/sqliteexpr.h"
-#include "global.h"
+#include "common/global.h"
 
 SqliteCreateIndex::SqliteCreateIndex()
 {

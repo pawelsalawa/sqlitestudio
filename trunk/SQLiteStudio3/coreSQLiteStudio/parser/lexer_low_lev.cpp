@@ -3,8 +3,8 @@
 #include "keywords.h"
 #include "sqlite3_parse.h"
 #include "sqlite2_parse.h"
-#include "utils.h"
-#include "utils_sql.h"
+#include "common/utils.h"
+#include "common/utils_sql.h"
 
 #include <QByteArray>
 #include <QChar>

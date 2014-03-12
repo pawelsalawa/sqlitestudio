@@ -1,7 +1,7 @@
 #include "sqliteselect.h"
 #include "sqlitequerytype.h"
 #include "parser/statementtokenbuilder.h"
-#include "global.h"
+#include "common/global.h"
 #include <QSet>
 
 SqliteSelect::SqliteSelect()

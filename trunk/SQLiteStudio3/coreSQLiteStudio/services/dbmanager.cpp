@@ -1,9 +1,9 @@
 #include "dbmanager.h"
-#include "db.h"
-#include "config.h"
-#include "dbplugin.h"
-#include "pluginmanager.h"
-#include "notifymanager.h"
+#include "db/db.h"
+#include "services/config.h"
+#include "plugins//dbplugin.h"
+#include "services/pluginmanager.h"
+#include "services/notifymanager.h"
 #include <QCoreApplication>
 #include <QFileInfo>
 #include <QHash>

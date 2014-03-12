@@ -2,7 +2,7 @@
 #define COMBODATAWIDGET_H
 
 #include "customconfigwidgetplugin.h"
-#include "genericplugin.h"
+#include "plugins/genericplugin.h"
 
 class ComboDataWidget : public GenericPlugin, public CustomConfigWidgetPlugin
 {

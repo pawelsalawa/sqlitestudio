@@ -1,7 +1,7 @@
 #include "clicommandclose.h"
 #include "cli.h"
 #include "db/db.h"
-#include "db/dbmanager.h"
+#include "services/dbmanager.h"
 
 void CliCommandClose::execute()
 {

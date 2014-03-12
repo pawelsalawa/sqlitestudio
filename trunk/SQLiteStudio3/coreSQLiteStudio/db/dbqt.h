@@ -5,7 +5,7 @@
 #include "../returncode.h"
 #include "sqlresults.h"
 #include "../dialect.h"
-#include "dbpluginqt.h"
+#include "plugins/dbpluginqt.h"
 
 #include <QObject>
 #include <QSqlDatabase>

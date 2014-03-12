@@ -2,7 +2,7 @@
 #define NOTIFYMANAGER_H
 
 #include "db/db.h"
-#include "global.h"
+#include "common/global.h"
 #include <QStringList>
 #include <QObject>
 

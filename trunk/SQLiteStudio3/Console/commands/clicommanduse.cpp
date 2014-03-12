@@ -1,8 +1,8 @@
 #include "clicommanduse.h"
 #include "cli.h"
-#include "config.h"
+#include "services/config.h"
 #include "../cli_config.h"
-#include "db/dbmanager.h"
+#include "services/dbmanager.h"
 
 void CliCommandUse::execute()
 {

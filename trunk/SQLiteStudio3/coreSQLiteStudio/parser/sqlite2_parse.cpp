@@ -47,7 +47,7 @@
 #include "parser/ast/sqliteindexedcolumn.h"
 #include "parser/ast/sqliteforeignkey.h"
 #include "parser_helper_stubs.h"
-#include "utils_sql.h"
+#include "common/utils_sql.h"
 #include <QObject>
 #include <QDebug>
 

@@ -4,7 +4,7 @@
 #include "uiconfig.h"
 #include "iconmanager.h"
 #include "common/tablewidget.h"
-#include "notifymanager.h"
+#include "services/notifymanager.h"
 #include <QMenu>
 #include <QAction>
 #include <QDateTime>

@@ -2,7 +2,7 @@
 #define SELECTRESOLVER_H
 
 #include "parser/ast/sqliteselect.h"
-#include "bistrhash.h"
+#include "common/bistrhash.h"
 #include "dialect.h"
 #include "expectedtoken.h"
 #include <QString>

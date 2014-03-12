@@ -3,7 +3,7 @@
 
 #include "db/db.h"
 #include "dbtreeitem.h"
-#include "config.h"
+#include "services/config.h"
 #include <QStandardItemModel>
 #include <QObject>
 

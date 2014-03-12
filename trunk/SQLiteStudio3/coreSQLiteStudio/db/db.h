@@ -1,11 +1,11 @@
 #ifndef DB_H
 #define DB_H
 
-#include "../returncode.h"
+#include "returncode.h"
 #include "sqlresults.h"
-#include "../dialect.h"
-#include "functionmanager.h"
-#include "readwritelocker.h"
+#include "dialect.h"
+#include "services/functionmanager.h"
+#include "common/readwritelocker.h"
 #include "coreSQLiteStudio_global.h"
 #include <QObject>
 #include <QVariant>

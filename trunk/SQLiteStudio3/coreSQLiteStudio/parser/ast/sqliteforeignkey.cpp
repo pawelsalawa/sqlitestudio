@@ -1,6 +1,6 @@
 #include "sqliteforeignkey.h"
 #include "parser/statementtokenbuilder.h"
-#include "global.h"
+#include "common/global.h"
 #include <QDebug>
 
 SqliteForeignKey::Condition::Condition(SqliteForeignKey::Condition::Action action, SqliteForeignKey::Condition::Reaction reaction)

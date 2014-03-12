@@ -2,7 +2,7 @@
 #define SQLITESTUDIO_H
 
 #include "coreSQLiteStudio_global.h"
-#include "global.h"
+#include "common/global.h"
 #include <QString>
 #include <QStringList>
 #include <QObject>

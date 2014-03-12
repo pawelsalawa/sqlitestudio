@@ -1,5 +1,5 @@
 #include "clicommandmode.h"
-#include "unused.h"
+#include "common/unused.h"
 #include "cli_config.h"
 
 void CliCommandMode::execute()

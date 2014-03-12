@@ -1,6 +1,6 @@
 #include "clicommandremove.h"
 #include "cli.h"
-#include "db/dbmanager.h"
+#include "services/dbmanager.h"
 #include "db/db.h"
 
 void CliCommandRemove::execute()

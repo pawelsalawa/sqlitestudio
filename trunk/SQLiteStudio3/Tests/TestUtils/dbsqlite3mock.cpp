@@ -1,5 +1,5 @@
 #include "dbsqlite3mock.h"
-#include "unused.h"
+#include "common/unused.h"
 #include <QDebug>
 
 DbSqlite3Mock::DbSqlite3Mock(const QString &name, const QString &path, const QHash<QString,QVariant> &options)

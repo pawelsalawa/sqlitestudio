@@ -2,8 +2,8 @@
 #define SQLFUNCTIONQT_H
 
 #include "sqlfunctionqt_global.h"
-#include "genericplugin.h"
-#include "sqlfunctionplugin.h"
+#include "plugins/genericplugin.h"
+#include "plugins/sqlfunctionplugin.h"
 
 class ScriptingPlugin;
 

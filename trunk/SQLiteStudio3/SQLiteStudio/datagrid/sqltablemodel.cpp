@@ -1,7 +1,7 @@
 #include "sqltablemodel.h"
-#include "utils_sql.h"
+#include "common/utils_sql.h"
 #include "sqlqueryitem.h"
-#include "notifymanager.h"
+#include "services/notifymanager.h"
 #include <QDebug>
 #include <QApplication>
 #include <schemaresolver.h>

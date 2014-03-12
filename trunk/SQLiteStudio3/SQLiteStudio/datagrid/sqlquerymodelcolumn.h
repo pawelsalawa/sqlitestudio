@@ -4,7 +4,7 @@
 #include "db/queryexecutor.h"
 #include "parser/ast/sqlitecreatetable.h"
 #include "datatype.h"
-#include "global.h"
+#include "common/global.h"
 
 class SqlQueryModelColumn
 {

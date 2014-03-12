@@ -1,7 +1,7 @@
 #include "sqlitesyntaxhighlighter.h"
 #include "parser/lexer.h"
 #include "uiconfig.h"
-#include "config.h"
+#include "services/config.h"
 #include <QTextDocument>
 #include <QDebug>
 #include <QPlainTextEdit>

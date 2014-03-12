@@ -1,6 +1,6 @@
 #include "tablestructuremodel.h"
 #include "iconmanager.h"
-#include "unused.h"
+#include "common/unused.h"
 #include "uiconfig.h"
 #include <QFont>
 #include <QDebug>

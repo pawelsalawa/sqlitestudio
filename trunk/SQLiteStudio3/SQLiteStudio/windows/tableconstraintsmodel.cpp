@@ -1,7 +1,7 @@
 #include "tableconstraintsmodel.h"
 #include "iconmanager.h"
-#include "utils_sql.h"
-#include "unused.h"
+#include "common/utils_sql.h"
+#include "common/unused.h"
 #include <QDebug>
 #include <QMimeData>
 

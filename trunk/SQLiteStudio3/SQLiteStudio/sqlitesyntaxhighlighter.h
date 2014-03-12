@@ -3,7 +3,7 @@
 
 #include "parser/token.h"
 #include "syntaxhighlighterplugin.h"
-#include "genericplugin.h"
+#include "plugins/genericplugin.h"
 #include <QSyntaxHighlighter>
 #include <QRegularExpression>
 

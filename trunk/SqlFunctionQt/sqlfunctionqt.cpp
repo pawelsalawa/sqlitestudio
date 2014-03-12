@@ -1,7 +1,7 @@
 #include "sqlfunctionqt.h"
-#include "scriptingplugin.h"
-#include "pluginmanager.h"
-#include "unused.h"
+#include "plugins/scriptingplugin.h"
+#include "services/pluginmanager.h"
+#include "common/unused.h"
 
 QVariant SqlFunctionQt::evaluateScalar(Db* db, const QString& function, const QString& code, const QList<QVariant>& args, bool& success)
 {

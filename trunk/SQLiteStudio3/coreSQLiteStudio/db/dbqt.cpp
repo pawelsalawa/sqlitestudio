@@ -1,10 +1,10 @@
 #include "dbqt.h"
-#include "dbmanager.h"
-#include "utils.h"
+#include "services/dbmanager.h"
+#include "common/utils.h"
 #include "asyncqueryrunner.h"
 #include "sqlresultsqt.h"
 #include "sqlresultsrow.h"
-#include "utils_sql.h"
+#include "common/utils_sql.h"
 #include "parser/ast/sqliteinsert.h"
 #include "schemaresolver.h"
 

@@ -1,5 +1,5 @@
-#include "utils_sql.h"
-#include "utils.h"
+#include "common/utils_sql.h"
+#include "common/utils.h"
 #include "db/sqlresults.h"
 #include "parser/token.h"
 #include "parser/lexer.h"
