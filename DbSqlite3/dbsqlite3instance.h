@@ -13,7 +13,7 @@ class Sqlite3 {};
 class DbSqlite3Instance : public DbQt3<Sqlite3>
 {
     public:
-        DbSqlite3Instance(const QString& driverName, const QString& type);
+        DbSqlite3Instance(const QString& name, const QString& path, const QHash<QString, QVariant>& connOptions, const QString& driverName, const QString& type);
 };
 
 #endif // DBSQLITE3INSTANCE_H

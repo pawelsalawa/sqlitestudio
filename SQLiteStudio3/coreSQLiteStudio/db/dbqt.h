@@ -1,7 +1,7 @@
 #ifndef DBQT_H
 #define DBQT_H
 
-#include "db.h"
+#include "db/abstractdb.h"
 #include "../returncode.h"
 #include "sqlresults.h"
 #include "../dialect.h"
@@ -30,11 +30,21 @@
  * and DbQt3 for SQLite3 implementation. They provide some implementation specialized
  * to their SQLite versions.
  */
-class API_EXPORT DbQt : public Db
+class API_EXPORT DbQt : public AbstractDb
 {
     Q_OBJECT
 
     public:
+        /**
+         * @brief Creates database object based on Qt database framework.
+         * @param name Name for the database.
+         * @param path File path of the database.
+         * @param connOptions Connection options. See AbstractDb for details.
+         * @param driverName Driver names as passed to QSqlDatabase::addDatabase().
+         * @param type Database type (SQLite3, SQLite2 or other...) used as a database type presented to user.
+         */
+        DbQt(const QString& name, const QString& path, const QHash<QString, QVariant>& connOptions, const QString& driverName, const QString& type);
+
         /**
          * @brief Releases resources.
          *
@@ -44,6 +54,10 @@ class API_EXPORT DbQt : public Db
         ~DbQt();
 
         QString getTypeLabel();
+
+        bool deregisterFunction(const QString& name, int argCount);
+        bool registerScalarFunction(const QString& name, int argCount);
+        bool registerAggregateFunction(const QString& name, int argCount);
 
     protected:
         struct FunctionUserData
@@ -73,25 +87,15 @@ class API_EXPORT DbQt : public Db
         static void evaluateAggregateStep(void* dataPtr, QHash<QString, QVariant>& aggregateContext, QList<QVariant> argList);
         static QVariant evaluateAggregateFinal(void* dataPtr, QHash<QString, QVariant>& aggregateContext, bool& ok);
 
-        /**
-         * @brief Creates database object based on Qt database framework.
-         * @param driverName Driver names as passed to QSqlDatabase::addDatabase().
-         * @param type Database type (SQLite3, SQLite2 or other...) used as a database type presented to user.
-         */
-        DbQt(const QString& driverName, const QString& type);
-
         bool isOpenInternal();
         SqlResultsPtr execInternal(const QString& query, const QList<QVariant>& args);
         SqlResultsPtr execInternal(const QString& query, const QHash<QString,QVariant>& args);
-        bool init();
+        void init();
         bool openInternal();
         bool closeInternal();
         void interruptExecution();
         QString getErrorTextInternal();
         int getErrorCodeInternal();
-        bool deregisterFunction(const QString& name, int argCount);
-        bool registerScalarFunction(const QString& name, int argCount);
-        bool registerAggregateFunction(const QString& name, int argCount);
 
         virtual bool deregisterFunction(const QVariant& handle, const QString& name, int argCount) = 0;
         virtual bool registerScalarFunction(const QVariant& handle, const QString& name, int argCount) = 0;

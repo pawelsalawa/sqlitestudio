@@ -4,6 +4,7 @@
 #include "parser/parser.h"
 #include "db/db.h"
 #include "dbsqlite3mock.h"
+#include "mocks.h"
 #include <QString>
 #include <QtTest>
 #include <QDebug>
@@ -239,6 +240,8 @@ void TableModifierTest::initTestCase()
 
 void TableModifierTest::init()
 {
+    initMocks();
+
     db = new DbSqlite3Mock("testdb");
     db->open();
     db->exec(mainTableDdl);

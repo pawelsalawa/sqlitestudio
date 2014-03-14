@@ -15,12 +15,12 @@ DbPluginQt::~DbPluginQt()
         QSqlDatabase::removeDatabase(probeConnName);
 }
 
-Db* DbPluginQt::getInstance(const QString &path, const QHash<QString,QVariant> &options, QString* errorMessage)
+Db* DbPluginQt::getInstance(const QString &name, const QString& path, const QHash<QString,QVariant> &options, QString* errorMessage)
 {
     if (!probe(path, options, errorMessage))
         return nullptr;
 
-    return getInstance();
+    return getInstance(name, path, options);
 }
 
 QString DbPluginQt::generateDbName(const QVariant &baseValue)

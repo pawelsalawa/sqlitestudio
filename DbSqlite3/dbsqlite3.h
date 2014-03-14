@@ -21,7 +21,7 @@ class DBSQLITE3SHARED_EXPORT DbSqlite3 : public DbPluginQt
         bool checkIfDbServedByPlugin(Db* db) const;
 
     protected:
-        DbQt* getInstance();
+        DbQt* getInstance(const QString& name, const QString& path, const QHash<QString, QVariant>& options);
         QString getDriver();
 };
 

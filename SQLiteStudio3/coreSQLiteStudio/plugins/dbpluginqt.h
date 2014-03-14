@@ -22,7 +22,7 @@ class API_EXPORT DbPluginQt : public DbPlugin, public GenericPlugin
         DbPluginQt();
         ~DbPluginQt();
 
-        Db* getInstance(const QString& path, const QHash<QString, QVariant> &options, QString* errorMessage = 0);
+        Db* getInstance(const QString& name, const QString& path, const QHash<QString, QVariant>& options, QString* errorMessage);
         QString generateDbName(const QVariant& baseValue);
         QList<DbPluginOption> getOptionsList() const;
         bool isRemote() const;
@@ -32,9 +32,12 @@ class API_EXPORT DbPluginQt : public DbPlugin, public GenericPlugin
     protected:
         /**
          * @brief Creates new instance of the database implemented by this plugin.
+         * @param name Name for the database.
+         * @param path File path of the database.
+         * @param connOptions Connection options. See AbstractDb for details.
          * @return Instance of the database.
          */
-        virtual DbQt* getInstance() = 0;
+        virtual DbQt* getInstance(const QString& name, const QString& path, const QHash<QString, QVariant>& options) = 0;
 
         /**
          * @brief Provides driver name valid for QSqlDatabase::addDatabase().
@@ -55,7 +58,7 @@ class API_EXPORT DbPluginQt : public DbPlugin, public GenericPlugin
          * This method opens given file and executes "<tt>SELECT * FROM sqlite_master;</tt>" query.
          * If that's successful, it returns true. Otherwise it returns false.
          */
-        bool probe(const QString& path, const QHash<QString, QVariant> &options, QString* errorMessage = 0);
+        bool probe(const QString& path, const QHash<QString, QVariant> &options, QString* errorMessage);
 
         /**
          * @brief Defines QSqlDatabase for probing databases.

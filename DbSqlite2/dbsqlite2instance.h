@@ -11,7 +11,7 @@ class Sqlite2 {};
 class DbSqlite2Instance : public DbQt2<Sqlite2>
 {
     public:
-        DbSqlite2Instance(const QString& driverName, const QString& type);
+        DbSqlite2Instance(const QString& name, const QString& path, const QHash<QString, QVariant>& connOptions, const QString& driverName, const QString& type);
 };
 
 #endif // DBSQLITE2INSTANCE_H

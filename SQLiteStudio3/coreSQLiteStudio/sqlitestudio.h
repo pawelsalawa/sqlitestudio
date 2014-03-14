@@ -18,6 +18,8 @@ class SqlFormatter;
 class Plugin;
 class PluginType;
 class FunctionManager;
+class DbAttacherFactory;
+class DbAttacher;
 
 /** @file */
 
@@ -30,6 +32,8 @@ class FunctionManager;
  * <li>#SQLITESTUDIO - access point to all services (singleton instance of SQLiteStudio)</li>
  * <li>#PLUGINS - quick access to PluginManager</li>
  * <li>#DBLIST - quick access to DbManager</li>
+ * <li>#FUNCTIONS - quick access to FunctionManager</li>
+ * <li>#CFG - quick access to Config</li>
  * </ul>
  */
 
@@ -76,8 +80,27 @@ class API_EXPORT SQLiteStudio : public QObject
          */
         QString getEnv(const QString& name, const QString& defaultValue = QString());
 
+        /**
+         * @brief Creates new DbAttacher instance for given database.
+         * @param db Database to create attacher for.
+         * @return Attacher instance.
+         */
+        DbAttacher* createDbAttacher(Db* db);
+
         Config* getConfig() const;
         void setConfig(Config* value);
+
+        DbManager* getDbManager() const;
+        void setDbManager(DbManager* value);
+
+        FunctionManager* getFunctionManager() const;
+        void setFunctionManager(FunctionManager* value);
+
+        PluginManager* getPluginManager() const;
+        void setPluginManager(PluginManager* value);
+
+        DbAttacherFactory* getDbAttacherFactory() const;
+        void setDbAttacherFactory(DbAttacherFactory* value);
 
     private:
         /**
@@ -138,6 +161,10 @@ class API_EXPORT SQLiteStudio : public QObject
         QStringList cmdLineArgs;
 
         Config* config = nullptr;
+        DbManager* dbManager = nullptr;
+        FunctionManager* functionManager = nullptr;
+        PluginManager* pluginManager = nullptr;
+        DbAttacherFactory* dbAttacherFactory = nullptr;
 
     private slots:
         void pluginLoaded(Plugin* plugin,PluginType* pluginType);

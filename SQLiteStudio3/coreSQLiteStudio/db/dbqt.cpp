@@ -17,9 +17,10 @@
 
 #include <parser/parser.h>
 
-DbQt::DbQt(const QString &driverName, const QString &type)
-    : driverName(driverName), type(type)
+DbQt::DbQt(const QString& name, const QString& path, const QHash<QString, QVariant>& connOptions, const QString &driverName, const QString &type)
+    : AbstractDb(name, path, connOptions), driverName(driverName), type(type)
 {
+    init();
 }
 
 DbQt::~DbQt()
@@ -147,12 +148,12 @@ bool DbQt::isOpenInternal()
     return db->isValid() && db->isOpen();
 }
 
-bool DbQt::init()
+void DbQt::init()
 {
     if (QSqlDatabase::database(name, false).isValid())
     {
         qCritical() << "Database with name " << name << " already exists in Qt database connections.";
-        return false;
+        return;
     }
 
     // The db is a pointer, because having an object (and not the pointer) in class members
@@ -161,16 +162,6 @@ bool DbQt::init()
     db = new QSqlDatabase(QSqlDatabase::addDatabase(driverName, name));
     db->setDatabaseName(path);
     db->setConnectOptions(connOptions.value("options", "").toString());
-
-    db->open();
-    QVariant value = exec("SELECT sqlite_version()")->getSingleCell();
-    db->close();
-
-    version = value.toString().mid(0, 1).toUInt();
-
-    // TODO: register collations, custom functions, etc
-
-    return true;
 }
 
 SqlResultsPtr DbQt::execInternal(const QString &query, const QList<QVariant> &args)

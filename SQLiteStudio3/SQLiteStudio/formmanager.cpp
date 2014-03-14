@@ -7,6 +7,7 @@
 #include <QRegularExpression>
 #include <QUiLoader>
 #include <QApplication>
+#include <QDebug>
 
 FormManager::FormManager()
 {

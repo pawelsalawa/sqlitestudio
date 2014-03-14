@@ -5,9 +5,9 @@ DbSqlite2::DbSqlite2()
 {
 }
 
-DbQt *DbSqlite2::getInstance()
+DbQt *DbSqlite2::getInstance(const QString& name, const QString& path, const QHash<QString, QVariant>& options)
 {
-    return new DbSqlite2Instance(getDriver(), getLabel());
+    return new DbSqlite2Instance(name, path, options, getDriver(), getLabel());
 }
 
 QString DbSqlite2::getDriver()

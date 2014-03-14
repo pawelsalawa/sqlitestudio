@@ -4,7 +4,7 @@
 #include "coreSQLiteStudio_global.h"
 #include "services/config.h"
 
-class API_EXPORT ConfigImpl : public Config
+class ConfigImpl : public Config
 {
     Q_OBJECT
 

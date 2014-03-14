@@ -17,11 +17,24 @@ QMAKE_CXXFLAGS += -std=c++11
 DEFINES += TESTUTILS_LIBRARY
 
 SOURCES += \
-    dbsqlite3mock.cpp
+    dbsqlite3mock.cpp \
+    functionmanagermock.cpp \
+    pluginmanagermock.cpp \
+    configmock.cpp \
+    mocks.cpp \
+    dbattachermock.cpp \
+    dbmanagermock.cpp
 
 HEADERS +=\
         testutils_global.h \
-    dbsqlite3mock.h
+    dbsqlite3mock.h \
+    hippomocks.h \
+    functionmanagermock.h \
+    pluginmanagermock.h \
+    configmock.h \
+    mocks.h \
+    dbattachermock.h \
+    dbmanagermock.h
 
 unix:!symbian {
     maemo5 {

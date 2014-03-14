@@ -48,7 +48,7 @@ class API_EXPORT SqliteInsert : public SqliteQuery
         QString table = QString::null;
         QStringList columnNames;
         QList< QList<SqliteExpr*> > values;
-        SqliteSelect* select;
+        SqliteSelect* select = nullptr;
 };
 
 typedef QSharedPointer<SqliteInsert> SqliteInsertPtr;

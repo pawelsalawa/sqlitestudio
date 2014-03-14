@@ -4,10 +4,12 @@
 #include "parser/lexer.h"
 #include "parser/token.h"
 #include "parser/keywords.h"
-
+#include "sqlitestudio.h"
+#include "mocks.h"
 #include <QString>
 #include <QtTest>
 #include <QDebug>
+
 
 class CompletionHelperTest : public QObject
 {
@@ -370,12 +372,12 @@ void CompletionHelperTest::testUpdateCols1()
     //QVERIFY(!contains(tokens, ExpectedToken::COLUMN, "id", QString::null, "abc")); // TODO
 }
 
-
 void CompletionHelperTest::initTestCase()
 {
     initKeywords();
     Lexer::staticInit();
     CompletionHelper::init();
+    initMocks();
 
     db = new DbSqlite3Mock("testdb");
     db->open();
@@ -388,6 +390,7 @@ void CompletionHelperTest::cleanupTestCase()
     db->close();
     delete db;
     db = nullptr;
+    deleteMockRepo();
 }
 
 QTEST_APPLESS_MAIN(CompletionHelperTest)

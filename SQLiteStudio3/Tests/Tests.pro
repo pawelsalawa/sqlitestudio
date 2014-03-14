@@ -23,4 +23,4 @@ SUBDIRS += \
     select_resolver \
     parser \
     table_modifier \
-    HashTablesTest
+    hash_tables

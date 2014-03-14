@@ -15,6 +15,9 @@ class DbSqlite3Mock : public DbQt3<Sqlite3Mock>
     protected:
         QString getDriver();
         void interruptExecutionOnHandle(const QVariant& handle);
+
+    public slots:
+        void registerAllFunctions();
 };
 
 #endif // DBSQLITE3MOCK_H
