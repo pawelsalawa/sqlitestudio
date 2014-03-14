@@ -7,9 +7,9 @@ DbSqlite3::DbSqlite3()
 {
 }
 
-DbQt* DbSqlite3::getInstance()
+DbQt* DbSqlite3::getInstance(const QString& name, const QString& path, const QHash<QString, QVariant>& options)
 {
-    return new DbSqlite3Instance(getDriver(), getLabel());
+    return new DbSqlite3Instance(name, path, options, getDriver(), getLabel());
 }
 
 QString DbSqlite3::getDriver()

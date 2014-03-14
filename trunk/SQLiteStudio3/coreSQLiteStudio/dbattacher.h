@@ -23,10 +23,9 @@ class DbAttacher
 {
     public:
         /**
-         * @brief Creates attacher with the given database as the main.
-         * @param db Database that the query will be executed on.
+         * @brief Default destructor.
          */
-        DbAttacher(Db* db);
+        virtual ~DbAttacher();
 
         /**
          * @brief Scans for databases in given query and attaches them.
@@ -38,7 +37,7 @@ class DbAttacher
          *
          * To get query with database names replaced with attach names use getQuery().
          */
-        bool attachDatabases(const QString& query);
+        virtual bool attachDatabases(const QString& query) = 0;
 
         /**
          * Be aware that database names in queries are replaced with attach names in SqliteStatement::tokens,
@@ -47,17 +46,17 @@ class DbAttacher
          *
          * @overload bool attachDatabases(const QList<SqliteQueryPtr>& queries)
          */
-        bool attachDatabases(const QList<SqliteQueryPtr>& queries);
+        virtual bool attachDatabases(const QList<SqliteQueryPtr>& queries) = 0;
 
         /**
          * @overload bool attachDatabases(SqliteQueryPtr query)
          */
-        bool attachDatabases(SqliteQueryPtr query);
+        virtual bool attachDatabases(SqliteQueryPtr query) = 0;
 
         /**
          * @brief Detaches all databases attached by the attacher.
          */
-        void detachDatabases();
+        virtual void detachDatabases() = 0;
 
         /**
          * @brief Provides mapping of database names to their attach names.
@@ -67,79 +66,21 @@ class DbAttacher
          * and vice versa. Left values of the map are database names (as registered in DbManager)
          * and right values are attach names assigned to them.
          */
-        BiStrHash getDbNameToAttach() const;
+        virtual BiStrHash getDbNameToAttach() const = 0;
 
         /**
          * @brief Provides query string updated with attach names.
          * @return Query string.
          */
-        QString getQuery() const;
+        virtual QString getQuery() const = 0;
+};
 
-    private:
-        /**
-         * @brief Does the actual job, after having all input queries as parsed objects.
-         * @return true on success, false on failure.
-         */
-        bool attachDatabases();
+class DbAttacherFactory
+{
+    public:
+        virtual ~DbAttacherFactory();
 
-        /**
-         * @brief Finds tokens representing databases in the query.
-         * @return List of tokens. Some tokens have non-printable value (spaces, etc), others are database names.
-         */
-        TokenList getDbTokens();
-
-        /**
-         * @brief Detaches all databases currently attached by the attacher.
-         *
-         * Also clears names mappings.
-         */
-        void detachAttached();
-
-        /**
-         * @brief Generates mapping of database name to its Db object for all registered databases.
-         */
-        void prepareNameToDbMap();
-
-        /**
-         * @brief Groups tokens by the name of database they refer to.
-         * @param dbTokens Tokens representing databases in the query.
-         *
-         * This method is used to learn if some database is used more than once in the query,
-         * so we attach it only once, then replace all tokens referring to it by the attach name.
-         */
-        QHash<QString,TokenList> groupDbTokens(const TokenList& dbTokens);
-
-        /**
-         * @brief Tries to attach all required databases.
-         * @param groupedDbTokens Database tokens grouped by database name, as returned from groupDbTokens().
-         * @return true on success, false on any problem.
-         *
-         * Major problem that can happen is when "<tt>ATTACH 'path to file'</tt>" fails for any reason. In that case
-         * detachAttached() is called and false is returned.
-         */
-        bool attachAllDbs(const QHash<QString,TokenList>& groupedDbTokens);
-
-        /**
-         * @brief Creates token-to-token replace map to update the query.
-         * @param dbTokens Tokens representing databases in the query.
-         * @return Mapping to be used when replacing tokens in the query.
-         */
-        QHash<TokenPtr, TokenPtr> getTokenMapping(const TokenList& dbTokens);
-
-        /**
-         * @brief Replaces tokens in the query.
-         * @param tokenMapping Map of tokens to replace.
-         *
-         * Replacing takes place in token lists of each query in the queries member.
-         */
-        void replaceTokensInQueries(const QHash<TokenPtr, TokenPtr>& tokenMapping);
-
-    private:
-        QList<SqliteQueryPtr> queries;
-        Db* db = nullptr;
-        Dialect dialect;
-        BiStrHash dbNameToAttach;
-        StrHash<Db*> nameToDbMap;
+        virtual DbAttacher* create(Db* db) = 0;
 };
 
 #endif // DBATTACHER_H

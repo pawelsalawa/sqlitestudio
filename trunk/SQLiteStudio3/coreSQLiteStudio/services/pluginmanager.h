@@ -5,10 +5,8 @@
 #include "plugins/plugin.h"
 #include "plugins/plugintype.h"
 #include "common/global.h"
-#include <QPluginLoader>
+#include "sqlitestudio.h"
 #include <QStringList>
-#include <QHash>
-#include <QDebug>
 
 class Plugin;
 
@@ -82,8 +80,6 @@ class API_EXPORT PluginManager : public QObject
 {
     Q_OBJECT
 
-    DECLARE_SINGLETON(PluginManager)
-
     public:
         /**
          * @brief Loads all plugins.
@@ -91,33 +87,33 @@ class API_EXPORT PluginManager : public QObject
          * Scans all plugin directories and tries to load all plugins found there. For list of directories
          * see description of Plugin class.
          */
-        void init();
+        virtual void init() = 0;
 
         /**
          * @brief Unloads all loaded plugins.
          *
          * Also deregisters all plugin types.
          */
-        void deinit();
+        virtual void deinit() = 0;
 
         /**
          * @brief Provides list of registered plugin types.
          * @return List of registered plugin types.
          */
-        QList<PluginType*> getPluginTypes() const;
+        virtual QList<PluginType*> getPluginTypes() const = 0;
 
         /**
          * @brief Provides list of plugin directories.
          * @return List of directory paths (not necessarily absolute paths).
          */
-        QStringList getPluginDirs() const;
+        virtual QStringList getPluginDirs() const = 0;
 
         /**
          * @brief Provides absolute path to the plugin's file.
          * @param plugin Loaded plugin.
          * @return Absolute path to the plugin file.
          */
-        QString getFilePath(Plugin* plugin) const;
+        virtual QString getFilePath(Plugin* plugin) const = 0;
 
         /**
          * @brief Loads instance of built-in plugin into the manager.
@@ -130,7 +126,7 @@ class API_EXPORT PluginManager : public QObject
          *
          * @note Built-in plugins cannot be loaded or unloaded, so calls to load() or unload() will make no effect.
          */
-        bool loadBuiltInPlugin(Plugin* plugin);
+        virtual bool loadBuiltInPlugin(Plugin* plugin) = 0;
 
         /**
          * @brief Loads the plugin.
@@ -153,7 +149,7 @@ class API_EXPORT PluginManager : public QObject
          *
          * Then the loaded() signal is emitted. Finally, the true value is returned.
          */
-        bool load(const QString& pluginName);
+        virtual bool load(const QString& pluginName) = 0;
 
         /**
          * @brief Unloads plugin.
@@ -166,21 +162,21 @@ class API_EXPORT PluginManager : public QObject
          *
          * Finally, the unloaded() signal is emitted.
          */
-        void unload(const QString& pluginName);
+        virtual void unload(const QString& pluginName) = 0;
 
         /**
          * @brief Unloads plugin.
          * @param plugin Loaded plugin to be unloaded.
          * @overload void unload(Plugin* plugin)
          */
-        void unload(Plugin* plugin);
+        virtual void unload(Plugin* plugin) = 0;
 
         /**
          * @brief Tests if given plugin is loaded.
          * @param pluginName Name of the plugin to test.
          * @return true if the plugin is loaded, or false otherwise.
          */
-        bool isLoaded(const QString& pluginName) const;
+        virtual bool isLoaded(const QString& pluginName) const = 0;
 
         /**
          * @brief Tests whether given plugin is one of built-in plugins.
@@ -189,14 +185,14 @@ class API_EXPORT PluginManager : public QObject
          *
          * @see loadBuiltInPlugin()
          */
-        bool isBuiltIn(const QString& pluginName) const;
+        virtual bool isBuiltIn(const QString& pluginName) const = 0;
 
         /**
          * @brief Finds loaded plugin by name.
          * @param pluginName Plugin name to look for.
          * @return Loaded plugin object, or null of the plugin is not loaded.
          */
-        Plugin* getLoadedPlugin(const QString& pluginName) const;
+        virtual Plugin* getLoadedPlugin(const QString& pluginName) const = 0;
 
         /**
          * @brief Provides list of plugin names of given type.
@@ -206,55 +202,73 @@ class API_EXPORT PluginManager : public QObject
          * It returns names for all plugins available for the application,
          * no matter they're currently loaded or not.
          */
-        QStringList getAllPluginNames(PluginType* type) const;
+        virtual QStringList getAllPluginNames(PluginType* type) const = 0;
 
         /**
          * @brief Provides list of all plugin names.
          * @return All available plugin names, no matter if loaded or not.
          */
-        QStringList getAllPluginNames() const;
+        virtual QStringList getAllPluginNames() const = 0;
 
         /**
          * @brief Finds plugin's type.
          * @param pluginName Plugin name (can be unloaded plugin).
          * @return Type of the plugin, or null if plugin was not found by the name.
          */
-        PluginType* getPluginType(const QString& pluginName) const;
+        virtual PluginType* getPluginType(const QString& pluginName) const = 0;
 
         /**
          * @brief Provides plugin's author.
          * @param pluginName Name of the plugin (can be unloaded plugin).
          * @return Author string defined in the plugin.
          */
-        QString getAuthor(const QString& pluginName) const;
+        virtual QString getAuthor(const QString& pluginName) const = 0;
 
         /**
          * @brief Provides plugin's title.
          * @param pluginName Name of the plugin (can be unloaded plugin).
          * @return Title string defined in the plugin.
          */
-        QString getTitle(const QString& pluginName) const;
+        virtual QString getTitle(const QString& pluginName) const = 0;
 
         /**
          * @brief Provides human-readable version of the plugin.
          * @param pluginName Name of the plugin (can be unloaded plugin).
          * @return Version string defined in the plugin.
          */
-        QString getPrintableVersion(const QString& pluginName) const;
+        virtual QString getPrintableVersion(const QString& pluginName) const = 0;
 
         /**
          * @brief Provides numeric version of the plugin.
          * @param pluginName Name of the plugin (can be unloaded plugin).
          * @return Numeric version defined in the plugin.
          */
-        int getVersion(const QString& pluginName) const;
+        virtual int getVersion(const QString& pluginName) const = 0;
 
         /**
          * @brief Provides detailed description about the plugin.
          * @param pluginName Name of the plugin (can be unloaded plugin).
          * @return Description defined in the plugin.
          */
-        QString getDescription(const QString& pluginName) const;
+        virtual QString getDescription(const QString& pluginName) const = 0;
+
+        /**
+         * @brief Tells plugin's type.
+         * @param plugin Loaded plugin.
+         * @return Type of the plugin.
+         */
+        virtual PluginType* getPluginType(Plugin* plugin) const = 0;
+
+        /**
+         * @brief Provides list of plugins for given plugin type.
+         * @param type Type of plugins.
+         * @return List of plugins for given type.
+         *
+         * This version of the method takes plugin type object as an discriminator.
+         * This way you can iterate through all types (using getPluginTypes())
+         * and then for each type get list of plugins for that type, using this method.
+         */
+        virtual QList<Plugin*> getLoadedPlugins(PluginType* type) const = 0;
 
         /**
          * @brief registerPluginType Registers plugin type for loading and managing.
@@ -270,16 +284,8 @@ class API_EXPORT PluginManager : public QObject
         template <class T>
         void registerPluginType(const QString& title, const QString& form = QString())
         {
-            PluginType* type = new DefinedPluginType<T>(title, form);
-            registeredPluginTypes << type;
+            registerPluginType(new DefinedPluginType<T>(title, form));
         }
-
-        /**
-         * @brief Tells plugin's type.
-         * @param plugin Loaded plugin.
-         * @return Type of the plugin.
-         */
-        PluginType* getPluginType(Plugin* plugin) const;
 
         /**
          * @brief Gets plugin type for given plugin interface.
@@ -289,7 +295,7 @@ class API_EXPORT PluginManager : public QObject
         template <class T>
         PluginType* getPluginType() const
         {
-            foreach (PluginType* type, registeredPluginTypes)
+            foreach (PluginType* type, getPluginTypes())
             {
                 if (!dynamic_cast<DefinedPluginType<T>*>(type))
                     continue;
@@ -298,17 +304,6 @@ class API_EXPORT PluginManager : public QObject
             }
             return nullptr;
         }
-
-        /**
-         * @brief Provides list of plugins for given plugin type.
-         * @param type Type of plugins.
-         * @return List of plugins for given type.
-         *
-         * This version of the method takes plugin type object as an discriminator.
-         * This way you can iterate through all types (using getPluginTypes())
-         * and then for each type get list of plugins for that type, using this method.
-         */
-        QList<Plugin*> getLoadedPlugins(PluginType* type) const;
 
         /**
          * @brief Provide list of plugins of given type.
@@ -326,204 +321,21 @@ class API_EXPORT PluginManager : public QObject
             if (!type)
                 return typedPlugins;
 
-            foreach (PluginContainer* container, pluginCategories[type])
-            {
-                if (container->loaded)
-                    typedPlugins << dynamic_cast<T*>(container->plugin);
-            }
+            foreach (Plugin* plugin, getLoadedPlugins(type))
+                typedPlugins << dynamic_cast<T*>(plugin);
 
             return typedPlugins;
         }
 
-    private:
+    protected:
         /**
-         * @brief Container for plugin related data.
+         * @brief Adds given type to registered plugins list.
+         * @param type Type instance.
          *
-         * The container is used to represent plugin available to the application,
-         * no matter if it's loaded or not. It keeps all plugin related data,
-         * so it's available even the plugin is not loaded.
+         * This is a helper method for registerPluginType<T>() template function.
+         * The implementation should register given plugin type, that is - add it to a list of registered types.
          */
-        struct PluginContainer
-        {
-            /**
-             * @brief Name of the plugin.
-             */
-            QString name;
-
-            /**
-             * @brief Title of the plugin, used on UI.
-             */
-            QString title;
-
-            /**
-             * @brief Plugin's detailed description.
-             */
-            QString description;
-
-            /**
-             * @brief Plugin's author.
-             */
-            QString author;
-
-            /**
-             * @brief Numeric verion of the plugin.
-             */
-            int version;
-
-            /**
-             * @brief Human-readable version.
-             */
-            QString printableVersion;
-
-            /**
-             * @brief Type of the plugin.
-             */
-            PluginType* type;
-
-            /**
-             * @brief Full path to the plugin's file.
-             */
-            QString filePath;
-
-            /**
-             * @brief Plugin's loaded state flag.
-             */
-            bool loaded;
-
-            /**
-             * @brief Qt's plugin framework loaded for this plugin.
-             */
-            QPluginLoader* loader;
-
-            /**
-             * @brief Plugin object.
-             *
-             * It's null when plugin is not loaded.
-             */
-            Plugin* plugin;
-
-            /**
-             * @brief Flag indicating that the plugin is built in.
-             *
-             * Plugins built-in are classes implementing plugin's interface,
-             * but they are compiled and statically linked to the main application binary.
-             * They cannot be loaded or unloaded - they are loaded by default.
-             */
-            bool builtIn = false;
-        };
-
-        /**
-         * @brief List of plugins, both loaded and unloaded.
-         */
-        typedef QList<PluginContainer*> PluginContainerList;
-
-        /**
-         * @brief Creates plugin manager.
-         */
-        PluginManager();
-
-        /**
-         * @brief Deletes plugin manager.
-         */
-        ~PluginManager();
-
-        /**
-         * @brief Loads plugins defined in configuration.
-         *
-         * It loads all plugins that are available to the application
-         * and are not marked to not load in the configuration.
-         *
-         * In other words, every plugin will load by default, unless it was
-         * explicitly unloaded previously and that was saved in the configuration
-         * (when application was closing).
-         */
-        void loadPlugins();
-
-        /**
-         * @brief Executes standard routines after plugin was loaded.
-         * @param container Container for the loaded plugin.
-         *
-         * It fills all members of the plugin container and emits loaded() signal.
-         */
-        void pluginLoaded(PluginContainer* container);
-
-        /**
-         * @brief Reads title, description, author, etc. from the plugin.
-         * @param plugin Plugin to read data from.
-         * @param container Container to put the data to.
-         *
-         * It does the reading by calling all related methods from Plugin interface,
-         * then stores those information in given \p container.
-         */
-        void readMetadata(Plugin* plugin, PluginContainer* container);
-
-        /**
-         * @brief Tries to load given file as a Plugin.
-         * @param fileName File to load (absolute path).
-         * @param loader Qt's plugin framework loader to use when loading the plugin.
-         * @return Loaded plugin object, or null if loading failed.
-         *
-         * It loads plugin file, resolves symbols, creates object delivered by the plugin
-         * and casts it to Plugin interface. If it fails on any step, the file is unloaded
-         * and the method returns null.
-         *
-         * The loader should be exclusive for given plugin file, as it will be later
-         * associated with the plugin (so the loader can unload the plugin).
-         */
-        Plugin* loadPluginFromFile(const QString& fileName, QPluginLoader* loader);
-
-        /**
-         * @brief Creates plugin container and initializes it.
-         * @param loader Qt's plugin framework loader used to load this plugin.
-         *               For built-in plugins (statically linked) this must be null.
-         * @param fileName Plugin's file path. For built-in plugins it's ignored.
-         * @param plugin Plugin object from loaded plugin.
-         * @return true if the initialization succeeded, or false otherwise.
-         *
-         * It assigns plugin type to the plugin, creates plugin container and fills
-         * all necessary data for the plugin. If the plugin was configured to not load,
-         * then this method unloads the file, before plugin was initialized (with Plugin::init()).
-         *
-         * All plugins are loaded at the start, but before they are fully initialized
-         * and enabled, they are simply queried for metadata, then either unloaded
-         * (when configured to not load at startup), or the initialization proceeds.
-         */
-        bool initPlugin(QPluginLoader* loader, const QString& fileName, Plugin* plugin);
-
-        /**
-         * @brief Tests if given plugin is configured to be loaded at startup.
-         * @param plugin Tested plugin object.
-         * @return true if plugin should be loaded at startup, or false otherwise.
-         *
-         * This method checks General.LoadedPlugins configuration entry to see if plugin
-         * was explicitly disabled for loading at startup.
-         */
-        bool shouldAutoLoad(Plugin* plugin);
-
-        /**
-         * @brief Singleton instance of this class.
-         */
-        static PluginManager* instance;
-
-        /**
-         * @brief List of plugin directories (not necessarily absolute paths).
-         */
-        QStringList pluginDirs;
-
-        /**
-         * @brief List of registered plugin types.
-         */
-        QList<PluginType*> registeredPluginTypes;
-
-        /**
-         * @brief Table with plugin types as keys and list of plugins assigned for each type.
-         */
-        QHash<PluginType*,PluginContainerList> pluginCategories;
-
-        /**
-         * @brief Table with plugin names and containers assigned for each plugin.
-         */
-        QHash<QString,PluginContainer*> pluginContainer;
+        virtual void registerPluginType(PluginType* type) = 0;
 
     signals:
         /**
@@ -576,13 +388,17 @@ class API_EXPORT PluginManager : public QObject
  * Since SQLiteStudio creates only one instance of PluginsManager,
  * there is a standard method for accessing it, using code:
  * @code
- * QList<PluginType*> types = PluginManager::getInstance()->getPluginTypes();
+ * QList<PluginType*> types = SQLiteStudio::getInstance()->getPluginManager()->getPluginTypes();
  * @endcode
- * or there is simplified method, using this macro:
+ * or there's a slightly simpler way:
+ * @code
+ * QList<PluginType*> types = SQLITESTUDIO->getPluginManager()->getPluginTypes();
+ * @endcode
+ * or there is a very simplified method, using this macro:
  * @code
  * QList<PluginType*> types = PLUGINS->getPluginTypes();
  * @endcode
  */
-#define PLUGINS PluginManager::getInstance()
+#define PLUGINS SQLITESTUDIO->getPluginManager()
 
 #endif // PLUGINMANAGER_H

@@ -1,8 +1,6 @@
 #include "sqlitestudio.h"
-#include "services/dbmanager.h"
 #include "plugins/plugin.h"
 #include "services/pluginmanager.h"
-#include "services/config.h"
 #include "common/utils.h"
 #include "common/utils_sql.h"
 #include "completionhelper.h"
@@ -18,9 +16,13 @@
 #include "services/functionmanager.h"
 #include "plugins/scriptingplugin.h"
 #include "plugins/scriptingqt.h"
+#include "services/impl/configimpl.h"
+#include "services/impl/dbmanagerimpl.h"
+#include "services/impl/functionmanagerimpl.h"
+#include "services/impl/pluginmanagerimpl.h"
+#include "impl/dbattacherimpl.h"
 #include <QProcessEnvironment>
 #include <QThreadPool>
-#include <services/impl/configimpl.h>
 
 DEFINE_SINGLETON(SQLiteStudio)
 
@@ -43,6 +45,50 @@ void SQLiteStudio::parseCmdLineArgs()
         }
     }
 }
+DbAttacherFactory* SQLiteStudio::getDbAttacherFactory() const
+{
+    return dbAttacherFactory;
+}
+
+void SQLiteStudio::setDbAttacherFactory(DbAttacherFactory* value)
+{
+    safe_delete(dbAttacherFactory);
+    dbAttacherFactory = value;
+}
+
+PluginManager* SQLiteStudio::getPluginManager() const
+{
+    return pluginManager;
+}
+
+void SQLiteStudio::setPluginManager(PluginManager* value)
+{
+    safe_delete(pluginManager);
+    pluginManager = value;
+}
+
+FunctionManager* SQLiteStudio::getFunctionManager() const
+{
+    return functionManager;
+}
+
+void SQLiteStudio::setFunctionManager(FunctionManager* value)
+{
+    safe_delete(functionManager);
+    functionManager = value;
+}
+
+DbManager* SQLiteStudio::getDbManager() const
+{
+    return dbManager;
+}
+
+void SQLiteStudio::setDbManager(DbManager* value)
+{
+    safe_delete(dbManager);
+    dbManager = value;
+}
+
 Config* SQLiteStudio::getConfig() const
 {
     return config;
@@ -50,6 +96,7 @@ Config* SQLiteStudio::getConfig() const
 
 void SQLiteStudio::setConfig(Config* value)
 {
+    safe_delete(config);
     config = value;
 }
 
@@ -77,17 +124,21 @@ void SQLiteStudio::init(const QStringList& cmdListArguments)
 
     NotifyManager::getInstance();
 
+    dbAttacherFactory = new DbAttacherDefaultFactory();
+
     config = new ConfigImpl();
     config->init();
 
-    PluginManager* pluginManager = PluginManager::getInstance();
+    pluginManager = new PluginManagerImpl();
+    dbManager = new DbManagerImpl();
+
     pluginManager->registerPluginType<GeneralPurposePlugin>(QObject::tr("General purpose"));
     pluginManager->registerPluginType<DbPlugin>(QObject::tr("Database support"));
     pluginManager->registerPluginType<SqlFormatterPlugin>(QObject::tr("SQL formatter"), "formatterPluginsPage");
     pluginManager->registerPluginType<SqlFunctionPlugin>(QObject::tr("SQL function"));
     pluginManager->registerPluginType<ScriptingPlugin>(QObject::tr("Scripting languages"));
 
-    PLUGINS->loadBuiltInPlugin(new ScriptingQt);
+    pluginManager->loadBuiltInPlugin(new ScriptingQt);
 
     sqlFormatter = new SqlFormatter();
     connect(CFG_CORE.General.ActiveSqlFormatter, SIGNAL(changed(QVariant)), this, SLOT(updateSqlFormatter()));
@@ -95,7 +146,7 @@ void SQLiteStudio::init(const QStringList& cmdListArguments)
 
     // FunctionManager needs to be set up before DbManager, cause when DbManager starts up, databases make their
     // connections and register functions.
-    FunctionManager::getInstance();
+    functionManager = new FunctionManagerImpl();
 
     cmdLineArgs = cmdListArguments;
 
@@ -103,21 +154,22 @@ void SQLiteStudio::init(const QStringList& cmdListArguments)
 
     pluginManager->init();
 
-    connect(PLUGINS, SIGNAL(loaded(Plugin*,PluginType*)), this, SLOT(pluginLoaded(Plugin*,PluginType*)));
-    connect(PLUGINS, SIGNAL(aboutToUnload(Plugin*,PluginType*)), this, SLOT(pluginToBeUnloaded(Plugin*,PluginType*)));
-    connect(PLUGINS, SIGNAL(unloaded(QString,PluginType*)), this, SLOT(pluginUnloaded(QString,PluginType*)));
+    connect(pluginManager, SIGNAL(loaded(Plugin*,PluginType*)), this, SLOT(pluginLoaded(Plugin*,PluginType*)));
+    connect(pluginManager, SIGNAL(aboutToUnload(Plugin*,PluginType*)), this, SLOT(pluginToBeUnloaded(Plugin*,PluginType*)));
+    connect(pluginManager, SIGNAL(unloaded(QString,PluginType*)), this, SLOT(pluginUnloaded(QString,PluginType*)));
 
     parseCmdLineArgs();
 }
 
 void SQLiteStudio::cleanUp()
 {
-    FunctionManager::destroy();
-    DbManager::destroy();
-    safe_delete(config)
-    PluginManager::destroy();
-    safe_delete(sqlFormatter)
-    safe_delete(env)
+    safe_delete(functionManager);
+    safe_delete(dbManager);
+    safe_delete(config);
+    safe_delete(pluginManager);
+    safe_delete(sqlFormatter);
+    safe_delete(dbAttacherFactory);
+    safe_delete(env);
     NotifyManager::destroy();
 }
 
@@ -159,4 +211,9 @@ void SQLiteStudio::pluginUnloaded(const QString& pluginName, PluginType* pluginT
 QString SQLiteStudio::getEnv(const QString &name, const QString &defaultValue)
 {
     return env->value(name, defaultValue);
+}
+
+DbAttacher* SQLiteStudio::createDbAttacher(Db* db)
+{
+    return dbAttacherFactory->create(db);
 }

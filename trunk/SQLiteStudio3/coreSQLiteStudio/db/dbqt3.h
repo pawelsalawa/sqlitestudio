@@ -3,6 +3,7 @@
 
 #include "dbqt.h"
 #include <sqlite3.h>
+#include <QDebug>
 
 /**
  * @brief Complete implementation of SQLite 3 driver for SQLiteStudio.
@@ -26,12 +27,16 @@ class DbQt3 : public DbQt
     public:
         /**
          * @brief Creates database object based on Qt database framework.
+         * @param name Name for the database.
+         * @param path File path of the database.
+         * @param connOptions Connection options. See AbstractDb for details.
          * @param driverName Driver names as passed to QSqlDatabase::addDatabase().
          * @param type Database type (SQLite3, SQLite2 or other...) used as a database type presented to user.
          *
          * All values from this constructor are just passed to DbQt constructor.
          */
-        DbQt3(const QString& driverName, const QString& type) : DbQt(driverName, type) {}
+        DbQt3(const QString& name, const QString& path, const QHash<QString, QVariant>& connOptions, const QString& driverName, const QString& type) :
+            DbQt(name, path, connOptions, driverName, type) {}
 
     protected:
         /**
@@ -130,7 +135,7 @@ class DbQt3 : public DbQt
          *
          * Specificly, enables foreign keys and recursive triggers support.
          */
-        void initialDbSetup()
+        void initAfterOpen()
         {
             exec("PRAGMA foreign_keys = 1;", Flag::NO_LOCK);
             exec("PRAGMA recursive_triggers = 1;", Flag::NO_LOCK);

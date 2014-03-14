@@ -31,7 +31,7 @@ CompletionHelper::CompletionHelper(const QString &sql, quint32 cursorPos, Db* db
     schemaResolver = new SchemaResolver(db);
     selectResolver = new SelectResolver(db, fullSql);
     selectResolver->ignoreInvalidNames = true;
-    dbAttacher = new DbAttacher(db);
+    dbAttacher = SQLITESTUDIO->createDbAttacher(db);
 }
 
 void CompletionHelper::init()

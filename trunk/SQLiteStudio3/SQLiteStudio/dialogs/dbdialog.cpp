@@ -55,7 +55,7 @@ Db* DbDialog::getDb()
     QString path = ui->fileEdit->text();
     foreach (DbPlugin* plugin, dbPlugins)
     {
-        testDb = plugin->getInstance(path, options);
+        testDb = plugin->getInstance("", path, options);
         if (testDb)
             return testDb;
     }
@@ -294,7 +294,7 @@ void DbDialog::updateType()
     Db* probeDb = nullptr;
     foreach (DbPlugin* plugin, dbPlugins)
     {
-        probeDb = plugin->getInstance(path, options);
+        probeDb = plugin->getInstance("", path, options);
         if (probeDb)
         {
             delete probeDb;

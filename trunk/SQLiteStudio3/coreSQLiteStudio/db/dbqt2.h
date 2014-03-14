@@ -5,6 +5,7 @@
 #include "dbqt.h"
 #include "parser/lexer.h"
 #include <sqlite.h>
+#include <QDebug>
 
 /**
  * @brief Variation of DbQt for SQLite 2.
@@ -28,12 +29,16 @@ class DbQt2 : public DbQt
     public:
         /**
          * @brief Creates database object based on Qt database framework.
+         * @param name Name for the database.
+         * @param path File path of the database.
+         * @param connOptions Connection options. See AbstractDb for details.
          * @param driverName Driver names as passed to QSqlDatabase::addDatabase().
          * @param type Database type (SQLite3, SQLite2 or other...) used as a database type presented to user.
          *
          * All values from this constructor are just passed to DbQt constructor.
          */
-        DbQt2(const QString& driverName, const QString& type) : DbQt(driverName, type) {}
+        DbQt2(const QString& name, const QString& path, const QHash<QString, QVariant>& connOptions, const QString& driverName, const QString& type) :
+            DbQt(name, path, connOptions, driverName, type) {}
 
         /**
          * @brief Common internal execution routing for SQLite 2.

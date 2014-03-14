@@ -23,7 +23,8 @@ class DbManager;
 
 /**
  * @brief Database managed by application.
- * Everything you might want to do with SQLite databases goes through this class in the application.
+ *
+ * Everything you might want to do with SQLite databases goes through this interface in the application.
  * It's has a common interface for common database operations, such as connecting and disconnecting,
  * checking current status, executing queries and reading results.
  * It keeps information about the database version, dialect (SQLite 2 vs SQLite 3), encoding (UTF-8, UTF-16, etc.),
@@ -97,15 +98,14 @@ class DbManager;
  * }
  * @endcode
  *
- * \section interns Internals
- * If you implement derived class, you may want know the chain of method calls that is involved in executing the query.
- * It goes like this: // TODO put a diagram here
+ * @see DbBase
+ * @see DbQt
+ * @see DbQt2
+ * @see DbQt3
  */
 class API_EXPORT Db : public QObject
 {
     Q_OBJECT
-
-    friend class DbManager;
 
     public:
         /**
@@ -134,10 +134,16 @@ class API_EXPORT Db : public QObject
 
         /**
          * @brief Function to handle SQL query results.
+         *
          * The function has to accept single results object and return nothing.
          * After results are processed, they will be deleted automatically, no need to handle that.
          */
         typedef std::function<void(SqlResultsPtr)> QueryResultsHandler;
+
+        /**
+         * @brief Default, empty constructor.
+         */
+        Db();
 
         /**
          * @brief Releases resources.
@@ -164,19 +170,19 @@ class API_EXPORT Db : public QObject
          * @brief Checks if database is open (connected).
          * @return true if the database is connected, or false otherwise.
          */
-        bool isOpen();
+        virtual bool isOpen() = 0;
 
         /**
          * @brief Gets database symbolic name.
          * @return Database symbolic name (as it was defined in call to DbManager#addDb() or DbManager#updateDb()).
          */
-        QString getName();
+        virtual QString getName() = 0;
 
         /**
          * @brief Gets database file path.
          * @return Database file path (as it was defined in call to DbManager#addDb() or DbManager#updateDb()).
          */
-        QString getPath();
+        virtual QString getPath() = 0;
 
         /**
          * @brief Gets SQLite version major number for this database.
@@ -184,7 +190,7 @@ class API_EXPORT Db : public QObject
          *
          * You don't have to open the database. This information is always available.
          */
-        quint8 getVersion();
+        virtual quint8 getVersion() = 0;
 
         /**
          * @brief Gets database dialect.
@@ -192,7 +198,7 @@ class API_EXPORT Db : public QObject
          *
          * You don't have to open the database. This information is always available.
          */
-        Dialect getDialect();
+        virtual Dialect getDialect() = 0;
 
         /**
          * @brief Gets database encoding.
@@ -201,13 +207,40 @@ class API_EXPORT Db : public QObject
          * If the database is not open, then this methods quickly opens it, queries the encoding and closes the database.
          * The opening and closing of the database is not visible outside, it's just an internal operation.
          */
-        QString getEncoding();
+        virtual QString getEncoding() = 0;
 
         /**
          * @brief Gets connection options.
          * @return Connection options, the same as were passed to DbManager#addDb() or DbManager#updateDb().
          */
-        QHash<QString,QVariant>& getConnectionOptions();
+        virtual QHash<QString,QVariant>& getConnectionOptions() = 0;
+
+        /**
+         * @brief Sets new name for the database.
+         * @param value New name.
+         *
+         * This method works only on closed databases. If the database is open, then warning is logged
+         * and function does nothing more.
+         */
+        virtual void setName(const QString& value) = 0;
+
+        /**
+         * @brief Sets new file path for the database.
+         * @param value New file path.
+         *
+         * This method works only on closed databases. If the database is open, then warning is logged
+         * and function does nothing more.
+         */
+        virtual void setPath(const QString& value) = 0;
+
+        /**
+         * @brief Sets connection options for the database.
+         * @param value Connection options. See DbManager::addDb() for details.
+         *
+         * This method works only on closed databases. If the database is open, then warning is logged
+         * and function does nothing more.
+         */
+        virtual void setConnectionOptions(const QHash<QString,QVariant>& value) = 0;
 
         /**
          * @brief Executes SQL query.
@@ -232,8 +265,7 @@ class API_EXPORT Db : public QObject
          *                                      {45, 76, "test", 3.56});
          * @endcode
          */
-        SqlResultsPtr exec(const QString& query, const QList<QVariant> &args,
-                           Flags flags = Flag::NONE);
+        virtual SqlResultsPtr exec(const QString& query, const QList<QVariant> &args, Flags flags = Flag::NONE) = 0;
 
         /**
          * @brief Executes SQL query using named parameters.
@@ -253,31 +285,31 @@ class API_EXPORT Db : public QObject
          *
          * @overload SqlResultsPtr exec(const QString& query, const QHash<QString, QVariant>& args, Flags flags)
          */
-        SqlResultsPtr exec(const QString& query, const QHash<QString, QVariant>& args, Flags flags = Flag::NONE);
+        virtual SqlResultsPtr exec(const QString& query, const QHash<QString, QVariant>& args, Flags flags = Flag::NONE) = 0;
 
         /**
          * @brief Executes SQL query.
          * @overload SqlResultsPtr exec(const QString &query, Db::Flags flags)
          */
-        SqlResultsPtr exec(const QString &query, Db::Flags flags = Flag::NONE);
+        virtual SqlResultsPtr exec(const QString &query, Db::Flags flags = Flag::NONE) = 0;
 
         /**
          * @brief Executes SQL query.
          * @overload SqlResultsPtr exec(const QString &query, const QVariant &value)
          */
-        SqlResultsPtr exec(const QString &query, const QVariant &arg);
+        virtual SqlResultsPtr exec(const QString &query, const QVariant &arg) = 0;
 
         /**
          * @brief Executes SQL query.
          * @overload SqlResultsPtr exec(const QString &query, std::initializer_list<QVariant> list)
          */
-        SqlResultsPtr exec(const QString &query, std::initializer_list<QVariant> argList);
+        virtual SqlResultsPtr exec(const QString &query, std::initializer_list<QVariant> argList) = 0;
 
         /**
          * @brief Executes SQL query.
          * @overload SqlResultsPtr exec(const QString &query, std::initializer_list<std::pair<QString,QVariant>> argMap)
          */
-        SqlResultsPtr exec(const QString &query, std::initializer_list<std::pair<QString,QVariant>> argMap);
+        virtual SqlResultsPtr exec(const QString &query, std::initializer_list<std::pair<QString,QVariant>> argMap) = 0;
 
         /**
          * @brief Executes SQL query asynchronously using list of parameters.
@@ -296,7 +328,7 @@ class API_EXPORT Db : public QObject
          * });
          * @endcode
          */
-        void asyncExec(const QString& query, const QList<QVariant>& args, QueryResultsHandler resultsHandler, Flags flags = Flag::NONE);
+        virtual void asyncExec(const QString& query, const QList<QVariant>& args, QueryResultsHandler resultsHandler, Flags flags = Flag::NONE) = 0;
 
         /**
          * @brief Executes SQL query asynchronously using named parameters.
@@ -307,7 +339,7 @@ class API_EXPORT Db : public QObject
          * @return Asynchronous execution ID.
          * @overload void asyncExec(const QString& query, const QHash<QString, QVariant>& args, QueryResultsHandler resultsHandler, Flags flags)
          */
-        void asyncExec(const QString& query, const QHash<QString, QVariant>& args, QueryResultsHandler resultsHandler, Flags flags = Flag::NONE);
+        virtual void asyncExec(const QString& query, const QHash<QString, QVariant>& args, QueryResultsHandler resultsHandler, Flags flags = Flag::NONE) = 0;
 
         /**
          * @brief Executes SQL query asynchronously.
@@ -317,7 +349,7 @@ class API_EXPORT Db : public QObject
          * @return Asynchronous execution ID.
          * @overload void asyncExec(const QString& query, QueryResultsHandler resultsHandler, Flags flags)
          */
-        void asyncExec(const QString& query, QueryResultsHandler resultsHandler, Flags flags = Flag::NONE);
+        virtual void asyncExec(const QString& query, QueryResultsHandler resultsHandler, Flags flags = Flag::NONE) = 0;
 
         /**
          * @brief Executes SQL query asynchronously using list of parameters.
@@ -338,7 +370,7 @@ class API_EXPORT Db : public QObject
          *                                      {45, 76, "test", 3.56});
          * @endcode
          */
-        quint32 asyncExec(const QString& query, const QList<QVariant>& args, Flags flags = Flag::NONE);
+        virtual quint32 asyncExec(const QString& query, const QList<QVariant>& args, Flags flags = Flag::NONE) = 0;
 
         /**
          * @brief Executes SQL query asynchronously using named parameters.
@@ -350,7 +382,7 @@ class API_EXPORT Db : public QObject
          *
          * It's recommended to use method version which takes function pointer for results handing, as it's more resiliant to errors in the code.
          */
-        quint32 asyncExec(const QString& query, const QHash<QString, QVariant>& args, Flags flags = Flag::NONE);
+        virtual quint32 asyncExec(const QString& query, const QHash<QString, QVariant>& args, Flags flags = Flag::NONE) = 0;
 
         /**
          * @brief Executes SQL query asynchronously.
@@ -361,7 +393,7 @@ class API_EXPORT Db : public QObject
          *
          * It's recommended to use method version which takes function pointer for results handing, as it's more resiliant to errors in the code.
          */
-        quint32 asyncExec(const QString& query, Flags flags = Flag::NONE);
+        virtual quint32 asyncExec(const QString& query, Flags flags = Flag::NONE) = 0;
 
         /**
          * @brief Begins SQL transaction.
@@ -370,19 +402,19 @@ class API_EXPORT Db : public QObject
          * This method uses basic "BEGIN" statement to begin transaction, therefore recurrent transactions are not supported.
          * This is because SQLite2 doesn't support "SAVEPOINT" and this is the common interface for all SQLite versions.
          */
-        bool begin();
+        virtual bool begin() = 0;
 
         /**
          * @brief Commits SQL transaction.
          * @return true on success, or false otherwise.
          */
-        bool commit();
+        virtual bool commit() = 0;
 
         /**
          * @brief Rolls back the transaction.
          * @return true on success, or false otherwise (i.e. there was no transaction open, there was a connection problem, etc).
          */
-        bool rollback();
+        virtual bool rollback() = 0;
 
         /**
          * @brief Interrupts current execution.
@@ -391,7 +423,7 @@ class API_EXPORT Db : public QObject
          * It interrupts execution - in most cases instantly. It calls sqlite*_interrupt(), so the actual behaviour is defined there.
          * This method doesn't return until the interrupting is done.
          */
-        void interrupt();
+        virtual void interrupt() = 0;
 
         /**
          * @brief Interrupts current execution asynchronously.
@@ -399,7 +431,7 @@ class API_EXPORT Db : public QObject
          * It's almost the same as interrupt(), except it returns immediately, instead of waiting for the interruption to finish.
          * In case of some heavy queries the interruption process might take a little while.
          */
-        void asyncInterrupt();
+        virtual void asyncInterrupt() = 0;
 
         /**
          * @brief Checks if the database is readable at the moment.
@@ -410,7 +442,7 @@ class API_EXPORT Db : public QObject
          * If it's locked for reading or not locked at all, then this method will return true.
          * Database can be locked by other threads executing their queries on the database.
          */
-        bool isReadable();
+        virtual bool isReadable() = 0;
 
         /**
          * @brief Checks if the database is writable at the moment.
@@ -421,7 +453,7 @@ class API_EXPORT Db : public QObject
          * If it's not locked at all, then this method will return true.
          * Database can be locked by other threads executing their queries on the database.
          */
-        bool isWritable();
+        virtual bool isWritable() = 0;
 
         /**
          * @brief Attaches given database to this database.
@@ -431,7 +463,7 @@ class API_EXPORT Db : public QObject
          * This is convinent method to attach other registered databases to this database. It generates attached database name, so it doesn't conflict
          * with other - already attached - database names, attaches the database with that name and returns that name to you, so you can refer to it in queries.
          */
-        QString attach(Db* otherDb);
+        virtual QString attach(Db* otherDb) = 0;
 
         /**
          * @brief Detaches given database from this database.
@@ -440,7 +472,7 @@ class API_EXPORT Db : public QObject
          * If the otherDb is not attached, this method does nothing. Otherwise it calls <tt>DETACH</tt> statement using the attach name generated before by attach().
          * You don't have to provide the attach name, as Db class remembers those names internally.
          */
-        void detach(Db* otherDb);
+        virtual void detach(Db* otherDb) = 0;
 
         /**
          * @brief Detaches all attached databases.
@@ -448,7 +480,7 @@ class API_EXPORT Db : public QObject
          * Detaches all attached databases. This includes only databases attached with attach(). Databases attached with manual <tt>ATTACH</tt> query execution
          * will not be detached.
          */
-        void detachAll();
+        virtual void detachAll() = 0;
 
         /**
          * @brief Gets attached databases.
@@ -456,7 +488,7 @@ class API_EXPORT Db : public QObject
          *
          * This method returns only databases attached with attach() method.
          */
-        const QHash<Db*,QString>& getAttachedDatabases();
+        virtual const QHash<Db*,QString>& getAttachedDatabases() = 0;
 
         /**
          * @brief Gets all attached databases.
@@ -464,7 +496,7 @@ class API_EXPORT Db : public QObject
          *
          * This method returns all attached database names (the attach names), including both those from attach() and manual <tt>ATTACH</tt> query execution.
          */
-        QSet<QString> getAllAttaches();
+        virtual QSet<QString> getAllAttaches() = 0;
 
         /**
          * @brief Generates unique name for object to be created in the database.
@@ -474,7 +506,7 @@ class API_EXPORT Db : public QObject
          * Queries database for all existing objects and then generates name that is not on that list.
          * The generated name is a random string of length 16.
          */
-        QString getUniqueNewObjectName(const QString& attachedDbName = QString());
+        virtual QString getUniqueNewObjectName(const QString& attachedDbName = QString()) = 0;
 
         /**
          * @brief Gets last error string from database driver.
@@ -482,7 +514,7 @@ class API_EXPORT Db : public QObject
          *
          * Result of this method is determinated by DbPlugin. For plugins using Qt database engine, this method calls QSqlDatabase::lastError().
          */
-        QString getErrorText();
+        virtual QString getErrorText() = 0;
 
         /**
          * @brief Gets last error code from database driver.
@@ -490,7 +522,7 @@ class API_EXPORT Db : public QObject
          *
          * Result of this method is determinated by DbPlugin. For plugins using Qt database engine, this method calls QSqlDatabase::lastError().
          */
-        int getErrorCode();
+        virtual int getErrorCode() = 0;
 
         /**
          * @brief Gets database type label.
@@ -501,369 +533,63 @@ class API_EXPORT Db : public QObject
          */
         virtual QString getTypeLabel() = 0;
 
-    protected:
         /**
-         * @brief Initializes database object.
-         */
-        Db();
-
-        /**
-         * @brief Generates unique database name for ATTACH.
-         * @param lock Defines if the lock on dbOperLock mutex.
-         * @return Unique database name.
-         *
-         * Database name here is the name to be used for ATTACH statement.
-         * For example it will never be "main" or "temp", as those names are already used.
-         * It also will never be any name that is currently used for any ATTACH'ed database.
-         * It respects both manual ATTACH'es (called by user), as well as by attach() calls.
-         *
-         * Operations on database are normally locked during name generation, because it involves
-         * queries to the database about what are currently existing objects.
-         * The lock can be ommited if the calling method already locked dbOperLock.
-         */
-        QString generateUniqueDbName(bool lock = true);
-
-        /**
-         * @brief Detaches given database object from this database.
-         * @param otherDb Other registered database.
-         *
-         * This is called from detach() and detachAll().
-         */
-        void detachInternal(Db* otherDb);
-
-        /**
-         * @brief Clears attached databases list.
-         *
-         * Called by closeQuiet(). Only clears maps and lists regarding attached databases.
-         * It doesn't call detach(), because closing the database will already detach all databases.
-         */
-        void clearAttaches();
-
-        /**
-         * @brief Generated unique ID for asynchronous query execution.
-         * @return Unique ID.
-         */
-        static quint32 generateAsyncId();
-
-        /**
-         * @brief Executes query asynchronously.
-         * @param runner Prepared object for asynchronous execution.
-         * @return Asynchronous execution unique ID.
-         *
-         * This is called by asyncExec(). Runs prepared runner object (which has all information about the query)
-         * on separate thread.
-         */
-        quint32 asyncExec(AsyncQueryRunner* runner);
-
-        /**
-         * @brief Initializes database object with defined parameters.
-         * @param name Database name. It will be also presented with this name to the user.
-         * @param path Database file path.
-         * @param options Custom options for the database (such as user, password, etc).
-         * @return true on success, false on failure.
-         */
-        bool init(const QString &name, const QString &path, const QHash<QString,QVariant>& options);
-
-        /**
-         * @brief Opens the database and calls initial setup.
+         * @brief Initializes resources once the all derived Db classes are constructed.
          * @return true on success, false on failure.
          *
-         * Calls openInternal() and if it succeeded, calls initialDbSetup().
-         * It's called from openQuiet().
+         * It's called just after this object was created. Implementation of this method can call virtual methods, which was a bad idea
+         * to do in constructor (because of how it's works in C++, if you didn't know).
+         *
+         * It usually queries database for it's version, etc.
          */
-        bool openAndSetup();
+        virtual bool initAfterCreated() = 0;
 
         /**
-         * @brief Initializes database object.
-         * @return true on success, false on failure.
+         * @brief Deregisters custom SQL function from this database.
+         * @param name Name of the function.
+         * @param argCount Number of arguments accepted by the function (-1 for undefined).
+         * @return true if deregistering was successful, or false otherwise.
          *
-         * Implementation of this method should perform initialization that is necessary after object creation.
-         * This is after database name, file path and options were defined.
+         * @see FunctionManager
          */
-        virtual bool init() = 0;
-
-        /**
-         * @brief Checks if the database connection is open.
-         * @return true if the connection is open, or false otherwise.
-         *
-         * This is called from isOpen(). Implementation should test and return information if the database
-         * connection is open. A lock on connectionStateLock is already set by the isOpen() method.
-         */
-        virtual bool isOpenInternal() = 0;
-
-        /**
-         * @brief Interrupts execution of any queries.
-         *
-         * Implementation of this method should interrupt any query executions that are currently in progress.
-         * Typical implementation for SQLite databases will call sqlite_interupt() / sqlite3_interupt().
-         */
-        virtual void interruptExecution() = 0;
-
-        /**
-         * @brief Executes given query with parameters on the database.
-         * @param query Query to execute.
-         * @param args Query parameters.
-         * @return Results from execution.
-         *
-         * Implementation of this method should execute given query on the database, given that the query string
-         * can contain parameter placeholders, such as ?, :param, \@param, or $param. SQLite 3 API understands
-         * these parameters, while SQLite 2 API understands only ? placeholders and others need to be emulated
-         * by this method implementation.
-         *
-         * Note that the parameters for this method are passed as list, so it doesn't matter what are names
-         * in named placeholders. Parameters should be bind by position, not name. For name-aware parameter binding
-         * there is a overloaded execInternal() method with QHash of parameters.
-         */
-        virtual SqlResultsPtr execInternal(const QString& query, const QList<QVariant>& args) = 0;
-
-        /**
-         * @overload SqlResultsPtr execInternal(const QString& query, const QHash<QString,QVariant>& args)
-         */
-        virtual SqlResultsPtr execInternal(const QString& query, const QHash<QString,QVariant>& args) = 0;
-
-        /**
-         * @brief Returns error message.
-         * @return Error string.
-         *
-         * This can be either error from last query execution, but also from connection opening problems, etc.
-         */
-        virtual QString getErrorTextInternal() = 0;
-
-        /**
-         * @brief Returns error code.
-         * @return Error code.
-         *
-         * This can be either error from last query execution, but also from connection opening problems, etc.
-         */
-        virtual int getErrorCodeInternal() = 0;
-
-        /**
-         * @brief Opens database connection.
-         * @return true on success, false on failure.
-         *
-         * Opens database. Called by open() and openAndSetup().
-         */
-        virtual bool openInternal() = 0;
-
-        /**
-         * @brief Closes database connection.
-         *
-         * Closes database. Called by open() and openQuiet().
-         */
-        virtual bool closeInternal() = 0;
-
-        /**
-         * @brief Initializes resources after database connection was open.
-         *
-         * Implementation of this method should setup any necessary options (such as PRAGMAs)
-         * on the database. It's called each time the connection to the database is estabilished.
-         *
-         * It's called from inside of open(), so the dbOperLock is locked at the moment.
-         * Use execNoLock() for any query executions in the implementation of this method.
-         */
-        virtual void initialDbSetup();
-
         virtual bool deregisterFunction(const QString& name, int argCount) = 0;
+
+        /**
+         * @brief Registers scalar custom SQL function
+         * @param name Name of the function.
+         * @param argCount Number of arguments accepted by the function (-1 for undefined).
+         * @return true on success, false on failure.
+         *
+         * Scalar functions are evaluated for each row and their result is used in place of function invokation.
+         * Example of SQLite built-in scalar function is abs(), or length().
+         *
+         * This method is used only to let the database know, that the given function exists in FunctionManager and we want it to be visible
+         * in this database's context. When the function is called from SQL query, then the function execution is delegated to the FunctionManager.
+         *
+         * @see FunctionManager
+         */
         virtual bool registerScalarFunction(const QString& name, int argCount) = 0;
+
+        /**
+         * @brief registerAggregateFunction
+         * @param name
+         * @param argCount
+         * @return
+         *
+         * Aggregate functions are used to aggregate many rows into single row. They are common in queries with GROUP BY statements.
+         * The aggregate function in SQLite is actually implemented by 2 functions - one for executing per each row (and which doesn't return any result yet,
+         * just collects the data) and then the second function, executed at the end. The latter one must return the result, which becomes the result
+         * of aggregate function.
+         *
+         * Aggregate functions in SQLiteStudio are almost the same as in SQLite itself, except SQLiteStudio has also a third function, which is called
+         * at the very begining, before the first "per step" function is called. It's used to initialize anything that the step function might need.
+         *
+         * This method is used only to let the database know, that the given function exists in FunctionManager and we want it to be visible
+         * in this database's context. When the function is called from SQL query, then the function execution is delegated to the FunctionManager.
+         *
+         * @see FunctionManager
+         */
         virtual bool registerAggregateFunction(const QString& name, int argCount) = 0;
-
-        /**
-         * @brief Database name.
-         *
-         * It must be unique across all Db instances. Use generateUniqueDbName() to get the unique name
-         * for new database. It's used as a key for DbManager.
-         *
-         * Databases are also presented to the user with this name on UI.
-         */
-        QString name;
-
-        /**
-         * @brief Path to the database file.
-         */
-        QString path;
-
-        /**
-         * @brief Connection options.
-         *
-         * There are no standard options. Custom DbPlugin implementations may support some options.
-         */
-        QHash<QString,QVariant> connOptions;
-
-        /**
-         * @brief SQLite version of this database.
-         *
-         * This is only a major version number (2 or 3).
-         */
-        quint8 version = 0;
-
-        /**
-         * @brief Map of databases attached to this database.
-         *
-         * It's mapping from ATTACH name to the database object. It contains only attaches
-         * that were made with attach() calls.
-         */
-        QHash<QString,Db*> attachedDbMap;
-
-        /**
-         * @brief Map of databases attached to this database.
-         *
-         * This is an inversion of attachedDbMap.
-         */
-        QHash<Db*,QString> attachedDbNameMap; // TODO replace attachedDbMap and attachedDbNameMap with BiDiMap.
-
-        /**
-         * @brief Counter of attaching requrests for each database.
-         *
-         * When calling attach() on other Db, it gets its own entry in this mapping.
-         * If the mapping already exists, its value is incremented.
-         * Then, when calling detach(), counter is decremented and when it reaches 0,
-         * the database is actualy detached.
-         */
-        QHash<Db*,int> attachCounter;
-
-        /**
-         * @brief Result handler functions for asynchronous executions.
-         *
-         * For each asyncExec() with function pointer in argument there's an entry in this map
-         * pointing to the function. Keys are asynchronous IDs.
-         */
-        QHash<int,QueryResultsHandler> resultHandlers;
-
-    private:
-        /**
-         * @brief Represents single function that is registered in the database.
-         *
-         * Registered custom SQL functions are diversed by SQLite by their name, arguments count and their type,
-         * so this structure has exactly those parameters.
-         */
-        struct RegisteredFunction
-        {
-            /**
-             * @brief Function name.
-             */
-            QString name;
-
-            /**
-             * @brief Arguments count (-1 for undefined count).
-             */
-            int argCount;
-
-            /**
-             * @brief Function type.
-             */
-            FunctionManager::Function::Type type;
-        };
-
-        friend int qHash(const Db::RegisteredFunction& fn);
-        friend bool operator==(const Db::RegisteredFunction& fn1, const Db::RegisteredFunction& fn2);
-
-        /**
-         * @brief Applies execution flags and executes query.
-         * @param query Query to be executed.
-         * @param args Query parameters.
-         * @param flags Query execution flags.
-         * @return Execution results - either successful or failed.
-         *
-         * This is called from both exec() and execNoLock() and is a final step before calling execInternal()
-         * (the plugin-provided execution). This is where \p flags are interpreted and applied.
-         */
-        SqlResultsPtr execHashArg(const QString& query, const QHash<QString, QVariant>& args, Flags flags);
-
-        /**
-         * @overload SqlResultsPtr execListArg(const QString& query, const QList<QVariant>& args, Flags flags)
-         */
-        SqlResultsPtr execListArg(const QString& query, const QList<QVariant>& args, Flags flags);
-
-        /**
-         * @brief Generates unique database name.
-         * @return Unique database name.
-         *
-         * This is a lock-less variant of generateUniqueDbName(). It is called from that method.
-         * See generateUniqueDbName() for details.
-         */
-        QString generateUniqueDbNameNoLock();
-
-        /**
-         * @brief Provides required locking mode for given query.
-         * @param query Query to be executed.
-         * @return Locking mode: READ or WRITE.
-         *
-         * Given the query this method analyzes what is the query and provides information if the query
-         * will do some changes on the database, or not. Then it returns proper locking mode that should
-         * be used for this query execution.
-         *
-         * Query execution methods from this class check if lock mode of the query to be executed isn't
-         * in conflict with the lock being currently applied on the dbOperLock (if any is applied at the moment).
-         *
-         * This method works on a very simple rule. It assumes that queries: SELECT, ANALYZE, EXPLAIN,
-         * and PRAGMA - are read-only, while all other queries are read-write.
-         * In case of PRAGMA this is not entirely true, but it's not like using PRAGMA for changing
-         * some setting would cause database state inconsistency. At least not from perspective of SQLiteStudio.
-         */
-        ReadWriteLocker::Mode getLockingMode(const QString& query, Db::Flags flags);
-
-        /**
-         * @brief Handles asynchronous query results with results handler function.
-         * @param asyncId Asynchronous ID.
-         * @param results Results from execution.
-         * @return true if the results were handled, or false if they were not.
-         *
-         * This method checks if there is a handler function for given asynchronous ID (in resultHandlers)
-         * and if there is, then evaluates it and returns true. Otherwise does nothing and returns false.
-         */
-        bool handleResultInternally(quint32 asyncId, SqlResultsPtr results);
-
-        /**
-         * @brief Registers single custom SQL function.
-         * @param function Function to register.
-         *
-         * If function got registered successfly, it's added to registeredFunctions.
-         * If there was a function with the same name, argument count and type already registered,
-         * it will be overwritten (both in SQLite and in registeredFunctions).
-         */
-        void registerFunction(const RegisteredFunction& function);
-
-        /**
-         * @brief Database operation lock.
-         *
-         * This lock is set whenever any operation on the actual database is performed (i.e. call to
-         * exec(), interrupt(), open(), close(), generateUniqueDbName(true),  attach(), detach(), and others...
-         * generally anything that does operations on database that must be synchronous).
-         *
-         * In case of exec() it can be locked for READ or WRITE (depending on query type),
-         * because there can be multiple SELECTs and there's nothing wrong with it,
-         * while for other methods is always lock for WRITE.
-         */
-        QReadWriteLock dbOperLock;
-
-        /**
-         * @brief Connection state lock.
-         *
-         * It's locked whenever the connection state is changed or tested.
-         * For open() and close() it's a WRITE lock, for isOpen() it's READ lock.
-         */
-        QReadWriteLock connectionStateLock;
-
-        /**
-         * @brief Sequence container for generating unique asynchronous IDs.
-         */
-        static quint32 asyncId;
-
-        /**
-         * @brief Most recent error message.
-         *
-         * This is local storage for last error from last SqlResultsPtr.
-         * It is necessary to store that, because it looks like QSqlDatabase
-         * doesn't provide last error text in case when QSqlResults carried that text for it.
-         * It resulted in empty "lastErrorText()" results, while the actual error text
-         * was returned in SqlResultsPtr.
-         */
-        QString lastErrorText;
-
-        /**
-         * @brief List of all functions currently registered in this database.
-         */
-        QSet<RegisteredFunction> registeredFunctions;
 
     signals:
         /**
@@ -919,17 +645,6 @@ class API_EXPORT Db : public QObject
          */
         void idle();
 
-    private slots:
-        /**
-         * @brief Handles asynchronous execution results.
-         * @param runner Container with input and output data of the query.
-         *
-         * This is called from the other thread when it finished asynchronous execution.
-         * It checks if there is any handler function to evaluate it with results
-         * and if there's not, emits asyncExecFinished() signal.
-         */
-        void asyncQueryFinished(AsyncQueryRunner* runner);
-
     public slots:
         /**
          * @brief Opens connection to the database.
@@ -937,7 +652,7 @@ class API_EXPORT Db : public QObject
          *
          * Emits connected() only on success.
          */
-        bool open();
+        virtual bool open() = 0;
 
         /**
          * @brief Closes connection to the database.
@@ -945,7 +660,7 @@ class API_EXPORT Db : public QObject
          *
          * Emits disconnected() only on success (i.e. db was open before).
          */
-        bool close();
+        virtual bool close() = 0;
 
         /**
          * @brief Opens connection to the database quietly.
@@ -953,7 +668,7 @@ class API_EXPORT Db : public QObject
          *
          * Opens database, doesn't emit any signal.
          */
-        bool openQuiet();
+        virtual bool openQuiet() = 0;
 
         /**
          * @brief Closes connection to the database quietly.
@@ -961,7 +676,7 @@ class API_EXPORT Db : public QObject
          *
          * Closes database, doesn't emit any signal.
          */
-        bool closeQuiet();
+        virtual bool closeQuiet() = 0;
 
         /**
          * @brief Deregisters all funtions registered in the database and registers new (possibly the same) functions.
@@ -972,27 +687,11 @@ class API_EXPORT Db : public QObject
          *
          * @see FunctionManager
          */
-        void registerAllFunctions();
+        virtual void registerAllFunctions() = 0;
 };
 
 QDataStream &operator<<(QDataStream &out, const Db* myObj);
 QDataStream &operator>>(QDataStream &in, Db*& myObj);
-
-/**
- * @brief Standard function required by QHash.
- * @param fn Function to calculate hash for.
- * @return Hash value calculated from all members of Db::RegisteredFunction.
- */
-int qHash(const Db::RegisteredFunction& fn);
-
-/**
- * @brief Simple comparator operator, compares all members.
- * @param other Other function to compare.
- * @return true if \p other is equal, false otherwise.
- *
- * This function had to be declared/defined outside of the Db::RegisteredFunction, because QSet/QHash requires this.
- */
-bool operator==(const Db::RegisteredFunction& fn1, const Db::RegisteredFunction& fn2);
 
 Q_DECLARE_METATYPE(Db*)
 Q_DECLARE_OPERATORS_FOR_FLAGS(Db::Flags)

@@ -5,10 +5,11 @@
 #include "parser/parser.h"
 #include "parser/parser.h"
 #include "dbsqlite3mock.h"
+#include "mocks.h"
+#include "parser/parser.h"
 #include <QString>
 #include <QtTest>
 #include <QSet>
-#include <parser/parser.h>
 
 class SelectResolverTest : public QObject
 {
@@ -186,6 +187,7 @@ void SelectResolverTest::initTestCase()
 {
     initKeywords();
     Lexer::staticInit();
+    initMocks();
 
     db = new DbSqlite3Mock("testdb");
     db->open();

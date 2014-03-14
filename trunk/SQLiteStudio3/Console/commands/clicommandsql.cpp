@@ -13,6 +13,7 @@
 #include <QSqlError>
 #include <QSqlField>
 #include <QList>
+#include <QDebug>
 
 void CliCommandSql::execute()
 {

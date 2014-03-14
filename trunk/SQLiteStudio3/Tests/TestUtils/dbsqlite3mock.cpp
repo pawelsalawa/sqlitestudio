@@ -3,9 +3,8 @@
 #include <QDebug>
 
 DbSqlite3Mock::DbSqlite3Mock(const QString &name, const QString &path, const QHash<QString,QVariant> &options)
-    : DbQt3<Sqlite3Mock>("QSQLITE", "SQLite3")
+    : DbQt3<Sqlite3Mock>(name, path, options, "QSQLITE", "SQLite3")
 {
-    Db::init(name, path, options);
 }
 
 QString DbSqlite3Mock::getDriver()
@@ -16,4 +15,9 @@ QString DbSqlite3Mock::getDriver()
 void DbSqlite3Mock::interruptExecutionOnHandle(const QVariant &handle)
 {
     UNUSED(handle);
+}
+
+void DbSqlite3Mock::registerAllFunctions()
+{
+    AbstractDb::registerAllFunctions();
 }

@@ -1,6 +1,8 @@
 #ifndef GLOBAL_H
 #define GLOBAL_H
 
+/** @file */
+
 #define DEEP_COPY_FIELD(T, F) \
     if (other.F) \
     { \
@@ -17,6 +19,12 @@
         F << _new##T; \
     }
 
+/**
+ * @brief Deletes object and sets the pointer to null.
+ *
+ * Deletes object under given pointer, but only if the pointer is not null.
+ * Also sets the pointer to the null after deleting is done.
+ */
 #define safe_delete(var) \
     if (var) \
     { \

@@ -1,23 +1,18 @@
 #ifndef FUNCTIONMANAGER_H
 #define FUNCTIONMANAGER_H
 
-#include "common/strhash.h"
 #include "coreSQLiteStudio_global.h"
 #include "common/global.h"
 #include <QList>
 #include <QSharedPointer>
 #include <QObject>
+#include <QStringList>
 
 class Db;
-class SqlFunctionPlugin;
-class Plugin;
-class PluginType;
 
 class API_EXPORT FunctionManager : public QObject
 {
     Q_OBJECT
-
-    DECLARE_SINGLETON(FunctionManager)
 
     public:
         struct API_EXPORT Function
@@ -47,51 +42,18 @@ class API_EXPORT FunctionManager : public QObject
 
         typedef QSharedPointer<Function> FunctionPtr;
 
-        FunctionManager();
-        void setFunctions(const QList<FunctionPtr>& newFunctions);
-        QList<FunctionPtr> getAllFunctions() const;
-        QList<FunctionPtr> getFunctionsForDatabase(const QString& dbName) const;
-        QVariant evaluateScalar(const QString& name, int argCount, const QList<QVariant>& args, Db* db, bool& ok);
-        void evaluateAggregateInitial(const QString& name, int argCount, Db* db, QHash<QString, QVariant>& aggregateStorage);
-        void evaluateAggregateStep(const QString& name, int argCount, const QList<QVariant>& args, Db* db, QHash<QString, QVariant>& aggregateStorage);
-        QVariant evaluateAggregateFinal(const QString& name, int argCount, Db* db, bool& ok, QHash<QString, QVariant>& aggregateStorage);
-
-    private:
-        struct Key
-        {
-            Key();
-            Key(FunctionPtr function);
-
-            QString name;
-            int argCount;
-            Function::Type type;
-        };
-
-        friend int qHash(const FunctionManager::Key& key);
-        friend bool operator==(const FunctionManager::Key& key1, const FunctionManager::Key& key2);
-
-        void init();
-        void refreshFunctionsByKey();
-        void storeInConfig();
-        QString cannotFindFunctionError(const QString& name, int argCount);
-        QString langUnsupportedError(const QString& name, int argCount, const QString& lang);
-        static QStringList getArgMarkers(int argCount);
-
-        QList<FunctionPtr> functions;
-        QHash<Key,FunctionPtr> functionsByKey;
-        QHash<QString,SqlFunctionPlugin*> functionPlugins;
-
-    private slots:
-        void pluginLoaded(Plugin* plugin, PluginType* type);
-        void pluginUnloaded(Plugin* plugin, PluginType* type);
+        virtual void setFunctions(const QList<FunctionPtr>& newFunctions) = 0;
+        virtual QList<FunctionPtr> getAllFunctions() const = 0;
+        virtual QList<FunctionPtr> getFunctionsForDatabase(const QString& dbName) const = 0;
+        virtual QVariant evaluateScalar(const QString& name, int argCount, const QList<QVariant>& args, Db* db, bool& ok) = 0;
+        virtual void evaluateAggregateInitial(const QString& name, int argCount, Db* db, QHash<QString, QVariant>& aggregateStorage) = 0;
+        virtual void evaluateAggregateStep(const QString& name, int argCount, const QList<QVariant>& args, Db* db, QHash<QString, QVariant>& aggregateStorage) = 0;
+        virtual QVariant evaluateAggregateFinal(const QString& name, int argCount, Db* db, bool& ok, QHash<QString, QVariant>& aggregateStorage) = 0;
 
     signals:
         void functionListChanged();
 };
 
-int qHash(const FunctionManager::Key& key);
-bool operator==(const FunctionManager::Key& key1, const FunctionManager::Key& key2);
-
-#define FUNCTIONS FunctionManager::getInstance()
+#define FUNCTIONS SQLITESTUDIO->getFunctionManager()
 
 #endif // FUNCTIONMANAGER_H
