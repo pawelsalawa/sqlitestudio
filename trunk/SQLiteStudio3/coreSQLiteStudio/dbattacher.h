@@ -75,11 +75,24 @@ class DbAttacher
         virtual QString getQuery() const = 0;
 };
 
+/**
+ * @brief Abstract factory for DbAttacher objects.
+ *
+ * The abstract factory is accessed from SQLiteStudio class in order to produce DbAttacher instances.
+ * The default DbAttacherFactory implementation (DbAttacherFactoryImpl) produces default DbAttacher instances
+ * (DbAttacherImpl), but it can be replaced with other factory to produce other attachers, just like unit tests
+ * in this project do.
+ */
 class DbAttacherFactory
 {
     public:
         virtual ~DbAttacherFactory();
 
+        /**
+         * @brief Produces single attacher instance.
+         * @param db Database to produce attacher for.
+         * @return Attacher instance. Factory doesn't own it, you have to delete it when you're done.
+         */
         virtual DbAttacher* create(Db* db) = 0;
 };
 
