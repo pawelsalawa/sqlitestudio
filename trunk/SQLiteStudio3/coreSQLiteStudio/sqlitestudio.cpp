@@ -16,6 +16,7 @@
 #include "services/functionmanager.h"
 #include "plugins/scriptingplugin.h"
 #include "plugins/scriptingqt.h"
+#include "plugins/dbpluginsqlite3.h"
 #include "services/impl/configimpl.h"
 #include "services/impl/dbmanagerimpl.h"
 #include "services/impl/functionmanagerimpl.h"
@@ -138,8 +139,6 @@ void SQLiteStudio::init(const QStringList& cmdListArguments)
     pluginManager->registerPluginType<SqlFunctionPlugin>(QObject::tr("SQL function"));
     pluginManager->registerPluginType<ScriptingPlugin>(QObject::tr("Scripting languages"));
 
-    pluginManager->loadBuiltInPlugin(new ScriptingQt);
-
     sqlFormatter = new SqlFormatter();
     connect(CFG_CORE.General.ActiveSqlFormatter, SIGNAL(changed(QVariant)), this, SLOT(updateSqlFormatter()));
     connect(pluginManager, SIGNAL(pluginsInitiallyLoaded()), this, SLOT(updateSqlFormatter()));
@@ -151,6 +150,9 @@ void SQLiteStudio::init(const QStringList& cmdListArguments)
     cmdLineArgs = cmdListArguments;
 
     connect(pluginManager, SIGNAL(pluginsInitiallyLoaded()), DBLIST, SLOT(loadDbListFromConfig()));
+
+    pluginManager->loadBuiltInPlugin(new ScriptingQt);
+    pluginManager->loadBuiltInPlugin(new DbPluginSqlite3);
 
     pluginManager->init();
 

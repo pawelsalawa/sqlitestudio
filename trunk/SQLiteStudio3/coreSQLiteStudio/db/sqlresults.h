@@ -53,7 +53,7 @@ class API_EXPORT SqlResults
          * @brief Reads next row of results
          * @return Next results row, or null pointer if no more rows are available.
          */
-        virtual SqlResultsRowPtr next() = 0;
+        SqlResultsRowPtr next();
 
         /**
          * @brief Tells if there is next row available.
@@ -74,7 +74,7 @@ class API_EXPORT SqlResults
          * return results->getSingleCell().toString();
          * @endcode
          */
-        virtual bool hasNext() = 0;
+        bool hasNext();
 
         /**
          * @brief Gets error test of the most recent error.
@@ -101,12 +101,6 @@ class API_EXPORT SqlResults
         virtual int columnCount() = 0;
 
         /**
-         * @brief Gets number of rows in the results.
-         * @return Rows count.
-         */
-        virtual qint64 rowCount() = 0;
-
-        /**
          * @brief Gets number of rows that were affected by the query.
          * @return Number of rows affected.
          *
@@ -116,13 +110,6 @@ class API_EXPORT SqlResults
          * FOR INSERT this is number of rows inserted (starting with SQLite 3.7.11 you can insert multiple rows with single INSERT statement).
          */
         virtual qint64 rowsAffected() = 0;
-
-        /**
-         * @brief Goes to the begining of the results.
-         *
-         * Call this if you alread read some data and you want to go back to the first one.
-         */
-        virtual void restart() = 0;
 
         /**
          * @brief Reads all rows immediately and returns them.
@@ -176,6 +163,25 @@ class API_EXPORT SqlResults
         virtual RowId getInsertRowId();
 
     protected:
+
+        /**
+         * @brief Reads next row of results
+         * @return Next results row, or null pointer if no more rows are available.
+         *
+         * This is pretty much the same as next(), except next() handles preloaded data,
+         * while this method should work natively on the derived implementation of results object.
+         */
+        virtual SqlResultsRowPtr nextInternal() = 0;
+
+        /**
+         * @brief Tells if there is next row available.
+         * @return true if there's next row, of false if there's not.
+         *
+         * This is pretty much the same as hasNext(), except hasNext() handles preloaded data,
+         * while this method should work natively on the derived implementation of results object.
+         */
+        virtual bool hasNextInternal() = 0;
+
         /**
          * @brief Row ID of the most recently inserted row.
          */
@@ -185,6 +191,14 @@ class API_EXPORT SqlResults
          * @brief Flag indicating if the data was preloaded with preload().
          */
         bool preloaded = false;
+
+        /**
+         * @brief Index of the next row to be returned.
+         *
+         * If the data was preloaded (see preload()), then iterating with next() whould use this index to find out
+         * which preloaded row should be returned next.
+         */
+        int preloadedRowIdx = -1;
 
         /**
          * @brief Data preloaded with preload().

@@ -316,7 +316,11 @@ bool PluginManagerImpl::load(const QString& pluginName)
     }
 
     PluginContainer* container = pluginContainer[pluginName];
-    if (!container->builtIn)
+    if (container->builtIn)
+    {
+        emit loaded(container->plugin, container->type);
+    }
+    else
     {
         QPluginLoader* loader = container->loader;
         if (loader->isLoaded())

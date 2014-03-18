@@ -628,6 +628,14 @@ class API_EXPORT TokenList : public QList<TokenPtr>
         TokenList filter(Token::Type type) const;
 
         /**
+         * @brief Creates list of tokens from this list, letting through only tokens that are not a whitespace.
+         * @return List of tokens from this list that are not a whitespace.
+         *
+         * The condition to test if tokens is a whitespace is a call to Token::isWhitespace().
+         */
+        TokenList filterWhiteSpaces() const;
+
+        /**
          * @brief Returns sub-list of tokens from this list.
          * @param pos Position to start sublist from.
          * @param length Number of tokens to get from this list. If -1 (default), then all from the \p pos to the end.

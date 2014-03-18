@@ -243,6 +243,27 @@ class API_EXPORT Db : public QObject
         virtual void setConnectionOptions(const QHash<QString,QVariant>& value) = 0;
 
         /**
+         * @brief Sets the timeout for waiting for the database to be unlocked.
+         * @param secs Number of seconds.
+         *
+         * When the database is locked by another application, then the SQLiteStudio will wait given number
+         * of seconds for the database to be released, before the execution error is reported.
+         *
+         * Set it to negative value to set infinite timeout.
+         *
+         * This doesn't involve locking done by SQLiteStudio internally (see Db::Flag::NO_LOCK), which doesn't time out.
+         */
+        virtual void setTimeout(int secs) = 0;
+
+        /**
+         * @brief Gets the current database lock waiting timeout value.
+         * @return Number of seconds to wait for the database to be released.
+         *
+         * See setTimeout() for details.
+         */
+        virtual int getTimeout() const = 0;
+
+        /**
          * @brief Executes SQL query.
          * @param query Query to be executed. Parameter placeholders can be either of: ?, :param, \@param, just don't mix different types in single query.
          * @param args List of values to bind to parameter placeholders. As those are unnamed parameters, the order is important.

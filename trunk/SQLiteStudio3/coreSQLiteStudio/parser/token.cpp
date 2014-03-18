@@ -480,6 +480,16 @@ TokenList TokenList::filter(Token::Type type) const
     return filtered;
 }
 
+TokenList TokenList::filterWhiteSpaces() const
+{
+    TokenList filtered;
+    foreach (TokenPtr token, *this)
+        if (!token->isWhitespace())
+            filtered << token;
+
+    return filtered;
+}
+
 TokenList TokenList::mid(int pos, int length) const
 {
     TokenList newList = QList<TokenPtr>::mid(pos, length);

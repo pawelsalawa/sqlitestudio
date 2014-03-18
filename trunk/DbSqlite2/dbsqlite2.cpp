@@ -1,28 +1,51 @@
 #include "dbsqlite2.h"
 #include "dbsqlite2instance.h"
+#include "common/unused.h"
+#include <QFileInfo>
 
 DbSqlite2::DbSqlite2()
 {
 }
 
-DbQt *DbSqlite2::getInstance(const QString& name, const QString& path, const QHash<QString, QVariant>& options)
+Db* DbSqlite2::getInstance(const QString& name, const QString& path, const QHash<QString, QVariant>& options, QString* errorMessage)
 {
-    return new DbSqlite2Instance(name, path, options, getDriver(), getLabel());
+    UNUSED(errorMessage);
+    Db* db = new DbSqlite2Instance(name, path, options);
+
+    if (!db->open())
+    {
+        delete db;
+        return nullptr;
+    }
+
+    SqlResultsPtr results = db->exec("SELECT * FROM sqlite_master");
+    if (results->isError())
+    {
+        delete db;
+        return nullptr;
+    }
+
+    db->close();
+    return db;
 }
 
-QString DbSqlite2::getDriver()
+QList<DbPluginOption> DbSqlite2::getOptionsList() const
 {
-    return "QSQLITE2";
+    return QList<DbPluginOption>();
 }
 
+QString DbSqlite2::generateDbName(const QVariant& baseValue)
+{
+    QFileInfo file(baseValue.toString());
+    return file.baseName();
+}
 
 QString DbSqlite2::getLabel() const
 {
-    return "SQLite2";
+    return "SQLite 2";
 }
 
 bool DbSqlite2::checkIfDbServedByPlugin(Db* db) const
 {
     return (db && dynamic_cast<DbSqlite2Instance*>(db));
 }
-

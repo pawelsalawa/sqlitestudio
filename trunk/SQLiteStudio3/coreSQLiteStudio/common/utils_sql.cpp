@@ -323,17 +323,15 @@ QString removeComments(const QString& value)
     return tokens.detokenize();
 }
 
-QStringList splitQueries(const QString& sql, Dialect dialect, bool* complete)
+QList<TokenList> splitQueries(const TokenList& tokenizedQuery, bool* complete)
 {
-    TokenList tokens = Lexer::tokenize(sql, dialect);
-
-    QStringList queries;
+    QList<TokenList> queries;
     TokenList currentQueryTokens;
     QString value;
     int createTriggerMeter = 0;
     bool insideTrigger = false;
     bool completeQuery = false;
-    foreach (const TokenPtr& token, tokens)
+    foreach (const TokenPtr& token, tokenizedQuery)
     {
         value = token->value.toUpper();
         if (!token->isWhitespace())
@@ -365,7 +363,7 @@ QStringList splitQueries(const QString& sql, Dialect dialect, bool* complete)
         {
             createTriggerMeter = 0;
             currentQueryTokens << token;
-            queries << currentQueryTokens.detokenize();
+            queries << currentQueryTokens;
             currentQueryTokens.clear();
             completeQuery = true;
         }
@@ -376,10 +374,22 @@ QStringList splitQueries(const QString& sql, Dialect dialect, bool* complete)
     }
 
     if (currentQueryTokens.size() > 0)
-        queries << currentQueryTokens.detokenize();
+        queries << currentQueryTokens;
 
     if (complete)
         *complete = completeQuery;
+
+    return queries;
+}
+
+QStringList splitQueries(const QString& sql, Dialect dialect, bool* complete)
+{
+    TokenList tokens = Lexer::tokenize(sql, dialect);
+    QList<TokenList> tokenizedQueries = splitQueries(tokens, complete);
+
+    QStringList queries;
+    foreach (const TokenList& queryTokens, tokenizedQueries)
+        queries << queryTokens.detokenize();
 
     return queries;
 }
@@ -423,4 +433,47 @@ QString getQueryWithPosition(const QString& queries, int position, Dialect diale
 {
     QStringList queryList = splitQueries(queries, dialect);
     return getQueryWithPosition(queryList, position, startPos);
+}
+
+QString trimBindParamPrefix(const QString& param)
+{
+    if (param == "?")
+        return param;
+
+    if (param.startsWith("$") || param.startsWith("@") || param.startsWith(":") || param.startsWith("?"))
+        return param.mid(1);
+
+    return param;
+}
+
+QList<QueryWithParamNames> getQueriesWithParamNames(const QString& query, Dialect dialect)
+{
+    QList<QueryWithParamNames> results;
+
+    TokenList allTokens = Lexer::tokenize(query, dialect);
+    QList<TokenList> queries = splitQueries(allTokens);
+
+    QStringList paramNames;
+    foreach (const TokenList& tokens, queries)
+    {
+        paramNames.clear();
+        foreach (const TokenPtr& token, tokens.filter(Token::BIND_PARAM))
+            paramNames << trimBindParamPrefix(token->value);
+
+        results << QueryWithParamNames(tokens.detokenize(), paramNames);
+    }
+    return results;
+}
+
+QList<QueryWithParamCount> getQueriesWithParamCount(const QString& query, Dialect dialect)
+{
+    QList<QueryWithParamCount> results;
+
+    TokenList allTokens = Lexer::tokenize(query, dialect);
+    QList<TokenList> queries = splitQueries(allTokens);
+
+    foreach (const TokenList& tokens, queries)
+        results << QueryWithParamCount(tokens.detokenize(), tokens.filter(Token::BIND_PARAM).size());
+
+    return results;
 }

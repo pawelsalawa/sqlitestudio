@@ -65,10 +65,11 @@ void DbTreeItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
 
 void DbTreeItemDelegate::paintDb(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index, DbTreeItem *item) const
 {
-    QString versionString = "(?)";
+    static const QString versionStringTemplate = QStringLiteral("(%1)");
+    QString versionString = versionStringTemplate.arg("?");
     if (item->getType() == DbTreeItem::Type::INVALID_DB)
     {
-        versionString = tr("(error)", "dbtree labels");
+        versionString = versionStringTemplate.arg(tr("error", "dbtree labels"));
     }
     else
     {
@@ -76,15 +77,8 @@ void DbTreeItemDelegate::paintDb(QPainter *painter, const QStyleOptionViewItem &
         if (!db)
             return;
 
-        switch (db->getVersion())
-        {
-            case 2:
-                versionString = "(SQLite 2)";
-                break;
-            case 3:
-                versionString = "(SQLite 3)";
-                break;
-        }
+        QString t = db->getTypeLabel();
+        versionString = versionStringTemplate.arg(t);
     }
 
     paintLabel(painter, option, index, item, versionString);

@@ -375,7 +375,7 @@ void QueryExecutor::simpleExecutionFinished(SqlResultsPtr results)
 
     context->executionTime = QDateTime::currentMSecsSinceEpoch() - simpleExecutionStartTime;
     context->rowsAffected = results->rowsAffected();
-    context->totalRowsReturned = results->rowCount();
+    context->totalRowsReturned = results->getAll().size();
 
     executionMutex.lock();
     executionInProgress = false;

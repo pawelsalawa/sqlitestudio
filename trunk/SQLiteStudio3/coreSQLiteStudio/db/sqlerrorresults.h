@@ -49,11 +49,6 @@ class SqlErrorResults : public SqlResults
         /**
          * @see SqlResults::next()
          */
-        qint64 rowCount();
-
-        /**
-         * @see SqlResults::next()
-         */
         qint64 rowsAffected();
 
     private:

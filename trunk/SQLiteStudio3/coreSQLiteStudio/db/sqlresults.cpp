@@ -5,17 +5,32 @@ SqlResults::~SqlResults()
 {
 }
 
-QList<SqlResultsRowPtr> SqlResults::getAll()
+SqlResultsRowPtr SqlResults::next()
 {
     if (preloaded)
-        return preloadedData;
+    {
+        if (preloadedRowIdx >= preloadedData.size())
+            return SqlResultsRowPtr();
 
-    QList<SqlResultsRowPtr> allRows;
-    SqlResultsRowPtr row;
-    while (!(row = next()).isNull())
-        allRows << row;
+        return preloadedData[preloadedRowIdx++];
+    }
+    return nextInternal();
+}
 
-    return allRows;
+bool SqlResults::hasNext()
+{
+    if (preloaded)
+        return (preloadedRowIdx < preloadedData.size());
+
+    return hasNextInternal();
+}
+
+QList<SqlResultsRowPtr> SqlResults::getAll()
+{
+    if (!preloaded)
+        preload();
+
+    return preloadedData;
 }
 
 void SqlResults::preload()
@@ -23,8 +38,14 @@ void SqlResults::preload()
     if (preloaded)
         return;
 
-    preloadedData = getAll();
+    QList<SqlResultsRowPtr> allRows;
+    SqlResultsRowPtr row;
+    while (!(row = nextInternal()).isNull())
+        allRows << row;
+
+    preloadedData = allRows;
     preloaded = true;
+    preloadedRowIdx = 0;
 }
 
 QVariant SqlResults::getSingleCell()
@@ -38,7 +59,7 @@ QVariant SqlResults::getSingleCell()
 
 bool SqlResults::isError()
 {
-    return getErrorCode() != -1;
+    return getErrorCode() != 0;
 }
 
 bool SqlResults::isInterrupted()
