@@ -1,5 +1,5 @@
-#ifndef DBBASE_H
-#define DBBASE_H
+#ifndef ABSTRACTDB_H
+#define ABSTRACTDB_H
 
 #include "returncode.h"
 #include "sqlresults.h"
@@ -81,8 +81,17 @@ class API_EXPORT AbstractDb : public Db
         QString getErrorText();
         int getErrorCode();
         bool initAfterCreated();
+        void setTimeout(int secs);
+        int getTimeout() const;
 
     protected:
+        struct FunctionUserData
+        {
+            QString name;
+            int argCount = 0;
+            Db* db = nullptr;
+        };
+
         /**
          * @brief Generates unique database name for ATTACH.
          * @param lock Defines if the lock on dbOperLock mutex.
@@ -220,6 +229,26 @@ class API_EXPORT AbstractDb : public Db
          * Use execNoLock() for any query executions in the implementation of this method.
          */
         virtual void initAfterOpen();
+
+        static QHash<QString,QVariant> getAggregateContext(void* memPtr);
+        static void setAggregateContext(void* memPtr, const QHash<QString,QVariant>& aggregateContext);
+        static void releaseAggregateContext(void* memPtr);
+
+        /**
+         * @brief Evaluates requested function using defined implementation code and provides result.
+         * @param dataPtr SQL function user data (defined when registering function). Must be of FunctionUserData* type, or descendant.
+         * @param argList List of arguments passed to the function.
+         * @param[out] ok true (default) to indicate successful execution, or false to report an error.
+         * @return Result returned from the plugin handling function implementation.
+         *
+         * This method is aware of the implementation language and the code defined for it,
+         * so it delegates the execution to the proper plugin handling that language.
+         *
+         * This method is called for scalar functions.
+         */
+        static QVariant evaluateScalar(void* dataPtr, const QList<QVariant>& argList, bool& ok);
+        static void evaluateAggregateStep(void* dataPtr, QHash<QString, QVariant>& aggregateContext, QList<QVariant> argList);
+        static QVariant evaluateAggregateFinal(void* dataPtr, QHash<QString, QVariant>& aggregateContext, bool& ok);
 
         /**
          * @brief Database name.
@@ -404,6 +433,13 @@ class API_EXPORT AbstractDb : public Db
         static quint32 asyncId;
 
         /**
+         * @brief Current timeout (in seconds) for waiting for the database to be released from the lock.
+         *
+         * See Db::setTimeout() for details.
+         */
+        int timeout = 60;
+
+        /**
          * @brief Most recent error message.
          *
          * This is local storage for last error from last SqlResultsPtr.
@@ -491,4 +527,4 @@ int qHash(const AbstractDb::RegisteredFunction& fn);
  */
 bool operator==(const AbstractDb::RegisteredFunction& fn1, const AbstractDb::RegisteredFunction& fn2);
 
-#endif // DBBASE_H
+#endif // ABSTRACTDB_H

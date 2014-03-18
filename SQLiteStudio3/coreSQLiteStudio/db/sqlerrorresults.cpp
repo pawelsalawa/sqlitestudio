@@ -31,11 +31,6 @@ int SqlErrorResults::columnCount()
     return 0;
 }
 
-qint64 SqlErrorResults::rowCount()
-{
-    return 0;
-}
-
 qint64 SqlErrorResults::rowsAffected()
 {
     return 0;

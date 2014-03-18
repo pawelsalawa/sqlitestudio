@@ -2,10 +2,10 @@
 #define DBSQLITE2_H
 
 #include "dbsqlite2_global.h"
-#include "plugins/plugin.h"
-#include "plugins/dbpluginqt.h"
+#include "plugins/dbplugin.h"
+#include "plugins/genericplugin.h"
 
-class DBSQLITE2SHARED_EXPORT DbSqlite2 : public DbPluginQt
+class DBSQLITE2SHARED_EXPORT DbSqlite2 : public GenericPlugin, public DbPlugin
 {
     Q_OBJECT
 
@@ -20,10 +20,9 @@ class DBSQLITE2SHARED_EXPORT DbSqlite2 : public DbPluginQt
 
         QString getLabel() const;
         bool checkIfDbServedByPlugin(Db* db) const;
-
-    protected:
-        DbQt* getInstance(const QString& name, const QString& path, const QHash<QString, QVariant>& options);
-        QString getDriver();
+        Db* getInstance(const QString& name, const QString& path, const QHash<QString, QVariant>& options, QString* errorMessage);
+        QList<DbPluginOption> getOptionsList() const;
+        QString generateDbName(const QVariant& baseValue);
 };
 
 #endif // DBSQLITE2_H

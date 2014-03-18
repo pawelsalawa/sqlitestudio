@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>416</width>
-    <height>154</height>
+    <height>158</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -139,7 +139,7 @@
        <item>
         <widget class="QCheckBox" name="permamentCheckBox">
          <property name="toolTip">
-          <string extracomment="aasfd">Enable this if you want the database to be stored in configuration file and restored every time SQLiteStudio is started.</string>
+          <string extracomment="aasfd">&lt;p&gt;Enable this if you want the database to be stored in configuration file and restored every time SQLiteStudio is started.&lt;/p&gt;</string>
          </property>
          <property name="text">
           <string/>

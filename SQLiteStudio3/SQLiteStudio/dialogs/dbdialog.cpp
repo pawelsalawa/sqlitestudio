@@ -116,19 +116,13 @@ void DbDialog::init()
     ui->browseLocalButton->setIcon(ICON("database_file"));
     ui->browseRemoteButton->setIcon(ICON("database_network"));
     dbPlugins = PLUGINS->getLoadedPlugins<DbPlugin>();
-    int remotes = 0;
-    int locals = 0;
     foreach (DbPlugin* dbPlugin, dbPlugins)
     {
         ui->typeCombo->addItem(dbPlugin->getLabel());
-        if (dbPlugin->isRemote())
-            remotes++;
-        else
-            locals++;
     }
 
-    ui->browseRemoteButton->setVisible(remotes > 0);
-    ui->browseLocalButton->setVisible(locals > 0);
+    ui->browseRemoteButton->setVisible(false); // TODO remote URI browsing
+    ui->browseLocalButton->setVisible(true);
     ui->testIcon->setVisible(false);
     on_generateCheckBox_toggled(true);
 }

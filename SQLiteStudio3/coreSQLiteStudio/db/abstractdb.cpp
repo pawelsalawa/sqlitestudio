@@ -284,10 +284,7 @@ SqlResultsPtr AbstractDb::execHashArg(const QString& query, const QHash<QString,
         results = execInternal(newQuery, args);
 
     if (flags.testFlag(Flag::PRELOAD))
-    {
         results->preload();
-        results->restart();
-    }
 
     return results;
 }
@@ -308,10 +305,7 @@ SqlResultsPtr AbstractDb::execListArg(const QString& query, const QList<QVariant
         results = execInternal(newQuery, args);
 
     if (flags.testFlag(Flag::PRELOAD))
-    {
         results->preload();
-        results->restart();
-    }
 
     return results;
 }
@@ -335,6 +329,84 @@ bool AbstractDb::openAndSetup()
 
 void AbstractDb::initAfterOpen()
 {
+}
+
+QHash<QString, QVariant> AbstractDb::getAggregateContext(void* memPtr)
+{
+    if (!memPtr)
+    {
+        qCritical() << "Could not allocate aggregate context.";
+        return QHash<QString, QVariant>();
+    }
+
+    QHash<QString,QVariant>** aggCtxPtr = reinterpret_cast<QHash<QString,QVariant>**>(memPtr);
+    if (!*aggCtxPtr)
+        *aggCtxPtr = new QHash<QString,QVariant>();
+
+    return **aggCtxPtr;
+}
+
+void AbstractDb::setAggregateContext(void* memPtr, const QHash<QString, QVariant>& aggregateContext)
+{
+    if (!memPtr)
+    {
+        qCritical() << "Could not extract aggregate context.";
+        return;
+    }
+
+    QHash<QString,QVariant>** aggCtxPtr = reinterpret_cast<QHash<QString,QVariant>**>(memPtr);
+    **aggCtxPtr = aggregateContext;
+}
+
+void AbstractDb::releaseAggregateContext(void* memPtr)
+{
+    if (!memPtr)
+    {
+        qCritical() << "Could not release aggregate context.";
+        return;
+    }
+
+    QHash<QString,QVariant>** aggCtxPtr = reinterpret_cast<QHash<QString,QVariant>**>(memPtr);
+    delete *aggCtxPtr;
+}
+
+QVariant AbstractDb::evaluateScalar(void* dataPtr, const QList<QVariant>& argList, bool& ok)
+{
+    if (!dataPtr)
+        return QVariant();
+
+    FunctionUserData* userData = reinterpret_cast<FunctionUserData*>(dataPtr);
+
+    return FUNCTIONS->evaluateScalar(userData->name, userData->argCount, argList, userData->db, ok);
+}
+
+void AbstractDb::evaluateAggregateStep(void* dataPtr, QHash<QString, QVariant>& aggregateContext, QList<QVariant> argList)
+{
+    if (!dataPtr)
+        return;
+
+    FunctionUserData* userData = reinterpret_cast<FunctionUserData*>(dataPtr);
+
+    QHash<QString,QVariant> storage = aggregateContext["storage"].toHash();
+    if (!aggregateContext.contains("initExecuted"))
+    {
+        FUNCTIONS->evaluateAggregateInitial(userData->name, userData->argCount, userData->db, storage);
+        aggregateContext["initExecuted"] = true;
+    }
+
+    FUNCTIONS->evaluateAggregateStep(userData->name, userData->argCount, argList, userData->db, storage);
+    aggregateContext["storage"] = storage;
+}
+
+QVariant AbstractDb::evaluateAggregateFinal(void* dataPtr, QHash<QString, QVariant>& aggregateContext, bool& ok)
+{
+    if (!dataPtr)
+        return QVariant();
+
+    FunctionUserData* userData = reinterpret_cast<FunctionUserData*>(dataPtr);
+    QHash<QString,QVariant> storage = aggregateContext["storage"].toHash();
+
+    return FUNCTIONS->evaluateAggregateFinal(userData->name, userData->argCount, userData->db, ok, storage);
 }
 
 quint32 AbstractDb::asyncExec(const QString &query, Flags flags)
@@ -523,6 +595,16 @@ bool AbstractDb::initAfterCreated()
         closeQuiet();
 
     return true;
+}
+
+void AbstractDb::setTimeout(int secs)
+{
+    timeout = secs;
+}
+
+int AbstractDb::getTimeout() const
+{
+    return timeout;
 }
 
 quint32 AbstractDb::generateAsyncId()

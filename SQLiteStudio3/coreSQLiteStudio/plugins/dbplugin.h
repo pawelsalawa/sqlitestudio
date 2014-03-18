@@ -30,8 +30,8 @@ class API_EXPORT DbPlugin : virtual public Plugin
          * @return Type label.
          *
          * The label is used for presenting to the user what kind of database this is. It's used on GUI
-         * to display blue label on the right of database name. It's usually either "SQLite 3" or "SQLite 2",
-         * but it may be something else, like for example encrypted database might provide "Encrypted SQLite 3",
+         * to display database type in databases dialog. It's usually either "SQLite3" or "SQLite2",
+         * but it may be something else, like for example encrypted database might provide "Encrypted SQLite3",
          * or something similar.
          */
         virtual QString getLabel() const = 0;
@@ -68,9 +68,6 @@ class API_EXPORT DbPlugin : virtual public Plugin
          * so when some plugin is about to be unloaded, all its databases are closed properly first.
          */
         virtual bool checkIfDbServedByPlugin(Db* db) const = 0;
-
-        // TODO get rid of isRemote()
-        virtual bool isRemote() const = 0;
 };
 
 #endif // DBPLUGIN_H

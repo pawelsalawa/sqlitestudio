@@ -21,6 +21,8 @@ win32 {
     LIBS += -lpsapi
 }
 
+LIBS += -lsqlite3
+
 DEFINES += CORESQLITESTUDIO_LIBRARY
 
 QMAKE_CXXFLAGS += -std=c++11 -pedantic
@@ -90,14 +92,9 @@ SOURCES += sqlitestudio.cpp \
     db/dbremote.cpp \
     completionhelper.cpp \
     completioncomparer.cpp \
-    db/dbqt.cpp \
-    plugins/dbpluginqt.cpp \
-    services/pluginmanager.cpp \
-    db/sqlresultsqt.cpp \
     db/queryexecutor.cpp \
     qio.cpp \
     plugins/pluginsymbolresolver.cpp \
-    db/sqlresultsrowqt.cpp \
     db/sqlerrorresults.cpp \
     db/queryexecutorsteps/queryexecutorstep.cpp \
     db/queryexecutorsteps/queryexecutorcountresults.cpp \
@@ -143,7 +140,9 @@ SOURCES += sqlitestudio.cpp \
     db/abstractdb.cpp \
     services/impl/functionmanagerimpl.cpp \
     services/impl/pluginmanagerimpl.cpp \
-    impl/dbattacherimpl.cpp
+    impl/dbattacherimpl.cpp \
+    db/dbsqlite3.cpp \
+    plugins/dbpluginsqlite3.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -215,18 +214,14 @@ HEADERS += sqlitestudio.h\
     completionhelper.h \
     expectedtoken.h \
     completioncomparer.h \
-    db/dbqt.h \
     plugins/dbplugin.h \
-    plugins/dbpluginqt.h \
     services/pluginmanager.h \
-    db/sqlresultsqt.h \
     db/queryexecutor.h \
     qio.h \
     db/dbpluginoption.h \
     common/global.h \
     parser/ast/sqlitetablerelatedddl.h \
     plugins/pluginsymbolresolver.h \
-    db/sqlresultsrowqt.h \
     db/sqlerrorresults.h \
     db/sqlerrorcodes.h \
     db/queryexecutorsteps/queryexecutorstep.h \
@@ -271,9 +266,7 @@ HEADERS += sqlitestudio.h\
     dbattacher.h \
     common/bistrhash.h \
     plugins/sqlfunctionplugin.h \
-    db/dbqt2.h \
     services/functionmanager.h \
-    db/dbqt3.h \
     common/sortedhash.h \
     plugins/scriptingplugin.h \
     plugins/scriptingqt.h \
@@ -282,7 +275,13 @@ HEADERS += sqlitestudio.h\
     db/abstractdb.h \
     services/impl/functionmanagerimpl.h \
     services/impl/pluginmanagerimpl.h \
-    impl/dbattacherimpl.h
+    impl/dbattacherimpl.h \
+    db/abstractdb3.h \
+    db/sqlresultssqlite3.h \
+    db/sqlresultsrowsqlite3.h \
+    db/dbsqlite3.h \
+    plugins/dbpluginsqlite3.h \
+    db/abstractdb2.h
 
 unix:!symbian {
     maemo5 {
