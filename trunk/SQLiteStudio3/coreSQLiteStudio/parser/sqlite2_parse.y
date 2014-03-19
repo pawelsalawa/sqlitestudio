@@ -51,7 +51,7 @@
 #include "parser/ast/sqliteindexedcolumn.h"
 #include "parser/ast/sqliteforeignkey.h"
 #include "parser_helper_stubs.h"
-#include "utils_sql.h"
+#include "common/utils_sql.h"
 #include <QObject>
 #include <QDebug>
 
@@ -1100,7 +1100,8 @@ delete_stmt(X) ::= DELETE FROM fullname(N)
                                                         N->name1,
                                                         N->name2,
                                                         false,
-                                                        W
+                                                        W,
+                                                        nullptr
                                                     );
                                                 delete N;
                                                 // since it's used in trigger:
@@ -1139,7 +1140,8 @@ update_stmt(X) ::= UPDATE orconf(C)
                                                         false,
                                                         QString::null,
                                                         *(L),
-                                                        W
+                                                        W,
+                                                        nullptr
                                                     );
                                                 delete C;
                                                 delete N;
@@ -1196,7 +1198,8 @@ insert_stmt(X) ::= insert_cmd(C) INTO
                                                         N->name1,
                                                         N->name2,
                                                         *(I),
-                                                        *(L)
+                                                        *(L),
+                                                        nullptr
                                                     );
                                                 delete N;
                                                 delete C;
@@ -1213,7 +1216,8 @@ insert_stmt(X) ::= insert_cmd(C) INTO
                                                         N->name1,
                                                         N->name2,
                                                         *(I),
-                                                        S
+                                                        S,
+                                                        nullptr
                                                     );
                                                 delete N;
                                                 delete C;

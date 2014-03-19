@@ -747,7 +747,6 @@ static void yy_reduce(
       if (objectForTokens)
       {
           objectForTokens->tokens += parserContext->getTokenPtrList(allTokens);
-          //objectForTokens->inheritedTokens += allTokensWithAllInherited;
       }
   }
 

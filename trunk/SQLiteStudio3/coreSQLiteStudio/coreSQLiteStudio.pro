@@ -142,7 +142,8 @@ SOURCES += sqlitestudio.cpp \
     services/impl/pluginmanagerimpl.cpp \
     impl/dbattacherimpl.cpp \
     db/dbsqlite3.cpp \
-    plugins/dbpluginsqlite3.cpp
+    plugins/dbpluginsqlite3.cpp \
+    parser/ast/sqlitewith.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -281,7 +282,8 @@ HEADERS += sqlitestudio.h\
     db/sqlresultsrowsqlite3.h \
     db/dbsqlite3.h \
     plugins/dbpluginsqlite3.h \
-    db/abstractdb2.h
+    db/abstractdb2.h \
+    parser/ast/sqlitewith.h
 
 unix:!symbian {
     maemo5 {

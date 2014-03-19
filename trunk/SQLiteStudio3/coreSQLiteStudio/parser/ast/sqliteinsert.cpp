@@ -4,6 +4,7 @@
 #include "sqliteselect.h"
 #include "parser/statementtokenbuilder.h"
 #include "common/global.h"
+#include "sqlitewith.h"
 
 SqliteInsert::SqliteInsert()
 {
@@ -30,9 +31,11 @@ SqliteInsert::SqliteInsert(const SqliteInsert& other) :
     }
 
     DEEP_COPY_FIELD(SqliteSelect, select);
+    DEEP_COPY_FIELD(SqliteWith, with);
 }
 
-SqliteInsert::SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QString &name1, const QString &name2, const QList<QString> &columns, const QList<QList<SqliteExpr *> > &rows)
+SqliteInsert::SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QString &name1, const QString &name2, const QList<QString> &columns,
+                           const QList<QList<SqliteExpr *> > &rows, SqliteWith* with)
     : SqliteInsert()
 {
     initName(name1, name2);
@@ -40,26 +43,40 @@ SqliteInsert::SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QS
     columnNames = columns;
     values = rows;
 
+    this->with = with;
+    if (with)
+        with->setParent(this);
+
     foreach (QList<SqliteExpr*> list, values)
         foreach (SqliteExpr* expr, list)
             expr->setParent(this);
 }
 
-SqliteInsert::SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QString &name1, const QString &name2, const QList<QString> &columns, const QList<SqliteExpr *> &row)
+SqliteInsert::SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QString &name1, const QString &name2, const QList<QString> &columns,
+                           const QList<SqliteExpr *> &row, SqliteWith* with)
 {
     initName(name1, name2);
     initMode(replace, onConflict);
     columnNames = columns;
     values += row;
 
+    this->with = with;
+    if (with)
+        with->setParent(this);
+
     foreach (SqliteExpr* expr, row)
         expr->setParent(this);
 }
 
-SqliteInsert::SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QString &name1, const QString &name2, const QList<QString> &columns, SqliteSelect *select)
+SqliteInsert::SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QString &name1, const QString &name2, const QList<QString> &columns,
+                           SqliteSelect *select, SqliteWith* with)
 {
     initName(name1, name2);
     initMode(replace, onConflict);
+
+    this->with = with;
+    if (with)
+        with->setParent(this);
 
     columnNames = columns;
     this->select = select;
@@ -67,10 +84,15 @@ SqliteInsert::SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QS
         select->setParent(this);
 }
 
-SqliteInsert::SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QString &name1, const QString &name2, const QList<QString> &columns)
+SqliteInsert::SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QString &name1, const QString &name2, const QList<QString> &columns,
+                           SqliteWith* with)
 {
     initName(name1, name2);
     initMode(replace, onConflict);
+
+    this->with = with;
+    if (with)
+        with->setParent(this);
 
     columnNames = columns;
     defaultValuesKw = true;
@@ -169,6 +191,9 @@ void SqliteInsert::initMode(bool replace, SqliteConflictAlgo onConflict)
 TokenList SqliteInsert::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
+
+    if (with)
+        builder.withStatement(with);
 
     if (replaceKw)
     {

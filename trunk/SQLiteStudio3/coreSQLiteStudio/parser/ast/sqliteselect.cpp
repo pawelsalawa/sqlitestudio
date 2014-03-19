@@ -2,6 +2,7 @@
 #include "sqlitequerytype.h"
 #include "parser/statementtokenbuilder.h"
 #include "common/global.h"
+#include "sqlitewith.h"
 #include <QSet>
 
 SqliteSelect::SqliteSelect()
@@ -13,6 +14,7 @@ SqliteSelect::SqliteSelect(const SqliteSelect& other) :
     SqliteQuery(other)
 {
     DEEP_COPY_COLLECTION(Core, coreSelects);
+    DEEP_COPY_FIELD(SqliteWith, with);
 }
 
 SqliteSelect* SqliteSelect::append(Core* core)
@@ -73,6 +75,13 @@ void SqliteSelect::reset()
         delete core;
 
     coreSelects.clear();
+}
+
+void SqliteSelect::setWith(SqliteWith* with)
+{
+    this->with = with;
+    if (with)
+        with->setParent(this);
 }
 
 SqliteSelect::Core::Core()
@@ -658,6 +667,9 @@ TokenList SqliteSelect::Core::rebuildTokensFromContents()
 TokenList SqliteSelect::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
+    if (with)
+        builder.withStatement(with);
+
     foreach (SqliteSelect::Core* core, coreSelects)
     {
         if (core->compoundOp != CompoundOperator::null)

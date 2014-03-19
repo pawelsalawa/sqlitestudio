@@ -8,6 +8,7 @@
 
 class SqliteSelect;
 class SqliteExpr;
+class SqliteWith;
 
 class API_EXPORT SqliteInsert : public SqliteQuery
 {
@@ -16,14 +17,14 @@ class API_EXPORT SqliteInsert : public SqliteQuery
         SqliteInsert(const SqliteInsert& other);
         SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QString& name1,
                      const QString& name2, const QList<QString>& columns,
-                     const QList<QList<SqliteExpr*> >& rows);
+                     const QList<QList<SqliteExpr*> >& rows, SqliteWith* with);
         SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QString& name1,
                      const QString& name2, const QList<QString>& columns,
-                     const QList<SqliteExpr*>& row);
+                     const QList<SqliteExpr*>& row, SqliteWith* with);
         SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QString& name1,
-                     const QString& name2, const QList<QString>& columns, SqliteSelect* select);
+                     const QString& name2, const QList<QString>& columns, SqliteSelect* select, SqliteWith* with);
         SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QString& name1,
-                     const QString& name2, const QList<QString>& columns);
+                     const QString& name2, const QList<QString>& columns, SqliteWith* with);
         ~SqliteInsert();
 
     protected:
@@ -49,6 +50,7 @@ class API_EXPORT SqliteInsert : public SqliteQuery
         QStringList columnNames;
         QList< QList<SqliteExpr*> > values;
         SqliteSelect* select = nullptr;
+        SqliteWith* with = nullptr;
 };
 
 typedef QSharedPointer<SqliteInsert> SqliteInsertPtr;

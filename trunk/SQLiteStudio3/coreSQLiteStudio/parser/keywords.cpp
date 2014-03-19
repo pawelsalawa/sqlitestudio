@@ -169,6 +169,8 @@ void initKeywords()
     keywords3["INITIALLY"] = TK3_INITIALLY;
     keywords3["WITHOUT"] = TK3_WITHOUT;
     keywords3["ALL"] = TK3_ALL;
+    keywords3["WITH"] = TK3_WITH;
+    keywords3["RECURSIVE"] = TK3_RECURSIVE;
 
     // SQLite 2
     keywords2["ABORT"] = TK2_ABORT;

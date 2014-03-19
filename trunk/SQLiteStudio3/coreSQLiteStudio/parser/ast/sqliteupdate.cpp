@@ -3,6 +3,7 @@
 #include "sqliteexpr.h"
 #include "parser/statementtokenbuilder.h"
 #include "common/global.h"
+#include "sqlitewith.h"
 #include <QDebug>
 
 SqliteUpdate::SqliteUpdate()
@@ -24,13 +25,15 @@ SqliteUpdate::SqliteUpdate(const SqliteUpdate& other) :
     }
 
     DEEP_COPY_FIELD(SqliteExpr, where);
+    DEEP_COPY_FIELD(SqliteWith, with);
 }
 
 SqliteUpdate::~SqliteUpdate()
 {
 }
 
-SqliteUpdate::SqliteUpdate(SqliteConflictAlgo onConflict, const QString &name1, const QString &name2, bool notIndexedKw, const QString &indexedBy, const QList<QPair<QString,SqliteExpr*> > values, SqliteExpr *where)
+SqliteUpdate::SqliteUpdate(SqliteConflictAlgo onConflict, const QString &name1, const QString &name2, bool notIndexedKw, const QString &indexedBy,
+                           const QList<QPair<QString,SqliteExpr*> > values, SqliteExpr *where, SqliteWith* with)
     : SqliteUpdate()
 {
     this->onConflict = onConflict;
@@ -47,10 +50,14 @@ SqliteUpdate::SqliteUpdate(SqliteConflictAlgo onConflict, const QString &name1, 
     this->indexedByKw = !(indexedBy.isNull());
     this->notIndexedKw = notIndexedKw;
     keyValueMap = values;
-    this->where = where;
 
+    this->where = where;
     if (where)
         where->setParent(this);
+
+    this->with = with;
+    if (with)
+        with->setParent(this);
 
     foreach (const ColumnAndValue& keyValue, keyValueMap)
         keyValue.second->setParent(this);
@@ -145,6 +152,9 @@ QList<SqliteStatement::FullObject> SqliteUpdate::getFullObjectsInStatement()
 TokenList SqliteUpdate::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
+
+    if (with)
+        builder.withStatement(with);
 
     builder.withKeyword("UPDATE").withSpace();
     if (onConflict != SqliteConflictAlgo::null)

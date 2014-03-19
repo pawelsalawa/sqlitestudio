@@ -8,6 +8,8 @@
 
 #include <QList>
 
+class SqliteWith;
+
 /**
  * @addtogroup sqlite_statement
  * @brief The SqliteSelect class
@@ -195,8 +197,10 @@ class API_EXPORT SqliteSelect : public SqliteQuery
         QString compoundOperator(CompoundOperator op);
         CompoundOperator compoundOperator(const QString& op);
         void reset();
+        void setWith(SqliteWith* with);
 
         QList<Core*> coreSelects;
+        SqliteWith* with = nullptr;
 
     protected:
         TokenList rebuildTokensFromContents();
