@@ -6,14 +6,15 @@
 #include <QString>
 
 class SqliteExpr;
+class SqliteWith;
 
 class API_EXPORT SqliteDelete : public SqliteQuery
 {
     public:
         SqliteDelete();
         SqliteDelete(const SqliteDelete& other);
-        SqliteDelete(const QString& name1, const QString& name2, const QString& indexedByName, SqliteExpr* where);
-        SqliteDelete(const QString& name1, const QString& name2, bool notIndexedKw, SqliteExpr* where);
+        SqliteDelete(const QString& name1, const QString& name2, const QString& indexedByName, SqliteExpr* where, SqliteWith* with);
+        SqliteDelete(const QString& name1, const QString& name2, bool notIndexedKw, SqliteExpr* where, SqliteWith* with);
         ~SqliteDelete();
 
     protected:
@@ -25,7 +26,7 @@ class API_EXPORT SqliteDelete : public SqliteQuery
         TokenList rebuildTokensFromContents();
 
     private:
-        void init(const QString& name1, const QString& name2, SqliteExpr* where);
+        void init(const QString& name1, const QString& name2, SqliteExpr* where, SqliteWith* with);
 
     public:
         QString database = QString::null;
@@ -34,6 +35,7 @@ class API_EXPORT SqliteDelete : public SqliteQuery
         bool notIndexedKw = false;
         QString indexedBy = QString::null;
         SqliteExpr* where = nullptr;
+        SqliteWith* with = nullptr;
 };
 
 typedef QSharedPointer<SqliteDelete> SqliteDeletePtr;

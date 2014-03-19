@@ -3,6 +3,7 @@
 #include "sqliteexpr.h"
 #include "parser/statementtokenbuilder.h"
 #include "common/global.h"
+#include "sqlitewith.h"
 
 SqliteDelete::SqliteDelete()
 {
@@ -14,20 +15,21 @@ SqliteDelete::SqliteDelete(const SqliteDelete& other) :
     indexedBy(other.indexedBy)
 {
     DEEP_COPY_FIELD(SqliteExpr, where);
+    DEEP_COPY_FIELD(SqliteWith, with);
 }
 
-SqliteDelete::SqliteDelete(const QString &name1, const QString &name2, const QString& indexedByName, SqliteExpr *where)
+SqliteDelete::SqliteDelete(const QString &name1, const QString &name2, const QString& indexedByName, SqliteExpr *where, SqliteWith* with)
     : SqliteDelete()
 {
-    init(name1, name2, where);
+    init(name1, name2, where, with);
     this->indexedBy = indexedByName;
     this->indexedByKw = true;
 }
 
-SqliteDelete::SqliteDelete(const QString &name1, const QString &name2, bool notIndexedKw, SqliteExpr *where)
+SqliteDelete::SqliteDelete(const QString &name1, const QString &name2, bool notIndexedKw, SqliteExpr *where, SqliteWith* with)
     : SqliteDelete()
 {
-    init(name1, name2, where);
+    init(name1, name2, where, with);
     this->notIndexedKw = notIndexedKw;
 }
 
@@ -76,11 +78,15 @@ QList<SqliteStatement::FullObject> SqliteDelete::getFullObjectsInStatement()
     return result;
 }
 
-void SqliteDelete::init(const QString &name1, const QString &name2, SqliteExpr *where)
+void SqliteDelete::init(const QString &name1, const QString &name2, SqliteExpr *where, SqliteWith* with)
 {
     this->where = where;
     if (where)
         where->setParent(this);
+
+    this->with = with;
+    if (with)
+        with->setParent(this);
 
     if (!name2.isNull())
     {
@@ -95,6 +101,9 @@ TokenList SqliteDelete::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
 
+    if (with)
+        builder.withStatement(with);
+
     builder.withKeyword("DELETE").withSpace().withKeyword("FROM").withSpace();
     if (!database.isNull())
         builder.withOther(database, dialect).withSpace();
@@ -107,7 +116,7 @@ TokenList SqliteDelete::rebuildTokensFromContents()
         builder.withSpace().withKeyword("NOT").withSpace().withKeyword("INDEXED");
 
     if (where)
-        builder.withStatement(where);
+        builder.withSpace().withKeyword("WHERE").withStatement(where);
 
     return builder.build();
 }

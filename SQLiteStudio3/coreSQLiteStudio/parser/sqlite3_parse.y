@@ -20,7 +20,7 @@
 #include "token.h"
 #include "parsercontext.h"
 #include "parser_helper_stubs.h"
-#include "utils_sql.h"
+#include "common/utils_sql.h"
 #include "parser/ast/sqlitealtertable.h"
 #include "parser/ast/sqliteanalyze.h"
 #include "parser/ast/sqliteattach.h"
@@ -54,6 +54,7 @@
 #include "parser/ast/sqlitesortorder.h"
 #include "parser/ast/sqliteindexedcolumn.h"
 #include "parser/ast/sqliteforeignkey.h"
+#include "parser/ast/sqlitewith.h"
 #include <QObject>
 #include <QDebug>
 
@@ -78,8 +79,8 @@
   ABORT ACTION AFTER ANALYZE ASC ATTACH BEFORE BEGIN BY CASCADE CAST COLUMNKW
   CONFLICT DATABASE DEFERRED DESC DETACH EACH END EXCLUSIVE EXPLAIN FAIL FOR
   IGNORE IMMEDIATE INDEXED INITIALLY INSTEAD LIKE_KW MATCH NO PLAN
-  QUERY KEY OF OFFSET PRAGMA RAISE RELEASE REPLACE RESTRICT ROW ROLLBACK
-  SAVEPOINT TEMP TRIGGER VACUUM VIEW VIRTUAL WITHOUT
+  QUERY KEY OF OFFSET PRAGMA RAISE RECURSIVE RELEASE REPLACE RESTRICT ROW ROLLBACK
+  SAVEPOINT TEMP TRIGGER VACUUM VIEW VIRTUAL WITH WITHOUT
   REINDEX RENAME CTIME_KW IF
   .
 %wildcard ANY.
@@ -782,12 +783,21 @@ select_stmt(X) ::= select(S).               {
 
 %type select {SqliteSelect*}
 %destructor select {delete $$;}
-select(X) ::= oneselect(S).                 {
+select(X) ::= with(W) selectnowith(S).      {
+                                                X = S;
+                                                S->setWith(W);
+                                                objectForTokens = X;
+                                            }
+
+%type selectnowith {SqliteSelect*}
+%destructor selectnowith {delete $$;}
+selectnowith(X) ::= oneselect(S).           {
                                                 X = SqliteSelect::append(S);
                                                 objectForTokens = X;
                                             }
-select(X) ::= select(S1) multiselect_op(O)
-                oneselect(S2).              {
+selectnowith(X) ::= select(S1)
+                    multiselect_op(O)
+                    oneselect(S2).          {
                                                 X = SqliteSelect::append(S1, *(O), S2);
                                                 delete O;
                                                 objectForTokens = X;
@@ -1136,8 +1146,10 @@ cmd(X) ::= delete_stmt(S).                  {
 
 %type delete_stmt {SqliteQuery*}
 %destructor delete_stmt {delete $$;}
-delete_stmt(X) ::= DELETE FROM fullname(N)
-            indexed_opt(I) where_opt(W).    {
+delete_stmt(X) ::= with(WI) DELETE FROM
+                   fullname(N)
+                   indexed_opt(I)
+                   where_opt(W).            {
                                                 if (I)
                                                 {
                                                     if (!I->indexedBy.isNull())
@@ -1146,7 +1158,8 @@ delete_stmt(X) ::= DELETE FROM fullname(N)
                                                                 N->name1,
                                                                 N->name2,
                                                                 I->indexedBy,
-                                                                W
+                                                                W,
+                                                                WI
                                                             );
                                                     }
                                                     else
@@ -1155,7 +1168,8 @@ delete_stmt(X) ::= DELETE FROM fullname(N)
                                                                 N->name1,
                                                                 N->name2,
                                                                 I->notIndexedKw,
-                                                                W
+                                                                W,
+                                                                WI
                                                             );
                                                     }
                                                 }
@@ -1165,7 +1179,8 @@ delete_stmt(X) ::= DELETE FROM fullname(N)
                                                             N->name1,
                                                             N->name2,
                                                             false,
-                                                            W
+                                                            W,
+                                                            WI
                                                         );
                                                 }
                                                 delete N;
@@ -1199,7 +1214,7 @@ cmd(X) ::= update_stmt(S).                  {
 
 %type update_stmt {SqliteQuery*}
 %destructor update_stmt {delete $$;}
-update_stmt(X) ::= UPDATE orconf(C)
+update_stmt(X) ::= with(WI) UPDATE orconf(C)
             fullname(N) indexed_opt(I) SET
             setlist(L) where_opt(W).        {
                                                 X = new SqliteUpdate(
@@ -1209,7 +1224,8 @@ update_stmt(X) ::= UPDATE orconf(C)
                                                         I ? I->notIndexedKw : false,
                                                         I ? I->indexedBy : QString::null,
                                                         *(L),
-                                                        W
+                                                        W,
+                                                        WI
                                                     );
                                                 delete C;
                                                 delete N;
@@ -1258,16 +1274,17 @@ cmd(X) ::= insert_stmt(S).                  {
 
 %type insert_stmt {SqliteQuery*}
 %destructor insert_stmt {delete $$;}
-insert_stmt(X) ::= insert_cmd(C) INTO
-            fullname(N) inscollist_opt(I)
-            valuelist(L).                   {
+insert_stmt(X) ::= with(W) insert_cmd(C)
+            INTO fullname(N)
+            inscollist_opt(I) valuelist(L). {
                                                 X = new SqliteInsert(
                                                         C->replace,
                                                         C->orConflict,
                                                         N->name1,
                                                         N->name2,
                                                         *(I),
-                                                        *(L)
+                                                        *(L),
+                                                        W
                                                     );
                                                 delete N;
                                                 delete C;
@@ -1275,31 +1292,34 @@ insert_stmt(X) ::= insert_cmd(C) INTO
                                                 // since it's used in trigger:
                                                 objectForTokens = X;
                                             }
-insert_stmt(X) ::= insert_cmd(C) INTO
-            fullname(N) inscollist_opt(I)
-            select(S).                      {
+insert_stmt(X) ::= with(W) insert_cmd(C)
+            INTO fullname(N)
+            inscollist_opt(I) select(S).    {
                                                 X = new SqliteInsert(
                                                         C->replace,
                                                         C->orConflict,
                                                         N->name1,
                                                         N->name2,
                                                         *(I),
-                                                        S
+                                                        S,
+                                                        W
                                                     );
                                                 delete N;
                                                 delete C;
                                                 // since it's used in trigger:
                                                 objectForTokens = X;
                                             }
-insert_stmt(X) ::= insert_cmd(C) INTO
-        fullname(N) inscollist_opt(I)
-            DEFAULT VALUES.                 {
+insert_stmt(X) ::= with(W) insert_cmd(C)
+            INTO fullname(N)
+            inscollist_opt(I) DEFAULT
+            VALUES.                         {
                                                 X = new SqliteInsert(
                                                         C->replace,
                                                         C->orConflict,
                                                         N->name1,
                                                         N->name2,
-                                                        *(I)
+                                                        *(I),
+                                                        W
                                                     );
                                                 delete N;
                                                 delete C;
@@ -2270,4 +2290,39 @@ anylist(X) ::= anylist(L) ANY(A).           {
                                                 X = L;
                                                 X->append(A->value);
                                                 DONT_INHERIT_TOKENS("anylist");
+                                            }
+
+//////////////////////// COMMON TABLE EXPRESSIONS ////////////////////////////
+%type with {SqliteWith*}
+%type wqlist {SqliteWith*}
+%destructor with {delete $$;}
+%destructor wqlist {delete $$;}
+
+with(X) ::= .                               {X = nullptr;}
+with(X) ::= WITH wqlist(W).                 {
+                                                X = W;
+                                                objectForTokens = X;
+                                            }
+with(X) ::= WITH RECURSIVE wqlist(W).       {
+                                                X = W;
+                                                X->recursive = true;
+                                                objectForTokens = X;
+                                            }
+
+wqlist(X) ::= nm(N) idxlist_opt(IL) AS
+              LP select(S) RP.              {
+                                                X = SqliteWith::append(*(N), *(IL), S);
+                                                delete N;
+                                                delete IL;
+                                            }
+wqlist(X) ::= wqlist(WL) COMMA nm(N)
+              idxlist_opt(IL) AS
+              LP select(S) RP.              {
+                                                X = SqliteWith::append(WL, *(N), *(IL), S);
+                                                delete N;
+                                                delete IL;
+                                            }
+wqlist(X) ::= ID_TAB_NEW.                   {
+                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                X = new SqliteWith();
                                             }

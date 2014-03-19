@@ -8,6 +8,7 @@
 #include <QMap>
 
 class SqliteExpr;
+class SqliteWith;
 
 class API_EXPORT SqliteUpdate : public SqliteQuery
 {
@@ -19,7 +20,7 @@ class API_EXPORT SqliteUpdate : public SqliteQuery
         ~SqliteUpdate();
         SqliteUpdate(SqliteConflictAlgo onConflict, const QString& name1, const QString& name2,
                      bool notIndexedKw, const QString& indexedBy, const QList<QPair<QString,SqliteExpr*> > values,
-                     SqliteExpr* where);
+                     SqliteExpr* where, SqliteWith* with);
 
         SqliteExpr* getValueForColumnSet(const QString& column);
 
@@ -31,6 +32,7 @@ class API_EXPORT SqliteUpdate : public SqliteQuery
         QString indexedBy = QString::null;
         QList<ColumnAndValue> keyValueMap;
         SqliteExpr* where = nullptr;
+        SqliteWith* with = nullptr;
 
     protected:
         QStringList getColumnsInStatement();

@@ -11,6 +11,7 @@
 * option to view full db path in window title
 * generating INSERT/UPDATE/DELETE/SELECT basing on table definition
 * http://forum.sqlitestudio.pl/viewtopic.php?f=11&t=884
+* command line -d option to enable debugging in GUI application (including debugging of Parser in CompletionHelper)
 
 * auto updates
 * bug reporting

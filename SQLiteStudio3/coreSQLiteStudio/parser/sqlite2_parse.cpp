@@ -3397,7 +3397,8 @@ static void yy_reduce(
                                                         yymsp[-1].minor.yy120->name1,
                                                         yymsp[-1].minor.yy120->name2,
                                                         false,
-                                                        yymsp[0].minor.yy192
+                                                        yymsp[0].minor.yy192,
+                                                        nullptr
                                                     );
                                                 delete yymsp[-1].minor.yy120;
                                                 // since it's used in trigger:
@@ -3419,7 +3420,8 @@ static void yy_reduce(
                                                         false,
                                                         QString::null,
                                                         *(yymsp[-1].minor.yy201),
-                                                        yymsp[0].minor.yy192
+                                                        yymsp[0].minor.yy192,
+                                                        nullptr
                                                     );
                                                 delete yymsp[-4].minor.yy418;
                                                 delete yymsp[-3].minor.yy120;
@@ -3468,7 +3470,8 @@ static void yy_reduce(
                                                         yymsp[-5].minor.yy120->name1,
                                                         yymsp[-5].minor.yy120->name2,
                                                         *(yymsp[-4].minor.yy207),
-                                                        *(yymsp[-1].minor.yy231)
+                                                        *(yymsp[-1].minor.yy231),
+                                                        nullptr
                                                     );
                                                 delete yymsp[-5].minor.yy120;
                                                 delete yymsp[-7].minor.yy344;
@@ -3485,7 +3488,8 @@ static void yy_reduce(
                                                         yymsp[-2].minor.yy120->name1,
                                                         yymsp[-2].minor.yy120->name2,
                                                         *(yymsp[-1].minor.yy207),
-                                                        yymsp[0].minor.yy153
+                                                        yymsp[0].minor.yy153,
+                                                        nullptr
                                                     );
                                                 delete yymsp[-2].minor.yy120;
                                                 delete yymsp[-4].minor.yy344;
@@ -4276,7 +4280,6 @@ static void yy_reduce(
       if (objectForTokens)
       {
           objectForTokens->tokens += parserContext->getTokenPtrList(allTokens);
-          //objectForTokens->inheritedTokens += allTokensWithAllInherited;
       }
   }
 
