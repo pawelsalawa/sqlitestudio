@@ -36,6 +36,39 @@ SqliteSelect* SqliteSelect::append(SqliteSelect* select, SqliteSelect::CompoundO
     return select;
 }
 
+SqliteSelect* SqliteSelect::append(const QList<QList<SqliteExpr*>>& values)
+{
+    return append(nullptr, CompoundOperator::null, values);
+}
+
+SqliteSelect* SqliteSelect::append(SqliteSelect* select, SqliteSelect::CompoundOperator op, const QList<QList<SqliteExpr*>>& values)
+{
+    if (!select)
+        select = new SqliteSelect();
+
+    Core::ResultColumn* resCol;
+    QList<Core::ResultColumn*> resColList;
+    foreach (const QList<SqliteExpr*>& singleValues, values)
+    {
+        Core* core = new Core();
+        core->setParent(select);
+        core->compoundOp = op;
+        core->valuesMode = true;
+        select->coreSelects << core;
+
+        resColList.clear();
+        foreach (SqliteExpr* value, singleValues)
+        {
+            resCol = new Core::ResultColumn(value, false, QString::null);
+            resCol->rebuildTokens();
+            resCol->setParent(core);
+            core->resultColumns << resCol;
+        }
+    }
+
+    return select;
+}
+
 QString SqliteSelect::compoundOperator(SqliteSelect::CompoundOperator op)
 {
     switch (op)
@@ -635,6 +668,12 @@ TokenList SqliteSelect::Core::JoinSource::rebuildTokensFromContents()
 TokenList SqliteSelect::Core::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
+    if (valuesMode)
+    {
+        builder.withKeyword("VALUES").withSpace().withParLeft().withStatementList(resultColumns).withParRight();
+        return builder.build();
+    }
+
     builder.withKeyword("SELECT");
     if (distinctKw)
         builder.withSpace().withKeyword("DISTINCT");
@@ -672,13 +711,16 @@ TokenList SqliteSelect::rebuildTokensFromContents()
 
     foreach (SqliteSelect::Core* core, coreSelects)
     {
-        if (core->compoundOp != CompoundOperator::null)
+        if (core->compoundOp == CompoundOperator::UNION_ALL)
         {
-            if (core->compoundOp == CompoundOperator::UNION_ALL)
-                builder.withSpace().withKeyword("UNION").withSpace().withKeyword("ALL");
+            if (core->valuesMode)
+                builder.withSpace().withOperator(",");
             else
-                builder.withSpace().withKeyword(compoundOperator(core->compoundOp));
+                builder.withSpace().withKeyword("UNION").withSpace().withKeyword("ALL");
         }
+        else if (core->compoundOp != CompoundOperator::null)
+            builder.withSpace().withKeyword(compoundOperator(core->compoundOp));
+
         builder.withStatement(core);
     }
 

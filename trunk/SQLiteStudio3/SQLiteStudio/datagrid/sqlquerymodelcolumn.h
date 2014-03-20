@@ -24,7 +24,8 @@ class SqlQueryModelColumn
             GROUPED_RESULTS,
             EXPRESSION,
             SMART_EXECUTION_FAILED,
-            DISTINCT_RESULTS
+            DISTINCT_RESULTS,
+            COMMON_TABLE_EXPRESSION
         };
 
         class DataType

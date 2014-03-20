@@ -39,19 +39,22 @@ QList<SelectResolver::Column> SelectResolver::resolve(SqliteSelect::Core *select
 
     fixColumnNames();
 
+    SqliteSelect* select = dynamic_cast<SqliteSelect*>(selectCore->parentStatement());
+    if (select && select->coreSelects.size() > 1)
+        markCompoundColumns();
+
+    if (select && select->with)
+        markCteColumns();
+
     return currentCoreResults;
 }
 
 QList<QList<SelectResolver::Column> > SelectResolver::resolve(SqliteSelect *select)
 {
-    int coreCount = select->coreSelects.size();
     QList<QList<SelectResolver::Column> > results;
     foreach (SqliteSelect::Core* core, select->coreSelects)
     {
         results << resolve(core);
-        if (coreCount > 1)
-            markCompoundColumns();
-
         currentCoreResults.clear();
     }
 
@@ -60,10 +63,15 @@ QList<QList<SelectResolver::Column> > SelectResolver::resolve(SqliteSelect *sele
 
 QList<SelectResolver::Column> SelectResolver::resolveAvailableColumns(SqliteSelect::Core *selectCore)
 {
+    QList<Column> columns;
     if (selectCore->from)
-        return resolveJoinSource(selectCore->from);
+        columns = resolveJoinSource(selectCore->from);
 
-    return QList<SelectResolver::Column>();
+    SqliteSelect* select = dynamic_cast<SqliteSelect*>(selectCore->parentStatement());
+    if (select && select->with)
+        markCteColumns();
+
+    return columns;
 }
 
 QList<QList<SelectResolver::Column> > SelectResolver::resolveAvailableColumns(SqliteSelect *select)
@@ -159,23 +167,22 @@ SelectResolver::Column SelectResolver::translateToColumns(SqliteSelect* select, 
 
 void SelectResolver::markDistinctColumns()
 {
-    QMutableListIterator<Column> it(currentCoreResults);
-    while (it.hasNext())
-        it.next().flags |= FROM_DISTINCT_SELECT;
+    markCurrentColumnsWithFlag(FROM_DISTINCT_SELECT);
 }
 
 void SelectResolver::markCompoundColumns()
 {
-    QMutableListIterator<Column> it(currentCoreResults);
-    while (it.hasNext())
-        it.next().flags |= FROM_COMPOUND_SELECT;
+    markCurrentColumnsWithFlag(FROM_COMPOUND_SELECT);
+}
+
+void SelectResolver::markCteColumns()
+{
+    markCurrentColumnsWithFlag(FROM_CTE_SELECT);
 }
 
 void SelectResolver::markGroupedColumns()
 {
-    QMutableListIterator<Column> it(currentCoreResults);
-    while (it.hasNext())
-        it.next().flags |= FROM_GROUPED_SELECT;
+    markCurrentColumnsWithFlag(FROM_GROUPED_SELECT);
 }
 
 void SelectResolver::fixColumnNames()
@@ -193,6 +200,13 @@ void SelectResolver::fixColumnNames()
 
         existingDisplayNames << it.value().displayName;
     }
+}
+
+void SelectResolver::markCurrentColumnsWithFlag(SelectResolver::Flag flag)
+{
+    QMutableListIterator<Column> it(currentCoreResults);
+    while (it.hasNext())
+        it.next().flags |= flag;
 }
 
 void SelectResolver::resolve(SqliteSelect::Core::ResultColumn *resCol)

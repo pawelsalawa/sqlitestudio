@@ -222,23 +222,7 @@ TokenList SqliteInsert::rebuildTokensFromContents()
         if (columnNames.size() > 0)
             builder.withParLeft().withOtherList(columnNames, dialect).withParRight().withSpace();
 
-        if (select)
-        {
-            builder.withStatement(select);
-        }
-        else
-        {
-            builder.withKeyword("VALUES").withSpace();
-            bool first = true;
-            foreach (const QList<SqliteExpr*>& exprList, values)
-            {
-                if (!first)
-                    builder.withOperator(",").withSpace();
-
-                builder.withParLeft().withStatementList(exprList).withParRight();
-                first = false;
-            }
-        }
+        builder.withStatement(select);
     }
 
     return builder.build();

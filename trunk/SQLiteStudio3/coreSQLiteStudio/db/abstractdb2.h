@@ -87,7 +87,7 @@ class AbstractDb2 : public AbstractDb
                 sqlite_vm* stmt = nullptr;
                 int errorCode = SQLITE_OK;
                 QString errorMessage;
-                int colCount = 0;
+                int colCount = -1;
                 QStringList colNames;
                 QList<QVariant> nextRowValues;
                 int affected = 0;
@@ -659,7 +659,7 @@ int AbstractDb2<T>::Results::fetchNext()
     }
 
     // First row, initialize members
-    if (colCount == 0)
+    if (colCount == -1)
         init(columnsCount, columns);
 
     // Then read the next row data
