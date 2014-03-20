@@ -51,6 +51,8 @@ SqlQueryModelColumn::EditionForbiddenReason SqlQueryModelColumn::convert(QueryEx
             return EditionForbiddenReason::GROUPED_RESULTS;
         case QueryExecutor::ColumnEditionForbiddenReason::DISTINCT_RESULTS:
             return EditionForbiddenReason::DISTINCT_RESULTS;
+        case QueryExecutor::ColumnEditionForbiddenReason::COMM_TAB_EXPR:
+            return EditionForbiddenReason::COMMON_TABLE_EXPRESSION;
     }
     return static_cast<EditionForbiddenReason>(-1);
 }
@@ -73,6 +75,8 @@ QString SqlQueryModelColumn::resolveMessage(SqlQueryModelColumn::EditionForbidde
             return QObject::tr("Cannot edit columns that are result of aggregated SELECT statements.");
         case EditionForbiddenReason::DISTINCT_RESULTS:
             return QObject::tr("Cannot edit columns that are result of SELECT DISTINCT statement.");
+        case EditionForbiddenReason::COMMON_TABLE_EXPRESSION:
+            return QObject::tr("Cannot edit columns that are result of common table expression statement (%1).").arg("WITH ... SELECT ...");
     }
     qCritical() << "Reached null text message for SqlQueryModel::EditionForbiddenReason. This should not happen!";
     return QString::null;

@@ -26,6 +26,7 @@ class SelectResolverTest : public QObject
         void cleanupTestCase();
         void testTableHash();
         void testColumnHash();
+        void testWithCommonTableExpression();
         void test1();
 };
 
@@ -168,6 +169,31 @@ void SelectResolverTest::testColumnHash()
     QVERIFY(columns.size() == 5);
 }
 
+void SelectResolverTest::testWithCommonTableExpression()
+{
+    // Test with query from examples from SQLite documentation
+    QString sql = "WITH RECURSIVE works_for_alice(n) AS ("
+                  "               VALUES('Alice')"
+                  "               UNION"
+                  "               SELECT name"
+                  "                 FROM org, works_for_alice"
+                  "                WHERE org.boss = works_for_alice.n"
+                  "     )"
+                  "     SELECT avg(height)"
+                  "       FROM org"
+                  "      WHERE org.name IN works_for_alice";
+
+    SelectResolver resolver(db, sql);
+    Parser parser(db->getDialect());
+    QVERIFY(parser.parse(sql));
+
+    QList<QList<SelectResolver::Column>> columns = resolver.resolve(parser.getQueries().first().dynamicCast<SqliteSelect>().data());
+    QList<SelectResolver::Column> coreColumns = columns.first();
+    QVERIFY(coreColumns.size() == 1);
+    QVERIFY(coreColumns[0].type == SelectResolver::Column::OTHER);
+    QVERIFY(coreColumns[0].flags & SelectResolver::Flag::FROM_CTE_SELECT);
+}
+
 void SelectResolverTest::test1()
 {
     QString sql = "SELECT * FROM (SELECT count(col1), col2 FROM test)";
@@ -192,6 +218,8 @@ void SelectResolverTest::initTestCase()
     db = new DbSqlite3Mock("testdb");
     db->open();
     db->exec("CREATE TABLE test (col1, col2, col3);");
+    db->exec("CREATE TABLE org (name TEXT PRIMARY KEY, boss TEXT REFERENCES org, height INT)");
+    SqlResultsPtr results = db->exec("SELECT name FROM sqlite_master");
 }
 
 void SelectResolverTest::cleanupTestCase()

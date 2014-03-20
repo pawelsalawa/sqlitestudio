@@ -691,13 +691,6 @@ AbstractDb3<T>::Results::Results(AbstractDb3<T>* db, sqlite3_stmt* stmt, bool er
     }
 
     colCount = sqlite3_column_count(stmt);
-    if (colCount == 0)
-    {
-        errorCode = SQLITE_ERROR;
-        errorMessage = QStringLiteral("No columns returned in results.");
-        return;
-    }
-
     for (int i = 0; i < colCount; i++)
         colNames << QString::fromUtf8(sqlite3_column_name(stmt, i));
 

@@ -947,7 +947,6 @@ void CompletionHelper::parseFullSql()
     Dialect dialect = db->getDialect();
 
     Parser parser(dialect);
-    parser.setLemonDebug(true);
     QString sql = fullSql;
 
     // Selecting query at cursor position

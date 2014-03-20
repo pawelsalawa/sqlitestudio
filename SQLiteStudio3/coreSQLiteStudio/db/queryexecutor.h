@@ -156,15 +156,21 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
                                * queries, so the results are accurate, but in consequence,
                                * the data cannot be edited.
                                */
-            EXPRESSION, /**<
-                         * The data cell is a result of a formula, function or other expression,
-                         * which is not a direct data source, therefore it's impossible to change
-                         * it's value.
-                         */
-            SYSTEM_TABLE /**<
-                          * The data cell comes from system table (sqlite_*) and those tables cannot
-                          * be edited.
-                          */
+            EXPRESSION,       /**<
+                               * The data cell is a result of a formula, function or other expression,
+                               * which is not a direct data source, therefore it's impossible to change
+                               * it's value.
+                               */
+            SYSTEM_TABLE,     /**<
+                               * The data cell comes from system table (sqlite_*) and those tables cannot
+                               * be edited.
+                               */
+            COMM_TAB_EXPR,    /**<
+                               * The data cell comes from system "WITH common-table-expression" SELECT
+                               * statement and those tables cannot be edited for the same reasons as
+                               * in COMPOUND_SELECT case. To learn about common table expression statement,
+                               * see http://sqlite.org/lang_with.html
+                               */
         };
 
         /**

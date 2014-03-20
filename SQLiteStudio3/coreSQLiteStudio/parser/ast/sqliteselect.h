@@ -183,6 +183,7 @@ class API_EXPORT SqliteSelect : public SqliteQuery
                 QList<SqliteExpr*> groupBy;
                 QList<SqliteOrderBy*> orderBy;
                 SqliteLimit* limit = nullptr;
+                bool valuesMode = false;
 
             protected:
                 TokenList rebuildTokensFromContents();
@@ -193,6 +194,8 @@ class API_EXPORT SqliteSelect : public SqliteQuery
 
         static SqliteSelect* append(SqliteSelect::Core* core);
         static SqliteSelect* append(SqliteSelect* select, CompoundOperator op, SqliteSelect::Core* core);
+        static SqliteSelect* append(const QList<QList<SqliteExpr*>>& values);
+        static SqliteSelect* append(SqliteSelect* select, SqliteSelect::CompoundOperator op, const QList<QList<SqliteExpr*>>& values);
 
         QString compoundOperator(CompoundOperator op);
         CompoundOperator compoundOperator(const QString& op);

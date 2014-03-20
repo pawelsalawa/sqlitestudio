@@ -795,11 +795,23 @@ selectnowith(X) ::= oneselect(S).           {
                                                 X = SqliteSelect::append(S);
                                                 objectForTokens = X;
                                             }
-selectnowith(X) ::= select(S1)
+selectnowith(X) ::= selectnowith(S1)
                     multiselect_op(O)
                     oneselect(S2).          {
                                                 X = SqliteSelect::append(S1, *(O), S2);
                                                 delete O;
+                                                objectForTokens = X;
+                                            }
+selectnowith(X) ::= values(V).              {
+                                                X = SqliteSelect::append(*(V));
+                                                delete V;
+                                                objectForTokens = X;
+                                            }
+selectnowith(X) ::= selectnowith(S1)
+                    COMMA
+                    values(V).              {
+                                                X = SqliteSelect::append(S1, SqliteSelect::CompoundOperator::UNION_ALL, *(V));
+                                                delete V;
                                                 objectForTokens = X;
                                             }
 
@@ -831,6 +843,21 @@ oneselect(X) ::= SELECT distinct(D)
                                                 delete D;
                                                 delete G;
                                                 objectForTokens = X;
+                                            }
+
+%type values {ParserExprNestedList*}
+%destructor values {delete $$;}
+values(X) ::= VALUES LP nexprlist(E) RP. {
+                                                X = new ParserExprNestedList();
+                                                X->append(*(E));
+                                                delete E;
+                                            }
+values(X) ::= values(L) COMMA LP
+                exprlist(E) RP.             {
+                                                L->append(*(E));
+                                                X = L;
+                                                delete E;
+                                                DONT_INHERIT_TOKENS("values");
                                             }
 
 %type distinct {int*}
@@ -1189,8 +1216,10 @@ delete_stmt(X) ::= with(WI) DELETE FROM
                                             }
 //%endif
 
-delete_stmt ::= DELETE FROM nm DOT ID_TAB.  {}
-delete_stmt ::= DELETE FROM ID_DB|ID_TAB.   {}
+delete_stmt ::= with DELETE FROM
+                            nm DOT ID_TAB.  {}
+delete_stmt ::= with DELETE FROM
+                            ID_DB|ID_TAB.   {}
 
 %type where_opt {SqliteExpr*}
 %destructor where_opt {delete $$;}
@@ -1235,9 +1264,10 @@ update_stmt(X) ::= with(WI) UPDATE orconf(C)
                                             }
 //%endif
 
-update_stmt ::= UPDATE orconf nm DOT
+update_stmt ::= with UPDATE orconf nm DOT
                     ID_TAB.                 {}
-update_stmt ::= UPDATE orconf ID_DB|ID_TAB. {}
+update_stmt ::= with UPDATE orconf
+                    ID_DB|ID_TAB.           {}
 
 %type setlist {ParserSetValueList*}
 %destructor setlist {delete $$;}
@@ -1276,24 +1306,6 @@ cmd(X) ::= insert_stmt(S).                  {
 %destructor insert_stmt {delete $$;}
 insert_stmt(X) ::= with(W) insert_cmd(C)
             INTO fullname(N)
-            inscollist_opt(I) valuelist(L). {
-                                                X = new SqliteInsert(
-                                                        C->replace,
-                                                        C->orConflict,
-                                                        N->name1,
-                                                        N->name2,
-                                                        *(I),
-                                                        *(L),
-                                                        W
-                                                    );
-                                                delete N;
-                                                delete C;
-                                                delete L;
-                                                // since it's used in trigger:
-                                                objectForTokens = X;
-                                            }
-insert_stmt(X) ::= with(W) insert_cmd(C)
-            INTO fullname(N)
             inscollist_opt(I) select(S).    {
                                                 X = new SqliteInsert(
                                                         C->replace,
@@ -1327,9 +1339,9 @@ insert_stmt(X) ::= with(W) insert_cmd(C)
                                                 objectForTokens = X;
                                             }
 
-insert_stmt ::= insert_cmd INTO
+insert_stmt ::= with insert_cmd INTO
                     ID_DB|ID_TAB.           {}
-insert_stmt ::= insert_cmd INTO
+insert_stmt ::= with insert_cmd INTO
                     nm DOT ID_TAB.          {}
 
 %type insert_cmd {ParserStubInsertOrReplace*}
@@ -1339,21 +1351,6 @@ insert_cmd(X) ::= INSERT orconf(C).         {
                                                 delete C;
                                             }
 insert_cmd(X) ::= REPLACE.                  {X = new ParserStubInsertOrReplace(true);}
-
-%type valuelist {ParserExprNestedList*}
-%destructor valuelist {delete $$;}
-valuelist(X) ::= VALUES LP nexprlist(E) RP. {
-                                                X = new ParserExprNestedList();
-                                                X->append(*(E));
-                                                delete E;
-                                            }
-valuelist(X) ::= valuelist(L) COMMA LP
-                exprlist(E) RP.             {
-                                                L->append(*(E));
-                                                X = L;
-                                                delete E;
-                                                DONT_INHERIT_TOKENS("valuelist");
-                                            }
 
 %type inscollist_opt {ParserStringList*}
 %destructor inscollist_opt {delete $$;}
@@ -2321,6 +2318,7 @@ wqlist(X) ::= wqlist(WL) COMMA nm(N)
                                                 X = SqliteWith::append(WL, *(N), *(IL), S);
                                                 delete N;
                                                 delete IL;
+                                                DONT_INHERIT_TOKENS("wqlist");
                                             }
 wqlist(X) ::= ID_TAB_NEW.                   {
                                                 parserContext->minorErrorBeforeNextToken("Syntax error");
