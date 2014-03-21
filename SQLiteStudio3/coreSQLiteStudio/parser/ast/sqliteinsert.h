@@ -17,9 +17,6 @@ class API_EXPORT SqliteInsert : public SqliteQuery
         SqliteInsert(const SqliteInsert& other);
         SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QString& name1,
                      const QString& name2, const QList<QString>& columns,
-                     const QList<QList<SqliteExpr*> >& rows, SqliteWith* with);
-        SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QString& name1,
-                     const QString& name2, const QList<QString>& columns,
                      const QList<SqliteExpr*>& row, SqliteWith* with);
         SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QString& name1,
                      const QString& name2, const QList<QString>& columns, SqliteSelect* select, SqliteWith* with);
@@ -48,7 +45,7 @@ class API_EXPORT SqliteInsert : public SqliteQuery
         QString database = QString::null;
         QString table = QString::null;
         QStringList columnNames;
-        QList< QList<SqliteExpr*> > values;
+        QList<SqliteExpr*> values;
         SqliteSelect* select = nullptr;
         SqliteWith* with = nullptr;
 };

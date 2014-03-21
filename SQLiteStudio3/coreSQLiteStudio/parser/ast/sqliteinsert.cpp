@@ -15,41 +15,9 @@ SqliteInsert::SqliteInsert(const SqliteInsert& other) :
     SqliteQuery(other), replaceKw(other.replaceKw), defaultValuesKw(other.defaultValuesKw), onConflict(other.onConflict), database(other.database),
     table(other.table), columnNames(other.columnNames)
 {
-    // Special case of deep collection copy
-    QList<SqliteExpr*> newExprList;
-    SqliteExpr* newExpr;
-    foreach (const QList<SqliteExpr*>& exprList, other.values)
-    {
-        newExprList.clear();
-        foreach (SqliteExpr* expr, exprList)
-        {
-            newExpr = new SqliteExpr(*expr);
-            newExpr->setParent(this);
-            newExprList << newExpr;
-        }
-        values << newExprList;
-    }
-
+    DEEP_COPY_COLLECTION(SqliteExpr, values);
     DEEP_COPY_FIELD(SqliteSelect, select);
     DEEP_COPY_FIELD(SqliteWith, with);
-}
-
-SqliteInsert::SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QString &name1, const QString &name2, const QList<QString> &columns,
-                           const QList<QList<SqliteExpr *> > &rows, SqliteWith* with)
-    : SqliteInsert()
-{
-    initName(name1, name2);
-    initMode(replace, onConflict);
-    columnNames = columns;
-    values = rows;
-
-    this->with = with;
-    if (with)
-        with->setParent(this);
-
-    foreach (QList<SqliteExpr*> list, values)
-        foreach (SqliteExpr* expr, list)
-            expr->setParent(this);
 }
 
 SqliteInsert::SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QString &name1, const QString &name2, const QList<QString> &columns,
@@ -58,7 +26,7 @@ SqliteInsert::SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QS
     initName(name1, name2);
     initMode(replace, onConflict);
     columnNames = columns;
-    values += row;
+    values = row;
 
     this->with = with;
     if (with)
@@ -100,14 +68,6 @@ SqliteInsert::SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QS
 
 SqliteInsert::~SqliteInsert()
 {
-//    if (select)
-//        delete select;
-
-//    QList<SqliteExpr*> list;
-//    SqliteExpr* expr;
-//    foreach (list, values)
-//        foreach (expr, list)
-    //            delete expr;
 }
 
 QStringList SqliteInsert::getColumnsInStatement()
@@ -225,5 +185,23 @@ TokenList SqliteInsert::rebuildTokensFromContents()
         builder.withStatement(select);
     }
 
+    if (defaultValuesKw)
+    {
+        builder.withKeyword("DEFAULT").withSpace().withKeyword("VALUES");
+    }
+    else
+    {
+        if (columnNames.size() > 0)
+            builder.withParLeft().withOtherList(columnNames, dialect).withParRight().withSpace();
+
+        if (select)
+        {
+            builder.withStatement(select);
+        }
+        else if (dialect == Dialect::Sqlite2) // Sqlite2 uses classic single row values
+        {
+            builder.withKeyword("VALUES").withSpace().withParLeft().withStatementList(values).withParRight();
+        }
+    }
     return builder.build();
 }
