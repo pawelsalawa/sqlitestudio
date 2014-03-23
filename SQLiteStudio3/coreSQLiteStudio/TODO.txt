@@ -1,4 +1,3 @@
-* support WITH clause
 * context menu for taskbar
 
 * add nice api for accessing menus and toolbars, so plugins can easly add/remove from them

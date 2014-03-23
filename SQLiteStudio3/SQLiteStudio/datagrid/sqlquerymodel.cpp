@@ -546,12 +546,14 @@ void SqlQueryModel::loadData(SqlResultsPtr results)
     // Load data
     SqlResultsRowPtr row;
     int rowIdx = 0;
-    rowNumBase = getCurrentPage() * CFG_UI.General.NumberOfRowsPerPage.get() + 1;
+    int rowsPerPage = CFG_UI.General.NumberOfRowsPerPage.get();
+    rowNumBase = getCurrentPage() * rowsPerPage + 1;
 
     updateColumnHeaderLabels();
     QList<QStandardItem*> itemList;
-    foreach (row, results->getAll())
+    while (results->hasNext() && rowIdx < rowsPerPage)
     {
+        row = results->next();
         itemList = loadRow(row);
         insertRow(rowIdx, itemList);
 

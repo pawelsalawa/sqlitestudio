@@ -1000,6 +1000,16 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
         void simpleExecutionFinished(SqlResultsPtr results);
 
         /**
+         * @brief Tests whether the original query is a SELECT statement.
+         * @return true if the query is SELECT, or false otherwise.
+         *
+         * This method assumes that there was a problem with parsing the query with the Parser
+         * (and that's why we're using simple execution method) and so it tries to figure out
+         * a query type using other algorithms.
+         */
+        bool simpleExecIsSelect();
+
+        /**
          * @brief Releases resources acquired during query execution.
          *
          * Currently it just detaches databases attached for query execution needs (transparent

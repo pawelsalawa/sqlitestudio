@@ -39,9 +39,8 @@ void SqlResults::preload()
         return;
 
     QList<SqlResultsRowPtr> allRows;
-    SqlResultsRowPtr row;
-    while (!(row = nextInternal()).isNull())
-        allRows << row;
+    while (hasNextInternal())
+        allRows << nextInternal();
 
     preloadedData = allRows;
     preloaded = true;
