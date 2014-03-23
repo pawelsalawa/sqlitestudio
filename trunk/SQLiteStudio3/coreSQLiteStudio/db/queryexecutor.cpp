@@ -3,6 +3,7 @@
 #include "sqlerrorcodes.h"
 #include "services/dbmanager.h"
 #include "db/sqlerrorcodes.h"
+#include "services/notifymanager.h"
 #include "queryexecutorsteps/queryexecutoraddrowids.h"
 #include "queryexecutorsteps/queryexecutorcolumns.h"
 #include "queryexecutorsteps/queryexecutorparsequery.h"
@@ -21,6 +22,7 @@
 #include <QDateTime>
 #include <QThreadPool>
 #include <QDebug>
+#include <parser/lexer.h>
 
 // TODO modify all executor steps to use rebuildTokensFromContents() method, instead of replacing tokens manually.
 
@@ -365,6 +367,11 @@ void QueryExecutor::simpleExecutionFinished(SqlResultsPtr results)
         return;
     }
 
+    if (simpleExecIsSelect())
+        context->countingQuery = "SELECT count(*) AS cnt FROM ("+originalQuery+");";
+    else
+        context->rowsCountingRequired = true;
+
     ResultColumnPtr resCol = ResultColumnPtr::create();
     context->resultColumns.clear();
     foreach (const QString& colName, results->getColumnNames())
@@ -375,7 +382,7 @@ void QueryExecutor::simpleExecutionFinished(SqlResultsPtr results)
 
     context->executionTime = QDateTime::currentMSecsSinceEpoch() - simpleExecutionStartTime;
     context->rowsAffected = results->rowsAffected();
-    context->totalRowsReturned = results->getAll().size();
+    context->totalRowsReturned = 0;
 
     executionMutex.lock();
     executionInProgress = false;
@@ -386,8 +393,58 @@ void QueryExecutor::simpleExecutionFinished(SqlResultsPtr results)
         context->resultsHandler = nullptr;
     }
 
+    notifyWarn(tr("SQLiteStudio was unable to extract metadata from the query. Results won't be editable."));
+
     emit executionFinished(results);
-    emit resultsCountingFinished(context->rowsAffected, context->totalRowsReturned, context->totalPages);
+}
+
+bool QueryExecutor::simpleExecIsSelect()
+{
+    TokenList tokens = Lexer::tokenize(originalQuery, db->getDialect());
+    tokens.trim();
+
+    // First check if it's explicit "SELECT" or "VALUES" (the latter one added in SQLite 3.8.4).
+    TokenPtr token = tokens.first();
+    QString upper = token->value.toUpper();
+    if (token->type == Token::KEYWORD && (upper == "SELECT" || upper == "VALUES"))
+        return true;
+
+    // Now it's only possible to be a SELECT if it starts with "WITH" statement.
+    if (token->type != Token::KEYWORD || upper != "WITH")
+        return false;
+
+    // Go through all tokens and find which one appears first (exclude contents indise parenthesis,
+    // cause there will always be a SELECT for Common Table Expression).
+    int depth = 0;
+    foreach (token, tokens)
+    {
+        switch (token->type)
+        {
+            case Token::PAR_LEFT:
+                depth--;
+                break;
+            case Token::PAR_RIGHT:
+                depth++;
+                break;
+            case Token::KEYWORD:
+            {
+                if (depth > 0)
+                    break;
+
+                upper = token->value.toUpper();
+                if (upper == "SELECT")
+                    return true;
+
+                if (upper == "UPDATE" || upper == "DELETE" || upper == "INSERT")
+                    return false;
+
+                break;
+            }
+            default:
+                break;
+        }
+    }
+    return false;
 }
 
 void QueryExecutor::cleanup()
@@ -422,6 +479,12 @@ bool QueryExecutor::handleRowCountingResults(quint32 asyncId, SqlResultsPtr resu
     context->totalPages = (int)ceil(((double)(context->totalRowsReturned)) / ((double)getResultsPerPage()));
 
     emit resultsCountingFinished(context->rowsAffected, context->totalRowsReturned, context->totalPages);
+
+    if (results->isError())
+    {
+        notifyError(tr("An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1")
+                    .arg(results->getErrorText()));
+    }
 
     return true;
 }

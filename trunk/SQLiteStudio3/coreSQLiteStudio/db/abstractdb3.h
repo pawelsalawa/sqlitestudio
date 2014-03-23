@@ -741,13 +741,11 @@ qint64 AbstractDb3<T>::Results::rowsAffected()
 template <class T>
 SqlResultsRowPtr AbstractDb3<T>::Results::nextInternal()
 {
-    if (!rowAvailable || db.isNull() || !db->isValid(stmt))
-        return SqlResultsRowPtr();
-
     Row* row = new Row;
     int res = row->init(colNames, stmt);
     if (res != SQLITE_OK)
     {
+        delete row;
         errorCode = res;
         errorMessage = QString::fromUtf8(sqlite3_errmsg(db->dbHandle));
         return SqlResultsRowPtr();
@@ -760,17 +758,19 @@ SqlResultsRowPtr AbstractDb3<T>::Results::nextInternal()
 template <class T>
 bool AbstractDb3<T>::Results::hasNextInternal()
 {
-    return rowAvailable;
+    return rowAvailable && !db.isNull() && db->isValid(stmt);
 }
 
 template <class T>
 int AbstractDb3<T>::Results::fetchNext()
 {
-    if (!rowAvailable || db.isNull() || !db->isValid(stmt))
+    if (db.isNull() || !db->isValid(stmt))
+        rowAvailable = false;
+
+    if (!rowAvailable)
         return SQLITE_MISUSE;
 
     rowAvailable = false;
-
     int res;
     int secondsSpent = 0;
     while ((res = sqlite3_step(stmt)) == SQLITE_BUSY && secondsSpent < db->getTimeout())

@@ -626,7 +626,10 @@ bool AbstractDb2<T>::Results::hasNextInternal()
 template <class T>
 int AbstractDb2<T>::Results::fetchNext()
 {
-    if (!rowAvailable || db.isNull() || !db->isValid(stmt))
+    if (db.isNull() || !db->isValid(stmt))
+        rowAvailable = false;
+
+    if (!rowAvailable)
         return SQLITE_MISUSE;
 
     rowAvailable = false;
