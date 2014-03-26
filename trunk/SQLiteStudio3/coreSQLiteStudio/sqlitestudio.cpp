@@ -20,6 +20,7 @@
 #include "services/impl/configimpl.h"
 #include "services/impl/dbmanagerimpl.h"
 #include "services/impl/functionmanagerimpl.h"
+#include "services/impl/collationmanagerimpl.h"
 #include "services/impl/pluginmanagerimpl.h"
 #include "impl/dbattacherimpl.h"
 #include <QProcessEnvironment>
@@ -42,10 +43,21 @@ void SQLiteStudio::parseCmdLineArgs()
     {
         if (cmdLineArgs[i] == "-d")
         {
-            // TODO
+            // TODO command line args for gui
         }
     }
 }
+CollationManager* SQLiteStudio::getCollationManager() const
+{
+    return collationManager;
+}
+
+void SQLiteStudio::setCollationManager(CollationManager* value)
+{
+    safe_delete(collationManager);
+    collationManager = value;
+}
+
 DbAttacherFactory* SQLiteStudio::getDbAttacherFactory() const
 {
     return dbAttacherFactory;
@@ -146,6 +158,8 @@ void SQLiteStudio::init(const QStringList& cmdListArguments)
     // FunctionManager needs to be set up before DbManager, cause when DbManager starts up, databases make their
     // connections and register functions.
     functionManager = new FunctionManagerImpl();
+
+    collationManager = new CollationManagerImpl();
 
     cmdLineArgs = cmdListArguments;
 

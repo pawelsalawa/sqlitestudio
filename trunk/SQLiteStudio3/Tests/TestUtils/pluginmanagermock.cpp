@@ -106,6 +106,11 @@ QList<Plugin*> PluginManagerMock::getLoadedPlugins(PluginType* type) const
     return QList<Plugin*>();
 }
 
+ScriptingPlugin* PluginManagerMock::getScriptingPlugin(const QString& languageName) const
+{
+    return nullptr;
+}
+
 void PluginManagerMock::registerPluginType(PluginType* type)
 {
 }

@@ -6,17 +6,17 @@
 class DbManagerMock : public DbManager
 {
     public:
-        bool addDb(const QString& name, const QString& path, const QHash<QString, QVariant>& options, bool permanent);
-        bool addDb(const QString& name, const QString& path, bool permanent);
-        bool updateDb(Db* db, const QString& name, const QString& path, const QHash<QString, QVariant>& options, bool permanent);
-        void removeDbByName(const QString& name, Qt::CaseSensitivity cs);
-        void removeDbByPath(const QString& path);
-        void removeDb(Db* db);
+        bool addDb(const QString& name, const QString&, const QHash<QString, QVariant>&, bool);
+        bool addDb(const QString&, const QString&, bool);
+        bool updateDb(Db*, const QString&, const QString&, const QHash<QString, QVariant>&, bool);
+        void removeDbByName(const QString&, Qt::CaseSensitivity);
+        void removeDbByPath(const QString&);
+        void removeDb(Db*);
         QList<Db*> getDbList();
         QList<Db*> getConnectedDbList();
         QStringList getDbNames();
-        Db*getByName(const QString& name, Qt::CaseSensitivity cs);
-        Db*getByPath(const QString& path);
+        Db*getByName(const QString&, Qt::CaseSensitivity);
+        Db*getByPath(const QString&);
 
     public slots:
         void loadDbListFromConfig();

@@ -28,6 +28,7 @@ class PluginManagerMock : public PluginManager
         QString getDescription(const QString& pluginName) const;
         PluginType*getPluginType(Plugin* plugin) const;
         QList<Plugin*> getLoadedPlugins(PluginType* type) const;
+        ScriptingPlugin* getScriptingPlugin(const QString& languageName) const;
 
     protected:
         void registerPluginType(PluginType* type);

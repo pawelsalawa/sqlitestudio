@@ -105,8 +105,9 @@ void CliCommandSql::printResultsClassic(QueryExecutor* executor, SqlResultsPtr r
     SqlResultsRowPtr row;
     QList<QVariant> values;
     int i;
-    while (!(row = results->next()).isNull())
+    while (results->hasNext())
     {
+        row = results->next();
         i = 0;
         values = row->valueList().mid(rowIdColumns);
         foreach (QVariant value, values)
@@ -159,9 +160,8 @@ void CliCommandSql::printResultsFixed(QueryExecutor* executor, SqlResultsPtr res
     printColumnHeader(widths, columns);
 
     // Data
-    SqlResultsRowPtr row;
-    while (!(row = results->next()).isNull())
-        printColumnDataRow(widths, row, rowIdColumns);
+    while (results->hasNext())
+        printColumnDataRow(widths, results->next(), rowIdColumns);
 
     qOut.flush();
 }
@@ -263,8 +263,9 @@ void CliCommandSql::printResultsRowByRow(QueryExecutor* executor, SqlResultsPtr 
     int i;
     int rowCnt = 1;
     SqlResultsRowPtr row;
-    while (!(row = results->next()).isNull())
+    while (results->hasNext())
     {
+        row = results->next();
         i = 0;
         rowCntString = " " + rowCntTemplate.arg(rowCnt) + " ";
         qOut << center(rowCntString, termWidth - 1, '-') << "\n";

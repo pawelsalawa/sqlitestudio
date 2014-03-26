@@ -172,8 +172,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>369</width>
-            <height>73</height>
+            <width>365</width>
+            <height>68</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_4">
@@ -243,6 +243,17 @@
    <header>sqleditor.h</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>nameEdit</tabstop>
+  <tabstop>tableCombo</tabstop>
+  <tabstop>uniqueCheck</tabstop>
+  <tabstop>scrollArea</tabstop>
+  <tabstop>partialIndexCheck</tabstop>
+  <tabstop>partialIndexEdit</tabstop>
+  <tabstop>buttonBox</tabstop>
+  <tabstop>ddlEdit</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

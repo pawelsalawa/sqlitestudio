@@ -576,7 +576,7 @@ class API_EXPORT Db : public QObject
         virtual bool deregisterFunction(const QString& name, int argCount) = 0;
 
         /**
-         * @brief Registers scalar custom SQL function
+         * @brief Registers scalar custom SQL function.
          * @param name Name of the function.
          * @param argCount Number of arguments accepted by the function (-1 for undefined).
          * @return true on success, false on failure.
@@ -587,15 +587,17 @@ class API_EXPORT Db : public QObject
          * This method is used only to let the database know, that the given function exists in FunctionManager and we want it to be visible
          * in this database's context. When the function is called from SQL query, then the function execution is delegated to the FunctionManager.
          *
+         * For details about usage of custom SQL functions see http://sqlitestudio.pl/wiki/index.php/User_Manual#Custom_SQL_functions
+         *
          * @see FunctionManager
          */
         virtual bool registerScalarFunction(const QString& name, int argCount) = 0;
 
         /**
-         * @brief registerAggregateFunction
-         * @param name
-         * @param argCount
-         * @return
+         * @brief Registers aggregate custom SQL function.
+         * @param name Name of the function.
+         * @param argCount Number of arguments accepted by the function (-1 for undefined).
+         * @return true on success, false on failure.
          *
          * Aggregate functions are used to aggregate many rows into single row. They are common in queries with GROUP BY statements.
          * The aggregate function in SQLite is actually implemented by 2 functions - one for executing per each row (and which doesn't return any result yet,
@@ -608,9 +610,37 @@ class API_EXPORT Db : public QObject
          * This method is used only to let the database know, that the given function exists in FunctionManager and we want it to be visible
          * in this database's context. When the function is called from SQL query, then the function execution is delegated to the FunctionManager.
          *
+         * For details about usage of custom SQL functions see http://sqlitestudio.pl/wiki/index.php/User_Manual#Custom_SQL_functions
+         *
          * @see FunctionManager
          */
         virtual bool registerAggregateFunction(const QString& name, int argCount) = 0;
+
+        /**
+         * @brief Registers a collation sequence implementation in the database.
+         * @param name Name of the collation.
+         * @return true on success, false on failure.
+         *
+         * Collations are not supported by SQLite 2, so this method will always fail for those databases.
+         *
+         * Collations are handled by CollationManager. Each collation managed by the manager has a code implemented to return -1, 0 or 1
+         * when comparing 2 values in the database in order to sort query results. The name passed to this method is a name of the collation
+         * as it is used in SQL queries and also the same name must be used when defining collation in Collations editor window.
+         *
+         * For details about usage of custom collations see http://sqlitestudio.pl/wiki/index.php/User_Manual#Custom_collations
+         *
+         * @see CollationManager
+         */
+        virtual bool registerCollation(const QString& name) = 0;
+
+        /**
+         * @brief Deregisters previously registered collation from this database.
+         * @param name Collation name.
+         * @return true on success, false on failure.
+         *
+         * See registerCollation() for details on custom collations.
+         */
+        virtual bool deregisterCollation(const QString& name) = 0;
 
     signals:
         /**
@@ -709,6 +739,13 @@ class API_EXPORT Db : public QObject
          * @see FunctionManager
          */
         virtual void registerAllFunctions() = 0;
+
+        /**
+         * @brief Deregisters all collations registered in the database and registers new (possibly the same) collations.
+         *
+         * This slot is called from openAndsetup() and then every time user modifies custom collations and commits changes to them.
+         */
+        virtual void registerAllCollations() = 0;
 };
 
 QDataStream &operator<<(QDataStream &out, const Db* myObj);

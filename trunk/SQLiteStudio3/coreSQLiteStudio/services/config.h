@@ -4,6 +4,7 @@
 #include "coreSQLiteStudio_global.h"
 #include "cfginternals.h"
 #include "services/functionmanager.h"
+#include "collationmanager.h"
 #include "sqlitestudio.h"
 #include <QObject>
 #include <QVariant>
@@ -132,6 +133,9 @@ class API_EXPORT Config : public QObject
 
         virtual bool setFunctions(const QList<FunctionManager::FunctionPtr>& functions) = 0;
         virtual QList<FunctionManager::FunctionPtr> getFunctions() const = 0;
+
+        virtual bool setCollations(const QList<CollationManager::CollationPtr>& collations) = 0;
+        virtual QList<CollationManager::CollationPtr> getCollations() const = 0;
 
         virtual void begin() = 0;
         virtual void commit() = 0;

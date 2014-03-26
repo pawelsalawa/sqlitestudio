@@ -672,8 +672,11 @@ QStringList SchemaResolver::getCollations()
     }
 
     SqlResultsRowPtr row;
-    while (!(row = results->next()).isNull())
+    while (results->hasNext())
+    {
+        row = results->next();
         list << row->value("name").toString();
+    }
 
     return list;
 }

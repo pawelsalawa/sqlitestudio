@@ -202,6 +202,17 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>fileEdit</tabstop>
+  <tabstop>browseLocalButton</tabstop>
+  <tabstop>browseRemoteButton</tabstop>
+  <tabstop>nameEdit</tabstop>
+  <tabstop>generateCheckBox</tabstop>
+  <tabstop>typeCombo</tabstop>
+  <tabstop>permamentCheckBox</tabstop>
+  <tabstop>testConnButton</tabstop>
+  <tabstop>buttonBox</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

@@ -326,6 +326,21 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>functionFilterEdit</tabstop>
+  <tabstop>list</tabstop>
+  <tabstop>nameEdit</tabstop>
+  <tabstop>typeCombo</tabstop>
+  <tabstop>langCombo</tabstop>
+  <tabstop>undefArgsCheck</tabstop>
+  <tabstop>argsList</tabstop>
+  <tabstop>allDatabasesRadio</tabstop>
+  <tabstop>selDatabasesRadio</tabstop>
+  <tabstop>databasesList</tabstop>
+  <tabstop>initCodeEdit</tabstop>
+  <tabstop>mainCodeEdit</tabstop>
+  <tabstop>finalCodeEdit</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

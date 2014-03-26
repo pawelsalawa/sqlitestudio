@@ -153,16 +153,30 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>SqlEditor</class>
-   <extends>QPlainTextEdit</extends>
-   <header>sqleditor.h</header>
-  </customwidget>
-  <customwidget>
    <class>SqlView</class>
    <extends>QPlainTextEdit</extends>
    <header>sqlview.h</header>
   </customwidget>
+  <customwidget>
+   <class>SqlEditor</class>
+   <extends>QPlainTextEdit</extends>
+   <header>sqleditor.h</header>
+  </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>nameEdit</tabstop>
+  <tabstop>whenCombo</tabstop>
+  <tabstop>actionCombo</tabstop>
+  <tabstop>actionColumns</tabstop>
+  <tabstop>onCombo</tabstop>
+  <tabstop>scopeCombo</tabstop>
+  <tabstop>preconditionCheck</tabstop>
+  <tabstop>preconditionEdit</tabstop>
+  <tabstop>codeEdit</tabstop>
+  <tabstop>buttonBox</tabstop>
+  <tabstop>ddlEdit</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

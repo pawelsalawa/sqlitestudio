@@ -61,6 +61,9 @@ class ConfigImpl : public Config
         bool setFunctions(const QList<FunctionManager::FunctionPtr>& functions);
         QList<FunctionManager::FunctionPtr> getFunctions() const;
 
+        bool setCollations(const QList<CollationManager::CollationPtr>& collations);
+        QList<CollationManager::CollationPtr> getCollations() const;
+
         void begin();
         void commit();
         void rollback();

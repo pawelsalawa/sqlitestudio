@@ -779,8 +779,8 @@ p, li { white-space: pre-wrap; }
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>259</width>
-                <height>291</height>
+                <width>258</width>
+                <height>286</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -901,8 +901,8 @@ p, li { white-space: pre-wrap; }
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>312</width>
-                <height>689</height>
+                <width>307</width>
+                <height>666</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -1456,6 +1456,58 @@ p, li { white-space: pre-wrap; }
    <header>common/colorbutton.h</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>categoriesFilter</tabstop>
+  <tabstop>categoriesTree</tabstop>
+  <tabstop>pluginsList</tabstop>
+  <tabstop>buttonBox</tabstop>
+  <tabstop>expandViewsCheck</tabstop>
+  <tabstop>sortObjects</tabstop>
+  <tabstop>sortColumns</tabstop>
+  <tabstop>ddlHistorySizeSpin</tabstop>
+  <tabstop>dontShowDdlPreview</tabstop>
+  <tabstop>rowsPerPageSpin</tabstop>
+  <tabstop>openTablesOnDataCheck</tabstop>
+  <tabstop>openViewsOnDataCheck</tabstop>
+  <tabstop>queryHistorySizeSpin</tabstop>
+  <tabstop>checkBox</tabstop>
+  <tabstop>expandTablesCheck</tabstop>
+  <tabstop>activeStyleCombo</tabstop>
+  <tabstop>previewTabs</tabstop>
+  <tabstop>previewCheckBox</tabstop>
+  <tabstop>previewVerticalSlider</tabstop>
+  <tabstop>previewPushButton</tabstop>
+  <tabstop>previewSpinBox</tabstop>
+  <tabstop>previewTreeWidget</tabstop>
+  <tabstop>previewToolButton</tabstop>
+  <tabstop>previewLineEdit</tabstop>
+  <tabstop>previewRadioButton</tabstop>
+  <tabstop>previewComboBox</tabstop>
+  <tabstop>previewTextEdit</tabstop>
+  <tabstop>activeFormatterCombo</tabstop>
+  <tabstop>activeFormatterConfigButton</tabstop>
+  <tabstop>fontsScrollArea</tabstop>
+  <tabstop>scrollArea</tabstop>
+  <tabstop>sqlEditorKeywordFgButton</tabstop>
+  <tabstop>sqlEditorStringFgButton</tabstop>
+  <tabstop>sqlEditorCommentFgButton</tabstop>
+  <tabstop>sqlEditorRegularFgButton</tabstop>
+  <tabstop>sqlEditorCurrLineBgButton</tabstop>
+  <tabstop>sqlEditorLineNumAreaBgButton</tabstop>
+  <tabstop>sqlEditorParBgButton</tabstop>
+  <tabstop>sqlEditorBlobFgButton</tabstop>
+  <tabstop>sqlEditorNumberFgButton</tabstop>
+  <tabstop>sqlEditorBindParamFgButton</tabstop>
+  <tabstop>sqlEditorValidObjectsButton</tabstop>
+  <tabstop>dataViewUncommitedButton</tabstop>
+  <tabstop>dataViewErrorButton</tabstop>
+  <tabstop>dataViewNullFgButton</tabstop>
+  <tabstop>dataViewDeletedRowBgButton</tabstop>
+  <tabstop>dbTreeLabelsButton</tabstop>
+  <tabstop>statusFieldInfoButton</tabstop>
+  <tabstop>statusFieldWarnButton</tabstop>
+  <tabstop>statusFieldErrorButton</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>424</width>
-    <height>346</height>
+    <height>360</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -292,6 +292,23 @@
   <tabstop>typeCombo</tabstop>
   <tabstop>scale</tabstop>
   <tabstop>precision</tabstop>
+  <tabstop>pkCheck</tabstop>
+  <tabstop>pkButton</tabstop>
+  <tabstop>fkCheck</tabstop>
+  <tabstop>fkButton</tabstop>
+  <tabstop>uniqueCheck</tabstop>
+  <tabstop>uniqueButton</tabstop>
+  <tabstop>checkCheck</tabstop>
+  <tabstop>checkButton</tabstop>
+  <tabstop>notNullCheck</tabstop>
+  <tabstop>notNullButton</tabstop>
+  <tabstop>collateCheck</tabstop>
+  <tabstop>collateButton</tabstop>
+  <tabstop>defaultCheck</tabstop>
+  <tabstop>defaultButton</tabstop>
+  <tabstop>advancedCheck</tabstop>
+  <tabstop>buttonBox</tabstop>
+  <tabstop>constraintsView</tabstop>
  </tabstops>
  <resources/>
  <connections>

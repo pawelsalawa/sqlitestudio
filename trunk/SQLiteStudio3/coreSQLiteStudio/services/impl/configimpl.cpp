@@ -587,6 +587,86 @@ QList<FunctionManager::FunctionPtr> ConfigImpl::getFunctions() const
     return funcList;
 }
 
+bool ConfigImpl::setCollations(const QList<CollationManager::CollationPtr>& collations)
+{
+    if (!db->transaction())
+    {
+        qCritical() << "Could not start trasaction on config database! Collations not modified.";
+        return false;
+    }
+
+    QSqlQuery collationQuery(*db);
+    QSqlQuery collToDbQuery(*db);
+
+    collationQuery.prepare("DELETE FROM collations");
+    collationQuery.exec();
+
+    collationQuery.prepare("INSERT INTO collations (name, lang, code, for_all_databases) "
+                          "VALUES (:name, :lang, :code, :for_all_databases)");
+
+    collToDbQuery.prepare("INSERT INTO collation_to_db (collation, dbname) VALUES (:collation, :dbname)");
+
+    foreach (const CollationManager::CollationPtr& coll, collations)
+    {
+        collationQuery.bindValue(":name", coll->name);
+        collationQuery.bindValue(":lang", coll->lang);
+        collationQuery.bindValue(":code", coll->code);
+        collationQuery.bindValue(":for_all_databases", coll->allDatabases);
+        collationQuery.exec();
+        printErrorIfSet(collationQuery);
+
+        // Databases
+        if (!coll->allDatabases)
+        {
+            foreach (const QString dbName, coll->databases)
+            {
+                collToDbQuery.bindValue(":collation", coll->name);
+                collToDbQuery.bindValue(":dbname", dbName);
+                collToDbQuery.exec();
+                printErrorIfSet(collToDbQuery);
+            }
+        }
+    }
+
+    if (!db->commit())
+    {
+        qCritical() << "Could not commit collation list modifications. Collations not changed. Error message:" << db->lastError().text();
+        db->rollback();
+        return false;
+    }
+    return true;
+}
+
+QList<CollationManager::CollationPtr> ConfigImpl::getCollations() const
+{
+    // Read relations to databases
+    QHash<QString,QStringList> databases;
+    QSqlQuery query(*db);
+    query.prepare("SELECT * FROM collation_to_db");
+    query.exec();
+
+    while (query.next())
+        databases[query.value("collation").toString()] << query.value("dbname").toString();
+
+    // Read collations themself
+    query.prepare("SELECT * FROM collations");
+    query.exec();
+
+    QList<CollationManager::CollationPtr> collList;
+    CollationManager::CollationPtr coll;
+    while (query.next())
+    {
+        coll = CollationManager::CollationPtr::create();
+        coll->name = query.value("name").toString();
+        coll->lang = query.value("lang").toString();
+        coll->code = query.value("code").toString();
+        coll->allDatabases = query.value("for_all_databases").toBool();
+        coll->databases = databases[coll->name];
+        collList << coll;
+    }
+    return collList;
+}
+
 void ConfigImpl::readGroupRecursively(ConfigImpl::DbGroupPtr group)
 {
     QSqlQuery query(*db);
@@ -715,6 +795,22 @@ void ConfigImpl::initTables()
                  "(SELECT for_all_databases FROM functions WHERE name = new.function) = 1 "
                  "BEGIN "
                  "SELECT RAISE(ROLLBACK, 'Cannot assign function to database, because it is marked for all databases.'); "
+                 "END");
+    }
+
+    if (!tables.contains("collations"))
+        db->exec("CREATE TABLE collations (name TEXT PRIMARY KEY, lang TEXT, code TEXT, for_all_databases BOOLEAN)");
+
+
+    if (!tables.contains("collation_to_db"))
+    {
+        db->exec("CREATE TABLE collation_to_db (collation TEXT REFERENCES collations (name) ON UPDATE CASCADE ON DELETE CASCADE, "
+                 "dbname TEXT REFERENCES dblist (name) ON UPDATE CASCADE ON DELETE CASCADE)");
+        db->exec("DROP TRIGGER IF EXISTS collation_to_db_trig");
+        db->exec("CREATE TRIGGER collation_to_db_trig BEFORE INSERT ON collation_to_db WHEN "
+                 "(SELECT for_all_databases FROM collations WHERE name = new.collation) = 1 "
+                 "BEGIN "
+                 "SELECT RAISE(ROLLBACK, 'Cannot assign collation to database, because it is marked for all databases.'); "
                  "END");
     }
 

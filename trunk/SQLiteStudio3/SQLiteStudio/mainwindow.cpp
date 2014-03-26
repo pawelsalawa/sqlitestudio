@@ -5,6 +5,7 @@
 #include "windows/tablewindow.h"
 #include "windows/viewwindow.h"
 #include "windows/functionseditor.h"
+#include "windows/collationseditor.h"
 #include "windows/ddlhistorywindow.h"
 #include "mdiarea.h"
 #include "statusfield.h"
@@ -123,7 +124,8 @@ void MainWindow::createActions()
 {
     createAction(OPEN_SQL_EDITOR, "open_sql_editor", tr("Open SQL editor"), this, SLOT(openSqlEditorSlot()), ui->mainToolBar);
     createAction(OPEN_DDL_HISTORY, "ddl_history", tr("Open DDL history"), this, SLOT(openDdlHistorySlot()), ui->mainToolBar);
-    createAction(OPEN_DDL_HISTORY, "function", tr("Open SQL function editor"), this, SLOT(openFunctionEditorSlot()), ui->mainToolBar);
+    createAction(OPEN_FUNCTION_EDITOR, "function", tr("Open SQL functions editor"), this, SLOT(openFunctionEditorSlot()), ui->mainToolBar);
+    createAction(OPEN_COLLATION_EDITOR, "collation", tr("Open collations editor"), this, SLOT(openCollationEditorSlot()), ui->mainToolBar);
     createAction(OPEN_CONFIG, "configure", tr("Open configuration dialog"), this, SLOT(openConfig()), ui->mainToolBar);
     createAction(MDI_TILE, "win_tile", tr("Tile windows"), ui->mdiArea, SLOT(tileSubWindows()), ui->viewToolbar);
     createAction(MDI_TILE_HORIZONTAL, "win_tile_horizontal", tr("Tile windows horizontally"), ui->mdiArea, SLOT(tileHorizontally()), ui->viewToolbar);
@@ -401,6 +403,11 @@ void MainWindow::openFunctionEditorSlot()
     openFunctionEditor();
 }
 
+void MainWindow::openCollationEditorSlot()
+{
+    openCollationEditor();
+}
+
 DdlHistoryWindow* MainWindow::openDdlHistory()
 {
     return openMdiWindow<DdlHistoryWindow>();
@@ -429,6 +436,11 @@ DdlHistoryWindow* MainWindow::openDdlHistory()
 FunctionsEditor* MainWindow::openFunctionEditor()
 {
     return openMdiWindow<FunctionsEditor>();
+}
+
+CollationsEditor* MainWindow::openCollationEditor()
+{
+    return openMdiWindow<CollationsEditor>();
 }
 
 MainWindow *MainWindow::getInstance()

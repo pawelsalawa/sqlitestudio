@@ -55,7 +55,7 @@ class FunctionsEditorModel : public QAbstractListModel
         QList<FunctionManager::FunctionPtr> getFunctions() const;
         QStringList getFunctionNames() const;
         void validateNames();
-        bool isAllowedName(int row, const QString& nameToValidate);
+        bool isAllowedName(int rowToSkip, const QString& nameToValidate);
         bool isValidRow(int row) const;
 
         int rowCount(const QModelIndex& parent = QModelIndex()) const;
