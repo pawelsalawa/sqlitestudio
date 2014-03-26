@@ -219,16 +219,32 @@ class API_EXPORT AbstractDb : public Db
          */
         virtual bool closeInternal() = 0;
 
-        /**
-         * @brief Initializes resources after database connection was open.
-         *
-         * Implementation of this method should setup any necessary options (such as PRAGMAs)
-         * on the database. It's called each time the connection to the database is estabilished.
-         *
-         * It's called from inside of open(), so the dbOperLock is locked at the moment.
-         * Use execNoLock() for any query executions in the implementation of this method.
-         */
         virtual void initAfterOpen();
+
+        bool registerCollation(const QString& name);
+        bool deregisterCollation(const QString& name);
+
+        /**
+         * @brief Registers a collation sequence implementation in the database.
+         * @param name Name of the collation.
+         * @return true on success, false on failure.
+         *
+         * This should be low-level implementation depended on SQLite driver.
+         * The general implementation of registerCollation() in this class just keeps track on collations
+         * registered.
+         */
+        virtual bool registerCollationInternal(const QString& name) = 0;
+
+        /**
+         * @brief Deregisters previously registered collation from this database.
+         * @param name Collation name.
+         * @return true on success, false on failure.
+         *
+         * This should be low-level implementation depended on SQLite driver.
+         * The general implementation of registerCollation() in this class just keeps track on collations
+         * registered.
+         */
+        virtual bool deregisterCollationInternal(const QString& name) = 0;
 
         static QHash<QString,QVariant> getAggregateContext(void* memPtr);
         static void setAggregateContext(void* memPtr, const QHash<QString,QVariant>& aggregateContext);
@@ -455,6 +471,11 @@ class API_EXPORT AbstractDb : public Db
          */
         QSet<RegisteredFunction> registeredFunctions;
 
+        /**
+         * @brief List of all collations currently registered in this database.
+         */
+        QStringList registeredCollations;
+
     private slots:
         /**
          * @brief Handles asynchronous execution results.
@@ -467,48 +488,12 @@ class API_EXPORT AbstractDb : public Db
         void asyncQueryFinished(AsyncQueryRunner* runner);
 
     public slots:
-        /**
-         * @brief Opens connection to the database.
-         * @return true on success, false on error.
-         *
-         * Emits connected() only on success.
-         */
         bool open();
-
-        /**
-         * @brief Closes connection to the database.
-         * @return true on success, false on error.
-         *
-         * Emits disconnected() only on success (i.e. db was open before).
-         */
         bool close();
-
-        /**
-         * @brief Opens connection to the database quietly.
-         * @return true on success, false on error.
-         *
-         * Opens database, doesn't emit any signal.
-         */
         bool openQuiet();
-
-        /**
-         * @brief Closes connection to the database quietly.
-         * @return true on success, false on error.
-         *
-         * Closes database, doesn't emit any signal.
-         */
         bool closeQuiet();
-
-        /**
-         * @brief Deregisters all funtions registered in the database and registers new (possibly the same) functions.
-         *
-         * This slot is called from openAndSetup() and then every time user modifies custom SQL functions and commits changes to them.
-         * It deregisters all functions registered before in this database and registers new functions, currently defined for
-         * this database.
-         *
-         * @see FunctionManager
-         */
         void registerAllFunctions();
+        void registerAllCollations();
 };
 
 /**

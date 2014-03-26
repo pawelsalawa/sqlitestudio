@@ -4,6 +4,9 @@
 #include "db/abstractdb.h"
 #include "parser/lexer.h"
 #include "common/utils_sql.h"
+#include "common/unused.h"
+#include "services/collationmanager.h"
+#include "sqlitestudio.h"
 #include <sqlite3.h>
 #include <QThread>
 #include <QPointer>
@@ -55,6 +58,8 @@ class AbstractDb3 : public AbstractDb
         bool deregisterFunction(const QString& name, int argCount);
         bool registerScalarFunction(const QString& name, int argCount);
         bool registerAggregateFunction(const QString& name, int argCount);
+        bool registerCollationInternal(const QString& name);
+        bool deregisterCollationInternal(const QString& name);
 
     private:
         class Results : public SqlResults
@@ -93,6 +98,11 @@ class AbstractDb3 : public AbstractDb
                 QStringList colNames;
                 int affected = 0;
                 bool rowAvailable = true;
+        };
+
+        struct CollationUserData
+        {
+            QString name;
         };
 
         int prepareStmt(const QString& query, sqlite3_stmt** stmt);
@@ -166,6 +176,23 @@ class AbstractDb3 : public AbstractDb
          * It executes "final" code of the function implementation.
          */
         static void evaluateAggregateFinal(sqlite3_context* context);
+
+        /**
+         * @brief Evaluates code of the collation.
+         * @param userData Collation user data (name of the collation inside).
+         * @param length1 Number of characters in value1 (excluding \0).
+         * @param value1 First value to compare.
+         * @param length2 Number of characters in value2 (excluding \0).
+         * @param value2 Second value to compare.
+         * @return -1, 0, or 1, as SQLite's collation specification demands it.
+         */
+        static int evaluateCollation(void* userData, int length1, const void* value1, int length2, const void* value2);
+
+        /**
+         * @brief Cleans up collation user data when collation is deregistered.
+         * @param userData User data to delete.
+         */
+        static void deleteCollationUserData(void* userData);
 
         /**
          * @brief Destructor for function user data object.
@@ -378,7 +405,7 @@ bool AbstractDb3<T>::deregisterFunction(const QString& name, int argCount)
     if (!dbHandle)
         return false;
 
-    sqlite3_create_function(dbHandle, name.toLatin1().data(), argCount, SQLITE_UTF8, 0, nullptr, nullptr, nullptr);
+    sqlite3_create_function(dbHandle, name.toUtf8().constData(), argCount, SQLITE_UTF8, 0, nullptr, nullptr, nullptr);
     return true;
 }
 
@@ -393,7 +420,7 @@ bool AbstractDb3<T>::registerScalarFunction(const QString& name, int argCount)
     userData->name = name;
     userData->argCount = argCount;
 
-    int res = sqlite3_create_function_v2(dbHandle, name.toLatin1().data(), argCount, SQLITE_UTF8, userData,
+    int res = sqlite3_create_function_v2(dbHandle, name.toUtf8().constData(), argCount, SQLITE_UTF8, userData,
                                          &AbstractDb3<T>::evaluateScalar,
                                          nullptr,
                                          nullptr,
@@ -413,13 +440,36 @@ bool AbstractDb3<T>::registerAggregateFunction(const QString& name, int argCount
     userData->name = name;
     userData->argCount = argCount;
 
-    int res = sqlite3_create_function_v2(dbHandle, name.toLatin1().data(), argCount, SQLITE_UTF8, userData,
+    int res = sqlite3_create_function_v2(dbHandle, name.toUtf8().constData(), argCount, SQLITE_UTF8, userData,
                                          nullptr,
                                          &AbstractDb3<T>::evaluateAggregateStep,
                                          &AbstractDb3<T>::evaluateAggregateFinal,
                                          &AbstractDb3<T>::deleteUserData);
 
     return res == SQLITE_OK;
+}
+
+template <class T>
+bool AbstractDb3<T>::registerCollationInternal(const QString& name)
+{
+    if (!dbHandle)
+        return false;
+
+    CollationUserData* userData = new CollationUserData;
+    userData->name = name;
+
+    int res = sqlite3_create_collation16(dbHandle, name.toUtf8().constData(), SQLITE_UTF8, userData, &AbstractDb3<T>::evaluateCollation);
+    return res == SQLITE_OK;
+}
+
+template <class T>
+bool AbstractDb3<T>::deregisterCollationInternal(const QString& name)
+{
+    if (!dbHandle)
+        return false;
+
+    sqlite3_create_collation16(dbHandle, name.toUtf8().constData(), SQLITE_UTF8, nullptr, nullptr);
+    return true;
 }
 
 template <class T>
@@ -639,6 +689,25 @@ void AbstractDb3<T>::evaluateAggregateFinal(sqlite3_context* context)
 
     storeResult(context, result, ok);
     releaseAggregateContext(context);
+}
+
+template <class T>
+int AbstractDb3<T>::evaluateCollation(void* userData, int length1, const void* value1, int length2, const void* value2)
+{
+    UNUSED(length1);
+    UNUSED(length2);
+    CollationUserData* collUserData = reinterpret_cast<CollationUserData*>(userData);
+    return COLLATIONS->evaluate(collUserData->name, QString::fromUtf8((const char*)value1), QString::fromUtf8((const char*)value2));
+}
+
+template <class T>
+void AbstractDb3<T>::deleteCollationUserData(void* userData)
+{
+    if (!userData)
+        return;
+
+    CollationUserData* collUserData = reinterpret_cast<CollationUserData*>(userData);
+    delete collUserData;
 }
 
 template <class T>

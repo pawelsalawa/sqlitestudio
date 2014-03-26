@@ -162,3 +162,13 @@ void ConfigMock::commit()
 void ConfigMock::rollback()
 {
 }
+
+bool ConfigMock::setCollations(const QList<CollationManager::CollationPtr>& collations)
+{
+    return true;
+}
+
+QList<CollationManager::CollationPtr> ConfigMock::getCollations() const
+{
+    return QList<CollationManager::CollationPtr>();
+}

@@ -42,6 +42,7 @@ class PluginManagerImpl : public PluginManager
         QString getDescription(const QString& pluginName) const;
         PluginType* getPluginType(Plugin* plugin) const;
         QList<Plugin*> getLoadedPlugins(PluginType* type) const;
+        ScriptingPlugin* getScriptingPlugin(const QString& languageName) const;
 
     protected:
         void registerPluginType(PluginType* type);
@@ -220,6 +221,13 @@ class PluginManagerImpl : public PluginManager
          * @brief Table with plugin names and containers assigned for each plugin.
          */
         QHash<QString,PluginContainer*> pluginContainer;
+
+        /**
+         * @brief Internal list of scripting plugins, updated on load/unload of plugins.
+         *
+         * Keys are scripting language name.
+         */
+        QHash<QString,ScriptingPlugin*> scriptingPlugins;
 };
 
 #endif // PLUGINMANAGERIMPL_H

@@ -353,16 +353,8 @@ void FunctionsEditorModel::validateNames()
 
 bool FunctionsEditorModel::isAllowedName(int rowToSkip, const QString& nameToValidate)
 {
-    QStringList names;
-    int row = -1;
-    foreach (Function* func, functionList)
-    {
-        row++;
-        if (row == rowToSkip)
-            continue;
-
-        names << func->data->name;
-    }
+    QStringList names = getFunctionNames();
+    names.removeAt(rowToSkip);
     return !names.contains(nameToValidate, Qt::CaseInsensitive);
 }
 

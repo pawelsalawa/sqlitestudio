@@ -18,6 +18,7 @@ class SyntaxHighlighterPlugin;
 class DbTreeItem;
 class QTreeWidgetItem;
 class QSyntaxHighlighter;
+class SelectableDbModel;
 
 class FunctionsEditor : public MdiChild, public ExtActionContainer
 {
@@ -52,27 +53,6 @@ class FunctionsEditor : public MdiChild, public ExtActionContainer
         void setupDefShortcuts();
 
     private:
-        class DbModel : public QSortFilterProxyModel
-        {
-            public:
-                explicit DbModel(QObject *parent = 0);
-
-                QVariant data(const QModelIndex& index, int role) const;
-                bool setData(const QModelIndex& index, const QVariant& value, int role);
-                Qt::ItemFlags flags(const QModelIndex& index) const;
-
-                void setDatabases(const QStringList& databases);
-                QStringList getDatabases() const;
-
-            protected:
-                bool filterAcceptsRow(int srcRow, const QModelIndex& srcParent) const;
-
-            private:
-                DbTreeItem* getItemForProxyIndex(const QModelIndex& index) const;
-
-                QStringList checkedDatabases;
-        };
-
         void init();
         int getCurrentFunctionRow() const;
         void functionDeselected(int row);
@@ -85,12 +65,12 @@ class FunctionsEditor : public MdiChild, public ExtActionContainer
         FunctionManager::Function::Type getCurrentFunctionType() const;
 
         Ui::FunctionsEditor *ui;
-        FunctionsEditorModel* model;
-        QSortFilterProxyModel* functionFilterModel;
+        FunctionsEditorModel* model = nullptr;
+        QSortFilterProxyModel* functionFilterModel = nullptr;
         bool currentModified = false;
         QHash<QString,SqlFunctionPlugin*> functionPlugins;
         QHash<QString,SyntaxHighlighterPlugin*> highlighterPlugins;
-        DbModel* dbListModel;
+        SelectableDbModel* dbListModel = nullptr;
         QString currentHighlighterLang;
         QSyntaxHighlighter* currentMainHighlighter = nullptr;
         QSyntaxHighlighter* currentFinalHighlighter = nullptr;

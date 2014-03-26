@@ -1,4 +1,5 @@
 #include "pluginmanagerimpl.h"
+#include "plugins/scriptingplugin.h"
 #include <QCoreApplication>
 #include <QDir>
 #include <QDebug>
@@ -286,6 +287,9 @@ void PluginManagerImpl::unload(const QString& pluginName)
     if (!container->loaded)
         return;
 
+    if (scriptingPlugins.contains(container->name))
+        scriptingPlugins.remove(container->name);
+
     emit aboutToUnload(container->plugin, container->type);
     container->plugin->deinit();
 
@@ -357,6 +361,8 @@ void PluginManagerImpl::pluginLoaded(PluginManagerImpl::PluginContainer* contain
     container->loaded = true;
     readMetadata(container->plugin, container);
 
+    if (dynamic_cast<ScriptingPlugin*>(container->plugin))
+        scriptingPlugins[container->name] = dynamic_cast<ScriptingPlugin*>(container->plugin);
 
     emit loaded(container->plugin, container->type);
     qDebug() << container->name << "loaded:" << container->filePath;
@@ -418,6 +424,14 @@ QList<Plugin*> PluginManagerImpl::getLoadedPlugins(PluginType* type) const
     }
 
     return list;
+}
+
+ScriptingPlugin* PluginManagerImpl::getScriptingPlugin(const QString& languageName) const
+{
+    if (scriptingPlugins.contains(languageName))
+        return scriptingPlugins[languageName];
+
+    return nullptr;
 }
 
 void PluginManagerImpl::registerPluginType(PluginType* type)

@@ -78,6 +78,10 @@
    <header>dbtree/dbtreeview.h</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>nameFilter</tabstop>
+  <tabstop>treeView</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

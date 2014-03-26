@@ -85,7 +85,25 @@ void AbstractDb::registerAllFunctions()
         registerFunction(regFn);
     }
 
+    disconnect(FUNCTIONS, SIGNAL(functionListChanged()), this, SLOT(registerAllFunctions()));
     connect(FUNCTIONS, SIGNAL(functionListChanged()), this, SLOT(registerAllFunctions()));
+}
+
+void AbstractDb::registerAllCollations()
+{
+    foreach (const QString& name, registeredCollations)
+    {
+        if (!deregisterCollation(name))
+            qWarning() << "Failed to deregister custom collation:" << name;
+    }
+
+    registeredCollations.clear();
+
+    foreach (const CollationManager::CollationPtr& collPtr, COLLATIONS->getCollationsForDatabase(getName()))
+        registerCollation(collPtr->name);
+
+    disconnect(COLLATIONS, SIGNAL(collationListChanged()), this, SLOT(registerAllCollations()));
+    connect(COLLATIONS, SIGNAL(collationListChanged()), this, SLOT(registerAllCollations()));
 }
 
 bool AbstractDb::isOpen()
@@ -322,13 +340,51 @@ bool AbstractDb::openAndSetup()
     // Custom SQL functions
     registerAllFunctions();
 
-    // TODO: register collations
+    // Custom collations
+    registerAllCollations();
 
     return result;
 }
 
 void AbstractDb::initAfterOpen()
 {
+}
+
+bool AbstractDb::registerCollation(const QString& name)
+{
+    if (registeredCollations.contains(name))
+    {
+        qCritical() << "Collation" << name << "is already registered!"
+                    << "It should already be deregistered while call to register is being made.";
+        return false;
+    }
+
+    if (registerCollationInternal(name))
+    {
+        registeredCollations << name;
+        return true;
+    }
+
+    qCritical() << "Could not register collation:" << name;
+    return false;
+}
+
+bool AbstractDb::deregisterCollation(const QString& name)
+{
+    if (!registeredCollations.contains(name))
+    {
+        qCritical() << "Collation" << name << "not registered!"
+                    << "It should already registered while call to deregister is being made.";
+        return false;
+    }
+
+    if (deregisterCollationInternal(name))
+    {
+        registeredCollations.removeOne(name);
+        return true;
+    }
+    qWarning() << "Could not deregister collation:" << name;
+    return false;
 }
 
 QHash<QString, QVariant> AbstractDb::getAggregateContext(void* memPtr)

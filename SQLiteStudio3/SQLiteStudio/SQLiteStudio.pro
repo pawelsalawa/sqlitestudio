@@ -118,7 +118,10 @@ SOURCES += main.cpp\
     windows/functionseditor.cpp \
     windows/functionseditormodel.cpp \
     sqlitesyntaxhighlighter.cpp \
-    javascriptsyntaxhighlighter.cpp
+    javascriptsyntaxhighlighter.cpp \
+    windows/collationseditor.cpp \
+    selectabledbmodel.cpp \
+    windows/collationseditormodel.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -222,7 +225,10 @@ HEADERS  += mainwindow.h \
     windows/functionseditormodel.h \
     syntaxhighlighterplugin.h \
     sqlitesyntaxhighlighter.h \
-    javascriptsyntaxhighlighter.h
+    javascriptsyntaxhighlighter.h \
+    windows/collationseditor.h \
+    selectabledbmodel.h \
+    windows/collationseditormodel.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \
@@ -253,7 +259,8 @@ FORMS    += mainwindow.ui \
     forms/sqlformatterplugin.ui \
     dialogs/ddlpreviewdialog.ui \
     windows/ddlhistorywindow.ui \
-    windows/functionseditor.ui
+    windows/functionseditor.ui \
+    windows/collationseditor.ui
 
 LIBS += -lcoreSQLiteStudio
 

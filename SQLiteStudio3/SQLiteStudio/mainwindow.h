@@ -20,6 +20,7 @@ class TableWindow;
 class FormManager;
 class DdlHistoryWindow;
 class FunctionsEditor;
+class CollationsEditor;
 
 class MainWindow : public QMainWindow, virtual public ExtActionContainer
 {
@@ -38,7 +39,8 @@ class MainWindow : public QMainWindow, virtual public ExtActionContainer
             HIDE_STATUS_FIELD,
             OPEN_CONFIG,
             OPEN_DDL_HISTORY,
-            OPEN_FUNCTION_EDITOR
+            OPEN_FUNCTION_EDITOR,
+            OPEN_COLLATION_EDITOR
         };
 
         static MainWindow* getInstance();
@@ -68,6 +70,7 @@ class MainWindow : public QMainWindow, virtual public ExtActionContainer
         void closeNonSessionWindows();
         DdlHistoryWindow* openDdlHistory();
         FunctionsEditor* openFunctionEditor();
+        CollationsEditor* openCollationEditor();
 
         template <class T>
         T* openMdiWindow();
@@ -90,6 +93,7 @@ class MainWindow : public QMainWindow, virtual public ExtActionContainer
         void openConfig();
         void openDdlHistorySlot();
         void openFunctionEditorSlot();
+        void openCollationEditorSlot();
 };
 
 template <class T>

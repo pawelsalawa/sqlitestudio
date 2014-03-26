@@ -1,29 +1,29 @@
 #include "dbmanagermock.h"
 
-bool DbManagerMock::addDb(const QString& name, const QString& path, const QHash<QString, QVariant>& options, bool permanent)
+bool DbManagerMock::addDb(const QString&, const QString&, const QHash<QString, QVariant>&, bool)
 {
     return true;
 }
 
-bool DbManagerMock::addDb(const QString& name, const QString& path, bool permanent)
+bool DbManagerMock::addDb(const QString&, const QString&, bool)
 {
     return true;
 }
 
-bool DbManagerMock::updateDb(Db* db, const QString& name, const QString& path, const QHash<QString, QVariant>& options, bool permanent)
+bool DbManagerMock::updateDb(Db*, const QString&, const QString&, const QHash<QString, QVariant>&, bool)
 {
     return true;
 }
 
-void DbManagerMock::removeDbByName(const QString& name, Qt::CaseSensitivity cs)
+void DbManagerMock::removeDbByName(const QString&, Qt::CaseSensitivity)
 {
 }
 
-void DbManagerMock::removeDbByPath(const QString& path)
+void DbManagerMock::removeDbByPath(const QString&)
 {
 }
 
-void DbManagerMock::removeDb(Db* db)
+void DbManagerMock::removeDb(Db*)
 {
 }
 
@@ -42,12 +42,12 @@ QStringList DbManagerMock::getDbNames()
     return QStringList();
 }
 
-Db* DbManagerMock::getByName(const QString& name, Qt::CaseSensitivity cs)
+Db* DbManagerMock::getByName(const QString&, Qt::CaseSensitivity)
 {
     return nullptr;
 }
 
-Db* DbManagerMock::getByPath(const QString& path)
+Db* DbManagerMock::getByPath(const QString&)
 {
     return nullptr;
 }

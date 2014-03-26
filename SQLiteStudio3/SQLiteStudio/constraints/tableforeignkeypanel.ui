@@ -90,8 +90,8 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>378</width>
-           <height>81</height>
+           <width>362</width>
+           <height>39</height>
           </rect>
          </property>
         </widget>
@@ -176,6 +176,20 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>fkTableCombo</tabstop>
+  <tabstop>columnsArea</tabstop>
+  <tabstop>onUpdateCheckBox</tabstop>
+  <tabstop>onUpdateCombo</tabstop>
+  <tabstop>onDeleteCheckBox</tabstop>
+  <tabstop>onDeleteCombo</tabstop>
+  <tabstop>matchCheckBox</tabstop>
+  <tabstop>matchCombo</tabstop>
+  <tabstop>deferrableCombo</tabstop>
+  <tabstop>initiallyCombo</tabstop>
+  <tabstop>namedCheckBox</tabstop>
+  <tabstop>nameEdit</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

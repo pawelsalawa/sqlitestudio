@@ -14,7 +14,16 @@
    <string>PrimaryKeyOrUniquePanel</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <property name="margin">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
     <number>0</number>
    </property>
    <item>
@@ -26,7 +35,16 @@
       <item>
        <widget class="QWidget" name="columnsHeader" native="true">
         <layout class="QHBoxLayout" name="horizontalLayout_3">
-         <property name="margin">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
           <number>0</number>
          </property>
          <item>
@@ -108,8 +126,8 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>372</width>
-           <height>137</height>
+           <width>364</width>
+           <height>132</height>
           </rect>
          </property>
         </widget>
@@ -131,7 +149,16 @@
    <item>
     <widget class="QWidget" name="namedWidget" native="true">
      <layout class="QHBoxLayout" name="horizontalLayout">
-      <property name="margin">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
        <number>0</number>
       </property>
       <item>
@@ -154,7 +181,16 @@
    <item>
     <widget class="QWidget" name="conflictWidget" native="true">
      <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <property name="margin">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
        <number>0</number>
       </property>
       <item>
@@ -179,6 +215,14 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>scrollArea</tabstop>
+  <tabstop>autoIncrCheckBox</tabstop>
+  <tabstop>namedCheckBox</tabstop>
+  <tabstop>namedLineEdit</tabstop>
+  <tabstop>conflictCheckBox</tabstop>
+  <tabstop>conflictComboBox</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

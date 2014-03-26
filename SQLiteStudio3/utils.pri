@@ -1,5 +1,5 @@
 defineTest(copy_dir) {
-    message("copying $$absolute_path($$1) to $$absolute_path($$2)");
+    #message("copying $$absolute_path($$1) to $$absolute_path($$2)");
     unix: {
             system(cp -R $$quote($$1) $$quote($$2))
     }
@@ -9,7 +9,7 @@ defineTest(copy_dir) {
 }
 
 defineTest(copy_file) {
-    message("copying $$absolute_path($$1) to $$absolute_path($$2)");
+    #message("copying $$absolute_path($$1) to $$absolute_path($$2)");
     unix: {
             system(cp $$quote($$1) $$quote($$2))
     }

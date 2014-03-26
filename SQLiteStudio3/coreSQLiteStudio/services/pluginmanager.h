@@ -9,6 +9,7 @@
 #include <QStringList>
 
 class Plugin;
+class ScriptingPlugin;
 
 /** @file */
 
@@ -269,6 +270,19 @@ class API_EXPORT PluginManager : public QObject
          * and then for each type get list of plugins for that type, using this method.
          */
         virtual QList<Plugin*> getLoadedPlugins(PluginType* type) const = 0;
+
+        /**
+         * @brief Provides scripting plugin for given scripting language if available.
+         * @param languageName Scripting language name to get plugin for.
+         * @return Plugin object or null if proper plugin was not found.
+         *
+         * Calling this function is similar in results to call to getLoadedPlugins<ScriptingPlugin>()
+         * and then extracting a single plugin with desired scripting language support, except
+         * calling this function is much faster. PluginManager keeps scripting language plugins
+         * internally in hash table with language names as keys, so getting scripting plugin
+         * for desired language is way faster when using this method.
+         */
+        virtual ScriptingPlugin* getScriptingPlugin(const QString& languageName) const = 0;
 
         /**
          * @brief registerPluginType Registers plugin type for loading and managing.

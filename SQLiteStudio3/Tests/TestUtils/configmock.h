@@ -44,6 +44,8 @@ class ConfigMock : public Config
         void begin();
         void commit();
         void rollback();
+        bool setCollations(const QList<CollationManager::CollationPtr>& collations);
+        QList<CollationManager::CollationPtr> getCollations() const;
 };
 
 #endif // CONFIGMOCK_H

@@ -128,6 +128,20 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>fkTableCombo</tabstop>
+  <tabstop>fkColumnCombo</tabstop>
+  <tabstop>onUpdateCheckBox</tabstop>
+  <tabstop>onUpdateCombo</tabstop>
+  <tabstop>onDeleteCheckBox</tabstop>
+  <tabstop>onDeleteCombo</tabstop>
+  <tabstop>matchCheckBox</tabstop>
+  <tabstop>matchCombo</tabstop>
+  <tabstop>deferrableCombo</tabstop>
+  <tabstop>initiallyCombo</tabstop>
+  <tabstop>namedCheckBox</tabstop>
+  <tabstop>nameEdit</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

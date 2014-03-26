@@ -143,7 +143,8 @@ SOURCES += sqlitestudio.cpp \
     impl/dbattacherimpl.cpp \
     db/dbsqlite3.cpp \
     plugins/dbpluginsqlite3.cpp \
-    parser/ast/sqlitewith.cpp
+    parser/ast/sqlitewith.cpp \
+    services/impl/collationmanagerimpl.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -283,7 +284,9 @@ HEADERS += sqlitestudio.h\
     db/dbsqlite3.h \
     plugins/dbpluginsqlite3.h \
     db/abstractdb2.h \
-    parser/ast/sqlitewith.h
+    parser/ast/sqlitewith.h \
+    services/collationmanager.h \
+    services/impl/collationmanagerimpl.h
 
 unix:!symbian {
     maemo5 {

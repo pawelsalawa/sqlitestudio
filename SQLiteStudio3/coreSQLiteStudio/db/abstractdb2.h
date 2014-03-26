@@ -4,6 +4,7 @@
 #include "db/abstractdb.h"
 #include "parser/lexer.h"
 #include "common/utils_sql.h"
+#include "common/unused.h"
 #include <sqlite.h>
 #include <QThread>
 #include <QPointer>
@@ -55,6 +56,8 @@ class AbstractDb2 : public AbstractDb
         bool deregisterFunction(const QString& name, int argCount);
         bool registerScalarFunction(const QString& name, int argCount);
         bool registerAggregateFunction(const QString& name, int argCount);
+        bool registerCollationInternal(const QString& name);
+        bool deregisterCollationInternal(const QString& name);
 
     private:
         class Results : public SqlResults
@@ -296,7 +299,7 @@ bool AbstractDb2<T>::registerScalarFunction(const QString& name, int argCount)
     userData->argCount = argCount;
     userDataList << userData;
 
-    int res = sqlite_create_function(dbHandle, name.toLatin1().data(), argCount,
+    int res = sqlite_create_function(dbHandle, name.toUtf8().constData(), argCount,
                                      &AbstractDb2<T>::evaluateScalar, userData);
 
     return res == SQLITE_OK;
@@ -314,12 +317,28 @@ bool AbstractDb2<T>::registerAggregateFunction(const QString& name, int argCount
     userData->argCount = argCount;
     userDataList << userData;
 
-    int res = sqlite_create_aggregate(dbHandle, name.toLatin1().data(), argCount,
+    int res = sqlite_create_aggregate(dbHandle, name.toUtf8().constData(), argCount,
                                       &AbstractDb2<T>::evaluateAggregateStep,
                                       &AbstractDb2<T>::evaluateAggregateFinal,
                                       userData);
 
     return res == SQLITE_OK;
+}
+
+template <class T>
+bool AbstractDb2<T>::registerCollationInternal(const QString& name)
+{
+    // Not supported in SQLite 2
+    UNUSED(name);
+    return false;
+}
+
+template <class T>
+bool AbstractDb2<T>::deregisterCollationInternal(const QString& name)
+{
+    // Not supported in SQLite 2
+    UNUSED(name);
+    return false;
 }
 
 template <class T>
