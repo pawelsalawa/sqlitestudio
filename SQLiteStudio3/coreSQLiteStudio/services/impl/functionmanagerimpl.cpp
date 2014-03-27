@@ -1,8 +1,9 @@
 #include "functionmanagerimpl.h"
-#include "plugins/sqlfunctionplugin.h"
 #include "services/config.h"
 #include "services/pluginmanager.h"
 #include "services/notifymanager.h"
+#include "plugins/scriptingplugin.h"
+#include "common/unused.h"
 #include <QVariant>
 #include <QDebug>
 
@@ -37,6 +38,8 @@ QList<FunctionManager::FunctionPtr> FunctionManagerImpl::getFunctionsForDatabase
 
 QVariant FunctionManagerImpl::evaluateScalar(const QString& name, int argCount, const QList<QVariant>& args, Db* db, bool& ok)
 {
+    UNUSED(db);
+
     Key key;
     key.name = name;
     key.argCount = argCount;
@@ -48,18 +51,27 @@ QVariant FunctionManagerImpl::evaluateScalar(const QString& name, int argCount, 
     }
 
     FunctionPtr function = functionsByKey[key];
-    if (!functionPlugins.contains(function->lang))
+    ScriptingPlugin* plugin = PLUGINS->getScriptingPlugin(function->lang);
+    if (!plugin)
     {
         ok = false;
         return langUnsupportedError(name, argCount, function->lang);
     }
 
-    SqlFunctionPlugin* plugin = functionPlugins[function->lang];
-    return plugin->evaluateScalar(db, name, function->code, args, ok);
+    QString error;
+    QVariant result = plugin->evaluate(function->code, args, &error);
+    if (!error.isEmpty())
+    {
+        ok = false;
+        return error;
+    }
+    return result;
 }
 
 void FunctionManagerImpl::evaluateAggregateInitial(const QString& name, int argCount, Db* db, QHash<QString,QVariant>& aggregateStorage)
 {
+    UNUSED(db);
+
     Key key;
     key.name = name;
     key.argCount = argCount;
@@ -68,15 +80,26 @@ void FunctionManagerImpl::evaluateAggregateInitial(const QString& name, int argC
         return;
 
     FunctionPtr function = functionsByKey[key];
-    if (!functionPlugins.contains(function->lang))
+    ScriptingPlugin* plugin = PLUGINS->getScriptingPlugin(function->lang);
+    if (!plugin)
         return;
 
-    SqlFunctionPlugin* plugin = functionPlugins[function->lang];
-    plugin->evaluateAggregateInitial(db, name, argCount, function->initCode, aggregateStorage);
+    ScriptingPlugin::Context* ctx = plugin->createContext();
+    aggregateStorage["context"] = QVariant::fromValue(ctx);
+
+    plugin->evaluate(ctx, function->code, {});
+
+    if (plugin->hasError(ctx))
+    {
+        aggregateStorage["error"] = true;
+        aggregateStorage["errorMessage"] = plugin->getErrorMessage(ctx);
+    }
 }
 
 void FunctionManagerImpl::evaluateAggregateStep(const QString& name, int argCount, const QList<QVariant>& args, Db* db, QHash<QString,QVariant>& aggregateStorage)
 {
+    UNUSED(db);
+
     Key key;
     key.name = name;
     key.argCount = argCount;
@@ -85,15 +108,28 @@ void FunctionManagerImpl::evaluateAggregateStep(const QString& name, int argCoun
         return;
 
     FunctionPtr function = functionsByKey[key];
-    if (!functionPlugins.contains(function->lang))
+    ScriptingPlugin* plugin = PLUGINS->getScriptingPlugin(function->lang);
+    if (!plugin)
         return;
 
-    SqlFunctionPlugin* plugin = functionPlugins[function->lang];
-    plugin->evaluateAggregateStep(db, name, function->code, args, aggregateStorage);
+    if (aggregateStorage.contains("error"))
+        return;
+
+    ScriptingPlugin::Context* ctx = aggregateStorage["context"].value<ScriptingPlugin::Context*>();
+    plugin->evaluate(ctx, function->code, args);
+
+    if (plugin->hasError(ctx))
+    {
+        aggregateStorage["error"] = true;
+        aggregateStorage["errorMessage"] = plugin->getErrorMessage(ctx);
+    }
+
 }
 
 QVariant FunctionManagerImpl::evaluateAggregateFinal(const QString& name, int argCount, Db* db, bool& ok, QHash<QString,QVariant>& aggregateStorage)
 {
+    UNUSED(db);
+
     Key key;
     key.name = name;
     key.argCount = argCount;
@@ -105,28 +141,39 @@ QVariant FunctionManagerImpl::evaluateAggregateFinal(const QString& name, int ar
     }
 
     FunctionPtr function = functionsByKey[key];
-    if (!functionPlugins.contains(function->lang))
+    ScriptingPlugin* plugin = PLUGINS->getScriptingPlugin(function->lang);
+    if (!plugin)
     {
         ok = false;
         return langUnsupportedError(name, argCount, function->lang);
     }
 
-    SqlFunctionPlugin* plugin = functionPlugins[function->lang];
-    return plugin->evaluateAggregateFinal(db, name, argCount, function->finalCode, ok, aggregateStorage);
+    ScriptingPlugin::Context* ctx = aggregateStorage["context"].value<ScriptingPlugin::Context*>();
+    if (aggregateStorage.contains("error"))
+    {
+        ok = false;
+        plugin->releaseContext(ctx);
+        return aggregateStorage["errorMessage"];
+    }
+
+    QVariant result = plugin->evaluate(ctx, function->code, {});
+
+    if (plugin->hasError(ctx))
+    {
+        ok = false;
+        QString msg = plugin->getErrorMessage(ctx);
+        plugin->releaseContext(ctx);
+        return msg;
+    }
+
+    plugin->releaseContext(ctx);
+    return result;
 }
 
 void FunctionManagerImpl::init()
 {
     functions = CFG->getFunctions();
     refreshFunctionsByKey();
-
-    // Read SQL function plugins and connect signals to keep the list up to date
-    functionPlugins.clear();
-    foreach (SqlFunctionPlugin* plugin, PLUGINS->getLoadedPlugins<SqlFunctionPlugin>())
-        functionPlugins[plugin->getLanguageName()] = plugin;
-
-    connect(PLUGINS, SIGNAL(loaded(Plugin*,PluginType*)), this, SLOT(pluginLoaded(Plugin*,PluginType*)));
-    connect(PLUGINS, SIGNAL(aboutToUnload(Plugin*,PluginType*)), this, SLOT(pluginUnloaded(Plugin*,PluginType*)));
 }
 
 void FunctionManagerImpl::refreshFunctionsByKey()
@@ -167,36 +214,6 @@ QStringList FunctionManagerImpl::getArgMarkers(int argCount)
         argMarkers << "?";
 
     return argMarkers;
-}
-
-void FunctionManagerImpl::pluginLoaded(Plugin* plugin, PluginType* type)
-{
-    if (!type->isForPluginType<SqlFunctionPlugin>())
-        return;
-
-    SqlFunctionPlugin* fnPlugin = dynamic_cast<SqlFunctionPlugin*>(plugin);
-    if (!fnPlugin)
-    {
-        qCritical() << "Could not cast to SqlFunctionPlugin, while the type was intended for that plugin! (in FunctionManagerImpl::pluginLoaded())";
-        return;
-    }
-
-    functionPlugins[fnPlugin->getLanguageName()] = fnPlugin;
-}
-
-void FunctionManagerImpl::pluginUnloaded(Plugin* plugin, PluginType* type)
-{
-    if (!type->isForPluginType<SqlFunctionPlugin>())
-        return;
-
-    SqlFunctionPlugin* fnPlugin = dynamic_cast<SqlFunctionPlugin*>(plugin);
-    if (!fnPlugin)
-    {
-        qCritical() << "Could not cast to SqlFunctionPlugin, while the type was intended for that plugin! (in FunctionManagerImpl::pluginUnloaded())";
-        return;
-    }
-
-    functionPlugins.remove(fnPlugin->getLanguageName());
 }
 
 FunctionManagerImpl::Function::Function()

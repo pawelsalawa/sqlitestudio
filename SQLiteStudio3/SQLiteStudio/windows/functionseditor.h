@@ -13,7 +13,7 @@ class FunctionsEditor;
 }
 
 class FunctionsEditorModel;
-class SqlFunctionPlugin;
+class ScriptingPlugin;
 class SyntaxHighlighterPlugin;
 class DbTreeItem;
 class QTreeWidgetItem;
@@ -68,7 +68,7 @@ class FunctionsEditor : public MdiChild, public ExtActionContainer
         FunctionsEditorModel* model = nullptr;
         QSortFilterProxyModel* functionFilterModel = nullptr;
         bool currentModified = false;
-        QHash<QString,SqlFunctionPlugin*> functionPlugins;
+        QHash<QString,ScriptingPlugin*> scriptingPlugins;
         QHash<QString,SyntaxHighlighterPlugin*> highlighterPlugins;
         SelectableDbModel* dbListModel = nullptr;
         QString currentHighlighterLang;

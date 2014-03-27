@@ -36,6 +36,7 @@ class ScriptingQt : public GenericPlugin, public ScriptingPlugin
         QVariant getVariable(Context* context, const QString& name);
         bool hasError(Context* context) const;
         QString getErrorMessage(Context* context) const;
+        QByteArray getIconData() const;
         bool init();
         void deinit();
 

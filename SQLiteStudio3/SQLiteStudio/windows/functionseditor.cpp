@@ -5,13 +5,13 @@
 #include "uiutils.h"
 #include "functionseditormodel.h"
 #include "services/pluginmanager.h"
-#include "plugins/sqlfunctionplugin.h"
 #include "dbtree/dbtree.h"
 #include "dbtree/dbtreemodel.h"
 #include "dbtree/dbtreeitem.h"
 #include "iconmanager.h"
 #include "syntaxhighlighterplugin.h"
 #include "sqlitesyntaxhighlighter.h"
+#include "plugins/scriptingplugin.h"
 #include "common/userinputfilter.h"
 #include "selectabledbmodel.h"
 #include <QDebug>
@@ -124,10 +124,10 @@ void FunctionsEditor::init()
     model->setData(FUNCTIONS->getAllFunctions());
 
     // Language plugins
-    foreach (SqlFunctionPlugin* plugin, PLUGINS->getLoadedPlugins<SqlFunctionPlugin>())
-        functionPlugins[plugin->getLanguageName()] = plugin;
+    foreach (ScriptingPlugin* plugin, PLUGINS->getLoadedPlugins<ScriptingPlugin>())
+        scriptingPlugins[plugin->getLanguage()] = plugin;
 
-    ui->langCombo->addItems(functionPlugins.keys());
+    ui->langCombo->addItems(scriptingPlugins.keys());
 
     // Syntax highlighting plugins
     foreach (SyntaxHighlighterPlugin* plugin, PLUGINS->getLoadedPlugins<SyntaxHighlighterPlugin>())

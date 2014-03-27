@@ -45,11 +45,6 @@ class FunctionManagerImpl : public FunctionManager
 
         QList<FunctionPtr> functions;
         QHash<Key,FunctionPtr> functionsByKey;
-        QHash<QString,SqlFunctionPlugin*> functionPlugins;
-
-    private slots:
-        void pluginLoaded(Plugin* plugin, PluginType* type);
-        void pluginUnloaded(Plugin* plugin, PluginType* type);
 };
 
 int qHash(const FunctionManagerImpl::Key& key);

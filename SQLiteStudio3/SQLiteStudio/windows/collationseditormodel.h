@@ -2,6 +2,8 @@
 #define COLLATIONSEDITORMODEL_H
 
 #include "services/collationmanager.h"
+#include <QIcon>
+#include <QHash>
 #include <QAbstractListModel>
 
 class CollationsEditorModel : public QAbstractListModel
@@ -64,7 +66,7 @@ class CollationsEditorModel : public QAbstractListModel
          * if the list was modified in regards of adding or deleting collations.
          */
         QList<Collation*> originalCollationList;
-        //QHash<QString,QIcon> langToIcon;
+        QHash<QString,QIcon> langToIcon;
         bool listModified = false;
 };
 

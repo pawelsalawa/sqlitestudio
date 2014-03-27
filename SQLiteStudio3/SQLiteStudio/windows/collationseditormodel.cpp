@@ -1,6 +1,8 @@
 #include "collationseditormodel.h"
 #include "common/unused.h"
 #include "common/strhash.h"
+#include "services/pluginmanager.h"
+#include "plugins/scriptingplugin.h"
 
 CollationsEditorModel::CollationsEditorModel(QObject *parent) :
     QAbstractListModel(parent)
@@ -273,10 +275,8 @@ QVariant CollationsEditorModel::data(const QModelIndex& index, int role) const
     if (role == Qt::DisplayRole)
         return collationList[index.row()]->data->name;
 
-//    if (role == Qt::DecorationRole && langToIcon.contains(functionList[index.row()]->data->lang))
-//    {
-//        return langToIcon[functionList[index.row()]->data->lang];
-//    }
+    if (role == Qt::DecorationRole && langToIcon.contains(collationList[index.row()]->data->lang))
+        return langToIcon[collationList[index.row()]->data->lang];
 
     return QVariant();
 
@@ -284,7 +284,18 @@ QVariant CollationsEditorModel::data(const QModelIndex& index, int role) const
 
 void CollationsEditorModel::init()
 {
+    QByteArray data;
+    foreach (ScriptingPlugin* plugin, PLUGINS->getLoadedPlugins<ScriptingPlugin>())
+    {
+        data = QByteArray::fromBase64(plugin->getIconData());
 
+        // The pixmap needs to be created per each iteration, so the pixmap is always loaded from scratch,
+        // otherwise the first icon was used for all icons. It seems that loadFromData() appends the data
+        // to the end of current data.
+        QPixmap pixmap;
+        if (pixmap.loadFromData(data))
+            langToIcon[plugin->getLanguage()] = QIcon(pixmap);
+    }
 }
 
 void CollationsEditorModel::emitDataChanged(int row)

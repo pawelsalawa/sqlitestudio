@@ -2,7 +2,7 @@
 #include "common/strhash.h"
 #include "common/unused.h"
 #include "services/pluginmanager.h"
-#include "plugins/sqlfunctionplugin.h"
+#include "plugins/scriptingplugin.h"
 #include <QDebug>
 
 FunctionsEditorModel::FunctionsEditorModel(QObject *parent) :
@@ -388,7 +388,7 @@ QVariant FunctionsEditorModel::data(const QModelIndex& index, int role) const
 void FunctionsEditorModel::init()
 {
     QByteArray data;
-    foreach (SqlFunctionPlugin* plugin, PLUGINS->getLoadedPlugins<SqlFunctionPlugin>())
+    foreach (ScriptingPlugin* plugin, PLUGINS->getLoadedPlugins<ScriptingPlugin>())
     {
         data = QByteArray::fromBase64(plugin->getIconData());
 
@@ -397,7 +397,7 @@ void FunctionsEditorModel::init()
         // to the end of current data.
         QPixmap pixmap;
         if (pixmap.loadFromData(data))
-            langToIcon[plugin->getLanguageName()] = QIcon(pixmap);
+            langToIcon[plugin->getLanguage()] = QIcon(pixmap);
     }
 }
 
