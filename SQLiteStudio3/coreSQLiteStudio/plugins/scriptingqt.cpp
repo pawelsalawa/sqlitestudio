@@ -76,7 +76,7 @@ QVariant ScriptingQt::evaluate(const QString& code, const QList<QVariant>& args,
 
     // Handle errors
     if (!mainContext->error.isEmpty())
-        *errorMessage = mainContext->error.isEmpty();
+        *errorMessage = mainContext->error;
 
     // Leave the context to reset "this".
     mainContext->engine->popContext();

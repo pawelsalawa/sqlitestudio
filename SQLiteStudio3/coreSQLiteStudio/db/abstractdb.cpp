@@ -62,8 +62,16 @@ bool AbstractDb::closeQuiet()
     bool res = closeInternal();
     clearAttaches();
     registeredFunctions.clear();
+    registeredCollations.clear();
     disconnect(FUNCTIONS, SIGNAL(functionListChanged()), this, SLOT(registerAllFunctions()));
     return res;
+}
+
+bool AbstractDb::openForProbing()
+{
+    QWriteLocker locker(&dbOperLock);
+    QWriteLocker connectionLocker(&connectionStateLock);
+    return openInternal();
 }
 
 void AbstractDb::registerAllFunctions()
@@ -387,6 +395,11 @@ bool AbstractDb::deregisterCollation(const QString& name)
     return false;
 }
 
+bool AbstractDb::isCollationRegistered(const QString& name)
+{
+    return registeredCollations.contains(name);
+}
+
 QHash<QString, QVariant> AbstractDb::getAggregateContext(void* memPtr)
 {
     if (!memPtr)
@@ -636,7 +649,7 @@ bool AbstractDb::initAfterCreated()
     bool isOpenBefore = isOpen();
     if (!isOpenBefore)
     {
-        if (!openQuiet())
+        if (!openForProbing())
         {
             qWarning() << "Could not open database for initAfterCreated(). Database:" << name;
             return false;

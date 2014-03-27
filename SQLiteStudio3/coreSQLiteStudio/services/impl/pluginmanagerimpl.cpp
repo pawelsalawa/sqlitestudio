@@ -164,7 +164,7 @@ bool PluginManagerImpl::initPlugin(QPluginLoader* loader, const QString& fileNam
                 container->builtIn = true;
                 container->plugin = plugin;
             }
-            readMetadata(plugin, container);
+            //readMetadata(plugin, container); // seems redundant, done in pluginLoaded() - if causes missing metadata, uncomment
             pluginCategories[type] << container;
             pluginContainer[plugin->getName()] = container;
 
@@ -287,8 +287,7 @@ void PluginManagerImpl::unload(const QString& pluginName)
     if (!container->loaded)
         return;
 
-    if (scriptingPlugins.contains(container->name))
-        scriptingPlugins.remove(container->name);
+    removePluginFromCollections(container->plugin);
 
     emit aboutToUnload(container->plugin, container->type);
     container->plugin->deinit();
@@ -322,13 +321,17 @@ bool PluginManagerImpl::load(const QString& pluginName)
     PluginContainer* container = pluginContainer[pluginName];
     if (container->builtIn)
     {
-        emit loaded(container->plugin, container->type);
+        pluginLoaded(container);
+        //emit loaded(container->plugin, container->type);
     }
     else
     {
         QPluginLoader* loader = container->loader;
         if (loader->isLoaded())
         {
+            // This happens when the load() was called just after plugin was probed (its metadata was read)
+            // and the plugin is still in memory. We don't unload&load it, we just keep it and here we treat
+            // it like it was just loaded (which in fact it was, for reading metadata).
             pluginLoaded(container);
             return true;
         }
@@ -355,17 +358,33 @@ bool PluginManagerImpl::load(const QString& pluginName)
 void PluginManagerImpl::pluginLoaded(PluginManagerImpl::PluginContainer* container)
 {
     if (container->builtIn)
+    {
+        addPluginToCollections(container->plugin);
+        emit loaded(container->plugin, container->type);
         return;
+    }
 
     container->plugin = dynamic_cast<Plugin*>(container->loader->instance());
     container->loaded = true;
     readMetadata(container->plugin, container);
-
-    if (dynamic_cast<ScriptingPlugin*>(container->plugin))
-        scriptingPlugins[container->name] = dynamic_cast<ScriptingPlugin*>(container->plugin);
+    addPluginToCollections(container->plugin);
 
     emit loaded(container->plugin, container->type);
     qDebug() << container->name << "loaded:" << container->filePath;
+}
+
+void PluginManagerImpl::addPluginToCollections(Plugin* plugin)
+{
+    ScriptingPlugin* scriptingPlugin = dynamic_cast<ScriptingPlugin*>(plugin);
+    if (scriptingPlugin)
+        scriptingPlugins[scriptingPlugin->getLanguage()] = scriptingPlugin;
+}
+
+void PluginManagerImpl::removePluginFromCollections(Plugin* plugin)
+{
+    ScriptingPlugin* scriptingPlugin = dynamic_cast<ScriptingPlugin*>(plugin);
+    if (scriptingPlugin && scriptingPlugins.contains(scriptingPlugin->getLanguage()))
+        scriptingPlugins.remove(plugin->getName());
 }
 
 void PluginManagerImpl::readMetadata(Plugin* plugin, PluginManagerImpl::PluginContainer* container)

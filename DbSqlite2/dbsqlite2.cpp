@@ -12,7 +12,7 @@ Db* DbSqlite2::getInstance(const QString& name, const QString& path, const QHash
     UNUSED(errorMessage);
     Db* db = new DbSqlite2Instance(name, path, options);
 
-    if (!db->open())
+    if (!db->openForProbing())
     {
         delete db;
         return nullptr;
@@ -25,7 +25,7 @@ Db* DbSqlite2::getInstance(const QString& name, const QString& path, const QHash
         return nullptr;
     }
 
-    db->close();
+    db->closeQuiet();
     return db;
 }
 

@@ -223,6 +223,7 @@ class API_EXPORT AbstractDb : public Db
 
         bool registerCollation(const QString& name);
         bool deregisterCollation(const QString& name);
+        bool isCollationRegistered(const QString& name);
 
         /**
          * @brief Registers a collation sequence implementation in the database.
@@ -492,6 +493,7 @@ class API_EXPORT AbstractDb : public Db
         bool close();
         bool openQuiet();
         bool closeQuiet();
+        bool openForProbing();
         void registerAllFunctions();
         void registerAllCollations();
 };

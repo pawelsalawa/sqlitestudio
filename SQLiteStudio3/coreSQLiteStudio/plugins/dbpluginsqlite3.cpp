@@ -8,7 +8,7 @@ Db* DbPluginSqlite3::getInstance(const QString& name, const QString& path, const
     UNUSED(errorMessage);
     Db* db = new DbSqlite3(name, path, options);
 
-    if (!db->open())
+    if (!db->openForProbing())
     {
         delete db;
         return nullptr;
@@ -21,7 +21,7 @@ Db* DbPluginSqlite3::getInstance(const QString& name, const QString& path, const
         return nullptr;
     }
 
-    db->close();
+    db->closeQuiet();
     return db;
 }
 

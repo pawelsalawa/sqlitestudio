@@ -103,6 +103,7 @@ class AbstractDb3 : public AbstractDb
         struct CollationUserData
         {
             QString name;
+            AbstractDb3<T>* db;
         };
 
         int prepareStmt(const QString& query, sqlite3_stmt** stmt);
@@ -111,6 +112,16 @@ class AbstractDb3 : public AbstractDb
         void freeStatement(sqlite3_stmt* stmt);
         QString extractLastError();
         void cleanUp();
+
+        /**
+         * @brief Registers function to call when unknown collation was encountered by the SQLite.
+         *
+         * For unknown collations SQLite calls function registered by this method and expects it to register
+         * proper function handling that collation, otherwise the query will result with error.
+         *
+         * The default collation handler does a simple QString::compare(), case insensitive.
+         */
+        void registerDefaultCollationRequestHandler();
 
         /**
          * @brief Stores given result in function's context.
@@ -241,10 +252,43 @@ class AbstractDb3 : public AbstractDb
          */
         static void releaseAggregateContext(sqlite3_context* context);
 
+        /**
+         * @brief Registers default collation for requested collation.
+         * @param fnUserData User data passed when registering collation request handling function.
+         * @param fnDbHandle Database handle for which this call is being made.
+         * @param eTextRep Text encoding (for now always SQLITE_UTF8).
+         * @param collationName Name of requested collation.
+         *
+         * This function is called by SQLite to order registering collation with given name. We register default collation,
+         * cause all known collations should already be registered.
+         *
+         * Default collation is implemented by evaluateDefaultCollation().
+         */
+        static void registerDefaultCollation(void* fnUserData, sqlite3* fnDbHandle, int eTextRep, const char* collationName);
+
+        /**
+         * @brief Called as a default collation implementation.
+         * @param userData Collation user data, not used.
+         * @param length1 Number of characters in value1 (excluding \0).
+         * @param value1 First value to compare.
+         * @param length2 Number of characters in value2 (excluding \0).
+         * @param value2 Second value to compare.
+         * @return -1, 0, or 1, as SQLite's collation specification demands it.
+         */
+        static int evaluateDefaultCollation(void* userData, int length1, const void* value1, int length2, const void* value2);
+
         sqlite3* dbHandle = nullptr;
         QString lastError;
         int lastErrorCode = SQLITE_OK;
         QList<sqlite3_stmt*> preparedStatements;
+
+        /**
+         * @brief User data for default collation request handling function.
+         *
+         * That function doesn't have destructor function pointer, so we need to keep track of that user data
+         * and delete it when database is closed.
+         */
+        CollationUserData* defaultCollationUserData = nullptr;
 };
 
 //------------------------------------------------------------------------------------
@@ -389,6 +433,7 @@ bool AbstractDb3<T>::closeInternal()
 template <class T>
 void AbstractDb3<T>::initAfterOpen()
 {
+    registerDefaultCollationRequestHandler();;
     exec("PRAGMA foreign_keys = 1;", Flag::NO_LOCK);
     exec("PRAGMA recursive_triggers = 1;", Flag::NO_LOCK);
 }
@@ -458,7 +503,9 @@ bool AbstractDb3<T>::registerCollationInternal(const QString& name)
     CollationUserData* userData = new CollationUserData;
     userData->name = name;
 
-    int res = sqlite3_create_collation16(dbHandle, name.toUtf8().constData(), SQLITE_UTF8, userData, &AbstractDb3<T>::evaluateCollation);
+    int res = sqlite3_create_collation_v2(dbHandle, name.toUtf8().constData(), SQLITE_UTF8, userData,
+                                          &AbstractDb3<T>::evaluateCollation,
+                                          &AbstractDb3<T>::deleteCollationUserData);
     return res == SQLITE_OK;
 }
 
@@ -468,7 +515,7 @@ bool AbstractDb3<T>::deregisterCollationInternal(const QString& name)
     if (!dbHandle)
         return false;
 
-    sqlite3_create_collation16(dbHandle, name.toUtf8().constData(), SQLITE_UTF8, nullptr, nullptr);
+    sqlite3_create_collation_v2(dbHandle, name.toUtf8().constData(), SQLITE_UTF8, nullptr, nullptr, nullptr);
     return true;
 }
 
@@ -563,6 +610,8 @@ void AbstractDb3<T>::cleanUp()
         sqlite3_finalize(stmt);
 
     preparedStatements.clear();
+
+    safe_delete(defaultCollationUserData);
 }
 
 template <class T>
@@ -742,6 +791,64 @@ template <class T>
 void AbstractDb3<T>::releaseAggregateContext(sqlite3_context* context)
 {
     AbstractDb::releaseAggregateContext(getContextMemPtr(context));
+}
+
+template <class T>
+void AbstractDb3<T>::registerDefaultCollation(void* fnUserData, sqlite3* fnDbHandle, int eTextRep, const char* collationName)
+{
+    CollationUserData* defUserData = reinterpret_cast<CollationUserData*>(fnUserData);
+    if (!defUserData)
+    {
+        qWarning() << "Null userData in AbstractDb3<T>::registerDefaultCollation().";
+        return;
+    }
+
+    AbstractDb3<T>* db = defUserData->db;
+    if (!db)
+    {
+        qWarning() << "No database defined in userData of AbstractDb3<T>::registerDefaultCollation().";
+        return;
+    }
+
+    // If SQLite seeks for collation implementation with different encoding, we force it to use existing one.
+    if (db->isCollationRegistered(QString::fromUtf8(collationName)))
+        return;
+
+    // Check if dbHandle matches - just in case
+    if (db->dbHandle != fnDbHandle)
+    {
+        qWarning() << "Mismatch of dbHandle in AbstractDb3<T>::registerDefaultCollation().";
+        return;
+    }
+
+    int res = sqlite3_create_collation_v2(fnDbHandle, collationName, eTextRep, nullptr,
+                                          &AbstractDb3<T>::evaluateDefaultCollation, nullptr);
+
+    if (res != SQLITE_OK)
+        qWarning() << "Could not register default collation in AbstractDb3<T>::registerDefaultCollation().";
+}
+
+template <class T>
+int AbstractDb3<T>::evaluateDefaultCollation(void* userData, int length1, const void* value1, int length2, const void* value2)
+{
+    UNUSED(userData);
+    UNUSED(length1);
+    UNUSED(length2);
+    return COLLATIONS->evaluateDefault(QString::fromUtf8((const char*)value1), QString::fromUtf8((const char*)value2));
+}
+
+template <class T>
+void AbstractDb3<T>::registerDefaultCollationRequestHandler()
+{
+    if (!dbHandle)
+        return;
+
+    defaultCollationUserData = new CollationUserData;
+    defaultCollationUserData->db = this;
+
+    int res = sqlite3_collation_needed(dbHandle, defaultCollationUserData, &AbstractDb3<T>::registerDefaultCollation);
+    if (res != SQLITE_OK)
+        qWarning() << "Could not register default collation request handler. Unknown collations will cause errors.";
 }
 
 //------------------------------------------------------------------------------------
