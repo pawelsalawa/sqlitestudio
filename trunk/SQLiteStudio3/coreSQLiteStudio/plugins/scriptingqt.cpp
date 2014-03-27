@@ -32,7 +32,7 @@ ScriptingQt::~ScriptingQt()
 
 QString ScriptingQt::getLanguage() const
 {
-    return "Qt";
+    return QStringLiteral("QtScript");
 }
 
 ScriptingPlugin::Context* ScriptingQt::createContext()

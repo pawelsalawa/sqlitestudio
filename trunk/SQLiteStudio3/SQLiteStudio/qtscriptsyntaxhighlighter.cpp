@@ -1,4 +1,4 @@
-#include "javascriptsyntaxhighlighter.h"
+#include "qtscriptsyntaxhighlighter.h"
 #include "uiconfig.h"
 
 #include <QPlainTextEdit>
@@ -342,7 +342,7 @@ void JavaScriptSyntaxHighlighter::mark(const QString &str, Qt::CaseSensitivity c
 
 QString JavaScriptHighlighterPlugin::getLanguageName() const
 {
-    return "Qt";
+    return QStringLiteral("QtScript");
 }
 
 QSyntaxHighlighter* JavaScriptHighlighterPlugin::createSyntaxHighlighter(QWidget* textEdit) const
