@@ -722,6 +722,19 @@ class API_EXPORT Db : public QObject
         virtual bool openQuiet() = 0;
 
         /**
+         * @brief Opens connection to the database quietly, without applying any specific settings.
+         * @return true on success, false on error.
+         *
+         * Opens database, doesn't emit any signal. It also doesn't apply any pragmas, neither registers
+         * functions or collations. It should be used when you want to do some basic query on the database,
+         * like when you probe the database for being the correct database for this implementation (driver, etc).
+         * Actually, that's what DbPluginSqlite3 plugin (among others) use.
+         *
+         * To close database open with this method use closeQuiet().
+         */
+        virtual bool openForProbing() = 0;
+
+        /**
          * @brief Closes connection to the database quietly.
          * @return true on success, false on error.
          *

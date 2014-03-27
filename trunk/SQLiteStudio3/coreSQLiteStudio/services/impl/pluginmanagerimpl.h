@@ -150,6 +150,28 @@ class PluginManagerImpl : public PluginManager
         void pluginLoaded(PluginContainer* container);
 
         /**
+         * @brief Stores some specific plugin types in internal collections for faster access.
+         * @param plugin Plugin that was just loaded.
+         *
+         * This is called after we are sure we have a Plugin instance.
+         *
+         * The method stores certain plugin types in internal collections, so they can be accessed
+         * faster, instead of calling getLoadedPlugin<T>(), which is not as fast.
+         *
+         * The internal collections are used for plugins that are likely to be accessed frequently,
+         * like ScriptingPlugin.
+         */
+        void addPluginToCollections(Plugin* plugin);
+
+        /**
+         * @brief Removes plugin from internal collections.
+         * @param plugin Plugin that is about to be unloaded.
+         *
+         * This is the reverse operation to what addPluginToCollections(Plugin*) does.
+         */
+        void removePluginFromCollections(Plugin* plugin);
+
+        /**
          * @brief Reads title, description, author, etc. from the plugin.
          * @param plugin Plugin to read data from.
          * @param container Container to put the data to.
