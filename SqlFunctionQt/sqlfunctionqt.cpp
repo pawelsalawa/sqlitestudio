@@ -85,7 +85,7 @@ QVariant SqlFunctionQt::evaluateAggregateFinal(Db* db, const QString& function, 
 
 QString SqlFunctionQt::getLanguageName() const
 {
-    return "Qt";
+    return "QtScript";
 }
 
 QByteArray SqlFunctionQt::getIconData() const

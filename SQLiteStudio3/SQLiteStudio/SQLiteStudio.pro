@@ -118,10 +118,10 @@ SOURCES += main.cpp\
     windows/functionseditor.cpp \
     windows/functionseditormodel.cpp \
     sqlitesyntaxhighlighter.cpp \
-    javascriptsyntaxhighlighter.cpp \
     windows/collationseditor.cpp \
     selectabledbmodel.cpp \
-    windows/collationseditormodel.cpp
+    windows/collationseditormodel.cpp \
+    qtscriptsyntaxhighlighter.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -225,10 +225,10 @@ HEADERS  += mainwindow.h \
     windows/functionseditormodel.h \
     syntaxhighlighterplugin.h \
     sqlitesyntaxhighlighter.h \
-    javascriptsyntaxhighlighter.h \
     windows/collationseditor.h \
     selectabledbmodel.h \
-    windows/collationseditormodel.h
+    windows/collationseditormodel.h \
+    qtscriptsyntaxhighlighter.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \
