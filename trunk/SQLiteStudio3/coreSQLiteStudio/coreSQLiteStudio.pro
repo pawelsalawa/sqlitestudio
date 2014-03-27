@@ -267,7 +267,6 @@ HEADERS += sqlitestudio.h\
     common/strhash.h \
     dbattacher.h \
     common/bistrhash.h \
-    plugins/sqlfunctionplugin.h \
     services/functionmanager.h \
     common/sortedhash.h \
     plugins/scriptingplugin.h \

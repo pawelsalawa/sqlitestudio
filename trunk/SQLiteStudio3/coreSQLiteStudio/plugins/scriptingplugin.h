@@ -23,6 +23,7 @@ class ScriptingPlugin : virtual public Plugin
         virtual bool hasError(Context* context) const = 0;
         virtual QString getErrorMessage(Context* context) const = 0;
         virtual QVariant evaluate(const QString& code, const QList<QVariant>& args, QString* errorMessage = nullptr) = 0;
+        virtual QByteArray getIconData() const = 0;
 };
 
 Q_DECLARE_METATYPE(ScriptingPlugin::Context*)

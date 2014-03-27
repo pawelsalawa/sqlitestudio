@@ -10,7 +10,6 @@
 #include "plugins/sqlformatterplugin.h"
 #include "sqlformatter.h"
 #include "plugins/generalpurposeplugin.h"
-#include "plugins/sqlfunctionplugin.h"
 #include "plugins/dbplugin.h"
 #include "common/unused.h"
 #include "services/functionmanager.h"
@@ -148,7 +147,6 @@ void SQLiteStudio::init(const QStringList& cmdListArguments)
     pluginManager->registerPluginType<GeneralPurposePlugin>(QObject::tr("General purpose"));
     pluginManager->registerPluginType<DbPlugin>(QObject::tr("Database support"));
     pluginManager->registerPluginType<SqlFormatterPlugin>(QObject::tr("SQL formatter"), "formatterPluginsPage");
-    pluginManager->registerPluginType<SqlFunctionPlugin>(QObject::tr("SQL function"));
     pluginManager->registerPluginType<ScriptingPlugin>(QObject::tr("Scripting languages"));
 
     sqlFormatter = new SqlFormatter();

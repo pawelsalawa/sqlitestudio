@@ -18,7 +18,7 @@
 #include "formmanager.h"
 #include "customconfigwidgetplugin.h"
 #include "sqlitesyntaxhighlighter.h"
-#include "javascriptsyntaxhighlighter.h"
+#include "qtscriptsyntaxhighlighter.h"
 #include <QMdiSubWindow>
 #include <QDebug>
 #include <QStyleFactory>
