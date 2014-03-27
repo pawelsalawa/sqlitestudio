@@ -149,17 +149,20 @@ StatementTokenBuilder& StatementTokenBuilder::withLiteralValue(const QVariant& v
         return *this;
 
     bool ok;
+    if (value.userType() == QVariant::Double)
+    {
+        value.toDouble(&ok);
+        if (ok)
+        {
+            withFloat(value.toDouble());
+            return *this;
+        }
+    }
+
     value.toInt(&ok);
     if (ok)
     {
         withInteger(value.toInt());
-        return *this;
-    }
-
-    value.toDouble(&ok);
-    if (ok)
-    {
-        withFloat(value.toDouble());
         return *this;
     }
 
