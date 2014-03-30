@@ -88,7 +88,6 @@ void CollationsEditor::init()
     connect(ui->collationList->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(collationSelected(QItemSelection,QItemSelection)));
     connect(ui->collationList->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), this, SLOT(updateState()));
     connect(ui->codeEdit, SIGNAL(textChanged()), this, SLOT(updateModified()));
-    connect(ui->nameEdit, SIGNAL(textChanged(QString)), this, SLOT(validateName()));
     connect(ui->nameEdit, SIGNAL(textChanged(QString)), this, SLOT(updateModified()));
     connect(ui->allDatabasesRadio, SIGNAL(clicked()), this, SLOT(updateModified()));
     connect(ui->selectedDatabasesRadio, SIGNAL(clicked()), this, SLOT(updateModified()));
@@ -161,7 +160,7 @@ void CollationsEditor::clearEdits()
 
 void CollationsEditor::selectCollation(int row)
 {
-    if (!model->isValidRow(row))
+    if (!model->isValidRowIndex(row))
         return;
 
     ui->collationList->selectionModel()->setCurrentIndex(model->index(row), QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent);
@@ -181,7 +180,7 @@ void CollationsEditor::help()
 void CollationsEditor::commit()
 {
     int row = getCurrentCollationRow();
-    if (model->isValidRow(row))
+    if (model->isValidRowIndex(row))
         collationDeselected(row);
 
     QList<CollationManager::CollationPtr> collations = model->getCollations();
@@ -190,7 +189,7 @@ void CollationsEditor::commit()
     model->clearModified();
     currentModified = false;
 
-    if (model->isValidRow(row))
+    if (model->isValidRowIndex(row))
         selectCollation(row);
 
     updateState();
@@ -204,7 +203,7 @@ void CollationsEditor::rollback()
     currentModified = false;
     clearEdits();
 
-    if (model->isValidRow(selectedBefore))
+    if (model->isValidRowIndex(selectedBefore))
         selectCollation(selectedBefore);
 
     updateState();
@@ -233,7 +232,7 @@ void CollationsEditor::deleteCollation()
     clearEdits();
 
     row = getCurrentCollationRow();
-    if (model->isValidRow(row))
+    if (model->isValidRowIndex(row))
         collationSelected(row);
 
     updateState();
@@ -242,26 +241,29 @@ void CollationsEditor::deleteCollation()
 void CollationsEditor::updateState()
 {
     bool modified = model->isModified() || currentModified;
+    bool valid = model->isValid();
 
-    actionMap[COMMIT]->setEnabled(modified);
+    actionMap[COMMIT]->setEnabled(modified && valid);
     actionMap[ROLLBACK]->setEnabled(modified);
     actionMap[DELETE]->setEnabled(ui->collationList->selectionModel()->selectedIndexes().size() > 0);
-
-    updateCurrentCollationState();
 }
 
 void CollationsEditor::updateCurrentCollationState()
 {
     int row = getCurrentCollationRow();
-
-    QString name = model->getName(row);
-    bool nameOk = !name.isNull();
-
-    setValidStyle(ui->langLabel, true);
-
-    ui->rightWidget->setEnabled(nameOk);
-    if (!nameOk)
+    bool validRow = model->isValidRowIndex(row);
+    ui->rightWidget->setEnabled(validRow);
+    if (!validRow)
+    {
+        setValidStyle(ui->langLabel, true);
+        setValidStyle(ui->nameLabel, true);
+        setValidStyle(ui->codeGroup, true);
         return;
+    }
+
+    QString name = ui->nameEdit->text();
+    bool nameOk = model->isAllowedName(row, name) && !name.trimmed().isEmpty();
+    setValidStyle(ui->nameLabel, nameOk);
 
     bool langOk = ui->langCombo->currentIndex() >= 0;
     ui->codeGroup->setEnabled(langOk);
@@ -270,6 +272,9 @@ void CollationsEditor::updateCurrentCollationState()
     ui->nameLabel->setEnabled(langOk);
     ui->databaseList->setEnabled(ui->selectedDatabasesRadio->isChecked());
     setValidStyle(ui->langLabel, langOk);
+
+    bool codeOk = !ui->codeEdit->toPlainText().trimmed().isEmpty();
+    setValidStyle(ui->codeGroup, codeOk);
 
     // Syntax highlighter
     QString lang = ui->langCombo->currentText();
@@ -294,6 +299,8 @@ void CollationsEditor::updateCurrentCollationState()
 
         currentHighlighterLang = lang;
     }
+    model->setValid(row, langOk && codeOk && nameOk);
+    updateState();
 }
 
 void CollationsEditor::collationSelected(const QItemSelection& selected, const QItemSelection& deselected)
@@ -314,16 +321,10 @@ void CollationsEditor::collationSelected(const QItemSelection& selected, const Q
     }
 }
 
-void CollationsEditor::validateName()
-{
-    bool valid = model->isAllowedName(getCurrentCollationRow(), ui->nameEdit->text());
-    setValidStyle(ui->nameEdit, valid);
-}
-
 void CollationsEditor::updateModified()
 {
     int row = getCurrentCollationRow();
-    if (model->isValidRow(row))
+    if (model->isValidRowIndex(row))
     {
         bool nameDiff = model->getName(row) != ui->nameEdit->text();
         bool codeDiff = model->getCode(row) != ui->codeEdit->toPlainText();
@@ -334,7 +335,7 @@ void CollationsEditor::updateModified()
         currentModified = (nameDiff || codeDiff || langDiff || allDatabasesDiff || dbDiff);
     }
 
-    updateState();
+    updateCurrentCollationState();
 }
 
 void CollationsEditor::applyFilter(const QString& value)

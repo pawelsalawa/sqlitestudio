@@ -71,7 +71,6 @@ class CollationsEditor : public MdiChild, public ExtActionContainer
         void updateState();
         void updateCurrentCollationState();
         void collationSelected(const QItemSelection& selected, const QItemSelection& deselected);
-        void validateName();
         void updateModified();
         void applyFilter(const QString& value);
 };

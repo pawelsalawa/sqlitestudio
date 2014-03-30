@@ -25,6 +25,7 @@ class FunctionsEditorModel : public QAbstractListModel
         bool isModified() const;
         bool isModified(int row) const;
         void setModified(int row, bool modified);
+        bool isValid() const;
         bool isValid(int row) const;
         void setValid(int row, bool valid);
         void setCode(int row, const QString& code);
@@ -56,7 +57,7 @@ class FunctionsEditorModel : public QAbstractListModel
         QStringList getFunctionNames() const;
         void validateNames();
         bool isAllowedName(int rowToSkip, const QString& nameToValidate);
-        bool isValidRow(int row) const;
+        bool isValidRowIndex(int row) const;
 
         int rowCount(const QModelIndex& parent = QModelIndex()) const;
         QVariant data(const QModelIndex& index, int role) const;

@@ -105,7 +105,6 @@ void FunctionsEditor::init()
     connect(ui->initCodeEdit, SIGNAL(textChanged()), this, SLOT(updateModified()));
     connect(ui->mainCodeEdit, SIGNAL(textChanged()), this, SLOT(updateModified()));
     connect(ui->finalCodeEdit, SIGNAL(textChanged()), this, SLOT(updateModified()));
-    connect(ui->nameEdit, SIGNAL(textChanged(QString)), this, SLOT(validateName()));
     connect(ui->nameEdit, SIGNAL(textChanged(QString)), this, SLOT(updateModified()));
     connect(ui->undefArgsCheck, SIGNAL(clicked()), this, SLOT(updateModified()));
     connect(ui->allDatabasesRadio, SIGNAL(clicked()), this, SLOT(updateModified()));
@@ -233,7 +232,7 @@ void FunctionsEditor::clearEdits()
 
 void FunctionsEditor::selectFunction(int row)
 {
-    if (!model->isValidRow(row))
+    if (!model->isValidRowIndex(row))
         return;
 
     ui->list->selectionModel()->setCurrentIndex(model->index(row), QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent);
@@ -273,7 +272,7 @@ FunctionManager::Function::Type FunctionsEditor::getCurrentFunctionType() const
 void FunctionsEditor::commit()
 {
     int row = getCurrentFunctionRow();
-    if (model->isValidRow(row))
+    if (model->isValidRowIndex(row))
         functionDeselected(row);
 
     QList<FunctionManager::FunctionPtr> functions = model->getFunctions();
@@ -282,7 +281,7 @@ void FunctionsEditor::commit()
     model->clearModified();
     currentModified = false;
 
-    if (model->isValidRow(row))
+    if (model->isValidRowIndex(row))
         selectFunction(row);
 
     updateState();
@@ -296,7 +295,7 @@ void FunctionsEditor::rollback()
     currentModified = false;
     clearEdits();
 
-    if (model->isValidRow(selectedBefore))
+    if (model->isValidRowIndex(selectedBefore))
         selectFunction(selectedBefore);
 
     updateState();
@@ -325,7 +324,7 @@ void FunctionsEditor::deleteFunction()
     clearEdits();
 
     row = getCurrentFunctionRow();
-    if (model->isValidRow(row))
+    if (model->isValidRowIndex(row))
         functionSelected(row);
 
     updateState();
@@ -334,7 +333,7 @@ void FunctionsEditor::deleteFunction()
 void FunctionsEditor::updateModified()
 {
     int row = getCurrentFunctionRow();
-    if (model->isValidRow(row))
+    if (model->isValidRowIndex(row))
     {
         bool nameDiff = model->getName(row) != ui->nameEdit->text();
         bool codeDiff = model->getCode(row) != ui->mainCodeEdit->toPlainText();
@@ -351,32 +350,35 @@ void FunctionsEditor::updateModified()
                            initCodeDiff || finalCodeDiff);
     }
 
-    updateState();
+    updateCurrentFunctionState();
 }
 
 void FunctionsEditor::updateState()
 {
     bool modified = model->isModified() || currentModified;
+    bool valid = model->isValid();
 
-    actionMap[COMMIT]->setEnabled(modified);
+    actionMap[COMMIT]->setEnabled(modified && valid);
     actionMap[ROLLBACK]->setEnabled(modified);
     actionMap[DELETE]->setEnabled(ui->list->selectionModel()->selectedIndexes().size() > 0);
-
-    updateCurrentFunctionState();
 }
 
 void FunctionsEditor::updateCurrentFunctionState()
 {
     int row = getCurrentFunctionRow();
-
-    QString name = model->getName(row);
-    bool nameOk = !name.isNull();
-
-    setValidStyle(ui->langLabel, true);
-
-    ui->rightWidget->setEnabled(nameOk);
-    if (!nameOk)
+    bool validRow = model->isValidRowIndex(row);
+    ui->rightWidget->setEnabled(validRow);
+    if (!validRow)
+    {
+        setValidStyle(ui->langLabel, true);
+        setValidStyle(ui->nameLabel, true);
+        setValidStyle(ui->mainCodeEdit, true);
         return;
+    }
+
+    QString name = ui->nameEdit->text();
+    bool nameOk = model->isAllowedName(row, name) && !name.trimmed().isEmpty();
+    setValidStyle(ui->nameLabel, nameOk);
 
     bool langOk = ui->langCombo->currentIndex() >= 0;
     ui->initCodeGroup->setEnabled(langOk);
@@ -396,6 +398,9 @@ void FunctionsEditor::updateCurrentFunctionState()
     ui->finalCodeGroup->setVisible(aggregate);
 
     ui->databasesList->setEnabled(ui->selDatabasesRadio->isChecked());
+
+    bool codeOk = !ui->mainCodeEdit->toPlainText().trimmed().isEmpty();
+    setValidStyle(ui->mainCodeGroup, codeOk);
 
     // Syntax highlighter
     QString lang = ui->langCombo->currentText();
@@ -438,6 +443,8 @@ void FunctionsEditor::updateCurrentFunctionState()
     }
 
     updateArgsState();
+    model->setValid(row, langOk && codeOk && nameOk);
+    updateState();
 }
 
 void FunctionsEditor::functionSelected(const QItemSelection& selected, const QItemSelection& deselected)
@@ -456,12 +463,6 @@ void FunctionsEditor::functionSelected(const QItemSelection& selected, const QIt
         currentModified = false;
         clearEdits();
     }
-}
-
-void FunctionsEditor::validateName()
-{
-    bool valid = model->isAllowedName(getCurrentFunctionRow(), ui->nameEdit->text());
-    setValidStyle(ui->nameEdit, valid);
 }
 
 void FunctionsEditor::addFunctionArg()

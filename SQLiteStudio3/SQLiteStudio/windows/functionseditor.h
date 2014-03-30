@@ -85,7 +85,6 @@ class FunctionsEditor : public MdiChild, public ExtActionContainer
         void updateState();
         void updateCurrentFunctionState();
         void functionSelected(const QItemSelection& selected, const QItemSelection& deselected);
-        void validateName();
         void addFunctionArg();
         void editFunctionArg();
         void delFunctionArg();
