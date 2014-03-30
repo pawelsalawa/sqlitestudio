@@ -55,6 +55,7 @@ class Icon
         QPixmap toQPixmap() const;
         QMovie* toQMoviePtr() const;
         QVariant toQVariant() const;
+        QIcon* with(Attributes attr);
 
         operator Icon*();
         operator QIcon() const;
@@ -67,11 +68,13 @@ class Icon
         static void loadAll();
         static Icon& createFrom(const QString& name, Icon* copy, Attributes attr);
         static Icon& aliasOf(const QString& name, Icon* other);
+        static QIcon merge(const QIcon& icon, Attributes attr);
 
     private:
         explicit Icon(const QString& name);
 
         static QString getIconNameForAttribute(Attributes attr);
+        static QIcon mergeAttribute(const QIcon* icon, Attributes attr);
 
         bool loaded = false;
         bool movie = false;
@@ -83,6 +86,7 @@ class Icon
         Icon* aliased = nullptr;
         QMovie* movieHandle = nullptr;
         QIcon* iconHandle = nullptr;
+        QHash<int,QIcon*> dynamicallyAttributed;
 
         static QHash<QString,Icon*> instances;
 };
