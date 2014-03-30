@@ -1,4 +1,5 @@
 #include "sqlquerymodelcolumn.h"
+#include "iconmanager.h"
 #include <QDebug>
 
 SqlQueryModelColumn::SqlQueryModelColumn(const QueryExecutor::ResultColumnPtr& resultColumn)
@@ -383,9 +384,9 @@ QString SqlQueryModelColumn::ConstraintPk::getDetails() const
     return "";
 }
 
-QString SqlQueryModelColumn::ConstraintPk::getIconName() const
+Icon* SqlQueryModelColumn::ConstraintPk::getIcon() const
 {
-    return "pk";
+    return ICONS.CONSTRAINT_PRIMARY_KEY;
 }
 
 QString SqlQueryModelColumn::ConstraintFk::getTypeString() const
@@ -398,9 +399,9 @@ QString SqlQueryModelColumn::ConstraintFk::getDetails() const
     return "("+QObject::tr("references table %1, column %2", "data view tooltip").arg(foreignTable).arg(foreignColumn)+")";
 }
 
-QString SqlQueryModelColumn::ConstraintFk::getIconName() const
+Icon* SqlQueryModelColumn::ConstraintFk::getIcon() const
 {
-    return "fk";
+    return ICONS.CONSTRAINT_FOREIGN_KEY;
 }
 
 QString SqlQueryModelColumn::ConstraintUnique::getTypeString() const
@@ -416,9 +417,9 @@ QString SqlQueryModelColumn::ConstraintUnique::getDetails() const
     return QString::null;
 }
 
-QString SqlQueryModelColumn::ConstraintUnique::getIconName() const
+Icon* SqlQueryModelColumn::ConstraintUnique::getIcon() const
 {
-    return "unique";
+    return ICONS.CONSTRAINT_UNIQUE;
 }
 
 QString SqlQueryModelColumn::ConstraintNotNull::getTypeString() const
@@ -434,9 +435,9 @@ QString SqlQueryModelColumn::ConstraintNotNull::getDetails() const
     return QString::null;
 }
 
-QString SqlQueryModelColumn::ConstraintNotNull::getIconName() const
+Icon* SqlQueryModelColumn::ConstraintNotNull::getIcon() const
 {
-    return "not_null";
+    return ICONS.CONSTRAINT_NOT_NULL;
 }
 
 QString SqlQueryModelColumn::ConstraintDefault::getTypeString() const
@@ -449,9 +450,9 @@ QString SqlQueryModelColumn::ConstraintDefault::getDetails() const
     return "("+defaultValue+")";
 }
 
-QString SqlQueryModelColumn::ConstraintDefault::getIconName() const
+Icon* SqlQueryModelColumn::ConstraintDefault::getIcon() const
 {
-    return "default";
+    return ICONS.CONSTRAINT_DEFAULT;
 }
 
 QString SqlQueryModelColumn::ConstraintCheck::getTypeString() const
@@ -470,9 +471,9 @@ QString SqlQueryModelColumn::ConstraintCheck::getDetails() const
     return "("+detailList.join(", ")+")";
 }
 
-QString SqlQueryModelColumn::ConstraintCheck::getIconName() const
+Icon* SqlQueryModelColumn::ConstraintCheck::getIcon() const
 {
-    return "check";
+    return ICONS.CONSTRAINT_CHECK;
 }
 
 QString SqlQueryModelColumn::ConstraintCollate::getTypeString() const
@@ -485,7 +486,7 @@ QString SqlQueryModelColumn::ConstraintCollate::getDetails() const
     return "("+QObject::tr("collation name: %1", "data view tooltip").arg(collationName)+")";
 }
 
-QString SqlQueryModelColumn::ConstraintCollate::getIconName() const
+Icon* SqlQueryModelColumn::ConstraintCollate::getIcon() const
 {
-    return "collation";
+    return ICONS.CONSTRAINT_COLLATION;
 }

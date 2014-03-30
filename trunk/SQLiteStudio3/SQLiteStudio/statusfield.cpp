@@ -51,17 +51,17 @@ void StatusField::changeEvent(QEvent *e)
 
 void StatusField::info(const QString &text)
 {
-    addEntry(ICON("status_info"), text, CFG_UI.Colors.StatusFieldInfoFg.get());
+    addEntry(ICONS.STATUS_INFO, text, CFG_UI.Colors.StatusFieldInfoFg.get());
 }
 
 void StatusField::warn(const QString &text)
 {
-    addEntry(ICON("status_warn"), text, CFG_UI.Colors.StatusFieldWarnFg.get());
+    addEntry(ICONS.STATUS_WARNING, text, CFG_UI.Colors.StatusFieldWarnFg.get());
 }
 
 void StatusField::error(const QString &text)
 {
-    addEntry(ICON("status_error"), text, CFG_UI.Colors.StatusFieldErrorFg.get());
+    addEntry(ICONS.STATUS_ERROR, text, CFG_UI.Colors.StatusFieldErrorFg.get());
 }
 
 void StatusField::addEntry(const QIcon &icon, const QString &text, const QColor& color, bool bold)
@@ -99,14 +99,14 @@ void StatusField::setupMenu()
 {
     menu = new QMenu(this);
 
-    copyAction = new QAction(ICON("act_copy"), tr("Copy"), ui->tableWidget);
+    copyAction = new QAction(ICONS.ACT_COPY, tr("Copy"), ui->tableWidget);
     copyAction->setShortcut(QKeySequence::Copy);
     connect(copyAction, &QAction::triggered, ui->tableWidget, &TableWidget::copy);
     menu->addAction(copyAction);
 
     menu->addSeparator();
 
-    clearAction = new QAction(ICON("act_clear"), tr("Clear"), ui->tableWidget);
+    clearAction = new QAction(ICONS.ACT_CLEAR, tr("Clear"), ui->tableWidget);
     connect(clearAction, &QAction::triggered, this, &StatusField::reset);
     menu->addAction(clearAction);
 

@@ -6,6 +6,8 @@
 #include "datatype.h"
 #include "common/global.h"
 
+class Icon;
+
 class SqlQueryModelColumn
 {
     public:
@@ -70,7 +72,7 @@ class SqlQueryModelColumn
 
             virtual QString getTypeString() const = 0;
             virtual QString getDetails() const = 0;
-            virtual QString getIconName() const = 0;
+            virtual Icon* getIcon() const = 0;
 
             Type type;
             Scope scope;
@@ -81,7 +83,7 @@ class SqlQueryModelColumn
         {
             QString getTypeString() const;
             QString getDetails() const;
-            QString getIconName() const;
+            Icon* getIcon() const;
 
             bool autoIncrement;
             SqliteConflictAlgo onConflict = SqliteConflictAlgo::null;
@@ -91,7 +93,7 @@ class SqlQueryModelColumn
         {
             QString getTypeString() const;
             QString getDetails() const;
-            QString getIconName() const;
+            Icon* getIcon() const;
 
             QString foreignTable;
             QString foreignColumn;
@@ -101,7 +103,7 @@ class SqlQueryModelColumn
         {
             QString getTypeString() const;
             QString getDetails() const;
-            QString getIconName() const;
+            Icon* getIcon() const;
 
             SqliteConflictAlgo onConflict = SqliteConflictAlgo::null;
         };
@@ -110,7 +112,7 @@ class SqlQueryModelColumn
         {
             QString getTypeString() const;
             QString getDetails() const;
-            QString getIconName() const;
+            Icon* getIcon() const;
 
             SqliteConflictAlgo onConflict = SqliteConflictAlgo::null;
         };
@@ -119,7 +121,7 @@ class SqlQueryModelColumn
         {
             QString getTypeString() const;
             QString getDetails() const;
-            QString getIconName() const;
+            Icon* getIcon() const;
 
             QString defaultValue;
         };
@@ -128,7 +130,7 @@ class SqlQueryModelColumn
         {
             QString getTypeString() const;
             QString getDetails() const;
-            QString getIconName() const;
+            Icon* getIcon() const;
 
             QString condition;
             SqliteConflictAlgo onConflict = SqliteConflictAlgo::null;
@@ -138,7 +140,7 @@ class SqlQueryModelColumn
         {
             QString getTypeString() const;
             QString getDetails() const;
-            QString getIconName() const;
+            Icon* getIcon() const;
 
             QString collationName;
         };

@@ -86,12 +86,12 @@ void MultiEditorText::toggleTabFocus()
 void MultiEditorText::createActions()
 {
     createAction(TAB_CHANGES_FOCUS, tr("Tab changes focus"), this, SLOT(toggleTabFocus()), this);
-    createAction(CUT, "act_cut", tr("Cut"), textEdit, SLOT(cut()), this);
-    createAction(COPY, "act_copy", tr("Copy"), textEdit, SLOT(copy()), this);
-    createAction(PASTE, "act_paste", tr("Paste"), textEdit, SLOT(paste()), this);
-    createAction(DELETE, "act_delete", tr("Delete"), this, SLOT(deleteSelected()), this);
-    createAction(UNDO, "act_undo", tr("Undo"), textEdit, SLOT(undo()), this);
-    createAction(REDO, "act_redo", tr("Redo"), textEdit, SLOT(redo()), this);
+    createAction(CUT, ICONS.ACT_CUT, tr("Cut"), textEdit, SLOT(cut()), this);
+    createAction(COPY, ICONS.ACT_COPY, tr("Copy"), textEdit, SLOT(copy()), this);
+    createAction(PASTE, ICONS.ACT_PASTE, tr("Paste"), textEdit, SLOT(paste()), this);
+    createAction(DELETE, ICONS.ACT_DELETE, tr("Delete"), this, SLOT(deleteSelected()), this);
+    createAction(UNDO, ICONS.ACT_UNDO, tr("Undo"), textEdit, SLOT(undo()), this);
+    createAction(REDO, ICONS.ACT_REDO, tr("Redo"), textEdit, SLOT(redo()), this);
 
     actionMap[CUT]->setEnabled(false);
     actionMap[COPY]->setEnabled(false);

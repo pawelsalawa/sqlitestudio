@@ -5,6 +5,8 @@
 #include <QString>
 #include <QIcon>
 #include <QMovie>
+#include <QDebug>
+#include <QPainter>
 
 IconManager* IconManager::instance = nullptr;
 
@@ -16,46 +18,19 @@ IconManager* IconManager::getInstance()
     return instance;
 }
 
-QIcon* IconManager::getIcon(const QString& name)
+QString IconManager::getFilePathForName(const QString& name)
 {
-    if (icons.contains(name))
-        return icons[name];
-
-    Q_ASSERT_X(false, "IconManager", QString("Requested inexisting icon: %1").arg(name).toLatin1().data());
-    return nullptr;
-}
-
-QMovie* IconManager::getMovie(const QString& name)
-{
-    if (movies.contains(name))
-    {
-        QMovie* movie = movies[name];
-        if (movie->state() != QMovie::Running)
-            movie->start();
-
-        return movie;
-    }
-
-    Q_ASSERT_X(false, "IconManager", QString("Requested inexisting movie: %1").arg(name).toLatin1().data());
-    return nullptr;
-}
-
-QString IconManager::getAbsoluteIconPath(const QString &name)
-{
-    if (iconPaths.contains(name))
-        return iconPaths[name];
-
-    Q_ASSERT_X(false, "IconManager", QString("Requested inexisting icon: %1").arg(name).toLatin1().data());
-    return QString::null;
+    return paths[name];
 }
 
 IconManager::IconManager()
 {
-    init();
 }
 
 void IconManager::init()
 {
+    Icon::init();
+
     iconDirs += qApp->applicationDirPath() + "/img";
 
     QString envDirs = SQLITESTUDIO->getEnv("SQLITESTUDIO_ICONS");
@@ -74,11 +49,15 @@ void IconManager::init()
         loadRecurently(dirPath, "", false);
         loadRecurently(dirPath, "", true);
     }
+
+    Icon::loadAll();
 }
 
 void IconManager::loadRecurently(QString dirPath, const QString& prefix, bool movie)
 {
     QStringList extensions = movie ? movieFileExtensions : iconFileExtensions;
+    QString path;
+    QString name;
     QDir dir(dirPath);
     foreach (QFileInfo entry, dir.entryInfoList(extensions, QDir::AllDirs|QDir::Files|QDir::NoDotAndDotDot|QDir::Readable))
     {
@@ -87,12 +66,28 @@ void IconManager::loadRecurently(QString dirPath, const QString& prefix, bool mo
             loadRecurently(entry.absoluteFilePath(), prefix+entry.fileName()+"_", movie);
             continue;
         }
+
+        path = entry.absoluteFilePath();
+        name = entry.baseName();
+        paths[name] = path;
         if (movie)
-            movies[entry.baseName()] = new QMovie(entry.absoluteFilePath());
+            movies[name] = new QMovie(path);
         else
-        {
-            icons[entry.baseName()] = new QIcon(entry.absoluteFilePath());
-            iconPaths[entry.baseName()] = entry.absoluteFilePath();
-        }
+            icons[name] = new QIcon(path);
     }
+}
+
+QMovie* IconManager::getMovie(const QString& name)
+{
+    return movies[name];
+}
+
+QIcon* IconManager::getIcon(const QString& name)
+{
+    return icons[name];
+}
+
+bool IconManager::isMovie(const QString& name)
+{
+    return movies.contains(name);
 }

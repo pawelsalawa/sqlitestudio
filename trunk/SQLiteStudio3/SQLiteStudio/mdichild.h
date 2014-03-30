@@ -5,6 +5,7 @@
 #include <QVariant>
 
 class MdiWindow;
+class Icon;
 
 class MdiChild : public QWidget
 {
@@ -27,7 +28,7 @@ class MdiChild : public QWidget
         virtual QVariant saveSession() = 0;
         virtual bool restoreSession(const QVariant& sessionValue) = 0;
 
-        virtual QString getIconNameForMdiWindow() = 0;
+        virtual Icon* getIconNameForMdiWindow() = 0;
         virtual QString getTitleForMdiWindow() = 0;
 
         bool invalid = false;

@@ -29,7 +29,7 @@ ColumnDialog::~ColumnDialog()
 void ColumnDialog::init()
 {
     ui->setupUi(this);
-    setWindowIcon(ICON("column"));
+    setWindowIcon(ICONS.COLUMN);
 
     ui->scale->setStrict(true);
     ui->precision->setStrict(true);
@@ -88,19 +88,19 @@ void ColumnDialog::changeEvent(QEvent *e)
 
 void ColumnDialog::createActions()
 {
-    createAction(ADD_CONSTRAINT, "column_constraint_add", tr("Add constraint", "column dialog"), this, SLOT(addConstraint()), ui->constraintsToolbar);
-    createAction(EDIT_CONSTRAINT, "column_constraint_edit", tr("Edit constraint", "column dialog"), this, SLOT(editConstraint()), ui->constraintsToolbar);
-    createAction(DEL_CONSTRAINT, "column_constraint_del", tr("Delete constraint", "column dialog"), this, SLOT(delConstraint()), ui->constraintsToolbar);
-    createAction(MOVE_CONSTRAINT_UP, "move_up", tr("Move constraint up", "column dialog"), this, SLOT(moveConstraintUp()), ui->constraintsToolbar);
-    createAction(MOVE_CONSTRAINT_DOWN, "move_down", tr("Move constraint down", "column dialog"), this, SLOT(moveConstraintDown()), ui->constraintsToolbar);
+    createAction(ADD_CONSTRAINT, ICONS.COLUMN_CONSTRAINT_ADD, tr("Add constraint", "column dialog"), this, SLOT(addConstraint()), ui->constraintsToolbar);
+    createAction(EDIT_CONSTRAINT, ICONS.COLUMN_CONSTRAINT_EDIT, tr("Edit constraint", "column dialog"), this, SLOT(editConstraint()), ui->constraintsToolbar);
+    createAction(DEL_CONSTRAINT, ICONS.COLUMN_CONSTRAINT_DEL, tr("Delete constraint", "column dialog"), this, SLOT(delConstraint()), ui->constraintsToolbar);
+    createAction(MOVE_CONSTRAINT_UP, ICONS.MOVE_UP, tr("Move constraint up", "column dialog"), this, SLOT(moveConstraintUp()), ui->constraintsToolbar);
+    createAction(MOVE_CONSTRAINT_DOWN, ICONS.MOVE_DOWN, tr("Move constraint down", "column dialog"), this, SLOT(moveConstraintDown()), ui->constraintsToolbar);
     ui->constraintsToolbar->addSeparator();
-    createAction(ADD_PK, "add_pk", tr("Add a primary key", "column dialog"), this, SLOT(addPk()), ui->constraintsToolbar);
-    createAction(ADD_FK, "add_fk", tr("Add a foreign key", "column dialog"), this, SLOT(addFk()), ui->constraintsToolbar);
-    createAction(ADD_UNIQUE, "add_unique", tr("Add an unique constraint", "column dialog"), this, SLOT(addUnique()), ui->constraintsToolbar);
-    createAction(ADD_CHECK, "add_check", tr("Add a check constraint", "column dialog"), this, SLOT(addCheck()), ui->constraintsToolbar);
-    createAction(ADD_NOT_NULL, "add_not_null", tr("Add a not null constraint", "column dialog"), this, SLOT(addNotNull()), ui->constraintsToolbar);
-    createAction(ADD_COLLATE, "add_collate", tr("Add a collate constraint", "column dialog"), this, SLOT(addCollate()), ui->constraintsToolbar);
-    createAction(ADD_DEFAULT, "add_default", tr("Add a default constraint", "column dialog"), this, SLOT(addDefault()), ui->constraintsToolbar);
+    createAction(ADD_PK, ICONS.CONSTRAINT_PRIMARY_KEY_ADD, tr("Add a primary key", "column dialog"), this, SLOT(addPk()), ui->constraintsToolbar);
+    createAction(ADD_FK, ICONS.CONSTRAINT_FOREIGN_KEY_ADD, tr("Add a foreign key", "column dialog"), this, SLOT(addFk()), ui->constraintsToolbar);
+    createAction(ADD_UNIQUE, ICONS.CONSTRAINT_UNIQUE_ADD, tr("Add an unique constraint", "column dialog"), this, SLOT(addUnique()), ui->constraintsToolbar);
+    createAction(ADD_CHECK, ICONS.CONSTRAINT_CHECK_ADD, tr("Add a check constraint", "column dialog"), this, SLOT(addCheck()), ui->constraintsToolbar);
+    createAction(ADD_NOT_NULL, ICONS.CONSTRAINT_NOT_NULL_ADD, tr("Add a not null constraint", "column dialog"), this, SLOT(addNotNull()), ui->constraintsToolbar);
+    createAction(ADD_COLLATE, ICONS.CONSTRAINT_COLLATION_ADD, tr("Add a collate constraint", "column dialog"), this, SLOT(addCollate()), ui->constraintsToolbar);
+    createAction(ADD_DEFAULT, ICONS.CONSTRAINT_DEFAULT_ADD, tr("Add a default constraint", "column dialog"), this, SLOT(addDefault()), ui->constraintsToolbar);
 }
 
 void ColumnDialog::setupDefShortcuts()
@@ -158,13 +158,13 @@ void ColumnDialog::addConstraint(ConstraintDialog::Constraint mode)
 
 void ColumnDialog::setupConstraintCheckBoxes()
 {
-    ui->pkCheck->setIcon(ICON("pk"));
-    ui->fkCheck->setIcon(ICON("fk"));
-    ui->uniqueCheck->setIcon(ICON("unique"));
-    ui->notNullCheck->setIcon(ICON("not_null"));
-    ui->checkCheck->setIcon(ICON("check"));
-    ui->collateCheck->setIcon(ICON("collation"));
-    ui->defaultCheck->setIcon(ICON("default"));
+    ui->pkCheck->setIcon(ICONS.CONSTRAINT_PRIMARY_KEY);
+    ui->fkCheck->setIcon(ICONS.CONSTRAINT_FOREIGN_KEY);
+    ui->uniqueCheck->setIcon(ICONS.CONSTRAINT_UNIQUE);
+    ui->notNullCheck->setIcon(ICONS.CONSTRAINT_NOT_NULL);
+    ui->checkCheck->setIcon(ICONS.CONSTRAINT_CHECK);
+    ui->collateCheck->setIcon(ICONS.CONSTRAINT_COLLATION);
+    ui->defaultCheck->setIcon(ICONS.CONSTRAINT_DEFAULT);
 
     connect(ui->pkCheck, SIGNAL(clicked(bool)), this, SLOT(pkToggled(bool)));
     connect(ui->fkCheck, SIGNAL(clicked(bool)), this, SLOT(fkToggled(bool)));

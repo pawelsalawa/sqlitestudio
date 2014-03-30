@@ -109,23 +109,23 @@ void SqlEditor::markErrorAt(int start, int end, bool limitedDamage)
 
 void SqlEditor::createActions()
 {
-    createAction(CUT, "act_cut", tr("Cut", "sql editor"), this, SLOT(cut()), this);
-    createAction(COPY, "act_copy", tr("Copy", "sql editor"), this, SLOT(copy()), this);
-    createAction(PASTE, "act_paste", tr("Paste", "sql editor"), this, SLOT(paste()), this);
-    createAction(DELETE, "act_delete", tr("Delete", "sql editor"), this, SLOT(deleteSelected()), this);
-    createAction(SELECT_ALL, "act_select_all", tr("Select all", "sql editor"), this, SLOT(selectAll()), this);
-    createAction(UNDO, "act_undo", tr("Undo", "sql editor"), this, SLOT(undo()), this);
-    createAction(REDO, "act_redo", tr("Redo", "sql editor"), this, SLOT(redo()), this);
-    createAction(COMPLETE, "complete", tr("Complete", "sql editor"), this, SLOT(complete()), this);
-    createAction(FORMAT_SQL, "format_sql", tr("Format SQL", "sql editor"), this, SLOT(formatSql()), this);
-    createAction(SAVE_SQL_FILE, "save_sql_file", tr("Save SQL to file", "sql editor"), this, SLOT(saveToFile()), this);
-    createAction(OPEN_SQL_FILE, "open_sql_file", tr("Load SQL from file", "sql editor"), this, SLOT(loadFromFile()), this);
-    createAction(DELETE_LINE, "act_del_line", tr("Delete line", "sql editor"), this, SLOT(deleteLine()), this);
+    createAction(CUT, ICONS.ACT_CUT, tr("Cut", "sql editor"), this, SLOT(cut()), this);
+    createAction(COPY, ICONS.ACT_COPY, tr("Copy", "sql editor"), this, SLOT(copy()), this);
+    createAction(PASTE, ICONS.ACT_PASTE, tr("Paste", "sql editor"), this, SLOT(paste()), this);
+    createAction(DELETE, ICONS.ACT_DELETE, tr("Delete", "sql editor"), this, SLOT(deleteSelected()), this);
+    createAction(SELECT_ALL, ICONS.ACT_SELECT_ALL, tr("Select all", "sql editor"), this, SLOT(selectAll()), this);
+    createAction(UNDO, ICONS.ACT_UNDO, tr("Undo", "sql editor"), this, SLOT(undo()), this);
+    createAction(REDO, ICONS.ACT_REDO, tr("Redo", "sql editor"), this, SLOT(redo()), this);
+    createAction(COMPLETE, ICONS.COMPLETE, tr("Complete", "sql editor"), this, SLOT(complete()), this);
+    createAction(FORMAT_SQL, ICONS.FORMAT_SQL, tr("Format SQL", "sql editor"), this, SLOT(formatSql()), this);
+    createAction(SAVE_SQL_FILE, ICONS.SAVE_SQL_FILE, tr("Save SQL to file", "sql editor"), this, SLOT(saveToFile()), this);
+    createAction(OPEN_SQL_FILE, ICONS.OPEN_SQL_FILE, tr("Load SQL from file", "sql editor"), this, SLOT(loadFromFile()), this);
+    createAction(DELETE_LINE, ICONS.ACT_DEL_LINE, tr("Delete line", "sql editor"), this, SLOT(deleteLine()), this);
     createAction(MOVE_BLOCK_DOWN, tr("Move block down", "sql editor"), this, SLOT(moveBlockDown()), this);
     createAction(MOVE_BLOCK_UP, tr("Move block up", "sql editor"), this, SLOT(moveBlockUp()), this);
     createAction(COPY_BLOCK_DOWN, tr("Copy block down", "sql editor"), this, SLOT(copyBlockDown()), this);
     createAction(COPY_BLOCK_UP, tr("Copy up down", "sql editor"), this, SLOT(copyBlockUp()), this);
-    createAction(FIND, "act_search", tr("Find", "sql editor"), this, SLOT(find()), this);
+    createAction(FIND, ICONS.ACT_SEARCH, tr("Find", "sql editor"), this, SLOT(find()), this);
     createAction(FIND_NEXT, tr("Find next", "sql editor"), this, SLOT(findNext()), this);
     createAction(FIND_PREV, tr("Find previous", "sql editor"), this, SLOT(findPrevious()), this);
     createAction(REPLACE, tr("Replace", "sql editor"), this, SLOT(replace()), this);

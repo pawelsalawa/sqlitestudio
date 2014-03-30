@@ -41,9 +41,9 @@ bool CollationsEditor::restoreSession(const QVariant& sessionValue)
     return true;
 }
 
-QString CollationsEditor::getIconNameForMdiWindow()
+Icon* CollationsEditor::getIconNameForMdiWindow()
 {
-    return "collation";
+    return ICONS.CONSTRAINT_COLLATION;
 }
 
 QString CollationsEditor::getTitleForMdiWindow()
@@ -53,13 +53,13 @@ QString CollationsEditor::getTitleForMdiWindow()
 
 void CollationsEditor::createActions()
 {
-    createAction(COMMIT, "commit", tr("Commit all collation changes"), this, SLOT(commit()), ui->toolbar);
-    createAction(ROLLBACK, "rollback", tr("Rollback all collation changes"), this, SLOT(rollback()), ui->toolbar);
+    createAction(COMMIT, ICONS.COMMIT, tr("Commit all collation changes"), this, SLOT(commit()), ui->toolbar);
+    createAction(ROLLBACK, ICONS.ROLLBACK, tr("Rollback all collation changes"), this, SLOT(rollback()), ui->toolbar);
     ui->toolbar->addSeparator();
-    createAction(ADD, "new_collation", tr("Create new collation"), this, SLOT(newCollation()), ui->toolbar);
-    createAction(DELETE, "delete_collation", tr("Delete selected collation"), this, SLOT(deleteCollation()), ui->toolbar);
+    createAction(ADD, ICONS.NEW_COLLATION, tr("Create new collation"), this, SLOT(newCollation()), ui->toolbar);
+    createAction(DELETE, ICONS.DELETE_COLLATION, tr("Delete selected collation"), this, SLOT(deleteCollation()), ui->toolbar);
     ui->toolbar->addSeparator();
-    createAction(HELP, "help", tr("Editing collations manual"), this, SLOT(help()), ui->toolbar);
+    createAction(HELP, ICONS.HELP, tr("Editing collations manual"), this, SLOT(help()), ui->toolbar);
 }
 
 void CollationsEditor::setupDefShortcuts()

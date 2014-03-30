@@ -58,7 +58,7 @@ QVariant CompleterModel::data(const QModelIndex& index, int role) const
         case TYPE:
             return (int)token->type;
         case Qt::DecorationRole:
-            return ICON(getIconName(token->type));
+            return getIcon(token->type);
     }
 
     return QVariant();
@@ -129,44 +129,43 @@ ExpectedTokenPtr CompleterModel::getToken(int index) const
     return tokens[index];
 }
 
-QString CompleterModel::getIconName(ExpectedToken::Type type) const
+QIcon CompleterModel::getIcon(ExpectedToken::Type type) const
 {
     switch (type)
     {
         case ExpectedToken::COLUMN:
-            return "column";
+            return ICONS.COLUMN;
         case ExpectedToken::TABLE:
-            return "table";
+            return ICONS.TABLE;
         case ExpectedToken::INDEX:
-            return "index";
+            return ICONS.INDEX;
         case ExpectedToken::TRIGGER:
-            return "trigger";
+            return ICONS.TRIGGER;
         case ExpectedToken::VIEW:
-            return "view";
+            return ICONS.VIEW;
         case ExpectedToken::DATABASE:
-            return "database";
+            return ICONS.DATABASE;
         case ExpectedToken::OTHER:
-            return "completer_other";
+            return ICONS.COMPLETER_OTHER;
         case ExpectedToken::KEYWORD:
-            return "keyword";
+            return ICONS.KEYWORD;
         case ExpectedToken::FUNCTION:
-            return "function";
+            return ICONS.FUNCTION;
         case ExpectedToken::OPERATOR:
-            return "completer_operator";
+            return ICONS.COMPLETER_OPERATOR;
         case ExpectedToken::STRING:
-            return "completer_string";
+            return ICONS.COMPLETER_STRING;
         case ExpectedToken::NUMBER:
-            return "completer_number";
+            return ICONS.COMPLETER_NUMBER;
         case ExpectedToken::BLOB:
-            return "completer_blob";
+            return ICONS.COMPLETER_BLOB;
         case ExpectedToken::COLLATION:
-            return "collation";
+            return ICONS.CONSTRAINT_COLLATION;
         case ExpectedToken::PRAGMA:
-            return "completer_pragma";
+            return ICONS.COMPLETER_PRAGMA;
         case ExpectedToken::NO_VALUE:
-            return "completer_no_value";
-
+            return ICONS.COMPLETER_NO_VALUE;
     }
 
-    return "completer_no_value";
+    return ICONS.COMPLETER_NO_VALUE;
 }

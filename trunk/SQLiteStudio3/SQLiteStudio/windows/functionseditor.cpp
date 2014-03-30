@@ -42,9 +42,9 @@ bool FunctionsEditor::restoreSession(const QVariant &sessionValue)
     return true;
 }
 
-QString FunctionsEditor::getIconNameForMdiWindow()
+Icon* FunctionsEditor::getIconNameForMdiWindow()
 {
-    return "function";
+    return ICONS.FUNCTION;
 }
 
 QString FunctionsEditor::getTitleForMdiWindow()
@@ -54,21 +54,21 @@ QString FunctionsEditor::getTitleForMdiWindow()
 
 void FunctionsEditor::createActions()
 {
-    createAction(COMMIT, "commit", tr("Commit all function changes"), this, SLOT(commit()), ui->toolBar);
-    createAction(ROLLBACK, "rollback", tr("Rollback all function changes"), this, SLOT(rollback()), ui->toolBar);
+    createAction(COMMIT, ICONS.COMMIT, tr("Commit all function changes"), this, SLOT(commit()), ui->toolBar);
+    createAction(ROLLBACK, ICONS.ROLLBACK, tr("Rollback all function changes"), this, SLOT(rollback()), ui->toolBar);
     ui->toolBar->addSeparator();
-    createAction(ADD, "new_function", tr("Create new function"), this, SLOT(newFunction()), ui->toolBar);
-    createAction(DELETE, "delete_function", tr("Delete selected function"), this, SLOT(deleteFunction()), ui->toolBar);
+    createAction(ADD, ICONS.NEW_FUNCTION, tr("Create new function"), this, SLOT(newFunction()), ui->toolBar);
+    createAction(DELETE, ICONS.DELETE_FUNCTION, tr("Delete selected function"), this, SLOT(deleteFunction()), ui->toolBar);
     ui->toolBar->addSeparator();
-    createAction(HELP, "help", tr("Custom SQL functions manual"), this, SLOT(help()), ui->toolBar);
+    createAction(HELP, ICONS.HELP, tr("Custom SQL functions manual"), this, SLOT(help()), ui->toolBar);
 
     // Args toolbar
-    createAction(ARG_ADD, "insert_fn_arg", tr("Add function argument"), this, SLOT(addFunctionArg()), ui->argsToolBar);
-    createAction(ARG_EDIT, "rename_fn_arg", tr("Rename function argument"), this, SLOT(editFunctionArg()), ui->argsToolBar);
-    createAction(ARG_DEL, "delete_fn_arg", tr("Delete function argument"), this, SLOT(delFunctionArg()), ui->argsToolBar);
+    createAction(ARG_ADD, ICONS.INSERT_FN_ARG, tr("Add function argument"), this, SLOT(addFunctionArg()), ui->argsToolBar);
+    createAction(ARG_EDIT, ICONS.RENAME_FN_ARG, tr("Rename function argument"), this, SLOT(editFunctionArg()), ui->argsToolBar);
+    createAction(ARG_DEL, ICONS.DELETE_FN_ARG, tr("Delete function argument"), this, SLOT(delFunctionArg()), ui->argsToolBar);
     ui->toolBar->addSeparator();
-    createAction(ARG_MOVE_UP, "move_up", tr("Move function argument up"), this, SLOT(moveFunctionArgUp()), ui->argsToolBar);
-    createAction(ARG_MOVE_DOWN, "move_down", tr("Move function argument down"), this, SLOT(moveFunctionArgDown()), ui->argsToolBar);
+    createAction(ARG_MOVE_UP, ICONS.MOVE_UP, tr("Move function argument up"), this, SLOT(moveFunctionArgUp()), ui->argsToolBar);
+    createAction(ARG_MOVE_DOWN, ICONS.MOVE_DOWN, tr("Move function argument down"), this, SLOT(moveFunctionArgDown()), ui->argsToolBar);
 }
 
 void FunctionsEditor::setupDefShortcuts()

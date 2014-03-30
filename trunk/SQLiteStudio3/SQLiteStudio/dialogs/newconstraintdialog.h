@@ -4,6 +4,7 @@
 #include "parser/ast/sqlitecreatetable.h"
 #include "db/db.h"
 #include "dialogs/constraintdialog.h"
+#include "iconmanager.h"
 #include <QDialog>
 #include <QPointer>
 
@@ -32,7 +33,7 @@ class NewConstraintDialog : public QDialog
         void init();
         void initTable();
         void initColumn();
-        void addButton(const QString& icon, const QString text, const char* slot);
+        void addButton(const Icon& icon, const QString text, const char* slot);
         int createColumnConstraint(ConstraintDialog::Constraint constraintType);
         int createTableConstraint(ConstraintDialog::Constraint constraintType);
         int editConstraint();

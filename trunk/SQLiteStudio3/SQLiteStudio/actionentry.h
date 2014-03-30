@@ -21,7 +21,7 @@ struct ActionEntry
 
     ActionEntry(const DbTree::Action &action);
     ActionEntry(const QString& subMenuLabel);
-    ActionEntry(const QString& icon, const QString& subMenuLabel);
+    ActionEntry(const Icon& icon, const QString& subMenuLabel);
     ActionEntry(const QIcon& icon, const QString& subMenuLabel);
     ActionEntry& operator=(const DbTree::Action& action);
     ActionEntry& operator+=(const DbTree::Action& action);

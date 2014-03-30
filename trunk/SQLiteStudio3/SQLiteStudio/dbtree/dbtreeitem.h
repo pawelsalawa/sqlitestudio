@@ -2,6 +2,7 @@
 #define DBTREEITEM_H
 
 #include "db/db.h"
+#include "iconmanager.h"
 #include <QStandardItem>
 #include <QObject>
 
@@ -28,7 +29,7 @@ class DbTreeItem : public QObject, public QStandardItem
             ITEM_PROTOTYPE = 9999
         };
 
-        DbTreeItem(Type type, const QString& icon, const QString& nodeName, QObject* parent = 0);
+        DbTreeItem(Type type, const Icon& icon, const QString& nodeName, QObject* parent = 0);
         DbTreeItem(Type type, const QString& nodeName, QObject* parent = 0);
         DbTreeItem(const DbTreeItem& item);
         DbTreeItem();
@@ -69,10 +70,10 @@ class DbTreeItem : public QObject, public QStandardItem
         Db* getDb() const;
         void setDb(Db* value);
         void setDb(const QString& dbName);
-        QString getIconName() const;
+        Icon* getIcon() const;
         void setHidden(bool hidden);
         bool isHidden() const;
-        void setIcon(const QString& icon);
+        void setIcon(const Icon& icon);
         void setInvalidDbType(bool invalid, Db* db = nullptr);
 
     private:
@@ -82,7 +83,7 @@ class DbTreeItem : public QObject, public QStandardItem
             {
                 TYPE = 1001,
                 DB = 1002,
-                ICON_NAME = 1003,
+                ICON_PTR = 1003,
                 HIDDEN = 1004
             };
         };

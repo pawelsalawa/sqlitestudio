@@ -327,7 +327,7 @@ QVariant TableStructureModel::getColumnType(int row) const
 QVariant TableStructureModel::getColumnPk(int row) const
 {
     if (isColumnPk(getColumn(row)))
-        return ICON_VARIANT("pk");
+        return ICONS.CONSTRAINT_PRIMARY_KEY;
 
     return QVariant();
 }
@@ -335,7 +335,7 @@ QVariant TableStructureModel::getColumnPk(int row) const
 QVariant TableStructureModel::getColumnFk(int row) const
 {
     if (isColumnFk(getColumn(row)))
-        return ICON_VARIANT("fk");
+        return ICONS.CONSTRAINT_FOREIGN_KEY;
 
     return QVariant();
 }
@@ -343,7 +343,7 @@ QVariant TableStructureModel::getColumnFk(int row) const
 QVariant TableStructureModel::getColumnUnique(int row) const
 {
     if (isColumnUnique(getColumn(row)))
-        return ICON_VARIANT("unique");
+        return ICONS.CONSTRAINT_UNIQUE;
 
     return QVariant();
 }
@@ -351,7 +351,7 @@ QVariant TableStructureModel::getColumnUnique(int row) const
 QVariant TableStructureModel::getColumnCheck(int row) const
 {
     if (isColumnCheck(getColumn(row)))
-        return ICON_VARIANT("check");
+        return ICONS.CONSTRAINT_CHECK;
 
     return QVariant();
 }
@@ -359,7 +359,7 @@ QVariant TableStructureModel::getColumnCheck(int row) const
 QVariant TableStructureModel::getColumnNotNull(int row) const
 {
     if (isColumnNotNull(getColumn(row)))
-        return ICON_VARIANT("not_null");
+        return ICONS.CONSTRAINT_NOT_NULL;
 
     return QVariant();
 }
@@ -367,7 +367,7 @@ QVariant TableStructureModel::getColumnNotNull(int row) const
 QVariant TableStructureModel::getColumnCollate(int row) const
 {
     if (isColumnCollate(getColumn(row)))
-        return ICON_VARIANT("collation");
+        return ICONS.CONSTRAINT_COLLATION;
 
     return QVariant();
 }

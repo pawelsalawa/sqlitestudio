@@ -44,17 +44,17 @@ void MessageListDialog::addMessage(const QIcon& icon, const QString& text, const
 
 void MessageListDialog::addInfo(const QString& text)
 {
-    addMessage(ICON("status_info"), text, getGradient(0, 0, 1, 0.2));
+    addMessage(ICONS.STATUS_INFO, text, getGradient(0, 0, 1, 0.2));
 }
 
 void MessageListDialog::addWarning(const QString& text)
 {
-    addMessage(ICON("status_warn"), text, getGradient(0.8, 0.8, 0, 0.4));
+    addMessage(ICONS.STATUS_WARNING, text, getGradient(0.8, 0.8, 0, 0.4));
 }
 
 void MessageListDialog::addError(const QString& text)
 {
-    addMessage(ICON("status_error"), text, getGradient(0.6, 0, 0, 0.6));
+    addMessage(ICONS.STATUS_ERROR, text, getGradient(0.6, 0, 0, 0.6));
 }
 
 void MessageListDialog::changeEvent(QEvent *e)

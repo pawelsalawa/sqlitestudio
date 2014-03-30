@@ -67,12 +67,12 @@ void DbTreeView::setupActionsForMenu(DbTreeItem *currItem)
 {
     QList<ActionEntry> actions;
 
-    ActionEntry dbEntry("database", tr("Datatabase"));
+    ActionEntry dbEntry(ICONS.DATABASE, tr("Datatabase"));
     dbEntry += DbTree::ADD_DB;
     dbEntry += DbTree::EDIT_DB;
     dbEntry += DbTree::DELETE_DB;
 
-    ActionEntry dbEntryExt("database", tr("Datatabase"));
+    ActionEntry dbEntryExt(ICONS.DATABASE, tr("Datatabase"));
     dbEntryExt += DbTree::CONNECT_TO_DB;
     dbEntryExt += DbTree::DISCONNECT_FROM_DB;
     dbEntryExt += DbTree::_separator;
@@ -82,7 +82,7 @@ void DbTreeView::setupActionsForMenu(DbTreeItem *currItem)
     dbEntryExt += DbTree::_separator;
     dbEntryExt += DbTree::REFRESH_SCHEMA;
 
-    ActionEntry groupEntry("directory", tr("Grouping"));
+    ActionEntry groupEntry(ICONS.DIRECTORY, tr("Grouping"));
     groupEntry += DbTree::CREATE_GROUP;
     groupEntry += DbTree::RENAME_GROUP;
     groupEntry += DbTree::DELETE_GROUP;

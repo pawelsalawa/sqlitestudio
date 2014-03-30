@@ -1,6 +1,7 @@
 #ifndef extactionCONTAINER_H
 #define extactionCONTAINER_H
 
+#include "iconmanager.h"
 #include <QString>
 #include <QHash>
 #include <QSet>
@@ -29,7 +30,7 @@ class ExtActionContainer
         virtual void setupDefShortcuts() = 0;
 
         void initActions();
-        void createAction(int action, const QString& icon, const QString& text, const QObject* receiver, const char* slot, QWidget* container,
+        void createAction(int action, const Icon& icon, const QString& text, const QObject* receiver, const char* slot, QWidget* container,
                           QWidget* owner = 0);
         void createAction(int action, const QString& text, const QObject* receiver, const char* slot, QWidget* container, QWidget* owner = 0);
         void defShortcut(int action, int keySequence);

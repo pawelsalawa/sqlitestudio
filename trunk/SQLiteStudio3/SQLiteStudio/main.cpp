@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
     SqlQueryModelColumn::initMeta();
     SqlQueryModel::staticInit();
     SQLITESTUDIO->init(a.arguments());
-    IconManager::getInstance();
+    IconManager::getInstance()->init();
     DataView::staticInit();
     EditorWindow::staticInit();
     TableWindow::staticInit();

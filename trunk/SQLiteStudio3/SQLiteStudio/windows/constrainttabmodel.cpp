@@ -222,13 +222,13 @@ QIcon ConstraintTabModel::getTypeIcon(SqliteCreateTable::Constraint::Type type) 
     switch (type)
     {
         case SqliteCreateTable::Constraint::PRIMARY_KEY:
-            return ICON("pk");
+            return ICONS.CONSTRAINT_PRIMARY_KEY;
         case SqliteCreateTable::Constraint::UNIQUE:
-            return ICON("unique");
+            return ICONS.CONSTRAINT_UNIQUE;
         case SqliteCreateTable::Constraint::CHECK:
-            return ICON("check");
+            return ICONS.CONSTRAINT_CHECK;
         case SqliteCreateTable::Constraint::FOREIGN_KEY:
-            return ICON("fk");
+            return ICONS.CONSTRAINT_FOREIGN_KEY;
         case SqliteCreateTable::Constraint::NAME_ONLY:
             return QIcon();
     }
@@ -240,19 +240,19 @@ QIcon ConstraintTabModel::getTypeIcon(SqliteCreateTable::Column::Constraint::Typ
     switch (type)
     {
         case SqliteCreateTable::Column::Constraint::PRIMARY_KEY:
-            return ICON("pk");
+            return ICONS.CONSTRAINT_PRIMARY_KEY;
         case SqliteCreateTable::Column::Constraint::NOT_NULL:
-            return ICON("not_null");
+            return ICONS.CONSTRAINT_NOT_NULL;
         case SqliteCreateTable::Column::Constraint::UNIQUE:
-            return ICON("unique");
+            return ICONS.CONSTRAINT_UNIQUE;
         case SqliteCreateTable::Column::Constraint::CHECK:
-            return ICON("check");
+            return ICONS.CONSTRAINT_CHECK;
         case SqliteCreateTable::Column::Constraint::DEFAULT:
-            return ICON("default");
+            return ICONS.CONSTRAINT_DEFAULT;
         case SqliteCreateTable::Column::Constraint::COLLATE:
-            return ICON("collation");
+            return ICONS.CONSTRAINT_COLLATION;
         case SqliteCreateTable::Column::Constraint::FOREIGN_KEY:
-            return ICON("fk");
+            return ICONS.CONSTRAINT_FOREIGN_KEY;
         case SqliteCreateTable::Column::Constraint::NULL_:
         case SqliteCreateTable::Column::Constraint::NAME_ONLY:
         case SqliteCreateTable::Column::Constraint::DEFERRABLE_ONLY:

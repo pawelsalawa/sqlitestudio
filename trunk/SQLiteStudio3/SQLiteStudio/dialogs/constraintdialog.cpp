@@ -166,31 +166,31 @@ void ConstraintDialog::updateDefinitionHeader()
         case ConstraintDialog::UNKNOWN:
             return;
         case ConstraintDialog::PK:
-            ui->titleIcon->setPixmap(ICON_PIX("pk"));
+            ui->titleIcon->setPixmap(ICONS.CONSTRAINT_PRIMARY_KEY);
             ui->titleLabel->setText(tr("Primary key", "table constraints"));
             break;
         case ConstraintDialog::FK:
-            ui->titleIcon->setPixmap(ICON_PIX("fk"));
+            ui->titleIcon->setPixmap(ICONS.CONSTRAINT_FOREIGN_KEY);
             ui->titleLabel->setText(tr("Foreign key", "table constraints"));
             break;
         case ConstraintDialog::UNIQUE:
-            ui->titleIcon->setPixmap(ICON_PIX("unique"));
+            ui->titleIcon->setPixmap(ICONS.CONSTRAINT_UNIQUE);
             ui->titleLabel->setText(tr("Unique", "table constraints"));
             break;
         case ConstraintDialog::NOTNULL:
-            ui->titleIcon->setPixmap(ICON_PIX("not_null"));
+            ui->titleIcon->setPixmap(ICONS.CONSTRAINT_NOT_NULL);
             ui->titleLabel->setText(tr("Not NULL", "table constraints"));
             break;
         case ConstraintDialog::CHECK:
-            ui->titleIcon->setPixmap(ICON_PIX("check"));
+            ui->titleIcon->setPixmap(ICONS.CONSTRAINT_CHECK);
             ui->titleLabel->setText(tr("Check", "table constraints"));
             break;
         case ConstraintDialog::COLLATE:
-            ui->titleIcon->setPixmap(ICON_PIX("collation"));
+            ui->titleIcon->setPixmap(ICONS.CONSTRAINT_COLLATION);
             ui->titleLabel->setText(tr("Collate", "table constraints"));
             break;
         case ConstraintDialog::DEFAULT:
-            ui->titleIcon->setPixmap(ICON_PIX("default"));
+            ui->titleIcon->setPixmap(ICONS.CONSTRAINT_DEFAULT);
             ui->titleLabel->setText(tr("Default", "table constraints"));
             break;
     }

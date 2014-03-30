@@ -6,6 +6,7 @@
 #include "dblistmodel.h"
 #include "ddlhistorymodel.h"
 #include "common/unused.h"
+#include "iconmanager.h"
 #include <QDate>
 #include <QLineEdit>
 #include <QStringListModel>
@@ -113,9 +114,9 @@ bool DdlHistoryWindow::restoreSession(const QVariant& sessionValue)
     return true;
 }
 
-QString DdlHistoryWindow::getIconNameForMdiWindow()
+Icon* DdlHistoryWindow::getIconNameForMdiWindow()
 {
-    return "ddl_history";
+    return ICONS.DDL_HISTORY;
 }
 
 QString DdlHistoryWindow::getTitleForMdiWindow()
