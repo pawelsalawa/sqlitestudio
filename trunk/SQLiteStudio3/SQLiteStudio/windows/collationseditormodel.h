@@ -28,6 +28,7 @@ class CollationsEditorModel : public QAbstractListModel
         QStringList getDatabases(int row);
         bool isValid(int row) const;
         void setValid(int row, bool valid);
+        bool isValid() const;
         void setData(const QList<CollationManager::CollationPtr>& collations);
         void addCollation(const CollationManager::CollationPtr& collation);
         void deleteCollation(int row);
@@ -35,7 +36,7 @@ class CollationsEditorModel : public QAbstractListModel
         QStringList getCollationNames() const;
         void validateNames();
         bool isAllowedName(int rowToSkip, const QString& nameToValidate);
-        bool isValidRow(int row) const;
+        bool isValidRowIndex(int row) const;
 
         int rowCount(const QModelIndex& parent = QModelIndex()) const;
         QVariant data(const QModelIndex& index, int role) const;

@@ -3,6 +3,20 @@
 #include "common/strhash.h"
 #include "services/pluginmanager.h"
 #include "plugins/scriptingplugin.h"
+#include "icon.h"
+
+#define SETTER(X, Y) \
+    if (!isValidRowIndex(row) || X == Y) \
+        return; \
+    \
+    X = Y; \
+    emitDataChanged(row);
+
+#define GETTER(X, Y) \
+    if (!isValidRowIndex(row)) \
+        return Y; \
+    \
+    return X;
 
 CollationsEditorModel::CollationsEditorModel(QObject *parent) :
     QAbstractListModel(parent)
@@ -37,121 +51,82 @@ bool CollationsEditorModel::isModified() const
 
 bool CollationsEditorModel::isModified(int row) const
 {
-    if (!isValidRow(row))
-        return false;
-
-    return collationList[row]->modified;
+    GETTER(collationList[row]->modified, false);
 }
 
 void CollationsEditorModel::setModified(int row, bool modified)
 {
-    if (!isValidRow(row))
-        return;
-
-    collationList[row]->modified = modified;
-    emitDataChanged(row);
+    SETTER(collationList[row]->modified, modified);
 }
 
 void CollationsEditorModel::setName(int row, const QString& name)
 {
-    if (!isValidRow(row))
-        return;
-
-    collationList[row]->data->name = name;
-    emitDataChanged(row);
+    SETTER(collationList[row]->data->name, name);
 }
 
 QString CollationsEditorModel::getName(int row) const
 {
-    if (!isValidRow(row))
-        return QString();
-
-    return collationList[row]->data->name;
+    GETTER(collationList[row]->data->name, QString());
 }
 
 void CollationsEditorModel::setLang(int row, const QString& lang)
 {
-    if (!isValidRow(row))
-        return;
-
-    collationList[row]->data->lang = lang;
-    emitDataChanged(row);
+    SETTER(collationList[row]->data->lang, lang);
 }
 
 QString CollationsEditorModel::getLang(int row) const
 {
-    if (!isValidRow(row))
-        return QString();
-
-    return collationList[row]->data->lang;
+    GETTER(collationList[row]->data->lang, QString());
 }
 
 void CollationsEditorModel::setAllDatabases(int row, bool allDatabases)
 {
-    if (!isValidRow(row))
-        return;
-
-    collationList[row]->data->allDatabases = allDatabases;
-    emitDataChanged(row);
+    SETTER(collationList[row]->data->allDatabases, allDatabases);
 }
 
 bool CollationsEditorModel::getAllDatabases(int row) const
 {
-    if (!isValidRow(row))
-        return true;
-
-    return collationList[row]->data->allDatabases;
+    GETTER(collationList[row]->data->allDatabases, true);
 }
 
 void CollationsEditorModel::setCode(int row, const QString& code)
 {
-    if (!isValidRow(row))
-        return;
-
-    collationList[row]->data->code = code;
-    emitDataChanged(row);
+    SETTER(collationList[row]->data->code, code);
 }
 
 QString CollationsEditorModel::getCode(int row) const
 {
-    if (!isValidRow(row))
-        return QString();
-
-    return collationList[row]->data->code;
+    GETTER(collationList[row]->data->code, QString());
 }
 
 void CollationsEditorModel::setDatabases(int row, const QStringList& databases)
 {
-    if (!isValidRow(row))
-        return;
-
-    collationList[row]->data->databases = databases;
-    emitDataChanged(row);
+    SETTER(collationList[row]->data->databases, databases);
 }
 
 QStringList CollationsEditorModel::getDatabases(int row)
 {
-    if (!isValidRow(row))
-        return QStringList();
-
-    return collationList[row]->data->databases;
+    GETTER(collationList[row]->data->databases, QStringList());
 }
 
 bool CollationsEditorModel::isValid(int row) const
 {
-    if (!isValidRow(row))
-        return false;
-
-    return collationList[row]->valid;
+    GETTER(collationList[row]->valid, false);
 }
 
 void CollationsEditorModel::setValid(int row, bool valid)
 {
-    if (!isValidRow(row))
-        return;
+    SETTER(collationList[row]->valid, valid);
+}
 
-    collationList[row]->valid = valid;
-    emitDataChanged(row);
+bool CollationsEditorModel::isValid() const
+{
+    foreach (Collation* coll, collationList)
+    {
+        if (!coll->valid)
+            return false;
+    }
+    return true;
 }
 
 void CollationsEditorModel::setData(const QList<CollationManager::CollationPtr>& collations)
@@ -187,7 +162,7 @@ void CollationsEditorModel::addCollation(const CollationManager::CollationPtr& c
 
 void CollationsEditorModel::deleteCollation(int row)
 {
-    if (!isValidRow(row))
+    if (!isValidRowIndex(row))
         return;
 
     beginRemoveRows(QModelIndex(), row, row);
@@ -256,7 +231,7 @@ bool CollationsEditorModel::isAllowedName(int rowToSkip, const QString& nameToVa
     return !names.contains(nameToValidate, Qt::CaseInsensitive);
 }
 
-bool CollationsEditorModel::isValidRow(int row) const
+bool CollationsEditorModel::isValidRowIndex(int row) const
 {
     return (row >= 0 && row < collationList.size());
 }
@@ -269,14 +244,20 @@ int CollationsEditorModel::rowCount(const QModelIndex& parent) const
 
 QVariant CollationsEditorModel::data(const QModelIndex& index, int role) const
 {
-    if (!index.isValid() || !isValidRow(index.row()))
+    if (!index.isValid() || !isValidRowIndex(index.row()))
         return QVariant();
 
     if (role == Qt::DisplayRole)
         return collationList[index.row()]->data->name;
 
     if (role == Qt::DecorationRole && langToIcon.contains(collationList[index.row()]->data->lang))
-        return langToIcon[collationList[index.row()]->data->lang];
+    {
+        QIcon icon = langToIcon[collationList[index.row()]->data->lang];
+        if (!collationList[index.row()]->valid)
+            icon = Icon::merge(icon, Icon::ERROR);
+
+        return icon;
+    }
 
     return QVariant();
 

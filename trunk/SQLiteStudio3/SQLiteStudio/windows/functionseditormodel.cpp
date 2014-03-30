@@ -3,7 +3,21 @@
 #include "common/unused.h"
 #include "services/pluginmanager.h"
 #include "plugins/scriptingplugin.h"
+#include "icon.h"
 #include <QDebug>
+
+#define SETTER(X, Y) \
+    if (!isValidRowIndex(row) || X == Y) \
+        return; \
+    \
+    X = Y; \
+    emitDataChanged(row);
+
+#define GETTER(X, Y) \
+    if (!isValidRowIndex(row)) \
+        return Y; \
+    \
+    return X;
 
 FunctionsEditorModel::FunctionsEditorModel(QObject *parent) :
     QAbstractListModel(parent)
@@ -38,222 +52,142 @@ bool FunctionsEditorModel::isModified() const
 
 bool FunctionsEditorModel::isModified(int row) const
 {
-    if (!isValidRow(row))
-        return false;
-
-    return functionList[row]->modified;
+    GETTER(functionList[row]->modified, false);
 }
 
 void FunctionsEditorModel::setModified(int row, bool modified)
 {
-    if (!isValidRow(row))
-        return;
+    SETTER(functionList[row]->modified, modified);
+}
 
-    functionList[row]->modified = modified;
-    emitDataChanged(row);
+bool FunctionsEditorModel::isValid() const
+{
+    foreach (Function* func, functionList)
+    {
+        if (!func->valid)
+            return false;
+    }
+    return true;
 }
 
 bool FunctionsEditorModel::isValid(int row) const
 {
-    if (!isValidRow(row))
-        return false;
-
-    return functionList[row]->valid;
+    GETTER(functionList[row]->valid, false);
 }
 
 void FunctionsEditorModel::setValid(int row, bool valid)
 {
-    if (!isValidRow(row))
-        return;
-
-    functionList[row]->valid = valid;
-    emitDataChanged(row);
+    SETTER(functionList[row]->valid, valid);
 }
 
 void FunctionsEditorModel::setCode(int row, const QString& code)
 {
-    if (!isValidRow(row))
-        return;
-
-    functionList[row]->data->code = code;
-    emitDataChanged(row);
+    SETTER(functionList[row]->data->code, code);
 }
 
 QString FunctionsEditorModel::getCode(int row) const
 {
-    if (!isValidRow(row))
-        return QString::null;
-
-    return functionList[row]->data->code;
+    GETTER(functionList[row]->data->code, QString::null);
 }
 
 void FunctionsEditorModel::setFinalCode(int row, const QString& code)
 {
-    if (!isValidRow(row))
-        return;
-
-    functionList[row]->data->finalCode = code;
-    emitDataChanged(row);
+    SETTER(functionList[row]->data->finalCode, code);
 }
 
 QString FunctionsEditorModel::getFinalCode(int row) const
 {
-    if (!isValidRow(row))
-        return QString::null;
-
-    return functionList[row]->data->finalCode;
+    GETTER(functionList[row]->data->finalCode, QString::null);
 }
 
 void FunctionsEditorModel::setInitCode(int row, const QString& code)
 {
-    if (!isValidRow(row))
-        return;
-
-    functionList[row]->data->initCode = code;
-    emitDataChanged(row);
+    SETTER(functionList[row]->data->initCode, code);
 }
 
 QString FunctionsEditorModel::getInitCode(int row) const
 {
-    if (!isValidRow(row))
-        return QString::null;
-
-    return functionList[row]->data->initCode;
+    GETTER(functionList[row]->data->initCode, QString::null);
 }
 
 void FunctionsEditorModel::setName(int row, const QString& newName)
 {
-    if (!isValidRow(row))
-        return;
-
-    functionList[row]->data->name = newName;
-    emitDataChanged(row);
+    SETTER(functionList[row]->data->name, newName);
 }
 
 QString FunctionsEditorModel::getName(int row) const
 {
-    if (!isValidRow(row))
-        return QString::null;
-
-    return functionList[row]->data->name;
+    GETTER(functionList[row]->data->name, QString::null);
 }
 
 void FunctionsEditorModel::setLang(int row, const QString& lang)
 {
-    if (!isValidRow(row))
-        return;
-
-    functionList[row]->data->lang = lang;
-    emitDataChanged(row);
+    SETTER(functionList[row]->data->lang, lang);
 }
 
 QString FunctionsEditorModel::getLang(int row) const
 {
-    if (!isValidRow(row))
-        return QString::null;
-
-    return functionList[row]->data->lang;
+    GETTER(functionList[row]->data->lang, QString::null);
 }
 
 bool FunctionsEditorModel::getUndefinedArgs(int row) const
 {
-    if (!isValidRow(row))
-        return true;
-
-    return functionList[row]->data->undefinedArgs;
+    GETTER(functionList[row]->data->undefinedArgs, true);
 }
 
 void FunctionsEditorModel::setUndefinedArgs(int row, bool value)
 {
-    if (!isValidRow(row))
-        return;
-
-    functionList[row]->data->undefinedArgs = value;
-    emitDataChanged(row);
+    SETTER(functionList[row]->data->undefinedArgs, value);
 }
 
 bool FunctionsEditorModel::getAllDatabases(int row) const
 {
-    if (!isValidRow(row))
-        return true;
-
-    return functionList[row]->data->allDatabases;
+    GETTER(functionList[row]->data->allDatabases, true);
 }
 
 void FunctionsEditorModel::setAllDatabases(int row, bool value)
 {
-    if (!isValidRow(row))
-        return;
-
-    functionList[row]->data->allDatabases = value;
-    emitDataChanged(row);
+    SETTER(functionList[row]->data->allDatabases, value);
 }
 
 FunctionManager::Function::Type FunctionsEditorModel::getType(int row) const
 {
-    if (!isValidRow(row))
-        return FunctionManager::Function::SCALAR;
-
-    return functionList[row]->data->type;
+    GETTER(functionList[row]->data->type, FunctionManager::Function::SCALAR);
 }
 
 void FunctionsEditorModel::setType(int row, FunctionManager::Function::Type type)
 {
-    if (!isValidRow(row))
-        return;
-
-    functionList[row]->data->type = type;
-    emitDataChanged(row);
+    SETTER(functionList[row]->data->type, type);
 }
 
 bool FunctionsEditorModel::isAggregate(int row) const
 {
-    if (!isValidRow(row))
-        return false;
-
-    return functionList[row]->data->type == FunctionManager::Function::AGGREGATE;
+    GETTER(functionList[row]->data->type == FunctionManager::Function::AGGREGATE, false);
 }
 
 bool FunctionsEditorModel::isScalar(int row) const
 {
-    if (!isValidRow(row))
-        return false;
-
-    return functionList[row]->data->type == FunctionManager::Function::SCALAR;
+    GETTER(functionList[row]->data->type == FunctionManager::Function::SCALAR, false);
 }
 
 QStringList FunctionsEditorModel::getArguments(int row) const
 {
-    if (!isValidRow(row))
-        return QStringList();
-
-    return functionList[row]->data->arguments;
+    GETTER(functionList[row]->data->arguments, QStringList());
 }
 
 void FunctionsEditorModel::setArguments(int row, const QStringList& value)
 {
-    if (!isValidRow(row))
-        return;
-
-    functionList[row]->data->arguments = value;
-    emitDataChanged(row);
+    SETTER(functionList[row]->data->arguments, value);
 }
 
 QStringList FunctionsEditorModel::getDatabases(int row) const
 {
-    if (!isValidRow(row))
-        return QStringList();
-
-    return functionList[row]->data->databases;
+    GETTER(functionList[row]->data->databases, QStringList());
 }
 
 void FunctionsEditorModel::setDatabases(int row, const QStringList& value)
 {
-    if (!isValidRow(row))
-        return;
-
-    functionList[row]->data->databases = value;
-    emitDataChanged(row);
+    SETTER(functionList[row]->data->databases, value);
 }
 
 void FunctionsEditorModel::setData(const QList<FunctionManager::FunctionPtr>& functions)
@@ -289,7 +223,7 @@ void FunctionsEditorModel::addFunction(const FunctionManager::FunctionPtr& funct
 
 void FunctionsEditorModel::deleteFunction(int row)
 {
-    if (!isValidRow(row))
+    if (!isValidRowIndex(row))
         return;
 
     beginRemoveRows(QModelIndex(), row, row);
@@ -366,7 +300,7 @@ int FunctionsEditorModel::rowCount(const QModelIndex& parent) const
 
 QVariant FunctionsEditorModel::data(const QModelIndex& index, int role) const
 {
-    if (!index.isValid() || !isValidRow(index.row()))
+    if (!index.isValid() || !isValidRowIndex(index.row()))
         return QVariant();
 
     if (role == Qt::DisplayRole)
@@ -379,7 +313,11 @@ QVariant FunctionsEditorModel::data(const QModelIndex& index, int role) const
 
     if (role == Qt::DecorationRole && langToIcon.contains(functionList[index.row()]->data->lang))
     {
-        return langToIcon[functionList[index.row()]->data->lang];
+        QIcon icon = langToIcon[functionList[index.row()]->data->lang];
+        if (!functionList[index.row()]->valid)
+            icon = Icon::merge(icon, Icon::ERROR);
+
+        return icon;
     }
 
     return QVariant();
@@ -401,7 +339,7 @@ void FunctionsEditorModel::init()
     }
 }
 
-bool FunctionsEditorModel::isValidRow(int row) const
+bool FunctionsEditorModel::isValidRowIndex(int row) const
 {
     return (row >= 0 && row < functionList.size());
 }
