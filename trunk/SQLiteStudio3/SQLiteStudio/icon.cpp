@@ -31,6 +31,11 @@ Icon::Icon(const QString& name) :
 
 Icon::~Icon()
 {
+    for (QIcon* icon : dynamicallyAttributed.values())
+        delete icon;
+
+    dynamicallyAttributed.clear();
+
     safe_delete(iconHandle);
     safe_delete(movieHandle);
 }
@@ -59,24 +64,7 @@ void Icon::load()
             return;
         }
 
-        // Get attribute icon
-        QString attribName = getIconNameForAttribute(attr);
-        QIcon* attrIcon = IconManager::getInstance()->getIcon(attribName);
-        if (!attrIcon)
-        {
-            qWarning() << "No attribute icon for attribute:" << attribName;
-            return;
-        }
-
-        // Merge icons
-        QPixmap attrPixmap = attrIcon->pixmap(16, 16);
-        QPixmap newPixmap = icon->pixmap(16, 16);
-
-        QPainter painter(&newPixmap);
-        painter.drawPixmap(0, 0, attrPixmap);
-
-        // Create new icon
-        iconHandle = new QIcon(newPixmap);
+        iconHandle = new QIcon(mergeAttribute(icon, attr));
     }
     else
     {
@@ -188,6 +176,28 @@ QVariant Icon::toQVariant() const
     return QVariant::fromValue<QIcon>(operator QIcon());
 }
 
+QIcon* Icon::with(Icon::Attributes attr)
+{
+    if (dynamicallyAttributed.contains(attr))
+        return dynamicallyAttributed[attr];
+
+    if (aliased)
+        return aliased->with(attr);
+
+    if (!loaded)
+    {
+        qCritical() << "Referring to a icon that was not yet loaded:" << name;
+        return nullptr;
+    }
+
+    if (movieHandle)
+        return nullptr; // this is a movie
+
+    QIcon* merged = new QIcon(mergeAttribute(iconHandle, attr));
+    dynamicallyAttributed[attr] = merged;
+    return merged;
+}
+
 Icon::operator Icon*()
 {
     return this;
@@ -250,6 +260,11 @@ Icon& Icon::aliasOf(const QString& name, Icon* other)
     return *newIcon;
 }
 
+QIcon Icon::merge(const QIcon& icon, Icon::Attributes attr)
+{
+    return mergeAttribute(&icon, attr);
+}
+
 void Icon::loadAll()
 {
     for (Icon* icon : instances.values())
@@ -282,6 +297,27 @@ QString Icon::getIconNameForAttribute(Icon::Attributes attr)
             qWarning() << "Unhandled icon attribute:" << attr;
     }
     return QString::null;
+}
+
+QIcon Icon::mergeAttribute(const QIcon* icon, Icon::Attributes attr)
+{
+    QString attribName = getIconNameForAttribute(attr);
+    QIcon* attrIcon = IconManager::getInstance()->getIcon(attribName);
+    if (!attrIcon)
+    {
+        qWarning() << "No attribute icon for attribute:" << attribName;
+        return *icon;
+    }
+
+    // Merge icons
+    QPixmap attrPixmap = attrIcon->pixmap(16, 16);
+    QPixmap newPixmap = icon->pixmap(16, 16);
+
+    QPainter painter(&newPixmap);
+    painter.drawPixmap(0, 0, attrPixmap);
+
+    // Create new icon
+    return QIcon(newPixmap);
 }
 
 Icon::operator QVariant() const
