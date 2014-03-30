@@ -39,7 +39,7 @@ class CollationsEditor : public MdiChild, public ExtActionContainer
     protected:
         QVariant saveSession();
         bool restoreSession(const QVariant &sessionValue);
-        QString getIconNameForMdiWindow();
+        Icon* getIconNameForMdiWindow();
         QString getTitleForMdiWindow();
         void createActions();
         void setupDefShortcuts();

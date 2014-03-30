@@ -128,9 +128,9 @@ bool ViewWindow::restoreSession(const QVariant& sessionValue)
     return true;
 }
 
-QString ViewWindow::getIconNameForMdiWindow()
+Icon* ViewWindow::getIconNameForMdiWindow()
 {
-    return "view";
+    return ICONS.VIEW;
 }
 
 QString ViewWindow::getTitleForMdiWindow()
@@ -265,21 +265,21 @@ void ViewWindow::setupCoverWidget()
 
 void ViewWindow::createQueryTabActions()
 {
-    createAction(REFRESH_QUERY, "reload", tr("Refresh the view", "view window"), this, SLOT(refreshView()), ui->queryToolbar);
+    createAction(REFRESH_QUERY, ICONS.RELOAD, tr("Refresh the view", "view window"), this, SLOT(refreshView()), ui->queryToolbar);
     ui->queryToolbar->addSeparator();
-    createAction(COMMIT_QUERY, "commit", tr("Commit the view changes", "view window"), this, SLOT(commitView()), ui->queryToolbar);
-    createAction(ROLLBACK_QUERY, "rollback", tr("Rollback the view changes", "view window"), this, SLOT(rollbackView()), ui->queryToolbar);
+    createAction(COMMIT_QUERY, ICONS.COMMIT, tr("Commit the view changes", "view window"), this, SLOT(commitView()), ui->queryToolbar);
+    createAction(ROLLBACK_QUERY, ICONS.ROLLBACK, tr("Rollback the view changes", "view window"), this, SLOT(rollbackView()), ui->queryToolbar);
     ui->queryToolbar->addSeparator();
     ui->queryToolbar->addAction(ui->queryEdit->getAction(SqlEditor::FORMAT_SQL));
 }
 
 void ViewWindow::createTriggersTabActions()
 {
-    createAction(REFRESH_TRIGGERS, "reload", tr("Refresh trigger list", "view window"), this, SLOT(refreshTriggers()), ui->triggersToolbar, ui->triggersList);
+    createAction(REFRESH_TRIGGERS, ICONS.RELOAD, tr("Refresh trigger list", "view window"), this, SLOT(refreshTriggers()), ui->triggersToolbar, ui->triggersList);
     ui->triggersToolbar->addSeparator();
-    createAction(ADD_TRIGGER, "trigger_add", tr("Create new triger", "view window"), this, SLOT(addTrigger()), ui->triggersToolbar, ui->triggersList);
-    createAction(EDIT_TRIGGER, "trigger_edit", tr("Edit selected triger", "view window"), this, SLOT(editTrigger()), ui->triggersToolbar, ui->triggersList);
-    createAction(DEL_TRIGGER, "trigger_del", tr("Delete selected triger", "view window"), this, SLOT(deleteTrigger()), ui->triggersToolbar, ui->triggersList);
+    createAction(ADD_TRIGGER, ICONS.TRIGGER_ADD, tr("Create new triger", "view window"), this, SLOT(addTrigger()), ui->triggersToolbar, ui->triggersList);
+    createAction(EDIT_TRIGGER, ICONS.TRIGGER_EDIT, tr("Edit selected triger", "view window"), this, SLOT(editTrigger()), ui->triggersToolbar, ui->triggersList);
+    createAction(DEL_TRIGGER, ICONS.TRIGGER_DEL, tr("Delete selected triger", "view window"), this, SLOT(deleteTrigger()), ui->triggersToolbar, ui->triggersList);
 }
 QString ViewWindow::getView() const
 {

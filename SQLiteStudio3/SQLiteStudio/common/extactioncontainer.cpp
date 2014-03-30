@@ -18,10 +18,9 @@ void ExtActionContainer::initActions()
     refreshShortcuts();
 }
 
-void ExtActionContainer::createAction(int action, const QString& icon, const QString& text, const QObject* receiver, const char* slot,
-                                      QWidget* container, QWidget* owner)
+void ExtActionContainer::createAction(int action, const Icon& icon, const QString& text, const QObject* receiver, const char* slot, QWidget* container, QWidget* owner)
 {
-    QAction* qAction = new ExtAction(ICON(icon), text);
+    QAction* qAction = new ExtAction(icon, text);
     createAction(action, qAction, receiver, slot, container, owner);
 }
 

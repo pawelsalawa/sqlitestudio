@@ -96,8 +96,8 @@ void EditorWindow::loadTabsMode()
 
 void EditorWindow::createStaticActions()
 {
-    staticActions[RESULTS_IN_TAB] = new ExtAction(ICON("results_in_tab"), tr("Results in the separate tab"), MainWindow::getInstance());
-    staticActions[RESULTS_BELOW] = new ExtAction(ICON("results_below"), tr("Results below the query"), MainWindow::getInstance());
+    staticActions[RESULTS_IN_TAB] = new ExtAction(ICONS.RESULTS_IN_TAB, tr("Results in the separate tab"), MainWindow::getInstance());
+    staticActions[RESULTS_BELOW] = new ExtAction(ICONS.RESULTS_BELOW, tr("Results below the query"), MainWindow::getInstance());
 
     staticActionGroups[ActionGroup::RESULTS_POSITIONING] = new QActionGroup(MainWindow::getInstance());
     staticActionGroups[ActionGroup::RESULTS_POSITIONING]->addAction(staticActions[RESULTS_IN_TAB]);
@@ -120,9 +120,9 @@ void EditorWindow::createStaticActions()
         staticActions[RESULTS_IN_TAB]->setChecked(true);
 }
 
-QString EditorWindow::getIconNameForMdiWindow()
+Icon* EditorWindow::getIconNameForMdiWindow()
 {
-    return "open_sql_editor";
+    return ICONS.OPEN_SQL_EDITOR;
 }
 
 QString EditorWindow::getTitleForMdiWindow()
@@ -268,14 +268,14 @@ void EditorWindow::updateResultsDisplayMode()
 void EditorWindow::createActions()
 {
     // SQL editor toolbar
-    createAction(EXEC_QUERY, "exec_query", tr("Execute query"), this, SLOT(execQuery()), ui->toolBar, ui->sqlEdit);
-    createAction(EXPLAIN_QUERY, "explain_query", tr("Explain query"), this, SLOT(explainQuery()), ui->toolBar, ui->sqlEdit);
+    createAction(EXEC_QUERY, ICONS.EXEC_QUERY, tr("Execute query"), this, SLOT(execQuery()), ui->toolBar, ui->sqlEdit);
+    createAction(EXPLAIN_QUERY, ICONS.EXPLAIN_QUERY, tr("Explain query"), this, SLOT(explainQuery()), ui->toolBar, ui->sqlEdit);
     ui->toolBar->addSeparator();
     ui->toolBar->addAction(ui->sqlEdit->getAction(SqlEditor::FORMAT_SQL));
-    createAction(CLEAR_HISTORY, "clear_history", tr("Clear execution history", "sql editor"), this, SLOT(clearHistory()), ui->toolBar);
+    createAction(CLEAR_HISTORY, ICONS.CLEAR_HISTORY, tr("Clear execution history", "sql editor"), this, SLOT(clearHistory()), ui->toolBar);
     ui->toolBar->addSeparator();
-    createAction(EXPORT_RESULTS, "table_export", tr("Export results", "sql editor"), this, SLOT(exportResults()), ui->toolBar);
-    createAction(CREATE_VIEW_FROM_QUERY, "view_add", tr("Create view from query", "sql editor"), this, SLOT(createViewFromQuery()), ui->toolBar);
+    createAction(EXPORT_RESULTS, ICONS.TABLE_EXPORT, tr("Export results", "sql editor"), this, SLOT(exportResults()), ui->toolBar);
+    createAction(CREATE_VIEW_FROM_QUERY, ICONS.VIEW_ADD, tr("Create view from query", "sql editor"), this, SLOT(createViewFromQuery()), ui->toolBar);
     ui->toolBar->addSeparator();
     ui->toolBar->addAction(ui->sqlEdit->getAction(SqlEditor::SAVE_SQL_FILE));
     ui->toolBar->addAction(ui->sqlEdit->getAction(SqlEditor::OPEN_SQL_FILE));

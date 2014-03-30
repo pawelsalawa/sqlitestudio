@@ -243,14 +243,14 @@ void DbTreeModel::expanded(const QModelIndex &index)
     }
 
     if (dynamic_cast<DbTreeItem*>(item)->getType() == DbTreeItem::Type::DIR)
-        itemFromIndex(index)->setIcon(ICON("directory_open"));
+        itemFromIndex(index)->setIcon(ICONS.DIRECTORY_OPEN);
 }
 
 void DbTreeModel::collapsed(const QModelIndex &index)
 {
     QStandardItem* item = itemFromIndex(index);
     if (dynamic_cast<DbTreeItem*>(item)->getType() == DbTreeItem::Type::DIR)
-        item->setIcon(ICON("directory"));
+        item->setIcon(ICONS.DIRECTORY_OPEN);
 }
 
 void DbTreeModel::dbAdded(Db* db)
@@ -361,7 +361,7 @@ QString DbTreeModel::getDbToolTip(DbTreeItem* item) const
 
     Db* db = item->getDb();
     QFile dbFile(db->getPath());
-    rows << toolTipHdrRowTmp.arg(ICON_PATH("database")).arg(tr("Database: %1", "dbtree tooltip").arg(db->getName()));
+    rows << toolTipHdrRowTmp.arg(ICONS.DATABASE.getPath()).arg(tr("Database: %1", "dbtree tooltip").arg(db->getName()));
     rows << toolTipRowTmp.arg("URI:").arg(db->getPath());
     rows << toolTipRowTmp.arg(tr("Version:", "dbtree tooltip")).arg(QString("SQLite %1").arg(db->getVersion()));
     rows << toolTipRowTmp.arg(tr("File size:", "dbtree tooltip")).arg(formatFileSize(dbFile.size()));
@@ -376,7 +376,8 @@ QString DbTreeModel::getInvalidDbToolTip(DbTreeItem* item) const
     Config::CfgDbPtr cfgDb = CFG->getDb(dbName);
 
     QStringList rows;
-    rows << toolTipHdrRowTmp.arg(ICON_PATH("database_invalid")).arg(tr("Database: %1", "dbtree tooltip").arg(dbName));
+    //data:image/png;base64,
+    rows << toolTipHdrRowTmp.arg(ICONS.DATABASE_INVALID.toBase64Url()).arg(tr("Database: %1", "dbtree tooltip").arg(dbName));
 
     QString errorMsg;
     if (cfgDb)
@@ -401,7 +402,7 @@ QString DbTreeModel::getTableToolTip(DbTreeItem* item) const
 {
     QStringList rows;
 
-    rows << toolTipHdrRowTmp.arg(ICON_PATH("table")).arg(tr("Table : %1", "dbtree tooltip").arg(item->text()));
+    rows << toolTipHdrRowTmp.arg(ICONS.TABLE.getPath()).arg(tr("Table : %1", "dbtree tooltip").arg(item->text()));
 
     QStandardItem* columnsItem = item->child(0);
     QStandardItem* indexesItem = item->child(1);
@@ -423,13 +424,13 @@ QString DbTreeModel::getTableToolTip(DbTreeItem* item) const
     for (int i = 0; i < triggersCount; i++)
         triggers << triggersItem->child(i)->text();
 
-    rows << toolTipIconRowTmp.arg(ICON_PATH("column"))
+    rows << toolTipIconRowTmp.arg(ICONS.COLUMN.getPath())
                              .arg(tr("Columns (%1):", "dbtree tooltip").arg(columnCnt))
                              .arg(columns.join(", "));
-    rows << toolTipIconRowTmp.arg(ICON_PATH("index"))
+    rows << toolTipIconRowTmp.arg(ICONS.INDEX.getPath())
                              .arg(tr("Indexes (%1):", "dbtree tooltip").arg(indexesCount))
                              .arg(indexes.join(", "));
-    rows << toolTipIconRowTmp.arg(ICON_PATH("trigger"))
+    rows << toolTipIconRowTmp.arg(ICONS.TRIGGER.getPath())
                              .arg(tr("Triggers (%1):", "dbtree tooltip").arg(triggersCount))
                              .arg(triggers.join(", "));
 

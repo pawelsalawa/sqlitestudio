@@ -4,7 +4,7 @@
 #include "services/dbmanager.h"
 #include <QDebug>
 
-DbTreeItem::DbTreeItem(DbTreeItem::Type type, const QString& icon, const QString& nodeName, QObject* parent)
+DbTreeItem::DbTreeItem(DbTreeItem::Type type, const Icon& icon, const QString& nodeName, QObject* parent)
     : DbTreeItem(type, nodeName, parent)
 {
     setIcon(icon);
@@ -256,9 +256,9 @@ void DbTreeItem::setDb(const QString& dbName)
     setData(dbName, DataRole::DB);
 }
 
-QString DbTreeItem::getIconName() const
+Icon* DbTreeItem::getIcon() const
 {
-    return data(DataRole::ICON_NAME).toString();
+    return data(DataRole::ICON_PTR).value<Icon*>();
 }
 
 void DbTreeItem::setHidden(bool hidden)
@@ -272,11 +272,11 @@ bool DbTreeItem::isHidden() const
     return data(DataRole::HIDDEN).toBool();
 }
 
-void DbTreeItem::setIcon(const QString& icon)
+void DbTreeItem::setIcon(const Icon& icon)
 {
-    setData(icon, DataRole::ICON_NAME);
+    setData(&icon, DataRole::ICON_PTR);
     if (!icon.isNull())
-        QStandardItem::setIcon(ICON(icon));
+        QStandardItem::setIcon(icon);
 }
 
 void DbTreeItem::setInvalidDbType(bool invalid, Db* db)
@@ -285,13 +285,13 @@ void DbTreeItem::setInvalidDbType(bool invalid, Db* db)
     {
         setDb(nullptr);
         setType(DbTreeItem::Type::INVALID_DB);
-        setIcon("database_invalid");
+        setIcon(ICONS.DATABASE_INVALID);
     }
     else
     {
         setDb(db);
         setType(DbTreeItem::Type::DB);
-        setIcon("database");
+        setIcon(ICONS.DATABASE);
     }
 }
 

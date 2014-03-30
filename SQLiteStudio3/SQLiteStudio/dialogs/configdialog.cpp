@@ -126,7 +126,7 @@ QString ConfigDialog::getFilterString(QTableWidget *widget)
 void ConfigDialog::init()
 {
     ui->setupUi(this);
-    setWindowIcon(ICON("configure"));
+    setWindowIcon(ICONS.CONFIGURE);
 
     ui->categoriesFilter->setClearButtonEnabled(true);
     UserInputFilter* filter = new UserInputFilter(ui->categoriesFilter, this, SLOT(applyFilter(QString)));
@@ -769,7 +769,7 @@ void ConfigDialog::initPluginsPage()
     QPushButton* btn;
     QString title;
 
-    ui->pluginsPageInfoIcon->setPixmap(ICON_PIX("info_balloon"));
+    ui->pluginsPageInfoIcon->setPixmap(ICONS.INFO_BALLOON);
 
     ui->pluginsList->header()->setSectionsMovable(false);
     ui->pluginsList->header()->setSectionResizeMode(0, QHeaderView::Stretch);

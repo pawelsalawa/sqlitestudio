@@ -66,34 +66,34 @@ void DbTree::init()
 
 void DbTree::createActions()
 {
-    createAction(COPY, "act_copy", tr("Copy"), this, SLOT(copy()), this);
-    createAction(PASTE, "act_paste", tr("Paste"), this, SLOT(paste()), this);
-    createAction(SELECT_ALL, "act_select_all", tr("Select all"), this, SLOT(selectAll()), this);
-    createAction(CREATE_GROUP, "directory_add", tr("Create a group"), this, SLOT(createGroup()), this);
-    createAction(DELETE_GROUP, "directory_del", tr("Delete the group"), this, SLOT(deleteGroup()), this);
-    createAction(RENAME_GROUP, "directory_edit", tr("Rename the group"), this, SLOT(renameGroup()), this);
-    createAction(ADD_DB, "database_add", tr("Add a database"), this, SLOT(addDb()), this);
-    createAction(EDIT_DB, "database_edit", tr("Edit the database"), this, SLOT(editDb()), this);
-    createAction(DELETE_DB, "database_del", tr("Remove the database"), this, SLOT(removeDb()), this);
-    createAction(CONNECT_TO_DB, "database_connect", tr("Connect to the database"), this, SLOT(connectToDb()), this);
-    createAction(DISCONNECT_FROM_DB, "database_disconnect", tr("Disconnect from the database"), this, SLOT(disconnectFromDb()), this);
-    createAction(ADD_TABLE, "table_add", tr("Create a table"), this, SLOT(addTable()), this);
-    createAction(EDIT_TABLE, "table_edit", tr("Edit the table"), this, SLOT(editTable()), this);
-    createAction(DEL_TABLE, "table_del", tr("Drop the table"), this, SLOT(delTable()), this);
-    createAction(ADD_INDEX, "index_add", tr("Create an index"), this, SLOT(addIndex()), this);
-    createAction(EDIT_INDEX, "index_edit", tr("Edit the index"), this, SLOT(editIndex()), this);
-    createAction(DEL_INDEX, "index_del", tr("Drop the index"), this, SLOT(delIndex()), this);
-    createAction(ADD_TRIGGER, "trigger_add", tr("Create a trigger"), this, SLOT(addTrigger()), this);
-    createAction(EDIT_TRIGGER, "trigger_edit", tr("Edit the trigger"), this, SLOT(editTrigger()), this);
-    createAction(DEL_TRIGGER, "trigger_del", tr("Drop the trigger"), this, SLOT(delTrigger()), this);
-    createAction(ADD_VIEW, "view_add", tr("Create a view"), this, SLOT(addView()), this);
-    createAction(EDIT_VIEW, "view_edit", tr("Edit the view"), this, SLOT(editView()), this);
-    createAction(DEL_VIEW, "view_del", tr("Drop the view"), this, SLOT(delView()), this);
-    createAction(EDIT_COLUMN, "column_edit", tr("Edit the column"), this, SLOT(editColumn()), this);
-    createAction(DEL_SELECTED, "act_select_all", tr("Select all"), this, SLOT(deleteSelected()), this);
+    createAction(COPY, ICONS.ACT_COPY, tr("Copy"), this, SLOT(copy()), this);
+    createAction(PASTE, ICONS.ACT_PASTE, tr("Paste"), this, SLOT(paste()), this);
+    createAction(SELECT_ALL, ICONS.ACT_SELECT_ALL, tr("Select all"), this, SLOT(selectAll()), this);
+    createAction(CREATE_GROUP, ICONS.DIRECTORY_ADD, tr("Create a group"), this, SLOT(createGroup()), this);
+    createAction(DELETE_GROUP, ICONS.DIRECTORY_DEL, tr("Delete the group"), this, SLOT(deleteGroup()), this);
+    createAction(RENAME_GROUP, ICONS.DIRECTORY_EDIT, tr("Rename the group"), this, SLOT(renameGroup()), this);
+    createAction(ADD_DB, ICONS.DATABASE_ADD, tr("Add a database"), this, SLOT(addDb()), this);
+    createAction(EDIT_DB, ICONS.DATABASE_EDIT, tr("Edit the database"), this, SLOT(editDb()), this);
+    createAction(DELETE_DB, ICONS.DATABASE_DEL, tr("Remove the database"), this, SLOT(removeDb()), this);
+    createAction(CONNECT_TO_DB, ICONS.DATABASE_CONNECT, tr("Connect to the database"), this, SLOT(connectToDb()), this);
+    createAction(DISCONNECT_FROM_DB, ICONS.DATABASE_DISCONNECT, tr("Disconnect from the database"), this, SLOT(disconnectFromDb()), this);
+    createAction(ADD_TABLE, ICONS.TABLE_ADD, tr("Create a table"), this, SLOT(addTable()), this);
+    createAction(EDIT_TABLE, ICONS.TABLE_EDIT, tr("Edit the table"), this, SLOT(editTable()), this);
+    createAction(DEL_TABLE, ICONS.TABLE_DEL, tr("Drop the table"), this, SLOT(delTable()), this);
+    createAction(ADD_INDEX, ICONS.INDEX_ADD, tr("Create an index"), this, SLOT(addIndex()), this);
+    createAction(EDIT_INDEX, ICONS.INDEX_EDIT, tr("Edit the index"), this, SLOT(editIndex()), this);
+    createAction(DEL_INDEX, ICONS.INDEX_DEL, tr("Drop the index"), this, SLOT(delIndex()), this);
+    createAction(ADD_TRIGGER, ICONS.TRIGGER_ADD, tr("Create a trigger"), this, SLOT(addTrigger()), this);
+    createAction(EDIT_TRIGGER, ICONS.TRIGGER_EDIT, tr("Edit the trigger"), this, SLOT(editTrigger()), this);
+    createAction(DEL_TRIGGER, ICONS.TRIGGER_DEL, tr("Drop the trigger"), this, SLOT(delTrigger()), this);
+    createAction(ADD_VIEW, ICONS.VIEW_ADD, tr("Create a view"), this, SLOT(addView()), this);
+    createAction(EDIT_VIEW, ICONS.VIEW_EDIT, tr("Edit the view"), this, SLOT(editView()), this);
+    createAction(DEL_VIEW, ICONS.VIEW_DEL, tr("Drop the view"), this, SLOT(delView()), this);
+    createAction(EDIT_COLUMN, ICONS.COLUMN_EDIT, tr("Edit the column"), this, SLOT(editColumn()), this);
+    createAction(DEL_SELECTED, ICONS.ACT_SELECT_ALL, tr("Select all"), this, SLOT(deleteSelected()), this);
     createAction(CLEAR_FILTER, tr("Clear filter"), ui->nameFilter, SLOT(clear()), this);
-    createAction(REFRESH_SCHEMAS, "database_reload", tr("Refresh all database schemas"), treeModel, SLOT(loadDbList()), this);
-    createAction(REFRESH_SCHEMA, "database_reload", tr("Refresh database schema"), this, SLOT(refreshSchema()), this);
+    createAction(REFRESH_SCHEMAS, ICONS.DATABASE_RELOAD, tr("Refresh all database schemas"), treeModel, SLOT(loadDbList()), this);
+    createAction(REFRESH_SCHEMA, ICONS.DATABASE_RELOAD, tr("Refresh selected database schema"), this, SLOT(refreshSchema()), this);
 }
 
 void DbTree::updateActionsFor(const QStandardItem *item)
@@ -767,13 +767,16 @@ void DbTree::deleteItems(const QList<DbTreeItem*>& itemsToDelete)
 
     QStringList toDelete;
     QStringList databasesToRemove;
+    QString itemStr;
     int groupItems = 0;
     foreach (DbTreeItem* item, items)
     {
+        itemStr = itemTmp.arg(item->getIcon()->toUrl()).arg(item->text());
+
         if (item->getType() == DbTreeItem::Type::DB)
-            databasesToRemove << itemTmp.arg(ICON_PATH(item->getIconName())).arg(item->text());
+            databasesToRemove << itemStr;
         else
-            toDelete << itemTmp.arg(ICON_PATH(item->getIconName())).arg(item->text());
+            toDelete << itemStr;
 
         if (item->getType() == DbTreeItem::Type::DIR)
             groupItems++;

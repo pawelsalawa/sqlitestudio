@@ -155,36 +155,36 @@ void TableWindow::createActions()
 
 void TableWindow::createStructureActions()
 {
-    createAction(REFRESH_STRUCTURE, "reload", tr("Refresh structure", "table window"), this, SLOT(refreshStructure()), ui->structureToolBar);
+    createAction(REFRESH_STRUCTURE, ICONS.RELOAD, tr("Refresh structure", "table window"), this, SLOT(refreshStructure()), ui->structureToolBar);
     ui->structureToolBar->addSeparator();
-    createAction(COMMIT_STRUCTURE, "commit", tr("Commit structure changes", "table window"), this, SLOT(commitStructure()), ui->structureToolBar);
-    createAction(ROLLBACK_STRUCTURE, "rollback", tr("Rollback structure changes", "table window"), this, SLOT(rollbackStructure()), ui->structureToolBar);
-    createAction(ADD_COLUMN, "table_column_add", tr("Add column", "table window"), this, SLOT(addColumn()), ui->structureToolBar, ui->structureView);
-    createAction(EDIT_COLUMN, "table_column_edit", tr("Edit column", "table window"), this, SLOT(editColumn()), ui->structureToolBar, ui->structureView);
-    createAction(DEL_COLUMN, "table_column_delete", tr("Delete column", "table window"), this, SLOT(delColumn()), ui->structureToolBar, ui->structureView);
-    createAction(MOVE_COLUMN_UP, "move_up", tr("Move column up", "table window"), this, SLOT(moveColumnUp()), ui->structureToolBar, ui->structureView);
-    createAction(MOVE_COLUMN_DOWN, "move_down", tr("Move column down", "table window"), this, SLOT(moveColumnDown()), ui->structureToolBar, ui->structureView);
+    createAction(COMMIT_STRUCTURE, ICONS.COMMIT, tr("Commit structure changes", "table window"), this, SLOT(commitStructure()), ui->structureToolBar);
+    createAction(ROLLBACK_STRUCTURE, ICONS.ROLLBACK, tr("Rollback structure changes", "table window"), this, SLOT(rollbackStructure()), ui->structureToolBar);
+    createAction(ADD_COLUMN, ICONS.TABLE_COLUMN_ADD, tr("Add column", "table window"), this, SLOT(addColumn()), ui->structureToolBar, ui->structureView);
+    createAction(EDIT_COLUMN, ICONS.TABLE_COLUMN_EDIT, tr("Edit column", "table window"), this, SLOT(editColumn()), ui->structureToolBar, ui->structureView);
+    createAction(DEL_COLUMN, ICONS.TABLE_COLUMN_DELETE, tr("Delete column", "table window"), this, SLOT(delColumn()), ui->structureToolBar, ui->structureView);
+    createAction(MOVE_COLUMN_UP, ICONS.MOVE_UP, tr("Move column up", "table window"), this, SLOT(moveColumnUp()), ui->structureToolBar, ui->structureView);
+    createAction(MOVE_COLUMN_DOWN, ICONS.MOVE_DOWN, tr("Move column down", "table window"), this, SLOT(moveColumnDown()), ui->structureToolBar, ui->structureView);
     ui->structureToolBar->addSeparator();
-    createAction(CREATE_SIMILAR, "table_create_similar", tr("Create similar table", "table window"), this, SLOT(createSimilarTable()), ui->structureToolBar);
+    createAction(CREATE_SIMILAR, ICONS.TABLE_CREATE_SIMILAR, tr("Create similar table", "table window"), this, SLOT(createSimilarTable()), ui->structureToolBar);
 
     // Table constraints
-    createAction(ADD_TABLE_CONSTRAINT, "table_constraint_add", tr("Add table constraint", "table window"), this, SLOT(addConstraint()), ui->tableConstraintsToolbar, ui->tableConstraintsView);
-    createAction(EDIT_TABLE_CONSTRAINT, "table_constraint_edit", tr("Edit table constraint", "table window"), this, SLOT(editConstraint()), ui->tableConstraintsToolbar, ui->tableConstraintsView);
-    createAction(DEL_TABLE_CONSTRAINT, "table_constraint_delete", tr("Delete table constraint", "table window"), this, SLOT(delConstraint()), ui->tableConstraintsToolbar, ui->tableConstraintsView);
-    createAction(MOVE_CONSTRAINT_UP, "move_up", tr("Move table constraint up", "table window"), this, SLOT(moveConstraintUp()), ui->tableConstraintsToolbar, ui->tableConstraintsView);
-    createAction(MOVE_CONSTRAINT_DOWN, "move_down", tr("Move table constraint down", "table window"), this, SLOT(moveConstraintDown()), ui->tableConstraintsToolbar, ui->tableConstraintsView);
+    createAction(ADD_TABLE_CONSTRAINT, ICONS.TABLE_CONSTRAINT_ADD, tr("Add table constraint", "table window"), this, SLOT(addConstraint()), ui->tableConstraintsToolbar, ui->tableConstraintsView);
+    createAction(EDIT_TABLE_CONSTRAINT, ICONS.TABLE_CONSTRAINT_EDIT, tr("Edit table constraint", "table window"), this, SLOT(editConstraint()), ui->tableConstraintsToolbar, ui->tableConstraintsView);
+    createAction(DEL_TABLE_CONSTRAINT, ICONS.TABLE_COLUMN_DELETE, tr("Delete table constraint", "table window"), this, SLOT(delConstraint()), ui->tableConstraintsToolbar, ui->tableConstraintsView);
+    createAction(MOVE_CONSTRAINT_UP, ICONS.MOVE_UP, tr("Move table constraint up", "table window"), this, SLOT(moveConstraintUp()), ui->tableConstraintsToolbar, ui->tableConstraintsView);
+    createAction(MOVE_CONSTRAINT_DOWN, ICONS.MOVE_DOWN, tr("Move table constraint down", "table window"), this, SLOT(moveConstraintDown()), ui->tableConstraintsToolbar, ui->tableConstraintsView);
     ui->tableConstraintsToolbar->addSeparator();
-    createAction(ADD_TABLE_PK, "add_pk", tr("Add table primary key", "table window"), this, SLOT(addPk()), ui->tableConstraintsToolbar, ui->tableConstraintsView);
-    createAction(ADD_TABLE_FK, "add_fk", tr("Add table foreign key", "table window"), this, SLOT(addFk()), ui->tableConstraintsToolbar, ui->tableConstraintsView);
-    createAction(ADD_TABLE_UNIQUE, "add_unique", tr("Add table unique constraint", "table window"), this, SLOT(addUnique()), ui->tableConstraintsToolbar, ui->tableConstraintsView);
-    createAction(ADD_TABLE_CHECK, "add_check", tr("Add table check constraint", "table window"), this, SLOT(addCheck()), ui->tableConstraintsToolbar, ui->tableConstraintsView);
+    createAction(ADD_TABLE_PK, ICONS.CONSTRAINT_PRIMARY_KEY_ADD, tr("Add table primary key", "table window"), this, SLOT(addPk()), ui->tableConstraintsToolbar, ui->tableConstraintsView);
+    createAction(ADD_TABLE_FK, ICONS.CONSTRAINT_FOREIGN_KEY_ADD, tr("Add table foreign key", "table window"), this, SLOT(addFk()), ui->tableConstraintsToolbar, ui->tableConstraintsView);
+    createAction(ADD_TABLE_UNIQUE, ICONS.CONSTRAINT_UNIQUE_ADD, tr("Add table unique constraint", "table window"), this, SLOT(addUnique()), ui->tableConstraintsToolbar, ui->tableConstraintsView);
+    createAction(ADD_TABLE_CHECK, ICONS.CONSTRAINT_CHECK_ADD, tr("Add table check constraint", "table window"), this, SLOT(addCheck()), ui->tableConstraintsToolbar, ui->tableConstraintsView);
 }
 
 void TableWindow::createDataGridActions()
 {
-    createAction(EXPORT, "table_export", tr("Export table data", "table window"), this, SLOT(exportTable()), this);
-    createAction(IMPORT, "table_import", tr("Import data to table", "table window"), this, SLOT(importTable()), this);
-    createAction(POPULATE, "table_populate", tr("Populate table", "table window"), this, SLOT(populateTable()), this);
+    createAction(EXPORT, ICONS.TABLE_EXPORT, tr("Export table data", "table window"), this, SLOT(exportTable()), this);
+    createAction(IMPORT, ICONS.TABLE_IMPORT, tr("Import data to table", "table window"), this, SLOT(importTable()), this);
+    createAction(POPULATE, ICONS.TABLE_POPULATE, tr("Populate table", "table window"), this, SLOT(populateTable()), this);
 
     QAction* before = ui->dataView->getAction(DataView::FILTER_VALUE);
     ui->dataView->getGridToolBar()->insertAction(before, actionMap[IMPORT]);
@@ -199,21 +199,21 @@ void TableWindow::createDataFormActions()
 
 void TableWindow::createIndexActions()
 {
-    createAction(REFRESH_INDEXES, "reload", tr("Refresh index list", "table window"), this, SLOT(updateIndexes()), ui->indexToolBar, ui->indexList);
+    createAction(REFRESH_INDEXES, ICONS.RELOAD, tr("Refresh index list", "table window"), this, SLOT(updateIndexes()), ui->indexToolBar, ui->indexList);
     ui->indexToolBar->addSeparator();
-    createAction(ADD_INDEX, "index_add", tr("Create index", "table window"), this, SLOT(addIndex()), ui->indexToolBar, ui->indexList);
-    createAction(EDIT_INDEX, "index_edit", tr("Edit index", "table window"), this, SLOT(editIndex()), ui->indexToolBar, ui->indexList);
-    createAction(DEL_INDEX, "index_del", tr("Delete index", "table window"), this, SLOT(delIndex()), ui->indexToolBar, ui->indexList);
+    createAction(ADD_INDEX, ICONS.INDEX_ADD, tr("Create index", "table window"), this, SLOT(addIndex()), ui->indexToolBar, ui->indexList);
+    createAction(EDIT_INDEX, ICONS.INDEX_EDIT, tr("Edit index", "table window"), this, SLOT(editIndex()), ui->indexToolBar, ui->indexList);
+    createAction(DEL_INDEX, ICONS.INDEX_DEL, tr("Delete index", "table window"), this, SLOT(delIndex()), ui->indexToolBar, ui->indexList);
     connect(ui->indexList, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(editIndex()));
 }
 
 void TableWindow::createTriggerActions()
 {
-    createAction(REFRESH_TRIGGERS, "reload", tr("Refresh trigger list", "table window"), this, SLOT(updateTriggers()), ui->triggerToolBar, ui->triggerList);
+    createAction(REFRESH_TRIGGERS, ICONS.RELOAD, tr("Refresh trigger list", "table window"), this, SLOT(updateTriggers()), ui->triggerToolBar, ui->triggerList);
     ui->triggerToolBar->addSeparator();
-    createAction(ADD_TRIGGER, "trigger_add", tr("Create trigger", "table window"), this, SLOT(addTrigger()), ui->triggerToolBar, ui->triggerList);
-    createAction(EDIT_TRIGGER, "trigger_edit", tr("Edit trigger", "table window"), this, SLOT(editTrigger()), ui->triggerToolBar, ui->triggerList);
-    createAction(DEL_TRIGGER, "trigger_del", tr("Delete trigger", "table window"), this, SLOT(delTrigger()), ui->triggerToolBar, ui->triggerList);
+    createAction(ADD_TRIGGER, ICONS.TRIGGER_ADD, tr("Create trigger", "table window"), this, SLOT(addTrigger()), ui->triggerToolBar, ui->triggerList);
+    createAction(EDIT_TRIGGER, ICONS.TRIGGER_EDIT, tr("Edit trigger", "table window"), this, SLOT(editTrigger()), ui->triggerToolBar, ui->triggerList);
+    createAction(DEL_TRIGGER, ICONS.TRIGGER_DEL, tr("Delete trigger", "table window"), this, SLOT(delTrigger()), ui->triggerToolBar, ui->triggerList);
     connect(ui->triggerList, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(editTrigger()));
 }
 
@@ -633,9 +633,9 @@ bool TableWindow::restoreSession(const QVariant& sessionValue)
     return true;
 }
 
-QString TableWindow::getIconNameForMdiWindow()
+Icon* TableWindow::getIconNameForMdiWindow()
 {
-    return "table";
+    return ICONS.TABLE;
 }
 
 QString TableWindow::getTitleForMdiWindow()

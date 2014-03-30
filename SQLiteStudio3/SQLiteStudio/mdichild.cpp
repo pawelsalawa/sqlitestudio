@@ -38,7 +38,7 @@ void MdiChild::setMdiWindow(MdiWindow* value)
     if (mdiWindow)
     {
         mdiWindow->setWindowTitle(getTitleForMdiWindow());
-        mdiWindow->setWindowIcon(ICON(getIconNameForMdiWindow()));
+        mdiWindow->setWindowIcon(*getIconNameForMdiWindow());
     }
 }
 

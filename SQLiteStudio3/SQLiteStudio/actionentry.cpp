@@ -13,10 +13,10 @@ ActionEntry::ActionEntry(const QString &subMenuLabel)
     type = Type::SUB_MENU;
 }
 
-ActionEntry::ActionEntry(const QString &icon, const QString &subMenuLabel)
+ActionEntry::ActionEntry(const Icon& icon, const QString &subMenuLabel)
 {
     this->subMenuLabel = subMenuLabel;
-    this->subMenuIcon = ICON(icon);
+    this->subMenuIcon = icon;
     type = Type::SUB_MENU;
 }
 

@@ -331,13 +331,13 @@ QIcon TableConstraintsModel::getTypeIcon(SqliteCreateTable::Constraint::Type typ
     switch (type)
     {
         case SqliteCreateTable::Constraint::PRIMARY_KEY:
-            return ICON("pk");
+            return ICONS.CONSTRAINT_PRIMARY_KEY;
         case SqliteCreateTable::Constraint::UNIQUE:
-            return ICON("unique");
+            return ICONS.CONSTRAINT_UNIQUE;
         case SqliteCreateTable::Constraint::CHECK:
-            return ICON("check");
+            return ICONS.CONSTRAINT_CHECK;
         case SqliteCreateTable::Constraint::FOREIGN_KEY:
-            return ICON("fk");
+            return ICONS.CONSTRAINT_FOREIGN_KEY;
         case SqliteCreateTable::Constraint::NAME_ONLY:
             return QIcon();
     }

@@ -326,7 +326,7 @@ void TriggerDialog::updateValidation()
 
     setValidStyle(ui->preconditionCheck, preconditionOk);
     setValidStyle(ui->codeLabel, codeOk);
-    ui->actionColumns->setIcon(ICON(columnsOk ? "trigger_columns" : "trigger_columns_invalid"));
+    ui->actionColumns->setIcon(columnsOk ? ICONS.TRIGGER_COLUMNS : ICONS.TRIGGER_COLUMNS_INVALID);
 
     QPushButton* okButton = ui->buttonBox->button(QDialogButtonBox::Ok);
     okButton->setEnabled(columnsOk && preconditionOk && codeOk);

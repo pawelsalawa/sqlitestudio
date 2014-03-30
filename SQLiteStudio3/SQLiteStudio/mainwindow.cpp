@@ -47,7 +47,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::init()
 {
-    setWindowIcon(ICON("sqlitestudio"));
+    setWindowIcon(ICONS.SQLITESTUDIO_APP);
 
     dbTree = new DbTree(this);
     addDockWidget(Qt::LeftDockWidgetArea, dbTree);
@@ -122,15 +122,15 @@ void MainWindow::closeEvent(QCloseEvent* event)
 
 void MainWindow::createActions()
 {
-    createAction(OPEN_SQL_EDITOR, "open_sql_editor", tr("Open SQL editor"), this, SLOT(openSqlEditorSlot()), ui->mainToolBar);
-    createAction(OPEN_DDL_HISTORY, "ddl_history", tr("Open DDL history"), this, SLOT(openDdlHistorySlot()), ui->mainToolBar);
-    createAction(OPEN_FUNCTION_EDITOR, "function", tr("Open SQL functions editor"), this, SLOT(openFunctionEditorSlot()), ui->mainToolBar);
-    createAction(OPEN_COLLATION_EDITOR, "collation", tr("Open collations editor"), this, SLOT(openCollationEditorSlot()), ui->mainToolBar);
-    createAction(OPEN_CONFIG, "configure", tr("Open configuration dialog"), this, SLOT(openConfig()), ui->mainToolBar);
-    createAction(MDI_TILE, "win_tile", tr("Tile windows"), ui->mdiArea, SLOT(tileSubWindows()), ui->viewToolbar);
-    createAction(MDI_TILE_HORIZONTAL, "win_tile_horizontal", tr("Tile windows horizontally"), ui->mdiArea, SLOT(tileHorizontally()), ui->viewToolbar);
-    createAction(MDI_TILE_VERTICAL, "win_tile_vertical", tr("Tile windows vertically"), ui->mdiArea, SLOT(tileVertically()), ui->viewToolbar);
-    createAction(MDI_CASCADE, "win_cascade", tr("Cascade windows"), ui->mdiArea, SLOT(cascadeSubWindows()), ui->viewToolbar);
+    createAction(OPEN_SQL_EDITOR, ICONS.OPEN_SQL_EDITOR, tr("Open SQL editor"), this, SLOT(openSqlEditorSlot()), ui->mainToolBar);
+    createAction(OPEN_DDL_HISTORY, ICONS.DDL_HISTORY, tr("Open DDL history"), this, SLOT(openDdlHistorySlot()), ui->mainToolBar);
+    createAction(OPEN_FUNCTION_EDITOR, ICONS.FUNCTION, tr("Open SQL functions editor"), this, SLOT(openFunctionEditorSlot()), ui->mainToolBar);
+    createAction(OPEN_COLLATION_EDITOR, ICONS.CONSTRAINT_COLLATION, tr("Open collations editor"), this, SLOT(openCollationEditorSlot()), ui->mainToolBar);
+    createAction(OPEN_CONFIG, ICONS.CONFIGURE, tr("Open configuration dialog"), this, SLOT(openConfig()), ui->mainToolBar);
+    createAction(MDI_TILE, ICONS.WIN_TILE, tr("Tile windows"), ui->mdiArea, SLOT(tileSubWindows()), ui->viewToolbar);
+    createAction(MDI_TILE_HORIZONTAL, ICONS.WIN_TILE_HORIZONTAL, tr("Tile windows horizontally"), ui->mdiArea, SLOT(tileHorizontally()), ui->viewToolbar);
+    createAction(MDI_TILE_VERTICAL, ICONS.WIN_TILE_VERTICAL, tr("Tile windows vertically"), ui->mdiArea, SLOT(tileVertically()), ui->viewToolbar);
+    createAction(MDI_CASCADE, ICONS.WIN_CASCADE, tr("Cascade windows"), ui->mdiArea, SLOT(cascadeSubWindows()), ui->viewToolbar);
     createAction(NEXT_TASK, tr("Next window"), ui->taskBar, SLOT(nextTask()), this);
     createAction(PREV_TASK, tr("Previous window"), ui->taskBar, SLOT(prevTask()), this);
     createAction(HIDE_STATUS_FIELD, tr("Hide status field"), this, SLOT(hideStatusField()), this);

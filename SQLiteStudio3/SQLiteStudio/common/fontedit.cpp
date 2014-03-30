@@ -42,7 +42,7 @@ void FontEdit::changeEvent(QEvent *e)
 void FontEdit::init()
 {
     ui->setupUi(this);
-    ui->button->setIcon(ICON("font_browse"));
+    ui->button->setIcon(ICONS.FONT_BROWSE);
     connect(ui->button, SIGNAL(clicked()), this, SLOT(browse()));
     updateFont();
 }

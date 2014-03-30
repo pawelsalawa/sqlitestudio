@@ -6,6 +6,7 @@
 #include <QModelIndex>
 
 class CompleterView;
+class Icon;
 
 class CompleterModel : public QAbstractItemModel
 {
@@ -35,7 +36,7 @@ class CompleterModel : public QAbstractItemModel
         ExpectedTokenPtr getToken(int index) const;
 
     private:
-        QString getIconName(ExpectedToken::Type type) const;
+        QIcon getIcon(ExpectedToken::Type type) const;
         void applyFilter();
 
         QList<ExpectedTokenPtr> tokens;

@@ -25,7 +25,7 @@ class DdlHistoryWindow : public MdiChild
         void changeEvent(QEvent *e);
         QVariant saveSession();
         bool restoreSession(const QVariant& sessionValue);
-        QString getIconNameForMdiWindow();
+        Icon* getIconNameForMdiWindow();
         QString getTitleForMdiWindow();
 
     private:

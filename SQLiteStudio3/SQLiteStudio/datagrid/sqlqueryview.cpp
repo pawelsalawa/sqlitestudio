@@ -128,17 +128,17 @@ void SqlQueryView::setupWidgetCover()
 
 void SqlQueryView::createActions()
 {
-    createAction(COPY, "act_copy", tr("Copy"), this, SLOT(copy()), this);
-    createAction(COPY_AS, "act_copy", tr("Copy as..."), this, SLOT(copyAs()), this);
-    createAction(PASTE, "act_copy", tr("Paste"), this, SLOT(paste()), this);
-    createAction(PASTE_AS, "act_paste", tr("Paste as..."), this, SLOT(pasteAs()), this);
-    createAction(SET_NULL, "set_null", tr("Set NULL values"), this, SLOT(setNull()), this);
-    createAction(ERASE, "erase", tr("Erase values"), this, SLOT(erase()), this);
-    createAction(OPEN_VALUE_EDITOR, "open_value_editor", tr("Edit value in editor"), this, SLOT(openValueEditor()), this);
-    createAction(COMMIT, "commit", tr("Commit"), this, SLOT(commit()), this);
-    createAction(ROLLBACK, "rollback", tr("Rollback"), this, SLOT(rollback()), this);
-    createAction(SELECTIVE_COMMIT, "commit", tr("Commit selected cells"), this, SLOT(selectiveCommit()), this);
-    createAction(SELECTIVE_ROLLBACK, "rollback", tr("Rollback selected cells"), this, SLOT(selectiveRollback()), this);
+    createAction(COPY, ICONS.ACT_COPY, tr("Copy"), this, SLOT(copy()), this);
+    createAction(COPY_AS, ICONS.ACT_COPY, tr("Copy as..."), this, SLOT(copyAs()), this);
+    createAction(PASTE, ICONS.ACT_PASTE, tr("Paste"), this, SLOT(paste()), this);
+    createAction(PASTE_AS, ICONS.ACT_PASTE, tr("Paste as..."), this, SLOT(pasteAs()), this);
+    createAction(SET_NULL, ICONS.SET_NULL, tr("Set NULL values"), this, SLOT(setNull()), this);
+    createAction(ERASE, ICONS.ERASE, tr("Erase values"), this, SLOT(erase()), this);
+    createAction(OPEN_VALUE_EDITOR, ICONS.OPEN_VALUE_EDITOR, tr("Edit value in editor"), this, SLOT(openValueEditor()), this);
+    createAction(COMMIT, ICONS.COMMIT, tr("Commit"), this, SLOT(commit()), this);
+    createAction(ROLLBACK, ICONS.ROLLBACK, tr("Rollback"), this, SLOT(rollback()), this);
+    createAction(SELECTIVE_COMMIT, ICONS.COMMIT, tr("Commit selected cells"), this, SLOT(selectiveCommit()), this);
+    createAction(SELECTIVE_ROLLBACK, ICONS.ROLLBACK, tr("Rollback selected cells"), this, SLOT(selectiveRollback()), this);
 }
 
 void SqlQueryView::setupDefShortcuts()

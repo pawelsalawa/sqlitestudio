@@ -67,7 +67,7 @@ class EditorWindow : public MdiChild, public ExtActionContainer
         void changeEvent(QEvent *e);
         QVariant saveSession();
         bool restoreSession(const QVariant& sessionValue);
-        QString getIconNameForMdiWindow();
+        Icon* getIconNameForMdiWindow();
         QString getTitleForMdiWindow();
         Db* getCurrentDb();
 

@@ -192,7 +192,7 @@ QString SqlQueryItem::getToolTip() const
     SqlQueryModelColumn* col = getColumn();
 
     QStringList rows;
-    rows << hdrRowTmp.arg(ICON_PATH("column")).arg(tr("Column:", "data view tooltip")).arg(col->column);
+    rows << hdrRowTmp.arg(ICONS.COLUMN.getPath()).arg(tr("Column:", "data view tooltip")).arg(col->column);
     rows << rowTmp.arg(tr("Data type:", "data view")).arg(col->dataType.typeStr);
     if (!col->table.isNull())
     {
@@ -226,9 +226,9 @@ QString SqlQueryItem::getToolTip() const
     if (col->constraints.size() > 0)
     {
         rows << emptyRow;
-        rows << hdrRowTmp.arg(ICON_PATH("column_constraint")).arg(tr("Constraints:", "data view tooltip")).arg("");
+        rows << hdrRowTmp.arg(ICONS.COLUMN_CONSTRAINT.getPath()).arg(tr("Constraints:", "data view tooltip")).arg("");
         foreach (SqlQueryModelColumn::Constraint* constr, col->constraints)
-            rows << constrRowTmp.arg(ICON_PATH(constr->getIconName())).arg(constr->getTypeString()).arg(constr->getDetails());
+            rows << constrRowTmp.arg(constr->getIcon()->toUrl()).arg(constr->getTypeString()).arg(constr->getDetails());
     }
 
     return tableTmp.arg(rows.join(""));

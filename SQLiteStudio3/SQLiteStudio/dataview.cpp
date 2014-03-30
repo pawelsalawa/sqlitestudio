@@ -133,26 +133,26 @@ void DataView::createActions()
     bool rowDeleting = model->features().testFlag(SqlQueryModel::DELETE_ROW);
 
     // Grid actions
-    createAction(REFRESH_DATA, "reload", tr("Refresh table data", "data view"), this, SLOT(refreshData()), gridToolBar, gridView);
+    createAction(REFRESH_DATA, ICONS.RELOAD, tr("Refresh table data", "data view"), this, SLOT(refreshData()), gridToolBar, gridView);
     gridToolBar->addSeparator();
     if (rowInserting)
     {
-        createAction(INSERT_ROW, "insert_row", tr("Insert row", "data view"), this, SLOT(insertRow()), gridToolBar, gridView);
-        createAction(INSERT_MULTIPLE_ROWS, "insert_rows", tr("Insert multiple row", "data view"), this, SLOT(insertMultipleRows()), this, gridView);
+        createAction(INSERT_ROW, ICONS.INSERT_ROW, tr("Insert row", "data view"), this, SLOT(insertRow()), gridToolBar, gridView);
+        createAction(INSERT_MULTIPLE_ROWS, ICONS.INSERT_ROWS, tr("Insert multiple row", "data view"), this, SLOT(insertMultipleRows()), this, gridView);
         attachActionInMenu(INSERT_ROW, INSERT_MULTIPLE_ROWS, gridToolBar);
     }
 
     if (rowDeleting)
-        createAction(DELETE_ROW, "delete_row", tr("Delete selected row", "data view"), this, SLOT(deleteRow()), gridToolBar, gridView);
+        createAction(DELETE_ROW, ICONS.DELETE_ROW, tr("Delete selected row", "data view"), this, SLOT(deleteRow()), gridToolBar, gridView);
 
-    createAction(COMMIT_GRID, "commit", tr("Commit changes", "data view"), this, SLOT(commitGrid()), gridToolBar, gridView);
-    createAction(ROLLBACK_GRID, "rollback", tr("Rollback changes", "data view"), this, SLOT(rollbackGrid()), gridToolBar, gridView);
+    createAction(COMMIT_GRID, ICONS.COMMIT, tr("Commit changes", "data view"), this, SLOT(commitGrid()), gridToolBar, gridView);
+    createAction(ROLLBACK_GRID, ICONS.ROLLBACK, tr("Rollback changes", "data view"), this, SLOT(rollbackGrid()), gridToolBar, gridView);
     gridToolBar->addSeparator();
-    createAction(FIRST_PAGE, "page_first", tr("First page", "data view"), this, SLOT(firstPage()), gridToolBar);
-    createAction(PREV_PAGE, "page_prev", tr("Previous page", "data view"), this, SLOT(prevPage()), gridToolBar);
+    createAction(FIRST_PAGE, ICONS.PAGE_FIRST, tr("First page", "data view"), this, SLOT(firstPage()), gridToolBar);
+    createAction(PREV_PAGE, ICONS.PAGE_PREV, tr("Previous page", "data view"), this, SLOT(prevPage()), gridToolBar);
     actionMap[PAGE_EDIT] = gridToolBar->addWidget(pageEdit);
-    createAction(NEXT_PAGE, "page_next", tr("Next page", "data view"), this, SLOT(nextPage()), gridToolBar);
-    createAction(LAST_PAGE, "page_last", tr("Last page", "data view"), this, SLOT(lastPage()), gridToolBar);
+    createAction(NEXT_PAGE, ICONS.PAGE_NEXT, tr("Next page", "data view"), this, SLOT(nextPage()), gridToolBar);
+    createAction(LAST_PAGE, ICONS.PAGE_LAST, tr("Last page", "data view"), this, SLOT(lastPage()), gridToolBar);
     if (model->features().testFlag(SqlQueryModel::FILTERING))
     {
         gridToolBar->addSeparator();
@@ -172,8 +172,8 @@ void DataView::createActions()
 
     noConfigShortcutActions << GRID_TOTAL_ROWS << FILTER_VALUE;
 
-    createAction(SELECTIVE_COMMIT, "commit", tr("Commit changes for selected cells", "data view"), this, SLOT(selectiveCommitGrid()), this);
-    createAction(SELECTIVE_ROLLBACK, "rollback", tr("Rollback changes for selected cells", "data view"), this, SLOT(selectiveRollbackGrid()), this);
+    createAction(SELECTIVE_COMMIT, ICONS.COMMIT, tr("Commit changes for selected cells", "data view"), this, SLOT(selectiveCommitGrid()), this);
+    createAction(SELECTIVE_ROLLBACK, ICONS.ROLLBACK, tr("Rollback changes for selected cells", "data view"), this, SLOT(selectiveRollbackGrid()), this);
     createAction(SHOW_GRID_VIEW, tr("Show grid view of results", "sql editor"), this, SLOT(showGridView()), this);
     createAction(SHOW_FORM_VIEW, tr("Show form view of results", "sql editor"), this, SLOT(showFormView()), this);
 
@@ -187,13 +187,13 @@ void DataView::createActions()
     if (rowInserting || rowDeleting)
         formToolBar->addSeparator();
 
-    createAction(COMMIT_FORM, "commit", tr("Commit row", "data view"), this, SLOT(commitForm()), formToolBar);
-    createAction(ROLLBACK_FORM, "rollback", tr("Rollback row", "data view"), this, SLOT(rollbackForm()), formToolBar);
+    createAction(COMMIT_FORM, ICONS.COMMIT, tr("Commit row", "data view"), this, SLOT(commitForm()), formToolBar);
+    createAction(ROLLBACK_FORM, ICONS.ROLLBACK, tr("Rollback row", "data view"), this, SLOT(rollbackForm()), formToolBar);
     formToolBar->addSeparator();
-    createAction(FIRST_ROW, "page_first", tr("First row", "data view"), this, SLOT(firstRow()), formToolBar);
-    createAction(PREV_ROW, "page_prev", tr("Previous row", "data view"), this, SLOT(prevRow()), formToolBar);
-    createAction(NEXT_ROW, "page_next", tr("Next row", "data view"), this, SLOT(nextRow()), formToolBar);
-    createAction(LAST_ROW, "page_last", tr("Last last", "data view"), this, SLOT(lastRow()), formToolBar);
+    createAction(FIRST_ROW, ICONS.PAGE_FIRST, tr("First row", "data view"), this, SLOT(firstRow()), formToolBar);
+    createAction(PREV_ROW, ICONS.PAGE_PREV, tr("Previous row", "data view"), this, SLOT(prevRow()), formToolBar);
+    createAction(NEXT_ROW, ICONS.PAGE_NEXT, tr("Next row", "data view"), this, SLOT(nextRow()), formToolBar);
+    createAction(LAST_ROW, ICONS.PAGE_LAST, tr("Last last", "data view"), this, SLOT(lastRow()), formToolBar);
     formToolBar->addSeparator();
     actionMap[FORM_TOTAL_ROWS] = formToolBar->addWidget(formViewRowCountLabel);
 
@@ -232,9 +232,9 @@ void DataView::setupDefShortcuts()
 void DataView::createStaticActions()
 {
     // Filtering actions
-    staticActions[FILTER_STRING] = new ExtAction(ICON("apply_filter_txt"), tr("Filter by text", "data view"), MainWindow::getInstance());
-    staticActions[FILTER_REGEXP] = new ExtAction(ICON("apply_filter_re"), tr("Filter by the Regular Expression", "data view"), MainWindow::getInstance());
-    staticActions[FILTER_SQL] = new ExtAction(ICON("apply_filter_sql"), tr("Filter by SQL expression", "data view"), MainWindow::getInstance());
+    staticActions[FILTER_STRING] = new ExtAction(ICONS.APPLY_FILTER_TXT, tr("Filter by text", "data view"), MainWindow::getInstance());
+    staticActions[FILTER_REGEXP] = new ExtAction(ICONS.APPLY_FILTER_RE, tr("Filter by the Regular Expression", "data view"), MainWindow::getInstance());
+    staticActions[FILTER_SQL] = new ExtAction(ICONS.APPLY_FILTER_SQL, tr("Filter by SQL expression", "data view"), MainWindow::getInstance());
 
     staticActionGroups[ActionGroup::FILTER_MODE] = new QActionGroup(MainWindow::getInstance());
     staticActionGroups[ActionGroup::FILTER_MODE]->addAction(staticActions[FILTER_STRING]);
@@ -265,8 +265,8 @@ void DataView::createStaticActions()
         staticActions[FILTER_SQL]->setChecked(true);
 
     // Tabs position actions
-    staticActions[TABS_ON_TOP] = new ExtAction(ICON("tabs_on_top"), tr("Tabs on top", "data view"), MainWindow::getInstance());
-    staticActions[TABS_AT_BOTTOM] = new ExtAction(ICON("tabs_at_bottom"), tr("Tabs at bottom", "data view"), MainWindow::getInstance());
+    staticActions[TABS_ON_TOP] = new ExtAction(ICONS.TABS_ON_TOP, tr("Tabs on top", "data view"), MainWindow::getInstance());
+    staticActions[TABS_AT_BOTTOM] = new ExtAction(ICONS.TABS_AT_BOTTOM, tr("Tabs at bottom", "data view"), MainWindow::getInstance());
 
     staticActionGroups[ActionGroup::TABS_POSITION] = new QActionGroup(MainWindow::getInstance());
     staticActionGroups[ActionGroup::TABS_POSITION]->addAction(staticActions[TABS_ON_TOP]);
@@ -475,8 +475,8 @@ void DataView::updateResultsCount(int resultsCount)
     {
         rowCountLabel->setText("         ");
         formViewRowCountLabel->setText("         ");
-        rowCountLabel->setMovie(MOVIE("loading"));
-        formViewRowCountLabel->setMovie(MOVIE("loading"));
+        rowCountLabel->setMovie(ICONS.LOADING);
+        formViewRowCountLabel->setMovie(ICONS.LOADING);
     }
 }
 

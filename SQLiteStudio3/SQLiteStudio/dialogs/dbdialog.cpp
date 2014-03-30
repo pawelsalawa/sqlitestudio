@@ -113,8 +113,8 @@ void DbDialog::showEvent(QShowEvent *e)
 
 void DbDialog::init()
 {
-    ui->browseLocalButton->setIcon(ICON("database_file"));
-    ui->browseRemoteButton->setIcon(ICON("database_network"));
+    ui->browseLocalButton->setIcon(ICONS.DATABASE_FILE);
+    ui->browseRemoteButton->setIcon(ICONS.DATABASE_NETWORK);
     dbPlugins = PLUGINS->getLoadedPlugins<DbPlugin>();
     foreach (DbPlugin* dbPlugin, dbPlugins)
     {
@@ -439,7 +439,7 @@ void DbDialog::on_browseRemoteButton_clicked()
 
 void DbDialog::on_testConnButton_clicked()
 {
-    QIcon* icon = testDatabase() ? ICON_PTR("test_conn_ok") : ICON_PTR("test_conn_error");
+    QIcon* icon = testDatabase() ? ICONS.TEST_CONN_OK : ICONS.TEST_CONN_ERROR;
     ui->testIcon->setPixmap(icon->pixmap(icon->availableSizes()[0]));
     ui->testIcon->setVisible(true);
 }
