@@ -322,7 +322,6 @@ bool PluginManagerImpl::load(const QString& pluginName)
     if (container->builtIn)
     {
         pluginLoaded(container);
-        //emit loaded(container->plugin, container->type);
     }
     else
     {

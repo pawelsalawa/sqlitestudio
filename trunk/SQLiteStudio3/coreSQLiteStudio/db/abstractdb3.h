@@ -433,6 +433,7 @@ bool AbstractDb3<T>::closeInternal()
 template <class T>
 void AbstractDb3<T>::initAfterOpen()
 {
+    sqlite3_enable_load_extension(dbHandle, true);
     registerDefaultCollationRequestHandler();;
     exec("PRAGMA foreign_keys = 1;", Flag::NO_LOCK);
     exec("PRAGMA recursive_triggers = 1;", Flag::NO_LOCK);

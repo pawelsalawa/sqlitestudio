@@ -52,6 +52,7 @@ class MultiEditor : public QWidget
         void updateVisibility();
         void updateNullEffect();
         void updateValue(const QVariant& newValue);
+        void updateLabel();
         QVariant getValueOmmitNull() const;
 
         static const int margins = 2;
@@ -63,6 +64,7 @@ class MultiEditor : public QWidget
         QList<MultiEditorWidget*> editors;
         QLabel* stateLabel;
         bool readOnly = false;
+        bool deleted = false;
         bool invalidatingDisabled = false;
         QGraphicsEffect* nullEffect;
         bool valueModified = false;

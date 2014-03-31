@@ -136,10 +136,8 @@ void FormView::updateDeletedState()
     int i = 0;
     foreach (MultiEditor* editor, editors)
     {
-        if (readOnly[i++] || deleted)
-            editor->setDeletedRow(true);
-        else
-            editor->setReadOnly(false);
+        editor->setDeletedRow(deleted);
+        editor->setReadOnly(readOnly[i++] || deleted);
     }
 }
 
