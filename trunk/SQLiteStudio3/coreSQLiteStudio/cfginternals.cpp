@@ -105,9 +105,14 @@ QVariant CfgEntry::getDefultValue() const
 void CfgEntry::set(const QVariant &value)
 {
     CFG->set(parent->toString(), this->dbKey, value);
+
+    bool wasChanged = (value != cachedValue);
+
     cachedValue = value;
     cached = true;
-    emit changed(value);
+
+    if (wasChanged)
+        emit changed(value);
 }
 
 void CfgEntry::defineDefaultValueFunction(CfgEntry::DefaultValueProviderFunc func)

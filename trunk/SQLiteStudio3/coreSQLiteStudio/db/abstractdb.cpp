@@ -625,7 +625,7 @@ QString AbstractDb::getUniqueNewObjectName(const QString &attachedDbName)
     foreach (SqlResultsRowPtr row, results->getAll())
         existingNames << row->value(0).toString();
 
-    return randStrNotIn(16, existingNames);
+    return randStrNotIn(16, existingNames, false);
 }
 
 QString AbstractDb::getErrorText()

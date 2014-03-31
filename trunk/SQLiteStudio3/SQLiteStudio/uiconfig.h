@@ -67,6 +67,7 @@ CFG_CATEGORIES(Ui,
         CFG_ENTRY(bool,         ShowSystemObjects,       false)
         CFG_ENTRY(bool,         ShowDbTreeLabels,        true) // any labels at all
         CFG_ENTRY(bool,         ShowRegularTableLabels,  false)
+        CFG_ENTRY(bool,         ShowVirtualTableLabels,  true)
         CFG_ENTRY(int,          NumberOfRowsPerPage,     1000)
         CFG_ENTRY(QString,      Style,                   &Cfg::getStyleDefaultValue)
         CFG_ENTRY(Cfg::Session, Session,                 Cfg::Session())

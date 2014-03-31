@@ -142,6 +142,7 @@ class API_EXPORT Config : public QObject
         virtual void rollback() = 0;
 
     signals:
+        void massSaveBegins();
         void massSaveCommited();
 };
 

@@ -26,6 +26,7 @@ class DbTreeItem : public QObject, public QStandardItem
             COLUMNS = 1010,
             COLUMN = 1011,
             INVALID_DB = 1012,
+            VIRTUAL_TABLE = 1013,
             ITEM_PROTOTYPE = 9999
         };
 

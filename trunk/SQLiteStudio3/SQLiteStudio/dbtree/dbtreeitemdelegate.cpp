@@ -52,6 +52,9 @@ void DbTreeItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
         case DbTreeItem::Type::TABLE:
             paintTableLabel(painter, opt, index, item);
             break;
+        case DbTreeItem::Type::VIRTUAL_TABLE:
+            paintVirtualTableLabel(painter, opt, index, item);
+            break;
         case DbTreeItem::Type::INDEX:
             paintSystemIndexLabel(painter, opt, index, item);
             break;
@@ -106,6 +109,14 @@ void DbTreeItemDelegate::paintTableLabel(QPainter* painter, const QStyleOptionVi
     int indexesCount = item->child(1)->rowCount();
     int triggersCount = item->child(2)->rowCount();
     paintLabel(painter, option, index, item, QString("(%1, %2, %3)").arg(columnsCount).arg(indexesCount).arg(triggersCount));
+}
+
+void DbTreeItemDelegate::paintVirtualTableLabel(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index, DbTreeItem* item) const
+{
+    if (!CFG_UI.General.ShowVirtualTableLabels.get())
+        return;
+
+    paintLabel(painter, option, index, item, tr("(virtual)", "virtual table label"));
 }
 
 void DbTreeItemDelegate::paintSystemIndexLabel(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index, DbTreeItem* item) const

@@ -51,7 +51,7 @@ class DbTreeModel : public QStandardItemModel
         void refreshSchema(Db* db, QStandardItem* item);
         void collectExpandedState(QHash<QString, bool>& state, QStandardItem* parentItem = nullptr);
         QStandardItem* refreshSchemaDb(Db* db);
-        QList<QStandardItem*> refreshSchemaTables(const QStringList &tables, bool sort);
+        QList<QStandardItem*> refreshSchemaTables(const QStringList &tables, const QStringList& virtualTables, bool sort);
         QHash<QString, QList<QStandardItem *> > refreshSchemaTableColumns(const QHash<QString, QStringList> &columns);
         QMap<QString,QList<QStandardItem*> > refreshSchemaIndexes(const QMap<QString, QStringList> &indexes, bool sort);
         QMap<QString,QList<QStandardItem*> > refreshSchemaTriggers(const QMap<QString, QStringList> &triggers, bool sort);
@@ -73,6 +73,7 @@ class DbTreeModel : public QStandardItemModel
         static const QString toolTipIconRowTmp;
 
         DbTreeView* treeView;
+        bool requireSchemaReloading = false;
 
     private slots:
         void expanded(const QModelIndex &index);
@@ -84,6 +85,9 @@ class DbTreeModel : public QStandardItemModel
         void dbDisconnected(Db* db);
         void dbToBeUnloaded(Db* db, DbPlugin* plugin);
         void dbLoaded(Db* db, DbPlugin* plugin);
+        void massSaveBegins();
+        void massSaveCommited();
+        void markSchemaReloadingRequired();
 
     public slots:
         void loadDbList();

@@ -36,8 +36,23 @@
         return;\
     }
 
+#define APPLY_CFG2(Widget, Value, WidgetType, Method, DataType, Notifier, ExtraConditionMethod) \
+    if (qobject_cast<WidgetType*>(Widget) && qobject_cast<WidgetType*>(Widget)->ExtraConditionMethod())\
+    {\
+        qobject_cast<WidgetType*>(Widget)->Method(Value.value<DataType>());\
+        connect(Widget, Notifier, this, SLOT(modified()));\
+        return;\
+    }
+
 #define SAVE_CFG(Widget, Key, WidgetType, Method) \
     if (qobject_cast<WidgetType*>(Widget))\
+    {\
+        Key->set(qobject_cast<WidgetType*>(Widget)->Method());\
+        return;\
+    }
+
+#define SAVE_CFG2(Widget, Key, WidgetType, Method, ExtraConditionMethod) \
+    if (qobject_cast<WidgetType*>(Widget) && qobject_cast<WidgetType*>(Widget)->ExtraConditionMethod())\
     {\
         Key->set(qobject_cast<WidgetType*>(Widget)->Method());\
         return;\
@@ -532,6 +547,7 @@ void ConfigDialog::applyCommonConfigToWidget(QWidget *widget, const QVariant &va
     APPLY_CFG(widget, value, QComboBox, setCurrentText, QString, SIGNAL(currentTextChanged(QString)));
     APPLY_CFG(widget, value, FontEdit, setFont, QFont, SIGNAL(fontChanged(QFont)));
     APPLY_CFG(widget, value, ColorButton, setColor, QColor, SIGNAL(colorChanged(QColor)));
+    APPLY_CFG2(widget, value, QGroupBox, setChecked, bool, SIGNAL(clicked(bool)), isCheckable);
 
     qWarning() << "Unhandled config widget type (for APPLY_CFG):" << widget->metaObject()->className()
                << "with value:" << value;
@@ -545,6 +561,7 @@ void ConfigDialog::saveCommonConfigFromWidget(QWidget* widget, CfgEntry* key)
     SAVE_CFG(widget, key, QComboBox, currentText);
     SAVE_CFG(widget, key, FontEdit, getFont);
     SAVE_CFG(widget, key, ColorButton, getColor);
+    SAVE_CFG2(widget, key, QGroupBox, isChecked, isCheckable);
 
     qWarning() << "Unhandled config widget type (for SAVE_CFG):" << widget->metaObject()->className();
 }

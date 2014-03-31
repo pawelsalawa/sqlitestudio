@@ -14,6 +14,16 @@
    <string>Configuration</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_5">
+   <item row="1" column="0">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
    <item row="0" column="0">
     <widget class="QWidget" name="mainWidget" native="true">
      <property name="contextMenuPolicy">
@@ -157,7 +167,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="generalPage">
           <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -173,61 +183,6 @@
            <property name="bottomMargin">
             <number>0</number>
            </property>
-           <item>
-            <widget class="QGroupBox" name="dbListGroup">
-             <property name="title">
-              <string>Database list</string>
-             </property>
-             <layout class="QGridLayout" name="gridLayout">
-              <item row="0" column="0">
-               <widget class="QCheckBox" name="expandTablesCheck">
-                <property name="statusTip">
-                 <string>General.ExpandTables</string>
-                </property>
-                <property name="text">
-                 <string>Expand tables node when connected to a database</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QCheckBox" name="expandViewsCheck">
-                <property name="statusTip">
-                 <string>General.ExpandViews</string>
-                </property>
-                <property name="text">
-                 <string>Expand views node when connected to a database</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QCheckBox" name="sortObjects">
-                <property name="toolTip">
-                 <string>If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</string>
-                </property>
-                <property name="statusTip">
-                 <string>General.SortObjects</string>
-                </property>
-                <property name="text">
-                 <string>Sort objects (tables, indexes, triggers and views) alphabetically</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QCheckBox" name="sortColumns">
-                <property name="toolTip">
-                 <string>If switched off, then columns will be sorted in the order they are typed in CREATE TABLE statement.</string>
-                </property>
-                <property name="statusTip">
-                 <string>General.SortColumns</string>
-                </property>
-                <property name="text">
-                 <string>Sort table columns alphabetically</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
            <item>
             <widget class="QGroupBox" name="schemaEditingGroup">
              <property name="title">
@@ -266,7 +221,7 @@
                  <string>General.DontShowDdlPreview</string>
                 </property>
                 <property name="text">
-                 <string>Don't show queries preview dialog when commiting schema changes</string>
+                 <string>Don't show DDL preview dialog when commiting schema changes</string>
                 </property>
                </widget>
               </item>
@@ -282,7 +237,7 @@
               <item row="0" column="0">
                <widget class="QLabel" name="rowsPerPageLabel">
                 <property name="text">
-                 <string>Number of rows per page:</string>
+                 <string>Number of data rows per page:</string>
                 </property>
                </widget>
               </item>
@@ -302,32 +257,6 @@
                 </property>
                 <property name="maximum">
                  <number>99999</number>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QCheckBox" name="openTablesOnDataCheck">
-                <property name="toolTip">
-                 <string>When enabled, Table Windows will show up with the data tab, instead of the structure tab.</string>
-                </property>
-                <property name="statusTip">
-                 <string>General.OpenTablesOnData</string>
-                </property>
-                <property name="text">
-                 <string>Open Table Windows on data tab</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0" colspan="2">
-               <widget class="QCheckBox" name="openViewsOnDataCheck">
-                <property name="toolTip">
-                 <string>When enabled, View Windows will show up with the data tab, instead of the structure tab.</string>
-                </property>
-                <property name="statusTip">
-                 <string>General.OpenViewsOnData</string>
-                </property>
-                <property name="text">
-                 <string>Open View Windows on data tab</string>
                 </property>
                </widget>
               </item>
@@ -414,6 +343,175 @@
            <property name="bottomMargin">
             <number>0</number>
            </property>
+           <item>
+            <widget class="QGroupBox" name="dbListGroup">
+             <property name="title">
+              <string>Database list</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout">
+              <item row="3" column="0">
+               <widget class="QCheckBox" name="sortColumns">
+                <property name="toolTip">
+                 <string>If switched off, then columns will be sorted in the order they are typed in CREATE TABLE statement.</string>
+                </property>
+                <property name="statusTip">
+                 <string>General.SortColumns</string>
+                </property>
+                <property name="text">
+                 <string>Sort table columns alphabetically</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QCheckBox" name="expandTablesCheck">
+                <property name="statusTip">
+                 <string>General.ExpandTables</string>
+                </property>
+                <property name="text">
+                 <string>Expand tables node when connected to a database</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="0">
+               <widget class="QGroupBox" name="addLabelsGroup">
+                <property name="toolTip">
+                 <string>&lt;p&gt;Additional labels are those displayed next to the names on the databases list (they are blue, unless configured otherwise). Enabling this option will result in labels for databases, invalid databases and aggregated nodes (column group, index group, trigger group). For more labels see options below.&lt;p&gt;</string>
+                </property>
+                <property name="statusTip">
+                 <string>General.ShowDbTreeLabels</string>
+                </property>
+                <property name="title">
+                 <string>Display additional labels on the list</string>
+                </property>
+                <property name="checkable">
+                 <bool>true</bool>
+                </property>
+                <property name="checked">
+                 <bool>false</bool>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_20">
+                 <item>
+                  <widget class="QCheckBox" name="regularTableLabelsCheck">
+                   <property name="toolTip">
+                    <string>For regular tables labels will show number of columns, indexes and triggers for each of tables.</string>
+                   </property>
+                   <property name="statusTip">
+                    <string>General.ShowRegularTableLabels</string>
+                   </property>
+                   <property name="text">
+                    <string>Display labels for regular tables</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="virtTableLabelsCheck">
+                   <property name="toolTip">
+                    <string>Virtual tables will be marked with a 'virtual' label.</string>
+                   </property>
+                   <property name="statusTip">
+                    <string>General.ShowVirtualTableLabels</string>
+                   </property>
+                   <property name="text">
+                    <string>Display labels for virtual tables</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QCheckBox" name="expandViewsCheck">
+                <property name="statusTip">
+                 <string>General.ExpandViews</string>
+                </property>
+                <property name="text">
+                 <string>Expand views node when connected to a database</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QCheckBox" name="sortObjects">
+                <property name="toolTip">
+                 <string>If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</string>
+                </property>
+                <property name="statusTip">
+                 <string>General.SortObjects</string>
+                </property>
+                <property name="text">
+                 <string>Sort objects (tables, indexes, triggers and views) alphabetically</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QCheckBox" name="dispSysTableCheck">
+                <property name="statusTip">
+                 <string>General.ShowSystemObjects</string>
+                </property>
+                <property name="text">
+                 <string>Display system tables and indexes on the list</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="tableWinGroup">
+             <property name="title">
+              <string>Table windows</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_18">
+              <item>
+               <widget class="QCheckBox" name="openTablesOnDataCheck">
+                <property name="toolTip">
+                 <string>When enabled, Table Windows will show up with the data tab, instead of the structure tab.</string>
+                </property>
+                <property name="statusTip">
+                 <string>General.OpenTablesOnData</string>
+                </property>
+                <property name="text">
+                 <string>Open Table Windows with the data tab for start</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="viewWinGroup">
+             <property name="title">
+              <string>View windows</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_19">
+              <item>
+               <widget class="QCheckBox" name="openViewsOnDataCheck">
+                <property name="toolTip">
+                 <string>When enabled, View Windows will show up with the data tab, instead of the structure tab.</string>
+                </property>
+                <property name="statusTip">
+                 <string>General.OpenViewsOnData</string>
+                </property>
+                <property name="text">
+                 <string>Open View Windows with the data tab for start</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_5">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
           </layout>
          </widget>
          <widget class="QWidget" name="pluginsPage">
@@ -1437,16 +1535,6 @@ p, li { white-space: pre-wrap; }
      </layout>
     </widget>
    </item>
-   <item row="1" column="0">
-    <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-     </property>
-    </widget>
-   </item>
   </layout>
  </widget>
  <customwidgets>
@@ -1473,8 +1561,6 @@ p, li { white-space: pre-wrap; }
   <tabstop>ddlHistorySizeSpin</tabstop>
   <tabstop>dontShowDdlPreview</tabstop>
   <tabstop>rowsPerPageSpin</tabstop>
-  <tabstop>openTablesOnDataCheck</tabstop>
-  <tabstop>openViewsOnDataCheck</tabstop>
   <tabstop>queryHistorySizeSpin</tabstop>
   <tabstop>checkBox</tabstop>
   <tabstop>expandTablesCheck</tabstop>

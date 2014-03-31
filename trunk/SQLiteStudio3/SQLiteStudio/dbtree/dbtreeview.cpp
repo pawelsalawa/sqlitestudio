@@ -152,6 +152,13 @@ void DbTreeView::setupActionsForMenu(DbTreeItem *currItem)
                 actions += ActionEntry(DbTree::_separator);
                 actions += dbEntryExt;
                 break;
+            case DbTreeItem::Type::VIRTUAL_TABLE:
+                actions += ActionEntry(DbTree::ADD_TABLE);
+                //actions += ActionEntry(DbTree::EDIT_TABLE); // TODO uncomment when virtual tables have their own edition window
+                actions += ActionEntry(DbTree::DEL_TABLE);
+                actions += ActionEntry(DbTree::_separator);
+                actions += dbEntryExt;
+                break;
             case DbTreeItem::Type::INDEXES:
                 actions += ActionEntry(DbTree::ADD_TABLE);
                 actions += ActionEntry(DbTree::EDIT_TABLE);
@@ -435,6 +442,9 @@ bool DbTreeView::handleDoubleClick(DbTreeItem *item)
         case DbTreeItem::Type::INVALID_DB:
             break;
         case DbTreeItem::Type::TABLES:
+            break;
+        case DbTreeItem::Type::VIRTUAL_TABLE:
+            // TODO if module for virtual table is loaded - show virtual table window
             break;
         case DbTreeItem::Type::TABLE:
             return handleTableDoubleClick(item);

@@ -17,6 +17,11 @@ DbTreeItem *DbTreeItemFactory::createTable(const QString &name, QObject *parent)
     return new DbTreeItem(DbTreeItem::Type::TABLE, ICONS.TABLE, name, parent);
 }
 
+DbTreeItem* DbTreeItemFactory::createVirtualTable(const QString& name, QObject* parent)
+{
+    return new DbTreeItem(DbTreeItem::Type::VIRTUAL_TABLE, ICONS.VIRTUAL_TABLE, name, parent);
+}
+
 DbTreeItem *DbTreeItemFactory::createIndex(const QString &name, QObject *parent)
 {
     return new DbTreeItem(DbTreeItem::Type::INDEX, ICONS.INDEX, name, parent);
