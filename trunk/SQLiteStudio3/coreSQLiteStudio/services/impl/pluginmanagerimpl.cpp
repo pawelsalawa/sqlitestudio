@@ -307,7 +307,7 @@ void PluginManagerImpl::unload(const QString& pluginName)
 
     emit unloaded(container->name, container->type);
 
-    qDebug() << container->type->getName() << "/" << pluginName << "unloaded:" << container->filePath;
+    qDebug() << pluginName << "unloaded:" << container->filePath;
 }
 
 bool PluginManagerImpl::load(const QString& pluginName)
@@ -357,15 +357,11 @@ bool PluginManagerImpl::load(const QString& pluginName)
 
 void PluginManagerImpl::pluginLoaded(PluginManagerImpl::PluginContainer* container)
 {
-    if (container->builtIn)
+    if (!container->builtIn)
     {
-        addPluginToCollections(container->plugin);
-        emit loaded(container->plugin, container->type);
-        return;
+        container->plugin = dynamic_cast<Plugin*>(container->loader->instance());
+        container->loaded = true;
     }
-
-    container->plugin = dynamic_cast<Plugin*>(container->loader->instance());
-    container->loaded = true;
     readMetadata(container->plugin, container);
     addPluginToCollections(container->plugin);
 
