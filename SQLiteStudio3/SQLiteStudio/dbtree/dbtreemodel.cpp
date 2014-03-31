@@ -22,6 +22,10 @@ DbTreeModel::DbTreeModel()
 {
     setItemPrototype(DbTreeItemFactory::createPrototype());
     connectDbManagerSignals();
+
+    connect(CFG, &Config::massSaveBegins, this, &DbTreeModel::massSaveBegins);
+    connect(CFG, &Config::massSaveCommited, this, &DbTreeModel::massSaveCommited);
+    connect(CFG_UI.General.ShowSystemObjects, SIGNAL(changed(QVariant)), this, SLOT(markSchemaReloadingRequired()));
 }
 
 DbTreeModel::~DbTreeModel()
@@ -456,7 +460,15 @@ void DbTreeModel::refreshSchema(Db* db, QStandardItem *item)
 
     // Collect all db objects and build the db branch
     bool sort = CFG_UI.General.SortObjects.get();
-    QList<QStandardItem*> tableItems = refreshSchemaTables(resolver.getTables(), sort);
+    QStringList tables = resolver.getTables();
+    QStringList virtualTables;
+    for (const QString& table : tables)
+    {
+        if (resolver.isVirtualTable(table))
+            virtualTables << table;
+    }
+
+    QList<QStandardItem*> tableItems = refreshSchemaTables(tables, virtualTables, sort);
     QHash<QString, QList<QStandardItem *> > allTableColumns = refreshSchemaTableColumns(resolver.getAllTableColumns());
     QMap<QString,QList<QStandardItem*> > indexItems = refreshSchemaIndexes(resolver.getGroupedIndexes(), sort);
     QMap<QString,QList<QStandardItem*> > triggerItems = refreshSchemaTriggers(resolver.getGroupedTriggers(), sort);
@@ -479,7 +491,7 @@ void DbTreeModel::collectExpandedState(QHash<QString, bool> &state, QStandardIte
         collectExpandedState(state, parentItem->child(i));
 }
 
-QList<QStandardItem *> DbTreeModel::refreshSchemaTables(const QStringList &tables, bool sort)
+QList<QStandardItem *> DbTreeModel::refreshSchemaTables(const QStringList &tables, const QStringList& virtualTables, bool sort)
 {
     QStringList sortedTables = tables;
     if (sort)
@@ -487,7 +499,12 @@ QList<QStandardItem *> DbTreeModel::refreshSchemaTables(const QStringList &table
 
     QList<QStandardItem *> items;
     foreach (const QString& table, sortedTables)
-        items += DbTreeItemFactory::createTable(table, this);
+    {
+        if (virtualTables.contains(table))
+            items += DbTreeItemFactory::createVirtualTable(table, this);
+        else
+            items += DbTreeItemFactory::createTable(table, this);
+    }
 
     return items;
 }
@@ -683,6 +700,28 @@ void DbTreeModel::dbLoaded(Db* db, DbPlugin* plugin)
     DbTreeItem* item = findItem(DbTreeItem::Type::INVALID_DB, db->getName());
     if (item)
         item->setInvalidDbType(false, db);
+}
+
+void DbTreeModel::massSaveBegins()
+{
+    requireSchemaReloading = false;
+}
+
+void DbTreeModel::massSaveCommited()
+{
+    if (requireSchemaReloading)
+    {
+        for (Db* db : DBLIST->getDbList())
+        {
+            if (db->isOpen())
+                refreshSchema(db);
+        }
+    }
+}
+
+void DbTreeModel::markSchemaReloadingRequired()
+{
+    requireSchemaReloading = true;
 }
 
 DbTreeItem* DbTreeModel::findItem(DbTreeItem::Type type, const QString &name)

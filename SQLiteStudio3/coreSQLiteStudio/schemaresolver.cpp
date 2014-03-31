@@ -211,14 +211,15 @@ SqliteCreateTablePtr SchemaResolver::virtualTableAsRegularTable(const QString &d
 {
     Dialect dialect = db->getDialect();
     QString strippedName = stripObjName(table, dialect);
+    QString dbName = getPrefixDb(database, dialect);
 
     // Create temp table to see columns.
     QString newTable = db->getUniqueNewObjectName(strippedName);
     QString origTable = wrapObjName(strippedName, dialect);
-    db->exec("CREATE TEMP TABLE %1 AS SELECT * FROM %2 LIMIT 0;", {newTable, origTable}, Db::Flag::STRING_REPLACE_ARGS);
+    db->exec("CREATE TEMP TABLE %1 AS SELECT * FROM %2.%3 LIMIT 0;", {newTable, dbName, origTable}, Db::Flag::STRING_REPLACE_ARGS);
 
     // Get parsed DDL of the temp table.
-    SqliteQueryPtr query = getParsedObject(database, newTable);
+    SqliteQueryPtr query = getParsedObject("temp", newTable);
     if (!query)
         return SqliteCreateTablePtr();
 
@@ -625,6 +626,21 @@ bool SchemaResolver::isWithoutRowIdTable(const QString& database, const QString&
         return false;
 
     return !createTable->withOutRowId.isNull();
+}
+
+bool SchemaResolver::isVirtualTable(const QString& database, const QString& table)
+{
+    SqliteQueryPtr query = getParsedObject(database, table);
+    if (!query)
+        return false;
+
+    SqliteCreateVirtualTablePtr createVirtualTable = query.dynamicCast<SqliteCreateVirtualTable>();
+    return !createVirtualTable.isNull();
+}
+
+bool SchemaResolver::isVirtualTable(const QString& table)
+{
+    return isVirtualTable("main", table);
 }
 
 QStringList SchemaResolver::getWithoutRowIdTableColumns(const QString& table)

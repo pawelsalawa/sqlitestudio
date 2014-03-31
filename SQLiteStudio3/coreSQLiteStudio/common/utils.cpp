@@ -33,7 +33,7 @@ QString randStr(int length, bool numChars)
 {
     int range = numChars ? 36 : 26;
     char* output = new char[length];
-    for (int i =0; i < length; i++)
+    for (int i = 0; i < length; i++)
         output[i] = alphaNumChars[rand(0, range)];
 
     return QString::fromLatin1(output, length);
@@ -48,17 +48,15 @@ QString randBinStr(int length)
     return QString::fromLatin1(output, length);
 }
 
-QString randStrNotIn(int length, const QSet<QString> set)
+QString randStrNotIn(int length, const QSet<QString> set, bool numChars)
 {
-    char* output = new char[length];
-    QString outStr;
+    if (length == 0)
+        return "";
 
+    QString outStr;
     do
     {
-        for (int i =0; i < length; i++)
-            output[i] = alphaNumChars[rand(0, 36)];
-
-        outStr = QString::fromLatin1(output, length);
+        outStr = randStr(length, numChars);
     }
     while (set.contains(outStr));
 

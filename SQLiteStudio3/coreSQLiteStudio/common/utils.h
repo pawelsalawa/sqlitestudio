@@ -36,7 +36,7 @@ QChar API_EXPORT charAt(const QString& str, int pos);
 API_EXPORT int rand(int min = 0, int max = RAND_MAX);
 API_EXPORT QString randStr(int length, bool numChars = true);
 API_EXPORT QString randBinStr(int length);
-API_EXPORT QString randStrNotIn(int length, const QSet<QString> set);
+API_EXPORT QString randStrNotIn(int length, const QSet<QString> set, bool numChars = true);
 API_EXPORT QString generateUniqueName(const QString& prefix, const QStringList& existingNames);
 API_EXPORT bool isNumeric(const QVariant& value);
 API_EXPORT QString rStrip(const QString& str);

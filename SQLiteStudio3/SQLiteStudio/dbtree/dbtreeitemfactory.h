@@ -9,6 +9,7 @@ class DbTreeItemFactory
         static DbTreeItem* createDir(const QString& name, QObject *parent = nullptr);
         static DbTreeItem* createDb(const QString& name, QObject *parent = nullptr);
         static DbTreeItem* createTable(const QString& name, QObject *parent = nullptr);
+        static DbTreeItem* createVirtualTable(const QString& name, QObject *parent = nullptr);
         static DbTreeItem* createIndex(const QString& name, QObject *parent = nullptr);
         static DbTreeItem* createTrigger(const QString& name, QObject *parent = nullptr);
         static DbTreeItem* createView(const QString& name, QObject *parent = nullptr);

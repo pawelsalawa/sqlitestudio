@@ -157,6 +157,7 @@ class IconManager
             DEF_ICO2(VIEW_DEL,                          VIEW, MINUS)
             DEF_ICO2(VIEW_EDIT,                         VIEW, EDIT)
             DEF_ICON(VIEWS,                             "views")
+            DEF_ICON(VIRTUAL_TABLE,                     "virtual_table")
             DEF_ICON(WIN_CASCADE,                       "win_cascade")
             DEF_ICON(WIN_TILE,                          "win_tile")
             DEF_ICON(WIN_TILE_HORIZONTAL,               "win_tile_horizontal")

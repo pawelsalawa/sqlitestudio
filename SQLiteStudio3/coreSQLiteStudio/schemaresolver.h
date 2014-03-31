@@ -57,6 +57,8 @@ class API_EXPORT SchemaResolver
 
         bool isWithoutRowIdTable(const QString& table);
         bool isWithoutRowIdTable(const QString& database, const QString& table);
+        bool isVirtualTable(const QString& database, const QString& table);
+        bool isVirtualTable(const QString& table);
 
         QStringList getWithoutRowIdTableColumns(const QString& table);
         QStringList getWithoutRowIdTableColumns(const QString& database, const QString& table);

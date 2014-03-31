@@ -148,6 +148,11 @@ void DbTree::updateActionsFor(const QStandardItem *item)
                     enabled << EDIT_TABLE << DEL_TABLE;
                     enabled << ADD_INDEX << ADD_TRIGGER;
                     break;
+                case DbTreeItem::Type::VIRTUAL_TABLE:
+                    // TODO change below when virtual tables can be edited
+//                    enabled << EDIT_TABLE << DEL_TABLE;
+                    enabled << DEL_TABLE;
+                    break;
                 case DbTreeItem::Type::INDEXES:
                     enabled << EDIT_TABLE << DEL_TABLE;
                     enabled << ADD_INDEX << ADD_TRIGGER;
@@ -357,6 +362,7 @@ void DbTree::filterUndeletableItems(QList<DbTreeItem*>& items)
             case DbTreeItem::Type::DB:
             case DbTreeItem::Type::INVALID_DB:
             case DbTreeItem::Type::TABLE:
+            case DbTreeItem::Type::VIRTUAL_TABLE:
             case DbTreeItem::Type::INDEX:
             case DbTreeItem::Type::TRIGGER:
             case DbTreeItem::Type::VIEW:
@@ -399,6 +405,7 @@ void DbTree::deleteItem(DbTreeItem* item)
             CFG->removeDb(item->text());
             break;
         case DbTreeItem::Type::TABLE:
+        case DbTreeItem::Type::VIRTUAL_TABLE:
         case DbTreeItem::Type::INDEX:
         case DbTreeItem::Type::TRIGGER:
         case DbTreeItem::Type::VIEW:

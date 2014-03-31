@@ -48,6 +48,7 @@ const QString &ConfigImpl::getConfigDir()
 
 void ConfigImpl::beginMassSave()
 {
+    emit massSaveBegins();
     db->exec("BEGIN;");
 }
 
