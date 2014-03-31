@@ -805,7 +805,10 @@ void ConfigDialog::initPluginsPage()
             item = new QTreeWidgetItem({title});
             item->setCheckState(0, PLUGINS->isLoaded(pluginName) ? Qt::Checked : Qt::Unchecked);
             if (builtIn)
+            {
                 item->setFlags(item->flags() ^ Qt::ItemIsUserCheckable);
+                item->setTextColor(0, ui->pluginsList->palette().color(QPalette::Disabled, QPalette::Text));
+            }
 
             category->addChild(item);
 
