@@ -190,6 +190,8 @@ QString SqlQueryItem::getToolTip() const
         return QString::null;
 
     SqlQueryModelColumn* col = getColumn();
+    if (!col)
+        return QString::null; // happens when simple execution method was performed
 
     QStringList rows;
     rows << hdrRowTmp.arg(ICONS.COLUMN.getPath()).arg(tr("Column:", "data view tooltip")).arg(col->column);

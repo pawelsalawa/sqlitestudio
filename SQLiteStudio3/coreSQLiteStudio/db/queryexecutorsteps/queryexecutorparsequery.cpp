@@ -28,7 +28,8 @@ bool QueryExecutorParseQuery::exec()
     parser->parse(context->processedQuery);
     if (parser->getErrors().size() > 0)
     {
-        qWarning() << "QueryExecutorParseQuery:" << parser->getErrorString();
+        qWarning() << "QueryExecutorParseQuery:" << parser->getErrorString() << "\n"
+                   << "Query parsed:" << context->processedQuery;
         return false;
     }
 

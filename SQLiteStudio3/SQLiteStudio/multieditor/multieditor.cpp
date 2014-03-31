@@ -221,16 +221,16 @@ void MultiEditor::setReadOnly(bool value)
     for (int i = 0; i < tabs->count(); i++)
         dynamic_cast<MultiEditorWidget*>(tabs->widget(i))->setReadOnly(value);
 
-    stateLabel->setText("<i>"+tr("Read only", "multieditor")+"<i>");
     stateLabel->setVisible(readOnly);
     nullCheck->setEnabled(!readOnly);
     updateVisibility();
+    updateLabel();
 }
 
 void MultiEditor::setDeletedRow(bool value)
 {
-    setReadOnly(value);
-    stateLabel->setText("<i>"+tr("Deleted", "multieditor")+"<i>");
+    deleted = value;
+    updateLabel();
 }
 
 void MultiEditor::setDataType(const SqlQueryModelColumn::DataType& dataType)
@@ -327,6 +327,16 @@ void MultiEditor::updateValue(const QVariant& newValue)
         editorWidget->setUpToDate(true);
     }
     invalidatingDisabled = false;
+}
+
+void MultiEditor::updateLabel()
+{
+    if (deleted)
+        stateLabel->setText("<i>"+tr("Deleted", "multieditor")+"<i>");
+    else if (readOnly)
+        stateLabel->setText("<i>"+tr("Read only", "multieditor")+"<i>");
+    else
+        stateLabel->setText("");
 }
 
 QVariant MultiEditor::getValueOmmitNull() const
