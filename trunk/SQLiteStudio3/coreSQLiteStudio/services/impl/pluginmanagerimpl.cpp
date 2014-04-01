@@ -365,7 +365,8 @@ void PluginManagerImpl::pluginLoaded(PluginManagerImpl::PluginContainer* contain
     addPluginToCollections(container->plugin);
 
     emit loaded(container->plugin, container->type);
-    qDebug() << container->name << "loaded:" << container->filePath;
+    if (!container->builtIn)
+        qDebug() << container->name << "loaded:" << container->filePath;
 }
 
 void PluginManagerImpl::addPluginToCollections(Plugin* plugin)

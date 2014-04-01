@@ -2,7 +2,7 @@
 #define CONFIG_H
 
 #include "coreSQLiteStudio_global.h"
-#include "cfginternals.h"
+#include "config_builder.h"
 #include "services/functionmanager.h"
 #include "collationmanager.h"
 #include "sqlitestudio.h"

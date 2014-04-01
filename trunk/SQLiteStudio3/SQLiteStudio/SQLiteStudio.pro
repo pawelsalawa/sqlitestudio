@@ -122,7 +122,8 @@ SOURCES += main.cpp\
     selectabledbmodel.cpp \
     windows/collationseditormodel.cpp \
     qtscriptsyntaxhighlighter.cpp \
-    icon.cpp
+    icon.cpp \
+    configmapper.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -230,7 +231,8 @@ HEADERS  += mainwindow.h \
     selectabledbmodel.h \
     windows/collationseditormodel.h \
     qtscriptsyntaxhighlighter.h \
-    icon.h
+    icon.h \
+    configmapper.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \

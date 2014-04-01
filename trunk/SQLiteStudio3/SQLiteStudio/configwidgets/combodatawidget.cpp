@@ -1,6 +1,6 @@
 #include "combodatawidget.h"
 #include "common/unused.h"
-#include "cfginternals.h"
+#include "config_builder.h"
 #include "dialogs/configdialog.h"
 #include <QComboBox>
 #include <QDebug>
@@ -22,7 +22,7 @@ void ComboDataWidget::applyConfigToWidget(CfgEntry* key, QWidget* widget, const 
     if (!cb)
     {
         qWarning() << "ComboDataWidget assigned to widget which is not combobox, but:" << widget->metaObject()->className()
-                      << ", config key:" << key->getFullSymbolicKey();
+                      << ", config key:" << key->getFullKey();
         return;
     }
 
@@ -44,7 +44,7 @@ void ComboDataWidget::saveWidgetToConfig(QWidget* widget, CfgEntry* key)
     if (!cb)
     {
         qWarning() << "ComboDataWidget assigned to widget which is not combobox, but:" << widget->metaObject()->className()
-                      << ", config key:" << key->getFullSymbolicKey();
+                      << ", config key:" << key->getFullKey();
         return;
     }
 

@@ -18,45 +18,45 @@ QStringList PluginManagerMock::getPluginDirs() const
     return QStringList();
 }
 
-QString PluginManagerMock::getFilePath(Plugin* plugin) const
+QString PluginManagerMock::getFilePath(Plugin*) const
 {
     return QString();
 }
 
-bool PluginManagerMock::loadBuiltInPlugin(Plugin* plugin)
+bool PluginManagerMock::loadBuiltInPlugin(Plugin*)
 {
     return true;
 }
 
-bool PluginManagerMock::load(const QString& pluginName)
+bool PluginManagerMock::load(const QString&)
 {
     return true;
 }
 
-void PluginManagerMock::unload(const QString& pluginName)
+void PluginManagerMock::unload(const QString&)
 {
 }
 
-void PluginManagerMock::unload(Plugin* plugin)
+void PluginManagerMock::unload(Plugin*)
 {
 }
 
-bool PluginManagerMock::isLoaded(const QString& pluginName) const
-{
-    return false;
-}
-
-bool PluginManagerMock::isBuiltIn(const QString& pluginName) const
+bool PluginManagerMock::isLoaded(const QString&) const
 {
     return false;
 }
 
-Plugin* PluginManagerMock::getLoadedPlugin(const QString& pluginName) const
+bool PluginManagerMock::isBuiltIn(const QString&) const
+{
+    return false;
+}
+
+Plugin* PluginManagerMock::getLoadedPlugin(const QString&) const
 {
     return nullptr;
 }
 
-QStringList PluginManagerMock::getAllPluginNames(PluginType* type) const
+QStringList PluginManagerMock::getAllPluginNames(PluginType*) const
 {
     return QStringList();
 }
@@ -66,51 +66,51 @@ QStringList PluginManagerMock::getAllPluginNames() const
     return QStringList();
 }
 
-PluginType* PluginManagerMock::getPluginType(const QString& pluginName) const
+PluginType* PluginManagerMock::getPluginType(const QString&) const
 {
     return nullptr;
 }
 
-QString PluginManagerMock::getAuthor(const QString& pluginName) const
+QString PluginManagerMock::getAuthor(const QString&) const
 {
     return QString();
 }
 
-QString PluginManagerMock::getTitle(const QString& pluginName) const
+QString PluginManagerMock::getTitle(const QString&) const
 {
     return QString();
 }
 
-QString PluginManagerMock::getPrintableVersion(const QString& pluginName) const
+QString PluginManagerMock::getPrintableVersion(const QString&) const
 {
     return QString();
 }
 
-int PluginManagerMock::getVersion(const QString& pluginName) const
+int PluginManagerMock::getVersion(const QString&) const
 {
     return 3;
 }
 
-QString PluginManagerMock::getDescription(const QString& pluginName) const
+QString PluginManagerMock::getDescription(const QString&) const
 {
     return QString();
 }
 
-PluginType* PluginManagerMock::getPluginType(Plugin* plugin) const
+PluginType* PluginManagerMock::getPluginType(Plugin*) const
 {
     return nullptr;
 }
 
-QList<Plugin*> PluginManagerMock::getLoadedPlugins(PluginType* type) const
+QList<Plugin*> PluginManagerMock::getLoadedPlugins(PluginType*) const
 {
     return QList<Plugin*>();
 }
 
-ScriptingPlugin* PluginManagerMock::getScriptingPlugin(const QString& languageName) const
+ScriptingPlugin* PluginManagerMock::getScriptingPlugin(const QString&) const
 {
     return nullptr;
 }
 
-void PluginManagerMock::registerPluginType(PluginType* type)
+void PluginManagerMock::registerPluginType(PluginType*)
 {
 }

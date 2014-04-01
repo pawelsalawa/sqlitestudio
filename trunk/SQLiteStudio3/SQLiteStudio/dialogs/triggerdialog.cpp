@@ -336,7 +336,7 @@ void TriggerDialog::showColumnsDialog()
 {
     TriggerColumnsDialog dialog(this);
     foreach (const QString& colName, targetColumns)
-        dialog.addColumn(colName, selectedColumns.contains(colName));
+        dialog.addColumn(colName, selectedColumns.contains(colName, Qt::CaseInsensitive));
 
     if (dialog.exec() != QDialog::Accepted)
         return;

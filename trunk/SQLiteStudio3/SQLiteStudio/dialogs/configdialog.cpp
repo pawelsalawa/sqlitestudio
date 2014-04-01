@@ -14,6 +14,7 @@
 #include "mainwindow.h"
 #include "common/unused.h"
 #include "sqlitestudio.h"
+#include "configmapper.h"
 #include <QSignalMapper>
 #include <QLineEdit>
 #include <QSpinBox>
@@ -27,36 +28,6 @@
 #include <QListWidget>
 #include <QTableWidget>
 #include <QtUiTools/QUiLoader>
-
-#define APPLY_CFG(Widget, Value, WidgetType, Method, DataType, Notifier) \
-    if (qobject_cast<WidgetType*>(Widget))\
-    {\
-        qobject_cast<WidgetType*>(Widget)->Method(Value.value<DataType>());\
-        connect(Widget, Notifier, this, SLOT(modified()));\
-        return;\
-    }
-
-#define APPLY_CFG2(Widget, Value, WidgetType, Method, DataType, Notifier, ExtraConditionMethod) \
-    if (qobject_cast<WidgetType*>(Widget) && qobject_cast<WidgetType*>(Widget)->ExtraConditionMethod())\
-    {\
-        qobject_cast<WidgetType*>(Widget)->Method(Value.value<DataType>());\
-        connect(Widget, Notifier, this, SLOT(modified()));\
-        return;\
-    }
-
-#define SAVE_CFG(Widget, Key, WidgetType, Method) \
-    if (qobject_cast<WidgetType*>(Widget))\
-    {\
-        Key->set(qobject_cast<WidgetType*>(Widget)->Method());\
-        return;\
-    }
-
-#define SAVE_CFG2(Widget, Key, WidgetType, Method, ExtraConditionMethod) \
-    if (qobject_cast<WidgetType*>(Widget) && qobject_cast<WidgetType*>(Widget)->ExtraConditionMethod())\
-    {\
-        Key->set(qobject_cast<WidgetType*>(Widget)->Method());\
-        return;\
-    }
 
 #define GET_FILTER_STRING(Widget, WidgetType, Method) \
     if (qobject_cast<WidgetType*>(Widget))\
@@ -77,6 +48,7 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
 ConfigDialog::~ConfigDialog()
 {
     delete ui;
+    safe_delete(configMapper);
 }
 
 QString ConfigDialog::getFilterString(QWidget *widget)
@@ -143,6 +115,9 @@ void ConfigDialog::init()
     ui->setupUi(this);
     setWindowIcon(ICONS.CONFIGURE);
 
+    configMapper = new ConfigMapper(CfgMain::getPersistableInstances());
+    connect(configMapper, SIGNAL(modified()), this, SLOT(modified()));
+
     ui->categoriesFilter->setClearButtonEnabled(true);
     UserInputFilter* filter = new UserInputFilter(ui->categoriesFilter, this, SLOT(applyFilter(QString)));
     filter->setDelay(500);
@@ -168,15 +143,9 @@ void ConfigDialog::init()
     updateStylePreview();
 }
 
-void ConfigDialog::load(CfgMain* cfgMain, QWidget *pluginWidget)
+void ConfigDialog::load()
 {
-    QHash<QString, CfgEntry *> allConfigEntries = cfgMain ? getAllConfigEntries(cfgMain) : getAllConfigEntries();
-    QList<QWidget *> allConfigWidgets = pluginWidget ? getAllConfigWidgets(pluginWidget) : getAllConfigWidgets();
-    QHash<QString,QVariant> config = CFG->getAll();
-
-    foreach (QWidget* widget, allConfigWidgets)
-        applyConfigToWidget(widget, allConfigEntries, config);
-
+    configMapper->loadToWidget(ui->stackedWidget);
     setModified(false);
 }
 
@@ -184,17 +153,10 @@ void ConfigDialog::save()
 {
     MainWindow::getInstance()->setStyle(ui->activeStyleCombo->currentText());
 
-    CFG->beginMassSave();
-
     QString loadedPlugins = collectLoadedPlugins();
     CFG_CORE.General.LoadedPlugins.set(loadedPlugins);
 
-    QHash<QString, CfgEntry *> allConfigEntries = getAllConfigEntries();
-    QList<QWidget *> allConfigWidgets = getAllConfigWidgets();
-    foreach (QWidget* w, allConfigWidgets)
-        saveWidget(w, allConfigEntries);
-
-    CFG->commitMassSave();
+    configMapper->saveFromWidget(ui->stackedWidget);
 }
 
 void ConfigDialog::modified()
@@ -302,14 +264,14 @@ void ConfigDialog::activeFormatterConfigurePressed()
 
 void ConfigDialog::detailsClicked(QString pluginName)
 {
-    static const QString details =
+    static const QString details = QStringLiteral(
             "<table>"
                 "<thead>"
                     "<tr><td colspan=2 align=\"center\"><b>%1</b></td></tr>"
                 "</thead>"
                 "<tbody>%2</tbody>"
-            "</table>";
-    static const QString row = "<tr><td>%1</td><td align=\"right\">%2</td></tr>";
+            "</table>");
+    static const QString row = QStringLiteral("<tr><td>%1</td><td align=\"right\">%2</td></tr>");
 
     PluginType* type = PLUGINS->getPluginType(pluginName);
     Q_ASSERT(type != nullptr);
@@ -342,9 +304,7 @@ void ConfigDialog::sqlFormatterAboutToUnload(Plugin* plugin)
 void ConfigDialog::sqlFormatterLoaded(Plugin* plugin)
 {
     ui->activeFormatterCombo->addItem(plugin->getTitle(), plugin->getName());
-
-    CfgEntry* key = &CFG_CORE.General.ActiveSqlFormatter;
-    applyCustomConfigToWidget(key, ui->activeFormatterCombo, key->get());
+    configMapper->loadToWidget(CFG_CORE.General.ActiveSqlFormatter, ui->activeFormatterCombo);
 }
 
 void ConfigDialog::loadUnloadPlugin(QTreeWidgetItem* item, int column)
@@ -470,126 +430,6 @@ void ConfigDialog::initFormatterPlugins()
     updateActiveFormatterState();
 }
 
-CfgEntry* ConfigDialog::getConfigEntry(QWidget* widget, const QHash<QString, CfgEntry*>& allConfigEntries)
-{
-    QString key = widget->statusTip();
-    if (!allConfigEntries.contains(key))
-    {
-        qCritical() << "Config entries don't contain key" << key
-                    << "but it was requested by ConfigDialog::getConfigEntry().";
-        return nullptr;
-    }
-
-    return allConfigEntries[key];
-}
-
-void ConfigDialog::applyConfigToWidget(QWidget* widget, const QHash<QString, CfgEntry *> &allConfigEntries, const QHash<QString,QVariant>& config)
-{
-    CfgEntry* cfgEntry = getConfigEntry(widget, allConfigEntries);
-    if (!cfgEntry)
-        return;
-
-    QString key = widget->statusTip();
-    QVariant configValue;
-    if (config.contains(cfgEntry->getFullDbKey()))
-    {
-        configValue = config[cfgEntry->getFullDbKey()];
-        if (!configValue.isValid())
-            configValue = cfgEntry->getDefultValue();
-    }
-    else
-    {
-        configValue = cfgEntry->getDefultValue();
-    }
-
-    if (applyCustomConfigToWidget(cfgEntry, widget, configValue))
-        return;
-
-    applyCommonConfigToWidget(widget, configValue);
-}
-
-bool ConfigDialog::applyCustomConfigToWidget(CfgEntry* key, QWidget* widget, const QVariant& value)
-{
-    CustomConfigWidgetPlugin* handler;
-    QList<CustomConfigWidgetPlugin*> handlers;
-    handlers += internalCustomConfigWidgets;
-    handlers += PLUGINS->getLoadedPlugins<CustomConfigWidgetPlugin>();
-
-    foreach (handler, handlers)
-    {
-        if (handler->isConfigForWidget(key, widget))
-        {
-            handler->applyConfigToWidget(key, widget, value);
-            connect(widget, handler->getModifiedNotifier(), this, SLOT(modified()));
-            return true;
-        }
-    }
-    return false;
-}
-
-void ConfigDialog::saveWidget(QWidget* widget, const QHash<QString, CfgEntry *> &allConfigEntries)
-{
-    CfgEntry* cfgEntry = getConfigEntry(widget, allConfigEntries);
-    if (!cfgEntry)
-        return;
-
-    if (saveCustomConfigFromWidget(widget, cfgEntry))
-        return;
-
-    saveCommonConfigFromWidget(widget, cfgEntry);
-}
-
-void ConfigDialog::applyCommonConfigToWidget(QWidget *widget, const QVariant &value)
-{
-    APPLY_CFG(widget, value, QCheckBox, setChecked, bool, SIGNAL(stateChanged(int)));
-    APPLY_CFG(widget, value, QLineEdit, setText, QString, SIGNAL(textChanged(QString)));
-    APPLY_CFG(widget, value, QSpinBox, setValue, int, SIGNAL(valueChanged(QString)));
-    APPLY_CFG(widget, value, QComboBox, setCurrentText, QString, SIGNAL(currentTextChanged(QString)));
-    APPLY_CFG(widget, value, FontEdit, setFont, QFont, SIGNAL(fontChanged(QFont)));
-    APPLY_CFG(widget, value, ColorButton, setColor, QColor, SIGNAL(colorChanged(QColor)));
-    APPLY_CFG2(widget, value, QGroupBox, setChecked, bool, SIGNAL(clicked(bool)), isCheckable);
-
-    qWarning() << "Unhandled config widget type (for APPLY_CFG):" << widget->metaObject()->className()
-               << "with value:" << value;
-}
-
-void ConfigDialog::saveCommonConfigFromWidget(QWidget* widget, CfgEntry* key)
-{
-    SAVE_CFG(widget, key, QCheckBox, isChecked);
-    SAVE_CFG(widget, key, QLineEdit, text);
-    SAVE_CFG(widget, key, QSpinBox, value);
-    SAVE_CFG(widget, key, QComboBox, currentText);
-    SAVE_CFG(widget, key, FontEdit, getFont);
-    SAVE_CFG(widget, key, ColorButton, getColor);
-    SAVE_CFG2(widget, key, QGroupBox, isChecked, isCheckable);
-
-    qWarning() << "Unhandled config widget type (for SAVE_CFG):" << widget->metaObject()->className();
-}
-
-bool ConfigDialog::saveCustomConfigFromWidget(QWidget* widget, CfgEntry* key)
-{
-    CustomConfigWidgetPlugin* plugin;
-    QList<CustomConfigWidgetPlugin*> handlers;
-    handlers += internalCustomConfigWidgets;
-    handlers += PLUGINS->getLoadedPlugins<CustomConfigWidgetPlugin>();
-
-    foreach (plugin, handlers)
-    {
-        if (plugin->isConfigForWidget(key, widget))
-        {
-            plugin->saveWidgetToConfig(widget, key);
-            return true;
-        }
-    }
-    return false;
-}
-
-void ConfigDialog::fixToolTip(QWidget* widget)
-{
-    if (!widget->toolTip().isEmpty())
-        widget->setToolTip("<p>"+widget->toolTip()+"</p>");
-}
-
 void ConfigDialog::applyStyle(QWidget *widget, QStyle *style)
 {
     widget->setStyle(style);
@@ -655,68 +495,6 @@ QTreeWidgetItem* ConfigDialog::getItemByTitle(const QString& title) const
         return nullptr;
 
     return items.first();
-}
-
-QHash<QString, CfgEntry *> ConfigDialog::getAllConfigEntries()
-{
-    // Entry map has to be evaluated each time, because loading and unloading plugins
-    // causes the this map to change.
-    QHash<QString, CfgEntry*> entries;
-    foreach (CfgMain* cfgMain, CfgMain::getInstances())
-        entries.unite(getAllConfigEntries(cfgMain));
-
-    return entries;
-}
-
-QHash<QString, CfgEntry *> ConfigDialog::getAllConfigEntries(CfgMain *cfgMain)
-{
-    QHash<QString, CfgEntry*> entries;
-    QString key;
-    QHashIterator<QString,CfgCategory*> catIt(cfgMain->getCategories());
-    while (catIt.hasNext())
-    {
-        catIt.next();
-        QHashIterator<QString,CfgEntry*> entryIt( catIt.value()->getEntries());
-        while (entryIt.hasNext())
-        {
-            entryIt.next();
-            key = catIt.key()+"."+entryIt.key();
-            if (entries.contains(key))
-            {
-                qCritical() << "Duplicate config entry key:" << key;
-                continue;
-            }
-            entries[key] = entryIt.value();
-        }
-    }
-    return entries;
-}
-
-QList<QWidget *> ConfigDialog::getAllConfigWidgets()
-{
-    // This also has to be evaluated each time, becuase plugins can add/remove their own widgets
-    return getAllConfigWidgets(ui->stackedWidget);
-}
-
-QList<QWidget*> ConfigDialog::getAllConfigWidgets(QWidget *parent)
-{
-    QList<QWidget*> results;
-    QWidget* widget = nullptr;
-    foreach (QObject* obj, parent->children())
-    {
-        widget = qobject_cast<QWidget*>(obj);
-        if (!widget)
-            continue;
-
-        fixToolTip(widget);
-
-        results += getAllConfigWidgets(widget);
-        if (widget->statusTip().isEmpty())
-            continue;
-
-        results << widget;
-    }
-    return results;
 }
 
 void ConfigDialog::switchPage(QTreeWidgetItem *item)
@@ -858,6 +636,7 @@ void ConfigDialog::initPluginPage(const QString& pluginName)
 
     nameToPage[pluginName] = widget;
     ui->stackedWidget->addWidget(widget);
+    configMapper->loadToWidget(widget);
 }
 
 void ConfigDialog::deinitPluginPage(const QString& pluginName)
