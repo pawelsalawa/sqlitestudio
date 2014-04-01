@@ -1,4 +1,4 @@
-#include "cfginternals.h"
+#include "config_builder.h"
 #include "services/config.h"
 #include <QDebug>
 
@@ -6,8 +6,8 @@ CfgCategory* lastCreatedCfgCategory = nullptr;
 CfgMain* lastCreatedCfgMain = nullptr;
 QList<CfgMain*> CfgMain::instances;
 
-CfgMain::CfgMain(const QString& name) :
-    name(name)
+CfgMain::CfgMain(const QString& name, bool persistable) :
+    name(name), persistable(persistable)
 {
     lastCreatedCfgMain = this;
     instances << this;
@@ -25,14 +25,30 @@ QList<CfgMain*> CfgMain::getInstances()
     return instances;
 }
 
+QList<CfgMain*> CfgMain::getPersistableInstances()
+{
+    QList<CfgMain*> list;
+    for (CfgMain* main : getInstances())
+    {
+        if (main->isPersistable())
+            list << main;
+    }
+    return list;
+}
+
 QHash<QString, CfgCategory *> &CfgMain::getCategories()
 {
     return childs;
+}
+bool CfgMain::isPersistable() const
+{
+    return persistable;
 }
 
 CfgCategory::CfgCategory(const QString &name)
 {
     this->name = name;
+    this->persistable = lastCreatedCfgMain->persistable;
     lastCreatedCfgCategory = this;
     lastCreatedCfgMain->childs[name] = this;
 }
@@ -53,13 +69,13 @@ CfgCategory::operator QString() const
 }
 
 CfgEntry::CfgEntry(const CfgEntry& other) :
-    QObject(), parent(other.parent), name(other.name), dbKey(other.dbKey), defValue(other.defValue),
+    QObject(), persistable(other.persistable), parent(other.parent), name(other.name), defValue(other.defValue),
     defValueFunc(other.defValueFunc)
 {
 }
 
-CfgEntry::CfgEntry(const QString &name, const QString &dbKey, const QVariant &defValue) :
-    QObject(), name(name), dbKey(dbKey), defValue(defValue)
+CfgEntry::CfgEntry(const QString &name, const QVariant &defValue) :
+    QObject(), name(name), defValue(defValue)
 {
     if (lastCreatedCfgCategory == nullptr)
     {
@@ -68,6 +84,7 @@ CfgEntry::CfgEntry(const QString &name, const QString &dbKey, const QVariant &de
     }
 
     parent = lastCreatedCfgCategory;
+    persistable = parent->persistable;
     parent->childs[name] = this;
 }
 
@@ -80,8 +97,11 @@ QVariant CfgEntry::get() const
     if (cached)
         return cachedValue;
 
-    QVariant cfgVal = CFG->get(parent->toString(), dbKey);
-    if (!cfgVal.isValid())
+    QVariant cfgVal;
+    if (persistable)
+        cfgVal = CFG->get(parent->toString(), name);
+
+    if (!persistable || !cfgVal.isValid())
     {
         if (defValueFunc)
             return (*defValueFunc)();
@@ -104,7 +124,8 @@ QVariant CfgEntry::getDefultValue() const
 
 void CfgEntry::set(const QVariant &value)
 {
-    CFG->set(parent->toString(), this->dbKey, value);
+    if (persistable)
+        CFG->set(parent->toString(), name, value);
 
     bool wasChanged = (value != cachedValue);
 
@@ -120,22 +141,17 @@ void CfgEntry::defineDefaultValueFunction(CfgEntry::DefaultValueProviderFunc fun
     defValueFunc = func;
 }
 
-QString CfgEntry::getFullDbKey() const
-{
-    return parent->toString()+"."+dbKey;
-}
-
-QString CfgEntry::getFullSymbolicKey() const
+QString CfgEntry::getFullKey() const
 {
     return parent->toString()+"."+name;
 }
 
-CfgEntry::operator const CfgEntry*() const
+CfgEntry::operator CfgEntry*()
 {
     return this;
 }
 
 CfgEntry::operator QString() const
 {
-    return dbKey;
+    return name;
 }

@@ -7,6 +7,49 @@
 #include <QString>
 #include <QVariant>
 
+#define CFG_CATEGORY(Name,Body) \
+    struct API_EXPORT _##Name##Type : public CfgCategory\
+    {\
+        _##Name##Type() : CfgCategory(#Name) {}\
+        Body\
+    };\
+    _##Name##Type Name;
+
+#define CFG_CATEGORIES(Type,Body) \
+    namespace Cfg\
+    {\
+        struct API_EXPORT Type : public CfgMain\
+        {\
+            Type(bool persistable) : CfgMain(#Type, persistable) {}\
+            Body\
+        };\
+    }
+
+#define CFG_ENTRY(Type, Name, ...) CfgTypedEntry<Type> Name = CfgTypedEntry<Type>(#Name, ##__VA_ARGS__);
+
+#define CFG_DECLARE(Type) \
+    namespace Cfg\
+    {\
+        API_ONLY_CORE_EXPORT Type* get##Type##Instance();\
+    }
+
+#define CFG_DEFINE(Type) _CFG_DEFINE(Type, true)
+#define CFG_DEFINE_TEMP(Type) _CFG_DEFINE(Type, false)
+#define _CFG_DEFINE(Type, Pers) \
+    namespace Cfg\
+    {\
+        Type* cfgMainInstance##Type = get##Type##Instance();\
+        Type* get##Type##Instance()\
+        {\
+            if (!cfgMainInstance##Type)\
+                cfgMainInstance##Type = new Type(Pers);\
+        \
+            return cfgMainInstance##Type;\
+        }\
+    }
+
+#define CFG_INSTANCE(Type) (*Cfg::get##Type##Instance())
+
 class CfgEntry;
 class CfgCategory;
 
@@ -15,16 +58,21 @@ class API_EXPORT CfgMain
     friend class CfgCategory;
 
     public:
-        explicit CfgMain(const QString& name);
+        explicit CfgMain(const QString& name, bool persistable = true);
 
         static void staticInit();
         static QList<CfgMain*> getInstances();
+        static QList<CfgMain*> getPersistableInstances();
 
         QHash<QString,CfgCategory*>& getCategories();
 
+        bool isPersistable() const;
+
     private:
         QString name;
+        bool persistable = true;
         QHash<QString,CfgCategory*> childs;
+
         static QList<CfgMain*> instances;
 };
 
@@ -40,6 +88,7 @@ class API_EXPORT CfgCategory
         QHash<QString,CfgEntry*>& getEntries();
 
     private:
+        bool persistable = true;
         QHash<QString,CfgEntry*> childs;
         QString name;
 };
@@ -52,7 +101,7 @@ class API_EXPORT CfgEntry : public QObject
         typedef QVariant (*DefaultValueProviderFunc)();
 
         explicit CfgEntry(const CfgEntry& other);
-        CfgEntry(const QString& name, const QString &dbKey, const QVariant& defValue);
+        CfgEntry(const QString& name, const QVariant& defValue);
         virtual ~CfgEntry();
 
         QVariant get() const;
@@ -60,21 +109,21 @@ class API_EXPORT CfgEntry : public QObject
         void set(const QVariant& value);
         operator QString() const;
         void defineDefaultValueFunction(DefaultValueProviderFunc func);
-        QString getFullDbKey() const;
-        QString getFullSymbolicKey() const;
+        QString getFullKey() const;
 
         /**
-         * @brief operator const CfgEntry *
+         * @brief operator CfgEntry *
+         *
          * Allows implict casting from value object into pointer. It simply returns "this".
          * It's useful to use config objects directly in QObject::connect() arguments,
          * cause it accepts pointers, not values, but CfgEntry is usually accessed by value.
          */
-        operator const CfgEntry*() const;
+        operator CfgEntry*();
 
     protected:
+        bool persistable = true;
         CfgCategory* parent;
         QString name;
-        QString dbKey;
         QVariant defValue;
         mutable bool cached = false;
         mutable QVariant cachedValue;
@@ -88,17 +137,17 @@ template <class T>
 class CfgTypedEntry : public CfgEntry
 {
     public:
-        CfgTypedEntry(const QString& name, const QString &value, DefaultValueProviderFunc func) :
-            CfgEntry(name, value, QVariant())
+        CfgTypedEntry(const QString& name, DefaultValueProviderFunc func) :
+            CfgEntry(name, QVariant())
         {
             defineDefaultValueFunction(func);
         }
 
-        CfgTypedEntry(const QString& name, const QString &value, const T& defValue) :
-            CfgEntry(name, value, defValue) {}
+        CfgTypedEntry(const QString& name, const T& defValue) :
+            CfgEntry(name, defValue) {}
 
-        CfgTypedEntry(const QString& name, const QString &value) :
-            CfgEntry(name, value, QVariant()) {}
+        CfgTypedEntry(const QString& name) :
+            CfgEntry(name, QVariant()) {}
 
         CfgTypedEntry(const CfgTypedEntry& other) :
             CfgEntry(other) {}
@@ -114,48 +163,6 @@ class CfgTypedEntry : public CfgEntry
             CfgEntry::set(QVariant::fromValue<T>(value));
         }
 };
-
-#define CFG_CATEGORY(Name,Body) \
-    struct API_EXPORT _##Name##Type : public CfgCategory\
-    {\
-        _##Name##Type() : CfgCategory(#Name) {}\
-        Body\
-    };\
-    _##Name##Type Name;
-
-#define CFG_CATEGORIES(Type,Body) \
-    namespace Cfg\
-    {\
-        struct API_EXPORT Type : public CfgMain\
-        {\
-            Type() : CfgMain(#Type) {}\
-            Body\
-        };\
-    }
-
-#define CFG_ENTRY(Type, Name, ...) CfgTypedEntry<Type> Name = CfgTypedEntry<Type>(#Name, #Name, ##__VA_ARGS__);
-
-#define CFG_DECLARE(Type) \
-    namespace Cfg\
-    {\
-        API_ONLY_CORE_EXPORT Type* get##Type##Instance();\
-    }
-//extern Type* cfgMainInstance##Type;
-
-#define CFG_DEFINE(Type) \
-    namespace Cfg\
-    {\
-        Type* cfgMainInstance##Type = get##Type##Instance();\
-        Type* get##Type##Instance()\
-        {\
-            if (!cfgMainInstance##Type)\
-                cfgMainInstance##Type = new Type();\
-        \
-            return cfgMainInstance##Type;\
-        }\
-    }
-
-#define CFG_INSTANCE(Type) (*Cfg::get##Type##Instance())
 
 Q_DECLARE_METATYPE(CfgMain*)
 Q_DECLARE_METATYPE(CfgCategory*)

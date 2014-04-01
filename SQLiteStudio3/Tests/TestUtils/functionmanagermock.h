@@ -8,13 +8,13 @@
 class FunctionManagerMock : public FunctionManager
 {
     public:
-        void setFunctions(const QList<FunctionPtr>& newFunctions);
+        void setFunctions(const QList<FunctionPtr>&);
         QList<FunctionPtr> getAllFunctions() const;
-        QList<FunctionPtr> getFunctionsForDatabase(const QString& dbName) const;
-        QVariant evaluateScalar(const QString& name, int argCount, const QList<QVariant>& args, Db* db, bool& ok);
-        void evaluateAggregateInitial(const QString& name, int argCount, Db* db, QHash<QString, QVariant>& aggregateStorage);
-        void evaluateAggregateStep(const QString& name, int argCount, const QList<QVariant>& args, Db* db, QHash<QString, QVariant>& aggregateStorage);
-        QVariant evaluateAggregateFinal(const QString& name, int argCount, Db* db, bool& ok, QHash<QString, QVariant>& aggregateStorage);
+        QList<FunctionPtr> getFunctionsForDatabase(const QString&) const;
+        QVariant evaluateScalar(const QString&, int, const QList<QVariant>&, Db*, bool&);
+        void evaluateAggregateInitial(const QString&, int, Db*, QHash<QString, QVariant>&);
+        void evaluateAggregateStep(const QString&, int, const QList<QVariant>&, Db*, QHash<QString, QVariant>&);
+        QVariant evaluateAggregateFinal(const QString&, int, Db*, bool&, QHash<QString, QVariant>&);
 };
 
 #endif // FUNCTIONMANAGERMOCK_H

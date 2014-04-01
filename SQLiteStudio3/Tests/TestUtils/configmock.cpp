@@ -10,7 +10,8 @@ void ConfigMock::cleanUp()
 
 const QString& ConfigMock::getConfigDir()
 {
-    return QString();
+    static const QString cfg;
+    return cfg;
 }
 
 void ConfigMock::beginMassSave()
@@ -25,11 +26,11 @@ void ConfigMock::rollbackMassSave()
 {
 }
 
-void ConfigMock::set(const QString& group, const QString& key, const QVariant& value)
+void ConfigMock::set(const QString&, const QString&, const QVariant&)
 {
 }
 
-QVariant ConfigMock::get(const QString& group, const QString& key)
+QVariant ConfigMock::get(const QString&, const QString&)
 {
     return QVariant();
 }
@@ -39,22 +40,22 @@ QHash<QString, QVariant> ConfigMock::getAll()
     return QHash<QString, QVariant>();
 }
 
-bool ConfigMock::addDb(const QString& name, const QString& path, const QHash<QString, QVariant>& options)
+bool ConfigMock::addDb(const QString&, const QString&, const QHash<QString, QVariant>&)
 {
     return true;
 }
 
-bool ConfigMock::updateDb(const QString& name, const QString& newName, const QString& path, const QHash<QString, QVariant>& options)
+bool ConfigMock::updateDb(const QString&, const QString&, const QString&, const QHash<QString, QVariant>&)
 {
     return true;
 }
 
-bool ConfigMock::removeDb(const QString& name)
+bool ConfigMock::removeDb(const QString&)
 {
     return true;
 }
 
-bool ConfigMock::isDbInConfig(const QString& name)
+bool ConfigMock::isDbInConfig(const QString&)
 {
     return true;
 }
@@ -69,12 +70,12 @@ QList<Config::CfgDbPtr> ConfigMock::dbList()
     return QList<Config::CfgDbPtr>();
 }
 
-Config::CfgDbPtr ConfigMock::getDb(const QString& dbName)
+Config::CfgDbPtr ConfigMock::getDb(const QString&)
 {
     return Config::CfgDbPtr();
 }
 
-void ConfigMock::storeGroups(const QList<Config::DbGroupPtr>& groups)
+void ConfigMock::storeGroups(const QList<Config::DbGroupPtr>&)
 {
 }
 
@@ -83,17 +84,17 @@ QList<Config::DbGroupPtr> ConfigMock::getGroups()
     return QList<Config::DbGroupPtr>();
 }
 
-Config::DbGroupPtr ConfigMock::getDbGroup(const QString& dbName)
+Config::DbGroupPtr ConfigMock::getDbGroup(const QString&)
 {
     return Config::DbGroupPtr();
 }
 
-qint64 ConfigMock::addSqlHistory(const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected)
+qint64 ConfigMock::addSqlHistory(const QString&, const QString&, int, int)
 {
     return 0;
 }
 
-void ConfigMock::updateSqlHistory(qint64 id, const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected)
+void ConfigMock::updateSqlHistory(qint64, const QString&, const QString&, int, int)
 {
 }
 
@@ -106,7 +107,7 @@ QAbstractItemModel* ConfigMock::getSqlHistoryModel()
     return nullptr;
 }
 
-void ConfigMock::addCliHistory(const QString& text)
+void ConfigMock::addCliHistory(const QString&)
 {
 }
 
@@ -123,11 +124,11 @@ QStringList ConfigMock::getCliHistory() const
     return QStringList();
 }
 
-void ConfigMock::addDdlHistory(const QString& queries, const QString& dbName, const QString& dbFile)
+void ConfigMock::addDdlHistory(const QString&, const QString&, const QString&)
 {
 }
 
-QList<Config::DdlHistoryEntryPtr> ConfigMock::getDdlHistoryFor(const QString& dbName, const QString& dbFile, const QDate& date)
+QList<Config::DdlHistoryEntryPtr> ConfigMock::getDdlHistoryFor(const QString&, const QString&, const QDate&)
 {
     return QList<Config::DdlHistoryEntryPtr>();
 }
@@ -141,7 +142,7 @@ void ConfigMock::clearDdlHistory()
 {
 }
 
-bool ConfigMock::setFunctions(const QList<FunctionManager::FunctionPtr>& functions)
+bool ConfigMock::setFunctions(const QList<FunctionManager::FunctionPtr>&)
 {
     return true;
 }
@@ -163,7 +164,7 @@ void ConfigMock::rollback()
 {
 }
 
-bool ConfigMock::setCollations(const QList<CollationManager::CollationPtr>& collations)
+bool ConfigMock::setCollations(const QList<CollationManager::CollationPtr>&)
 {
     return true;
 }

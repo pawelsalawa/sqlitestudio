@@ -3,7 +3,7 @@
 
 #include "sqlformattersimple_global.h"
 #include "plugins/sqlformatterplugin.h"
-#include "cfginternals.h"
+#include "config_builder.h"
 #include "plugins/genericplugin.h"
 #include <QObject>
 

@@ -1,7 +1,7 @@
 #ifndef UICONFIG_H
 #define UICONFIG_H
 
-#include "cfginternals.h"
+#include "config_builder.h"
 #include <QFont>
 #include <QHash>
 #include <QColor>

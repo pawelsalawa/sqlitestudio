@@ -2,7 +2,7 @@
 #define CONFIGDIALOG_H
 
 #include <QDialog>
-#include "cfginternals.h"
+#include "config_builder.h"
 
 namespace Ui {
     class ConfigDialog;
@@ -17,6 +17,7 @@ class QComboBox;
 class QTreeWidget;
 class QListWidget;
 class QTableWidget;
+class ConfigMapper;
 
 class ConfigDialog : public QDialog
 {
@@ -34,7 +35,7 @@ class ConfigDialog : public QDialog
 
     private:
         void init();
-        void load(CfgMain *cfgMain = nullptr, QWidget* pluginWidget = nullptr);
+        void load();
         void initPageMap();
         void initInternalCustomConfigWidgets();
         void initFormatterPlugins();
@@ -42,18 +43,6 @@ class ConfigDialog : public QDialog
         void initPluginsPage();
         void initPluginPage(const QString& pluginName);
         void deinitPluginPage(const QString& pluginName);
-        void saveWidget(QWidget* widget, const QHash<QString, CfgEntry*>& allConfigEntries);
-        void saveCommonConfigFromWidget(QWidget *widget, CfgEntry* key);
-        bool saveCustomConfigFromWidget(QWidget *widget, CfgEntry* key);
-        CfgEntry* getConfigEntry(QWidget* widget, const QHash<QString, CfgEntry*>& allConfigEntries);
-        QHash<QString,CfgEntry*> getAllConfigEntries();
-        QHash<QString,CfgEntry*> getAllConfigEntries(CfgMain* cfgMain);
-        QList<QWidget*> getAllConfigWidgets();
-        QList<QWidget*> getAllConfigWidgets(QWidget* parent);
-        void applyConfigToWidget(QWidget *widget, const QHash<QString, CfgEntry *> &allConfigEntries, const QHash<QString, QVariant> &config);
-        void applyCommonConfigToWidget(QWidget *widget, const QVariant& value);
-        bool applyCustomConfigToWidget(CfgEntry* key, QWidget *widget, const QVariant& value);
-        void fixToolTip(QWidget *widget);
         void applyStyle(QWidget* widget, QStyle* style);
         QTreeWidgetItem* getPluginsCategoryItem() const;
         QTreeWidgetItem* getPluginsCategoryItem(PluginType* type) const;
@@ -77,6 +66,7 @@ class ConfigDialog : public QDialog
         QHash<QTreeWidgetItem*,QString> itemToPluginNameMap;
         QHash<PluginType*,QTreeWidgetItem*> pluginTypeToItemMap;
         QHash<Plugin*,QTreeWidgetItem*> pluginToItemMap;
+        ConfigMapper* configMapper = nullptr;
 
     private slots:
         void switchPage(QTreeWidgetItem* item);

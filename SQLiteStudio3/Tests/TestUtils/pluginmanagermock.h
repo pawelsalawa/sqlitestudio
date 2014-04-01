@@ -10,28 +10,28 @@ class PluginManagerMock : public PluginManager
         void deinit();
         QList<PluginType*> getPluginTypes() const;
         QStringList getPluginDirs() const;
-        QString getFilePath(Plugin* plugin) const;
-        bool loadBuiltInPlugin(Plugin* plugin);
-        bool load(const QString& pluginName);
-        void unload(const QString& pluginName);
-        void unload(Plugin* plugin);
-        bool isLoaded(const QString& pluginName) const;
-        bool isBuiltIn(const QString& pluginName) const;
-        Plugin*getLoadedPlugin(const QString& pluginName) const;
-        QStringList getAllPluginNames(PluginType* type) const;
+        QString getFilePath(Plugin*) const;
+        bool loadBuiltInPlugin(Plugin*);
+        bool load(const QString&);
+        void unload(const QString&);
+        void unload(Plugin*);
+        bool isLoaded(const QString&) const;
+        bool isBuiltIn(const QString&) const;
+        Plugin*getLoadedPlugin(const QString&) const;
+        QStringList getAllPluginNames(PluginType*) const;
         QStringList getAllPluginNames() const;
-        PluginType*getPluginType(const QString& pluginName) const;
-        QString getAuthor(const QString& pluginName) const;
-        QString getTitle(const QString& pluginName) const;
-        QString getPrintableVersion(const QString& pluginName) const;
-        int getVersion(const QString& pluginName) const;
-        QString getDescription(const QString& pluginName) const;
-        PluginType*getPluginType(Plugin* plugin) const;
-        QList<Plugin*> getLoadedPlugins(PluginType* type) const;
-        ScriptingPlugin* getScriptingPlugin(const QString& languageName) const;
+        PluginType*getPluginType(const QString&) const;
+        QString getAuthor(const QString&) const;
+        QString getTitle(const QString&) const;
+        QString getPrintableVersion(const QString&) const;
+        int getVersion(const QString&) const;
+        QString getDescription(const QString&) const;
+        PluginType*getPluginType(Plugin*) const;
+        QList<Plugin*> getLoadedPlugins(PluginType*) const;
+        ScriptingPlugin* getScriptingPlugin(const QString&) const;
 
     protected:
-        void registerPluginType(PluginType* type);
+        void registerPluginType(PluginType*);
 };
 
 #endif // PLUGINMANAGERMOCK_H

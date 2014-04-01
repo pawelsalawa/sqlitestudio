@@ -191,6 +191,14 @@ void SQLiteStudio::updateSqlFormatter()
 {
     QList<SqlFormatterPlugin *> sqlFormatterPlugins = PLUGINS->getLoadedPlugins<SqlFormatterPlugin>();
     QString activeFormatterName = CFG_CORE.General.ActiveSqlFormatter.get();
+
+    if (activeFormatterName.trimmed().isEmpty() && sqlFormatterPlugins.size() > 0)
+    {
+        CFG_CORE.General.ActiveSqlFormatter.set(sqlFormatterPlugins.first()->getName());
+        sqlFormatter->setFormatter(sqlFormatterPlugins.first());
+        return;
+    }
+
     foreach (SqlFormatterPlugin* plugin, sqlFormatterPlugins)
     {
         if (plugin->getName() == activeFormatterName)

@@ -121,7 +121,6 @@ SOURCES += sqlitestudio.cpp \
     tablemodifier.cpp \
     db/chainexecutor.cpp \
     db/queryexecutorsteps/queryexecutorreplaceviews.cpp \
-    cfginternals.cpp \
     sqlformatter.cpp \
     viewmodifier.cpp \
     log.cpp \
@@ -144,7 +143,8 @@ SOURCES += sqlitestudio.cpp \
     db/dbsqlite3.cpp \
     plugins/dbpluginsqlite3.cpp \
     parser/ast/sqlitewith.cpp \
-    services/impl/collationmanagerimpl.cpp
+    services/impl/collationmanagerimpl.cpp \
+    config_builder.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -249,7 +249,6 @@ HEADERS += sqlitestudio.h\
     tablemodifier.h \
     db/chainexecutor.h \
     db/queryexecutorsteps/queryexecutorreplaceviews.h \
-    cfginternals.h \
     plugins/sqlformatterplugin.h \
     sqlformatter.h \
     viewmodifier.h \
@@ -285,7 +284,9 @@ HEADERS += sqlitestudio.h\
     db/abstractdb2.h \
     parser/ast/sqlitewith.h \
     services/collationmanager.h \
-    services/impl/collationmanagerimpl.h
+    services/impl/collationmanagerimpl.h \
+    plugins/exportplugin.h \
+    config_builder.h
 
 unix:!symbian {
     maemo5 {

@@ -1,7 +1,7 @@
 #ifndef CLI_CONFIG_H
 #define CLI_CONFIG_H
 
-#include "cfginternals.h"
+#include "config_builder.h"
 
 namespace CliResultsDisplay
 {
