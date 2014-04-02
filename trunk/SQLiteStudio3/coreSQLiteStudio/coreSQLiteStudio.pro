@@ -144,7 +144,8 @@ SOURCES += sqlitestudio.cpp \
     plugins/dbpluginsqlite3.cpp \
     parser/ast/sqlitewith.cpp \
     services/impl/collationmanagerimpl.cpp \
-    config_builder.cpp
+    config_builder.cpp \
+    services/exportmanager.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -286,7 +287,8 @@ HEADERS += sqlitestudio.h\
     services/collationmanager.h \
     services/impl/collationmanagerimpl.h \
     plugins/exportplugin.h \
-    config_builder.h
+    config_builder.h \
+    services/exportmanager.h
 
 unix:!symbian {
     maemo5 {
