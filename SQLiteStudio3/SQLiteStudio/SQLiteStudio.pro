@@ -123,7 +123,10 @@ SOURCES += main.cpp\
     windows/collationseditormodel.cpp \
     qtscriptsyntaxhighlighter.cpp \
     icon.cpp \
-    configmapper.cpp
+    configmapper.cpp \
+    dialogs/exportdialog.cpp \
+    dbobjlistmodel.cpp \
+    common/verifiablewizardpage.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -232,7 +235,10 @@ HEADERS  += mainwindow.h \
     windows/collationseditormodel.h \
     qtscriptsyntaxhighlighter.h \
     icon.h \
-    configmapper.h
+    configmapper.h \
+    dialogs/exportdialog.h \
+    dbobjlistmodel.h \
+    common/verifiablewizardpage.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \
@@ -264,7 +270,8 @@ FORMS    += mainwindow.ui \
     dialogs/ddlpreviewdialog.ui \
     windows/ddlhistorywindow.ui \
     windows/functionseditor.ui \
-    windows/collationseditor.ui
+    windows/collationseditor.ui \
+    dialogs/exportdialog.ui
 
 LIBS += -lcoreSQLiteStudio
 

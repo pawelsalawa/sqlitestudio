@@ -339,7 +339,7 @@ SqlResultsPtr AbstractDb3<T>::execInternal(const QString& query, const QList<QVa
 
         for (paramIdx = 1; paramIdx <= singleQuery.second; paramIdx++)
         {
-            res = bindParam(stmt, paramIdx, args[paramIdx]);
+            res = bindParam(stmt, paramIdx, args[paramIdx-1]);
             if (res != SQLITE_OK)
             {
                 extractLastError();

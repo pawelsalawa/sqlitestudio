@@ -22,6 +22,7 @@
 #include "services/impl/collationmanagerimpl.h"
 #include "services/impl/pluginmanagerimpl.h"
 #include "impl/dbattacherimpl.h"
+#include "services/exportmanager.h"
 #include <QProcessEnvironment>
 #include <QThreadPool>
 
@@ -46,6 +47,16 @@ void SQLiteStudio::parseCmdLineArgs()
         }
     }
 }
+ExportManager* SQLiteStudio::getExportManager() const
+{
+    return exportManager;
+}
+
+void SQLiteStudio::setExportManager(ExportManager* value)
+{
+    exportManager = value;
+}
+
 CollationManager* SQLiteStudio::getCollationManager() const
 {
     return collationManager;
@@ -172,11 +183,14 @@ void SQLiteStudio::init(const QStringList& cmdListArguments)
     connect(pluginManager, SIGNAL(aboutToUnload(Plugin*,PluginType*)), this, SLOT(pluginToBeUnloaded(Plugin*,PluginType*)));
     connect(pluginManager, SIGNAL(unloaded(QString,PluginType*)), this, SLOT(pluginUnloaded(QString,PluginType*)));
 
+    exportManager = new ExportManager();
+
     parseCmdLineArgs();
 }
 
 void SQLiteStudio::cleanUp()
 {
+    safe_delete(exportManager);
     safe_delete(functionManager);
     safe_delete(dbManager);
     safe_delete(config);

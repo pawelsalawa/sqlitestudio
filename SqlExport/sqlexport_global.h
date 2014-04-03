@@ -1,0 +1,12 @@
+#ifndef SQLEXPORT_GLOBAL_H
+#define SQLEXPORT_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(SQLEXPORT_LIBRARY)
+#  define SQLEXPORTSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define SQLEXPORTSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // SQLEXPORT_GLOBAL_H

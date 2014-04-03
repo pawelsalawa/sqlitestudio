@@ -29,6 +29,8 @@
 #include "uiconfig.h"
 #include "dialogs/ddlpreviewdialog.h"
 #include "services/config.h"
+#include "dbobjectdialogs.h"
+#include "dialogs/exportdialog.h"
 #include <QMenu>
 #include <QToolButton>
 #include <QLabel>
@@ -37,7 +39,6 @@
 #include <tablemodifier.h>
 #include <QProgressBar>
 #include <QPushButton>
-#include <dbobjectdialogs.h>
 
 // TODO extend QTableView for columns and constraints, so they show full-row-width drop indicator,
 // instead of single column drop indicator.
@@ -143,6 +144,10 @@ void TableWindow::init()
 
 void TableWindow::createActions()
 {
+    createAction(EXPORT, ICONS.TABLE_EXPORT, tr("Export table", "table window"), this, SLOT(exportTable()), this);
+    createAction(IMPORT, ICONS.TABLE_IMPORT, tr("Import data to table", "table window"), this, SLOT(importTable()), this);
+    createAction(POPULATE, ICONS.TABLE_POPULATE, tr("Populate table", "table window"), this, SLOT(populateTable()), this);
+
     createStructureActions();
     createDataGridActions();
     createDataFormActions();
@@ -165,6 +170,10 @@ void TableWindow::createStructureActions()
     createAction(MOVE_COLUMN_UP, ICONS.MOVE_UP, tr("Move column up", "table window"), this, SLOT(moveColumnUp()), ui->structureToolBar, ui->structureView);
     createAction(MOVE_COLUMN_DOWN, ICONS.MOVE_DOWN, tr("Move column down", "table window"), this, SLOT(moveColumnDown()), ui->structureToolBar, ui->structureView);
     ui->structureToolBar->addSeparator();
+    ui->structureToolBar->addAction(actionMap[IMPORT]);
+    ui->structureToolBar->addAction(actionMap[EXPORT]);
+    ui->structureToolBar->addAction(actionMap[POPULATE]);
+    ui->structureToolBar->addSeparator();
     createAction(CREATE_SIMILAR, ICONS.TABLE_CREATE_SIMILAR, tr("Create similar table", "table window"), this, SLOT(createSimilarTable()), ui->structureToolBar);
 
     // Table constraints
@@ -182,10 +191,6 @@ void TableWindow::createStructureActions()
 
 void TableWindow::createDataGridActions()
 {
-    createAction(EXPORT, ICONS.TABLE_EXPORT, tr("Export table data", "table window"), this, SLOT(exportTable()), this);
-    createAction(IMPORT, ICONS.TABLE_IMPORT, tr("Import data to table", "table window"), this, SLOT(importTable()), this);
-    createAction(POPULATE, ICONS.TABLE_POPULATE, tr("Populate table", "table window"), this, SLOT(populateTable()), this);
-
     QAction* before = ui->dataView->getAction(DataView::FILTER_VALUE);
     ui->dataView->getGridToolBar()->insertAction(before, actionMap[IMPORT]);
     ui->dataView->getGridToolBar()->insertAction(before, actionMap[EXPORT]);
@@ -1056,7 +1061,9 @@ void TableWindow::addCheck()
 
 void TableWindow::exportTable()
 {
-    // TODO
+    ExportDialog dialog(this);
+    //dialog.setMode(ExportManager::TABLE);
+    dialog.exec();
 }
 
 void TableWindow::importTable()

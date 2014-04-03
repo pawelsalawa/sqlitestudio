@@ -17,13 +17,25 @@ class ExportPlugin : virtual public Plugin
          *
          * Format must be a single word name.
          */
-        virtual QString getFormatName() const;
+        virtual QString getFormatName() const = 0;
 
         /**
          * @brief Tells what standard exporting options should be displayed to the user on UI.
          * @return OR-ed set of option enum values.
          */
-        virtual ExportManager::StandardConfigOptions standardOptionsToEnable() const = 0;
+        virtual ExportManager::StandardConfigFlags standardOptionsToEnable() const = 0;
+
+        /**
+         * @brief Provides set of modes supported by this export plugin.
+         * @return OR-ed set of supported modes.
+         *
+         * Some export plugins might not support some of exporting modes. For example CSV export plugin
+         * will not support DATABASE exporting, because CSV cannot represent schema of the database.
+         *
+         * If a plugin doesn't return some mode in this method, then that plugin will be excluded
+         * from list of available formats to export, when user requests to export in this mode.
+         */
+        virtual ExportManager::ExportModes getSupportedModes() const = 0;
 
         /**
          * @brief Provides config object that holds configuration for exporting.
@@ -45,6 +57,15 @@ class ExportPlugin : virtual public Plugin
         virtual QString getConfigFormName(ExportManager::ExportMode mode) const = 0;
 
         /**
+         * @brief Provides usual file name extension used with this format.
+         * @return File name extension (like ".csv").
+         *
+         * This extension will be automatically appended to file name when user picked file name
+         * with file dialog, but the file extension part in the selected file was ommited.
+         */
+        virtual QString defaultFileExtension() const = 0;
+
+        /**
          * @brief Exports results of the query.
          * @param Db Database that the query was executed on.
          * @param query Query that was executed to get the results.
@@ -55,7 +76,7 @@ class ExportPlugin : virtual public Plugin
          *
          * Method should report any warnings, error messages, etc through NotifyManager, that is by using notifyError() and its family methods.
          */
-        virtual bool exportQueryResults(Db* db, const QString& query, SqlResultsPtr results, QList<QueryExecutor::ResultColumnPtr>& columns, QIODevice& output,
+        virtual bool exportQueryResults(Db* db, const QString& query, SqlResultsPtr results, QList<QueryExecutor::ResultColumnPtr>& columns, QIODevice* output,
                                         const ExportManager::StandardExportConfig& config) = 0;
 
         /**
@@ -73,7 +94,7 @@ class ExportPlugin : virtual public Plugin
          *
          * Method should report any warnings, error messages, etc through NotifyManager, that is by using notifyError() and its family methods.
          */
-        virtual bool exportTable(Db* db, const QString& database, const QString& table, const QString& ddl, SqlResultsPtr data, QIODevice& output,
+        virtual bool exportTable(Db* db, const QString& database, const QString& table, const QString& ddl, SqlResultsPtr data, QIODevice* output,
                                  const ExportManager::StandardExportConfig& config) = 0;
 
         /**
@@ -88,7 +109,7 @@ class ExportPlugin : virtual public Plugin
          *
          * Method should report any warnings, error messages, etc through NotifyManager, that is by using notifyError() and its family methods.
          */
-        virtual bool exportDatabase(Db* db, const QList<ExportManager::ExportObject>& objectsToExport, QIODevice& output,
+        virtual bool exportDatabase(Db* db, const QList<ExportManager::ExportObject>& objectsToExport, QIODevice* output,
                                     const ExportManager::StandardExportConfig& config) = 0;
 };
 
