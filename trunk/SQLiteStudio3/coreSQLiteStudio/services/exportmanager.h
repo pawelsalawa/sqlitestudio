@@ -1,6 +1,7 @@
 #ifndef EXPORTMANAGER_H
 #define EXPORTMANAGER_H
 
+#include "coreSQLiteStudio_global.h"
 #include "db/sqlresults.h"
 #include "db/db.h"
 #include <QObject>
@@ -13,16 +14,19 @@ class QueryExecutor;
  *
  * ExportManager is not thread-safe. Use it from single thread.
  */
-class ExportManager : public QObject
+class API_EXPORT ExportManager : public QObject
 {
         Q_OBJECT
     public:
-        enum class ExportMode
+        enum ExportMode
         {
-            DATABASE,
-            TABLE,
-            RESULTS
+            UNDEFINED = 0x0,
+            DATABASE  = 0x1,
+            TABLE     = 0x2,
+            RESULTS   = 0x3
         };
+
+        Q_DECLARE_FLAGS(ExportModes, ExportMode)
 
         struct ExportObject
         {
@@ -82,14 +86,6 @@ class ExportManager : public QObject
              * Default is true.
              */
             bool exportData = true;
-
-            /**
-             * @brief Indicates whether DDLs will be pre-formatted by SQL formatter when passed to export methods
-             * for exporting tables and databases.
-             *
-             * Default is true.
-             */
-            bool formatDdl = true;
         };
 
         /**
@@ -98,15 +94,12 @@ class ExportManager : public QObject
          * Each of enum represents single property of StandardExportConfig which will be
          * available on UI to configure.
          */
-        enum StandardConfigOptions
+        enum StandardConfigFlag
         {
-            CODEC,              /**< Text encoding (see StandardExportConfig::codec). */
-            FILENAME,           /**< File name to export to. This will show file entry with a 'Browse' button. */
-            CLIPBOARD,          /**< 'Export to clipboard' as an option to this export. Only valid if FILENAME is also present. */
-            OBJECTS_SELECTION,  /**< Shows option to select database objects to export in case of exporting a database. */
-            EXPORT_DATA,        /**< Shows checkbox to decide if table data should be exported in case of table and database exports. */
-            FORMAT_DDL          /**< Shows checkbox to decide if DDL should be formatted for exporting with the current SQL formatter. */
+            CODEC             = 0x01, /**< Text encoding (see StandardExportConfig::codec). */
         };
+
+        Q_DECLARE_FLAGS(StandardConfigFlags, StandardConfigFlag)
 
 
         explicit ExportManager(QObject *parent = 0);
@@ -128,7 +121,7 @@ class ExportManager : public QObject
          * If any export is already in progress, this method reports error in logs and does nothing.
          * If plugin for specified format cannot be found, then this method reports warning in logs and does nothing.
          */
-        void configure(const QString& format, StandardConfigOptions* config);
+        void configure(const QString& format, StandardExportConfig* config);
         bool isExportInProgress() const;
         void exportQueryResults(Db* db, const QString& query);
         void exportTable(Db* db, const QString& database, const QString& table);
@@ -137,7 +130,7 @@ class ExportManager : public QObject
     private:
         void invalidFormat(const QString& format);
         bool checkInitialConditions();
-        void processExportQueryResults(ExportPlugin* plugin, Db* db, const QString& query, SqlResultsPtr results);
+        void processExportQueryResults(Db* db, const QString& query, SqlResultsPtr results);
         QIODevice* getOutputStream();
 
         bool exportInProgress = false;
@@ -147,5 +140,8 @@ class ExportManager : public QObject
         QString format;
         ExportPlugin* plugin = nullptr;
 };
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(ExportManager::StandardConfigFlags)
+Q_DECLARE_OPERATORS_FOR_FLAGS(ExportManager::ExportModes)
 
 #endif // EXPORTMANAGER_H

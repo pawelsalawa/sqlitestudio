@@ -29,7 +29,7 @@ QStringList ExportManager::getAvailableFormats() const
     return formats;
 }
 
-void ExportManager::configure(const QString& format, StandardConfigOptions* config)
+void ExportManager::configure(const QString& format, StandardExportConfig* config)
 {
     if (exportInProgress)
     {
@@ -59,13 +59,13 @@ void ExportManager::exportQueryResults(Db* db, const QString& query)
         return;
 
     exportInProgress = true;
-    mode = ExportMode::RESULTS;
+    mode = RESULTS;
 
     executor->setDb(db);
     executor->setQuery(query);
     executor->exec([=](SqlResultsPtr results)
     {
-        this->processExportQueryResults(format, db, query, results);
+        this->processExportQueryResults(db, query, results);
     });
 }
 
@@ -112,7 +112,7 @@ bool ExportManager::checkInitialConditions()
     return true;
 }
 
-void ExportManager::processExportQueryResults(ExportPlugin* plugin, Db* db, const QString& query, SqlResultsPtr results)
+void ExportManager::processExportQueryResults(Db* db, const QString& query, SqlResultsPtr results)
 {
     QList<QueryExecutor::ResultColumnPtr> resultColumns = executor->getResultColumns();
     QIODevice* output = getOutputStream();
@@ -156,4 +156,5 @@ QIODevice* ExportManager::getOutputStream()
         }
         return file;
     }
+    return nullptr;
 }

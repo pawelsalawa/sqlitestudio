@@ -7,6 +7,8 @@
 #include <QDateTimeEdit>
 #include <QFileDialog>
 #include <QStringList>
+#include <QTextCodec>
+#include <QSet>
 
 QString getDbPath(const QString &startWith)
 {
@@ -43,4 +45,28 @@ void setValidStyle(QWidget *widget, bool valid)
         widget->setStyleSheet(valid ? "" : invalidBgStyleStr.arg(widget->metaObject()->className()));
     else
         widget->setStyleSheet(valid ? "" : invalidStyleStr.arg(widget->metaObject()->className()));
+}
+
+QStringList textCodecNames()
+{
+    QList<QByteArray> codecs = QTextCodec::availableCodecs();
+    QStringList names;
+    QSet<QString> nameSet;
+    for (const QByteArray& codec : codecs)
+        nameSet << QString::fromLatin1(codec.constData());
+
+    names = nameSet.toList();
+    qSort(names);
+    return names;
+}
+
+QTextCodec* codecForName(const QString& name)
+{
+    return QTextCodec::codecForName(name.toLatin1());
+}
+
+
+QString defaultCodecName()
+{
+    return QString::fromLatin1(QTextCodec::codecForLocale()->name());
 }

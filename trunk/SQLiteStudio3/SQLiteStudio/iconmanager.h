@@ -88,6 +88,7 @@ class IconManager
             DEF_ICON(ERASE,                             "erase")
             DEF_ICON(EXEC_QUERY,                        "exec_query")
             DEF_ICON(EXPLAIN_QUERY,                     "explain_query")
+            DEF_ICON(EXPORT_FILE_BROWSE,                "export_file_browse")
             DEF_ICON(FONT_BROWSE,                       "font_browse")
             DEF_ICON(FORMAT_SQL,                        "format_sql")
             DEF_ICON(FUNCTION,                          "function")
