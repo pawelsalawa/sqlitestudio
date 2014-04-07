@@ -205,7 +205,7 @@ Icon::operator Icon*()
 
 void Icon::init()
 {
-    qRegisterMetaType<Icon*>();
+    qRegisterMetaType<const Icon*>();
 }
 
 QString Icon::getFileName() const

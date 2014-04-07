@@ -1061,8 +1061,14 @@ void TableWindow::addCheck()
 
 void TableWindow::exportTable()
 {
+    if (!ExportManager::isAnyPluginAvailable())
+    {
+        notifyError(tr("Cannot export, because no export plugin is loaded."));
+        return;
+    }
+
     ExportDialog dialog(this);
-    //dialog.setMode(ExportManager::TABLE);
+    dialog.setTableMode(db, table);
     dialog.exec();
 }
 

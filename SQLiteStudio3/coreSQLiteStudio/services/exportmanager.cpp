@@ -158,3 +158,8 @@ QIODevice* ExportManager::getOutputStream()
     }
     return nullptr;
 }
+
+bool ExportManager::isAnyPluginAvailable()
+{
+    return !PLUGINS->getLoadedPlugins<ExportPlugin>().isEmpty();
+}

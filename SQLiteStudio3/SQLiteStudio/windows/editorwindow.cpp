@@ -20,6 +20,7 @@
 #include <QStringListModel>
 #include <QActionGroup>
 #include <QMessageBox>
+#include <dialogs/exportdialog.h>
 
 EditorWindow::ResultsDisplayMode EditorWindow::resultsDisplayMode;
 QHash<EditorWindow::Action,QAction*> EditorWindow::staticActions;
@@ -83,6 +84,8 @@ void EditorWindow::init()
     connect(ui->historyList->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
             this, SLOT(historyEntrySelected(QModelIndex,QModelIndex)));
     connect(ui->historyList, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(historyEntryActivated(QModelIndex)));
+
+    updateState();
 }
 
 void EditorWindow::loadTabsMode()
@@ -280,7 +283,7 @@ void EditorWindow::createActions()
     ui->toolBar->addAction(ui->sqlEdit->getAction(SqlEditor::SAVE_SQL_FILE));
     ui->toolBar->addAction(ui->sqlEdit->getAction(SqlEditor::OPEN_SQL_FILE));
     ui->toolBar->addSeparator();
-    ui->toolBar->addWidget(dbCombo);
+    actionMap[CURRENT_DB] = ui->toolBar->addWidget(dbCombo);
     ui->toolBar->addSeparator();
     ui->toolBar->addAction(staticActions[RESULTS_IN_TAB]);
     ui->toolBar->addAction(staticActions[RESULTS_BELOW]);
@@ -378,13 +381,11 @@ void EditorWindow::execQuery(bool explain)
         sql = ui->sqlEdit->toPlainText();
     }
 
-    // Forbid changing db during execution
-    dbCombo->setEnabled(false);
-
     resultsModel->setDb(getCurrentDb());
     resultsModel->setExplainMode(explain);
     resultsModel->setQuery(sql);
     ui->dataView->refreshData();
+    updateState();
 
     if (resultsDisplayMode == ResultsDisplayMode::SEPARATE_TAB)
     {
@@ -407,8 +408,6 @@ void EditorWindow::dbChanged()
 
 void EditorWindow::executionSuccessful()
 {
-    dbCombo->setEnabled(true);
-
     double secs = ((double)resultsModel->getExecutionTime()) / 1000;
     QString time = QString::number(secs, 'f', 3);
     notifyInfo(tr("Query finished in %2 second(s).").arg(time));
@@ -422,12 +421,16 @@ void EditorWindow::executionSuccessful()
     Db* currentDb = getCurrentDb();
     if (currentDb)
         DBTREE->refreshSchema(currentDb);
+
+    lastSuccessfulQuery = resultsModel->getQuery();
+
+    updateState();
 }
 
 void EditorWindow::executionFailed(const QString &errorText)
 {
-    dbCombo->setEnabled(true);
     notifyError(errorText);
+    updateState();
 }
 
 void EditorWindow::totalRowsAndPagesAvailable()
@@ -513,12 +516,37 @@ void EditorWindow::clearHistory()
 
 void EditorWindow::exportResults()
 {
-    qDebug() << "not implemented"; // TODO implement exportResults
+    if (!ExportManager::isAnyPluginAvailable())
+    {
+        notifyError(tr("Cannot export, because no export plugin is loaded."));
+        return;
+    }
+
+    QStringList queries = splitQueries(lastSuccessfulQuery, getCurrentDb()->getDialect(), false);
+    if (queries.size() == 0)
+    {
+        qWarning() << "No queries after split in EditorWindow::exportResults()";
+        return;
+    }
+
+    ExportDialog dialog(this);
+    dialog.setQueryMode(getCurrentDb(), queries.last().trimmed());
+    dialog.exec();
 }
 
 void EditorWindow::createViewFromQuery()
 {
     qDebug() << "not implemented"; // TODO implement createViewFromQuery
+}
+
+void EditorWindow::updateState()
+{
+    actionMap[EXPORT_RESULTS]->setEnabled(!lastSuccessfulQuery.isNull());
+
+    bool executionInProgress = resultsModel->isExecutionInProgress();
+    actionMap[CURRENT_DB]->setEnabled(!executionInProgress);
+    actionMap[EXEC_QUERY]->setEnabled(!executionInProgress);
+    actionMap[EXPLAIN_QUERY]->setEnabled(!executionInProgress);
 }
 
 int qHash(EditorWindow::ActionGroup actionGroup)

@@ -54,10 +54,10 @@ Qt::ItemFlags SelectableDbModel::flags(const QModelIndex& index) const
     if (!item)
         return itemFlags;
 
-
+    DbTreeItem::Type type = item->getType();
     if (item->getDb() && item->getDb()->getVersion() == disabledVersion)
         itemFlags ^= Qt::ItemIsEnabled;
-    else
+    else if (type == DbTreeItem::Type::DB || type == DbTreeItem::Type::INVALID_DB)
         itemFlags |= Qt::ItemIsUserCheckable;
 
     return itemFlags;

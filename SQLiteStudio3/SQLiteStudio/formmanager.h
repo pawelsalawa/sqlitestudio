@@ -15,6 +15,7 @@ class FormManager
 
         QWidget* createWidget(const QString& name);
         bool hasWidget(const QString& name);
+        QStringList getAvailableForms() const;
 
     private:
         void init();

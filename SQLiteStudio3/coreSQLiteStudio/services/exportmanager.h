@@ -127,6 +127,8 @@ class API_EXPORT ExportManager : public QObject
         void exportTable(Db* db, const QString& database, const QString& table);
         void exportDatabase(Db* db);
 
+        static bool isAnyPluginAvailable();
+
     private:
         void invalidFormat(const QString& format);
         bool checkInitialConditions();

@@ -382,14 +382,19 @@ QList<TokenList> splitQueries(const TokenList& tokenizedQuery, bool* complete)
     return queries;
 }
 
-QStringList splitQueries(const QString& sql, Dialect dialect, bool* complete)
+QStringList splitQueries(const QString& sql, Dialect dialect, bool keepEmptyQueries, bool* complete)
 {
     TokenList tokens = Lexer::tokenize(sql, dialect);
     QList<TokenList> tokenizedQueries = splitQueries(tokens, complete);
 
+    QString query;
     QStringList queries;
     foreach (const TokenList& queryTokens, tokenizedQueries)
-        queries << queryTokens.detokenize();
+    {
+        query = queryTokens.detokenize();
+        if (keepEmptyQueries || !query.trimmed().isEmpty())
+            queries << query;
+    }
 
     return queries;
 }
@@ -453,6 +458,7 @@ QList<QueryWithParamNames> getQueriesWithParamNames(const QString& query, Dialec
     TokenList allTokens = Lexer::tokenize(query, dialect);
     QList<TokenList> queries = splitQueries(allTokens);
 
+    QString queryStr;
     QStringList paramNames;
     foreach (const TokenList& tokens, queries)
     {
@@ -460,7 +466,9 @@ QList<QueryWithParamNames> getQueriesWithParamNames(const QString& query, Dialec
         foreach (const TokenPtr& token, tokens.filter(Token::BIND_PARAM))
             paramNames << trimBindParamPrefix(token->value);
 
-        results << QueryWithParamNames(tokens.detokenize(), paramNames);
+        queryStr = tokens.detokenize().trimmed();
+        if (!queryStr.isEmpty())
+            results << QueryWithParamNames(queryStr, paramNames);
     }
     return results;
 }
@@ -472,8 +480,13 @@ QList<QueryWithParamCount> getQueriesWithParamCount(const QString& query, Dialec
     TokenList allTokens = Lexer::tokenize(query, dialect);
     QList<TokenList> queries = splitQueries(allTokens);
 
+    QString queryStr;
     foreach (const TokenList& tokens, queries)
-        results << QueryWithParamCount(tokens.detokenize(), tokens.filter(Token::BIND_PARAM).size());
+    {
+        queryStr = tokens.detokenize().trimmed();
+        if (!queryStr.isEmpty())
+            results << QueryWithParamCount(queryStr, tokens.filter(Token::BIND_PARAM).size());
+    }
 
     return results;
 }

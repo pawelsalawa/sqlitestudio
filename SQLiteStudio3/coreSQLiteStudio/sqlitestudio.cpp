@@ -14,6 +14,7 @@
 #include "common/unused.h"
 #include "services/functionmanager.h"
 #include "plugins/scriptingplugin.h"
+#include "plugins/exportplugin.h"
 #include "plugins/scriptingqt.h"
 #include "plugins/dbpluginsqlite3.h"
 #include "services/impl/configimpl.h"
@@ -155,10 +156,11 @@ void SQLiteStudio::init(const QStringList& cmdListArguments)
     pluginManager = new PluginManagerImpl();
     dbManager = new DbManagerImpl();
 
-    pluginManager->registerPluginType<GeneralPurposePlugin>(QObject::tr("General purpose"));
-    pluginManager->registerPluginType<DbPlugin>(QObject::tr("Database support"));
-    pluginManager->registerPluginType<SqlFormatterPlugin>(QObject::tr("SQL formatter"), "formatterPluginsPage");
-    pluginManager->registerPluginType<ScriptingPlugin>(QObject::tr("Scripting languages"));
+    pluginManager->registerPluginType<GeneralPurposePlugin>(QObject::tr("General purpose", "plugin category name"));
+    pluginManager->registerPluginType<DbPlugin>(QObject::tr("Database support", "plugin category name"));
+    pluginManager->registerPluginType<SqlFormatterPlugin>(QObject::tr("SQL formatter", "plugin category name"), "formatterPluginsPage");
+    pluginManager->registerPluginType<ScriptingPlugin>(QObject::tr("Scripting languages", "plugin category name"));
+    pluginManager->registerPluginType<ExportPlugin>(QObject::tr("Exporting", "plugin category name"));
 
     sqlFormatter = new SqlFormatter();
     connect(CFG_CORE.General.ActiveSqlFormatter, SIGNAL(changed(QVariant)), this, SLOT(updateSqlFormatter()));

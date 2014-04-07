@@ -40,7 +40,7 @@
        <item>
         <widget class="QRadioButton" name="subjectTableRadio">
          <property name="text">
-          <string>Single table</string>
+          <string>A single table</string>
          </property>
         </widget>
        </item>
@@ -56,6 +56,7 @@
     </item>
    </layout>
   </widget>
+  <widget class="QWizardPage" name="proxyPage"/>
   <widget class="VerifiableWizardPage" name="tablePage">
    <property name="title">
     <string>Table to export</string>
@@ -129,29 +130,19 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWizardPage" name="databaseObjectsPage">
+  <widget class="VerifiableWizardPage" name="databaseObjectsPage">
    <property name="title">
     <string>Select database objects to export</string>
    </property>
    <layout class="QGridLayout" name="gridLayout_3">
-    <item row="1" column="0">
-     <widget class="QPushButton" name="objectsSelectAllButton">
-      <property name="text">
-       <string>Select all</string>
-      </property>
+    <item row="1" column="0" colspan="2">
+     <widget class="QTreeView" name="dbObjectsTree">
+      <attribute name="headerVisible">
+       <bool>false</bool>
+      </attribute>
      </widget>
     </item>
-    <item row="1" column="1">
-     <widget class="QPushButton" name="objectsDeselectAllButton">
-      <property name="text">
-       <string>Deselect all</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0" colspan="2">
-     <widget class="QTreeView" name="treeView"/>
-    </item>
-    <item row="2" column="0" colspan="2">
+    <item row="3" column="0" colspan="2">
      <widget class="QCheckBox" name="exportDbDataCheck">
       <property name="text">
        <string>Export data from tables</string>
@@ -161,15 +152,56 @@
       </property>
      </widget>
     </item>
+    <item row="2" column="0">
+     <widget class="QPushButton" name="objectsSelectAllButton">
+      <property name="text">
+       <string>Select all</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QPushButton" name="objectsDeselectAllButton">
+      <property name="text">
+       <string>Deselect all</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QComboBox" name="dbObjectsDatabaseCombo"/>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="dbObjectsDatabaseLabel">
+      <property name="text">
+       <string>Database:</string>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
-  <widget class="QWizardPage" name="queryPage">
+  <widget class="VerifiableWizardPage" name="queryPage">
    <property name="title">
     <string>Query to export results for</string>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout_6">
-    <item>
+   <layout class="QGridLayout" name="gridLayout_5">
+    <item row="2" column="0" colspan="2">
      <widget class="SqlEditor" name="queryEdit"/>
+    </item>
+    <item row="0" column="1">
+     <widget class="QComboBox" name="queryDatabaseCombo"/>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="queryDatabaseLabel">
+      <property name="text">
+       <string>Database:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Query to be executed for results:</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>

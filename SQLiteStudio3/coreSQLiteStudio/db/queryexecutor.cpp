@@ -158,17 +158,6 @@ void QueryExecutor::exec(Db::QueryResultsHandler resultsHandler)
         return;
     }
 
-    this->resultsHandler = resultsHandler;
-    QThreadPool::globalInstance()->start(this);
-}
-
-void QueryExecutor::run()
-{
-    execInternal();
-}
-
-void QueryExecutor::execInternal()
-{
     // Get exclusive flow for execution on this query executor
     executionMutex.lock();
     if (executionInProgress)
@@ -180,6 +169,17 @@ void QueryExecutor::execInternal()
     executionInProgress = true;
     executionMutex.unlock();
 
+    this->resultsHandler = resultsHandler;
+    QThreadPool::globalInstance()->start(this);
+}
+
+void QueryExecutor::run()
+{
+    execInternal();
+}
+
+void QueryExecutor::execInternal()
+{
     simpleExecution = false;
     interrupted = false;
 

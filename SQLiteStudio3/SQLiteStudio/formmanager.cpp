@@ -39,6 +39,11 @@ bool FormManager::hasWidget(const QString& name)
     return widgetNameToFullPath.contains(name);
 }
 
+QStringList FormManager::getAvailableForms() const
+{
+    return widgetNameToFullPath.keys();
+}
+
 QWidget* FormManager::createWidgetByFullPath(const QString& path)
 {
     QFile file(path);

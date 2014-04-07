@@ -53,6 +53,7 @@ class SqlQueryModel : public QStandardItemModel
         QList<SqlQueryItem*> getRow(int row);
         int columnCount(const QModelIndex& parent = QModelIndex()) const;
         QVariant headerData(int section, Qt::Orientation orientation, int role) const;
+        bool isExecutionInProgress() const;
 
         virtual Features features() const;
 

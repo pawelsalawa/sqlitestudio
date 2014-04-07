@@ -19,6 +19,8 @@
 #include "customconfigwidgetplugin.h"
 #include "sqlitesyntaxhighlighter.h"
 #include "qtscriptsyntaxhighlighter.h"
+#include "services/exportmanager.h"
+#include "dialogs/exportdialog.h"
 #include <QMdiSubWindow>
 #include <QDebug>
 #include <QStyleFactory>
@@ -126,7 +128,10 @@ void MainWindow::createActions()
     createAction(OPEN_DDL_HISTORY, ICONS.DDL_HISTORY, tr("Open DDL history"), this, SLOT(openDdlHistorySlot()), ui->mainToolBar);
     createAction(OPEN_FUNCTION_EDITOR, ICONS.FUNCTION, tr("Open SQL functions editor"), this, SLOT(openFunctionEditorSlot()), ui->mainToolBar);
     createAction(OPEN_COLLATION_EDITOR, ICONS.CONSTRAINT_COLLATION, tr("Open collations editor"), this, SLOT(openCollationEditorSlot()), ui->mainToolBar);
+    createAction(EXPORT, ICONS.EXPORT, tr("Export"), this, SLOT(exportAnything()), ui->mainToolBar);
+    ui->mainToolBar->addSeparator();
     createAction(OPEN_CONFIG, ICONS.CONFIGURE, tr("Open configuration dialog"), this, SLOT(openConfig()), ui->mainToolBar);
+
     createAction(MDI_TILE, ICONS.WIN_TILE, tr("Tile windows"), ui->mdiArea, SLOT(tileSubWindows()), ui->viewToolbar);
     createAction(MDI_TILE_HORIZONTAL, ICONS.WIN_TILE_HORIZONTAL, tr("Tile windows horizontally"), ui->mdiArea, SLOT(tileHorizontally()), ui->viewToolbar);
     createAction(MDI_TILE_VERTICAL, ICONS.WIN_TILE_VERTICAL, tr("Tile windows vertically"), ui->mdiArea, SLOT(tileVertically()), ui->viewToolbar);
@@ -216,6 +221,19 @@ void MainWindow::initMenuBar()
 
     viewMenu->addSeparator();
     viewMenu->addMenu(mdiMenu);
+
+    // Tools menu
+    QMenu* toolsMenu = new QMenu(this);
+    toolsMenu->setTitle(tr("Tools", "menubar"));
+    menuBar()->addMenu(toolsMenu);
+
+    toolsMenu->addAction(actionMap[OPEN_SQL_EDITOR]);
+    toolsMenu->addAction(actionMap[OPEN_DDL_HISTORY]);
+    toolsMenu->addAction(actionMap[OPEN_FUNCTION_EDITOR]);
+    toolsMenu->addAction(actionMap[OPEN_COLLATION_EDITOR]);
+    toolsMenu->addAction(actionMap[EXPORT]);
+    toolsMenu->addSeparator();
+    toolsMenu->addAction(actionMap[OPEN_CONFIG]);
 }
 
 void MainWindow::saveSession(MdiWindow* currWindow)
@@ -408,29 +426,21 @@ void MainWindow::openCollationEditorSlot()
     openCollationEditor();
 }
 
+void MainWindow::exportAnything()
+{
+    if (!ExportManager::isAnyPluginAvailable())
+    {
+        notifyError(tr("Cannot export, because no export plugin is loaded."));
+        return;
+    }
+
+    ExportDialog dialog(this);
+    dialog.exec();
+}
+
 DdlHistoryWindow* MainWindow::openDdlHistory()
 {
     return openMdiWindow<DdlHistoryWindow>();
-//    DdlHistoryWindow* win = nullptr;
-//    foreach (MdiWindow* mdiWin, ui->mdiArea->getWindows())
-//    {
-//        win = dynamic_cast<DdlHistoryWindow*>(mdiWin->getMdiChild());
-//        if (win)
-//        {
-//            ui->mdiArea->setActiveSubWindow(mdiWin);
-//            return win;
-//        }
-//    }
-
-//    win = new DdlHistoryWindow(ui->mdiArea);
-//    if (win->isInvalid())
-//    {
-//        delete win;
-//        return nullptr;
-//    }
-
-//    ui->mdiArea->addSubWindow(win);
-//    return win;
 }
 
 FunctionsEditor* MainWindow::openFunctionEditor()

@@ -40,7 +40,8 @@ class MainWindow : public QMainWindow, virtual public ExtActionContainer
             OPEN_CONFIG,
             OPEN_DDL_HISTORY,
             OPEN_FUNCTION_EDITOR,
-            OPEN_COLLATION_EDITOR
+            OPEN_COLLATION_EDITOR,
+            EXPORT
         };
 
         static MainWindow* getInstance();
@@ -94,6 +95,7 @@ class MainWindow : public QMainWindow, virtual public ExtActionContainer
         void openDdlHistorySlot();
         void openFunctionEditorSlot();
         void openCollationEditorSlot();
+        void exportAnything();
 };
 
 template <class T>
