@@ -91,6 +91,6 @@ class Icon
         static QHash<QString,Icon*> instances;
 };
 
-Q_DECLARE_METATYPE(Icon*)
+Q_DECLARE_METATYPE(const Icon*)
 
 #endif // ICONS_H

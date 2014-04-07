@@ -256,9 +256,9 @@ void DbTreeItem::setDb(const QString& dbName)
     setData(dbName, DataRole::DB);
 }
 
-Icon* DbTreeItem::getIcon() const
+const Icon* DbTreeItem::getIcon() const
 {
-    return data(DataRole::ICON_PTR).value<Icon*>();
+    return data(DataRole::ICON_PTR).value<const Icon*>();
 }
 
 void DbTreeItem::setHidden(bool hidden)
@@ -274,7 +274,7 @@ bool DbTreeItem::isHidden() const
 
 void DbTreeItem::setIcon(const Icon& icon)
 {
-    setData(&icon, DataRole::ICON_PTR);
+    setData(QVariant::fromValue(&icon), DataRole::ICON_PTR);
     if (!icon.isNull())
         QStandardItem::setIcon(icon);
 }

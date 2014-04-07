@@ -4,6 +4,16 @@
 #include "plugins/exportplugin.h"
 #include "plugins/genericplugin.h"
 #include "sqlexport_global.h"
+#include "config_builder.h"
+
+CFG_CATEGORIES(SqlExportConfig,
+     CFG_CATEGORY(SqlExport,
+         CFG_ENTRY(QString, QueryTable, QString::null)
+     )
+)
+
+CFG_DECLARE(SqlExportConfig)
+#define SQL_EXPORT_CFG CFG_INSTANCE(SqlExportConfig)
 
 class SQLEXPORTSHARED_EXPORT SqlExport : public GenericPlugin, public ExportPlugin
 {

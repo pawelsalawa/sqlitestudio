@@ -126,7 +126,8 @@ SOURCES += main.cpp\
     configmapper.cpp \
     dialogs/exportdialog.cpp \
     dbobjlistmodel.cpp \
-    common/verifiablewizardpage.cpp
+    common/verifiablewizardpage.cpp \
+    selectabledbobjmodel.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -238,7 +239,8 @@ HEADERS  += mainwindow.h \
     configmapper.h \
     dialogs/exportdialog.h \
     dbobjlistmodel.h \
-    common/verifiablewizardpage.h
+    common/verifiablewizardpage.h \
+    selectabledbobjmodel.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \

@@ -38,6 +38,7 @@ class EditorWindow : public MdiChild, public ExtActionContainer
             EXPLAIN_QUERY,
             RESULTS_IN_TAB,
             RESULTS_BELOW,
+            CURRENT_DB,
             NEXT_DB,
             PREV_DB,
             SHOW_NEXT_TAB,
@@ -93,6 +94,7 @@ class EditorWindow : public MdiChild, public ExtActionContainer
         DbListModel* dbComboModel;
         int sqlEditorNum = 1;
         qint64 lastQueryHistoryId = 0;
+        QString lastSuccessfulQuery;
 
     private slots:
         void execQuery(bool explain = false);
@@ -113,6 +115,7 @@ class EditorWindow : public MdiChild, public ExtActionContainer
         void clearHistory();
         void exportResults();
         void createViewFromQuery();
+        void updateState();
 };
 
 int qHash(EditorWindow::ActionGroup action);

@@ -10,6 +10,7 @@ namespace Ui {
 
 class DbListModel;
 class DbObjListModel;
+class SelectableDbObjModel;
 
 class ExportDialog : public QWizard
 {
@@ -28,6 +29,8 @@ class ExportDialog : public QWizard
         void init();
         void initModePage();
         void initTablePage();
+        void initQueryPage();
+        void initDbObjectsPage();
         void initFormatPage();
         void initPageOrder();
         int pageId(QWizardPage* wizardPage) const;
@@ -35,6 +38,8 @@ class ExportDialog : public QWizard
         void queryPageDisplayed();
         void dbObjectsPageDisplayed();
         void formatPageDisplayed();
+        ExportPlugin* getSelectedPlugin() const;
+        void updatePluginOptions(ExportPlugin* plugin, int& optionsRow);
 
         QHash<ExportManager::ExportMode,QList<QWizardPage*>> pageOrder;
 
@@ -44,16 +49,23 @@ class ExportDialog : public QWizard
         QString query;
         QString table;
         DbListModel* dbListModel = nullptr;
-        DbObjListModel* dbObjListModel = nullptr;
+        DbObjListModel* tablesModel = nullptr;
+        SelectableDbObjModel* selectableDbListModel = nullptr;
+        QWidget* pluginOptionsWidget = nullptr;
+        bool tablePageVisited = false;
+        bool queryPageVisited = false;
+        bool dbObjectsPageVisited = false;
+        bool formatPageVisited = false;
 
     private slots:
         void updateExportMode();
         void pageChanged(int pageId);
         void updateDbTables();
         void browseForExportFile();
-
-    public slots:
-        int exec();
+        void pluginSelected();
+        void updateDbObjTree();
+        void dbObjectsSelectAll();
+        void dbObjectsDeselectAll();
 };
 
 #endif // EXPORTDIALOG_H

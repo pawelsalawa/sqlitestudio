@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 include($$PWD/../SQLiteStudio3/plugins.pri)
+include($$PWD/../SQLiteStudio3/utils.pri)
 
 QT       -= gui
 
@@ -24,3 +25,8 @@ unix {
     target.path = /usr/lib
     INSTALLS += target
 }
+
+FORMS += \
+    SqlExportQuery.ui
+
+copy_file(SqlExportQuery.ui, $$DESTDIR/SqlExportQuery.ui)

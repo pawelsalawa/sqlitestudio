@@ -1197,6 +1197,11 @@ QVariant SqlQueryModel::headerData(int section, Qt::Orientation orientation, int
         return rowNumBase + section;
 }
 
+bool SqlQueryModel::isExecutionInProgress() const
+{
+    return queryExecutor->isExecutionInProgress();
+}
+
 void SqlQueryModel::CommitUpdateQueryBuilder::clear()
 {
     database.clear();

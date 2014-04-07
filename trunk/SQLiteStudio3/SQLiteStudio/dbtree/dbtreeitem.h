@@ -31,7 +31,6 @@ class DbTreeItem : public QObject, public QStandardItem
         };
 
         DbTreeItem(Type type, const Icon& icon, const QString& nodeName, QObject* parent = 0);
-        DbTreeItem(Type type, const QString& nodeName, QObject* parent = 0);
         DbTreeItem(const DbTreeItem& item);
         DbTreeItem();
 
@@ -71,7 +70,7 @@ class DbTreeItem : public QObject, public QStandardItem
         Db* getDb() const;
         void setDb(Db* value);
         void setDb(const QString& dbName);
-        Icon* getIcon() const;
+        const Icon* getIcon() const;
         void setHidden(bool hidden);
         bool isHidden() const;
         void setIcon(const Icon& icon);
@@ -88,6 +87,8 @@ class DbTreeItem : public QObject, public QStandardItem
                 HIDDEN = 1004
             };
         };
+
+        DbTreeItem(Type type, const QString& nodeName, QObject* parent = 0);
 
         void init();
         void getPathToRoot(QList<DbTreeItem*>& path);
