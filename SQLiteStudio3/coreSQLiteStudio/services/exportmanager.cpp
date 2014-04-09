@@ -3,6 +3,8 @@
 #include "plugins/exportplugin.h"
 #include "services/notifymanager.h"
 #include "db/queryexecutor.h"
+#include "exportworker.h"
+#include <QThreadPool>
 #include <QBuffer>
 #include <QDebug>
 #include <QDir>
@@ -27,6 +29,11 @@ QStringList ExportManager::getAvailableFormats() const
         formats << plugin->getFormatName();
 
     return formats;
+}
+
+void ExportManager::configure(const QString& format, const StandardExportConfig& config)
+{
+    configure(format, new StandardExportConfig(config));
 }
 
 void ExportManager::configure(const QString& format, StandardExportConfig* config)
@@ -59,26 +66,48 @@ void ExportManager::exportQueryResults(Db* db, const QString& query)
         return;
 
     exportInProgress = true;
-    mode = RESULTS;
+    mode = QUERY_RESULTS;
 
-    executor->setDb(db);
-    executor->setQuery(query);
-    executor->exec([=](SqlResultsPtr results)
-    {
-        this->processExportQueryResults(db, query, results);
-    });
+    ExportWorker* worker = prepareExport();
+    if (!worker)
+        return;
+
+    worker->prepareExportQueryResults(db, query);
+    QThreadPool::globalInstance()->start(worker);
 }
 
 void ExportManager::exportTable(Db* db, const QString& database, const QString& table)
 {
+    static const QString sql = QStringLiteral("SELECT * FROM %1");
+
     if (!checkInitialConditions())
         return;
+
+    exportInProgress = true;
+    mode = TABLE;
+
+    ExportWorker* worker = prepareExport();
+    if (!worker)
+        return;
+
+    worker->prepareExportTable(db, database, table);
+    QThreadPool::globalInstance()->start(worker);
 }
 
-void ExportManager::exportDatabase(Db* db)
+void ExportManager::exportDatabase(Db* db, const QStringList& objectListToExport)
 {
     if (!checkInitialConditions())
         return;
+
+    exportInProgress = true;
+    mode = DATABASE;
+
+    ExportWorker* worker = prepareExport();
+    if (!worker)
+        return;
+
+    worker->prepareExportDatabase(db, objectListToExport);
+    QThreadPool::globalInstance()->start(worker);
 }
 
 ExportPlugin* ExportManager::getPluginForFormat(const QString& formatName) const
@@ -112,27 +141,40 @@ bool ExportManager::checkInitialConditions()
     return true;
 }
 
-void ExportManager::processExportQueryResults(Db* db, const QString& query, SqlResultsPtr results)
+ExportWorker* ExportManager::prepareExport()
 {
-    QList<QueryExecutor::ResultColumnPtr> resultColumns = executor->getResultColumns();
     QIODevice* output = getOutputStream();
     if (!output)
     {
+        emit exportFailed();
         exportInProgress = false;
-        return;
+        return nullptr;
     }
 
-    bool res = plugin->exportQueryResults(db, query, results, resultColumns, output, *config);
+    ExportWorker* worker = new ExportWorker(plugin, config, output);
+    connect(worker, SIGNAL(finished(bool,QIODevice*)), this, SLOT(finalizeExport(bool,QIODevice*)));
+    return worker;
+}
+
+void ExportManager::finalizeExport(bool result, QIODevice* output)
+{
     output->close();
     delete output;
 
-    if (res)
+    if (result)
     {
         if (config->intoClipboard)
-            notifyInfo(tr("Query results successfly exported to the clipboard."));
+            notifyInfo(tr("Export to the clipboard was successful."));
         else
-            notifyInfo(tr("Query results successfly exported to file: %1").arg(config->outputFileName));
+            notifyInfo(tr("Export to the file '%1' was successful.").arg(config->outputFileName));
+
+        emit exportSuccessful();
     }
+    else
+    {
+        emit exportFailed();
+    }
+    emit exportFinished();
 
     exportInProgress = false;
 }

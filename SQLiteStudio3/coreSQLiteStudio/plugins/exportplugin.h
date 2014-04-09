@@ -109,7 +109,7 @@ class ExportPlugin : virtual public Plugin
          *
          * Method should report any warnings, error messages, etc through NotifyManager, that is by using notifyError() and its family methods.
          */
-        virtual bool exportDatabase(Db* db, const QList<ExportManager::ExportObject>& objectsToExport, QIODevice* output,
+        virtual bool exportDatabase(Db* db, const QList<ExportManager::ExportObjectPtr>& objectsToExport, QIODevice* output,
                                     const ExportManager::StandardExportConfig& config) = 0;
 };
 

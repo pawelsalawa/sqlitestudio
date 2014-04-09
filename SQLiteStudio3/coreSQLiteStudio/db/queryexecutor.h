@@ -935,6 +935,11 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          */
         void setPreloadResults(bool value);
 
+        bool getAsyncMode() const;
+        void setAsyncMode(bool value);
+
+        SqlResultsPtr getResults() const;
+
     private:
         /**
          * @brief Executes query.
@@ -1172,6 +1177,14 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          * See Context::preloadResults.
          */
         bool preloadResults = false;
+
+        /**
+         * @brief Determinates if asynchronous mode is used.
+         *
+         * By default QueryExecutor runs in asynchronous mode (in another thread).
+         * You can set this to false to make exec() work synchronously, on calling thread.
+         */
+        bool asyncMode = true;
 
         /**
          * @brief Chain of executor steps.

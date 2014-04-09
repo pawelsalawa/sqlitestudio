@@ -170,7 +170,11 @@ void QueryExecutor::exec(Db::QueryResultsHandler resultsHandler)
     executionMutex.unlock();
 
     this->resultsHandler = resultsHandler;
-    QThreadPool::globalInstance()->start(this);
+
+    if (asyncMode)
+        QThreadPool::globalInstance()->start(this);
+    else
+        run();
 }
 
 void QueryExecutor::run()
@@ -488,12 +492,25 @@ bool QueryExecutor::handleRowCountingResults(quint32 asyncId, SqlResultsPtr resu
 
     return true;
 }
+SqlResultsPtr QueryExecutor::getResults() const
+{
+    return context->executionResults;
+}
+
+bool QueryExecutor::getAsyncMode() const
+{
+    return asyncMode;
+}
+
+void QueryExecutor::setAsyncMode(bool value)
+{
+    asyncMode = value;
+}
 
 void QueryExecutor::setPreloadResults(bool value)
 {
     preloadResults = value;
 }
-
 
 bool QueryExecutor::getExplainMode() const
 {

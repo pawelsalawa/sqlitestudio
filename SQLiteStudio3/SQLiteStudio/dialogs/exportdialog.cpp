@@ -11,6 +11,9 @@
 #include "selectabledbobjmodel.h"
 #include "dbtree/dbtree.h"
 #include "dbtree/dbtreemodel.h"
+#include "schemaresolver.h"
+#include "common/widgetcover.h"
+#include "services/notifymanager.h"
 #include <QDebug>
 #include <QDir>
 #include <QFileDialog>
@@ -32,6 +35,10 @@ ExportDialog::~ExportDialog()
 void ExportDialog::init()
 {
     ui->setupUi(this);
+
+    widgetCover = new WidgetCover(this);
+    widgetCover->setVisible(false);
+
     initPageOrder();
 
     initModePage();
@@ -41,6 +48,8 @@ void ExportDialog::init()
     initDbObjectsPage();
 
     connect(this, SIGNAL(currentIdChanged(int)), this, SLOT(pageChanged(int)));
+    connect(EXPORT_MANAGER, SIGNAL(exportSuccessful()), this, SLOT(success()));
+    connect(EXPORT_MANAGER, SIGNAL(exportFinished()), this, SLOT(hideCoverWidget()));
 }
 
 void ExportDialog::setTableMode(Db* db, const QString& table)
@@ -73,7 +82,7 @@ void ExportDialog::setQueryMode(Db* db, const QString& query)
     }
 
     setStartId(pageId(ui->queryPage));
-    exportMode = ExportManager::RESULTS;
+    exportMode = ExportManager::QUERY_RESULTS;
     this->db = db;
     this->query = query;
 
@@ -193,12 +202,18 @@ int ExportDialog::nextId() const
     return -1;
 }
 
+void ExportDialog::resizeEvent(QResizeEvent* e)
+{
+    widgetCover->widgetResized();
+    QWizard::resizeEvent(e);
+}
+
 void ExportDialog::initPageOrder()
 {
     setStartId(pageId(ui->exportSubjectPage));
     pageOrder[ExportManager::DATABASE] = {ui->databaseObjectsPage, ui->formatAndOptionsPage};
     pageOrder[ExportManager::TABLE] = {ui->tablePage, ui->formatAndOptionsPage};
-    pageOrder[ExportManager::RESULTS] = {ui->queryPage, ui->formatAndOptionsPage};
+    pageOrder[ExportManager::QUERY_RESULTS] = {ui->queryPage, ui->formatAndOptionsPage};
     updateExportMode();
 }
 
@@ -258,9 +273,7 @@ void ExportDialog::formatPageDisplayed()
 {
     if (!formatPageVisited)
     {
-        for (ExportPlugin* plugin : PLUGINS->getLoadedPlugins<ExportPlugin>())
-            ui->formatCombo->addItem(plugin->getFormatName());
-
+        ui->formatCombo->addItems(EXPORT_MANAGER->getAvailableFormats());
         ui->encodingCombo->addItems(textCodecNames());
         ui->encodingCombo->setCurrentText(defaultCodecName());
 
@@ -272,12 +285,7 @@ void ExportDialog::formatPageDisplayed()
 
 ExportPlugin* ExportDialog::getSelectedPlugin() const
 {
-    for (ExportPlugin* plugin : PLUGINS->getLoadedPlugins<ExportPlugin>())
-    {
-        if (plugin->getFormatName() == ui->formatCombo->currentText())
-            return plugin;
-    }
-    return nullptr;
+    return EXPORT_MANAGER->getPluginForFormat(ui->formatCombo->currentText());
 }
 
 void ExportDialog::updateExportMode()
@@ -287,7 +295,7 @@ void ExportDialog::updateExportMode()
     else if (ui->subjectTableRadio->isChecked())
         exportMode = ExportManager::TABLE;
     else if (ui->subjectQueryRadio->isChecked())
-        exportMode = ExportManager::RESULTS;
+        exportMode = ExportManager::QUERY_RESULTS;
     else
         exportMode = ExportManager::UNDEFINED;
 }
@@ -376,6 +384,21 @@ void ExportDialog::dbObjectsDeselectAll()
     selectableDbListModel->setRootChecked(false);
 }
 
+void ExportDialog::hideCoverWidget()
+{
+    widgetCover->hide();
+}
+
+void ExportDialog::success()
+{
+    QWizard::accept();
+}
+
+void ExportDialog::accept()
+{
+    doExport();
+}
+
 void ExportDialog::updatePluginOptions(ExportPlugin* plugin, int& optionsRow)
 {
     safe_delete(pluginOptionsWidget);
@@ -411,4 +434,103 @@ void ExportDialog::updatePluginOptions(ExportPlugin* plugin, int& optionsRow)
 
     ConfigMapper mapper(cfgMain);
     mapper.loadToWidget(pluginOptionsWidget);
+}
+
+void ExportDialog::doExport()
+{
+    widgetCover->show();
+
+    ExportManager::StandardExportConfig stdConfig = getExportConfig();
+    QString format = ui->formatCombo->currentText();
+    switch (exportMode)
+    {
+        case ExportManager::DATABASE:
+            exportDatabase(stdConfig, format);
+            break;
+        case ExportManager::TABLE:
+            exportTable(stdConfig, format);
+            break;
+        case ExportManager::QUERY_RESULTS:
+            exportQuery(stdConfig, format);
+            break;
+        case ExportManager::UNDEFINED:
+            qCritical() << "Finished export dialog with undefined mode.";
+            notifyInternalError();
+            break;
+    }
+}
+
+void ExportDialog::exportDatabase(const ExportManager::StandardExportConfig& stdConfig, const QString& format)
+{
+    Db* db = getDbForExport(ui->dbObjectsDatabaseCombo->currentText());
+    if (!db)
+        return;
+
+    EXPORT_MANAGER->configure(format, stdConfig);
+    EXPORT_MANAGER->exportDatabase(db, selectableDbListModel->getCheckedObjects());
+}
+
+void ExportDialog::exportTable(const ExportManager::StandardExportConfig& stdConfig, const QString& format)
+{
+    Db* db = getDbForExport(ui->exportTableDbNameCombo->currentText());
+    if (!db)
+        return;
+
+    EXPORT_MANAGER->configure(format, stdConfig);
+    // TODO when dbnames are fully supported, pass the dbname below
+    EXPORT_MANAGER->exportTable(db, QString::null, ui->exportTableNameCombo->currentText());
+}
+
+void ExportDialog::exportQuery(const ExportManager::StandardExportConfig& stdConfig, const QString& format)
+{
+    Db* db = getDbForExport(ui->queryDatabaseCombo->currentText());
+    if (!db)
+        return;
+
+    EXPORT_MANAGER->configure(format, stdConfig);
+    EXPORT_MANAGER->exportQueryResults(db, ui->queryEdit->toPlainText());
+}
+
+ExportManager::StandardExportConfig ExportDialog::getExportConfig() const
+{
+    bool clipboard = ui->exportClipboardRadio->isChecked();
+
+    ExportManager::StandardExportConfig stdConfig;
+    stdConfig.intoClipboard = clipboard;
+
+    if (clipboard)
+        stdConfig.outputFileName = QString::null;
+    else
+        stdConfig.outputFileName = ui->exportFileEdit->text();
+
+    if (exportMode == ExportManager::DATABASE)
+        stdConfig.exportData = ui->exportDbDataCheck->isChecked();
+    else if (exportMode == ExportManager::TABLE)
+        stdConfig.exportData = ui->exportTableDataCheck->isChecked();
+    else
+        stdConfig.exportData = false;
+
+    if (ui->encodingCombo->isVisible() && ui->encodingCombo->currentIndex() > -1)
+        stdConfig.codec = ui->encodingCombo->currentText();
+    else
+        stdConfig.codec = defaultCodecName();
+
+    return stdConfig;
+}
+
+Db* ExportDialog::getDbForExport(const QString& name)
+{
+    Db* db = DBLIST->getByName(name);
+    if (!db)
+    {
+        qCritical() << "Could not find db selected in combo:" << name;
+        notifyInternalError();
+        return nullptr;
+    }
+    return db;
+}
+
+void ExportDialog::notifyInternalError()
+{
+    notifyError(tr("Internal error during export. This is a bug. Please report it."));
 }
