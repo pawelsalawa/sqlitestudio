@@ -11,6 +11,7 @@ namespace Ui {
 class DbListModel;
 class DbObjListModel;
 class SelectableDbObjModel;
+class WidgetCover;
 
 class ExportDialog : public QWizard
 {
@@ -24,6 +25,9 @@ class ExportDialog : public QWizard
         void setQueryMode(Db* db, const QString& query);
         void setDatabaseMode(Db* db);
         int nextId() const;
+
+    protected:
+        void resizeEvent(QResizeEvent* e);
 
     private:
         void init();
@@ -40,6 +44,13 @@ class ExportDialog : public QWizard
         void formatPageDisplayed();
         ExportPlugin* getSelectedPlugin() const;
         void updatePluginOptions(ExportPlugin* plugin, int& optionsRow);
+        void doExport();
+        void exportDatabase(const ExportManager::StandardExportConfig& stdConfig, const QString& format);
+        void exportTable(const ExportManager::StandardExportConfig& stdConfig, const QString& format);
+        void exportQuery(const ExportManager::StandardExportConfig& stdConfig, const QString& format);
+        ExportManager::StandardExportConfig getExportConfig() const;
+        Db* getDbForExport(const QString& name);
+        void notifyInternalError();
 
         QHash<ExportManager::ExportMode,QList<QWizardPage*>> pageOrder;
 
@@ -56,6 +67,7 @@ class ExportDialog : public QWizard
         bool queryPageVisited = false;
         bool dbObjectsPageVisited = false;
         bool formatPageVisited = false;
+        WidgetCover* widgetCover = nullptr;
 
     private slots:
         void updateExportMode();
@@ -66,6 +78,11 @@ class ExportDialog : public QWizard
         void updateDbObjTree();
         void dbObjectsSelectAll();
         void dbObjectsDeselectAll();
+        void hideCoverWidget();
+        void success();
+
+    public slots:
+        void accept();
 };
 
 #endif // EXPORTDIALOG_H

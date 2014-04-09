@@ -36,7 +36,7 @@ class SQLEXPORTSHARED_EXPORT SqlExport : public GenericPlugin, public ExportPlug
                                 const ExportManager::StandardExportConfig& config);
         bool exportTable(Db* db, const QString& database, const QString& table, const QString& ddl, SqlResultsPtr data, QIODevice* output,
                          const ExportManager::StandardExportConfig& config);
-        bool exportDatabase(Db* db, const QList<ExportManager::ExportObject>& objectsToExport, QIODevice* output,
+        bool exportDatabase(Db* db, const QList<ExportManager::ExportObjectPtr>& objectsToExport, QIODevice* output,
                             const ExportManager::StandardExportConfig& config);
 };
 

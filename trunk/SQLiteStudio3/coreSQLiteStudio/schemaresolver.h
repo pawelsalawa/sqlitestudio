@@ -15,6 +15,8 @@ class Db;
 class SqliteCreateTable;
 class SqliteQuery;
 
+// TODO add cache
+
 class API_EXPORT SchemaResolver
 {
     public:

@@ -8,6 +8,7 @@
 
 class ExportPlugin;
 class QueryExecutor;
+class ExportWorker;
 
 /**
  * @brief Provides database exporting capabilities.
@@ -20,10 +21,10 @@ class API_EXPORT ExportManager : public QObject
     public:
         enum ExportMode
         {
-            UNDEFINED = 0x0,
-            DATABASE  = 0x1,
-            TABLE     = 0x2,
-            RESULTS   = 0x3
+            UNDEFINED     = 0x0,
+            DATABASE      = 0x1,
+            TABLE         = 0x2,
+            QUERY_RESULTS = 0x3
         };
 
         Q_DECLARE_FLAGS(ExportModes, ExportMode)
@@ -38,10 +39,14 @@ class API_EXPORT ExportManager : public QObject
                 VIEW
             };
 
-            QString database;
+            Type type;
+            QString database; // TODO fill when dbnames are fully supported
             QString name;
+            QString ddl;
             SqlResultsPtr data;
         };
+
+        typedef QSharedPointer<ExportObject> ExportObjectPtr;
 
         /**
          * @brief Standard configuration for all exporting processes.
@@ -122,18 +127,27 @@ class API_EXPORT ExportManager : public QObject
          * If plugin for specified format cannot be found, then this method reports warning in logs and does nothing.
          */
         void configure(const QString& format, StandardExportConfig* config);
+
+        /**
+         * @brief Configures export service for export.
+         * @param format Format to be used in upcoming export.
+         * @param config Standard configuration options to be used in upcoming export.
+         *
+         * Same as method above, except it makes its own copy of the config object.
+         */
+        void configure(const QString& format, const StandardExportConfig& config);
         bool isExportInProgress() const;
         void exportQueryResults(Db* db, const QString& query);
         void exportTable(Db* db, const QString& database, const QString& table);
-        void exportDatabase(Db* db);
+        void exportDatabase(Db* db, const QStringList& objectListToExport);
 
         static bool isAnyPluginAvailable();
 
     private:
         void invalidFormat(const QString& format);
         bool checkInitialConditions();
-        void processExportQueryResults(Db* db, const QString& query, SqlResultsPtr results);
         QIODevice* getOutputStream();
+        ExportWorker* prepareExport();
 
         bool exportInProgress = false;
         QueryExecutor* executor;
@@ -141,7 +155,17 @@ class API_EXPORT ExportManager : public QObject
         StandardExportConfig* config = nullptr;
         QString format;
         ExportPlugin* plugin = nullptr;
+
+    private slots:
+        void finalizeExport(bool result, QIODevice* output);
+
+    signals:
+        void exportFinished();
+        void exportSuccessful();
+        void exportFailed();
 };
+
+#define EXPORT_MANAGER SQLITESTUDIO->getExportManager()
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(ExportManager::StandardConfigFlags)
 Q_DECLARE_OPERATORS_FOR_FLAGS(ExportManager::ExportModes)
