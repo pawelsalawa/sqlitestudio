@@ -180,6 +180,19 @@ Db* DbManagerImpl::getByPath(const QString &path)
     return pathToDb.value(path);
 }
 
+Db* DbManagerImpl::createInMemDb()
+{
+    if (!inMemDbCreatorPlugin)
+        return nullptr;
+
+    return inMemDbCreatorPlugin->getInstance("", ":memory:", {});
+}
+
+void DbManagerImpl::setInMemDbCreatorPlugin(DbPlugin* plugin)
+{
+    inMemDbCreatorPlugin = plugin;
+}
+
 void DbManagerImpl::init()
 {
     Q_ASSERT(PLUGINS);

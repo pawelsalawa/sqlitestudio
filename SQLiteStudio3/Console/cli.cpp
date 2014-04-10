@@ -170,8 +170,8 @@ bool CLI::isComplete(const QString& contents) const
     if (getCurrentDb())
         dialect = getCurrentDb()->getDialect();
 
-    bool complete;
-    splitQueries(contents, dialect, &complete);
+    bool complete = true;
+    splitQueries(contents, dialect, true, &complete);
     return complete;
 }
 

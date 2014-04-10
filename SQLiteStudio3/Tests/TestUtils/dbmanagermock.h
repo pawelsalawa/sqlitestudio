@@ -17,6 +17,7 @@ class DbManagerMock : public DbManager
         QStringList getDbNames();
         Db*getByName(const QString&, Qt::CaseSensitivity);
         Db*getByPath(const QString&);
+        Db*createInMemDb();
 
     public slots:
         void loadDbListFromConfig();

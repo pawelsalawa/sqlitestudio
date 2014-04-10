@@ -45,6 +45,11 @@ bool CfgMain::isPersistable() const
     return persistable;
 }
 
+QString CfgMain::getName() const
+{
+    return name;
+}
+
 CfgCategory::CfgCategory(const QString &name)
 {
     this->name = name;

@@ -422,6 +422,8 @@ void ExportDialog::updatePluginOptions(ExportPlugin* plugin, int& optionsRow)
         return;
     }
 
+    safe_delete(configMapper);
+
     QGridLayout* grid = dynamic_cast<QGridLayout*>(ui->optionsGroup->layout());
 
     pluginOptionsWidget = FORMS->createWidget(formName);
@@ -432,8 +434,8 @@ void ExportDialog::updatePluginOptions(ExportPlugin* plugin, int& optionsRow)
     grid->addWidget(pluginOptionsWidget, 1, 0, 1, 2);
     optionsRow++;
 
-    ConfigMapper mapper(cfgMain);
-    mapper.loadToWidget(pluginOptionsWidget);
+    configMapper = new ConfigMapper(cfgMain);
+    configMapper->bindToConfig(pluginOptionsWidget);
 }
 
 void ExportDialog::doExport()

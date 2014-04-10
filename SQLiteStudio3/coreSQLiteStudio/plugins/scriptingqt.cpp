@@ -1,5 +1,6 @@
 #include "scriptingqt.h"
 #include "common/unused.h"
+#include "common/global.h"
 #include <QScriptEngine>
 #include <QMutex>
 #include <QMutexLocker>
@@ -23,11 +24,7 @@ ScriptingQt::ScriptingQt()
 
 ScriptingQt::~ScriptingQt()
 {
-    if (mainEngineMutex)
-    {
-        delete mainEngineMutex;
-        mainEngineMutex = nullptr;
-    }
+    safe_delete(mainEngineMutex);
 }
 
 QString ScriptingQt::getLanguage() const
@@ -152,7 +149,7 @@ QString ScriptingQt::getErrorMessage(ScriptingPlugin::Context* context) const
 
 QByteArray ScriptingQt::getIconData() const
 {
-    static const char* icon = "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0QA/wD/AP+gvaeTAAAACXBI"
+    static_char* icon = "iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0QA/wD/AP+gvaeTAAAACXBI"
             "WXMAAAsTAAALEwEAmpwYAAAACXZwQWcAAAAQAAAAEABcxq3DAAAGYUlEQVRIxy2RaVBV5wGGn+87"
             "526yCqhXUKGyVZkoBpeYjOJW64bauGUboxZ1HLEm1dqaOq1pq42oqUk00UbTWrcsatrBAA0uI6Qu"
             "WJGkilZ2oXpB4OZyhbude77+kPfX++995nkFH63am54MrDPeNb/M6Ega6lxrX/jOL2Y3Pzc2tnRC"
@@ -202,11 +199,7 @@ void ScriptingQt::deinit()
     contexts.clear();
 
     QMutexLocker locker(mainEngineMutex);
-    if (mainContext)
-    {
-        delete mainContext;
-        mainContext = nullptr;
-    }
+    safe_delete(mainContext);
 }
 
 ScriptingQt::ContextQt* ScriptingQt::getContext(ScriptingPlugin::Context* context) const

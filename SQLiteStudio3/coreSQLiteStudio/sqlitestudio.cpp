@@ -24,6 +24,7 @@
 #include "services/impl/pluginmanagerimpl.h"
 #include "impl/dbattacherimpl.h"
 #include "services/exportmanager.h"
+#include "plugins/scriptingsql.h"
 #include <QProcessEnvironment>
 #include <QThreadPool>
 
@@ -176,8 +177,12 @@ void SQLiteStudio::init(const QStringList& cmdListArguments)
 
     connect(pluginManager, SIGNAL(pluginsInitiallyLoaded()), DBLIST, SLOT(loadDbListFromConfig()));
 
+    DbPluginSqlite3* sqlite3plugin = new DbPluginSqlite3;
+    dynamic_cast<DbManagerImpl*>(dbManager)->setInMemDbCreatorPlugin(sqlite3plugin);
+
     pluginManager->loadBuiltInPlugin(new ScriptingQt);
-    pluginManager->loadBuiltInPlugin(new DbPluginSqlite3);
+    pluginManager->loadBuiltInPlugin(new ScriptingSql);
+    pluginManager->loadBuiltInPlugin(sqlite3plugin);
 
     pluginManager->init();
 
