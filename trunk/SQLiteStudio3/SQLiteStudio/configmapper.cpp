@@ -15,19 +15,31 @@
 #include <QGroupBox>
 #include <QDebug>
 
-#define APPLY_CFG(Widget, Value, WidgetType, Method, DataType, Notifier) \
+#define APPLY_CFG(Widget, Value, WidgetType, Method, DataType) \
     if (qobject_cast<WidgetType*>(Widget))\
     {\
         qobject_cast<WidgetType*>(Widget)->Method(Value.value<DataType>());\
-        connect(Widget, Notifier, this, SIGNAL(modified()));\
         return;\
     }
 
-#define APPLY_CFG2(Widget, Value, WidgetType, Method, DataType, Notifier, ExtraConditionMethod) \
+#define APPLY_CFG2(Widget, Value, WidgetType, Method, DataType, ExtraConditionMethod) \
     if (qobject_cast<WidgetType*>(Widget) && qobject_cast<WidgetType*>(Widget)->ExtraConditionMethod())\
     {\
         qobject_cast<WidgetType*>(Widget)->Method(Value.value<DataType>());\
-        connect(Widget, Notifier, this, SIGNAL(modified()));\
+        return;\
+    }
+
+#define APPLY_NOTIFIER(Widget, WidgetType, Notifier) \
+    if (qobject_cast<WidgetType*>(Widget))\
+    {\
+        connect(Widget, Notifier, this, SLOT(handleModified()));\
+        return;\
+    }
+
+#define APPLY_NOTIFIER2(Widget, WidgetType, Notifier, ExtraConditionMethod) \
+    if (qobject_cast<WidgetType*>(Widget) && qobject_cast<WidgetType*>(Widget)->ExtraConditionMethod())\
+    {\
+        connect(Widget, Notifier, this, SLOT(handleModified()));\
         return;\
     }
 
@@ -55,10 +67,10 @@ ConfigMapper::ConfigMapper(const QList<CfgMain*> cfgMain) :
 {
 }
 
-void ConfigMapper::loadToWidget(QWidget *widget)
+void ConfigMapper::loadToWidget(QWidget *topLevelWidget)
 {
     QHash<QString, CfgEntry *> allConfigEntries = getAllConfigEntries();
-    QList<QWidget*> allConfigWidgets = getAllConfigWidgets(widget);
+    QList<QWidget*> allConfigWidgets = getAllConfigWidgets(topLevelWidget);
     QHash<QString,QVariant> config;
 
     if (isPersistant())
@@ -111,6 +123,18 @@ void ConfigMapper::applyConfigToWidget(QWidget* widget, const QHash<QString, Cfg
         configValue = cfgEntry->getDefultValue();
     }
 
+    if (realTimeUpdates)
+        bindMap.insert(widget, cfgEntry);
+
+    if (connectCustomNotifierToWidget(widget, cfgEntry))
+        return;
+
+    connectCommonNotifierToWidget(widget);
+    applyConfigToWidget(widget, cfgEntry, configValue);
+}
+
+void ConfigMapper::applyConfigToWidget(QWidget* widget, CfgEntry* cfgEntry, const QVariant& configValue)
+{
     if (applyCustomConfigToWidget(cfgEntry, widget, configValue))
         return;
 
@@ -129,6 +153,50 @@ bool ConfigMapper::applyCustomConfigToWidget(CfgEntry* key, QWidget* widget, con
         if (handler->isConfigForWidget(key, widget))
         {
             handler->applyConfigToWidget(key, widget, value);
+            return true;
+        }
+    }
+    return false;
+}
+
+void ConfigMapper::applyCommonConfigToWidget(QWidget *widget, const QVariant &value)
+{
+    APPLY_CFG(widget, value, QCheckBox, setChecked, bool);
+    APPLY_CFG(widget, value, QLineEdit, setText, QString);
+    APPLY_CFG(widget, value, QSpinBox, setValue, int);
+    APPLY_CFG(widget, value, QComboBox, setCurrentText, QString);
+    APPLY_CFG(widget, value, FontEdit, setFont, QFont);
+    APPLY_CFG(widget, value, ColorButton, setColor, QColor);
+    APPLY_CFG2(widget, value, QGroupBox, setChecked, bool, isCheckable);
+
+    qWarning() << "Unhandled config widget type (for APPLY_CFG):" << widget->metaObject()->className()
+               << "with value:" << value;
+}
+
+void ConfigMapper::connectCommonNotifierToWidget(QWidget* widget)
+{
+    APPLY_NOTIFIER(widget, QCheckBox, SIGNAL(stateChanged(int)));
+    APPLY_NOTIFIER(widget, QLineEdit, SIGNAL(textChanged(QString)));
+    APPLY_NOTIFIER(widget, QSpinBox, SIGNAL(valueChanged(QString)));
+    APPLY_NOTIFIER(widget, QComboBox, SIGNAL(currentTextChanged(QString)));
+    APPLY_NOTIFIER(widget, FontEdit, SIGNAL(fontChanged(QFont)));
+    APPLY_NOTIFIER(widget, ColorButton, SIGNAL(colorChanged(QColor)));
+    APPLY_NOTIFIER2(widget, QGroupBox, SIGNAL(clicked(bool)), isCheckable);
+
+    qWarning() << "Unhandled config widget type (for APPLY_NOTIFIER):" << widget->metaObject()->className();
+}
+
+bool ConfigMapper::connectCustomNotifierToWidget(QWidget* widget, CfgEntry* cfgEntry)
+{
+    CustomConfigWidgetPlugin* handler;
+    QList<CustomConfigWidgetPlugin*> handlers;
+    handlers += internalCustomConfigWidgets;
+    handlers += PLUGINS->getLoadedPlugins<CustomConfigWidgetPlugin>();
+
+    foreach (handler, handlers)
+    {
+        if (handler->isConfigForWidget(cfgEntry, widget))
+        {
             connect(widget, handler->getModifiedNotifier(), this, SIGNAL(modified()));
             return true;
         }
@@ -142,24 +210,15 @@ void ConfigMapper::saveWidget(QWidget* widget, const QHash<QString, CfgEntry *> 
     if (!cfgEntry)
         return;
 
+    saveFromWidget(widget, cfgEntry);
+}
+
+void ConfigMapper::saveFromWidget(QWidget* widget, CfgEntry* cfgEntry)
+{
     if (saveCustomConfigFromWidget(widget, cfgEntry))
         return;
 
     saveCommonConfigFromWidget(widget, cfgEntry);
-}
-
-void ConfigMapper::applyCommonConfigToWidget(QWidget *widget, const QVariant &value)
-{
-    APPLY_CFG(widget, value, QCheckBox, setChecked, bool, SIGNAL(stateChanged(int)));
-    APPLY_CFG(widget, value, QLineEdit, setText, QString, SIGNAL(textChanged(QString)));
-    APPLY_CFG(widget, value, QSpinBox, setValue, int, SIGNAL(valueChanged(QString)));
-    APPLY_CFG(widget, value, QComboBox, setCurrentText, QString, SIGNAL(currentTextChanged(QString)));
-    APPLY_CFG(widget, value, FontEdit, setFont, QFont, SIGNAL(fontChanged(QFont)));
-    APPLY_CFG(widget, value, ColorButton, setColor, QColor, SIGNAL(colorChanged(QColor)));
-    APPLY_CFG2(widget, value, QGroupBox, setChecked, bool, SIGNAL(clicked(bool)), isCheckable);
-
-    qWarning() << "Unhandled config widget type (for APPLY_CFG):" << widget->metaObject()->className()
-               << "with value:" << value;
 }
 
 void ConfigMapper::saveCommonConfigFromWidget(QWidget* widget, CfgEntry* key)
@@ -260,6 +319,66 @@ bool ConfigMapper::isPersistant() const
             return true;
     }
     return false;
+}
+
+void ConfigMapper::handleModified()
+{
+    emit modified();
+    if (realTimeUpdates && !updatingEntry)
+    {
+        QWidget* widget = dynamic_cast<QWidget*>(sender());
+        if (widget && bindMap.containsLeft(widget))
+        {
+            updatingEntry = true;
+            saveFromWidget(widget, bindMap.valueByLeft(widget));
+            updatingEntry = false;
+        }
+    }
+}
+
+void ConfigMapper::entryChanged(const QVariant& newValue)
+{
+    // This is called only when bindToConfig() was used.
+    if (updatingEntry)
+        return;
+
+    CfgEntry* cfgEntry = dynamic_cast<CfgEntry*>(sender());
+    if (!cfgEntry)
+    {
+        qCritical() << "entryChanged() invoked by object that is not CfgEntry:" << sender();
+        return;
+    }
+
+    if (!bindMap.containsRight(cfgEntry))
+        return;
+
+    updatingEntry = true;
+    applyConfigToWidget(bindMap.valueByRight(cfgEntry), cfgEntry, newValue);
+    updatingEntry = false;
+}
+
+void ConfigMapper::bindToConfig(QWidget* topLevelWidget)
+{
+    // Check if any CfgMain is persistable - it's forbidden for binging.
+    for (CfgMain* cfgMain : cfgMainList)
+    {
+        if (cfgMain->isPersistable())
+        {
+            qCritical() << "Tried to use ConfigMapper::bindToConfig() with persitable CfgMain! CfgMain name:" << cfgMain->getName();
+            return;
+        }
+    }
+
+    realTimeUpdates = true;
+    loadToWidget(topLevelWidget);
+    for (CfgEntry* cfgEntry : bindMap.rightValues())
+        connect(cfgEntry, SIGNAL(changed(QVariant)), this, SLOT(entryChanged(QVariant)));
+}
+
+void ConfigMapper::unbindFromConfig()
+{
+    bindMap.clear();
+    realTimeUpdates = false;
 }
 
 void ConfigMapper::setInternalCustomConfigWidgets(const QList<CustomConfigWidgetPlugin*>& value)

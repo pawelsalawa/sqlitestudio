@@ -39,6 +39,13 @@ class DbManagerImpl : public DbManager
         QStringList getDbNames();
         Db* getByName(const QString& name, Qt::CaseSensitivity cs = Qt::CaseSensitive);
         Db* getByPath(const QString& path);
+        Db* createInMemDb();
+
+        /**
+         * @brief Defines database plugin used for creating in-memory databases.
+         * @param plugin Plugin to use.
+         */
+        void setInMemDbCreatorPlugin(DbPlugin* plugin);
 
     private:
         /**
@@ -104,6 +111,11 @@ class DbManagerImpl : public DbManager
          * Lock for dbList, so the list can be accessed from multiple threads.
          */
         QReadWriteLock listLock;
+
+        /**
+         * @brief Database plugin used to create in-memory databases.
+         */
+        DbPlugin* inMemDbCreatorPlugin = nullptr;
 
 
     private slots:

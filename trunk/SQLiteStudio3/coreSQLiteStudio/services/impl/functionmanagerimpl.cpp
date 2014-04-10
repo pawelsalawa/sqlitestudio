@@ -38,8 +38,6 @@ QList<FunctionManager::FunctionPtr> FunctionManagerImpl::getFunctionsForDatabase
 
 QVariant FunctionManagerImpl::evaluateScalar(const QString& name, int argCount, const QList<QVariant>& args, Db* db, bool& ok)
 {
-    UNUSED(db);
-
     Key key;
     key.name = name;
     key.argCount = argCount;
@@ -57,9 +55,16 @@ QVariant FunctionManagerImpl::evaluateScalar(const QString& name, int argCount, 
         ok = false;
         return langUnsupportedError(name, argCount, function->lang);
     }
+    DbAwareScriptingPlugin* dbAwarePlugin = dynamic_cast<DbAwareScriptingPlugin*>(plugin);
 
     QString error;
-    QVariant result = plugin->evaluate(function->code, args, &error);
+    QVariant result;
+
+    if (dbAwarePlugin)
+        result = dbAwarePlugin->evaluate(function->code, args, db, false, &error);
+    else
+        result = plugin->evaluate(function->code, args, &error);
+
     if (!error.isEmpty())
     {
         ok = false;
@@ -70,8 +75,6 @@ QVariant FunctionManagerImpl::evaluateScalar(const QString& name, int argCount, 
 
 void FunctionManagerImpl::evaluateAggregateInitial(const QString& name, int argCount, Db* db, QHash<QString,QVariant>& aggregateStorage)
 {
-    UNUSED(db);
-
     Key key;
     key.name = name;
     key.argCount = argCount;
@@ -84,10 +87,15 @@ void FunctionManagerImpl::evaluateAggregateInitial(const QString& name, int argC
     if (!plugin)
         return;
 
+    DbAwareScriptingPlugin* dbAwarePlugin = dynamic_cast<DbAwareScriptingPlugin*>(plugin);
+
     ScriptingPlugin::Context* ctx = plugin->createContext();
     aggregateStorage["context"] = QVariant::fromValue(ctx);
 
-    plugin->evaluate(ctx, function->code, {});
+    if (dbAwarePlugin)
+        dbAwarePlugin->evaluate(ctx, function->code, {}, db, false);
+    else
+        plugin->evaluate(ctx, function->code, {});
 
     if (plugin->hasError(ctx))
     {
@@ -115,8 +123,13 @@ void FunctionManagerImpl::evaluateAggregateStep(const QString& name, int argCoun
     if (aggregateStorage.contains("error"))
         return;
 
+    DbAwareScriptingPlugin* dbAwarePlugin = dynamic_cast<DbAwareScriptingPlugin*>(plugin);
+
     ScriptingPlugin::Context* ctx = aggregateStorage["context"].value<ScriptingPlugin::Context*>();
-    plugin->evaluate(ctx, function->code, args);
+    if (dbAwarePlugin)
+        dbAwarePlugin->evaluate(ctx, function->code, args, db, false);
+    else
+        plugin->evaluate(ctx, function->code, args);
 
     if (plugin->hasError(ctx))
     {
@@ -156,7 +169,13 @@ QVariant FunctionManagerImpl::evaluateAggregateFinal(const QString& name, int ar
         return aggregateStorage["errorMessage"];
     }
 
-    QVariant result = plugin->evaluate(ctx, function->code, {});
+    DbAwareScriptingPlugin* dbAwarePlugin = dynamic_cast<DbAwareScriptingPlugin*>(plugin);
+
+    QVariant result;
+    if (dbAwarePlugin)
+        result = dbAwarePlugin->evaluate(ctx, function->code, {}, db, false);
+    else
+        result = plugin->evaluate(ctx, function->code, {});
 
     if (plugin->hasError(ctx))
     {

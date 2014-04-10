@@ -127,6 +127,15 @@ class API_EXPORT DbManager : public QObject
         virtual Db* getByPath(const QString& path) = 0;
 
         /**
+         * @brief Creates in-memory SQLite3 database.
+         * @return Created database.
+         *
+         * Created database can be used for any purpose. Note that DbManager doesn't own created
+         * database and it's up to the caller to delete the database when it's no longer needed.
+         */
+        virtual Db* createInMemDb() = 0;
+
+        /**
          * @brief Generates database name.
          * @param filePath Database file path.
          * @return A name, using database file name as a hint for a name.

@@ -1,6 +1,6 @@
 #include "sqlexport.h"
 
-CFG_DEFINE(SqlExportConfig)
+CFG_DEFINE_RUNTIME(SqlExportConfig)
 
 QString SqlExport::getFormatName() const
 {

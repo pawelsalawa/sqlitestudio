@@ -34,7 +34,8 @@
     }
 
 #define CFG_DEFINE(Type) _CFG_DEFINE(Type, true)
-#define CFG_DEFINE_TEMP(Type) _CFG_DEFINE(Type, false)
+#define CFG_DEFINE_RUNTIME(Type) _CFG_DEFINE(Type, false)
+
 #define _CFG_DEFINE(Type, Pers) \
     namespace Cfg\
     {\
@@ -67,6 +68,7 @@ class API_EXPORT CfgMain
         QHash<QString,CfgCategory*>& getCategories();
 
         bool isPersistable() const;
+        QString getName() const;
 
     private:
         QString name;

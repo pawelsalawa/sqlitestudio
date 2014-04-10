@@ -50,6 +50,7 @@ int CollationManagerImpl::evaluate(const QString& name, const QString& value1, c
 
     QString err;
     QVariant result = plugin->evaluate(collationsByKey[name]->code, {value1, value2}, &err);
+
     if (!err.isNull())
     {
         qWarning() << "Error while evaluating collation:" << err;

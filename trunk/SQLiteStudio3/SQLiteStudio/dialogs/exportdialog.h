@@ -12,6 +12,7 @@ class DbListModel;
 class DbObjListModel;
 class SelectableDbObjModel;
 class WidgetCover;
+class ConfigMapper;
 
 class ExportDialog : public QWizard
 {
@@ -68,6 +69,7 @@ class ExportDialog : public QWizard
         bool dbObjectsPageVisited = false;
         bool formatPageVisited = false;
         WidgetCover* widgetCover = nullptr;
+        ConfigMapper* configMapper = nullptr;
 
     private slots:
         void updateExportMode();
