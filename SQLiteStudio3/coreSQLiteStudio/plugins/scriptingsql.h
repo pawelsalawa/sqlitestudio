@@ -18,6 +18,7 @@ class ScriptingSql : public GenericPlugin, public DbAwareScriptingPlugin
         {
             public:
                 QString errorText;
+                QHash<QString,QVariant> variables;
         };
 
         ScriptingSql();

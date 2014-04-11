@@ -39,7 +39,9 @@ void ScriptingSql::resetContext(ScriptingPlugin::Context* context)
 
 QVariant ScriptingSql::evaluate(ScriptingPlugin::Context* context, const QString& code, const QList<QVariant>& args, Db* db, bool locking)
 {
-    dynamic_cast<SqlContext*>(context)->errorText.clear();
+    SqlContext* ctx = dynamic_cast<SqlContext*>(context);
+    ctx->errorText.clear();
+
     Db* theDb = nullptr;
     if (db)
         theDb = db;
@@ -52,7 +54,18 @@ QVariant ScriptingSql::evaluate(ScriptingPlugin::Context* context, const QString
     if (!locking)
         execFlags |= Db::Flag::NO_LOCK;
 
-    SqlResultsPtr result = db->exec(code, args, execFlags);
+    QString sql = code;
+    if (ctx->variables.size() > 0)
+    {
+        QString value;
+        for (const QString& key : ctx->variables.keys())
+        {
+            value = "'" + ctx->variables[key].toString() + "'";
+            sql.replace(":" + key, value).replace("@" + key, value).replace("$" + key, value);
+        }
+    }
+
+    SqlResultsPtr result = theDb->exec(sql, args, execFlags);
     if (result->isError())
     {
         dynamic_cast<SqlContext*>(context)->errorText = result->getErrorText();
@@ -89,12 +102,14 @@ QVariant ScriptingSql::evaluate(const QString& code, const QList<QVariant>& args
 
 void ScriptingSql::setVariable(ScriptingPlugin::Context* context, const QString& name, const QVariant& value)
 {
-    // TODO keep map of variableName->value for each context and string-replace them for executed code in contexts
+    dynamic_cast<SqlContext*>(context)->variables[name] = value;
 }
 
 QVariant ScriptingSql::getVariable(ScriptingPlugin::Context* context, const QString& name)
 {
-    // TODO see setVariable() and implement this
+    if (dynamic_cast<SqlContext*>(context)->variables.contains(name))
+        return dynamic_cast<SqlContext*>(context)->variables[name];
+
     return QVariant();
 }
 
