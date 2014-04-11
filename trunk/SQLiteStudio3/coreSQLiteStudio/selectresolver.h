@@ -118,6 +118,7 @@ class API_EXPORT SelectResolver
 
         SelectResolver(Db* db, const QString &originalQuery);
         SelectResolver(Db* db, const QString &originalQuery, const BiStrHash& dbNameToAttach);
+        ~SelectResolver();
 
         QList<Column> resolve(SqliteSelect::Core* selectCore);
         QList<QList<Column> > resolve(SqliteSelect* select);

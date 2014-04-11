@@ -147,7 +147,8 @@ SOURCES += sqlitestudio.cpp \
     config_builder.cpp \
     services/exportmanager.cpp \
     exportworker.cpp \
-    plugins/scriptingsql.cpp
+    plugins/scriptingsql.cpp \
+    db/queryexecutorsteps/queryexecutordetectschemaalter.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -292,7 +293,8 @@ HEADERS += sqlitestudio.h\
     config_builder.h \
     services/exportmanager.h \
     exportworker.h \
-    plugins/scriptingsql.h
+    plugins/scriptingsql.h \
+    db/queryexecutorsteps/queryexecutordetectschemaalter.h
 
 unix:!symbian {
     maemo5 {

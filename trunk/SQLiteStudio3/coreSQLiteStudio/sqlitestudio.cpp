@@ -27,16 +27,17 @@
 #include "plugins/scriptingsql.h"
 #include <QProcessEnvironment>
 #include <QThreadPool>
+#include <QCoreApplication>
 
 DEFINE_SINGLETON(SQLiteStudio)
 
 SQLiteStudio::SQLiteStudio()
 {
+    connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(cleanUp()));
 }
 
 SQLiteStudio::~SQLiteStudio()
 {
-    cleanUp();
 }
 
 void SQLiteStudio::parseCmdLineArgs()
@@ -201,6 +202,7 @@ void SQLiteStudio::cleanUp()
     safe_delete(functionManager);
     safe_delete(dbManager);
     safe_delete(config);
+    pluginManager->deinit();
     safe_delete(pluginManager);
     safe_delete(sqlFormatter);
     safe_delete(dbAttacherFactory);

@@ -133,7 +133,8 @@ AbstractDb2<T>::AbstractDb2(const QString& name, const QString& path, const QHas
 template <class T>
 AbstractDb2<T>::~AbstractDb2()
 {
-    closeInternal();
+    if (isOpenInternal())
+        closeInternal();
 }
 
 template <class T>

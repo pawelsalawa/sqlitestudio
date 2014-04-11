@@ -19,6 +19,16 @@ DbManagerImpl::DbManagerImpl(QObject *parent) :
 
 DbManagerImpl::~DbManagerImpl()
 {
+    foreach (Db* db, dbList)
+    {
+        if (db->isOpen())
+            db->close();
+
+        delete db;
+    }
+    dbList.clear();
+    nameToDb.clear();
+    pathToDb.clear();
 }
 
 bool DbManagerImpl::addDb(const QString &name, const QString &path, bool permanent)

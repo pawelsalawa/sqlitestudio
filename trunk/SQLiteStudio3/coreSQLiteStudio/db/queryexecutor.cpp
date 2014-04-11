@@ -17,6 +17,7 @@
 #include "queryexecutorsteps/queryexecutordatasources.h"
 #include "queryexecutorsteps/queryexecutorexplainmode.h"
 #include "queryexecutorsteps/queryexecutorreplaceviews.h"
+#include "queryexecutorsteps/queryexecutordetectschemaalter.h"
 #include "common/unused.h"
 #include <QMutexLocker>
 #include <QDateTime>
@@ -47,6 +48,7 @@ QueryExecutor::~QueryExecutor()
 void QueryExecutor::setupExecutionChain()
 {
     executionChain << new QueryExecutorParseQuery("initial")
+                   << new QueryExecutorDetectSchemaAlter()
                    << new QueryExecutorExplainMode()
                    << new QueryExecutorAttaches() // needs to be at the begining, because columns needs to know real databases
                    << new QueryExecutorParseQuery("after Attaches")
@@ -495,6 +497,11 @@ bool QueryExecutor::handleRowCountingResults(quint32 asyncId, SqlResultsPtr resu
 SqlResultsPtr QueryExecutor::getResults() const
 {
     return context->executionResults;
+}
+
+bool QueryExecutor::wasSchemaModified() const
+{
+    return context->schemaModified;
 }
 
 bool QueryExecutor::getAsyncMode() const

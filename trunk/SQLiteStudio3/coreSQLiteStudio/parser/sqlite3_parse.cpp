@@ -3473,6 +3473,7 @@ static void yy_reduce(
                                                 delete yymsp[-6].minor.yy263;
                                                 delete yymsp[-7].minor.yy376;
                                                 delete yymsp[-3].minor.yy13;
+                                                delete yymsp[-1].minor.yy495;
                                                 objectForTokens = yygotominor.yy468;
                                             }
         break;
@@ -3934,6 +3935,7 @@ static void yy_reduce(
                                                     );
                                                 delete yymsp[-2].minor.yy66;
                                                 delete yymsp[-4].minor.yy250;
+                                                delete yymsp[-1].minor.yy445;
                                                 // since it's used in trigger:
                                                 objectForTokens = yygotominor.yy399;
                                             }
@@ -3950,6 +3952,7 @@ static void yy_reduce(
                                                     );
                                                 delete yymsp[-3].minor.yy66;
                                                 delete yymsp[-5].minor.yy250;
+                                                delete yymsp[-2].minor.yy445;
                                                 // since it's used in trigger:
                                                 objectForTokens = yygotominor.yy399;
                                             }

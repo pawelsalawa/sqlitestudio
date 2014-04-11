@@ -236,9 +236,5 @@ ScriptingQt::ContextQt::ContextQt()
 
 ScriptingQt::ContextQt::~ContextQt()
 {
-    if (engine)
-    {
-        delete engine;
-        engine = nullptr;
-    }
+    safe_delete(engine);
 }

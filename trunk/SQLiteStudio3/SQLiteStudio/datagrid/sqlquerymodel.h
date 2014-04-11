@@ -104,10 +104,16 @@ class SqlQueryModel : public QStandardItemModel
 
         QueryExecutor::Sort getSortOrder() const;
 
-        static QList<QList<SqlQueryItem*> > groupItemsByRows(const QList<SqlQueryItem*>& items);
+        /**
+         * @brief Tells if database schema was modified by last query executed.
+         * @return true if schema was modified, or false if not.
+         */
+        bool wasSchemaModified() const;
 
         SqlQueryView* getView() const;
         void setView(SqlQueryView* value);
+
+        static QList<QList<SqlQueryItem*> > groupItemsByRows(const QList<SqlQueryItem*>& items);
 
     protected:
         class CommitUpdateQueryBuilder

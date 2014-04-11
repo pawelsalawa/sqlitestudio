@@ -419,7 +419,7 @@ void EditorWindow::executionSuccessful()
         ui->historyList->resizeColumnToContents(1);
 
     Db* currentDb = getCurrentDb();
-    if (currentDb)
+    if (currentDb && resultsModel->wasSchemaModified())
         DBTREE->refreshSchema(currentDb);
 
     lastSuccessfulQuery = resultsModel->getQuery();

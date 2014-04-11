@@ -304,7 +304,8 @@ AbstractDb3<T>::AbstractDb3(const QString& name, const QString& path, const QHas
 template <class T>
 AbstractDb3<T>::~AbstractDb3()
 {
-    closeInternal();
+    if (isOpenInternal())
+        closeInternal();
 }
 
 template <class T>
@@ -402,6 +403,9 @@ bool AbstractDb3<T>::openInternal()
     int res = sqlite3_open_v2(path.toUtf8().constData(), &handle, SQLITE_OPEN_READWRITE|SQLITE_OPEN_CREATE, nullptr);
     if (!res == SQLITE_OK)
     {
+        if (handle)
+            sqlite3_close(handle);
+
         lastError = tr("Could not open database: %1").arg(extractLastError());
         lastErrorCode = res;
         return false;
@@ -980,7 +984,7 @@ int AbstractDb3<T>::Results::fetchNext()
 template <class T>
 int AbstractDb3<T>::Results::Row::init(const QStringList& columns, sqlite3_stmt* stmt)
 {
-    int res;
+    int res = SQLITE_OK;
     QVariant value;
     for (int i = 0; i < columns.size(); i++)
     {

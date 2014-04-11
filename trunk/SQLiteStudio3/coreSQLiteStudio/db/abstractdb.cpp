@@ -63,7 +63,9 @@ bool AbstractDb::closeQuiet()
     clearAttaches();
     registeredFunctions.clear();
     registeredCollations.clear();
-    disconnect(FUNCTIONS, SIGNAL(functionListChanged()), this, SLOT(registerAllFunctions()));
+    if (FUNCTIONS) // FUNCTIONS is already null when closing db while closing entire app
+        disconnect(FUNCTIONS, SIGNAL(functionListChanged()), this, SLOT(registerAllFunctions()));
+
     return res;
 }
 

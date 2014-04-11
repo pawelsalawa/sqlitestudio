@@ -590,6 +590,14 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
              * Causes flag Db::Flag::PRELOAD to be added to the query execution.
              */
             bool preloadResults = false;
+
+            /**
+             * @brief Tells if executed queries did modify database schema.
+             *
+             * This is defined by QueryExecutorDetectSchemaAlter step
+             * and can be accessed by QueryExecutor::wasSchemaModified().
+             */
+            bool schemaModified = false;
         };
 
         /**
@@ -939,6 +947,7 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
         void setAsyncMode(bool value);
 
         SqlResultsPtr getResults() const;
+        bool wasSchemaModified() const;
 
     private:
         /**

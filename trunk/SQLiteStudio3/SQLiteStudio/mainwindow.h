@@ -88,6 +88,7 @@ class MainWindow : public QMainWindow, virtual public ExtActionContainer
         EditorWindow* openSqlEditor();
 
     private slots:
+        void cleanUp();
         void openSqlEditorSlot();
         void refreshMdiWindows();
         void hideStatusField();
