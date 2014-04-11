@@ -14,6 +14,7 @@
 #include <QApplication>
 #include <QMutableListIterator>
 #include <QInputDialog>
+#include <QTime>
 
 SqlQueryModel::SqlQueryModel(QObject *parent) :
     QStandardItemModel(parent)
@@ -843,7 +844,7 @@ void SqlQueryModel::handleExecFinished(SqlResultsPtr results)
 
     reloading = false;
 
-    if (queryExecutor->isRowCountingRequired())
+    if (queryExecutor->isRowCountingRequired() || rowCount() < CFG_UI.General.NumberOfRowsPerPage.get())
         emit totalRowsAndPagesAvailable(); // rows were counted manually
     else
         queryExecutor->countResults();
@@ -1011,7 +1012,7 @@ void SqlQueryModel::storeStep2NumbersFromExecution()
 {
     if (!queryExecutor->getSkipRowCounting())
     {
-        if (queryExecutor->isRowCountingRequired())
+        if (queryExecutor->isRowCountingRequired() || rowCount() < CFG_UI.General.NumberOfRowsPerPage.get())
             totalRowsReturned = rowCount();
     }
 }
@@ -1042,6 +1043,11 @@ void SqlQueryModel::setDb(Db* value)
 QueryExecutor::Sort SqlQueryModel::getSortOrder() const
 {
     return sortOrder;
+}
+
+bool SqlQueryModel::wasSchemaModified() const
+{
+    return queryExecutor->wasSchemaModified();
 }
 
 void SqlQueryModel::updateSelectiveCommitRollbackActions(const QItemSelection& selected, const QItemSelection& deselected)

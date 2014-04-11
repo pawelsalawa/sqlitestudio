@@ -53,7 +53,7 @@ void ExtActionContainer::attachActionInMenu(int parentAction, QAction* childActi
 
     if (!menu)
     {
-        menu = new QMenu();
+        menu = new QMenu(button);
         button->setMenu(menu);
         button->setPopupMode(QToolButton::MenuButtonPopup);
     }

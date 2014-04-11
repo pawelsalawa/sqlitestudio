@@ -4,7 +4,7 @@
 #include "parser/keywords.h"
 #include "schemaresolver.h"
 #include "parser/ast/sqlitecreateview.h"
-
+#include "common/global.h"
 #include <QDebug>
 #include <QHash>
 #include <QHashIterator>
@@ -21,6 +21,11 @@ SelectResolver::SelectResolver(Db* db, const QString& originalQuery, const BiStr
     SelectResolver(db, originalQuery)
 {
     this->dbNameToAttach = dbNameToAttach;
+}
+
+SelectResolver::~SelectResolver()
+{
+    safe_delete(schemaResolver);
 }
 
 QList<SelectResolver::Column> SelectResolver::resolve(SqliteSelect::Core *selectCore)

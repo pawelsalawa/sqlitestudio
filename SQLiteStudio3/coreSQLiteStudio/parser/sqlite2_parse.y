@@ -729,6 +729,7 @@ oneselect(X) ::= SELECT distinct(D)
                                                 delete L;
                                                 delete D;
                                                 delete G;
+                                                delete O;
                                                 objectForTokens = X;
                                             }
 
@@ -1204,6 +1205,7 @@ insert_stmt(X) ::= insert_cmd(C) INTO
                                                 delete N;
                                                 delete C;
                                                 delete L;
+                                                delete I;
                                                 // since it's used in trigger:
                                                 objectForTokens = X;
                                             }
@@ -1221,6 +1223,7 @@ insert_stmt(X) ::= insert_cmd(C) INTO
                                                     );
                                                 delete N;
                                                 delete C;
+                                                delete I;
                                                 // since it's used in trigger:
                                                 objectForTokens = X;
                                             }

@@ -32,23 +32,18 @@ MainWindow::MainWindow() :
     QMainWindow(),
     ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
     init();
 }
 
 MainWindow::~MainWindow()
 {
-    delete ui;
-
-    if (formManager)
-    {
-        delete formManager;
-        formManager = nullptr;
-    }
 }
 
 void MainWindow::init()
 {
+    ui->setupUi(this);
+    connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(cleanUp()));
+
     setWindowIcon(ICONS.SQLITESTUDIO_APP);
 
     dbTree = new DbTree(this);
@@ -77,6 +72,22 @@ void MainWindow::init()
     PLUGINS->registerPluginType<SyntaxHighlighterPlugin>(tr("Syntax highlighting engines"));
     PLUGINS->loadBuiltInPlugin(new SqliteHighlighterPlugin);
     PLUGINS->loadBuiltInPlugin(new JavaScriptHighlighterPlugin);
+}
+
+void MainWindow::cleanUp()
+{
+    for (MdiWindow* win : getMdiArea()->getWindows())
+        delete win;
+
+    removeDockWidget(dbTree);
+    removeDockWidget(statusField);
+
+    safe_delete(dbTree);
+    safe_delete(statusField);
+
+    delete ui;
+
+    safe_delete(formManager);
 }
 
 EditorWindow* MainWindow::openSqlEditor()

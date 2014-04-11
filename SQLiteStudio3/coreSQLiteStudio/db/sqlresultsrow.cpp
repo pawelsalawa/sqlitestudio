@@ -25,6 +25,9 @@ QList<QVariant> SqlResultsRow::valueList()
 
 QVariant SqlResultsRow::value(int idx)
 {
+    if (idx < 0 || idx >= values.size())
+        return QVariant();
+
     return values[idx];
 }
 

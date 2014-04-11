@@ -157,6 +157,12 @@ SqliteSelect::Core::Core(int distinct, const QList<ResultColumn *> &resCols, Sql
     if (having)
         having->setParent(this);
 
+    if (limit)
+        limit->setParent(this);
+
+    foreach (SqliteOrderBy* order, orderBy)
+        order->setParent(this);
+
     foreach (SqliteExpr* expr, groupBy)
         expr->setParent(this);
 

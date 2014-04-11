@@ -126,13 +126,6 @@ class API_EXPORT SQLiteStudio : public QObject
         ~SQLiteStudio();
 
         /**
-         * @brief Cleans up all internal objects.
-         *
-         * Deletes all internal objects. It's called from destructor.
-         */
-        void cleanUp();
-
-        /**
          * @brief Parses command line arguments.
          *
          * It parses and applies command line arguments.
@@ -179,6 +172,13 @@ class API_EXPORT SQLiteStudio : public QObject
         void pluginLoaded(Plugin* plugin,PluginType* pluginType);
         void pluginToBeUnloaded(Plugin* plugin,PluginType* pluginType);
         void pluginUnloaded(const QString& pluginName,PluginType* pluginType);
+
+        /**
+         * @brief Cleans up all internal objects.
+         *
+         * Deletes all internal objects. It's called from destructor.
+         */
+        void cleanUp();
 
     public slots:
         /**

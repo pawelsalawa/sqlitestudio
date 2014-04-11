@@ -5,6 +5,7 @@
 #include "parser/statementtokenbuilder.h"
 #include "common/utils_sql.h"
 #include "common/global.h"
+#include <QDebug>
 
 SqliteExpr::SqliteExpr()
 {

@@ -40,7 +40,14 @@ void PluginManagerImpl::deinit()
     // Plugin containers and their plugins
     foreach (PluginContainer* container, pluginContainer.values())
     {
-        unload(container->name);
+        if (container->builtIn)
+        {
+            container->plugin->deinit();
+            delete container->plugin;
+        }
+        else
+            unload(container->name);
+
         delete container;
     }
 

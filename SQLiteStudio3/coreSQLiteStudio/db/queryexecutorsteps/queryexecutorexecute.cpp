@@ -63,7 +63,7 @@ void QueryExecutorExecute::handleSuccessfulResult(SqlResultsPtr results)
 
     // For PRAGMA and EXPLAIN we simply count results for rows returned
     SqliteQueryPtr lastQuery = context->parsedQueries.last();
-    if (lastQuery->queryType == SqliteQueryType::Pragma || lastQuery->explain)
+    if (lastQuery->queryType != SqliteQueryType::Select || lastQuery->explain)
         context->rowsCountingRequired = true;
 
     if (context->resultsHandler)

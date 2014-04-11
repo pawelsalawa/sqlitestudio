@@ -32,11 +32,11 @@ const char* alphaNumChars = "abcdefghijklmnopqrstuvwxyz1234567890";
 QString randStr(int length, bool numChars)
 {
     int range = numChars ? 36 : 26;
-    char* output = new char[length];
+    QString output = "";
     for (int i = 0; i < length; i++)
-        output[i] = alphaNumChars[rand(0, range)];
+        output += alphaNumChars[rand(0, range)];
 
-    return QString::fromLatin1(output, length);
+    return output;
 }
 
 QString randBinStr(int length)
