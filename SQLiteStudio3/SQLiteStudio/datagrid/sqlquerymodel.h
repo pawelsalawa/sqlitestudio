@@ -203,7 +203,8 @@ class SqlQueryModel : public QStandardItemModel
         QList<SqlQueryModelColumnPtr> columns;
 
         /**
-         * @brief cellDataLengthLimit
+         * @brief Limit of data length in loaded cells.
+         *
          * Bytes or utf-8 characters.
          * Having this set to 10000 gives about 290 MB of memory consumption
          * while having 30 columns and 1000 result rows loaded, all with 10000 bytes.
