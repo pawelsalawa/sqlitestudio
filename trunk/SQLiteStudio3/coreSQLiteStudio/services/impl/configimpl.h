@@ -3,6 +3,7 @@
 
 #include "coreSQLiteStudio_global.h"
 #include "services/config.h"
+#include "db/sqlresults.h"
 
 class ConfigImpl : public Config
 {
@@ -58,12 +59,6 @@ class ConfigImpl : public Config
         DdlHistoryModel* getDdlHistoryModel();
         void clearDdlHistory();
 
-        bool setFunctions(const QList<FunctionManager::FunctionPtr>& functions);
-        QList<FunctionManager::FunctionPtr> getFunctions() const;
-
-        bool setCollations(const QList<CollationManager::CollationPtr>& collations);
-        QList<CollationManager::CollationPtr> getCollations() const;
-
         void begin();
         void commit();
         void rollback();
@@ -76,9 +71,9 @@ class ConfigImpl : public Config
          *
          * If the error was defined in the query, its message is stored in lastQueryError.
          */
-        bool storeErrorAndReturn(const QSqlQuery& query);
-        void printErrorIfSet(const QSqlQuery& query);
-        void storeGroup(const DbGroupPtr& group, const QVariant &parentId);
+        bool storeErrorAndReturn(SqlResultsPtr results);
+        void printErrorIfSet(SqlResultsPtr results);
+        void storeGroup(const DbGroupPtr& group, qint64 parentId = -1);
         void readGroupRecursively(DbGroupPtr group);
         QString getConfigPath();
         QString getPortableConfigPath();
@@ -88,7 +83,7 @@ class ConfigImpl : public Config
         QVariant deserializeValue(const QVariant& value);
 
         static Config* instance;
-        QSqlDatabase *db = nullptr;
+        Db* db = nullptr;
         QString configDir;
         QString lastQueryError;
         QAbstractItemModel* sqlHistoryModel = nullptr;

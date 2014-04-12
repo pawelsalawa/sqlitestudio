@@ -1,9 +1,15 @@
 #include "sqlhistorymodel.h"
+#include "common/global.h"
+#include "db/db.h"
 
-SqlHistoryModel::SqlHistoryModel(QObject *parent, QSqlDatabase* db) :
-    QSqlQueryModel(parent), db(db)
+SqlHistoryModel::SqlHistoryModel(Db* db, QObject *parent) :
+    QueryModel(db, parent)
 {
-    refresh();
+    static_char* query = "SELECT dbname, datetime(date, 'unixepoch'), (time_spent / 1000.0)||'s', rows, sql "
+                         "FROM sqleditor_history ORDER BY date DESC";
+
+    setQuery(query);
+
     setHeaderData(0, Qt::Horizontal, tr("Database", "sql history header"));
     setHeaderData(1, Qt::Horizontal, tr("Execution date", "sql history header"));
     setHeaderData(2, Qt::Horizontal, tr("Time spent", "sql history header"));
@@ -11,15 +17,10 @@ SqlHistoryModel::SqlHistoryModel(QObject *parent, QSqlDatabase* db) :
     setHeaderData(4, Qt::Horizontal, tr("SQL", "sql history header"));
 }
 
-void SqlHistoryModel::refresh()
-{
-    setQuery(query, *db);
-}
-
 QVariant SqlHistoryModel::data(const QModelIndex& index, int role) const
 {
     if (role == Qt::TextAlignmentRole && (index.column() == 2 || index.column() == 3))
         return (int)(Qt::AlignRight|Qt::AlignVCenter);
 
-    return QSqlQueryModel::data(index, role);
+    return QueryModel::data(index, role);
 }

@@ -131,6 +131,7 @@ void CollationsEditor::collationDeselected(int row)
 
 void CollationsEditor::collationSelected(int row)
 {
+    updatesForSelection = true;
     ui->nameEdit->setText(model->getName(row));
     ui->codeEdit->setPlainText(model->getCode(row));
     ui->langCombo->setCurrentText(model->getLang(row));
@@ -144,6 +145,7 @@ void CollationsEditor::collationSelected(int row)
     else
         ui->selectedDatabasesRadio->setChecked(true);
 
+    updatesForSelection = false;
     currentModified = false;
 
     updateCurrentCollationState();
@@ -323,6 +325,9 @@ void CollationsEditor::collationSelected(const QItemSelection& selected, const Q
 
 void CollationsEditor::updateModified()
 {
+    if (updatesForSelection)
+        return;
+
     int row = getCurrentCollationRow();
     if (model->isValidRowIndex(row))
     {

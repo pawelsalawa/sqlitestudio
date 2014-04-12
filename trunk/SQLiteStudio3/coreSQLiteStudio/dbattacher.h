@@ -44,12 +44,12 @@ class DbAttacher
          * thus modified query can be achived with SqliteStatement::detokenize(). This also means
          * that the input queries will contain modified token list.
          *
-         * @overload bool attachDatabases(const QList<SqliteQueryPtr>& queries)
+         * @overload
          */
         virtual bool attachDatabases(const QList<SqliteQueryPtr>& queries) = 0;
 
         /**
-         * @overload bool attachDatabases(SqliteQueryPtr query)
+         * @overload
          */
         virtual bool attachDatabases(SqliteQueryPtr query) = 0;
 

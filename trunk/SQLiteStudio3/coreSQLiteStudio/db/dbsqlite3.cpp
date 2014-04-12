@@ -4,3 +4,8 @@ DbSqlite3::DbSqlite3(const QString& name, const QString& path, const QHash<QStri
     AbstractDb3(name, path, connOptions)
 {
 }
+
+DbSqlite3::DbSqlite3(const QString& name, const QString& path) :
+    DbSqlite3(name, path, QHash<QString,QVariant>())
+{
+}

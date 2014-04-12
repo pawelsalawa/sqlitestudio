@@ -43,7 +43,7 @@ class ParserContext
         void error(TokenPtr token, const QString& text);
 
         /**
-         * @overload void error(Token* token, const QString& text);
+         * @overload
          */
         void error(Token* token, const QString& text);
 
@@ -56,7 +56,7 @@ class ParserContext
          *
          * This is called by Lemon parser.
          *
-         * @overload void error(const QString& text)
+         * @overload
          */
         void error(const QString& text);
 

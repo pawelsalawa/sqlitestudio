@@ -878,6 +878,7 @@ AbstractDb3<T>::Results::Results(AbstractDb3<T>* db, sqlite3_stmt* stmt, bool er
     affected = sqlite3_changes(db->dbHandle);
 
     fetchNext();
+    insertRowId["ROWID"] = sqlite3_last_insert_rowid(db->dbHandle);
 }
 
 template <class T>

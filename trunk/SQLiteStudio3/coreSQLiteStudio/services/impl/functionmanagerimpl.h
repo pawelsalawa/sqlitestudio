@@ -39,6 +39,7 @@ class FunctionManagerImpl : public FunctionManager
         void init();
         void refreshFunctionsByKey();
         void storeInConfig();
+        void loadFromConfig();
         QString cannotFindFunctionError(const QString& name, int argCount);
         QString langUnsupportedError(const QString& name, int argCount, const QString& lang);
         static QStringList getArgMarkers(int argCount);

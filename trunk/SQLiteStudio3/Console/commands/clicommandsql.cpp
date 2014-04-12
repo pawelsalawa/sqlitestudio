@@ -8,10 +8,6 @@
 #include "common/unused.h"
 #include "cli_config.h"
 #include "cliutils.h"
-#include <QSqlQuery>
-#include <QSqlRecord>
-#include <QSqlError>
-#include <QSqlField>
 #include <QList>
 #include <QDebug>
 

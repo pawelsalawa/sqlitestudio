@@ -21,6 +21,7 @@ class CollationManagerImpl : public CollationManager
     private:
         void init();
         void storeInConfig();
+        void loadFromConfig();
         void refreshCollationsByKey();
 
         QList<CollationPtr> collations;

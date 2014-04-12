@@ -184,7 +184,7 @@ class API_EXPORT AbstractDb : public Db
         virtual SqlResultsPtr execInternal(const QString& query, const QList<QVariant>& args) = 0;
 
         /**
-         * @overload SqlResultsPtr execInternal(const QString& query, const QHash<QString,QVariant>& args)
+         * @overload
          */
         virtual SqlResultsPtr execInternal(const QString& query, const QHash<QString,QVariant>& args) = 0;
 
@@ -370,7 +370,7 @@ class API_EXPORT AbstractDb : public Db
         SqlResultsPtr execHashArg(const QString& query, const QHash<QString, QVariant>& args, Flags flags);
 
         /**
-         * @overload SqlResultsPtr execListArg(const QString& query, const QList<QVariant>& args, Flags flags)
+         * @overload
          */
         SqlResultsPtr execListArg(const QString& query, const QList<QVariant>& args, Flags flags);
 
@@ -455,17 +455,6 @@ class API_EXPORT AbstractDb : public Db
          * See Db::setTimeout() for details.
          */
         int timeout = 60;
-
-        /**
-         * @brief Most recent error message.
-         *
-         * This is local storage for last error from last SqlResultsPtr.
-         * It is necessary to store that, because it looks like QSqlDatabase
-         * doesn't provide last error text in case when QSqlResults carried that text for it.
-         * It resulted in empty "lastErrorText()" results, while the actual error text
-         * was returned in SqlResultsPtr.
-         */
-        QString lastErrorText;
 
         /**
          * @brief List of all functions currently registered in this database.

@@ -3,20 +3,18 @@
 #include "ddlhistorymodel.h"
 #include "services/notifymanager.h"
 #include "sqlitestudio.h"
+#include "db/dbsqlite3.h"
 #include <QtGlobal>
 #include <QDebug>
-#include <QSqlQuery>
-#include <QSqlQueryModel>
 #include <QList>
 #include <QDir>
 #include <QFileInfo>
-#include <QSqlError>
 #include <QDataStream>
 #include <QRegExp>
 #include <QDateTime>
 #include <QSysInfo>
 
-static const QString DB_FILE_NAME = QStringLiteral("settings3");
+static_qstring(DB_FILE_NAME, "settings3");
 
 ConfigImpl::~ConfigImpl()
 {
@@ -25,7 +23,6 @@ ConfigImpl::~ConfigImpl()
 
 void ConfigImpl::init()
 {
-    db = new QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE", "sqlitestudio_private_config"));
     initDbFile();
     initTables();
 }
@@ -35,10 +32,7 @@ void ConfigImpl::cleanUp()
     if (db->isOpen())
         db->close();
 
-    delete db;
-    db = nullptr;
-
-    QSqlDatabase::removeDatabase("sqlitestudio_private_config");
+    safe_delete(db);
 }
 
 const QString &ConfigImpl::getConfigDir()
@@ -69,107 +63,80 @@ void ConfigImpl::set(const QString &group, const QString &key, const QVariant &v
     QDataStream stream(&bytes, QIODevice::WriteOnly);
     stream << value;
 
-    QSqlQuery query(*db);
-    query.prepare("INSERT OR REPLACE INTO settings VALUES (:group, :key, :value)");
-    query.bindValue(":group", group);
-    query.bindValue(":key", key);
-    query.bindValue(":value", bytes);
-    query.exec();
+    db->exec("INSERT OR REPLACE INTO settings VALUES (?, ?, ?)", {group, key, bytes});
 }
 
 QVariant ConfigImpl::get(const QString &group, const QString &key)
 {
-    QSqlQuery query(*db);
-    query.prepare("SELECT value FROM settings WHERE [group] = :group AND [key] = :key");
-    query.bindValue(":group", group);
-    query.bindValue(":key", key);
-    query.exec();
-    if (!query.next())
-        return QVariant();
-
-    return deserializeValue(query.value(0));
+    SqlResultsPtr results = db->exec("SELECT value FROM settings WHERE [group] = ? AND [key] = ?", {group, key});
+    return deserializeValue(results->getSingleCell());
 }
 
 QHash<QString,QVariant> ConfigImpl::getAll()
 {
-    QSqlQuery query(*db);
-    query.prepare("SELECT [group], [key], value FROM settings");
-    query.exec();
+    SqlResultsPtr results = db->exec("SELECT [group], [key], value FROM settings");
 
-    QHash<QString,QVariant> results;
+    QHash<QString,QVariant> cfg;
     QString key;
-    while (query.next())
+    SqlResultsRowPtr row;
+    while (results->hasNext())
     {
-        key = query.value("group").toString() + "." + query.value("key").toString();
-        results[key] = deserializeValue(query.value("value"));
+        row = results->next();
+        key = row->value("group").toString() + "." + row->value("key").toString();
+        cfg[key] = deserializeValue(row->value("value"));
     }
-    return results;
+    return cfg;
 }
 
-bool ConfigImpl::storeErrorAndReturn(const QSqlQuery& query)
+bool ConfigImpl::storeErrorAndReturn(SqlResultsPtr results)
 {
-    if (query.lastError().isValid())
+    if (results->isError())
     {
-        lastQueryError = query.lastError().text();
+        lastQueryError = results->getErrorText();
         return true;
     }
     else
         return false;
 }
 
-void ConfigImpl::printErrorIfSet(const QSqlQuery& query)
+void ConfigImpl::printErrorIfSet(SqlResultsPtr results)
 {
-    if (!query.isValid() && query.lastError().isValid())
+    if (results && results->isError())
     {
-        qCritical() << "Config error while executing query:" << query.lastQuery() << ";\nError details:" << query.lastError().text();
-        storeErrorAndReturn(query);
+        qCritical() << "Config error while executing query:" << results->getErrorText();
+        storeErrorAndReturn(results);
     }
 }
 
 bool ConfigImpl::addDb(const QString& name, const QString& path, const QHash<QString,QVariant>& options)
 {
-    QSqlQuery query(*db);
-    query.prepare("INSERT INTO dblist VALUES (:name, :path, :options)");
-    query.bindValue(":name", name);
-    query.bindValue(":path", path);
-    query.bindValue(":options", options);
-    query.exec();
-    return !storeErrorAndReturn(query);
+    SqlResultsPtr results = db->exec("INSERT INTO dblist VALUES (?, ?, ?)", {name, path, options});
+    return !storeErrorAndReturn(results);
 }
 
 bool ConfigImpl::updateDb(const QString &name, const QString &newName, const QString &path, const QHash<QString,QVariant> &options)
 {
-    QSqlQuery query(*db);
-    query.prepare("UPDATE dblist SET name = :newName, path = :path, options = :options WHERE name = :name");
-    query.bindValue(":name", name);
-    query.bindValue(":newName", newName);
-    query.bindValue(":path", path);
-    query.bindValue(":options", options);
-    query.exec();
-    return (!storeErrorAndReturn(query)  && query.numRowsAffected() > 0);
+    SqlResultsPtr results = db->exec("UPDATE dblist SET name = ?, path = ?, options = ? WHERE name = ?",
+                                     {name, newName, path, options});
+
+    return (!storeErrorAndReturn(results)  && results->rowsAffected() > 0);
 }
 
 bool ConfigImpl::removeDb(const QString &name)
 {
-    QSqlQuery query(*db);
-    query.prepare("DELETE FROM dblist WHERE name = :name");
-    query.bindValue(":name", name);
-    query.exec();
-    return (!storeErrorAndReturn(query) && query.numRowsAffected() > 0);
+    SqlResultsPtr results = db->exec("DELETE FROM dblist WHERE name = ?", {name});
+    return (!storeErrorAndReturn(results) && results->rowsAffected() > 0);
 }
 
 bool ConfigImpl::isDbInConfig(const QString &name)
 {
-    QSqlQuery query(*db);
-    query.prepare("SELECT * FROM dblist WHERE name = :name");
-    query.bindValue(":name", name);
-    query.exec();
-    return (!storeErrorAndReturn(query) && query.next());
+    SqlResultsPtr results = db->exec("SELECT * FROM dblist WHERE name = ?", {name});
+    return (!storeErrorAndReturn(results) && results->hasNext());
 }
 
 QString ConfigImpl::getLastErrorString() const
 {
-    QString msg = db->lastError().text();
+    QString msg = db->getErrorText();
     if (msg.trimmed().isEmpty())
         return lastQueryError;
 
@@ -178,35 +145,36 @@ QString ConfigImpl::getLastErrorString() const
 
 QList<ConfigImpl::CfgDbPtr> ConfigImpl::dbList()
 {
-    QList<CfgDbPtr> results;
-    QSqlQuery query = db->exec("SELECT name, path, options FROM dblist");
+    QList<CfgDbPtr> entries;
+    SqlResultsPtr results = db->exec("SELECT name, path, options FROM dblist");
     CfgDbPtr cfgDb;
-    while (query.next())
+    SqlResultsRowPtr row;
+    while (results->hasNext())
     {
+        row = results->next();
         cfgDb = CfgDbPtr::create();
-        cfgDb->name = query.value("name").toString();
-        cfgDb->path = query.value("path").toString();
-        cfgDb->options = query.value("options").toHash();
-        results += cfgDb;
+        cfgDb->name = row->value("name").toString();
+        cfgDb->path = row->value("path").toString();
+        cfgDb->options = row->value("options").toHash();
+        entries += cfgDb;
     }
 
-    return results;
+    return entries;
 }
 
 ConfigImpl::CfgDbPtr ConfigImpl::getDb(const QString& dbName)
 {
-    QSqlQuery query(*db);
-    query.prepare("SELECT path, options FROM dblist WHERE name = :name");
-    query.bindValue(":name", dbName);
-    query.exec();
+    SqlResultsPtr results = db->exec("SELECT path, options FROM dblist WHERE name = ?", {dbName});
 
-    if (!query.next())
+    if (!results->hasNext())
         return CfgDbPtr();
+
+    SqlResultsRowPtr row = results->next();
 
     CfgDbPtr cfgDb = CfgDbPtr::create();
     cfgDb->name = dbName;
-    cfgDb->path = query.value("path").toString();
-    cfgDb->options = query.value("options").toHash();
+    cfgDb->path = row->value("path").toString();
+    cfgDb->options = row->value("options").toHash();
     return cfgDb;
 }
 
@@ -214,23 +182,20 @@ void ConfigImpl::storeGroups(const QList<DbGroupPtr>& groups)
 {
     db->exec("DELETE FROM groups");
 
-    const QVariant parentId = QVariant(QVariant::LongLong);
     foreach (const DbGroupPtr& group, groups)
-        storeGroup(group, parentId);
+        storeGroup(group);
 }
 
-void ConfigImpl::storeGroup(const ConfigImpl::DbGroupPtr &group, const QVariant& parentId)
+void ConfigImpl::storeGroup(const ConfigImpl::DbGroupPtr &group, qint64 parentId)
 {
-    QSqlQuery query(*db);
-    query.prepare("INSERT INTO groups (name, [order], parent, open, dbname) VALUES (:name, :order, :parent, :open, :dbname)");
-    query.bindValue(":name", group->name);
-    query.bindValue(":order", group->order);
-    query.bindValue(":parent", parentId);
-    query.bindValue(":open", group->open);
-    query.bindValue(":dbname", group->referencedDbName);
-    query.exec();
+    QVariant parent = QVariant(QVariant::LongLong);
+    if (parentId > -1)
+        parent = parentId;
 
-    QVariant newParentId = query.lastInsertId();
+    SqlResultsPtr results = db->exec("INSERT INTO groups (name, [order], parent, open, dbname) VALUES (?, ?, ?, ?, ?)",
+                                    {group->name, group->order, parent, group->open, group->referencedDbName});
+
+    qint64 newParentId = results->getRegularInsertRowId();
     foreach (const DbGroupPtr& childGroup, group->childs)
         storeGroup(childGroup, newParentId);
 }
@@ -245,21 +210,19 @@ QList<ConfigImpl::DbGroupPtr> ConfigImpl::getGroups()
 
 ConfigImpl::DbGroupPtr ConfigImpl::getDbGroup(const QString& dbName)
 {
-    QSqlQuery query(*db);
-    query.prepare("SELECT id, name, [order], open, dbname FROM groups WHERE dbname = :dbname LIMIT 1");
-    query.bindValue(":dbname", dbName);
-    query.exec();
+    SqlResultsPtr results = db->exec("SELECT id, name, [order], open, dbname FROM groups WHERE dbname = ? LIMIT 1", {dbName});
 
     DbGroupPtr group = DbGroupPtr::create();
     group->referencedDbName = dbName;
 
-    if (!query.next())
+    if (!results->hasNext())
         return group;
 
-    group->id = query.value("id").toULongLong();
-    group->name = query.value("name").toString();
-    group->order = query.value("order").toInt();
-    group->open = query.value("open").toBool();
+    SqlResultsRowPtr row = results->next();
+    group->id = row->value("id").toULongLong();
+    group->name = row->value("name").toString();
+    group->order = row->value("order").toInt();
+    group->open = row->value("open").toBool();
     return group;
 }
 
@@ -267,33 +230,22 @@ qint64 ConfigImpl::addSqlHistory(const QString& sql, const QString& dbName, int 
 {
     // TODO move this to separate thread, because counting 10000 rows might be too expensive
     // just for the sake of adding new history entry.
-    QSqlQuery query(*db);
-    query.prepare("INSERT INTO sqleditor_history (dbname, date, time_spent, rows, sql) VALUES (:dbname, :date, :time_spent, :rows, :sql)");
-    query.bindValue(":dbname", dbName);
-    query.bindValue(":date", QDateTime::currentMSecsSinceEpoch() / 1000);
-    query.bindValue(":time_spent", timeSpentMillis);
-    query.bindValue(":rows", rowsAffected);
-    query.bindValue(":sql", sql);
-    query.exec();
-    qint64 rowId = query.lastInsertId().toLongLong();
+    SqlResultsPtr results = db->exec("INSERT INTO sqleditor_history (dbname, date, time_spent, rows, sql) VALUES (?, ?, ?, ?, ?)",
+                                    {dbName, (QDateTime::currentMSecsSinceEpoch() / 1000), timeSpentMillis, rowsAffected, sql});
+
+    qint64 rowId = results->getRegularInsertRowId();
 
     int maxHistorySize = CFG_CORE.General.SqlHistorySize.get();
 
-    query.exec("SELECT count(*) FROM sqleditor_history");
-    if (query.next() && query.value(0).toInt() > maxHistorySize)
+    results = db->exec("SELECT count(*) FROM sqleditor_history");
+    if (results->hasNext() && results->getSingleCell().toInt() > maxHistorySize)
     {
-        query.prepare("SELECT id FROM sqleditor_history ORDER BY id DESC LIMIT 1 OFFSET :length");
-        query.bindValue(":length", maxHistorySize);
-        query.exec();
-        if (query.next())
+        results = db->exec("SELECT id FROM sqleditor_history ORDER BY id DESC LIMIT 1 OFFSET %1", {maxHistorySize}, Db::Flag::STRING_REPLACE_ARGS);
+        if (results->hasNext())
         {
-            int id = query.value(0).toInt();
+            int id = results->getSingleCell().toInt();
             if (id > 0) // it will be 0 on fail conversion, but we won't delete id <= 0 ever.
-            {
-                query.prepare("DELETE FROM sqleditor_history WHERE id <= :id");
-                query.bindValue(":id", id);
-                query.exec();
-            }
+                db->exec("DELETE FROM sqleditor_history WHERE id <= ?", {id});
         }
     }
 
@@ -305,15 +257,8 @@ qint64 ConfigImpl::addSqlHistory(const QString& sql, const QString& dbName, int 
 
 void ConfigImpl::updateSqlHistory(qint64 id, const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected)
 {
-    // TODO Move to thread just like addSqlHistory, for the same reason.
-    QSqlQuery query(*db);
-    query.prepare("UPDATE sqleditor_history SET dbname = :dbname, time_spent = :time_spent, rows = :rows, sql = :sql WHERE id = :id");
-    query.bindValue(":dbname", dbName);
-    query.bindValue(":time_spent", timeSpentMillis);
-    query.bindValue(":rows", rowsAffected);
-    query.bindValue(":sql", sql);
-    query.bindValue(":id", id);
-    query.exec();
+    db->exec("UPDATE sqleditor_history SET dbname = ?, time_spent = ?, rows = ?, sql = ? WHERE id = ?",
+            {dbName, timeSpentMillis, rowsAffected, sql, id});
 
     if (sqlHistoryModel)
         dynamic_cast<SqlHistoryModel*>(sqlHistoryModel)->refresh();
@@ -321,9 +266,7 @@ void ConfigImpl::updateSqlHistory(qint64 id, const QString& sql, const QString& 
 
 void ConfigImpl::clearSqlHistory()
 {
-    QSqlQuery query(*db);
-    query.exec("DELETE FROM sqleditor_history");
-
+    db->exec("DELETE FROM sqleditor_history");
     if (sqlHistoryModel)
         dynamic_cast<SqlHistoryModel*>(sqlHistoryModel)->refresh();
 }
@@ -331,95 +274,68 @@ void ConfigImpl::clearSqlHistory()
 QAbstractItemModel* ConfigImpl::getSqlHistoryModel()
 {
     if (!sqlHistoryModel)
-        sqlHistoryModel = new SqlHistoryModel(this, db);
+        sqlHistoryModel = new SqlHistoryModel(db, this);
 
     return sqlHistoryModel;
 }
 
 void ConfigImpl::addCliHistory(const QString& text)
 {
-    static const QString insertQuery = QStringLiteral("INSERT INTO cli_history (text) VALUES (:text)");
+    static_qstring(insertQuery, "INSERT INTO cli_history (text) VALUES (?)");
 
-    QSqlQuery query(*db);
-    query.prepare(insertQuery);
-    query.bindValue(":text", text);
-    query.exec();
-
-    if (query.lastError().isValid())
-        qWarning() << "Error while adding CLI history:" << query.lastError().text();
+    SqlResultsPtr results = db->exec(insertQuery, {text});
+    if (results->isError())
+        qWarning() << "Error while adding CLI history:" << results->getErrorText();
 
     applyCliHistoryLimit();
 }
 
 void ConfigImpl::applyCliHistoryLimit()
 {
-    static const QString limitQuery = QStringLiteral("DELETE FROM cli_history WHERE id >= (SELECT id FROM cli_history ORDER BY id LIMIT 1 OFFSET %1)");
+    static_qstring(limitQuery, "DELETE FROM cli_history WHERE id >= (SELECT id FROM cli_history ORDER BY id LIMIT 1 OFFSET %1)");
 
-    QSqlQuery query(*db);
-    query.exec(limitQuery.arg(CFG_CORE.Console.HistorySize.get()));
-
-    if (query.lastError().isValid())
-        qWarning() << "Error while limiting CLI history:" << query.lastError().text();
+    SqlResultsPtr results = db->exec(limitQuery.arg(CFG_CORE.Console.HistorySize.get()));
+    if (results->isError())
+        qWarning() << "Error while limiting CLI history:" << db->getErrorText();
 
 }
 
 void ConfigImpl::clearCliHistory()
 {
-    static const QString clearQuery = QStringLiteral("DELETE FROM cli_history");
+    static_qstring(clearQuery, "DELETE FROM cli_history");
 
-    QSqlQuery query(*db);
-    query.prepare(clearQuery);
-    query.exec();
-
-    if (query.lastError().isValid())
-        qWarning() << "Error while clearing CLI history:" << query.lastError().text();
+    SqlResultsPtr results = db->exec(clearQuery);
+    if (results->isError())
+        qWarning() << "Error while clearing CLI history:" << db->getErrorText();
 }
 
 QStringList ConfigImpl::getCliHistory() const
 {
-    static const QString selectQuery = QStringLiteral("SELECT text FROM cli_history ORDER BY id");
+    static_qstring(selectQuery, "SELECT text FROM cli_history ORDER BY id");
 
-    QSqlQuery query(*db);
-    query.prepare(selectQuery);
-    query.exec();
+    SqlResultsPtr results = db->exec(selectQuery);
+    if (results->isError())
+        qWarning() << "Error while getting CLI history:" << db->getErrorText();
 
-    if (query.lastError().isValid())
-        qWarning() << "Error while getting CLI history:" << query.lastError().text();
-
-    QStringList list;
-    while (query.next())
-        list << query.value("text").toString();
-
-    return list;
+    return results->columnAsList<QString>("text");
 }
 
 void ConfigImpl::addDdlHistory(const QString& queries, const QString& dbName, const QString& dbFile)
 {
-    QSqlQuery query(*db);
-    query.prepare("INSERT INTO ddl_history (dbname, file, timestamp, queries) VALUES (:dbname, :file, :timestamp, :queries)");
-    query.bindValue(":dbname", dbName);
-    query.bindValue(":file", dbFile);
-    query.bindValue(":timestamp", QDateTime::currentDateTime().toTime_t());
-    query.bindValue(":queries", queries);
-    query.exec();
+    db->exec("INSERT INTO ddl_history (dbname, file, timestamp, queries) VALUES (?, ?, ?, ?)",
+                {dbName, dbFile, QDateTime::currentDateTime().toTime_t(), queries});
 
     int maxHistorySize = CFG_CORE.General.DdlHistorySize.get();
 
-    query.exec("SELECT count(*) FROM ddl_history");
-    if (query.next() && query.value(0).toInt() > maxHistorySize)
+    SqlResultsPtr results = db->exec("SELECT count(*) FROM ddl_history");
+    if (results->hasNext() && results->getSingleCell().toInt() > maxHistorySize)
     {
-        query.prepare("SELECT id FROM ddl_history ORDER BY id DESC LIMIT 1 OFFSET :length");
-        query.bindValue(":length", maxHistorySize);
-        query.exec();
-        if (query.next())
+        results = db->exec("SELECT id FROM ddl_history ORDER BY id DESC LIMIT 1 OFFSET %1", {maxHistorySize}, Db::Flag::STRING_REPLACE_ARGS);
+        if (results->hasNext())
         {
-            int id = query.value(0).toInt();
+            int id = results->getSingleCell().toInt();
             if (id > 0) // it will be 0 on fail conversion, but we won't delete id <= 0 ever.
-            {
-                query.prepare("DELETE FROM ddl_history WHERE id <= :id");
-                query.bindValue(":id", id);
-                query.exec();
-            }
+                db->exec("DELETE FROM ddl_history WHERE id <= ?", {id});
         }
     }
 
@@ -429,265 +345,66 @@ void ConfigImpl::addDdlHistory(const QString& queries, const QString& dbName, co
 
 QList<ConfigImpl::DdlHistoryEntryPtr> ConfigImpl::getDdlHistoryFor(const QString& dbName, const QString& dbFile, const QDate& date)
 {
-    static const QString sql =
+    static_qstring(sql,
             "SELECT timestamp,"
             "       queries"
             "  FROM ddl_history"
-            " WHERE dbname = :dbName"
-            "   AND file = :dbFile"
-            "   AND date(timestamp, 'unixepoch') = :date"
-            ;
+            " WHERE dbname = ?"
+            "   AND file = ?"
+            "   AND date(timestamp, 'unixepoch') = ?");
 
-    QSqlQuery query(*db);
-    query.prepare(sql);
-    query.bindValue(":dbName", dbName);
-    query.bindValue(":dbFile", dbFile);
-    query.bindValue(":date", date.toString("yyyy-MM-dd"));
-    query.exec();
+    SqlResultsPtr results = db->exec(sql, {dbName, dbFile, date.toString("yyyy-MM-dd")});
 
-    QList<DdlHistoryEntryPtr> results;
+    QList<DdlHistoryEntryPtr> etnries;
     DdlHistoryEntryPtr entry;
-    while (query.next())
+    SqlResultsRowPtr row;
+    while (results->hasNext())
     {
+        row = results->next();
         entry = DdlHistoryEntryPtr::create();
         entry->dbName = dbName;
         entry->dbFile = dbFile;
-        entry->timestamp = QDateTime::fromTime_t(query.value("timestamp").toUInt());
-        entry->queries = query.value("queries").toString();
-        results << entry;
+        entry->timestamp = QDateTime::fromTime_t(row->value("timestamp").toUInt());
+        entry->queries = row->value("queries").toString();
+        etnries << entry;
     }
-    return results;
+    return etnries;
 }
 
 DdlHistoryModel* ConfigImpl::getDdlHistoryModel()
 {
     if (!ddlHistoryModel)
-        ddlHistoryModel = new DdlHistoryModel(this, db);
+        ddlHistoryModel = new DdlHistoryModel(db, this);
 
     return ddlHistoryModel;
 }
 
 void ConfigImpl::clearDdlHistory()
 {
-    QSqlQuery query(*db);
-    query.exec("DELETE FROM ddl_history");
-
+    db->exec("DELETE FROM ddl_history");
     if (ddlHistoryModel)
         ddlHistoryModel->refresh();
 }
 
-bool ConfigImpl::setFunctions(const QList<FunctionManager::FunctionPtr>& functions)
-{
-    if (!db->transaction())
-    {
-        qCritical() << "Could not start trasaction on config database! Functions not modified.";
-        return false;
-    }
-
-    QSqlQuery functionQuery(*db);
-    QSqlQuery fnArgsQuery(*db);
-    QSqlQuery funcToDbQuery(*db);
-
-    functionQuery.prepare("DELETE FROM functions");
-    functionQuery.exec();
-
-    functionQuery.prepare("INSERT INTO functions (name, lang, initial_code, code, final_code, type, for_all_databases, undefined_args) "
-                          "VALUES (:name, :lang, :initial_code, :code, :final_code, :type, :for_all_databases, :undefined_args)");
-
-    fnArgsQuery.prepare("INSERT INTO function_args (function, name) VALUES (:function, :name)");
-
-    funcToDbQuery.prepare("INSERT INTO func_to_db (function, dbname) VALUES (:function, :dbname)");
-
-    foreach (const FunctionManager::FunctionPtr& func, functions)
-    {
-        functionQuery.bindValue(":name", func->name);
-        functionQuery.bindValue(":lang", func->lang);
-        functionQuery.bindValue(":initial_code", func->initCode);
-        functionQuery.bindValue(":code", func->code);
-        functionQuery.bindValue(":final_code", func->finalCode);
-        functionQuery.bindValue(":type", FunctionManager::Function::typeString(func->type));
-        functionQuery.bindValue(":for_all_databases", func->allDatabases);
-        functionQuery.bindValue(":undefined_args", func->undefinedArgs);
-        functionQuery.exec();
-        printErrorIfSet(functionQuery);
-
-        // Arguments
-        if (!func->undefinedArgs)
-        {
-            foreach (const QString arg, func->arguments)
-            {
-                fnArgsQuery.bindValue(":function", func->name);
-                fnArgsQuery.bindValue(":name", arg);
-                fnArgsQuery.exec();
-                printErrorIfSet(fnArgsQuery);
-            }
-        }
-
-        // Databases
-        if (!func->allDatabases)
-        {
-            foreach (const QString dbName, func->databases)
-            {
-                funcToDbQuery.bindValue(":function", func->name);
-                funcToDbQuery.bindValue(":dbname", dbName);
-                funcToDbQuery.exec();
-                printErrorIfSet(funcToDbQuery);
-            }
-        }
-    }
-
-    if (!db->commit())
-    {
-        qCritical() << "Could not commit function list modifications. Functions not changed. Error message:" << db->lastError().text();
-        db->rollback();
-        return false;
-    }
-    return true;
-}
-
-QList<FunctionManager::FunctionPtr> ConfigImpl::getFunctions() const
-{
-    // Read function arguments
-    QHash<QString,QStringList> arguments;
-    QSqlQuery query(*db);
-    query.prepare("SELECT * FROM function_args");
-    query.exec();
-
-    while (query.next())
-        arguments[query.value("function").toString()] << query.value("name").toString();
-
-    // Read relations to databases
-    QHash<QString,QStringList> databases;
-    query.prepare("SELECT * FROM func_to_db");
-    query.exec();
-
-    while (query.next())
-        databases[query.value("function").toString()] << query.value("dbname").toString();
-
-    // Read functions themself
-    query.prepare("SELECT * FROM functions");
-    query.exec();
-
-    QList<FunctionManager::FunctionPtr> funcList;
-    FunctionManager::FunctionPtr func;
-    while (query.next())
-    {
-        func = FunctionManager::FunctionPtr::create();
-        func->name = query.value("name").toString();
-        func->lang = query.value("lang").toString();
-        func->initCode = query.value("initial_code").toString();
-        func->code = query.value("code").toString();
-        func->finalCode = query.value("final_code").toString();
-        func->type = FunctionManager::Function::typeString(query.value("type").toString());
-        func->allDatabases = query.value("for_all_databases").toBool();
-        func->undefinedArgs = query.value("undefined_args").toBool();
-        func->arguments = arguments[func->name];
-        func->databases = databases[func->name];
-        funcList << func;
-    }
-    return funcList;
-}
-
-bool ConfigImpl::setCollations(const QList<CollationManager::CollationPtr>& collations)
-{
-    if (!db->transaction())
-    {
-        qCritical() << "Could not start trasaction on config database! Collations not modified.";
-        return false;
-    }
-
-    QSqlQuery collationQuery(*db);
-    QSqlQuery collToDbQuery(*db);
-
-    collationQuery.prepare("DELETE FROM collations");
-    collationQuery.exec();
-
-    collationQuery.prepare("INSERT INTO collations (name, lang, code, for_all_databases) "
-                          "VALUES (:name, :lang, :code, :for_all_databases)");
-
-    collToDbQuery.prepare("INSERT INTO collation_to_db (collation, dbname) VALUES (:collation, :dbname)");
-
-    foreach (const CollationManager::CollationPtr& coll, collations)
-    {
-        collationQuery.bindValue(":name", coll->name);
-        collationQuery.bindValue(":lang", coll->lang);
-        collationQuery.bindValue(":code", coll->code);
-        collationQuery.bindValue(":for_all_databases", coll->allDatabases);
-        collationQuery.exec();
-        printErrorIfSet(collationQuery);
-
-        // Databases
-        if (!coll->allDatabases)
-        {
-            foreach (const QString dbName, coll->databases)
-            {
-                collToDbQuery.bindValue(":collation", coll->name);
-                collToDbQuery.bindValue(":dbname", dbName);
-                collToDbQuery.exec();
-                printErrorIfSet(collToDbQuery);
-            }
-        }
-    }
-
-    if (!db->commit())
-    {
-        qCritical() << "Could not commit collation list modifications. Collations not changed. Error message:" << db->lastError().text();
-        db->rollback();
-        return false;
-    }
-    return true;
-}
-
-QList<CollationManager::CollationPtr> ConfigImpl::getCollations() const
-{
-    // Read relations to databases
-    QHash<QString,QStringList> databases;
-    QSqlQuery query(*db);
-    query.prepare("SELECT * FROM collation_to_db");
-    query.exec();
-
-    while (query.next())
-        databases[query.value("collation").toString()] << query.value("dbname").toString();
-
-    // Read collations themself
-    query.prepare("SELECT * FROM collations");
-    query.exec();
-
-    QList<CollationManager::CollationPtr> collList;
-    CollationManager::CollationPtr coll;
-    while (query.next())
-    {
-        coll = CollationManager::CollationPtr::create();
-        coll->name = query.value("name").toString();
-        coll->lang = query.value("lang").toString();
-        coll->code = query.value("code").toString();
-        coll->allDatabases = query.value("for_all_databases").toBool();
-        coll->databases = databases[coll->name];
-        collList << coll;
-    }
-    return collList;
-}
-
 void ConfigImpl::readGroupRecursively(ConfigImpl::DbGroupPtr group)
 {
-    QSqlQuery query(*db);
+    SqlResultsPtr results;
     if (group->id < 0)
-        query.prepare("SELECT id, name, [order], open, dbname FROM groups WHERE parent IS NULL ORDER BY [order]");
+        results = db->exec("SELECT id, name, [order], open, dbname FROM groups WHERE parent IS NULL ORDER BY [order]");
     else
-    {
-        query.prepare("SELECT id, name, [order], open, dbname FROM groups WHERE parent = :parentId ORDER BY [order]");
-        query.bindValue(":parentId", group->id);
-    }
-    query.exec();
+        results = db->exec("SELECT id, name, [order], open, dbname FROM groups WHERE parent = ? ORDER BY [order]", {group->id});
+
     DbGroupPtr childGroup;
-    while (query.next())
+    SqlResultsRowPtr row;
+    while (results->hasNext())
     {
+        row = results->next();
         childGroup = DbGroupPtr::create();
-        childGroup->id = query.value("id").toULongLong();
-        childGroup->name = query.value("name").toString();
-        childGroup->order = query.value("order").toInt();
-        childGroup->open = query.value("open").toBool();
-        childGroup->referencedDbName = query.value("dbname").toString();
+        childGroup->id = row->value("id").toULongLong();
+        childGroup->name = row->value("name").toString();
+        childGroup->order = row->value("order").toInt();
+        childGroup->open = row->value("open").toBool();
+        childGroup->referencedDbName = row->value("dbname").toString();
         group->childs += childGroup;
     }
 
@@ -697,7 +414,7 @@ void ConfigImpl::readGroupRecursively(ConfigImpl::DbGroupPtr group)
 
 void ConfigImpl::begin()
 {
-    db->transaction();
+    db->begin();
 }
 
 void ConfigImpl::commit()
@@ -745,10 +462,8 @@ QString ConfigImpl::getPortableConfigPath()
 
 void ConfigImpl::initTables()
 {
-    QList<QString> tables;
-    QSqlQuery query = db->exec("SELECT lower(name) AS name FROM sqlite_master WHERE type = 'table'");
-    while (query.next())
-        tables << query.value(0).toString();
+    SqlResultsPtr results = db->exec("SELECT lower(name) AS name FROM sqlite_master WHERE type = 'table'");
+    QList<QString> tables = results->columnAsList<QString>(0);
 
     if (!tables.contains("version"))
     {
@@ -778,42 +493,6 @@ void ConfigImpl::initTables()
     if (!tables.contains("ddl_history"))
         db->exec("CREATE TABLE ddl_history (id INTEGER PRIMARY KEY AUTOINCREMENT, dbname TEXT, file TEXT, timestamp INTEGER, "
                  "queries TEXT)");
-
-    if (!tables.contains("functions"))
-        db->exec("CREATE TABLE functions (name TEXT PRIMARY KEY, lang TEXT, initial_code TEXT, code TEXT, final_code TEXT, "
-                 "type TEXT CHECK (type IN ('SCALAR', 'AGGREGATE')), for_all_databases BOOLEAN, undefined_args BOOLEAN)");
-
-    if (!tables.contains("function_args"))
-        db->exec("CREATE TABLE function_args (function TEXT REFERENCES functions (name) ON UPDATE CASCADE ON DELETE CASCADE, "
-                 "name TEXT)");
-
-    if (!tables.contains("func_to_db"))
-    {
-        db->exec("CREATE TABLE func_to_db (function TEXT REFERENCES functions (name) ON UPDATE CASCADE ON DELETE CASCADE, "
-                 "dbname TEXT REFERENCES dblist (name) ON UPDATE CASCADE ON DELETE CASCADE)");
-        db->exec("DROP TRIGGER IF EXISTS func_to_db_trig");
-        db->exec("CREATE TRIGGER func_to_db_trig BEFORE INSERT ON func_to_db WHEN "
-                 "(SELECT for_all_databases FROM functions WHERE name = new.function) = 1 "
-                 "BEGIN "
-                 "SELECT RAISE(ROLLBACK, 'Cannot assign function to database, because it is marked for all databases.'); "
-                 "END");
-    }
-
-    if (!tables.contains("collations"))
-        db->exec("CREATE TABLE collations (name TEXT PRIMARY KEY, lang TEXT, code TEXT, for_all_databases BOOLEAN)");
-
-
-    if (!tables.contains("collation_to_db"))
-    {
-        db->exec("CREATE TABLE collation_to_db (collation TEXT REFERENCES collations (name) ON UPDATE CASCADE ON DELETE CASCADE, "
-                 "dbname TEXT REFERENCES dblist (name) ON UPDATE CASCADE ON DELETE CASCADE)");
-        db->exec("DROP TRIGGER IF EXISTS collation_to_db_trig");
-        db->exec("CREATE TRIGGER collation_to_db_trig BEFORE INSERT ON collation_to_db WHEN "
-                 "(SELECT for_all_databases FROM collations WHERE name = new.collation) = 1 "
-                 "BEGIN "
-                 "SELECT RAISE(ROLLBACK, 'Cannot assign collation to database, because it is marked for all databases.'); "
-                 "END");
-    }
 
     if (!tables.contains("cli_history"))
         db->exec("CREATE TABLE cli_history (id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT)");
@@ -883,22 +562,26 @@ void ConfigImpl::initDbFile()
                        " Tried to initialize the file at following localizations: %1.").arg(paths.join(", ")));
     }
 
-    db->exec("PRAGMA foreign_keys = 1;");
+    //db->exec("PRAGMA foreign_keys = 1;");
 }
 
 bool ConfigImpl::tryInitDbFile(const QString &dbPath)
 {
-    db->setDatabaseName(dbPath);
-    if (db->open())
+    db = new DbSqlite3("SQLiteStudio settings", dbPath, {{DB_PURE_INIT, true}});
+    if (!db->open())
     {
-        qDebug() << "Using config: " << dbPath;
-        return true;
+        safe_delete(db);
+        return false;
     }
-    else
+
+    SqlResultsPtr results = db->exec("SELECT * FROM sqlite_master");
+    if (results->isError())
     {
-        qDebug() << db->lastError().text();
+        safe_delete(db);
+        return false;
     }
-    return false;
+
+    return true;
 }
 
 QVariant ConfigImpl::deserializeValue(const QVariant &value)

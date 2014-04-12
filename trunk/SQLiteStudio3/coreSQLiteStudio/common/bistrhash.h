@@ -227,7 +227,7 @@ class BiStrHash
         }
 
         /**
-         * @overload BiStrHash& unite(const QHash<QString,QString>& other)
+         * @overload
          */
         BiStrHash& unite(const QHash<QString,QString>& other)
         {

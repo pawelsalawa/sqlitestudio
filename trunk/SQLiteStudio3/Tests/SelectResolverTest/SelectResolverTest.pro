@@ -7,8 +7,7 @@
 include($$PWD/../../dirs.pri)
 include($$PWD/../testdirs.pri)
 
-QT       += sql testlib
-
+QT       += testlib
 QT       -= gui
 
 TARGET = tst_selectresolvertest

@@ -22,6 +22,15 @@ class Db;
 class DbManager;
 
 /**
+ * @brief Option to make new Db instance not install any functions or collations in the database.
+ *
+ * This connection option should be used (with boolean value = true) when creating Db instance
+ * to be used internally (not exposed to the user) and you don't want any special features
+ * (like custom SQL functions, custom collations) to be registered in that database.
+ */
+static_char* DB_PURE_INIT = "sqlitestudio_pure_db_initalization";
+
+/**
  * @brief Database managed by application.
  *
  * Everything you might want to do with SQLite databases goes through this interface in the application.
@@ -304,31 +313,31 @@ class API_EXPORT Db : public QObject
          *                                      });
          * @endcode
          *
-         * @overload SqlResultsPtr exec(const QString& query, const QHash<QString, QVariant>& args, Flags flags)
+         * @overload
          */
         virtual SqlResultsPtr exec(const QString& query, const QHash<QString, QVariant>& args, Flags flags = Flag::NONE) = 0;
 
         /**
          * @brief Executes SQL query.
-         * @overload SqlResultsPtr exec(const QString &query, Db::Flags flags)
+         * @overload
          */
         virtual SqlResultsPtr exec(const QString &query, Db::Flags flags = Flag::NONE) = 0;
 
         /**
          * @brief Executes SQL query.
-         * @overload SqlResultsPtr exec(const QString &query, const QVariant &value)
+         * @overload
          */
         virtual SqlResultsPtr exec(const QString &query, const QVariant &arg) = 0;
 
         /**
          * @brief Executes SQL query.
-         * @overload SqlResultsPtr exec(const QString &query, std::initializer_list<QVariant> list)
+         * @overload
          */
         virtual SqlResultsPtr exec(const QString &query, std::initializer_list<QVariant> argList) = 0;
 
         /**
          * @brief Executes SQL query.
-         * @overload SqlResultsPtr exec(const QString &query, std::initializer_list<std::pair<QString,QVariant>> argMap)
+         * @overload
          */
         virtual SqlResultsPtr exec(const QString &query, std::initializer_list<std::pair<QString,QVariant>> argMap) = 0;
 
@@ -358,7 +367,7 @@ class API_EXPORT Db : public QObject
          * @param resultsHandler Function (can be lambda) to handle results. The function has to accept single SqlResultsPtr object and return nothing.
          * @param flags Execution flags. See exec() for details.
          * @return Asynchronous execution ID.
-         * @overload void asyncExec(const QString& query, const QHash<QString, QVariant>& args, QueryResultsHandler resultsHandler, Flags flags)
+         * @overload
          */
         virtual void asyncExec(const QString& query, const QHash<QString, QVariant>& args, QueryResultsHandler resultsHandler, Flags flags = Flag::NONE) = 0;
 
@@ -368,7 +377,7 @@ class API_EXPORT Db : public QObject
          * @param resultsHandler Function (can be lambda) to handle results. The function has to accept single SqlResultsPtr object and return nothing.
          * @param flags Execution flags. See exec() for details.
          * @return Asynchronous execution ID.
-         * @overload void asyncExec(const QString& query, QueryResultsHandler resultsHandler, Flags flags)
+         * @overload
          */
         virtual void asyncExec(const QString& query, QueryResultsHandler resultsHandler, Flags flags = Flag::NONE) = 0;
 
@@ -399,7 +408,7 @@ class API_EXPORT Db : public QObject
          * @param args Map of parameter name and the value assigned to it.
          * @param flags Execution flags. See exec() for details.
          * @return Asynchronous execution ID.
-         * @overload quint32 asyncExec(const QString& query, const QHash<QString, QVariant>& args, Flags flags)
+         * @overload
          *
          * It's recommended to use method version which takes function pointer for results handing, as it's more resiliant to errors in the code.
          */
@@ -410,7 +419,7 @@ class API_EXPORT Db : public QObject
          * @param query Query to be executed. See exec() for details.
          * @param flags Execution flags. See exec() for details.
          * @return Asynchronous execution ID.
-         * @overload quint32 asyncExec(const QString& query, Flags flags)
+         * @overload
          *
          * It's recommended to use method version which takes function pointer for results handing, as it's more resiliant to errors in the code.
          */
@@ -533,7 +542,7 @@ class API_EXPORT Db : public QObject
          * @brief Gets last error string from database driver.
          * @return Last encountered error.
          *
-         * Result of this method is determinated by DbPlugin. For plugins using Qt database engine, this method calls QSqlDatabase::lastError().
+         * Result of this method is determinated by DbPlugin.
          */
         virtual QString getErrorText() = 0;
 
@@ -541,7 +550,7 @@ class API_EXPORT Db : public QObject
          * @brief Gets last error code from database driver.
          * @return Code of last encountered error.
          *
-         * Result of this method is determinated by DbPlugin. For plugins using Qt database engine, this method calls QSqlDatabase::lastError().
+         * Result of this method is determinated by DbPlugin.
          */
         virtual int getErrorCode() = 0;
 

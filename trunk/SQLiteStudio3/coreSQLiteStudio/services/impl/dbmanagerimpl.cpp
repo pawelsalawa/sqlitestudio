@@ -21,6 +21,7 @@ DbManagerImpl::~DbManagerImpl()
 {
     foreach (Db* db, dbList)
     {
+        disconnect(db, &Db::disconnected, this, &DbManagerImpl::dbDisconnectedSlot);
         if (db->isOpen())
             db->close();
 

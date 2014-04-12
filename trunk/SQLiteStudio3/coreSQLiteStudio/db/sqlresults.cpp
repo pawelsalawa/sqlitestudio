@@ -70,3 +70,8 @@ RowId SqlResults::getInsertRowId()
 {
     return insertRowId;
 }
+
+qint64 SqlResults::getRegularInsertRowId()
+{
+    return insertRowId["ROWID"].toLongLong();
+}

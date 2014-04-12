@@ -127,13 +127,15 @@ API_EXPORT double toJulian(const QDateTime& gregDateTime);
 
 /**
  * @brief toJulian Converts Gregorian Date to Julian Date.
- * @overload double toJulian(const QDateTime& gregDateTime)
+ * @overload
  */
 API_EXPORT double toJulian(int year, int month, int day, int hour, int minute, int second, int msec);
 
 API_EXPORT QString formatFileSize(quint64 size);
 
 API_EXPORT QString formatTimePeriod(int msecs);
+
+API_EXPORT QStringList common(const QStringList& list1, const QStringList& list2, Qt::CaseSensitivity cs = Qt::CaseSensitive);
 
 template <class T>
 void removeDuplicates(QList<T>& list)

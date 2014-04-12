@@ -585,7 +585,7 @@ AbstractDb2<T>::Results::Results(AbstractDb2<T>* db, sqlite_vm* stmt, bool error
     }
 
     affected = sqlite_changes(db->dbHandle);
-
+    insertRowId["ROWID"] = sqlite_last_insert_rowid(db->dbHandle);
 }
 
 template <class T>

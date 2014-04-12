@@ -97,7 +97,7 @@ class API_EXPORT Lexer
          * It's used by Parser to try every token type as a possible candidate for a next valid token.
          * You should not need to use this method.
          *
-         * @overload QSet<TokenPtr> getEveryTokenType(QSet<Token::Type> types)
+         * @overload
          */
         QSet<TokenPtr> getEveryTokenType(QSet<Token::Type> types);
 

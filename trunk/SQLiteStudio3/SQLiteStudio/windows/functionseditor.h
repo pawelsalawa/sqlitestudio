@@ -75,6 +75,7 @@ class FunctionsEditor : public MdiChild, public ExtActionContainer
         QSyntaxHighlighter* currentMainHighlighter = nullptr;
         QSyntaxHighlighter* currentFinalHighlighter = nullptr;
         QSyntaxHighlighter* currentInitHighlighter = nullptr;
+        bool updatesForSelection = false;
 
     private slots:
         void commit();

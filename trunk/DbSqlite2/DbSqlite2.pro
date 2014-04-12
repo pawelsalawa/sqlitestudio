@@ -7,7 +7,6 @@
 include($$PWD/../SQLiteStudio3/plugins.pri)
 
 QT       -= gui
-QT       += sql
 
 QMAKE_CXXFLAGS += -std=c++11
 

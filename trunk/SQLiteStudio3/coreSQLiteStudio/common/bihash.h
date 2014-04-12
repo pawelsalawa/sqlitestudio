@@ -171,7 +171,7 @@ class BiHash
         }
 
         /**
-         * @overload BiHash<L,R>& unite(const QHash<L,R>& other)
+         * @overload
          */
         BiHash<L,R>& unite(const QHash<L,R>& other)
         {

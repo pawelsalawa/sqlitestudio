@@ -10,7 +10,7 @@ OBJECTS_DIR = $$OBJECTS_DIR/Console
 MOC_DIR = $$MOC_DIR/Console
 UI_DIR = $$UI_DIR/Console
 
-QT       += core sql
+QT       += core
 QT       -= gui
 
 TARGET = Console

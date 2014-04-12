@@ -4,7 +4,10 @@
 #include "services/notifymanager.h"
 #include "plugins/scriptingplugin.h"
 #include "common/unused.h"
-#include <QVariant>
+#include "common/utils.h"
+#include "services/dbmanager.h"
+#include <QVariantList>
+#include <QHash>
 #include <QDebug>
 
 FunctionManagerImpl::FunctionManagerImpl()
@@ -191,7 +194,7 @@ QVariant FunctionManagerImpl::evaluateAggregateFinal(const QString& name, int ar
 
 void FunctionManagerImpl::init()
 {
-    functions = CFG->getFunctions();
+    loadFromConfig();
     refreshFunctionsByKey();
 }
 
@@ -204,12 +207,47 @@ void FunctionManagerImpl::refreshFunctionsByKey()
 
 void FunctionManagerImpl::storeInConfig()
 {
-    if (!CFG->setFunctions(functions))
+    QVariantList list;
+    QHash<QString,QVariant> fnHash;
+    foreach (const FunctionPtr& func, functions)
     {
-        notifyWarn(tr("Could not store custom SQL functions in configuration file. "
-                         "You can try editing functions and save them again. "
-                         "Otherwise all modifications will be lost after application restart. "
-                         "Error details: %1").arg(CFG->getLastErrorString()));
+        fnHash["name"] = func->name;
+        fnHash["lang"] = func->lang;
+        fnHash["code"] = func->code;
+        fnHash["initCode"] = func->initCode;
+        fnHash["finalCode"] = func->finalCode;
+        fnHash["databases"] = common(DBLIST->getDbNames(), func->databases);
+        fnHash["arguments"] = func->arguments;
+        fnHash["type"] = static_cast<int>(func->type);
+        fnHash["undefinedArgs"] = func->undefinedArgs;
+        fnHash["allDatabases"] = func->allDatabases;
+        list << fnHash;
+    }
+    CFG_CORE.Internal.Functions.set(list);
+}
+
+void FunctionManagerImpl::loadFromConfig()
+{
+    functions.clear();
+
+    QVariantList list = CFG_CORE.Internal.Functions.get();
+    QHash<QString,QVariant> fnHash;
+    FunctionPtr func;
+    for (const QVariant& var : list)
+    {
+        fnHash = var.toHash();
+        func = FunctionPtr::create();
+        func->name = fnHash["name"].toString();
+        func->lang = fnHash["lang"].toString();
+        func->code = fnHash["code"].toString();
+        func->initCode = fnHash["initCode"].toString();
+        func->finalCode = fnHash["finalCode"].toString();
+        func->databases = fnHash["databases"].toStringList();
+        func->arguments = fnHash["arguments"].toStringList();
+        func->type = static_cast<Function::Type>(fnHash["type"].toInt());
+        func->undefinedArgs = fnHash["undefinedArgs"].toBool();
+        func->allDatabases = fnHash["allDatabases"].toBool();
+        functions << func;
     }
 }
 

@@ -91,6 +91,9 @@ class Icon
         static QHash<QString,Icon*> instances;
 };
 
+QDataStream &operator<<(QDataStream &out, const Icon* icon);
+QDataStream &operator>>(QDataStream &in, const Icon*& icon);
+
 Q_DECLARE_METATYPE(const Icon*)
 
 #endif // ICONS_H

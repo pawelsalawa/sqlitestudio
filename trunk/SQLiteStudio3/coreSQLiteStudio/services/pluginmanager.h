@@ -168,7 +168,7 @@ class API_EXPORT PluginManager : public QObject
         /**
          * @brief Unloads plugin.
          * @param plugin Loaded plugin to be unloaded.
-         * @overload void unload(Plugin* plugin)
+         * @overload
          */
         virtual void unload(Plugin* plugin) = 0;
 

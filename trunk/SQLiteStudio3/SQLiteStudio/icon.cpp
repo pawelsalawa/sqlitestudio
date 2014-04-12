@@ -206,6 +206,7 @@ Icon::operator Icon*()
 void Icon::init()
 {
     qRegisterMetaType<const Icon*>();
+    qRegisterMetaTypeStreamOperators<const Icon*>();
 }
 
 QString Icon::getFileName() const
@@ -345,3 +346,16 @@ Icon::operator QIcon() const
     return toQIcon();
 }
 
+QDataStream& operator<<(QDataStream& out, const Icon* icon)
+{
+    out << reinterpret_cast<qint64>(icon);
+    return out;
+}
+
+QDataStream& operator>>(QDataStream& in, const Icon*& icon)
+{
+    qint64 ptr;
+    in >> ptr;
+    icon = reinterpret_cast<const Icon*>(ptr);
+    return in;
+}

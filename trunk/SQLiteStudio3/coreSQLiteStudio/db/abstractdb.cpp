@@ -143,7 +143,6 @@ QString AbstractDb::generateUniqueDbNameNoLock()
     if (results->isError())
     {
         qWarning() << "Could not get PRAGMA database_list. Falling back to internal db list. Error was:" << results->getErrorText();
-        lastErrorText = results->getErrorText();
         return generateUniqueName("attached", attachedDbMap.keys());
     }
 
@@ -343,6 +342,10 @@ bool AbstractDb::openAndSetup()
     bool result = openInternal();
     if (!result)
         return result;
+
+    // When this is an internal configuration database
+    if (connOptions.contains(DB_PURE_INIT))
+        return true;
 
     // Implementation specific initialization
     initAfterOpen();
@@ -545,7 +548,6 @@ QString AbstractDb::attach(Db* otherDb)
     if (results->isError())
     {
         notifyError(tr("Error attaching database %1: %2").arg(otherDb->getName()).arg(results->getErrorText()));
-        lastErrorText = results->getErrorText();
         return QString::null;
     }
 
@@ -621,8 +623,6 @@ QString AbstractDb::getUniqueNewObjectName(const QString &attachedDbName)
 
     QSet<QString> existingNames;
     SqlResultsPtr results = exec("SELECT name FROM %1.sqlite_master", {dbName}, Flag::STRING_REPLACE_ARGS);
-    if (results->isError())
-        lastErrorText = results->getErrorText();
 
     foreach (SqlResultsRowPtr row, results->getAll())
         existingNames << row->value(0).toString();
@@ -633,11 +633,7 @@ QString AbstractDb::getUniqueNewObjectName(const QString &attachedDbName)
 QString AbstractDb::getErrorText()
 {
     QReadLocker locker(&dbOperLock);
-    QString error = getErrorTextInternal();
-    if (error.isNull())
-        return lastErrorText;
-
-    return error;
+    return getErrorTextInternal();
 }
 
 int AbstractDb::getErrorCode()
@@ -697,7 +693,6 @@ bool AbstractDb::begin()
     if (results->isError())
     {
         qCritical() << "Error while starting a transaction: " << results->getErrorCode() << results->getErrorText();
-        lastErrorText = results->getErrorText();
         return false;
     }
 
@@ -715,7 +710,6 @@ bool AbstractDb::commit()
     if (results->isError())
     {
         qCritical() << "Error while commiting a transaction: " << results->getErrorCode() << results->getErrorText();
-        lastErrorText = results->getErrorText();
         return false;
     }
 
@@ -733,7 +727,6 @@ bool AbstractDb::rollback()
     if (results->isError())
     {
         qCritical() << "Error while rolling back a transaction: " << results->getErrorCode() << results->getErrorText();
-        lastErrorText = results->getErrorText();
         return false;
     }
 

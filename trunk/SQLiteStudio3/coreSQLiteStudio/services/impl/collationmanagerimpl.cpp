@@ -2,6 +2,8 @@
 #include "services/pluginmanager.h"
 #include "plugins/scriptingplugin.h"
 #include "services/notifymanager.h"
+#include "services/dbmanager.h"
+#include "common/utils.h"
 #include <QDebug>
 
 CollationManagerImpl::CollationManagerImpl()
@@ -75,18 +77,43 @@ int CollationManagerImpl::evaluateDefault(const QString& value1, const QString& 
 
 void CollationManagerImpl::init()
 {
-    collations = CFG->getCollations();
+    loadFromConfig();
     refreshCollationsByKey();
 }
 
 void CollationManagerImpl::storeInConfig()
 {
-    if (!CFG->setCollations(collations))
+    QVariantList list;
+    QHash<QString,QVariant> collHash;
+    for (CollationPtr coll : collations)
     {
-        notifyWarn(tr("Could not store collations in configuration file. "
-                      "You can try editing collations and save them again. "
-                      "Otherwise all modifications will be lost after application restart. "
-                      "Error details: %1").arg(CFG->getLastErrorString()));
+        collHash["name"] = coll->name;
+        collHash["lang"] = coll->lang;
+        collHash["code"] = coll->code;
+        collHash["allDatabases"] = coll->allDatabases;
+        collHash["databases"] =common(DBLIST->getDbNames(),  coll->databases);
+        list << collHash;
+    }
+    CFG_CORE.Internal.Collations.set(list);
+}
+
+void CollationManagerImpl::loadFromConfig()
+{
+    collations.clear();
+
+    QVariantList list = CFG_CORE.Internal.Collations.get();
+    QHash<QString,QVariant> collHash;
+    CollationPtr coll;
+    for (const QVariant& var : list)
+    {
+        collHash = var.toHash();
+        coll = CollationPtr::create();
+        coll->name = collHash["name"].toString();
+        coll->lang = collHash["lang"].toString();
+        coll->code = collHash["code"].toString();
+        coll->databases = collHash["databases"].toStringList();
+        coll->allDatabases = collHash["allDatabases"].toBool();
+        collations << coll;
     }
 }
 
