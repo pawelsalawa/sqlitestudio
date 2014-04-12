@@ -61,6 +61,7 @@ class CollationsEditor : public MdiChild, public ExtActionContainer
         QSyntaxHighlighter* currentHighlighter = nullptr;
         QString currentHighlighterLang;
         bool currentModified = false;
+        bool updatesForSelection = false;
 
     private slots:
         void help();

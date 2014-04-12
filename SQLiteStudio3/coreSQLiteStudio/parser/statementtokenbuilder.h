@@ -71,7 +71,7 @@ class StatementTokenBuilder
          *
          * The \p value is wrapped with the proper wrapper using wrapObjIfNeeded().
          *
-         * @overload StatementTokenBuilder& withOther(const QString& value, Dialect dialect)
+         * @overload
          */
         StatementTokenBuilder& withOther(const QString& value, Dialect dialect);
 
@@ -96,7 +96,7 @@ class StatementTokenBuilder
          *
          * Works just like the other withOtherList() method, except it doesn't wrap values with wrapObjIfNeeded().
          *
-         * @overload StatementTokenBuilder& withOtherList(const QList<QString>& value, const QString& separator = ",")
+         * @overload
          */
         StatementTokenBuilder& withOtherList(const QList<QString>& value, const QString& separator = ",");
 

@@ -34,6 +34,8 @@
 
 #define static_char static constexpr const char
 
+#define static_qstring(N,V) const static QString N = QStringLiteral(V)
+
 #define DECLARE_SINGLETON(Cls) \
     public: \
         static Cls* getInstance(); \

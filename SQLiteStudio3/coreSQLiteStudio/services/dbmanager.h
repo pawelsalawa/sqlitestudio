@@ -20,8 +20,6 @@ class PluginType;
  * @brief Database registry manager.
  *
  * Manages list of databases in SQLiteStudio core.
- * Also keeps list of supported database types
- * (QSqlDriver names), like "QSQLITE", etc.
  *
  * It's a singleton asseccible with DBLIST macro.
  */
@@ -55,7 +53,7 @@ class API_EXPORT DbManager : public QObject
         virtual bool addDb(const QString &name, const QString &path, const QHash<QString, QVariant> &options, bool permanent = true) = 0;
 
         /**
-         * @overload bool addDb(const QString &name, const QString &path, bool permanent)
+         * @overload
          */
         virtual bool addDb(const QString &name, const QString &path, bool permanent = true) = 0;
 

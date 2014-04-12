@@ -82,7 +82,7 @@ class API_EXPORT SchemaResolver
          * @param database Attached database name.
          * @param table Table to query.
          * @return List of column names of the table.
-         * @overload QStringList getTableColumns(const QString& database, const QString& table)
+         * @overload
          */
         QStringList getTableColumns(const QString& database, const QString& table);
         QHash<QString, QStringList> getAllTableColumns(const QString& database = QString::null);

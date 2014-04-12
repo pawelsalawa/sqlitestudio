@@ -176,6 +176,7 @@ void FunctionsEditor::functionDeselected(int row)
 
 void FunctionsEditor::functionSelected(int row)
 {
+    updatesForSelection = true;
     ui->nameEdit->setText(model->getName(row));
     ui->initCodeEdit->setPlainText(model->getInitCode(row));
     ui->mainCodeEdit->setPlainText(model->getCode(row));
@@ -213,6 +214,7 @@ void FunctionsEditor::functionSelected(int row)
         }
     }
 
+    updatesForSelection = false;
     currentModified = false;
 
     updateCurrentFunctionState();
@@ -332,6 +334,9 @@ void FunctionsEditor::deleteFunction()
 
 void FunctionsEditor::updateModified()
 {
+    if (updatesForSelection)
+        return;
+
     int row = getCurrentFunctionRow();
     if (model->isValidRowIndex(row))
     {

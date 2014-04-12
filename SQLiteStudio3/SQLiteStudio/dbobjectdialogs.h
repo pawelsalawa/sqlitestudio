@@ -36,6 +36,9 @@ class DbObjectDialogs : public QObject
         bool dropObject(const QString& name);
         bool dropObject(const QString& database, const QString& name);
 
+        bool getNoConfirmation() const;
+        void setNoConfirmation(bool value);
+
     private:
         enum class Type
         {
@@ -52,6 +55,7 @@ class DbObjectDialogs : public QObject
         QWidget* parentWidget;
         MainWindow* mainWindow;
         MdiArea* mdiArea;
+        bool noConfirmation = false;
 };
 
 #endif // DBOBJECTDIALOGS_H

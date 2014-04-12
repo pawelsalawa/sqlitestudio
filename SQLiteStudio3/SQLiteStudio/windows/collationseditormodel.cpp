@@ -201,7 +201,7 @@ void CollationsEditorModel::validateNames()
     int row = 0;
     foreach (Collation* coll, collationList)
     {
-        coll->valid = true;
+        coll->valid &= true;
         counter[coll->data->name] << row++;
     }
 

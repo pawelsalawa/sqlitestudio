@@ -446,3 +446,14 @@ QString formatTimePeriod(int msecs)
 
     return words.join(" ");
 }
+
+QStringList common(const QStringList& list1, const QStringList& list2, Qt::CaseSensitivity cs)
+{
+    QStringList newList;
+    for (const QString& str : list1)
+    {
+        if (list2.contains(str, cs))
+            newList << str;
+    }
+    return newList;
+}

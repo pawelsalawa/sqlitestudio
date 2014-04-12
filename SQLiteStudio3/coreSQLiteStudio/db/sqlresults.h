@@ -156,11 +156,64 @@ class API_EXPORT SqlResults
         virtual bool isInterrupted();
 
         /**
-         * @brief getInsertRowId Retrieves ROWID of the INSERT'ed row.
+         * @brief Retrieves ROWID of the INSERT'ed row.
          * @return ROWID as 64-bit signed integer or set of multiple columns. If empty, then there was no row inserted.
          * @see RowId
+         * @see getRegularInsertRowId()
          */
         virtual RowId getInsertRowId();
+
+        /**
+         * @brief Retrieves ROWID of the INSERT'ed row.
+         * @return ROWID as 64-bit signed integer.
+         *
+         * This is different from getInsertRowId(), because it assumes that the insert was made to a regular table,
+         * while getInsertRowId() supports also inserts to WITHOUT ROWID tables.
+         *
+         * If you know that the insert was made to a regular table, you can use this method to simply get the ROWID.
+         */
+        virtual qint64 getRegularInsertRowId();
+
+        /**
+         * @brief columnAsList
+         * @tparam T Data type to use for the result list.
+         * @param name name of the column to get values from.
+         * @return List of all values from given column.
+         */
+        template <class T>
+        QList<T> columnAsList(const QString& name)
+        {
+            QList<T> list;
+            SqlResultsRowPtr row;
+            while (hasNext())
+            {
+                row = next();
+                list << row->value(name).value<T>();
+            }
+            return list;
+        }
+
+        /**
+         * @brief columnAsList
+         * @tparam T Data type to use for the result list.
+         * @param index Index of the column to get values from (must be between 0 and columnCount()-1).
+         * @return List of all values from given column.
+         */
+        template <class T>
+        QList<T> columnAsList(int index)
+        {
+            QList<T> list;
+            if (index < 0 || index >= columnCount())
+                return list;
+
+            SqlResultsRowPtr row;
+            while (hasNext())
+            {
+                row = next();
+                list << row->value(index).value<T>();
+            }
+            return list;
+        }
 
     protected:
 

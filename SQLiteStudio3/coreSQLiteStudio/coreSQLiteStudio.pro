@@ -11,7 +11,7 @@ MOC_DIR = $$MOC_DIR/coreSQLiteStudio
 UI_DIR = $$UI_DIR/coreSQLiteStudio
 
 QT       -= gui
-QT       += sql script
+QT       += script
 
 TARGET = coreSQLiteStudio
 TEMPLATE = lib
@@ -148,7 +148,8 @@ SOURCES += sqlitestudio.cpp \
     services/exportmanager.cpp \
     exportworker.cpp \
     plugins/scriptingsql.cpp \
-    db/queryexecutorsteps/queryexecutordetectschemaalter.cpp
+    db/queryexecutorsteps/queryexecutordetectschemaalter.cpp \
+    querymodel.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -294,7 +295,8 @@ HEADERS += sqlitestudio.h\
     services/exportmanager.h \
     exportworker.h \
     plugins/scriptingsql.h \
-    db/queryexecutorsteps/queryexecutordetectschemaalter.h
+    db/queryexecutorsteps/queryexecutordetectschemaalter.h \
+    querymodel.h
 
 unix:!symbian {
     maemo5 {

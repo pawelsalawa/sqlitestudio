@@ -17,23 +17,25 @@ const int SQLITESTUDIO_CONFIG_VERSION = 1;
 
 CFG_CATEGORIES(Core,
     CFG_CATEGORY(General,
-        CFG_ENTRY(int,     SqlHistorySize,     10000)
-        CFG_ENTRY(int,     DdlHistorySize,     1000)
-        CFG_ENTRY(QString, LoadedPlugins,      "")
-        CFG_ENTRY(QString, ActiveSqlFormatter, QString())
+        CFG_ENTRY(int,          SqlHistorySize,     10000)
+        CFG_ENTRY(int,          DdlHistorySize,     1000)
+        CFG_ENTRY(QString,      LoadedPlugins,      "")
+        CFG_ENTRY(QString,      ActiveSqlFormatter, QString())
     )
     CFG_CATEGORY(Console,
-        CFG_ENTRY(int,     HistorySize,        100)
+        CFG_ENTRY(int,          HistorySize,        100)
+    )
+    CFG_CATEGORY(Internal,
+        CFG_ENTRY(QVariantList, Functions,          QVariantList())
+        CFG_ENTRY(QVariantList, Collations,         QVariantList())
     )
 )
 
 CFG_DECLARE(Core)
 #define CFG_CORE CFG_INSTANCE(Core)
 
-class QSqlDatabase;
 class QAbstractItemModel;
 class DdlHistoryModel;
-class QSqlQuery;
 
 class API_EXPORT Config : public QObject
 {
@@ -130,12 +132,6 @@ class API_EXPORT Config : public QObject
         virtual QList<DdlHistoryEntryPtr> getDdlHistoryFor(const QString& dbName, const QString& dbFile, const QDate& date) = 0;
         virtual DdlHistoryModel* getDdlHistoryModel() = 0;
         virtual void clearDdlHistory() = 0;
-
-        virtual bool setFunctions(const QList<FunctionManager::FunctionPtr>& functions) = 0;
-        virtual QList<FunctionManager::FunctionPtr> getFunctions() const = 0;
-
-        virtual bool setCollations(const QList<CollationManager::CollationPtr>& collations) = 0;
-        virtual QList<CollationManager::CollationPtr> getCollations() const = 0;
 
         virtual void begin() = 0;
         virtual void commit() = 0;

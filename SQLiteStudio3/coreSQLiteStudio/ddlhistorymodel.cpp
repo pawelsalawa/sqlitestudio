@@ -1,24 +1,9 @@
 #include "ddlhistorymodel.h"
-#include <QSqlQueryModel>
+#include "querymodel.h"
 #include <QSet>
 
-DdlHistoryModel::DdlHistoryModel(QObject *parent, QSqlDatabase* db) :
-    QSortFilterProxyModel(parent), db(db)
-{
-    internalModel = new QSqlQueryModel(this);
-    setSourceModel(internalModel);
-
-    setFilterKeyColumn(0);
-    setDynamicSortFilter(true);
-
-    refresh();
-    setHeaderData(0, Qt::Horizontal, tr("Database name", "ddl history header"));
-    setHeaderData(1, Qt::Horizontal, tr("Database file", "ddl history header"));
-    setHeaderData(2, Qt::Horizontal, tr("Date of execution", "ddl history header"));
-    setHeaderData(3, Qt::Horizontal, tr("Changes", "ddl history header"));
-}
-
-void DdlHistoryModel::refresh()
+DdlHistoryModel::DdlHistoryModel(Db* db, QObject *parent) :
+    QSortFilterProxyModel(parent)
 {
     static const QString query =
             "SELECT dbname,"
@@ -29,9 +14,19 @@ void DdlHistoryModel::refresh()
             " GROUP BY dbname, file, date"
             " ORDER BY date DESC";
 
-    dynamic_cast<QSqlQueryModel*>(internalModel)->setQuery(query, *db);
+    internalModel = new QueryModel(db, this);
+    setSourceModel(internalModel);
+    connect(internalModel, SIGNAL(refreshed()), this, SIGNAL(refreshed()));
 
-    emit refreshed();
+    setFilterKeyColumn(0);
+    setDynamicSortFilter(true);
+
+    internalModel->setQuery(query);
+
+    setHeaderData(0, Qt::Horizontal, tr("Database name", "ddl history header"));
+    setHeaderData(1, Qt::Horizontal, tr("Database file", "ddl history header"));
+    setHeaderData(2, Qt::Horizontal, tr("Date of execution", "ddl history header"));
+    setHeaderData(3, Qt::Horizontal, tr("Changes", "ddl history header"));
 }
 
 QVariant DdlHistoryModel::data(const QModelIndex& index, int role) const
@@ -40,6 +35,11 @@ QVariant DdlHistoryModel::data(const QModelIndex& index, int role) const
         return (int)(Qt::AlignRight|Qt::AlignVCenter);
 
     return QSortFilterProxyModel::data(index, role);
+}
+
+void DdlHistoryModel::refresh()
+{
+    internalModel->refresh();
 }
 
 void DdlHistoryModel::setDbNameForFilter(const QString& value)

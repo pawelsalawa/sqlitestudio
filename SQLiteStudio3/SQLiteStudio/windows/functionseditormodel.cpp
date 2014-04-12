@@ -262,7 +262,7 @@ void FunctionsEditorModel::validateNames()
     int row = 0;
     foreach (Function* func, functionList)
     {
-        func->valid = true;
+        func->valid &= true;
         counter[func->data->name] << row++;
     }
 

@@ -125,12 +125,12 @@ struct API_EXPORT Token
     Token(int lemonType, Type type, QString value, qint64 start, qint64 end);
 
     /**
-     * @overload Token(int lemonType, Type type, QChar value, qint64 start, qint64 end)
+     * @overload
      */
     Token(int lemonType, Type type, QChar value, qint64 start, qint64 end);
 
     /**
-     * @overload Token(int lemonType, Type type, QString value)
+     * @overload
      */
     Token(int lemonType, Type type, QString value);
 

@@ -412,6 +412,7 @@ void DbTree::deleteItem(DbTreeItem* item)
         {
             Db* db = item->getDb();
             DbObjectDialogs dialogs(db);
+            dialogs.setNoConfirmation(true); // confirmation is done in deleteSelected()
             dialogs.dropObject(item->text()); // TODO database name when supported
             break;
         }

@@ -193,9 +193,12 @@ bool DbObjectDialogs::dropObject(const QString& database, const QString& name)
         }
     }
 
-    QMessageBox::StandardButton resp = QMessageBox::question(parentWidget, title, message.arg(name));
-    if (resp != QMessageBox::Yes)
-        return false;
+    if (!noConfirmation)
+    {
+        QMessageBox::StandardButton resp = QMessageBox::question(parentWidget, title, message.arg(name));
+        if (resp != QMessageBox::Yes)
+            return false;
+    }
 
     SqlResultsPtr results = db->exec(dropSql, {typeForSql, dbName, wrapObjIfNeeded(name, dialect)}, Db::Flag::STRING_REPLACE_ARGS);
     if (results->isError())
@@ -227,6 +230,16 @@ DbObjectDialogs::Type DbObjectDialogs::getObjectType(const QString& database, co
     QString typeStr = results->getSingleCell().toString();
     return static_cast<Type>(types.indexOf(typeStr));
 }
+bool DbObjectDialogs::getNoConfirmation() const
+{
+    return noConfirmation;
+}
+
+void DbObjectDialogs::setNoConfirmation(bool value)
+{
+    noConfirmation = value;
+}
+
 
 TableWindow* DbObjectDialogs::editTable(const QString& database, const QString& table)
 {

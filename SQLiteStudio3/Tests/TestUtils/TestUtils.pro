@@ -6,7 +6,6 @@
 
 include($$PWD/../../dirs.pri)
 
-QT       += sql
 QT       -= gui
 
 TARGET = TestUtils
