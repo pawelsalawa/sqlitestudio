@@ -35,19 +35,61 @@ QString SqlExport::getConfigFormName(ExportManager::ExportMode mode) const
     return QString::null;
 }
 
-bool SqlExport::exportQueryResults(Db* db, const QString& query, SqlResultsPtr results, QList<QueryExecutor::ResultColumnPtr>& columns, QIODevice* output,
-                                   const ExportManager::StandardExportConfig& config)
+void SqlExport::initBeforeExport(Db* db, QIODevice* output, const ExportManager::StandardExportConfig& config)
+{
+}
+
+bool SqlExport::beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns)
 {
     return true;
 }
 
-bool SqlExport::exportTable(Db* db, const QString& database, const QString& table, const QString& ddl, SqlResultsPtr data, QIODevice* output,
-                            const ExportManager::StandardExportConfig& config)
+bool SqlExport::exportQueryResultsRow(SqlResultsRowPtr row)
 {
     return true;
 }
 
-bool SqlExport::exportDatabase(Db* db, const QList<ExportManager::ExportObjectPtr>& objectsToExport, QIODevice* output, const ExportManager::StandardExportConfig& config)
+bool SqlExport::afterExportQueryResults()
+{
+    return true;
+}
+
+bool SqlExport::beforeExportTable(const QString& database, const QString& table, const QString& ddl, bool databaseExport)
+{
+    return true;
+}
+
+bool SqlExport::exportTableRow(SqlResultsRowPtr data)
+{
+    return true;
+}
+
+bool SqlExport::afterExportTable()
+{
+    return true;
+}
+
+bool SqlExport::beforeExportDatabase()
+{
+    return true;
+}
+
+bool SqlExport::exportIndex(const QString& database, const QString& name, const QString& ddl)
+{
+    return true;
+}
+
+bool SqlExport::exportTrigger(const QString& database, const QString& name, const QString& ddl)
+{
+    return true;
+}
+
+bool SqlExport::exportView(const QString& database, const QString& name, const QString& ddl)
+{
+    return true;
+}
+
+bool SqlExport::afterExportDatabase()
 {
     return true;
 }

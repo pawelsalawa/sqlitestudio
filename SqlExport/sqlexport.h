@@ -32,12 +32,18 @@ class SQLEXPORTSHARED_EXPORT SqlExport : public GenericPlugin, public ExportPlug
         CfgMain* getConfig() const;
         QString defaultFileExtension() const;
         QString getConfigFormName(ExportManager::ExportMode mode) const;
-        bool exportQueryResults(Db* db, const QString& query, SqlResultsPtr results, QList<QueryExecutor::ResultColumnPtr>& columns, QIODevice* output,
-                                const ExportManager::StandardExportConfig& config);
-        bool exportTable(Db* db, const QString& database, const QString& table, const QString& ddl, SqlResultsPtr data, QIODevice* output,
-                         const ExportManager::StandardExportConfig& config);
-        bool exportDatabase(Db* db, const QList<ExportManager::ExportObjectPtr>& objectsToExport, QIODevice* output,
-                            const ExportManager::StandardExportConfig& config);
+        void initBeforeExport(Db* db, QIODevice* output, const ExportManager::StandardExportConfig& config);
+        bool beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns);
+        bool exportQueryResultsRow(SqlResultsRowPtr row);
+        bool afterExportQueryResults();
+        bool beforeExportTable(const QString& database, const QString& table, const QString& ddl, bool databaseExport);
+        bool exportTableRow(SqlResultsRowPtr data);
+        bool afterExportTable();
+        bool beforeExportDatabase();
+        bool exportIndex(const QString& database, const QString& name, const QString& ddl);
+        bool exportTrigger(const QString& database, const QString& name, const QString& ddl);
+        bool exportView(const QString& database, const QString& name, const QString& ddl);
+        bool afterExportDatabase();
 };
 
 #endif // SQLEXPORT_H

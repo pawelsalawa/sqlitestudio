@@ -2,6 +2,7 @@
 #include "plugins/exportplugin.h"
 #include "schemaresolver.h"
 #include "services/notifymanager.h"
+#include <QMutexLocker>
 #include <QDebug>
 
 ExportWorker::ExportWorker(ExportPlugin* plugin, ExportManager::StandardExportConfig* config, QIODevice* output, QObject *parent) :
@@ -67,6 +68,14 @@ void ExportWorker::prepareExportTable(Db* db, const QString& database, const QSt
     exportMode = ExportManager::TABLE;
 }
 
+void ExportWorker::interrupt()
+{
+    QMutexLocker locker(&interruptMutex);
+    interrupted = true;
+    if (executor->isExecutionInProgress())
+        executor->interrupt();
+}
+
 bool ExportWorker::exportQueryResults()
 {
     executor->setDb(db);
@@ -78,6 +87,9 @@ bool ExportWorker::exportQueryResults()
         return false;
     }
 
+    if (results->isInterrupted())
+        return false;
+
     if (results->isError())
     {
         notifyError(tr("Error while exporting query results: %1").arg(results->getErrorText()));
@@ -85,7 +97,29 @@ bool ExportWorker::exportQueryResults()
     }
 
     QList<QueryExecutor::ResultColumnPtr> resultColumns = executor->getResultColumns();
-    return plugin->exportQueryResults(db, query, results, resultColumns, output, *config);
+
+    plugin->initBeforeExport(db, output, *config);
+    if (!plugin->beforeExportQueryResults(query, resultColumns))
+        return false;
+
+    if (isInterrupted())
+        return false;
+
+    SqlResultsRowPtr row;
+    while (results->hasNext())
+    {
+        row = results->next();
+        if (!plugin->exportQueryResultsRow(row))
+            return false;
+
+        if (isInterrupted())
+            return false;
+    }
+
+    if (!plugin->afterExportQueryResults())
+        return false;
+
+    return true;
 }
 
 bool ExportWorker::exportDatabase()
@@ -98,7 +132,47 @@ bool ExportWorker::exportDatabase()
         return false;
     }
 
-    return plugin->exportDatabase(db, dbObjects, output, *config);
+    plugin->initBeforeExport(db, output, *config);
+    if (!plugin->beforeExportDatabase())
+        return false;
+
+    if (isInterrupted())
+        return false;
+
+    bool res = true;
+    for (const ExportManager::ExportObjectPtr& obj : dbObjects)
+    {
+        res = true;
+        switch (obj->type)
+        {
+            case ExportManager::ExportObject::TABLE:
+                res = exportTableInternal(obj->database, obj->name, obj->ddl, obj->data, true);
+                break;
+            case ExportManager::ExportObject::INDEX:
+                res = plugin->exportIndex(obj->database, obj->name, obj->ddl);
+                break;
+            case ExportManager::ExportObject::TRIGGER:
+                res = plugin->exportTrigger(obj->database, obj->name, obj->ddl);
+                break;
+            case ExportManager::ExportObject::VIEW:
+                res = plugin->exportView(obj->database, obj->name, obj->ddl);
+                break;
+            default:
+                qDebug() << "Unhandled ExportObject type:" << obj->type;
+                break;
+        }
+
+        if (!res)
+            return false;
+
+        if (isInterrupted())
+            return false;
+    }
+
+    if (!plugin->afterExportDatabase())
+        return false;
+
+    return true;
 }
 
 bool ExportWorker::exportTable()
@@ -119,8 +193,33 @@ bool ExportWorker::exportTable()
 
     SchemaResolver resolver(db);
     QString ddl = resolver.getObjectDdl(database, table);
+    return exportTableInternal(database, table, ddl, results, false);
+}
 
-    return plugin->exportTable(db, database, table, ddl, results, output, *config);
+bool ExportWorker::exportTableInternal(const QString& database, const QString& table, const QString& ddl, SqlResultsPtr results, bool databaseExport)
+{
+    plugin->initBeforeExport(db, output, *config);
+    if (!plugin->beforeExportTable(database, table, ddl, databaseExport))
+        return false;
+
+    if (isInterrupted())
+        return false;
+
+    SqlResultsRowPtr row;
+    while (results->hasNext())
+    {
+        row = results->next();
+        if (!plugin->exportTableRow(row))
+            return false;
+
+        if (isInterrupted())
+            return false;
+    }
+
+    if (!plugin->afterExportTable())
+        return false;
+
+    return true;
 }
 
 QList<ExportManager::ExportObjectPtr> ExportWorker::collectDbObjects(QString* errorMessage)
@@ -184,5 +283,11 @@ ExportManager::ExportObjectPtr ExportWorker::getTableObjToExport(Db* db, const Q
     }
 
     return exportObject;
+}
+
+bool ExportWorker::isInterrupted()
+{
+    QMutexLocker locker(&interruptMutex);
+    return interrupted;
 }
 
