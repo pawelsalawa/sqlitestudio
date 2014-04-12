@@ -5,6 +5,7 @@
 #include "db/queryexecutor.h"
 #include <QObject>
 #include <QRunnable>
+#include <QMutex>
 
 class Db;
 
@@ -19,13 +20,16 @@ class ExportWorker : public QObject, public QRunnable
         void prepareExportQueryResults(Db* db, const QString& query);
         void prepareExportDatabase(Db* db, const QStringList& objectListToExport);
         void prepareExportTable(Db* db, const QString& database, const QString& table);
+        void interrupt();
 
     private:
         bool exportQueryResults();
         bool exportDatabase();
         bool exportTable();
+        bool exportTableInternal(const QString& database, const QString& table, const QString& ddl, SqlResultsPtr results, bool databaseExport);
         QList<ExportManager::ExportObjectPtr> collectDbObjects(QString* errorMessage);
         ExportManager::ExportObjectPtr getTableObjToExport(Db* db, const QString& table, QString* errorMessage) const;
+        bool isInterrupted();
 
         ExportPlugin* plugin = nullptr;
         ExportManager::StandardExportConfig* config = nullptr;
@@ -37,6 +41,8 @@ class ExportWorker : public QObject, public QRunnable
         QString table;
         QStringList objectListToExport;
         QueryExecutor* executor;
+        bool interrupted = false;
+        QMutex interruptMutex;
 
     signals:
         void finished(bool result, QIODevice* output);

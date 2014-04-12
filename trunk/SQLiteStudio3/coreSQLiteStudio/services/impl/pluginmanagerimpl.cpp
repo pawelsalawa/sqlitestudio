@@ -30,13 +30,6 @@ void PluginManagerImpl::init()
 
 void PluginManagerImpl::deinit()
 {
-    // Types
-    foreach (PluginType* type, registeredPluginTypes)
-        delete type;
-
-    registeredPluginTypes.clear();
-    pluginCategories.clear();
-
     // Plugin containers and their plugins
     foreach (PluginContainer* container, pluginContainer.values())
     {
@@ -52,6 +45,13 @@ void PluginManagerImpl::deinit()
     }
 
     pluginContainer.clear();
+
+    // Types
+    foreach (PluginType* type, registeredPluginTypes)
+        delete type;
+
+    registeredPluginTypes.clear();
+    pluginCategories.clear();
 }
 
 QList<PluginType*> PluginManagerImpl::getPluginTypes() const

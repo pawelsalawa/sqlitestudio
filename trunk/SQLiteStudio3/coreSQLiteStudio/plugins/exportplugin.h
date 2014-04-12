@@ -8,6 +8,12 @@
 
 class CfgMain;
 
+/**
+ * @brief Provides support for particular export format.
+ *
+ * All export methods in this class should report any warnings, error messages, etc through the NotifyManager,
+ * that is by using notifyError() and its family methods.
+ */
 class ExportPlugin : virtual public Plugin
 {
     public:
@@ -66,51 +72,122 @@ class ExportPlugin : virtual public Plugin
         virtual QString defaultFileExtension() const = 0;
 
         /**
-         * @brief Exports results of the query.
-         * @param Db Database that the query was executed on.
-         * @param query Query that was executed to get the results.
-         * @param results Results to export.
+         * @brief Provides common state values before the export process begins.
+         * @param db Database that the export will be performed on.
          * @param output Output device to write exporting data to.
          * @param config Common exporting configuration, like file name, codec, etc.
-         * @return true if the export was successful, or false in case of fatal error.
          *
-         * Method should report any warnings, error messages, etc through NotifyManager, that is by using notifyError() and its family methods.
+         * This is called exactly once before every export process (that is once per each export called by user).
+         * Use it to remember database, output device and config for further method calls. This method will be
+         * followed by any of *export*() methods from this interface.
          */
-        virtual bool exportQueryResults(Db* db, const QString& query, SqlResultsPtr results, QList<QueryExecutor::ResultColumnPtr>& columns, QIODevice* output,
-                                        const ExportManager::StandardExportConfig& config) = 0;
+        virtual void initBeforeExport(Db* db, QIODevice* output, const ExportManager::StandardExportConfig& config) = 0;
 
         /**
-         * @brief Exports table DDL and it's data.
-         * @param db Database that the table belongs to.
+         * @brief Does initial entry for exported query results.
+         * @param query Query that was executed to get the results.
+         * @param columns Columns returned from the query.
+         * @return true for success, or false in case of a fatal error.
+         *
+         * It's called just before actual data entries are exported (with exportQueryResultsRow()).
+         * It's called exactly once for single query results export.
+         */
+        virtual bool beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns) = 0;
+
+        /**
+         * @brief Does export entry for a single row of data.
+         * @param row Single data row.
+         * @return true for success, or false in case of a fatal error.
+         *
+         * It's called for each data row returned from the query.
+         */
+        virtual bool exportQueryResultsRow(SqlResultsRowPtr row) = 0;
+
+        /**
+         * @brief Does final entry for exported query results.
+         * @return true for success, or false in case of a fatal error.
+         *
+         * It's called once after all data from the query was exported.
+         */
+        virtual bool afterExportQueryResults() = 0;
+
+        /**
+         * @brief Does initial entry for exported table.
          * @param database "Attach" name of the database that the table belongs to. Can be "main", "temp", or any attach name.
          * @param table Name of the table to export.
-         * @param ddl The DDL of the table. If
-         * @param data Table data (will be null pointer if data exporting was disabled on UI by user, which is indicated in @p config).
-         * @param output Output device to write exporting data to.
-         * @param config Common exporting configuration, like file name, codec, etc.
-         * @return true if the export was successful, or false in case of fatal error.
-         *
-         * Data should be exported only if StandardExportConfig::exportData is true.
-         *
-         * Method should report any warnings, error messages, etc through NotifyManager, that is by using notifyError() and its family methods.
+         * @param ddl The DDL of the table.
+         * @param databaseExport true if this table export is a part of exporting the entire databasase,
+         * false if it's for exporting just this single table.
+         * @return true for success, or false in case of a fatal error.
          */
-        virtual bool exportTable(Db* db, const QString& database, const QString& table, const QString& ddl, SqlResultsPtr data, QIODevice* output,
-                                 const ExportManager::StandardExportConfig& config) = 0;
+        virtual bool beforeExportTable(const QString& database, const QString& table, const QString& ddl, bool databaseExport) = 0;
 
         /**
-         * @brief Exports database (all its objects and data from tables).
-         * @param db Database being exported.
-         * @param objectsToExport Objects from the database to export
-         * @param output Output device to write exporting data to.
-         * @param config Common exporting configuration, like file name, codec, etc.
-         * @return true if the export was successful, or false in case of fatal error.
+         * @brief Does export entry for a single row of data.
+         * @param data Single data row.
+         * @return true for success, or false in case of a fatal error.
          *
-         * Data from tables should be exported only if StandardExportConfig::exportData is true.
-         *
-         * Method should report any warnings, error messages, etc through NotifyManager, that is by using notifyError() and its family methods.
+         * This method will be called only if StandardExportConfig::exportData in beforeExportTable() was true.
          */
-        virtual bool exportDatabase(Db* db, const QList<ExportManager::ExportObjectPtr>& objectsToExport, QIODevice* output,
-                                    const ExportManager::StandardExportConfig& config) = 0;
+        virtual bool exportTableRow(SqlResultsRowPtr data) = 0;
+
+        /**
+         * @brief Does final entry fot exported table.
+         * @return true for success, or false in case of a fatal error.
+         */
+        virtual bool afterExportTable() = 0;
+
+        /**
+         * @brief Does initial entry for the entire database export.
+         * @return true for success, or false in case of a fatal error.
+         *
+         * It's called just once, before all database object get exported.
+         * This method will be followed by calls to: beforeExportTable(), exportTableRow(), afterExportTable(), exportIndex(),
+         * exportTrigger() and exportView().
+         * Note, that exportTableRow() will be called only if StandardExportConfig::exportData in beforeExportTable() was true.
+         */
+        virtual bool beforeExportDatabase() = 0;
+
+        /**
+         * @brief Does entire export entry for an index.
+         * @param database "Attach" name of the database that the index belongs to. Can be "main", "temp", or any attach name.
+         * @param table Name of the index to export.
+         * @param ddl The DDL of the index.
+         * @return true for success, or false in case of a fatal error.
+         *
+         * This is the only method called for index export.
+         */
+        virtual bool exportIndex(const QString& database, const QString& name, const QString& ddl) = 0;
+
+        /**
+         * @brief Does entire export entry for an trigger.
+         * @param database "Attach" name of the database that the trigger belongs to. Can be "main", "temp", or any attach name.
+         * @param table Name of the trigger to export.
+         * @param ddl The DDL of the trigger.
+         * @return true for success, or false in case of a fatal error.
+         *
+         * This is the only method called for trigger export.
+         */
+        virtual bool exportTrigger(const QString& database, const QString& name, const QString& ddl) = 0;
+
+        /**
+         * @brief Does entire export entry for an view.
+         * @param database "Attach" name of the database that the view belongs to. Can be "main", "temp", or any attach name.
+         * @param table Name of the trigger to view.
+         * @param ddl The DDL of the view.
+         * @return true for success, or false in case of a fatal error.
+         *
+         * This is the only method called for view export.
+         */
+        virtual bool exportView(const QString& database, const QString& name, const QString& ddl) = 0;
+
+        /**
+         * @brief Does final entry for the entire database export.
+         * @return true for success, or false in case of a fatal error.
+         *
+         * It's called just once, after all database object get exported.
+         */
+        virtual bool afterExportDatabase() = 0;
 };
 
 #endif // EXPORTPLUGIN_H
