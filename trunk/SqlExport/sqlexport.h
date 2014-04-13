@@ -1,21 +1,20 @@
 #ifndef SQLEXPORT_H
 #define SQLEXPORT_H
 
-#include "plugins/exportplugin.h"
-#include "plugins/genericplugin.h"
+#include "plugins/genericexportplugin.h"
 #include "sqlexport_global.h"
 #include "config_builder.h"
 
 CFG_CATEGORIES(SqlExportConfig,
      CFG_CATEGORY(SqlExport,
-         CFG_ENTRY(QString, QueryTable, QString::null)
+         CFG_ENTRY(QString, QueryTable,          QString::null)
+         CFG_ENTRY(bool,    GenerateCreateTable, false)
      )
 )
 
-CFG_DECLARE(SqlExportConfig)
 #define SQL_EXPORT_CFG CFG_INSTANCE(SqlExportConfig)
 
-class SQLEXPORTSHARED_EXPORT SqlExport : public GenericPlugin, public ExportPlugin
+class SQLEXPORTSHARED_EXPORT SqlExport : public GenericExportPlugin
 {
         Q_OBJECT
 
@@ -28,11 +27,9 @@ class SQLEXPORTSHARED_EXPORT SqlExport : public GenericPlugin, public ExportPlug
     public:
         QString getFormatName() const;
         ExportManager::StandardConfigFlags standardOptionsToEnable() const;
-        ExportManager::ExportModes getSupportedModes() const;
         CfgMain* getConfig() const;
         QString defaultFileExtension() const;
         QString getConfigFormName(ExportManager::ExportMode mode) const;
-        void initBeforeExport(Db* db, QIODevice* output, const ExportManager::StandardExportConfig& config);
         bool beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns);
         bool exportQueryResultsRow(SqlResultsRowPtr row);
         bool afterExportQueryResults();

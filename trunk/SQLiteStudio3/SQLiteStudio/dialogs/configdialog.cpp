@@ -122,9 +122,6 @@ void ConfigDialog::init()
     UserInputFilter* filter = new UserInputFilter(ui->categoriesFilter, this, SLOT(applyFilter(QString)));
     filter->setDelay(500);
 
-    pluginDetailsSignalMapper = new QSignalMapper(this);
-    connect(pluginDetailsSignalMapper, SIGNAL(mapped(QString)), this, SLOT(detailsClicked(QString)));
-
     ui->stackedWidget->setCurrentWidget(ui->generalPage);
     initPageMap();
     initInternalCustomConfigWidgets();
@@ -561,9 +558,21 @@ void ConfigDialog::initPluginsPage()
     int itemRow;
     int categoryRow;
     bool builtIn;
-    QPushButton* btn;
+    QLabel* detailsLabel;
     QString title;
+    QSize itemSize;
+    QStringList pluginNames;
 
+    // Font and metrics
+    item = new QTreeWidgetItem({""});
+    font = item->font(0);
+
+    QFontMetrics fm(font);
+    itemSize = QSize(-1, (fm.ascent() + fm.descent() + 4));
+
+    delete item;
+
+    // Creating...
     ui->pluginsPageInfoIcon->setPixmap(ICONS.INFO_BALLOON);
 
     ui->pluginsList->header()->setSectionsMovable(false);
@@ -573,10 +582,12 @@ void ConfigDialog::initPluginsPage()
     QBrush categoryFg = ui->pluginsList->palette().buttonText();
 
     categoryRow = 0;
-    foreach (PluginType* pluginType, PLUGINS->getPluginTypes())
+    QList<PluginType*> pluginTypes = PLUGINS->getPluginTypes();
+    qSort(pluginTypes.begin(), pluginTypes.end(), PluginType::nameLessThan);
+    foreach (PluginType* pluginType, pluginTypes)
     {
         category = new QTreeWidgetItem({pluginType->getTitle()});
-        font = category->font(0);
+        font.setItalic(false);
         font.setBold(true);
         category->setFont(0, font);
         for (int i = 0; i < 2; i++)
@@ -584,13 +595,16 @@ void ConfigDialog::initPluginsPage()
             category->setBackground(i, categoryBg);
             category->setForeground(i, categoryFg);
         }
+        category->setSizeHint(0, itemSize);
         ui->pluginsList->addTopLevelItem(category);
 
         categoryIndex = ui->pluginsList->model()->index(categoryRow, 0);
         categoryRow++;
 
         itemRow = 0;
-        foreach (const QString& pluginName, pluginType->getAllPluginNames())
+        pluginNames = pluginType->getAllPluginNames();
+        qSort(pluginNames);
+        foreach (const QString& pluginName, pluginNames)
         {
             builtIn = PLUGINS->isBuiltIn(pluginName);
             title = PLUGINS->getTitle(pluginName);
@@ -598,12 +612,11 @@ void ConfigDialog::initPluginsPage()
                 title += tr(" (built-in)", "plugins manager in configuration dialog");
 
             item = new QTreeWidgetItem({title});
+            item->setSizeHint(0, itemSize);
             item->setCheckState(0, PLUGINS->isLoaded(pluginName) ? Qt::Checked : Qt::Unchecked);
+            item->setSizeHint(0, itemSize);
             if (builtIn)
-            {
-                item->setFlags(item->flags() ^ Qt::ItemIsUserCheckable);
-                item->setTextColor(0, ui->pluginsList->palette().color(QPalette::Disabled, QPalette::Text));
-            }
+                item->setDisabled(true);
 
             category->addChild(item);
 
@@ -611,14 +624,27 @@ void ConfigDialog::initPluginsPage()
             itemToPluginNameMap[item] = pluginName;
 
             // Details button
-            btn = new QPushButton(tr("Details"), ui->pluginsList);
+            detailsLabel = new QLabel(QString("<a href='%1'>%2</a>").arg(pluginName).arg(tr("Details")), ui->pluginsList);
+            detailsLabel->setAlignment(Qt::AlignRight);
             itemIndex = ui->pluginsList->model()->index(itemRow, 1, categoryIndex);
-            ui->pluginsList->setIndexWidget(itemIndex, btn);
+            ui->pluginsList->setIndexWidget(itemIndex, detailsLabel);
 
-            connect(btn, SIGNAL(clicked()), pluginDetailsSignalMapper, SLOT(map()));
-            pluginDetailsSignalMapper->setMapping(btn, pluginName);
+            connect(detailsLabel, SIGNAL(linkActivated(QString)), this, SLOT(detailsClicked(QString)));
 
             itemRow++;
+        }
+
+        if (itemRow == 0)
+        {
+            item = new QTreeWidgetItem({tr("No plugins in this category.")});
+            item->setDisabled(true);
+            item->setSizeHint(0, itemSize);
+
+            font.setItalic(true);
+            font.setBold(false);
+            item->setFont(0, font);
+
+            category->addChild(item);
         }
 
         category->setExpanded(true);

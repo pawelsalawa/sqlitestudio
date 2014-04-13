@@ -80,6 +80,10 @@ class ExportPlugin : virtual public Plugin
          * This is called exactly once before every export process (that is once per each export called by user).
          * Use it to remember database, output device and config for further method calls. This method will be
          * followed by any of *export*() methods from this interface.
+         *
+         * There's a convenient class GenericExportPlugin, which you can extend instead of ExportPlugin. If you use
+         * GenericExportPlugin for a base class of exprt plugin, then this method is already implemented there
+         * and it stores all these parameters in protected class members so you can use them in other methods.
          */
         virtual void initBeforeExport(Db* db, QIODevice* output, const ExportManager::StandardExportConfig& config) = 0;
 

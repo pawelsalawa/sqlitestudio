@@ -12,11 +12,6 @@ ExportManager::StandardConfigFlags SqlExport::standardOptionsToEnable() const
     return ExportManager::CODEC;
 }
 
-ExportManager::ExportModes SqlExport::getSupportedModes() const
-{
-    return ExportManager::DATABASE|ExportManager::TABLE|ExportManager::QUERY_RESULTS;
-}
-
 CfgMain* SqlExport::getConfig() const
 {
     return &SQL_EXPORT_CFG;
@@ -33,10 +28,6 @@ QString SqlExport::getConfigFormName(ExportManager::ExportMode mode) const
         return "sqlExportQueryConfig";
 
     return QString::null;
-}
-
-void SqlExport::initBeforeExport(Db* db, QIODevice* output, const ExportManager::StandardExportConfig& config)
-{
 }
 
 bool SqlExport::beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns)

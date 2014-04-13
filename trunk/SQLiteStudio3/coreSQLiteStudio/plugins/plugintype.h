@@ -30,6 +30,8 @@ class API_EXPORT PluginType
             return dynamic_cast<const DefinedPluginType<T>*>(this) != nullptr;
         }
 
+        static bool nameLessThan(PluginType* type1, PluginType* type2);
+
     protected:
         PluginType(const QString& title, const QString& form);
 
@@ -38,6 +40,7 @@ class API_EXPORT PluginType
         QString title;
         QString configUiForm;
 };
+
 
 template <class T>
 class DefinedPluginType : public PluginType
