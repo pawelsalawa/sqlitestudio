@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>467</width>
-    <height>43</height>
+    <height>63</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,6 +25,16 @@
     <widget class="QLineEdit" name="tableEdit">
      <property name="statusTip">
       <string>SqlExport.QueryTable</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="2">
+    <widget class="QCheckBox" name="createTableCheck">
+     <property name="statusTip">
+      <string>SqlExport.GenerateCreateTable</string>
+     </property>
+     <property name="text">
+      <string>Generate &quot;CREATE TABLE&quot; statement at the begining</string>
      </property>
     </widget>
    </item>

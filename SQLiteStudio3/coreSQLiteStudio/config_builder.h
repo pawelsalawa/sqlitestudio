@@ -23,28 +23,20 @@
             Type(bool persistable) : CfgMain(#Type, persistable) {}\
             Body\
         };\
+        API_ONLY_CORE_EXPORT Type* get##Type##Instance();\
     }
 
 #define CFG_ENTRY(Type, Name, ...) CfgTypedEntry<Type> Name = CfgTypedEntry<Type>(#Name, ##__VA_ARGS__);
 
-#define CFG_DECLARE(Type) \
-    namespace Cfg\
-    {\
-        API_ONLY_CORE_EXPORT Type* get##Type##Instance();\
-    }
-
 #define CFG_DEFINE(Type) _CFG_DEFINE(Type, true)
 #define CFG_DEFINE_RUNTIME(Type) _CFG_DEFINE(Type, false)
 
-#define _CFG_DEFINE(Type, Pers) \
+#define _CFG_DEFINE(Type, Persistant) \
     namespace Cfg\
     {\
-        Type* cfgMainInstance##Type = get##Type##Instance();\
+        Type* cfgMainInstance##Type = new Type(Persistant);\
         Type* get##Type##Instance()\
         {\
-            if (!cfgMainInstance##Type)\
-                cfgMainInstance##Type = new Type(Pers);\
-        \
             return cfgMainInstance##Type;\
         }\
     }

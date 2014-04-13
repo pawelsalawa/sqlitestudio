@@ -33,7 +33,6 @@ CFG_CATEGORIES(Cli,
     )
 )
 
-CFG_DECLARE(Cli)
 #define CFG_CLI CFG_INSTANCE(Cli)
 
 #endif // CLI_CONFIG_H

@@ -77,7 +77,6 @@ CFG_CATEGORIES(Ui,
     )
 )
 
-CFG_DECLARE(Ui)
 #define CFG_UI CFG_INSTANCE(Ui)
 
 #endif // UICONFIG_H

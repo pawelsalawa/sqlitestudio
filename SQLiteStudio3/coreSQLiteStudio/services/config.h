@@ -31,7 +31,6 @@ CFG_CATEGORIES(Core,
     )
 )
 
-CFG_DECLARE(Core)
 #define CFG_CORE CFG_INSTANCE(Core)
 
 class QAbstractItemModel;

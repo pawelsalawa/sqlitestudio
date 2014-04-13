@@ -1,6 +1,7 @@
 #include "plugin.h"
 #include "plugintype.h"
 #include "services/pluginmanager.h"
+#include <QDebug>
 
 PluginType::PluginType(const QString& title, const QString& form) :
     title(title), configUiForm(form)
@@ -36,4 +37,9 @@ QStringList PluginType::getAllPluginNames() const
 {
     PluginType* type = const_cast<PluginType*>(this);
     return PLUGINS->getAllPluginNames(type);
+}
+
+bool PluginType::nameLessThan(PluginType* type1, PluginType* type2)
+{
+    return type1->title.compare(type2->title) < 0;
 }
