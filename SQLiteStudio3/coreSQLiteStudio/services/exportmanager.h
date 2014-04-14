@@ -9,6 +9,7 @@
 class ExportPlugin;
 class QueryExecutor;
 class ExportWorker;
+class QBuffer;
 
 /**
  * @brief Provides database exporting capabilities.
@@ -148,6 +149,7 @@ class API_EXPORT ExportManager : public QObject
         bool checkInitialConditions();
         QIODevice* getOutputStream();
         ExportWorker* prepareExport();
+        void handleClipboardExport();
 
         bool exportInProgress = false;
         QueryExecutor* executor;
@@ -155,6 +157,7 @@ class API_EXPORT ExportManager : public QObject
         StandardExportConfig* config = nullptr;
         QString format;
         ExportPlugin* plugin = nullptr;
+        QBuffer* bufferForClipboard = nullptr;
 
     private slots:
         void finalizeExport(bool result, QIODevice* output);
@@ -163,6 +166,8 @@ class API_EXPORT ExportManager : public QObject
         void exportFinished();
         void exportSuccessful();
         void exportFailed();
+        void storeInClipboard(const QString& str);
+        void storeInClipboard(const QByteArray& bytes, const QString& mimeType);
 };
 
 #define EXPORT_MANAGER SQLITESTUDIO->getExportManager()

@@ -109,6 +109,9 @@ class API_EXPORT SQLiteStudio : public QObject
         ExportManager* getExportManager() const;
         void setExportManager(ExportManager* value);
 
+        int getVersion() const;
+        QString getVersionString() const;
+
     private:
         /**
          * @brief Creates singleton instance.

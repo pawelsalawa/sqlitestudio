@@ -464,7 +464,7 @@ QList<QueryWithParamNames> getQueriesWithParamNames(const QString& query, Dialec
     {
         paramNames.clear();
         foreach (const TokenPtr& token, tokens.filter(Token::BIND_PARAM))
-            paramNames << trimBindParamPrefix(token->value);
+            paramNames << token->value;
 
         queryStr = tokens.detokenize().trimmed();
         if (!queryStr.isEmpty())
@@ -489,4 +489,14 @@ QList<QueryWithParamCount> getQueriesWithParamCount(const QString& query, Dialec
     }
 
     return results;
+}
+
+QString commentAllSqlLines(const QString& sql)
+{
+    QStringList lines = splitByLines(sql);
+    QMutableStringListIterator it(lines);
+    while (it.hasNext())
+        it.next().prepend("-- ");
+
+    return joinLines(lines);
 }

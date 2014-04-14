@@ -14,11 +14,13 @@
 #include "schemaresolver.h"
 #include "common/widgetcover.h"
 #include "services/notifymanager.h"
+#include <QClipboard>
 #include <QDebug>
 #include <QDir>
 #include <QFileDialog>
 #include <QTextCodec>
 #include <QUiLoader>
+#include <QMimeData>
 
 ExportDialog::ExportDialog(QWidget *parent) :
     QWizard(parent),
@@ -50,6 +52,8 @@ void ExportDialog::init()
     connect(this, SIGNAL(currentIdChanged(int)), this, SLOT(pageChanged(int)));
     connect(EXPORT_MANAGER, SIGNAL(exportSuccessful()), this, SLOT(success()));
     connect(EXPORT_MANAGER, SIGNAL(exportFinished()), this, SLOT(hideCoverWidget()));
+    connect(EXPORT_MANAGER, SIGNAL(storeInClipboard(QByteArray, QString)), this, SLOT(storeInClipboard(QByteArray, QString)));
+    connect(EXPORT_MANAGER, SIGNAL(storeInClipboard(QString)), this, SLOT(storeInClipboard(QString)));
 }
 
 void ExportDialog::setTableMode(Db* db, const QString& table)
@@ -185,6 +189,8 @@ void ExportDialog::initFormatPage()
     connect(ui->exportFileEdit, SIGNAL(textChanged(QString)), ui->formatAndOptionsPage, SIGNAL(completeChanged()));
     connect(ui->exportFileRadio, SIGNAL(clicked()), ui->formatAndOptionsPage, SIGNAL(completeChanged()));
     connect(ui->exportClipboardRadio, SIGNAL(clicked()), ui->formatAndOptionsPage, SIGNAL(completeChanged()));
+    connect(ui->exportFileRadio, SIGNAL(clicked()), this, SLOT(updateOptions()));
+    connect(ui->exportClipboardRadio, SIGNAL(clicked()), this, SLOT(updateOptions()));
 }
 
 int ExportDialog::nextId() const
@@ -337,6 +343,11 @@ void ExportDialog::browseForExportFile()
 
 void ExportDialog::pluginSelected()
 {
+    updateOptions();
+}
+
+void ExportDialog::updateOptions()
+{
     ui->optionsGroup->setVisible(false);
 
     ExportPlugin* plugin = getSelectedPlugin();
@@ -349,7 +360,7 @@ void ExportDialog::pluginSelected()
     int optionsRow = 0;
 
     ExportManager::StandardConfigFlags options = plugin->standardOptionsToEnable();
-    bool displayCodec = options.testFlag(ExportManager::CODEC);
+    bool displayCodec = options.testFlag(ExportManager::CODEC) && !ui->exportClipboardRadio->isChecked();
     ui->encodingCombo->setVisible(displayCodec);
     ui->encodingLabel->setVisible(displayCodec);
     if (displayCodec)
@@ -387,6 +398,18 @@ void ExportDialog::dbObjectsDeselectAll()
 void ExportDialog::hideCoverWidget()
 {
     widgetCover->hide();
+}
+
+void ExportDialog::storeInClipboard(const QByteArray& bytes, const QString& mimeType)
+{
+    QMimeData* mimeData = new QMimeData;
+    mimeData->setData(mimeType, bytes);
+    QApplication::clipboard()->setMimeData(mimeData);
+}
+
+void ExportDialog::storeInClipboard(const QString& str)
+{
+    QApplication::clipboard()->setText(str);
 }
 
 void ExportDialog::success()

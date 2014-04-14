@@ -8,6 +8,8 @@
 #include <QChar>
 #include <QStringList>
 
+class QTextCodec;
+
 API_EXPORT void initUtils();
 
 struct API_EXPORT Range
@@ -136,6 +138,13 @@ API_EXPORT QString formatFileSize(quint64 size);
 API_EXPORT QString formatTimePeriod(int msecs);
 
 API_EXPORT QStringList common(const QStringList& list1, const QStringList& list2, Qt::CaseSensitivity cs = Qt::CaseSensitive);
+
+API_EXPORT QStringList textCodecNames();
+API_EXPORT QString defaultCodecName();
+API_EXPORT QTextCodec* defaultCodec();
+API_EXPORT QTextCodec* codecForName(const QString& name);
+API_EXPORT QStringList splitByLines(const QString& str);
+API_EXPORT QString joinLines(const QStringList& lines);
 
 template <class T>
 void removeDuplicates(QList<T>& list)

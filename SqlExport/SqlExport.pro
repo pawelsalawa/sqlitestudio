@@ -21,11 +21,6 @@ SOURCES += sqlexport.cpp
 HEADERS += sqlexport.h\
         sqlexport_global.h
 
-unix {
-    target.path = /usr/lib
-    INSTALLS += target
-}
-
 FORMS += \
     SqlExportQuery.ui
 

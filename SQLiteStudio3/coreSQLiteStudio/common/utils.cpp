@@ -1,5 +1,6 @@
 #include "common/utils.h"
-
+#include "common/global.h"
+#include <QTextCodec>
 #include <QString>
 #include <QSet>
 #include <QVariant>
@@ -456,4 +457,47 @@ QStringList common(const QStringList& list1, const QStringList& list2, Qt::CaseS
             newList << str;
     }
     return newList;
+}
+
+QStringList textCodecNames()
+{
+    QList<QByteArray> codecs = QTextCodec::availableCodecs();
+    QStringList names;
+    QSet<QString> nameSet;
+    for (const QByteArray& codec : codecs)
+        nameSet << QString::fromLatin1(codec.constData());
+
+    names = nameSet.toList();
+    qSort(names);
+    return names;
+}
+
+QTextCodec* codecForName(const QString& name)
+{
+    return QTextCodec::codecForName(name.toLatin1());
+}
+
+QTextCodec* defaultCodec()
+{
+    return QTextCodec::codecForLocale();
+}
+
+QString defaultCodecName()
+{
+    return QString::fromLatin1(QTextCodec::codecForLocale()->name());
+}
+
+QStringList splitByLines(const QString& str)
+{
+    return str.split(QRegExp("\r?\n"));
+}
+
+QString joinLines(const QStringList& lines)
+{
+#ifdef Q_OS_WIN
+    static_char* newLine = "\r\n";
+#else
+    static_char* newLine = "\n";
+#endif
+    return lines.join(newLine);
 }

@@ -60,5 +60,6 @@ API_EXPORT QString getQueryWithPosition(const QString& queries, int position, Di
 API_EXPORT QList<QueryWithParamNames> getQueriesWithParamNames(const QString& query, Dialect dialect);
 API_EXPORT QList<QueryWithParamCount> getQueriesWithParamCount(const QString& query, Dialect dialect);
 API_EXPORT QString trimBindParamPrefix(const QString& param);
+API_EXPORT QString commentAllSqlLines(const QString& sql);
 
 #endif // UTILS_SQL_H

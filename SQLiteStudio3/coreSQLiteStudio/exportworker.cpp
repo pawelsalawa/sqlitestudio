@@ -2,6 +2,7 @@
 #include "plugins/exportplugin.h"
 #include "schemaresolver.h"
 #include "services/notifymanager.h"
+#include "common/utils_sql.h"
 #include <QMutexLocker>
 #include <QDebug>
 
@@ -139,6 +140,15 @@ bool ExportWorker::exportDatabase()
     if (isInterrupted())
         return false;
 
+    QList<ExportManager::ExportObject::Type> order = {
+        ExportManager::ExportObject::TABLE, ExportManager::ExportObject::INDEX, ExportManager::ExportObject::TRIGGER, ExportManager::ExportObject::VIEW
+    };
+
+    qSort(dbObjects.begin(), dbObjects.end(), [=](const ExportManager::ExportObjectPtr& dbObj1, const ExportManager::ExportObjectPtr& dbObj2) -> bool
+    {
+        return order.indexOf(dbObj1->type) < order.indexOf(dbObj2->type);
+    });
+
     bool res = true;
     for (const ExportManager::ExportObjectPtr& obj : dbObjects)
     {
@@ -193,13 +203,13 @@ bool ExportWorker::exportTable()
 
     SchemaResolver resolver(db);
     QString ddl = resolver.getObjectDdl(database, table);
+    plugin->initBeforeExport(db, output, *config);
     return exportTableInternal(database, table, ddl, results, false);
 }
 
 bool ExportWorker::exportTableInternal(const QString& database, const QString& table, const QString& ddl, SqlResultsPtr results, bool databaseExport)
 {
-    plugin->initBeforeExport(db, output, *config);
-    if (!plugin->beforeExportTable(database, table, ddl, databaseExport))
+    if (!plugin->beforeExportTable(database, table, results->getColumnNames(), ddl, databaseExport))
         return false;
 
     if (isInterrupted())
@@ -225,64 +235,55 @@ bool ExportWorker::exportTableInternal(const QString& database, const QString& t
 QList<ExportManager::ExportObjectPtr> ExportWorker::collectDbObjects(QString* errorMessage)
 {
     SchemaResolver resolver(db);
-    QStringList tables = resolver.getTables();
-    QStringList indexes = resolver.getIndexes();
-    QStringList triggers = resolver.getTriggers();
-    QStringList views = resolver.getViews();
+    QHash<QString, SchemaResolver::ObjectDetails> allDetails = resolver.getAllObjectDetails();
 
     QList<ExportManager::ExportObjectPtr> objectsToExport;
     ExportManager::ExportObjectPtr exportObj;
-    for (const QString& obj : objectListToExport)
+    SchemaResolver::ObjectDetails details;
+    for (const QString& objName : objectListToExport)
     {
-        exportObj = ExportManager::ExportObjectPtr::create();
-        if (tables.contains(obj))
+        if (!allDetails.contains(objName))
         {
-            objectsToExport << getTableObjToExport(db, obj, errorMessage);
+            qWarning() << "Object requested for export, but not on list of db object details:" << objName;
+            continue;
+        }
+        details = allDetails[objName];
+
+        exportObj = ExportManager::ExportObjectPtr::create();
+        if (details.type == SchemaResolver::ObjectDetails::TABLE)
+        {
+            exportObj->type = ExportManager::ExportObject::TABLE;
+            queryTableDataToExport(db, objName, exportObj->data, errorMessage);
             if (!errorMessage->isNull())
                 return objectsToExport;
         }
-        else if (indexes.contains(obj))
-        {
+        else if (details.type == SchemaResolver::ObjectDetails::INDEX)
             exportObj->type = ExportManager::ExportObject::INDEX;
-            exportObj->name = obj;
-            objectsToExport << exportObj;
-        }
-        else if (triggers.contains(obj))
-        {
+        else if (details.type == SchemaResolver::ObjectDetails::TRIGGER)
             exportObj->type = ExportManager::ExportObject::TRIGGER;
-            exportObj->name = obj;
-            objectsToExport << exportObj;
-        }
-        else if (views.contains(obj))
-        {
+        else if (details.type == SchemaResolver::ObjectDetails::VIEW)
             exportObj->type = ExportManager::ExportObject::VIEW;
-            exportObj->name = obj;
-            objectsToExport << exportObj;
-        }
+        else
+            continue; // warning about this case is already in SchemaResolver
+
+        exportObj->name = objName;
+        exportObj->ddl = details.ddl;
+        objectsToExport << exportObj;
     }
 
     return objectsToExport;
 }
 
-ExportManager::ExportObjectPtr ExportWorker::getTableObjToExport(Db* db, const QString& table, QString* errorMessage) const
+void ExportWorker::queryTableDataToExport(Db* db, const QString& table, SqlResultsPtr& dataPtr, QString* errorMessage) const
 {
     static const QString sql = QStringLiteral("SELECT * FROM %1");
 
-    ExportManager::ExportObjectPtr exportObject = ExportManager::ExportObjectPtr::create();
-    exportObject->type = ExportManager::ExportObject::TABLE;
-    exportObject->name = table;
-
     if (config->exportData)
     {
-        exportObject->data = db->exec(sql.arg(table));
-        if (exportObject->data->isError())
-        {
-            *errorMessage = tr("Error while reading data to export from table %1: %2").arg(table).arg(exportObject->data->getErrorText());
-            return exportObject;
-        }
+        dataPtr = db->exec(sql.arg(wrapObjIfNeeded(table, db->getDialect())));
+        if (dataPtr->isError())
+            *errorMessage = tr("Error while reading data to export from table %1: %2").arg(table).arg(dataPtr->getErrorText());
     }
-
-    return exportObject;
 }
 
 bool ExportWorker::isInterrupted()

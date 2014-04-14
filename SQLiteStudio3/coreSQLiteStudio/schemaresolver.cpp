@@ -480,6 +480,46 @@ QStringList SchemaResolver::getViewsForTable(const QString& table)
     return getViewsForTable("main", table);
 }
 
+QHash<QString, SchemaResolver::ObjectDetails> SchemaResolver::getAllObjectDetails()
+{
+    return getAllObjectDetails("main");
+}
+
+QHash<QString, SchemaResolver::ObjectDetails> SchemaResolver::getAllObjectDetails(const QString& database)
+{
+    QHash<QString, ObjectDetails> details;
+    ObjectDetails detail;
+    QString type;
+
+    SqlResultsPtr results = db->exec("SELECT name, type, sql FROM %1.sqlite_master", {getPrefixDb(database, db->getDialect())}, Db::Flag::STRING_REPLACE_ARGS);
+    if (results->isError())
+    {
+        qCritical() << "Error while getting all object details in SchemaResolver:" << results->getErrorCode();
+        return details;
+    }
+
+    SqlResultsRowPtr row;
+    while (results->hasNext())
+    {
+        row = results->next();
+        type = row->value("type").toString();
+        if (type == "table")
+            detail.type = ObjectDetails::TABLE;
+        else if (type == "index")
+            detail.type = ObjectDetails::INDEX;
+        else if (type == "trigger")
+            detail.type = ObjectDetails::TRIGGER;
+        else if (type == "view")
+            detail.type = ObjectDetails::VIEW;
+        else
+            qCritical() << "Unhlandled db object type:" << type;
+
+        detail.ddl = row->value("sql").toString();
+        details[row->value("name").toString()] = detail;
+    }
+    return details;
+}
+
 QList<SqliteCreateIndexPtr> SchemaResolver::getParsedIndexesForTable(const QString& database, const QString& table)
 {
     QList<SqliteCreateIndexPtr> createIndexList;

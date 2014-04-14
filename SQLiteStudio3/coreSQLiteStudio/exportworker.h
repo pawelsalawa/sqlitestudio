@@ -28,7 +28,7 @@ class ExportWorker : public QObject, public QRunnable
         bool exportTable();
         bool exportTableInternal(const QString& database, const QString& table, const QString& ddl, SqlResultsPtr results, bool databaseExport);
         QList<ExportManager::ExportObjectPtr> collectDbObjects(QString* errorMessage);
-        ExportManager::ExportObjectPtr getTableObjToExport(Db* db, const QString& table, QString* errorMessage) const;
+        void queryTableDataToExport(Db* db, const QString& table, SqlResultsPtr& dataPtr, QString* errorMessage) const;
         bool isInterrupted();
 
         ExportPlugin* plugin = nullptr;
