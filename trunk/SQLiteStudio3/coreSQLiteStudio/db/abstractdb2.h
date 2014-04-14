@@ -5,6 +5,7 @@
 #include "parser/lexer.h"
 #include "common/utils_sql.h"
 #include "common/unused.h"
+#include "db/sqlerrorcodes.h"
 #include <sqlite.h>
 #include <QThread>
 #include <QPointer>
@@ -196,7 +197,11 @@ SqlResultsPtr AbstractDb2<T>::execInternal(const QString& query, const QHash<QSt
         foreach (const QString& paramName, singleQuery.second)
         {
             if (!args.contains(paramName))
+            {
+                lastErrorCode = SqlErrorCode::OTHER_EXECUTION_ERROR;
+                lastError = "Error while preparing statement: could not bind parameter " + paramName;
                 return SqlResultsPtr(new Results(this, stmt, true));
+            }
 
             res = bindParam(stmt, paramIdx++, args[paramName]);
             if (res != SQLITE_OK)

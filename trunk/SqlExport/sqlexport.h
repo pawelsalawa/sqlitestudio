@@ -7,8 +7,9 @@
 
 CFG_CATEGORIES(SqlExportConfig,
      CFG_CATEGORY(SqlExport,
-         CFG_ENTRY(QString, QueryTable,          QString::null)
-         CFG_ENTRY(bool,    GenerateCreateTable, false)
+         CFG_ENTRY(QString, QueryTable,             QString::null)
+         CFG_ENTRY(bool,    GenerateCreateTable,    false)
+         CFG_ENTRY(bool,    IncludeQueryInComments, true)
      )
 )
 
@@ -33,7 +34,7 @@ class SQLEXPORTSHARED_EXPORT SqlExport : public GenericExportPlugin
         bool beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns);
         bool exportQueryResultsRow(SqlResultsRowPtr row);
         bool afterExportQueryResults();
-        bool beforeExportTable(const QString& database, const QString& table, const QString& ddl, bool databaseExport);
+        bool beforeExportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, bool databaseExport);
         bool exportTableRow(SqlResultsRowPtr data);
         bool afterExportTable();
         bool beforeExportDatabase();
@@ -41,6 +42,18 @@ class SQLEXPORTSHARED_EXPORT SqlExport : public GenericExportPlugin
         bool exportTrigger(const QString& database, const QString& name, const QString& ddl);
         bool exportView(const QString& database, const QString& name, const QString& ddl);
         bool afterExportDatabase();
+
+    private:
+        void writeHeader();
+        void writeBegin();
+        void writeCommit();
+        void writeFkDisable();
+        QString getNameForObject(const QString& database, const QString& name, bool wrapped, Dialect dialect = Dialect::Sqlite3);
+        QStringList rowToArgList(SqlResultsRowPtr row);
+
+        QString theTable;
+        QString columns;
+        bool dbExport = false;
 };
 
 #endif // SQLEXPORT_H

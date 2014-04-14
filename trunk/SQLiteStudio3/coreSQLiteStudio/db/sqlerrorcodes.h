@@ -21,7 +21,8 @@ struct API_EXPORT SqlErrorCode
         PARSER_ERROR = -1002, /**< Parser class could not parse the query, because it was either invalid SQL, or bug in the Parser */
         INTERRUPTED = -1003, /**< Query execution was interrupted */
         INVALID_ARGUMENT = -1004, /**< Passed query argument was invalid (out of range, invalid format, etc.) */
-        DB_NOT_DEFINED = -1005 /**< Database was not defined */
+        DB_NOT_DEFINED = -1005, /**< Database was not defined */
+        OTHER_EXECUTION_ERROR = -1006 /**< Identifies other execution errors, see error message for details */
     };
 
     /**

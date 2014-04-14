@@ -5,6 +5,7 @@
 #include "db/queryexecutor.h"
 #include "exportworker.h"
 #include <QThreadPool>
+#include <QTextCodec>
 #include <QBuffer>
 #include <QDebug>
 #include <QDir>
@@ -156,15 +157,26 @@ ExportWorker* ExportManager::prepareExport()
     return worker;
 }
 
+void ExportManager::handleClipboardExport()
+{
+    if (plugin->getMimeType().isNull())
+    {
+        QString str = codecForName(config->codec)->toUnicode(bufferForClipboard->buffer());
+        emit storeInClipboard(str);
+    }
+    else
+        emit storeInClipboard(bufferForClipboard->buffer(), plugin->getMimeType());
+}
+
 void ExportManager::finalizeExport(bool result, QIODevice* output)
 {
-    output->close();
-    delete output;
-
     if (result)
     {
         if (config->intoClipboard)
+        {
             notifyInfo(tr("Export to the clipboard was successful."));
+            handleClipboardExport();
+        }
         else
             notifyInfo(tr("Export to the file '%1' was successful.").arg(config->outputFileName));
 
@@ -176,6 +188,10 @@ void ExportManager::finalizeExport(bool result, QIODevice* output)
     }
     emit exportFinished();
 
+    output->close();
+    delete output;
+
+    bufferForClipboard = nullptr;
     exportInProgress = false;
 }
 
@@ -183,9 +199,9 @@ QIODevice* ExportManager::getOutputStream()
 {
     if (config->intoClipboard)
     {
-        QBuffer* buffer = new QBuffer();
-        buffer->open(QIODevice::WriteOnly);
-        return buffer;
+        bufferForClipboard = new QBuffer();
+        bufferForClipboard->open(QIODevice::WriteOnly);
+        return bufferForClipboard;
     }
     else if (!config->outputFileName.trimmed().isEmpty())
     {

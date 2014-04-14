@@ -77,10 +77,13 @@ class ExportDialog : public QWizard
         void updateDbTables();
         void browseForExportFile();
         void pluginSelected();
+        void updateOptions();
         void updateDbObjTree();
         void dbObjectsSelectAll();
         void dbObjectsDeselectAll();
         void hideCoverWidget();
+        void storeInClipboard(const QByteArray& bytes, const QString& mimeType);
+        void storeInClipboard(const QString& str);
         void success();
 
     public slots:

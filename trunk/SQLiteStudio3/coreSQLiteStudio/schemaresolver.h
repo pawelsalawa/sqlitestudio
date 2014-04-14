@@ -20,6 +20,20 @@ class SqliteQuery;
 class API_EXPORT SchemaResolver
 {
     public:
+        struct ObjectDetails
+        {
+            enum Type
+            {
+                TABLE,
+                INDEX,
+                TRIGGER,
+                VIEW
+            };
+
+            Type type;
+            QString ddl;
+        };
+
         explicit SchemaResolver(Db* db);
         virtual ~SchemaResolver();
 
@@ -47,6 +61,9 @@ class API_EXPORT SchemaResolver
         QStringList getTriggersForTable(const QString& table);
         QStringList getViewsForTable(const QString& database, const QString& table);
         QStringList getViewsForTable(const QString& table);
+
+        QHash<QString,ObjectDetails> getAllObjectDetails();
+        QHash<QString,ObjectDetails> getAllObjectDetails(const QString& database);
 
         QList<SqliteCreateIndexPtr> getParsedIndexesForTable(const QString& database, const QString& table);
         QList<SqliteCreateIndexPtr> getParsedIndexesForTable(const QString& table);

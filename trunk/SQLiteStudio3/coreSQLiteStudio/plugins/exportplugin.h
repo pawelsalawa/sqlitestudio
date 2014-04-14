@@ -72,6 +72,20 @@ class ExportPlugin : virtual public Plugin
         virtual QString defaultFileExtension() const = 0;
 
         /**
+         * @brief Mime type for when exporting binary format to clipboard.
+         * @return  Mime type, like "image/png".
+         *
+         * Value returned from this method is used to set mime type when the exporting is done into the system clipboard.
+         * The clipboard needs mime type to identify what kind of data is in it.
+         *
+         * See details http://qt-project.org/doc/qt-5/qmimedata.html#setData
+         *
+         * If the plugin exports just a string, then this method can return QString::null and SqliteStudio will assume
+         * that the data is of "text/plain" type.
+         */
+        virtual QString getMimeType() const = 0;
+
+        /**
          * @brief Provides common state values before the export process begins.
          * @param db Database that the export will be performed on.
          * @param output Output device to write exporting data to.
@@ -119,12 +133,13 @@ class ExportPlugin : virtual public Plugin
          * @brief Does initial entry for exported table.
          * @param database "Attach" name of the database that the table belongs to. Can be "main", "temp", or any attach name.
          * @param table Name of the table to export.
+         * @param columnNames Name of columns in the table, in order they will appear in the rows passed to exportTableRow().
          * @param ddl The DDL of the table.
          * @param databaseExport true if this table export is a part of exporting the entire databasase,
          * false if it's for exporting just this single table.
          * @return true for success, or false in case of a fatal error.
          */
-        virtual bool beforeExportTable(const QString& database, const QString& table, const QString& ddl, bool databaseExport) = 0;
+        virtual bool beforeExportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, bool databaseExport) = 0;
 
         /**
          * @brief Does export entry for a single row of data.

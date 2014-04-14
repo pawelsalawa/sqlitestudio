@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>467</width>
-    <height>63</height>
+    <height>88</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -35,6 +35,13 @@
      </property>
      <property name="text">
       <string>Generate &quot;CREATE TABLE&quot; statement at the begining</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="2">
+    <widget class="QCheckBox" name="checkBox">
+     <property name="text">
+      <string>Include the query in comments</string>
      </property>
     </widget>
    </item>

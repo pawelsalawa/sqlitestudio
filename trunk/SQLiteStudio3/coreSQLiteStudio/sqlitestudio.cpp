@@ -31,6 +31,8 @@
 
 DEFINE_SINGLETON(SQLiteStudio)
 
+static const int sqlitestudioVersion = 30000;
+
 SQLiteStudio::SQLiteStudio()
 {
     connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(cleanUp()));
@@ -58,6 +60,20 @@ ExportManager* SQLiteStudio::getExportManager() const
 void SQLiteStudio::setExportManager(ExportManager* value)
 {
     exportManager = value;
+}
+
+int SQLiteStudio::getVersion() const
+{
+    return sqlitestudioVersion;
+}
+
+QString SQLiteStudio::getVersionString() const
+{
+    int ver = getVersion();
+    int majorVer = ver / 10000;
+    int minorVer = ver % 10000 / 100;
+    int patchVer = ver % 100;
+    return QString::number(majorVer) + "." + QString::number(minorVer) + "." + QString::number(patchVer);
 }
 
 CollationManager* SQLiteStudio::getCollationManager() const
