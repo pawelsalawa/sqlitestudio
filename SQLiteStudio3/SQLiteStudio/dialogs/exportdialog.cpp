@@ -54,6 +54,7 @@ void ExportDialog::init()
     connect(EXPORT_MANAGER, SIGNAL(exportFinished()), this, SLOT(hideCoverWidget()));
     connect(EXPORT_MANAGER, SIGNAL(storeInClipboard(QByteArray, QString)), this, SLOT(storeInClipboard(QByteArray, QString)));
     connect(EXPORT_MANAGER, SIGNAL(storeInClipboard(QString)), this, SLOT(storeInClipboard(QString)));
+    connect(EXPORT_MANAGER, SIGNAL(validationResultFromPlugin(bool,CfgEntry*)), this, SLOT(handleValidationResultFromPlugin(bool,CfgEntry*)));
 }
 
 void ExportDialog::setTableMode(Db* db, const QString& table)
@@ -95,6 +96,7 @@ void ExportDialog::setQueryMode(Db* db, const QString& query)
     ui->queryDatabaseCombo->setEnabled(false);
     ui->queryEdit->setPlainText(query);
     ui->queryEdit->setReadOnly(true);
+    updateQueryEditDb();
 }
 
 void ExportDialog::setDatabaseMode(Db* db)
@@ -121,7 +123,13 @@ void ExportDialog::initTablePage()
 {
     ui->tablePage->setValidator([=]() -> bool
     {
-        return ui->exportTableNameCombo->currentIndex() > -1;
+        bool dbOk = ui->exportTableDbNameCombo->currentIndex() > -1;
+        bool tableOk = ui->exportTableNameCombo->currentIndex() > -1;
+
+        setValidStyle(ui->exportTableDbNameLabel, dbOk);
+        setValidStyle(ui->exportTableNameLabel, tableOk);
+
+        return dbOk && tableOk;
     });
 
     dbListModel = new DbListModel(this);
@@ -130,16 +138,27 @@ void ExportDialog::initTablePage()
 
     tablesModel = new DbObjListModel(this);
     tablesModel->setType(DbObjListModel::ObjectType::TABLE);
+
+    connect(this, SIGNAL(tablePageCompleteChanged()), ui->tablePage, SIGNAL(completeChanged()));
 }
 
 void ExportDialog::initQueryPage()
 {
     ui->queryPage->setValidator([=]() -> bool
     {
-        return ui->queryDatabaseCombo->currentIndex() > -1 && !ui->queryEdit->toPlainText().trimmed().isEmpty();
+        bool queryOk = !ui->queryEdit->toPlainText().trimmed().isEmpty();
+        queryOk &= ui->queryEdit->isSyntaxChecked() && !ui->queryEdit->haveErrors();
+        bool dbOk = ui->queryDatabaseCombo->currentIndex() > -1;
+
+        setValidStyle(ui->queryDatabaseLabel, dbOk);
+        setValidStyle(ui->queryLabel, queryOk);
+
+        return dbOk && queryOk;
     });
 
+    connect(ui->queryEdit, SIGNAL(errorsChecked(bool)), ui->queryPage, SIGNAL(completeChanged()));
     connect(ui->queryEdit, SIGNAL(textChanged()), ui->queryPage, SIGNAL(completeChanged()));
+    connect(ui->queryDatabaseCombo, SIGNAL(currentIndexChanged(QString)), this, SIGNAL(updateQueryEditDb()));
 }
 
 void ExportDialog::initDbObjectsPage()
@@ -150,7 +169,13 @@ void ExportDialog::initDbObjectsPage()
 
     ui->databaseObjectsPage->setValidator([=]() -> bool
     {
-        return selectableDbListModel->getCheckedObjects().size() > 0;
+        bool dbOk = ui->dbObjectsDatabaseCombo->currentIndex() > -1;
+        bool listOk = selectableDbListModel->getCheckedObjects().size() > 0;
+
+        setValidStyle(ui->dbObjectsDatabaseLabel, dbOk);
+        setValidStyle(ui->dbObjectsTree, listOk);
+
+        return listOk;
     });
 
     connect(ui->dbObjectsDatabaseCombo, SIGNAL(currentIndexChanged(QString)), this, SLOT(updateDbObjTree()));
@@ -164,20 +189,30 @@ void ExportDialog::initFormatPage()
 {
     ui->formatAndOptionsPage->setValidator([=]() -> bool
     {
+        setValidStyle(ui->exportFileEdit, true);
         if (ui->exportFileRadio->isChecked())
         {
             QString path = ui->exportFileEdit->text();
             if (path.trimmed().isEmpty())
+            {
+                setValidStyle(ui->exportFileEdit, false);
                 return false;
+            }
 
             QDir dir(path);
             if (dir.exists() && QFileInfo(path).isDir())
+            {
+                setValidStyle(ui->exportFileEdit, false);
                 return false;
+            }
 
             if (!dir.cdUp())
+            {
+                setValidStyle(ui->exportFileEdit, false);
                 return false;
+            }
         }
-        return ui->formatCombo->currentIndex() > -1 && ui->encodingCombo->currentIndex() > -1;
+        return ui->formatCombo->currentIndex() > -1 && ui->encodingCombo->currentIndex() > -1 && isPluginConfigValid();
     });
 
     ui->exportFileButton->setIcon(ICONS.EXPORT_FILE_BROWSE);
@@ -189,8 +224,11 @@ void ExportDialog::initFormatPage()
     connect(ui->exportFileEdit, SIGNAL(textChanged(QString)), ui->formatAndOptionsPage, SIGNAL(completeChanged()));
     connect(ui->exportFileRadio, SIGNAL(clicked()), ui->formatAndOptionsPage, SIGNAL(completeChanged()));
     connect(ui->exportClipboardRadio, SIGNAL(clicked()), ui->formatAndOptionsPage, SIGNAL(completeChanged()));
+    connect(this, SIGNAL(formatPageCompleteChanged()), ui->formatAndOptionsPage, SIGNAL(completeChanged()));
     connect(ui->exportFileRadio, SIGNAL(clicked()), this, SLOT(updateOptions()));
     connect(ui->exportClipboardRadio, SIGNAL(clicked()), this, SLOT(updateOptions()));
+    connect(ui->exportFileRadio, SIGNAL(clicked()), this, SLOT(updateExportOutputOptions()));
+    connect(ui->exportClipboardRadio, SIGNAL(clicked()), this, SLOT(updateExportOutputOptions()));
 }
 
 int ExportDialog::nextId() const
@@ -206,6 +244,11 @@ int ExportDialog::nextId() const
         return pageId(order[idx]);
 
     return -1;
+}
+
+bool ExportDialog::isPluginConfigValid() const
+{
+    return pluginConfigOk.size() == 0;
 }
 
 void ExportDialog::resizeEvent(QResizeEvent* e)
@@ -246,6 +289,7 @@ void ExportDialog::tablePageDisplayed()
             connect(ui->exportTableNameCombo, SIGNAL(currentTextChanged(QString)), ui->tablePage, SIGNAL(completeChanged()));
         }
         updateDbTables();
+        emit tablePageCompleteChanged();
         tablePageVisited = true;
     }
 }
@@ -260,6 +304,7 @@ void ExportDialog::queryPageDisplayed()
             connect(ui->queryDatabaseCombo, SIGNAL(currentIndexChanged(int)), ui->queryPage, SIGNAL(completeChanged()));
         }
 
+        updateQueryEditDb();
         queryPageVisited = true;
     }
 }
@@ -282,6 +327,7 @@ void ExportDialog::formatPageDisplayed()
         ui->formatCombo->addItems(EXPORT_MANAGER->getAvailableFormats());
         ui->encodingCombo->addItems(textCodecNames());
         ui->encodingCombo->setCurrentText(defaultCodecName());
+        pluginSelected();
 
         formatPageVisited = true;
     }
@@ -343,7 +389,29 @@ void ExportDialog::browseForExportFile()
 
 void ExportDialog::pluginSelected()
 {
+    ExportPlugin* plugin = getSelectedPlugin();
+    plugin->setExportMode(exportMode);
+    bool clipboardSupported = plugin->getSupportedModes().testFlag(ExportManager::CLIPBOARD);
+
+    ui->exportClipboardRadio->setVisible(clipboardSupported);
+    if (!clipboardSupported)
+        ui->exportFileRadio->setChecked(true);
+
+    updateExportOutputOptions();
     updateOptions();
+}
+
+void ExportDialog::updateExportOutputOptions()
+{
+    bool enabled = ui->exportFileRadio->isChecked();
+    ui->exportFileEdit->setEnabled(enabled);
+    ui->exportFileButton->setEnabled(enabled);
+}
+
+void ExportDialog::updateQueryEditDb()
+{
+    Db* db = getDbForExport(ui->queryDatabaseCombo->currentText());
+    ui->queryEdit->setDb(db);
 }
 
 void ExportDialog::updateOptions()
@@ -426,7 +494,7 @@ void ExportDialog::updatePluginOptions(ExportPlugin* plugin, int& optionsRow)
 {
     safe_delete(pluginOptionsWidget);
 
-    QString formName = plugin->getConfigFormName(exportMode);
+    QString formName = plugin->getConfigFormName();
     CfgMain* cfgMain = plugin->getConfig();
     if (formName.isNull() || !cfgMain)
     {
@@ -459,6 +527,7 @@ void ExportDialog::updatePluginOptions(ExportPlugin* plugin, int& optionsRow)
 
     configMapper = new ConfigMapper(cfgMain);
     configMapper->bindToConfig(pluginOptionsWidget);
+    plugin->validateOptions();
 }
 
 void ExportDialog::doExport()
@@ -481,6 +550,8 @@ void ExportDialog::doExport()
         case ExportManager::UNDEFINED:
             qCritical() << "Finished export dialog with undefined mode.";
             notifyInternalError();
+            break;
+        case ExportManager::CLIPBOARD:
             break;
     }
 }
@@ -558,4 +629,21 @@ Db* ExportDialog::getDbForExport(const QString& name)
 void ExportDialog::notifyInternalError()
 {
     notifyError(tr("Internal error during export. This is a bug. Please report it."));
+}
+
+void ExportDialog::handleValidationResultFromPlugin(bool valid, CfgEntry* key)
+{
+    QWidget* w = configMapper->getBindWidgetForConfig(key);
+    if (w)
+        setValidStyle(w, valid);
+
+    if (valid == pluginConfigOk.contains(key)) // if state changed
+    {
+        if (!valid)
+            pluginConfigOk[key] = false;
+        else
+            pluginConfigOk.remove(key);
+
+        emit formatPageCompleteChanged();
+    }
 }

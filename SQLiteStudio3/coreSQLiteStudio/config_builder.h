@@ -58,6 +58,7 @@ class API_EXPORT CfgMain
         static QList<CfgMain*> getPersistableInstances();
 
         QHash<QString,CfgCategory*>& getCategories();
+        void reset();
 
         bool isPersistable() const;
         QString getName() const;
@@ -80,6 +81,7 @@ class API_EXPORT CfgCategory
         QString toString() const;
         operator QString() const;
         QHash<QString,CfgEntry*>& getEntries();
+        void reset();
 
     private:
         bool persistable = true;
@@ -104,6 +106,8 @@ class API_EXPORT CfgEntry : public QObject
         operator QString() const;
         void defineDefaultValueFunction(DefaultValueProviderFunc func);
         QString getFullKey() const;
+        void reset();
+        bool isPersistable() const;
 
         /**
          * @brief operator CfgEntry *

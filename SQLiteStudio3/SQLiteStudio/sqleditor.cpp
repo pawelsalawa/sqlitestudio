@@ -383,6 +383,12 @@ void SqlEditor::backspacePressed()
 
 void SqlEditor::complete()
 {
+    if (!db)
+    {
+        notifyWarn(tr("Syntax completion can be used only when the database is set for the SQL editor."));
+        return;
+    }
+
     QString sql = toPlainText();
     int curPos = textCursor().position();
 

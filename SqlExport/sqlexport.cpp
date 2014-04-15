@@ -1,9 +1,16 @@
 #include "sqlexport.h"
 #include "common/utils_sql.h"
 #include "sqlitestudio.h"
+#include "config_builder.h"
+#include "services/exportmanager.h"
 #include <QTextCodec>
 
 CFG_DEFINE_RUNTIME(SqlExportConfig)
+
+SqlExport::SqlExport()
+{
+    connect(SQL_EXPORT_CFG.SqlExport.QueryTable, SIGNAL(changed(QVariant)), this, SLOT(validateOptions()));
+}
 
 QString SqlExport::getFormatName() const
 {
@@ -25,9 +32,9 @@ QString SqlExport::defaultFileExtension() const
     return ".sql";
 }
 
-QString SqlExport::getConfigFormName(ExportManager::ExportMode mode) const
+QString SqlExport::getConfigFormName() const
 {
-    if (mode == ExportManager::QUERY_RESULTS)
+    if (exportMode == ExportManager::QUERY_RESULTS)
         return "sqlExportQueryConfig";
 
     return QString::null;
@@ -225,4 +232,13 @@ QStringList SqlExport::rowToArgList(SqlResultsRowPtr row)
         }
     }
     return argList;
+}
+
+void SqlExport::validateOptions()
+{
+    if (exportMode == ExportManager::QUERY_RESULTS)
+    {
+        bool valid = !SQL_EXPORT_CFG.SqlExport.QueryTable.get().isEmpty();
+        EXPORT_MANAGER->handleValidationFromPlugin(valid, SQL_EXPORT_CFG.SqlExport.QueryTable);
+    }
 }

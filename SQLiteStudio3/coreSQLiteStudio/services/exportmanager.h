@@ -10,6 +10,7 @@ class ExportPlugin;
 class QueryExecutor;
 class ExportWorker;
 class QBuffer;
+class CfgEntry;
 
 /**
  * @brief Provides database exporting capabilities.
@@ -22,10 +23,11 @@ class API_EXPORT ExportManager : public QObject
     public:
         enum ExportMode
         {
-            UNDEFINED     = 0x0,
-            DATABASE      = 0x1,
-            TABLE         = 0x2,
-            QUERY_RESULTS = 0x3
+            UNDEFINED     = 0x00,
+            CLIPBOARD     = 0x01,
+            DATABASE      = 0x02,
+            TABLE         = 0x04,
+            QUERY_RESULTS = 0x08
         };
 
         Q_DECLARE_FLAGS(ExportModes, ExportMode)
@@ -142,6 +144,8 @@ class API_EXPORT ExportManager : public QObject
         void exportTable(Db* db, const QString& database, const QString& table);
         void exportDatabase(Db* db, const QStringList& objectListToExport);
 
+        void handleValidationFromPlugin(bool configValid, CfgEntry* key);
+
         static bool isAnyPluginAvailable();
 
     private:
@@ -168,6 +172,15 @@ class API_EXPORT ExportManager : public QObject
         void exportFailed();
         void storeInClipboard(const QString& str);
         void storeInClipboard(const QByteArray& bytes, const QString& mimeType);
+
+        /**
+         * @brief Emitted when export plugin performed its configuration validation.
+         * @param valid true if plugin accepts its configuration.
+         * @param key a key that cause valid/invalid state.
+         *
+         * Slot handling this signal should update UI to reflect the configuration state.
+         */
+        void validationResultFromPlugin(bool valid, CfgEntry* key);
 };
 
 #define EXPORT_MANAGER SQLITESTUDIO->getExportManager()

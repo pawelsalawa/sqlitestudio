@@ -26,6 +26,7 @@ class ExportDialog : public QWizard
         void setQueryMode(Db* db, const QString& query);
         void setDatabaseMode(Db* db);
         int nextId() const;
+        bool isPluginConfigValid() const;
 
     protected:
         void resizeEvent(QResizeEvent* e);
@@ -70,13 +71,17 @@ class ExportDialog : public QWizard
         bool formatPageVisited = false;
         WidgetCover* widgetCover = nullptr;
         ConfigMapper* configMapper = nullptr;
+        QHash<CfgEntry*,bool> pluginConfigOk;
 
     private slots:
+        void handleValidationResultFromPlugin(bool valid, CfgEntry* key);
         void updateExportMode();
         void pageChanged(int pageId);
         void updateDbTables();
         void browseForExportFile();
         void pluginSelected();
+        void updateExportOutputOptions();
+        void updateQueryEditDb();
         void updateOptions();
         void updateDbObjTree();
         void dbObjectsSelectAll();
@@ -88,6 +93,10 @@ class ExportDialog : public QWizard
 
     public slots:
         void accept();
+
+    signals:
+        void formatPageCompleteChanged();
+        void tablePageCompleteChanged();
 };
 
 #endif // EXPORTDIALOG_H

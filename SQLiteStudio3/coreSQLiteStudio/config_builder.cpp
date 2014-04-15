@@ -40,6 +40,12 @@ QHash<QString, CfgCategory *> &CfgMain::getCategories()
 {
     return childs;
 }
+
+void CfgMain::reset()
+{
+    for (CfgCategory* ctg : childs)
+        ctg->reset();
+}
 bool CfgMain::isPersistable() const
 {
     return persistable;
@@ -66,6 +72,12 @@ QString CfgCategory::toString() const
 QHash<QString, CfgEntry *> &CfgCategory::getEntries()
 {
     return childs;
+}
+
+void CfgCategory::reset()
+{
+    for (CfgEntry* entry : childs)
+        entry->reset();
 }
 
 CfgCategory::operator QString() const
@@ -149,6 +161,16 @@ void CfgEntry::defineDefaultValueFunction(CfgEntry::DefaultValueProviderFunc fun
 QString CfgEntry::getFullKey() const
 {
     return parent->toString()+"."+name;
+}
+
+void CfgEntry::reset()
+{
+    set(getDefultValue());
+}
+
+bool CfgEntry::isPersistable() const
+{
+    return persistable;
 }
 
 CfgEntry::operator CfgEntry*()

@@ -26,11 +26,13 @@ class SQLEXPORTSHARED_EXPORT SqlExport : public GenericExportPlugin
         SQLITESTUDIO_PLUGIN_AUTHOR("sqlitestudio.pl")
 
     public:
+        SqlExport();
+
         QString getFormatName() const;
         ExportManager::StandardConfigFlags standardOptionsToEnable() const;
         CfgMain* getConfig() const;
         QString defaultFileExtension() const;
-        QString getConfigFormName(ExportManager::ExportMode mode) const;
+        QString getConfigFormName() const;
         bool beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns);
         bool exportQueryResultsRow(SqlResultsRowPtr row);
         bool afterExportQueryResults();
@@ -54,6 +56,9 @@ class SQLEXPORTSHARED_EXPORT SqlExport : public GenericExportPlugin
         QString theTable;
         QString columns;
         bool dbExport = false;
+
+    public slots:
+        void validateOptions();
 };
 
 #endif // SQLEXPORT_H
