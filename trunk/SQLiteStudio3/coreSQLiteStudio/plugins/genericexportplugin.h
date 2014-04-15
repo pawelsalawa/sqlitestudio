@@ -10,10 +10,12 @@ class GenericExportPlugin : public GenericPlugin, public ExportPlugin
         void initBeforeExport(Db* db, QIODevice* output, const ExportManager::StandardExportConfig& config);
         ExportManager::ExportModes getSupportedModes() const;
         CfgMain* getConfig() const;
-        QString getConfigFormName(ExportManager::ExportMode mode) const;
+        QString getConfigFormName(ExportManager::ExportMode exportMode) const;
         QString getMimeType() const;
+        void setExportMode(ExportManager::ExportMode exportMode);
 
     protected:
+        virtual void initBeforeExport();
         void write(const QString& str);
         void writeln(const QString& str);
 
@@ -21,6 +23,7 @@ class GenericExportPlugin : public GenericPlugin, public ExportPlugin
         QIODevice* output = nullptr;
         const ExportManager::StandardExportConfig* config = nullptr;
         QTextCodec* codec = nullptr;
+        ExportManager::ExportMode exportMode = ExportManager::UNDEFINED;
 };
 
 #endif // GENERICEXPORTPLUGIN_H

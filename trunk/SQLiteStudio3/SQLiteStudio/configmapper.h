@@ -48,6 +48,9 @@ class ConfigMapper : public QObject
          */
         void unbindFromConfig();
 
+        QWidget* getBindWidgetForConfig(CfgEntry* key) const;
+        CfgEntry* getBindConfigForWidget(QWidget* widget) const;
+
     private:
         void applyConfigToWidget(QWidget *widget, const QHash<QString, CfgEntry *> &allConfigEntries, const QHash<QString, QVariant> &config);
         void applyConfigToWidget(QWidget *widget, CfgEntry* cfgEntry, const QVariant& configValue);

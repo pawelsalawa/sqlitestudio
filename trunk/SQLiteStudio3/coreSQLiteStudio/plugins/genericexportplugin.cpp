@@ -2,6 +2,7 @@
 #include "common/utils.h"
 #include "services/notifymanager.h"
 #include "common/unused.h"
+#include "config_builder.h"
 #include <QTextCodec>
 
 void GenericExportPlugin::initBeforeExport(Db* db, QIODevice* output, const ExportManager::StandardExportConfig& config)
@@ -19,11 +20,14 @@ void GenericExportPlugin::initBeforeExport(Db* db, QIODevice* output, const Expo
             notifyWarn(tr("Could not initialize text codec for exporting. Using default codec: %1").arg(QString::fromLatin1(codec->name())));
         }
     }
+
+    if (getConfig() && !getConfig()->isPersistable())
+        getConfig()->reset();
 }
 
 ExportManager::ExportModes GenericExportPlugin::getSupportedModes() const
 {
-    return ExportManager::DATABASE|ExportManager::TABLE|ExportManager::QUERY_RESULTS;
+    return ExportManager::CLIPBOARD|ExportManager::DATABASE|ExportManager::TABLE|ExportManager::QUERY_RESULTS;
 }
 
 CfgMain* GenericExportPlugin::getConfig() const
@@ -40,6 +44,15 @@ QString GenericExportPlugin::getConfigFormName(ExportManager::ExportMode mode) c
 QString GenericExportPlugin::getMimeType() const
 {
     return QString::null;
+}
+
+void GenericExportPlugin::setExportMode(ExportManager::ExportMode mode)
+{
+    this->exportMode = mode;
+}
+
+void GenericExportPlugin::initBeforeExport()
+{
 }
 
 void GenericExportPlugin::write(const QString& str)

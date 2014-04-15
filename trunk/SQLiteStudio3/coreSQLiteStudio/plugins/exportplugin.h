@@ -60,7 +60,33 @@ class ExportPlugin : virtual public Plugin
          *
          * @see FormManager
          */
-        virtual QString getConfigFormName(ExportManager::ExportMode mode) const = 0;
+        virtual QString getConfigFormName() const = 0;
+
+        /**
+         * @brief Tells plugin what is going to be the next export mode.
+         * @param mode Mode that the next export is going to be performed for.
+         *
+         * Plugin should remember this and use later when some logic is depended on what the mode is.
+         * For example getConfigFormName() (as well as getConfig()) might return different config forms
+         * for different modes.
+         */
+        virtual void setExportMode(ExportManager::ExportMode mode) = 0;
+
+        /**
+         * @brief Called when the UI expects any configuration options to be re-validated.
+         *
+         * When user interacts with the UI in a way that it doesn't change the config values,
+         * but it still requires some options to be re-validated, this method is called.
+         *
+         * It should validate any configuration values defined with CFG_CATEGORY and CFG_ENTRY
+         * and post the validation results by calling EXPORT_MANAGER->handleValidationFromPlugin()
+         * for every validated CfgEntry.
+         *
+         * This is also a good idea to connect to the CfgEntry::changed() signal for entries that should be validated
+         * and call this method from the slot, so any changes to the configuration values will be
+         * immediately validated and reflected on the UI.
+         */
+        virtual void validateOptions() = 0;
 
         /**
          * @brief Provides usual file name extension used with this format.

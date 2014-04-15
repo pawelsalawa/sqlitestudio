@@ -85,7 +85,7 @@ class BiHash
          * @param left Value to test.
          * @return true if left values containe the \p left value.
          */
-        bool containsLeft(const L& left)
+        bool containsLeft(const L& left) const
         {
             return hash.contains(left);
         }
@@ -95,7 +95,7 @@ class BiHash
          * @param right Value to test.
          * @return true if right values containe the \p right value.
          */
-        bool containsRight(const R& right)
+        bool containsRight(const R& right) const
         {
             return inverted.contains(right);
         }

@@ -40,7 +40,7 @@
  * };
  * @endcode
  */
-class API_EXPORT GenericPlugin : public virtual QObject, public virtual Plugin
+class API_EXPORT GenericPlugin : public QObject, public virtual Plugin
 {
         Q_OBJECT
         Q_INTERFACES(Plugin)

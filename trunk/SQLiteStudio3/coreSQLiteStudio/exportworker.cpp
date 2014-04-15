@@ -42,6 +42,8 @@ void ExportWorker::run()
             qCritical() << "Started ExportWorker with UNDEFINED mode.";
             res = false;
             break;
+        case ExportManager::CLIPBOARD:
+            break;
     }
 
     emit finished(res, output);
