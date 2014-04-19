@@ -200,6 +200,7 @@ bool Parser::parseInternal(const QString &sql, bool lookForExpectedToken)
     // Free all non-termials having destructors
     parseFree(pParser, free);
 
+    context->flushErrors();
     return context->isSuccessful();
 }
 

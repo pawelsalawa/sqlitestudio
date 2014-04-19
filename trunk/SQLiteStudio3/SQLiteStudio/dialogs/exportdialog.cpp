@@ -329,10 +329,10 @@ void ExportDialog::formatPageDisplayed()
         ui->formatCombo->addItems(EXPORT_MANAGER->getAvailableFormats());
         ui->encodingCombo->addItems(textCodecNames());
         ui->encodingCombo->setCurrentText(defaultCodecName());
-        pluginSelected();
 
         formatPageVisited = true;
     }
+    pluginSelected();
 
 //    qDebug() << selectableDbListModel->getCheckedObjects();
 }
