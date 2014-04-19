@@ -37,9 +37,9 @@ bool ColumnForeignKeyPanel::validate()
     bool columnOk = (ui->fkColumnCombo->currentIndex() > -1);
     bool nameOk = !ui->namedCheckBox->isChecked() || !ui->nameEdit->text().isEmpty();
 
-    setValidStyle(ui->fkTableLabel, tableOk);
-    setValidStyle(ui->fkColumnLabel, columnOk);
-    setValidStyle(ui->namedCheckBox, nameOk);
+    setValidState(ui->fkTableCombo, tableOk, tr("Pick the foreign table."));
+    setValidState(ui->fkColumnCombo, columnOk, tr("Pick the foreign column."));
+    setValidState(ui->nameEdit, nameOk, tr("Enter a name of the constraint."));
 
     return tableOk && columnOk && nameOk;
 }

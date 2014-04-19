@@ -77,8 +77,8 @@ bool ColumnCollatePanel::validate()
 
     bool collationOk = !ui->collationCombo->currentText().isEmpty();
 
-    setValidStyle(ui->namedCheck, nameOk);
-    setValidStyle(ui->collationLabel, collationOk);
+    setValidState(ui->namedEdit, nameOk, tr("Enter a name of the constraint."));
+    setValidState(ui->collationCombo, collationOk, tr("Enter a collation name."));
 
     return nameOk && collationOk;
 }

@@ -324,8 +324,8 @@ void TriggerDialog::updateValidation()
 
     bool codeOk = (ui->codeEdit->isSyntaxChecked() && !ui->codeEdit->haveErrors());
 
-    setValidStyle(ui->preconditionCheck, preconditionOk);
-    setValidStyle(ui->codeLabel, codeOk);
+    setValidState(ui->preconditionCheck, preconditionOk, tr("Enter a valid condition."));
+    setValidState(ui->codeEdit, codeOk, tr("Enter a valid trigger code."));
     ui->actionColumns->setIcon(columnsOk ? ICONS.TRIGGER_COLUMNS : ICONS.TRIGGER_COLUMNS_INVALID);
 
     QPushButton* okButton = ui->buttonBox->button(QDialogButtonBox::Ok);

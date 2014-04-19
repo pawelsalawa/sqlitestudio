@@ -166,8 +166,8 @@ bool TablePrimaryKeyAndUniquePanel::validate()
     if (ui->namedCheckBox->isChecked() && ui->namedLineEdit->text().isEmpty())
         nameOk = false;
 
-    setValidStyle(ui->groupBox, countOk);
-    setValidStyle(ui->namedCheckBox, nameOk);
+    setValidState(ui->groupBox, countOk, tr("Select at least one column."));
+    setValidState(ui->namedLineEdit, nameOk, tr("Enter a name of the constraint."));
 
     return countOk && nameOk;
 }

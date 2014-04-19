@@ -126,8 +126,8 @@ void ExportDialog::initTablePage()
         bool dbOk = ui->exportTableDbNameCombo->currentIndex() > -1;
         bool tableOk = ui->exportTableNameCombo->currentIndex() > -1;
 
-        setValidStyle(ui->exportTableDbNameLabel, dbOk);
-        setValidStyle(ui->exportTableNameLabel, tableOk);
+        setValidState(ui->exportTableDbNameCombo, dbOk, tr("Select database to export."));
+        setValidState(ui->exportTableNameCombo, tableOk, tr("Select table to export."));
 
         return dbOk && tableOk;
     });
@@ -150,15 +150,16 @@ void ExportDialog::initQueryPage()
         queryOk &= ui->queryEdit->isSyntaxChecked() && !ui->queryEdit->haveErrors();
         bool dbOk = ui->queryDatabaseCombo->currentIndex() > -1;
 
-        setValidStyle(ui->queryDatabaseLabel, dbOk);
-        setValidStyle(ui->queryLabel, queryOk);
+        setValidState(ui->queryDatabaseCombo, dbOk, tr("Select database to export."));
+        setValidState(ui->queryEdit, queryOk, tr("Enter valid query to export."));
 
         return dbOk && queryOk;
     });
 
     connect(ui->queryEdit, SIGNAL(errorsChecked(bool)), ui->queryPage, SIGNAL(completeChanged()));
     connect(ui->queryEdit, SIGNAL(textChanged()), ui->queryPage, SIGNAL(completeChanged()));
-    connect(ui->queryDatabaseCombo, SIGNAL(currentIndexChanged(QString)), this, SIGNAL(updateQueryEditDb()));
+    connect(ui->queryDatabaseCombo, SIGNAL(currentIndexChanged(QString)), this, SLOT(updateQueryEditDb()));
+    connect(this, SIGNAL(queryPageCompleteChanged()), ui->queryPage, SIGNAL(completeChanged()));
 }
 
 void ExportDialog::initDbObjectsPage()
@@ -172,8 +173,8 @@ void ExportDialog::initDbObjectsPage()
         bool dbOk = ui->dbObjectsDatabaseCombo->currentIndex() > -1;
         bool listOk = selectableDbListModel->getCheckedObjects().size() > 0;
 
-        setValidStyle(ui->dbObjectsDatabaseLabel, dbOk);
-        setValidStyle(ui->dbObjectsTree, listOk);
+        setValidState(ui->dbObjectsDatabaseCombo, dbOk, tr("Select database to export."));
+        setValidState(ui->dbObjectsTree, listOk, tr("Select at least one object to export."));
 
         return listOk;
     });
@@ -189,26 +190,26 @@ void ExportDialog::initFormatPage()
 {
     ui->formatAndOptionsPage->setValidator([=]() -> bool
     {
-        setValidStyle(ui->exportFileEdit, true);
+        setValidState(ui->exportFileEdit, true);
         if (ui->exportFileRadio->isChecked())
         {
             QString path = ui->exportFileEdit->text();
             if (path.trimmed().isEmpty())
             {
-                setValidStyle(ui->exportFileEdit, false);
+                setValidState(ui->exportFileEdit, false, tr("You must provide a file to export to."));
                 return false;
             }
 
             QDir dir(path);
             if (dir.exists() && QFileInfo(path).isDir())
             {
-                setValidStyle(ui->exportFileEdit, false);
+                setValidState(ui->exportFileEdit, false, tr("Path you provided is an existing directory. You cannot overwrite it."));
                 return false;
             }
 
             if (!dir.cdUp())
             {
-                setValidStyle(ui->exportFileEdit, false);
+                setValidState(ui->exportFileEdit, false, tr("The directory '%1' does not exist.").arg(dir.dirName()));
                 return false;
             }
         }
@@ -305,6 +306,7 @@ void ExportDialog::queryPageDisplayed()
         }
 
         updateQueryEditDb();
+        emit queryPageCompleteChanged();
         queryPageVisited = true;
     }
 }
@@ -635,7 +637,7 @@ void ExportDialog::handleValidationResultFromPlugin(bool valid, CfgEntry* key)
 {
     QWidget* w = configMapper->getBindWidgetForConfig(key);
     if (w)
-        setValidStyle(w, valid);
+        setValidState(w, valid); // TODO error message from plugin
 
     if (valid == pluginConfigOk.contains(key)) // if state changed
     {

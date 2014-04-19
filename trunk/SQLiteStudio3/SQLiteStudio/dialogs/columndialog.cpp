@@ -295,7 +295,7 @@ void ColumnDialog::updateConstraintState(SqliteCreateTable::Column::Constraint* 
         delete panel;
     }
 
-    setValidStyle(toolButton, result);
+    setValidState(toolButton, result, tr("Correct the constraint's configuration."));
 
     if (!result)
     {
@@ -512,7 +512,7 @@ void ColumnDialog::updateConstraints()
          ui->defaultButton
     })
     {
-        setValidStyle(tb, true);
+        setValidState(tb, true);
     }
 
     foreach (SqliteCreateTable::Column::Constraint* constr, column->constraints)

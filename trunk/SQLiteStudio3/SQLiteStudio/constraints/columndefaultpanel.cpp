@@ -43,8 +43,8 @@ bool ColumnDefaultPanel::validate()
 
     bool exprCheckedOk = exprOk && ui->exprEdit->isSyntaxChecked();
 
-    setValidStyle(ui->exprGroup, exprOk);
-    setValidStyle(ui->namedCheck, nameOk);
+    setValidState(ui->exprEdit, exprOk, tr("Enter a default value expression."));
+    setValidState(ui->namedEdit, nameOk, tr("Enter a name of the constraint."));
 
     return exprCheckedOk && nameOk;
 }

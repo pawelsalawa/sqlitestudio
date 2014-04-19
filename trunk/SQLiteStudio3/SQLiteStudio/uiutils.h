@@ -5,6 +5,6 @@
 #include <QWidget>
 
 QString getDbPath(const QString& startWith = QString::null);
-void setValidStyle(QWidget* widget, bool valid);
+void setValidState(QWidget* widget, bool valid, const QString& message = QString());
 
 #endif // UIUTILS_H
