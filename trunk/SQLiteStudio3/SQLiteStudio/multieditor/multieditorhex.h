@@ -2,6 +2,8 @@
 #define MULTIEDITORHEX_H
 
 #include "multieditorwidget.h"
+#include "multieditorwidgetplugin.h"
+#include "plugins/genericplugin.h"
 #include <QVariant>
 #include <QSharedPointer>
 
@@ -18,6 +20,7 @@ class MultiEditorHex : public MultiEditorWidget
         void setValue(const QVariant& value);
         QVariant getValue();
         void setReadOnly(bool value);
+        QString getTabLabel();
 
         QList<QWidget*> getNoScrollWidgets();
 
@@ -26,6 +29,21 @@ class MultiEditorHex : public MultiEditorWidget
 
     private slots:
         void modificationChanged();
+};
+
+class MultiEditorHexPlugin : public GenericPlugin, public MultiEditorWidgetPlugin
+{
+    Q_OBJECT
+
+    SQLITESTUDIO_PLUGIN_AUTHOR("sqlitestudio.pl")
+    SQLITESTUDIO_PLUGIN_DESC("Hexadecimal data editor.")
+    SQLITESTUDIO_PLUGIN_TITLE("Hexadecimal")
+    SQLITESTUDIO_PLUGIN_VERSION(10000)
+
+    public:
+        MultiEditorWidget* getInstance();
+        bool validFor(const SqlQueryModelColumn::DataType& dataType);
+        int getPriority(const SqlQueryModelColumn::DataType& dataType);
 };
 
 #endif // MULTIEDITORHEX_H

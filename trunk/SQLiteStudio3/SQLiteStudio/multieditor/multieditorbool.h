@@ -2,12 +2,16 @@
 #define MULTIEDITORBOOL_H
 
 #include "multieditorwidget.h"
+#include "multieditorwidgetplugin.h"
+#include "plugins/genericplugin.h"
 #include <QStringList>
 
 class QCheckBox;
 
 class MultiEditorBool : public MultiEditorWidget
 {
+        Q_OBJECT
+
     public:
         explicit MultiEditorBool(QWidget* parent = 0);
 
@@ -17,6 +21,7 @@ class MultiEditorBool : public MultiEditorWidget
         QVariant getValue();
         void setReadOnly(bool boolValue);
         QList<QWidget*> getNoScrollWidgets();
+        QString getTabLabel();
 
     private:
         enum Format
@@ -41,6 +46,21 @@ class MultiEditorBool : public MultiEditorWidget
 
     private slots:
         void stateChanged(int state);
+};
+
+class MultiEditorBoolPlugin : public GenericPlugin, public MultiEditorWidgetPlugin
+{
+    Q_OBJECT
+
+    SQLITESTUDIO_PLUGIN_AUTHOR("sqlitestudio.pl")
+    SQLITESTUDIO_PLUGIN_DESC("Boolean data editor.")
+    SQLITESTUDIO_PLUGIN_TITLE("Boolean")
+    SQLITESTUDIO_PLUGIN_VERSION(10000)
+
+    public:
+        MultiEditorWidget* getInstance();
+        bool validFor(const SqlQueryModelColumn::DataType& dataType);
+        int getPriority(const SqlQueryModelColumn::DataType& dataType);
 };
 
 #endif // MULTIEDITORBOOL_H

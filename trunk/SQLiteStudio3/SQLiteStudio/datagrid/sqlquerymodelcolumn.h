@@ -39,7 +39,7 @@ class SqlQueryModelColumn
                 void setEmpty();
                 QString toString();
 
-                ::DataType::Enum type = ::DataType::_NULL;
+                ::DataType::Enum type = ::DataType::unknown;
                 QString typeStr = "";
                 QVariant precision;
                 QVariant scale;

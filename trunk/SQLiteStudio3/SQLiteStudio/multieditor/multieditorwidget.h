@@ -14,6 +14,7 @@ class MultiEditorWidget : public QWidget
         virtual QVariant getValue() = 0;
         virtual void setReadOnly(bool value) = 0;
         virtual QList<QWidget*> getNoScrollWidgets() = 0;
+        virtual QString getTabLabel() = 0;
 
         void installEventFilter(QObject* filterObj);
 

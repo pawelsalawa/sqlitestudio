@@ -170,6 +170,11 @@ void MultiEditorDateTime::setReadOnly(bool value)
     updateReadOnlyDisplay();
 }
 
+QString MultiEditorDateTime::getTabLabel()
+{
+    return tr("Date & time");
+}
+
 QStringList MultiEditorDateTime::getParsingFormats()
 {
     return formats;
@@ -194,4 +199,66 @@ void MultiEditorDateTime::updateCalendarDisplay()
         calendar->setVisible(false);
         return;
     }
+}
+
+MultiEditorWidget*MultiEditorDateTimePlugin::getInstance()
+{
+    return new MultiEditorDateTime();
+}
+
+bool MultiEditorDateTimePlugin::validFor(const SqlQueryModelColumn::DataType& dataType)
+{
+    switch (dataType.type)
+    {
+        case DataType::BLOB:
+        case DataType::BOOLEAN:
+        case DataType::BIGINT:
+        case DataType::DECIMAL:
+        case DataType::DOUBLE:
+        case DataType::INTEGER:
+        case DataType::INT:
+        case DataType::NUMERIC:
+        case DataType::REAL:
+        case DataType::NONE:
+        case DataType::STRING:
+        case DataType::TEXT:
+        case DataType::CHAR:
+        case DataType::VARCHAR:
+        case DataType::TIME:
+        case DataType::unknown:
+            break;
+        case DataType::DATE:
+        case DataType::DATETIME:
+            return true;
+    }
+    return false;
+}
+
+int MultiEditorDateTimePlugin::getPriority(const SqlQueryModelColumn::DataType& dataType)
+{
+    switch (dataType.type)
+    {
+        case DataType::BLOB:
+        case DataType::BOOLEAN:
+        case DataType::BIGINT:
+        case DataType::DECIMAL:
+        case DataType::DOUBLE:
+        case DataType::INTEGER:
+        case DataType::INT:
+        case DataType::NUMERIC:
+        case DataType::REAL:
+        case DataType::NONE:
+        case DataType::STRING:
+        case DataType::TEXT:
+        case DataType::CHAR:
+        case DataType::VARCHAR:
+        case DataType::TIME:
+        case DataType::unknown:
+            break;
+        case DataType::DATE:
+            return 2;
+        case DataType::DATETIME:
+            return 1;
+    }
+    return 10;
 }

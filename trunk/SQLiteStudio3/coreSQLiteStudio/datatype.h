@@ -29,13 +29,15 @@ class API_EXPORT DataType : public QObject
             TEXT,
             TIME,
             VARCHAR,
-            _NULL
+            unknown
         };
 
-        static QList<Enum> values();
         static QString toString(Enum e);
         static Enum fromString(QString key, Qt::CaseSensitivity cs = Qt::CaseSensitive);
         static bool isNumeric(Enum e);
+
+        static QList<Enum> values;
+        static const QStringList names;
 };
 
 #endif // DATATYPE_H

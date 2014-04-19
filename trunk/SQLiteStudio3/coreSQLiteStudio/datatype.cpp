@@ -1,22 +1,39 @@
 #include "datatype.h"
 #include <QMetaEnum>
 
-QList<DataType::Enum> DataType::values()
+QList<DataType::Enum> DataType::values = [=]() -> QList<DataType::Enum>
 {
-    QList<Enum> list;
-    QMetaEnum metaEnum = staticMetaObject.enumerator(0);
-    Enum value;
+    QList<DataType::Enum> list;
+    QMetaEnum metaEnum = DataType::staticMetaObject.enumerator(0);
+    DataType::Enum value;
     for (int i = 0; i < metaEnum.keyCount(); i++)
     {
-        value = static_cast<Enum>(metaEnum.value(i));
-        if (value == _NULL)
+        value = static_cast<DataType::Enum>(metaEnum.value(i));
+        if (value == DataType::unknown)
             continue;
 
         list << value;
     }
 
     return list;
-}
+}();
+
+const QStringList DataType::names = [=]() -> QStringList
+{
+    QStringList list;
+    QMetaEnum metaEnum = DataType::staticMetaObject.enumerator(0);
+    DataType::Enum value;
+    for (int i = 0; i < metaEnum.keyCount(); i++)
+    {
+        value = static_cast<DataType::Enum>(metaEnum.value(i));
+        if (value == DataType::unknown)
+            continue;
+
+        list << DataType::toString(value);
+    }
+
+    return list;
+}();
 
 QString DataType::toString(DataType::Enum e)
 {
@@ -38,7 +55,7 @@ DataType::Enum DataType::fromString(QString key, Qt::CaseSensitivity cs)
     bool ok;
     Enum value = static_cast<Enum>(metaEnum.keyToValue(key.toLatin1().data(), &ok));
     if (!ok)
-        return _NULL;
+        return unknown;
 
     return value;
 }
@@ -65,7 +82,7 @@ bool DataType::isNumeric(DataType::Enum e)
         case TEXT:
         case TIME:
         case VARCHAR:
-        case _NULL:
+        case unknown:
             break;
     }
     return false;

@@ -134,10 +134,9 @@ void ConfigMapper::applyConfigToWidget(QWidget* widget, const QHash<QString, Cfg
     if (realTimeUpdates)
         bindMap.insert(widget, cfgEntry);
 
-    if (connectCustomNotifierToWidget(widget, cfgEntry))
-        return;
+    if (!connectCustomNotifierToWidget(widget, cfgEntry))
+        connectCommonNotifierToWidget(widget);
 
-    connectCommonNotifierToWidget(widget);
     applyConfigToWidget(widget, cfgEntry, configValue);
 }
 

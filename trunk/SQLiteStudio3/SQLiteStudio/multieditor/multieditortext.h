@@ -2,7 +2,9 @@
 #define MULTIEDITORTEXT_H
 
 #include "multieditorwidget.h"
+#include "multieditorwidgetplugin.h"
 #include "common/extactioncontainer.h"
+#include "plugins/genericplugin.h"
 
 class QPlainTextEdit;
 class QMenu;
@@ -27,6 +29,7 @@ class MultiEditorText : public MultiEditorWidget, public ExtActionContainer
         void setValue(const QVariant& value);
         QVariant getValue();
         void setReadOnly(bool value);
+        QString getTabLabel();
 
         QList<QWidget*> getNoScrollWidgets();
 
@@ -48,6 +51,21 @@ class MultiEditorText : public MultiEditorWidget, public ExtActionContainer
         void updateRedoAction(bool enabled);
         void updateCopyAction(bool enabled);
         void toggleTabFocus();
+};
+
+class MultiEditorTextPlugin : public GenericPlugin, public MultiEditorWidgetPlugin
+{
+    Q_OBJECT
+
+    SQLITESTUDIO_PLUGIN_AUTHOR("sqlitestudio.pl")
+    SQLITESTUDIO_PLUGIN_DESC("Standard text data editor.")
+    SQLITESTUDIO_PLUGIN_TITLE("Text")
+    SQLITESTUDIO_PLUGIN_VERSION(10000)
+
+    public:
+        MultiEditorWidget* getInstance();
+        bool validFor(const SqlQueryModelColumn::DataType& dataType);
+        int getPriority(const SqlQueryModelColumn::DataType& dataType);
 };
 
 #endif // MULTIEDITORTEXT_H

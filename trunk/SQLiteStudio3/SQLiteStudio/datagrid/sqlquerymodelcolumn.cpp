@@ -179,7 +179,7 @@ SqlQueryModelColumn::DataType::DataType(const SqlQueryModelColumn::DataType& oth
 
 void SqlQueryModelColumn::DataType::setEmpty()
 {
-    type = ::DataType::_NULL;
+    type = ::DataType::unknown;
     typeStr = "";
 }
 
