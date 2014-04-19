@@ -84,7 +84,7 @@ bool ColumnPrimaryKeyPanel::validate()
     if (ui->namedCheck->isChecked() && ui->namedEdit->text().isEmpty())
         nameOk = false;
 
-    setValidStyle(ui->namedCheck, nameOk);
+    setValidState(ui->namedEdit, nameOk, tr("Enter a name of the constraint."));
 
     return nameOk;
 }

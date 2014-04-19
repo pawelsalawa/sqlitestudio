@@ -127,7 +127,8 @@ SOURCES += main.cpp\
     dialogs/exportdialog.cpp \
     dbobjlistmodel.cpp \
     common/verifiablewizardpage.cpp \
-    selectabledbobjmodel.cpp
+    selectabledbobjmodel.cpp \
+    common/widgetstateindicator.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -240,7 +241,8 @@ HEADERS  += mainwindow.h \
     dialogs/exportdialog.h \
     dbobjlistmodel.h \
     common/verifiablewizardpage.h \
-    selectabledbobjmodel.h
+    selectabledbobjmodel.h \
+    common/widgetstateindicator.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \

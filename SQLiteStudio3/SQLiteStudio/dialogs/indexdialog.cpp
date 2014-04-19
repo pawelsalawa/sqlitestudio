@@ -189,12 +189,12 @@ void IndexDialog::updateValidation()
     bool partialConditionOk = (!ui->partialIndexCheck->isChecked() ||
                            (ui->partialIndexEdit->isSyntaxChecked() && !ui->partialIndexEdit->haveErrors()));
 
-    setValidStyle(ui->tableLabel, tableOk);
-    setValidStyle(ui->hdrColumnLabel, colSelected);
-    foreach (QCheckBox* cb, columnCheckBoxes)
-        setValidStyle(cb, colSelected);
+    setValidState(ui->tableCombo, tableOk, tr("Pick the table for the index."));
+    setValidState(ui->hdrColumnLabel, colSelected, tr("Select at least one column."));
+//    foreach (QCheckBox* cb, columnCheckBoxes)
+//        setValidStyle(cb, colSelected);
 
-    setValidStyle(ui->partialIndexCheck, partialConditionOk);
+    setValidState(ui->partialIndexCheck, partialConditionOk, tr("Enter a valid condition."));
 
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(colSelected && partialConditionOk);
 }

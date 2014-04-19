@@ -375,15 +375,15 @@ void FunctionsEditor::updateCurrentFunctionState()
     ui->rightWidget->setEnabled(validRow);
     if (!validRow)
     {
-        setValidStyle(ui->langLabel, true);
-        setValidStyle(ui->nameLabel, true);
-        setValidStyle(ui->mainCodeEdit, true);
+        setValidState(ui->langCombo, true);
+        setValidState(ui->nameEdit, true);
+        setValidState(ui->mainCodeEdit, true);
         return;
     }
 
     QString name = ui->nameEdit->text();
     bool nameOk = model->isAllowedName(row, name) && !name.trimmed().isEmpty();
-    setValidStyle(ui->nameLabel, nameOk);
+    setValidState(ui->nameEdit, nameOk, tr("Enter a non-empty, unique name of the function."));
 
     bool langOk = ui->langCombo->currentIndex() >= 0;
     ui->initCodeGroup->setEnabled(langOk);
@@ -395,7 +395,7 @@ void FunctionsEditor::updateCurrentFunctionState()
     ui->nameLabel->setEnabled(langOk);
     ui->typeCombo->setEnabled(langOk);
     ui->typeLabel->setEnabled(langOk);
-    setValidStyle(ui->langLabel, langOk);
+    setValidState(ui->langCombo, langOk, tr("Pick the implementation language."));
 
     bool aggregate = getCurrentFunctionType() == FunctionManager::Function::AGGREGATE;
     ui->initCodeGroup->setVisible(aggregate);
@@ -405,7 +405,7 @@ void FunctionsEditor::updateCurrentFunctionState()
     ui->databasesList->setEnabled(ui->selDatabasesRadio->isChecked());
 
     bool codeOk = !ui->mainCodeEdit->toPlainText().trimmed().isEmpty();
-    setValidStyle(ui->mainCodeGroup, codeOk);
+    setValidState(ui->mainCodeEdit, codeOk, tr("Enter a non-empty implementation code."));
 
     // Syntax highlighter
     QString lang = ui->langCombo->currentText();

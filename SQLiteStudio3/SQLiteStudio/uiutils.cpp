@@ -1,5 +1,6 @@
 #include "uiutils.h"
 #include "services/config.h"
+#include "common/widgetstateindicator.h"
 #include <QObject>
 #include <QCheckBox>
 #include <QSpinBox>
@@ -8,6 +9,7 @@
 #include <QFileDialog>
 #include <QStringList>
 #include <QSet>
+#include <QDebug>
 
 QString getDbPath(const QString &startWith)
 {
@@ -30,18 +32,8 @@ QString getDbPath(const QString &startWith)
     return path;
 }
 
-bool isBgTypeOfInvalidWidget(QWidget* widget)
+void setValidState(QWidget *widget, bool valid, const QString& message)
 {
-    return (dynamic_cast<QLineEdit*>(widget) != nullptr);
-}
-
-void setValidStyle(QWidget *widget, bool valid)
-{
-    static const QString invalidStyleStr = QStringLiteral("%1 {color: red}");
-    static const QString invalidBgStyleStr = QStringLiteral("%1 {background: red}");
-
-    if (isBgTypeOfInvalidWidget(widget))
-        widget->setStyleSheet(valid ? "" : invalidBgStyleStr.arg(widget->metaObject()->className()));
-    else
-        widget->setStyleSheet(valid ? "" : invalidStyleStr.arg(widget->metaObject()->className()));
+    INDICATOR(widget)->setMode(WidgetStateIndicator::Mode::ERROR);
+    INDICATOR(widget)->setVisible(!valid, valid ? QString() : message);
 }

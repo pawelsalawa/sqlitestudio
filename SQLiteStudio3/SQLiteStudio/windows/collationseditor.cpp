@@ -257,15 +257,15 @@ void CollationsEditor::updateCurrentCollationState()
     ui->rightWidget->setEnabled(validRow);
     if (!validRow)
     {
-        setValidStyle(ui->langLabel, true);
-        setValidStyle(ui->nameLabel, true);
-        setValidStyle(ui->codeGroup, true);
+        setValidState(ui->langCombo, true);
+        setValidState(ui->nameEdit, true);
+        setValidState(ui->codeEdit, true);
         return;
     }
 
     QString name = ui->nameEdit->text();
     bool nameOk = model->isAllowedName(row, name) && !name.trimmed().isEmpty();
-    setValidStyle(ui->nameLabel, nameOk);
+    setValidState(ui->nameEdit, nameOk, tr("Enter a non-empty, unique name of the collation."));
 
     bool langOk = ui->langCombo->currentIndex() >= 0;
     ui->codeGroup->setEnabled(langOk);
@@ -273,10 +273,10 @@ void CollationsEditor::updateCurrentCollationState()
     ui->nameEdit->setEnabled(langOk);
     ui->nameLabel->setEnabled(langOk);
     ui->databaseList->setEnabled(ui->selectedDatabasesRadio->isChecked());
-    setValidStyle(ui->langLabel, langOk);
+    setValidState(ui->langCombo, langOk, tr("Pick the implementation language."));
 
     bool codeOk = !ui->codeEdit->toPlainText().trimmed().isEmpty();
-    setValidStyle(ui->codeGroup, codeOk);
+    setValidState(ui->codeEdit, codeOk, tr("Enter a non-empty implementation code."));
 
     // Syntax highlighter
     QString lang = ui->langCombo->currentText();

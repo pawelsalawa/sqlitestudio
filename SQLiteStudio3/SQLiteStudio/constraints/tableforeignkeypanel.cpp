@@ -36,15 +36,23 @@ bool TableForeignKeyPanel::validate()
     bool tableOk = (ui->fkTableCombo->currentIndex() > -1);
 
     bool columnsOk = false;
+    bool columnsSelected = true;
+    bool idxOk = true;
     QCheckBox* check;
     QComboBox* combo;
     for (int i = 0; i < totalColumns; i++)
     {
         check = qobject_cast<QCheckBox*>(columnsLayout->itemAtPosition(i, 0)->widget());
         combo = qobject_cast<QComboBox*>(columnsLayout->itemAtPosition(i, 1)->widget());
-        if (check->isChecked() && combo->currentIndex() > -1)
+        if (check->isChecked())
         {
             columnsOk = true;
+
+            idxOk = (combo->currentIndex() > -1);
+            setValidState(combo, idxOk, tr("Pick the foreign column."));
+            if (!idxOk)
+                columnsSelected = false;
+
             break;
         }
     }
@@ -53,11 +61,11 @@ bool TableForeignKeyPanel::validate()
     if (ui->namedCheckBox->isChecked() && ui->nameEdit->text().isEmpty())
         nameOk = false;
 
-    setValidStyle(ui->fkTableLabel, tableOk);
-    setValidStyle(ui->columnsGroup, columnsOk);
-    setValidStyle(ui->namedCheckBox, nameOk);
+    setValidState(ui->fkTableCombo, tableOk, tr("Pick the foreign table."));
+    setValidState(ui->columnsGroup, columnsOk, tr("Select at least one foreign column."));
+    setValidState(ui->nameEdit, nameOk, tr("Enter a name of the constraint."));
 
-    return tableOk && columnsOk && nameOk;
+    return tableOk && columnsOk && nameOk && columnsSelected;
 }
 
 void TableForeignKeyPanel::constraintAvailable()

@@ -97,6 +97,7 @@ class ExportDialog : public QWizard
     signals:
         void formatPageCompleteChanged();
         void tablePageCompleteChanged();
+        void queryPageCompleteChanged();
 };
 
 #endif // EXPORTDIALOG_H
