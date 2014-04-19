@@ -40,6 +40,9 @@
    </item>
    <item row="2" column="0" colspan="2">
     <widget class="QCheckBox" name="checkBox">
+     <property name="statusTip">
+      <string>SqlExport.IncludeQueryInComments</string>
+     </property>
      <property name="text">
       <string>Include the query in comments</string>
      </property>

@@ -54,7 +54,7 @@ void ExportDialog::init()
     connect(EXPORT_MANAGER, SIGNAL(exportFinished()), this, SLOT(hideCoverWidget()));
     connect(EXPORT_MANAGER, SIGNAL(storeInClipboard(QByteArray, QString)), this, SLOT(storeInClipboard(QByteArray, QString)));
     connect(EXPORT_MANAGER, SIGNAL(storeInClipboard(QString)), this, SLOT(storeInClipboard(QString)));
-    connect(EXPORT_MANAGER, SIGNAL(validationResultFromPlugin(bool,CfgEntry*)), this, SLOT(handleValidationResultFromPlugin(bool,CfgEntry*)));
+    connect(EXPORT_MANAGER, SIGNAL(validationResultFromPlugin(bool,CfgEntry*,QString)), this, SLOT(handleValidationResultFromPlugin(bool,CfgEntry*,QString)));
 }
 
 void ExportDialog::setTableMode(Db* db, const QString& table)
@@ -401,6 +401,9 @@ void ExportDialog::pluginSelected()
 
     updateExportOutputOptions();
     updateOptions();
+
+    if (plugin->getConfig() && !plugin->getConfig()->isPersistable())
+        plugin->getConfig()->reset();
 }
 
 void ExportDialog::updateExportOutputOptions()
@@ -633,11 +636,11 @@ void ExportDialog::notifyInternalError()
     notifyError(tr("Internal error during export. This is a bug. Please report it."));
 }
 
-void ExportDialog::handleValidationResultFromPlugin(bool valid, CfgEntry* key)
+void ExportDialog::handleValidationResultFromPlugin(bool valid, CfgEntry* key, const QString& errorMsg)
 {
     QWidget* w = configMapper->getBindWidgetForConfig(key);
     if (w)
-        setValidState(w, valid); // TODO error message from plugin
+        setValidState(w, valid, errorMsg);
 
     if (valid == pluginConfigOk.contains(key)) // if state changed
     {
