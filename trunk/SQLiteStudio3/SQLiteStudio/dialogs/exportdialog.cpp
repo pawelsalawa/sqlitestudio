@@ -95,8 +95,8 @@ void ExportDialog::setQueryMode(Db* db, const QString& query)
     ui->queryDatabaseCombo->setCurrentText(db->getName());
     ui->queryDatabaseCombo->setEnabled(false);
     ui->queryEdit->setPlainText(query);
-    ui->queryEdit->setReadOnly(true);
     updateQueryEditDb();
+    ui->queryEdit->checkSyntaxNow();
 }
 
 void ExportDialog::setDatabaseMode(Db* db)

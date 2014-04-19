@@ -35,7 +35,6 @@ class DbTreeView : public QTreeView
         void mouseDoubleClickEvent(QMouseEvent* event);
 
     private:
-        void setupActionsForMenu(DbTreeItem* currItem);
         void initDndTypes();
         bool handleDoubleClick(DbTreeItem* item);
         bool handleDbDoubleClick(DbTreeItem* item);

@@ -1,6 +1,7 @@
 #include "dbtree.h"
 #include "dbtreeitem.h"
 #include "ui_dbtree.h"
+#include "actionentry.h"
 #include "common/utils_sql.h"
 #include "dbtreemodel.h"
 #include "dialogs/dbdialog.h"
@@ -22,6 +23,7 @@
 #include <QMessageBox>
 #include <QTimer>
 #include <QDebug>
+#include <dialogs/exportdialog.h>
 
 DbTree::DbTree(QWidget *parent) :
     QDockWidget(parent),
@@ -77,9 +79,12 @@ void DbTree::createActions()
     createAction(DELETE_DB, ICONS.DATABASE_DEL, tr("Remove the database"), this, SLOT(removeDb()), this);
     createAction(CONNECT_TO_DB, ICONS.DATABASE_CONNECT, tr("Connect to the database"), this, SLOT(connectToDb()), this);
     createAction(DISCONNECT_FROM_DB, ICONS.DATABASE_DISCONNECT, tr("Disconnect from the database"), this, SLOT(disconnectFromDb()), this);
+    createAction(EXPORT_DB, ICONS.DATABASE_EXPORT, tr("Export the database"), this, SLOT(exportDb()), this);
     createAction(ADD_TABLE, ICONS.TABLE_ADD, tr("Create a table"), this, SLOT(addTable()), this);
     createAction(EDIT_TABLE, ICONS.TABLE_EDIT, tr("Edit the table"), this, SLOT(editTable()), this);
     createAction(DEL_TABLE, ICONS.TABLE_DEL, tr("Drop the table"), this, SLOT(delTable()), this);
+    createAction(EXPORT_TABLE, ICONS.TABLE_EXPORT, tr("Export the table"), this, SLOT(exportTable()), this);
+    createAction(IMPORT_TABLE, ICONS.TABLE_IMPORT, tr("Import into the table"), this, SLOT(importTable()), this);
     createAction(ADD_INDEX, ICONS.INDEX_ADD, tr("Create an index"), this, SLOT(addIndex()), this);
     createAction(EDIT_INDEX, ICONS.INDEX_EDIT, tr("Edit the index"), this, SLOT(editIndex()), this);
     createAction(DEL_INDEX, ICONS.INDEX_DEL, tr("Drop the index"), this, SLOT(delIndex()), this);
@@ -96,7 +101,7 @@ void DbTree::createActions()
     createAction(REFRESH_SCHEMA, ICONS.DATABASE_RELOAD, tr("Refresh selected database schema"), this, SLOT(refreshSchema()), this);
 }
 
-void DbTree::updateActionsFor(const QStandardItem *item)
+void DbTree::updateActionStates(const QStandardItem *item)
 {
     // TODO update statuses of "List" submenu (copy, paste)
     QList<int> enabled;
@@ -120,10 +125,10 @@ void DbTree::updateActionsFor(const QStandardItem *item)
         if (dbTreeItem->getDb())
         {
             enabled << DELETE_DB << EDIT_DB;
+            enabled << REFRESH_SCHEMA;
             if (dbTreeItem->getDb()->isOpen())
             {
                 enabled << DISCONNECT_FROM_DB << ADD_TABLE << ADD_VIEW;
-                enabled << REFRESH_SCHEMA;
                 isDbOpen = true;
             }
             else
@@ -140,12 +145,12 @@ void DbTree::updateActionsFor(const QStandardItem *item)
                     // It's handled outside of "item with db", above
                     break;
                 case DbTreeItem::Type::DB:
-                    enabled << CREATE_GROUP;
+                    enabled << CREATE_GROUP << EXPORT_DB;
                     break;
                 case DbTreeItem::Type::TABLES:
                     break;
                 case DbTreeItem::Type::TABLE:
-                    enabled << EDIT_TABLE << DEL_TABLE;
+                    enabled << EDIT_TABLE << DEL_TABLE << EXPORT_TABLE << IMPORT_TABLE;
                     enabled << ADD_INDEX << ADD_TRIGGER;
                     break;
                 case DbTreeItem::Type::VIRTUAL_TABLE:
@@ -226,6 +231,261 @@ void DbTree::updateActionsFor(const QStandardItem *item)
 
     foreach (int action, actionMap.keys())
         setActionEnabled(action, enabled.contains(action));
+}
+
+void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
+{
+    QList<ActionEntry> actions;
+
+    ActionEntry dbEntry(ICONS.DATABASE, tr("Datatabase"));
+    dbEntry += ADD_DB;
+    dbEntry += EDIT_DB;
+    dbEntry += DELETE_DB;
+
+    ActionEntry dbEntryExt(ICONS.DATABASE, tr("Datatabase"));
+    dbEntryExt += CONNECT_TO_DB;
+    dbEntryExt += DISCONNECT_FROM_DB;
+    dbEntryExt += _separator;
+    dbEntryExt += REFRESH_SCHEMA;
+    dbEntryExt += _separator;
+    dbEntryExt += ADD_DB;
+    dbEntryExt += EDIT_DB;
+    dbEntryExt += DELETE_DB;
+
+    ActionEntry groupEntry(ICONS.DIRECTORY, tr("Grouping"));
+    groupEntry += CREATE_GROUP;
+    groupEntry += RENAME_GROUP;
+    groupEntry += DELETE_GROUP;
+
+    if (currItem)
+    {
+        // Parent item gives context for TRIGGERS type
+        DbTreeItem* parentItem = currItem->parentDbTreeItem();
+
+        DbTreeItem::Type itemType = currItem->getType();
+        switch (itemType)
+        {
+            case DbTreeItem::Type::DIR:
+            {
+                actions += ActionEntry(CREATE_GROUP);
+                actions += ActionEntry(RENAME_GROUP);
+                actions += ActionEntry(DELETE_GROUP);
+                actions += ActionEntry(_separator);
+                actions += dbEntry;
+                break;
+            }
+            case DbTreeItem::Type::DB:
+            {
+                actions += ActionEntry(CONNECT_TO_DB);
+                actions += ActionEntry(DISCONNECT_FROM_DB);
+                actions += ActionEntry(_separator);
+                actions += ActionEntry(ADD_DB);
+                actions += ActionEntry(EDIT_DB);
+                actions += ActionEntry(DELETE_DB);
+                actions += ActionEntry(_separator);
+                actions += ActionEntry(ADD_TABLE);
+                actions += ActionEntry(ADD_INDEX);
+                actions += ActionEntry(ADD_TRIGGER);
+                actions += ActionEntry(ADD_VIEW);
+                actions += ActionEntry(_separator);
+                actions += ActionEntry(REFRESH_SCHEMA);
+                actions += ActionEntry(EXPORT_DB);
+                actions += ActionEntry(_separator);
+                break;
+            }
+            case DbTreeItem::Type::INVALID_DB:
+            {
+                actions += ActionEntry(ADD_DB);
+                actions += ActionEntry(EDIT_DB);
+                actions += ActionEntry(DELETE_DB);
+                actions += ActionEntry(_separator);
+                break;
+            }
+            case DbTreeItem::Type::TABLES:
+                actions += ActionEntry(ADD_TABLE);
+                actions += ActionEntry(EDIT_TABLE);
+                actions += ActionEntry(DEL_TABLE);
+                actions += ActionEntry(_separator);
+                actions += dbEntryExt;
+                break;
+            case DbTreeItem::Type::TABLE:
+                actions += ActionEntry(ADD_TABLE);
+                actions += ActionEntry(EDIT_TABLE);
+                actions += ActionEntry(DEL_TABLE);
+                actions += ActionEntry(_separator);
+                actions += ActionEntry(ADD_INDEX);
+                actions += ActionEntry(EDIT_INDEX);
+                actions += ActionEntry(DEL_INDEX);
+                actions += ActionEntry(_separator);
+                actions += ActionEntry(ADD_TRIGGER);
+                actions += ActionEntry(EDIT_TRIGGER);
+                actions += ActionEntry(DEL_TRIGGER);
+                actions += ActionEntry(_separator);
+                actions += ActionEntry(EXPORT_TABLE);
+                actions += ActionEntry(IMPORT_TABLE);
+                actions += ActionEntry(_separator);
+                actions += dbEntryExt;
+                break;
+            case DbTreeItem::Type::VIRTUAL_TABLE:
+                actions += ActionEntry(ADD_TABLE);
+                //actions += ActionEntry(EDIT_TABLE); // TODO uncomment when virtual tables have their own edition window
+                actions += ActionEntry(DEL_TABLE);
+                actions += ActionEntry(_separator);
+                actions += dbEntryExt;
+                break;
+            case DbTreeItem::Type::INDEXES:
+                actions += ActionEntry(ADD_TABLE);
+                actions += ActionEntry(EDIT_TABLE);
+                actions += ActionEntry(DEL_TABLE);
+                actions += ActionEntry(_separator);
+                actions += ActionEntry(ADD_INDEX);
+                actions += ActionEntry(EDIT_INDEX);
+                actions += ActionEntry(DEL_INDEX);
+                actions += ActionEntry(_separator);
+                actions += dbEntryExt;
+                break;
+            case DbTreeItem::Type::INDEX:
+                actions += ActionEntry(ADD_TABLE);
+                actions += ActionEntry(EDIT_TABLE);
+                actions += ActionEntry(DEL_TABLE);
+                actions += ActionEntry(_separator);
+                actions += ActionEntry(ADD_INDEX);
+                actions += ActionEntry(EDIT_INDEX);
+                actions += ActionEntry(DEL_INDEX);
+                actions += ActionEntry(_separator);
+                actions += dbEntryExt;
+                break;
+            case DbTreeItem::Type::TRIGGERS:
+            {
+                if (parentItem->getType() == DbTreeItem::Type::TABLE)
+                {
+                    actions += ActionEntry(ADD_TABLE);
+                    actions += ActionEntry(EDIT_TABLE);
+                    actions += ActionEntry(DEL_TABLE);
+                }
+                else
+                {
+                    actions += ActionEntry(ADD_VIEW);
+                    actions += ActionEntry(EDIT_VIEW);
+                    actions += ActionEntry(DEL_VIEW);
+                }
+                actions += ActionEntry(_separator);
+                actions += ActionEntry(ADD_TRIGGER);
+                actions += ActionEntry(EDIT_TRIGGER);
+                actions += ActionEntry(DEL_TRIGGER);
+                actions += ActionEntry(_separator);
+                actions += dbEntryExt;
+                break;
+            }
+            case DbTreeItem::Type::TRIGGER:
+            {
+                if (parentItem->getType() == DbTreeItem::Type::TABLE)
+                {
+                    actions += ActionEntry(ADD_TABLE);
+                    actions += ActionEntry(EDIT_TABLE);
+                    actions += ActionEntry(DEL_TABLE);
+                }
+                else
+                {
+                    actions += ActionEntry(ADD_VIEW);
+                    actions += ActionEntry(EDIT_VIEW);
+                    actions += ActionEntry(DEL_VIEW);
+                }
+                actions += ActionEntry(_separator);
+                actions += ActionEntry(ADD_TRIGGER);
+                actions += ActionEntry(EDIT_TRIGGER);
+                actions += ActionEntry(DEL_TRIGGER);
+                actions += ActionEntry(_separator);
+                actions += dbEntryExt;
+                break;
+            }
+            case DbTreeItem::Type::VIEWS:
+                actions += ActionEntry(ADD_VIEW);
+                actions += ActionEntry(EDIT_VIEW);
+                actions += ActionEntry(DEL_VIEW);
+                actions += ActionEntry(_separator);
+                actions += dbEntryExt;
+                break;
+            case DbTreeItem::Type::VIEW:
+                actions += ActionEntry(ADD_VIEW);
+                actions += ActionEntry(EDIT_VIEW);
+                actions += ActionEntry(DEL_VIEW);
+                actions += ActionEntry(_separator);
+                actions += ActionEntry(ADD_TRIGGER);
+                actions += ActionEntry(EDIT_TRIGGER);
+                actions += ActionEntry(DEL_TRIGGER);
+                actions += ActionEntry(_separator);
+                actions += dbEntryExt;
+                break;
+            case DbTreeItem::Type::COLUMNS:
+                actions += ActionEntry(ADD_TABLE);
+                actions += ActionEntry(EDIT_TABLE);
+                actions += ActionEntry(DEL_TABLE);
+                actions += ActionEntry(_separator);
+                actions += dbEntryExt;
+                break;
+            case DbTreeItem::Type::COLUMN:
+                actions += ActionEntry(EDIT_COLUMN);
+                actions += ActionEntry(_separator);
+                actions += ActionEntry(ADD_TABLE);
+                actions += ActionEntry(EDIT_TABLE);
+                actions += ActionEntry(DEL_TABLE);
+                actions += ActionEntry(_separator);
+                actions += dbEntryExt;
+                break;
+            case DbTreeItem::Type::ITEM_PROTOTYPE:
+                break;
+        }
+
+        actions += ActionEntry(_separator);
+
+        if (itemType == DbTreeItem::Type::DB)
+            actions += groupEntry;
+    }
+    else
+    {
+        actions += dbEntry;
+        actions += ActionEntry(_separator);
+        actions += groupEntry;
+    }
+
+    actions += COPY;
+    actions += PASTE;
+    actions += _separator;
+    actions += SELECT_ALL;
+    actions += ActionEntry(REFRESH_SCHEMAS);
+
+    QMenu* subMenu;
+    foreach (ActionEntry actionEntry, actions)
+    {
+        switch (actionEntry.type)
+        {
+            case ActionEntry::Type::SINGLE:
+            {
+                if (actionEntry.action == DbTree::_separator)
+                {
+                    contextMenu->addSeparator();
+                    break;
+                }
+                contextMenu->addAction(actionMap[actionEntry.action]);
+                break;
+            }
+            case ActionEntry::Type::SUB_MENU:
+            {
+                subMenu = contextMenu->addMenu(actionEntry.subMenuIcon, actionEntry.subMenuLabel);
+                foreach (Action action, actionEntry.actions)
+                {
+                    if (action == DbTree::_separator)
+                    {
+                        subMenu->addSeparator();
+                        continue;
+                    }
+                    subMenu->addAction(actionMap[action]);
+                }
+                break;
+            }
+        }
+    }
 }
 
 QVariant DbTree::saveSession()
@@ -594,6 +854,23 @@ void DbTree::disconnectFromDb()
     db->close();
 }
 
+void DbTree::exportDb()
+{
+    Db* db = getSelectedDb();
+    if (!db)
+        return;
+
+    if (!ExportManager::isAnyPluginAvailable())
+    {
+        notifyError(tr("Cannot export, because no export plugin is loaded."));
+        return;
+    }
+
+    ExportDialog dialog(this);
+    dialog.setDatabaseMode(db);
+    dialog.exec();
+}
+
 void DbTree::addTable()
 {
     Db* db = getSelectedOpenDb();
@@ -721,6 +998,36 @@ void DbTree::delView()
     delSelectedObject();
 }
 
+void DbTree::exportTable()
+{
+    Db* db = getSelectedDb();
+    if (!db)
+        return;
+
+    DbTreeItem* item = ui->treeView->currentItem();
+    QString table = item->getTable();
+    if (table.isNull())
+    {
+        qWarning() << "Tried to edit table, while table wasn't selected in DbTree.";
+        return;
+    }
+
+    if (!ExportManager::isAnyPluginAvailable())
+    {
+        notifyError(tr("Cannot export, because no export plugin is loaded."));
+        return;
+    }
+
+    ExportDialog dialog(this);
+    dialog.setTableMode(db, table);
+    dialog.exec();
+}
+
+void DbTree::importTable()
+{
+    // TODO implement import to table
+}
+
 void DbTree::editColumn()
 {
     DbTreeItem* item = ui->treeView->currentItem();
@@ -750,7 +1057,7 @@ void DbTree::editColumn(DbTreeItem* item)
 void DbTree::currentChanged(const QModelIndex &current, const QModelIndex &previous)
 {
     UNUSED(previous);
-    updateActionsFor(treeModel->itemFromIndex(current));
+    updateActionStates(treeModel->itemFromIndex(current));
 }
 
 void DbTree::deleteSelected()
@@ -825,7 +1132,7 @@ void DbTree::refreshSchema()
 
 void DbTree::updateActionsForCurrent()
 {
-    updateActionsFor(ui->treeView->currentItem());
+    updateActionStates(ui->treeView->currentItem());
 }
 
 void DbTree::setupDefShortcuts()

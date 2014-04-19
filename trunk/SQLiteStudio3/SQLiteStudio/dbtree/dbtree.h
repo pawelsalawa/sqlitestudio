@@ -41,9 +41,12 @@ class DbTree : public QDockWidget, public ExtActionContainer
             DELETE_DB,
             CONNECT_TO_DB,
             DISCONNECT_FROM_DB,
+            EXPORT_DB,
             ADD_TABLE,
             EDIT_TABLE,
             DEL_TABLE,
+            EXPORT_TABLE,
+            IMPORT_TABLE,
             ADD_INDEX,
             EDIT_INDEX,
             DEL_INDEX,
@@ -63,7 +66,8 @@ class DbTree : public QDockWidget, public ExtActionContainer
         explicit DbTree(QWidget *parent = 0);
         ~DbTree();
         void init();
-        void updateActionsFor(const QStandardItem* item);
+        void updateActionStates(const QStandardItem* item);
+        void setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu);
         QVariant saveSession();
         void restoreSession(const QVariant& sessionValue);
         DbTreeModel* getModel() const;
@@ -108,6 +112,7 @@ class DbTree : public QDockWidget, public ExtActionContainer
         void removeDb();
         void connectToDb();
         void disconnectFromDb();
+        void exportDb();
         void addTable();
         void editTable();
         void delTable();
@@ -120,6 +125,8 @@ class DbTree : public QDockWidget, public ExtActionContainer
         void addView();
         void editView();
         void delView();
+        void exportTable();
+        void importTable();
         void editColumn();
         void editColumn(DbTreeItem* item);
         void currentChanged(const QModelIndex & current, const QModelIndex & previous);
