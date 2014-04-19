@@ -247,6 +247,6 @@ void SqlExport::validateOptions()
     if (exportMode == ExportManager::QUERY_RESULTS)
     {
         bool valid = !SQL_EXPORT_CFG.SqlExport.QueryTable.get().isEmpty();
-        EXPORT_MANAGER->handleValidationFromPlugin(valid, SQL_EXPORT_CFG.SqlExport.QueryTable);
+        EXPORT_MANAGER->handleValidationFromPlugin(valid, SQL_EXPORT_CFG.SqlExport.QueryTable, tr("Enter the table name."));
     }
 }

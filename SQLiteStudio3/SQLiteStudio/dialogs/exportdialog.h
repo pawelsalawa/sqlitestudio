@@ -74,7 +74,7 @@ class ExportDialog : public QWizard
         QHash<CfgEntry*,bool> pluginConfigOk;
 
     private slots:
-        void handleValidationResultFromPlugin(bool valid, CfgEntry* key);
+        void handleValidationResultFromPlugin(bool valid, CfgEntry* key, const QString& errorMsg);
         void updateExportMode();
         void pageChanged(int pageId);
         void updateDbTables();

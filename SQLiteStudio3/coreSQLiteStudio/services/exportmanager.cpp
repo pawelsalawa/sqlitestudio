@@ -111,9 +111,9 @@ void ExportManager::exportDatabase(Db* db, const QStringList& objectListToExport
     QThreadPool::globalInstance()->start(worker);
 }
 
-void ExportManager::handleValidationFromPlugin(bool configValid, CfgEntry* key)
+void ExportManager::handleValidationFromPlugin(bool configValid, CfgEntry* key, const QString& errorMessage)
 {
-    emit validationResultFromPlugin(configValid, key);
+    emit validationResultFromPlugin(configValid, key, errorMessage);
 }
 
 ExportPlugin* ExportManager::getPluginForFormat(const QString& formatName) const

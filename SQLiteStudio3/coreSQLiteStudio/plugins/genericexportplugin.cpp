@@ -20,9 +20,6 @@ void GenericExportPlugin::initBeforeExport(Db* db, QIODevice* output, const Expo
             notifyWarn(tr("Could not initialize text codec for exporting. Using default codec: %1").arg(QString::fromLatin1(codec->name())));
         }
     }
-
-    if (getConfig() && !getConfig()->isPersistable())
-        getConfig()->reset();
 }
 
 ExportManager::ExportModes GenericExportPlugin::getSupportedModes() const

@@ -144,7 +144,18 @@ class API_EXPORT ExportManager : public QObject
         void exportTable(Db* db, const QString& database, const QString& table);
         void exportDatabase(Db* db, const QStringList& objectListToExport);
 
-        void handleValidationFromPlugin(bool configValid, CfgEntry* key);
+        /**
+         * @brief Available for export plugins to report validation errors on their UI forms.
+         * @param configValid If the config value is valid or not.
+         * @param key The config key that was validated.
+         * @param errorMessage if the \p valid is false, then the \p errorMessage can carry the details of the validation result.
+         *
+         * Since export plugins themself are independet from QtGui, they still can provide *.ui files
+         * and they can use CFG_CATEGORIES to bind with *.ui files, then they can validate values
+         * stored in the CFG_CATEGORIES. In case that some value is invalid, they should call
+         * this method to let the UI know, that the widget should be marked for invalid value.
+         */
+        void handleValidationFromPlugin(bool configValid, CfgEntry* key, const QString& errorMessage = QString());
 
         static bool isAnyPluginAvailable();
 
@@ -177,10 +188,11 @@ class API_EXPORT ExportManager : public QObject
          * @brief Emitted when export plugin performed its configuration validation.
          * @param valid true if plugin accepts its configuration.
          * @param key a key that cause valid/invalid state.
+         * @param errorMessage if the \p valid is false, then the \p errorMessage can carry the details of the validation result.
          *
          * Slot handling this signal should update UI to reflect the configuration state.
          */
-        void validationResultFromPlugin(bool valid, CfgEntry* key);
+        void validationResultFromPlugin(bool valid, CfgEntry* key, const QString& errorMessage);
 };
 
 #define EXPORT_MANAGER SQLITESTUDIO->getExportManager()
