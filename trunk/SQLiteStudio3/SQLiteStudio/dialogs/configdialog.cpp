@@ -409,8 +409,10 @@ void ConfigDialog::initPageMap()
 
 void ConfigDialog::initInternalCustomConfigWidgets()
 {
-    internalCustomConfigWidgets << new StyleConfigWidget();
-    internalCustomConfigWidgets << new ComboDataWidget(&CFG_CORE.General.ActiveSqlFormatter);
+    QList<CustomConfigWidgetPlugin*> customWidgets;
+    customWidgets << new StyleConfigWidget();
+    customWidgets << new ComboDataWidget(&CFG_CORE.General.ActiveSqlFormatter);
+    configMapper->setInternalCustomConfigWidgets(customWidgets);
 }
 
 void ConfigDialog::initFormatterPlugins()

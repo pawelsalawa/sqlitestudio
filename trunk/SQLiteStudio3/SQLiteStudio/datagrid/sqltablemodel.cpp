@@ -143,9 +143,10 @@ void SqlTableModel::applyStringFilter(const QString& value)
         return;
     }
 
+    Dialect dialect = db->getDialect();
     QStringList conditions;
     foreach (SqlQueryModelColumnPtr column, columns)
-        conditions << column->column+" LIKE '%"+value+"%'";
+        conditions << wrapObjIfNeeded(column->column, dialect)+" LIKE '%"+value+"%'";
 
     setQuery("SELECT * FROM "+getDataSource()+" WHERE "+conditions.join(" OR "));
     reload();
