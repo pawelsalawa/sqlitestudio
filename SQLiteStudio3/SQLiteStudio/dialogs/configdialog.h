@@ -61,7 +61,6 @@ class ConfigDialog : public QDialog
         Ui::ConfigDialog *ui;
         QStyle* previewStyle = nullptr;
         QHash<QString,QWidget*> nameToPage;
-        QList<CustomConfigWidgetPlugin*> internalCustomConfigWidgets;
         QHash<QTreeWidgetItem*,QString> itemToPluginNameMap;
         QHash<PluginType*,QTreeWidgetItem*> pluginTypeToItemMap;
         QHash<Plugin*,QTreeWidgetItem*> pluginToItemMap;
