@@ -226,6 +226,14 @@ QStringList SqlExport::rowToArgList(SqlResultsRowPtr row)
             case QVariant::Bool:
                 argList << QString::number(value.toInt());
                 break;
+            case QVariant::ByteArray:
+            {
+                if (db->getVersion() >= 3) // version 2 will go to the regular string processing
+                {
+                    argList << "X'" + value.toByteArray().toHex().toUpper() + "'";
+                    break;
+                }
+            }
             default:
                 argList << wrapString(escapeString(value.toString()));
                 break;
