@@ -90,6 +90,20 @@ void ParserContext::errorAtToken(const QString& text, int pos)
     error(managedTokens[idx], text);
 }
 
+void ParserContext::flushErrors()
+{
+    if (raiseErrorBeforeNextToken && !ignoreMinorErrors)
+    {
+        if (managedTokens.size() > 0)
+            error(managedTokens.last(), QObject::tr("Incomplete query."));
+        else
+            error(QObject::tr("Incomplete query."));
+
+        nextTokenError = QString::null;
+        raiseErrorBeforeNextToken = false;
+    }
+}
+
 TokenPtr ParserContext::getTokenPtr(Token* token)
 {
     if (tokenPtrMap.contains(token))

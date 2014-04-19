@@ -112,6 +112,16 @@ class ParserContext
         void errorAtToken(const QString& text, int pos = -1);
 
         /**
+         * @brief Flushes pending errors.
+         *
+         * In case the errorBeforeNextToken() was called and no more tokens were feed to the context, then this method flushes
+         * pending error as the error for the last token consumed, but only if minor errors are not ignored.
+         * This happens for example for "SELECT " statement, where it's not correct, but it's a minor error, cause user
+         * might enter more contents afterwards.
+         */
+        void flushErrors();
+
+        /**
          * @brief Translates token pointer to it's shared pointer instance.
          * @param token Token pointer to translate.
          * @return QSharedPointer for the token, or null shared pointer in case of failure.
