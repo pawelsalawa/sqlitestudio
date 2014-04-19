@@ -9,6 +9,7 @@ class QCheckBox;
 class QTabWidget;
 class MultiEditorWidget;
 class QLabel;
+class MultiEditorWidgetPlugin;
 
 class MultiEditor : public QWidget
 {
@@ -25,12 +26,12 @@ class MultiEditor : public QWidget
             DATE,
             TIME,
             DATETIME,
-            BLOB
+            HEX
         };
 
         explicit MultiEditor(QWidget *parent = 0);
 
-        void addEditor(BuiltInEditor editor);
+        void addEditor(MultiEditorWidget* editorWidget);
         void showTab(int idx);
 
         void setValue(const QVariant& value);
@@ -45,7 +46,7 @@ class MultiEditor : public QWidget
 
         void setDataType(const SqlQueryModelColumn::DataType& dataType);
 
-        static QList<MultiEditor::BuiltInEditor> getEditorTypes(const SqlQueryModelColumn::DataType& dataType);
+        static void loadBuiltInEditors();
 
     private:
         void init();
@@ -55,12 +56,13 @@ class MultiEditor : public QWidget
         void updateLabel();
         QVariant getValueOmmitNull() const;
 
+        static QList<MultiEditorWidget*> getEditorTypes(const SqlQueryModelColumn::DataType& dataType);
+
         static const int margins = 2;
         static const int spacing = 2;
 
         QCheckBox* nullCheck;
         QTabWidget* tabs;
-        QHash<BuiltInEditor,MultiEditorWidget*> builtInEditorsMap;
         QList<MultiEditorWidget*> editors;
         QLabel* stateLabel;
         bool readOnly = false;

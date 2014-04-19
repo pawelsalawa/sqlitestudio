@@ -10,7 +10,7 @@ MultiEditorNumeric::MultiEditorNumeric(QWidget* parent)
     spinBox = new NumericSpinBox();
     layout()->addWidget(spinBox);
 
-    connect(spinBox, &NumericSpinBox::modified, this, &MultiEditorNumeric::modified);
+    connect(spinBox, SIGNAL(modified()), this, SIGNAL(valueModified()));
 
     setFocusProxy(spinBox);
 }
@@ -30,6 +30,11 @@ void MultiEditorNumeric::setReadOnly(bool value)
     spinBox->setReadOnly(value);
 }
 
+QString MultiEditorNumeric::getTabLabel()
+{
+    return tr("Number");
+}
+
 QList<QWidget*> MultiEditorNumeric::getNoScrollWidgets()
 {
     QList<QWidget*> list;
@@ -37,7 +42,63 @@ QList<QWidget*> MultiEditorNumeric::getNoScrollWidgets()
     return list;
 }
 
-void MultiEditorNumeric::modified()
+MultiEditorWidget*MultiEditorNumericPlugin::getInstance()
 {
-    emit valueModified();
+    return new MultiEditorNumeric();
+}
+
+bool MultiEditorNumericPlugin::validFor(const SqlQueryModelColumn::DataType& dataType)
+{
+    switch (dataType.type)
+    {
+        case DataType::BIGINT:
+        case DataType::DECIMAL:
+        case DataType::DOUBLE:
+        case DataType::INTEGER:
+        case DataType::INT:
+        case DataType::NUMERIC:
+        case DataType::REAL:
+            return true;
+        case DataType::BOOLEAN:
+        case DataType::BLOB:
+        case DataType::NONE:
+        case DataType::STRING:
+        case DataType::TEXT:
+        case DataType::CHAR:
+        case DataType::VARCHAR:
+        case DataType::DATE:
+        case DataType::DATETIME:
+        case DataType::TIME:
+        case DataType::unknown:
+            break;
+    }
+    return false;
+}
+
+int MultiEditorNumericPlugin::getPriority(const SqlQueryModelColumn::DataType& dataType)
+{
+    switch (dataType.type)
+    {
+        case DataType::BIGINT:
+        case DataType::DECIMAL:
+        case DataType::DOUBLE:
+        case DataType::INTEGER:
+        case DataType::INT:
+        case DataType::NUMERIC:
+        case DataType::REAL:
+            return 1;
+        case DataType::BOOLEAN:
+        case DataType::BLOB:
+        case DataType::NONE:
+        case DataType::STRING:
+        case DataType::TEXT:
+        case DataType::CHAR:
+        case DataType::VARCHAR:
+        case DataType::DATE:
+        case DataType::DATETIME:
+        case DataType::TIME:
+        case DataType::unknown:
+            break;
+    }
+    return 10;
 }

@@ -155,6 +155,22 @@
               </property>
              </item>
             </item>
+            <item>
+             <property name="text">
+              <string>Data browsing</string>
+             </property>
+             <property name="statusTip">
+              <string>dataBrowsingPage</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>Data editors</string>
+              </property>
+              <property name="statusTip">
+               <string>dataEditorsPage</string>
+              </property>
+             </item>
+            </item>
            </widget>
           </item>
          </layout>
@@ -169,6 +185,146 @@
          <property name="currentIndex">
           <number>1</number>
          </property>
+         <widget class="QWidget" name="dataBrowsingPage">
+          <layout class="QVBoxLayout" name="verticalLayout_21">
+           <item>
+            <widget class="QGroupBox" name="dataBrowsingGroup">
+             <property name="title">
+              <string>Data browsing and editing</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_2">
+              <item row="0" column="0">
+               <widget class="QLabel" name="rowsPerPageLabel">
+                <property name="text">
+                 <string>Number of data rows per page:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QSpinBox" name="rowsPerPageSpin">
+                <property name="maximumSize">
+                 <size>
+                  <width>150</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="statusTip">
+                 <string>General.NumberOfRowsPerPage</string>
+                </property>
+                <property name="minimum">
+                 <number>1</number>
+                </property>
+                <property name="maximum">
+                 <number>99999</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_6">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="dataEditorsPage">
+          <layout class="QVBoxLayout" name="verticalLayout_24">
+           <item>
+            <widget class="QSplitter" name="splitter_2">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <widget class="QGroupBox" name="dataEditorsTypesGroup">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>1</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="title">
+               <string>Data types</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_22">
+               <item>
+                <widget class="QToolBar" name="dataEditorsTypesToolbar"/>
+               </item>
+               <item>
+                <widget class="QListWidget" name="dataEditorsTypesList">
+                 <property name="statusTip">
+                  <string>General.DataEditorsOrder</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QWidget" name="dataEditorsRightWidget" native="true">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>3</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_23">
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <property name="bottomMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QGroupBox" name="dataEditorsAvailableGroup">
+                 <property name="title">
+                  <string>Available editors:</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_26">
+                  <item>
+                   <widget class="QListWidget" name="dataEditorsAvailableList">
+                    <property name="sortingEnabled">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="dataEditorsSelectedGroup">
+                 <property name="title">
+                  <string>Editors selected for this data type:</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_27">
+                  <item>
+                   <widget class="QTabWidget" name="dataEditorsSelectedTabs">
+                    <property name="movable">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
          <widget class="QWidget" name="generalPage">
           <layout class="QVBoxLayout" name="verticalLayout_3">
            <property name="leftMargin">
@@ -222,41 +378,6 @@
                 </property>
                 <property name="text">
                  <string>Don't show DDL preview dialog when commiting schema changes</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <widget class="QGroupBox" name="dataBrowsingGroup">
-             <property name="title">
-              <string>Data browsing and editing</string>
-             </property>
-             <layout class="QGridLayout" name="gridLayout_2">
-              <item row="0" column="0">
-               <widget class="QLabel" name="rowsPerPageLabel">
-                <property name="text">
-                 <string>Number of data rows per page:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QSpinBox" name="rowsPerPageSpin">
-                <property name="maximumSize">
-                 <size>
-                  <width>150</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="statusTip">
-                 <string>General.NumberOfRowsPerPage</string>
-                </property>
-                <property name="minimum">
-                 <number>1</number>
-                </property>
-                <property name="maximum">
-                 <number>99999</number>
                 </property>
                </widget>
               </item>
@@ -1536,6 +1657,17 @@ p, li { white-space: pre-wrap; }
     </widget>
    </item>
   </layout>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>100</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_25"/>
+  </widget>
  </widget>
  <customwidgets>
   <customwidget>
@@ -1560,7 +1692,6 @@ p, li { white-space: pre-wrap; }
   <tabstop>sortColumns</tabstop>
   <tabstop>ddlHistorySizeSpin</tabstop>
   <tabstop>dontShowDdlPreview</tabstop>
-  <tabstop>rowsPerPageSpin</tabstop>
   <tabstop>queryHistorySizeSpin</tabstop>
   <tabstop>checkBox</tabstop>
   <tabstop>expandTablesCheck</tabstop>

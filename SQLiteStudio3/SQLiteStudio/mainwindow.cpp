@@ -21,6 +21,8 @@
 #include "qtscriptsyntaxhighlighter.h"
 #include "services/exportmanager.h"
 #include "dialogs/exportdialog.h"
+#include "multieditor/multieditorwidgetplugin.h"
+#include "multieditor/multieditor.h"
 #include <QMdiSubWindow>
 #include <QDebug>
 #include <QStyleFactory>
@@ -70,8 +72,10 @@ void MainWindow::init()
 
     PLUGINS->registerPluginType<CustomConfigWidgetPlugin>(tr("Configuration widgets"));
     PLUGINS->registerPluginType<SyntaxHighlighterPlugin>(tr("Syntax highlighting engines"));
+    PLUGINS->registerPluginType<MultiEditorWidgetPlugin>(tr("Data editors"));
     PLUGINS->loadBuiltInPlugin(new SqliteHighlighterPlugin);
     PLUGINS->loadBuiltInPlugin(new JavaScriptHighlighterPlugin);
+    MultiEditor::loadBuiltInEditors();
 }
 
 void MainWindow::cleanUp()

@@ -11,6 +11,11 @@ MultiEditorTime::MultiEditorTime(QWidget *parent)
     setDisplayFormat(formats.first());
 }
 
+QString MultiEditorTime::getTabLabel()
+{
+    return tr("Time");
+}
+
 void MultiEditorTime::staticInit()
 {
     formats << "hh:mm:ss"
@@ -21,4 +26,65 @@ void MultiEditorTime::staticInit()
 QStringList MultiEditorTime::getParsingFormats()
 {
     return formats;
+}
+
+MultiEditorWidget*MultiEditorTimePlugin::getInstance()
+{
+    return new MultiEditorTime();
+}
+
+bool MultiEditorTimePlugin::validFor(const SqlQueryModelColumn::DataType& dataType)
+{
+    switch (dataType.type)
+    {
+        case DataType::BLOB:
+        case DataType::BOOLEAN:
+        case DataType::BIGINT:
+        case DataType::DECIMAL:
+        case DataType::DOUBLE:
+        case DataType::INTEGER:
+        case DataType::INT:
+        case DataType::NUMERIC:
+        case DataType::REAL:
+        case DataType::NONE:
+        case DataType::STRING:
+        case DataType::TEXT:
+        case DataType::CHAR:
+        case DataType::VARCHAR:
+        case DataType::DATE:
+        case DataType::DATETIME:
+        case DataType::unknown:
+            break;
+        case DataType::TIME:
+            return true;
+    }
+    return false;
+}
+
+int MultiEditorTimePlugin::getPriority(const SqlQueryModelColumn::DataType& dataType)
+{
+    switch (dataType.type)
+    {
+        case DataType::BLOB:
+        case DataType::BOOLEAN:
+        case DataType::BIGINT:
+        case DataType::DECIMAL:
+        case DataType::DOUBLE:
+        case DataType::INTEGER:
+        case DataType::INT:
+        case DataType::NUMERIC:
+        case DataType::REAL:
+        case DataType::NONE:
+        case DataType::STRING:
+        case DataType::TEXT:
+        case DataType::CHAR:
+        case DataType::VARCHAR:
+        case DataType::DATE:
+        case DataType::DATETIME:
+        case DataType::unknown:
+            break;
+        case DataType::TIME:
+            return 1;
+    }
+    return 10;
 }

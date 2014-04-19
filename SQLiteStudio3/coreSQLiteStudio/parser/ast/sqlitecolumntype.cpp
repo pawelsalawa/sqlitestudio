@@ -45,7 +45,7 @@ TokenList SqliteColumnType::rebuildTokensFromContents()
     if (name.isEmpty())
         return TokenList();
 
-    builder.withOther(wrapObjIfNeeded(name, dialect));
+    builder.withOther(name);
 
     if (!scale.isNull())
     {

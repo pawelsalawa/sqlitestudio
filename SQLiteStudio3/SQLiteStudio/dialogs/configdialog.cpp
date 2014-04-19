@@ -9,12 +9,16 @@
 #include "plugins/sqlformatterplugin.h"
 #include "configwidgets/styleconfigwidget.h"
 #include "configwidgets/combodatawidget.h"
+#include "configwidgets/listtostringlisthash.h"
 #include "iconmanager.h"
 #include "common/userinputfilter.h"
+#include "multieditor/multieditorwidget.h"
+#include "multieditor/multieditorwidgetplugin.h"
 #include "mainwindow.h"
 #include "common/unused.h"
 #include "sqlitestudio.h"
 #include "configmapper.h"
+#include "datatype.h"
 #include <QSignalMapper>
 #include <QLineEdit>
 #include <QSpinBox>
@@ -27,6 +31,7 @@
 #include <QPlainTextEdit>
 #include <QListWidget>
 #include <QTableWidget>
+#include <QDesktopServices>
 #include <QtUiTools/QUiLoader>
 
 #define GET_FILTER_STRING(Widget, WidgetType, Method) \
@@ -128,6 +133,7 @@ void ConfigDialog::init()
     initPlugins();
     initPluginsPage();
     initFormatterPlugins();
+    initDataEditors();
 
     connect(ui->categoriesTree, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(switchPage(QTreeWidgetItem*)));
     connect(ui->previewTabs, SIGNAL(currentChanged(int)), this, SLOT(updateStylePreview()));
@@ -136,13 +142,17 @@ void ConfigDialog::init()
 
     ui->activeStyleCombo->addItems(QStyleFactory::keys());
 
+    connect(ui->stackedWidget, SIGNAL(currentChanged(int)), this, SLOT(pageSwitched()));
+
     load();
     updateStylePreview();
 }
 
 void ConfigDialog::load()
 {
+    updatingDataEditorItem = true;
     configMapper->loadToWidget(ui->stackedWidget);
+    updatingDataEditorItem = false;
     setModified(false);
 }
 
@@ -236,6 +246,307 @@ QHash<QWidget*, QTreeWidgetItem*> ConfigDialog::buildPageToCategoryItemMap() con
 QList<QTreeWidgetItem *> ConfigDialog::getAllCategoryItems() const
 {
     return ui->categoriesTree->findItems("*", Qt::MatchWildcard|Qt::MatchRecursive);
+}
+
+QList<MultiEditorWidgetPlugin*> ConfigDialog::getDefaultEditorsForType(DataType::Enum dataType)
+{
+    QList<MultiEditorWidgetPlugin*> plugins = PLUGINS->getLoadedPlugins<MultiEditorWidgetPlugin>();
+    SqlQueryModelColumn::DataType modelDataType;
+    modelDataType.type = dataType;
+
+    typedef QPair<int,MultiEditorWidgetPlugin*> PluginWithPriority;
+    QList<PluginWithPriority> sortedPlugins;
+    PluginWithPriority editorWithPrio;
+    for (MultiEditorWidgetPlugin* plugin : plugins)
+    {
+        if (!plugin->validFor(modelDataType))
+            continue;
+
+        editorWithPrio.first = plugin->getPriority(modelDataType);
+        editorWithPrio.second = plugin;
+        sortedPlugins << editorWithPrio;
+    }
+
+    qSort(sortedPlugins.begin(), sortedPlugins.end(), [=](const PluginWithPriority& p1, const PluginWithPriority& p2) -> bool
+    {
+       return p1.first < p2.first;
+    });
+
+    QList<MultiEditorWidgetPlugin*> results;
+    for (const PluginWithPriority& p: sortedPlugins)
+        results << p.second;
+
+    return results;
+}
+
+void ConfigDialog::pageSwitched()
+{
+    if (ui->stackedWidget->currentWidget() == ui->dataEditorsPage)
+    {
+        updateDataTypeEditors();
+        return;
+    }
+}
+
+void ConfigDialog::updateDataTypeEditors()
+{
+    QString typeName = ui->dataEditorsTypesList->currentItem()->text();
+    DataType::Enum typeEnum = DataType::fromString(typeName);
+    QStringList editorsOrder = getPluginNamesFromDataTypeItem(ui->dataEditorsTypesList->currentItem());
+    bool usingCustomOrder = (editorsOrder.size() > 0);
+    QList<MultiEditorWidgetPlugin*> sortedPlugins;
+
+    while (ui->dataEditorsSelectedTabs->count() > 0)
+        delete ui->dataEditorsSelectedTabs->widget(0);
+
+    ui->dataEditorsAvailableList->clear();
+    if (usingCustomOrder)
+        sortedPlugins = updateCustomDataTypeEditors(editorsOrder);
+    else
+        sortedPlugins = updateDefaultDataTypeEditors(typeEnum);
+
+    ui->dataEditorsAvailableList->sortItems();
+
+    for (MultiEditorWidgetPlugin* plugin : sortedPlugins)
+        addDataTypeEditor(plugin);
+}
+
+QList<MultiEditorWidgetPlugin*> ConfigDialog::updateCustomDataTypeEditors(const QStringList& editorsOrder)
+{
+    // Building plugins list
+    QList<MultiEditorWidgetPlugin*> plugins = PLUGINS->getLoadedPlugins<MultiEditorWidgetPlugin>();
+    QList<MultiEditorWidgetPlugin*> enabledPlugins;
+    QListWidgetItem* item;
+    for (MultiEditorWidgetPlugin* plugin : plugins)
+    {
+        item = new QListWidgetItem(plugin->getTitle());
+        item->setFlags(item->flags()|Qt::ItemIsUserCheckable);
+        item->setCheckState(editorsOrder.contains(plugin->getName()) ? Qt::Checked : Qt::Unchecked);
+        item->setData(QListWidgetItem::UserType, plugin->getName());
+        if (item->checkState() == Qt::Checked)
+            enabledPlugins << plugin;
+
+        ui->dataEditorsAvailableList->addItem(item);
+    }
+
+    qSort(enabledPlugins.begin(), enabledPlugins.end(), [=](MultiEditorWidgetPlugin* p1, MultiEditorWidgetPlugin* p2) -> bool
+    {
+        return editorsOrder.indexOf(p1->getName()) < editorsOrder.indexOf(p2->getName());
+    });
+
+    return enabledPlugins;
+}
+
+QList<MultiEditorWidgetPlugin*> ConfigDialog::updateDefaultDataTypeEditors(DataType::Enum typeEnum)
+{
+    // Building plugins list
+    QList<MultiEditorWidgetPlugin*> plugins = PLUGINS->getLoadedPlugins<MultiEditorWidgetPlugin>();
+    QList<MultiEditorWidgetPlugin*> enabledPlugins = getDefaultEditorsForType(typeEnum);
+    QListWidgetItem* item;
+    for (MultiEditorWidgetPlugin* plugin : plugins)
+    {
+        item = new QListWidgetItem(plugin->getTitle());
+        item->setFlags(item->flags()|Qt::ItemIsUserCheckable);
+        item->setCheckState(enabledPlugins.contains(plugin) ? Qt::Checked : Qt::Unchecked);
+        item->setData(QListWidgetItem::UserType, plugin->getName());
+        ui->dataEditorsAvailableList->addItem(item);
+    }
+    return enabledPlugins;
+}
+
+void ConfigDialog::addDataTypeEditor(const QString& pluginName)
+{
+    MultiEditorWidgetPlugin* plugin = dynamic_cast<MultiEditorWidgetPlugin*>(PLUGINS->getLoadedPlugin(pluginName));
+    if (!plugin)
+    {
+        qCritical() << "Could not find plugin" << pluginName << " in ConfigDialog::addDataTypeEditor()";
+        return;
+    }
+
+    addDataTypeEditor(plugin);
+}
+
+void ConfigDialog::addDataTypeEditor(MultiEditorWidgetPlugin* plugin)
+{
+    MultiEditorWidget* editor = plugin->getInstance();
+    ui->dataEditorsSelectedTabs->addTab(editor, editor->getTabLabel().replace("&", "&&"));
+}
+
+void ConfigDialog::removeDataTypeEditor(QListWidgetItem* item, const QString& pluginName)
+{
+    QStringList orderedPlugins = getPluginNamesFromDataTypeItem(item);
+    int idx = orderedPlugins.indexOf(pluginName);
+    removeDataTypeEditor(idx);
+}
+
+void ConfigDialog::removeDataTypeEditor(int idx)
+{
+    if (idx < 0 || idx > (ui->dataEditorsSelectedTabs->count() - 1))
+    {
+        qCritical() << "Index out of range in ConfigDialog::removeDataTypeEditor():" << idx << "(tabs:" << ui->dataEditorsSelectedTabs->count() << ")";
+        return;
+    }
+
+    delete ui->dataEditorsSelectedTabs->widget(idx);
+}
+
+void ConfigDialog::transformDataTypeEditorsToCustomList(QListWidgetItem* typeItem)
+{
+    DataType::Enum dataType = DataType::fromString(typeItem->text());
+    QList<MultiEditorWidgetPlugin*> plugins = getDefaultEditorsForType(dataType);
+
+    QStringList pluginNames;
+    for (MultiEditorWidgetPlugin* plugin : plugins)
+        pluginNames << plugin->getName();
+
+    setPluginNamesForDataTypeItem(typeItem, pluginNames);
+}
+
+QStringList ConfigDialog::getPluginNamesFromDataTypeItem(QListWidgetItem* typeItem)
+{
+    return typeItem->data(QListWidgetItem::UserType).toStringList();
+}
+
+void ConfigDialog::setPluginNamesForDataTypeItem(QListWidgetItem* typeItem, const QStringList& pluginNames)
+{
+    updatingDataEditorItem = true;
+    typeItem->setData(QListWidgetItem::UserType, pluginNames);
+    updatingDataEditorItem = false;
+}
+
+void ConfigDialog::updateDataTypeListState()
+{
+    bool listEditingEnabled = ui->dataEditorsTypesList->selectedItems().size() > 0 && ui->dataEditorsTypesList->currentItem()->flags().testFlag(Qt::ItemIsEditable);
+    dataEditRenameAction->setEnabled(listEditingEnabled);
+    dataEditDeleteAction->setEnabled(listEditingEnabled);
+
+    bool orderEditingEnabled = ui->dataEditorsTypesList->selectedItems().size() > 0;
+    ui->dataEditorsAvailableList->setEnabled(orderEditingEnabled);
+    ui->dataEditorsSelectedTabs->setEnabled(orderEditingEnabled);
+}
+
+void ConfigDialog::dataEditorItemEdited(QListWidgetItem* item)
+{
+    if (updatingDataEditorItem)
+        return;
+
+    updatingDataEditorItem = true;
+    QString txt = item->text().toUpper();
+    if (DataType::names.contains(txt))
+        txt += "_";
+
+    while (ui->dataEditorsTypesList->findItems(txt, Qt::MatchExactly).size() > 1)
+        txt += "_";
+
+    item->setText(txt);
+    updatingDataEditorItem = false;
+}
+
+void ConfigDialog::dataEditorAvailableChanged(QListWidgetItem* item)
+{
+    QListWidgetItem* typeItem = ui->dataEditorsTypesList->currentItem();
+    if (!typeItem)
+        return;
+
+    QStringList pluginNames = getPluginNamesFromDataTypeItem(typeItem);
+    if (pluginNames.size() == 0)
+    {
+        transformDataTypeEditorsToCustomList(typeItem);
+        pluginNames = getPluginNamesFromDataTypeItem(typeItem);
+    }
+
+    QString pluginName = item->data(QListWidgetItem::UserType).toString();
+    Qt::CheckState state = item->checkState();
+    if (pluginNames.contains(pluginName) && state == Qt::Unchecked)
+    {
+        removeDataTypeEditor(typeItem, pluginName);
+        pluginNames.removeOne(pluginName);
+
+    }
+    else if (!pluginNames.contains(pluginName) && state == Qt::Checked)
+    {
+        addDataTypeEditor(pluginName);
+        pluginNames << pluginName;
+    }
+
+    setPluginNamesForDataTypeItem(typeItem, pluginNames);
+}
+
+void ConfigDialog::dataEditorTabsOrderChanged(int from, int to)
+{
+    QListWidgetItem* typeItem = ui->dataEditorsTypesList->currentItem();
+    if (!typeItem)
+        return;
+
+    QStringList pluginNames = getPluginNamesFromDataTypeItem(typeItem);
+    if (pluginNames.size() == 0)
+    {
+        transformDataTypeEditorsToCustomList(typeItem);
+        pluginNames = getPluginNamesFromDataTypeItem(typeItem);
+    }
+
+    int pluginSize = pluginNames.size();
+    if (from >= pluginSize || to >= pluginSize)
+    {
+        qCritical() << "Tabse moved out of range. in ConfigDialog::dataEditorTabsOrderChanged(). Range was: " << pluginSize << "and indexes were:" << from << to;
+        return;
+    }
+
+    QString pluginName = pluginNames[from];
+    pluginNames.removeAt(from);
+    pluginNames.insert(to, pluginName);
+
+    setPluginNamesForDataTypeItem(typeItem, pluginNames);
+}
+
+void ConfigDialog::addDataType()
+{
+    QListWidgetItem* item = new QListWidgetItem();
+    item->setFlags(item->flags()|Qt::ItemIsEditable);
+    ui->dataEditorsTypesList->addItem(item);
+    ui->dataEditorsTypesList->setCurrentRow(ui->dataEditorsTypesList->count() - 1, QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent);
+    modified();
+    renameDataType();
+}
+
+void ConfigDialog::renameDataType()
+{
+    QListWidgetItem* item = ui->dataEditorsTypesList->currentItem();
+    if (!item)
+        return;
+
+    ui->dataEditorsTypesList->editItem(item);
+}
+
+void ConfigDialog::delDataType()
+{
+    QListWidgetItem* item = ui->dataEditorsTypesList->currentItem();
+    if (!item)
+        return;
+
+    int row = ui->dataEditorsTypesList->currentRow();
+    delete ui->dataEditorsTypesList->takeItem(row);
+
+    if (ui->dataEditorsTypesList->count() > 0)
+    {
+        if (ui->dataEditorsTypesList->count() <= row)
+        {
+            row--;
+            if (row < 0)
+                row = 0;
+        }
+
+        ui->dataEditorsTypesList->setCurrentRow(row, QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent);
+    }
+
+    updateDataTypeListState();
+    modified();
+}
+
+void ConfigDialog::dataTypesHelp()
+{
+    static const QString url = QStringLiteral("http://sqlitestudio.pl/wiki/index.php/User_Manual#Customizing_data_type_editors");
+    QDesktopServices::openUrl(QUrl(url, QUrl::StrictMode));
 }
 
 void ConfigDialog::updateActiveFormatterState()
@@ -412,6 +723,7 @@ void ConfigDialog::initInternalCustomConfigWidgets()
     QList<CustomConfigWidgetPlugin*> customWidgets;
     customWidgets << new StyleConfigWidget();
     customWidgets << new ComboDataWidget(&CFG_CORE.General.ActiveSqlFormatter);
+    customWidgets << new ListToStringListHash(&CFG_UI.General.DataEditorsOrder);
     configMapper->setInternalCustomConfigWidgets(customWidgets);
 }
 
@@ -614,7 +926,6 @@ void ConfigDialog::initPluginsPage()
                 title += tr(" (built-in)", "plugins manager in configuration dialog");
 
             item = new QTreeWidgetItem({title});
-            item->setSizeHint(0, itemSize);
             item->setCheckState(0, PLUGINS->isLoaded(pluginName) ? Qt::Checked : Qt::Unchecked);
             item->setSizeHint(0, itemSize);
             if (builtIn)
@@ -626,7 +937,7 @@ void ConfigDialog::initPluginsPage()
             itemToPluginNameMap[item] = pluginName;
 
             // Details button
-            detailsLabel = new QLabel(QString("<a href='%1'>%2</a>").arg(pluginName).arg(tr("Details")), ui->pluginsList);
+            detailsLabel = new QLabel(QString("<a href='%1'>%2</a> ").arg(pluginName).arg(tr("Details")), ui->pluginsList);
             detailsLabel->setAlignment(Qt::AlignRight);
             itemIndex = ui->pluginsList->model()->index(itemRow, 1, categoryIndex);
             ui->pluginsList->setIndexWidget(itemIndex, detailsLabel);
@@ -676,6 +987,52 @@ void ConfigDialog::deinitPluginPage(const QString& pluginName)
     nameToPage.remove(pluginName);
     ui->stackedWidget->removeWidget(widget);
     delete widget;
+}
+
+void ConfigDialog::initDataEditors()
+{
+    ui->dataEditorsAvailableList->setSpacing(1);
+
+    QHash<QString,QVariant> editorsOrder = CFG_UI.General.DataEditorsOrder.get();
+    QSet<QString> dataTypeSet = editorsOrder.keys().toSet();
+    dataTypeSet += DataType::names.toSet();
+    QStringList dataTypeList = dataTypeSet.toList();
+    qSort(dataTypeList);
+
+    QListWidgetItem* item;
+    for (const QString& type : dataTypeList)
+    {
+        item = new QListWidgetItem(type);
+        if (!DataType::names.contains(type))
+            item->setFlags(item->flags()|Qt::ItemIsEditable);
+
+        ui->dataEditorsTypesList->addItem(item);
+    }
+
+    QAction* act = new QAction(ICONS.INSERT_DATATYPE, tr("Add new data type"), ui->dataEditorsTypesToolbar);
+    connect(act, SIGNAL(triggered()), this, SLOT(addDataType()));
+    ui->dataEditorsTypesToolbar->addAction(act);
+
+    dataEditRenameAction = new QAction(ICONS.RENAME_DATATYPE, tr("Rename selected data type"), ui->dataEditorsTypesToolbar);
+    connect(dataEditRenameAction, SIGNAL(triggered()), this, SLOT(renameDataType()));
+    ui->dataEditorsTypesToolbar->addAction(dataEditRenameAction);
+
+    dataEditDeleteAction = new QAction(ICONS.DELETE_DATATYPE, tr("Delete selected data type"), ui->dataEditorsTypesToolbar);
+    connect(dataEditDeleteAction, SIGNAL(triggered()), this, SLOT(delDataType()));
+    ui->dataEditorsTypesToolbar->addAction(dataEditDeleteAction);
+
+    act = new QAction(ICONS.HELP, tr("Help for configuring data type editors"), ui->dataEditorsTypesToolbar);
+    connect(act, SIGNAL(triggered()), this, SLOT(dataTypesHelp()));
+    ui->dataEditorsTypesToolbar->addAction(act);
+
+    connect(ui->dataEditorsTypesList->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(updateDataTypeEditors()));
+    connect(ui->dataEditorsTypesList->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(updateDataTypeListState()));
+    connect(ui->dataEditorsTypesList, SIGNAL(itemChanged(QListWidgetItem*)), this, SLOT(dataEditorItemEdited(QListWidgetItem*)));
+    connect(ui->dataEditorsAvailableList, SIGNAL(itemChanged(QListWidgetItem*)), this, SLOT(dataEditorAvailableChanged(QListWidgetItem*)));
+    connect(ui->dataEditorsSelectedTabs->tabBar(), SIGNAL(tabMoved(int,int)), this, SLOT(dataEditorTabsOrderChanged(int,int)));
+
+    ui->dataEditorsTypesList->setCurrentRow(0, QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent);
+    updateDataTypeListState();
 }
 
 bool ConfigDialog::isPluginCategoryItem(QTreeWidgetItem *item) const

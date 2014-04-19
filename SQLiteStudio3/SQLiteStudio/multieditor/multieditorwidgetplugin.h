@@ -1,19 +1,17 @@
 #ifndef MULTIEDITORWIDGETPLUGIN_H
 #define MULTIEDITORWIDGETPLUGIN_H
 
-#include "multieditorwidget.h"
+#include "plugins/plugin.h"
+#include "datagrid/sqlquerymodelcolumn.h"
 
-class MultiEditorWidgetPlugin
+class MultiEditorWidget;
+
+class MultiEditorWidgetPlugin : public virtual Plugin
 {
     public:
-        virtual ~MultiEditorWidgetPlugin() {}
-
         virtual MultiEditorWidget* getInstance() = 0;
-        virtual bool validFor(const QVariant& value) = 0;
-        virtual QString getName() = 0;
+        virtual bool validFor(const SqlQueryModelColumn::DataType& dataType) = 0;
+        virtual int getPriority(const SqlQueryModelColumn::DataType& dataType) = 0;
 };
-
-#define MultiEditorWidgetInterface "pl.sqlitestudio.MultiEditorWidgetPlugin/1.0"
-Q_DECLARE_INTERFACE(MultiEditorWidgetPlugin, MultiEditorWidgetInterface)
 
 #endif // MULTIEDITORWIDGETPLUGIN_H

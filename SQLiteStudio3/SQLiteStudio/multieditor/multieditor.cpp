@@ -7,6 +7,10 @@
 #include "multieditorbool.h"
 #include "multieditorhex.h"
 #include "common/unused.h"
+#include "services/notifymanager.h"
+#include "services/pluginmanager.h"
+#include "multieditorwidgetplugin.h"
+#include "uiconfig.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QTabWidget>
@@ -16,7 +20,10 @@
 #include <QVariant>
 #include <QEvent>
 #include <QGraphicsColorizeEffect>
+#include <QToolButton>
 #include <QDebug>
+
+static QHash<QString,bool> missingEditorPluginsAlreadyWarned;
 
 MultiEditor::MultiEditor(QWidget *parent) :
     QWidget(parent)
@@ -52,6 +59,12 @@ void MultiEditor::init()
     tabs = new QTabWidget();
     layout()->addWidget(tabs);
     tabs->tabBar()->installEventFilter(this);
+
+    QToolButton* configBtn = new QToolButton();
+    configBtn->setToolTip(tr("Configure editors for this data type"));
+    configBtn->setIcon(ICONS.CONFIGURE);
+    configBtn->setFocusPolicy(Qt::NoFocus);
+    tabs->setCornerWidget(configBtn);
 
     QGraphicsColorizeEffect* effect = new QGraphicsColorizeEffect();
     effect->setColor(Qt::black);
@@ -130,45 +143,12 @@ void MultiEditor::setModified()
     valueModified = true;
 }
 
-void MultiEditor::addEditor(MultiEditor::BuiltInEditor editor)
+void MultiEditor::addEditor(MultiEditorWidget* editorWidget)
 {
-    QString label;
-    MultiEditorWidget* editorWidget = nullptr;
-    switch (editor)
-    {
-        case MultiEditor::TEXT:
-            editorWidget = new MultiEditorText();
-            label = tr("Text", "multieditor label");
-            break;
-        case MultiEditor::BLOB:
-            editorWidget = new MultiEditorHex();
-            label = tr("Hex", "multieditor label");
-            break;
-        case MultiEditor::NUMERIC:
-            editorWidget = new MultiEditorNumeric();
-            label = tr("Number", "multieditor label");
-            break;
-        case MultiEditor::BOOLEAN:
-            editorWidget = new MultiEditorBool();
-            label = tr("Boolean", "multieditor label");
-            break;
-        case MultiEditor::DATE:
-            editorWidget = new MultiEditorDate();
-            label = tr("Date", "multieditor label");
-            break;
-        case MultiEditor::TIME:
-            editorWidget = new MultiEditorTime();
-            label = tr("Time", "multieditor label");
-            break;
-        case MultiEditor::DATETIME:
-            editorWidget = new MultiEditorDateTime();
-            label = tr("Date and time", "multieditor label");
-            break;
-    }
     editorWidget->setReadOnly(readOnly);
     connect(editorWidget, &MultiEditorWidget::valueModified, this, &MultiEditor::invalidateValue);
     editors << editorWidget;
-    tabs->addTab(editorWidget, label);
+    tabs->addTab(editorWidget, editorWidget->getTabLabel().replace("&", "&&"));
     editorWidget->installEventFilter(this);
 }
 
@@ -235,65 +215,79 @@ void MultiEditor::setDeletedRow(bool value)
 
 void MultiEditor::setDataType(const SqlQueryModelColumn::DataType& dataType)
 {
-    foreach (BuiltInEditor editorType, getEditorTypes(dataType))
-        addEditor(editorType);
+    foreach (MultiEditorWidget* editorWidget, getEditorTypes(dataType))
+        addEditor(editorWidget);
 
     showTab(0);
 }
 
-QList<MultiEditor::BuiltInEditor> MultiEditor::getEditorTypes(const SqlQueryModelColumn::DataType& dataType)
+void MultiEditor::loadBuiltInEditors()
 {
-    QList<MultiEditor::BuiltInEditor> alternativeEditors;
-    MultiEditor::BuiltInEditor editor = MultiEditor::TEXT;
-    if (dataType.type)
+    PLUGINS->loadBuiltInPlugin(new MultiEditorBoolPlugin);
+    PLUGINS->loadBuiltInPlugin(new MultiEditorDateTimePlugin);
+    PLUGINS->loadBuiltInPlugin(new MultiEditorDatePlugin);
+    PLUGINS->loadBuiltInPlugin(new MultiEditorHexPlugin);
+    PLUGINS->loadBuiltInPlugin(new MultiEditorTextPlugin);
+    PLUGINS->loadBuiltInPlugin(new MultiEditorTimePlugin);
+    PLUGINS->loadBuiltInPlugin(new MultiEditorNumericPlugin);
+}
+
+QList<MultiEditorWidget*> MultiEditor::getEditorTypes(const SqlQueryModelColumn::DataType& dataType)
+{
+    QList<MultiEditorWidget*> editors;
+
+    QString typeStr = dataType.typeStr.trimmed().toUpper();
+    QHash<QString,QVariant> editorsOrder = CFG_UI.General.DataEditorsOrder.get();
+    if (editorsOrder.contains(typeStr))
     {
-        switch (dataType.type)
+        MultiEditorWidgetPlugin* plugin;
+        for (const QString& editorPluginName : editorsOrder[typeStr].toStringList())
         {
-            case DataType::INT:
-            case DataType::BIGINT:
-            case DataType::INTEGER:
-            case DataType::DOUBLE:
-            case DataType::REAL:
-            case DataType::DECIMAL:
-            case DataType::NUMERIC:
-                editor = MultiEditor::NUMERIC;
-                alternativeEditors << MultiEditor::TEXT;
-                break;
-            case DataType::BOOLEAN:
-                editor = MultiEditor::BOOLEAN;
-                alternativeEditors << MultiEditor::TEXT;
-                break;
-            case DataType::TEXT:
-            case DataType::VARCHAR:
-            case DataType::CHAR:
-            case DataType::STRING:
-            case DataType::NONE:
-            case DataType::_NULL:
-                editor = MultiEditor::TEXT;
-                break;
-            case DataType::BLOB:
-                editor = MultiEditor::TEXT;
-                alternativeEditors << MultiEditor::BLOB;
-                break;
-            case DataType::DATE:
-                editor = MultiEditor::DATE;
-                alternativeEditors << MultiEditor::DATETIME;
-                alternativeEditors << MultiEditor::TEXT;
-                break;
-            case DataType::TIME:
-                editor = MultiEditor::TIME;
-                alternativeEditors << MultiEditor::TEXT;
-                break;
-            case DataType::DATETIME:
-                editor = MultiEditor::DATETIME;
-                alternativeEditors << MultiEditor::TEXT;
-                break;
+            plugin = dynamic_cast<MultiEditorWidgetPlugin*>(PLUGINS->getLoadedPlugin(editorPluginName));
+            if (!plugin)
+            {
+                if (!missingEditorPluginsAlreadyWarned.contains(editorPluginName))
+                {
+                    notifyWarn(tr("Data editor plugin '%1' not loaded, while it is defined for editing '%1' data type."));
+                    missingEditorPluginsAlreadyWarned[editorPluginName] = true;
+                }
+                continue;
+            }
+
+            editors << plugin->getInstance();
         }
     }
 
-    QList<MultiEditor::BuiltInEditor> editors;
-    editors << editor;
-    editors += alternativeEditors;
+    if (editors.size() > 0)
+        return editors;
+
+    //
+    // Prepare default list of editors
+    //
+    QList<MultiEditorWidgetPlugin*> plugins = PLUGINS->getLoadedPlugins<MultiEditorWidgetPlugin>();
+
+    typedef QPair<int,MultiEditorWidget*> EditorWithPriority;
+
+    QList<EditorWithPriority> sortedEditors;
+    EditorWithPriority editorWithPrio;
+    for (MultiEditorWidgetPlugin* plugin : plugins)
+    {
+        if (!plugin->validFor(dataType))
+            continue;
+
+        editorWithPrio.first = plugin->getPriority(dataType);
+        editorWithPrio.second = plugin->getInstance();
+        sortedEditors << editorWithPrio;
+    }
+
+    qSort(sortedEditors.begin(), sortedEditors.end(), [=](const EditorWithPriority& ed1, const EditorWithPriority& ed2) -> bool
+    {
+        return ed1.first < ed2.first;
+    });
+
+    for (const EditorWithPriority& e : sortedEditors)
+        editors << e.second;
+
     return editors;
 }
 

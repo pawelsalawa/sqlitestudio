@@ -2,6 +2,8 @@
 #define MULTIEDITORDATETIME_H
 
 #include "multieditorwidget.h"
+#include "multieditorwidgetplugin.h"
+#include "plugins/genericplugin.h"
 #include <QStringList>
 #include <QDateTime>
 
@@ -25,6 +27,7 @@ class MultiEditorDateTime : public MultiEditorWidget
 
         bool getReadOnly() const;
         void setReadOnly(bool value);
+        QString getTabLabel();
 
     protected:
         void updateCalendarDisplay();
@@ -59,6 +62,21 @@ class MultiEditorDateTime : public MultiEditorWidget
         void calendarDateChanged();
         void dateChanged(const QDate& date);
         void timeChanged(const QTime& time);
+};
+
+class MultiEditorDateTimePlugin : public GenericPlugin, public MultiEditorWidgetPlugin
+{
+    Q_OBJECT
+
+    SQLITESTUDIO_PLUGIN_AUTHOR("sqlitestudio.pl")
+    SQLITESTUDIO_PLUGIN_DESC("Date and time data editor.")
+    SQLITESTUDIO_PLUGIN_TITLE("Date and time")
+    SQLITESTUDIO_PLUGIN_VERSION(10000)
+
+    public:
+        MultiEditorWidget* getInstance();
+        bool validFor(const SqlQueryModelColumn::DataType& dataType);
+        int getPriority(const SqlQueryModelColumn::DataType& dataType);
 };
 
 #endif // MULTIEDITORDATETIME_H

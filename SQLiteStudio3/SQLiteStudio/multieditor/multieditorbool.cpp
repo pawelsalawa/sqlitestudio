@@ -125,6 +125,11 @@ QList<QWidget*> MultiEditorBool::getNoScrollWidgets()
     return list;
 }
 
+QString MultiEditorBool::getTabLabel()
+{
+    return tr("Boolean");
+}
+
 void MultiEditorBool::updateLabel()
 {
     checkBox->setText(getValue().toString());
@@ -141,4 +146,65 @@ void MultiEditorBool::stateChanged(int state)
     boolValue = checkBox->isChecked();
     updateLabel();
     emit valueModified();
+}
+
+MultiEditorWidget* MultiEditorBoolPlugin::getInstance()
+{
+    return new MultiEditorBool();
+}
+
+bool MultiEditorBoolPlugin::validFor(const SqlQueryModelColumn::DataType& dataType)
+{
+    switch (dataType.type)
+    {
+        case DataType::BOOLEAN:
+            return true;
+        case DataType::BLOB:
+        case DataType::BIGINT:
+        case DataType::DECIMAL:
+        case DataType::DOUBLE:
+        case DataType::INTEGER:
+        case DataType::INT:
+        case DataType::NUMERIC:
+        case DataType::REAL:
+        case DataType::NONE:
+        case DataType::STRING:
+        case DataType::TEXT:
+        case DataType::CHAR:
+        case DataType::VARCHAR:
+        case DataType::DATE:
+        case DataType::DATETIME:
+        case DataType::TIME:
+        case DataType::unknown:
+            break;
+    }
+    return false;
+}
+
+int MultiEditorBoolPlugin::getPriority(const SqlQueryModelColumn::DataType& dataType)
+{
+    switch (dataType.type)
+    {
+        case DataType::BOOLEAN:
+            return 1;
+        case DataType::BLOB:
+        case DataType::BIGINT:
+        case DataType::DECIMAL:
+        case DataType::DOUBLE:
+        case DataType::INTEGER:
+        case DataType::INT:
+        case DataType::NUMERIC:
+        case DataType::REAL:
+        case DataType::NONE:
+        case DataType::STRING:
+        case DataType::TEXT:
+        case DataType::CHAR:
+        case DataType::VARCHAR:
+        case DataType::DATE:
+        case DataType::DATETIME:
+        case DataType::TIME:
+        case DataType::unknown:
+            break;
+    }
+    return 100;
 }

@@ -38,6 +38,11 @@ void MultiEditorText::setReadOnly(bool value)
     textEdit->setReadOnly(value);
 }
 
+QString MultiEditorText::getTabLabel()
+{
+    return tr("Text");
+}
+
 QList<QWidget*> MultiEditorText::getNoScrollWidgets()
 {
     // We don't return text, we want it to be scrolled.
@@ -129,4 +134,43 @@ void MultiEditorText::setupMenu()
     contextMenu->addAction(actionMap[COPY]);
     contextMenu->addAction(actionMap[PASTE]);
     contextMenu->addAction(actionMap[DELETE]);
+}
+
+MultiEditorWidget* MultiEditorTextPlugin::getInstance()
+{
+    return new MultiEditorText();
+}
+
+bool MultiEditorTextPlugin::validFor(const SqlQueryModelColumn::DataType& dataType)
+{
+    UNUSED(dataType);
+    return true;
+}
+
+int MultiEditorTextPlugin::getPriority(const SqlQueryModelColumn::DataType& dataType)
+{
+    switch (dataType.type)
+    {
+        case DataType::BLOB:
+        case DataType::BOOLEAN:
+        case DataType::BIGINT:
+        case DataType::DECIMAL:
+        case DataType::DOUBLE:
+        case DataType::INTEGER:
+        case DataType::INT:
+        case DataType::NUMERIC:
+        case DataType::REAL:
+        case DataType::DATE:
+        case DataType::DATETIME:
+        case DataType::TIME:
+            return 10;
+        case DataType::NONE:
+        case DataType::STRING:
+        case DataType::TEXT:
+        case DataType::CHAR:
+        case DataType::VARCHAR:
+        case DataType::unknown:
+            break;
+    }
+    return 1;
 }
