@@ -1,4 +1,3 @@
-* invalid databases after add/del db
 * plugins for cell view/edit
 * context menu for taskbar
 

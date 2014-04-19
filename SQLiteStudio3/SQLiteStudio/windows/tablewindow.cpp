@@ -401,6 +401,8 @@ void TableWindow::setupDefShortcuts()
     defShortcut(ADD_COLUMN, Qt::Key_Insert);
     defShortcut(EDIT_COLUMN, Qt::Key_Return);
     defShortcut(DEL_COLUMN, Qt::Key_Delete);
+    defShortcut(EXPORT, Qt::Key_E);
+    defShortcut(IMPORT, Qt::Key_I);
 
     defShortcut(ADD_TABLE_CONSTRAINT, Qt::Key_Insert);
     defShortcut(EDIT_TABLE_CONSTRAINT, Qt::Key_Return);

@@ -68,6 +68,7 @@ class IconManager
             DEF_ICO2(DATABASE_DEL,                      DATABASE, MINUS)
             DEF_ICON(DATABASE_DISCONNECT,               "database_disconnect")
             DEF_ICO2(DATABASE_EDIT,                     DATABASE, EDIT)
+            DEF_ICON(DATABASE_EXPORT,                   "database_export")
             DEF_ICON(DATABASE_FILE,                     "database_file")
             DEF_ICO2(DATABASE_INVALID,                  DATABASE, WARNING)
             DEF_ICON(DATABASE_NETWORK,                  "database_network")
