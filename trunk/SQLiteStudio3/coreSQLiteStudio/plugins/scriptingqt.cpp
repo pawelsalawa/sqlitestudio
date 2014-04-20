@@ -107,7 +107,27 @@ QVariant ScriptingQt::evaluate(ContextQt* ctx, QScriptContext* engineContext, co
     if (ctx->engine->hasUncaughtException())
         ctx->error = ctx->engine->uncaughtException().toString();
 
-    return result.toVariant();
+    return convertList(result.toVariant());
+}
+
+QVariant ScriptingQt::convertList(const QVariant& value)
+{
+    switch (value.type())
+    {
+        case QVariant::List:
+        {
+            QStringList list;
+            for (const QVariant& var : value.toList())
+                list << var.toString();
+
+            return list.join(" ");
+        }
+        case QVariant::StringList:
+            return value.toStringList().join(" ");
+        default:
+            break;
+    }
+    return value;
 }
 
 void ScriptingQt::setVariable(ScriptingPlugin::Context* context, const QString& name, const QVariant& value)
@@ -126,7 +146,7 @@ QVariant ScriptingQt::getVariable(ScriptingPlugin::Context* context, const QStri
         return QVariant();
 
     QScriptValue value = ctx->engine->globalObject().property(name);
-    return value.toVariant();
+    return convertList(value.toVariant());
 }
 
 bool ScriptingQt::hasError(ScriptingPlugin::Context* context) const

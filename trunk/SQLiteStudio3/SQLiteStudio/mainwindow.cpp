@@ -47,6 +47,7 @@ void MainWindow::init()
     connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(cleanUp()));
 
     setWindowIcon(ICONS.SQLITESTUDIO_APP);
+    setWindowTitle(QString("SQLiteStudio (%1)").arg(SQLITESTUDIO->getVersionString()));
 
     dbTree = new DbTree(this);
     addDockWidget(Qt::LeftDockWidgetArea, dbTree);

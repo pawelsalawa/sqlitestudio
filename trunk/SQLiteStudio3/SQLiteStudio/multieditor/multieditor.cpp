@@ -6,6 +6,7 @@
 #include "multieditortime.h"
 #include "multieditorbool.h"
 #include "multieditorhex.h"
+#include "mainwindow.h"
 #include "common/unused.h"
 #include "services/notifymanager.h"
 #include "services/pluginmanager.h"
@@ -300,7 +301,7 @@ QList<MultiEditorWidget*> MultiEditor::getEditorTypes(const SqlQueryModelColumn:
 
 void MultiEditor::configClicked()
 {
-    ConfigDialog config(this);
+    ConfigDialog config(MAINWINDOW);
     config.configureDataEditors(dataType.typeStr);
     config.exec();
 }

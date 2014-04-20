@@ -108,6 +108,7 @@ class API_EXPORT CfgEntry : public QObject
         QString getFullKey() const;
         void reset();
         bool isPersistable() const;
+        bool isPersisted() const;
 
         /**
          * @brief operator CfgEntry *
