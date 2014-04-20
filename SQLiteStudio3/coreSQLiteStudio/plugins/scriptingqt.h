@@ -55,6 +55,7 @@ class ScriptingQt : public GenericPlugin, public ScriptingPlugin
         ContextQt* getContext(ScriptingPlugin::Context* context) const;
         QScriptValue getFunctionValue(ContextQt* ctx, const QString& code);
         QVariant evaluate(ContextQt* ctx, QScriptContext* engineContext, const QString& code, const QList<QVariant>& args);
+        QVariant convertList(const QVariant& value);
 
         static const constexpr int cacheSize = 5;
 

@@ -195,6 +195,7 @@ QVariant FunctionManagerImpl::evaluateAggregateFinal(const QString& name, int ar
 void FunctionManagerImpl::init()
 {
     loadFromConfig();
+    createDefaultFunctions();
     refreshFunctionsByKey();
 }
 
@@ -249,6 +250,22 @@ void FunctionManagerImpl::loadFromConfig()
         func->allDatabases = fnHash["allDatabases"].toBool();
         functions << func;
     }
+}
+
+void FunctionManagerImpl::createDefaultFunctions()
+{
+    if (CFG_CORE.Internal.Functions.isPersisted())
+        return;
+
+    FunctionPtr func = FunctionPtr::create();
+    func->name = QStringLiteral("regexp");
+    func->lang = QStringLiteral("QtScript");
+    func->code = QStringLiteral("return arguments[1].match(arguments[0]) != null;");
+    func->arguments = {QStringLiteral("pattern"), QStringLiteral("arg")};
+    func->type = Function::SCALAR;
+    func->undefinedArgs = false;
+    func->allDatabases = true;
+    functions << func;
 }
 
 QString FunctionManagerImpl::cannotFindFunctionError(const QString& name, int argCount)

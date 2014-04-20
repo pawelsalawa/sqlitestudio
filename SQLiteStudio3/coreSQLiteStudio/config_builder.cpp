@@ -173,6 +173,14 @@ bool CfgEntry::isPersistable() const
     return persistable;
 }
 
+bool CfgEntry::isPersisted() const
+{
+    if (persistable)
+        return !CFG->get(parent->toString(), name).isNull();
+
+    return false;
+}
+
 CfgEntry::operator CfgEntry*()
 {
     return this;

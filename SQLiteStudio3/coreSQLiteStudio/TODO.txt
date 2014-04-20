@@ -1,18 +1,18 @@
-* plugins for cell view/edit
-* context menu for taskbar
+* podpowiadanie funkcji z functionmanagera
 
-* add nice api for accessing menus and toolbars, so plugins can easly add/remove from them
 * check performance for millions of rows
 * przenoszenie obiektow przez d&d
-* rejestracja funkcji przy otwieraniu bazy, ustawianie niektorych pragm
-* custom collations
 * data sorting more sophisticated - multi column and allow to choose order at the begining - maybe a dialog for sorting?
 * populating tables
+* context menu for taskbar
 * option to view full db path in window title
 * generating INSERT/UPDATE/DELETE/SELECT basing on table definition
 * http://forum.sqlitestudio.pl/viewtopic.php?f=11&t=884
+* add nice api for accessing menus and toolbars, so plugins can easly add/remove from them
 * command line -d option to enable debugging in GUI application (including debugging of Parser in CompletionHelper)
 
+* db version converting
+* d&d for db objects (+ copy/paste entries from menu)
 * auto updates
 * bug reporting
 * crash management

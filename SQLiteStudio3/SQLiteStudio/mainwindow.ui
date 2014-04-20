@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>SQLiteStudio (x.x.x)</string>
+   <string>SQLiteStudio (?.?.?)</string>
   </property>
   <property name="locale">
    <locale language="English" country="UnitedStates"/>

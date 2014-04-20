@@ -125,6 +125,7 @@ void DataView::initPageEdit()
     pageEdit->setValidator(pageValidator);
     pageEdit->setExpanding(true);
     pageEdit->setExpandingMinWidth(20);
+    connect(pageEdit, SIGNAL(editingFinished()), this, SLOT(pageEntered()));
 }
 
 void DataView::createActions()
@@ -523,6 +524,7 @@ void DataView::totalRowsAndPagesAvailable()
 {
     updateResultsCount(model->getTotalRowsReturned());
     totalPagesAvailable = true;
+    updatePageEdit();
     updateNavigationState();
 }
 
