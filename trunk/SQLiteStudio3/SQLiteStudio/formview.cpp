@@ -4,6 +4,7 @@
 #include "datagrid/sqlqueryview.h"
 #include "widgetresizer.h"
 #include "datagrid/sqlqueryitem.h"
+#include "uiconfig.h"
 #include <QDataWidgetMapper>
 #include <QGroupBox>
 #include <QVBoxLayout>
@@ -30,6 +31,8 @@ void FormView::init()
     contentsLayout->setMargin(margins);
     contents->setLayout(contentsLayout);
 
+    connect(CFG_UI.General.DataEditorsOrder, SIGNAL(changed(QVariant)), this, SLOT(reload()));
+
     setWidget(contents);
 }
 
@@ -51,7 +54,20 @@ void FormView::setModel(SqlQueryModel* value)
     connect(value, &SqlQueryModel::commitStatusChanged, this, &FormView::gridCommitRollbackStatusChanged);
 }
 
+void FormView::load()
+{
+    reloadInternal();
+    dataMapper->toFirst();
+}
+
 void FormView::reload()
+{
+    int idx = dataMapper->currentIndex();
+    reloadInternal();
+    dataMapper->setCurrentIndex(idx);
+}
+
+void FormView::reloadInternal()
 {
     // Cleanup
     dataMapper->clearMapping();
@@ -69,8 +85,6 @@ void FormView::reload()
     int i = 0;
     foreach (SqlQueryModelColumnPtr column, model->getColumns())
         addColumn(i++, column->displayName, column->dataType, (column->editionForbiddenReason.size() > 0));
-
-    dataMapper->toFirst();
 }
 
 bool FormView::isModified() const
@@ -81,7 +95,11 @@ bool FormView::isModified() const
 void FormView::addColumn(int colIdx, const QString& name, const SqlQueryModelColumn::DataType& dataType, bool readOnly)
 {
     // Group with label
-    QGroupBox* group = new QGroupBox(name);
+    QString groupLabel = name;
+    if (!dataType.typeStr.isEmpty())
+        groupLabel += " (" + dataType.toString() + ")";
+
+    QGroupBox* group = new QGroupBox(groupLabel);
     QFont font = group->font();
     font.setBold(true);
     group->setFont(font);
@@ -144,7 +162,7 @@ void FormView::updateDeletedState()
 void FormView::dataLoaded(bool successful)
 {
     if (successful)
-        reload();
+        load();
 }
 
 void FormView::currentIndexChanged(int index)

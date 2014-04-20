@@ -23,7 +23,6 @@ class FormView : public QScrollArea
         SqlQueryModel* getModel() const;
         void setModel(SqlQueryModel* value);
 
-        void reload();
         bool isModified() const;
 
         SqlQueryView* getGridView() const;
@@ -32,6 +31,7 @@ class FormView : public QScrollArea
         int getCurrentRow();
 
     private:
+        void reloadInternal();
         void addColumn(int colIdx, const QString& name, const SqlQueryModelColumn::DataType& dataType, bool readOnly);
         bool isCurrentRowModifiedInGrid();
         void updateDeletedState();
@@ -59,6 +59,8 @@ class FormView : public QScrollArea
     public slots:
         void copyDataToGrid();
         void updateFromGrid();
+        void load();
+        void reload();
 
     signals:
         void commitStatusChanged();

@@ -56,6 +56,22 @@ ConfigDialog::~ConfigDialog()
     safe_delete(configMapper);
 }
 
+void ConfigDialog::configureDataEditors(const QString& dataTypeString)
+{
+    ui->stackedWidget->setCurrentWidget(ui->dataEditorsPage);
+
+    for (int i = 0; i < ui->dataEditorsTypesList->count(); i++)
+    {
+        if (ui->dataEditorsTypesList->item(i)->text() == dataTypeString.toUpper())
+        {
+            ui->dataEditorsTypesList->setCurrentRow(i);
+            return;
+        }
+    }
+
+    addDataType(dataTypeString.toUpper());
+}
+
 QString ConfigDialog::getFilterString(QWidget *widget)
 {
     // Common code for widgets with single method call
@@ -414,6 +430,15 @@ void ConfigDialog::setPluginNamesForDataTypeItem(QListWidgetItem* typeItem, cons
     updatingDataEditorItem = false;
 }
 
+void ConfigDialog::addDataType(const QString& typeStr)
+{
+    QListWidgetItem* item = new QListWidgetItem(typeStr);
+    item->setFlags(item->flags()|Qt::ItemIsEditable);
+    ui->dataEditorsTypesList->addItem(item);
+    ui->dataEditorsTypesList->setCurrentRow(ui->dataEditorsTypesList->count() - 1, QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent);
+    modified();
+}
+
 void ConfigDialog::updateDataTypeListState()
 {
     bool listEditingEnabled = ui->dataEditorsTypesList->selectedItems().size() > 0 && ui->dataEditorsTypesList->currentItem()->flags().testFlag(Qt::ItemIsEditable);
@@ -501,11 +526,7 @@ void ConfigDialog::dataEditorTabsOrderChanged(int from, int to)
 
 void ConfigDialog::addDataType()
 {
-    QListWidgetItem* item = new QListWidgetItem();
-    item->setFlags(item->flags()|Qt::ItemIsEditable);
-    ui->dataEditorsTypesList->addItem(item);
-    ui->dataEditorsTypesList->setCurrentRow(ui->dataEditorsTypesList->count() - 1, QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent);
-    modified();
+    addDataType("");
     renameDataType();
 }
 

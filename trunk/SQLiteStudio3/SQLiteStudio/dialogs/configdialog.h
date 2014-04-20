@@ -30,6 +30,8 @@ class ConfigDialog : public QDialog
         explicit ConfigDialog(QWidget *parent = 0);
         ~ConfigDialog();
 
+        void configureDataEditors(const QString& dataTypeString);
+
         static QString getFilterString(QWidget* widget);
         static QString getFilterString(QComboBox* widget);
         static QString getFilterString(QTreeWidget* widget);
@@ -71,6 +73,7 @@ class ConfigDialog : public QDialog
         void transformDataTypeEditorsToCustomList(QListWidgetItem* typeItem);
         QStringList getPluginNamesFromDataTypeItem(QListWidgetItem* typeItem);
         void setPluginNamesForDataTypeItem(QListWidgetItem* typeItem, const QStringList& pluginNames);
+        void addDataType(const QString& typeStr);
 
         Ui::ConfigDialog *ui;
         QStyle* previewStyle = nullptr;

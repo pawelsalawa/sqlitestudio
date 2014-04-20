@@ -37,7 +37,7 @@ class SqlQueryModelColumn
                 DataType(const QString& type, const QVariant& precision, const QVariant& scale);
                 DataType(const DataType& other);
                 void setEmpty();
-                QString toString();
+                QString toString() const;
 
                 ::DataType::Enum type = ::DataType::unknown;
                 QString typeStr = "";
