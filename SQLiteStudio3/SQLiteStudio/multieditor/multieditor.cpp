@@ -11,6 +11,7 @@
 #include "services/pluginmanager.h"
 #include "multieditorwidgetplugin.h"
 #include "uiconfig.h"
+#include "dialogs/configdialog.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QTabWidget>
@@ -60,10 +61,13 @@ void MultiEditor::init()
     layout()->addWidget(tabs);
     tabs->tabBar()->installEventFilter(this);
 
-    QToolButton* configBtn = new QToolButton();
+    configBtn = new QToolButton();
     configBtn->setToolTip(tr("Configure editors for this data type"));
     configBtn->setIcon(ICONS.CONFIGURE);
     configBtn->setFocusPolicy(Qt::NoFocus);
+    configBtn->setAutoRaise(true);
+    configBtn->setEnabled(false);
+    connect(configBtn, SIGNAL(clicked()), this, SLOT(configClicked()));
     tabs->setCornerWidget(configBtn);
 
     QGraphicsColorizeEffect* effect = new QGraphicsColorizeEffect();
@@ -215,10 +219,13 @@ void MultiEditor::setDeletedRow(bool value)
 
 void MultiEditor::setDataType(const SqlQueryModelColumn::DataType& dataType)
 {
+    this->dataType = dataType;
+
     foreach (MultiEditorWidget* editorWidget, getEditorTypes(dataType))
         addEditor(editorWidget);
 
     showTab(0);
+    configBtn->setEnabled(true);
 }
 
 void MultiEditor::loadBuiltInEditors()
@@ -289,6 +296,13 @@ QList<MultiEditorWidget*> MultiEditor::getEditorTypes(const SqlQueryModelColumn:
         editors << e.second;
 
     return editors;
+}
+
+void MultiEditor::configClicked()
+{
+    ConfigDialog config(this);
+    config.configureDataEditors(dataType.typeStr);
+    config.exec();
 }
 
 void MultiEditor::updateVisibility()

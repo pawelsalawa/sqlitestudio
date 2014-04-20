@@ -10,6 +10,7 @@ class QTabWidget;
 class MultiEditorWidget;
 class QLabel;
 class MultiEditorWidgetPlugin;
+class QToolButton;
 
 class MultiEditor : public QWidget
 {
@@ -71,6 +72,8 @@ class MultiEditor : public QWidget
         QGraphicsEffect* nullEffect;
         bool valueModified = false;
         QVariant valueBeforeNull;
+        QToolButton* configBtn = nullptr;
+        SqlQueryModelColumn::DataType dataType;
 
         /**
          * @brief currentTab
@@ -81,6 +84,7 @@ class MultiEditor : public QWidget
         int currentTab = -1;
 
     private slots:
+        void configClicked();
         void tabChanged(int idx);
         void nullStateChanged(int state);
         void invalidateValue();

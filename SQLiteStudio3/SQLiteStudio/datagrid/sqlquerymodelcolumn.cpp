@@ -183,7 +183,7 @@ void SqlQueryModelColumn::DataType::setEmpty()
     typeStr = "";
 }
 
-QString SqlQueryModelColumn::DataType::toString()
+QString SqlQueryModelColumn::DataType::toString() const
 {
     QString str = typeStr;
     if (!precision.isNull())
