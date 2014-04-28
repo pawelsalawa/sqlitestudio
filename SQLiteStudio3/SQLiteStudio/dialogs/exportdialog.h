@@ -28,9 +28,6 @@ class ExportDialog : public QWizard
         int nextId() const;
         bool isPluginConfigValid() const;
 
-    protected:
-        void resizeEvent(QResizeEvent* e);
-
     private:
         void init();
         void initModePage();

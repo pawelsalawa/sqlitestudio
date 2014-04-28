@@ -144,6 +144,7 @@ void MainWindow::createActions()
     createAction(OPEN_DDL_HISTORY, ICONS.DDL_HISTORY, tr("Open DDL history"), this, SLOT(openDdlHistorySlot()), ui->mainToolBar);
     createAction(OPEN_FUNCTION_EDITOR, ICONS.FUNCTION, tr("Open SQL functions editor"), this, SLOT(openFunctionEditorSlot()), ui->mainToolBar);
     createAction(OPEN_COLLATION_EDITOR, ICONS.CONSTRAINT_COLLATION, tr("Open collations editor"), this, SLOT(openCollationEditorSlot()), ui->mainToolBar);
+    createAction(IMPORT, ICONS.IMPORT, tr("Import"), this, SLOT(importAnything()), ui->mainToolBar);
     createAction(EXPORT, ICONS.EXPORT, tr("Export"), this, SLOT(exportAnything()), ui->mainToolBar);
     ui->mainToolBar->addSeparator();
     createAction(OPEN_CONFIG, ICONS.CONFIGURE, tr("Open configuration dialog"), this, SLOT(openConfig()), ui->mainToolBar);
@@ -452,6 +453,11 @@ void MainWindow::exportAnything()
 
     ExportDialog dialog(this);
     dialog.exec();
+}
+
+void MainWindow::importAnything()
+{
+    // TODO import
 }
 
 DdlHistoryWindow* MainWindow::openDdlHistory()

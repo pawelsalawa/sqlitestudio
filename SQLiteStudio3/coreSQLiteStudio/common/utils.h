@@ -53,6 +53,30 @@ API_EXPORT QStringList prefixEach(const QString& prefix, const QStringList& list
 API_EXPORT int indexOf(const QStringList& list, const QString& value, int from = 0, Qt::CaseSensitivity cs = Qt::CaseSensitive);
 API_EXPORT int indexOf(const QStringList& list, const QString& value, Qt::CaseSensitivity cs = Qt::CaseSensitive);
 
+template <class T>
+QList<T> filter(const QList<T>& list, std::function<bool(const T& value)> filterFunction)
+{
+    QList<T> results;
+    for (const T& value : list)
+    {
+        if (filterFunction(value))
+            results << value;
+    }
+    return results;
+}
+
+template <class T>
+QList<T*> filter(const QList<T*>& list, std::function<bool(const T* value)> filterFunction)
+{
+    QList<T*> results;
+    for (T* value : list)
+    {
+        if (filterFunction(value))
+            results << value;
+    }
+    return results;
+}
+
 /**
  * @brief Appends or prepends characters to the string to make it of specified length.
  * @param str Input string to work with.

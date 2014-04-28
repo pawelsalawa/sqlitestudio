@@ -150,7 +150,9 @@ SOURCES += sqlitestudio.cpp \
     plugins/scriptingsql.cpp \
     db/queryexecutorsteps/queryexecutordetectschemaalter.cpp \
     querymodel.cpp \
-    plugins/genericexportplugin.cpp
+    plugins/genericexportplugin.cpp \
+    dbobjectorganizer.cpp \
+    db/attachguard.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -298,7 +300,9 @@ HEADERS += sqlitestudio.h\
     plugins/scriptingsql.h \
     db/queryexecutorsteps/queryexecutordetectschemaalter.h \
     querymodel.h \
-    plugins/genericexportplugin.h
+    plugins/genericexportplugin.h \
+    dbobjectorganizer.h \
+    db/attachguard.h
 
 unix:!symbian {
     maemo5 {

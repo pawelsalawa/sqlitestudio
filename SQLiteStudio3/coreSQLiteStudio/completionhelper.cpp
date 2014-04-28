@@ -272,7 +272,7 @@ QList<ExpectedTokenPtr> CompletionHelper::getExpectedTokens(TokenPtr token)
         }
         case Token::CTX_FUNCTION:
         {
-            results += getFunctions(db->getDialect());
+            results += getFunctions(db);
             break;
         }
         case Token::CTX_COLLATION:
@@ -683,15 +683,20 @@ QList<ExpectedTokenPtr> CompletionHelper::getFavoredColumns(const QList<Expected
     return results;
 }
 
-QList<ExpectedTokenPtr> CompletionHelper::getFunctions(Dialect dialect)
+QList<ExpectedTokenPtr> CompletionHelper::getFunctions(Db* db)
 {
     // TODO to do later - make function completion more verbose,
     // like what are arguments of the function, etc.
+    Dialect dialect = db->getDialect();
+
     QStringList functions;
     if (dialect == Dialect::Sqlite2)
         functions = sqlite2Functions;
     else
         functions = sqlite3Functions;
+
+    for (const FunctionManager::FunctionPtr& fn : FUNCTIONS->getFunctionsForDatabase(db->getName()))
+        functions << fn->toString();
 
     QList<ExpectedTokenPtr> expectedTokens;
     foreach (QString function, functions)

@@ -305,10 +305,8 @@ QVariant FunctionsEditorModel::data(const QModelIndex& index, int role) const
 
     if (role == Qt::DisplayRole)
     {
-        static const QString format = "%1(%2)";
         Function* fn = functionList[index.row()];
-        QString args = fn->data->undefinedArgs ? "..." : fn->data->arguments.join(", ");
-        return format.arg(fn->data->name).arg(args);
+        return fn->data->toString();
     }
 
     if (role == Qt::DecorationRole && langToIcon.contains(functionList[index.row()]->data->lang))

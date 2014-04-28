@@ -13,6 +13,7 @@ class IconManager
 {
     public:
         DEF_ICONS(Icons, iconEnums,
+            DEF_ICON(ACT_ABORT,                         "act_abort")
             DEF_ICON(ACT_CLEAR,                         "act_clear")
             DEF_ICON(ACT_COPY,                          "act_copy")
             DEF_ICON(ACT_CUT,                           "act_cut")
@@ -96,6 +97,7 @@ class IconManager
             DEF_ICON(FORMAT_SQL,                        "format_sql")
             DEF_ICON(FUNCTION,                          "function")
             DEF_ICON(HELP,                              "help")
+            DEF_ICON(IMPORT,                            "import")
             DEF_ICON(INDEX,                             "index")
             DEF_ICO2(INDEX_ADD,                         INDEX, PLUS)
             DEF_ICO2(INDEX_DEL,                         INDEX, MINUS)

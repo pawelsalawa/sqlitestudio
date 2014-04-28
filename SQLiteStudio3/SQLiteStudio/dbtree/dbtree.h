@@ -41,6 +41,7 @@ class DbTree : public QDockWidget, public ExtActionContainer
             DELETE_DB,
             CONNECT_TO_DB,
             DISCONNECT_FROM_DB,
+            IMPORT_INTO_DB,
             EXPORT_DB,
             ADD_TABLE,
             EDIT_TABLE,
@@ -112,6 +113,7 @@ class DbTree : public QDockWidget, public ExtActionContainer
         void removeDb();
         void connectToDb();
         void disconnectFromDb();
+        void import();
         void exportDb();
         void addTable();
         void editTable();

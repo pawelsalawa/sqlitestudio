@@ -10,6 +10,7 @@
 class DbManager;
 class DbTreeView;
 class DbPlugin;
+class DbObjectOrganizer;
 
 class DbTreeModel : public QStandardItemModel
 {
@@ -36,10 +37,12 @@ class DbTreeModel : public QStandardItemModel
         QVariant data(const QModelIndex &index, int role) const;
         QStringList mimeTypes() const;
         QMimeData* mimeData(const QModelIndexList &indexes) const;
+        bool dropMimeData(const QMimeData* data, Qt::DropAction action, int row, int column, const QModelIndex& parent);
 
         static DbTreeItem* findItem(QStandardItem *parentItem, DbTreeItem::Type type, const QString &name);
         static DbTreeItem* findItem(QStandardItem* parentItem, DbTreeItem::Type type, Db* db);
         static QList<DbTreeItem*> findItems(QStandardItem* parentItem, DbTreeItem::Type type);
+        static QList<DbTreeItem*> getDragItems(const QMimeData* data);
 
         static const constexpr char* MIMETYPE = "application/x-sqlitestudio-dbtreeitem";
 
@@ -66,6 +69,15 @@ class DbTreeModel : public QStandardItemModel
         QString getInvalidDbToolTip(DbTreeItem *item) const;
         QString getTableToolTip(DbTreeItem *item) const;
         QList<DbTreeItem*> getChildsAsFlatList(QStandardItem* item) const;
+        bool dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem);
+        bool dropDbObjectItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem);
+        bool dropColumnItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem);
+        bool dropString(const QString& str, DbTreeItem* dstItem);
+        bool dropUrls(const QList<QUrl>& urls, DbTreeItem* dstItem);
+        void moveOrCopyDbObjects(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem);
+
+        static bool confirmReferencedTables(const QStringList& tables);
+        static bool resolveNameConflict(QString& nameInConflict);
 
         static const QString toolTipTableTmp;
         static const QString toolTipHdrRowTmp;
@@ -74,6 +86,7 @@ class DbTreeModel : public QStandardItemModel
 
         DbTreeView* treeView;
         bool requireSchemaReloading = false;
+        DbObjectOrganizer* dbOrganizer = nullptr;
 
     private slots:
         void expanded(const QModelIndex &index);
@@ -88,11 +101,15 @@ class DbTreeModel : public QStandardItemModel
         void massSaveBegins();
         void massSaveCommited();
         void markSchemaReloadingRequired();
+        void dbObjectsMoveFinished(bool success, Db* srcDb, Db* dstDb);
+        void dbObjectsCopyFinished(bool success, Db* srcDb, Db* dstDb);
 
     public slots:
         void loadDbList();
         void itemChangedVisibility(DbTreeItem* item);
         void applyFilter(const QString& filter);
+        void dbRemoved(const QString& name);
+        void dbRemoved(QStandardItem* item);
 
     signals:
         void updateItemHidden(DbTreeItem* item);

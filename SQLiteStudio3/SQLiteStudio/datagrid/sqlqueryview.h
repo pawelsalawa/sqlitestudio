@@ -44,7 +44,6 @@ class SqlQueryView : public QTableView, public ExtActionContainer
         void addAdditionalAction(QAction* action);
 
     protected:
-        void resizeEvent(QResizeEvent* event);
         void mouseDoubleClickEvent(QMouseEvent* event);
 
     private:

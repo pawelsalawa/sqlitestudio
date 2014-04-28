@@ -1345,9 +1345,3 @@ bool TableWindow::restoreSessionNextTime()
 {
     return existingTable;
 }
-
-void TableWindow::resizeEvent(QResizeEvent* e)
-{
-    MdiChild::resizeEvent(e);
-    widgetCover->widgetResized();
-}

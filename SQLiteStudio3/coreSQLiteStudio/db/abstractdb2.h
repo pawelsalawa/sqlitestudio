@@ -6,6 +6,7 @@
 #include "common/utils_sql.h"
 #include "common/unused.h"
 #include "db/sqlerrorcodes.h"
+#include "db/sqlerrorresults.h"
 #include <sqlite.h>
 #include <QThread>
 #include <QPointer>
@@ -113,6 +114,7 @@ class AbstractDb2 : public AbstractDb
         static QHash<QString,QVariant> getAggregateContext(sqlite_func* func);
         static void setAggregateContext(sqlite_func* func, const QHash<QString,QVariant>& aggregateContext);
         static void releaseAggregateContext(sqlite_func* func);
+        static QString replaceNamedParams(const QString& query);
 
         sqlite* dbHandle = nullptr;
         QString lastError;
@@ -187,9 +189,11 @@ SqlResultsPtr AbstractDb2<T>::execInternal(const QString& query, const QHash<QSt
 
     QList<QueryWithParamNames> queries = getQueriesWithParamNames(query, Dialect::Sqlite2);
 
+    QString singleQueryStr;
     foreach (const QueryWithParamNames singleQuery, queries)
     {
-        res = prepareStmt(singleQuery.first, &stmt);
+        singleQueryStr = replaceNamedParams(singleQuery.first);
+        res = prepareStmt(singleQueryStr, &stmt);
         if (res != SQLITE_OK)
             return SqlResultsPtr(new Results(this, nullptr, true));
 
@@ -210,6 +214,18 @@ SqlResultsPtr AbstractDb2<T>::execInternal(const QString& query, const QHash<QSt
     }
 
     return SqlResultsPtr(new Results(this, stmt, false));
+}
+
+template <class T>
+QString AbstractDb2<T>::replaceNamedParams(const QString& query)
+{
+    TokenList tokens = Lexer::tokenize(query, Dialect::Sqlite2);
+    for (TokenPtr token : tokens)
+    {
+        if (token->type == Token::BIND_PARAM)
+            token->value = "?";
+    }
+    return tokens.detokenize();
 }
 
 template <class T>
@@ -390,7 +406,8 @@ int AbstractDb2<T>::bindParam(sqlite_vm* stmt, int paramIdx, const QVariant& val
         }
         default:
         {
-            QByteArray ba = value.toString().toUtf8();
+            QByteArray ba = value.toString().toLatin1();
+            ba.append('\0');
             return sqlite_bind(stmt, paramIdx, ba.constData(), ba.size(), true);
         }
     }
@@ -584,13 +601,13 @@ AbstractDb2<T>::Results::Results(AbstractDb2<T>* db, sqlite_vm* stmt, bool error
     fetchNext();
     if (colCount == 0)
     {
-        errorCode = SQLITE_ERROR;
-        errorMessage = QStringLiteral("No columns returned in results.");
-        return;
+        affected = 0;
     }
-
-    affected = sqlite_changes(db->dbHandle);
-    insertRowId["ROWID"] = sqlite_last_insert_rowid(db->dbHandle);
+    else
+    {
+        affected = sqlite_changes(db->dbHandle);
+        insertRowId["ROWID"] = sqlite_last_insert_rowid(db->dbHandle);
+    }
 }
 
 template <class T>

@@ -562,7 +562,7 @@ void ConfigImpl::initDbFile()
                        " Tried to initialize the file at following localizations: %1.").arg(paths.join(", ")));
     }
 
-    //db->exec("PRAGMA foreign_keys = 1;");
+    db->exec("PRAGMA foreign_keys = 1;");
 }
 
 bool ConfigImpl::tryInitDbFile(const QString &dbPath)

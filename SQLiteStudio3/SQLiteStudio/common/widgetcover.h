@@ -13,8 +13,8 @@ class WidgetCover : public QWidget
     Q_OBJECT
 
     public:
-        explicit WidgetCover(QWidget *parent = 0);
-        explicit WidgetCover(const QEasingCurve& easingCurve, QWidget *parent = 0);
+        explicit WidgetCover(QWidget *parent);
+        explicit WidgetCover(const QEasingCurve& easingCurve, QWidget *parent);
         virtual ~WidgetCover();
 
         QEasingCurve getEasingCurve() const;
@@ -27,6 +27,7 @@ class WidgetCover : public QWidget
         void setTransparency(int value);
 
         QGridLayout* getContainerLayout();
+        bool eventFilter(QObject* obj, QEvent* e);
 
     private:
         enum class Action
@@ -39,6 +40,7 @@ class WidgetCover : public QWidget
         void init();
         void interruptAction();
         void resetBackground();
+        void widgetResized();
 
         Action actionInProgres = Action::NONE;
         QVariantAnimation* animation = nullptr;
@@ -48,17 +50,13 @@ class WidgetCover : public QWidget
         QWidget* container = nullptr;
         QGridLayout* containerLayout = nullptr;
 
-    signals:
-
     private slots:
         void animationUpdate(const QVariant& value);
         void animationFinished();
 
     public slots:
-        void widgetResized();
         void show();
         void hide();
-
 };
 
 #endif // WIDGETCOVER_H

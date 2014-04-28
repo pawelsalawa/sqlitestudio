@@ -112,6 +112,8 @@ void DbManagerImpl::removeDbByName(const QString &name, Qt::CaseSensitivity cs)
     listLock.unlock();
 
     emit dbRemoved(db);
+
+    delete db;
 }
 
 void DbManagerImpl::removeDbByPath(const QString &path)
@@ -128,6 +130,8 @@ void DbManagerImpl::removeDbByPath(const QString &path)
     listLock.unlock();
 
     emit dbRemoved(db);
+
+    delete db;
 }
 
 void DbManagerImpl::removeDb(Db* db)

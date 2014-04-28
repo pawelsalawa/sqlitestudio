@@ -260,7 +260,7 @@ void FunctionManagerImpl::createDefaultFunctions()
     FunctionPtr func = FunctionPtr::create();
     func->name = QStringLiteral("regexp");
     func->lang = QStringLiteral("QtScript");
-    func->code = QStringLiteral("return arguments[1].match(arguments[0]) != null;");
+    func->code = QStringLiteral("return arguments[1].toString().match(arguments[0]) != null;");
     func->arguments = {QStringLiteral("pattern"), QStringLiteral("arg")};
     func->type = Function::SCALAR;
     func->undefinedArgs = false;
@@ -292,6 +292,13 @@ QStringList FunctionManagerImpl::getArgMarkers(int argCount)
 
 FunctionManagerImpl::Function::Function()
 {
+}
+
+QString FunctionManager::Function::toString() const
+{
+    static const QString format = "%1(%2)";
+    QString args = undefinedArgs ? "..." : arguments.join(", ");
+    return format.arg(name).arg(args);
 }
 
 int qHash(const FunctionManagerImpl::Key& key)

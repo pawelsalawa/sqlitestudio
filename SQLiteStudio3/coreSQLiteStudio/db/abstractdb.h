@@ -72,7 +72,8 @@ class API_EXPORT AbstractDb : public Db
         void asyncInterrupt();
         bool isReadable();
         bool isWritable();
-        QString attach(Db* otherDb);
+        AttachGuard guardedAttach(Db* otherDb, bool silent = false);
+        QString attach(Db* otherDb, bool silent = false);
         void detach(Db* otherDb);
         void detachAll();
         const QHash<Db*,QString>& getAttachedDatabases();

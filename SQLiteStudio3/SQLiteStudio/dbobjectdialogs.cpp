@@ -155,7 +155,8 @@ bool DbObjectDialogs::dropObject(const QString& name)
 
 bool DbObjectDialogs::dropObject(const QString& database, const QString& name)
 {
-    static const QString dropSql = "DROP %1 %2.%3;";
+    static const QString dropSql2 = "DROP %1 %2;";
+    static const QString dropSql3 = "DROP %1 %2.%3;";
 
     Dialect dialect = db->getDialect();
     QString dbName = wrapObjIfNeeded(database, dialect);
@@ -200,7 +201,13 @@ bool DbObjectDialogs::dropObject(const QString& database, const QString& name)
             return false;
     }
 
-    SqlResultsPtr results = db->exec(dropSql, {typeForSql, dbName, wrapObjIfNeeded(name, dialect)}, Db::Flag::STRING_REPLACE_ARGS);
+    SqlResultsPtr results;
+
+    if (dialect == Dialect::Sqlite3)
+        results = db->exec(dropSql3, {typeForSql, dbName, wrapObjIfNeeded(name, dialect)}, Db::Flag::STRING_REPLACE_ARGS);
+    else
+        results = db->exec(dropSql2, {typeForSql, wrapObjIfNeeded(name, dialect)}, Db::Flag::STRING_REPLACE_ARGS);
+
     if (results->isError())
     {
         notifyError(tr("Error while dropping %1: %2").arg(name).arg(results->getErrorText()));
@@ -214,7 +221,7 @@ bool DbObjectDialogs::dropObject(const QString& database, const QString& name)
 
 DbObjectDialogs::Type DbObjectDialogs::getObjectType(const QString& database, const QString& name)
 {
-    static const QString typeSql = "SELECT type FROM %1.sqlite_master WHERE name = :name;";
+    static const QString typeSql = "SELECT type FROM %1.sqlite_master WHERE name = ?;";
     static const QStringList types = {"table", "index", "trigger", "view"};
 
     Dialect dialect = db->getDialect();

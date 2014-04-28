@@ -252,12 +252,6 @@ bool ExportDialog::isPluginConfigValid() const
     return pluginConfigOk.size() == 0;
 }
 
-void ExportDialog::resizeEvent(QResizeEvent* e)
-{
-    widgetCover->widgetResized();
-    QWizard::resizeEvent(e);
-}
-
 void ExportDialog::initPageOrder()
 {
     setStartId(pageId(ui->exportSubjectPage));
