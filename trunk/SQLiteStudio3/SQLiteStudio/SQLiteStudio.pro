@@ -129,7 +129,8 @@ SOURCES += main.cpp\
     common/verifiablewizardpage.cpp \
     selectabledbobjmodel.cpp \
     common/widgetstateindicator.cpp \
-    configwidgets/listtostringlisthash.cpp
+    configwidgets/listtostringlisthash.cpp \
+    guidbobjectorganizer.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -244,7 +245,8 @@ HEADERS  += mainwindow.h \
     common/verifiablewizardpage.h \
     selectabledbobjmodel.h \
     common/widgetstateindicator.h \
-    configwidgets/listtostringlisthash.h
+    configwidgets/listtostringlisthash.h \
+    guidbobjectorganizer.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \

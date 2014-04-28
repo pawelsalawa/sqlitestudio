@@ -362,7 +362,7 @@ QString SqlQueryItem::loadFullData()
     Dialect dialect = db->getDialect();
 
     // Query
-    QString query = "SELECT %1 FROM %2 WHERE ROWID = :rowId";
+    QString query = "SELECT %1 FROM %2 WHERE ROWID = ?";
 
     // Column
     query = query.arg(wrapObjIfNeeded(col->column, dialect));

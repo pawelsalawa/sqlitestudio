@@ -41,7 +41,8 @@ class MainWindow : public QMainWindow, virtual public ExtActionContainer
             OPEN_DDL_HISTORY,
             OPEN_FUNCTION_EDITOR,
             OPEN_COLLATION_EDITOR,
-            EXPORT
+            EXPORT,
+            IMPORT
         };
 
         static MainWindow* getInstance();
@@ -97,6 +98,7 @@ class MainWindow : public QMainWindow, virtual public ExtActionContainer
         void openFunctionEditorSlot();
         void openCollationEditorSlot();
         void exportAnything();
+        void importAnything();
 };
 
 template <class T>

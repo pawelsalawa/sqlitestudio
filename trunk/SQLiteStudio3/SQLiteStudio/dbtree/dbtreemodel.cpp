@@ -8,10 +8,15 @@
 #include "common/unused.h"
 #include "services/pluginmanager.h"
 #include "plugins/dbplugin.h"
+#include "dbobjectorganizer.h"
 #include <QMimeData>
 #include <QDebug>
 #include <QFile>
 #include <QFileInfo>
+#include <QMessageBox>
+#include <QInputDialog>
+#include <QCheckBox>
+#include <QWidgetAction>
 
 const QString DbTreeModel::toolTipTableTmp = "<table>%1</table>";
 const QString DbTreeModel::toolTipHdrRowTmp = "<tr><th><img src=\"%1\"/></th><th colspan=2>%2</th></tr>";
@@ -26,6 +31,11 @@ DbTreeModel::DbTreeModel()
     connect(CFG, &Config::massSaveBegins, this, &DbTreeModel::massSaveBegins);
     connect(CFG, &Config::massSaveCommited, this, &DbTreeModel::massSaveCommited);
     connect(CFG_UI.General.ShowSystemObjects, SIGNAL(changed(QVariant)), this, SLOT(markSchemaReloadingRequired()));
+
+    dbOrganizer = new DbObjectOrganizer(confirmReferencedTables, resolveNameConflict);
+    dbOrganizer->setAutoDelete(false);
+    connect(dbOrganizer, SIGNAL(finishedDbObjectsCopy(bool,Db*,Db*)), this, SLOT(dbObjectsCopyFinished(bool,Db*,Db*)));
+    connect(dbOrganizer, SIGNAL(finishedDbObjectsMove(bool,Db*,Db*)), this, SLOT(dbObjectsMoveFinished(bool,Db*,Db*)));
 }
 
 DbTreeModel::~DbTreeModel()
@@ -36,7 +46,7 @@ void DbTreeModel::connectDbManagerSignals()
 {
     connect(DBLIST, &DbManager::dbAdded, this, &DbTreeModel::dbAdded);
     connect(DBLIST, &DbManager::dbUpdated, this, &DbTreeModel::dbUpdated);
-    connect(DBLIST, &DbManager::dbRemoved, this, &DbTreeModel::dbRemoved);
+    connect(DBLIST, SIGNAL(dbRemoved(Db*)), this, SLOT(dbRemoved(Db*)));
     connect(DBLIST, &DbManager::dbConnected, this, &DbTreeModel::dbConnected);
     connect(DBLIST, &DbManager::dbDisconnected, this, &DbTreeModel::dbDisconnected);
     connect(DBLIST, SIGNAL(dbLoaded(Db*,DbPlugin*)), this, SLOT(dbLoaded(Db*,DbPlugin*)));
@@ -279,13 +289,22 @@ void DbTreeModel::dbUpdated(const QString& oldName, Db* db)
 
 void DbTreeModel::dbRemoved(Db* db)
 {
-    QStandardItem* item = findItem(DbTreeItem::Type::DB, db);
+    dbRemoved(db->getName());
+}
+
+void DbTreeModel::dbRemoved(const QString& name)
+{
+    QStandardItem* item = findItem(DbTreeItem::Type::DB, name);
     if (!item)
     {
-        qWarning() << "Removed database from db model that couldn't be found in the model:" << db->getName();
+        qWarning() << "Removed database from db model that couldn't be found in the model:" << name;
         return;
     }
+    dbRemoved(item);
+}
 
+void DbTreeModel::dbRemoved(QStandardItem* item)
+{
     QStandardItem* parent = item->parent();
     if (!parent)
         parent = root();
@@ -443,6 +462,9 @@ QString DbTreeModel::getTableToolTip(DbTreeItem* item) const
 
 void DbTreeModel::refreshSchema(Db* db, QStandardItem *item)
 {
+    if (!db->isOpen())
+        return;
+
     // Remember expanded state of this branch
     QHash<QString, bool> expandedState;
     collectExpandedState(expandedState, item);
@@ -859,11 +881,210 @@ QMimeData *DbTreeModel::mimeData(const QModelIndexList &indexes) const
     QByteArray output;
     QDataStream stream(&output, QIODevice::WriteOnly);
 
-    QModelIndex idx = indexes[0];
-    QStandardItem* item = itemFromIndex(idx);
-    quint64 itemAddr = reinterpret_cast<quint64>(item);
-    stream << itemAddr;
+    QStandardItem* item;
+    quint64 itemAddr;
+    stream << reinterpret_cast<qint32>(indexes.size());
+    for (const QModelIndex& idx : indexes)
+    {
+        item = itemFromIndex(idx);
+        itemAddr = reinterpret_cast<quint64>(item);
+        stream << itemAddr;
+    }
     data->setData(MIMETYPE, output);
 
     return data;
+}
+
+bool DbTreeModel::dropMimeData(const QMimeData* data, Qt::DropAction action, int row, int column, const QModelIndex& parent)
+{
+    DbTreeItem* dstItem = nullptr;
+    if (parent.isValid())
+    {
+        QModelIndex idx = parent.child(row, column);
+        if (idx.isValid())
+            dstItem = dynamic_cast<DbTreeItem*>(itemFromIndex(idx));
+        else // drop on top of the parent
+            dstItem = dynamic_cast<DbTreeItem*>(itemFromIndex(parent));
+    }
+    else
+        dstItem = dynamic_cast<DbTreeItem*>(item(row, column));
+
+    if (!dstItem)
+        return QStandardItemModel::dropMimeData(data, action, row, column, parent);
+
+    bool res = false;
+    if (data->formats().contains(MIMETYPE))
+        res = dropDbTreeItem(getDragItems(data), dstItem);
+    else if (data->hasText())
+        res = dropString(data->text(), dstItem);
+    else if (data->hasUrls())
+        res = dropUrls(data->urls(), dstItem);
+
+    if (!res)
+        return false;
+
+    return QStandardItemModel::dropMimeData(data, action, row, column, parent);
+}
+
+QList<DbTreeItem*> DbTreeModel::getDragItems(const QMimeData* data)
+{
+    QList<DbTreeItem*> items;
+    QByteArray byteData = data->data(MIMETYPE);
+    QDataStream stream(&byteData, QIODevice::ReadOnly);
+
+    qint32 itemCount;
+    stream >> itemCount;
+
+    quint64 itemAddr;
+    for (qint32 i = 0; i < itemCount; i++)
+    {
+        stream >> itemAddr;
+        items << dynamic_cast<DbTreeItem*>(reinterpret_cast<QStandardItem*>(itemAddr));
+    }
+
+    return items;
+}
+
+bool DbTreeModel::dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem)
+{
+    if (srcItems.size() == 0)
+        return false;
+
+    DbTreeItem* srcItem = srcItems.first();
+    switch (srcItem->getType())
+    {
+        case DbTreeItem::Type::TABLE:
+        case DbTreeItem::Type::VIEW:
+        {
+            if (srcItem->getDb() == dstItem->getDb())
+                return true;
+
+            return dropDbObjectItem(srcItems, dstItem);
+        }
+        case DbTreeItem::Type::COLUMN:
+//            return dropColumnItem(srcItems, dstItem); // TODO
+        case DbTreeItem::Type::DIR:
+        case DbTreeItem::Type::DB:
+        case DbTreeItem::Type::TABLES:
+        case DbTreeItem::Type::INDEXES:
+        case DbTreeItem::Type::INDEX:
+        case DbTreeItem::Type::TRIGGERS:
+        case DbTreeItem::Type::TRIGGER:
+        case DbTreeItem::Type::VIEWS:
+        case DbTreeItem::Type::COLUMNS:
+        case DbTreeItem::Type::INVALID_DB:
+        case DbTreeItem::Type::VIRTUAL_TABLE:
+        case DbTreeItem::Type::ITEM_PROTOTYPE:
+            break;
+    }
+
+    return true;
+}
+
+bool DbTreeModel::dropDbObjectItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem)
+{
+    moveOrCopyDbObjects(srcItems, dstItem);
+    return false;
+}
+
+bool DbTreeModel::dropColumnItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem)
+{
+    return true;
+}
+
+bool DbTreeModel::dropString(const QString& str, DbTreeItem* dstItem)
+{
+    return true;
+}
+
+bool DbTreeModel::dropUrls(const QList<QUrl>& urls, DbTreeItem* dstItem)
+{
+    return true;
+}
+
+void DbTreeModel::moveOrCopyDbObjects(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem)
+{
+    if (srcItems.size() == 0)
+        return;
+
+    QMenu menu;
+    menu.addAction(ICONS.ACT_COPY, tr("Copy"));
+    QAction* moveAction = menu.addAction(ICONS.ACT_CUT, tr("Move"));
+
+    QWidget* includeDataWidget = new QWidget(&menu);
+    includeDataWidget->setLayout(new QHBoxLayout());
+    QCheckBox *includeDataCheck = new QCheckBox(tr("Include data"));
+    includeDataWidget->layout()->addWidget(includeDataCheck);
+    QWidgetAction *includeDataAction = new QWidgetAction(&menu);
+    includeDataAction->setDefaultWidget(includeDataWidget);
+    includeDataCheck->setChecked(true);
+    menu.addAction(includeDataAction);
+
+    menu.addSeparator();
+    QAction* abortAction = menu.addAction(ICONS.ACT_ABORT, tr("Abort"));
+
+    bool abort = false;
+    bool move = false;
+    connect(moveAction, &QAction::triggered, [&move]() {move = true;});
+    connect(abortAction, &QAction::triggered, [&abort]() {abort = true;});
+
+    menu.exec(treeView->mapToGlobal(treeView->getLastDropPosition()));
+    if (abort)
+        return;
+
+    bool includeData = includeDataCheck->isChecked();
+
+    DbTreeItem* srcItem = srcItems.first();
+    Db* srcDb = srcItem->getDb();
+    Db* dstDb = dstItem->getDb();
+
+    QStringList srcNames;
+    for (DbTreeItem* item : srcItems)
+        srcNames << item->text();
+
+    if (move)
+        dbOrganizer->moveObjectsToDb(srcDb, srcNames, dstDb, includeData);
+    else
+        dbOrganizer->copyObjectsToDb(srcDb, srcNames, dstDb, includeData);
+}
+
+bool DbTreeModel::confirmReferencedTables(const QStringList& tables)
+{
+    QMessageBox::StandardButton result = QMessageBox::question(MAINWINDOW, tr("Referenced tables"),
+        tr("Do you want to include following referenced tables as well:\n%1").arg(tables.join(", ")));
+
+    return result == QMessageBox::Yes;
+}
+
+bool DbTreeModel::resolveNameConflict(QString& nameInConflict)
+{
+    bool ok = false;
+    QInputDialog tmpDialog; // just for a cancel button text
+    QString result = QInputDialog::getText(MAINWINDOW, tr("Name conflict"),
+        tr("Following object already exists in the target database.\nPlease enter new, unique name, or "
+           "press '%1' to abort the operation:").arg(tmpDialog.cancelButtonText()),
+        QLineEdit::Normal, nameInConflict, &ok);
+
+    if (ok)
+        nameInConflict = result;
+
+    return ok;
+}
+
+void DbTreeModel::dbObjectsMoveFinished(bool success, Db* srcDb, Db* dstDb)
+{
+    if (!success)
+        return;
+
+    DBTREE->refreshSchema(srcDb);
+    DBTREE->refreshSchema(dstDb);
+}
+
+void DbTreeModel::dbObjectsCopyFinished(bool success, Db* srcDb, Db* dstDb)
+{
+    UNUSED(srcDb);
+    if (!success)
+        return;
+
+    DBTREE->refreshSchema(dstDb);
 }

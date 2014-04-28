@@ -21,35 +21,15 @@ class SqlErrorResults : public SqlResults
          */
         SqlErrorResults(int code, const QString &text);
 
-        /**
-         * @see SqlResults::next()
-         */
-        SqlResultsRowPtr next();
-
-        /**
-         * @see SqlResults::next()
-         */
         QString getErrorText();
-
-        /**
-         * @see SqlResults::next()
-         */
         int getErrorCode();
-
-        /**
-         * @see SqlResults::next()
-         */
         QStringList getColumnNames();
-
-        /**
-         * @see SqlResults::next()
-         */
         int columnCount();
-
-        /**
-         * @see SqlResults::next()
-         */
         qint64 rowsAffected();
+
+    protected:
+        SqlResultsRowPtr nextInternal();
+        bool hasNextInternal();
 
     private:
         /**

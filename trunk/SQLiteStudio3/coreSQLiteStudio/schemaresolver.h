@@ -109,6 +109,7 @@ class API_EXPORT SchemaResolver
         QList<SelectResolver::Column> getViewColumnObjects(const QString& view);
         QList<SelectResolver::Column> getViewColumnObjects(const QString& database, const QString& view);
 
+        QString getObjectDdl(const QString& name);
         QString getObjectDdl(const QString& database, const QString& name);
 
         /**

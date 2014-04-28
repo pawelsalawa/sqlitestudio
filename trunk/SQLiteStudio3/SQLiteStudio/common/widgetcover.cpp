@@ -1,9 +1,11 @@
 #include "widgetcover.h"
+#include "common/unused.h"
 #include <QVariantAnimation>
 #include <QDebug>
 #include <QGraphicsBlurEffect>
 #include <QPushButton>
 #include <QGridLayout>
+#include <QEvent>
 
 WidgetCover::WidgetCover(QWidget *parent) :
     QWidget(parent)
@@ -24,6 +26,8 @@ WidgetCover::~WidgetCover()
 
 void WidgetCover::init()
 {
+    parentWidget()->installEventFilter(this);
+
     setLayout(new QGridLayout(this));
     layout()->setAlignment(Qt::AlignCenter);
 
@@ -171,4 +175,13 @@ void WidgetCover::setTransparency(int value)
 QGridLayout* WidgetCover::getContainerLayout()
 {
     return containerLayout;
+}
+
+bool WidgetCover::eventFilter(QObject* obj, QEvent* e)
+{
+    UNUSED(obj);
+    if (e->type() == QEvent::Resize)
+        widgetResized();
+
+    return false;
 }

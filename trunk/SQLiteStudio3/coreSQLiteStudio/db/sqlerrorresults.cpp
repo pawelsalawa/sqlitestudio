@@ -6,11 +6,6 @@ SqlErrorResults::SqlErrorResults(int code, const QString& text)
     errCode = code;
 }
 
-SqlResultsRowPtr SqlErrorResults::next()
-{
-    return SqlResultsRowPtr();
-}
-
 QString SqlErrorResults::getErrorText()
 {
     return errText;
@@ -34,4 +29,14 @@ int SqlErrorResults::columnCount()
 qint64 SqlErrorResults::rowsAffected()
 {
     return 0;
+}
+
+SqlResultsRowPtr SqlErrorResults::nextInternal()
+{
+    return SqlResultsRowPtr();
+}
+
+bool SqlErrorResults::hasNextInternal()
+{
+    return false;
 }

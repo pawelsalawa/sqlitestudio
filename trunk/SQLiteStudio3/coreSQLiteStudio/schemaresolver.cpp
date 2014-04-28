@@ -232,6 +232,11 @@ SqliteCreateTablePtr SchemaResolver::virtualTableAsRegularTable(const QString &d
     return createTable;
 }
 
+QString SchemaResolver::getObjectDdl(const QString& name)
+{
+    return getObjectDdl("main", name);
+}
+
 QString SchemaResolver::getObjectDdl(const QString &database, const QString &name)
 {
     if (name.isNull())

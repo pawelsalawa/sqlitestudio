@@ -7,6 +7,7 @@
 #include "services/functionmanager.h"
 #include "common/readwritelocker.h"
 #include "coreSQLiteStudio_global.h"
+#include "db/attachguard.h"
 #include <QObject>
 #include <QVariant>
 #include <QList>
@@ -488,12 +489,24 @@ class API_EXPORT Db : public QObject
         /**
          * @brief Attaches given database to this database.
          * @param otherDb Other registered database object.
+         * @param silent If true, no errors or warnings will be reported to the NotifyManager (they will still appear in logs).
          * @return Name of the attached database (it's not the symbolic name of the other database, it's a name you would use in <tt>ATTACH 'name'</tt> statement).
          *
          * This is convinent method to attach other registered databases to this database. It generates attached database name, so it doesn't conflict
          * with other - already attached - database names, attaches the database with that name and returns that name to you, so you can refer to it in queries.
          */
-        virtual QString attach(Db* otherDb) = 0;
+        virtual QString attach(Db* otherDb, bool silent = false) = 0;
+
+        /**
+         * @brief Attaches given database to this database using guarded attach.
+         * @param otherDb Other registered database object.
+         * @param silent If true, no errors or warnings will be reported to the NotifyManager (they will still appear in logs).
+         * @return Guarded attach instance with the name of the attached database inside.
+         *
+         * The guarded attach automatically detaches attached database when the attach guard is destroyed (goes out of scope).
+         * The AttachGuard is in fact a QSharedPointer, so you can pass it by value to other functions prolong attchment.
+         */
+        virtual AttachGuard guardedAttach(Db* otherDb, bool silent = false) = 0;
 
         /**
          * @brief Detaches given database from this database.

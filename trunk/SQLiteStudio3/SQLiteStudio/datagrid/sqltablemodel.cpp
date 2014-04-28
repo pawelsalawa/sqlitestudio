@@ -132,7 +132,7 @@ void SqlTableModel::applySqlFilter(const QString& value)
     }
 
     setQuery("SELECT * FROM "+getDataSource()+" WHERE "+value);
-    reload();
+    executeQuery();
 }
 
 void SqlTableModel::applyStringFilter(const QString& value)
@@ -149,18 +149,31 @@ void SqlTableModel::applyStringFilter(const QString& value)
         conditions << wrapObjIfNeeded(column->column, dialect)+" LIKE '%"+value+"%'";
 
     setQuery("SELECT * FROM "+getDataSource()+" WHERE "+conditions.join(" OR "));
-    reload();
+    executeQuery();
 }
 
 void SqlTableModel::applyRegExpFilter(const QString& value)
 {
-    // TODO implement when regexp function is registered in db connection
+    if (value.isEmpty())
+    {
+        resetFilter();
+        return;
+    }
+
+    Dialect dialect = db->getDialect();
+    QStringList conditions;
+    foreach (SqlQueryModelColumnPtr column, columns)
+        conditions << wrapObjIfNeeded(column->column, dialect)+" REGEXP '"+value+"'";
+
+    setQuery("SELECT * FROM "+getDataSource()+" WHERE "+conditions.join(" OR "));
+    executeQuery();
 }
 
 void SqlTableModel::resetFilter()
 {
     setQuery("SELECT * FROM "+getDataSource());
-    reload();
+    //reload();
+    executeQuery();
 }
 
 void SqlTableModel::updateRowAfterInsert(const QList<SqlQueryItem*>& itemsInRow, const QList<SqlQueryModelColumnPtr>& modelColumns, RowId rowId)
@@ -208,7 +221,7 @@ QString SqlTableModel::getDatabasePrefix()
     if (database.isNull())
         return "main.";
 
-    return wrapObjIfNeeded(database, db->getDialect());
+    return wrapObjIfNeeded(database, db->getDialect()) + ".";
 }
 
 QString SqlTableModel::getDataSource()

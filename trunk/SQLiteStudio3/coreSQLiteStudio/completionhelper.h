@@ -93,7 +93,7 @@ class API_EXPORT CompletionHelper : public QObject
         QList<ExpectedTokenPtr> getFavoredColumns(const QList<ExpectedTokenPtr>& resultsSoFar);
 
         QList<ExpectedTokenPtr> getPragmas(Dialect dialect);
-        QList<ExpectedTokenPtr> getFunctions(Dialect dialect);
+        QList<ExpectedTokenPtr> getFunctions(Db* db);
         QList<ExpectedTokenPtr> getCollations();
         TokenPtr getPreviousDbOrTable(const TokenList& parsedTokens);
         void attachDatabases();

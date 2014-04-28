@@ -77,12 +77,6 @@ void SqlQueryView::addAdditionalAction(QAction* action)
     additionalActions << action;
 }
 
-void SqlQueryView::resizeEvent(QResizeEvent* event)
-{
-    QTableView::resizeEvent(event);
-    widgetCover->widgetResized();
-}
-
 void SqlQueryView::mouseDoubleClickEvent(QMouseEvent* event)
 {
     SqlQueryItem* item = itemAt(event->pos());

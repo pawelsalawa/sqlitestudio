@@ -19,20 +19,22 @@ class DbTreeView : public QTreeView
         ~DbTreeView();
 
         void setDbTree(DbTree* dbTree);
+        DbTree* getDbTree() const;
 
         DbTreeItem *currentItem();
         DbTreeItem *itemAt(const QPoint& pos);
         QList<DbTreeItem *> selectionItems();
         DbTreeModel *model() const;
         DbTreeItem *getItemForAction() const;
+        QPoint getLastDropPosition() const;
 
     protected:
         void dragMoveEvent(QDragMoveEvent *event);
-        void dragMoveEventDbTreeItem(QDragMoveEvent *event, DbTreeItem* srcItem, DbTreeItem* dstItem);
+        void dragMoveEventDbTreeItem(QDragMoveEvent *event, QList<DbTreeItem*> srcItems, DbTreeItem* dstItem);
         void dragMoveEventString(QDragMoveEvent *event, const QString& srcString, DbTreeItem* dstItem);
         void dragMoveEventUrls(QDragMoveEvent *event, const QList<QUrl>& srcUrls, DbTreeItem* dstItem);
-        DbTreeItem *getDragItem(const QMimeData* data) const;
         void mouseDoubleClickEvent(QMouseEvent* event);
+        void dropEvent(QDropEvent*e);
 
     private:
         void initDndTypes();
@@ -48,6 +50,7 @@ class DbTreeView : public QTreeView
         DbTree* dbTree;
         DbTreeItemDelegate* itemDelegate = nullptr;
         QHash<DbTreeItem::Type,QList<DbTreeItem::Type> > allowedTypesInside;
+        QPoint lastDropPosition;
 
     private slots:
         void showMenu(const QPoint &pos);

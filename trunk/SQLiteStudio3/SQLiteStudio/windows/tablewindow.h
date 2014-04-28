@@ -90,7 +90,6 @@ class TableWindow : public MdiChild, public ExtActionContainer
         void createActions();
         void setupDefShortcuts();
         bool restoreSessionNextTime();
-        void resizeEvent(QResizeEvent* e);
 
     private:
         void init();

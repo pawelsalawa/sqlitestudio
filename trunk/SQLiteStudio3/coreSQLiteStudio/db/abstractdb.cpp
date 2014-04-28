@@ -296,6 +296,9 @@ SqlResultsPtr AbstractDb::exec(const QString& query, const QHash<QString, QVaria
 
 SqlResultsPtr AbstractDb::execHashArg(const QString& query, const QHash<QString,QVariant>& args, Flags flags)
 {
+    if (!isOpenInternal())
+        return SqlResultsPtr(new SqlErrorResults(SqlErrorCode::DB_NOT_OPEN, tr("Cannot execute query on closed database.")));
+
     logSql(this, query, args, flags);
     QString newQuery = query;
     SqlResultsPtr results;
@@ -318,6 +321,9 @@ SqlResultsPtr AbstractDb::execHashArg(const QString& query, const QHash<QString,
 
 SqlResultsPtr AbstractDb::execListArg(const QString& query, const QList<QVariant>& args, Flags flags)
 {
+    if (!isOpenInternal())
+        return SqlResultsPtr(new SqlErrorResults(SqlErrorCode::DB_NOT_OPEN, tr("Cannot execute query on closed database.")));
+
     logSql(this, query, args, flags);
     QString newQuery = query;
     SqlResultsPtr results;
@@ -531,7 +537,7 @@ void AbstractDb::asyncQueryFinished(AsyncQueryRunner *runner)
         emit idle();
 }
 
-QString AbstractDb::attach(Db* otherDb)
+QString AbstractDb::attach(Db* otherDb, bool silent)
 {
     QWriteLocker locker(&dbOperLock);
     if (!isOpenInternal())
@@ -547,7 +553,11 @@ QString AbstractDb::attach(Db* otherDb)
     SqlResultsPtr results = exec("ATTACH '%1' AS %2;", {otherDb->getPath(), attName}, Flag::STRING_REPLACE_ARGS|Flag::NO_LOCK);
     if (results->isError())
     {
-        notifyError(tr("Error attaching database %1: %2").arg(otherDb->getName()).arg(results->getErrorText()));
+        if (!silent)
+            notifyError(tr("Error attaching database %1: %2").arg(otherDb->getName()).arg(results->getErrorText()));
+        else
+            qDebug() << QString("Error attaching database %1: %2").arg(otherDb->getName()).arg(results->getErrorText());
+
         return QString::null;
     }
 
@@ -762,6 +772,12 @@ bool AbstractDb::isWritable()
         dbOperLock.unlock();
 
     return res;
+}
+
+AttachGuard AbstractDb::guardedAttach(Db* otherDb, bool silent)
+{
+    QString attachName = attach(otherDb, silent);
+    return AttachGuard::create(this, otherDb, attachName);
 }
 
 bool AbstractDb::handleResultInternally(quint32 asyncId, SqlResultsPtr results)

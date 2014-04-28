@@ -25,6 +25,8 @@ class API_EXPORT FunctionManager : public QObject
 
             Function();
 
+            QString toString() const;
+
             static QString typeString(Type type);
             static Type typeString(const QString& type);
 
