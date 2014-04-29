@@ -56,6 +56,12 @@ void DbObjectOrganizer::interrupt()
     dstDb->interrupt();
 }
 
+bool DbObjectOrganizer::isExecuting()
+{
+    QMutexLocker lock(&executingMutex);
+    return executing;
+}
+
 void DbObjectOrganizer::run()
 {
     if (!srcDb->isOpen())
@@ -93,11 +99,20 @@ void DbObjectOrganizer::reset()
     safe_delete(srcResolver);
     safe_delete(dstResolver);
     interrupted = false;
+    setExecuting(false);
 }
 
 void DbObjectOrganizer::copyOrMoveObjectsToDb(Db* srcDb, const QStringList& objNames, Db* dstDb, bool includeData, bool move)
 {
+    if (isExecuting())
+    {
+        notifyError("Schema modification is currently in progress. Please try again in a moment.");
+        qWarning() << "Tried to call DbObjectOrganizer::copyOrMoveObjectsToDb() while other execution was in progress.";
+        return;
+    }
+
     reset();
+    setExecuting(true);
     if (move)
     {
         mode = Mode::MOVE_OBJECTS;
@@ -147,7 +162,15 @@ void DbObjectOrganizer::copyOrMoveObjectsToDb(Db* srcDb, const QStringList& objN
 
 void DbObjectOrganizer::copyOrMoveColumnsToTable(Db* srcDb, const QString& srcTable, const QStringList& columnNames, Db* dstDb, const QString& dstTable, bool includeData, bool move)
 {
+    if (isExecuting())
+    {
+        notifyError("Schema modification is currently in progress. Please try again in a moment.");
+        qWarning() << "Tried to call DbObjectOrganizer::copyOrMoveColumnsToTable() while other execution was in progress.";
+        return;
+    }
+
     reset();
+    setExecuting(true);
     if (move)
     {
         mode = Mode::MOVE_COLUMNS;
@@ -163,6 +186,7 @@ void DbObjectOrganizer::copyOrMoveColumnsToTable(Db* srcDb, const QString& srcTa
     this->dstTable = dstTable;
     this->includeData = includeData;
 
+    // TODO
     QStringList tableColumns = srcResolver->getTableColumns(srcTable);
     srcNames.clear();
     for (const QString& srcName : columnNames)
@@ -509,6 +533,12 @@ bool DbObjectOrganizer::isInterrupted()
 {
     QMutexLocker locker(&interruptMutex);
     return interrupted;
+}
+
+void DbObjectOrganizer::setExecuting(bool executing)
+{
+    QMutexLocker lock(&executingMutex);
+    this->executing = executing;
 }
 
 void DbObjectOrganizer::setSrcAndDstDb(Db* srcDb, Db* dstDb)

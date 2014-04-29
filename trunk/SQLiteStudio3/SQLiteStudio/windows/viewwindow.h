@@ -90,8 +90,6 @@ class ViewWindow : public MdiChild, public ExtActionContainer
         SqlQueryModel* dataModel = nullptr;
         QString originalQuery;
         WidgetCover* widgetCover;
-        QPushButton* coverCancelButton;
-        QProgressBar* coverBusyBar;
         ChainExecutor* structureExecutor = nullptr;
         ViewModifier* viewModifier = nullptr;
         Ui::ViewWindow *ui;

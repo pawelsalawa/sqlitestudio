@@ -14,6 +14,7 @@
 #include "common/unused.h"
 #include "dbobjectdialogs.h"
 #include "common/userinputfilter.h"
+#include "common/widgetcover.h"
 #include "windows/tablewindow.h"
 #include "dialogs/indexdialog.h"
 #include "dialogs/triggerdialog.h"
@@ -44,6 +45,11 @@ void DbTree::init()
     ui->setupUi(this);
 
     ui->nameFilter->setClearButtonEnabled(true);
+
+    widgetCover = new WidgetCover(this);
+    widgetCover->initWithInterruptContainer();
+    widgetCover->hide();
+    connect(widgetCover, SIGNAL(cancelClicked()), this, SLOT(interrupt()));
 
     treeModel = new DbTreeModel();
     treeModel->setTreeView(ui->treeView);
@@ -1074,6 +1080,11 @@ void DbTree::refreshSchemas()
 {
     foreach (Db* db, DBLIST->getDbList())
         treeModel->refreshSchema(db);
+}
+
+void DbTree::interrupt()
+{
+    treeModel->interrupt();
 }
 
 void DbTree::refreshSchema()

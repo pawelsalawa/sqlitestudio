@@ -132,8 +132,6 @@ class TableWindow : public MdiChild, public ExtActionContainer
         TableConstraintsModel* structureConstraintsModel = nullptr;
         ConstraintTabModel* constraintTabModel = nullptr;
         WidgetCover* widgetCover;
-        QPushButton* coverCancelButton;
-        QProgressBar* coverBusyBar;
         ChainExecutor* structureExecutor = nullptr;
         TableModifier* tableModifier = nullptr;
 

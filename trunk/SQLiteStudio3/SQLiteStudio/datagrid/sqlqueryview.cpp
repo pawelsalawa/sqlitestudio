@@ -62,8 +62,7 @@ SqlQueryModel* SqlQueryView::getModel()
 void SqlQueryView::setModel(QAbstractItemModel* model)
 {
     QTableView::setModel(model);
-    connect(cancelButton, SIGNAL(clicked()), this, SLOT(disableCancelButton()));
-    connect(cancelButton, SIGNAL(clicked()), getModel(), SLOT(interrupt()));
+    connect(widgetCover, SIGNAL(cancelClicked()), getModel(), SLOT(interrupt()));
     connect(getModel(), &SqlQueryModel::commitStatusChanged, this, &SqlQueryView::updateCommitRollbackActions);
 }
 
@@ -108,16 +107,7 @@ void SqlQueryView::init()
 void SqlQueryView::setupWidgetCover()
 {
     widgetCover = new WidgetCover(this);
-
-    cancelButton = new QPushButton();
-    cancelButton->setText(tr("Interrupt"));
-
-    busyBar = new QProgressBar();
-    busyBar->setRange(0, 0);
-    busyBar->setTextVisible(false);
-
-    widgetCover->getContainerLayout()->addWidget(busyBar, 0, 0);
-    widgetCover->getContainerLayout()->addWidget(cancelButton, 1, 0);
+    widgetCover->initWithInterruptContainer();
 }
 
 void SqlQueryView::createActions()
@@ -213,11 +203,6 @@ bool SqlQueryView::handleDoubleClick(SqlQueryItem* item)
     return true;
 }
 
-void SqlQueryView::disableCancelButton()
-{
-    cancelButton->setEnabled(false);
-}
-
 void SqlQueryView::updateCommitRollbackActions(bool enabled)
 {
     actionMap[COMMIT]->setEnabled(enabled);
@@ -242,7 +227,6 @@ void SqlQueryView::customContextMenuRequested(const QPoint& pos)
 
 void SqlQueryView::executionStarted()
 {
-    cancelButton->setEnabled(true);
     widgetCover->show();
 }
 

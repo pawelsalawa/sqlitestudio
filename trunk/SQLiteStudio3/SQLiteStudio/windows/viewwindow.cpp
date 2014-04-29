@@ -248,19 +248,7 @@ void ViewWindow::setupCoverWidget()
 {
     widgetCover = new WidgetCover(this);
     widgetCover->hide();
-
-    coverCancelButton = new QPushButton();
-    coverCancelButton->setText(tr("Interrupt"));
-    coverCancelButton->setEnabled(false);
-
-    coverBusyBar = new QProgressBar();
-    coverBusyBar->setRange(0, 0);
-
-    widgetCover->getContainerLayout()->addWidget(coverBusyBar, 0, 0);
-    widgetCover->getContainerLayout()->addWidget(coverCancelButton, 1, 0);
-
-    connect(coverCancelButton, SIGNAL(clicked()), this, SLOT(disableCoverCancelButton()));
-    connect(coverCancelButton, SIGNAL(clicked()), structureExecutor, SLOT(interrupt()));
+    connect(widgetCover, SIGNAL(cancelClicked()), structureExecutor, SLOT(interrupt()));
 }
 
 void ViewWindow::createQueryTabActions()
