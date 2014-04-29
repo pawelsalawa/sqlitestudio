@@ -314,6 +314,11 @@ void DbTreeModel::dbRemoved(QStandardItem* item)
         treeView->collapse(parent->index());
 }
 
+void DbTreeModel::interrupt()
+{
+    dbOrganizer->interrupt();
+}
+
 void DbTreeModel::refreshSchema(Db* db)
 {
     QStandardItem* item = findItem(DbTreeItem::Type::DB, db);

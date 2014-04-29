@@ -110,6 +110,7 @@ class DbTreeModel : public QStandardItemModel
         void applyFilter(const QString& filter);
         void dbRemoved(const QString& name);
         void dbRemoved(QStandardItem* item);
+        void interrupt();
 
     signals:
         void updateItemHidden(DbTreeItem* item);

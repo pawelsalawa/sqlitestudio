@@ -6,6 +6,7 @@
 #include "mainwindow.h"
 #include <QDockWidget>
 
+class WidgetCover;
 class QAction;
 class QMenu;
 class DbTreeModel;
@@ -96,10 +97,12 @@ class DbTree : public QDockWidget, public ExtActionContainer
 
         Ui::DbTree *ui;
         DbTreeModel* treeModel;
+        WidgetCover* widgetCover = nullptr;
 
     public slots:
         void refreshSchema(Db* db);
         void refreshSchemas();
+        void interrupt();
 
     private slots:
         void copy();

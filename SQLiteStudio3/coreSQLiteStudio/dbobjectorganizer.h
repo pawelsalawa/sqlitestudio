@@ -51,6 +51,7 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable
         void moveColumnsToTable(Db* srcDb, const QString& srcTable, const QStringList& columnNames, Db* dstDb,
                                 const QString& dstTable, bool includeData);
         void interrupt();
+        bool isExecuting();
         void run();
 
     protected:
@@ -81,6 +82,7 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable
         void dropView(const QString& view);
         bool setFkEnabled(bool enabled);
         bool isInterrupted();
+        void setExecuting(bool executing);
         void setSrcAndDstDb(Db* srcDb, Db* dstDb);
         bool begin();
         bool commit();
@@ -104,7 +106,9 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable
         SchemaResolver* srcResolver = nullptr;
         SchemaResolver* dstResolver = nullptr;
         bool interrupted = false;
+        bool executing = false;
         QMutex interruptMutex;
+        QMutex executingMutex;
 
     signals:
         void finishedDbObjectsMove(bool success, Db* srcDb, Db* dstDb);

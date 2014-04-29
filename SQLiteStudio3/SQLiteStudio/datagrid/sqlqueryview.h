@@ -63,7 +63,6 @@ class SqlQueryView : public QTableView, public ExtActionContainer
         QList<QAction*> additionalActions;
 
     private slots:
-        void disableCancelButton();
         void updateCommitRollbackActions(bool enabled);
         void customContextMenuRequested(const QPoint& pos);
 

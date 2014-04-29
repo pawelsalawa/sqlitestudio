@@ -6,6 +6,8 @@
 #include <QPushButton>
 #include <QGridLayout>
 #include <QEvent>
+#include <QPushButton>
+#include <QProgressBar>
 
 WidgetCover::WidgetCover(QWidget *parent) :
     QWidget(parent)
@@ -184,4 +186,20 @@ bool WidgetCover::eventFilter(QObject* obj, QEvent* e)
         widgetResized();
 
     return false;
+}
+
+void WidgetCover::initWithInterruptContainer(const QString& interruptButtonText)
+{
+    cancelButton = new QPushButton();
+    cancelButton->setText(interruptButtonText.isNull() ? tr("Interrupt") : interruptButtonText);
+
+    busyBar = new QProgressBar();
+    busyBar->setRange(0, 0);
+    busyBar->setTextVisible(false);
+
+    containerLayout->addWidget(busyBar, 0, 0);
+    containerLayout->addWidget(cancelButton, 1, 0);
+
+    connect(cancelButton, &QPushButton::clicked, [&cancelButton]() {cancelButton->setEnabled(false);});
+    connect(cancelButton, SIGNAL(clicked()), this, SIGNAL(cancelClicked()));
 }

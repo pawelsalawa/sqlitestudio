@@ -7,6 +7,8 @@
 
 class QVariantAnimation;
 class QGridLayout;
+class QPushButton;
+class QProgressBar;
 
 class WidgetCover : public QWidget
 {
@@ -29,6 +31,8 @@ class WidgetCover : public QWidget
         QGridLayout* getContainerLayout();
         bool eventFilter(QObject* obj, QEvent* e);
 
+        void initWithInterruptContainer(const QString& interruptButtonText = QString());
+
     private:
         enum class Action
         {
@@ -49,6 +53,11 @@ class WidgetCover : public QWidget
         int transparency = 128;
         QWidget* container = nullptr;
         QGridLayout* containerLayout = nullptr;
+        QPushButton* cancelButton = nullptr;
+        QProgressBar* busyBar = nullptr;
+
+    signals:
+        void cancelClicked();
 
     private slots:
         void animationUpdate(const QVariant& value);
