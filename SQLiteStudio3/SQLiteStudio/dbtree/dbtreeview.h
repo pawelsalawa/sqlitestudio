@@ -2,7 +2,6 @@
 #define DBTREEVIEW_H
 
 #include "dbtree.h"
-#include "dbtreeitem.h"
 #include <QTreeView>
 #include <QList>
 #include <QUrl>
@@ -27,17 +26,14 @@ class DbTreeView : public QTreeView
         DbTreeModel *model() const;
         DbTreeItem *getItemForAction() const;
         QPoint getLastDropPosition() const;
+        QModelIndexList getSelectedIndexes() const;
 
     protected:
         void dragMoveEvent(QDragMoveEvent *event);
-        void dragMoveEventDbTreeItem(QDragMoveEvent *event, QList<DbTreeItem*> srcItems, DbTreeItem* dstItem);
-        void dragMoveEventString(QDragMoveEvent *event, const QString& srcString, DbTreeItem* dstItem);
-        void dragMoveEventUrls(QDragMoveEvent *event, const QList<QUrl>& srcUrls, DbTreeItem* dstItem);
         void mouseDoubleClickEvent(QMouseEvent* event);
         void dropEvent(QDropEvent*e);
 
     private:
-        void initDndTypes();
         bool handleDoubleClick(DbTreeItem* item);
         bool handleDbDoubleClick(DbTreeItem* item);
         bool handleTableDoubleClick(DbTreeItem* item);
@@ -49,7 +45,6 @@ class DbTreeView : public QTreeView
         QMenu* contextMenu;
         DbTree* dbTree;
         DbTreeItemDelegate* itemDelegate = nullptr;
-        QHash<DbTreeItem::Type,QList<DbTreeItem::Type> > allowedTypesInside;
         QPoint lastDropPosition;
 
     private slots:

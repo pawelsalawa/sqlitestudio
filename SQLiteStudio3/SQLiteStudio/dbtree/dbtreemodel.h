@@ -69,10 +69,9 @@ class DbTreeModel : public QStandardItemModel
         QString getInvalidDbToolTip(DbTreeItem *item) const;
         QString getTableToolTip(DbTreeItem *item) const;
         QList<DbTreeItem*> getChildsAsFlatList(QStandardItem* item) const;
-        bool dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem);
+        bool dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, int row);
         bool dropDbObjectItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem);
-        bool dropColumnItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem);
-        bool dropString(const QString& str, DbTreeItem* dstItem);
+        bool dropDbOnDir(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, int row);
         bool dropUrls(const QList<QUrl>& urls, DbTreeItem* dstItem);
         void moveOrCopyDbObjects(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem);
 

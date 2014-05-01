@@ -105,7 +105,6 @@ class ViewWindow : public MdiChild, public ExtActionContainer
         void executionFailed(const QString& errorMessage);
         void tabChanged(int tabIdx);
         void updateQueryToolbarStatus();
-        void disableCoverCancelButton();
         void changesSuccessfullyCommited();
         void changesFailedToCommit(int errorCode, const QString& errorText);
         void updateTriggersState();
