@@ -36,18 +36,6 @@ void DbObjectOrganizer::moveObjectsToDb(Db* srcDb, const QStringList& objNames, 
     copyOrMoveObjectsToDb(srcDb, objNames, dstDb, includeData, true);
 }
 
-void DbObjectOrganizer::copyColumnsToTable(Db* srcDb, const QString& srcTable, const QStringList& columnNames, Db* dstDb,
-                                           const QString& dstTable, bool includeData)
-{
-    copyOrMoveColumnsToTable(srcDb, srcTable, columnNames, dstDb, dstTable, includeData, false);
-}
-
-void DbObjectOrganizer::moveColumnsToTable(Db* srcDb, const QString& srcTable, const QStringList& columnNames, Db* dstDb,
-                                           const QString& dstTable, bool includeData)
-{
-    copyOrMoveColumnsToTable(srcDb, srcTable, columnNames, dstDb, dstTable, includeData, true);
-}
-
 void DbObjectOrganizer::interrupt()
 {
     QMutexLocker locker(&interruptMutex);
@@ -90,9 +78,8 @@ void DbObjectOrganizer::reset()
     srcNames.clear();
     srcTables.clear();
     srcViews.clear();
-    renamedObjects.clear();
+    renamed.clear();
     srcTable = QString::null;
-    dstTable = QString::null;
     includeData = false;
     deleteSourceObjects = false;
     referencedTables.clear();
@@ -131,7 +118,10 @@ void DbObjectOrganizer::copyOrMoveObjectsToDb(Db* srcDb, const QStringList& objN
     for (const QString& srcName : srcNames)
     {
         if (!details.contains(srcName))
+        {
+            qDebug() << "Object" << srcName << "not found in source database, skipping.";
             continue;
+        }
 
         switch (details[srcName].type)
         {
@@ -155,45 +145,10 @@ void DbObjectOrganizer::copyOrMoveObjectsToDb(Db* srcDb, const QStringList& objN
         referencedTables.clear();
 
     if (!resolveNameConflicts())
-        return;
-
-    QThreadPool::globalInstance()->start(this);
-}
-
-void DbObjectOrganizer::copyOrMoveColumnsToTable(Db* srcDb, const QString& srcTable, const QStringList& columnNames, Db* dstDb, const QString& dstTable, bool includeData, bool move)
-{
-    if (isExecuting())
     {
-        notifyError("Schema modification is currently in progress. Please try again in a moment.");
-        qWarning() << "Tried to call DbObjectOrganizer::copyOrMoveColumnsToTable() while other execution was in progress.";
+        setExecuting(false);
         return;
     }
-
-    reset();
-    setExecuting(true);
-    if (move)
-    {
-        mode = Mode::MOVE_COLUMNS;
-        deleteSourceObjects = true;
-    }
-    else
-    {
-        mode = Mode::COPY_COLUMNS;
-    }
-
-    setSrcAndDstDb(srcDb, dstDb);
-    this->srcTable = srcTable;
-    this->dstTable = dstTable;
-    this->includeData = includeData;
-
-    // TODO
-    QStringList tableColumns = srcResolver->getTableColumns(srcTable);
-    srcNames.clear();
-    for (const QString& srcName : columnNames)
-        srcNames << srcName;
-
-    if (!resolveNameConflicts())
-        return;
 
     QThreadPool::globalInstance()->start(this);
 }
@@ -213,13 +168,7 @@ bool DbObjectOrganizer::processAll()
         case Mode::COPY_OBJECTS:
         case Mode::MOVE_OBJECTS:
         {
-            res = processAllObjects();
-            break;
-        }
-        case Mode::COPY_COLUMNS:
-        case Mode::MOVE_COLUMNS:
-        {
-            res = processColumns();
+            res = processDbObjects();
             break;
         }
         case Mode::unknown:
@@ -251,7 +200,7 @@ bool DbObjectOrganizer::processAll()
     return true;
 }
 
-bool DbObjectOrganizer::processAllObjects()
+bool DbObjectOrganizer::processDbObjects()
 {
     for (const QString& table : (referencedTables + srcTables))
     {
@@ -277,12 +226,6 @@ bool DbObjectOrganizer::processAllObjects()
     return true;
 }
 
-bool DbObjectOrganizer::processColumns()
-{
-    // TODO
-    return false;
-}
-
 bool DbObjectOrganizer::resolveNameConflicts()
 {
     QStringList names;
@@ -294,13 +237,6 @@ bool DbObjectOrganizer::resolveNameConflicts()
         {
             names = referencedTables + srcTables + srcViews;
             namesInDst = dstResolver->getAllObjects();
-            break;
-        }
-        case Mode::COPY_COLUMNS:
-        case Mode::MOVE_COLUMNS:
-        {
-            names = srcNames;
-            namesInDst = dstResolver->getTableColumns(dstTable);
             break;
         }
         case Mode::unknown:
@@ -320,7 +256,7 @@ bool DbObjectOrganizer::resolveNameConflicts()
                 return false;
         }
         if (finalName != srcName)
-            renamedObjects[srcName] = finalName;
+            renamed[srcName] = finalName;
     }
     return true;
 }
@@ -331,7 +267,7 @@ bool DbObjectOrganizer::copyTableToDb(const QString& table)
     QString targetTable = table;
     AttachGuard attach = srcDb->guardedAttach(dstDb, true);
     QString attachName = attach->getName();
-    if (renamedObjects.contains(table) || !attachName.isNull())
+    if (renamed.contains(table) || !attachName.isNull())
     {
         SqliteQueryPtr parsedObject = srcResolver->getParsedObject(table);
         SqliteCreateTablePtr createTable = parsedObject.dynamicCast<SqliteCreateTable>();
@@ -342,8 +278,8 @@ bool DbObjectOrganizer::copyTableToDb(const QString& table)
             return false;
         }
 
-        if (renamedObjects.contains(table))
-            targetTable = renamedObjects[table];
+        if (renamed.contains(table))
+            targetTable = renamed[table];
 
         createTable->table = targetTable;
         if (!attachName.isNull())
@@ -520,7 +456,7 @@ bool DbObjectOrganizer::setFkEnabled(bool enabled)
     if (dstDb->getVersion() == 2)
         return true;
 
-    SqlResultsPtr result = dstDb->exec("PRAGMA foreign_keys = %1", {enabled ? "on" : "off"}, Db::Flag::STRING_REPLACE_ARGS);
+    SqlResultsPtr result = dstDb->exec(QString("PRAGMA foreign_keys = %1").arg(enabled ? "on" : "off"));
     if (result->isError())
     {
         notifyError(tr("Error while executing PRAGMA on target database: %1").arg(result->getErrorText()));
@@ -555,12 +491,6 @@ void DbObjectOrganizer::emitFinished(bool success)
 {
     switch (mode)
     {
-        case Mode::COPY_COLUMNS:
-            emit finishedColumnsCopy(success, srcDb, dstDb, srcTable, dstTable);
-            break;
-        case Mode::MOVE_COLUMNS:
-            emit finishedColumnsMove(success, srcDb, dstDb, srcTable, dstTable);
-            break;
         case Mode::COPY_OBJECTS:
             emit finishedDbObjectsCopy(success, srcDb, dstDb);
             break;
@@ -570,4 +500,5 @@ void DbObjectOrganizer::emitFinished(bool success)
         case Mode::unknown:
             break;
     }
+    setExecuting(false);
 }

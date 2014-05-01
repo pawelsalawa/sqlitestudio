@@ -4,13 +4,13 @@
 #include "db/db.h"
 #include "common/extactioncontainer.h"
 #include "mainwindow.h"
+#include "dbtree/dbtreeitem.h"
 #include <QDockWidget>
 
 class WidgetCover;
 class QAction;
 class QMenu;
 class DbTreeModel;
-class DbTreeItem;
 class QStandardItem;
 class QTimer;
 class TableWindow;
@@ -73,12 +73,14 @@ class DbTree : public QDockWidget, public ExtActionContainer
         QVariant saveSession();
         void restoreSession(const QVariant& sessionValue);
         DbTreeModel* getModel() const;
+        bool isMimeDataValidForItem(const QMimeData* mimeData, const DbTreeItem* item) const;
 
     protected:
         void createActions();
         void setupDefShortcuts();
 
     private:
+        void initDndTypes();
         void setActionEnabled(int action, bool enabled);
         Db* getSelectedDb();
         Db* getSelectedOpenDb();
@@ -94,10 +96,13 @@ class DbTree : public QDockWidget, public ExtActionContainer
         void filterUndeletableItems(QList<DbTreeItem*>& items);
         void filterItemsWithParentInList(QList<DbTreeItem*>& items);
         void deleteItem(DbTreeItem* item);
+        bool areDbTreeItemsValidForItem(QList<DbTreeItem*> srcItems, const DbTreeItem* dstItem) const;
+        bool areUrlsValidForItem(const QList<QUrl>& srcUrls, const DbTreeItem* dstItem) const;
 
         Ui::DbTree *ui;
         DbTreeModel* treeModel;
         WidgetCover* widgetCover = nullptr;
+        QHash<DbTreeItem::Type,QList<DbTreeItem::Type> > allowedTypesInside;
 
     public slots:
         void refreshSchema(Db* db);

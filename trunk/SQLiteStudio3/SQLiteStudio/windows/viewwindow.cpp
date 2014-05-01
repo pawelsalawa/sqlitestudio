@@ -404,11 +404,6 @@ void ViewWindow::updateQueryToolbarStatus()
     actionMap[ROLLBACK_QUERY]->setEnabled(modified);
 }
 
-void ViewWindow::disableCoverCancelButton()
-{
-    coverCancelButton->setEnabled(false);
-}
-
 void ViewWindow::changesSuccessfullyCommited()
 {
     QStringList sqls = structureExecutor->getQueries();
@@ -632,5 +627,4 @@ void ViewWindow::executeStructureChanges()
     structureExecutor->setMandatoryQueries(sqlMandatoryFlags);
     structureExecutor->exec();
     widgetCover->show();
-    coverCancelButton->setEnabled(true);
 }

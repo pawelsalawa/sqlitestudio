@@ -22,8 +22,6 @@ DbTreeView::DbTreeView(QWidget *parent) :
 
     itemDelegate = new DbTreeItemDelegate();
     setItemDelegate(itemDelegate);
-
-    initDndTypes();
 }
 
 DbTreeView::~DbTreeView()
@@ -99,41 +97,11 @@ DbTreeItem *DbTreeView::getItemForAction() const
     return dynamic_cast<DbTreeItem*>(model()->itemFromIndex(idx));
 }
 
-void DbTreeView::initDndTypes()
-{
-    allowedTypesInside[DbTreeItem::Type::DIR] << DbTreeItem::Type::DB << DbTreeItem::Type::DIR;
-    allowedTypesInside[DbTreeItem::Type::DB] << DbTreeItem::Type::TABLE << DbTreeItem::Type::VIEW;
-    allowedTypesInside[DbTreeItem::Type::TABLES] << DbTreeItem::Type::TABLE;
-    allowedTypesInside[DbTreeItem::Type::VIEWS] << DbTreeItem::Type::VIEW;
-}
-
 void DbTreeView::dragMoveEvent(QDragMoveEvent *event)
 {
     QTreeView::dragMoveEvent(event);
 
     DbTreeItem* dstItem = itemAt(event->pos());
-
-    //qDebug() << event->mimeData()->formats();
-    const QMimeData* data = event->mimeData();
-    if (data->formats().contains(DbTreeModel::MIMETYPE))
-        dragMoveEventDbTreeItem(event, DbTreeModel::getDragItems(data), dstItem);
-    else if (data->hasText())
-        dragMoveEventString(event, data->text(), dstItem);
-    else if (data->hasUrls())
-        dragMoveEventUrls(event, data->urls(), dstItem);
-}
-
-void DbTreeView::dragMoveEventDbTreeItem(QDragMoveEvent *event, QList<DbTreeItem*> srcItems, DbTreeItem *dstItem)
-{
-    QList<DbTreeItem::Type> srcTypes;
-    DbTreeItem::Type dstType = DbTreeItem::Type::DIR; // the empty space is treated as group
-    for (DbTreeItem* srcItem : srcItems)
-    {
-        if (srcItem)
-            srcTypes << srcItem->getType();
-        else
-            srcTypes << DbTreeItem::Type::ITEM_PROTOTYPE;
-    }
 
     // Depending on where we drop we need a type of item we drop ON,
     // or type of parent item if we drop ABOVE/BELOW. If we drop on empty space,
@@ -144,45 +112,23 @@ void DbTreeView::dragMoveEventDbTreeItem(QDragMoveEvent *event, QList<DbTreeItem
         switch (dropPosition)
         {
             case QAbstractItemView::OnItem:
-                dstType = dstItem->getType();
                 break;
             case QAbstractItemView::AboveItem:
             case QAbstractItemView::BelowItem:
             {
-                DbTreeItem* parentItem = dstItem->parentDbTreeItem();
-                if (parentItem)
-                    dstType = parentItem->getType();
+                dstItem = dstItem->parentDbTreeItem();
                 break;
             }
             case QAbstractItemView::OnViewport:
+                dstItem = nullptr;
                 break;
         }
     }
 
-    for (DbTreeItem::Type srcType : srcTypes)
-    {
-        if (!allowedTypesInside[dstType].contains(srcType))
-        {
-            event->ignore();
-            return;
-        }
-
-        if (dstType == DbTreeItem::Type::DB && !dstItem->getDb()->isOpen())
-        {
-            event->ignore();
-            return;
-        }
-    }
-}
-
-void DbTreeView::dragMoveEventString(QDragMoveEvent *event, const QString &srcString, DbTreeItem *dstItem)
-{
-    // TODO
-}
-
-void DbTreeView::dragMoveEventUrls(QDragMoveEvent *event, const QList<QUrl> &srcUrls, DbTreeItem *dstItem)
-{
-    // TODO
+    //qDebug() << event->mimeData()->formats();
+    const QMimeData* data = event->mimeData();
+    if (!dbTree->isMimeDataValidForItem(data, dstItem))
+        event->ignore();
 }
 
 void DbTreeView::mouseDoubleClickEvent(QMouseEvent *event)
@@ -277,6 +223,11 @@ bool DbTreeView::handleColumnDoubleClick(DbTreeItem *item)
 QPoint DbTreeView::getLastDropPosition() const
 {
     return lastDropPosition;
+}
+
+QModelIndexList DbTreeView::getSelectedIndexes() const
+{
+    return selectedIndexes();
 }
 
 void DbTreeView::dropEvent(QDropEvent* e)

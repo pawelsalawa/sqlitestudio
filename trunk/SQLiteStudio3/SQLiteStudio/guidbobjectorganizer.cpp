@@ -21,9 +21,6 @@ bool GuiDbObjectOrganizer::confirmReferencedTables(const QStringList& tables)
         case Mode::MOVE_OBJECTS:
             msg = tr("Selected tables refer to other tables:\n%1\n\nWould you like to move them too?");
             break;
-        case Mode::COPY_COLUMNS:
-        case Mode::MOVE_COLUMNS:
-            return false; // confirm should not be called for columns
         case Mode::unknown:
             qWarning() << "Unhandled unknown mode in DbObjectOrganizer.";
             return false;
@@ -43,9 +40,6 @@ bool GuiDbObjectOrganizer::resolveNameConflict(QString& nameInConflict)
         case Mode::MOVE_OBJECTS:
             msg = tr("The target name '%1' already exists in database '%2'. Provide new, unique name:").arg(nameInConflict).arg(dstDb->getName());
             break;
-        case Mode::COPY_COLUMNS:
-        case Mode::MOVE_COLUMNS:
-            msg = tr("The column '%1' already exists in table '%2'. Provide new, unique name:").arg(nameInConflict).arg(dstTable);
             break;
         case Mode::unknown:
             qWarning() << "Unhandled unknown mode in DbObjectOrganizer.";

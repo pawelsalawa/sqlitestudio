@@ -19,6 +19,8 @@
 #include "dialogs/indexdialog.h"
 #include "dialogs/triggerdialog.h"
 #include "dialogs/exportdialog.h"
+#include <QApplication>
+#include <QClipboard>
 #include <QAction>
 #include <QMenu>
 #include <QInputDialog>
@@ -26,6 +28,7 @@
 #include <QTimer>
 #include <QDebug>
 #include <QKeyEvent>
+#include <QMimeData>
 
 DbTree::DbTree(QWidget *parent) :
     QDockWidget(parent),
@@ -43,6 +46,7 @@ DbTree::~DbTree()
 void DbTree::init()
 {
     ui->setupUi(this);
+    initDndTypes();
 
     ui->nameFilter->setClearButtonEnabled(true);
 
@@ -120,8 +124,11 @@ void DbTree::updateActionStates(const QStandardItem *item)
         DbTreeItem* parentItem = dbTreeItem->parentDbTreeItem();
         DbTreeItem* grandParentItem = parentItem ? parentItem->parentDbTreeItem() : nullptr;
 
-        // Add database should always be available
-        enabled << ADD_DB;
+        // Add database should always be available, as well as a copy of an item
+        enabled << ADD_DB << COPY;
+
+        if (isMimeDataValidForItem(QApplication::clipboard()->mimeData(), dbTreeItem))
+            enabled << PASTE;
 
         // Deleting any item should be enabled if just any is selected.
         enabled << DEL_SELECTED << CLEAR_FILTER;
@@ -440,6 +447,14 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
     }
 }
 
+void DbTree::initDndTypes()
+{
+    allowedTypesInside[DbTreeItem::Type::DIR] << DbTreeItem::Type::DB << DbTreeItem::Type::DIR;
+    allowedTypesInside[DbTreeItem::Type::DB] << DbTreeItem::Type::TABLE << DbTreeItem::Type::VIEW;
+    allowedTypesInside[DbTreeItem::Type::TABLES] << DbTreeItem::Type::TABLE;
+    allowedTypesInside[DbTreeItem::Type::VIEWS] << DbTreeItem::Type::VIEW;
+}
+
 QVariant DbTree::saveSession()
 {
     treeModel->storeGroups();
@@ -454,6 +469,16 @@ void DbTree::restoreSession(const QVariant& sessionValue)
 DbTreeModel* DbTree::getModel() const
 {
     return treeModel;
+}
+
+bool DbTree::isMimeDataValidForItem(const QMimeData* mimeData, const DbTreeItem* item) const
+{
+    if (mimeData->formats().contains(DbTreeModel::MIMETYPE))
+        return areDbTreeItemsValidForItem(DbTreeModel::getDragItems(mimeData), item);
+    else if (mimeData->hasUrls())
+        return areUrlsValidForItem(mimeData->urls(), item);
+
+    return false;
 }
 
 void DbTree::setActionEnabled(int action, bool enabled)
@@ -640,6 +665,53 @@ void DbTree::deleteItem(DbTreeItem* item)
     }
 }
 
+bool DbTree::areDbTreeItemsValidForItem(QList<DbTreeItem*> srcItems, const DbTreeItem* dstItem) const
+{
+    QSet<Db*> srcDbs;
+    QList<DbTreeItem::Type> srcTypes;
+    DbTreeItem::Type dstType = DbTreeItem::Type::DIR; // the empty space is treated as group
+    if (dstItem)
+        dstType = dstItem->getType();
+
+    for (DbTreeItem* srcItem : srcItems)
+    {
+        if (srcItem)
+            srcTypes << srcItem->getType();
+        else
+            srcTypes << DbTreeItem::Type::ITEM_PROTOTYPE;
+
+        if (srcItem->getDb())
+            srcDbs << srcItem->getDb();
+    }
+
+    for (DbTreeItem::Type srcType : srcTypes)
+    {
+        if (!allowedTypesInside[dstType].contains(srcType))
+            return false;
+
+        if (dstType == DbTreeItem::Type::DB && !dstItem->getDb()->isOpen())
+            return false;
+    }
+
+    if (dstItem && dstItem->getDb() && srcDbs.contains(dstItem->getDb()))
+        return false;
+
+    return true;
+}
+
+bool DbTree::areUrlsValidForItem(const QList<QUrl>& srcUrls, const DbTreeItem* dstItem) const
+{
+    if (dstItem && dstItem->getType() != DbTreeItem::Type::DIR)
+        return false; // files (databases) can be dropped only on toplevel or groups
+
+    for (const QUrl& srcUrl : srcUrls)
+    {
+        if (!srcUrl.isLocalFile())
+            return false;
+    }
+    return true;
+}
+
 void DbTree::refreshSchema(Db* db)
 {
     if (!db)
@@ -653,7 +725,8 @@ void DbTree::refreshSchema(Db* db)
 
 void DbTree::copy()
 {
-    // TODO implement DbTree::copy()
+    QMimeData* mimeData = treeModel->mimeData(ui->treeView->getSelectedIndexes());
+    QApplication::clipboard()->setMimeData(mimeData);
 }
 
 void DbTree::paste()
@@ -1102,7 +1175,7 @@ void DbTree::setupDefShortcuts()
 {
     setShortcutContext({
                            CLEAR_FILTER, DEL_SELECTED, REFRESH_SCHEMA, REFRESH_SCHEMAS,
-                           ADD_DB, SELECT_ALL
+                           ADD_DB, SELECT_ALL, COPY, PASTE
                        }, Qt::WidgetWithChildrenShortcut);
 
     defShortcut(DEL_SELECTED, Qt::Key_Delete);
@@ -1111,6 +1184,8 @@ void DbTree::setupDefShortcuts()
     defShortcut(REFRESH_SCHEMAS, Qt::SHIFT + Qt::Key_F5);
     defShortcut(ADD_DB, Qt::CTRL + Qt::Key_O);
     defShortcut(SELECT_ALL, Qt::CTRL + Qt::Key_A);
+    defShortcut(COPY, Qt::CTRL + Qt::Key_C);
+    defShortcut(PASTE, Qt::CTRL + Qt::Key_V);
 }
 
 int qHash(DbTree::Action action)

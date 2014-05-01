@@ -204,9 +204,9 @@ bool DbObjectDialogs::dropObject(const QString& database, const QString& name)
     SqlResultsPtr results;
 
     if (dialect == Dialect::Sqlite3)
-        results = db->exec(dropSql3, {typeForSql, dbName, wrapObjIfNeeded(name, dialect)}, Db::Flag::STRING_REPLACE_ARGS);
+        results = db->exec(dropSql3.arg(typeForSql, dbName, wrapObjIfNeeded(name, dialect)));
     else
-        results = db->exec(dropSql2, {typeForSql, wrapObjIfNeeded(name, dialect)}, Db::Flag::STRING_REPLACE_ARGS);
+        results = db->exec(dropSql2.arg(typeForSql, wrapObjIfNeeded(name, dialect)));
 
     if (results->isError())
     {

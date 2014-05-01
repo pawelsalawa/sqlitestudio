@@ -139,7 +139,7 @@ QString AbstractDb::generateUniqueDbName(bool lock)
 
 QString AbstractDb::generateUniqueDbNameNoLock()
 {
-    SqlResultsPtr results = exec("PRAGMA database_list;", AbstractDb::Flag::STRING_REPLACE_ARGS|Flag::NO_LOCK);
+    SqlResultsPtr results = exec("PRAGMA database_list;", Db::Flag::NO_LOCK);
     if (results->isError())
     {
         qWarning() << "Could not get PRAGMA database_list. Falling back to internal db list. Error was:" << results->getErrorText();
@@ -301,17 +301,7 @@ SqlResultsPtr AbstractDb::execHashArg(const QString& query, const QHash<QString,
 
     logSql(this, query, args, flags);
     QString newQuery = query;
-    SqlResultsPtr results;
-    if (flags.testFlag(AbstractDb::Flag::STRING_REPLACE_ARGS))
-    {
-        QHashIterator<QString,QVariant> it(args);
-        while (it.hasNext())
-            newQuery = newQuery.replace(it.key(), it.value().toString());
-
-        results = execInternal(newQuery, QHash<QString,QVariant>());
-    }
-    else
-        results = execInternal(newQuery, args);
+    SqlResultsPtr results = execInternal(newQuery, args);
 
     if (flags.testFlag(Flag::PRELOAD))
         results->preload();
@@ -326,16 +316,7 @@ SqlResultsPtr AbstractDb::execListArg(const QString& query, const QList<QVariant
 
     logSql(this, query, args, flags);
     QString newQuery = query;
-    SqlResultsPtr results;
-    if (flags.testFlag(AbstractDb::Flag::STRING_REPLACE_ARGS))
-    {
-        foreach (QVariant arg, args)
-            newQuery = newQuery.arg(arg.toString());
-
-        results = execInternal(newQuery, QList<QVariant>());
-    }
-    else
-        results = execInternal(newQuery, args);
+    SqlResultsPtr results = execInternal(newQuery, args);
 
     if (flags.testFlag(Flag::PRELOAD))
         results->preload();
@@ -550,7 +531,7 @@ QString AbstractDb::attach(Db* otherDb, bool silent)
     }
 
     QString attName = generateUniqueDbName(false);
-    SqlResultsPtr results = exec("ATTACH '%1' AS %2;", {otherDb->getPath(), attName}, Flag::STRING_REPLACE_ARGS|Flag::NO_LOCK);
+    SqlResultsPtr results = exec(QString("ATTACH '%1' AS %2;").arg(otherDb->getPath(), attName), Flag::NO_LOCK);
     if (results->isError())
     {
         if (!silent)
@@ -589,7 +570,7 @@ void AbstractDb::detachInternal(Db* otherDb)
         return;
     }
 
-    exec("DETACH %1;", {attachedDbNameMap[otherDb]}, Flag::STRING_REPLACE_ARGS|Flag::NO_LOCK);
+    exec(QString("DETACH %1;").arg(attachedDbNameMap[otherDb]), Flag::NO_LOCK);
     attachedDbMap.remove(attachedDbNameMap[otherDb]);
     attachedDbNameMap.remove(otherDb);
     emit detached(otherDb);
@@ -632,7 +613,7 @@ QString AbstractDb::getUniqueNewObjectName(const QString &attachedDbName)
     QString dbName = getPrefixDb(attachedDbName, getDialect());
 
     QSet<QString> existingNames;
-    SqlResultsPtr results = exec("SELECT name FROM %1.sqlite_master", {dbName}, Flag::STRING_REPLACE_ARGS);
+    SqlResultsPtr results = exec(QString("SELECT name FROM %1.sqlite_master").arg(dbName));
 
     foreach (SqlResultsRowPtr row, results->getAll())
         existingNames << row->value(0).toString();

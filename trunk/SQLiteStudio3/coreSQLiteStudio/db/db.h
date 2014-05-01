@@ -126,12 +126,8 @@ class API_EXPORT Db : public QObject
         enum class Flag
         {
             NONE                = 0x0, /**< No flags. This is default. */
-            STRING_REPLACE_ARGS = 0x1, /**<
-                                        * Arguments are substituted with string replacing mechanism, instead of binding with query.
-                                        * It uses QString::arg(), so parameter placeholders need to be in format %1, %2, %3, and so on.
-                                        */
-            PRELOAD             = 0x2, /**< Preloads all execution results into the results object. Useful for asynchronous execution. */
-            NO_LOCK             = 0x4  /**<
+            PRELOAD             = 0x1, /**< Preloads all execution results into the results object. Useful for asynchronous execution. */
+            NO_LOCK             = 0x2  /**<
                                         * Prevents SQLiteStudio from setting the lock for execution on this base (not the SQLite lock,
                                         * just a Db internal lock for multi-threading access to the Db::exec()). This should be used
                                         * only in justified circumstances. That is when the Db call has to be done from within the part

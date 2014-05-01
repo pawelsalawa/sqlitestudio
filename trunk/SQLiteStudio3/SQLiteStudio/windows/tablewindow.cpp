@@ -307,7 +307,6 @@ void TableWindow::executeStructureChanges()
     structureExecutor->setQueries(sqls);
     structureExecutor->exec();
     widgetCover->show();
-    coverCancelButton->setEnabled(true);
 }
 
 QModelIndex TableWindow::structureCurrentIndex() const
@@ -1099,11 +1098,6 @@ void TableWindow::on_structureView_doubleClicked(const QModelIndex &index)
 void TableWindow::on_tableConstraintsView_doubleClicked(const QModelIndex &index)
 {
     editConstraint(index);
-}
-
-void TableWindow::disableCoverCancelButton()
-{
-    coverCancelButton->setEnabled(false);
 }
 
 void TableWindow::nameChanged()

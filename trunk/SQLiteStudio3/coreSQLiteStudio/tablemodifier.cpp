@@ -61,11 +61,11 @@ void TableModifier::renameTo(const QString& newName)
 
     if (dialect == Dialect::Sqlite3)
     {
-        sqls << QString("ALTER TABLE %1 RENAME TO %2").arg(wrapObjIfNeeded(table, dialect)).arg(wrapObjIfNeeded(newName, dialect));
+        sqls << QString("ALTER TABLE %1 RENAME TO %2").arg(wrapObjIfNeeded(table, dialect), wrapObjIfNeeded(newName, dialect));
     }
     else
     {
-        sqls << QString("CREATE TABLE %1 AS SELECT * FROM %2").arg(wrapObjIfNeeded(newName, dialect)).arg(wrapObjIfNeeded(table, dialect))
+        sqls << QString("CREATE TABLE %1 AS SELECT * FROM %2").arg(wrapObjIfNeeded(newName, dialect), wrapObjIfNeeded(table, dialect))
              << QString("DROP TABLE");
     }
 
@@ -104,7 +104,7 @@ void TableModifier::handleFks()
         if (!subModifier.isValid())
         {
             warnings << QObject::tr("Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition "
-                                    "due to problems while parsing DDL of the table %3.").arg(fkTable).arg(originalTable).arg(fkTable);
+                                    "due to problems while parsing DDL of the table %3.").arg(fkTable, originalTable, fkTable);
             continue;
         }
 
@@ -384,7 +384,7 @@ void TableModifier::handleTrigger(SqliteCreateTriggerPtr trigger)
         if (newQuery)
             newQueries << newQuery;
         else
-            errors << QObject::tr("Cannot not update trigger %1 according to table %2 modification.").arg(trigger->trigger).arg(originalTable);
+            errors << QObject::tr("Cannot not update trigger %1 according to table %2 modification.").arg(trigger->trigger, originalTable);
     }
     trigger->queries = newQueries;
 
@@ -406,7 +406,7 @@ void TableModifier::handleView(SqliteCreateViewPtr view)
     SqliteSelect* newSelect = handleSelect(view->select);
     if (!newSelect)
     {
-        errors << QObject::tr("Cannot not update view %1 according to table %2 modifications.").arg(view->view).arg(originalTable);
+        errors << QObject::tr("Cannot not update view %1 according to table %2 modifications.").arg(view->view, originalTable);
         return;
     }
 
@@ -526,7 +526,7 @@ SqliteInsert* TableModifier::handleTriggerInsert(SqliteInsert* insert, const QSt
     {
         warnings << QObject::tr("There is a problem with updating an %1 statement within %2 trigger. "
                                 "One of the SELECT substatements which might be referring to table %3 cannot be properly modified. "
-                                "Manual update of the trigger may be necessary.").arg("INSERT").arg(trigName).arg(originalTable);
+                                "Manual update of the trigger may be necessary.").arg("INSERT", trigName, originalTable);
     }
 
     return insert;
@@ -544,7 +544,7 @@ SqliteDelete* TableModifier::handleTriggerDelete(SqliteDelete* del, const QStrin
     {
         warnings << QObject::tr("There is a problem with updating an %1 statement within %2 trigger. "
                                 "One of the SELECT substatements which might be referring to table %3 cannot be properly modified. "
-                                "Manual update of the trigger may be necessary.").arg("DELETE").arg(trigName).arg(originalTable);
+                                "Manual update of the trigger may be necessary.").arg("DELETE", trigName, originalTable);
     }
 
     return del;
@@ -623,8 +623,8 @@ SqliteQueryPtr TableModifier::parseQuery(const QString& ddl)
 
 void TableModifier::copyDataTo(const QString& targetTable, const QStringList& srcCols, const QStringList& dstCols)
 {
-    sqls << QString("INSERT INTO %1 (%2) SELECT %3 FROM %4").arg(wrapObjIfNeeded(targetTable, dialect)).arg(dstCols.join(", "))
-            .arg(srcCols.join(", ")).arg(wrapObjIfNeeded(table, dialect));
+    sqls << QString("INSERT INTO %1 (%2) SELECT %3 FROM %4").arg(wrapObjIfNeeded(targetTable, dialect), dstCols.join(", "), srcCols.join(", "),
+                                                                 wrapObjIfNeeded(table, dialect));
 }
 
 QStringList TableModifier::generateSqls() const

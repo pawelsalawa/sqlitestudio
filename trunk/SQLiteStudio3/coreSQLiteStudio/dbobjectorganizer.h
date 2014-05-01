@@ -46,10 +46,6 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable
 
         void copyObjectsToDb(Db* srcDb, const QStringList& objNames, Db* dstDb, bool includeData);
         void moveObjectsToDb(Db* srcDb, const QStringList& objNames, Db* dstDb, bool includeData);
-        void copyColumnsToTable(Db* srcDb, const QString& srcTable, const QStringList& columnNames, Db* dstDb,
-                                const QString& dstTable, bool includeData);
-        void moveColumnsToTable(Db* srcDb, const QString& srcTable, const QStringList& columnNames, Db* dstDb,
-                                const QString& dstTable, bool includeData);
         void interrupt();
         bool isExecuting();
         void run();
@@ -59,17 +55,13 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable
         {
             COPY_OBJECTS,
             MOVE_OBJECTS,
-            COPY_COLUMNS,
-            MOVE_COLUMNS,
             unknown
         };
 
         void reset();
         void copyOrMoveObjectsToDb(Db* srcDb, const QStringList& objNames, Db* dstDb, bool includeData, bool move);
-        void copyOrMoveColumnsToTable(Db* srcDb, const QString& srcTable, const QStringList& columnNames, Db* dstDb,
-                                      const QString& dstTable, bool includeData, bool move);
         bool processAll();
-        bool processAllObjects();
+        bool processDbObjects();
         bool processColumns();
         bool resolveNameConflicts();
         bool copyTableToDb(const QString& table);
@@ -97,9 +89,8 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable
         QStringList srcNames;
         QStringList srcTables;
         QStringList srcViews;
-        QHash<QString,QString> renamedObjects;
+        QHash<QString,QString> renamed;
         QString srcTable;
-        QString dstTable;
         bool includeData = false;
         bool deleteSourceObjects = false;
         QStringList referencedTables;
@@ -113,8 +104,6 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable
     signals:
         void finishedDbObjectsMove(bool success, Db* srcDb, Db* dstDb);
         void finishedDbObjectsCopy(bool success, Db* srcDb, Db* dstDb);
-        void finishedColumnsMove(bool success, Db* srcDb, Db* dstDb, const QString& srcTable, const QString& dstTable);
-        void finishedColumnsCopy(bool success, Db* srcDb, Db* dstDb, const QString& srcTable, const QString& dstTable);
 };
 
 #endif // DBOBJECTORGANIZER_H

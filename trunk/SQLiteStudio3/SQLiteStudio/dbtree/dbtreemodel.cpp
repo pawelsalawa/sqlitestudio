@@ -56,7 +56,12 @@ void DbTreeModel::connectDbManagerSignals()
 void DbTreeModel::move(QStandardItem *itemToMove, QStandardItem *newParentItem, int newRow)
 {
     QStandardItem* currParent = dynamic_cast<DbTreeItem*>(itemToMove)->parentItem();
-    currParent->takeRow(itemToMove->index().row());
+    int r = itemToMove->index().row();
+    currParent->takeRow(r);
+
+    if (!newParentItem)
+        newParentItem = root();
+
     if (newRow < 0)
         newParentItem->appendRow(itemToMove);
     else
@@ -886,16 +891,25 @@ QMimeData *DbTreeModel::mimeData(const QModelIndexList &indexes) const
     QByteArray output;
     QDataStream stream(&output, QIODevice::WriteOnly);
 
-    QStandardItem* item;
+    QList<QUrl> urlList;
+    QStringList textList;
+
+    DbTreeItem* item;
     quint64 itemAddr;
     stream << reinterpret_cast<qint32>(indexes.size());
     for (const QModelIndex& idx : indexes)
     {
-        item = itemFromIndex(idx);
+        item = dynamic_cast<DbTreeItem*>(itemFromIndex(idx));
         itemAddr = reinterpret_cast<quint64>(item);
         stream << itemAddr;
+
+        textList << item->text();
+        if (item->getType() == DbTreeItem::Type::DB)
+            urlList << QUrl("file://"+item->getDb()->getPath());
     }
     data->setData(MIMETYPE, output);
+    data->setText(textList.join("\n"));
+    data->setUrls(urlList);
 
     return data;
 }
@@ -919,9 +933,7 @@ bool DbTreeModel::dropMimeData(const QMimeData* data, Qt::DropAction action, int
 
     bool res = false;
     if (data->formats().contains(MIMETYPE))
-        res = dropDbTreeItem(getDragItems(data), dstItem);
-    else if (data->hasText())
-        res = dropString(data->text(), dstItem);
+        res = dropDbTreeItem(getDragItems(data), dstItem, row);
     else if (data->hasUrls())
         res = dropUrls(data->urls(), dstItem);
 
@@ -944,14 +956,15 @@ QList<DbTreeItem*> DbTreeModel::getDragItems(const QMimeData* data)
     for (qint32 i = 0; i < itemCount; i++)
     {
         stream >> itemAddr;
-        items << dynamic_cast<DbTreeItem*>(reinterpret_cast<QStandardItem*>(itemAddr));
+        items << reinterpret_cast<DbTreeItem*>(itemAddr);
     }
 
     return items;
 }
 
-bool DbTreeModel::dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem)
+bool DbTreeModel::dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, int row)
 {
+    UNUSED(row);
     if (srcItems.size() == 0)
         return false;
 
@@ -966,10 +979,10 @@ bool DbTreeModel::dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem*
 
             return dropDbObjectItem(srcItems, dstItem);
         }
-        case DbTreeItem::Type::COLUMN:
-//            return dropColumnItem(srcItems, dstItem); // TODO
-        case DbTreeItem::Type::DIR:
         case DbTreeItem::Type::DB:
+        case DbTreeItem::Type::INVALID_DB:
+        case DbTreeItem::Type::COLUMN:
+        case DbTreeItem::Type::DIR:
         case DbTreeItem::Type::TABLES:
         case DbTreeItem::Type::INDEXES:
         case DbTreeItem::Type::INDEX:
@@ -977,7 +990,6 @@ bool DbTreeModel::dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem*
         case DbTreeItem::Type::TRIGGER:
         case DbTreeItem::Type::VIEWS:
         case DbTreeItem::Type::COLUMNS:
-        case DbTreeItem::Type::INVALID_DB:
         case DbTreeItem::Type::VIRTUAL_TABLE:
         case DbTreeItem::Type::ITEM_PROTOTYPE:
             break;
@@ -992,14 +1004,16 @@ bool DbTreeModel::dropDbObjectItem(const QList<DbTreeItem*>& srcItems, DbTreeIte
     return false;
 }
 
-bool DbTreeModel::dropColumnItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem)
+bool DbTreeModel::dropDbOnDir(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, int row)
 {
-    return true;
-}
+    for (DbTreeItem* srcItem : srcItems)
+    {
+        if (srcItem->getType() != DbTreeItem::Type::DB && srcItem->getType() != DbTreeItem::Type::INVALID_DB)
+            continue;
 
-bool DbTreeModel::dropString(const QString& str, DbTreeItem* dstItem)
-{
-    return true;
+        move(srcItem, dstItem, row);
+    }
+    return false;
 }
 
 bool DbTreeModel::dropUrls(const QList<QUrl>& urls, DbTreeItem* dstItem)

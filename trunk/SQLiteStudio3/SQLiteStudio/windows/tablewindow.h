@@ -171,7 +171,6 @@ class TableWindow : public MdiChild, public ExtActionContainer
         void updateBlankNameWarningState();
         void on_structureView_doubleClicked(const QModelIndex &index);
         void on_tableConstraintsView_doubleClicked(const QModelIndex &index);
-        void disableCoverCancelButton();
         void nameChanged();
         void withOutRowIdChanged();
         void addIndex();

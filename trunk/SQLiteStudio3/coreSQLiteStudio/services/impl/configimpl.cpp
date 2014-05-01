@@ -240,7 +240,7 @@ qint64 ConfigImpl::addSqlHistory(const QString& sql, const QString& dbName, int 
     results = db->exec("SELECT count(*) FROM sqleditor_history");
     if (results->hasNext() && results->getSingleCell().toInt() > maxHistorySize)
     {
-        results = db->exec("SELECT id FROM sqleditor_history ORDER BY id DESC LIMIT 1 OFFSET %1", {maxHistorySize}, Db::Flag::STRING_REPLACE_ARGS);
+        results = db->exec(QString("SELECT id FROM sqleditor_history ORDER BY id DESC LIMIT 1 OFFSET %1").arg(maxHistorySize));
         if (results->hasNext())
         {
             int id = results->getSingleCell().toInt();
@@ -330,7 +330,7 @@ void ConfigImpl::addDdlHistory(const QString& queries, const QString& dbName, co
     SqlResultsPtr results = db->exec("SELECT count(*) FROM ddl_history");
     if (results->hasNext() && results->getSingleCell().toInt() > maxHistorySize)
     {
-        results = db->exec("SELECT id FROM ddl_history ORDER BY id DESC LIMIT 1 OFFSET %1", {maxHistorySize}, Db::Flag::STRING_REPLACE_ARGS);
+        results = db->exec(QString("SELECT id FROM ddl_history ORDER BY id DESC LIMIT 1 OFFSET %1").arg(maxHistorySize), Db::Flag::NO_LOCK);
         if (results->hasNext())
         {
             int id = results->getSingleCell().toInt();
