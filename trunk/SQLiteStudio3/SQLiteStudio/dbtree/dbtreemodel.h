@@ -74,7 +74,7 @@ class DbTreeModel : public QStandardItemModel
         QList<DbTreeItem*> getChildsAsFlatList(QStandardItem* item) const;
         bool dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, int row, Qt::DropAction defaultAction);
         void dropDbObjectItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, Qt::DropAction defaultAction);
-        bool dropUrls(const QList<QUrl>& urls, DbTreeItem* dstItem);
+        bool dropUrls(const QList<QUrl>& urls);
         void moveOrCopyDbObjects(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, bool move, bool includeData);
 
         static bool confirmReferencedTables(const QStringList& tables);

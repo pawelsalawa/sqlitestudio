@@ -36,6 +36,7 @@ class DbDialog : public QDialog
         void setPermanent(bool perm);
 
         QString getPath();
+        void setPath(const QString& path);
         QString getName();
         QHash<QString,QVariant> collectOptions();
         bool isPermanent();

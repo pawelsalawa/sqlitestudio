@@ -32,6 +32,9 @@
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="acceptDrops">
+       <bool>true</bool>
+      </property>
       <property name="dragEnabled">
        <bool>true</bool>
       </property>

@@ -29,6 +29,7 @@ class DbTreeView : public QTreeView
         QModelIndexList getSelectedIndexes() const;
 
     protected:
+        void dragEnterEvent(QDragEnterEvent* e);
         void dragMoveEvent(QDragMoveEvent *event);
         void mouseDoubleClickEvent(QMouseEvent* event);
         void dropEvent(QDropEvent*e);

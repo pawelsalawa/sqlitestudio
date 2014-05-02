@@ -30,6 +30,9 @@
 #include <QKeyEvent>
 #include <QMimeData>
 
+QHash<DbTreeItem::Type,QList<DbTreeItem::Type>> DbTree::allowedTypesInside;
+QSet<DbTreeItem::Type> DbTree::draggableTypes;
+
 DbTree::DbTree(QWidget *parent) :
     QDockWidget(parent),
     ui(new Ui::DbTree)
@@ -41,6 +44,11 @@ DbTree::~DbTree()
 {
     delete ui;
     delete treeModel;
+}
+
+void DbTree::staticInit()
+{
+    initDndTypes();
 }
 
 void DbTree::init()
@@ -449,10 +457,14 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
 
 void DbTree::initDndTypes()
 {
+    draggableTypes << DbTreeItem::Type::TABLE << DbTreeItem::Type::VIEW << DbTreeItem::Type::DIR << DbTreeItem::Type::DB;
+
     allowedTypesInside[DbTreeItem::Type::DIR] << DbTreeItem::Type::DB << DbTreeItem::Type::DIR;
     allowedTypesInside[DbTreeItem::Type::DB] << DbTreeItem::Type::TABLE << DbTreeItem::Type::VIEW;
-    allowedTypesInside[DbTreeItem::Type::TABLES] << DbTreeItem::Type::TABLE;
-    allowedTypesInside[DbTreeItem::Type::VIEWS] << DbTreeItem::Type::VIEW;
+    allowedTypesInside[DbTreeItem::Type::TABLES] << DbTreeItem::Type::TABLE << DbTreeItem::Type::VIEW;
+    allowedTypesInside[DbTreeItem::Type::TABLE] << DbTreeItem::Type::TABLE << DbTreeItem::Type::VIEW;
+    allowedTypesInside[DbTreeItem::Type::VIEWS] << DbTreeItem::Type::TABLE << DbTreeItem::Type::VIEW;
+    allowedTypesInside[DbTreeItem::Type::VIEW] << DbTreeItem::Type::TABLE << DbTreeItem::Type::VIEW;
 }
 
 QVariant DbTree::saveSession()
@@ -471,7 +483,7 @@ DbTreeModel* DbTree::getModel() const
     return treeModel;
 }
 
-bool DbTree::isMimeDataValidForItem(const QMimeData* mimeData, const DbTreeItem* item) const
+bool DbTree::isMimeDataValidForItem(const QMimeData* mimeData, const DbTreeItem* item)
 {
     if (mimeData->formats().contains(DbTreeModel::MIMETYPE))
         return areDbTreeItemsValidForItem(DbTreeModel::getDragItems(mimeData), item);
@@ -479,6 +491,56 @@ bool DbTree::isMimeDataValidForItem(const QMimeData* mimeData, const DbTreeItem*
         return areUrlsValidForItem(mimeData->urls(), item);
 
     return false;
+}
+
+bool DbTree::isItemDraggable(const DbTreeItem* item)
+{
+    return item && draggableTypes.contains(item->getType());
+}
+
+bool DbTree::areDbTreeItemsValidForItem(QList<DbTreeItem*> srcItems, const DbTreeItem* dstItem)
+{
+    QSet<Db*> srcDbs;
+    QList<DbTreeItem::Type> srcTypes;
+    DbTreeItem::Type dstType = DbTreeItem::Type::DIR; // the empty space is treated as group
+    if (dstItem)
+        dstType = dstItem->getType();
+
+    for (DbTreeItem* srcItem : srcItems)
+    {
+        if (srcItem)
+            srcTypes << srcItem->getType();
+        else
+            srcTypes << DbTreeItem::Type::ITEM_PROTOTYPE;
+
+        if (srcItem->getDb())
+            srcDbs << srcItem->getDb();
+    }
+
+    for (DbTreeItem::Type srcType : srcTypes)
+    {
+        if (!allowedTypesInside[dstType].contains(srcType))
+            return false;
+
+        if (dstType == DbTreeItem::Type::DB && !dstItem->getDb()->isOpen())
+            return false;
+    }
+
+    if (dstItem && dstItem->getDb() && srcDbs.contains(dstItem->getDb()))
+        return false;
+
+    return true;
+}
+
+bool DbTree::areUrlsValidForItem(const QList<QUrl>& srcUrls, const DbTreeItem* dstItem)
+{
+    UNUSED(dstItem);
+    for (const QUrl& srcUrl : srcUrls)
+    {
+        if (!srcUrl.isLocalFile())
+            return false;
+    }
+    return true;
 }
 
 void DbTree::showWidgetCover()
@@ -675,52 +737,6 @@ void DbTree::deleteItem(DbTreeItem* item)
     }
 }
 
-bool DbTree::areDbTreeItemsValidForItem(QList<DbTreeItem*> srcItems, const DbTreeItem* dstItem) const
-{
-    QSet<Db*> srcDbs;
-    QList<DbTreeItem::Type> srcTypes;
-    DbTreeItem::Type dstType = DbTreeItem::Type::DIR; // the empty space is treated as group
-    if (dstItem)
-        dstType = dstItem->getType();
-
-    for (DbTreeItem* srcItem : srcItems)
-    {
-        if (srcItem)
-            srcTypes << srcItem->getType();
-        else
-            srcTypes << DbTreeItem::Type::ITEM_PROTOTYPE;
-
-        if (srcItem->getDb())
-            srcDbs << srcItem->getDb();
-    }
-
-    for (DbTreeItem::Type srcType : srcTypes)
-    {
-        if (!allowedTypesInside[dstType].contains(srcType))
-            return false;
-
-        if (dstType == DbTreeItem::Type::DB && !dstItem->getDb()->isOpen())
-            return false;
-    }
-
-    if (dstItem && dstItem->getDb() && srcDbs.contains(dstItem->getDb()))
-        return false;
-
-    return true;
-}
-
-bool DbTree::areUrlsValidForItem(const QList<QUrl>& srcUrls, const DbTreeItem* dstItem) const
-{
-    if (dstItem && dstItem->getType() != DbTreeItem::Type::DIR)
-        return false; // files (databases) can be dropped only on toplevel or groups
-
-    for (const QUrl& srcUrl : srcUrls)
-    {
-        if (!srcUrl.isLocalFile())
-            return false;
-    }
-    return true;
-}
 
 void DbTree::refreshSchema(Db* db)
 {
