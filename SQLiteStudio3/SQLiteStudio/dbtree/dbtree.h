@@ -74,6 +74,8 @@ class DbTree : public QDockWidget, public ExtActionContainer
         void restoreSession(const QVariant& sessionValue);
         DbTreeModel* getModel() const;
         bool isMimeDataValidForItem(const QMimeData* mimeData, const DbTreeItem* item) const;
+        void showWidgetCover();
+        void hideWidgetCover();
 
     protected:
         void createActions();

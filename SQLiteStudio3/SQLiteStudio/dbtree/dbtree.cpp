@@ -481,6 +481,16 @@ bool DbTree::isMimeDataValidForItem(const QMimeData* mimeData, const DbTreeItem*
     return false;
 }
 
+void DbTree::showWidgetCover()
+{
+    widgetCover->show();
+}
+
+void DbTree::hideWidgetCover()
+{
+    widgetCover->hide();
+}
+
 void DbTree::setActionEnabled(int action, bool enabled)
 {
     actionMap[action]->setEnabled(enabled);
@@ -731,7 +741,12 @@ void DbTree::copy()
 
 void DbTree::paste()
 {
-    // TODO implement DbTree::paste()
+    DbTreeItem* currItem = ui->treeView->currentItem();
+    QModelIndex idx;
+    if (currItem)
+        idx = currItem->index();
+
+    treeModel->pasteData(QApplication::clipboard()->mimeData(), -1, -1, idx, Qt::CopyAction);
 }
 
 void DbTree::selectAll()

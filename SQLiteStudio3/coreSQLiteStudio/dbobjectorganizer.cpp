@@ -371,6 +371,10 @@ bool DbObjectOrganizer::copyDataAsMiddleware(const QString& table)
 
         i++;
     }
+
+    if (isInterrupted())
+        return false;
+
     return true;
 }
 

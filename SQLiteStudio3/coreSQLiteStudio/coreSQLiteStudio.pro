@@ -302,7 +302,8 @@ HEADERS += sqlitestudio.h\
     querymodel.h \
     plugins/genericexportplugin.h \
     dbobjectorganizer.h \
-    db/attachguard.h
+    db/attachguard.h \
+    interruptable.h
 
 unix:!symbian {
     maemo5 {

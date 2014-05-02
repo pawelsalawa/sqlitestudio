@@ -38,6 +38,9 @@ class DbTreeModel : public QStandardItemModel
         QStringList mimeTypes() const;
         QMimeData* mimeData(const QModelIndexList &indexes) const;
         bool dropMimeData(const QMimeData* data, Qt::DropAction action, int row, int column, const QModelIndex& parent);
+        bool pasteData(const QMimeData* data, int row, int column, const QModelIndex& parent, Qt::DropAction defaultAction = Qt::IgnoreAction);
+        void interruptableStarted(Interruptable* obj);
+        void interruptableFinished(Interruptable* obj);
 
         static DbTreeItem* findItem(QStandardItem *parentItem, DbTreeItem::Type type, const QString &name);
         static DbTreeItem* findItem(QStandardItem* parentItem, DbTreeItem::Type type, Db* db);
@@ -69,11 +72,10 @@ class DbTreeModel : public QStandardItemModel
         QString getInvalidDbToolTip(DbTreeItem *item) const;
         QString getTableToolTip(DbTreeItem *item) const;
         QList<DbTreeItem*> getChildsAsFlatList(QStandardItem* item) const;
-        bool dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, int row);
-        bool dropDbObjectItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem);
-        bool dropDbOnDir(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, int row);
+        bool dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, int row, Qt::DropAction defaultAction);
+        void dropDbObjectItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, Qt::DropAction defaultAction);
         bool dropUrls(const QList<QUrl>& urls, DbTreeItem* dstItem);
-        void moveOrCopyDbObjects(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem);
+        void moveOrCopyDbObjects(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, bool move, bool includeData);
 
         static bool confirmReferencedTables(const QStringList& tables);
         static bool resolveNameConflict(QString& nameInConflict);
@@ -86,6 +88,7 @@ class DbTreeModel : public QStandardItemModel
         DbTreeView* treeView;
         bool requireSchemaReloading = false;
         DbObjectOrganizer* dbOrganizer = nullptr;
+        QList<Interruptable*> interruptables;
 
     private slots:
         void expanded(const QModelIndex &index);

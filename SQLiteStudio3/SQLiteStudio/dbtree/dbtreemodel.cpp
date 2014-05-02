@@ -916,6 +916,14 @@ QMimeData *DbTreeModel::mimeData(const QModelIndexList &indexes) const
 
 bool DbTreeModel::dropMimeData(const QMimeData* data, Qt::DropAction action, int row, int column, const QModelIndex& parent)
 {
+    if (pasteData(data, row, column, parent, Qt::IgnoreAction))
+        return false;
+
+    return QStandardItemModel::dropMimeData(data, action, row, column, parent);
+}
+
+bool DbTreeModel::pasteData(const QMimeData* data, int row, int column, const QModelIndex& parent, Qt::DropAction defaultAction)
+{
     DbTreeItem* dstItem = nullptr;
     if (parent.isValid())
     {
@@ -929,18 +937,30 @@ bool DbTreeModel::dropMimeData(const QMimeData* data, Qt::DropAction action, int
         dstItem = dynamic_cast<DbTreeItem*>(item(row, column));
 
     if (!dstItem)
-        return QStandardItemModel::dropMimeData(data, action, row, column, parent);
+        return false;
 
     bool res = false;
     if (data->formats().contains(MIMETYPE))
-        res = dropDbTreeItem(getDragItems(data), dstItem, row);
+        res = dropDbTreeItem(getDragItems(data), dstItem, row, defaultAction);
     else if (data->hasUrls())
         res = dropUrls(data->urls(), dstItem);
 
-    if (!res)
-        return false;
+    return res;
+}
 
-    return QStandardItemModel::dropMimeData(data, action, row, column, parent);
+void DbTreeModel::interruptableStarted(Interruptable* obj)
+{
+    if (interruptables.size() == 0)
+        treeView->getDbTree()->showWidgetCover();
+
+    interruptables << obj;
+}
+
+void DbTreeModel::interruptableFinished(Interruptable* obj)
+{
+    interruptables.removeOne(obj);
+    if (interruptables.size() == 0)
+        treeView->getDbTree()->hideWidgetCover();
 }
 
 QList<DbTreeItem*> DbTreeModel::getDragItems(const QMimeData* data)
@@ -962,7 +982,7 @@ QList<DbTreeItem*> DbTreeModel::getDragItems(const QMimeData* data)
     return items;
 }
 
-bool DbTreeModel::dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, int row)
+bool DbTreeModel::dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, int row, Qt::DropAction defaultAction)
 {
     UNUSED(row);
     if (srcItems.size() == 0)
@@ -977,7 +997,8 @@ bool DbTreeModel::dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem*
             if (srcItem->getDb() == dstItem->getDb())
                 return true;
 
-            return dropDbObjectItem(srcItems, dstItem);
+            dropDbObjectItem(srcItems, dstItem, defaultAction);
+            return true;
         }
         case DbTreeItem::Type::DB:
         case DbTreeItem::Type::INVALID_DB:
@@ -995,63 +1016,67 @@ bool DbTreeModel::dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem*
             break;
     }
 
-    return true;
-}
-
-bool DbTreeModel::dropDbObjectItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem)
-{
-    moveOrCopyDbObjects(srcItems, dstItem);
     return false;
 }
 
-bool DbTreeModel::dropDbOnDir(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, int row)
+void DbTreeModel::dropDbObjectItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, Qt::DropAction defaultAction)
 {
-    for (DbTreeItem* srcItem : srcItems)
+    bool copy = false;
+    bool move = false;
+    bool includeData = false;
+
+    if (defaultAction == Qt::CopyAction)
     {
-        if (srcItem->getType() != DbTreeItem::Type::DB && srcItem->getType() != DbTreeItem::Type::INVALID_DB)
-            continue;
-
-        move(srcItem, dstItem, row);
+        copy = true;
+        includeData = true;
     }
-    return false;
+    else if (defaultAction == Qt::MoveAction)
+    {
+        move = true;
+        includeData = true;
+    }
+    else
+    {
+        QMenu menu;
+        QAction* copyAction = menu.addAction(ICONS.ACT_COPY, tr("Copy"));
+        QAction* moveAction = menu.addAction(ICONS.ACT_CUT, tr("Move"));
+
+        QWidget* includeDataWidget = new QWidget(&menu);
+        includeDataWidget->setLayout(new QHBoxLayout());
+        QCheckBox *includeDataCheck = new QCheckBox(tr("Include data"));
+        includeDataWidget->layout()->addWidget(includeDataCheck);
+        QWidgetAction *includeDataAction = new QWidgetAction(&menu);
+        includeDataAction->setDefaultWidget(includeDataWidget);
+        includeDataCheck->setChecked(true);
+        menu.addAction(includeDataAction);
+
+        menu.addSeparator();
+        menu.addAction(ICONS.ACT_ABORT, tr("Abort"));
+
+        connect(moveAction, &QAction::triggered, [&move]() {move = true;});
+        connect(copyAction, &QAction::triggered, [&copy]() {copy = true;});
+
+        menu.exec(treeView->mapToGlobal(treeView->getLastDropPosition()));
+
+        includeData = includeDataCheck->isChecked();
+    }
+
+    if (!copy && !move)
+        return;
+
+    moveOrCopyDbObjects(srcItems, dstItem, move, includeData);
 }
 
 bool DbTreeModel::dropUrls(const QList<QUrl>& urls, DbTreeItem* dstItem)
 {
+    // TODO drop db file on db list
     return true;
 }
 
-void DbTreeModel::moveOrCopyDbObjects(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem)
+void DbTreeModel::moveOrCopyDbObjects(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, bool move, bool includeData)
 {
     if (srcItems.size() == 0)
         return;
-
-    QMenu menu;
-    menu.addAction(ICONS.ACT_COPY, tr("Copy"));
-    QAction* moveAction = menu.addAction(ICONS.ACT_CUT, tr("Move"));
-
-    QWidget* includeDataWidget = new QWidget(&menu);
-    includeDataWidget->setLayout(new QHBoxLayout());
-    QCheckBox *includeDataCheck = new QCheckBox(tr("Include data"));
-    includeDataWidget->layout()->addWidget(includeDataCheck);
-    QWidgetAction *includeDataAction = new QWidgetAction(&menu);
-    includeDataAction->setDefaultWidget(includeDataWidget);
-    includeDataCheck->setChecked(true);
-    menu.addAction(includeDataAction);
-
-    menu.addSeparator();
-    QAction* abortAction = menu.addAction(ICONS.ACT_ABORT, tr("Abort"));
-
-    bool abort = false;
-    bool move = false;
-    connect(moveAction, &QAction::triggered, [&move]() {move = true;});
-    connect(abortAction, &QAction::triggered, [&abort]() {abort = true;});
-
-    menu.exec(treeView->mapToGlobal(treeView->getLastDropPosition()));
-    if (abort)
-        return;
-
-    bool includeData = includeDataCheck->isChecked();
 
     DbTreeItem* srcItem = srcItems.first();
     Db* srcDb = srcItem->getDb();
@@ -1061,6 +1086,7 @@ void DbTreeModel::moveOrCopyDbObjects(const QList<DbTreeItem*>& srcItems, DbTree
     for (DbTreeItem* item : srcItems)
         srcNames << item->text();
 
+    interruptableStarted(dbOrganizer);
     if (move)
         dbOrganizer->moveObjectsToDb(srcDb, srcNames, dstDb, includeData);
     else
@@ -1093,17 +1119,25 @@ bool DbTreeModel::resolveNameConflict(QString& nameInConflict)
 void DbTreeModel::dbObjectsMoveFinished(bool success, Db* srcDb, Db* dstDb)
 {
     if (!success)
+    {
+        interruptableFinished(dbOrganizer);
         return;
+    }
 
     DBTREE->refreshSchema(srcDb);
     DBTREE->refreshSchema(dstDb);
+    interruptableFinished(dbOrganizer);
 }
 
 void DbTreeModel::dbObjectsCopyFinished(bool success, Db* srcDb, Db* dstDb)
 {
     UNUSED(srcDb);
     if (!success)
+    {
+        interruptableFinished(dbOrganizer);
         return;
+    }
 
     DBTREE->refreshSchema(dstDb);
+    interruptableFinished(dbOrganizer);
 }
