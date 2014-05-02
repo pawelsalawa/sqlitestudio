@@ -378,6 +378,7 @@ void FunctionsEditor::updateCurrentFunctionState()
         setValidState(ui->langCombo, true);
         setValidState(ui->nameEdit, true);
         setValidState(ui->mainCodeEdit, true);
+        setValidState(ui->finalCodeEdit, true);
         return;
     }
 
@@ -406,6 +407,12 @@ void FunctionsEditor::updateCurrentFunctionState()
 
     bool codeOk = !ui->mainCodeEdit->toPlainText().trimmed().isEmpty();
     setValidState(ui->mainCodeEdit, codeOk, tr("Enter a non-empty implementation code."));
+
+    bool finalCodeOk = true;
+    if (aggregate)
+        finalCodeOk = !ui->finalCodeEdit->toPlainText().trimmed().isEmpty();
+
+    setValidState(ui->finalCodeEdit, finalCodeOk);
 
     // Syntax highlighter
     QString lang = ui->langCombo->currentText();
@@ -448,7 +455,7 @@ void FunctionsEditor::updateCurrentFunctionState()
     }
 
     updateArgsState();
-    model->setValid(row, langOk && codeOk && nameOk);
+    model->setValid(row, langOk && codeOk && finalCodeOk && nameOk);
     updateState();
 }
 
