@@ -180,6 +180,7 @@ bool WidgetStateIndicator::eventFilter(QObject* obj, QEvent* ev)
         switch (ev->type())
         {
             case QEvent::Move:
+            case QEvent::Resize:
             case QEvent::Scroll:
                 updatePosition();
                 break;
