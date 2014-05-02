@@ -54,6 +54,7 @@ class MainWindow : public QMainWindow, virtual public ExtActionContainer
         void restoreSession();
         void setStyle(const QString& styleName);
         FormManager* getFormManager() const;
+        bool eventFilter(QObject* obj, QEvent* e);
 
     protected:
         void closeEvent(QCloseEvent *event);

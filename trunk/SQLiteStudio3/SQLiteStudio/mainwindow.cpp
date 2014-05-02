@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "common/unused.h"
 #include "dbtree/dbtree.h"
 #include "iconmanager.h"
 #include "windows/editorwindow.h"
@@ -27,6 +28,7 @@
 #include <QDebug>
 #include <QStyleFactory>
 #include <QUiLoader>
+#include <dialogs/dbdialog.h>
 
 MainWindow* MainWindow::instance = nullptr;
 
@@ -77,6 +79,8 @@ void MainWindow::init()
     PLUGINS->loadBuiltInPlugin(new SqliteHighlighterPlugin);
     PLUGINS->loadBuiltInPlugin(new JavaScriptHighlighterPlugin);
     MultiEditor::loadBuiltInEditors();
+
+    qApp->installEventFilter(this);
 }
 
 void MainWindow::cleanUp()
@@ -481,4 +485,21 @@ MainWindow *MainWindow::getInstance()
         instance = new MainWindow();
 
     return instance;
+}
+
+bool MainWindow::eventFilter(QObject* obj, QEvent* e)
+{
+    UNUSED(obj);
+    if (e->type() == QEvent::FileOpen)
+    {
+        QUrl url = dynamic_cast<QFileOpenEvent*>(e)->url();
+        if (!url.isLocalFile())
+            return false;
+
+        DbDialog dialog(DbDialog::ADD, this);
+        dialog.setPath(url.toLocalFile());
+        dialog.exec();
+        return true;
+    }
+    return false;
 }
