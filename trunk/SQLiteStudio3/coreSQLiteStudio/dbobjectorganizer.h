@@ -2,6 +2,7 @@
 #define DBOBJECTORGANIZER_H
 
 #include "coreSQLiteStudio_global.h"
+#include "interruptable.h"
 #include <QString>
 #include <QObject>
 #include <QRunnable>
@@ -12,7 +13,7 @@
 class Db;
 class SchemaResolver;
 
-class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable
+class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable, public Interruptable
 {
         Q_OBJECT
 

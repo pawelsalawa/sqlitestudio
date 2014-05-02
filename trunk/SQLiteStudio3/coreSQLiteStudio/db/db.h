@@ -8,6 +8,7 @@
 #include "common/readwritelocker.h"
 #include "coreSQLiteStudio_global.h"
 #include "db/attachguard.h"
+#include "interruptable.h"
 #include <QObject>
 #include <QVariant>
 #include <QList>
@@ -113,7 +114,7 @@ static_char* DB_PURE_INIT = "sqlitestudio_pure_db_initalization";
  * @see DbQt2
  * @see DbQt3
  */
-class API_EXPORT Db : public QObject
+class API_EXPORT Db : public QObject, public Interruptable
 {
     Q_OBJECT
 
@@ -442,15 +443,6 @@ class API_EXPORT Db : public QObject
          * @return true on success, or false otherwise (i.e. there was no transaction open, there was a connection problem, etc).
          */
         virtual bool rollback() = 0;
-
-        /**
-         * @brief Interrupts current execution.
-         *
-         * This method makes sense only when execution takes place in thread other, than the one calling this method.
-         * It interrupts execution - in most cases instantly. It calls sqlite*_interrupt(), so the actual behaviour is defined there.
-         * This method doesn't return until the interrupting is done.
-         */
-        virtual void interrupt() = 0;
 
         /**
          * @brief Interrupts current execution asynchronously.
