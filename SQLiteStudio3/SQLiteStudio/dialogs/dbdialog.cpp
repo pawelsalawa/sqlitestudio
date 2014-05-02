@@ -43,6 +43,11 @@ QString DbDialog::getPath()
     return ui->fileEdit->text();
 }
 
+void DbDialog::setPath(const QString& path)
+{
+    ui->fileEdit->setText(path);
+}
+
 QString DbDialog::getName()
 {
     return ui->nameEdit->text();

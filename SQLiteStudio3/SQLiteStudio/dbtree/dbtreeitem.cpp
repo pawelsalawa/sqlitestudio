@@ -2,6 +2,7 @@
 #include "iconmanager.h"
 #include "dbtreemodel.h"
 #include "services/dbmanager.h"
+#include "dbtree.h"
 #include <QDebug>
 
 DbTreeItem::DbTreeItem(DbTreeItem::Type type, const Icon& icon, const QString& nodeName, QObject* parent)
@@ -304,6 +305,14 @@ void DbTreeItem::init()
         setEditable(false);
 
     setData(false, DataRole::HIDDEN);
+
+    Qt::ItemFlags f = flags();
+    if (DbTree::isItemDraggable(this))
+        f |= Qt::ItemIsDragEnabled;
+    else
+        f ^= Qt::ItemIsDragEnabled;
+
+    setFlags(f);
 }
 
 QDataStream &operator <<(QDataStream &out, const DbTreeItem *item)

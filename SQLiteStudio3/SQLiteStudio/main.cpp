@@ -8,6 +8,7 @@
 #include "windows/tablewindow.h"
 #include "windows/viewwindow.h"
 #include "dataview.h"
+#include "dbtree/dbtree.h"
 #include "multieditor/multieditordatetime.h"
 #include "multieditor/multieditortime.h"
 #include "multieditor/multieditordate.h"
@@ -25,6 +26,7 @@ int main(int argc, char *argv[])
     SqlQueryModel::staticInit();
     SQLITESTUDIO->init(a.arguments());
     IconManager::getInstance()->init();
+    DbTree::staticInit();
     DataView::staticInit();
     EditorWindow::staticInit();
     TableWindow::staticInit();

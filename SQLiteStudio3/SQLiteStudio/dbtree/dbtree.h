@@ -67,13 +67,17 @@ class DbTree : public QDockWidget, public ExtActionContainer
 
         explicit DbTree(QWidget *parent = 0);
         ~DbTree();
+
+        static void staticInit();
+
         void init();
         void updateActionStates(const QStandardItem* item);
         void setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu);
         QVariant saveSession();
         void restoreSession(const QVariant& sessionValue);
         DbTreeModel* getModel() const;
-        bool isMimeDataValidForItem(const QMimeData* mimeData, const DbTreeItem* item) const;
+        static bool isMimeDataValidForItem(const QMimeData* mimeData, const DbTreeItem* item);
+        static bool isItemDraggable(const DbTreeItem* item);
         void showWidgetCover();
         void hideWidgetCover();
 
@@ -82,7 +86,6 @@ class DbTree : public QDockWidget, public ExtActionContainer
         void setupDefShortcuts();
 
     private:
-        void initDndTypes();
         void setActionEnabled(int action, bool enabled);
         Db* getSelectedDb();
         Db* getSelectedOpenDb();
@@ -98,13 +101,17 @@ class DbTree : public QDockWidget, public ExtActionContainer
         void filterUndeletableItems(QList<DbTreeItem*>& items);
         void filterItemsWithParentInList(QList<DbTreeItem*>& items);
         void deleteItem(DbTreeItem* item);
-        bool areDbTreeItemsValidForItem(QList<DbTreeItem*> srcItems, const DbTreeItem* dstItem) const;
-        bool areUrlsValidForItem(const QList<QUrl>& srcUrls, const DbTreeItem* dstItem) const;
+        static bool areDbTreeItemsValidForItem(QList<DbTreeItem*> srcItems, const DbTreeItem* dstItem);
+        static bool areUrlsValidForItem(const QList<QUrl>& srcUrls, const DbTreeItem* dstItem);
+
+        static void initDndTypes();
 
         Ui::DbTree *ui;
         DbTreeModel* treeModel;
         WidgetCover* widgetCover = nullptr;
-        QHash<DbTreeItem::Type,QList<DbTreeItem::Type> > allowedTypesInside;
+
+        static QHash<DbTreeItem::Type,QList<DbTreeItem::Type>> allowedTypesInside;
+        static QSet<DbTreeItem::Type> draggableTypes;
 
     public slots:
         void refreshSchema(Db* db);

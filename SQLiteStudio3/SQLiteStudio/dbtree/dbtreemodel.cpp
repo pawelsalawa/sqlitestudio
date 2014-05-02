@@ -17,6 +17,7 @@
 #include <QInputDialog>
 #include <QCheckBox>
 #include <QWidgetAction>
+#include <dialogs/dbdialog.h>
 
 const QString DbTreeModel::toolTipTableTmp = "<table>%1</table>";
 const QString DbTreeModel::toolTipHdrRowTmp = "<tr><th><img src=\"%1\"/></th><th colspan=2>%2</th></tr>";
@@ -937,13 +938,18 @@ bool DbTreeModel::pasteData(const QMimeData* data, int row, int column, const QM
         dstItem = dynamic_cast<DbTreeItem*>(item(row, column));
 
     if (!dstItem)
-        return false;
+    {
+        if (data->hasUrls())
+            return dropUrls(data->urls());
+        else
+            return false;
+    }
 
     bool res = false;
     if (data->formats().contains(MIMETYPE))
         res = dropDbTreeItem(getDragItems(data), dstItem, row, defaultAction);
     else if (data->hasUrls())
-        res = dropUrls(data->urls(), dstItem);
+        res = dropUrls(data->urls());
 
     return res;
 }
@@ -1067,9 +1073,20 @@ void DbTreeModel::dropDbObjectItem(const QList<DbTreeItem*>& srcItems, DbTreeIte
     moveOrCopyDbObjects(srcItems, dstItem, move, includeData);
 }
 
-bool DbTreeModel::dropUrls(const QList<QUrl>& urls, DbTreeItem* dstItem)
+bool DbTreeModel::dropUrls(const QList<QUrl>& urls)
 {
-    // TODO drop db file on db list
+    for (const QUrl& url : urls)
+    {
+        if (!url.isLocalFile())
+        {
+            qDebug() << url.toString() + "skipped, not a local file.";
+            continue;
+        }
+
+        DbDialog dialog(DbDialog::ADD, MAINWINDOW);
+        dialog.setPath(url.toLocalFile());
+        dialog.exec();
+    }
     return true;
 }
 

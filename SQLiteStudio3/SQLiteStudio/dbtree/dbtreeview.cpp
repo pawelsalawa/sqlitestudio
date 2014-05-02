@@ -97,6 +97,13 @@ DbTreeItem *DbTreeView::getItemForAction() const
     return dynamic_cast<DbTreeItem*>(model()->itemFromIndex(idx));
 }
 
+void DbTreeView::dragEnterEvent(QDragEnterEvent* e)
+{
+    QTreeView::dragEnterEvent(e);
+    if (e->mimeData()->hasUrls())
+        e->acceptProposedAction();
+}
+
 void DbTreeView::dragMoveEvent(QDragMoveEvent *event)
 {
     QTreeView::dragMoveEvent(event);
@@ -127,7 +134,9 @@ void DbTreeView::dragMoveEvent(QDragMoveEvent *event)
 
     //qDebug() << event->mimeData()->formats();
     const QMimeData* data = event->mimeData();
-    if (!dbTree->isMimeDataValidForItem(data, dstItem))
+    if (dbTree->isMimeDataValidForItem(data, dstItem))
+        event->acceptProposedAction();
+    else
         event->ignore();
 }
 
@@ -234,4 +243,9 @@ void DbTreeView::dropEvent(QDropEvent* e)
 {
     lastDropPosition = e->pos();
     QTreeView::dropEvent(e);
+    if (!e->isAccepted() && e->mimeData()->hasUrls())
+    {
+        dbTree->getModel()->dropMimeData(e->mimeData(), Qt::CopyAction, -1, -1, dbTree->getModel()->root()->index());
+        e->accept();
+    }
 }
