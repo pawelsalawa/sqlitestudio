@@ -17,7 +17,7 @@ QVariant SelectableDbModel::data(const QModelIndex& index, int role) const
         return QSortFilterProxyModel::data(index, role);
 
     DbTreeItem::Type type = item->getType();
-    if (type != DbTreeItem::Type::DB && type != DbTreeItem::Type::INVALID_DB)
+    if (type != DbTreeItem::Type::DB)
         return QSortFilterProxyModel::data(index, role);
 
     return checkedDatabases.contains(item->text(), Qt::CaseInsensitive) ? Qt::Checked : Qt::Unchecked;
@@ -33,7 +33,7 @@ bool SelectableDbModel::setData(const QModelIndex& index, const QVariant& value,
         return QSortFilterProxyModel::setData(index, value, role);
 
     DbTreeItem::Type type = item->getType();
-    if (type != DbTreeItem::Type::DB && type != DbTreeItem::Type::INVALID_DB)
+    if (type != DbTreeItem::Type::DB)
         return QSortFilterProxyModel::setData(index, value, role);
 
     if (value.toBool())
@@ -57,7 +57,7 @@ Qt::ItemFlags SelectableDbModel::flags(const QModelIndex& index) const
     DbTreeItem::Type type = item->getType();
     if (item->getDb() && item->getDb()->getVersion() == disabledVersion)
         itemFlags ^= Qt::ItemIsEnabled;
-    else if (type == DbTreeItem::Type::DB || type == DbTreeItem::Type::INVALID_DB)
+    else if (type == DbTreeItem::Type::DB)
         itemFlags |= Qt::ItemIsUserCheckable;
 
     return itemFlags;
@@ -83,7 +83,6 @@ bool SelectableDbModel::filterAcceptsRow(int srcRow, const QModelIndex& srcParen
     {
         case DbTreeItem::Type::DIR:
         case DbTreeItem::Type::DB:
-        case DbTreeItem::Type::INVALID_DB:
             return true;
         default:
             return false;

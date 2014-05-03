@@ -18,6 +18,7 @@
 #include <QCheckBox>
 #include <QWidgetAction>
 #include <dialogs/dbdialog.h>
+#include <db/invaliddb.h>
 
 const QString DbTreeModel::toolTipTableTmp = "<table>%1</table>";
 const QString DbTreeModel::toolTipHdrRowTmp = "<tr><th><img src=\"%1\"/></th><th colspan=2>%2</th></tr>";
@@ -51,7 +52,7 @@ void DbTreeModel::connectDbManagerSignals()
     connect(DBLIST, &DbManager::dbConnected, this, &DbTreeModel::dbConnected);
     connect(DBLIST, &DbManager::dbDisconnected, this, &DbTreeModel::dbDisconnected);
     connect(DBLIST, SIGNAL(dbLoaded(Db*,DbPlugin*)), this, SLOT(dbLoaded(Db*,DbPlugin*)));
-    connect(DBLIST, SIGNAL(dbAboutToBeUnloaded(Db*,DbPlugin*)), this, SLOT(dbToBeUnloaded(Db*,DbPlugin*)));
+    connect(DBLIST, SIGNAL(dbUnloaded(Db*,DbPlugin*)), this, SLOT(dbUnloaded(Db*,DbPlugin*)));
 }
 
 void DbTreeModel::move(QStandardItem *itemToMove, QStandardItem *newParentItem, int newRow)
@@ -187,15 +188,6 @@ QList<Config::DbGroupPtr> DbTreeModel::childsToConfig(QStandardItem *item)
                 groups += group;
                 break;
             }
-            case DbTreeItem::Type::INVALID_DB:
-            {
-                group = Config::DbGroupPtr::create();
-                group->referencedDbName = dbTreeItem->text();
-                group->order = i;
-                group->open = false;
-                groups += group;
-                break;
-            }
             default:
                 // no-op
                 break;
@@ -208,7 +200,6 @@ void DbTreeModel::restoreGroup(const Config::DbGroupPtr& group, QList<Db*>* dbLi
 {
     Db* db = nullptr;
     DbTreeItem* item;
-    bool invalidDb = false;
     if (group->referencedDbName.isNull())
     {
         item = DbTreeItemFactory::createDir(group->name, this);
@@ -223,9 +214,6 @@ void DbTreeModel::restoreGroup(const Config::DbGroupPtr& group, QList<Db*>* dbLi
         item->setDb(group->referencedDbName);
 
         db = DBLIST->getByName(group->referencedDbName);
-        if (!db)
-            invalidDb = true;
-
         if (db && dbList)
             dbList->removeOne(db);
     }
@@ -248,9 +236,6 @@ void DbTreeModel::restoreGroup(const Config::DbGroupPtr& group, QList<Db*>* dbLi
 
         treeView->expand(item->index());
     }
-
-    if (invalidDb)
-        item->setInvalidDbType(true);
 }
 
 void DbTreeModel::expanded(const QModelIndex &index)
@@ -379,8 +364,6 @@ QString DbTreeModel::getToolTip(DbTreeItem* item) const
     {
         case DbTreeItem::Type::DB:
             return getDbToolTip(item);
-        case DbTreeItem::Type::INVALID_DB:
-            return getInvalidDbToolTip(item);
         case DbTreeItem::Type::TABLE:
             return getTableToolTip(item);
         default:
@@ -395,40 +378,23 @@ QString DbTreeModel::getDbToolTip(DbTreeItem* item) const
 
     Db* db = item->getDb();
     QFile dbFile(db->getPath());
-    rows << toolTipHdrRowTmp.arg(ICONS.DATABASE.getPath()).arg(tr("Database: %1", "dbtree tooltip").arg(db->getName()));
+    QString iconPath = db->isValid() ? ICONS.DATABASE.toImgSrc() : ICONS.DATABASE_INVALID.toImgSrc();
+
+    rows << toolTipHdrRowTmp.arg(iconPath).arg(tr("Database: %1", "dbtree tooltip").arg(db->getName()));
     rows << toolTipRowTmp.arg("URI:").arg(db->getPath());
-    rows << toolTipRowTmp.arg(tr("Version:", "dbtree tooltip")).arg(QString("SQLite %1").arg(db->getVersion()));
-    rows << toolTipRowTmp.arg(tr("File size:", "dbtree tooltip")).arg(formatFileSize(dbFile.size()));
-    rows << toolTipRowTmp.arg(tr("Encoding:", "dbtree tooltip")).arg(db->getEncoding());
 
-    return toolTipTableTmp.arg(rows.join(""));
-}
-
-QString DbTreeModel::getInvalidDbToolTip(DbTreeItem* item) const
-{
-    QString dbName = item->text();
-    Config::CfgDbPtr cfgDb = CFG->getDb(dbName);
-
-    QStringList rows;
-    //data:image/png;base64,
-    rows << toolTipHdrRowTmp.arg(ICONS.DATABASE_INVALID.toBase64Url()).arg(tr("Database: %1", "dbtree tooltip").arg(dbName));
-
-    QString errorMsg;
-    if (cfgDb)
+    if (db->isValid())
     {
-        rows << toolTipRowTmp.arg("URI:").arg(cfgDb->path);
-
-        QFileInfo file(cfgDb->path);
-        if (file.isReadable())
-            errorMsg = tr("Invalid SQLite database file, missing driver plugin, or encrypted database.");
-        else
-            errorMsg = tr("File not readable.");
+        rows << toolTipRowTmp.arg(tr("Version:", "dbtree tooltip")).arg(QString("SQLite %1").arg(db->getVersion()));
+        rows << toolTipRowTmp.arg(tr("File size:", "dbtree tooltip")).arg(formatFileSize(dbFile.size()));
+        rows << toolTipRowTmp.arg(tr("Encoding:", "dbtree tooltip")).arg(db->getEncoding());
     }
     else
     {
-        errorMsg = tr("Database not found in configuration. Remove it and add it again.");
+        InvalidDb* idb = dynamic_cast<InvalidDb*>(db);
+        rows << toolTipRowTmp.arg(tr("Error details:", "dbtree tooltip")).arg(idb->getError());
     }
-    rows << toolTipRowTmp.arg("Error:").arg(errorMsg);
+
     return toolTipTableTmp.arg(rows.join(""));
 }
 
@@ -709,30 +675,28 @@ void DbTreeModel::dbDisconnected(Db* db)
     treeView->collapse(item->index());
 }
 
-void DbTreeModel::dbToBeUnloaded(Db* db, DbPlugin* plugin)
+void DbTreeModel::dbUnloaded(Db* db, DbPlugin* plugin)
 {
     UNUSED(plugin);
-
-    DbTreeItem* item = findItem(DbTreeItem::Type::DB, db);
-
-    // We need to close db now if it's open,
-    // because after setting it to an invalid type,
-    // it will have no db assigned and it will not react correctly
-    // to a "disconnected" signal from DbManager.
-    if (db->isOpen())
-        db->close();
-
-    if (item)
-        item->setInvalidDbType(true);
+    DbTreeItem* item = findItem(DbTreeItem::Type::DB, db->getName());
+    if (!item)
+    {
+        qCritical() << "No DB item found to update icon:" << db->getName();
+        return;
+    }
+    item->updateDbIcon();
 }
 
 void DbTreeModel::dbLoaded(Db* db, DbPlugin* plugin)
 {
     UNUSED(plugin);
-
-    DbTreeItem* item = findItem(DbTreeItem::Type::INVALID_DB, db->getName());
-    if (item)
-        item->setInvalidDbType(false, db);
+    DbTreeItem* item = findItem(DbTreeItem::Type::DB, db->getName());
+    if (!item)
+    {
+        qCritical() << "No DB item found to update icon:" << db->getName();
+        return;
+    }
+    item->updateDbIcon();
 }
 
 void DbTreeModel::massSaveBegins()
@@ -1007,7 +971,6 @@ bool DbTreeModel::dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem*
             return true;
         }
         case DbTreeItem::Type::DB:
-        case DbTreeItem::Type::INVALID_DB:
         case DbTreeItem::Type::COLUMN:
         case DbTreeItem::Type::DIR:
         case DbTreeItem::Type::TABLES:

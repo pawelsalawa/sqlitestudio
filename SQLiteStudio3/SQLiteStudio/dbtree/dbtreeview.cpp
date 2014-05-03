@@ -156,9 +156,10 @@ bool DbTreeView::handleDoubleClick(DbTreeItem *item)
         case DbTreeItem::Type::DIR:
             break;
         case DbTreeItem::Type::DB:
-            return handleDbDoubleClick(item);
-        case DbTreeItem::Type::INVALID_DB:
-            break;
+        {
+            if (item->getDb()->isValid())
+                return handleDbDoubleClick(item);
+        }
         case DbTreeItem::Type::TABLES:
             break;
         case DbTreeItem::Type::VIRTUAL_TABLE:

@@ -56,6 +56,14 @@ class DbManagerImpl : public DbManager
         void init();
 
         /**
+         * @brief Loads initial list of databases.
+         *
+         * Loaded databases are initially the invalid databases.
+         * They are turned into valid databases once their plugins are loaded.
+         */
+        void loadInitialDbList();
+
+        /**
          * @brief Removes database from application.
          * @param db Database to be removed.
          * @param alsoFromConfig If true, database will also be removed from configuration file, otherwise it's just from the manager.
@@ -74,6 +82,12 @@ class DbManagerImpl : public DbManager
          * is called to register the database object in dbList variable.
          */
         void addDbInternal(Db* db, bool alsoToConfig = true);
+
+        /**
+         * @brief Filters invalid databases from all managed databases.
+         * @return Only invalid databases from this manager.
+         */
+        QList<Db*> getInvalidDatabases() const;
 
         /**
          * @brief Creates database object.
@@ -117,6 +131,15 @@ class DbManagerImpl : public DbManager
          */
         DbPlugin* inMemDbCreatorPlugin = nullptr;
 
+    signals:
+        /**
+         * @brief Emitted when the Db object for named database has changed.
+         * @param Name of the database that the change was made for.
+         *
+         * When the DbPlugin is loaded , the InvalidDb becomes a valid Db implementation (Db objects are switched,
+         * keeping the name, path and connection options). In that case this signal is emitted to let everybody know about it.
+         */
+        void dbTypeChanged(const QString& name);
 
     private slots:
         /**

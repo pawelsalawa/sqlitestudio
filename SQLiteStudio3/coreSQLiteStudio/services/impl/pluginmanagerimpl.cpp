@@ -171,9 +171,9 @@ bool PluginManagerImpl::initPlugin(QPluginLoader* loader, const QString& fileNam
                 container->builtIn = true;
                 container->plugin = plugin;
             }
-            //readMetadata(plugin, container); // seems redundant, done in pluginLoaded() - if causes missing metadata, uncomment
             pluginCategories[type] << container;
             pluginContainer[plugin->getName()] = container;
+            readMetadata(plugin, container);
 
             if (shouldAutoLoad(plugin))
                 load(plugin->getName());
@@ -368,7 +368,6 @@ void PluginManagerImpl::pluginLoaded(PluginManagerImpl::PluginContainer* contain
         container->plugin = dynamic_cast<Plugin*>(container->loader->instance());
         container->loaded = true;
     }
-    readMetadata(container->plugin, container);
     addPluginToCollections(container->plugin);
 
     emit loaded(container->plugin, container->type);

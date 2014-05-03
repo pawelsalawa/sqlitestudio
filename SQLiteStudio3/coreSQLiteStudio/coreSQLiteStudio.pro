@@ -152,7 +152,8 @@ SOURCES += sqlitestudio.cpp \
     querymodel.cpp \
     plugins/genericexportplugin.cpp \
     dbobjectorganizer.cpp \
-    db/attachguard.cpp
+    db/attachguard.cpp \
+    db/invaliddb.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -303,7 +304,8 @@ HEADERS += sqlitestudio.h\
     plugins/genericexportplugin.h \
     dbobjectorganizer.h \
     db/attachguard.h \
-    interruptable.h
+    interruptable.h \
+    db/invaliddb.h
 
 unix:!symbian {
     maemo5 {

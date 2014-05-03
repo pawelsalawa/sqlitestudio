@@ -224,6 +224,17 @@ class API_EXPORT DbManager : public QObject
         void dbAboutToBeUnloaded(Db* db, DbPlugin* plugin);
 
         /**
+         * @brief Plugins supporting the database was just unloaded.
+         * @param db The new database object (InvalidDb) that replaced the previous one.
+         * @param plugin Plugin that handles the database.
+         *
+         * This is emitted after the plugin for the database was unloaded. The \p db object is now a different object.
+         * It is of InvalidDb class and it represents a database in an invalid state. It still has name, path and connection options,
+         * but no operation can be performed on the database.
+         */
+        void dbUnloaded(Db* db, DbPlugin* plugin);
+
+        /**
          * @brief Emited when the initial database list has been loaded.
          */
         void dbListLoaded();

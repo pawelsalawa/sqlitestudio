@@ -665,6 +665,11 @@ int AbstractDb::getTimeout() const
     return timeout;
 }
 
+bool AbstractDb::isValid() const
+{
+    return true;
+}
+
 quint32 AbstractDb::generateAsyncId()
 {
     if (asyncId > 4000000000)

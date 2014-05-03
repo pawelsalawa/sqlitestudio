@@ -4,6 +4,7 @@
 #include "services/dbmanager.h"
 #include "dbtree.h"
 #include <QDebug>
+#include <db/invaliddb.h>
 
 DbTreeItem::DbTreeItem(DbTreeItem::Type type, const Icon& icon, const QString& nodeName, QObject* parent)
     : DbTreeItem(type, nodeName, parent)
@@ -243,18 +244,25 @@ Db* DbTreeItem::getDb() const
 
 void DbTreeItem::setDb(Db* value)
 {
-    if (!value)
-    {
-        setDb(QString::null);
-        return;
-    }
-
     setDb(value->getName());
 }
 
 void DbTreeItem::setDb(const QString& dbName)
 {
     setData(dbName, DataRole::DB);
+    updateDbIcon();
+}
+
+void DbTreeItem::updateDbIcon()
+{
+    if (getType() != DbTreeItem::Type::DB)
+        return;
+
+    Db* db = getDb();
+    if (db->isValid())
+        setIcon(ICONS.DATABASE);
+    else
+        setIcon(ICONS.DATABASE_INVALID);
 }
 
 const Icon* DbTreeItem::getIcon() const
@@ -278,22 +286,6 @@ void DbTreeItem::setIcon(const Icon& icon)
     setData(QVariant::fromValue(&icon), DataRole::ICON_PTR);
     if (!icon.isNull())
         QStandardItem::setIcon(icon);
-}
-
-void DbTreeItem::setInvalidDbType(bool invalid, Db* db)
-{
-    if (invalid)
-    {
-        setDb(nullptr);
-        setType(DbTreeItem::Type::INVALID_DB);
-        setIcon(ICONS.DATABASE_INVALID);
-    }
-    else
-    {
-        setDb(db);
-        setType(DbTreeItem::Type::DB);
-        setIcon(ICONS.DATABASE);
-    }
 }
 
 void DbTreeItem::init()

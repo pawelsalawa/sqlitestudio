@@ -4,6 +4,7 @@
 #include "configmock.h"
 #include "pluginmanagermock.h"
 #include "functionmanagermock.h"
+#include "collationmanagermock.h"
 #include "dbattachermock.h"
 #include "dbmanagermock.h"
 
@@ -32,4 +33,5 @@ void initMocks()
     SQLITESTUDIO->setPluginManager(new PluginManagerMock());
     SQLITESTUDIO->setDbAttacherFactory(new DbAttacherFactoryMock());
     SQLITESTUDIO->setDbManager(new DbManagerMock());
+    SQLITESTUDIO->setCollationManager(new CollationManagerMock());
 }

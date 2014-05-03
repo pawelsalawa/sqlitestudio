@@ -4,12 +4,14 @@
 #include "plugins//dbplugin.h"
 #include "services/pluginmanager.h"
 #include "services/notifymanager.h"
+#include "common/utils.h"
 #include <QCoreApplication>
 #include <QFileInfo>
 #include <QHash>
 #include <QHashIterator>
 #include <QPluginLoader>
 #include <QDebug>
+#include <db/invaliddb.h>
 
 DbManagerImpl::DbManagerImpl(QObject *parent) :
     DbManager(parent)
@@ -212,8 +214,21 @@ void DbManagerImpl::init()
 {
     Q_ASSERT(PLUGINS);
 
+    loadInitialDbList();
+
     connect(PLUGINS, SIGNAL(aboutToUnload(Plugin*,PluginType*)), this, SLOT(aboutToUnload(Plugin*,PluginType*)));
     connect(PLUGINS, SIGNAL(loaded(Plugin*,PluginType*)), this, SLOT(loaded(Plugin*,PluginType*)));
+}
+
+void DbManagerImpl::loadInitialDbList()
+{
+    InvalidDb* db;
+    foreach (const Config::CfgDbPtr& cfgDb, CFG->dbList())
+    {
+        db = new InvalidDb(cfgDb->name, cfgDb->path, cfgDb->options);
+        db->setError(tr("No supporting plugin loaded."));
+        addDbInternal(db, false);
+    }
 }
 
 void DbManagerImpl::loadDbListFromConfig()
@@ -232,6 +247,14 @@ void DbManagerImpl::addDbInternal(Db* db, bool alsoToConfig)
     pathToDb[db->getPath()] = db;
     connect(db, &Db::connected, this, &DbManagerImpl::dbConnectedSlot);
     connect(db, &Db::disconnected, this, &DbManagerImpl::dbDisconnectedSlot);
+}
+
+QList<Db*> DbManagerImpl::getInvalidDatabases() const
+{
+    return filter<Db*>(dbList, [](Db* db) -> bool
+    {
+        return !db->isValid();
+    });
 }
 
 Db* DbManagerImpl::createDb(const QString &name, const QString &path, const QHash<QString,QVariant> &options, QString* errorMessages)
@@ -303,6 +326,7 @@ void DbManagerImpl::aboutToUnload(Plugin* plugin, PluginType* type)
     if (!type->isForPluginType<DbPlugin>())
         return;
 
+    InvalidDb* invalidDb = nullptr;
     DbPlugin* dbPlugin = dynamic_cast<DbPlugin*>(plugin);
     foreach (Db* db, dbList)
     {
@@ -315,7 +339,14 @@ void DbManagerImpl::aboutToUnload(Plugin* plugin, PluginType* type)
             db->close();
 
         removeDbInternal(db, false);
+
+        invalidDb = new InvalidDb(db->getName(), db->getPath(), db->getConnectionOptions());
+        invalidDb->setError(tr("No supporting plugin loaded."));
+        addDbInternal(invalidDb, false);
+
         delete db;
+
+        emit dbUnloaded(invalidDb, dbPlugin);
     }
 }
 
@@ -326,17 +357,12 @@ void DbManagerImpl::loaded(Plugin* plugin, PluginType* type)
 
     DbPlugin* dbPlugin = dynamic_cast<DbPlugin*>(plugin);
     Db* db = nullptr;
-    foreach (const Config::CfgDbPtr& cfgDb, CFG->dbList())
-    {
-        if (getByName(cfgDb->name))
-            continue;
 
-        db = createDb(cfgDb->name, cfgDb->path, cfgDb->options);
+    for (Db* invalidDb : getInvalidDatabases())
+    {
+        db = createDb(invalidDb->getName(), invalidDb->getPath(), invalidDb->getConnectionOptions());
         if (!db)
-        {
-            // For this db driver was not loaded yet.
-            continue;
-        }
+            continue; // For this db driver was not loaded yet.
 
         if (!dbPlugin->checkIfDbServedByPlugin(db))
         {
@@ -347,9 +373,12 @@ void DbManagerImpl::loaded(Plugin* plugin, PluginType* type)
             continue;
         }
 
+        removeDbInternal(invalidDb, false);
+        delete invalidDb;
+
         addDbInternal(db, false);
 
-        if (CFG->getDbGroup(cfgDb->name)->open)
+        if (CFG->getDbGroup(db->getName())->open)
             db->open();
 
         emit dbLoaded(db, dbPlugin);
