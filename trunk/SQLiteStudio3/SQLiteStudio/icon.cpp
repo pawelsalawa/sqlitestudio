@@ -83,6 +83,17 @@ void Icon::load()
     loaded = true;
 }
 
+QString Icon::toImgSrc() const
+{
+    if (aliased)
+        return aliased->toImgSrc();
+
+    if (!filePath.isNull())
+        return getPath();
+    else
+        return toBase64Url();
+}
+
 QString Icon::toBase64Url() const
 {
     static const QString urlTempl = QStringLiteral("data:image/png;base64,%1");

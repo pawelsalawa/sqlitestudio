@@ -69,7 +69,6 @@ class DbTreeModel : public QStandardItemModel
         void restoreExpandedState(const QHash<QString, bool>& expandedState, QStandardItem* parentItem);
         QString getToolTip(DbTreeItem *item) const;
         QString getDbToolTip(DbTreeItem *item) const;
-        QString getInvalidDbToolTip(DbTreeItem *item) const;
         QString getTableToolTip(DbTreeItem *item) const;
         QList<DbTreeItem*> getChildsAsFlatList(QStandardItem* item) const;
         bool dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, int row, Qt::DropAction defaultAction);
@@ -98,7 +97,7 @@ class DbTreeModel : public QStandardItemModel
         void dbRemoved(Db* db);
         void dbConnected(Db* db);
         void dbDisconnected(Db* db);
-        void dbToBeUnloaded(Db* db, DbPlugin* plugin);
+        void dbUnloaded(Db* db, DbPlugin* plugin);
         void dbLoaded(Db* db, DbPlugin* plugin);
         void massSaveBegins();
         void massSaveCommited();

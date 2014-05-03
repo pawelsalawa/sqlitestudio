@@ -35,7 +35,8 @@ static const int sqlitestudioVersion = 29900;
 
 SQLiteStudio::SQLiteStudio()
 {
-    connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(cleanUp()));
+    if (qApp) // qApp is null in unit tests
+        connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(cleanUp()));
 }
 
 SQLiteStudio::~SQLiteStudio()

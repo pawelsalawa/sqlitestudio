@@ -182,18 +182,6 @@ TokenList SqliteInsert::rebuildTokensFromContents()
         if (columnNames.size() > 0)
             builder.withParLeft().withOtherList(columnNames, dialect).withParRight().withSpace();
 
-        builder.withStatement(select);
-    }
-
-    if (defaultValuesKw)
-    {
-        builder.withKeyword("DEFAULT").withSpace().withKeyword("VALUES");
-    }
-    else
-    {
-        if (columnNames.size() > 0)
-            builder.withParLeft().withOtherList(columnNames, dialect).withParRight().withSpace();
-
         if (select)
         {
             builder.withStatement(select);

@@ -1,5 +1,4 @@
-* przy kopiowaniu tabeli z sqlite3 do sqlite2:
-- przy probie usuniecia tabeli z sqlite2 wyrzuca blad o parametrze z nazwa (powinny byc tylko pytajniki)
+* przy kopiowaniu tabeli z sqlite3 do sqlite2: obsluga konwersji wersji baz (AUTOINCREMENT, COLLATE, etc)
 * interfejs do Db do wielu wywolan tego samego sql
 * DbManager musi byc swiadomy invalid_db i pozwalac DbDialog na edycje takiej bazy - to wymaga przebudowy modelu w DbManagerze
 
@@ -52,14 +51,6 @@ SchemaResolver
   - lista baz
   - funkcje sql
   - historie sql
-
-
-#include "sqlite3.h"
-typedef int (*Sqlite3CreateFunction)(sqlite3*,const char*,int,int,void*,
-        void (*xFunc)(sqlite3_context*,int,sqlite3_value**),
-        void (*xStep)(sqlite3_context*,int,sqlite3_value**),
-        void (*xFinal)(sqlite3_context*)
-      );
 
 
 * Kroki query executora ponazywac (w QObject) i udostepnic mozliwosc rejestracji nowych krokow

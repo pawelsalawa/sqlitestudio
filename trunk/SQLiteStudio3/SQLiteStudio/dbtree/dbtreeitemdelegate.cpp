@@ -39,7 +39,6 @@ void DbTreeItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
         case DbTreeItem::Type::DIR:
             break;
         case DbTreeItem::Type::DB:
-        case DbTreeItem::Type::INVALID_DB:
             paintDb(painter, opt, index, item);
             break;
         case DbTreeItem::Type::TABLES:
@@ -70,18 +69,18 @@ void DbTreeItemDelegate::paintDb(QPainter *painter, const QStyleOptionViewItem &
 {
     static const QString versionStringTemplate = QStringLiteral("(%1)");
     QString versionString = versionStringTemplate.arg("?");
-    if (item->getType() == DbTreeItem::Type::INVALID_DB)
+    Db* db = item->getDb();
+    if (!db)
+        return;
+
+    if (db->isValid())
     {
-        versionString = versionStringTemplate.arg(tr("error", "dbtree labels"));
+        QString t = db->getTypeLabel();
+        versionString = versionStringTemplate.arg(t);
     }
     else
     {
-        Db* db = item->getDb();
-        if (!db)
-            return;
-
-        QString t = db->getTypeLabel();
-        versionString = versionStringTemplate.arg(t);
+        versionString = versionStringTemplate.arg(tr("error", "dbtree labels"));
     }
 
     paintLabel(painter, option, index, item, versionString);

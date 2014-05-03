@@ -53,23 +53,18 @@ API_EXPORT QStringList prefixEach(const QString& prefix, const QStringList& list
 API_EXPORT int indexOf(const QStringList& list, const QString& value, int from = 0, Qt::CaseSensitivity cs = Qt::CaseSensitive);
 API_EXPORT int indexOf(const QStringList& list, const QString& value, Qt::CaseSensitivity cs = Qt::CaseSensitive);
 
+/**
+ * @brief Returns only those elements from the list, which passed the filter.
+ * @tparam T type for which the filter will be applied for. It should match the type in the list and in the function argument.
+ * @param list List to filter elements from.
+ * @param filterFunction Function that accepts elements from the list and returns true for elements that should be returned by the filter.
+ * @return List of elements that passed custom function validation.
+ */
 template <class T>
 QList<T> filter(const QList<T>& list, std::function<bool(const T& value)> filterFunction)
 {
     QList<T> results;
     for (const T& value : list)
-    {
-        if (filterFunction(value))
-            results << value;
-    }
-    return results;
-}
-
-template <class T>
-QList<T*> filter(const QList<T*>& list, std::function<bool(const T* value)> filterFunction)
-{
-    QList<T*> results;
-    for (T* value : list)
     {
         if (filterFunction(value))
             results << value;

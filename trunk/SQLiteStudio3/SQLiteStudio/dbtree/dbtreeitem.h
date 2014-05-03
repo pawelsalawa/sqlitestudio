@@ -25,8 +25,7 @@ class DbTreeItem : public QObject, public QStandardItem
             VIEW = 1009,
             COLUMNS = 1010,
             COLUMN = 1011,
-            INVALID_DB = 1012,
-            VIRTUAL_TABLE = 1013,
+            VIRTUAL_TABLE = 1012,
             ITEM_PROTOTYPE = 9999
         };
 
@@ -70,11 +69,11 @@ class DbTreeItem : public QObject, public QStandardItem
         Db* getDb() const;
         void setDb(Db* value);
         void setDb(const QString& dbName);
+        void updateDbIcon();
         const Icon* getIcon() const;
         void setHidden(bool hidden);
         bool isHidden() const;
         void setIcon(const Icon& icon);
-        void setInvalidDbType(bool invalid, Db* db = nullptr);
 
     private:
         struct DataRole // not 'enum class' because we need autocasting to int for this one

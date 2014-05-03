@@ -475,6 +475,15 @@ class API_EXPORT Db : public QObject, public Interruptable
         virtual bool isWritable() = 0;
 
         /**
+         * @brief Tells if the database is valid for operating on it.
+         * @return true if the databse is valid, false otherwise.
+         *
+         * A valid database is the one that has valid path and driver plugin support loaded.
+         * Invalid database is the one that application failed to load. Those are marked with the exclamation icon on the UI.
+         */
+        virtual bool isValid() const = 0;
+
+        /**
          * @brief Attaches given database to this database.
          * @param otherDb Other registered database object.
          * @param silent If true, no errors or warnings will be reported to the NotifyManager (they will still appear in logs).

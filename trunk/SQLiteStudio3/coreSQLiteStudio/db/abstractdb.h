@@ -84,6 +84,7 @@ class API_EXPORT AbstractDb : public Db
         bool initAfterCreated();
         void setTimeout(int secs);
         int getTimeout() const;
+        bool isValid() const;
 
     protected:
         struct FunctionUserData

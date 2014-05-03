@@ -45,6 +45,7 @@ class Icon
         bool isNull() const;
         bool isMovie() const;
         void load();
+        QString toImgSrc() const;
         QString toBase64Url() const;
         QByteArray toBase64() const;
         QByteArray toPixmapBytes() const;

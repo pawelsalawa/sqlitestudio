@@ -158,10 +158,6 @@ void DbTree::updateActionStates(const QStandardItem *item)
                 enabled << CONNECT_TO_DB;
         }
 
-        // Invalid database actions
-        if (dbTreeItem->getType() == DbTreeItem::Type::INVALID_DB)
-            enabled << CREATE_GROUP << DELETE_DB << EDIT_DB;
-
         if (isDbOpen)
         {
             switch (dbTreeItem->getType())
@@ -171,7 +167,6 @@ void DbTree::updateActionStates(const QStandardItem *item)
                 case DbTreeItem::Type::DIR:
                     // It's handled outside of "item with db", above
                     break;
-                case DbTreeItem::Type::INVALID_DB:
                 case DbTreeItem::Type::DB:
                     enabled << CREATE_GROUP << DELETE_DB << EDIT_DB;
                     break;
@@ -299,30 +294,32 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
             }
             case DbTreeItem::Type::DB:
             {
-                actions += ActionEntry(CONNECT_TO_DB);
-                actions += ActionEntry(DISCONNECT_FROM_DB);
-                actions += ActionEntry(_separator);
-                actions += ActionEntry(ADD_DB);
-                actions += ActionEntry(EDIT_DB);
-                actions += ActionEntry(DELETE_DB);
-                actions += ActionEntry(_separator);
-                actions += ActionEntry(ADD_TABLE);
-                actions += ActionEntry(ADD_INDEX);
-                actions += ActionEntry(ADD_TRIGGER);
-                actions += ActionEntry(ADD_VIEW);
-                actions += ActionEntry(_separator);
-                actions += ActionEntry(REFRESH_SCHEMA);
-                actions += ActionEntry(IMPORT_INTO_DB);
-                actions += ActionEntry(EXPORT_DB);
-                actions += ActionEntry(_separator);
-                break;
-            }
-            case DbTreeItem::Type::INVALID_DB:
-            {
-                actions += ActionEntry(ADD_DB);
-                actions += ActionEntry(EDIT_DB);
-                actions += ActionEntry(DELETE_DB);
-                actions += ActionEntry(_separator);
+                if (currItem->getDb()->isValid())
+                {
+                    actions += ActionEntry(CONNECT_TO_DB);
+                    actions += ActionEntry(DISCONNECT_FROM_DB);
+                    actions += ActionEntry(_separator);
+                    actions += ActionEntry(ADD_DB);
+                    actions += ActionEntry(EDIT_DB);
+                    actions += ActionEntry(DELETE_DB);
+                    actions += ActionEntry(_separator);
+                    actions += ActionEntry(ADD_TABLE);
+                    actions += ActionEntry(ADD_INDEX);
+                    actions += ActionEntry(ADD_TRIGGER);
+                    actions += ActionEntry(ADD_VIEW);
+                    actions += ActionEntry(_separator);
+                    actions += ActionEntry(REFRESH_SCHEMA);
+                    actions += ActionEntry(IMPORT_INTO_DB);
+                    actions += ActionEntry(EXPORT_DB);
+                    actions += ActionEntry(_separator);
+                }
+                else
+                {
+                    actions += ActionEntry(ADD_DB);
+                    actions += ActionEntry(EDIT_DB);
+                    actions += ActionEntry(DELETE_DB);
+                    actions += ActionEntry(_separator);
+                }
                 break;
             }
             case DbTreeItem::Type::TABLES:
@@ -669,7 +666,6 @@ void DbTree::filterUndeletableItems(QList<DbTreeItem*>& items)
                 break;
             case DbTreeItem::Type::DIR:
             case DbTreeItem::Type::DB:
-            case DbTreeItem::Type::INVALID_DB:
             case DbTreeItem::Type::TABLE:
             case DbTreeItem::Type::VIRTUAL_TABLE:
             case DbTreeItem::Type::INDEX:
@@ -709,10 +705,6 @@ void DbTree::deleteItem(DbTreeItem* item)
             break;
         case DbTreeItem::Type::DB:
             DBLIST->removeDb(item->getDb());
-            break;
-        case DbTreeItem::Type::INVALID_DB:
-            CFG->removeDb(item->text());
-            treeModel->dbRemoved(item);
             break;
         case DbTreeItem::Type::TABLE:
         case DbTreeItem::Type::VIRTUAL_TABLE:
@@ -1150,7 +1142,7 @@ void DbTree::deleteItems(const QList<DbTreeItem*>& itemsToDelete)
     {
         itemStr = itemTmp.arg(item->getIcon()->toUrl()).arg(item->text());
 
-        if (item->getType() == DbTreeItem::Type::DB || item->getType() == DbTreeItem::Type::INVALID_DB)
+        if (item->getType() == DbTreeItem::Type::DB)
             databasesToRemove << itemStr;
         else
             toDelete << itemStr;
