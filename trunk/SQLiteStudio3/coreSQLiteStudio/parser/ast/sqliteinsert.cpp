@@ -21,7 +21,8 @@ SqliteInsert::SqliteInsert(const SqliteInsert& other) :
 }
 
 SqliteInsert::SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QString &name1, const QString &name2, const QList<QString> &columns,
-                           const QList<SqliteExpr *> &row, SqliteWith* with)
+                           const QList<SqliteExpr *> &row, SqliteWith* with) :
+    SqliteInsert()
 {
     initName(name1, name2);
     initMode(replace, onConflict);
@@ -37,7 +38,8 @@ SqliteInsert::SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QS
 }
 
 SqliteInsert::SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QString &name1, const QString &name2, const QList<QString> &columns,
-                           SqliteSelect *select, SqliteWith* with)
+                           SqliteSelect *select, SqliteWith* with) :
+    SqliteInsert()
 {
     initName(name1, name2);
     initMode(replace, onConflict);
@@ -53,7 +55,8 @@ SqliteInsert::SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QS
 }
 
 SqliteInsert::SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QString &name1, const QString &name2, const QList<QString> &columns,
-                           SqliteWith* with)
+                           SqliteWith* with) :
+    SqliteInsert()
 {
     initName(name1, name2);
     initMode(replace, onConflict);
@@ -191,5 +194,8 @@ TokenList SqliteInsert::rebuildTokensFromContents()
             builder.withKeyword("VALUES").withSpace().withParLeft().withStatementList(values).withParRight();
         }
     }
+
+    builder.withOperator(";");
+
     return builder.build();
 }

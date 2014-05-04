@@ -69,5 +69,6 @@ TokenList SqliteLimit::rebuildTokensFromContents()
 
         builder.withStatement(offset);
     }
+
     return builder.build();
 }

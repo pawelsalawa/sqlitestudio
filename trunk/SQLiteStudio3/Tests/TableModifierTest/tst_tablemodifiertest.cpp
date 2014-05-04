@@ -66,8 +66,8 @@ void TableModifierTest::testCase1()
     QVERIFY(sqls.size() == 7);
     int i = 0;
     verifyRe("CREATE TABLE test2 .*", sqls[i++]);
-    verifyRe("INSERT INTO test2.*SELECT.*FROM test", sqls[i++]);
-    verifyRe("DROP TABLE test", sqls[i++]);
+    verifyRe("INSERT INTO test2.*SELECT.*FROM test;", sqls[i++]);
+    verifyRe("DROP TABLE test;", sqls[i++]);
     verifyRe("ALTER TABLE abc RENAME TO sqlitestudio_temp_table.*", sqls[i++]);
     verifyRe("CREATE TABLE abc .*", sqls[i++]);
     verifyRe("INSERT INTO abc.*SELECT.*FROM sqlitestudio_temp_table.*", sqls[i++]);
@@ -131,14 +131,14 @@ void TableModifierTest::testCase3()
     QVERIFY(sqls.size() == 9);
     int i = 0;
     verifyRe("CREATE TABLE newTable .*", sqls[i++]);
-    verifyRe("INSERT INTO newTable.*SELECT.*FROM test", sqls[i++]);
-    verifyRe("DROP TABLE test", sqls[i++]);
+    verifyRe("INSERT INTO newTable.*SELECT.*FROM test;", sqls[i++]);
+    verifyRe("DROP TABLE test;", sqls[i++]);
     verifyRe("ALTER TABLE abc RENAME TO sqlitestudio_temp_table.*", sqls[i++]);
     verifyRe("CREATE TABLE abc .*xyz text REFERENCES newTable \\(newCol\\).*", sqls[i++]);
     verifyRe("INSERT INTO abc.*SELECT.*FROM sqlitestudio_temp_table.*", sqls[i++]);
     verifyRe("DROP TABLE sqlitestudio_temp_table.*", sqls[i++]);
-    verifyRe("CREATE INDEX i2 ON abc \\(id\\)", sqls[i++]);
-    verifyRe("CREATE INDEX i1 ON newTable \\(newCol\\)", sqls[i++]);
+    verifyRe("CREATE INDEX i2 ON abc \\(id\\);", sqls[i++]);
+    verifyRe("CREATE INDEX i1 ON newTable \\(newCol\\);", sqls[i++]);
 }
 
 void TableModifierTest::testCase4()
@@ -164,14 +164,14 @@ void TableModifierTest::testCase4()
     QVERIFY(sqls.size() == 4);
     int i = 0;
     verifyRe("CREATE TABLE newTable .*", sqls[i++]);
-    verifyRe("INSERT INTO newTable.*SELECT.*FROM test", sqls[i++]);
-    verifyRe("DROP TABLE test", sqls[i++]);
+    verifyRe("INSERT INTO newTable.*SELECT.*FROM test;", sqls[i++]);
+    verifyRe("DROP TABLE test;", sqls[i++]);
     QVERIFY2("CREATE TRIGGER t1 AFTER UPDATE OF newCol ON newTable "
              "BEGIN "
              "SELECT * FROM (SELECT newCol FROM newTable); "
              "UPDATE newTable SET newCol = (SELECT newCol FROM newTable) WHERE x = (SELECT newCol FROM newTable); "
              "INSERT INTO newTable (newCol) VALUES (1); "
-             "END" == sqls[i++], "Trigger DDL incorrect.");
+             "END;" == sqls[i++], "Trigger DDL incorrect.");
 }
 
 void TableModifierTest::testCase5()
@@ -198,11 +198,11 @@ void TableModifierTest::testCase5()
     QVERIFY(sqls.size() == 6);
     int i = 0;
     verifyRe("CREATE TABLE newTable .*", sqls[i++]);
-    verifyRe("INSERT INTO newTable.*SELECT.*FROM test", sqls[i++]);
-    verifyRe("DROP TABLE test", sqls[i++]);
-    verifyRe("DROP VIEW v1", sqls[i++]);
-    verifyRe("CREATE VIEW v1 AS SELECT \\* FROM \\(SELECT newCol FROM newTable\\)", sqls[i++]);
-    verifyRe("CREATE TRIGGER t1 INSTEAD OF INSERT ON v1 BEGIN SELECT 1; END", sqls[i++]);
+    verifyRe("INSERT INTO newTable.*SELECT.*FROM test;", sqls[i++]);
+    verifyRe("DROP TABLE test;", sqls[i++]);
+    verifyRe("DROP VIEW v1;", sqls[i++]);
+    verifyRe("CREATE VIEW v1 AS SELECT \\* FROM \\(SELECT newCol FROM newTable\\);", sqls[i++]);
+    verifyRe("CREATE TRIGGER t1 INSTEAD OF INSERT ON v1 BEGIN SELECT 1; END;", sqls[i++]);
 }
 
 void TableModifierTest::testCase6()
@@ -224,12 +224,12 @@ void TableModifierTest::testCase6()
      */
     QVERIFY(sqls.size() == 6);
     int i = 0;
-    verifyRe("CREATE TABLE newTable \\(id int, val2 text\\)", sqls[i++]);
-    verifyRe("INSERT INTO newTable \\(id, val2\\) SELECT id, val2 FROM test", sqls[i++]);
-    verifyRe("DROP TABLE test", sqls[i++]);
-    verifyRe("CREATE TRIGGER t2 AFTER UPDATE OF Id ON newTable BEGIN SELECT NULL, Val2 FROM newTable; END", sqls[i++]);
-    verifyRe("DROP VIEW v1", sqls[i++]);
-    verifyRe("CREATE VIEW v1 AS SELECT \\* FROM \\(SELECT Id, NULL FROM newTable\\)", sqls[i++]);
+    verifyRe("CREATE TABLE newTable \\(id int, val2 text\\);", sqls[i++]);
+    verifyRe("INSERT INTO newTable \\(id, val2\\) SELECT id, val2 FROM test;", sqls[i++]);
+    verifyRe("DROP TABLE test;", sqls[i++]);
+    verifyRe("CREATE TRIGGER t2 AFTER UPDATE OF Id ON newTable BEGIN SELECT NULL, Val2 FROM newTable; END;", sqls[i++]);
+    verifyRe("DROP VIEW v1;", sqls[i++]);
+    verifyRe("CREATE VIEW v1 AS SELECT \\* FROM \\(SELECT Id, NULL FROM newTable\\);", sqls[i++]);
 }
 
 void TableModifierTest::initTestCase()

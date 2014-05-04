@@ -46,6 +46,8 @@ SqliteSelect* SqliteSelect::append(SqliteSelect* select, SqliteSelect::CompoundO
     if (!select)
         select = new SqliteSelect();
 
+    bool first = true;
+
     Core::ResultColumn* resCol;
     QList<Core::ResultColumn*> resColList;
     foreach (const QList<SqliteExpr*>& singleValues, values)
@@ -54,6 +56,11 @@ SqliteSelect* SqliteSelect::append(SqliteSelect* select, SqliteSelect::CompoundO
         core->setParent(select);
         core->compoundOp = op;
         core->valuesMode = true;
+        if (first)
+        {
+            op = CompoundOperator::UNION_ALL;
+            first = false;
+        }
         select->coreSelects << core;
 
         resColList.clear();
@@ -729,6 +736,8 @@ TokenList SqliteSelect::rebuildTokensFromContents()
 
         builder.withStatement(core);
     }
+
+    builder.withOperator(";");
 
     return builder.build();
 }

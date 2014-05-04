@@ -234,6 +234,8 @@ TokenList SqliteCreateTable::rebuildTokensFromContents()
             builder.withSpace().withKeyword("WITHOUT").withSpace().withOther("ROWID");
     }
 
+    builder.withOperator(";");
+
     return builder.build();
 }
 

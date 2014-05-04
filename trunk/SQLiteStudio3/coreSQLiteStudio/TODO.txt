@@ -1,6 +1,8 @@
 * przy kopiowaniu tabeli z sqlite3 do sqlite2: obsluga konwersji wersji baz (AUTOINCREMENT, COLLATE, etc)
 * interfejs do Db do wielu wywolan tego samego sql
-* DbManager musi byc swiadomy invalid_db i pozwalac DbDialog na edycje takiej bazy - to wymaga przebudowy modelu w DbManagerze
+* Wywolac query na Sqlite2, a nastepnie zamknac aplikacje - przy zamykaniu wywala blad gdy kasuje Context (SqlResults?) w QueryExecutorze
+* COLLATE jest dozwolone w constraintach Sqlite2 - trzeba go pokazac w ColumnDialogu i table constraints
+* FK tez jest dozwolony w skladni Sqlite2
 
 * check performance for millions of rows
 * przenoszenie obiektow przez d&d
@@ -57,20 +59,6 @@ SchemaResolver
   umiejscawiajac je po/przed krokami o danych nazwach. W ten sposob bedzie mozna rozszerzac
   query executora pluginami.
 
-* Major 2vs3 diffs:
-- column constraints don't have CONSTRAINT name as separate ccons in v2.
-- references action hasn't got "NO ACTION" as possible action in v2.
-- no AutoIncr
-- no "if exists" or "if not exists"
-- views can be created only in the main database.
-- index can be created only in the main database, but can refer to table from other db
-- trigger can be created only in the main database, but can refer to table from other db
-- datetime functions cannot occur as DEFAULT argument.
-- no CAST in expr
-- no COLLATE in expr
-- COLLATE in sortlist
-- no EXISTS in expr
-- no COLLATE in CREATE INDEX
 
 
 

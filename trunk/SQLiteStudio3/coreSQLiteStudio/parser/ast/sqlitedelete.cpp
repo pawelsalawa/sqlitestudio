@@ -118,5 +118,7 @@ TokenList SqliteDelete::rebuildTokensFromContents()
     if (where)
         builder.withSpace().withKeyword("WHERE").withStatement(where);
 
+    builder.withOperator(";");
+
     return builder.build();
 }

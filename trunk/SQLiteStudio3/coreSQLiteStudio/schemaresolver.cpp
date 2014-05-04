@@ -289,6 +289,11 @@ SqliteQueryPtr SchemaResolver::getParsedObject(const QString &database, const QS
         return SqliteQueryPtr();
 
     // Parse DDL
+    return getParsedDdl(ddl);
+}
+
+SqliteQueryPtr SchemaResolver::getParsedDdl(const QString& ddl)
+{
     if (!parser->parse(ddl))
     {
         qDebug() << "Could not parse DDL for parsing object by SchemaResolver. Errors are:";
@@ -310,6 +315,35 @@ SqliteQueryPtr SchemaResolver::getParsedObject(const QString &database, const QS
     return queries[0];
 }
 
+QHash<QString, SqliteQueryPtr> SchemaResolver::getAllParsedObjects()
+{
+    return getAllParsedObjects("main");
+}
+
+QHash<QString, SqliteQueryPtr> SchemaResolver::getAllParsedObjects(const QString& database)
+{
+    QHash<QString, SqliteQueryPtr> parsedObjects;
+
+    QString dbName = getPrefixDb(database, db->getDialect());
+
+    SqlResultsPtr results = db->exec(QString("SELECT name, type, sql FROM %1.sqlite_master;").arg(dbName));
+
+    QString name;
+    SqliteQueryPtr parsedObject;
+    foreach (SqlResultsRowPtr row, results->getAll())
+    {
+        name = row->value("name").toString();
+        parsedObject = getParsedDdl(row->value("sql").toString());
+        if (!parsedObject)
+            continue;
+
+        if (!isFilteredOut(name, row->value("type").toString()))
+            parsedObjects[name] = parsedObject;
+    }
+
+    return parsedObjects;
+}
+
 QStringList SchemaResolver::getObjects(const QString &type)
 {
     return getObjects(QString::null, type);
@@ -320,8 +354,7 @@ QStringList SchemaResolver::getObjects(const QString &database, const QString &t
     QStringList resList;
     QString dbName = getPrefixDb(database, db->getDialect());
 
-    SqlResultsPtr results = db->exec(QString(
-                "SELECT name FROM %1.sqlite_master WHERE type = '%2';").arg(dbName, type));
+    SqlResultsPtr results = db->exec(QString("SELECT name FROM %1.sqlite_master WHERE type = ?;").arg(dbName), {type});
 
     QString value;
     foreach (SqlResultsRowPtr row, results->getAll())

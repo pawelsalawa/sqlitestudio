@@ -133,6 +133,7 @@ StatementTokenBuilder& StatementTokenBuilder::withStatement(SqliteStatement* stm
             withSpace();
 
         tokens += stmt->tokens;
+        tokens.trimRight(Token::OPERATOR, ";");
     }
     return *this;
 }

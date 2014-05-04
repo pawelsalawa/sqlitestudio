@@ -111,5 +111,7 @@ TokenList SqliteCreateView::rebuildTokensFromContents()
 
     builder.withOther(view, dialect).withSpace().withKeyword("AS").withStatement(select);
 
+    builder.withOperator(";");
+
     return builder.build();
 }
