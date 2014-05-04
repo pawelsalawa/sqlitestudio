@@ -365,5 +365,7 @@ TokenList SqliteCreateTrigger::rebuildTokensFromContents()
 
     builder.withKeyword("BEGIN").withSpace().withStatementList(queries, ";").withOperator(";").withSpace().withKeyword("END");
 
+    builder.withOperator(";");
+
     return builder.build();
 }

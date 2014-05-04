@@ -23,4 +23,5 @@ SUBDIRS += \
     select_resolver \
     parser \
     table_modifier \
-    hash_tables
+    hash_tables \
+    DbVersionConverterTest

@@ -46,7 +46,7 @@ void TableModifier::alterTable(SqliteCreateTablePtr newCreateTable)
 
     // If temp table was created, it means that table name hasn't changed. In that case we need to cleanup temp table (drop it).
     // Otherwise, the table name has changed, therefor there still remains the old table which we copied data from - we need to drop it here.
-    sqls << QString("DROP TABLE %1").arg(wrapObjIfNeeded(tempTableName.isNull() ? originalTable : tempTableName, dialect));
+    sqls << QString("DROP TABLE %1;").arg(wrapObjIfNeeded(tempTableName.isNull() ? originalTable : tempTableName, dialect));
 
     handleFks();
     handleIndexes();
@@ -61,12 +61,12 @@ void TableModifier::renameTo(const QString& newName)
 
     if (dialect == Dialect::Sqlite3)
     {
-        sqls << QString("ALTER TABLE %1 RENAME TO %2").arg(wrapObjIfNeeded(table, dialect), wrapObjIfNeeded(newName, dialect));
+        sqls << QString("ALTER TABLE %1 RENAME TO %2;").arg(wrapObjIfNeeded(table, dialect), wrapObjIfNeeded(newName, dialect));
     }
     else
     {
-        sqls << QString("CREATE TABLE %1 AS SELECT * FROM %2").arg(wrapObjIfNeeded(newName, dialect), wrapObjIfNeeded(table, dialect))
-             << QString("DROP TABLE");
+        sqls << QString("CREATE TABLE %1 AS SELECT * FROM %2;").arg(wrapObjIfNeeded(newName, dialect), wrapObjIfNeeded(table, dialect))
+             << QString("DROP TABLE %1;").arg(wrapObjIfNeeded(table, dialect));
     }
 
     table = newName;
@@ -151,7 +151,7 @@ void TableModifier::subHandleFks(const QString& oldName)
 
     copyDataTo(originalTable);
 
-    sqls << QString("DROP TABLE %1").arg(wrapObjIfNeeded(tempName, dialect));
+    sqls << QString("DROP TABLE %1;").arg(wrapObjIfNeeded(tempName, dialect));
 
     simpleHandleIndexes();
     simpleHandleTriggers();
@@ -415,7 +415,7 @@ void TableModifier::handleView(SqliteCreateViewPtr view)
     view->select->setParent(view.data());
     view->rebuildTokens();
 
-    sqls << QString("DROP VIEW %1").arg(wrapObjIfNeeded(view->view, dialect));
+    sqls << QString("DROP VIEW %1;").arg(wrapObjIfNeeded(view->view, dialect));
     sqls << view->detokenize();
 
     simpleHandleTriggers(view->view);
@@ -596,7 +596,7 @@ void TableModifier::simpleHandleIndexes()
     SchemaResolver resolver(db);
     QList<SqliteCreateIndexPtr> parsedIndexesForTable = resolver.getParsedIndexesForTable(originalTable);
     foreach (SqliteCreateIndexPtr index, parsedIndexesForTable)
-        sqls << stripEndingSemicolon(index->detokenize());
+        sqls << index->detokenize();
 }
 
 void TableModifier::simpleHandleTriggers(const QString& view)
@@ -609,7 +609,7 @@ void TableModifier::simpleHandleTriggers(const QString& view)
         parsedTriggers = resolver.getParsedTriggersForTable(originalTable);
 
     foreach (SqliteCreateTriggerPtr trig, parsedTriggers )
-        sqls << stripEndingSemicolon(trig->detokenize());
+        sqls << trig->detokenize();
 }
 
 SqliteQueryPtr TableModifier::parseQuery(const QString& ddl)
@@ -623,7 +623,7 @@ SqliteQueryPtr TableModifier::parseQuery(const QString& ddl)
 
 void TableModifier::copyDataTo(const QString& targetTable, const QStringList& srcCols, const QStringList& dstCols)
 {
-    sqls << QString("INSERT INTO %1 (%2) SELECT %3 FROM %4").arg(wrapObjIfNeeded(targetTable, dialect), dstCols.join(", "), srcCols.join(", "),
+    sqls << QString("INSERT INTO %1 (%2) SELECT %3 FROM %4;").arg(wrapObjIfNeeded(targetTable, dialect), dstCols.join(", "), srcCols.join(", "),
                                                                  wrapObjIfNeeded(table, dialect));
 }
 

@@ -113,13 +113,26 @@ class API_EXPORT SchemaResolver
         QString getObjectDdl(const QString& database, const QString& name);
 
         /**
-         * @brief getParsedObject
-         * @param name
-         * @return
+         * @brief Parses given object's DDL.
+         * @param name Name of the object in the database.
+         * @return Parsed object, or null pointer if named object was not in the database, or parsing error occured.
+         *
          * Returned query has to be deleted outside!
          */
         SqliteQueryPtr getParsedObject(const QString& name);
+
+        /**
+         * @brief Parses given object's DDL.
+         * @param database Database that the object is in (the attach name of the database).
+         * @param name Name of the object in the database.
+         * @return Parsed object, or null pointer if named object was not in the database, or parsing error occured.
+         * @overload
+         */
         SqliteQueryPtr getParsedObject(const QString& database, const QString& name);
+
+        QHash<QString,SqliteQueryPtr> getAllParsedObjects();
+        QHash<QString,SqliteQueryPtr> getAllParsedObjects(const QString& database);
+
         static QString getSqliteMasterDdl(bool temp = false);
 
         QStringList getCollations();
@@ -128,6 +141,7 @@ class API_EXPORT SchemaResolver
         void setIgnoreSystemObjects(bool value);
 
     private:
+        SqliteQueryPtr getParsedDdl(const QString& ddl);
         SqliteCreateTablePtr virtualTableAsRegularTable(const QString& database, const QString& table);
         QMap<QString, QStringList> getGroupedObjects(const QString &database, const QStringList& inputList, SqliteQueryType type);
         bool isFilteredOut(const QString& value, const QString& type);
