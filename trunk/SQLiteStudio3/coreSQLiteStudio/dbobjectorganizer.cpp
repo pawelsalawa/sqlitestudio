@@ -13,7 +13,7 @@ DbObjectOrganizer::DbObjectOrganizer()
     confirmFunction = [](const QStringList&) -> bool {return false;};
     nameConflictResolveFunction = [](QString&) -> bool {return false;};
     conversionConfimFunction = [](const QList<QPair<QString,QString>>&) -> bool {return false;};
-    conversionErrorsConfimFunction = [](const QStringList&) -> bool {return false;};
+    conversionErrorsConfimFunction = [](const QHash<QString,QStringList>&) -> bool {return false;};
     versionConverter = new DbVersionConverter();
 }
 
@@ -306,6 +306,8 @@ bool DbObjectOrganizer::copyTableToDb(const QString& table)
     }
 
     ddl = convertDdlToDstVersion(ddl);
+    if (ddl.trimmed() == ";") // empty query, result of ignored errors in UI
+        return true;
 
     SqlResultsPtr result;
 
@@ -431,6 +433,9 @@ bool DbObjectOrganizer::copyViewToDb(const QString& view)
 {
     QString ddl = srcResolver->getObjectDdl(view);
     ddl = convertDdlToDstVersion(ddl);
+    if (ddl.trimmed() == ";") // empty query, result of ignored errors in UI
+        return true;
+
     SqlResultsPtr result = dstDb->exec(ddl);
     if (result->isError())
     {
@@ -465,9 +470,10 @@ bool DbObjectOrganizer::checkAndConfirmDiffs(const QHash<QString, SchemaResolver
     if (srcDb->getVersion() == dstDb->getVersion())
         return true;
 
-    versionConverter->reset();
 
     int dstVersion = dstDb->getVersion();
+    QHash<QString,QStringList> errors;
+    QList<QPair<QString, QString>> diffList;
     QStringList names = srcTables + srcViews + referencedTables;
     for (const QString& name : names)
     {
@@ -477,14 +483,16 @@ bool DbObjectOrganizer::checkAndConfirmDiffs(const QHash<QString, SchemaResolver
             continue;
         }
 
+        versionConverter->reset();
         if (dstVersion == 3)
             versionConverter->convertToVersion3(details[name].ddl);
         else
             versionConverter->convertToVersion2(details[name].ddl);
-    }
 
-    QStringList errors = versionConverter->getErrors();
-    QList<QPair<QString, QString>> diffList = versionConverter->getDiffList();
+        diffList += versionConverter->getDiffList();
+        if (!versionConverter->getErrors().isEmpty())
+            errors[name] = versionConverter->getErrors();
+    }
 
     if (errors.size() > 0 && !conversionErrorsConfimFunction(errors))
         return false;

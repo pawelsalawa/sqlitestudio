@@ -22,7 +22,7 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable, public In
         typedef std::function<bool(const QStringList& tables)> ReferencedTablesConfimFunction;
         typedef std::function<bool(QString& nameInConflict)> NameConflictResolveFunction;
         typedef std::function<bool(const QList<QPair<QString,QString>>& diffs)> ConversionConfimFunction;
-        typedef std::function<bool(const QStringList& errors)> ConversionErrorsConfimFunction;
+        typedef std::function<bool(const QHash<QString,QStringList>& errors)> ConversionErrorsConfimFunction;
 
         /**
          * @brief Creates organizer with default handler functions.

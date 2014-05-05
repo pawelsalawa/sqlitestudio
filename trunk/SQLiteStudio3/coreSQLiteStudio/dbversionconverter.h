@@ -64,6 +64,7 @@ class DbVersionConverter
         bool modifyCreateTableForVersion3(SqliteCreateTable* createTable);
         QString getSqlForDiff(SqliteStatement* stmt);
         void storeDiff(const QString& sql1, SqliteStatement* stmt);
+        void storeErrorDiff(SqliteStatement* stmt);
 
         template <class T>
         QSharedPointer<T> copyQuery(SqliteQueryPtr query)

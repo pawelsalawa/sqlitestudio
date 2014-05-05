@@ -17,6 +17,9 @@ class VersionConvertSummaryDialog : public QDialog
 
         void setSides(const QList<QPair<QString, QString>>& data);
 
+    protected:
+        void showEvent(QShowEvent* e);
+
     private:
         Ui::VersionConvertSummaryDialog *ui;
 };

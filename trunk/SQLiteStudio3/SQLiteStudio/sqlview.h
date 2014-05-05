@@ -12,7 +12,7 @@ class SqlView : public QTextEdit
         explicit SqlView(QWidget *parent = 0);
 
         void setSqliteVersion(int version);
-        SqliteSyntaxHighlighter* getHighlighter() const;
+        void setTextBackgroundColor(int from, int to, const QColor& color);
 
     private:
         SqliteSyntaxHighlighter* highlighter;

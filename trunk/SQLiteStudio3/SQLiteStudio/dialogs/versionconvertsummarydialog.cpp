@@ -21,3 +21,11 @@ void VersionConvertSummaryDialog::setSides(const QList<QPair<QString, QString> >
 {
     ui->diffTable->setSides(data);
 }
+
+
+void VersionConvertSummaryDialog::showEvent(QShowEvent* e)
+{
+    QDialog::showEvent(e);
+    ui->diffTable->updateSizes();
+
+}

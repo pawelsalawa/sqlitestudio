@@ -131,7 +131,8 @@ SOURCES += main.cpp\
     common/widgetstateindicator.cpp \
     configwidgets/listtostringlisthash.cpp \
     dialogs/versionconvertsummarydialog.cpp \
-    sqlcompareview.cpp
+    sqlcompareview.cpp \
+    dialogs/errorsconfirmdialog.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -248,7 +249,8 @@ HEADERS  += mainwindow.h \
     common/widgetstateindicator.h \
     configwidgets/listtostringlisthash.h \
     dialogs/versionconvertsummarydialog.h \
-    sqlcompareview.h
+    sqlcompareview.h \
+    dialogs/errorsconfirmdialog.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \
@@ -282,7 +284,8 @@ FORMS    += mainwindow.ui \
     windows/functionseditor.ui \
     windows/collationseditor.ui \
     dialogs/exportdialog.ui \
-    dialogs/versionconvertsummarydialog.ui
+    dialogs/versionconvertsummarydialog.ui \
+    dialogs/errorsconfirmdialog.ui
 
 LIBS += -lcoreSQLiteStudio
 

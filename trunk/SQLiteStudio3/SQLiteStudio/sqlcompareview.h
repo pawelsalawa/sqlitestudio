@@ -15,15 +15,15 @@ class SqlCompareView : public QTableWidget
         void setSides(const QList<QPair<QString,QString>>& data);
         void setLeftLabel(const QString& label);
         void setRightLabel(const QString& label);
+        void updateSizes();
 
     protected:
         void resizeEvent(QResizeEvent* e);
         void showEvent(QShowEvent* e);
 
     private:
-        void updateSizes();
         void updateLabels();
-        void setupHighlighting(const QString& left, const QString& right, SqliteSyntaxHighlighter* highlighterLeft, SqliteSyntaxHighlighter* highlighterRight);
+        void setupHighlighting(const QString& left, const QString& right, SqlView* leftView, SqlView* rightView);
 
         QString leftLabel;
         QString rightLabel;

@@ -76,10 +76,12 @@ SqliteQueryPtr DbVersionConverter::convertToVersion2(SqliteQueryPtr query)
         case SqliteQueryType::AlterTable:
             errors << QObject::tr("SQLite 2 does not support 'ALTER TABLE' statement.");
             newQuery = SqliteEmptyQueryPtr::create();
+            storeErrorDiff(query.data());
             break;
         case SqliteQueryType::Analyze:
             errors << QObject::tr("SQLite 2 does not support 'ANAYLZE' statement.");
             newQuery = SqliteEmptyQueryPtr::create();
+            storeErrorDiff(query.data());
             break;
         case SqliteQueryType::Attach:
             newQuery = copyQuery<SqliteAttach>(query);
@@ -97,36 +99,47 @@ SqliteQueryPtr DbVersionConverter::convertToVersion2(SqliteQueryPtr query)
         case SqliteQueryType::CreateIndex:
             newQuery = copyQuery<SqliteCreateIndex>(query);
             if (!modifyCreateIndexForVersion2(newQuery.dynamicCast<SqliteCreateIndex>().data()))
+            {
                 newQuery = SqliteEmptyQueryPtr::create();
-
+                storeErrorDiff(query.data());
+            }
             break;
         case SqliteQueryType::CreateTable:
             newQuery = copyQuery<SqliteCreateTable>(query);
             if (!modifyCreateTableForVersion2(newQuery.dynamicCast<SqliteCreateTable>().data()))
+            {
                 newQuery = SqliteEmptyQueryPtr::create();
-
+                storeErrorDiff(query.data());
+            }
             break;
         case SqliteQueryType::CreateTrigger:
             newQuery = copyQuery<SqliteCreateTrigger>(query);
             if (!modifyCreateTriggerForVersion2(newQuery.dynamicCast<SqliteCreateTrigger>().data()))
+            {
                 newQuery = SqliteEmptyQueryPtr::create();
-
+                storeErrorDiff(query.data());
+            }
             break;
         case SqliteQueryType::CreateView:
             newQuery = copyQuery<SqliteCreateView>(query);
             if (!modifyCreateViewForVersion2(newQuery.dynamicCast<SqliteCreateView>().data()))
+            {
                 newQuery = SqliteEmptyQueryPtr::create();
-
+                storeErrorDiff(query.data());
+            }
             break;
         case SqliteQueryType::CreateVirtualTable:
             errors << QObject::tr("SQLite 2 does not support 'CREATE VIRTUAL TABLE' statement.");
             newQuery = SqliteEmptyQueryPtr::create();
+            storeErrorDiff(query.data());
             break;
         case SqliteQueryType::Delete:
             newQuery = copyQuery<SqliteDelete>(query);
             if (!modifyDeleteForVersion2(newQuery.dynamicCast<SqliteDelete>().data()))
+            {
                 newQuery = SqliteEmptyQueryPtr::create();
-
+                storeErrorDiff(query.data());
+            }
             break;
         case SqliteQueryType::Detach:
             newQuery = copyQuery<SqliteDetach>(query);
@@ -146,8 +159,10 @@ SqliteQueryPtr DbVersionConverter::convertToVersion2(SqliteQueryPtr query)
         case SqliteQueryType::Insert:
             newQuery = copyQuery<SqliteInsert>(query);
             if (!modifyInsertForVersion2(newQuery.dynamicCast<SqliteInsert>().data()))
+            {
                 newQuery = SqliteEmptyQueryPtr::create();
-
+                storeErrorDiff(query.data());
+            }
             break;
         case SqliteQueryType::Pragma:
             newQuery = copyQuery<SqlitePragma>(query);
@@ -155,10 +170,12 @@ SqliteQueryPtr DbVersionConverter::convertToVersion2(SqliteQueryPtr query)
         case SqliteQueryType::Reindex:
             errors << QObject::tr("SQLite 2 does not support 'REINDEX' statement.");
             newQuery = SqliteEmptyQueryPtr::create();
+            storeErrorDiff(query.data());
             break;
         case SqliteQueryType::Release:
             errors << QObject::tr("SQLite 2 does not support 'RELEASE' statement.");
             newQuery = SqliteEmptyQueryPtr::create();
+            storeErrorDiff(query.data());
             break;
         case SqliteQueryType::Rollback:
             newQuery = copyQuery<SqliteRollback>(query);
@@ -166,20 +183,25 @@ SqliteQueryPtr DbVersionConverter::convertToVersion2(SqliteQueryPtr query)
         case SqliteQueryType::Savepoint:
             errors << QObject::tr("SQLite 2 does not support 'SAVEPOINT' statement.");
             newQuery = SqliteEmptyQueryPtr::create();
+            storeErrorDiff(query.data());
             break;
         case SqliteQueryType::Select:
         {
             newQuery = copyQuery<SqliteSelect>(query);
             if (!modifySelectForVersion2(newQuery.dynamicCast<SqliteSelect>().data()))
+            {
                 newQuery = SqliteEmptyQueryPtr::create();
-
+                storeErrorDiff(query.data());
+            }
             break;
         }
         case SqliteQueryType::Update:
             newQuery = copyQuery<SqliteUpdate>(query);
             if (!modifyUpdateForVersion2(newQuery.dynamicCast<SqliteUpdate>().data()))
+            {
                 newQuery = SqliteEmptyQueryPtr::create();
-
+                storeErrorDiff(query.data());
+            }
             break;
         case SqliteQueryType::Vacuum:
             newQuery = copyQuery<SqliteVacuum>(query);
@@ -228,8 +250,10 @@ SqliteQueryPtr DbVersionConverter::convertToVersion3(SqliteQueryPtr query)
         case SqliteQueryType::BeginTrans:
             newQuery = copyQuery<SqliteBeginTrans>(query);
             if (!modifyBeginTransForVersion3(newQuery.dynamicCast<SqliteBeginTrans>().data()))
+            {
                 newQuery = SqliteEmptyQueryPtr::create();
-
+                storeErrorDiff(query.data());
+            }
             break;
         case SqliteQueryType::CommitTrans:
             newQuery = copyQuery<SqliteCommitTrans>(query);
@@ -237,6 +261,7 @@ SqliteQueryPtr DbVersionConverter::convertToVersion3(SqliteQueryPtr query)
         case SqliteQueryType::Copy:
             errors << QObject::tr("SQLite 3 does not support 'COPY' statement.");
             newQuery = SqliteEmptyQueryPtr::create();
+            storeErrorDiff(query.data());
             break;
         case SqliteQueryType::CreateIndex:
             newQuery = copyQuery<SqliteCreateIndex>(query);
@@ -759,6 +784,12 @@ void DbVersionConverter::storeDiff(const QString& sql1, SqliteStatement* stmt)
     QString sql2 = stmt->detokenize();
     if (sql1 != sql2)
         diffList << QPair<QString,QString>(sql1, sql2);
+}
+
+void DbVersionConverter::storeErrorDiff(SqliteStatement* stmt)
+{
+    stmt->rebuildTokens();
+    diffList << QPair<QString,QString>(stmt->detokenize(), "");
 }
 
 void DbVersionConverter::reset()
