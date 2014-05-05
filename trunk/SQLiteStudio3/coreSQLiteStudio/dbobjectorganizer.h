@@ -63,16 +63,20 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable, public In
         bool isExecuting();
         void run();
 
-    protected:
+    private:
         enum class Mode
         {
+            PREPARE_TO_COPY_OBJECTS,
+            PREPARE_TO_MOVE_OBJECTS,
             COPY_OBJECTS,
             MOVE_OBJECTS,
             unknown
         };
 
+        void init();
         void reset();
         void copyOrMoveObjectsToDb(Db* srcDb, const QStringList& objNames, Db* dstDb, bool includeData, bool move);
+        void processPreparation();
         bool processAll();
         bool processDbObjects();
         bool processColumns();
@@ -80,7 +84,7 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable, public In
         bool copyTableToDb(const QString& table);
         bool copyViewToDb(const QString& view);
         QStringList resolveReferencedtables(const QString& table);
-        bool checkAndConfirmDiffs(const QHash<QString, SchemaResolver::ObjectDetails>& details);
+        void collectDiffs(const QHash<QString, SchemaResolver::ObjectDetails>& details);
         QString convertDdlToDstVersion(const QString& ddl);
         void collectReferencedTables(const QString& table);
         bool copyDataAsMiddleware(const QString& table);
@@ -111,6 +115,8 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable, public In
         bool includeData = false;
         bool deleteSourceObjects = false;
         QStringList referencedTables;
+        QHash<QString,QStringList> errorsToConfirm;
+        QList<QPair<QString, QString>> diffListToConfirm;
         SchemaResolver* srcResolver = nullptr;
         SchemaResolver* dstResolver = nullptr;
         bool interrupted = false;
@@ -119,9 +125,13 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable, public In
         QMutex interruptMutex;
         QMutex executingMutex;
 
+    private slots:
+        void processPreparationFinished();
+
     signals:
         void finishedDbObjectsMove(bool success, Db* srcDb, Db* dstDb);
         void finishedDbObjectsCopy(bool success, Db* srcDb, Db* dstDb);
+        void preparetionFinished();
 };
 
 #endif // DBOBJECTORGANIZER_H
