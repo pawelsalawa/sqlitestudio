@@ -65,16 +65,96 @@ QString randStrNotIn(int length, const QSet<QString> set, bool numChars)
 }
 
 
-Range::Range(qint64 from, qint64 to)
-    :from(from), to(to)
+Range::Range() :
+    from(0), to(0)
 {
 }
 
-bool Range::contains(qint64 position)
+Range::Range(qint64 from, qint64 to)
+    :from(from), to(to)
+{
+    fromValid = true;
+    toValid = true;
+}
+
+void Range::setFrom(qint64 from)
+{
+    this->from = from;
+    fromValid = true;
+}
+
+void Range::setTo(qint64 to)
+{
+    this->to = to;
+    toValid = true;
+}
+
+qint64 Range::getFrom() const
+{
+    return from;
+}
+
+qint64 Range::getTo() const
+{
+    return to;
+}
+
+bool Range::isValid() const
+{
+    return fromValid && toValid && from <= to;
+}
+
+bool Range::contains(qint64 position) const
 {
     return position >= from && position <= to;
 }
 
+bool Range::overlaps(const Range& other) const
+{
+    return overlaps(other.from, other.to);
+}
+
+bool Range::overlaps(qint64 from, qint64 to) const
+{
+    return (this->from >= from && this->from <= to) || (this->to >= from && this->to <= to);
+}
+
+Range Range::common(const Range& other) const
+{
+    return common(other.from, other.to);
+}
+
+Range Range::common(qint64 from, qint64 to) const
+{
+    if (!isValid() || from > to)
+        return Range();
+
+    if (this->from >= from)
+    {
+        if (this->from > to)
+            return Range();
+
+        if (this->to < to)
+            return Range(this->from, this->to);
+        else
+            return Range(this->from, to);
+    }
+    else
+    {
+        if (from > this->to)
+            return Range();
+
+        if (to < this->to)
+            return Range(from, to);
+        else
+            return Range(from, this->to);
+    }
+}
+
+qint64 Range::length() const
+{
+    return to - from + 1;
+}
 
 QString generateUniqueName(const QString &baseName, const QStringList &existingNames)
 {

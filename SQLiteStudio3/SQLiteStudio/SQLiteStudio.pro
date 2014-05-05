@@ -130,7 +130,8 @@ SOURCES += main.cpp\
     selectabledbobjmodel.cpp \
     common/widgetstateindicator.cpp \
     configwidgets/listtostringlisthash.cpp \
-    guidbobjectorganizer.cpp
+    dialogs/versionconvertsummarydialog.cpp \
+    sqlcompareview.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -246,7 +247,8 @@ HEADERS  += mainwindow.h \
     selectabledbobjmodel.h \
     common/widgetstateindicator.h \
     configwidgets/listtostringlisthash.h \
-    guidbobjectorganizer.h
+    dialogs/versionconvertsummarydialog.h \
+    sqlcompareview.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \
@@ -279,7 +281,8 @@ FORMS    += mainwindow.ui \
     windows/ddlhistorywindow.ui \
     windows/functionseditor.ui \
     windows/collationseditor.ui \
-    dialogs/exportdialog.ui
+    dialogs/exportdialog.ui \
+    dialogs/versionconvertsummarydialog.ui
 
 LIBS += -lcoreSQLiteStudio
 

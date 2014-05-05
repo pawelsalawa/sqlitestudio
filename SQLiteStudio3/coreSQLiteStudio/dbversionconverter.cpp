@@ -74,7 +74,8 @@ SqliteQueryPtr DbVersionConverter::convertToVersion2(SqliteQueryPtr query)
     switch (query->queryType)
     {
         case SqliteQueryType::AlterTable:
-            newQuery = copyQuery<SqliteAlterTable>(query);
+            errors << QObject::tr("SQLite 2 does not support 'ALTER TABLE' statement.");
+            newQuery = SqliteEmptyQueryPtr::create();
             break;
         case SqliteQueryType::Analyze:
             errors << QObject::tr("SQLite 2 does not support 'ANAYLZE' statement.");
@@ -215,21 +216,27 @@ SqliteQueryPtr DbVersionConverter::convertToVersion3(SqliteQueryPtr query)
     {
         case SqliteQueryType::AlterTable:
             newQuery = copyQuery<SqliteAlterTable>(query);
+            qWarning() << "ALTER TABLE query passed to DbVersionConverter::convertToVersion3(). SQLite2 query should not have ALTER TABLE statement.";
             break;
         case SqliteQueryType::Analyze:
             newQuery = copyQuery<SqliteAnalyze>(query);
+            qWarning() << "ANALYZE query passed to DbVersionConverter::convertToVersion3(). SQLite2 query should not have ANALYZE statement.";
             break;
         case SqliteQueryType::Attach:
             newQuery = copyQuery<SqliteAttach>(query);
             break;
         case SqliteQueryType::BeginTrans:
             newQuery = copyQuery<SqliteBeginTrans>(query);
+            if (!modifyBeginTransForVersion3(newQuery.dynamicCast<SqliteBeginTrans>().data()))
+                newQuery = SqliteEmptyQueryPtr::create();
+
             break;
         case SqliteQueryType::CommitTrans:
             newQuery = copyQuery<SqliteCommitTrans>(query);
             break;
         case SqliteQueryType::Copy:
-            newQuery = copyQuery<SqliteCopy>(query);
+            errors << QObject::tr("SQLite 3 does not support 'COPY' statement.");
+            newQuery = SqliteEmptyQueryPtr::create();
             break;
         case SqliteQueryType::CreateIndex:
             newQuery = copyQuery<SqliteCreateIndex>(query);
@@ -272,15 +279,18 @@ SqliteQueryPtr DbVersionConverter::convertToVersion3(SqliteQueryPtr query)
             break;
         case SqliteQueryType::Reindex:
             newQuery = copyQuery<SqliteReindex>(query);
+            qWarning() << "REINDEX query passed to DbVersionConverter::convertToVersion3(). SQLite2 query should not have REINDEX statement.";
             break;
         case SqliteQueryType::Release:
             newQuery = copyQuery<SqliteRelease>(query);
+            qWarning() << "RELEASE query passed to DbVersionConverter::convertToVersion3(). SQLite2 query should not have RELEASE statement.";
             break;
         case SqliteQueryType::Rollback:
             newQuery = copyQuery<SqliteRollback>(query);
             break;
         case SqliteQueryType::Savepoint:
             newQuery = copyQuery<SqliteSavepoint>(query);
+            qWarning() << "SAVEPOINT query passed to DbVersionConverter::convertToVersion3(). SQLite2 query should not have SAVEPOINT statement.";
             break;
         case SqliteQueryType::Select:
             newQuery = copyQuery<SqliteSelect>(query);
@@ -332,7 +342,7 @@ bool DbVersionConverter::modifySelectForVersion2(SqliteSelect* select)
         return false;
     }
 
-    QString sql1 = select->detokenize();
+    QString sql1 = getSqlForDiff(select);
 
     for (SqliteSelect::Core* core : select->coreSelects)
     {
@@ -358,7 +368,7 @@ bool DbVersionConverter::modifyDeleteForVersion2(SqliteDelete* del)
         return false;
     }
 
-    QString sql1 = del->detokenize();
+    QString sql1 = getSqlForDiff(del);
 
     del->indexedBy = QString::null;
     del->indexedByKw = false;
@@ -391,7 +401,7 @@ bool DbVersionConverter::modifyInsertForVersion2(SqliteInsert* insert)
         return false;
     }
 
-    QString sql1 = insert->detokenize();
+    QString sql1 = getSqlForDiff(insert);
 
     // Modifying SELECT deals with "VALUES" completely.
     if (!modifySelectForVersion2(insert->select))
@@ -412,7 +422,7 @@ bool DbVersionConverter::modifyUpdateForVersion2(SqliteUpdate* update)
         return false;
     }
 
-    QString sql1 = update->detokenize();
+    QString sql1 = getSqlForDiff(update);
 
     if (!modifyAllExprsForVersion2(update))
         return false;
@@ -427,7 +437,7 @@ bool DbVersionConverter::modifyUpdateForVersion2(SqliteUpdate* update)
 
 bool DbVersionConverter::modifyCreateTableForVersion2(SqliteCreateTable* createTable)
 {
-    QString sql1 = createTable->detokenize();
+    QString sql1 = getSqlForDiff(createTable);
 
     if (!createTable->database.isNull())
         createTable->database = QString::null;
@@ -482,11 +492,24 @@ bool DbVersionConverter::modifyCreateTableForVersion2(SqliteCreateTable* createT
                     tableColConstrIt.value()->autoincrKw = false;
                     break;
                 }
+                case SqliteCreateTable::Column::Constraint::FOREIGN_KEY:
+                {
+                    QMutableListIterator<SqliteForeignKey::Condition*> condIt(tableColConstrIt.value()->foreignKey->conditions);
+                    while (condIt.hasNext())
+                    {
+                        condIt.next();
+                        if (condIt.value()->reaction == SqliteForeignKey::Condition::NO_ACTION
+                                && condIt.value()->action != SqliteForeignKey::Condition::MATCH) // SQLite 2 has no "NO ACTION"
+                        {
+                            condIt.remove();
+                        }
+                    }
+                    break;
+                }
                 case SqliteCreateTable::Column::Constraint::NOT_NULL:
                 case SqliteCreateTable::Column::Constraint::UNIQUE:
                 case SqliteCreateTable::Column::Constraint::CHECK:
                 case SqliteCreateTable::Column::Constraint::COLLATE:
-                case SqliteCreateTable::Column::Constraint::FOREIGN_KEY:
                 case SqliteCreateTable::Column::Constraint::NULL_:
                 case SqliteCreateTable::Column::Constraint::DEFERRABLE_ONLY:
                     break;
@@ -507,7 +530,7 @@ bool DbVersionConverter::modifyCreateTableForVersion2(SqliteCreateTable* createT
 
 bool DbVersionConverter::modifyCreateTriggerForVersion2(SqliteCreateTrigger* createTrigger)
 {
-    QString sql1 = createTrigger->detokenize();
+    QString sql1 = getSqlForDiff(createTrigger);
 
     if (!createTrigger->database.isNull())
         createTrigger->database = QString::null;
@@ -556,7 +579,7 @@ bool DbVersionConverter::modifyCreateTriggerForVersion2(SqliteCreateTrigger* cre
 
 bool DbVersionConverter::modifyCreateIndexForVersion2(SqliteCreateIndex* createIndex)
 {
-    QString sql1 = createIndex->detokenize();
+    QString sql1 = getSqlForDiff(createIndex);
 
     if (!createIndex->database.isNull())
         createIndex->database = QString::null;
@@ -576,7 +599,7 @@ bool DbVersionConverter::modifyCreateIndexForVersion2(SqliteCreateIndex* createI
 
 bool DbVersionConverter::modifyCreateViewForVersion2(SqliteCreateView* createView)
 {
-    QString sql1 = createView->detokenize();
+    QString sql1 = getSqlForDiff(createView);
 
     if (!createView->database.isNull())
         createView->database = QString::null;
@@ -676,6 +699,58 @@ bool DbVersionConverter::modifySingleIndexedColumnForVersion2(SqliteIndexedColum
         idxCol->collate = QString::null;
 
     return true;
+}
+
+bool DbVersionConverter::modifyBeginTransForVersion3(SqliteBeginTrans* begin)
+{
+    QString sql1 = getSqlForDiff(begin);
+    begin->onConflict = SqliteConflictAlgo::null;
+    storeDiff(sql1, begin);
+    return true;
+}
+
+bool DbVersionConverter::modifyCreateTableForVersion3(SqliteCreateTable* createTable)
+{
+    QString sql1 = getSqlForDiff(createTable);
+
+    // Column constraints
+    QMutableListIterator<SqliteCreateTable::Column*> tableColIt(createTable->columns);
+    while (tableColIt.hasNext())
+    {
+        tableColIt.next();
+        QMutableListIterator<SqliteCreateTable::Column::Constraint*> tableColConstrIt(tableColIt.value()->constraints);
+        while (tableColConstrIt.hasNext())
+        {
+            tableColConstrIt.next();
+            switch (tableColConstrIt.value()->type)
+            {
+                case SqliteCreateTable::Column::Constraint::CHECK:
+                {
+                    tableColConstrIt.value()->onConflict = SqliteConflictAlgo::null;
+                    break;
+                }
+                case SqliteCreateTable::Column::Constraint::NAME_ONLY:
+                case SqliteCreateTable::Column::Constraint::DEFAULT:
+                case SqliteCreateTable::Column::Constraint::PRIMARY_KEY:
+                case SqliteCreateTable::Column::Constraint::NOT_NULL:
+                case SqliteCreateTable::Column::Constraint::UNIQUE:
+                case SqliteCreateTable::Column::Constraint::COLLATE:
+                case SqliteCreateTable::Column::Constraint::FOREIGN_KEY:
+                case SqliteCreateTable::Column::Constraint::NULL_:
+                case SqliteCreateTable::Column::Constraint::DEFERRABLE_ONLY:
+                    break;
+            }
+        }
+    }
+
+    storeDiff(sql1, createTable);
+    return true;
+}
+
+QString DbVersionConverter::getSqlForDiff(SqliteStatement* stmt)
+{
+    stmt->rebuildTokens();
+    return stmt->detokenize();
 }
 
 void DbVersionConverter::storeDiff(const QString& sql1, SqliteStatement* stmt)

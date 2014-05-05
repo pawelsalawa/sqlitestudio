@@ -23,6 +23,7 @@ class SqliteDelete;
 class SqliteUpdate;
 class SqliteInsert;
 class SqliteExpr;
+class SqliteBeginTrans;
 
 class DbVersionConverter
 {
@@ -59,6 +60,9 @@ class DbVersionConverter
         bool modifyAllIndexedColumnsForVersion2(SqliteStatement* stmt);
         bool modifyAllIndexedColumnsForVersion2(const QList<SqliteIndexedColumn*> columns);
         bool modifySingleIndexedColumnForVersion2(SqliteIndexedColumn* idxCol);
+        bool modifyBeginTransForVersion3(SqliteBeginTrans* begin);
+        bool modifyCreateTableForVersion3(SqliteCreateTable* createTable);
+        QString getSqlForDiff(SqliteStatement* stmt);
         void storeDiff(const QString& sql1, SqliteStatement* stmt);
 
         template <class T>

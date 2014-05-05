@@ -154,7 +154,8 @@ SOURCES += sqlitestudio.cpp \
     dbobjectorganizer.cpp \
     db/attachguard.cpp \
     db/invaliddb.cpp \
-    dbversionconverter.cpp
+    dbversionconverter.cpp \
+    diff/diff_match_patch.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -307,7 +308,8 @@ HEADERS += sqlitestudio.h\
     db/attachguard.h \
     interruptable.h \
     db/invaliddb.h \
-    dbversionconverter.h
+    dbversionconverter.h \
+    diff/diff_match_patch.h
 
 unix:!symbian {
     maemo5 {
