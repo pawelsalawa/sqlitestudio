@@ -14,7 +14,7 @@ DbObjectOrganizer::DbObjectOrganizer()
     nameConflictResolveFunction = [](QString&) -> bool {return false;};
     conversionConfimFunction = [](const QList<QPair<QString,QString>>&) -> bool {return false;};
     conversionErrorsConfimFunction = [](const QHash<QString,QStringList>&) -> bool {return false;};
-    versionConverter = new DbVersionConverter();
+    init();
 }
 
 DbObjectOrganizer::DbObjectOrganizer(DbObjectOrganizer::ReferencedTablesConfimFunction confirmFunction, NameConflictResolveFunction nameConflictResolveFunction,
@@ -22,7 +22,7 @@ DbObjectOrganizer::DbObjectOrganizer(DbObjectOrganizer::ReferencedTablesConfimFu
     confirmFunction(confirmFunction), nameConflictResolveFunction(nameConflictResolveFunction), conversionConfimFunction(conversionConfimFunction),
     conversionErrorsConfimFunction(conversionErrorsConfimFunction)
 {
-    versionConverter = new DbVersionConverter();
+    init();
 }
 
 DbObjectOrganizer::~DbObjectOrganizer()
@@ -30,6 +30,12 @@ DbObjectOrganizer::~DbObjectOrganizer()
     safe_delete(srcResolver);
     safe_delete(dstResolver);
     safe_delete(versionConverter);
+}
+
+void DbObjectOrganizer::init()
+{
+    versionConverter = new DbVersionConverter();
+    connect(this, SIGNAL(preparetionFinished()), this, SLOT(processPreparationFinished()));
 }
 
 void DbObjectOrganizer::copyObjectsToDb(Db* srcDb, const QStringList& objNames, Db* dstDb, bool includeData)
@@ -58,22 +64,21 @@ bool DbObjectOrganizer::isExecuting()
 
 void DbObjectOrganizer::run()
 {
-    if (!srcDb->isOpen())
+    switch (mode)
     {
-        notifyError(tr("Cannot copy or move objects from closed database. Open it first."));
-        emitFinished(false);
-        return;
+        case Mode::PREPARE_TO_COPY_OBJECTS:
+        case Mode::PREPARE_TO_MOVE_OBJECTS:
+            processPreparation();
+            break;
+        case Mode::COPY_OBJECTS:
+        case Mode::MOVE_OBJECTS:
+            emitFinished(processAll());
+            break;
+        case Mode::unknown:
+            qCritical() << "DbObjectOrganizer::run() called with unknown mode.";
+            emitFinished(false);
+            return;
     }
-
-    if (!dstDb->isOpen())
-    {
-        notifyError(tr("Cannot copy or move objects to closed database. Open it first."));
-        emitFinished(false);
-        return;
-    }
-
-    bool res = processAll();
-    emitFinished(res);
 }
 
 void DbObjectOrganizer::reset()
@@ -89,6 +94,8 @@ void DbObjectOrganizer::reset()
     includeData = false;
     deleteSourceObjects = false;
     referencedTables.clear();
+    diffListToConfirm.clear();
+    errorsToConfirm.clear();
     safe_delete(srcResolver);
     safe_delete(dstResolver);
     interrupted = false;
@@ -108,18 +115,24 @@ void DbObjectOrganizer::copyOrMoveObjectsToDb(Db* srcDb, const QStringList& objN
     setExecuting(true);
     if (move)
     {
-        mode = Mode::MOVE_OBJECTS;
+        mode = Mode::PREPARE_TO_MOVE_OBJECTS;
         deleteSourceObjects = true;
     }
     else
     {
-        mode = Mode::COPY_OBJECTS;
+        mode = Mode::PREPARE_TO_COPY_OBJECTS;
     }
 
     this->srcNames = objNames;
     this->includeData = includeData;
     setSrcAndDstDb(srcDb, dstDb);
 
+    QThreadPool::globalInstance()->start(this);
+}
+
+void DbObjectOrganizer::processPreparation()
+{
+//    QHash<QString, SqliteQueryPtr> allParsedObjects = srcResolver->getAllParsedObjects();
     QHash<QString, SchemaResolver::ObjectDetails> details = srcResolver->getAllObjectDetails();
     for (const QString& srcName : srcNames)
     {
@@ -133,6 +146,7 @@ void DbObjectOrganizer::copyOrMoveObjectsToDb(Db* srcDb, const QStringList& objN
         {
             case SchemaResolver::ObjectDetails::TABLE:
                 srcTables << srcName;
+                collectReferencedTables(srcName);
                 break;
             case SchemaResolver::ObjectDetails::INDEX:
                 break;
@@ -144,29 +158,28 @@ void DbObjectOrganizer::copyOrMoveObjectsToDb(Db* srcDb, const QStringList& objN
         }
     }
 
-    for (const QString& table : srcTables)
-        collectReferencedTables(table);
-
     if (referencedTables.size() > 0 && !confirmFunction(referencedTables))
         referencedTables.clear();
 
-    if (!checkAndConfirmDiffs(details))
-    {
-        emitFinished(false);
-        return;
-    }
+    collectDiffs(details);
 
-    if (!resolveNameConflicts())
-    {
-        emitFinished(false);
-        return;
-    }
-
-    QThreadPool::globalInstance()->start(this);
+    emit preparetionFinished();
 }
 
 bool DbObjectOrganizer::processAll()
 {
+    if (!srcDb->isOpen())
+    {
+        //notifyError(tr("Cannot copy or move objects from closed database. Open it first.")); // TODO this is in another thread - handle it
+        return false;
+    }
+
+    if (!dstDb->isOpen())
+    {
+        //notifyError(tr("Cannot copy or move objects to closed database. Open it first.")); // TODO this is in another thread - handle it
+        return false;
+    }
+
     dstDb->begin();
     if (!setFkEnabled(false))
     {
@@ -182,6 +195,12 @@ bool DbObjectOrganizer::processAll()
         {
             res = processDbObjects();
             break;
+        }
+        case Mode::PREPARE_TO_COPY_OBJECTS:
+        case Mode::PREPARE_TO_MOVE_OBJECTS:
+        {
+            qCritical() << "DbObjectOrganizer::processAll() called with PREAPRE mode.";
+            return false; // this method should not be called with this mode
         }
         case Mode::unknown:
         {
@@ -244,6 +263,8 @@ bool DbObjectOrganizer::resolveNameConflicts()
     QStringList namesInDst;
     switch (mode)
     {
+        case Mode::PREPARE_TO_COPY_OBJECTS:
+        case Mode::PREPARE_TO_MOVE_OBJECTS:
         case Mode::COPY_OBJECTS:
         case Mode::MOVE_OBJECTS:
         {
@@ -253,7 +274,7 @@ bool DbObjectOrganizer::resolveNameConflicts()
         }
         case Mode::unknown:
         {
-            qWarning() << "Unhandled unknown mode in DbObjectOrganizer.";
+            qWarning() << "Unhandled unknown mode in DbObjectOrganizer::resolveNameConflicts().";
             return false;
         }
     }
@@ -465,15 +486,13 @@ QStringList DbObjectOrganizer::resolveReferencedtables(const QString& table)
     return tables;
 }
 
-bool DbObjectOrganizer::checkAndConfirmDiffs(const QHash<QString, SchemaResolver::ObjectDetails>& details)
+void DbObjectOrganizer::collectDiffs(const QHash<QString, SchemaResolver::ObjectDetails>& details)
 {
     if (srcDb->getVersion() == dstDb->getVersion())
-        return true;
+        return;
 
 
     int dstVersion = dstDb->getVersion();
-    QHash<QString,QStringList> errors;
-    QList<QPair<QString, QString>> diffList;
     QStringList names = srcTables + srcViews + referencedTables;
     for (const QString& name : names)
     {
@@ -489,18 +508,10 @@ bool DbObjectOrganizer::checkAndConfirmDiffs(const QHash<QString, SchemaResolver
         else
             versionConverter->convertToVersion2(details[name].ddl);
 
-        diffList += versionConverter->getDiffList();
+        diffListToConfirm += versionConverter->getDiffList();
         if (!versionConverter->getErrors().isEmpty())
-            errors[name] = versionConverter->getErrors();
+            errorsToConfirm[name] = versionConverter->getErrors();
     }
-
-    if (errors.size() > 0 && !conversionErrorsConfimFunction(errors))
-        return false;
-
-    if (diffList.size() > 0 && !conversionConfimFunction(diffList))
-        return false;
-
-    return true;
 }
 
 QString DbObjectOrganizer::convertDdlToDstVersion(const QString& ddl)
@@ -565,8 +576,10 @@ void DbObjectOrganizer::emitFinished(bool success)
     switch (mode)
     {
         case Mode::COPY_OBJECTS:
+        case Mode::PREPARE_TO_COPY_OBJECTS:
             emit finishedDbObjectsCopy(success, srcDb, dstDb);
             break;
+        case Mode::PREPARE_TO_MOVE_OBJECTS:
         case Mode::MOVE_OBJECTS:
             emit finishedDbObjectsMove(success, srcDb, dstDb);
             break;
@@ -574,4 +587,43 @@ void DbObjectOrganizer::emitFinished(bool success)
             break;
     }
     setExecuting(false);
+}
+
+void DbObjectOrganizer::processPreparationFinished()
+{
+    if (errorsToConfirm.size() > 0 && !conversionErrorsConfimFunction(errorsToConfirm))
+    {
+        emitFinished(false);
+        return;
+    }
+
+    if (diffListToConfirm.size() > 0 && !conversionConfimFunction(diffListToConfirm))
+    {
+        emitFinished(false);
+        return;
+    }
+
+    if (!resolveNameConflicts())
+    {
+        emitFinished(false);
+        return;
+    }
+
+    switch (mode)
+    {
+        case Mode::PREPARE_TO_COPY_OBJECTS:
+            mode = Mode::COPY_OBJECTS;
+            break;
+        case Mode::PREPARE_TO_MOVE_OBJECTS:
+            mode = Mode::MOVE_OBJECTS;
+            break;
+        case Mode::COPY_OBJECTS:
+        case Mode::MOVE_OBJECTS:
+        case Mode::unknown:
+            qCritical() << "DbObjectOrganizer::processPreparationFinished() called with a not PREPARE mode.";
+            emitFinished(false);
+            return;
+    }
+
+    QThreadPool::globalInstance()->start(this);
 }
