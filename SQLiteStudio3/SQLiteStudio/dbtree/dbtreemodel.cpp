@@ -18,6 +18,7 @@
 #include <QCheckBox>
 #include <QWidgetAction>
 #include <dialogs/dbdialog.h>
+#include <dialogs/errorsconfirmdialog.h>
 #include <dialogs/versionconvertsummarydialog.h>
 #include <db/invaliddb.h>
 
@@ -1105,9 +1106,13 @@ bool DbTreeModel::confirmConversion(const QList<QPair<QString, QString> >& diffs
     return dialog.exec() == QDialog::Accepted;
 }
 
-bool DbTreeModel::confirmConversionErrors(const QStringList& errors)
+bool DbTreeModel::confirmConversionErrors(const QHash<QString,QStringList>& errors)
 {
-    return false;
+    ErrorsConfirmDialog dialog(MAINWINDOW);
+    dialog.setTopLabel(tr("Following error occurred while converting SQL statements to the target SQLite version:"));
+    dialog.setBottomLabel(tr("Would you like to ignore those errors and proceed?"));
+    dialog.setErrors(errors);
+    return dialog.exec() == QDialog::Accepted;
 }
 
 void DbTreeModel::dbObjectsMoveFinished(bool success, Db* srcDb, Db* dstDb)

@@ -102,14 +102,6 @@ class SqliteSyntaxHighlighter : public QSyntaxHighlighter
             int to;
         };
 
-        struct CustomColor
-        {
-            CustomColor(int from, int to, const QColor& color);
-
-            Range range;
-            QColor color;
-        };
-
         void setupMapping();
 
         /**
@@ -157,15 +149,12 @@ class SqliteSyntaxHighlighter : public QSyntaxHighlighter
 
         void handleParenthesis(TokenPtr token, TextBlockData* data);
 
-        void applyCustomColors(int position, int length);
-
         static const int regulartTextBlockState = static_cast<int>(TextBlockState::REGULAR);
         int sqliteVersion = 3;
         QHash<State,QTextCharFormat> formats;
         QHash<Token::Type,State> tokenTypeMapping;
         QList<Error> errors;
         QList<DbObject> dbObjects;
-        QList<CustomColor> customBgColors;
         bool objectLinksEnabled = false;
 
     private slots:

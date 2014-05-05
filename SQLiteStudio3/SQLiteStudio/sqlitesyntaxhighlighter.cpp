@@ -169,8 +169,6 @@ void SqliteSyntaxHighlighter::highlightBlock(const QString &text)
         token = lexer.getToken();
     }
 
-    applyCustomColors(currentBlock().position(), text.length());
-
     setCurrentBlockUserData(data);
 }
 
@@ -255,22 +253,6 @@ void SqliteSyntaxHighlighter::handleParenthesis(TokenPtr token, TextBlockData* d
         data->insertParenthesis(currentBlock().position() + token->start, token->value[0].toLatin1());
 }
 
-void SqliteSyntaxHighlighter::applyCustomColors(int position, int length)
-{
-    int endPosition = position + length - 1;
-    QTextCharFormat format;
-    Range rangeToColor;
-    for (const CustomColor& custColor : customBgColors)
-    {
-        if (custColor.range.overlaps(position, endPosition))
-        {
-            rangeToColor = custColor.range.common(position, endPosition);
-            format.setBackground(custColor.color);
-            QSyntaxHighlighter::setFormat(custColor.range.getFrom() - position, rangeToColor.length(), format);
-        }
-    }
-}
-
 bool SqliteSyntaxHighlighter::getObjectLinksEnabled() const
 {
     return objectLinksEnabled;
@@ -279,16 +261,6 @@ bool SqliteSyntaxHighlighter::getObjectLinksEnabled() const
 void SqliteSyntaxHighlighter::setObjectLinksEnabled(bool value)
 {
     objectLinksEnabled = value;
-}
-
-void SqliteSyntaxHighlighter::addCustomBgColor(int from, int to, const QColor& color)
-{
-    customBgColors << CustomColor(from, to, color);
-}
-
-void SqliteSyntaxHighlighter::clearCustomBgColors()
-{
-    customBgColors.clear();
 }
 
 bool SqliteSyntaxHighlighter::isError(int start, int lgt, bool* limitedDamage)
@@ -459,9 +431,4 @@ QSyntaxHighlighter* SqliteHighlighterPlugin::createSyntaxHighlighter(QWidget* te
         return new SqliteSyntaxHighlighter(edit->document());
 
     return nullptr;
-}
-
-SqliteSyntaxHighlighter::CustomColor::CustomColor(int from, int to, const QColor& color) :
-    range(from, to), color(color)
-{
 }

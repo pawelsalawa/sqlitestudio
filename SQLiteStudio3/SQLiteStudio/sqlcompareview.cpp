@@ -14,7 +14,7 @@ SqlCompareView::SqlCompareView(QWidget *parent) :
     horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
     horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
     horizontalHeader()->setVisible(false);
-    verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+//    verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     diff = new diff_match_patch;
 }
 
@@ -22,26 +22,22 @@ void SqlCompareView::setSides(const QList<QPair<QString, QString>>& data)
 {
     setRowCount(data.size());
 
-    SqliteSyntaxHighlighter* highlighterLeft;
-    SqliteSyntaxHighlighter* highlighterRight;
-
     int row = 0;
-    SqlView* view;
+    SqlView* leftView;
+    SqlView* rightView;
     for (const QPair<QString, QString>& rowData : data)
     {
-        view = new SqlView();
-        view->setFrameStyle(QFrame::NoFrame);
-        view->setPlainText(rowData.first);
-        highlighterLeft = view->getHighlighter();
-        setCellWidget(row, 0, view);
+        leftView = new SqlView();
+        leftView->setFrameStyle(QFrame::NoFrame);
+        leftView->setPlainText(rowData.first);
+        setCellWidget(row, 0, leftView);
 
-        view = new SqlView();
-        view->setFrameStyle(QFrame::NoFrame);
-        view->setPlainText(rowData.second);
-        highlighterRight = view->getHighlighter();
-        setCellWidget(row, 1, view);
+        rightView = new SqlView();
+        rightView->setFrameStyle(QFrame::NoFrame);
+        rightView->setPlainText(rowData.second);
+        setCellWidget(row, 1, rightView);
 
-        setupHighlighting(rowData.first, rowData.second, highlighterLeft, highlighterRight);
+        setupHighlighting(rowData.first, rowData.second, leftView, rightView);
 
         row++;
     }
@@ -77,18 +73,27 @@ void SqlCompareView::updateSizes()
     int leftWidth = horizontalHeader()->sectionSize(0);
     int rightWidth = horizontalHeader()->sectionSize(1);
 
-    QSize size;
+    SqlView* leftView;
+    SqlView* rightView;
+    QSize leftSize;
+    QSize rightSize;
     for (int row = 0, total = rowCount(); row < total; ++row)
     {
-        view = dynamic_cast<SqlView*>(cellWidget(row, 0));
-        view->document()->setTextWidth(leftWidth - 20);
-        size = QSize(leftWidth, view->document()->size().toSize().height());
-        view->setFixedSize(size);
+        leftView = dynamic_cast<SqlView*>(cellWidget(row, 0));
+        leftView->document()->setTextWidth(leftWidth);
 
-        view = dynamic_cast<SqlView*>(cellWidget(row, 1));
-        view->document()->setTextWidth(rightWidth - 20);
-        size = QSize(rightWidth, view->document()->size().toSize().height());
-        view->setFixedSize(size);
+        rightView = dynamic_cast<SqlView*>(cellWidget(row, 1));
+        rightView->document()->setTextWidth(rightWidth);
+
+        leftSize = QSize(leftWidth, leftView->document()->size().toSize().height());
+        rightSize = QSize(rightWidth, rightView->document()->size().toSize().height());
+        if (leftSize.height() > rightSize.height())
+            rightSize.setHeight(leftSize.height());
+        else
+            leftSize.setHeight(rightSize.height());
+
+        leftView->setFixedSize(leftSize);
+        rightView->setFixedSize(rightSize);
     }
     verticalHeader()->resizeSections(QHeaderView::ResizeToContents);
 }
@@ -98,7 +103,7 @@ void SqlCompareView::updateLabels()
     setHorizontalHeaderLabels({leftLabel, rightLabel});
 }
 
-void SqlCompareView::setupHighlighting(const QString& left, const QString& right, SqliteSyntaxHighlighter* highlighterLeft, SqliteSyntaxHighlighter* highlighterRight)
+void SqlCompareView::setupHighlighting(const QString& left, const QString& right, SqlView* leftView, SqlView* rightView)
 {
     QList<Diff> diffs = diff->diff_main(left, right);
     int leftPos = 0;
@@ -110,7 +115,7 @@ void SqlCompareView::setupHighlighting(const QString& left, const QString& right
         switch (d.operation)
         {
             case DELETE:
-                highlighterLeft->addCustomBgColor(leftPos, leftPos + lgt - 1, Qt::red);
+                leftView->setTextBackgroundColor(leftPos, leftPos + lgt - 1, Qt::red);
                 leftPos += lgt;
                 break;
             case EQUAL:
@@ -118,13 +123,11 @@ void SqlCompareView::setupHighlighting(const QString& left, const QString& right
                 rightPos += lgt;
                 break;
             case INSERT:
-                highlighterRight->addCustomBgColor(leftPos, leftPos + lgt - 1, Qt::green);
+                rightView->setTextBackgroundColor(leftPos, leftPos + lgt - 1, Qt::green);
                 rightPos += lgt;
                 break;
         }
     }
-    highlighterLeft->rehighlight();
-    highlighterRight->rehighlight();
 }
 
 void SqlCompareView::resizeEvent(QResizeEvent* e)

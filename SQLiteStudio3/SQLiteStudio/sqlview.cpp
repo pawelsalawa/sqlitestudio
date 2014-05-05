@@ -16,9 +16,25 @@ void SqlView::setSqliteVersion(int version)
     highlighter->setSqliteVersion(version);
 }
 
-SqliteSyntaxHighlighter* SqlView::getHighlighter() const
+void SqlView::setTextBackgroundColor(int from, int to, const QColor& color)
 {
-    return highlighter;
+    bool wasRo = false;
+    if (isReadOnly())
+    {
+        wasRo = true;
+        setReadOnly(false);
+    }
+
+    QTextCharFormat format;
+    format.setBackground(color);
+
+    QTextCursor cur(document());
+    cur.setPosition(from);
+    cur.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, to - from + 1);
+    cur.mergeCharFormat(format);
+
+    if (wasRo)
+        setReadOnly(true);
 }
 
 void SqlView::changeFont(const QVariant &font)
