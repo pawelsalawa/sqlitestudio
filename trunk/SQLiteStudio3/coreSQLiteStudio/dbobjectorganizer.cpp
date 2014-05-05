@@ -1,9 +1,9 @@
 #include "dbobjectorganizer.h"
-#include "schemaresolver.h"
 #include "db/db.h"
 #include "common/utils_sql.h"
 #include "services/notifymanager.h"
 #include "db/attachguard.h"
+#include "dbversionconverter.h"
 #include <QDebug>
 #include <QThreadPool>
 
@@ -12,18 +12,24 @@ DbObjectOrganizer::DbObjectOrganizer()
     // Default organizaer denies any referenced objects
     confirmFunction = [](const QStringList&) -> bool {return false;};
     nameConflictResolveFunction = [](QString&) -> bool {return false;};
+    conversionConfimFunction = [](const QList<QPair<QString,QString>>&) -> bool {return false;};
+    conversionErrorsConfimFunction = [](const QStringList&) -> bool {return false;};
+    versionConverter = new DbVersionConverter();
 }
 
-DbObjectOrganizer::DbObjectOrganizer(DbObjectOrganizer::ReferencedTablesConfimFunction confirmFunction,
-                                     NameConflictResolveFunction nameConflictResolveFunction) :
-    confirmFunction(confirmFunction), nameConflictResolveFunction(nameConflictResolveFunction)
+DbObjectOrganizer::DbObjectOrganizer(DbObjectOrganizer::ReferencedTablesConfimFunction confirmFunction, NameConflictResolveFunction nameConflictResolveFunction,
+                                     ConversionConfimFunction conversionConfimFunction, ConversionErrorsConfimFunction conversionErrorsConfimFunction) :
+    confirmFunction(confirmFunction), nameConflictResolveFunction(nameConflictResolveFunction), conversionConfimFunction(conversionConfimFunction),
+    conversionErrorsConfimFunction(conversionErrorsConfimFunction)
 {
+    versionConverter = new DbVersionConverter();
 }
 
 DbObjectOrganizer::~DbObjectOrganizer()
 {
     safe_delete(srcResolver);
     safe_delete(dstResolver);
+    safe_delete(versionConverter);
 }
 
 void DbObjectOrganizer::copyObjectsToDb(Db* srcDb, const QStringList& objNames, Db* dstDb, bool includeData)
@@ -144,9 +150,15 @@ void DbObjectOrganizer::copyOrMoveObjectsToDb(Db* srcDb, const QStringList& objN
     if (referencedTables.size() > 0 && !confirmFunction(referencedTables))
         referencedTables.clear();
 
+    if (!checkAndConfirmDiffs(details))
+    {
+        emitFinished(false);
+        return;
+    }
+
     if (!resolveNameConflicts())
     {
-        setExecuting(false);
+        emitFinished(false);
         return;
     }
 
@@ -293,6 +305,8 @@ bool DbObjectOrganizer::copyTableToDb(const QString& table)
         ddl = srcResolver->getObjectDdl(table);
     }
 
+    ddl = convertDdlToDstVersion(ddl);
+
     SqlResultsPtr result;
 
     if (attachName.isNull())
@@ -416,6 +430,7 @@ void DbObjectOrganizer::dropView(const QString& view)
 bool DbObjectOrganizer::copyViewToDb(const QString& view)
 {
     QString ddl = srcResolver->getObjectDdl(view);
+    ddl = convertDdlToDstVersion(ddl);
     SqlResultsPtr result = dstDb->exec(ddl);
     if (result->isError())
     {
@@ -443,6 +458,52 @@ QStringList DbObjectOrganizer::resolveReferencedtables(const QString& table)
         }
     }
     return tables;
+}
+
+bool DbObjectOrganizer::checkAndConfirmDiffs(const QHash<QString, SchemaResolver::ObjectDetails>& details)
+{
+    if (srcDb->getVersion() == dstDb->getVersion())
+        return true;
+
+    versionConverter->reset();
+
+    int dstVersion = dstDb->getVersion();
+    QStringList names = srcTables + srcViews + referencedTables;
+    for (const QString& name : names)
+    {
+        if (!details.contains(name))
+        {
+            qCritical() << "Object named" << name << "not found in details when trying to prepare Diff for copying or moving object.";
+            continue;
+        }
+
+        if (dstVersion == 3)
+            versionConverter->convertToVersion3(details[name].ddl);
+        else
+            versionConverter->convertToVersion2(details[name].ddl);
+    }
+
+    QStringList errors = versionConverter->getErrors();
+    QList<QPair<QString, QString>> diffList = versionConverter->getDiffList();
+
+    if (errors.size() > 0 && !conversionErrorsConfimFunction(errors))
+        return false;
+
+    if (diffList.size() > 0 && !conversionConfimFunction(diffList))
+        return false;
+
+    return true;
+}
+
+QString DbObjectOrganizer::convertDdlToDstVersion(const QString& ddl)
+{
+    if (srcDb->getVersion() == dstDb->getVersion())
+        return ddl;
+
+    if (dstDb->getVersion() == 3)
+        return versionConverter->convertToVersion3(ddl);
+    else
+        return versionConverter->convertToVersion2(ddl);
 }
 
 void DbObjectOrganizer::collectReferencedTables(const QString& table)

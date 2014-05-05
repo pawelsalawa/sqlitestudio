@@ -18,6 +18,7 @@
 #include <QCheckBox>
 #include <QWidgetAction>
 #include <dialogs/dbdialog.h>
+#include <dialogs/versionconvertsummarydialog.h>
 #include <db/invaliddb.h>
 
 const QString DbTreeModel::toolTipTableTmp = "<table>%1</table>";
@@ -34,7 +35,7 @@ DbTreeModel::DbTreeModel()
     connect(CFG, &Config::massSaveCommited, this, &DbTreeModel::massSaveCommited);
     connect(CFG_UI.General.ShowSystemObjects, SIGNAL(changed(QVariant)), this, SLOT(markSchemaReloadingRequired()));
 
-    dbOrganizer = new DbObjectOrganizer(confirmReferencedTables, resolveNameConflict);
+    dbOrganizer = new DbObjectOrganizer(confirmReferencedTables, resolveNameConflict, confirmConversion, confirmConversionErrors);
     dbOrganizer->setAutoDelete(false);
     connect(dbOrganizer, SIGNAL(finishedDbObjectsCopy(bool,Db*,Db*)), this, SLOT(dbObjectsCopyFinished(bool,Db*,Db*)));
     connect(dbOrganizer, SIGNAL(finishedDbObjectsMove(bool,Db*,Db*)), this, SLOT(dbObjectsMoveFinished(bool,Db*,Db*)));
@@ -1094,6 +1095,19 @@ bool DbTreeModel::resolveNameConflict(QString& nameInConflict)
         nameInConflict = result;
 
     return ok;
+}
+
+bool DbTreeModel::confirmConversion(const QList<QPair<QString, QString> >& diffs)
+{
+    VersionConvertSummaryDialog dialog(MAINWINDOW);
+    dialog.setWindowTitle(tr("SQL statements conversion"));
+    dialog.setSides(diffs);
+    return dialog.exec() == QDialog::Accepted;
+}
+
+bool DbTreeModel::confirmConversionErrors(const QStringList& errors)
+{
+    return false;
 }
 
 void DbTreeModel::dbObjectsMoveFinished(bool success, Db* srcDb, Db* dstDb)

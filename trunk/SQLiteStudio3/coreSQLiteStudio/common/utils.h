@@ -12,14 +12,29 @@ class QTextCodec;
 
 API_EXPORT void initUtils();
 
-struct API_EXPORT Range
+class API_EXPORT Range
 {
-    Range(qint64 from, qint64 to);
+    public:
+        Range();
+        Range(qint64 from, qint64 to);
 
-    bool contains(qint64 position);
+        void setFrom(qint64 from);
+        void setTo(qint64 to);
+        qint64 getFrom() const;
+        qint64 getTo() const;
+        bool isValid() const;
+        bool contains(qint64 position) const;
+        bool overlaps(const Range& other) const;
+        bool overlaps(qint64 from, qint64 to) const;
+        Range common(const Range& other) const;
+        Range common(qint64 from, qint64 to) const;
+        qint64 length() const;
 
-    qint64 from;
-    qint64 to;
+    private:
+        qint64 from;
+        qint64 to;
+        bool fromValid = false;
+        bool toValid = false;
 };
 
 API_EXPORT bool isXDigit(const QChar& c);
