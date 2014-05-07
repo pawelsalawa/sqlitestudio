@@ -78,7 +78,7 @@ void DbAttacherImpl::detachAttached()
 
 void DbAttacherImpl::prepareNameToDbMap()
 {
-    foreach (Db* db, DBLIST->getDbList())
+    foreach (Db* db, DBLIST->getValidDbList())
         nameToDbMap[db->getName()] = db;
 }
 

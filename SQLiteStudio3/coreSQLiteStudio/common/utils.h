@@ -87,6 +87,17 @@ QList<T> filter(const QList<T>& list, std::function<bool(const T& value)> filter
     return results;
 }
 
+template <class T>
+bool contains(const QList<T>& list, std::function<bool(const T& value)> testFunction)
+{
+    for (const T& value : list)
+    {
+        if (testFunction(value))
+            return true;
+    }
+    return false;
+}
+
 /**
  * @brief Appends or prepends characters to the string to make it of specified length.
  * @param str Input string to work with.

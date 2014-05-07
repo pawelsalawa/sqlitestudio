@@ -26,6 +26,7 @@ class ParserTest : public QObject
         void testUnfinishedSingleSourceWithTolerance();
         void testCommentEnding1();
         void testCommentEnding2();
+        void testOper1();
         void testBig1();
         void initTestCase();
         void cleanupTestCase();
@@ -167,6 +168,15 @@ void ParserTest::testCommentEnding2()
     QString sql = "select 1 /*aaa";
     bool res = parser3->parse(sql);
     QVERIFY(res);
+}
+
+void ParserTest::testOper1()
+{
+    QString sql = "SELECT dfgd<=2";
+    TokenList tokens = Lexer::tokenize(sql, Dialect::Sqlite3);
+    QVERIFY(tokens[2]->value == "dfgd");
+    QVERIFY(tokens[3]->value == "<=");
+    QVERIFY(tokens[4]->value == "2");
 }
 
 void ParserTest::testBig1()

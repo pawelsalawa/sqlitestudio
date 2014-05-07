@@ -35,6 +35,7 @@ class DbManagerImpl : public DbManager
         void removeDbByPath(const QString& path);
         void removeDb(Db* db);
         QList<Db*> getDbList();
+        QList<Db*> getValidDbList();
         QList<Db*> getConnectedDbList();
         QStringList getDbNames();
         Db* getByName(const QString& name, Qt::CaseSensitivity cs = Qt::CaseSensitive);

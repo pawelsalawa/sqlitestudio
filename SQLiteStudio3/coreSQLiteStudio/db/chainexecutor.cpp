@@ -35,6 +35,12 @@ void ChainExecutor::exec()
         return;
     }
 
+    if (!db->isOpen())
+    {
+        emit failure(SqlErrorCode::DB_NOT_OPEN, tr("The database for executing queries was not open.", "chain executor"));
+        return;
+    }
+
     if (transaction && !db->begin())
     {
         emit failure(db->getErrorCode(), tr("Could not start a database transaction. Details: %1", "chain executor").arg(db->getErrorText()));

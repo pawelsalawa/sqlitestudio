@@ -9,6 +9,10 @@
 #include "services/pluginmanager.h"
 #include "plugins/dbplugin.h"
 #include "dbobjectorganizer.h"
+#include "dialogs/dbdialog.h"
+#include "dialogs/errorsconfirmdialog.h"
+#include "dialogs/versionconvertsummarydialog.h"
+#include "db/invaliddb.h"
 #include <QMimeData>
 #include <QDebug>
 #include <QFile>
@@ -17,10 +21,6 @@
 #include <QInputDialog>
 #include <QCheckBox>
 #include <QWidgetAction>
-#include <dialogs/dbdialog.h>
-#include <dialogs/errorsconfirmdialog.h>
-#include <dialogs/versionconvertsummarydialog.h>
-#include <db/invaliddb.h>
 
 const QString DbTreeModel::toolTipTableTmp = "<table>%1</table>";
 const QString DbTreeModel::toolTipHdrRowTmp = "<tr><th><img src=\"%1\"/></th><th colspan=2>%2</th></tr>";
@@ -234,9 +234,14 @@ void DbTreeModel::restoreGroup(const Config::DbGroupPtr& group, QList<Db*>* dbLi
     if (group->open)
     {
         if (db)
-            db->open();
-
-        treeView->expand(item->index());
+        {
+            if (db->open())
+                treeView->expand(item->index());
+        }
+        else
+        {
+            treeView->expand(item->index());
+        }
     }
 }
 
@@ -995,32 +1000,32 @@ void DbTreeModel::dropDbObjectItem(const QList<DbTreeItem*>& srcItems, DbTreeIte
     bool copy = false;
     bool move = false;
     bool includeData = false;
+    bool includeIndexes = false;
+    bool includeTriggers = false;
 
     if (defaultAction == Qt::CopyAction)
     {
         copy = true;
         includeData = true;
+        includeIndexes = true;
+        includeTriggers = true;
     }
     else if (defaultAction == Qt::MoveAction)
     {
         move = true;
         includeData = true;
+        includeIndexes = true;
+        includeTriggers = true;
     }
     else
     {
         QMenu menu;
         QAction* copyAction = menu.addAction(ICONS.ACT_COPY, tr("Copy"));
         QAction* moveAction = menu.addAction(ICONS.ACT_CUT, tr("Move"));
-
-        QWidget* includeDataWidget = new QWidget(&menu);
-        includeDataWidget->setLayout(new QHBoxLayout());
-        QCheckBox *includeDataCheck = new QCheckBox(tr("Include data"));
-        includeDataWidget->layout()->addWidget(includeDataCheck);
-        QWidgetAction *includeDataAction = new QWidgetAction(&menu);
-        includeDataAction->setDefaultWidget(includeDataWidget);
-        includeDataCheck->setChecked(true);
-        menu.addAction(includeDataAction);
-
+        menu.addSeparator();
+        QCheckBox *includeDataCheck = createCopyOrMoveMenuCheckBox(&menu, tr("Include data"));
+        QCheckBox *includeIndexesCheck = createCopyOrMoveMenuCheckBox(&menu, tr("Include indexes"));
+        QCheckBox *includeTriggersCheck = createCopyOrMoveMenuCheckBox(&menu, tr("Include triggers"));
         menu.addSeparator();
         menu.addAction(ICONS.ACT_ABORT, tr("Abort"));
 
@@ -1030,12 +1035,31 @@ void DbTreeModel::dropDbObjectItem(const QList<DbTreeItem*>& srcItems, DbTreeIte
         menu.exec(treeView->mapToGlobal(treeView->getLastDropPosition()));
 
         includeData = includeDataCheck->isChecked();
+        includeIndexes = includeIndexesCheck->isChecked();
+        includeTriggers = includeTriggersCheck->isChecked();
     }
 
     if (!copy && !move)
         return;
 
-    moveOrCopyDbObjects(srcItems, dstItem, move, includeData);
+    moveOrCopyDbObjects(srcItems, dstItem, move, includeData, includeIndexes, includeTriggers);
+}
+
+QCheckBox* DbTreeModel::createCopyOrMoveMenuCheckBox(QMenu* menu, const QString& label)
+{
+    QWidget* parentWidget = new QWidget(menu);
+    parentWidget->setLayout(new QVBoxLayout());
+    QMargins margins = parentWidget->layout()->contentsMargins();
+    parentWidget->layout()->setContentsMargins(margins.left(), 0, margins.right(), 0);
+
+    QCheckBox *cb = new QCheckBox(label);
+    cb->setChecked(true);
+    parentWidget->layout()->addWidget(cb);
+
+    QWidgetAction *action = new QWidgetAction(menu);
+    action->setDefaultWidget(parentWidget);
+    menu->addAction(action);
+    return cb;
 }
 
 bool DbTreeModel::dropUrls(const QList<QUrl>& urls)
@@ -1055,7 +1079,7 @@ bool DbTreeModel::dropUrls(const QList<QUrl>& urls)
     return true;
 }
 
-void DbTreeModel::moveOrCopyDbObjects(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, bool move, bool includeData)
+void DbTreeModel::moveOrCopyDbObjects(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, bool move, bool includeData, bool includeIndexes, bool includeTriggers)
 {
     if (srcItems.size() == 0)
         return;
@@ -1070,9 +1094,9 @@ void DbTreeModel::moveOrCopyDbObjects(const QList<DbTreeItem*>& srcItems, DbTree
 
     interruptableStarted(dbOrganizer);
     if (move)
-        dbOrganizer->moveObjectsToDb(srcDb, srcNames, dstDb, includeData);
+        dbOrganizer->moveObjectsToDb(srcDb, srcNames, dstDb, includeData, includeIndexes, includeTriggers);
     else
-        dbOrganizer->copyObjectsToDb(srcDb, srcNames, dstDb, includeData);
+        dbOrganizer->copyObjectsToDb(srcDb, srcNames, dstDb, includeData, includeIndexes, includeTriggers);
 }
 
 bool DbTreeModel::confirmReferencedTables(const QStringList& tables)

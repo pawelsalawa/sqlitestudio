@@ -17,7 +17,7 @@ SqliteUpdate::SqliteUpdate(const SqliteUpdate& other) :
 {
     // Special case of deep collection copy
     SqliteExpr* newExpr;
-    foreach (const ColumnAndValue& keyValue, keyValueMap)
+    foreach (const ColumnAndValue& keyValue, other.keyValueMap)
     {
         newExpr = new SqliteExpr(*keyValue.second);
         newExpr->setParent(this);

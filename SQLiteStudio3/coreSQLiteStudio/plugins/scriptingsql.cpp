@@ -43,7 +43,7 @@ QVariant ScriptingSql::evaluate(ScriptingPlugin::Context* context, const QString
     ctx->errorText.clear();
 
     Db* theDb = nullptr;
-    if (db)
+    if (db && db->isValid())
         theDb = db;
     else if (memDb)
         theDb = memDb;
@@ -79,7 +79,7 @@ QVariant ScriptingSql::evaluate(const QString& code, const QList<QVariant>& args
 {
     Db* theDb = nullptr;
 
-    if (db)
+    if (db && db->isValid())
         theDb = db;
     else if (memDb)
         theDb = memDb;

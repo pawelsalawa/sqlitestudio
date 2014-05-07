@@ -558,7 +558,7 @@ void ExportDialog::doExport()
 void ExportDialog::exportDatabase(const ExportManager::StandardExportConfig& stdConfig, const QString& format)
 {
     Db* db = getDbForExport(ui->dbObjectsDatabaseCombo->currentText());
-    if (!db)
+    if (!db || !db->isValid())
         return;
 
     EXPORT_MANAGER->configure(format, stdConfig);
@@ -568,7 +568,7 @@ void ExportDialog::exportDatabase(const ExportManager::StandardExportConfig& std
 void ExportDialog::exportTable(const ExportManager::StandardExportConfig& stdConfig, const QString& format)
 {
     Db* db = getDbForExport(ui->exportTableDbNameCombo->currentText());
-    if (!db)
+    if (!db || !db->isValid())
         return;
 
     EXPORT_MANAGER->configure(format, stdConfig);
@@ -579,7 +579,7 @@ void ExportDialog::exportTable(const ExportManager::StandardExportConfig& stdCon
 void ExportDialog::exportQuery(const ExportManager::StandardExportConfig& stdConfig, const QString& format)
 {
     Db* db = getDbForExport(ui->queryDatabaseCombo->currentText());
-    if (!db)
+    if (!db || !db->isValid())
         return;
 
     EXPORT_MANAGER->configure(format, stdConfig);

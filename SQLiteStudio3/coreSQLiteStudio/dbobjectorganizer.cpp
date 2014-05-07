@@ -38,14 +38,14 @@ void DbObjectOrganizer::init()
     connect(this, SIGNAL(preparetionFinished()), this, SLOT(processPreparationFinished()));
 }
 
-void DbObjectOrganizer::copyObjectsToDb(Db* srcDb, const QStringList& objNames, Db* dstDb, bool includeData)
+void DbObjectOrganizer::copyObjectsToDb(Db* srcDb, const QStringList& objNames, Db* dstDb, bool includeData, bool includeIndexes, bool includeTriggers)
 {
-    copyOrMoveObjectsToDb(srcDb, objNames, dstDb, includeData, false);
+    copyOrMoveObjectsToDb(srcDb, objNames.toSet(), dstDb, includeData, includeIndexes, includeTriggers, false);
 }
 
-void DbObjectOrganizer::moveObjectsToDb(Db* srcDb, const QStringList& objNames, Db* dstDb, bool includeData)
+void DbObjectOrganizer::moveObjectsToDb(Db* srcDb, const QStringList& objNames, Db* dstDb, bool includeData, bool includeIndexes, bool includeTriggers)
 {
-    copyOrMoveObjectsToDb(srcDb, objNames, dstDb, includeData, true);
+    copyOrMoveObjectsToDb(srcDb, objNames.toSet(), dstDb, includeData, includeIndexes, includeTriggers, true);
 }
 
 void DbObjectOrganizer::interrupt()
@@ -88,10 +88,14 @@ void DbObjectOrganizer::reset()
     dstDb = nullptr;
     srcNames.clear();
     srcTables.clear();
+    srcIndexes.clear();
+    srcTriggers.clear();
     srcViews.clear();
     renamed.clear();
     srcTable = QString::null;
     includeData = false;
+    includeIndexes = false;
+    includeTriggers = false;
     deleteSourceObjects = false;
     referencedTables.clear();
     diffListToConfirm.clear();
@@ -102,7 +106,7 @@ void DbObjectOrganizer::reset()
     setExecuting(false);
 }
 
-void DbObjectOrganizer::copyOrMoveObjectsToDb(Db* srcDb, const QStringList& objNames, Db* dstDb, bool includeData, bool move)
+void DbObjectOrganizer::copyOrMoveObjectsToDb(Db* srcDb, const QSet<QString>& objNames, Db* dstDb, bool includeData, bool includeIndexes, bool includeTriggers, bool move)
 {
     if (isExecuting())
     {
@@ -125,6 +129,8 @@ void DbObjectOrganizer::copyOrMoveObjectsToDb(Db* srcDb, const QStringList& objN
 
     this->srcNames = objNames;
     this->includeData = includeData;
+    this->includeIndexes = includeIndexes;
+    this->includeTriggers = includeTriggers;
     setSrcAndDstDb(srcDb, dstDb);
 
     QThreadPool::globalInstance()->start(this);
@@ -132,7 +138,7 @@ void DbObjectOrganizer::copyOrMoveObjectsToDb(Db* srcDb, const QStringList& objN
 
 void DbObjectOrganizer::processPreparation()
 {
-//    QHash<QString, SqliteQueryPtr> allParsedObjects = srcResolver->getAllParsedObjects();
+    QHash<QString, SqliteQueryPtr> allParsedObjects = srcResolver->getAllParsedObjects();
     QHash<QString, SchemaResolver::ObjectDetails> details = srcResolver->getAllObjectDetails();
     for (const QString& srcName : srcNames)
     {
@@ -146,7 +152,9 @@ void DbObjectOrganizer::processPreparation()
         {
             case SchemaResolver::ObjectDetails::TABLE:
                 srcTables << srcName;
-                collectReferencedTables(srcName);
+                collectReferencedTables(srcName, allParsedObjects);
+                collectReferencedIndexes(srcName);
+                collectReferencedTriggersForTable(srcName);
                 break;
             case SchemaResolver::ObjectDetails::INDEX:
                 break;
@@ -154,12 +162,19 @@ void DbObjectOrganizer::processPreparation()
                 break;
             case SchemaResolver::ObjectDetails::VIEW:
                 srcViews << srcName;
+                collectReferencedTriggersForView(srcName);
                 break;
         }
     }
 
-    if (referencedTables.size() > 0 && !confirmFunction(referencedTables))
+    if (referencedTables.size() > 0 && !confirmFunction(referencedTables.toList()))
         referencedTables.clear();
+
+    for (const QString& srcTable : referencedTables)
+    {
+        collectReferencedIndexes(srcTable);
+        collectReferencedTriggersForTable(srcTable);
+    }
 
     collectDiffs(details);
 
@@ -245,6 +260,24 @@ bool DbObjectOrganizer::processDbObjects()
             return false;
     }
 
+    if (includeIndexes)
+    {
+        for (const QString& idx : srcIndexes)
+        {
+            if (!copyIndexToDb(idx) || isInterrupted())
+                return false;
+        }
+    }
+
+    if (includeTriggers)
+    {
+        for (const QString& trig : srcTriggers)
+        {
+            if (!copyTriggerToDb(trig) || isInterrupted())
+                return false;
+        }
+    }
+
     if (deleteSourceObjects)
     {
         for (const QString& table : (referencedTables + srcTables))
@@ -259,7 +292,7 @@ bool DbObjectOrganizer::processDbObjects()
 
 bool DbObjectOrganizer::resolveNameConflicts()
 {
-    QStringList names;
+    QSet<QString> names;
     QStringList namesInDst;
     switch (mode)
     {
@@ -268,7 +301,7 @@ bool DbObjectOrganizer::resolveNameConflicts()
         case Mode::COPY_OBJECTS:
         case Mode::MOVE_OBJECTS:
         {
-            names = referencedTables + srcTables + srcViews;
+            names = referencedTables + srcTables + srcViews + srcIndexes + srcTriggers;
             namesInDst = dstResolver->getAllObjects();
             break;
         }
@@ -430,59 +463,65 @@ bool DbObjectOrganizer::copyDataUsingAttach(const QString& table, const QString&
 
 void DbObjectOrganizer::dropTable(const QString& table)
 {
-    QString wrappedSrcTable = wrapObjIfNeeded(table, srcDb->getDialect());
-    SqlResultsPtr results = srcDb->exec("DROP TABLE " + wrappedSrcTable);
-    if (results->isError())
-    {
-        notifyWarn(tr("Error while dropping source table %1: %2\nTables and Views copied to database %3 will remain.")
-                   .arg(table).arg(results->getErrorText()).arg(dstDb->getName()));
-    }
+    dropObject(table, "TABLE");
 }
 
 void DbObjectOrganizer::dropView(const QString& view)
 {
-    QString wrappedSrcView = wrapObjIfNeeded(view, srcDb->getDialect());
-    SqlResultsPtr results = srcDb->exec("DROP VIEW " + wrappedSrcView);
+    dropObject(view, "VIEW");
+}
+
+void DbObjectOrganizer::dropObject(const QString& name, const QString& type)
+{
+    QString wrappedSrcObj = wrapObjIfNeeded(name, srcDb->getDialect());
+    SqlResultsPtr results = srcDb->exec("DROP " + type + " " + wrappedSrcObj);
     if (results->isError())
     {
-        notifyWarn(tr("Error while dropping source view %1: %2\nTables and Views copied to database %3 will remain.")
-                   .arg(view).arg(results->getErrorText()).arg(dstDb->getName()));
+        notifyWarn(tr("Error while dropping source view %1: %2\nTables, indexes, triggers and views copied to database %3 will remain.")
+                   .arg(name).arg(results->getErrorText()).arg(dstDb->getName()));
     }
 }
 
 bool DbObjectOrganizer::copyViewToDb(const QString& view)
 {
-    QString ddl = srcResolver->getObjectDdl(view);
-    ddl = convertDdlToDstVersion(ddl);
-    if (ddl.trimmed() == ";") // empty query, result of ignored errors in UI
+    return copySimpleObjectToDb(view, tr("Error while creating view in target database: %1"));
+}
+
+bool DbObjectOrganizer::copyIndexToDb(const QString& index)
+{
+    return copySimpleObjectToDb(index, tr("Error while creating index in target database: %1"));
+}
+
+bool DbObjectOrganizer::copyTriggerToDb(const QString& trigger)
+{
+    return copySimpleObjectToDb(trigger, tr("Error while creating trigger in target database: %1"));
+}
+
+bool DbObjectOrganizer::copySimpleObjectToDb(const QString& name, const QString& errorMessage)
+{
+    QString ddl = srcResolver->getObjectDdl(name);
+    QString convertedDdl = convertDdlToDstVersion(ddl);
+    if (convertedDdl.trimmed() == ";") // empty query, result of ignored errors in UI
         return true;
 
-    SqlResultsPtr result = dstDb->exec(ddl);
+    SqlResultsPtr result = dstDb->exec(convertedDdl);
     if (result->isError())
     {
-        notifyError(tr("Error while creating view in target database: %1").arg(result->getErrorText()));
+        notifyError(errorMessage.arg(result->getErrorText()));
+        qDebug() << "DDL that caused error in DbObjectOrganizer::copySimpleObjectToDb():" << ddl << "\nAfter converting:" << convertedDdl;
         return false;
     }
 
     return true;
 }
 
-QStringList DbObjectOrganizer::resolveReferencedtables(const QString& table)
+QSet<QString> DbObjectOrganizer::resolveReferencedTables(const QString& table, const QList<SqliteCreateTablePtr>& parsedTables)
 {
-    SchemaResolver resolver(srcDb);
-    QStringList tables = resolver.getFkReferencingTables(table);
-    QStringList subTables;
+    QSet<QString> tables = SchemaResolver::getFkReferencingTables(table, parsedTables).toSet();
     for (const QString& fkTable : tables)
-    {
-        subTables = resolver.getFkReferencingTables(fkTable);
-        for (const QString& subTable : subTables)
-        {
-            if (tables.contains(subTable))
-                continue;
+        tables += SchemaResolver::getFkReferencingTables(fkTable, parsedTables).toSet();
 
-            tables.prepend(subTable);
-        }
-    }
+    tables.remove(table); // if it appeared somewhere in the references - we still don't need it here, it's the table we asked by in the first place
     return tables;
 }
 
@@ -493,7 +532,7 @@ void DbObjectOrganizer::collectDiffs(const QHash<QString, SchemaResolver::Object
 
 
     int dstVersion = dstDb->getVersion();
-    QStringList names = srcTables + srcViews + referencedTables;
+    QSet<QString> names = srcTables + srcViews + referencedTables + srcIndexes + srcTriggers;
     for (const QString& name : names)
     {
         if (!details.contains(name))
@@ -525,14 +564,38 @@ QString DbObjectOrganizer::convertDdlToDstVersion(const QString& ddl)
         return versionConverter->convertToVersion2(ddl);
 }
 
-void DbObjectOrganizer::collectReferencedTables(const QString& table)
+void DbObjectOrganizer::collectReferencedTables(const QString& table, const QHash<QString, SqliteQueryPtr>& allParsedObjects)
 {
-    QStringList tables = resolveReferencedtables(table);
+    QList<SqliteCreateTablePtr> parsedTables;
+    SqliteCreateTablePtr parsedTable;
+    for (SqliteQueryPtr query : allParsedObjects)
+    {
+        parsedTable = query.dynamicCast<SqliteCreateTable>();
+        if (parsedTable)
+            parsedTables << parsedTable;
+    }
+
+    QSet<QString> tables = resolveReferencedTables(table, parsedTables);
     for (const QString& refTable : tables)
     {
         if (!referencedTables.contains(refTable) && !srcTables.contains(refTable))
             referencedTables << refTable;
     }
+}
+
+void DbObjectOrganizer::collectReferencedIndexes(const QString& table)
+{
+    srcIndexes += srcResolver->getIndexesForTable(table).toSet();
+}
+
+void DbObjectOrganizer::collectReferencedTriggersForTable(const QString& table)
+{
+    srcTriggers += srcResolver->getTriggersForTable(table).toSet();
+}
+
+void DbObjectOrganizer::collectReferencedTriggersForView(const QString& view)
+{
+    srcTriggers += srcResolver->getTriggersForView(view).toSet();
 }
 
 bool DbObjectOrganizer::setFkEnabled(bool enabled)
@@ -569,6 +632,8 @@ void DbObjectOrganizer::setSrcAndDstDb(Db* srcDb, Db* dstDb)
     this->dstDb = dstDb;
     srcResolver = new SchemaResolver(srcDb);
     dstResolver = new SchemaResolver(dstDb);
+    srcResolver->setIgnoreSystemObjects(true);
+    dstResolver->setIgnoreSystemObjects(true);
 }
 
 void DbObjectOrganizer::emitFinished(bool success)

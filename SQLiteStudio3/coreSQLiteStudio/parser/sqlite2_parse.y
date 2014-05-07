@@ -1159,7 +1159,7 @@ update_stmt ::= UPDATE orconf ID_DB|ID_TAB. {}
 %destructor setlist {delete $$;}
 setlist(X) ::= setlist(L) COMMA nm(N) EQ
                 expr(E).                    {
-                                                X->append(ParserSetValue(*(N), E));
+                                                L->append(ParserSetValue(*(N), E));
                                                 X = L;
                                                 delete N;
                                                 DONT_INHERIT_TOKENS("setlist");

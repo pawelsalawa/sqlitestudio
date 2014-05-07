@@ -1,6 +1,5 @@
 #include "schemaresolver.h"
 #include "db/db.h"
-#include "common/utils_sql.h"
 #include "parser/parsererror.h"
 #include "parser/ast/sqlitecreatetable.h"
 #include "parser/ast/sqlitecreateindex.h"
@@ -292,6 +291,56 @@ SqliteQueryPtr SchemaResolver::getParsedObject(const QString &database, const QS
     return getParsedDdl(ddl);
 }
 
+QHash<QString, SqliteQueryPtr> SchemaResolver::getAllParsedObjects()
+{
+    return getAllParsedObjects("main");
+}
+
+QHash<QString, SqliteQueryPtr> SchemaResolver::getAllParsedObjects(const QString& database)
+{
+    return getAllParsedObjectsForType<SqliteQuery>(database, QString::null);
+}
+
+QHash<QString, SqliteCreateTablePtr> SchemaResolver::getAllParsedTables()
+{
+    return getAllParsedTables("main");
+}
+
+QHash<QString, SqliteCreateTablePtr> SchemaResolver::getAllParsedTables(const QString& database)
+{
+    return getAllParsedObjectsForType<SqliteCreateTable>(database, "table");
+}
+
+QHash<QString, SqliteCreateIndexPtr> SchemaResolver::getAllParsedIndexes()
+{
+    return getAllParsedIndexes("main");
+}
+
+QHash<QString, SqliteCreateIndexPtr> SchemaResolver::getAllParsedIndexes(const QString& database)
+{
+    return getAllParsedObjectsForType<SqliteCreateIndex>(database, "index");
+}
+
+QHash<QString, SqliteCreateTriggerPtr> SchemaResolver::getAllParsedTriggers()
+{
+    return getAllParsedTriggers("main");
+}
+
+QHash<QString, SqliteCreateTriggerPtr> SchemaResolver::getAllParsedTriggers(const QString& database)
+{
+    return getAllParsedObjectsForType<SqliteCreateTrigger>(database, "trigger");
+}
+
+QHash<QString, SqliteCreateViewPtr> SchemaResolver::getAllParsedViews()
+{
+    return getAllParsedViews("main");
+}
+
+QHash<QString, SqliteCreateViewPtr> SchemaResolver::getAllParsedViews(const QString& database)
+{
+    return getAllParsedObjectsForType<SqliteCreateView>(database, "view");
+}
+
 SqliteQueryPtr SchemaResolver::getParsedDdl(const QString& ddl)
 {
     if (!parser->parse(ddl))
@@ -313,35 +362,6 @@ SqliteQueryPtr SchemaResolver::getParsedDdl(const QString& ddl)
 
     // Preparing results
     return queries[0];
-}
-
-QHash<QString, SqliteQueryPtr> SchemaResolver::getAllParsedObjects()
-{
-    return getAllParsedObjects("main");
-}
-
-QHash<QString, SqliteQueryPtr> SchemaResolver::getAllParsedObjects(const QString& database)
-{
-    QHash<QString, SqliteQueryPtr> parsedObjects;
-
-    QString dbName = getPrefixDb(database, db->getDialect());
-
-    SqlResultsPtr results = db->exec(QString("SELECT name, type, sql FROM %1.sqlite_master;").arg(dbName));
-
-    QString name;
-    SqliteQueryPtr parsedObject;
-    foreach (SqlResultsRowPtr row, results->getAll())
-    {
-        name = row->value("name").toString();
-        parsedObject = getParsedDdl(row->value("sql").toString());
-        if (!parsedObject)
-            continue;
-
-        if (!isFilteredOut(name, row->value("type").toString()))
-            parsedObjects[name] = parsedObject;
-    }
-
-    return parsedObjects;
 }
 
 QStringList SchemaResolver::getObjects(const QString &type)
@@ -421,40 +441,55 @@ QStringList SchemaResolver::getFkReferencingTables(const QString& database, cons
         return QStringList();
 
     // Get all tables
-    QStringList tables = getTables(database);
+    QHash<QString, SqliteCreateTablePtr> parsedTables = getAllParsedTables(database);
 
     // Exclude queried table from the list
-    int idx = indexOf(tables, table, Qt::CaseInsensitive);
-    if (idx > -1)
-        tables.removeAt(idx);
+    parsedTables.remove(table);
 
-    // For each table ask for its foreign keys and check if they reference queried table.
-    QStringList theList;
-    SqlResultsPtr results;
-    SqlResultsRowPtr row;
-    foreach (const QString& fkTable, tables)
+    // Resolve referencing tables
+    return getFkReferencingTables(table, parsedTables.values());
+}
+
+QStringList SchemaResolver::getFkReferencingTables(const QString& table, const QList<SqliteCreateTablePtr>& allParsedTables)
+{
+    QStringList tables;
+
+    QList<SqliteCreateTable::Constraint*> tableFks;
+    QList<SqliteCreateTable::Column::Constraint*> fks;
+    bool result = false;
+    for (SqliteCreateTablePtr createTable : allParsedTables)
     {
-        results = db->exec(QString("PRAGMA %1.foreign_key_list(%2)").arg(wrapObjIfNeeded(database, dialect), wrapObjIfNeeded(fkTable, dialect)));
-
-        if (results->isError())
+        // Check table constraints
+        tableFks = createTable->getForeignKeysByTable(table);
+        result = contains<SqliteCreateTable::Constraint*>(tableFks, [&table](SqliteCreateTable::Constraint* fk)
         {
-            qWarning() << "Could not get FK list for the table by the schema resolver:" << results->getErrorText()
-                       << "The table will be excluded from results.";
+           return fk->foreignKey->foreignTable == table;
+        });
+
+        if (result)
+        {
+            tables << createTable->table;
             continue;
         }
 
-        // We need just one fk to reference queried table and that's enough.
-        foreach (row, results->getAll())
+        // Check column constraints
+        for (SqliteCreateTable::Column* column : createTable->columns)
         {
-            if (row->value("table").toString().compare(table, Qt::CaseInsensitive) == 0 && !theList.contains(fkTable, Qt::CaseInsensitive))
+            fks = column->getForeignKeysByTable(table);
+            result = contains<SqliteCreateTable::Column::Constraint*>(fks, [&table](SqliteCreateTable::Column::Constraint* fk)
             {
-                theList << fkTable;
-                continue;
+                return fk->foreignKey->foreignTable == table;
+            });
+
+            if (result)
+            {
+                tables << createTable->table;
+                break;
             }
         }
     }
 
-    return theList;
+    return tables;
 }
 
 QStringList SchemaResolver::getIndexesForTable(const QString& database, const QString& table)
@@ -471,16 +506,6 @@ QStringList SchemaResolver::getIndexesForTable(const QString& table)
     return getIndexesForTable("main", table);
 }
 
-QStringList SchemaResolver::getIndexesForView(const QString& database, const QString& table)
-{
-    return getIndexesForTable(database, table);
-}
-
-QStringList SchemaResolver::getIndexesForView(const QString& table)
-{
-    return getIndexesForTable(table);
-}
-
 QStringList SchemaResolver::getTriggersForTable(const QString& database, const QString& table)
 {
     QStringList names;
@@ -493,6 +518,20 @@ QStringList SchemaResolver::getTriggersForTable(const QString& database, const Q
 QStringList SchemaResolver::getTriggersForTable(const QString& table)
 {
     return getTriggersForTable("main", table);
+}
+
+QStringList SchemaResolver::getTriggersForView(const QString& database, const QString& view)
+{
+    QStringList names;
+    foreach (SqliteCreateTriggerPtr trig, getParsedTriggersForView(database, view))
+        names << trig->trigger;
+
+    return names;
+}
+
+QStringList SchemaResolver::getTriggersForView(const QString& view)
+{
+    return getTriggersForView("main", view);
 }
 
 QStringList SchemaResolver::getViewsForTable(const QString& database, const QString& table)
@@ -580,8 +619,7 @@ QList<SqliteCreateIndexPtr> SchemaResolver::getParsedIndexesForTable(const QStri
     return getParsedIndexesForTable("main", table);
 }
 
-QList<SqliteCreateTriggerPtr> SchemaResolver::getParsedTriggersForTable(const QString& database, const QString& table,
-                                                                        bool includeContentReferences)
+QList<SqliteCreateTriggerPtr> SchemaResolver::getParsedTriggersForTable(const QString& database, const QString& table, bool includeContentReferences)
 {
     return getParsedTriggersForTableOrView(database, table, includeContentReferences, true);
 }
@@ -591,38 +629,18 @@ QList<SqliteCreateTriggerPtr> SchemaResolver::getParsedTriggersForTable(const QS
     return getParsedTriggersForTable("main", table, includeContentReferences);
 }
 
-QList<SqliteCreateViewPtr> SchemaResolver::getParsedViewsForTable(const QString& database, const QString& table)
+QList<SqliteCreateTriggerPtr> SchemaResolver::getParsedTriggersForView(const QString& database, const QString& view, bool includeContentReferences)
 {
-    QList<SqliteCreateViewPtr> createViewList;
-
-    QStringList views = getViews(database);
-    SqliteQueryPtr query;
-    SqliteCreateViewPtr createView;
-    foreach (const QString& view, views)
-    {
-        query = getParsedObject(database, view);
-        if (!query)
-            continue;
-
-        createView = query.dynamicCast<SqliteCreateView>();
-        if (!createView)
-        {
-            qWarning() << "Parsed DDL was not a CREATE VIEW statement, while queried for views.";
-            continue;
-        }
-
-        if (indexOf(createView->getContextTables(), table, Qt::CaseInsensitive) > -1)
-            createViewList << createView;
-    }
-    return createViewList;
+    return getParsedTriggersForTableOrView(database, view, includeContentReferences, false);
 }
 
-QList<SqliteCreateViewPtr> SchemaResolver::getParsedViewsForTable(const QString& table)
+QList<SqliteCreateTriggerPtr> SchemaResolver::getParsedTriggersForView(const QString& view, bool includeContentReferences)
 {
-    return getParsedViewsForTable("main", table);
+    return getParsedTriggersForView("main", view, includeContentReferences);
 }
 
-QList<SqliteCreateTriggerPtr> SchemaResolver::getParsedTriggersForTableOrView(const QString& database, const QString& tableOrView, bool includeContentReferences, bool table)
+QList<SqliteCreateTriggerPtr> SchemaResolver::getParsedTriggersForTableOrView(const QString& database, const QString& tableOrView,
+                                                                        bool includeContentReferences, bool table)
 {
     QList<SqliteCreateTriggerPtr> createTriggerList;
 
@@ -658,6 +676,37 @@ QList<SqliteCreateTriggerPtr> SchemaResolver::getParsedTriggersForTableOrView(co
     return createTriggerList;
 }
 
+QList<SqliteCreateViewPtr> SchemaResolver::getParsedViewsForTable(const QString& database, const QString& table)
+{
+    QList<SqliteCreateViewPtr> createViewList;
+
+    QStringList views = getViews(database);
+    SqliteQueryPtr query;
+    SqliteCreateViewPtr createView;
+    foreach (const QString& view, views)
+    {
+        query = getParsedObject(database, view);
+        if (!query)
+            continue;
+
+        createView = query.dynamicCast<SqliteCreateView>();
+        if (!createView)
+        {
+            qWarning() << "Parsed DDL was not a CREATE VIEW statement, while queried for views.";
+            continue;
+        }
+
+        if (indexOf(createView->getContextTables(), table, Qt::CaseInsensitive) > -1)
+            createViewList << createView;
+    }
+    return createViewList;
+}
+
+QList<SqliteCreateViewPtr> SchemaResolver::getParsedViewsForTable(const QString& table)
+{
+    return getParsedViewsForTable("main", table);
+}
+
 void SchemaResolver::filterSystemIndexes(QStringList& indexes)
 {
     Dialect dialect = db->getDialect();
@@ -667,16 +716,6 @@ void SchemaResolver::filterSystemIndexes(QStringList& indexes)
         if (isSystemIndex(it.next(), dialect))
             it.remove();
     }
-}
-
-QList<SqliteCreateTriggerPtr> SchemaResolver::getParsedTriggersForView(const QString& database, const QString& view, bool includeContentReferences)
-{
-    return getParsedTriggersForTableOrView(database, view, includeContentReferences, false);
-}
-
-QList<SqliteCreateTriggerPtr> SchemaResolver::getParsedTriggersForView(const QString& view, bool includeContentReferences)
-{
-    return getParsedTriggersForView("main", view, includeContentReferences);
 }
 
 bool SchemaResolver::isWithoutRowIdTable(const QString& table)

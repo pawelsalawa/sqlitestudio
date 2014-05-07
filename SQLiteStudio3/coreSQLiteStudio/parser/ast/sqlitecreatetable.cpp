@@ -215,7 +215,7 @@ TokenList SqliteCreateTable::rebuildTokensFromContents()
         builder.withSpace().withKeyword("IF").withSpace().withKeyword("NOT").withSpace().withKeyword("EXISTS");
 
     builder.withSpace();
-    if (!database.isNull())
+    if (dialect == Dialect::Sqlite3 && !database.isNull())
         builder.withOther(database, dialect).withOperator(".");
 
     builder.withOther(table, dialect);

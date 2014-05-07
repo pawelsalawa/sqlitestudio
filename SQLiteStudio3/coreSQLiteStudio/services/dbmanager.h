@@ -90,8 +90,16 @@ class API_EXPORT DbManager : public QObject
         /**
          * @brief Gives list of databases registered in the application.
          * @return List of databases, no matter if database is open or not.
+         *
+         * The results list includes invalid databases (not supported by driver plugin, or with no read access, etc).
          */
         virtual QList<Db*> getDbList() = 0;
+
+        /**
+         * @brief Gives list of valid databases.
+         * @return List of open databases.
+         */
+        virtual QList<Db*> getValidDbList() = 0;
 
         /**
          * @brief Gives list of currently open databases.

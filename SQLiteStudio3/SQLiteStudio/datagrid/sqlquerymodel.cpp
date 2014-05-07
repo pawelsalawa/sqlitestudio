@@ -71,9 +71,9 @@ void SqlQueryModel::executeQuery()
 
 void SqlQueryModel::executeQueryInternal()
 {
-    if (!db)
+    if (!db || !db->isValid())
     {
-        notifyWarn("Cannot execute query on undefined database.");
+        notifyWarn("Cannot execute query on undefined or invalid database.");
         return;
     }
 

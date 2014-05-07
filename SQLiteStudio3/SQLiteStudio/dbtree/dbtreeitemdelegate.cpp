@@ -121,7 +121,7 @@ void DbTreeItemDelegate::paintVirtualTableLabel(QPainter* painter, const QStyleO
 void DbTreeItemDelegate::paintSystemIndexLabel(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index, DbTreeItem* item) const
 {
     Db* db = item->getDb();
-    if (!db)
+    if (!db || !db->isValid())
         return;
 
     if (!isSystemIndex(item->text(), db->getDialect()))

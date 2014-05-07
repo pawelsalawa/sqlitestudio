@@ -111,8 +111,11 @@ bool ViewWindow::restoreSession(const QVariant& sessionValue)
         return false;
     }
 
-    if (!db->isOpen())
-        db->open();
+    if (!db->isOpen() && !db->open())
+    {
+        notifyWarn(tr("Could not restore window, because database %1 could not be open.").arg(value["db"].toString()));
+        return false;
+    }
 
     view = value["view"].toString();
     database = value["database"].toString();
@@ -458,7 +461,7 @@ void ViewWindow::prevTab()
 
 void ViewWindow::refreshTriggers()
 {
-    if (!db)
+    if (!db || !db->isValid())
         return;
 
     SchemaResolver resolver(db);

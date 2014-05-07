@@ -11,6 +11,8 @@ class DbManager;
 class DbTreeView;
 class DbPlugin;
 class DbObjectOrganizer;
+class QMenu;
+class QCheckBox;
 
 class DbTreeModel : public QStandardItemModel
 {
@@ -73,8 +75,9 @@ class DbTreeModel : public QStandardItemModel
         QList<DbTreeItem*> getChildsAsFlatList(QStandardItem* item) const;
         bool dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, int row, Qt::DropAction defaultAction);
         void dropDbObjectItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, Qt::DropAction defaultAction);
+        QCheckBox* createCopyOrMoveMenuCheckBox(QMenu* menu, const QString& label);
         bool dropUrls(const QList<QUrl>& urls);
-        void moveOrCopyDbObjects(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, bool move, bool includeData);
+        void moveOrCopyDbObjects(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, bool move, bool includeData, bool includeIndexes, bool includeTriggers);
 
         static bool confirmReferencedTables(const QStringList& tables);
         static bool resolveNameConflict(QString& nameInConflict);
