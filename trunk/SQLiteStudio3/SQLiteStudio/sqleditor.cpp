@@ -383,9 +383,9 @@ void SqlEditor::backspacePressed()
 
 void SqlEditor::complete()
 {
-    if (!db)
+    if (!db || !db->isValid())
     {
-        notifyWarn(tr("Syntax completion can be used only when the database is set for the SQL editor."));
+        notifyWarn(tr("Syntax completion can be used only when a valid database is set for the SQL editor."));
         return;
     }
 
@@ -468,7 +468,7 @@ void SqlEditor::deletePreviousChars(int length)
 
 void SqlEditor::refreshValidObjects()
 {
-    if (!db)
+    if (!db || !db->isValid())
         return;
 
     objectsInNamedDb.clear();
@@ -770,7 +770,7 @@ void SqlEditor::parseContents()
 {
     // Updating dialect according to current database (if any)
     Dialect dialect = Dialect::Sqlite3;
-    if (db)
+    if (db && db->isValid())
         dialect = db->getDialect();
 
     QString sql = toPlainText();
@@ -823,7 +823,7 @@ void SqlEditor::checkForSyntaxErrors()
 void SqlEditor::checkForValidObjects()
 {
     clearDbObjects();
-    if (!db)
+    if (!db || !db->isValid())
         return;
 
     Dialect dialect = db->getDialect();
@@ -971,7 +971,7 @@ void SqlEditor::cursorMoved()
 void SqlEditor::formatSql()
 {
     Dialect dialect = Dialect::Sqlite3;
-    if (db)
+    if (db && db->isValid())
         dialect = db->getDialect();
 
     QString sql = hasSelection() ? getSelectedText() : toPlainText();

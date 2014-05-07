@@ -333,7 +333,7 @@ void EditorWindow::selectCurrentQuery()
 {
     Dialect dialect = Dialect::Sqlite3;
     Db* db = getCurrentDb();
-    if (db)
+    if (db && db->isValid())
         dialect = db->getDialect();
 
     QTextCursor cursor = ui->sqlEdit->textCursor();

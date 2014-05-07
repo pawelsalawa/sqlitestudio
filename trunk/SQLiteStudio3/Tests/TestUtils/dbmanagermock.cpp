@@ -32,6 +32,11 @@ QList<Db*> DbManagerMock::getDbList()
     return QList<Db*>();
 }
 
+QList<Db*> DbManagerMock::getValidDbList()
+{
+    return QList<Db*>();
+}
+
 QList<Db*> DbManagerMock::getConnectedDbList()
 {
     return QList<Db*>();

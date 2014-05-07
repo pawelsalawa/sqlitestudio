@@ -604,14 +604,11 @@ bool TableWindow::restoreSession(const QVariant& sessionValue)
     }
 
     db = DBLIST->getByName(value["db"].toString());
-    if (!db)
+    if (!db->isValid() || (!db->isOpen() && !db->open()))
     {
         notifyWarn(tr("Could not restore window, because database %1 could not be resolved.").arg(value["db"].toString()));
         return false;
     }
-
-    if (!db->isOpen())
-        db->open();
 
     table = value["table"].toString();
     database = value["database"].toString();
@@ -1213,7 +1210,7 @@ void TableWindow::updateIndexes()
 {
     ui->indexList->clear();
 
-    if (!db)
+    if (!db || !db->isValid())
         return;
 
     SchemaResolver resolver(db);
@@ -1269,7 +1266,7 @@ void TableWindow::updateIndexes()
 
 void TableWindow::updateTriggers()
 {
-    if (!db)
+    if (!db || !db->isValid())
         return;
 
     SchemaResolver resolver(db);

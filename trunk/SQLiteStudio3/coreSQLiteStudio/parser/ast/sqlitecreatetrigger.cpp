@@ -343,7 +343,7 @@ TokenList SqliteCreateTrigger::rebuildTokensFromContents()
     }
 
     builder.withStatement(event).withSpace().withKeyword("ON").withSpace();
-    if (dialect == Dialect::Sqlite2)
+    if (dialect == Dialect::Sqlite2 && !database.isNull())
         builder.withOther(database, dialect).withOperator(".");
 
     builder.withOther(table, dialect).withSpace();

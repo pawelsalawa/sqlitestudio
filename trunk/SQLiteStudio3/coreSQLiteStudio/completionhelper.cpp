@@ -111,7 +111,7 @@ CompletionHelper::~CompletionHelper()
 
 CompletionHelper::Results CompletionHelper::getExpectedTokens()
 {
-    if (!db)
+    if (!db || !db->isValid())
         return Results();
 
     // Get SQL up to the current cursor position.
@@ -469,7 +469,7 @@ QList<ExpectedTokenPtr> CompletionHelper::getDatabases()
 
     Dialect dialect = db->getDialect();
 
-    foreach (Db* otherDb, DBLIST->getDbList())
+    foreach (Db* otherDb, DBLIST->getValidDbList())
     {
         if (otherDb->getDialect() != dialect)
             continue;

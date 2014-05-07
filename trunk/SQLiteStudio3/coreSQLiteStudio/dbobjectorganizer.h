@@ -57,8 +57,8 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable, public In
                           ConversionErrorsConfimFunction conversionErrorsConfimFunction);
         ~DbObjectOrganizer();
 
-        void copyObjectsToDb(Db* srcDb, const QStringList& objNames, Db* dstDb, bool includeData);
-        void moveObjectsToDb(Db* srcDb, const QStringList& objNames, Db* dstDb, bool includeData);
+        void copyObjectsToDb(Db* srcDb, const QStringList& objNames, Db* dstDb, bool includeData, bool includeIndexes, bool includeTriggers);
+        void moveObjectsToDb(Db* srcDb, const QStringList& objNames, Db* dstDb, bool includeData, bool includeIndexes, bool includeTriggers);
         void interrupt();
         bool isExecuting();
         void run();
@@ -75,7 +75,7 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable, public In
 
         void init();
         void reset();
-        void copyOrMoveObjectsToDb(Db* srcDb, const QStringList& objNames, Db* dstDb, bool includeData, bool move);
+        void copyOrMoveObjectsToDb(Db* srcDb, const QSet<QString>& objNames, Db* dstDb, bool includeData, bool includeIndexes, bool includeTriggers, bool move);
         void processPreparation();
         bool processAll();
         bool processDbObjects();
@@ -83,14 +83,21 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable, public In
         bool resolveNameConflicts();
         bool copyTableToDb(const QString& table);
         bool copyViewToDb(const QString& view);
-        QStringList resolveReferencedtables(const QString& table);
+        bool copyIndexToDb(const QString& index);
+        bool copyTriggerToDb(const QString& trigger);
+        bool copySimpleObjectToDb(const QString& name, const QString& errorMessage);
+        QSet<QString> resolveReferencedTables(const QString& table, const QList<SqliteCreateTablePtr>& parsedTables);
         void collectDiffs(const QHash<QString, SchemaResolver::ObjectDetails>& details);
         QString convertDdlToDstVersion(const QString& ddl);
-        void collectReferencedTables(const QString& table);
+        void collectReferencedTables(const QString& table, const QHash<QString, SqliteQueryPtr>& allParsedObjects);
+        void collectReferencedIndexes(const QString& table);
+        void collectReferencedTriggersForTable(const QString& table);
+        void collectReferencedTriggersForView(const QString& view);
         bool copyDataAsMiddleware(const QString& table);
         bool copyDataUsingAttach(const QString& table, const QString& attachName);
         void dropTable(const QString& table);
         void dropView(const QString& view);
+        void dropObject(const QString& name, const QString& type);
         bool setFkEnabled(bool enabled);
         bool isInterrupted();
         void setExecuting(bool executing);
@@ -107,14 +114,18 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable, public In
         Mode mode = Mode::COPY_OBJECTS;
         Db* srcDb = nullptr;
         Db* dstDb = nullptr;
-        QStringList srcNames;
-        QStringList srcTables;
-        QStringList srcViews;
+        QSet<QString> srcNames;
+        QSet<QString> srcTables;
+        QSet<QString> srcViews;
+        QSet<QString> srcIndexes;
+        QSet<QString> srcTriggers;
         QHash<QString,QString> renamed;
         QString srcTable;
         bool includeData = false;
+        bool includeIndexes = false;
+        bool includeTriggers = false;
         bool deleteSourceObjects = false;
-        QStringList referencedTables;
+        QSet<QString> referencedTables;
         QHash<QString,QStringList> errorsToConfirm;
         QList<QPair<QString, QString>> diffListToConfirm;
         SchemaResolver* srcResolver = nullptr;

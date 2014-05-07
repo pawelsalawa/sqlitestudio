@@ -3433,7 +3433,7 @@ static void yy_reduce(
         break;
       case 190: /* setlist ::= setlist COMMA nm EQ expr */
 {
-                                                yygotominor.yy201->append(ParserSetValue(*(yymsp[-2].minor.yy319), yymsp[0].minor.yy192));
+                                                yymsp[-4].minor.yy201->append(ParserSetValue(*(yymsp[-2].minor.yy319), yymsp[0].minor.yy192));
                                                 yygotominor.yy201 = yymsp[-4].minor.yy201;
                                                 delete yymsp[-2].minor.yy319;
                                                 DONT_INHERIT_TOKENS("setlist");

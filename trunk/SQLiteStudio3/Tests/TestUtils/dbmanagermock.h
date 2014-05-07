@@ -13,6 +13,7 @@ class DbManagerMock : public DbManager
         void removeDbByPath(const QString&);
         void removeDb(Db*);
         QList<Db*> getDbList();
+        QList<Db*> getValidDbList();
         QList<Db*> getConnectedDbList();
         QStringList getDbNames();
         Db*getByName(const QString&, Qt::CaseSensitivity);

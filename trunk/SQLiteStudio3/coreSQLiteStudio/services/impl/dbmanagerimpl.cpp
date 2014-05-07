@@ -166,6 +166,20 @@ QList<Db*> DbManagerImpl::getDbList()
     return list;
 }
 
+QList<Db*> DbManagerImpl::getValidDbList()
+{
+    QList<Db*> list = getDbList();
+    QMutableListIterator<Db*> it(list);
+    while (it.hasNext())
+    {
+        it.next();
+        if (!it.value()->isValid())
+            it.remove();
+    }
+
+    return list;
+}
+
 QList<Db*> DbManagerImpl::getConnectedDbList()
 {
     QList<Db*> list = getDbList();

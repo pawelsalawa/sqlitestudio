@@ -16,9 +16,9 @@ void AsyncQueryRunner::init()
 
 void AsyncQueryRunner::run()
 {
-    if (!db)
+    if (!db || !db->isValid())
     {
-        qCritical() << "No Db defined in AsyncQueryRunner!";
+        qCritical() << "No Db or invalid Db defined in AsyncQueryRunner!";
         emit finished(this);
     }
 

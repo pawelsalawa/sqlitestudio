@@ -911,7 +911,7 @@ void DbTree::import()
 void DbTree::exportDb()
 {
     Db* db = getSelectedDb();
-    if (!db)
+    if (!db || !db->isValid())
         return;
 
     if (!ExportManager::isAnyPluginAvailable())
@@ -928,7 +928,7 @@ void DbTree::exportDb()
 void DbTree::addTable()
 {
     Db* db = getSelectedOpenDb();
-    if (!db)
+    if (!db || !db->isValid())
         return;
 
     DbTreeItem* item = ui->treeView->currentItem();
@@ -938,7 +938,7 @@ void DbTree::addTable()
 void DbTree::editTable()
 {
     Db* db = getSelectedOpenDb();
-    if (!db)
+    if (!db || !db->isValid())
         return;
 
     DbTreeItem* item = ui->treeView->currentItem();
@@ -960,7 +960,7 @@ void DbTree::delTable()
 void DbTree::addIndex()
 {
     Db* db = getSelectedOpenDb();
-    if (!db)
+    if (!db || !db->isValid())
         return;
 
     DbTreeItem* item = ui->treeView->currentItem();
@@ -973,7 +973,7 @@ void DbTree::addIndex()
 void DbTree::editIndex()
 {
     Db* db = getSelectedOpenDb();
-    if (!db)
+    if (!db || !db->isValid())
         return;
 
     DbTreeItem* item = ui->treeView->currentItem();
@@ -1005,7 +1005,7 @@ void DbTree::addTrigger()
 void DbTree::editTrigger()
 {
     Db* db = getSelectedOpenDb();
-    if (!db)
+    if (!db || !db->isValid())
         return;
 
     DbTreeItem* item = ui->treeView->currentItem();
@@ -1023,7 +1023,7 @@ void DbTree::delTrigger()
 void DbTree::addView()
 {
     Db* db = getSelectedOpenDb();
-    if (!db)
+    if (!db || !db->isValid())
         return;
 
     DbTreeItem* item = ui->treeView->currentItem();
@@ -1033,7 +1033,7 @@ void DbTree::addView()
 void DbTree::editView()
 {
     Db* db = getSelectedOpenDb();
-    if (!db)
+    if (!db || !db->isValid())
         return;
 
     DbTreeItem* item = ui->treeView->currentItem();
@@ -1055,7 +1055,7 @@ void DbTree::delView()
 void DbTree::exportTable()
 {
     Db* db = getSelectedDb();
-    if (!db)
+    if (!db || !db->isValid())
         return;
 
     DbTreeItem* item = ui->treeView->currentItem();
@@ -1094,7 +1094,7 @@ void DbTree::editColumn()
 void DbTree::editColumn(DbTreeItem* item)
 {
     Db* db = getSelectedOpenDb();
-    if (!db)
+    if (!db || !db->isValid())
         return;
 
     if (item->getType() != DbTreeItem::Type::COLUMN)

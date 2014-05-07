@@ -105,7 +105,7 @@ AsciiTree CliCommandTree::getTableTree(const QString& database, const QString& t
 
 AsciiTree CliCommandTree::getViewTree(const QString& database, const QString& view, SchemaResolver& resolver)
 {
-    QStringList triggers = resolver.getTriggersForTable(database, view);
+    QStringList triggers = resolver.getTriggersForView(database, view);
 
     AsciiTree tree;
     AsciiTree triggersTree;
