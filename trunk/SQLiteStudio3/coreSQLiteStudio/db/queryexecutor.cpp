@@ -141,6 +141,15 @@ void QueryExecutor::cleanupAfterExecFailed(int code, QString errorMessage)
     cleanup();
 }
 
+void QueryExecutor::cleanupBeforeDbDestroy()
+{
+    QObject* dbToDestroy = sender();
+    if (!dbToDestroy || dbToDestroy != db)
+        return;
+
+    context->executionResults.clear();
+}
+
 void QueryExecutor::setQuery(const QString& query)
 {
     originalQuery = query;
@@ -543,12 +552,18 @@ Db* QueryExecutor::getDb() const
 void QueryExecutor::setDb(Db* value)
 {
     if (db)
+    {
         disconnect(db, SIGNAL(asyncExecFinished(quint32,SqlResultsPtr)), this, SLOT(dbAsyncExecFinished(quint32,SqlResultsPtr)));
+        disconnect(db, SIGNAL(destroyed()), this, SLOT(cleanupBeforeDbDestroy()));
+    }
 
     db = value;
 
     if (db)
+    {
         connect(db, SIGNAL(asyncExecFinished(quint32,SqlResultsPtr)), this, SLOT(dbAsyncExecFinished(quint32,SqlResultsPtr)));
+        connect(db, SIGNAL(destroyed()), this, SLOT(cleanupBeforeDbDestroy()));
+    }
 }
 
 bool QueryExecutor::getSkipRowCounting() const
