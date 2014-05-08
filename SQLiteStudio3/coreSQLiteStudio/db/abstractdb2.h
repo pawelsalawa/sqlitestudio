@@ -613,7 +613,8 @@ AbstractDb2<T>::Results::Results(AbstractDb2<T>* db, sqlite_vm* stmt, bool error
 template <class T>
 AbstractDb2<T>::Results::~Results()
 {
-    db->freeStatement(stmt);
+    if (!db.isNull())
+        db->freeStatement(stmt);
 }
 
 template <class T>

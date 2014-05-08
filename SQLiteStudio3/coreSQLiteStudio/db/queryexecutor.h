@@ -1302,6 +1302,15 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          * Releases resources that are no longer used. Currently simply calls cleanup().
          */
         void cleanupAfterExecFailed(int code, QString errorMessage);
+
+        /**
+         * @brief Called when the currently set db is about to be destroyed.
+         *
+         * Deletes results from the Context if there were any, so they are not referencing anything
+         * from deleted Db. Keeping results is dangerous, becuase the Db driver (plugin) is most likely to
+         * be unloaded soon and we won't be able to call results destructor.
+         */
+        void cleanupBeforeDbDestroy();
 };
 
 int qHash(QueryExecutor::EditionForbiddenReason reason);
