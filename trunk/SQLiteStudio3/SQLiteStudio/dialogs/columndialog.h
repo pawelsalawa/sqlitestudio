@@ -60,6 +60,7 @@ class ColumnDialog : public QDialog, public ExtActionContainer
         void updateConstraintState(SqliteCreateTable::Column::Constraint* constraint);
         QCheckBox* getCheckBoxForConstraint(SqliteCreateTable::Column::Constraint* constraint);
         QToolButton* getToolButtonForConstraint(SqliteCreateTable::Column::Constraint* constraint);
+        bool isUnofficialSqlite2Constraint(SqliteCreateTable::Column::Constraint* constraint);
 
         Ui::ColumnDialog *ui;
         SqliteCreateTable::ColumnPtr column;

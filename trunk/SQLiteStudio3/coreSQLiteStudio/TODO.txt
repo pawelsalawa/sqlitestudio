@@ -1,4 +1,3 @@
-* Wywolac query na Sqlite2, a nastepnie zamknac aplikacje - przy zamykaniu wywala blad gdy kasuje Context (SqlResults?) w QueryExecutorze
 * COLLATE jest dozwolone w constraintach Sqlite2 - trzeba go pokazac w ColumnDialogu i table constraints
 * FK tez jest dozwolony w skladni Sqlite2
 * interfejs do Db do wielu wywolan tego samego sql - zastosowac w DbObjectOrganizer::copyDataAsMiddleware()

@@ -165,6 +165,18 @@ void WidgetStateIndicator::setVisible(bool visible, const QString& msg)
         hide();
 }
 
+void WidgetStateIndicator::release()
+{
+    setVisible(false);
+    instances.remove(widget);
+    deleteLater();
+}
+
+bool WidgetStateIndicator::exists(QWidget* widget)
+{
+    return instances.contains(widget);
+}
+
 WidgetStateIndicator* WidgetStateIndicator::getInstance(QWidget* widget)
 {
     if (!instances.contains(widget))

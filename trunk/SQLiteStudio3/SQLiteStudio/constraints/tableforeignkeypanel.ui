@@ -37,6 +37,26 @@
     </widget>
    </item>
    <item>
+    <widget class="QLabel" name="sqlite2Warn">
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+       <italic>true</italic>
+      </font>
+     </property>
+     <property name="text">
+      <string>SQLite 2 does not support foreign keys officially,
+but it's okay to use them anyway.</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="margin">
+      <number>5</number>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QGroupBox" name="columnsGroup">
      <property name="title">
       <string>Columns</string>
@@ -91,7 +111,7 @@
            <x>0</x>
            <y>0</y>
            <width>362</width>
-           <height>39</height>
+           <height>25</height>
           </rect>
          </property>
         </widget>

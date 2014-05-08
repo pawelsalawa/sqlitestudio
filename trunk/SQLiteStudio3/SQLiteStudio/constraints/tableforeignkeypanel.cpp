@@ -2,6 +2,7 @@
 #include "ui_tableforeignkeypanel.h"
 #include "schemaresolver.h"
 #include "uiutils.h"
+#include "common/widgetstateindicator.h"
 #include <QDebug>
 #include <QSignalMapper>
 
@@ -66,6 +67,12 @@ bool TableForeignKeyPanel::validate()
     setValidState(ui->nameEdit, nameOk, tr("Enter a name of the constraint."));
 
     return tableOk && columnsOk && nameOk && columnsSelected;
+}
+
+void TableForeignKeyPanel::setDb(Db* value)
+{
+    ConstraintPanel::setDb(value);
+    ui->sqlite2Warn->setVisible(value->getDialect() == Dialect::Sqlite2);
 }
 
 void TableForeignKeyPanel::constraintAvailable()
