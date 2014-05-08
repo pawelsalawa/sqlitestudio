@@ -26,7 +26,9 @@ class WidgetStateIndicator : public QObject
         void show(const QString& msg = QString());
         void hide();
         void setVisible(bool visible, const QString& msg = QString());
+        void release();
 
+        static bool exists(QWidget* widget);
         static WidgetStateIndicator* getInstance(QWidget* widget);
 
     protected:
@@ -70,5 +72,6 @@ class WidgetStateIndicator : public QObject
 };
 
 #define INDICATOR(w) WidgetStateIndicator::getInstance(w)
+#define EXISTS_INDICATOR(w) WidgetStateIndicator::exists(w)
 
 #endif // WIDGETSTATEINDICATOR_H

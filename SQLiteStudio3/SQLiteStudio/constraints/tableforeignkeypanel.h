@@ -22,6 +22,7 @@ class TableForeignKeyPanel : public ConstraintPanel
         ~TableForeignKeyPanel();
 
         bool validate();
+        void setDb(Db* value);
 
     protected:
         void changeEvent(QEvent *e);

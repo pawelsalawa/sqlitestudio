@@ -37,3 +37,18 @@ void setValidState(QWidget *widget, bool valid, const QString& message)
     INDICATOR(widget)->setMode(WidgetStateIndicator::Mode::ERROR);
     INDICATOR(widget)->setVisible(!valid, valid ? QString() : message);
 }
+
+
+void setValidStateWihtTooltip(QWidget* widget, const QString& tooltip, bool valid, const QString& message)
+{
+    if (!valid)
+    {
+        INDICATOR(widget)->setMode(WidgetStateIndicator::Mode::ERROR);
+        INDICATOR(widget)->setVisible(true, message);
+    }
+    else
+    {
+        INDICATOR(widget)->setMode(WidgetStateIndicator::Mode::HINT);
+        INDICATOR(widget)->setVisible(widget->isEnabled(), tooltip);
+    }
+}

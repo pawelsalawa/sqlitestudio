@@ -16,7 +16,7 @@ class ConstraintPanel : public QWidget
 
         void setConstraint(SqliteStatement* stmt);
         void storeDefinition();
-        void setDb(Db* value);
+        virtual void setDb(Db* value);
 
         /**
          * @brief validate Validates panel for correct data filled in.
