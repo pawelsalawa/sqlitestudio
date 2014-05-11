@@ -37,6 +37,7 @@ QueryExecutor::QueryExecutor(Db* db, const QString& query, QObject *parent) :
 
     connect(this, &QueryExecutor::executionFinished, this, &QueryExecutor::cleanupAfterExecFinished);
     connect(this, &QueryExecutor::executionFailed, this, &QueryExecutor::cleanupAfterExecFailed);
+    connect(DBLIST, SIGNAL(dbAboutToBeUnloaded(Db*, DbPlugin*)), this, SLOT(cleanupBeforeDbDestroy(Db*, DbPlugin*)));
 }
 
 QueryExecutor::~QueryExecutor()
@@ -141,12 +142,13 @@ void QueryExecutor::cleanupAfterExecFailed(int code, QString errorMessage)
     cleanup();
 }
 
-void QueryExecutor::cleanupBeforeDbDestroy()
+void QueryExecutor::cleanupBeforeDbDestroy(Db* dbToBeUnloaded, DbPlugin* plugin)
 {
-    QObject* dbToDestroy = sender();
-    if (!dbToDestroy || dbToDestroy != db)
+    UNUSED(plugin);
+    if (!dbToBeUnloaded || dbToBeUnloaded != db)
         return;
 
+    setDb(nullptr);
     context->executionResults.clear();
 }
 
@@ -552,18 +554,12 @@ Db* QueryExecutor::getDb() const
 void QueryExecutor::setDb(Db* value)
 {
     if (db)
-    {
         disconnect(db, SIGNAL(asyncExecFinished(quint32,SqlQueryPtr)), this, SLOT(dbAsyncExecFinished(quint32,SqlQueryPtr)));
-        disconnect(db, SIGNAL(destroyed()), this, SLOT(cleanupBeforeDbDestroy()));
-    }
 
     db = value;
 
     if (db)
-    {
         connect(db, SIGNAL(asyncExecFinished(quint32,SqlQueryPtr)), this, SLOT(dbAsyncExecFinished(quint32,SqlQueryPtr)));
-        connect(db, SIGNAL(destroyed()), this, SLOT(cleanupBeforeDbDestroy()));
-    }
 }
 
 bool QueryExecutor::getSkipRowCounting() const

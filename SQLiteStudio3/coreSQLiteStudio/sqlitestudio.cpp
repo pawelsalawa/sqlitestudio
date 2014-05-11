@@ -217,10 +217,10 @@ void SQLiteStudio::cleanUp()
 {
     safe_delete(exportManager);
     safe_delete(functionManager);
+    pluginManager->deinit();
+    safe_delete(pluginManager); // PluginManager before DbManager, so Db objects are deleted while DbManager still exists
     safe_delete(dbManager);
     safe_delete(config);
-    pluginManager->deinit();
-    safe_delete(pluginManager);
     safe_delete(sqlFormatter);
     safe_delete(dbAttacherFactory);
     safe_delete(env);

@@ -132,16 +132,6 @@ class DbManagerImpl : public DbManager
          */
         DbPlugin* inMemDbCreatorPlugin = nullptr;
 
-    signals:
-        /**
-         * @brief Emitted when the Db object for named database has changed.
-         * @param Name of the database that the change was made for.
-         *
-         * When the DbPlugin is loaded , the InvalidDb becomes a valid Db implementation (Db objects are switched,
-         * keeping the name, path and connection options). In that case this signal is emitted to let everybody know about it.
-         */
-        void dbTypeChanged(const QString& name);
-
     private slots:
         /**
          * @brief Slot called when connected to db.

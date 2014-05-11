@@ -1,6 +1,7 @@
 #include "dbobjectorganizer.h"
 #include "db/db.h"
 #include "common/utils_sql.h"
+#include "datatype.h"
 #include "services/notifymanager.h"
 #include "db/attachguard.h"
 #include "dbversionconverter.h"
@@ -100,6 +101,7 @@ void DbObjectOrganizer::reset()
     referencedTables.clear();
     diffListToConfirm.clear();
     errorsToConfirm.clear();
+    binaryColumns.clear();
     safe_delete(srcResolver);
     safe_delete(dstResolver);
     interrupted = false;
@@ -152,6 +154,7 @@ void DbObjectOrganizer::processPreparation()
         {
             case SchemaResolver::ObjectDetails::TABLE:
                 srcTables << srcName;
+                findBinaryColumns(srcName, allParsedObjects);
                 collectReferencedTables(srcName, allParsedObjects);
                 collectReferencedIndexes(srcName);
                 collectReferencedTriggersForTable(srcName);
@@ -401,22 +404,24 @@ bool DbObjectOrganizer::copyTableToDb(const QString& table)
 
 bool DbObjectOrganizer::copyDataAsMiddleware(const QString& table)
 {
+    QStringList srcColumns = srcResolver->getTableColumns(srcTable);
     QString wrappedSrcTable = wrapObjIfNeeded(srcTable, srcDb->getDialect());
-    SqlQueryPtr results = srcDb->exec("SELECT * FROM "+wrappedSrcTable);
-    if (results->isError())
+    SqlQueryPtr results = srcDb->prepare("SELECT * FROM " + wrappedSrcTable);
+    setupSqlite2Helper(results, table, srcColumns);
+    if (!results->execute())
     {
         notifyError(tr("Error while copying data for table %1: %2").arg(table).arg(results->getErrorText()));
         return false;
     }
 
     QStringList argPlaceholderList;
-    for (int i = 0; i < results->getColumnNames().size(); i++)
+    for (int i = 0, total = srcColumns.size(); i < total; ++i)
         argPlaceholderList << "?";
 
     QString wrappedDstTable = wrapObjIfNeeded(table, dstDb->getDialect());
     QString sql = "INSERT INTO " + wrappedDstTable + " VALUES (" + argPlaceholderList.join(", ") + ")";
+    SqlQueryPtr insertQuery = dstDb->prepare(sql);
 
-    SqlQueryPtr insertResults;
     SqlResultsRowPtr row;
     int i = 0;
     while (results->hasNext())
@@ -428,11 +433,10 @@ bool DbObjectOrganizer::copyDataAsMiddleware(const QString& table)
             return false;
         }
 
-        // TODO cases like this require API for re-executing same SQL faster, without compiling query each time
-        insertResults = dstDb->exec(sql, row->valueList());
-        if (insertResults->isError())
+        insertQuery->setArgs(row->valueList());
+        if (!insertQuery->execute())
         {
-            notifyError(tr("Error while copying data to table %1: %2").arg(table).arg(insertResults->getErrorText()));
+            notifyError(tr("Error while copying data to table %1: %2").arg(table).arg(insertQuery->getErrorText()));
             return false;
         }
 
@@ -459,6 +463,23 @@ bool DbObjectOrganizer::copyDataUsingAttach(const QString& table, const QString&
         return false;
     }
     return true;
+}
+
+void DbObjectOrganizer::setupSqlite2Helper(SqlQueryPtr query, const QString& table, const QStringList& colNames)
+{
+    Sqlite2ColumnDataTypeHelper* sqlite2Helper = dynamic_cast<Sqlite2ColumnDataTypeHelper*>(query.data());
+    if (sqlite2Helper && binaryColumns.contains(table))
+    {
+        int i = 0;
+        QStringList binCols = binaryColumns[table];
+        for (const QString& colName : colNames)
+        {
+            if (binCols.contains(colName))
+                sqlite2Helper->setBinaryType(i);
+
+            i++;
+        }
+    }
 }
 
 void DbObjectOrganizer::dropTable(const QString& table)
@@ -596,6 +617,32 @@ void DbObjectOrganizer::collectReferencedTriggersForTable(const QString& table)
 void DbObjectOrganizer::collectReferencedTriggersForView(const QString& view)
 {
     srcTriggers += srcResolver->getTriggersForView(view).toSet();
+}
+
+void DbObjectOrganizer::findBinaryColumns(const QString& table, const QHash<QString, SqliteQueryPtr>& allParsedObjects)
+{
+    if (!allParsedObjects.contains(table))
+    {
+        qWarning() << "Parsed objects don't have table" << table << "in DbObjectOrganizer::findBinaryColumns()";
+        return;
+    }
+
+    SqliteQueryPtr query = allParsedObjects[table];
+    SqliteCreateTablePtr createTable = query.dynamicCast<SqliteCreateTable>();
+    if (!createTable)
+    {
+        qWarning() << "Not CreateTable in DbObjectOrganizer::findBinaryColumns()";
+        return;
+    }
+
+    for (SqliteCreateTable::Column* column : createTable->columns)
+    {
+        if (!column->type)
+            continue;
+
+        if (DataType::isBinary(column->type->name))
+            binaryColumns[table] << column->name;
+    }
 }
 
 bool DbObjectOrganizer::setFkEnabled(bool enabled)
