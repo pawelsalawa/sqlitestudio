@@ -63,7 +63,7 @@ bool SqlTableModel::commitAddedRow(const QList<SqlQueryItem*>& itemsInRow)
     QString sql = getInsertSql(modelColumns, colNameList, sqlValues, args);
 
     // Execute query
-    SqlResultsPtr result = db->exec(sql, args);
+    SqlQueryPtr result = db->exec(sql, args);
 
     // Handle error
     if (result->isError())
@@ -110,7 +110,7 @@ bool SqlTableModel::commitDeletedRow(const QList<SqlQueryItem*>& itemsInRow)
     QString sql = queryBuilder.build();
     QHash<QString, QVariant> args = queryBuilder.getQueryArgs();
 
-    SqlResultsPtr result = db->exec(sql, args);
+    SqlQueryPtr result = db->exec(sql, args);
     if (result->isError())
     {
         notifyError(tr("Error while deleting row from table %1: %2").arg(table).arg(result->getErrorText()));
@@ -296,7 +296,7 @@ void SqlTableModel::updateColumnsAndValuesWithDefaultValues(const QList<SqlQuery
         {
             QString colName = wrapObjIfNeeded(modelColumn->column, dialect);
             QString tableName = wrapObjIfNeeded(table, dialect);
-            SqlResultsPtr results = db->exec("SELECT max("+colName+") FROM "+tableName);
+            SqlQueryPtr results = db->exec("SELECT max("+colName+") FROM "+tableName);
             int rowid = 0;
             QVariant cellValue = results->getSingleCell();
             if (!cellValue.isNull())

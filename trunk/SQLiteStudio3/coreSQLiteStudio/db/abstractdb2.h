@@ -47,13 +47,12 @@ class AbstractDb2 : public AbstractDb
     protected:
         bool isOpenInternal();
         void interruptExecution();
-        SqlResultsPtr execInternal(const QString& query, const QList<QVariant>& args);
-        SqlResultsPtr execInternal(const QString& query, const QHash<QString, QVariant>& args);
         QString getErrorTextInternal();
         int getErrorCodeInternal();
         bool openInternal();
         bool closeInternal();
         void initAfterOpen();
+        SqlQueryPtr prepare(const QString& query);
         QString getTypeLabel();
         bool deregisterFunction(const QString& name, int argCount);
         bool registerScalarFunction(const QString& name, int argCount);
@@ -62,7 +61,7 @@ class AbstractDb2 : public AbstractDb
         bool deregisterCollationInternal(const QString& name);
 
     private:
-        class Results : public SqlResults
+        class Query : public SqlQuery, public Sqlite2ColumnDataTypeHelper
         {
             public:
                 class Row : public SqlResultsRow
@@ -71,22 +70,33 @@ class AbstractDb2 : public AbstractDb
                         void init(const QStringList& columns, const QList<QVariant>& resultValues);
                 };
 
-                Results(AbstractDb2<T>* db, sqlite_vm* stmt, bool error);
-                ~Results();
+                Query(AbstractDb2<T>* db, const QString& query);
+                ~Query();
 
                 QString getErrorText();
                 int getErrorCode();
                 QStringList getColumnNames();
                 int columnCount();
                 qint64 rowsAffected();
+                QString finalize();
 
             protected:
                 SqlResultsRowPtr nextInternal();
                 bool hasNextInternal();
+                bool execInternal(const QList<QVariant>& args);
+                bool execInternal(const QHash<QString, QVariant>& args);
 
             private:
+                int prepareStmt(const QString& processedQuery);
+                int resetStmt();
+                int bindParam(int paramIdx, const QVariant& value);
                 int fetchNext();
+                int fetchFirst();
                 void init(int columnsCount, const char** columns);
+                bool checkDbState();
+                void copyErrorFromDb();
+
+                static QString replaceNamedParams(const QString& query);
 
                 QPointer<AbstractDb2<T>> db;
                 sqlite_vm* stmt = nullptr;
@@ -96,12 +106,9 @@ class AbstractDb2 : public AbstractDb
                 QStringList colNames;
                 QList<QVariant> nextRowValues;
                 int affected = 0;
-                bool rowAvailable = true;
+                bool rowAvailable = false;
         };
 
-        int prepareStmt(const QString& query, sqlite_vm** stmt);
-        int bindParam(sqlite_vm* stmt, int paramIdx, const QVariant& value);
-        bool isValid(sqlite_vm* stmt) const;
         void cleanUp();
         QString freeStatement(sqlite_vm* stmt);
 
@@ -114,13 +121,12 @@ class AbstractDb2 : public AbstractDb
         static QHash<QString,QVariant> getAggregateContext(sqlite_func* func);
         static void setAggregateContext(sqlite_func* func, const QHash<QString,QVariant>& aggregateContext);
         static void releaseAggregateContext(sqlite_func* func);
-        static QString replaceNamedParams(const QString& query);
 
         sqlite* dbHandle = nullptr;
-        QString lastError;
-        int lastErrorCode = SQLITE_OK;
-        QList<sqlite_vm*> preparedStatements;
+        QString dbErrorMessage;
+        int dbErrorCode = SQLITE_OK;
         QList<FunctionUserData*> userDataList;
+        QList<Query*> queries;
 };
 
 //------------------------------------------------------------------------------------
@@ -147,6 +153,12 @@ bool AbstractDb2<T>::isOpenInternal()
 }
 
 template <class T>
+SqlQueryPtr AbstractDb2<T>::prepare(const QString& query)
+{
+    return SqlQueryPtr(new Query(this, query));
+}
+
+template <class T>
 void AbstractDb2<T>::interruptExecution()
 {
     if (!isOpenInternal())
@@ -156,88 +168,15 @@ void AbstractDb2<T>::interruptExecution()
 }
 
 template <class T>
-SqlResultsPtr AbstractDb2<T>::execInternal(const QString& query, const QList<QVariant>& args)
-{
-    sqlite_vm* stmt;
-    int res;
-    int paramIdx;
-
-    QList<QueryWithParamCount> queries = getQueriesWithParamCount(query, Dialect::Sqlite2);
-
-    foreach (const QueryWithParamCount singleQuery, queries)
-    {
-        res = prepareStmt(singleQuery.first, &stmt);
-        if (res != SQLITE_OK)
-            return SqlResultsPtr(new Results(this, nullptr, true));
-
-        for (paramIdx = 1; paramIdx <= singleQuery.second; paramIdx++)
-        {
-            res = bindParam(stmt, paramIdx, args[paramIdx-1]);
-            if (res != SQLITE_OK)
-                return SqlResultsPtr(new Results(this, stmt, true));
-        }
-    }
-    return SqlResultsPtr(new Results(this, stmt, false));
-}
-
-template <class T>
-SqlResultsPtr AbstractDb2<T>::execInternal(const QString& query, const QHash<QString, QVariant>& args)
-{
-    sqlite_vm* stmt;
-    int res;
-    int paramIdx;
-
-    QList<QueryWithParamNames> queries = getQueriesWithParamNames(query, Dialect::Sqlite2);
-
-    QString singleQueryStr;
-    foreach (const QueryWithParamNames singleQuery, queries)
-    {
-        singleQueryStr = replaceNamedParams(singleQuery.first);
-        res = prepareStmt(singleQueryStr, &stmt);
-        if (res != SQLITE_OK)
-            return SqlResultsPtr(new Results(this, nullptr, true));
-
-        paramIdx = 1;
-        foreach (const QString& paramName, singleQuery.second)
-        {
-            if (!args.contains(paramName))
-            {
-                lastErrorCode = SqlErrorCode::OTHER_EXECUTION_ERROR;
-                lastError = "Error while preparing statement: could not bind parameter " + paramName;
-                return SqlResultsPtr(new Results(this, stmt, true));
-            }
-
-            res = bindParam(stmt, paramIdx++, args[paramName]);
-            if (res != SQLITE_OK)
-                return SqlResultsPtr(new Results(this, stmt, true));
-        }
-    }
-
-    return SqlResultsPtr(new Results(this, stmt, false));
-}
-
-template <class T>
-QString AbstractDb2<T>::replaceNamedParams(const QString& query)
-{
-    TokenList tokens = Lexer::tokenize(query, Dialect::Sqlite2);
-    for (TokenPtr token : tokens)
-    {
-        if (token->type == Token::BIND_PARAM)
-            token->value = "?";
-    }
-    return tokens.detokenize();
-}
-
-template <class T>
 QString AbstractDb2<T>::getErrorTextInternal()
 {
-    return lastError;
+    return dbErrorMessage;
 }
 
 template <class T>
 int AbstractDb2<T>::getErrorCodeInternal()
 {
-    return lastErrorCode;
+    return dbErrorCode;
 }
 
 template <class T>
@@ -248,11 +187,11 @@ bool AbstractDb2<T>::openInternal()
     handle = sqlite_open(path.toUtf8().constData(), 0, &errMsg);
     if (!handle)
     {
-        lastErrorCode = SQLITE_ERROR;
+        dbErrorCode = SQLITE_ERROR;
 
         if (errMsg)
         {
-            lastError = tr("Could not open database: %1").arg(QString::fromUtf8(errMsg));
+            dbErrorMessage = tr("Could not open database: %1").arg(QString::fromUtf8(errMsg));
             sqlite_freemem(errMsg);
         }
         return false;
@@ -364,99 +303,10 @@ bool AbstractDb2<T>::deregisterCollationInternal(const QString& name)
 }
 
 template <class T>
-int AbstractDb2<T>::prepareStmt(const QString& query, sqlite_vm** stmt)
-{
-    char* errMsg = nullptr;
-    const char* tail;
-    QByteArray queryBytes = query.toUtf8();
-    int res = sqlite_compile(dbHandle, queryBytes.constData(), &tail, stmt, &errMsg);
-    if (res != SQLITE_OK)
-    {
-        if (errMsg)
-        {
-            lastErrorCode = res;
-            lastError = QString::fromUtf8((errMsg));
-            sqlite_freemem(errMsg);
-        }
-        return res;
-    }
-
-    preparedStatements << *stmt;
-
-    if (tail && !QString::fromUtf8(tail).trimmed().isEmpty())
-        qWarning() << "Executed query left with tailing contents:" << tail << ", while executing query:" << query;
-
-    return SQLITE_OK;
-}
-
-template <class T>
-int AbstractDb2<T>::bindParam(sqlite_vm* stmt, int paramIdx, const QVariant& value)
-{
-    if (value.isNull())
-    {
-        return sqlite_bind(stmt, paramIdx, nullptr, 0, 0);
-    }
-
-    switch (value.type())
-    {
-        case QVariant::ByteArray:
-        {
-            QByteArray ba = value.toByteArray();
-            return sqlite_bind(stmt, paramIdx, ba.constData(), ba.size(), true);
-        }
-        default:
-        {
-            QByteArray ba = value.toString().toLatin1();
-            ba.append('\0');
-            return sqlite_bind(stmt, paramIdx, ba.constData(), ba.size(), true);
-        }
-    }
-
-    return SQLITE_MISUSE; // not going to happen
-}
-
-template <class T>
-bool AbstractDb2<T>::isValid(sqlite_vm* stmt) const
-{
-    return preparedStatements.contains(stmt);
-}
-
-template <class T>
 void AbstractDb2<T>::cleanUp()
 {
-    char* errMsg;
-    foreach (sqlite_vm* stmt, preparedStatements)
-    {
-        errMsg = nullptr;
-        sqlite_finalize(stmt, &errMsg);
-        if (errMsg)
-        {
-            qWarning() << "Error while call to sqlite_finalize():" << errMsg;
-            sqlite_freemem(errMsg);
-        }
-    }
-
-    preparedStatements.clear();
-}
-
-template <class T>
-QString AbstractDb2<T>::freeStatement(sqlite_vm* stmt)
-{
-    if (!isValid(stmt))
-        return QString::null;
-
-    char* errMsg = nullptr;
-    sqlite_finalize(stmt, &errMsg);
-
-    QString message;
-    if (errMsg)
-    {
-        message = QString::fromUtf8(errMsg);
-        sqlite_freemem(errMsg);
-    }
-
-    preparedStatements.removeOne(stmt);
-    return message;
+    for (Query* q : queries)
+        q->finalize();
 }
 
 template <class T>
@@ -584,73 +434,227 @@ void AbstractDb2<T>::releaseAggregateContext(sqlite_func* func)
 }
 
 //------------------------------------------------------------------------------------
-// Results
+// Query
 //------------------------------------------------------------------------------------
 
 template <class T>
-AbstractDb2<T>::Results::Results(AbstractDb2<T>* db, sqlite_vm* stmt, bool error) :
-    db(db), stmt(stmt)
+AbstractDb2<T>::Query::Query(AbstractDb2<T>* db, const QString& query) :
+    db(db)
 {
-    if (error)
+    this->query = query;
+    copyErrorFromDb();
+    db->queries << this;
+}
+
+template <class T>
+AbstractDb2<T>::Query::~Query()
+{
+    if (db.isNull())
+        return;
+
+    finalize();
+    db->queries.removeOne(this);
+}
+
+template <class T>
+void AbstractDb2<T>::Query::copyErrorFromDb()
+{
+    if (db->dbErrorCode != 0)
     {
-        errorCode = db->lastErrorCode;
-        errorMessage = db->lastError;
+        errorCode = db->dbErrorCode;
+        errorMessage = db->dbErrorMessage;
         return;
     }
-
-    fetchNext();
-    if (colCount == 0)
-    {
-        affected = 0;
-    }
-    else
-    {
-        affected = sqlite_changes(db->dbHandle);
-        insertRowId["ROWID"] = sqlite_last_insert_rowid(db->dbHandle);
-    }
 }
-
 template <class T>
-AbstractDb2<T>::Results::~Results()
+int AbstractDb2<T>::Query::prepareStmt(const QString& processedQuery)
 {
-    if (!db.isNull())
-        db->freeStatement(stmt);
+    char* errMsg = nullptr;
+    const char* tail;
+    QByteArray queryBytes = processedQuery.toUtf8();
+    int res = sqlite_compile(db->dbHandle, queryBytes.constData(), &tail, &stmt, &errMsg);
+    if (res != SQLITE_OK)
+    {
+        finalize();
+        if (errMsg)
+        {
+            errorCode = res;
+            errorMessage = QString::fromUtf8((errMsg));
+            sqlite_freemem(errMsg);
+        }
+        return res;
+    }
+
+    if (tail && !QString::fromUtf8(tail).trimmed().isEmpty())
+        qWarning() << "Executed query left with tailing contents:" << tail << ", while executing query:" << query;
+
+    return SQLITE_OK;
 }
 
 template <class T>
-QString AbstractDb2<T>::Results::getErrorText()
+int AbstractDb2<T>::Query::resetStmt()
+{
+    errorCode = 0;
+    errorMessage = QString::null;
+    affected = 0;
+    colCount = -1;
+    rowAvailable = false;
+    nextRowValues.clear();
+
+    char* errMsg = nullptr;
+    int res = sqlite_reset(stmt, &errMsg);
+    if (res != SQLITE_OK)
+    {
+        stmt = nullptr;
+        if (errMsg)
+        {
+            errorCode = res;
+            errorMessage = QString::fromUtf8((errMsg));
+            sqlite_freemem(errMsg);
+        }
+        return res;
+    }
+    return SQLITE_OK;
+}
+
+template <class T>
+bool AbstractDb2<T>::Query::execInternal(const QList<QVariant>& args)
+{
+    if (!checkDbState())
+        return false;
+
+    ReadWriteLocker locker(&(db->dbOperLock), query, Dialect::Sqlite2, flags.testFlag(Db::Flag::NO_LOCK));
+
+    QueryWithParamCount queryWithParams = getQueryWithParamCount(query, Dialect::Sqlite2);
+    QString singleStr = replaceNamedParams(queryWithParams.first);
+
+    int res;
+    if (stmt)
+        res = resetStmt();
+    else
+        res = prepareStmt(singleStr);
+
+    if (res != SQLITE_OK)
+        return false;
+
+    for (int paramIdx = 1; paramIdx <= queryWithParams.second; paramIdx++)
+    {
+        res = bindParam(paramIdx, args[paramIdx-1]);
+        if (res != SQLITE_OK)
+            return false;
+    }
+    return (fetchFirst() == SQLITE_OK);
+}
+
+template <class T>
+bool AbstractDb2<T>::Query::execInternal(const QHash<QString, QVariant>& args)
+{
+    if (!checkDbState())
+        return false;
+
+    ReadWriteLocker locker(&(db->dbOperLock), query, Dialect::Sqlite2, flags.testFlag(Db::Flag::NO_LOCK));
+
+    QueryWithParamNames queryWithParams = getQueryWithParamNames(query, Dialect::Sqlite2);
+    QString singleStr = replaceNamedParams(queryWithParams.first);
+
+    int res;
+    if (stmt)
+        res = resetStmt();
+    else
+        res = prepareStmt(singleStr);
+
+    if (res != SQLITE_OK)
+        return false;
+
+    int paramIdx = 1;
+    foreach (const QString& paramName, queryWithParams.second)
+    {
+        if (!args.contains(paramName))
+        {
+            errorCode = SqlErrorCode::OTHER_EXECUTION_ERROR;
+            errorMessage = "Error while preparing statement: could not bind parameter " + paramName;
+            return false;
+        }
+
+        res = bindParam(paramIdx++, args[paramName]);
+        if (res != SQLITE_OK)
+            return false;
+    }
+
+    return (fetchFirst() == SQLITE_OK);
+}
+
+template <class T>
+QString AbstractDb2<T>::Query::replaceNamedParams(const QString& query)
+{
+    TokenList tokens = Lexer::tokenize(query, Dialect::Sqlite2);
+    for (TokenPtr token : tokens)
+    {
+        if (token->type == Token::BIND_PARAM)
+            token->value = "?";
+    }
+    return tokens.detokenize();
+}
+
+template <class T>
+int AbstractDb2<T>::Query::bindParam(int paramIdx, const QVariant& value)
+{
+    if (value.isNull())
+    {
+        return sqlite_bind(stmt, paramIdx, nullptr, 0, 0);
+    }
+
+    switch (value.type())
+    {
+        case QVariant::ByteArray:
+        {
+            QByteArray ba = value.toByteArray();
+            return sqlite_bind(stmt, paramIdx, ba.constData(), ba.size(), true);
+        }
+        default:
+        {
+            QByteArray ba = value.toString().toUtf8();
+            ba.append('\0');
+            return sqlite_bind(stmt, paramIdx, ba.constData(), ba.size(), true);
+        }
+    }
+
+    return SQLITE_MISUSE; // not going to happen
+}
+template <class T>
+QString AbstractDb2<T>::Query::getErrorText()
 {
     return errorMessage;
 }
 
 template <class T>
-int AbstractDb2<T>::Results::getErrorCode()
+int AbstractDb2<T>::Query::getErrorCode()
 {
     return errorCode;
 }
 
 template <class T>
-QStringList AbstractDb2<T>::Results::getColumnNames()
+QStringList AbstractDb2<T>::Query::getColumnNames()
 {
     return colNames;
 }
 
 template <class T>
-int AbstractDb2<T>::Results::columnCount()
+int AbstractDb2<T>::Query::columnCount()
 {
     return colCount;
 }
 
 template <class T>
-qint64 AbstractDb2<T>::Results::rowsAffected()
+qint64 AbstractDb2<T>::Query::rowsAffected()
 {
     return affected;
 }
 
 template <class T>
-SqlResultsRowPtr AbstractDb2<T>::Results::nextInternal()
+SqlResultsRowPtr AbstractDb2<T>::Query::nextInternal()
 {
-    if (!rowAvailable || db.isNull() || !db->isValid(stmt))
+    if (!rowAvailable || db.isNull())
         return SqlResultsRowPtr();
 
     Row* row = new Row;
@@ -661,18 +665,69 @@ SqlResultsRowPtr AbstractDb2<T>::Results::nextInternal()
 }
 
 template <class T>
-bool AbstractDb2<T>::Results::hasNextInternal()
+bool AbstractDb2<T>::Query::hasNextInternal()
 {
-    return rowAvailable;
+    return rowAvailable && stmt;
 }
 
 template <class T>
-int AbstractDb2<T>::Results::fetchNext()
+int AbstractDb2<T>::Query::fetchFirst()
 {
-    if (db.isNull() || !db->isValid(stmt))
+    rowAvailable = true;
+    int res = fetchNext();
+    if (res == SQLITE_OK)
+    {
+        if (colCount == 0)
+        {
+            affected = 0;
+        }
+        else
+        {
+            affected = sqlite_changes(db->dbHandle);
+            insertRowId["ROWID"] = sqlite_last_insert_rowid(db->dbHandle);
+        }
+    }
+    return res;
+}
+
+template <class T>
+bool AbstractDb2<T>::Query::checkDbState()
+{
+    if (db.isNull() || !db->dbHandle)
+    {
+        errorMessage = "SqlQuery is no longer valid.";
+        errorCode = SqlErrorCode::DB_NOT_DEFINED;
+        return false;
+    }
+
+    return true;
+}
+
+template <class T>
+QString AbstractDb2<T>::Query::finalize()
+{
+    QString msg;
+    if (stmt)
+    {
+        char* errMsg = nullptr;
+        sqlite_finalize(stmt, &errMsg);
+        stmt = nullptr;
+        if (errMsg)
+        {
+            msg = QString::fromUtf8(errMsg);
+            sqlite_freemem(errMsg);
+        }
+    }
+    return msg;
+}
+
+template <class T>
+int AbstractDb2<T>::Query::fetchNext()
+{
+    if (!checkDbState())
         rowAvailable = false;
 
-    if (!rowAvailable)
+    if (!rowAvailable || !stmt)
         return SQLITE_MISUSE;
 
     rowAvailable = false;
@@ -700,7 +755,7 @@ int AbstractDb2<T>::Results::fetchNext()
             break;
         default:
             errorCode = res;
-            errorMessage = db->freeStatement(stmt);
+            errorMessage = finalize();
             return SQLITE_ERROR;
     }
 
@@ -713,14 +768,19 @@ int AbstractDb2<T>::Results::fetchNext()
     if (rowAvailable)
     {
         for (int i = 0; i < colCount; i++)
-            nextRowValues << QString::fromUtf8(values[i]);
+        {
+            if (isBinaryColumn(i))
+                nextRowValues << QByteArray(values[i]);
+            else
+                nextRowValues << QString::fromUtf8(values[i]);
+        }
     }
 
     return SQLITE_OK;
 }
 
 template <class T>
-void AbstractDb2<T>::Results::init(int columnsCount, const char** columns)
+void AbstractDb2<T>::Query::init(int columnsCount, const char** columns)
 {
     colCount = columnsCount;
 
@@ -749,7 +809,7 @@ void AbstractDb2<T>::Results::init(int columnsCount, const char** columns)
 //------------------------------------------------------------------------------------
 
 template <class T>
-void AbstractDb2<T>::Results::Row::init(const QStringList& columns, const QList<QVariant>& resultValues)
+void AbstractDb2<T>::Query::Row::init(const QStringList& columns, const QList<QVariant>& resultValues)
 {
     for (int i = 0; i < columns.size(); i++)
     {

@@ -14,7 +14,7 @@ Db* DbPluginSqlite3::getInstance(const QString& name, const QString& path, const
         return nullptr;
     }
 
-    SqlResultsPtr results = db->exec("SELECT * FROM sqlite_master");
+    SqlQueryPtr results = db->exec("SELECT * FROM sqlite_master");
     if (results->isError())
     {
         delete db;

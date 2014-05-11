@@ -2,6 +2,7 @@
 #define SQLQUERYMODEL_H
 
 #include "db/db.h"
+#include "db/sqlquery.h"
 #include "db/queryexecutor.h"
 #include "sqlquerymodelcolumn.h"
 #include "parser/ast/sqlitecreatetable.h"
@@ -224,7 +225,7 @@ class SqlQueryModel : public QStandardItemModel
             QList<SqliteCreateTable::ConstraintPtr> constraints;
         };
 
-        void loadData(SqlResultsPtr results);
+        void loadData(SqlQueryPtr results);
         QList<QStandardItem*> loadRow(SqlResultsRowPtr row);
         RowId getRowIdValue(SqlResultsRowPtr row, int columnIdx);
         void readColumns();
@@ -337,7 +338,7 @@ class SqlQueryModel : public QStandardItemModel
         QList<bool> columnEditionStatus;
 
     private slots:
-        void handleExecFinished(SqlResultsPtr results);
+        void handleExecFinished(SqlQueryPtr results);
         void handleExecFailed(int code, QString errorMessage);
         void resultsCountingFinished(quint64 rowsAffected, quint64 rowsReturned, int totalPages);
 

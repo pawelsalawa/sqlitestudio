@@ -1,7 +1,9 @@
-#ifndef SQLRESULTS_H
-#define SQLRESULTS_H
+#ifndef SQLQUERY_H
+#define SQLQUERY_H
 
-#include "sqlresultsrow.h"
+#include "coreSQLiteStudio_global.h"
+#include "db/db.h"
+#include "db/sqlresultsrow.h"
 #include <QList>
 #include <QSharedPointer>
 
@@ -22,16 +24,17 @@
 typedef QHash<QString,QVariant> RowId;
 
 /**
- * @brief SQL query results
+ * @brief SQL query to execute and get results from
  *
- * This object is created by and returned from Db::exec() (and familiar methods) calls.
+ * This object is created by and returned from Db::exec() (and familiar methods)
+ * or Db::prepare() calls.
  * It uses incremental reading for accessing data, so it only reads as much data
  * as you ask it to. It can tell you how many rows and how many columns are available
  * in the results. It also provides information about errors that occured during query execution.
  *
  * Typical workflow looks like this:
  * @code
- * SqlResultsPtr results = db->exec("SELECT * FROM table");
+ * SqlQueryPtr results = db->exec("SELECT * FROM table");
  * SqlResultsRowPtr row;
  * while (row = results->next())
  * {
@@ -41,13 +44,15 @@ typedef QHash<QString,QVariant> RowId;
  *
  *
  */
-class API_EXPORT SqlResults
+class API_EXPORT SqlQuery
 {
     public:
         /**
          * @brief Releases result resources.
          */
-        virtual ~SqlResults();
+        virtual ~SqlQuery();
+
+        virtual bool execute();
 
         /**
          * @brief Reads next row of results
@@ -67,7 +72,7 @@ class API_EXPORT SqlResults
          *
          * In other cases this method might be useful. For example when you read single cell:
          * @code
-         * SqlResultsPtr results = db->("SELECT value FROM table WHERE rowid = ?", {rowId});
+         * SqlQueryPtr results = db->("SELECT value FROM table WHERE rowid = ?", {rowId});
          * if (results->isError() || !results->hasNext())
          *    return "some default value";
          *
@@ -109,7 +114,7 @@ class API_EXPORT SqlResults
          * For DELETE this is number of rows deleted.
          * FOR INSERT this is number of rows inserted (starting with SQLite 3.7.11 you can insert multiple rows with single INSERT statement).
          */
-        virtual qint64 rowsAffected() = 0;
+        virtual qint64 rowsAffected();
 
         /**
          * @brief Reads all rows immediately and returns them.
@@ -215,8 +220,13 @@ class API_EXPORT SqlResults
             return list;
         }
 
-    protected:
+        QString getQuery() const;
+        void setFlags(Db::Flags flags);
+        void clearArgs();
+        void setArgs(const QList<QVariant>& args);
+        void setArgs(const QHash<QString,QVariant>& args);
 
+    protected:
         /**
          * @brief Reads next row of results
          * @return Next results row, or null pointer if no more rows are available.
@@ -234,6 +244,9 @@ class API_EXPORT SqlResults
          * while this method should work natively on the derived implementation of results object.
          */
         virtual bool hasNextInternal() = 0;
+
+        virtual bool execInternal(const QList<QVariant>& args) = 0;
+        virtual bool execInternal(const QHash<QString, QVariant>& args) = 0;
 
         /**
          * @brief Row ID of the most recently inserted row.
@@ -257,12 +270,18 @@ class API_EXPORT SqlResults
          * @brief Data preloaded with preload().
          */
         QList<SqlResultsRowPtr> preloadedData;
+
+        int affected = 0;
+
+        QString query;
+        QVariant queryArgs;
+        Db::Flags flags;
 };
 
 /**
- * @brief Shared pointer to results object.
+ * @brief Shared pointer to query object.
  * Results are usually passed as shared pointer, so it's used as needed and deleted when no longer required.
  */
-typedef QSharedPointer<SqlResults> SqlResultsPtr;
+typedef QSharedPointer<SqlQuery> SqlQueryPtr;
 
-#endif // SQLRESULTS_H
+#endif // SQLQUERY_H

@@ -86,7 +86,6 @@ SOURCES += sqlitestudio.cpp \
     parser/ast/sqlitequerytype.cpp \
     db/db.cpp \
     services/dbmanager.cpp \
-    db/sqlresults.cpp \
     db/sqlresultsrow.cpp \
     db/asyncqueryrunner.cpp \
     db/dbremote.cpp \
@@ -155,7 +154,8 @@ SOURCES += sqlitestudio.cpp \
     db/attachguard.cpp \
     db/invaliddb.cpp \
     dbversionconverter.cpp \
-    diff/diff_match_patch.cpp
+    diff/diff_match_patch.cpp \
+    db/sqlquery.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -220,7 +220,6 @@ HEADERS += sqlitestudio.h\
     dialect.h \
     db/db.h \
     services/dbmanager.h \
-    db/sqlresults.h \
     db/sqlresultsrow.h \
     db/asyncqueryrunner.h \
     db/dbremote.h \
@@ -288,8 +287,6 @@ HEADERS += sqlitestudio.h\
     services/impl/pluginmanagerimpl.h \
     impl/dbattacherimpl.h \
     db/abstractdb3.h \
-    db/sqlresultssqlite3.h \
-    db/sqlresultsrowsqlite3.h \
     db/dbsqlite3.h \
     plugins/dbpluginsqlite3.h \
     db/abstractdb2.h \
@@ -309,7 +306,8 @@ HEADERS += sqlitestudio.h\
     interruptable.h \
     db/invaliddb.h \
     dbversionconverter.h \
-    diff/diff_match_patch.h
+    diff/diff_match_patch.h \
+    db/sqlquery.h
 
 unix:!symbian {
     maemo5 {

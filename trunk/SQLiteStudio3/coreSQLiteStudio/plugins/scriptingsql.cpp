@@ -1,6 +1,7 @@
 #include "scriptingsql.h"
 #include "common/unused.h"
 #include "db/db.h"
+#include "db/sqlquery.h"
 #include "services/dbmanager.h"
 
 ScriptingSql::ScriptingSql()
@@ -65,7 +66,7 @@ QVariant ScriptingSql::evaluate(ScriptingPlugin::Context* context, const QString
         }
     }
 
-    SqlResultsPtr result = theDb->exec(sql, args, execFlags);
+    SqlQueryPtr result = theDb->exec(sql, args, execFlags);
     if (result->isError())
     {
         dynamic_cast<SqlContext*>(context)->errorText = result->getErrorText();
@@ -90,7 +91,7 @@ QVariant ScriptingSql::evaluate(const QString& code, const QList<QVariant>& args
     if (!locking)
         execFlags |= Db::Flag::NO_LOCK;
 
-    SqlResultsPtr result = theDb->exec(code, args, execFlags);
+    SqlQueryPtr result = theDb->exec(code, args, execFlags);
     if (result->isError())
     {
         *errorMessage = result->getErrorText();

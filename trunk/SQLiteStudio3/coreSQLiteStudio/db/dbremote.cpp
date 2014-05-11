@@ -33,14 +33,14 @@ Db* DbRemote::getInstance(const QString& path, const QString &options)
     return nullptr;
 }
 
-SqlResultsPtr DbRemote::execInternal(const QString &query, const QList<QVariant> &args, bool singleCell)
+SqlQueryPtr DbRemote::execInternal(const QString &query, const QList<QVariant> &args, bool singleCell)
 {
-    return SqlResultsPtr();
+    return SqlQueryPtr();
 }
 
-SqlResultsPtr DbRemote::execInternal(const QString &query, const QMap<QString, QVariant> &args, bool singleCell)
+SqlQueryPtr DbRemote::execInternal(const QString &query, const QMap<QString, QVariant> &args, bool singleCell)
 {
-    return SqlResultsPtr();
+    return SqlQueryPtr();
 }
 
 QString DbRemote::getTypeLabel()

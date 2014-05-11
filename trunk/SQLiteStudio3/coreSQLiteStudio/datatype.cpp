@@ -87,3 +87,9 @@ bool DataType::isNumeric(DataType::Enum e)
     }
     return false;
 }
+
+bool DataType::isBinary(const QString& type)
+{
+    static const QStringList binaryTypes = {"BLOB", "CLOB", "LOB"};
+    return binaryTypes.contains(type.toUpper());
+}

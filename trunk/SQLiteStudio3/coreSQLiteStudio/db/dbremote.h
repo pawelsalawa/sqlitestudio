@@ -27,9 +27,9 @@ class DbRemote : public Db
         DbRemote();
 
         bool isOpenInternal();
-        SqlResultsPtr execInternal(const QString& query, const QList<QVariant>& args,
+        SqlQueryPtr execInternal(const QString& query, const QList<QVariant>& args,
                                                 bool singleCell);
-        SqlResultsPtr execInternal(const QString& query, const QMap<QString,QVariant>& args,
+        SqlQueryPtr execInternal(const QString& query, const QMap<QString,QVariant>& args,
                                                 bool singleCell);
         bool init();
 

@@ -375,7 +375,7 @@ QString SqlQueryItem::loadFullData()
     query = query.arg(source);
 
     // Get the data
-    SqlResultsPtr results = db->exec(query, {getRowId()});
+    SqlQueryPtr results = db->exec(query, {getRowId()});
     if (results->isError())
         return results->getErrorText();
 

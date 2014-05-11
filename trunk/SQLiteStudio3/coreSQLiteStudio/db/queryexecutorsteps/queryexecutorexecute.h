@@ -32,7 +32,7 @@ class QueryExecutorExecute : public QueryExecutorStep
          * @brief Gives list of column names as SQLite returned them.
          * @param results Execution results.
          */
-        void provideResultColumns(SqlResultsPtr results);
+        void provideResultColumns(SqlQueryPtr results);
 
         /**
          * @brief Executes the query.
@@ -51,7 +51,7 @@ class QueryExecutorExecute : public QueryExecutorStep
          *
          * Meta information includes rows affected, execution time, etc.
          */
-        void handleSuccessfulResult(SqlResultsPtr results);
+        void handleSuccessfulResult(SqlQueryPtr results);
 
         /**
          * @brief Handles failed execution.
@@ -62,7 +62,7 @@ class QueryExecutorExecute : public QueryExecutorStep
          * then the warning is logged about it and executor falls back to simple
          * execution method.
          */
-        void handleFailResult(SqlResultsPtr results);
+        void handleFailResult(SqlQueryPtr results);
 
         /**
          * @brief Prepares parameters for query execution.
@@ -78,6 +78,8 @@ class QueryExecutorExecute : public QueryExecutorStep
          * @brief Number of milliseconds since 1970 at execution start moment.
          */
         qint64 startTime;
+
+        void setupSqlite2ColumnDataTypes(SqlQueryPtr results);
 };
 
 #endif // QUERYEXECUTOREXECUTE_H

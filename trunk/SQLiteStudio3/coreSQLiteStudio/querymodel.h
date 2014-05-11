@@ -1,7 +1,7 @@
 #ifndef SQLQUERYMODEL_H
 #define SQLQUERYMODEL_H
 
-#include "db/sqlresults.h"
+#include "db/sqlquery.h"
 #include "db/sqlresultsrow.h"
 #include <QList>
 #include <QAbstractTableModel>

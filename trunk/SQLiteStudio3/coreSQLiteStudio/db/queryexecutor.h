@@ -45,7 +45,7 @@ class QueryExecutorStep;
  * @code
  * Db* db = getDb();
  * QueryExecutor *executor = new QueryExecutor(db, "SELECT * FROM table");
- * executor->exec([=](SqlResultsPtr results)
+ * executor->exec([=](SqlQueryPtr results)
  * {
  *     if (results->isError())
  *     {
@@ -527,7 +527,7 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
              *
              * This member is defined by QueryExecutorExecute step.
              */
-            SqlResultsPtr executionResults;
+            SqlQueryPtr executionResults;
 
             /**
              * @brief Currently attached databases.
@@ -946,7 +946,7 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
         bool getAsyncMode() const;
         void setAsyncMode(bool value);
 
-        SqlResultsPtr getResults() const;
+        SqlQueryPtr getResults() const;
         bool wasSchemaModified() const;
 
     private:
@@ -1011,7 +1011,7 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          *
          * In case of success emits executionFinished(), in case of error emits executionFailed().
          */
-        void simpleExecutionFinished(SqlResultsPtr results);
+        void simpleExecutionFinished(SqlQueryPtr results);
 
         /**
          * @brief Tests whether the original query is a SELECT statement.
@@ -1043,7 +1043,7 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          * Basicly this method is called a result of countResults() call. Extracts counted number of rows
          * and stores it in query executor's context.
          */
-        bool handleRowCountingResults(quint32 asyncId, SqlResultsPtr results);
+        bool handleRowCountingResults(quint32 asyncId, SqlQueryPtr results);
 
         /**
          * @brief Query executor context object.
@@ -1226,7 +1226,7 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          * and only on successful execution. It doesn't matter if the execution was
          * performed in "smart mode" or "simple mode".
          */
-        void executionFinished(SqlResultsPtr results);
+        void executionFinished(SqlQueryPtr results);
 
         /**
          * @brief Emitted on failed query execution.
@@ -1276,7 +1276,7 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          * or the simple execution.
          * Dispatches query results to a proper handler method.
          */
-        void dbAsyncExecFinished(quint32 asyncId, SqlResultsPtr results);
+        void dbAsyncExecFinished(quint32 asyncId, SqlQueryPtr results);
 
         /**
          * @brief Calledn when an executor step has failed with its job.
@@ -1292,7 +1292,7 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          *
          * Releases resources that are no longer used. Currently simply calls cleanup().
          */
-        void cleanupAfterExecFinished(SqlResultsPtr results);
+        void cleanupAfterExecFinished(SqlQueryPtr results);
 
         /**
          * @brief Cleanup routines after failed query execution.

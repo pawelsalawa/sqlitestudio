@@ -3,7 +3,7 @@
 
 #include "coreSQLiteStudio_global.h"
 #include "services/config.h"
-#include "db/sqlresults.h"
+#include "db/sqlquery.h"
 
 class ConfigImpl : public Config
 {
@@ -71,8 +71,8 @@ class ConfigImpl : public Config
          *
          * If the error was defined in the query, its message is stored in lastQueryError.
          */
-        bool storeErrorAndReturn(SqlResultsPtr results);
-        void printErrorIfSet(SqlResultsPtr results);
+        bool storeErrorAndReturn(SqlQueryPtr results);
+        void printErrorIfSet(SqlQueryPtr results);
         void storeGroup(const DbGroupPtr& group, qint64 parentId = -1);
         void readGroupRecursively(DbGroupPtr group);
         QString getConfigPath();

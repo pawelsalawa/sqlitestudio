@@ -363,7 +363,7 @@ bool DbObjectOrganizer::copyTableToDb(const QString& table)
     if (ddl.trimmed() == ";") // empty query, result of ignored errors in UI
         return true;
 
-    SqlResultsPtr result;
+    SqlQueryPtr result;
 
     if (attachName.isNull())
         result = dstDb->exec(ddl);
@@ -402,7 +402,7 @@ bool DbObjectOrganizer::copyTableToDb(const QString& table)
 bool DbObjectOrganizer::copyDataAsMiddleware(const QString& table)
 {
     QString wrappedSrcTable = wrapObjIfNeeded(srcTable, srcDb->getDialect());
-    SqlResultsPtr results = srcDb->exec("SELECT * FROM "+wrappedSrcTable);
+    SqlQueryPtr results = srcDb->exec("SELECT * FROM "+wrappedSrcTable);
     if (results->isError())
     {
         notifyError(tr("Error while copying data for table %1: %2").arg(table).arg(results->getErrorText()));
@@ -416,7 +416,7 @@ bool DbObjectOrganizer::copyDataAsMiddleware(const QString& table)
     QString wrappedDstTable = wrapObjIfNeeded(table, dstDb->getDialect());
     QString sql = "INSERT INTO " + wrappedDstTable + " VALUES (" + argPlaceholderList.join(", ") + ")";
 
-    SqlResultsPtr insertResults;
+    SqlQueryPtr insertResults;
     SqlResultsRowPtr row;
     int i = 0;
     while (results->hasNext())
@@ -452,7 +452,7 @@ bool DbObjectOrganizer::copyDataUsingAttach(const QString& table, const QString&
 {
     QString wrappedSrcTable = wrapObjIfNeeded(srcTable, srcDb->getDialect());
     QString wrappedDstTable = wrapObjIfNeeded(table, srcDb->getDialect());
-    SqlResultsPtr results = srcDb->exec("INSERT INTO " + attachName + "." + wrappedDstTable + " SELECT * FROM " + wrappedSrcTable);
+    SqlQueryPtr results = srcDb->exec("INSERT INTO " + attachName + "." + wrappedDstTable + " SELECT * FROM " + wrappedSrcTable);
     if (results->isError())
     {
         notifyError(tr("Error while copying data to table %1: %2").arg(table).arg(results->getErrorText()));
@@ -474,7 +474,7 @@ void DbObjectOrganizer::dropView(const QString& view)
 void DbObjectOrganizer::dropObject(const QString& name, const QString& type)
 {
     QString wrappedSrcObj = wrapObjIfNeeded(name, srcDb->getDialect());
-    SqlResultsPtr results = srcDb->exec("DROP " + type + " " + wrappedSrcObj);
+    SqlQueryPtr results = srcDb->exec("DROP " + type + " " + wrappedSrcObj);
     if (results->isError())
     {
         notifyWarn(tr("Error while dropping source view %1: %2\nTables, indexes, triggers and views copied to database %3 will remain.")
@@ -504,7 +504,7 @@ bool DbObjectOrganizer::copySimpleObjectToDb(const QString& name, const QString&
     if (convertedDdl.trimmed() == ";") // empty query, result of ignored errors in UI
         return true;
 
-    SqlResultsPtr result = dstDb->exec(convertedDdl);
+    SqlQueryPtr result = dstDb->exec(convertedDdl);
     if (result->isError())
     {
         notifyError(errorMessage.arg(result->getErrorText()));
@@ -603,7 +603,7 @@ bool DbObjectOrganizer::setFkEnabled(bool enabled)
     if (dstDb->getVersion() == 2)
         return true;
 
-    SqlResultsPtr result = dstDb->exec(QString("PRAGMA foreign_keys = %1").arg(enabled ? "on" : "off"));
+    SqlQueryPtr result = dstDb->exec(QString("PRAGMA foreign_keys = %1").arg(enabled ? "on" : "off"));
     if (result->isError())
     {
         notifyError(tr("Error while executing PRAGMA on target database: %1").arg(result->getErrorText()));

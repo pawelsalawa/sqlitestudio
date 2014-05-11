@@ -39,3 +39,19 @@ QDataStream &operator >>(QDataStream &in, Db*& myObj)
     myObj = reinterpret_cast<Db*>(ptr);
     return in;
 }
+
+
+void Sqlite2ColumnDataTypeHelper::setBinaryType(int columnIndex)
+{
+    binaryColumns << columnIndex;
+}
+
+bool Sqlite2ColumnDataTypeHelper::isBinaryColumn(int columnIndex) const
+{
+    return binaryColumns.contains(columnIndex);
+}
+
+void Sqlite2ColumnDataTypeHelper::clearBinaryTypes()
+{
+    binaryColumns.clear();
+}

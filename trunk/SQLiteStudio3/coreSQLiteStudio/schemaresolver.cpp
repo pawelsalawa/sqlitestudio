@@ -374,7 +374,7 @@ QStringList SchemaResolver::getObjects(const QString &database, const QString &t
     QStringList resList;
     QString dbName = getPrefixDb(database, db->getDialect());
 
-    SqlResultsPtr results = db->exec(QString("SELECT name FROM %1.sqlite_master WHERE type = ?;").arg(dbName), {type});
+    SqlQueryPtr results = db->exec(QString("SELECT name FROM %1.sqlite_master WHERE type = ?;").arg(dbName), {type});
 
     QString value;
     foreach (SqlResultsRowPtr row, results->getAll())
@@ -397,7 +397,7 @@ QStringList SchemaResolver::getAllObjects(const QString& database)
     QStringList resList;
     QString dbName = getPrefixDb(database, db->getDialect());
 
-    SqlResultsPtr results = db->exec(QString(
+    SqlQueryPtr results = db->exec(QString(
                 "SELECT name, type FROM %1.sqlite_master;").arg(dbName));
 
     QString value;
@@ -559,7 +559,7 @@ QHash<QString, SchemaResolver::ObjectDetails> SchemaResolver::getAllObjectDetail
     ObjectDetails detail;
     QString type;
 
-    SqlResultsPtr results = db->exec(QString("SELECT name, type, sql FROM %1.sqlite_master").arg(getPrefixDb(database, db->getDialect())));
+    SqlQueryPtr results = db->exec(QString("SELECT name, type, sql FROM %1.sqlite_master").arg(getPrefixDb(database, db->getDialect())));
     if (results->isError())
     {
         qCritical() << "Error while getting all object details in SchemaResolver:" << results->getErrorCode();
@@ -788,7 +788,7 @@ QStringList SchemaResolver::getCollations()
     if (db->getDialect() != Dialect::Sqlite3)
         return list;
 
-    SqlResultsPtr results = db->exec("PRAGMA collation_list");
+    SqlQueryPtr results = db->exec("PRAGMA collation_list");
     if (results->isError())
     {
         qWarning() << "Could not read collation list from the database:" << results->getErrorText();

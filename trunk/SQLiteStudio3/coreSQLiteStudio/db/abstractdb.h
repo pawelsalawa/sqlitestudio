@@ -2,7 +2,7 @@
 #define ABSTRACTDB_H
 
 #include "returncode.h"
-#include "sqlresults.h"
+#include "sqlquery.h"
 #include "dialect.h"
 #include "db/db.h"
 #include "services/functionmanager.h"
@@ -53,12 +53,12 @@ class API_EXPORT AbstractDb : public Db
         void setName(const QString& value);
         void setPath(const QString& value);
         void setConnectionOptions(const QHash<QString,QVariant>& value);
-        SqlResultsPtr exec(const QString& query, const QList<QVariant> &args, Flags flags = Flag::NONE);
-        SqlResultsPtr exec(const QString& query, const QHash<QString, QVariant>& args, Flags flags = Flag::NONE);
-        SqlResultsPtr exec(const QString &query, Db::Flags flags = Flag::NONE);
-        SqlResultsPtr exec(const QString &query, const QVariant &arg);
-        SqlResultsPtr exec(const QString &query, std::initializer_list<QVariant> argList);
-        SqlResultsPtr exec(const QString &query, std::initializer_list<std::pair<QString,QVariant>> argMap);
+        SqlQueryPtr exec(const QString& query, const QList<QVariant> &args, Flags flags = Flag::NONE);
+        SqlQueryPtr exec(const QString& query, const QHash<QString, QVariant>& args, Flags flags = Flag::NONE);
+        SqlQueryPtr exec(const QString &query, Db::Flags flags = Flag::NONE);
+        SqlQueryPtr exec(const QString &query, const QVariant &arg);
+        SqlQueryPtr exec(const QString &query, std::initializer_list<QVariant> argList);
+        SqlQueryPtr exec(const QString &query, std::initializer_list<std::pair<QString,QVariant>> argMap);
         void asyncExec(const QString& query, const QList<QVariant>& args, QueryResultsHandler resultsHandler, Flags flags = Flag::NONE);
         void asyncExec(const QString& query, const QHash<QString, QVariant>& args, QueryResultsHandler resultsHandler, Flags flags = Flag::NONE);
         void asyncExec(const QString& query, QueryResultsHandler resultsHandler, Flags flags = Flag::NONE);
@@ -168,27 +168,27 @@ class API_EXPORT AbstractDb : public Db
          */
         virtual void interruptExecution() = 0;
 
-        /**
-         * @brief Executes given query with parameters on the database.
-         * @param query Query to execute.
-         * @param args Query parameters.
-         * @return Results from execution.
-         *
-         * Implementation of this method should execute given query on the database, given that the query string
-         * can contain parameter placeholders, such as ?, :param, \@param, or $param. SQLite 3 API understands
-         * these parameters, while SQLite 2 API understands only ? placeholders and others need to be emulated
-         * by this method implementation.
-         *
-         * Note that the parameters for this method are passed as list, so it doesn't matter what are names
-         * in named placeholders. Parameters should be bind by position, not name. For name-aware parameter binding
-         * there is a overloaded execInternal() method with QHash of parameters.
-         */
-        virtual SqlResultsPtr execInternal(const QString& query, const QList<QVariant>& args) = 0;
+//        /**
+//         * @brief Executes given query with parameters on the database.
+//         * @param query Query to execute.
+//         * @param args Query parameters.
+//         * @return Results from execution.
+//         *
+//         * Implementation of this method should execute given query on the database, given that the query string
+//         * can contain parameter placeholders, such as ?, :param, \@param, or $param. SQLite 3 API understands
+//         * these parameters, while SQLite 2 API understands only ? placeholders and others need to be emulated
+//         * by this method implementation.
+//         *
+//         * Note that the parameters for this method are passed as list, so it doesn't matter what are names
+//         * in named placeholders. Parameters should be bind by position, not name. For name-aware parameter binding
+//         * there is a overloaded execInternal() method with QHash of parameters.
+//         */
+//        virtual SqlQueryPtr execInternal(const QString& query, const QList<QVariant>& args) = 0;
 
-        /**
-         * @overload
-         */
-        virtual SqlResultsPtr execInternal(const QString& query, const QHash<QString,QVariant>& args) = 0;
+//        /**
+//         * @overload
+//         */
+//        virtual SqlQueryPtr execInternal(const QString& query, const QHash<QString,QVariant>& args) = 0;
 
         /**
          * @brief Returns error message.
@@ -331,6 +331,19 @@ class API_EXPORT AbstractDb : public Db
          */
         QHash<int,QueryResultsHandler> resultHandlers;
 
+        /**
+         * @brief Database operation lock.
+         *
+         * This lock is set whenever any operation on the actual database is performed (i.e. call to
+         * exec(), interrupt(), open(), close(), generateUniqueDbName(true),  attach(), detach(), and others...
+         * generally anything that does operations on database that must be synchronous).
+         *
+         * In case of exec() it can be locked for READ or WRITE (depending on query type),
+         * because there can be multiple SELECTs and there's nothing wrong with it,
+         * while for other methods is always lock for WRITE.
+         */
+        QReadWriteLock dbOperLock;
+
     private:
         /**
          * @brief Represents single function that is registered in the database.
@@ -369,12 +382,12 @@ class API_EXPORT AbstractDb : public Db
          * This is called from both exec() and execNoLock() and is a final step before calling execInternal()
          * (the plugin-provided execution). This is where \p flags are interpreted and applied.
          */
-        SqlResultsPtr execHashArg(const QString& query, const QHash<QString, QVariant>& args, Flags flags);
+        SqlQueryPtr execHashArg(const QString& query, const QHash<QString, QVariant>& args, Flags flags);
 
         /**
          * @overload
          */
-        SqlResultsPtr execListArg(const QString& query, const QList<QVariant>& args, Flags flags);
+        SqlQueryPtr execListArg(const QString& query, const QList<QVariant>& args, Flags flags);
 
         /**
          * @brief Generates unique database name.
@@ -401,6 +414,8 @@ class API_EXPORT AbstractDb : public Db
          * and PRAGMA - are read-only, while all other queries are read-write.
          * In case of PRAGMA this is not entirely true, but it's not like using PRAGMA for changing
          * some setting would cause database state inconsistency. At least not from perspective of SQLiteStudio.
+         *
+         * In case of WITH statement it filters out the "WITH clause" and then checks for SELECT keyword.
          */
         ReadWriteLocker::Mode getLockingMode(const QString& query, Db::Flags flags);
 
@@ -413,7 +428,7 @@ class API_EXPORT AbstractDb : public Db
          * This method checks if there is a handler function for given asynchronous ID (in resultHandlers)
          * and if there is, then evaluates it and returns true. Otherwise does nothing and returns false.
          */
-        bool handleResultInternally(quint32 asyncId, SqlResultsPtr results);
+        bool handleResultInternally(quint32 asyncId, SqlQueryPtr results);
 
         /**
          * @brief Registers single custom SQL function.
@@ -424,19 +439,6 @@ class API_EXPORT AbstractDb : public Db
          * it will be overwritten (both in SQLite and in registeredFunctions).
          */
         void registerFunction(const RegisteredFunction& function);
-
-        /**
-         * @brief Database operation lock.
-         *
-         * This lock is set whenever any operation on the actual database is performed (i.e. call to
-         * exec(), interrupt(), open(), close(), generateUniqueDbName(true),  attach(), detach(), and others...
-         * generally anything that does operations on database that must be synchronous).
-         *
-         * In case of exec() it can be locked for READ or WRITE (depending on query type),
-         * because there can be multiple SELECTs and there's nothing wrong with it,
-         * while for other methods is always lock for WRITE.
-         */
-        QReadWriteLock dbOperLock;
 
         /**
          * @brief Connection state lock.

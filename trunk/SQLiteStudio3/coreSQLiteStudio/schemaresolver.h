@@ -10,11 +10,12 @@
 #include "coreSQLiteStudio_global.h"
 #include "common/utils_sql.h"
 #include "selectresolver.h"
+#include "db/sqlresultsrow.h"
+#include "db/sqlquery.h"
 #include "db/db.h"
 #include <QStringList>
 
 class SqliteCreateTable;
-class SqliteQuery;
 
 // TODO add cache
 
@@ -173,7 +174,7 @@ QHash<QString,QSharedPointer<T>> SchemaResolver::getAllParsedObjectsForType(cons
 
      QString dbName = getPrefixDb(database, db->getDialect());
 
-     SqlResultsPtr results;
+     SqlQueryPtr results;
 
      if (type.isNull())
          results = db->exec(QString("SELECT name, type, sql FROM %1.sqlite_master;").arg(dbName));

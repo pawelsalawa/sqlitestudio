@@ -32,11 +32,11 @@ void CliCommandSql::execute()
 
     // Executor deletes itself later when called with lambda.
     QueryExecutor *executor = new QueryExecutor(db, syntax.getArgument(STRING));
-    connect(executor, SIGNAL(executionFinished(SqlResultsPtr)), this, SIGNAL(execComplete()));
+    connect(executor, SIGNAL(executionFinished(SqlQueryPtr)), this, SIGNAL(execComplete()));
     connect(executor, SIGNAL(executionFailed(int,QString)), this, SLOT(executionFailed(int,QString)));
     connect(executor, SIGNAL(executionFailed(int,QString)), this, SIGNAL(execComplete()));
 
-    executor->exec([=](SqlResultsPtr results)
+    executor->exec([=](SqlQueryPtr results)
     {
         if (results->isError())
             return; // should not happen, since results handler function is called only for successful executions
@@ -86,7 +86,7 @@ void CliCommandSql::defineSyntax()
     syntax.setStrictArgumentCount(false);
 }
 
-void CliCommandSql::printResultsClassic(QueryExecutor* executor, SqlResultsPtr results)
+void CliCommandSql::printResultsClassic(QueryExecutor* executor, SqlQueryPtr results)
 {
     int rowIdColumns = executor->getRowIdResultColumns().size();
     int resultColumnCount = executor->getResultColumns().size();
@@ -120,7 +120,7 @@ void CliCommandSql::printResultsClassic(QueryExecutor* executor, SqlResultsPtr r
     qOut.flush();
 }
 
-void CliCommandSql::printResultsFixed(QueryExecutor* executor, SqlResultsPtr results)
+void CliCommandSql::printResultsFixed(QueryExecutor* executor, SqlQueryPtr results)
 {
     QList<QueryExecutor::ResultColumnPtr> resultColumns = executor->getResultColumns();
     int resultColumnsCount = resultColumns.size();
@@ -162,7 +162,7 @@ void CliCommandSql::printResultsFixed(QueryExecutor* executor, SqlResultsPtr res
     qOut.flush();
 }
 
-void CliCommandSql::printResultsColumns(QueryExecutor* executor, SqlResultsPtr results)
+void CliCommandSql::printResultsColumns(QueryExecutor* executor, SqlQueryPtr results)
 {
     // Check if we don't have more columns than we can display
     QList<QueryExecutor::ResultColumnPtr> resultColumns = executor->getResultColumns();
@@ -237,7 +237,7 @@ void CliCommandSql::printResultsColumns(QueryExecutor* executor, SqlResultsPtr r
     qOut.flush();
 }
 
-void CliCommandSql::printResultsRowByRow(QueryExecutor* executor, SqlResultsPtr results)
+void CliCommandSql::printResultsRowByRow(QueryExecutor* executor, SqlQueryPtr results)
 {
     // Columns
     int rowIdColumns = executor->getRowIdResultColumns().size();

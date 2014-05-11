@@ -2,6 +2,7 @@
 #define SQLQUERYITEM_H
 
 #include "sqlquerymodelcolumn.h"
+#include "db/sqlquery.h"
 #include <QStandardItem>
 
 class SqlQueryModel;

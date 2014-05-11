@@ -1,7 +1,7 @@
 #ifndef SQLERRORRESULTS_H
 #define SQLERRORRESULTS_H
 
-#include "sqlresults.h"
+#include "sqlquery.h"
 #include <QStringList>
 
 /**
@@ -11,7 +11,7 @@
  * It has single constructor which accepts error code and error message, which are later
  * returned from getErrorCode() and getErrorText().
  */
-class SqlErrorResults : public SqlResults
+class SqlErrorResults : public SqlQuery
 {
     public:
         /**
@@ -30,6 +30,8 @@ class SqlErrorResults : public SqlResults
     protected:
         SqlResultsRowPtr nextInternal();
         bool hasNextInternal();
+        bool execInternal(const QList<QVariant>& args);
+        bool execInternal(const QHash<QString, QVariant>& args);
 
     private:
         /**

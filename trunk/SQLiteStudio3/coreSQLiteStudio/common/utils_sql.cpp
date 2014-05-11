@@ -1,6 +1,6 @@
 #include "common/utils_sql.h"
 #include "common/utils.h"
-#include "db/sqlresults.h"
+#include "db/sqlquery.h"
 #include "parser/token.h"
 #include "parser/lexer.h"
 #include "parser/keywords.h"
@@ -30,7 +30,7 @@ void initUtilsSql()
                     << NameWrapper::QUOTE
                     << NameWrapper::DOUBLE_QUOTE;
 
-    qRegisterMetaType<SqlResultsPtr>("SqlResultsPtr");
+    qRegisterMetaType<SqlQueryPtr>("SqlQueryPtr");
 }
 
 bool doesObjectNeedWrapping(const QString& str, Dialect dialect)
@@ -489,6 +489,23 @@ QList<QueryWithParamCount> getQueriesWithParamCount(const QString& query, Dialec
     }
 
     return results;
+}
+
+QueryWithParamNames getQueryWithParamNames(const QString& query, Dialect dialect)
+{
+    TokenList allTokens = Lexer::tokenize(query, dialect);
+
+    QStringList paramNames;
+    foreach (const TokenPtr& token, allTokens.filter(Token::BIND_PARAM))
+        paramNames << token->value;
+
+    return QueryWithParamNames(query, paramNames);
+}
+
+QueryWithParamCount getQueryWithParamCount(const QString& query, Dialect dialect)
+{
+    TokenList allTokens = Lexer::tokenize(query, dialect);
+    return QueryWithParamCount(query, allTokens.filter(Token::BIND_PARAM).size());
 }
 
 QString commentAllSqlLines(const QString& sql)

@@ -83,7 +83,7 @@ bool ExportWorker::exportQueryResults()
 {
     executor->setDb(db);
     executor->exec(query);
-    SqlResultsPtr results = executor->getResults();
+    SqlQueryPtr results = executor->getResults();
     if (!results)
     {
         qCritical() << "Null results from executor in ExportWorker.";
@@ -191,7 +191,7 @@ bool ExportWorker::exportTable()
 {
     static const QString sql = QStringLiteral("SELECT * FROM %1");
 
-    SqlResultsPtr results;
+    SqlQueryPtr results;
 
     if (config->exportData)
     {
@@ -209,7 +209,7 @@ bool ExportWorker::exportTable()
     return exportTableInternal(database, table, ddl, results, false);
 }
 
-bool ExportWorker::exportTableInternal(const QString& database, const QString& table, const QString& ddl, SqlResultsPtr results, bool databaseExport)
+bool ExportWorker::exportTableInternal(const QString& database, const QString& table, const QString& ddl, SqlQueryPtr results, bool databaseExport)
 {
     if (!plugin->beforeExportTable(database, table, results->getColumnNames(), ddl, databaseExport))
         return false;
@@ -276,7 +276,7 @@ QList<ExportManager::ExportObjectPtr> ExportWorker::collectDbObjects(QString* er
     return objectsToExport;
 }
 
-void ExportWorker::queryTableDataToExport(Db* db, const QString& table, SqlResultsPtr& dataPtr, QString* errorMessage) const
+void ExportWorker::queryTableDataToExport(Db* db, const QString& table, SqlQueryPtr& dataPtr, QString* errorMessage) const
 {
     static const QString sql = QStringLiteral("SELECT * FROM %1");
 
