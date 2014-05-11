@@ -14,7 +14,7 @@ void QueryModel::refresh()
 
     beginResetModel();
     loadedRows.clear();
-    SqlResultsPtr results = db->exec(query);
+    SqlQueryPtr results = db->exec(query);
     for (SqlResultsRowPtr row : results->getAll())
         loadedRows += row;
 

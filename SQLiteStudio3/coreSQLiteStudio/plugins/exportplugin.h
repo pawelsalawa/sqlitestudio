@@ -2,7 +2,7 @@
 #define EXPORTPLUGIN_H
 
 #include "plugin.h"
-#include "db/sqlresults.h"
+#include "db/sqlquery.h"
 #include "db/queryexecutor.h"
 #include "services/exportmanager.h"
 

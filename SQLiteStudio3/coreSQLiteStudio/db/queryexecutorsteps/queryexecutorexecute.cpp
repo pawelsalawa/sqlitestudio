@@ -3,8 +3,11 @@
 #include "db/queryexecutor.h"
 #include "parser/ast/sqlitequery.h"
 #include "parser/lexer.h"
+#include "parser/ast/sqlitecreatetable.h"
+#include "datatype.h"
 #include <QDateTime>
 #include <QDebug>
+#include <schemaresolver.h>
 
 bool QueryExecutorExecute::exec()
 {
@@ -14,7 +17,7 @@ bool QueryExecutorExecute::exec()
     return executeQueries();
 }
 
-void QueryExecutorExecute::provideResultColumns(SqlResultsPtr results)
+void QueryExecutorExecute::provideResultColumns(SqlQueryPtr results)
 {
     QueryExecutor::ResultColumnPtr resCol = QueryExecutor::ResultColumnPtr::create();
     foreach (const QString& colName, results->getColumnNames())
@@ -27,16 +30,25 @@ void QueryExecutorExecute::provideResultColumns(SqlResultsPtr results)
 bool QueryExecutorExecute::executeQueries()
 {
     QHash<QString, QVariant> bindParamsForQuery;
-    SqlResultsPtr results;
+    SqlQueryPtr results;
 
     Db::Flags flags;
     if (context->preloadResults)
         flags |= Db::Flag::PRELOAD;
 
-    foreach (const SqliteQueryPtr& query, context->parsedQueries)
+    int queryCount = context->parsedQueries.size();
+    for (const SqliteQueryPtr& query : context->parsedQueries)
     {
         bindParamsForQuery = getBindParamsForQuery(query);
-        results = db->exec(query->detokenize(), bindParamsForQuery, flags);
+        results = db->prepare(query->detokenize());
+        results->setArgs(bindParamsForQuery);
+        results->setFlags(flags);
+
+        queryCount--;
+        if (queryCount == 0) // last query?
+            setupSqlite2ColumnDataTypes(results);
+
+        results->execute();
 
         if (results->isError())
         {
@@ -48,7 +60,7 @@ bool QueryExecutorExecute::executeQueries()
     return true;
 }
 
-void QueryExecutorExecute::handleSuccessfulResult(SqlResultsPtr results)
+void QueryExecutorExecute::handleSuccessfulResult(SqlQueryPtr results)
 {
     SqliteSelectPtr select = getSelect();
     if (!select || select->coreSelects.size() > 1 || select->explain)
@@ -75,7 +87,7 @@ void QueryExecutorExecute::handleSuccessfulResult(SqlResultsPtr results)
     context->executionResults = results;
 }
 
-void QueryExecutorExecute::handleFailResult(SqlResultsPtr results)
+void QueryExecutorExecute::handleFailResult(SqlQueryPtr results)
 {
     if (!results->isInterrupted())
     {
@@ -95,4 +107,42 @@ QHash<QString, QVariant> QueryExecutorExecute::getBindParamsForQuery(SqliteQuery
             queryParams.insert(bindParam, context->queryParameters[bindParam]);
     }
     return queryParams;
+}
+
+void QueryExecutorExecute::setupSqlite2ColumnDataTypes(SqlQueryPtr results)
+{
+    Sqlite2ColumnDataTypeHelper* sqlite2Helper = dynamic_cast<Sqlite2ColumnDataTypeHelper*>(results.data());
+    if (!sqlite2Helper)
+        return;
+
+    QPair<QString,QString> key;
+    SqliteCreateTablePtr createTable;
+
+    SchemaResolver resolver(db);
+    QHash<QPair<QString,QString>,SqliteCreateTablePtr> tables;
+    for (QueryExecutor::SourceTablePtr tab : context->sourceTables)
+    {
+        if (tab->table.isNull())
+            continue;
+
+        key = QPair<QString,QString>(tab->database, tab->table);
+        createTable = resolver.getParsedObject(tab->database, tab->table).dynamicCast<SqliteCreateTable>();
+        tables[key] = createTable;
+    }
+
+    sqlite2Helper->clearBinaryTypes();
+
+    SqliteCreateTable::Column* column;
+    int idx = -1;
+    for (QueryExecutor::ResultColumnPtr resCol : context->resultColumns)
+    {
+        idx++;
+        key = QPair<QString,QString>(resCol->database, resCol->table);
+        if (!tables.contains(key))
+            continue;
+
+        column = tables[key]->getColumn(resCol->column);
+        if (column->type && DataType::isBinary(column->type->name))
+            sqlite2Helper->setBinaryType(idx);
+    }
 }

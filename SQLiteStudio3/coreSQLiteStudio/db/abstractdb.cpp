@@ -139,7 +139,7 @@ QString AbstractDb::generateUniqueDbName(bool lock)
 
 QString AbstractDb::generateUniqueDbNameNoLock()
 {
-    SqlResultsPtr results = exec("PRAGMA database_list;", Db::Flag::NO_LOCK);
+    SqlQueryPtr results = exec("PRAGMA database_list;", Db::Flag::NO_LOCK);
     if (results->isError())
     {
         qWarning() << "Could not get PRAGMA database_list. Falling back to internal db list. Error was:" << results->getErrorText();
@@ -155,18 +155,7 @@ QString AbstractDb::generateUniqueDbNameNoLock()
 
 ReadWriteLocker::Mode AbstractDb::getLockingMode(const QString &query, Flags flags)
 {
-    static QStringList readOnlyCommands = {"SELECT", "ANALYZE", "EXPLAIN", "PRAGMA"};
-
-    if (flags.testFlag(Flag::NO_LOCK))
-        return ReadWriteLocker::NONE;
-
-    TokenList tokens = Lexer::tokenize(query, getDialect());
-    int keywordIdx = tokens.indexOf(Token::KEYWORD);
-
-    if (keywordIdx > -1 && readOnlyCommands.contains(tokens[keywordIdx]->value.toUpper()))
-        return ReadWriteLocker::READ;
-
-    return ReadWriteLocker::WRITE;
+    return ReadWriteLocker::getMode(query, getDialect(), flags.testFlag(Flag::NO_LOCK));
 }
 
 QString AbstractDb::getName()
@@ -244,22 +233,22 @@ void AbstractDb::setConnectionOptions(const QHash<QString, QVariant>& value)
     connOptions = value;
 }
 
-SqlResultsPtr AbstractDb::exec(const QString& query, AbstractDb::Flags flags)
+SqlQueryPtr AbstractDb::exec(const QString& query, AbstractDb::Flags flags)
 {
     return exec(query, QList<QVariant>(), flags);
 }
 
-SqlResultsPtr AbstractDb::exec(const QString& query, const QVariant& arg)
+SqlQueryPtr AbstractDb::exec(const QString& query, const QVariant& arg)
 {
     return exec(query, {arg});
 }
 
-SqlResultsPtr AbstractDb::exec(const QString& query, std::initializer_list<QVariant> argList)
+SqlQueryPtr AbstractDb::exec(const QString& query, std::initializer_list<QVariant> argList)
 {
     return exec(query, QList<QVariant>(argList));
 }
 
-SqlResultsPtr AbstractDb::exec(const QString &query, std::initializer_list<std::pair<QString, QVariant> > argMap)
+SqlQueryPtr AbstractDb::exec(const QString &query, std::initializer_list<std::pair<QString, QVariant> > argMap)
 {
     return exec(query, QHash<QString,QVariant>(argMap));
 }
@@ -282,46 +271,52 @@ void AbstractDb::asyncExec(const QString &query, AbstractDb::QueryResultsHandler
     resultHandlers[asyncId] = resultsHandler;
 }
 
-SqlResultsPtr AbstractDb::exec(const QString &query, const QList<QVariant>& args, Flags flags)
+SqlQueryPtr AbstractDb::exec(const QString &query, const QList<QVariant>& args, Flags flags)
 {
-    ReadWriteLocker locker(&dbOperLock, getLockingMode(query, flags));
+//    ReadWriteLocker locker(&dbOperLock, getLockingMode(query, flags));
     return execListArg(query, args, flags);
 }
 
-SqlResultsPtr AbstractDb::exec(const QString& query, const QHash<QString, QVariant>& args, AbstractDb::Flags flags)
+SqlQueryPtr AbstractDb::exec(const QString& query, const QHash<QString, QVariant>& args, AbstractDb::Flags flags)
 {
-    ReadWriteLocker locker(&dbOperLock, getLockingMode(query, flags));
+//    ReadWriteLocker locker(&dbOperLock, getLockingMode(query, flags));
     return execHashArg(query, args, flags);
 }
 
-SqlResultsPtr AbstractDb::execHashArg(const QString& query, const QHash<QString,QVariant>& args, Flags flags)
+SqlQueryPtr AbstractDb::execHashArg(const QString& query, const QHash<QString,QVariant>& args, Flags flags)
 {
     if (!isOpenInternal())
-        return SqlResultsPtr(new SqlErrorResults(SqlErrorCode::DB_NOT_OPEN, tr("Cannot execute query on closed database.")));
+        return SqlQueryPtr(new SqlErrorResults(SqlErrorCode::DB_NOT_OPEN, tr("Cannot execute query on closed database.")));
 
     logSql(this, query, args, flags);
     QString newQuery = query;
-    SqlResultsPtr results = execInternal(newQuery, args);
+    SqlQueryPtr queryStmt = prepare(newQuery);
+    queryStmt->setArgs(args);
+    queryStmt->setFlags(flags);
+    queryStmt->execute();
 
     if (flags.testFlag(Flag::PRELOAD))
-        results->preload();
+        queryStmt->preload();
 
-    return results;
+    return queryStmt;
 }
 
-SqlResultsPtr AbstractDb::execListArg(const QString& query, const QList<QVariant>& args, Flags flags)
+SqlQueryPtr AbstractDb::execListArg(const QString& query, const QList<QVariant>& args, Flags flags)
 {
     if (!isOpenInternal())
-        return SqlResultsPtr(new SqlErrorResults(SqlErrorCode::DB_NOT_OPEN, tr("Cannot execute query on closed database.")));
+        return SqlQueryPtr(new SqlErrorResults(SqlErrorCode::DB_NOT_OPEN, tr("Cannot execute query on closed database.")));
 
     logSql(this, query, args, flags);
     QString newQuery = query;
-    SqlResultsPtr results = execInternal(newQuery, args);
+    SqlQueryPtr queryStmt = prepare(newQuery);
+    queryStmt->setArgs(args);
+    queryStmt->setFlags(flags);
+    queryStmt->execute();
 
     if (flags.testFlag(Flag::PRELOAD))
-        results->preload();
+        queryStmt->preload();
 
-    return results;
+    return queryStmt;
 }
 
 bool AbstractDb::openAndSetup()
@@ -505,7 +500,7 @@ quint32 AbstractDb::asyncExec(AsyncQueryRunner *runner)
 void AbstractDb::asyncQueryFinished(AsyncQueryRunner *runner)
 {
     // Extract everything from the runner
-    SqlResultsPtr results = runner->getResults();
+    SqlQueryPtr results = runner->getResults();
     quint32 asyncId = runner->getAsyncId();
     delete runner;
 
@@ -531,7 +526,7 @@ QString AbstractDb::attach(Db* otherDb, bool silent)
     }
 
     QString attName = generateUniqueDbName(false);
-    SqlResultsPtr results = exec(QString("ATTACH '%1' AS %2;").arg(otherDb->getPath(), attName), Flag::NO_LOCK);
+    SqlQueryPtr results = exec(QString("ATTACH '%1' AS %2;").arg(otherDb->getPath(), attName), Flag::NO_LOCK);
     if (results->isError())
     {
         if (!silent)
@@ -613,7 +608,7 @@ QString AbstractDb::getUniqueNewObjectName(const QString &attachedDbName)
     QString dbName = getPrefixDb(attachedDbName, getDialect());
 
     QSet<QString> existingNames;
-    SqlResultsPtr results = exec(QString("SELECT name FROM %1.sqlite_master").arg(dbName));
+    SqlQueryPtr results = exec(QString("SELECT name FROM %1.sqlite_master").arg(dbName));
 
     foreach (SqlResultsRowPtr row, results->getAll())
         existingNames << row->value(0).toString();
@@ -685,7 +680,7 @@ bool AbstractDb::begin()
     if (!isOpenInternal())
         return false;
 
-    SqlResultsPtr results = exec("BEGIN;", Flag::NO_LOCK);
+    SqlQueryPtr results = exec("BEGIN;", Flag::NO_LOCK);
     if (results->isError())
     {
         qCritical() << "Error while starting a transaction: " << results->getErrorCode() << results->getErrorText();
@@ -702,7 +697,7 @@ bool AbstractDb::commit()
     if (!isOpenInternal())
         return false;
 
-    SqlResultsPtr results = exec("COMMIT;", Flag::NO_LOCK);
+    SqlQueryPtr results = exec("COMMIT;", Flag::NO_LOCK);
     if (results->isError())
     {
         qCritical() << "Error while commiting a transaction: " << results->getErrorCode() << results->getErrorText();
@@ -719,7 +714,7 @@ bool AbstractDb::rollback()
     if (!isOpenInternal())
         return false;
 
-    SqlResultsPtr results = exec("ROLLBACK;", Flag::NO_LOCK);
+    SqlQueryPtr results = exec("ROLLBACK;", Flag::NO_LOCK);
     if (results->isError())
     {
         qCritical() << "Error while rolling back a transaction: " << results->getErrorCode() << results->getErrorText();
@@ -766,7 +761,7 @@ AttachGuard AbstractDb::guardedAttach(Db* otherDb, bool silent)
     return AttachGuard::create(this, otherDb, attachName);
 }
 
-bool AbstractDb::handleResultInternally(quint32 asyncId, SqlResultsPtr results)
+bool AbstractDb::handleResultInternally(quint32 asyncId, SqlQueryPtr results)
 {
     if (!resultHandlers.contains(asyncId))
         return false;

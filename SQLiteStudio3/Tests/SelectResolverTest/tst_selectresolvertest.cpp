@@ -219,7 +219,7 @@ void SelectResolverTest::initTestCase()
     db->open();
     db->exec("CREATE TABLE test (col1, col2, col3);");
     db->exec("CREATE TABLE org (name TEXT PRIMARY KEY, boss TEXT REFERENCES org, height INT)");
-    SqlResultsPtr results = db->exec("SELECT name FROM sqlite_master");
+    SqlQueryPtr results = db->exec("SELECT name FROM sqlite_master");
 }
 
 void SelectResolverTest::cleanupTestCase()

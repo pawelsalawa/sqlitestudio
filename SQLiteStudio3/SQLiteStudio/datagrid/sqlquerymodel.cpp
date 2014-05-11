@@ -451,7 +451,7 @@ bool SqlQueryModel::commitEditedRow(const QList<SqlQueryItem*>& itemsInRow)
         queryArgs[":value"] = item->getValue();
 
         // Get the data
-        SqlResultsPtr results = db->exec(query, queryArgs);
+        SqlQueryPtr results = db->exec(query, queryArgs);
         if (results->isError())
         {
             item->setCommitingError(true);
@@ -534,7 +534,7 @@ QList<SqlQueryModelColumnPtr> SqlQueryModel::getTableColumnModels(const QString&
     return getTableColumnModels("main", table);
 }
 
-void SqlQueryModel::loadData(SqlResultsPtr results)
+void SqlQueryModel::loadData(SqlQueryPtr results)
 {
     if (rowCount() > 0)
         clear();
@@ -823,7 +823,7 @@ void SqlQueryModel::updateColumnHeaderLabels()
     setColumnCount(headerColumns.size());
 }
 
-void SqlQueryModel::handleExecFinished(SqlResultsPtr results)
+void SqlQueryModel::handleExecFinished(SqlQueryPtr results)
 {
     if (results->isError())
     {

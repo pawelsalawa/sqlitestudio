@@ -9,6 +9,7 @@
 #include "mdiwindow.h"
 #include "windows/tablewindow.h"
 #include "windows/viewwindow.h"
+#include "db/sqlquery.h"
 #include <QMessageBox>
 #include <QDebug>
 
@@ -201,7 +202,7 @@ bool DbObjectDialogs::dropObject(const QString& database, const QString& name)
             return false;
     }
 
-    SqlResultsPtr results;
+    SqlQueryPtr results;
 
     if (dialect == Dialect::Sqlite3)
         results = db->exec(dropSql3.arg(typeForSql, dbName, wrapObjIfNeeded(name, dialect)));
@@ -226,7 +227,7 @@ DbObjectDialogs::Type DbObjectDialogs::getObjectType(const QString& database, co
 
     Dialect dialect = db->getDialect();
     QString dbName = wrapObjIfNeeded(database, dialect);
-    SqlResultsPtr results = db->exec(typeSql.arg(dbName), {name});
+    SqlQueryPtr results = db->exec(typeSql.arg(dbName), {name});
     if (results->isError())
     {
         qCritical() << "Could not get object type. Object name:" << database << "." << name << ", error:"

@@ -1,5 +1,5 @@
-* COLLATE jest dozwolone w constraintach Sqlite2 - trzeba go pokazac w ColumnDialogu i table constraints
-* FK tez jest dozwolony w skladni Sqlite2
+* BLOBs in SQLite 2
+* uruchomic, otworzyc tabele z sqlite2, przejsc do form view, zamknac aplikacje - blad znowu z Results - gdzies jest trzymana referencja do SqlResults
 * interfejs do Db do wielu wywolan tego samego sql - zastosowac w DbObjectOrganizer::copyDataAsMiddleware()
 
 * check performance for millions of rows

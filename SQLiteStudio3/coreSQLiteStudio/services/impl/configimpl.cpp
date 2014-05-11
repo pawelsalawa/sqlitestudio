@@ -68,13 +68,13 @@ void ConfigImpl::set(const QString &group, const QString &key, const QVariant &v
 
 QVariant ConfigImpl::get(const QString &group, const QString &key)
 {
-    SqlResultsPtr results = db->exec("SELECT value FROM settings WHERE [group] = ? AND [key] = ?", {group, key});
+    SqlQueryPtr results = db->exec("SELECT value FROM settings WHERE [group] = ? AND [key] = ?", {group, key});
     return deserializeValue(results->getSingleCell());
 }
 
 QHash<QString,QVariant> ConfigImpl::getAll()
 {
-    SqlResultsPtr results = db->exec("SELECT [group], [key], value FROM settings");
+    SqlQueryPtr results = db->exec("SELECT [group], [key], value FROM settings");
 
     QHash<QString,QVariant> cfg;
     QString key;
@@ -88,7 +88,7 @@ QHash<QString,QVariant> ConfigImpl::getAll()
     return cfg;
 }
 
-bool ConfigImpl::storeErrorAndReturn(SqlResultsPtr results)
+bool ConfigImpl::storeErrorAndReturn(SqlQueryPtr results)
 {
     if (results->isError())
     {
@@ -99,7 +99,7 @@ bool ConfigImpl::storeErrorAndReturn(SqlResultsPtr results)
         return false;
 }
 
-void ConfigImpl::printErrorIfSet(SqlResultsPtr results)
+void ConfigImpl::printErrorIfSet(SqlQueryPtr results)
 {
     if (results && results->isError())
     {
@@ -110,13 +110,13 @@ void ConfigImpl::printErrorIfSet(SqlResultsPtr results)
 
 bool ConfigImpl::addDb(const QString& name, const QString& path, const QHash<QString,QVariant>& options)
 {
-    SqlResultsPtr results = db->exec("INSERT INTO dblist VALUES (?, ?, ?)", {name, path, options});
+    SqlQueryPtr results = db->exec("INSERT INTO dblist VALUES (?, ?, ?)", {name, path, options});
     return !storeErrorAndReturn(results);
 }
 
 bool ConfigImpl::updateDb(const QString &name, const QString &newName, const QString &path, const QHash<QString,QVariant> &options)
 {
-    SqlResultsPtr results = db->exec("UPDATE dblist SET name = ?, path = ?, options = ? WHERE name = ?",
+    SqlQueryPtr results = db->exec("UPDATE dblist SET name = ?, path = ?, options = ? WHERE name = ?",
                                      {name, newName, path, options});
 
     return (!storeErrorAndReturn(results)  && results->rowsAffected() > 0);
@@ -124,13 +124,13 @@ bool ConfigImpl::updateDb(const QString &name, const QString &newName, const QSt
 
 bool ConfigImpl::removeDb(const QString &name)
 {
-    SqlResultsPtr results = db->exec("DELETE FROM dblist WHERE name = ?", {name});
+    SqlQueryPtr results = db->exec("DELETE FROM dblist WHERE name = ?", {name});
     return (!storeErrorAndReturn(results) && results->rowsAffected() > 0);
 }
 
 bool ConfigImpl::isDbInConfig(const QString &name)
 {
-    SqlResultsPtr results = db->exec("SELECT * FROM dblist WHERE name = ?", {name});
+    SqlQueryPtr results = db->exec("SELECT * FROM dblist WHERE name = ?", {name});
     return (!storeErrorAndReturn(results) && results->hasNext());
 }
 
@@ -146,7 +146,7 @@ QString ConfigImpl::getLastErrorString() const
 QList<ConfigImpl::CfgDbPtr> ConfigImpl::dbList()
 {
     QList<CfgDbPtr> entries;
-    SqlResultsPtr results = db->exec("SELECT name, path, options FROM dblist");
+    SqlQueryPtr results = db->exec("SELECT name, path, options FROM dblist");
     CfgDbPtr cfgDb;
     SqlResultsRowPtr row;
     while (results->hasNext())
@@ -164,7 +164,7 @@ QList<ConfigImpl::CfgDbPtr> ConfigImpl::dbList()
 
 ConfigImpl::CfgDbPtr ConfigImpl::getDb(const QString& dbName)
 {
-    SqlResultsPtr results = db->exec("SELECT path, options FROM dblist WHERE name = ?", {dbName});
+    SqlQueryPtr results = db->exec("SELECT path, options FROM dblist WHERE name = ?", {dbName});
 
     if (!results->hasNext())
         return CfgDbPtr();
@@ -192,7 +192,7 @@ void ConfigImpl::storeGroup(const ConfigImpl::DbGroupPtr &group, qint64 parentId
     if (parentId > -1)
         parent = parentId;
 
-    SqlResultsPtr results = db->exec("INSERT INTO groups (name, [order], parent, open, dbname) VALUES (?, ?, ?, ?, ?)",
+    SqlQueryPtr results = db->exec("INSERT INTO groups (name, [order], parent, open, dbname) VALUES (?, ?, ?, ?, ?)",
                                     {group->name, group->order, parent, group->open, group->referencedDbName});
 
     qint64 newParentId = results->getRegularInsertRowId();
@@ -210,7 +210,7 @@ QList<ConfigImpl::DbGroupPtr> ConfigImpl::getGroups()
 
 ConfigImpl::DbGroupPtr ConfigImpl::getDbGroup(const QString& dbName)
 {
-    SqlResultsPtr results = db->exec("SELECT id, name, [order], open, dbname FROM groups WHERE dbname = ? LIMIT 1", {dbName});
+    SqlQueryPtr results = db->exec("SELECT id, name, [order], open, dbname FROM groups WHERE dbname = ? LIMIT 1", {dbName});
 
     DbGroupPtr group = DbGroupPtr::create();
     group->referencedDbName = dbName;
@@ -230,7 +230,7 @@ qint64 ConfigImpl::addSqlHistory(const QString& sql, const QString& dbName, int 
 {
     // TODO move this to separate thread, because counting 10000 rows might be too expensive
     // just for the sake of adding new history entry.
-    SqlResultsPtr results = db->exec("INSERT INTO sqleditor_history (dbname, date, time_spent, rows, sql) VALUES (?, ?, ?, ?, ?)",
+    SqlQueryPtr results = db->exec("INSERT INTO sqleditor_history (dbname, date, time_spent, rows, sql) VALUES (?, ?, ?, ?, ?)",
                                     {dbName, (QDateTime::currentMSecsSinceEpoch() / 1000), timeSpentMillis, rowsAffected, sql});
 
     qint64 rowId = results->getRegularInsertRowId();
@@ -283,7 +283,7 @@ void ConfigImpl::addCliHistory(const QString& text)
 {
     static_qstring(insertQuery, "INSERT INTO cli_history (text) VALUES (?)");
 
-    SqlResultsPtr results = db->exec(insertQuery, {text});
+    SqlQueryPtr results = db->exec(insertQuery, {text});
     if (results->isError())
         qWarning() << "Error while adding CLI history:" << results->getErrorText();
 
@@ -294,7 +294,7 @@ void ConfigImpl::applyCliHistoryLimit()
 {
     static_qstring(limitQuery, "DELETE FROM cli_history WHERE id >= (SELECT id FROM cli_history ORDER BY id LIMIT 1 OFFSET %1)");
 
-    SqlResultsPtr results = db->exec(limitQuery.arg(CFG_CORE.Console.HistorySize.get()));
+    SqlQueryPtr results = db->exec(limitQuery.arg(CFG_CORE.Console.HistorySize.get()));
     if (results->isError())
         qWarning() << "Error while limiting CLI history:" << db->getErrorText();
 
@@ -304,7 +304,7 @@ void ConfigImpl::clearCliHistory()
 {
     static_qstring(clearQuery, "DELETE FROM cli_history");
 
-    SqlResultsPtr results = db->exec(clearQuery);
+    SqlQueryPtr results = db->exec(clearQuery);
     if (results->isError())
         qWarning() << "Error while clearing CLI history:" << db->getErrorText();
 }
@@ -313,7 +313,7 @@ QStringList ConfigImpl::getCliHistory() const
 {
     static_qstring(selectQuery, "SELECT text FROM cli_history ORDER BY id");
 
-    SqlResultsPtr results = db->exec(selectQuery);
+    SqlQueryPtr results = db->exec(selectQuery);
     if (results->isError())
         qWarning() << "Error while getting CLI history:" << db->getErrorText();
 
@@ -327,7 +327,7 @@ void ConfigImpl::addDdlHistory(const QString& queries, const QString& dbName, co
 
     int maxHistorySize = CFG_CORE.General.DdlHistorySize.get();
 
-    SqlResultsPtr results = db->exec("SELECT count(*) FROM ddl_history");
+    SqlQueryPtr results = db->exec("SELECT count(*) FROM ddl_history");
     if (results->hasNext() && results->getSingleCell().toInt() > maxHistorySize)
     {
         results = db->exec(QString("SELECT id FROM ddl_history ORDER BY id DESC LIMIT 1 OFFSET %1").arg(maxHistorySize), Db::Flag::NO_LOCK);
@@ -353,7 +353,7 @@ QList<ConfigImpl::DdlHistoryEntryPtr> ConfigImpl::getDdlHistoryFor(const QString
             "   AND file = ?"
             "   AND date(timestamp, 'unixepoch') = ?");
 
-    SqlResultsPtr results = db->exec(sql, {dbName, dbFile, date.toString("yyyy-MM-dd")});
+    SqlQueryPtr results = db->exec(sql, {dbName, dbFile, date.toString("yyyy-MM-dd")});
 
     QList<DdlHistoryEntryPtr> etnries;
     DdlHistoryEntryPtr entry;
@@ -388,7 +388,7 @@ void ConfigImpl::clearDdlHistory()
 
 void ConfigImpl::readGroupRecursively(ConfigImpl::DbGroupPtr group)
 {
-    SqlResultsPtr results;
+    SqlQueryPtr results;
     if (group->id < 0)
         results = db->exec("SELECT id, name, [order], open, dbname FROM groups WHERE parent IS NULL ORDER BY [order]");
     else
@@ -462,7 +462,7 @@ QString ConfigImpl::getPortableConfigPath()
 
 void ConfigImpl::initTables()
 {
-    SqlResultsPtr results = db->exec("SELECT lower(name) AS name FROM sqlite_master WHERE type = 'table'");
+    SqlQueryPtr results = db->exec("SELECT lower(name) AS name FROM sqlite_master WHERE type = 'table'");
     QList<QString> tables = results->columnAsList<QString>(0);
 
     if (!tables.contains("version"))
@@ -574,7 +574,7 @@ bool ConfigImpl::tryInitDbFile(const QString &dbPath)
         return false;
     }
 
-    SqlResultsPtr results = db->exec("SELECT * FROM sqlite_master");
+    SqlQueryPtr results = db->exec("SELECT * FROM sqlite_master");
     if (results->isError())
     {
         safe_delete(db);

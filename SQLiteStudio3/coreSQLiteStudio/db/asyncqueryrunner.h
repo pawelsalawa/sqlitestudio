@@ -53,7 +53,7 @@ class AsyncQueryRunner : public QObject, public QRunnable
          * @brief Provides result from execution.
          * @return Execution results.
          */
-        SqlResultsPtr getResults();
+        SqlQueryPtr getResults();
 
         /**
          * @brief Defines database for execution.
@@ -92,7 +92,7 @@ class AsyncQueryRunner : public QObject, public QRunnable
         /**
          * @brief Results from execution.
          */
-        SqlResultsPtr results;
+        SqlQueryPtr results;
 
         /**
          * @brief Parameters for execution.

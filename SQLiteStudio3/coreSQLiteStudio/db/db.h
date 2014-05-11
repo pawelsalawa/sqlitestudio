@@ -2,7 +2,6 @@
 #define DB_H
 
 #include "returncode.h"
-#include "sqlresults.h"
 #include "dialect.h"
 #include "services/functionmanager.h"
 #include "common/readwritelocker.h"
@@ -16,12 +15,16 @@
 #include <QReadWriteLock>
 #include <QRunnable>
 #include <QStringList>
+#include <QSet>
 
 /** @file */
 
 class AsyncQueryRunner;
 class Db;
 class DbManager;
+class SqlQuery;
+
+typedef QSharedPointer<SqlQuery> SqlQueryPtr;
 
 /**
  * @brief Option to make new Db instance not install any functions or collations in the database.
@@ -55,7 +58,7 @@ static_char* DB_PURE_INIT = "sqlitestudio_pure_db_initalization";
  *         db->open();
  *
  *     // Executing query and getting results
- *     SqlResultsPtr results = db->exec("SELECT intCol FROM table WHERE col1 = ?, col2 = ?", colValue1, colValue2)
+ *     SqlQueryPtr results = db->exec("SELECT intCol FROM table WHERE col1 = ?, col2 = ?", colValue1, colValue2)
  *
  *     QList<int> resultList;
  *     SqlResultsRowPtr row;
@@ -101,7 +104,7 @@ static_char* DB_PURE_INIT = "sqlitestudio_pure_db_initalization";
  * @code
  * void insert(Db* db, const QString& val1, int val2)
  * {
- *     SqlResultsPtr results = db->exec("INSERT INTO table (col1, col2) VALUES (?, ?)", val1, val2);
+ *     SqlQueryPtr results = db->exec("INSERT INTO table (col1, col2) VALUES (?, ?)", val1, val2);
  *     if (results->isError())
  *     {
  *         qWarning() << "Error while inserting:" << results->getErrorCode() << results->getErrorText();
@@ -145,7 +148,7 @@ class API_EXPORT Db : public QObject, public Interruptable
          * The function has to accept single results object and return nothing.
          * After results are processed, they will be deleted automatically, no need to handle that.
          */
-        typedef std::function<void(SqlResultsPtr)> QueryResultsHandler;
+        typedef std::function<void(SqlQueryPtr)> QueryResultsHandler;
 
         /**
          * @brief Default, empty constructor.
@@ -289,11 +292,11 @@ class API_EXPORT Db : public QObject, public Interruptable
          *
          * Given C++11 you can initialize list with braces, like this:
          * @code
-         * SqlResultsPtr results = db->exec("SELECT * FROM table WHERE c1 = ? AND c2 = ? AND c3 = ? AND c4 = ?",
+         * SqlQueryPtr results = db->exec("SELECT * FROM table WHERE c1 = ? AND c2 = ? AND c3 = ? AND c4 = ?",
          *                                      {45, 76, "test", 3.56});
          * @endcode
          */
-        virtual SqlResultsPtr exec(const QString& query, const QList<QVariant> &args, Flags flags = Flag::NONE) = 0;
+        virtual SqlQueryPtr exec(const QString& query, const QList<QVariant> &args, Flags flags = Flag::NONE) = 0;
 
         /**
          * @brief Executes SQL query using named parameters.
@@ -304,7 +307,7 @@ class API_EXPORT Db : public QObject, public Interruptable
          *
          * Given C++11 you can initialize hash map with braces, like this:
          * @code
-         * SqlResultsPtr results = db->exec("SELECT * FROM table WHERE id = :userId AND name = :firstName",
+         * SqlQueryPtr results = db->exec("SELECT * FROM table WHERE id = :userId AND name = :firstName",
          *                                      {
          *                                          {":userId", 45},
          *                                          {":firstName", "John"}
@@ -313,44 +316,44 @@ class API_EXPORT Db : public QObject, public Interruptable
          *
          * @overload
          */
-        virtual SqlResultsPtr exec(const QString& query, const QHash<QString, QVariant>& args, Flags flags = Flag::NONE) = 0;
+        virtual SqlQueryPtr exec(const QString& query, const QHash<QString, QVariant>& args, Flags flags = Flag::NONE) = 0;
 
         /**
          * @brief Executes SQL query.
          * @overload
          */
-        virtual SqlResultsPtr exec(const QString &query, Db::Flags flags = Flag::NONE) = 0;
+        virtual SqlQueryPtr exec(const QString &query, Db::Flags flags = Flag::NONE) = 0;
 
         /**
          * @brief Executes SQL query.
          * @overload
          */
-        virtual SqlResultsPtr exec(const QString &query, const QVariant &arg) = 0;
+        virtual SqlQueryPtr exec(const QString &query, const QVariant &arg) = 0;
 
         /**
          * @brief Executes SQL query.
          * @overload
          */
-        virtual SqlResultsPtr exec(const QString &query, std::initializer_list<QVariant> argList) = 0;
+        virtual SqlQueryPtr exec(const QString &query, std::initializer_list<QVariant> argList) = 0;
 
         /**
          * @brief Executes SQL query.
          * @overload
          */
-        virtual SqlResultsPtr exec(const QString &query, std::initializer_list<std::pair<QString,QVariant>> argMap) = 0;
+        virtual SqlQueryPtr exec(const QString &query, std::initializer_list<std::pair<QString,QVariant>> argMap) = 0;
 
         /**
          * @brief Executes SQL query asynchronously using list of parameters.
          * @param query Query to be executed. Parameter placeholders can be either of: ?, :param, \@param, just don't mix different types in single query.
          * @param args List of parameter values to bind.
-         * @param resultsHandler Function (can be lambda) to handle results. The function has to accept single SqlResultsPtr object and return nothing.
+         * @param resultsHandler Function (can be lambda) to handle results. The function has to accept single SqlQueryPtr object and return nothing.
          * @param flags Execution flags. See exec() for setails.
          *
          * Asynchronous execution takes place in another thread. Once the execution is finished, the results handler function is called.
          *
          * Example:
          * @code
-         * db->asyncExec("SELECT * FROM table WHERE col = ?", {5}, [=](SqlResultsPtr results)
+         * db->asyncExec("SELECT * FROM table WHERE col = ?", {5}, [=](SqlQueryPtr results)
          * {
          *     qDebug() << "Received" << results->rowCount() << "rows in results.";
          * });
@@ -362,7 +365,7 @@ class API_EXPORT Db : public QObject, public Interruptable
          * @brief Executes SQL query asynchronously using named parameters.
          * @param query Query to be executed. Parameter placeholders can be either of: :param, \@param, just don't mix different types in single query.
          * @param args Map of parameter name and the value assigned to it.
-         * @param resultsHandler Function (can be lambda) to handle results. The function has to accept single SqlResultsPtr object and return nothing.
+         * @param resultsHandler Function (can be lambda) to handle results. The function has to accept single SqlQueryPtr object and return nothing.
          * @param flags Execution flags. See exec() for details.
          * @return Asynchronous execution ID.
          * @overload
@@ -372,7 +375,7 @@ class API_EXPORT Db : public QObject, public Interruptable
         /**
          * @brief Executes SQL query asynchronously.
          * @param query Query to be executed. See exec() for details.
-         * @param resultsHandler Function (can be lambda) to handle results. The function has to accept single SqlResultsPtr object and return nothing.
+         * @param resultsHandler Function (can be lambda) to handle results. The function has to accept single SqlQueryPtr object and return nothing.
          * @param flags Execution flags. See exec() for details.
          * @return Asynchronous execution ID.
          * @overload
@@ -422,6 +425,8 @@ class API_EXPORT Db : public QObject, public Interruptable
          * It's recommended to use method version which takes function pointer for results handing, as it's more resiliant to errors in the code.
          */
         virtual quint32 asyncExec(const QString& query, Flags flags = Flag::NONE) = 0;
+
+        virtual SqlQueryPtr prepare(const QString& query) = 0;
 
         /**
          * @brief Begins SQL transaction.
@@ -702,7 +707,7 @@ class API_EXPORT Db : public QObject, public Interruptable
          * It's emitted, so the results can be handled.
          * Always test \p asyncId if it's equal to ID returned from asyncExec().
          */
-        void asyncExecFinished(quint32 asyncId, SqlResultsPtr results);
+        void asyncExecFinished(quint32 asyncId, SqlQueryPtr results);
 
         /**
          * @brief idle Database became idle and awaits for instructions.
@@ -785,5 +790,16 @@ QDataStream &operator>>(QDataStream &in, Db*& myObj);
 
 Q_DECLARE_METATYPE(Db*)
 Q_DECLARE_OPERATORS_FOR_FLAGS(Db::Flags)
+
+class Sqlite2ColumnDataTypeHelper
+{
+    public:
+        void setBinaryType(int columnIndex);
+        bool isBinaryColumn(int columnIndex) const;
+        void clearBinaryTypes();
+
+    private:
+        QSet<int> binaryColumns;
+};
 
 #endif // DB_H

@@ -1,5 +1,6 @@
 #include "chainexecutor.h"
 #include "sqlerrorcodes.h"
+#include "db/sqlquery.h"
 #include <QDebug>
 
 ChainExecutor::ChainExecutor(QObject *parent) :
@@ -95,16 +96,16 @@ Db* ChainExecutor::getDb() const
 void ChainExecutor::setDb(Db* value)
 {
     if (db)
-        disconnect(db, SIGNAL(asyncExecFinished(quint32,SqlResultsPtr)), this, SLOT(handleAsyncResults(quint32,SqlResultsPtr)));
+        disconnect(db, SIGNAL(asyncExecFinished(quint32,SqlQueryPtr)), this, SLOT(handleAsyncResults(quint32,SqlQueryPtr)));
 
     db = value;
 
     if (db)
-        connect(db, SIGNAL(asyncExecFinished(quint32,SqlResultsPtr)), this, SLOT(handleAsyncResults(quint32,SqlResultsPtr)));
+        connect(db, SIGNAL(asyncExecFinished(quint32,SqlQueryPtr)), this, SLOT(handleAsyncResults(quint32,SqlQueryPtr)));
 }
 
 
-void ChainExecutor::handleAsyncResults(quint32 asyncId, SqlResultsPtr results)
+void ChainExecutor::handleAsyncResults(quint32 asyncId, SqlQueryPtr results)
 {
     if (asyncId != this->asyncId)
         return;
@@ -140,7 +141,7 @@ void ChainExecutor::executionSuccessful()
 
 void ChainExecutor::executeSync()
 {
-    SqlResultsPtr results;
+    SqlQueryPtr results;
     foreach (const QString& sql, sqls)
     {
         results = db->exec(sql, queryParams);
@@ -152,7 +153,7 @@ void ChainExecutor::executeSync()
     executionSuccessful();
 }
 
-bool ChainExecutor::handleResults(SqlResultsPtr results)
+bool ChainExecutor::handleResults(SqlQueryPtr results)
 {
     if (results->isError())
     {

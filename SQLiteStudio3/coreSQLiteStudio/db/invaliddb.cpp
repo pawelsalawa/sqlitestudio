@@ -67,48 +67,48 @@ int InvalidDb::getTimeout() const
     return timeout;
 }
 
-SqlResultsPtr InvalidDb::exec(const QString& query, const QList<QVariant>& args, Db::Flags flags)
+SqlQueryPtr InvalidDb::exec(const QString& query, const QList<QVariant>& args, Db::Flags flags)
 {
     UNUSED(query);
     UNUSED(args);
     UNUSED(flags);
-    return SqlResultsPtr();
+    return SqlQueryPtr();
 }
 
-SqlResultsPtr InvalidDb::exec(const QString& query, const QHash<QString, QVariant>& args, Db::Flags flags)
+SqlQueryPtr InvalidDb::exec(const QString& query, const QHash<QString, QVariant>& args, Db::Flags flags)
 {
     UNUSED(query);
     UNUSED(args);
     UNUSED(flags);
-    return SqlResultsPtr();
+    return SqlQueryPtr();
 }
 
-SqlResultsPtr InvalidDb::exec(const QString& query, Db::Flags flags)
+SqlQueryPtr InvalidDb::exec(const QString& query, Db::Flags flags)
 {
     UNUSED(query);
     UNUSED(flags);
-    return SqlResultsPtr();
+    return SqlQueryPtr();
 }
 
-SqlResultsPtr InvalidDb::exec(const QString& query, const QVariant& arg)
+SqlQueryPtr InvalidDb::exec(const QString& query, const QVariant& arg)
 {
     UNUSED(query);
     UNUSED(arg);
-    return SqlResultsPtr();
+    return SqlQueryPtr();
 }
 
-SqlResultsPtr InvalidDb::exec(const QString& query, std::initializer_list<QVariant> argList)
+SqlQueryPtr InvalidDb::exec(const QString& query, std::initializer_list<QVariant> argList)
 {
     UNUSED(query);
     UNUSED(argList);
-    return SqlResultsPtr();
+    return SqlQueryPtr();
 }
 
-SqlResultsPtr InvalidDb::exec(const QString& query, std::initializer_list<std::pair<QString, QVariant> > argMap)
+SqlQueryPtr InvalidDb::exec(const QString& query, std::initializer_list<std::pair<QString, QVariant> > argMap)
 {
     UNUSED(query);
     UNUSED(argMap);
-    return SqlResultsPtr();
+    return SqlQueryPtr();
 }
 
 void InvalidDb::asyncExec(const QString& query, const QList<QVariant>& args, Db::QueryResultsHandler resultsHandler, Db::Flags flags)
@@ -155,6 +155,12 @@ quint32 InvalidDb::asyncExec(const QString& query, Db::Flags flags)
     UNUSED(query);
     UNUSED(flags);
     return 0;
+}
+
+SqlQueryPtr InvalidDb::prepare(const QString& query)
+{
+    UNUSED(query);
+    return SqlQueryPtr();
 }
 
 bool InvalidDb::begin()

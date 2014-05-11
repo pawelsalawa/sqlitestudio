@@ -1,7 +1,7 @@
 #ifndef QUERYEXECUTORSTEP_H
 #define QUERYEXECUTORSTEP_H
 
-#include "db/sqlresults.h"
+#include "db/sqlquery.h"
 #include "parser/ast/sqliteselect.h"
 #include "db/queryexecutor.h"
 #include <QObject>

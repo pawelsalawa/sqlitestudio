@@ -1,5 +1,5 @@
 #include "db/asyncqueryrunner.h"
-#include "db/sqlresults.h"
+#include "db/sqlquery.h"
 #include "db/db.h"
 #include <QDebug>
 
@@ -22,7 +22,7 @@ void AsyncQueryRunner::run()
         emit finished(this);
     }
 
-    SqlResultsPtr res;
+    SqlQueryPtr res;
     if (args.userType() == QVariant::List)
     {
         res = db->exec(query, args.toList(), flags);
@@ -36,11 +36,11 @@ void AsyncQueryRunner::run()
         qCritical() << "Invalid argument type in AsyncQueryRunner::run():" << args.userType();
     }
 
-    results = SqlResultsPtr(res);
+    results = SqlQueryPtr(res);
     emit finished(this);
 }
 
-SqlResultsPtr AsyncQueryRunner::getResults()
+SqlQueryPtr AsyncQueryRunner::getResults()
 {
     return results;
 }

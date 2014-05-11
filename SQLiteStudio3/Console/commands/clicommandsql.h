@@ -2,7 +2,7 @@
 #define CLICOMMANDSQL_H
 
 #include "clicommand.h"
-#include "db/sqlresults.h"
+#include "db/sqlquery.h"
 
 class QueryExecutor;
 
@@ -49,10 +49,10 @@ class CliCommandSql : public CliCommand
                 int dataWidth;
         };
 
-        void printResultsClassic(QueryExecutor *executor, SqlResultsPtr results);
-        void printResultsFixed(QueryExecutor *executor, SqlResultsPtr results);
-        void printResultsColumns(QueryExecutor *executor, SqlResultsPtr results);
-        void printResultsRowByRow(QueryExecutor *executor, SqlResultsPtr results);
+        void printResultsClassic(QueryExecutor *executor, SqlQueryPtr results);
+        void printResultsFixed(QueryExecutor *executor, SqlQueryPtr results);
+        void printResultsColumns(QueryExecutor *executor, SqlQueryPtr results);
+        void printResultsRowByRow(QueryExecutor *executor, SqlQueryPtr results);
         void shrinkColumns(QList<SortedColumnWidth*>& columnWidths, int termCols, int resultColumnsCount, int totalWidth);
         void printColumnHeader(const QList<int>& widths, const QStringList& columns);
         void printColumnDataRow(const QList<int>& widths, const SqlResultsRowPtr& row, int rowIdOffset);

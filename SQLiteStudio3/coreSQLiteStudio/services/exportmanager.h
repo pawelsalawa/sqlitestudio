@@ -2,7 +2,7 @@
 #define EXPORTMANAGER_H
 
 #include "coreSQLiteStudio_global.h"
-#include "db/sqlresults.h"
+#include "db/sqlquery.h"
 #include "db/db.h"
 #include <QObject>
 
@@ -46,7 +46,7 @@ class API_EXPORT ExportManager : public QObject
             QString database; // TODO fill when dbnames are fully supported
             QString name;
             QString ddl;
-            SqlResultsPtr data;
+            SqlQueryPtr data;
         };
 
         typedef QSharedPointer<ExportObject> ExportObjectPtr;

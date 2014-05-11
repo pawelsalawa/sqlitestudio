@@ -722,7 +722,7 @@ QList<ExpectedTokenPtr> CompletionHelper::getPragmas(Dialect dialect)
 
 QList<ExpectedTokenPtr> CompletionHelper::getCollations()
 {
-    SqlResultsPtr results = db->exec("PRAGMA collation_list;");
+    SqlQueryPtr results = db->exec("PRAGMA collation_list;");
     if (results->isError())
     {
         qWarning() << "Got error when trying to get collation_list: "

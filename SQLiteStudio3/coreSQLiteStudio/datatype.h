@@ -35,6 +35,7 @@ class API_EXPORT DataType : public QObject
         static QString toString(Enum e);
         static Enum fromString(QString key, Qt::CaseSensitivity cs = Qt::CaseSensitive);
         static bool isNumeric(Enum e);
+        static bool isBinary(const QString& type);
 
         static QList<Enum> values;
         static const QStringList names;

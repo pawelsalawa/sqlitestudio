@@ -128,7 +128,7 @@ void QueryExecutor::stepFailed(QueryExecutorStep* currentStep)
     executeSimpleMethod();
 }
 
-void QueryExecutor::cleanupAfterExecFinished(SqlResultsPtr results)
+void QueryExecutor::cleanupAfterExecFinished(SqlQueryPtr results)
 {
     UNUSED(results);
     cleanup();
@@ -344,7 +344,7 @@ void QueryExecutor::exec(const QString& query)
     exec();
 }
 
-void QueryExecutor::dbAsyncExecFinished(quint32 asyncId, SqlResultsPtr results)
+void QueryExecutor::dbAsyncExecFinished(quint32 asyncId, SqlQueryPtr results)
 {
     if (handleRowCountingResults(asyncId, results))
         return;
@@ -371,7 +371,7 @@ void QueryExecutor::executeSimpleMethod()
     asyncId = db->asyncExec(originalQuery, context->queryParameters, Db::Flag::PRELOAD);
 }
 
-void QueryExecutor::simpleExecutionFinished(SqlResultsPtr results)
+void QueryExecutor::simpleExecutionFinished(SqlQueryPtr results)
 {
     if (results->isError())
     {
@@ -477,7 +477,7 @@ void QueryExecutor::cleanup()
     }
 }
 
-bool QueryExecutor::handleRowCountingResults(quint32 asyncId, SqlResultsPtr results)
+bool QueryExecutor::handleRowCountingResults(quint32 asyncId, SqlQueryPtr results)
 {
     if (resultsCountingAsyncId == 0)
         return false;
@@ -503,7 +503,7 @@ bool QueryExecutor::handleRowCountingResults(quint32 asyncId, SqlResultsPtr resu
 
     return true;
 }
-SqlResultsPtr QueryExecutor::getResults() const
+SqlQueryPtr QueryExecutor::getResults() const
 {
     return context->executionResults;
 }
@@ -553,7 +553,7 @@ void QueryExecutor::setDb(Db* value)
 {
     if (db)
     {
-        disconnect(db, SIGNAL(asyncExecFinished(quint32,SqlResultsPtr)), this, SLOT(dbAsyncExecFinished(quint32,SqlResultsPtr)));
+        disconnect(db, SIGNAL(asyncExecFinished(quint32,SqlQueryPtr)), this, SLOT(dbAsyncExecFinished(quint32,SqlQueryPtr)));
         disconnect(db, SIGNAL(destroyed()), this, SLOT(cleanupBeforeDbDestroy()));
     }
 
@@ -561,7 +561,7 @@ void QueryExecutor::setDb(Db* value)
 
     if (db)
     {
-        connect(db, SIGNAL(asyncExecFinished(quint32,SqlResultsPtr)), this, SLOT(dbAsyncExecFinished(quint32,SqlResultsPtr)));
+        connect(db, SIGNAL(asyncExecFinished(quint32,SqlQueryPtr)), this, SLOT(dbAsyncExecFinished(quint32,SqlQueryPtr)));
         connect(db, SIGNAL(destroyed()), this, SLOT(cleanupBeforeDbDestroy()));
     }
 }

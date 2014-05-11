@@ -1,11 +1,19 @@
-#include "sqlresults.h"
+#include "sqlquery.h"
 #include "db/sqlerrorcodes.h"
 
-SqlResults::~SqlResults()
+SqlQuery::~SqlQuery()
 {
 }
 
-SqlResultsRowPtr SqlResults::next()
+bool SqlQuery::execute()
+{
+    if (queryArgs.type() == QVariant::Hash)
+        return execInternal(queryArgs.toHash());
+    else
+        return execInternal(queryArgs.toList());
+}
+
+SqlResultsRowPtr SqlQuery::next()
 {
     if (preloaded)
     {
@@ -17,7 +25,7 @@ SqlResultsRowPtr SqlResults::next()
     return nextInternal();
 }
 
-bool SqlResults::hasNext()
+bool SqlQuery::hasNext()
 {
     if (preloaded)
         return (preloadedRowIdx < preloadedData.size());
@@ -25,7 +33,12 @@ bool SqlResults::hasNext()
     return hasNextInternal();
 }
 
-QList<SqlResultsRowPtr> SqlResults::getAll()
+qint64 SqlQuery::rowsAffected()
+{
+    return affected;
+}
+
+QList<SqlResultsRowPtr> SqlQuery::getAll()
 {
     if (!preloaded)
         preload();
@@ -33,7 +46,7 @@ QList<SqlResultsRowPtr> SqlResults::getAll()
     return preloadedData;
 }
 
-void SqlResults::preload()
+void SqlQuery::preload()
 {
     if (preloaded)
         return;
@@ -47,7 +60,7 @@ void SqlResults::preload()
     preloadedRowIdx = 0;
 }
 
-QVariant SqlResults::getSingleCell()
+QVariant SqlQuery::getSingleCell()
 {
     SqlResultsRowPtr row = next();
     if (row.isNull())
@@ -56,22 +69,47 @@ QVariant SqlResults::getSingleCell()
     return row->value(0);
 }
 
-bool SqlResults::isError()
+bool SqlQuery::isError()
 {
     return getErrorCode() != 0;
 }
 
-bool SqlResults::isInterrupted()
+bool SqlQuery::isInterrupted()
 {
     return SqlErrorCode::isInterrupted(getErrorCode());
 }
 
-RowId SqlResults::getInsertRowId()
+RowId SqlQuery::getInsertRowId()
 {
     return insertRowId;
 }
 
-qint64 SqlResults::getRegularInsertRowId()
+qint64 SqlQuery::getRegularInsertRowId()
 {
     return insertRowId["ROWID"].toLongLong();
+}
+
+QString SqlQuery::getQuery() const
+{
+    return query;
+}
+
+void SqlQuery::setFlags(Db::Flags flags)
+{
+    this->flags = flags;
+}
+
+void SqlQuery::clearArgs()
+{
+    queryArgs = QVariant();
+}
+
+void SqlQuery::setArgs(const QList<QVariant>& args)
+{
+    queryArgs = args;
+}
+
+void SqlQuery::setArgs(const QHash<QString, QVariant>& args)
+{
+    queryArgs = args;
 }

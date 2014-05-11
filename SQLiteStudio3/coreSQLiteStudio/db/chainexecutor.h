@@ -228,7 +228,7 @@ class API_EXPORT ChainExecutor : public QObject
          *
          * If there was an error while execution, then executionFailure() is also called.
          */
-        bool handleResults(SqlResultsPtr results);
+        bool handleResults(SqlQueryPtr results);
 
         /**
          * @brief Database for execution.
@@ -324,7 +324,7 @@ class API_EXPORT ChainExecutor : public QObject
          * Checks if given asynchronous ID matches the internally stored asyncId
          * and if yes, then handles results and executes next query in the queue.
          */
-        void handleAsyncResults(quint32 asyncId, SqlResultsPtr results);
+        void handleAsyncResults(quint32 asyncId, SqlQueryPtr results);
 
     signals:
         /**
