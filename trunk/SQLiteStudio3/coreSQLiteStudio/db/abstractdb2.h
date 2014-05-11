@@ -608,6 +608,8 @@ int AbstractDb2<T>::Query::bindParam(int paramIdx, const QVariant& value)
     {
         case QVariant::ByteArray:
         {
+            // NOTE: SQLite 2 has a bug that makes it impossible to write BLOB with nulls inside. First occurrance of the null
+            // makes the whole value to be saved as truncated to that position. Nothing I can do about it.
             QByteArray ba = value.toByteArray();
             return sqlite_bind(stmt, paramIdx, ba.constData(), ba.size(), true);
         }

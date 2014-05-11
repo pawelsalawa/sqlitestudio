@@ -93,8 +93,10 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable, public In
         void collectReferencedIndexes(const QString& table);
         void collectReferencedTriggersForTable(const QString& table);
         void collectReferencedTriggersForView(const QString& view);
+        void findBinaryColumns(const QString& table, const QHash<QString, SqliteQueryPtr>& allParsedObjects);
         bool copyDataAsMiddleware(const QString& table);
         bool copyDataUsingAttach(const QString& table, const QString& attachName);
+        void setupSqlite2Helper(SqlQueryPtr query, const QString& table, const QStringList& colNames);
         void dropTable(const QString& table);
         void dropView(const QString& view);
         void dropObject(const QString& name, const QString& type);
@@ -121,6 +123,7 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable, public In
         QSet<QString> srcTriggers;
         QHash<QString,QString> renamed;
         QString srcTable;
+        QHash<QString,QStringList> binaryColumns; // hints for SQLite 2 databases
         bool includeData = false;
         bool includeIndexes = false;
         bool includeTriggers = false;
