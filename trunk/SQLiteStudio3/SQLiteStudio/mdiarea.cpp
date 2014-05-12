@@ -32,7 +32,8 @@ MdiWindow *MdiArea::addSubWindow(MdiChild *mdiChild)
         connect(mdiWin, &QMdiSubWindow::aboutToActivate, this, &MdiArea::windowActivated);
     }
 
-    mdiChild->setFocus();
+    if (!mdiChild->handleInitialFocus())
+        mdiChild->setFocus();
 
     emit windowListChanged();
     return mdiWin;

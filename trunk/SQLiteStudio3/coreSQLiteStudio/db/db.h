@@ -8,6 +8,7 @@
 #include "coreSQLiteStudio_global.h"
 #include "db/attachguard.h"
 #include "interruptable.h"
+#include "dbobjecttype.h"
 #include <QObject>
 #include <QVariant>
 #include <QList>
@@ -719,6 +720,17 @@ class API_EXPORT Db : public QObject, public Interruptable
          * another async execution.
          */
         void idle();
+
+        /**
+         * @brief Emitted when any database object (table, index, trigger, or view) was just deleted from this database.
+         * @param database Database (attach) name from which the object was deleted. Usually the "main".
+         * @param name Name of the object deleted.
+         * @param type Type of the object deleted.
+         *
+         * This signal covers only deletions made by this database of course. Deletions made by any other application
+         * are not announced by this signal (as this is impossible to detect it just like that).
+         */
+        void dbObjectDeleted(const QString& database, const QString& name, DbObjectType type);
 
     public slots:
         /**

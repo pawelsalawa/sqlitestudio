@@ -61,3 +61,8 @@ void MdiChild::updateWindowTitle()
             mdiWindow->rename(newTitle);
     }
 }
+
+bool MdiChild::handleInitialFocus()
+{
+    return false;
+}

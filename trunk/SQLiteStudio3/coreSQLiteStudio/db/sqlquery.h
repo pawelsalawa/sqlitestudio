@@ -42,7 +42,25 @@ typedef QHash<QString,QVariant> RowId;
  * }
  * @endcode
  *
+ * To re-use compiled query, use it like this:
+ * @code
+ * SqlQueryPtr query = db->prepare("SELECT * FROM table WHERE id BETWEEN ? AND ?");
+ * SqlResultsRowPtr row;
  *
+ * query->setArgs({5, 10});
+ * query->execute();
+ * while (row = query->next())
+ * {
+ *     qDebug() << row->valueList();
+ * }
+ *
+ * query->setArgs({1, 3});
+ * query->execute();
+ * while (row = query->next())
+ * {
+ *     qDebug() << row->valueList();
+ * }
+ * @endcode
  */
 class API_EXPORT SqlQuery
 {
@@ -52,6 +70,12 @@ class API_EXPORT SqlQuery
          */
         virtual ~SqlQuery();
 
+        /**
+         * @brief Executes or re-executes prepared query.
+         * @return true on success, false on failure.
+         *
+         * You can ignore result of this method and check for error later with isError().
+         */
         virtual bool execute();
 
         /**

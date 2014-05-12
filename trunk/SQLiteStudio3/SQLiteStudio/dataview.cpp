@@ -471,6 +471,8 @@ void DataView::updateResultsCount(int resultsCount)
         QString msg = QObject::tr("Total rows: %1").arg(resultsCount);
         rowCountLabel->setText(msg);
         formViewRowCountLabel->setText(msg);
+        rowCountLabel->setToolTip(QString::null);
+        formViewRowCountLabel->setToolTip(QString::null);
     }
     else
     {
@@ -478,6 +480,10 @@ void DataView::updateResultsCount(int resultsCount)
         formViewRowCountLabel->setText("         ");
         rowCountLabel->setMovie(ICONS.LOADING);
         formViewRowCountLabel->setMovie(ICONS.LOADING);
+
+        static QString loadingMsg = tr("Total number of rows is being counted.\nBrowsing other pages will be possible after the row counting is done.");
+        rowCountLabel->setToolTip(loadingMsg);
+        formViewRowCountLabel->setToolTip(loadingMsg);
     }
 }
 

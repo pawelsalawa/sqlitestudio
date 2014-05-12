@@ -95,6 +95,8 @@ class AbstractDb2 : public AbstractDb
                 void init(int columnsCount, const char** columns);
                 bool checkDbState();
                 void copyErrorFromDb();
+                void copyErrorToDb();
+                void setError(int code, const QString& msg);
 
                 static QString replaceNamedParams(const QString& query);
 
@@ -110,6 +112,7 @@ class AbstractDb2 : public AbstractDb
         };
 
         void cleanUp();
+        void resetError();
         QString freeStatement(sqlite_vm* stmt);
 
         static void storeResult(sqlite_func* func, const QVariant& result, bool ok);
@@ -182,6 +185,7 @@ int AbstractDb2<T>::getErrorCodeInternal()
 template <class T>
 bool AbstractDb2<T>::openInternal()
 {
+    resetError();
     sqlite* handle;
     char* errMsg = nullptr;
     handle = sqlite_open(path.toUtf8().constData(), 0, &errMsg);
@@ -203,6 +207,7 @@ bool AbstractDb2<T>::openInternal()
 template <class T>
 bool AbstractDb2<T>::closeInternal()
 {
+    resetError();
     if (!dbHandle)
         return false;
 
@@ -307,6 +312,13 @@ void AbstractDb2<T>::cleanUp()
 {
     for (Query* q : queries)
         q->finalize();
+}
+
+template <class T>
+void AbstractDb2<T>::resetError()
+{
+    dbErrorCode = 0;
+    dbErrorMessage = QString::null;
 }
 
 template <class T>
@@ -442,7 +454,6 @@ AbstractDb2<T>::Query::Query(AbstractDb2<T>* db, const QString& query) :
     db(db)
 {
     this->query = query;
-    copyErrorFromDb();
     db->queries << this;
 }
 
@@ -466,6 +477,22 @@ void AbstractDb2<T>::Query::copyErrorFromDb()
         return;
     }
 }
+
+template <class T>
+void AbstractDb2<T>::Query::copyErrorToDb()
+{
+    db->dbErrorCode = errorCode;
+    db->dbErrorMessage = errorMessage;
+}
+
+template <class T>
+void AbstractDb2<T>::Query::setError(int code, const QString& msg)
+{
+    errorCode = code;
+    errorMessage = msg;
+    copyErrorToDb();
+}
+
 template <class T>
 int AbstractDb2<T>::Query::prepareStmt(const QString& processedQuery)
 {
@@ -478,8 +505,7 @@ int AbstractDb2<T>::Query::prepareStmt(const QString& processedQuery)
         finalize();
         if (errMsg)
         {
-            errorCode = res;
-            errorMessage = QString::fromUtf8((errMsg));
+            setError(res, QString::fromUtf8((errMsg)));
             sqlite_freemem(errMsg);
         }
         return res;
@@ -508,8 +534,7 @@ int AbstractDb2<T>::Query::resetStmt()
         stmt = nullptr;
         if (errMsg)
         {
-            errorCode = res;
-            errorMessage = QString::fromUtf8((errMsg));
+            setError(res, QString::fromUtf8((errMsg)));
             sqlite_freemem(errMsg);
         }
         return res;
@@ -543,7 +568,12 @@ bool AbstractDb2<T>::Query::execInternal(const QList<QVariant>& args)
         if (res != SQLITE_OK)
             return false;
     }
-    return (fetchFirst() == SQLITE_OK);
+
+    bool ok = (fetchFirst() == SQLITE_OK);
+    if (ok)
+        db->checkForDroppedObject(query);
+
+    return ok;
 }
 
 template <class T>
@@ -571,8 +601,7 @@ bool AbstractDb2<T>::Query::execInternal(const QHash<QString, QVariant>& args)
     {
         if (!args.contains(paramName))
         {
-            errorCode = SqlErrorCode::OTHER_EXECUTION_ERROR;
-            errorMessage = "Error while preparing statement: could not bind parameter " + paramName;
+            setError(SqlErrorCode::OTHER_EXECUTION_ERROR, "Error while preparing statement: could not bind parameter " + paramName);
             return false;
         }
 
@@ -581,7 +610,11 @@ bool AbstractDb2<T>::Query::execInternal(const QHash<QString, QVariant>& args)
             return false;
     }
 
-    return (fetchFirst() == SQLITE_OK);
+    bool ok = (fetchFirst() == SQLITE_OK);
+    if (ok)
+        db->checkForDroppedObject(query);
+
+    return ok;
 }
 
 template <class T>
@@ -697,8 +730,7 @@ bool AbstractDb2<T>::Query::checkDbState()
 {
     if (db.isNull() || !db->dbHandle)
     {
-        errorMessage = "SqlQuery is no longer valid.";
-        errorCode = SqlErrorCode::DB_NOT_DEFINED;
+        setError(SqlErrorCode::DB_NOT_DEFINED, "SqlQuery is no longer valid.");
         return false;
     }
 
@@ -756,8 +788,7 @@ int AbstractDb2<T>::Query::fetchNext()
             // Empty pointer as no more results are available.
             break;
         default:
-            errorCode = res;
-            errorMessage = finalize();
+            setError(res, finalize());
             return SQLITE_ERROR;
     }
 

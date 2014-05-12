@@ -168,28 +168,6 @@ class API_EXPORT AbstractDb : public Db
          */
         virtual void interruptExecution() = 0;
 
-//        /**
-//         * @brief Executes given query with parameters on the database.
-//         * @param query Query to execute.
-//         * @param args Query parameters.
-//         * @return Results from execution.
-//         *
-//         * Implementation of this method should execute given query on the database, given that the query string
-//         * can contain parameter placeholders, such as ?, :param, \@param, or $param. SQLite 3 API understands
-//         * these parameters, while SQLite 2 API understands only ? placeholders and others need to be emulated
-//         * by this method implementation.
-//         *
-//         * Note that the parameters for this method are passed as list, so it doesn't matter what are names
-//         * in named placeholders. Parameters should be bind by position, not name. For name-aware parameter binding
-//         * there is a overloaded execInternal() method with QHash of parameters.
-//         */
-//        virtual SqlQueryPtr execInternal(const QString& query, const QList<QVariant>& args) = 0;
-
-//        /**
-//         * @overload
-//         */
-//        virtual SqlQueryPtr execInternal(const QString& query, const QHash<QString,QVariant>& args) = 0;
-
         /**
          * @brief Returns error message.
          * @return Error string.
@@ -223,6 +201,7 @@ class API_EXPORT AbstractDb : public Db
 
         virtual void initAfterOpen();
 
+        void checkForDroppedObject(const QString& query);
         bool registerCollation(const QString& name);
         bool deregisterCollation(const QString& name);
         bool isCollationRegistered(const QString& name);

@@ -1,9 +1,4 @@
-* BLOBs in SQLite 2
-* uruchomic, otworzyc tabele z sqlite2, przejsc do form view, zamknac aplikacje - blad znowu z Results - gdzies jest trzymana referencja do SqlResults
-* interfejs do Db do wielu wywolan tego samego sql - zastosowac w DbObjectOrganizer::copyDataAsMiddleware()
-
-* check performance for millions of rows
-* przenoszenie obiektow przez d&d
+* when changing table and view cannot be rebuilt afterwards - don't drop view
 * data sorting more sophisticated - multi column and allow to choose order at the begining - maybe a dialog for sorting?
 * populating tables
 * context menu for taskbar

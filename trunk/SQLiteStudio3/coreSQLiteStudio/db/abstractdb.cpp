@@ -273,13 +273,11 @@ void AbstractDb::asyncExec(const QString &query, AbstractDb::QueryResultsHandler
 
 SqlQueryPtr AbstractDb::exec(const QString &query, const QList<QVariant>& args, Flags flags)
 {
-//    ReadWriteLocker locker(&dbOperLock, getLockingMode(query, flags));
     return execListArg(query, args, flags);
 }
 
 SqlQueryPtr AbstractDb::exec(const QString& query, const QHash<QString, QVariant>& args, AbstractDb::Flags flags)
 {
-//    ReadWriteLocker locker(&dbOperLock, getLockingMode(query, flags));
     return execHashArg(query, args, flags);
 }
 
@@ -343,6 +341,59 @@ bool AbstractDb::openAndSetup()
 
 void AbstractDb::initAfterOpen()
 {
+}
+
+void AbstractDb::checkForDroppedObject(const QString& query)
+{
+    TokenList tokens = Lexer::tokenize(query, getDialect());
+    tokens.trim(Token::OPERATOR, ";");
+    if (tokens.size() == 0)
+        return;
+
+    if (tokens[0]->type != Token::KEYWORD || tokens.first()->value.toUpper() != "DROP")
+        return;
+
+    tokens.removeFirst(); // remove "DROP" from front
+    tokens.trimLeft(); // remove whitespaces and comments from front
+    if (tokens.size() == 0)
+    {
+        qWarning() << "Successful execution of DROP, but after removing DROP from front of the query, nothing has left. Original query:" << query;
+        return;
+    }
+
+    QString type = tokens.first()->value.toUpper();
+
+    // Now go to the first ID in the tokens
+    while (tokens.size() > 0 && tokens.first()->type != Token::OTHER)
+        tokens.removeFirst();
+
+    if (tokens.size() == 0)
+    {
+        qWarning() << "Successful execution of DROP, but after removing DROP and non-ID tokens from front of the query, nothing has left. Original query:" << query;
+        return;
+    }
+
+    QString database = "main";
+    QString object;
+
+    if (tokens.size() > 1)
+    {
+        database = tokens.first()->value;
+        object = tokens.last()->value;
+    }
+    else
+        object = tokens.first()->value;
+
+    if (type == "TABLE")
+        emit dbObjectDeleted(database, object, DbObjectType::TABLE);
+    else if (type == "INDEX")
+        emit dbObjectDeleted(database, object, DbObjectType::INDEX);
+    else if (type == "TRIGGER")
+        emit dbObjectDeleted(database, object, DbObjectType::TRIGGER);
+    else if (type == "VIEW")
+        emit dbObjectDeleted(database, object, DbObjectType::VIEW);
+    else
+        qWarning() << "Unknown object type dropped:" << type;
 }
 
 bool AbstractDb::registerCollation(const QString& name)

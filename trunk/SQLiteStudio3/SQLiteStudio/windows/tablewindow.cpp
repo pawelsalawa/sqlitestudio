@@ -3,6 +3,7 @@
 #include "services/dbmanager.h"
 #include "services/notifymanager.h"
 #include "sqlitestudio.h"
+#include "common/unused.h"
 #include "schemaresolver.h"
 #include "iconmanager.h"
 #include "common/intvalidator.h"
@@ -39,6 +40,7 @@
 #include <tablemodifier.h>
 #include <QProgressBar>
 #include <QPushButton>
+#include <QDebug>
 
 // TODO extend QTableView for columns and constraints, so they show full-row-width drop indicator,
 // instead of single column drop indicator.
@@ -305,8 +307,8 @@ void TableWindow::executeStructureChanges()
 
     structureExecutor->setDb(db);
     structureExecutor->setQueries(sqls);
-    structureExecutor->exec();
     widgetCover->show();
+    structureExecutor->exec();
 }
 
 QModelIndex TableWindow::structureCurrentIndex() const
@@ -518,6 +520,7 @@ void TableWindow::initDbAndTable()
     // (Re)connect to DB signals
     disconnect(this, SLOT(dbClosed()));
     connect(db, SIGNAL(disconnected()), this, SLOT(dbClosed()));
+    connect(db, SIGNAL(dbObjectDeleted(QString,QString,DbObjectType)), this, SLOT(checkIfTableDeleted(QString,QString,DbObjectType)));
 
     // Selection model is recreated when setModel() is called on the view
     connect(ui->structureView->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)),
@@ -662,6 +665,20 @@ void TableWindow::dbClosed()
     structureExecutor->setDb(nullptr);
     disconnect(this, SLOT(dbClosed()));
     getMdiWindow()->close();
+}
+
+void TableWindow::checkIfTableDeleted(const QString& database, const QString& object, DbObjectType type)
+{
+    UNUSED(database);
+    if (type != DbObjectType::TABLE)
+        return;
+
+    // TODO uncomment below when dbnames are supported
+//    if (this->database != database)
+//        return;
+
+    if (object.compare(table, Qt::CaseInsensitive) == 0)
+        dbClosed();
 }
 
 void TableWindow::refreshStructure()
@@ -1323,4 +1340,14 @@ void TableWindow::editColumn(const QString& columnName)
 bool TableWindow::restoreSessionNextTime()
 {
     return existingTable;
+}
+
+bool TableWindow::handleInitialFocus()
+{
+    if (!existingTable)
+    {
+        ui->tableNameEdit->setFocus();
+        return true;
+    }
+    return false;
 }

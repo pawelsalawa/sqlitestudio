@@ -48,6 +48,9 @@ bool doesObjectNeedWrapping(const QString& str, Dialect dialect)
         if (doesObjectNeedWrapping(str[i]))
             return true;
 
+    if (str[0].isDigit())
+        return true;
+
     return false;
 }
 
