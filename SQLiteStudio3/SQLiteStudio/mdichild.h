@@ -23,6 +23,7 @@ class MdiChild : public QWidget
         bool isInvalid() const;
         virtual bool restoreSessionNextTime();
         void updateWindowTitle();
+        virtual bool handleInitialFocus();
 
     protected:
         virtual QVariant saveSession() = 0;

@@ -307,7 +307,8 @@ HEADERS += sqlitestudio.h\
     db/invaliddb.h \
     dbversionconverter.h \
     diff/diff_match_patch.h \
-    db/sqlquery.h
+    db/sqlquery.h \
+    dbobjecttype.h
 
 unix:!symbian {
     maemo5 {

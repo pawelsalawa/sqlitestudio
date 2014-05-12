@@ -80,6 +80,7 @@ class TableWindow : public MdiChild, public ExtActionContainer
 
         QString getTable() const;
         Db* getDb() const;
+        bool handleInitialFocus();
 
     protected:
         void changeEvent(QEvent *e);
@@ -139,6 +140,7 @@ class TableWindow : public MdiChild, public ExtActionContainer
         void executionSuccessful();
         void executionFailed(const QString& errorText);
         void dbClosed();
+        void checkIfTableDeleted(const QString& database, const QString& object, DbObjectType type);
         void refreshStructure();
         void commitStructure();
         void changesSuccessfullyCommited();

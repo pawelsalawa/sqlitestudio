@@ -98,6 +98,8 @@ class AbstractDb3 : public AbstractDb
                 int fetchNext();
                 bool checkDbState();
                 void copyErrorFromDb();
+                void copyErrorToDb();
+                void setError(int code, const QString& msg);
 
                 QPointer<AbstractDb3<T>> db;
                 sqlite3_stmt* stmt = nullptr;
@@ -117,6 +119,7 @@ class AbstractDb3 : public AbstractDb
 
         QString extractLastError();
         void cleanUp();
+        void resetError();
 
         /**
          * @brief Registers function to call when unknown collation was encountered by the SQLite.
@@ -343,6 +346,7 @@ int AbstractDb3<T>::getErrorCodeInternal()
 template <class T>
 bool AbstractDb3<T>::openInternal()
 {
+    resetError();
     sqlite3* handle;
     int res = sqlite3_open_v2(path.toUtf8().constData(), &handle, SQLITE_OPEN_READWRITE|SQLITE_OPEN_CREATE, nullptr);
     if (!res == SQLITE_OK)
@@ -361,6 +365,7 @@ bool AbstractDb3<T>::openInternal()
 template <class T>
 bool AbstractDb3<T>::closeInternal()
 {
+    resetError();
     if (!dbHandle)
         return false;
 
@@ -489,6 +494,13 @@ void AbstractDb3<T>::cleanUp()
         q->finalize();
 
     safe_delete(defaultCollationUserData);
+}
+
+template <class T>
+void AbstractDb3<T>::resetError()
+{
+    dbErrorCode = 0;
+    dbErrorMessage = QString::null;
 }
 
 template <class T>
@@ -737,7 +749,6 @@ AbstractDb3<T>::Query::Query(AbstractDb3<T>* db, const QString& query) :
     db(db)
 {
     this->query = query;
-    copyErrorFromDb();
     db->queries << this;
 }
 
@@ -760,6 +771,21 @@ void AbstractDb3<T>::Query::copyErrorFromDb()
         errorMessage = db->dbErrorMessage;
         return;
     }
+}
+
+template <class T>
+void AbstractDb3<T>::Query::copyErrorToDb()
+{
+    db->dbErrorCode = errorCode;
+    db->dbErrorMessage = errorMessage;
+}
+
+template <class T>
+void AbstractDb3<T>::Query::setError(int code, const QString& msg)
+{
+    errorCode = code;
+    errorMessage = msg;
+    copyErrorToDb();
 }
 
 template <class T>
@@ -795,8 +821,7 @@ int AbstractDb3<T>::Query::resetStmt()
     if (res != SQLITE_OK)
     {
         stmt = nullptr;
-        errorCode = res;
-        errorMessage = QString::fromUtf8(sqlite3_errmsg(db->dbHandle));
+        setError(res, QString::fromUtf8(sqlite3_errmsg(db->dbHandle)));
         return res;
     }
     return SQLITE_OK;
@@ -831,7 +856,12 @@ bool AbstractDb3<T>::Query::execInternal(const QList<QVariant>& args)
             return false;
         }
     }
-    return fetchFirst() == SQLITE_OK;
+
+    bool ok = (fetchFirst() == SQLITE_OK);
+    if (ok)
+        db->checkForDroppedObject(query);
+
+    return ok;
 }
 
 template <class T>
@@ -858,8 +888,7 @@ bool AbstractDb3<T>::Query::execInternal(const QHash<QString, QVariant>& args)
     {
         if (!args.contains(paramName))
         {
-            errorCode = SqlErrorCode::OTHER_EXECUTION_ERROR;
-            errorMessage = "Error while preparing statement: could not bind parameter " + paramName;
+            setError(SqlErrorCode::OTHER_EXECUTION_ERROR, "Error while preparing statement: could not bind parameter " + paramName);
             return false;
         }
 
@@ -871,7 +900,12 @@ bool AbstractDb3<T>::Query::execInternal(const QHash<QString, QVariant>& args)
             return false;
         }
     }
-    return fetchFirst() == SQLITE_OK;
+
+    bool ok = (fetchFirst() == SQLITE_OK);
+    if (ok)
+        db->checkForDroppedObject(query);
+
+    return ok;
 }
 
 template <class T>
@@ -919,8 +953,7 @@ bool AbstractDb3<T>::Query::checkDbState()
 {
     if (db.isNull() || !db->dbHandle)
     {
-        errorMessage = "SqlQuery is no longer valid.";
-        errorCode = SqlErrorCode::DB_NOT_DEFINED;
+        setError(SqlErrorCode::DB_NOT_DEFINED, "SqlQuery is no longer valid.");
         return false;
     }
 
@@ -975,8 +1008,7 @@ SqlResultsRowPtr AbstractDb3<T>::Query::nextInternal()
     if (res != SQLITE_OK)
     {
         delete row;
-        errorCode = res;
-        errorMessage = QString::fromUtf8(sqlite3_errmsg(db->dbHandle));
+        setError(res, QString::fromUtf8(sqlite3_errmsg(db->dbHandle)));
         return SqlResultsRowPtr();
     }
 
@@ -1037,8 +1069,7 @@ int AbstractDb3<T>::Query::fetchNext()
             // Empty pointer as no more results are available.
             break;
         default:
-            errorCode = res;
-            errorMessage = QString::fromUtf8(sqlite3_errmsg(db->dbHandle));
+            setError(res, QString::fromUtf8(sqlite3_errmsg(db->dbHandle)));
             return SQLITE_ERROR;
     }
     return SQLITE_OK;

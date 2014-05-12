@@ -110,6 +110,8 @@ class ViewWindow : public MdiChild, public ExtActionContainer
         void updateTriggersState();
         void nextTab();
         void prevTab();
+        void dbClosed();
+        void checkIfTableDeleted(const QString& database, const QString& object, DbObjectType type);
 
     public slots:
         void refreshTriggers();

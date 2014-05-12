@@ -1,5 +1,6 @@
 #include "viewwindow.h"
 #include "ui_viewwindow.h"
+#include "common/unused.h"
 #include "schemaresolver.h"
 #include "services/notifymanager.h"
 #include "services/dbmanager.h"
@@ -245,6 +246,8 @@ void ViewWindow::initView()
     ui->ddlEdit->setSqliteVersion(db->getVersion());
 
     refreshTriggers();
+
+    connect(db, SIGNAL(dbObjectDeleted(QString,QString,DbObjectType)), this, SLOT(checkIfTableDeleted(QString,QString,DbObjectType)));
 }
 
 void ViewWindow::setupCoverWidget()
@@ -457,6 +460,29 @@ void ViewWindow::prevTab()
     int idx = ui->tabWidget->currentIndex();
     idx--;
     ui->tabWidget->setCurrentIndex(idx);
+}
+
+void ViewWindow::dbClosed()
+{
+    dataModel->setDb(nullptr);
+    ui->queryEdit->setDb(nullptr);
+    structureExecutor->setDb(nullptr);
+    disconnect(this, SLOT(dbClosed()));
+    getMdiWindow()->close();
+}
+
+void ViewWindow::checkIfTableDeleted(const QString& database, const QString& object, DbObjectType type)
+{
+    UNUSED(database);
+    if (type != DbObjectType::VIEW)
+        return;
+
+    // TODO uncomment below when dbnames are supported
+//    if (this->database != database)
+//        return;
+
+    if (object.compare(view, Qt::CaseInsensitive) == 0)
+        dbClosed();
 }
 
 void ViewWindow::refreshTriggers()
