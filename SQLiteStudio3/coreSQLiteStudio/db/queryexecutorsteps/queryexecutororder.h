@@ -24,7 +24,7 @@ class QueryExecutorOrder : public QueryExecutorStep
          * @param sortOrder Definition of order to use.
          * @return Tokens to append to the SELECT.
          */
-        TokenList getOrderTokens(QueryExecutor::Sort sortOrder);
+        TokenList getOrderTokens(const QueryExecutor::SortList& sortOrder);
 };
 
 #endif // QUERYEXECUTORORDER_H

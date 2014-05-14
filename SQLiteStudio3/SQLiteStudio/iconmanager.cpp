@@ -79,11 +79,17 @@ void IconManager::loadRecurently(QString dirPath, const QString& prefix, bool mo
 
 QMovie* IconManager::getMovie(const QString& name)
 {
+    if (!movies.contains(name))
+        qCritical() << "Movie missing:" << name;
+
     return movies[name];
 }
 
 QIcon* IconManager::getIcon(const QString& name)
 {
+    if (!icons.contains(name))
+        qCritical() << "Icon missing:" << name;
+
     return icons[name];
 }
 

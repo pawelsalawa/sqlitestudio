@@ -11,6 +11,9 @@ bool QueryExecutorDataSources::exec()
     if (select->coreSelects.size() > 1) // compound selects might have different collection of tables
         return true;
 
+    if (select->coreSelects.first()->valuesMode)
+        return true;
+
     SelectResolver resolver(db, select->tokens.detokenize());
     resolver.resolveMultiCore = false; // multicore subselects result in not editable columns, skip them
 

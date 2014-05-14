@@ -1,4 +1,4 @@
-* when changing table and view cannot be rebuilt afterwards - don't drop view
+* plugin interfaces: https://qt-project.org/forums/viewthread/10591
 * data sorting more sophisticated - multi column and allow to choose order at the begining - maybe a dialog for sorting?
 * populating tables
 * context menu for taskbar
