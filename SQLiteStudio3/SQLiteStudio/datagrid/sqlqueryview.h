@@ -73,7 +73,6 @@ class SqlQueryView : public QTableView, public ExtActionContainer
     public slots:
         void executionStarted();
         void executionEnded();
-        void sortingUpdated(const QueryExecutor::SortList& sortOrder);
         void setCurrentRow(int row);
         void copy(const CsvFormat& format = CsvFormat::CLIPBOARD);
         void paste(const CsvFormat& format = CsvFormat::CLIPBOARD);

@@ -21,15 +21,6 @@
 #include <QMenu>
 #include <dialogs/sortdialog.h>
 
-//class SqlQueryHeaderView : public QHeaderView
-//{
-//    public:
-//        explicit SqlQueryHeaderView();
-
-//    protected:
-//        void paintSection(QPainter *painter, const QRect &rect, int logicalIndex) const;
-//};
-
 SqlQueryView::SqlQueryView(QWidget *parent) :
     QTableView(parent)
 {
@@ -74,7 +65,6 @@ void SqlQueryView::setModel(QAbstractItemModel* model)
     QTableView::setModel(model);
     connect(widgetCover, SIGNAL(cancelClicked()), getModel(), SLOT(interrupt()));
     connect(getModel(), &SqlQueryModel::commitStatusChanged, this, &SqlQueryView::updateCommitRollbackActions);
-//    horizontalHeader()->setModel(model);
 }
 
 SqlQueryItem* SqlQueryView::itemAt(const QPoint& pos)
@@ -101,8 +91,6 @@ void SqlQueryView::init()
     itemDelegate = new SqlQueryItemDelegate();
     setItemDelegate(itemDelegate);
     setMouseTracking(true);
-
-//    setHorizontalHeader(new SqlQueryHeaderView());
 
     setContextMenuPolicy(Qt::CustomContextMenu);
     contextMenu = new QMenu(this);
@@ -270,42 +258,6 @@ void SqlQueryView::executionEnded()
     widgetCover->hide();
 }
 
-void SqlQueryView::sortingUpdated(const QueryExecutor::SortList& sortOrder)
-{
-//    QList<SqlQueryModelColumnPtr> columns = getModel()->getColumns();
-
-
-//    QHash<int,int> columnToIndex;
-//    int idx = 0;
-//    for (const QueryExecutor::Sort& sort : sortOrder)
-//        columnToIndex[sort.column] = idx;
-
-//    QIcon icon;
-//    QStandardItem* item;
-//    int i = 0;
-//    for (SqlQueryModelColumnPtr column : columns)
-//    {
-//        item = new QStandardItem();
-//        if (columnToIndex.contains(i))
-//        {
-//            idx = columnToIndex[i];
-//            item->setIcon(getSortIcon(idx, sortOrder[idx].order));
-////            model()->setHeaderData(i, Qt::Horizontal, icon, Qt::DecorationRole);
-////            getModel()->horizontalHeaderItem(i)->setIcon(icon);
-//        }
-////        else
-////        {
-////            model()->setHeaderData(i, Qt::Horizontal, QVariant(), Qt::DecorationRole);
-////        }
-//        getModel()->setHorizontalHeaderItem(i, item);
-//        i++;
-//    }
-//    if (sortOrder.size() == 1)
-//        horizontalHeader()->setSortIndicator(sortOrder.first().column, sortOrder.first().getQtOrder());
-//    else
-//        horizontalHeader()->setSortIndicator(-1, Qt::AscendingOrder);
-}
-
 QIcon SqlQueryView::getSortIcon(int columnIndex, QueryExecutor::Sort::Order order)
 {
     return ICONS.SORT_COUNT_01;
@@ -458,38 +410,3 @@ int qHash(SqlQueryView::Action action)
 {
     return static_cast<int>(action);
 }
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/// SqlQueryHeaderView
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//SqlQueryHeaderView::SqlQueryHeaderView() :
-//    QHeaderView(Qt::Horizontal)
-//{
-//}
-
-//void SqlQueryHeaderView::paintSection(QPainter* painter, const QRect& rect, int logicalIndex) const
-//{
-//    bool isSorted = false;
-//    Qt::SortOrder order;
-//    QueryExecutor::SortList sortOrder = dynamic_cast<SqlQueryModel*>(model())->getSortOrder();
-//    for (const QueryExecutor::Sort& sort : sortOrder)
-//    {
-//        if (sort.column == logicalIndex)
-//        {
-//            order = sort.getQtOrder();
-//            isSorted = true;
-//            break;
-//        }
-//    }
-
-//    Qt::SortOrder originalOrder = sortIndicatorOrder();
-//    int originalSection = sortIndicatorSection();
-//    if (isSorted)
-//        setSortIndicator(logicalIndex, order);
-
-//    QHeaderView::paintSection(painter, rect, logicalIndex);
-
-//    if (isSorted)
-//        setSortIndicator(originalSection, originalOrder);
-//}
