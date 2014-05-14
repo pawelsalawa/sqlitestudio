@@ -1,5 +1,5 @@
+* sorting grid -> move action from grid menu to header menu, add action to reset sorting directly from the menu
 * plugin interfaces: https://qt-project.org/forums/viewthread/10591
-* data sorting more sophisticated - multi column and allow to choose order at the begining - maybe a dialog for sorting?
 * populating tables
 * context menu for taskbar
 * option to view full db path in window title
