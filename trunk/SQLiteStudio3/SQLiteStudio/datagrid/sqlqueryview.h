@@ -3,6 +3,7 @@
 
 #include "csvformat.h"
 #include "common/extactioncontainer.h"
+#include "db/queryexecutor.h"
 #include <QTableView>
 
 class SqlQueryItemDelegate;
@@ -30,7 +31,8 @@ class SqlQueryView : public QTableView, public ExtActionContainer
             COMMIT,
             SELECTIVE_COMMIT,
             SELECTIVE_ROLLBACK,
-            OPEN_VALUE_EDITOR
+            OPEN_VALUE_EDITOR,
+            SORT_DIALOG
         };
 
         explicit SqlQueryView(QWidget* parent = 0);
@@ -54,6 +56,7 @@ class SqlQueryView : public QTableView, public ExtActionContainer
         void refreshShortcuts();
         void setupActionsForMenu(SqlQueryItem* currentItem, const QList<SqlQueryItem*>& selectedItems);
         bool handleDoubleClick(SqlQueryItem* item);
+        QIcon getSortIcon(int columnIndex, QueryExecutor::Sort::Order order);
 
         SqlQueryItemDelegate* itemDelegate;
         QMenu* contextMenu;
@@ -65,11 +68,12 @@ class SqlQueryView : public QTableView, public ExtActionContainer
     private slots:
         void updateCommitRollbackActions(bool enabled);
         void customContextMenuRequested(const QPoint& pos);
+        void openSortDialog();
 
     public slots:
         void executionStarted();
         void executionEnded();
-        void sortingUpdated(int logicalIndex, Qt::SortOrder order);
+        void sortingUpdated(const QueryExecutor::SortList& sortOrder);
         void setCurrentRow(int row);
         void copy(const CsvFormat& format = CsvFormat::CLIPBOARD);
         void paste(const CsvFormat& format = CsvFormat::CLIPBOARD);

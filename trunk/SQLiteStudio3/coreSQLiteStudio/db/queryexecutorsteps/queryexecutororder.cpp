@@ -9,8 +9,8 @@ bool QueryExecutorOrder::exec()
     if (!select || select->explain)
         return true;
 
-    QueryExecutor::Sort sortOrder = queryExecutor->getSortOrder();
-    if (sortOrder.column < 0)
+    QueryExecutor::SortList sortOrder = queryExecutor->getSortOrder();
+    if (sortOrder.size() == 0)
         return true; // no sorting requested
 
     if (select->tokens.size() < 1)
@@ -37,25 +37,42 @@ bool QueryExecutorOrder::exec()
     return true;
 }
 
-TokenList QueryExecutorOrder::getOrderTokens(QueryExecutor::Sort sortOrder)
+TokenList QueryExecutorOrder::getOrderTokens(const QueryExecutor::SortList& sortOrder)
 {
     TokenList tokens;
-
-    if (sortOrder.column >= context->resultColumns.size())
+    QueryExecutor::ResultColumnPtr resCol;
+    bool next = false;
+    for (const QueryExecutor::Sort& sort : sortOrder)
     {
-        qCritical() << "There is less result columns in query executor context than index of requested sort column";
-        return tokens;
-    }
+        if (sort.column >= context->resultColumns.size())
+        {
+            qCritical() << "There is less result columns in query executor context than index of requested sort column";
+            return TokenList();
+        }
 
-    QueryExecutor::ResultColumnPtr resCol = context->resultColumns[sortOrder.column];
+        if (next)
+        {
+            tokens << TokenPtr::create(Token::OPERATOR, ",");
+            tokens << TokenPtr::create(Token::SPACE, " ");
+        }
+        else
+            next = true;
 
-    tokens << TokenPtr::create(Token::OTHER, resCol->queryExecutorAlias);
-    tokens << TokenPtr::create(Token::SPACE, " ");
+        resCol = context->resultColumns[sort.column];
 
-    if (sortOrder.order == QueryExecutor::Sort::DESC)
-    {
-        tokens << TokenPtr::create(Token::KEYWORD, "DESC");
+        tokens << TokenPtr::create(Token::OTHER, resCol->queryExecutorAlias);
         tokens << TokenPtr::create(Token::SPACE, " ");
+
+        if (sort.order == QueryExecutor::Sort::DESC)
+        {
+            tokens << TokenPtr::create(Token::KEYWORD, "DESC");
+            tokens << TokenPtr::create(Token::SPACE, " ");
+        }
+        else
+        {
+            tokens << TokenPtr::create(Token::KEYWORD, "ASC");
+            tokens << TokenPtr::create(Token::SPACE, " ");
+        }
     }
 
     return tokens;

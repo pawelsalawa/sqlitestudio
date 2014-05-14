@@ -15,7 +15,7 @@ bool QueryExecutorAddRowIds::exec()
     if (select->coreSelects.size() > 1)
         return true;
 
-    if (select->coreSelects.first()->distinctKw)
+    if (select->coreSelects.first()->distinctKw || select->coreSelects.first()->valuesMode)
         return true;
 
     bool ok = true;

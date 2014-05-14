@@ -406,7 +406,7 @@ void TableModifier::handleView(SqliteCreateViewPtr view)
     SqliteSelect* newSelect = handleSelect(view->select);
     if (!newSelect)
     {
-        errors << QObject::tr("Cannot not update view %1 according to table %2 modifications.").arg(view->view, originalTable);
+        errors << QObject::tr("Cannot not update view %1 according to table %2 modifications.\nThe view will remain as it is.").arg(view->view, originalTable);
         return;
     }
 
@@ -608,7 +608,7 @@ void TableModifier::simpleHandleTriggers(const QString& view)
     else
         parsedTriggers = resolver.getParsedTriggersForTable(originalTable);
 
-    foreach (SqliteCreateTriggerPtr trig, parsedTriggers )
+    foreach (SqliteCreateTriggerPtr trig, parsedTriggers)
         sqls << trig->detokenize();
 }
 

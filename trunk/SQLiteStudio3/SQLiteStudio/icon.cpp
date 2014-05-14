@@ -305,6 +305,10 @@ QString Icon::getIconNameForAttribute(Icon::Attributes attr)
             return "question_small";
         case ERROR:
             return "error_small";
+        case SORT_ASC:
+            return "sort_ind_asc";
+        case SORT_DESC:
+            return "sort_ind_desc";
         default:
             qWarning() << "Unhandled icon attribute:" << attr;
     }

@@ -60,7 +60,7 @@ void SqlQueryModel::executeQuery()
         return;
     }
 
-    sortOrder = QueryExecutor::Sort();
+    sortOrder.clear();
     queryExecutor->setSkipRowCounting(false);
     queryExecutor->setSortOrder(sortOrder);
     queryExecutor->setPage(0);
@@ -564,7 +564,7 @@ void SqlQueryModel::loadData(SqlQueryPtr results)
         rowIdx++;
     }
 
-    updateColumnsHeader();
+//    updateColumnsHeader();
 }
 
 QList<QStandardItem*> SqlQueryModel::loadRow(SqlResultsRowPtr row)
@@ -809,16 +809,18 @@ QList<bool> SqlQueryModel::getColumnEditionEnabledList()
 
 void SqlQueryModel::updateColumnsHeader()
 {
-    QueryExecutor::Sort executorSortOrder = queryExecutor->getSortOrder();
-    if (executorSortOrder.column > -1)
-        emit sortingUpdated(executorSortOrder.column, executorSortOrder.getQtOrder());
+    QueryExecutor::SortList executorSortOrder = queryExecutor->getSortOrder();
+    if (executorSortOrder.size() > 0)
+        emit sortingUpdated(executorSortOrder);
 }
 
 void SqlQueryModel::updateColumnHeaderLabels()
 {
     headerColumns.clear();
     foreach (SqlQueryModelColumnPtr column, columns)
+    {
         headerColumns << column->displayName;
+    }
 
     setColumnCount(headerColumns.size());
 }
@@ -898,24 +900,27 @@ void SqlQueryModel::changeSorting(int logicalIndex, Qt::SortOrder order)
         return;
 
     queryExecutor->setSkipRowCounting(true);
-    queryExecutor->setSortOrder(QueryExecutor::Sort(order, logicalIndex));
+    queryExecutor->setSortOrder({QueryExecutor::Sort(order, logicalIndex)});
     reloadInternal();
 }
 
 void SqlQueryModel::changeSorting(int logicalIndex)
 {
-    Qt::SortOrder newOrder;
-    switch (sortOrder.order)
+    Qt::SortOrder newOrder = Qt::AscendingOrder;
+    if (sortOrder.size() == 1)
     {
-        case QueryExecutor::Sort::ASC:
-            newOrder = Qt::DescendingOrder;
-            break;
-        case QueryExecutor::Sort::DESC:
-            newOrder = Qt::AscendingOrder;
-            break;
-        case QueryExecutor::Sort::NONE:
-            newOrder = Qt::AscendingOrder;
-            break;
+        switch (sortOrder.first().order)
+        {
+            case QueryExecutor::Sort::ASC:
+                newOrder = Qt::DescendingOrder;
+                break;
+            case QueryExecutor::Sort::DESC:
+                newOrder = Qt::AscendingOrder;
+                break;
+            case QueryExecutor::Sort::NONE:
+                newOrder = Qt::AscendingOrder;
+                break;
+        }
     }
     changeSorting(logicalIndex, newOrder);
 }
@@ -1026,7 +1031,7 @@ void SqlQueryModel::restoreNumbersToQueryExecutor()
      */
     queryExecutor->setPage(page);
     queryExecutor->setSortOrder(sortOrder);
-    emit sortingUpdated(sortOrder.column, sortOrder.getQtOrder());
+    emit sortingUpdated(sortOrder);
 }
 
 Db* SqlQueryModel::getDb() const
@@ -1040,9 +1045,21 @@ void SqlQueryModel::setDb(Db* value)
     queryExecutor->setDb(db);
 }
 
-QueryExecutor::Sort SqlQueryModel::getSortOrder() const
+QueryExecutor::SortList SqlQueryModel::getSortOrder() const
 {
     return sortOrder;
+}
+
+void SqlQueryModel::setSortOrder(const QueryExecutor::SortList& newSortOrder)
+{
+    sortOrder = newSortOrder;
+
+    if (!reloadAvailable)
+        return;
+
+    queryExecutor->setSkipRowCounting(true);
+    queryExecutor->setSortOrder(newSortOrder);
+    reloadInternal();
 }
 
 bool SqlQueryModel::wasSchemaModified() const
@@ -1092,6 +1109,54 @@ void SqlQueryModel::addNewRowInternal(int rowIdx)
     view->selectionModel()->clear();;
     view->setCurrentRow(rowIdx);
     view->setFocus();
+}
+
+Icon& SqlQueryModel::getIconForIdx(int idx) const
+{
+    switch (idx)
+    {
+        case 0:
+            return ICONS.SORT_COUNT_01;
+        case 1:
+            return ICONS.SORT_COUNT_02;
+        case 2:
+            return ICONS.SORT_COUNT_03;
+        case 3:
+            return ICONS.SORT_COUNT_04;
+        case 4:
+            return ICONS.SORT_COUNT_05;
+        case 5:
+            return ICONS.SORT_COUNT_06;
+        case 6:
+            return ICONS.SORT_COUNT_07;
+        case 7:
+            return ICONS.SORT_COUNT_08;
+        case 8:
+            return ICONS.SORT_COUNT_09;
+        case 9:
+            return ICONS.SORT_COUNT_10;
+        case 10:
+            return ICONS.SORT_COUNT_11;
+        case 11:
+            return ICONS.SORT_COUNT_12;
+        case 12:
+            return ICONS.SORT_COUNT_13;
+        case 13:
+            return ICONS.SORT_COUNT_14;
+        case 14:
+            return ICONS.SORT_COUNT_15;
+        case 15:
+            return ICONS.SORT_COUNT_16;
+        case 16:
+            return ICONS.SORT_COUNT_17;
+        case 17:
+            return ICONS.SORT_COUNT_18;
+        case 18:
+            return ICONS.SORT_COUNT_19;
+        case 19:
+            return ICONS.SORT_COUNT_20;
+    }
+    return ICONS.SORT_COUNT_20_PLUS;
 }
 
 void SqlQueryModel::addNewRow()
@@ -1189,18 +1254,35 @@ int SqlQueryModel::columnCount(const QModelIndex& parent) const
 
 QVariant SqlQueryModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
-    if (role != Qt::DisplayRole)
-        return QAbstractItemModel::headerData(section, orientation, role);
-
-    if (orientation == Qt::Horizontal)
+    if (role == Qt::DisplayRole)
     {
-        if (section < 0 || section >= headerColumns.size())
-            return QVariant();
+        if (orientation == Qt::Horizontal)
+        {
+            if (section < 0 || section >= headerColumns.size())
+                return QVariant();
 
-        return headerColumns[section];
+            return headerColumns[section];
+        }
+        else
+            return rowNumBase + section;
     }
-    else
-        return rowNumBase + section;
+
+    if (role == Qt::DecorationRole && orientation == Qt::Horizontal)
+    {
+        int idx = 0;
+        for (const QueryExecutor::Sort& sort : sortOrder)
+        {
+            if (sort.column == section)
+            {
+                bool desc = sort.order == QueryExecutor::Sort::DESC;
+                return *(getIconForIdx(idx).with(desc ? Icon::SORT_DESC : Icon::SORT_ASC));
+            }
+            idx++;
+        }
+        return QVariant();
+    }
+
+    return QAbstractItemModel::headerData(section, orientation, role);
 }
 
 bool SqlQueryModel::isExecutionInProgress() const

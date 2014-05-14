@@ -18,6 +18,7 @@
 #include "queryexecutorsteps/queryexecutorexplainmode.h"
 #include "queryexecutorsteps/queryexecutorreplaceviews.h"
 #include "queryexecutorsteps/queryexecutordetectschemaalter.h"
+#include "queryexecutorsteps/queryexecutorvaluesmode.h"
 #include "common/unused.h"
 #include <QMutexLocker>
 #include <QDateTime>
@@ -51,6 +52,7 @@ void QueryExecutor::setupExecutionChain()
     executionChain << new QueryExecutorParseQuery("initial")
                    << new QueryExecutorDetectSchemaAlter()
                    << new QueryExecutorExplainMode()
+                   << new QueryExecutorValuesMode()
                    << new QueryExecutorAttaches() // needs to be at the begining, because columns needs to know real databases
                    << new QueryExecutorParseQuery("after Attaches")
                    << new QueryExecutorDataSources()
@@ -660,7 +662,7 @@ QueryExecutor::Sort::Sort(Qt::SortOrder order, int column)
     }
 }
 
-Qt::SortOrder QueryExecutor::Sort::getQtOrder()
+Qt::SortOrder QueryExecutor::Sort::getQtOrder() const
 {
     // The column should be checked first for being > -1.
     if (order == QueryExecutor::Sort::DESC)
@@ -669,12 +671,12 @@ Qt::SortOrder QueryExecutor::Sort::getQtOrder()
     return Qt::AscendingOrder;
 }
 
-QueryExecutor::Sort QueryExecutor::getSortOrder() const
+QueryExecutor::SortList QueryExecutor::getSortOrder() const
 {
     return sortOrder;
 }
 
-void QueryExecutor::setSortOrder(const QueryExecutor::Sort& value)
+void QueryExecutor::setSortOrder(const SortList& value)
 {
     sortOrder = value;
 }

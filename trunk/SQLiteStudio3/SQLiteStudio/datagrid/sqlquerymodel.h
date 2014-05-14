@@ -103,7 +103,8 @@ class SqlQueryModel : public QStandardItemModel
         void gotoPage(int newPage);
         bool canReload();
 
-        QueryExecutor::Sort getSortOrder() const;
+        QueryExecutor::SortList getSortOrder() const;
+        void setSortOrder(const QueryExecutor::SortList& newSortOrder);
 
         /**
          * @brief Tells if database schema was modified by last query executed.
@@ -247,6 +248,7 @@ class SqlQueryModel : public QStandardItemModel
         void rollbackInternal(const QList<SqlQueryItem*>& items);
         void reloadInternal();
         void addNewRowInternal(int rowIdx);
+        Icon& getIconForIdx(int idx) const;
 
         QString query;
         bool explain = false;
@@ -309,7 +311,7 @@ class SqlQueryModel : public QStandardItemModel
          * The sortOrder variable keeps sorting order of recently sucessfly loaded data.
          * If column member of the sort object is -1, then no sorting is being aplied.
          */
-        QueryExecutor::Sort sortOrder;
+        QueryExecutor::SortList sortOrder;
 
         QHash<Column,SqlQueryModelColumnPtr> columnMap;
         QHash<Table,QHash<QString,QString>> tableToRowIdColumn;
@@ -365,12 +367,14 @@ class SqlQueryModel : public QStandardItemModel
     signals:
         /**
          * @brief executionStarted
+         *
          * Emitted just after query started executing.
          */
         void executionStarted();
 
         /**
          * @brief executionSuccessful
+         *
          * Emitted after initial query execution was successful. It's not emitted after data reloading of page changing.
          */
         void executionSuccessful();
@@ -378,6 +382,7 @@ class SqlQueryModel : public QStandardItemModel
         /**
          * @brief executionFailed
          * @param errorText
+         *
          * Emitted after failed query execution, or data reloading failed or page changing failed.
          */
         void executionFailed(const QString& errorText);
@@ -385,12 +390,14 @@ class SqlQueryModel : public QStandardItemModel
         /**
          * @brief loadingEnded
          * @param executionSuccessful
+         *
          * Emitted every query execution, every data reloading and every page change.
          */
         void loadingEnded(bool executionSuccessful);
 
         /**
          * @brief totalRowsAndPagesAvailable
+         *
          * Emitted when model finished querying total number of rows (and pages).
          * This is asynchronously emitted after execution has finished, so counting doesn't block the model.
          * It might not get emitted in some cases, like when there was an error when counting (it will be logged with qWarning()),
@@ -403,6 +410,7 @@ class SqlQueryModel : public QStandardItemModel
         /**
          * @brief commitStatusChanged
          * @param commitAvailable Tells if there's anything to commit/rollback or not.
+         *
          * Emitted after any results cell has been modified and can now be commited or rolled back.
          * Also emitted after commit and rollback.
          */
@@ -411,6 +419,7 @@ class SqlQueryModel : public QStandardItemModel
         /**
          * @brief selectiveCommitStatusChanged
          * @param commitAvailable Tells if there's anything to commit/rollback or not.
+         *
          * Emitted when user changes selection in the view, so if the selection includes any uncommited cells,
          * then this signal will be emitted with parameter true, or if there is no uncommited cells,
          * then it will be emitted with parameter false.
@@ -419,11 +428,10 @@ class SqlQueryModel : public QStandardItemModel
 
         /**
          * @brief sortIndicatorUpdated
-         * @param logicalIndex
-         * @param order
+         *
          * Emitted after columns header sorting has been changed.
          */
-        void sortingUpdated(int logicalIndex, Qt::SortOrder order);
+        void sortingUpdated(const QueryExecutor::SortList& sortOrder);
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(SqlQueryModel::Features)

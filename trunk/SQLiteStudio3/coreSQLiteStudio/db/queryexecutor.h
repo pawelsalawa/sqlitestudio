@@ -218,7 +218,7 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
              * @brief Gets Qt typed sort order.
              * @return Sort order.
              */
-            Qt::SortOrder getQtOrder();
+            Qt::SortOrder getQtOrder() const;
 
             /**
              * @brief Sorting order.
@@ -230,6 +230,8 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
              */
             int column = -1;
         };
+
+        typedef QList<Sort> SortList;
 
         /**
          * @brief ResultColumn as represented by QueryExecutor.
@@ -883,7 +885,7 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          *
          * See Sort for details.
          */
-        QueryExecutor::Sort getSortOrder() const;
+        QueryExecutor::SortList getSortOrder() const;
 
         /**
          * @brief Defines sorting for next query execution.
@@ -892,7 +894,7 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          * Once the sorting definition is changed, the exec() must be called
          * to receive results in new order.
          */
-        void setSortOrder(const QueryExecutor::Sort& value);
+        void setSortOrder(const QueryExecutor::SortList& value);
 
         /**
          * @brief Tests if row counting is disabled.
@@ -1107,7 +1109,7 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          *
          * There's no sorting predefined by default. If you want it, you have to apply it with setSortOrder().
          */
-        Sort sortOrder;
+        SortList sortOrder;
 
         /**
          * @brief Flag indicating that the execution is currently in progress.

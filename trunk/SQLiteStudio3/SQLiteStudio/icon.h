@@ -32,7 +32,9 @@ class Icon
             INFO,
             WARNING,
             QUESTION,
-            ERROR
+            ERROR,
+            SORT_ASC,
+            SORT_DESC
         };
 
         Icon(const QString& name, const QString& fileName);
