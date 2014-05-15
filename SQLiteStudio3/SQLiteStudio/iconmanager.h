@@ -159,6 +159,7 @@ class IconManager
             DEF_ICON(SORT_COUNT_20_PLUS,                "sort_cnt_20p")
             DEF_ICON(SORT_INDICATOR_ASC,                "sort_ind_asc")
             DEF_ICON(SORT_INDICATOR_DESC,               "sort_ind_desc")
+            DEF_ICON(SORT_RESET,                        "sort_reset")
             DEF_ICON(SQLITESTUDIO_APP,                  "sqlitestudio")
             DEF_ICON(STATUS_ERROR,                      "status_error")
             DEF_ICON(STATUS_INFO,                       "status_info")

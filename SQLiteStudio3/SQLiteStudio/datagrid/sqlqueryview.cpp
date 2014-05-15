@@ -65,6 +65,7 @@ void SqlQueryView::setModel(QAbstractItemModel* model)
     QTableView::setModel(model);
     connect(widgetCover, SIGNAL(cancelClicked()), getModel(), SLOT(interrupt()));
     connect(getModel(), &SqlQueryModel::commitStatusChanged, this, &SqlQueryView::updateCommitRollbackActions);
+    connect(getModel(), &SqlQueryModel::sortingUpdated, this, &SqlQueryView::sortingUpdated);
 }
 
 SqlQueryItem* SqlQueryView::itemAt(const QPoint& pos)
@@ -103,6 +104,7 @@ void SqlQueryView::init()
 
     setupWidgetCover();
     initActions();
+    setupHeaderMenu();
 }
 
 void SqlQueryView::setupWidgetCover()
@@ -125,6 +127,9 @@ void SqlQueryView::createActions()
     createAction(SELECTIVE_COMMIT, ICONS.COMMIT, tr("Commit selected cells"), this, SLOT(selectiveCommit()), this);
     createAction(SELECTIVE_ROLLBACK, ICONS.ROLLBACK, tr("Rollback selected cells"), this, SLOT(selectiveRollback()), this);
     createAction(SORT_DIALOG, ICONS.SORT_COLUMNS, tr("Define columns to sort by"), this, SLOT(openSortDialog()), this);
+    createAction(RESET_SORTING, ICONS.SORT_RESET, tr("Remove custom sorting"), this, SLOT(resetSorting()), this);
+
+    actionMap[RESET_SORTING]->setEnabled(false);
 }
 
 void SqlQueryView::setupDefShortcuts()
@@ -183,9 +188,6 @@ void SqlQueryView::setupActionsForMenu(SqlQueryItem* currentItem, const QList<Sq
         contextMenu->addSeparator();
     }
 
-    contextMenu->addAction(actionMap[SORT_DIALOG]);
-    contextMenu->addSeparator();
-
     if (selCount > 0)
     {
         contextMenu->addAction(actionMap[COPY]);
@@ -199,6 +201,15 @@ void SqlQueryView::setupActionsForMenu(SqlQueryItem* currentItem, const QList<Sq
         foreach (QAction* action, additionalActions)
             contextMenu->addAction(action);
     }
+}
+
+void SqlQueryView::setupHeaderMenu()
+{
+    horizontalHeader()->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(horizontalHeader(), &QWidget::customContextMenuRequested, this, &SqlQueryView::headerContextMenuRequested);
+    headerContextMenu = new QMenu(horizontalHeader());
+    headerContextMenu->addAction(actionMap[SORT_DIALOG]);
+    headerContextMenu->addAction(actionMap[RESET_SORTING]);
 }
 
 bool SqlQueryView::handleDoubleClick(SqlQueryItem* item)
@@ -230,7 +241,12 @@ void SqlQueryView::customContextMenuRequested(const QPoint& pos)
     if (contextMenu->actions().size() == 0)
         return;
 
-    contextMenu->popup(mapToGlobal(pos));
+    contextMenu->popup(viewport()->mapToGlobal(pos));
+}
+
+void SqlQueryView::headerContextMenuRequested(const QPoint& pos)
+{
+    headerContextMenu->popup(horizontalHeader()->mapToGlobal(pos));
 }
 
 void SqlQueryView::openSortDialog()
@@ -248,6 +264,16 @@ void SqlQueryView::openSortDialog()
     getModel()->setSortOrder(dialog.getSortOrder());
 }
 
+void SqlQueryView::resetSorting()
+{
+    getModel()->setSortOrder(QueryExecutor::SortList());
+}
+
+void SqlQueryView::sortingUpdated(const QueryExecutor::SortList& sortOrder)
+{
+    actionMap[RESET_SORTING]->setEnabled(sortOrder.size() > 0);
+}
+
 void SqlQueryView::executionStarted()
 {
     widgetCover->show();
@@ -256,11 +282,6 @@ void SqlQueryView::executionStarted()
 void SqlQueryView::executionEnded()
 {
     widgetCover->hide();
-}
-
-QIcon SqlQueryView::getSortIcon(int columnIndex, QueryExecutor::Sort::Order order)
-{
-    return ICONS.SORT_COUNT_01;
 }
 
 void SqlQueryView::setCurrentRow(int row)
