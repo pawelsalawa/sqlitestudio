@@ -32,7 +32,8 @@ class SqlQueryView : public QTableView, public ExtActionContainer
             SELECTIVE_COMMIT,
             SELECTIVE_ROLLBACK,
             OPEN_VALUE_EDITOR,
-            SORT_DIALOG
+            SORT_DIALOG,
+            RESET_SORTING
         };
 
         explicit SqlQueryView(QWidget* parent = 0);
@@ -55,11 +56,12 @@ class SqlQueryView : public QTableView, public ExtActionContainer
         void setupDefShortcuts();
         void refreshShortcuts();
         void setupActionsForMenu(SqlQueryItem* currentItem, const QList<SqlQueryItem*>& selectedItems);
+        void setupHeaderMenu();
         bool handleDoubleClick(SqlQueryItem* item);
-        QIcon getSortIcon(int columnIndex, QueryExecutor::Sort::Order order);
 
         SqlQueryItemDelegate* itemDelegate;
         QMenu* contextMenu;
+        QMenu* headerContextMenu;
         WidgetCover* widgetCover = nullptr;
         QPushButton* cancelButton = nullptr;
         QProgressBar* busyBar = nullptr;
@@ -68,7 +70,10 @@ class SqlQueryView : public QTableView, public ExtActionContainer
     private slots:
         void updateCommitRollbackActions(bool enabled);
         void customContextMenuRequested(const QPoint& pos);
+        void headerContextMenuRequested(const QPoint& pos);
         void openSortDialog();
+        void resetSorting();
+        void sortingUpdated(const QueryExecutor::SortList& sortOrder);
 
     public slots:
         void executionStarted();

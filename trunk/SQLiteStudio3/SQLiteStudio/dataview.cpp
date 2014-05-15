@@ -64,7 +64,6 @@ void DataView::initSlots()
     connect(model, SIGNAL(selectiveCommitStatusChanged(bool)), this, SLOT(updateSelectiveCommitRollbackActions(bool)));
     connect(model, SIGNAL(executionStarted()), gridView, SLOT(executionStarted()));
     connect(model, SIGNAL(loadingEnded(bool)), gridView, SLOT(executionEnded()));
-    connect(model, SIGNAL(sortingUpdated(const QueryExecutor::SortList&)), gridView, SLOT(sortingUpdated(const QueryExecutor::SortList&)));
     connect(model, SIGNAL(totalRowsAndPagesAvailable()), this, SLOT(totalRowsAndPagesAvailable()));
     connect(gridView->horizontalHeader(), SIGNAL(sectionClicked(int)), this, SLOT(columnsHeaderClicked(int)));
     connect(this, SIGNAL(currentChanged(int)), this, SLOT(tabChanged(int)));
@@ -168,7 +167,6 @@ void DataView::createActions()
         connect(staticActions[FILTER_REGEXP], SIGNAL(triggered()), this, SLOT(filterModeSelected()));
         connect(staticActions[FILTER_SQL], SIGNAL(triggered()), this, SLOT(filterModeSelected()));
     }
-    gridToolBar->addAction(gridView->getAction(SqlQueryView::SORT_DIALOG));
     gridToolBar->addSeparator();
     actionMap[GRID_TOTAL_ROWS] = gridToolBar->addWidget(rowCountLabel);
 
@@ -343,8 +341,6 @@ void DataView::updateNavigationState()
 {
     updateGridNavigationState();
     updateFormNavigationState();
-
-    gridView->getAction(SqlQueryView::SORT_DIALOG)->setEnabled(navigationState && model->rowCount() > 0);
 }
 
 void DataView::updateGridNavigationState()
