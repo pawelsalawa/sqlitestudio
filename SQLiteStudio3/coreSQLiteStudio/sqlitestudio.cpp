@@ -24,7 +24,9 @@
 #include "services/impl/pluginmanagerimpl.h"
 #include "impl/dbattacherimpl.h"
 #include "services/exportmanager.h"
+#include "services/importmanager.h"
 #include "plugins/scriptingsql.h"
+#include "plugins/importplugin.h"
 #include <QProcessEnvironment>
 #include <QThreadPool>
 #include <QCoreApplication>
@@ -53,6 +55,16 @@ void SQLiteStudio::parseCmdLineArgs()
         }
     }
 }
+ImportManager* SQLiteStudio::getImportManager() const
+{
+    return importManager;
+}
+
+void SQLiteStudio::setImportManager(ImportManager* value)
+{
+    importManager = value;
+}
+
 ExportManager* SQLiteStudio::getExportManager() const
 {
     return exportManager;
@@ -180,6 +192,7 @@ void SQLiteStudio::init(const QStringList& cmdListArguments)
     pluginManager->registerPluginType<SqlFormatterPlugin>(QObject::tr("SQL formatter", "plugin category name"), "formatterPluginsPage");
     pluginManager->registerPluginType<ScriptingPlugin>(QObject::tr("Scripting languages", "plugin category name"));
     pluginManager->registerPluginType<ExportPlugin>(QObject::tr("Exporting", "plugin category name"));
+    pluginManager->registerPluginType<ImportPlugin>(QObject::tr("Importing", "plugin category name"));
 
     sqlFormatter = new SqlFormatter();
     connect(CFG_CORE.General.ActiveSqlFormatter, SIGNAL(changed(QVariant)), this, SLOT(updateSqlFormatter()));
@@ -209,12 +222,14 @@ void SQLiteStudio::init(const QStringList& cmdListArguments)
     connect(pluginManager, SIGNAL(unloaded(QString,PluginType*)), this, SLOT(pluginUnloaded(QString,PluginType*)));
 
     exportManager = new ExportManager();
+    importManager = new ImportManager();
 
     parseCmdLineArgs();
 }
 
 void SQLiteStudio::cleanUp()
 {
+    safe_delete(importManager);
     safe_delete(exportManager);
     safe_delete(functionManager);
     pluginManager->deinit();

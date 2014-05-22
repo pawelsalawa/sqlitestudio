@@ -31,6 +31,8 @@ ExportDialog::ExportDialog(QWidget *parent) :
 
 ExportDialog::~ExportDialog()
 {
+    EXPORT_MANAGER->interrupt();
+    safe_delete(configMapper);
     delete ui;
 }
 
@@ -493,7 +495,7 @@ void ExportDialog::updatePluginOptions(ExportPlugin* plugin, int& optionsRow)
 {
     safe_delete(pluginOptionsWidget);
 
-    QString formName = plugin->getConfigFormName();
+    QString formName = plugin->getExportConfigFormName();
     CfgMain* cfgMain = plugin->getConfig();
     if (formName.isNull() || !cfgMain)
     {

@@ -23,10 +23,14 @@ class WidgetStateIndicator : public QObject
         ~WidgetStateIndicator();
 
         void setMode(Mode mode);
-        void show(const QString& msg = QString());
+        void show(const QString& msg = QString(), bool animated = true);
         void hide();
         void setVisible(bool visible, const QString& msg = QString());
         void release();
+        void info(const QString& msg, bool animated = true);
+        void warn(const QString& msg, bool animated = true);
+        void error(const QString& msg, bool animated = true);
+        void hint(const QString& msg, bool animated = true);
 
         static bool exists(QWidget* widget);
         static WidgetStateIndicator* getInstance(QWidget* widget);

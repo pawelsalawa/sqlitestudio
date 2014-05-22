@@ -32,7 +32,7 @@ class SQLEXPORTSHARED_EXPORT SqlExport : public GenericExportPlugin
         ExportManager::StandardConfigFlags standardOptionsToEnable() const;
         CfgMain* getConfig() const;
         QString defaultFileExtension() const;
-        QString getConfigFormName() const;
+        QString getExportConfigFormName() const;
         bool beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns);
         bool exportQueryResultsRow(SqlResultsRowPtr row);
         bool afterExportQueryResults();

@@ -13,14 +13,13 @@ class ExportWorker : public QObject, public QRunnable
 {
         Q_OBJECT
     public:
-        explicit ExportWorker(ExportPlugin* plugin, ExportManager::StandardExportConfig* config, QIODevice* output, QObject *parent = 0);
+        ExportWorker(ExportPlugin* plugin, ExportManager::StandardExportConfig* config, QIODevice* output, QObject *parent = 0);
         ~ExportWorker();
 
         void run();
         void prepareExportQueryResults(Db* db, const QString& query);
         void prepareExportDatabase(Db* db, const QStringList& objectListToExport);
         void prepareExportTable(Db* db, const QString& database, const QString& table);
-        void interrupt();
 
     private:
         bool exportQueryResults();
@@ -43,6 +42,9 @@ class ExportWorker : public QObject, public QRunnable
         QueryExecutor* executor;
         bool interrupted = false;
         QMutex interruptMutex;
+
+    public slots:
+        void interrupt();
 
     signals:
         void finished(bool result, QIODevice* output);

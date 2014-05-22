@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>csvImportOptions</class>
+ <widget class="QWidget" name="csvImportOptions">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>333</width>
+    <height>90</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="1">
+    <widget class="QComboBox" name="separatorCombo">
+     <property name="statusTip">
+      <string>CsvImport.Separator</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>, (comma)</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>; (semicolon)</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>\t (tab)</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  (whitespace)</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Custom:</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="3">
+    <widget class="QCheckBox" name="firstRowAsColumnsCheck">
+     <property name="statusTip">
+      <string>CsvImport.FirstRowAsColumns</string>
+     </property>
+     <property name="text">
+      <string>First row represents column names</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="separatorLabel">
+     <property name="text">
+      <string>Field separator:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QLineEdit" name="separatorEdit">
+     <property name="maximumSize">
+      <size>
+       <width>30</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="statusTip">
+      <string>CsvImport.CustomSeparator</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QCheckBox" name="nullCheck">
+     <property name="statusTip">
+      <string>CsvImport.NullValues</string>
+     </property>
+     <property name="text">
+      <string>NULL values:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1" colspan="2">
+    <widget class="QLineEdit" name="nullEdit">
+     <property name="toolTip">
+      <string>If your CSV data contains null values, define how are they represented in the CSV.</string>
+     </property>
+     <property name="statusTip">
+      <string>CsvImport.NullValueString</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

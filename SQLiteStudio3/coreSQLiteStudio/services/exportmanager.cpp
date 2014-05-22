@@ -14,12 +14,10 @@
 ExportManager::ExportManager(QObject *parent) :
     QObject(parent)
 {
-    executor = new QueryExecutor();
 }
 
 ExportManager::~ExportManager()
 {
-    safe_delete(executor);
     safe_delete(config);
 }
 
@@ -116,6 +114,11 @@ void ExportManager::handleValidationFromPlugin(bool configValid, CfgEntry* key, 
     emit validationResultFromPlugin(configValid, key, errorMessage);
 }
 
+void ExportManager::interrupt()
+{
+    emit orderWorkerToInterrupt();
+}
+
 ExportPlugin* ExportManager::getPluginForFormat(const QString& formatName) const
 {
     for (ExportPlugin* plugin : PLUGINS->getLoadedPlugins<ExportPlugin>())
@@ -159,6 +162,7 @@ ExportWorker* ExportManager::prepareExport()
 
     ExportWorker* worker = new ExportWorker(plugin, config, output);
     connect(worker, SIGNAL(finished(bool,QIODevice*)), this, SLOT(finalizeExport(bool,QIODevice*)));
+    connect(this, SIGNAL(orderWorkerToInterrupt()), worker, SLOT(interrupt()));
     return worker;
 }
 

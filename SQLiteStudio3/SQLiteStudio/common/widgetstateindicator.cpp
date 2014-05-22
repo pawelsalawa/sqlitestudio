@@ -134,11 +134,11 @@ void WidgetStateIndicator::setMode(WidgetStateIndicator::Mode mode)
     updateMode();
 }
 
-void WidgetStateIndicator::show(const QString& msg)
+void WidgetStateIndicator::show(const QString& msg, bool animated)
 {
     visibilityRequested = true;
     setMessage(msg);
-    if (animation->state() != QAbstractAnimation::Running)
+    if (animated && animation->state() != QAbstractAnimation::Running)
         animation->start();
 
     updateVisibility();
@@ -156,8 +156,8 @@ void WidgetStateIndicator::hide()
 
 void WidgetStateIndicator::setVisible(bool visible, const QString& msg)
 {
-    if (visible == labelParent->isVisible() && msg == message)
-        return;
+//    if (visible == labelParent->isVisible() && msg == message)
+//        return;
 
     if (visible)
         show(msg);
@@ -170,6 +170,30 @@ void WidgetStateIndicator::release()
     setVisible(false);
     instances.remove(widget);
     deleteLater();
+}
+
+void WidgetStateIndicator::info(const QString& msg, bool animated)
+{
+    setMode(Mode::INFO);
+    show(msg, animated);
+}
+
+void WidgetStateIndicator::warn(const QString& msg, bool animated)
+{
+    setMode(Mode::WARNING);
+    show(msg, animated);
+}
+
+void WidgetStateIndicator::error(const QString& msg, bool animated)
+{
+    setMode(Mode::ERROR);
+    show(msg, animated);
+}
+
+void WidgetStateIndicator::hint(const QString& msg, bool animated)
+{
+    setMode(Mode::HINT);
+    show(msg, animated);
 }
 
 bool WidgetStateIndicator::exists(QWidget* widget)

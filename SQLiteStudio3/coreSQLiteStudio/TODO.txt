@@ -1,6 +1,6 @@
-* sorting grid -> move action from grid menu to header menu, add action to reset sorting directly from the menu
-* plugin interfaces: https://qt-project.org/forums/viewthread/10591
+* sprawdzic czy nie trzeba podlaczyc handleModified() z ConfigMapper w exportDialog
 * populating tables
+* db version converting
 * context menu for taskbar
 * option to view full db path in window title
 * generating INSERT/UPDATE/DELETE/SELECT basing on table definition
@@ -8,8 +8,6 @@
 * add nice api for accessing menus and toolbars, so plugins can easly add/remove from them
 * command line -d option to enable debugging in GUI application (including debugging of Parser in CompletionHelper)
 
-* db version converting
-* d&d for db objects (+ copy/paste entries from menu)
 * auto updates
 * bug reporting
 * crash management

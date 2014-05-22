@@ -86,7 +86,7 @@ void ConfigMapper::loadToWidget(CfgEntry* config, QWidget* widget)
     if (applyCustomConfigToWidget(config, widget, configValue))
         return;
 
-    applyCommonConfigToWidget(widget, configValue);
+    applyCommonConfigToWidget(widget, configValue, config);
 }
 
 void ConfigMapper::saveFromWidget(QWidget *widget)
@@ -135,7 +135,7 @@ void ConfigMapper::applyConfigToWidget(QWidget* widget, const QHash<QString, Cfg
         bindMap.insert(widget, cfgEntry);
 
     if (!connectCustomNotifierToWidget(widget, cfgEntry))
-        connectCommonNotifierToWidget(widget);
+        connectCommonNotifierToWidget(widget, cfgEntry);
 
     applyConfigToWidget(widget, cfgEntry, configValue);
 }
@@ -145,7 +145,7 @@ void ConfigMapper::applyConfigToWidget(QWidget* widget, CfgEntry* cfgEntry, cons
     if (applyCustomConfigToWidget(cfgEntry, widget, configValue))
         return;
 
-    applyCommonConfigToWidget(widget, configValue);
+    applyCommonConfigToWidget(widget, configValue, cfgEntry);
 }
 
 bool ConfigMapper::applyCustomConfigToWidget(CfgEntry* key, QWidget* widget, const QVariant& value)
@@ -166,12 +166,19 @@ bool ConfigMapper::applyCustomConfigToWidget(CfgEntry* key, QWidget* widget, con
     return false;
 }
 
-void ConfigMapper::applyCommonConfigToWidget(QWidget *widget, const QVariant &value)
+void ConfigMapper::applyCommonConfigToWidget(QWidget *widget, const QVariant &value, CfgEntry* cfgEntry)
 {
     APPLY_CFG(widget, value, QCheckBox, setChecked, bool);
     APPLY_CFG(widget, value, QLineEdit, setText, QString);
     APPLY_CFG(widget, value, QSpinBox, setValue, int);
-    APPLY_CFG(widget, value, QComboBox, setCurrentText, QString);
+    if (cfgEntry->get().type() == QVariant::Int)
+    {
+        APPLY_CFG(widget, value, QComboBox, setCurrentIndex, int);
+    }
+    else
+    {
+        APPLY_CFG(widget, value, QComboBox, setCurrentText, QString);
+    }
     APPLY_CFG(widget, value, FontEdit, setFont, QFont);
     APPLY_CFG(widget, value, ColorButton, setColor, QColor);
     APPLY_CFG2(widget, value, QGroupBox, setChecked, bool, isCheckable);
@@ -180,12 +187,19 @@ void ConfigMapper::applyCommonConfigToWidget(QWidget *widget, const QVariant &va
                << "with value:" << value;
 }
 
-void ConfigMapper::connectCommonNotifierToWidget(QWidget* widget)
+void ConfigMapper::connectCommonNotifierToWidget(QWidget* widget, CfgEntry* key)
 {
     APPLY_NOTIFIER(widget, QCheckBox, SIGNAL(stateChanged(int)));
     APPLY_NOTIFIER(widget, QLineEdit, SIGNAL(textChanged(QString)));
     APPLY_NOTIFIER(widget, QSpinBox, SIGNAL(valueChanged(QString)));
-    APPLY_NOTIFIER(widget, QComboBox, SIGNAL(currentTextChanged(QString)));
+    if (key->get().type() == QVariant::Int)
+    {
+        APPLY_NOTIFIER(widget, QComboBox, SIGNAL(currentIndexChanged(int)));
+    }
+    else
+    {
+        APPLY_NOTIFIER(widget, QComboBox, SIGNAL(currentTextChanged(QString)));
+    }
     APPLY_NOTIFIER(widget, FontEdit, SIGNAL(fontChanged(QFont)));
     APPLY_NOTIFIER(widget, ColorButton, SIGNAL(colorChanged(QColor)));
     APPLY_NOTIFIER2(widget, QGroupBox, SIGNAL(clicked(bool)), isCheckable);
@@ -233,7 +247,14 @@ void ConfigMapper::saveCommonConfigFromWidget(QWidget* widget, CfgEntry* key)
     SAVE_CFG(widget, key, QCheckBox, isChecked);
     SAVE_CFG(widget, key, QLineEdit, text);
     SAVE_CFG(widget, key, QSpinBox, value);
-    SAVE_CFG(widget, key, QComboBox, currentText);
+    if (key->get().type() == QVariant::Int)
+    {
+        SAVE_CFG(widget, key, QComboBox, currentIndex);
+    }
+    else
+    {
+        SAVE_CFG(widget, key, QComboBox, currentText);
+    }
     SAVE_CFG(widget, key, FontEdit, getFont);
     SAVE_CFG(widget, key, ColorButton, getColor);
     SAVE_CFG2(widget, key, QGroupBox, isChecked, isCheckable);
@@ -330,7 +351,6 @@ bool ConfigMapper::isPersistant() const
 
 void ConfigMapper::handleModified()
 {
-    emit modified();
     if (realTimeUpdates && !updatingEntry)
     {
         QWidget* widget = dynamic_cast<QWidget*>(sender());
@@ -341,6 +361,7 @@ void ConfigMapper::handleModified()
             updatingEntry = false;
         }
     }
+    emit modified();
 }
 
 void ConfigMapper::entryChanged(const QVariant& newValue)

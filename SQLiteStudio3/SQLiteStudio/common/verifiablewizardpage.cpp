@@ -7,6 +7,9 @@ VerifiableWizardPage::VerifiableWizardPage(QWidget *parent) :
 
 bool VerifiableWizardPage::isComplete() const
 {
+    if (!validator)
+        return false;
+
     return validator();
 }
 

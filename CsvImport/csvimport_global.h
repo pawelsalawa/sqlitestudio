@@ -1,0 +1,12 @@
+#ifndef CSVIMPORT_GLOBAL_H
+#define CSVIMPORT_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(CSVIMPORT_LIBRARY)
+#  define CSVIMPORTSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define CSVIMPORTSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // CSVIMPORT_GLOBAL_H
