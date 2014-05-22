@@ -167,12 +167,14 @@ class API_EXPORT ExportManager : public QObject
         void handleClipboardExport();
 
         bool exportInProgress = false;
-        QueryExecutor* executor;
         ExportMode mode;
         StandardExportConfig* config = nullptr;
         QString format;
         ExportPlugin* plugin = nullptr;
         QBuffer* bufferForClipboard = nullptr;
+
+    public slots:
+        void interrupt();
 
     private slots:
         void finalizeExport(bool result, QIODevice* output);
@@ -183,6 +185,7 @@ class API_EXPORT ExportManager : public QObject
         void exportFailed();
         void storeInClipboard(const QString& str);
         void storeInClipboard(const QByteArray& bytes, const QString& mimeType);
+        void orderWorkerToInterrupt();
 
         /**
          * @brief Emitted when export plugin performed its configuration validation.

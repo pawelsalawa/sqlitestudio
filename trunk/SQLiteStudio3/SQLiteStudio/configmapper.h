@@ -54,9 +54,9 @@ class ConfigMapper : public QObject
     private:
         void applyConfigToWidget(QWidget *widget, const QHash<QString, CfgEntry *> &allConfigEntries, const QHash<QString, QVariant> &config);
         void applyConfigToWidget(QWidget *widget, CfgEntry* cfgEntry, const QVariant& configValue);
-        void connectCommonNotifierToWidget(QWidget *widget);
+        void connectCommonNotifierToWidget(QWidget *widget, CfgEntry* key);
         bool connectCustomNotifierToWidget(QWidget *widget, CfgEntry* cfgEntry);
-        void applyCommonConfigToWidget(QWidget *widget, const QVariant& value);
+        void applyCommonConfigToWidget(QWidget *widget, const QVariant& value, CfgEntry* cfgEntry);
         bool applyCustomConfigToWidget(CfgEntry* key, QWidget *widget, const QVariant& value);
         void saveWidget(QWidget* widget, const QHash<QString, CfgEntry*>& allConfigEntries);
         void saveFromWidget(QWidget* widget, CfgEntry* cfgEntry);

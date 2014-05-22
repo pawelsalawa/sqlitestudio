@@ -32,7 +32,7 @@ QString SqlExport::defaultFileExtension() const
     return ".sql";
 }
 
-QString SqlExport::getConfigFormName() const
+QString SqlExport::getExportConfigFormName() const
 {
     if (exportMode == ExportManager::QUERY_RESULTS)
         return "sqlExportQueryConfig";

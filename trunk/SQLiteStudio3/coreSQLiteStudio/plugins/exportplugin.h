@@ -60,7 +60,7 @@ class ExportPlugin : virtual public Plugin
          *
          * @see FormManager
          */
-        virtual QString getConfigFormName() const = 0;
+        virtual QString getExportConfigFormName() const = 0;
 
         /**
          * @brief Tells plugin what is going to be the next export mode.

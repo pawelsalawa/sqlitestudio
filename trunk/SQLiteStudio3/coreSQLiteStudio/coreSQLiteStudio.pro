@@ -156,7 +156,9 @@ SOURCES += sqlitestudio.cpp \
     dbversionconverter.cpp \
     diff/diff_match_patch.cpp \
     db/sqlquery.cpp \
-    db/queryexecutorsteps/queryexecutorvaluesmode.cpp
+    db/queryexecutorsteps/queryexecutorvaluesmode.cpp \
+    services/importmanager.cpp \
+    importworker.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -310,7 +312,10 @@ HEADERS += sqlitestudio.h\
     diff/diff_match_patch.h \
     db/sqlquery.h \
     dbobjecttype.h \
-    db/queryexecutorsteps/queryexecutorvaluesmode.h
+    db/queryexecutorsteps/queryexecutorvaluesmode.h \
+    plugins/importplugin.h \
+    services/importmanager.h \
+    importworker.h
 
 unix:!symbian {
     maemo5 {
