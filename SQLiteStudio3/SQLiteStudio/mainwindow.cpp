@@ -21,7 +21,9 @@
 #include "sqlitesyntaxhighlighter.h"
 #include "qtscriptsyntaxhighlighter.h"
 #include "services/exportmanager.h"
+#include "services/importmanager.h"
 #include "dialogs/exportdialog.h"
+#include "dialogs/importdialog.h"
 #include "multieditor/multieditorwidgetplugin.h"
 #include "multieditor/multieditor.h"
 #include <QMdiSubWindow>
@@ -461,7 +463,14 @@ void MainWindow::exportAnything()
 
 void MainWindow::importAnything()
 {
-    // TODO import
+    if (!ImportManager::isAnyPluginAvailable())
+    {
+        notifyError(tr("Cannot import, because no import plugin is loaded."));
+        return;
+    }
+
+    ImportDialog dialog(this);
+    dialog.exec();
 }
 
 DdlHistoryWindow* MainWindow::openDdlHistory()

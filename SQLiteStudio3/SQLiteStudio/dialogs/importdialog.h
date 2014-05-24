@@ -13,6 +13,7 @@ class ImportPlugin;
 class ConfigMapper;
 class CfgEntry;
 class WidgetCover;
+class Db;
 
 class ImportDialog : public QWizard
 {
@@ -21,7 +22,9 @@ class ImportDialog : public QWizard
     public:
         explicit ImportDialog(QWidget *parent = 0);
         ~ImportDialog();
-        bool isPluginConfigValid() const;
+
+        void setDbAndTable(Db* db, const QString& table);
+        void setDb(Db* db);
 
     protected:
         void showEvent(QShowEvent* e);
@@ -33,6 +36,7 @@ class ImportDialog : public QWizard
         void removeOldOptions();
         void updateStandardOptions();
         void updatePluginOptions();
+        bool isPluginConfigValid() const;
 
         Ui::ImportDialog *ui;
         DbListModel* dbListModel = nullptr;

@@ -19,6 +19,7 @@
 #include "dialogs/indexdialog.h"
 #include "dialogs/triggerdialog.h"
 #include "dialogs/exportdialog.h"
+#include "dialogs/importdialog.h"
 #include "services/importmanager.h"
 #include <QApplication>
 #include <QClipboard>
@@ -124,7 +125,6 @@ void DbTree::createActions()
 
 void DbTree::updateActionStates(const QStandardItem *item)
 {
-    // TODO update statuses of "List" submenu (copy, paste)
     QList<int> enabled;
     const DbTreeItem* dbTreeItem = dynamic_cast<const DbTreeItem*>(item);
     if (item != nullptr)
@@ -148,11 +148,10 @@ void DbTree::updateActionStates(const QStandardItem *item)
 
         if (dbTreeItem->getDb())
         {
-            enabled << DELETE_DB << EDIT_DB << IMPORT_INTO_DB << EXPORT_DB;
-            enabled << REFRESH_SCHEMA;
+            enabled << DELETE_DB << EDIT_DB;
             if (dbTreeItem->getDb()->isOpen())
             {
-                enabled << DISCONNECT_FROM_DB << ADD_TABLE << ADD_VIEW;
+                enabled << DISCONNECT_FROM_DB << ADD_TABLE << ADD_VIEW << IMPORT_INTO_DB << EXPORT_DB << REFRESH_SCHEMA;
                 isDbOpen = true;
             }
             else
@@ -904,9 +903,21 @@ void DbTree::disconnectFromDb()
     db->close();
 }
 
+
 void DbTree::import()
 {
-    // TODO import
+    if (!ImportManager::isAnyPluginAvailable())
+    {
+        notifyError(tr("Cannot import, because no import plugin is loaded."));
+        return;
+    }
+
+    ImportDialog dialog(this);
+    Db* db = getSelectedDb();
+    if (db)
+        dialog.setDb(db);
+
+    dialog.exec();
 }
 
 void DbTree::exportDb()
@@ -1063,7 +1074,7 @@ void DbTree::exportTable()
     QString table = item->getTable();
     if (table.isNull())
     {
-        qWarning() << "Tried to edit table, while table wasn't selected in DbTree.";
+        qWarning() << "Tried to export table, while table wasn't selected in DbTree.";
         return;
     }
 
@@ -1080,7 +1091,27 @@ void DbTree::exportTable()
 
 void DbTree::importTable()
 {
-    // TODO implement import to table
+    Db* db = getSelectedDb();
+    if (!db || !db->isValid())
+        return;
+
+    DbTreeItem* item = ui->treeView->currentItem();
+    QString table = item->getTable();
+    if (table.isNull())
+    {
+        qWarning() << "Tried to import into table, while table wasn't selected in DbTree.";
+        return;
+    }
+
+    if (!ImportManager::isAnyPluginAvailable())
+    {
+        notifyError(tr("Cannot import, because no import plugin is loaded."));
+        return;
+    }
+
+    ImportDialog dialog(this);
+    dialog.setDbAndTable(db, table);
+    dialog.exec();
 }
 
 void DbTree::editColumn()

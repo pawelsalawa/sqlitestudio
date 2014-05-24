@@ -40,6 +40,9 @@ class DbObjListModel : public QAbstractListModel
         ObjectType getType() const;
         void setType(const ObjectType& value);
 
+        bool getIncludeSystemObjects() const;
+        void setIncludeSystemObjects(bool value);
+
     private:
         void updateList();
         QString typeString() const;
@@ -49,6 +52,7 @@ class DbObjListModel : public QAbstractListModel
         SortMode sortMode = SortMode::LikeInDb;
         QStringList objectList;
         QStringList unsortedObjectList;
+        bool includeSystemObjects = true;
 };
 
 #endif // DBOBJLISTMODEL_H
