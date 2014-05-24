@@ -89,12 +89,14 @@ class ImportManager : public QObject
 
     private slots:
         void finalizeImport(bool result);
+        void handleTableCreated(Db* db, const QString& table);
 
     signals:
         void importFinished();
         void importSuccessful();
         void importFailed();
         void orderWorkerToInterrup();
+        void schemaModified(Db* db);
 
         /**
          * @brief Emitted when import plugin performed its configuration validation.

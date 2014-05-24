@@ -22,6 +22,7 @@ class DbAttacherFactory;
 class DbAttacher;
 class ExportManager;
 class ImportManager;
+class ServiceNotifier;
 
 /** @file */
 

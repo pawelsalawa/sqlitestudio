@@ -19,6 +19,7 @@
 #include "dialogs/indexdialog.h"
 #include "dialogs/triggerdialog.h"
 #include "dialogs/exportdialog.h"
+#include "services/importmanager.h"
 #include <QApplication>
 #include <QClipboard>
 #include <QAction>
@@ -77,10 +78,10 @@ void DbTree::init()
         treeModel->loadDbList();
 
     connect(DBLIST, SIGNAL(dbListLoaded()), treeModel, SLOT(loadDbList()));
-
     connect(ui->treeView->selectionModel(), &QItemSelectionModel::currentChanged, this, &DbTree::currentChanged);
     connect(DBLIST, SIGNAL(dbConnected(Db*)), this, SLOT(updateActionsForCurrent()));
     connect(DBLIST, SIGNAL(dbDisconnected(Db*)), this, SLOT(updateActionsForCurrent()));
+    connect(IMPORT_MANAGER, SIGNAL(schemaModified(Db*)), this, SLOT(refreshSchema(Db*)));
 
     updateActionsForCurrent();
 }

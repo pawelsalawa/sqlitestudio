@@ -55,6 +55,7 @@ void SQLiteStudio::parseCmdLineArgs()
         }
     }
 }
+
 ImportManager* SQLiteStudio::getImportManager() const
 {
     return importManager;

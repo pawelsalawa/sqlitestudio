@@ -4,6 +4,7 @@
 #include "plugins/importplugin.h"
 #include "importworker.h"
 #include "db/db.h"
+#include "common/unused.h"
 #include <QThreadPool>
 #include <QDebug>
 
@@ -60,6 +61,7 @@ void ImportManager::importToTable(Db* db, const QString& table)
 
     ImportWorker* worker = new ImportWorker(plugin, &importConfig, db, table);
     connect(worker, SIGNAL(finished(bool)), this, SLOT(finalizeImport(bool)));
+    connect(worker, SIGNAL(createdTable(Db*,QString)), this, SLOT(handleTableCreated(Db*,QString)));
     connect(this, SIGNAL(orderWorkerToInterrup()), worker, SLOT(interrupt()));
 
     QThreadPool::globalInstance()->start(worker);
@@ -91,9 +93,15 @@ void ImportManager::finalizeImport(bool result)
     emit importFinished();
     if (result)
     {
-        notifyInfo(tr("Imported data to the table '%1' successfully."));
+        notifyInfo(tr("Imported data to the table '%1' successfully.").arg(table));
         emit importSuccessful();
     }
     else
         emit importFailed();
+}
+
+void ImportManager::handleTableCreated(Db* db, const QString& table)
+{
+    UNUSED(table);
+    emit schemaModified(db);
 }
