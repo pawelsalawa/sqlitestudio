@@ -5,6 +5,7 @@
 #include "plugins/importplugin.h"
 #include "plugins/genericplugin.h"
 #include "config_builder.h"
+#include "csvserializer.h"
 
 CFG_CATEGORIES(CsvImportConfig,
      CFG_CATEGORY(CsvImport,
@@ -46,8 +47,13 @@ class CSVIMPORTSHARED_EXPORT CsvImport : public GenericPlugin, public ImportPlug
         QString getFileFilter() const;
 
     private:
+        bool extractColumns();
+        void defineCsvFormat();
+
         QFile* file = nullptr;
         QTextStream* stream = nullptr;
+        QStringList columnNames;
+        CsvFormat csvFormat;
 };
 
 #endif // CSVIMPORT_H

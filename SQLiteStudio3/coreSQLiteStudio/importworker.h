@@ -31,11 +31,13 @@ class ImportWorker : public QObject, public QRunnable
         QStringList targetColumns;
         bool interrupted = false;
         QMutex interruptMutex;
+        bool tableCreated = false;
 
     public slots:
         void interrupt();
 
     signals:
+        void createdTable(Db* db, const QString& table);
         void finished(bool result);
 };
 

@@ -1,6 +1,7 @@
 #include "csvimport.h"
 #include "services/importmanager.h"
 #include "sqlitestudio.h"
+#include "services/notifymanager.h"
 #include <QVariant>
 #include <QFile>
 #include <QTextStream>
@@ -23,24 +24,128 @@ ImportManager::StandardConfigFlags CsvImport::standardOptionsToEnable() const
 
 bool CsvImport::beforeImport(const ImportManager::StandardImportConfig& config)
 {
-//    file = new QFile(config.inputFileName);
+    defineCsvFormat();
 
-    return false;
+    file = new QFile(config.inputFileName);
+    if (!file->open(QFile::ReadOnly) || !file->isReadable())
+    {
+        notifyError(tr("Cannot read file %1").arg(config.inputFileName));
+        safe_delete(file);
+        return false;
+    }
+
+    stream = new QTextStream(file);
+    stream->setCodec(config.codec.toLatin1().data());
+
+    if (!extractColumns())
+    {
+        safe_delete(stream);
+        safe_delete(file);
+        return false;
+    }
+
+    return true;
 }
 
 void CsvImport::afterImport()
 {
+    safe_delete(stream);
     safe_delete(file);
+}
+
+bool CsvImport::extractColumns()
+{
+    QString line = stream->readLine();
+    while (line.trimmed().isEmpty() && !stream->atEnd())
+        line = stream->readLine();
+
+    if (line.trimmed().isEmpty())
+    {
+        notifyError(tr("Could not find any data in the file %1.").arg(file->fileName()));
+        return false;
+    }
+
+    QStringList deserialized = CsvSerializer::deserialize(line.trimmed(), csvFormat).first();
+    if (CSV_IMPORT_CFG.CsvImport.FirstRowAsColumns.get())
+    {
+        columnNames = deserialized;
+    }
+    else
+    {
+        static const QString colTmp = QStringLiteral("column%1");
+        columnNames.clear();
+        for (int i = 1, total = deserialized.size(); i <= total; ++i)
+            columnNames << colTmp.arg(i);
+
+        stream->seek(0);
+    }
+
+    return true;
+}
+
+void CsvImport::defineCsvFormat()
+{
+    csvFormat = CsvFormat();
+    csvFormat.rowSeparator = '\n';
+
+    switch (CSV_IMPORT_CFG.CsvImport.Separator.get())
+    {
+        case 0:
+            csvFormat.columnSeparator = ',';
+            break;
+        case 1:
+            csvFormat.columnSeparator = ';';
+            break;
+        case 2:
+            csvFormat.columnSeparator = '\t';
+            break;
+        case 3:
+            csvFormat.columnSeparator = ' ';
+            break;
+        default:
+            csvFormat.columnSeparator = CSV_IMPORT_CFG.CsvImport.CustomSeparator.get();
+            break;
+    }
 }
 
 QList<ImportPlugin::ColumnDefinition> CsvImport::getColumns() const
 {
-    return QList<ImportPlugin::ColumnDefinition>();
+    QList<ImportPlugin::ColumnDefinition> columnList;
+    for (const QString& colName : columnNames)
+        columnList << ImportPlugin::ColumnDefinition(colName, QString());
+
+    return columnList;
 }
 
 QList<QVariant> CsvImport::next()
 {
-    return QList<QVariant>();
+    QString line = stream->readLine();
+    if (line.isNull())
+        return QList<QVariant>();
+
+    QList<QVariant> values;
+    QList<QStringList> deserialized = CsvSerializer::deserialize(line, csvFormat);
+    if (deserialized.size() > 0)
+    {
+        if (CSV_IMPORT_CFG.CsvImport.NullValues.get())
+        {
+            QString nullVal = CSV_IMPORT_CFG.CsvImport.NullValueString.get();
+            for (const QString& val : deserialized.first())
+            {
+                if (val == nullVal)
+                    values << QVariant(QVariant::String);
+                else
+                    values << val;
+            }
+        }
+        else
+        {
+            for (const QString& val : deserialized.first())
+                values << val;
+        }
+    }
+
+    return values;
 }
 
 CfgMain* CsvImport::getConfig() const
