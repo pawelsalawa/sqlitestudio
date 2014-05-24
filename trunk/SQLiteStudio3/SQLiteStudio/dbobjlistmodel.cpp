@@ -81,6 +81,7 @@ void DbObjListModel::updateList()
 
     beginResetModel();
     SchemaResolver resolver(db);
+    resolver.setIgnoreSystemObjects(!includeSystemObjects);
     objectList = resolver.getObjects(typeString().toLower());
     unsortedObjectList = objectList;
     qSort(objectList);
@@ -104,6 +105,16 @@ QString DbObjListModel::typeString() const
     }
     return QString::null;
 }
+bool DbObjListModel::getIncludeSystemObjects() const
+{
+    return includeSystemObjects;
+}
+
+void DbObjListModel::setIncludeSystemObjects(bool value)
+{
+    includeSystemObjects = value;
+}
+
 
 
 

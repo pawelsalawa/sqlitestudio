@@ -30,6 +30,7 @@
 #include "uiconfig.h"
 #include "dialogs/ddlpreviewdialog.h"
 #include "services/config.h"
+#include "services/importmanager.h"
 #include "dbobjectdialogs.h"
 #include "dialogs/exportdialog.h"
 #include <QMenu>
@@ -1078,9 +1079,16 @@ void TableWindow::exportTable()
 
 void TableWindow::importTable()
 {
-    // TODO
+    if (!ImportManager::isAnyPluginAvailable())
+    {
+        notifyError(tr("Cannot import, because no import plugin is loaded."));
+        return;
+    }
+
     ImportDialog dialog(this);
-    dialog.exec();
+    dialog.setDbAndTable(db, table);
+    if (dialog.exec() == QDialog::Accepted && dataLoaded)
+        ui->dataView->refreshData();
 }
 
 void TableWindow::populateTable()

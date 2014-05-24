@@ -31,6 +31,23 @@ ImportDialog::~ImportDialog()
     delete ui;
 }
 
+void ImportDialog::setDbAndTable(Db* db, const QString& table)
+{
+    if (!db)
+        return;
+
+    ui->dbNameCombo->setCurrentText(db->getName());
+    ui->tableNameCombo->setCurrentText(table);
+}
+
+void ImportDialog::setDb(Db* db)
+{
+    if (!db)
+        return;
+
+    ui->dbNameCombo->setCurrentText(db->getName());
+}
+
 bool ImportDialog::isPluginConfigValid() const
 {
     return pluginConfigOk.size() == 0;
@@ -58,6 +75,7 @@ void ImportDialog::initTablePage()
     ui->dbNameCombo->setModel(dbListModel);
 
     tablesModel = new DbObjListModel(this);
+    tablesModel->setIncludeSystemObjects(false);
     tablesModel->setType(DbObjListModel::ObjectType::TABLE);
     ui->tableNameCombo->setModel(tablesModel);
     refreshTables();
@@ -253,7 +271,6 @@ void ImportDialog::refreshTables()
 
 void ImportDialog::pluginSelected()
 {
-    qDebug() << "recreating options";
     removeOldOptions();
     currentPlugin = IMPORT_MANAGER->getPluginForDataSourceType(ui->dsTypeCombo->currentText());
     if (!currentPlugin)
