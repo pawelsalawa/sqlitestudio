@@ -1,4 +1,3 @@
-* sprawdzic czy nie trzeba podlaczyc handleModified() z ConfigMapper w exportDialog
 * populating tables
 * db version converting
 * context menu for taskbar

@@ -9,7 +9,6 @@ CFG_DEFINE_RUNTIME(SqlExportConfig)
 
 SqlExport::SqlExport()
 {
-    connect(SQL_EXPORT_CFG.SqlExport.QueryTable, SIGNAL(changed(QVariant)), this, SLOT(validateOptions()));
 }
 
 QString SqlExport::getFormatName() const
@@ -247,6 +246,6 @@ void SqlExport::validateOptions()
     if (exportMode == ExportManager::QUERY_RESULTS)
     {
         bool valid = !SQL_EXPORT_CFG.SqlExport.QueryTable.get().isEmpty();
-        EXPORT_MANAGER->handleValidationFromPlugin(valid, SQL_EXPORT_CFG.SqlExport.QueryTable, tr("Enter the table name."));
+        EXPORT_MANAGER->handleValidationFromPlugin(valid, SQL_EXPORT_CFG.SqlExport.QueryTable, tr("Table name for INSERT statements is mandatory."));
     }
 }
