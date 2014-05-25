@@ -387,9 +387,15 @@ void ExportDialog::browseForExportFile()
 
 void ExportDialog::pluginSelected()
 {
-    ExportPlugin* plugin = getSelectedPlugin();
-    plugin->setExportMode(exportMode);
-    bool clipboardSupported = plugin->getSupportedModes().testFlag(ExportManager::CLIPBOARD);
+    currentPlugin = getSelectedPlugin();
+    if (!currentPlugin)
+    {
+        qCritical() << "Could not find export plugin, while it was selected on ui:" << ui->formatCombo->currentText();
+        return;
+    }
+
+    currentPlugin->setExportMode(exportMode);
+    bool clipboardSupported = currentPlugin->getSupportedModes().testFlag(ExportManager::CLIPBOARD);
 
     ui->exportClipboardRadio->setVisible(clipboardSupported);
     if (!clipboardSupported)
@@ -398,8 +404,8 @@ void ExportDialog::pluginSelected()
     updateExportOutputOptions();
     updateOptions();
 
-    if (plugin->getConfig() && !plugin->getConfig()->isPersistable())
-        plugin->getConfig()->reset();
+    if (currentPlugin->getConfig() && !currentPlugin->getConfig()->isPersistable())
+        currentPlugin->getConfig()->reset();
 }
 
 void ExportDialog::updateExportOutputOptions()
@@ -419,8 +425,7 @@ void ExportDialog::updateOptions()
 {
     ui->optionsGroup->setVisible(false);
 
-    ExportPlugin* plugin = getSelectedPlugin();
-    if (!plugin)
+    if (!currentPlugin)
     {
         qCritical() << "Could not find export plugin, while it was selected on ui:" << ui->formatCombo->currentText();
         return;
@@ -428,14 +433,14 @@ void ExportDialog::updateOptions()
 
     int optionsRow = 0;
 
-    ExportManager::StandardConfigFlags options = plugin->standardOptionsToEnable();
+    ExportManager::StandardConfigFlags options = currentPlugin->standardOptionsToEnable();
     bool displayCodec = options.testFlag(ExportManager::CODEC) && !ui->exportClipboardRadio->isChecked();
     ui->encodingCombo->setVisible(displayCodec);
     ui->encodingLabel->setVisible(displayCodec);
     if (displayCodec)
         optionsRow++;
 
-    updatePluginOptions(plugin, optionsRow);
+    updatePluginOptions(currentPlugin, optionsRow);
 
     ui->optionsGroup->setVisible(optionsRow > 0);
 }
@@ -528,7 +533,17 @@ void ExportDialog::updatePluginOptions(ExportPlugin* plugin, int& optionsRow)
 
     configMapper = new ConfigMapper(cfgMain);
     configMapper->bindToConfig(pluginOptionsWidget);
+    connect(configMapper, SIGNAL(modified()), this, SLOT(updateValidation()));
     plugin->validateOptions();
+}
+
+void ExportDialog::updateValidation()
+{
+    if (!currentPlugin)
+        return;
+
+    currentPlugin->validateOptions();
+    emit formatPageCompleteChanged();
 }
 
 void ExportDialog::doExport()

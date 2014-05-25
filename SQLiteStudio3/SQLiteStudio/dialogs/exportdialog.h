@@ -69,6 +69,7 @@ class ExportDialog : public QWizard
         WidgetCover* widgetCover = nullptr;
         ConfigMapper* configMapper = nullptr;
         QHash<CfgEntry*,bool> pluginConfigOk;
+        ExportPlugin* currentPlugin = nullptr;
 
     private slots:
         void handleValidationResultFromPlugin(bool valid, CfgEntry* key, const QString& errorMsg);
@@ -87,6 +88,7 @@ class ExportDialog : public QWizard
         void storeInClipboard(const QByteArray& bytes, const QString& mimeType);
         void storeInClipboard(const QString& str);
         void success();
+        void updateValidation();
 
     public slots:
         void accept();
