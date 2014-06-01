@@ -12,7 +12,7 @@
 #include <QFile>
 
 ExportManager::ExportManager(QObject *parent) :
-    QObject(parent)
+    PluginServiceBase(parent)
 {
 }
 
@@ -107,11 +107,6 @@ void ExportManager::exportDatabase(Db* db, const QStringList& objectListToExport
 
     worker->prepareExportDatabase(db, objectListToExport);
     QThreadPool::globalInstance()->start(worker);
-}
-
-void ExportManager::handleValidationFromPlugin(bool configValid, CfgEntry* key, const QString& errorMessage)
-{
-    emit validationResultFromPlugin(configValid, key, errorMessage);
 }
 
 void ExportManager::interrupt()

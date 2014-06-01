@@ -46,6 +46,25 @@ void CfgMain::reset()
     for (CfgCategory* ctg : childs)
         ctg->reset();
 }
+
+void CfgMain::savepoint()
+{
+    for (CfgCategory* ctg : childs)
+        ctg->savepoint();
+}
+
+void CfgMain::restore()
+{
+    for (CfgCategory* ctg : childs)
+        ctg->restore();
+}
+
+void CfgMain::release()
+{
+    for (CfgCategory* ctg : childs)
+        ctg->release();
+}
+
 bool CfgMain::isPersistable() const
 {
     return persistable;
@@ -78,6 +97,24 @@ void CfgCategory::reset()
 {
     for (CfgEntry* entry : childs)
         entry->reset();
+}
+
+void CfgCategory::savepoint()
+{
+    for (CfgEntry* entry : childs)
+        entry->savepoint();
+}
+
+void CfgCategory::restore()
+{
+    for (CfgEntry* entry : childs)
+        entry->restore();
+}
+
+void CfgCategory::release()
+{
+    for (CfgEntry* entry : childs)
+        entry->release();
 }
 
 CfgCategory::operator QString() const
@@ -179,6 +216,21 @@ bool CfgEntry::isPersisted() const
         return !CFG->get(parent->toString(), name).isNull();
 
     return false;
+}
+
+void CfgEntry::savepoint()
+{
+    backup = get();
+}
+
+void CfgEntry::restore()
+{
+    set(backup);
+}
+
+void CfgEntry::release()
+{
+    backup.clear();
 }
 
 CfgEntry::operator CfgEntry*()

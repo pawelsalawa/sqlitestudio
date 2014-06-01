@@ -43,6 +43,13 @@ void ImportManager::importToTable(Db* db, const QString& table)
     this->db = db;
     this->table = table;
 
+    if (importInProgress)
+    {
+        emit importFailed();
+        qCritical() << "Tried to import while other import was in progress.";
+        return;
+    }
+
     if (!db->isOpen())
     {
         emit importFailed();
@@ -62,24 +69,14 @@ void ImportManager::importToTable(Db* db, const QString& table)
     ImportWorker* worker = new ImportWorker(plugin, &importConfig, db, table);
     connect(worker, SIGNAL(finished(bool)), this, SLOT(finalizeImport(bool)));
     connect(worker, SIGNAL(createdTable(Db*,QString)), this, SLOT(handleTableCreated(Db*,QString)));
-    connect(this, SIGNAL(orderWorkerToInterrup()), worker, SLOT(interrupt()));
+    connect(this, SIGNAL(orderWorkerToInterrupt()), worker, SLOT(interrupt()));
 
     QThreadPool::globalInstance()->start(worker);
 }
 
-void ImportManager::handleValidationFromPlugin(bool configValid, CfgEntry* key, const QString& errorMessage)
-{
-    emit validationResultFromPlugin(configValid, key, errorMessage);
-}
-
-void ImportManager::updateVisibilityAndEnabled(CfgEntry* key, bool visible, bool enabled)
-{
-    emit stateUpdateRequestFromPlugin(key, visible, enabled);
-}
-
 void ImportManager::interrupt()
 {
-    emit orderWorkerToInterrup();
+    emit orderWorkerToInterrupt();
 }
 
 bool ImportManager::isAnyPluginAvailable()

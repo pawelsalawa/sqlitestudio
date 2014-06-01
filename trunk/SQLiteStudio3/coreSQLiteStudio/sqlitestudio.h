@@ -22,7 +22,7 @@ class DbAttacherFactory;
 class DbAttacher;
 class ExportManager;
 class ImportManager;
-class ServiceNotifier;
+class PopulateManager;
 
 /** @file */
 
@@ -117,6 +117,9 @@ class API_EXPORT SQLiteStudio : public QObject
         ImportManager* getImportManager() const;
         void setImportManager(ImportManager* value);
 
+        PopulateManager* getPopulateManager() const;
+        void setPopulateManager(PopulateManager* value);
+
     private:
         /**
          * @brief Creates singleton instance.
@@ -176,6 +179,7 @@ class API_EXPORT SQLiteStudio : public QObject
         CollationManager* collationManager = nullptr;
         ExportManager* exportManager = nullptr;
         ImportManager* importManager = nullptr;
+        PopulateManager* populateManager = nullptr;
 
     private slots:
         void pluginLoaded(Plugin* plugin,PluginType* pluginType);

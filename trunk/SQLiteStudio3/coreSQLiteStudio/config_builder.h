@@ -30,6 +30,7 @@
 
 #define CFG_DEFINE(Type) _CFG_DEFINE(Type, true)
 #define CFG_DEFINE_RUNTIME(Type) _CFG_DEFINE(Type, false)
+#define CFG_LOCAL(Type, Name) Cfg::Type Name = Cfg::Type(false);
 
 #define _CFG_DEFINE(Type, Persistant) \
     namespace Cfg\
@@ -59,6 +60,9 @@ class API_EXPORT CfgMain
 
         QHash<QString,CfgCategory*>& getCategories();
         void reset();
+        void savepoint();
+        void restore();
+        void release();
 
         bool isPersistable() const;
         QString getName() const;
@@ -82,6 +86,9 @@ class API_EXPORT CfgCategory
         operator QString() const;
         QHash<QString,CfgEntry*>& getEntries();
         void reset();
+        void savepoint();
+        void restore();
+        void release();
 
     private:
         bool persistable = true;
@@ -109,6 +116,9 @@ class API_EXPORT CfgEntry : public QObject
         void reset();
         bool isPersistable() const;
         bool isPersisted() const;
+        void savepoint();
+        void restore();
+        void release();
 
         /**
          * @brief operator CfgEntry *
@@ -124,6 +134,7 @@ class API_EXPORT CfgEntry : public QObject
         CfgCategory* parent;
         QString name;
         QVariant defValue;
+        QVariant backup;
         mutable bool cached = false;
         mutable QVariant cachedValue;
         DefaultValueProviderFunc defValueFunc = nullptr;
