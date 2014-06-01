@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 include($$PWD/../dirs.pri)
+include($$PWD/../utils.pri)
 
 OBJECTS_DIR = $$OBJECTS_DIR/coreSQLiteStudio
 MOC_DIR = $$MOC_DIR/coreSQLiteStudio
@@ -158,7 +159,11 @@ SOURCES += sqlitestudio.cpp \
     db/sqlquery.cpp \
     db/queryexecutorsteps/queryexecutorvaluesmode.cpp \
     services/importmanager.cpp \
-    importworker.cpp
+    importworker.cpp \
+    services/populatemanager.cpp \
+    pluginservicebase.cpp \
+    populateworker.cpp \
+    plugins/populatesequence.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -315,7 +320,12 @@ HEADERS += sqlitestudio.h\
     db/queryexecutorsteps/queryexecutorvaluesmode.h \
     plugins/importplugin.h \
     services/importmanager.h \
-    importworker.h
+    importworker.h \
+    plugins/populateplugin.h \
+    services/populatemanager.h \
+    pluginservicebase.h \
+    populateworker.h \
+    plugins/populatesequence.h
 
 unix:!symbian {
     maemo5 {
@@ -332,3 +342,9 @@ OTHER_FILES += \
     parser/sqlite2_parse.y \
     parser/run_lemon.sh \
     TODO.txt
+
+FORMS += \
+    plugins/populatesequence.ui
+
+
+for(form, FORMS): copy_file($$form, $$DESTDIR/$$form)

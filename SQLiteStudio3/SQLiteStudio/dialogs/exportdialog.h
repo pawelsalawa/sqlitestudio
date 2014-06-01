@@ -73,6 +73,7 @@ class ExportDialog : public QWizard
 
     private slots:
         void handleValidationResultFromPlugin(bool valid, CfgEntry* key, const QString& errorMsg);
+        void stateUpdateRequestFromPlugin(CfgEntry* key, bool visible, bool enabled);
         void updateExportMode();
         void pageChanged(int pageId);
         void updateDbTables();

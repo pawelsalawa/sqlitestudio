@@ -134,7 +134,9 @@ SOURCES += main.cpp\
     sqlcompareview.cpp \
     dialogs/errorsconfirmdialog.cpp \
     dialogs/sortdialog.cpp \
-    dialogs/importdialog.cpp
+    dialogs/importdialog.cpp \
+    dialogs/populatedialog.cpp \
+    dialogs/populateconfigdialog.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -254,7 +256,9 @@ HEADERS  += mainwindow.h \
     sqlcompareview.h \
     dialogs/errorsconfirmdialog.h \
     dialogs/sortdialog.h \
-    dialogs/importdialog.h
+    dialogs/importdialog.h \
+    dialogs/populatedialog.h \
+    dialogs/populateconfigdialog.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \
@@ -291,7 +295,9 @@ FORMS    += mainwindow.ui \
     dialogs/versionconvertsummarydialog.ui \
     dialogs/errorsconfirmdialog.ui \
     dialogs/sortdialog.ui \
-    dialogs/importdialog.ui
+    dialogs/importdialog.ui \
+    dialogs/populatedialog.ui \
+    dialogs/populateconfigdialog.ui
 
 LIBS += -lcoreSQLiteStudio
 

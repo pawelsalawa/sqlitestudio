@@ -3,7 +3,6 @@
 * context menu for taskbar
 * option to view full db path in window title
 * generating INSERT/UPDATE/DELETE/SELECT basing on table definition
-* http://forum.sqlitestudio.pl/viewtopic.php?f=11&t=884
 * add nice api for accessing menus and toolbars, so plugins can easly add/remove from them
 * command line -d option to enable debugging in GUI application (including debugging of Parser in CompletionHelper)
 
@@ -38,6 +37,7 @@ SchemaResolver
   but slightly clumsy."
 
 * "Search in database(s)" - okno dialogowe z drzewkiem: bazy->tabele - wszystkie z checkboxami, zaznacza sie gdzie sie chce wyszukac, a nastepnie szukana fraza (tekst, lub regexp) i szukana jest fraza we wszystkich wskazanych tabelach.
+* przegladanie skasowanych fragmentow bazy - jako hex, i moze jeszcze jakos
 
 * 3.0 musi importowac ustawienia z 2.1:
   - lista baz

@@ -1,6 +1,7 @@
 #ifndef IMPORTMANAGER_H
 #define IMPORTMANAGER_H
 
+#include "pluginservicebase.h"
 #include <QFlags>
 #include <QStringList>
 
@@ -8,7 +9,7 @@ class ImportPlugin;
 class Db;
 class CfgEntry;
 
-class ImportManager : public QObject
+class ImportManager : public PluginServiceBase
 {
         Q_OBJECT
 
@@ -52,29 +53,6 @@ class ImportManager : public QObject
         void configure(const QString& dataSourceType, const StandardImportConfig& config);
         void importToTable(Db* db, const QString& table);
 
-        /**
-         * @brief Available for import plugins to report validation errors on their UI forms.
-         * @param configValid If the config value is valid or not.
-         * @param key The config key that was validated.
-         * @param errorMessage if the \p valid is false, then the \p errorMessage can carry the details of the validation result.
-         *
-         * Since import plugins themself are independet from QtGui, they still can provide *.ui files
-         * and they can use CFG_CATEGORIES to bind with *.ui files, then they can validate values
-         * stored in the CFG_CATEGORIES. In case that some value is invalid, they should call
-         * this method to let the UI know, that the widget should be marked for invalid value.
-         */
-        void handleValidationFromPlugin(bool configValid, CfgEntry* key, const QString& errorMessage = QString());
-
-        /**
-         * @brief Available for import plugins to update UI of their options accordingly to the config values.
-         * @param key The config key that the update is about.
-         * @param visible The visibility for the widget.
-         * @param enabled Enabled/disabled state for the widget.
-         *
-         * This method is here for the same reason that the handleValidationFromPlugin() is.
-         */
-        void updateVisibilityAndEnabled(CfgEntry* key, bool visible, bool enabled);
-
         static bool isAnyPluginAvailable();
 
     private:
@@ -95,29 +73,8 @@ class ImportManager : public QObject
         void importFinished();
         void importSuccessful();
         void importFailed();
-        void orderWorkerToInterrup();
+        void orderWorkerToInterrupt();
         void schemaModified(Db* db);
-
-        /**
-         * @brief Emitted when import plugin performed its configuration validation.
-         * @param valid true if plugin accepts its configuration.
-         * @param key a key that cause valid/invalid state.
-         * @param errorMessage if the \p valid is false, then the \p errorMessage can carry the details of the validation result.
-         *
-         * Slot handling this signal should update UI to reflect the configuration state.
-         */
-        void validationResultFromPlugin(bool valid, CfgEntry* key, const QString& errorMessage);
-
-        /**
-         * @brief Emitted then import plugin wants to update UI according to config values.
-         * @param key The config key that the update is about.
-         * @param visible The visibility for the widget.
-         * @param enabled Enabled/disabled state for the widget.
-         *
-         * Slot handling this signal should update UI to reflect the state provided in parameters.
-         */
-        void stateUpdateRequestFromPlugin(CfgEntry* key, bool visible, bool enabled);
-
 };
 
 #define IMPORT_MANAGER SQLITESTUDIO->getImportManager()

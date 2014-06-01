@@ -25,8 +25,10 @@
 #include "impl/dbattacherimpl.h"
 #include "services/exportmanager.h"
 #include "services/importmanager.h"
+#include "services/populatemanager.h"
 #include "plugins/scriptingsql.h"
 #include "plugins/importplugin.h"
+#include "plugins/populateplugin.h"
 #include <QProcessEnvironment>
 #include <QThreadPool>
 #include <QCoreApplication>
@@ -54,6 +56,15 @@ void SQLiteStudio::parseCmdLineArgs()
             // TODO command line args for gui
         }
     }
+}
+PopulateManager* SQLiteStudio::getPopulateManager() const
+{
+    return populateManager;
+}
+
+void SQLiteStudio::setPopulateManager(PopulateManager* value)
+{
+    populateManager = value;
 }
 
 ImportManager* SQLiteStudio::getImportManager() const
@@ -194,6 +205,7 @@ void SQLiteStudio::init(const QStringList& cmdListArguments)
     pluginManager->registerPluginType<ScriptingPlugin>(QObject::tr("Scripting languages", "plugin category name"));
     pluginManager->registerPluginType<ExportPlugin>(QObject::tr("Exporting", "plugin category name"));
     pluginManager->registerPluginType<ImportPlugin>(QObject::tr("Importing", "plugin category name"));
+    pluginManager->registerPluginType<PopulatePlugin>(QObject::tr("Table populating", "plugin category name"));
 
     sqlFormatter = new SqlFormatter();
     connect(CFG_CORE.General.ActiveSqlFormatter, SIGNAL(changed(QVariant)), this, SLOT(updateSqlFormatter()));
@@ -224,12 +236,14 @@ void SQLiteStudio::init(const QStringList& cmdListArguments)
 
     exportManager = new ExportManager();
     importManager = new ImportManager();
+    populateManager = new PopulateManager();
 
     parseCmdLineArgs();
 }
 
 void SQLiteStudio::cleanUp()
 {
+    safe_delete(populateManager);
     safe_delete(importManager);
     safe_delete(exportManager);
     safe_delete(functionManager);

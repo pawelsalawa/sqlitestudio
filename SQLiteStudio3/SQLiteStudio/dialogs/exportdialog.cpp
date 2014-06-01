@@ -663,3 +663,13 @@ void ExportDialog::handleValidationResultFromPlugin(bool valid, CfgEntry* key, c
         emit formatPageCompleteChanged();
     }
 }
+
+void ExportDialog::stateUpdateRequestFromPlugin(CfgEntry* key, bool visible, bool enabled)
+{
+    QWidget* w = configMapper->getBindWidgetForConfig(key);
+    if (!w)
+        return;
+
+    w->setVisible(visible);
+    w->setEnabled(enabled);
+}

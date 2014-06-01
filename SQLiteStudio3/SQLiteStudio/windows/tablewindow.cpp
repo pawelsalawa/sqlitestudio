@@ -43,6 +43,7 @@
 #include <QPushButton>
 #include <QDebug>
 #include <dialogs/importdialog.h>
+#include <dialogs/populatedialog.h>
 
 // TODO extend QTableView for columns and constraints, so they show full-row-width drop indicator,
 // instead of single column drop indicator.
@@ -1093,7 +1094,8 @@ void TableWindow::importTable()
 
 void TableWindow::populateTable()
 {
-    // TODO
+    PopulateDialog dialog(this);
+    dialog.exec();
 }
 
 void TableWindow::createSimilarTable()
