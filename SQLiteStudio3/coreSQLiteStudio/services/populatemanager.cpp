@@ -35,23 +35,10 @@ void PopulateManager::populate(Db* db, const QString& table, const QHash<QString
         engineList << engines[column];
     }
 
-//    QList<PopulateEngine*> engines;
-//    PopulateEngine* engine;
-//    for (PopulatePlugin* plugin : plugins)
-//    {
-//        engine = plugin->createEngine();
-//        if (!engine)
-//        {
-//            // A message should be already provided by the plugin in this case.
-//            error();
-//            deleteEngines(engines);
-//            return;
-//        }
-
-//        engines << engine;
-//    }
-
     workInProgress = true;
+
+    this->db = db;
+    this->table = table;
 
     PopulateWorker* worker = new PopulateWorker(db, table, columns, engineList, rows);
     connect(worker, SIGNAL(finished(bool)), this, SLOT(finalizePopulating(bool)));
@@ -63,8 +50,8 @@ void PopulateManager::populate(Db* db, const QString& table, const QHash<QString
 
 void PopulateManager::error()
 {
-    emit populatingFailed();
     emit populatingFinished();
+    emit populatingFailed();
 }
 
 void PopulateManager::deleteEngines(const QList<PopulateEngine*>& engines)
@@ -81,7 +68,6 @@ void PopulateManager::interrupt()
 void PopulateManager::finalizePopulating(bool result)
 {
     workInProgress = false;
-    // TODO
 
     emit populatingFinished();
     if (result)

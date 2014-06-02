@@ -1,5 +1,6 @@
 #include "populatesequence.h"
 #include "common/global.h"
+#include "services/populatemanager.h"
 #include <QVariant>
 
 PopulateSequence::PopulateSequence()
@@ -37,6 +38,7 @@ QString PopulateSequenceEngine::getPopulateConfigFormName() const
     return QStringLiteral("PopulateSequenceConfig");
 }
 
-void PopulateSequenceEngine::validateOptions()
+bool PopulateSequenceEngine::validateOptions()
 {
+    return true;
 }

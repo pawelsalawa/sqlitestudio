@@ -20,6 +20,7 @@
 #include "dialogs/triggerdialog.h"
 #include "dialogs/exportdialog.h"
 #include "dialogs/importdialog.h"
+#include "dialogs/populatedialog.h"
 #include "services/importmanager.h"
 #include <QApplication>
 #include <QClipboard>
@@ -107,6 +108,7 @@ void DbTree::createActions()
     createAction(DEL_TABLE, ICONS.TABLE_DEL, tr("Drop the table"), this, SLOT(delTable()), this);
     createAction(EXPORT_TABLE, ICONS.TABLE_EXPORT, tr("Export the table"), this, SLOT(exportTable()), this);
     createAction(IMPORT_TABLE, ICONS.TABLE_IMPORT, tr("Import into the table"), this, SLOT(importTable()), this);
+    createAction(POPULATE_TABLE, ICONS.TABLE_POPULATE, tr("Populate table"), this, SLOT(populateTable()), this);
     createAction(ADD_INDEX, ICONS.INDEX_ADD, tr("Create an index"), this, SLOT(addIndex()), this);
     createAction(EDIT_INDEX, ICONS.INDEX_EDIT, tr("Edit the index"), this, SLOT(editIndex()), this);
     createAction(DEL_INDEX, ICONS.INDEX_DEL, tr("Drop the index"), this, SLOT(delIndex()), this);
@@ -173,7 +175,7 @@ void DbTree::updateActionStates(const QStandardItem *item)
                 case DbTreeItem::Type::TABLES:
                     break;
                 case DbTreeItem::Type::TABLE:
-                    enabled << EDIT_TABLE << DEL_TABLE << EXPORT_TABLE << IMPORT_TABLE;
+                    enabled << EDIT_TABLE << DEL_TABLE << EXPORT_TABLE << IMPORT_TABLE << POPULATE_TABLE;
                     enabled << ADD_INDEX << ADD_TRIGGER;
                     break;
                 case DbTreeItem::Type::VIRTUAL_TABLE:
@@ -337,6 +339,7 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
                 actions += ActionEntry(_separator);
                 actions += ActionEntry(IMPORT_TABLE);
                 actions += ActionEntry(EXPORT_TABLE);
+                actions += ActionEntry(POPULATE_TABLE);
                 actions += ActionEntry(_separator);
                 actions += dbEntryExt;
                 break;
@@ -1110,6 +1113,25 @@ void DbTree::importTable()
     }
 
     ImportDialog dialog(this);
+    dialog.setDbAndTable(db, table);
+    dialog.exec();
+}
+
+void DbTree::populateTable()
+{
+    Db* db = getSelectedDb();
+    if (!db || !db->isValid())
+        return;
+
+    DbTreeItem* item = ui->treeView->currentItem();
+    QString table = item->getTable();
+    if (table.isNull())
+    {
+        qWarning() << "Tried to populate table, while table wasn't selected in DbTree.";
+        return;
+    }
+
+    PopulateDialog dialog(this);
     dialog.setDbAndTable(db, table);
     dialog.exec();
 }

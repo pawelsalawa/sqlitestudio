@@ -9,6 +9,7 @@
 #include "populateconfigdialog.h"
 #include "uiutils.h"
 #include "services/populatemanager.h"
+#include "common/widgetcover.h"
 #include <QPushButton>
 #include <QGridLayout>
 #include <QCheckBox>
@@ -28,6 +29,12 @@ PopulateDialog::~PopulateDialog()
     delete ui;
 }
 
+void PopulateDialog::setDbAndTable(Db* db, const QString& table)
+{
+    ui->databaseCombo->setCurrentText(db->getName());
+    ui->tableCombo->setCurrentText(table);
+}
+
 void PopulateDialog::init()
 {
     ui->setupUi(this);
@@ -41,6 +48,9 @@ void PopulateDialog::init()
 
     for (PopulatePlugin* plugin : plugins)
         pluginTitles << plugin->getTitle();
+
+    widgetCover = new WidgetCover(this);
+    widgetCover->setVisible(false);
 
     ui->scrollArea->setAutoFillBackground(false);
     ui->scrollArea->viewport()->setAutoFillBackground(false);
@@ -59,6 +69,8 @@ void PopulateDialog::init()
 
     connect(ui->databaseCombo, SIGNAL(currentTextChanged(QString)), this, SLOT(refreshTables()));
     connect(ui->tableCombo, SIGNAL(currentTextChanged(QString)), this, SLOT(refreshColumns()));
+    connect(POPULATE_MANAGER, SIGNAL(populatingFinished()), widgetCover, SLOT(hide()));
+    connect(POPULATE_MANAGER, SIGNAL(populatingSuccessful()), this, SLOT(finished()));
 }
 
 PopulateEngine* PopulateDialog::getEngine(int selectedPluginIndex)
@@ -83,6 +95,8 @@ void PopulateDialog::refreshTables()
     db = DBLIST->getByName(ui->databaseCombo->currentText());
     if (db)
         tablesModel->setDb(db);
+
+    updateState();
 }
 
 void PopulateDialog::refreshColumns()
@@ -145,11 +159,13 @@ void PopulateDialog::refreshColumns()
     for (const ColumnEntry& entry : columnEntries)
     {
         pluginSelected(entry.combo, entry.combo->currentIndex());
-        updateColumnState(row++);
+        updateColumnState(row++, false);
     }
 
     QSpacerItem* spacer = new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::MinimumExpanding);
     ui->columnsLayout->addItem(spacer, row, 0, 1, 3);
+
+    updateState();
 }
 
 void PopulateDialog::pluginSelected(int index)
@@ -207,9 +223,11 @@ void PopulateDialog::configurePlugin(int index)
         engine->getConfig()->restore();
 
     engine->getConfig()->release();
+
+    updateColumnState(index);
 }
 
-void PopulateDialog::updateColumnState(int index)
+void PopulateDialog::updateColumnState(int index, bool updateGlobalState)
 {
     if (index < 0 || index >= columnEntries.size())
     {
@@ -221,6 +239,52 @@ void PopulateDialog::updateColumnState(int index)
     bool hasConfig = columnEntries[index].engine->getConfig() != nullptr;
     columnEntries[index].combo->setEnabled(checked);
     columnEntries[index].button->setEnabled(checked && hasConfig);
+
+    bool valid = true;
+    if (checked && hasConfig)
+    {
+        valid = columnEntries[index].engine->validateOptions();
+        setValidState(columnEntries[index].button, valid, tr("Populating configuration for this column is invalid or incomplete."));
+    }
+
+    if (valid == columnsValid.contains(index)) // if state changed
+    {
+        if (!valid)
+            columnsValid[index] = false;
+        else
+            columnsValid.remove(index);
+    }
+
+    if (updateGlobalState)
+        updateState();
+}
+
+void PopulateDialog::updateState()
+{
+    bool columnsOk = columnsValid.size() == 0;
+    bool dbOk = !ui->databaseCombo->currentText().isNull();
+    bool tableOk = !ui->tableCombo->currentText().isNull();
+
+    bool colCountOk = false;
+    for (const ColumnEntry& entry : columnEntries)
+    {
+        if (entry.check->isChecked())
+        {
+            colCountOk = true;
+            break;
+        }
+    }
+
+    setValidState(ui->databaseCombo, dbOk, tr("Select database with table to populate"));
+    setValidState(ui->tableCombo, tableOk, tr("Select table to populate"));
+    setValidState(ui->columnsGroup, (!tableOk || colCountOk), tr("You have to select at least one column."));
+
+    ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(columnsOk && tableOk && colCountOk);
+}
+
+void PopulateDialog::finished()
+{
+    QDialog::accept();
 }
 
 void PopulateDialog::accept()
@@ -243,6 +307,8 @@ void PopulateDialog::accept()
 
     QString table = ui->tableCombo->currentText();
     qint64 rows = ui->rowsSpin->value();
+
+    widgetCover->show();
     POPULATE_MANAGER->populate(db, table, engines, rows);
 }
 
