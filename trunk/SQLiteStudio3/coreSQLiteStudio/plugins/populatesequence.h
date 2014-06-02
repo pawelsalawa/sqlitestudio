@@ -35,7 +35,7 @@ class PopulateSequenceEngine : public PopulateEngine
         void afterPopulating();
         CfgMain* getConfig();
         QString getPopulateConfigFormName() const;
-        void validateOptions();
+        bool validateOptions();
 
     private:
         CFG_LOCAL(PopulateSequenceConfig, cfg)

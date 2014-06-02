@@ -57,7 +57,7 @@ class API_EXPORT PopulateEngine
          * In this method you can also call POPULATE_MANAGER->configStateUpdateFromPlugin() to adjust options UI
          * to the current config values.
          */
-        virtual void validateOptions() = 0;
+        virtual bool validateOptions() = 0;
 };
 
 

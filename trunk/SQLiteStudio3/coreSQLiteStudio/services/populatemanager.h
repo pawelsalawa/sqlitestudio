@@ -2,6 +2,7 @@
 #define POPULATEMANAGER_H
 
 #include "pluginservicebase.h"
+#include "sqlitestudio.h"
 #include <QObject>
 #include <QHash>
 #include <QStringList>

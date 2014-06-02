@@ -49,6 +49,7 @@ class DbTree : public QDockWidget, public ExtActionContainer
             DEL_TABLE,
             EXPORT_TABLE,
             IMPORT_TABLE,
+            POPULATE_TABLE,
             ADD_INDEX,
             EDIT_INDEX,
             DEL_INDEX,
@@ -146,6 +147,7 @@ class DbTree : public QDockWidget, public ExtActionContainer
         void delView();
         void exportTable();
         void importTable();
+        void populateTable();
         void editColumn();
         void editColumn(DbTreeItem* item);
         void currentChanged(const QModelIndex & current, const QModelIndex & previous);

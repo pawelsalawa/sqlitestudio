@@ -17,6 +17,7 @@ class QComboBox;
 class QCheckBox;
 class QToolButton;
 class QSignalMapper;
+class WidgetCover;
 
 class PopulateDialog : public QDialog
 {
@@ -25,6 +26,7 @@ class PopulateDialog : public QDialog
     public:
         explicit PopulateDialog(QWidget *parent = 0);
         ~PopulateDialog();
+        void setDbAndTable(Db* db, const QString& table);
 
     private:
         struct ColumnEntry
@@ -52,6 +54,8 @@ class PopulateDialog : public QDialog
         QList<ColumnEntry> columnEntries;
         QSignalMapper* checkMapper = nullptr;
         QSignalMapper* buttonMapper = nullptr;
+        QHash<int,bool> columnsValid;
+        WidgetCover* widgetCover = nullptr;
 
     private slots:
         void refreshTables();
@@ -59,7 +63,9 @@ class PopulateDialog : public QDialog
         void pluginSelected(int index);
         void pluginSelected(QComboBox* combo, int index);
         void configurePlugin(int index);
-        void updateColumnState(int index);
+        void updateColumnState(int index, bool updateGlobalState = true);
+        void updateState();
+        void finished();
 
     public:
         void accept();

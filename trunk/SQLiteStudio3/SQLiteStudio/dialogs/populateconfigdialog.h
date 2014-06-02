@@ -4,6 +4,8 @@
 #include <QDialog>
 
 class PopulateEngine;
+class ConfigMapper;
+class CfgEntry;
 
 namespace Ui {
     class PopulateConfigDialog;
@@ -20,8 +22,20 @@ class PopulateConfigDialog : public QDialog
         int exec();
 
     private:
+        void init();
+
         Ui::PopulateConfigDialog *ui;
         PopulateEngine* engine = nullptr;
+        ConfigMapper* configMapper = nullptr;
+        QHash<CfgEntry*,bool> pluginConfigOk;
+        QString column;
+        QString pluginName;
+
+    private slots:
+        void validateEngine();
+        void validationResultFromPlugin(bool valid, CfgEntry* key, const QString& msg);
+        void stateUpdateRequestFromPlugin(CfgEntry* key, bool visible, bool enabled);
+        void updateState();
 };
 
 #endif // POPULATECONFIGDIALOG_H

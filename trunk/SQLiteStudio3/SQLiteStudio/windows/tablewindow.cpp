@@ -1095,7 +1095,9 @@ void TableWindow::importTable()
 void TableWindow::populateTable()
 {
     PopulateDialog dialog(this);
-    dialog.exec();
+    dialog.setDbAndTable(db, table);
+    if (dialog.exec() == QDialog::Accepted && dataLoaded)
+        ui->dataView->refreshData();
 }
 
 void TableWindow::createSimilarTable()
