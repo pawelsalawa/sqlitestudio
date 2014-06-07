@@ -1,0 +1,51 @@
+#ifndef POPULATEDICTIONARY_H
+#define POPULATEDICTIONARY_H
+
+#include "genericplugin.h"
+#include "populateplugin.h"
+#include "config_builder.h"
+
+class QFile;
+class QTextStream;
+
+CFG_CATEGORIES(PopulateDictionaryConfig,
+    CFG_CATEGORY(PopulateDictionary,
+        CFG_ENTRY(QString, File,   QString())
+        CFG_ENTRY(bool,    Lines,  false)
+        CFG_ENTRY(bool,    Random, false)
+    )
+)
+
+class PopulateDictionary : public GenericPlugin, public PopulatePlugin
+{
+        Q_OBJECT
+
+        SQLITESTUDIO_PLUGIN_TITLE("Dictionary")
+        SQLITESTUDIO_PLUGIN_DESC("Support for populating tables with values from a dictionary file.")
+        SQLITESTUDIO_PLUGIN_VERSION(10000)
+        SQLITESTUDIO_PLUGIN_AUTHOR("sqlitestudio.pl")
+
+    public:
+        PopulateDictionary();
+
+        QString getTitle() const;
+        PopulateEngine* createEngine();
+};
+
+class PopulateDictionaryEngine : public PopulateEngine
+{
+    public:
+        bool beforePopulating();
+        QVariant nextValue();
+        void afterPopulating();
+        CfgMain* getConfig();
+        QString getPopulateConfigFormName() const;
+        bool validateOptions();
+
+    private:
+        CFG_LOCAL(PopulateDictionaryConfig, cfg)
+        QFile* file;
+        QTextStream* stream;
+};
+
+#endif // POPULATEDICTIONARY_H

@@ -2,10 +2,12 @@
 #include "services/config.h"
 #include "services/pluginmanager.h"
 #include "sqlitestudio.h"
+#include "uiloader.h"
+#include "common/configradiobutton.h"
+#include "common/fileedit.h"
 #include <QFile>
 #include <QDir>
 #include <QRegularExpression>
-#include <QUiLoader>
 #include <QApplication>
 #include <QDebug>
 
@@ -66,7 +68,7 @@ QWidget* FormManager::createWidgetByFullPath(const QString& path)
 
 void FormManager::init()
 {
-    uiLoader = new QUiLoader();
+    initUiLoader();
 
     QStringList dirs;
     dirs += qApp->applicationDirPath() + "/forms";
@@ -86,6 +88,13 @@ void FormManager::init()
     {
         loadRecurently(dirPath, "");
     }
+}
+
+void FormManager::initUiLoader()
+{
+    uiLoader = new UiLoader();
+    REGISTER_WIDGET(uiLoader, ConfigRadioButton);
+    REGISTER_WIDGET(uiLoader, FileEdit);
 }
 
 void FormManager::loadRecurently(const QString& path, const QString& prefix)

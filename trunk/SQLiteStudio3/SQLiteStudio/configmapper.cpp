@@ -14,18 +14,23 @@
 #include <QCheckBox>
 #include <QGroupBox>
 #include <QDebug>
+#include <common/configradiobutton.h>
+#include <common/fileedit.h>
 
 #define APPLY_CFG(Widget, Value, WidgetType, Method, DataType) \
-    if (qobject_cast<WidgetType*>(Widget))\
+    APPLY_CFG_VARIANT(Widget, Value.value<DataType>(), WidgetType, Method)
+
+#define APPLY_CFG_COND(Widget, Value, WidgetType, Method, DataType, ExtraConditionMethod) \
+    if (qobject_cast<WidgetType*>(Widget) && qobject_cast<WidgetType*>(Widget)->ExtraConditionMethod())\
     {\
         qobject_cast<WidgetType*>(Widget)->Method(Value.value<DataType>());\
         return;\
     }
 
-#define APPLY_CFG2(Widget, Value, WidgetType, Method, DataType, ExtraConditionMethod) \
-    if (qobject_cast<WidgetType*>(Widget) && qobject_cast<WidgetType*>(Widget)->ExtraConditionMethod())\
+#define APPLY_CFG_VARIANT(Widget, Value, WidgetType, Method) \
+    if (qobject_cast<WidgetType*>(Widget))\
     {\
-        qobject_cast<WidgetType*>(Widget)->Method(Value.value<DataType>());\
+        qobject_cast<WidgetType*>(Widget)->Method(Value);\
         return;\
     }
 
@@ -36,7 +41,7 @@
         return;\
     }
 
-#define APPLY_NOTIFIER2(Widget, WidgetType, Notifier, ExtraConditionMethod) \
+#define APPLY_NOTIFIER_COND(Widget, WidgetType, Notifier, ExtraConditionMethod) \
     if (qobject_cast<WidgetType*>(Widget) && qobject_cast<WidgetType*>(Widget)->ExtraConditionMethod())\
     {\
         connect(Widget, Notifier, this, SLOT(handleModified()));\
@@ -50,7 +55,7 @@
         return;\
     }
 
-#define SAVE_CFG2(Widget, Key, WidgetType, Method, ExtraConditionMethod) \
+#define SAVE_CFG_COND(Widget, Key, WidgetType, Method, ExtraConditionMethod) \
     if (qobject_cast<WidgetType*>(Widget) && qobject_cast<WidgetType*>(Widget)->ExtraConditionMethod())\
     {\
         Key->set(qobject_cast<WidgetType*>(Widget)->Method());\
@@ -132,7 +137,10 @@ void ConfigMapper::applyConfigToWidget(QWidget* widget, const QHash<QString, Cfg
     }
 
     if (realTimeUpdates)
-        bindMap.insert(widget, cfgEntry);
+    {
+        widgetToConfigEntry.insert(widget, cfgEntry);
+        configEntryToWidgets.insertMulti(cfgEntry, widget);
+    }
 
     if (!connectCustomNotifierToWidget(widget, cfgEntry))
         connectCommonNotifierToWidget(widget, cfgEntry);
@@ -181,7 +189,9 @@ void ConfigMapper::applyCommonConfigToWidget(QWidget *widget, const QVariant &va
     }
     APPLY_CFG(widget, value, FontEdit, setFont, QFont);
     APPLY_CFG(widget, value, ColorButton, setColor, QColor);
-    APPLY_CFG2(widget, value, QGroupBox, setChecked, bool, isCheckable);
+    APPLY_CFG(widget, value, FileEdit, setFile, QString);
+    APPLY_CFG_VARIANT(widget, value, ConfigRadioButton, alignToValue);
+    APPLY_CFG_COND(widget, value, QGroupBox, setChecked, bool, isCheckable);
 
     qWarning() << "Unhandled config widget type (for APPLY_CFG):" << widget->metaObject()->className()
                << "with value:" << value;
@@ -201,8 +211,10 @@ void ConfigMapper::connectCommonNotifierToWidget(QWidget* widget, CfgEntry* key)
         APPLY_NOTIFIER(widget, QComboBox, SIGNAL(currentTextChanged(QString)));
     }
     APPLY_NOTIFIER(widget, FontEdit, SIGNAL(fontChanged(QFont)));
+    APPLY_NOTIFIER(widget, FileEdit, SIGNAL(fileChanged(QString)));
     APPLY_NOTIFIER(widget, ColorButton, SIGNAL(colorChanged(QColor)));
-    APPLY_NOTIFIER2(widget, QGroupBox, SIGNAL(clicked(bool)), isCheckable);
+    APPLY_NOTIFIER(widget, ConfigRadioButton, SIGNAL(toggledOn(QVariant)));
+    APPLY_NOTIFIER_COND(widget, QGroupBox, SIGNAL(clicked(bool)), isCheckable);
 
     qWarning() << "Unhandled config widget type (for APPLY_NOTIFIER):" << widget->metaObject()->className();
 }
@@ -256,8 +268,10 @@ void ConfigMapper::saveCommonConfigFromWidget(QWidget* widget, CfgEntry* key)
         SAVE_CFG(widget, key, QComboBox, currentText);
     }
     SAVE_CFG(widget, key, FontEdit, getFont);
+    SAVE_CFG(widget, key, FileEdit, getFile);
     SAVE_CFG(widget, key, ColorButton, getColor);
-    SAVE_CFG2(widget, key, QGroupBox, isChecked, isCheckable);
+    SAVE_CFG_COND(widget, key, ConfigRadioButton, getAssignedValue, isChecked);
+    SAVE_CFG_COND(widget, key, QGroupBox, isChecked, isCheckable);
 
     qWarning() << "Unhandled config widget type (for SAVE_CFG):" << widget->metaObject()->className();
 }
@@ -354,10 +368,10 @@ void ConfigMapper::handleModified()
     if (realTimeUpdates && !updatingEntry)
     {
         QWidget* widget = dynamic_cast<QWidget*>(sender());
-        if (widget && bindMap.containsLeft(widget))
+        if (widget && widgetToConfigEntry.contains(widget))
         {
             updatingEntry = true;
-            saveFromWidget(widget, bindMap.valueByLeft(widget));
+            saveFromWidget(widget, widgetToConfigEntry.value(widget));
             updatingEntry = false;
         }
     }
@@ -377,11 +391,13 @@ void ConfigMapper::entryChanged(const QVariant& newValue)
         return;
     }
 
-    if (!bindMap.containsRight(cfgEntry))
+    if (!configEntryToWidgets.contains(cfgEntry))
         return;
 
     updatingEntry = true;
-    applyConfigToWidget(bindMap.valueByRight(cfgEntry), cfgEntry, newValue);
+    for (QWidget* w : configEntryToWidgets.values(cfgEntry))
+        applyConfigToWidget(w, cfgEntry, newValue);
+
     updatingEntry = false;
 }
 
@@ -399,28 +415,29 @@ void ConfigMapper::bindToConfig(QWidget* topLevelWidget)
 
     realTimeUpdates = true;
     loadToWidget(topLevelWidget);
-    for (CfgEntry* cfgEntry : bindMap.rightValues())
+    for (CfgEntry* cfgEntry : configEntryToWidgets.keys())
         connect(cfgEntry, SIGNAL(changed(QVariant)), this, SLOT(entryChanged(QVariant)));
 }
 
 void ConfigMapper::unbindFromConfig()
 {
-    bindMap.clear();
+    configEntryToWidgets.clear();
+    widgetToConfigEntry.clear();
     realTimeUpdates = false;
 }
 
 QWidget* ConfigMapper::getBindWidgetForConfig(CfgEntry* key) const
 {
-    if (bindMap.containsRight(key))
-        return bindMap.valueByRight(key);
+    if (configEntryToWidgets.contains(key))
+        return configEntryToWidgets[key];
 
     return nullptr;
 }
 
 CfgEntry* ConfigMapper::getBindConfigForWidget(QWidget* widget) const
 {
-    if (bindMap.containsLeft(widget))
-        return bindMap.valueByLeft(widget);
+    if (widgetToConfigEntry.contains(widget))
+        return widgetToConfigEntry.value(widget);
 
     return nullptr;
 }

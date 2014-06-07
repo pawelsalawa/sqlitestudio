@@ -70,7 +70,8 @@ class ConfigMapper : public QObject
         QList<CfgMain*> cfgMainList;
         QList<CustomConfigWidgetPlugin*> internalCustomConfigWidgets;
         bool realTimeUpdates = false;
-        BiHash<QWidget*,CfgEntry*> bindMap;
+        QHash<QWidget*,CfgEntry*> widgetToConfigEntry;
+        QHash<CfgEntry*,QWidget*> configEntryToWidgets;
         bool updatingEntry = false;
 
     private slots:

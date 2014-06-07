@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PopulateRandomTextConfig</class>
+ <widget class="QWidget" name="PopulateRandomTextConfig">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>367</width>
+    <height>291</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="0" colspan="2">
+    <widget class="ConfigRadioButton" name="commonSetRadio">
+     <property name="statusTip">
+      <string>PopulateRandomText.UseCustomSets</string>
+     </property>
+     <property name="text">
+      <string>Use characters from common sets:</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+     <property name="assignedValue" stdset="0">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="minLengthGroup">
+     <property name="title">
+      <string>Minimum length</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="QSpinBox" name="minLengthSpin">
+        <property name="statusTip">
+         <string>PopulateRandomText.MinLength</string>
+        </property>
+        <property name="maximum">
+         <number>999999999</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="2">
+    <widget class="QFrame" name="commonSetFrame">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QCheckBox" name="alphaCheck">
+        <property name="toolTip">
+         <string>Letters from a to z.</string>
+        </property>
+        <property name="statusTip">
+         <string>PopulateRandomText.IncludeAlpha</string>
+        </property>
+        <property name="text">
+         <string>Alpha</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="numericCheck">
+        <property name="toolTip">
+         <string>Numbers from 0 to 9.</string>
+        </property>
+        <property name="statusTip">
+         <string>PopulateRandomText.IncludeNumeric</string>
+        </property>
+        <property name="text">
+         <string>Numeric</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="whitespaceCheck">
+        <property name="toolTip">
+         <string>A whitespace, a tab and a new line character.</string>
+        </property>
+        <property name="statusTip">
+         <string>PopulateRandomText.IncludeWhitespace</string>
+        </property>
+        <property name="text">
+         <string>Whitespace</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="binaryCheck">
+        <property name="toolTip">
+         <string>Includes all above and all others.</string>
+        </property>
+        <property name="statusTip">
+         <string>PopulateRandomText.IncludeBinary</string>
+        </property>
+        <property name="text">
+         <string>Binary</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="2">
+    <widget class="ConfigRadioButton" name="customSetRadio">
+     <property name="statusTip">
+      <string>PopulateRandomText.UseCustomSets</string>
+     </property>
+     <property name="text">
+      <string>Use characters from my custom set:</string>
+     </property>
+     <property name="assignedValue" stdset="0">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QGroupBox" name="maxLengthGroup">
+     <property name="title">
+      <string>Maximum length</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_4">
+      <item>
+       <widget class="QSpinBox" name="maxLengthSpin">
+        <property name="statusTip">
+         <string>PopulateRandomText.MaxLength</string>
+        </property>
+        <property name="maximum">
+         <number>999999999</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="2">
+    <widget class="QFrame" name="customSetFrame">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QLineEdit" name="customSetEdit">
+        <property name="toolTip">
+         <string>If you type some character multiple times, it's more likely to be used.</string>
+        </property>
+        <property name="statusTip">
+         <string>PopulateRandomText.CustomCharacters</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ConfigRadioButton</class>
+   <extends>QRadioButton</extends>
+   <header>common/configradiobutton.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

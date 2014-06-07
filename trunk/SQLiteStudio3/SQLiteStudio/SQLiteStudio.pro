@@ -136,7 +136,10 @@ SOURCES += main.cpp\
     dialogs/sortdialog.cpp \
     dialogs/importdialog.cpp \
     dialogs/populatedialog.cpp \
-    dialogs/populateconfigdialog.cpp
+    dialogs/populateconfigdialog.cpp \
+    common/configradiobutton.cpp \
+    uiloader.cpp \
+    common/fileedit.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -258,7 +261,10 @@ HEADERS  += mainwindow.h \
     dialogs/sortdialog.h \
     dialogs/importdialog.h \
     dialogs/populatedialog.h \
-    dialogs/populateconfigdialog.h
+    dialogs/populateconfigdialog.h \
+    common/configradiobutton.h \
+    uiloader.h \
+    common/fileedit.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \

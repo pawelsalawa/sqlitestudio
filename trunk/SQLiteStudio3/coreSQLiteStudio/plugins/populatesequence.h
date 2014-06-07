@@ -24,6 +24,7 @@ class PopulateSequence : public GenericPlugin, public PopulatePlugin
     public:
         PopulateSequence();
 
+        QString getTitle() const;
         PopulateEngine* createEngine();
 };
 

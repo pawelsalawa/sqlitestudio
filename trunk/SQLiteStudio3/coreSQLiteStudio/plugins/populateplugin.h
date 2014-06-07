@@ -42,6 +42,7 @@ class API_EXPORT PopulateEngine
 
         /**
          * @brief Called when the UI expects any configuration options to be re-validated.
+         * @return true if the validation was successful, or false otherwise.
          *
          * When user interacts with the UI in a way that it doesn't change the config values,
          * but it still requires some options to be re-validated, this method is called.
@@ -56,6 +57,10 @@ class API_EXPORT PopulateEngine
          *
          * In this method you can also call POPULATE_MANAGER->configStateUpdateFromPlugin() to adjust options UI
          * to the current config values.
+         *
+         * Apart from calling POPULATE_MANAGER with validation results, it should also return true or false,
+         * according to validation results. The return value is used by the PopulateDialog to tell if the plugin
+         * is currently configured correctly, without going into details, without handling signals from POPULATE_MANAGER.
          */
         virtual bool validateOptions() = 0;
 };

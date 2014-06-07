@@ -29,13 +29,31 @@ int rand(int min, int max)
     return qrand() % (max-min) + min;
 }
 
-const char* alphaNumChars = "abcdefghijklmnopqrstuvwxyz1234567890";
-QString randStr(int length, bool numChars)
+QString randStr(int length, bool numChars, bool whiteSpaces)
 {
-    int range = numChars ? 36 : 26;
+    static const char* alphaNumChars = " abcdefghijklmnopqrstuvwxyz1234567890";
+    int start = 1;
+    int range = start + numChars ? 36 : 26;
+
+    if (whiteSpaces)
+    {
+        start--;
+        range++;
+    }
+
     QString output = "";
     for (int i = 0; i < length; i++)
-        output += alphaNumChars[rand(0, range)];
+        output += alphaNumChars[rand(start, range)];
+
+    return output;
+}
+
+QString randStr(int length, const QString& charCollection)
+{
+    int range = charCollection.size();
+    QString output = "";
+    for (int i = 0; i < length; i++)
+        output += charCollection[rand(0, range)];
 
     return output;
 }
@@ -49,7 +67,7 @@ QString randBinStr(int length)
     return QString::fromLatin1(output, length);
 }
 
-QString randStrNotIn(int length, const QSet<QString> set, bool numChars)
+QString randStrNotIn(int length, const QSet<QString> set, bool numChars, bool whiteSpaces)
 {
     if (length == 0)
         return "";
@@ -57,7 +75,7 @@ QString randStrNotIn(int length, const QSet<QString> set, bool numChars)
     QString outStr;
     do
     {
-        outStr = randStr(length, numChars);
+        outStr = randStr(length, numChars, whiteSpaces);
     }
     while (set.contains(outStr));
 
