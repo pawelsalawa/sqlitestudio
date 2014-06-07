@@ -4,6 +4,10 @@
 #include "services/notifymanager.h"
 #include "populateworker.h"
 #include "plugins/populatesequence.h"
+#include "plugins/populaterandom.h"
+#include "plugins/populaterandomtext.h"
+#include "plugins/populateconstant.h"
+#include "plugins/populatedictionary.h"
 #include <QDebug>
 #include <QThreadPool>
 
@@ -11,6 +15,10 @@ PopulateManager::PopulateManager(QObject *parent) :
     PluginServiceBase(parent)
 {
     PLUGINS->loadBuiltInPlugin(new PopulateSequence());
+    PLUGINS->loadBuiltInPlugin(new PopulateRandom());
+    PLUGINS->loadBuiltInPlugin(new PopulateRandomText());
+    PLUGINS->loadBuiltInPlugin(new PopulateConstant());
+    PLUGINS->loadBuiltInPlugin(new PopulateDictionary());
 }
 
 void PopulateManager::populate(Db* db, const QString& table, const QHash<QString, PopulateEngine*>& engines, qint64 rows)
@@ -29,13 +37,16 @@ void PopulateManager::populate(Db* db, const QString& table, const QHash<QString
         return;
     }
 
+    workInProgress = true;
+
+    columns.clear();
+    engineList.clear();
     for (const QString& column : engines.keys())
     {
         columns << column;
         engineList << engines[column];
     }
 
-    workInProgress = true;
 
     this->db = db;
     this->table = table;

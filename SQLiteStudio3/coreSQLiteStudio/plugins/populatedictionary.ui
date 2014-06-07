@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PopulateDictionaryConfig</class>
+ <widget class="QWidget" name="PopulateDictionaryConfig">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>307</width>
+    <height>255</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QGroupBox" name="fileGroup">
+     <property name="title">
+      <string>Dictionary file</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="FileEdit" name="fileEdit" native="true">
+        <property name="statusTip">
+         <string>PopulateDictionary.File</string>
+        </property>
+        <property name="dialogTitle" stdset="0">
+         <string>Pick dictionary file</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="separatorGroup">
+     <property name="title">
+      <string>Word separator</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="ConfigRadioButton" name="whitespaceRadio">
+        <property name="statusTip">
+         <string>PopulateDictionary.Lines</string>
+        </property>
+        <property name="text">
+         <string>Whitespace</string>
+        </property>
+        <property name="assignedValue" stdset="0">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ConfigRadioButton" name="libeBreakRadio">
+        <property name="statusTip">
+         <string>PopulateDictionary.Lines</string>
+        </property>
+        <property name="text">
+         <string>Line break</string>
+        </property>
+        <property name="assignedValue" stdset="0">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="methodGroup">
+     <property name="title">
+      <string>Method of using words</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="ConfigRadioButton" name="orderedRadio">
+        <property name="statusTip">
+         <string>PopulateDictionary.Random</string>
+        </property>
+        <property name="text">
+         <string>Ordered</string>
+        </property>
+        <property name="assignedValue" stdset="0">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ConfigRadioButton" name="randomlyRadio">
+        <property name="statusTip">
+         <string>PopulateDictionary.Random</string>
+        </property>
+        <property name="text">
+         <string>Randomly</string>
+        </property>
+        <property name="assignedValue" stdset="0">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ConfigRadioButton</class>
+   <extends>QRadioButton</extends>
+   <header>common/configradiobutton.h</header>
+  </customwidget>
+  <customwidget>
+   <class>FileEdit</class>
+   <extends>QWidget</extends>
+   <header>common/fileedit.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

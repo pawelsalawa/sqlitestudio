@@ -5,7 +5,7 @@
 #include <QHash>
 #include <QString>
 
-class QUiLoader;
+class UiLoader;
 
 class FormManager
 {
@@ -19,11 +19,12 @@ class FormManager
 
     private:
         void init();
+        void initUiLoader();
         void loadRecurently(const QString& path, const QString& prefix = "");
         QString getWidgetName(const QString& path);
         QWidget* createWidgetByFullPath(const QString& path);
 
-        QUiLoader* uiLoader = nullptr;
+        UiLoader* uiLoader = nullptr;
         QHash<QString,QString> widgetNameToFullPath;
 };
 

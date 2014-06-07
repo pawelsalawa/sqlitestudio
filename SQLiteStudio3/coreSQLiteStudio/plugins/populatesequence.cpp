@@ -7,6 +7,11 @@ PopulateSequence::PopulateSequence()
 {
 }
 
+QString PopulateSequence::getTitle() const
+{
+    return tr("Sequence");
+}
+
 PopulateEngine* PopulateSequence::createEngine()
 {
     return new PopulateSequenceEngine();

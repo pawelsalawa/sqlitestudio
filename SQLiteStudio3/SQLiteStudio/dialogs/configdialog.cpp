@@ -58,6 +58,7 @@ ConfigDialog::~ConfigDialog()
 
 void ConfigDialog::configureDataEditors(const QString& dataTypeString)
 {
+    ui->categoriesWidget->setVisible(false);
     ui->stackedWidget->setCurrentWidget(ui->dataEditorsPage);
 
     for (int i = 0; i < ui->dataEditorsTypesList->count(); i++)
