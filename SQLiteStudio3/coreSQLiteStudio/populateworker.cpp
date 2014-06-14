@@ -12,8 +12,6 @@ PopulateWorker::PopulateWorker(Db* db, const QString& table, const QStringList& 
 
 PopulateWorker::~PopulateWorker()
 {
-    for (PopulateEngine* engine : engines)
-        delete engine;
 }
 
 void PopulateWorker::run()
@@ -83,7 +81,7 @@ bool PopulateWorker::beforePopulating()
 {
     for (PopulateEngine* engine : engines)
     {
-        if (!engine->beforePopulating())
+        if (!engine->beforePopulating(db, table))
         {
             db->rollback();
             emit finished(false);

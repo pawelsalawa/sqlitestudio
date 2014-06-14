@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PopulateScriptConfig</class>
+ <widget class="QWidget" name="PopulateScriptConfig">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>443</width>
+    <height>362</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="initialSize" stdset="0">
+   <size>
+    <width>440</width>
+    <height>360</height>
+   </size>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QGroupBox" name="langGroup">
+     <property name="title">
+      <string>Language</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="QComboBox" name="langCombo">
+        <property name="statusTip">
+         <string>PopulateScript.Language</string>
+        </property>
+        <property name="ScriptingLangCombo" stdset="0">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="initCodeGroup">
+     <property name="title">
+      <string>Initialization code (optional)</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_4">
+      <item>
+       <widget class="QPlainTextEdit" name="initCodeEdit">
+        <property name="statusTip">
+         <string>PopulateScript.InitCode</string>
+        </property>
+        <property name="scriptingEdit" stdset="0">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="codeGroup">
+     <property name="title">
+      <string>Per step code</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QPlainTextEdit" name="codeEdit">
+        <property name="statusTip">
+         <string>PopulateScript.Code</string>
+        </property>
+        <property name="scriptingEdit" stdset="0">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

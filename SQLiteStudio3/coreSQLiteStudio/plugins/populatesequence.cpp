@@ -1,6 +1,7 @@
 #include "populatesequence.h"
 #include "common/global.h"
 #include "services/populatemanager.h"
+#include "common/unused.h"
 #include <QVariant>
 
 PopulateSequence::PopulateSequence()
@@ -17,8 +18,10 @@ PopulateEngine* PopulateSequence::createEngine()
     return new PopulateSequenceEngine();
 }
 
-bool PopulateSequenceEngine::beforePopulating()
+bool PopulateSequenceEngine::beforePopulating(Db* db, const QString& table)
 {
+    UNUSED(db);
+    UNUSED(table);
     seq = cfg.PopulateSequence.StartValue.get();
     step = cfg.PopulateSequence.Step.get();
     return true;

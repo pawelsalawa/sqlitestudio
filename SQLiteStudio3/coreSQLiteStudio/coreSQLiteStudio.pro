@@ -167,7 +167,8 @@ SOURCES += sqlitestudio.cpp \
     plugins/populaterandom.cpp \
     plugins/populaterandomtext.cpp \
     plugins/populateconstant.cpp \
-    plugins/populatedictionary.cpp
+    plugins/populatedictionary.cpp \
+    plugins/populatescript.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -333,7 +334,8 @@ HEADERS += sqlitestudio.h\
     plugins/populaterandom.h \
     plugins/populaterandomtext.h \
     plugins/populateconstant.h \
-    plugins/populatedictionary.h
+    plugins/populatedictionary.h \
+    plugins/populatescript.h
 
 unix:!symbian {
     maemo5 {
@@ -356,7 +358,8 @@ FORMS += \
     plugins/populaterandom.ui \
     plugins/populaterandomtext.ui \
     plugins/populateconstant.ui \
-    plugins/populatedictionary.ui
+    plugins/populatedictionary.ui \
+    plugins/populatescript.ui
 
 
 for(form, FORMS): copy_file($$form, $$DESTDIR/$$form)

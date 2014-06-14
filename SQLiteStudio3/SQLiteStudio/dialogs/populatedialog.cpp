@@ -90,6 +90,16 @@ void PopulateDialog::deleteEngines(const QList<PopulateEngine*>& engines)
         delete engine;
 }
 
+void PopulateDialog::rebuildEngines()
+{
+    int row = 0;
+    for (const ColumnEntry& entry : columnEntries)
+    {
+        pluginSelected(entry.combo, entry.combo->currentIndex());
+        updateColumnState(row++, false);
+    }
+}
+
 void PopulateDialog::refreshTables()
 {
     db = DBLIST->getByName(ui->databaseCombo->currentText());
@@ -155,12 +165,7 @@ void PopulateDialog::refreshColumns()
         row++;
     }
 
-    row = 0;
-    for (const ColumnEntry& entry : columnEntries)
-    {
-        pluginSelected(entry.combo, entry.combo->currentIndex());
-        updateColumnState(row++, false);
-    }
+    rebuildEngines();
 
     QSpacerItem* spacer = new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::MinimumExpanding);
     ui->columnsLayout->addItem(spacer, row, 0, 1, 3);
@@ -302,7 +307,7 @@ void PopulateDialog::accept()
             return;
 
         engines[entry.check->text()] = entry.engine;
-        entry.engine = nullptr; // to avoid deleting it in the entry's destructor - worker will delete it after it's done
+//        entry.engine = nullptr; // to avoid deleting it in the entry's destructor - worker will delete it after it's done
     }
 
     QString table = ui->tableCombo->currentText();

@@ -35,12 +35,12 @@ int PopulateConfigDialog::exec()
         return QDialog::Rejected;
     }
 
-    QWidget* w = FORMS->createWidget(formName);
-    if (!w)
+    innerWidget = FORMS->createWidget(formName);
+    if (!innerWidget)
         return QDialog::Rejected;
 
-    configMapper->bindToConfig(w);
-    ui->contents->layout()->addWidget(w);
+    configMapper->bindToConfig(innerWidget);
+    ui->contents->layout()->addWidget(innerWidget);
     adjustSize();
     validateEngine();
     return QDialog::exec();
@@ -58,6 +58,7 @@ void PopulateConfigDialog::init()
 
     connect(POPULATE_MANAGER, SIGNAL(validationResultFromPlugin(bool,CfgEntry*,QString)), this, SLOT(validationResultFromPlugin(bool,CfgEntry*,QString)));
     connect(POPULATE_MANAGER, SIGNAL(stateUpdateRequestFromPlugin(CfgEntry*,bool,bool)), this, SLOT(stateUpdateRequestFromPlugin(CfgEntry*,bool,bool)));
+    connect(POPULATE_MANAGER, SIGNAL(widgetPropertyFromPlugin(CfgEntry*,QString,QVariant)), this, SLOT(widgetPropertyFromPlugin(CfgEntry*,QString,QVariant)));
 }
 
 void PopulateConfigDialog::validateEngine()
@@ -91,7 +92,27 @@ void PopulateConfigDialog::stateUpdateRequestFromPlugin(CfgEntry* key, bool visi
     w->setEnabled(enabled);
 }
 
+
+void PopulateConfigDialog::widgetPropertyFromPlugin(CfgEntry* key, const QString& propName, const QVariant& value)
+{
+    QWidget* w = configMapper->getBindWidgetForConfig(key);
+    if (!w)
+        return;
+
+    w->setProperty(propName.toLatin1().constData(), value);
+}
+
 void PopulateConfigDialog::updateState()
 {
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(pluginConfigOk.size() == 0);
+}
+
+
+void PopulateConfigDialog::showEvent(QShowEvent* e)
+{
+    QVariant prop = innerWidget->property("initialSize");
+    if (prop.isValid())
+        resize(prop.toSize() + QSize(0, ui->headerLabel->height() + ui->line->height()));
+
+    QDialog::showEvent(e);
 }

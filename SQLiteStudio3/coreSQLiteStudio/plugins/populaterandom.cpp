@@ -1,5 +1,6 @@
 #include "populaterandom.h"
 #include "services/populatemanager.h"
+#include "common/unused.h"
 #include <QDateTime>
 
 PopulateRandom::PopulateRandom()
@@ -16,8 +17,10 @@ PopulateEngine* PopulateRandom::createEngine()
     return new PopulateRandomEngine();
 }
 
-bool PopulateRandomEngine::beforePopulating()
+bool PopulateRandomEngine::beforePopulating(Db* db, const QString& table)
 {
+    UNUSED(db);
+    UNUSED(table);
     qsrand(QDateTime::currentDateTime().toTime_t());
     range = cfg.PopulateRandom.MaxValue.get() - cfg.PopulateRandom.MinValue.get() + 1;
     return (range > 0);

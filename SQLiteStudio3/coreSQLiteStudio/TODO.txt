@@ -1,4 +1,5 @@
 * populating tables
+* migrate all statusTip props to dynamic property
 * db version converting
 * context menu for taskbar
 * option to view full db path in window title

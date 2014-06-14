@@ -10,6 +10,11 @@ void PluginServiceBase::handleValidationFromPlugin(bool configValid, CfgEntry* k
     emit validationResultFromPlugin(configValid, key, errorMessage);
 }
 
+void PluginServiceBase::propertySetFromPlugin(CfgEntry* key, const QString& propertyName, const QVariant& value)
+{
+    emit widgetPropertyFromPlugin(key, propertyName, value);
+}
+
 void PluginServiceBase::updateVisibilityAndEnabled(CfgEntry* key, bool visible, bool enabled)
 {
     emit stateUpdateRequestFromPlugin(key, visible, enabled);

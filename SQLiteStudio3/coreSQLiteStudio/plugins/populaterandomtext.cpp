@@ -1,5 +1,6 @@
 #include "populaterandomtext.h"
 #include "common/utils.h"
+#include "common/unused.h"
 #include "services/populatemanager.h"
 
 PopulateRandomText::PopulateRandomText()
@@ -16,8 +17,10 @@ PopulateEngine* PopulateRandomText::createEngine()
     return new PopulateRandomTextEngine();
 }
 
-bool PopulateRandomTextEngine::beforePopulating()
+bool PopulateRandomTextEngine::beforePopulating(Db* db, const QString& table)
 {
+    UNUSED(db);
+    UNUSED(table);
     qsrand(QDateTime::currentDateTime().toTime_t());
     range = cfg.PopulateRandomText.MaxLength.get() - cfg.PopulateRandomText.MinLength.get() + 1;
 

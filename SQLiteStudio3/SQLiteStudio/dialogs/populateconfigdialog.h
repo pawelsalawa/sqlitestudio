@@ -21,6 +21,9 @@ class PopulateConfigDialog : public QDialog
 
         int exec();
 
+    protected:
+        void showEvent(QShowEvent* e);
+
     private:
         void init();
 
@@ -30,11 +33,13 @@ class PopulateConfigDialog : public QDialog
         QHash<CfgEntry*,bool> pluginConfigOk;
         QString column;
         QString pluginName;
+        QWidget* innerWidget = nullptr;
 
     private slots:
         void validateEngine();
         void validationResultFromPlugin(bool valid, CfgEntry* key, const QString& msg);
         void stateUpdateRequestFromPlugin(CfgEntry* key, bool visible, bool enabled);
+        void widgetPropertyFromPlugin(CfgEntry* key, const QString& propName, const QVariant& value);
         void updateState();
 };
 

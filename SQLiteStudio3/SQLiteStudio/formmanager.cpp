@@ -48,21 +48,13 @@ QStringList FormManager::getAvailableForms() const
 
 QWidget* FormManager::createWidgetByFullPath(const QString& path)
 {
-    QFile file(path);
-    if (!file.open(QIODevice::ReadOnly))
-    {
-        qCritical() << "FormManager was unable to open ui file:" << path;
-        return nullptr;
-    }
-
-    QWidget* widget = uiLoader->load(&file);
+    QWidget* widget = uiLoader->load(path);
     if (!widget)
     {
         qCritical() << "Error occured while loading ui file:" << path << ". Error message: "
                     << uiLoader->errorString();
         return nullptr;
     }
-
     return widget;
 }
 

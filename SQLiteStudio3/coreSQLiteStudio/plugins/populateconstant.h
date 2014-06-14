@@ -30,7 +30,7 @@ class PopulateConstant : public GenericPlugin, public PopulatePlugin
 class PopulateConstantEngine : public PopulateEngine
 {
     public:
-        bool beforePopulating();
+        bool beforePopulating(Db* db, const QString& table);
         QVariant nextValue();
         void afterPopulating();
         CfgMain* getConfig();

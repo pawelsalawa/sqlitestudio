@@ -25,7 +25,7 @@ class FileEdit : public QWidget
 
     private:
         QString file;
-        bool save;
+        bool save = false;
         QString dialogTitle;
         QString filters;
         QLineEdit* lineEdit = nullptr;

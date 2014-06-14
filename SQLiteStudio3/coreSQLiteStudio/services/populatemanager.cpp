@@ -8,6 +8,7 @@
 #include "plugins/populaterandomtext.h"
 #include "plugins/populateconstant.h"
 #include "plugins/populatedictionary.h"
+#include "plugins/populatescript.h"
 #include <QDebug>
 #include <QThreadPool>
 
@@ -19,6 +20,7 @@ PopulateManager::PopulateManager(QObject *parent) :
     PLUGINS->loadBuiltInPlugin(new PopulateRandomText());
     PLUGINS->loadBuiltInPlugin(new PopulateConstant());
     PLUGINS->loadBuiltInPlugin(new PopulateDictionary());
+    PLUGINS->loadBuiltInPlugin(new PopulateScript());
 }
 
 void PopulateManager::populate(Db* db, const QString& table, const QHash<QString, PopulateEngine*>& engines, qint64 rows)

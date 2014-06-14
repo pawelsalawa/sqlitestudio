@@ -1,6 +1,7 @@
 #include "populatedictionary.h"
 #include "services/populatemanager.h"
 #include "services/notifymanager.h"
+#include "common/unused.h"
 #include <QFileInfo>
 #include <QFile>
 #include <QTextStream>
@@ -19,40 +20,57 @@ PopulateEngine*PopulateDictionary::createEngine()
     return new PopulateDictionaryEngine();
 }
 
-bool PopulateDictionaryEngine::beforePopulating()
+bool PopulateDictionaryEngine::beforePopulating(Db* db, const QString& table)
 {
-    file = new QFile(cfg.PopulateDictionary.File.get());
-    if (!file->open(QIODevice::ReadOnly))
+    UNUSED(db);
+    UNUSED(table);
+    QFile file(cfg.PopulateDictionary.File.get());
+    if (!file.open(QIODevice::ReadOnly))
     {
         notifyError(QObject::tr("Could not open dictionary file %1 for reading.").arg(cfg.PopulateDictionary.File.get()));
         return false;
     }
+    QTextStream stream(&file);
+    QString dataStr = stream.readAll();
+    file.close();
 
-    stream = new QTextStream(file);
+    if (cfg.PopulateDictionary.Lines.get())
+        dictionary = dataStr.split("\n");
+    else
+        dictionary = dataStr.split(QRegExp("\\s+"));
+
+    if (dictionary.size() == 0)
+        dictionary << QString();
+
+    dictionaryPos = 0;
+    dictionarySize = dictionary.size();
+    if (cfg.PopulateDictionary.Random.get())
+        qsrand(QDateTime::currentDateTime().toTime_t());
+
     return true;
 }
 
 QVariant PopulateDictionaryEngine::nextValue()
 {
-    if (stream->atEnd())
-        stream->seek(0);
-
-    if (cfg.PopulateDictionary.Lines.get())
+    if (cfg.PopulateDictionary.Random.get())
     {
-        return stream->readLine();
+        int r = qrand() % dictionarySize;
+        return dictionary[r];
     }
     else
     {
-        QString word;
-        *stream >> word;
-        return word;
+        if (dictionaryPos >= dictionarySize)
+            dictionaryPos = 0;
+
+        return dictionary[dictionaryPos++];
     }
 }
 
 void PopulateDictionaryEngine::afterPopulating()
 {
-    delete stream;
-    delete file;
+    dictionary.clear();
+    dictionarySize = 0;
+    dictionaryPos = 0;
 }
 
 CfgMain* PopulateDictionaryEngine::getConfig()

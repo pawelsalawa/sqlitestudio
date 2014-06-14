@@ -33,7 +33,7 @@ class PopulateRandom : public GenericPlugin, public PopulatePlugin
 class PopulateRandomEngine : public PopulateEngine
 {
     public:
-        bool beforePopulating();
+        bool beforePopulating(Db* db, const QString& table);
         QVariant nextValue();
         void afterPopulating();
         CfgMain* getConfig();

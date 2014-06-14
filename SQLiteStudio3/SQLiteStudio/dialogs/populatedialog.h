@@ -43,6 +43,7 @@ class PopulateDialog : public QDialog
         void init();
         PopulateEngine* getEngine(int selectedPluginIndex);
         void deleteEngines(const QList<PopulateEngine*>& engines);
+        void rebuildEngines();
 
         Ui::PopulateDialog *ui;
         QGridLayout* columnsGrid = nullptr;
