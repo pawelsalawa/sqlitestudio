@@ -6,6 +6,7 @@
 
 class CfgMain;
 class PopulateEngine;
+class Db;
 
 class API_EXPORT PopulatePlugin : virtual public Plugin
 {
@@ -18,7 +19,7 @@ class API_EXPORT PopulateEngine
     public:
         virtual ~PopulateEngine() {}
 
-        virtual bool beforePopulating() = 0;
+        virtual bool beforePopulating(Db* db, const QString& table) = 0;
         virtual QVariant nextValue() = 0;
         virtual void afterPopulating() = 0;
 

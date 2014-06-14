@@ -72,6 +72,91 @@ ConfigMapper::ConfigMapper(const QList<CfgMain*> cfgMain) :
 {
 }
 
+
+void ConfigMapper::applyCommonConfigToWidget(QWidget *widget, const QVariant &value, CfgEntry* cfgEntry)
+{
+    APPLY_CFG(widget, value, QCheckBox, setChecked, bool);
+    APPLY_CFG(widget, value, QLineEdit, setText, QString);
+    APPLY_CFG(widget, value, QTextEdit, setPlainText, QString);
+    APPLY_CFG(widget, value, QPlainTextEdit, setPlainText, QString);
+    APPLY_CFG(widget, value, QSpinBox, setValue, int);
+    APPLY_CFG(widget, value, FontEdit, setFont, QFont);
+    APPLY_CFG(widget, value, ColorButton, setColor, QColor);
+    APPLY_CFG(widget, value, FileEdit, setFile, QString);
+    APPLY_CFG_VARIANT(widget, value, ConfigRadioButton, alignToValue);
+    APPLY_CFG_COND(widget, value, QGroupBox, setChecked, bool, isCheckable);
+
+    // ComboBox needs special treatment, cause setting its value might not be successful (value not in valid values)
+    QComboBox* cb = dynamic_cast<QComboBox*>(widget);
+    if (cb)
+    {
+        if (cfgEntry->get().type() == QVariant::Int)
+        {
+            cb->setCurrentIndex(value.toInt());
+            if (cb->currentIndex() != value.toInt())
+                cfgEntry->set(cb->currentIndex());
+        }
+        else
+        {
+            cb->setCurrentText(value.toString());
+            if (cb->currentText() != value.toString())
+                cfgEntry->set(cb->currentText());
+        }
+        return;
+    }
+
+    qWarning() << "Unhandled config widget type (for APPLY_CFG):" << widget->metaObject()->className()
+               << "with value:" << value;
+}
+
+void ConfigMapper::connectCommonNotifierToWidget(QWidget* widget, CfgEntry* key)
+{
+    APPLY_NOTIFIER(widget, QCheckBox, SIGNAL(stateChanged(int)));
+    APPLY_NOTIFIER(widget, QLineEdit, SIGNAL(textChanged(QString)));
+    APPLY_NOTIFIER(widget, QTextEdit, SIGNAL(textChanged()));
+    APPLY_NOTIFIER(widget, QPlainTextEdit, SIGNAL(textChanged()));
+    APPLY_NOTIFIER(widget, QSpinBox, SIGNAL(valueChanged(QString)));
+    APPLY_NOTIFIER(widget, FontEdit, SIGNAL(fontChanged(QFont)));
+    APPLY_NOTIFIER(widget, FileEdit, SIGNAL(fileChanged(QString)));
+    APPLY_NOTIFIER(widget, ColorButton, SIGNAL(colorChanged(QColor)));
+    APPLY_NOTIFIER(widget, ConfigRadioButton, SIGNAL(toggledOn(QVariant)));
+    APPLY_NOTIFIER_COND(widget, QGroupBox, SIGNAL(clicked(bool)), isCheckable);
+    if (key->get().type() == QVariant::Int)
+    {
+        APPLY_NOTIFIER(widget, QComboBox, SIGNAL(currentIndexChanged(int)));
+    }
+    else
+    {
+        APPLY_NOTIFIER(widget, QComboBox, SIGNAL(currentTextChanged(QString)));
+    }
+
+    qWarning() << "Unhandled config widget type (for APPLY_NOTIFIER):" << widget->metaObject()->className();
+}
+
+void ConfigMapper::saveCommonConfigFromWidget(QWidget* widget, CfgEntry* key)
+{
+    SAVE_CFG(widget, key, QCheckBox, isChecked);
+    SAVE_CFG(widget, key, QLineEdit, text);
+    SAVE_CFG(widget, key, QTextEdit, toPlainText);
+    SAVE_CFG(widget, key, QPlainTextEdit, toPlainText);
+    SAVE_CFG(widget, key, QSpinBox, value);
+    SAVE_CFG(widget, key, FontEdit, getFont);
+    SAVE_CFG(widget, key, FileEdit, getFile);
+    SAVE_CFG(widget, key, ColorButton, getColor);
+    SAVE_CFG_COND(widget, key, ConfigRadioButton, getAssignedValue, isChecked);
+    SAVE_CFG_COND(widget, key, QGroupBox, isChecked, isCheckable);
+    if (key->get().type() == QVariant::Int)
+    {
+        SAVE_CFG(widget, key, QComboBox, currentIndex);
+    }
+    else
+    {
+        SAVE_CFG(widget, key, QComboBox, currentText);
+    }
+
+    qWarning() << "Unhandled config widget type (for SAVE_CFG):" << widget->metaObject()->className();
+}
+
 void ConfigMapper::loadToWidget(QWidget *topLevelWidget)
 {
     QHash<QString, CfgEntry *> allConfigEntries = getAllConfigEntries();
@@ -174,51 +259,6 @@ bool ConfigMapper::applyCustomConfigToWidget(CfgEntry* key, QWidget* widget, con
     return false;
 }
 
-void ConfigMapper::applyCommonConfigToWidget(QWidget *widget, const QVariant &value, CfgEntry* cfgEntry)
-{
-    APPLY_CFG(widget, value, QCheckBox, setChecked, bool);
-    APPLY_CFG(widget, value, QLineEdit, setText, QString);
-    APPLY_CFG(widget, value, QSpinBox, setValue, int);
-    if (cfgEntry->get().type() == QVariant::Int)
-    {
-        APPLY_CFG(widget, value, QComboBox, setCurrentIndex, int);
-    }
-    else
-    {
-        APPLY_CFG(widget, value, QComboBox, setCurrentText, QString);
-    }
-    APPLY_CFG(widget, value, FontEdit, setFont, QFont);
-    APPLY_CFG(widget, value, ColorButton, setColor, QColor);
-    APPLY_CFG(widget, value, FileEdit, setFile, QString);
-    APPLY_CFG_VARIANT(widget, value, ConfigRadioButton, alignToValue);
-    APPLY_CFG_COND(widget, value, QGroupBox, setChecked, bool, isCheckable);
-
-    qWarning() << "Unhandled config widget type (for APPLY_CFG):" << widget->metaObject()->className()
-               << "with value:" << value;
-}
-
-void ConfigMapper::connectCommonNotifierToWidget(QWidget* widget, CfgEntry* key)
-{
-    APPLY_NOTIFIER(widget, QCheckBox, SIGNAL(stateChanged(int)));
-    APPLY_NOTIFIER(widget, QLineEdit, SIGNAL(textChanged(QString)));
-    APPLY_NOTIFIER(widget, QSpinBox, SIGNAL(valueChanged(QString)));
-    if (key->get().type() == QVariant::Int)
-    {
-        APPLY_NOTIFIER(widget, QComboBox, SIGNAL(currentIndexChanged(int)));
-    }
-    else
-    {
-        APPLY_NOTIFIER(widget, QComboBox, SIGNAL(currentTextChanged(QString)));
-    }
-    APPLY_NOTIFIER(widget, FontEdit, SIGNAL(fontChanged(QFont)));
-    APPLY_NOTIFIER(widget, FileEdit, SIGNAL(fileChanged(QString)));
-    APPLY_NOTIFIER(widget, ColorButton, SIGNAL(colorChanged(QColor)));
-    APPLY_NOTIFIER(widget, ConfigRadioButton, SIGNAL(toggledOn(QVariant)));
-    APPLY_NOTIFIER_COND(widget, QGroupBox, SIGNAL(clicked(bool)), isCheckable);
-
-    qWarning() << "Unhandled config widget type (for APPLY_NOTIFIER):" << widget->metaObject()->className();
-}
-
 bool ConfigMapper::connectCustomNotifierToWidget(QWidget* widget, CfgEntry* cfgEntry)
 {
     CustomConfigWidgetPlugin* handler;
@@ -254,27 +294,6 @@ void ConfigMapper::saveFromWidget(QWidget* widget, CfgEntry* cfgEntry)
     saveCommonConfigFromWidget(widget, cfgEntry);
 }
 
-void ConfigMapper::saveCommonConfigFromWidget(QWidget* widget, CfgEntry* key)
-{
-    SAVE_CFG(widget, key, QCheckBox, isChecked);
-    SAVE_CFG(widget, key, QLineEdit, text);
-    SAVE_CFG(widget, key, QSpinBox, value);
-    if (key->get().type() == QVariant::Int)
-    {
-        SAVE_CFG(widget, key, QComboBox, currentIndex);
-    }
-    else
-    {
-        SAVE_CFG(widget, key, QComboBox, currentText);
-    }
-    SAVE_CFG(widget, key, FontEdit, getFont);
-    SAVE_CFG(widget, key, FileEdit, getFile);
-    SAVE_CFG(widget, key, ColorButton, getColor);
-    SAVE_CFG_COND(widget, key, ConfigRadioButton, getAssignedValue, isChecked);
-    SAVE_CFG_COND(widget, key, QGroupBox, isChecked, isCheckable);
-
-    qWarning() << "Unhandled config widget type (for SAVE_CFG):" << widget->metaObject()->className();
-}
 
 bool ConfigMapper::saveCustomConfigFromWidget(QWidget* widget, CfgEntry* key)
 {

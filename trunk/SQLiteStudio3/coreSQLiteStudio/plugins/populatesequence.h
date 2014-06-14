@@ -31,7 +31,7 @@ class PopulateSequence : public GenericPlugin, public PopulatePlugin
 class PopulateSequenceEngine : public PopulateEngine
 {
     public:
-        bool beforePopulating();
+        bool beforePopulating(Db* db, const QString& table);
         QVariant nextValue();
         void afterPopulating();
         CfgMain* getConfig();

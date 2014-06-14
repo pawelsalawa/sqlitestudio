@@ -341,6 +341,27 @@ class API_EXPORT PluginManager : public QObject
             return typedPlugins;
         }
 
+        /**
+         * @brief Provide list of plugin names of given type.
+         * @tparam T Interface class of plugins, that we want to get names for.
+         *
+         * This method version gets plugin interface type as template parameter,
+         * so it returns list of names of loaded plugins.
+         */
+        template <class T>
+        QStringList getLoadedPluginNames() const
+        {
+            QStringList names;
+            PluginType* type = getPluginType<T>();
+            if (!type)
+                return names;
+
+            foreach (Plugin* plugin, getLoadedPlugins(type))
+                names << plugin->getName();
+
+            return names;
+        }
+
     protected:
         /**
          * @brief Adds given type to registered plugins list.

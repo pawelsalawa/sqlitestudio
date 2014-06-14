@@ -35,7 +35,7 @@ class PopulateDictionary : public GenericPlugin, public PopulatePlugin
 class PopulateDictionaryEngine : public PopulateEngine
 {
     public:
-        bool beforePopulating();
+        bool beforePopulating(Db* db, const QString& table);
         QVariant nextValue();
         void afterPopulating();
         CfgMain* getConfig();
@@ -44,8 +44,9 @@ class PopulateDictionaryEngine : public PopulateEngine
 
     private:
         CFG_LOCAL(PopulateDictionaryConfig, cfg)
-        QFile* file;
-        QTextStream* stream;
+        QStringList dictionary;
+        int dictionarySize = 0;
+        int dictionaryPos = 0;
 };
 
 #endif // POPULATEDICTIONARY_H

@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui uitools widgets
+QT       += core gui uitools widgets xml
 
 include($$PWD/../dirs.pri)
 include($$PWD/../utils.pri)
@@ -139,7 +139,9 @@ SOURCES += main.cpp\
     dialogs/populateconfigdialog.cpp \
     common/configradiobutton.cpp \
     uiloader.cpp \
-    common/fileedit.cpp
+    common/fileedit.cpp \
+    uiscriptingcombo.cpp \
+    uiscriptingedit.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -264,7 +266,10 @@ HEADERS  += mainwindow.h \
     dialogs/populateconfigdialog.h \
     common/configradiobutton.h \
     uiloader.h \
-    common/fileedit.h
+    common/fileedit.h \
+    uiscriptingcombo.h \
+    uiloaderpropertyhandler.h \
+    uiscriptingedit.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \

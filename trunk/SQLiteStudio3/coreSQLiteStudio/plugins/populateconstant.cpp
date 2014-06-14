@@ -1,4 +1,5 @@
 #include "populateconstant.h"
+#include "common/unused.h"
 
 PopulateConstant::PopulateConstant()
 {
@@ -14,8 +15,10 @@ PopulateEngine*PopulateConstant::createEngine()
     return new PopulateConstantEngine();
 }
 
-bool PopulateConstantEngine::beforePopulating()
+bool PopulateConstantEngine::beforePopulating(Db* db, const QString& table)
 {
+    UNUSED(db);
+    UNUSED(table);
     return true;
 }
 
