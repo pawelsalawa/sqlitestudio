@@ -20,6 +20,14 @@ class WidgetStateIndicator : public QObject
             HINT
         };
 
+        enum class PositionMode
+        {
+            DEFAULT,
+            GROUP_BOX,
+            LABEL,
+            CHECK_BOX,
+        };
+
         ~WidgetStateIndicator();
 
         void setMode(Mode mode);
@@ -35,6 +43,9 @@ class WidgetStateIndicator : public QObject
         static bool exists(QWidget* widget);
         static WidgetStateIndicator* getInstance(QWidget* widget);
 
+        PositionMode getPositionMode() const;
+        void setPositionMode(const PositionMode& value);
+
     protected:
         bool eventFilter(QObject *obj, QEvent *ev);
 
@@ -46,6 +57,7 @@ class WidgetStateIndicator : public QObject
         void initGlowEffects();
         void initHighlightingEffects();
         void initAnimations();
+        void initPositionMode();
         void finalInit();
         void setMessage(const QString& msg);
         void clearMessage();
@@ -65,12 +77,17 @@ class WidgetStateIndicator : public QObject
         bool widgetVisible = false;
         bool visibilityRequested = false;
         QWidget* windowParent = nullptr;
+        PositionMode positionMode = PositionMode::DEFAULT;
 
         static QHash<QWidget*,WidgetStateIndicator*> instances;
 
     private slots:
         void updateMode();
         void updatePosition();
+        void updatePositionDefault();
+        void updatePositionGroupBox();
+        void updatePositionLabel();
+        void updatePositionCheckBox();
         void updateVisibility();
 
 };
