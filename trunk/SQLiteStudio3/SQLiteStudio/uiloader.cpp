@@ -3,6 +3,8 @@
 #include "uiloaderpropertyhandler.h"
 #include "uiscriptingcombo.h"
 #include "uiscriptingedit.h"
+#include "uicustomicon.h"
+#include "uiurlbutton.h"
 #include <QComboBox>
 #include <QDebug>
 #include <QMetaProperty>
@@ -13,6 +15,8 @@ UiLoader::UiLoader(QObject *parent) :
 {
     registerPropertyHandler(new UiScriptingCombo());
     registerPropertyHandler(new UiScriptingEdit());
+    registerPropertyHandler(new UiCustomIcon());
+    registerPropertyHandler(new UiUrlButton());
 }
 
 QWidget* UiLoader::createWidget(const QString& className, QWidget* parent, const QString& name)
