@@ -225,6 +225,7 @@ class IconManager
         QStringList movieFileExtensions;
 };
 
-#define ICONS IconManager::getInstance()->iconEnums
+#define ICONMANAGER IconManager::getInstance()
+#define ICONS ICONMANAGER->iconEnums
 
 #endif // ICONMANAGER_H

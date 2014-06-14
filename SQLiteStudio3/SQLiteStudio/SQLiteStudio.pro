@@ -141,7 +141,9 @@ SOURCES += main.cpp\
     uiloader.cpp \
     common/fileedit.cpp \
     uiscriptingcombo.cpp \
-    uiscriptingedit.cpp
+    uiscriptingedit.cpp \
+    uicustomicon.cpp \
+    uiurlbutton.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -269,7 +271,9 @@ HEADERS  += mainwindow.h \
     common/fileedit.h \
     uiscriptingcombo.h \
     uiloaderpropertyhandler.h \
-    uiscriptingedit.h
+    uiscriptingedit.h \
+    uicustomicon.h \
+    uiurlbutton.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \
