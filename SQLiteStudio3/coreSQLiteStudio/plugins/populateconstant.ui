@@ -22,7 +22,7 @@
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <widget class="QLineEdit" name="valueEdit">
-        <property name="statusTip">
+        <property name="cfg" stdset="0">
          <string>PopulateConstant.Value</string>
         </property>
        </widget>

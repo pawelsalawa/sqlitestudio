@@ -16,7 +16,7 @@
   <layout class="QGridLayout" name="gridLayout">
    <item row="1" column="0" colspan="2">
     <widget class="ConfigRadioButton" name="commonSetRadio">
-     <property name="statusTip">
+     <property name="cfg" stdset="0">
       <string>PopulateRandomText.UseCustomSets</string>
      </property>
      <property name="text">
@@ -38,7 +38,7 @@
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
        <widget class="QSpinBox" name="minLengthSpin">
-        <property name="statusTip">
+        <property name="cfg" stdset="0">
          <string>PopulateRandomText.MinLength</string>
         </property>
         <property name="maximum">
@@ -63,7 +63,7 @@
         <property name="toolTip">
          <string>Letters from a to z.</string>
         </property>
-        <property name="statusTip">
+        <property name="cfg" stdset="0">
          <string>PopulateRandomText.IncludeAlpha</string>
         </property>
         <property name="text">
@@ -76,7 +76,7 @@
         <property name="toolTip">
          <string>Numbers from 0 to 9.</string>
         </property>
-        <property name="statusTip">
+        <property name="cfg" stdset="0">
          <string>PopulateRandomText.IncludeNumeric</string>
         </property>
         <property name="text">
@@ -89,7 +89,7 @@
         <property name="toolTip">
          <string>A whitespace, a tab and a new line character.</string>
         </property>
-        <property name="statusTip">
+        <property name="cfg" stdset="0">
          <string>PopulateRandomText.IncludeWhitespace</string>
         </property>
         <property name="text">
@@ -102,7 +102,7 @@
         <property name="toolTip">
          <string>Includes all above and all others.</string>
         </property>
-        <property name="statusTip">
+        <property name="cfg" stdset="0">
          <string>PopulateRandomText.IncludeBinary</string>
         </property>
         <property name="text">
@@ -115,7 +115,7 @@
    </item>
    <item row="3" column="0" colspan="2">
     <widget class="ConfigRadioButton" name="customSetRadio">
-     <property name="statusTip">
+     <property name="cfg" stdset="0">
       <string>PopulateRandomText.UseCustomSets</string>
      </property>
      <property name="text">
@@ -134,7 +134,7 @@
      <layout class="QVBoxLayout" name="verticalLayout_4">
       <item>
        <widget class="QSpinBox" name="maxLengthSpin">
-        <property name="statusTip">
+        <property name="cfg" stdset="0">
          <string>PopulateRandomText.MaxLength</string>
         </property>
         <property name="maximum">
@@ -159,7 +159,7 @@
         <property name="toolTip">
          <string>If you type some character multiple times, it's more likely to be used.</string>
         </property>
-        <property name="statusTip">
+        <property name="cfg" stdset="0">
          <string>PopulateRandomText.CustomCharacters</string>
         </property>
        </widget>

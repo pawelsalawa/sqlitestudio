@@ -208,7 +208,7 @@
                   <height>16777215</height>
                  </size>
                 </property>
-                <property name="statusTip">
+                <property name="cfg" stdset="0">
                  <string>General.NumberOfRowsPerPage</string>
                 </property>
                 <property name="minimum">
@@ -260,7 +260,7 @@
                </item>
                <item>
                 <widget class="QListWidget" name="dataEditorsTypesList">
-                 <property name="statusTip">
+                 <property name="cfg" stdset="0">
                   <string>General.DataEditorsOrder</string>
                  </property>
                 </widget>
@@ -356,7 +356,7 @@
                 <property name="toolTip">
                  <string>Number of DDL changes kept in history.</string>
                 </property>
-                <property name="statusTip">
+                <property name="cfg" stdset="0">
                  <string>General.DdlHistorySize</string>
                 </property>
                 <property name="maximum">
@@ -373,7 +373,7 @@
               </item>
               <item row="0" column="0" colspan="2">
                <widget class="QCheckBox" name="dontShowDdlPreview">
-                <property name="statusTip">
+                <property name="cfg" stdset="0">
                  <string>General.DontShowDdlPreview</string>
                 </property>
                 <property name="text">
@@ -401,7 +401,7 @@
                 <property name="toolTip">
                  <string>Number of queries kept in the history.</string>
                 </property>
-                <property name="statusTip">
+                <property name="cfg" stdset="0">
                  <string>General.SqlHistorySize</string>
                 </property>
                 <property name="maximum">
@@ -424,7 +424,7 @@
                 <property name="toolTip">
                  <string>If there is more than one query in the SQL editor window, then (if this option is enabled) only a single query will be executed - the one under the keyboard insertion cursor. Otherwise all queries will be executed. You can always limit queries to be executed by selecting those queries before calling to execute.</string>
                 </property>
-                <property name="statusTip">
+                <property name="cfg" stdset="0">
                  <string>General.ExecuteCurrentQueryOnly</string>
                 </property>
                 <property name="text">
@@ -475,7 +475,7 @@
                 <property name="toolTip">
                  <string>If switched off, then columns will be sorted in the order they are typed in CREATE TABLE statement.</string>
                 </property>
-                <property name="statusTip">
+                <property name="cfg" stdset="0">
                  <string>General.SortColumns</string>
                 </property>
                 <property name="text">
@@ -485,7 +485,7 @@
               </item>
               <item row="0" column="0">
                <widget class="QCheckBox" name="expandTablesCheck">
-                <property name="statusTip">
+                <property name="cfg" stdset="0">
                  <string>General.ExpandTables</string>
                 </property>
                 <property name="text">
@@ -498,7 +498,7 @@
                 <property name="toolTip">
                  <string>&lt;p&gt;Additional labels are those displayed next to the names on the databases list (they are blue, unless configured otherwise). Enabling this option will result in labels for databases, invalid databases and aggregated nodes (column group, index group, trigger group). For more labels see options below.&lt;p&gt;</string>
                 </property>
-                <property name="statusTip">
+                <property name="cfg" stdset="0">
                  <string>General.ShowDbTreeLabels</string>
                 </property>
                 <property name="title">
@@ -516,7 +516,7 @@
                    <property name="toolTip">
                     <string>For regular tables labels will show number of columns, indexes and triggers for each of tables.</string>
                    </property>
-                   <property name="statusTip">
+                   <property name="cfg" stdset="0">
                     <string>General.ShowRegularTableLabels</string>
                    </property>
                    <property name="text">
@@ -529,7 +529,7 @@
                    <property name="toolTip">
                     <string>Virtual tables will be marked with a 'virtual' label.</string>
                    </property>
-                   <property name="statusTip">
+                   <property name="cfg" stdset="0">
                     <string>General.ShowVirtualTableLabels</string>
                    </property>
                    <property name="text">
@@ -542,7 +542,7 @@
               </item>
               <item row="1" column="0">
                <widget class="QCheckBox" name="expandViewsCheck">
-                <property name="statusTip">
+                <property name="cfg" stdset="0">
                  <string>General.ExpandViews</string>
                 </property>
                 <property name="text">
@@ -555,7 +555,7 @@
                 <property name="toolTip">
                  <string>If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</string>
                 </property>
-                <property name="statusTip">
+                <property name="cfg" stdset="0">
                  <string>General.SortObjects</string>
                 </property>
                 <property name="text">
@@ -565,7 +565,7 @@
               </item>
               <item row="4" column="0">
                <widget class="QCheckBox" name="dispSysTableCheck">
-                <property name="statusTip">
+                <property name="cfg" stdset="0">
                  <string>General.ShowSystemObjects</string>
                 </property>
                 <property name="text">
@@ -587,7 +587,7 @@
                 <property name="toolTip">
                  <string>When enabled, Table Windows will show up with the data tab, instead of the structure tab.</string>
                 </property>
-                <property name="statusTip">
+                <property name="cfg" stdset="0">
                  <string>General.OpenTablesOnData</string>
                 </property>
                 <property name="text">
@@ -609,7 +609,7 @@
                 <property name="toolTip">
                  <string>When enabled, View Windows will show up with the data tab, instead of the structure tab.</string>
                 </property>
-                <property name="statusTip">
+                <property name="cfg" stdset="0">
                  <string>General.OpenViewsOnData</string>
                 </property>
                 <property name="text">
@@ -744,7 +744,7 @@
               </item>
               <item>
                <widget class="QComboBox" name="activeStyleCombo">
-                <property name="statusTip">
+                <property name="cfg" stdset="0">
                  <string>General.Style</string>
                 </property>
                </widget>
@@ -956,7 +956,7 @@ p, li { white-space: pre-wrap; }
              <layout class="QGridLayout" name="gridLayout_11">
               <item row="0" column="0">
                <widget class="QComboBox" name="activeFormatterCombo">
-                <property name="statusTip">
+                <property name="cfg" stdset="0">
                  <string>General.ActiveSqlFormatter</string>
                 </property>
                </widget>
@@ -1017,7 +1017,7 @@ p, li { white-space: pre-wrap; }
                  <layout class="QVBoxLayout" name="verticalLayout_10">
                   <item>
                    <widget class="FontEdit" name="sqlEditorFont" native="true">
-                    <property name="statusTip">
+                    <property name="cfg" stdset="0">
                      <string>Fonts.SqlEditor</string>
                     </property>
                    </widget>
@@ -1033,7 +1033,7 @@ p, li { white-space: pre-wrap; }
                  <layout class="QVBoxLayout" name="verticalLayout_13">
                   <item>
                    <widget class="FontEdit" name="dbTreeFont" native="true">
-                    <property name="statusTip">
+                    <property name="cfg" stdset="0">
                      <string>Fonts.DbTree</string>
                     </property>
                    </widget>
@@ -1049,7 +1049,7 @@ p, li { white-space: pre-wrap; }
                  <layout class="QVBoxLayout" name="verticalLayout_14">
                   <item>
                    <widget class="FontEdit" name="dbTreeLabelFont" native="true">
-                    <property name="statusTip">
+                    <property name="cfg" stdset="0">
                      <string>Fonts.DbTreeLabel</string>
                     </property>
                    </widget>
@@ -1065,7 +1065,7 @@ p, li { white-space: pre-wrap; }
                  <layout class="QVBoxLayout" name="verticalLayout_15">
                   <item>
                    <widget class="FontEdit" name="dataViewFont" native="true">
-                    <property name="statusTip">
+                    <property name="cfg" stdset="0">
                      <string>Fonts.DataView</string>
                     </property>
                    </widget>
@@ -1081,7 +1081,7 @@ p, li { white-space: pre-wrap; }
                  <layout class="QVBoxLayout" name="verticalLayout_16">
                   <item>
                    <widget class="FontEdit" name="statusFieldfont" native="true">
-                    <property name="statusTip">
+                    <property name="cfg" stdset="0">
                      <string>Fonts.StatusField</string>
                     </property>
                    </widget>
@@ -1162,7 +1162,7 @@ p, li { white-space: pre-wrap; }
                       <height>16777215</height>
                      </size>
                     </property>
-                    <property name="statusTip">
+                    <property name="cfg" stdset="0">
                      <string>Colors.SqlEditorKeywordFg</string>
                     </property>
                     <property name="text">
@@ -1178,7 +1178,7 @@ p, li { white-space: pre-wrap; }
                       <height>16777215</height>
                      </size>
                     </property>
-                    <property name="statusTip">
+                    <property name="cfg" stdset="0">
                      <string>Colors.SqlEditorStringFg</string>
                     </property>
                     <property name="text">
@@ -1194,7 +1194,7 @@ p, li { white-space: pre-wrap; }
                       <height>16777215</height>
                      </size>
                     </property>
-                    <property name="statusTip">
+                    <property name="cfg" stdset="0">
                      <string>Colors.SqlEditorCommentFg</string>
                     </property>
                     <property name="text">
@@ -1210,7 +1210,7 @@ p, li { white-space: pre-wrap; }
                       <height>16777215</height>
                      </size>
                     </property>
-                    <property name="statusTip">
+                    <property name="cfg" stdset="0">
                      <string>Colors.SqlEditorForeground</string>
                     </property>
                     <property name="text">
@@ -1226,7 +1226,7 @@ p, li { white-space: pre-wrap; }
                       <height>16777215</height>
                      </size>
                     </property>
-                    <property name="statusTip">
+                    <property name="cfg" stdset="0">
                      <string>Colors.SqlEditorCurrentLineBg</string>
                     </property>
                     <property name="text">
@@ -1242,7 +1242,7 @@ p, li { white-space: pre-wrap; }
                       <height>16777215</height>
                      </size>
                     </property>
-                    <property name="statusTip">
+                    <property name="cfg" stdset="0">
                      <string>Colors.SqlEditorLineNumAreaBg</string>
                     </property>
                     <property name="text">
@@ -1268,7 +1268,7 @@ p, li { white-space: pre-wrap; }
                       <height>16777215</height>
                      </size>
                     </property>
-                    <property name="statusTip">
+                    <property name="cfg" stdset="0">
                      <string>Colors.SqlEditorParenthesisBg</string>
                     </property>
                     <property name="text">
@@ -1315,7 +1315,7 @@ p, li { white-space: pre-wrap; }
                       <height>16777215</height>
                      </size>
                     </property>
-                    <property name="statusTip">
+                    <property name="cfg" stdset="0">
                      <string>Colors.SqlEditorBlobFg</string>
                     </property>
                     <property name="text">
@@ -1358,7 +1358,7 @@ p, li { white-space: pre-wrap; }
                       <height>16777215</height>
                      </size>
                     </property>
-                    <property name="statusTip">
+                    <property name="cfg" stdset="0">
                      <string>Colors.SqlEditorNumberFg</string>
                     </property>
                     <property name="text">
@@ -1374,7 +1374,7 @@ p, li { white-space: pre-wrap; }
                       <height>16777215</height>
                      </size>
                     </property>
-                    <property name="statusTip">
+                    <property name="cfg" stdset="0">
                      <string>Colors.SqlEditorBindParamFg</string>
                     </property>
                     <property name="text">
@@ -1400,7 +1400,7 @@ p, li { white-space: pre-wrap; }
                       <height>16777215</height>
                      </size>
                     </property>
-                    <property name="statusTip">
+                    <property name="cfg" stdset="0">
                      <string>Colors.SqlEditorValidObject</string>
                     </property>
                     <property name="text">
@@ -1435,7 +1435,7 @@ p, li { white-space: pre-wrap; }
                       <height>16777215</height>
                      </size>
                     </property>
-                    <property name="statusTip">
+                    <property name="cfg" stdset="0">
                      <string>Colors.DataUncommited</string>
                     </property>
                     <property name="text">
@@ -1461,7 +1461,7 @@ p, li { white-space: pre-wrap; }
                       <height>16777215</height>
                      </size>
                     </property>
-                    <property name="statusTip">
+                    <property name="cfg" stdset="0">
                      <string>Colors.DataUncommitedError</string>
                     </property>
                     <property name="text">
@@ -1484,7 +1484,7 @@ p, li { white-space: pre-wrap; }
                       <height>16777215</height>
                      </size>
                     </property>
-                    <property name="statusTip">
+                    <property name="cfg" stdset="0">
                      <string>Colors.DataNullFg</string>
                     </property>
                     <property name="text">
@@ -1507,7 +1507,7 @@ p, li { white-space: pre-wrap; }
                       <height>16777215</height>
                      </size>
                     </property>
-                    <property name="statusTip">
+                    <property name="cfg" stdset="0">
                      <string>Colors.DataDeletedBg</string>
                     </property>
                     <property name="text">
@@ -1542,7 +1542,7 @@ p, li { white-space: pre-wrap; }
                       <height>16777215</height>
                      </size>
                     </property>
-                    <property name="statusTip">
+                    <property name="cfg" stdset="0">
                      <string>Colors.DbTreeLabelsFg</string>
                     </property>
                     <property name="text">
@@ -1574,7 +1574,7 @@ p, li { white-space: pre-wrap; }
                       <height>16777215</height>
                      </size>
                     </property>
-                    <property name="statusTip">
+                    <property name="cfg" stdset="0">
                      <string>Colors.StatusFieldInfoFg</string>
                     </property>
                     <property name="text">
@@ -1597,7 +1597,7 @@ p, li { white-space: pre-wrap; }
                       <height>16777215</height>
                      </size>
                     </property>
-                    <property name="statusTip">
+                    <property name="cfg" stdset="0">
                      <string>Colors.StatusFieldWarnFg</string>
                     </property>
                     <property name="text">
@@ -1620,7 +1620,7 @@ p, li { white-space: pre-wrap; }
                       <height>16777215</height>
                      </size>
                     </property>
-                    <property name="statusTip">
+                    <property name="cfg" stdset="0">
                      <string>Colors.StatusFieldErrorFg</string>
                     </property>
                     <property name="text">

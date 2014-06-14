@@ -10,13 +10,13 @@
     <height>290</height>
    </rect>
   </property>
-  <property name="statusTip">
+  <property name="cfg" stdset="0">
    <string/>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QCheckBox" name="upperKeywordsCheck">
-     <property name="statusTip">
+     <property name="cfg" stdset="0">
       <string>SqlFormatterSimple.UpperCaseKeywords</string>
      </property>
      <property name="text">
@@ -26,7 +26,7 @@
    </item>
    <item>
     <widget class="QCheckBox" name="tripLongSpacesCheck">
-     <property name="statusTip">
+     <property name="cfg" stdset="0">
       <string>SqlFormatterSimple.TrimLongSpaces</string>
      </property>
      <property name="text">

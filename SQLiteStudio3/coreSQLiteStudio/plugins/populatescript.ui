@@ -28,7 +28,7 @@
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
        <widget class="QComboBox" name="langCombo">
-        <property name="statusTip">
+        <property name="cfg" stdset="0">
          <string>PopulateScript.Language</string>
         </property>
         <property name="ScriptingLangCombo" stdset="0">
@@ -47,7 +47,7 @@
      <layout class="QVBoxLayout" name="verticalLayout_4">
       <item>
        <widget class="QPlainTextEdit" name="initCodeEdit">
-        <property name="statusTip">
+        <property name="cfg" stdset="0">
          <string>PopulateScript.InitCode</string>
         </property>
         <property name="scriptingEdit" stdset="0">
@@ -66,7 +66,7 @@
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <widget class="QPlainTextEdit" name="codeEdit">
-        <property name="statusTip">
+        <property name="cfg" stdset="0">
          <string>PopulateScript.Code</string>
         </property>
         <property name="scriptingEdit" stdset="0">

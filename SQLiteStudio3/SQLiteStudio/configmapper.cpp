@@ -315,7 +315,7 @@ bool ConfigMapper::saveCustomConfigFromWidget(QWidget* widget, CfgEntry* key)
 
 CfgEntry* ConfigMapper::getConfigEntry(QWidget* widget, const QHash<QString, CfgEntry*>& allConfigEntries)
 {
-    QString key = widget->statusTip();
+    QString key = widget->property("cfg").toString();
     if (!allConfigEntries.contains(key))
     {
         qCritical() << "Config entries don't contain key" << key
@@ -364,7 +364,7 @@ QList<QWidget*> ConfigMapper::getAllConfigWidgets(QWidget *parent)
             continue;
 
         results += getAllConfigWidgets(widget);
-        if (widget->statusTip().isEmpty())
+        if (!widget->property("cfg").isValid())
             continue;
 
         results << widget;
