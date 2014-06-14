@@ -22,7 +22,7 @@
      <layout class="QVBoxLayout" name="verticalLayout_4">
       <item>
        <widget class="QLineEdit" name="prefixEdit">
-        <property name="statusTip">
+        <property name="cfg" stdset="0">
          <string>PopulateRandom.Prefix</string>
         </property>
         <property name="placeholderText">
@@ -41,7 +41,7 @@
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <widget class="QSpinBox" name="minSpin">
-        <property name="statusTip">
+        <property name="cfg" stdset="0">
          <string>PopulateRandom.MinValue</string>
         </property>
         <property name="minimum">
@@ -63,7 +63,7 @@
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
        <widget class="QSpinBox" name="maxSpin">
-        <property name="statusTip">
+        <property name="cfg" stdset="0">
          <string>PopulateRandom.MaxValue</string>
         </property>
         <property name="minimum">
@@ -88,7 +88,7 @@
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QLineEdit" name="suffixEdit">
-        <property name="statusTip">
+        <property name="cfg" stdset="0">
          <string>PopulateRandom.Suffix</string>
         </property>
         <property name="placeholderText">

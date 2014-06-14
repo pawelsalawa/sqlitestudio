@@ -22,7 +22,7 @@
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="FileEdit" name="fileEdit" native="true">
-        <property name="statusTip">
+        <property name="cfg" stdset="0">
          <string>PopulateDictionary.File</string>
         </property>
         <property name="dialogTitle" stdset="0">
@@ -41,7 +41,7 @@
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <widget class="ConfigRadioButton" name="whitespaceRadio">
-        <property name="statusTip">
+        <property name="cfg" stdset="0">
          <string>PopulateDictionary.Lines</string>
         </property>
         <property name="text">
@@ -54,7 +54,7 @@
       </item>
       <item>
        <widget class="ConfigRadioButton" name="libeBreakRadio">
-        <property name="statusTip">
+        <property name="cfg" stdset="0">
          <string>PopulateDictionary.Lines</string>
         </property>
         <property name="text">
@@ -76,7 +76,7 @@
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
        <widget class="ConfigRadioButton" name="orderedRadio">
-        <property name="statusTip">
+        <property name="cfg" stdset="0">
          <string>PopulateDictionary.Random</string>
         </property>
         <property name="text">
@@ -89,7 +89,7 @@
       </item>
       <item>
        <widget class="ConfigRadioButton" name="randomlyRadio">
-        <property name="statusTip">
+        <property name="cfg" stdset="0">
          <string>PopulateDictionary.Random</string>
         </property>
         <property name="text">
