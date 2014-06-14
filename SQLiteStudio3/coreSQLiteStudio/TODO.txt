@@ -1,5 +1,3 @@
-* populating tables
-* migrate all statusTip props to dynamic property
 * db version converting
 * context menu for taskbar
 * option to view full db path in window title
@@ -7,8 +5,9 @@
 * add nice api for accessing menus and toolbars, so plugins can easly add/remove from them
 * command line -d option to enable debugging in GUI application (including debugging of Parser in CompletionHelper)
 
-* auto updates
 * bug reporting
+* deployment
+* auto updates
 * crash management
 
 * W select trzeba jeszcze konteksty dla WHERE, HAVING i GROUP BY obsluzyc - mozna je zrobic razem, bo wszystkie uzywaja expr
@@ -19,7 +18,7 @@
 * SqlEditor::refreshValidObjects() doesn't add valid object names from other databases (not yet attached). It might be tricky to implement.
 
 UNIT TESTS:
-Parser::parse: jakies skomplikowane zapytania, wykrywanie bledow
+Parser::parse: more complex examples, errors detecting
 Lexer::detokenize
 utils_sql (dla splitQueries uwglednic create trigger)
 utils

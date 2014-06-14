@@ -186,6 +186,7 @@ void PopulateDialog::pluginSelected(QComboBox* combo, int index)
 
     ColumnEntry* entry = nullptr;
 
+    int columnIndex = 0;
     for (ColumnEntry& e : columnEntries)
     {
         if (e.combo == combo)
@@ -193,6 +194,7 @@ void PopulateDialog::pluginSelected(QComboBox* combo, int index)
             entry  = &e;
             break;
         }
+        columnIndex++;
     }
 
     if (!entry)
@@ -204,6 +206,7 @@ void PopulateDialog::pluginSelected(QComboBox* combo, int index)
         return;
 
     entry->engine = plugins[index]->createEngine();
+    updateColumnState(columnIndex);
 }
 
 void PopulateDialog::configurePlugin(int index)

@@ -5,6 +5,7 @@
 #include "mdichild.h"
 #include <QLabel>
 #include <QCheckBox>
+#include <QGroupBox>
 #include <QEvent>
 #include <QHBoxLayout>
 #include <QGraphicsDropShadowEffect>
@@ -20,6 +21,7 @@ WidgetStateIndicator::WidgetStateIndicator(QWidget *widget) :
 {
     widget->installEventFilter(this);
     detectWindowParent();
+    initPositionMode();
     initEffects();
     initLabel();
     updateMode();
@@ -92,6 +94,16 @@ void WidgetStateIndicator::initAnimations()
     animation->addAnimation(varAnim);
 }
 
+void WidgetStateIndicator::initPositionMode()
+{
+    if (dynamic_cast<QGroupBox*>(widget))
+        positionMode = PositionMode::GROUP_BOX;
+    else if (dynamic_cast<QLabel*>(widget))
+        positionMode = PositionMode::LABEL;
+    else if (dynamic_cast<QCheckBox*>(widget))
+        positionMode = PositionMode::CHECK_BOX;
+}
+
 void WidgetStateIndicator::finalInit()
 {
     label->setFixedSize(label->pixmap()->size());
@@ -156,9 +168,6 @@ void WidgetStateIndicator::hide()
 
 void WidgetStateIndicator::setVisible(bool visible, const QString& msg)
 {
-//    if (visible == labelParent->isVisible() && msg == message)
-//        return;
-
     if (visible)
         show(msg);
     else
@@ -282,16 +291,52 @@ void WidgetStateIndicator::updateMode()
 
 void WidgetStateIndicator::updatePosition()
 {
+    switch (positionMode)
+    {
+        case PositionMode::DEFAULT:
+            updatePositionDefault();
+            break;
+        case PositionMode::GROUP_BOX:
+            updatePositionGroupBox();
+            break;
+        case PositionMode::LABEL:
+            updatePositionLabel();
+            break;
+        case PositionMode::CHECK_BOX:
+            updatePositionCheckBox();
+            break;
+    }
+}
+
+void WidgetStateIndicator::updatePositionDefault()
+{
     QPoint xy = widget->mapTo(windowParent, QPoint(0,0));
-    QPoint diff;
-    if (dynamic_cast<QLabel*>(widget))
-        diff = QPoint(-6, -2);
-    else if (dynamic_cast<QCheckBox*>(widget))
-        diff = QPoint(-6, -2);
-    else
-        diff = QPoint(-4, -4);
+    labelParent->move(xy + QPoint(-4, -4));
+}
+
+void WidgetStateIndicator::updatePositionGroupBox()
+{
+    QPoint xy = widget->mapTo(windowParent, QPoint(0,0));
+
+    QGroupBox* gb = dynamic_cast<QGroupBox*>(widget);
+
+    QFont font = gb->font();
+    QFontMetrics fm(font);
+    QString txt = gb->title();
+    QPoint diff(fm.width(txt), 2);
 
     labelParent->move(xy + diff);
+}
+
+void WidgetStateIndicator::updatePositionLabel()
+{
+    updatePositionCheckBox(); // currently they're equal
+}
+
+void WidgetStateIndicator::updatePositionCheckBox()
+{
+    QPoint xy = widget->mapTo(windowParent, QPoint(0,0));
+    labelParent->move(xy + QPoint(-6, -2));
 }
 
 void WidgetStateIndicator::updateVisibility()
@@ -339,6 +384,15 @@ bool WidgetStateIndicator::shouldShow()
         return false;
 
     return true;
+}
+WidgetStateIndicator::PositionMode WidgetStateIndicator::getPositionMode() const
+{
+    return positionMode;
+}
+
+void WidgetStateIndicator::setPositionMode(const PositionMode& value)
+{
+    positionMode = value;
 }
 
 QWidget* WidgetStateIndicator::findParentWindow(QWidget* w)
