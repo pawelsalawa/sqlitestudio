@@ -1,0 +1,12 @@
+#ifndef CSVEXPORT_GLOBAL_H
+#define CSVEXPORT_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(CSVEXPORT_LIBRARY)
+#  define CSVEXPORTSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define CSVEXPORTSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // CSVEXPORT_GLOBAL_H

@@ -13,6 +13,11 @@ CfgMain::CfgMain(const QString& name, bool persistable) :
     instances << this;
 }
 
+CfgMain::~CfgMain()
+{
+    instances.removeOne(this);
+}
+
 void CfgMain::staticInit()
 {
     qRegisterMetaType<CfgMain*>("CfgMain*");

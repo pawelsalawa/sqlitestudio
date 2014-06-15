@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CsvExport</class>
+ <widget class="QWidget" name="CsvExport">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>312</width>
+    <height>90</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0" colspan="3">
+    <widget class="QCheckBox" name="columnsCheck">
+     <property name="text">
+      <string>Column names in first row</string>
+     </property>
+     <property name="cfg" stdset="0">
+      <string>CsvExport.ColumnsInFirstRow</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Column separator:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QComboBox" name="comboBox">
+     <property name="cfg" stdset="0">
+      <string>CsvExport.Separator</string>
+     </property>
+     <item>
+      <property name="text">
+       <string>, (comma)</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>; (semicolon)</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>\t (tab)</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>  (whitespace)</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Custom:</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QLineEdit" name="lineEdit">
+     <property name="maximumSize">
+      <size>
+       <width>30</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="cfg" stdset="0">
+      <string>CsvExport.CustomSeparator</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>Export NULL values as:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1" colspan="2">
+    <widget class="QLineEdit" name="lineEdit_2">
+     <property name="placeholderText">
+      <string>Empty string</string>
+     </property>
+     <property name="cfg" stdset="0">
+      <string>CsvExport.NullValueString</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

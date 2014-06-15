@@ -11,10 +11,10 @@ QString SqlFormatterSimplePlugin::format(SqliteQueryPtr query)
     TokenList tokens = query->tokens;
     foreach (TokenPtr token, tokens)
     {
-        if (token->type == Token::KEYWORD && SIMPLE_FMT_CFG.SqlFormatterSimple.UpperCaseKeywords.get())
+        if (token->type == Token::KEYWORD && CFG_SIMPLE_FMT.SqlFormatterSimple.UpperCaseKeywords.get())
             token->value = token->value.toUpper();
 
-        if (token->type == Token::SPACE && SIMPLE_FMT_CFG.SqlFormatterSimple.TrimLongSpaces.get() &&
+        if (token->type == Token::SPACE && CFG_SIMPLE_FMT.SqlFormatterSimple.TrimLongSpaces.get() &&
                 token->value.length() > 1)
             token->value = " ";
     }

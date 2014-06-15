@@ -94,7 +94,7 @@ class ImportPlugin : virtual public Plugin
          * @brief Provides config object that holds configuration for importing.
          * @return Config object, or null if the importing with this plugin is not configurable.
          */
-        virtual CfgMain* getConfig() const = 0;
+        virtual CfgMain* getConfig() = 0;
 
         /**
          * @brief Provides name of the form to use for configuration of import dialog.

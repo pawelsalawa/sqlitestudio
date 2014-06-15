@@ -47,7 +47,7 @@ class ExportPlugin : virtual public Plugin
          * @brief Provides config object that holds configuration for exporting.
          * @return Config object, or null if the exporting with this plugin is not configurable.
          */
-        virtual CfgMain* getConfig() const = 0;
+        virtual CfgMain* getConfig() = 0;
 
         /**
          * @brief Provides name of the form to use for configuration of exporting in given mode.

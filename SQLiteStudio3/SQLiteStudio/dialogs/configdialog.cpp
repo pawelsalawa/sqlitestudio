@@ -156,10 +156,13 @@ void ConfigDialog::init()
     connect(ui->previewTabs, SIGNAL(currentChanged(int)), this, SLOT(updateStylePreview()));
     connect(ui->activeStyleCombo, SIGNAL(currentTextChanged(QString)), this, SLOT(updateStylePreview()));
     connect(ui->buttonBox->button(QDialogButtonBox::Apply), SIGNAL(clicked()), this, SLOT(apply()));
+    connect(ui->hideBuiltInPluginsCheck, SIGNAL(toggled(bool)), this, SLOT(updateBuiltInPluginsVisibility()));
 
     ui->activeStyleCombo->addItems(QStyleFactory::keys());
 
     connect(ui->stackedWidget, SIGNAL(currentChanged(int)), this, SLOT(pageSwitched()));
+
+    ui->hideBuiltInPluginsCheck->setChecked(true);
 
     load();
     updateStylePreview();
@@ -642,7 +645,7 @@ void ConfigDialog::loadUnloadPlugin(QTreeWidgetItem* item, int column)
     if (column != 0)
         return;
 
-    QString pluginName = itemToPluginNameMap[item];
+    QString pluginName = itemToPluginNameMap.valueByLeft(item);
     if (PLUGINS->isBuiltIn(pluginName))
         return;
 
@@ -711,6 +714,20 @@ void ConfigDialog::updatePluginCategoriesVisibility()
         updatePluginCategoriesVisibility(categories->child(i));
 }
 
+void ConfigDialog::updateBuiltInPluginsVisibility()
+{
+    bool hideBuiltIn = ui->hideBuiltInPluginsCheck->isChecked();
+    QHashIterator<QTreeWidgetItem*,QString> it = itemToPluginNameMap.iterator();
+    while (it.hasNext())
+    {
+        it.next();
+        if (PLUGINS->isBuiltIn(it.value()))
+            ui->pluginsList->setItemHidden(it.key(), hideBuiltIn);
+        else
+            ui->pluginsList->setItemHidden(it.key(), false);
+    }
+}
+
 void ConfigDialog::updatePluginCategoriesVisibility(QTreeWidgetItem* categoryItem)
 {
     categoryItem->setHidden(categoryItem->childCount() == 0);
@@ -719,7 +736,7 @@ void ConfigDialog::updatePluginCategoriesVisibility(QTreeWidgetItem* categoryIte
 QString ConfigDialog::collectLoadedPlugins() const
 {
     QStringList loaded;
-    QHashIterator<QTreeWidgetItem*,QString> it(itemToPluginNameMap);
+    QHashIterator<QTreeWidgetItem*,QString> it = itemToPluginNameMap.iterator();
     while (it.hasNext())
     {
         it.next();
@@ -956,7 +973,7 @@ void ConfigDialog::initPluginsPage()
             category->addChild(item);
 
             connect(ui->pluginsList, SIGNAL(itemChanged(QTreeWidgetItem*,int)), this, SLOT(loadUnloadPlugin(QTreeWidgetItem*,int)));
-            itemToPluginNameMap[item] = pluginName;
+            itemToPluginNameMap.insert(item, pluginName);
 
             // Details button
             detailsLabel = new QLabel(QString("<a href='%1'>%2</a> ").arg(pluginName).arg(tr("Details")), ui->pluginsList);

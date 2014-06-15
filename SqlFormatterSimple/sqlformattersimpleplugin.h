@@ -14,7 +14,7 @@ CFG_CATEGORIES(SqlFormatterSimpleConfig,
      )
 )
 
-#define SIMPLE_FMT_CFG CFG_INSTANCE(SqlFormatterSimpleConfig)
+#define CFG_SIMPLE_FMT CFG_INSTANCE(SqlFormatterSimpleConfig)
 
 class SQLFORMATTERSIMPLESHARED_EXPORT SqlFormatterSimplePlugin : public GenericPlugin, public SqlFormatterPlugin
 {

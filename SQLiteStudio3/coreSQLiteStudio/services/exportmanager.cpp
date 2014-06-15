@@ -21,11 +21,14 @@ ExportManager::~ExportManager()
     safe_delete(config);
 }
 
-QStringList ExportManager::getAvailableFormats() const
+QStringList ExportManager::getAvailableFormats(ExportMode exportMode) const
 {
     QStringList formats;
     for (ExportPlugin* plugin : PLUGINS->getLoadedPlugins<ExportPlugin>())
-        formats << plugin->getFormatName();
+    {
+        if (exportMode == UNDEFINED || plugin->getSupportedModes().testFlag(exportMode))
+            formats << plugin->getFormatName();
+    }
 
     return formats;
 }
@@ -64,6 +67,12 @@ void ExportManager::exportQueryResults(Db* db, const QString& query)
     if (!checkInitialConditions())
         return;
 
+    if (!plugin->getSupportedModes().testFlag(QUERY_RESULTS))
+    {
+        notifyError(tr("Export plugin %1 doesn't support exporing query results.").arg(plugin->getFormatName()));
+        return;
+    }
+
     exportInProgress = true;
     mode = QUERY_RESULTS;
 
@@ -82,6 +91,12 @@ void ExportManager::exportTable(Db* db, const QString& database, const QString& 
     if (!checkInitialConditions())
         return;
 
+    if (!plugin->getSupportedModes().testFlag(TABLE))
+    {
+        notifyError(tr("Export plugin %1 doesn't support exporing tables.").arg(plugin->getFormatName()));
+        return;
+    }
+
     exportInProgress = true;
     mode = TABLE;
 
@@ -97,6 +112,12 @@ void ExportManager::exportDatabase(Db* db, const QStringList& objectListToExport
 {
     if (!checkInitialConditions())
         return;
+
+    if (!plugin->getSupportedModes().testFlag(DATABASE))
+    {
+        notifyError(tr("Export plugin %1 doesn't support exporing databases.").arg(plugin->getFormatName()));
+        return;
+    }
 
     exportInProgress = true;
     mode = DATABASE;

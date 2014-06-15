@@ -53,6 +53,7 @@ class API_EXPORT CfgMain
 
     public:
         explicit CfgMain(const QString& name, bool persistable = true);
+        ~CfgMain();
 
         static void staticInit();
         static QList<CfgMain*> getInstances();

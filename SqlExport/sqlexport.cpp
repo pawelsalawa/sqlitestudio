@@ -5,8 +5,6 @@
 #include "services/exportmanager.h"
 #include <QTextCodec>
 
-CFG_DEFINE_RUNTIME(SqlExportConfig)
-
 SqlExport::SqlExport()
 {
 }
@@ -21,9 +19,9 @@ ExportManager::StandardConfigFlags SqlExport::standardOptionsToEnable() const
     return ExportManager::CODEC;
 }
 
-CfgMain* SqlExport::getConfig() const
+CfgMain* SqlExport::getConfig()
 {
-    return &SQL_EXPORT_CFG;
+    return &cfg;
 }
 
 QString SqlExport::defaultFileExtension() const
@@ -49,7 +47,7 @@ bool SqlExport::beforeExportQueryResults(const QString& query, QList<QueryExecut
     this->columns = colDefs.join(", ");
 
     writeHeader();
-    if (SQL_EXPORT_CFG.SqlExport.IncludeQueryInComments.get())
+    if (cfg.SqlExport.IncludeQueryInComments.get())
     {
         writeln(tr("-- Results of query:"));
         writeln(commentAllSqlLines(query));
@@ -58,10 +56,10 @@ bool SqlExport::beforeExportQueryResults(const QString& query, QList<QueryExecut
 
     writeBegin();
 
-    if (!SQL_EXPORT_CFG.SqlExport.GenerateCreateTable.get())
+    if (!cfg.SqlExport.GenerateCreateTable.get())
         return true;
 
-    theTable = wrapObjIfNeeded(SQL_EXPORT_CFG.SqlExport.QueryTable.get(), dialect);
+    theTable = wrapObjIfNeeded(cfg.SqlExport.QueryTable.get(), dialect);
     QString ddl = "CREATE TABLE " + theTable + " (" + this->columns + ");";
     writeln("");
     writeln(ddl);
@@ -245,7 +243,7 @@ void SqlExport::validateOptions()
 {
     if (exportMode == ExportManager::QUERY_RESULTS)
     {
-        bool valid = !SQL_EXPORT_CFG.SqlExport.QueryTable.get().isEmpty();
-        EXPORT_MANAGER->handleValidationFromPlugin(valid, SQL_EXPORT_CFG.SqlExport.QueryTable, tr("Table name for INSERT statements is mandatory."));
+        bool valid = !cfg.SqlExport.QueryTable.get().isEmpty();
+        EXPORT_MANAGER->handleValidationFromPlugin(valid, cfg.SqlExport.QueryTable, tr("Table name for INSERT statements is mandatory."));
     }
 }

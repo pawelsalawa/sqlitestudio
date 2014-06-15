@@ -5,6 +5,7 @@
 #include "db/sqlquery.h"
 #include "db/db.h"
 #include "pluginservicebase.h"
+#include "sqlitestudio.h"
 #include <QObject>
 
 class ExportPlugin;
@@ -114,7 +115,7 @@ class API_EXPORT ExportManager : public PluginServiceBase
         explicit ExportManager(QObject *parent = 0);
         ~ExportManager();
 
-        QStringList getAvailableFormats() const;
+        QStringList getAvailableFormats(ExportMode exportMode = UNDEFINED) const;
         ExportPlugin* getPluginForFormat(const QString& formatName) const;
 
         /**

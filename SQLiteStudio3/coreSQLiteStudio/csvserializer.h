@@ -8,6 +8,7 @@ class API_EXPORT CsvSerializer
 {
     public:
         static QString serialize(const QList<QStringList>& data, const CsvFormat& format);
+        static QString serialize(const QStringList& data, const CsvFormat& format);
         static QList<QStringList> deserialize(const QString& data, const CsvFormat& format);
 };
 

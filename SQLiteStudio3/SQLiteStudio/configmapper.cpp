@@ -319,7 +319,8 @@ CfgEntry* ConfigMapper::getConfigEntry(QWidget* widget, const QHash<QString, Cfg
     if (!allConfigEntries.contains(key))
     {
         qCritical() << "Config entries don't contain key" << key
-                    << "but it was requested by ConfigMapper::getConfigEntry().";
+                    << "but it was requested by ConfigMapper::getConfigEntry() for widget"
+                    << widget->metaObject()->className() << "::" << widget->objectName();
         return nullptr;
     }
 
