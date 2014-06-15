@@ -72,3 +72,8 @@ TokenList SqliteColumnType::rebuildTokensFromContents()
 
     return builder.build();
 }
+
+DataType SqliteColumnType::toDateType() const
+{
+    return DataType(name, scale, precision);
+}

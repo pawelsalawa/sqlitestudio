@@ -696,7 +696,7 @@ void SqlQueryModel::readColumnDetails()
         // Column type
         modelColumnType = colDetails.type;
         if (modelColumnType)
-            modelColumn->dataType = SqlQueryModelColumn::DataType(modelColumnType->name, modelColumnType->precision, modelColumnType->scale);
+            modelColumn->dataType = DataType(modelColumnType->name, modelColumnType->precision, modelColumnType->scale);
 
         // Column constraints
         foreach (SqliteCreateTable::Column::ConstraintPtr constrPtr, colDetails.constraints)

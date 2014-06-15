@@ -195,7 +195,7 @@ QString SqlQueryItem::getToolTip() const
 
     QStringList rows;
     rows << hdrRowTmp.arg(ICONS.COLUMN.getPath()).arg(tr("Column:", "data view tooltip")).arg(col->column);
-    rows << rowTmp.arg(tr("Data type:", "data view")).arg(col->dataType.typeStr);
+    rows << rowTmp.arg(tr("Data type:", "data view")).arg(col->dataType.toString());
     if (!col->table.isNull())
     {
         rows << rowTmp.arg(tr("Table:", "data view tooltip")).arg(col->table);

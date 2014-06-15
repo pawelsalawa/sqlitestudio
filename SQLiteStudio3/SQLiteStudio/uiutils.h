@@ -7,5 +7,6 @@
 QString getDbPath(const QString& startWith = QString::null);
 void setValidState(QWidget* widget, bool valid, const QString& message = QString());
 void setValidStateWihtTooltip(QWidget* widget, const QString& tooltip, bool valid, const QString& message = QString());
+void setValidStateWarning(QWidget* widget, const QString& warning);
 
 #endif // UIUTILS_H

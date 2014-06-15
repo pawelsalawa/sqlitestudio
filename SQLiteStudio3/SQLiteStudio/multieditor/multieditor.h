@@ -45,7 +45,7 @@ class MultiEditor : public QWidget
         void setReadOnly(bool value);
         void setDeletedRow(bool value);
 
-        void setDataType(const SqlQueryModelColumn::DataType& dataType);
+        void setDataType(const DataType& dataType);
 
         static void loadBuiltInEditors();
 
@@ -57,7 +57,7 @@ class MultiEditor : public QWidget
         void updateLabel();
         QVariant getValueOmmitNull() const;
 
-        static QList<MultiEditorWidget*> getEditorTypes(const SqlQueryModelColumn::DataType& dataType);
+        static QList<MultiEditorWidget*> getEditorTypes(const DataType& dataType);
 
         static const int margins = 2;
         static const int spacing = 2;
@@ -73,7 +73,7 @@ class MultiEditor : public QWidget
         bool valueModified = false;
         QVariant valueBeforeNull;
         QToolButton* configBtn = nullptr;
-        SqlQueryModelColumn::DataType dataType;
+        DataType dataType;
 
         /**
          * @brief currentTab

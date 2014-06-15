@@ -106,8 +106,9 @@ bool CsvExport::afterExportTable()
     return true;
 }
 
-bool CsvExport::beforeExportDatabase()
+bool CsvExport::beforeExportDatabase(const QString& database)
 {
+    UNUSED(database);
     return false;
 }
 

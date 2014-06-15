@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>XmlExportConfig</class>
+ <widget class="QWidget" name="XmlExportConfig">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>325</width>
+    <height>280</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_3">
+   <item>
+    <widget class="QGroupBox" name="formatGroup">
+     <property name="title">
+      <string>Output format</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="1" column="0" colspan="2">
+       <widget class="ConfigRadioButton" name="formatRadio">
+        <property name="text">
+         <string>Format document (new lines, indentation)</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+        <property name="assignedValue" stdset="0">
+         <string>format</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string>XmlExport.Format</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" colspan="2">
+       <widget class="ConfigRadioButton" name="compressRadio">
+        <property name="text">
+         <string>Compress (everything in one line)</string>
+        </property>
+        <property name="assignedValue" stdset="0">
+         <string>compress</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string>XmlExport.Format</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="charEscapingGroup">
+     <property name="title">
+      <string>Special characters escaping</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="ConfigRadioButton" name="mixedRadio">
+        <property name="toolTip">
+         <string>&lt;p&gt;Ampersands will be used for shorter values and CDATA will be used for larger values. This applies only to values that require character escaping. Other values will be exported as they are.&lt;/p&gt;</string>
+        </property>
+        <property name="text">
+         <string>Use CDATA and ampersands</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+        <property name="assignedValue" stdset="0">
+         <string>mixed</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string>XmlExport.Escaping</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ConfigRadioButton" name="cdataRadio">
+        <property name="toolTip">
+         <string>&lt;p&gt;Every value requiring character escepe will be enclosed in CDATA block.&lt;/p&gt;</string>
+        </property>
+        <property name="text">
+         <string>Always use CDATA</string>
+        </property>
+        <property name="assignedValue" stdset="0">
+         <string>cdata</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string>XmlExport.Escaping</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ConfigRadioButton" name="ampRadio">
+        <property name="toolTip">
+         <string>&lt;p&gt;Every character that require esceping will be replaced with its ampersand escape sequence. No CDATA blocks will be used.&lt;/p&gt;</string>
+        </property>
+        <property name="text">
+         <string>Always use ampersand</string>
+        </property>
+        <property name="assignedValue" stdset="0">
+         <string>ampersand</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string>XmlExport.Escaping</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="namespaceGroup">
+     <property name="title">
+      <string>Define XML namespace</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+     <property name="cfg" stdset="0">
+      <string>XmlExport.UseNamespace</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLineEdit" name="namespaceEdit">
+        <property name="cfg" stdset="0">
+         <string>XmlExport.Namespace</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ConfigRadioButton</class>
+   <extends>QRadioButton</extends>
+   <header>common/configradiobutton.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

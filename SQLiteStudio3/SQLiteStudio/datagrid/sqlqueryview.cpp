@@ -214,7 +214,7 @@ void SqlQueryView::setupHeaderMenu()
 
 bool SqlQueryView::handleDoubleClick(SqlQueryItem* item)
 {
-    if (item->getColumn()->dataType.type == DataType::BLOB)
+    if (item->getColumn()->dataType.getType() == DataType::BLOB)
     {
         openValueEditor(item);
         return false;

@@ -136,7 +136,7 @@ bool ExportWorker::exportDatabase()
     }
 
     plugin->initBeforeExport(db, output, *config);
-    if (!plugin->beforeExportDatabase())
+    if (!plugin->beforeExportDatabase(db->getName()))
         return false;
 
     if (isInterrupted())

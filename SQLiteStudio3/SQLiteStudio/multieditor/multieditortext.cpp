@@ -141,15 +141,15 @@ MultiEditorWidget* MultiEditorTextPlugin::getInstance()
     return new MultiEditorText();
 }
 
-bool MultiEditorTextPlugin::validFor(const SqlQueryModelColumn::DataType& dataType)
+bool MultiEditorTextPlugin::validFor(const DataType& dataType)
 {
     UNUSED(dataType);
     return true;
 }
 
-int MultiEditorTextPlugin::getPriority(const SqlQueryModelColumn::DataType& dataType)
+int MultiEditorTextPlugin::getPriority(const DataType& dataType)
 {
-    switch (dataType.type)
+    switch (dataType.getType())
     {
         case DataType::BLOB:
         case DataType::BOOLEAN:

@@ -2,6 +2,7 @@
 #define SQLITECOLUMNTYPE_H
 
 #include "sqlitestatement.h"
+#include "datatype.h"
 #include <QVariant>
 
 class API_EXPORT SqliteColumnType : public SqliteStatement
@@ -16,6 +17,7 @@ class API_EXPORT SqliteColumnType : public SqliteStatement
         bool isPrecisionDouble();
         bool isScaleDouble();
         TokenList rebuildTokensFromContents();
+        DataType toDateType() const;
 
         QString name = QString::null;
         QVariant scale = QVariant(); // first size number

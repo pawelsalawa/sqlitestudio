@@ -92,11 +92,11 @@ bool FormView::isModified() const
     return valueModified;
 }
 
-void FormView::addColumn(int colIdx, const QString& name, const SqlQueryModelColumn::DataType& dataType, bool readOnly)
+void FormView::addColumn(int colIdx, const QString& name, const DataType& dataType, bool readOnly)
 {
     // Group with label
     QString groupLabel = name;
-    if (!dataType.typeStr.isEmpty())
+    if (!dataType.toString().isEmpty())
         groupLabel += " (" + dataType.toString() + ")";
 
     QGroupBox* group = new QGroupBox(groupLabel);

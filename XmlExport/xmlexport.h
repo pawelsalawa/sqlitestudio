@@ -1,36 +1,35 @@
-#ifndef CSVEXPORT_H
-#define CSVEXPORT_H
+#ifndef XMLEXPORT_H
+#define XMLEXPORT_H
 
-#include "csvexport_global.h"
+#include "xmlexport_global.h"
 #include "plugins/genericexportplugin.h"
 #include "config_builder.h"
-#include "csvformat.h"
 
-CFG_CATEGORIES(CsvExportConfig,
-     CFG_CATEGORY(CsvExport,
-         CFG_ENTRY(bool,    ColumnsInFirstRow, false)
-         CFG_ENTRY(int,     Separator,         0)
-         CFG_ENTRY(QString, CustomSeparator,   QString())
-         CFG_ENTRY(QString, NullValueString,   QString())
+CFG_CATEGORIES(XmlExportConfig,
+     CFG_CATEGORY(XmlExport,
+         CFG_ENTRY(QString, Format,       "format")
+         CFG_ENTRY(bool,    UseNamespace, false)
+         CFG_ENTRY(QString, Namespace,    QString())
+         CFG_ENTRY(QString, Escaping,     "mixed")
      )
 )
 
-class CSVEXPORTSHARED_EXPORT CsvExport : public GenericExportPlugin
+
+class XMLEXPORTSHARED_EXPORT XmlExport : public GenericExportPlugin
 {
         Q_OBJECT
 
         SQLITESTUDIO_PLUGIN
-        SQLITESTUDIO_PLUGIN_TITLE("CSV exporting format")
-        SQLITESTUDIO_PLUGIN_DESC("Provides CSV format for exporting")
+        SQLITESTUDIO_PLUGIN_TITLE("XML exporting format")
+        SQLITESTUDIO_PLUGIN_DESC("Provides XML format for exporting")
         SQLITESTUDIO_PLUGIN_VERSION(10000)
         SQLITESTUDIO_PLUGIN_AUTHOR("sqlitestudio.pl")
 
     public:
-        CsvExport();
+        XmlExport();
 
         QString getFormatName() const;
         ExportManager::StandardConfigFlags standardOptionsToEnable() const;
-        ExportManager::ExportModes getSupportedModes() const;
         QString getExportConfigFormName() const;
         CfgMain* getConfig();
         void validateOptions();
@@ -48,10 +47,28 @@ class CSVEXPORTSHARED_EXPORT CsvExport : public GenericExportPlugin
         bool afterExportDatabase();
 
     private:
-        void defineCsvFormat();
+        void setupConfig();
+        void incrIndent();
+        void decrIndent();
+        void updateIndent();
+        void writeln(const QString& str);
+        QString escape(const QString& str);
+        QString escapeCdata(const QString& str);
+        QString escapeAmpersand(const QString& str);
 
-        CFG_LOCAL(CsvExportConfig, cfg)
-        CsvFormat format;
+        CFG_LOCAL(XmlExportConfig, cfg)
+        bool indent = false;
+        int indentDepth = 0;
+        QString indentStr;
+        QString newLineStr;
+        QString nsStr;
+        QString codecName;
+        bool useAmpersand = true;
+        bool useCdata = true;
+        static const QString docBegin;
+
+        static constexpr int minLenghtForCdata = 100;
+
 };
 
-#endif // CSVEXPORT_H
+#endif // XMLEXPORT_H

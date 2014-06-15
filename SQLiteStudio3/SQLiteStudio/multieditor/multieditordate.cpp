@@ -30,9 +30,9 @@ MultiEditorWidget*MultiEditorDatePlugin::getInstance()
     return new MultiEditorDate();
 }
 
-bool MultiEditorDatePlugin::validFor(const SqlQueryModelColumn::DataType& dataType)
+bool MultiEditorDatePlugin::validFor(const DataType& dataType)
 {
-    switch (dataType.type)
+    switch (dataType.getType())
     {
         case DataType::BLOB:
         case DataType::BOOLEAN:
@@ -58,9 +58,9 @@ bool MultiEditorDatePlugin::validFor(const SqlQueryModelColumn::DataType& dataTy
     return false;
 }
 
-int MultiEditorDatePlugin::getPriority(const SqlQueryModelColumn::DataType& dataType)
+int MultiEditorDatePlugin::getPriority(const DataType& dataType)
 {
-    switch (dataType.type)
+    switch (dataType.getType())
     {
         case DataType::BLOB:
         case DataType::BOOLEAN:

@@ -17,7 +17,7 @@ class MultiEditorDialog : public QDialog
         void setValue(const QVariant& value);
         QVariant getValue();
 
-        void setDataType(const SqlQueryModelColumn::DataType& dataType);
+        void setDataType(const DataType& dataType);
         void setReadOnly(bool readOnly);
 
     private:
