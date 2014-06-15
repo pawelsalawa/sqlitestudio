@@ -153,9 +153,9 @@ MultiEditorWidget* MultiEditorBoolPlugin::getInstance()
     return new MultiEditorBool();
 }
 
-bool MultiEditorBoolPlugin::validFor(const SqlQueryModelColumn::DataType& dataType)
+bool MultiEditorBoolPlugin::validFor(const DataType& dataType)
 {
-    switch (dataType.type)
+    switch (dataType.getType())
     {
         case DataType::BOOLEAN:
             return true;
@@ -181,9 +181,9 @@ bool MultiEditorBoolPlugin::validFor(const SqlQueryModelColumn::DataType& dataTy
     return false;
 }
 
-int MultiEditorBoolPlugin::getPriority(const SqlQueryModelColumn::DataType& dataType)
+int MultiEditorBoolPlugin::getPriority(const DataType& dataType)
 {
-    switch (dataType.type)
+    switch (dataType.getType())
     {
         case DataType::BOOLEAN:
             return 1;

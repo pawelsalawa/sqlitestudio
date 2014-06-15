@@ -37,11 +37,12 @@ class SQLEXPORTSHARED_EXPORT SqlExport : public GenericExportPlugin
         bool beforeExportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, bool databaseExport);
         bool exportTableRow(SqlResultsRowPtr data);
         bool afterExportTable();
-        bool beforeExportDatabase();
+        bool beforeExportDatabase(const QString& database);
         bool exportIndex(const QString& database, const QString& name, const QString& ddl);
         bool exportTrigger(const QString& database, const QString& name, const QString& ddl);
         bool exportView(const QString& database, const QString& name, const QString& ddl);
         bool afterExportDatabase();
+        void validateOptions();
 
     private:
         void writeHeader();
@@ -55,9 +56,6 @@ class SQLEXPORTSHARED_EXPORT SqlExport : public GenericExportPlugin
         QString columns;
         bool dbExport = false;
         CFG_LOCAL(SqlExportConfig, cfg)
-
-    public slots:
-        void validateOptions();
 };
 
 #endif // SQLEXPORT_H

@@ -218,7 +218,7 @@ void MultiEditor::setDeletedRow(bool value)
     updateLabel();
 }
 
-void MultiEditor::setDataType(const SqlQueryModelColumn::DataType& dataType)
+void MultiEditor::setDataType(const DataType& dataType)
 {
     this->dataType = dataType;
 
@@ -240,11 +240,11 @@ void MultiEditor::loadBuiltInEditors()
     PLUGINS->loadBuiltInPlugin(new MultiEditorNumericPlugin);
 }
 
-QList<MultiEditorWidget*> MultiEditor::getEditorTypes(const SqlQueryModelColumn::DataType& dataType)
+QList<MultiEditorWidget*> MultiEditor::getEditorTypes(const DataType& dataType)
 {
     QList<MultiEditorWidget*> editors;
 
-    QString typeStr = dataType.typeStr.trimmed().toUpper();
+    QString typeStr = dataType.toString().trimmed().toUpper();
     QHash<QString,QVariant> editorsOrder = CFG_UI.General.DataEditorsOrder.get();
     if (editorsOrder.contains(typeStr))
     {
@@ -302,7 +302,7 @@ QList<MultiEditorWidget*> MultiEditor::getEditorTypes(const SqlQueryModelColumn:
 void MultiEditor::configClicked()
 {
     ConfigDialog config(MAINWINDOW);
-    config.configureDataEditors(dataType.typeStr);
+    config.configureDataEditors(dataType.toString());
     config.exec();
 }
 

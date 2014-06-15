@@ -32,7 +32,7 @@ class FormView : public QScrollArea
 
     private:
         void reloadInternal();
-        void addColumn(int colIdx, const QString& name, const SqlQueryModelColumn::DataType& dataType, bool readOnly);
+        void addColumn(int colIdx, const QString& name, const DataType& dataType, bool readOnly);
         bool isCurrentRowModifiedInGrid();
         void updateDeletedState();
 

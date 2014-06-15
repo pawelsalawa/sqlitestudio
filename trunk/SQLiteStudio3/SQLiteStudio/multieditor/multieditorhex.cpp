@@ -54,15 +54,15 @@ MultiEditorWidget*MultiEditorHexPlugin::getInstance()
     return new MultiEditorHex();
 }
 
-bool MultiEditorHexPlugin::validFor(const SqlQueryModelColumn::DataType& dataType)
+bool MultiEditorHexPlugin::validFor(const DataType& dataType)
 {
     UNUSED(dataType);
     return true;
 }
 
-int MultiEditorHexPlugin::getPriority(const SqlQueryModelColumn::DataType& dataType)
+int MultiEditorHexPlugin::getPriority(const DataType& dataType)
 {
-    switch (dataType.type)
+    switch (dataType.getType())
     {
         case DataType::BLOB:
             return 1;

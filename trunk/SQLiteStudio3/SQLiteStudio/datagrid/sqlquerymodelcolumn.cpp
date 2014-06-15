@@ -85,7 +85,7 @@ QString SqlQueryModelColumn::resolveMessage(SqlQueryModelColumn::EditionForbidde
 
 bool SqlQueryModelColumn::isNumeric()
 {
-    return dataType.type && ::DataType::isNumeric(dataType.type);
+    return dataType.isNumeric();
 }
 
 bool SqlQueryModelColumn::canEdit()
@@ -155,45 +155,6 @@ SqlQueryModelColumn::ConstraintDefault* SqlQueryModelColumn::getDefaultConstrain
         return nullptr;
 
     return list[0];
-}
-
-SqlQueryModelColumn::DataType::DataType()
-{
-}
-
-SqlQueryModelColumn::DataType::DataType(const QString& type, const QVariant& precision, const QVariant& scale)
-{
-    this->type = ::DataType::fromString(type, Qt::CaseInsensitive);
-    this->typeStr = type;
-    this->precision = precision;
-    this->scale = scale;
-}
-
-SqlQueryModelColumn::DataType::DataType(const SqlQueryModelColumn::DataType& other)
-{
-    this->type = other.type;
-    this->typeStr = other.typeStr;
-    this->precision = other.precision;
-    this->scale = scale;
-}
-
-void SqlQueryModelColumn::DataType::setEmpty()
-{
-    type = ::DataType::unknown;
-    typeStr = "";
-}
-
-QString SqlQueryModelColumn::DataType::toString() const
-{
-    QString str = typeStr;
-    if (!precision.isNull())
-    {
-        if (!scale.isNull())
-            str += " ("+precision.toString()+", "+scale.toString()+")";
-        else
-            str += " ("+precision.toString()+")";
-    }
-    return str;
 }
 
 int qHash(SqlQueryModelColumn::EditionForbiddenReason reason)

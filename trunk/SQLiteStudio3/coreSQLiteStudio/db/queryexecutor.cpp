@@ -24,7 +24,9 @@
 #include <QDateTime>
 #include <QThreadPool>
 #include <QDebug>
+#include <schemaresolver.h>
 #include <parser/lexer.h>
+#include <common/table.h>
 
 // TODO modify all executor steps to use rebuildTokensFromContents() method, instead of replacing tokens manually.
 
@@ -515,6 +517,52 @@ SqlQueryPtr QueryExecutor::getResults() const
 bool QueryExecutor::wasSchemaModified() const
 {
     return context->schemaModified;
+}
+
+QList<DataType> QueryExecutor::resolveColumnTypes(Db* db, QList<QueryExecutor::ResultColumnPtr>& columns, bool noDbLocking)
+{
+    QSet<Table> tables;
+    for (ResultColumnPtr col : columns)
+        tables << Table(col->database, col->table);
+
+    SchemaResolver resolver(db);
+    resolver.setNoDbLocking(noDbLocking);
+
+    QHash<Table,SqliteCreateTablePtr> parsedTables;
+    SqliteCreateTablePtr createTable;
+    for (const Table& t : tables)
+    {
+        createTable = resolver.getParsedObject(t.getDatabase(), t.getTable()).dynamicCast<SqliteCreateTable>();
+        if (!createTable)
+        {
+            qWarning() << "Could not resolve columns of table" << t.getTable() << "while quering datatypes for queryexecutor columns.";
+            continue;
+        }
+        parsedTables[t] = createTable;
+    }
+
+    QList<DataType> datatypeList;
+    Table t;
+    SqliteCreateTable::Column* parsedCol;
+    for (ResultColumnPtr col : columns)
+    {
+        t = Table(col->database, col->table);
+        if (!parsedTables.contains(t))
+        {
+            datatypeList << DataType();
+            continue;
+        }
+
+        parsedCol = parsedTables[t]->getColumn(col->column);
+        if (!parsedCol || !parsedCol->type)
+        {
+            datatypeList << DataType();
+            continue;
+        }
+
+        datatypeList << parsedCol->type->toDateType();
+    }
+    return datatypeList;
 }
 
 bool QueryExecutor::getAsyncMode() const

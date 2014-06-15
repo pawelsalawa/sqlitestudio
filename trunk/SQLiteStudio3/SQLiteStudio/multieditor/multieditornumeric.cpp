@@ -47,9 +47,9 @@ MultiEditorWidget*MultiEditorNumericPlugin::getInstance()
     return new MultiEditorNumeric();
 }
 
-bool MultiEditorNumericPlugin::validFor(const SqlQueryModelColumn::DataType& dataType)
+bool MultiEditorNumericPlugin::validFor(const DataType& dataType)
 {
-    switch (dataType.type)
+    switch (dataType.getType())
     {
         case DataType::BIGINT:
         case DataType::DECIMAL:
@@ -75,9 +75,9 @@ bool MultiEditorNumericPlugin::validFor(const SqlQueryModelColumn::DataType& dat
     return false;
 }
 
-int MultiEditorNumericPlugin::getPriority(const SqlQueryModelColumn::DataType& dataType)
+int MultiEditorNumericPlugin::getPriority(const DataType& dataType)
 {
-    switch (dataType.type)
+    switch (dataType.getType())
     {
         case DataType::BIGINT:
         case DataType::DECIMAL:

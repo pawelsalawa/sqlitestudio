@@ -6,6 +6,7 @@
 #include "selectresolver.h"
 #include "coreSQLiteStudio_global.h"
 #include "common/bistrhash.h"
+#include "datatype.h"
 #include <QObject>
 #include <QHash>
 #include <QMutex>
@@ -951,6 +952,8 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
 
         SqlQueryPtr getResults() const;
         bool wasSchemaModified() const;
+
+        static QList<DataType> resolveColumnTypes(Db* db, QList<ResultColumnPtr>& columns, bool noDbLocking = false);
 
     private:
         /**

@@ -30,21 +30,6 @@ class SqlQueryModelColumn
             COMMON_TABLE_EXPRESSION
         };
 
-        class DataType
-        {
-            public:
-                DataType();
-                DataType(const QString& type, const QVariant& precision, const QVariant& scale);
-                DataType(const DataType& other);
-                void setEmpty();
-                QString toString() const;
-
-                ::DataType::Enum type = ::DataType::unknown;
-                QString typeStr = "";
-                QVariant precision;
-                QVariant scale;
-        };
-
         struct Constraint
         {
             enum class Type

@@ -38,7 +38,7 @@ QVariant MultiEditorDialog::getValue()
     return multiEditor->getValue();
 }
 
-void MultiEditorDialog::setDataType(const SqlQueryModelColumn::DataType& dataType)
+void MultiEditorDialog::setDataType(const DataType& dataType)
 {
     multiEditor->setDataType(dataType);
 }

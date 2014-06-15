@@ -35,7 +35,7 @@ void ColumnDialog::init()
     ui->precision->setStrict(true);
 
     ui->typeCombo->addItem("");
-    foreach (DataType::Enum type, DataType::values)
+    foreach (DataType::Enum type, DataType::getAllTypes())
         ui->typeCombo->addItem(DataType::toString(type));
 
     connect(ui->typeCombo, SIGNAL(currentTextChanged(QString)), this, SLOT(updateDataType()));

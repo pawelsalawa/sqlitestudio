@@ -1,0 +1,12 @@
+#ifndef XMLEXPORT_GLOBAL_H
+#define XMLEXPORT_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(XMLEXPORT_LIBRARY)
+#  define XMLEXPORTSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define XMLEXPORTSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // XMLEXPORT_GLOBAL_H

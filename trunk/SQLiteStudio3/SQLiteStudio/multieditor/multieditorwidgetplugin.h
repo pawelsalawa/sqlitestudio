@@ -10,8 +10,8 @@ class MultiEditorWidgetPlugin : public virtual Plugin
 {
     public:
         virtual MultiEditorWidget* getInstance() = 0;
-        virtual bool validFor(const SqlQueryModelColumn::DataType& dataType) = 0;
-        virtual int getPriority(const SqlQueryModelColumn::DataType& dataType) = 0;
+        virtual bool validFor(const DataType& dataType) = 0;
+        virtual int getPriority(const DataType& dataType) = 0;
 };
 
 #endif // MULTIEDITORWIDGETPLUGIN_H

@@ -1,5 +1,6 @@
 #include "datatype.h"
 #include <QMetaEnum>
+#include <QRegularExpression>
 
 QList<DataType::Enum> DataType::values = [=]() -> QList<DataType::Enum>
 {
@@ -34,6 +35,121 @@ const QStringList DataType::names = [=]() -> QStringList
 
     return list;
 }();
+
+DataType::DataType()
+{
+    setEmpty();
+}
+
+DataType::DataType(const QString& fullTypeString)
+{
+    static const QRegularExpression
+            re(R"("
+            "^(?<type>[^\)]*)\s*(\((?<scale>[\d\.]+)\s*(,\s*(?<precision>[\d\.])+\s*)?\))?$"
+            ")");
+
+    QRegularExpressionMatch match = re.match(fullTypeString);
+    if (!match.hasMatch())
+    {
+        setEmpty();
+        return;
+    }
+
+    typeStr = match.captured("type");
+    type = fromString(typeStr, Qt::CaseInsensitive);
+    precision = match.captured("precision");
+    scale = match.captured("scale");
+}
+
+DataType::DataType(const QString& type, const QVariant& scale, const QVariant& precision)
+{
+    this->type = fromString(type, Qt::CaseInsensitive);
+    this->typeStr = type;
+    this->precision = precision;
+    this->scale = scale;
+}
+
+DataType::DataType(const DataType& other) :
+    QObject()
+{
+    operator=(other);
+}
+
+void DataType::setEmpty()
+{
+    type = ::DataType::unknown;
+    typeStr = "";
+    precision = QVariant();
+    scale = QVariant();
+}
+
+DataType::Enum DataType::getType() const
+{
+    return type;
+}
+
+void DataType::setType(DataType::Enum value)
+{
+    type = value;
+    typeStr = toString(type);
+}
+
+QVariant DataType::getPrecision() const
+{
+    return precision;
+}
+
+void DataType::setPrecision(const QVariant& value)
+{
+    precision = value;
+}
+
+QVariant DataType::getScale() const
+{
+    return scale;
+}
+
+void DataType::setScale(const QVariant& value)
+{
+    scale = value;
+}
+
+QString DataType::toString() const
+{
+    return typeStr;
+}
+
+QString DataType::toFullTypeString() const
+{
+    QString str = typeStr;
+    if (!precision.isNull())
+    {
+        if (!scale.isNull())
+            str += " ("+scale.toString()+", "+precision.toString()+")";
+        else
+            str += " ("+scale.toString()+")";
+    }
+    return str;
+}
+
+bool DataType::isNumeric()
+{
+    return isNumeric(type);
+}
+
+bool DataType::isBinary()
+{
+    return isBinary(typeStr);
+}
+
+DataType& DataType::operator=(const DataType& other)
+{
+    this->type = other.type;
+    this->typeStr = other.typeStr;
+    this->precision = other.precision;
+    this->scale = scale;
+    return *this;
+}
 
 QString DataType::toString(DataType::Enum e)
 {
@@ -92,4 +208,14 @@ bool DataType::isBinary(const QString& type)
 {
     static const QStringList binaryTypes = {"BLOB", "CLOB", "LOB"};
     return binaryTypes.contains(type.toUpper());
+}
+
+QList<DataType::Enum> DataType::getAllTypes()
+{
+    return values;
+}
+
+QStringList DataType::getAllNames()
+{
+    return names;
 }

@@ -215,6 +215,10 @@ void ExportDialog::initFormatPage()
                 setValidState(ui->exportFileEdit, false, tr("The directory '%1' does not exist.").arg(dir.dirName()));
                 return false;
             }
+
+            QFileInfo fi(path);
+            if (fi.exists())
+                setValidStateWarning(ui->exportFileEdit, tr("The file '%1' exists and will be overwritten.").arg(fi.fileName()));
         }
         return ui->formatCombo->currentIndex() > -1 && ui->encodingCombo->currentIndex() > -1 && isPluginConfigValid();
     });
@@ -430,17 +434,13 @@ void ExportDialog::updateOptions()
         return;
     }
 
-    int optionsRow = 0;
-
     ExportManager::StandardConfigFlags options = currentPlugin->standardOptionsToEnable();
     bool displayCodec = options.testFlag(ExportManager::CODEC) && !ui->exportClipboardRadio->isChecked();
     ui->encodingCombo->setVisible(displayCodec);
     ui->encodingLabel->setVisible(displayCodec);
-    if (displayCodec)
-        optionsRow++;
 
+    int optionsRow = 0;
     updatePluginOptions(currentPlugin, optionsRow);
-
     ui->optionsGroup->setVisible(optionsRow > 0);
 }
 

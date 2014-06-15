@@ -104,6 +104,10 @@ class API_EXPORT SchemaResolver
          * @overload
          */
         QStringList getTableColumns(const QString& database, const QString& table);
+
+        QList<DataType> getTableColumnDataTypes(const QString& table, int expectedNumberOfTypes = -1);
+        QList<DataType> getTableColumnDataTypes(const QString& database, const QString& table, int expectedNumberOfTypes = -1);
+
         QHash<QString, QStringList> getAllTableColumns(const QString& database = QString::null);
 
         QStringList getViewColumns(const QString& view);
@@ -151,6 +155,9 @@ class API_EXPORT SchemaResolver
         bool getIgnoreSystemObjects() const;
         void setIgnoreSystemObjects(bool value);
 
+        bool getNoDbLocking() const;
+        void setNoDbLocking(bool value);
+
     private:
         SqliteQueryPtr getParsedDdl(const QString& ddl);
         SqliteCreateTablePtr virtualTableAsRegularTable(const QString& database, const QString& table);
@@ -165,6 +172,7 @@ class API_EXPORT SchemaResolver
         Db* db = nullptr;
         Parser* parser;
         bool ignoreSystemObjects = false;
+        Db::Flags dbFlags;
 };
 
 template <class T>

@@ -38,7 +38,6 @@ void setValidState(QWidget *widget, bool valid, const QString& message)
     INDICATOR(widget)->setVisible(!valid, valid ? QString() : message);
 }
 
-
 void setValidStateWihtTooltip(QWidget* widget, const QString& tooltip, bool valid, const QString& message)
 {
     if (!valid)
@@ -51,4 +50,10 @@ void setValidStateWihtTooltip(QWidget* widget, const QString& tooltip, bool vali
         INDICATOR(widget)->setMode(WidgetStateIndicator::Mode::HINT);
         INDICATOR(widget)->setVisible(widget->isEnabled(), tooltip);
     }
+}
+
+void setValidStateWarning(QWidget* widget, const QString& warning)
+{
+    INDICATOR(widget)->setMode(WidgetStateIndicator::Mode::WARNING);
+    INDICATOR(widget)->setVisible(widget->isEnabled(), warning);
 }

@@ -30,8 +30,8 @@ class MultiEditorDatePlugin : public GenericPlugin, public MultiEditorWidgetPlug
 
     public:
         MultiEditorWidget* getInstance();
-        bool validFor(const SqlQueryModelColumn::DataType& dataType);
-        int getPriority(const SqlQueryModelColumn::DataType& dataType);
+        bool validFor(const DataType& dataType);
+        int getPriority(const DataType& dataType);
 };
 
 #endif // MULTIEDITORDATE_H

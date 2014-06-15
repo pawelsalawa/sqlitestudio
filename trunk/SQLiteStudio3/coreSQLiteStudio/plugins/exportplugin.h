@@ -184,6 +184,7 @@ class ExportPlugin : virtual public Plugin
 
         /**
          * @brief Does initial entry for the entire database export.
+         * @param database Database name (as listed in database list).
          * @return true for success, or false in case of a fatal error.
          *
          * It's called just once, before all database object get exported.
@@ -191,7 +192,7 @@ class ExportPlugin : virtual public Plugin
          * exportTrigger() and exportView().
          * Note, that exportTableRow() will be called only if StandardExportConfig::exportData in beforeExportTable() was true.
          */
-        virtual bool beforeExportDatabase() = 0;
+        virtual bool beforeExportDatabase(const QString& database) = 0;
 
         /**
          * @brief Does entire export entry for an index.

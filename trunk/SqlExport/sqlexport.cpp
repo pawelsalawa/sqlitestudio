@@ -3,6 +3,7 @@
 #include "sqlitestudio.h"
 #include "config_builder.h"
 #include "services/exportmanager.h"
+#include "common/unused.h"
 #include <QTextCodec>
 
 SqlExport::SqlExport()
@@ -125,8 +126,9 @@ bool SqlExport::afterExportTable()
     return true;
 }
 
-bool SqlExport::beforeExportDatabase()
+bool SqlExport::beforeExportDatabase(const QString& database)
 {
+    UNUSED(database);
     writeHeader();
     writeFkDisable();
     writeBegin();

@@ -271,8 +271,8 @@ QList<QTreeWidgetItem *> ConfigDialog::getAllCategoryItems() const
 QList<MultiEditorWidgetPlugin*> ConfigDialog::getDefaultEditorsForType(DataType::Enum dataType)
 {
     QList<MultiEditorWidgetPlugin*> plugins = PLUGINS->getLoadedPlugins<MultiEditorWidgetPlugin>();
-    SqlQueryModelColumn::DataType modelDataType;
-    modelDataType.type = dataType;
+    DataType modelDataType;
+    modelDataType.setType(dataType);
 
     typedef QPair<int,MultiEditorWidgetPlugin*> PluginWithPriority;
     QList<PluginWithPriority> sortedPlugins;
@@ -461,7 +461,7 @@ void ConfigDialog::dataEditorItemEdited(QListWidgetItem* item)
 
     updatingDataEditorItem = true;
     QString txt = item->text().toUpper();
-    if (DataType::names.contains(txt))
+    if (DataType::getAllNames().contains(txt))
         txt += "_";
 
     while (ui->dataEditorsTypesList->findItems(txt, Qt::MatchExactly).size() > 1)
@@ -1034,7 +1034,7 @@ void ConfigDialog::initDataEditors()
 
     QHash<QString,QVariant> editorsOrder = CFG_UI.General.DataEditorsOrder.get();
     QSet<QString> dataTypeSet = editorsOrder.keys().toSet();
-    dataTypeSet += DataType::names.toSet();
+    dataTypeSet += DataType::getAllNames().toSet();
     QStringList dataTypeList = dataTypeSet.toList();
     qSort(dataTypeList);
 
@@ -1042,7 +1042,7 @@ void ConfigDialog::initDataEditors()
     for (const QString& type : dataTypeList)
     {
         item = new QListWidgetItem(type);
-        if (!DataType::names.contains(type))
+        if (!DataType::getAllNames().contains(type))
             item->setFlags(item->flags()|Qt::ItemIsEditable);
 
         ui->dataEditorsTypesList->addItem(item);
