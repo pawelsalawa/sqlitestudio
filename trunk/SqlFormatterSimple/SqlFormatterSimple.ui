@@ -6,31 +6,28 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>325</width>
+    <width>354</width>
     <height>290</height>
    </rect>
-  </property>
-  <property name="cfg" stdset="0">
-   <string/>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QCheckBox" name="upperKeywordsCheck">
-     <property name="cfg" stdset="0">
-      <string>SqlFormatterSimple.UpperCaseKeywords</string>
-     </property>
      <property name="text">
       <string>Upper case keywords</string>
+     </property>
+     <property name="cfg" stdset="0">
+      <string>SqlFormatterSimple.UpperCaseKeywords</string>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QCheckBox" name="tripLongSpacesCheck">
-     <property name="cfg" stdset="0">
-      <string>SqlFormatterSimple.TrimLongSpaces</string>
-     </property>
      <property name="text">
       <string>Reduce multiple whitespaces to single whitespace</string>
+     </property>
+     <property name="cfg" stdset="0">
+      <string>SqlFormatterSimple.TrimLongSpaces</string>
      </property>
     </widget>
    </item>

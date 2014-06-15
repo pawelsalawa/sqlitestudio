@@ -5,32 +5,34 @@
 
 QString CsvSerializer::serialize(const QList<QStringList>& data, const CsvFormat& format)
 {
-    QStringList outputCells;
     QStringList outputRows;
-    QString value;
-    bool hasQuote;
 
     foreach (const QStringList& dataRow, data)
-    {
-        foreach (const QString& rowValue, dataRow)
-        {
-            value = rowValue;
-
-            hasQuote = value.contains("\"");
-            if (hasQuote)
-                value.replace("\"", "\"\"");
-
-            if (hasQuote || value.contains(format.columnSeparator) || value.contains(format.rowSeparator))
-                value = "\""+value+"\"";
-
-            outputCells << value;
-        }
-
-        outputRows << outputCells.join(format.columnSeparator);
-        outputCells.clear();
-    }
+        outputRows << serialize(dataRow, format);
 
     return outputRows.join(format.rowSeparator);
+}
+
+QString CsvSerializer::serialize(const QStringList& data, const CsvFormat& format)
+{
+    QString value;
+    bool hasQuote;
+    QStringList outputCells;
+    foreach (const QString& rowValue, data)
+    {
+        value = rowValue;
+
+        hasQuote = value.contains("\"");
+        if (hasQuote)
+            value.replace("\"", "\"\"");
+
+        if (hasQuote || value.contains(format.columnSeparator) || value.contains(format.rowSeparator))
+            value = "\""+value+"\"";
+
+        outputCells << value;
+    }
+
+    return outputCells.join(format.columnSeparator);
 }
 
 QList<QStringList> CsvSerializer::deserialize(const QString& data, const CsvFormat& format)

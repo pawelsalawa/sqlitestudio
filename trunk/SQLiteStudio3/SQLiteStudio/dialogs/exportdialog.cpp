@@ -57,6 +57,7 @@ void ExportDialog::init()
     connect(EXPORT_MANAGER, SIGNAL(storeInClipboard(QByteArray, QString)), this, SLOT(storeInClipboard(QByteArray, QString)));
     connect(EXPORT_MANAGER, SIGNAL(storeInClipboard(QString)), this, SLOT(storeInClipboard(QString)));
     connect(EXPORT_MANAGER, SIGNAL(validationResultFromPlugin(bool,CfgEntry*,QString)), this, SLOT(handleValidationResultFromPlugin(bool,CfgEntry*,QString)));
+    connect(EXPORT_MANAGER, SIGNAL(stateUpdateRequestFromPlugin(CfgEntry*,bool,bool)), this, SLOT(stateUpdateRequestFromPlugin(CfgEntry*,bool,bool)));
 }
 
 void ExportDialog::setTableMode(Db* db, const QString& table)
@@ -198,7 +199,7 @@ void ExportDialog::initFormatPage()
             QString path = ui->exportFileEdit->text();
             if (path.trimmed().isEmpty())
             {
-                setValidState(ui->exportFileEdit, false, tr("You must provide a file to export to."));
+                setValidState(ui->exportFileEdit, false, tr("You must provide a file name to export to."));
                 return false;
             }
 
@@ -322,15 +323,13 @@ void ExportDialog::formatPageDisplayed()
 {
     if (!formatPageVisited)
     {
-        ui->formatCombo->addItems(EXPORT_MANAGER->getAvailableFormats());
+        ui->formatCombo->addItems(EXPORT_MANAGER->getAvailableFormats(exportMode));
         ui->encodingCombo->addItems(textCodecNames());
         ui->encodingCombo->setCurrentText(defaultCodecName());
 
         formatPageVisited = true;
     }
     pluginSelected();
-
-//    qDebug() << selectableDbListModel->getCheckedObjects();
 }
 
 ExportPlugin* ExportDialog::getSelectedPlugin() const

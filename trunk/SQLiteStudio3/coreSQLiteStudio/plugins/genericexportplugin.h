@@ -9,7 +9,7 @@ class GenericExportPlugin : public GenericPlugin, public ExportPlugin
     public:
         void initBeforeExport(Db* db, QIODevice* output, const ExportManager::StandardExportConfig& config);
         ExportManager::ExportModes getSupportedModes() const;
-        CfgMain* getConfig() const;
+        CfgMain* getConfig();
         QString getConfigFormName(ExportManager::ExportMode exportMode) const;
         QString getMimeType() const;
         void setExportMode(ExportManager::ExportMode exportMode);

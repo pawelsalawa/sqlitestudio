@@ -27,7 +27,7 @@ ExportManager::ExportModes GenericExportPlugin::getSupportedModes() const
     return ExportManager::CLIPBOARD|ExportManager::DATABASE|ExportManager::TABLE|ExportManager::QUERY_RESULTS;
 }
 
-CfgMain* GenericExportPlugin::getConfig() const
+CfgMain* GenericExportPlugin::getConfig()
 {
     return nullptr;
 }

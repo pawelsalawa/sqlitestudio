@@ -1,36 +1,40 @@
-#ifndef SQLEXPORT_H
-#define SQLEXPORT_H
+#ifndef CSVEXPORT_H
+#define CSVEXPORT_H
 
+#include "csvexport_global.h"
 #include "plugins/genericexportplugin.h"
-#include "sqlexport_global.h"
 #include "config_builder.h"
+#include "csvformat.h"
 
-CFG_CATEGORIES(SqlExportConfig,
-     CFG_CATEGORY(SqlExport,
-         CFG_ENTRY(QString, QueryTable,             QString::null)
-         CFG_ENTRY(bool,    GenerateCreateTable,    false)
-         CFG_ENTRY(bool,    IncludeQueryInComments, true)
+CFG_CATEGORIES(CsvExportConfig,
+     CFG_CATEGORY(CsvExport,
+         CFG_ENTRY(bool,    ColumnsInFirstRow, false)
+         CFG_ENTRY(int,     Separator,         0)
+         CFG_ENTRY(QString, CustomSeparator,   QString())
+         CFG_ENTRY(QString, NullValueString,   QString())
      )
 )
 
-class SQLEXPORTSHARED_EXPORT SqlExport : public GenericExportPlugin
+class CSVEXPORTSHARED_EXPORT CsvExport : public GenericExportPlugin
 {
         Q_OBJECT
 
         SQLITESTUDIO_PLUGIN
-        SQLITESTUDIO_PLUGIN_TITLE("SQL exporting format")
-        SQLITESTUDIO_PLUGIN_DESC("Provides SQL format for exporting")
+        SQLITESTUDIO_PLUGIN_TITLE("CSV exporting format")
+        SQLITESTUDIO_PLUGIN_DESC("Provides CSV format for exporting")
         SQLITESTUDIO_PLUGIN_VERSION(10000)
         SQLITESTUDIO_PLUGIN_AUTHOR("sqlitestudio.pl")
 
     public:
-        SqlExport();
+        CsvExport();
 
         QString getFormatName() const;
         ExportManager::StandardConfigFlags standardOptionsToEnable() const;
-        CfgMain* getConfig();
-        QString defaultFileExtension() const;
+        ExportManager::ExportModes getSupportedModes() const;
         QString getExportConfigFormName() const;
+        CfgMain* getConfig();
+        void validateOptions();
+        QString defaultFileExtension() const;
         bool beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns);
         bool exportQueryResultsRow(SqlResultsRowPtr row);
         bool afterExportQueryResults();
@@ -44,20 +48,10 @@ class SQLEXPORTSHARED_EXPORT SqlExport : public GenericExportPlugin
         bool afterExportDatabase();
 
     private:
-        void writeHeader();
-        void writeBegin();
-        void writeCommit();
-        void writeFkDisable();
-        QString getNameForObject(const QString& database, const QString& name, bool wrapped, Dialect dialect = Dialect::Sqlite3);
-        QStringList rowToArgList(SqlResultsRowPtr row);
+        void defineCsvFormat();
 
-        QString theTable;
-        QString columns;
-        bool dbExport = false;
-        CFG_LOCAL(SqlExportConfig, cfg)
-
-    public slots:
-        void validateOptions();
+        CFG_LOCAL(CsvExportConfig, cfg)
+        CsvFormat format;
 };
 
-#endif // SQLEXPORT_H
+#endif // CSVEXPORT_H

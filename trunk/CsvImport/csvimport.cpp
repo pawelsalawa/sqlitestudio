@@ -6,8 +6,6 @@
 #include <QFile>
 #include <QTextStream>
 
-CFG_DEFINE_RUNTIME(CsvImportConfig)
-
 CsvImport::CsvImport()
 {
 }
@@ -66,7 +64,7 @@ bool CsvImport::extractColumns()
     }
 
     QStringList deserialized = CsvSerializer::deserialize(line.trimmed(), csvFormat).first();
-    if (CSV_IMPORT_CFG.CsvImport.FirstRowAsColumns.get())
+    if (cfg.CsvImport.FirstRowAsColumns.get())
     {
         columnNames = deserialized;
     }
@@ -88,7 +86,7 @@ void CsvImport::defineCsvFormat()
     csvFormat = CsvFormat();
     csvFormat.rowSeparator = '\n';
 
-    switch (CSV_IMPORT_CFG.CsvImport.Separator.get())
+    switch (cfg.CsvImport.Separator.get())
     {
         case 0:
             csvFormat.columnSeparator = ',';
@@ -103,7 +101,7 @@ void CsvImport::defineCsvFormat()
             csvFormat.columnSeparator = ' ';
             break;
         default:
-            csvFormat.columnSeparator = CSV_IMPORT_CFG.CsvImport.CustomSeparator.get();
+            csvFormat.columnSeparator = cfg.CsvImport.CustomSeparator.get();
             break;
     }
 }
@@ -127,9 +125,9 @@ QList<QVariant> CsvImport::next()
     QList<QStringList> deserialized = CsvSerializer::deserialize(line, csvFormat);
     if (deserialized.size() > 0)
     {
-        if (CSV_IMPORT_CFG.CsvImport.NullValues.get())
+        if (cfg.CsvImport.NullValues.get())
         {
-            QString nullVal = CSV_IMPORT_CFG.CsvImport.NullValueString.get();
+            QString nullVal = cfg.CsvImport.NullValueString.get();
             for (const QString& val : deserialized.first())
             {
                 if (val == nullVal)
@@ -148,9 +146,9 @@ QList<QVariant> CsvImport::next()
     return values;
 }
 
-CfgMain* CsvImport::getConfig() const
+CfgMain* CsvImport::getConfig()
 {
-    return &CSV_IMPORT_CFG;
+    return &cfg;
 }
 
 QString CsvImport::getImportConfigFormName() const
@@ -160,30 +158,30 @@ QString CsvImport::getImportConfigFormName() const
 
 void CsvImport::validateOptions()
 {
-    if (CSV_IMPORT_CFG.CsvImport.Separator.get() >= 4)
+    if (cfg.CsvImport.Separator.get() >= 4)
     {
-        IMPORT_MANAGER->updateVisibilityAndEnabled(CSV_IMPORT_CFG.CsvImport.CustomSeparator, true, true);
+        IMPORT_MANAGER->updateVisibilityAndEnabled(cfg.CsvImport.CustomSeparator, true, true);
 
-        bool valid = !CSV_IMPORT_CFG.CsvImport.CustomSeparator.get().isEmpty();
-        IMPORT_MANAGER->handleValidationFromPlugin(valid, CSV_IMPORT_CFG.CsvImport.CustomSeparator, tr("Enter the custom separator character."));
+        bool valid = !cfg.CsvImport.CustomSeparator.get().isEmpty();
+        IMPORT_MANAGER->handleValidationFromPlugin(valid, cfg.CsvImport.CustomSeparator, tr("Enter the custom separator character."));
     }
     else
     {
-        IMPORT_MANAGER->updateVisibilityAndEnabled(CSV_IMPORT_CFG.CsvImport.CustomSeparator, true, false);
-        IMPORT_MANAGER->handleValidationFromPlugin(true, CSV_IMPORT_CFG.CsvImport.CustomSeparator);
+        IMPORT_MANAGER->updateVisibilityAndEnabled(cfg.CsvImport.CustomSeparator, true, false);
+        IMPORT_MANAGER->handleValidationFromPlugin(true, cfg.CsvImport.CustomSeparator);
     }
 
-    if (CSV_IMPORT_CFG.CsvImport.NullValues.get())
+    if (cfg.CsvImport.NullValues.get())
     {
-        IMPORT_MANAGER->updateVisibilityAndEnabled(CSV_IMPORT_CFG.CsvImport.NullValueString, true, true);
+        IMPORT_MANAGER->updateVisibilityAndEnabled(cfg.CsvImport.NullValueString, true, true);
 
-        bool valid = !CSV_IMPORT_CFG.CsvImport.NullValueString.get().isEmpty();
-        IMPORT_MANAGER->handleValidationFromPlugin(valid, CSV_IMPORT_CFG.CsvImport.NullValueString, tr("Enter the value that will be interpreted as a NULL."));
+        bool valid = !cfg.CsvImport.NullValueString.get().isEmpty();
+        IMPORT_MANAGER->handleValidationFromPlugin(valid, cfg.CsvImport.NullValueString, tr("Enter the value that will be interpreted as a NULL."));
     }
     else
     {
-        IMPORT_MANAGER->updateVisibilityAndEnabled(CSV_IMPORT_CFG.CsvImport.NullValueString, true, false);
-        IMPORT_MANAGER->handleValidationFromPlugin(true, CSV_IMPORT_CFG.CsvImport.NullValueString);
+        IMPORT_MANAGER->updateVisibilityAndEnabled(cfg.CsvImport.NullValueString, true, false);
+        IMPORT_MANAGER->handleValidationFromPlugin(true, cfg.CsvImport.NullValueString);
     }
 }
 

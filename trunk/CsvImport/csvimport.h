@@ -17,8 +17,6 @@ CFG_CATEGORIES(CsvImportConfig,
      )
 )
 
-#define CSV_IMPORT_CFG CFG_INSTANCE(CsvImportConfig)
-
 class QFile;
 class QTextStream;
 
@@ -41,7 +39,7 @@ class CSVIMPORTSHARED_EXPORT CsvImport : public GenericPlugin, public ImportPlug
         void afterImport();
         QList<ColumnDefinition> getColumns() const;
         QList<QVariant> next();
-        CfgMain* getConfig() const;
+        CfgMain* getConfig();
         QString getImportConfigFormName() const;
         void validateOptions();
         QString getFileFilter() const;
@@ -54,6 +52,7 @@ class CSVIMPORTSHARED_EXPORT CsvImport : public GenericPlugin, public ImportPlug
         QTextStream* stream = nullptr;
         QStringList columnNames;
         CsvFormat csvFormat;
+        CFG_LOCAL(CsvImportConfig, cfg)
 };
 
 #endif // CSVIMPORT_H

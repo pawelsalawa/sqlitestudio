@@ -3,6 +3,7 @@
 
 #include "config_builder.h"
 #include "datatype.h"
+#include "common/bihash.h"
 #include <QDialog>
 
 namespace Ui {
@@ -78,7 +79,7 @@ class ConfigDialog : public QDialog
         Ui::ConfigDialog *ui;
         QStyle* previewStyle = nullptr;
         QHash<QString,QWidget*> nameToPage;
-        QHash<QTreeWidgetItem*,QString> itemToPluginNameMap;
+        BiHash<QTreeWidgetItem*,QString> itemToPluginNameMap;
         QHash<PluginType*,QTreeWidgetItem*> pluginTypeToItemMap;
         QHash<Plugin*,QTreeWidgetItem*> pluginToItemMap;
         ConfigMapper* configMapper = nullptr;
@@ -112,6 +113,7 @@ class ConfigDialog : public QDialog
         void pluginAboutToUnload(Plugin* plugin, PluginType* type);
         void pluginLoaded(Plugin* plugin, PluginType* type);
         void updatePluginCategoriesVisibility();
+        void updateBuiltInPluginsVisibility();
 
     public slots:
         void accept();
