@@ -38,16 +38,18 @@ class CSVEXPORTSHARED_EXPORT CsvExport : public GenericExportPlugin
         bool beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns);
         bool exportQueryResultsRow(SqlResultsRowPtr row);
         bool afterExportQueryResults();
-        bool beforeExportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, bool databaseExport);
+        bool exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable,
+                         bool databaseExport);
+        bool exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable,
+                                bool databaseExport);
         bool exportTableRow(SqlResultsRowPtr data);
-        bool afterExportTable();
         bool beforeExportDatabase(const QString& database);
-        bool exportIndex(const QString& database, const QString& name, const QString& ddl);
-        bool exportTrigger(const QString& database, const QString& name, const QString& ddl);
-        bool exportView(const QString& database, const QString& name, const QString& ddl);
-        bool afterExportDatabase();
+        bool exportIndex(const QString& database, const QString& name, const QString& ddl, SqliteCreateIndexPtr createIndex);
+        bool exportTrigger(const QString& database, const QString& name, const QString& ddl, SqliteCreateTriggerPtr createTrigger);
+        bool exportView(const QString& database, const QString& name, const QString& ddl, SqliteCreateViewPtr createView);
 
     private:
+        bool exportTable(const QStringList& columnNames, bool databaseExport);
         void defineCsvFormat();
 
         CFG_LOCAL(CsvExportConfig, cfg)

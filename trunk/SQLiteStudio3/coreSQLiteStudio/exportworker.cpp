@@ -16,6 +16,7 @@ ExportWorker::ExportWorker(ExportPlugin* plugin, ExportManager::StandardExportCo
 ExportWorker::~ExportWorker()
 {
     safe_delete(executor);
+    safe_delete(parser);
 }
 
 void ExportWorker::run()
@@ -54,6 +55,7 @@ void ExportWorker::prepareExportQueryResults(Db* db, const QString& query)
     this->db = db;
     this->query = query;
     exportMode = ExportManager::QUERY_RESULTS;
+    prepareParser();
 }
 
 void ExportWorker::prepareExportDatabase(Db* db, const QStringList& objectListToExport)
@@ -61,6 +63,7 @@ void ExportWorker::prepareExportDatabase(Db* db, const QStringList& objectListTo
     this->db = db;
     this->objectListToExport = objectListToExport;
     exportMode = ExportManager::DATABASE;
+    prepareParser();
 }
 
 void ExportWorker::prepareExportTable(Db* db, const QString& database, const QString& table)
@@ -69,6 +72,13 @@ void ExportWorker::prepareExportTable(Db* db, const QString& database, const QSt
     this->database = database;
     this->table = table;
     exportMode = ExportManager::TABLE;
+    prepareParser();
+}
+
+void ExportWorker::prepareParser()
+{
+    safe_delete(parser);
+    parser = new Parser(db->getDialect());
 }
 
 void ExportWorker::interrupt()
@@ -151,23 +161,79 @@ bool ExportWorker::exportDatabase()
         return order.indexOf(dbObj1->type) < order.indexOf(dbObj2->type);
     });
 
+    if (!plugin->beforeExportTables())
+        return false;
+
+    if (exportDatabaseObjects(dbObjects, ExportManager::ExportObject::TABLE))
+        return false;
+
+    if (!plugin->afterExportTables())
+        return false;
+
+    if (!plugin->beforeExportIndexes())
+        return false;
+
+    if (exportDatabaseObjects(dbObjects, ExportManager::ExportObject::INDEX))
+        return false;
+
+    if (!plugin->afterExportIndexes())
+        return false;
+
+    if (!plugin->beforeExportTriggers())
+        return false;
+
+    if (exportDatabaseObjects(dbObjects, ExportManager::ExportObject::TRIGGER))
+        return false;
+
+    if (!plugin->afterExportTriggers())
+        return false;
+
+    if (!plugin->beforeExportViews())
+        return false;
+
+    if (exportDatabaseObjects(dbObjects, ExportManager::ExportObject::VIEW))
+        return false;
+
+    if (!plugin->afterExportViews())
+        return false;
+
+    if (!plugin->afterExportDatabase())
+        return false;
+
+    return true;
+}
+
+bool ExportWorker::exportDatabaseObjects(const QList<ExportManager::ExportObjectPtr>& dbObjects, ExportManager::ExportObject::Type type)
+{
+    SqliteQueryPtr parsedQuery;
     bool res = true;
     for (const ExportManager::ExportObjectPtr& obj : dbObjects)
     {
-        res = true;
+        if (obj->type != type)
+            continue;
+
+        res = parser->parse(obj->ddl);
+        if (!res || parser->getQueries().size() < 1)
+        {
+            qCritical() << "Could not parse" << obj->name << ", the DDL was:" << obj->ddl << ", error is:" << parser->getErrorString();
+            notifyWarn(tr("Could not parse %1 in order to export it. It will be excluded from the export output.").arg(obj->name));
+            continue;
+        }
+        parsedQuery = parser->getQueries().first();
+
         switch (obj->type)
         {
             case ExportManager::ExportObject::TABLE:
-                res = exportTableInternal(obj->database, obj->name, obj->ddl, obj->data, true);
+                res = exportTableInternal(obj->database, obj->name, obj->ddl, parsedQuery, obj->data, true);
                 break;
             case ExportManager::ExportObject::INDEX:
-                res = plugin->exportIndex(obj->database, obj->name, obj->ddl);
+                res = plugin->exportIndex(obj->database, obj->name, obj->ddl, parsedQuery.dynamicCast<SqliteCreateIndex>());
                 break;
             case ExportManager::ExportObject::TRIGGER:
-                res = plugin->exportTrigger(obj->database, obj->name, obj->ddl);
+                res = plugin->exportTrigger(obj->database, obj->name, obj->ddl, parsedQuery.dynamicCast<SqliteCreateTrigger>());
                 break;
             case ExportManager::ExportObject::VIEW:
-                res = plugin->exportView(obj->database, obj->name, obj->ddl);
+                res = plugin->exportView(obj->database, obj->name, obj->ddl, parsedQuery.dynamicCast<SqliteCreateView>());
                 break;
             default:
                 qDebug() << "Unhandled ExportObject type:" << obj->type;
@@ -180,10 +246,6 @@ bool ExportWorker::exportDatabase()
         if (isInterrupted())
             return false;
     }
-
-    if (!plugin->afterExportDatabase())
-        return false;
-
     return true;
 }
 
@@ -205,14 +267,35 @@ bool ExportWorker::exportTable()
 
     SchemaResolver resolver(db);
     QString ddl = resolver.getObjectDdl(database, table);
+
+    if (!parser->parse(ddl) || parser->getQueries().size() < 1)
+    {
+        qCritical() << "Could not parse" << table << ", the DDL was:" << ddl << ", error is:" << parser->getErrorString();
+        notifyWarn(tr("Could not parse %1 in order to export it. It will be excluded from the export output.").arg(table));
+        return false;
+    }
+
+    SqliteQueryPtr createTable = parser->getQueries().first();
     plugin->initBeforeExport(db, output, *config);
-    return exportTableInternal(database, table, ddl, results, false);
+    return exportTableInternal(database, table, ddl, createTable, results, false);
 }
 
-bool ExportWorker::exportTableInternal(const QString& database, const QString& table, const QString& ddl, SqlQueryPtr results, bool databaseExport)
+bool ExportWorker::exportTableInternal(const QString& database, const QString& table, const QString& ddl, SqliteQueryPtr parsedDdl, SqlQueryPtr results,
+                                       bool databaseExport)
 {
-    if (!plugin->beforeExportTable(database, table, results->getColumnNames(), ddl, databaseExport))
-        return false;
+    SqliteCreateTablePtr createTable = parsedDdl.dynamicCast<SqliteCreateTable>();
+    SqliteCreateVirtualTablePtr createVirtualTable = parsedDdl.dynamicCast<SqliteCreateVirtualTable>();
+
+    if (createTable)
+    {
+        if (!plugin->exportTable(database, table, results->getColumnNames(), ddl, createTable, databaseExport))
+            return false;
+    }
+    else
+    {
+        if (!plugin->exportVirtualTable(database, table, results->getColumnNames(), ddl, createVirtualTable, databaseExport))
+            return false;
+    }
 
     if (isInterrupted())
         return false;

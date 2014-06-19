@@ -560,7 +560,7 @@ QList<DataType> QueryExecutor::resolveColumnTypes(Db* db, QList<QueryExecutor::R
             continue;
         }
 
-        datatypeList << parsedCol->type->toDateType();
+        datatypeList << parsedCol->type->toDataType();
     }
     return datatypeList;
 }

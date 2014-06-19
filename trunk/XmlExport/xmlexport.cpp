@@ -1,6 +1,7 @@
 #include "xmlexport.h"
 #include "schemaresolver.h"
 #include "services/exportmanager.h"
+#include "common/unused.h"
 #include <QTextCodec>
 
 const QString XmlExport::docBegin = QStringLiteral("<?xml version=\"1.0\" encoding=\"%1\"?>\n");
@@ -94,7 +95,7 @@ bool XmlExport::exportQueryResultsRow(SqlResultsRowPtr row)
     writeln("<row>");
     incrIndent();
 
-    int i = 1;
+    int i = 0;
     for (const QVariant& value : row->valueList())
     {
         if (value.isNull())
@@ -117,7 +118,81 @@ bool XmlExport::afterExportQueryResults()
     return true;
 }
 
-bool XmlExport::beforeExportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, bool databaseExport)
+bool XmlExport::exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable, bool databaseExport)
+{
+    UNUSED(columnNames);
+    if (!databaseExport)
+    {
+        setupConfig();
+        write(docBegin.arg(codecName));
+    }
+
+    SchemaResolver resolver(db);
+    resolver.setNoDbLocking(true);
+
+    writeln(QString("<table%1>").arg(databaseExport ? "" : nsStr));
+    incrIndent();
+
+    writeln("<database>" + escape(database) + "</database>");
+    writeln("<name>" + escape(table) + "</name>");
+    if (!createTable->withOutRowId.isNull())
+        writeln(QString("<withoutRowId>true</withoutRowId>"));
+
+    writeln("<ddl>" + escape(ddl) + "</ddl>");
+
+    writeln("<columns>");
+    incrIndent();
+    for (SqliteCreateTable::Column* col : createTable->columns)
+    {
+        writeln("<column>");
+        incrIndent();
+        writeln("<name>"+ col->name + "</name>");
+        writeln(QString("<type>%1</type>").arg((col->type ? col->type->toDataType().toFullTypeString() : "")));
+        if (col->constraints.size() > 0)
+        {
+            writeln("<constraints>");
+            incrIndent();
+            for (SqliteCreateTable::Column::Constraint* constr : col->constraints)
+            {
+                writeln("<constraint>");
+                incrIndent();
+                writeln("<type>" + constr->typeString() + "</type>");
+                writeln("<definition>" + constr->detokenize() + "</definition>");
+                decrIndent();
+                writeln("</constraint>");
+            }
+            decrIndent();
+            writeln("</constraints>");
+        }
+        decrIndent();
+        writeln("</column>");
+    }
+    decrIndent();
+    writeln("</columns>");
+
+    if (createTable->constraints.size() > 0)
+    {
+        writeln("<constraints>");
+        incrIndent();
+        for (SqliteCreateTable::Constraint* constr : createTable->constraints)
+        {
+            writeln("<constraint>");
+            incrIndent();
+            writeln("<type>" + constr->typeString() + "</type>");
+            writeln("<definition>" + constr->detokenize() + "</definition>");
+            decrIndent();
+            writeln("</constraint>");
+        }
+        decrIndent();
+        writeln("</constraints>");
+    }
+
+    writeln("<rows>");
+    incrIndent();
+    return true;
+}
+
+bool XmlExport::exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable, bool databaseExport)
 {
     if (!databaseExport)
     {
@@ -127,38 +202,40 @@ bool XmlExport::beforeExportTable(const QString& database, const QString& table,
 
     SchemaResolver resolver(db);
     resolver.setNoDbLocking(true);
-    QList<DataType> columnTypes = resolver.getTableColumnDataTypes(database, table, columnNames.size());
 
     writeln(QString("<table%1>").arg(databaseExport ? "" : nsStr));
     incrIndent();
 
     writeln("<database>" + escape(database) + "</database>");
     writeln("<name>" + escape(table) + "</name>");
+    writeln("<virtual>true</name>");
+    writeln("<module>" + escape(createTable->module) + "</module>");
 
-    writeln("<ddl>");
-    incrIndent();
-    writeln(escape(ddl));
-    decrIndent();
-    writeln("</ddl>");
+    writeln("<ddl>" + escape(ddl) + "</ddl>");
 
     writeln("<columns>");
     incrIndent();
-    int i = 0;
-    DataType type;
     for (const QString& col : columnNames)
     {
-        type = columnTypes[i];
-
         writeln("<column>");
         incrIndent();
         writeln("<name>"+ col + "</name>");
-        writeln("<type>"+ type.toFullTypeString() + "</type>");
         decrIndent();
         writeln("</column>");
-        i++;
     }
     decrIndent();
     writeln("</columns>");
+
+    if (createTable->args.size() > 0)
+    {
+        writeln("<moduleArgs>");
+        incrIndent();
+        for (const QString& arg : createTable->args)
+            writeln("<arg>" + arg + "</arg>");
+
+        decrIndent();
+        writeln("</moduleArgs>");
+    }
 
     writeln("<rows>");
     incrIndent();
@@ -192,52 +269,49 @@ bool XmlExport::beforeExportDatabase(const QString& database)
     return true;
 }
 
-bool XmlExport::exportIndex(const QString& database, const QString& name, const QString& ddl)
+bool XmlExport::exportIndex(const QString& database, const QString& name, const QString& ddl, SqliteCreateIndexPtr createIndex)
 {
     writeln("<index>");
     incrIndent();
 
     writeln("<database>" + escape(database) + "</database>");
     writeln("<name>" + escape(name) + "</name>");
-    writeln("<ddl>");
-    incrIndent();
-    writeln(escape(ddl));
-    decrIndent();
-    writeln("</ddl>");
+    if (createIndex->uniqueKw)
+        writeln("<unique>true</unique>");
+
+    if (createIndex->where)
+        writeln("<partial>" + createIndex->where->detokenize() + "</partial>");
+
+    writeln("<ddl>" + escape(ddl) + "</ddl>");
+
     decrIndent();
     writeln("</index>");
     return true;
 }
 
-bool XmlExport::exportTrigger(const QString& database, const QString& name, const QString& ddl)
+bool XmlExport::exportTrigger(const QString& database, const QString& name, const QString& ddl, SqliteCreateTriggerPtr createTrigger)
 {
+    UNUSED(createTrigger);
     writeln("<trigger>");
     incrIndent();
 
     writeln("<database>" + escape(database) + "</database>");
     writeln("<name>" + escape(name) + "</name>");
-    writeln("<ddl>");
-    incrIndent();
-    writeln(escape(ddl));
-    decrIndent();
-    writeln("</ddl>");
+    writeln("<ddl>" + escape(ddl) + "</ddl>");
     decrIndent();
     writeln("</trigger>");
     return true;
 }
 
-bool XmlExport::exportView(const QString& database, const QString& name, const QString& ddl)
+bool XmlExport::exportView(const QString& database, const QString& name, const QString& ddl, SqliteCreateViewPtr createView)
 {
+    UNUSED(createView);
     writeln("<view>");
     incrIndent();
 
     writeln("<database>" + escape(database) + "</database>");
     writeln("<name>" + escape(name) + "</name>");
-    writeln("<ddl>");
-    incrIndent();
-    writeln(escape(ddl));
-    decrIndent();
-    writeln("</ddl>");
+    writeln("<ddl>" + escape(ddl) + "</ddl>");
     decrIndent();
     writeln("</view>");
     return true;
@@ -353,4 +427,9 @@ QString XmlExport::escapeCdata(const QString& str)
 QString XmlExport::escapeAmpersand(const QString& str)
 {
     return str.toHtmlEscaped();
+}
+
+QString XmlExport::toString(bool value)
+{
+    return value ? "true" : "false";
 }

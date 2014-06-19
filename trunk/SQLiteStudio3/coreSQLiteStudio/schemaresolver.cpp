@@ -178,7 +178,7 @@ QList<DataType> SchemaResolver::getTableColumnDataTypes(const QString& database,
             continue;
         }
 
-        dataTypes << col->type->toDateType();
+        dataTypes << col->type->toDataType();
     }
 
     for (int i = dataTypes.size(); i < expectedNumberOfTypes; i++)

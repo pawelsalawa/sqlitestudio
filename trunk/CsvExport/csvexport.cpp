@@ -77,11 +77,27 @@ bool CsvExport::afterExportQueryResults()
     return true;
 }
 
-bool CsvExport::beforeExportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, bool databaseExport)
+bool CsvExport::exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable,
+                            bool databaseExport)
 {
     UNUSED(database);
     UNUSED(table);
     UNUSED(ddl);
+    UNUSED(createTable);
+    return exportTable(columnNames, databaseExport);
+}
+
+bool CsvExport::exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable, bool databaseExport)
+{
+    UNUSED(database);
+    UNUSED(table);
+    UNUSED(ddl);
+    UNUSED(createTable);
+    return exportTable(columnNames, databaseExport);
+}
+
+bool CsvExport::exportTable(const QStringList& columnNames, bool databaseExport)
+{
     if (databaseExport)
         return false;
 
@@ -101,43 +117,36 @@ bool CsvExport::exportTableRow(SqlResultsRowPtr data)
     return true;
 }
 
-bool CsvExport::afterExportTable()
-{
-    return true;
-}
-
 bool CsvExport::beforeExportDatabase(const QString& database)
 {
     UNUSED(database);
     return false;
 }
 
-bool CsvExport::exportIndex(const QString& database, const QString& name, const QString& ddl)
+bool CsvExport::exportIndex(const QString& database, const QString& name, const QString& ddl, SqliteCreateIndexPtr createIndex)
 {
     UNUSED(database);
     UNUSED(name);
     UNUSED(ddl);
+    UNUSED(createIndex);
     return false;
 }
 
-bool CsvExport::exportTrigger(const QString& database, const QString& name, const QString& ddl)
+bool CsvExport::exportTrigger(const QString& database, const QString& name, const QString& ddl, SqliteCreateTriggerPtr createTrigger)
 {
     UNUSED(database);
     UNUSED(name);
     UNUSED(ddl);
+    UNUSED(createTrigger);
     return false;
 }
 
-bool CsvExport::exportView(const QString& database, const QString& name, const QString& ddl)
+bool CsvExport::exportView(const QString& database, const QString& name, const QString& ddl, SqliteCreateViewPtr createView)
 {
     UNUSED(database);
     UNUSED(name);
     UNUSED(ddl);
-    return false;
-}
-
-bool CsvExport::afterExportDatabase()
-{
+    UNUSED(createView);
     return false;
 }
 

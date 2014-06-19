@@ -13,6 +13,16 @@ class GenericExportPlugin : public GenericPlugin, public ExportPlugin
         QString getConfigFormName(ExportManager::ExportMode exportMode) const;
         QString getMimeType() const;
         void setExportMode(ExportManager::ExportMode exportMode);
+        bool afterExportTable();
+        bool beforeExportTables();
+        bool afterExportTables();
+        bool beforeExportIndexes();
+        bool afterExportIndexes();
+        bool beforeExportTriggers();
+        bool afterExportTriggers();
+        bool beforeExportViews();
+        bool afterExportViews();
+        bool afterExportDatabase();
 
     protected:
         virtual void initBeforeExport();
