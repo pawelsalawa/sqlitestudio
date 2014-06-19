@@ -17,7 +17,7 @@ class API_EXPORT SqliteColumnType : public SqliteStatement
         bool isPrecisionDouble();
         bool isScaleDouble();
         TokenList rebuildTokensFromContents();
-        DataType toDateType() const;
+        DataType toDataType() const;
 
         QString name = QString::null;
         QVariant scale = QVariant(); // first size number

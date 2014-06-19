@@ -5,8 +5,15 @@
 #include "db/sqlquery.h"
 #include "db/queryexecutor.h"
 #include "services/exportmanager.h"
+#include "parser/ast/sqlitecreatetable.h"
+#include "parser/ast/sqlitecreateindex.h"
+#include "parser/ast/sqlitecreatetrigger.h"
+#include "parser/ast/sqlitecreateview.h"
+#include "parser/ast/sqlitecreatevirtualtable.h"
 
 class CfgMain;
+
+// TODO handle virtual tables
 
 /**
  * @brief Provides support for particular export format.
@@ -156,76 +163,144 @@ class ExportPlugin : virtual public Plugin
         virtual bool afterExportQueryResults() = 0;
 
         /**
+         * @brief Prepares for exporting tables from database.
+         * @return true for success, or false in case of a fatal error.
+         */
+        virtual bool beforeExportTables() = 0;
+
+        /**
          * @brief Does initial entry for exported table.
          * @param database "Attach" name of the database that the table belongs to. Can be "main", "temp", or any attach name.
          * @param table Name of the table to export.
          * @param columnNames Name of columns in the table, in order they will appear in the rows passed to exportTableRow().
          * @param ddl The DDL of the table.
+         * @param createTable Table DDL parsed into an object.
          * @param databaseExport true if this table export is a part of exporting the entire databasase,
          * false if it's for exporting just this single table.
          * @return true for success, or false in case of a fatal error.
          */
-        virtual bool beforeExportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, bool databaseExport) = 0;
+        virtual bool exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl,
+                                 SqliteCreateTablePtr createTable, bool databaseExport) = 0;
+
+        /**
+         * @brief Does initial entry for exported virtual table.
+         * @param database "Attach" name of the database that the table belongs to. Can be "main", "temp", or any attach name.
+         * @param table Name of the table to export.
+         * @param columnNames Name of columns in the table, in order they will appear in the rows passed to exportTableRow().
+         * @param ddl The DDL of the table.
+         * @param createTable Table DDL parsed into an object.
+         * @param databaseExport true if this table export is a part of exporting the entire databasase,
+         * false if it's for exporting just this single table.
+         * @return true for success, or false in case of a fatal error.
+         */
+        virtual bool exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl,
+                                        SqliteCreateVirtualTablePtr createTable, bool databaseExport) = 0;
 
         /**
          * @brief Does export entry for a single row of data.
          * @param data Single data row.
          * @return true for success, or false in case of a fatal error.
          *
-         * This method will be called only if StandardExportConfig::exportData in beforeExportTable() was true.
+         * This method will be called only if StandardExportConfig::exportData in initBeforeExport() was true.
          */
         virtual bool exportTableRow(SqlResultsRowPtr data) = 0;
 
         /**
-         * @brief Does final entry fot exported table.
+         * @brief Does final entry for exported table, after its data was exported.
          * @return true for success, or false in case of a fatal error.
          */
         virtual bool afterExportTable() = 0;
+
+        /**
+         * @brief Does final entries after all tables have been exported.
+         * @return true for success, or false in case of a fatal error.
+         */
+        virtual bool afterExportTables() = 0;
 
         /**
          * @brief Does initial entry for the entire database export.
          * @param database Database name (as listed in database list).
          * @return true for success, or false in case of a fatal error.
          *
-         * It's called just once, before all database object get exported.
-         * This method will be followed by calls to: beforeExportTable(), exportTableRow(), afterExportTable(), exportIndex(),
-         * exportTrigger() and exportView().
-         * Note, that exportTableRow() will be called only if StandardExportConfig::exportData in beforeExportTable() was true.
+         * It's called just once, before each database object gets exported.
+         * This method will be followed by calls to (in this order): beforeExportTables(), exportTable(), exportVirtualTable(), exportTableRow(), afterExportTable(),
+         * afterExportTables(), beforeExportIndexes(), exportIndex(), afterExportIndexes(), beforeExportTriggers(), exportTrigger(), afterExportTriggers(),
+         * beforeExportViews(), exportView(), afterExportViews() and afterExportDatabase().
+         * Note, that exportTableRow() will be called only if StandardExportConfig::exportData in initBeforeExport() was true.
          */
         virtual bool beforeExportDatabase(const QString& database) = 0;
+
+        /**
+         * @brief Prepares for exporting indexes from database.
+         * @return true for success, or false in case of a fatal error.
+         */
+        virtual bool beforeExportIndexes() = 0;
 
         /**
          * @brief Does entire export entry for an index.
          * @param database "Attach" name of the database that the index belongs to. Can be "main", "temp", or any attach name.
          * @param table Name of the index to export.
          * @param ddl The DDL of the index.
+         * @param createIndex Index DDL parsed into an object.
          * @return true for success, or false in case of a fatal error.
          *
          * This is the only method called for index export.
          */
-        virtual bool exportIndex(const QString& database, const QString& name, const QString& ddl) = 0;
+        virtual bool exportIndex(const QString& database, const QString& name, const QString& ddl, SqliteCreateIndexPtr createIndex) = 0;
+
+        /**
+         * @brief Does final entries after all indexes have been exported.
+         * @return true for success, or false in case of a fatal error.
+         */
+        virtual bool afterExportIndexes() = 0;
+
+        /**
+         * @brief Prepares for exporting triggers from database.
+         * @return true for success, or false in case of a fatal error.
+         */
+        virtual bool beforeExportTriggers() = 0;
 
         /**
          * @brief Does entire export entry for an trigger.
          * @param database "Attach" name of the database that the trigger belongs to. Can be "main", "temp", or any attach name.
          * @param table Name of the trigger to export.
          * @param ddl The DDL of the trigger.
+         * @param createTrigger Trigger DDL parsed into an object.
          * @return true for success, or false in case of a fatal error.
          *
          * This is the only method called for trigger export.
          */
-        virtual bool exportTrigger(const QString& database, const QString& name, const QString& ddl) = 0;
+        virtual bool exportTrigger(const QString& database, const QString& name, const QString& ddl, SqliteCreateTriggerPtr createTrigger) = 0;
+
+        /**
+         * @brief Does final entries after all triggers have been exported.
+         * @return true for success, or false in case of a fatal error.
+         */
+        virtual bool afterExportTriggers() = 0;
+
+        /**
+         * @brief Prepares for exporting views from database.
+         * @return true for success, or false in case of a fatal error.
+         */
+        virtual bool beforeExportViews() = 0;
 
         /**
          * @brief Does entire export entry for an view.
          * @param database "Attach" name of the database that the view belongs to. Can be "main", "temp", or any attach name.
          * @param table Name of the trigger to view.
          * @param ddl The DDL of the view.
+         * @param createView View DDL parsed into an object.
          * @return true for success, or false in case of a fatal error.
          *
          * This is the only method called for view export.
          */
-        virtual bool exportView(const QString& database, const QString& name, const QString& ddl) = 0;
+        virtual bool exportView(const QString& database, const QString& name, const QString& ddl, SqliteCreateViewPtr view) = 0;
+
+        /**
+         * @brief Does final entries after all views have been exported.
+         * @return true for success, or false in case of a fatal error.
+         */
+        virtual bool afterExportViews() = 0;
 
         /**
          * @brief Does final entry for the entire database export.

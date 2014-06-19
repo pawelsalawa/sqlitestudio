@@ -82,7 +82,19 @@ bool SqlExport::afterExportQueryResults()
     return true;
 }
 
-bool SqlExport::beforeExportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, bool databaseExport)
+bool SqlExport::exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable, bool databaseExport)
+{
+    UNUSED(createTable);
+    return exportTable(database, table, columnNames, ddl, databaseExport);
+}
+
+bool SqlExport::exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable, bool databaseExport)
+{
+    UNUSED(createTable);
+    return exportTable(database, table, columnNames, ddl, databaseExport);
+}
+
+bool SqlExport::exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, bool databaseExport)
 {
     Dialect dialect = db->getDialect();
 
@@ -135,8 +147,9 @@ bool SqlExport::beforeExportDatabase(const QString& database)
     return true;
 }
 
-bool SqlExport::exportIndex(const QString& database, const QString& name, const QString& ddl)
+bool SqlExport::exportIndex(const QString& database, const QString& name, const QString& ddl, SqliteCreateIndexPtr createIndex)
 {
+    UNUSED(createIndex);
     QString index = getNameForObject(database, name, false);
     writeln("");
     writeln(tr("-- Index: %1").arg(index));
@@ -144,8 +157,9 @@ bool SqlExport::exportIndex(const QString& database, const QString& name, const 
     return true;
 }
 
-bool SqlExport::exportTrigger(const QString& database, const QString& name, const QString& ddl)
+bool SqlExport::exportTrigger(const QString& database, const QString& name, const QString& ddl, SqliteCreateTriggerPtr createTrigger)
 {
+    UNUSED(createTrigger);
     QString trig = getNameForObject(database, name, false);
     writeln("");
     writeln(tr("-- Trigger: %1").arg(trig));
@@ -153,8 +167,9 @@ bool SqlExport::exportTrigger(const QString& database, const QString& name, cons
     return true;
 }
 
-bool SqlExport::exportView(const QString& database, const QString& name, const QString& ddl)
+bool SqlExport::exportView(const QString& database, const QString& name, const QString& ddl, SqliteCreateViewPtr createView)
 {
+    UNUSED(createView);
     QString view = getNameForObject(database, name, false);
     writeln("");
     writeln(tr("-- View: %1").arg(view));

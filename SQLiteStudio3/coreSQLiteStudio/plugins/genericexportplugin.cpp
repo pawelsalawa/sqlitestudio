@@ -48,6 +48,11 @@ void GenericExportPlugin::setExportMode(ExportManager::ExportMode mode)
     this->exportMode = mode;
 }
 
+bool GenericExportPlugin::afterExportTable()
+{
+    return true;
+}
+
 void GenericExportPlugin::initBeforeExport()
 {
 }
@@ -60,4 +65,49 @@ void GenericExportPlugin::write(const QString& str)
 void GenericExportPlugin::writeln(const QString& str)
 {
     write(str + "\n");
+}
+
+bool GenericExportPlugin::beforeExportTables()
+{
+    return true;
+}
+
+bool GenericExportPlugin::afterExportTables()
+{
+    return true;
+}
+
+bool GenericExportPlugin::beforeExportIndexes()
+{
+    return true;
+}
+
+bool GenericExportPlugin::afterExportIndexes()
+{
+    return true;
+}
+
+bool GenericExportPlugin::beforeExportTriggers()
+{
+    return true;
+}
+
+bool GenericExportPlugin::afterExportTriggers()
+{
+    return true;
+}
+
+bool GenericExportPlugin::beforeExportViews()
+{
+    return true;
+}
+
+bool GenericExportPlugin::afterExportViews()
+{
+    return true;
+}
+
+bool GenericExportPlugin::afterExportDatabase()
+{
+    return true;
 }

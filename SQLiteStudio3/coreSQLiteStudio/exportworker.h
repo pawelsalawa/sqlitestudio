@@ -3,6 +3,7 @@
 
 #include "services/exportmanager.h"
 #include "db/queryexecutor.h"
+#include "parser/ast/sqlitecreatetable.h"
 #include <QObject>
 #include <QRunnable>
 #include <QMutex>
@@ -22,10 +23,12 @@ class ExportWorker : public QObject, public QRunnable
         void prepareExportTable(Db* db, const QString& database, const QString& table);
 
     private:
+        void prepareParser();
         bool exportQueryResults();
         bool exportDatabase();
+        bool exportDatabaseObjects(const QList<ExportManager::ExportObjectPtr>& dbObjects, ExportManager::ExportObject::Type type);
         bool exportTable();
-        bool exportTableInternal(const QString& database, const QString& table, const QString& ddl, SqlQueryPtr results, bool databaseExport);
+        bool exportTableInternal(const QString& database, const QString& table, const QString& ddl, SqliteQueryPtr parsedDdl, SqlQueryPtr results, bool databaseExport);
         QList<ExportManager::ExportObjectPtr> collectDbObjects(QString* errorMessage);
         void queryTableDataToExport(Db* db, const QString& table, SqlQueryPtr& dataPtr, QString* errorMessage) const;
         bool isInterrupted();
@@ -42,6 +45,7 @@ class ExportWorker : public QObject, public QRunnable
         QueryExecutor* executor;
         bool interrupted = false;
         QMutex interruptMutex;
+        Parser* parser = nullptr;
 
     public slots:
         void interrupt();
