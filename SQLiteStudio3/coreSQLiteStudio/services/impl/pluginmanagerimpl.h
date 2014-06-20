@@ -43,6 +43,8 @@ class PluginManagerImpl : public PluginManager
         PluginType* getPluginType(Plugin* plugin) const;
         QList<Plugin*> getLoadedPlugins(PluginType* type) const;
         ScriptingPlugin* getScriptingPlugin(const QString& languageName) const;
+        QHash<QString,QVariant> readMetaData(const QJsonObject& metaData);
+        QString toPrintableVersion(int version) const;
 
     protected:
         void registerPluginType(PluginType* type);
@@ -90,7 +92,7 @@ class PluginManagerImpl : public PluginManager
             /**
              * @brief Type of the plugin.
              */
-            PluginType* type;
+            PluginType* type = nullptr;
 
             /**
              * @brief Full path to the plugin's file.
@@ -105,14 +107,14 @@ class PluginManagerImpl : public PluginManager
             /**
              * @brief Qt's plugin framework loaded for this plugin.
              */
-            QPluginLoader* loader;
+            QPluginLoader* loader = nullptr;
 
             /**
              * @brief Plugin object.
              *
              * It's null when plugin is not loaded.
              */
-            Plugin* plugin;
+            Plugin* plugin = nullptr;
 
             /**
              * @brief Flag indicating that the plugin is built in.
@@ -139,7 +141,7 @@ class PluginManagerImpl : public PluginManager
          * explicitly unloaded previously and that was saved in the configuration
          * (when application was closing).
          */
-        void loadPlugins();
+        void scanPlugins();
 
         /**
          * @brief Executes standard routines after plugin was loaded.
@@ -175,26 +177,17 @@ class PluginManagerImpl : public PluginManager
          * @brief Reads title, description, author, etc. from the plugin.
          * @param plugin Plugin to read data from.
          * @param container Container to put the data to.
+         * @return true on success, false on problems (with details in logs)
          *
          * It does the reading by calling all related methods from Plugin interface,
          * then stores those information in given \p container.
-         */
-        void readMetadata(Plugin* plugin, PluginContainer* container);
-
-        /**
-         * @brief Tries to load given file as a Plugin.
-         * @param fileName File to load (absolute path).
-         * @param loader Qt's plugin framework loader to use when loading the plugin.
-         * @return Loaded plugin object, or null if loading failed.
          *
-         * It loads plugin file, resolves symbols, creates object delivered by the plugin
-         * and casts it to Plugin interface. If it fails on any step, the file is unloaded
-         * and the method returns null.
+         * The built-in plugins define those methods using their class metadata.
          *
-         * The loader should be exclusive for given plugin file, as it will be later
-         * associated with the plugin (so the loader can unload the plugin).
+         * External plugins provide this information in their file metadata
+         * and this method uses QPluginLoader to read this metadata.
          */
-        Plugin* loadPluginFromFile(const QString& fileName, QPluginLoader* loader);
+        bool readMetaData(PluginContainer* container);
 
         /**
          * @brief Creates plugin container and initializes it.
@@ -212,7 +205,16 @@ class PluginManagerImpl : public PluginManager
          * and enabled, they are simply queried for metadata, then either unloaded
          * (when configured to not load at startup), or the initialization proceeds.
          */
-        bool initPlugin(QPluginLoader* loader, const QString& fileName, Plugin* plugin);
+        bool initPlugin(QPluginLoader* loader, const QString& fileName);
+
+        /**
+         * @brief Creates plugin container and initializes it.
+         * @param plugin Built-in plugin object.
+         * @return true if the initialization succeeded, or false otherwise.
+         *
+         * This is pretty much the same as the other initPlugin() method, but this one is for built-in plugins.
+         */
+        bool initPlugin(Plugin* plugin);
 
         /**
          * @brief Tests if given plugin is configured to be loaded at startup.
@@ -222,7 +224,7 @@ class PluginManagerImpl : public PluginManager
          * This method checks General.LoadedPlugins configuration entry to see if plugin
          * was explicitly disabled for loading at startup.
          */
-        bool shouldAutoLoad(Plugin* plugin);
+        bool shouldAutoLoad(const QString& pluginName);
 
         /**
          * @brief List of plugin directories (not necessarily absolute paths).
@@ -247,7 +249,7 @@ class PluginManagerImpl : public PluginManager
         /**
          * @brief Internal list of scripting plugins, updated on load/unload of plugins.
          *
-         * Keys are scripting language name.
+         * Keys are scripting language name. It's a separate table to optimize querying scripting plugins.
          */
         QHash<QString,ScriptingPlugin*> scriptingPlugins;
 };

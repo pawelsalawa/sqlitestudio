@@ -3,7 +3,7 @@
 
 #include "parser/token.h"
 #include "syntaxhighlighterplugin.h"
-#include "plugins/genericplugin.h"
+#include "plugins/builtinplugin.h"
 #include <QSyntaxHighlighter>
 #include <QRegularExpression>
 
@@ -161,7 +161,7 @@ class SqliteSyntaxHighlighter : public QSyntaxHighlighter
         void setupFormats();
 };
 
-class SqliteHighlighterPlugin : public GenericPlugin, public SyntaxHighlighterPlugin
+class SqliteHighlighterPlugin : public BuiltInPlugin, public SyntaxHighlighterPlugin
 {
     Q_OBJECT
 

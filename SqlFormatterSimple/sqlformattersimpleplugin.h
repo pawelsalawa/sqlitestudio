@@ -19,13 +19,7 @@ CFG_CATEGORIES(SqlFormatterSimpleConfig,
 class SQLFORMATTERSIMPLESHARED_EXPORT SqlFormatterSimplePlugin : public GenericPlugin, public SqlFormatterPlugin
 {
         Q_OBJECT
-
-        SQLITESTUDIO_PLUGIN
-        SQLITESTUDIO_PLUGIN_TITLE("Simple")
-        SQLITESTUDIO_PLUGIN_DESC("Basic formatter with very little options.")
-        SQLITESTUDIO_PLUGIN_VERSION(10000)
-        SQLITESTUDIO_PLUGIN_AUTHOR("sqlitestudio.pl")
-        SQLITESTUDIO_PLUGIN_UI("SqlFormatterSimplePlugin")
+        SQLITESTUDIO_PLUGIN("sqlformattersimple.json")
 
     public:
         SqlFormatterSimplePlugin();

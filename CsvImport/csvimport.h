@@ -23,12 +23,7 @@ class QTextStream;
 class CSVIMPORTSHARED_EXPORT CsvImport : public GenericPlugin, public ImportPlugin
 {
         Q_OBJECT
-
-        SQLITESTUDIO_PLUGIN
-        SQLITESTUDIO_PLUGIN_TITLE("CSV import")
-        SQLITESTUDIO_PLUGIN_DESC("CSV format support for importing data")
-        SQLITESTUDIO_PLUGIN_VERSION(10000)
-        SQLITESTUDIO_PLUGIN_AUTHOR("sqlitestudio.pl")
+        SQLITESTUDIO_PLUGIN("csvimport.json")
 
     public:
         CsvImport();

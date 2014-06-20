@@ -1,7 +1,7 @@
 #ifndef POPULATEDICTIONARY_H
 #define POPULATEDICTIONARY_H
 
-#include "genericplugin.h"
+#include "builtinplugin.h"
 #include "populateplugin.h"
 #include "config_builder.h"
 
@@ -16,7 +16,7 @@ CFG_CATEGORIES(PopulateDictionaryConfig,
     )
 )
 
-class PopulateDictionary : public GenericPlugin, public PopulatePlugin
+class PopulateDictionary : public BuiltInPlugin, public PopulatePlugin
 {
         Q_OBJECT
 

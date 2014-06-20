@@ -181,8 +181,8 @@ class API_EXPORT Plugin
  * }
  * @endcode
  */
-#define SQLITESTUDIO_PLUGIN \
-    Q_PLUGIN_METADATA(IID SqliteStudioPluginInterface) \
+#define SQLITESTUDIO_PLUGIN(file)\
+    Q_PLUGIN_METADATA(IID SqliteStudioPluginInterface FILE file) \
     Q_INTERFACES(Plugin)
 
 Q_DECLARE_INTERFACE(Plugin, SqliteStudioPluginInterface)

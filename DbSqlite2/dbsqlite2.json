@@ -1,0 +1,7 @@
+{
+    "type":        "DbPlugin",
+    "title":       "SQLite 2",
+    "description": "Provides support for SQLite 2.* databases",
+    "version":     10000,
+    "author":      "sqlitestudio.pl"
+}

@@ -1,10 +1,10 @@
 #ifndef SCRIPTINGSQL_H
 #define SCRIPTINGSQL_H
 
-#include "genericplugin.h"
+#include "builtinplugin.h"
 #include "scriptingplugin.h"
 
-class ScriptingSql : public GenericPlugin, public DbAwareScriptingPlugin
+class ScriptingSql : public BuiltInPlugin, public DbAwareScriptingPlugin
 {
     Q_OBJECT
 

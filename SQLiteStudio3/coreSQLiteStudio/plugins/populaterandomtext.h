@@ -1,7 +1,7 @@
 #ifndef POPULATERANDOMTEXT_H
 #define POPULATERANDOMTEXT_H
 
-#include "genericplugin.h"
+#include "builtinplugin.h"
 #include "populateplugin.h"
 #include "config_builder.h"
 
@@ -17,7 +17,7 @@ CFG_CATEGORIES(PopulateRandomTextConfig,
         CFG_ENTRY(QString, CustomCharacters,  QString())
     )
 )
-class PopulateRandomText : public GenericPlugin, public PopulatePlugin
+class PopulateRandomText : public BuiltInPlugin, public PopulatePlugin
 {
        Q_OBJECT
 

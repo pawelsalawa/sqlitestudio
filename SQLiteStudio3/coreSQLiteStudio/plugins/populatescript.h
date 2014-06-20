@@ -1,7 +1,7 @@
 #ifndef POPULATESCRIPT_H
 #define POPULATESCRIPT_H
 
-#include "genericplugin.h"
+#include "builtinplugin.h"
 #include "populateplugin.h"
 #include "config_builder.h"
 #include "scriptingplugin.h"
@@ -21,7 +21,7 @@ CFG_CATEGORIES(PopulateScriptConfig,
  * Each evaluation of per-step code gets 3 arguments, 2 of them just like above
  * and the 3rd is number of the row being currently populated (starting from 1).
  */
-class PopulateScript : public GenericPlugin, public PopulatePlugin
+class PopulateScript : public BuiltInPlugin, public PopulatePlugin
 {
         Q_OBJECT
 

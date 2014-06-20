@@ -1,7 +1,7 @@
 #ifndef SCRIPTINGQT_H
 #define SCRIPTINGQT_H
 
-#include "genericplugin.h"
+#include "builtinplugin.h"
 #include "scriptingplugin.h"
 #include <QHash>
 #include <QVariant>
@@ -13,7 +13,7 @@ class QScriptEngine;
 class QMutex;
 class QScriptContext;
 
-class ScriptingQt : public GenericPlugin, public ScriptingPlugin
+class ScriptingQt : public BuiltInPlugin, public ScriptingPlugin
 {
     Q_OBJECT
 

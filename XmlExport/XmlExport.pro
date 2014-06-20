@@ -24,3 +24,6 @@ HEADERS += xmlexport.h\
 FORMS += XmlExport.ui
 
 copy_file(XmlExport.ui, $$DESTDIR/XmlExport.ui)
+
+OTHER_FILES += \
+    xmlexport.json

@@ -1,46 +1,42 @@
-#ifndef GENERICPLUGIN_H
-#define GENERICPLUGIN_H
+#ifndef BUILTINPLUGIN_H
+#define BUILTINPLUGIN_H
 
-#include "plugin.h"
-#include <QObject>
-#include <QtPlugin>
-#include <QHash>
-#include <QVariant>
-
-/** @file */
+#include "coreSQLiteStudio_global.h"
+#include "plugins/plugin.h"
 
 /**
- * @brief Helper class for implementing plugins
+ * @brief Helper class for implementing built-in plugins
  *
  * This class can be inherited, so most of the abstract methods from Plugin interface get implemented.
- * All details (description, name, title, author, ...) are defined in separate json file.
+ * All details (description, name, title, author, ...) are defined using Q_CLASSINFO.
+ *
+ * There are macros defined to help you with defining those details. You don't need to define
+ * Q_CLASSINFO and know all required keys. You can use following macros:
+ * <ul>
+ * <li>::SQLITESTUDIO_PLUGIN_TITLE</li>
+ * <li>::SQLITESTUDIO_PLUGIN_DESC</li>
+ * <li>::SQLITESTUDIO_PLUGIN_UI</li>
+ * <li>::SQLITESTUDIO_PLUGIN_VERSION</li>
+ * <li>::SQLITESTUDIO_PLUGIN_AUTHOR</li>
+ * </ul>
  *
  * Most of plugin implementations will use this class as a base, because it simplifies process
  * of plugin development. Using this class you don't have to implement any of virtual methods
- * from Plugin interface. It's enough to define meta information in the json file, like this:
+ * from Plugin interface. It's enough to define meta information, like this:
  * @code
- * {
- *     "type":        "ScriptingPlugin",
- *     "title":       "My plugin",
- *     "description": "Does nothing. It's an example plugin.",
- *     "ui":          "formObjectName"
- *     "version":     10000
- *     "author":      "sqlitestudio.pl"
- * };
- * @endcode
- *
- * and then just declare the class as SQLiteStudio plugin, pointing the json file you just created:
- * @code
- * class MyPlugin : public GenericPlugin, public ScriptingPlugin
+ * class MyPlugin : GenericPlugin
  * {
  *     Q_OBJECT
- *     SQLITESTUDIO_PLUGIN("myplugin.json")
  *
- *     // rest of the class
+ *     SQLITESTUDIO_PLUGIN
+ *     SQLITESTUDIO_PLUGIN_TITLE("My plugin")
+ *     SQLITESTUDIO_PLUGIN_DESC("Does nothing. It's an example plugin.")
+ *     SQLITESTUDIO_PLUGIN_UI("formObjectName")
+ *     SQLITESTUDIO_PLUGIN_VERSION(10000)
+ *     SQLITESTUDIO_PLUGIN_AUTHOR("sqlitestudio.pl")
  * };
  * @endcode
- */
-class API_EXPORT GenericPlugin : public QObject, public virtual Plugin
+ */class API_EXPORT BuiltInPlugin : public QObject, public virtual Plugin
 {
         Q_OBJECT
         Q_INTERFACES(Plugin)
@@ -103,14 +99,6 @@ class API_EXPORT GenericPlugin : public QObject, public virtual Plugin
          */
         void deinit();
 
-        /**
-         * @brief Loads metadata from given Json object.
-         * @param The metadata from json file.
-         *
-         * This is called by PluginManager.
-         */
-        void loadMetaData(const QJsonObject& metaData);
-
     private:
         /**
          * @brief Extracts class meta information with given key.
@@ -120,8 +108,46 @@ class API_EXPORT GenericPlugin : public QObject, public virtual Plugin
          * This is a helper method which queries Qt's meta object subsystem for class meta information defined with Q_CLASSINFO.
          */
         const char* getMetaInfo(const QString& key) const;
-
-        QHash<QString,QVariant> metaData;
 };
 
-#endif // GENERICPLUGIN_H
+/**
+ * @def SQLITESTUDIO_PLUGIN_TITLE
+ * @brief Defines plugin title.
+ *
+ * This is a built-in plugin replacement for "title" key in external plugin's json metadata file.
+ */
+#define SQLITESTUDIO_PLUGIN_TITLE(Title) Q_CLASSINFO("title", Title)
+
+/**
+ * @def SQLITESTUDIO_PLUGIN_DESC
+ * @brief Defines plugin description.
+ *
+ * This is a built-in plugin replacement for "description" key in external plugin's json metadata file.
+ */
+#define SQLITESTUDIO_PLUGIN_DESC(Desc) Q_CLASSINFO("description", Desc)
+
+/**
+ * @def SQLITESTUDIO_PLUGIN_UI
+ * @brief Defines Qt Designer Form object name to be used in configuration dialog.
+ *
+ * This is a built-in plugin replacement for "ui" key in external plugin's json metadata file.
+ */
+#define SQLITESTUDIO_PLUGIN_UI(FormName) Q_CLASSINFO("ui", FormName)
+
+/**
+ * @def SQLITESTUDIO_PLUGIN_VERSION
+ * @brief Defines plugin version.
+ *
+ * This is a built-in plugin replacement for "version" key in external plugin's json metadata file.
+ */
+#define SQLITESTUDIO_PLUGIN_VERSION(Ver) Q_CLASSINFO("version", #Ver)
+
+/**
+ * @def SQLITESTUDIO_PLUGIN_AUTHOR
+ * @brief Defines an author of the plugin.
+ *
+ * This is a built-in plugin replacement for "author" key in external plugin's json metadata file.
+ */
+#define SQLITESTUDIO_PLUGIN_AUTHOR(Author) Q_CLASSINFO("author", Author)
+
+#endif // BUILTINPLUGIN_H

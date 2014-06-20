@@ -30,7 +30,7 @@
   THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include "plugins/genericplugin.h"
+#include "plugins/builtinplugin.h"
 #include "syntaxhighlighterplugin.h"
 #include <QSyntaxHighlighter>
 #include <QtGui>
@@ -58,7 +58,7 @@ class JavaScriptSyntaxHighlighter : public QSyntaxHighlighter
         QTextCharFormat keywordsFormat;
 };
 
-class JavaScriptHighlighterPlugin : public GenericPlugin, public SyntaxHighlighterPlugin
+class JavaScriptHighlighterPlugin : public BuiltInPlugin, public SyntaxHighlighterPlugin
 {
     Q_OBJECT
 

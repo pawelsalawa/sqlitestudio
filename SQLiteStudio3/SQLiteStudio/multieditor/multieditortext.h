@@ -4,7 +4,7 @@
 #include "multieditorwidget.h"
 #include "multieditorwidgetplugin.h"
 #include "common/extactioncontainer.h"
-#include "plugins/genericplugin.h"
+#include "plugins/builtinplugin.h"
 
 class QPlainTextEdit;
 class QMenu;
@@ -53,7 +53,7 @@ class MultiEditorText : public MultiEditorWidget, public ExtActionContainer
         void toggleTabFocus();
 };
 
-class MultiEditorTextPlugin : public GenericPlugin, public MultiEditorWidgetPlugin
+class MultiEditorTextPlugin : public BuiltInPlugin, public MultiEditorWidgetPlugin
 {
     Q_OBJECT
 

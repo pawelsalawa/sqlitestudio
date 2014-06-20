@@ -1,42 +1,38 @@
 #include "genericplugin.h"
+#include "services/pluginmanager.h"
 #include <QMetaClassInfo>
 
 QString GenericPlugin::getName() const
 {
-    return metaObject()->className();
+    return metaData["name"].toString();
 }
 
 QString GenericPlugin::getTitle() const
 {
-    const char *title = getMetaInfo("title");
-    if (!title)
+    if (!metaData["title"].isValid())
         return getName();
 
-    return title;
+    return metaData["title"].toString();
 }
 
 QString GenericPlugin::getConfigUiForm() const
 {
-    return getMetaInfo("ui");
+    return metaData["ui"].toString();
 }
 
 QString GenericPlugin::getDescription() const
 {
-    return getMetaInfo("description");
+    return metaData["description"].toString();
 }
 
 int GenericPlugin::getVersion() const
 {
-    return QString(getMetaInfo("version")).toInt();
+    return metaData["version"].toInt();
 }
 
 QString GenericPlugin::getPrintableVersion() const
 {
-    static const QString versionStr = "%1.%2.%3";
-    int version = getVersion();
-    return versionStr.arg(version / 10000)
-                     .arg(version / 100 % 100)
-                     .arg(version % 100);
+    return PLUGINS->toPrintableVersion(getVersion());
 }
 
 bool GenericPlugin::init()
@@ -46,6 +42,11 @@ bool GenericPlugin::init()
 
 void GenericPlugin::deinit()
 {
+}
+
+void GenericPlugin::loadMetaData(const QJsonObject& metaData)
+{
+    this->metaData = PLUGINS->readMetaData(metaData);
 }
 
 const char* GenericPlugin::getMetaInfo(const QString& key) const
@@ -62,5 +63,5 @@ const char* GenericPlugin::getMetaInfo(const QString& key) const
 
 QString GenericPlugin::getAuthor() const
 {
-    return getMetaInfo("author");
+    return metaData["author"].toString();
 }

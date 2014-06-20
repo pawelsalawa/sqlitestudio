@@ -3,7 +3,7 @@
 
 #include "multieditorwidget.h"
 #include "multieditorwidgetplugin.h"
-#include "plugins/genericplugin.h"
+#include "plugins/builtinplugin.h"
 #include <QVariant>
 #include <QSharedPointer>
 
@@ -31,7 +31,7 @@ class MultiEditorHex : public MultiEditorWidget
         void modificationChanged();
 };
 
-class MultiEditorHexPlugin : public GenericPlugin, public MultiEditorWidgetPlugin
+class MultiEditorHexPlugin : public BuiltInPlugin, public MultiEditorWidgetPlugin
 {
     Q_OBJECT
 

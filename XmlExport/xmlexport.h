@@ -14,16 +14,10 @@ CFG_CATEGORIES(XmlExportConfig,
      )
 )
 
-
 class XMLEXPORTSHARED_EXPORT XmlExport : public GenericExportPlugin
 {
         Q_OBJECT
-
-        SQLITESTUDIO_PLUGIN
-        SQLITESTUDIO_PLUGIN_TITLE("XML exporting format")
-        SQLITESTUDIO_PLUGIN_DESC("Provides XML format for exporting")
-        SQLITESTUDIO_PLUGIN_VERSION(10000)
-        SQLITESTUDIO_PLUGIN_AUTHOR("sqlitestudio.pl")
+        SQLITESTUDIO_PLUGIN("xmlexport.json")
 
     public:
         XmlExport();

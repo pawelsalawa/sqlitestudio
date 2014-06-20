@@ -19,7 +19,7 @@ class MultiEditorTime : public MultiEditorDateTime
         static QStringList formats;
 };
 
-class MultiEditorTimePlugin : public GenericPlugin, public MultiEditorWidgetPlugin
+class MultiEditorTimePlugin : public BuiltInPlugin, public MultiEditorWidgetPlugin
 {
     Q_OBJECT
 

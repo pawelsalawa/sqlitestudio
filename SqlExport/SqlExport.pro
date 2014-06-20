@@ -25,3 +25,6 @@ FORMS += \
     SqlExportQuery.ui
 
 copy_file(SqlExportQuery.ui, $$DESTDIR/SqlExportQuery.ui)
+
+OTHER_FILES += \
+    sqlexport.json

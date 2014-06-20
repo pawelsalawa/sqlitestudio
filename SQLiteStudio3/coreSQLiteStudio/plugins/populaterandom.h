@@ -1,7 +1,7 @@
 #ifndef POPULATERANDOM_H
 #define POPULATERANDOM_H
 
-#include "genericplugin.h"
+#include "builtinplugin.h"
 #include "populateplugin.h"
 #include "config_builder.h"
 
@@ -14,7 +14,7 @@ CFG_CATEGORIES(PopulateRandomConfig,
     )
 )
 
-class PopulateRandom : public GenericPlugin, public PopulatePlugin
+class PopulateRandom : public BuiltInPlugin, public PopulatePlugin
 {
         Q_OBJECT
 
