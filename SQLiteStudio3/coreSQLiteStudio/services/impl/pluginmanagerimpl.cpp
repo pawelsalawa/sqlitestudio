@@ -29,6 +29,7 @@ void PluginManagerImpl::init()
 #endif
 
     scanPlugins();
+    loadPlugins();
 }
 
 void PluginManagerImpl::deinit()
@@ -111,6 +112,15 @@ void PluginManagerImpl::scanPlugins()
             }
         }
     }
+}
+
+void PluginManagerImpl::loadPlugins()
+{
+    for (const QString& pluginName : pluginContainer.keys())
+    {
+        if (shouldAutoLoad(pluginName))
+            load(pluginName);
+    }
 
     emit pluginsInitiallyLoaded();
 }
@@ -135,10 +145,6 @@ bool PluginManagerImpl::initPlugin(QPluginLoader* loader, const QString& fileNam
         return false;
     }
 
-    QStringList dependencies;
-    for (const QJsonValue& value : pluginMetaData.value("MetaData").toObject().value("dependencies").toArray())
-        dependencies << value.toString();
-
     QString pluginName = pluginMetaData.value("className").toString();
 
     PluginContainer* container = new PluginContainer;
@@ -148,14 +154,14 @@ bool PluginManagerImpl::initPlugin(QPluginLoader* loader, const QString& fileNam
     container->loader = loader;
     pluginCategories[pluginType] << container;
     pluginContainer[pluginName] = container;
+    for (const QJsonValue& value : pluginMetaData.value("MetaData").toObject().value("dependencies").toArray())
+        container->dependencies << value.toString();
+
     if (!readMetaData(container))
     {
         delete container;
         return false;
     }
-
-    if (shouldAutoLoad(pluginName))
-        load(pluginName);
 
     return true;
 }
@@ -336,14 +342,20 @@ bool PluginManagerImpl::load(const QString& pluginName)
     }
 
     PluginContainer* container = pluginContainer[pluginName];
+    if (container->builtIn)
+        return true;
+
     QPluginLoader* loader = container->loader;
     if (loader->isLoaded())
-    {
-        // This happens when the load() was called just after plugin was probed (its metadata was read)
-        // and the plugin is still in memory. We don't unload&load it, we just keep it and here we treat
-        // it like it was just loaded (which in fact it was, for reading metadata).
-        pluginLoaded(container);
         return true;
+
+    for (const QString& dep : container->dependencies)
+    {
+        if (!load(dep))
+        {
+            qWarning() << "Could not load dependency" << dep << "for plugin" << pluginName << ", so it won't be loaded.";
+            return false;
+        }
     }
 
     if (!loader->load())
