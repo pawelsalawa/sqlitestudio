@@ -124,12 +124,34 @@ class PluginManagerImpl : public PluginManager
              * They cannot be loaded or unloaded - they are loaded by default.
              */
             bool builtIn = false;
+
+            /**
+             * @brief Names of plugnis that this plugin depends on.
+             */
+            QStringList dependencies;
         };
 
         /**
          * @brief List of plugins, both loaded and unloaded.
          */
         typedef QList<PluginContainer*> PluginContainerList;
+
+        /**
+         * @brief Scans plugin directories to find out available plugins.
+         *
+         * It looks in the following locations:
+         * <ul>
+         * <li> application_directory/plugins/
+         * <li> application_config_directory/plugins/
+         * <li> directory pointed by the SQLITESTUDIO_PLUGINS environment variable
+         * <li> directory compiled in as PLUGINS_DIR parameter of the compilation
+         * </ul>
+         *
+         * The application_directory is a directory where the application executable is.
+         * The application_config_directory can be different, see ConfigImpl::initDbFile() for details.
+         * The SQLITESTUDIO_PLUGINS variable can contain several paths, separated by : (for Unix/Mac) or ; (for Windows).
+         */
+        void scanPlugins();
 
         /**
          * @brief Loads plugins defined in configuration.
@@ -141,7 +163,7 @@ class PluginManagerImpl : public PluginManager
          * explicitly unloaded previously and that was saved in the configuration
          * (when application was closing).
          */
-        void scanPlugins();
+        void loadPlugins();
 
         /**
          * @brief Executes standard routines after plugin was loaded.
