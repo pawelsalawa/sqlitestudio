@@ -3,6 +3,9 @@
 #include <QCoreApplication>
 #include <QDir>
 #include <QDebug>
+#include <QJsonArray>
+#include <QJsonValue>
+#include <plugins/genericplugin.h>
 
 PluginManagerImpl::PluginManagerImpl()
 {
@@ -25,7 +28,7 @@ void PluginManagerImpl::init()
     pluginDirs += PLUGINS_DIR;
 #endif
 
-    loadPlugins();
+    scanPlugins();
 }
 
 void PluginManagerImpl::deinit()
@@ -74,7 +77,7 @@ QString PluginManagerImpl::getFilePath(Plugin* plugin) const
 
 bool PluginManagerImpl::loadBuiltInPlugin(Plugin* plugin)
 {
-    bool res = initPlugin(nullptr, QString::null, plugin);
+    bool res = initPlugin(plugin);
     res &= plugin->init();
     return res;
 }
@@ -87,13 +90,12 @@ PluginType* PluginManagerImpl::getPluginType(Plugin* plugin) const
     return pluginContainer[plugin->getName()]->type;
 }
 
-void PluginManagerImpl::loadPlugins()
+void PluginManagerImpl::scanPlugins()
 {
     QStringList nameFilters;
     nameFilters << "*.so" << "*.dll";
 
     QPluginLoader* loader;
-    Plugin* plugin;
     foreach (QString pluginDirPath, pluginDirs)
     {
         QDir pluginDir(pluginDirPath);
@@ -102,17 +104,9 @@ void PluginManagerImpl::loadPlugins()
             fileName = pluginDir.absoluteFilePath(fileName);
             loader = new QPluginLoader(fileName);
 
-            plugin = loadPluginFromFile(fileName, loader);
-            if (!plugin)
-            {
-                delete loader;
-                continue;
-            }
-
-            if (!initPlugin(loader, fileName, plugin))
+            if (!initPlugin(loader, fileName))
             {
                 qDebug() << "File" << fileName << "was loaded as plugin, but SQLiteStudio couldn't initialize plugin.";
-                loader->unload();
                 delete loader;
             }
         }
@@ -121,72 +115,88 @@ void PluginManagerImpl::loadPlugins()
     emit pluginsInitiallyLoaded();
 }
 
-Plugin* PluginManagerImpl::loadPluginFromFile(const QString& fileName, QPluginLoader* loader)
+bool PluginManagerImpl::initPlugin(QPluginLoader* loader, const QString& fileName)
 {
-    if (!loader->load())
+    QJsonObject pluginMetaData = loader->metaData();
+    QString pluginTypeName = pluginMetaData.value("MetaData").toObject().value("type").toString();
+    PluginType* pluginType = nullptr;
+    foreach (PluginType* type, registeredPluginTypes)
     {
-        qDebug() << "File" << fileName << "is in plugins location but SQLiteStudio was unable to load it:"
-                 << loader->errorString();
-        return nullptr;
+        if (type->getName() == pluginTypeName)
+        {
+            pluginType = type;
+            break;
+        }
     }
 
-    QObject* obj = loader->instance();
-    if (!obj)
+    if (!pluginType)
     {
-        qDebug() << "File" << fileName << "was loaded as plugin, but SQLiteStudio couldn't create an instance of it:"
-                 << loader->errorString();
-        loader->unload();
-        return nullptr;
+        qWarning() << "Could not load plugin" + fileName + "because its type was not recognized:" << pluginTypeName;
+        return false;
     }
 
-    Plugin* plugin = dynamic_cast<Plugin*>(obj);
-    if (!plugin)
+    QStringList dependencies;
+    for (const QJsonValue& value : pluginMetaData.value("MetaData").toObject().value("dependencies").toArray())
+        dependencies << value.toString();
+
+    QString pluginName = pluginMetaData.value("className").toString();
+
+    PluginContainer* container = new PluginContainer;
+    container->type = pluginType;
+    container->filePath = fileName;
+    container->loaded = false;
+    container->loader = loader;
+    pluginCategories[pluginType] << container;
+    pluginContainer[pluginName] = container;
+    if (!readMetaData(container))
     {
-        qDebug() << "File" << fileName << "was loaded as plugin, but SQLiteStudio couldn't cast it to Plugin class.";
-        loader->unload();
-        return nullptr;
+        delete container;
+        return false;
     }
 
-    return plugin;
+    if (shouldAutoLoad(pluginName))
+        load(pluginName);
+
+    return true;
 }
 
-bool PluginManagerImpl::initPlugin(QPluginLoader* loader, const QString& fileName, Plugin* plugin)
+bool PluginManagerImpl::initPlugin(Plugin* plugin)
 {
-    PluginContainer* container;
+    QString pluginName = plugin->getName();
+    PluginType* pluginType = nullptr;
     foreach (PluginType* type, registeredPluginTypes)
     {
         if (type->test(plugin))
         {
-            container = new PluginContainer;
-            container->type = type;
-            container->filePath = fileName;
-            if (loader)
-            {
-                container->loaded = false;
-                container->loader = loader;
-            }
-            else
-            {
-                container->loaded = true;
-                container->builtIn = true;
-                container->plugin = plugin;
-            }
-            pluginCategories[type] << container;
-            pluginContainer[plugin->getName()] = container;
-            readMetadata(plugin, container);
-
-            if (shouldAutoLoad(plugin))
-                load(plugin->getName());
-            else if (!container->builtIn)
-                loader->unload();
-
-            return true;
+            pluginType = type;
+            break;
         }
     }
-    return false;
+
+    if (!pluginType)
+    {
+        qWarning() << "Could not load built-in plugin" + pluginName + "because its type was not recognized.";
+        return false;
+    }
+
+    PluginContainer* container = new PluginContainer;
+    container->type = pluginType;
+    container->loaded = true;
+    container->builtIn = true;
+    container->plugin = plugin;
+    pluginCategories[pluginType] << container;
+    pluginContainer[pluginName] = container;
+    if (!readMetaData(container))
+    {
+        delete container;
+        return false;
+    }
+
+    pluginLoaded(container);
+    return true;
 }
 
-bool PluginManagerImpl::shouldAutoLoad(Plugin* plugin)
+bool PluginManagerImpl::shouldAutoLoad(const QString& pluginName)
 {
     QStringList loadedPlugins = CFG_CORE.General.LoadedPlugins.get().split(",", QString::SkipEmptyParts);
     QStringList pair;
@@ -199,7 +209,7 @@ bool PluginManagerImpl::shouldAutoLoad(Plugin* plugin)
             continue;
         }
 
-        if (pair[0] == plugin->getName())
+        if (pair[0] == pluginName)
             return (bool)pair[1].toInt();
     }
 
@@ -326,37 +336,36 @@ bool PluginManagerImpl::load(const QString& pluginName)
     }
 
     PluginContainer* container = pluginContainer[pluginName];
-    if (container->builtIn)
+    QPluginLoader* loader = container->loader;
+    if (loader->isLoaded())
     {
+        // This happens when the load() was called just after plugin was probed (its metadata was read)
+        // and the plugin is still in memory. We don't unload&load it, we just keep it and here we treat
+        // it like it was just loaded (which in fact it was, for reading metadata).
         pluginLoaded(container);
+        return true;
     }
-    else
+
+    if (!loader->load())
     {
-        QPluginLoader* loader = container->loader;
-        if (loader->isLoaded())
-        {
-            // This happens when the load() was called just after plugin was probed (its metadata was read)
-            // and the plugin is still in memory. We don't unload&load it, we just keep it and here we treat
-            // it like it was just loaded (which in fact it was, for reading metadata).
-            pluginLoaded(container);
-            return true;
-        }
-
-        if (!loader->load())
-        {
-            qWarning() << "Could not load plugin file:" << loader->errorString();
-            return false;
-        }
-
-        Plugin* plugin = dynamic_cast<Plugin*>(container->loader->instance());
-        if (!plugin->init())
-        {
-            qWarning() << "Error initializing plugin:" << container->name;
-            return false;
-        }
-
-        pluginLoaded(container);
+        qWarning() << "Could not load plugin file:" << loader->errorString();
+        return false;
     }
+
+    Plugin* plugin = dynamic_cast<Plugin*>(container->loader->instance());
+    GenericPlugin* genericPlugin = dynamic_cast<GenericPlugin*>(plugin);
+    if (genericPlugin)
+    {
+        genericPlugin->loadMetaData(container->loader->metaData());
+    }
+
+    if (!plugin->init())
+    {
+        qWarning() << "Error initializing plugin:" << container->name;
+        return false;
+    }
+
+    pluginLoaded(container);
 
     return true;
 }
@@ -389,14 +398,33 @@ void PluginManagerImpl::removePluginFromCollections(Plugin* plugin)
         scriptingPlugins.remove(plugin->getName());
 }
 
-void PluginManagerImpl::readMetadata(Plugin* plugin, PluginManagerImpl::PluginContainer* container)
+bool PluginManagerImpl::readMetaData(PluginManagerImpl::PluginContainer* container)
 {
-    container->name = plugin->getName();
-    container->version = plugin->getVersion();
-    container->printableVersion = plugin->getPrintableVersion();
-    container->author = plugin->getAuthor();
-    container->description = plugin->getDescription();
-    container->title = plugin->getTitle();
+    if (container->loader)
+    {
+        QHash<QString, QVariant> metaData = readMetaData(container->loader->metaData());
+        container->name = metaData["name"].toString();
+        container->version = metaData["version"].toInt();
+        container->printableVersion = toPrintableVersion(metaData["version"].toInt());
+        container->author = metaData["author"].toString();
+        container->description = metaData["description"].toString();
+        container->title = metaData["title"].toString();
+    }
+    else if (container->plugin)
+    {
+        container->name = container->plugin->getName();
+        container->version = container->plugin->getVersion();
+        container->printableVersion = container->plugin->getPrintableVersion();
+        container->author = container->plugin->getAuthor();
+        container->description = container->plugin->getDescription();
+        container->title = container->plugin->getTitle();
+    }
+    else
+    {
+        qCritical() << "Could not read metadata for some plugin. It has no loader or plugin object defined.";
+        return false;
+    }
+    return true;
 }
 
 bool PluginManagerImpl::isLoaded(const QString& pluginName) const
@@ -453,6 +481,29 @@ ScriptingPlugin* PluginManagerImpl::getScriptingPlugin(const QString& languageNa
         return scriptingPlugins[languageName];
 
     return nullptr;
+}
+
+QHash<QString, QVariant> PluginManagerImpl::readMetaData(const QJsonObject& metaData)
+{
+    QHash<QString, QVariant> results;
+    results["name"] = metaData.value("className").toString();
+
+    QJsonObject root = metaData.value("MetaData").toObject();
+    results["type"] = root.value("type").toString();
+    results["title"] = root.value("title").toString();
+    results["description"] = root.value("description").toString();
+    results["author"] = root.value("author").toString();
+    results["version"] = root.value("version").toInt();
+    results["ui"] = root.value("ui").toString();
+    return results;
+}
+
+QString PluginManagerImpl::toPrintableVersion(int version) const
+{
+    static const QString versionStr = QStringLiteral("%1.%2.%3");
+    return versionStr.arg(version / 10000)
+                     .arg(version / 100 % 100)
+                     .arg(version % 100);
 }
 
 void PluginManagerImpl::registerPluginType(PluginType* type)

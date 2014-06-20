@@ -1,7 +1,7 @@
 #ifndef POPULATECONSTANT_H
 #define POPULATECONSTANT_H
 
-#include "genericplugin.h"
+#include "builtinplugin.h"
 #include "populateplugin.h"
 #include "config_builder.h"
 
@@ -11,7 +11,7 @@ CFG_CATEGORIES(PopulateConstantConfig,
     )
 )
 
-class PopulateConstant : public GenericPlugin, public PopulatePlugin
+class PopulateConstant : public BuiltInPlugin, public PopulatePlugin
 {
         Q_OBJECT
 

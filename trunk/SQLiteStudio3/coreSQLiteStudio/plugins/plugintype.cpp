@@ -8,15 +8,22 @@ PluginType::PluginType(const QString& title, const QString& form) :
 {
 }
 
+
 PluginType::~PluginType()
 {
 }
 
 QString PluginType::getName() const
 {
-    return typeName();
+    return name;
 }
 
+void PluginType::setNativeName(const QString& nativeName)
+{
+    name = nativeName;
+    while (name.at(0).isDigit())
+        name = name.mid(1);
+}
 QString PluginType::getTitle() const
 {
     return title;

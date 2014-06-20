@@ -2,9 +2,9 @@
 #define DBPLUGINSQLITE3_H
 
 #include "dbplugin.h"
-#include "genericplugin.h"
+#include "builtinplugin.h"
 
-class DbPluginSqlite3 : public GenericPlugin, public DbPlugin
+class DbPluginSqlite3 : public BuiltInPlugin, public DbPlugin
 {
     Q_OBJECT
 

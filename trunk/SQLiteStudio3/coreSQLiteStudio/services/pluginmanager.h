@@ -285,6 +285,20 @@ class API_EXPORT PluginManager : public QObject
         virtual ScriptingPlugin* getScriptingPlugin(const QString& languageName) const = 0;
 
         /**
+         * @brief Loads metadata from given Json object.
+         * @param The metadata from json file.
+         * @return Metadata with keys: type, name, title, description, version, author, ui (optional).
+         */
+        virtual QHash<QString,QVariant> readMetaData(const QJsonObject& metaData) = 0;
+
+        /**
+         * @brief Converts integer version to string version.
+         * @param version Integer version in XXYYZZ standard (see Plugin::getVersion() for details).
+         * @return Printable version string.
+         */
+        virtual QString toPrintableVersion(int version) const = 0;
+
+        /**
          * @brief registerPluginType Registers plugin type for loading and managing.
          * @tparam T Interface class (as defined by Qt plugins standard)
          * @param form Optional name of form object.

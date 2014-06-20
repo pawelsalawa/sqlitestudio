@@ -23,3 +23,6 @@ HEADERS += dbsqlite2.h\
     dbsqlite2instance.h
 
 LIBS += -lsqlite
+
+OTHER_FILES += \
+    dbsqlite2.json

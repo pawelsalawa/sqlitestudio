@@ -114,3 +114,13 @@ ScriptingPlugin* PluginManagerMock::getScriptingPlugin(const QString&) const
 void PluginManagerMock::registerPluginType(PluginType*)
 {
 }
+
+QHash<QString, QVariant> PluginManagerMock::readMetaData(const QJsonObject&)
+{
+    return QHash<QString, QVariant>();
+}
+
+QString PluginManagerMock::toPrintableVersion(int) const
+{
+    return QString();
+}

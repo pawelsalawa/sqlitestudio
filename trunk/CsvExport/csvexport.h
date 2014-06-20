@@ -18,12 +18,7 @@ CFG_CATEGORIES(CsvExportConfig,
 class CSVEXPORTSHARED_EXPORT CsvExport : public GenericExportPlugin
 {
         Q_OBJECT
-
-        SQLITESTUDIO_PLUGIN
-        SQLITESTUDIO_PLUGIN_TITLE("CSV exporting format")
-        SQLITESTUDIO_PLUGIN_DESC("Provides CSV format for exporting")
-        SQLITESTUDIO_PLUGIN_VERSION(10000)
-        SQLITESTUDIO_PLUGIN_AUTHOR("sqlitestudio.pl")
+        SQLITESTUDIO_PLUGIN("csvexport.json")
 
     public:
         CsvExport();

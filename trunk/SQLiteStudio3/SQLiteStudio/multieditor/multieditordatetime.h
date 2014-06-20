@@ -3,7 +3,7 @@
 
 #include "multieditorwidget.h"
 #include "multieditorwidgetplugin.h"
-#include "plugins/genericplugin.h"
+#include "plugins/builtinplugin.h"
 #include <QStringList>
 #include <QDateTime>
 
@@ -64,7 +64,7 @@ class MultiEditorDateTime : public MultiEditorWidget
         void timeChanged(const QTime& time);
 };
 
-class MultiEditorDateTimePlugin : public GenericPlugin, public MultiEditorWidgetPlugin
+class MultiEditorDateTimePlugin : public BuiltInPlugin, public MultiEditorWidgetPlugin
 {
     Q_OBJECT
 

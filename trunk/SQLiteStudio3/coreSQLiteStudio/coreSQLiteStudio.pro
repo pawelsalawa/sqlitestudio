@@ -168,7 +168,8 @@ SOURCES += sqlitestudio.cpp \
     plugins/populaterandomtext.cpp \
     plugins/populateconstant.cpp \
     plugins/populatedictionary.cpp \
-    plugins/populatescript.cpp
+    plugins/populatescript.cpp \
+    plugins/builtinplugin.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -335,7 +336,8 @@ HEADERS += sqlitestudio.h\
     plugins/populaterandomtext.h \
     plugins/populateconstant.h \
     plugins/populatedictionary.h \
-    plugins/populatescript.h
+    plugins/populatescript.h \
+    plugins/builtinplugin.h
 
 unix:!symbian {
     maemo5 {

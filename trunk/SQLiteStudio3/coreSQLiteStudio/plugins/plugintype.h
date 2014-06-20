@@ -34,11 +34,11 @@ class API_EXPORT PluginType
 
     protected:
         PluginType(const QString& title, const QString& form);
-
-        virtual QString typeName() const = 0;
+        void setNativeName(const QString& nativeName);
 
         QString title;
         QString configUiForm;
+        QString name;
 };
 
 
@@ -53,13 +53,11 @@ class DefinedPluginType : public PluginType
             return (dynamic_cast<T*>(plugin) != nullptr);
         }
 
-        QString typeName() const
-        {
-            return typeid(T).name();
-        }
-
     protected:
-        DefinedPluginType(const QString& title, const QString& form) : PluginType(title, form) {}
+        DefinedPluginType(const QString& title, const QString& form) : PluginType(title, form)
+        {
+            setNativeName(typeid(T).name());
+        }
 };
 
 #endif // PLUGINTYPE_H

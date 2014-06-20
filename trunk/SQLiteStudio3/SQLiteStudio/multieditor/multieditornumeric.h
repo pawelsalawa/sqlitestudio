@@ -3,7 +3,7 @@
 
 #include "multieditorwidget.h"
 #include "multieditorwidgetplugin.h"
-#include "plugins/genericplugin.h"
+#include "plugins/builtinplugin.h"
 
 class NumericSpinBox;
 
@@ -23,7 +23,7 @@ class MultiEditorNumeric : public MultiEditorWidget
         NumericSpinBox* spinBox;
 };
 
-class MultiEditorNumericPlugin : public GenericPlugin, public MultiEditorWidgetPlugin
+class MultiEditorNumericPlugin : public BuiltInPlugin, public MultiEditorWidgetPlugin
 {
     Q_OBJECT
 

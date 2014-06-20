@@ -25,3 +25,6 @@ FORMS += \
     SqlFormatterSimple.ui
 
 copy_file(SqlFormatterSimple.ui, $$DESTDIR/SqlFormatterSimple.ui)
+
+OTHER_FILES += \
+    sqlformattersimple.json

@@ -3,7 +3,7 @@
 
 #include "multieditorwidget.h"
 #include "multieditorwidgetplugin.h"
-#include "plugins/genericplugin.h"
+#include "plugins/builtinplugin.h"
 #include <QStringList>
 
 class QCheckBox;
@@ -48,7 +48,7 @@ class MultiEditorBool : public MultiEditorWidget
         void stateChanged(int state);
 };
 
-class MultiEditorBoolPlugin : public GenericPlugin, public MultiEditorWidgetPlugin
+class MultiEditorBoolPlugin : public BuiltInPlugin, public MultiEditorWidgetPlugin
 {
     Q_OBJECT
 

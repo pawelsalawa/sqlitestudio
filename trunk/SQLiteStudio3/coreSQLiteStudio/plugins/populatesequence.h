@@ -1,7 +1,7 @@
 #ifndef POPULATESEQUENCE_H
 #define POPULATESEQUENCE_H
 
-#include "genericplugin.h"
+#include "builtinplugin.h"
 #include "populateplugin.h"
 #include "config_builder.h"
 
@@ -12,7 +12,7 @@ CFG_CATEGORIES(PopulateSequenceConfig,
     )
 )
 
-class PopulateSequence : public GenericPlugin, public PopulatePlugin
+class PopulateSequence : public BuiltInPlugin, public PopulatePlugin
 {
         Q_OBJECT
 
