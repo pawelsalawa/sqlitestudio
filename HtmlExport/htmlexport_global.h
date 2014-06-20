@@ -1,0 +1,12 @@
+#ifndef HTMLEXPORT_GLOBAL_H
+#define HTMLEXPORT_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(HTMLEXPORT_LIBRARY)
+#  define HTMLEXPORTSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define HTMLEXPORTSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // HTMLEXPORT_GLOBAL_H

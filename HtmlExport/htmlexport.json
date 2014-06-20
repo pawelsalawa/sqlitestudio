@@ -1,0 +1,8 @@
+{
+    "type":         "ExportPlugin",
+    "title":        "HTML export",
+    "description":  "Provides HTML format for exporting.",
+    "version":      10000,
+    "author":       "sqlitestudio.pl",
+    "dependencies": ["DocExport"]
+}
