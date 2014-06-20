@@ -104,6 +104,7 @@ void PluginManagerImpl::scanPlugins()
         {
             fileName = pluginDir.absoluteFilePath(fileName);
             loader = new QPluginLoader(fileName);
+            loader->setLoadHints(QLibrary::ExportExternalSymbolsHint);
 
             if (!initPlugin(loader, fileName))
             {
@@ -112,6 +113,7 @@ void PluginManagerImpl::scanPlugins()
             }
         }
     }
+    qDebug() << "Following plugins found:" << pluginContainer.keys();
 }
 
 void PluginManagerImpl::loadPlugins()
@@ -303,6 +305,7 @@ void PluginManagerImpl::unload(const QString& pluginName)
         return;
     }
 
+    // Checking preconditions
     PluginContainer* container = pluginContainer[pluginName];
     if (container->builtIn)
         return;
@@ -310,8 +313,17 @@ void PluginManagerImpl::unload(const QString& pluginName)
     if (!container->loaded)
         return;
 
+    // Unloading depdendent plugins
+    for (PluginContainer* otherContainer : pluginContainer.values())
+    {
+        if (otherContainer->dependencies.contains(pluginName))
+            unload(otherContainer->name);
+    }
+
+    // Removing from fast-lookup collections
     removePluginFromCollections(container->plugin);
 
+    // Deinitializing and unloading plugin
     emit aboutToUnload(container->plugin, container->type);
     container->plugin->deinit();
 
