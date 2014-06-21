@@ -2,6 +2,7 @@
 #define IMPORTMANAGER_H
 
 #include "pluginservicebase.h"
+#include "coreSQLiteStudio_global.h"
 #include <QFlags>
 #include <QStringList>
 
@@ -9,7 +10,7 @@ class ImportPlugin;
 class Db;
 class CfgEntry;
 
-class ImportManager : public PluginServiceBase
+class API_EXPORT ImportManager : public PluginServiceBase
 {
         Q_OBJECT
 

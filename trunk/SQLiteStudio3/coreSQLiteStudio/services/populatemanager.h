@@ -11,7 +11,7 @@ class PopulatePlugin;
 class PopulateEngine;
 class Db;
 
-class PopulateManager : public PluginServiceBase
+class API_EXPORT PopulateManager : public PluginServiceBase
 {
         Q_OBJECT
 
