@@ -22,6 +22,9 @@
 #ifndef DIFF_MATCH_PATCH_H
 #define DIFF_MATCH_PATCH_H
 
+#include <time.h>
+#include "coreSQLiteStudio_global.h"
+
 /*
  * Functions for diff, match and patch.
  * Computes the difference between two texts to create a patch.
@@ -66,7 +69,7 @@
 *  Diff(Operation.EQUAL, " world.")}
 * which means: delete "Hello", add "Goodbye" and keep " world."
 */
-enum Operation {
+enum API_EXPORT Operation {
   DELETE, INSERT, EQUAL
 };
 
@@ -74,7 +77,7 @@ enum Operation {
 /**
 * Class representing one diff operation.
 */
-class Diff {
+class API_EXPORT Diff {
  public:
   Operation operation;
   // One of: INSERT, DELETE or EQUAL.
@@ -100,7 +103,7 @@ class Diff {
 /**
 * Class representing one patch operation.
 */
-class Patch {
+class API_EXPORT Patch {
  public:
   QList<Diff> diffs;
   int start1;
@@ -121,7 +124,7 @@ class Patch {
  * Class containing the diff, match and patch methods.
  * Also contains the behaviour settings.
  */
-class diff_match_patch {
+class API_EXPORT diff_match_patch {
 
   friend class diff_match_patch_test;
 

@@ -3,7 +3,7 @@
 
 #include "db/db.h"
 
-class InvalidDb : public Db
+class API_EXPORT InvalidDb : public Db
 {
     public:
         InvalidDb(const QString& name, const QString& path, const QHash<QString, QVariant>& connOptions);

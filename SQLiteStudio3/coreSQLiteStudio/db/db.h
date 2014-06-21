@@ -803,7 +803,7 @@ QDataStream &operator>>(QDataStream &in, Db*& myObj);
 Q_DECLARE_METATYPE(Db*)
 Q_DECLARE_OPERATORS_FOR_FLAGS(Db::Flags)
 
-class Sqlite2ColumnDataTypeHelper
+class API_EXPORT Sqlite2ColumnDataTypeHelper
 {
     public:
         void setBinaryType(int columnIndex);
