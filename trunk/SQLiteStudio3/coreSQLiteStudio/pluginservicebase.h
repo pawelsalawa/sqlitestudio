@@ -2,11 +2,12 @@
 #define PLUGINSERVICEBASE_H
 
 #include "common/global.h"
+#include "coreSQLiteStudio_global.h"
 #include <QObject>
 
 class CfgEntry;
 
-class PluginServiceBase : public QObject
+class API_EXPORT PluginServiceBase : public QObject
 {
         Q_OBJECT
 
