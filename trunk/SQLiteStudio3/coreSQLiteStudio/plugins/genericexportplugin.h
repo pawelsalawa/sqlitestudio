@@ -4,7 +4,7 @@
 #include "exportplugin.h"
 #include "genericplugin.h"
 
-class GenericExportPlugin : virtual public GenericPlugin, public ExportPlugin
+class API_EXPORT GenericExportPlugin : virtual public GenericPlugin, public ExportPlugin
 {
     public:
         void initBeforeExport(Db* db, QIODevice* output, const ExportManager::StandardExportConfig& config);

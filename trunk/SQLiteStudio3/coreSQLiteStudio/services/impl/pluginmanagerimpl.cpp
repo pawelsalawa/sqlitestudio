@@ -44,9 +44,10 @@ void PluginManagerImpl::deinit()
         }
         else
             unload(container->name);
-
-        delete container;
     }
+
+    foreach (PluginContainer* container, pluginContainer.values())
+        delete container;
 
     pluginContainer.clear();
 
@@ -113,7 +114,15 @@ void PluginManagerImpl::scanPlugins()
             }
         }
     }
-    qDebug() << "Following plugins found:" << pluginContainer.keys();
+
+    QStringList names;
+    for (PluginContainer* container : pluginContainer.values())
+    {
+        if (!container->builtIn)
+            names << container->name;
+    }
+
+    qDebug() << "Following plugins found:" << names;
 }
 
 void PluginManagerImpl::loadPlugins()
@@ -316,6 +325,9 @@ void PluginManagerImpl::unload(const QString& pluginName)
     // Unloading depdendent plugins
     for (PluginContainer* otherContainer : pluginContainer.values())
     {
+        if (otherContainer == container)
+            continue;
+
         if (otherContainer->dependencies.contains(pluginName))
             unload(otherContainer->name);
     }

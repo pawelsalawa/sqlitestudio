@@ -116,6 +116,9 @@ QStringList CliCompleter::completeCommand(const QString& str, int curPos)
 QStringList CliCompleter::completeQuery(const QString& toBeReplaced, const QString& str, int curPos)
 {
     QStringList list;
+    if (!cli->getCurrentDb())
+        return list;
+
     bool keepOriginalStr = doKeepOriginalStr(str, curPos);
 
     CompletionHelper completer(str, curPos, cli->getCurrentDb());
