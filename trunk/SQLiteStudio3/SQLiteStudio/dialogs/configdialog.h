@@ -108,7 +108,8 @@ class ConfigDialog : public QDialog
         void updateActiveFormatterState();
         void activeFormatterChanged(const QString& title);
         void activeFormatterConfigurePressed();
-        void detailsClicked(QString pluginName);
+        void detailsClicked(const QString& pluginName);
+        void failedToLoadPlugin(const QString& pluginName);
         void loadUnloadPlugin(QTreeWidgetItem* item, int column);
         void pluginAboutToUnload(Plugin* plugin, PluginType* type);
         void pluginLoaded(Plugin* plugin, PluginType* type);

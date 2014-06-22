@@ -124,3 +124,14 @@ QString PluginManagerMock::toPrintableVersion(int) const
 {
     return QString();
 }
+
+
+QStringList PluginManagerMock::getDependencies(const QString&) const
+{
+    return QStringList();
+}
+
+QStringList PluginManagerMock::getConflicts(const QString&) const
+{
+    return QStringList();
+}

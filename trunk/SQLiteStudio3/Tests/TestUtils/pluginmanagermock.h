@@ -31,6 +31,8 @@ class PluginManagerMock : public PluginManager
         ScriptingPlugin* getScriptingPlugin(const QString&) const;
         QHash<QString, QVariant> readMetaData(const QJsonObject&);
         QString toPrintableVersion(int) const;
+        QStringList getDependencies(const QString&) const;
+        QStringList getConflicts(const QString&) const;
 
     protected:
         void registerPluginType(PluginType*);

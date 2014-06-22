@@ -45,6 +45,8 @@ class PluginManagerImpl : public PluginManager
         ScriptingPlugin* getScriptingPlugin(const QString& languageName) const;
         QHash<QString,QVariant> readMetaData(const QJsonObject& metaData);
         QString toPrintableVersion(int version) const;
+        QStringList getDependencies(const QString& pluginName) const;
+        QStringList getConflicts(const QString& pluginName) const;
 
     protected:
         void registerPluginType(PluginType* type);
@@ -129,6 +131,11 @@ class PluginManagerImpl : public PluginManager
              * @brief Names of plugnis that this plugin depends on.
              */
             QStringList dependencies;
+
+            /**
+             * @brief Names of plugins that this plugin conflicts with.
+             */
+            QStringList conflicts;
         };
 
         /**
@@ -164,6 +171,18 @@ class PluginManagerImpl : public PluginManager
          * (when application was closing).
          */
         void loadPlugins();
+
+        /**
+         * @brief Loads given plugin.
+         * @param pluginName Name of the plugin to load.
+         * @param alreadyAttempted List of plugin names that were already attempted to be loaded.
+         * @return true on success, false on failure.
+         *
+         * This is pretty much what the public load() method does, except this one tracks what plugins were already
+         * attempted to be loaded (and failed), so it doesn't warn twice about the same plugin if it failed
+         * to load while it was a dependency for some other plugins.
+         */
+        bool load(const QString& pluginName, QStringList& alreadyAttempted);
 
         /**
          * @brief Executes standard routines after plugin was loaded.

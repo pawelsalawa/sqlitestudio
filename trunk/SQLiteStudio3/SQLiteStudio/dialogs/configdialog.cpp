@@ -595,16 +595,18 @@ void ConfigDialog::activeFormatterConfigurePressed()
     ui->categoriesTree->setCurrentItem(item);
 }
 
-void ConfigDialog::detailsClicked(QString pluginName)
+void ConfigDialog::detailsClicked(const QString& pluginName)
 {
     static const QString details = QStringLiteral(
             "<table>"
                 "<thead>"
                     "<tr><td colspan=2 align=\"center\"><b>%1</b></td></tr>"
+                    "<tr><td colspan=2></td></tr>"
                 "</thead>"
                 "<tbody>%2</tbody>"
             "</table>");
     static const QString row = QStringLiteral("<tr><td>%1</td><td align=\"right\">%2</td></tr>");
+    static const QString hline = QStringLiteral("<tr><td colspan=\"2\"><hr/></td></tr>");
 
     PluginType* type = PLUGINS->getPluginType(pluginName);
     Q_ASSERT(type != nullptr);
@@ -615,11 +617,26 @@ void ConfigDialog::detailsClicked(QString pluginName)
     rows << row.arg(tr("Category:", "plugin details")).arg(type->getTitle());
     rows << row.arg(tr("Version:", "plugin details")).arg(PLUGINS->getPrintableVersion(pluginName));
     rows << row.arg(tr("Author:", "plugin details")).arg(PLUGINS->getAuthor(pluginName));
-    rows << row.arg(tr("Technical name:", "plugin details")).arg(pluginName);
+    rows << hline;
+    rows << row.arg(tr("Internal name:", "plugin details")).arg(pluginName);
+    rows << row.arg(tr("Dependencies:", "plugin details")).arg(PLUGINS->getDependencies(pluginName).join(", "));
+    rows << row.arg(tr("Conflicts:", "plugin details")).arg(PLUGINS->getConflicts(pluginName).join(", "));
 
     // Message
     QString pluginDetails = details.arg(PLUGINS->getTitle(pluginName)).arg(rows.join(""));
     QMessageBox::information(this, tr("Plugin details"), pluginDetails);
+}
+
+void ConfigDialog::failedToLoadPlugin(const QString& pluginName)
+{
+    QTreeWidgetItem* theItem = itemToPluginNameMap.valueByRight(pluginName);
+    if (!theItem)
+    {
+        qWarning() << "Plugin" << pluginName << "failed to load, but it could not be found on the plugins list in ConfigDialog.";
+        return;
+    }
+
+    theItem->setCheckState(0, Qt::Unchecked);
 }
 
 void ConfigDialog::sqlFormatterAboutToUnload(Plugin* plugin)
@@ -934,6 +951,9 @@ void ConfigDialog::initPluginsPage()
     QBrush categoryBg = ui->pluginsList->palette().button();
     QBrush categoryFg = ui->pluginsList->palette().buttonText();
 
+    connect(ui->pluginsList, SIGNAL(itemChanged(QTreeWidgetItem*,int)), this, SLOT(loadUnloadPlugin(QTreeWidgetItem*,int)));
+    connect(PLUGINS, SIGNAL(failedToLoad(QString)), this, SLOT(failedToLoadPlugin(QString)));
+
     categoryRow = 0;
     QList<PluginType*> pluginTypes = PLUGINS->getPluginTypes();
     qSort(pluginTypes.begin(), pluginTypes.end(), PluginType::nameLessThan);
@@ -972,7 +992,6 @@ void ConfigDialog::initPluginsPage()
 
             category->addChild(item);
 
-            connect(ui->pluginsList, SIGNAL(itemChanged(QTreeWidgetItem*,int)), this, SLOT(loadUnloadPlugin(QTreeWidgetItem*,int)));
             itemToPluginNameMap.insert(item, pluginName);
 
             // Details button
