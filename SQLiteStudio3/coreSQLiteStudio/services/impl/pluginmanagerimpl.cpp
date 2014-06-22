@@ -1,11 +1,12 @@
 #include "pluginmanagerimpl.h"
 #include "plugins/scriptingplugin.h"
+#include "plugins/genericplugin.h"
+#include "services/notifymanager.h"
 #include <QCoreApplication>
 #include <QDir>
 #include <QDebug>
 #include <QJsonArray>
 #include <QJsonValue>
-#include <plugins/genericplugin.h>
 
 PluginManagerImpl::PluginManagerImpl()
 {
@@ -127,10 +128,11 @@ void PluginManagerImpl::scanPlugins()
 
 void PluginManagerImpl::loadPlugins()
 {
+    QStringList alreadyAttempted;
     for (const QString& pluginName : pluginContainer.keys())
     {
         if (shouldAutoLoad(pluginName))
-            load(pluginName);
+            load(pluginName, alreadyAttempted);
     }
 
     emit pluginsInitiallyLoaded();
@@ -165,8 +167,13 @@ bool PluginManagerImpl::initPlugin(QPluginLoader* loader, const QString& fileNam
     container->loader = loader;
     pluginCategories[pluginType] << container;
     pluginContainer[pluginName] = container;
-    for (const QJsonValue& value : pluginMetaData.value("MetaData").toObject().value("dependencies").toArray())
+
+    QJsonObject metaObject = pluginMetaData.value("MetaData").toObject();
+    for (const QJsonValue& value : metaObject.value("dependencies").toArray())
         container->dependencies << value.toString();
+
+    for (const QJsonValue& value : metaObject.value("conflicts").toArray())
+        container->conflicts << value.toString();
 
     if (!readMetaData(container))
     {
@@ -359,9 +366,22 @@ void PluginManagerImpl::unload(const QString& pluginName)
 
 bool PluginManagerImpl::load(const QString& pluginName)
 {
+    QStringList alreadyAttempted;
+    bool res = load(pluginName, alreadyAttempted);
+    emit failedToLoad(pluginName);
+    return res;
+}
+
+bool PluginManagerImpl::load(const QString& pluginName, QStringList& alreadyAttempted)
+{
+    if (alreadyAttempted.contains(pluginName))
+        return false;
+
+    // Checking initial conditions
     if (!pluginContainer.contains(pluginName))
     {
         qWarning() << "No such plugin in containers:" << pluginName << "while trying to load plugin.";
+        alreadyAttempted.append(pluginName);
         return false;
     }
 
@@ -373,21 +393,40 @@ bool PluginManagerImpl::load(const QString& pluginName)
     if (loader->isLoaded())
         return true;
 
-    for (const QString& dep : container->dependencies)
+    // Checking for conflicting plugins
+    for (PluginContainer* otherContainer : pluginContainer.values())
     {
-        if (!load(dep))
+        if (!otherContainer->loaded || otherContainer->name == pluginName)
+            continue;
+
+        if (container->conflicts.contains(otherContainer->name) || otherContainer->conflicts.contains(pluginName))
         {
-            qWarning() << "Could not load dependency" << dep << "for plugin" << pluginName << ", so it won't be loaded.";
+            notifyWarn(tr("Cannot load plugin %1, because it's in conflict with plugin %2.").arg(pluginName, otherContainer->name));
+            alreadyAttempted.append(pluginName);
             return false;
         }
     }
 
+    // Loading depended plugins
+    for (const QString& dep : container->dependencies)
+    {
+        if (!load(dep, alreadyAttempted))
+        {
+            notifyWarn(tr("Cannot load plugin %1, because its dependency was not loaded: %2.").arg(pluginName, dep));
+            alreadyAttempted.append(pluginName);
+            return false;
+        }
+    }
+
+    // Loading pluginName
     if (!loader->load())
     {
-        qWarning() << "Could not load plugin file:" << loader->errorString();
+        notifyWarn(tr("Cannot load plugin %1. Error details: %2").arg(pluginName, loader->errorString()));
+        alreadyAttempted.append(pluginName);
         return false;
     }
 
+    // Initializing loaded plugin
     Plugin* plugin = dynamic_cast<Plugin*>(container->loader->instance());
     GenericPlugin* genericPlugin = dynamic_cast<GenericPlugin*>(plugin);
     if (genericPlugin)
@@ -397,7 +436,9 @@ bool PluginManagerImpl::load(const QString& pluginName)
 
     if (!plugin->init())
     {
-        qWarning() << "Error initializing plugin:" << container->name;
+        loader->unload();
+        notifyWarn(tr("Cannot load plugin %1 (error while initializing plugin).").arg(pluginName));
+        alreadyAttempted.append(pluginName);
         return false;
     }
 
@@ -540,6 +581,22 @@ QString PluginManagerImpl::toPrintableVersion(int version) const
     return versionStr.arg(version / 10000)
                      .arg(version / 100 % 100)
                      .arg(version % 100);
+}
+
+QStringList PluginManagerImpl::getDependencies(const QString& pluginName) const
+{
+    if (!pluginContainer.contains(pluginName))
+        return QStringList();
+
+    return pluginContainer[pluginName]->dependencies;
+}
+
+QStringList PluginManagerImpl::getConflicts(const QString& pluginName) const
+{
+    if (!pluginContainer.contains(pluginName))
+        return QStringList();
+
+    return pluginContainer[pluginName]->conflicts;
 }
 
 void PluginManagerImpl::registerPluginType(PluginType* type)

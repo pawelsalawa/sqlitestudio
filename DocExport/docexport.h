@@ -39,6 +39,10 @@ class DOCEXPORTSHARED_EXPORT DocExport : virtual public GenericPlugin, public Ge
         QTextDocument* doc = nullptr;
         QTextTable* docTable = nullptr;
         QTextCursor* cursor = nullptr;
+
+        // Plugin interface
+    public:
+        bool init();
 };
 
 #endif // DOCEXPORT_H

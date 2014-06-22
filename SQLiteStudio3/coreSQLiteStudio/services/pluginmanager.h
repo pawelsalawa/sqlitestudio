@@ -299,6 +299,31 @@ class API_EXPORT PluginManager : public QObject
         virtual QString toPrintableVersion(int version) const = 0;
 
         /**
+         * @brief Provides list of plugin names that the queried plugin depends on.
+         * @param pluginName Queried plugin name.
+         * @return List of plugin names, usually an empty list.
+         *
+         * This is the list that is declared in plugins metadata under the "dependencies" key.
+         * The plugin can be loaded only if all its dependencies were successfully loaded.
+         */
+        virtual QStringList getDependencies(const QString& pluginName) const = 0;
+
+        /**
+         * @brief Provides list of plugin names that are declared to be in conflict with queries plugin.
+         * @param pluginName Queried plugin name,
+         * @return List of plugin names, usually an empty list.
+         *
+         * If a plugin declares other plugin (by name) to be its conflict (a "conflicts" key in plugin's metadata),
+         * then those 2 plugins cannot be loaded at the same time. SQLiteStudio will always refuse to load
+         * the other one, if the first one is already loaded - and vice versa.
+         *
+         * Declaring conflicts for a plugin can be useful for example if somebody wants to proivde an alternative
+         * implementation of SQLite2 database plugin, etc. In that case SQLiteStudio won't get confused in
+         * deciding which plugin to use for supporting such databases.
+         */
+        virtual QStringList getConflicts(const QString& pluginName) const = 0;
+
+        /**
          * @brief registerPluginType Registers plugin type for loading and managing.
          * @tparam T Interface class (as defined by Qt plugins standard)
          * @param form Optional name of form object.
@@ -428,6 +453,14 @@ class API_EXPORT PluginManager : public QObject
          * database support plugins) should listen to this signal.
          */
         void pluginsInitiallyLoaded();
+
+        /**
+         * @brief Emitted when plugin load was requested, but it failed.
+         * @param pluginName Name of the plugin that failed to load.
+         *
+         * It's used for example by ConfigDialog to uncheck plugin that was requested to load (checked) and it failed.
+         */
+        void failedToLoad(const QString& pluginName);
 };
 
 /**

@@ -61,3 +61,8 @@ void DocExport::cleanupDoc()
     safe_delete(doc);
     safe_delete(cursor);
 }
+
+bool DocExport::init()
+{
+    return false;
+}
