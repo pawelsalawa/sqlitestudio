@@ -82,19 +82,19 @@ bool SqlExport::afterExportQueryResults()
     return true;
 }
 
-bool SqlExport::exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable, bool databaseExport)
+bool SqlExport::exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable)
 {
     UNUSED(createTable);
-    return exportTable(database, table, columnNames, ddl, databaseExport);
+    return exportTable(database, table, columnNames, ddl);
 }
 
-bool SqlExport::exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable, bool databaseExport)
+bool SqlExport::exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable)
 {
     UNUSED(createTable);
-    return exportTable(database, table, columnNames, ddl, databaseExport);
+    return exportTable(database, table, columnNames, ddl);
 }
 
-bool SqlExport::exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, bool databaseExport)
+bool SqlExport::exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl)
 {
     Dialect dialect = db->getDialect();
 
@@ -104,8 +104,7 @@ bool SqlExport::exportTable(const QString& database, const QString& table, const
 
     columns = colList.join(", ");
 
-    dbExport = databaseExport;
-    if (!databaseExport)
+    if (isTableExport())
     {
         writeHeader();
         writeFkDisable();
@@ -132,7 +131,7 @@ bool SqlExport::exportTableRow(SqlResultsRowPtr data)
 
 bool SqlExport::afterExportTable()
 {
-    if (!dbExport)
+    if (isTableExport())
         writeCommit();
 
     return true;

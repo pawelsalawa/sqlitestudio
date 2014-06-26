@@ -72,33 +72,27 @@ bool CsvExport::exportQueryResultsRow(SqlResultsRowPtr row)
     return true;
 }
 
-bool CsvExport::afterExportQueryResults()
-{
-    return true;
-}
-
-bool CsvExport::exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable,
-                            bool databaseExport)
+bool CsvExport::exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable)
 {
     UNUSED(database);
     UNUSED(table);
     UNUSED(ddl);
     UNUSED(createTable);
-    return exportTable(columnNames, databaseExport);
+    return exportTable(columnNames);
 }
 
-bool CsvExport::exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable, bool databaseExport)
+bool CsvExport::exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable)
 {
     UNUSED(database);
     UNUSED(table);
     UNUSED(ddl);
     UNUSED(createTable);
-    return exportTable(columnNames, databaseExport);
+    return exportTable(columnNames);
 }
 
-bool CsvExport::exportTable(const QStringList& columnNames, bool databaseExport)
+bool CsvExport::exportTable(const QStringList& columnNames)
 {
-    if (databaseExport)
+    if (!isTableExport())
         return false;
 
     defineCsvFormat();

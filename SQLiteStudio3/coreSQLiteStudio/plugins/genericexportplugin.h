@@ -9,10 +9,12 @@ class API_EXPORT GenericExportPlugin : virtual public GenericPlugin, public Expo
     public:
         void initBeforeExport(Db* db, QIODevice* output, const ExportManager::StandardExportConfig& config);
         ExportManager::ExportModes getSupportedModes() const;
+        QString getExportConfigFormName() const;
         CfgMain* getConfig();
         QString getConfigFormName(ExportManager::ExportMode exportMode) const;
         QString getMimeType() const;
         void setExportMode(ExportManager::ExportMode exportMode);
+        bool afterExportQueryResults();
         bool afterExportTable();
         bool beforeExportTables();
         bool afterExportTables();
@@ -28,6 +30,7 @@ class API_EXPORT GenericExportPlugin : virtual public GenericPlugin, public Expo
         virtual void initBeforeExport();
         void write(const QString& str);
         void writeln(const QString& str);
+        bool isTableExport() const;
 
         Db* db = nullptr;
         QIODevice* output = nullptr;

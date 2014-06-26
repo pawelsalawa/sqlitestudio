@@ -9,11 +9,6 @@ include($$PWD/../SQLiteStudio3/utils.pri)
 
 QMAKE_CXXFLAGS += -std=c++11
 
-INCLUDEPATH += $$PWD/../DocExport
-win32: {
-    LIBS += -lDocExport
-}
-
 TARGET = HtmlExport
 TEMPLATE = lib
 
@@ -25,4 +20,11 @@ HEADERS += htmlexport.h\
         htmlexport_global.h
 
 OTHER_FILES += \
-    htmlexport.json
+    htmlexport.json \
+    htmlexport.css
+
+RESOURCES += \
+    htmlexport.qrc
+
+FORMS += \
+    htmlexport.ui

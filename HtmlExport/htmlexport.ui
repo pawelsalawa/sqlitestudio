@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>HtmlExportConfig</class>
+ <widget class="QWidget" name="HtmlExportConfig">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>203</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="3" column="1">
+    <widget class="QSpinBox" name="spinBox">
+     <property name="maximumSize">
+      <size>
+       <width>100</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="maximum">
+      <number>999999999</number>
+     </property>
+     <property name="cfg" stdset="0">
+      <string>HtmlExport.ByteLengthLimit</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Maximum number of characters per cell:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="2">
+    <widget class="QCheckBox" name="dataTypesCheck">
+     <property name="text">
+      <string>Include data types in first row</string>
+     </property>
+     <property name="cfg" stdset="0">
+      <string>HtmlExport.PrintDataTypes</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="2">
+    <widget class="QCheckBox" name="colNamesCheck">
+     <property name="text">
+      <string>Column names as first row</string>
+     </property>
+     <property name="cfg" stdset="0">
+      <string>HtmlExport.PrintHeader</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="2">
+    <widget class="QCheckBox" name="rowNumsCheck">
+     <property name="text">
+      <string>Row numbers as first column</string>
+     </property>
+     <property name="cfg" stdset="0">
+      <string>HtmlExport.PrintRowNum</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="2">
+    <widget class="QGroupBox" name="outputFormatGroup">
+     <property name="title">
+      <string>Output format</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="ConfigRadioButton" name="formatRadio">
+        <property name="text">
+         <string>Format document (new lines, indentation)</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string>HtmlExport.Format</string>
+        </property>
+        <property name="assignedValue" stdset="0">
+         <string>format</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="ConfigRadioButton" name="compressRadio">
+        <property name="text">
+         <string>Compress (everything in one line)</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string>HtmlExport.Format</string>
+        </property>
+        <property name="assignedValue" stdset="0">
+         <string>compress</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ConfigRadioButton</class>
+   <extends>QRadioButton</extends>
+   <header>common/configradiobutton.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

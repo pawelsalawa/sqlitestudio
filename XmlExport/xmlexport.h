@@ -31,10 +31,8 @@ class XMLEXPORTSHARED_EXPORT XmlExport : public GenericExportPlugin
         bool beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns);
         bool exportQueryResultsRow(SqlResultsRowPtr row);
         bool afterExportQueryResults();
-        bool exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable,
-                         bool databaseExport);
-        bool exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable,
-                                bool databaseExport);
+        bool exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable);
+        bool exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable);
         bool exportTableRow(SqlResultsRowPtr data);
         bool afterExportTable();
         bool beforeExportDatabase(const QString& database);

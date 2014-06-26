@@ -175,12 +175,10 @@ class ExportPlugin : virtual public Plugin
          * @param columnNames Name of columns in the table, in order they will appear in the rows passed to exportTableRow().
          * @param ddl The DDL of the table.
          * @param createTable Table DDL parsed into an object.
-         * @param databaseExport true if this table export is a part of exporting the entire databasase,
-         * false if it's for exporting just this single table.
          * @return true for success, or false in case of a fatal error.
          */
         virtual bool exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl,
-                                 SqliteCreateTablePtr createTable, bool databaseExport) = 0;
+                                 SqliteCreateTablePtr createTable) = 0;
 
         /**
          * @brief Does initial entry for exported virtual table.
@@ -189,12 +187,10 @@ class ExportPlugin : virtual public Plugin
          * @param columnNames Name of columns in the table, in order they will appear in the rows passed to exportTableRow().
          * @param ddl The DDL of the table.
          * @param createTable Table DDL parsed into an object.
-         * @param databaseExport true if this table export is a part of exporting the entire databasase,
-         * false if it's for exporting just this single table.
          * @return true for success, or false in case of a fatal error.
          */
         virtual bool exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl,
-                                        SqliteCreateVirtualTablePtr createTable, bool databaseExport) = 0;
+                                        SqliteCreateVirtualTablePtr createTable) = 0;
 
         /**
          * @brief Does export entry for a single row of data.

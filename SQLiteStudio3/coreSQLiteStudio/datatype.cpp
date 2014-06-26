@@ -142,6 +142,16 @@ bool DataType::isBinary()
     return isBinary(typeStr);
 }
 
+bool DataType::isNull()
+{
+    return type == ::DataType::unknown;
+}
+
+bool DataType::isEmpty()
+{
+    return typeStr.isEmpty();
+}
+
 DataType& DataType::operator=(const DataType& other)
 {
     this->type = other.type;

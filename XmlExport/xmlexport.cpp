@@ -118,10 +118,10 @@ bool XmlExport::afterExportQueryResults()
     return true;
 }
 
-bool XmlExport::exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable, bool databaseExport)
+bool XmlExport::exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable)
 {
     UNUSED(columnNames);
-    if (!databaseExport)
+    if (isTableExport())
     {
         setupConfig();
         write(docBegin.arg(codecName));
@@ -130,7 +130,7 @@ bool XmlExport::exportTable(const QString& database, const QString& table, const
     SchemaResolver resolver(db);
     resolver.setNoDbLocking(true);
 
-    writeln(QString("<table%1>").arg(databaseExport ? "" : nsStr));
+    writeln(QString("<table%1>").arg(isTableExport() ? nsStr : ""));
     incrIndent();
 
     writeln("<database>" + escape(database) + "</database>");
@@ -192,9 +192,9 @@ bool XmlExport::exportTable(const QString& database, const QString& table, const
     return true;
 }
 
-bool XmlExport::exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable, bool databaseExport)
+bool XmlExport::exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable)
 {
-    if (!databaseExport)
+    if (isTableExport())
     {
         setupConfig();
         write(docBegin.arg(codecName));
@@ -203,7 +203,7 @@ bool XmlExport::exportVirtualTable(const QString& database, const QString& table
     SchemaResolver resolver(db);
     resolver.setNoDbLocking(true);
 
-    writeln(QString("<table%1>").arg(databaseExport ? "" : nsStr));
+    writeln(QString("<table%1>").arg(isTableExport() ? nsStr : ""));
     incrIndent();
 
     writeln("<database>" + escape(database) + "</database>");

@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/htmlexport">
+        <file>htmlexport.css</file>
+    </qresource>
+</RCC>
