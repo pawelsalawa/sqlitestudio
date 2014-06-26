@@ -319,6 +319,9 @@ void ExportDialog::dbObjectsPageDisplayed()
         ui->dbObjectsDatabaseCombo->setModel(dbListModel);
         connect(ui->dbObjectsDatabaseCombo, SIGNAL(currentIndexChanged(int)), ui->queryPage, SIGNAL(completeChanged()));
 
+        if (db)
+            ui->dbObjectsDatabaseCombo->setCurrentText(db->getName());
+
         dbObjectsPageVisited = true;
     }
 }
@@ -456,6 +459,7 @@ void ExportDialog::updateDbObjTree()
         for (int i = 0; (child = root.child(i, 0)).isValid(); i++)
             ui->dbObjectsTree->expand(child);
     }
+    dbObjectsSelectAll();
 }
 
 void ExportDialog::dbObjectsSelectAll()

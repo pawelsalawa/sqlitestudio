@@ -1,3 +1,5 @@
+* images into resources
+* common parent project for plugins
 * db version converting
 * context menu for taskbar
 * option to view full db path in window title
@@ -29,12 +31,6 @@ SchemaResolver
 - many idxColumns are not allowed for column FK
 - autoincrement not allowed for not integer type
 
-
-* sortowanie po wielu kolumnach w grid view:
-  "when sorting a column the sorting algorithm does not conserve the present sorting sequence,
-  making it impossible to sort a data set by simply clicking several column headers in the first place.
-  Instead you have to formulate a query that uses 'order by' to do that. Not dramatical,
-  but slightly clumsy."
 
 * "Search in database(s)" - okno dialogowe z drzewkiem: bazy->tabele - wszystkie z checkboxami, zaznacza sie gdzie sie chce wyszukac, a nastepnie szukana fraza (tekst, lub regexp) i szukana jest fraza we wszystkich wskazanych tabelach.
 * przegladanie skasowanych fragmentow bazy - jako hex, i moze jeszcze jakos

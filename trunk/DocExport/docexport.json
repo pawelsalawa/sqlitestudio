@@ -1,7 +1,0 @@
-{
-    "type":        "GeneralPurposePlugin",
-    "title":       "Document export",
-    "description": "This is a base plugin for exporting plugins like PDF, PNG, etc.",
-    "version":     10000,
-    "author":      "sqlitestudio.pl"
-}

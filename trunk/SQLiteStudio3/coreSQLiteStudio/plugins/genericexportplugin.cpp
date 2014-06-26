@@ -27,6 +27,11 @@ ExportManager::ExportModes GenericExportPlugin::getSupportedModes() const
     return ExportManager::CLIPBOARD|ExportManager::DATABASE|ExportManager::TABLE|ExportManager::QUERY_RESULTS;
 }
 
+QString GenericExportPlugin::getExportConfigFormName() const
+{
+    return QString();
+}
+
 CfgMain* GenericExportPlugin::getConfig()
 {
     return nullptr;
@@ -48,6 +53,11 @@ void GenericExportPlugin::setExportMode(ExportManager::ExportMode mode)
     this->exportMode = mode;
 }
 
+bool GenericExportPlugin::afterExportQueryResults()
+{
+    return true;
+}
+
 bool GenericExportPlugin::afterExportTable()
 {
     return true;
@@ -65,6 +75,11 @@ void GenericExportPlugin::write(const QString& str)
 void GenericExportPlugin::writeln(const QString& str)
 {
     write(str + "\n");
+}
+
+bool GenericExportPlugin::isTableExport() const
+{
+    return exportMode == ExportManager::TABLE;
 }
 
 bool GenericExportPlugin::beforeExportTables()

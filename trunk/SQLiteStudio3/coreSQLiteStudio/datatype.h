@@ -48,6 +48,8 @@ class API_EXPORT DataType : public QObject
         void setEmpty();
         bool isNumeric();
         bool isBinary();
+        bool isNull();
+        bool isEmpty();
         DataType& operator=(const DataType& other);
 
         static QString toString(Enum e);

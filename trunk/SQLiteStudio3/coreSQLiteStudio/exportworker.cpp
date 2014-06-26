@@ -164,7 +164,7 @@ bool ExportWorker::exportDatabase()
     if (!plugin->beforeExportTables())
         return false;
 
-    if (exportDatabaseObjects(dbObjects, ExportManager::ExportObject::TABLE))
+    if (!exportDatabaseObjects(dbObjects, ExportManager::ExportObject::TABLE))
         return false;
 
     if (!plugin->afterExportTables())
@@ -173,7 +173,7 @@ bool ExportWorker::exportDatabase()
     if (!plugin->beforeExportIndexes())
         return false;
 
-    if (exportDatabaseObjects(dbObjects, ExportManager::ExportObject::INDEX))
+    if (!exportDatabaseObjects(dbObjects, ExportManager::ExportObject::INDEX))
         return false;
 
     if (!plugin->afterExportIndexes())
@@ -182,7 +182,7 @@ bool ExportWorker::exportDatabase()
     if (!plugin->beforeExportTriggers())
         return false;
 
-    if (exportDatabaseObjects(dbObjects, ExportManager::ExportObject::TRIGGER))
+    if (!exportDatabaseObjects(dbObjects, ExportManager::ExportObject::TRIGGER))
         return false;
 
     if (!plugin->afterExportTriggers())
@@ -191,7 +191,7 @@ bool ExportWorker::exportDatabase()
     if (!plugin->beforeExportViews())
         return false;
 
-    if (exportDatabaseObjects(dbObjects, ExportManager::ExportObject::VIEW))
+    if (!exportDatabaseObjects(dbObjects, ExportManager::ExportObject::VIEW))
         return false;
 
     if (!plugin->afterExportViews())
@@ -224,7 +224,7 @@ bool ExportWorker::exportDatabaseObjects(const QList<ExportManager::ExportObject
         switch (obj->type)
         {
             case ExportManager::ExportObject::TABLE:
-                res = exportTableInternal(obj->database, obj->name, obj->ddl, parsedQuery, obj->data, true);
+                res = exportTableInternal(obj->database, obj->name, obj->ddl, parsedQuery, obj->data);
                 break;
             case ExportManager::ExportObject::INDEX:
                 res = plugin->exportIndex(obj->database, obj->name, obj->ddl, parsedQuery.dynamicCast<SqliteCreateIndex>());
@@ -277,23 +277,22 @@ bool ExportWorker::exportTable()
 
     SqliteQueryPtr createTable = parser->getQueries().first();
     plugin->initBeforeExport(db, output, *config);
-    return exportTableInternal(database, table, ddl, createTable, results, false);
+    return exportTableInternal(database, table, ddl, createTable, results);
 }
 
-bool ExportWorker::exportTableInternal(const QString& database, const QString& table, const QString& ddl, SqliteQueryPtr parsedDdl, SqlQueryPtr results,
-                                       bool databaseExport)
+bool ExportWorker::exportTableInternal(const QString& database, const QString& table, const QString& ddl, SqliteQueryPtr parsedDdl, SqlQueryPtr results)
 {
     SqliteCreateTablePtr createTable = parsedDdl.dynamicCast<SqliteCreateTable>();
     SqliteCreateVirtualTablePtr createVirtualTable = parsedDdl.dynamicCast<SqliteCreateVirtualTable>();
 
     if (createTable)
     {
-        if (!plugin->exportTable(database, table, results->getColumnNames(), ddl, createTable, databaseExport))
+        if (!plugin->exportTable(database, table, results->getColumnNames(), ddl, createTable))
             return false;
     }
     else
     {
-        if (!plugin->exportVirtualTable(database, table, results->getColumnNames(), ddl, createVirtualTable, databaseExport))
+        if (!plugin->exportVirtualTable(database, table, results->getColumnNames(), ddl, createVirtualTable))
             return false;
     }
 
