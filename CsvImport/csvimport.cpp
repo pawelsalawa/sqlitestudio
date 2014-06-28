@@ -189,3 +189,14 @@ QString CsvImport::getFileFilter() const
 {
     return tr("CSV files (*.csv);;Text files (*.txt);;All files (*)");
 }
+
+bool CsvImport::init()
+{
+    Q_INIT_RESOURCE(csvimport);
+    return GenericPlugin::init();
+}
+
+void CsvImport::deinit()
+{
+    Q_CLEANUP_RESOURCE(csvimport);
+}

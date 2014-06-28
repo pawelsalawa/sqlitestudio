@@ -26,3 +26,14 @@ QString SqlFormatterSimplePlugin::getConfigTitle() const
 {
     return tr("Simple", "sql formatter plugin");
 }
+
+bool SqlFormatterSimplePlugin::init()
+{
+    Q_INIT_RESOURCE(sqlformattersimple);
+    return GenericPlugin::init();
+}
+
+void SqlFormatterSimplePlugin::deinit()
+{
+    Q_CLEANUP_RESOURCE(sqlformattersimple);
+}

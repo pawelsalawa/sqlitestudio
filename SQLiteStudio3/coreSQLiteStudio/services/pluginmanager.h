@@ -455,6 +455,16 @@ class API_EXPORT PluginManager : public QObject
         void pluginsInitiallyLoaded();
 
         /**
+         * @brief Emitted when the plugin manager is deinitializing and will unload all plugins in a moment.
+         *
+         * It's emitted when user closes application, so the plugin manager deinitializes and unloads all plugins.
+         * This signal is emitted just before plugins get unloaded.
+         * If some signal handler is not interested in mass plugin unloading, then it can handle this signal
+         * and disconnect from unloaded() signal.
+         */
+        void aboutToQuit();
+
+        /**
          * @brief Emitted when plugin load was requested, but it failed.
          * @param pluginName Name of the plugin that failed to load.
          *

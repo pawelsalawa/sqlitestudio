@@ -24,7 +24,8 @@ HEADERS += csvexport.h\
 FORMS += \
     CsvExport.ui
 
-copy_file(CsvExport.ui, $$DESTDIR/CsvExport.ui)
-
 OTHER_FILES += \
     csvexport.json
+
+RESOURCES += \
+    csvexport.qrc

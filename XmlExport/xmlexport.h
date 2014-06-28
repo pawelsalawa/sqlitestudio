@@ -40,6 +40,8 @@ class XMLEXPORTSHARED_EXPORT XmlExport : public GenericExportPlugin
         bool exportTrigger(const QString& database, const QString& name, const QString& ddl, SqliteCreateTriggerPtr createTrigger);
         bool exportView(const QString& database, const QString& name, const QString& ddl, SqliteCreateViewPtr createView);
         bool afterExportDatabase();
+        bool init();
+        void deinit();
 
     private:
         void setupConfig();
@@ -65,7 +67,6 @@ class XMLEXPORTSHARED_EXPORT XmlExport : public GenericExportPlugin
         static const QString docBegin;
 
         static constexpr int minLenghtForCdata = 100;
-
 };
 
 #endif // XMLEXPORT_H

@@ -24,7 +24,8 @@ HEADERS += csvimport.h\
 FORMS += \
     CsvImportOptions.ui
 
-copy_file(CsvImportOptions.ui, $$DESTDIR/CsvImportOptions.ui)
-
 OTHER_FILES += \
     csvimport.json
+
+RESOURCES += \
+    csvimport.qrc

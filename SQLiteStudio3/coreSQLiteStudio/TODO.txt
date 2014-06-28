@@ -2,6 +2,8 @@
 * common parent project for plugins
 * db version converting
 * context menu for taskbar
+* when pasting multiple sqls at once into Console, it executes each query separately using full QueryExecutor features, which makes each execution a bit slow.
+  need to detect such situations, concatenate and execute everything at once, so QueryExecutor can optimize execution.
 * option to view full db path in window title
 * generating INSERT/UPDATE/DELETE/SELECT basing on table definition
 * add nice api for accessing menus and toolbars, so plugins can easly add/remove from them

@@ -35,6 +35,8 @@ void PluginManagerImpl::init()
 
 void PluginManagerImpl::deinit()
 {
+    emit aboutToQuit();
+
     // Plugin containers and their plugins
     foreach (PluginContainer* container, pluginContainer.values())
     {
@@ -368,7 +370,9 @@ bool PluginManagerImpl::load(const QString& pluginName)
 {
     QStringList alreadyAttempted;
     bool res = load(pluginName, alreadyAttempted);
-    emit failedToLoad(pluginName);
+    if (!res)
+        emit failedToLoad(pluginName);
+
     return res;
 }
 

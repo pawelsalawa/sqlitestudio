@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/forms">
+        <file>plugins/populatesequence.ui</file>
+        <file>plugins/populaterandomtext.ui</file>
+        <file>plugins/populatedictionary.ui</file>
+        <file>plugins/populateconstant.ui</file>
+        <file>plugins/populaterandom.ui</file>
+        <file>plugins/populatescript.ui</file>
+    </qresource>
+</RCC>

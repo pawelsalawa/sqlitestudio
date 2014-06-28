@@ -7,8 +7,10 @@
 
 class UiLoader;
 
-class FormManager
+class FormManager : public QObject
 {
+        Q_OBJECT
+
     public:
         FormManager();
         virtual ~FormManager();
@@ -26,6 +28,12 @@ class FormManager
 
         UiLoader* uiLoader = nullptr;
         QHash<QString,QString> widgetNameToFullPath;
+        QStringList resourceForms;
+
+    private slots:
+        void rescanResources(Plugin* plugin, PluginType* pluginType);
+        void rescanResources(const QString& pluginName);
+        void pluginsAboutToMassUnload();
 };
 
 #define FORMS MainWindow::getInstance()->getFormManager()

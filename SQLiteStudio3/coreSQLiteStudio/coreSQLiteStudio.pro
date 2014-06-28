@@ -363,5 +363,5 @@ FORMS += \
     plugins/populatedictionary.ui \
     plugins/populatescript.ui
 
-
-for(form, FORMS): copy_file($$form, $$DESTDIR/$$form)
+RESOURCES += \
+    coresqlitestudio.qrc

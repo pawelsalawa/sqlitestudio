@@ -40,6 +40,8 @@ class SQLEXPORTSHARED_EXPORT SqlExport : public GenericExportPlugin
         bool exportView(const QString& database, const QString& name, const QString& ddl, SqliteCreateViewPtr createView);
         bool afterExportDatabase();
         void validateOptions();
+        bool init();
+        void deinit();
 
     private:
         bool exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl);

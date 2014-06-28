@@ -5,6 +5,7 @@
 #include "uiloader.h"
 #include "common/configradiobutton.h"
 #include "common/fileedit.h"
+#include "common/unused.h"
 #include <QFile>
 #include <QDir>
 #include <QRegularExpression>
@@ -58,12 +59,37 @@ QWidget* FormManager::createWidgetByFullPath(const QString& path)
     return widget;
 }
 
+void FormManager::rescanResources(Plugin* plugin, PluginType* pluginType)
+{
+    UNUSED(pluginType);
+    rescanResources(plugin->getName());
+}
+
+void FormManager::rescanResources(const QString& pluginName)
+{
+    if (PLUGINS->isBuiltIn(pluginName))
+        return;
+
+    for (const QString& widgetName : resourceForms)
+        widgetNameToFullPath.remove(widgetName);
+
+    resourceForms.clear();
+    loadRecurently(":/forms", "");
+}
+
+void FormManager::pluginsAboutToMassUnload()
+{
+    disconnect(PLUGINS, SIGNAL(loaded(Plugin*,PluginType*)), this, SLOT(rescanResources(Plugin*,PluginType*)));
+    disconnect(PLUGINS, SIGNAL(unloaded(QString,PluginType*)), this, SLOT(rescanResources(QString)));
+}
+
 void FormManager::init()
 {
     initUiLoader();
 
     QStringList dirs;
     dirs += qApp->applicationDirPath() + "/forms";
+    dirs += ":/forms";
     dirs += QDir(CFG->getConfigDir()).absoluteFilePath("forms");
 
     QString envDirs = SQLITESTUDIO->getEnv("SQLITESTUDIO_FORMS");
@@ -77,9 +103,11 @@ void FormManager::init()
 #endif
 
     foreach (QString dirPath, dirs)
-    {
         loadRecurently(dirPath, "");
-    }
+
+    connect(PLUGINS, SIGNAL(loaded(Plugin*,PluginType*)), this, SLOT(rescanResources(Plugin*,PluginType*)));
+    connect(PLUGINS, SIGNAL(unloaded(QString,PluginType*)), this, SLOT(rescanResources(QString)));
+    connect(PLUGINS, SIGNAL(aboutToQuit()), this, SLOT(pluginsAboutToMassUnload()));
 }
 
 void FormManager::initUiLoader()
@@ -119,6 +147,8 @@ void FormManager::loadRecurently(const QString& path, const QString& prefix)
         }
 
         widgetNameToFullPath[widgetName] = fullPath;
+        if (fullPath.startsWith(":/"))
+            resourceForms << widgetName;
     }
 }
 

@@ -718,7 +718,7 @@ void ConfigDialog::pluginLoaded(Plugin* plugin, PluginType* type)
     pluginToItemMap[plugin] = pluginItem;
 
     // Init page
-    initPluginPage(plugin->getName());
+    initPluginPage(plugin->getName(), plugin->getConfigUiForm());
 
     // Update tree categories
     updatePluginCategoriesVisibility();
@@ -1022,12 +1022,12 @@ void ConfigDialog::initPluginsPage()
     }
 }
 
-void ConfigDialog::initPluginPage(const QString& pluginName)
+void ConfigDialog::initPluginPage(const QString& pluginName, const QString& formName)
 {
-    QWidget* widget = FORMS->createWidget(pluginName);
+    QWidget* widget = FORMS->createWidget(formName);
     if (!widget)
     {
-        qWarning() << "Could not load plugin UI file for plugin:" << pluginName;
+        qWarning() << "Could not load plugin UI file" << formName << "for plugin:" << pluginName;
         return;
     }
 
