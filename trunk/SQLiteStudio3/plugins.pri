@@ -1,3 +1,5 @@
+QMAKE_CXXFLAGS += -std=c++11
+
 DESTDIR = $$PWD/../output/SQLiteStudio/plugins
 OBJECTS_DIR = $$PWD/../output/build
 MOC_DIR = $$PWD/../output/build

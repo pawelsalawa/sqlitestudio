@@ -4,12 +4,9 @@
 #
 #-------------------------------------------------
 
-include($$PWD/../SQLiteStudio3/plugins.pri)
-include($$PWD/../SQLiteStudio3/utils.pri)
+include($$PWD/../../SQLiteStudio3/plugins.pri)
 
 QT       -= gui
-
-QMAKE_CXXFLAGS += -std=c++11
 
 TARGET = XmlExport
 TEMPLATE = lib
