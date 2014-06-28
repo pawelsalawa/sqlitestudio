@@ -4,15 +4,7 @@
 #
 #-------------------------------------------------
 
-include($$PWD/../SQLiteStudio3/plugins.pri)
-include($$PWD/../SQLiteStudio3/utils.pri)
-
-QMAKE_CXXFLAGS += -std=c++11
-
-INCLUDEPATH += $$PWD/../QtDocExport
-win32: {
-    LIBS += -lDocExport
-}
+include($$PWD/../../SQLiteStudio3/plugins.pri)
 
 TARGET = PdfExport
 TEMPLATE = lib

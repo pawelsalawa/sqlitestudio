@@ -4,10 +4,7 @@
 #
 #-------------------------------------------------
 
-include($$PWD/../SQLiteStudio3/plugins.pri)
-include($$PWD/../SQLiteStudio3/utils.pri)
-
-QMAKE_CXXFLAGS += -std=c++11
+include($$PWD/../../SQLiteStudio3/plugins.pri)
 
 TARGET = HtmlExport
 TEMPLATE = lib

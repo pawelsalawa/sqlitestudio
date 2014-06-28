@@ -1,4 +1,3 @@
-* images into resources
 * common parent project for plugins
 * db version converting
 * context menu for taskbar
