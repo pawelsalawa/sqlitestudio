@@ -321,4 +321,5 @@ unix: {
     INSTALLS += target
 }
 
-copy_dir(img, $$DESTDIR/img)
+RESOURCES += \
+    icons.qrc

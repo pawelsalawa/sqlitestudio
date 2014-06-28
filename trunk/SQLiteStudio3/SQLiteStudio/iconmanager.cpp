@@ -1,5 +1,7 @@
 #include "iconmanager.h"
 #include "sqlitestudio.h"
+#include "services/pluginmanager.h"
+#include "common/unused.h"
 #include <QApplication>
 #include <QDir>
 #include <QString>
@@ -32,6 +34,7 @@ void IconManager::init()
     Icon::init();
 
     iconDirs += qApp->applicationDirPath() + "/img";
+    iconDirs += ":/icons";
 
     QString envDirs = SQLITESTUDIO->getEnv("SQLITESTUDIO_ICONS");
     if (!envDirs.isNull())
@@ -51,6 +54,42 @@ void IconManager::init()
     }
 
     Icon::loadAll();
+
+    connect(PLUGINS, SIGNAL(loaded(Plugin*,PluginType*)), this, SLOT(rescanResources(Plugin*,PluginType*)));
+    connect(PLUGINS, SIGNAL(unloaded(QString,PluginType*)), this, SLOT(rescanResources(QString)));
+    connect(PLUGINS, SIGNAL(aboutToQuit()), this, SLOT(pluginsAboutToMassUnload()));
+}
+
+void IconManager::rescanResources(const QString& pluginName)
+{
+    if (PLUGINS->isBuiltIn(pluginName))
+        return;
+
+    for (const QString& name : resourceMovies)
+    {
+        delete movies[name];
+        movies.remove(name);
+    }
+
+    for (const QString& name : resourceIcons)
+        movies.remove(name);
+
+    resourceMovies.clear();
+    resourceIcons.clear();
+    loadRecurently(":/icons", "", true);
+    loadRecurently(":/icons", "", false);
+}
+
+void IconManager::rescanResources(Plugin* plugin, PluginType* pluginType)
+{
+    UNUSED(pluginType);
+    rescanResources(plugin->getName());
+}
+
+void IconManager::pluginsAboutToMassUnload()
+{
+    disconnect(PLUGINS, SIGNAL(loaded(Plugin*,PluginType*)), this, SLOT(rescanResources(Plugin*,PluginType*)));
+    disconnect(PLUGINS, SIGNAL(unloaded(QString,PluginType*)), this, SLOT(rescanResources(QString)));
 }
 
 void IconManager::loadRecurently(QString dirPath, const QString& prefix, bool movie)
@@ -74,6 +113,14 @@ void IconManager::loadRecurently(QString dirPath, const QString& prefix, bool mo
             movies[name] = new QMovie(path);
         else
             icons[name] = new QIcon(path);
+
+        if (path.startsWith(":/"))
+        {
+            if (movie)
+                resourceMovies << name;
+            else
+                resourceIcons << name;
+        }
     }
 }
 

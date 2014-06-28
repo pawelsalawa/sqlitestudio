@@ -47,7 +47,7 @@ class ConfigDialog : public QDialog
         void initFormatterPlugins();
         void initPlugins();
         void initPluginsPage();
-        void initPluginPage(const QString& pluginName);
+        void initPluginPage(const QString& pluginName, const QString& formName);
         void deinitPluginPage(const QString& pluginName);
         void initDataEditors();
         void applyStyle(QWidget* widget, QStyle* style);

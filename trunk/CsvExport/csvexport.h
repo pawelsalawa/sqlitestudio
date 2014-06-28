@@ -39,6 +39,8 @@ class CSVEXPORTSHARED_EXPORT CsvExport : public GenericExportPlugin
         bool exportIndex(const QString& database, const QString& name, const QString& ddl, SqliteCreateIndexPtr createIndex);
         bool exportTrigger(const QString& database, const QString& name, const QString& ddl, SqliteCreateTriggerPtr createTrigger);
         bool exportView(const QString& database, const QString& name, const QString& ddl, SqliteCreateViewPtr createView);
+        bool init();
+        void deinit();
 
     private:
         bool exportTable(const QStringList& columnNames);

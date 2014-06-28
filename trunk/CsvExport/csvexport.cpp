@@ -168,3 +168,15 @@ void CsvExport::defineCsvFormat()
             break;
     }
 }
+
+
+bool CsvExport::init()
+{
+    Q_INIT_RESOURCE(csvexport);
+    return GenericExportPlugin::init();
+}
+
+void CsvExport::deinit()
+{
+    Q_CLEANUP_RESOURCE(csvexport);
+}

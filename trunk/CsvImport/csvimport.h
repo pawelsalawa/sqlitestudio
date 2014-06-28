@@ -38,6 +38,8 @@ class CSVIMPORTSHARED_EXPORT CsvImport : public GenericPlugin, public ImportPlug
         QString getImportConfigFormName() const;
         void validateOptions();
         QString getFileFilter() const;
+        bool init();
+        void deinit();
 
     private:
         bool extractColumns();

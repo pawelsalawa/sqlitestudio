@@ -8,9 +8,13 @@
 #include <QVariant>
 
 class QMovie;
+class PluginType;
+class Plugin;
 
-class IconManager
+class IconManager : public QObject
 {
+        Q_OBJECT
+
     public:
         DEF_ICONS(Icons, iconEnums,
             DEF_ICON(ACT_ABORT,                         "act_abort")
@@ -223,6 +227,13 @@ class IconManager
         QStringList iconDirs;
         QStringList iconFileExtensions;
         QStringList movieFileExtensions;
+        QStringList resourceIcons;
+        QStringList resourceMovies;
+
+    private slots:
+        void rescanResources(Plugin* plugin, PluginType* pluginType);
+        void rescanResources(const QString& pluginName);
+        void pluginsAboutToMassUnload();
 };
 
 #define ICONMANAGER IconManager::getInstance()

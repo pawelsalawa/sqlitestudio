@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/forms">
+        <file>SqlFormatterSimple.ui</file>
+    </qresource>
+</RCC>

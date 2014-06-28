@@ -263,3 +263,14 @@ void SqlExport::validateOptions()
         EXPORT_MANAGER->handleValidationFromPlugin(valid, cfg.SqlExport.QueryTable, tr("Table name for INSERT statements is mandatory."));
     }
 }
+
+bool SqlExport::init()
+{
+    Q_INIT_RESOURCE(sqlexport);
+    return GenericExportPlugin::init();
+}
+
+void SqlExport::deinit()
+{
+    Q_CLEANUP_RESOURCE(sqlexport);
+}

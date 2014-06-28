@@ -433,3 +433,14 @@ QString XmlExport::toString(bool value)
 {
     return value ? "true" : "false";
 }
+
+bool XmlExport::init()
+{
+    Q_INIT_RESOURCE(xmlexport);
+    return GenericExportPlugin::init();
+}
+
+void XmlExport::deinit()
+{
+    Q_CLEANUP_RESOURCE(xmlexport);
+}

@@ -592,7 +592,7 @@ QString HtmlExport::compressCss(QString css)
 bool HtmlExport::init()
 {
     Q_INIT_RESOURCE(htmlexport);
-    return true;
+    return GenericExportPlugin::init();
 }
 
 void HtmlExport::deinit()

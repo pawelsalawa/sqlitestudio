@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/forms">
+        <file>CsvExport.ui</file>
+    </qresource>
+</RCC>

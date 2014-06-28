@@ -179,6 +179,8 @@ void SQLiteStudio::init(const QStringList& cmdListArguments)
 
     QThreadPool::globalInstance()->setMaxThreadCount(10);
 
+    Q_INIT_RESOURCE(coresqlitestudio);
+
     initUtils();
     CfgMain::staticInit();
     Db::metaInit();
@@ -255,6 +257,7 @@ void SQLiteStudio::cleanUp()
     safe_delete(dbAttacherFactory);
     safe_delete(env);
     NotifyManager::destroy();
+    Q_CLEANUP_RESOURCE(coresqlitestudio);
 }
 
 void SQLiteStudio::updateSqlFormatter()
