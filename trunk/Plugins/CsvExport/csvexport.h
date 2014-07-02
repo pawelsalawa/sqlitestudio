@@ -30,10 +30,13 @@ class CSVEXPORTSHARED_EXPORT CsvExport : public GenericExportPlugin
         CfgMain* getConfig();
         void validateOptions();
         QString defaultFileExtension() const;
-        bool beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns);
+        bool beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns,
+                                      const QHash<ExportManager::ExportProviderFlag,QVariant> providedData);
         bool exportQueryResultsRow(SqlResultsRowPtr row);
-        bool exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable);
-        bool exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable);
+        bool exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable,
+                         const QHash<ExportManager::ExportProviderFlag,QVariant> providedData);
+        bool exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable,
+                                const QHash<ExportManager::ExportProviderFlag,QVariant> providedData);
         bool exportTableRow(SqlResultsRowPtr data);
         bool beforeExportDatabase(const QString& database);
         bool exportIndex(const QString& database, const QString& name, const QString& ddl, SqliteCreateIndexPtr createIndex);

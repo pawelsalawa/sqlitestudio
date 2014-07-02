@@ -8,6 +8,9 @@
 
 bool QueryExecutorAddRowIds::exec()
 {
+    if (context->noMetaColumns)
+        return true;
+
     SqliteSelectPtr select = getSelect();
     if (!select || select->explain)
         return true;

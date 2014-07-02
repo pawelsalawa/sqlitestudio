@@ -34,6 +34,38 @@ class API_EXPORT ExportManager : public PluginServiceBase
 
         Q_DECLARE_FLAGS(ExportModes, ExportMode)
 
+        /**
+         * @brief Flags for requesting additional information for exporting by plugins.
+         *
+         * Each plugin implementation might ask ExportWorker to provide additional information for exporting.
+         * Such information is usually expensive operation (an additional database query to execute), therefore
+         * they are not enabled by default for all plugins. Each plugin has to ask for them individually
+         * by returning this enum values from ExportPlugin::getProviderFlags().
+         *
+         * For each enum value returned from the ExportPlugin::getProviderFlags(), a single QHash entry will be prepared
+         * and that hash will be then passed to one of ExportPlugin::beforeExportQueryResults(), ExportPlugin::exportTable(),
+         * or ExportPlugin::exportVirtualTable(). If no flags were returned from ExportPlugin::getProviderFlags(), then
+         * empty hash will be passed to those methods.
+         *
+         * Each entry in the QHash has a key equal to one of values from this enum. Values from the hash are of QVariant type
+         * and therefore they need to be casted (by QVariant means) into desired type. For each enum value its description
+         * will tell you what actually is stored in the QVariant, so you can extract the information.
+         */
+        enum ExportProviderFlag
+        {
+            NONE          = 0x00, /**< This is a default. Nothing will be stored in the hash. */
+            DATA_LENGTHS  = 0x01, /**<
+                                    * Will provide maximum number of characters or bytes (depending on column type)
+                                    * for each exported table or qurey result column. It will be a <tt>QList&lt;int&gt;</tt>.
+                                    */
+            ROW_COUNT     = 0x02  /**<
+                                    * Will provide total number of rows that will be exported for the table or query results.
+                                    * It will be an integer value.
+                                    */
+        };
+
+        Q_DECLARE_FLAGS(ExportProviderFlags, ExportProviderFlag)
+
         struct ExportObject
         {
             enum Type
@@ -49,6 +81,7 @@ class API_EXPORT ExportManager : public PluginServiceBase
             QString name;
             QString ddl;
             SqlQueryPtr data;
+            QHash<ExportManager::ExportProviderFlag,QVariant> providerData;
         };
 
         typedef QSharedPointer<ExportObject> ExportObjectPtr;

@@ -191,6 +191,7 @@ API_EXPORT QTextCodec* defaultCodec();
 API_EXPORT QTextCodec* codecForName(const QString& name);
 API_EXPORT QStringList splitByLines(const QString& str);
 API_EXPORT QString joinLines(const QStringList& lines);
+API_EXPORT int sum(const QList<int>& integers);
 
 template <class T>
 void removeDuplicates(QList<T>& list)
@@ -206,5 +207,7 @@ void removeDuplicates(QList<T>& list)
             set << i.value();
     }
 }
+
+Q_DECLARE_METATYPE(QList<int>)
 
 #endif // UTILS_H

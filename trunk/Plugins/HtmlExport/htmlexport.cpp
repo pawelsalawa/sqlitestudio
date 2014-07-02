@@ -38,9 +38,10 @@ CfgMain* HtmlExport::getConfig()
     return &cfg;
 }
 
-bool HtmlExport::beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns)
+bool HtmlExport::beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
     UNUSED(query);
+    UNUSED(providedData);
 
     if (!beginDoc(tr("SQL query results")))
         return false;
@@ -103,11 +104,12 @@ bool HtmlExport::afterExportQueryResults()
     return true;
 }
 
-bool HtmlExport::exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable)
+bool HtmlExport::exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
     UNUSED(database);
     UNUSED(ddl);
     UNUSED(columnNames);
+    UNUSED(providedData);
 
     if (isTableExport())
     {
@@ -229,12 +231,13 @@ bool HtmlExport::exportDataRow(SqlResultsRowPtr data)
     return true;
 }
 
-bool HtmlExport::exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable)
+bool HtmlExport::exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
     UNUSED(database);
     UNUSED(ddl);
     UNUSED(columnNames);
     UNUSED(createTable);
+    UNUSED(providedData);
 
     if (isTableExport())
     {

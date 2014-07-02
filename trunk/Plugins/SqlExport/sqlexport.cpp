@@ -38,8 +38,9 @@ QString SqlExport::getExportConfigFormName() const
     return QString::null;
 }
 
-bool SqlExport::beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns)
+bool SqlExport::beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
+    UNUSED(providedData);
     Dialect dialect = db->getDialect();
     QStringList colDefs;
     for (QueryExecutor::ResultColumnPtr resCol : columns)
@@ -82,15 +83,17 @@ bool SqlExport::afterExportQueryResults()
     return true;
 }
 
-bool SqlExport::exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable)
+bool SqlExport::exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
     UNUSED(createTable);
+    UNUSED(providedData);
     return exportTable(database, table, columnNames, ddl);
 }
 
-bool SqlExport::exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable)
+bool SqlExport::exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
     UNUSED(createTable);
+    UNUSED(providedData);
     return exportTable(database, table, columnNames, ddl);
 }
 

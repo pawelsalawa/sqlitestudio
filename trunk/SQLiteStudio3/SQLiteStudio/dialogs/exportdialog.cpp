@@ -393,6 +393,8 @@ void ExportDialog::browseForExportFile()
 
 void ExportDialog::pluginSelected()
 {
+    pluginConfigOk.clear();
+
     currentPlugin = getSelectedPlugin();
     if (!currentPlugin)
     {

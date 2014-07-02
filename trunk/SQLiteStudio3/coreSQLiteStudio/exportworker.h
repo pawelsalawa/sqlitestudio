@@ -25,12 +25,15 @@ class ExportWorker : public QObject, public QRunnable
     private:
         void prepareParser();
         bool exportQueryResults();
+        QHash<ExportManager::ExportProviderFlag, QVariant> getProviderDataForQueryResults();
         bool exportDatabase();
         bool exportDatabaseObjects(const QList<ExportManager::ExportObjectPtr>& dbObjects, ExportManager::ExportObject::Type type);
         bool exportTable();
-        bool exportTableInternal(const QString& database, const QString& table, const QString& ddl, SqliteQueryPtr parsedDdl, SqlQueryPtr results);
+        bool exportTableInternal(const QString& database, const QString& table, const QString& ddl, SqliteQueryPtr parsedDdl, SqlQueryPtr results,
+                                 const QHash<ExportManager::ExportProviderFlag, QVariant>& providerData);
         QList<ExportManager::ExportObjectPtr> collectDbObjects(QString* errorMessage);
-        void queryTableDataToExport(Db* db, const QString& table, SqlQueryPtr& dataPtr, QString* errorMessage) const;
+        void queryTableDataToExport(Db* db, const QString& table, SqlQueryPtr& dataPtr, QHash<ExportManager::ExportProviderFlag, QVariant>& providerData,
+                                    QString* errorMessage) const;
         bool isInterrupted();
 
         ExportPlugin* plugin = nullptr;

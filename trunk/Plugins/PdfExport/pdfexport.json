@@ -3,6 +3,5 @@
     "title":        "PDF export",
     "description":  "Provides PDF format for exporting.",
     "version":      10000,
-    "author":       "sqlitestudio.pl",
-    "dependencies": ["QtDocExport"]
+    "author":       "sqlitestudio.pl"
 }

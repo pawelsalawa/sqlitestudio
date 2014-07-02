@@ -27,6 +27,11 @@ ExportManager::ExportModes GenericExportPlugin::getSupportedModes() const
     return ExportManager::CLIPBOARD|ExportManager::DATABASE|ExportManager::TABLE|ExportManager::QUERY_RESULTS;
 }
 
+ExportManager::ExportProviderFlags GenericExportPlugin::getProviderFlags() const
+{
+    return ExportManager::NONE;
+}
+
 QString GenericExportPlugin::getExportConfigFormName() const
 {
     return QString();
@@ -46,6 +51,11 @@ QString GenericExportPlugin::getConfigFormName(ExportManager::ExportMode mode) c
 QString GenericExportPlugin::getMimeType() const
 {
     return QString::null;
+}
+
+bool GenericExportPlugin::isBinaryData() const
+{
+    return false;
 }
 
 void GenericExportPlugin::setExportMode(ExportManager::ExportMode mode)

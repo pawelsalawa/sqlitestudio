@@ -8,7 +8,7 @@
 
 void initUtils()
 {
-    // No-op currently.
+    qRegisterMetaType<QList<int>>("QList<int>");
 }
 
 bool isXDigit(const QChar& c)
@@ -598,4 +598,13 @@ QString joinLines(const QStringList& lines)
     static_char* newLine = "\n";
 #endif
     return lines.join(newLine);
+}
+
+int sum(const QList<int>& integers)
+{
+    int res = 0;
+    for (int i : integers)
+        res += i;
+
+    return res;
 }

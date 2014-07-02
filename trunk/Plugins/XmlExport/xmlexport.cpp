@@ -44,8 +44,10 @@ QString XmlExport::defaultFileExtension() const
     return QStringLiteral("xml");
 }
 
-bool XmlExport::beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns)
+bool XmlExport::beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
+    UNUSED(providedData);
+
     setupConfig();
 
     write(docBegin.arg(codecName));
@@ -118,9 +120,10 @@ bool XmlExport::afterExportQueryResults()
     return true;
 }
 
-bool XmlExport::exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable)
+bool XmlExport::exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
     UNUSED(columnNames);
+    UNUSED(providedData);
     if (isTableExport())
     {
         setupConfig();
@@ -192,8 +195,10 @@ bool XmlExport::exportTable(const QString& database, const QString& table, const
     return true;
 }
 
-bool XmlExport::exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable)
+bool XmlExport::exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
+    UNUSED(providedData);
+
     if (isTableExport())
     {
         setupConfig();

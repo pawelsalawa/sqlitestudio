@@ -602,6 +602,13 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
              * and can be accessed by QueryExecutor::wasSchemaModified().
              */
             bool schemaModified = false;
+
+            /**
+             * @brief Forbids QueryExecutor to return meta columns.
+             *
+             * See QueryExecutor::noMetaColumns for details.
+             */
+            bool noMetaColumns = false;
         };
 
         /**
@@ -955,6 +962,9 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
 
         static QList<DataType> resolveColumnTypes(Db* db, QList<ResultColumnPtr>& columns, bool noDbLocking = false);
 
+        bool getNoMetaColumns() const;
+        void setNoMetaColumns(bool value);
+
     private:
         /**
          * @brief Executes query.
@@ -1200,6 +1210,21 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          * You can set this to false to make exec() work synchronously, on calling thread.
          */
         bool asyncMode = true;
+
+        /**
+         * @brief Defines if the QueryExecutor will provide meta columns in the results.
+         *
+         * Set to true to forbid providing meta columns, or leave as false to let QueryExecutor
+         * provide meta columns.
+         *
+         * Meta columns are additional columns that are not part of the query that was passed to the executor.
+         * Those are for example ROWID columns (currently those are the only meta columns).
+         *
+         * You can always find out number of ROWID columns from getRowIdResultColumns().
+         *
+         * Meta columns are placed always at the begining.
+         */
+        bool noMetaColumns = false;
 
         /**
          * @brief Chain of executor steps.

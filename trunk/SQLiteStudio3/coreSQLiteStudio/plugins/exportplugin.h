@@ -51,6 +51,23 @@ class ExportPlugin : virtual public Plugin
         virtual ExportManager::ExportModes getSupportedModes() const = 0;
 
         /**
+         * @brief Provides set of flags for additional information that needs to be provided for this plugin.
+         * @return OR-ed set of flags.
+         *
+         * Some plugins might need to know what is a total number of rows that are expected to be
+         * exported for each table or query results. Other plugins might want to know
+         * what is the maximum number of characters/bytes in each exported table column,
+         * so they can calculate column widths when drawing them in the exported files, documents, etc.
+         *
+         * Those additional information are not provided by default, because they are gathered with extra queries
+         * to the database and for huge tables it might cause the table to be exported much longer, even if
+         * those information wasn't required by some plugin.
+         *
+         * See ExportManager::ExportProviderFlags for list of possible flags and what they mean.
+         */
+        virtual ExportManager::ExportProviderFlags getProviderFlags() const = 0;
+
+        /**
          * @brief Provides config object that holds configuration for exporting.
          * @return Config object, or null if the exporting with this plugin is not configurable.
          */
@@ -119,6 +136,15 @@ class ExportPlugin : virtual public Plugin
         virtual QString getMimeType() const = 0;
 
         /**
+         * @brief Tells if the data being exported is a binary or text.
+         * @return true for binary data, false for textual data.
+         *
+         * This is used by the SQLiteStudio to configure output device properly. For example CSV format is textual,
+         * but PNG is considered binary.
+         */
+        virtual bool isBinaryData() const = 0;
+
+        /**
          * @brief Provides common state values before the export process begins.
          * @param db Database that the export will be performed on.
          * @param output Output device to write exporting data to.
@@ -138,12 +164,14 @@ class ExportPlugin : virtual public Plugin
          * @brief Does initial entry for exported query results.
          * @param query Query that was executed to get the results.
          * @param columns Columns returned from the query.
+         * @param providedData All data entries requested by the plugin in the return value of getProviderFlags().
          * @return true for success, or false in case of a fatal error.
          *
          * It's called just before actual data entries are exported (with exportQueryResultsRow()).
          * It's called exactly once for single query results export.
          */
-        virtual bool beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns) = 0;
+        virtual bool beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns,
+                                              const QHash<ExportManager::ExportProviderFlag,QVariant> providedData) = 0;
 
         /**
          * @brief Does export entry for a single row of data.
@@ -175,10 +203,11 @@ class ExportPlugin : virtual public Plugin
          * @param columnNames Name of columns in the table, in order they will appear in the rows passed to exportTableRow().
          * @param ddl The DDL of the table.
          * @param createTable Table DDL parsed into an object.
+         * @param providedData All data entries requested by the plugin in the return value of getProviderFlags().
          * @return true for success, or false in case of a fatal error.
          */
-        virtual bool exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl,
-                                 SqliteCreateTablePtr createTable) = 0;
+        virtual bool exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable,
+                                 const QHash<ExportManager::ExportProviderFlag,QVariant> providedData) = 0;
 
         /**
          * @brief Does initial entry for exported virtual table.
@@ -187,10 +216,11 @@ class ExportPlugin : virtual public Plugin
          * @param columnNames Name of columns in the table, in order they will appear in the rows passed to exportTableRow().
          * @param ddl The DDL of the table.
          * @param createTable Table DDL parsed into an object.
+         * @param providedData All data entries requested by the plugin in the return value of getProviderFlags().
          * @return true for success, or false in case of a fatal error.
          */
         virtual bool exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl,
-                                        SqliteCreateVirtualTablePtr createTable) = 0;
+                                        SqliteCreateVirtualTablePtr createTable, const QHash<ExportManager::ExportProviderFlag,QVariant> providedData) = 0;
 
         /**
          * @brief Does export entry for a single row of data.

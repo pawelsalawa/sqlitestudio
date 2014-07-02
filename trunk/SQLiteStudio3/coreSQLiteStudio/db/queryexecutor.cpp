@@ -216,6 +216,7 @@ void QueryExecutor::execInternal()
     context->processedQuery = originalQuery;
     context->explainMode = explainMode;
     context->skipRowCounting = skipRowCounting;
+    context->noMetaColumns = noMetaColumns;
     context->resultsHandler = resultsHandler;
     context->preloadResults = preloadResults;
 
@@ -244,8 +245,25 @@ void QueryExecutor::countResults()
     if (context->countingQuery.isEmpty()) // simple method doesn't provide that
         return;
 
-    // Start asynchronous results counting query
-    resultsCountingAsyncId = db->asyncExec(context->countingQuery, context->queryParameters);
+    if (asyncMode)
+    {
+        // Start asynchronous results counting query
+        resultsCountingAsyncId = db->asyncExec(context->countingQuery, context->queryParameters);
+    }
+    else
+    {
+        SqlQueryPtr results = db->exec(context->countingQuery, context->queryParameters);
+        context->totalRowsReturned = results->getSingleCell().toLongLong();
+        context->totalPages = (int)ceil(((double)(context->totalRowsReturned)) / ((double)getResultsPerPage()));
+
+        emit resultsCountingFinished(context->rowsAffected, context->totalRowsReturned, context->totalPages);
+
+        if (results->isError())
+        {
+            notifyError(tr("An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1")
+                        .arg(results->getErrorText()));
+        }
+    }
 }
 
 qint64 QueryExecutor::getLastExecutionTime() const
@@ -509,6 +527,16 @@ bool QueryExecutor::handleRowCountingResults(quint32 asyncId, SqlQueryPtr result
 
     return true;
 }
+bool QueryExecutor::getNoMetaColumns() const
+{
+    return noMetaColumns;
+}
+
+void QueryExecutor::setNoMetaColumns(bool value)
+{
+    noMetaColumns = value;
+}
+
 SqlQueryPtr QueryExecutor::getResults() const
 {
     return context->executionResults;
