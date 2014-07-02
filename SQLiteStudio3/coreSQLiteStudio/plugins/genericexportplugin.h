@@ -9,10 +9,12 @@ class API_EXPORT GenericExportPlugin : virtual public GenericPlugin, public Expo
     public:
         void initBeforeExport(Db* db, QIODevice* output, const ExportManager::StandardExportConfig& config);
         ExportManager::ExportModes getSupportedModes() const;
+        ExportManager::ExportProviderFlags getProviderFlags() const;
         QString getExportConfigFormName() const;
         CfgMain* getConfig();
         QString getConfigFormName(ExportManager::ExportMode exportMode) const;
         QString getMimeType() const;
+        bool isBinaryData() const;
         void setExportMode(ExportManager::ExportMode exportMode);
         bool afterExportQueryResults();
         bool afterExportTable();

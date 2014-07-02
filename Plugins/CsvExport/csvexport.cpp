@@ -53,9 +53,10 @@ QString CsvExport::defaultFileExtension() const
     return QStringLiteral("csv");
 }
 
-bool CsvExport::beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns)
+bool CsvExport::beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
     UNUSED(query);
+    UNUSED(providedData);
     defineCsvFormat();
 
     QStringList cols;
@@ -72,20 +73,22 @@ bool CsvExport::exportQueryResultsRow(SqlResultsRowPtr row)
     return true;
 }
 
-bool CsvExport::exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable)
+bool CsvExport::exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
     UNUSED(database);
     UNUSED(table);
     UNUSED(ddl);
+    UNUSED(providedData);
     UNUSED(createTable);
     return exportTable(columnNames);
 }
 
-bool CsvExport::exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable)
+bool CsvExport::exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
     UNUSED(database);
     UNUSED(table);
     UNUSED(ddl);
+    UNUSED(providedData);
     UNUSED(createTable);
     return exportTable(columnNames);
 }

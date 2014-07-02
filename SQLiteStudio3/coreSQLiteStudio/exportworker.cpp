@@ -3,6 +3,7 @@
 #include "schemaresolver.h"
 #include "services/notifymanager.h"
 #include "common/utils_sql.h"
+#include "common/utils.h"
 #include <QMutexLocker>
 #include <QDebug>
 
@@ -11,6 +12,7 @@ ExportWorker::ExportWorker(ExportPlugin* plugin, ExportManager::StandardExportCo
 {
     executor = new QueryExecutor();
     executor->setAsyncMode(false); // worker runs in its own thread, we don't need (and we don't want) async executor
+    executor->setNoMetaColumns(true); // we don't want rowid columns, we want only columns requested by the original query
 }
 
 ExportWorker::~ExportWorker()
@@ -100,6 +102,9 @@ bool ExportWorker::exportQueryResults()
         return false;
     }
 
+    QList<QueryExecutor::ResultColumnPtr> resultColumns = executor->getResultColumns();
+    QHash<ExportManager::ExportProviderFlag,QVariant> providerData = getProviderDataForQueryResults();
+
     if (results->isInterrupted())
         return false;
 
@@ -109,10 +114,8 @@ bool ExportWorker::exportQueryResults()
         return false;
     }
 
-    QList<QueryExecutor::ResultColumnPtr> resultColumns = executor->getResultColumns();
-
     plugin->initBeforeExport(db, output, *config);
-    if (!plugin->beforeExportQueryResults(query, resultColumns))
+    if (!plugin->beforeExportQueryResults(query, resultColumns, providerData))
         return false;
 
     if (isInterrupted())
@@ -133,6 +136,46 @@ bool ExportWorker::exportQueryResults()
         return false;
 
     return true;
+}
+
+QHash<ExportManager::ExportProviderFlag, QVariant> ExportWorker::getProviderDataForQueryResults()
+{
+    static const QString colLengthSql = QStringLiteral("SELECT %1 FROM (%2)");
+    static const QString colLengthTpl = QStringLiteral("max(length(%1))");
+    QHash<ExportManager::ExportProviderFlag, QVariant> providerData;
+
+    if (plugin->getProviderFlags().testFlag(ExportManager::ROW_COUNT))
+    {
+        executor->countResults();
+        providerData[ExportManager::ROW_COUNT] = executor->getTotalRowsReturned();
+    }
+
+    if (plugin->getProviderFlags().testFlag(ExportManager::DATA_LENGTHS))
+    {
+        QStringList wrappedCols;
+        for (const QueryExecutor::ResultColumnPtr& col : executor->getResultColumns())
+            wrappedCols << colLengthTpl.arg(wrapObjIfNeeded(col->displayName, db->getDialect()));
+
+        executor->exec(colLengthSql.arg(wrappedCols.join(", "), query));
+        SqlQueryPtr results = executor->getResults();
+        if (!results)
+        {
+            qCritical() << "Null results from executor in ExportWorker.";
+        }
+        else if (results->isError())
+        {
+            notifyError(tr("Error while counting data column width to export from query results: %2").arg(results->getErrorText()));
+        }
+        else
+        {
+            QList<int> colWidths;
+            for (const QVariant& value : results->next()->valueList())
+                colWidths << value.toInt();
+
+            providerData[ExportManager::DATA_LENGTHS] = QVariant::fromValue(colWidths);
+        }
+    }
+    return providerData;
 }
 
 bool ExportWorker::exportDatabase()
@@ -224,7 +267,7 @@ bool ExportWorker::exportDatabaseObjects(const QList<ExportManager::ExportObject
         switch (obj->type)
         {
             case ExportManager::ExportObject::TABLE:
-                res = exportTableInternal(obj->database, obj->name, obj->ddl, parsedQuery, obj->data);
+                res = exportTableInternal(obj->database, obj->name, obj->ddl, parsedQuery, obj->data, obj->providerData);
                 break;
             case ExportManager::ExportObject::INDEX:
                 res = plugin->exportIndex(obj->database, obj->name, obj->ddl, parsedQuery.dynamicCast<SqliteCreateIndex>());
@@ -251,18 +294,14 @@ bool ExportWorker::exportDatabaseObjects(const QList<ExportManager::ExportObject
 
 bool ExportWorker::exportTable()
 {
-    static const QString sql = QStringLiteral("SELECT * FROM %1");
-
     SqlQueryPtr results;
-
-    if (config->exportData)
+    QString errorMessage;
+    QHash<ExportManager::ExportProviderFlag,QVariant> providerData;
+    queryTableDataToExport(db, table, results, providerData, &errorMessage);
+    if (!errorMessage.isNull())
     {
-        results = db->exec(sql.arg(table));
-        if (results->isError())
-        {
-            notifyError(tr("Error while exporting table data: %1").arg(results->getErrorText()));
-            return false;
-        }
+        notifyError(errorMessage);
+        return false;
     }
 
     SchemaResolver resolver(db);
@@ -277,22 +316,23 @@ bool ExportWorker::exportTable()
 
     SqliteQueryPtr createTable = parser->getQueries().first();
     plugin->initBeforeExport(db, output, *config);
-    return exportTableInternal(database, table, ddl, createTable, results);
+    return exportTableInternal(database, table, ddl, createTable, results, providerData);
 }
 
-bool ExportWorker::exportTableInternal(const QString& database, const QString& table, const QString& ddl, SqliteQueryPtr parsedDdl, SqlQueryPtr results)
+bool ExportWorker::exportTableInternal(const QString& database, const QString& table, const QString& ddl, SqliteQueryPtr parsedDdl, SqlQueryPtr results,
+                                       const QHash<ExportManager::ExportProviderFlag,QVariant>& providerData)
 {
     SqliteCreateTablePtr createTable = parsedDdl.dynamicCast<SqliteCreateTable>();
     SqliteCreateVirtualTablePtr createVirtualTable = parsedDdl.dynamicCast<SqliteCreateVirtualTable>();
 
     if (createTable)
     {
-        if (!plugin->exportTable(database, table, results->getColumnNames(), ddl, createTable))
+        if (!plugin->exportTable(database, table, results->getColumnNames(), ddl, createTable, providerData))
             return false;
     }
     else
     {
-        if (!plugin->exportVirtualTable(database, table, results->getColumnNames(), ddl, createVirtualTable))
+        if (!plugin->exportVirtualTable(database, table, results->getColumnNames(), ddl, createVirtualTable, providerData))
             return false;
     }
 
@@ -337,7 +377,7 @@ QList<ExportManager::ExportObjectPtr> ExportWorker::collectDbObjects(QString* er
         if (details.type == SchemaResolver::ObjectDetails::TABLE)
         {
             exportObj->type = ExportManager::ExportObject::TABLE;
-            queryTableDataToExport(db, objName, exportObj->data, errorMessage);
+            queryTableDataToExport(db, objName, exportObj->data, exportObj->providerData, errorMessage);
             if (!errorMessage->isNull())
                 return objectsToExport;
         }
@@ -355,18 +395,63 @@ QList<ExportManager::ExportObjectPtr> ExportWorker::collectDbObjects(QString* er
         objectsToExport << exportObj;
     }
 
+    qSort(objectsToExport.begin(), objectsToExport.end(), [](ExportManager::ExportObjectPtr obj1, ExportManager::ExportObjectPtr obj2) -> bool
+    {
+        return (obj1->type < obj2->type);
+    });
+
     return objectsToExport;
 }
 
-void ExportWorker::queryTableDataToExport(Db* db, const QString& table, SqlQueryPtr& dataPtr, QString* errorMessage) const
+void ExportWorker::queryTableDataToExport(Db* db, const QString& table, SqlQueryPtr& dataPtr, QHash<ExportManager::ExportProviderFlag,QVariant>& providerData,
+                                          QString* errorMessage) const
 {
     static const QString sql = QStringLiteral("SELECT * FROM %1");
+    static const QString countSql = QStringLiteral("SELECT count(*) FROM %1");
+    static const QString colLengthSql = QStringLiteral("SELECT %1 FROM %2");
+    static const QString colLengthTpl = QStringLiteral("max(length(%1))");
 
     if (config->exportData)
     {
-        dataPtr = db->exec(sql.arg(wrapObjIfNeeded(table, db->getDialect())));
+        QString wrappedTable = wrapObjIfNeeded(table, db->getDialect());
+
+        dataPtr = db->exec(sql.arg(wrappedTable));
         if (dataPtr->isError())
-            *errorMessage = tr("Error while reading data to export from table %1: %2").arg(table).arg(dataPtr->getErrorText());
+            *errorMessage = tr("Error while reading data to export from table %1: %2").arg(table, dataPtr->getErrorText());
+
+        if (plugin->getProviderFlags().testFlag(ExportManager::ROW_COUNT))
+        {
+            SqlQueryPtr countQuery = db->exec(countSql.arg(wrappedTable));
+            if (countQuery->isError())
+            {
+                if (errorMessage->isNull())
+                    *errorMessage = tr("Error while counting data to export from table %1: %2").arg(table, dataPtr->getErrorText());
+            }
+            else
+                providerData[ExportManager::ROW_COUNT] = countQuery->getSingleCell().toInt();
+        }
+
+        if (plugin->getProviderFlags().testFlag(ExportManager::DATA_LENGTHS))
+        {
+            QStringList wrappedCols;
+            for (const QString& col : dataPtr->getColumnNames())
+                wrappedCols << colLengthTpl.arg(wrapObjIfNeeded(col, db->getDialect()));
+
+            SqlQueryPtr colLengthQuery = db->exec(colLengthSql.arg(wrappedCols.join(", "), wrappedTable));
+            if (colLengthQuery->isError())
+            {
+                if (errorMessage->isNull())
+                    *errorMessage = tr("Error while counting data column width to export from table %1: %2").arg(table, dataPtr->getErrorText());
+            }
+            else
+            {
+                QList<int> colWidths;
+                for (const QVariant& value : colLengthQuery->next()->valueList())
+                    colWidths << value.toInt();
+
+                providerData[ExportManager::DATA_LENGTHS] = QVariant::fromValue(colWidths);
+            }
+        }
     }
 }
 

@@ -222,16 +222,25 @@ void ExportManager::finalizeExport(bool result, QIODevice* output)
 
 QIODevice* ExportManager::getOutputStream()
 {
+    QFile::OpenMode openMode;
     if (config->intoClipboard)
     {
+        openMode = QIODevice::WriteOnly;
+        if (!plugin->isBinaryData())
+            openMode |= QIODevice::Text;
+
         bufferForClipboard = new QBuffer();
-        bufferForClipboard->open(QIODevice::WriteOnly);
+        bufferForClipboard->open(openMode);
         return bufferForClipboard;
     }
     else if (!config->outputFileName.trimmed().isEmpty())
     {
+        openMode = QIODevice::WriteOnly|QIODevice::Truncate;
+        if (!plugin->isBinaryData())
+            openMode |= QIODevice::Text;
+
         QFile* file = new QFile(config->outputFileName);
-        if (!file->open(QIODevice::WriteOnly|QIODevice::Truncate))
+        if (!file->open(openMode))
         {
             notifyError(tr("Could not export to file %1. File cannot be open for writting.").arg(config->outputFileName));
             delete file;
