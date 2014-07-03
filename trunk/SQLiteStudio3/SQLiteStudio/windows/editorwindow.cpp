@@ -162,6 +162,28 @@ QAction* EditorWindow::getAction(EditorWindow::Action action)
     return ExtActionContainer::getAction(action);
 }
 
+QString EditorWindow::getQueryToExecute(bool doSelectCurrentQuery)
+{
+    QString sql;
+    if (ui->sqlEdit->textCursor().hasSelection())
+    {
+        sql = ui->sqlEdit->textCursor().selectedText();
+    }
+    else if (CFG_UI.General.ExecuteCurrentQueryOnly.get())
+    {
+        ui->sqlEdit->saveSelection();
+        selectCurrentQuery();
+        sql = ui->sqlEdit->textCursor().selectedText();
+        if (!doSelectCurrentQuery)
+            ui->sqlEdit->restoreSelection();
+    }
+    else
+    {
+        sql = ui->sqlEdit->toPlainText();
+    }
+    return sql;
+}
+
 QVariant EditorWindow::saveSession()
 {
     QHash<QString,QVariant> sessionValue;
@@ -367,21 +389,7 @@ void EditorWindow::updateShortcutTips()
 
 void EditorWindow::execQuery(bool explain)
 {
-    QString sql;
-    if (ui->sqlEdit->textCursor().hasSelection())
-    {
-        sql = ui->sqlEdit->textCursor().selectedText();
-    }
-    else if (CFG_UI.General.ExecuteCurrentQueryOnly.get())
-    {
-        selectCurrentQuery();
-        sql = ui->sqlEdit->textCursor().selectedText();
-    }
-    else
-    {
-        sql = ui->sqlEdit->toPlainText();
-    }
-
+    QString sql = getQueryToExecute(true);
     resultsModel->setDb(getCurrentDb());
     resultsModel->setExplainMode(explain);
     resultsModel->setQuery(sql);
@@ -523,7 +531,8 @@ void EditorWindow::exportResults()
         return;
     }
 
-    QStringList queries = splitQueries(lastSuccessfulQuery, getCurrentDb()->getDialect(), false);
+    QString query = lastSuccessfulQuery.isEmpty() ?  getQueryToExecute() : lastSuccessfulQuery;
+    QStringList queries = splitQueries(query, getCurrentDb()->getDialect(), false);
     if (queries.size() == 0)
     {
         qWarning() << "No queries after split in EditorWindow::exportResults()";
@@ -542,8 +551,6 @@ void EditorWindow::createViewFromQuery()
 
 void EditorWindow::updateState()
 {
-    actionMap[EXPORT_RESULTS]->setEnabled(!lastSuccessfulQuery.isNull());
-
     bool executionInProgress = resultsModel->isExecutionInProgress();
     actionMap[CURRENT_DB]->setEnabled(!executionInProgress);
     actionMap[EXEC_QUERY]->setEnabled(!executionInProgress);

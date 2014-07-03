@@ -29,7 +29,7 @@ ExportManager::StandardConfigFlags PdfExport::standardOptionsToEnable() const
 
 ExportManager::ExportProviderFlags PdfExport::getProviderFlags() const
 {
-    return ExportManager::DATA_LENGTHS;
+    return ExportManager::DATA_LENGTHS|ExportManager::ROW_COUNT;
 }
 
 void PdfExport::validateOptions()
@@ -45,11 +45,13 @@ bool PdfExport::beforeExportQueryResults(const QString& query, QList<QueryExecut
 {
     beginDoc(tr("SQL query results"));
 
+    totalRows = providedData[ExportManager::ROW_COUNT].toInt();
+
     QStringList columnNames;
     for (const QueryExecutor::ResultColumnPtr& col : columns)
         columnNames << col->displayName;
 
-    currentHeaderRows.clear();
+    clearHeaderRows();
     exportColumnsHeader(columnNames);
     calculateColumnWidths(columnNames, providedData);
     return true;
@@ -72,7 +74,10 @@ bool PdfExport::exportTable(const QString& database, const QString& table, const
     if (isTableExport())
         beginDoc(tr("Exported table: %1").arg(table));
 
-    currentHeaderRows.clear();
+    totalRows = providedData[ExportManager::ROW_COUNT].toInt();
+
+    // Prepare for exporting data row
+    clearHeaderRows();
     exportObjectHeader(tr("Table: %1").arg(table));
     exportColumnsHeader(columnNames);
     calculateColumnWidths(columnNames, providedData);
@@ -143,8 +148,7 @@ void PdfExport::beginDoc(const QString& title)
     pdfWriter = new QPdfWriter(output);
     painter = new QPainter(pdfWriter);
     painter->setBrush(Qt::NoBrush);
-    stdPen = new QPen(Qt::black, 15);
-    painter->setPen(*stdPen);
+    painter->setPen(QPen(Qt::black, lineWidth));
     pdfWriter->setTitle(title);
     pdfWriter->setCreator(tr("SQLiteStudio v%1").arg(SQLITESTUDIO->getVersionString()));
 
@@ -163,6 +167,13 @@ void PdfExport::setupConfig()
     pdfWriter->setPageSize(QPdfWriter::A4);
     pageWidth = pdfWriter->width();
     pageHeight = pdfWriter->height();
+    pointsPerMm = pageWidth / pdfWriter->pageSizeMM().width();
+
+    topMargin = mmToPoints(20);
+    rightMargin = mmToPoints(20);
+    leftMargin = mmToPoints(20);
+    bottomMargin = mmToPoints(20);
+    updateMargins();
 
     maxColWidth = pageWidth / 5;
     padding = 50;
@@ -173,19 +184,43 @@ void PdfExport::setupConfig()
     boldFont->setBold(true);
     italicFont = new QFont(*stdFont);
     italicFont->setItalic(true);
+    painter->setFont(*stdFont);
 
     QRectF rect = painter->boundingRect(QRectF(padding, padding, pageWidth - 2 * padding, 1), "X", *textOption);
     minRowHeight = rect.height() + padding * 2;
-    maxRowHeight = qMax((int)(pageHeight * 0.2), minRowHeight);
+    maxRowHeight = qMax((int)(pageHeight * 0.225), minRowHeight);
     rowsToPrebuffer = (int)ceil((double)pageHeight / minRowHeight);
 
     currentPage = -1;
+    rowNum = 1;
+}
+
+void PdfExport::updateMargins()
+{
+    pageWidth -= (leftMargin + rightMargin);
+    pageHeight -= (topMargin + bottomMargin);
+    painter->setClipRect(QRect(leftMargin, topMargin, pageWidth, pageHeight));
+
+    // In order to render full width of the line, we need to add more margin, a half of the line width
+    leftMargin += lineWidth / 2;
+    rightMargin += lineWidth / 2;
+    topMargin += lineWidth / 2;
+    bottomMargin += lineWidth / 2;
+    pageWidth -= lineWidth;
+    pageHeight -= lineWidth;
+}
+
+void PdfExport::clearHeaderRows()
+{
+    headerRow.reset();
+    columnsHeaderRow.reset();
 }
 
 void PdfExport::exportDataRow(const QList<QVariant>& data)
 {
     Cell cell;
     Row row;
+
     for (const QVariant& value : data)
     {
         switch (value.type())
@@ -260,70 +295,126 @@ void PdfExport::renderDataPages(bool finalRender)
 
         for (int i = 0; i < rowsToRender; i++)
             bufferedRows.removeFirst();
+
+        rowNum += rowsToRender;
     }
 }
 
 void PdfExport::renderDataRowsPage(int columnStart, int columnEndBefore, int rowsToRender)
 {
+    QList<Row> allRows;
+    if (headerRow)
+        allRows += *headerRow;
+
+    if (columnsHeaderRow)
+        allRows += *columnsHeaderRow;
+
+    allRows += bufferedRows.mid(0, rowsToRender);
+
     // Calculating width of all columns on this page
     int totalColsWidth = sum(calculatedColumnWidths.mid(columnStart, columnEndBefore - columnStart));
 
+    // Calculating height of all rows
+    int totalRowsHeight = 0;
+    for (const Row& row : allRows)
+        totalRowsHeight += row.height;
+
     // Draw header background
-    int x = 0;
-    int y = 0;
+    int x = getDataColumnsStartX();
+    painter->save();
     painter->setBrush(QBrush(Qt::lightGray, Qt::SolidPattern));
     painter->setPen(Qt::NoPen);
-    painter->drawRect(QRect(x, y, totalColsWidth, totalHeaderRowsHeight));
-    painter->setBrush(Qt::NoBrush);
-    painter->setPen(*stdPen);
+    painter->drawRect(QRect(x, topMargin, totalColsWidth, totalHeaderRowsHeight));
+    painter->restore();
+
+    // Draw rowNum background
+    if (printRowNum)
+    {
+        painter->save();
+        painter->setBrush(QBrush(Qt::lightGray, Qt::SolidPattern));
+        painter->setPen(Qt::NoPen);
+        painter->drawRect(QRect(leftMargin, topMargin, rowNumColumnWidth, totalRowsHeight));
+        painter->restore();
+    }
 
     // Draw horizontal lines
-    y = 0;
-    painter->drawLine(0, y, totalColsWidth, y);
-    for (const Row& row : currentHeaderRows + bufferedRows.mid(0, rowsToRender))
+    int y = topMargin;
+    int horizontalLineEnd = x + totalColsWidth;
+    painter->drawLine(leftMargin, y, horizontalLineEnd, y);
+    for (const Row& row : allRows)
     {
         y += row.height;
-        painter->drawLine(0, y, totalColsWidth, y);
+        painter->drawLine(leftMargin, y, horizontalLineEnd, y);
+    }
+
+    // Draw dashed horizontal lines if there are more columns on the next page and there is space on the right side
+    if (columnEndBefore < calculatedColumnWidths.size() && horizontalLineEnd < (leftMargin + pageWidth))
+    {
+        y = topMargin;
+        painter->save();
+        QPen pen(Qt::lightGray, 15, Qt::DashLine);
+        pen.setDashPattern(QVector<qreal>({5.0, 3.0}));
+        painter->setPen(pen);
+        painter->drawLine(horizontalLineEnd, y, leftMargin + pageWidth, y);
+        for (const Row& row : allRows)
+        {
+            y += row.height;
+            painter->drawLine(horizontalLineEnd, y, leftMargin + pageWidth, y);
+        }
+        painter->restore();
     }
 
     // Finding first row to start vertical lines from. It's either a COLUMNS_HEADER, or first data row, after headers.
-    int verticalLinesStart = 0;
-    for (const Row& row : currentHeaderRows)
-    {
-        if (row.type == Row::COLUMNS_HEADER)
-            break;
-
-        verticalLinesStart += row.height;
-    }
+    int verticalLinesStart = topMargin;
+    if (headerRow)
+        verticalLinesStart += headerRow->height;
 
     // Draw vertical lines
-    int totalRowsHeight = y;
-    x = 0;
-    painter->drawLine(x, 0, x, totalRowsHeight);
+    x = getDataColumnsStartX();
+    painter->drawLine(leftMargin, topMargin, leftMargin, topMargin + totalRowsHeight);
+    if (rowNum)
+        painter->drawLine(x, topMargin, x, topMargin + totalRowsHeight);
+
     for (int col = columnStart; col < columnEndBefore; col++)
     {
         x += calculatedColumnWidths[col];
-        painter->drawLine(x, (col+1 == columnEndBefore) ? 0 : verticalLinesStart, x, totalRowsHeight);
+        painter->drawLine(x, (col+1 == columnEndBefore) ? topMargin : verticalLinesStart, x, topMargin + totalRowsHeight);
     }
 
     // Draw header rows
-    y = 0;
-    for (const Row& row : currentHeaderRows)
-        renderHeaderRow(row, y, totalColsWidth, columnStart, columnEndBefore);
+    y = topMargin;
+    if (headerRow)
+        renderHeaderRow(*headerRow, y, totalColsWidth, columnStart, columnEndBefore);
+
+    if (columnsHeaderRow)
+        renderHeaderRow(*columnsHeaderRow, y, totalColsWidth, columnStart, columnEndBefore);
 
     // Draw data
+    int localRowNum = rowNum;
     for (int rowCounter = 0; rowCounter < rowsToRender && !bufferedRows.isEmpty(); rowCounter++)
-        renderDataRow(bufferedRows.first(), y, columnStart, columnEndBefore);
+        renderDataRow(bufferedRows[rowCounter], y, columnStart, columnEndBefore, localRowNum++);
 }
 
-void PdfExport::renderDataRow(const Row& row, int& y, int columnStart, int columnEndBefore)
+void PdfExport::renderDataRow(const Row& row, int& y, int columnStart, int columnEndBefore, int localRowNum)
 {
     int textWidth = 0;
     int textHeight = 0;
     int colWidth = 0;
-    int x = 0;
+    int x = leftMargin;
 
     y += padding;
+    if (printRowNum)
+    {
+        QTextOption opt = *textOption;
+        opt.setAlignment(Qt::AlignRight);
+
+        x += padding;
+        textWidth = rowNumColumnWidth - padding * 2;
+        textHeight = row.height - padding * 2;
+        renderDataCell(QRect(x, y, textWidth, textHeight), QString::number(localRowNum), &opt);
+        x += rowNumColumnWidth - padding;
+    }
+
     for (int col = columnStart; col < columnEndBefore; col++)
     {
         const Cell& cell = row.cells[col];
@@ -343,6 +434,7 @@ void PdfExport::renderDataCell(const QRect& rect, const PdfExport::Cell& cell)
     QTextOption opt = *textOption;
     opt.setAlignment(cell.alignment);
 
+    painter->save();
     if (cell.isNull)
     {
         painter->setPen(Qt::gray);
@@ -350,38 +442,45 @@ void PdfExport::renderDataCell(const QRect& rect, const PdfExport::Cell& cell)
     }
 
     painter->drawText(rect, cell.contents, opt);
+    painter->restore();
+}
 
-    if (cell.isNull)
-    {
-        painter->setPen(Qt::black);
-        painter->setFont(*stdFont);
-    }
+void PdfExport::renderDataCell(const QRect& rect, const QString& contents, QTextOption* opt)
+{
+    painter->drawText(rect, contents, *opt);
 }
 
 void PdfExport::renderHeaderRow(const PdfExport::Row& row, int& y, int totalColsWidth, int columnStart, int columnEndBefore)
 {
     QTextOption opt = *textOption;
     opt.setAlignment(Qt::AlignHCenter);
-    int x = 0;
+    int x = leftMargin;
     y += padding;
     switch (row.type)
     {
         case Row::HEADER:
         {
             x += padding;
+            painter->save();
             painter->setFont(*boldFont);
             painter->drawText(QRect(x, y, totalColsWidth - 2 * padding, row.height - 2 * padding), row.cells.first().contents, opt);
-            painter->setFont(*stdFont);
+            painter->restore();
             break;
         }
         case Row::COLUMNS_HEADER:
         {
-            for (int col = columnStart; col < columnEndBefore; col++)
+            if (printRowNum)
             {
                 x += padding;
-                painter->drawText(QRect(x, y, calculatedColumnWidths[col] - 2 * padding, row.height - 2 * padding), row.cells[col].contents, opt);
-                x += calculatedColumnWidths[col] - padding;
+                int textWidth = rowNumColumnWidth - padding * 2;
+                int textHeight = row.height - padding * 2;
+                painter->drawText(QRect(x, y, textWidth, textHeight), "#", opt);
+                x += rowNumColumnWidth - padding;
             }
+
+            for (int col = columnStart; col < columnEndBefore; col++)
+                renderHeaderCell(x, y, row, col, &opt);
+
             break;
         }
         case Row::NORMAL:
@@ -390,33 +489,57 @@ void PdfExport::renderHeaderRow(const PdfExport::Row& row, int& y, int totalCols
     y += row.height - padding;
 }
 
+void PdfExport::renderHeaderCell(int& x, int y, const PdfExport::Row& row, int col, QTextOption* opt)
+{
+    x += padding;
+    painter->drawText(QRect(x, y, calculatedColumnWidths[col] - 2 * padding, row.height - 2 * padding), row.cells[col].contents, *opt);
+    x += calculatedColumnWidths[col] - padding;
+}
+
+void PdfExport::renderPageNumber()
+{
+    QString page = QString::number(currentPage + 1);
+
+    QTextOption opt = *textOption;
+    opt.setWrapMode(QTextOption::NoWrap);
+
+    painter->save();
+    painter->setFont(*italicFont);
+    QRect rect = painter->boundingRect(QRectF(0, 0, 1, 1), page, opt).toRect();
+    int x = leftMargin + pageWidth - rect.width();
+    int y = topMargin + pageHeight- rect.height();
+    QRect newRect(x, y, rect.width(), rect.height());
+    painter->drawText(newRect, page, *textOption);
+    painter->restore();
+}
+
 void PdfExport::exportObjectHeader(const QString& contents)
 {
-    Row row;
-    row.type = Row::HEADER;
+    Row* row = new Row;
+    row->type = Row::HEADER;
 
     Cell cell;
     cell.contents = contents;
     cell.alignment = Qt::AlignHCenter;
-    row.cells << cell;
+    row->cells << cell;
 
-    currentHeaderRows << row;
+    headerRow.reset(row);
 }
 
 void PdfExport::exportColumnsHeader(const QStringList& columns)
 {
-    Row row;
-    row.type = Row::COLUMNS_HEADER;
+    Row* row = new Row;
+    row->type = Row::COLUMNS_HEADER;
 
     Cell cell;
+    cell.alignment = Qt::AlignHCenter;
     for (const QString& col : columns)
     {
         cell.contents = col;
-        cell.alignment = Qt::AlignHCenter;
-        row.cells << cell;
+        row->cells << cell;
     }
 
-    currentHeaderRows << row;
+    columnsHeaderRow.reset(row);
 }
 
 void PdfExport::newPage()
@@ -424,14 +547,16 @@ void PdfExport::newPage()
     if (currentPage < 0)
     {
         currentPage = 0;
+        renderPageNumber();
         return;
     }
 
     pdfWriter->newPage();
     currentPage++;
+    renderPageNumber();
 }
 
-void PdfExport::calculateColumnWidths(const QStringList& columnNames, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
+void PdfExport::calculateColumnWidths(const QStringList& columnNames, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData, int columnToExpand)
 {
     static const QString tplChar = "W";
 
@@ -440,13 +565,27 @@ void PdfExport::calculateColumnWidths(const QStringList& columnNames, const QHas
     opt.setWrapMode(QTextOption::NoWrap);
 
     // Calculate header width first
-    currentHeaderMinWidth = 0;
-    if (!currentHeaderRows.isEmpty() && currentHeaderRows.first().type == Row::HEADER)
+    if (columnToExpand > -1)
     {
-        painter->setFont(*boldFont);
-        currentHeaderMinWidth = painter->boundingRect(QRectF(0, 0, 1, 1), currentHeaderRows.first().cells.first().contents, opt).width();
-        painter->setFont(*stdFont);
+        // If any column was picked for expanding table to page width, the header will also be full page width.
+        // This will also result later with expanding selected column to the header width = page width.
+        currentHeaderMinWidth = pageWidth;
     }
+    else
+    {
+        currentHeaderMinWidth = 0;
+        if (headerRow)
+        {
+            painter->save();
+            painter->setFont(*boldFont);
+            currentHeaderMinWidth = painter->boundingRect(QRectF(0, 0, 1, 1), headerRow->cells.first().contents, opt).width();
+            painter->restore();
+        }
+    }
+
+    // Calculate width of rowNum column (if enabled)
+    if (printRowNum)
+        rowNumColumnWidth = painter->boundingRect(QRectF(0, 0, 1, 1), QString::number(totalRows), opt).width() + 2 * padding;
 
     // Now all column widths
     QList<int> columnDataLengths = providedData[ExportManager::DATA_LENGTHS].value<QList<int>>();
@@ -485,11 +624,13 @@ void PdfExport::calculateColumnWidths(const QStringList& columnNames, const QHas
     columnsPerPage.clear();
     int colsForThePage = 0;
     int currentTotalWidth = 0;
+    int expandColumnIndex = 0;
+    int dataColumnsWidth = getDataColumnsWidth();
     for (int i = 0, total = calculatedColumnWidths.size(); i < total; ++i)
     {
         colsForThePage++;
         currentTotalWidth += calculatedColumnWidths[i];
-        if (currentTotalWidth >= pageWidth)
+        if (currentTotalWidth > dataColumnsWidth)
         {
             colsForThePage--;
             columnsPerPage << colsForThePage;
@@ -497,7 +638,13 @@ void PdfExport::calculateColumnWidths(const QStringList& columnNames, const QHas
             // Make sure that columns on previous page are at least as wide as the header
             currentTotalWidth -= calculatedColumnWidths[i];
             if (currentTotalWidth < currentHeaderMinWidth && i > 0)
-                calculatedColumnWidths[i-1] += (currentHeaderMinWidth - currentTotalWidth);
+            {
+                expandColumnIndex = 1;
+                if (columnToExpand > -1)
+                    expandColumnIndex = colsForThePage - columnToExpand;
+
+                calculatedColumnWidths[i - expandColumnIndex] += (currentHeaderMinWidth - currentTotalWidth);
+            }
 
             // Reset values fot next interation
             currentTotalWidth = calculatedColumnWidths[i];
@@ -509,7 +656,14 @@ void PdfExport::calculateColumnWidths(const QStringList& columnNames, const QHas
     {
         columnsPerPage << colsForThePage;
         if (currentTotalWidth < currentHeaderMinWidth && !calculatedColumnWidths.isEmpty())
-            calculatedColumnWidths.last() += (currentHeaderMinWidth - currentTotalWidth);
+        {
+            int i = calculatedColumnWidths.size();
+            expandColumnIndex = 1;
+            if (columnToExpand > -1)
+                expandColumnIndex = colsForThePage - columnToExpand;
+
+            calculatedColumnWidths[i - expandColumnIndex] += (currentHeaderMinWidth - currentTotalWidth);
+        }
     }
 }
 
@@ -534,40 +688,59 @@ void PdfExport::calculateRowHeights()
     }
 
     // Calculating heights for header rows
+    painter->save();
     totalHeaderRowsHeight = 0;
-    for (Row& row : currentHeaderRows)
+    thisRowMaxHeight = 0;
+    if (headerRow)
     {
-        thisRowMaxHeight = 0;
+        painter->setFont(*boldFont);
+        // Main header can be as wide as page, so that's the rect we pass
+        colHeight = calculateRowHeight(pageWidth, headerRow->cells.first().contents);
+        thisRowMaxHeight = qMax(thisRowMaxHeight, colHeight);
 
-        switch (row.type)
+        columnsHeaderRow->height = qMin(maxRowHeight, thisRowMaxHeight);
+        totalHeaderRowsHeight += columnsHeaderRow->height;
+    }
+
+    if (columnsHeaderRow)
+    {
+        for (int col = 0, total = columnsHeaderRow->cells.size(); col < total; ++col)
         {
-            case Row::HEADER:
-                painter->setFont(*boldFont);
-                // Main header can be as wide as page, so that's the rect we pass
-                colHeight = calculateRowHeight(pageWidth, row.cells.first().contents);
-                thisRowMaxHeight = qMax(thisRowMaxHeight, colHeight);
-                break;
-            case Row::COLUMNS_HEADER:
-                painter->setFont(*stdFont);
-                for (int col = 0, total = row.cells.size(); col < total; ++col)
-                {
-                    // This is the same as for data rows (see above)
-                    colHeight = calculateRowHeight(calculatedColumnWidths[col], row.cells[col].contents);
-                    thisRowMaxHeight = qMax(thisRowMaxHeight, colHeight);
-                }
-                break;
-            case Row::NORMAL: // this should not take place, normal rows are not stored in header rows
-                break; // no-op
+            // This is the same as for data rows (see above)
+            colHeight = calculateRowHeight(calculatedColumnWidths[col], columnsHeaderRow->cells[col].contents);
+            thisRowMaxHeight = qMax(thisRowMaxHeight, colHeight);
         }
 
-        row.height = qMin(maxRowHeight, thisRowMaxHeight);
-        totalHeaderRowsHeight += row.height;
+        columnsHeaderRow->height = qMin(maxRowHeight, thisRowMaxHeight);
+        totalHeaderRowsHeight += columnsHeaderRow->height;
     }
-    painter->setFont(*stdFont);
+
+    painter->restore();
 }
 
 int PdfExport::calculateRowHeight(int textWidth, const QString& contents)
 {
     // Measures height expanding due to constrained text width, line wrapping and top+bottom padding
     return painter->boundingRect(QRectF(0, 0, (textWidth - padding * 2), 1), contents, *textOption).height() + padding * 2;
+}
+
+int PdfExport::getDataColumnsWidth() const
+{
+    if (printRowNum)
+        return pageWidth - rowNumColumnWidth;
+
+    return pageWidth;
+}
+
+int PdfExport::getDataColumnsStartX() const
+{
+    if (printRowNum)
+        return leftMargin + rowNumColumnWidth;
+
+    return leftMargin;
+}
+
+qreal PdfExport::mmToPoints(qreal sizeMM)
+{
+    return pointsPerMm * sizeMM;
 }

@@ -194,6 +194,16 @@ API_EXPORT QString joinLines(const QStringList& lines);
 API_EXPORT int sum(const QList<int>& integers);
 
 template <class T>
+QList<T> reverse(const QList<T>& list)
+{
+    QList<T> result;
+    for (const T& el : list)
+        result.prepend(el);
+
+    return result;
+}
+
+template <class T>
 void removeDuplicates(QList<T>& list)
 {
     QSet<T> set;

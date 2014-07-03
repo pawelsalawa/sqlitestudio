@@ -1389,6 +1389,20 @@ void SqlEditor::checkSyntaxNow()
     parseContents();
 }
 
+void SqlEditor::saveSelection()
+{
+    QTextCursor cur = textCursor();
+    storedSelectionStart = cur.selectionStart();
+    storedSelectionEnd = cur.selectionEnd();
+}
+
+void SqlEditor::restoreSelection()
+{
+    QTextCursor cur = textCursor();
+    cur.setPosition(storedSelectionStart);
+    cur.setPosition(storedSelectionEnd, QTextCursor::KeepAnchor);
+}
+
 QString SqlEditor::getVirtualSqlExpression() const
 {
     return virtualSqlExpression;
