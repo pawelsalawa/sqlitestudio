@@ -57,6 +57,8 @@ class SqlEditor : public QPlainTextEdit, public ExtActionContainer
         bool getShowLineNumbers() const;
         void setShowLineNumbers(bool value);
         void checkSyntaxNow();
+        void saveSelection();
+        void restoreSelection();
 
         bool getVirtualSqlCompleteSemicolon() const;
         void setVirtualSqlCompleteSemicolon(bool value);
@@ -169,6 +171,8 @@ class SqlEditor : public QPlainTextEdit, public ExtActionContainer
         bool cursorMovingByLocator = false;
         bool syntaxValidated = false;
         bool showLineNumbers = true;
+        int storedSelectionStart = 0;
+        int storedSelectionEnd = 0;
 
         /**
          * @brief virtualSqlExpression

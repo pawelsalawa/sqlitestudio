@@ -1,4 +1,3 @@
-* exporting query results relies on query executor, which returns rowid columns. we need a property in query executor to switch off any meta columns, like we need for export
 * plugin json file: sqlitestudio min/max version requirements, Qt min/max version requirements, other plugin dependencies with version specifying
 * db version converting
 * context menu for taskbar

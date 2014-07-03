@@ -63,6 +63,7 @@ class EditorWindow : public MdiChild, public ExtActionContainer
 
         QSize sizeHint() const;
         QAction* getAction(Action action);
+        QString getQueryToExecute(bool doSelectCurrentQuery = false);
 
     protected:
         void changeEvent(QEvent *e);

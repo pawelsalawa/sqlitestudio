@@ -214,5 +214,6 @@ class API_EXPORT ExportManager : public PluginServiceBase
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(ExportManager::StandardConfigFlags)
 Q_DECLARE_OPERATORS_FOR_FLAGS(ExportManager::ExportModes)
+Q_DECLARE_OPERATORS_FOR_FLAGS(ExportManager::ExportProviderFlags)
 
 #endif // EXPORTMANAGER_H
