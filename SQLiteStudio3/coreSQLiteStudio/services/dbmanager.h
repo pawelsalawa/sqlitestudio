@@ -142,6 +142,17 @@ class API_EXPORT DbManager : public QObject
         virtual Db* createInMemDb() = 0;
 
         /**
+         * @brief Tells if given database is temporary.
+         * @param db Database to check.
+         * @return true if database is temporary, or false if it's stored in the configuration.
+         *
+         * Temporary databases are databases that are not stored in configuration and will not be restored
+         * upon next SQLiteStudio start. This can be decided by user on UI when he edits database registration info
+         * (there is a checkbox for that).
+         */
+        virtual bool isTemporary(Db* db) = 0;
+
+        /**
          * @brief Generates database name.
          * @param filePath Database file path.
          * @return A name, using database file name as a hint for a name.

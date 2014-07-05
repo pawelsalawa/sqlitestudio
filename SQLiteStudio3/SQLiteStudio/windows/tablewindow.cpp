@@ -588,6 +588,9 @@ void TableWindow::changeEvent(QEvent *e)
 
 QVariant TableWindow::saveSession()
 {
+    if (DBLIST->isTemporary(db))
+        return QVariant();
+
     QHash<QString,QVariant> sessionValue;
     sessionValue["table"] = table;
     sessionValue["db"] = db->getName();
@@ -610,7 +613,7 @@ bool TableWindow::restoreSession(const QVariant& sessionValue)
     }
 
     db = DBLIST->getByName(value["db"].toString());
-    if (!db->isValid() || (!db->isOpen() && !db->open()))
+    if (!db || !db->isValid() || (!db->isOpen() && !db->open()))
     {
         notifyWarn(tr("Could not restore window, because database %1 could not be resolved.").arg(value["db"].toString()));
         return false;
@@ -1354,7 +1357,7 @@ void TableWindow::editColumn(const QString& columnName)
 
 bool TableWindow::restoreSessionNextTime()
 {
-    return existingTable;
+    return existingTable && db && !DBLIST->isTemporary(db);
 }
 
 bool TableWindow::handleInitialFocus()

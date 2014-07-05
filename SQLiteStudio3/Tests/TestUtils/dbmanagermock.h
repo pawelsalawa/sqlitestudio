@@ -19,6 +19,7 @@ class DbManagerMock : public DbManager
         Db*getByName(const QString&, Qt::CaseSensitivity);
         Db*getByPath(const QString&);
         Db*createInMemDb();
+        bool isTemporary(Db*);
 
     public slots:
         void loadDbListFromConfig();

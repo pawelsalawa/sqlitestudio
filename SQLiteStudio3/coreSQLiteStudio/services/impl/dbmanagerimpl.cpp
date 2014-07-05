@@ -219,6 +219,11 @@ Db* DbManagerImpl::createInMemDb()
     return inMemDbCreatorPlugin->getInstance("", ":memory:", {});
 }
 
+bool DbManagerImpl::isTemporary(Db* db)
+{
+    return CFG->getDb(db->getName()).isNull();
+}
+
 void DbManagerImpl::setInMemDbCreatorPlugin(DbPlugin* plugin)
 {
     inMemDbCreatorPlugin = plugin;
