@@ -62,6 +62,11 @@ Db*DbManagerMock::createInMemDb()
     return nullptr;
 }
 
+bool DbManagerMock::isTemporary(Db*)
+{
+    return false;
+}
+
 void DbManagerMock::loadDbListFromConfig()
 {
 }

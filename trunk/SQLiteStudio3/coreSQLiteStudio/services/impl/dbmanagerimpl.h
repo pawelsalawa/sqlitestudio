@@ -41,6 +41,7 @@ class DbManagerImpl : public DbManager
         Db* getByName(const QString& name, Qt::CaseSensitivity cs = Qt::CaseSensitive);
         Db* getByPath(const QString& path);
         Db* createInMemDb();
+        bool isTemporary(Db* db);
 
         /**
          * @brief Defines database plugin used for creating in-memory databases.
