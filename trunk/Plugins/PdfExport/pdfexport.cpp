@@ -272,6 +272,14 @@ void PdfExport::setupConfig()
     pageHeight = pagedWriter->height();
     pointsPerMm = pageWidth / pagedWriter->pageSizeMM().width();
 
+    stdFont = new QFont(painter->font());
+    stdFont->setPointSize(10);
+    boldFont = new QFont(*stdFont);
+    boldFont->setBold(true);
+    italicFont = new QFont(*stdFont);
+    italicFont->setItalic(true);
+    painter->setFont(*stdFont);
+
     topMargin = mmToPoints(20);
     rightMargin = mmToPoints(20);
     leftMargin = mmToPoints(20);
@@ -281,19 +289,12 @@ void PdfExport::setupConfig()
     maxColWidth = pageWidth / 5;
     padding = 50;
 
-    stdFont = new QFont(painter->font());
-    stdFont->setPointSize(10);
-    boldFont = new QFont(*stdFont);
-    boldFont->setBold(true);
-    italicFont = new QFont(*stdFont);
-    italicFont->setItalic(true);
-    painter->setFont(*stdFont);
-
     QRectF rect = painter->boundingRect(QRectF(padding, padding, pageWidth - 2 * padding, 1), "X", *textOption);
     minRowHeight = rect.height() + padding * 2;
     maxRowHeight = qMax((int)(pageHeight * 0.225), minRowHeight);
     rowsToPrebuffer = (int)ceil((double)pageHeight / minRowHeight);
 
+    objectsTotalHeight = 0;
     currentPage = -1;
     rowNum = 1;
 }
@@ -303,6 +304,13 @@ void PdfExport::updateMargins()
     pageWidth -= (leftMargin + rightMargin);
     pageHeight -= (topMargin + bottomMargin);
     painter->setClipRect(QRect(leftMargin, topMargin, pageWidth, pageHeight));
+
+    if (printPageNumbers)
+    {
+        int pageNumHeight = getPageNumberHeight();
+        bottomMargin += pageNumHeight;
+        pageHeight -= pageNumHeight;
+    }
 
     // In order to render full width of the line, we need to add more margin, a half of the line width
     leftMargin += lineWidth / 2;
@@ -376,6 +384,7 @@ void PdfExport::exportObjectHeader(const QString& contents)
     row.cells << cell;
 
     row.type = ObjectRow::Type::SINGLE;
+    row.recalculateColumnWidths = true;
     bufferedObjectRows << row;
 }
 
@@ -545,33 +554,46 @@ void PdfExport::flushObjectPages()
     if (bufferedObjectRows.isEmpty())
         return;
 
-    newPage();
-    drawObjectTopLine();
+    int totalHeight = objectsTotalHeight;
+    int y = getContentsTop();
 
-    int totalHeight = 0;
-    int y = topMargin;
+    if (totalHeight > 0)
+    {
+        totalHeight += minRowHeight * 2; // a space between objects on one page
+        y += totalHeight;
+    }
+    else
+        newPage();
+
+    drawObjectTopLine(y);
+
     while (!bufferedObjectRows.isEmpty())
     {
         ObjectRow& row = bufferedObjectRows.first();
+
+        if (row.recalculateColumnWidths || row.cells.size() != calculatedObjectColumnWidths.size())
+            calculateObjectColumnWidths();
 
         totalHeight += row.height;
         if (row.height > pageHeight)
         {
             newPage();
-            drawObjectTopLine();
+            y = getContentsTop();
+            drawObjectTopLine(y);
             totalHeight = row.height;
-            y = topMargin;
         }
         flushObjectRow(row, y);
         y += row.height;
 
         bufferedObjectRows.removeFirst();
     }
+
+    objectsTotalHeight = totalHeight;
 }
 
-void PdfExport::drawObjectTopLine()
+void PdfExport::drawObjectTopLine(int y)
 {
-    painter->drawLine(leftMargin, topMargin, leftMargin + pageWidth, topMargin);
+    painter->drawLine(getContentsLeft(), y, getContentsRight(), y);
 }
 
 void PdfExport::drawObjectCellHeaderBackground(int x1, int y1, int x2, int y2)
@@ -586,26 +608,24 @@ void PdfExport::drawObjectCellHeaderBackground(int x1, int y1, int x2, int y2)
 
 void PdfExport::flushObjectRow(const PdfExport::ObjectRow& row, int y)
 {
-    if (row.recalculateColumnWidths || row.cells.size() != calculatedObjectColumnWidths.size())
-        calculateObjectColumnWidths();
-
     painter->save();
-    int x = leftMargin;
+    int x = getContentsLeft();
     int bottom = y + row.height;
-    int right = leftMargin + pageWidth;
+    int left = getContentsLeft();
+    int right = getContentsRight();
     switch (row.type)
     {
         case ObjectRow::Type::SINGLE:
         {
             const ObjectCell& cell = row.cells.first();
             if (cell.headerBackground)
-                drawObjectCellHeaderBackground(leftMargin, y, right, bottom);
+                drawObjectCellHeaderBackground(left, y, right, bottom);
 
-            painter->drawLine(leftMargin, y, leftMargin, bottom);
+            painter->drawLine(left, y, left, bottom);
             painter->drawLine(right, y, right, bottom);
-            painter->drawLine(leftMargin, bottom, right, bottom);
+            painter->drawLine(left, bottom, right, bottom);
 
-            flushObjectCell(cell, leftMargin, y, pageWidth, row.height);
+            flushObjectCell(cell, left, y, pageWidth, row.height);
             break;
         }
         case ObjectRow::Type::MULTI:
@@ -620,16 +640,16 @@ void PdfExport::flushObjectRow(const PdfExport::ObjectRow& row, int y)
                 x += width;
             }
 
-            x = leftMargin;
+            x = left;
             painter->drawLine(x, y, x, bottom);
             for (int w : calculatedObjectColumnWidths)
             {
                 x += w;
                 painter->drawLine(x, y, x, bottom);
             }
-            painter->drawLine(leftMargin, bottom, right, bottom);
+            painter->drawLine(left, bottom, right, bottom);
 
-            x = leftMargin;
+            x = left;
             for (int col = 0, total = calculatedObjectColumnWidths.size(); col < total; ++col)
             {
                 const ObjectCell& cell = row.cells[col];
@@ -850,6 +870,10 @@ void PdfExport::flushDataRowsPage(int columnStart, int columnEndBefore, int rows
 
     allRows += bufferedDataRows.mid(0, rowsToRender);
 
+    int left = getContentsLeft();
+    int right = getContentsRight();
+    int top = getContentsTop();
+
     // Calculating width of all columns on this page
     int totalColumnsWidth = sum(calculatedDataColumnWidths.mid(columnStart, columnEndBefore - columnStart));
 
@@ -863,7 +887,7 @@ void PdfExport::flushDataRowsPage(int columnStart, int columnEndBefore, int rows
     painter->save();
     painter->setBrush(QBrush(Qt::lightGray, Qt::SolidPattern));
     painter->setPen(Qt::NoPen);
-    painter->drawRect(QRect(x, topMargin, totalColumnsWidth, totalHeaderRowsHeight));
+    painter->drawRect(QRect(x, top, totalColumnsWidth, totalHeaderRowsHeight));
     painter->restore();
 
     // Draw rowNum background
@@ -872,56 +896,56 @@ void PdfExport::flushDataRowsPage(int columnStart, int columnEndBefore, int rows
         painter->save();
         painter->setBrush(QBrush(Qt::lightGray, Qt::SolidPattern));
         painter->setPen(Qt::NoPen);
-        painter->drawRect(QRect(leftMargin, topMargin, rowNumColumnWidth, totalRowsHeight));
+        painter->drawRect(QRect(left, top, rowNumColumnWidth, totalRowsHeight));
         painter->restore();
     }
 
     // Draw horizontal lines
-    int y = topMargin;
+    int y = top;
     int horizontalLineEnd = x + totalColumnsWidth;
-    painter->drawLine(leftMargin, y, horizontalLineEnd, y);
+    painter->drawLine(left, y, horizontalLineEnd, y);
     for (const DataRow& row : allRows)
     {
         y += row.height;
-        painter->drawLine(leftMargin, y, horizontalLineEnd, y);
+        painter->drawLine(left, y, horizontalLineEnd, y);
     }
 
     // Draw dashed horizontal lines if there are more columns on the next page and there is space on the right side
-    if (columnEndBefore < calculatedDataColumnWidths.size() && horizontalLineEnd < (leftMargin + pageWidth))
+    if (columnEndBefore < calculatedDataColumnWidths.size() && horizontalLineEnd < right)
     {
-        y = topMargin;
+        y = top;
         painter->save();
         QPen pen(Qt::lightGray, 15, Qt::DashLine);
         pen.setDashPattern(QVector<qreal>({5.0, 3.0}));
         painter->setPen(pen);
-        painter->drawLine(horizontalLineEnd, y, leftMargin + pageWidth, y);
+        painter->drawLine(horizontalLineEnd, y, right, y);
         for (const DataRow& row : allRows)
         {
             y += row.height;
-            painter->drawLine(horizontalLineEnd, y, leftMargin + pageWidth, y);
+            painter->drawLine(horizontalLineEnd, y, right, y);
         }
         painter->restore();
     }
 
     // Finding first row to start vertical lines from. It's either a COLUMNS_HEADER, or first data row, after headers.
-    int verticalLinesStart = topMargin;
+    int verticalLinesStart = top;
     if (headerRow)
         verticalLinesStart += headerRow->height;
 
     // Draw vertical lines
     x = getDataColumnsStartX();
-    painter->drawLine(leftMargin, topMargin, leftMargin, topMargin + totalRowsHeight);
+    painter->drawLine(left, top, left, top + totalRowsHeight);
     if (printRowNum)
-        painter->drawLine(x, verticalLinesStart, x, topMargin + totalRowsHeight);
+        painter->drawLine(x, verticalLinesStart, x, top + totalRowsHeight);
 
     for (int col = columnStart; col < columnEndBefore; col++)
     {
         x += calculatedDataColumnWidths[col];
-        painter->drawLine(x, (col+1 == columnEndBefore) ? topMargin : verticalLinesStart, x, topMargin + totalRowsHeight);
+        painter->drawLine(x, (col+1 == columnEndBefore) ? top : verticalLinesStart, x, top + totalRowsHeight);
     }
 
     // Draw header rows
-    y = topMargin;
+    y = top;
     if (headerRow)
         flushDataHeaderRow(*headerRow, y, totalColumnsWidth, columnStart, columnEndBefore);
 
@@ -939,7 +963,7 @@ void PdfExport::flushDataRow(const DataRow& row, int& y, int columnStart, int co
     int textWidth = 0;
     int textHeight = 0;
     int colWidth = 0;
-    int x = leftMargin;
+    int x = getContentsLeft();
 
     y += padding;
     if (printRowNum)
@@ -993,7 +1017,7 @@ void PdfExport::flushDataHeaderRow(const PdfExport::DataRow& row, int& y, int to
 {
     QTextOption opt = *textOption;
     opt.setAlignment(Qt::AlignHCenter);
-    int x = leftMargin;
+    int x = getContentsLeft();
     y += padding;
     switch (row.type)
     {
@@ -1037,6 +1061,9 @@ void PdfExport::flushDataHeaderCell(int& x, int y, const PdfExport::DataRow& row
 
 void PdfExport::renderPageNumber()
 {
+    if (!printPageNumbers)
+        return;
+
     QString page = QString::number(currentPage + 1);
 
     QTextOption opt = *textOption;
@@ -1044,12 +1071,24 @@ void PdfExport::renderPageNumber()
 
     painter->save();
     painter->setFont(*italicFont);
-    QRect rect = painter->boundingRect(QRectF(0, 0, 1, 1), page, opt).toRect();
-    int x = leftMargin + pageWidth - rect.width();
-    int y = topMargin + pageHeight- rect.height();
+    QRect rect = painter->boundingRect(QRect(0, 0, 1, 1), page, opt).toRect();
+    int x = getContentsRight() - rect.width();
+    int y = getContentsBottom(); // the bottom margin was already increased to hold page numbers
     QRect newRect(x, y, rect.width(), rect.height());
     painter->drawText(newRect, page, *textOption);
     painter->restore();
+}
+
+int PdfExport::getPageNumberHeight()
+{
+    QTextOption opt = *textOption;
+    opt.setWrapMode(QTextOption::NoWrap);
+
+    painter->save();
+    painter->setFont(*italicFont);
+    int height = painter->boundingRect(QRect(0, 0, 1, 1), "0123456789", opt).height();
+    painter->restore();
+    return height;
 }
 
 void PdfExport::exportDataHeader(const QString& contents)
@@ -1092,6 +1131,7 @@ void PdfExport::newPage()
 
     pagedWriter->newPage();
     currentPage++;
+    objectsTotalHeight = 0;
     renderPageNumber();
 }
 
@@ -1261,9 +1301,29 @@ int PdfExport::getDataColumnsWidth() const
 int PdfExport::getDataColumnsStartX() const
 {
     if (printRowNum)
-        return leftMargin + rowNumColumnWidth;
+        return getContentsLeft() + rowNumColumnWidth;
 
+    return getContentsLeft();
+}
+
+int PdfExport::getContentsLeft() const
+{
     return leftMargin;
+}
+
+int PdfExport::getContentsTop() const
+{
+    return topMargin;
+}
+
+int PdfExport::getContentsRight() const
+{
+    return getContentsLeft() + pageWidth;
+}
+
+int PdfExport::getContentsBottom() const
+{
+    return topMargin + pageHeight;
 }
 
 qreal PdfExport::mmToPoints(qreal sizeMM)

@@ -117,7 +117,7 @@ class PDFEXPORTSHARED_EXPORT PdfExport : public GenericExportPlugin
         void exportIndexPartialCondition(SqliteExpr* where);
         void checkForDataRender();
         void flushObjectPages();
-        void drawObjectTopLine();
+        void drawObjectTopLine(int y);
         void drawObjectCellHeaderBackground(int x1, int y1, int x2, int y2);
         void flushObjectRow(const ObjectRow& row, int y);
         void flushObjectCell(const ObjectCell& cell, int x, int y, int w, int h);
@@ -129,6 +129,7 @@ class PDFEXPORTSHARED_EXPORT PdfExport : public GenericExportPlugin
         void flushDataHeaderRow(const DataRow& row, int& y, int totalColsWidth, int columnStart, int columnEndBefore);
         void flushDataHeaderCell(int& x, int y, const DataRow& row, int col, QTextOption* opt);
         void renderPageNumber();
+        int getPageNumberHeight();
         void newPage();
         void calculateDataColumnWidths(const QStringList& columnNames, const QList<int>& columnDataLengths, int columnToExpand = -1);
         void calculateDataRowHeights();
@@ -140,6 +141,10 @@ class PDFEXPORTSHARED_EXPORT PdfExport : public GenericExportPlugin
         void calculateObjectRowHeights();
         int getDataColumnsWidth() const;
         int getDataColumnsStartX() const;
+        int getContentsLeft() const;
+        int getContentsTop() const;
+        int getContentsRight() const;
+        int getContentsBottom() const;
         qreal mmToPoints(qreal sizeMM);
 
         QPagedPaintDevice* pagedWriter = nullptr;
@@ -167,6 +172,7 @@ class PDFEXPORTSHARED_EXPORT PdfExport : public GenericExportPlugin
         int rowsToPrebuffer = 0;
         int currentPage = -1;
         int rowNum = 0;
+        int objectsTotalHeight = 0;
         qreal pointsPerMm = 1.0;
         int lineWidth = 15;
         static QString bulletChar;
@@ -174,6 +180,7 @@ class PDFEXPORTSHARED_EXPORT PdfExport : public GenericExportPlugin
         // Configurable fields
         int padding = 0;
         bool printRowNum = true;
+        bool printPageNumbers = true;
         int topMargin = 0;
         int rightMargin = 0;
         int leftMargin = 0;
