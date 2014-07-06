@@ -111,6 +111,10 @@ class PDFEXPORTSHARED_EXPORT PdfExport : public GenericExportPlugin
         void exportTableColumnsHeader(const QStringList& columns);
         void exportTableColumnRow(SqliteCreateTable::Column* column);
         void exportTableConstraintsRow(const QList<SqliteCreateTable::Constraint*>& constrList);
+        void exportIndexTableAndUniqueness(const QString& table, bool unique);
+        void exportIndexColumnsHeader(const QStringList& columns);
+        void exportIndexColumnRow(SqliteIndexedColumn* idxCol);
+        void exportIndexPartialCondition(SqliteExpr* where);
         void checkForDataRender();
         void flushObjectPages();
         void drawObjectTopLine();
