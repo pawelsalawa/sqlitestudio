@@ -13,6 +13,7 @@
 #include <QRegExp>
 #include <QDateTime>
 #include <QSysInfo>
+#include <QtConcurrent/QtConcurrentRun>
 
 static_qstring(DB_FILE_NAME, "settings3");
 
@@ -25,6 +26,8 @@ void ConfigImpl::init()
 {
     initDbFile();
     initTables();
+
+    connect(this, SIGNAL(sqlHistoryRefreshNeeded()), this, SLOT(refreshSqlHistory()));
 }
 
 void ConfigImpl::cleanUp()
@@ -228,47 +231,22 @@ ConfigImpl::DbGroupPtr ConfigImpl::getDbGroup(const QString& dbName)
 
 qint64 ConfigImpl::addSqlHistory(const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected)
 {
-    // TODO move this to separate thread, because counting 10000 rows might be too expensive
-    // just for the sake of adding new history entry.
     SqlQueryPtr results = db->exec("INSERT INTO sqleditor_history (dbname, date, time_spent, rows, sql) VALUES (?, ?, ?, ?, ?)",
                                     {dbName, (QDateTime::currentMSecsSinceEpoch() / 1000), timeSpentMillis, rowsAffected, sql});
 
     qint64 rowId = results->getRegularInsertRowId();
-
-    int maxHistorySize = CFG_CORE.General.SqlHistorySize.get();
-
-    results = db->exec("SELECT count(*) FROM sqleditor_history");
-    if (results->hasNext() && results->getSingleCell().toInt() > maxHistorySize)
-    {
-        results = db->exec(QString("SELECT id FROM sqleditor_history ORDER BY id DESC LIMIT 1 OFFSET %1").arg(maxHistorySize));
-        if (results->hasNext())
-        {
-            int id = results->getSingleCell().toInt();
-            if (id > 0) // it will be 0 on fail conversion, but we won't delete id <= 0 ever.
-                db->exec("DELETE FROM sqleditor_history WHERE id <= ?", {id});
-        }
-    }
-
-    if (sqlHistoryModel)
-        dynamic_cast<SqlHistoryModel*>(sqlHistoryModel)->refresh();
-
+    QtConcurrent::run(this, &ConfigImpl::asyncApplySqlHistoryLimit);
     return rowId;
 }
 
 void ConfigImpl::updateSqlHistory(qint64 id, const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected)
 {
-    db->exec("UPDATE sqleditor_history SET dbname = ?, time_spent = ?, rows = ?, sql = ? WHERE id = ?",
-            {dbName, timeSpentMillis, rowsAffected, sql, id});
-
-    if (sqlHistoryModel)
-        dynamic_cast<SqlHistoryModel*>(sqlHistoryModel)->refresh();
+    QtConcurrent::run(this, &ConfigImpl::asyncUpdateSqlHistory, id, sql, dbName, timeSpentMillis, rowsAffected);
 }
 
 void ConfigImpl::clearSqlHistory()
 {
-    db->exec("DELETE FROM sqleditor_history");
-    if (sqlHistoryModel)
-        dynamic_cast<SqlHistoryModel*>(sqlHistoryModel)->refresh();
+    QtConcurrent::run(this, &ConfigImpl::asyncClearSqlHistory);
 }
 
 QAbstractItemModel* ConfigImpl::getSqlHistoryModel()
@@ -281,23 +259,12 @@ QAbstractItemModel* ConfigImpl::getSqlHistoryModel()
 
 void ConfigImpl::addCliHistory(const QString& text)
 {
-    static_qstring(insertQuery, "INSERT INTO cli_history (text) VALUES (?)");
-
-    SqlQueryPtr results = db->exec(insertQuery, {text});
-    if (results->isError())
-        qWarning() << "Error while adding CLI history:" << results->getErrorText();
-
-    applyCliHistoryLimit();
+    QtConcurrent::run(this, &ConfigImpl::asyncAddCliHistory, text);
 }
 
 void ConfigImpl::applyCliHistoryLimit()
 {
-    static_qstring(limitQuery, "DELETE FROM cli_history WHERE id >= (SELECT id FROM cli_history ORDER BY id LIMIT 1 OFFSET %1)");
-
-    SqlQueryPtr results = db->exec(limitQuery.arg(CFG_CORE.Console.HistorySize.get()));
-    if (results->isError())
-        qWarning() << "Error while limiting CLI history:" << db->getErrorText();
-
+    QtConcurrent::run(this, &ConfigImpl::asyncApplyCliHistoryLimit);
 }
 
 void ConfigImpl::clearCliHistory()
@@ -597,4 +564,78 @@ QVariant ConfigImpl::deserializeValue(const QVariant &value)
     QDataStream stream(bytes);
     stream >> deserializedValue;
     return deserializedValue;
+}
+
+void ConfigImpl::asyncApplySqlHistoryLimit()
+{
+    int maxHistorySize = CFG_CORE.General.SqlHistorySize.get();
+
+    SqlQueryPtr results = db->exec("SELECT count(*) FROM sqleditor_history");
+    if (results->hasNext() && results->getSingleCell().toInt() > maxHistorySize)
+    {
+        results = db->exec(QString("SELECT id FROM sqleditor_history ORDER BY id DESC LIMIT 1 OFFSET %1").arg(maxHistorySize));
+        if (results->hasNext())
+        {
+            int id = results->getSingleCell().toInt();
+            if (id > 0) // it will be 0 on fail conversion, but we won't delete id <= 0 ever.
+                db->exec("DELETE FROM sqleditor_history WHERE id <= ?", {id});
+        }
+    }
+
+    emit sqlHistoryRefreshNeeded();
+}
+
+void ConfigImpl::asyncUpdateSqlHistory(qint64 id, const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected)
+{
+    db->exec("UPDATE sqleditor_history SET dbname = ?, time_spent = ?, rows = ?, sql = ? WHERE id = ?",
+            {dbName, timeSpentMillis, rowsAffected, sql, id});
+
+    emit sqlHistoryRefreshNeeded();
+}
+
+void ConfigImpl::asyncClearSqlHistory()
+{
+    db->exec("DELETE FROM sqleditor_history");
+    emit sqlHistoryRefreshNeeded();
+}
+
+void ConfigImpl::asyncAddCliHistory(const QString& text)
+{
+    static_qstring(insertQuery, "INSERT INTO cli_history (text) VALUES (?)");
+
+    SqlQueryPtr results = db->exec(insertQuery, {text});
+    if (results->isError())
+        qWarning() << "Error while adding CLI history:" << results->getErrorText();
+
+    applyCliHistoryLimit();
+}
+
+void ConfigImpl::asyncApplyCliHistoryLimit()
+{
+    static_qstring(limitQuery, "DELETE FROM cli_history WHERE id >= (SELECT id FROM cli_history ORDER BY id LIMIT 1 OFFSET %1)");
+
+    SqlQueryPtr results = db->exec(limitQuery.arg(CFG_CORE.Console.HistorySize.get()));
+    if (results->isError())
+        qWarning() << "Error while limiting CLI history:" << db->getErrorText();
+}
+
+void ConfigImpl::asyncClearCliHistory()
+{
+
+}
+
+void ConfigImpl::asyncAddDdlHistory()
+{
+
+}
+
+void ConfigImpl::asyncClearDdlHistory()
+{
+
+}
+
+void ConfigImpl::refreshSqlHistory()
+{
+    if (sqlHistoryModel)
+        dynamic_cast<SqlHistoryModel*>(sqlHistoryModel)->refresh();
 }

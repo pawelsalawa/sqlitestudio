@@ -731,9 +731,26 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          * @brief Gets list of ROWID columns.
          * @return ROWID columns.
          *
+         * Note, that this returns list of ROWID columns as entities. This means that for ROWID a single ROWID column
+         * can be actually couple of columns in the results. To count the ROWID columns offset for extracting
+         * data columns use getMetaColumnCount().
+         *
          * See Context::rowIdColumns for details.
          */
         QList<QueryExecutor::ResultRowIdColumnPtr> getRowIdResultColumns() const;
+
+        /**
+         * @brief Gives number of meta columns in the executed query.
+         * @return Number of the actual meta columns (such as ROWID columns) added to the executed query.
+         *
+         * This method should be used to find out the number of meta columns that were added to the begining
+         * of the result columns in the executed query. This way you can learn which column index use as a start
+         * for reading the actual data from the query.
+         *
+         * Meta columns are used by QueryExecutor to find more information about the query being executed
+         * (like ROWID of each row for example).
+         */
+        int getMetaColumnCount() const;
 
         /**
          * @brief Gets reasons for which editing results is forbidden.

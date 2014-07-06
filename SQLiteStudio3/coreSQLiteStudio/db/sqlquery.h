@@ -302,6 +302,18 @@ class API_EXPORT SqlQuery
         Db::Flags flags;
 };
 
+class RowIdConditionBuilder
+{
+    public:
+        void setRowId(const RowId& rowId);
+        const QHash<QString,QVariant>& getQueryArgs();
+        QString build();
+
+    private:
+        QStringList conditions;
+        QHash<QString,QVariant> queryArgs;
+};
+
 /**
  * @brief Shared pointer to query object.
  * Results are usually passed as shared pointer, so it's used as needed and deleted when no longer required.

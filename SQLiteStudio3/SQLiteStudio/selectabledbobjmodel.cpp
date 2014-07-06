@@ -34,6 +34,7 @@ Qt::ItemFlags SelectableDbObjModel::flags(const QModelIndex& index) const
     switch (item->getType())
     {
         case DbTreeItem::Type::TABLE:
+        case DbTreeItem::Type::VIRTUAL_TABLE:
         case DbTreeItem::Type::INDEX:
         case DbTreeItem::Type::TRIGGER:
         case DbTreeItem::Type::VIEW:
@@ -49,7 +50,10 @@ Qt::ItemFlags SelectableDbObjModel::flags(const QModelIndex& index) const
 
             break;
         }
-        default:
+        case DbTreeItem::Type::DIR:
+        case DbTreeItem::Type::COLUMNS:
+        case DbTreeItem::Type::COLUMN:
+        case DbTreeItem::Type::ITEM_PROTOTYPE:
             break;
     }
 
@@ -99,6 +103,7 @@ bool SelectableDbObjModel::filterAcceptsRow(int srcRow, const QModelIndex& srcPa
     switch (item->getType())
     {
         case DbTreeItem::Type::TABLE:
+        case DbTreeItem::Type::VIRTUAL_TABLE:
         case DbTreeItem::Type::INDEX:
         case DbTreeItem::Type::TRIGGER:
         case DbTreeItem::Type::VIEW:
@@ -109,7 +114,10 @@ bool SelectableDbObjModel::filterAcceptsRow(int srcRow, const QModelIndex& srcPa
         case DbTreeItem::Type::TRIGGERS:
         case DbTreeItem::Type::VIEWS:
             return item->rowCount() > 0;
-        default:
+        case DbTreeItem::Type::DIR:
+        case DbTreeItem::Type::COLUMNS:
+        case DbTreeItem::Type::COLUMN:
+        case DbTreeItem::Type::ITEM_PROTOTYPE:
             return false;
     }
     return false;
@@ -205,6 +213,7 @@ bool SelectableDbObjModel::isObject(DbTreeItem* item) const
         case DbTreeItem::Type::INDEX:
         case DbTreeItem::Type::TRIGGER:
         case DbTreeItem::Type::VIEW:
+        case DbTreeItem::Type::VIRTUAL_TABLE:
             return true;
         default:
             break;

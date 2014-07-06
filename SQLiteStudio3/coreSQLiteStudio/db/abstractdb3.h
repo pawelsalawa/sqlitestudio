@@ -783,6 +783,9 @@ void AbstractDb3<T>::Query::copyErrorToDb()
 template <class T>
 void AbstractDb3<T>::Query::setError(int code, const QString& msg)
 {
+    if (errorCode != SQLITE_OK)
+        return; // don't overwrite first error
+
     errorCode = code;
     errorMessage = msg;
     copyErrorToDb();
@@ -834,7 +837,6 @@ bool AbstractDb3<T>::Query::execInternal(const QList<QVariant>& args)
         return false;
 
     ReadWriteLocker locker(&(db->dbOperLock), query, Dialect::Sqlite3, flags.testFlag(Db::Flag::NO_LOCK));
-
     QueryWithParamCount queryWithParams = getQueryWithParamCount(query, Dialect::Sqlite3);
 
     int res;
@@ -1012,7 +1014,13 @@ SqlResultsRowPtr AbstractDb3<T>::Query::nextInternal()
         return SqlResultsRowPtr();
     }
 
-    fetchNext();
+    res = fetchNext();
+    if (res != SQLITE_OK)
+    {
+        delete row;
+        return SqlResultsRowPtr();
+    }
+
     return SqlResultsRowPtr(row);
 }
 
@@ -1048,7 +1056,10 @@ int AbstractDb3<T>::Query::fetchNext()
         rowAvailable = false;
 
     if (!rowAvailable || !stmt)
+    {
+        setError(SQLITE_MISUSE, tr("Result set expired or no row available."));
         return SQLITE_MISUSE;
+    }
 
     rowAvailable = false;
     int res;

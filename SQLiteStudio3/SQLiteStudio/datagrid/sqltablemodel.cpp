@@ -323,5 +323,6 @@ QString SqlTableModel::CommitDeleteQueryBuilder::build()
         dbAndTable += database+".";
 
     dbAndTable += table;
-    return "DELETE FROM  "+dbAndTable+" WHERE "+conditions.join(" AND ")+";";
+    QString conditions = RowIdConditionBuilder::build();
+    return "DELETE FROM  "+dbAndTable+" WHERE "+conditions+";";
 }

@@ -121,7 +121,7 @@ QHash<QString,QString> QueryExecutorAddRowIds::getNextColNames(const SelectResol
     SqliteStatement* primaryKey = createTable->getPrimaryKey();
     if (!primaryKey)
     {
-        qCritical() << "WITHOUT ROWID table, but could not find PRIMARY KEY in QueryExecutorAddRowIds::getNextColNames().";
+        qCritical() << "WITHOUT ROWID table, but could not find    // Co PRIMARY KEY in QueryExecutorAddRowIds::getNextColNames().";
         return colNames;
     }
 

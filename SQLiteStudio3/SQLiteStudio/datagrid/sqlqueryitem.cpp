@@ -165,15 +165,27 @@ QVariant SqlQueryItem::adjustVariantType(const QVariant& value)
     bool ok;
     newValue = value.toInt(&ok);
     if (ok)
-        return newValue;
+    {
+        ok = (value.toString() == newValue.toString());
+        if (ok)
+            return newValue;
+    }
 
     newValue = value.toLongLong(&ok);
     if (ok)
-        return newValue;
+    {
+        ok = (value.toString() == newValue.toString());
+        if (ok)
+            return newValue;
+    }
 
     newValue = value.toDouble(&ok);
     if (ok)
-        return newValue;
+    {
+        ok = (value.toString() == newValue.toString());
+        if (ok)
+            return newValue;
+    }
 
     return value;
 }
@@ -362,7 +374,9 @@ QString SqlQueryItem::loadFullData()
     Dialect dialect = db->getDialect();
 
     // Query
-    QString query = "SELECT %1 FROM %2 WHERE ROWID = ?";
+    RowIdConditionBuilder rowIdBuilder;
+    rowIdBuilder.setRowId(getRowId());
+    QString query = "SELECT %1 FROM %2 WHERE " + rowIdBuilder.build();
 
     // Column
     query = query.arg(wrapObjIfNeeded(col->column, dialect));
@@ -375,7 +389,7 @@ QString SqlQueryItem::loadFullData()
     query = query.arg(source);
 
     // Get the data
-    SqlQueryPtr results = db->exec(query, {getRowId()});
+    SqlQueryPtr results = db->exec(query, rowIdBuilder.getQueryArgs());
     if (results->isError())
         return results->getErrorText();
 

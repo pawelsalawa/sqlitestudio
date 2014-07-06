@@ -5,9 +5,13 @@
 #include "services/config.h"
 #include "db/sqlquery.h"
 
+class AsyncConfigHandler;
+
 class ConfigImpl : public Config
 {
     Q_OBJECT
+
+    friend class AsyncConfigHandler;
 
     public:
         virtual ~ConfigImpl();
@@ -82,12 +86,29 @@ class ConfigImpl : public Config
         bool tryInitDbFile(const QString& dbPath);
         QVariant deserializeValue(const QVariant& value);
 
+        void asyncApplySqlHistoryLimit();
+        void asyncUpdateSqlHistory(qint64 id, const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected);
+        void asyncClearSqlHistory();
+
+        void asyncAddCliHistory(const QString& text);
+        void asyncApplyCliHistoryLimit();
+        void asyncClearCliHistory();
+
+        void asyncAddDdlHistory();
+        void asyncClearDdlHistory();
+
         static Config* instance;
         Db* db = nullptr;
         QString configDir;
         QString lastQueryError;
         QAbstractItemModel* sqlHistoryModel = nullptr;
         DdlHistoryModel* ddlHistoryModel = nullptr;
+
+    signals:
+        void sqlHistoryRefreshNeeded();
+
+    private slots:
+        void refreshSqlHistory();
 };
 
 #endif // CONFIGIMPL_H

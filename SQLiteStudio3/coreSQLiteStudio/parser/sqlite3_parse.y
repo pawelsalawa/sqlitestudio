@@ -2242,12 +2242,12 @@ create_vtab ::= CREATE VIRTUAL TABLE
 %destructor vtabarglist {delete $$;}
 vtabarglist(X) ::= vtabarg(A).              {
                                                 X = new ParserStringList();
-                                                X->append(*(A));
+                                                X->append((A)->mid(1)); // mid(1) to skip the first whitespace added in vtabarg
                                                 delete A;
                                             }
 vtabarglist(X) ::= vtabarglist(L) COMMA
                     vtabarg(A).             {
-                                                L->append(*(A));
+                                                L->append((A)->mid(1)); // mid(1) to skip the first whitespace added in vtabarg
                                                 X = L;
                                                 delete A;
                                                 DONT_INHERIT_TOKENS("vtabarglist");

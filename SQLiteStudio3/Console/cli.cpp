@@ -186,12 +186,16 @@ void CLI::loadHistory()
 
 void CLI::addHistory(const QString& text)
 {
+    if (text == lastHistoryEntry)
+        return;
+
     CFG->addCliHistory(text);
 
     add_history(text.toLocal8Bit().data());
-
     if (historyLength() > CFG_CORE.Console.HistorySize.get())
         free_history_entry(remove_history(0));
+
+    lastHistoryEntry = text;
 }
 
 QString CLI::getLine() const
@@ -259,7 +263,6 @@ void CLI::doWork()
 
         if (line.startsWith(CFG_CLI.Console.CommandPrefixChar.get()))
         {
-
             cmdArgs = tokenizeArgs(line.mid(1));
             cmd = cmdArgs.takeAt(0);
             cliCommand = CliCommandFactory::getCommand(cmd);

@@ -88,7 +88,7 @@ void CliCommandSql::defineSyntax()
 
 void CliCommandSql::printResultsClassic(QueryExecutor* executor, SqlQueryPtr results)
 {
-    int rowIdColumns = executor->getRowIdResultColumns().size();
+    int metaColumns = executor->getMetaColumnCount();
     int resultColumnCount = executor->getResultColumns().size();
 
     // Columns
@@ -105,7 +105,7 @@ void CliCommandSql::printResultsClassic(QueryExecutor* executor, SqlQueryPtr res
     {
         row = results->next();
         i = 0;
-        values = row->valueList().mid(rowIdColumns);
+        values = row->valueList().mid(metaColumns);
         foreach (QVariant value, values)
         {
             qOut << getValueString(value);
@@ -124,7 +124,7 @@ void CliCommandSql::printResultsFixed(QueryExecutor* executor, SqlQueryPtr resul
 {
     QList<QueryExecutor::ResultColumnPtr> resultColumns = executor->getResultColumns();
     int resultColumnsCount = resultColumns.size();
-    int rowIdColumns = executor->getRowIdResultColumns().size();
+    int metaColumns = executor->getMetaColumnCount();
     int termCols = getCliColumns();
     int baseColWidth = termCols / resultColumns.size() - 1;
 
@@ -157,7 +157,7 @@ void CliCommandSql::printResultsFixed(QueryExecutor* executor, SqlQueryPtr resul
 
     // Data
     while (results->hasNext())
-        printColumnDataRow(widths, results->next(), rowIdColumns);
+        printColumnDataRow(widths, results->next(), metaColumns);
 
     qOut.flush();
 }
@@ -181,7 +181,7 @@ void CliCommandSql::printResultsColumns(QueryExecutor* executor, SqlQueryPtr res
 
     // Preload data (we will calculate column widths basing on real values)
     QList<SqlResultsRowPtr> allRows = results->getAll();
-    int rowIdColumns = executor->getRowIdResultColumns().size();
+    int metaColumns = executor->getMetaColumnCount();
 
     // Get widths of each column in every data row, remember the longest ones
     QList<SortedColumnWidth*> columnWidths;
@@ -199,7 +199,7 @@ void CliCommandSql::printResultsColumns(QueryExecutor* executor, SqlQueryPtr res
     {
         for (int i = 0; i < resultColumnsCount; i++)
         {
-            dataLength = row->value(rowIdColumns + i).toString().length();
+            dataLength = row->value(metaColumns + i).toString().length();
             columnWidths[i]->setMinDataWidth(dataLength);
         }
     }
@@ -232,7 +232,7 @@ void CliCommandSql::printResultsColumns(QueryExecutor* executor, SqlQueryPtr res
     printColumnHeader(finalWidths, headerNames);
 
     foreach (SqlResultsRowPtr row, allRows)
-        printColumnDataRow(finalWidths, row, rowIdColumns);
+        printColumnDataRow(finalWidths, row, metaColumns);
 
     qOut.flush();
 }
@@ -240,7 +240,7 @@ void CliCommandSql::printResultsColumns(QueryExecutor* executor, SqlQueryPtr res
 void CliCommandSql::printResultsRowByRow(QueryExecutor* executor, SqlQueryPtr results)
 {
     // Columns
-    int rowIdColumns = executor->getRowIdResultColumns().size();
+    int metaColumns = executor->getMetaColumnCount();
     int colWidth = 0;
     foreach (const QueryExecutor::ResultColumnPtr& resCol, executor->getResultColumns())
     {
@@ -265,7 +265,7 @@ void CliCommandSql::printResultsRowByRow(QueryExecutor* executor, SqlQueryPtr re
         i = 0;
         rowCntString = " " + rowCntTemplate.arg(rowCnt) + " ";
         qOut << center(rowCntString, termWidth - 1, '-') << "\n";
-        foreach (QVariant value, row->valueList().mid(rowIdColumns))
+        foreach (QVariant value, row->valueList().mid(metaColumns))
         {
             qOut << columns[i] + ": " + getValueString(value) << "\n";
             i++;
@@ -284,7 +284,7 @@ void CliCommandSql::shrinkColumns(QList<CliCommandSql::SortedColumnWidth*>& colu
     // If either the hader or the data value is huge (way more than fits into terminal),
     // then such column is shrinked in one step to a reasonable width, so it can be later
     // shrinked more precisely.
-    int maxSingleColumnWidth = (termCols - (resultColumnsCount - 1) * 2 - 1);
+    int maxSingleColumnWidth = (termCols - (resultColumnsCount - 1) * 2 );
     bool shrinkData;
     int previousTotalWidth = -1;
     while (totalWidth > termCols && totalWidth != previousTotalWidth)
