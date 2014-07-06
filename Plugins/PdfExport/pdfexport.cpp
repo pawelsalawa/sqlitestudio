@@ -78,6 +78,7 @@ bool PdfExport::exportQueryResultsRow(SqlResultsRowPtr row)
 
 bool PdfExport::afterExportQueryResults()
 {
+    flushDataPages(true);
     endDoc();
     return true;
 }
@@ -185,6 +186,7 @@ bool PdfExport::exportTableRow(SqlResultsRowPtr data)
 
 bool PdfExport::afterExportTable()
 {
+    flushDataPages(true);
     if (isTableExport())
         endDoc();
 
@@ -199,6 +201,26 @@ bool PdfExport::beforeExportDatabase(const QString& database)
 
 bool PdfExport::exportIndex(const QString& database, const QString& name, const QString& ddl, SqliteCreateIndexPtr createIndex)
 {
+    exportObjectHeader(tr("Index: %1").arg(name));
+
+    QStringList indexColumns = {tr("Indexed table"), tr("Unique index")};
+    exportIndexColumnsHeader(indexColumns);
+    exportIndexTableAndUniqueness(createIndex->table, createIndex->uniqueKw);
+
+    indexColumns = {tr("Column"), tr("Collation"), tr("Sort order")};
+    exportIndexColumnsHeader(indexColumns);
+
+    for (SqliteIndexedColumn* idxCol : createIndex->indexedColumns)
+        exportIndexColumnRow(idxCol);
+
+    if (createIndex->where)
+    {
+        indexColumns = {tr("Partial index condition")};
+        exportIndexColumnsHeader(indexColumns);
+        exportIndexPartialCondition(createIndex->where);
+    }
+
+    flushObjectPages();
     return true;
 }
 
@@ -239,7 +261,6 @@ void PdfExport::beginDoc(const QString& title)
 
 void PdfExport::endDoc()
 {
-    flushDataPages(true);
     safe_delete(painter);
     safe_delete(pagedWriter);
 }
@@ -363,7 +384,6 @@ void PdfExport::exportTableColumnsHeader(const QStringList& columns)
     ObjectRow row;
     ObjectCell cell;
 
-    int maxHeight = 0;
     for (const QString& col : columns)
     {
         cell.headerBackground = true;
@@ -371,8 +391,6 @@ void PdfExport::exportTableColumnsHeader(const QStringList& columns)
         cell.contents << col;
         cell.alignment = Qt::AlignCenter;
         row.cells << cell;
-
-        maxHeight = qMax(maxHeight, calculateRowHeight(pageWidth, col));
     }
 
     row.recalculateColumnWidths = true;
@@ -432,6 +450,65 @@ void PdfExport::exportTableConstraintsRow(const QList<SqliteCreateTable::Constra
     {
         cell.contents << "";
     }
+    row.cells << cell;
+
+    bufferedObjectRows << row;
+}
+
+void PdfExport::exportIndexTableAndUniqueness(const QString& table, bool unique)
+{
+    ObjectRow row;
+    row.type = ObjectRow::Type::MULTI;
+
+    ObjectCell cell;
+    cell.contents << table;
+    row.cells << cell;
+    cell.contents.clear();
+
+    cell.contents << (unique ? tr("Yes") : tr("No"));
+    row.cells << cell;
+    cell.contents.clear();
+
+    bufferedObjectRows << row;
+}
+
+void PdfExport::exportIndexColumnsHeader(const QStringList& columns)
+{
+    exportTableColumnsHeader(columns); // currently those methods do same things
+}
+
+void PdfExport::exportIndexColumnRow(SqliteIndexedColumn* idxCol)
+{
+    ObjectRow row;
+    row.type = ObjectRow::Type::MULTI;
+
+    ObjectCell cell;
+    cell.contents << idxCol->name;
+    row.cells << cell;
+    cell.contents.clear();
+
+    cell.contents << idxCol->collate;
+    row.cells << cell;
+    cell.contents.clear();
+
+    if (idxCol->sortOrder != SqliteSortOrder::null)
+        cell.contents << sqliteSortOrder(idxCol->sortOrder);
+    else
+        cell.contents << "";
+
+    row.cells << cell;
+    cell.contents.clear();
+
+    bufferedObjectRows << row;
+}
+
+void PdfExport::exportIndexPartialCondition(SqliteExpr* where)
+{
+    ObjectRow row;
+    row.type = ObjectRow::Type::SINGLE;
+
+    ObjectCell cell;
+    cell.contents << where->detokenize();
     row.cells << cell;
 
     bufferedObjectRows << row;
@@ -834,8 +911,8 @@ void PdfExport::flushDataRowsPage(int columnStart, int columnEndBefore, int rows
     // Draw vertical lines
     x = getDataColumnsStartX();
     painter->drawLine(leftMargin, topMargin, leftMargin, topMargin + totalRowsHeight);
-    if (rowNum)
-        painter->drawLine(x, topMargin, x, topMargin + totalRowsHeight);
+    if (printRowNum)
+        painter->drawLine(x, verticalLinesStart, x, topMargin + totalRowsHeight);
 
     for (int col = columnStart; col < columnEndBefore; col++)
     {
@@ -1138,16 +1215,17 @@ void PdfExport::calculateDataRowHeights()
     }
 
     // Calculating heights for header rows
-    painter->save();
     totalHeaderRowsHeight = 0;
     if (headerRow)
     {
+        painter->save();
         painter->setFont(*boldFont);
         // Main header can be as wide as page, so that's the rect we pass
         actualColHeight = calculateRowHeight(pageWidth, headerRow->cells.first().contents);
 
         headerRow->height = qMin(maxRowHeight, actualColHeight);
         totalHeaderRowsHeight += headerRow->height;
+        painter->restore();
     }
 
     if (columnsHeaderRow)
@@ -1164,13 +1242,12 @@ void PdfExport::calculateDataRowHeights()
         totalHeaderRowsHeight += columnsHeaderRow->height;
     }
 
-    painter->restore();
 }
 
 int PdfExport::calculateRowHeight(int maxTextWidth, const QString& contents)
 {
     // Measures height expanding due to constrained text width, line wrapping and top+bottom padding
-    return painter->boundingRect(QRectF(0, 0, (maxTextWidth - padding * 2), 1), contents, *textOption).height() + padding * 2;
+    return painter->boundingRect(QRect(0, 0, (maxTextWidth - padding * 2), 1), contents, *textOption).height() + padding * 2;
 }
 
 int PdfExport::getDataColumnsWidth() const
