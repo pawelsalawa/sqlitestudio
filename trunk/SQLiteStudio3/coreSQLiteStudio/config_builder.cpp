@@ -160,16 +160,18 @@ QVariant CfgEntry::get() const
     if (persistable)
         cfgVal = CFG->get(parent->toString(), name);
 
+    cachedValue = cfgVal;
+    cached = true;
     if (!persistable || !cfgVal.isValid())
     {
         if (defValueFunc)
-            return (*defValueFunc)();
+            cachedValue = (*defValueFunc)();
         else
-            return defValue;
+            cachedValue = defValue;
+
+        return cachedValue;
     }
 
-    cachedValue = cfgVal;
-    cached = true;
     return cfgVal;
 }
 

@@ -5,6 +5,7 @@
 #include <QObject>
 #include <QTextStream>
 #include <QStringList>
+#include <QTime>
 
 class QThread;
 class QFile;
@@ -40,6 +41,7 @@ class CLI : public QObject
 
         static CLI* instance;
 
+        QString lastHistoryEntry;
         QThread* thread;
         Db* currentDb = nullptr;
         bool executionFinished = false;

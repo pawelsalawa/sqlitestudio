@@ -2,6 +2,7 @@
 #include "cli.h"
 #include "services/dbmanager.h"
 #include "common/unused.h"
+#include "common/utils.h"
 #include <QList>
 
 void CliCommandDbList::execute()
@@ -18,17 +19,49 @@ void CliCommandDbList::execute()
     QList<Db*> dbList = DBLIST->getDbList();
     QString path;
     QString msg;
-    QString genericMsg = "%1 (%2) <%3>";
+
+    int maxNameLength = tr("Name", "CLI db name column").length();
+    int lgt = 0;
+    foreach (Db* db, dbList)
+    {
+        lgt = db->getName().length() + 1;
+        maxNameLength = qMax(maxNameLength, lgt);
+    }
+
+    int connStateLength = qMax(tr("Open", "CLI connection state column").length(), tr("Closed", "CLI connection state column").length());
+    connStateLength = qMax(connStateLength, tr("Connection", "CLI connection state column").length());
+
+    msg = pad(tr("Name", "CLI db name column"), maxNameLength, ' ');
+    msg += "|";
+    msg += pad(tr("Connection", "CLI connection state column"), connStateLength, ' ');
+    msg += "|";
+    msg += tr("Database file path");
+    println(msg);
+
+    msg = QString("-").repeated(maxNameLength);
+    msg += "+";
+    msg += QString("-").repeated(connStateLength);
+    msg += "+";
+    msg += QString("-").repeated(tr("Database file path").length() + 1);
+    println(msg);
+
+    QString name;
     foreach (Db* db, dbList)
     {
         bool open = db->isOpen();
         path = db->getPath();
-        msg = genericMsg;
-        if (db->getName() == currentName)
-        {
-            msg += " <- " + tr("Current");
-        }
-        println(msg.arg(db->getName()).arg(path).arg(open ? tr("Open") : tr("Closed")));
+        name = db->getName();
+        if (name == currentName)
+            name.prepend("*");
+        else
+            name.prepend(" ");
+
+        msg = pad(name, maxNameLength, ' ');
+        msg += "|";
+        msg += pad((open ? tr("Open") : tr("Closed")), connStateLength, ' ');
+        msg += "|";
+        msg += path;
+        println(msg);
     }
 }
 
@@ -41,7 +74,7 @@ QString CliCommandDbList::fullHelp() const
 {
     return tr(
                 "Prints list of databases registered in the SQLiteStudio. Each database on the list can be in open or closed state "
-                "and .dblist tells you that. The current working database (aka default database) is also marked on the list. "
+                "and .dblist tells you that. The current working database (aka default database) is also marked on the list with '*' at the start of its name. "
                 "See help for %1 command to learn about the default database."
                 ).arg(cmdName("use"));
 }

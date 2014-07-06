@@ -488,6 +488,9 @@ void AbstractDb2<T>::Query::copyErrorToDb()
 template <class T>
 void AbstractDb2<T>::Query::setError(int code, const QString& msg)
 {
+    if (errorCode != SQLITE_OK)
+        return; // don't overwrite first error
+
     errorCode = code;
     errorMessage = msg;
     copyErrorToDb();
@@ -695,7 +698,12 @@ SqlResultsRowPtr AbstractDb2<T>::Query::nextInternal()
     Row* row = new Row;
     row->init(colNames, nextRowValues);
 
-    fetchNext();
+    int res = fetchNext();
+    if (res != SQLITE_OK)
+    {
+        delete row;
+        return SqlResultsRowPtr();
+    }
     return SqlResultsRowPtr(row);
 }
 
@@ -762,7 +770,10 @@ int AbstractDb2<T>::Query::fetchNext()
         rowAvailable = false;
 
     if (!rowAvailable || !stmt)
+    {
+        setError(SQLITE_MISUSE, tr("Result set expired or no row available."));
         return SQLITE_MISUSE;
+    }
 
     rowAvailable = false;
 

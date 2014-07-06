@@ -118,7 +118,7 @@ class SqlQueryModel : public QStandardItemModel
         static QList<QList<SqlQueryItem*> > groupItemsByRows(const QList<SqlQueryItem*>& items);
 
     protected:
-        class CommitUpdateQueryBuilder
+        class CommitUpdateQueryBuilder : public RowIdConditionBuilder
         {
             public:
                 void clear();
@@ -126,17 +126,13 @@ class SqlQueryModel : public QStandardItemModel
                 void setDatabase(const QString& database);
                 void setTable(const QString& table);
                 void setColumn(const QString& column);
-                void setRowId(const RowId& rowId);
 
                 QString build();
-                const QHash<QString,QVariant>& getQueryArgs();
 
             protected:
                 QString database;
                 QString table;
                 QString column;
-                QStringList conditions;
-                QHash<QString,QVariant> queryArgs;
         };
 
         /**

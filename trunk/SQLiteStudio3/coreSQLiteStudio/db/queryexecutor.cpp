@@ -315,6 +315,15 @@ QList<QueryExecutor::ResultRowIdColumnPtr> QueryExecutor::getRowIdResultColumns(
     return context->rowIdColumns;
 }
 
+int QueryExecutor::getMetaColumnCount() const
+{
+    int count = 0;
+    for (ResultRowIdColumnPtr rowIdCol : context->rowIdColumns)
+        count += rowIdCol->queryExecutorAliasToColumn.size();
+
+    return count;
+}
+
 QSet<QueryExecutor::EditionForbiddenReason> QueryExecutor::getEditionForbiddenGlobalReasons() const
 {
     return context->editionForbiddenReasons;

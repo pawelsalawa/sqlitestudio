@@ -113,3 +113,30 @@ void SqlQuery::setArgs(const QHash<QString, QVariant>& args)
 {
     queryArgs = args;
 }
+
+
+void RowIdConditionBuilder::setRowId(const RowId& rowId)
+{
+    static const QString argTempalate = QStringLiteral(":rowIdArg%1");
+
+    QString arg;
+    QHashIterator<QString,QVariant> it(rowId);
+    int i = 0;
+    while (it.hasNext())
+    {
+        it.next();
+        arg = argTempalate.arg(i++);
+        queryArgs[arg] = it.value();
+        conditions << it.key() + " = " + arg;
+    }
+}
+
+const QHash<QString, QVariant>& RowIdConditionBuilder::getQueryArgs()
+{
+    return queryArgs;
+}
+
+QString RowIdConditionBuilder::build()
+{
+    return conditions.join(" AND ");
+}

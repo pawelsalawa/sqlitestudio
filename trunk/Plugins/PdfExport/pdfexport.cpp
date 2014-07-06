@@ -138,11 +138,14 @@ bool PdfExport::exportTable(const QString& database, const QString& table, const
 
 bool PdfExport::exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
+    UNUSED(columnNames);
+    UNUSED(database);
+    UNUSED(ddl);
+
     if (isTableExport())
         beginDoc(tr("Exported table: %1").arg(table));
 
     prepareTableDataExport(table, columnNames, providedData);
-
     return true;
 }
 

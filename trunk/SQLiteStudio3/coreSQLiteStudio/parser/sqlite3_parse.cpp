@@ -709,7 +709,7 @@ static const short yy_shift_ofst[] = {
  /*    20 */  1493, 1575, 1493, 1493, 1493, 1493, 1493, 1493, 1493, 1493,
  /*    30 */  1493, 1493, 1493, 1493, 1493, 1493, 1493, 1493, 1493, 1493,
  /*    40 */  1493, 1493, 1493, 1493, 1493, 1493, 1493, 1493, 1493, 1493,
- /*    50 */  1493, 1493, 1493, 1493, 1493, 1493, 1575, 1493, 1979, 1134,
+ /*    50 */  1493, 1493, 1493, 1493, 1493, 1493, 1493, 1493, 1979, 1134,
  /*    60 */   181, 1979, 1948, 1948, 1948, 1948, 1948,  734,  734,  133,
  /*    70 */   277,    4, 1485, 1417,  825, 1272, 1440, 1436, 1426, 1253,
  /*    80 */  1364,  749,  574, 1955, 1955, 1976, 1504, 1955, 1966, 1948,
@@ -3992,7 +3992,6 @@ static void yy_reduce(
                                             }
         break;
       case 238: /* inscollist ::= nm */
-      case 400: /* vtabarglist ::= vtabarg */ yytestcase(yyruleno==400);
 {
                                                 yygotominor.yy445 = new ParserStringList();
                                                 yygotominor.yy445->append(*(yymsp[0].minor.yy211));
@@ -4744,9 +4743,16 @@ static void yy_reduce(
                                                 objectForTokens = yygotominor.yy399;
                                             }
         break;
+      case 400: /* vtabarglist ::= vtabarg */
+{
+                                                yygotominor.yy445 = new ParserStringList();
+                                                yygotominor.yy445->append((yymsp[0].minor.yy211)->mid(1)); // mid(1) to skip the first whitespace added in vtabarg
+                                                delete yymsp[0].minor.yy211;
+                                            }
+        break;
       case 401: /* vtabarglist ::= vtabarglist COMMA vtabarg */
 {
-                                                yymsp[-2].minor.yy445->append(*(yymsp[0].minor.yy211));
+                                                yymsp[-2].minor.yy445->append((yymsp[0].minor.yy211)->mid(1)); // mid(1) to skip the first whitespace added in vtabarg
                                                 yygotominor.yy445 = yymsp[-2].minor.yy445;
                                                 delete yymsp[0].minor.yy211;
                                                 DONT_INHERIT_TOKENS("vtabarglist");

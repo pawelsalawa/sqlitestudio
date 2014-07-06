@@ -1295,8 +1295,6 @@ void SqlQueryModel::CommitUpdateQueryBuilder::clear()
     database.clear();
     table.clear();
     column.clear();
-    queryArgs.clear();
-    conditions.clear();
 }
 
 void SqlQueryModel::CommitUpdateQueryBuilder::setDatabase(const QString& database)
@@ -1314,22 +1312,6 @@ void SqlQueryModel::CommitUpdateQueryBuilder::setColumn(const QString& column)
     this->column = column;
 }
 
-void SqlQueryModel::CommitUpdateQueryBuilder::setRowId(const RowId& rowId)
-{
-    static const QString argTempalate = QStringLiteral(":arg%1");
-
-    QString arg;
-    QHashIterator<QString,QVariant> it(rowId);
-    int i = 0;
-    while (it.hasNext())
-    {
-        it.next();
-        arg = argTempalate.arg(i++);
-        queryArgs[arg] = it.value();
-        conditions << it.key() + " = " + arg;
-    }
-}
-
 QString SqlQueryModel::CommitUpdateQueryBuilder::build()
 {
     QString dbAndTable;
@@ -1337,10 +1319,6 @@ QString SqlQueryModel::CommitUpdateQueryBuilder::build()
         dbAndTable += database+".";
 
     dbAndTable += table;
-    return "UPDATE "+dbAndTable+" SET "+column+" = :value WHERE "+conditions.join(" AND ")+";";
-}
-
-const QHash<QString, QVariant>&SqlQueryModel::CommitUpdateQueryBuilder::getQueryArgs()
-{
-    return queryArgs;
+    QString conditionsString = RowIdConditionBuilder::build();
+    return "UPDATE "+dbAndTable+" SET "+column+" = :value WHERE "+conditionsString+";";
 }
