@@ -879,6 +879,7 @@ void PdfExport::flushDataRowsPage(int columnStart, int columnEndBefore, int rows
 
     // Calculating width of all columns on this page
     int totalColumnsWidth = sum(calculatedDataColumnWidths.mid(columnStart, columnEndBefore - columnStart));
+    int totalColumnsWidthWithRowId = totalColumnsWidth + rowNumColumnWidth;
 
     // Calculating height of all rows
     int totalRowsHeight = 0;
@@ -950,10 +951,10 @@ void PdfExport::flushDataRowsPage(int columnStart, int columnEndBefore, int rows
     // Draw header rows
     y = top;
     if (headerRow)
-        flushDataHeaderRow(*headerRow, y, totalColumnsWidth, columnStart, columnEndBefore);
+        flushDataHeaderRow(*headerRow, y, totalColumnsWidthWithRowId, columnStart, columnEndBefore);
 
     if (columnsHeaderRow)
-        flushDataHeaderRow(*columnsHeaderRow, y, totalColumnsWidth, columnStart, columnEndBefore);
+        flushDataHeaderRow(*columnsHeaderRow, y, totalColumnsWidthWithRowId, columnStart, columnEndBefore);
 
     // Draw data
     int localRowNum = rowNum;
@@ -1161,6 +1162,7 @@ void PdfExport::calculateDataColumnWidths(const QStringList& columnNames, const 
             painter->save();
             painter->setFont(*boldFont);
             currentHeaderMinWidth = painter->boundingRect(QRectF(0, 0, 1, 1), headerRow->cells.first().contents, opt).width();
+            currentHeaderMinWidth += padding * 2;
             painter->restore();
         }
     }
@@ -1207,13 +1209,13 @@ void PdfExport::calculateDataColumnWidths(const QStringList& columnNames, const 
 
             // Make sure that columns on previous page are at least as wide as the header
             currentTotalWidth -= calculatedDataColumnWidths[i];
-            if (currentTotalWidth < currentHeaderMinWidth && i > 0)
+            if ((currentTotalWidth + rowNumColumnWidth) < currentHeaderMinWidth && i > 0)
             {
                 expandColumnIndex = 1;
                 if (columnToExpand > -1)
                     expandColumnIndex = colsForThePage - columnToExpand;
 
-                calculatedDataColumnWidths[i - expandColumnIndex] += (currentHeaderMinWidth - currentTotalWidth);
+                calculatedDataColumnWidths[i - expandColumnIndex] += (currentHeaderMinWidth - (currentTotalWidth + rowNumColumnWidth));
             }
 
             // Reset values fot next interation
@@ -1225,14 +1227,14 @@ void PdfExport::calculateDataColumnWidths(const QStringList& columnNames, const 
     if (colsForThePage > 0)
     {
         columnsPerPage << colsForThePage;
-        if (currentTotalWidth < currentHeaderMinWidth && !calculatedDataColumnWidths.isEmpty())
+        if ((currentTotalWidth + rowNumColumnWidth) < currentHeaderMinWidth && !calculatedDataColumnWidths.isEmpty())
         {
             int i = calculatedDataColumnWidths.size();
             expandColumnIndex = 1;
             if (columnToExpand > -1)
                 expandColumnIndex = colsForThePage - columnToExpand;
 
-            calculatedDataColumnWidths[i - expandColumnIndex] += (currentHeaderMinWidth - currentTotalWidth - rowNumColumnWidth);
+            calculatedDataColumnWidths[i - expandColumnIndex] += (currentHeaderMinWidth - (currentTotalWidth + rowNumColumnWidth));
         }
     }
 }
