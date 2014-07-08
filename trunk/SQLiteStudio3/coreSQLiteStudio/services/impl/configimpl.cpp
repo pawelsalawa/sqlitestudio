@@ -28,6 +28,7 @@ void ConfigImpl::init()
     initTables();
 
     connect(this, SIGNAL(sqlHistoryRefreshNeeded()), this, SLOT(refreshSqlHistory()));
+    connect(this, SIGNAL(ddlHistoryRefreshNeeded()), this, SLOT(refreshDdlHistory()));
 }
 
 void ConfigImpl::cleanUp()
@@ -183,10 +184,13 @@ ConfigImpl::CfgDbPtr ConfigImpl::getDb(const QString& dbName)
 
 void ConfigImpl::storeGroups(const QList<DbGroupPtr>& groups)
 {
+    db->begin();
     db->exec("DELETE FROM groups");
 
     foreach (const DbGroupPtr& group, groups)
         storeGroup(group);
+
+    db->commit();
 }
 
 void ConfigImpl::storeGroup(const ConfigImpl::DbGroupPtr &group, qint64 parentId)
@@ -269,11 +273,7 @@ void ConfigImpl::applyCliHistoryLimit()
 
 void ConfigImpl::clearCliHistory()
 {
-    static_qstring(clearQuery, "DELETE FROM cli_history");
-
-    SqlQueryPtr results = db->exec(clearQuery);
-    if (results->isError())
-        qWarning() << "Error while clearing CLI history:" << db->getErrorText();
+    QtConcurrent::run(this, &ConfigImpl::asyncClearCliHistory);
 }
 
 QStringList ConfigImpl::getCliHistory() const
@@ -289,25 +289,7 @@ QStringList ConfigImpl::getCliHistory() const
 
 void ConfigImpl::addDdlHistory(const QString& queries, const QString& dbName, const QString& dbFile)
 {
-    db->exec("INSERT INTO ddl_history (dbname, file, timestamp, queries) VALUES (?, ?, ?, ?)",
-                {dbName, dbFile, QDateTime::currentDateTime().toTime_t(), queries});
-
-    int maxHistorySize = CFG_CORE.General.DdlHistorySize.get();
-
-    SqlQueryPtr results = db->exec("SELECT count(*) FROM ddl_history");
-    if (results->hasNext() && results->getSingleCell().toInt() > maxHistorySize)
-    {
-        results = db->exec(QString("SELECT id FROM ddl_history ORDER BY id DESC LIMIT 1 OFFSET %1").arg(maxHistorySize), Db::Flag::NO_LOCK);
-        if (results->hasNext())
-        {
-            int id = results->getSingleCell().toInt();
-            if (id > 0) // it will be 0 on fail conversion, but we won't delete id <= 0 ever.
-                db->exec("DELETE FROM ddl_history WHERE id <= ?", {id});
-        }
-    }
-
-    if (ddlHistoryModel)
-            dynamic_cast<DdlHistoryModel*>(ddlHistoryModel)->refresh();
+    QtConcurrent::run(this, &ConfigImpl::asyncAddDdlHistory, queries, dbName, dbFile);
 }
 
 QList<ConfigImpl::DdlHistoryEntryPtr> ConfigImpl::getDdlHistoryFor(const QString& dbName, const QString& dbFile, const QDate& date)
@@ -348,9 +330,7 @@ DdlHistoryModel* ConfigImpl::getDdlHistoryModel()
 
 void ConfigImpl::clearDdlHistory()
 {
-    db->exec("DELETE FROM ddl_history");
-    if (ddlHistoryModel)
-        ddlHistoryModel->refresh();
+    QtConcurrent::run(this, &ConfigImpl::asyncClearDdlHistory);
 }
 
 void ConfigImpl::readGroupRecursively(ConfigImpl::DbGroupPtr group)
@@ -621,21 +601,56 @@ void ConfigImpl::asyncApplyCliHistoryLimit()
 
 void ConfigImpl::asyncClearCliHistory()
 {
+    static_qstring(clearQuery, "DELETE FROM cli_history");
 
+    SqlQueryPtr results = db->exec(clearQuery);
+    if (results->isError())
+        qWarning() << "Error while clearing CLI history:" << db->getErrorText();
 }
 
-void ConfigImpl::asyncAddDdlHistory()
+void ConfigImpl::asyncAddDdlHistory(const QString& queries, const QString& dbName, const QString& dbFile)
 {
+    static_qstring(insert, "INSERT INTO ddl_history (dbname, file, timestamp, queries) VALUES (?, ?, ?, ?)");
+    static_qstring(countSql, "SELECT count(*) FROM ddl_history");
+    static_qstring(idSql, "SELECT id FROM ddl_history ORDER BY id DESC LIMIT 1 OFFSET %1");
+    static_qstring(deleteSql, "DELETE FROM ddl_history WHERE id <= ?");
 
+    db->begin();
+    db->exec(insert,
+                {dbName, dbFile, QDateTime::currentDateTime().toTime_t(), queries});
+
+    int maxHistorySize = CFG_CORE.General.DdlHistorySize.get();
+
+    SqlQueryPtr results = db->exec(countSql);
+    if (results->hasNext() && results->getSingleCell().toInt() > maxHistorySize)
+    {
+        results = db->exec(QString(idSql).arg(maxHistorySize), Db::Flag::NO_LOCK);
+        if (results->hasNext())
+        {
+            int id = results->getSingleCell().toInt();
+            if (id > 0) // it will be 0 on fail conversion, but we won't delete id <= 0 ever.
+                db->exec(deleteSql, {id});
+        }
+    }
+    db->commit();
+
+    emit ddlHistoryRefreshNeeded();
 }
 
 void ConfigImpl::asyncClearDdlHistory()
 {
-
+    db->exec("DELETE FROM ddl_history");
+    emit ddlHistoryRefreshNeeded();
 }
 
 void ConfigImpl::refreshSqlHistory()
 {
     if (sqlHistoryModel)
-        dynamic_cast<SqlHistoryModel*>(sqlHistoryModel)->refresh();
+        sqlHistoryModel->refresh();
+}
+
+void ConfigImpl::refreshDdlHistory()
+{
+    if (ddlHistoryModel)
+        ddlHistoryModel->refresh();
 }

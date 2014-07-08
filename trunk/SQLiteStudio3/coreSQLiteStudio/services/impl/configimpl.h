@@ -6,6 +6,7 @@
 #include "db/sqlquery.h"
 
 class AsyncConfigHandler;
+class SqlHistoryModel;
 
 class ConfigImpl : public Config
 {
@@ -94,21 +95,23 @@ class ConfigImpl : public Config
         void asyncApplyCliHistoryLimit();
         void asyncClearCliHistory();
 
-        void asyncAddDdlHistory();
+        void asyncAddDdlHistory(const QString& queries, const QString& dbName, const QString& dbFile);
         void asyncClearDdlHistory();
 
         static Config* instance;
         Db* db = nullptr;
         QString configDir;
         QString lastQueryError;
-        QAbstractItemModel* sqlHistoryModel = nullptr;
+        SqlHistoryModel* sqlHistoryModel = nullptr;
         DdlHistoryModel* ddlHistoryModel = nullptr;
 
     signals:
         void sqlHistoryRefreshNeeded();
+        void ddlHistoryRefreshNeeded();
 
     private slots:
         void refreshSqlHistory();
+        void refreshDdlHistory();
 };
 
 #endif // CONFIGIMPL_H
