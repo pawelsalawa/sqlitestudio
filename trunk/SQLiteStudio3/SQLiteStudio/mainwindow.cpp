@@ -261,8 +261,6 @@ void MainWindow::initMenuBar()
 
 void MainWindow::saveSession(MdiWindow* currWindow)
 {
-    QTime t;
-    t.start();
     /*
      * The currWindow is passed as parameter to the method to let hide the main window before
      * saving session, because saving might take a while.
@@ -270,16 +268,12 @@ void MainWindow::saveSession(MdiWindow* currWindow)
     QHash<QString,QVariant> sessionValue;
     sessionValue["state"] = saveState();
     sessionValue["geometry"] = saveGeometry();
-    qDebug() << "Y1" << t.elapsed();
-    t.restart();
 
     QList<QVariant> windowSessions;
     foreach (MdiWindow* window, ui->mdiArea->getWindows())
         if (window->restoreSessionNextTime())
             windowSessions << window->saveSession();
 
-    qDebug() << "Y2" << t.elapsed();
-    t.restart();
     sessionValue["windowSessions"] = windowSessions;
 
     if (currWindow && currWindow->restoreSessionNextTime())
@@ -288,17 +282,10 @@ void MainWindow::saveSession(MdiWindow* currWindow)
         sessionValue["activeWindowTitle"] = title;
     }
 
-    qDebug() << "Y3" << t.elapsed();
-    t.restart();
     sessionValue["dbTree"] = dbTree->saveSession();
-    qDebug() << "Y4" << t.elapsed();
-    t.restart();
     sessionValue["style"] = currentStyle();
-    qDebug() << "Y5" << t.elapsed();
-    t.restart();
 
     CFG_UI.General.Session.set(sessionValue);
-    qDebug() << "Y6" << t.elapsed();
 }
 
 void MainWindow::restoreSession()
