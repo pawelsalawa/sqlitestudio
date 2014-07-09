@@ -1,5 +1,4 @@
 * plugin json file: sqlitestudio min/max version requirements, Qt min/max version requirements, other plugin dependencies with version specifying
-* dropping object from context menu on dbtree doesn't add drop to the ddl history (probably the same from toolbar)
 * restoring session takes most time on recreating windows and it should. Need to add widgetcover for entire app with progress bar for restoring session
 * db version converting
 * context menu for taskbar
