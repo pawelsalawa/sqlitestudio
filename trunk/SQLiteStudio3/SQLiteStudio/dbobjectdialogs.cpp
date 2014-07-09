@@ -10,6 +10,7 @@
 #include "windows/tablewindow.h"
 #include "windows/viewwindow.h"
 #include "db/sqlquery.h"
+#include "services/config.h"
 #include <QMessageBox>
 #include <QDebug>
 
@@ -204,11 +205,13 @@ bool DbObjectDialogs::dropObject(const QString& database, const QString& name)
 
     SqlQueryPtr results;
 
+    QString finalSql;
     if (dialect == Dialect::Sqlite3)
-        results = db->exec(dropSql3.arg(typeForSql, dbName, wrapObjIfNeeded(name, dialect)));
+        finalSql = dropSql3.arg(typeForSql, dbName, wrapObjIfNeeded(name, dialect));
     else
-        results = db->exec(dropSql2.arg(typeForSql, wrapObjIfNeeded(name, dialect)));
+        finalSql = dropSql2.arg(typeForSql, wrapObjIfNeeded(name, dialect));
 
+    results = db->exec(finalSql);
     if (results->isError())
     {
         notifyError(tr("Error while dropping %1: %2").arg(name).arg(results->getErrorText()));
@@ -216,6 +219,7 @@ bool DbObjectDialogs::dropObject(const QString& database, const QString& name)
         return false;
     }
 
+    CFG->addDdlHistory(finalSql, db->getName(), db->getPath());
     DBTREE->refreshSchema(db);
     return true;
 }
