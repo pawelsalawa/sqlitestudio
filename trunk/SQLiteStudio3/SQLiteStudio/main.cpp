@@ -15,7 +15,13 @@
 #include "multieditor/multieditorbool.h"
 #include "uiconfig.h"
 #include "sqlitestudio.h"
+#include "uipluginloadinghandlerimpl.h"
 #include <QApplication>
+#include <QSplashScreen>
+#include <QThread>
+
+#include <QPluginLoader>
+#include <QDebug>
 
 int main(int argc, char *argv[])
 {
@@ -24,7 +30,8 @@ int main(int argc, char *argv[])
     DbTreeItem::initMeta();
     SqlQueryModelColumn::initMeta();
     SqlQueryModel::staticInit();
-    SQLITESTUDIO->init(a.arguments());
+
+    SQLITESTUDIO->init(a.arguments(), new UiPluginLoadingHandlerImpl);
     IconManager::getInstance()->init();
     DbTree::staticInit();
     DataView::staticInit();

@@ -23,6 +23,7 @@ class DbAttacher;
 class ExportManager;
 class ImportManager;
 class PopulateManager;
+class PluginLoadingHandler;
 
 /** @file */
 
@@ -63,13 +64,18 @@ class API_EXPORT SQLiteStudio : public QObject
         /**
          * @brief Initializes SQLiteStudio object.
          * @param cmdListArguments Command line arguments.
+         * @param pluginLoadingHandler Factory for producing plugin loader.
          *
          * Initialization process involves creating of all internal objects (managers, etc.)
          * and reading necessary configuration. It also interpreted command line arguments
          * and applies them.
+         *
+         * The plugin loader factory (handler) is used to solve issue with GUI symbols visibility. while loading code being placed in the core shared library.
+         * It should be null when starting SQLiteStudio in CLI mode and not null when starting GUI client. See PluginLoadingHandler for more details on that.
+         *
          * See parseCmdLineArgs() for details on supported options.
          */
-        void init(const QStringList& cmdListArguments);
+        void init(const QStringList& cmdListArguments, PluginLoadingHandler* pluginLoadingHandler = nullptr);
 
         /**
          * @brief Gets environment variable value.

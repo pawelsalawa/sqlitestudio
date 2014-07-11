@@ -52,8 +52,10 @@ class ConfigMapper : public QObject
         CfgEntry* getBindConfigForWidget(QWidget* widget) const;
 
     private:
-        void applyConfigToWidget(QWidget *widget, const QHash<QString, CfgEntry *> &allConfigEntries, const QHash<QString, QVariant> &config);
+        void applyConfigToWidget(QWidget *widget, const QHash<QString, CfgEntry*>& allConfigEntries, const QHash<QString, QVariant> &config);
         void applyConfigToWidget(QWidget *widget, CfgEntry* cfgEntry, const QVariant& configValue);
+        void handleSpecialWidgets(QWidget *widget, const QHash<QString, CfgEntry*>& allConfigEntries);
+        void handleConfigComboBox(QWidget *widget, const QHash<QString, CfgEntry*>& allConfigEntries);
         void connectCommonNotifierToWidget(QWidget *widget, CfgEntry* key);
         bool connectCustomNotifierToWidget(QWidget *widget, CfgEntry* cfgEntry);
         void applyCommonConfigToWidget(QWidget *widget, const QVariant& value, CfgEntry* cfgEntry);
@@ -63,6 +65,7 @@ class ConfigMapper : public QObject
         void saveCommonConfigFromWidget(QWidget *widget, CfgEntry* key);
         bool saveCustomConfigFromWidget(QWidget *widget, CfgEntry* key);
         CfgEntry* getConfigEntry(QWidget* widget, const QHash<QString, CfgEntry*>& allConfigEntries);
+        CfgEntry* getEntryForProperty(QWidget* widget, const char* propertyName, const QHash<QString, CfgEntry*>& allConfigEntries);
         QHash<QString,CfgEntry*> getAllConfigEntries();
         QList<QWidget*> getAllConfigWidgets(QWidget* parent);
         bool isPersistant() const;

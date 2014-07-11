@@ -3,11 +3,28 @@
 
 #include "pdfexport_global.h"
 #include "plugins/genericexportplugin.h"
+#include "config_builder.h"
+#include <QPdfWriter>
 
 class QPagedPaintDevice;
 class QPainter;
 class QTextOption;
 class QFont;
+
+CFG_CATEGORIES(PdfExportConfig,
+    CFG_CATEGORY(PdfExport,
+        CFG_ENTRY(QString,     PageSize,         "A4")
+        CFG_ENTRY(QStringList, PageSizes,        QStringList())
+        CFG_ENTRY(int,         CustomPageSize,   0)
+        CFG_ENTRY(int,         Padding,          2)
+        CFG_ENTRY(bool,        PrintRowNum,      true)
+        CFG_ENTRY(bool,        PrintPageNumbers, true)
+        CFG_ENTRY(int,         TopMargin,        20)
+        CFG_ENTRY(int,         RightMargin,      20)
+        CFG_ENTRY(int,         BottomMargin,     20)
+        CFG_ENTRY(int,         LeftMargin,       20)
+    )
+)
 
 class PDFEXPORTSHARED_EXPORT PdfExport : public GenericExportPlugin
 {
@@ -19,6 +36,8 @@ class PDFEXPORTSHARED_EXPORT PdfExport : public GenericExportPlugin
         ExportManager::StandardConfigFlags standardOptionsToEnable() const;
         ExportManager::ExportProviderFlags getProviderFlags() const;
         void validateOptions();
+        CfgMain* getConfig();
+        QString getExportConfigFormName() const;
         QString defaultFileExtension() const;
         bool beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns,
                                       const QHash<ExportManager::ExportProviderFlag,QVariant> providedData);
@@ -108,13 +127,11 @@ class PDFEXPORTSHARED_EXPORT PdfExport : public GenericExportPlugin
         void exportDataColumnsHeader(const QStringList& columns);
         void exportDataRow(const QList<QVariant>& data);
         void exportObjectHeader(const QString& contents);
-        void exportTableColumnsHeader(const QStringList& columns);
+        void exportObjectColumnsHeader(const QStringList& columns);
         void exportTableColumnRow(SqliteCreateTable::Column* column);
         void exportTableConstraintsRow(const QList<SqliteCreateTable::Constraint*>& constrList);
-        void exportIndexTableAndUniqueness(const QString& table, bool unique);
-        void exportIndexColumnsHeader(const QStringList& columns);
-        void exportIndexColumnRow(SqliteIndexedColumn* idxCol);
-        void exportIndexPartialCondition(SqliteExpr* where);
+        void exportObjectRow(const QStringList& values);
+        void exportObjectRow(const QString& values);
         void checkForDataRender();
         void flushObjectPages();
         void drawObjectTopLine(int y);
@@ -147,6 +164,7 @@ class PDFEXPORTSHARED_EXPORT PdfExport : public GenericExportPlugin
         int getContentsBottom() const;
         qreal mmToPoints(qreal sizeMM);
 
+        CFG_LOCAL(PdfExportConfig, cfg)
         QPagedPaintDevice* pagedWriter = nullptr;
         QPainter* painter = nullptr;
         QTextOption* textOption = nullptr;

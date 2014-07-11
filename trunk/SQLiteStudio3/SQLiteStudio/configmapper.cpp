@@ -14,6 +14,8 @@
 #include <QCheckBox>
 #include <QGroupBox>
 #include <QDebug>
+#include <QStringListModel>
+#include <common/configcombobox.h>
 #include <common/configradiobutton.h>
 #include <common/fileedit.h>
 
@@ -227,6 +229,8 @@ void ConfigMapper::applyConfigToWidget(QWidget* widget, const QHash<QString, Cfg
         configEntryToWidgets.insertMulti(cfgEntry, widget);
     }
 
+    handleSpecialWidgets(widget, allConfigEntries);
+
     if (!connectCustomNotifierToWidget(widget, cfgEntry))
         connectCommonNotifierToWidget(widget, cfgEntry);
 
@@ -239,6 +243,37 @@ void ConfigMapper::applyConfigToWidget(QWidget* widget, CfgEntry* cfgEntry, cons
         return;
 
     applyCommonConfigToWidget(widget, configValue, cfgEntry);
+}
+
+void ConfigMapper::handleSpecialWidgets(QWidget* widget, const QHash<QString, CfgEntry*>& allConfigEntries)
+{
+    handleConfigComboBox(widget, allConfigEntries);
+}
+
+void ConfigMapper::handleConfigComboBox(QWidget* widget, const QHash<QString, CfgEntry*>& allConfigEntries)
+{
+    ConfigComboBox* ccb = dynamic_cast<ConfigComboBox*>(widget);
+    if (!ccb)
+        return;
+
+    CfgEntry* key = getEntryForProperty(widget, "modelName", allConfigEntries);
+    if (!key)
+        return;
+
+    QStringList list = key->get().toStringList();
+    ccb->setModel(new QStringListModel(list));
+
+    if (realTimeUpdates)
+    {
+        connect(key, &CfgEntry::changed, [ccb](const QVariant& value)
+        {
+            QString cText = ccb->currentText();
+            QStringList newList = value.toStringList();
+            ccb->setModel(new QStringListModel(newList));
+            if (newList.contains(cText))
+                ccb->setCurrentText(cText);
+        });
+    }
 }
 
 bool ConfigMapper::applyCustomConfigToWidget(CfgEntry* key, QWidget* widget, const QVariant& value)
@@ -315,11 +350,16 @@ bool ConfigMapper::saveCustomConfigFromWidget(QWidget* widget, CfgEntry* key)
 
 CfgEntry* ConfigMapper::getConfigEntry(QWidget* widget, const QHash<QString, CfgEntry*>& allConfigEntries)
 {
-    QString key = widget->property("cfg").toString();
+    return getEntryForProperty(widget, "cfg", allConfigEntries);
+}
+
+CfgEntry* ConfigMapper::getEntryForProperty(QWidget* widget, const char* propertyName, const QHash<QString, CfgEntry*>& allConfigEntries)
+{
+    QString key = widget->property(propertyName).toString();
     if (!allConfigEntries.contains(key))
     {
         qCritical() << "Config entries don't contain key" << key
-                    << "but it was requested by ConfigMapper::getConfigEntry() for widget"
+                    << "but it was requested by ConfigMapper::getEntryForProperty() for widget"
                     << widget->metaObject()->className() << "::" << widget->objectName();
         return nullptr;
     }
