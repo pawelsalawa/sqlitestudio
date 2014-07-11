@@ -1,5 +1,6 @@
+* change icon of the warning when exporting to existing file - change it to info icon, so it's no so intimidating.
 * plugin json file: sqlitestudio min/max version requirements, Qt min/max version requirements, other plugin dependencies with version specifying
-* restoring session takes most time on recreating windows and it should. Need to add widgetcover for entire app with progress bar for restoring session
+* exporting table option (checked by default) to export table related indexes and triggers
 * db version converting
 * context menu for taskbar
 * when pasting multiple sqls at once into Console, it executes each query separately using full QueryExecutor features, which makes each execution a bit slow.

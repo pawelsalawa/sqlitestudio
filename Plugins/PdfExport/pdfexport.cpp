@@ -1,8 +1,8 @@
 #include "pdfexport.h"
 #include "common/unused.h"
-#include <QTextDocument>
+#include "uiutils.h"
+#include "log.h"
 #include <QPainter>
-#include <QPdfWriter>
 #include <QFont>
 #include <QDebug>
 
@@ -45,6 +45,8 @@ ExportManager::ExportProviderFlags PdfExport::getProviderFlags() const
 
 void PdfExport::validateOptions()
 {
+    if (cfg.PdfExport.PageSizes.get().size() == 0)
+        cfg.PdfExport.PageSizes.set(getAllPageSizes());
 }
 
 QString PdfExport::defaultFileExtension() const
@@ -54,6 +56,8 @@ QString PdfExport::defaultFileExtension() const
 
 bool PdfExport::beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
+    UNUSED(query);
+
     beginDoc(tr("SQL query results"));
 
     totalRows = providedData[ExportManager::ROW_COUNT].toInt();
@@ -95,7 +99,7 @@ bool PdfExport::exportTable(const QString& database, const QString& table, const
     exportObjectHeader(tr("Table: %1").arg(table));
 
     QStringList tableDdlColumns = {tr("Column"), tr("Data type"), tr("Constraints")};
-    exportTableColumnsHeader(tableDdlColumns);
+    exportObjectColumnsHeader(tableDdlColumns);
 
     QString colDef;
     QString colType;
@@ -126,7 +130,7 @@ bool PdfExport::exportTable(const QString& database, const QString& table, const
     if (createTable->constraints.size() > 0)
     {
         QStringList tableDdlColumns = {tr("Global table constraints")};
-        exportTableColumnsHeader(tableDdlColumns);
+        exportObjectColumnsHeader(tableDdlColumns);
         exportTableConstraintsRow(createTable->constraints);
     }
 
@@ -141,6 +145,7 @@ bool PdfExport::exportVirtualTable(const QString& database, const QString& table
     UNUSED(columnNames);
     UNUSED(database);
     UNUSED(ddl);
+    UNUSED(createTable);
 
     if (isTableExport())
         beginDoc(tr("Exported table: %1").arg(table));
@@ -204,23 +209,35 @@ bool PdfExport::beforeExportDatabase(const QString& database)
 
 bool PdfExport::exportIndex(const QString& database, const QString& name, const QString& ddl, SqliteCreateIndexPtr createIndex)
 {
+    UNUSED(database);
+    UNUSED(ddl);
+
     exportObjectHeader(tr("Index: %1").arg(name));
 
     QStringList indexColumns = {tr("Indexed table"), tr("Unique index")};
-    exportIndexColumnsHeader(indexColumns);
-    exportIndexTableAndUniqueness(createIndex->table, createIndex->uniqueKw);
+    exportObjectColumnsHeader(indexColumns);
+
+    exportObjectRow({name, (createIndex->uniqueKw ? tr("Yes") : tr("No"))});
 
     indexColumns = {tr("Column"), tr("Collation"), tr("Sort order")};
-    exportIndexColumnsHeader(indexColumns);
+    exportObjectColumnsHeader(indexColumns);
 
+    QString sort;
     for (SqliteIndexedColumn* idxCol : createIndex->indexedColumns)
-        exportIndexColumnRow(idxCol);
+    {
+        if (idxCol->sortOrder != SqliteSortOrder::null)
+            sort = sqliteSortOrder(idxCol->sortOrder);
+        else
+            sort = "";
+
+        exportObjectRow({idxCol->name, idxCol->collate, sort});
+    }
 
     if (createIndex->where)
     {
         indexColumns = {tr("Partial index condition")};
-        exportIndexColumnsHeader(indexColumns);
-        exportIndexPartialCondition(createIndex->where);
+        exportObjectColumnsHeader(indexColumns);
+        exportObjectRow(createIndex->where->detokenize());
     }
 
     flushObjectPages();
@@ -229,11 +246,42 @@ bool PdfExport::exportIndex(const QString& database, const QString& name, const 
 
 bool PdfExport::exportTrigger(const QString& database, const QString& name, const QString& ddl, SqliteCreateTriggerPtr createTrigger)
 {
+    UNUSED(database);
+    UNUSED(ddl);
+
+    exportObjectHeader(tr("Trigger: %1").arg(name));
+
+    QStringList trigColumns = {tr("Property", "trigger header"), tr("Value", "trigger header")};
+    exportObjectColumnsHeader(trigColumns);
+    exportObjectRow({tr("Activation time"), SqliteCreateTrigger::time(createTrigger->eventTime)});
+
+    QString event = createTrigger->event ? SqliteCreateTrigger::Event::typeToString(createTrigger->event->type) : "";
+    exportObjectRow({tr("For action"), event});
+
+    QString cond = createTrigger->precondition ? createTrigger->precondition->detokenize() : "";
+    exportObjectRow({tr("Activation condition"), cond});
+
+    QStringList queryStrings;
+    for (SqliteQuery* q : createTrigger->queries)
+        queryStrings << q->detokenize();
+
+    exportObjectColumnsHeader({tr("Code executed")});
+    exportObjectRow(queryStrings.join("\n"));
+
+    flushObjectPages();
     return true;
 }
 
 bool PdfExport::exportView(const QString& database, const QString& name, const QString& ddl, SqliteCreateViewPtr view)
 {
+    UNUSED(database);
+    UNUSED(ddl);
+
+    exportObjectHeader(tr("View: %1").arg(name));
+    exportObjectColumnsHeader({tr("Query:")});
+    exportObjectRow(view->select->detokenize());
+
+    flushObjectPages();
     return true;
 }
 
@@ -270,7 +318,7 @@ void PdfExport::endDoc()
 
 void PdfExport::setupConfig()
 {
-    pagedWriter->setPageSize(QPdfWriter::A4);
+    pagedWriter->setPageSize(convertPageSize(cfg.PdfExport.PageSize.get()));
     pageWidth = pagedWriter->width();
     pageHeight = pagedWriter->height();
     pointsPerMm = pageWidth / pagedWriter->pageSizeMM().width();
@@ -391,7 +439,7 @@ void PdfExport::exportObjectHeader(const QString& contents)
     bufferedObjectRows << row;
 }
 
-void PdfExport::exportTableColumnsHeader(const QStringList& columns)
+void PdfExport::exportObjectColumnsHeader(const QStringList& columns)
 {
     ObjectRow row;
     ObjectCell cell;
@@ -467,60 +515,29 @@ void PdfExport::exportTableConstraintsRow(const QList<SqliteCreateTable::Constra
     bufferedObjectRows << row;
 }
 
-void PdfExport::exportIndexTableAndUniqueness(const QString& table, bool unique)
+void PdfExport::exportObjectRow(const QStringList& values)
 {
     ObjectRow row;
     row.type = ObjectRow::Type::MULTI;
 
     ObjectCell cell;
-    cell.contents << table;
-    row.cells << cell;
-    cell.contents.clear();
-
-    cell.contents << (unique ? tr("Yes") : tr("No"));
-    row.cells << cell;
-    cell.contents.clear();
-
-    bufferedObjectRows << row;
-}
-
-void PdfExport::exportIndexColumnsHeader(const QStringList& columns)
-{
-    exportTableColumnsHeader(columns); // currently those methods do same things
-}
-
-void PdfExport::exportIndexColumnRow(SqliteIndexedColumn* idxCol)
-{
-    ObjectRow row;
-    row.type = ObjectRow::Type::MULTI;
-
-    ObjectCell cell;
-    cell.contents << idxCol->name;
-    row.cells << cell;
-    cell.contents.clear();
-
-    cell.contents << idxCol->collate;
-    row.cells << cell;
-    cell.contents.clear();
-
-    if (idxCol->sortOrder != SqliteSortOrder::null)
-        cell.contents << sqliteSortOrder(idxCol->sortOrder);
-    else
-        cell.contents << "";
-
-    row.cells << cell;
-    cell.contents.clear();
+    for (const QString& value : values)
+    {
+        cell.contents << value;
+        row.cells << cell;
+        cell.contents.clear();
+    }
 
     bufferedObjectRows << row;
 }
 
-void PdfExport::exportIndexPartialCondition(SqliteExpr* where)
+void PdfExport::exportObjectRow(const QString& value)
 {
     ObjectRow row;
     row.type = ObjectRow::Type::SINGLE;
 
     ObjectCell cell;
-    cell.contents << where->detokenize();
+    cell.contents << value;
     row.cells << cell;
 
     bufferedObjectRows << row;
@@ -1334,4 +1351,14 @@ int PdfExport::getContentsBottom() const
 qreal PdfExport::mmToPoints(qreal sizeMM)
 {
     return pointsPerMm * sizeMM;
+}
+
+CfgMain* PdfExport::getConfig()
+{
+    return &cfg;
+}
+
+QString PdfExport::getExportConfigFormName() const
+{
+    return "PdfExportConfig";
 }

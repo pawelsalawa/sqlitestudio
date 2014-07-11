@@ -1,6 +1,7 @@
 #include "uiutils.h"
 #include "services/config.h"
 #include "common/widgetstateindicator.h"
+#include "common/utils.h"
 #include <QObject>
 #include <QCheckBox>
 #include <QSpinBox>
@@ -10,6 +11,13 @@
 #include <QStringList>
 #include <QSet>
 #include <QDebug>
+
+const QStringList pageSizes = {
+    "A4", "B5", "Letter", "Legal", "Executive", "A0", "A1", "A2", "A3", "A5", "A6", "A7", "A8", "A9", "B0", "B1",
+    "B10", "B2", "B3", "B4", "B6", "B7", "B8", "B9", "C5E", "Comm10E", "DLE", "Folio", "Ledger", "Tabloid", "Custom"
+};
+
+const QStringList pageSizesWithDimensions;
 
 QString getDbPath(const QString &startWith)
 {
@@ -56,4 +64,29 @@ void setValidStateWarning(QWidget* widget, const QString& warning)
 {
     INDICATOR(widget)->setMode(WidgetStateIndicator::Mode::WARNING);
     INDICATOR(widget)->setVisible(widget->isEnabled(), warning);
+}
+
+
+QString convertPageSize(QPagedPaintDevice::PageSize size)
+{
+    const int pageSizesSize = pageSizes.size();
+
+    int idx = static_cast<int>(size);
+    if (idx < 0 || idx >= pageSizesSize)
+    {
+        qDebug() << "Asked to convertPageSize() with page side enum value out of range:" << idx;
+        return QString::null;
+    }
+
+    return pageSizes[idx];
+}
+
+QPagedPaintDevice::PageSize convertPageSize(const QString& size)
+{
+    return static_cast<QPagedPaintDevice::PageSize>(indexOf(pageSizes, size, Qt::CaseInsensitive));
+}
+
+const QStringList& getAllPageSizes()
+{
+    return pageSizes;
 }

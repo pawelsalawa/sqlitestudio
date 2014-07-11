@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PdfExportConfig</class>
+ <widget class="QWidget" name="PdfExportConfig">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>281</width>
+    <height>130</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="ConfigComboBox" name="comboBox">
+     <property name="modelName" stdset="0">
+      <string>PdfExport.PageSizes</string>
+     </property>
+     <property name="cfg" stdset="0">
+      <string>PdfExport.PageSize</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ConfigComboBox</class>
+   <extends>QComboBox</extends>
+   <header>common/configcombobox.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

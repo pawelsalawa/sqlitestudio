@@ -18,3 +18,9 @@ HEADERS += pdfexport.h\
 
 OTHER_FILES += \
     pdfexport.json
+
+FORMS += \
+    pdfexport.ui
+
+RESOURCES += \
+    pdfexport.qrc

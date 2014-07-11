@@ -17,6 +17,7 @@ TARGET = SQLiteStudio
 TEMPLATE = app
 
 QMAKE_CXXFLAGS += -std=c++11 -pedantic
+QMAKE_LFLAGS += -rdynamic
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -143,7 +144,9 @@ SOURCES += main.cpp\
     uiscriptingcombo.cpp \
     uiscriptingedit.cpp \
     uicustomicon.cpp \
-    uiurlbutton.cpp
+    uiurlbutton.cpp \
+    common/configcombobox.cpp \
+    uipluginloadinghandlerimpl.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -273,7 +276,9 @@ HEADERS  += mainwindow.h \
     uiloaderpropertyhandler.h \
     uiscriptingedit.h \
     uicustomicon.h \
-    uiurlbutton.h
+    uiurlbutton.h \
+    common/configcombobox.h \
+    uipluginloadinghandlerimpl.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \

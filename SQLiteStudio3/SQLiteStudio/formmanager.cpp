@@ -4,6 +4,7 @@
 #include "sqlitestudio.h"
 #include "uiloader.h"
 #include "common/configradiobutton.h"
+#include "common/configcombobox.h"
 #include "common/fileedit.h"
 #include "common/unused.h"
 #include <QFile>
@@ -114,6 +115,7 @@ void FormManager::initUiLoader()
 {
     uiLoader = new UiLoader();
     REGISTER_WIDGET(uiLoader, ConfigRadioButton);
+    REGISTER_WIDGET(uiLoader, ConfigComboBox);
     REGISTER_WIDGET(uiLoader, FileEdit);
 }
 

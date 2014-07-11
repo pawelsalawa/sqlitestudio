@@ -6,6 +6,8 @@
 
 include($$PWD/../../SQLiteStudio3/plugins.pri)
 
+QT       -= gui
+
 TARGET = HtmlExport
 TEMPLATE = lib
 

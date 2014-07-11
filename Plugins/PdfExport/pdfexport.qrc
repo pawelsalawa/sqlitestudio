@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/forms">
+        <file>pdfexport.ui</file>
+    </qresource>
+</RCC>
