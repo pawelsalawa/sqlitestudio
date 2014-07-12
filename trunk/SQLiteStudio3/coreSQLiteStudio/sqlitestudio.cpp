@@ -173,7 +173,7 @@ SqlFormatter *SQLiteStudio::getSqlFormatter() const
     return sqlFormatter;
 }
 
-void SQLiteStudio::init(const QStringList& cmdListArguments, PluginLoadingHandler* pluginLoadingHandler)
+void SQLiteStudio::init(const QStringList& cmdListArguments)
 {
     env = new QProcessEnvironment(QProcessEnvironment::systemEnvironment());
 
@@ -199,9 +199,6 @@ void SQLiteStudio::init(const QStringList& cmdListArguments, PluginLoadingHandle
     config->init();
 
     pluginManager = new PluginManagerImpl();
-    if (pluginLoadingHandler)
-        dynamic_cast<PluginManagerImpl*>(pluginManager)->setPluginLoadingHandler(pluginLoadingHandler);
-
     dbManager = new DbManagerImpl();
 
     pluginManager->registerPluginType<GeneralPurposePlugin>(QObject::tr("General purpose", "plugin category name"));

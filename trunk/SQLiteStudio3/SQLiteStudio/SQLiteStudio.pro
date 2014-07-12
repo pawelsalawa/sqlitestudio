@@ -16,8 +16,9 @@ UI_DIR = $$UI_DIR/SQLiteStudio
 TARGET = SQLiteStudio
 TEMPLATE = app
 
+DEFINES += SQLITESTUDIO_BINARY
+
 QMAKE_CXXFLAGS += -std=c++11 -pedantic
-QMAKE_LFLAGS += -rdynamic
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -145,8 +146,7 @@ SOURCES += main.cpp\
     uiscriptingedit.cpp \
     uicustomicon.cpp \
     uiurlbutton.cpp \
-    common/configcombobox.cpp \
-    uipluginloadinghandlerimpl.cpp
+    common/configcombobox.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -278,7 +278,7 @@ HEADERS  += mainwindow.h \
     uicustomicon.h \
     uiurlbutton.h \
     common/configcombobox.h \
-    uipluginloadinghandlerimpl.h
+    uiapiexport.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \
@@ -319,12 +319,17 @@ FORMS    += mainwindow.ui \
     dialogs/populatedialog.ui \
     dialogs/populateconfigdialog.ui
 
+RESOURCES += \
+    icons.qrc
+
 LIBS += -lcoreSQLiteStudio
 
 unix: {
+    QMAKE_LFLAGS += -rdynamic
     target.path = /usr/bin
     INSTALLS += target
 }
 
-RESOURCES += \
-    icons.qrc
+win32: {
+    QMAKE_LFLAGS += -Wl,--export-all-symbols,--out-implib,$$DESTDIR/libSQLiteStudio.a
+}

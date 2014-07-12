@@ -302,7 +302,7 @@ class API_EXPORT SqlQuery
         Db::Flags flags;
 };
 
-class RowIdConditionBuilder
+class API_EXPORT RowIdConditionBuilder
 {
     public:
         void setRowId(const RowId& rowId);
