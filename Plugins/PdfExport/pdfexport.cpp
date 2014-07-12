@@ -45,8 +45,6 @@ ExportManager::ExportProviderFlags PdfExport::getProviderFlags() const
 
 void PdfExport::validateOptions()
 {
-    if (cfg.PdfExport.PageSizes.get().size() == 0)
-        cfg.PdfExport.PageSizes.set(getAllPageSizes());
 }
 
 QString PdfExport::defaultFileExtension() const
@@ -183,6 +181,12 @@ QList<int> PdfExport::getColumnDataLengths(int columnCount, const QHash<ExportMa
     while (columnDataLengths.size() < columnCount)
         columnDataLengths << maxColWidth;
 
+    for (int& val : columnDataLengths)
+    {
+        if (val > cellDataLimit)
+            val = cellDataLimit;
+    }
+
     return columnDataLengths;
 }
 
@@ -300,8 +304,6 @@ void PdfExport::beginDoc(const QString& title)
 {
     safe_delete(painter);
     safe_delete(pagedWriter);
-    safe_delete(stdFont);
-    safe_delete(boldFont);
     pagedWriter = createPaintDevice(title);
     painter = new QPainter(pagedWriter);
     painter->setBrush(Qt::NoBrush);
@@ -323,27 +325,31 @@ void PdfExport::setupConfig()
     pageHeight = pagedWriter->height();
     pointsPerMm = pageWidth / pagedWriter->pageSizeMM().width();
 
-    stdFont = new QFont(painter->font());
-    stdFont->setPointSize(10);
-    boldFont = new QFont(*stdFont);
-    boldFont->setBold(true);
-    italicFont = new QFont(*stdFont);
-    italicFont->setItalic(true);
-    painter->setFont(*stdFont);
+    stdFont = cfg.PdfExport.Font.get();
+    stdFont.setPointSize(cfg.PdfExport.FontSize.get());
+    boldFont = stdFont;
+    boldFont.setBold(true);
+    italicFont = stdFont;
+    italicFont.setItalic(true);
+    painter->setFont(stdFont);
 
-    topMargin = mmToPoints(20);
-    rightMargin = mmToPoints(20);
-    leftMargin = mmToPoints(20);
-    bottomMargin = mmToPoints(20);
+    topMargin = mmToPoints(cfg.PdfExport.TopMargin.get());
+    rightMargin = mmToPoints(cfg.PdfExport.RightMargin.get());
+    leftMargin = mmToPoints(cfg.PdfExport.LeftMargin.get());
+    bottomMargin = mmToPoints(cfg.PdfExport.BottomMargin.get());
     updateMargins();
 
     maxColWidth = pageWidth / 5;
-    padding = 50;
+    padding = mmToPoints(cfg.PdfExport.Padding.get());
 
     QRectF rect = painter->boundingRect(QRectF(padding, padding, pageWidth - 2 * padding, 1), "X", *textOption);
     minRowHeight = rect.height() + padding * 2;
     maxRowHeight = qMax((int)(pageHeight * 0.225), minRowHeight);
     rowsToPrebuffer = (int)ceil((double)pageHeight / minRowHeight);
+
+    cellDataLimit = cfg.PdfExport.MaxCellBytes.get();
+    printRowNum = cfg.PdfExport.PrintRowNum.get();
+    printPageNumbers = cfg.PdfExport.PrintPageNumbers.get();
 
     objectsTotalHeight = 0;
     currentPage = -1;
@@ -585,8 +591,6 @@ void PdfExport::flushObjectPages()
     else
         newPage();
 
-    drawObjectTopLine(y);
-
     while (!bufferedObjectRows.isEmpty())
     {
         ObjectRow& row = bufferedObjectRows.first();
@@ -599,10 +603,10 @@ void PdfExport::flushObjectPages()
         {
             newPage();
             y = getContentsTop();
-            drawObjectTopLine(y);
             totalHeight = row.height;
         }
         flushObjectRow(row, y);
+
         y += row.height;
 
         bufferedObjectRows.removeFirst();
@@ -618,11 +622,10 @@ void PdfExport::drawObjectTopLine(int y)
 
 void PdfExport::drawObjectCellHeaderBackground(int x1, int y1, int x2, int y2)
 {
-    int halfLine = lineWidth / 2;
     painter->save();
-    painter->setBrush(QBrush(Qt::lightGray, Qt::SolidPattern));
+    painter->setBrush(QBrush(cfg.PdfExport.HeaderBgColor.get(), Qt::SolidPattern));
     painter->setPen(Qt::NoPen);
-    painter->drawRect(x1 + halfLine, y1 + halfLine, x2 - x1 - lineWidth, y2 - y1 - lineWidth);
+    painter->drawRect(x1, y1, x2 - x1, y2 - y1);
     painter->restore();
 }
 
@@ -631,6 +634,7 @@ void PdfExport::flushObjectRow(const PdfExport::ObjectRow& row, int y)
     painter->save();
     int x = getContentsLeft();
     int bottom = y + row.height;
+    int top = y;
     int left = getContentsLeft();
     int right = getContentsRight();
     switch (row.type)
@@ -643,6 +647,7 @@ void PdfExport::flushObjectRow(const PdfExport::ObjectRow& row, int y)
 
             painter->drawLine(left, y, left, bottom);
             painter->drawLine(right, y, right, bottom);
+            painter->drawLine(left, top, right, top);
             painter->drawLine(left, bottom, right, bottom);
 
             flushObjectCell(cell, left, y, pageWidth, row.height);
@@ -667,6 +672,7 @@ void PdfExport::flushObjectRow(const PdfExport::ObjectRow& row, int y)
                 x += w;
                 painter->drawLine(x, y, x, bottom);
             }
+            painter->drawLine(left, top, right, top);
             painter->drawLine(left, bottom, right, bottom);
 
             x = left;
@@ -689,9 +695,9 @@ void PdfExport::flushObjectCell(const PdfExport::ObjectCell& cell, int x, int y,
     opt.setAlignment(cell.alignment);
 
     if (cell.bold)
-        painter->setFont(*boldFont);
+        painter->setFont(boldFont);
     else if (cell.italic)
-        painter->setFont(*italicFont);
+        painter->setFont(italicFont);
 
     switch (cell.type)
     {
@@ -906,7 +912,7 @@ void PdfExport::flushDataRowsPage(int columnStart, int columnEndBefore, int rows
     // Draw header background
     int x = getDataColumnsStartX();
     painter->save();
-    painter->setBrush(QBrush(Qt::lightGray, Qt::SolidPattern));
+    painter->setBrush(QBrush(cfg.PdfExport.HeaderBgColor.get(), Qt::SolidPattern));
     painter->setPen(Qt::NoPen);
     painter->drawRect(QRect(x, top, totalColumnsWidth, totalHeaderRowsHeight));
     painter->restore();
@@ -915,7 +921,7 @@ void PdfExport::flushDataRowsPage(int columnStart, int columnEndBefore, int rows
     if (printRowNum)
     {
         painter->save();
-        painter->setBrush(QBrush(Qt::lightGray, Qt::SolidPattern));
+        painter->setBrush(QBrush(cfg.PdfExport.HeaderBgColor.get(), Qt::SolidPattern));
         painter->setPen(Qt::NoPen);
         painter->drawRect(QRect(left, top, rowNumColumnWidth, totalRowsHeight));
         painter->restore();
@@ -1021,17 +1027,17 @@ void PdfExport::flushDataCell(const QRect& rect, const PdfExport::DataCell& cell
     painter->save();
     if (cell.isNull)
     {
-        painter->setPen(Qt::gray);
-        painter->setFont(*italicFont);
+        painter->setPen(cfg.PdfExport.NullValueColor.get());
+        painter->setFont(italicFont);
     }
 
-    painter->drawText(rect, cell.contents, opt);
+    painter->drawText(rect, cell.contents.left(cellDataLimit), opt);
     painter->restore();
 }
 
 void PdfExport::flushDataCell(const QRect& rect, const QString& contents, QTextOption* opt)
 {
-    painter->drawText(rect, contents, *opt);
+    painter->drawText(rect, contents.left(cellDataLimit), *opt);
 }
 
 void PdfExport::flushDataHeaderRow(const PdfExport::DataRow& row, int& y, int totalColsWidth, int columnStart, int columnEndBefore)
@@ -1046,7 +1052,7 @@ void PdfExport::flushDataHeaderRow(const PdfExport::DataRow& row, int& y, int to
         {
             x += padding;
             painter->save();
-            painter->setFont(*boldFont);
+            painter->setFont(boldFont);
             painter->drawText(QRect(x, y, totalColsWidth - 2 * padding, row.height - 2 * padding), row.cells.first().contents, opt);
             painter->restore();
             break;
@@ -1091,7 +1097,7 @@ void PdfExport::renderPageNumber()
     opt.setWrapMode(QTextOption::NoWrap);
 
     painter->save();
-    painter->setFont(*italicFont);
+    painter->setFont(italicFont);
     QRect rect = painter->boundingRect(QRect(0, 0, 1, 1), page, opt).toRect();
     int x = getContentsRight() - rect.width();
     int y = getContentsBottom(); // the bottom margin was already increased to hold page numbers
@@ -1106,7 +1112,7 @@ int PdfExport::getPageNumberHeight()
     opt.setWrapMode(QTextOption::NoWrap);
 
     painter->save();
-    painter->setFont(*italicFont);
+    painter->setFont(italicFont);
     int height = painter->boundingRect(QRect(0, 0, 1, 1), "0123456789", opt).height();
     painter->restore();
     return height;
@@ -1177,7 +1183,7 @@ void PdfExport::calculateDataColumnWidths(const QStringList& columnNames, const 
         if (headerRow)
         {
             painter->save();
-            painter->setFont(*boldFont);
+            painter->setFont(boldFont);
             currentHeaderMinWidth = painter->boundingRect(QRectF(0, 0, 1, 1), headerRow->cells.first().contents, opt).width();
             currentHeaderMinWidth += padding * 2;
             painter->restore();
@@ -1281,7 +1287,7 @@ void PdfExport::calculateDataRowHeights()
     if (headerRow)
     {
         painter->save();
-        painter->setFont(*boldFont);
+        painter->setFont(boldFont);
         // Main header can be as wide as page, so that's the rect we pass
         actualColHeight = calculateRowHeight(pageWidth, headerRow->cells.first().contents);
 
@@ -1361,4 +1367,15 @@ CfgMain* PdfExport::getConfig()
 QString PdfExport::getExportConfigFormName() const
 {
     return "PdfExportConfig";
+}
+
+QFont Cfg::getPdfExportDefaultFont()
+{
+    QPainter p;
+    return p.font();
+}
+
+QStringList Cfg::getPdfPageSizes()
+{
+    return getAllPageSizes();
 }

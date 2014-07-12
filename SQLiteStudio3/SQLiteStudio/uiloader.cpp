@@ -5,10 +5,22 @@
 #include "uiscriptingedit.h"
 #include "uicustomicon.h"
 #include "uiurlbutton.h"
+#include "common/configradiobutton.h"
+#include "common/configcombobox.h"
+#include "common/fileedit.h"
+#include "common/colorbutton.h"
 #include <QComboBox>
 #include <QDebug>
 #include <QMetaProperty>
 #include <QXmlSimpleReader>
+
+#define REGISTER_WIDGET(Class) \
+    registerWidgetClass(#Class, [](QWidget* parent, const QString& name) -> QWidget*\
+    {\
+        Class* w = new Class(parent);\
+        w->setObjectName(name);\
+        return w;\
+    })
 
 UiLoader::UiLoader(QObject *parent) :
     QUiLoader(parent)
@@ -17,6 +29,11 @@ UiLoader::UiLoader(QObject *parent) :
     registerPropertyHandler(new UiScriptingEdit());
     registerPropertyHandler(new UiCustomIcon());
     registerPropertyHandler(new UiUrlButton());
+
+    REGISTER_WIDGET(ConfigRadioButton);
+    REGISTER_WIDGET(ConfigComboBox);
+    REGISTER_WIDGET(FileEdit);
+    REGISTER_WIDGET(ColorButton);
 }
 
 QWidget* UiLoader::createWidget(const QString& className, QWidget* parent, const QString& name)

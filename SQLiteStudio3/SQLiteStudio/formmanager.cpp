@@ -3,9 +3,6 @@
 #include "services/pluginmanager.h"
 #include "sqlitestudio.h"
 #include "uiloader.h"
-#include "common/configradiobutton.h"
-#include "common/configcombobox.h"
-#include "common/fileedit.h"
 #include "common/unused.h"
 #include <QFile>
 #include <QDir>
@@ -86,7 +83,7 @@ void FormManager::pluginsAboutToMassUnload()
 
 void FormManager::init()
 {
-    initUiLoader();
+    uiLoader = new UiLoader();
 
     QStringList dirs;
     dirs += qApp->applicationDirPath() + "/forms";
@@ -109,14 +106,6 @@ void FormManager::init()
     connect(PLUGINS, SIGNAL(loaded(Plugin*,PluginType*)), this, SLOT(rescanResources(Plugin*,PluginType*)));
     connect(PLUGINS, SIGNAL(unloaded(QString,PluginType*)), this, SLOT(rescanResources(QString)));
     connect(PLUGINS, SIGNAL(aboutToQuit()), this, SLOT(pluginsAboutToMassUnload()));
-}
-
-void FormManager::initUiLoader()
-{
-    uiLoader = new UiLoader();
-    REGISTER_WIDGET(uiLoader, ConfigRadioButton);
-    REGISTER_WIDGET(uiLoader, ConfigComboBox);
-    REGISTER_WIDGET(uiLoader, FileEdit);
 }
 
 void FormManager::loadRecurently(const QString& path, const QString& prefix)
