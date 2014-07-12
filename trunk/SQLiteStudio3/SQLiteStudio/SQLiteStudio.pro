@@ -16,8 +16,6 @@ UI_DIR = $$UI_DIR/SQLiteStudio
 TARGET = SQLiteStudio
 TEMPLATE = app
 
-DEFINES += SQLITESTUDIO_BINARY
-
 QMAKE_CXXFLAGS += -std=c++11 -pedantic
 
 SOURCES += main.cpp\
@@ -277,8 +275,7 @@ HEADERS  += mainwindow.h \
     uiscriptingedit.h \
     uicustomicon.h \
     uiurlbutton.h \
-    common/configcombobox.h \
-    uiapiexport.h
+    common/configcombobox.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \
