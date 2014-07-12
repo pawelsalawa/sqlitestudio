@@ -6,14 +6,6 @@
 #include <QStack>
 #include <QXmlDefaultHandler>
 
-#define REGISTER_WIDGET(Loader, Class) \
-    Loader->registerWidgetClass(#Class, [](QWidget* parent, const QString& name) -> QWidget*\
-    {\
-        Class* w = new Class(parent);\
-        w->setObjectName(name);\
-        return w;\
-    })
-
 class UiLoaderPropertyHandler;
 
 class UiLoader : public QUiLoader

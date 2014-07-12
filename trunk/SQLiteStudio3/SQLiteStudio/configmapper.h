@@ -7,6 +7,7 @@
 class CfgMain;
 class CfgEntry;
 class CustomConfigWidgetPlugin;
+class ConfigComboBox;
 
 class ConfigMapper : public QObject
 {
@@ -75,11 +76,13 @@ class ConfigMapper : public QObject
         bool realTimeUpdates = false;
         QHash<QWidget*,CfgEntry*> widgetToConfigEntry;
         QHash<CfgEntry*,QWidget*> configEntryToWidgets;
+        QHash<CfgEntry*,QWidget*> specialConfigEntryToWidgets;
         bool updatingEntry = false;
 
     private slots:
         void handleModified();
         void entryChanged(const QVariant& newValue);
+        void updateConfigComboModel(const QVariant& value);
 
     signals:
         void modified();

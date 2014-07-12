@@ -15,6 +15,7 @@
 #include <QGroupBox>
 #include <QDebug>
 #include <QStringListModel>
+#include <QFontComboBox>
 #include <common/configcombobox.h>
 #include <common/configradiobutton.h>
 #include <common/fileedit.h>
@@ -82,6 +83,7 @@ void ConfigMapper::applyCommonConfigToWidget(QWidget *widget, const QVariant &va
     APPLY_CFG(widget, value, QTextEdit, setPlainText, QString);
     APPLY_CFG(widget, value, QPlainTextEdit, setPlainText, QString);
     APPLY_CFG(widget, value, QSpinBox, setValue, int);
+    APPLY_CFG(widget, value, QFontComboBox, setCurrentFont, QFont);
     APPLY_CFG(widget, value, FontEdit, setFont, QFont);
     APPLY_CFG(widget, value, ColorButton, setColor, QColor);
     APPLY_CFG(widget, value, FileEdit, setFile, QString);
@@ -118,6 +120,7 @@ void ConfigMapper::connectCommonNotifierToWidget(QWidget* widget, CfgEntry* key)
     APPLY_NOTIFIER(widget, QTextEdit, SIGNAL(textChanged()));
     APPLY_NOTIFIER(widget, QPlainTextEdit, SIGNAL(textChanged()));
     APPLY_NOTIFIER(widget, QSpinBox, SIGNAL(valueChanged(QString)));
+    APPLY_NOTIFIER(widget, QFontComboBox, SIGNAL(currentFontChanged(QFont)));
     APPLY_NOTIFIER(widget, FontEdit, SIGNAL(fontChanged(QFont)));
     APPLY_NOTIFIER(widget, FileEdit, SIGNAL(fileChanged(QString)));
     APPLY_NOTIFIER(widget, ColorButton, SIGNAL(colorChanged(QColor)));
@@ -142,6 +145,7 @@ void ConfigMapper::saveCommonConfigFromWidget(QWidget* widget, CfgEntry* key)
     SAVE_CFG(widget, key, QTextEdit, toPlainText);
     SAVE_CFG(widget, key, QPlainTextEdit, toPlainText);
     SAVE_CFG(widget, key, QSpinBox, value);
+    SAVE_CFG(widget, key, QFontComboBox, currentFont);
     SAVE_CFG(widget, key, FontEdit, getFont);
     SAVE_CFG(widget, key, FileEdit, getFile);
     SAVE_CFG(widget, key, ColorButton, getColor);
@@ -265,14 +269,8 @@ void ConfigMapper::handleConfigComboBox(QWidget* widget, const QHash<QString, Cf
 
     if (realTimeUpdates)
     {
-        connect(key, &CfgEntry::changed, [ccb](const QVariant& value)
-        {
-            QString cText = ccb->currentText();
-            QStringList newList = value.toStringList();
-            ccb->setModel(new QStringListModel(newList));
-            if (newList.contains(cText))
-                ccb->setCurrentText(cText);
-        });
+        specialConfigEntryToWidgets.insertMulti(key, widget);
+        connect(key, &CfgEntry::changed, this, &ConfigMapper::updateConfigComboModel);
     }
 }
 
@@ -461,6 +459,24 @@ void ConfigMapper::entryChanged(const QVariant& newValue)
     updatingEntry = false;
 }
 
+void ConfigMapper::updateConfigComboModel(const QVariant& value)
+{
+    CfgEntry* key = dynamic_cast<CfgEntry*>(sender());
+    if (!specialConfigEntryToWidgets.contains(key))
+        return;
+
+    QWidget* w = specialConfigEntryToWidgets[key];
+    ConfigComboBox* ccb = dynamic_cast<ConfigComboBox*>(w);
+    if (!w)
+        return;
+
+    QString cText = ccb->currentText();
+    QStringList newList = value.toStringList();
+    ccb->setModel(new QStringListModel(newList));
+    if (newList.contains(cText))
+        ccb->setCurrentText(cText);
+}
+
 void ConfigMapper::bindToConfig(QWidget* topLevelWidget)
 {
     // Check if any CfgMain is persistable - it's forbidden for binging.
@@ -481,8 +497,15 @@ void ConfigMapper::bindToConfig(QWidget* topLevelWidget)
 
 void ConfigMapper::unbindFromConfig()
 {
+    for (CfgEntry* cfgEntry : configEntryToWidgets.keys())
+        disconnect(cfgEntry, SIGNAL(changed(QVariant)), this, SLOT(entryChanged(QVariant)));
+
+    for (CfgEntry* cfgEntry : specialConfigEntryToWidgets.keys())
+        disconnect(cfgEntry, SIGNAL(changed(QVariant)), this, SLOT(entryChanged(QVariant)));
+
     configEntryToWidgets.clear();
     widgetToConfigEntry.clear();
+    specialConfigEntryToWidgets.clear();
     realTimeUpdates = false;
 }
 

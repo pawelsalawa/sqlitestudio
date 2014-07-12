@@ -21,7 +21,6 @@ class FormManager : public QObject
 
     private:
         void init();
-        void initUiLoader();
         void loadRecurently(const QString& path, const QString& prefix = "");
         QString getWidgetName(const QString& path);
         QWidget* createWidgetByFullPath(const QString& path);

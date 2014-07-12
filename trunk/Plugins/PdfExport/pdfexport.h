@@ -5,24 +5,36 @@
 #include "plugins/genericexportplugin.h"
 #include "config_builder.h"
 #include <QPdfWriter>
+#include <QFont>
+#include <QColor>
 
 class QPagedPaintDevice;
 class QPainter;
 class QTextOption;
 class QFont;
 
+namespace Cfg
+{
+    QFont getPdfExportDefaultFont();
+    QStringList getPdfPageSizes();
+}
+
 CFG_CATEGORIES(PdfExportConfig,
     CFG_CATEGORY(PdfExport,
         CFG_ENTRY(QString,     PageSize,         "A4")
-        CFG_ENTRY(QStringList, PageSizes,        QStringList())
-        CFG_ENTRY(int,         CustomPageSize,   0)
-        CFG_ENTRY(int,         Padding,          2)
+        CFG_ENTRY(QStringList, PageSizes,        Cfg::getPdfPageSizes())
+        CFG_ENTRY(int,         Padding,          1)
         CFG_ENTRY(bool,        PrintRowNum,      true)
         CFG_ENTRY(bool,        PrintPageNumbers, true)
         CFG_ENTRY(int,         TopMargin,        20)
         CFG_ENTRY(int,         RightMargin,      20)
         CFG_ENTRY(int,         BottomMargin,     20)
         CFG_ENTRY(int,         LeftMargin,       20)
+        CFG_ENTRY(int,         MaxCellBytes,     100)
+        CFG_ENTRY(QFont,       Font,             Cfg::getPdfExportDefaultFont())
+        CFG_ENTRY(int,         FontSize,         10)
+        CFG_ENTRY(QColor,      HeaderBgColor,    QColor(Qt::lightGray))
+        CFG_ENTRY(QColor,      NullValueColor,   QColor(Qt::gray))
     )
 )
 
@@ -168,9 +180,9 @@ class PDFEXPORTSHARED_EXPORT PdfExport : public GenericExportPlugin
         QPagedPaintDevice* pagedWriter = nullptr;
         QPainter* painter = nullptr;
         QTextOption* textOption = nullptr;
-        QFont* stdFont = nullptr;
-        QFont* boldFont = nullptr;
-        QFont* italicFont = nullptr;
+        QFont stdFont;
+        QFont boldFont;
+        QFont italicFont;
         int totalRows = 0;
         QList<ObjectRow> bufferedObjectRows; // object rows (for exporting ddl of all object)
         QList<DataRow> bufferedDataRows; // data rows
@@ -185,14 +197,16 @@ class PDFEXPORTSHARED_EXPORT PdfExport : public GenericExportPlugin
         int pageWidth = 0;
         int pageHeight = 0;
         int minRowHeight = 0;
-        int maxRowHeight = 0;
-        int maxColWidth = 0;
         int rowsToPrebuffer = 0;
         int currentPage = -1;
         int rowNum = 0;
         int objectsTotalHeight = 0;
         qreal pointsPerMm = 1.0;
         int lineWidth = 15;
+        int maxColWidth = 0;
+        int maxRowHeight = 0;
+        int cellDataLimit = 100;
+
         static QString bulletChar;
 
         // Configurable fields

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>281</width>
-    <height>130</height>
+    <width>332</width>
+    <height>492</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,13 +15,273 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="ConfigComboBox" name="comboBox">
-     <property name="modelName" stdset="0">
-      <string>PdfExport.PageSizes</string>
+    <widget class="QGroupBox" name="sizeAndLayoutGroup">
+     <property name="title">
+      <string>Size and layout</string>
      </property>
-     <property name="cfg" stdset="0">
-      <string>PdfExport.PageSize</string>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="6" column="1">
+       <widget class="QSpinBox" name="byteLimitSpin">
+        <property name="maximum">
+         <number>999</number>
+        </property>
+        <property name="cfg" stdset="0">
+         <string>PdfExport.MaxCellBytes</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="pageSizeLabel">
+        <property name="text">
+         <string>Page size:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QSpinBox" name="bottomMarginSpin">
+        <property name="maximum">
+         <number>999999</number>
+        </property>
+        <property name="cfg" stdset="0">
+         <string>PdfExport.BottomMargin</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QSpinBox" name="rightMarginSpin">
+        <property name="maximum">
+         <number>999999</number>
+        </property>
+        <property name="cfg" stdset="0">
+         <string>PdfExport.RightMargin</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="rightMarginLabel">
+        <property name="text">
+         <string>Right margin:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="leftMarginLabel">
+        <property name="text">
+         <string>Left margin:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="paddingLabel">
+        <property name="text">
+         <string>Cell padding:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="byteLimitLabel">
+        <property name="text">
+         <string>Limit characters in single cell:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="2">
+       <widget class="QLabel" name="paddingMmLabel">
+        <property name="text">
+         <string>mm</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QSpinBox" name="paddingSpin">
+        <property name="maximum">
+         <number>999999</number>
+        </property>
+        <property name="cfg" stdset="0">
+         <string>PdfExport.Padding</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QLabel" name="rightMarginMmLabel">
+        <property name="text">
+         <string>mm</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="2">
+       <widget class="QLabel" name="topMarginMmLabel">
+        <property name="text">
+         <string>mm</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QSpinBox" name="topMarginSpin">
+        <property name="maximum">
+         <number>999999</number>
+        </property>
+        <property name="cfg" stdset="0">
+         <string>PdfExport.TopMargin</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="2">
+       <widget class="QLabel" name="bottomMarginMmLabel">
+        <property name="text">
+         <string>mm</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="bottomMarginLabel">
+        <property name="text">
+         <string>Bottom margin:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="ConfigComboBox" name="pageSizeCombo">
+        <property name="modelName" stdset="0">
+         <string>PdfExport.PageSizes</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string>PdfExport.PageSize</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="leftMarginMmLabel">
+        <property name="text">
+         <string>mm</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="topMarginLabel">
+        <property name="text">
+         <string>Top margin:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QSpinBox" name="leftMarginSpin">
+        <property name="maximum">
+         <number>999999</number>
+        </property>
+        <property name="cfg" stdset="0">
+         <string>PdfExport.LeftMargin</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="fontGroup">
+     <property name="title">
+      <string>Font</string>
      </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="1">
+       <widget class="QSpinBox" name="fontSizeSpin">
+        <property name="cfg" stdset="0">
+         <string>PdfExport.FontSize</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QFontComboBox" name="fontComboBox">
+        <property name="cfg" stdset="0">
+         <string>PdfExport.Font</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="colorsGroup">
+     <property name="title">
+      <string>Colors</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="0" column="0">
+       <widget class="QLabel" name="headerBgColorLabel">
+        <property name="text">
+         <string>Headers background:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="ColorButton" name="headerBgColorButton">
+        <property name="maximumSize">
+         <size>
+          <width>50</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="cfg" stdset="0">
+         <string>PdfExport.HeaderBgColor</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="nullColorLabel">
+        <property name="text">
+         <string>NULL value color:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="ColorButton" name="nullColorButton">
+        <property name="maximumSize">
+         <size>
+          <width>50</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="cfg" stdset="0">
+         <string>PdfExport.NullValueColor</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="otherGroup">
+     <property name="title">
+      <string>Other settings</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_4">
+      <item row="0" column="0">
+       <widget class="QCheckBox" name="rowNumCheck">
+        <property name="text">
+         <string>Print row numbers for data</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string>PdfExport.PrintRowNum</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QCheckBox" name="pageNumbersCheck">
+        <property name="text">
+         <string>Print page numbers</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string>PdfExport.PrintPageNumbers</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
   </layout>
@@ -31,6 +291,11 @@
    <class>ConfigComboBox</class>
    <extends>QComboBox</extends>
    <header>common/configcombobox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ColorButton</class>
+   <extends>QPushButton</extends>
+   <header>common/colorbutton.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
