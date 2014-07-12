@@ -15,7 +15,6 @@
 #include "multieditor/multieditorbool.h"
 #include "uiconfig.h"
 #include "sqlitestudio.h"
-#include "uipluginloadinghandlerimpl.h"
 #include <QApplication>
 #include <QSplashScreen>
 #include <QThread>
@@ -31,7 +30,7 @@ int main(int argc, char *argv[])
     SqlQueryModelColumn::initMeta();
     SqlQueryModel::staticInit();
 
-    SQLITESTUDIO->init(a.arguments(), new UiPluginLoadingHandlerImpl);
+    SQLITESTUDIO->init(a.arguments());
     IconManager::getInstance()->init();
     DbTree::staticInit();
     DataView::staticInit();

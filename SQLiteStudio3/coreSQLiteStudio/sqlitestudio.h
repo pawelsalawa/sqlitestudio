@@ -75,7 +75,7 @@ class API_EXPORT SQLiteStudio : public QObject
          *
          * See parseCmdLineArgs() for details on supported options.
          */
-        void init(const QStringList& cmdListArguments, PluginLoadingHandler* pluginLoadingHandler = nullptr);
+        void init(const QStringList& cmdListArguments);
 
         /**
          * @brief Gets environment variable value.

@@ -5,26 +5,6 @@
 #include <QPluginLoader>
 #include <QHash>
 
-/**
- * @brief Factory class interface for producing plugin loaders.
- *
- * It may seeem obvious that producing plugin loaders is simple and doesn't require separate factory class,
- * but the problem is that when plugins are loaded from the coreSQLiteStudio library, they cannot use
- * any symbols from SQLiteStudio executable, which holds all the GUI.
- */
-class PluginLoadingHandler
-{
-    public:
-        virtual QPluginLoader* createLoader(const QString& fileName) const = 0;
-        virtual ~PluginLoadingHandler();
-};
-
-class PluginLoadingHandlerImpl : public PluginLoadingHandler
-{
-    public:
-        QPluginLoader* createLoader(const QString& fileName) const;
-};
-
 class PluginManagerImpl : public PluginManager
 {
     Q_OBJECT
@@ -67,7 +47,6 @@ class PluginManagerImpl : public PluginManager
         QString toPrintableVersion(int version) const;
         QStringList getDependencies(const QString& pluginName) const;
         QStringList getConflicts(const QString& pluginName) const;
-        void setPluginLoadingHandler(PluginLoadingHandler* handler);
 
     protected:
         void registerPluginType(PluginType* type);
@@ -314,11 +293,6 @@ class PluginManagerImpl : public PluginManager
          * Keys are scripting language name. It's a separate table to optimize querying scripting plugins.
          */
         QHash<QString,ScriptingPlugin*> scriptingPlugins;
-
-        /**
-         * @brief Handler used to produce plugin loaders.
-         */
-        PluginLoadingHandler* pluginLoadingHandler = nullptr;
 };
 
 #endif // PLUGINMANAGERIMPL_H

@@ -16,7 +16,7 @@ QString CliCommandDesc::shortHelp() const
 
 QString CliCommandDesc::fullHelp() const
 {
-
+    return QString();
 }
 
 void CliCommandDesc::defineSyntax()

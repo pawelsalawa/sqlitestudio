@@ -10,12 +10,10 @@
 
 PluginManagerImpl::PluginManagerImpl()
 {
-    setPluginLoadingHandler(new PluginLoadingHandlerImpl);
 }
 
 PluginManagerImpl::~PluginManagerImpl()
 {
-    safe_delete(pluginLoadingHandler);
 }
 
 void PluginManagerImpl::init()
@@ -109,7 +107,7 @@ void PluginManagerImpl::scanPlugins()
         foreach (QString fileName, pluginDir.entryList(nameFilters, QDir::Files))
         {
             fileName = pluginDir.absoluteFilePath(fileName);
-            loader = pluginLoadingHandler->createLoader(fileName);
+            loader = new QPluginLoader(fileName);
             loader->setLoadHints(QLibrary::ExportExternalSymbolsHint|QLibrary::ResolveAllSymbolsHint);
 
             if (!initPlugin(loader, fileName))
@@ -605,21 +603,7 @@ QStringList PluginManagerImpl::getConflicts(const QString& pluginName) const
     return pluginContainer[pluginName]->conflicts;
 }
 
-void PluginManagerImpl::setPluginLoadingHandler(PluginLoadingHandler* handler)
-{
-    pluginLoadingHandler = handler;
-}
-
 void PluginManagerImpl::registerPluginType(PluginType* type)
 {
     registeredPluginTypes << type;
-}
-
-PluginLoadingHandler::~PluginLoadingHandler()
-{
-}
-
-QPluginLoader* PluginLoadingHandlerImpl::createLoader(const QString& fileName) const
-{
-    return new QPluginLoader(fileName);
 }
