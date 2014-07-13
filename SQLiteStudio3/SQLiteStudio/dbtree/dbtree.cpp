@@ -1150,7 +1150,12 @@ void DbTree::editColumn()
 
 void DbTree::convertDb()
 {
+    Db* db = getSelectedDb();
+    if (!db || !db->isValid())
+        return;
+
     DbConverterDialog dialog(this);
+    dialog.setDb(db);
     dialog.exec();
 }
 

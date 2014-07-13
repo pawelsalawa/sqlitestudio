@@ -6,11 +6,6 @@
 #include <QStringList>
 #include <QPair>
 
-/*
-Major 2vs3 diffs:
-- references action hasn't got "NO ACTION" as possible action in v2.
- */
-
 class Db;
 class SchemaResolver;
 class SqliteCreateTable;
@@ -25,24 +20,32 @@ class SqliteInsert;
 class SqliteExpr;
 class SqliteBeginTrans;
 
-class DbVersionConverter
+class DbVersionConverter : public QObject
 {
+        Q_OBJECT
+        Q_ENUMS(Version)
+
     public:
         DbVersionConverter();
         virtual ~DbVersionConverter();
 
-        void convertToVersion2(Db* db);
-        void convertToVersion3(Db* db);
-        QString convertToVersion2(const QString& sql);
-        QString convertToVersion3(const QString& sql);
-        SqliteQueryPtr convertToVersion2(SqliteQueryPtr query);
-        SqliteQueryPtr convertToVersion3(SqliteQueryPtr query);
+        void convert(Dialect from, Dialect to, Db* db);
+        void convert3To2(Db* db);
+        void convert2To3(Db* db);
+        QString convert(Dialect from, Dialect to, const QString& sql);
+        QString convert3To2(const QString& sql);
+        QString convert2To3(const QString& sql);
+        SqliteQueryPtr convert(Dialect from, Dialect to, SqliteQueryPtr query);
+        SqliteQueryPtr convert3To2(SqliteQueryPtr query);
+        SqliteQueryPtr convert2To3(SqliteQueryPtr query);
 
         const QList<QPair<QString, QString> >& getDiffList() const;
         const QStringList& getErrors() const;
         const QList<SqliteQueryPtr>& getConverted() const;
         QStringList getConvertedSqls() const;
         void reset();
+        QList<Dialect> getSupportedVersions() const;
+        QStringList getSupportedVersionNames() const;
 
     private:
         void convertDb();
@@ -65,6 +68,7 @@ class DbVersionConverter
         QString getSqlForDiff(SqliteStatement* stmt);
         void storeDiff(const QString& sql1, SqliteStatement* stmt);
         void storeErrorDiff(SqliteStatement* stmt);
+        QList<Db*> getAllPossibleDbInstances() const;
 
         template <class T>
         QSharedPointer<T> copyQuery(SqliteQueryPtr query)
