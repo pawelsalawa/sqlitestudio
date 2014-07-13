@@ -155,5 +155,6 @@
         <file>img/win_tile_horizontal.png</file>
         <file>img/win_tile_vertical.png</file>
         <file>img/win_tile.png</file>
+        <file>img/convert_db.png</file>
     </qresource>
 </RCC>

@@ -144,7 +144,8 @@ SOURCES += main.cpp\
     uiscriptingedit.cpp \
     uicustomicon.cpp \
     uiurlbutton.cpp \
-    common/configcombobox.cpp
+    common/configcombobox.cpp \
+    dialogs/dbconverterdialog.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -275,7 +276,8 @@ HEADERS  += mainwindow.h \
     uiscriptingedit.h \
     uicustomicon.h \
     uiurlbutton.h \
-    common/configcombobox.h
+    common/configcombobox.h \
+    dialogs/dbconverterdialog.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \
@@ -314,7 +316,8 @@ FORMS    += mainwindow.ui \
     dialogs/sortdialog.ui \
     dialogs/importdialog.ui \
     dialogs/populatedialog.ui \
-    dialogs/populateconfigdialog.ui
+    dialogs/populateconfigdialog.ui \
+    dialogs/dbconverterdialog.ui
 
 RESOURCES += \
     icons.qrc

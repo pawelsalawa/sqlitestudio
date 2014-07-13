@@ -50,6 +50,7 @@ class ExportDialog : public QWizard
         ExportManager::StandardExportConfig getExportConfig() const;
         Db* getDbForExport(const QString& name);
         void notifyInternalError();
+        QModelIndex setupNewDbObjTreeRoot(const QModelIndex& root);
 
         QHash<ExportManager::ExportMode,QList<QWizardPage*>> pageOrder;
 

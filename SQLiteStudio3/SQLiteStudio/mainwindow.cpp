@@ -203,6 +203,9 @@ void MainWindow::initMenuBar()
     dbMenu->addAction(dbTree->getAction(DbTree::EDIT_DB));
     dbMenu->addAction(dbTree->getAction(DbTree::DELETE_DB));
     dbMenu->addSeparator();
+    dbMenu->addAction(dbTree->getAction(DbTree::EXPORT_DB));
+    dbMenu->addAction(dbTree->getAction(DbTree::CONVERT_DB));
+    dbMenu->addSeparator();
     dbMenu->addAction(dbTree->getAction(DbTree::REFRESH_SCHEMA));
     dbMenu->addAction(dbTree->getAction(DbTree::REFRESH_SCHEMAS));
 
@@ -254,6 +257,7 @@ void MainWindow::initMenuBar()
     toolsMenu->addAction(actionMap[OPEN_DDL_HISTORY]);
     toolsMenu->addAction(actionMap[OPEN_FUNCTION_EDITOR]);
     toolsMenu->addAction(actionMap[OPEN_COLLATION_EDITOR]);
+    toolsMenu->addAction(actionMap[IMPORT]);
     toolsMenu->addAction(actionMap[EXPORT]);
     toolsMenu->addSeparator();
     toolsMenu->addAction(actionMap[OPEN_CONFIG]);

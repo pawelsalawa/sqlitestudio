@@ -36,7 +36,7 @@ class DbTreeItem : public QObject, public QStandardItem
         static void initMeta();
 
         int type() const;
-        QStandardItem* findItem(Type type, const QString& name);
+        DbTreeItem* findItem(Type type, const QString& name);
         QStandardItem* clone() const;
         QList<QStandardItem*> childs() const;
         QStringList childNames() const;
