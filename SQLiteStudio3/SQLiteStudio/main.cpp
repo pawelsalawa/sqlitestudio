@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
     SqlQueryModelColumn::initMeta();
     SqlQueryModel::staticInit();
 
-    SQLITESTUDIO->init(a.arguments());
+    SQLITESTUDIO->init(a.arguments(), true);
     IconManager::getInstance()->init();
     DbTree::staticInit();
     DataView::staticInit();

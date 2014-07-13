@@ -52,6 +52,13 @@ class PluginManagerImpl : public PluginManager
         void registerPluginType(PluginType* type);
 
     private:
+        struct PluginDependency
+        {
+            QString name;
+            int minVersion = 0;
+            int maxVersion = 0;
+        };
+
         /**
          * @brief Container for plugin related data.
          *
@@ -130,7 +137,7 @@ class PluginManagerImpl : public PluginManager
             /**
              * @brief Names of plugnis that this plugin depends on.
              */
-            QStringList dependencies;
+            QList<PluginDependency> dependencies;
 
             /**
              * @brief Names of plugins that this plugin conflicts with.
@@ -176,13 +183,18 @@ class PluginManagerImpl : public PluginManager
          * @brief Loads given plugin.
          * @param pluginName Name of the plugin to load.
          * @param alreadyAttempted List of plugin names that were already attempted to be loaded.
+         * @param minVersion Minimum required version of the plugin to load.
+         * @param maxVersion Maximum required version of the plugin to load.
          * @return true on success, false on failure.
          *
          * This is pretty much what the public load() method does, except this one tracks what plugins were already
          * attempted to be loaded (and failed), so it doesn't warn twice about the same plugin if it failed
          * to load while it was a dependency for some other plugins.
+         *
+         * It also allows to define minimum and maximum plugin version, so if SQLiteStudio has the plugin available,
+         * but the version is out of required range, it will also fail to load.
          */
-        bool load(const QString& pluginName, QStringList& alreadyAttempted);
+        bool load(const QString& pluginName, QStringList& alreadyAttempted, int minVersion = 0, int maxVersion = 0);
 
         /**
          * @brief Executes standard routines after plugin was loaded.
@@ -247,6 +259,10 @@ class PluginManagerImpl : public PluginManager
          * (when configured to not load at startup), or the initialization proceeds.
          */
         bool initPlugin(QPluginLoader* loader, const QString& fileName);
+
+        bool checkPluginRequirements(const QString& pluginName, const QJsonObject& metaObject);
+        bool readDependencies(const QString& pluginName, PluginContainer* container, const QJsonValue& depsValue);
+        bool readConflicts(const QString& pluginName, PluginContainer* container, const QJsonValue& confValue);
 
         /**
          * @brief Creates plugin container and initializes it.

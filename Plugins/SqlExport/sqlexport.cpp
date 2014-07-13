@@ -77,12 +77,6 @@ bool SqlExport::exportQueryResultsRow(SqlResultsRowPtr row)
     return true;
 }
 
-bool SqlExport::afterExportQueryResults()
-{
-    writeCommit();
-    return true;
-}
-
 bool SqlExport::exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
     UNUSED(createTable);
@@ -132,11 +126,9 @@ bool SqlExport::exportTableRow(SqlResultsRowPtr data)
     return true;
 }
 
-bool SqlExport::afterExportTable()
+bool SqlExport::afterExport()
 {
-    if (isTableExport())
-        writeCommit();
-
+    writeCommit();
     return true;
 }
 
@@ -176,12 +168,6 @@ bool SqlExport::exportView(const QString& database, const QString& name, const Q
     writeln("");
     writeln(tr("-- View: %1").arg(view));
     writeln(ddl);
-    return true;
-}
-
-bool SqlExport::afterExportDatabase()
-{
-    writeCommit();
     return true;
 }
 

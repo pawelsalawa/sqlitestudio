@@ -114,7 +114,9 @@ bool ExportWorker::exportQueryResults()
         return false;
     }
 
-    plugin->initBeforeExport(db, output, *config);
+    if (!plugin->initBeforeExport(db, output, *config))
+        return false;
+
     if (!plugin->beforeExportQueryResults(query, resultColumns, providerData))
         return false;
 
@@ -133,6 +135,9 @@ bool ExportWorker::exportQueryResults()
     }
 
     if (!plugin->afterExportQueryResults())
+        return false;
+
+    if (!plugin->afterExport())
         return false;
 
     return true;
@@ -188,7 +193,9 @@ bool ExportWorker::exportDatabase()
         return false;
     }
 
-    plugin->initBeforeExport(db, output, *config);
+    if (!plugin->initBeforeExport(db, output, *config))
+        return false;
+
     if (!plugin->beforeExportDatabase(db->getName()))
         return false;
 
@@ -241,6 +248,9 @@ bool ExportWorker::exportDatabase()
         return false;
 
     if (!plugin->afterExportDatabase())
+        return false;
+
+    if (!plugin->afterExport())
         return false;
 
     return true;
@@ -315,8 +325,48 @@ bool ExportWorker::exportTable()
     }
 
     SqliteQueryPtr createTable = parser->getQueries().first();
-    plugin->initBeforeExport(db, output, *config);
-    return exportTableInternal(database, table, ddl, createTable, results, providerData);
+    if (!plugin->initBeforeExport(db, output, *config))
+        return false;
+
+    if (!exportTableInternal(database, table, ddl, createTable, results, providerData))
+        return false;
+
+    if (config->exportTableIndexes)
+    {
+        if (!plugin->beforeExportIndexes())
+            return false;
+
+        QList<SqliteCreateIndexPtr> parsedIndexesForTable = resolver.getParsedIndexesForTable(database, table);
+        for (const SqliteCreateIndexPtr& idx : parsedIndexesForTable)
+        {
+            if (!plugin->exportIndex(database, idx->index, idx->detokenize(), idx))
+                return false;
+        }
+
+        if (!plugin->afterExportIndexes())
+            return false;
+    }
+
+    if (config->exportTableTriggers)
+    {
+        if (!plugin->beforeExportTriggers())
+            return false;
+
+        QList<SqliteCreateTriggerPtr> parsedTriggersForTable = resolver.getParsedTriggersForTable(database, table);
+        for (const SqliteCreateTriggerPtr& trig : parsedTriggersForTable)
+        {
+            if (!plugin->exportTrigger(database, trig->trigger, trig->detokenize(), trig))
+                return false;
+        }
+
+        if (!plugin->afterExportTriggers())
+            return false;
+    }
+
+    if (!plugin->afterExport())
+        return false;
+
+    return true;
 }
 
 bool ExportWorker::exportTableInternal(const QString& database, const QString& table, const QString& ddl, SqliteQueryPtr parsedDdl, SqlQueryPtr results,

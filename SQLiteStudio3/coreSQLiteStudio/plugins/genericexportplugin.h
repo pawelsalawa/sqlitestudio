@@ -7,7 +7,7 @@
 class API_EXPORT GenericExportPlugin : virtual public GenericPlugin, public ExportPlugin
 {
     public:
-        void initBeforeExport(Db* db, QIODevice* output, const ExportManager::StandardExportConfig& config);
+        bool initBeforeExport(Db* db, QIODevice* output, const ExportManager::StandardExportConfig& config);
         ExportManager::ExportModes getSupportedModes() const;
         ExportManager::ExportProviderFlags getProviderFlags() const;
         QString getExportConfigFormName() const;
@@ -27,9 +27,19 @@ class API_EXPORT GenericExportPlugin : virtual public GenericPlugin, public Expo
         bool beforeExportViews();
         bool afterExportViews();
         bool afterExportDatabase();
+        bool afterExport();
+
+        /**
+         * @brief Does the initial entry in the export.
+         * @return true for success, or false in case of a fatal error.
+         *
+         * Use it to write the header, or something like that. Default implementation does nothing.
+         * This is called from initBeforeExport(), after exportMode and other settings are already prepared.
+         */
+        virtual bool beforeExport();
 
     protected:
-        virtual void initBeforeExport();
+        virtual bool initBeforeExport();
         void write(const QString& str);
         void writeln(const QString& str);
         bool isTableExport() const;

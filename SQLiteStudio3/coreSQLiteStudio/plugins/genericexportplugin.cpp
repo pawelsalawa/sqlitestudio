@@ -5,7 +5,7 @@
 #include "config_builder.h"
 #include <QTextCodec>
 
-void GenericExportPlugin::initBeforeExport(Db* db, QIODevice* output, const ExportManager::StandardExportConfig& config)
+bool GenericExportPlugin::initBeforeExport(Db* db, QIODevice* output, const ExportManager::StandardExportConfig& config)
 {
     this->db = db;
     this->output = output;
@@ -20,6 +20,8 @@ void GenericExportPlugin::initBeforeExport(Db* db, QIODevice* output, const Expo
             notifyWarn(tr("Could not initialize text codec for exporting. Using default codec: %1").arg(QString::fromLatin1(codec->name())));
         }
     }
+
+    return beforeExport();
 }
 
 ExportManager::ExportModes GenericExportPlugin::getSupportedModes() const
@@ -73,8 +75,9 @@ bool GenericExportPlugin::afterExportTable()
     return true;
 }
 
-void GenericExportPlugin::initBeforeExport()
+bool GenericExportPlugin::initBeforeExport()
 {
+    return true;
 }
 
 void GenericExportPlugin::write(const QString& str)
@@ -133,6 +136,16 @@ bool GenericExportPlugin::afterExportViews()
 }
 
 bool GenericExportPlugin::afterExportDatabase()
+{
+    return true;
+}
+
+bool GenericExportPlugin::afterExport()
+{
+    return true;
+}
+
+bool GenericExportPlugin::beforeExport()
 {
     return true;
 }
