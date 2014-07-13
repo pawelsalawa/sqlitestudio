@@ -32,6 +32,7 @@
 #include <QDebug>
 #include <QKeyEvent>
 #include <QMimeData>
+#include <dialogs/dbconverterdialog.h>
 
 QHash<DbTreeItem::Type,QList<DbTreeItem::Type>> DbTree::allowedTypesInside;
 QSet<DbTreeItem::Type> DbTree::draggableTypes;
@@ -103,6 +104,7 @@ void DbTree::createActions()
     createAction(DISCONNECT_FROM_DB, ICONS.DATABASE_DISCONNECT, tr("Disconnect from the database"), this, SLOT(disconnectFromDb()), this);
     createAction(IMPORT_INTO_DB, ICONS.IMPORT, tr("Import"), this, SLOT(import()), this);
     createAction(EXPORT_DB, ICONS.DATABASE_EXPORT, tr("Export the database"), this, SLOT(exportDb()), this);
+    createAction(CONVERT_DB, ICONS.CONVERT_DB, tr("Convert database type"), this, SLOT(convertDb()), this);
     createAction(ADD_TABLE, ICONS.TABLE_ADD, tr("Create a table"), this, SLOT(addTable()), this);
     createAction(EDIT_TABLE, ICONS.TABLE_EDIT, tr("Edit the table"), this, SLOT(editTable()), this);
     createAction(DEL_TABLE, ICONS.TABLE_DEL, tr("Drop the table"), this, SLOT(delTable()), this);
@@ -153,7 +155,7 @@ void DbTree::updateActionStates(const QStandardItem *item)
             enabled << DELETE_DB << EDIT_DB;
             if (dbTreeItem->getDb()->isOpen())
             {
-                enabled << DISCONNECT_FROM_DB << ADD_TABLE << ADD_VIEW << IMPORT_INTO_DB << EXPORT_DB << REFRESH_SCHEMA;
+                enabled << DISCONNECT_FROM_DB << ADD_TABLE << ADD_VIEW << IMPORT_INTO_DB << EXPORT_DB << REFRESH_SCHEMA << CONVERT_DB;
                 isDbOpen = true;
             }
             else
@@ -313,6 +315,7 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
                     actions += ActionEntry(REFRESH_SCHEMA);
                     actions += ActionEntry(IMPORT_INTO_DB);
                     actions += ActionEntry(EXPORT_DB);
+                    actions += ActionEntry(CONVERT_DB);
                     actions += ActionEntry(_separator);
                 }
                 else
@@ -1143,6 +1146,12 @@ void DbTree::editColumn()
         return;
 
     editColumn(item);
+}
+
+void DbTree::convertDb()
+{
+    DbConverterDialog dialog(this);
+    dialog.exec();
 }
 
 void DbTree::editColumn(DbTreeItem* item)

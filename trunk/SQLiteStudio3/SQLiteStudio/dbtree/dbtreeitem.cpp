@@ -53,7 +53,7 @@ int DbTreeItem::type() const
     return data(DataRole::TYPE).toInt();
 }
 
-QStandardItem *DbTreeItem::findItem(DbTreeItem::Type type, const QString& name)
+DbTreeItem* DbTreeItem::findItem(DbTreeItem::Type type, const QString& name)
 {
     return DbTreeModel::findItem(this, type, name);
 }

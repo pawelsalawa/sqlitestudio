@@ -1,6 +1,8 @@
 #include "selectabledbobjmodel.h"
 #include "dbtree/dbtreeitem.h"
 #include "dbtree/dbtreemodel.h"
+#include <QDebug>
+#include <QTreeView>
 
 SelectableDbObjModel::SelectableDbObjModel(QObject *parent) :
     QSortFilterProxyModel(parent)
@@ -91,13 +93,28 @@ void SelectableDbObjModel::setRootChecked(bool checked)
     setData(idx, checked ? Qt::Checked : Qt::Unchecked, Qt::CheckStateRole);
 }
 
+DbTreeItem* SelectableDbObjModel::getItemForIndex(const QModelIndex& index) const
+{
+    return getItemForProxyIndex(index);
+}
+
 bool SelectableDbObjModel::filterAcceptsRow(int srcRow, const QModelIndex& srcParent) const
 {
     QModelIndex idx = sourceModel()->index(srcRow, 0, srcParent);
     DbTreeItem* item = dynamic_cast<DbTreeItem*>(dynamic_cast<DbTreeModel*>(sourceModel())->itemFromIndex(idx));
     DbTreeItem* dbItem = item->getPathToParentItem(DbTreeItem::Type::DB).last();
 
-    if (!dbItem || !dbItem->getDb() || dbItem->getDb()->getName() != dbName)
+    // These 3 conditions could be written as one OR-ed, but this is easier to debug which one fails this way.
+    if (!dbItem)
+        return false;
+
+    if (item->getType() == DbTreeItem::Type::DIR)
+        return checkRecurrentlyForDb(item);
+
+    if (!dbItem->getDb())
+        return false;
+
+    if (dbItem->getDb()->getName() != dbName)
         return false;
 
     switch (item->getType())
@@ -221,5 +238,7 @@ bool SelectableDbObjModel::isObject(DbTreeItem* item) const
     return false;
 }
 
-
-
+bool SelectableDbObjModel::checkRecurrentlyForDb(DbTreeItem* item) const
+{
+    return item->findItem(DbTreeItem::Type::DB, dbName) != nullptr;
+}

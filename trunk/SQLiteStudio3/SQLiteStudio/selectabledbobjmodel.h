@@ -5,6 +5,7 @@
 #include <QSet>
 
 class DbTreeItem;
+class QTreeView;
 
 class SelectableDbObjModel : public QSortFilterProxyModel
 {
@@ -23,6 +24,7 @@ class SelectableDbObjModel : public QSortFilterProxyModel
         void setCheckedObjects(const QStringList& value);
 
         void setRootChecked(bool checked);
+        DbTreeItem* getItemForIndex(const QModelIndex& index) const;
 
     protected:
         bool filterAcceptsRow(int srcRow, const QModelIndex& srcParent) const;
@@ -32,6 +34,7 @@ class SelectableDbObjModel : public QSortFilterProxyModel
         Qt::CheckState getStateFromChilds(const QModelIndex& index) const;
         void setRecurrently(const QModelIndex& index, Qt::CheckState checked);
         bool isObject(DbTreeItem* item) const;
+        bool checkRecurrentlyForDb(DbTreeItem* item) const;
 
         QSet<QString> checkedObjects;
         QString dbName;

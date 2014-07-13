@@ -456,6 +456,9 @@ void ExportDialog::updateDbObjTree()
     QModelIndex root = selectableDbListModel->index(0, 0);
     if (root.isValid())
     {
+        root = setupNewDbObjTreeRoot(root);
+        ui->dbObjectsTree->setRootIndex(root);
+
         ui->dbObjectsTree->expand(root);
         QModelIndex child;
         for (int i = 0; (child = root.child(i, 0)).isValid(); i++)
@@ -650,6 +653,21 @@ Db* ExportDialog::getDbForExport(const QString& name)
 void ExportDialog::notifyInternalError()
 {
     notifyError(tr("Internal error during export. This is a bug. Please report it."));
+}
+
+QModelIndex ExportDialog::setupNewDbObjTreeRoot(const QModelIndex& root)
+{
+    QModelIndex newRoot = root;
+    DbTreeItem* item = nullptr;
+    while (newRoot.isValid())
+    {
+        item = selectableDbListModel->getItemForIndex(newRoot);
+        if (item->getType() == DbTreeItem::Type::DB)
+            return newRoot;
+
+        newRoot = newRoot.child(0, 0);
+    }
+    return newRoot;
 }
 
 void ExportDialog::handleValidationResultFromPlugin(bool valid, CfgEntry* key, const QString& errorMsg)
