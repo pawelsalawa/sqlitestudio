@@ -23,6 +23,8 @@
 #include "parser/ast/sqlitesavepoint.h"
 #include "parser/ast/sqliteupdate.h"
 #include "parser/ast/sqlitevacuum.h"
+#include "services/pluginmanager.h"
+#include "plugins/dbplugin.h"
 #include <QDebug>
 
 DbVersionConverter::DbVersionConverter()
@@ -34,7 +36,17 @@ DbVersionConverter::~DbVersionConverter()
     safe_delete(resolver);
 }
 
-void DbVersionConverter::convertToVersion2(Db* db)
+void DbVersionConverter::convert(Dialect from, Dialect to, Db* db)
+{
+    if (from == Dialect::Sqlite2 && to == Dialect::Sqlite3)
+        convert2To3(db);
+    else if (from == Dialect::Sqlite3 && to == Dialect::Sqlite2)
+        convert3To2(db);
+    else
+        qCritical() << "Unsupported db conversion combination.";
+}
+
+void DbVersionConverter::convert3To2(Db* db)
 {
     reset();
     this->db = db;
@@ -42,7 +54,7 @@ void DbVersionConverter::convertToVersion2(Db* db)
     convertDb();
 }
 
-void DbVersionConverter::convertToVersion3(Db* db)
+void DbVersionConverter::convert2To3(Db* db)
 {
     reset();
     this->db = db;
@@ -50,25 +62,51 @@ void DbVersionConverter::convertToVersion3(Db* db)
     convertDb();
 }
 
-QString DbVersionConverter::convertToVersion2(const QString& sql)
+QString DbVersionConverter::convert(Dialect from, Dialect to, const QString& sql)
+{
+    if (from == Dialect::Sqlite2 && to == Dialect::Sqlite3)
+        return convert2To3(sql);
+    else if (from == Dialect::Sqlite3 && to == Dialect::Sqlite2)
+        return convert3To2(sql);
+    else
+    {
+        qCritical() << "Unsupported db conversion combination.";
+        return QString();
+    }
+}
+
+QString DbVersionConverter::convert3To2(const QString& sql)
 {
     QStringList result;
     for (SqliteQueryPtr query : parse(sql, Dialect::Sqlite3))
-        result << convertToVersion2(query)->detokenize();
+        result << convert3To2(query)->detokenize();
 
     return result.join("\n");
 }
 
-QString DbVersionConverter::convertToVersion3(const QString& sql)
+QString DbVersionConverter::convert2To3(const QString& sql)
 {
     QStringList result;
     for (SqliteQueryPtr query : parse(sql, Dialect::Sqlite2))
-        result << convertToVersion3(query)->detokenize();
+        result << convert2To3(query)->detokenize();
 
     return result.join("\n");
 }
 
-SqliteQueryPtr DbVersionConverter::convertToVersion2(SqliteQueryPtr query)
+SqliteQueryPtr DbVersionConverter::convert(Dialect from, Dialect to, SqliteQueryPtr query)
+{
+    if (from == Dialect::Sqlite2 && to == Dialect::Sqlite3)
+        return convert2To3(query);
+    else if (from == Dialect::Sqlite3 && to == Dialect::Sqlite2)
+        return convert3To2(query);
+    else
+    {
+        qCritical() << "Unsupported db conversion combination.";
+        return SqliteQueryPtr();
+    }
+}
+
+SqliteQueryPtr DbVersionConverter::convert3To2(SqliteQueryPtr query)
 {
     SqliteQueryPtr newQuery;
     switch (query->queryType)
@@ -231,7 +269,7 @@ SqliteQueryPtr DbVersionConverter::convertToVersion2(SqliteQueryPtr query)
     return newQuery;
 }
 
-SqliteQueryPtr DbVersionConverter::convertToVersion3(SqliteQueryPtr query)
+SqliteQueryPtr DbVersionConverter::convert2To3(SqliteQueryPtr query)
 {
     SqliteQueryPtr newQuery;
     switch (query->queryType)
@@ -802,6 +840,43 @@ void DbVersionConverter::reset()
     safe_delete(resolver);
 }
 
+QList<Dialect> DbVersionConverter::getSupportedVersions() const
+{
+    QList<Dialect> versions;
+    for (Db* db : getAllPossibleDbInstances())
+    {
+        versions << db->getDialect();
+        delete db;
+    }
+    return versions;
+}
+
+QStringList DbVersionConverter::getSupportedVersionNames() const
+{
+    QStringList versions;
+    for (Db* db : getAllPossibleDbInstances())
+    {
+        versions << db->getTypeLabel();
+        delete db;
+    }
+    return versions;
+}
+
+QList<Db*> DbVersionConverter::getAllPossibleDbInstances() const
+{
+    QList<Db*> dbList;
+    Db* db = nullptr;
+    for (DbPlugin* plugin : PLUGINS->getLoadedPlugins<DbPlugin>())
+    {
+        db = plugin->getInstance("", ":memory:", QHash<QString,QVariant>());
+        if (!db->initAfterCreated())
+            continue;
+
+        dbList << db;
+    }
+    return dbList;
+}
+
 const QList<QPair<QString, QString> >& DbVersionConverter::getDiffList() const
 {
     return diffList;
@@ -835,10 +910,10 @@ void DbVersionConverter::convertDb()
         switch (targetDialect)
         {
             case Dialect::Sqlite2:
-                convertToVersion2(query);
+                convert3To2(query);
                 break;
             case Dialect::Sqlite3:
-                convertToVersion3(query);
+                convert2To3(query);
                 break;
         }
     }

@@ -564,9 +564,9 @@ void DbObjectOrganizer::collectDiffs(const QHash<QString, SchemaResolver::Object
 
         versionConverter->reset();
         if (dstVersion == 3)
-            versionConverter->convertToVersion3(details[name].ddl);
+            versionConverter->convert2To3(details[name].ddl);
         else
-            versionConverter->convertToVersion2(details[name].ddl);
+            versionConverter->convert3To2(details[name].ddl);
 
         diffListToConfirm += versionConverter->getDiffList();
         if (!versionConverter->getErrors().isEmpty())
@@ -580,9 +580,9 @@ QString DbObjectOrganizer::convertDdlToDstVersion(const QString& ddl)
         return ddl;
 
     if (dstDb->getVersion() == 3)
-        return versionConverter->convertToVersion3(ddl);
+        return versionConverter->convert2To3(ddl);
     else
-        return versionConverter->convertToVersion2(ddl);
+        return versionConverter->convert3To2(ddl);
 }
 
 void DbObjectOrganizer::collectReferencedTables(const QString& table, const QHash<QString, SqliteQueryPtr>& allParsedObjects)

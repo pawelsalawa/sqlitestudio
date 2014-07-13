@@ -35,7 +35,7 @@ DbVersionConverterTestTest::DbVersionConverterTestTest()
 void DbVersionConverterTestTest::testColumnAutoIncr()
 {
     QString query = "CREATE TABLE test (col INTEGER PRIMARY KEY AUTOINCREMENT);";
-    QString result = converter->convertToVersion2(query);
+    QString result = converter->convert3To2(query);
 
     printErrors();
     QVERIFY(converter->getErrors().size() == 0);
@@ -45,7 +45,7 @@ void DbVersionConverterTestTest::testColumnAutoIncr()
 void DbVersionConverterTestTest::testIndexedColumn()
 {
     QString query = "CREATE INDEX idx ON test (col COLLATE NOCASE ASC);";
-    QString result = converter->convertToVersion2(query);
+    QString result = converter->convert3To2(query);
 
     printErrors();
     QVERIFY(converter->getErrors().size() == 0);
@@ -55,7 +55,7 @@ void DbVersionConverterTestTest::testIndexedColumn()
 void DbVersionConverterTestTest::testInsertMultiValues()
 {
     QString query = "INSERT INTO test (col1, col2) VALUES (1, 'a'), (2, 'b');";
-    QString result = converter->convertToVersion2(query);
+    QString result = converter->convert3To2(query);
 
     printErrors();
     QVERIFY(converter->getErrors().size() == 0);
@@ -65,7 +65,7 @@ void DbVersionConverterTestTest::testInsertMultiValues()
 void DbVersionConverterTestTest::testSelectWith()
 {
     QString query = "WITH RECURSIVE cnt (x) AS (VALUES(1) UNION ALL SELECT x + 1 FROM cnt WHERE x < 1000000) SELECT x FROM cnt;";
-    QString result = converter->convertToVersion2(query);
+    QString result = converter->convert3To2(query);
 
     QVERIFY(converter->getErrors().size() == 1);
     QVERIFY(result == ";");
@@ -74,7 +74,7 @@ void DbVersionConverterTestTest::testSelectWith()
 void DbVersionConverterTestTest::testTableWithoutRowId()
 {
     QString query = "CREATE TABLE test (col PRIMARY KEY) WITHOUT ROWID;";
-    QString result = converter->convertToVersion2(query);
+    QString result = converter->convert3To2(query);
 
     printErrors();
     QVERIFY(converter->getErrors().size() == 0);
@@ -84,7 +84,7 @@ void DbVersionConverterTestTest::testTableWithoutRowId()
 void DbVersionConverterTestTest::testTableWithDefaultCtime()
 {
     QString query = "CREATE TABLE test (col INT DEFAULT current_date NOT NULL);";
-    QString result = converter->convertToVersion2(query);
+    QString result = converter->convert3To2(query);
 
     printErrors();
     QVERIFY(converter->getErrors().size() == 0);
