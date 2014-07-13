@@ -40,13 +40,12 @@ class HTMLEXPORTSHARED_EXPORT HtmlExport : public GenericExportPlugin
         bool exportView(const QString& database, const QString& name, const QString& ddl, SqliteCreateViewPtr view);
         bool afterExportQueryResults();
         bool afterExportTable();
-        bool afterExportDatabase();
+        bool afterExport();
         bool init();
         void deinit();
 
     private:
         bool beginDoc(const QString& title);
-        void endDoc();
         bool exportDataRow(SqlResultsRowPtr data);
         void setupConfig();
         void incrIndent();

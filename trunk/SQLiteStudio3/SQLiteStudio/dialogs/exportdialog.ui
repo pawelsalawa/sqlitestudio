@@ -116,16 +116,67 @@
      </widget>
     </item>
     <item>
-     <widget class="QCheckBox" name="exportTableDataCheck">
-      <property name="toolTip">
-       <string>When this option is unchecked, then only table DDL (CREATE TABLE statement) is exported.</string>
+     <widget class="QGroupBox" name="tableOptionsGroup">
+      <property name="title">
+       <string>Options</string>
       </property>
-      <property name="text">
-       <string>Export table data</string>
-      </property>
-      <property name="checked">
-       <bool>true</bool>
-      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <item>
+        <widget class="QCheckBox" name="exportTableDataCheck">
+         <property name="toolTip">
+          <string>When this option is unchecked, then only table DDL (CREATE TABLE statement) is exported.</string>
+         </property>
+         <property name="text">
+          <string>Export table data</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="exportTableIndexesCheck">
+         <property name="text">
+          <string>Export table indexes</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="exportTableTriggersCheck">
+         <property name="text">
+          <string>Export table triggers</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="Line" name="line">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="font">
+          <font>
+           <italic>true</italic>
+          </font>
+         </property>
+         <property name="text">
+          <string>Note, that exporting table indexes and triggers may be unsupported by some output formats.</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </item>
    </layout>
@@ -232,8 +283,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>483</width>
-         <height>318</height>
+         <width>249</width>
+         <height>228</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_7">

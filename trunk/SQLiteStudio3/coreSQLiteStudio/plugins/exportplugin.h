@@ -149,16 +149,17 @@ class ExportPlugin : virtual public Plugin
          * @param db Database that the export will be performed on.
          * @param output Output device to write exporting data to.
          * @param config Common exporting configuration, like file name, codec, etc.
+         * @return true for success, or false in case of a fatal error.
          *
          * This is called exactly once before every export process (that is once per each export called by user).
-         * Use it to remember database, output device and config for further method calls. This method will be
-         * followed by any of *export*() methods from this interface.
+         * Use it to remember database, output device, config for further method calls, or write a file header.
+         * This method will be followed by any of *export*() methods from this interface.
          *
          * There's a convenient class GenericExportPlugin, which you can extend instead of ExportPlugin. If you use
          * GenericExportPlugin for a base class of exprt plugin, then this method is already implemented there
          * and it stores all these parameters in protected class members so you can use them in other methods.
          */
-        virtual void initBeforeExport(Db* db, QIODevice* output, const ExportManager::StandardExportConfig& config) = 0;
+        virtual bool initBeforeExport(Db* db, QIODevice* output, const ExportManager::StandardExportConfig& config) = 0;
 
         /**
          * @brief Does initial entry for exported query results.
@@ -193,6 +194,8 @@ class ExportPlugin : virtual public Plugin
         /**
          * @brief Prepares for exporting tables from database.
          * @return true for success, or false in case of a fatal error.
+         *
+         * This is called only for database export. For single table export only exportTable() is called.
          */
         virtual bool beforeExportTables() = 0;
 
@@ -240,6 +243,9 @@ class ExportPlugin : virtual public Plugin
         /**
          * @brief Does final entries after all tables have been exported.
          * @return true for success, or false in case of a fatal error.
+         *
+         * This is called only for database export. For single table export only exportTable() is called.
+         * After table exporting also an afterExport() is called, so you can use that for any postprocessing.
          */
         virtual bool afterExportTables() = 0;
 
@@ -335,6 +341,17 @@ class ExportPlugin : virtual public Plugin
          * It's called just once, after all database object get exported.
          */
         virtual bool afterExportDatabase() = 0;
+
+        /**
+         * @brief Does final entry for any export process.
+         * @return true for success, or false in case of a fatal error.
+         *
+         * This is similar to afterExportDatabase() when the export mode is database,
+         * but this is called at the end for any export mode, not only for database export.
+         *
+         * Use it to write a footer, or anything like that.
+         */
+        virtual bool afterExport() = 0;
 };
 
 #endif // EXPORTPLUGIN_H

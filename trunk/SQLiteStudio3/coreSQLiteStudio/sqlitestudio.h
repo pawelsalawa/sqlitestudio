@@ -75,7 +75,7 @@ class API_EXPORT SQLiteStudio : public QObject
          *
          * See parseCmdLineArgs() for details on supported options.
          */
-        void init(const QStringList& cmdListArguments);
+        void init(const QStringList& cmdListArguments, bool guiAvailable);
 
         /**
          * @brief Gets environment variable value.
@@ -95,6 +95,8 @@ class API_EXPORT SQLiteStudio : public QObject
          * @return Attacher instance.
          */
         DbAttacher* createDbAttacher(Db* db);
+
+        bool isGuiAvailable() const;
 
         Config* getConfig() const;
         void setConfig(Config* value);
@@ -177,6 +179,7 @@ class API_EXPORT SQLiteStudio : public QObject
          */
         QStringList cmdLineArgs;
 
+        bool guiAvailable = false;
         Config* config = nullptr;
         DbManager* dbManager = nullptr;
         FunctionManager* functionManager = nullptr;

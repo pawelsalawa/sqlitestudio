@@ -218,7 +218,7 @@ void ExportDialog::initFormatPage()
 
             QFileInfo fi(path);
             if (fi.exists())
-                setValidStateWarning(ui->exportFileEdit, tr("The file '%1' exists and will be overwritten.").arg(fi.fileName()));
+                setValidStateInfo(ui->exportFileEdit, tr("The file '%1' exists and will be overwritten.").arg(fi.fileName()));
         }
         return ui->formatCombo->currentIndex() > -1 && ui->encodingCombo->currentIndex() > -1 && isPluginConfigValid();
     });

@@ -66,6 +66,17 @@ void setValidStateWarning(QWidget* widget, const QString& warning)
     INDICATOR(widget)->setVisible(widget->isEnabled(), warning);
 }
 
+void setValidStateInfo(QWidget* widget, const QString& info)
+{
+    INDICATOR(widget)->setMode(WidgetStateIndicator::Mode::INFO);
+    INDICATOR(widget)->setVisible(widget->isEnabled(), info);
+}
+
+void setValidStateTooltip(QWidget* widget, const QString& tip)
+{
+    INDICATOR(widget)->setMode(WidgetStateIndicator::Mode::HINT);
+    INDICATOR(widget)->setVisible(widget->isEnabled(), tip);
+}
 
 QString convertPageSize(QPagedPaintDevice::PageSize size)
 {

@@ -25,6 +25,4 @@ FORMS += \
 RESOURCES += \
     pdfexport.qrc
 
-win32: {
-    LIBS += -Wl,$$DESTDIR/../libSQLiteStudio.a
-}
+guiPlugin()

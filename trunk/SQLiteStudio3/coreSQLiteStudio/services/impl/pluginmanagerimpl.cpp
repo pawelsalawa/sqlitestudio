@@ -2,6 +2,7 @@
 #include "plugins/scriptingplugin.h"
 #include "plugins/genericplugin.h"
 #include "services/notifymanager.h"
+#include "common/unused.h"
 #include <QCoreApplication>
 #include <QDir>
 #include <QDebug>
@@ -161,6 +162,10 @@ bool PluginManagerImpl::initPlugin(QPluginLoader* loader, const QString& fileNam
     }
 
     QString pluginName = pluginMetaData.value("className").toString();
+    QJsonObject metaObject = pluginMetaData.value("MetaData").toObject();
+
+    if (!checkPluginRequirements(pluginName, metaObject))
+        return false;
 
     PluginContainer* container = new PluginContainer;
     container->type = pluginType;
@@ -170,18 +175,116 @@ bool PluginManagerImpl::initPlugin(QPluginLoader* loader, const QString& fileNam
     pluginCategories[pluginType] << container;
     pluginContainer[pluginName] = container;
 
-    QJsonObject metaObject = pluginMetaData.value("MetaData").toObject();
-    for (const QJsonValue& value : metaObject.value("dependencies").toArray())
-        container->dependencies << value.toString();
+    if (!readDependencies(pluginName, container, metaObject.value("dependencies")))
+        return false;
 
-    for (const QJsonValue& value : metaObject.value("conflicts").toArray())
-        container->conflicts << value.toString();
+    if (!readConflicts(pluginName, container, metaObject.value("conflicts")))
+        return false;
 
     if (!readMetaData(container))
     {
         delete container;
         return false;
     }
+
+    return true;
+}
+
+bool PluginManagerImpl::checkPluginRequirements(const QString& pluginName, const QJsonObject& metaObject)
+{
+    if (metaObject.value("gui").toBool(false) && !SQLITESTUDIO->isGuiAvailable())
+    {
+        qDebug() << "Plugin" << pluginName << "skipped, because it requires GUI and this is not GUI client running.";
+        return false;
+    }
+
+    int minVer = metaObject.value("minQtVersion").toInt(0);
+    if (QT_VERSION_CHECK(minVer / 10000, minVer / 100 % 100, minVer % 10000) > QT_VERSION)
+    {
+        qDebug() << "Plugin" << pluginName << "skipped, because it requires at least Qt version" << toPrintableVersion(minVer) << ", but got" << QT_VERSION_STR;
+        return false;
+    }
+
+    int maxVer = metaObject.value("maxQtVersion").toInt(999999);
+    if (QT_VERSION_CHECK(maxVer / 10000, maxVer / 100 % 100, maxVer % 10000) < QT_VERSION)
+    {
+        qDebug() << "Plugin" << pluginName << "skipped, because it requires at most Qt version" << toPrintableVersion(maxVer) << ", but got" << QT_VERSION_STR;
+        return false;
+    }
+
+    minVer = metaObject.value("minAppVersion").toInt(0);
+    if (SQLITESTUDIO->getVersion() < minVer)
+    {
+        qDebug() << "Plugin" << pluginName << "skipped, because it requires at least SQLiteStudio version" << toPrintableVersion(minVer) << ", but got"
+                 << SQLITESTUDIO->getVersionString();
+        return false;
+    }
+
+    maxVer = metaObject.value("maxAppVersion").toInt(999999);
+    if (SQLITESTUDIO->getVersion() > maxVer)
+    {
+        qDebug() << "Plugin" << pluginName << "skipped, because it requires at most SQLiteStudio version" << toPrintableVersion(maxVer) << ", but got"
+                 << SQLITESTUDIO->getVersionString();
+        return false;
+    }
+
+    return true;
+}
+
+bool PluginManagerImpl::readDependencies(const QString& pluginName, PluginManagerImpl::PluginContainer* container, const QJsonValue& depsValue)
+{
+    if (depsValue.isUndefined())
+        return true;
+
+    QJsonArray depsArray;
+    if (depsValue.type() == QJsonValue::Array)
+        depsArray = depsValue.toArray();
+    else
+        depsArray.append(depsValue);
+
+    PluginDependency dep;
+    QJsonObject depObject;
+    for (const QJsonValue& value : depsArray)
+    {
+        if (value.type() == QJsonValue::Object)
+        {
+            depObject = value.toObject();
+            if (!depObject.contains("name"))
+            {
+                qWarning() << "Invalid dependency entry in plugin" << pluginName << " - doesn't contain 'name' of the dependency.";
+                return false;
+            }
+
+            dep.name = depObject.value("name").toString();
+            dep.minVersion = depObject.value("minVersion").toInt(0);
+            dep.maxVersion = depObject.value("maxVersion").toInt(0);
+        }
+        else
+        {
+            dep.maxVersion = 0;
+            dep.minVersion = 0;
+            dep.name = value.toString();
+        }
+        container->dependencies << dep;
+    }
+    return true;
+}
+
+bool PluginManagerImpl::readConflicts(const QString& pluginName, PluginManagerImpl::PluginContainer* container, const QJsonValue& confValue)
+{
+    UNUSED(pluginName);
+
+    if (confValue.isUndefined())
+        return true;
+
+    QJsonArray confArray;
+    if (confValue.type() == QJsonValue::Array)
+        confArray = confValue.toArray();
+    else
+        confArray.append(confValue);
+
+    for (const QJsonValue& value : confArray)
+        container->conflicts << value.toString();
 
     return true;
 }
@@ -337,8 +440,14 @@ void PluginManagerImpl::unload(const QString& pluginName)
         if (otherContainer == container)
             continue;
 
-        if (otherContainer->dependencies.contains(pluginName))
-            unload(otherContainer->name);
+        for (const PluginDependency& dep : otherContainer->dependencies)
+        {
+            if (dep.name == pluginName)
+            {
+                unload(otherContainer->name);
+                break;
+            }
+        }
     }
 
     // Removing from fast-lookup collections
@@ -376,7 +485,7 @@ bool PluginManagerImpl::load(const QString& pluginName)
     return res;
 }
 
-bool PluginManagerImpl::load(const QString& pluginName, QStringList& alreadyAttempted)
+bool PluginManagerImpl::load(const QString& pluginName, QStringList& alreadyAttempted, int minVersion, int maxVersion)
 {
     if (alreadyAttempted.contains(pluginName))
         return false;
@@ -390,6 +499,19 @@ bool PluginManagerImpl::load(const QString& pluginName, QStringList& alreadyAtte
     }
 
     PluginContainer* container = pluginContainer[pluginName];
+
+    if (minVersion > 0 && container->version < minVersion)
+    {
+        qWarning() << "Requested plugin" << pluginName << "in version at least" << minVersion << "but have:" << container->version;
+        return false;
+    }
+
+    if (maxVersion > 0 && container->version > maxVersion)
+    {
+        qWarning() << "Requested plugin" << pluginName << "in version at most" << maxVersion << "but have:" << container->version;
+        return false;
+    }
+
     if (container->builtIn)
         return true;
 
@@ -412,11 +534,11 @@ bool PluginManagerImpl::load(const QString& pluginName, QStringList& alreadyAtte
     }
 
     // Loading depended plugins
-    for (const QString& dep : container->dependencies)
+    for (const PluginDependency& dep : container->dependencies)
     {
-        if (!load(dep, alreadyAttempted))
+        if (!load(dep.name, alreadyAttempted, dep.minVersion, dep.maxVersion))
         {
-            notifyWarn(tr("Cannot load plugin %1, because its dependency was not loaded: %2.").arg(pluginName, dep));
+            notifyWarn(tr("Cannot load plugin %1, because its dependency was not loaded: %2.").arg(pluginName, dep.name));
             alreadyAttempted.append(pluginName);
             return false;
         }
@@ -592,7 +714,30 @@ QStringList PluginManagerImpl::getDependencies(const QString& pluginName) const
     if (!pluginContainer.contains(pluginName))
         return QStringList();
 
-    return pluginContainer[pluginName]->dependencies;
+    static const QString verTpl = QStringLiteral(" (%1)");
+    QString minVerTpl = tr("min: %1", "plugin dependency version");
+    QString maxVerTpl = tr("max: %1", "plugin dependency version");
+    QStringList outputList;
+    QString depStr;
+    QStringList depVerList;
+    for (const PluginDependency& dep : pluginContainer[pluginName]->dependencies)
+    {
+        depStr = dep.name;
+        if (dep.minVersion > 0 || dep.maxVersion > 0)
+        {
+            depVerList.clear();
+            if (dep.minVersion > 0)
+                depVerList << minVerTpl.arg(toPrintableVersion(dep.minVersion));
+
+            if (dep.maxVersion > 0)
+                depVerList << minVerTpl.arg(toPrintableVersion(dep.maxVersion));
+
+            depStr += verTpl.arg(depVerList.join(", "));
+        }
+        outputList << depStr;
+    }
+
+    return outputList;
 }
 
 QStringList PluginManagerImpl::getConflicts(const QString& pluginName) const

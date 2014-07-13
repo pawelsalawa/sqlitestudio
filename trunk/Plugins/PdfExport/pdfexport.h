@@ -58,14 +58,14 @@ class PDFEXPORTSHARED_EXPORT PdfExport : public GenericExportPlugin
                          const QHash<ExportManager::ExportProviderFlag,QVariant> providedData);
         bool exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable,
                                 const QHash<ExportManager::ExportProviderFlag,QVariant> providedData);
+        bool afterExport();
         bool afterExportTable();
+        bool afterExportQueryResults();
         bool exportTableRow(SqlResultsRowPtr data);
         bool beforeExportDatabase(const QString& database);
         bool exportIndex(const QString& database, const QString& name, const QString& ddl, SqliteCreateIndexPtr createIndex);
         bool exportTrigger(const QString& database, const QString& name, const QString& ddl, SqliteCreateTriggerPtr createTrigger);
         bool exportView(const QString& database, const QString& name, const QString& ddl, SqliteCreateViewPtr view);
-        bool afterExportQueryResults();
-        bool afterExportDatabase();
         bool isBinaryData() const;
         bool init();
         void deinit();
@@ -148,6 +148,7 @@ class PDFEXPORTSHARED_EXPORT PdfExport : public GenericExportPlugin
         void flushObjectPages();
         void drawObjectTopLine(int y);
         void drawObjectCellHeaderBackground(int x1, int y1, int x2, int y2);
+        void drawFooter();
         void flushObjectRow(const ObjectRow& row, int y);
         void flushObjectCell(const ObjectCell& cell, int x, int y, int w, int h);
         void flushDataPages(bool forceRender = false);
@@ -200,7 +201,7 @@ class PDFEXPORTSHARED_EXPORT PdfExport : public GenericExportPlugin
         int rowsToPrebuffer = 0;
         int currentPage = -1;
         int rowNum = 0;
-        int objectsTotalHeight = 0;
+        int lastRowY = 0;
         qreal pointsPerMm = 1.0;
         int lineWidth = 15;
         int maxColWidth = 0;

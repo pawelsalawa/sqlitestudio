@@ -1,7 +1,7 @@
 * change icon of the warning when exporting to existing file - change it to info icon, so it's no so intimidating.
-* plugin json file: sqlitestudio min/max version requirements, Qt min/max version requirements, other plugin dependencies with version specifying
 * exporting table option (checked by default) to export table related indexes and triggers
 * db version converting
+* shortcut configuration
 * context menu for taskbar
 * when pasting multiple sqls at once into Console, it executes each query separately using full QueryExecutor features, which makes each execution a bit slow.
   need to detect such situations, concatenate and execute everything at once, so QueryExecutor can optimize execution.
@@ -21,6 +21,13 @@
 * Idea for next versions: think of some smart "revert" or "backup", so users are protected from accidentaly deleting table,
   or data in table.
 * SqlEditor::refreshValidObjects() doesn't add valid object names from other databases (not yet attached). It might be tricky to implement.
+
+CLI:
+* plugin management commands
+* export commands
+* import commands
+* populate commands
+* formatting command
 
 UNIT TESTS:
 Parser::parse: more complex examples, errors detecting

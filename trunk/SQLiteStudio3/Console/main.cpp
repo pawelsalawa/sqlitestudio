@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
     CliResultsDisplay::staticInit();
     initCliUtils();
 
-    SQLiteStudio::getInstance()->init(a.arguments());
+    SQLITESTUDIO->init(a.arguments(), false);
 
     CliCommandExecutor executor;
 

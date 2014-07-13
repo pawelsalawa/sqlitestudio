@@ -173,9 +173,10 @@ SqlFormatter *SQLiteStudio::getSqlFormatter() const
     return sqlFormatter;
 }
 
-void SQLiteStudio::init(const QStringList& cmdListArguments)
+void SQLiteStudio::init(const QStringList& cmdListArguments, bool guiAvailable)
 {
     env = new QProcessEnvironment(QProcessEnvironment::systemEnvironment());
+    this->guiAvailable = guiAvailable;
 
     QThreadPool::globalInstance()->setMaxThreadCount(10);
 
@@ -311,4 +312,9 @@ QString SQLiteStudio::getEnv(const QString &name, const QString &defaultValue)
 DbAttacher* SQLiteStudio::createDbAttacher(Db* db)
 {
     return dbAttacherFactory->create(db);
+}
+
+bool SQLiteStudio::isGuiAvailable() const
+{
+    return guiAvailable;
 }

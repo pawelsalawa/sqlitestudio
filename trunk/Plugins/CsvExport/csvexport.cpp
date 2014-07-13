@@ -126,6 +126,9 @@ bool CsvExport::exportIndex(const QString& database, const QString& name, const 
     UNUSED(name);
     UNUSED(ddl);
     UNUSED(createIndex);
+    if (isTableExport())
+        return true;
+
     return false;
 }
 
@@ -135,6 +138,9 @@ bool CsvExport::exportTrigger(const QString& database, const QString& name, cons
     UNUSED(name);
     UNUSED(ddl);
     UNUSED(createTrigger);
+    if (isTableExport())
+        return true;
+
     return false;
 }
 
