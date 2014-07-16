@@ -8,22 +8,22 @@ SqlResultsRow::~SqlResultsRow()
 {
 }
 
-QVariant &SqlResultsRow::value(const QString &key)
+const QVariant SqlResultsRow::value(const QString &key) const
 {
     return valuesMap[key];
 }
 
-QHash<QString, QVariant> &SqlResultsRow::valueMap()
+const QHash<QString, QVariant> &SqlResultsRow::valueMap() const
 {
     return valuesMap;
 }
 
-QList<QVariant> SqlResultsRow::valueList()
+const QList<QVariant>& SqlResultsRow::valueList() const
 {
     return values;
 }
 
-QVariant SqlResultsRow::value(int idx)
+const QVariant SqlResultsRow::value(int idx) const
 {
     if (idx < 0 || idx >= values.size())
         return QVariant();
@@ -31,12 +31,12 @@ QVariant SqlResultsRow::value(int idx)
     return values[idx];
 }
 
-bool SqlResultsRow::contains(const QString &key)
+bool SqlResultsRow::contains(const QString &key) const
 {
     return valuesMap.contains(key);
 }
 
-bool SqlResultsRow::contains(int idx)
+bool SqlResultsRow::contains(int idx) const
 {
     return idx >= 0 && idx < values.size();
 }

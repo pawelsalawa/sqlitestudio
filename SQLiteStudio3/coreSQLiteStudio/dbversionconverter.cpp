@@ -25,15 +25,37 @@
 #include "parser/ast/sqlitevacuum.h"
 #include "services/pluginmanager.h"
 #include "plugins/dbplugin.h"
+#include "services/dbmanager.h"
 #include <QDebug>
+#include <QDir>
+#include <QFile>
+#include <QtConcurrent/QtConcurrentRun>
 
 DbVersionConverter::DbVersionConverter()
 {
+    connect(this, SIGNAL(askUserForConfirmation()), this, SLOT(confirmConversion()));
+    connect(this, SIGNAL(conversionSuccessful()), this, SLOT(registerDbAfterSuccessfulConversion()));
 }
 
 DbVersionConverter::~DbVersionConverter()
 {
+    safe_delete(fullConversionConfig);
     safe_delete(resolver);
+}
+
+void DbVersionConverter::convert(Dialect from, Dialect to, Db* srcDb, const QString& targetFile, const QString& targetName, ConversionConfimFunction confirmFunc,
+                                 ConversionErrorsConfimFunction errorsConfirmFunc)
+{
+    safe_delete(fullConversionConfig);
+    fullConversionConfig = new FullConversionConfig;
+    fullConversionConfig->from = from;
+    fullConversionConfig->to = to;
+    fullConversionConfig->srcDb = srcDb;
+    fullConversionConfig->confirmFunc = confirmFunc;
+    fullConversionConfig->errorsConfirmFunc = errorsConfirmFunc;
+    fullConversionConfig->targetFile = targetFile;
+    fullConversionConfig->targetName = targetName;
+    QtConcurrent::run(this, &DbVersionConverter::fullConvertStep1);
 }
 
 void DbVersionConverter::convert(Dialect from, Dialect to, Db* db)
@@ -167,9 +189,17 @@ SqliteQueryPtr DbVersionConverter::convert3To2(SqliteQueryPtr query)
             }
             break;
         case SqliteQueryType::CreateVirtualTable:
-            errors << QObject::tr("SQLite 2 does not support 'CREATE VIRTUAL TABLE' statement.");
-            newQuery = SqliteEmptyQueryPtr::create();
-            storeErrorDiff(query.data());
+            newQuery = copyQuery<SqliteCreateVirtualTable>(query);
+            if (!modifyVirtualTableForVesion2(newQuery, newQuery.dynamicCast<SqliteCreateVirtualTable>().data()))
+            {
+                errors << QObject::tr("SQLite 2 does not support 'CREATE VIRTUAL TABLE' statement.");
+                newQuery = SqliteEmptyQueryPtr::create();
+                storeErrorDiff(query.data());
+            }
+            else
+            {
+                errors << QObject::tr("SQLite 2 does not support 'CREATE VIRTUAL TABLE' statement. The regular table can be created instead if you proceed.");
+            }
             break;
         case SqliteQueryType::Delete:
             newQuery = copyQuery<SqliteDelete>(query);
@@ -532,6 +562,7 @@ bool DbVersionConverter::modifyCreateTableForVersion2(SqliteCreateTable* createT
             tableColConstrIt.next();
             switch (tableColConstrIt.value()->type)
             {
+                case SqliteCreateTable::Column::Constraint::COLLATE: // theoretically supported by SQLite2, but it raises error from SQLite2 when used
                 case SqliteCreateTable::Column::Constraint::NAME_ONLY:
                 {
                     delete tableColConstrIt.value();
@@ -572,7 +603,6 @@ bool DbVersionConverter::modifyCreateTableForVersion2(SqliteCreateTable* createT
                 case SqliteCreateTable::Column::Constraint::NOT_NULL:
                 case SqliteCreateTable::Column::Constraint::UNIQUE:
                 case SqliteCreateTable::Column::Constraint::CHECK:
-                case SqliteCreateTable::Column::Constraint::COLLATE:
                 case SqliteCreateTable::Column::Constraint::NULL_:
                 case SqliteCreateTable::Column::Constraint::DEFERRABLE_ONLY:
                     break;
@@ -593,7 +623,7 @@ bool DbVersionConverter::modifyCreateTableForVersion2(SqliteCreateTable* createT
 
 bool DbVersionConverter::modifyCreateTriggerForVersion2(SqliteCreateTrigger* createTrigger)
 {
-    QString sql1 = getSqlForDiff(createTrigger);
+    QString sql = getSqlForDiff(createTrigger);
 
     if (!createTrigger->database.isNull())
         createTrigger->database = QString::null;
@@ -636,7 +666,7 @@ bool DbVersionConverter::modifyCreateTriggerForVersion2(SqliteCreateTrigger* cre
         }
     }
 
-    storeDiff(sql1, createTrigger);
+    storeDiff(sql, createTrigger);
     return true;
 }
 
@@ -671,6 +701,22 @@ bool DbVersionConverter::modifyCreateViewForVersion2(SqliteCreateView* createVie
         return false;
 
     storeDiff(sql1, createView);
+    return true;
+}
+
+bool DbVersionConverter::modifyVirtualTableForVesion2(SqliteQueryPtr& query, SqliteCreateVirtualTable* createVirtualTable)
+{
+    if (!resolver)
+        return false;
+
+    SqliteCreateTablePtr createTable = resolver->resolveVirtualTableAsRegularTable(createVirtualTable->database, createVirtualTable->table);
+    if (!createTable)
+        return false;
+
+    QString sql = getSqlForDiff(createVirtualTable);
+    storeDiff(sql, createTable.data());
+
+    query = createTable.dynamicCast<SqliteQuery>();
     return true;
 }
 
@@ -862,6 +908,195 @@ QStringList DbVersionConverter::getSupportedVersionNames() const
     return versions;
 }
 
+void DbVersionConverter::fullConvertStep1()
+{
+    convert(fullConversionConfig->from, fullConversionConfig->to, fullConversionConfig->srcDb);
+    emit askUserForConfirmation();
+}
+
+void DbVersionConverter::fullConvertStep2()
+{
+    QFile outputFile(fullConversionConfig->targetFile);
+    if (outputFile.exists() && !outputFile.remove())
+    {
+        emit conversionFailed(tr("Target file exists, but could not be overwritten."));
+        return;
+    }
+
+    Db* db = nullptr;
+    Db* tmpDb = nullptr;
+    for (DbPlugin* plugin : PLUGINS->getLoadedPlugins<DbPlugin>())
+    {
+        tmpDb = plugin->getInstance("", ":memory:", QHash<QString,QVariant>());
+        if (tmpDb->initAfterCreated() && tmpDb->getDialect() == fullConversionConfig->to)
+            db = plugin->getInstance(fullConversionConfig->targetName, fullConversionConfig->targetFile, QHash<QString,QVariant>());
+
+        delete tmpDb;
+        if (db)
+            break;
+    }
+
+    if (!db)
+    {
+        emit conversionFailed(tr("Could not find proper database plugin to create target database."));
+        return;
+    }
+
+    if (checkForInterrupted(db, false))
+        return;
+
+    if (!db->open())
+    {
+        emit conversionFailed(db->getErrorText());
+        return;
+    }
+
+    if (!db->begin())
+    {
+        conversionError(db, db->getErrorText());
+        return;
+    }
+
+    QStringList tables;
+    if (!fullConvertCreateObjectsStep1(db, tables))
+        return; // error handled inside
+
+    if (checkForInterrupted(db, true))
+        return;
+
+    if (!fullConvertCopyData(db, tables))
+        return; // error handled inside
+
+    if (checkForInterrupted(db, true))
+        return;
+
+    if (!fullConvertCreateObjectsStep2(db))
+        return; // error handled inside
+
+    if (checkForInterrupted(db, true))
+        return;
+
+    if (!db->commit())
+    {
+        conversionError(db, db->getErrorText());
+        return;
+    }
+    emit conversionSuccessful();
+}
+
+bool DbVersionConverter::fullConvertCreateObjectsStep1(Db* db, QStringList& tables)
+{
+    SqlQueryPtr result;
+    SqliteCreateTablePtr createTable;
+    for (const SqliteQueryPtr& query : getConverted())
+    {
+        // Triggers and indexes are created in step2, after data was copied, to avoid invoking triggers
+        // and speed up copying data.
+        if (query->queryType == SqliteQueryType::CreateTrigger || query->queryType == SqliteQueryType::CreateIndex)
+            continue;
+
+        createTable = query.dynamicCast<SqliteCreateTable>();
+        if (!createTable.isNull())
+            tables << createTable->table;
+
+        result = db->exec(query->detokenize());
+        if (result->isError())
+        {
+            conversionError(db, result->getErrorText());
+            return false;
+        }
+    }
+    return true;
+}
+
+bool DbVersionConverter::fullConvertCreateObjectsStep2(Db* db)
+{
+    SqlQueryPtr result;
+    for (const SqliteQueryPtr& query : getConverted())
+    {
+        // Creating only triggers and indexes
+        if (query->queryType != SqliteQueryType::CreateTrigger && query->queryType != SqliteQueryType::CreateIndex)
+            continue;
+
+        result = db->exec(query->detokenize());
+        if (result->isError())
+        {
+            conversionError(db, result->getErrorText());
+            return false;
+        }
+
+        if (checkForInterrupted(db, true))
+            return false;
+    }
+    return true;
+}
+
+bool DbVersionConverter::fullConvertCopyData(Db* db, const QStringList& tables)
+{
+    static const QString selectSql = QStringLiteral("SELECT * FROM %1;");
+    static const QString insertSql = QStringLiteral("INSERT INTO %1 VALUES (%2);");
+
+    Dialect srcDialect = fullConversionConfig->srcDb->getDialect();
+    Dialect trgDialect = db->getDialect();
+    QString srcTable;
+    QString trgTable;
+    SqlQueryPtr result;
+    SqlQueryPtr dataResult;
+    SqlResultsRowPtr resultsRow;
+    int i = 1;
+    for (const QString& table : tables)
+    {
+        // Select data
+        srcTable = wrapObjIfNeeded(table, srcDialect);
+        trgTable = wrapObjIfNeeded(table, trgDialect);
+        dataResult = fullConversionConfig->srcDb->exec(selectSql.arg(srcTable));
+        if (dataResult->isError())
+        {
+            conversionError(db, dataResult->getErrorText());
+            return false;
+        }
+
+        if (checkForInterrupted(db, true))
+            return false;
+
+        // Copy row by row
+        i = 1;
+        while (dataResult->hasNext())
+        {
+            // Get row
+            resultsRow = dataResult->next();
+            if (dataResult->isError())
+            {
+                conversionError(db, dataResult->getErrorText());
+                return false;
+            }
+
+            // Insert row
+            result = db->exec(insertSql.arg(trgTable, generateQueryPlaceholders(resultsRow->valueList().size())), resultsRow->valueList());
+            if (result->isError())
+            {
+                conversionError(db, result->getErrorText());
+                return false;
+            }
+
+            if (i++ % 100 == 0 && checkForInterrupted(db, true))
+                return false;
+        }
+    }
+
+    return true;
+}
+
+bool DbVersionConverter::checkForInterrupted(Db* db, bool rollback)
+{
+    if (isInterrupted())
+    {
+        conversionInterrupted(db, rollback);
+        return true;
+    }
+    return false;
+}
+
 QList<Db*> DbVersionConverter::getAllPossibleDbInstances() const
 {
     QList<Db*> dbList;
@@ -877,12 +1112,108 @@ QList<Db*> DbVersionConverter::getAllPossibleDbInstances() const
     return dbList;
 }
 
+QString DbVersionConverter::generateQueryPlaceholders(int argCount)
+{
+    QStringList args;
+    for (int i = 0; i < argCount; i++)
+        args << "?";
+
+    return args.join(", ");
+}
+
+void DbVersionConverter::sortConverted()
+{
+    qSort(newQueries.begin(), newQueries.end(), [](const SqliteQueryPtr& q1, const SqliteQueryPtr& q2) -> bool
+    {
+        if (!q1 || !q2)
+        {
+            if (!q1)
+                return false;
+            else
+                return true;
+        }
+        if (q1->queryType == q2->queryType)
+            return false;
+
+        if (q1->queryType == SqliteQueryType::CreateTable)
+            return true;
+
+        if (q1->queryType == SqliteQueryType::CreateView && q2->queryType != SqliteQueryType::CreateTable)
+            return true;
+
+        return false;
+    });
+}
+
+void DbVersionConverter::setInterrupted(bool value)
+{
+    QMutexLocker locker(&interruptMutex);
+    interrupted = value;
+}
+
+bool DbVersionConverter::isInterrupted()
+{
+    QMutexLocker locker(&interruptMutex);
+    return interrupted;
+}
+
+void DbVersionConverter::conversionInterrupted(Db* db, bool rollback)
+{
+    emit conversionAborted();
+    if (rollback)
+        db->rollback();
+
+    db->close();
+
+    QFile file(fullConversionConfig->targetFile);
+    if (file.exists())
+        file.remove();
+}
+
+void DbVersionConverter::conversionError(Db* db, const QString& errMsg)
+{
+    emit conversionFailed(tr("Error while converting database: %1").arg(errMsg));
+    db->rollback();
+    db->close();
+
+    QFile file(fullConversionConfig->targetFile);
+    if (file.exists())
+        file.remove();
+}
+
+void DbVersionConverter::confirmConversion()
+{
+    if (!errors.isEmpty() && !fullConversionConfig->errorsConfirmFunc(errors))
+    {
+        emit conversionAborted();
+        return;
+    }
+
+    if (!diffList.isEmpty() && !fullConversionConfig->confirmFunc(diffList))
+    {
+        emit conversionAborted();
+        return;
+    }
+
+    QtConcurrent::run(this, &DbVersionConverter::fullConvertStep2);
+}
+
+void DbVersionConverter::registerDbAfterSuccessfulConversion()
+{
+    DBLIST->addDb(fullConversionConfig->targetName, fullConversionConfig->targetFile);
+}
+
+void DbVersionConverter::interrupt()
+{
+    setInterrupted(true);
+}
+
 const QList<QPair<QString, QString> >& DbVersionConverter::getDiffList() const
 {
     return diffList;
 }
 
-const QStringList& DbVersionConverter::getErrors() const
+const QSet<QString>& DbVersionConverter::getErrors() const
 {
     return errors;
 }
@@ -904,6 +1235,7 @@ QStringList DbVersionConverter::getConvertedSqls() const
 void DbVersionConverter::convertDb()
 {
     resolver = new SchemaResolver(db);
+    resolver->setIgnoreSystemObjects(true);
     QHash<QString, SqliteQueryPtr> parsedObjects = resolver->getAllParsedObjects();
     for (SqliteQueryPtr query : parsedObjects.values())
     {
@@ -917,4 +1249,5 @@ void DbVersionConverter::convertDb()
                 break;
         }
     }
+    sortConverted();
 }

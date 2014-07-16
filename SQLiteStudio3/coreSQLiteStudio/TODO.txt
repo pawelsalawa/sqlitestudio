@@ -1,9 +1,12 @@
-* db version converting
+* add db, open table from it, remove db while table is open, table window remains after removing db
 * json export, dbf export, dbf import, regexp import, tcl scripting
+* export dialog - progressbar and interrupt button
 * W select trzeba jeszcze konteksty dla WHERE, HAVING i GROUP BY obsluzyc - mozna je zrobic razem, bo wszystkie uzywaja expr
+* config dir - make use of QStandardPaths::ConfigLocation
 * shortcut configuration
 * context menu for taskbar
 * option to view full db path in window title
+* db context menu entries: vacuum, integrity check
 * generating INSERT/UPDATE/DELETE/SELECT basing on table definition
 * if creating unique index fails, propose to generate select query to find out conflicting rows
 * add nice api for accessing menus and toolbars, so plugins can easly add/remove from them
@@ -13,6 +16,7 @@
 * deployment
 * auto updates
 * crash management
+* tips&tricks dialog
 
 * CompletionHelper: smarter suggestions for UPDATE, DELETE and INSERT, just like for SELECT.
 * sql edit in trigger dialog should understand (highlight and suggest) the 'new' and 'old' keywords.

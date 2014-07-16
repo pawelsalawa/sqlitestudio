@@ -14,7 +14,7 @@ DbObjectOrganizer::DbObjectOrganizer()
     confirmFunction = [](const QStringList&) -> bool {return false;};
     nameConflictResolveFunction = [](QString&) -> bool {return false;};
     conversionConfimFunction = [](const QList<QPair<QString,QString>>&) -> bool {return false;};
-    conversionErrorsConfimFunction = [](const QHash<QString,QStringList>&) -> bool {return false;};
+    conversionErrorsConfimFunction = [](const QHash<QString,QSet<QString>>&) -> bool {return false;};
     init();
 }
 

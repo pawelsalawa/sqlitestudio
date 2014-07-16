@@ -14,7 +14,7 @@ ErrorsConfirmDialog::~ErrorsConfirmDialog()
     delete ui;
 }
 
-void ErrorsConfirmDialog::setErrors(const QHash<QString,QStringList>& errors)
+void ErrorsConfirmDialog::setErrors(const QHash<QString,QSet<QString>>& errors)
 {
     ui->list->clear();
 
@@ -28,10 +28,10 @@ void ErrorsConfirmDialog::setErrors(const QHash<QString,QStringList>& errors)
         ui->list->item(i)->setIcon(ICONS.STATUS_ERROR);
 }
 
-void ErrorsConfirmDialog::setErrors(const QStringList& errors)
+void ErrorsConfirmDialog::setErrors(const QSet<QString>& errors)
 {
     ui->list->clear();
-    ui->list->addItems(errors);
+    ui->list->addItems(errors.toList());
     for (int i = 0, total = ui->list->count(); i < total; ++i)
         ui->list->item(i)->setIcon(ICONS.STATUS_ERROR);
 }

@@ -15,8 +15,8 @@ class ErrorsConfirmDialog : public QDialog
         explicit ErrorsConfirmDialog(QWidget *parent = 0);
         ~ErrorsConfirmDialog();
 
-        void setErrors(const QHash<QString, QStringList>& errors);
-        void setErrors(const QStringList& errors);
+        void setErrors(const QHash<QString, QSet<QString> >& errors);
+        void setErrors(const QSet<QString>& errors);
         void setTopLabel(const QString& text);
         void setBottomLabel(const QString& text);
 

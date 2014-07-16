@@ -82,7 +82,7 @@ class DbTreeModel : public QStandardItemModel
         static bool confirmReferencedTables(const QStringList& tables);
         static bool resolveNameConflict(QString& nameInConflict);
         static bool confirmConversion(const QList<QPair<QString,QString>>& diffs);
-        static bool confirmConversionErrors(const QHash<QString, QStringList>& errors);
+        static bool confirmConversionErrors(const QHash<QString, QSet<QString> >& errors);
 
         static const QString toolTipTableTmp;
         static const QString toolTipHdrRowTmp;

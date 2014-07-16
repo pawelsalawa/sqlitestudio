@@ -785,6 +785,16 @@ bool SchemaResolver::isVirtualTable(const QString& table)
     return isVirtualTable("main", table);
 }
 
+SqliteCreateTablePtr SchemaResolver::resolveVirtualTableAsRegularTable(const QString& table)
+{
+    return resolveVirtualTableAsRegularTable("maine", table);
+}
+
+SqliteCreateTablePtr SchemaResolver::resolveVirtualTableAsRegularTable(const QString& database, const QString& table)
+{
+    return virtualTableAsRegularTable(database, table);
+}
+
 QStringList SchemaResolver::getWithoutRowIdTableColumns(const QString& table)
 {
     return getWithoutRowIdTableColumns("main", table);
