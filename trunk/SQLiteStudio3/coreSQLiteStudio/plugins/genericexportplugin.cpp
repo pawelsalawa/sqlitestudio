@@ -55,6 +55,11 @@ QString GenericExportPlugin::getMimeType() const
     return QString::null;
 }
 
+QString GenericExportPlugin::getDefaultEncoding() const
+{
+    return QString();
+}
+
 bool GenericExportPlugin::isBinaryData() const
 {
     return false;

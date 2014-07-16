@@ -10,4 +10,5 @@ SUBDIRS += \
     PdfExport \
     SqlExport \
     SqlFormatterSimple \
-    XmlExport
+    XmlExport \
+    JsonExport

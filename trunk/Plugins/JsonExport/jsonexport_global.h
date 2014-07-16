@@ -1,0 +1,12 @@
+#ifndef JSONEXPORT_GLOBAL_H
+#define JSONEXPORT_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(JSONEXPORT_LIBRARY)
+#  define JSONEXPORTSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define JSONEXPORTSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // JSONEXPORT_GLOBAL_H

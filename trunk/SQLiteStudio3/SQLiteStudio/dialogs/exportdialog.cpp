@@ -333,6 +333,7 @@ void ExportDialog::formatPageDisplayed()
     if (!formatPageVisited)
     {
         ui->formatCombo->addItems(EXPORT_MANAGER->getAvailableFormats(exportMode));
+
         ui->encodingCombo->addItems(textCodecNames());
         ui->encodingCombo->setCurrentText(defaultCodecName());
 
@@ -445,6 +446,13 @@ void ExportDialog::updateOptions()
     bool displayCodec = options.testFlag(ExportManager::CODEC) && !ui->exportClipboardRadio->isChecked();
     ui->encodingCombo->setVisible(displayCodec);
     ui->encodingLabel->setVisible(displayCodec);
+    if (displayCodec)
+    {
+        QString codec = currentPlugin->getDefaultEncoding();
+        int idx = ui->encodingCombo->findText(codec);
+        if (idx > -1)
+            ui->encodingCombo->setCurrentIndex(idx);
+    }
 
     int optionsRow = 0;
     updatePluginOptions(currentPlugin, optionsRow);

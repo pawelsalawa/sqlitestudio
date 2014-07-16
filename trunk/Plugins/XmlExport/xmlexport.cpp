@@ -1,5 +1,4 @@
 #include "xmlexport.h"
-#include "schemaresolver.h"
 #include "services/exportmanager.h"
 #include "common/unused.h"
 #include <QTextCodec>
@@ -130,9 +129,6 @@ bool XmlExport::exportTable(const QString& database, const QString& table, const
         write(docBegin.arg(codecName));
     }
 
-    SchemaResolver resolver(db);
-    resolver.setNoDbLocking(true);
-
     writeln(QString("<table%1>").arg(isTableExport() ? nsStr : ""));
     incrIndent();
 
@@ -204,9 +200,6 @@ bool XmlExport::exportVirtualTable(const QString& database, const QString& table
         setupConfig();
         write(docBegin.arg(codecName));
     }
-
-    SchemaResolver resolver(db);
-    resolver.setNoDbLocking(true);
 
     writeln(QString("<table%1>").arg(isTableExport() ? nsStr : ""));
     incrIndent();
