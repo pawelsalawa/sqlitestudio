@@ -39,6 +39,15 @@ class ExportPlugin : virtual public Plugin
         virtual ExportManager::StandardConfigFlags standardOptionsToEnable() const = 0;
 
         /**
+         * @brief Tells which character encoding use by default in export dialog.
+         * @return Name of the encoding.
+         *
+         * If the plugin doesn't return ExportManager::CODEC in results from standardOptionsToEnable(), then result
+         * of this function is ignored and it can return null string.
+         */
+        virtual QString getDefaultEncoding() const = 0;
+
+        /**
          * @brief Provides set of modes supported by this export plugin.
          * @return OR-ed set of supported modes.
          *

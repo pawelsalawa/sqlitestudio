@@ -14,6 +14,7 @@ class API_EXPORT GenericExportPlugin : virtual public GenericPlugin, public Expo
         CfgMain* getConfig();
         QString getConfigFormName(ExportManager::ExportMode exportMode) const;
         QString getMimeType() const;
+        QString getDefaultEncoding() const;
         bool isBinaryData() const;
         void setExportMode(ExportManager::ExportMode exportMode);
         bool afterExportQueryResults();

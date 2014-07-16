@@ -1,6 +1,5 @@
 * json export, dbf export, dbf import, regexp import, tcl scripting
 * W select trzeba jeszcze konteksty dla WHERE, HAVING i GROUP BY obsluzyc - mozna je zrobic razem, bo wszystkie uzywaja expr
-* config dir - make use of QStandardPaths::ConfigLocation
 * shortcut configuration
 * context menu for taskbar
 * option to view full db path in window title
