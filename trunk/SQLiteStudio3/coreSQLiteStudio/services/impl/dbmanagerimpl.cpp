@@ -143,6 +143,9 @@ void DbManagerImpl::removeDb(Db* db)
     listLock.unlock();
 
     emit dbRemoved(db);
+
+    db->close();
+    delete db;
 }
 
 void DbManagerImpl::removeDbInternal(Db* db, bool alsoFromConfig)
