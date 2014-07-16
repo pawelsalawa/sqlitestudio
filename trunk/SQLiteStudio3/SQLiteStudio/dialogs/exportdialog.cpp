@@ -41,6 +41,8 @@ void ExportDialog::init()
     ui->setupUi(this);
 
     widgetCover = new WidgetCover(this);
+    widgetCover->initWithInterruptContainer(tr("Cancel"));
+    connect(widgetCover, SIGNAL(cancelClicked()), EXPORT_MANAGER, SLOT(interrupt()));
     widgetCover->setVisible(false);
 
     initPageOrder();

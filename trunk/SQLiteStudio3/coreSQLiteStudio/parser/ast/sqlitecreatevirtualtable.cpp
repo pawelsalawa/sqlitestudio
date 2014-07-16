@@ -1,6 +1,9 @@
 #include "sqlitecreatevirtualtable.h"
 #include "sqlitequerytype.h"
 
+#include <parser/lexer.h>
+#include <parser/statementtokenbuilder.h>
+
 SqliteCreateVirtualTable::SqliteCreateVirtualTable()
 {
     queryType = SqliteQueryType::CreateVirtualTable;
@@ -11,14 +14,16 @@ SqliteCreateVirtualTable::SqliteCreateVirtualTable(const SqliteCreateVirtualTabl
 {
 }
 
-SqliteCreateVirtualTable::SqliteCreateVirtualTable(bool ifNotExists, const QString &name1, const QString &name2, const QString &name3)
+SqliteCreateVirtualTable::SqliteCreateVirtualTable(bool ifNotExists, const QString &name1, const QString &name2, const QString &name3) :
+    SqliteCreateVirtualTable()
 {
     initName(name1, name2);
     this->ifNotExistsKw = ifNotExists;
     module = name3;
 }
 
-SqliteCreateVirtualTable::SqliteCreateVirtualTable(bool ifNotExists, const QString &name1, const QString &name2, const QString &name3, const QList<QString> &args)
+SqliteCreateVirtualTable::SqliteCreateVirtualTable(bool ifNotExists, const QString &name1, const QString &name2, const QString &name3, const QList<QString> &args) :
+    SqliteCreateVirtualTable()
 {
     initName(name1, name2);
     this->ifNotExistsKw = ifNotExists;
@@ -76,4 +81,35 @@ void SqliteCreateVirtualTable::initName(const QString &name1, const QString &nam
     }
     else
         table = name1;
+}
+
+TokenList SqliteCreateVirtualTable::rebuildTokensFromContents()
+{
+    StatementTokenBuilder builder;
+
+    builder.withKeyword("CREATE").withSpace().withKeyword("VIRTUAL").withSpace().withKeyword("TABLE");
+    if (ifNotExistsKw)
+        builder.withKeyword("IF").withSpace().withKeyword("NOT").withSpace().withKeyword("EXISTS").withSpace();
+
+    if (!database.isNull())
+        builder.withOther(database, dialect).withOperator(".");
+
+    builder.withKeyword("USING").withSpace().withOther(module, dialect);
+    if (!args.isEmpty())
+    {
+        builder.withSpace();
+        int i = 0;
+        for (const QString& arg : args)
+        {
+            if (i > 0)
+                builder.withOperator(",").withSpace();
+
+            builder.withTokens(Lexer::tokenize(arg, Dialect::Sqlite3));
+            i++;
+        }
+    }
+
+    builder.withOperator(";");
+
+    return builder.build();
 }

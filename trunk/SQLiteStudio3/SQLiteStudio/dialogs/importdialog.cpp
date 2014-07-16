@@ -58,8 +58,12 @@ void ImportDialog::init()
     ui->setupUi(this);
     initTablePage();
     initDataSourcePage();
+
     widgetCover = new WidgetCover(this);
+    widgetCover->initWithInterruptContainer(tr("Cancel"));
+    connect(widgetCover, SIGNAL(cancelClicked()), IMPORT_MANAGER, SLOT(interrupt()));
     widgetCover->setVisible(false);
+
     connect(this, SIGNAL(currentIdChanged(int)), this, SLOT(pageChanged()));
     connect(IMPORT_MANAGER, SIGNAL(validationResultFromPlugin(bool,CfgEntry*,QString)), this, SLOT(handleValidationResultFromPlugin(bool,CfgEntry*,QString)));
     connect(IMPORT_MANAGER, SIGNAL(stateUpdateRequestFromPlugin(CfgEntry*,bool,bool)), this, SLOT(stateUpdateRequestFromPlugin(CfgEntry*,bool,bool)));

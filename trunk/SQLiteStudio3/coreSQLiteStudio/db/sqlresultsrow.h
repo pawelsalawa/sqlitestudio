@@ -35,14 +35,14 @@ class API_EXPORT SqlResultsRow
          * @param key Column name.
          * @return Value from requested column. If column name is invalid, the invalid QVariant is returned.
          */
-        QVariant& value(const QString& key);
+        const QVariant value(const QString& key) const;
 
         /**
          * @brief Gets value for given column.
          * @param idx 0-based index of column.
          * @return Value from requested column. If index was invalid, the invalid QVariant is returned.
          */
-        QVariant value(int idx);
+        const QVariant value(int idx) const;
 
         /**
          * @brief Gets table of column->value entries.
@@ -52,7 +52,7 @@ class API_EXPORT SqlResultsRow
          * in order they were returned from the database, use valueList(), or iterate through SqlResults::getColumnNames()
          * and use it to call value().
          */
-        QHash<QString,QVariant>& valueMap();
+        const QHash<QString, QVariant>& valueMap() const;
 
         /**
          * @brief Gets list of values in this row.
@@ -60,21 +60,21 @@ class API_EXPORT SqlResultsRow
          *
          * Note, that this method returns values in order they were returned from database.
          */
-        QList<QVariant> valueList();
+        const QList<QVariant>& valueList() const;
 
         /**
          * @brief Tests if the row contains given column name.
          * @param key Column name. Case sensitive.
          * @return true if column exists in the row, or false otherwise.
          */
-        bool contains(const QString& key);
+        bool contains(const QString& key) const;
 
         /**
          * @brief Tests if the row has column indexed with given number.
          * @param idx 0-based index to test.
          * @return true if index is in range of existing columns, or false if it's greater than "number of columns - 1", or if it's less than 0.
          */
-        bool contains(int idx);
+        bool contains(int idx) const;
 
     protected:
         SqlResultsRow();

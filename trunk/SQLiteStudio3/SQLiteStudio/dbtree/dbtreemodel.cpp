@@ -1130,7 +1130,7 @@ bool DbTreeModel::confirmConversion(const QList<QPair<QString, QString> >& diffs
     return dialog.exec() == QDialog::Accepted;
 }
 
-bool DbTreeModel::confirmConversionErrors(const QHash<QString,QStringList>& errors)
+bool DbTreeModel::confirmConversionErrors(const QHash<QString,QSet<QString>>& errors)
 {
     ErrorsConfirmDialog dialog(MAINWINDOW);
     dialog.setTopLabel(tr("Following error occurred while converting SQL statements to the target SQLite version:"));
