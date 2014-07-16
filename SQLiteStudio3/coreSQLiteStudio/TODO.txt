@@ -1,6 +1,4 @@
-* add db, open table from it, remove db while table is open, table window remains after removing db
 * json export, dbf export, dbf import, regexp import, tcl scripting
-* export dialog - progressbar and interrupt button
 * W select trzeba jeszcze konteksty dla WHERE, HAVING i GROUP BY obsluzyc - mozna je zrobic razem, bo wszystkie uzywaja expr
 * config dir - make use of QStandardPaths::ConfigLocation
 * shortcut configuration
