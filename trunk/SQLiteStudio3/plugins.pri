@@ -9,6 +9,12 @@ INCLUDEPATH += $$PWD/coreSQLiteStudio
 INCLUDEPATH += $$PWD/SQLiteStudio
 DEPENDPATH += $$PWD/coreSQLiteStudio
 
+PLUGINSDIR = $$PWD/../Plugins
+INCLUDEPATH += $$PLUGINSDIR
+DEPENDPATH += $$PLUGINSDIR
+
+export (PLUGINSDIR)
+
 win32: {
     INCLUDEPATH += $$PWD/../../include
     LIBS += -L$$PWD/../../lib -L$$DESTDIR/.. -lcoreSQLiteStudio -L$$PWD/../output/SQLiteStudio/plugins
