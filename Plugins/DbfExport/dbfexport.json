@@ -1,0 +1,8 @@
+{
+    "type":         "ExportPlugin",
+    "title":        "DBF export",
+    "description":  "Provides DBase III format for exporting",
+    "version":      10000,
+    "author":       "sqlitestudio.pl",
+    "dependencies": "DBaseFormat"
+}

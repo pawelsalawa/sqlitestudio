@@ -62,6 +62,10 @@ class API_EXPORT Plugin
          * - for that purpose there is a getTitle().
          *
          * It's a good practice to keep it as single word. Providing plugin's class name can be a good idea.
+         *
+         * BUG: Currently this implementation of this method has to always return the name of the plugin's main implementation class
+         * (like DbSqlite2), otherwise SQLiteStudio will either unable to load it, or dependencies to this plugin will fail.
+         * This has to do with PluginManagerImpl relying on "className" entry returned from QPluginLoader's metadata.
          */
         virtual QString getName() const = 0;
 
