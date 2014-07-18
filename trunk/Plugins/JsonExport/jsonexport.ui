@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>JsonExportConfig</class>
+ <widget class="QWidget" name="JsonExportConfig">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>345</width>
+    <height>100</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QGroupBox" name="formatGroup">
+     <property name="title">
+      <string>Output format</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="1" column="0" colspan="2">
+       <widget class="ConfigRadioButton" name="formatRadio">
+        <property name="text">
+         <string>Format document (new lines, indentation)</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+        <property name="assignedValue" stdset="0">
+         <string>format</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string>JsonExport.Format</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" colspan="2">
+       <widget class="ConfigRadioButton" name="compressRadio">
+        <property name="text">
+         <string>Compress (everything in one line)</string>
+        </property>
+        <property name="assignedValue" stdset="0">
+         <string>compress</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string>JsonExport.Format</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ConfigRadioButton</class>
+   <extends>QRadioButton</extends>
+   <header>common/configradiobutton.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

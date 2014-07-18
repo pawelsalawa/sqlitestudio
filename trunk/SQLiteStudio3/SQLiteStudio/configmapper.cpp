@@ -185,18 +185,18 @@ void ConfigMapper::loadToWidget(CfgEntry* config, QWidget* widget)
     applyCommonConfigToWidget(widget, configValue, config);
 }
 
-void ConfigMapper::saveFromWidget(QWidget *widget)
+void ConfigMapper::saveFromWidget(QWidget *widget, bool noTransaction)
 {
     QHash<QString, CfgEntry *> allConfigEntries = getAllConfigEntries();
     QList<QWidget*> allConfigWidgets = getAllConfigWidgets(widget);
 
-    if (isPersistant())
+    if (!noTransaction && isPersistant())
         CFG->beginMassSave();
 
     foreach (QWidget* w, allConfigWidgets)
         saveWidget(w, allConfigEntries);
 
-    if (isPersistant())
+    if (!noTransaction && isPersistant())
         CFG->commitMassSave();
 }
 

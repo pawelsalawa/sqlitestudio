@@ -138,7 +138,7 @@ void ConfigDialog::init()
     setWindowIcon(ICONS.CONFIGURE);
 
     configMapper = new ConfigMapper(CfgMain::getPersistableInstances());
-    connect(configMapper, SIGNAL(modified()), this, SLOT(modified()));
+    connect(configMapper, SIGNAL(modified()), this, SLOT(markModified()));
 
     ui->categoriesFilter->setClearButtonEnabled(true);
     UserInputFilter* filter = new UserInputFilter(ui->categoriesFilter, this, SLOT(applyFilter(QString)));
@@ -181,19 +181,26 @@ void ConfigDialog::save()
     MainWindow::getInstance()->setStyle(ui->activeStyleCombo->currentText());
 
     QString loadedPlugins = collectLoadedPlugins();
+    CFG->beginMassSave();
     CFG_CORE.General.LoadedPlugins.set(loadedPlugins);
-
-    configMapper->saveFromWidget(ui->stackedWidget);
+    configMapper->saveFromWidget(ui->stackedWidget, true);
+    CFG->commitMassSave();
 }
 
-void ConfigDialog::modified()
+void ConfigDialog::markModified()
 {
     setModified(true);
 }
 
 void ConfigDialog::setModified(bool modified)
 {
-    ui->buttonBox->button(QDialogButtonBox::Apply)->setEnabled(modified);
+    modifiedFlag = modified;
+    updateModified();
+}
+
+void ConfigDialog::updateModified()
+{
+    ui->buttonBox->button(QDialogButtonBox::Apply)->setEnabled(modifiedFlag);
 }
 
 void ConfigDialog::applyFilter(const QString &filter)
@@ -440,7 +447,7 @@ void ConfigDialog::addDataType(const QString& typeStr)
     item->setFlags(item->flags()|Qt::ItemIsEditable);
     ui->dataEditorsTypesList->addItem(item);
     ui->dataEditorsTypesList->setCurrentRow(ui->dataEditorsTypesList->count() - 1, QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent);
-    modified();
+    markModified();
 }
 
 void ConfigDialog::updateDataTypeListState()
@@ -565,7 +572,7 @@ void ConfigDialog::delDataType()
     }
 
     updateDataTypeListState();
-    modified();
+    markModified();
 }
 
 void ConfigDialog::dataTypesHelp()
@@ -676,7 +683,7 @@ void ConfigDialog::loadUnloadPlugin(QTreeWidgetItem* item, int column)
     else
         PLUGINS->load(pluginName);
 
-    modified();
+    markModified();
 }
 
 void ConfigDialog::pluginAboutToUnload(Plugin* plugin, PluginType* type)
@@ -1120,8 +1127,10 @@ void ConfigDialog::updateStylePreview()
 
 void ConfigDialog::apply()
 {
+    if (modifiedFlag)
+        save();
+
     setModified(false);
-    save();
 }
 
 void ConfigDialog::accept()

@@ -86,6 +86,7 @@ class ConfigDialog : public QDialog
         QAction* dataEditRenameAction = nullptr;
         QAction* dataEditDeleteAction = nullptr;
         bool updatingDataEditorItem = false;
+        bool modifiedFlag = false;
 
     private slots:
         void pageSwitched();
@@ -102,8 +103,9 @@ class ConfigDialog : public QDialog
         void updateStylePreview();
         void apply();
         void save();
-        void modified();
+        void markModified();
         void setModified(bool modified);
+        void updateModified();
         void applyFilter(const QString& filter);
         void updateActiveFormatterState();
         void activeFormatterChanged(const QString& title);
