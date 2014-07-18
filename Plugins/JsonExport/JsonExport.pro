@@ -20,3 +20,9 @@ HEADERS += jsonexport.h\
 
 OTHER_FILES += \
     jsonexport.json
+
+FORMS += \
+    jsonexport.ui
+
+RESOURCES += \
+    jsonexport.qrc

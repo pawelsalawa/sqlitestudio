@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/forms">
+        <file>jsonexport.ui</file>
+    </qresource>
+</RCC>

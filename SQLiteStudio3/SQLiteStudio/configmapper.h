@@ -19,7 +19,7 @@ class ConfigMapper : public QObject
 
         void loadToWidget(QWidget* topLevelWidget);
         void loadToWidget(CfgEntry* config, QWidget* widget);
-        void saveFromWidget(QWidget* widget);
+        void saveFromWidget(QWidget* widget, bool noTransaction = false);
         void setInternalCustomConfigWidgets(const QList<CustomConfigWidgetPlugin*>& value);
 
         /**

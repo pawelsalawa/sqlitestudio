@@ -183,7 +183,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>4</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="dataBrowsingPage">
           <layout class="QVBoxLayout" name="verticalLayout_21">
@@ -436,6 +436,50 @@
             </widget>
            </item>
            <item>
+            <widget class="QGroupBox" name="tableWinGroup">
+             <property name="title">
+              <string>Table windows</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_18">
+              <item>
+               <widget class="QCheckBox" name="openTablesOnDataCheck">
+                <property name="toolTip">
+                 <string>When enabled, Table Windows will show up with the data tab, instead of the structure tab.</string>
+                </property>
+                <property name="text">
+                 <string>Open Table Windows with the data tab for start</string>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string>General.OpenTablesOnData</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="viewWinGroup">
+             <property name="title">
+              <string>View windows</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_19">
+              <item>
+               <widget class="QCheckBox" name="openViewsOnDataCheck">
+                <property name="toolTip">
+                 <string>When enabled, View Windows will show up with the data tab, instead of the structure tab.</string>
+                </property>
+                <property name="text">
+                 <string>Open View Windows with the data tab for start</string>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string>General.OpenViewsOnData</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
             <spacer name="verticalSpacer">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
@@ -570,50 +614,6 @@
                 </property>
                 <property name="cfg" stdset="0">
                  <string>General.ShowSystemObjects</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <widget class="QGroupBox" name="tableWinGroup">
-             <property name="title">
-              <string>Table windows</string>
-             </property>
-             <layout class="QVBoxLayout" name="verticalLayout_18">
-              <item>
-               <widget class="QCheckBox" name="openTablesOnDataCheck">
-                <property name="toolTip">
-                 <string>When enabled, Table Windows will show up with the data tab, instead of the structure tab.</string>
-                </property>
-                <property name="text">
-                 <string>Open Table Windows with the data tab for start</string>
-                </property>
-                <property name="cfg" stdset="0">
-                 <string>General.OpenTablesOnData</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <widget class="QGroupBox" name="viewWinGroup">
-             <property name="title">
-              <string>View windows</string>
-             </property>
-             <layout class="QVBoxLayout" name="verticalLayout_19">
-              <item>
-               <widget class="QCheckBox" name="openViewsOnDataCheck">
-                <property name="toolTip">
-                 <string>When enabled, View Windows will show up with the data tab, instead of the structure tab.</string>
-                </property>
-                <property name="text">
-                 <string>Open View Windows with the data tab for start</string>
-                </property>
-                <property name="cfg" stdset="0">
-                 <string>General.OpenViewsOnData</string>
                 </property>
                </widget>
               </item>

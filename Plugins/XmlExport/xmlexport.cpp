@@ -242,8 +242,7 @@ bool XmlExport::exportVirtualTable(const QString& database, const QString& table
 
 bool XmlExport::exportTableRow(SqlResultsRowPtr data)
 {
-    exportQueryResultsRow(data);
-    return true;
+    return exportQueryResultsRow(data);
 }
 
 bool XmlExport::afterExportTable()
@@ -296,6 +295,30 @@ bool XmlExport::exportTrigger(const QString& database, const QString& name, cons
     writeln("<database>" + escape(database) + "</database>");
     writeln("<name>" + escape(name) + "</name>");
     writeln("<ddl>" + escape(ddl) + "</ddl>");
+
+    QString timing = SqliteCreateTrigger::time(createTrigger->eventTime);
+    writeln("<timing>" + escape(timing) + "</timing>");
+
+    QString event = createTrigger->event ? SqliteCreateTrigger::Event::typeToString(createTrigger->event->type) : "";
+    writeln("<action>" + escape(event) + "</action>");
+
+    QString tag;
+    if (createTrigger->eventTime == SqliteCreateTrigger::Time::INSTEAD_OF)
+        tag = "<view>";
+    else
+        tag = "<table>";
+
+    writeln(tag + escape(createTrigger->table) + tag);
+
+    if (createTrigger->precondition)
+        writeln("<precondition>" + escape(createTrigger->precondition->detokenize()) + "</precondition>");
+
+    QStringList queryStrings;
+    for (SqliteQuery* q : createTrigger->queries)
+        queryStrings << q->detokenize();
+
+    writeln("<code>" + escape(queryStrings.join("\n")) + "</code>");
+
     decrIndent();
     writeln("</trigger>");
     return true;
@@ -310,6 +333,7 @@ bool XmlExport::exportView(const QString& database, const QString& name, const Q
     writeln("<database>" + escape(database) + "</database>");
     writeln("<name>" + escape(name) + "</name>");
     writeln("<ddl>" + escape(ddl) + "</ddl>");
+    writeln("<select>" + escape(createView->select->detokenize()) + "</select>");
     decrIndent();
     writeln("</view>");
     return true;

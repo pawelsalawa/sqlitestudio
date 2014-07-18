@@ -1,4 +1,5 @@
 #include "jsonexport.h"
+#include "common/unused.h"
 #include <QJsonDocument>
 
 JsonExport::JsonExport()
@@ -22,17 +23,16 @@ QString JsonExport::getDefaultEncoding() const
 
 QString JsonExport::getExportConfigFormName() const
 {
-    return QString();
+    return "JsonExportConfig";
 }
 
 CfgMain* JsonExport::getConfig()
 {
-    return nullptr;
+    return &cfg;
 }
 
 void JsonExport::validateOptions()
 {
-
 }
 
 QString JsonExport::defaultFileExtension() const
@@ -42,21 +42,55 @@ QString JsonExport::defaultFileExtension() const
 
 bool JsonExport::beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
+    UNUSED(providedData);
+
+    beginObject();
+    writeValue("type", "query results");
+    writeValue("query", query);
+
+    beginArray("columns");
+    QList<DataType> columnTypes = QueryExecutor::resolveColumnTypes(db, columns, true);
+    int i = 0;
+    for (QueryExecutor::ResultColumnPtr col : columns)
+    {
+        DataType& type = columnTypes[i];
+
+        beginObject();
+        writeValue("displayName", col->displayName);
+        writeValue("name", col->column);
+        writeValue("database", col->database);
+        writeValue("table", col->table);
+        writeValue("type", type.toFullTypeString());
+        endObject();
+    }
+    endArray();
+
+    beginArray("rows");
     return true;
 }
 
 bool JsonExport::exportQueryResultsRow(SqlResultsRowPtr row)
 {
+    beginArray();
+    for (const QVariant& value : row->valueList())
+        writeValue(value);
+
+    endArray();
     return true;
 }
 
 bool JsonExport::afterExportQueryResults()
 {
+    endArray();
+    endObject();
     return true;
 }
 
 bool JsonExport::exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateTablePtr createTable, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
+    UNUSED(providedData);
+    UNUSED(columnNames);
+
     beginObject();
     writeValue("type", "table");
     writeValue("database", database);
@@ -105,12 +139,38 @@ bool JsonExport::exportTable(const QString& database, const QString& table, cons
 
 bool JsonExport::exportVirtualTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl, SqliteCreateVirtualTablePtr createTable, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
+    UNUSED(providedData);
+
+    beginObject();
+    writeValue("type", "table");
+    writeValue("database", database);
+    writeValue("name", table);
+    writeValue("virtual", true);
+    writeValue("module", createTable->module);
+    writeValue("ddl", ddl);
+
+    beginArray("columns");
+    for (const QString& col : columnNames)
+        writeValue(col);
+
+    endArray();
+
+    if (createTable->args.size() > 0)
+    {
+        beginArray("moduleArgs");
+        for (const QString& arg : createTable->args)
+            writeValue(arg);
+
+        endArray();
+    }
+
+    beginArray("rows");
     return true;
 }
 
 bool JsonExport::exportTableRow(SqlResultsRowPtr data)
 {
-    return true;
+    return exportQueryResultsRow(data);
 }
 
 bool JsonExport::afterExportTable()
@@ -122,34 +182,85 @@ bool JsonExport::afterExportTable()
 
 bool JsonExport::beforeExportDatabase(const QString& database)
 {
+    beginObject();
+    writeValue("type", "database");
+    writeValue("name", database);
+    beginArray("objects");
     return true;
 }
 
 bool JsonExport::exportIndex(const QString& database, const QString& name, const QString& ddl, SqliteCreateIndexPtr createIndex)
 {
+    beginObject();
+    writeValue("type", "index");
+    writeValue("database", database);
+    writeValue("name", name);
+    writeValue("unique", createIndex->uniqueKw);
+
+    if (createIndex->where)
+        writeValue("partial", createIndex->where->detokenize());
+
+    writeValue("ddl", ddl);
+    endObject();
     return true;
 }
 
 bool JsonExport::exportTrigger(const QString& database, const QString& name, const QString& ddl, SqliteCreateTriggerPtr createTrigger)
 {
+    beginObject();
+    writeValue("type", "trigger");
+    writeValue("database", database);
+    writeValue("name", name);
+    writeValue("ddl", ddl);
+
+    QString timing = SqliteCreateTrigger::time(createTrigger->eventTime);
+    writeValue("timing", timing);
+
+    QString event = createTrigger->event ? SqliteCreateTrigger::Event::typeToString(createTrigger->event->type) : "";
+    writeValue("action", event);
+
+    QString obj;
+    if (createTrigger->eventTime == SqliteCreateTrigger::Time::INSTEAD_OF)
+        obj = "view";
+    else
+        obj = "table";
+
+    writeValue(obj, createTrigger->table);
+
+    if (createTrigger->precondition)
+        writeValue("precondition", createTrigger->precondition->detokenize());
+
+    QStringList queryStrings;
+    for (SqliteQuery* q : createTrigger->queries)
+        queryStrings << q->detokenize();
+
+    writeValue("code", queryStrings.join("\n"));
+    endObject();
     return true;
 }
 
 bool JsonExport::exportView(const QString& database, const QString& name, const QString& ddl, SqliteCreateViewPtr createView)
 {
+    beginObject();
+    writeValue("type", "view");
+    writeValue("database", database);
+    writeValue("name", name);
+    writeValue("ddl", ddl);
+    writeValue("select", createView->select->detokenize());
+    endObject();
     return true;
 }
 
 bool JsonExport::afterExportDatabase()
 {
+    endArray();
+    endObject();
     return true;
 }
 
 bool JsonExport::beforeExport()
 {
     setupConfig();
-    elementCounter.clear();
-    elementCounter.push(0);
     return true;
 }
 
@@ -160,17 +271,22 @@ bool JsonExport::afterExport()
 
 bool JsonExport::init()
 {
-    return true;
+    Q_INIT_RESOURCE(jsonexport);
+    return GenericExportPlugin::init();
 }
 
 void JsonExport::deinit()
 {
-
+    Q_CLEANUP_RESOURCE(jsonexport);
 }
 
 void JsonExport::setupConfig()
 {
-    indent = false;
+    elementCounter.clear();
+    elementCounter.push(0);
+    indent = (cfg.JsonExport.Format.get() == "format");
+    indentDepth = 0;
+    updateIndent();
 }
 
 void JsonExport::incrIndent()
@@ -307,12 +423,8 @@ void JsonExport::endArray()
 
 void JsonExport::writeValue(const QVariant& value)
 {
-    static const QString formatted = QStringLiteral("%1\n");
-
-    QString val = formatValue(value);
-
     writePrefixBeforeNextElement();
-    write(indent ? formatted.arg(val) : val);
+    write(formatValue(value));
     incrElementCount();
 }
 
