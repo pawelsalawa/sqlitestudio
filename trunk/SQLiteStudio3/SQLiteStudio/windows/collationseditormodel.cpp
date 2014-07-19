@@ -265,18 +265,8 @@ QVariant CollationsEditorModel::data(const QModelIndex& index, int role) const
 
 void CollationsEditorModel::init()
 {
-    QByteArray data;
     foreach (ScriptingPlugin* plugin, PLUGINS->getLoadedPlugins<ScriptingPlugin>())
-    {
-        data = QByteArray::fromBase64(plugin->getIconData());
-
-        // The pixmap needs to be created per each iteration, so the pixmap is always loaded from scratch,
-        // otherwise the first icon was used for all icons. It seems that loadFromData() appends the data
-        // to the end of current data.
-        QPixmap pixmap;
-        if (pixmap.loadFromData(data))
-            langToIcon[plugin->getLanguage()] = QIcon(pixmap);
-    }
+        langToIcon[plugin->getLanguage()] = QIcon(plugin->getIconPath());
 }
 
 void CollationsEditorModel::emitDataChanged(int row)

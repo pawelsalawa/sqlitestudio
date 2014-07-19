@@ -7,4 +7,8 @@
         <file>plugins/populaterandom.ui</file>
         <file>plugins/populatescript.ui</file>
     </qresource>
+    <qresource prefix="/images">
+        <file>plugins/scriptingsql.png</file>
+        <file>plugins/scriptingqt.png</file>
+    </qresource>
 </RCC>

@@ -34,7 +34,7 @@ class ScriptingSql : public BuiltInPlugin, public DbAwareScriptingPlugin
         QVariant getVariable(Context* context, const QString& name);
         bool hasError(Context* context) const;
         QString getErrorMessage(Context* context) const;
-        QByteArray getIconData() const;
+        QString getIconPath() const;
         bool init();
         void deinit();
 

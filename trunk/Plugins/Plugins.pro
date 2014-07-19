@@ -11,4 +11,5 @@ SUBDIRS += \
     SqlExport \
     SqlFormatterSimple \
     XmlExport \
-    JsonExport
+    JsonExport \
+    ScriptingTcl
