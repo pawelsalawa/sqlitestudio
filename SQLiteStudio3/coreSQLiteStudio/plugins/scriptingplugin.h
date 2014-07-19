@@ -25,7 +25,7 @@ class ScriptingPlugin : virtual public Plugin
         virtual bool hasError(Context* context) const = 0;
         virtual QString getErrorMessage(Context* context) const = 0;
         virtual QVariant evaluate(const QString& code, const QList<QVariant>& args = QList<QVariant>(), QString* errorMessage = nullptr) = 0;
-        virtual QByteArray getIconData() const = 0;
+        virtual QString getIconPath() const = 0;
 };
 
 class DbAwareScriptingPlugin : public ScriptingPlugin

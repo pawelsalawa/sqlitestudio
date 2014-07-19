@@ -1,4 +1,4 @@
-* json export, dbf export, dbf import, regexp import, tcl scripting
+* regexp import, tcl highlighter
 * W select trzeba jeszcze konteksty dla WHERE, HAVING i GROUP BY obsluzyc - mozna je zrobic razem, bo wszystkie uzywaja expr
 * shortcut configuration
 * context menu for taskbar
