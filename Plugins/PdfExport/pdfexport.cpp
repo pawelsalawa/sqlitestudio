@@ -320,6 +320,10 @@ void PdfExport::beginDoc(const QString& title)
 void PdfExport::endDoc()
 {
     drawFooter();
+}
+
+void PdfExport::cleanupAfterExport()
+{
     safe_delete(painter);
     safe_delete(pagedWriter);
 }

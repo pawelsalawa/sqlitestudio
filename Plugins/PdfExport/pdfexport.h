@@ -66,11 +66,12 @@ class PDFEXPORTSHARED_EXPORT PdfExport : public GenericExportPlugin
         bool exportIndex(const QString& database, const QString& name, const QString& ddl, SqliteCreateIndexPtr createIndex);
         bool exportTrigger(const QString& database, const QString& name, const QString& ddl, SqliteCreateTriggerPtr createTrigger);
         bool exportView(const QString& database, const QString& name, const QString& ddl, SqliteCreateViewPtr view);
+        void cleanupAfterExport();
         bool isBinaryData() const;
         bool init();
         void deinit();
 
-    protected:
+        protected:
         virtual QPagedPaintDevice* createPaintDevice(const QString& documentTitle);
 
     private:

@@ -150,6 +150,10 @@ bool GenericExportPlugin::afterExport()
     return true;
 }
 
+void GenericExportPlugin::cleanupAfterExport()
+{
+}
+
 bool GenericExportPlugin::beforeExport()
 {
     return true;

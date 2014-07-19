@@ -264,11 +264,6 @@ bool JsonExport::beforeExport()
     return true;
 }
 
-bool JsonExport::afterExport()
-{
-    return true;
-}
-
 bool JsonExport::init()
 {
     Q_INIT_RESOURCE(jsonexport);

@@ -43,7 +43,6 @@ class JSONEXPORTSHARED_EXPORT JsonExport : public GenericExportPlugin
         bool exportView(const QString& database, const QString& name, const QString& ddl, SqliteCreateViewPtr createView);
         bool afterExportDatabase();
         bool beforeExport();
-        bool afterExport();
         bool init();
         void deinit();
 
