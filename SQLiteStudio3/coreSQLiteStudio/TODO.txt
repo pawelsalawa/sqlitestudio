@@ -1,4 +1,4 @@
-* regexp import, tcl highlighter
+* regexp import
 * W select trzeba jeszcze konteksty dla WHERE, HAVING i GROUP BY obsluzyc - mozna je zrobic razem, bo wszystkie uzywaja expr
 * shortcut configuration
 * context menu for taskbar
@@ -54,6 +54,12 @@ SchemaResolver
   umiejscawiajac je po/przed krokami o danych nazwach. W ten sposob bedzie mozna rozszerzac
   query executora pluginami.
 
+
+* Next versions:
+- tcl highlighter
+- dbf import
+- dbf export
+- code assistant as a service with plugins, so it can be extended with other langs and injected in custom functions window, collations window, etc
 
 
 
