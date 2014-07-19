@@ -29,6 +29,7 @@ class API_EXPORT GenericExportPlugin : virtual public GenericPlugin, public Expo
         bool afterExportViews();
         bool afterExportDatabase();
         bool afterExport();
+        void cleanupAfterExport();
 
         /**
          * @brief Does the initial entry in the export.

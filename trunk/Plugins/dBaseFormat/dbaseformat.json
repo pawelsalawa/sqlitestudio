@@ -1,7 +1,0 @@
-{
-    "type":        "GeneralPurposePlugin",
-    "title":       "dBase format",
-    "description": "Provides dBase (DBF) format support for other plugins.",
-    "version":     10000,
-    "author":      "sqlitestudio.pl"
-}

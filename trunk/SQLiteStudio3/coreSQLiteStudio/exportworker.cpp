@@ -49,6 +49,8 @@ void ExportWorker::run()
             break;
     }
 
+    plugin->cleanupAfterExport();
+
     emit finished(res, output);
 }
 

@@ -361,6 +361,14 @@ class ExportPlugin : virtual public Plugin
          * Use it to write a footer, or anything like that.
          */
         virtual bool afterExport() = 0;
+
+        /**
+         * @brief Called after every export, even failed one.
+         *
+         * Implementation of this method should cleanup any resources used during each single export process.
+         * This method is guaranteed to be executed, no matter if export was successful or not.
+         */
+        virtual void cleanupAfterExport() = 0;
 };
 
 #endif // EXPORTPLUGIN_H

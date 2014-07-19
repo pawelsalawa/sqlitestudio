@@ -11,6 +11,4 @@ SUBDIRS += \
     SqlExport \
     SqlFormatterSimple \
     XmlExport \
-    JsonExport \
-    DbfExport \
-    dBaseFormat
+    JsonExport
