@@ -31,7 +31,7 @@ unix: {
 
     # Find its version
     TCL_VERSION = $$system(echo "puts [info tclversion]" | tclsh)
-    message("Found tclsh: $$TCLSH (version: $$TCL_VERSION)")
+    #message("Found tclsh: $$TCLSH (version: $$TCL_VERSION)")
 
     # Find tclConfig.sh
     TCL_CONFIG_DIR = $$system(echo "puts [info library]" | tclsh)
@@ -52,14 +52,14 @@ unix: {
 
     # If found static lib, we link statically
     exists($$STATIC_LIB) {
-        message("Static linking of libtcl: $$STATIC_LIB")
+        #message("Static linking of libtcl: $$STATIC_LIB")
         LIBS += $$STATIC_LIB
     }
 
     # If not found, use dynamic linking flags
     !exists($$STATIC_LIB) {
         eval($$system(cat $$TCL_CONFIG | grep TCL_LIB_SPEC))
-        message("Dynamic linking of libtcl: $$TCL_LIB_SPEC")
+        #message("Dynamic linking of libtcl: $$TCL_LIB_SPEC")
         eval(LIBS += $$TCL_LIB_SPEC)
     }
 }

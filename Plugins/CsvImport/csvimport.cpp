@@ -156,14 +156,16 @@ QString CsvImport::getImportConfigFormName() const
     return "csvImportOptions";
 }
 
-void CsvImport::validateOptions()
+bool CsvImport::validateOptions()
 {
+    bool isValid = true;
     if (cfg.CsvImport.Separator.get() >= 4)
     {
         IMPORT_MANAGER->updateVisibilityAndEnabled(cfg.CsvImport.CustomSeparator, true, true);
 
         bool valid = !cfg.CsvImport.CustomSeparator.get().isEmpty();
         IMPORT_MANAGER->handleValidationFromPlugin(valid, cfg.CsvImport.CustomSeparator, tr("Enter the custom separator character."));
+        isValid &= valid;
     }
     else
     {
@@ -177,12 +179,14 @@ void CsvImport::validateOptions()
 
         bool valid = !cfg.CsvImport.NullValueString.get().isEmpty();
         IMPORT_MANAGER->handleValidationFromPlugin(valid, cfg.CsvImport.NullValueString, tr("Enter the value that will be interpreted as a NULL."));
+        isValid &= valid;
     }
     else
     {
         IMPORT_MANAGER->updateVisibilityAndEnabled(cfg.CsvImport.NullValueString, true, false);
         IMPORT_MANAGER->handleValidationFromPlugin(true, cfg.CsvImport.NullValueString);
     }
+    return isValid;
 }
 
 QString CsvImport::getFileFilter() const

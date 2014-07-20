@@ -36,7 +36,7 @@ class CSVIMPORTSHARED_EXPORT CsvImport : public GenericPlugin, public ImportPlug
         QList<QVariant> next();
         CfgMain* getConfig();
         QString getImportConfigFormName() const;
-        void validateOptions();
+        bool validateOptions();
         QString getFileFilter() const;
         bool init();
         void deinit();
