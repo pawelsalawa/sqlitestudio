@@ -110,6 +110,7 @@ class ImportPlugin : virtual public Plugin
 
         /**
          * @brief Called when the UI expects any configuration options to be re-validated.
+         * @return true when validation was successful, or false if any error occured.
          *
          * When user interacts with the UI in a way that it doesn't change the config values,
          * but it still requires some options to be re-validated, this method is called.
@@ -125,7 +126,7 @@ class ImportPlugin : virtual public Plugin
          * In this method you can also call IMPORT_MANAGER->configStateUpdateFromPlugin() to adjust options UI
          * to the current config values.
          */
-        virtual void validateOptions() = 0;
+        virtual bool validateOptions() = 0;
 };
 
 #endif // IMPORTPLUGIN_H

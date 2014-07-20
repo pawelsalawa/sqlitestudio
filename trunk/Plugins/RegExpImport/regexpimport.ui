@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>RegExpImportConfig</class>
+ <widget class="QWidget" name="RegExpImportConfig">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>133</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="0" colspan="2">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Capture groups</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0" colspan="2">
+       <widget class="ConfigRadioButton" name="allGroupsRadio">
+        <property name="text">
+         <string>Treat all RegExp capture groups as columns</string>
+        </property>
+        <property name="assignedValue" stdset="0">
+         <string>all</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string>RegExpImport.GroupsMode</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="ConfigRadioButton" name="customGroupsRadio">
+        <property name="text">
+         <string>Import only following groups:</string>
+        </property>
+        <property name="assignedValue" stdset="0">
+         <string>custom</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string>RegExpImport.GroupsMode</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="groupsEdit">
+        <property name="toolTip">
+         <string>&lt;p&gt;Enter comma separated list of capture group indexes. The 0 index refers to the entire matched string.&lt;/p&gt;
+&lt;p&gt;If you used named groups in the pattern, you can use names instead of indexes. You can mix indexes and names in this list.&lt;/p&gt;</string>
+        </property>
+        <property name="placeholderText">
+         <string>Example: 1, 3, 4</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string>RegExpImport.CustomGroupList</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Pattern:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLineEdit" name="lineEdit">
+     <property name="placeholderText">
+      <string>Example: (\d+)\s+((\d+)\w+)\s+(\w+)</string>
+     </property>
+     <property name="cfg" stdset="0">
+      <string>RegExpImport.Pattern</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ConfigRadioButton</class>
+   <extends>QRadioButton</extends>
+   <header>common/configradiobutton.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
