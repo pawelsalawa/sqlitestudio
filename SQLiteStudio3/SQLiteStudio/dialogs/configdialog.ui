@@ -183,7 +183,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>3</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="dataBrowsingPage">
           <layout class="QVBoxLayout" name="verticalLayout_21">
@@ -422,57 +422,13 @@
               <item row="2" column="0">
                <widget class="QCheckBox" name="checkBox">
                 <property name="toolTip">
-                 <string>If there is more than one query in the SQL editor window, then (if this option is enabled) only a single query will be executed - the one under the keyboard insertion cursor. Otherwise all queries will be executed. You can always limit queries to be executed by selecting those queries before calling to execute.</string>
+                 <string>&lt;p&gt;If there is more than one query in the SQL editor window, then (if this option is enabled) only a single query will be executed - the one under the keyboard insertion cursor. Otherwise all queries will be executed. You can always limit queries to be executed by selecting those queries before calling to execute.&lt;/p&gt;</string>
                 </property>
                 <property name="text">
                  <string>Execute only the query under the cursor</string>
                 </property>
                 <property name="cfg" stdset="0">
                  <string>General.ExecuteCurrentQueryOnly</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <widget class="QGroupBox" name="tableWinGroup">
-             <property name="title">
-              <string>Table windows</string>
-             </property>
-             <layout class="QVBoxLayout" name="verticalLayout_18">
-              <item>
-               <widget class="QCheckBox" name="openTablesOnDataCheck">
-                <property name="toolTip">
-                 <string>When enabled, Table Windows will show up with the data tab, instead of the structure tab.</string>
-                </property>
-                <property name="text">
-                 <string>Open Table Windows with the data tab for start</string>
-                </property>
-                <property name="cfg" stdset="0">
-                 <string>General.OpenTablesOnData</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <widget class="QGroupBox" name="viewWinGroup">
-             <property name="title">
-              <string>View windows</string>
-             </property>
-             <layout class="QVBoxLayout" name="verticalLayout_19">
-              <item>
-               <widget class="QCheckBox" name="openViewsOnDataCheck">
-                <property name="toolTip">
-                 <string>When enabled, View Windows will show up with the data tab, instead of the structure tab.</string>
-                </property>
-                <property name="text">
-                 <string>Open View Windows with the data tab for start</string>
-                </property>
-                <property name="cfg" stdset="0">
-                 <string>General.OpenViewsOnData</string>
                 </property>
                </widget>
               </item>
@@ -614,6 +570,50 @@
                 </property>
                 <property name="cfg" stdset="0">
                  <string>General.ShowSystemObjects</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="tableWinGroup">
+             <property name="title">
+              <string>Table windows</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_18">
+              <item>
+               <widget class="QCheckBox" name="openTablesOnDataCheck">
+                <property name="toolTip">
+                 <string>When enabled, Table Windows will show up with the data tab, instead of the structure tab.</string>
+                </property>
+                <property name="text">
+                 <string>Open Table Windows with the data tab for start</string>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string>General.OpenTablesOnData</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="viewWinGroup">
+             <property name="title">
+              <string>View windows</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_19">
+              <item>
+               <widget class="QCheckBox" name="openViewsOnDataCheck">
+                <property name="toolTip">
+                 <string>When enabled, View Windows will show up with the data tab, instead of the structure tab.</string>
+                </property>
+                <property name="text">
+                 <string>Open View Windows with the data tab for start</string>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string>General.OpenViewsOnData</string>
                 </property>
                </widget>
               </item>
@@ -961,7 +961,7 @@
                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt;&quot;&gt;Abcdefgh&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                        </property>
                       </widget>
@@ -1042,8 +1042,8 @@ p, li { white-space: pre-wrap; }
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>258</width>
-                <height>286</height>
+                <width>260</width>
+                <height>303</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -1164,8 +1164,8 @@ p, li { white-space: pre-wrap; }
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>307</width>
-                <height>666</height>
+                <width>313</width>
+                <height>714</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_12">

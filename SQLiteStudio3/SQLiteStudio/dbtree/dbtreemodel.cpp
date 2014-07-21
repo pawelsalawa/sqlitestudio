@@ -889,7 +889,7 @@ QMimeData *DbTreeModel::mimeData(const QModelIndexList &indexes) const
 bool DbTreeModel::dropMimeData(const QMimeData* data, Qt::DropAction action, int row, int column, const QModelIndex& parent)
 {
     if (pasteData(data, row, column, parent, Qt::IgnoreAction))
-        return false;
+        return true;
 
     return QStandardItemModel::dropMimeData(data, action, row, column, parent);
 }
@@ -908,21 +908,12 @@ bool DbTreeModel::pasteData(const QMimeData* data, int row, int column, const QM
     else
         dstItem = dynamic_cast<DbTreeItem*>(item(row, column));
 
-    if (!dstItem)
-    {
-        if (data->hasUrls())
-            return dropUrls(data->urls());
-        else
-            return false;
-    }
-
-    bool res = false;
     if (data->formats().contains(MIMETYPE))
-        res = dropDbTreeItem(getDragItems(data), dstItem, row, defaultAction);
+        return dropDbTreeItem(getDragItems(data), dstItem, row, defaultAction);
     else if (data->hasUrls())
-        res = dropUrls(data->urls());
-
-    return res;
+        return dropUrls(data->urls());
+    else
+        return true;
 }
 
 void DbTreeModel::interruptableStarted(Interruptable* obj)
@@ -962,7 +953,7 @@ QList<DbTreeItem*> DbTreeModel::getDragItems(const QMimeData* data)
 bool DbTreeModel::dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, int row, Qt::DropAction defaultAction)
 {
     UNUSED(row);
-    if (srcItems.size() == 0)
+    if (srcItems.size() == 0 || !dstItem)
         return false;
 
     DbTreeItem* srcItem = srcItems.first();
@@ -1076,7 +1067,7 @@ bool DbTreeModel::dropUrls(const QList<QUrl>& urls)
         dialog.setPath(url.toLocalFile());
         dialog.exec();
     }
-    return true;
+    return false;
 }
 
 void DbTreeModel::moveOrCopyDbObjects(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, bool move, bool includeData, bool includeIndexes, bool includeTriggers)
@@ -1154,13 +1145,5 @@ void DbTreeModel::dbObjectsMoveFinished(bool success, Db* srcDb, Db* dstDb)
 
 void DbTreeModel::dbObjectsCopyFinished(bool success, Db* srcDb, Db* dstDb)
 {
-    UNUSED(srcDb);
-    if (!success)
-    {
-        interruptableFinished(dbOrganizer);
-        return;
-    }
-
-    DBTREE->refreshSchema(dstDb);
-    interruptableFinished(dbOrganizer);
+    dbObjectsMoveFinished(success, srcDb, dstDb);
 }
