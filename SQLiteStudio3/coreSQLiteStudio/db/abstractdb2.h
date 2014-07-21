@@ -359,6 +359,23 @@ void AbstractDb2<T>::storeResult(sqlite_func* func, const QVariant& result, bool
             sqlite_set_result_double(func, result.toDouble());
             break;
         }
+        case QVariant::List:
+        {
+            QList<QVariant> list = result.toList();
+            QStringList strList;
+            for (const QVariant& v : list)
+                strList << v.toString();
+
+            QString str = strList.join(" ");
+            sqlite3_result_text16(context, str.utf16(), str.size() * sizeof(QChar), SQLITE_TRANSIENT);
+            break;
+        }
+        case QVariant::StringList:
+        {
+            QString str = result.toStringList().join(" ");
+            sqlite3_result_text16(context, str.utf16(), str.size() * sizeof(QChar), SQLITE_TRANSIENT);
+            break;
+        }
         default:
         {
             // SQLITE_TRANSIENT makes sure that sqlite buffers the data
