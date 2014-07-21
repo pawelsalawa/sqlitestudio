@@ -1,4 +1,6 @@
-* regexp import
+* results from PRAGMA table_info() have all column names the same
+* tcl scripting: [db eval] as single-depth list, not double-depth, just like in SQLite, [db onecolumn], [db eval] with array per row
+* regexp import - finish
 * W select trzeba jeszcze konteksty dla WHERE, HAVING i GROUP BY obsluzyc - mozna je zrobic razem, bo wszystkie uzywaja expr
 * shortcut configuration
 * context menu for taskbar

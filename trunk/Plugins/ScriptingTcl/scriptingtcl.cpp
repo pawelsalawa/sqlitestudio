@@ -1,22 +1,39 @@
 #include "scriptingtcl.h"
 #include "common/global.h"
-#include <tcl.h>
+#include "common/unused.h"
+#include "db/db.h"
+#include "db/sqlquery.h"
 #include <QDebug>
+#include <QMutexLocker>
+
+Db* ScriptingTcl::currentDb = nullptr;
+bool ScriptingTcl::useDbLocking = false;
 
 ScriptingTcl::ScriptingTcl()
 {
+    dbMutex = new QMutex();
+    mainInterpMutex = new QMutex();
+}
+
+ScriptingTcl::~ScriptingTcl()
+{
+    safe_delete(mainInterpMutex);
+    safe_delete(dbMutex);
 }
 
 bool ScriptingTcl::init()
 {
     Q_INIT_RESOURCE(scriptingtcl);
+    QMutexLocker locker(mainInterpMutex);
     mainContext = new ContextTcl();
     return true;
 }
 
 void ScriptingTcl::deinit()
 {
+    QMutexLocker locker(mainInterpMutex);
     safe_delete(mainContext);
+    Tcl_Finalize();
     Q_CLEANUP_RESOURCE(scriptingtcl);
 }
 
@@ -105,20 +122,21 @@ QString ScriptingTcl::getIconPath() const
     return ":/scriptingtcl/scriptingtcl.png";
 }
 
-QVariant ScriptingTcl::evaluate(ScriptingPlugin::Context* context, const QString& code, const QList<QVariant>& args)
+QVariant ScriptingTcl::evaluate(ScriptingPlugin::Context* context, const QString& code, const QList<QVariant>& args, Db* db, bool locking)
 {
     ContextTcl* ctx = getContext(context);
     if (!ctx)
         return QVariant();
 
     setArgs(ctx, args);
-    return compileAndEval(ctx, code);
+    return compileAndEval(ctx, code, db, locking);
 }
 
-QVariant ScriptingTcl::evaluate(const QString& code, const QList<QVariant>& args, QString* errorMessage)
+QVariant ScriptingTcl::evaluate(const QString& code, const QList<QVariant>& args, Db* db, bool locking, QString* errorMessage)
 {
+    QMutexLocker locker(mainInterpMutex);
     setArgs(mainContext, args);
-    QVariant results = compileAndEval(mainContext, code);
+    QVariant results = compileAndEval(mainContext, code, db, locking);
 
     if (errorMessage && !mainContext->error.isEmpty())
         *errorMessage = mainContext->error;
@@ -135,7 +153,7 @@ ScriptingTcl::ContextTcl* ScriptingTcl::getContext(ScriptingPlugin::Context* con
     return ctx;
 }
 
-QVariant ScriptingTcl::compileAndEval(ScriptingTcl::ContextTcl* ctx, const QString& code)
+QVariant ScriptingTcl::compileAndEval(ScriptingTcl::ContextTcl* ctx, const QString& code, Db* db, bool locking)
 {
     ScriptObject* scriptObj = nullptr;
     if (!ctx->scriptCache.contains(code))
@@ -148,8 +166,18 @@ QVariant ScriptingTcl::compileAndEval(ScriptingTcl::ContextTcl* ctx, const QStri
         scriptObj = ctx->scriptCache[code];
     }
     Tcl_ResetResult(ctx->interp);
+    ctx->error.clear();
+
+    dbMutex->lock();
+    currentDb = db;
+    useDbLocking = locking;
 
     int result = Tcl_EvalObjEx(ctx->interp, scriptObj->getTclObj(), TCL_EVAL_GLOBAL);
+
+    currentDb = nullptr;
+    useDbLocking = false;
+    dbMutex->unlock();
+
     if (result != TCL_OK)
     {
         ctx->error = QString::fromUtf8(Tcl_GetStringResult(ctx->interp));
@@ -166,22 +194,8 @@ QVariant ScriptingTcl::extractResult(ScriptingTcl::ContextTcl* ctx)
 
 void ScriptingTcl::setArgs(ScriptingTcl::ContextTcl* ctx, const QList<QVariant>& args)
 {
-    Tcl_Obj* listObj = argsToList(args);
-    Tcl_IncrRefCount(listObj);
-    Tcl_Obj* argvName = Tcl_NewStringObj("argv", -1);
-    Tcl_IncrRefCount(argvName);
-    Tcl_ObjSetVar2(ctx->interp, argvName, nullptr, listObj, TCL_GLOBAL_ONLY);
-
-    Tcl_Obj* intObj = Tcl_NewIntObj(args.size());
-    Tcl_IncrRefCount(intObj);
-    Tcl_Obj* argcName = Tcl_NewStringObj("argc", -1);
-    Tcl_IncrRefCount(argcName);
-    Tcl_ObjSetVar2(ctx->interp, argcName, nullptr, intObj, TCL_GLOBAL_ONLY);
-
-    Tcl_DecrRefCount(listObj);
-    Tcl_DecrRefCount(intObj);
-    Tcl_DecrRefCount(argvName);
-    Tcl_DecrRefCount(argcName);
+    setVariable(ctx, "argc", args.size());
+    setVariable(ctx, "argv", args);
 }
 
 Tcl_Obj* ScriptingTcl::argsToList(const QList<QVariant>& args)
@@ -262,10 +276,41 @@ QVariant ScriptingTcl::tclObjToVariant(Tcl_Obj* obj)
             result = QByteArray::fromRawData(reinterpret_cast<char*>(bytes), lgt);
             break;
         }
+        case TclDataType::List:
+        {
+            QList<QVariant> list;
+            int objc;
+            Tcl_Obj** objv;
+            Tcl_ListObjGetElements(nullptr, obj, &objc, &objv);
+            for (int i = 0; i < objc; i++)
+                list << tclObjToVariant(objv[i]);
+
+            result = list;
+            break;
+        }
+        case TclDataType::Dict:
+        {
+            Tcl_DictSearch search;
+            Tcl_Obj* key;
+            Tcl_Obj* value;
+            QString keyStr;
+            QVariant valueVariant;
+            int done;
+            QHash<QString,QVariant> hash;
+            if (Tcl_DictObjFirst(nullptr, obj, &search, &key, &value, &done) == TCL_OK)
+            {
+                for (; !done ; Tcl_DictObjNext(&search, &key, &value, &done))
+                {
+                    keyStr = QString::fromUtf8(Tcl_GetStringFromObj(key, nullptr));
+                    valueVariant = tclObjToVariant(value);
+                    hash[keyStr] = valueVariant;
+                }
+                Tcl_DictObjDone(&search);
+            }
+            result = hash;
+        }
         case TclDataType::Bignum:
         case TclDataType::String:
-        case TclDataType::List:
-        case TclDataType::Dict:
         case TclDataType::UNKNOWN:
         default:
             result = QString::fromUtf8(Tcl_GetStringFromObj(obj, nullptr));
@@ -304,6 +349,30 @@ Tcl_Obj* ScriptingTcl::variantToTclObj(const QVariant& value)
             obj = Tcl_NewByteArrayObj(ubytes, bytes.size());
             break;
         }
+        case QVariant::List:
+        {
+            QList<QVariant> list = value.toList();
+            int listSize = list.size();
+            Tcl_Obj** objList = new Tcl_Obj*[listSize];
+            for (int i = 0; i < listSize; ++i)
+                objList[i] = variantToTclObj(list[i]);
+
+            obj = Tcl_NewListObj(listSize, objList);
+            delete[] objList;
+            break;
+        }
+        case QVariant::Hash:
+        {
+            QHash<QString, QVariant> hash = value.toHash();
+            obj = Tcl_NewDictObj();
+            QHashIterator<QString, QVariant> it(hash);
+            while (it.hasNext())
+            {
+                it.next();
+                Tcl_DictObjPut(nullptr, obj, variantToTclObj(it.key()), variantToTclObj(it.value()));
+            }
+            break;
+        }
         case QVariant::String:
         default:
             obj = Tcl_NewStringObj(value.toString().toUtf8().constData(), -1);
@@ -314,6 +383,55 @@ Tcl_Obj* ScriptingTcl::variantToTclObj(const QVariant& value)
         obj = Tcl_NewStringObj(value.toString().toUtf8().constData(), -1);
 
     return obj;
+}
+
+int ScriptingTcl::dbCommand(ClientData clientData, Tcl_Interp* interp, int objc, Tcl_Obj* const objv[])
+{
+    UNUSED(clientData);
+
+    Tcl_Obj* result = nullptr;
+    if (!currentDb)
+    {
+        result = Tcl_NewStringObj(tr("No database available in current context, while called Tcl's 'db' command.").toUtf8().constData(), -1);
+        Tcl_SetObjResult(interp, result);
+        return TCL_ERROR;
+    }
+
+    if (objc == 3 && strcmp(Tcl_GetStringFromObj(objv[1], nullptr), "eval") == 0)
+        return dbEval(interp, objv);
+
+    result = Tcl_NewStringObj(tr("Invalid 'db' command sytax. Should be: db eval sql").toUtf8().constData(), -1);
+    Tcl_SetObjResult(interp, result);
+    return TCL_ERROR;
+}
+
+int ScriptingTcl::dbEval(Tcl_Interp* interp, Tcl_Obj* const objv[])
+{
+    Db::Flags flags;
+    if (!useDbLocking)
+        flags |= Db::Flag::NO_LOCK;
+
+    Tcl_Obj* result = nullptr;
+    QString sql = QString::fromUtf8(Tcl_GetStringFromObj(objv[2], nullptr));
+    SqlQueryPtr execResults = currentDb->exec(sql, QList<QVariant>(), flags);
+    if (execResults->isError())
+    {
+        result = Tcl_NewStringObj(tr("Error from Tcl's' 'db' command: %1").arg(execResults->getErrorText()).toUtf8().constData(), -1);
+        Tcl_SetObjResult(interp, result);
+        return TCL_ERROR;
+    }
+
+    QList<QVariant> rows;
+    SqlResultsRowPtr row;
+    while (execResults->hasNext())
+    {
+        row = execResults->next();
+        rows << QVariant(row->valueList());
+    }
+    result = variantToTclObj(rows);
+
+    Tcl_SetObjResult(interp, result);
+    return TCL_OK;
 }
 
 ScriptingTcl::ScriptObject::ScriptObject(const QString& code)
@@ -328,7 +446,7 @@ ScriptingTcl::ScriptObject::~ScriptObject()
     Tcl_DecrRefCount(obj);
 }
 
-Tcl_Obj*ScriptingTcl::ScriptObject::getTclObj()
+Tcl_Obj* ScriptingTcl::ScriptObject::getTclObj()
 {
     return obj;
 }
@@ -337,6 +455,7 @@ ScriptingTcl::ContextTcl::ContextTcl()
 {
     scriptCache.setMaxCost(cacheSize);
     interp = Tcl_CreateInterp();
+    init();
 }
 
 ScriptingTcl::ContextTcl::~ContextTcl()
@@ -349,4 +468,10 @@ void ScriptingTcl::ContextTcl::reset()
     Tcl_DeleteInterp(interp);
     interp = Tcl_CreateInterp();
     error = QString();
+    init();
+}
+
+void ScriptingTcl::ContextTcl::init()
+{
+    Tcl_CreateObjCommand(interp, "db", ScriptingTcl::dbCommand, nullptr, nullptr);
 }
