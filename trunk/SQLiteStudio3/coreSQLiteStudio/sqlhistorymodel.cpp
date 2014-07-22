@@ -9,12 +9,6 @@ SqlHistoryModel::SqlHistoryModel(Db* db, QObject *parent) :
                          "FROM sqleditor_history ORDER BY date DESC";
 
     setQuery(query);
-
-    setHeaderData(0, Qt::Horizontal, tr("Database", "sql history header"));
-    setHeaderData(1, Qt::Horizontal, tr("Execution date", "sql history header"));
-    setHeaderData(2, Qt::Horizontal, tr("Time spent", "sql history header"));
-    setHeaderData(3, Qt::Horizontal, tr("Rows affected", "sql history header"));
-    setHeaderData(4, Qt::Horizontal, tr("SQL", "sql history header"));
 }
 
 QVariant SqlHistoryModel::data(const QModelIndex& index, int role) const
@@ -23,4 +17,26 @@ QVariant SqlHistoryModel::data(const QModelIndex& index, int role) const
         return (int)(Qt::AlignRight|Qt::AlignVCenter);
 
     return QueryModel::data(index, role);
+}
+
+QVariant SqlHistoryModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    if (orientation != Qt::Horizontal || role != Qt::DisplayRole)
+        return QueryModel::headerData(section, orientation, role);
+
+    switch (section)
+    {
+        case 0:
+            return tr("Database", "sql history header");
+        case 1:
+            return tr("Execution date", "sql history header");
+        case 2:
+            return tr("Time spent", "sql history header");
+        case 3:
+            return tr("Rows affected", "sql history header");
+        case 4:
+            return tr("SQL", "sql history header");
+    }
+
+    return QueryModel::headerData(section, orientation, role);
 }
