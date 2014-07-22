@@ -1,4 +1,3 @@
-* results from PRAGMA table_info() have all column names the same
 * tcl scripting: [db eval] as single-depth list, not double-depth, just like in SQLite, [db onecolumn], [db eval] with array per row
 * regexp import - finish
 * standard SQL functions
