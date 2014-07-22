@@ -15,7 +15,7 @@ class API_EXPORT QueryModel : public QAbstractTableModel
     public:
         QueryModel(Db* db, QObject *parent = nullptr);
 
-        void refresh();
+        virtual void refresh();
         QVariant data(const QModelIndex& index, int role) const;
         int rowCount(const QModelIndex& parent) const;
         int columnCount(const QModelIndex& parent) const;

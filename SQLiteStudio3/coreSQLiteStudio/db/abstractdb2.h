@@ -366,14 +366,14 @@ void AbstractDb2<T>::storeResult(sqlite_func* func, const QVariant& result, bool
             for (const QVariant& v : list)
                 strList << v.toString();
 
-            QString str = strList.join(" ");
-            sqlite3_result_text16(context, str.utf16(), str.size() * sizeof(QChar), SQLITE_TRANSIENT);
+            QByteArray ba = strList.join(" ").toUtf8();
+            sqlite_set_result_string(func, ba.constData(), ba.size());
             break;
         }
         case QVariant::StringList:
         {
-            QString str = result.toStringList().join(" ");
-            sqlite3_result_text16(context, str.utf16(), str.size() * sizeof(QChar), SQLITE_TRANSIENT);
+            QByteArray ba = result.toStringList().join(" ").toUtf8();
+            sqlite_set_result_string(func, ba.constData(), ba.size());
             break;
         }
         default:
