@@ -19,9 +19,10 @@ bool QueryExecutorExecute::exec()
 
 void QueryExecutorExecute::provideResultColumns(SqlQueryPtr results)
 {
-    QueryExecutor::ResultColumnPtr resCol = QueryExecutor::ResultColumnPtr::create();
+    QueryExecutor::ResultColumnPtr resCol;
     foreach (const QString& colName, results->getColumnNames())
     {
+        resCol = QueryExecutor::ResultColumnPtr::create();
         resCol->displayName = colName;
         context->resultColumns << resCol;
     }
