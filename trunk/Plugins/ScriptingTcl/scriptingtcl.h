@@ -4,6 +4,7 @@
 #include "scriptingtcl_global.h"
 #include "plugins/genericplugin.h"
 #include "plugins/scriptingplugin.h"
+#include "db/sqlquery.h"
 #include <QCache>
 #include <tcl.h>
 
@@ -58,6 +59,8 @@ class SCRIPTINGTCLSHARED_EXPORT ScriptingTcl : public GenericPlugin, public DbAw
                 Tcl_Interp* interp = nullptr;
                 QCache<QString,ScriptObject> scriptCache;
                 QString error;
+                Db* db = nullptr;
+                bool useDbLocking = false;
 
             private:
                 void init();
@@ -85,18 +88,24 @@ class SCRIPTINGTCLSHARED_EXPORT ScriptingTcl : public GenericPlugin, public DbAw
 
         static Tcl_Obj* argsToList(const QList<QVariant>& args);
         static QVariant tclObjToVariant(Tcl_Obj* obj);
+        static QString tclObjToString(Tcl_Obj* obj);
         static Tcl_Obj* variantToTclObj(const QVariant& value);
+        static Tcl_Obj* stringToTclObj(const QString& value);
         static int dbCommand(ClientData clientData, Tcl_Interp* interp, int objc, Tcl_Obj* const objv[]);
-        static int dbEval(Tcl_Interp* interp, Tcl_Obj* const objv[]);
+        static int dbEval(ContextTcl* ctx, Tcl_Interp* interp, Tcl_Obj* const objv[]);
+        static int dbEvalRowByRow(ContextTcl* ctx, Tcl_Interp* interp, Tcl_Obj* const objv[]);
+        static int dbEvalDeepResults(ContextTcl* ctx, Tcl_Interp* interp, Tcl_Obj* const objv[]);
+        static int dbEvalOneColumn(ContextTcl* ctx, Tcl_Interp* interp, Tcl_Obj* const objv[]);
+        static SqlQueryPtr dbCommonEval(ContextTcl* ctx, Tcl_Interp* interp, Tcl_Obj* const objv[]);
+        static int setArrayVariable(Tcl_Interp* interp, const QString& arrayName, const QHash<QString,QVariant>& hash);
+        static void setVariable(Tcl_Interp* interp, const QString& name, const QVariant& value);
+        static QVariant getVariable(Tcl_Interp* interp, const QString& name);
 
         static const constexpr int cacheSize = 5;
-        static Db* currentDb;
-        static bool useDbLocking;
 
         ContextTcl* mainContext = nullptr;
         QList<Context*> contexts;
         QMutex* mainInterpMutex = nullptr;
-        QMutex* dbMutex = nullptr;
 };
 
 #endif // SCRIPTINGTCL_H

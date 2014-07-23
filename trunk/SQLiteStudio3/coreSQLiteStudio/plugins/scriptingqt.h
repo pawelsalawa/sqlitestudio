@@ -12,8 +12,9 @@
 class QScriptEngine;
 class QMutex;
 class QScriptContext;
+class ScriptingQtDbProxy;
 
-class ScriptingQt : public BuiltInPlugin, public ScriptingPlugin
+class ScriptingQt : public BuiltInPlugin, public DbAwareScriptingPlugin
 {
     Q_OBJECT
 
@@ -30,8 +31,8 @@ class ScriptingQt : public BuiltInPlugin, public ScriptingPlugin
         Context* createContext();
         void releaseContext(Context* context);
         void resetContext(Context* context);
-        QVariant evaluate(const QString& code, const QList<QVariant>& args, QString* errorMessage = nullptr);
-        QVariant evaluate(Context* context, const QString& code, const QList<QVariant>& args);
+        QVariant evaluate(const QString& code, const QList<QVariant>& args, Db* db, bool locking = false, QString* errorMessage = nullptr);
+        QVariant evaluate(Context* context, const QString& code, const QList<QVariant>& args, Db* db, bool locking = false);
         void setVariable(Context* context, const QString& name, const QVariant& value);
         QVariant getVariable(Context* context, const QString& name);
         bool hasError(Context* context) const;
@@ -50,12 +51,14 @@ class ScriptingQt : public BuiltInPlugin, public ScriptingPlugin
                 QScriptEngine* engine;
                 QCache<QString,QScriptProgram> scriptCache;
                 QString error;
+                ScriptingQtDbProxy* dbProxy = nullptr;
+                QScriptValue dbProxyScriptValue;
         };
 
         ContextQt* getContext(ScriptingPlugin::Context* context) const;
         QScriptValue getFunctionValue(ContextQt* ctx, const QString& code);
-        QVariant evaluate(ContextQt* ctx, QScriptContext* engineContext, const QString& code, const QList<QVariant>& args);
-        QVariant convertList(const QVariant& value);
+        QVariant evaluate(ContextQt* ctx, QScriptContext* engineContext, const QString& code, const QList<QVariant>& args, Db* db, bool locking);
+        QVariant convertVariant(const QVariant& value, bool wrapStrings = false);
 
         static const constexpr int cacheSize = 5;
 

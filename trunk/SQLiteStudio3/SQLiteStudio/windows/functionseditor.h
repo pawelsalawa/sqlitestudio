@@ -59,6 +59,7 @@ class FunctionsEditor : public MdiChild, public ExtActionContainer
         void functionSelected(int row);
         void clearEdits();
         void selectFunction(int row);
+        void setFont(const QFont& font);
         QModelIndex getSelectedArg() const;
         QStringList getCurrentArgList() const;
         QStringList getCurrentDatabases() const;
@@ -94,6 +95,7 @@ class FunctionsEditor : public MdiChild, public ExtActionContainer
         void updateArgsState();
         void applyFilter(const QString& value);
         void help();
+        void changeFont(const QVariant& font);
 };
 
 #endif // FUNCTIONSEDITOR_H

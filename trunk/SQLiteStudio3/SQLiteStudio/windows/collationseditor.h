@@ -52,6 +52,7 @@ class CollationsEditor : public MdiChild, public ExtActionContainer
         void clearEdits();
         void selectCollation(int row);
         QStringList getCurrentDatabases() const;
+        void setFont(const QFont& font);
 
         Ui::CollationsEditor *ui;
         CollationsEditorModel* model = nullptr;
@@ -74,6 +75,7 @@ class CollationsEditor : public MdiChild, public ExtActionContainer
         void collationSelected(const QItemSelection& selected, const QItemSelection& deselected);
         void updateModified();
         void applyFilter(const QString& value);
+        void changeFont(const QVariant& font);
 };
 
 #endif // COLLATIONSEDITOR_H

@@ -169,7 +169,8 @@ SOURCES += sqlitestudio.cpp \
     plugins/populateconstant.cpp \
     plugins/populatedictionary.cpp \
     plugins/populatescript.cpp \
-    plugins/builtinplugin.cpp
+    plugins/builtinplugin.cpp \
+    plugins/scriptingqtdbproxy.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -337,7 +338,8 @@ HEADERS += sqlitestudio.h\
     plugins/populateconstant.h \
     plugins/populatedictionary.h \
     plugins/populatescript.h \
-    plugins/builtinplugin.h
+    plugins/builtinplugin.h \
+    plugins/scriptingqtdbproxy.h
 
 unix:!symbian {
     maemo5 {
