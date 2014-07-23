@@ -1,5 +1,6 @@
-* tcl scripting: [db eval] as single-depth list, not double-depth, just like in SQLite, [db onecolumn], [db eval] with array per row
 * regexp import - finish
+* formatter as a service - per language
+* enterprise SQL formatter
 * standard SQL functions
 * W select trzeba jeszcze konteksty dla WHERE, HAVING i GROUP BY obsluzyc - mozna je zrobic razem, bo wszystkie uzywaja expr
 * shortcut configuration
@@ -58,7 +59,11 @@ SchemaResolver
 
 
 * Next versions:
+- syntax checkers as services - per language
+- code assistants as services - per language
 - tcl highlighter
+- qtscript syntax checker
+- tcl syntax checker
 - dbf import
 - dbf export
 - code assistant as a service with plugins, so it can be extended with other langs and injected in custom functions window, collations window, etc
