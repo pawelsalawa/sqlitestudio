@@ -14,6 +14,7 @@
 #include "plugins/scriptingplugin.h"
 #include "common/userinputfilter.h"
 #include "selectabledbmodel.h"
+#include "uiconfig.h"
 #include <QDebug>
 #include <QDesktopServices>
 
@@ -82,6 +83,8 @@ void FunctionsEditor::init()
     ui->initCodeGroup->setVisible(false);
     ui->finalCodeGroup->setVisible(false);
 
+    setFont(CFG_UI.Fonts.SqlEditor.get());
+
     model = new FunctionsEditorModel(this);
     functionFilterModel = new QSortFilterProxyModel(this);
     functionFilterModel->setSourceModel(model);
@@ -119,6 +122,7 @@ void FunctionsEditor::init()
     connect(ui->argsList->model(), SIGNAL(rowsRemoved(QModelIndex,int,int)), this, SLOT(updateModified()));
 
     connect(dbListModel, SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(updateModified()));
+    connect(CFG_UI.Fonts.SqlEditor, SIGNAL(changed(QVariant)), this, SLOT(changeFont(QVariant)));
 
     model->setData(FUNCTIONS->getAllFunctions());
 
@@ -240,6 +244,12 @@ void FunctionsEditor::selectFunction(int row)
     ui->list->selectionModel()->setCurrentIndex(model->index(row), QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent);
 }
 
+void FunctionsEditor::setFont(const QFont& font)
+{
+    ui->initCodeEdit->setFont(font);
+    ui->mainCodeEdit->setFont(font);
+    ui->finalCodeEdit->setFont(font);
+}
 
 QModelIndex FunctionsEditor::getSelectedArg() const
 {
@@ -585,6 +595,11 @@ void FunctionsEditor::help()
 {
     static const QString url = QStringLiteral("http://sqlitestudio.pl/wiki/index.php/User_Manual#Custom_SQL_functions");
     QDesktopServices::openUrl(QUrl(url, QUrl::StrictMode));
+}
+
+void FunctionsEditor::changeFont(const QVariant& font)
+{
+    setFont(font.value<QFont>());
 }
 
 QVariant FunctionsEditor::saveSession()

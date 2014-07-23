@@ -1,6 +1,7 @@
 #include "scriptingqt.h"
 #include "common/unused.h"
 #include "common/global.h"
+#include "scriptingqtdbproxy.h"
 #include <QScriptEngine>
 #include <QMutex>
 #include <QMutexLocker>
@@ -36,7 +37,6 @@ ScriptingPlugin::Context* ScriptingQt::createContext()
 {
     ContextQt* ctx = new ContextQt;
     ctx->engine->pushContext();
-    ctx->scriptCache.setMaxCost(cacheSize);
     contexts << ctx;
     return ctx;
 }
@@ -61,7 +61,7 @@ void ScriptingQt::resetContext(ScriptingPlugin::Context* context)
     ctx->engine->pushContext();
 }
 
-QVariant ScriptingQt::evaluate(const QString& code, const QList<QVariant>& args, QString* errorMessage)
+QVariant ScriptingQt::evaluate(const QString& code, const QList<QVariant>& args, Db* db, bool locking, QString* errorMessage)
 {
     QMutexLocker locker(mainEngineMutex);
 
@@ -69,7 +69,7 @@ QVariant ScriptingQt::evaluate(const QString& code, const QList<QVariant>& args,
     QScriptContext* engineContext = mainContext->engine->pushContext();
 
     // Call the function
-    QVariant result = evaluate(mainContext, engineContext, code, args);
+    QVariant result = evaluate(mainContext, engineContext, code, args, db, locking);
 
     // Handle errors
     if (!mainContext->error.isEmpty())
@@ -81,19 +81,23 @@ QVariant ScriptingQt::evaluate(const QString& code, const QList<QVariant>& args,
     return result;
 }
 
-QVariant ScriptingQt::evaluate(ScriptingPlugin::Context* context, const QString& code, const QList<QVariant>& args)
+QVariant ScriptingQt::evaluate(ScriptingPlugin::Context* context, const QString& code, const QList<QVariant>& args, Db* db, bool locking)
 {
     ContextQt* ctx = getContext(context);
     if (!ctx)
         return QVariant();
 
-    return evaluate(ctx, ctx->engine->currentContext(), code, args);
+    return evaluate(ctx, ctx->engine->currentContext(), code, args, db, locking);
 }
 
-QVariant ScriptingQt::evaluate(ContextQt* ctx, QScriptContext* engineContext, const QString& code, const QList<QVariant>& args)
+QVariant ScriptingQt::evaluate(ContextQt* ctx, QScriptContext* engineContext, const QString& code, const QList<QVariant>& args, Db* db, bool locking)
 {
     // Define function to call
     QScriptValue functionValue = getFunctionValue(ctx, code);
+
+    // Db for this evaluation
+    ctx->dbProxy->setDb(db);
+    ctx->dbProxy->setUseDbLocking(locking);
 
     // Call the function
     QScriptValue result;
@@ -107,23 +111,59 @@ QVariant ScriptingQt::evaluate(ContextQt* ctx, QScriptContext* engineContext, co
     if (ctx->engine->hasUncaughtException())
         ctx->error = ctx->engine->uncaughtException().toString();
 
-    return convertList(result.toVariant());
+    ctx->dbProxy->setDb(nullptr);
+    ctx->dbProxy->setUseDbLocking(false);
+
+    return convertVariant(result.toVariant());
 }
 
-QVariant ScriptingQt::convertList(const QVariant& value)
+QVariant ScriptingQt::convertVariant(const QVariant& value, bool wrapStrings)
 {
     switch (value.type())
     {
+        case QVariant::Hash:
+        {
+            QHash<QString, QVariant> hash = value.toHash();
+            QHashIterator<QString, QVariant> it(hash);
+            QStringList list;
+            while (it.hasNext())
+            {
+                it.next();
+                list << it.key() + ": " + convertVariant(it.value(), true).toString();
+            }
+            return "{" + list.join(", ") + "}";
+        }
+        case QVariant::Map:
+        {
+            QMap<QString, QVariant> map = value.toMap();
+            QMapIterator<QString, QVariant> it(map);
+            QStringList list;
+            while (it.hasNext())
+            {
+                it.next();
+                list << it.key() + ": " + convertVariant(it.value(), true).toString();
+            }
+            return "{" + list.join(", ") + "}";
+        }
         case QVariant::List:
         {
             QStringList list;
             for (const QVariant& var : value.toList())
-                list << var.toString();
+                list << convertVariant(var, true).toString();
 
-            return list.join(" ");
+            return "[" + list.join(", ") + "]";
         }
         case QVariant::StringList:
-            return value.toStringList().join(" ");
+        {
+            return "[\"" + value.toStringList().join("\", \"") + "\"]";
+        }
+        case QVariant::String:
+        {
+            if (wrapStrings)
+                return "\"" + value.toString() + "\"";
+
+            break;
+        }
         default:
             break;
     }
@@ -146,7 +186,7 @@ QVariant ScriptingQt::getVariable(ScriptingPlugin::Context* context, const QStri
         return QVariant();
 
     QScriptValue value = ctx->engine->globalObject().property(name);
-    return convertList(value.toVariant());
+    return convertVariant(value.toVariant());
 }
 
 bool ScriptingQt::hasError(ScriptingPlugin::Context* context) const
@@ -219,10 +259,18 @@ QScriptValue ScriptingQt::getFunctionValue(ContextQt* ctx, const QString& code)
 ScriptingQt::ContextQt::ContextQt()
 {
     engine = new QScriptEngine();
+
+    dbProxy = new ScriptingQtDbProxy();
+    dbProxyScriptValue = engine->newQObject(dbProxy, QScriptEngine::QtOwnership, QScriptEngine::ExcludeDeleteLater);
+
     engine->globalObject().setProperty("debug", engine->newFunction(scriptingQtDebug));
+    engine->globalObject().setProperty("db", dbProxyScriptValue);
+
+    scriptCache.setMaxCost(cacheSize);
 }
 
 ScriptingQt::ContextQt::~ContextQt()
 {
     safe_delete(engine);
+    safe_delete(dbProxy);
 }

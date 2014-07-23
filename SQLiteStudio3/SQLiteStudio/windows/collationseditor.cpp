@@ -10,6 +10,7 @@
 #include "services/pluginmanager.h"
 #include "syntaxhighlighterplugin.h"
 #include "plugins/scriptingplugin.h"
+#include "uiconfig.h"
 #include <QDesktopServices>
 #include <QSyntaxHighlighter>
 
@@ -72,6 +73,8 @@ void CollationsEditor::init()
     ui->setupUi(this);
     initActions();
 
+    setFont(CFG_UI.Fonts.SqlEditor.get());
+
     model = new CollationsEditorModel(this);
     collationFilterModel = new QSortFilterProxyModel(this);
     collationFilterModel->setSourceModel(model);
@@ -94,6 +97,7 @@ void CollationsEditor::init()
     connect(ui->langCombo, SIGNAL(currentTextChanged(QString)), this, SLOT(updateModified()));
 
     connect(dbListModel, SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(updateModified()));
+    connect(CFG_UI.Fonts.SqlEditor, SIGNAL(changed(QVariant)), this, SLOT(changeFont(QVariant)));
 
     // Language plugins
     foreach (ScriptingPlugin* plugin, PLUGINS->getLoadedPlugins<ScriptingPlugin>())
@@ -171,6 +175,11 @@ void CollationsEditor::selectCollation(int row)
 QStringList CollationsEditor::getCurrentDatabases() const
 {
     return dbListModel->getDatabases();
+}
+
+void CollationsEditor::setFont(const QFont& font)
+{
+    ui->codeEdit->setFont(font);
 }
 
 void CollationsEditor::help()
@@ -355,4 +364,9 @@ void CollationsEditor::applyFilter(const QString& value)
     collationFilterModel->setFilterFixedString(value);
 
     selectCollation(row);
+}
+
+void CollationsEditor::changeFont(const QVariant& font)
+{
+    setFont(font.value<QFont>());
 }

@@ -520,3 +520,14 @@ QString commentAllSqlLines(const QString& sql)
 
     return joinLines(lines);
 }
+
+QString getBindTokenName(const TokenPtr& token)
+{
+    if (token->type != Token::BIND_PARAM)
+        return QString();
+
+    if (token->value == "?")
+        return token->value;
+
+    return token->value.mid(1);
+}
