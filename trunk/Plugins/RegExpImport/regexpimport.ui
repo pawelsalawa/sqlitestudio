@@ -72,6 +72,11 @@
    </item>
    <item row="0" column="1">
     <widget class="QLineEdit" name="lineEdit">
+     <property name="toolTip">
+      <string>&lt;p&gt;Use Regular Expression groups to enclose parts of the expression that you want to import. If you want to use a group, that you don't want to import, then use &quot;import only following groups&quot; option below.
+
+You can use named groups and refer to them in group list below. To name a group use: &lt;pre&gt;(?&amp;lt;myGroupName&amp;gt;\s+\d+\s+)&lt;/pre&gt;&lt;/p&gt;</string>
+     </property>
      <property name="placeholderText">
       <string>Example: (\d+)\s+((\d+)\w+)\s+(\w+)</string>
      </property>

@@ -35,7 +35,7 @@ class ImportDialog : public QWizard
         void initDataSourcePage();
         void removeOldOptions();
         void updateStandardOptions();
-        void updatePluginOptions();
+        void updatePluginOptions(int& rows);
         bool isPluginConfigValid() const;
 
         Ui::ImportDialog *ui;
