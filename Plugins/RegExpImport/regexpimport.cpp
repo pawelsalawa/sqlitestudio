@@ -44,6 +44,7 @@ bool RegExpImport::beforeImport(const ImportManager::StandardImportConfig& confi
     safe_delete(stream);
     groups.clear();
     buffer.clear();
+    columns.clear();
 
 
     file = new QFile(config.inputFileName);
@@ -58,19 +59,23 @@ bool RegExpImport::beforeImport(const ImportManager::StandardImportConfig& confi
     stream->setCodec(config.codec.toLatin1().data());
 
 
+    static const QString intColTemplate = QStringLiteral("column%1");
     re = new QRegularExpression(cfg.RegExpImport.Pattern.get());
+    QString colName;
     if (cfg.RegExpImport.GroupsMode.get() == "all")
     {
         for (int i = 1; i <= re->captureCount(); i++)
+        {
             groups << i;
+            colName = intColTemplate.arg(i);
+            columns << generateUniqueName(colName, columns);
+        }
     }
     else
     {
-        static const QString intColTemplate = QStringLiteral("column%1");
         QStringList entries = cfg.RegExpImport.CustomGroupList.get().split(QRegularExpression(",\\s*"));
         int i;
         bool ok;
-        QString colName;
         for (const QString& entry : entries)
         {
             i = entry.toInt(&ok);
@@ -188,12 +193,14 @@ bool RegExpImport::validateOptions()
             }
             else if (!namedCaptureGroups.contains(entry))
             {
-                groupMsg = tr("Requested capture group name '%1', but it's not defined in the pattern: %2").arg(entry, pattern);
+                groupMsg = tr("<p>Requested capture group name '%1', but it's not defined in the pattern: <pre>%2</pre></p>")
+                        .arg(entry, pattern.toHtmlEscaped());
                 groupsOk = false;
                 break;
             }
         }
     }
+
     IMPORT_MANAGER->handleValidationFromPlugin(reOk, cfg.RegExpImport.Pattern, reMsg);
     IMPORT_MANAGER->handleValidationFromPlugin(groupsOk, cfg.RegExpImport.CustomGroupList, groupMsg);
     IMPORT_MANAGER->updateVisibilityAndEnabled(cfg.RegExpImport.CustomGroupList, true, isCustom);

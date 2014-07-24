@@ -199,7 +199,7 @@ void ImportDialog::updateStandardOptions()
     ui->codecCombo->setVisible(showCodec);
 }
 
-void ImportDialog::updatePluginOptions()
+void ImportDialog::updatePluginOptions(int& rows)
 {
     QString formName = currentPlugin->getImportConfigFormName();
     CfgMain* cfgMain = currentPlugin->getConfig();
@@ -234,6 +234,7 @@ void ImportDialog::updatePluginOptions()
         pluginOptionsWidget->layout()->setMargin(0);
 
     ui->dsPluginOptionsGroup->layout()->addWidget(pluginOptionsWidget);
+    rows++;
 
     configMapper = new ConfigMapper(cfgMain);
     configMapper->bindToConfig(pluginOptionsWidget);
@@ -275,13 +276,17 @@ void ImportDialog::refreshTables()
 
 void ImportDialog::pluginSelected()
 {
+    ui->dsPluginOptionsGroup->setVisible(false);
     removeOldOptions();
     currentPlugin = IMPORT_MANAGER->getPluginForDataSourceType(ui->dsTypeCombo->currentText());
     if (!currentPlugin)
         return;
 
     updateStandardOptions();
-    updatePluginOptions();
+
+    int rows = 0;
+    updatePluginOptions(rows);
+    ui->dsPluginOptionsGroup->setVisible(rows > 0);
 }
 
 void ImportDialog::updateValidation()
