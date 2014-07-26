@@ -369,7 +369,7 @@ void TriggerDialog::accept()
 
     if (!CFG_UI.General.DontShowDdlPreview.get())
     {
-        DdlPreviewDialog dialog(db->getDialect(), this);
+        DdlPreviewDialog dialog(db, this);
         dialog.setDdl(sqls);
         if (dialog.exec() != QDialog::Accepted)
             return;

@@ -121,7 +121,7 @@ SOURCES += sqlitestudio.cpp \
     tablemodifier.cpp \
     db/chainexecutor.cpp \
     db/queryexecutorsteps/queryexecutorreplaceviews.cpp \
-    sqlformatter.cpp \
+    services/codeformatter.cpp \
     viewmodifier.cpp \
     log.cpp \
     plugins/plugintype.cpp \
@@ -170,7 +170,8 @@ SOURCES += sqlitestudio.cpp \
     plugins/populatedictionary.cpp \
     plugins/populatescript.cpp \
     plugins/builtinplugin.cpp \
-    plugins/scriptingqtdbproxy.cpp
+    plugins/scriptingqtdbproxy.cpp \
+    plugins/sqlformatterplugin.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -275,7 +276,7 @@ HEADERS += sqlitestudio.h\
     db/chainexecutor.h \
     db/queryexecutorsteps/queryexecutorreplaceviews.h \
     plugins/sqlformatterplugin.h \
-    sqlformatter.h \
+    services/codeformatter.h \
     viewmodifier.h \
     log.h \
     plugins/plugintype.h \
@@ -339,7 +340,8 @@ HEADERS += sqlitestudio.h\
     plugins/populatedictionary.h \
     plugins/populatescript.h \
     plugins/builtinplugin.h \
-    plugins/scriptingqtdbproxy.h
+    plugins/scriptingqtdbproxy.h \
+    plugins/codeformatterplugin.h
 
 unix:!symbian {
     maemo5 {

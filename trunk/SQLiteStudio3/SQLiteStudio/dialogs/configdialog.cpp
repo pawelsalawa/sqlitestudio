@@ -5,8 +5,8 @@
 #include "customconfigwidgetplugin.h"
 #include "services/pluginmanager.h"
 #include "formmanager.h"
-#include "sqlformatter.h"
-#include "plugins/sqlformatterplugin.h"
+#include "services/codeformatter.h"
+#include "plugins/codeformatterplugin.h"
 #include "configwidgets/styleconfigwidget.h"
 #include "configwidgets/combodatawidget.h"
 #include "configwidgets/listtostringlisthash.h"
@@ -646,22 +646,24 @@ void ConfigDialog::failedToLoadPlugin(const QString& pluginName)
     theItem->setCheckState(0, Qt::Unchecked);
 }
 
-void ConfigDialog::sqlFormatterAboutToUnload(Plugin* plugin)
+void ConfigDialog::codeFormatterAboutToUnload(Plugin* plugin)
 {
-    QString title = plugin->getTitle();
-    if (ui->activeFormatterCombo->currentText() != title)
-        return;
+    // TODO formatter
+//    QString title = plugin->getTitle();
+//    if (ui->activeFormatterCombo->currentText() != title)
+//        return;
 
-    if (ui->activeFormatterCombo->count() > 0)
-        ui->activeFormatterCombo->setCurrentIndex(0);
+//    if (ui->activeFormatterCombo->count() > 0)
+//        ui->activeFormatterCombo->setCurrentIndex(0);
 
-    ui->activeFormatterCombo->setCurrentIndex(-1);
+//    ui->activeFormatterCombo->setCurrentIndex(-1);
 }
 
-void ConfigDialog::sqlFormatterLoaded(Plugin* plugin)
+void ConfigDialog::codeFormatterLoaded(Plugin* plugin)
 {
-    ui->activeFormatterCombo->addItem(plugin->getTitle(), plugin->getName());
-    configMapper->loadToWidget(CFG_CORE.General.ActiveSqlFormatter, ui->activeFormatterCombo);
+    // TODO formatter
+//    ui->activeFormatterCombo->addItem(plugin->getTitle(), plugin->getName());
+//    configMapper->loadToWidget(CFG_CORE.General.ActiveCodeFormatter, ui->activeFormatterCombo);
 }
 
 void ConfigDialog::loadUnloadPlugin(QTreeWidgetItem* item, int column)
@@ -689,8 +691,8 @@ void ConfigDialog::loadUnloadPlugin(QTreeWidgetItem* item, int column)
 void ConfigDialog::pluginAboutToUnload(Plugin* plugin, PluginType* type)
 {
     // Update formatters page
-    if (type->isForPluginType<SqlFormatterPlugin>())
-        sqlFormatterAboutToUnload(plugin);
+    if (type->isForPluginType<CodeFormatterPlugin>())
+        codeFormatterAboutToUnload(plugin);
 
     // Deinit tree item
     QTreeWidgetItem* typeItem = getPluginsCategoryItem(type);
@@ -714,8 +716,8 @@ void ConfigDialog::pluginLoaded(Plugin* plugin, PluginType* type)
         return;
 
     // Update formatters page
-    if (type->isForPluginType<SqlFormatterPlugin>())
-        sqlFormatterLoaded(plugin);
+    if (type->isForPluginType<CodeFormatterPlugin>())
+        codeFormatterLoaded(plugin);
 
     // Init tree item
     QTreeWidgetItem* typeItem = getPluginsCategoryItem(type);
@@ -785,21 +787,22 @@ void ConfigDialog::initInternalCustomConfigWidgets()
 {
     QList<CustomConfigWidgetPlugin*> customWidgets;
     customWidgets << new StyleConfigWidget();
-    customWidgets << new ComboDataWidget(&CFG_CORE.General.ActiveSqlFormatter);
+//    customWidgets << new ComboDataWidget(&CFG_CORE.General.ActiveCodeFormatter); // TODO formatter
     customWidgets << new ListToStringListHash(&CFG_UI.General.DataEditorsOrder);
     configMapper->setInternalCustomConfigWidgets(customWidgets);
 }
 
 void ConfigDialog::initFormatterPlugins()
 {
-    SqlFormatterPlugin* formatter = SQLITESTUDIO->getSqlFormatter()->getFormatter();
-    if (!formatter)
-        ui->activeFormatterCombo->setCurrentIndex(-1);
-    else
-        ui->activeFormatterCombo->setCurrentText(formatter->getTitle());
+    // TODO formatter
+//    SqlFormatterPlugin* formatter = SQLITESTUDIO->getCodeFormatter()->getFormatter();
+//    if (!formatter)
+//        ui->activeFormatterCombo->setCurrentIndex(-1);
+//    else
+//        ui->activeFormatterCombo->setCurrentText(formatter->getTitle());
 
-    connect(ui->activeFormatterCombo, SIGNAL(currentTextChanged(QString)), this, SLOT(activeFormatterChanged(QString)));
-    connect(ui->activeFormatterConfigButton, SIGNAL(clicked()), this, SLOT(activeFormatterConfigurePressed()));
+//    connect(ui->activeFormatterCombo, SIGNAL(currentTextChanged(QString)), this, SLOT(activeFormatterChanged(QString)));
+//    connect(ui->activeFormatterConfigButton, SIGNAL(clicked()), this, SLOT(activeFormatterConfigurePressed()));
 
     updateActiveFormatterState();
 }

@@ -1,6 +1,6 @@
 {
-    "type":        "SqlFormatterPlugin",
-    "title":       "Simple",
+    "type":        "CodeFormatterPlugin",
+    "title":       "SQL Simple",
     "description": "Basic formatter with very little options.",
     "ui":          "SqlFormatterSimplePlugin",
     "version":     10000,

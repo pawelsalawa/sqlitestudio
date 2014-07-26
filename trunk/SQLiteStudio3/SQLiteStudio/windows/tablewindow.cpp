@@ -26,7 +26,7 @@
 #include "parser/ast/sqlitecreateindex.h"
 #include "parser/ast/sqlitecreatetrigger.h"
 #include "dialogs/messagelistdialog.h"
-#include "sqlformatter.h"
+#include "services/codeformatter.h"
 #include "uiconfig.h"
 #include "dialogs/ddlpreviewdialog.h"
 #include "services/config.h"
@@ -302,7 +302,7 @@ void TableWindow::executeStructureChanges()
 
     if (!CFG_UI.General.DontShowDdlPreview.get())
     {
-        DdlPreviewDialog dialog(db->getDialect(), this);
+        DdlPreviewDialog dialog(db, this);
         dialog.setDdl(sqls);
         if (dialog.exec() != QDialog::Accepted)
             return;
@@ -960,9 +960,9 @@ void TableWindow::applyInitialTab()
 
 void TableWindow::updateDdlTab()
 {
-    SqlFormatter* formatter = SQLITESTUDIO->getSqlFormatter();
+    CodeFormatter* formatter = SQLITESTUDIO->getCodeFormatter();
     createTable->rebuildTokens();
-    ui->ddlEdit->setPlainText(formatter->format(createTable));
+    ui->ddlEdit->setPlainText(formatter->format("sql", createTable->detokenize(), db));
 }
 
 void TableWindow::updateNewTableState()

@@ -14,7 +14,7 @@ class QProcessEnvironment;
 class PluginManager;
 class QThreadPool;
 class NotifyManager;
-class SqlFormatter;
+class CodeFormatter;
 class Plugin;
 class PluginType;
 class FunctionManager;
@@ -55,12 +55,6 @@ class API_EXPORT SQLiteStudio : public QObject
         DECLARE_SINGLETON(SQLiteStudio)
 
     public:
-        /**
-         * @brief Gets current SQL formatter instance.
-         * @return Currently configured SQL formatter instance, or first available formatter (if it's not yet configured), or null if there is no formatter available.
-         */
-        SqlFormatter* getSqlFormatter() const;
-
         /**
          * @brief Initializes SQLiteStudio object.
          * @param cmdListArguments Command line arguments.
@@ -128,6 +122,9 @@ class API_EXPORT SQLiteStudio : public QObject
         PopulateManager* getPopulateManager() const;
         void setPopulateManager(PopulateManager* value);
 
+        CodeFormatter* getCodeFormatter() const;
+        void setCodeFormatter(CodeFormatter* codeFormatter);
+
     private:
         /**
          * @brief Creates singleton instance.
@@ -153,16 +150,9 @@ class API_EXPORT SQLiteStudio : public QObject
         void parseCmdLineArgs();
 
         /**
-         * @brief Current SQL formatter instance.
-         *
-         * SQL formatter is created from SqlFormatterPlugin.
-         * Current sqlFormatter value is picked from collection of formatters
-         * delivered by plugins by configuration entry.
-         * If it's not configured, then first available formatter is chosen.
-         * If no SQL formatter plugins are available, then this variable
-         * remains null.
+         * @brief Code formatter service.
          */
-        SqlFormatter* sqlFormatter = nullptr;
+        CodeFormatter* codeFormatter = nullptr;
 
         /**
          * @brief The application environment.
@@ -204,13 +194,19 @@ class API_EXPORT SQLiteStudio : public QObject
 
     public slots:
         /**
-         * @brief Updates active SQL formatter.
+         * @brief Updates code formatter with available plugins.
          *
-         * Reads active formatter name from configuration and picks that formatter from list of loaded plugins
-         * to be used as active formatter. If there's no formatter configured, or the one configured is not on the list
-         * of loaded plugins, then no formatter is set to active and getSqlFormatter() will return SQL strings unchanged.
+         * Calls CodeFormatter's fullUpdate() method to read available formatters.
+         * This also reads formatters selected in config.
          */
-        void updateSqlFormatter();
+        void updateCodeFormatter();
+
+        /**
+         * @brief Updates code formater with selected plugins.
+         *
+         * Doesn't change list of available formatters, but reads new selected formatters from config.
+         */
+        void updateCurrentCodeFormatter();
 };
 
 /**
