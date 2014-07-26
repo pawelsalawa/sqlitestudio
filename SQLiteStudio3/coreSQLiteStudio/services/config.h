@@ -6,6 +6,7 @@
 #include "services/functionmanager.h"
 #include "collationmanager.h"
 #include "sqlitestudio.h"
+#include "common/utils.h"
 #include <QObject>
 #include <QVariant>
 #include <QHash>
@@ -17,17 +18,17 @@ const int SQLITESTUDIO_CONFIG_VERSION = 1;
 
 CFG_CATEGORIES(Core,
     CFG_CATEGORY(General,
-        CFG_ENTRY(int,          SqlHistorySize,     10000)
-        CFG_ENTRY(int,          DdlHistorySize,     1000)
-        CFG_ENTRY(QString,      LoadedPlugins,      "")
-        CFG_ENTRY(QString,      ActiveSqlFormatter, QString())
+        CFG_ENTRY(int,          SqlHistorySize,      10000)
+        CFG_ENTRY(int,          DdlHistorySize,      1000)
+        CFG_ENTRY(QString,      LoadedPlugins,       "")
+        CFG_ENTRY(StringHash,   ActiveCodeFormatter, StringHash())
     )
     CFG_CATEGORY(Console,
-        CFG_ENTRY(int,          HistorySize,        100)
+        CFG_ENTRY(int,          HistorySize,         100)
     )
     CFG_CATEGORY(Internal,
-        CFG_ENTRY(QVariantList, Functions,          QVariantList())
-        CFG_ENTRY(QVariantList, Collations,         QVariantList())
+        CFG_ENTRY(QVariantList, Functions,           QVariantList())
+        CFG_ENTRY(QVariantList, Collations,          QVariantList())
     )
 )
 

@@ -13,7 +13,7 @@
 #include "dialogs/searchtextdialog.h"
 #include "dbobjectdialogs.h"
 #include "searchtextlocator.h"
-#include "sqlformatter.h"
+#include "services/codeformatter.h"
 #include "sqlitestudio.h"
 #include <QAction>
 #include <QMenu>
@@ -970,12 +970,8 @@ void SqlEditor::cursorMoved()
 
 void SqlEditor::formatSql()
 {
-    Dialect dialect = Dialect::Sqlite3;
-    if (db && db->isValid())
-        dialect = db->getDialect();
-
     QString sql = hasSelection() ? getSelectedText() : toPlainText();
-    sql = SQLITESTUDIO->getSqlFormatter()->format(sql, dialect);
+    sql = SQLITESTUDIO->getCodeFormatter()->format("sql", sql, db);
 
     if (!hasSelection())
         selectAll();

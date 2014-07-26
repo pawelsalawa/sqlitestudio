@@ -7,8 +7,8 @@
 #include "parser/keywords.h"
 #include "parser/lexer.h"
 #include "services/notifymanager.h"
-#include "plugins/sqlformatterplugin.h"
-#include "sqlformatter.h"
+#include "plugins/codeformatterplugin.h"
+#include "services/codeformatter.h"
 #include "plugins/generalpurposeplugin.h"
 #include "plugins/dbplugin.h"
 #include "common/unused.h"
@@ -65,6 +65,16 @@ PopulateManager* SQLiteStudio::getPopulateManager() const
 void SQLiteStudio::setPopulateManager(PopulateManager* value)
 {
     populateManager = value;
+}
+
+CodeFormatter* SQLiteStudio::getCodeFormatter() const
+{
+    return codeFormatter;
+}
+
+void SQLiteStudio::setCodeFormatter(CodeFormatter* codeFormatter)
+{
+    this->codeFormatter = codeFormatter;
 }
 
 ImportManager* SQLiteStudio::getImportManager() const
@@ -168,11 +178,6 @@ void SQLiteStudio::setConfig(Config* value)
 }
 
 
-SqlFormatter *SQLiteStudio::getSqlFormatter() const
-{
-    return sqlFormatter;
-}
-
 void SQLiteStudio::init(const QStringList& cmdListArguments, bool guiAvailable)
 {
     env = new QProcessEnvironment(QProcessEnvironment::systemEnvironment());
@@ -204,15 +209,15 @@ void SQLiteStudio::init(const QStringList& cmdListArguments, bool guiAvailable)
 
     pluginManager->registerPluginType<GeneralPurposePlugin>(QObject::tr("General purpose", "plugin category name"));
     pluginManager->registerPluginType<DbPlugin>(QObject::tr("Database support", "plugin category name"));
-    pluginManager->registerPluginType<SqlFormatterPlugin>(QObject::tr("SQL formatter", "plugin category name"), "formatterPluginsPage");
+    pluginManager->registerPluginType<CodeFormatterPlugin>(QObject::tr("Code formatter", "plugin category name"), "formatterPluginsPage");
     pluginManager->registerPluginType<ScriptingPlugin>(QObject::tr("Scripting languages", "plugin category name"));
     pluginManager->registerPluginType<ExportPlugin>(QObject::tr("Exporting", "plugin category name"));
     pluginManager->registerPluginType<ImportPlugin>(QObject::tr("Importing", "plugin category name"));
     pluginManager->registerPluginType<PopulatePlugin>(QObject::tr("Table populating", "plugin category name"));
 
-    sqlFormatter = new SqlFormatter();
-    connect(CFG_CORE.General.ActiveSqlFormatter, SIGNAL(changed(QVariant)), this, SLOT(updateSqlFormatter()));
-    connect(pluginManager, SIGNAL(pluginsInitiallyLoaded()), this, SLOT(updateSqlFormatter()));
+    codeFormatter = new CodeFormatter();
+    connect(CFG_CORE.General.ActiveCodeFormatter, SIGNAL(changed(QVariant)), this, SLOT(updateCurrentCodeFormatter()));
+    connect(pluginManager, SIGNAL(pluginsInitiallyLoaded()), this, SLOT(updateCodeFormatter()));
 
     // FunctionManager needs to be set up before DbManager, cause when DbManager starts up, databases make their
     // connections and register functions.
@@ -254,41 +259,28 @@ void SQLiteStudio::cleanUp()
     safe_delete(pluginManager); // PluginManager before DbManager, so Db objects are deleted while DbManager still exists
     safe_delete(dbManager);
     safe_delete(config);
-    safe_delete(sqlFormatter);
+    safe_delete(codeFormatter);
     safe_delete(dbAttacherFactory);
     safe_delete(env);
     NotifyManager::destroy();
     Q_CLEANUP_RESOURCE(coresqlitestudio);
 }
 
-void SQLiteStudio::updateSqlFormatter()
+void SQLiteStudio::updateCodeFormatter()
 {
-    QList<SqlFormatterPlugin *> sqlFormatterPlugins = PLUGINS->getLoadedPlugins<SqlFormatterPlugin>();
-    QString activeFormatterName = CFG_CORE.General.ActiveSqlFormatter.get();
+    codeFormatter->fullUpdate();
+}
 
-    if (activeFormatterName.trimmed().isEmpty() && sqlFormatterPlugins.size() > 0)
-    {
-        CFG_CORE.General.ActiveSqlFormatter.set(sqlFormatterPlugins.first()->getName());
-        sqlFormatter->setFormatter(sqlFormatterPlugins.first());
-        return;
-    }
-
-    foreach (SqlFormatterPlugin* plugin, sqlFormatterPlugins)
-    {
-        if (plugin->getName() == activeFormatterName)
-        {
-            sqlFormatter->setFormatter(plugin);
-            return;
-        }
-    }
-    sqlFormatter->setFormatter(nullptr);
+void SQLiteStudio::updateCurrentCodeFormatter()
+{
+    codeFormatter->updateCurrent();
 }
 
 void SQLiteStudio::pluginLoaded(Plugin* plugin, PluginType* pluginType)
 {
     UNUSED(plugin);
-    if (pluginType->isForPluginType<SqlFormatterPlugin>())
-        updateSqlFormatter();
+    if (pluginType->isForPluginType<CodeFormatterPlugin>()) // TODO move this to slot of CodeFormatter
+        updateCodeFormatter();
 }
 
 void SQLiteStudio::pluginToBeUnloaded(Plugin* plugin, PluginType* pluginType)
@@ -300,8 +292,8 @@ void SQLiteStudio::pluginToBeUnloaded(Plugin* plugin, PluginType* pluginType)
 void SQLiteStudio::pluginUnloaded(const QString& pluginName, PluginType* pluginType)
 {
     UNUSED(pluginName);
-    if (pluginType->isForPluginType<SqlFormatterPlugin>())
-        updateSqlFormatter();
+    if (pluginType->isForPluginType<CodeFormatterPlugin>()) // TODO move this to slot of CodeFormatter
+        updateCodeFormatter();
 }
 
 QString SQLiteStudio::getEnv(const QString &name, const QString &defaultValue)

@@ -155,7 +155,7 @@ class CfgTypedEntry : public CfgEntry
         }
 
         CfgTypedEntry(const QString& name, const T& defValue) :
-            CfgEntry(name, defValue) {}
+            CfgEntry(name, QVariant::fromValue(defValue)) {}
 
         CfgTypedEntry(const QString& name) :
             CfgEntry(name, QVariant()) {}

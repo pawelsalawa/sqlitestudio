@@ -58,8 +58,8 @@ class ConfigDialog : public QDialog
         QTreeWidgetItem* getItemByTitle(const QString& title) const;
         void switchPageToPlugin(QTreeWidgetItem* item);
         bool isPluginCategoryItem(QTreeWidgetItem *item) const;
-        void sqlFormatterAboutToUnload(Plugin* plugin);
-        void sqlFormatterLoaded(Plugin* plugin);
+        void codeFormatterAboutToUnload(Plugin* plugin);
+        void codeFormatterLoaded(Plugin* plugin);
         void updatePluginCategoriesVisibility(QTreeWidgetItem* categoryItem);
         QString collectLoadedPlugins() const;
         QHash<QWidget*,QTreeWidgetItem*> buildPageToCategoryItemMap() const;
