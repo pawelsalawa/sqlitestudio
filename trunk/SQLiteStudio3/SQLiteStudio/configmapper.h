@@ -52,7 +52,24 @@ class ConfigMapper : public QObject
         QWidget* getBindWidgetForConfig(CfgEntry* key) const;
         CfgEntry* getBindConfigForWidget(QWidget* widget) const;
 
-    private:
+        QList<QWidget *> getExtraWidgets() const;
+
+        /**
+         * @brief Sets list of extra widgets to load/save values to/from.
+         * @param value List of widgets.
+         *
+         * Extra widgets list can be provided to the mapper if it will be impossible to find those widgets
+         * just by looking for childrens of top widget recurrently. This is for example the case
+         * when widgets are embedded in QAbstractItemView::setIndexWidget(). Such widgets have to be
+         * provided as list of extra widgets to the mapper, so the mapper handles them when loading/saving
+         * values.
+         */
+        void setExtraWidgets(const QList<QWidget *> &value);
+        void addExtraWidget(QWidget* w);
+        void addExtraWidgets(const QList<QWidget*>& list);
+        void clearExtraWidgets();
+
+private:
         void applyConfigToWidget(QWidget *widget, const QHash<QString, CfgEntry*>& allConfigEntries, const QHash<QString, QVariant> &config);
         void applyConfigToWidget(QWidget *widget, CfgEntry* cfgEntry, const QVariant& configValue);
         void handleSpecialWidgets(QWidget *widget, const QHash<QString, CfgEntry*>& allConfigEntries);
@@ -78,6 +95,7 @@ class ConfigMapper : public QObject
         QHash<CfgEntry*,QWidget*> configEntryToWidgets;
         QHash<CfgEntry*,QWidget*> specialConfigEntryToWidgets;
         bool updatingEntry = false;
+        QList<QWidget*> extraWidgets;
 
     private slots:
         void handleModified();

@@ -9,9 +9,20 @@
 class QPlainTextEdit;
 class QMenu;
 
+CFG_KEY_LIST(MultiEditorText, QObject::tr("Cell text value editor"),
+     CFG_KEY_ENTRY(CUT,     QKeySequence::Cut,      QObject::tr("Cut selected text"))
+     CFG_KEY_ENTRY(COPY,    QKeySequence::Copy,     QObject::tr("Copy selected text"))
+     CFG_KEY_ENTRY(PASTE,   QKeySequence::Paste,    QObject::tr("Paste from clipboard"))
+     CFG_KEY_ENTRY(DELETE,  QKeySequence::Delete,   QObject::tr("Delete selected text"))
+     CFG_KEY_ENTRY(UNDO,    QKeySequence::Undo,     QObject::tr("Undo"))
+     CFG_KEY_ENTRY(REDO,    QKeySequence::Redo,     QObject::tr("Redo"))
+)
+
 class MultiEditorText : public MultiEditorWidget, public ExtActionContainer
 {
         Q_OBJECT
+        Q_ENUMS(Action)
+
     public:
         enum Action
         {

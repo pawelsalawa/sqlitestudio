@@ -33,6 +33,7 @@
 #include <QTableWidget>
 #include <QDesktopServices>
 #include <QtUiTools/QUiLoader>
+#include <QKeySequenceEdit>
 
 #define GET_FILTER_STRING(Widget, WidgetType, Method) \
     if (qobject_cast<WidgetType*>(Widget))\
@@ -82,6 +83,7 @@ QString ConfigDialog::getFilterString(QWidget *widget)
     GET_FILTER_STRING(widget, QTextEdit, toPlainText);
     GET_FILTER_STRING(widget, QPlainTextEdit, toPlainText);
     GET_FILTER_STRING(widget, QGroupBox, title);
+    GET_FILTER_STRING(widget, QKeySequenceEdit, keySequence().toString);
 
     // Widgets needs a little more than single method call
     GET_FILTER_STRING2(widget, QComboBox);
@@ -137,6 +139,8 @@ void ConfigDialog::init()
     ui->setupUi(this);
     setWindowIcon(ICONS.CONFIGURE);
 
+    ui->categoriesTree->setCurrentItem(ui->categoriesTree->topLevelItem(0));
+
     configMapper = new ConfigMapper(CfgMain::getPersistableInstances());
     connect(configMapper, SIGNAL(modified()), this, SLOT(markModified()));
 
@@ -151,6 +155,7 @@ void ConfigDialog::init()
     initPluginsPage();
     initFormatterPlugins();
     initDataEditors();
+    initShortcuts();
 
     connect(ui->categoriesTree, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(switchPage(QTreeWidgetItem*)));
     connect(ui->previewTabs, SIGNAL(currentChanged(int)), this, SLOT(updateStylePreview()));
@@ -754,6 +759,34 @@ void ConfigDialog::updateBuiltInPluginsVisibility()
     }
 }
 
+void ConfigDialog::applyShortcutsFilter(const QString &filter)
+{
+    QTreeWidgetItem* categoryItem;
+    QTreeWidgetItem* item;
+    QKeySequenceEdit* seqEdit;
+    bool empty = filter.isEmpty();
+    bool visible = true;
+    int foundInCategory = 0;
+    for (int i = 0, total_i = ui->shortcutsTable->topLevelItemCount(); i < total_i; ++i)
+    {
+        foundInCategory = 0;
+        categoryItem = ui->shortcutsTable->topLevelItem(i);
+        for (int j = 0 , total_j = categoryItem->childCount(); j < total_j; ++j)
+        {
+            item = categoryItem->child(j);
+            seqEdit = dynamic_cast<QKeySequenceEdit*>(ui->shortcutsTable->itemWidget(item, 1));
+            visible = empty || item->text(0).contains(filter, Qt::CaseInsensitive) ||
+                    seqEdit->keySequence().toString().contains(filter, Qt::CaseInsensitive);
+
+            item->setHidden(!visible);
+            if (visible)
+                foundInCategory++;
+        }
+
+        categoryItem->setHidden(foundInCategory == 0);
+    }
+}
+
 void ConfigDialog::updatePluginCategoriesVisibility(QTreeWidgetItem* categoryItem)
 {
     categoryItem->setHidden(categoryItem->childCount() == 0);
@@ -1101,6 +1134,104 @@ void ConfigDialog::initDataEditors()
 
     ui->dataEditorsTypesList->setCurrentRow(0, QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent);
     updateDataTypeListState();
+}
+
+void ConfigDialog::initShortcuts()
+{
+    ui->shortcutsFilterEdit->setClearButtonEnabled(true);
+    new UserInputFilter(ui->shortcutsFilterEdit, this, SLOT(applyShortcutsFilter(QString)));
+
+    static const QString metaName = CFG_SHORTCUTS_METANAME;
+    for (CfgMain* cfgMain : CfgMain::getInstances())
+    {
+        if (cfgMain->getMetaName() != metaName)
+            continue;
+
+        for (CfgCategory* cat : cfgMain->getCategories().values())
+            initShortcuts(cat);
+    }
+}
+
+void ConfigDialog::initShortcuts(CfgCategory *cfgCategory)
+{
+    QTreeWidgetItem* item;
+    QFont font;
+    QModelIndex categoryIndex;
+    QModelIndex itemIndex;
+    QKeySequenceEdit *sequenceEdit;
+    QToolButton* clearButton;
+    QString title;
+    QSize itemSize;
+
+    // Font and metrics
+    item = new QTreeWidgetItem({""});
+    font = item->font(0);
+
+    QFontMetrics fm(font);
+    itemSize = QSize(-1, (fm.ascent() + fm.descent() + 4));
+
+    delete item;
+
+    // Creating...
+    ui->shortcutsTable->header()->setSectionsMovable(false);
+    ui->shortcutsTable->header()->setSectionResizeMode(0, QHeaderView::Stretch);
+    ui->shortcutsTable->header()->setSectionResizeMode(1, QHeaderView::Fixed);
+    ui->shortcutsTable->header()->setSectionResizeMode(2, QHeaderView::Fixed);
+    ui->shortcutsTable->header()->resizeSection(1, 150);
+    ui->shortcutsTable->header()->resizeSection(2, 26);
+
+    QBrush categoryBg = ui->shortcutsTable->palette().button();
+    QBrush categoryFg = ui->shortcutsTable->palette().buttonText();
+
+    QTreeWidgetItem* category = new QTreeWidgetItem({cfgCategory->getTitle()});
+    font.setItalic(false);
+    font.setBold(true);
+    category->setFont(0, font);
+    for (int i = 0; i < 3; i++)
+    {
+        category->setBackground(i, categoryBg);
+        category->setForeground(i, categoryFg);
+    }
+    category->setSizeHint(0, itemSize);
+    category->setFlags(category->flags() ^ Qt::ItemIsSelectable);
+    ui->shortcutsTable->addTopLevelItem(category);
+
+    int categoryRow = ui->shortcutsTable->topLevelItemCount() - 1;
+    categoryIndex = ui->shortcutsTable->model()->index(categoryRow, 0);
+
+    int itemRow = 0;
+    QStringList entryNames = cfgCategory->getEntries().keys();
+    qSort(entryNames);
+    foreach (const QString& entryName, entryNames)
+    {
+        // Title
+        title = cfgCategory->getEntries()[entryName]->getTitle();
+        item = new QTreeWidgetItem(category, {title});
+
+        // Key edit
+        sequenceEdit = new QKeySequenceEdit(ui->shortcutsTable);
+        sequenceEdit->setFixedWidth(150);
+        sequenceEdit->setProperty("cfg", cfgCategory->getEntries()[entryName]->getFullKey());
+        itemIndex = ui->shortcutsTable->model()->index(itemRow, 1, categoryIndex);
+        ui->shortcutsTable->setIndexWidget(itemIndex, sequenceEdit);
+        configMapper->addExtraWidget(sequenceEdit);
+
+        // Clear button
+        clearButton = new QToolButton(ui->shortcutsTable);
+        clearButton->setIcon(ICONS.CLEAR_LINEEDIT);
+        connect(clearButton, &QToolButton::clicked, [this, sequenceEdit]()
+        {
+            sequenceEdit->clear();
+            this->markModified();
+
+        });
+        itemIndex = ui->shortcutsTable->model()->index(itemRow, 2, categoryIndex);
+        ui->shortcutsTable->setIndexWidget(itemIndex, clearButton);
+
+        itemRow++;
+    }
+
+    category->setExpanded(true);
 }
 
 bool ConfigDialog::isPluginCategoryItem(QTreeWidgetItem *item) const

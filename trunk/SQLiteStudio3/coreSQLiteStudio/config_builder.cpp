@@ -5,9 +5,10 @@
 CfgCategory* lastCreatedCfgCategory = nullptr;
 CfgMain* lastCreatedCfgMain = nullptr;
 QList<CfgMain*> CfgMain::instances;
+QList<CfgLazyInitializer*> CfgLazyInitializer::instances;
 
-CfgMain::CfgMain(const QString& name, bool persistable) :
-    name(name), persistable(persistable)
+CfgMain::CfgMain(const QString& name, bool persistable, const char *metaName, const QString &title) :
+    name(name), metaName(metaName), title(title), persistable(persistable)
 {
     lastCreatedCfgMain = this;
     instances << this;
@@ -80,9 +81,19 @@ QString CfgMain::getName() const
     return name;
 }
 
-CfgCategory::CfgCategory(const QString &name)
+const char *CfgMain::getMetaName() const
 {
-    this->name = name;
+    return metaName;
+}
+
+QString CfgMain::getTitle() const
+{
+    return title;
+}
+
+CfgCategory::CfgCategory(const QString &name, const QString &title) :
+    name(name), title(title)
+{
     this->persistable = lastCreatedCfgMain->persistable;
     lastCreatedCfgCategory = this;
     lastCreatedCfgMain->childs[name] = this;
@@ -122,6 +133,11 @@ void CfgCategory::release()
         entry->release();
 }
 
+QString CfgCategory::getTitle() const
+{
+    return title;
+}
+
 CfgCategory::operator QString() const
 {
     return name;
@@ -129,12 +145,12 @@ CfgCategory::operator QString() const
 
 CfgEntry::CfgEntry(const CfgEntry& other) :
     QObject(), persistable(other.persistable), parent(other.parent), name(other.name), defValue(other.defValue),
-    defValueFunc(other.defValueFunc)
+    title(other.title), defValueFunc(other.defValueFunc)
 {
 }
 
-CfgEntry::CfgEntry(const QString &name, const QVariant &defValue) :
-    QObject(), name(name), defValue(defValue)
+CfgEntry::CfgEntry(const QString &name, const QVariant &defValue, const QString &title) :
+    QObject(), name(name), defValue(defValue), title(title)
 {
     if (lastCreatedCfgCategory == nullptr)
     {
@@ -207,6 +223,11 @@ QString CfgEntry::getFullKey() const
     return parent->toString()+"."+name;
 }
 
+QString CfgEntry::getTitle() const
+{
+    return title;
+}
+
 void CfgEntry::reset()
 {
     set(getDefultValue());
@@ -248,4 +269,22 @@ CfgEntry::operator CfgEntry*()
 CfgEntry::operator QString() const
 {
     return name;
+}
+
+CfgLazyInitializer::CfgLazyInitializer(std::function<void ()> initFunc, const char *name) :
+    initFunc(initFunc)
+{
+    qDebug() << "Adding lazy initializer for type" << name;
+    instances << this;
+}
+
+void CfgLazyInitializer::init()
+{
+    for (CfgLazyInitializer* initializer : instances)
+        initializer->doInitialize();
+}
+
+void CfgLazyInitializer::doInitialize()
+{
+    initFunc();
 }

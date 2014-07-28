@@ -15,9 +15,23 @@ class QPushButton;
 class QProgressBar;
 class QMenu;
 
+CFG_KEY_LIST(SqlQueryView, QObject::tr("Data grid view"),
+    CFG_KEY_ENTRY(COPY,              Qt::CTRL + Qt::Key_C,              QObject::tr("Copy cell(s) contents to clipboard"))
+//    CFG_KEY_ENTRY(COPY_AS,           Qt::CTRL + Qt::SHIFT + Qt::Key_C,  QObject::tr(""))
+    CFG_KEY_ENTRY(PASTE,             Qt::CTRL + Qt::Key_V,              QObject::tr("Paste cell(s) contents from clipboard"))
+//    CFG_KEY_ENTRY(PASTE_AS,          Qt::CTRL + Qt::SHIFT + Qt::Key_V,  QObject::tr(""))
+    CFG_KEY_ENTRY(ERASE,             Qt::ALT + Qt::Key_Backspace,       QObject::tr("Set empty value to selected cell(s)"))
+    CFG_KEY_ENTRY(SET_NULL,          Qt::Key_Backspace,                 QObject::tr("Set NULL value to selected cell(s)"))
+    CFG_KEY_ENTRY(COMMIT,            Qt::CTRL + Qt::Key_Return,         QObject::tr("Commit changes to cell(s) contents"))
+    CFG_KEY_ENTRY(ROLLBACK,          Qt::Key_Escape,                    QObject::tr("Rollback changes to cell(s) contents"))
+    CFG_KEY_ENTRY(OPEN_VALUE_EDITOR, Qt::ALT + Qt::Key_Return,          QObject::tr("Open contents of selected cell in a separate editor"))
+)
+
 class SqlQueryView : public QTableView, public ExtActionContainer
 {
         Q_OBJECT
+        Q_ENUMS(Action)
+
     public:
         enum Action
         {

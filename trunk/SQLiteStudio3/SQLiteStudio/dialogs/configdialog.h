@@ -50,6 +50,8 @@ class ConfigDialog : public QDialog
         void initPluginPage(const QString& pluginName, const QString& formName);
         void deinitPluginPage(const QString& pluginName);
         void initDataEditors();
+        void initShortcuts();
+        void initShortcuts(CfgCategory* cfgCategory);
         void applyStyle(QWidget* widget, QStyle* style);
         QTreeWidgetItem* getPluginsCategoryItem() const;
         QTreeWidgetItem* getPluginsCategoryItem(PluginType* type) const;
@@ -117,6 +119,7 @@ class ConfigDialog : public QDialog
         void pluginLoaded(Plugin* plugin, PluginType* type);
         void updatePluginCategoriesVisibility();
         void updateBuiltInPluginsVisibility();
+        void applyShortcutsFilter(const QString& filter);
 
     public slots:
         void accept();

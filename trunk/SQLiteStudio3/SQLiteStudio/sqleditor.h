@@ -16,9 +16,34 @@ class SqlEditor;
 class SearchTextDialog;
 class SearchTextLocator;
 
+CFG_KEY_LIST(SqlEditor, QObject::tr("SQL editor input field"),
+    CFG_KEY_ENTRY(CUT,             QKeySequence::Cut,                 QObject::tr("Cut selected text"))
+    CFG_KEY_ENTRY(COPY,            QKeySequence::Copy,                QObject::tr("Copy selected text"))
+    CFG_KEY_ENTRY(PASTE,           QKeySequence::Paste,               QObject::tr("Paste from clipboard"))
+    CFG_KEY_ENTRY(DELETE,          QKeySequence::Delete,              QObject::tr("Delete selected text"))
+    CFG_KEY_ENTRY(SELECT_ALL,      QKeySequence::SelectAll,           QObject::tr("Select whole editor contents"))
+    CFG_KEY_ENTRY(UNDO,            QKeySequence::Undo,                QObject::tr("Undo"))
+    CFG_KEY_ENTRY(REDO,            QKeySequence::Redo,                QObject::tr("Redo"))
+    CFG_KEY_ENTRY(SAVE_SQL_FILE,   QKeySequence::Save,                QObject::tr("Save contents into a file"))
+    CFG_KEY_ENTRY(OPEN_SQL_FILE,   QKeySequence::Open,                QObject::tr("Load contents from a file"))
+    CFG_KEY_ENTRY(FIND,            QKeySequence::Find,                QObject::tr("Find in text"))
+    CFG_KEY_ENTRY(FIND_NEXT,       QKeySequence::FindNext,            QObject::tr("Find next"))
+    CFG_KEY_ENTRY(FIND_PREV,       QKeySequence::FindPrevious,        QObject::tr("Find previous"))
+    CFG_KEY_ENTRY(REPLACE,         QKeySequence::Replace,             QObject::tr("Replace in text"))
+    CFG_KEY_ENTRY(DELETE_LINE,     Qt::CTRL + Qt::Key_D,              QObject::tr("Delete current line"))
+    CFG_KEY_ENTRY(COMPLETE,        Qt::CTRL + Qt::Key_Space,          QObject::tr("Request code assistant"))
+    CFG_KEY_ENTRY(FORMAT_SQL,      Qt::ALT + Qt::Key_F,               QObject::tr("Format contents"))
+    CFG_KEY_ENTRY(MOVE_BLOCK_DOWN, Qt::ALT + Qt::Key_Down,            QObject::tr("Move selected block of text one line down"))
+    CFG_KEY_ENTRY(MOVE_BLOCK_UP,   Qt::ALT + Qt::Key_Up,              QObject::tr("Move selected block of text one line up"))
+    CFG_KEY_ENTRY(COPY_BLOCK_DOWN, Qt::ALT + Qt::CTRL + Qt::Key_Down, QObject::tr("Copy selected block of text and paste it a line below"))
+    CFG_KEY_ENTRY(COPY_BLOCK_UP,   Qt::ALT + Qt::CTRL + Qt::Key_Up,   QObject::tr("Copy selected block of text and paste it a line above"))
+)
+
 class SqlEditor : public QPlainTextEdit, public ExtActionContainer
 {
         Q_OBJECT
+        Q_ENUMS(Action)
+
     public:
         enum Action
         {

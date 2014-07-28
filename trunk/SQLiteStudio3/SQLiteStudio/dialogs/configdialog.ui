@@ -109,6 +109,14 @@
             </item>
             <item>
              <property name="text">
+              <string>Keyboard shortcuts</string>
+             </property>
+             <property name="statusTip">
+              <string>shortcutsPage</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
               <string>Look &amp; feel</string>
              </property>
              <property name="statusTip">
@@ -183,7 +191,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="dataBrowsingPage">
           <layout class="QVBoxLayout" name="verticalLayout_21">
@@ -447,6 +455,81 @@
               </size>
              </property>
             </spacer>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="shortcutsPage">
+          <layout class="QVBoxLayout" name="verticalLayout_28">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QLineEdit" name="shortcutsFilterEdit">
+             <property name="placeholderText">
+              <string>Filter shortcuts by name or key combination</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTreeWidget" name="shortcutsTable">
+             <property name="focusPolicy">
+              <enum>Qt::NoFocus</enum>
+             </property>
+             <property name="editTriggers">
+              <set>QAbstractItemView::NoEditTriggers</set>
+             </property>
+             <property name="showDropIndicator" stdset="0">
+              <bool>false</bool>
+             </property>
+             <property name="selectionMode">
+              <enum>QAbstractItemView::SingleSelection</enum>
+             </property>
+             <property name="indentation">
+              <number>0</number>
+             </property>
+             <property name="rootIsDecorated">
+              <bool>false</bool>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+             <property name="expandsOnDoubleClick">
+              <bool>false</bool>
+             </property>
+             <attribute name="headerDefaultSectionSize">
+              <number>150</number>
+             </attribute>
+             <attribute name="headerMinimumSectionSize">
+              <number>16</number>
+             </attribute>
+             <attribute name="headerStretchLastSection">
+              <bool>false</bool>
+             </attribute>
+             <column>
+              <property name="text">
+               <string>Action</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Key combination</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string/>
+              </property>
+             </column>
+            </widget>
            </item>
           </layout>
          </widget>
@@ -1370,9 +1453,6 @@ p, li { white-space: pre-wrap; }
                   </item>
                   <item row="10" column="0">
                    <widget class="QLabel" name="sqlEditorNumberFgLabel">
-                    <property name="toolTip">
-                     <string>&lt;p&gt;Bind parameters are placeholders for values yet to be provided by the user. They have one of the forms:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;:param_name&lt;/li&gt;&lt;li&gt;$param_name&lt;/li&gt;&lt;li&gt;@param_name&lt;/li&gt;&lt;li&gt;?&lt;/li&gt;&lt;/ul&gt;</string>
-                    </property>
                     <property name="text">
                      <string>Number foreground</string>
                     </property>
@@ -1380,9 +1460,6 @@ p, li { white-space: pre-wrap; }
                   </item>
                   <item row="9" column="0">
                    <widget class="QLabel" name="sqlEditorCommentFgLabel">
-                    <property name="toolTip">
-                     <string>&lt;p&gt;Bind parameters are placeholders for values yet to be provided by the user. They have one of the forms:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;:param_name&lt;/li&gt;&lt;li&gt;$param_name&lt;/li&gt;&lt;li&gt;@param_name&lt;/li&gt;&lt;li&gt;?&lt;/li&gt;&lt;/ul&gt;</string>
-                    </property>
                     <property name="text">
                      <string>Comment foreground</string>
                     </property>

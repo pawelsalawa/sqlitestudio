@@ -6,6 +6,8 @@
 #include <QAction>
 #include <QMenu>
 
+CFG_KEYS_DEFINE(MultiEditorText)
+
 MultiEditorText::MultiEditorText(QWidget *parent) :
     MultiEditorWidget(parent)
 {
@@ -114,12 +116,7 @@ void MultiEditorText::createActions()
 
 void MultiEditorText::setupDefShortcuts()
 {
-    defShortcutStdKey(CUT, QKeySequence::Cut);
-    defShortcutStdKey(COPY, QKeySequence::Copy);
-    defShortcutStdKey(PASTE, QKeySequence::Paste);
-    defShortcutStdKey(DELETE, QKeySequence::Delete);
-    defShortcutStdKey(UNDO, QKeySequence::Undo);
-    defShortcutStdKey(REDO, QKeySequence::Redo);
+    BIND_SHORTCUTS(MultiEditorText, Action);
 }
 
 void MultiEditorText::setupMenu()

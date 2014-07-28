@@ -23,6 +23,8 @@
 #include <QProgressBar>
 #include <QDebug>
 
+CFG_KEYS_DEFINE(ViewWindow)
+
 ViewWindow::ViewWindow(QWidget *parent) :
     MdiChild(parent),
     ui(new Ui::ViewWindow)
@@ -174,13 +176,7 @@ void ViewWindow::setupDefShortcuts()
                        },
                        Qt::WidgetWithChildrenShortcut);
 
-    defShortcut(REFRESH_TRIGGERS, Qt::Key_F5);
-    defShortcut(ADD_TRIGGER, Qt::Key_Insert);
-    defShortcut(EDIT_TRIGGER, Qt::Key_Return);
-    defShortcut(DEL_TRIGGER, Qt::Key_Delete);
-
-    defShortcut(NEXT_TAB, Qt::ALT + Qt::Key_Right);
-    defShortcut(PREV_TAB, Qt::ALT + Qt::Key_Left);
+    BIND_SHORTCUTS(ViewWindow, Action);
 }
 
 bool ViewWindow::restoreSessionNextTime()

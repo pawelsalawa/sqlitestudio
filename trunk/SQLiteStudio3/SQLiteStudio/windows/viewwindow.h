@@ -19,10 +19,21 @@ class QProgressBar;
 class ChainExecutor;
 class ViewModifier;
 
+CFG_KEY_LIST(ViewWindow, QObject::tr("A view window"),
+     CFG_KEY_ENTRY(REFRESH_TRIGGERS, Qt::Key_F5,                QObject::tr("Refresh view trigger list"))
+     CFG_KEY_ENTRY(ADD_TRIGGER,      Qt::Key_Insert,            QObject::tr("Add new trigger"))
+     CFG_KEY_ENTRY(EDIT_TRIGGER,     Qt::Key_Return,            QObject::tr("Edit selected trigger"))
+     CFG_KEY_ENTRY(DEL_TRIGGER,      Qt::Key_Delete,            QObject::tr("Delete selected trigger"))
+     CFG_KEY_ENTRY(NEXT_TAB,         Qt::ALT + Qt::Key_Right,   QObject::tr("Go to next tab"))
+     CFG_KEY_ENTRY(PREV_TAB,         Qt::ALT + Qt::Key_Left,    QObject::tr("Go to previous tab"))
+)
+
 class ViewWindow : public MdiChild, public ExtActionContainer
 {
         Q_OBJECT
+        Q_ENUMS(Action)
 
+    public:
         enum Action
         {
             // Structure tab
@@ -39,7 +50,6 @@ class ViewWindow : public MdiChild, public ExtActionContainer
             PREV_TAB
         };
 
-    public:
         explicit ViewWindow(QWidget *parent = 0);
         ViewWindow(Db* db, QWidget *parent = 0);
         ViewWindow(const ViewWindow& win);

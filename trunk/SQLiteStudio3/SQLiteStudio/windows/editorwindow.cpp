@@ -22,6 +22,7 @@
 #include <QMessageBox>
 #include <dialogs/exportdialog.h>
 
+CFG_KEYS_DEFINE(EditorWindow)
 EditorWindow::ResultsDisplayMode EditorWindow::resultsDisplayMode;
 QHash<EditorWindow::Action,QAction*> EditorWindow::staticActions;
 QHash<EditorWindow::ActionGroup,QActionGroup*> EditorWindow::staticActionGroups;
@@ -341,14 +342,7 @@ void EditorWindow::setupDefShortcuts()
     setShortcutContext({EXEC_QUERY, EXEC_QUERY, SHOW_NEXT_TAB, SHOW_PREV_TAB, FOCUS_RESULTS_BELOW,
                         FOCUS_EDITOR_ABOVE}, Qt::WidgetWithChildrenShortcut);
 
-    defShortcut(EXEC_QUERY, Qt::Key_F9);
-    defShortcut(EXPLAIN_QUERY, Qt::Key_F8);
-    defShortcut(PREV_DB, Qt::CTRL + Qt::Key_Up);
-    defShortcut(NEXT_DB, Qt::CTRL + Qt::Key_Down);
-    defShortcut(SHOW_NEXT_TAB, Qt::ALT + Qt::Key_Right);
-    defShortcut(SHOW_PREV_TAB, Qt::ALT + Qt::Key_Left);
-    defShortcut(FOCUS_RESULTS_BELOW, Qt::ALT + Qt::Key_PageDown);
-    defShortcut(FOCUS_EDITOR_ABOVE, Qt::ALT + Qt::Key_PageUp);
+    BIND_SHORTCUTS(EditorWindow, Action);
 }
 
 void EditorWindow::selectCurrentQuery()

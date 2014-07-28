@@ -21,9 +21,21 @@ namespace Ui {
     class DbTree;
 }
 
+CFG_KEY_LIST(DbTree, QObject::tr("Database list"),
+    CFG_KEY_ENTRY(DEL_SELECTED,    Qt::Key_Delete,         QObject::tr("Delete selected item"))
+    CFG_KEY_ENTRY(CLEAR_FILTER,    Qt::Key_Escape,         QObject::tr("Clear filter contents"))
+    CFG_KEY_ENTRY(REFRESH_SCHEMA,  Qt::Key_F5,             QObject::tr("Refresh schema"))
+    CFG_KEY_ENTRY(REFRESH_SCHEMAS, Qt::SHIFT + Qt::Key_F5, QObject::tr("Refresh all schemas"))
+    CFG_KEY_ENTRY(ADD_DB,          Qt::CTRL + Qt::Key_O,   QObject::tr("Add database"))
+    CFG_KEY_ENTRY(SELECT_ALL,      Qt::CTRL + Qt::Key_A,   QObject::tr("Select all items"))
+    CFG_KEY_ENTRY(COPY,            Qt::CTRL + Qt::Key_C,   QObject::tr("Copy selected item(s)"))
+    CFG_KEY_ENTRY(PASTE,           Qt::CTRL + Qt::Key_V,   QObject::tr("Paste from clipboard"))
+)
+
 class DbTree : public QDockWidget, public ExtActionContainer
 {
         Q_OBJECT
+        Q_ENUMS(Action)
 
     public:
         friend class DbTreeView;

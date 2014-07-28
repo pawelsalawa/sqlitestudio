@@ -17,6 +17,7 @@
 #include <QLabel>
 #include <QAction>
 
+CFG_KEYS_DEFINE(DataView)
 DataView::FilterMode DataView::filterMode;
 DataView::TabsPosition DataView::tabsPosition;
 QHash<DataView::Action,QAction*> DataView::staticActions;
@@ -220,13 +221,7 @@ void DataView::setupDefShortcuts()
     if (rowDeleting)
         setShortcutContext({DELETE_ROW}, Qt::WidgetWithChildrenShortcut);
 
-    defShortcut(REFRESH_DATA, Qt::Key_F5);
-    //defShortcut(COMMIT_GRID, Qt::CTRL + Qt::Key_Return);
-    //defShortcut(ROLLBACK_GRID, Qt::CTRL + Qt::Key_Backspace);
-    defShortcut(DELETE_ROW, Qt::Key_Delete);
-    defShortcut(INSERT_ROW, Qt::Key_Insert);
-    defShortcut(SHOW_GRID_VIEW, Qt::CTRL + Qt::Key_Comma);
-    defShortcut(SHOW_FORM_VIEW, Qt::CTRL + Qt::Key_Period);
+    BIND_SHORTCUTS(DataView, Action);
 }
 
 void DataView::createStaticActions()

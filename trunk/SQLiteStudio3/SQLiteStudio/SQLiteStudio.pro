@@ -145,7 +145,8 @@ SOURCES += main.cpp\
     uicustomicon.cpp \
     uiurlbutton.cpp \
     common/configcombobox.cpp \
-    dialogs/dbconverterdialog.cpp
+    dialogs/dbconverterdialog.cpp \
+    common/extactioncontainersignalhandler.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -277,7 +278,8 @@ HEADERS  += mainwindow.h \
     uicustomicon.h \
     uiurlbutton.h \
     common/configcombobox.h \
-    dialogs/dbconverterdialog.h
+    dialogs/dbconverterdialog.h \
+    common/extactioncontainersignalhandler.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \

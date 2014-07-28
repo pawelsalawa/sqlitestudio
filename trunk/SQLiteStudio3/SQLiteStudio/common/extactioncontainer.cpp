@@ -1,14 +1,26 @@
 #include "extactioncontainer.h"
 #include "iconmanager.h"
 #include "common/extaction.h"
+#include "common/global.h"
+#include "extactioncontainersignalhandler.h"
+#include <QSignalMapper>
 #include <QToolButton>
 #include <QToolBar>
 #include <QMenu>
 #include <QDebug>
 
+ExtActionContainer::ExtActionContainer()
+{
+    actionIdMapper = new QSignalMapper();
+    signalHandler = new ExtActionContainerSignalHandler(this);
+    QObject::connect(actionIdMapper, SIGNAL(mapped(int)), signalHandler, SLOT(handleShortcutChange(int)));
+}
+
 ExtActionContainer::~ExtActionContainer()
 {
     deleteActions();
+    safe_delete(signalHandler);
+    safe_delete(actionIdMapper);
 }
 
 void ExtActionContainer::initActions()
@@ -30,9 +42,34 @@ void ExtActionContainer::createAction(int action, const QString& text, const QOb
     createAction(action, qAction, receiver, slot, container, owner);
 }
 
-void ExtActionContainer::defShortcut(int action, int keySequence)
+void ExtActionContainer::bindShortcutsToEnum(CfgCategory &cfgCategory, const QMetaEnum &actionsEnum)
 {
-    shortcuts[action] = QKeySequence(keySequence).toString();
+    QHash<QString, CfgEntry *>& cfgEntries = cfgCategory.getEntries();
+    QString enumName;
+    CfgStringEntry* stringEntry = nullptr;
+    for (int i = 0, total = actionsEnum.keyCount(); i < total; ++i)
+    {
+        enumName = QString::fromLatin1(actionsEnum.key(i));
+        if (!cfgEntries.contains(enumName))
+            continue;
+
+        stringEntry = dynamic_cast<CfgStringEntry*>(cfgEntries[enumName]);
+        if (!stringEntry)
+        {
+            qDebug() << "Tried to bind key sequence config entry, but its type was not QString. Ignoring entry:" << cfgEntries[enumName]->getFullKey();
+            continue;
+        }
+
+        defShortcut(actionsEnum.value(i), stringEntry);
+    }
+}
+
+void ExtActionContainer::defShortcut(int action, CfgStringEntry *cfgEntry)
+{
+    shortcuts[action] = cfgEntry;
+
+    actionIdMapper->setMapping(cfgEntry, action);
+    QObject::connect(cfgEntry, SIGNAL(changed(QVariant)), actionIdMapper, SLOT(map()));
 }
 
 void ExtActionContainer::setShortcutContext(const QList<qint32> actions, Qt::ShortcutContext context)
@@ -59,11 +96,6 @@ void ExtActionContainer::attachActionInMenu(int parentAction, QAction* childActi
     }
 
     menu->addAction(childAction);
-}
-
-void ExtActionContainer::defShortcutStdKey(int action, QKeySequence::StandardKey standardKey)
-{
-    shortcuts[action] = QKeySequence(standardKey).toString();
 }
 
 void ExtActionContainer::updateShortcutTips()
@@ -101,10 +133,14 @@ void ExtActionContainer::refreshShortcuts()
         if (noConfigShortcutActions.contains(action))
             continue;
 
-        actionMap[action]->setShortcut(QKeySequence(shortcuts[action]));
-        actionMap[action]->setToolTip(actionMap[action]->text()+QString(" (%1)").arg(shortcuts[action]));
+        refreshShortcut(action);
     }
+}
 
+void ExtActionContainer::refreshShortcut(int action)
+{
+    actionMap[action]->setShortcut(QKeySequence(shortcuts[action]->get()));
+    actionMap[action]->setToolTip(actionMap[action]->text()+QString(" (%1)").arg(shortcuts[action]->get()));
 }
 
 QAction* ExtActionContainer::getAction(int action)
