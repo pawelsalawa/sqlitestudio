@@ -187,6 +187,8 @@ void SQLiteStudio::init(const QStringList& cmdListArguments, bool guiAvailable)
 
     Q_INIT_RESOURCE(coresqlitestudio);
 
+    CfgLazyInitializer::init();
+
     initUtils();
     CfgMain::staticInit();
     Db::metaInit();

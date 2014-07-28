@@ -25,6 +25,8 @@
 #include <QScrollBar>
 #include <QFileDialog>
 
+CFG_KEYS_DEFINE(SqlEditor)
+
 SqlEditor::SqlEditor(QWidget *parent) :
     QPlainTextEdit(parent)
 {
@@ -146,26 +148,28 @@ void SqlEditor::setupDefShortcuts()
     setShortcutContext({CUT, COPY, PASTE, DELETE, SELECT_ALL, UNDO, REDO, COMPLETE, FORMAT_SQL, SAVE_SQL_FILE, OPEN_SQL_FILE,
                         DELETE_LINE}, Qt::WidgetWithChildrenShortcut);
 
-    defShortcutStdKey(CUT, QKeySequence::Cut);
-    defShortcutStdKey(COPY, QKeySequence::Copy);
-    defShortcutStdKey(PASTE, QKeySequence::Paste);
-    defShortcutStdKey(DELETE, QKeySequence::Delete);
-    defShortcutStdKey(SELECT_ALL, QKeySequence::SelectAll);
-    defShortcutStdKey(UNDO, QKeySequence::Undo);
-    defShortcutStdKey(REDO, QKeySequence::Redo);
-    defShortcutStdKey(SAVE_SQL_FILE, QKeySequence::Save);
-    defShortcutStdKey(OPEN_SQL_FILE, QKeySequence::Open);
-    defShortcutStdKey(FIND, QKeySequence::Find);
-    defShortcutStdKey(FIND_NEXT, QKeySequence::FindNext);
-    defShortcutStdKey(FIND_PREV, QKeySequence::FindPrevious);
-    defShortcutStdKey(REPLACE, QKeySequence::Replace);
-    defShortcut(DELETE_LINE, Qt::CTRL + Qt::Key_D);
-    defShortcut(COMPLETE, Qt::CTRL + Qt::Key_Space);
-    defShortcut(FORMAT_SQL, Qt::ALT + Qt::Key_F);
-    defShortcut(MOVE_BLOCK_DOWN, Qt::ALT + Qt::Key_Down);
-    defShortcut(MOVE_BLOCK_UP, Qt::ALT + Qt::Key_Up);
-    defShortcut(COPY_BLOCK_DOWN, Qt::ALT + Qt::CTRL + Qt::Key_Down);
-    defShortcut(COPY_BLOCK_UP, Qt::ALT + Qt::CTRL + Qt::Key_Up);
+    BIND_SHORTCUTS(SqlEditor, Action);
+
+//    defShortcutStdKey(CUT, QKeySequence::Cut);
+//    defShortcutStdKey(COPY, QKeySequence::Copy);
+//    defShortcutStdKey(PASTE, QKeySequence::Paste);
+//    defShortcutStdKey(DELETE, QKeySequence::Delete);
+//    defShortcutStdKey(SELECT_ALL, QKeySequence::SelectAll);
+//    defShortcutStdKey(UNDO, QKeySequence::Undo);
+//    defShortcutStdKey(REDO, QKeySequence::Redo);
+//    defShortcutStdKey(SAVE_SQL_FILE, QKeySequence::Save);
+//    defShortcutStdKey(OPEN_SQL_FILE, QKeySequence::Open);
+//    defShortcutStdKey(FIND, QKeySequence::Find);
+//    defShortcutStdKey(FIND_NEXT, QKeySequence::FindNext);
+//    defShortcutStdKey(FIND_PREV, QKeySequence::FindPrevious);
+//    defShortcutStdKey(REPLACE, QKeySequence::Replace);
+//    defShortcut(DELETE_LINE, Qt::CTRL + Qt::Key_D);
+//    defShortcut(COMPLETE, Qt::CTRL + Qt::Key_Space);
+//    defShortcut(FORMAT_SQL, Qt::ALT + Qt::Key_F);
+//    defShortcut(MOVE_BLOCK_DOWN, Qt::ALT + Qt::Key_Down);
+//    defShortcut(MOVE_BLOCK_UP, Qt::ALT + Qt::Key_Up);
+//    defShortcut(COPY_BLOCK_DOWN, Qt::ALT + Qt::CTRL + Qt::Key_Down);
+//    defShortcut(COPY_BLOCK_UP, Qt::ALT + Qt::CTRL + Qt::Key_Up);
 }
 
 void SqlEditor::setupMenu()

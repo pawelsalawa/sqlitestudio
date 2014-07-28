@@ -32,6 +32,7 @@
 #include <QUiLoader>
 #include <dialogs/dbdialog.h>
 
+CFG_KEYS_DEFINE(MainWindow)
 MainWindow* MainWindow::instance = nullptr;
 
 MainWindow::MainWindow() :
@@ -407,11 +408,7 @@ FormManager* MainWindow::getFormManager() const
 
 void MainWindow::setupDefShortcuts()
 {
-    defShortcut(OPEN_SQL_EDITOR, Qt::ALT + Qt::Key_E);
-    defShortcut(PREV_TASK, Qt::CTRL + Qt::Key_PageUp);
-    defShortcut(NEXT_TASK, Qt::CTRL + Qt::Key_PageDown);
-    defShortcut(HIDE_STATUS_FIELD, Qt::Key_Escape);
-    defShortcut(OPEN_CONFIG, Qt::Key_F2);
+    BIND_SHORTCUTS(MainWindow, Action);
 }
 
 void MainWindow::openSqlEditorSlot()

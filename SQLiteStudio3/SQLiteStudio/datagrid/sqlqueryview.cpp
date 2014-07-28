@@ -21,6 +21,8 @@
 #include <QMenu>
 #include <dialogs/sortdialog.h>
 
+CFG_KEYS_DEFINE(SqlQueryView)
+
 SqlQueryView::SqlQueryView(QWidget *parent) :
     QTableView(parent)
 {
@@ -137,15 +139,7 @@ void SqlQueryView::setupDefShortcuts()
     setShortcutContext({ROLLBACK, SET_NULL, ERASE, OPEN_VALUE_EDITOR, COMMIT, COPY, COPY_AS,
                        PASTE, PASTE_AS}, Qt::WidgetWithChildrenShortcut);
 
-    defShortcut(COPY, Qt::CTRL + Qt::Key_C);
-    defShortcut(COPY_AS, Qt::CTRL + Qt::SHIFT + Qt::Key_C);
-    defShortcut(PASTE, Qt::CTRL + Qt::Key_V);
-    defShortcut(PASTE_AS, Qt::CTRL + Qt::SHIFT + Qt::Key_V);
-    defShortcut(ERASE, Qt::ALT + Qt::Key_Backspace);
-    defShortcut(SET_NULL, Qt::Key_Backspace);
-    defShortcut(COMMIT, Qt::CTRL + Qt::Key_Return);
-    defShortcut(ROLLBACK, Qt::Key_Escape);
-    defShortcut(OPEN_VALUE_EDITOR, Qt::ALT + Qt::Key_Return);
+    BIND_SHORTCUTS(SqlQueryView, Action);
 }
 
 void SqlQueryView::setupActionsForMenu(SqlQueryItem* currentItem, const QList<SqlQueryItem*>& selectedItems)

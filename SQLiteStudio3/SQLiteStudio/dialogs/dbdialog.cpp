@@ -89,7 +89,7 @@ void DbDialog::showEvent(QShowEvent *e)
     if (db)
     {
         int idx = ui->typeCombo->findText(db->getTypeLabel());
-        Q_ASSERT(idx > -1); // if we have db of certain type, it must be driven by existing db plugin
+        //Q_ASSERT(idx > -1); // if we have db of certain type, it must be driven by existing db plugin
         ui->typeCombo->setCurrentIndex(idx);
         ui->typeCombo->setEnabled(false); // converting to other type is in separate dialog, it's different feature
 
@@ -153,14 +153,18 @@ void DbDialog::updateOptions()
     DbPlugin* plugin = nullptr;
     if (dbPlugins.count() > 0)
     {
-        plugin = dbPlugins[ui->typeCombo->currentIndex()];
-        QList<DbPluginOption> optList = plugin->getOptionsList();
-        if (optList.size() > 0)
+        int idx = ui->typeCombo->currentIndex();
+        if (idx > -1 )
         {
-            // Add new options
-            int row = 3;
-            foreach (DbPluginOption opt, optList)
-                addOption(opt, row++);
+            plugin = dbPlugins[idx];
+            QList<DbPluginOption> optList = plugin->getOptionsList();
+            if (optList.size() > 0)
+            {
+                // Add new options
+                int row = 3;
+                foreach (DbPluginOption opt, optList)
+                    addOption(opt, row++);
+            }
         }
     }
 
@@ -435,6 +439,7 @@ void DbDialog::on_browseLocalButton_clicked()
         return;
 
     ui->fileEdit->setText(path);
+    updateState();
 }
 
 void DbDialog::on_browseRemoteButton_clicked()

@@ -34,6 +34,7 @@
 #include <QMimeData>
 #include <dialogs/dbconverterdialog.h>
 
+CFG_KEYS_DEFINE(DbTree)
 QHash<DbTreeItem::Type,QList<DbTreeItem::Type>> DbTree::allowedTypesInside;
 QSet<DbTreeItem::Type> DbTree::draggableTypes;
 
@@ -1269,14 +1270,7 @@ void DbTree::setupDefShortcuts()
                            ADD_DB, SELECT_ALL, COPY, PASTE
                        }, Qt::WidgetWithChildrenShortcut);
 
-    defShortcut(DEL_SELECTED, Qt::Key_Delete);
-    defShortcut(CLEAR_FILTER, Qt::Key_Escape);
-    defShortcut(REFRESH_SCHEMA, Qt::Key_F5);
-    defShortcut(REFRESH_SCHEMAS, Qt::SHIFT + Qt::Key_F5);
-    defShortcut(ADD_DB, Qt::CTRL + Qt::Key_O);
-    defShortcut(SELECT_ALL, Qt::CTRL + Qt::Key_A);
-    defShortcut(COPY, Qt::CTRL + Qt::Key_C);
-    defShortcut(PASTE, Qt::CTRL + Qt::Key_V);
+    BIND_SHORTCUTS(DbTree, Action);
 }
 
 int qHash(DbTree::Action action)

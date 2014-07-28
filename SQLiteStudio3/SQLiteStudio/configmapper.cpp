@@ -16,6 +16,7 @@
 #include <QDebug>
 #include <QStringListModel>
 #include <QFontComboBox>
+#include <QKeySequenceEdit>
 #include <common/configcombobox.h>
 #include <common/configradiobutton.h>
 #include <common/fileedit.h>
@@ -87,6 +88,7 @@ void ConfigMapper::applyCommonConfigToWidget(QWidget *widget, const QVariant &va
     APPLY_CFG(widget, value, FontEdit, setFont, QFont);
     APPLY_CFG(widget, value, ColorButton, setColor, QColor);
     APPLY_CFG(widget, value, FileEdit, setFile, QString);
+    APPLY_CFG_VARIANT(widget, QKeySequence::fromString(value.toString()), QKeySequenceEdit, setKeySequence);
     APPLY_CFG_VARIANT(widget, value, ConfigRadioButton, alignToValue);
     APPLY_CFG_COND(widget, value, QGroupBox, setChecked, bool, isCheckable);
 
@@ -123,6 +125,7 @@ void ConfigMapper::connectCommonNotifierToWidget(QWidget* widget, CfgEntry* key)
     APPLY_NOTIFIER(widget, QFontComboBox, SIGNAL(currentFontChanged(QFont)));
     APPLY_NOTIFIER(widget, FontEdit, SIGNAL(fontChanged(QFont)));
     APPLY_NOTIFIER(widget, FileEdit, SIGNAL(fileChanged(QString)));
+    APPLY_NOTIFIER(widget, QKeySequenceEdit, SIGNAL(editingFinished()));
     APPLY_NOTIFIER(widget, ColorButton, SIGNAL(colorChanged(QColor)));
     APPLY_NOTIFIER(widget, ConfigRadioButton, SIGNAL(toggledOn(QVariant)));
     APPLY_NOTIFIER_COND(widget, QGroupBox, SIGNAL(clicked(bool)), isCheckable);
@@ -148,6 +151,7 @@ void ConfigMapper::saveCommonConfigFromWidget(QWidget* widget, CfgEntry* key)
     SAVE_CFG(widget, key, QFontComboBox, currentFont);
     SAVE_CFG(widget, key, FontEdit, getFont);
     SAVE_CFG(widget, key, FileEdit, getFile);
+    SAVE_CFG(widget, key, QKeySequenceEdit, keySequence().toString);
     SAVE_CFG(widget, key, ColorButton, getColor);
     SAVE_CFG_COND(widget, key, ConfigRadioButton, getAssignedValue, isChecked);
     SAVE_CFG_COND(widget, key, QGroupBox, isChecked, isCheckable);
@@ -166,7 +170,7 @@ void ConfigMapper::saveCommonConfigFromWidget(QWidget* widget, CfgEntry* key)
 void ConfigMapper::loadToWidget(QWidget *topLevelWidget)
 {
     QHash<QString, CfgEntry *> allConfigEntries = getAllConfigEntries();
-    QList<QWidget*> allConfigWidgets = getAllConfigWidgets(topLevelWidget);
+    QList<QWidget*> allConfigWidgets = getAllConfigWidgets(topLevelWidget) + extraWidgets;
     QHash<QString,QVariant> config;
 
     if (isPersistant())
@@ -419,6 +423,30 @@ bool ConfigMapper::isPersistant() const
             return true;
     }
     return false;
+}
+QList<QWidget *> ConfigMapper::getExtraWidgets() const
+{
+    return extraWidgets;
+}
+
+void ConfigMapper::setExtraWidgets(const QList<QWidget *> &value)
+{
+    extraWidgets = value;
+}
+
+void ConfigMapper::addExtraWidget(QWidget *w)
+{
+    extraWidgets << w;
+}
+
+void ConfigMapper::addExtraWidgets(const QList<QWidget *> &list)
+{
+    extraWidgets += list;
+}
+
+void ConfigMapper::clearExtraWidgets()
+{
+    extraWidgets.clear();
 }
 
 void ConfigMapper::handleModified()

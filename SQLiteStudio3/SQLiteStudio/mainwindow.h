@@ -22,9 +22,18 @@ class DdlHistoryWindow;
 class FunctionsEditor;
 class CollationsEditor;
 
+CFG_KEY_LIST(MainWindow, QObject::tr("Main window"),
+     CFG_KEY_ENTRY(OPEN_SQL_EDITOR,   Qt::ALT + Qt::Key_E,         QObject::tr("Open SQL editor"))
+     CFG_KEY_ENTRY(PREV_TASK,         Qt::CTRL + Qt::Key_PageUp,   QObject::tr("Previous window"))
+     CFG_KEY_ENTRY(NEXT_TASK,         Qt::CTRL + Qt::Key_PageDown, QObject::tr("Next window"))
+     CFG_KEY_ENTRY(HIDE_STATUS_FIELD, Qt::Key_Escape,              QObject::tr("Hide status area"))
+     CFG_KEY_ENTRY(OPEN_CONFIG,       Qt::Key_F2,                  QObject::tr("Open configuration dialog"))
+)
+
 class MainWindow : public QMainWindow, virtual public ExtActionContainer
 {
         Q_OBJECT
+        Q_ENUMS(Action)
 
     public:
         enum Action

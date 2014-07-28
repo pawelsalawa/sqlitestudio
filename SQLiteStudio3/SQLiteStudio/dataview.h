@@ -13,9 +13,21 @@ class ExtLineEdit;
 class QLabel;
 class IntValidator;
 
+CFG_KEY_LIST(DataView, QObject::tr("Data view (both grid and form)"),
+     CFG_KEY_ENTRY(REFRESH_DATA,    Qt::Key_F5,                 QObject::tr("Refresh data"))
+//     CFG_KEY_ENTRY(COMMIT_GRID,     Qt::CTRL + Qt::Key_Return) // TODO this was commented - check why and if we can uncomment it
+//     CFG_KEY_ENTRY(ROLLBACK_GRID,   Qt::CTRL + Qt::Key_Backspace) // TODO this was commented - check why and if we can uncomment it
+     CFG_KEY_ENTRY(DELETE_ROW,      Qt::Key_Delete,             QObject::tr("Delete selected data row"))
+     CFG_KEY_ENTRY(INSERT_ROW,      Qt::Key_Insert,             QObject::tr("Insert new data row"))
+     CFG_KEY_ENTRY(SHOW_GRID_VIEW,  Qt::CTRL + Qt::Key_Comma,   QObject::tr("Switch to grid view of the data"))
+     CFG_KEY_ENTRY(SHOW_FORM_VIEW,  Qt::CTRL + Qt::Key_Period,  QObject::tr("Switch to form view of the data"))
+)
+
 class DataView : public QTabWidget, public ExtActionContainer
 {
         Q_OBJECT
+        Q_ENUMS(Action)
+
     public:
         enum Action
         {

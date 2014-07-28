@@ -48,6 +48,8 @@
 // TODO extend QTableView for columns and constraints, so they show full-row-width drop indicator,
 // instead of single column drop indicator.
 
+CFG_KEYS_DEFINE(TableWindow)
+
 TableWindow::TableWindow(QWidget* parent) :
     MdiChild(parent),
     ui(new Ui::TableWindow)
@@ -401,29 +403,7 @@ void TableWindow::setupDefShortcuts()
                        },
                        Qt::WidgetWithChildrenShortcut);
 
-    defShortcut(REFRESH_STRUCTURE, Qt::Key_F5);
-    defShortcut(ADD_COLUMN, Qt::Key_Insert);
-    defShortcut(EDIT_COLUMN, Qt::Key_Return);
-    defShortcut(DEL_COLUMN, Qt::Key_Delete);
-    defShortcut(EXPORT, Qt::Key_E);
-    defShortcut(IMPORT, Qt::Key_I);
-
-    defShortcut(ADD_TABLE_CONSTRAINT, Qt::Key_Insert);
-    defShortcut(EDIT_TABLE_CONSTRAINT, Qt::Key_Return);
-    defShortcut(DEL_TABLE_CONSTRAINT, Qt::Key_Delete);
-
-    defShortcut(REFRESH_INDEXES, Qt::Key_F5);
-    defShortcut(ADD_INDEX, Qt::Key_Insert);
-    defShortcut(EDIT_INDEX, Qt::Key_Return);
-    defShortcut(DEL_INDEX, Qt::Key_Delete);
-
-    defShortcut(REFRESH_TRIGGERS, Qt::Key_F5);
-    defShortcut(ADD_TRIGGER, Qt::Key_Insert);
-    defShortcut(EDIT_TRIGGER, Qt::Key_Return);
-    defShortcut(DEL_TRIGGER, Qt::Key_Delete);
-
-    defShortcut(NEXT_TAB, Qt::ALT + Qt::Key_Right);
-    defShortcut(PREV_TAB, Qt::ALT + Qt::Key_Left);
+    BIND_SHORTCUTS(TableWindow, Action);
 }
 
 void TableWindow::executionSuccessful()
