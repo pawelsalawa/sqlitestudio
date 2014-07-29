@@ -78,7 +78,7 @@ bool AbstractDb::openForProbing()
 
 void AbstractDb::registerAllFunctions()
 {
-    foreach (const RegisteredFunction& regFn, registeredFunctions)
+    for (const RegisteredFunction& regFn : registeredFunctions)
     {
         if (!deregisterFunction(regFn.name, regFn.argCount))
             qWarning() << "Failed to deregister custom SQL function:" << regFn.name;
@@ -87,7 +87,15 @@ void AbstractDb::registerAllFunctions()
     registeredFunctions.clear();
 
     RegisteredFunction regFn;
-    foreach (const FunctionManager::FunctionPtr& fnPtr, FUNCTIONS->getFunctionsForDatabase(getName()))
+    for (FunctionManager::ScriptFunction* fnPtr : FUNCTIONS->getScriptFunctionsForDatabase(getName()))
+    {
+        regFn.argCount = fnPtr->undefinedArgs ? -1 : fnPtr->arguments.count();
+        regFn.name = fnPtr->name;
+        regFn.type = fnPtr->type;
+        registerFunction(regFn);
+    }
+
+    for (FunctionManager::NativeFunction* fnPtr : FUNCTIONS->getAllNativeFunctions())
     {
         regFn.argCount = fnPtr->undefinedArgs ? -1 : fnPtr->arguments.count();
         regFn.name = fnPtr->name;
@@ -826,19 +834,15 @@ bool AbstractDb::handleResultInternally(quint32 asyncId, SqlQueryPtr results)
 void AbstractDb::registerFunction(const AbstractDb::RegisteredFunction& function)
 {
     if (registeredFunctions.contains(function))
-    {
-        qCritical() << "Function" << function.name << function.argCount << "is already registered!"
-                    << "It should already be deregistered while call to register is being made.";
-        return;
-    }
+        return; // native function was overwritten by script function
 
     bool successful = false;
     switch (function.type)
     {
-        case FunctionManager::Function::SCALAR:
+        case FunctionManager::ScriptFunction::SCALAR:
             successful = registerScalarFunction(function.name, function.argCount);
             break;
-        case FunctionManager::Function::AGGREGATE:
+        case FunctionManager::ScriptFunction::AGGREGATE:
             successful = registerAggregateFunction(function.name, function.argCount);
             break;
     }

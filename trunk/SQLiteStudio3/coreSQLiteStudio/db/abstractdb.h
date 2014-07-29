@@ -345,7 +345,7 @@ class API_EXPORT AbstractDb : public Db
             /**
              * @brief Function type.
              */
-            FunctionManager::Function::Type type;
+            FunctionManager::ScriptFunction::Type type;
         };
 
         friend int qHash(const AbstractDb::RegisteredFunction& fn);

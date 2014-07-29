@@ -695,7 +695,10 @@ QList<ExpectedTokenPtr> CompletionHelper::getFunctions(Db* db)
     else
         functions = sqlite3Functions;
 
-    for (const FunctionManager::FunctionPtr& fn : FUNCTIONS->getFunctionsForDatabase(db->getName()))
+    for (FunctionManager::ScriptFunction* fn : FUNCTIONS->getScriptFunctionsForDatabase(db->getName()))
+        functions << fn->toString();
+
+    for (FunctionManager::NativeFunction* fn : FUNCTIONS->getAllNativeFunctions())
         functions << fn->toString();
 
     QList<ExpectedTokenPtr> expectedTokens;

@@ -82,115 +82,115 @@ void FunctionsEditorModel::setValid(int row, bool valid)
 
 void FunctionsEditorModel::setCode(int row, const QString& code)
 {
-    SETTER(functionList[row]->data->code, code);
+    SETTER(functionList[row]->data.code, code);
 }
 
 QString FunctionsEditorModel::getCode(int row) const
 {
-    GETTER(functionList[row]->data->code, QString::null);
+    GETTER(functionList[row]->data.code, QString::null);
 }
 
 void FunctionsEditorModel::setFinalCode(int row, const QString& code)
 {
-    SETTER(functionList[row]->data->finalCode, code);
+    SETTER(functionList[row]->data.finalCode, code);
 }
 
 QString FunctionsEditorModel::getFinalCode(int row) const
 {
-    GETTER(functionList[row]->data->finalCode, QString::null);
+    GETTER(functionList[row]->data.finalCode, QString::null);
 }
 
 void FunctionsEditorModel::setInitCode(int row, const QString& code)
 {
-    SETTER(functionList[row]->data->initCode, code);
+    SETTER(functionList[row]->data.initCode, code);
 }
 
 QString FunctionsEditorModel::getInitCode(int row) const
 {
-    GETTER(functionList[row]->data->initCode, QString::null);
+    GETTER(functionList[row]->data.initCode, QString::null);
 }
 
 void FunctionsEditorModel::setName(int row, const QString& newName)
 {
-    SETTER(functionList[row]->data->name, newName);
+    SETTER(functionList[row]->data.name, newName);
 }
 
 QString FunctionsEditorModel::getName(int row) const
 {
-    GETTER(functionList[row]->data->name, QString::null);
+    GETTER(functionList[row]->data.name, QString::null);
 }
 
 void FunctionsEditorModel::setLang(int row, const QString& lang)
 {
-    SETTER(functionList[row]->data->lang, lang);
+    SETTER(functionList[row]->data.lang, lang);
 }
 
 QString FunctionsEditorModel::getLang(int row) const
 {
-    GETTER(functionList[row]->data->lang, QString::null);
+    GETTER(functionList[row]->data.lang, QString::null);
 }
 
 bool FunctionsEditorModel::getUndefinedArgs(int row) const
 {
-    GETTER(functionList[row]->data->undefinedArgs, true);
+    GETTER(functionList[row]->data.undefinedArgs, true);
 }
 
 void FunctionsEditorModel::setUndefinedArgs(int row, bool value)
 {
-    SETTER(functionList[row]->data->undefinedArgs, value);
+    SETTER(functionList[row]->data.undefinedArgs, value);
 }
 
 bool FunctionsEditorModel::getAllDatabases(int row) const
 {
-    GETTER(functionList[row]->data->allDatabases, true);
+    GETTER(functionList[row]->data.allDatabases, true);
 }
 
 void FunctionsEditorModel::setAllDatabases(int row, bool value)
 {
-    SETTER(functionList[row]->data->allDatabases, value);
+    SETTER(functionList[row]->data.allDatabases, value);
 }
 
-FunctionManager::Function::Type FunctionsEditorModel::getType(int row) const
+FunctionManager::ScriptFunction::Type FunctionsEditorModel::getType(int row) const
 {
-    GETTER(functionList[row]->data->type, FunctionManager::Function::SCALAR);
+    GETTER(functionList[row]->data.type, FunctionManager::ScriptFunction::SCALAR);
 }
 
-void FunctionsEditorModel::setType(int row, FunctionManager::Function::Type type)
+void FunctionsEditorModel::setType(int row, FunctionManager::ScriptFunction::Type type)
 {
-    SETTER(functionList[row]->data->type, type);
+    SETTER(functionList[row]->data.type, type);
 }
 
 bool FunctionsEditorModel::isAggregate(int row) const
 {
-    GETTER(functionList[row]->data->type == FunctionManager::Function::AGGREGATE, false);
+    GETTER(functionList[row]->data.type == FunctionManager::ScriptFunction::AGGREGATE, false);
 }
 
 bool FunctionsEditorModel::isScalar(int row) const
 {
-    GETTER(functionList[row]->data->type == FunctionManager::Function::SCALAR, false);
+    GETTER(functionList[row]->data.type == FunctionManager::ScriptFunction::SCALAR, false);
 }
 
 QStringList FunctionsEditorModel::getArguments(int row) const
 {
-    GETTER(functionList[row]->data->arguments, QStringList());
+    GETTER(functionList[row]->data.arguments, QStringList());
 }
 
 void FunctionsEditorModel::setArguments(int row, const QStringList& value)
 {
-    SETTER(functionList[row]->data->arguments, value);
+    SETTER(functionList[row]->data.arguments, value);
 }
 
 QStringList FunctionsEditorModel::getDatabases(int row) const
 {
-    GETTER(functionList[row]->data->databases, QStringList());
+    GETTER(functionList[row]->data.databases, QStringList());
 }
 
 void FunctionsEditorModel::setDatabases(int row, const QStringList& value)
 {
-    SETTER(functionList[row]->data->databases, value);
+    SETTER(functionList[row]->data.databases, value);
 }
 
-void FunctionsEditorModel::setData(const QList<FunctionManager::FunctionPtr>& functions)
+void FunctionsEditorModel::setData(const QList<FunctionManager::ScriptFunction*>& functions)
 {
     beginResetModel();
 
@@ -200,7 +200,7 @@ void FunctionsEditorModel::setData(const QList<FunctionManager::FunctionPtr>& fu
 
     functionList.clear();
 
-    foreach (const FunctionManager::FunctionPtr& func, functions)
+    foreach (FunctionManager::ScriptFunction* func, functions)
         functionList << new Function(func);
 
     listModified = false;
@@ -209,7 +209,7 @@ void FunctionsEditorModel::setData(const QList<FunctionManager::FunctionPtr>& fu
     endResetModel();
 }
 
-void FunctionsEditorModel::addFunction(const FunctionManager::FunctionPtr& function)
+void FunctionsEditorModel::addFunction(FunctionManager::ScriptFunction* function)
 {
     int row = functionList.size();
 
@@ -236,12 +236,12 @@ void FunctionsEditorModel::deleteFunction(int row)
     endRemoveRows();
 }
 
-QList<FunctionManager::FunctionPtr> FunctionsEditorModel::getFunctions() const
+QList<FunctionManager::ScriptFunction*> FunctionsEditorModel::generateFunctions() const
 {
-    QList<FunctionManager::FunctionPtr> results;
+    QList<FunctionManager::ScriptFunction*> results;
 
     foreach (Function* func, functionList)
-        results << func->data;
+        results << new FunctionManager::ScriptFunction(func->data);
 
     return results;
 }
@@ -250,7 +250,7 @@ QStringList FunctionsEditorModel::getFunctionNames() const
 {
     QStringList names;
     foreach (Function* func, functionList)
-        names << func->data->name;
+        names << func->data.name;
 
     return names;
 }
@@ -263,7 +263,7 @@ void FunctionsEditorModel::validateNames()
     foreach (Function* func, functionList)
     {
         func->valid &= true;
-        counter[func->data->name] << row++;
+        counter[func->data.name] << row++;
     }
 
     QHashIterator<QString,QList<int>> cntIt = counter.iterator();
@@ -306,12 +306,12 @@ QVariant FunctionsEditorModel::data(const QModelIndex& index, int role) const
     if (role == Qt::DisplayRole)
     {
         Function* fn = functionList[index.row()];
-        return fn->data->toString();
+        return fn->data.toString();
     }
 
-    if (role == Qt::DecorationRole && langToIcon.contains(functionList[index.row()]->data->lang))
+    if (role == Qt::DecorationRole && langToIcon.contains(functionList[index.row()]->data.lang))
     {
-        QIcon icon = langToIcon[functionList[index.row()]->data->lang];
+        QIcon icon = langToIcon[functionList[index.row()]->data.lang];
         if (!functionList[index.row()]->valid)
             icon = Icon::merge(icon, Icon::ERROR);
 
@@ -340,11 +340,10 @@ void FunctionsEditorModel::emitDataChanged(int row)
 
 FunctionsEditorModel::Function::Function()
 {
-    data = FunctionManager::FunctionPtr::create();
 }
 
-FunctionsEditorModel::Function::Function(const FunctionManager::FunctionPtr& other)
+FunctionsEditorModel::Function::Function(FunctionManager::ScriptFunction* other)
 {
-    data = FunctionManager::FunctionPtr::create(*other);
-    originalName = data->name;
+    data = FunctionManager::ScriptFunction(*other);
+    originalName = data.name;
 }

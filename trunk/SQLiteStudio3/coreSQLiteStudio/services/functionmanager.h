@@ -15,7 +15,7 @@ class API_EXPORT FunctionManager : public QObject
     Q_OBJECT
 
     public:
-        struct API_EXPORT Function
+        struct API_EXPORT FunctionBase
         {
             enum Type
             {
@@ -23,33 +23,46 @@ class API_EXPORT FunctionManager : public QObject
                 AGGREGATE = 1
             };
 
-            Function();
+            FunctionBase();
+            virtual ~FunctionBase();
 
-            QString toString() const;
+            virtual QString toString() const;
 
             static QString typeString(Type type);
             static Type typeString(const QString& type);
 
             QString name;
+            QStringList arguments;
+            Type type = SCALAR;
+            bool undefinedArgs = true;
+        };
+
+        struct API_EXPORT ScriptFunction : public FunctionBase
+        {
             QString lang;
             QString code;
             QString initCode;
             QString finalCode;
             QStringList databases;
-            QStringList arguments;
-            Type type = SCALAR;
-            bool undefinedArgs = true;
             bool allDatabases = true;
         };
 
-        typedef QSharedPointer<Function> FunctionPtr;
+        struct API_EXPORT NativeFunction : public FunctionBase
+        {
+            typedef std::function<QVariant(const QList<QVariant>& args, Db* db, bool& ok)> ImplementationFunction;
 
-        virtual void setFunctions(const QList<FunctionPtr>& newFunctions) = 0;
-        virtual QList<FunctionPtr> getAllFunctions() const = 0;
-        virtual QList<FunctionPtr> getFunctionsForDatabase(const QString& dbName) const = 0;
+            ImplementationFunction functionPtr;
+        };
+
+        virtual void setScriptFunctions(const QList<ScriptFunction*>& newFunctions) = 0;
+        virtual QList<ScriptFunction*> getAllScriptFunctions() const = 0;
+        virtual QList<ScriptFunction*> getScriptFunctionsForDatabase(const QString& dbName) const = 0;
+        virtual QList<NativeFunction*> getAllNativeFunctions() const = 0;
+
         virtual QVariant evaluateScalar(const QString& name, int argCount, const QList<QVariant>& args, Db* db, bool& ok) = 0;
         virtual void evaluateAggregateInitial(const QString& name, int argCount, Db* db, QHash<QString, QVariant>& aggregateStorage) = 0;
-        virtual void evaluateAggregateStep(const QString& name, int argCount, const QList<QVariant>& args, Db* db, QHash<QString, QVariant>& aggregateStorage) = 0;
+        virtual void evaluateAggregateStep(const QString& name, int argCount, const QList<QVariant>& args, Db* db,
+                                           QHash<QString, QVariant>& aggregateStorage) = 0;
         virtual QVariant evaluateAggregateFinal(const QString& name, int argCount, Db* db, bool& ok, QHash<QString, QVariant>& aggregateStorage) = 0;
 
     signals:

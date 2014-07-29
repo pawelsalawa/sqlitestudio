@@ -168,14 +168,13 @@ class CfgTypedEntry : public CfgEntry
         }
 
         CfgTypedEntry(const QString& name, const T& defValue, const QString& title) :
-            CfgEntry(name, defValue, title) {}
+            CfgEntry(name, QVariant::fromValue(defValue), title) {}
 
         CfgTypedEntry(const QString& name, DefaultValueProviderFunc func) :
-            CfgTypedEntry(name, func, QString())
-        {}
+            CfgTypedEntry(name, func, QString()) {}
 
         CfgTypedEntry(const QString& name, const T& defValue) :
-            CfgTypedEntry(name, QVariant::fromValue(defValue), QString()) {}
+            CfgTypedEntry(name, defValue, QString()) {}
 
         CfgTypedEntry(const QString& name) :
             CfgEntry(name, QVariant(), QString()) {}

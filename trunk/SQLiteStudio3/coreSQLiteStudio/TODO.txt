@@ -1,10 +1,7 @@
-* regexp import - finish
 * Rewrite DbEdit dialog
 * formatter as a service - per language
 * enterprise SQL formatter
-* standard SQL functions
 * W select trzeba jeszcze konteksty dla WHERE, HAVING i GROUP BY obsluzyc - mozna je zrobic razem, bo wszystkie uzywaja expr
-* shortcut configuration
 * context menu for taskbar
 * option to view full db path in window title
 * db context menu entries: vacuum, integrity check
@@ -70,6 +67,7 @@ SchemaResolver
 - dbf import
 - dbf export
 - code assistant as a service with plugins, so it can be extended with other langs and injected in custom functions window, collations window, etc
+- in configuration dialog option to disable each individual native SQL function
 
 
 

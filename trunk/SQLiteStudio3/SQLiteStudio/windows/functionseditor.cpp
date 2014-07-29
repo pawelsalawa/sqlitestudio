@@ -95,8 +95,8 @@ void FunctionsEditor::init()
     ui->databasesList->setModel(dbListModel);
     ui->databasesList->expandAll();
 
-    ui->typeCombo->addItem(tr("Scalar"), FunctionManager::Function::SCALAR);
-    ui->typeCombo->addItem(tr("Aggregate"), FunctionManager::Function::AGGREGATE);
+    ui->typeCombo->addItem(tr("Scalar"), FunctionManager::ScriptFunction::SCALAR);
+    ui->typeCombo->addItem(tr("Aggregate"), FunctionManager::ScriptFunction::AGGREGATE);
 
     new UserInputFilter(ui->functionFilterEdit, this, SLOT(applyFilter(QString)));
     functionFilterModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
@@ -124,7 +124,7 @@ void FunctionsEditor::init()
     connect(dbListModel, SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(updateModified()));
     connect(CFG_UI.Fonts.SqlEditor, SIGNAL(changed(QVariant)), this, SLOT(changeFont(QVariant)));
 
-    model->setData(FUNCTIONS->getAllFunctions());
+    model->setData(FUNCTIONS->getAllScriptFunctions());
 
     // Language plugins
     foreach (ScriptingPlugin* plugin, PLUGINS->getLoadedPlugins<ScriptingPlugin>())
@@ -208,7 +208,7 @@ void FunctionsEditor::functionSelected(int row)
         ui->selDatabasesRadio->setChecked(true);
 
     // Type
-    FunctionManager::Function::Type type = model->getType(row);
+    FunctionManager::ScriptFunction::Type type = model->getType(row);
     for (int i = 0; i < ui->typeCombo->count(); i++)
     {
         if (ui->typeCombo->itemData(i).toInt() == type)
@@ -275,10 +275,10 @@ QStringList FunctionsEditor::getCurrentDatabases() const
     return dbListModel->getDatabases();
 }
 
-FunctionManager::Function::Type FunctionsEditor::getCurrentFunctionType() const
+FunctionManager::ScriptFunction::Type FunctionsEditor::getCurrentFunctionType() const
 {
     int intValue = ui->typeCombo->itemData(ui->typeCombo->currentIndex()).toInt();
-    return static_cast<FunctionManager::Function::Type>(intValue);
+    return static_cast<FunctionManager::ScriptFunction::Type>(intValue);
 }
 
 void FunctionsEditor::commit()
@@ -287,9 +287,9 @@ void FunctionsEditor::commit()
     if (model->isValidRowIndex(row))
         functionDeselected(row);
 
-    QList<FunctionManager::FunctionPtr> functions = model->getFunctions();
+    QList<FunctionManager::ScriptFunction*> functions = model->generateFunctions();
 
-    FUNCTIONS->setFunctions(functions);
+    FUNCTIONS->setScriptFunctions(functions);
     model->clearModified();
     currentModified = false;
 
@@ -303,7 +303,7 @@ void FunctionsEditor::rollback()
 {
     int selectedBefore = getCurrentFunctionRow();
 
-    model->setData(FUNCTIONS->getAllFunctions());
+    model->setData(FUNCTIONS->getAllScriptFunctions());
     currentModified = false;
     clearEdits();
 
@@ -318,7 +318,7 @@ void FunctionsEditor::newFunction()
     if (ui->langCombo->currentIndex() == -1 && ui->langCombo->count() > 0)
         ui->langCombo->setCurrentIndex(0);
 
-    FunctionManager::FunctionPtr func = FunctionManager::FunctionPtr::create();
+    FunctionManager::ScriptFunction* func = new FunctionManager::ScriptFunction();
     func->name = generateUniqueName("function", model->getFunctionNames());
 
     if (ui->langCombo->currentIndex() > -1)
@@ -408,7 +408,7 @@ void FunctionsEditor::updateCurrentFunctionState()
     ui->typeLabel->setEnabled(langOk);
     setValidState(ui->langCombo, langOk, tr("Pick the implementation language."));
 
-    bool aggregate = getCurrentFunctionType() == FunctionManager::Function::AGGREGATE;
+    bool aggregate = getCurrentFunctionType() == FunctionManager::ScriptFunction::AGGREGATE;
     ui->initCodeGroup->setVisible(aggregate);
     ui->mainCodeGroup->setTitle(aggregate ? tr("Per step code:") : tr("Function implementation code:"));
     ui->finalCodeGroup->setVisible(aggregate);
