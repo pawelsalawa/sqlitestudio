@@ -5,33 +5,40 @@
 #include "plugins/scriptingplugin.h"
 #include "common/unused.h"
 #include "common/utils.h"
+#include "common/utils_sql.h"
 #include "services/dbmanager.h"
+#include "db/queryexecutor.h"
+#include "db/sqlquery.h"
 #include <QVariantList>
 #include <QHash>
 #include <QDebug>
+#include <QRegularExpression>
+#include <QFile>
+#include <QUrl>
 
 FunctionManagerImpl::FunctionManagerImpl()
 {
     init();
 }
 
-void FunctionManagerImpl::setFunctions(const QList<FunctionManagerImpl::FunctionPtr>& newFunctions)
+void FunctionManagerImpl::setScriptFunctions(const QList<ScriptFunction*>& newFunctions)
 {
+    clearFunctions();
     functions = newFunctions;
     refreshFunctionsByKey();
     storeInConfig();
     emit functionListChanged();
 }
 
-QList<FunctionManager::FunctionPtr> FunctionManagerImpl::getAllFunctions() const
+QList<FunctionManager::ScriptFunction*> FunctionManagerImpl::getAllScriptFunctions() const
 {
     return functions;
 }
 
-QList<FunctionManager::FunctionPtr> FunctionManagerImpl::getFunctionsForDatabase(const QString& dbName) const
+QList<FunctionManager::ScriptFunction*> FunctionManagerImpl::getScriptFunctionsForDatabase(const QString& dbName) const
 {
-    QList<FunctionPtr> results;
-    foreach (const FunctionPtr& func, functions)
+    QList<ScriptFunction*> results;
+    foreach (ScriptFunction* func, functions)
     {
         if (func->allDatabases || func->databases.contains(dbName, Qt::CaseInsensitive))
             results << func;
@@ -44,19 +51,71 @@ QVariant FunctionManagerImpl::evaluateScalar(const QString& name, int argCount, 
     Key key;
     key.name = name;
     key.argCount = argCount;
-    key.type = Function::SCALAR;
-    if (!functionsByKey.contains(key))
+    key.type = ScriptFunction::SCALAR;
+    if (functionsByKey.contains(key))
     {
-        ok = false;
-        return cannotFindFunctionError(name, argCount);
+        ScriptFunction* function = functionsByKey[key];
+        return evaluateScriptScalar(function, name, argCount, args, db, ok);
+    }
+    else if (nativeFunctionsByKey.contains(key))
+    {
+        NativeFunction* function = nativeFunctionsByKey[key];
+        return evaluateNativeScalar(function, args, db, ok);
     }
 
-    FunctionPtr function = functionsByKey[key];
-    ScriptingPlugin* plugin = PLUGINS->getScriptingPlugin(function->lang);
+    ok = false;
+    return cannotFindFunctionError(name, argCount);
+}
+
+void FunctionManagerImpl::evaluateAggregateInitial(const QString& name, int argCount, Db* db, QHash<QString,QVariant>& aggregateStorage)
+{
+    Key key;
+    key.name = name;
+    key.argCount = argCount;
+    key.type = ScriptFunction::AGGREGATE;
+    if (functionsByKey.contains(key))
+    {
+        ScriptFunction* function = functionsByKey[key];
+        evaluateScriptAggregateInitial(function, db, aggregateStorage);
+    }
+}
+
+void FunctionManagerImpl::evaluateAggregateStep(const QString& name, int argCount, const QList<QVariant>& args, Db* db, QHash<QString,QVariant>& aggregateStorage)
+{
+    Key key;
+    key.name = name;
+    key.argCount = argCount;
+    key.type = ScriptFunction::AGGREGATE;
+    if (functionsByKey.contains(key))
+    {
+        ScriptFunction* function = functionsByKey[key];
+        evaluateScriptAggregateStep(function, args, db, aggregateStorage);
+    }
+}
+
+QVariant FunctionManagerImpl::evaluateAggregateFinal(const QString& name, int argCount, Db* db, bool& ok, QHash<QString,QVariant>& aggregateStorage)
+{
+    Key key;
+    key.name = name;
+    key.argCount = argCount;
+    key.type = ScriptFunction::AGGREGATE;
+    if (functionsByKey.contains(key))
+    {
+        ScriptFunction* function = functionsByKey[key];
+        return evaluateScriptAggregateFinal(function, name, argCount, db, ok, aggregateStorage);
+    }
+
+    ok = false;
+    return cannotFindFunctionError(name, argCount);
+}
+
+QVariant FunctionManagerImpl::evaluateScriptScalar(ScriptFunction* func, const QString& name, int argCount, const QList<QVariant>& args, Db* db, bool& ok)
+{
+    ScriptingPlugin* plugin = PLUGINS->getScriptingPlugin(func->lang);
     if (!plugin)
     {
         ok = false;
-        return langUnsupportedError(name, argCount, function->lang);
+        return langUnsupportedError(name, argCount, func->lang);
     }
     DbAwareScriptingPlugin* dbAwarePlugin = dynamic_cast<DbAwareScriptingPlugin*>(plugin);
 
@@ -64,9 +123,9 @@ QVariant FunctionManagerImpl::evaluateScalar(const QString& name, int argCount, 
     QVariant result;
 
     if (dbAwarePlugin)
-        result = dbAwarePlugin->evaluate(function->code, args, db, false, &error);
+        result = dbAwarePlugin->evaluate(func->code, args, db, false, &error);
     else
-        result = plugin->evaluate(function->code, args, &error);
+        result = plugin->evaluate(func->code, args, &error);
 
     if (!error.isEmpty())
     {
@@ -76,17 +135,9 @@ QVariant FunctionManagerImpl::evaluateScalar(const QString& name, int argCount, 
     return result;
 }
 
-void FunctionManagerImpl::evaluateAggregateInitial(const QString& name, int argCount, Db* db, QHash<QString,QVariant>& aggregateStorage)
+void FunctionManagerImpl::evaluateScriptAggregateInitial(ScriptFunction* func, Db* db, QHash<QString, QVariant>& aggregateStorage)
 {
-    Key key;
-    key.name = name;
-    key.argCount = argCount;
-    key.type = Function::AGGREGATE;
-    if (!functionsByKey.contains(key))
-        return;
-
-    FunctionPtr function = functionsByKey[key];
-    ScriptingPlugin* plugin = PLUGINS->getScriptingPlugin(function->lang);
+    ScriptingPlugin* plugin = PLUGINS->getScriptingPlugin(func->lang);
     if (!plugin)
         return;
 
@@ -96,9 +147,9 @@ void FunctionManagerImpl::evaluateAggregateInitial(const QString& name, int argC
     aggregateStorage["context"] = QVariant::fromValue(ctx);
 
     if (dbAwarePlugin)
-        dbAwarePlugin->evaluate(ctx, function->code, {}, db, false);
+        dbAwarePlugin->evaluate(ctx, func->code, {}, db, false);
     else
-        plugin->evaluate(ctx, function->code, {});
+        plugin->evaluate(ctx, func->code, {});
 
     if (plugin->hasError(ctx))
     {
@@ -107,19 +158,9 @@ void FunctionManagerImpl::evaluateAggregateInitial(const QString& name, int argC
     }
 }
 
-void FunctionManagerImpl::evaluateAggregateStep(const QString& name, int argCount, const QList<QVariant>& args, Db* db, QHash<QString,QVariant>& aggregateStorage)
+void FunctionManagerImpl::evaluateScriptAggregateStep(ScriptFunction* func, const QList<QVariant>& args, Db* db, QHash<QString, QVariant>& aggregateStorage)
 {
-    UNUSED(db);
-
-    Key key;
-    key.name = name;
-    key.argCount = argCount;
-    key.type = Function::AGGREGATE;
-    if (!functionsByKey.contains(key))
-        return;
-
-    FunctionPtr function = functionsByKey[key];
-    ScriptingPlugin* plugin = PLUGINS->getScriptingPlugin(function->lang);
+    ScriptingPlugin* plugin = PLUGINS->getScriptingPlugin(func->lang);
     if (!plugin)
         return;
 
@@ -130,38 +171,24 @@ void FunctionManagerImpl::evaluateAggregateStep(const QString& name, int argCoun
 
     ScriptingPlugin::Context* ctx = aggregateStorage["context"].value<ScriptingPlugin::Context*>();
     if (dbAwarePlugin)
-        dbAwarePlugin->evaluate(ctx, function->code, args, db, false);
+        dbAwarePlugin->evaluate(ctx, func->code, args, db, false);
     else
-        plugin->evaluate(ctx, function->code, args);
+        plugin->evaluate(ctx, func->code, args);
 
     if (plugin->hasError(ctx))
     {
         aggregateStorage["error"] = true;
         aggregateStorage["errorMessage"] = plugin->getErrorMessage(ctx);
     }
-
 }
 
-QVariant FunctionManagerImpl::evaluateAggregateFinal(const QString& name, int argCount, Db* db, bool& ok, QHash<QString,QVariant>& aggregateStorage)
+QVariant FunctionManagerImpl::evaluateScriptAggregateFinal(ScriptFunction* func, const QString& name, int argCount, Db* db, bool& ok, QHash<QString, QVariant>& aggregateStorage)
 {
-    UNUSED(db);
-
-    Key key;
-    key.name = name;
-    key.argCount = argCount;
-    key.type = Function::AGGREGATE;
-    if (!functionsByKey.contains(key))
-    {
-        ok = false;
-        return cannotFindFunctionError(name, argCount);
-    }
-
-    FunctionPtr function = functionsByKey[key];
-    ScriptingPlugin* plugin = PLUGINS->getScriptingPlugin(function->lang);
+    ScriptingPlugin* plugin = PLUGINS->getScriptingPlugin(func->lang);
     if (!plugin)
     {
         ok = false;
-        return langUnsupportedError(name, argCount, function->lang);
+        return langUnsupportedError(name, argCount, func->lang);
     }
 
     ScriptingPlugin::Context* ctx = aggregateStorage["context"].value<ScriptingPlugin::Context*>();
@@ -176,9 +203,9 @@ QVariant FunctionManagerImpl::evaluateAggregateFinal(const QString& name, int ar
 
     QVariant result;
     if (dbAwarePlugin)
-        result = dbAwarePlugin->evaluate(ctx, function->code, {}, db, false);
+        result = dbAwarePlugin->evaluate(ctx, func->code, {}, db, false);
     else
-        result = plugin->evaluate(ctx, function->code, {});
+        result = plugin->evaluate(ctx, func->code, {});
 
     if (plugin->hasError(ctx))
     {
@@ -192,25 +219,73 @@ QVariant FunctionManagerImpl::evaluateAggregateFinal(const QString& name, int ar
     return result;
 }
 
+QList<FunctionManager::NativeFunction*> FunctionManagerImpl::getAllNativeFunctions() const
+{
+    return nativeFunctions;
+}
+
+QVariant FunctionManagerImpl::evaluateNativeScalar(NativeFunction* func, const QList<QVariant>& args, Db* db, bool& ok)
+{
+    if (!func->undefinedArgs && args.size() != func->arguments.size())
+    {
+        ok = false;
+        return tr("Invalid number of arguments to function '%1'. Expected %2, but got %3.").arg(func->name, QString::number(func->arguments.size()),
+                                                                                                QString::number(args.size()));
+    }
+
+    return func->functionPtr(args, db, ok);
+}
+
 void FunctionManagerImpl::init()
 {
     loadFromConfig();
-    createDefaultFunctions();
+    initNativeFunctions();
     refreshFunctionsByKey();
+}
+
+void FunctionManagerImpl::initNativeFunctions()
+{
+    registerNativeFunction("regexp", {"pattern", "arg"}, FunctionManagerImpl::nativeRegExp);
+    registerNativeFunction("sqlfile", {"file"}, FunctionManagerImpl::nativeSqlFile);
+    registerNativeFunction("readfile", {"file"}, FunctionManagerImpl::nativeReadFile);
+    registerNativeFunction("writefile", {"file", "data"}, FunctionManagerImpl::nativeWriteFile);
+    registerNativeFunction("langs", {}, FunctionManagerImpl::nativeLangs);
+    registerNativeFunction("script", {"language", "code"}, FunctionManagerImpl::nativeScript);
+    registerNativeFunction("html_escape", {"string"}, FunctionManagerImpl::nativeHtmlEscape);
+    registerNativeFunction("url_encode", {"string"}, FunctionManagerImpl::nativeUrlEncode);
+    registerNativeFunction("url_decode", {"string"}, FunctionManagerImpl::nativeUrlDecode);
+    registerNativeFunction("base64_encode", {"data"}, FunctionManagerImpl::nativeBase64Encode);
+    registerNativeFunction("base64_decode", {"data"}, FunctionManagerImpl::nativeBase64Decode);
+    registerNativeFunction("md4_bin", {"data"}, FunctionManagerImpl::nativeMd4);
+    registerNativeFunction("md4", {"data"}, FunctionManagerImpl::nativeMd4Hex);
+    registerNativeFunction("md5_bin", {"data"}, FunctionManagerImpl::nativeMd5);
+    registerNativeFunction("md5", {"data"}, FunctionManagerImpl::nativeMd5Hex);
+    registerNativeFunction("sha1", {"data"}, FunctionManagerImpl::nativeSha1);
+    registerNativeFunction("sha224", {"data"}, FunctionManagerImpl::nativeSha224);
+    registerNativeFunction("sha256", {"data"}, FunctionManagerImpl::nativeSha256);
+    registerNativeFunction("sha384", {"data"}, FunctionManagerImpl::nativeSha384);
+    registerNativeFunction("sha512", {"data"}, FunctionManagerImpl::nativeSha512);
+    registerNativeFunction("sha3_224", {"data"}, FunctionManagerImpl::nativeSha3_224);
+    registerNativeFunction("sha3_256", {"data"}, FunctionManagerImpl::nativeSha3_256);
+    registerNativeFunction("sha3_384", {"data"}, FunctionManagerImpl::nativeSha3_384);
+    registerNativeFunction("sha3_512", {"data"}, FunctionManagerImpl::nativeSha3_512);
 }
 
 void FunctionManagerImpl::refreshFunctionsByKey()
 {
     functionsByKey.clear();
-    foreach (const FunctionPtr& func, functions)
+    foreach (ScriptFunction* func, functions)
         functionsByKey[Key(func)] = func;
+
+    foreach (NativeFunction* func, nativeFunctions)
+        nativeFunctionsByKey[Key(func)] = func;
 }
 
 void FunctionManagerImpl::storeInConfig()
 {
     QVariantList list;
     QHash<QString,QVariant> fnHash;
-    foreach (const FunctionPtr& func, functions)
+    foreach (ScriptFunction* func, functions)
     {
         fnHash["name"] = func->name;
         fnHash["lang"] = func->lang;
@@ -229,15 +304,15 @@ void FunctionManagerImpl::storeInConfig()
 
 void FunctionManagerImpl::loadFromConfig()
 {
-    functions.clear();
+    clearFunctions();
 
     QVariantList list = CFG_CORE.Internal.Functions.get();
     QHash<QString,QVariant> fnHash;
-    FunctionPtr func;
+    ScriptFunction* func;
     for (const QVariant& var : list)
     {
         fnHash = var.toHash();
-        func = FunctionPtr::create();
+        func = new ScriptFunction();
         func->name = fnHash["name"].toString();
         func->lang = fnHash["lang"].toString();
         func->code = fnHash["code"].toString();
@@ -245,27 +320,19 @@ void FunctionManagerImpl::loadFromConfig()
         func->finalCode = fnHash["finalCode"].toString();
         func->databases = fnHash["databases"].toStringList();
         func->arguments = fnHash["arguments"].toStringList();
-        func->type = static_cast<Function::Type>(fnHash["type"].toInt());
+        func->type = static_cast<ScriptFunction::Type>(fnHash["type"].toInt());
         func->undefinedArgs = fnHash["undefinedArgs"].toBool();
         func->allDatabases = fnHash["allDatabases"].toBool();
         functions << func;
     }
 }
 
-void FunctionManagerImpl::createDefaultFunctions()
+void FunctionManagerImpl::clearFunctions()
 {
-    if (CFG_CORE.Internal.Functions.isPersisted())
-        return;
+    for (ScriptFunction* fn : functions)
+        delete fn;
 
-    FunctionPtr func = FunctionPtr::create();
-    func->name = QStringLiteral("regexp");
-    func->lang = QStringLiteral("QtScript");
-    func->code = QStringLiteral("return arguments[1].toString().match(arguments[0]) != null;");
-    func->arguments = {QStringLiteral("pattern"), QStringLiteral("arg")};
-    func->type = Function::SCALAR;
-    func->undefinedArgs = false;
-    func->allDatabases = true;
-    functions << func;
+    functions.clear();
 }
 
 QString FunctionManagerImpl::cannotFindFunctionError(const QString& name, int argCount)
@@ -281,6 +348,312 @@ QString FunctionManagerImpl::langUnsupportedError(const QString& name, int argCo
             .arg(name).arg(argMarkers.join(",")).arg(lang);
 }
 
+QVariant FunctionManagerImpl::nativeRegExp(const QList<QVariant>& args, Db* db, bool& ok)
+{
+    UNUSED(db);
+
+    if (args.size() != 2)
+    {
+        ok = false;
+        return QVariant();
+    }
+
+    QRegularExpression re(args[0].toString());
+    if (!re.isValid())
+    {
+        ok = false;
+        return tr("Invalid regular expression pattern: %1").arg(args[0].toString());
+    }
+
+    QRegularExpressionMatch match = re.match(args[1].toString());
+    return match.hasMatch();
+}
+
+QVariant FunctionManagerImpl::nativeSqlFile(const QList<QVariant>& args, Db* db, bool& ok)
+{
+    if (args.size() != 1)
+    {
+        ok = false;
+        return QVariant();
+    }
+
+    QFile file(args[0].toString());
+    if (!file.open(QIODevice::ReadOnly))
+    {
+        ok = false;
+        return tr("Could not open file %1 for reading: %2").arg(args[0].toString(), file.errorString());
+    }
+
+    QTextStream stream(&file);
+    QString sql = stream.readAll();
+    file.close();
+
+    QueryExecutor executor(db);
+    executor.setAsyncMode(false);
+    executor.exec(sql);
+    SqlQueryPtr results = executor.getResults();
+    if (results->isError())
+    {
+        ok = false;
+        return results->getErrorText();
+    }
+    return results->getSingleCell();
+}
+
+QVariant FunctionManagerImpl::nativeReadFile(const QList<QVariant>& args, Db* db, bool& ok)
+{
+    UNUSED(db);
+
+    if (args.size() != 1)
+    {
+        ok = false;
+        return QVariant();
+    }
+
+    QFile file(args[0].toString());
+    if (!file.open(QIODevice::ReadOnly))
+    {
+        ok = false;
+        return tr("Could not open file %1 for reading: %2").arg(args[0].toString(), file.errorString());
+    }
+
+    QByteArray data = file.readAll();
+    file.close();
+    return data;
+}
+
+QVariant FunctionManagerImpl::nativeWriteFile(const QList<QVariant>& args, Db* db, bool& ok)
+{
+    UNUSED(db);
+
+    if (args.size() != 2)
+    {
+        ok = false;
+        return QVariant();
+    }
+
+    QFile file(args[0].toString());
+    if (!file.open(QIODevice::WriteOnly|QIODevice::Truncate))
+    {
+        ok = false;
+        return tr("Could not open file %1 for writting: %2").arg(args[0].toString(), file.errorString());
+    }
+
+    QByteArray data;
+    switch (args[1].type())
+    {
+        case QVariant::String:
+            data = args[1].toString().toLocal8Bit();
+            break;
+        default:
+            data = args[1].toByteArray();
+            break;
+    }
+
+    int res = file.write(data);
+    file.close();
+
+    if (res < 0)
+    {
+        ok = false;
+        return tr("Error while writting to file %1: %2").arg(args[0].toString(), file.errorString());
+    }
+
+    return res;
+}
+
+QVariant FunctionManagerImpl::nativeScript(const QList<QVariant>& args, Db* db, bool& ok)
+{
+    if (args.size() != 2)
+    {
+        ok = false;
+        return QVariant();
+    }
+
+    ScriptingPlugin* plugin = PLUGINS->getScriptingPlugin(args[0].toString());
+    if (!plugin)
+    {
+        ok = false;
+        return tr("Unsupported scripting language: %1").arg(args[0].toString());
+    }
+    DbAwareScriptingPlugin* dbAwarePlugin = dynamic_cast<DbAwareScriptingPlugin*>(plugin);
+
+    QString error;
+    QVariant result;
+
+    if (dbAwarePlugin)
+        result = dbAwarePlugin->evaluate(args[1].toString(), QList<QVariant>(), db, false, &error);
+    else
+        result = plugin->evaluate(args[1].toString(), QList<QVariant>(), &error);
+
+    if (!error.isEmpty())
+    {
+        ok = false;
+        return error;
+    }
+    return result;
+}
+
+QVariant FunctionManagerImpl::nativeLangs(const QList<QVariant>& args, Db* db, bool& ok)
+{
+    UNUSED(db);
+
+    if (args.size() != 0)
+    {
+        ok = false;
+        return QVariant();
+    }
+
+    QStringList names;
+    for (ScriptingPlugin* plugin : PLUGINS->getLoadedPlugins<ScriptingPlugin>())
+        names << plugin->getLanguage();
+
+    return names.join(", ");
+}
+
+QVariant FunctionManagerImpl::nativeHtmlEscape(const QList<QVariant>& args, Db* db, bool& ok)
+{
+    UNUSED(db);
+
+    if (args.size() != 1)
+    {
+        ok = false;
+        return QVariant();
+    }
+
+    return args[0].toString().toHtmlEscaped();
+}
+
+QVariant FunctionManagerImpl::nativeUrlEncode(const QList<QVariant>& args, Db* db, bool& ok)
+{
+    UNUSED(db);
+
+    if (args.size() != 1)
+    {
+        ok = false;
+        return QVariant();
+    }
+
+    return QUrl::toPercentEncoding(args[0].toString());
+}
+
+QVariant FunctionManagerImpl::nativeUrlDecode(const QList<QVariant>& args, Db* db, bool& ok)
+{
+    UNUSED(db);
+
+    if (args.size() != 1)
+    {
+        ok = false;
+        return QVariant();
+    }
+
+    return QUrl::fromPercentEncoding(args[0].toString().toLocal8Bit());
+}
+
+QVariant FunctionManagerImpl::nativeBase64Encode(const QList<QVariant>& args, Db* db, bool& ok)
+{
+    UNUSED(db);
+
+    if (args.size() != 1)
+    {
+        ok = false;
+        return QVariant();
+    }
+
+    return args[0].toByteArray().toBase64();
+}
+
+QVariant FunctionManagerImpl::nativeBase64Decode(const QList<QVariant>& args, Db* db, bool& ok)
+{
+    UNUSED(db);
+
+    if (args.size() != 1)
+    {
+        ok = false;
+        return QVariant();
+    }
+
+    return QByteArray::fromBase64(args[0].toByteArray());
+}
+
+QVariant FunctionManagerImpl::nativeCryptographicFunction(const QList<QVariant>& args, Db* db, bool& ok, QCryptographicHash::Algorithm algo)
+{
+    UNUSED(db);
+
+    if (args.size() != 1)
+    {
+        ok = false;
+        return QVariant();
+    }
+
+    return QCryptographicHash::hash(args[0].toByteArray(), algo);
+}
+
+QVariant FunctionManagerImpl::nativeMd4(const QList<QVariant>& args, Db* db, bool& ok)
+{
+    return nativeCryptographicFunction(args, db, ok, QCryptographicHash::Md4);
+}
+
+QVariant FunctionManagerImpl::nativeMd4Hex(const QList<QVariant>& args, Db* db, bool& ok)
+{
+    return nativeCryptographicFunction(args, db, ok, QCryptographicHash::Md4).toByteArray().toHex();
+}
+
+QVariant FunctionManagerImpl::nativeMd5(const QList<QVariant>& args, Db* db, bool& ok)
+{
+    return nativeCryptographicFunction(args, db, ok, QCryptographicHash::Md5);
+}
+
+QVariant FunctionManagerImpl::nativeMd5Hex(const QList<QVariant>& args, Db* db, bool& ok)
+{
+    return nativeCryptographicFunction(args, db, ok, QCryptographicHash::Md5).toByteArray().toHex();
+}
+
+QVariant FunctionManagerImpl::nativeSha1(const QList<QVariant>& args, Db* db, bool& ok)
+{
+    return nativeCryptographicFunction(args, db, ok, QCryptographicHash::Sha1);
+}
+
+QVariant FunctionManagerImpl::nativeSha224(const QList<QVariant>& args, Db* db, bool& ok)
+{
+    return nativeCryptographicFunction(args, db, ok, QCryptographicHash::Sha224);
+}
+
+QVariant FunctionManagerImpl::nativeSha256(const QList<QVariant>& args, Db* db, bool& ok)
+{
+    return nativeCryptographicFunction(args, db, ok, QCryptographicHash::Sha256);
+}
+
+QVariant FunctionManagerImpl::nativeSha384(const QList<QVariant>& args, Db* db, bool& ok)
+{
+    return nativeCryptographicFunction(args, db, ok, QCryptographicHash::Sha384);
+}
+
+QVariant FunctionManagerImpl::nativeSha512(const QList<QVariant>& args, Db* db, bool& ok)
+{
+    return nativeCryptographicFunction(args, db, ok, QCryptographicHash::Sha512);
+}
+
+QVariant FunctionManagerImpl::nativeSha3_224(const QList<QVariant>& args, Db* db, bool& ok)
+{
+    return nativeCryptographicFunction(args, db, ok, QCryptographicHash::Sha3_224);
+}
+
+QVariant FunctionManagerImpl::nativeSha3_256(const QList<QVariant>& args, Db* db, bool& ok)
+{
+    return nativeCryptographicFunction(args, db, ok, QCryptographicHash::Sha3_256);
+}
+
+QVariant FunctionManagerImpl::nativeSha3_384(const QList<QVariant>& args, Db* db, bool& ok)
+{
+    return nativeCryptographicFunction(args, db, ok, QCryptographicHash::Sha3_384);
+}
+
+QVariant FunctionManagerImpl::nativeSha3_512(const QList<QVariant>& args, Db* db, bool& ok)
+{
+    return nativeCryptographicFunction(args, db, ok, QCryptographicHash::Sha3_512);
+}
+
 QStringList FunctionManagerImpl::getArgMarkers(int argCount)
 {
     QStringList argMarkers;
@@ -290,15 +663,15 @@ QStringList FunctionManagerImpl::getArgMarkers(int argCount)
     return argMarkers;
 }
 
-FunctionManagerImpl::Function::Function()
+void FunctionManagerImpl::registerNativeFunction(const QString& name, const QStringList& args, FunctionManager::NativeFunction::ImplementationFunction funcPtr)
 {
-}
-
-QString FunctionManager::Function::toString() const
-{
-    static const QString format = "%1(%2)";
-    QString args = undefinedArgs ? "..." : arguments.join(", ");
-    return format.arg(name).arg(args);
+    NativeFunction* nf = new NativeFunction();
+    nf->name = name;
+    nf->arguments = args;
+    nf->type = FunctionBase::SCALAR;
+    nf->undefinedArgs = false;
+    nf->functionPtr = funcPtr;
+    nativeFunctions << nf;
 }
 
 int qHash(const FunctionManagerImpl::Key& key)
@@ -315,7 +688,7 @@ FunctionManagerImpl::Key::Key()
 {
 }
 
-FunctionManagerImpl::Key::Key(FunctionManagerImpl::FunctionPtr function) :
+FunctionManagerImpl::Key::Key(FunctionBase* function) :
     name(function->name), argCount(function->undefinedArgs ? -1 : function->arguments.size()), type(function->type)
 {
 }

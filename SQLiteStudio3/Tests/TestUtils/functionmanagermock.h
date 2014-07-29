@@ -8,9 +8,9 @@
 class FunctionManagerMock : public FunctionManager
 {
     public:
-        void setFunctions(const QList<FunctionPtr>&);
-        QList<FunctionPtr> getAllFunctions() const;
-        QList<FunctionPtr> getFunctionsForDatabase(const QString&) const;
+        void setScriptFunctions(const QList<FunctionPtr>&);
+        QList<FunctionPtr> getAllScriptFunctions() const;
+        QList<FunctionPtr> getScriptFunctionsForDatabase(const QString&) const;
         QVariant evaluateScalar(const QString&, int, const QList<QVariant>&, Db*, bool&);
         void evaluateAggregateInitial(const QString&, int, Db*, QHash<QString, QVariant>&);
         void evaluateAggregateStep(const QString&, int, const QList<QVariant>&, Db*, QHash<QString, QVariant>&);

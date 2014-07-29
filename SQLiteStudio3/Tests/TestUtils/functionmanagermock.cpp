@@ -1,15 +1,15 @@
 #include "functionmanagermock.h"
 
-void FunctionManagerMock::setFunctions(const QList<FunctionManager::FunctionPtr>&)
+void FunctionManagerMock::setScriptFunctions(const QList<FunctionManager::FunctionPtr>&)
 {
 }
 
-QList<FunctionManager::FunctionPtr> FunctionManagerMock::getAllFunctions() const
+QList<FunctionManager::FunctionPtr> FunctionManagerMock::getAllScriptFunctions() const
 {
     return QList<FunctionManager::FunctionPtr>();
 }
 
-QList<FunctionManager::FunctionPtr> FunctionManagerMock::getFunctionsForDatabase(const QString&) const
+QList<FunctionManager::FunctionPtr> FunctionManagerMock::getScriptFunctionsForDatabase(const QString&) const
 {
     return QList<FunctionManager::FunctionPtr>();
 }

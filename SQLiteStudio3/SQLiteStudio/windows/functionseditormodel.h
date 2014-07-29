@@ -42,18 +42,18 @@ class FunctionsEditorModel : public QAbstractListModel
         void setDatabases(int row, const QStringList& value);
         QStringList getArguments(int row) const;
         void setArguments(int row, const QStringList& value);
-        FunctionManager::Function::Type getType(int row) const;
-        void setType(int row, FunctionManager::Function::Type type);
+        FunctionManager::ScriptFunction::Type getType(int row) const;
+        void setType(int row, FunctionManager::ScriptFunction::Type type);
         bool isAggregate(int row) const;
         bool isScalar(int row) const;
         bool getUndefinedArgs(int row) const;
         void setUndefinedArgs(int row, bool value);
         bool getAllDatabases(int row) const;
         void setAllDatabases(int row, bool value);
-        void setData(const QList<FunctionManager::FunctionPtr>& functions);
-        void addFunction(const FunctionManager::FunctionPtr& function);
+        void setData(const QList<FunctionManager::ScriptFunction*>& functions);
+        void addFunction(FunctionManager::ScriptFunction* function);
         void deleteFunction(int row);
-        QList<FunctionManager::FunctionPtr> getFunctions() const;
+        QList<FunctionManager::ScriptFunction*> generateFunctions() const;
         QStringList getFunctionNames() const;
         void validateNames();
         bool isAllowedName(int rowToSkip, const QString& nameToValidate);
@@ -66,9 +66,9 @@ class FunctionsEditorModel : public QAbstractListModel
         struct Function
         {
             Function();
-            Function(const FunctionManager::FunctionPtr& other);
+            Function(FunctionManager::ScriptFunction* other);
 
-            FunctionManager::FunctionPtr data;
+            FunctionManager::ScriptFunction data;
             bool modified = false;
             bool valid = true;
             QString originalName;

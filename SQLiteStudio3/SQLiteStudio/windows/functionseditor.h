@@ -63,7 +63,7 @@ class FunctionsEditor : public MdiChild, public ExtActionContainer
         QModelIndex getSelectedArg() const;
         QStringList getCurrentArgList() const;
         QStringList getCurrentDatabases() const;
-        FunctionManager::Function::Type getCurrentFunctionType() const;
+        FunctionManager::ScriptFunction::Type getCurrentFunctionType() const;
 
         Ui::FunctionsEditor *ui;
         FunctionsEditorModel* model = nullptr;

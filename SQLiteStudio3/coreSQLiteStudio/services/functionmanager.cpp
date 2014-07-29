@@ -1,25 +1,39 @@
 #include "services/functionmanager.h"
 
-QString FunctionManager::Function::typeString(Type type)
+FunctionManager::FunctionBase::FunctionBase()
+{
+}
+
+FunctionManager::FunctionBase::~FunctionBase()
+{
+}
+
+QString FunctionManager::FunctionBase::toString() const
+{
+    static const QString format = "%1(%2)";
+    QString args = undefinedArgs ? "..." : arguments.join(", ");
+    return format.arg(name).arg(args);
+}
+
+QString FunctionManager::FunctionBase::typeString(Type type)
 {
     switch (type)
     {
-        case Function::SCALAR:
+        case ScriptFunction::SCALAR:
             return "SCALAR";
-        case Function::AGGREGATE:
+        case ScriptFunction::AGGREGATE:
             return "AGGREGATE";
     }
     return QString::null;
 }
 
-FunctionManager::Function::Type FunctionManager::Function::typeString(const QString& type)
+FunctionManager::ScriptFunction::Type FunctionManager::FunctionBase::typeString(const QString& type)
 {
     if (type == "SCALAR")
-        return Function::SCALAR;
+        return ScriptFunction::SCALAR;
 
     if (type == "AGGREGATE")
-        return Function::AGGREGATE;
+        return ScriptFunction::AGGREGATE;
 
-    return Function::SCALAR;
+    return ScriptFunction::SCALAR;
 }
-
