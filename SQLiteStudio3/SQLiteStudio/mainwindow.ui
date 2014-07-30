@@ -101,6 +101,9 @@
    </attribute>
   </widget>
   <widget class="TaskBar" name="taskBar">
+   <property name="contextMenuPolicy">
+    <enum>Qt::CustomContextMenu</enum>
+   </property>
    <property name="windowTitle">
     <string>Window list</string>
    </property>

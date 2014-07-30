@@ -92,7 +92,7 @@ class MainWindow : public QMainWindow, virtual public ExtActionContainer
         Ui::MainWindow *ui;
         DbTree* dbTree;
         StatusField* statusField;
-        QMenu* mdiMenu;
+        QMenu* mdiMenu = nullptr;
         FormManager* formManager;
 
     public slots:
