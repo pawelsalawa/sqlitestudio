@@ -42,6 +42,7 @@ class MdiArea : public QMdiArea
         void windowDestroyed(MdiWindow* window);
         void tileHorizontally();
         void tileVertically();
+        void closeAllButActive();
 };
 
 #define MDIAREA MainWindow::getInstance()->getMdiArea()

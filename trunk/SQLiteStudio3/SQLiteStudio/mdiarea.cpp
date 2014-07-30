@@ -146,6 +146,15 @@ void MdiArea::tileVertically()
     }
 }
 
+void MdiArea::closeAllButActive()
+{
+    QList<QMdiSubWindow*> allButActive = subWindowList();
+    allButActive.removeOne(activeSubWindow());
+
+    foreach (QMdiSubWindow *window, allButActive)
+        window->close();
+}
+
 MdiWindow* MdiArea::getWindowByChild(MdiChild *child)
 {
     if (!child)

@@ -21,6 +21,7 @@
 * Idea for next versions: think of some smart "revert" or "backup", so users are protected from accidentaly deleting table,
   or data in table.
 * SqlEditor::refreshValidObjects() doesn't add valid object names from other databases (not yet attached). It might be tricky to implement.
+* licenses for all used dependencies, icons, etc
 
 CLI:
 * plugin management commands

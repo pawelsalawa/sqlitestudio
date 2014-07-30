@@ -1,4 +1,5 @@
 #include "taskbar.h"
+#include "mainwindow.h"
 #include <QMouseEvent>
 #include <QMimeData>
 #include <QDataStream>
@@ -10,6 +11,7 @@
 #include <QRubberBand>
 #include <QApplication>
 #include <QDebug>
+#include <QMenu>
 
 TaskBar::TaskBar(const QString& title, QWidget *parent) :
     QToolBar(title, parent), taskGroup(this)
@@ -52,6 +54,16 @@ QList<QAction*> TaskBar::getTasks() const
 void TaskBar::init()
 {
     setAcceptDrops(true);
+
+    taskMenu = new QMenu(this);
+    closeSelectedAction = taskMenu->addAction(tr("Close selected window"), this, SLOT(closeSelectedTask()));
+    closeAllButSelectedAction = taskMenu->addAction(tr("Close all windows but selected"), this, SLOT(closeAllTasksButSelected()));
+    closeAllAction = taskMenu->addAction(tr("Close all windows"), this, SLOT(closeAllTasks()));
+    taskMenu->addSeparator();
+    restoreLastClosedAction = taskMenu->addAction(tr("Restore recently closed window"), this, SLOT(closeAllTasks()));
+    renameSelectedAction = taskMenu->addAction(tr("Rename selected window"), this, SLOT(closeAllTasks()));
+
+    connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(taskBarMenuRequested(QPoint)));
 }
 
 void TaskBar::mousePressed()
@@ -60,6 +72,31 @@ void TaskBar::mousePressed()
     dragStartTask = actionAt(dragStartPosition);
     if (dragStartTask)
         dragStartTask->trigger();
+}
+
+void TaskBar::closeAllTasks()
+{
+    MAINWINDOW->getMdiArea()->closeAllSubWindows();
+}
+
+void TaskBar::closeAllTasksButSelected()
+{
+    MAINWINDOW->getMdiArea()->closeAllButActive();
+}
+
+void TaskBar::closeSelectedTask()
+{
+    MAINWINDOW->getMdiArea()->closeActiveSubWindow();
+}
+
+void TaskBar::restoreLastClosedTask()
+{
+
+}
+
+void TaskBar::renameSelectedTask()
+{
+
 }
 
 int TaskBar::getActiveTaskIdx()
@@ -90,6 +127,21 @@ void TaskBar::prevTask()
         return;
 
     tasks[idx]->trigger();
+}
+
+void TaskBar::taskBarMenuRequested(const QPoint &p)
+{
+    QAction* task = actionAt(p);
+    bool taskClicked = (task != nullptr);
+    if (taskClicked)
+        task->trigger();
+
+    bool hasActiveTask = MAINWINDOW->getMdiArea()->activeSubWindow();
+    closeSelectedAction->setEnabled(hasActiveTask);
+    closeAllButSelectedAction->setEnabled(hasActiveTask);
+    renameSelectedAction->setEnabled(hasActiveTask);
+
+    taskMenu->popup(mapToGlobal(p));
 }
 
 QToolButton* TaskBar::getToolButton(QAction* action)
