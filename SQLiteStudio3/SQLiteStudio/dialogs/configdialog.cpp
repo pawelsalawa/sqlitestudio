@@ -19,6 +19,7 @@
 #include "sqlitestudio.h"
 #include "configmapper.h"
 #include "datatype.h"
+#include "uiutils.h"
 #include <QSignalMapper>
 #include <QLineEdit>
 #include <QSpinBox>
@@ -588,23 +589,57 @@ void ConfigDialog::dataTypesHelp()
 
 void ConfigDialog::updateActiveFormatterState()
 {
-    ui->activeFormatterConfigButton->setEnabled(ui->activeFormatterCombo->currentIndex() > -1);
+    CodeFormatterPlugin* plugin;
+    QTreeWidgetItem* item;
+    QComboBox* combo;
+    QToolButton* button;
+    QString lang;
+    QString pluginName;
+    for (int i = 0, total = ui->formatterPluginsTree->topLevelItemCount(); i < total; ++i)
+    {
+        item = ui->formatterPluginsTree->topLevelItem(i);
+        lang = item->text(0);
+
+        combo = formatterLangToPluginComboMap[lang];
+        button = formatterLangToConfigButtonMap[lang];
+        if (!button)
+        {
+            qCritical() << "Could not find button for lang " << lang << " in updateActiveFormatterState()";
+            continue;
+        }
+
+        if (!combo)
+        {
+            qCritical() << "Could not find combo for lang " << lang << " in updateActiveFormatterState()";
+            button->setEnabled(false);
+            continue;
+        }
+
+        pluginName = combo->currentData().toString();
+        plugin = dynamic_cast<CodeFormatterPlugin*>(PLUGINS->getLoadedPlugin(pluginName));
+        if (!plugin)
+        {
+            qCritical() << "Could not find plugin for lang " << lang << " in updateActiveFormatterState()";
+            button->setEnabled(false);
+            continue;
+        }
+
+        button->setEnabled(!plugin->getConfigUiForm().isEmpty());
+    }
 }
 
-void ConfigDialog::activeFormatterChanged(const QString& title)
+void ConfigDialog::configureFormatter(const QString& pluginTitle)
 {
-    UNUSED(title);
-    updateActiveFormatterState();
-}
-
-void ConfigDialog::activeFormatterConfigurePressed()
-{
-    QString title = ui->activeFormatterCombo->currentText();
-    QTreeWidgetItem* item = getItemByTitle(title);
+    QTreeWidgetItem* item = getItemByTitle(pluginTitle);
     if (!item)
         return;
 
     ui->categoriesTree->setCurrentItem(item);
+}
+
+void ConfigDialog::activeFormatterChanged()
+{
+    updateActiveFormatterState();
 }
 
 void ConfigDialog::detailsClicked(const QString& pluginName)
@@ -651,24 +686,14 @@ void ConfigDialog::failedToLoadPlugin(const QString& pluginName)
     theItem->setCheckState(0, Qt::Unchecked);
 }
 
-void ConfigDialog::codeFormatterAboutToUnload(Plugin* plugin)
+void ConfigDialog::codeFormatterUnloaded()
 {
-    // TODO formatter
-//    QString title = plugin->getTitle();
-//    if (ui->activeFormatterCombo->currentText() != title)
-//        return;
-
-//    if (ui->activeFormatterCombo->count() > 0)
-//        ui->activeFormatterCombo->setCurrentIndex(0);
-
-//    ui->activeFormatterCombo->setCurrentIndex(-1);
+    refreshFormattersPage();
 }
 
-void ConfigDialog::codeFormatterLoaded(Plugin* plugin)
+void ConfigDialog::codeFormatterLoaded()
 {
-    // TODO formatter
-//    ui->activeFormatterCombo->addItem(plugin->getTitle(), plugin->getName());
-//    configMapper->loadToWidget(CFG_CORE.General.ActiveCodeFormatter, ui->activeFormatterCombo);
+    refreshFormattersPage();
 }
 
 void ConfigDialog::loadUnloadPlugin(QTreeWidgetItem* item, int column)
@@ -695,10 +720,6 @@ void ConfigDialog::loadUnloadPlugin(QTreeWidgetItem* item, int column)
 
 void ConfigDialog::pluginAboutToUnload(Plugin* plugin, PluginType* type)
 {
-    // Update formatters page
-    if (type->isForPluginType<CodeFormatterPlugin>())
-        codeFormatterAboutToUnload(plugin);
-
     // Deinit tree item
     QTreeWidgetItem* typeItem = getPluginsCategoryItem(type);
     QTreeWidgetItem* pluginItem = getPluginItem(plugin);
@@ -722,7 +743,7 @@ void ConfigDialog::pluginLoaded(Plugin* plugin, PluginType* type)
 
     // Update formatters page
     if (type->isForPluginType<CodeFormatterPlugin>())
-        codeFormatterLoaded(plugin);
+        codeFormatterLoaded();
 
     // Init tree item
     QTreeWidgetItem* typeItem = getPluginsCategoryItem(type);
@@ -736,6 +757,15 @@ void ConfigDialog::pluginLoaded(Plugin* plugin, PluginType* type)
 
     // Update tree categories
     updatePluginCategoriesVisibility();
+}
+
+void ConfigDialog::pluginUnloaded(const QString& pluginName, PluginType* type)
+{
+    UNUSED(pluginName);
+
+    // Update formatters page
+    if (type->isForPluginType<CodeFormatterPlugin>())
+        codeFormatterUnloaded();
 }
 
 void ConfigDialog::updatePluginCategoriesVisibility()
@@ -820,22 +850,89 @@ void ConfigDialog::initInternalCustomConfigWidgets()
 {
     QList<CustomConfigWidgetPlugin*> customWidgets;
     customWidgets << new StyleConfigWidget();
-//    customWidgets << new ComboDataWidget(&CFG_CORE.General.ActiveCodeFormatter); // TODO formatter
     customWidgets << new ListToStringListHash(&CFG_UI.General.DataEditorsOrder);
     configMapper->setInternalCustomConfigWidgets(customWidgets);
 }
 
 void ConfigDialog::initFormatterPlugins()
 {
-    // TODO formatter
-//    SqlFormatterPlugin* formatter = SQLITESTUDIO->getCodeFormatter()->getFormatter();
-//    if (!formatter)
-//        ui->activeFormatterCombo->setCurrentIndex(-1);
-//    else
-//        ui->activeFormatterCombo->setCurrentText(formatter->getTitle());
+    ui->formatterPluginsTree->header()->setSectionsMovable(false);
+    ui->formatterPluginsTree->header()->setSectionResizeMode(0, QHeaderView::Stretch);
+    ui->formatterPluginsTree->resizeColumnToContents(1);
+    ui->formatterPluginsTree->resizeColumnToContents(2);
 
-//    connect(ui->activeFormatterCombo, SIGNAL(currentTextChanged(QString)), this, SLOT(activeFormatterChanged(QString)));
-//    connect(ui->activeFormatterConfigButton, SIGNAL(clicked()), this, SLOT(activeFormatterConfigurePressed()));
+    refreshFormattersPage();
+}
+
+void ConfigDialog::refreshFormattersPage()
+{
+    ui->formatterPluginsTree->clear();
+
+    QHash<QString,QString> activeFormatters = CFG_CORE.General.ActiveCodeFormatter.get();
+
+    QList<CodeFormatterPlugin*> plugins = PLUGINS->getLoadedPlugins<CodeFormatterPlugin>();
+    QHash<QString,QList<CodeFormatterPlugin*>> groupedPlugins;
+    for (CodeFormatterPlugin* plugin : plugins)
+        groupedPlugins[plugin->getLanguage()] << plugin;
+
+    formatterLangToPluginComboMap.clear();
+    formatterLangToConfigButtonMap.clear();
+    int row = 0;
+    QTreeWidgetItem* item;
+    QComboBox* combo;
+    QToolButton* configButton;
+    QStringList pluginTitles;
+    QStringList pluginNames;
+    QStringList sortedPluginNames;
+    QString selectedPluginName;
+    QModelIndex index;
+    QHashIterator<QString,QList<CodeFormatterPlugin*>> it(groupedPlugins);
+    while (it.hasNext())
+    {
+        it.next();
+
+        item = new QTreeWidgetItem({it.key()});
+        ui->formatterPluginsTree->addTopLevelItem(item);
+
+        pluginNames.clear();
+        pluginTitles.clear();
+        for (CodeFormatterPlugin* plugin : it.value())
+        {
+            pluginNames << plugin->getName();
+            pluginTitles << plugin->getTitle();
+        }
+        sortedPluginNames = pluginNames;
+        qSort(sortedPluginNames);
+
+        combo = new QComboBox(ui->formatterPluginsTree);
+        for (int i = 0, total = pluginNames.size(); i < total; ++i)
+            combo->addItem(pluginTitles[i], pluginNames[i]);
+
+        connect(combo, SIGNAL(currentIndexChanged(int)), this, SLOT(activeFormatterChanged()));
+        index = ui->formatterPluginsTree->model()->index(row, 1);
+        ui->formatterPluginsTree->setIndexWidget(index, combo);
+        formatterLangToPluginComboMap[it.key()] = combo;
+
+        if (activeFormatters.contains(it.key()) && pluginNames.contains(activeFormatters[it.key()]))
+        {
+            selectedPluginName = activeFormatters[it.key()];
+        }
+        else
+        {
+            // Pick first from sorted list and put it to combobox
+            selectedPluginName = sortedPluginNames.first();
+        }
+        combo->setCurrentIndex(pluginNames.indexOf(selectedPluginName));
+
+        configButton = new QToolButton(ui->formatterPluginsTree);
+        configButton->setIcon(ICONS.CONFIGURE);
+        index = ui->formatterPluginsTree->model()->index(row, 2);
+        ui->formatterPluginsTree->setIndexWidget(index, configButton);
+        connect(configButton, &QToolButton::clicked, [this, combo]() {configureFormatter(combo->currentText());});
+        formatterLangToConfigButtonMap[it.key()] = configButton;
+
+        row++;
+    }
 
     updateActiveFormatterState();
 }
@@ -963,6 +1060,10 @@ void ConfigDialog::initPlugins()
 
 void ConfigDialog::initPluginsPage()
 {
+    setValidStateTooltip(ui->pluginsList, tr("Plugins are loaded/unloaded immediately when checked/unchecked, "
+                                             "but modified list of plugins to load at startup is not saved until "
+                                             "you commit the whole configuration dialog."));
+
     QTreeWidgetItem* category;
     QTreeWidgetItem* item;
     QFont font;
@@ -986,8 +1087,6 @@ void ConfigDialog::initPluginsPage()
     delete item;
 
     // Creating...
-    ui->pluginsPageInfoIcon->setPixmap(ICONS.INFO_BALLOON);
-
     ui->pluginsList->header()->setSectionsMovable(false);
     ui->pluginsList->header()->setSectionResizeMode(0, QHeaderView::Stretch);
 
@@ -1138,6 +1237,13 @@ void ConfigDialog::initDataEditors()
 
 void ConfigDialog::initShortcuts()
 {
+    ui->shortcutsTable->header()->setSectionsMovable(false);
+    ui->shortcutsTable->header()->setSectionResizeMode(0, QHeaderView::Stretch);
+    ui->shortcutsTable->header()->setSectionResizeMode(1, QHeaderView::Fixed);
+    ui->shortcutsTable->header()->setSectionResizeMode(2, QHeaderView::Fixed);
+    ui->shortcutsTable->header()->resizeSection(1, 150);
+    ui->shortcutsTable->header()->resizeSection(2, 26);
+
     ui->shortcutsFilterEdit->setClearButtonEnabled(true);
     new UserInputFilter(ui->shortcutsFilterEdit, this, SLOT(applyShortcutsFilter(QString)));
 
@@ -1173,13 +1279,6 @@ void ConfigDialog::initShortcuts(CfgCategory *cfgCategory)
     delete item;
 
     // Creating...
-    ui->shortcutsTable->header()->setSectionsMovable(false);
-    ui->shortcutsTable->header()->setSectionResizeMode(0, QHeaderView::Stretch);
-    ui->shortcutsTable->header()->setSectionResizeMode(1, QHeaderView::Fixed);
-    ui->shortcutsTable->header()->setSectionResizeMode(2, QHeaderView::Fixed);
-    ui->shortcutsTable->header()->resizeSection(1, 150);
-    ui->shortcutsTable->header()->resizeSection(2, 26);
-
     QBrush categoryBg = ui->shortcutsTable->palette().button();
     QBrush categoryFg = ui->shortcutsTable->palette().buttonText();
 

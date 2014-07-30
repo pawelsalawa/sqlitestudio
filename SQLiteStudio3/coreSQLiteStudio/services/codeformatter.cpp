@@ -42,7 +42,9 @@ void CodeFormatter::updateCurrent()
     bool modified = false;
     currentFormatter.clear();
     QHash<QString,QString> config = CFG_CORE.General.ActiveCodeFormatter.get();
-    for (const QString& lang : availableFormatters.keys())
+    QStringList names = availableFormatters.keys();
+    qSort(names);
+    for (const QString& lang : names)
     {
         if (config.contains(lang) && availableFormatters[lang].contains(config[lang]))
         {

@@ -17,6 +17,7 @@ class QSignalMapper;
 class Plugin;
 class PluginType;
 class QComboBox;
+class QToolButton;
 class QTreeWidget;
 class QListWidget;
 class QTableWidget;
@@ -60,8 +61,8 @@ class ConfigDialog : public QDialog
         QTreeWidgetItem* getItemByTitle(const QString& title) const;
         void switchPageToPlugin(QTreeWidgetItem* item);
         bool isPluginCategoryItem(QTreeWidgetItem *item) const;
-        void codeFormatterAboutToUnload(Plugin* plugin);
-        void codeFormatterLoaded(Plugin* plugin);
+        void codeFormatterUnloaded();
+        void codeFormatterLoaded();
         void updatePluginCategoriesVisibility(QTreeWidgetItem* categoryItem);
         QString collectLoadedPlugins() const;
         QHash<QWidget*,QTreeWidgetItem*> buildPageToCategoryItemMap() const;
@@ -84,6 +85,8 @@ class ConfigDialog : public QDialog
         BiHash<QTreeWidgetItem*,QString> itemToPluginNameMap;
         QHash<PluginType*,QTreeWidgetItem*> pluginTypeToItemMap;
         QHash<Plugin*,QTreeWidgetItem*> pluginToItemMap;
+        QHash<QString,QComboBox*> formatterLangToPluginComboMap;
+        QHash<QString,QToolButton*> formatterLangToConfigButtonMap;
         ConfigMapper* configMapper = nullptr;
         QAction* dataEditRenameAction = nullptr;
         QAction* dataEditDeleteAction = nullptr;
@@ -91,6 +94,7 @@ class ConfigDialog : public QDialog
         bool modifiedFlag = false;
 
     private slots:
+        void refreshFormattersPage();
         void pageSwitched();
         void updateDataTypeEditors();
         void updateDataTypeListState();
@@ -110,13 +114,14 @@ class ConfigDialog : public QDialog
         void updateModified();
         void applyFilter(const QString& filter);
         void updateActiveFormatterState();
-        void activeFormatterChanged(const QString& title);
-        void activeFormatterConfigurePressed();
+        void configureFormatter(const QString& pluginTitle);
+        void activeFormatterChanged();
         void detailsClicked(const QString& pluginName);
         void failedToLoadPlugin(const QString& pluginName);
         void loadUnloadPlugin(QTreeWidgetItem* item, int column);
         void pluginAboutToUnload(Plugin* plugin, PluginType* type);
         void pluginLoaded(Plugin* plugin, PluginType* type);
+        void pluginUnloaded(const QString& pluginName, PluginType* type);
         void updatePluginCategoriesVisibility();
         void updateBuiltInPluginsVisibility();
         void applyShortcutsFilter(const QString& filter);

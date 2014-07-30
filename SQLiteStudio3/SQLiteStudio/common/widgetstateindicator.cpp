@@ -114,7 +114,12 @@ void WidgetStateIndicator::finalInit()
 
 void WidgetStateIndicator::setMessage(const QString& msg)
 {
-    message = msg;
+    static const QString paraTpl = QStringLiteral("<p>%1</p>");
+    if (msg.startsWith("<p>") && msg.endsWith("</p>"))
+        message = msg;
+    else
+        message = paraTpl.arg(msg);
+
     label->setToolTip(message);
     if (!msg.isNull())
         label->setCursor(Qt::WhatsThisCursor);
