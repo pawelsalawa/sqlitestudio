@@ -26,11 +26,12 @@
 #include "dialogs/importdialog.h"
 #include "multieditor/multieditorwidgetplugin.h"
 #include "multieditor/multieditor.h"
+#include "dialogs/dbdialog.h"
 #include <QMdiSubWindow>
 #include <QDebug>
 #include <QStyleFactory>
 #include <QUiLoader>
-#include <dialogs/dbdialog.h>
+#include <QInputDialog>
 
 CFG_KEYS_DEFINE(MainWindow)
 MainWindow* MainWindow::instance = nullptr;
@@ -83,6 +84,8 @@ void MainWindow::init()
     PLUGINS->loadBuiltInPlugin(new JavaScriptHighlighterPlugin);
     MultiEditor::loadBuiltInEditors();
 
+    updateWindowActions();
+
     qApp->installEventFilter(this);
 }
 
@@ -115,10 +118,18 @@ EditorWindow* MainWindow::openSqlEditor()
     return win;
 }
 
-QAction *MainWindow::getAction(MainWindow::Action action)
+void MainWindow::updateWindowActions()
 {
-    Q_ASSERT(actionMap.contains(action));
-    return actionMap.value(action);
+    bool hasActiveTask = ui->mdiArea->activeSubWindow();
+    actionMap[MDI_CASCADE]->setEnabled(hasActiveTask);
+    actionMap[MDI_TILE]->setEnabled(hasActiveTask);
+    actionMap[MDI_TILE_HORIZONTAL]->setEnabled(hasActiveTask);
+    actionMap[MDI_TILE_VERTICAL]->setEnabled(hasActiveTask);
+    actionMap[CLOSE_WINDOW]->setEnabled(hasActiveTask);
+    actionMap[CLOSE_OTHER_WINDOWS]->setEnabled(hasActiveTask);
+    actionMap[CLOSE_ALL_WINDOWS]->setEnabled(hasActiveTask);
+    actionMap[RENAME_WINDOW]->setEnabled(hasActiveTask);
+    actionMap[RESTORE_WINDOW]->setEnabled(hasClosedWindowToRestore());
 }
 
 MdiArea *MainWindow::getMdiArea() const
@@ -138,9 +149,10 @@ StatusField *MainWindow::getStatusField() const
 
 void MainWindow::closeEvent(QCloseEvent* event)
 {
+    closingApp = true;
     closeNonSessionWindows();
     MdiWindow* currWindow = ui->mdiArea->getCurrentWindow();
-    hide();
+//    hide();
     saveSession(currWindow);
     QMainWindow::closeEvent(event);
 }
@@ -163,6 +175,12 @@ void MainWindow::createActions()
     createAction(NEXT_TASK, tr("Next window"), ui->taskBar, SLOT(nextTask()), this);
     createAction(PREV_TASK, tr("Previous window"), ui->taskBar, SLOT(prevTask()), this);
     createAction(HIDE_STATUS_FIELD, tr("Hide status field"), this, SLOT(hideStatusField()), this);
+
+    createAction(CLOSE_WINDOW, ICONS.WIN_CLOSE, tr("Close selected window"), this, SLOT(closeSelectedWindow()), this);
+    createAction(CLOSE_OTHER_WINDOWS, ICONS.WIN_CLOSE_OTHER, tr("Close all windows but selected"), this, SLOT(closeAllWindowsButSelected()), this);
+    createAction(CLOSE_ALL_WINDOWS, ICONS.WIN_CLOSE_ALL, tr("Close all windows"), this, SLOT(closeAllWindows()), this);
+    createAction(RESTORE_WINDOW, ICONS.WIN_RESTORE, tr("Restore recently closed window"), this, SLOT(restoreLastClosedWindow()), this);
+    createAction(RENAME_WINDOW, ICONS.WIN_RENAME, tr("Rename selected window"), this, SLOT(renameWindow()), this);
 
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::CONNECT_TO_DB));
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::DISCONNECT_FROM_DB));
@@ -188,6 +206,8 @@ void MainWindow::createActions()
     ui->structureToolbar->addAction(dbTree->getAction(DbTree::ADD_VIEW));
     ui->structureToolbar->addAction(dbTree->getAction(DbTree::EDIT_VIEW));
     ui->structureToolbar->addAction(dbTree->getAction(DbTree::DEL_VIEW));
+
+    ui->taskBar->initContextMenu(this);
 }
 
 void MainWindow::initMenuBar()
@@ -245,6 +265,13 @@ void MainWindow::initMenuBar()
     viewMenu->addAction(actionMap[MDI_TILE_HORIZONTAL]);
     viewMenu->addAction(actionMap[MDI_TILE_VERTICAL]);
     viewMenu->addAction(actionMap[MDI_CASCADE]);
+    viewMenu->addSeparator();
+    viewMenu->addAction(actionMap[CLOSE_WINDOW]);
+    viewMenu->addAction(actionMap[CLOSE_OTHER_WINDOWS]);
+    viewMenu->addAction(actionMap[CLOSE_ALL_WINDOWS]);
+    viewMenu->addSeparator();
+    viewMenu->addAction(actionMap[RESTORE_WINDOW]);
+    viewMenu->addAction(actionMap[RENAME_WINDOW]);
 
     viewMenu->addSeparator();
     viewMenu->addMenu(mdiMenu);
@@ -321,6 +348,8 @@ void MainWindow::restoreSession()
         if (window)
             ui->mdiArea->setActiveSubWindow(window);
     }
+
+    updateWindowActions();
 }
 
 void MainWindow::restoreWindowSessions(const QList<QVariant>& windowSessions)
@@ -328,55 +357,50 @@ void MainWindow::restoreWindowSessions(const QList<QVariant>& windowSessions)
     if (windowSessions.size() == 0)
         return;
 
-    int type;
-    char* className = nullptr;
-    void* object = nullptr;
-    MdiChild* mdiChild = nullptr;
-    MdiWindow* window = nullptr;
-    QByteArray classBytes;
-    QHash<QString, QVariant> winSessionHash;
     foreach (const QVariant& winSession, windowSessions)
+        restoreWindowSession(winSession);
+}
+
+MdiWindow* MainWindow::restoreWindowSession(const QVariant &windowSessions)
+{
+    QHash<QString, QVariant> winSessionHash = windowSessions.toHash();
+    if (!winSessionHash.contains("class"))
+        return nullptr;
+
+    // Find out the type of stored session
+    QByteArray classBytes = winSessionHash["class"].toString().toLatin1();
+    char* className = classBytes.data();
+    int type = QMetaType::type(className);
+    if (type == QMetaType::UnknownType)
     {
-        winSessionHash = winSession.toHash();
-        if (!winSessionHash.contains("class"))
-            continue;
-
-        // Find out the type of stored session
-        classBytes = winSessionHash["class"].toString().toLatin1();
-        className = classBytes.data();
-        type = QMetaType::type(className);
-        if (type == QMetaType::UnknownType)
-        {
-            qWarning() << "Could not restore window session, because type" << className
-                       << "is not known to Qt meta subsystem.";
-            continue;
-        }
-
-        // Try to instantiate the object
-        object = QMetaType::create(type);
-        if (!object)
-        {
-            qWarning() << "Could not restore window session, because type" << className
-                       << "could not be instantiated.";
-            continue;
-        }
-
-        // Switch to session aware window, so we can use its session aware interface.
-        mdiChild = reinterpret_cast<MdiChild*>(object);
-        if (mdiChild->isInvalid())
-        {
-            delete window;
-            continue;
-        }
-
-        // Add the window to MDI area and restore its session
-        window = ui->mdiArea->addSubWindow(mdiChild);
-        if (!window->restoreSession(winSessionHash))
-        {
-            delete window;
-            continue;
-        }
+        qWarning() << "Could not restore window session, because type" << className
+                   << "is not known to Qt meta subsystem.";
+        return nullptr;
     }
+
+    // Try to instantiate the object
+    void* object = QMetaType::create(type);
+    if (!object)
+    {
+        qWarning() << "Could not restore window session, because type" << className
+                   << "could not be instantiated.";
+        return nullptr;
+    }
+
+    // Switch to session aware window, so we can use its session aware interface.
+    MdiChild* mdiChild = reinterpret_cast<MdiChild*>(object);
+    if (mdiChild->isInvalid())
+    {
+        delete mdiChild;
+        return nullptr;
+    }
+
+    // Add the window to MDI area and restore its session
+    MdiWindow* window = ui->mdiArea->addSubWindow(mdiChild);
+    if (!window->restoreSession(winSessionHash))
+        delete window;
+
+    return window;
 }
 
 void MainWindow::setStyle(const QString& styleName)
@@ -422,6 +446,8 @@ void MainWindow::refreshMdiWindows()
 
     foreach (QAction* action, getMdiArea()->getTaskBar()->getTasks())
         mdiMenu->addAction(action);
+
+    updateWindowActions();
 }
 
 void MainWindow::hideStatusField()
@@ -474,6 +500,35 @@ void MainWindow::importAnything()
     dialog.exec();
 }
 
+void MainWindow::closeAllWindows()
+{
+    ui->mdiArea->closeAllSubWindows();
+}
+
+void MainWindow::closeAllWindowsButSelected()
+{
+    ui->mdiArea->closeAllButActive();
+}
+
+void MainWindow::closeSelectedWindow()
+{
+    ui->mdiArea->closeActiveSubWindow();
+}
+
+void MainWindow::renameWindow()
+{
+    MdiWindow* win = ui->mdiArea->getActiveWindow();
+    if (!win)
+        return;
+
+    QString newTitle = QInputDialog::getText(this, tr("Rename window"), tr("Enter new name for the window:"), QLineEdit::Normal, win->windowTitle());
+    if (newTitle == win->windowTitle() || newTitle.isEmpty())
+        return;
+
+    win->rename(newTitle);
+
+}
+
 DdlHistoryWindow* MainWindow::openDdlHistory()
 {
     return openMdiWindow<DdlHistoryWindow>();
@@ -487,6 +542,11 @@ FunctionsEditor* MainWindow::openFunctionEditor()
 CollationsEditor* MainWindow::openCollationEditor()
 {
     return openMdiWindow<CollationsEditor>();
+}
+
+bool MainWindow::isClosingApp() const
+{
+    return closingApp;
 }
 
 MainWindow *MainWindow::getInstance()
@@ -512,4 +572,36 @@ bool MainWindow::eventFilter(QObject* obj, QEvent* e)
         return true;
     }
     return false;
+}
+
+void MainWindow::pushClosedWindowSessionValue(const QVariant &value)
+{
+    closedWindowSessionValues.enqueue(value);
+
+    if (closedWindowSessionValues.size() > closedWindowsStackSize)
+        closedWindowSessionValues.dequeue();
+}
+
+void MainWindow::restoreLastClosedWindow()
+{
+    if (closedWindowSessionValues.size() == 0)
+        return;
+
+    QMdiSubWindow* activeWin = ui->mdiArea->activeSubWindow();
+    bool maximizedMode = activeWin && activeWin->isMaximized();
+
+    QVariant winSession = closedWindowSessionValues.takeLast();
+    if (maximizedMode)
+    {
+        QHash<QString, QVariant> winSessionHash = winSession.toHash();
+        winSessionHash.remove("geometry");
+        winSession = winSessionHash;
+    }
+
+    restoreWindowSession(winSession);
+}
+
+bool MainWindow::hasClosedWindowToRestore() const
+{
+    return closedWindowSessionValues.size() > 0;
 }

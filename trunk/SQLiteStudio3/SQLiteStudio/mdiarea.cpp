@@ -39,6 +39,11 @@ MdiWindow *MdiArea::addSubWindow(MdiChild *mdiChild)
     return mdiWin;
 }
 
+MdiWindow *MdiArea::getActiveWindow()
+{
+    return dynamic_cast<MdiWindow*>(activeSubWindow());
+}
+
 void MdiArea::setTaskBar(TaskBar* value)
 {
     taskBar = value;

@@ -2,6 +2,7 @@
 #include "mdichild.h"
 #include "common/unused.h"
 #include "mdiarea.h"
+#include "mainwindow.h"
 #include <QDateTime>
 #include <QApplication>
 #include <QDebug>
@@ -17,6 +18,9 @@ MdiWindow::MdiWindow(MdiChild* mdiChild, MdiArea *mdiArea, Qt::WindowFlags flags
 
 MdiWindow::~MdiWindow()
 {
+    if (!MAINWINDOW->isClosingApp())
+        MAINWINDOW->pushClosedWindowSessionValue(saveSession());
+
     mdiArea->windowDestroyed(this);
 }
 
@@ -27,6 +31,7 @@ QVariant MdiWindow::saveSession()
 
     QHash<QString, QVariant> hash = getMdiChild()->getSessionValue().toHash();
     hash["title"] = windowTitle();
+    hash["position"] = pos();
     hash["geometry"] = saveGeometry();
     return hash;
 }
@@ -42,6 +47,9 @@ bool MdiWindow::restoreSession(const QVariant& sessionValue)
 
     if (value.contains("geometry"))
         restoreGeometry(value["geometry"].toByteArray());
+
+    if (value.contains("position"))
+        move(value["position"].toPoint());
 
     if (value.contains("title"))
     {

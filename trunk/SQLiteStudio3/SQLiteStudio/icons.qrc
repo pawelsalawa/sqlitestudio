@@ -156,5 +156,10 @@
         <file>img/win_tile_vertical.png</file>
         <file>img/win_tile.png</file>
         <file>img/convert_db.png</file>
+        <file>img/window_rename.png</file>
+        <file>img/window_close.png</file>
+        <file>img/window_close_other.png</file>
+        <file>img/window_close_all.png</file>
+        <file>img/window_restore.png</file>
     </qresource>
 </RCC>

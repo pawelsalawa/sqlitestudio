@@ -9,7 +9,6 @@
 void initUtils()
 {
     qRegisterMetaType<QList<int>>("QList<int>");
-    qRegisterMetaType<StringHash>("StringHash");
 }
 
 bool isXDigit(const QChar& c)
