@@ -1,6 +1,5 @@
-* Rewrite DbEdit dialog
-* enterprise SQL formatter
 * printing plugin
+* enterprise SQL formatter
 * plugin conflicts according to feature provided, as an alternative to module name conflicts. It will require features to be provided.
 * W select trzeba jeszcze konteksty dla WHERE, HAVING i GROUP BY obsluzyc - mozna je zrobic razem, bo wszystkie uzywaja expr
 * option to view full db path in window title
