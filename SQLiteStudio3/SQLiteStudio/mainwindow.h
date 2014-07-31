@@ -7,6 +7,7 @@
 #include "mdiwindow.h"
 #include <QMainWindow>
 #include <QHash>
+#include <QQueue>
 
 class QUiLoader;
 class DbTree;
@@ -51,12 +52,16 @@ class MainWindow : public QMainWindow, virtual public ExtActionContainer
             OPEN_FUNCTION_EDITOR,
             OPEN_COLLATION_EDITOR,
             EXPORT,
-            IMPORT
+            IMPORT,
+            CLOSE_WINDOW,
+            CLOSE_ALL_WINDOWS,
+            CLOSE_OTHER_WINDOWS,
+            RESTORE_WINDOW,
+            RENAME_WINDOW
         };
 
         static MainWindow* getInstance();
 
-        QAction* getAction(Action action);
         MdiArea* getMdiArea() const;
         DbTree* getDbTree() const;
         StatusField* getStatusField() const;
@@ -64,6 +69,9 @@ class MainWindow : public QMainWindow, virtual public ExtActionContainer
         void setStyle(const QString& styleName);
         FormManager* getFormManager() const;
         bool eventFilter(QObject* obj, QEvent* e);
+        void pushClosedWindowSessionValue(const QVariant& value);
+        bool hasClosedWindowToRestore() const;
+        bool isClosingApp() const;
 
     protected:
         void closeEvent(QCloseEvent *event);
@@ -78,6 +86,7 @@ class MainWindow : public QMainWindow, virtual public ExtActionContainer
         void initMenuBar();
         void saveSession(MdiWindow* currWindow);
         void restoreWindowSessions(const QList<QVariant>& windowSessions);
+        MdiWindow *restoreWindowSession(const QVariant& windowSessions);
         QString currentStyle() const;
         void closeNonSessionWindows();
         DdlHistoryWindow* openDdlHistory();
@@ -88,15 +97,19 @@ class MainWindow : public QMainWindow, virtual public ExtActionContainer
         T* openMdiWindow();
 
         static MainWindow* instance;
+        static constexpr int closedWindowsStackSize = 20;
 
         Ui::MainWindow *ui;
         DbTree* dbTree;
         StatusField* statusField;
         QMenu* mdiMenu = nullptr;
         FormManager* formManager;
+        QQueue<QVariant> closedWindowSessionValues;
+        bool closingApp = false;
 
     public slots:
         EditorWindow* openSqlEditor();
+        void updateWindowActions();
 
     private slots:
         void cleanUp();
@@ -109,6 +122,11 @@ class MainWindow : public QMainWindow, virtual public ExtActionContainer
         void openCollationEditorSlot();
         void exportAnything();
         void importAnything();
+        void closeAllWindows();
+        void closeAllWindowsButSelected();
+        void closeSelectedWindow();
+        void restoreLastClosedWindow();
+        void renameWindow();
 };
 
 template <class T>

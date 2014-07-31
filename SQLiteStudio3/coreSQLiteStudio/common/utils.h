@@ -218,9 +218,6 @@ void removeDuplicates(QList<T>& list)
     }
 }
 
-typedef QHash<QString,QString> StringHash;
-
 Q_DECLARE_METATYPE(QList<int>)
-Q_DECLARE_METATYPE(StringHash)
 
 #endif // UTILS_H

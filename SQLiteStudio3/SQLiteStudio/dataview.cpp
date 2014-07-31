@@ -16,6 +16,7 @@
 #include <QToolBar>
 #include <QLabel>
 #include <QAction>
+#include <QTime>
 
 CFG_KEYS_DEFINE(DataView)
 DataView::FilterMode DataView::filterMode;
@@ -30,6 +31,8 @@ DataView::DataView(QWidget *parent) :
 
 void DataView::init(SqlQueryModel* model)
 {
+    QTime t;
+    t.start();
     createContents();
 
     this->model = model;
@@ -45,6 +48,7 @@ void DataView::init(SqlQueryModel* model)
     initUpdates();
     initSlots();
     updateTabsMode();
+    qDebug() << "1" << t.elapsed();
 }
 
 void DataView::initUpdates()
@@ -270,10 +274,12 @@ void DataView::createStaticActions()
     connect(staticActions[TABS_ON_TOP], &QAction::triggered, [=]()
     {
         tabsPosition = TabsPosition::TOP;
+        CFG_UI.General.DataViewTabs.set("TOP");
     });
     connect(staticActions[TABS_AT_BOTTOM], &QAction::triggered, [=]()
     {
         tabsPosition = TabsPosition::BOTTOM;
+        CFG_UI.General.DataViewTabs.set("BOTTOM");
     });
 
     staticActions[TABS_ON_TOP]->setCheckable(true);
@@ -387,19 +393,15 @@ void DataView::showFormView()
 
 void DataView::updateTabsMode()
 {
-    QString cfgValue;
     switch (tabsPosition)
     {
         case DataView::TabsPosition::TOP:
             setTabPosition(TabPosition::North);
-            cfgValue = "TOP";
             break;
         case DataView::TabsPosition::BOTTOM:
             setTabPosition(TabPosition::South);
-            cfgValue = "BOTTOM";
             break;
     }
-    CFG_UI.General.DataViewTabs.set(cfgValue);
 }
 
 void DataView::filterModeSelected()

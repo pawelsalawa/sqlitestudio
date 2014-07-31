@@ -207,6 +207,11 @@ class IconManager : public QObject
             DEF_ICON(WIN_TILE,                          "win_tile")
             DEF_ICON(WIN_TILE_HORIZONTAL,               "win_tile_horizontal")
             DEF_ICON(WIN_TILE_VERTICAL,                 "win_tile_vertical")
+            DEF_ICON(WIN_CLOSE,                         "window_close")
+            DEF_ICON(WIN_CLOSE_ALL,                     "window_close_all")
+            DEF_ICON(WIN_CLOSE_OTHER,                   "window_close_other")
+            DEF_ICON(WIN_RESTORE,                       "window_restore")
+            DEF_ICON(WIN_RENAME,                        "window_rename")
         )
 
         static IconManager* getInstance();

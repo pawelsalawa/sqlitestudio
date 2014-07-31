@@ -41,14 +41,16 @@ void CodeFormatter::updateCurrent()
 
     bool modified = false;
     currentFormatter.clear();
-    QHash<QString,QString> config = CFG_CORE.General.ActiveCodeFormatter.get();
+    QHash<QString,QVariant> config = CFG_CORE.General.ActiveCodeFormatter.get();
+    QString name;
     QStringList names = availableFormatters.keys();
     qSort(names);
     for (const QString& lang : names)
     {
-        if (config.contains(lang) && availableFormatters[lang].contains(config[lang]))
+        name = config[lang].toString();
+        if (config.contains(lang) && availableFormatters[lang].contains(name))
         {
-            currentFormatter[lang] = availableFormatters[lang][config[lang]];
+            currentFormatter[lang] = availableFormatters[lang][name];
         }
         else
         {

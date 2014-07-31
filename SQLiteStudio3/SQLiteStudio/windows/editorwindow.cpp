@@ -110,10 +110,12 @@ void EditorWindow::createStaticActions()
     connect(staticActions[RESULTS_BELOW], &QAction::triggered, [=]()
     {
         resultsDisplayMode = ResultsDisplayMode::BELOW_QUERY;
+        CFG_UI.General.SqlEditorTabs.set("BELOW_QUERY");
     });
     connect(staticActions[RESULTS_IN_TAB], &QAction::triggered, [=]()
     {
         resultsDisplayMode = ResultsDisplayMode::SEPARATE_TAB;
+        CFG_UI.General.SqlEditorTabs.set("SEPARATE_TAB");
     });
 
     staticActions[RESULTS_BELOW]->setCheckable(true);
@@ -246,7 +248,6 @@ Db* EditorWindow::getCurrentDb()
 
 void EditorWindow::updateResultsDisplayMode()
 {
-    QString cfgValue;
     switch (resultsDisplayMode)
     {
         case EditorWindow::ResultsDisplayMode::SEPARATE_TAB:
@@ -259,8 +260,6 @@ void EditorWindow::updateResultsDisplayMode()
             ui->tabWidget->insertTab(1, ui->results, tr("Results"));
             ui->resultsFrame->setParent(ui->results);
             ui->results->layout()->addWidget(ui->resultsFrame);
-
-            cfgValue = "SEPARATE_TAB";
             break;
         }
         case EditorWindow::ResultsDisplayMode::BELOW_QUERY:
@@ -283,12 +282,9 @@ void EditorWindow::updateResultsDisplayMode()
                 ui->dataView->setCurrentIndex(0);
                 ui->dataView->getGridView()->setFocus();
             }
-
-            cfgValue = "BELOW_QUERY";
             break;
         }
     }
-    CFG_UI.General.SqlEditorTabs.set(cfgValue);
 }
 
 void EditorWindow::createActions()

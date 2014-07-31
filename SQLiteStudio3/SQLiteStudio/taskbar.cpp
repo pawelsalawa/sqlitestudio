@@ -54,16 +54,7 @@ QList<QAction*> TaskBar::getTasks() const
 void TaskBar::init()
 {
     setAcceptDrops(true);
-
-    taskMenu = new QMenu(this);
-    closeSelectedAction = taskMenu->addAction(tr("Close selected window"), this, SLOT(closeSelectedTask()));
-    closeAllButSelectedAction = taskMenu->addAction(tr("Close all windows but selected"), this, SLOT(closeAllTasksButSelected()));
-    closeAllAction = taskMenu->addAction(tr("Close all windows"), this, SLOT(closeAllTasks()));
-    taskMenu->addSeparator();
-    restoreLastClosedAction = taskMenu->addAction(tr("Restore recently closed window"), this, SLOT(closeAllTasks()));
-    renameSelectedAction = taskMenu->addAction(tr("Rename selected window"), this, SLOT(closeAllTasks()));
-
-    connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(taskBarMenuRequested(QPoint)));
+//    connect(MAINWINDOW, SIGNAL(actionsCreated()), this, SLOT(initContextMenu()));
 }
 
 void TaskBar::mousePressed()
@@ -72,31 +63,6 @@ void TaskBar::mousePressed()
     dragStartTask = actionAt(dragStartPosition);
     if (dragStartTask)
         dragStartTask->trigger();
-}
-
-void TaskBar::closeAllTasks()
-{
-    MAINWINDOW->getMdiArea()->closeAllSubWindows();
-}
-
-void TaskBar::closeAllTasksButSelected()
-{
-    MAINWINDOW->getMdiArea()->closeAllButActive();
-}
-
-void TaskBar::closeSelectedTask()
-{
-    MAINWINDOW->getMdiArea()->closeActiveSubWindow();
-}
-
-void TaskBar::restoreLastClosedTask()
-{
-
-}
-
-void TaskBar::renameSelectedTask()
-{
-
 }
 
 int TaskBar::getActiveTaskIdx()
@@ -129,18 +95,30 @@ void TaskBar::prevTask()
     tasks[idx]->trigger();
 }
 
+void TaskBar::initContextMenu(ExtActionContainer* mainWin)
+{
+    // MainWindow is passed as argument to this function, so it's not referenced with MAINWINDOW macro,
+    // because that macro causes MainWindow initialization and this caused endless loop.
+    taskMenu = new QMenu(this);
+    taskMenu->addAction(mainWin->getAction(MainWindow::CLOSE_WINDOW));
+    taskMenu->addAction(mainWin->getAction(MainWindow::CLOSE_OTHER_WINDOWS));
+    taskMenu->addAction(mainWin->getAction(MainWindow::CLOSE_ALL_WINDOWS));
+    taskMenu->addSeparator();
+    taskMenu->addAction(mainWin->getAction(MainWindow::RESTORE_WINDOW));
+    taskMenu->addAction(mainWin->getAction(MainWindow::RENAME_WINDOW));
+
+    connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(taskBarMenuRequested(QPoint)));
+}
+
 void TaskBar::taskBarMenuRequested(const QPoint &p)
 {
+
     QAction* task = actionAt(p);
     bool taskClicked = (task != nullptr);
     if (taskClicked)
         task->trigger();
 
-    bool hasActiveTask = MAINWINDOW->getMdiArea()->activeSubWindow();
-    closeSelectedAction->setEnabled(hasActiveTask);
-    closeAllButSelectedAction->setEnabled(hasActiveTask);
-    renameSelectedAction->setEnabled(hasActiveTask);
-
+    MAINWINDOW->updateWindowActions();
     taskMenu->popup(mapToGlobal(p));
 }
 
@@ -200,19 +178,6 @@ bool TaskBar::handleMouseMoveEvent(QMouseEvent* event)
     drag->setMimeData(generateMimeData());
 
     dragStartIndex = tasks.indexOf(dragStartTask);
-
-    Qt::DropAction dropAction = drag->exec(Qt::MoveAction);
-
-    // TODO debug what is dropAction after correct drop and what after dropping outside the taskbar, then implement restoring original pos
-
-    if (dropAction == Qt::IgnoreAction)
-    {
-//        if (initialPlaceHolderPositionIndex == actions().size())
-//            addAction(action);
-//        else
-//            insertAction(actions().at(initialPlaceHolderPositionIndex), action);
-    }
-
     return true;
 }
 

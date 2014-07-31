@@ -7,6 +7,7 @@
 class QMimeData;
 class QToolButton;
 class QRubberBand;
+class ExtActionContainer;
 
 // TODO enclose task<->mdiWindow relation inside a task class and make it managed by taskbar, not by mdiarea
 class TaskBar : public QToolBar
@@ -57,24 +58,15 @@ class TaskBar : public QToolBar
         int dragStartIndex;
         int dragCurrentIndex;
         QMenu* taskMenu = nullptr;
-        QAction* closeSelectedAction = nullptr;
-        QAction* closeAllButSelectedAction = nullptr;
-        QAction* closeAllAction = nullptr;
-        QAction* restoreLastClosedAction = nullptr;
-        QAction* renameSelectedAction = nullptr;
 
     public slots:
         void nextTask();
         void prevTask();
+        void initContextMenu(ExtActionContainer *mainWin);
 
     private slots:
         void taskBarMenuRequested(const QPoint& p);
         void mousePressed();
-        void closeAllTasks();
-        void closeAllTasksButSelected();
-        void closeSelectedTask();
-        void restoreLastClosedTask();
-        void renameSelectedTask();
 };
 
 #endif // TASKBAR_H
