@@ -19,7 +19,6 @@ DbDialog::DbDialog(Mode mode, QWidget *parent) :
     ui(new Ui::DbDialog),
     mode(mode)
 {
-    ui->setupUi(this);
     init();
 }
 
@@ -89,7 +88,6 @@ void DbDialog::showEvent(QShowEvent *e)
     if (db)
     {
         int idx = ui->typeCombo->findText(db->getTypeLabel());
-        //Q_ASSERT(idx > -1); // if we have db of certain type, it must be driven by existing db plugin
         ui->typeCombo->setCurrentIndex(idx);
         ui->typeCombo->setEnabled(false); // converting to other type is in separate dialog, it's different feature
 
@@ -118,18 +116,26 @@ void DbDialog::showEvent(QShowEvent *e)
 
 void DbDialog::init()
 {
-    ui->browseLocalButton->setIcon(ICONS.DATABASE_FILE);
-    ui->browseRemoteButton->setIcon(ICONS.DATABASE_NETWORK);
+    ui->setupUi(this);
+
+    ui->browseButton->setIcon(ICONS.DATABASE_FILE);
     dbPlugins = PLUGINS->getLoadedPlugins<DbPlugin>();
     foreach (DbPlugin* dbPlugin, dbPlugins)
     {
         ui->typeCombo->addItem(dbPlugin->getLabel());
     }
 
-    ui->browseRemoteButton->setVisible(false); // TODO remote URI browsing
-    ui->browseLocalButton->setVisible(true);
-    ui->testIcon->setVisible(false);
-    on_generateCheckBox_toggled(true);
+    ui->browseButton->setVisible(true);
+    ui->testConnIcon->setVisible(false);
+
+    connect(ui->fileEdit, SIGNAL(textChanged(QString)), this, SLOT(fileChanged(QString)));
+    connect(ui->nameEdit, SIGNAL(textChanged(QString)), this, SLOT(nameModified(QString)));
+    connect(ui->generateCheckBox, SIGNAL(toggled(bool)), this, SLOT(generateNameSwitched(bool)));
+    connect(ui->browseButton, SIGNAL(clicked()), this, SLOT(browseClicked()));
+    connect(ui->testConnButton, SIGNAL(clicked()), this, SLOT(testConnectionClicked()));
+    connect(ui->typeCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(dbTypeChanged(int)));
+
+    generateNameSwitched(true);
 }
 
 void DbDialog::updateOptions()
@@ -332,7 +338,15 @@ QHash<QString, QVariant> DbDialog::collectOptions()
 
 bool DbDialog::testDatabase()
 {
-    return getDb() != nullptr;
+    QString path = ui->fileEdit->text();
+    bool existed = QFile::exists(path);
+    bool res = getDb() != nullptr;
+    if (!existed)
+    {
+        QFile file(path);
+        file.remove();
+    }
+    return res;
 }
 
 bool DbDialog::validate()
@@ -359,7 +373,7 @@ void DbDialog::updateState()
 
 void DbDialog::propertyChanged()
 {
-    ui->testIcon->setVisible(false);
+    ui->testConnIcon->setVisible(false);
 }
 
 void DbDialog::typeChanged(int index)
@@ -387,11 +401,6 @@ void DbDialog::valueForNameGenerationChanged()
     }
 }
 
-void DbDialog::nameChanged()
-{
-
-}
-
 void DbDialog::browseForFile()
 {
     QString path = QFileDialog::getOpenFileName();
@@ -402,7 +411,7 @@ void DbDialog::browseForFile()
     setValueFor(optionKeyToType[key], optionKeyToWidget[key], path);
 }
 
-void DbDialog::on_generateCheckBox_toggled(bool checked)
+void DbDialog::generateNameSwitched(bool checked)
 {
     if (checked)
     {
@@ -417,7 +426,7 @@ void DbDialog::on_generateCheckBox_toggled(bool checked)
     ui->nameEdit->setReadOnly(checked);
 }
 
-void DbDialog::on_fileEdit_textChanged(const QString &arg1)
+void DbDialog::fileChanged(const QString &arg1)
 {
     UNUSED(arg1);
     valueForNameGenerationChanged();
@@ -425,7 +434,7 @@ void DbDialog::on_fileEdit_textChanged(const QString &arg1)
     propertyChanged();
 }
 
-void DbDialog::on_browseLocalButton_clicked()
+void DbDialog::browseClicked()
 {
     QFileInfo fileInfo(ui->fileEdit->text());
     QString dir;
@@ -442,25 +451,19 @@ void DbDialog::on_browseLocalButton_clicked()
     updateState();
 }
 
-void DbDialog::on_browseRemoteButton_clicked()
+void DbDialog::testConnectionClicked()
 {
-    // TODO
+    ui->testConnIcon->setPixmap(testDatabase() ? ICONS.TEST_CONN_OK : ICONS.TEST_CONN_ERROR);
+    ui->testConnIcon->setVisible(true);
 }
 
-void DbDialog::on_testConnButton_clicked()
-{
-    QIcon* icon = testDatabase() ? ICONS.TEST_CONN_OK : ICONS.TEST_CONN_ERROR;
-    ui->testIcon->setPixmap(icon->pixmap(icon->availableSizes()[0]));
-    ui->testIcon->setVisible(true);
-}
-
-void DbDialog::on_typeCombo_activated(int index)
+void DbDialog::dbTypeChanged(int index)
 {
     typeChanged(index);
     propertyChanged();
 }
 
-void DbDialog::on_nameEdit_textChanged(const QString &arg1)
+void DbDialog::nameModified(const QString &arg1)
 {
     UNUSED(arg1);
     updateState();

@@ -103,7 +103,7 @@ class DbTreeModel : public QStandardItemModel
         void dbConnected(Db* db);
         void dbDisconnected(Db* db);
         void dbUnloaded(Db* db, DbPlugin* plugin);
-        void dbLoaded(Db* db, DbPlugin* plugin);
+        void dbLoaded(Db* db);
         void massSaveBegins();
         void massSaveCommited();
         void markSchemaReloadingRequired();

@@ -222,12 +222,13 @@ class API_EXPORT DbManager : public QObject
         /**
          * @brief Loaded plugin to support the database.
          * @param db Database object handled by the plugin.
-         * @param plugin Plugin that handles the database.
          *
          * Emitted after a plugin was loaded and it turned out to handle the database that was already registered in the application,
-         * but wasn't managed by database manager, because no handler plugin was loaded.
+         * but wasn't managed by database manager, because no handler plugin was loaded earlier.
+         *
+         * Also emitted when database details were edited and saved, which fixes database configuration (for example path).
          */
-        void dbLoaded(Db* db, DbPlugin* plugin);
+        void dbLoaded(Db* db);
 
         /**
          * @brief Plugin supporting the database is about to be unloaded.

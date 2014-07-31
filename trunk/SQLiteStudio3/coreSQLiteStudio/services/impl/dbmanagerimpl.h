@@ -12,6 +12,8 @@
 #include <QReadWriteLock>
 #include <QSharedPointer>
 
+class InvalidDb;
+
 class DbManagerImpl : public DbManager
 {
     Q_OBJECT
@@ -90,6 +92,8 @@ class DbManagerImpl : public DbManager
          * @return Only invalid databases from this manager.
          */
         QList<Db*> getInvalidDatabases() const;
+
+        Db* tryToLoadDb(InvalidDb* invalidDb);
 
         /**
          * @brief Creates database object.

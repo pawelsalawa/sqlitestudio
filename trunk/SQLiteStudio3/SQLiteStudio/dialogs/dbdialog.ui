@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>416</width>
-    <height>158</height>
+    <height>168</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -73,19 +73,9 @@
      <item row="0" column="2">
       <layout class="QHBoxLayout" name="horizontalLayout_3">
        <item>
-        <widget class="QToolButton" name="browseLocalButton">
+        <widget class="QToolButton" name="browseButton">
          <property name="toolTip">
           <string>Browse for database file on local computer</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="browseRemoteButton">
-         <property name="toolTip">
-          <string>Browse for database on remote SQLiteStudio-enabled computer</string>
          </property>
          <property name="text">
           <string/>
@@ -154,64 +144,59 @@
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <property name="topMargin">
-      <number>5</number>
-     </property>
-     <item>
-      <widget class="QPushButton" name="testConnButton">
-       <property name="text">
-        <string>Test database connection</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="testIcon">
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QDialogButtonBox" name="buttonBox">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="standardButtons">
-        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-       </property>
-       <property name="centerButtons">
-        <bool>false</bool>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    <widget class="QWidget" name="bottomWidget" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QPushButton" name="testConnButton">
+        <property name="text">
+         <string>Test database connection</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="testConnIcon">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QDialogButtonBox" name="buttonBox">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="standardButtons">
+         <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+        </property>
+        <property name="centerButtons">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </item>
   </layout>
  </widget>
  <tabstops>
   <tabstop>fileEdit</tabstop>
-  <tabstop>browseLocalButton</tabstop>
-  <tabstop>browseRemoteButton</tabstop>
+  <tabstop>browseButton</tabstop>
   <tabstop>nameEdit</tabstop>
   <tabstop>generateCheckBox</tabstop>
   <tabstop>typeCombo</tabstop>
   <tabstop>permamentCheckBox</tabstop>
-  <tabstop>testConnButton</tabstop>
-  <tabstop>buttonBox</tabstop>
  </tabstops>
  <resources/>
  <connections>

@@ -1054,12 +1054,13 @@ int AbstractDb3<T>::Query::fetchFirst()
     for (int i = 0; i < colCount; i++)
         colNames << QString::fromUtf8(sqlite3_column_name(stmt, i));
 
-    affected = sqlite3_changes(db->dbHandle);
-
     rowAvailable = true;
     int res = fetchNext();
+
+    affected = 0;
     if (res == SQLITE_OK)
     {
+        affected = sqlite3_changes(db->dbHandle);
         insertRowId["ROWID"] = sqlite3_last_insert_rowid(db->dbHandle);
     }
 
