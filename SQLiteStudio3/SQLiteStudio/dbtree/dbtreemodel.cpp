@@ -53,8 +53,8 @@ void DbTreeModel::connectDbManagerSignals()
     connect(DBLIST, SIGNAL(dbRemoved(Db*)), this, SLOT(dbRemoved(Db*)));
     connect(DBLIST, &DbManager::dbConnected, this, &DbTreeModel::dbConnected);
     connect(DBLIST, &DbManager::dbDisconnected, this, &DbTreeModel::dbDisconnected);
-    connect(DBLIST, SIGNAL(dbLoaded(Db*,DbPlugin*)), this, SLOT(dbLoaded(Db*,DbPlugin*)));
-    connect(DBLIST, SIGNAL(dbUnloaded(Db*,DbPlugin*)), this, SLOT(dbUnloaded(Db*,DbPlugin*)));
+    connect(DBLIST, SIGNAL(dbLoaded(Db*,DbPlugin*)), this, SLOT(dbLoaded(Db*)));
+    connect(DBLIST, SIGNAL(dbUnloaded(Db*,DbPlugin*)), this, SLOT(dbUnloaded(Db*)));
 }
 
 void DbTreeModel::move(QStandardItem *itemToMove, QStandardItem *newParentItem, int newRow)
@@ -694,9 +694,8 @@ void DbTreeModel::dbUnloaded(Db* db, DbPlugin* plugin)
     item->updateDbIcon();
 }
 
-void DbTreeModel::dbLoaded(Db* db, DbPlugin* plugin)
+void DbTreeModel::dbLoaded(Db* db)
 {
-    UNUSED(plugin);
     DbTreeItem* item = findItem(DbTreeItem::Type::DB, db->getName());
     if (!item)
     {

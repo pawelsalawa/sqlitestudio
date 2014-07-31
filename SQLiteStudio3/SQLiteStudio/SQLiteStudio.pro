@@ -26,7 +26,6 @@ SOURCES += main.cpp\
     dbtree/dbtree.cpp \
     dbtree/dbtreeview.cpp \
     actionentry.cpp \
-    dialogs/dbdialog.cpp \
     uiutils.cpp \
     dbtree/dbtreeitemdelegate.cpp \
     dbtree/dbtreeitemfactory.cpp \
@@ -146,7 +145,8 @@ SOURCES += main.cpp\
     uiurlbutton.cpp \
     common/configcombobox.cpp \
     dialogs/dbconverterdialog.cpp \
-    common/extactioncontainersignalhandler.cpp
+    common/extactioncontainersignalhandler.cpp \
+    dialogs/dbdialog.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -155,7 +155,6 @@ HEADERS  += mainwindow.h \
     dbtree/dbtree.h \
     dbtree/dbtreeview.h \
     actionentry.h \
-    dialogs/dbdialog.h \
     uiutils.h \
     dbtree/dbtreeitemdelegate.h \
     dbtree/dbtreeitemfactory.h \
@@ -229,7 +228,6 @@ HEADERS  += mainwindow.h \
     windows/constrainttabmodel.h \
     dialogs/messagelistdialog.h \
     windows/viewwindow.h \
-    dialogs/configdialog.h \
     uiconfig.h \
     dialogs/indexdialog.h \
     sqlview.h \
@@ -279,11 +277,12 @@ HEADERS  += mainwindow.h \
     uiurlbutton.h \
     common/configcombobox.h \
     dialogs/dbconverterdialog.h \
-    common/extactioncontainersignalhandler.h
+    common/extactioncontainersignalhandler.h \
+    dialogs/configdialog.h \
+    dialogs/dbdialog.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \
-    dialogs/dbdialog.ui \
     statusfield.ui \
     completer/completerwindow.ui \
     dialogs/searchtextdialog.ui \
@@ -319,7 +318,8 @@ FORMS    += mainwindow.ui \
     dialogs/importdialog.ui \
     dialogs/populatedialog.ui \
     dialogs/populateconfigdialog.ui \
-    dialogs/dbconverterdialog.ui
+    dialogs/dbconverterdialog.ui \
+    dialogs/dbdialog.ui
 
 RESOURCES += \
     icons.qrc
@@ -335,3 +335,5 @@ unix: {
 win32: {
     QMAKE_LFLAGS += -Wl,--export-all-symbols,--out-implib,$$DESTDIR/libSQLiteStudio.a
 }
+
+OTHER_FILES +=

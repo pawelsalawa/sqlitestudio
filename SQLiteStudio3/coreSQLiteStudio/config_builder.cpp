@@ -274,7 +274,6 @@ CfgEntry::operator QString() const
 CfgLazyInitializer::CfgLazyInitializer(std::function<void ()> initFunc, const char *name) :
     initFunc(initFunc)
 {
-    qDebug() << "Adding lazy initializer for type" << name;
     instances << this;
 }
 

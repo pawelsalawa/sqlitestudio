@@ -121,7 +121,7 @@ bool ConfigImpl::addDb(const QString& name, const QString& path, const QHash<QSt
 bool ConfigImpl::updateDb(const QString &name, const QString &newName, const QString &path, const QHash<QString,QVariant> &options)
 {
     SqlQueryPtr results = db->exec("UPDATE dblist SET name = ?, path = ?, options = ? WHERE name = ?",
-                                     {name, newName, path, options});
+                                     {newName, path, options, name});
 
     return (!storeErrorAndReturn(results)  && results->rowsAffected() > 0);
 }

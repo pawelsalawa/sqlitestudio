@@ -71,16 +71,14 @@ class DbDialog : public QDialog
     private slots:
         void typeChanged(int index);
         void valueForNameGenerationChanged();
-        void nameChanged();
         void browseForFile();
-        void on_generateCheckBox_toggled(bool checked);
-        void on_fileEdit_textChanged(const QString &arg1);
-        void on_browseLocalButton_clicked();
-        void on_browseRemoteButton_clicked();
-        void on_testConnButton_clicked();
+        void generateNameSwitched(bool checked);
+        void fileChanged(const QString &arg1);
+        void browseClicked();
+        void testConnectionClicked();
         void propertyChanged();
-        void on_typeCombo_activated(int index);
-        void on_nameEdit_textChanged(const QString &arg1);
+        void dbTypeChanged(int index);
+        void nameModified(const QString &arg1);
 
     public slots:
         void accept();

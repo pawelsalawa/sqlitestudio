@@ -1,5 +1,4 @@
 * Rewrite DbEdit dialog
-* formatter as a service - per language
 * enterprise SQL formatter
 * printing plugin
 * plugin conflicts according to feature provided, as an alternative to module name conflicts. It will require features to be provided.

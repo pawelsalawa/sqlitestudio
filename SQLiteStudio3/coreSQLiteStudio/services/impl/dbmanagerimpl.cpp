@@ -11,6 +11,7 @@
 #include <QHashIterator>
 #include <QPluginLoader>
 #include <QDebug>
+#include <QUrl>
 #include <db/invaliddb.h>
 
 DbManagerImpl::DbManagerImpl(QObject *parent) :
@@ -70,6 +71,8 @@ bool DbManagerImpl::updateDb(Db* db, const QString &name, const QString &path, c
     nameToDb.remove(db->getName(), Qt::CaseInsensitive);
     pathToDb.remove(db->getPath());
 
+    bool pathDifferent = db->getPath() != path;
+
     QString oldName = db->getName();
     db->setName(name);
     db->setPath(path);
@@ -86,14 +89,22 @@ bool DbManagerImpl::updateDb(Db* db, const QString &name, const QString &path, c
     else if (CFG->isDbInConfig(name)) // switched "permanent" off?
         result = CFG->removeDb(name);
 
+    InvalidDb* invalidDb = dynamic_cast<InvalidDb*>(db);
+    Db* reloadedDb = db;
+    if (pathDifferent && invalidDb)
+        reloadedDb = tryToLoadDb(invalidDb);
+
+    if (reloadedDb) // reloading was not necessary (was not invalid) or it was successful
+        db = reloadedDb;
+
     nameToDb[name] = db;
     pathToDb[path] = db;
 
     listLock.unlock();
 
-    if (result)
+    if (result && reloadedDb)
         emit dbUpdated(oldName, db);
-    else
+    else if (reloadedDb) // database reloaded correctly, but update failed
         notifyError(tr("Database %1 could not be updated, because of an error: %2").arg(oldName).arg(CFG->getLastErrorString()));
 
     return result;
@@ -244,11 +255,18 @@ void DbManagerImpl::init()
 
 void DbManagerImpl::loadInitialDbList()
 {
+    QUrl url;
     InvalidDb* db;
     foreach (const Config::CfgDbPtr& cfgDb, CFG->dbList())
     {
         db = new InvalidDb(cfgDb->name, cfgDb->path, cfgDb->options);
-        db->setError(tr("No supporting plugin loaded."));
+
+        url = QUrl::fromUserInput(cfgDb->path);
+        if (url.isLocalFile() && !QFile::exists(cfgDb->path))
+            db->setError(tr("Database file doesn't exist."));
+        else
+            db->setError(tr("No supporting plugin loaded."));
+
         addDbInternal(db, false);
     }
 }
@@ -277,6 +295,28 @@ QList<Db*> DbManagerImpl::getInvalidDatabases() const
     {
         return !db->isValid();
     });
+}
+
+Db* DbManagerImpl::tryToLoadDb(InvalidDb* invalidDb)
+{
+    QUrl url = QUrl::fromUserInput(invalidDb->getPath());
+    if (url.isLocalFile() && !QFile::exists(invalidDb->getPath()))
+        return nullptr;
+
+    Db* db = createDb(invalidDb->getName(), invalidDb->getPath(), invalidDb->getConnectionOptions());
+    if (!db)
+        return nullptr;
+
+    removeDbInternal(invalidDb, false);
+    delete invalidDb;
+
+    addDbInternal(db, false);
+
+    if (CFG->getDbGroup(db->getName())->open)
+        db->open();
+
+    emit dbLoaded(db);
+    return db;
 }
 
 Db* DbManagerImpl::createDb(const QString &name, const QString &path, const QHash<QString,QVariant> &options, QString* errorMessages)
@@ -380,8 +420,13 @@ void DbManagerImpl::loaded(Plugin* plugin, PluginType* type)
     DbPlugin* dbPlugin = dynamic_cast<DbPlugin*>(plugin);
     Db* db = nullptr;
 
+    QUrl url;
     for (Db* invalidDb : getInvalidDatabases())
     {
+        url = QUrl::fromUserInput(invalidDb->getPath());
+        if (url.isLocalFile() && !QFile::exists(invalidDb->getPath()))
+            continue;
+
         db = createDb(invalidDb->getName(), invalidDb->getPath(), invalidDb->getConnectionOptions());
         if (!db)
             continue; // For this db driver was not loaded yet.
@@ -403,6 +448,6 @@ void DbManagerImpl::loaded(Plugin* plugin, PluginType* type)
         if (CFG->getDbGroup(db->getName())->open)
             db->open();
 
-        emit dbLoaded(db, dbPlugin);
+        emit dbLoaded(db);
     }
 }
