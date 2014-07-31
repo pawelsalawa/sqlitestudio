@@ -868,7 +868,7 @@ void ConfigDialog::refreshFormattersPage()
 {
     ui->formatterPluginsTree->clear();
 
-    QHash<QString,QString> activeFormatters = CFG_CORE.General.ActiveCodeFormatter.get();
+    QHash<QString,QVariant> activeFormatters = CFG_CORE.General.ActiveCodeFormatter.get();
 
     QList<CodeFormatterPlugin*> plugins = PLUGINS->getLoadedPlugins<CodeFormatterPlugin>();
     QHash<QString,QList<CodeFormatterPlugin*>> groupedPlugins;
@@ -913,9 +913,9 @@ void ConfigDialog::refreshFormattersPage()
         ui->formatterPluginsTree->setIndexWidget(index, combo);
         formatterLangToPluginComboMap[it.key()] = combo;
 
-        if (activeFormatters.contains(it.key()) && pluginNames.contains(activeFormatters[it.key()]))
+        if (activeFormatters.contains(it.key()) && pluginNames.contains(activeFormatters[it.key()].toString()))
         {
-            selectedPluginName = activeFormatters[it.key()];
+            selectedPluginName = activeFormatters[it.key()].toString();
         }
         else
         {
