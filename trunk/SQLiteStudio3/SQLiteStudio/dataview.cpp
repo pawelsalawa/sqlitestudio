@@ -31,8 +31,6 @@ DataView::DataView(QWidget *parent) :
 
 void DataView::init(SqlQueryModel* model)
 {
-    QTime t;
-    t.start();
     createContents();
 
     this->model = model;
@@ -48,7 +46,6 @@ void DataView::init(SqlQueryModel* model)
     initUpdates();
     initSlots();
     updateTabsMode();
-    qDebug() << "1" << t.elapsed();
 }
 
 void DataView::initUpdates()
