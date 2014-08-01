@@ -73,7 +73,8 @@ void CompletionHelper::init()
                      << "typeof(X)" << "unicode(X)" << "upper(X)" << "zeroblob(N)"
                      << "date(timestr,mod,mod,...)" << "time(timestr,mod,mod,...)"
                      << "datetime(timestr,mod,mod,...)" << "julianday(timestr,mod,mod,...)"
-                     << "strftime(format,timestr,mod,mod,...)";
+                     << "strftime(format,timestr,mod,mod,...)" << "likelihood(X,Y)"
+                     << "likely(X)" << "unlikely(X)";
 
     sqlite2Functions << "abs(X)" << "coalesce(X,Y,...)" << "glob(X,Y)" << "ifnull(X,Y)"
                      << "last_insert_rowid()" << "length(X)" << "like(X,Y)" << "lower(X)"

@@ -102,7 +102,7 @@ class DbTreeModel : public QStandardItemModel
         void dbRemoved(Db* db);
         void dbConnected(Db* db);
         void dbDisconnected(Db* db);
-        void dbUnloaded(Db* db, DbPlugin* plugin);
+        void dbUnloaded(Db* db);
         void dbLoaded(Db* db);
         void massSaveBegins();
         void massSaveCommited();

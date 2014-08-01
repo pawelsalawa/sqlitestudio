@@ -551,6 +551,26 @@ bool MainWindow::isClosingApp() const
     return closingApp;
 }
 
+QToolBar *MainWindow::getMainToolbar()
+{
+    return ui->mainToolBar;
+}
+
+QToolBar *MainWindow::getDatabaseToolbar()
+{
+    return ui->dbToolbar;
+}
+
+QToolBar *MainWindow::getStructureToolbar()
+{
+    return ui->structureToolbar;
+}
+
+QToolBar *MainWindow::getViewToolbar()
+{
+    return ui->viewToolbar;
+}
+
 MainWindow *MainWindow::getInstance()
 {
     if (!instance)

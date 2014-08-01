@@ -408,7 +408,7 @@ void DbManagerImpl::aboutToUnload(Plugin* plugin, PluginType* type)
 
         delete db;
 
-        emit dbUnloaded(invalidDb, dbPlugin);
+        emit dbUnloaded(invalidDb);
     }
 }
 

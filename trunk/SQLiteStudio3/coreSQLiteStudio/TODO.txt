@@ -1,5 +1,6 @@
 * make columns in GROUP BY optional, so completer detects context correctly
 * printing plugin
+* hexadecimals from 3.8.6 support
 * enterprise SQL formatter
 * plugin conflicts according to feature provided, as an alternative to module name conflicts. It will require features to be provided.
 * if creating unique index fails, propose to generate select query to find out conflicting rows
@@ -64,7 +65,7 @@ SchemaResolver
 - dbf export
 - code assistant as a service with plugins, so it can be extended with other langs and injected in custom functions window, collations window, etc
 - in configuration dialog option to disable each individual native SQL function
-
+- move "integrity check" into dedicated window, add "PRAGMA foreign_key_check" as a second stage of checking and present all in one window
 
 
 

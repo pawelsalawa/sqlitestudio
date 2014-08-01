@@ -612,7 +612,7 @@ class API_EXPORT Db : public QObject, public Interruptable
          * This method is used only to let the database know, that the given function exists in FunctionManager and we want it to be visible
          * in this database's context. When the function is called from SQL query, then the function execution is delegated to the FunctionManager.
          *
-         * For details about usage of custom SQL functions see http://sqlitestudio.pl/wiki/index.php/User_Manual#Custom_SQL_functions
+         * For details about usage of custom SQL functions see http://wiki.sqlitestudio.pl/index.php/User_Manual#Custom_SQL_functions
          *
          * @see FunctionManager
          */
@@ -635,7 +635,7 @@ class API_EXPORT Db : public QObject, public Interruptable
          * This method is used only to let the database know, that the given function exists in FunctionManager and we want it to be visible
          * in this database's context. When the function is called from SQL query, then the function execution is delegated to the FunctionManager.
          *
-         * For details about usage of custom SQL functions see http://sqlitestudio.pl/wiki/index.php/User_Manual#Custom_SQL_functions
+         * For details about usage of custom SQL functions see http://wiki.sqlitestudio.pl/index.php/User_Manual#Custom_SQL_functions
          *
          * @see FunctionManager
          */
@@ -652,7 +652,7 @@ class API_EXPORT Db : public QObject, public Interruptable
          * when comparing 2 values in the database in order to sort query results. The name passed to this method is a name of the collation
          * as it is used in SQL queries and also the same name must be used when defining collation in Collations editor window.
          *
-         * For details about usage of custom collations see http://sqlitestudio.pl/wiki/index.php/User_Manual#Custom_collations
+         * For details about usage of custom collations see http://wiki.sqlitestudio.pl/index.php/User_Manual#Custom_collations
          *
          * @see CollationManager
          */

@@ -593,7 +593,7 @@ void FunctionsEditor::applyFilter(const QString& value)
 
 void FunctionsEditor::help()
 {
-    static const QString url = QStringLiteral("http://sqlitestudio.pl/wiki/index.php/User_Manual#Custom_SQL_functions");
+    static const QString url = QStringLiteral("http://wiki.sqlitestudio.pl/index.php/User_Manual#Custom_SQL_functions");
     QDesktopServices::openUrl(QUrl(url, QUrl::StrictMode));
 }
 
