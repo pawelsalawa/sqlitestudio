@@ -741,7 +741,7 @@ DbTreeItem *DbTreeModel::findItem(QStandardItem* parentItem, DbTreeItem::Type ty
          item = dynamic_cast<DbTreeItem*>(parentItem->child(i));
 
          // Search recursively
-         if (item->getType() == DbTreeItem::Type::DIR)
+         if (item->hasChildren())
          {
              subItem = findItem(item, type, name);
              if (subItem)
@@ -779,7 +779,7 @@ DbTreeItem *DbTreeModel::findItem(QStandardItem* parentItem, DbTreeItem::Type ty
         item = dynamic_cast<DbTreeItem*>(parentItem->child(i));
 
         // Search recursively
-        if (item->getType() == DbTreeItem::Type::DIR)
+        if (item->hasChildren())
         {
             subItem = findItem(item, type, db);
             if (subItem)

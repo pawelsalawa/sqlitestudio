@@ -2,7 +2,6 @@
 * printing plugin
 * enterprise SQL formatter
 * plugin conflicts according to feature provided, as an alternative to module name conflicts. It will require features to be provided.
-* generating INSERT/UPDATE/DELETE/SELECT basing on table definition
 * if creating unique index fails, propose to generate select query to find out conflicting rows
 * add nice api for accessing menus and toolbars, so plugins can easly add/remove from them
 * command line -d option to enable debugging in GUI application (including debugging of Parser in CompletionHelper)

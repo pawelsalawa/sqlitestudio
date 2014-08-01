@@ -176,10 +176,12 @@ class SqlEditor : public QPlainTextEdit, public ExtActionContainer
          * @return Object identified under given text position, or null if there was no valid object under that position.
          */
         const DbObject* getValidObjectForPosition(int position, bool movedLeft);
+        const DbObject* getValidObjectForPosition(const QPoint& point);
         void handleValidObjectCursor(const QPoint& point);
 
         SqliteSyntaxHighlighter* highlighter;
-        QMenu* contextMenu;
+        QMenu* contextMenu = nullptr;
+        QMenu* validObjContextMenu = nullptr;
         Db* db = nullptr;
         CompleterWindow* completer = nullptr;
         QTimer* autoCompleteTimer = nullptr;
