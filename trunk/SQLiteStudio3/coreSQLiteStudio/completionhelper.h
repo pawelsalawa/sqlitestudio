@@ -54,6 +54,8 @@ class API_EXPORT CompletionHelper : public QObject
             SELECT_ORDER_BY,
             SELECT_LIMIT,
             UPDATE_COLUMN,
+            UPDATE_WHERE,
+            DELETE_WHERE,
             CREATE_TABLE,
             CREATE_TRIGGER,
             EXPR
@@ -114,8 +116,11 @@ class API_EXPORT CompletionHelper : public QObject
         void extractCreateTableColumns();
         void detectSelectContext();
         bool isInUpdateColumn();
+        bool isInUpdateWhere();
+        bool isInDeleteWhere();
         bool isInCreateTable();
         bool isInCreateTrigger();
+        bool isIn(SqliteQueryType queryType, const QString& tokenMapKey, const QString &prefixKeyword);
         bool isInExpr();
         bool testQueryToken(int tokenPosition, Token::Type type, const QString& value, Qt::CaseSensitivity cs = Qt::CaseInsensitive);
         bool cursorAfterTokenMaps(SqliteStatement* stmt, const QStringList& mapNames);

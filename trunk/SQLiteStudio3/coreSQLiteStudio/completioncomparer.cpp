@@ -113,11 +113,19 @@ bool CompletionComparer::compareColumns(const ExpectedTokenPtr& token1, const Ex
     bool result = true;
     switch (helper->context)
     {
+        case CompletionHelper::Context::SELECT_WHERE:
+        case CompletionHelper::Context::SELECT_GROUP_BY:
+        case CompletionHelper::Context::SELECT_HAVING:
         case CompletionHelper::Context::SELECT_RESULT_COLUMN:
+        case CompletionHelper::Context::SELECT_ORDER_BY:
             result = compareColumnsForSelectResCol(token1, token2, &ok);
             break;
         case CompletionHelper::Context::UPDATE_COLUMN:
+        case CompletionHelper::Context::UPDATE_WHERE:
             result = compareColumnsForUpdateCol(token1, token2, &ok);
+            break;
+        case CompletionHelper::Context::DELETE_WHERE:
+            result = compareColumnsForDeleteCol(token1, token2, &ok);
             break;
         case CompletionHelper::Context::CREATE_TABLE:
             result = compareColumnsForCreateTable(token1, token2, &ok);
@@ -169,6 +177,15 @@ bool CompletionComparer::compareColumnsForSelectResCol(const ExpectedTokenPtr &t
 }
 
 bool CompletionComparer::compareColumnsForUpdateCol(const ExpectedTokenPtr &token1, const ExpectedTokenPtr &token2, bool *result)
+{
+    *result = true;
+    if (token1->contextInfo == token2->contextInfo)
+        return compareValues(token1->value, token2->value);
+
+    return compareByContext(token1->contextInfo, token2->contextInfo, contextTables);
+}
+
+bool CompletionComparer::compareColumnsForDeleteCol(const ExpectedTokenPtr &token1, const ExpectedTokenPtr &token2, bool *result)
 {
     *result = true;
     if (token1->contextInfo == token2->contextInfo)

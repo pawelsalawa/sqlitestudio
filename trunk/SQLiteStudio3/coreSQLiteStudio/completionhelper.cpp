@@ -1013,6 +1013,14 @@ void CompletionHelper::extractQueryAdditionalInfo()
     {
         context = Context::UPDATE_COLUMN;
     }
+    else if (isInUpdateWhere())
+    {
+        context = Context::UPDATE_WHERE;
+    }
+    else if (isInDeleteWhere())
+    {
+        context = Context::DELETE_WHERE;
+    }
     else if (isInCreateTable())
     {
         context = Context::CREATE_TABLE;
@@ -1052,19 +1060,17 @@ bool CompletionHelper::isInUpdateColumn()
     // We will never get here if the subquery SELECT was used anywhere in the query,
     // (and the cursor position is in that subselect), because in that case the extractSelectCore()
     // will take over the flow before it reaches here.
+    return isIn(SqliteQueryType::Update, "setlist", "SET");
+}
 
-    if (!parsedQuery)
-        return false;
+bool CompletionHelper::isInUpdateWhere()
+{
+    return isIn(SqliteQueryType::Update, "where_opt", "WHERE");
+}
 
-    if (parsedQuery->queryType != SqliteQueryType::Update)
-        return false;
-
-    // We're looking for curPos - 1, because tokens indexing ends in the same, with -1 index.
-    TokenPtr token = parsedQuery->tokens.atCursorPosition(cursorPosition - 1);
-    if (!token)
-        return false;
-
-    return parsedQuery->tokensMap["setlist"].contains(token);
+bool CompletionHelper::isInDeleteWhere()
+{
+    return isIn(SqliteQueryType::Delete, "where_opt", "WHERE");
 }
 
 bool CompletionHelper::isInCreateTable()
@@ -1105,6 +1111,39 @@ bool CompletionHelper::isInCreateTrigger()
         return false;
 
     return true;
+}
+
+bool CompletionHelper::isIn(SqliteQueryType queryType, const QString &tokenMapKey, const QString &prefixKeyword)
+{
+    if (!parsedQuery)
+        return false;
+
+    if (parsedQuery->queryType != queryType)
+        return false;
+
+    // We're looking for curPos - 1, because tokens indexing ends in the same, with -1 index.
+    TokenPtr token = parsedQuery->tokens.atCursorPosition(cursorPosition - 1);
+    if (!token)
+        return false;
+
+    if (parsedQuery->tokensMap[tokenMapKey].contains(token))
+        return true;
+
+    // In case cursor is just before the requested token map entry, but it is after a whitespace, then we can
+    // assume, that what's coming next is our token map entry.
+    if (token->isWhitespace())
+    {
+        int idx = parsedQuery->tokens.indexOf(token);
+        if (idx < 0)
+            return false;
+
+        TokenList tokens =  parsedQuery->tokens.mid(0, idx + 1);
+        tokens.trim();
+        if (tokens.size() > 0 && tokens.last()->type == Token::KEYWORD && tokens.last()->value.compare(prefixKeyword, Qt::CaseInsensitive) == 0)
+            return true;
+    }
+
+    return false;
 }
 
 bool CompletionHelper::isInExpr()
