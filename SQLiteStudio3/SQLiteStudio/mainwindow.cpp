@@ -152,7 +152,7 @@ void MainWindow::closeEvent(QCloseEvent* event)
     closingApp = true;
     closeNonSessionWindows();
     MdiWindow* currWindow = ui->mdiArea->getCurrentWindow();
-//    hide();
+    hide();
     saveSession(currWindow);
     QMainWindow::closeEvent(event);
 }
@@ -226,6 +226,8 @@ void MainWindow::initMenuBar()
     dbMenu->addSeparator();
     dbMenu->addAction(dbTree->getAction(DbTree::EXPORT_DB));
     dbMenu->addAction(dbTree->getAction(DbTree::CONVERT_DB));
+    dbMenu->addAction(dbTree->getAction(DbTree::VACUUM_DB));
+    dbMenu->addAction(dbTree->getAction(DbTree::INTEGRITY_CHECK));
     dbMenu->addSeparator();
     dbMenu->addAction(dbTree->getAction(DbTree::REFRESH_SCHEMA));
     dbMenu->addAction(dbTree->getAction(DbTree::REFRESH_SCHEMAS));

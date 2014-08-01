@@ -2,8 +2,6 @@
 * printing plugin
 * enterprise SQL formatter
 * plugin conflicts according to feature provided, as an alternative to module name conflicts. It will require features to be provided.
-* option to view full db path in window title
-* db context menu entries: vacuum, integrity check
 * generating INSERT/UPDATE/DELETE/SELECT basing on table definition
 * if creating unique index fails, propose to generate select query to find out conflicting rows
 * add nice api for accessing menus and toolbars, so plugins can easly add/remove from them
@@ -15,7 +13,6 @@
 * crash management
 * tips&tricks dialog
 
-* CompletionHelper: smarter suggestions for UPDATE, DELETE and INSERT, just like for SELECT.
 * sql edit in trigger dialog should understand (highlight and suggest) the 'new' and 'old' keywords.
 * Idea for next versions: think of some smart "revert" or "backup", so users are protected from accidentaly deleting table,
   or data in table.

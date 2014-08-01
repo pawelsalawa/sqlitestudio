@@ -57,6 +57,8 @@ class DbTree : public QDockWidget, public ExtActionContainer
             IMPORT_INTO_DB,
             EXPORT_DB,
             CONVERT_DB,
+            VACUUM_DB,
+            INTEGRITY_CHECK,
             ADD_TABLE,
             EDIT_TABLE,
             DEL_TABLE,
@@ -163,6 +165,8 @@ class DbTree : public QDockWidget, public ExtActionContainer
         void populateTable();
         void editColumn();
         void convertDb();
+        void vacuumDb();
+        void integrityCheck();
         void editColumn(DbTreeItem* item);
         void currentChanged(const QModelIndex & current, const QModelIndex & previous);
         void deleteSelected();
