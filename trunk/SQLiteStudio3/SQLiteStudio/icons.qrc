@@ -161,5 +161,7 @@
         <file>img/window_close_other.png</file>
         <file>img/window_close_all.png</file>
         <file>img/window_restore.png</file>
+        <file>img/integrity_check.png</file>
+        <file>img/vacuum_db.png</file>
     </qresource>
 </RCC>

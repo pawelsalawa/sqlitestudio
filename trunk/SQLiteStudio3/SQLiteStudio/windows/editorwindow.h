@@ -76,6 +76,10 @@ class EditorWindow : public MdiChild, public ExtActionContainer
         QSize sizeHint() const;
         QAction* getAction(Action action);
         QString getQueryToExecute(bool doSelectCurrentQuery = false);
+        bool setCurrentDb(Db* db);
+        void setContents(const QString& sql);
+        QString getContents() const;
+        void execute();
 
     protected:
         void changeEvent(QEvent *e);

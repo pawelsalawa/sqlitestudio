@@ -22,6 +22,7 @@
 #include "dialogs/importdialog.h"
 #include "dialogs/populatedialog.h"
 #include "services/importmanager.h"
+#include "windows/editorwindow.h"
 #include <QApplication>
 #include <QClipboard>
 #include <QAction>
@@ -106,6 +107,8 @@ void DbTree::createActions()
     createAction(IMPORT_INTO_DB, ICONS.IMPORT, tr("Import"), this, SLOT(import()), this);
     createAction(EXPORT_DB, ICONS.DATABASE_EXPORT, tr("Export the database"), this, SLOT(exportDb()), this);
     createAction(CONVERT_DB, ICONS.CONVERT_DB, tr("Convert database type"), this, SLOT(convertDb()), this);
+    createAction(VACUUM_DB, ICONS.VACUUM_DB, tr("Vacuum"), this, SLOT(vacuumDb()), this);
+    createAction(INTEGRITY_CHECK, ICONS.INTEGRITY_CHECK, tr("Integrity check"), this, SLOT(integrityCheck()), this);
     createAction(ADD_TABLE, ICONS.TABLE_ADD, tr("Create a table"), this, SLOT(addTable()), this);
     createAction(EDIT_TABLE, ICONS.TABLE_EDIT, tr("Edit the table"), this, SLOT(editTable()), this);
     createAction(DEL_TABLE, ICONS.TABLE_DEL, tr("Drop the table"), this, SLOT(delTable()), this);
@@ -156,7 +159,8 @@ void DbTree::updateActionStates(const QStandardItem *item)
             enabled << DELETE_DB << EDIT_DB;
             if (dbTreeItem->getDb()->isOpen())
             {
-                enabled << DISCONNECT_FROM_DB << ADD_TABLE << ADD_VIEW << IMPORT_INTO_DB << EXPORT_DB << REFRESH_SCHEMA << CONVERT_DB;
+                enabled << DISCONNECT_FROM_DB << ADD_TABLE << ADD_VIEW << IMPORT_INTO_DB << EXPORT_DB << REFRESH_SCHEMA << CONVERT_DB
+                        << VACUUM_DB << INTEGRITY_CHECK;
                 isDbOpen = true;
             }
             else
@@ -317,6 +321,8 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
                     actions += ActionEntry(IMPORT_INTO_DB);
                     actions += ActionEntry(EXPORT_DB);
                     actions += ActionEntry(CONVERT_DB);
+                    actions += ActionEntry(VACUUM_DB);
+                    actions += ActionEntry(INTEGRITY_CHECK);
                     actions += ActionEntry(_separator);
                 }
                 else
@@ -1158,6 +1164,38 @@ void DbTree::convertDb()
     DbConverterDialog dialog(this);
     dialog.setDb(db);
     dialog.exec();
+}
+
+void DbTree::vacuumDb()
+{
+    Db* db = getSelectedDb();
+    if (!db || !db->isValid())
+        return;
+
+    SqlQueryPtr res = db->exec("VACUUM;");
+    if (res->isError())
+        notifyError(tr("Error while executing VACUUM on the database %1: %2").arg(db->getName(), res->getErrorText()));
+    else
+        notifyInfo(tr("VACUUM execution finished successfly."));
+}
+
+void DbTree::integrityCheck()
+{
+    Db* db = getSelectedDb();
+    if (!db || !db->isValid())
+        return;
+
+    EditorWindow* win = MAINWINDOW->openSqlEditor();
+    if (!win->setCurrentDb(db))
+    {
+        qCritical() << "Created EditorWindow had not got requested database:" << db->getName();
+        win->close();
+        return;
+    }
+
+    win->getMdiWindow()->rename(tr("Integrity check (%1)").arg(db->getName()));
+    win->setContents("PRAGMA integrity_check;");
+    win->execute();
 }
 
 void DbTree::editColumn(DbTreeItem* item)

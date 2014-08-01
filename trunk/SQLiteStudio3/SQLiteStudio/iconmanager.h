@@ -67,6 +67,8 @@ class IconManager : public QObject
             DEF_ICON(CONSTRAINT_UNIQUE,                 "unique")
             DEF_ICO2(CONSTRAINT_UNIQUE_ADD,             CONSTRAINT_UNIQUE, PLUS)
             DEF_ICON(CONVERT_DB,                        "convert_db")
+            DEF_ICON(VACUUM_DB,                         "vacuum_db")
+            DEF_ICON(INTEGRITY_CHECK,                   "integrity_check")
             DEF_ICON(DATABASE,                          "database")
             DEF_ICO2(DATABASE_ADD,                      DATABASE, PLUS)
             DEF_ICON(DATABASE_CONNECT,                  "database_connect")

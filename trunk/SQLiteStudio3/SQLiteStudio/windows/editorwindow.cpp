@@ -187,6 +187,30 @@ QString EditorWindow::getQueryToExecute(bool doSelectCurrentQuery)
     return sql;
 }
 
+bool EditorWindow::setCurrentDb(Db *db)
+{
+    if (dbCombo->findText(db->getName()) == -1)
+        return false;
+
+    dbCombo->setCurrentText(db->getName());
+    return true;
+}
+
+void EditorWindow::setContents(const QString &sql)
+{
+    ui->sqlEdit->setPlainText(sql);
+}
+
+QString EditorWindow::getContents() const
+{
+    return ui->sqlEdit->toPlainText();
+}
+
+void EditorWindow::execute()
+{
+    execQuery();
+}
+
 QVariant EditorWindow::saveSession()
 {
     QHash<QString,QVariant> sessionValue;
