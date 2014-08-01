@@ -15,6 +15,9 @@
 #include "searchtextlocator.h"
 #include "services/codeformatter.h"
 #include "sqlitestudio.h"
+#include "dbtree/dbtreeitem.h"
+#include "dbtree/dbtree.h"
+#include "dbtree/dbtreemodel.h"
 #include <QAction>
 #include <QMenu>
 #include <QTimer>
@@ -149,27 +152,6 @@ void SqlEditor::setupDefShortcuts()
                         DELETE_LINE}, Qt::WidgetWithChildrenShortcut);
 
     BIND_SHORTCUTS(SqlEditor, Action);
-
-//    defShortcutStdKey(CUT, QKeySequence::Cut);
-//    defShortcutStdKey(COPY, QKeySequence::Copy);
-//    defShortcutStdKey(PASTE, QKeySequence::Paste);
-//    defShortcutStdKey(DELETE, QKeySequence::Delete);
-//    defShortcutStdKey(SELECT_ALL, QKeySequence::SelectAll);
-//    defShortcutStdKey(UNDO, QKeySequence::Undo);
-//    defShortcutStdKey(REDO, QKeySequence::Redo);
-//    defShortcutStdKey(SAVE_SQL_FILE, QKeySequence::Save);
-//    defShortcutStdKey(OPEN_SQL_FILE, QKeySequence::Open);
-//    defShortcutStdKey(FIND, QKeySequence::Find);
-//    defShortcutStdKey(FIND_NEXT, QKeySequence::FindNext);
-//    defShortcutStdKey(FIND_PREV, QKeySequence::FindPrevious);
-//    defShortcutStdKey(REPLACE, QKeySequence::Replace);
-//    defShortcut(DELETE_LINE, Qt::CTRL + Qt::Key_D);
-//    defShortcut(COMPLETE, Qt::CTRL + Qt::Key_Space);
-//    defShortcut(FORMAT_SQL, Qt::ALT + Qt::Key_F);
-//    defShortcut(MOVE_BLOCK_DOWN, Qt::ALT + Qt::Key_Down);
-//    defShortcut(MOVE_BLOCK_UP, Qt::ALT + Qt::Key_Up);
-//    defShortcut(COPY_BLOCK_DOWN, Qt::ALT + Qt::CTRL + Qt::Key_Down);
-//    defShortcut(COPY_BLOCK_UP, Qt::ALT + Qt::CTRL + Qt::Key_Up);
 }
 
 void SqlEditor::setupMenu()
@@ -190,6 +172,8 @@ void SqlEditor::setupMenu()
     contextMenu->addAction(actionMap[DELETE]);
     contextMenu->addSeparator();
     contextMenu->addAction(actionMap[SELECT_ALL]);
+
+    validObjContextMenu = new QMenu(this);
 }
 
 Db* SqlEditor::getDb() const
@@ -210,6 +194,33 @@ void SqlEditor::setAutoCompletion(bool enabled)
 
 void SqlEditor::customContextMenuRequested(const QPoint &pos)
 {
+    if (objectLinksEnabled)
+    {
+        const DbObject* obj = getValidObjectForPosition(pos);
+        QString objName = toPlainText().mid(obj->from, (obj->to - obj->from + 1));
+
+        validObjContextMenu->clear();
+
+        DbTreeItem* item = nullptr;
+        for (DbTreeItem::Type type : {DbTreeItem::Type::TABLE, DbTreeItem::Type::INDEX, DbTreeItem::Type::TRIGGER, DbTreeItem::Type::VIEW})
+        {
+            item = DBTREE->getModel()->findItem(type, objName);
+            if (item)
+                break;
+        }
+
+        if (item)
+        {
+            DBTREE->setSelectedItem(item);
+            DBTREE->setupActionsForMenu(item, validObjContextMenu);
+            if (validObjContextMenu->actions().size() == 0)
+                return;
+
+            DBTREE->updateActionStates(item);
+            validObjContextMenu->popup(mapToGlobal(pos));
+        }
+        return;
+    }
     contextMenu->popup(mapToGlobal(pos));
 }
 
@@ -1322,11 +1333,8 @@ void SqlEditor::mousePressEvent(QMouseEvent* e)
 {
     if (objectLinksEnabled)
     {
-        QTextCursor cursor = cursorForPosition(e->pos());
-        int position = cursor.position();
-        bool movedLeft = (cursorRect(cursor).x() - e->pos().x()) < 0;
-        const DbObject* obj = getValidObjectForPosition(position, movedLeft);
-        if (obj)
+        const DbObject* obj = getValidObjectForPosition(e->pos());
+        if (obj && e->button() == Qt::LeftButton)
         {
             QString objName = toPlainText().mid(obj->from, (obj->to - obj->from + 1));
             openObject(obj->dbName, objName);
@@ -1422,6 +1430,14 @@ void SqlEditor::setVirtualSqlExpression(const QString& value)
     }
 
     virtualSqlRightOffset = virtualSqlExpression.length() - virtualSqlOffset - 2;
+}
+
+const SqlEditor::DbObject* SqlEditor::getValidObjectForPosition(const QPoint& point)
+{
+    QTextCursor cursor = cursorForPosition(point);
+    int position = cursor.position();
+    bool movedLeft = (cursorRect(cursor).x() - point.x()) < 0;
+    return getValidObjectForPosition(position, movedLeft);
 }
 
 const SqlEditor::DbObject* SqlEditor::getValidObjectForPosition(int position, bool movedLeft)

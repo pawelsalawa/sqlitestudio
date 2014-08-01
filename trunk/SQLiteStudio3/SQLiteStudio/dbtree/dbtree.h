@@ -92,10 +92,12 @@ class DbTree : public QDockWidget, public ExtActionContainer
         QVariant saveSession();
         void restoreSession(const QVariant& sessionValue);
         DbTreeModel* getModel() const;
-        static bool isMimeDataValidForItem(const QMimeData* mimeData, const DbTreeItem* item);
-        static bool isItemDraggable(const DbTreeItem* item);
         void showWidgetCover();
         void hideWidgetCover();
+        void setSelectedItem(DbTreeItem* item);
+
+        static bool isMimeDataValidForItem(const QMimeData* mimeData, const DbTreeItem* item);
+        static bool isItemDraggable(const DbTreeItem* item);
 
     protected:
         void createActions();

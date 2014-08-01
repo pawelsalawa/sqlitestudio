@@ -563,6 +563,12 @@ void DbTree::hideWidgetCover()
     widgetCover->hide();
 }
 
+void DbTree::setSelectedItem(DbTreeItem *item)
+{
+    ui->treeView->setCurrentIndex(item->index());
+    ui->treeView->selectionModel()->select(item->index(), QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent);
+}
+
 void DbTree::setActionEnabled(int action, bool enabled)
 {
     actionMap[action]->setEnabled(enabled);
