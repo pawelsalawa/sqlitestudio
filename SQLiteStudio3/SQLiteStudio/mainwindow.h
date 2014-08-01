@@ -72,6 +72,10 @@ class MainWindow : public QMainWindow, virtual public ExtActionContainer
         void pushClosedWindowSessionValue(const QVariant& value);
         bool hasClosedWindowToRestore() const;
         bool isClosingApp() const;
+        QToolBar* getMainToolbar();
+        QToolBar* getDatabaseToolbar();
+        QToolBar* getStructureToolbar();
+        QToolBar* getViewToolbar();
 
     protected:
         void closeEvent(QCloseEvent *event);

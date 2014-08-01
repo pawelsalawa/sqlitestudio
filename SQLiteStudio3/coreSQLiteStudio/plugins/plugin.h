@@ -33,7 +33,7 @@ class PluginType;
  * };
  * @endcode
  *
- * Full tutorial for writting plugins is at: http://sqlitestudio.pl/wiki/index.php/Writting_plugins
+ * Full tutorial for writting plugins is at: http://wiki.sqlitestudio.pl/index.php/Writting_plugins
  *
  * SQLiteStudio looks for plugins in following directories:
  * <ul>
@@ -87,7 +87,7 @@ class API_EXPORT Plugin
          *
          * This method should return the object name of the top-most widget found in the provided *.ui file.
          *
-         * For more details see: http://sqlitestudio.pl/wiki/index.php/Plugin_UI_forms
+         * For more details see: http://wiki.sqlitestudio.pl/index.php/Plugin_UI_forms
          */
         virtual QString getConfigUiForm() const = 0;
 

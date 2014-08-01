@@ -583,7 +583,7 @@ void ConfigDialog::delDataType()
 
 void ConfigDialog::dataTypesHelp()
 {
-    static const QString url = QStringLiteral("http://sqlitestudio.pl/wiki/index.php/User_Manual#Customizing_data_type_editors");
+    static const QString url = QStringLiteral("http://wiki.sqlitestudio.pl/index.php/User_Manual#Customizing_data_type_editors");
     QDesktopServices::openUrl(QUrl(url, QUrl::StrictMode));
 }
 
