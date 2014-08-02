@@ -1019,7 +1019,10 @@ sortorder(X) ::= .                          {X = new SqliteSortOrder(SqliteSortO
 %destructor groupby_opt {delete $$;}
 groupby_opt(X) ::= .                        {X = new ParserExprList();}
 groupby_opt(X) ::= GROUP BY nexprlist(L).   {X = L;}
-
+groupby_opt(X) ::= GROUP BY.                {
+                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                X = new ParserExprList();
+                                            }
 %type having_opt {SqliteExpr*}
 %destructor having_opt {delete $$;}
 having_opt(X) ::= .                         {X = nullptr;}
