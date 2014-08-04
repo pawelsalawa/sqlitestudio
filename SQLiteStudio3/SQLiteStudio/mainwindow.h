@@ -24,11 +24,12 @@ class FunctionsEditor;
 class CollationsEditor;
 
 CFG_KEY_LIST(MainWindow, QObject::tr("Main window"),
-     CFG_KEY_ENTRY(OPEN_SQL_EDITOR,   Qt::ALT + Qt::Key_E,         QObject::tr("Open SQL editor"))
-     CFG_KEY_ENTRY(PREV_TASK,         Qt::CTRL + Qt::Key_PageUp,   QObject::tr("Previous window"))
-     CFG_KEY_ENTRY(NEXT_TASK,         Qt::CTRL + Qt::Key_PageDown, QObject::tr("Next window"))
-     CFG_KEY_ENTRY(HIDE_STATUS_FIELD, Qt::Key_Escape,              QObject::tr("Hide status area"))
-     CFG_KEY_ENTRY(OPEN_CONFIG,       Qt::Key_F2,                  QObject::tr("Open configuration dialog"))
+     CFG_KEY_ENTRY(OPEN_SQL_EDITOR,    Qt::ALT + Qt::Key_E,         QObject::tr("Open SQL editor"))
+     CFG_KEY_ENTRY(PREV_TASK,          Qt::CTRL + Qt::Key_PageUp,   QObject::tr("Previous window"))
+     CFG_KEY_ENTRY(NEXT_TASK,          Qt::CTRL + Qt::Key_PageDown, QObject::tr("Next window"))
+     CFG_KEY_ENTRY(HIDE_STATUS_FIELD,  Qt::Key_Escape,              QObject::tr("Hide status area"))
+     CFG_KEY_ENTRY(OPEN_CONFIG,        Qt::Key_F2,                  QObject::tr("Open configuration dialog"))
+     CFG_KEY_ENTRY(OPEN_DEBUG_CONSOLE, Qt::Key_F12,                 QObject::tr("Open Debug Console"))
 )
 
 class MainWindow : public QMainWindow, virtual public ExtActionContainer
@@ -57,7 +58,8 @@ class MainWindow : public QMainWindow, virtual public ExtActionContainer
             CLOSE_ALL_WINDOWS,
             CLOSE_OTHER_WINDOWS,
             RESTORE_WINDOW,
-            RENAME_WINDOW
+            RENAME_WINDOW,
+            OPEN_DEBUG_CONSOLE
         };
 
         static MainWindow* getInstance();
@@ -131,6 +133,7 @@ class MainWindow : public QMainWindow, virtual public ExtActionContainer
         void closeSelectedWindow();
         void restoreLastClosedWindow();
         void renameWindow();
+        void openDebugConsole();
 };
 
 template <class T>
