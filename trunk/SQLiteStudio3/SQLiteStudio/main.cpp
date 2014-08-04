@@ -15,6 +15,7 @@
 #include "multieditor/multieditorbool.h"
 #include "uiconfig.h"
 #include "sqlitestudio.h"
+#include "uidebug.h"
 #include <QApplication>
 #include <QSplashScreen>
 #include <QThread>
@@ -25,6 +26,10 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+
+    setUiDebug(true, false);
+
+    qInstallMessageHandler(uiMessageHandler);
 
     DbTreeItem::initMeta();
     SqlQueryModelColumn::initMeta();

@@ -27,6 +27,7 @@
 #include "multieditor/multieditorwidgetplugin.h"
 #include "multieditor/multieditor.h"
 #include "dialogs/dbdialog.h"
+#include "uidebug.h"
 #include <QMdiSubWindow>
 #include <QDebug>
 #include <QStyleFactory>
@@ -181,6 +182,8 @@ void MainWindow::createActions()
     createAction(CLOSE_ALL_WINDOWS, ICONS.WIN_CLOSE_ALL, tr("Close all windows"), this, SLOT(closeAllWindows()), this);
     createAction(RESTORE_WINDOW, ICONS.WIN_RESTORE, tr("Restore recently closed window"), this, SLOT(restoreLastClosedWindow()), this);
     createAction(RENAME_WINDOW, ICONS.WIN_RENAME, tr("Rename selected window"), this, SLOT(renameWindow()), this);
+
+    createAction(OPEN_DEBUG_CONSOLE, tr("Open Debug Console"), this, SLOT(openDebugConsole()), this);
 
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::CONNECT_TO_DB));
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::DISCONNECT_FROM_DB));
@@ -529,6 +532,11 @@ void MainWindow::renameWindow()
 
     win->rename(newTitle);
 
+}
+
+void MainWindow::openDebugConsole()
+{
+    showUiDebugConsole();
 }
 
 DdlHistoryWindow* MainWindow::openDdlHistory()
