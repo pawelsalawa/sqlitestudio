@@ -212,13 +212,13 @@ void CLI::applyHistoryLimit()
 
 void CLI::openDbFile(const QString& path)
 {
-    QString newName = DbManager::generateDbName(path);
-    if (!DBLIST->addDb(newName, path, false))
+    QString name = DBLIST->quickAddDb(path, QHash<QString,QVariant>());
+    if (name.isNull())
     {
         println(tr("Could not add database %1 to list.").arg(path));
         return;
     }
-    Db* db = DBLIST->getByName(newName);
+    Db* db = DBLIST->getByName(name);
     setCurrentDb(db);
 }
 

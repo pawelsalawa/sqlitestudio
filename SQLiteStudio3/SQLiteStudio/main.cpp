@@ -16,6 +16,8 @@
 #include "uiconfig.h"
 #include "sqlitestudio.h"
 #include "uidebug.h"
+#include <QCommandLineParser>
+#include <QCommandLineOption>
 #include <QApplication>
 #include <QSplashScreen>
 #include <QThread>
@@ -23,13 +25,39 @@
 #include <QPluginLoader>
 #include <QDebug>
 
+QString uiHandleCmdLineArgs()
+{
+    QCommandLineParser parser;
+    parser.setApplicationDescription(QObject::tr("GUI interface to SQLiteStudio, a SQLite manager."));
+    parser.addHelpOption();
+    parser.addVersionOption();
+
+    QCommandLineOption debugOption({"d", "debug"}, QObject::tr("enables debug messages in console (accessible with F12)."));
+    QCommandLineOption debugStdOutOption("debug-stdout", QObject::tr("redirects debug messages into standard output (forces debug mode)."));
+    parser.addOption(debugOption);
+    parser.addOption(debugStdOutOption);
+
+    parser.addPositionalArgument(QObject::tr("file"), QObject::tr("database file to open"));
+
+    parser.process(qApp->arguments());
+
+    setUiDebug(parser.isSet(debugOption) || parser.isSet(debugStdOutOption), !parser.isSet(debugStdOutOption));
+
+
+    QStringList args = parser.positionalArguments();
+    if (args.size() > 0)
+        return args[0];
+
+    return QString::null;
+}
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    setUiDebug(true, false);
-
     qInstallMessageHandler(uiMessageHandler);
+
+    QString dbToOpen = uiHandleCmdLineArgs();
 
     DbTreeItem::initMeta();
     SqlQueryModelColumn::initMeta();
@@ -49,6 +77,9 @@ int main(int argc, char *argv[])
 
     MainWindow::getInstance()->restoreSession();
     MainWindow::getInstance()->show();
+
+    if (!dbToOpen.isNull())
+        MainWindow::getInstance()->openDb(dbToOpen);
 
     return a.exec();
 }

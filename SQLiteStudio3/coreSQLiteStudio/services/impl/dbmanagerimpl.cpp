@@ -42,6 +42,12 @@ bool DbManagerImpl::addDb(const QString &name, const QString &path, bool permane
 
 bool DbManagerImpl::addDb(const QString &name, const QString &path, const QHash<QString,QVariant>& options, bool permanent)
 {
+    if (getByName(name))
+    {
+        qWarning() << "Tried to add database with name that was already on the list:" << name;
+        return false; // db with this name exists
+    }
+
     QString errorMessage;
     Db* db = createDb(name, path, options, &errorMessage);
     if (!db)
@@ -236,6 +242,16 @@ Db* DbManagerImpl::createInMemDb()
 bool DbManagerImpl::isTemporary(Db* db)
 {
     return CFG->getDb(db->getName()).isNull();
+}
+
+QString DbManagerImpl::quickAddDb(const QString& path, const QHash<QString, QVariant>& options)
+{
+    QString newName = DbManager::generateDbName(path);
+    newName = generateUniqueName(newName, DBLIST->getDbNames());
+    if (!DBLIST->addDb(newName, path, options, false))
+        return QString::null;
+
+    return newName;
 }
 
 void DbManagerImpl::setInMemDbCreatorPlugin(DbPlugin* plugin)

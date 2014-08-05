@@ -44,6 +44,7 @@ class DbManagerImpl : public DbManager
         Db* getByPath(const QString& path);
         Db* createInMemDb();
         bool isTemporary(Db* db);
+        QString quickAddDb(const QString &path, const QHash<QString, QVariant> &options);
 
         /**
          * @brief Defines database plugin used for creating in-memory databases.

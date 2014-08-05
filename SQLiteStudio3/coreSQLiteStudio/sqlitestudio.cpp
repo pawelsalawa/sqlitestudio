@@ -47,16 +47,6 @@ SQLiteStudio::~SQLiteStudio()
 {
 }
 
-void SQLiteStudio::parseCmdLineArgs()
-{
-    for (int i = 0; i < cmdLineArgs.size(); i++)
-    {
-        if (cmdLineArgs[i] == "-d")
-        {
-            // TODO command line args for gui
-        }
-    }
-}
 PopulateManager* SQLiteStudio::getPopulateManager() const
 {
     return populateManager;
@@ -247,8 +237,6 @@ void SQLiteStudio::init(const QStringList& cmdListArguments, bool guiAvailable)
     exportManager = new ExportManager();
     importManager = new ImportManager();
     populateManager = new PopulateManager();
-
-    parseCmdLineArgs();
 }
 
 void SQLiteStudio::cleanUp()

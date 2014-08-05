@@ -76,3 +76,13 @@ void showUiDebugConsole()
     if (sqliteStudioUiDebugConsole)
         sqliteStudioUiDebugConsole->show();
 }
+
+bool isDebugEnabled()
+{
+    return UI_DEBUG_ENABLED;
+}
+
+bool isDebugConsoleEnabled()
+{
+    return UI_DEBUG_CONSOLE;
+}

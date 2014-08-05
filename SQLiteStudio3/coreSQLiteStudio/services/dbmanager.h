@@ -58,6 +58,16 @@ class API_EXPORT DbManager : public QObject
         virtual bool addDb(const QString &name, const QString &path, bool permanent = true) = 0;
 
         /**
+         * @brief Adds database as temporary, with generated name.
+         * @param path Path to database.
+         * @param options Key-value custom options for database.
+         * @return Added database name, if the database has been successfly added, or null string otherwise.
+         *
+         * This method is used for example when database was passed as argument to application command line arguments.
+         */
+        virtual QString quickAddDb(const QString &path, const QHash<QString, QVariant> &options) = 0;
+
+        /**
          * @brief Updates registered database with new data.
          * @param db Registered database.
          * @param name New symbolic name for the database.
