@@ -28,6 +28,7 @@
 #include "multieditor/multieditor.h"
 #include "dialogs/dbdialog.h"
 #include "uidebug.h"
+#include "services/dbmanager.h"
 #include <QMdiSubWindow>
 #include <QDebug>
 #include <QStyleFactory>
@@ -88,6 +89,14 @@ void MainWindow::init()
     updateWindowActions();
 
     qApp->installEventFilter(this);
+
+    if (isDebugEnabled())
+    {
+        if (isDebugConsoleEnabled())
+            notifyInfo(tr("Running in debug mode. Press %1 to open debug console.").arg(shortcuts[OPEN_DEBUG_CONSOLE]->get()));
+        else
+            notifyInfo(tr("Running in debug mode. Debug messages are printed to the standard output."));
+    }
 }
 
 void MainWindow::cleanUp()
@@ -577,6 +586,19 @@ QToolBar *MainWindow::getStructureToolbar()
 QToolBar *MainWindow::getViewToolbar()
 {
     return ui->viewToolbar;
+}
+
+void MainWindow::openDb(const QString& path)
+{
+    QString name = DBLIST->quickAddDb(path, QHash<QString,QVariant>());
+    if (!name.isNull())
+    {
+        notifyInfo(tr("Database passed in command line parameters (%1) has been temporarily added to the list under name: %2").arg(path, name));
+        Db* db = DBLIST->getByName(name);
+        db->open();
+    }
+    else
+        notifyError(tr("Could not add database %1 to list.").arg(path));
 }
 
 MainWindow *MainWindow::getInstance()

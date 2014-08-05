@@ -1,5 +1,6 @@
 #include "config_builder.h"
 #include "services/config.h"
+#include "common/unused.h"
 #include <QDebug>
 
 CfgCategory* lastCreatedCfgCategory = nullptr;
@@ -274,6 +275,7 @@ CfgEntry::operator QString() const
 CfgLazyInitializer::CfgLazyInitializer(std::function<void ()> initFunc, const char *name) :
     initFunc(initFunc)
 {
+    UNUSED(name);
     instances << this;
 }
 

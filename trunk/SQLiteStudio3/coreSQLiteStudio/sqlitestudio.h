@@ -142,14 +142,6 @@ class API_EXPORT SQLiteStudio : public QObject
         ~SQLiteStudio();
 
         /**
-         * @brief Parses command line arguments.
-         *
-         * It parses and applies command line arguments.
-         * TODO: describe options
-         */
-        void parseCmdLineArgs();
-
-        /**
          * @brief Code formatter service.
          */
         CodeFormatter* codeFormatter = nullptr;

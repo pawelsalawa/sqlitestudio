@@ -78,6 +78,7 @@ class MainWindow : public QMainWindow, virtual public ExtActionContainer
         QToolBar* getDatabaseToolbar();
         QToolBar* getStructureToolbar();
         QToolBar* getViewToolbar();
+        void openDb(const QString& path);
 
     protected:
         void closeEvent(QCloseEvent *event);
