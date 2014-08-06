@@ -45,6 +45,12 @@ QString MultiEditorText::getTabLabel()
     return tr("Text");
 }
 
+QToolBar* MultiEditorText::getToolBar(int toolbar) const
+{
+    UNUSED(toolbar);
+    return nullptr;
+}
+
 QList<QWidget*> MultiEditorText::getNoScrollWidgets()
 {
     // We don't return text, we want it to be scrolled.

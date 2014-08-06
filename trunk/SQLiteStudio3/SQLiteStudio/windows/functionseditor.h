@@ -20,7 +20,7 @@ class QTreeWidgetItem;
 class QSyntaxHighlighter;
 class SelectableDbModel;
 
-class FunctionsEditor : public MdiChild, public ExtActionContainer
+class FunctionsEditor : public MdiChild
 {
     Q_OBJECT
 
@@ -39,6 +39,11 @@ class FunctionsEditor : public MdiChild, public ExtActionContainer
             HELP
         };
 
+        enum ToolBar
+        {
+            TOOLBAR
+        };
+
         explicit FunctionsEditor(QWidget *parent = 0);
         ~FunctionsEditor();
 
@@ -51,6 +56,7 @@ class FunctionsEditor : public MdiChild, public ExtActionContainer
         QString getTitleForMdiWindow();
         void createActions();
         void setupDefShortcuts();
+        QToolBar* getToolBar(int toolbar) const;
 
     private:
         void init();

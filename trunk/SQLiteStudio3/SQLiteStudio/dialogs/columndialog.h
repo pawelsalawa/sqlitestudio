@@ -36,12 +36,17 @@ class ColumnDialog : public QDialog, public ExtActionContainer
             ADD_COLLATE
         };
 
+        enum ToolBar
+        {
+        };
+
         explicit ColumnDialog(Db* db, QWidget *parent = 0);
         ~ColumnDialog();
 
         void init();
         void setColumn(SqliteCreateTable::Column* value);
         SqliteCreateTable::Column* getModifiedColumn();
+        QToolBar* getToolBar(int toolbar) const;
 
     protected:
         void changeEvent(QEvent *e);

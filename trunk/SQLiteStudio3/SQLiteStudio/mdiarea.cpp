@@ -62,13 +62,22 @@ QAction* MdiArea::getTaskByWindow(MdiWindow* window)
     return nullptr;
 }
 
-QList<MdiWindow*> MdiArea::getWindows()
+QList<MdiWindow*> MdiArea::getWindows() const
 {
     QList<MdiWindow*> windowList;
     foreach(QAction* action, taskBar->getTasks())
         windowList << actionToWinMap[action];
 
     return windowList;
+}
+
+QList<MdiChild*> MdiArea::getMdiChilds() const
+{
+    QList<MdiChild*> childs;
+    for (MdiWindow* win : getWindows())
+        childs << win->getMdiChild();
+
+    return childs;
 }
 
 void MdiArea::taskActivated()

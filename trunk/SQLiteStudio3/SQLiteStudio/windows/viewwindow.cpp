@@ -184,6 +184,22 @@ bool ViewWindow::restoreSessionNextTime()
     return existingView;
 }
 
+QToolBar* ViewWindow::getToolBar(int toolbar) const
+{
+    switch (static_cast<ToolBar>(toolbar))
+    {
+        case TOOLBAR_QUERY:
+            return ui->queryToolbar;
+        case TOOLBAR_DATA_GRID:
+            return ui->dataView->getToolBar(DataView::TOOLBAR_GRID);
+        case TOOLBAR_DATA_FORM:
+            return ui->dataView->getToolBar(DataView::TOOLBAR_FORM);
+        case TOOLBAR_TRIGGERS:
+            return ui->triggersToolbar;
+    }
+    return nullptr;
+}
+
 void ViewWindow::init()
 {
     ui->setupUi(this);

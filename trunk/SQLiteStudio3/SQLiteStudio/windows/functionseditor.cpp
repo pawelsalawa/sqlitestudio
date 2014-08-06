@@ -76,6 +76,12 @@ void FunctionsEditor::setupDefShortcuts()
 {
 }
 
+QToolBar* FunctionsEditor::getToolBar(int toolbar) const
+{
+    UNUSED(toolbar);
+    return ui->toolBar;
+}
+
 void FunctionsEditor::init()
 {
     ui->setupUi(this);

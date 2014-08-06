@@ -324,6 +324,12 @@ class API_EXPORT PluginManager : public QObject
         virtual QStringList getConflicts(const QString& pluginName) const = 0;
 
         /**
+         * @brief Tells if plugins were already loaded on startup, or is this yet to happen.
+         * @return true if plugins were loaded, false if they are going to be loaded.
+         */
+        virtual bool arePluginsInitiallyLoaded() const = 0;
+
+        /**
          * @brief registerPluginType Registers plugin type for loading and managing.
          * @tparam T Interface class (as defined by Qt plugins standard)
          * @param form Optional name of form object.

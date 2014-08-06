@@ -68,6 +68,12 @@ void CollationsEditor::setupDefShortcuts()
 
 }
 
+QToolBar* CollationsEditor::getToolBar(int toolbar) const
+{
+    UNUSED(toolbar);
+    return ui->toolbar;
+}
+
 void CollationsEditor::init()
 {
     ui->setupUi(this);

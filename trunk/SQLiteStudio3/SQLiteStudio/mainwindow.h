@@ -62,6 +62,14 @@ class MainWindow : public QMainWindow, virtual public ExtActionContainer
             OPEN_DEBUG_CONSOLE
         };
 
+        enum ToolBar
+        {
+            TOOLBAR_MAIN,
+            TOOLBAR_DATABASE,
+            TOOLBAR_STRUCTURE,
+            TOOLBAR_VIEW
+        };
+
         static MainWindow* getInstance();
 
         MdiArea* getMdiArea() const;
@@ -74,10 +82,7 @@ class MainWindow : public QMainWindow, virtual public ExtActionContainer
         void pushClosedWindowSessionValue(const QVariant& value);
         bool hasClosedWindowToRestore() const;
         bool isClosingApp() const;
-        QToolBar* getMainToolbar();
-        QToolBar* getDatabaseToolbar();
-        QToolBar* getStructureToolbar();
-        QToolBar* getViewToolbar();
+        QToolBar* getToolBar(int toolbar) const;
         void openDb(const QString& path);
 
     protected:

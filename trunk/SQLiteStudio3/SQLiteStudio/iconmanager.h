@@ -227,6 +227,7 @@ class IconManager : public QObject
     private:
         IconManager();
         void loadRecurently(QString dirPath, const QString& prefix, bool movie);
+        void enableRescanning();
 
         static IconManager* instance;
         QHash<QString,QIcon*> icons;
@@ -242,6 +243,7 @@ class IconManager : public QObject
         void rescanResources(Plugin* plugin, PluginType* pluginType);
         void rescanResources(const QString& pluginName);
         void pluginsAboutToMassUnload();
+        void pluginsInitiallyLoaded();
 };
 
 #define ICONMANAGER IconManager::getInstance()

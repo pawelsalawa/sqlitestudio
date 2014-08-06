@@ -69,6 +69,7 @@ class Icon
 
         static void init();
         static void loadAll();
+        static void reloadAll();
         static Icon& createFrom(const QString& name, Icon* copy, Attributes attr);
         static Icon& aliasOf(const QString& name, Icon* other);
         static QIcon merge(const QIcon& icon, Attributes attr);

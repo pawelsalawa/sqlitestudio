@@ -569,6 +569,12 @@ void DbTree::setSelectedItem(DbTreeItem *item)
     ui->treeView->selectionModel()->select(item->index(), QItemSelectionModel::Clear|QItemSelectionModel::SelectCurrent);
 }
 
+QToolBar* DbTree::getToolBar(int toolbar) const
+{
+    UNUSED(toolbar);
+    return nullptr;
+}
+
 void DbTree::setActionEnabled(int action, bool enabled)
 {
     actionMap[action]->setEnabled(enabled);

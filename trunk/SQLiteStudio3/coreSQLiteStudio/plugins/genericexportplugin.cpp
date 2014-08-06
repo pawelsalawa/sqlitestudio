@@ -26,7 +26,7 @@ bool GenericExportPlugin::initBeforeExport(Db* db, QIODevice* output, const Expo
 
 ExportManager::ExportModes GenericExportPlugin::getSupportedModes() const
 {
-    return ExportManager::CLIPBOARD|ExportManager::DATABASE|ExportManager::TABLE|ExportManager::QUERY_RESULTS;
+    return ExportManager::FILE|ExportManager::CLIPBOARD|ExportManager::DATABASE|ExportManager::TABLE|ExportManager::QUERY_RESULTS;
 }
 
 ExportManager::ExportProviderFlags GenericExportPlugin::getProviderFlags() const

@@ -1,13 +1,14 @@
 #ifndef MDICHILD_H
 #define MDICHILD_H
 
+#include "common/extactioncontainer.h"
 #include <QWidget>
 #include <QVariant>
 
 class MdiWindow;
 class Icon;
 
-class MdiChild : public QWidget
+class MdiChild : public QWidget, public ExtActionContainer
 {
         Q_OBJECT
     public:
@@ -19,10 +20,9 @@ class MdiChild : public QWidget
 
         MdiWindow* getMdiWindow() const;
         void setMdiWindow(MdiWindow* value);
-
         bool isInvalid() const;
-        virtual bool restoreSessionNextTime();
         void updateWindowTitle();
+        virtual bool restoreSessionNextTime();
         virtual bool handleInitialFocus();
 
     protected:
@@ -37,5 +37,6 @@ class MdiChild : public QWidget
     private:
         MdiWindow* mdiWindow;
 };
+
 
 #endif // MDICHILD_H

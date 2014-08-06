@@ -9,6 +9,8 @@ class ExtActionContainerSignalHandler : public QObject
 {
     Q_OBJECT
 
+    friend class ExtActionContainer;
+
     public:
         ExtActionContainerSignalHandler(ExtActionContainer* actionContainer);
 

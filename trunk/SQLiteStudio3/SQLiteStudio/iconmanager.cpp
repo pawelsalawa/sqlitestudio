@@ -55,9 +55,10 @@ void IconManager::init()
 
     Icon::loadAll();
 
-    connect(PLUGINS, SIGNAL(loaded(Plugin*,PluginType*)), this, SLOT(rescanResources(Plugin*,PluginType*)));
-    connect(PLUGINS, SIGNAL(unloaded(QString,PluginType*)), this, SLOT(rescanResources(QString)));
-    connect(PLUGINS, SIGNAL(aboutToQuit()), this, SLOT(pluginsAboutToMassUnload()));
+    if (PLUGINS->arePluginsInitiallyLoaded())
+        enableRescanning();
+    else
+        connect(PLUGINS, SIGNAL(pluginsInitiallyLoaded()), this, SLOT(pluginsInitiallyLoaded()));
 }
 
 void IconManager::rescanResources(const QString& pluginName)
@@ -78,6 +79,8 @@ void IconManager::rescanResources(const QString& pluginName)
     resourceIcons.clear();
     loadRecurently(":/icons", "", true);
     loadRecurently(":/icons", "", false);
+
+    Icon::reloadAll();
 }
 
 void IconManager::rescanResources(Plugin* plugin, PluginType* pluginType)
@@ -90,6 +93,13 @@ void IconManager::pluginsAboutToMassUnload()
 {
     disconnect(PLUGINS, SIGNAL(loaded(Plugin*,PluginType*)), this, SLOT(rescanResources(Plugin*,PluginType*)));
     disconnect(PLUGINS, SIGNAL(unloaded(QString,PluginType*)), this, SLOT(rescanResources(QString)));
+}
+
+void IconManager::pluginsInitiallyLoaded()
+{
+    Icon::reloadAll();
+    enableRescanning();
+    disconnect(PLUGINS, SIGNAL(pluginsInitiallyLoaded()), this, SLOT(pluginsInitiallyLoaded()));
 }
 
 void IconManager::loadRecurently(QString dirPath, const QString& prefix, bool movie)
@@ -108,6 +118,8 @@ void IconManager::loadRecurently(QString dirPath, const QString& prefix, bool mo
 
         path = entry.absoluteFilePath();
         name = entry.baseName();
+        if (name.contains("printer"))
+            qDebug() << name << path;
         paths[name] = path;
         if (movie)
             movies[name] = new QMovie(path);
@@ -122,6 +134,13 @@ void IconManager::loadRecurently(QString dirPath, const QString& prefix, bool mo
                 resourceIcons << name;
         }
     }
+}
+
+void IconManager::enableRescanning()
+{
+    connect(PLUGINS, SIGNAL(loaded(Plugin*,PluginType*)), this, SLOT(rescanResources(Plugin*,PluginType*)));
+    connect(PLUGINS, SIGNAL(unloaded(QString,PluginType*)), this, SLOT(rescanResources(QString)));
+    connect(PLUGINS, SIGNAL(aboutToQuit()), this, SLOT(pluginsAboutToMassUnload()));
 }
 
 QMovie* IconManager::getMovie(const QString& name)

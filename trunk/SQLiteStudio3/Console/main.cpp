@@ -49,6 +49,7 @@ int main(int argc, char *argv[])
     initCliUtils();
 
     SQLITESTUDIO->init(a.arguments(), false);
+    SQLITESTUDIO->initPlugins();
 
     CliCommandExecutor executor;
 

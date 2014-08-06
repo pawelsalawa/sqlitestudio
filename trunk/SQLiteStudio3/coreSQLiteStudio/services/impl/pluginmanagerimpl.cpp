@@ -138,6 +138,7 @@ void PluginManagerImpl::loadPlugins()
             load(pluginName, alreadyAttempted);
     }
 
+    pluginsAreInitiallyLoaded = true;
     emit pluginsInitiallyLoaded();
 }
 
@@ -746,6 +747,11 @@ QStringList PluginManagerImpl::getConflicts(const QString& pluginName) const
         return QStringList();
 
     return pluginContainer[pluginName]->conflicts;
+}
+
+bool PluginManagerImpl::arePluginsInitiallyLoaded() const
+{
+    return pluginsAreInitiallyLoaded;
 }
 
 void PluginManagerImpl::registerPluginType(PluginType* type)

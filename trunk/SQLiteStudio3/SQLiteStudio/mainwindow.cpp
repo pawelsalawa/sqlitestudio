@@ -568,24 +568,20 @@ bool MainWindow::isClosingApp() const
     return closingApp;
 }
 
-QToolBar *MainWindow::getMainToolbar()
+QToolBar* MainWindow::getToolBar(int toolbar) const
 {
-    return ui->mainToolBar;
-}
-
-QToolBar *MainWindow::getDatabaseToolbar()
-{
-    return ui->dbToolbar;
-}
-
-QToolBar *MainWindow::getStructureToolbar()
-{
-    return ui->structureToolbar;
-}
-
-QToolBar *MainWindow::getViewToolbar()
-{
-    return ui->viewToolbar;
+    switch (static_cast<ToolBar>(toolbar))
+    {
+        case TOOLBAR_MAIN:
+            return ui->mainToolBar;
+        case TOOLBAR_DATABASE:
+            return ui->dbToolbar;
+        case TOOLBAR_STRUCTURE:
+            return ui->structureToolbar;
+        case TOOLBAR_VIEW:
+            return ui->viewToolbar;
+    }
+    return nullptr;
 }
 
 void MainWindow::openDb(const QString& path)

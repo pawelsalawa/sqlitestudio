@@ -1411,6 +1411,12 @@ void SqlEditor::restoreSelection()
     cur.setPosition(storedSelectionEnd, QTextCursor::KeepAnchor);
 }
 
+QToolBar* SqlEditor::getToolBar(int toolbar) const
+{
+    UNUSED(toolbar);
+    return nullptr;
+}
+
 QString SqlEditor::getVirtualSqlExpression() const
 {
     return virtualSqlExpression;

@@ -196,7 +196,8 @@ void ExportDialog::initFormatPage()
     ui->formatAndOptionsPage->setValidator([=]() -> bool
     {
         setValidState(ui->exportFileEdit, true);
-        if (ui->exportFileRadio->isChecked())
+        bool outputFileSupported = currentPlugin && currentPlugin->getSupportedModes().testFlag(ExportManager::FILE);
+        if (outputFileSupported && ui->exportFileRadio->isChecked())
         {
             QString path = ui->exportFileEdit->text();
             if (path.trimmed().isEmpty())
@@ -406,11 +407,6 @@ void ExportDialog::pluginSelected()
     }
 
     currentPlugin->setExportMode(exportMode);
-    bool clipboardSupported = currentPlugin->getSupportedModes().testFlag(ExportManager::CLIPBOARD);
-
-    ui->exportClipboardRadio->setVisible(clipboardSupported);
-    if (!clipboardSupported)
-        ui->exportFileRadio->setChecked(true);
 
     updateExportOutputOptions();
     updateOptions();
@@ -421,9 +417,33 @@ void ExportDialog::pluginSelected()
 
 void ExportDialog::updateExportOutputOptions()
 {
-    bool enabled = ui->exportFileRadio->isChecked();
+    ExportManager::StandardConfigFlags options = currentPlugin->standardOptionsToEnable();
+    bool displayCodec = options.testFlag(ExportManager::CODEC) && !ui->exportClipboardRadio->isChecked();
+    bool clipboardSupported = currentPlugin->getSupportedModes().testFlag(ExportManager::CLIPBOARD);
+    bool outputFileSupported = currentPlugin->getSupportedModes().testFlag(ExportManager::FILE);
+
+    bool enabled = outputFileSupported && ui->exportFileRadio->isChecked();
     ui->exportFileEdit->setEnabled(enabled);
     ui->exportFileButton->setEnabled(enabled);
+
+    ui->exportClipboardRadio->setVisible(clipboardSupported);
+    ui->exportFileRadio->setVisible(outputFileSupported);
+    ui->exportFileEdit->setVisible(outputFileSupported);
+    ui->exportFileButton->setVisible(outputFileSupported);
+    if (!clipboardSupported && outputFileSupported)
+        ui->exportFileRadio->setChecked(true);
+
+    ui->encodingCombo->setVisible(displayCodec);
+    ui->encodingLabel->setVisible(displayCodec);
+    if (displayCodec)
+    {
+        QString codec = currentPlugin->getDefaultEncoding();
+        int idx = ui->encodingCombo->findText(codec);
+        if (idx > -1)
+            ui->encodingCombo->setCurrentIndex(idx);
+    }
+
+    ui->exportToGroup->setVisible(clipboardSupported || outputFileSupported || displayCodec);
 }
 
 void ExportDialog::updateQueryEditDb()
@@ -440,18 +460,6 @@ void ExportDialog::updateOptions()
     {
         qCritical() << "Could not find export plugin, while it was selected on ui:" << ui->formatCombo->currentText();
         return;
-    }
-
-    ExportManager::StandardConfigFlags options = currentPlugin->standardOptionsToEnable();
-    bool displayCodec = options.testFlag(ExportManager::CODEC) && !ui->exportClipboardRadio->isChecked();
-    ui->encodingCombo->setVisible(displayCodec);
-    ui->encodingLabel->setVisible(displayCodec);
-    if (displayCodec)
-    {
-        QString codec = currentPlugin->getDefaultEncoding();
-        int idx = ui->encodingCombo->findText(codec);
-        if (idx > -1)
-            ui->encodingCombo->setCurrentIndex(idx);
     }
 
     int optionsRow = 0;
@@ -585,6 +593,7 @@ void ExportDialog::doExport()
             qCritical() << "Finished export dialog with undefined mode.";
             notifyInternalError();
             break;
+        case ExportManager::FILE:
         case ExportManager::CLIPBOARD:
             break;
     }
@@ -623,14 +632,16 @@ void ExportDialog::exportQuery(const ExportManager::StandardExportConfig& stdCon
 
 ExportManager::StandardExportConfig ExportDialog::getExportConfig() const
 {
-    bool clipboard = ui->exportClipboardRadio->isChecked();
+    bool clipboardSupported = currentPlugin->getSupportedModes().testFlag(ExportManager::CLIPBOARD);
+    bool outputFileSupported = currentPlugin->getSupportedModes().testFlag(ExportManager::FILE);
+    bool clipboard = clipboardSupported && ui->exportClipboardRadio->isChecked();
 
     ExportManager::StandardExportConfig stdConfig;
     stdConfig.intoClipboard = clipboard;
 
     if (clipboard)
         stdConfig.outputFileName = QString::null;
-    else
+    else if (outputFileSupported)
         stdConfig.outputFileName = ui->exportFileEdit->text();
 
     if (exportMode == ExportManager::DATABASE)

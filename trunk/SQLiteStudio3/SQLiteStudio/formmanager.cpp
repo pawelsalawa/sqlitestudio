@@ -81,10 +81,28 @@ void FormManager::pluginsAboutToMassUnload()
     disconnect(PLUGINS, SIGNAL(unloaded(QString,PluginType*)), this, SLOT(rescanResources(QString)));
 }
 
+void FormManager::pluginsInitiallyLoaded()
+{
+    load();
+
+    connect(PLUGINS, SIGNAL(loaded(Plugin*,PluginType*)), this, SLOT(rescanResources(Plugin*,PluginType*)));
+    connect(PLUGINS, SIGNAL(unloaded(QString,PluginType*)), this, SLOT(rescanResources(QString)));
+    connect(PLUGINS, SIGNAL(aboutToQuit()), this, SLOT(pluginsAboutToMassUnload()));
+    disconnect(PLUGINS, SIGNAL(pluginsInitiallyLoaded()), this, SLOT(pluginsInitiallyLoaded()));
+}
+
 void FormManager::init()
 {
     uiLoader = new UiLoader();
 
+    if (PLUGINS->arePluginsInitiallyLoaded())
+        pluginsInitiallyLoaded();
+    else
+        connect(PLUGINS, SIGNAL(pluginsInitiallyLoaded()), this, SLOT(pluginsInitiallyLoaded()));
+}
+
+void FormManager::load()
+{
     QStringList dirs;
     dirs += qApp->applicationDirPath() + "/forms";
     dirs += ":/forms";
@@ -102,10 +120,6 @@ void FormManager::init()
 
     foreach (QString dirPath, dirs)
         loadRecurently(dirPath, "");
-
-    connect(PLUGINS, SIGNAL(loaded(Plugin*,PluginType*)), this, SLOT(rescanResources(Plugin*,PluginType*)));
-    connect(PLUGINS, SIGNAL(unloaded(QString,PluginType*)), this, SLOT(rescanResources(QString)));
-    connect(PLUGINS, SIGNAL(aboutToQuit()), this, SLOT(pluginsAboutToMassUnload()));
 }
 
 void FormManager::loadRecurently(const QString& path, const QString& prefix)

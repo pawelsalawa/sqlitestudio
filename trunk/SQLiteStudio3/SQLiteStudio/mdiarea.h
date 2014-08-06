@@ -1,12 +1,12 @@
 #ifndef MDIAREA_H
 #define MDIAREA_H
 
+#include "mdiwindow.h"
 #include <QMdiArea>
 
 class TaskBar;
 class QActionGroup;
 class MdiChild;
-class MdiWindow;
 
 class MdiArea : public QMdiArea
 {
@@ -25,7 +25,11 @@ class MdiArea : public QMdiArea
         void setTaskBar(TaskBar *value);
         TaskBar* getTaskBar() const;
         QAction* getTaskByWindow(MdiWindow* window);
-        QList<MdiWindow*> getWindows();
+        QList<MdiWindow*> getWindows() const;
+        QList<MdiChild*> getMdiChilds() const;
+
+        template<class T>
+        QList<T*> getMdiChilds() const;
 
     private:
         TaskBar* taskBar = nullptr;
@@ -45,6 +49,21 @@ class MdiArea : public QMdiArea
         void tileVertically();
         void closeAllButActive();
 };
+
+template<class T>
+QList<T*> MdiArea::getMdiChilds() const
+{
+    QList<T*> childs;
+    T* child = nullptr;
+    for (MdiWindow* win : getWindows())
+    {
+        child = dynamic_cast<T*>(win->getMdiChild());
+        if (child)
+            childs << child;
+    }
+
+    return childs;
+}
 
 #define MDIAREA MainWindow::getInstance()->getMdiArea()
 

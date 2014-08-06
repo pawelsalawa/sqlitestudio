@@ -19,7 +19,7 @@ ExportManager::StandardConfigFlags CsvExport::standardOptionsToEnable() const
 
 ExportManager::ExportModes CsvExport::getSupportedModes() const
 {
-    return ExportManager::TABLE|ExportManager::QUERY_RESULTS|ExportManager::CLIPBOARD;
+    return ExportManager::FILE|ExportManager::TABLE|ExportManager::QUERY_RESULTS|ExportManager::CLIPBOARD;
 }
 
 QString CsvExport::getExportConfigFormName() const

@@ -211,6 +211,20 @@ void EditorWindow::execute()
     execQuery();
 }
 
+QToolBar* EditorWindow::getToolBar(int toolbar) const
+{
+    switch (static_cast<ToolBar>(toolbar))
+    {
+        case TOOLBAR_MAIN:
+            return ui->toolBar;
+        case TOOLBAR_DATA_GRID:
+            return ui->dataView->getToolBar(DataView::TOOLBAR_GRID);
+        case TOOLBAR_DATA_FORM:
+            return ui->dataView->getToolBar(DataView::TOOLBAR_FORM);
+    }
+    return nullptr;
+}
+
 QVariant EditorWindow::saveSession()
 {
     QHash<QString,QVariant> sessionValue;

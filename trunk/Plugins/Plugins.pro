@@ -13,4 +13,5 @@ SUBDIRS += \
     XmlExport \
     JsonExport \
     ScriptingTcl \
-    RegExpImport
+    RegExpImport \
+    Printing

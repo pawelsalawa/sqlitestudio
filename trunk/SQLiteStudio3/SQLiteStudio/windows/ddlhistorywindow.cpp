@@ -123,3 +123,17 @@ QString DdlHistoryWindow::getTitleForMdiWindow()
 {
     return tr("DDL history");
 }
+
+void DdlHistoryWindow::createActions()
+{
+}
+
+void DdlHistoryWindow::setupDefShortcuts()
+{
+}
+
+QToolBar* DdlHistoryWindow::getToolBar(int toolbar) const
+{
+    UNUSED(toolbar);
+    return nullptr;
+}

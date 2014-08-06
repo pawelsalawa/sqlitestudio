@@ -1,4 +1,5 @@
 #include "columndialog.h"
+#include "common/unused.h"
 #include "ui_columndialog.h"
 #include "columndialogconstraintsmodel.h"
 #include "iconmanager.h"
@@ -572,6 +573,12 @@ SqliteCreateTable::Column* ColumnDialog::getModifiedColumn()
     column->rebuildTokens();
 
     return new SqliteCreateTable::Column(*column);
+}
+
+QToolBar* ColumnDialog::getToolBar(int toolbar) const
+{
+    UNUSED(toolbar);
+    return nullptr;
 }
 
 void ColumnDialog::updateDataType()

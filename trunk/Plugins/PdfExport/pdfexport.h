@@ -71,7 +71,7 @@ class PDFEXPORTSHARED_EXPORT PdfExport : public GenericExportPlugin
         bool init();
         void deinit();
 
-        protected:
+    protected:
         virtual QPagedPaintDevice* createPaintDevice(const QString& documentTitle);
 
     private:
@@ -129,7 +129,7 @@ class PDFEXPORTSHARED_EXPORT PdfExport : public GenericExportPlugin
 
         void prepareTableDataExport(const QString& table, const QStringList& columnNames, const QHash<ExportManager::ExportProviderFlag,QVariant> providedData);
         QList<int> getColumnDataLengths(int columnCount, const QHash<ExportManager::ExportProviderFlag,QVariant> providedData);
-        void beginDoc(const QString& title);
+        bool beginDoc(const QString& title);
         void endDoc();
         void setupConfig();
         void updateMargins();

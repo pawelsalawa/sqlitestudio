@@ -108,6 +108,12 @@ void SortDialog::setSortOrder(const QueryExecutor::SortList& sortOrder)
     updateState();
 }
 
+QToolBar* SortDialog::getToolBar(int toolbar) const
+{
+    UNUSED(toolbar);
+    return nullptr;
+}
+
 void SortDialog::updateState(QTreeWidgetItem* item)
 {
     QComboBox* combo = dynamic_cast<QComboBox*>(ui->list->itemWidget(item, 1));

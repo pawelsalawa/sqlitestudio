@@ -48,7 +48,7 @@ CFG_KEY_LIST(TableWindow, QObject::tr("Table window"),
      CFG_KEY_ENTRY(PREV_TAB,                Qt::ALT + Qt::Key_Left,  QObject::tr("Go to previous tab"))
 )
 
-class TableWindow : public MdiChild, public ExtActionContainer
+class TableWindow : public MdiChild
 {
         Q_OBJECT
         Q_ENUMS(TableWindow)
@@ -93,6 +93,15 @@ class TableWindow : public MdiChild, public ExtActionContainer
             PREV_TAB
         };
 
+        enum ToolBar
+        {
+            TOOLBAR_STRUCTURE,
+            TOOLBAR_INDEXES,
+            TOOLBAR_TRIGGERS,
+            TOOLBAR_DATA_GRID,
+            TOOLBAR_DATA_FORM
+        };
+
         explicit TableWindow(QWidget *parent = 0);
         TableWindow(Db* db, QWidget *parent = 0);
         TableWindow(const TableWindow& win);
@@ -114,6 +123,7 @@ class TableWindow : public MdiChild, public ExtActionContainer
         void createActions();
         void setupDefShortcuts();
         bool restoreSessionNextTime();
+        QToolBar* getToolBar(int toolbar) const;
 
     private:
         void init();

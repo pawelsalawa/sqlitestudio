@@ -71,15 +71,20 @@ class DataView : public QTabWidget, public ExtActionContainer
             TABS_POSITION
         };
 
+        enum ToolBar
+        {
+            TOOLBAR_GRID,
+            TOOLBAR_FORM
+        };
+
         explicit DataView(QWidget *parent = 0);
 
         void init(SqlQueryModel* model);
 
-        QToolBar* getGridToolBar() const;
-        QToolBar* getFormToolBar() const;
         FormView* getFormView() const;
         SqlQueryView* getGridView() const;
         SqlQueryModel* getModel() const;
+        QToolBar* getToolBar(int toolbar) const;
 
         static void staticInit();
 
