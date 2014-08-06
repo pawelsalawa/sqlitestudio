@@ -1,0 +1,12 @@
+#ifndef PRINTING_GLOBAL_H
+#define PRINTING_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(PRINTING_LIBRARY)
+#  define PRINTINGSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define PRINTINGSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // PRINTING_GLOBAL_H

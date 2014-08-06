@@ -2,6 +2,7 @@
 #include "mdiwindow.h"
 #include "iconmanager.h"
 #include "mainwindow.h"
+#include "common/extactioncontainersignalhandler.h"
 #include <QDebug>
 
 MdiChild::MdiChild(QWidget* parent) :

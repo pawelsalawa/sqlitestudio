@@ -23,8 +23,8 @@ class MdiWindow : public QMdiSubWindow
         bool restoreSessionNextTime();
         void rename(const QString& title);
 
-    protected:
         void changeEvent(QEvent *event);
+    protected:
 
     private:
         QPointer<QWidget> lastFocusedWidget;

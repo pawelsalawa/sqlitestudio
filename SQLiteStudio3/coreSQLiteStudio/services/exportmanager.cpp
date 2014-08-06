@@ -70,6 +70,8 @@ void ExportManager::exportQueryResults(Db* db, const QString& query)
     if (!plugin->getSupportedModes().testFlag(QUERY_RESULTS))
     {
         notifyError(tr("Export plugin %1 doesn't support exporing query results.").arg(plugin->getFormatName()));
+        emit exportFailed();
+        emit exportFinished();
         return;
     }
 
@@ -94,6 +96,8 @@ void ExportManager::exportTable(Db* db, const QString& database, const QString& 
     if (!plugin->getSupportedModes().testFlag(TABLE))
     {
         notifyError(tr("Export plugin %1 doesn't support exporing tables.").arg(plugin->getFormatName()));
+        emit exportFailed();
+        emit exportFinished();
         return;
     }
 
@@ -116,6 +120,8 @@ void ExportManager::exportDatabase(Db* db, const QStringList& objectListToExport
     if (!plugin->getSupportedModes().testFlag(DATABASE))
     {
         notifyError(tr("Export plugin %1 doesn't support exporing databases.").arg(plugin->getFormatName()));
+        emit exportFailed();
+        emit exportFinished();
         return;
     }
 
@@ -154,12 +160,16 @@ bool ExportManager::checkInitialConditions()
     if (exportInProgress)
     {
         qWarning() << "Tried to call export while another export is in progress.";
+        emit exportFailed();
+        emit exportFinished();
         return false;
     }
 
     if (!plugin)
     {
         qWarning() << "Tried to call export while no export plugin was configured.";
+        emit exportFailed();
+        emit exportFinished();
         return false;
     }
 
@@ -168,12 +178,18 @@ bool ExportManager::checkInitialConditions()
 
 ExportWorker* ExportManager::prepareExport()
 {
-    QIODevice* output = getOutputStream();
-    if (!output)
+    bool usesOutput = plugin->getSupportedModes().testFlag(FILE) || plugin->getSupportedModes().testFlag(CLIPBOARD);
+    QIODevice* output = nullptr;
+    if (usesOutput)
     {
-        emit exportFailed();
-        exportInProgress = false;
-        return nullptr;
+        output = getOutputStream();
+        if (!output)
+        {
+            emit exportFailed();
+            emit exportFinished();
+            exportInProgress = false;
+            return nullptr;
+        }
     }
 
     ExportWorker* worker = new ExportWorker(plugin, config, output);
@@ -202,8 +218,10 @@ void ExportManager::finalizeExport(bool result, QIODevice* output)
             notifyInfo(tr("Export to the clipboard was successful."));
             handleClipboardExport();
         }
-        else
+        else if (!config->outputFileName.isEmpty())
             notifyInfo(tr("Export to the file '%1' was successful.").arg(config->outputFileName));
+        else
+            notifyInfo(tr("Export to was successful.").arg(config->outputFileName));
 
         emit exportSuccessful();
     }
@@ -213,8 +231,11 @@ void ExportManager::finalizeExport(bool result, QIODevice* output)
     }
     emit exportFinished();
 
-    output->close();
-    delete output;
+    if (output)
+    {
+        output->close();
+        delete output;
+    }
 
     bufferForClipboard = nullptr;
     exportInProgress = false;
@@ -248,6 +269,11 @@ QIODevice* ExportManager::getOutputStream()
         }
         return file;
     }
+    else
+    {
+        qCritical() << "ExportManager::getOutputStream(): neither clipboard or output file was specified";
+    }
+
     return nullptr;
 }
 

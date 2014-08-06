@@ -17,7 +17,7 @@ class CollationsEditorModel;
 class QSortFilterProxyModel;
 class QSyntaxHighlighter;
 
-class CollationsEditor : public MdiChild, public ExtActionContainer
+class CollationsEditor : public MdiChild
 {
         Q_OBJECT
 
@@ -29,6 +29,11 @@ class CollationsEditor : public MdiChild, public ExtActionContainer
             ADD,
             DELETE,
             HELP
+        };
+
+        enum ToolBar
+        {
+            TOOLBAR
         };
 
         explicit CollationsEditor(QWidget *parent = 0);
@@ -43,6 +48,7 @@ class CollationsEditor : public MdiChild, public ExtActionContainer
         QString getTitleForMdiWindow();
         void createActions();
         void setupDefShortcuts();
+        QToolBar* getToolBar(int toolbar) const;
 
     private:
         void init();

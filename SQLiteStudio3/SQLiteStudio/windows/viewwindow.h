@@ -28,7 +28,7 @@ CFG_KEY_LIST(ViewWindow, QObject::tr("A view window"),
      CFG_KEY_ENTRY(PREV_TAB,         Qt::ALT + Qt::Key_Left,    QObject::tr("Go to previous tab"))
 )
 
-class ViewWindow : public MdiChild, public ExtActionContainer
+class ViewWindow : public MdiChild
 {
         Q_OBJECT
         Q_ENUMS(Action)
@@ -48,6 +48,14 @@ class ViewWindow : public MdiChild, public ExtActionContainer
             // All tabs
             NEXT_TAB,
             PREV_TAB
+        };
+
+        enum ToolBar
+        {
+            TOOLBAR_QUERY,
+            TOOLBAR_DATA_GRID,
+            TOOLBAR_DATA_FORM,
+            TOOLBAR_TRIGGERS
         };
 
         explicit ViewWindow(QWidget *parent = 0);
@@ -71,6 +79,7 @@ class ViewWindow : public MdiChild, public ExtActionContainer
         void createActions();
         void setupDefShortcuts();
         bool restoreSessionNextTime();
+        QToolBar* getToolBar(int toolbar) const;
 
     private:
         void init();

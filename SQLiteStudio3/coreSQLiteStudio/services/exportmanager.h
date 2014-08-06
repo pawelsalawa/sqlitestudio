@@ -29,7 +29,8 @@ class API_EXPORT ExportManager : public PluginServiceBase
             CLIPBOARD     = 0x01,
             DATABASE      = 0x02,
             TABLE         = 0x04,
-            QUERY_RESULTS = 0x08
+            QUERY_RESULTS = 0x08,
+            FILE          = 0x10
         };
 
         Q_DECLARE_FLAGS(ExportModes, ExportMode)

@@ -56,7 +56,8 @@ bool PdfExport::beforeExportQueryResults(const QString& query, QList<QueryExecut
 {
     UNUSED(query);
 
-    beginDoc(tr("SQL query results"));
+    if (!beginDoc(tr("SQL query results")))
+        return false;
 
     totalRows = providedData[ExportManager::ROW_COUNT].toInt();
 
@@ -84,8 +85,8 @@ bool PdfExport::exportTable(const QString& database, const QString& table, const
     UNUSED(database);
     UNUSED(ddl);
 
-    if (isTableExport())
-        beginDoc(tr("Exported table: %1").arg(table));
+    if (isTableExport() && !beginDoc(tr("Exported table: %1").arg(table)))
+        return false;
 
     exportObjectHeader(tr("Table: %1").arg(table));
 
@@ -138,8 +139,8 @@ bool PdfExport::exportVirtualTable(const QString& database, const QString& table
     UNUSED(ddl);
     UNUSED(createTable);
 
-    if (isTableExport())
-        beginDoc(tr("Exported table: %1").arg(table));
+    if (isTableExport() && !beginDoc(tr("Exported table: %1").arg(table)))
+        return false;
 
     prepareTableDataExport(table, columnNames, providedData);
     return true;
@@ -209,8 +210,7 @@ bool PdfExport::afterExportQueryResults()
 
 bool PdfExport::beforeExportDatabase(const QString& database)
 {
-    beginDoc(tr("Exported database: %1").arg(database));
-    return true;
+    return beginDoc(tr("Exported database: %1").arg(database));
 }
 
 bool PdfExport::exportIndex(const QString& database, const QString& name, const QString& ddl, SqliteCreateIndexPtr createIndex)
@@ -305,16 +305,20 @@ bool PdfExport::isBinaryData() const
     return true;
 }
 
-void PdfExport::beginDoc(const QString& title)
+bool PdfExport::beginDoc(const QString& title)
 {
     safe_delete(painter);
     safe_delete(pagedWriter);
     pagedWriter = createPaintDevice(title);
+    if (!pagedWriter)
+        return false;
+
     painter = new QPainter(pagedWriter);
     painter->setBrush(Qt::NoBrush);
     painter->setPen(QPen(Qt::black, lineWidth));
 
     setupConfig();
+    return true;
 }
 
 void PdfExport::endDoc()

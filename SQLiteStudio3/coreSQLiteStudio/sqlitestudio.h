@@ -71,6 +71,8 @@ class API_EXPORT SQLiteStudio : public QObject
          */
         void init(const QStringList& cmdListArguments, bool guiAvailable);
 
+        void initPlugins();
+
         /**
          * @brief Gets environment variable value.
          * @param name Name of the environment variable.

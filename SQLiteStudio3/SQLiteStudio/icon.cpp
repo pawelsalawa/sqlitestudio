@@ -283,6 +283,15 @@ void Icon::loadAll()
         icon->load();
 }
 
+void Icon::reloadAll()
+{
+    for (Icon* icon : instances.values())
+    {
+        icon->loaded = false;
+        icon->load();
+    }
+}
+
 QString Icon::getIconNameForAttribute(Icon::Attributes attr)
 {
     switch (attr)

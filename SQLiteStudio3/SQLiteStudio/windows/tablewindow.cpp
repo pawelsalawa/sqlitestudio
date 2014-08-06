@@ -199,10 +199,10 @@ void TableWindow::createStructureActions()
 void TableWindow::createDataGridActions()
 {
     QAction* before = ui->dataView->getAction(DataView::FILTER_VALUE);
-    ui->dataView->getGridToolBar()->insertAction(before, actionMap[IMPORT]);
-    ui->dataView->getGridToolBar()->insertAction(before, actionMap[EXPORT]);
-    ui->dataView->getGridToolBar()->insertAction(before, actionMap[POPULATE]);
-    ui->dataView->getGridToolBar()->insertSeparator(before);
+    ui->dataView->getToolBar(DataView::TOOLBAR_GRID)->insertAction(before, actionMap[IMPORT]);
+    ui->dataView->getToolBar(DataView::TOOLBAR_GRID)->insertAction(before, actionMap[EXPORT]);
+    ui->dataView->getToolBar(DataView::TOOLBAR_GRID)->insertAction(before, actionMap[POPULATE]);
+    ui->dataView->getToolBar(DataView::TOOLBAR_GRID)->insertSeparator(before);
 }
 
 void TableWindow::createDataFormActions()
@@ -1338,6 +1338,24 @@ void TableWindow::editColumn(const QString& columnName)
 bool TableWindow::restoreSessionNextTime()
 {
     return existingTable && db && !DBLIST->isTemporary(db);
+}
+
+QToolBar* TableWindow::getToolBar(int toolbar) const
+{
+    switch (static_cast<ToolBar>(toolbar))
+    {
+        case TOOLBAR_STRUCTURE:
+            return ui->structureToolBar;
+        case TOOLBAR_DATA_GRID:
+            return ui->dataView->getToolBar(DataView::TOOLBAR_GRID);
+        case TOOLBAR_DATA_FORM:
+            return ui->dataView->getToolBar(DataView::TOOLBAR_FORM);
+        case TOOLBAR_INDEXES:
+            return ui->indexToolBar;
+        case TOOLBAR_TRIGGERS:
+            return ui->triggerToolBar;
+    }
+    return nullptr;
 }
 
 bool TableWindow::handleInitialFocus()

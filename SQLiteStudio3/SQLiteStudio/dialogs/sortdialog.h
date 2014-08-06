@@ -22,12 +22,17 @@ class SortDialog : public QDialog, public ExtActionContainer
             MOVE_DOWN
         };
 
+        enum ToolBar
+        {
+        };
+
         explicit SortDialog(QWidget *parent = 0);
         ~SortDialog();
 
         void setColumns(const QStringList& columns);
         QueryExecutor::SortList getSortOrder() const;
         void setSortOrder(const QueryExecutor::SortList& sortOrder);
+        QToolBar* getToolBar(int toolbar) const;
 
     protected:
         void createActions();

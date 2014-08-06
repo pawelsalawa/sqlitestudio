@@ -21,6 +21,7 @@ class FormManager : public QObject
 
     private:
         void init();
+        void load();
         void loadRecurently(const QString& path, const QString& prefix = "");
         QString getWidgetName(const QString& path);
         QWidget* createWidgetByFullPath(const QString& path);
@@ -33,6 +34,7 @@ class FormManager : public QObject
         void rescanResources(Plugin* plugin, PluginType* pluginType);
         void rescanResources(const QString& pluginName);
         void pluginsAboutToMassUnload();
+        void pluginsInitiallyLoaded();
 };
 
 #define FORMS MainWindow::getInstance()->getFormManager()

@@ -50,6 +50,10 @@ class SqlQueryView : public QTableView, public ExtActionContainer
             RESET_SORTING
         };
 
+        enum ToolBar
+        {
+        };
+
         explicit SqlQueryView(QWidget* parent = 0);
         virtual ~SqlQueryView();
         QList<SqlQueryItem*> getSelectedItems();
@@ -57,7 +61,7 @@ class SqlQueryView : public QTableView, public ExtActionContainer
         SqlQueryModel* getModel();
         void setModel(QAbstractItemModel *model);
         SqlQueryItem *itemAt(const QPoint& pos);
-
+        QToolBar* getToolBar(int toolbar) const;
         void addAdditionalAction(QAction* action);
 
     protected:

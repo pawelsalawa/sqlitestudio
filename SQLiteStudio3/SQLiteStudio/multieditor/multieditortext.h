@@ -35,12 +35,17 @@ class MultiEditorText : public MultiEditorWidget, public ExtActionContainer
             REDO
         };
 
+        enum ToolBar
+        {
+        };
+
         explicit MultiEditorText(QWidget *parent = 0);
 
         void setValue(const QVariant& value);
         QVariant getValue();
         void setReadOnly(bool value);
         QString getTabLabel();
+        QToolBar* getToolBar(int toolbar) const;
 
         QList<QWidget*> getNoScrollWidgets();
 

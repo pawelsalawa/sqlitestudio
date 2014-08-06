@@ -1,4 +1,3 @@
-* make columns in GROUP BY optional, so completer detects context correctly
 * printing plugin
 * hexadecimals from 3.8.6 support
 * enterprise SQL formatter

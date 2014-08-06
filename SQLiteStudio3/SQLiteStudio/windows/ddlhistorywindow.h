@@ -16,6 +16,10 @@ class DdlHistoryWindow : public MdiChild
         Q_OBJECT
 
     public:
+        enum ToolBar
+        {
+        };
+
         explicit DdlHistoryWindow(QWidget *parent = 0);
         ~DdlHistoryWindow();
 
@@ -27,6 +31,9 @@ class DdlHistoryWindow : public MdiChild
         bool restoreSession(const QVariant& sessionValue);
         Icon* getIconNameForMdiWindow();
         QString getTitleForMdiWindow();
+        void createActions();
+        void setupDefShortcuts();
+        QToolBar* getToolBar(int toolbar) const;
 
     private:
         void init();

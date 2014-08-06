@@ -700,6 +700,18 @@ SqlQueryModel* DataView::getModel() const
     return model;
 }
 
+QToolBar* DataView::getToolBar(int toolbar) const
+{
+    switch (static_cast<ToolBar>(toolbar))
+    {
+        case TOOLBAR_GRID:
+            return gridToolBar;
+        case TOOLBAR_FORM:
+            return formToolBar;
+    }
+    return nullptr;
+}
+
 void DataView::staticInit()
 {
     filterMode = FilterMode::STRING;
@@ -711,16 +723,6 @@ void DataView::staticInit()
 SqlQueryView* DataView::getGridView() const
 {
     return gridView;
-}
-
-QToolBar* DataView::getFormToolBar() const
-{
-    return formToolBar;
-}
-
-QToolBar* DataView::getGridToolBar() const
-{
-    return gridToolBar;
 }
 
 int qHash(DataView::ActionGroup action)

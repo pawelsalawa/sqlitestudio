@@ -75,6 +75,12 @@ SqlQueryItem* SqlQueryView::itemAt(const QPoint& pos)
     return dynamic_cast<SqlQueryItem*>(getModel()->itemFromIndex(indexAt(pos)));
 }
 
+QToolBar* SqlQueryView::getToolBar(int toolbar) const
+{
+    UNUSED(toolbar);
+    return nullptr;
+}
+
 void SqlQueryView::addAdditionalAction(QAction* action)
 {
     additionalActions << action;

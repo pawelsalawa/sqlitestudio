@@ -1,0 +1,9 @@
+{
+    "type":         "GeneralPurposePlugin",
+    "title":        "Printing",
+    "description":  "Provides printing support.",
+    "version":      10000,
+    "author":       "sqlitestudio.pl",
+    "gui":          true,
+    "dependencies": "PdfExport"
+}

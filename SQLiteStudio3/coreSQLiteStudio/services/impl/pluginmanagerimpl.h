@@ -47,6 +47,7 @@ class PluginManagerImpl : public PluginManager
         QString toPrintableVersion(int version) const;
         QStringList getDependencies(const QString& pluginName) const;
         QStringList getConflicts(const QString& pluginName) const;
+        bool arePluginsInitiallyLoaded() const;
 
     protected:
         void registerPluginType(PluginType* type);
@@ -309,6 +310,8 @@ class PluginManagerImpl : public PluginManager
          * Keys are scripting language name. It's a separate table to optimize querying scripting plugins.
          */
         QHash<QString,ScriptingPlugin*> scriptingPlugins;
+
+        bool pluginsAreInitiallyLoaded = false;
 };
 
 #endif // PLUGINMANAGERIMPL_H

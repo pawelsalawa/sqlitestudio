@@ -228,15 +228,18 @@ void SQLiteStudio::init(const QStringList& cmdListArguments, bool guiAvailable)
     pluginManager->loadBuiltInPlugin(new ScriptingSql);
     pluginManager->loadBuiltInPlugin(sqlite3plugin);
 
+    exportManager = new ExportManager();
+    importManager = new ImportManager();
+    populateManager = new PopulateManager();
+}
+
+void SQLiteStudio::initPlugins()
+{
     pluginManager->init();
 
     connect(pluginManager, SIGNAL(loaded(Plugin*,PluginType*)), this, SLOT(pluginLoaded(Plugin*,PluginType*)));
     connect(pluginManager, SIGNAL(aboutToUnload(Plugin*,PluginType*)), this, SLOT(pluginToBeUnloaded(Plugin*,PluginType*)));
     connect(pluginManager, SIGNAL(unloaded(QString,PluginType*)), this, SLOT(pluginUnloaded(QString,PluginType*)));
-
-    exportManager = new ExportManager();
-    importManager = new ImportManager();
-    populateManager = new PopulateManager();
 }
 
 void SQLiteStudio::cleanUp()

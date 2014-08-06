@@ -75,6 +75,10 @@ int main(int argc, char *argv[])
     MultiEditorDate::staticInit();
     MultiEditorBool::staticInit();
 
+    MainWindow::getInstance();
+
+    SQLITESTUDIO->initPlugins();
+
     MainWindow::getInstance()->restoreSession();
     MainWindow::getInstance()->show();
 

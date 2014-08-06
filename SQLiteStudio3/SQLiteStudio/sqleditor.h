@@ -69,6 +69,10 @@ class SqlEditor : public QPlainTextEdit, public ExtActionContainer
             REPLACE
         };
 
+        enum ToolBar
+        {
+        };
+
         explicit SqlEditor(QWidget *parent = 0);
         ~SqlEditor();
 
@@ -84,6 +88,7 @@ class SqlEditor : public QPlainTextEdit, public ExtActionContainer
         void checkSyntaxNow();
         void saveSelection();
         void restoreSelection();
+        QToolBar* getToolBar(int toolbar) const;
 
         bool getVirtualSqlCompleteSemicolon() const;
         void setVirtualSqlCompleteSemicolon(bool value);

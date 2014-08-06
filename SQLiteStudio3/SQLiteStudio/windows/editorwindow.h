@@ -32,7 +32,7 @@ CFG_KEY_LIST(EditorWindow, QObject::tr("SQL editor window"),
      CFG_KEY_ENTRY(FOCUS_EDITOR_ABOVE,  Qt::ALT + Qt::Key_PageUp,   QObject::tr("Move keyboard input focus to the SQL editor above"))
 )
 
-class EditorWindow : public MdiChild, public ExtActionContainer
+class EditorWindow : public MdiChild
 {
         Q_OBJECT
         Q_ENUMS(Action)
@@ -62,6 +62,13 @@ class EditorWindow : public MdiChild, public ExtActionContainer
             CREATE_VIEW_FROM_QUERY
         };
 
+        enum ToolBar
+        {
+            TOOLBAR_MAIN,
+            TOOLBAR_DATA_GRID,
+            TOOLBAR_DATA_FORM
+        };
+
         enum class ActionGroup
         {
             RESULTS_POSITIONING
@@ -80,6 +87,7 @@ class EditorWindow : public MdiChild, public ExtActionContainer
         void setContents(const QString& sql);
         QString getContents() const;
         void execute();
+        QToolBar* getToolBar(int toolbar) const;
 
     protected:
         void changeEvent(QEvent *e);
