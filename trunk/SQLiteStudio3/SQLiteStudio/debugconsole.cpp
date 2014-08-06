@@ -1,5 +1,6 @@
 #include "debugconsole.h"
 #include "ui_debugconsole.h"
+#include "iconmanager.h"
 #include <QPushButton>
 
 DebugConsole::DebugConsole(QWidget *parent) :
@@ -70,4 +71,9 @@ void DebugConsole::message(const QString &msg, const QTextCharFormat &format)
 void DebugConsole::reset()
 {
     ui->textEdit->clear();
+}
+
+void DebugConsole::showEvent(QShowEvent*)
+{
+    setWindowIcon(ICONS.SQLITESTUDIO_APP);
 }

@@ -21,6 +21,9 @@ class DebugConsole : public QDialog
         void critical(const QString& msg);
         void fatal(const QString& msg);
 
+    protected:
+        void showEvent(QShowEvent*);
+
     private:
         void initFormats();
         void message(const QString& msg, const QTextCharFormat& format);
