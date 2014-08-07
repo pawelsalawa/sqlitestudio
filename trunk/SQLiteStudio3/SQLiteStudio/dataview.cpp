@@ -163,13 +163,13 @@ void DataView::createActions()
         attachActionInMenu(FILTER, staticActions[FILTER_STRING], gridToolBar);
         attachActionInMenu(FILTER, staticActions[FILTER_REGEXP], gridToolBar);
         attachActionInMenu(FILTER, staticActions[FILTER_SQL], gridToolBar);
+        gridToolBar->addSeparator();
         updateFilterIcon();
 
         connect(staticActions[FILTER_STRING], SIGNAL(triggered()), this, SLOT(filterModeSelected()));
         connect(staticActions[FILTER_REGEXP], SIGNAL(triggered()), this, SLOT(filterModeSelected()));
         connect(staticActions[FILTER_SQL], SIGNAL(triggered()), this, SLOT(filterModeSelected()));
     }
-    gridToolBar->addSeparator();
     actionMap[GRID_TOTAL_ROWS] = gridToolBar->addWidget(rowCountLabel);
 
     noConfigShortcutActions << GRID_TOTAL_ROWS << FILTER_VALUE;

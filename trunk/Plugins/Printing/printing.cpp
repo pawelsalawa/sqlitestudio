@@ -17,6 +17,6 @@ bool Printing::init()
 void Printing::deinit()
 {
     Q_CLEANUP_RESOURCE(printing);
-    ExtActionContainer::removeAction<EditorWindow>(printResultsAction, EditorWindow::TOOLBAR_MAIN);
+    ExtActionContainer::removeAction<DataView>(printResultsAction, DataView::TOOLBAR_GRID);
     safe_delete(printResultsAction);
 }
