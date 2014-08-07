@@ -148,7 +148,8 @@ SOURCES += main.cpp\
     common/extactioncontainersignalhandler.cpp \
     dialogs/dbdialog.cpp \
     uidebug.cpp \
-    debugconsole.cpp
+    debugconsole.cpp \
+    common/extactionmanagementnotifier.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -283,7 +284,8 @@ HEADERS  += mainwindow.h \
     dialogs/configdialog.h \
     dialogs/dbdialog.h \
     uidebug.h \
-    debugconsole.h
+    debugconsole.h \
+    common/extactionmanagementnotifier.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \

@@ -162,11 +162,11 @@ QAction* ExtActionContainer::getAction(int action)
     return actionMap.value(action);
 }
 
-void ExtActionContainer::handleActionInsert(QAction* action, int toolbar, const ActionPosition& beforeAction)
+void ExtActionContainer::handleActionInsert(QAction* action, int toolbar, const ActionDetails& details)
 {
-    if (beforeAction.first > -1 && !actionMap.contains(beforeAction.first))
+    if (details.position > -1 && !actionMap.contains(details.position))
     {
-        qWarning() << "Tried to insert action" << action->text() << "before action" << beforeAction.first
+        qWarning() << "Tried to insert action" << action->text() << "before action" << details.position
                    << "which is not present in action container:" << metaObject()->className();
         return;
     }
@@ -179,8 +179,8 @@ void ExtActionContainer::handleActionInsert(QAction* action, int toolbar, const 
         return;
     }
 
-    QAction* beforeQAction = actionMap[beforeAction.first];
-    if (beforeAction.second)
+    QAction* beforeQAction = actionMap[details.position];
+    if (details.after)
     {
         QList<QAction*> acts = toolBar->actions();
         int idx = acts.indexOf(beforeQAction);
@@ -192,9 +192,10 @@ void ExtActionContainer::handleActionInsert(QAction* action, int toolbar, const 
     }
 
     toolBar->insertAction(beforeQAction, action);
+    details.notifier->inserted(this, toolBar);
 }
 
-void ExtActionContainer::handleActionRemoval(QAction* action, int toolbar)
+void ExtActionContainer::handleActionRemoval(QAction* action, int toolbar, const ActionDetails& details)
 {
     QToolBar* toolBar = getToolBar(toolbar);
     if (!toolBar)
@@ -205,6 +206,7 @@ void ExtActionContainer::handleActionRemoval(QAction* action, int toolbar)
     }
 
     toolBar->removeAction(action);
+    details.notifier->removed(this, toolBar);
 }
 
 void ExtActionContainer::handleExtraActions()
@@ -223,4 +225,13 @@ void ExtActionContainer::handleExtraActions()
             handleActionInsert(action, toolbarId, extraActions[clsName][toolbarId][action]);
         }
     }
+}
+
+ExtActionContainer::ActionDetails::ActionDetails()
+{
+}
+
+ExtActionContainer::ActionDetails::ActionDetails(int position, bool after, const ExtActionManagementNotifierPtr& notifier) :
+    position(position), after(after), notifier(notifier)
+{
 }
