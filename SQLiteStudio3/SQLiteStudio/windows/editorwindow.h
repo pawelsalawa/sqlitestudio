@@ -64,9 +64,7 @@ class EditorWindow : public MdiChild
 
         enum ToolBar
         {
-            TOOLBAR_MAIN,
-            TOOLBAR_DATA_GRID,
-            TOOLBAR_DATA_FORM
+            TOOLBAR_MAIN
         };
 
         enum class ActionGroup
@@ -79,6 +77,10 @@ class EditorWindow : public MdiChild
         ~EditorWindow();
 
         static void staticInit();
+        static ExtActionManagementNotifierPtr insertAction(QAction* action, ToolBar toolbar = TOOLBAR_MAIN);
+        static ExtActionManagementNotifierPtr insertActionBefore(QAction* action, Action beforeAction, ToolBar toolbar = TOOLBAR_MAIN);
+        static ExtActionManagementNotifierPtr insertActionAfter(QAction* action, Action afterAction, ToolBar toolbar = TOOLBAR_MAIN);
+        static void removeAction(QAction* action, ToolBar toolbar = TOOLBAR_MAIN);
 
         QSize sizeHint() const;
         QAction* getAction(Action action);

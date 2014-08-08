@@ -190,10 +190,6 @@ QToolBar* ViewWindow::getToolBar(int toolbar) const
     {
         case TOOLBAR_QUERY:
             return ui->queryToolbar;
-        case TOOLBAR_DATA_GRID:
-            return ui->dataView->getToolBar(DataView::TOOLBAR_GRID);
-        case TOOLBAR_DATA_FORM:
-            return ui->dataView->getToolBar(DataView::TOOLBAR_FORM);
         case TOOLBAR_TRIGGERS:
             return ui->triggersToolbar;
     }
@@ -295,6 +291,26 @@ QString ViewWindow::getView() const
 void ViewWindow::staticInit()
 {
     qRegisterMetaType<ViewWindow>("ViewWindow");
+}
+
+ExtActionManagementNotifierPtr ViewWindow::insertAction(QAction* action, ViewWindow::ToolBar toolbar)
+{
+    return ExtActionContainer::insertAction<ViewWindow>(action, toolbar);
+}
+
+ExtActionManagementNotifierPtr ViewWindow::insertActionBefore(QAction* action, ViewWindow::Action beforeAction, ViewWindow::ToolBar toolbar)
+{
+    return ExtActionContainer::insertActionBefore<ViewWindow>(action, beforeAction, toolbar);
+}
+
+ExtActionManagementNotifierPtr ViewWindow::insertActionAfter(QAction* action, ViewWindow::Action afterAction, ViewWindow::ToolBar toolbar)
+{
+    return ExtActionContainer::insertActionAfter<ViewWindow>(action, afterAction, toolbar);
+}
+
+void ViewWindow::removeAction(QAction* action, ViewWindow::ToolBar toolbar)
+{
+    ExtActionContainer::removeAction<ViewWindow>(action, toolbar);
 }
 
 QString ViewWindow::getDatabase() const

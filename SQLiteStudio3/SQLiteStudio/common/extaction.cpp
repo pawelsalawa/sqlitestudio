@@ -20,7 +20,7 @@ ExtAction::ExtAction(const QIcon& icon, const QString& text, QObject* parent) :
 bool ExtAction::event(QEvent* e)
 {
     // This implementation code comes mostly from Qt 5.1.0,
-    // but it was modified to handle ambigous shortcuts.
+    // but it was modified to handle ambiguous shortcuts.
     if (e->type() == QEvent::Shortcut)
     {
         activate(Trigger);

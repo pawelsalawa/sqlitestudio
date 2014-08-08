@@ -87,6 +87,10 @@ class DataView : public QTabWidget, public ExtActionContainer
         QToolBar* getToolBar(int toolbar) const;
 
         static void staticInit();
+        static ExtActionManagementNotifierPtr insertAction(QAction* action, ToolBar toolbar = TOOLBAR_GRID);
+        static ExtActionManagementNotifierPtr insertActionBefore(QAction* action, Action beforeAction, ToolBar toolbar = TOOLBAR_GRID);
+        static ExtActionManagementNotifierPtr insertActionAfter(QAction* action, Action afterAction, ToolBar toolbar = TOOLBAR_GRID);
+        static void removeAction(QAction* action, ToolBar toolbar = TOOLBAR_GRID);
 
     protected:
         void createActions();
