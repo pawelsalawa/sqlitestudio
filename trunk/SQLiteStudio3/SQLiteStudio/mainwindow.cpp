@@ -225,7 +225,7 @@ void MainWindow::createActions()
 void MainWindow::initMenuBar()
 {
     // Database menu
-    QMenu* dbMenu = new QMenu(this);
+    dbMenu = new QMenu(this);
     dbMenu->setTitle(tr("Database", "menubar"));
     menuBar()->addMenu(dbMenu);
 
@@ -245,7 +245,7 @@ void MainWindow::initMenuBar()
     dbMenu->addAction(dbTree->getAction(DbTree::REFRESH_SCHEMAS));
 
     // Structure menu
-    QMenu* structMenu = new QMenu(this);
+    structMenu = new QMenu(this);
     structMenu->setTitle(tr("Structure", "menubar"));
     menuBar()->addMenu(structMenu);
 
@@ -266,7 +266,7 @@ void MainWindow::initMenuBar()
     structMenu->addAction(dbTree->getAction(DbTree::DEL_VIEW));
 
     // View menu
-    QMenu* viewMenu = createPopupMenu();
+    viewMenu = createPopupMenu();
     viewMenu->setTitle(tr("View", "menubar"));
     menuBar()->addMenu(viewMenu);
 
@@ -291,7 +291,7 @@ void MainWindow::initMenuBar()
     viewMenu->addMenu(mdiMenu);
 
     // Tools menu
-    QMenu* toolsMenu = new QMenu(this);
+    toolsMenu = new QMenu(this);
     toolsMenu->setTitle(tr("Tools", "menubar"));
     menuBar()->addMenu(toolsMenu);
 
@@ -595,6 +595,26 @@ void MainWindow::openDb(const QString& path)
     }
     else
         notifyError(tr("Could not add database %1 to list.").arg(path));
+}
+
+QMenu* MainWindow::getDatabaseMenu() const
+{
+    return dbMenu;
+}
+
+QMenu* MainWindow::getStructureMenu() const
+{
+    return structMenu;
+}
+
+QMenu* MainWindow::getViewMenu() const
+{
+    return viewMenu;
+}
+
+QMenu* MainWindow::getToolsMenu() const
+{
+    return toolsMenu;
 }
 
 MainWindow *MainWindow::getInstance()

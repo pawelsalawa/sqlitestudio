@@ -720,6 +720,26 @@ void DataView::staticInit()
     createStaticActions();
 }
 
+ExtActionManagementNotifierPtr DataView::insertAction(QAction* action, DataView::ToolBar toolbar)
+{
+    return ExtActionContainer::insertAction<DataView>(action, toolbar);
+}
+
+ExtActionManagementNotifierPtr DataView::insertActionBefore(QAction* action, DataView::Action beforeAction, DataView::ToolBar toolbar)
+{
+    return ExtActionContainer::insertActionBefore<DataView>(action, beforeAction, toolbar);
+}
+
+ExtActionManagementNotifierPtr DataView::insertActionAfter(QAction* action, DataView::Action afterAction, DataView::ToolBar toolbar)
+{
+    return ExtActionContainer::insertActionAfter<DataView>(action, afterAction, toolbar);
+}
+
+void DataView::removeAction(QAction* action, DataView::ToolBar toolbar)
+{
+    ExtActionContainer::removeAction<DataView>(action, toolbar);
+}
+
 SqlQueryView* DataView::getGridView() const
 {
     return gridView;

@@ -59,6 +59,26 @@ void EditorWindow::staticInit()
     createStaticActions();
 }
 
+ExtActionManagementNotifierPtr EditorWindow::insertAction(QAction* action, EditorWindow::ToolBar toolbar)
+{
+    return ExtActionContainer::insertAction<EditorWindow>(action, toolbar);
+}
+
+ExtActionManagementNotifierPtr EditorWindow::insertActionBefore(QAction* action, EditorWindow::Action beforeAction, EditorWindow::ToolBar toolbar)
+{
+    return ExtActionContainer::insertActionBefore<EditorWindow>(action, beforeAction, toolbar);
+}
+
+ExtActionManagementNotifierPtr EditorWindow::insertActionAfter(QAction* action, EditorWindow::Action afterAction, EditorWindow::ToolBar toolbar)
+{
+    return ExtActionContainer::insertActionAfter<EditorWindow>(action, afterAction, toolbar);
+}
+
+void EditorWindow::removeAction(QAction* action, EditorWindow::ToolBar toolbar)
+{
+    ExtActionContainer::removeAction<EditorWindow>(action, toolbar);
+}
+
 void EditorWindow::init()
 {
     setFocusProxy(ui->sqlEdit);
@@ -213,16 +233,8 @@ void EditorWindow::execute()
 
 QToolBar* EditorWindow::getToolBar(int toolbar) const
 {
-    switch (static_cast<ToolBar>(toolbar))
-    {
-        case TOOLBAR_MAIN:
-            return ui->toolBar;
-        case TOOLBAR_DATA_GRID:
-            return ui->dataView->getToolBar(DataView::TOOLBAR_GRID);
-        case TOOLBAR_DATA_FORM:
-            return ui->dataView->getToolBar(DataView::TOOLBAR_FORM);
-    }
-    return nullptr;
+    UNUSED(toolbar);
+    return ui->toolBar;
 }
 
 QVariant EditorWindow::saveSession()

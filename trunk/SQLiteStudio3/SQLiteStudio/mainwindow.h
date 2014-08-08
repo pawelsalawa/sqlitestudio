@@ -84,6 +84,10 @@ class MainWindow : public QMainWindow, virtual public ExtActionContainer
         bool isClosingApp() const;
         QToolBar* getToolBar(int toolbar) const;
         void openDb(const QString& path);
+        QMenu* getDatabaseMenu() const;
+        QMenu* getStructureMenu() const;
+        QMenu* getViewMenu() const;
+        QMenu* getToolsMenu() const;
 
     protected:
         void closeEvent(QCloseEvent *event);
@@ -118,6 +122,10 @@ class MainWindow : public QMainWindow, virtual public ExtActionContainer
         FormManager* formManager;
         QQueue<QVariant> closedWindowSessionValues;
         bool closingApp = false;
+        QMenu* dbMenu = nullptr;
+        QMenu* structMenu = nullptr;
+        QMenu* viewMenu = nullptr;
+        QMenu* toolsMenu = nullptr;
 
     public slots:
         EditorWindow* openSqlEditor();

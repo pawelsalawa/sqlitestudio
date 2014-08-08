@@ -97,9 +97,7 @@ class TableWindow : public MdiChild
         {
             TOOLBAR_STRUCTURE,
             TOOLBAR_INDEXES,
-            TOOLBAR_TRIGGERS,
-            TOOLBAR_DATA_GRID,
-            TOOLBAR_DATA_FORM
+            TOOLBAR_TRIGGERS
         };
 
         explicit TableWindow(QWidget *parent = 0);
@@ -109,6 +107,10 @@ class TableWindow : public MdiChild
         ~TableWindow();
 
         static void staticInit();
+        static ExtActionManagementNotifierPtr insertAction(QAction* action, ToolBar toolbar = TOOLBAR_STRUCTURE);
+        static ExtActionManagementNotifierPtr insertActionBefore(QAction* action, Action beforeAction, ToolBar toolbar = TOOLBAR_STRUCTURE);
+        static ExtActionManagementNotifierPtr insertActionAfter(QAction* action, Action afterAction, ToolBar toolbar = TOOLBAR_STRUCTURE);
+        static void removeAction(QAction* action, ToolBar toolbar = TOOLBAR_STRUCTURE);
 
         QString getTable() const;
         Db* getDb() const;

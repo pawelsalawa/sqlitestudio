@@ -109,6 +109,26 @@ void TableWindow::staticInit()
     qRegisterMetaType<TableWindow>("TableWindow");
 }
 
+ExtActionManagementNotifierPtr TableWindow::insertAction(QAction* action, TableWindow::ToolBar toolbar)
+{
+    return ExtActionContainer::insertAction<TableWindow>(action, toolbar);
+}
+
+ExtActionManagementNotifierPtr TableWindow::insertActionBefore(QAction* action, TableWindow::Action beforeAction, TableWindow::ToolBar toolbar)
+{
+    return ExtActionContainer::insertActionBefore<TableWindow>(action, beforeAction, toolbar);
+}
+
+ExtActionManagementNotifierPtr TableWindow::insertActionAfter(QAction* action, TableWindow::Action afterAction, TableWindow::ToolBar toolbar)
+{
+    return ExtActionContainer::insertActionAfter<TableWindow>(action, afterAction, toolbar);
+}
+
+void TableWindow::removeAction(QAction* action, TableWindow::ToolBar toolbar)
+{
+    ExtActionContainer::removeAction<TableWindow>(action, toolbar);
+}
+
 void TableWindow::newTable()
 {
     existingTable = false;
@@ -1346,10 +1366,6 @@ QToolBar* TableWindow::getToolBar(int toolbar) const
     {
         case TOOLBAR_STRUCTURE:
             return ui->structureToolBar;
-        case TOOLBAR_DATA_GRID:
-            return ui->dataView->getToolBar(DataView::TOOLBAR_GRID);
-        case TOOLBAR_DATA_FORM:
-            return ui->dataView->getToolBar(DataView::TOOLBAR_FORM);
         case TOOLBAR_INDEXES:
             return ui->indexToolBar;
         case TOOLBAR_TRIGGERS:
