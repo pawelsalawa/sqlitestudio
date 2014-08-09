@@ -237,6 +237,11 @@ QToolBar* EditorWindow::getToolBar(int toolbar) const
     return ui->toolBar;
 }
 
+SqlEditor* EditorWindow::getEditor() const
+{
+    return ui->sqlEdit;
+}
+
 QVariant EditorWindow::saveSession()
 {
     QHash<QString,QVariant> sessionValue;

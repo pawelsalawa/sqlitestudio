@@ -4,8 +4,12 @@
 #include "printing_global.h"
 #include "plugins/genericplugin.h"
 #include "plugins/generalpurposeplugin.h"
+#include "services/exportmanager.h"
 
 class ExtActionPrototype;
+class ExtActionContainer;
+class PrintingExport;
+class QPrintDialog;
 
 class PRINTINGSHARED_EXPORT Printing : public GenericPlugin, public GeneralPurposePlugin
 {
@@ -20,6 +24,13 @@ class PRINTINGSHARED_EXPORT Printing : public GenericPlugin, public GeneralPurpo
         ExtActionPrototype* separatorAction = nullptr;
         ExtActionPrototype* printDataAction = nullptr;
         ExtActionPrototype* printQueryAction = nullptr;
+        PrintingExport* printingExport = nullptr;
+        ExportManager::StandardExportConfig* printingConfig = nullptr;
+        QPrintDialog* printDialog = nullptr;
+
+    private slots:
+        void dataPrintRequested(ExtActionContainer* actionContainer);
+        void queryPrintRequested(ExtActionContainer* actionContainer);
 };
 
 #endif // PRINTING_H

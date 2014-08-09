@@ -1,19 +1,22 @@
 #include "printingexport.h"
 #include "common/unused.h"
 #include "mainwindow.h"
-#include <QPrinter>
-#include <QPrintDialog>
+#include "services/notifymanager.h"
 
 QPagedPaintDevice* PrintingExport::createPaintDevice(const QString& documentTitle)
 {
     UNUSED(documentTitle);
+    return paintDevice;
+}
 
-    QPrinter* printer = new QPrinter();
-    QPrintDialog dialog(printer, MAINWINDOW);
-    if (dialog.exec() == QDialog::Accepted)
-        return printer;
+QPagedPaintDevice* PrintingExport::getPaintDevice() const
+{
+    return paintDevice;
+}
 
-    return nullptr;
+void PrintingExport::setPaintDevice(QPagedPaintDevice* value)
+{
+    paintDevice = value;
 }
 
 bool PrintingExport::init()
