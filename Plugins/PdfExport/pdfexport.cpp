@@ -978,7 +978,7 @@ void PdfExport::flushDataRowsPage(int columnStart, int columnEndBefore, int rows
     {
         y = top;
         painter->save();
-        QPen pen(Qt::lightGray, 15, Qt::DashLine);
+        QPen pen(Qt::lightGray, lineWidth, Qt::DashLine);
         pen.setDashPattern(QVector<qreal>({5.0, 3.0}));
         painter->setPen(pen);
         painter->drawLine(horizontalLineEnd, y, right, y);

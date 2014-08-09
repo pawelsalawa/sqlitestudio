@@ -15,8 +15,8 @@ class QFont;
 
 namespace Cfg
 {
-    QFont getPdfExportDefaultFont();
-    QStringList getPdfPageSizes();
+    PDFEXPORTSHARED_EXPORT QFont getPdfExportDefaultFont();
+    PDFEXPORTSHARED_EXPORT QStringList getPdfPageSizes();
 }
 
 CFG_CATEGORIES(PdfExportConfig,
@@ -73,6 +73,8 @@ class PDFEXPORTSHARED_EXPORT PdfExport : public GenericExportPlugin
 
     protected:
         virtual QPagedPaintDevice* createPaintDevice(const QString& documentTitle);
+
+        int lineWidth = 15;
 
     private:
         struct DataCell
@@ -204,7 +206,6 @@ class PDFEXPORTSHARED_EXPORT PdfExport : public GenericExportPlugin
         int rowNum = 0;
         int lastRowY = 0;
         qreal pointsPerMm = 1.0;
-        int lineWidth = 15;
         int maxColWidth = 0;
         int maxRowHeight = 0;
         int cellDataLimit = 100;

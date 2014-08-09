@@ -19,15 +19,10 @@ export (PLUGINSDIR)
 win32: {
     INCLUDEPATH += $$PWD/../../include
     LIBS += -L$$PWD/../../lib -L$$DESTDIR/.. -lcoreSQLiteStudio -L$$PWD/../output/SQLiteStudio/plugins
+    LIBS += -Wl,$$DESTDIR/../libSQLiteStudio.a
 }
 
 unix: {
     target.path = /usr/lib/sqlitestudio
     INSTALLS += target
-}
-
-defineTest(guiPlugin) {
-    win32: {
-        LIBS += -Wl,$$DESTDIR/../libSQLiteStudio.a
-    }
 }

@@ -22,7 +22,7 @@ class SqliteInsert;
 class SqliteExpr;
 class SqliteBeginTrans;
 
-class DbVersionConverter : public QObject
+class API_EXPORT DbVersionConverter : public QObject
 {
         Q_OBJECT
 

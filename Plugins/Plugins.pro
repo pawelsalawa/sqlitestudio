@@ -12,6 +12,10 @@ SUBDIRS += \
     SqlFormatterSimple \
     XmlExport \
     JsonExport \
-    ScriptingTcl \
     RegExpImport \
     Printing
+
+!win32: {
+    SUBDIRS += \
+        ScriptingTcl
+}

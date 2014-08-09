@@ -25,4 +25,3 @@ FORMS += \
 RESOURCES += \
     pdfexport.qrc
 
-guiPlugin()

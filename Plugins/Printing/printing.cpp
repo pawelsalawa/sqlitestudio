@@ -40,7 +40,6 @@ bool Printing::init()
     DataView::insertActionAfter(separatorAction, DataView::LAST_PAGE);
     EditorWindow::insertActionAfter(printQueryAction, EditorWindow::EXPORT_RESULTS);
 
-    printDialog = new QPrintDialog(MAINWINDOW);
     return true;
 }
 
@@ -55,6 +54,7 @@ void Printing::deinit()
     safe_delete(printDataAction);
     safe_delete(separatorAction);
     safe_delete(printQueryAction);
+    safe_delete(printDialog);
     Q_CLEANUP_RESOURCE(printing);
 }
 
@@ -73,6 +73,8 @@ void Printing::dataPrintRequested(ExtActionContainer* actionContainer)
         return;
     }
 
+    safe_delete(printDialog);
+    printDialog = new QPrintDialog(MAINWINDOW);
     if (printDialog->exec() != QDialog::Accepted)
         return;
 
@@ -97,6 +99,8 @@ void Printing::queryPrintRequested(ExtActionContainer* actionContainer)
         return;
     }
 
+    safe_delete(printDialog);
+    printDialog = new QPrintDialog(MAINWINDOW);
     if (printDialog->exec() != QDialog::Accepted)
         return;
 

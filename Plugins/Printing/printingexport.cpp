@@ -21,6 +21,7 @@ void PrintingExport::setPaintDevice(QPagedPaintDevice* value)
 
 bool PrintingExport::init()
 {
+    lineWidth = 1;
     return PdfExport::init();
 }
 
