@@ -42,6 +42,8 @@ class API_EXPORT CompletionHelper : public QObject
         DbAttacher* getDbAttacher() const;
         void setDbAttacher(DbAttacher* value);
 
+        static bool enableLemonDebug;
+
     private:
         enum class Context
         {

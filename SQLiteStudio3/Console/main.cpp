@@ -6,6 +6,7 @@
 #include "cliutils.h"
 #include "qio.h"
 #include "climsghandler.h"
+#include "completionhelper.h"
 #include <QCoreApplication>
 #include <QtGlobal>
 #include <QCommandLineParser>
@@ -19,6 +20,7 @@ QString cliHandleCmdLineArgs()
     parser.addVersionOption();
 
     QCommandLineOption debugOption({"d", "debug"}, QObject::tr("enables debug messages on standard error output."));
+    QCommandLineOption lemonDebugOption("debug-lemon", QObject::tr("enables Lemon parser debug messages for SQL code assistant."));
     parser.addOption(debugOption);
 
     parser.addPositionalArgument(QObject::tr("file"), QObject::tr("database file to open"));
@@ -27,6 +29,8 @@ QString cliHandleCmdLineArgs()
 
     if (parser.isSet(debugOption))
         setCliDebug(true);
+
+    CompletionHelper::enableLemonDebug = parser.isSet(lemonDebugOption);
 
     QStringList args = parser.positionalArguments();
     if (args.size() > 0)

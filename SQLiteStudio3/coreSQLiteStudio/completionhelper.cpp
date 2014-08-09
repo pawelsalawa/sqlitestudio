@@ -18,6 +18,8 @@ QStringList sqlite2Pragmas;
 QStringList sqlite3Functions;
 QStringList sqlite2Functions;
 
+bool CompletionHelper::enableLemonDebug = false;
+
 // TODO smarter suggestions for UPDATE, DELETE and INSERT, just like for SELECT.
 
 CompletionHelper::CompletionHelper(const QString &sql, Db* db)
@@ -956,6 +958,8 @@ void CompletionHelper::parseFullSql()
     Dialect dialect = db->getDialect();
 
     Parser parser(dialect);
+    parser.setLemonDebug(enableLemonDebug);
+
     QString sql = fullSql;
 
     // Selecting query at cursor position
