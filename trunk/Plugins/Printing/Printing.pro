@@ -20,8 +20,6 @@ HEADERS += printing.h\
         printing_global.h \
     printingexport.h
 
-guiPlugin()
-
 OTHER_FILES += \
     printing.json
 
