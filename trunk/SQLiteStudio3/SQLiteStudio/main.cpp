@@ -16,6 +16,7 @@
 #include "uiconfig.h"
 #include "sqlitestudio.h"
 #include "uidebug.h"
+#include "completionhelper.h"
 #include <QCommandLineParser>
 #include <QCommandLineOption>
 #include <QApplication>
@@ -34,15 +35,17 @@ QString uiHandleCmdLineArgs()
 
     QCommandLineOption debugOption({"d", "debug"}, QObject::tr("enables debug messages in console (accessible with F12)."));
     QCommandLineOption debugStdOutOption("debug-stdout", QObject::tr("redirects debug messages into standard output (forces debug mode)."));
+    QCommandLineOption lemonDebugOption("debug-lemon", QObject::tr("enables Lemon parser debug messages for SQL code assistant."));
     parser.addOption(debugOption);
     parser.addOption(debugStdOutOption);
+    parser.addOption(lemonDebugOption);
 
     parser.addPositionalArgument(QObject::tr("file"), QObject::tr("database file to open"));
 
     parser.process(qApp->arguments());
 
     setUiDebug(parser.isSet(debugOption) || parser.isSet(debugStdOutOption), !parser.isSet(debugStdOutOption));
-
+    CompletionHelper::enableLemonDebug = parser.isSet(lemonDebugOption);
 
     QStringList args = parser.positionalArguments();
     if (args.size() > 0)
