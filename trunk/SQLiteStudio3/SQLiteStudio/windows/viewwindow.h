@@ -67,10 +67,10 @@ class ViewWindow : public MdiChild
         QString getView() const;
 
         static void staticInit();
-        static ExtActionManagementNotifierPtr insertAction(QAction* action, ToolBar toolbar = TOOLBAR_QUERY);
-        static ExtActionManagementNotifierPtr insertActionBefore(QAction* action, Action beforeAction, ToolBar toolbar = TOOLBAR_QUERY);
-        static ExtActionManagementNotifierPtr insertActionAfter(QAction* action, Action afterAction, ToolBar toolbar = TOOLBAR_QUERY);
-        static void removeAction(QAction* action, ToolBar toolbar = TOOLBAR_QUERY);
+        static void insertAction(ExtActionPrototype* action, ToolBar toolbar = TOOLBAR_QUERY);
+        static void insertActionBefore(ExtActionPrototype* action, Action beforeAction, ToolBar toolbar = TOOLBAR_QUERY);
+        static void insertActionAfter(ExtActionPrototype* action, Action afterAction, ToolBar toolbar = TOOLBAR_QUERY);
+        static void removeAction(ExtActionPrototype* action, ToolBar toolbar = TOOLBAR_QUERY);
 
     protected:
         void changeEvent(QEvent *e);

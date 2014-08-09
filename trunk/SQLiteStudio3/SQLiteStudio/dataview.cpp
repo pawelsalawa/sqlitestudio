@@ -720,22 +720,22 @@ void DataView::staticInit()
     createStaticActions();
 }
 
-ExtActionManagementNotifierPtr DataView::insertAction(QAction* action, DataView::ToolBar toolbar)
+void DataView::insertAction(ExtActionPrototype* action, DataView::ToolBar toolbar)
 {
     return ExtActionContainer::insertAction<DataView>(action, toolbar);
 }
 
-ExtActionManagementNotifierPtr DataView::insertActionBefore(QAction* action, DataView::Action beforeAction, DataView::ToolBar toolbar)
+void DataView::insertActionBefore(ExtActionPrototype* action, DataView::Action beforeAction, DataView::ToolBar toolbar)
 {
     return ExtActionContainer::insertActionBefore<DataView>(action, beforeAction, toolbar);
 }
 
-ExtActionManagementNotifierPtr DataView::insertActionAfter(QAction* action, DataView::Action afterAction, DataView::ToolBar toolbar)
+void DataView::insertActionAfter(ExtActionPrototype* action, DataView::Action afterAction, DataView::ToolBar toolbar)
 {
     return ExtActionContainer::insertActionAfter<DataView>(action, afterAction, toolbar);
 }
 
-void DataView::removeAction(QAction* action, DataView::ToolBar toolbar)
+void DataView::removeAction(ExtActionPrototype* action, DataView::ToolBar toolbar)
 {
     ExtActionContainer::removeAction<DataView>(action, toolbar);
 }

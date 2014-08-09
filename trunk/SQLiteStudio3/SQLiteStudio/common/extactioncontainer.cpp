@@ -2,7 +2,6 @@
 #include "iconmanager.h"
 #include "common/extaction.h"
 #include "common/global.h"
-#include "extactioncontainersignalhandler.h"
 #include <QSignalMapper>
 #include <QToolButton>
 #include <QToolBar>
@@ -15,15 +14,16 @@ QList<ExtActionContainer*> ExtActionContainer::instances;
 ExtActionContainer::ExtActionContainer()
 {
     actionIdMapper = new QSignalMapper();
-    signalHandler = new ExtActionContainerSignalHandler(this);
-    QObject::connect(actionIdMapper, SIGNAL(mapped(int)), signalHandler, SLOT(handleShortcutChange(int)));
+
+    // We need to explicitly cast QSignalMapper::mapped to tell which overloaded version of function we want
+    QObject::connect(actionIdMapper, static_cast<void (QSignalMapper::*)(int)>(&QSignalMapper::mapped),
+                     [=](int action) {refreshShortcut(action);});
     instances << this;
 }
 
 ExtActionContainer::~ExtActionContainer()
 {
     deleteActions();
-    safe_delete(signalHandler);
     safe_delete(actionIdMapper);
     instances.removeOne(this);
 }
@@ -108,11 +108,6 @@ void ExtActionContainer::updateShortcutTips()
 {
 }
 
-ExtActionContainerSignalHandler*ExtActionContainer::getExtActionContainerSignalHandler() const
-{
-    return signalHandler;
-}
-
 void ExtActionContainer::createAction(int action, QAction* qAction, const QObject* receiver, const char* slot, QWidget* container, QWidget* owner)
 {
     if (!owner)
@@ -162,11 +157,11 @@ QAction* ExtActionContainer::getAction(int action)
     return actionMap.value(action);
 }
 
-void ExtActionContainer::handleActionInsert(QAction* action, int toolbar, const ActionDetails& details)
+void ExtActionContainer::handleActionInsert(int toolbar, ActionDetails* details)
 {
-    if (details.position > -1 && !actionMap.contains(details.position))
+    if (details->position > -1 && !actionMap.contains(details->position))
     {
-        qWarning() << "Tried to insert action" << action->text() << "before action" << details.position
+        qWarning() << "Tried to insert action" << details->action->text() << "before action" << details->position
                    << "which is not present in action container:" << metaObject()->className();
         return;
     }
@@ -174,13 +169,13 @@ void ExtActionContainer::handleActionInsert(QAction* action, int toolbar, const 
     QToolBar* toolBar = getToolBar(toolbar);
     if (!toolBar)
     {
-        qWarning() << "Tried to insert action" << action->text() << ", but toolbar was incorrect: " << toolbar
+        qWarning() << "Tried to insert action" << details->action->text() << ", but toolbar was incorrect: " << toolbar
                    << "or there is no toolbar in action container:" << metaObject()->className();
         return;
     }
 
-    QAction* beforeQAction = actionMap[details.position];
-    if (details.after)
+    QAction* beforeQAction = actionMap[details->position];
+    if (details->after)
     {
         QList<QAction*> acts = toolBar->actions();
         int idx = acts.indexOf(beforeQAction);
@@ -191,22 +186,43 @@ void ExtActionContainer::handleActionInsert(QAction* action, int toolbar, const 
             beforeQAction = nullptr;
     }
 
+    QAction* action = details->action->create();
     toolBar->insertAction(beforeQAction, action);
-    details.notifier->inserted(this, toolBar);
+
+    ToolbarAndProto toolbarAndProto(toolbar, details);
+    extraActionToToolbarAndProto[action] = toolbarAndProto;
+    toolbarAndProtoToAction[toolbarAndProto] = action;
+
+    QObject::connect(action, &QAction::triggered, [this, details, toolbar]()
+    {
+        details->action->emitTriggered(this, toolbar);
+    });
+
+    details->action->emitInsertedTo(this, toolbar);
 }
 
-void ExtActionContainer::handleActionRemoval(QAction* action, int toolbar, const ActionDetails& details)
+void ExtActionContainer::handleActionRemoval(int toolbar, ActionDetails* details)
 {
     QToolBar* toolBar = getToolBar(toolbar);
     if (!toolBar)
     {
-        qWarning() << "Tried to remove action" << action->text() << ", but toolbar was incorrect: " << toolbar << "or there is no toolbar in action container:"
+        qWarning() << "Tried to remove action" << details->action->text() << ", but toolbar was incorrect: " << toolbar << "or there is no toolbar in action container:"
                    << metaObject()->className();
         return;
     }
 
+    details->action->emitAboutToRemoveFrom(this, toolbar);
+
+    ToolbarAndProto toolbarAndProto(toolbar, details);
+
+    QAction* action = toolbarAndProtoToAction[toolbarAndProto];
     toolBar->removeAction(action);
-    details.notifier->removed(this, toolBar);
+
+    delete action;
+    extraActionToToolbarAndProto.remove(action);
+    toolbarAndProtoToAction.remove(toolbarAndProto);
+
+    details->action->emitRemovedFrom(this, toolbar);
 }
 
 void ExtActionContainer::handleExtraActions()
@@ -219,10 +235,10 @@ void ExtActionContainer::handleExtraActions()
     for (int toolbarId : extraActions[clsName].keys())
     {
         // For each action for this toolbar
-        for (QAction* action : extraActions[clsName][toolbarId].keys())
+        for (ActionDetails* actionDetails : extraActions[clsName][toolbarId])
         {
             // Insert action into toolbar, before action's assigned "before" action
-            handleActionInsert(action, toolbarId, extraActions[clsName][toolbarId][action]);
+            handleActionInsert(toolbarId, actionDetails);
         }
     }
 }
@@ -231,7 +247,7 @@ ExtActionContainer::ActionDetails::ActionDetails()
 {
 }
 
-ExtActionContainer::ActionDetails::ActionDetails(int position, bool after, const ExtActionManagementNotifierPtr& notifier) :
-    position(position), after(after), notifier(notifier)
+ExtActionContainer::ActionDetails::ActionDetails(ExtActionPrototype* action, int position, bool after) :
+    action(action), position(position), after(after)
 {
 }

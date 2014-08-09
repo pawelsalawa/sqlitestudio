@@ -77,10 +77,10 @@ class EditorWindow : public MdiChild
         ~EditorWindow();
 
         static void staticInit();
-        static ExtActionManagementNotifierPtr insertAction(QAction* action, ToolBar toolbar = TOOLBAR_MAIN);
-        static ExtActionManagementNotifierPtr insertActionBefore(QAction* action, Action beforeAction, ToolBar toolbar = TOOLBAR_MAIN);
-        static ExtActionManagementNotifierPtr insertActionAfter(QAction* action, Action afterAction, ToolBar toolbar = TOOLBAR_MAIN);
-        static void removeAction(QAction* action, ToolBar toolbar = TOOLBAR_MAIN);
+        static void insertAction(ExtActionPrototype* action, ToolBar toolbar = TOOLBAR_MAIN);
+        static void insertActionBefore(ExtActionPrototype* action, Action beforeAction, ToolBar toolbar = TOOLBAR_MAIN);
+        static void insertActionAfter(ExtActionPrototype* action, Action afterAction, ToolBar toolbar = TOOLBAR_MAIN);
+        static void removeAction(ExtActionPrototype* action, ToolBar toolbar = TOOLBAR_MAIN);
 
         QSize sizeHint() const;
         QAction* getAction(Action action);

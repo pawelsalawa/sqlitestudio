@@ -293,22 +293,22 @@ void ViewWindow::staticInit()
     qRegisterMetaType<ViewWindow>("ViewWindow");
 }
 
-ExtActionManagementNotifierPtr ViewWindow::insertAction(QAction* action, ViewWindow::ToolBar toolbar)
+void ViewWindow::insertAction(ExtActionPrototype* action, ViewWindow::ToolBar toolbar)
 {
     return ExtActionContainer::insertAction<ViewWindow>(action, toolbar);
 }
 
-ExtActionManagementNotifierPtr ViewWindow::insertActionBefore(QAction* action, ViewWindow::Action beforeAction, ViewWindow::ToolBar toolbar)
+void ViewWindow::insertActionBefore(ExtActionPrototype* action, ViewWindow::Action beforeAction, ViewWindow::ToolBar toolbar)
 {
     return ExtActionContainer::insertActionBefore<ViewWindow>(action, beforeAction, toolbar);
 }
 
-ExtActionManagementNotifierPtr ViewWindow::insertActionAfter(QAction* action, ViewWindow::Action afterAction, ViewWindow::ToolBar toolbar)
+void ViewWindow::insertActionAfter(ExtActionPrototype* action, ViewWindow::Action afterAction, ViewWindow::ToolBar toolbar)
 {
     return ExtActionContainer::insertActionAfter<ViewWindow>(action, afterAction, toolbar);
 }
 
-void ViewWindow::removeAction(QAction* action, ViewWindow::ToolBar toolbar)
+void ViewWindow::removeAction(ExtActionPrototype* action, ViewWindow::ToolBar toolbar)
 {
     ExtActionContainer::removeAction<ViewWindow>(action, toolbar);
 }

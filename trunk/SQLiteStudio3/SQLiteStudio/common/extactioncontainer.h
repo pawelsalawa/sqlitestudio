@@ -3,7 +3,7 @@
 
 #include "iconmanager.h"
 #include "config_builder.h"
-#include "extactionmanagementnotifier.h"
+#include "extactionprototype.h"
 #include <QString>
 #include <QHash>
 #include <QSet>
@@ -47,45 +47,42 @@ class QSignalMapper;
         } \
     }
 
-class ExtActionContainerSignalHandler;
 
 class ExtActionContainer
 {
-    friend class ExtActionContainerSignalHandler;
+    private:
+        struct ActionDetails
+        {
+            ActionDetails();
+            ActionDetails(ExtActionPrototype* action, int position, bool after);
 
-    struct ActionDetails
-    {
-        ActionDetails();
-        ActionDetails(int position, bool after, const ExtActionManagementNotifierPtr& notifier);
+            ExtActionPrototype* action = nullptr;
+            int position = -1;
+            bool after = false;
+        };
 
-        int position = -1;
-        bool after = false;
-        ExtActionManagementNotifierPtr notifier;
-    };
-
-    typedef QHash<QAction*,ActionDetails> ActionToPosition;
-    typedef QHash<int,ActionToPosition> ToolBarToAction;
-    typedef QHash<QString,ToolBarToAction> ClassNameToToolBarAndAction;
+        typedef QList<ActionDetails*> ExtraActions;
+        typedef QHash<int,ExtraActions> ToolBarToAction;
+        typedef QHash<QString,ToolBarToAction> ClassNameToToolBarAndAction;
 
     public:
         ExtActionContainer();
         virtual ~ExtActionContainer();
 
         QAction* getAction(int action);
-
-        template <class T>
-        static ExtActionManagementNotifierPtr insertAction(QAction* action, int toolbar = -1);
-
-        template <class T>
-        static ExtActionManagementNotifierPtr insertActionBefore(QAction* action, int beforeAction, int toolbar = -1);
-
-        template <class T>
-        static ExtActionManagementNotifierPtr insertActionAfter(QAction* action, int afterAction, int toolbar = -1);
-
-        template <class T>
-        static void removeAction(QAction* action, int toolbar = -1);
-
         virtual const QMetaObject* metaObject() const = 0;
+
+        template <class T>
+        static void insertAction(ExtActionPrototype* action, int toolbar = -1);
+
+        template <class T>
+        static void insertActionBefore(ExtActionPrototype* action, int beforeAction, int toolbar = -1);
+
+        template <class T>
+        static void insertActionAfter(ExtActionPrototype* action, int afterAction, int toolbar = -1);
+
+        template <class T>
+        static void removeAction(ExtActionPrototype* action, int toolbar = -1);
 
     protected:
         QHash<int,QAction*> actionMap;
@@ -124,7 +121,6 @@ class ExtActionContainer
         void attachActionInMenu(int parentAction, int childAction, QToolBar* toolbar);
         void attachActionInMenu(int parentAction, QAction* childAction, QToolBar* toolbar);
         void updateShortcutTips();
-        ExtActionContainerSignalHandler* getExtActionContainerSignalHandler() const;
 
         /**
          * @brief Tells the toolbar object for given toolbar enum value.
@@ -145,10 +141,12 @@ class ExtActionContainer
          */
         virtual QToolBar* getToolBar(int toolbar) const = 0;
 
-        void handleActionInsert(QAction* action, int toolbar, const ActionDetails& details);
-        void handleActionRemoval(QAction* action, int toolbar, const ActionDetails& details);
+        void handleActionInsert(int toolbar, ActionDetails* details);
+        void handleActionRemoval(int toolbar, ActionDetails* details);
 
     private:
+        typedef QPair<int,ActionDetails*> ToolbarAndProto;
+
         void refreshShortcuts();
         void refreshShortcut(int action);
         void deleteActions();
@@ -159,48 +157,46 @@ class ExtActionContainer
         static QList<T*> getInstances();
 
         template <class T>
-        static ExtActionManagementNotifierPtr insertAction(QAction* action, int pos, bool after, int toolbar);
+        static void insertAction(ExtActionPrototype* action, int pos, bool after, int toolbar);
 
         static ClassNameToToolBarAndAction extraActions;
         static QList<ExtActionContainer*> instances;
 
-        ExtActionContainerSignalHandler* signalHandler = nullptr;
         QSignalMapper* actionIdMapper = nullptr;
+        QHash<QAction*,ToolbarAndProto> extraActionToToolbarAndProto;
+        QHash<ToolbarAndProto,QAction*> toolbarAndProtoToAction;
 };
 
 template <class T>
-ExtActionManagementNotifierPtr ExtActionContainer::insertAction(QAction* action, int pos, bool after, int toolbar)
+void ExtActionContainer::insertAction(ExtActionPrototype* action, int pos, bool after, int toolbar)
 {
-    ExtActionManagementNotifierPtr notifier = ExtActionManagementNotifierPtr::create(action);
-    ActionDetails dets(pos, after, notifier);
+    ActionDetails* dets = new ActionDetails(action, pos, after);
     QString clsName = T::staticMetaObject.className();
-    extraActions[clsName][toolbar][action] = dets;
+    extraActions[clsName][toolbar] << dets;
     for (T* instance : getInstances<T>())
-        instance->handleActionInsert(action, toolbar, dets);
-
-    return notifier;
+        instance->handleActionInsert(toolbar, dets);
 }
 
 template <class T>
-ExtActionManagementNotifierPtr ExtActionContainer::insertAction(QAction* action, int toolbar)
+void ExtActionContainer::insertAction(ExtActionPrototype* action, int toolbar)
 {
-    return insertAction<T>(action, -1, false, toolbar);
+    insertAction<T>(action, -1, false, toolbar);
 }
 
 template <class T>
-ExtActionManagementNotifierPtr ExtActionContainer::insertActionAfter(QAction* action, int afterAction, int toolbar)
+void ExtActionContainer::insertActionAfter(ExtActionPrototype* action, int afterAction, int toolbar)
 {
-    return insertAction<T>(action, afterAction, true, toolbar);
+    insertAction<T>(action, afterAction, true, toolbar);
 }
 
 template <class T>
-ExtActionManagementNotifierPtr ExtActionContainer::insertActionBefore(QAction* action, int beforeAction, int toolbar)
+void ExtActionContainer::insertActionBefore(ExtActionPrototype* action, int beforeAction, int toolbar)
 {
-    return insertAction<T>(action, beforeAction, false, toolbar);
+    insertAction<T>(action, beforeAction, false, toolbar);
 }
 
 template <class T>
-void ExtActionContainer::removeAction(QAction* action, int toolbar)
+void ExtActionContainer::removeAction(ExtActionPrototype* action, int toolbar)
 {
     QString clsName = T::staticMetaObject.className();
     if (!extraActions.contains(clsName))
@@ -209,14 +205,24 @@ void ExtActionContainer::removeAction(QAction* action, int toolbar)
     if (!extraActions[clsName].contains(toolbar))
         return;
 
-    if (!extraActions[clsName][toolbar].contains(action))
+    ActionDetails* dets = nullptr;
+    for (ActionDetails* d : extraActions[clsName][toolbar])
+    {
+        if (d->action == action)
+        {
+            dets = d;
+            break;
+        }
+    }
+
+    if (!dets)
         return;
 
-    ActionDetails dets = extraActions[clsName][toolbar][action];
     for (T* instance : getInstances<T>())
-        instance->handleActionRemoval(action, toolbar, dets);
+        instance->handleActionRemoval(toolbar, dets);
 
-    extraActions[clsName][toolbar].remove(action);
+    extraActions[clsName][toolbar].removeOne(dets);
+    delete dets;
 }
 
 template <class T>

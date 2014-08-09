@@ -145,11 +145,10 @@ SOURCES += main.cpp\
     uiurlbutton.cpp \
     common/configcombobox.cpp \
     dialogs/dbconverterdialog.cpp \
-    common/extactioncontainersignalhandler.cpp \
     dialogs/dbdialog.cpp \
     uidebug.cpp \
     debugconsole.cpp \
-    common/extactionmanagementnotifier.cpp
+    common/extactionprototype.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -280,12 +279,11 @@ HEADERS  += mainwindow.h \
     uiurlbutton.h \
     common/configcombobox.h \
     dialogs/dbconverterdialog.h \
-    common/extactioncontainersignalhandler.h \
     dialogs/configdialog.h \
     dialogs/dbdialog.h \
     uidebug.h \
     debugconsole.h \
-    common/extactionmanagementnotifier.h
+    common/extactionprototype.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \
