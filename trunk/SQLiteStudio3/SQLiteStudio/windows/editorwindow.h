@@ -20,6 +20,7 @@ class ExtLineEdit;
 class IntValidator;
 class FormView;
 class SqlQueryItem;
+class SqlEditor;
 
 CFG_KEY_LIST(EditorWindow, QObject::tr("SQL editor window"),
      CFG_KEY_ENTRY(EXEC_QUERY,          Qt::Key_F9,                 QObject::tr("Execute query"))
@@ -90,6 +91,7 @@ class EditorWindow : public MdiChild
         QString getContents() const;
         void execute();
         QToolBar* getToolBar(int toolbar) const;
+        SqlEditor* getEditor() const;
 
     protected:
         void changeEvent(QEvent *e);

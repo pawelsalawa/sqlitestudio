@@ -24,9 +24,9 @@ class ExtActionPrototype : public QObject
         QAction* create(QObject* parent = 0);
 
     private:
-        void emitInsertedTo(ExtActionContainer* actionContainer, int toolbar);
-        void emitAboutToRemoveFrom(ExtActionContainer* actionContainer, int toolbar);
-        void emitRemovedFrom(ExtActionContainer* actionContainer, int toolbar);
+        void emitInsertedTo(ExtActionContainer* actionContainer, int toolbar, QAction* action);
+        void emitAboutToRemoveFrom(ExtActionContainer* actionContainer, int toolbar, QAction* action);
+        void emitRemovedFrom(ExtActionContainer* actionContainer, int toolbar, QAction* action);
         void emitTriggered(ExtActionContainer* actionContainer, int toolbar);
 
         QIcon icon;
@@ -34,9 +34,9 @@ class ExtActionPrototype : public QObject
         bool separator = false;
 
     signals:
-        void insertedTo(ExtActionContainer* actionContainer, int toolbar);
-        void aboutToRemoveFrom(ExtActionContainer* actionContainer, int toolbar);
-        void removedFrom(ExtActionContainer* actionContainer, int toolbar);
+        void insertedTo(ExtActionContainer* actionContainer, int toolbar, QAction* action);
+        void aboutToRemoveFrom(ExtActionContainer* actionContainer, int toolbar, QAction* action);
+        void removedFrom(ExtActionContainer* actionContainer, int toolbar, QAction* action);
         void triggered(ExtActionContainer* actionContainer, int toolbar);
 };
 

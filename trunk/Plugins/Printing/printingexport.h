@@ -15,8 +15,14 @@ class PRINTINGSHARED_EXPORT PrintingExport : public PdfExport
         ExportManager::StandardConfigFlags standardOptionsToEnable() const;
         ExportManager::ExportModes getSupportedModes() const;
 
+        QPagedPaintDevice* getPaintDevice() const;
+        void setPaintDevice(QPagedPaintDevice* value);
+
     protected:
         QPagedPaintDevice* createPaintDevice(const QString& documentTitle);
+
+    private:
+        QPagedPaintDevice* paintDevice = nullptr;
 };
 
 #endif // PRINTINGEXPORT_H

@@ -44,19 +44,19 @@ QAction* ExtActionPrototype::create(QObject* parent)
     return new QAction(icon, actionText, parent);
 }
 
-void ExtActionPrototype::emitInsertedTo(ExtActionContainer* actionContainer, int toolbar)
+void ExtActionPrototype::emitInsertedTo(ExtActionContainer* actionContainer, int toolbar, QAction* action)
 {
-    emit insertedTo(actionContainer, toolbar);
+    emit insertedTo(actionContainer, toolbar, action);
 }
 
-void ExtActionPrototype::emitAboutToRemoveFrom(ExtActionContainer* actionContainer, int toolbar)
+void ExtActionPrototype::emitAboutToRemoveFrom(ExtActionContainer* actionContainer, int toolbar, QAction* action)
 {
-    emit aboutToRemoveFrom(actionContainer, toolbar);
+    emit aboutToRemoveFrom(actionContainer, toolbar, action);
 }
 
-void ExtActionPrototype::emitRemovedFrom(ExtActionContainer* actionContainer, int toolbar)
+void ExtActionPrototype::emitRemovedFrom(ExtActionContainer* actionContainer, int toolbar, QAction* action)
 {
-    emit removedFrom(actionContainer, toolbar);
+    emit removedFrom(actionContainer, toolbar, action);
 }
 
 void ExtActionPrototype::emitTriggered(ExtActionContainer* actionContainer, int toolbar)

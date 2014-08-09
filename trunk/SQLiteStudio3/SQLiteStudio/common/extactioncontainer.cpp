@@ -198,7 +198,7 @@ void ExtActionContainer::handleActionInsert(int toolbar, ActionDetails* details)
         details->action->emitTriggered(this, toolbar);
     });
 
-    details->action->emitInsertedTo(this, toolbar);
+    details->action->emitInsertedTo(this, toolbar, action);
 }
 
 void ExtActionContainer::handleActionRemoval(int toolbar, ActionDetails* details)
@@ -211,18 +211,18 @@ void ExtActionContainer::handleActionRemoval(int toolbar, ActionDetails* details
         return;
     }
 
-    details->action->emitAboutToRemoveFrom(this, toolbar);
 
     ToolbarAndProto toolbarAndProto(toolbar, details);
-
     QAction* action = toolbarAndProtoToAction[toolbarAndProto];
-    toolBar->removeAction(action);
 
-    delete action;
+    details->action->emitAboutToRemoveFrom(this, toolbar, action);
+
+    toolBar->removeAction(action);
     extraActionToToolbarAndProto.remove(action);
     toolbarAndProtoToAction.remove(toolbarAndProto);
 
-    details->action->emitRemovedFrom(this, toolbar);
+    details->action->emitRemovedFrom(this, toolbar, action);
+    delete action;
 }
 
 void ExtActionContainer::handleExtraActions()
