@@ -5,7 +5,7 @@
 #include "plugins/genericplugin.h"
 #include "plugins/generalpurposeplugin.h"
 
-class QAction;
+class ExtActionPrototype;
 
 class PRINTINGSHARED_EXPORT Printing : public GenericPlugin, public GeneralPurposePlugin
 {
@@ -17,9 +17,9 @@ class PRINTINGSHARED_EXPORT Printing : public GenericPlugin, public GeneralPurpo
         void deinit();
 
     private:
-        QAction* printResultsAction = nullptr;
-        QAction* printTableAction = nullptr;
-        QAction* printDatabaseAction = nullptr;
+        ExtActionPrototype* separatorAction = nullptr;
+        ExtActionPrototype* printDataAction = nullptr;
+        ExtActionPrototype* printQueryAction = nullptr;
 };
 
 #endif // PRINTING_H

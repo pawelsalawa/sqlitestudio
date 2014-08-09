@@ -3,20 +3,30 @@
 #include "mainwindow.h"
 #include "windows/editorwindow.h"
 #include "dataview.h"
+#include "common/extactionprototype.h"
 #include <QPrinter>
 #include <QPrintDialog>
 
 bool Printing::init()
 {
     Q_INIT_RESOURCE(printing);
-    printResultsAction = new QAction(QIcon(":/icons/printer.png"), tr("Print results"), this);
-    ExtActionContainer::insertActionBefore<DataView>(printResultsAction, DataView::REFRESH_DATA, DataView::TOOLBAR_GRID);
+    printDataAction = new ExtActionPrototype(QIcon(":/icons/printer.png"), tr("Print data"), this);
+    separatorAction = new ExtActionPrototype(this);
+    printQueryAction = new ExtActionPrototype(QIcon(":/icons/printer.png"), tr("Print query"), this);
+
+    DataView::insertActionAfter(printDataAction, DataView::LAST_PAGE);
+    DataView::insertActionAfter(separatorAction, DataView::LAST_PAGE);
+    EditorWindow::insertActionAfter(printQueryAction, EditorWindow::EXPORT_RESULTS);
     return true;
 }
 
 void Printing::deinit()
 {
     Q_CLEANUP_RESOURCE(printing);
-    ExtActionContainer::removeAction<DataView>(printResultsAction, DataView::TOOLBAR_GRID);
-    safe_delete(printResultsAction);
+    DataView::removeAction(printDataAction);
+    DataView::removeAction(separatorAction);
+    EditorWindow::removeAction(printQueryAction);
+    safe_delete(printDataAction);
+    safe_delete(separatorAction);
+    safe_delete(printQueryAction);
 }

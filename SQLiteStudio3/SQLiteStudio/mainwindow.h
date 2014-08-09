@@ -32,7 +32,7 @@ CFG_KEY_LIST(MainWindow, QObject::tr("Main window"),
      CFG_KEY_ENTRY(OPEN_DEBUG_CONSOLE, Qt::Key_F12,                 QObject::tr("Open Debug Console"))
 )
 
-class MainWindow : public QMainWindow, virtual public ExtActionContainer
+class MainWindow : public QMainWindow, public ExtActionContainer
 {
         Q_OBJECT
         Q_ENUMS(Action)

@@ -5,6 +5,8 @@
 
 class ExtAction : public QAction
 {
+        Q_OBJECT
+
     public:
         explicit ExtAction(QObject *parent = 0);
         ExtAction(const QString& text, QObject* parent = 0);
@@ -12,7 +14,6 @@ class ExtAction : public QAction
 
     protected:
         bool event(QEvent* e);
-
 };
 
 #endif // extaction_H

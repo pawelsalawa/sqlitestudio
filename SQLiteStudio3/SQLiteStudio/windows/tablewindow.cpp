@@ -109,22 +109,22 @@ void TableWindow::staticInit()
     qRegisterMetaType<TableWindow>("TableWindow");
 }
 
-ExtActionManagementNotifierPtr TableWindow::insertAction(QAction* action, TableWindow::ToolBar toolbar)
+void TableWindow::insertAction(ExtActionPrototype* action, TableWindow::ToolBar toolbar)
 {
     return ExtActionContainer::insertAction<TableWindow>(action, toolbar);
 }
 
-ExtActionManagementNotifierPtr TableWindow::insertActionBefore(QAction* action, TableWindow::Action beforeAction, TableWindow::ToolBar toolbar)
+void TableWindow::insertActionBefore(ExtActionPrototype* action, TableWindow::Action beforeAction, TableWindow::ToolBar toolbar)
 {
     return ExtActionContainer::insertActionBefore<TableWindow>(action, beforeAction, toolbar);
 }
 
-ExtActionManagementNotifierPtr TableWindow::insertActionAfter(QAction* action, TableWindow::Action afterAction, TableWindow::ToolBar toolbar)
+void TableWindow::insertActionAfter(ExtActionPrototype* action, TableWindow::Action afterAction, TableWindow::ToolBar toolbar)
 {
     return ExtActionContainer::insertActionAfter<TableWindow>(action, afterAction, toolbar);
 }
 
-void TableWindow::removeAction(QAction* action, TableWindow::ToolBar toolbar)
+void TableWindow::removeAction(ExtActionPrototype* action, TableWindow::ToolBar toolbar)
 {
     ExtActionContainer::removeAction<TableWindow>(action, toolbar);
 }

@@ -59,22 +59,22 @@ void EditorWindow::staticInit()
     createStaticActions();
 }
 
-ExtActionManagementNotifierPtr EditorWindow::insertAction(QAction* action, EditorWindow::ToolBar toolbar)
+void EditorWindow::insertAction(ExtActionPrototype* action, EditorWindow::ToolBar toolbar)
 {
     return ExtActionContainer::insertAction<EditorWindow>(action, toolbar);
 }
 
-ExtActionManagementNotifierPtr EditorWindow::insertActionBefore(QAction* action, EditorWindow::Action beforeAction, EditorWindow::ToolBar toolbar)
+void EditorWindow::insertActionBefore(ExtActionPrototype* action, EditorWindow::Action beforeAction, EditorWindow::ToolBar toolbar)
 {
     return ExtActionContainer::insertActionBefore<EditorWindow>(action, beforeAction, toolbar);
 }
 
-ExtActionManagementNotifierPtr EditorWindow::insertActionAfter(QAction* action, EditorWindow::Action afterAction, EditorWindow::ToolBar toolbar)
+void EditorWindow::insertActionAfter(ExtActionPrototype* action, EditorWindow::Action afterAction, EditorWindow::ToolBar toolbar)
 {
     return ExtActionContainer::insertActionAfter<EditorWindow>(action, afterAction, toolbar);
 }
 
-void EditorWindow::removeAction(QAction* action, EditorWindow::ToolBar toolbar)
+void EditorWindow::removeAction(ExtActionPrototype* action, EditorWindow::ToolBar toolbar)
 {
     ExtActionContainer::removeAction<EditorWindow>(action, toolbar);
 }
