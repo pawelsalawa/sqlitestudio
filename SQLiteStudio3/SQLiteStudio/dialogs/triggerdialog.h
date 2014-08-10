@@ -52,6 +52,7 @@ class TriggerDialog : public QDialog
         void updateValidation();
         void showColumnsDialog();
         void updateDdlTab(int tabIdx);
+        void tableChanged(const QString& newValue);
 
     public slots:
         void accept();

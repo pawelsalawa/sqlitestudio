@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>401</width>
-    <height>360</height>
+    <width>491</width>
+    <height>410</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -30,168 +30,28 @@
        <string>Index</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_2">
-       <item row="0" column="0">
-        <widget class="QWidget" name="widget" native="true">
-         <layout class="QGridLayout" name="gridLayout">
-          <property name="leftMargin">
-           <number>0</number>
-          </property>
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <property name="rightMargin">
-           <number>0</number>
-          </property>
-          <property name="bottomMargin">
-           <number>0</number>
-          </property>
-          <item row="0" column="0">
-           <widget class="QLabel" name="nameLabel">
-            <property name="text">
-             <string>Index name:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLineEdit" name="nameEdit"/>
-          </item>
-          <item row="1" column="1">
-           <widget class="QComboBox" name="tableCombo"/>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="tableLabel">
-            <property name="text">
-             <string>On table:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0" colspan="2">
-           <widget class="QWidget" name="hdrWidget" native="true">
-            <layout class="QGridLayout" name="gridLayout_3">
-             <property name="leftMargin">
-              <number>0</number>
-             </property>
-             <property name="rightMargin">
-              <number>0</number>
-             </property>
-             <property name="bottomMargin">
-              <number>0</number>
-             </property>
-             <item row="0" column="0">
-              <widget class="QLabel" name="hdrColumnLabel">
-               <property name="font">
-                <font>
-                 <weight>75</weight>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="text">
-                <string>Column</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="2">
-              <widget class="QLabel" name="hdrCollateLabel">
-               <property name="minimumSize">
-                <size>
-                 <width>120</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>120</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <weight>75</weight>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="text">
-                <string>Collate</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="3">
-              <widget class="QLabel" name="hdrSortLabel">
-               <property name="minimumSize">
-                <size>
-                 <width>70</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>70</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="font">
-                <font>
-                 <weight>75</weight>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="text">
-                <string>Sort</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item row="2" column="0" colspan="2">
-           <widget class="QCheckBox" name="uniqueCheck">
-            <property name="text">
-             <string>Unique index</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
        <item row="1" column="0">
-        <widget class="QScrollArea" name="scrollArea">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>3</verstretch>
-          </sizepolicy>
+        <widget class="QLabel" name="tableLabel">
+         <property name="text">
+          <string>On table:</string>
          </property>
-         <property name="frameShape">
-          <enum>QFrame::NoFrame</enum>
-         </property>
-         <property name="widgetResizable">
-          <bool>true</bool>
-         </property>
-         <widget class="QWidget" name="columnsWidget">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>365</width>
-            <height>68</height>
-           </rect>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_4">
-           <property name="topMargin">
-            <number>0</number>
-           </property>
-          </layout>
-         </widget>
         </widget>
        </item>
-       <item row="2" column="0">
+       <item row="0" column="0">
+        <widget class="QLabel" name="nameLabel">
+         <property name="text">
+          <string>Index name:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0" colspan="2">
         <widget class="QCheckBox" name="partialIndexCheck">
          <property name="text">
           <string>Partial index condition</string>
          </property>
         </widget>
        </item>
-       <item row="3" column="0">
+       <item row="5" column="0" colspan="2">
         <widget class="SqlEditor" name="partialIndexEdit">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -200,6 +60,53 @@
           </sizepolicy>
          </property>
         </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <widget class="QCheckBox" name="uniqueCheck">
+         <property name="text">
+          <string>Unique index</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="2">
+        <widget class="QTableWidget" name="columnsTable">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>2</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="selectionMode">
+          <enum>QAbstractItemView::NoSelection</enum>
+         </property>
+         <property name="verticalScrollMode">
+          <enum>QAbstractItemView::ScrollPerPixel</enum>
+         </property>
+         <property name="horizontalScrollMode">
+          <enum>QAbstractItemView::ScrollPerPixel</enum>
+         </property>
+         <column>
+          <property name="text">
+           <string>Column</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Collation</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Sort</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="nameEdit"/>
+       </item>
+       <item row="1" column="1">
+        <widget class="QComboBox" name="tableCombo"/>
        </item>
       </layout>
      </widget>
@@ -245,10 +152,6 @@
  </customwidgets>
  <tabstops>
   <tabstop>tabWidget</tabstop>
-  <tabstop>nameEdit</tabstop>
-  <tabstop>tableCombo</tabstop>
-  <tabstop>uniqueCheck</tabstop>
-  <tabstop>scrollArea</tabstop>
   <tabstop>partialIndexCheck</tabstop>
   <tabstop>partialIndexEdit</tabstop>
   <tabstop>buttonBox</tabstop>

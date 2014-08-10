@@ -10,6 +10,8 @@
 #include "uiconfig.h"
 #include "services/config.h"
 #include "uiutils.h"
+#include "sqlite3.h"
+#include "windows/editorwindow.h"
 #include <QDebug>
 #include <QGridLayout>
 #include <QSignalMapper>
@@ -63,9 +65,7 @@ void IndexDialog::init()
         return;
     }
 
-    ui->scrollArea->setAutoFillBackground(false);
-    ui->scrollArea->viewport()->setAutoFillBackground(false);
-    ui->columnsWidget->setAutoFillBackground(false);
+    ui->columnsTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
 
     ui->partialIndexEdit->setDb(db);
 
@@ -73,8 +73,6 @@ void IndexDialog::init()
 
     columnStateSignalMapping = new QSignalMapper(this);
     connect(columnStateSignalMapping, SIGNAL(mapped(int)), this, SLOT(updateColumnState(int)));
-
-    columnsLayout = dynamic_cast<QGridLayout*>(ui->columnsWidget->layout());
 
     SchemaResolver resolver(db);
     ui->tableCombo->addItem(QString::null);
@@ -91,11 +89,13 @@ void IndexDialog::init()
         connect(ui->partialIndexEdit, SIGNAL(textChanged()), this, SLOT(updateValidation()));
         ui->partialIndexEdit->setVirtualSqlExpression("SELECT %1");
         updatePartialConditionState();
+        ui->columnsTable->setColumnHidden(1, false);
     }
     else
     {
         ui->partialIndexCheck->setVisible(false);
         ui->partialIndexEdit->setVisible(false);
+        ui->columnsTable->setColumnHidden(1, true);
     }
 
     readCollations();
@@ -117,8 +117,6 @@ void IndexDialog::init()
 
     updateValidation();
 
-    adjustSize();
-
     ui->nameEdit->setFocus();
 }
 
@@ -138,8 +136,6 @@ void IndexDialog::readIndex()
 
 void IndexDialog::buildColumns()
 {
-    totalColumns = 0;
-
     // Clean up
     foreach (QCheckBox* cb, columnCheckBoxes)
         delete cb;
@@ -153,6 +149,9 @@ void IndexDialog::buildColumns()
     columnCheckBoxes.clear();
     sortComboBoxes.clear();
     collateComboBoxes.clear();
+
+    totalColumns = tableColumns.size();
+    ui->columnsTable->setRowCount(totalColumns);
 
     int row = 0;
     foreach (const QString& column, tableColumns)
@@ -190,10 +189,7 @@ void IndexDialog::updateValidation()
                            (ui->partialIndexEdit->isSyntaxChecked() && !ui->partialIndexEdit->haveErrors()));
 
     setValidState(ui->tableCombo, tableOk, tr("Pick the table for the index."));
-    setValidState(ui->hdrColumnLabel, colSelected, tr("Select at least one column."));
-//    foreach (QCheckBox* cb, columnCheckBoxes)
-//        setValidStyle(cb, colSelected);
-
+    setValidState(ui->columnsTable, colSelected, tr("Select at least one column."));
     setValidState(ui->partialIndexCheck, partialConditionOk, tr("Enter a valid condition."));
 
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(colSelected && partialConditionOk);
@@ -219,8 +215,20 @@ void IndexDialog::buildColumn(const QString& name, int row)
 {
     int col = 0;
 
+    QWidget* checkParent = new QWidget();
+    QHBoxLayout* layout = new QHBoxLayout();
+    QMargins margins = layout->contentsMargins();
+    margins.setTop(0);
+    margins.setBottom(0);
+    margins.setLeft(4);
+    margins.setRight(4);
+    layout->setContentsMargins(margins);
+    checkParent->setLayout(layout);
+
     QCheckBox* check = new QCheckBox(name);
-    columnsLayout->addWidget(check, row, col++);
+    checkParent->layout()->addWidget(check);
+
+    ui->columnsTable->setCellWidget(row, col++, checkParent);
     columnStateSignalMapping->setMapping(check, row);
     connect(check, SIGNAL(toggled(bool)), columnStateSignalMapping, SLOT(map()));
     connect(check, SIGNAL(toggled(bool)), this, SLOT(updateValidation()));
@@ -230,19 +238,20 @@ void IndexDialog::buildColumn(const QString& name, int row)
     if (db->getDialect() == Dialect::Sqlite3)
     {
         collation = new QComboBox();
-        collation->setMaximumWidth(ui->hdrCollateLabel->width());
-        collation->setMinimumWidth(ui->hdrCollateLabel->width() - ui->scrollArea->verticalScrollBar()->width());
         collation->setEditable(true);
-        collation->lineEdit()->setPlaceholderText(tr("Collate", "index dialog"));
+        collation->lineEdit()->setPlaceholderText(tr("default", "index dialog"));
         collation->setModel(&collations);
-        columnsLayout->addWidget(collation, row, col++);
+        ui->columnsTable->setCellWidget(row, col++, collation);
         collateComboBoxes << collation;
+    }
+    else
+    {
+        col++;
     }
 
     QComboBox* sortOrder = new QComboBox();
-    sortOrder->setFixedWidth(ui->hdrSortLabel->width());
     sortOrder->setToolTip(tr("Sort order", "table constraints"));
-    columnsLayout->addWidget(sortOrder, row, col++);
+    ui->columnsTable->setCellWidget(row, col++, sortOrder);
     sortComboBoxes << sortOrder;
 
     QStringList sortList = {"", sqliteSortOrder(SqliteSortOrder::ASC), sqliteSortOrder(SqliteSortOrder::DESC)};
@@ -330,7 +339,7 @@ void IndexDialog::rebuildCreateIndex()
 
     SqliteIndexedColumn* idxCol;
     int i = -1;
-    foreach (const QString& column, tableColumns)
+    for (const QString& column : tableColumns)
     {
         i++;
 
@@ -368,6 +377,45 @@ void IndexDialog::rebuildCreateIndex()
     createIndex->rebuildTokens();
 }
 
+void IndexDialog::queryDuplicates()
+{
+    static QString queryTpl = QStringLiteral("SELECT %1 FROM %2 GROUP BY %3 HAVING %4;\n");
+    static QString countTpl = QStringLiteral("count(%1) AS %2");
+    static QString countColNameTpl = QStringLiteral("count(%1)");
+    static QString countConditionTpl = QStringLiteral("count(%1) > 1");
+
+    Dialect dialect = db->getDialect();
+
+    QStringList cols;
+    QStringList grpCols;
+    QStringList countCols;
+    QString wrappedCol;
+    QString countColName;
+    int i = 0;
+    for (const QString& column : tableColumns)
+    {
+        if (!columnCheckBoxes[i++]->isChecked())
+            continue;
+
+        wrappedCol = wrapObjIfNeeded(column, dialect);
+        cols << wrappedCol;
+        grpCols << wrappedCol;
+        countColName = wrapObjIfNeeded(countColNameTpl.arg(column), dialect);
+        cols << countTpl.arg(wrappedCol, countColName);
+        countCols << countConditionTpl.arg(wrappedCol);
+    }
+
+    EditorWindow* editor = MAINWINDOW->openSqlEditor();
+    editor->setCurrentDb(db);
+
+    QString sqlCols = cols.join(", ");
+    QString sqlGrpCols = grpCols.join(", ");
+    QString sqlCntCols = countCols.join(" AND ");
+    QString sqlTable = wrapObjIfNeeded(ui->tableCombo->currentText(), dialect);
+    editor->setContents(queryTpl.arg(sqlCols, sqlTable, sqlGrpCols, sqlCntCols));
+    editor->execute();
+}
+
 void IndexDialog::accept()
 {
     rebuildCreateIndex();
@@ -403,6 +451,23 @@ void IndexDialog::accept()
         return;
     }
 
-    QMessageBox::critical(this, tr("Error", "index dialog"), tr("An error occurred while executing SQL statements:\n%1")
-                          .arg(executor.getExecutionErrors().join(",\n")), QMessageBox::Ok);
+    if (executor.getErrors().size() == 1 && executor.getErrors().first().first == SQLITE_CONSTRAINT)
+    {
+        int res = QMessageBox::critical(this,
+                                        tr("Error", "index dialog"),
+                                        tr("Cannot create unique index, because values in selected columns are not unique. "
+                                           "Would you like to execute SELECT query to see problematic values?"),
+                                        QMessageBox::Yes,
+                                        QMessageBox::No);
+        if (res == QMessageBox::Yes)
+        {
+            QDialog::reject();
+            queryDuplicates();
+        }
+    }
+    else
+    {
+        QMessageBox::critical(this, tr("Error", "index dialog"), tr("An error occurred while executing SQL statements:\n%1")
+                              .arg(executor.getErrorsMessages().join(",\n")), QMessageBox::Ok);
+    }
 }

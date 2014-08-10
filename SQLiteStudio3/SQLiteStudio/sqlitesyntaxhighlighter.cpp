@@ -183,6 +183,9 @@ bool SqliteSyntaxHighlighter::handleToken(TokenPtr token, qint32 idxModifier, in
         start = 0;
     }
 
+    if (createTriggerContext && token->type == Token::OTHER && (token->value.toLower() == "old" || token->value.toLower() == "new"))
+        token->type = Token::KEYWORD;
+
     bool limitedDamage = false;
     bool querySeparator = (token->type == Token::Type::OPERATOR && token->value == ";");
     bool error = isError(start, lgt, &limitedDamage);
@@ -252,6 +255,16 @@ void SqliteSyntaxHighlighter::handleParenthesis(TokenPtr token, TextBlockData* d
     if (token->type == Token::PAR_LEFT || token->type == Token::PAR_RIGHT)
         data->insertParenthesis(currentBlock().position() + token->start, token->value[0].toLatin1());
 }
+bool SqliteSyntaxHighlighter::getCreateTriggerContext() const
+{
+    return createTriggerContext;
+}
+
+void SqliteSyntaxHighlighter::setCreateTriggerContext(bool value)
+{
+    createTriggerContext = value;
+}
+
 
 bool SqliteSyntaxHighlighter::getObjectLinksEnabled() const
 {

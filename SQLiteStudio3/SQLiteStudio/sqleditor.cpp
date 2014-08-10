@@ -414,6 +414,7 @@ void SqlEditor::complete()
     }
 
     CompletionHelper completionHelper(sql, curPos, db);
+    completionHelper.setCreateTriggerTable(createTriggerTable);
     CompletionHelper::Results result = completionHelper.getExpectedTokens();
     if (result.filtered().size() == 0)
         return;
@@ -1436,6 +1437,12 @@ void SqlEditor::setVirtualSqlExpression(const QString& value)
     }
 
     virtualSqlRightOffset = virtualSqlExpression.length() - virtualSqlOffset - 2;
+}
+
+void SqlEditor::setTriggerContext(const QString& table)
+{
+    createTriggerTable = table;
+    highlighter->setCreateTriggerContext(!table.isEmpty());
 }
 
 const SqlEditor::DbObject* SqlEditor::getValidObjectForPosition(const QPoint& point)

@@ -70,6 +70,9 @@ class SqliteSyntaxHighlighter : public QSyntaxHighlighter
         void addCustomBgColor(int from, int to, const QColor& color);
         void clearCustomBgColors();
 
+        bool getCreateTriggerContext() const;
+        void setCreateTriggerContext(bool value);
+
     protected:
         void highlightBlock(const QString &text);
 
@@ -156,6 +159,7 @@ class SqliteSyntaxHighlighter : public QSyntaxHighlighter
         QList<Error> errors;
         QList<DbObject> dbObjects;
         bool objectLinksEnabled = false;
+        bool createTriggerContext = false;
 
     private slots:
         void setupFormats();

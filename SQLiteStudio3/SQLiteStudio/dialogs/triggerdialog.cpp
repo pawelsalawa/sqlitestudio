@@ -74,6 +74,7 @@ void TriggerDialog::init()
 
     // On object combo
     ui->onCombo->setEnabled(false);
+    connect(ui->onCombo, SIGNAL(currentTextChanged(QString)), this, SLOT(tableChanged(QString)));
 
     // Action combo
     ui->actionCombo->addItems({
@@ -206,28 +207,36 @@ void TriggerDialog::readTrigger()
 void TriggerDialog::setupVirtualSqls()
 {
     Dialect dialect = db->getDialect();
-    QString preconditionVirtSql = "CREATE TRIGGER %1 BEFORE INSERT ON %2 WHEN %3 BEGIN SELECT 1; END;";
-    QString codeVirtSql = "CREATE TRIGGER %1 BEFORE INSERT ON %2 BEGIN %3 END;";
+    static QString preconditionVirtSql = QStringLiteral("CREATE TRIGGER %1 BEFORE INSERT ON %2 WHEN %3 BEGIN SELECT 1; END;");
+    static QString codeVirtSql = QStringLiteral("CREATE TRIGGER %1 BEFORE INSERT ON %2 BEGIN %3 END;");
     ui->codeEdit->setVirtualSqlCompleteSemicolon(true);
     if (!trigger.isNull())
     {
         if (createTrigger) // if false, then there was a parsing error in parseDdl().
         {
             ui->preconditionEdit->setVirtualSqlExpression(
-                        preconditionVirtSql.arg(wrapObjIfNeeded(trigger, dialect))
-                        .arg(wrapObjIfNeeded(createTrigger->table, dialect)).arg("%1"));
+                        preconditionVirtSql.arg(wrapObjIfNeeded(trigger, dialect),
+                                                wrapObjIfNeeded(createTrigger->table, dialect),
+                                                "%1"));
 
             ui->codeEdit->setVirtualSqlExpression(
-                        codeVirtSql.arg(wrapObjIfNeeded(trigger, dialect)).arg(wrapObjIfNeeded(createTrigger->table, dialect)).arg("%1"));
+                        codeVirtSql.arg(
+                            wrapObjIfNeeded(trigger, dialect),
+                            wrapObjIfNeeded(createTrigger->table, dialect),
+                            "%1"));
         }
     }
     else if (!table.isNull() || !view.isNull())
     {
         ui->preconditionEdit->setVirtualSqlExpression(
-                    preconditionVirtSql.arg("trig").arg(wrapObjIfNeeded(getTargetObjectName(), dialect)).arg("%1"));
+                    preconditionVirtSql.arg("trig",
+                                            wrapObjIfNeeded(getTargetObjectName(), dialect),
+                                            "%1"));
 
         ui->codeEdit->setVirtualSqlExpression(
-                    codeVirtSql.arg("trig").arg(wrapObjIfNeeded(getTargetObjectName(), dialect)).arg("%1"));
+                    codeVirtSql.arg("trig",
+                                    wrapObjIfNeeded(getTargetObjectName(), dialect),
+                                    "%1"));
     }
     else
     {
@@ -355,6 +364,12 @@ void TriggerDialog::updateDdlTab(int tabIdx)
     ui->ddlEdit->setPlainText(ddl);
 }
 
+void TriggerDialog::tableChanged(const QString& newValue)
+{
+    ui->preconditionEdit->setTriggerContext(newValue);
+    ui->codeEdit->setTriggerContext(newValue);
+}
+
 void TriggerDialog::accept()
 {
     rebuildTrigger();
@@ -391,5 +406,5 @@ void TriggerDialog::accept()
     }
 
     QMessageBox::critical(this, tr("Error", "trigger dialog"), tr("An error occurred while executing SQL statements:\n%1")
-                          .arg(executor.getExecutionErrors().join(",\n")), QMessageBox::Ok);
+                          .arg(executor.getErrorsMessages().join(",\n")), QMessageBox::Ok);
 }

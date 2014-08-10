@@ -81,6 +81,7 @@ class SqlEditor : public QPlainTextEdit, public ExtActionContainer
         void setAutoCompletion(bool enabled);
         QString getVirtualSqlExpression() const;
         void setVirtualSqlExpression(const QString& value);
+        void setTriggerContext(const QString& table);
         bool haveErrors();
         bool isSyntaxChecked();
         bool getShowLineNumbers() const;
@@ -224,6 +225,7 @@ class SqlEditor : public QPlainTextEdit, public ExtActionContainer
         int virtualSqlOffset = 0;
         int virtualSqlRightOffset = 0;
         bool virtualSqlCompleteSemicolon = false;
+        QString createTriggerTable;
 
         static const int autoCompleterDelay = 300;
         static const int queryParserDelay = 500;
