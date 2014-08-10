@@ -44,6 +44,9 @@ class API_EXPORT CompletionHelper : public QObject
 
         static bool enableLemonDebug;
 
+        QString getCreateTriggerTable() const;
+        void setCreateTriggerTable(const QString& value);
+
     private:
         enum class Context
         {
@@ -175,6 +178,7 @@ class API_EXPORT CompletionHelper : public QObject
         SchemaResolver* schemaResolver = nullptr;
         SelectResolver* selectResolver = nullptr;
         DbAttacher* dbAttacher = nullptr;
+        QString createTriggerTable;
 
         /**
          * @brief tableToAlias

@@ -636,11 +636,19 @@ QList<ExpectedTokenPtr> CompletionHelper::getColumns(const QString &prefixTable)
     QString tableLower = table;
     if (context == Context::CREATE_TRIGGER && (tableLower == "old" || tableLower == "new"))
     {
-        SqliteCreateTriggerPtr createTrigger = parsedQuery.dynamicCast<SqliteCreateTrigger>();
-        if (createTrigger && !createTrigger->table.isNull())
+        if (!createTriggerTable.isNull())
         {
-            table = createTrigger->table;
-            label = table;
+            table = createTriggerTable;
+            label = createTriggerTable;
+        }
+        else
+        {
+            SqliteCreateTriggerPtr createTrigger = parsedQuery.dynamicCast<SqliteCreateTrigger>();
+            if (createTrigger && !createTrigger->table.isNull())
+            {
+                table = createTrigger->table;
+                label = table;
+            }
         }
     }
 
@@ -1216,6 +1224,16 @@ bool CompletionHelper::cursorBeforeTokenMaps(SqliteStatement* stmt, const QStrin
     }
     return true;
 }
+QString CompletionHelper::getCreateTriggerTable() const
+{
+    return createTriggerTable;
+}
+
+void CompletionHelper::setCreateTriggerTable(const QString& value)
+{
+    createTriggerTable = value;
+}
+
 DbAttacher* CompletionHelper::getDbAttacher() const
 {
     return dbAttacher;

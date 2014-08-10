@@ -38,6 +38,7 @@ class IndexDialog : public QDialog
         void applyIndex();
         SqliteIndexedColumn* addIndexedColumn(const QString& name);
         void rebuildCreateIndex();
+        void queryDuplicates();
 
         bool existingIndex = false;
         Db* db = nullptr;
@@ -46,7 +47,6 @@ class IndexDialog : public QDialog
         SqliteCreateIndexPtr createIndex;
         SqliteCreateIndexPtr originalCreateIndex;
         QStringList tableColumns;
-        QGridLayout* columnsLayout;
         QSignalMapper* columnStateSignalMapping;
         QStringListModel collations;
         QList<QCheckBox*> columnCheckBoxes;

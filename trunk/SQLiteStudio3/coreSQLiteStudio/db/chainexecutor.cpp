@@ -123,7 +123,7 @@ void ChainExecutor::executionFailure(int errorCode, const QString& errorText)
         db->rollback();
 
     successfulExecution = false;
-    executionErrors << errorText;
+    executionErrors << ExecutionError(errorCode, errorText);
     emit failure(errorCode, errorText);
 }
 
@@ -185,7 +185,16 @@ void ChainExecutor::setAsync(bool value)
     async = value;
 }
 
-QStringList ChainExecutor::getExecutionErrors() const
+QStringList ChainExecutor::getErrorsMessages() const
+{
+    QStringList msgs;
+    for (const ExecutionError& e : executionErrors)
+        msgs << e.second;
+
+    return msgs;
+}
+
+const QList<ChainExecutor::ExecutionError>& ChainExecutor::getErrors() const
 {
     return executionErrors;
 }

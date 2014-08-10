@@ -1,6 +1,5 @@
 * hexadecimals from 3.8.6 support
 * enterprise SQL formatter
-* if creating unique index fails, propose to generate select query to find out conflicting rows
 
 * bug reporting
 * deployment

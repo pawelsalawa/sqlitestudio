@@ -26,6 +26,8 @@ class API_EXPORT ChainExecutor : public QObject
         Q_OBJECT
 
     public:
+        typedef QPair<int,QString> ExecutionError;
+
         /**
          * @brief Creates executor.
          * @param parent Parent object for QObject.
@@ -138,7 +140,16 @@ class API_EXPORT ChainExecutor : public QObject
          * In that case, the result of this method can provide more than
          * one message.
          */
-        QStringList getExecutionErrors() const;
+        QStringList getErrorsMessages() const;
+
+        /**
+         * @brief Provides list of execution errors.
+         * @return List of errors.
+         *
+         * These are the same errors as returned by getErrorsMessages(), except this list contains
+         * both error code (as returned from SQLite) and error message.
+         */
+        const QList<ExecutionError>& getErrors() const;
 
         /**
          * @brief Tells if the executor is configured for asynchronous execution.
@@ -287,7 +298,7 @@ class API_EXPORT ChainExecutor : public QObject
          * but when mandatory flags allow some failures, than this list may
          * contain more error messages.
          */
-        QStringList executionErrors;
+        QList<ExecutionError> executionErrors;
 
         /**
          * @brief Successful execution indicator.
