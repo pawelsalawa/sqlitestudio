@@ -1,3 +1,4 @@
+* menu entries: "about sqlitestudio", "user manual", "homepage", "donate"
 * hexadecimals from 3.8.6 support
 * enterprise SQL formatter
 
@@ -5,7 +6,6 @@
 * deployment
 * auto updates
 
-* sql edit in trigger dialog should understand (highlight and suggest) the 'new' and 'old' keywords.
 * licenses for all used dependencies, icons, etc
 
 * 3.0 musi importowac ustawienia z 2.1:

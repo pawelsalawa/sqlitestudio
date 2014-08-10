@@ -192,6 +192,7 @@ API_EXPORT QTextCodec* codecForName(const QString& name);
 API_EXPORT QStringList splitByLines(const QString& str);
 API_EXPORT QString joinLines(const QStringList& lines);
 API_EXPORT int sum(const QList<int>& integers);
+API_EXPORT QString getOsString();
 
 template <class T>
 QList<T> reverse(const QList<T>& list)

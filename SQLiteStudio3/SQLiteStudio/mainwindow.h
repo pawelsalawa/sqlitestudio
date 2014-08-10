@@ -59,7 +59,9 @@ class MainWindow : public QMainWindow, public ExtActionContainer
             CLOSE_OTHER_WINDOWS,
             RESTORE_WINDOW,
             RENAME_WINDOW,
-            OPEN_DEBUG_CONSOLE
+            OPEN_DEBUG_CONSOLE,
+            REPORT_BUG,
+            FEATURE_REQUEST
         };
 
         enum ToolBar
@@ -88,6 +90,7 @@ class MainWindow : public QMainWindow, public ExtActionContainer
         QMenu* getStructureMenu() const;
         QMenu* getViewMenu() const;
         QMenu* getToolsMenu() const;
+        QMenu* getSQLiteStudioMenu() const;
 
     protected:
         void closeEvent(QCloseEvent *event);
@@ -126,6 +129,7 @@ class MainWindow : public QMainWindow, public ExtActionContainer
         QMenu* structMenu = nullptr;
         QMenu* viewMenu = nullptr;
         QMenu* toolsMenu = nullptr;
+        QMenu* sqlitestudioMenu = nullptr;
 
     public slots:
         EditorWindow* openSqlEditor();
@@ -148,6 +152,8 @@ class MainWindow : public QMainWindow, public ExtActionContainer
         void restoreLastClosedWindow();
         void renameWindow();
         void openDebugConsole();
+        void reportBug();
+        void requestFeature();
 };
 
 template <class T>

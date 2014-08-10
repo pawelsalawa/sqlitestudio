@@ -34,6 +34,7 @@
 #include <QStyleFactory>
 #include <QUiLoader>
 #include <QInputDialog>
+#include <dialogs/bugdialog.h>
 
 CFG_KEYS_DEFINE(MainWindow)
 MainWindow* MainWindow::instance = nullptr;
@@ -193,6 +194,8 @@ void MainWindow::createActions()
     createAction(RENAME_WINDOW, ICONS.WIN_RENAME, tr("Rename selected window"), this, SLOT(renameWindow()), this);
 
     createAction(OPEN_DEBUG_CONSOLE, tr("Open Debug Console"), this, SLOT(openDebugConsole()), this);
+    createAction(REPORT_BUG, ICONS.BUG, tr("Report a bug"), this, SLOT(reportBug()), this);
+    createAction(FEATURE_REQUEST, ICONS.FEATURE_REQUEST, tr("Propose a new feature"), this, SLOT(requestFeature()), this);
 
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::CONNECT_TO_DB));
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::DISCONNECT_FROM_DB));
@@ -303,6 +306,14 @@ void MainWindow::initMenuBar()
     toolsMenu->addAction(actionMap[EXPORT]);
     toolsMenu->addSeparator();
     toolsMenu->addAction(actionMap[OPEN_CONFIG]);
+
+    // SQLiteStudio menu
+    // TODO for maxosx this should be its special application menu
+    sqlitestudioMenu = new QMenu(this);
+    sqlitestudioMenu->setTitle("SQLiteStudio");
+    menuBar()->addMenu(sqlitestudioMenu);
+    sqlitestudioMenu->addAction(actionMap[REPORT_BUG]);
+    sqlitestudioMenu->addAction(actionMap[FEATURE_REQUEST]);
 }
 
 void MainWindow::saveSession(MdiWindow* currWindow)
@@ -548,6 +559,19 @@ void MainWindow::openDebugConsole()
     showUiDebugConsole();
 }
 
+void MainWindow::reportBug()
+{
+    BugDialog dialog(this);
+    dialog.exec();
+}
+
+void MainWindow::requestFeature()
+{
+    BugDialog dialog(this);
+    dialog.setFeatureRequestMode(true);
+    dialog.exec();
+}
+
 DdlHistoryWindow* MainWindow::openDdlHistory()
 {
     return openMdiWindow<DdlHistoryWindow>();
@@ -615,6 +639,11 @@ QMenu* MainWindow::getViewMenu() const
 QMenu* MainWindow::getToolsMenu() const
 {
     return toolsMenu;
+}
+
+QMenu* MainWindow::getSQLiteStudioMenu() const
+{
+    return sqlitestudioMenu;
 }
 
 MainWindow *MainWindow::getInstance()
