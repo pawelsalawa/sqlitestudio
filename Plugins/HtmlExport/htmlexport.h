@@ -11,6 +11,7 @@ CFG_CATEGORIES(HtmlExportConfig,
         CFG_ENTRY(bool,    PrintRowNum,     true)
         CFG_ENTRY(bool,    PrintHeader,     true)
         CFG_ENTRY(bool,    PrintDataTypes,  true)
+        CFG_ENTRY(bool,    DontEscapeHtml,  false)
         CFG_ENTRY(int,     ByteLengthLimit, 10000)
     )
 )
@@ -52,6 +53,8 @@ class HTMLEXPORTSHARED_EXPORT HtmlExport : public GenericExportPlugin
         void decrIndent();
         void updateIndent();
         void writeln(const QString& str);
+        QString escape(const QString& str);
+
         static QString compressCss(QString css);
 
         CFG_LOCAL(HtmlExportConfig, cfg)

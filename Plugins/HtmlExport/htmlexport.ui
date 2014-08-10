@@ -7,14 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>203</height>
+    <height>228</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="3" column="1">
+   <item row="4" column="1">
     <widget class="QSpinBox" name="spinBox">
      <property name="maximumSize">
       <size>
@@ -30,7 +30,7 @@
      </property>
     </widget>
    </item>
-   <item row="3" column="0">
+   <item row="4" column="0">
     <widget class="QLabel" name="label">
      <property name="text">
       <string>Maximum number of characters per cell:</string>
@@ -67,7 +67,7 @@
      </property>
     </widget>
    </item>
-   <item row="4" column="0" colspan="2">
+   <item row="5" column="0" colspan="2">
     <widget class="QGroupBox" name="outputFormatGroup">
      <property name="title">
       <string>Output format</string>
@@ -100,6 +100,19 @@
        </widget>
       </item>
      </layout>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QCheckBox" name="dontEscapeCheck">
+     <property name="toolTip">
+      <string>&lt;p&gt;When enabled, HTML characters such as &amp;lt;, &amp;gt; and &amp;amp; are not escaped in exported values. This allows you for example to export hyper-link enabled documents, but it also may result in incorrect HTML document (unmatched pairs of &amp;lt; and &amp;gt; characters). Be warned.&lt;/p&gt;</string>
+     </property>
+     <property name="text">
+      <string>Don't escape HTML characters</string>
+     </property>
+     <property name="cfg" stdset="0">
+      <string>HtmlExport.DontEscapeHtml</string>
+     </property>
     </widget>
    </item>
   </layout>

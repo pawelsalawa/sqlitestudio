@@ -215,7 +215,7 @@ bool HtmlExport::exportDataRow(SqlResultsRowPtr data)
             {
                 cellValue = value.toString();
                 cellValue.truncate(byteLengthLimit);
-                cellValue = cellValue.toHtmlEscaped();
+                cellValue = escape(cellValue);
             }
         }
         writeln(QString("<td align=\"%1\"%2>").arg(align, cellStyle));
@@ -351,8 +351,8 @@ bool HtmlExport::exportIndex(const QString& database, const QString& name, const
     {
         writeln("<tr>");
         incrIndent();
-        writeln(QString("<td>%1</td>").arg(idxCol->name.toHtmlEscaped()));
-        writeln(QString("<td align=\"center\">%1</td>").arg(idxCol->collate.isNull() ? "&nbsp;" : idxCol->collate.toHtmlEscaped()));
+        writeln(QString("<td>%1</td>").arg(escape(idxCol->name)));
+        writeln(QString("<td align=\"center\">%1</td>").arg(idxCol->collate.isNull() ? "&nbsp;" : escape(idxCol->collate)));
         writeln(QString("<td align=\"center\">%1</td>").arg(idxCol->sortOrder == SqliteSortOrder::null ? "&nbsp;" : sqliteSortOrder(idxCol->sortOrder)));
         decrIndent();
         writeln("</tr>");
@@ -409,7 +409,7 @@ bool HtmlExport::exportTrigger(const QString& database, const QString& name, con
     writeln("<tr>");
     incrIndent();
     writeln(QString("<td align=\"right\" class=\"rownum\">%1</td>").arg(tr("Activate condition:")));
-    writeln(QString("<td><code>%1</code></td>").arg(createTrigger->precondition ? createTrigger->precondition->detokenize().toHtmlEscaped() : ""));
+    writeln(QString("<td><code>%1</code></td>").arg(createTrigger->precondition ? escape(createTrigger->precondition->detokenize()) : ""));
     decrIndent();
     writeln("</tr>");
 
@@ -421,7 +421,7 @@ bool HtmlExport::exportTrigger(const QString& database, const QString& name, con
 
     QStringList queryStrings;
     for (SqliteQuery* q : createTrigger->queries)
-        queryStrings << q->detokenize().toHtmlEscaped();
+        queryStrings << escape(q->detokenize());
 
     writeln("<tr>");
     incrIndent();
@@ -457,7 +457,7 @@ bool HtmlExport::exportView(const QString& database, const QString& name, const 
     incrIndent();
     writeln("<td>");
     incrIndent();
-    writeln(QString("<pre>%1</pre>").arg(view->select->detokenize().toHtmlEscaped()));
+    writeln(QString("<pre>%1</pre>").arg(escape(view->select->detokenize())));
     decrIndent();
     writeln("</td>");
     decrIndent();
@@ -576,6 +576,14 @@ void HtmlExport::writeln(const QString& str)
         newStr = indentStr + str + newLineStr;
     }
     GenericExportPlugin::write(newStr);
+}
+
+QString HtmlExport::escape(const QString& str)
+{
+    if (cfg.HtmlExport.DontEscapeHtml.get())
+        return str;
+
+    return str.toHtmlEscaped();
 }
 
 QString HtmlExport::compressCss(QString css)
