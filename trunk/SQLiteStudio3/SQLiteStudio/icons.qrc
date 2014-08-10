@@ -163,5 +163,7 @@
         <file>img/window_restore.png</file>
         <file>img/integrity_check.png</file>
         <file>img/vacuum_db.png</file>
+        <file>img/bug.png</file>
+        <file>img/feature_request.png</file>
     </qresource>
 </RCC>

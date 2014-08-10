@@ -5,6 +5,12 @@
 #include <QSet>
 #include <QVariant>
 #include <QDateTime>
+#include <QSysInfo>
+#include <QDebug>
+
+#ifdef Q_OS_LINUX
+#include <sys/utsname.h>
+#endif
 
 void initUtils()
 {
@@ -607,4 +613,73 @@ int sum(const QList<int>& integers)
         res += i;
 
     return res;
+}
+
+QString getOsString()
+{
+#if defined(Q_OS_WIN)
+    QString os = "Windows";
+    switch (QSysInfo::WindowsVersion)
+    {
+        case WV_XP:
+            os += " XP";
+            break;
+        case WV_2003:
+            os += " 2003";
+            break;
+        case WV_VISTA:
+            os += " Vista";
+            break;
+        case WV_WINDOWS7:
+            os += " 7";
+            break;
+        case WV_WINDOWS8:
+            os += " 8";
+            break;
+        case WV_WINDOWS8_1:
+            os += " 8.1";
+            break;
+    }
+#elif defined(Q_OS_LINUX)
+    QString os = "Linux";
+    utsname uts;
+    if (uname(&uts) != 0)
+    {
+        qWarning() << "Error while calling uname() for OS version. Error code: " << errno;
+    }
+    else
+    {
+        os += " " + QString::fromLatin1(uts.release);
+    }
+#elif defined(Q_OS_OSX)
+    QString os = "MacOS X";
+    switch (QSysInfo::WindowsVersion)
+    {
+        case MV_10_4:
+            os += " 10.4 Tiger";
+            break;
+        case MV_10_5:
+            os += " 10.5 Leopard";
+            break;
+        case MV_10_6:
+            os += " 10.6 Snow Leopard";
+            break;
+        case MV_10_7:
+            os += " 10.7 Lion";
+            break;
+        case MV_10_8:
+            os += " 10.8 Mountain Lion";
+            break;
+        case MV_10_9:
+            os += " 10.9 Mavericks";
+            break;
+    }
+#elif defined(Q_OS_UNIX)
+    QString os = "Unix";
+#else
+    QString os = "Unknown";
+#endif
+
+    os += ", " + QString::number(QSysInfo::WordSize) + "bit";
+    return os;
 }

@@ -48,6 +48,8 @@ class PluginManagerImpl : public PluginManager
         QStringList getDependencies(const QString& pluginName) const;
         QStringList getConflicts(const QString& pluginName) const;
         bool arePluginsInitiallyLoaded() const;
+        QList<Plugin*> getLoadedPlugins() const;
+        QStringList getLoadedPluginNames() const;
 
     protected:
         void registerPluginType(PluginType* type);

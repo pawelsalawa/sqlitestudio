@@ -148,7 +148,8 @@ SOURCES += main.cpp\
     dialogs/dbdialog.cpp \
     uidebug.cpp \
     debugconsole.cpp \
-    common/extactionprototype.cpp
+    common/extactionprototype.cpp \
+    dialogs/bugdialog.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -283,7 +284,8 @@ HEADERS  += mainwindow.h \
     dialogs/dbdialog.h \
     uidebug.h \
     debugconsole.h \
-    common/extactionprototype.h
+    common/extactionprototype.h \
+    dialogs/bugdialog.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \
@@ -324,7 +326,8 @@ FORMS    += mainwindow.ui \
     dialogs/populateconfigdialog.ui \
     dialogs/dbconverterdialog.ui \
     dialogs/dbdialog.ui \
-    debugconsole.ui
+    debugconsole.ui \
+    dialogs/bugdialog.ui
 
 RESOURCES += \
     icons.qrc

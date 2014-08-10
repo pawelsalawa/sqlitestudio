@@ -272,6 +272,18 @@ class API_EXPORT PluginManager : public QObject
         virtual QList<Plugin*> getLoadedPlugins(PluginType* type) const = 0;
 
         /**
+         * @brief Provides list of all loaded plugins.
+         * @return List of plugins.
+         */
+        virtual QList<Plugin*> getLoadedPlugins() const = 0;
+
+        /**
+         * @brief Provides names of all loaded plugins.
+         * @return List of plugin names.
+         */
+        virtual QStringList getLoadedPluginNames() const = 0;
+
+        /**
          * @brief Provides scripting plugin for given scripting language if available.
          * @param languageName Scripting language name to get plugin for.
          * @return Plugin object or null if proper plugin was not found.

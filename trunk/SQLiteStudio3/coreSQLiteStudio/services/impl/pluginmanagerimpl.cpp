@@ -754,6 +754,28 @@ bool PluginManagerImpl::arePluginsInitiallyLoaded() const
     return pluginsAreInitiallyLoaded;
 }
 
+QList<Plugin*> PluginManagerImpl::getLoadedPlugins() const
+{
+    QList<Plugin*> plugins;
+    foreach (PluginContainer* container, pluginContainer.values())
+    {
+        if (container->loaded)
+            plugins << container->plugin;
+    }
+    return plugins;
+}
+
+QStringList PluginManagerImpl::getLoadedPluginNames() const
+{
+    QStringList names;
+    foreach (PluginContainer* container, pluginContainer.values())
+    {
+        if (container->loaded)
+            names << container->name;
+    }
+    return names;
+}
+
 void PluginManagerImpl::registerPluginType(PluginType* type)
 {
     registeredPluginTypes << type;
