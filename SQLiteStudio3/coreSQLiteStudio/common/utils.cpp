@@ -683,3 +683,9 @@ QString getOsString()
     os += ", " + QString::number(QSysInfo::WordSize) + "bit";
     return os;
 }
+
+DistributionType getDistributionType()
+{
+    // TODO extend implementation to OS_MANAGED when deployment model is finished
+    return DistributionType::PORTABLE;
+}

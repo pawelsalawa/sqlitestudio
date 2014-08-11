@@ -194,6 +194,14 @@ API_EXPORT QString joinLines(const QStringList& lines);
 API_EXPORT int sum(const QList<int>& integers);
 API_EXPORT QString getOsString();
 
+enum class DistributionType
+{
+    PORTABLE,
+    OS_MANAGED
+};
+
+API_EXPORT DistributionType getDistributionType();
+
 template <class T>
 QList<T> reverse(const QList<T>& list)
 {

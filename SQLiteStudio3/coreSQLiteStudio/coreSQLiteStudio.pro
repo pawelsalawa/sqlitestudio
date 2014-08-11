@@ -357,7 +357,9 @@ OTHER_FILES += \
     parser/sqlite3_parse.y \
     parser/sqlite2_parse.y \
     parser/run_lemon.sh \
-    TODO.txt
+    TODO.txt \
+    license.txt \
+    licenses/fugue_icons.txt
 
 FORMS += \
     plugins/populatesequence.ui \

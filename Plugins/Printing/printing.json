@@ -3,7 +3,7 @@
     "title":        "Printing",
     "description":  "Provides printing support.",
     "version":      10000,
-    "author":       "sqlitestudio.pl",
+    "author":       "SalSoft",
     "gui":          true,
     "dependencies": "PdfExport"
 }

@@ -3,5 +3,5 @@
     "title":        "Tcl scripting",
     "description":  "Provides Tcl scripting language support for SQLiteStudio.",
     "version":      10000,
-    "author":       "sqlitestudio.pl"
+    "author":       "SalSoft"
 }
