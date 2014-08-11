@@ -3,5 +3,5 @@
     "title":       "RegExp import",
     "description": "Importing data from text files using regular expression.",
     "version":     10000,
-    "author":      "sqlitestudio.pl"
+    "author":      "SalSoft"
 }

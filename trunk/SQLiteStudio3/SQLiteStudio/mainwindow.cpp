@@ -34,6 +34,7 @@
 #include <QStyleFactory>
 #include <QUiLoader>
 #include <QInputDialog>
+#include <dialogs/aboutdialog.h>
 #include <dialogs/bugdialog.h>
 
 CFG_KEYS_DEFINE(MainWindow)
@@ -196,6 +197,7 @@ void MainWindow::createActions()
     createAction(OPEN_DEBUG_CONSOLE, tr("Open Debug Console"), this, SLOT(openDebugConsole()), this);
     createAction(REPORT_BUG, ICONS.BUG, tr("Report a bug"), this, SLOT(reportBug()), this);
     createAction(FEATURE_REQUEST, ICONS.FEATURE_REQUEST, tr("Propose a new feature"), this, SLOT(requestFeature()), this);
+    createAction(ABOUT, ICONS.SQLITESTUDIO_APP, tr("About"), this, SLOT(aboutSqlitestudio()), this);
 
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::CONNECT_TO_DB));
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::DISCONNECT_FROM_DB));
@@ -314,6 +316,8 @@ void MainWindow::initMenuBar()
     menuBar()->addMenu(sqlitestudioMenu);
     sqlitestudioMenu->addAction(actionMap[REPORT_BUG]);
     sqlitestudioMenu->addAction(actionMap[FEATURE_REQUEST]);
+    sqlitestudioMenu->addSeparator();
+    sqlitestudioMenu->addAction(actionMap[ABOUT]);
 }
 
 void MainWindow::saveSession(MdiWindow* currWindow)
@@ -569,6 +573,12 @@ void MainWindow::requestFeature()
 {
     BugDialog dialog(this);
     dialog.setFeatureRequestMode(true);
+    dialog.exec();
+}
+
+void MainWindow::aboutSqlitestudio()
+{
+    AboutDialog dialog(this);
     dialog.exec();
 }
 

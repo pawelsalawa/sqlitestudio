@@ -3,5 +3,5 @@
     "title":       "CSV import",
     "description": "CSV format support for importing data",
     "version":     10000,
-    "author":      "sqlitestudio.pl"
+    "author":      "SalSoft"
 }

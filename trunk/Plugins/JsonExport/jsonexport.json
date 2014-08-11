@@ -3,5 +3,5 @@
     "title":        "JSON export",
     "description":  "Provides JSON format for exporting.",
     "version":      10000,
-    "author":       "sqlitestudio.pl"
+    "author":       "SalSoft"
 }

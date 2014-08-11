@@ -3,5 +3,5 @@
     "title":       "CSV export",
     "description": "Provides CSV format for exporting",
     "version":     10000,
-    "author":      "sqlitestudio.pl"
+    "author":      "SalSoft"
 }

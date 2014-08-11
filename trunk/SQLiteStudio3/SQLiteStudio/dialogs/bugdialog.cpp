@@ -22,7 +22,7 @@ BugDialog::~BugDialog()
 
 void BugDialog::setFeatureRequestMode(bool feature)
 {
-    ui->featureRadio->setChecked(true);
+    ui->featureRadio->setChecked(feature);
 }
 
 void BugDialog::init()

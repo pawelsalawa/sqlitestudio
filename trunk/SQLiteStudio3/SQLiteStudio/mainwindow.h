@@ -61,7 +61,8 @@ class MainWindow : public QMainWindow, public ExtActionContainer
             RENAME_WINDOW,
             OPEN_DEBUG_CONSOLE,
             REPORT_BUG,
-            FEATURE_REQUEST
+            FEATURE_REQUEST,
+            ABOUT
         };
 
         enum ToolBar
@@ -154,6 +155,7 @@ class MainWindow : public QMainWindow, public ExtActionContainer
         void openDebugConsole();
         void reportBug();
         void requestFeature();
+        void aboutSqlitestudio();
 };
 
 template <class T>

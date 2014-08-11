@@ -11,4 +11,8 @@
         <file>plugins/scriptingsql.png</file>
         <file>plugins/scriptingqt.png</file>
     </qresource>
+    <qresource prefix="/docs">
+        <file>license.txt</file>
+        <file>licenses/fugue_icons.txt</file>
+    </qresource>
 </RCC>

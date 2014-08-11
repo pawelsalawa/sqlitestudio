@@ -3,6 +3,6 @@
     "title":        "PDF export",
     "description":  "Provides PDF format for exporting.",
     "version":      10000,
-    "author":       "sqlitestudio.pl",
+    "author":       "SalSoft",
     "gui":          true
 }

@@ -3,5 +3,5 @@
     "title":       "XML export",
     "description": "Provides XML format for exporting.",
     "version":     10000,
-    "author":      "sqlitestudio.pl"
+    "author":      "SalSoft"
 }
