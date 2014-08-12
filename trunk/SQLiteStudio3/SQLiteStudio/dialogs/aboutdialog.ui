@@ -38,7 +38,7 @@
      </widget>
      <widget class="QWidget" name="license">
       <attribute name="title">
-       <string>License</string>
+       <string>Licenses</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>

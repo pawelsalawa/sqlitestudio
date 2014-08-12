@@ -198,6 +198,11 @@ void MainWindow::createActions()
     createAction(REPORT_BUG, ICONS.BUG, tr("Report a bug"), this, SLOT(reportBug()), this);
     createAction(FEATURE_REQUEST, ICONS.FEATURE_REQUEST, tr("Propose a new feature"), this, SLOT(requestFeature()), this);
     createAction(ABOUT, ICONS.SQLITESTUDIO_APP, tr("About"), this, SLOT(aboutSqlitestudio()), this);
+    createAction(LICENSES, ICONS.LICENSES, tr("Licenses"), this, SLOT(licenses()), this);
+    createAction(HOMEPAGE, ICONS.SQLITESTUDIO_APP, tr("Open home page"), this, SLOT(homepage()), this);
+    createAction(FORUM, ICONS.OPEN_FORUM, tr("Open forum page"), this, SLOT(forum()), this);
+    createAction(USER_MANUAL, ICONS.USER_MANUAL, tr("User Manual"), this, SLOT(userManual()), this);
+    createAction(SQLITE_DOCS, ICONS.SQLITE_DOCS, tr("SQLite documentation"), this, SLOT(sqliteDocs()), this);
 
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::CONNECT_TO_DB));
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::DISCONNECT_FROM_DB));
@@ -314,9 +319,15 @@ void MainWindow::initMenuBar()
     sqlitestudioMenu = new QMenu(this);
     sqlitestudioMenu->setTitle("SQLiteStudio");
     menuBar()->addMenu(sqlitestudioMenu);
+    sqlitestudioMenu->addAction(actionMap[USER_MANUAL]);
+    sqlitestudioMenu->addAction(actionMap[SQLITE_DOCS]);
+    sqlitestudioMenu->addAction(actionMap[HOMEPAGE]);
+    sqlitestudioMenu->addAction(actionMap[FORUM]);
+    sqlitestudioMenu->addSeparator();
     sqlitestudioMenu->addAction(actionMap[REPORT_BUG]);
     sqlitestudioMenu->addAction(actionMap[FEATURE_REQUEST]);
     sqlitestudioMenu->addSeparator();
+    sqlitestudioMenu->addAction(actionMap[LICENSES]);
     sqlitestudioMenu->addAction(actionMap[ABOUT]);
 }
 
@@ -578,8 +589,34 @@ void MainWindow::requestFeature()
 
 void MainWindow::aboutSqlitestudio()
 {
-    AboutDialog dialog(this);
+    AboutDialog dialog(AboutDialog::ABOUT, this);
     dialog.exec();
+}
+
+void MainWindow::licenses()
+{
+    AboutDialog dialog(AboutDialog::LICENSES, this);
+    dialog.exec();
+}
+
+void MainWindow::homepage()
+{
+
+}
+
+void MainWindow::forum()
+{
+
+}
+
+void MainWindow::userManual()
+{
+
+}
+
+void MainWindow::sqliteDocs()
+{
+
 }
 
 DdlHistoryWindow* MainWindow::openDdlHistory()

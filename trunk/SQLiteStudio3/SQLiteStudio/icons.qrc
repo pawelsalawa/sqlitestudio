@@ -165,5 +165,10 @@
         <file>img/vacuum_db.png</file>
         <file>img/bug.png</file>
         <file>img/feature_request.png</file>
+        <file>img/open_forum.png</file>
+        <file>img/user_manual.png</file>
+        <file>img/sqlite_docs.png</file>
+        <file>img/tip.png</file>
+        <file>img/licenses.png</file>
     </qresource>
 </RCC>

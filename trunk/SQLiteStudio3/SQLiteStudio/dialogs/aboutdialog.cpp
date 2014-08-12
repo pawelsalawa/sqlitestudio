@@ -5,11 +5,11 @@
 #include <QDebug>
 #include <QFile>
 
-AboutDialog::AboutDialog(QWidget *parent) :
+AboutDialog::AboutDialog(InitialMode initialMode, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::AboutDialog)
 {
-    init();
+    init(initialMode);
 }
 
 AboutDialog::~AboutDialog()
@@ -17,9 +17,11 @@ AboutDialog::~AboutDialog()
     delete ui;
 }
 
-void AboutDialog::init()
+void AboutDialog::init(InitialMode initialMode)
 {
     ui->setupUi(this);
+
+    ui->tabWidget->setCurrentWidget(initialMode == ABOUT ? ui->about : ui->license);
 
     QString distName;
     switch (getDistributionType())
@@ -37,37 +39,34 @@ void AboutDialog::init()
 
     licenseContents = "";
     int row = 1;
+
+    readLicense(row++, "SQLiteStudio license (GPLv3)", ":/docs/licenses/sqlitestudio_license.txt");
+    readLicense(row++, "Fugue icons", ":/docs/licenses/fugue_icons.txt");
+    readLicense(row++, "QHexEdit (LGPL)", ":/docs/licenses/qhexedit.txt");
     buildIndex();
-    readMainLicense(row++);
-    readIconsLicense(row++);
-    licenseContents += "</ol>";
 
     ui->licenseEdit->setHtml(licenseContents);
+    indexContents.clear();
+    licenseContents.clear();
 }
 
 void AboutDialog::buildIndex()
 {
-    licenseContents.append("<h3>Table of contents:</h3>"
-                           "<ol>"
-                           "<li>SQLiteStudio license (GPLv3)</li>"
-                           "<li>Fugue icons</li>"
-                           "</ol>");
+    static const QString entryTpl = QStringLiteral("<li>%1</li>");
+    QStringList entries;
+    for (const QString& idx : indexContents)
+        entries += entryTpl.arg(idx);
+
+    licenseContents.prepend("<h3>Table of contents:</h3><ol>" + entries.join("") + "</ol>");
 }
 
-void AboutDialog::readMainLicense(int row)
+void AboutDialog::readLicense(int row, const QString& title, const QString& path)
 {
     QString rowNum = QString::number(row);
-    QString contents = readFile(":/docs/license.txt");
-    licenseContents += "<h3>" + rowNum + ". SQLiteStudio license (GPLv3)</h3>";
+    QString contents = readFile(path);
+    licenseContents += "<h3>" + rowNum + ". " + title + "</h3>";
     licenseContents += "<pre>" + contents + "</pre>";
-}
-
-void AboutDialog::readIconsLicense(int row)
-{
-    QString rowNum = QString::number(row);
-    QString contents = readFile(":/docs/licenses/fugue_icons.txt");
-    licenseContents += "<h3>" + rowNum + ". Fugue icons</h3>";
-    licenseContents += "<pre>" + contents + "</pre>";
+    indexContents += title;
 }
 
 QString AboutDialog::readFile(const QString& path)
