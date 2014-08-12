@@ -12,7 +12,8 @@
         <file>plugins/scriptingqt.png</file>
     </qresource>
     <qresource prefix="/docs">
-        <file>license.txt</file>
         <file>licenses/fugue_icons.txt</file>
+        <file>licenses/qhexedit.txt</file>
+        <file>licenses/sqlitestudio_license.txt</file>
     </qresource>
 </RCC>

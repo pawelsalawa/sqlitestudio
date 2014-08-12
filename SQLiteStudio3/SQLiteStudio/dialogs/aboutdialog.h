@@ -2,6 +2,7 @@
 #define ABOUTDIALOG_H
 
 #include <QDialog>
+#include <QStringList>
 
 namespace Ui {
     class AboutDialog;
@@ -12,17 +13,23 @@ class AboutDialog : public QDialog
         Q_OBJECT
 
     public:
-        explicit AboutDialog(QWidget *parent = 0);
+        enum InitialMode
+        {
+            ABOUT,
+            LICENSES
+        };
+
+        AboutDialog(InitialMode initialMode, QWidget *parent = 0);
         ~AboutDialog();
 
     private:
-        void init();
+        void init(InitialMode initialMode);
         void buildIndex();
-        void readMainLicense(int row);
-        void readIconsLicense(int row);
+        void readLicense(int row, const QString& title, const QString& path);
         QString readFile(const QString& path);
 
         Ui::AboutDialog *ui;
+        QStringList indexContents;
         QString licenseContents;
 };
 

@@ -60,6 +60,11 @@ class MainWindow : public QMainWindow, public ExtActionContainer
             RESTORE_WINDOW,
             RENAME_WINDOW,
             OPEN_DEBUG_CONSOLE,
+            LICENSES,
+            HOMEPAGE,
+            FORUM,
+            USER_MANUAL,
+            SQLITE_DOCS,
             REPORT_BUG,
             FEATURE_REQUEST,
             ABOUT
@@ -156,6 +161,11 @@ class MainWindow : public QMainWindow, public ExtActionContainer
         void reportBug();
         void requestFeature();
         void aboutSqlitestudio();
+        void licenses();
+        void homepage();
+        void forum();
+        void userManual();
+        void sqliteDocs();
 };
 
 template <class T>

@@ -358,8 +358,9 @@ OTHER_FILES += \
     parser/sqlite2_parse.y \
     parser/run_lemon.sh \
     TODO.txt \
-    license.txt \
-    licenses/fugue_icons.txt
+    licenses/fugue_icons.txt \
+    licenses/qhexedit.txt \
+    licenses/sqlitestudio_license.txt
 
 FORMS += \
     plugins/populatesequence.ui \
