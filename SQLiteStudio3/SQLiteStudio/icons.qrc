@@ -170,5 +170,6 @@
         <file>img/sqlite_docs.png</file>
         <file>img/tip.png</file>
         <file>img/licenses.png</file>
+        <file>img/homepage.png</file>
     </qresource>
 </RCC>

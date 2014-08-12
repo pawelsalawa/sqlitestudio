@@ -67,6 +67,30 @@ void SQLiteStudio::setCodeFormatter(CodeFormatter* codeFormatter)
     this->codeFormatter = codeFormatter;
 }
 
+QString SQLiteStudio::getHomePage() const
+{
+    static const QString url = QStringLiteral("http://sqlitestudio.pl");
+    return url;
+}
+
+QString SQLiteStudio::getForumPage() const
+{
+    static const QString url = QStringLiteral("http://forum.sqlitestudio.pl");
+    return url;
+}
+
+QString SQLiteStudio::getUserManualPage() const
+{
+    static const QString url = QStringLiteral("http://wiki.sqlitestudio.pl/index.php/User_Manual");
+    return url;
+}
+
+QString SQLiteStudio::getSqliteDocsPage() const
+{
+    static const QString url = QStringLiteral("http://sqlite.org/lang.html");
+    return url;
+}
+
 ImportManager* SQLiteStudio::getImportManager() const
 {
     return importManager;
