@@ -127,6 +127,11 @@ class API_EXPORT SQLiteStudio : public QObject
         CodeFormatter* getCodeFormatter() const;
         void setCodeFormatter(CodeFormatter* codeFormatter);
 
+        QString getHomePage() const;
+        QString getForumPage() const;
+        QString getUserManualPage() const;
+        QString getSqliteDocsPage() const;
+
     private:
         /**
          * @brief Creates singleton instance.

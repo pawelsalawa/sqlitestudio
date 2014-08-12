@@ -199,7 +199,7 @@ void MainWindow::createActions()
     createAction(FEATURE_REQUEST, ICONS.FEATURE_REQUEST, tr("Propose a new feature"), this, SLOT(requestFeature()), this);
     createAction(ABOUT, ICONS.SQLITESTUDIO_APP, tr("About"), this, SLOT(aboutSqlitestudio()), this);
     createAction(LICENSES, ICONS.LICENSES, tr("Licenses"), this, SLOT(licenses()), this);
-    createAction(HOMEPAGE, ICONS.SQLITESTUDIO_APP, tr("Open home page"), this, SLOT(homepage()), this);
+    createAction(HOMEPAGE, ICONS.HOMEPAGE, tr("Open home page"), this, SLOT(homepage()), this);
     createAction(FORUM, ICONS.OPEN_FORUM, tr("Open forum page"), this, SLOT(forum()), this);
     createAction(USER_MANUAL, ICONS.USER_MANUAL, tr("User Manual"), this, SLOT(userManual()), this);
     createAction(SQLITE_DOCS, ICONS.SQLITE_DOCS, tr("SQLite documentation"), this, SLOT(sqliteDocs()), this);
@@ -601,22 +601,22 @@ void MainWindow::licenses()
 
 void MainWindow::homepage()
 {
-
+    QDesktopServices::openUrl(QUrl(SQLITESTUDIO->getHomePage()));
 }
 
 void MainWindow::forum()
 {
-
+    QDesktopServices::openUrl(QUrl(SQLITESTUDIO->getForumPage()));
 }
 
 void MainWindow::userManual()
 {
-
+    QDesktopServices::openUrl(QUrl(SQLITESTUDIO->getUserManualPage()));
 }
 
 void MainWindow::sqliteDocs()
 {
-
+    QDesktopServices::openUrl(QUrl(SQLITESTUDIO->getSqliteDocsPage()));
 }
 
 DdlHistoryWindow* MainWindow::openDdlHistory()
