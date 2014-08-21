@@ -7,6 +7,7 @@
 #include <QDateTime>
 #include <QSysInfo>
 #include <QDebug>
+#include <QRegularExpression>
 
 #ifdef Q_OS_LINUX
 #include <sys/utsname.h>
@@ -688,4 +689,10 @@ DistributionType getDistributionType()
 {
     // TODO extend implementation to OS_MANAGED when deployment model is finished
     return DistributionType::PORTABLE;
+}
+
+bool validateEmail(const QString& email)
+{
+    static const QRegularExpression re("^[a-zA-Z0-9_\\.-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-\\.]+$");
+    return re.match(email).hasMatch();
 }

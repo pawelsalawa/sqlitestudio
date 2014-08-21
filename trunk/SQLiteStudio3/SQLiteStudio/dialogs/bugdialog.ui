@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>395</height>
+    <width>516</width>
+    <height>421</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,25 +15,47 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QGroupBox" name="typeGroup">
+    <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>Report type</string>
+      <string>Reporter</string>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <widget class="QRadioButton" name="bugRadio">
+       <widget class="QLabel" name="currentLoginLabel">
         <property name="text">
-         <string>A bug</string>
+         <string/>
         </property>
-        <property name="checked">
-         <bool>true</bool>
+        <property name="pixmap">
+         <pixmap resource="../icons.qrc">:/icons/img/user_unknown.png</pixmap>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="featureRadio">
+       <widget class="QLineEdit" name="emailEdit">
+        <property name="placeholderText">
+         <string>E-mail address</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="loginButton">
         <property name="text">
-         <string>A feature request</string>
+         <string>Log in</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../icons.qrc">
+          <normaloff>:/icons/img/user.png</normaloff>:/icons/img/user.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="helpButton">
+        <property name="text">
+         <string>...</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../icons.qrc">
+          <normaloff>:/icons/img/help.png</normaloff>:/icons/img/help.png</iconset>
         </property>
        </widget>
       </item>
@@ -86,7 +108,7 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>346</width>
+           <width>462</width>
            <height>209</height>
           </rect>
          </property>
@@ -146,7 +168,9 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../icons.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>buttonBox</sender>

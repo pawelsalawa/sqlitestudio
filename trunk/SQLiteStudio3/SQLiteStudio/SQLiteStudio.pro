@@ -150,7 +150,8 @@ SOURCES += main.cpp\
     debugconsole.cpp \
     common/extactionprototype.cpp \
     dialogs/bugdialog.cpp \
-    dialogs/aboutdialog.cpp
+    dialogs/aboutdialog.cpp \
+    dialogs/bugreportlogindialog.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -287,7 +288,8 @@ HEADERS  += mainwindow.h \
     debugconsole.h \
     common/extactionprototype.h \
     dialogs/bugdialog.h \
-    dialogs/aboutdialog.h
+    dialogs/aboutdialog.h \
+    dialogs/bugreportlogindialog.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \
@@ -330,7 +332,8 @@ FORMS    += mainwindow.ui \
     dialogs/dbdialog.ui \
     debugconsole.ui \
     dialogs/bugdialog.ui \
-    dialogs/aboutdialog.ui
+    dialogs/aboutdialog.ui \
+    dialogs/bugreportlogindialog.ui
 
 RESOURCES += \
     icons.qrc

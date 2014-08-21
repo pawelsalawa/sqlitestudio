@@ -20,11 +20,21 @@ class BugDialog : public QDialog
     private:
         void init();
 
+        static QString getMessageAboutReportHistory();
+        static void finishedBugReport(int code, const QString& errorMsg);
+        static void finishedFeatureRequest(int code, const QString& errorMsg);
+
         Ui::BugDialog *ui;
+        bool bugMode = true;
+        QString user;
 
     private slots:
         void updateState();
         void validate();
+        void help();
+
+    public slots:
+        void accept();
 };
 
 #endif // BUGDIALOG_H

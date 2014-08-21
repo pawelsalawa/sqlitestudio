@@ -29,6 +29,7 @@
 #include "plugins/scriptingsql.h"
 #include "plugins/importplugin.h"
 #include "plugins/populateplugin.h"
+#include "services/bugreporter.h"
 #include <QProcessEnvironment>
 #include <QThreadPool>
 #include <QCoreApplication>
@@ -46,6 +47,16 @@ SQLiteStudio::SQLiteStudio()
 SQLiteStudio::~SQLiteStudio()
 {
 }
+BugReporter* SQLiteStudio::getBugReporter() const
+{
+    return bugReporter;
+}
+
+void SQLiteStudio::setBugReporter(BugReporter* value)
+{
+    bugReporter = value;
+}
+
 
 PopulateManager* SQLiteStudio::getPopulateManager() const
 {
@@ -255,6 +266,7 @@ void SQLiteStudio::init(const QStringList& cmdListArguments, bool guiAvailable)
     exportManager = new ExportManager();
     importManager = new ImportManager();
     populateManager = new PopulateManager();
+    bugReporter = new BugReporter();
 }
 
 void SQLiteStudio::initPlugins()
@@ -268,6 +280,7 @@ void SQLiteStudio::initPlugins()
 
 void SQLiteStudio::cleanUp()
 {
+    safe_delete(bugReporter);
     safe_delete(populateManager);
     safe_delete(importManager);
     safe_delete(exportManager);

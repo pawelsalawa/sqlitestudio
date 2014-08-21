@@ -67,7 +67,8 @@ class MainWindow : public QMainWindow, public ExtActionContainer
             SQLITE_DOCS,
             REPORT_BUG,
             FEATURE_REQUEST,
-            ABOUT
+            ABOUT,
+            BUG_REPORT_HISTORY // TODO implement bug report history action
         };
 
         enum ToolBar

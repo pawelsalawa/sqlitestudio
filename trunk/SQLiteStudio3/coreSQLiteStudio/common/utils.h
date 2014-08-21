@@ -193,6 +193,7 @@ API_EXPORT QStringList splitByLines(const QString& str);
 API_EXPORT QString joinLines(const QStringList& lines);
 API_EXPORT int sum(const QList<int>& integers);
 API_EXPORT QString getOsString();
+API_EXPORT bool validateEmail(const QString& email);
 
 enum class DistributionType
 {
