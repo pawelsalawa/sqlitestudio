@@ -206,6 +206,8 @@ class IconManager : public QObject
             DEF_ICO2(TRIGGER_DEL,                       TRIGGER, MINUS)
             DEF_ICO2(TRIGGER_EDIT,                      TRIGGER, EDIT)
             DEF_ICON(TRIGGERS,                          "triggers")
+            DEF_ICON(USER,                              "user")
+            DEF_ICON(USER_UNKNOWN,                      "user_unknown")
             DEF_ICON(USER_MANUAL,                       "user_manual")
             DEF_ICON(VIEW,                              "view")
             DEF_ICO2(VIEW_ADD,                          VIEW, PLUS)

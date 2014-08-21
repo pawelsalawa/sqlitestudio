@@ -24,6 +24,7 @@ class ExportManager;
 class ImportManager;
 class PopulateManager;
 class PluginLoadingHandler;
+class BugReporter;
 
 /** @file */
 
@@ -127,6 +128,9 @@ class API_EXPORT SQLiteStudio : public QObject
         CodeFormatter* getCodeFormatter() const;
         void setCodeFormatter(CodeFormatter* codeFormatter);
 
+        BugReporter* getBugReporter() const;
+        void setBugReporter(BugReporter* value);
+
         QString getHomePage() const;
         QString getForumPage() const;
         QString getUserManualPage() const;
@@ -178,6 +182,7 @@ class API_EXPORT SQLiteStudio : public QObject
         ExportManager* exportManager = nullptr;
         ImportManager* importManager = nullptr;
         PopulateManager* populateManager = nullptr;
+        BugReporter* bugReporter = nullptr;
 
     private slots:
         void pluginLoaded(Plugin* plugin,PluginType* pluginType);

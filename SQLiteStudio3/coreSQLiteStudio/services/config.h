@@ -21,7 +21,9 @@ CFG_CATEGORIES(Core,
         CFG_ENTRY(int,          SqlHistorySize,      10000)
         CFG_ENTRY(int,          DdlHistorySize,      1000)
         CFG_ENTRY(QString,      LoadedPlugins,       "")
-        CFG_ENTRY(QVariantHash,   ActiveCodeFormatter, QVariantHash())
+        CFG_ENTRY(QVariantHash, ActiveCodeFormatter, QVariantHash())
+        CFG_ENTRY(QString,      BugReportUser,       QString())
+        CFG_ENTRY(QString,      BugReportPassword,   QString())
     )
     CFG_CATEGORY(Console,
         CFG_ENTRY(int,          HistorySize,         100)

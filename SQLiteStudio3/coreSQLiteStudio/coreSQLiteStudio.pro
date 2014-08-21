@@ -12,7 +12,7 @@ MOC_DIR = $$MOC_DIR/coreSQLiteStudio
 UI_DIR = $$UI_DIR/coreSQLiteStudio
 
 QT       -= gui
-QT       += script
+QT       += script network
 
 TARGET = coreSQLiteStudio
 TEMPLATE = lib
@@ -171,7 +171,8 @@ SOURCES += sqlitestudio.cpp \
     plugins/populatescript.cpp \
     plugins/builtinplugin.cpp \
     plugins/scriptingqtdbproxy.cpp \
-    plugins/sqlformatterplugin.cpp
+    plugins/sqlformatterplugin.cpp \
+    services/bugreporter.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -341,7 +342,8 @@ HEADERS += sqlitestudio.h\
     plugins/populatescript.h \
     plugins/builtinplugin.h \
     plugins/scriptingqtdbproxy.h \
-    plugins/codeformatterplugin.h
+    plugins/codeformatterplugin.h \
+    services/bugreporter.h
 
 unix:!symbian {
     maemo5 {
