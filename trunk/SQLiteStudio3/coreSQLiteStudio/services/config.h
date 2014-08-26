@@ -18,19 +18,22 @@ const int SQLITESTUDIO_CONFIG_VERSION = 1;
 
 CFG_CATEGORIES(Core,
     CFG_CATEGORY(General,
-        CFG_ENTRY(int,          SqlHistorySize,      10000)
-        CFG_ENTRY(int,          DdlHistorySize,      1000)
-        CFG_ENTRY(QString,      LoadedPlugins,       "")
-        CFG_ENTRY(QVariantHash, ActiveCodeFormatter, QVariantHash())
-        CFG_ENTRY(QString,      BugReportUser,       QString())
-        CFG_ENTRY(QString,      BugReportPassword,   QString())
+        CFG_ENTRY(int,          SqlHistorySize,          10000)
+        CFG_ENTRY(int,          DdlHistorySize,          1000)
+        CFG_ENTRY(QString,      LoadedPlugins,           "")
+        CFG_ENTRY(QVariantHash, ActiveCodeFormatter,     QVariantHash())
     )
     CFG_CATEGORY(Console,
-        CFG_ENTRY(int,          HistorySize,         100)
+        CFG_ENTRY(int,          HistorySize,             100)
     )
     CFG_CATEGORY(Internal,
-        CFG_ENTRY(QVariantList, Functions,           QVariantList())
-        CFG_ENTRY(QVariantList, Collations,          QVariantList())
+        CFG_ENTRY(QVariantList, Functions,               QVariantList())
+        CFG_ENTRY(QVariantList, Collations,              QVariantList())
+        CFG_ENTRY(QString,      BugReportUser,           QString())
+        CFG_ENTRY(QString,      BugReportPassword,       QString())
+        CFG_ENTRY(QString,      BugReportRecentTitle,    QString())
+        CFG_ENTRY(QString,      BugReportRecentContents, QString())
+        CFG_ENTRY(bool,         BugReportRecentError,    false)
     )
 )
 

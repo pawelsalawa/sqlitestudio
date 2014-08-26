@@ -7,6 +7,8 @@ namespace Ui {
     class BugReportLoginDialog;
 }
 
+class WidgetCover;
+
 class BugReportLoginDialog : public QDialog
 {
         Q_OBJECT
@@ -15,10 +17,23 @@ class BugReportLoginDialog : public QDialog
         explicit BugReportLoginDialog(QWidget *parent = 0);
         ~BugReportLoginDialog();
 
+        bool isValid() const;
+        QString getLogin() const;
+        QString getPassword() const;
+
     private:
         void init();
 
         Ui::BugReportLoginDialog *ui;
+        bool validCredentials = false;
+        WidgetCover* widgetCover = nullptr;
+
+    private slots:
+        void credentialsChanged();
+        void validate();
+        void abortRemoteValidation();
+        void remoteValidation();
+        void remoteValidationResult(bool success, const QString& errorMessage);
 };
 
 #endif // BUGREPORTLOGINDIALOG_H

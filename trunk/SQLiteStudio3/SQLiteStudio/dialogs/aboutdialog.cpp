@@ -2,6 +2,7 @@
 #include "ui_aboutdialog.h"
 #include "common/utils.h"
 #include "sqlitestudio.h"
+#include "iconmanager.h"
 #include <QDebug>
 #include <QFile>
 
@@ -20,6 +21,7 @@ AboutDialog::~AboutDialog()
 void AboutDialog::init(InitialMode initialMode)
 {
     ui->setupUi(this);
+    ui->leftIcon->setPixmap(ICONS.SQLITESTUDIO_APP.toQIcon().pixmap(200, 200));
 
     ui->tabWidget->setCurrentWidget(initialMode == ABOUT ? ui->about : ui->license);
 

@@ -50,6 +50,7 @@ void WidgetCover::init()
     resetBackground();
     move(0, 0);
     widgetResized();
+    hide();
 }
 
 void WidgetCover::interruptAction()

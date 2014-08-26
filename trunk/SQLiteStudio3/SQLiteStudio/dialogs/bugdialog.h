@@ -21,8 +21,8 @@ class BugDialog : public QDialog
         void init();
 
         static QString getMessageAboutReportHistory();
-        static void finishedBugReport(int code, const QString& errorMsg);
-        static void finishedFeatureRequest(int code, const QString& errorMsg);
+        static void finishedBugReport(bool success, const QString& errorMsg);
+        static void finishedFeatureRequest(bool success, const QString& errorMsg);
 
         Ui::BugDialog *ui;
         bool bugMode = true;
@@ -32,6 +32,7 @@ class BugDialog : public QDialog
         void updateState();
         void validate();
         void help();
+        void logIn();
 
     public slots:
         void accept();
