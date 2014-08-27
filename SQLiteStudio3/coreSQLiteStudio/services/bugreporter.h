@@ -32,6 +32,7 @@ class BugReporter : public QObject
 
         QNetworkAccessManager* networkManager = nullptr;
         QHash<QNetworkReply*,ResponseHandler> replyToHandler;
+        QHash<QNetworkReply*,QPair<bool,QString>> replyToTypeAndTitle;
         QNetworkReply* credentialsValidationInProgress = nullptr;
 
         static_char* bugReportServiceUrl = "http://sqlitestudio.pl/report_bug3.rvt";

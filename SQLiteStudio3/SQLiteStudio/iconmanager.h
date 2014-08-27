@@ -33,6 +33,7 @@ class IconManager : public QObject
             DEF_ICON(APPLY_FILTER_SQL,                  "apply_filter_sql")
             DEF_ICON(APPLY_FILTER_TXT,                  "apply_filter_txt")
             DEF_ICON(BUG,                               "bug")
+            DEF_ICON(BUG_LIST,                          "bug_list")
             DEF_ICON(CLEAR_HISTORY,                     "clear_history")
             DEF_ICON(CLEAR_LINEEDIT,                    "clear_lineedit")
             DEF_ICON(COLUMN,                            "column")

@@ -304,7 +304,7 @@ QList<ConfigImpl::DdlHistoryEntryPtr> ConfigImpl::getDdlHistoryFor(const QString
 
     SqlQueryPtr results = db->exec(sql, {dbName, dbFile, date.toString("yyyy-MM-dd")});
 
-    QList<DdlHistoryEntryPtr> etnries;
+    QList<DdlHistoryEntryPtr> entries;
     DdlHistoryEntryPtr entry;
     SqlResultsRowPtr row;
     while (results->hasNext())
@@ -315,9 +315,9 @@ QList<ConfigImpl::DdlHistoryEntryPtr> ConfigImpl::getDdlHistoryFor(const QString
         entry->dbFile = dbFile;
         entry->timestamp = QDateTime::fromTime_t(row->value("timestamp").toUInt());
         entry->queries = row->value("queries").toString();
-        etnries << entry;
+        entries << entry;
     }
-    return etnries;
+    return entries;
 }
 
 DdlHistoryModel* ConfigImpl::getDdlHistoryModel()
@@ -331,6 +331,44 @@ DdlHistoryModel* ConfigImpl::getDdlHistoryModel()
 void ConfigImpl::clearDdlHistory()
 {
     QtConcurrent::run(this, &ConfigImpl::asyncClearDdlHistory);
+}
+
+void ConfigImpl::addReportHistory(bool isFeatureRequest, const QString& title, const QString& url)
+{
+    QtConcurrent::run(this, &ConfigImpl::asyncAddReportHistory, isFeatureRequest, title, url);
+}
+
+QList<Config::ReportHistoryEntryPtr> ConfigImpl::getReportHistory()
+{
+    static_qstring(sql, "SELECT id, timestamp, title, url, feature_request FROM reports_history");
+
+    SqlQueryPtr results = db->exec(sql);
+
+    QList<ReportHistoryEntryPtr> entries;
+    SqlResultsRowPtr row;
+    ReportHistoryEntryPtr entry;
+    while (results->hasNext())
+    {
+        row = results->next();
+        entry = ReportHistoryEntryPtr::create();
+        entry->id = row->value("id").toInt();
+        entry->timestamp = row->value("timestamp").toInt();
+        entry->title = row->value("title").toString();
+        entry->url = row->value("url").toString();
+        entry->isFeatureRequest = row->value("feature_request").toBool();
+        entries << entry;
+    }
+    return entries;
+}
+
+void ConfigImpl::deleteReport(int id)
+{
+    QtConcurrent::run(this, &ConfigImpl::asyncDeleteReport, id);
+}
+
+void ConfigImpl::clearReportHistory()
+{
+    QtConcurrent::run(this, &ConfigImpl::asyncClearReportHistory);
 }
 
 void ConfigImpl::readGroupRecursively(ConfigImpl::DbGroupPtr group)
@@ -443,6 +481,9 @@ void ConfigImpl::initTables()
 
     if (!tables.contains("cli_history"))
         db->exec("CREATE TABLE cli_history (id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT)");
+
+    if (!tables.contains("reports_history"))
+        db->exec("CREATE TABLE reports_history (id INTEGER PRIMARY KEY AUTOINCREMENT, timestamp INTEGER, feature_request BOOLEAN, title TEXT, url TEXT)");
 }
 
 void ConfigImpl::initDbFile()
@@ -616,8 +657,7 @@ void ConfigImpl::asyncAddDdlHistory(const QString& queries, const QString& dbNam
     static_qstring(deleteSql, "DELETE FROM ddl_history WHERE id <= ?");
 
     db->begin();
-    db->exec(insert,
-                {dbName, dbFile, QDateTime::currentDateTime().toTime_t(), queries});
+    db->exec(insert, {dbName, dbFile, QDateTime::currentDateTime().toTime_t(), queries});
 
     int maxHistorySize = CFG_CORE.General.DdlHistorySize.get();
 
@@ -641,6 +681,27 @@ void ConfigImpl::asyncClearDdlHistory()
 {
     db->exec("DELETE FROM ddl_history");
     emit ddlHistoryRefreshNeeded();
+}
+
+void ConfigImpl::asyncAddReportHistory(bool isFeatureRequest, const QString& title, const QString& url)
+{
+    static_qstring(sql, "INSERT INTO reports_history (feature_request, timestamp, title, url) VALUES (?, ?, ?, ?)");
+    db->exec(sql, {(isFeatureRequest ? 1 : 0), QDateTime::currentDateTime().toTime_t(), title, url});
+    emit reportsHistoryRefreshNeeded();
+}
+
+void ConfigImpl::asyncDeleteReport(int id)
+{
+    static_qstring(sql, "DELETE FROM reports_history WHERE id = ?");
+    db->exec(sql, {id});
+    emit reportsHistoryRefreshNeeded();
+}
+
+void ConfigImpl::asyncClearReportHistory()
+{
+    static_qstring(sql, "DELETE FROM reports_history");
+    db->exec(sql);
+    emit reportsHistoryRefreshNeeded();
 }
 
 void ConfigImpl::refreshSqlHistory()

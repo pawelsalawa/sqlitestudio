@@ -91,6 +91,8 @@ void BugReporter::reportBug(const QString& title, const QString& details, const 
     QNetworkReply* reply = networkManager->get(request);
     if (responseHandler)
         replyToHandler[reply] = responseHandler;
+
+    replyToTypeAndTitle[reply] = QPair<bool,QString>(false, title);
 }
 
 void BugReporter::requestFeature(const QString& title, const QString& details, BugReporter::ResponseHandler responseHandler, const QString& urlSuffix)
@@ -105,6 +107,8 @@ void BugReporter::requestFeature(const QString& title, const QString& details, B
     QNetworkReply* reply = networkManager->get(request);
     if (responseHandler)
         replyToHandler[reply] = responseHandler;
+
+    replyToTypeAndTitle[reply] = QPair<bool,QString>(true, title);
 }
 
 void BugReporter::finished(QNetworkReply* reply)
@@ -118,12 +122,24 @@ void BugReporter::finished(QNetworkReply* reply)
         return;
     }
 
-    if (reply->error() == QNetworkReply::NoError)
-        replyToHandler[reply](true, QString::fromLatin1(reply->readAll()));
+    bool success = (reply->error() == QNetworkReply::NoError);
+    QString data;
+    if (success)
+        data = QString::fromLatin1(reply->readAll());
     else
-        replyToHandler[reply](false, reply->errorString());
+        data = reply->errorString();
 
+    replyToHandler[reply](success, data);
     replyToHandler.remove(reply);
+
+    if (replyToTypeAndTitle.contains(reply))
+    {
+        if (success)
+            CFG->addReportHistory(replyToTypeAndTitle[reply].first, replyToTypeAndTitle[reply].second, data);
+
+        replyToTypeAndTitle.remove(reply);
+    }
+
     reply->deleteLater();
 }
 
