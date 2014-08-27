@@ -30,7 +30,12 @@ LIBS += -lsqlite3
 
 DEFINES += CORESQLITESTUDIO_LIBRARY
 
-QMAKE_CXXFLAGS += -std=c++11 -pedantic
+portable {
+    DEFINES += PORTABLE
+}
+
+CONFIG   += c++11
+QMAKE_CXXFLAGS += -pedantic
 
 SOURCES += sqlitestudio.cpp \
     returncode.cpp \

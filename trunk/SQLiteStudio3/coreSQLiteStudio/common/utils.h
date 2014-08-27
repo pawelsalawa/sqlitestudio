@@ -199,6 +199,7 @@ API_EXPORT bool isHex(const QString& str);
 enum class DistributionType
 {
     PORTABLE,
+    OSX_BOUNDLE,
     OS_MANAGED
 };
 

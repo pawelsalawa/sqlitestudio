@@ -3,6 +3,7 @@
 
 * deployment
 * auto updates
+* tclscripting for win32
 
 * licenses for all used dependencies, icons, etc
 

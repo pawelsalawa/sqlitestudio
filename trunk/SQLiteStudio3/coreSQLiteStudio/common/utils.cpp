@@ -687,8 +687,13 @@ QString getOsString()
 
 DistributionType getDistributionType()
 {
-    // TODO extend implementation to OS_MANAGED when deployment model is finished
+#if defined(PORTABLE)
     return DistributionType::PORTABLE;
+#elif defined(Q_OS_OSX)
+    return DistributionType::OSX_BOUNDLE;
+#else
+    return DistributionType::OS_MANAGED;
+#endif
 }
 
 bool validateEmail(const QString& email)

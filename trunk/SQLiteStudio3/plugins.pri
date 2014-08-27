@@ -1,4 +1,4 @@
-QMAKE_CXXFLAGS += -std=c++11
+CONFIG += c++11
 
 DESTDIR = $$PWD/../output/SQLiteStudio/plugins
 OBJECTS_DIR = $$PWD/../output/build
@@ -25,6 +25,10 @@ win32: {
 unix: {
     target.path = /usr/lib/sqlitestudio
     INSTALLS += target
+}
+
+win32|macx: {
+    CONFIG += portable
 }
 
 portable {
