@@ -31,6 +31,9 @@ void AboutDialog::init(InitialMode initialMode)
         case DistributionType::PORTABLE:
             distName = tr("Portable distribution.");
             break;
+        case DistributionType::OSX_BOUNDLE:
+            distName = tr("MacOS X application boundle distribution.");
+            break;
         case DistributionType::OS_MANAGED:
             distName = tr("Operating system managed distribution.");
             break;
