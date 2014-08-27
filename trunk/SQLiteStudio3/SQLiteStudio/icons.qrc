@@ -173,5 +173,6 @@
         <file>img/tip.png</file>
         <file>img/licenses.png</file>
         <file>img/homepage.png</file>
+        <file>img/bug_list.png</file>
     </qresource>
 </RCC>

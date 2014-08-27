@@ -91,6 +91,17 @@ class API_EXPORT Config : public QObject
 
         typedef QSharedPointer<DdlHistoryEntry> DdlHistoryEntryPtr;
 
+        struct ReportHistoryEntry
+        {
+            int id = 0;
+            bool isFeatureRequest = false;
+            int timestamp = 0;
+            QString title;
+            QString url;
+        };
+
+        typedef QSharedPointer<ReportHistoryEntry> ReportHistoryEntryPtr;
+
         virtual void init() = 0;
         virtual void cleanUp() = 0;
         virtual const QString& getConfigDir() = 0;
@@ -138,6 +149,11 @@ class API_EXPORT Config : public QObject
         virtual DdlHistoryModel* getDdlHistoryModel() = 0;
         virtual void clearDdlHistory() = 0;
 
+        virtual void addReportHistory(bool isFeatureRequest, const QString& title, const QString& url) = 0;
+        virtual QList<ReportHistoryEntryPtr> getReportHistory() = 0;
+        virtual void deleteReport(int id) = 0;
+        virtual void clearReportHistory() = 0;
+
         virtual void begin() = 0;
         virtual void commit() = 0;
         virtual void rollback() = 0;
@@ -145,6 +161,9 @@ class API_EXPORT Config : public QObject
     signals:
         void massSaveBegins();
         void massSaveCommited();
+        void sqlHistoryRefreshNeeded();
+        void ddlHistoryRefreshNeeded();
+        void reportsHistoryRefreshNeeded();
 };
 
 #define CFG SQLITESTUDIO->getConfig()

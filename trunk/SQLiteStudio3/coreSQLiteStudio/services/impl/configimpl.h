@@ -64,6 +64,11 @@ class ConfigImpl : public Config
         DdlHistoryModel* getDdlHistoryModel();
         void clearDdlHistory();
 
+        void addReportHistory(bool isFeatureRequest, const QString& title, const QString& url);
+        QList<ReportHistoryEntryPtr> getReportHistory();
+        void deleteReport(int id);
+        void clearReportHistory();
+
         void begin();
         void commit();
         void rollback();
@@ -98,16 +103,16 @@ class ConfigImpl : public Config
         void asyncAddDdlHistory(const QString& queries, const QString& dbName, const QString& dbFile);
         void asyncClearDdlHistory();
 
+        void asyncAddReportHistory(bool isFeatureRequest, const QString& title, const QString& url);
+        void asyncDeleteReport(int id);
+        void asyncClearReportHistory();
+
         static Config* instance;
         Db* db = nullptr;
         QString configDir;
         QString lastQueryError;
         SqlHistoryModel* sqlHistoryModel = nullptr;
         DdlHistoryModel* ddlHistoryModel = nullptr;
-
-    signals:
-        void sqlHistoryRefreshNeeded();
-        void ddlHistoryRefreshNeeded();
 
     private slots:
         void refreshSqlHistory();

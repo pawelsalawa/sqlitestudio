@@ -36,6 +36,7 @@
 #include <QInputDialog>
 #include <dialogs/aboutdialog.h>
 #include <dialogs/bugdialog.h>
+#include <windows/bugreporthistorywindow.h>
 
 CFG_KEYS_DEFINE(MainWindow)
 MainWindow* MainWindow::instance = nullptr;
@@ -203,6 +204,7 @@ void MainWindow::createActions()
     createAction(FORUM, ICONS.OPEN_FORUM, tr("Open forum page"), this, SLOT(forum()), this);
     createAction(USER_MANUAL, ICONS.USER_MANUAL, tr("User Manual"), this, SLOT(userManual()), this);
     createAction(SQLITE_DOCS, ICONS.SQLITE_DOCS, tr("SQLite documentation"), this, SLOT(sqliteDocs()), this);
+    createAction(BUG_REPORT_HISTORY, ICONS.BUG_LIST, tr("Report history"), this, SLOT(reportHistory()), this);
 
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::CONNECT_TO_DB));
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::DISCONNECT_FROM_DB));
@@ -326,6 +328,7 @@ void MainWindow::initMenuBar()
     sqlitestudioMenu->addSeparator();
     sqlitestudioMenu->addAction(actionMap[REPORT_BUG]);
     sqlitestudioMenu->addAction(actionMap[FEATURE_REQUEST]);
+    sqlitestudioMenu->addAction(actionMap[BUG_REPORT_HISTORY]);
     sqlitestudioMenu->addSeparator();
     sqlitestudioMenu->addAction(actionMap[LICENSES]);
     sqlitestudioMenu->addAction(actionMap[ABOUT]);
@@ -619,6 +622,11 @@ void MainWindow::sqliteDocs()
     QDesktopServices::openUrl(QUrl(SQLITESTUDIO->getSqliteDocsPage()));
 }
 
+void MainWindow::reportHistory()
+{
+    openReportHistory();
+}
+
 DdlHistoryWindow* MainWindow::openDdlHistory()
 {
     return openMdiWindow<DdlHistoryWindow>();
@@ -632,6 +640,11 @@ FunctionsEditor* MainWindow::openFunctionEditor()
 CollationsEditor* MainWindow::openCollationEditor()
 {
     return openMdiWindow<CollationsEditor>();
+}
+
+BugReportHistoryWindow* MainWindow::openReportHistory()
+{
+    return openMdiWindow<BugReportHistoryWindow>();
 }
 
 bool MainWindow::isClosingApp() const

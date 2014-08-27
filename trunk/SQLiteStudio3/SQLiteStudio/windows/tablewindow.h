@@ -51,7 +51,7 @@ CFG_KEY_LIST(TableWindow, QObject::tr("Table window"),
 class TableWindow : public MdiChild
 {
         Q_OBJECT
-        Q_ENUMS(TableWindow)
+        Q_ENUMS(Action)
 
     public:
         enum Action

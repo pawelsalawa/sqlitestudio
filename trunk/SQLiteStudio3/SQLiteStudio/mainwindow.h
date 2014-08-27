@@ -22,6 +22,7 @@ class FormManager;
 class DdlHistoryWindow;
 class FunctionsEditor;
 class CollationsEditor;
+class BugReportHistoryWindow;
 
 CFG_KEY_LIST(MainWindow, QObject::tr("Main window"),
      CFG_KEY_ENTRY(OPEN_SQL_EDITOR,    Qt::ALT + Qt::Key_E,         QObject::tr("Open SQL editor"))
@@ -68,7 +69,7 @@ class MainWindow : public QMainWindow, public ExtActionContainer
             REPORT_BUG,
             FEATURE_REQUEST,
             ABOUT,
-            BUG_REPORT_HISTORY // TODO implement bug report history action
+            BUG_REPORT_HISTORY
         };
 
         enum ToolBar
@@ -118,6 +119,7 @@ class MainWindow : public QMainWindow, public ExtActionContainer
         DdlHistoryWindow* openDdlHistory();
         FunctionsEditor* openFunctionEditor();
         CollationsEditor* openCollationEditor();
+        BugReportHistoryWindow* openReportHistory();
 
         template <class T>
         T* openMdiWindow();
@@ -167,6 +169,7 @@ class MainWindow : public QMainWindow, public ExtActionContainer
         void forum();
         void userManual();
         void sqliteDocs();
+        void reportHistory();
 };
 
 template <class T>
