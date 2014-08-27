@@ -696,3 +696,10 @@ bool validateEmail(const QString& email)
     static const QRegularExpression re("^[a-zA-Z0-9_\\.-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-\\.]+$");
     return re.match(email).hasMatch();
 }
+
+bool isHex(const QString& str)
+{
+    bool ok;
+    str.toLongLong(&ok, 16);
+    return ok;
+}

@@ -283,6 +283,11 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
         {
             token->lemonType = v3 ? TK3_INTEGER : TK2_INTEGER;
             token->type = Token::INTEGER;
+            if (v3 && charAt(z, 0) == '0' && (charAt(z, 1) == 'x' || charAt(z, 1) == 'X') && isHex(charAt(z, 2)))
+            {
+                for (i=3; isHex(charAt(z, i)); i++) {}
+                return i;
+            }
             for (i=0; charAt(z, i).isDigit(); i++) {}
             if ( charAt(z, i) == '.' )
             {

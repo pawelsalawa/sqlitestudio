@@ -184,7 +184,7 @@ Db* SqlEditor::getDb() const
 void SqlEditor::setDb(Db* value)
 {
     db = value;
-    refreshValidObjects();
+    scheduleQueryParser(true);
 }
 
 void SqlEditor::setAutoCompletion(bool enabled)
@@ -870,9 +870,9 @@ void SqlEditor::checkForValidObjects()
     }
 }
 
-void SqlEditor::scheduleQueryParser()
+void SqlEditor::scheduleQueryParser(bool force)
 {
-    if (!document()->isModified())
+    if (!document()->isModified() && !force)
         return;
 
     syntaxValidated = false;

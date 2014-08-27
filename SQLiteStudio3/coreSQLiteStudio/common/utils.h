@@ -194,6 +194,7 @@ API_EXPORT QString joinLines(const QStringList& lines);
 API_EXPORT int sum(const QList<int>& integers);
 API_EXPORT QString getOsString();
 API_EXPORT bool validateEmail(const QString& email);
+API_EXPORT bool isHex(const QString& str);
 
 enum class DistributionType
 {
