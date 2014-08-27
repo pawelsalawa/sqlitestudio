@@ -23,7 +23,7 @@ win32 {
 }
 
 unix: {
-    DEFINES += SYS_PLUGINS_DIR="/usr/lib/sqlitestudio"
+    DEFINES += SYS_PLUGINS_DIR=/usr/lib/sqlitestudio
 }
 
 LIBS += -lsqlite3

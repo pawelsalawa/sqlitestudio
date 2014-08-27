@@ -60,4 +60,7 @@
         safe_delete(_instance); \
     }
 
+#define STRINGIFY(s) _STRINGIFY(s)
+#define _STRINGIFY(s) #s
+
 #endif // GLOBAL_H
