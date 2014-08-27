@@ -362,7 +362,8 @@ OTHER_FILES += \
     TODO.txt \
     licenses/fugue_icons.txt \
     licenses/qhexedit.txt \
-    licenses/sqlitestudio_license.txt
+    licenses/sqlitestudio_license.txt \
+    licenses/lgpl.txt
 
 FORMS += \
     plugins/populatesequence.ui \

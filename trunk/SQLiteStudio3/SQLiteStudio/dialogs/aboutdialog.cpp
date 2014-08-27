@@ -42,9 +42,9 @@ void AboutDialog::init(InitialMode initialMode)
     licenseContents = "";
     int row = 1;
 
-    readLicense(row++, "SQLiteStudio license (GPLv3)", ":/docs/licenses/sqlitestudio_license.txt");
+    readLicense(row++, "SQLiteStudio license (GPL v3)", ":/docs/licenses/sqlitestudio_license.txt");
     readLicense(row++, "Fugue icons", ":/docs/licenses/fugue_icons.txt");
-    readLicense(row++, "QHexEdit (LGPL)", ":/docs/licenses/qhexedit.txt");
+    readLicense(row++, "Qt, QHexEdit (LGPL v2.1)", ":/docs/licenses/lgpl.txt");
     buildIndex();
 
     ui->licenseEdit->setHtml(licenseContents);
