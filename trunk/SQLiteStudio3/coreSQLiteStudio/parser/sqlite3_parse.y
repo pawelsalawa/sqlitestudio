@@ -543,7 +543,11 @@ term(X) ::= NULL.                           {
                                                 X = new QVariant();
                                             }
 term(X) ::= INTEGER(N).                     {
-                                                X = new QVariant(QVariant(N->value).toLongLong());
+                                                int base = 10;
+                                                if (N->value.startsWith("0x", Qt::CaseInsensitive))
+                                                    base = 16;
+
+                                                X = new QVariant(N->value.toLongLong(nullptr, base));
                                             }
 term(X) ::= FLOAT(N).                       {
                                                 X = new QVariant(QVariant(N->value).toDouble());

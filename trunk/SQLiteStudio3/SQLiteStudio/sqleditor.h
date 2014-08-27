@@ -248,7 +248,7 @@ class SqlEditor : public QPlainTextEdit, public ExtActionContainer
         void completerLeftPressed();
         void completerRightPressed();
         void parseContents();
-        void scheduleQueryParser();
+        void scheduleQueryParser(bool force = false);
         void updateLineNumberAreaWidth();
         void highlightCurrentLine();
         void updateLineNumberArea(const QRect&rect, int dy);

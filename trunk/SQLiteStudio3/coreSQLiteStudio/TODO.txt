@@ -1,8 +1,5 @@
-* menu entries: "about sqlitestudio", "user manual", "homepage", "donate"
-* hexadecimals from 3.8.6 support
 * enterprise SQL formatter
 
-* bug reporting
 * deployment
 * auto updates
 
@@ -12,6 +9,7 @@
   - lista baz
   - funkcje sql
   - historie sql
+  - historie raportow bugow
 
 
 * Next versions:

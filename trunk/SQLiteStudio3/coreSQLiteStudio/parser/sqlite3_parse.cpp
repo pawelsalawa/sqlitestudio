@@ -3163,7 +3163,11 @@ static void yy_reduce(
         break;
       case 82: /* term ::= INTEGER */
 {
-                                                yygotominor.yy21 = new QVariant(QVariant(yymsp[0].minor.yy0->value).toLongLong());
+                                                int base = 10;
+                                                if (yymsp[0].minor.yy0->value.startsWith("0x", Qt::CaseInsensitive))
+                                                    base = 16;
+
+                                                yygotominor.yy21 = new QVariant(yymsp[0].minor.yy0->value.toLongLong(nullptr, base));
                                             }
         break;
       case 83: /* term ::= FLOAT */
