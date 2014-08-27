@@ -7,6 +7,10 @@ LIBS += -L$$DESTDIR
 INCLUDEPATH += $$PWD/coreSQLiteStudio
 DEPENDPATH += $$PWD/coreSQLiteStudio
 
+win32|macx: {
+    CONFIG += portable
+}
+
 portable {
     QMAKE_LFLAGS += -Wl,-rpath,. -Wl,-rpath,$$DESTDIR
 }

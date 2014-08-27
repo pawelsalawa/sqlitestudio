@@ -19,7 +19,8 @@ CONFIG   -= app_bundle
 
 TEMPLATE = app
 
-QMAKE_CXXFLAGS += -std=c++11 -pedantic
+CONFIG   += c++11
+QMAKE_CXXFLAGS += -pedantic
 
 SOURCES += main.cpp \
     cli.cpp \
