@@ -7,6 +7,6 @@ LIBS += -L$$DESTDIR
 INCLUDEPATH += $$PWD/coreSQLiteStudio
 DEPENDPATH += $$PWD/coreSQLiteStudio
 
-CONFIG(portable): {
+portable {
     QMAKE_LFLAGS += -Wl,-rpath,. -Wl,-rpath,$$DESTDIR
 }
