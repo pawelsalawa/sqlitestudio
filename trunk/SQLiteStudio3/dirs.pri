@@ -3,9 +3,10 @@ OBJECTS_DIR = $$PWD/../output/build
 MOC_DIR = $$PWD/../output/build
 UI_DIR = $$PWD/../output/build
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../output/SQLiteStudio
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../output/SQLiteStudio
-else:unix: LIBS += -L$$PWD/../output/SQLiteStudio
-
+LIBS += -L$$DESTDIR
 INCLUDEPATH += $$PWD/coreSQLiteStudio
 DEPENDPATH += $$PWD/coreSQLiteStudio
+
+CONFIG(portable): {
+    QMAKE_LFLAGS += -Wl,-rpath,. -Wl,-rpath,$$DESTDIR
+}

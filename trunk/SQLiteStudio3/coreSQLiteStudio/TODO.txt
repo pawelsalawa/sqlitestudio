@@ -1,4 +1,5 @@
 * enterprise SQL formatter
+* After running Console, print "Type .help for help"
 
 * deployment
 * auto updates
@@ -70,7 +71,8 @@ configure -opensource -confirm-license -platform win32-g++ -make libs
 -qt-style-windowsvista -opengl
 desktop
 
-
+Qt linux:
+./configure -no-icu -nomake examples -nomake tests -no-dbus -opensource -skip webkit -skip quickcontrols -prefix /home/spakowane/qt5.3.1/output
 
 SQLiteStudio3 win32:
 1. Checkout svn://sqlitestudio.pl/sqlitestudio3/SQLiteStudio3/trunk

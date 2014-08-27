@@ -26,3 +26,7 @@ unix: {
     target.path = /usr/lib/sqlitestudio
     INSTALLS += target
 }
+
+CONFIG(portable): {
+    QMAKE_LFLAGS += -Wl,-rpath,.. -Wl,-rpath,$$DESTDIR/..
+}

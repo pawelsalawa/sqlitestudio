@@ -22,6 +22,10 @@ win32 {
     LIBS += -lpsapi -L$$PWD/../../../lib
 }
 
+unix: {
+    DEFINES += SYS_PLUGINS_DIR=/usr/lib/sqlitestudio
+}
+
 LIBS += -lsqlite3
 
 DEFINES += CORESQLITESTUDIO_LIBRARY

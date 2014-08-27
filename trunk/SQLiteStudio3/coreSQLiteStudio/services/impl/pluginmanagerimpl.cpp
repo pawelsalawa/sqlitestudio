@@ -30,6 +30,10 @@ void PluginManagerImpl::init()
     pluginDirs += PLUGINS_DIR;
 #endif
 
+#ifdef SYS_PLUGINS_DIR
+    pluginDirs += SYS_PLUGINS_DIR;
+#endif
+
     scanPlugins();
     loadPlugins();
 }
