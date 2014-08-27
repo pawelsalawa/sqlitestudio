@@ -2,6 +2,7 @@
 #include "sqlitestudio.h"
 #include "services/pluginmanager.h"
 #include "common/unused.h"
+#include "common/global.h"
 #include <QApplication>
 #include <QDir>
 #include <QString>
@@ -41,7 +42,7 @@ void IconManager::init()
         iconDirs += envDirs.split(PATH_LIST_SEPARATOR);
 
 #ifdef ICONS_DIR
-    iconDirs += ICONS_DIR;
+    iconDirs += STRINGIFY(ICONS_DIR);
 #endif
 
     iconFileExtensions << "*.png" << "*.PNG" << "*.jpg" << "*.JPG" << "*.svg" << "*.SVG";

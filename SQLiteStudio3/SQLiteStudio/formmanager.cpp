@@ -4,6 +4,7 @@
 #include "sqlitestudio.h"
 #include "uiloader.h"
 #include "common/unused.h"
+#include "common/global.h"
 #include <QFile>
 #include <QDir>
 #include <QRegularExpression>
@@ -115,7 +116,7 @@ void FormManager::load()
     dirs += PLUGINS->getPluginDirs();
 
 #ifdef FORMS_DIR
-    dirs += FORMS_DIR;
+    dirs += STRINGIFY(FORMS_DIR);
 #endif
 
     foreach (QString dirPath, dirs)

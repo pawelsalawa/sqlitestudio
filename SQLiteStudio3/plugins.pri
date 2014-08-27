@@ -27,6 +27,6 @@ unix: {
     INSTALLS += target
 }
 
-CONFIG(portable): {
+portable {
     QMAKE_LFLAGS += -Wl,-rpath,.. -Wl,-rpath,$$DESTDIR/..
 }
