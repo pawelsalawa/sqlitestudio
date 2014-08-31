@@ -29,14 +29,16 @@
 #include "dialogs/dbdialog.h"
 #include "uidebug.h"
 #include "services/dbmanager.h"
+#include "services/updatemanager.h"
+#include "dialogs/aboutdialog.h"
+#include "dialogs/bugdialog.h"
+#include "windows/bugreporthistorywindow.h"
 #include <QMdiSubWindow>
 #include <QDebug>
 #include <QStyleFactory>
 #include <QUiLoader>
 #include <QInputDialog>
-#include <dialogs/aboutdialog.h>
-#include <dialogs/bugdialog.h>
-#include <windows/bugreporthistorywindow.h>
+#include <dialogs/newversiondialog.h>
 
 CFG_KEYS_DEFINE(MainWindow)
 MainWindow* MainWindow::instance = nullptr;
@@ -100,6 +102,9 @@ void MainWindow::init()
         else
             notifyInfo(tr("Running in debug mode. Debug messages are printed to the standard output."));
     }
+
+    connect(UPDATES, SIGNAL(updatesAvailable(QList<UpdateManager::UpdateEntry>)), this, SLOT(updatesAvailable(QList<UpdateManager::UpdateEntry>)));
+    connect(statusField, SIGNAL(linkActivated(QString)), this, SLOT(statusFieldLinkClicked(QString)));
 }
 
 void MainWindow::cleanUp()
@@ -205,6 +210,7 @@ void MainWindow::createActions()
     createAction(USER_MANUAL, ICONS.USER_MANUAL, tr("User Manual"), this, SLOT(userManual()), this);
     createAction(SQLITE_DOCS, ICONS.SQLITE_DOCS, tr("SQLite documentation"), this, SLOT(sqliteDocs()), this);
     createAction(BUG_REPORT_HISTORY, ICONS.BUG_LIST, tr("Report history"), this, SLOT(reportHistory()), this);
+    createAction(CHECK_FOR_UPDATES, ICONS.GET_UPDATE, tr("Check for updates"), this, SLOT(checkForUpdates()), this);
 
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::CONNECT_TO_DB));
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::DISCONNECT_FROM_DB));
@@ -325,6 +331,8 @@ void MainWindow::initMenuBar()
     sqlitestudioMenu->addAction(actionMap[SQLITE_DOCS]);
     sqlitestudioMenu->addAction(actionMap[HOMEPAGE]);
     sqlitestudioMenu->addAction(actionMap[FORUM]);
+    sqlitestudioMenu->addSeparator();
+    sqlitestudioMenu->addAction(actionMap[CHECK_FOR_UPDATES]);
     sqlitestudioMenu->addSeparator();
     sqlitestudioMenu->addAction(actionMap[REPORT_BUG]);
     sqlitestudioMenu->addAction(actionMap[FEATURE_REQUEST]);
@@ -625,6 +633,27 @@ void MainWindow::sqliteDocs()
 void MainWindow::reportHistory()
 {
     openReportHistory();
+}
+
+void MainWindow::updatesAvailable(const QList<UpdateManager::UpdateEntry>& updates)
+{
+    newVersionDialog = new NewVersionDialog(this);
+    newVersionDialog->setUpdates(updates);
+    notifyInfo(tr("New updates are available. <a href=\"%1\">Click here for details</a>.").arg(openUpdatesUrl));
+}
+
+void MainWindow::statusFieldLinkClicked(const QString& link)
+{
+    if (link == openUpdatesUrl && newVersionDialog)
+    {
+        newVersionDialog->exec();
+        return;
+    }
+}
+
+void MainWindow::checkForUpdates()
+{
+    UPDATES->checkForUpdates();
 }
 
 DdlHistoryWindow* MainWindow::openDdlHistory()

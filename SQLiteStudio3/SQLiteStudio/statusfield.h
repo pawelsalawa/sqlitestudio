@@ -24,7 +24,7 @@ class StatusField : public QDockWidget
         void changeEvent(QEvent *e);
 
     private:
-        void addEntry(const QIcon& icon, const QString& text, const QColor &color, bool bold = false);
+        void addEntry(const QIcon& icon, const QString& text, const QColor &color);
         void setupMenu();
         void readRecentMessages();
 
@@ -42,6 +42,9 @@ class StatusField : public QDockWidget
         void error(const QString& text);
         void reset();
         void fontChanged(const QVariant& variant);
+
+    signals:
+        void linkActivated(const QString& link);
 };
 
 #endif // STATUSFIELD_H

@@ -8,6 +8,7 @@
 #include <QMenu>
 #include <QAction>
 #include <QDateTime>
+#include <QLabel>
 
 StatusField::StatusField(QWidget *parent) :
     QDockWidget(parent),
@@ -64,7 +65,7 @@ void StatusField::error(const QString &text)
     addEntry(ICONS.STATUS_ERROR, text, CFG_UI.Colors.StatusFieldErrorFg.get());
 }
 
-void StatusField::addEntry(const QIcon &icon, const QString &text, const QColor& color, bool bold)
+void StatusField::addEntry(const QIcon &icon, const QString &text, const QColor& color)
 {
     int row = ui->tableWidget->rowCount();
     ui->tableWidget->setRowCount(row+1);
@@ -76,8 +77,6 @@ void StatusField::addEntry(const QIcon &icon, const QString &text, const QColor&
     ui->tableWidget->setItem(row, 0, item);
 
     QFont font = CFG_UI.Fonts.StatusField.get();
-    if (bold)
-        font.setBold(true);
 
     QString timeStr = "[" + QDateTime::currentDateTime().toString(timeStampFormat) + "]";
     item = new QTableWidgetItem(timeStr);
@@ -85,10 +84,12 @@ void StatusField::addEntry(const QIcon &icon, const QString &text, const QColor&
     item->setFont(font);
     ui->tableWidget->setItem(row, 1, item);
 
-    item = new QTableWidgetItem(text);
-    item->setForeground(QBrush(color));
-    item->setFont(font);
-    ui->tableWidget->setItem(row, 2, item);
+    static_qstring(colorTpl, "QLabel {color: %1}");
+    QLabel* label = new QLabel(text);
+    label->setFont(font);
+    label->setStyleSheet(colorTpl.arg(color.name()));
+    connect(label, SIGNAL(linkActivated(QString)), this, SIGNAL(linkActivated(QString)));
+    ui->tableWidget->setCellWidget(row, 2, label);
 
     setVisible(true);
 

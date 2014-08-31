@@ -50,6 +50,8 @@ class PluginManagerImpl : public PluginManager
         bool arePluginsInitiallyLoaded() const;
         QList<Plugin*> getLoadedPlugins() const;
         QStringList getLoadedPluginNames() const;
+        QList<PluginDetails> getAllPluginDetails() const;
+        QList<PluginDetails> getLoadedPluginDetails() const;
 
     protected:
         void registerPluginType(PluginType* type);

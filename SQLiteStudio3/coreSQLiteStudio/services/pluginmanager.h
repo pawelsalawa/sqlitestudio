@@ -82,6 +82,16 @@ class API_EXPORT PluginManager : public QObject
     Q_OBJECT
 
     public:
+        struct PluginDetails
+        {
+            QString name;
+            QString title;
+            QString description;
+            bool builtIn = false;
+            int version = 0;
+            QString versionString;
+        };
+
         /**
          * @brief Loads all plugins.
          *
@@ -204,6 +214,9 @@ class API_EXPORT PluginManager : public QObject
          * no matter they're currently loaded or not.
          */
         virtual QStringList getAllPluginNames(PluginType* type) const = 0;
+
+        virtual QList<PluginDetails> getAllPluginDetails() const = 0;
+        virtual QList<PluginDetails> getLoadedPluginDetails() const = 0;
 
         /**
          * @brief Provides list of all plugin names.

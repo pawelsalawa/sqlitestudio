@@ -1,0 +1,4 @@
+#include <windows.h>
+
+ID_ICON ICON DISCARDABLE "../SQLiteStudio/img/sqlitestudio.ico"
+CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "UpdateSQLiteStudio.exe.manifest"

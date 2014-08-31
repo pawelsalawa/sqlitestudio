@@ -5,6 +5,7 @@
 #include "db/db.h"
 #include "ui_mainwindow.h"
 #include "mdiwindow.h"
+#include "services/updatemanager.h"
 #include <QMainWindow>
 #include <QHash>
 #include <QQueue>
@@ -23,6 +24,7 @@ class DdlHistoryWindow;
 class FunctionsEditor;
 class CollationsEditor;
 class BugReportHistoryWindow;
+class NewVersionDialog;
 
 CFG_KEY_LIST(MainWindow, QObject::tr("Main window"),
      CFG_KEY_ENTRY(OPEN_SQL_EDITOR,    Qt::ALT + Qt::Key_E,         QObject::tr("Open SQL editor"))
@@ -69,7 +71,8 @@ class MainWindow : public QMainWindow, public ExtActionContainer
             REPORT_BUG,
             FEATURE_REQUEST,
             ABOUT,
-            BUG_REPORT_HISTORY
+            BUG_REPORT_HISTORY,
+            CHECK_FOR_UPDATES
         };
 
         enum ToolBar
@@ -126,6 +129,7 @@ class MainWindow : public QMainWindow, public ExtActionContainer
 
         static MainWindow* instance;
         static constexpr int closedWindowsStackSize = 20;
+        static_char* openUpdatesUrl = "open_updates://";
 
         Ui::MainWindow *ui;
         DbTree* dbTree;
@@ -139,6 +143,7 @@ class MainWindow : public QMainWindow, public ExtActionContainer
         QMenu* viewMenu = nullptr;
         QMenu* toolsMenu = nullptr;
         QMenu* sqlitestudioMenu = nullptr;
+        QPointer<NewVersionDialog> newVersionDialog;
 
     public slots:
         EditorWindow* openSqlEditor();
@@ -170,6 +175,9 @@ class MainWindow : public QMainWindow, public ExtActionContainer
         void userManual();
         void sqliteDocs();
         void reportHistory();
+        void updatesAvailable(const QList<UpdateManager::UpdateEntry>& updates);
+        void statusFieldLinkClicked(const QString& link);
+        void checkForUpdates();
 };
 
 template <class T>

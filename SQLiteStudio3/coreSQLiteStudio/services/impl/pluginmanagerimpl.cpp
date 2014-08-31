@@ -780,6 +780,35 @@ QStringList PluginManagerImpl::getLoadedPluginNames() const
     return names;
 }
 
+QList<PluginManager::PluginDetails> PluginManagerImpl::getAllPluginDetails() const
+{
+    QList<PluginManager::PluginDetails> results;
+    PluginManager::PluginDetails details;
+    foreach (PluginContainer* container, pluginContainer.values())
+    {
+        details.name = container->name;
+        details.title = container->title;
+        details.description = container->description;
+        details.builtIn = container->builtIn;
+        details.version = container->version;
+        details.versionString = formatVersion(container->version);
+        results << details;
+    }
+    return results;
+}
+
+QList<PluginManager::PluginDetails> PluginManagerImpl::getLoadedPluginDetails() const
+{
+    QList<PluginManager::PluginDetails> results = getAllPluginDetails();
+    QMutableListIterator<PluginManager::PluginDetails> it(results);
+    while (it.hasNext())
+    {
+        if (!isLoaded(it.next().name))
+            it.remove();
+    }
+    return results;
+}
+
 void PluginManagerImpl::registerPluginType(PluginType* type)
 {
     registeredPluginTypes << type;

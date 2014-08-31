@@ -106,6 +106,7 @@ class IconManager : public QObject
             DEF_ICON(FONT_BROWSE,                       "font_browse")
             DEF_ICON(FORMAT_SQL,                        "format_sql")
             DEF_ICON(FUNCTION,                          "function")
+            DEF_ICON(GET_UPDATE,                        "get_update")
             DEF_ICON(HELP,                              "help")
             DEF_ICON(HOMEPAGE,                          "homepage")
             DEF_ICON(IMPORT,                            "import")
