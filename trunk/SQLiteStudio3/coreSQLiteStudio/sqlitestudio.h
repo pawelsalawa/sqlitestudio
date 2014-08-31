@@ -25,6 +25,7 @@ class ImportManager;
 class PopulateManager;
 class PluginLoadingHandler;
 class BugReporter;
+class UpdateManager;
 
 /** @file */
 
@@ -136,6 +137,9 @@ class API_EXPORT SQLiteStudio : public QObject
         QString getUserManualPage() const;
         QString getSqliteDocsPage() const;
 
+        UpdateManager* getUpdateManager() const;
+        void setUpdateManager(UpdateManager* value);
+
     private:
         /**
          * @brief Creates singleton instance.
@@ -183,6 +187,7 @@ class API_EXPORT SQLiteStudio : public QObject
         ImportManager* importManager = nullptr;
         PopulateManager* populateManager = nullptr;
         BugReporter* bugReporter = nullptr;
+        UpdateManager* updateManager = nullptr;
 
     private slots:
         void pluginLoaded(Plugin* plugin,PluginType* pluginType);

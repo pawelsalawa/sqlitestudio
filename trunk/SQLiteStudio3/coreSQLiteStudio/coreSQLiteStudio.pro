@@ -181,7 +181,8 @@ SOURCES += sqlitestudio.cpp \
     plugins/builtinplugin.cpp \
     plugins/scriptingqtdbproxy.cpp \
     plugins/sqlformatterplugin.cpp \
-    services/bugreporter.cpp
+    services/bugreporter.cpp \
+    services/updatemanager.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -352,7 +353,8 @@ HEADERS += sqlitestudio.h\
     plugins/builtinplugin.h \
     plugins/scriptingqtdbproxy.h \
     plugins/codeformatterplugin.h \
-    services/bugreporter.h
+    services/bugreporter.h \
+    services/updatemanager.h
 
 unix:!symbian {
     maemo5 {

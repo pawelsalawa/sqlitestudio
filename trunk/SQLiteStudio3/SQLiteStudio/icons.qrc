@@ -174,5 +174,6 @@
         <file>img/licenses.png</file>
         <file>img/homepage.png</file>
         <file>img/bug_list.png</file>
+        <file>img/get_update.png</file>
     </qresource>
 </RCC>

@@ -708,3 +708,11 @@ bool isHex(const QString& str)
     str.toLongLong(&ok, 16);
     return ok;
 }
+
+QString formatVersion(int version)
+{
+    int majorVer = version / 10000;
+    int minorVer = version % 10000 / 100;
+    int patchVer = version % 100;
+    return QString::number(majorVer) + "." + QString::number(minorVer) + "." + QString::number(patchVer);
+}

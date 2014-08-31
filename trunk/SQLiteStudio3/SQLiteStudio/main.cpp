@@ -88,5 +88,7 @@ int main(int argc, char *argv[])
     if (!dbToOpen.isNull())
         MainWindow::getInstance()->openDb(dbToOpen);
 
+    UPDATES->checkForUpdates();
+
     return a.exec();
 }

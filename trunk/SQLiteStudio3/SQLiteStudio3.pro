@@ -14,7 +14,8 @@ cli.depends = core
 SUBDIRS += \
     core \
     gui \
-    cli
+    cli \
+    UpdateSQLiteStudio
 
 if(contains(DEFINES,tests)) {
     SUBDIRS += tests

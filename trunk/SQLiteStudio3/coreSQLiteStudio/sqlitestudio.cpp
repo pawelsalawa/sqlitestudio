@@ -22,6 +22,7 @@
 #include "services/impl/functionmanagerimpl.h"
 #include "services/impl/collationmanagerimpl.h"
 #include "services/impl/pluginmanagerimpl.h"
+#include "services/updatemanager.h"
 #include "impl/dbattacherimpl.h"
 #include "services/exportmanager.h"
 #include "services/importmanager.h"
@@ -47,6 +48,16 @@ SQLiteStudio::SQLiteStudio()
 SQLiteStudio::~SQLiteStudio()
 {
 }
+UpdateManager* SQLiteStudio::getUpdateManager() const
+{
+    return updateManager;
+}
+
+void SQLiteStudio::setUpdateManager(UpdateManager* value)
+{
+    updateManager = value;
+}
+
 BugReporter* SQLiteStudio::getBugReporter() const
 {
     return bugReporter;
@@ -56,7 +67,6 @@ void SQLiteStudio::setBugReporter(BugReporter* value)
 {
     bugReporter = value;
 }
-
 
 PopulateManager* SQLiteStudio::getPopulateManager() const
 {
@@ -267,6 +277,7 @@ void SQLiteStudio::init(const QStringList& cmdListArguments, bool guiAvailable)
     importManager = new ImportManager();
     populateManager = new PopulateManager();
     bugReporter = new BugReporter();
+    updateManager = new UpdateManager();
 }
 
 void SQLiteStudio::initPlugins()
@@ -280,6 +291,7 @@ void SQLiteStudio::initPlugins()
 
 void SQLiteStudio::cleanUp()
 {
+    safe_delete(updateManager);
     safe_delete(bugReporter);
     safe_delete(populateManager);
     safe_delete(importManager);

@@ -153,7 +153,8 @@ SOURCES += main.cpp\
     dialogs/bugdialog.cpp \
     dialogs/aboutdialog.cpp \
     dialogs/bugreportlogindialog.cpp \
-    windows/bugreporthistorywindow.cpp
+    windows/bugreporthistorywindow.cpp \
+    dialogs/newversiondialog.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -292,7 +293,8 @@ HEADERS  += mainwindow.h \
     dialogs/bugdialog.h \
     dialogs/aboutdialog.h \
     dialogs/bugreportlogindialog.h \
-    windows/bugreporthistorywindow.h
+    windows/bugreporthistorywindow.h \
+    dialogs/newversiondialog.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \
@@ -337,10 +339,14 @@ FORMS    += mainwindow.ui \
     dialogs/bugdialog.ui \
     dialogs/aboutdialog.ui \
     dialogs/bugreportlogindialog.ui \
-    windows/bugreporthistorywindow.ui
+    windows/bugreporthistorywindow.ui \
+    dialogs/newversiondialog.ui
 
 RESOURCES += \
     icons.qrc
+
+OTHER_FILES += \
+    windows.rc
 
 LIBS += -lcoreSQLiteStudio
 
@@ -352,6 +358,5 @@ unix: {
 
 win32: {
     QMAKE_LFLAGS += -Wl,--export-all-symbols,--out-implib,$$DESTDIR/libSQLiteStudio.a
+    RC_FILE = windows.rc
 }
-
-OTHER_FILES +=
