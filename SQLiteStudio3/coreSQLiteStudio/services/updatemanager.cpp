@@ -1,6 +1,7 @@
 #include "updatemanager.h"
 #include "services/pluginmanager.h"
 #include "services/notifymanager.h"
+#include "common/unused.h"
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>
@@ -21,6 +22,7 @@ UpdateManager::UpdateManager(QObject *parent) :
 
 void UpdateManager::checkForUpdates()
 {
+#ifndef NO_AUTO_UPDATES
     if (!isPlatformEligibleForUpdate() || updatesCheckReply)
         return;
 
@@ -31,11 +33,16 @@ void UpdateManager::checkForUpdates()
     QUrl url(QString::fromLatin1(updateServiceUrl) + "?" + query.query(QUrl::FullyEncoded));
     QNetworkRequest request(url);
     updatesCheckReply = networkManager->get(request);
+#endif
 }
 
 void UpdateManager::update(UpdateManager::AdminPassHandler adminPassHandler)
 {
-
+#ifndef NO_AUTO_UPDATES
+    // TODO updates
+#else
+    UNUSED(adminPassHandler);
+#endif
 }
 
 QString UpdateManager::getPlatformForUpdate() const

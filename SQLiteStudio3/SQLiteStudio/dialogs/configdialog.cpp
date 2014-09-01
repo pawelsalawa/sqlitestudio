@@ -170,6 +170,10 @@ void ConfigDialog::init()
 
     ui->hideBuiltInPluginsCheck->setChecked(true);
 
+#ifdef NO_AUTO_UPDATES
+    ui->updatesGroup->setVisible(false);
+#endif
+
     load();
     updateStylePreview();
 }
