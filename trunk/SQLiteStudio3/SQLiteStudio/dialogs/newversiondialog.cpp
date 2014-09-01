@@ -2,6 +2,7 @@
 #include "services/pluginmanager.h"
 #include "sqlitestudio.h"
 #include "ui_newversiondialog.h"
+#include "services/config.h"
 
 NewVersionDialog::NewVersionDialog(QWidget *parent) :
     QDialog(parent),
@@ -45,5 +46,13 @@ void NewVersionDialog::init()
 {
     ui->setupUi(this);
 
+    connect(ui->checkOnStartupCheck, &QCheckBox::clicked, [=](bool checked)
+    {
+        CFG_CORE.General.CheckUpdatesOnStartup.set(checked);
+    });
+}
 
+void NewVersionDialog::showEvent(QShowEvent*)
+{
+    ui->checkOnStartupCheck->setChecked(CFG_CORE.General.CheckUpdatesOnStartup.get());
 }

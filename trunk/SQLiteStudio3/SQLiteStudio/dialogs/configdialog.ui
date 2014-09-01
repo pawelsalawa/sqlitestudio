@@ -191,7 +191,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>7</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="dataBrowsingPage">
           <layout class="QVBoxLayout" name="verticalLayout_21">
@@ -437,6 +437,25 @@
                 </property>
                 <property name="cfg" stdset="0">
                  <string>General.ExecuteCurrentQueryOnly</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="updatesGroup">
+             <property name="title">
+              <string>Updates</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_29">
+              <item>
+               <widget class="QCheckBox" name="checkForUpdatesCheck">
+                <property name="text">
+                 <string>Automatically check for updates at startup</string>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string>General.CheckUpdatesOnStartup</string>
                 </property>
                </widget>
               </item>
@@ -1109,8 +1128,8 @@ p, li { white-space: pre-wrap; }
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>261</width>
-                <height>308</height>
+                <width>258</width>
+                <height>286</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -1231,8 +1250,8 @@ p, li { white-space: pre-wrap; }
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>318</width>
-                <height>737</height>
+                <width>307</width>
+                <height>666</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_12">

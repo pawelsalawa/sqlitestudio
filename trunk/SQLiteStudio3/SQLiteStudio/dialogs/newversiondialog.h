@@ -18,6 +18,9 @@ class NewVersionDialog : public QDialog
 
         void setUpdates(const QList<UpdateManager::UpdateEntry>& updates);
 
+    protected:
+        void showEvent(QShowEvent*);
+
     private:
         void init();
 
