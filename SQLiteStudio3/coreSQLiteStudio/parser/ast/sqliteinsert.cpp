@@ -148,7 +148,7 @@ void SqliteInsert::initName(const QString& name1, const QString& name2)
 void SqliteInsert::initMode(bool replace, SqliteConflictAlgo onConflict)
 {
     replaceKw = replace;
-    onConflict = onConflict;
+    this->onConflict = onConflict;
 }
 
 TokenList SqliteInsert::rebuildTokensFromContents()
