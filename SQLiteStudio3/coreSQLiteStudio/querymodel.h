@@ -13,6 +13,9 @@ class API_EXPORT QueryModel : public QAbstractTableModel
         Q_OBJECT
 
     public:
+        using QAbstractItemModel::fetchMore;
+        using QAbstractItemModel::canFetchMore;
+
         QueryModel(Db* db, QObject *parent = nullptr);
 
         virtual void refresh();

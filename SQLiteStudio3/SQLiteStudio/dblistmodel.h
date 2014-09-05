@@ -32,6 +32,8 @@ class DbListModel : public QAbstractListModel
         void setCombo(QComboBox* combo);
 
     private:
+        using QAbstractItemModel::sort;
+
         class DbTreeComparer
         {
             public:

@@ -11,6 +11,8 @@ class FunctionsEditorModel : public QAbstractListModel
         Q_OBJECT
 
     public:
+        using QAbstractItemModel::setData;
+
         enum Role
         {
             CODE = 1000,

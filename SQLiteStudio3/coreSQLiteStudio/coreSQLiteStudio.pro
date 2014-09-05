@@ -98,7 +98,6 @@ SOURCES += sqlitestudio.cpp \
     services/dbmanager.cpp \
     db/sqlresultsrow.cpp \
     db/asyncqueryrunner.cpp \
-    db/dbremote.cpp \
     completionhelper.cpp \
     completioncomparer.cpp \
     db/queryexecutor.cpp \
@@ -249,7 +248,6 @@ HEADERS += sqlitestudio.h\
     services/dbmanager.h \
     db/sqlresultsrow.h \
     db/asyncqueryrunner.h \
-    db/dbremote.h \
     completionhelper.h \
     expectedtoken.h \
     completioncomparer.h \

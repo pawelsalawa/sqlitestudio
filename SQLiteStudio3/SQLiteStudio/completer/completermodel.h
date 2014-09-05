@@ -11,6 +11,8 @@ class Icon;
 class CompleterModel : public QAbstractItemModel
 {
     public:
+        using QAbstractItemModel::setData;
+
         enum UserRole
         {
             VALUE = 1000,
