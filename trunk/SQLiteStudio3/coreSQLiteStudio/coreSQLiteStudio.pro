@@ -18,8 +18,7 @@ TARGET = coreSQLiteStudio
 TEMPLATE = lib
 
 win32 {
-    INCLUDEPATH += $$PWD/../../../include
-    LIBS += -lpsapi -L$$PWD/../../../lib
+    LIBS += -lpsapi
 }
 
 unix: {

@@ -9,7 +9,7 @@
 class QNetworkAccessManager;
 class QNetworkReply;
 
-class BugReporter : public QObject
+class API_EXPORT BugReporter : public QObject
 {
         Q_OBJECT
 

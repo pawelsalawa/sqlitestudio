@@ -622,23 +622,37 @@ QString getOsString()
     QString os = "Windows";
     switch (QSysInfo::WindowsVersion)
     {
-        case WV_XP:
+        case QSysInfo::WV_XP:
             os += " XP";
             break;
-        case WV_2003:
+        case QSysInfo::WV_2003:
             os += " 2003";
             break;
-        case WV_VISTA:
+        case QSysInfo::WV_VISTA:
             os += " Vista";
             break;
-        case WV_WINDOWS7:
+        case QSysInfo::WV_WINDOWS7:
             os += " 7";
             break;
-        case WV_WINDOWS8:
+        case QSysInfo::WV_WINDOWS8:
             os += " 8";
             break;
-        case WV_WINDOWS8_1:
+        case QSysInfo::WV_WINDOWS8_1:
             os += " 8.1";
+            break;
+        case QSysInfo::WV_32s:
+        case QSysInfo::WV_95:
+        case QSysInfo::WV_98:
+        case QSysInfo::WV_Me:
+        case QSysInfo::WV_DOS_based:
+        case QSysInfo::WV_NT:
+        case QSysInfo::WV_2000:
+        case QSysInfo::WV_NT_based:
+        case QSysInfo::WV_CE:
+        case QSysInfo::WV_CENET:
+        case QSysInfo::WV_CE_5:
+        case QSysInfo::WV_CE_6:
+        case QSysInfo::WV_CE_based:
             break;
     }
 #elif defined(Q_OS_LINUX)
