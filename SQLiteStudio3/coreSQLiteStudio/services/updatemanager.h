@@ -17,6 +17,7 @@ class UpdateManager : public QObject
         {
             QString compontent;
             QString version;
+            QString url;
         };
 
         typedef std::function<QString()> AdminPassHandler;
@@ -25,18 +26,27 @@ class UpdateManager : public QObject
 
         void checkForUpdates();
         void update(AdminPassHandler adminPassHandler);
+        bool isPlatformEligibleForUpdate() const;
 
     private:
         QString getPlatformForUpdate() const;
         QString getCurrentVersions() const;
-        bool isPlatformEligibleForUpdate() const;
         void handleAvailableUpdatesReply(QNetworkReply* reply);
+        void getUpdatesMetadata(QNetworkReply*& replyStoragePointer);
+        void handleUpdatesMetadata(QNetworkReply* reply);
+        QList<UpdateEntry> readMetadata(const QJsonDocument& doc);
+        void downloadUpdates();
 
         QNetworkAccessManager* networkManager = nullptr;
         QNetworkReply* updatesCheckReply = nullptr;
+        QNetworkReply* updatesGetUrlsReply = nullptr;
         QNetworkReply* updatesGetReply = nullptr;
+        UpdateManager::AdminPassHandler adminPassHandler;
+        bool updatesInProgress = false;
+        QList<UpdateEntry> updatesToDownload;
 
         static_char* updateServiceUrl = "http://sqlitestudio.pl/updates3.rvt";
+        static_char* manualUpdatesHelpUrl = "http://wiki.sqlitestudio.pl/index.php/User_Manual#Manual";
 
     private slots:
         void finished(QNetworkReply* reply);
