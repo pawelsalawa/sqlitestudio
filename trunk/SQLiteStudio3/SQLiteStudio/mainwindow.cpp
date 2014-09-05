@@ -336,8 +336,11 @@ void MainWindow::initMenuBar()
     sqlitestudioMenu->addAction(actionMap[HOMEPAGE]);
     sqlitestudioMenu->addAction(actionMap[FORUM]);
     sqlitestudioMenu->addSeparator();
-    sqlitestudioMenu->addAction(actionMap[CHECK_FOR_UPDATES]);
-    sqlitestudioMenu->addSeparator();
+    if (UPDATES->isPlatformEligibleForUpdate())
+    {
+        sqlitestudioMenu->addAction(actionMap[CHECK_FOR_UPDATES]);
+        sqlitestudioMenu->addSeparator();
+    }
     sqlitestudioMenu->addAction(actionMap[REPORT_BUG]);
     sqlitestudioMenu->addAction(actionMap[FEATURE_REQUEST]);
     sqlitestudioMenu->addAction(actionMap[BUG_REPORT_HISTORY]);

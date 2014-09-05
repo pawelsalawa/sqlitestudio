@@ -22,27 +22,16 @@ UpdateManager::UpdateManager(QObject *parent) :
 
 void UpdateManager::checkForUpdates()
 {
-#ifndef NO_AUTO_UPDATES
-    if (!isPlatformEligibleForUpdate() || updatesCheckReply)
-        return;
-
-    QUrlQuery query;
-    query.addQueryItem("platform", getPlatformForUpdate());
-    query.addQueryItem("data", getCurrentVersions());
-
-    QUrl url(QString::fromLatin1(updateServiceUrl) + "?" + query.query(QUrl::FullyEncoded));
-    QNetworkRequest request(url);
-    updatesCheckReply = networkManager->get(request);
-#endif
+    getUpdatesMetadata(updatesCheckReply);
 }
 
 void UpdateManager::update(UpdateManager::AdminPassHandler adminPassHandler)
 {
-#ifndef NO_AUTO_UPDATES
-    // TODO updates
-#else
-    UNUSED(adminPassHandler);
-#endif
+    if (updatesGetUrlsReply || updatesInProgress)
+        return;
+
+    this->adminPassHandler = adminPassHandler;
+    getUpdatesMetadata(updatesGetUrlsReply);
 }
 
 QString UpdateManager::getPlatformForUpdate() const
@@ -89,16 +78,16 @@ QString UpdateManager::getCurrentVersions() const
 
 bool UpdateManager::isPlatformEligibleForUpdate() const
 {
-    return !getPlatformForUpdate().isNull();
+    return !getPlatformForUpdate().isNull() && getDistributionType() != DistributionType::OS_MANAGED;
 }
 
 void UpdateManager::handleAvailableUpdatesReply(QNetworkReply* reply)
 {
     QJsonParseError err;
     QByteArray data = reply->readAll();
-    QJsonDocument doc = QJsonDocument::fromJson(data, &err);
     reply->deleteLater();
 
+    QJsonDocument doc = QJsonDocument::fromJson(data, &err);
     if (err.error != QJsonParseError::NoError)
     {
         qWarning() << "Invalid response from update service:" << err.errorString() << "\n" << "The data was:" << QString::fromLatin1(data);
@@ -106,6 +95,48 @@ void UpdateManager::handleAvailableUpdatesReply(QNetworkReply* reply)
         return;
     }
 
+    QList<UpdateEntry> updates = readMetadata(doc);
+    emit updatesAvailable(updates);
+}
+
+void UpdateManager::getUpdatesMetadata(QNetworkReply*& replyStoragePointer)
+{
+#ifndef NO_AUTO_UPDATES
+    if (!isPlatformEligibleForUpdate() || replyStoragePointer)
+        return;
+
+    QUrlQuery query;
+    query.addQueryItem("platform", getPlatformForUpdate());
+    query.addQueryItem("data", getCurrentVersions());
+
+    QUrl url(QString::fromLatin1(updateServiceUrl) + "?" + query.query(QUrl::FullyEncoded));
+    QNetworkRequest request(url);
+    replyStoragePointer = networkManager->get(request);
+#endif
+}
+
+void UpdateManager::handleUpdatesMetadata(QNetworkReply* reply)
+{
+    QJsonParseError err;
+    QByteArray data = reply->readAll();
+    reply->deleteLater();
+
+    QJsonDocument doc = QJsonDocument::fromJson(data, &err);
+    if (err.error != QJsonParseError::NoError)
+    {
+        qWarning() << "Invalid response from update service for getting metadata:" << err.errorString() << "\n" << "The data was:" << QString::fromLatin1(data);
+        notifyWarn(tr("Could not download updates, because server responded with invalid message format. "
+                      "You can try again later or download and install updates manually. See <a href=\"%1\">User Manual</a> for details.").arg(manualUpdatesHelpUrl));
+        return;
+    }
+
+    updatesInProgress = true;
+    updatesToDownload = readMetadata(doc);
+    downloadUpdates();
+}
+
+QList<UpdateManager::UpdateEntry> UpdateManager::readMetadata(const QJsonDocument& doc)
+{
     QList<UpdateEntry> updates;
     UpdateEntry entry;
     QJsonObject obj = doc.object();
@@ -116,9 +147,16 @@ void UpdateManager::handleAvailableUpdatesReply(QNetworkReply* reply)
         entryObj = value.toObject();
         entry.compontent = entryObj["component"].toString();
         entry.version = entryObj["version"].toString();
+        entry.url = entryObj["url"].toString();
         updates << entry;
     }
-    emit updatesAvailable(updates);
+
+    return updates;
+}
+
+void UpdateManager::downloadUpdates()
+{
+
 }
 
 void UpdateManager::finished(QNetworkReply* reply)
@@ -127,6 +165,13 @@ void UpdateManager::finished(QNetworkReply* reply)
     {
         updatesCheckReply = nullptr;
         handleAvailableUpdatesReply(reply);
+        return;
+    }
+
+    if (reply == updatesGetUrlsReply)
+    {
+        updatesGetUrlsReply = nullptr;
+        handleUpdatesMetadata(reply);
         return;
     }
 }
