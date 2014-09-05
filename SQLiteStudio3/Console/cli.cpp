@@ -193,7 +193,11 @@ void CLI::addHistory(const QString& text)
 
     add_history(text.toLocal8Bit().data());
     if (historyLength() > CFG_CORE.Console.HistorySize.get())
+#ifdef Q_OS_OSX
+        free(remove_history(0));
+#else
         free_history_entry(remove_history(0));
+#endif
 
     lastHistoryEntry = text;
 }
@@ -207,7 +211,11 @@ void CLI::applyHistoryLimit()
 {
     CFG->applyCliHistoryLimit();
     while (historyLength() > CFG_CORE.Console.HistorySize.get())
+#ifdef Q_OS_OSX
+        free(remove_history(0));
+#else
         free_history_entry(remove_history(0));
+#endif
 }
 
 void CLI::openDbFile(const QString& path)

@@ -5,19 +5,26 @@
 
 CfgCategory* lastCreatedCfgCategory = nullptr;
 CfgMain* lastCreatedCfgMain = nullptr;
-QList<CfgMain*> CfgMain::instances;
-QList<CfgLazyInitializer*> CfgLazyInitializer::instances;
+QList<CfgMain*>* CfgMain::instances = nullptr;
+QList<CfgLazyInitializer*>* CfgLazyInitializer::instances = nullptr;
 
 CfgMain::CfgMain(const QString& name, bool persistable, const char *metaName, const QString &title) :
     name(name), metaName(metaName), title(title), persistable(persistable)
 {
     lastCreatedCfgMain = this;
-    instances << this;
+
+    if (!instances)
+        instances = new QList<CfgMain*>();
+
+    *instances << this;
 }
 
 CfgMain::~CfgMain()
 {
-    instances.removeOne(this);
+    if (!instances)
+        instances = new QList<CfgMain*>();
+
+    instances->removeOne(this);
 }
 
 void CfgMain::staticInit()
@@ -29,7 +36,10 @@ void CfgMain::staticInit()
 
 QList<CfgMain*> CfgMain::getInstances()
 {
-    return instances;
+    if (!instances)
+        instances = new QList<CfgMain*>();
+
+    return *instances;
 }
 
 QList<CfgMain*> CfgMain::getPersistableInstances()
@@ -276,12 +286,18 @@ CfgLazyInitializer::CfgLazyInitializer(std::function<void ()> initFunc, const ch
     initFunc(initFunc)
 {
     UNUSED(name);
-    instances << this;
+    if (!instances)
+        instances = new QList<CfgLazyInitializer*>();
+
+    *instances << this;
 }
 
 void CfgLazyInitializer::init()
 {
-    for (CfgLazyInitializer* initializer : instances)
+    if (!instances)
+        instances = new QList<CfgLazyInitializer*>();
+
+    for (CfgLazyInitializer* initializer : *instances)
         initializer->doInitialize();
 }
 

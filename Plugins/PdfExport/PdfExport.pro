@@ -24,4 +24,3 @@ FORMS += \
 
 RESOURCES += \
     pdfexport.qrc
-

@@ -2,6 +2,7 @@
 #include "common/unused.h"
 #include "uiutils.h"
 #include "log.h"
+#include <QtMath>
 #include <QPainter>
 #include <QFont>
 #include <QDebug>
@@ -359,7 +360,7 @@ void PdfExport::setupConfig()
     QRectF rect = painter->boundingRect(QRectF(padding, padding, pageWidth - 2 * padding, 1), "X", *textOption);
     minRowHeight = rect.height() + padding * 2;
     maxRowHeight = qMax((int)(pageHeight * 0.225), minRowHeight);
-    rowsToPrebuffer = (int)ceil((double)pageHeight / minRowHeight);
+    rowsToPrebuffer = (int)qCeil((double)pageHeight / minRowHeight);
 
     cellDataLimit = cfg.PdfExport.MaxCellBytes.get();
     printRowNum = cfg.PdfExport.PrintRowNum.get();

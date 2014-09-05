@@ -25,7 +25,7 @@ OTHER_FILES += \
 
 INCLUDEPATH += $$PLUGINSDIR/PdfExport
 DEPENDPATH += $$PLUGINSDIR/PdfExport
-win32: {
+win32|macx: {
     LIBS += -lPdfExport
 }
 

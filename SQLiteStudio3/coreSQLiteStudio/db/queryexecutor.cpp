@@ -27,6 +27,7 @@
 #include <schemaresolver.h>
 #include <parser/lexer.h>
 #include <common/table.h>
+#include <QtMath>
 
 // TODO modify all executor steps to use rebuildTokensFromContents() method, instead of replacing tokens manually.
 
@@ -254,7 +255,7 @@ void QueryExecutor::countResults()
     {
         SqlQueryPtr results = db->exec(context->countingQuery, context->queryParameters);
         context->totalRowsReturned = results->getSingleCell().toLongLong();
-        context->totalPages = (int)ceil(((double)(context->totalRowsReturned)) / ((double)getResultsPerPage()));
+        context->totalPages = (int)qCeil(((double)(context->totalRowsReturned)) / ((double)getResultsPerPage()));
 
         emit resultsCountingFinished(context->rowsAffected, context->totalRowsReturned, context->totalPages);
 
@@ -524,7 +525,7 @@ bool QueryExecutor::handleRowCountingResults(quint32 asyncId, SqlQueryPtr result
     resultsCountingAsyncId = 0;
 
     context->totalRowsReturned = results->getSingleCell().toLongLong();
-    context->totalPages = (int)ceil(((double)(context->totalRowsReturned)) / ((double)getResultsPerPage()));
+    context->totalPages = (int)qCeil(((double)(context->totalRowsReturned)) / ((double)getResultsPerPage()));
 
     emit resultsCountingFinished(context->rowsAffected, context->totalRowsReturned, context->totalPages);
 
