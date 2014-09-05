@@ -42,6 +42,8 @@ class ScriptingQt : public BuiltInPlugin, public DbAwareScriptingPlugin
         void deinit();
 
     private:
+        using DbAwareScriptingPlugin::evaluate;
+
         class ContextQt : public ScriptingPlugin::Context
         {
             public:

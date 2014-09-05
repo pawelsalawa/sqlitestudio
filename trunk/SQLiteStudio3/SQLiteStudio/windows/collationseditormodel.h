@@ -10,6 +10,8 @@ class CollationsEditorModel : public QAbstractListModel
 {
         Q_OBJECT
     public:
+        using QAbstractItemModel::setData;
+
         explicit CollationsEditorModel(QObject *parent = 0);
 
         void clearModified();

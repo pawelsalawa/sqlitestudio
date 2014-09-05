@@ -674,6 +674,21 @@ QString getOsString()
         case QSysInfo::MV_10_9:
             os += " 10.9 Mavericks";
             break;
+        case QSysInfo::MV_9:
+        case QSysInfo::MV_10_0:
+        case QSysInfo::MV_10_1:
+        case QSysInfo::MV_10_2:
+        case QSysInfo::MV_10_3:
+        case QSysInfo::MV_IOS:
+        case QSysInfo::MV_IOS_4_3:
+        case QSysInfo::MV_IOS_5_0:
+        case QSysInfo::MV_IOS_5_1:
+        case QSysInfo::MV_IOS_6_0:
+        case QSysInfo::MV_IOS_6_1:
+        case QSysInfo::MV_IOS_7_0:
+        case QSysInfo::MV_IOS_7_1:
+        case QSysInfo::MV_Unknown:
+            break;
     }
 #elif defined(Q_OS_UNIX)
     QString os = "Unix";
