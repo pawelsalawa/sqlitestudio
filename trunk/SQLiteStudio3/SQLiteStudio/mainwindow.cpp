@@ -62,6 +62,10 @@ void MainWindow::init()
     setWindowIcon(ICONS.SQLITESTUDIO_APP);
     setWindowTitle(QString("SQLiteStudio (%1)").arg(SQLITESTUDIO->getVersionString()));
 
+#ifdef Q_OS_MACX
+    ui->centralWidget->layout()->setMargin(0);
+#endif
+
     dbTree = new DbTree(this);
     addDockWidget(Qt::LeftDockWidgetArea, dbTree);
 

@@ -349,7 +349,7 @@ bool AbstractDb3<T>::openInternal()
     resetError();
     sqlite3* handle;
     int res = sqlite3_open_v2(path.toUtf8().constData(), &handle, SQLITE_OPEN_READWRITE|SQLITE_OPEN_CREATE, nullptr);
-    if (!res == SQLITE_OK)
+    if (res != SQLITE_OK)
     {
         if (handle)
             sqlite3_close(handle);

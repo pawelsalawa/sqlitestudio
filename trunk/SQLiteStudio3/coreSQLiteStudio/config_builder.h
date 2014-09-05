@@ -49,7 +49,7 @@ class API_EXPORT CfgLazyInitializer
 
         std::function<void(void)> initFunc;
 
-        static QList<CfgLazyInitializer*> instances;
+        static QList<CfgLazyInitializer*>* instances;
 };
 
 class API_EXPORT CfgMain
@@ -82,7 +82,7 @@ class API_EXPORT CfgMain
         bool persistable = true;
         QHash<QString,CfgCategory*> childs;
 
-        static QList<CfgMain*> instances;
+        static QList<CfgMain*>* instances;
 };
 
 class API_EXPORT CfgCategory

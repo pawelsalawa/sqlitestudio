@@ -40,7 +40,7 @@ QString randStr(int length, bool numChars, bool whiteSpaces)
 {
     static const char* alphaNumChars = " abcdefghijklmnopqrstuvwxyz1234567890";
     int start = 1;
-    int range = start + numChars ? 36 : 26;
+    int range = start + (numChars ? 36 : 26);
 
     if (whiteSpaces)
     {
@@ -443,7 +443,7 @@ QDateTime toGregorian(double julianDateTime)
     int MM = (E <= 13) ? E - 1 : E - 13;
     int YYYY = (MM <= 2) ? C - 4715 : C - 4716;
 
-    int mmmBase = round(F * 86400000.0);
+    int mmmBase = qRound(F * 86400000.0);
     int mmm = mmmBase % 1000;
     int ssBase = mmmBase / 1000;
     int ss = ssBase % 60;
@@ -654,24 +654,24 @@ QString getOsString()
     }
 #elif defined(Q_OS_OSX)
     QString os = "MacOS X";
-    switch (QSysInfo::WindowsVersion)
+    switch (QSysInfo::MacintoshVersion)
     {
-        case MV_10_4:
+        case QSysInfo::MV_10_4:
             os += " 10.4 Tiger";
             break;
-        case MV_10_5:
+        case QSysInfo::MV_10_5:
             os += " 10.5 Leopard";
             break;
-        case MV_10_6:
+        case QSysInfo::MV_10_6:
             os += " 10.6 Snow Leopard";
             break;
-        case MV_10_7:
+        case QSysInfo::MV_10_7:
             os += " 10.7 Lion";
             break;
-        case MV_10_8:
+        case QSysInfo::MV_10_8:
             os += " 10.8 Mountain Lion";
             break;
-        case MV_10_9:
+        case QSysInfo::MV_10_9:
             os += " 10.9 Mavericks";
             break;
     }
