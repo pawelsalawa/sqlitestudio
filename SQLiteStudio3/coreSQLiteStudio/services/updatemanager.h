@@ -9,7 +9,7 @@
 class QNetworkAccessManager;
 class QNetworkReply;
 
-class UpdateManager : public QObject
+class API_EXPORT UpdateManager : public QObject
 {
         Q_OBJECT
     public:

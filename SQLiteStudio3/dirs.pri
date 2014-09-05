@@ -11,6 +11,11 @@ macx: {
     LIBS += -L$$PWD/../../lib
 }
 
+win32: {
+    INCLUDEPATH += $$PWD/../../include
+    LIBS += -L$$PWD/../../lib
+}
+
 INCLUDEPATH += $$PWD/coreSQLiteStudio
 DEPENDPATH += $$PWD/coreSQLiteStudio
 

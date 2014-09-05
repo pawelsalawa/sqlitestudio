@@ -59,7 +59,12 @@ void MainWindow::init()
     ui->setupUi(this);
     connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(cleanUp()));
 
+#ifdef Q_OS_WIN
+    setWindowIcon(ICONS.SQLITESTUDIO_APP.toQIcon().pixmap(256, 256));
+#else
     setWindowIcon(ICONS.SQLITESTUDIO_APP);
+#endif
+
     setWindowTitle(QString("SQLiteStudio (%1)").arg(SQLITESTUDIO->getVersionString()));
 
 #ifdef Q_OS_MACX

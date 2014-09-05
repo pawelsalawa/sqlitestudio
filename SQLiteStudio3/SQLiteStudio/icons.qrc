@@ -125,7 +125,6 @@
         <file>img/sort_ind_desc.png</file>
         <file>img/sort_reset.png</file>
         <file>img/sql.png</file>
-        <file>img/sqlitestudio.svg</file>
         <file>img/status_error.png</file>
         <file>img/status_info.png</file>
         <file>img/status_warn.png</file>
@@ -175,5 +174,6 @@
         <file>img/homepage.png</file>
         <file>img/bug_list.png</file>
         <file>img/get_update.png</file>
+        <file>img/sqlitestudio.svg</file>
     </qresource>
 </RCC>
