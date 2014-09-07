@@ -19,6 +19,11 @@ win32: {
 INCLUDEPATH += $$PWD/coreSQLiteStudio
 DEPENDPATH += $$PWD/coreSQLiteStudio
 
+contains(QT, gui): {
+    INCLUDEPATH += $$PWD/guiSQLiteStudio $$PWD/../output/build/guiSQLiteStudio
+    DEPENDPATH += $$PWD/guiSQLiteStudio
+}
+
 win32|macx: {
     CONFIG += portable
 }
