@@ -5,17 +5,21 @@ core.subdir = coreSQLiteStudio
 tests.subdir = Tests
 tests.depends = core
 
-gui.subdir = SQLiteStudio
+gui.subdir = guiSQLiteStudio
 gui.depends = core
 
-cli.subdir = Console
+cli.subdir = sqlitestudiocli
 cli.depends = core
+
+gui_app.subdir = sqlitestudio
+gui_app.depends = gui
 
 SUBDIRS += \
     core \
     gui \
     cli \
-    UpdateSQLiteStudio
+    UpdateSQLiteStudio \
+    gui_app
 
 if(contains(DEFINES,tests)) {
     SUBDIRS += tests

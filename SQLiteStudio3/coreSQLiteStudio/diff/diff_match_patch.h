@@ -69,7 +69,7 @@
 *  Diff(Operation.EQUAL, " world.")}
 * which means: delete "Hello", add "Goodbye" and keep " world."
 */
-enum API_EXPORT Operation {
+enum Operation {
   DELETE, INSERT, EQUAL
 };
 

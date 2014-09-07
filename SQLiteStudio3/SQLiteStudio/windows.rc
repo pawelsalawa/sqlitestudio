@@ -1,3 +1,0 @@
-#include <windows.h>
-
-ID_ICON ICON DISCARDABLE "img/sqlitestudio.ico"
