@@ -46,10 +46,17 @@ void NewVersionDialog::init()
 {
     ui->setupUi(this);
 
+    connect(ui->abortButton, SIGNAL(clicked()), this, SLOT(reject()));
+    connect(ui->updateButton, SIGNAL(clicked()), this, SLOT(installUpdates()));
     connect(ui->checkOnStartupCheck, &QCheckBox::clicked, [=](bool checked)
     {
         CFG_CORE.General.CheckUpdatesOnStartup.set(checked);
     });
+}
+
+void NewVersionDialog::installUpdates()
+{
+    UPDATES->update([]() -> QString {return "";});
 }
 
 void NewVersionDialog::showEvent(QShowEvent*)

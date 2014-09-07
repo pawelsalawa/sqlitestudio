@@ -105,7 +105,7 @@
        <normaloff>:/icons/img/get_update.png</normaloff>:/icons/img/get_update.png</iconset>
      </property>
      <property name="description">
-      <string>The update will be automatically downloaded and installed.</string>
+      <string>The update will be automatically downloaded and installed. This will also restart application at the end.</string>
      </property>
     </widget>
    </item>
