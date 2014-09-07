@@ -22,7 +22,11 @@ contains(QT, gui) {
 
 win32: {
     INCLUDEPATH += $$PWD/../../include
-    LIBS += -L$$PWD/../../lib -L$$DESTDIR/.. -lcoreSQLiteStudio -lguiSQLiteStudio -L$$PWD/../output/SQLiteStudio/plugins
+    LIBS += -L$$PWD/../../lib -L$$DESTDIR/.. -lcoreSQLiteStudio -L$$PWD/../output/SQLiteStudio/plugins
+
+    contains(QT, gui) {
+        LIBS += -lguiSQLiteStudio
+    }
 }
 
 unix: {
@@ -34,8 +38,7 @@ macx: {
     GUI_APP = $$PWD/../output/SQLiteStudio/SQLiteStudio.app/Contents/MacOS/SQLiteStudio
     export (GUI_APP)
 
-    #LIBS += -L$$PWD/../output/SQLiteStudio/SQLiteStudio.app/Contents/MacOS -lcoreSQLiteStudio -lguiSQLiteStudio
-    LIBS +=-lcoreSQLiteStudio
+    LIBS += -L$$PWD/../output/SQLiteStudio -lcoreSQLiteStudio
     INCLUDEPATH += $$PWD/../../include
     LIBS += -L$$PWD/../../lib -L$$DESTDIR
     QMAKE_CXXFLAGS += -stdlib=libc++ -mmacosx-version-min=10.7

@@ -13,8 +13,8 @@ namespace Cfg
     GUI_API_EXPORT QVariant getDefaultTextEditorFont();
     GUI_API_EXPORT QVariant getDefaultItemViewFont();
     GUI_API_EXPORT QVariant getDefaultDbTreeLabelFont();
-    GUI_API_EXPORT typedef QHash<QString,QVariant> Session;
-    GUI_API_EXPORT typedef QHash<QString,QVariant> DataEditorsOrder;
+    typedef QHash<QString,QVariant> Session;
+    typedef QHash<QString,QVariant> DataEditorsOrder;
 }
 
 CFG_CATEGORIES(Ui,
