@@ -102,7 +102,8 @@ void UpdateManager::handleAvailableUpdatesReply(QNetworkReply* reply)
     }
 
     QList<UpdateEntry> updates = readMetadata(doc);
-    emit updatesAvailable(updates);
+    if (updates.size() > 0)
+        emit updatesAvailable(updates);
 }
 
 void UpdateManager::getUpdatesMetadata(QNetworkReply*& replyStoragePointer)
