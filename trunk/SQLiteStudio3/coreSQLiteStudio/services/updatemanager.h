@@ -8,6 +8,8 @@
 
 class QNetworkAccessManager;
 class QNetworkReply;
+class QTemporaryDir;
+class QFile;
 
 class API_EXPORT UpdateManager : public QObject
 {
@@ -23,6 +25,7 @@ class API_EXPORT UpdateManager : public QObject
         typedef std::function<QString()> AdminPassHandler;
 
         explicit UpdateManager(QObject *parent = 0);
+        ~UpdateManager();
 
         void checkForUpdates();
         void update(AdminPassHandler adminPassHandler);
@@ -32,10 +35,14 @@ class API_EXPORT UpdateManager : public QObject
         QString getPlatformForUpdate() const;
         QString getCurrentVersions() const;
         void handleAvailableUpdatesReply(QNetworkReply* reply);
+        void handleDownloadReply(QNetworkReply* reply);
         void getUpdatesMetadata(QNetworkReply*& replyStoragePointer);
         void handleUpdatesMetadata(QNetworkReply* reply);
         QList<UpdateEntry> readMetadata(const QJsonDocument& doc);
         void downloadUpdates();
+        void updatingFailed(const QString& errMsg);
+        void installUpdates();
+        void cleanup();
 
         QNetworkAccessManager* networkManager = nullptr;
         QNetworkReply* updatesCheckReply = nullptr;
@@ -44,15 +51,25 @@ class API_EXPORT UpdateManager : public QObject
         UpdateManager::AdminPassHandler adminPassHandler;
         bool updatesInProgress = false;
         QList<UpdateEntry> updatesToDownload;
+        QTemporaryDir* tempDir = nullptr;
+        QFile* currentDownloadFile = nullptr;
+        int totalPercent = 0;
+        int totalDownloadsCount = 0;
+        QString currentJobTitle;
 
         static_char* updateServiceUrl = "http://sqlitestudio.pl/updates3.rvt";
         static_char* manualUpdatesHelpUrl = "http://wiki.sqlitestudio.pl/index.php/User_Manual#Manual";
 
     private slots:
         void finished(QNetworkReply* reply);
+        void downloadProgress(qint64 bytesReceived, qint64 totalBytes);
+        void readDownload();
 
     signals:
         void updatesAvailable(const QList<UpdateManager::UpdateEntry>& updates);
+        void updatingProgress(const QString& jobTitle, int jobPercent, int totalPercent);
+        void updatingFinished();
+        void updatingError(const QString& errorMessage);
 };
 
 #define UPDATES SQLITESTUDIO->getUpdateManager()
