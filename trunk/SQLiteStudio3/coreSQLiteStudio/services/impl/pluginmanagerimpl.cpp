@@ -103,7 +103,7 @@ PluginType* PluginManagerImpl::getPluginType(Plugin* plugin) const
 void PluginManagerImpl::scanPlugins()
 {
     QStringList nameFilters;
-    nameFilters << "*.so" << "*.dll";
+    nameFilters << "*.so" << "*.dll" << "*.dylib";
 
     QPluginLoader* loader;
     foreach (QString pluginDirPath, pluginDirs)
