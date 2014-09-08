@@ -85,11 +85,23 @@ void StatusField::addEntry(const QIcon &icon, const QString &text, const QColor&
     ui->tableWidget->setItem(row, 1, item);
 
     static_qstring(colorTpl, "QLabel {color: %1}");
-    QLabel* label = new QLabel(text);
-    label->setFont(font);
-    label->setStyleSheet(colorTpl.arg(color.name()));
-    connect(label, SIGNAL(linkActivated(QString)), this, SIGNAL(linkActivated(QString)));
-    ui->tableWidget->setCellWidget(row, 2, label);
+    // While QLabel does detect if the text is rich automatically, we don't want to use qlabel for plain text,
+    // because it's not wrapped correctly if the text is longer.
+    if (text.contains("<"))
+    {
+        QLabel* label = new QLabel(text);
+        label->setFont(font);
+        label->setStyleSheet(colorTpl.arg(color.name()));
+        connect(label, SIGNAL(linkActivated(QString)), this, SIGNAL(linkActivated(QString)));
+        ui->tableWidget->setCellWidget(row, 2, label);
+    }
+    else
+    {
+        item = new QTableWidgetItem(text);
+        item->setForeground(QBrush(color));
+        item->setFont(font);
+        ui->tableWidget->setItem(row, 2, item);
+    }
 
     setVisible(true);
 
