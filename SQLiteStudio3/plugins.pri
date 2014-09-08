@@ -53,5 +53,5 @@ win32|macx: {
 }
 
 portable {
-    QMAKE_LFLAGS += -Wl,-rpath,.. -Wl,-rpath,$$DESTDIR/..
+    QMAKE_LFLAGS += -Wl,-rpath,. -Wl,-rpath,.. -Wl,-rpath,$$DESTDIR/.. -Wl,-rpath,plugins
 }

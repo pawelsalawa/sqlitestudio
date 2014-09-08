@@ -351,14 +351,3 @@ RESOURCES += \
 OTHER_FILES +=
 
 LIBS += -lcoreSQLiteStudio
-
-#unix: {
-#    QMAKE_LFLAGS += -rdynamic
-#    target.path = /usr/bin
-#    INSTALLS += target
-#}
-
-#win32: {
-#    # QMAKE_LFLAGS += -Wl,--export-all-symbols,--out-implib,$$DESTDIR/libSQLiteStudio.a
-#    RC_FILE = windows.rc
-#}
