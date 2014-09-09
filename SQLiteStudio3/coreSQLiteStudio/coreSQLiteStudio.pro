@@ -21,8 +21,15 @@ win32 {
     LIBS += -lpsapi
 }
 
-unix: {
+linux: {
     DEFINES += SYS_PLUGINS_DIR=/usr/lib/sqlitestudio
+}
+
+macx: {
+    DEFINES += SYS_PLUGINS_DIR=../PlugIns
+
+    out_file = $$DESTDIR/lib $$TARGET .dylib
+    QMAKE_POST_LINK += install_name_tool -change libsqlite3.dylib @loader_path/../Frameworks/libsqlite3.dylib $$join(out_file)
 }
 
 LIBS += -lsqlite3
