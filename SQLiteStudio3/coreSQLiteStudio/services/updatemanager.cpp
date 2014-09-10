@@ -9,10 +9,12 @@
 #include <QUrl>
 #include <QUrlQuery>
 #include <QDebug>
+#include <QCoreApplication>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QJsonValue>
+#include <QProcess>
 
 UpdateManager::UpdateManager(QObject *parent) :
     QObject(parent)
@@ -35,6 +37,12 @@ void UpdateManager::update(UpdateManager::AdminPassHandler adminPassHandler)
 {
     if (updatesGetUrlsReply || updatesInProgress)
         return;
+
+    if (!adminPassHandler)
+    {
+        qCritical() << "Null admin password handler. Updating aborted.";
+        return;
+    }
 
     this->adminPassHandler = adminPassHandler;
     getUpdatesMetadata(updatesGetUrlsReply);
@@ -203,6 +211,8 @@ void UpdateManager::downloadUpdates()
         return;
     }
 
+    updatesToInstall[entry.compontent] = path;
+
     QNetworkRequest request(QUrl(entry.url));
     updatesGetReply = networkManager->get(request);
     connect(updatesGetReply, SIGNAL(downloadProgress(qint64,qint64)), this, SLOT(downloadProgress(qint64,qint64)));
@@ -219,19 +229,158 @@ void UpdateManager::updatingFailed(const QString& errMsg)
 void UpdateManager::installUpdates()
 {
     currentJobTitle = tr("Installing updates.");
-    emit updatingProgress(currentJobTitle, 0, 90);
+    totalPercent = (totalDownloadsCount - updatesToDownload.size()) * 100 / (totalDownloadsCount + 1);
+    emit updatingProgress(currentJobTitle, 0, totalPercent);
 
-    cleanup(); // TODO perform real installation
+    collectComponentPaths();
+    requireAdmin = doRequireAdminPrivileges();
+    if (requireAdmin && adminPassword.isNull())
+    {
+        adminPassword = adminPassHandler();
+        if (adminPassword.isNull())
+        {
+            updatingFailed(tr("User aborted updates installation."));
+            return;
+        }
+    }
+
+    for (const QString& component : updatesToInstall.keys())
+        installComponent(component);
 
     currentJobTitle = QString();
-    emit updatingProgress(currentJobTitle, 100, 100);
+    totalPercent = 100;
+    emit updatingProgress(currentJobTitle, 100, totalPercent);
+    cleanup();
     updatesInProgress = false;
+}
+
+void UpdateManager::installComponent(const QString& component)
+{
+    installUpdate(component, componentToPath[component], updatesToInstall[component], requireAdmin, adminPassword);
+}
+
+void UpdateManager::installUpdate(const QString& component, const QString& componentPath, const QString& packagePath, bool requireAdmin, const QString& adminPassword)
+{
+    QTemporaryDir installTempDir;
+    unpackToDir(packagePath, installTempDir.path());
+    QDir installTempDirPath(installTempDir.path());
+    QStringList entries = installTempDirPath.entryList(QDir::Dirs);
+    if (entries.size() != 1)
+    {
+        qCritical() << "Cannot install package" << packagePath << ", because it contains more than 1 directory. Don't know which to install.";
+        return;
+    }
+
+    QString pkgDirPath = entries.first();
+    if (component == "SQLiteStudio")
+        installApplicationComponent(pkgDirPath, requireAdmin, adminPassword);
+    else
+        installPluginComponent(pkgDirPath, componentPath, requireAdmin, adminPassword);
 }
 
 void UpdateManager::cleanup()
 {
     safe_delete(currentDownloadFile);
     safe_delete(tempDir);
+    updatesToDownload.clear();
+    updatesToInstall.clear();
+    componentToPath.clear();
+    adminPassword = QString();
+    adminPassHandler = nullptr;
+    requireAdmin = false;
+}
+
+bool UpdateManager::unpackToDir(const QString& packagePath, const QString& outputDir)
+{
+    QProcess proc;
+    proc.setWorkingDirectory(outputDir);
+    proc.setStandardOutputFile(QProcess::nullDevice());
+    proc.setStandardErrorFile(QProcess::nullDevice());
+
+#if defined(Q_OS_LINUX)
+    if (!packagePath.endsWith("tar.gz"))
+    {
+        qCritical() << "Package not in tar.gz format, cannot install:" << packagePath;
+        return false;
+    }
+
+    proc.start("mv", {packagePath, outputDir});
+    if (!proc.waitForFinished(-1))
+    {
+        qCritical() << "Package" << packagePath << "cannot be installed, because cannot move it to temp dir:" << outputDir;
+        return false;
+    }
+
+    QString fileName = packagePath.split("/").last();
+    QString newPath = outputDir + "/" + fileName;
+    proc.start("tar", {"-xzf", newPath});
+    if (!proc.waitForFinished(-1))
+    {
+        qCritical() << "Package" << packagePath << "cannot be installed, because cannot unpack it.";
+        return false;
+    }
+
+    QProcess::execute("rm", {"-f", newPath});
+#elif defined(Q_OS_WIN32)
+    // TODO implement for win32
+#elif defined(Q_OS_MACX)
+    // TODO implement for macx
+#else
+    qCritical() << "Unknown update platform in UpdateManager::unpackToDir() for package" << packagePath;
+    return false;
+#endif
+    return true;
+}
+
+bool UpdateManager::installApplicationComponent(const QString& pkgDirPath, bool requireAdmin, const QString& adminPassword)
+{
+    QProcess proc;
+
+#if defined(Q_OS_LINUX)
+    QDir pkgDir(pkgDirPath);
+//    for (const QString& filePath : pkgDir.entryList())
+#elif defined(Q_OS_WIN32)
+    // TODO implement for win32
+#elif defined(Q_OS_MACX)
+    // TODO implement for macx
+#else
+    qCritical() << "Unknown update platform in UpdateManager::installApplicationComponent()";
+    return false;
+#endif
+    return true;
+}
+
+bool UpdateManager::installPluginComponent(const QString& pkgDirPath, const QString& componentPath, bool requireAdmin, const QString& adminPassword)
+{
+
+}
+
+bool UpdateManager::doRequireAdminPrivileges()
+{
+    QFileInfo fi;
+    for (const QString& path : componentToPath.values())
+    {
+        fi.setFile(path);
+        if (!fi.exists())
+            fi.setFile(fi.dir().path());
+
+        if (!fi.isWritable())
+            return true;
+    }
+
+    return false;
+}
+
+void UpdateManager::collectComponentPaths()
+{
+    for (const PluginManager::PluginDetails& details : PLUGINS->getAllPluginDetails())
+    {
+        if (!updatesToInstall.contains(details.name))
+            continue;
+
+        componentToPath[details.name] = details.filePath;
+    }
+    componentToPath["SQLiteStudio"] = QCoreApplication::applicationFilePath();
 }
 
 void UpdateManager::finished(QNetworkReply* reply)
@@ -269,10 +418,11 @@ void UpdateManager::handleDownloadReply(QNetworkReply* reply)
         return;
     }
 
-    totalPercent = updatesToDownload.size() * 100 / (totalDownloadsCount + 1);
+    totalPercent = (totalDownloadsCount - updatesToDownload.size()) * 100 / (totalDownloadsCount + 1);
 
     readDownload();
     currentDownloadFile->close();
+
     safe_delete(currentDownloadFile);
 
     reply->deleteLater();
