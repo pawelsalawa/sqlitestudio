@@ -107,7 +107,7 @@ void MainWindow::init()
     if (isDebugEnabled())
     {
         if (isDebugConsoleEnabled())
-            notifyInfo(tr("Running in debug mode. Press %1 to open debug console.").arg(shortcuts[OPEN_DEBUG_CONSOLE]->get()));
+            notifyInfo(tr("Running in debug mode. Press %1 or use 'Help / Open debug console' menu entry to open the debug console.").arg(shortcuts[OPEN_DEBUG_CONSOLE]->get()));
         else
             notifyInfo(tr("Running in debug mode. Debug messages are printed to the standard output."));
     }
@@ -335,10 +335,14 @@ void MainWindow::initMenuBar()
     toolsMenu->addAction(actionMap[OPEN_CONFIG]);
 
     // Help menu
-    // TODO for maxosx this should be its special application menu
     sqlitestudioMenu = new QMenu(this);
     sqlitestudioMenu->setTitle(tr("Help"));
     menuBar()->addMenu(sqlitestudioMenu);
+    if (isDebugEnabled() && isDebugConsoleEnabled())
+    {
+        sqlitestudioMenu->addAction(actionMap[OPEN_DEBUG_CONSOLE]);
+        sqlitestudioMenu->addSeparator();
+    }
     sqlitestudioMenu->addAction(actionMap[USER_MANUAL]);
     sqlitestudioMenu->addAction(actionMap[SQLITE_DOCS]);
     sqlitestudioMenu->addAction(actionMap[HOMEPAGE]);
