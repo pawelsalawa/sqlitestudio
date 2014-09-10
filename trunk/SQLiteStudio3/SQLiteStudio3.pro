@@ -28,7 +28,7 @@ if(contains(DEFINES,tests)) {
 macx: {
     dest_dir = $$PWD/../output/SQLiteStudio
 
-    clean_bundle.commands = rm -rf $$dest_dir/SQLiteStudio.app/Contents/Frameworks && rm -rf $$dest_dir/SQLiteStudio.app/Contents/plugins \
+    clean_bundle.commands = rm -rf $$dest_dir/SQLiteStudio.app/Contents/Frameworks && rm -rf $$dest_dir/SQLiteStudio.app/Contents/PlugIns \
         && rm -f $$dest_dir/SQLiteStudio.app/Contents/MacOS/lib*.dylib&& rm -f $$dest_dir/SQLiteStudio.app/Contents/Resources/qt.conf
 
     prepare_dirs.depends = clean_bundle
