@@ -795,6 +795,7 @@ QList<PluginManager::PluginDetails> PluginManagerImpl::getAllPluginDetails() con
         details.description = container->description;
         details.builtIn = container->builtIn;
         details.version = container->version;
+        details.filePath = container->filePath;
         details.versionString = formatVersion(container->version);
         results << details;
     }

@@ -90,6 +90,7 @@ class API_EXPORT PluginManager : public QObject
             bool builtIn = false;
             int version = 0;
             QString versionString;
+            QString filePath;
         };
 
         /**

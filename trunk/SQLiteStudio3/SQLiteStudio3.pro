@@ -14,15 +14,21 @@ cli.depends = core
 gui_app.subdir = sqlitestudio
 gui_app.depends = gui
 
+update_app.subdir = UpdateSQLiteStudio
+update_app.depends = core
+
 SUBDIRS += \
     core \
     gui \
     cli \
-    UpdateSQLiteStudio \
     gui_app
 
 if(contains(DEFINES,tests)) {
     SUBDIRS += tests
+}
+
+win32: {
+    SUBDIRS += update_app
 }
 
 macx: {

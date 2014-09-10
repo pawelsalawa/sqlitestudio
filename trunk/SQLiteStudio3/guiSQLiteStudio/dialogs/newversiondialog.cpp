@@ -3,6 +3,7 @@
 #include "sqlitestudio.h"
 #include "ui_newversiondialog.h"
 #include "services/config.h"
+#include <QInputDialog>
 
 NewVersionDialog::NewVersionDialog(QWidget *parent) :
     QDialog(parent),
@@ -56,7 +57,11 @@ void NewVersionDialog::init()
 
 void NewVersionDialog::installUpdates()
 {
-    UPDATES->update([]() -> QString {return "";});
+    UPDATES->update([this]() -> QString
+    {
+        return QInputDialog::getText(this, tr("Administrator password"), tr("The administrator privileges are required for installing update.\n"
+                        "Please enter administrator password:"), QLineEdit::Password);
+    });
 }
 
 void NewVersionDialog::showEvent(QShowEvent*)
