@@ -126,6 +126,7 @@ class GUI_API_EXPORT IconManager : public QObject
             DEF_ICO3(INSERT_FN_ARG,                     INSERT_ROW)
             DEF_ICO3(INSERT_DATATYPE,                   INSERT_ROW)
             DEF_ICON(KEYWORD,                           "keyword")
+            DEF_ICON(KEYBOARD,                          "keyboard")
             DEF_ICON(LOADING,                           "loading")
             DEF_ICON(LICENSES,                          "licenses")
             DEF_ICON(MOVE_DOWN,                         "move_down")

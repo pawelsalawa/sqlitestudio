@@ -106,6 +106,10 @@
              <property name="statusTip">
               <string>generalPage</string>
              </property>
+             <property name="icon">
+              <iconset resource="../icons.qrc">
+               <normaloff>:/icons/img/config_general.png</normaloff>:/icons/img/config_general.png</iconset>
+             </property>
             </item>
             <item>
              <property name="text">
@@ -113,6 +117,10 @@
              </property>
              <property name="statusTip">
               <string>shortcutsPage</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../icons.qrc">
+               <normaloff>:/icons/img/keyboard.png</normaloff>:/icons/img/keyboard.png</iconset>
              </property>
             </item>
             <item>
@@ -122,12 +130,20 @@
              <property name="statusTip">
               <string>lookAndFeelPage</string>
              </property>
+             <property name="icon">
+              <iconset resource="../icons.qrc">
+               <normaloff>:/icons/img/config_look_and_feel.png</normaloff>:/icons/img/config_look_and_feel.png</iconset>
+             </property>
              <item>
               <property name="text">
                <string>Style</string>
               </property>
               <property name="statusTip">
                <string>stylePage</string>
+              </property>
+              <property name="icon">
+               <iconset resource="../icons.qrc">
+                <normaloff>:/icons/img/config_style.png</normaloff>:/icons/img/config_style.png</iconset>
               </property>
              </item>
              <item>
@@ -137,6 +153,10 @@
               <property name="statusTip">
                <string>fontsPage</string>
               </property>
+              <property name="icon">
+               <iconset resource="../icons.qrc">
+                <normaloff>:/icons/img/config_font.png</normaloff>:/icons/img/config_font.png</iconset>
+              </property>
              </item>
              <item>
               <property name="text">
@@ -144,6 +164,10 @@
               </property>
               <property name="statusTip">
                <string>colorsPage</string>
+              </property>
+              <property name="icon">
+               <iconset resource="../icons.qrc">
+                <normaloff>:/icons/img/config_colors.png</normaloff>:/icons/img/config_colors.png</iconset>
               </property>
              </item>
             </item>
@@ -153,6 +177,10 @@
              </property>
              <property name="statusTip">
               <string>pluginsPage</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../icons.qrc">
+               <normaloff>:/icons/img/plugin.png</normaloff>:/icons/img/plugin.png</iconset>
              </property>
              <item>
               <property name="text">
@@ -170,12 +198,20 @@
              <property name="statusTip">
               <string>dataBrowsingPage</string>
              </property>
+             <property name="icon">
+              <iconset resource="../icons.qrc">
+               <normaloff>:/icons/img/table.png</normaloff>:/icons/img/table.png</iconset>
+             </property>
              <item>
               <property name="text">
                <string>Data editors</string>
               </property>
               <property name="statusTip">
                <string>dataEditorsPage</string>
+              </property>
+              <property name="icon">
+               <iconset resource="../icons.qrc">
+                <normaloff>:/icons/img/config_data_editors.png</normaloff>:/icons/img/config_data_editors.png</iconset>
               </property>
              </item>
             </item>
@@ -1037,7 +1073,7 @@
                         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.Lucida Grande UI'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt;&quot;&gt;Abcdefgh&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                        </property>
                       </widget>
@@ -1128,8 +1164,8 @@ p, li { white-space: pre-wrap; }
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>258</width>
-                <height>286</height>
+                <width>256</width>
+                <height>322</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -1250,8 +1286,8 @@ p, li { white-space: pre-wrap; }
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>307</width>
-                <height>666</height>
+                <width>336</width>
+                <height>813</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -1847,7 +1883,9 @@ p, li { white-space: pre-wrap; }
   <tabstop>statusFieldWarnButton</tabstop>
   <tabstop>statusFieldErrorButton</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="../icons.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>buttonBox</sender>

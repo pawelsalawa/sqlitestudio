@@ -176,5 +176,13 @@
         <file>img/get_update.png</file>
         <file>img/sqlitestudio.svg</file>
         <file>img/sqlitestudio_16.png</file>
+        <file>img/keyboard.png</file>
+        <file>img/config_general.png</file>
+        <file>img/config_colors.png</file>
+        <file>img/config_font.png</file>
+        <file>img/config_look_and_feel.png</file>
+        <file>img/config_style.png</file>
+        <file>img/plugin.png</file>
+        <file>img/config_data_editors.png</file>
     </qresource>
 </RCC>
