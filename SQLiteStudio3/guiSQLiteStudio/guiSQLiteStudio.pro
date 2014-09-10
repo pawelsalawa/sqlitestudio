@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui uitools widgets xml
+QT       += core gui uitools widgets xml svg
 
 include($$PWD/../dirs.pri)
 include($$PWD/../utils.pri)

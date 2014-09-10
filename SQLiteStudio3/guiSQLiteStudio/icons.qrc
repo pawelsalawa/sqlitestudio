@@ -175,5 +175,6 @@
         <file>img/bug_list.png</file>
         <file>img/get_update.png</file>
         <file>img/sqlitestudio.svg</file>
+        <file>img/sqlitestudio_16.png</file>
     </qresource>
 </RCC>
