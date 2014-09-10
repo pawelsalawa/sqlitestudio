@@ -212,7 +212,7 @@ void MainWindow::createActions()
     createAction(OPEN_DEBUG_CONSOLE, tr("Open Debug Console"), this, SLOT(openDebugConsole()), this);
     createAction(REPORT_BUG, ICONS.BUG, tr("Report a bug"), this, SLOT(reportBug()), this);
     createAction(FEATURE_REQUEST, ICONS.FEATURE_REQUEST, tr("Propose a new feature"), this, SLOT(requestFeature()), this);
-    createAction(ABOUT, ICONS.SQLITESTUDIO_APP, tr("About"), this, SLOT(aboutSqlitestudio()), this);
+    createAction(ABOUT, ICONS.SQLITESTUDIO_APP16, tr("About"), this, SLOT(aboutSqlitestudio()), this);
     createAction(LICENSES, ICONS.LICENSES, tr("Licenses"), this, SLOT(licenses()), this);
     createAction(HOMEPAGE, ICONS.HOMEPAGE, tr("Open home page"), this, SLOT(homepage()), this);
     createAction(FORUM, ICONS.OPEN_FORUM, tr("Open forum page"), this, SLOT(forum()), this);
@@ -220,6 +220,9 @@ void MainWindow::createActions()
     createAction(SQLITE_DOCS, ICONS.SQLITE_DOCS, tr("SQLite documentation"), this, SLOT(sqliteDocs()), this);
     createAction(BUG_REPORT_HISTORY, ICONS.BUG_LIST, tr("Report history"), this, SLOT(reportHistory()), this);
     createAction(CHECK_FOR_UPDATES, ICONS.GET_UPDATE, tr("Check for updates"), this, SLOT(checkForUpdates()), this);
+
+    actionMap[ABOUT]->setMenuRole(QAction::AboutRole);
+    actionMap[OPEN_CONFIG]->setMenuRole(QAction::PreferencesRole);
 
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::CONNECT_TO_DB));
     ui->dbToolbar->addAction(dbTree->getAction(DbTree::DISCONNECT_FROM_DB));
@@ -331,10 +334,10 @@ void MainWindow::initMenuBar()
     toolsMenu->addSeparator();
     toolsMenu->addAction(actionMap[OPEN_CONFIG]);
 
-    // SQLiteStudio menu
+    // Help menu
     // TODO for maxosx this should be its special application menu
     sqlitestudioMenu = new QMenu(this);
-    sqlitestudioMenu->setTitle("SQLiteStudio");
+    sqlitestudioMenu->setTitle(tr("Help"));
     menuBar()->addMenu(sqlitestudioMenu);
     sqlitestudioMenu->addAction(actionMap[USER_MANUAL]);
     sqlitestudioMenu->addAction(actionMap[SQLITE_DOCS]);

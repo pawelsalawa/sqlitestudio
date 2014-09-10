@@ -178,6 +178,7 @@ class GUI_API_EXPORT IconManager : public QObject
             DEF_ICON(SORT_RESET,                        "sort_reset")
             DEF_ICON(SQLITE_DOCS,                       "sqlite_docs")
             DEF_ICON(SQLITESTUDIO_APP,                  "sqlitestudio")
+            DEF_ICON(SQLITESTUDIO_APP16,                "sqlitestudio_16")
             DEF_ICON(STATUS_ERROR,                      "status_error")
             DEF_ICON(STATUS_INFO,                       "status_info")
             DEF_ICON(STATUS_WARNING,                    "status_warn")

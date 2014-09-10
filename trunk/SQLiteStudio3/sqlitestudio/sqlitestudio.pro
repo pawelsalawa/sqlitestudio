@@ -15,7 +15,12 @@ OBJECTS_DIR = $$OBJECTS_DIR/sqlitestudio
 MOC_DIR = $$MOC_DIR/sqlitestudio
 UI_DIR = $$UI_DIR/sqlitestudio
 
-TARGET = sqlitestudio
+linux: {
+    TARGET = sqlitestudio
+}
+!linux: {
+    TARGET = SQLiteStudio
+}
 TEMPLATE = app
 
 CONFIG   += c++11
@@ -27,6 +32,10 @@ SOURCES += main.cpp
 
 win32: {
     RC_FILE = windows.rc
+}
+
+macx: {
+    ICON = ../guiSQLiteStudio/img/sqlitestudio.icns
 }
 
 OTHER_FILES += \
