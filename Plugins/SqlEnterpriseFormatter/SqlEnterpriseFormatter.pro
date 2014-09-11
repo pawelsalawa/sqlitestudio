@@ -20,3 +20,9 @@ HEADERS += sqlenterpriseformatter.h\
 
 OTHER_FILES += \
     sqlenterpriseformatter.json
+
+FORMS += \
+    sqlenterpriseformatter.ui
+
+RESOURCES += \
+    sqlenterpriseformatter.qrc
