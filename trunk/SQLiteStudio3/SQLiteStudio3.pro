@@ -31,6 +31,12 @@ win32: {
     SUBDIRS += update_app
 }
 
+linux: {
+    portable.commands = sh $$PWD/create_linux_portable.sh $$PWD/../output $$QMAKE_QMAKE
+    tgz.commands = sh $$PWD/create_linux_portable.sh $$PWD/../output $$QMAKE_QMAKE tgz
+    QMAKE_EXTRA_TARGETS += portable tgz
+}
+
 macx: {
     bundle.commands = sh $$PWD/create_macosx_bundle.sh $$PWD/../output $$QMAKE_QMAKE
     dmg.commands = sh $$PWD/create_macosx_bundle.sh $$PWD/../output $$QMAKE_QMAKE dmg

@@ -1,7 +1,16 @@
 #!/bin/sh
 
-if [ "$#" -ne 2 ]; then
-  echo "$0 <sqlitestudio build output directory> <qmake path>"
+printUsage() {
+  echo "$0 <sqlitestudio build output directory> <qmake path> [tgz]"
+}
+
+if [ "$#" -lt 2 ] || [ "$#" -gt 3 ]; then
+  printUsage
+  exit 1
+fi
+
+if [ "$#" -eq 3 ] && [ "$3" != "tgz" ]; then
+  printUsage
   exit 1
 fi
 
@@ -20,7 +29,8 @@ fi
 
 cd $1
 
-required_modules="libQt5Core.so libQt5Concurrent.so libQt5Gui.so libQt5Network.so libQt5PrintSupport.so libQt5Script.so libQt5Widgets.so libQt5Xml.so libQt5Svg.so"
+required_modules="libQt5Core.so libQt5Concurrent.so libQt5DBus.so libQt5Gui.so libQt5Network.so libQt5PrintSupport.so libQt5Script.so libQt5Widgets.so libQt5Xml.so \
+  libQt5Svg.so"
 required_plugins="platforms/libqxcb.so imageformats/libqgif.so imageformats/libqicns.so imageformats/libqico.so imageformats/libqjpeg.so imageformats/libqmng.so \
   imageformats/libqsvg.so imageformats/libqtga.so imageformats/libqtiff.so iconengines/libqsvgicon.so printsupport/libcupsprintersupport.so platformthemes/libqgtk2.so"
 
@@ -44,6 +54,13 @@ cd lib
 mv ../*.so .
 mv ../*.so.* .
 
+# Copy SQLite libs
+cd $portable/SQLiteStudio
+sqlite3_lib=`ldd $1/SQLiteStudio/libcoreSQLiteStudio.so | grep libsqlite | awk '{print $3;}'`
+sqlite2_lib=`ldd plugins/libDbSqlite2.so | grep libsqlite | awk '{print $3;}'`
+cp $sqlite3_lib lib
+cp $sqlite2_lib lib
+
 # Copy Qt
 cd $portable/SQLiteStudio/lib
 for module in $required_modules; do
@@ -59,11 +76,12 @@ for module in $required_modules; do
 done
 
 for lib in `ls *.so`; do
-  
+  chrpath -r \$ORIGIN/lib $lib >/dev/null
 done
 
 # Now copy Qt plugins
 cd $portable/SQLiteStudio
+qt_plugin_dirs=()
 for plugin in $required_plugins; do
   if [ ! -f $qt_plugins_dir/$plugin ]; then
     echo "Required Qt plugin doesn't exist: $qt_plugins_dir/$plugin"
@@ -72,4 +90,20 @@ for plugin in $required_plugins; do
   parts=(${plugin/\// })
   mkdir ${parts[0]} 2>/dev/null
   cp -P $qt_plugins_dir/$plugin ${parts[0]}
+  
+  # Update rpath in Qt plugins
+  cd ${parts[0]}
+  for lib in `ls *.so`; do
+    chrpath -r \$ORIGIN/../lib $lib >/dev/null
+  done
+  cd ..
 done
+
+cd $portable/SQLiteStudio
+chrpath -r \$ORIGIN/lib sqlitestudio >/dev/null
+chrpath -r \$ORIGIN/lib sqlitestudiocli >/dev/null
+
+if [ "$3" == "tgz" ]; then
+  cd $portable
+  tar czf SQLiteStudio.tar.gz SQLiteStudio
+fi
