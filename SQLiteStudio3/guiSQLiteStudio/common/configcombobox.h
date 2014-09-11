@@ -8,7 +8,7 @@
  * @brief Config-oriented combo box.
  *
  * It's just like a regular QComboBox, except it honors additional Qt dynamic property
- * called "model". The "model" property should name a CfgEntry key (together with its category,
+ * called "modelName". The "modelName" property should name a CfgEntry key (together with its category,
  * just like "cfg" properties for CfgEntry linked widgets), that is of QStringList type.
  * The QStringList is used as a data model for QComboBox. Every time that the CfgEntry
  * with QStringList changes, the combo box data entries are updated.

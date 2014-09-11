@@ -52,12 +52,19 @@
            <number>0</number>
           </property>
           <item row="0" column="1">
-           <widget class="QSpinBox" name="spinBox"/>
+           <widget class="QSpinBox" name="spinBox">
+            <property name="cfg" stdset="0">
+             <string>SqlEnterpriseFormatter.TabSize</string>
+            </property>
+           </widget>
           </item>
           <item row="2" column="0" colspan="2">
            <widget class="QCheckBox" name="checkBox_2">
             <property name="text">
              <string>Indent contents of parenthesis block</string>
+            </property>
+            <property name="cfg" stdset="0">
+             <string>SqlEnterpriseFormatter.IndentParenthesisBlock</string>
             </property>
            </widget>
           </item>
@@ -72,6 +79,9 @@
            <widget class="QCheckBox" name="checkBox">
             <property name="text">
              <string>Line up keywords in multi-line queries</string>
+            </property>
+            <property name="cfg" stdset="0">
+             <string>SqlEnterpriseFormatter.LineUpKeywords</string>
             </property>
            </widget>
           </item>
@@ -121,12 +131,18 @@
             <property name="text">
              <string>Before opening parenthesis in column definitions</string>
             </property>
+            <property name="cfg" stdset="0">
+             <string>SqlEnterpriseFormatter.NlBeforeOpenParDef</string>
+            </property>
            </widget>
           </item>
           <item>
            <widget class="QCheckBox" name="checkBox_5">
             <property name="text">
              <string>After opening parenthesis in column definitions</string>
+            </property>
+            <property name="cfg" stdset="0">
+             <string>SqlEnterpriseFormatter.NlAfterOpenParDef</string>
             </property>
            </widget>
           </item>
@@ -135,12 +151,18 @@
             <property name="text">
              <string>Before closing parenthesis in column definitions</string>
             </property>
+            <property name="cfg" stdset="0">
+             <string>SqlEnterpriseFormatter.NlBeforeCloseParDef</string>
+            </property>
            </widget>
           </item>
           <item>
            <widget class="QCheckBox" name="checkBox_6">
             <property name="text">
              <string>After closing parenthesis in column definitions</string>
+            </property>
+            <property name="cfg" stdset="0">
+             <string>SqlEnterpriseFormatter.NlAfterCloseParDef</string>
             </property>
            </widget>
           </item>
@@ -149,12 +171,18 @@
             <property name="text">
              <string>Before opening parenthesis in expressions</string>
             </property>
+            <property name="cfg" stdset="0">
+             <string>SqlEnterpriseFormatter.NlBeforeOpenParExpr</string>
+            </property>
            </widget>
           </item>
           <item>
            <widget class="QCheckBox" name="checkBox_8">
             <property name="text">
              <string>After opening parenthesis in expressions</string>
+            </property>
+            <property name="cfg" stdset="0">
+             <string>SqlEnterpriseFormatter.NlAfterOpenParExpr</string>
             </property>
            </widget>
           </item>
@@ -163,12 +191,18 @@
             <property name="text">
              <string>Before closing parenthesis in expressions</string>
             </property>
+            <property name="cfg" stdset="0">
+             <string>SqlEnterpriseFormatterNlBeforeCloseParExpr</string>
+            </property>
            </widget>
           </item>
           <item>
            <widget class="QCheckBox" name="checkBox_10">
             <property name="text">
              <string>After closing parenthesis in expressions</string>
+            </property>
+            <property name="cfg" stdset="0">
+             <string>SqlEnterpriseFormatterNlAfterCloseParExpr</string>
             </property>
            </widget>
           </item>
@@ -177,12 +211,18 @@
             <property name="text">
              <string>After comma</string>
             </property>
+            <property name="cfg" stdset="0">
+             <string>SqlEnterpriseFormatter.NlAfterComma</string>
+            </property>
            </widget>
           </item>
           <item>
            <widget class="QCheckBox" name="checkBox_12">
             <property name="text">
              <string>After comma in function arguments list</string>
+            </property>
+            <property name="cfg" stdset="0">
+             <string>SqlEnterpriseFormatter.NlAfterCommaInFnArg</string>
             </property>
            </widget>
           </item>
@@ -191,12 +231,18 @@
             <property name="text">
              <string>After semicolon</string>
             </property>
+            <property name="cfg" stdset="0">
+             <string>SqlEnterpriseFormatter.NlAfterSemicolon</string>
+            </property>
            </widget>
           </item>
           <item>
            <widget class="QCheckBox" name="checkBox_25">
             <property name="text">
              <string>Never before semicolon</string>
+            </property>
+            <property name="cfg" stdset="0">
+             <string>SqlEnterpriseFormatter.NlNeverBeforeSemicolon</string>
             </property>
            </widget>
           </item>
@@ -246,12 +292,18 @@
             <property name="text">
              <string>Before comma in lists</string>
             </property>
+            <property name="cfg" stdset="0">
+             <string>SqlEnterpriseFormatter.SpaceBeforeCommaInList</string>
+            </property>
            </widget>
           </item>
           <item>
            <widget class="QCheckBox" name="checkBox_15">
             <property name="text">
              <string>After comma in lists</string>
+            </property>
+            <property name="cfg" stdset="0">
+             <string>SqlEnterpriseFormatter.SpaceAfterCommaInList</string>
             </property>
            </widget>
           </item>
@@ -260,12 +312,18 @@
             <property name="text">
              <string>Before opening parenthesis</string>
             </property>
+            <property name="cfg" stdset="0">
+             <string>SqlEnterpriseFormatter.SpaceBeforeOpenPar</string>
+            </property>
            </widget>
           </item>
           <item>
            <widget class="QCheckBox" name="checkBox_17">
             <property name="text">
              <string>After opening parenthesis</string>
+            </property>
+            <property name="cfg" stdset="0">
+             <string>SqlEnterpriseFormatter.SpaceAfterOpenPar</string>
             </property>
            </widget>
           </item>
@@ -274,12 +332,18 @@
             <property name="text">
              <string>Before closing parenthesis</string>
             </property>
+            <property name="cfg" stdset="0">
+             <string>SqlEnterpriseFormatter.SpaceBeforeClosePar</string>
+            </property>
            </widget>
           </item>
           <item>
            <widget class="QCheckBox" name="checkBox_19">
             <property name="text">
              <string>After closing parenthesis</string>
+            </property>
+            <property name="cfg" stdset="0">
+             <string>SqlEnterpriseFormatter.SpaceAfterClosePar</string>
             </property>
            </widget>
           </item>
@@ -288,12 +352,18 @@
             <property name="text">
              <string>Before dot operator (in path to database object)</string>
             </property>
+            <property name="cfg" stdset="0">
+             <string>SqlEnterpriseFormatter.SpaceBeforeDot</string>
+            </property>
            </widget>
           </item>
           <item>
            <widget class="QCheckBox" name="checkBox_21">
             <property name="text">
              <string>After dot operator (in path to database object)</string>
+            </property>
+            <property name="cfg" stdset="0">
+             <string>SqlEnterpriseFormatter.SpaceAfterDot</string>
             </property>
            </widget>
           </item>
@@ -302,6 +372,9 @@
             <property name="text">
              <string>Before mathematical operator</string>
             </property>
+            <property name="cfg" stdset="0">
+             <string>SqlEnterpriseFormatter.SpaceBeforeMathOp</string>
+            </property>
            </widget>
           </item>
           <item>
@@ -309,12 +382,18 @@
             <property name="text">
              <string>After mathematical operator</string>
             </property>
+            <property name="cfg" stdset="0">
+             <string>SqlEnterpriseFormatter.SpaceAfterMathOp</string>
+            </property>
            </widget>
           </item>
           <item>
            <widget class="QCheckBox" name="checkBox_24">
             <property name="text">
              <string>Never before semicolon</string>
+            </property>
+            <property name="cfg" stdset="0">
+             <string>SqlEnterpriseFormatter.SpaceNeverBeforeSemicolon</string>
             </property>
            </widget>
           </item>
@@ -360,7 +439,14 @@
            <number>0</number>
           </property>
           <item row="3" column="1">
-           <widget class="QComboBox" name="comboBox"/>
+           <widget class="ConfigComboBox" name="comboBox">
+            <property name="cfg" stdset="0">
+             <string>SqlEnterpriseFormatter.PrefferedWrapper</string>
+            </property>
+            <property name="modelName" stdset="0">
+             <string>SqlEnterpriseFormatter.Wrappers</string>
+            </property>
+           </widget>
           </item>
           <item row="3" column="0">
            <widget class="QLabel" name="label_2">
@@ -374,6 +460,9 @@
             <property name="text">
              <string>Uppercase data type names</string>
             </property>
+            <property name="cfg" stdset="0">
+             <string>SqlEnterpriseFormatter.UppercaseDataTypes</string>
+            </property>
            </widget>
           </item>
           <item row="2" column="0" colspan="2">
@@ -381,12 +470,18 @@
             <property name="text">
              <string>Always use name wrapping</string>
             </property>
+            <property name="SqlEnterpriseFormatter." stdset="0">
+             <string>SqlEnterpriseFormatter.AlwaysUseNameWrapping</string>
+            </property>
            </widget>
           </item>
           <item row="0" column="0" colspan="2">
            <widget class="QCheckBox" name="checkBox_26">
             <property name="text">
              <string>Uppercase keywords</string>
+            </property>
+            <property name="cfg" stdset="0">
+             <string>SqlEnterpriseFormatter.UppercaseKeywords</string>
             </property>
            </widget>
           </item>
@@ -420,6 +515,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ConfigComboBox</class>
+   <extends>QComboBox</extends>
+   <header>common/configcombobox.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
