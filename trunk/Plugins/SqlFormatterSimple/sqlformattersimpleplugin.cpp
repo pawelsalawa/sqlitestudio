@@ -22,11 +22,6 @@ QString SqlFormatterSimplePlugin::format(SqliteQueryPtr query)
     return tokens.detokenize();
 }
 
-QString SqlFormatterSimplePlugin::getConfigTitle() const
-{
-    return tr("Simple", "sql formatter plugin");
-}
-
 bool SqlFormatterSimplePlugin::init()
 {
     Q_INIT_RESOURCE(sqlformattersimple);

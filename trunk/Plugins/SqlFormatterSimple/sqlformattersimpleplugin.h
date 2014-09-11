@@ -25,7 +25,6 @@ class SQLFORMATTERSIMPLESHARED_EXPORT SqlFormatterSimplePlugin : public GenericP
         SqlFormatterSimplePlugin();
 
         QString format(SqliteQueryPtr query);
-        QString getConfigTitle() const;
         bool init();
         void deinit();
 };
