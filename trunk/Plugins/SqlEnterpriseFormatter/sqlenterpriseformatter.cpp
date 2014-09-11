@@ -26,3 +26,12 @@ QString Cfg::getNameWrapperStr(NameWrapper wrapper)
 {
     return wrapObjName(QObject::tr("name", "example name wrapper"), wrapper);
 }
+
+QStringList Cfg::getNameWrapperStrings()
+{
+    QStringList strings;
+    for (NameWrapper nw : {NameWrapper::BRACKET, NameWrapper::DOUBLE_QUOTE, NameWrapper::BACK_QUOTE, NameWrapper::QUOTE})
+        strings << wrapObjName(QObject::tr("name", "example name wrapper"), nw);
+
+    return strings;
+}
