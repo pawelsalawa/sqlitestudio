@@ -1,4 +1,4 @@
-CONFIG += c++11
+CONFIG += c++11 plugin
 
 DESTDIR = $$PWD/../output/SQLiteStudio/plugins
 OBJECTS_DIR = $$PWD/../output/build
@@ -66,7 +66,6 @@ macx: {
     INCLUDEPATH += $$PWD/../../include
     LIBS += -L$$PWD/../../lib -L$$DESTDIR
     QMAKE_CXXFLAGS += -stdlib=libc++ -mmacosx-version-min=10.7
-    CONFIG += plugin
 
     defineTest(pluginDep) {
         out_file_parts = $$DESTDIR/lib $$TARGET .dylib
