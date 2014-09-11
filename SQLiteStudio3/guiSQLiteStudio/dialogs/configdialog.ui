@@ -91,6 +91,9 @@
             <property name="verticalScrollMode">
              <enum>QAbstractItemView::ScrollPerPixel</enum>
             </property>
+            <property name="indentation">
+             <number>10</number>
+            </property>
             <attribute name="headerVisible">
              <bool>false</bool>
             </attribute>
@@ -1825,15 +1828,15 @@ p, li { white-space: pre-wrap; }
  </widget>
  <customwidgets>
   <customwidget>
+   <class>ColorButton</class>
+   <extends>QPushButton</extends>
+   <header>common/colorbutton.h</header>
+  </customwidget>
+  <customwidget>
    <class>FontEdit</class>
    <extends>QWidget</extends>
    <header>common/fontedit.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>ColorButton</class>
-   <extends>QPushButton</extends>
-   <header>common/colorbutton.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>
