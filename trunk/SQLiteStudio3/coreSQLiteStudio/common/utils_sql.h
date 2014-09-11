@@ -31,6 +31,7 @@ API_EXPORT bool doesStringNeedWrapping(const QString& str);
 API_EXPORT bool isStringWrapped(const QString& str);
 API_EXPORT QString wrapObjIfNeeded(const QString& obj, Dialect dialect, NameWrapper favWrapper = NameWrapper::null);
 API_EXPORT QString wrapObjName(const QString& obj, Dialect dialect, NameWrapper favWrapper = NameWrapper::null);
+API_EXPORT QString wrapObjName(const QString& obj, NameWrapper wrapper);
 API_EXPORT TokenPtr stripObjName(TokenPtr token, Dialect dialect);
 API_EXPORT QString stripObjName(const QString &str, Dialect dialect);
 API_EXPORT QString stripObjName(QString& str, Dialect dialect);
