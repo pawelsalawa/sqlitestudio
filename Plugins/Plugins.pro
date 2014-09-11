@@ -13,7 +13,8 @@ SUBDIRS += \
     XmlExport \
     JsonExport \
     RegExpImport \
-    Printing
+    Printing \
+    SqlEnterpriseFormatter
 
 !win32: {
     SUBDIRS += \
