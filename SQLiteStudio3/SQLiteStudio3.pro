@@ -31,3 +31,8 @@ win32: {
     SUBDIRS += update_app
 }
 
+macx: {
+    bundle.commands = sh $$PWD/create_macosx_bundle.sh $$PWD/../output $$QMAKE_QMAKE
+    dmg.commands = sh $$PWD/create_macosx_bundle.sh $$PWD/../output $$QMAKE_QMAKE dmg
+    QMAKE_EXTRA_TARGETS += bundle dmg
+}

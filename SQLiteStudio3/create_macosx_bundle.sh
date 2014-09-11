@@ -1,7 +1,7 @@
 #!/bin/sh
 
 printUsage() {
-  echo "$0 <sqlitestudio build output directory> <qmake path> [nodmg]"
+  echo "$0 <sqlitestudio build output directory> <qmake path> [dmg]"
 }
 
 if [ "$#" -lt 2 ] || [ "$#" -gt 3 ]; then
@@ -9,7 +9,7 @@ if [ "$#" -lt 2 ] || [ "$#" -gt 3 ]; then
   exit 1
 fi
 
-if [ "$#" -eq 3 ] && [ "$3" != "nodmg" ]; then
+if [ "$#" -eq 3 ] && [ "$3" != "dmg" ]; then
   printUsage
   exit 1
 fi

@@ -95,6 +95,17 @@ QString wrapObjName(const QString& obj, Dialect dialect, NameWrapper favWrapper)
     return result;
 }
 
+QString wrapObjName(const QString& obj, NameWrapper wrapper)
+{
+    QString result =  obj;
+    if (wrapper == NameWrapper::null)
+        return result;
+
+    result.prepend(wrapperChars[wrapper].first);
+    result.append(wrapperChars[wrapper].second);
+    return result;
+}
+
 QPair<QChar,QChar> getQuoteCharacter(QString& obj, Dialect dialect, NameWrapper favWrapper)
 {
     QList<NameWrapper> wrappers = (dialect == Dialect::Sqlite3) ? sqlite3Wrappers : sqlite2Wrappers;
