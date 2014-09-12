@@ -6,7 +6,7 @@ CfgCategory* lastCreatedCfgCategory = nullptr;
 extern CfgMain* lastCreatedCfgMain;
 
 CfgCategory::CfgCategory(const CfgCategory &other) :
-    name(other.name), title(other.title), persistable(other.persistable), childs(other.childs)
+    QObject(), name(other.name), title(other.title), persistable(other.persistable), childs(other.childs)
 {
     lastCreatedCfgCategory = this;
     lastCreatedCfgMain->childs[name] = this;
