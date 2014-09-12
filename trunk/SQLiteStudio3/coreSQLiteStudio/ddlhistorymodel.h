@@ -19,6 +19,7 @@ class API_EXPORT DdlHistoryModel : public QSortFilterProxyModel
         QString getDbNameForFilter() const;
         void setDbNameForFilter(const QString& value);
         QStringList getDbNames() const;
+        QVariant headerData(int section, Qt::Orientation orientation, int role) const;
 
     private:
         QueryModel* internalModel = nullptr;

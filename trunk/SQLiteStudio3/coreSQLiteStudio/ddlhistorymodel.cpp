@@ -1,6 +1,7 @@
 #include "ddlhistorymodel.h"
 #include "querymodel.h"
 #include <QSet>
+#include <QDebug>
 
 DdlHistoryModel::DdlHistoryModel(Db* db, QObject *parent) :
     QSortFilterProxyModel(parent)
@@ -22,11 +23,6 @@ DdlHistoryModel::DdlHistoryModel(Db* db, QObject *parent) :
     setDynamicSortFilter(true);
 
     internalModel->setQuery(query);
-
-    setHeaderData(0, Qt::Horizontal, tr("Database name", "ddl history header"));
-    setHeaderData(1, Qt::Horizontal, tr("Database file", "ddl history header"));
-    setHeaderData(2, Qt::Horizontal, tr("Date of execution", "ddl history header"));
-    setHeaderData(3, Qt::Horizontal, tr("Changes", "ddl history header"));
 }
 
 QVariant DdlHistoryModel::data(const QModelIndex& index, int role) const
@@ -40,6 +36,7 @@ QVariant DdlHistoryModel::data(const QModelIndex& index, int role) const
 void DdlHistoryModel::refresh()
 {
     internalModel->refresh();
+
 }
 
 void DdlHistoryModel::setDbNameForFilter(const QString& value)
@@ -56,4 +53,24 @@ QStringList DdlHistoryModel::getDbNames() const
     QStringList nameList = dbNames.toList();
     qSort(nameList);
     return nameList;
+}
+
+QVariant DdlHistoryModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
+    {
+        switch (section)
+        {
+            case 0:
+                return tr("Database name", "ddl history header");
+            case 1:
+                return tr("Database file", "ddl history header");
+            case 2:
+                return tr("Date of execution", "ddl history header");
+            case 3:
+                return tr("Changes", "ddl history header");
+        }
+        return QVariant();
+    }
+    return QSortFilterProxyModel::headerData(section, orientation, role);
 }
