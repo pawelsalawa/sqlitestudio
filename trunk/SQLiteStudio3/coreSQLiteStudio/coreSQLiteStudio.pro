@@ -156,7 +156,6 @@ SOURCES += sqlitestudio.cpp \
     plugins/dbpluginsqlite3.cpp \
     parser/ast/sqlitewith.cpp \
     services/impl/collationmanagerimpl.cpp \
-    config_builder.cpp \
     services/exportmanager.cpp \
     exportworker.cpp \
     plugins/scriptingsql.cpp \
@@ -185,7 +184,11 @@ SOURCES += sqlitestudio.cpp \
     plugins/scriptingqtdbproxy.cpp \
     plugins/sqlformatterplugin.cpp \
     services/bugreporter.cpp \
-    services/updatemanager.cpp
+    services/updatemanager.cpp \
+    config_builder/cfgmain.cpp \
+    config_builder/cfgcategory.cpp \
+    config_builder/cfgentry.cpp \
+    config_builder/cfglazyinitializer.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -356,7 +359,11 @@ HEADERS += sqlitestudio.h\
     plugins/scriptingqtdbproxy.h \
     plugins/codeformatterplugin.h \
     services/bugreporter.h \
-    services/updatemanager.h
+    services/updatemanager.h \
+    config_builder/cfgmain.h \
+    config_builder/cfgcategory.h \
+    config_builder/cfgentry.h \
+    config_builder/cfglazyinitializer.h
 
 unix:!symbian {
     maemo5 {

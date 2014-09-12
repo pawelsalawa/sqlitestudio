@@ -40,6 +40,10 @@ void ExportDialog::init()
 {
     ui->setupUi(this);
 
+#ifdef Q_OS_MACX
+    resize(width() + 150, height());
+#endif
+
     widgetCover = new WidgetCover(this);
     widgetCover->initWithInterruptContainer(tr("Cancel"));
     connect(widgetCover, SIGNAL(cancelClicked()), EXPORT_MANAGER, SLOT(interrupt()));

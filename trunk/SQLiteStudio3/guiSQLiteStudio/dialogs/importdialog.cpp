@@ -56,6 +56,11 @@ bool ImportDialog::isPluginConfigValid() const
 void ImportDialog::init()
 {
     ui->setupUi(this);
+
+#ifdef Q_OS_MACX
+    resize(width() + 150, height());
+#endif
+
     initTablePage();
     initDataSourcePage();
 
