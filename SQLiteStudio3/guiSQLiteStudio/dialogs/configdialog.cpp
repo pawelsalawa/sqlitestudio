@@ -890,12 +890,14 @@ void ConfigDialog::refreshFormattersPage()
     QStringList sortedPluginNames;
     QString selectedPluginName;
     QModelIndex index;
+    QString groupName;
     QHashIterator<QString,QList<CodeFormatterPlugin*>> it(groupedPlugins);
     while (it.hasNext())
     {
         it.next();
+        groupName = it.key();
 
-        item = new QTreeWidgetItem({it.key()});
+        item = new QTreeWidgetItem({groupName});
         ui->formatterPluginsTree->addTopLevelItem(item);
 
         pluginNames.clear();
@@ -915,25 +917,26 @@ void ConfigDialog::refreshFormattersPage()
         connect(combo, SIGNAL(currentIndexChanged(int)), this, SLOT(activeFormatterChanged()));
         index = ui->formatterPluginsTree->model()->index(row, 1);
         ui->formatterPluginsTree->setIndexWidget(index, combo);
-        formatterLangToPluginComboMap[it.key()] = combo;
+        formatterLangToPluginComboMap[groupName] = combo;
 
-        if (activeFormatters.contains(it.key()) && pluginNames.contains(activeFormatters[it.key()].toString()))
+        if (activeFormatters.contains(groupName) && pluginNames.contains(activeFormatters[groupName].toString()))
         {
-            selectedPluginName = activeFormatters[it.key()].toString();
+            selectedPluginName = activeFormatters[groupName].toString();
         }
         else
         {
             // Pick first from sorted list and put it to combobox
             selectedPluginName = sortedPluginNames.first();
         }
-        combo->setCurrentIndex(pluginNames.indexOf(selectedPluginName));
 
         configButton = new QToolButton(ui->formatterPluginsTree);
         configButton->setIcon(ICONS.CONFIGURE);
         index = ui->formatterPluginsTree->model()->index(row, 2);
         ui->formatterPluginsTree->setIndexWidget(index, configButton);
         connect(configButton, &QToolButton::clicked, [this, combo]() {configureFormatter(combo->currentText());});
-        formatterLangToConfigButtonMap[it.key()] = configButton;
+        formatterLangToConfigButtonMap[groupName] = configButton;
+
+        combo->setCurrentIndex(pluginNames.indexOf(selectedPluginName));
 
         row++;
     }

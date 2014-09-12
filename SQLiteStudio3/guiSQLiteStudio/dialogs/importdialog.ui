@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Import data</string>
   </property>
+  <property name="options">
+   <set>QWizard::CancelButtonOnLeft|QWizard::NoDefaultButton</set>
+  </property>
   <widget class="VerifiableWizardPage" name="tablePage">
    <property name="title">
     <string>Table to import to</string>
@@ -83,6 +86,9 @@
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
      <widget class="QScrollArea" name="scrollArea">
+      <property name="styleSheet">
+       <string notr="true">#scrollArea { background: transparent; }</string>
+      </property>
       <property name="frameShape">
        <enum>QFrame::NoFrame</enum>
       </property>
@@ -97,9 +103,12 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>479</width>
-         <height>308</height>
+         <width>269</width>
+         <height>280</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#scrollAreaWidgetContents { background: transparent; }</string>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_5">
         <property name="leftMargin">

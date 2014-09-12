@@ -5,6 +5,7 @@
 #include "uiscriptingedit.h"
 #include "uicustomicon.h"
 #include "uiurlbutton.h"
+#include "sqlview.h"
 #include "common/configradiobutton.h"
 #include "common/configcombobox.h"
 #include "common/fileedit.h"
@@ -34,6 +35,7 @@ UiLoader::UiLoader(QObject *parent) :
     REGISTER_WIDGET(ConfigComboBox);
     REGISTER_WIDGET(FileEdit);
     REGISTER_WIDGET(ColorButton);
+    REGISTER_WIDGET(SqlView);
 }
 
 QWidget* UiLoader::createWidget(const QString& className, QWidget* parent, const QString& name)

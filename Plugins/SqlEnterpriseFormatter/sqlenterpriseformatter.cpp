@@ -1,4 +1,5 @@
 #include "sqlenterpriseformatter.h"
+#include <QDebug>
 
 CFG_DEFINE(SqlEnterpriseFormatterConfig)
 
@@ -14,12 +15,19 @@ QString SqlEnterpriseFormatter::format(SqliteQueryPtr query)
 bool SqlEnterpriseFormatter::init()
 {
     Q_INIT_RESOURCE(sqlenterpriseformatter);
+    QObject::connect(CFG_ADV_FMT.SqlEnterpriseFormatter, SIGNAL(changed(CfgEntry*)), this, SLOT(updatePreview()));
     return GenericPlugin::init();
 }
 
 void SqlEnterpriseFormatter::deinit()
 {
+    QObject::disconnect(CFG_ADV_FMT.SqlEnterpriseFormatter, SIGNAL(changed(CfgEntry*)), this, SLOT(updatePreview()));
     Q_CLEANUP_RESOURCE(sqlenterpriseformatter);
+}
+
+void SqlEnterpriseFormatter::updatePreview()
+{
+    qDebug() << "update preview";
 }
 
 QString Cfg::getNameWrapperStr(NameWrapper wrapper)

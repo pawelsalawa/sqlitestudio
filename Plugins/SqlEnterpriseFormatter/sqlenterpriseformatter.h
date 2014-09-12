@@ -46,6 +46,7 @@ CFG_CATEGORIES(SqlEnterpriseFormatterConfig,
         CFG_ENTRY(bool,        AlwaysUseNameWrapping,     false)
         CFG_ENTRY(QString,     PrefferedWrapper,          getNameWrapperStr(NameWrapper::BRACKET))
         CFG_ENTRY(QStringList, Wrappers,                  getNameWrapperStrings())
+        CFG_ENTRY(QString,     PreviewCode,               QString())
     )
 )
 
@@ -56,12 +57,15 @@ class SQLENTERPRISEFORMATTERSHARED_EXPORT SqlEnterpriseFormatter : public Generi
     Q_OBJECT
     SQLITESTUDIO_PLUGIN("sqlenterpriseformatter.json")
 
-public:
-    SqlEnterpriseFormatter();
+    public:
+        SqlEnterpriseFormatter();
 
-    QString format(SqliteQueryPtr query);
-    bool init();
-    void deinit();
+        QString format(SqliteQueryPtr query);
+        bool init();
+        void deinit();
+
+    private slots:
+        void updatePreview();
 };
 
 #endif // SQLENTERPRISEFORMATTER_H

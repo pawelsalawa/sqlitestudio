@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Export dialog</string>
   </property>
+  <property name="options">
+   <set>QWizard::CancelButtonOnLeft|QWizard::NoDefaultButton</set>
+  </property>
   <widget class="QWizardPage" name="exportSubjectPage">
    <property name="title">
     <string>What do you want to export?</string>
@@ -263,6 +266,9 @@
    <layout class="QVBoxLayout" name="verticalLayout_4">
     <item>
      <widget class="QScrollArea" name="formatScrollArea">
+      <property name="styleSheet">
+       <string notr="true">#formatScrollArea { background: transparent; }</string>
+      </property>
       <property name="frameShape">
        <enum>QFrame::NoFrame</enum>
       </property>
@@ -283,9 +289,12 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>249</width>
-         <height>228</height>
+         <width>298</width>
+         <height>288</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#formatScrollAreaContents { background: transparent; }</string>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_7">
         <property name="leftMargin">
@@ -302,6 +311,9 @@
         </property>
         <item>
          <widget class="QGroupBox" name="formatGroup">
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
           <property name="title">
            <string>Export format</string>
           </property>
