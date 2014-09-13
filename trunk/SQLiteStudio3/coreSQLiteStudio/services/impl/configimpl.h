@@ -24,6 +24,7 @@ class ConfigImpl : public Config
         void beginMassSave();
         void commitMassSave();
         void rollbackMassSave();
+        bool isMassSaving() const;
         void set(const QString& group, const QString& key, const QVariant& value);
         QVariant get(const QString& group, const QString& key);
         QHash<QString,QVariant> getAll();
@@ -111,6 +112,7 @@ class ConfigImpl : public Config
         Db* db = nullptr;
         QString configDir;
         QString lastQueryError;
+        bool massSaving = false;
         SqlHistoryModel* sqlHistoryModel = nullptr;
         DdlHistoryModel* ddlHistoryModel = nullptr;
 

@@ -46,19 +46,36 @@ const QString &ConfigImpl::getConfigDir()
 
 void ConfigImpl::beginMassSave()
 {
+    if (isMassSaving())
+        return;
+
     emit massSaveBegins();
     db->exec("BEGIN;");
+    massSaving = true;
 }
 
 void ConfigImpl::commitMassSave()
 {
+    if (!isMassSaving())
+        return;
+
     db->exec("COMMIT;");
     emit massSaveCommited();
+    massSaving = false;
 }
 
 void ConfigImpl::rollbackMassSave()
 {
+    if (!isMassSaving())
+        return;
+
     db->exec("ROLLBACK;");
+    massSaving = false;
+}
+
+bool ConfigImpl::isMassSaving() const
+{
+    return massSaving;
 }
 
 void ConfigImpl::set(const QString &group, const QString &key, const QVariant &value)

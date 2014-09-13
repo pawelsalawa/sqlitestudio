@@ -110,6 +110,7 @@ class API_EXPORT Config : public QObject
         virtual void beginMassSave() = 0;
         virtual void commitMassSave() = 0;
         virtual void rollbackMassSave() = 0;
+        virtual bool isMassSaving() const = 0;
         virtual void set(const QString& group, const QString& key, const QVariant& value) = 0;
         virtual QVariant get(const QString& group, const QString& key) = 0;
         virtual QHash<QString,QVariant> getAll() = 0;
