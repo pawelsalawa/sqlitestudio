@@ -1,5 +1,4 @@
 * enterprise SQL formatter
-* After running Console, print "Type .help for help"
 
 * deployment
 * auto updates
