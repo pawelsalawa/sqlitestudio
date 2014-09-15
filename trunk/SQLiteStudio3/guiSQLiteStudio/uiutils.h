@@ -16,5 +16,6 @@ GUI_API_EXPORT void setValidStateTooltip(QWidget* widget, const QString& tip);
 GUI_API_EXPORT const QStringList& getAllPageSizes();
 GUI_API_EXPORT QString convertPageSize(QPagedPaintDevice::PageSize size);
 GUI_API_EXPORT QPagedPaintDevice::PageSize convertPageSize(const QString& size);
+GUI_API_EXPORT QPixmap addOpacity(const QPixmap& input, float opacity);
 
 #endif // UIUTILS_H

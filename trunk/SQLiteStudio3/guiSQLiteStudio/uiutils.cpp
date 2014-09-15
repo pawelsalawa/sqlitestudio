@@ -11,6 +11,7 @@
 #include <QStringList>
 #include <QSet>
 #include <QDebug>
+#include <QPainter>
 
 const QStringList pageSizes = {
     "A4", "B5", "Letter", "Legal", "Executive", "A0", "A1", "A2", "A3", "A5", "A6", "A7", "A8", "A9", "B0", "B1",
@@ -100,4 +101,15 @@ QPagedPaintDevice::PageSize convertPageSize(const QString& size)
 const QStringList& getAllPageSizes()
 {
     return pageSizes;
+}
+
+QPixmap addOpacity(const QPixmap& input, float opacity)
+{
+    QPixmap output(input.size());
+    output.fill(Qt::transparent);
+    QPainter p(&output);
+    p.setOpacity(opacity);
+    p.drawPixmap(0, 0, input);
+    p.end();
+    return output;
 }

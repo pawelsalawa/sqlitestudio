@@ -42,6 +42,7 @@ void ExportDialog::init()
 
 #ifdef Q_OS_MACX
     resize(width() + 150, height());
+    setPixmap(QWizard::BackgroundPixmap, addOpacity(ICONS.DATABASE_EXPORT_WIZARD.toQIcon().pixmap(800, 800), 0.3));
 #endif
 
     widgetCover = new WidgetCover(this);

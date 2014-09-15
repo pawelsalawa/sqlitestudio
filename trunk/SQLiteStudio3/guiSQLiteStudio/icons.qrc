@@ -184,5 +184,7 @@
         <file>img/config_style.png</file>
         <file>img/plugin.png</file>
         <file>img/config_data_editors.png</file>
+        <file>img/database_export_wizard.svg</file>
+        <file>img/database_import_wizard.svg</file>
     </qresource>
 </RCC>
