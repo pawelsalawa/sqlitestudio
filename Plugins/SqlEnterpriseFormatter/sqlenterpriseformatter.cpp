@@ -24,13 +24,11 @@ QString SqlEnterpriseFormatter::format(SqliteQueryPtr query)
 bool SqlEnterpriseFormatter::init()
 {
     Q_INIT_RESOURCE(sqlenterpriseformatter);
-    QObject::connect(CFG_ADV_FMT.SqlEnterpriseFormatter, SIGNAL(changed(CfgEntry*)), this, SLOT(updatePreview()));
     return GenericPlugin::init();
 }
 
 void SqlEnterpriseFormatter::deinit()
 {
-    QObject::disconnect(CFG_ADV_FMT.SqlEnterpriseFormatter, SIGNAL(changed(CfgEntry*)), this, SLOT(updatePreview()));
     Q_CLEANUP_RESOURCE(sqlenterpriseformatter);
 }
 
@@ -59,5 +57,5 @@ void SqlEnterpriseFormatter::configModified(CfgEntry* key, const QVariant& value
     if (key->getMain() != CFG_ADV_FMT)
         return;
 
-    // TODO update format preview
+    updatePreview();
 }
