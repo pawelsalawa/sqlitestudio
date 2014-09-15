@@ -15,5 +15,6 @@
         <file>licenses/fugue_icons.txt</file>
         <file>licenses/sqlitestudio_license.txt</file>
         <file>licenses/lgpl.txt</file>
+        <file>licenses/diff_match.txt</file>
     </qresource>
 </RCC>

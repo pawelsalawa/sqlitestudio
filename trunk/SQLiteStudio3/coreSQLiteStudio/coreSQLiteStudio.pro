@@ -383,7 +383,8 @@ OTHER_FILES += \
     licenses/fugue_icons.txt \
     licenses/qhexedit.txt \
     licenses/sqlitestudio_license.txt \
-    licenses/lgpl.txt
+    licenses/lgpl.txt \
+    licenses/diff_match.txt
 
 FORMS += \
     plugins/populatesequence.ui \

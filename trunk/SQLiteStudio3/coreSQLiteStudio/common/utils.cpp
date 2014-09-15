@@ -716,10 +716,10 @@ QString getOsString()
 
 DistributionType getDistributionType()
 {
-#if defined(PORTABLE_CONFIG)
-    return DistributionType::PORTABLE;
-#elif defined(Q_OS_OSX)
+#if defined(Q_OS_OSX)
     return DistributionType::OSX_BOUNDLE;
+#elif defined(PORTABLE_CONFIG)
+    return DistributionType::PORTABLE;
 #else
     return DistributionType::OS_MANAGED;
 #endif

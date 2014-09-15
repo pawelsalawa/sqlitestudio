@@ -15,7 +15,11 @@ namespace Cfg
     {
         QPlainTextEdit monoEdit;
         QFont font = monoEdit.document()->defaultFont();
+#ifdef Q_OS_MACX
+        font.setFamily("Courier New");
+#else
         font.setFamily("DejaVu Sans Mono");
+#endif
         return QVariant::fromValue<QFont>(font);
     }
 
