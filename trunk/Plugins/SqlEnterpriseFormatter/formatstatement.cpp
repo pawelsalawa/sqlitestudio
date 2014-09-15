@@ -12,6 +12,10 @@ FormatStatement::FormatStatement()
 {
 }
 
+FormatStatement::~FormatStatement()
+{
+}
+
 FormatStatement *FormatStatement::forQuery(SqliteQuery* query)
 {
     FORMATTER_FACTORY_ENTRY(query, Select);

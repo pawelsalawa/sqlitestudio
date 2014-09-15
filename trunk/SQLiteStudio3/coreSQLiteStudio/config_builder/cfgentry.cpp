@@ -126,6 +126,16 @@ void CfgEntry::release()
     backup.clear();
 }
 
+CfgCategory* CfgEntry::getCategory() const
+{
+    return parent;
+}
+
+CfgMain* CfgEntry::getMain() const
+{
+    return parent->getMain();
+}
+
 CfgEntry::operator CfgEntry*()
 {
     return this;

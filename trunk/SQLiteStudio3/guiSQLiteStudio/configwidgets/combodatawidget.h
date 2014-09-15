@@ -24,7 +24,7 @@ class GUI_API_EXPORT ComboDataWidget : public GenericPlugin, public CustomConfig
 
         bool isConfigForWidget(CfgEntry* key, QWidget* widget);
         void applyConfigToWidget(CfgEntry* key, QWidget* widget, const QVariant& value);
-        void saveWidgetToConfig(QWidget* widget, CfgEntry* key);
+        QVariant getWidgetConfigValue(QWidget* widget, bool& ok);
         const char*getModifiedNotifier() const;
         QString getFilterString(QWidget* widget) const;
 

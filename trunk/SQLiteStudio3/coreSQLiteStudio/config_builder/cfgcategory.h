@@ -8,6 +8,7 @@
 #include <QObject>
 
 class CfgEntry;
+class CfgMain;
 
 class API_EXPORT CfgCategory : public QObject
 {
@@ -27,11 +28,13 @@ class API_EXPORT CfgCategory : public QObject
         void restore();
         void release();
         QString getTitle() const;
+        CfgMain* getMain() const;
         operator CfgCategory*();
 
     private:
         QString name;
         QString title;
+        CfgMain* cfgParent = nullptr;
         bool persistable = true;
         QHash<QString,CfgEntry*> childs;
 

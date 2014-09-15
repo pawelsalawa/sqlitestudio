@@ -31,6 +31,7 @@ class API_EXPORT CfgMain
         QString getName() const;
         const char* getMetaName() const;
         QString getTitle() const;
+        operator CfgMain*();
 
     private:
         QString name;

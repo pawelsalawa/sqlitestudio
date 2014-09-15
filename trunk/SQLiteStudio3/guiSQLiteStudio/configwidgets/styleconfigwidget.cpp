@@ -30,10 +30,17 @@ void StyleConfigWidget::applyConfigToWidget(CfgEntry* key, QWidget* widget, cons
     combo->setCurrentIndex(idx);
 }
 
-void StyleConfigWidget::saveWidgetToConfig(QWidget* widget, CfgEntry* key)
+QVariant StyleConfigWidget::getWidgetConfigValue(QWidget* widget, bool& ok)
 {
     QComboBox* combo = qobject_cast<QComboBox*>(widget);
-    key->set(combo->currentText());
+    if (!combo)
+    {
+        ok = false;
+        return QVariant();
+    }
+
+    ok = true;
+    return combo->currentText();
 }
 
 const char* StyleConfigWidget::getModifiedNotifier() const

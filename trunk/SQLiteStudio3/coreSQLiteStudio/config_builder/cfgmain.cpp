@@ -98,3 +98,8 @@ QString CfgMain::getTitle() const
 {
     return title;
 }
+
+CfgMain::operator CfgMain*()
+{
+    return this;
+}

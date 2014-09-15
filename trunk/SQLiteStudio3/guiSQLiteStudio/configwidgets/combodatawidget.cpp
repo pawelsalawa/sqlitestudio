@@ -38,18 +38,18 @@ void ComboDataWidget::applyConfigToWidget(CfgEntry* key, QWidget* widget, const 
     }
 }
 
-void ComboDataWidget::saveWidgetToConfig(QWidget* widget, CfgEntry* key)
+QVariant ComboDataWidget::getWidgetConfigValue(QWidget* widget, bool& ok)
 {
     QComboBox* cb = dynamic_cast<QComboBox*>(widget);
     if (!cb)
     {
-        qWarning() << "ComboDataWidget assigned to widget which is not combobox, but:" << widget->metaObject()->className()
-                      << ", config key:" << key->getFullKey();
-        return;
+        ok = false;
+        qWarning() << "ComboDataWidget assigned to widget which is not combobox, but:" << widget->metaObject()->className();
+        return QVariant();
     }
 
-    QVariant data = cb->itemData(cb->currentIndex());
-    key->set(data);
+    ok = true;
+    return cb->itemData(cb->currentIndex());
 }
 
 const char* ComboDataWidget::getModifiedNotifier() const
