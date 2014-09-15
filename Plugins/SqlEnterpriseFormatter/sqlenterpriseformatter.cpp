@@ -1,5 +1,6 @@
 #include "sqlenterpriseformatter.h"
 #include "formatstatement.h"
+#include "common/unused.h"
 #include <QDebug>
 
 CFG_DEFINE(SqlEnterpriseFormatterConfig)
@@ -50,4 +51,13 @@ QStringList Cfg::getNameWrapperStrings()
         strings << wrapObjName(QObject::tr("name", "example name wrapper"), nw);
 
     return strings;
+}
+
+void SqlEnterpriseFormatter::configModified(CfgEntry* key, const QVariant& value)
+{
+    UNUSED(value);
+    if (key->getMain() != CFG_ADV_FMT)
+        return;
+
+    // TODO update format preview
 }

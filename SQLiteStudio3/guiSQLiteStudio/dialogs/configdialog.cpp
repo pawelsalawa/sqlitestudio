@@ -20,6 +20,7 @@
 #include "configmapper.h"
 #include "datatype.h"
 #include "uiutils.h"
+#include "plugins/confignotifiableplugin.h"
 #include <QSignalMapper>
 #include <QLineEdit>
 #include <QSpinBox>
@@ -144,6 +145,11 @@ void ConfigDialog::init()
 
     configMapper = new ConfigMapper(CfgMain::getPersistableInstances());
     connect(configMapper, SIGNAL(modified()), this, SLOT(markModified()));
+    connect(configMapper, &ConfigMapper::notifyEnabledWidgetModified, [=](QWidget* widget, CfgEntry* key, const QVariant& value)
+    {
+        for (ConfigNotifiablePlugin* plugin : notifiablePlugins)
+            plugin->configModified(key, value);
+    });
 
     ui->categoriesFilter->setClearButtonEnabled(true);
     UserInputFilter* filter = new UserInputFilter(ui->categoriesFilter, this, SLOT(applyFilter(QString)));
@@ -733,6 +739,11 @@ void ConfigDialog::pluginAboutToUnload(Plugin* plugin, PluginType* type)
         pluginToItemMap.remove(plugin);
     }
 
+    // Notifiable plugin
+    ConfigNotifiablePlugin* notifiablePlugin = dynamic_cast<ConfigNotifiablePlugin*>(plugin);
+    if (notifiablePlugin && notifiablePlugins.contains(notifiablePlugin))
+        notifiablePlugins.removeOne(notifiablePlugin);
+
     // Deinit page
     deinitPluginPage(plugin->getName());
 
@@ -740,7 +751,7 @@ void ConfigDialog::pluginAboutToUnload(Plugin* plugin, PluginType* type)
     updatePluginCategoriesVisibility();
 }
 
-void ConfigDialog::pluginLoaded(Plugin* plugin, PluginType* type)
+void ConfigDialog::pluginLoaded(Plugin* plugin, PluginType* type, bool skipConfigLoading)
 {
     if (plugin->getConfigUiForm().isNull())
         return;
@@ -757,10 +768,15 @@ void ConfigDialog::pluginLoaded(Plugin* plugin, PluginType* type)
     pluginToItemMap[plugin] = pluginItem;
 
     // Init page
-    initPluginPage(plugin->getName(), plugin->getConfigUiForm());
+    initPluginPage(plugin->getName(), plugin->getConfigUiForm(), skipConfigLoading);
 
     // Update tree categories
     updatePluginCategoriesVisibility();
+
+    // Notifiable plugin
+    ConfigNotifiablePlugin* notifiablePlugin = dynamic_cast<ConfigNotifiablePlugin*>(plugin);
+    if (notifiablePlugin)
+        notifiablePlugins << notifiablePlugin;
 }
 
 void ConfigDialog::pluginUnloaded(const QString& pluginName, PluginType* type)
@@ -1056,7 +1072,7 @@ void ConfigDialog::initPlugins()
         pluginTypeToItemMap[pluginType] = typeItem;
 
         foreach (Plugin* plugin, pluginType->getLoadedPlugins())
-            pluginLoaded(plugin, pluginType);
+            pluginLoaded(plugin, pluginType, true);
     }
 
     updatePluginCategoriesVisibility();
@@ -1171,7 +1187,7 @@ void ConfigDialog::initPluginsPage()
     }
 }
 
-void ConfigDialog::initPluginPage(const QString& pluginName, const QString& formName)
+void ConfigDialog::initPluginPage(const QString& pluginName, const QString& formName, bool skipConfigLoading)
 {
     QWidget* widget = FORMS->createWidget(formName);
     if (!widget)
@@ -1182,7 +1198,9 @@ void ConfigDialog::initPluginPage(const QString& pluginName, const QString& form
 
     nameToPage[pluginName] = widget;
     ui->stackedWidget->addWidget(widget);
-    configMapper->loadToWidget(widget);
+
+    if (!skipConfigLoading)
+        configMapper->loadToWidget(widget);
 }
 
 void ConfigDialog::deinitPluginPage(const QString& pluginName)

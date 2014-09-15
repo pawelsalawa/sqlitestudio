@@ -7,6 +7,7 @@
 #include <QObject>
 
 class CfgCategory;
+class CfgMain;
 
 class API_EXPORT CfgEntry : public QObject
 {
@@ -34,6 +35,8 @@ class API_EXPORT CfgEntry : public QObject
         void savepoint();
         void restore();
         void release();
+        CfgCategory* getCategory() const;
+        CfgMain* getMain() const;
 
         /**
          * @brief operator CfgEntry *

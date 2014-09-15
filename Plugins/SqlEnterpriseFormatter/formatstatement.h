@@ -8,6 +8,7 @@ class FormatStatement
 {
     public:
         FormatStatement();
+        virtual ~FormatStatement();
 
         virtual QString format() = 0;
 

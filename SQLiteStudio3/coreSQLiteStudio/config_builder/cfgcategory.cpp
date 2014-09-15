@@ -10,6 +10,7 @@ CfgCategory::CfgCategory(const CfgCategory &other) :
 {
     lastCreatedCfgCategory = this;
     lastCreatedCfgMain->childs[name] = this;
+    cfgParent = lastCreatedCfgMain;
     for (CfgEntry* entry : childs)
         entry->parent = this;
 }
@@ -19,6 +20,7 @@ CfgCategory::CfgCategory(const QString &name, const QString &title) :
 {
     this->persistable = lastCreatedCfgMain->persistable;
     lastCreatedCfgCategory = this;
+    cfgParent = lastCreatedCfgMain;
     lastCreatedCfgMain->childs[name] = this;
 }
 
@@ -59,6 +61,11 @@ void CfgCategory::release()
 QString CfgCategory::getTitle() const
 {
     return title;
+}
+
+CfgMain*CfgCategory::getMain() const
+{
+    return cfgParent;
 }
 
 CfgCategory::operator CfgCategory *()

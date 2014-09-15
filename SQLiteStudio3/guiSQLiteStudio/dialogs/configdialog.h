@@ -24,6 +24,7 @@ class QListWidget;
 class QTableWidget;
 class ConfigMapper;
 class MultiEditorWidgetPlugin;
+class ConfigNotifiablePlugin;
 
 class GUI_API_EXPORT ConfigDialog : public QDialog
 {
@@ -49,7 +50,7 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         void initFormatterPlugins();
         void initPlugins();
         void initPluginsPage();
-        void initPluginPage(const QString& pluginName, const QString& formName);
+        void initPluginPage(const QString& pluginName, const QString& formName, bool skipConfigLoading);
         void deinitPluginPage(const QString& pluginName);
         void initDataEditors();
         void initShortcuts();
@@ -93,6 +94,7 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         QAction* dataEditDeleteAction = nullptr;
         bool updatingDataEditorItem = false;
         bool modifiedFlag = false;
+        QList<ConfigNotifiablePlugin*> notifiablePlugins;
 
     private slots:
         void refreshFormattersPage();
@@ -121,7 +123,7 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         void failedToLoadPlugin(const QString& pluginName);
         void loadUnloadPlugin(QTreeWidgetItem* item, int column);
         void pluginAboutToUnload(Plugin* plugin, PluginType* type);
-        void pluginLoaded(Plugin* plugin, PluginType* type);
+        void pluginLoaded(Plugin* plugin, PluginType* type, bool skipConfigLoading = false);
         void pluginUnloaded(const QString& pluginName, PluginType* type);
         void updatePluginCategoriesVisibility();
         void updateBuiltInPluginsVisibility();

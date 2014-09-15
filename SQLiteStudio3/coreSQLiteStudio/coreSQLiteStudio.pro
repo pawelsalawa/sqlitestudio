@@ -363,7 +363,8 @@ HEADERS += sqlitestudio.h\
     config_builder/cfgmain.h \
     config_builder/cfgcategory.h \
     config_builder/cfgentry.h \
-    config_builder/cfglazyinitializer.h
+    config_builder/cfglazyinitializer.h \
+    plugins/confignotifiableplugin.h
 
 unix:!symbian {
     maemo5 {

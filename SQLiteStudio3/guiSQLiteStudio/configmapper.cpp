@@ -42,6 +42,9 @@
     if (qobject_cast<WidgetType*>(Widget))\
     {\
         connect(Widget, Notifier, this, SLOT(handleModified()));\
+        if (Widget->property(CFG_NOTIFY_PROPERTY).isValid() && Widget->property(CFG_NOTIFY_PROPERTY).toBool())\
+            connect(Widget, Notifier, this, SLOT(uiConfigEntryChanged()));\
+        \
         return;\
     }
 
@@ -49,22 +52,19 @@
     if (qobject_cast<WidgetType*>(Widget) && qobject_cast<WidgetType*>(Widget)->ExtraConditionMethod())\
     {\
         connect(Widget, Notifier, this, SLOT(handleModified()));\
+        if (Widget->property(CFG_NOTIFY_PROPERTY).isValid() && Widget->property(CFG_NOTIFY_PROPERTY).toBool())\
+            connect(Widget, Notifier, this, SLOT(uiConfigEntryChanged()));\
+        \
         return;\
     }
 
-#define SAVE_CFG(Widget, Key, WidgetType, Method) \
+#define GET_CFG_VALUE(Widget, Key, WidgetType, Method) \
     if (qobject_cast<WidgetType*>(Widget))\
-    {\
-        Key->set(qobject_cast<WidgetType*>(Widget)->Method());\
-        return;\
-    }
+        return qobject_cast<WidgetType*>(Widget)->Method();
 
-#define SAVE_CFG_COND(Widget, Key, WidgetType, Method, ExtraConditionMethod) \
+#define GET_CFG_VALUE_COND(Widget, Key, WidgetType, Method, ExtraConditionMethod) \
     if (qobject_cast<WidgetType*>(Widget) && qobject_cast<WidgetType*>(Widget)->ExtraConditionMethod())\
-    {\
-        Key->set(qobject_cast<WidgetType*>(Widget)->Method());\
-        return;\
-    }
+        return qobject_cast<WidgetType*>(Widget)->Method();
 
 ConfigMapper::ConfigMapper(CfgMain* cfgMain)
 {
@@ -143,28 +143,65 @@ void ConfigMapper::connectCommonNotifierToWidget(QWidget* widget, CfgEntry* key)
 
 void ConfigMapper::saveCommonConfigFromWidget(QWidget* widget, CfgEntry* key)
 {
-    SAVE_CFG(widget, key, QCheckBox, isChecked);
-    SAVE_CFG(widget, key, QLineEdit, text);
-    SAVE_CFG(widget, key, QTextEdit, toPlainText);
-    SAVE_CFG(widget, key, QPlainTextEdit, toPlainText);
-    SAVE_CFG(widget, key, QSpinBox, value);
-    SAVE_CFG(widget, key, QFontComboBox, currentFont);
-    SAVE_CFG(widget, key, FontEdit, getFont);
-    SAVE_CFG(widget, key, FileEdit, getFile);
-    SAVE_CFG(widget, key, QKeySequenceEdit, keySequence().toString);
-    SAVE_CFG(widget, key, ColorButton, getColor);
-    SAVE_CFG_COND(widget, key, ConfigRadioButton, getAssignedValue, isChecked);
-    SAVE_CFG_COND(widget, key, QGroupBox, isChecked, isCheckable);
+    bool ok = false;
+    QVariant value = getCommonConfigValueFromWidget(widget, key, ok);
+    if (ok)
+        key->set(value);
+}
+
+QVariant ConfigMapper::getCommonConfigValueFromWidget(QWidget* widget, CfgEntry* key, bool& ok)
+{
+    GET_CFG_VALUE(widget, key, QCheckBox, isChecked);
+    GET_CFG_VALUE(widget, key, QLineEdit, text);
+    GET_CFG_VALUE(widget, key, QTextEdit, toPlainText);
+    GET_CFG_VALUE(widget, key, QPlainTextEdit, toPlainText);
+    GET_CFG_VALUE(widget, key, QSpinBox, value);
+    GET_CFG_VALUE(widget, key, QFontComboBox, currentFont);
+    GET_CFG_VALUE(widget, key, FontEdit, getFont);
+    GET_CFG_VALUE(widget, key, FileEdit, getFile);
+    GET_CFG_VALUE(widget, key, QKeySequenceEdit, keySequence().toString);
+    GET_CFG_VALUE(widget, key, ColorButton, getColor);
+    GET_CFG_VALUE_COND(widget, key, ConfigRadioButton, getAssignedValue, isChecked);
+    GET_CFG_VALUE_COND(widget, key, QGroupBox, isChecked, isCheckable);
     if (key->get().type() == QVariant::Int)
     {
-        SAVE_CFG(widget, key, QComboBox, currentIndex);
+        GET_CFG_VALUE(widget, key, QComboBox, currentIndex);
     }
     else
     {
-        SAVE_CFG(widget, key, QComboBox, currentText);
+        GET_CFG_VALUE(widget, key, QComboBox, currentText);
     }
 
-    qWarning() << "Unhandled config widget type (for SAVE_CFG):" << widget->metaObject()->className();
+    qWarning() << "Unhandled config widget type (for GET_CFG_VALUE):" << widget->metaObject()->className();
+    ok = false;
+    return QVariant();
+}
+
+QVariant ConfigMapper::getCustomConfigValueFromWidget(QWidget* widget, CfgEntry* key, bool& ok)
+{
+    CustomConfigWidgetPlugin* plugin;
+    QList<CustomConfigWidgetPlugin*> handlers;
+    handlers += internalCustomConfigWidgets;
+    handlers += PLUGINS->getLoadedPlugins<CustomConfigWidgetPlugin>();
+
+    foreach (plugin, handlers)
+    {
+        if (plugin->isConfigForWidget(key, widget))
+            return plugin->getWidgetConfigValue(widget, ok);
+    }
+
+    ok = false;
+    return QVariant();
+}
+
+QVariant ConfigMapper::getConfigValueFromWidget(QWidget* widget, CfgEntry* key)
+{
+    bool ok;
+    QVariant value = getCustomConfigValueFromWidget(widget, key, ok);
+    if (!ok)
+        value = getCommonConfigValueFromWidget(widget, key, ok);
+
+    return value;
 }
 
 void ConfigMapper::loadToWidget(QWidget *topLevelWidget)
@@ -176,17 +213,23 @@ void ConfigMapper::loadToWidget(QWidget *topLevelWidget)
     if (isPersistant())
         config = CFG->getAll();
 
+    updatingEntry = true;
     foreach (QWidget* widget, allConfigWidgets)
         applyConfigToWidget(widget, allConfigEntries, config);
+
+    updatingEntry = false;
 }
 
 void ConfigMapper::loadToWidget(CfgEntry* config, QWidget* widget)
 {
     QVariant configValue = config->get();
+
+    updatingEntry = true;
     if (applyCustomConfigToWidget(config, widget, configValue))
         return;
 
     applyCommonConfigToWidget(widget, configValue, config);
+    updatingEntry = false;
 }
 
 void ConfigMapper::saveFromWidget(QWidget *widget, bool noTransaction)
@@ -231,11 +274,8 @@ void ConfigMapper::applyConfigToWidget(QWidget* widget, const QHash<QString, Cfg
         configValue = cfgEntry->get();
     }
 
-    if (realTimeUpdates)
-    {
-        widgetToConfigEntry.insert(widget, cfgEntry);
-        configEntryToWidgets.insertMulti(cfgEntry, widget);
-    }
+    widgetToConfigEntry.insert(widget, cfgEntry);
+    configEntryToWidgets.insertMulti(cfgEntry, widget);
 
     handleSpecialWidgets(widget, allConfigEntries);
 
@@ -308,6 +348,9 @@ bool ConfigMapper::connectCustomNotifierToWidget(QWidget* widget, CfgEntry* cfgE
         if (handler->isConfigForWidget(cfgEntry, widget))
         {
             connect(widget, handler->getModifiedNotifier(), this, SIGNAL(modified()));
+            if (widget->property(CFG_NOTIFY_PROPERTY).isValid() && widget->property(CFG_NOTIFY_PROPERTY).toBool())
+                connect(widget, handler->getModifiedNotifier(), this, SLOT(uiConfigEntryChanged()));
+
             return true;
         }
     }
@@ -343,7 +386,12 @@ bool ConfigMapper::saveCustomConfigFromWidget(QWidget* widget, CfgEntry* key)
     {
         if (plugin->isConfigForWidget(key, widget))
         {
-            plugin->saveWidgetToConfig(widget, key);
+            bool ok = false;
+            QVariant value = plugin->getWidgetConfigValue(widget, ok);
+            if (!ok)
+                return false;
+
+            key->set(value);
             return true;
         }
     }
@@ -352,7 +400,7 @@ bool ConfigMapper::saveCustomConfigFromWidget(QWidget* widget, CfgEntry* key)
 
 CfgEntry* ConfigMapper::getConfigEntry(QWidget* widget, const QHash<QString, CfgEntry*>& allConfigEntries)
 {
-    return getEntryForProperty(widget, "cfg", allConfigEntries);
+    return getEntryForProperty(widget, CFG_MODEL_PROPERTY, allConfigEntries);
 }
 
 CfgEntry* ConfigMapper::getEntryForProperty(QWidget* widget, const char* propertyName, const QHash<QString, CfgEntry*>& allConfigEntries)
@@ -407,7 +455,7 @@ QList<QWidget*> ConfigMapper::getAllConfigWidgets(QWidget *parent)
             continue;
 
         results += getAllConfigWidgets(widget);
-        if (!widget->property("cfg").isValid())
+        if (!widget->property(CFG_MODEL_PROPERTY).isValid())
             continue;
 
         results << widget;
@@ -485,6 +533,29 @@ void ConfigMapper::entryChanged(const QVariant& newValue)
         applyConfigToWidget(w, cfgEntry, newValue);
 
     updatingEntry = false;
+}
+
+void ConfigMapper::uiConfigEntryChanged()
+{
+    if (updatingEntry)
+        return;
+
+    QWidget* w = dynamic_cast<QWidget*>(sender());
+    if (!w)
+    {
+        qWarning() << "ConfigMapper::uiConfigEntryChanged() called not from widget:" << sender();
+        return;
+    }
+
+    if (!widgetToConfigEntry.contains(w))
+    {
+        qWarning() << "ConfigMapper::uiConfigEntryChanged() called with widget that has no key assigned:" << w;
+        return;
+    }
+
+    CfgEntry* key = widgetToConfigEntry[w];
+    QVariant value = getConfigValueFromWidget(w, key);
+    emit notifyEnabledWidgetModified(w, key, value);
 }
 
 void ConfigMapper::updateConfigComboModel(const QVariant& value)

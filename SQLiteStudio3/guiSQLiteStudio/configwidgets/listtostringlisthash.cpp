@@ -34,14 +34,21 @@ void ListToStringListHash::applyConfigToWidget(CfgEntry* key, QWidget* widget, c
     }
 }
 
-void ListToStringListHash::saveWidgetToConfig(QWidget* widget, CfgEntry* key)
+QVariant ListToStringListHash::getWidgetConfigValue(QWidget* widget, bool& ok)
 {
     QListWidget* list = dynamic_cast<QListWidget*>(widget);
+    if (!list)
+    {
+        ok = false;
+        return QVariant();
+    }
+
     QHash<QString,QVariant> orderHash;
     for (int i = 0; i < list->count(); i++)
         orderHash[list->item(i)->text()] = list->item(i)->data(QListWidgetItem::UserType);
 
-    key->set(orderHash);
+    ok = true;
+    return orderHash;
 }
 
 const char*ListToStringListHash::getModifiedNotifier() const

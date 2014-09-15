@@ -6,6 +6,7 @@
 #include "plugins/sqlformatterplugin.h"
 #include "config_builder.h"
 #include "common/utils_sql.h"
+#include "plugins/confignotifiableplugin.h"
 
 namespace Cfg
 {
@@ -52,7 +53,7 @@ CFG_CATEGORIES(SqlEnterpriseFormatterConfig,
 
 #define CFG_ADV_FMT CFG_INSTANCE(SqlEnterpriseFormatterConfig)
 
-class SQLENTERPRISEFORMATTERSHARED_EXPORT SqlEnterpriseFormatter : public GenericPlugin, public SqlFormatterPlugin
+class SQLENTERPRISEFORMATTERSHARED_EXPORT SqlEnterpriseFormatter : public GenericPlugin, public SqlFormatterPlugin, public ConfigNotifiablePlugin
 {
     Q_OBJECT
     SQLITESTUDIO_PLUGIN("sqlenterpriseformatter.json")
@@ -63,6 +64,7 @@ class SQLENTERPRISEFORMATTERSHARED_EXPORT SqlEnterpriseFormatter : public Generi
         QString format(SqliteQueryPtr query);
         bool init();
         void deinit();
+        void configModified(CfgEntry* key, const QVariant& value);
 
     private slots:
         void updatePreview();

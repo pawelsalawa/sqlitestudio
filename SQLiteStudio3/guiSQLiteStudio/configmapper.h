@@ -83,6 +83,9 @@ private:
         void saveFromWidget(QWidget* widget, CfgEntry* cfgEntry);
         void saveCommonConfigFromWidget(QWidget *widget, CfgEntry* key);
         bool saveCustomConfigFromWidget(QWidget *widget, CfgEntry* key);
+        QVariant getCommonConfigValueFromWidget(QWidget *widget, CfgEntry* key, bool& ok);
+        QVariant getCustomConfigValueFromWidget(QWidget *widget, CfgEntry* key, bool& ok);
+        QVariant getConfigValueFromWidget(QWidget *widget, CfgEntry* key);
         CfgEntry* getConfigEntry(QWidget* widget, const QHash<QString, CfgEntry*>& allConfigEntries);
         CfgEntry* getEntryForProperty(QWidget* widget, const char* propertyName, const QHash<QString, CfgEntry*>& allConfigEntries);
         QHash<QString,CfgEntry*> getAllConfigEntries();
@@ -98,13 +101,18 @@ private:
         bool updatingEntry = false;
         QList<QWidget*> extraWidgets;
 
+        static constexpr const char* CFG_MODEL_PROPERTY = "cfg";
+        static constexpr const char* CFG_NOTIFY_PROPERTY = "notify";
+
     private slots:
         void handleModified();
         void entryChanged(const QVariant& newValue);
+        void uiConfigEntryChanged();
         void updateConfigComboModel(const QVariant& value);
 
     signals:
         void modified();
+        void notifyEnabledWidgetModified(QWidget* widget, CfgEntry* key, const QVariant& value);
 };
 
 #endif // CONFIGMAPPER_H
