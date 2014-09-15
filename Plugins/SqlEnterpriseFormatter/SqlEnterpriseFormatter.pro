@@ -13,10 +13,14 @@ TEMPLATE = lib
 
 DEFINES += SQLENTERPRISEFORMATTER_LIBRARY
 
-SOURCES += sqlenterpriseformatter.cpp
+SOURCES += sqlenterpriseformatter.cpp \
+    formatstatement.cpp \
+    formatselect.cpp
 
 HEADERS += sqlenterpriseformatter.h\
-        sqlenterpriseformatter_global.h
+        sqlenterpriseformatter_global.h \
+    formatstatement.h \
+    formatselect.h
 
 OTHER_FILES += \
     sqlenterpriseformatter.json
