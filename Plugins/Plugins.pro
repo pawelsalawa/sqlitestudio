@@ -14,7 +14,8 @@ SUBDIRS += \
     JsonExport \
     RegExpImport \
     Printing \
-    SqlEnterpriseFormatter
+    SqlEnterpriseFormatter \
+    ConfigMigration
 
 !win32: {
     SUBDIRS += \

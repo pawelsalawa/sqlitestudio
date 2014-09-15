@@ -1,10 +1,9 @@
 * enterprise SQL formatter
+* under macx when executing CREATE TABLE of the already existing table, execution never ends
 
 * deployment
 * auto updates
 * tclscripting for win32
-
-* licenses for all used dependencies, icons, etc
 
 * 3.0 musi importowac ustawienia z 2.1:
   - lista baz
@@ -73,31 +72,3 @@ desktop
 
 Qt linux:
 ./configure -no-icu -nomake examples -nomake tests -no-dbus -opensource -skip webkit -skip quickcontrols -prefix /home/spakowane/qt5.3.1/output
-
-SQLiteStudio3 win32:
-1. Checkout svn://sqlitestudio.pl/sqlitestudio3/SQLiteStudio3/trunk
-2. Checkout svn://sqlitestudio.pl/sqlitestudio3/plugins/DbSqlite3/trunk
-3. Checkout svn://sqlitestudio.pl/sqlitestudio3/plugins/DbSqlite2/trunk
-4. Run QtCreator and open project from SQLiteStudio3.pro file. Open plugin projects the same way.
-5. Change project binaries output to: {project path}\output\SQLiteStudio3
-   Do the same for plugin projects as well.
-   6. Create "include" directory next to SQLiteStudio3 directory.
-   7. Create "lib" directory at the same level, next to "include" dir.
-   8. Copy libtecla.h, curses.h, sqlite.h and sqlite3.h into include directory.
-   9. Copy pdcurses.dll, pdcurses.lib and libtecla.a to lib directory.
-   10. Compile everything.
-   11. On projects page of SQLiteStudio project add env variables for running environment:
-   SQLITESTUDIO_ICONS -> {prk}\SQLiteStudio3\SQLiteStudio\img (C:\projects2\SQLiteStudio3\SQLiteStudio\img)
-   SQLITESTUDIO_PLUGINS -> {prk}\output\DbSqlite3\debug;{prk}\output\DbSqlite2\debug (C:\projects2\output\DbSqlite3\debug;C:\projects2\output\DbSqlite2\debug)
-
-   DbSqlite2 win32:
-   1. Download qtbase sourcecode and unpack it.
-   2. Get sqlite.h, sqlite.def and sqlite.dll. Put them into the lib directory of SQLiteStudio3 projects workspace.
-   3. Edit sqlite.def and add at the end:
-   sqlite_encoding
-   4. Go to {prj}/lib and execute:
-   dlltool --input-def sqlite.def --dllname sqlite.dll --output-lib libsqlite.a -k
-   5. Go to qtbase-opensource-src-5.1.1\src\plugins\sqldrivers\sqlite2
-   6. Execute: qmake "INCLUDEPATH+={prj}/include" "LIBS+=-L{prj}/lib -lsqlite"
-   7. Execute: mingw32-make
-   7. Execute: mingw32-make install
