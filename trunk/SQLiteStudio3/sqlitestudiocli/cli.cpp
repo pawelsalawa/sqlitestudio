@@ -84,9 +84,11 @@ void CLI::start()
     qOut.flush();
 
     if (getCurrentDb())
-        qOut << tr("Current database: %1").arg(getCurrentDb()->getName()) << "\n\n";
+        qOut << tr("Current database: %1").arg(getCurrentDb()->getName()) << "\n";
     else
-        qOut << tr("No current working database is set.") << "\n\n";
+        qOut << tr("No current working database is set.") << "\n";
+
+    qOut << tr("Type %1 for help").arg(".help") << "\n\n";
 
     qOut.flush();
 
