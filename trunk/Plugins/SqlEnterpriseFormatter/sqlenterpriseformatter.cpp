@@ -1,4 +1,5 @@
 #include "sqlenterpriseformatter.h"
+#include "formatstatement.h"
 #include <QDebug>
 
 CFG_DEFINE(SqlEnterpriseFormatterConfig)
@@ -9,7 +10,14 @@ SqlEnterpriseFormatter::SqlEnterpriseFormatter()
 
 QString SqlEnterpriseFormatter::format(SqliteQueryPtr query)
 {
-    return query->detokenize();
+    FormatStatement *formatStmt = FormatStatement::forQuery(query.data());
+    if (!formatStmt)
+        return query->detokenize();
+
+    QString formatted = formatStmt->format();
+    delete formatStmt;
+
+    return formatted;
 }
 
 bool SqlEnterpriseFormatter::init()
