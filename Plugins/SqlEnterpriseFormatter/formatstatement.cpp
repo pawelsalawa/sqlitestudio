@@ -15,23 +15,20 @@ const QString FormatStatement::SPACE = " ";
 
 FormatStatement::FormatStatement()
 {
+    indents.push(0);
 }
 
 FormatStatement::~FormatStatement()
 {
+    cleanup();
 }
 
 QString FormatStatement::format()
 {
-    kwLineUpPosition = 0;
-    lines.clear();
-    line = "";
-
+    cleanup();
     resetInternal();
     formatInternal();
-
-    lines << line;
-    return lines.join("\n");
+    return detokenize();
 }
 
 FormatStatement *FormatStatement::forQuery(SqliteStatement *query)
@@ -47,6 +44,10 @@ FormatStatement *FormatStatement::forQuery(SqliteStatement *query)
     return stmt;
 }
 
+void FormatStatement::resetInternal()
+{
+}
+
 void FormatStatement::keywordToLineUp(const QString &keyword)
 {
     int lgt = keyword.length();
@@ -54,212 +55,333 @@ void FormatStatement::keywordToLineUp(const QString &keyword)
         kwLineUpPosition = lgt;
 }
 
-void FormatStatement::pushIndent()
+FormatStatement& FormatStatement::withKeyword(const QString& kw)
 {
-    indents.push(line.length());
+    withToken(FormatToken::KEYWORD, kw);
+    return *this;
 }
 
-void FormatStatement::popIndent()
+FormatStatement& FormatStatement::withLinedUpKeyword(const QString& kw)
 {
-    indents.pop();
+    withToken(FormatToken::LINED_UP_KEYWORD, kw);
+    return *this;
 }
 
-void FormatStatement::newLine()
+FormatStatement& FormatStatement::withId(const QString& id)
 {
-    lines << line;
-    line = "";
+    withToken(FormatToken::ID, id);
+    return *this;
 }
 
-void FormatStatement::append(const QString &str)
+FormatStatement& FormatStatement::withOperator(const QString& oper)
 {
-    if (str.contains("\n"))
+    withToken(FormatToken::OPERATOR, oper);
+    return *this;
+}
+
+FormatStatement& FormatStatement::withIdDot()
+{
+    withToken(FormatToken::ID_DOT, ".");
+    return *this;
+}
+
+FormatStatement& FormatStatement::withStar()
+{
+    withToken(FormatToken::STAR, "*");
+    return *this;
+}
+
+FormatStatement& FormatStatement::withFloat(double value)
+{
+    withToken(FormatToken::FLOAT, value);
+    return *this;
+}
+
+FormatStatement& FormatStatement::withInteger(qint64 value)
+{
+    withToken(FormatToken::INTEGER, value);
+    return *this;
+}
+
+FormatStatement& FormatStatement::withString(const QString& value)
+{
+    withToken(FormatToken::STRING, value);
+    return *this;
+}
+
+FormatStatement& FormatStatement::withBlob(const QString& value)
+{
+    withToken(FormatToken::BLOB, value);
+    return *this;
+}
+
+FormatStatement& FormatStatement::withBindParam(const QString& name)
+{
+    withToken(FormatToken::BIND_PARAM, name);
+    return *this;
+}
+
+FormatStatement& FormatStatement::withParDefLeft()
+{
+    withToken(FormatToken::PAR_DEF_LEFT, "(");
+    return *this;
+}
+
+FormatStatement& FormatStatement::withParDefRight()
+{
+    withToken(FormatToken::PAR_DEF_RIGHT, ")");
+    return *this;
+}
+
+FormatStatement& FormatStatement::withParExprLeft()
+{
+    withToken(FormatToken::PAR_EXPR_LEFT, "(");
+    return *this;
+}
+
+FormatStatement& FormatStatement::withParExprRight()
+{
+    withToken(FormatToken::PAR_EXPR_RIGHT, ")");
+    return *this;
+}
+
+FormatStatement& FormatStatement::withParFuncLeft()
+{
+    withToken(FormatToken::PAR_FUNC_LEFT, "(");
+    return *this;
+}
+
+FormatStatement& FormatStatement::withParFuncRight()
+{
+    withToken(FormatToken::PAR_FUNC_RIGHT, ")");
+    return *this;
+}
+
+FormatStatement& FormatStatement::withSemicolon()
+{
+    withToken(FormatToken::SEMICOLON, ";");
+    return *this;
+}
+
+FormatStatement& FormatStatement::withListComma()
+{
+    withToken(FormatToken::COMMA_LIST, ",");
+    return *this;
+}
+
+FormatStatement& FormatStatement::withCommaOper()
+{
+    withToken(FormatToken::COMMA_OPER, ",");
+    return *this;
+}
+
+FormatStatement& FormatStatement::withFuncId(const QString& func)
+{
+    withToken(FormatToken::FUNC_ID, func);
+    return *this;
+}
+
+FormatStatement& FormatStatement::withDataType(const QString& dataType)
+{
+    withToken(FormatToken::DATA_TYPE, dataType);
+    return *this;
+}
+
+FormatStatement& FormatStatement::withNewLine()
+{
+    withToken(FormatToken::NEW_LINE, "\n");
+    return *this;
+}
+
+FormatStatement& FormatStatement::withLiteral(const QVariant& value)
+{
+    if (value.isNull())
+        return *this;
+
+    bool ok;
+    if (value.userType() == QVariant::Double)
     {
-        QStringList localLines = str.split("\n");
-        QString localIndent;
-        if (localLines.first() == "\n")
+        value.toDouble(&ok);
+        if (ok)
         {
-            QString tmpLine = line;
-            tmpLine.remove(QRegularExpression("\\S+\\s*^"));
-            localIndent = SPACE.repeated(tmpLine.length());
-        }
-        else
-        {
-            localIndent = SPACE.repeated(line.length());
-        }
-
-        QMutableStringListIterator it(localLines);
-        line += it.next();
-        while (it.hasNext())
-        {
-            newLine();
-            line += it.next().prepend(localIndent);
+            withFloat(value.toDouble());
+            return *this;
         }
     }
-    else
-        line.append(str);
+
+    value.toInt(&ok);
+    if (ok)
+    {
+        withInteger(value.toInt());
+        return *this;
+    }
+
+    QString str = value.toString();
+    if (str.startsWith("x'", Qt::CaseInsensitive) && str.endsWith("'"))
+    {
+        withBlob(str);
+        return *this;
+    }
+
+    withString(str);
+    return *this;
 }
 
-void FormatStatement::appendKeyword(const QString &str)
+FormatStatement& FormatStatement::withStatement(const QString& contents, const QString& indentName)
 {
-    QString nextStr = prepareNextStr(str);
-    if (CFG_ADV_FMT.SqlEnterpriseFormatter.UppercaseKeywords.get())
-        line += nextStr.toUpper();
-    else
-        line += nextStr.toLower();
+    if (!indentName.isNull())
+        markAndKeepIndent(indentName);
+
+    withToken(contents.startsWith("\n") ? FormatToken::NEW_LINE_WITH_STATEMENT : FormatToken::STATEMENT, contents, false);
+
+    if (!indentName.isNull())
+        decrIndent();
+
+    return *this;
 }
 
-void FormatStatement::appendDataType(const QString &str)
+FormatStatement& FormatStatement::withStatement(SqliteStatement* stmt, const QString& indentName)
 {
-    QString nextStr = prepareNextStr(str);
-    if (CFG_ADV_FMT.SqlEnterpriseFormatter.UppercaseDataTypes.get())
-        line += nextStr.toUpper();
-    else
-        line += nextStr;
-}
-
-void FormatStatement::appendLeftExprPar()
-{
-    appendPar("(",
-              CFG_ADV_FMT.SqlEnterpriseFormatter.NlBeforeOpenParExpr.get(),
-              CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceBeforeOpenPar.get(),
-              CFG_ADV_FMT.SqlEnterpriseFormatter.NlAfterOpenParExpr.get(),
-              CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceAfterOpenPar.get());
-}
-
-void FormatStatement::appendRightExprPar()
-{
-    appendPar(")",
-              CFG_ADV_FMT.SqlEnterpriseFormatter.NlBeforeCloseParExpr.get(),
-              CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceBeforeClosePar.get(),
-              CFG_ADV_FMT.SqlEnterpriseFormatter.NlAfterCloseParExpr.get(),
-              CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceAfterClosePar.get());
-}
-
-void FormatStatement::appendLeftDefPar()
-{
-    appendPar("(",
-              CFG_ADV_FMT.SqlEnterpriseFormatter.NlBeforeOpenParDef.get(),
-              CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceBeforeOpenPar.get(),
-              CFG_ADV_FMT.SqlEnterpriseFormatter.NlAfterOpenParDef.get(),
-              CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceAfterOpenPar.get());
-}
-
-void FormatStatement::appendRightDefPar()
-{
-    appendPar(")",
-              CFG_ADV_FMT.SqlEnterpriseFormatter.NlBeforeCloseParDef.get(),
-              CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceBeforeClosePar.get(),
-              CFG_ADV_FMT.SqlEnterpriseFormatter.NlAfterCloseParDef.get(),
-              CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceAfterClosePar.get());
-}
-
-void FormatStatement::appendName(const QString &str)
-{
-    QString wrapped;
-    if (CFG_ADV_FMT.SqlEnterpriseFormatter.AlwaysUseNameWrapping.get())
-        wrapped = wrapObjName(str, dialect, wrapper);
-    else
-        wrapped = wrapObjIfNeeded(str, dialect, wrapper);
-
-    line += wrapped;
-}
-
-void FormatStatement::appendLinedUpKeyword(const QString &str)
-{
-    int spaces = kwLineUpPosition - str.length();
-    if (spaces > 0)
-        line.append(SPACE.repeated(spaces));
-
-    appendKeyword(str);
-}
-
-void FormatStatement::appendLinedUpPrefixedString(const QString &prefixWord, const QString &str)
-{
-    int spaces = kwLineUpPosition - prefixWord.length();
-    if (spaces > 0)
-        line.append(SPACE.repeated(spaces));
-
-    line.append(str);
-}
-
-void FormatStatement::appendNameDot()
-{
-    trimLineEnd();
-
-    QString str = ".";
-    if (CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceBeforeDot.get())
-        str.prepend(" ");
-
-    if (CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceAfterDot.get())
-        str.append(" ");
-
-    line += str;
-}
-
-QString FormatStatement::format(SqliteStatement* stmt)
-{
-    FormatStatement* formatStmt = forQuery(stmt);
+    FormatStatement* formatStmt = forQuery(stmt, dialect, wrapper);
     if (!formatStmt)
-        return query->detokenize();
+        return *this;
 
-    formatStmt->wrapper = wrapper;
-    QString result = formatStmt->format();
+    withStatement(formatStmt->format(), indentName);
     delete formatStmt;
+    return *this;
+}
 
+FormatStatement& FormatStatement::withLinedUpStatement(int prefixLength, const QString& contents, const QString& indentName)
+{
+    if (!indentName.isNull())
+        markAndKeepIndent(indentName);
+
+    withToken(FormatToken::LINED_UP_STATEMENT, contents, prefixLength);
+
+    if (!indentName.isNull())
+        decrIndent();
+
+    return *this;
+}
+
+FormatStatement& FormatStatement::withLinedUpStatement(int prefixLength, SqliteStatement* stmt, const QString& indentName)
+{
+    FormatStatement* formatStmt = forQuery(stmt, dialect, wrapper);
+    if (!formatStmt)
+        return *this;
+
+    withLinedUpStatement(prefixLength, formatStmt->format(), indentName);
+    delete formatStmt;
+    return *this;
+}
+
+FormatStatement& FormatStatement::markIndentForNextToken(const QString& name)
+{
+    withToken(FormatToken::INDENT_MARKER, name);
+    return *this;
+}
+
+FormatStatement& FormatStatement::markIndentForLastToken(const QString& name)
+{
+    if (tokens.size() == 0)
+        return *this;
+
+    tokens.last()->indentMarkName = name;
+    return *this;
+}
+
+FormatStatement& FormatStatement::markAndKeepIndent(const QString& name)
+{
+    markIndentForNextToken(name);
+    incrIndent(name);
+    return *this;
+}
+
+FormatStatement& FormatStatement::incrIndent(const QString& name)
+{
+    withToken(FormatToken::INCR_INDENT, name);
+    return *this;
+}
+
+FormatStatement& FormatStatement::decrIndent()
+{
+    withToken(FormatToken::DECR_INDENT, QString());
+    return *this;
+}
+
+FormatStatement& FormatStatement::withIdList(const QStringList& names, const QString& indentName, ListSeparator sep)
+{
+    if (!indentName.isNull())
+        markAndKeepIndent(indentName);
+
+    bool first = true;
+    foreach (const QString& name, names)
+    {
+        if (!first)
+        {
+            switch (sep)
+            {
+                case ListSeparator::COMMA:
+                    withListComma();
+                    break;
+                case ListSeparator::NONE:
+                    break;
+            }
+        }
+
+        withId(name);
+        first = false;
+    }
+
+    if (!indentName.isNull())
+        decrIndent();
+
+    return *this;
+}
+
+void FormatStatement::withToken(FormatStatement::FormatToken::Type type, const QVariant& value)
+{
+    withToken(type, value, 0);
+}
+
+void FormatStatement::withToken(FormatStatement::FormatToken::Type type, const QVariant& value, int lineUpPrefixLength)
+{
+    FormatToken* token = new FormatToken;
+    token->type = type;
+    token->value = value;
+    token->lineUpPrefixLength = lineUpPrefixLength;
+    tokens << token;
+}
+
+void FormatStatement::cleanup()
+{
+    kwLineUpPosition = 0;
+    indents.clear();
+    namedIndents.clear();
+    indents.push(0);
+    for (FormatToken* token : tokens)
+        delete token;
+
+    tokens.clear();
+}
+
+QString FormatStatement::detokenize()
+{
+    QString result = "";
+    for (FormatToken* token : tokens)
+    {
+        result += token->value.toString();
+    }
     return result;
 }
 
-QString FormatStatement::formatExprList(const QList<SqliteStatement *> &stmts)
+FormatStatement* FormatStatement::forQuery(SqliteStatement* query, Dialect dialect, NameWrapper wrapper)
 {
-    return formatStmtList(stmts, CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceBeforeCommaInList.get(),
-                          CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceAfterCommaInList.get(),
-                          CFG_ADV_FMT.SqlEnterpriseFormatter.NlAfterCommaInExpr.get());
-}
-
-QString FormatStatement::formatDefList(const QList<SqliteStatement *> &stmts)
-{
-    return formatStmtList(stmts, CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceBeforeCommaInList.get(),
-                          CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceAfterCommaInList.get(),
-                          CFG_ADV_FMT.SqlEnterpriseFormatter.NlAfterComma.get());
-}
-
-QString FormatStatement::formatStmtList(const QList<SqliteStatement *> &stmts, bool spaceBeforeSep, bool spaceAfterSep, bool nlAfterSep)
-{
-    QStringList entries;
-    for (SqliteStatement* stmt : stmts)
-        entries << format(stmt);
-
-    QString sep = ",";
-    if (spaceBeforeSep)
-        sep.prepend(" ");
-
-    if (nlAfterSep)
-        sep.append("\n");
-    else if (spaceAfterSep)
-        sep.append(" ");
-
-    return entries.join(sep);
-}
-
-void FormatStatement::appendPar(const QString& par, bool nlBefore, bool spaceBefore, bool nlAfter, bool spaceAfter)
-{
-    trimLineEnd();
-
-    QString str = par;
-    if (nlBefore)
-        str.prepend("\n");
-    else if (spaceBefore)
-        str.prepend(" ");
-
-    if (nlAfter)
-        str.append("\n");
-    else if (spaceAfter)
-        str.append(" ");
-
-    append(str);
-}
-
-void FormatStatement::trimLineEnd()
-{
-    line.remove(QRegularExpression("\\s*$"));
+    FormatStatement* formatStmt = forQuery(query);
+    if (formatStmt)
+    {
+        formatStmt->dialect = dialect;
+        formatStmt->wrapper = wrapper;
+    }
+    return formatStmt;
 }

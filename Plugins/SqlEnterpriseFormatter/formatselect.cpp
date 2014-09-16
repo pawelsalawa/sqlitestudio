@@ -11,39 +11,30 @@ void FormatSelect::formatInternal()
     keywordToLineUp("SELECT");
 
     if (select->with)
-        appendLinedUpPrefixedString("WITH", format(select->with));
+        withLinedUpStatement(5, select->with);
 
     for (SqliteSelect::Core* core : select->coreSelects)
     {
-        append(format(core));
+        withStatement(core);
         switch (core->compoundOp)
         {
             case SqliteSelect::CompoundOperator::UNION:
-                appendKeyword(" UNION");
-                newLine();
+                withNewLine().withKeyword("UNION").withNewLine();
                 break;
             case SqliteSelect::CompoundOperator::UNION_ALL:
-                appendKeyword(" UNION ALL");
-                newLine();
+                withNewLine().withKeyword("UNION ALL").withNewLine();
                 break;
             case SqliteSelect::CompoundOperator::INTERSECT:
-                appendKeyword(" INTERSECT");
-                newLine();
+                withNewLine().withKeyword("INTERSECT").withNewLine();
                 break;
             case SqliteSelect::CompoundOperator::EXCEPT:
-                appendKeyword(" EXCEPT");
-                newLine();
+                withNewLine().withKeyword("EXCEPT").withNewLine();
                 break;
             case SqliteSelect::CompoundOperator::null:
                 break;
         }
     }
 }
-
-void FormatSelect::resetInternal()
-{
-}
-
 
 FormatSelectCore::FormatSelectCore(SqliteSelect::Core *core) :
     core(core)
@@ -56,76 +47,40 @@ void FormatSelectCore::formatInternal()
 
     if (core->valuesMode)
     {
-        appendKeyword("VALUES ");
+        withKeyword("VALUES");
         return;
     }
 
-    appendKeyword("SELECT ");
+    withKeyword("SELECT");
     if (core->distinctKw)
-        appendKeyword("DISTINCT ");
+        withKeyword("DISTINCT");
     else if (core->allKw)
-        appendKeyword("ALL ");
+        withKeyword("ALL");
 
-    append(formatDefList(core->resultColumns));
+    withStatementList(core->resultColumns, "resultColumns");
 
     if (core->from)
-    {
-        newLine();
-        appendLinedUpKeyword("FROM");
-        append(" ");
-        append(format(core->from));
-    }
+        withNewLine().withLinedUpKeyword("FROM").withStatement(core->from, "source");
 
     if (core->where)
-    {
-        newLine();
-        appendLinedUpKeyword("WHERE");
-        append(" ");
-        append(format(core->where));
-    }
+        withNewLine().withLinedUpKeyword("WHERE").withStatement(core->where, "conditions");
 
-    if (core->groupBy)
-    {
-        newLine();
-        appendLinedUpKeyword("GROUP");
-        append(" BY ");
-        append(formatExprList(core->groupBy));
-    }
+    if (core->groupBy.size() > 0)
+        withNewLine().withLinedUpKeyword("GROUP").withKeyword("BY").withStatementList(core->groupBy, "grouping");
 
     if (core->having)
-    {
-        newLine();
-        appendLinedUpKeyword("HAVING");
-        append(" ");
-        append(format(core->having));
-    }
+        withNewLine().withLinedUpKeyword("HAVING").withStatement(core->having, "having");
 
-    if (core->orderBy)
-    {
-        newLine();
-        appendLinedUpKeyword("ORDER");
-        append(" BY ");
-        append(formatExprList(core->orderBy));
-    }
+    if (core->orderBy.size() > 0)
+        withNewLine().withLinedUpKeyword("ORDER").withKeyword("BY").withStatementList(core->orderBy, "order");
 
     if (core->limit)
-    {
-        newLine();
-        appendLinedUpKeyword("LIMIT");
-        append(" ");
-        append(format(core->limit));
-    }
+        withNewLine().withLinedUpKeyword("LIMIT").withStatement(core->limit, "limit");
 }
-
-void FormatSelectCore::resetInternal()
-{
-}
-
 
 FormatSelectCoreResultColumn::FormatSelectCoreResultColumn(SqliteSelect::Core::ResultColumn *resCol) :
     resCol(resCol)
 {
-
 }
 
 void FormatSelectCoreResultColumn::formatInternal()
@@ -134,22 +89,157 @@ void FormatSelectCoreResultColumn::formatInternal()
     {
         if (!resCol->table.isNull())
         {
-            appendName(resCol->table);
-            appendNameDot();
+            withId(resCol->table).withIdDot();
         }
-        append("*");
+        withStar();
     }
     else
     {
-        append(format(resCol->expr));
+        withStatement(resCol->expr, "column");
         if (!resCol->alias.isNull())
         {
+            incrIndent("column");
             if (resCol->asKw)
-                appendKeyword(" AS");
+                withKeyword("AS");
+
+            withId(resCol->alias).decrIndent();
         }
     }
 }
 
-void FormatSelectCoreResultColumn::resetInternal()
+FormatSelectCoreSingleSource::FormatSelectCoreSingleSource(SqliteSelect::Core::SingleSource* singleSource) :
+    singleSource(singleSource)
 {
+}
+
+void FormatSelectCoreSingleSource::formatInternal()
+{
+    if (!singleSource->table.isNull())
+    {
+        if (!singleSource->database.isNull())
+            withId(singleSource->database).withIdDot();
+
+        withId(singleSource->table);
+
+        if (!singleSource->alias.isNull())
+        {
+            if (singleSource->asKw)
+                withKeyword("AS");
+
+            withId(singleSource->alias);
+
+            if (singleSource->indexedByKw)
+                withKeyword("INDEXED").withKeyword("BY").withId(singleSource->indexedBy);
+            else if (singleSource->notIndexedKw)
+                withKeyword("NOT").withKeyword("INDEXED");
+        }
+    }
+    else if (singleSource->select)
+    {
+        withParDefLeft().incrIndent().withStatement(singleSource->select).decrIndent().withParDefRight();
+        if (!singleSource->alias.isNull())
+        {
+            if (singleSource->asKw)
+                withKeyword("AS");
+
+            withId(singleSource->alias);
+        }
+    }
+    else
+    {
+        withParDefLeft().incrIndent().withStatement(singleSource->joinSource).decrIndent().withParDefRight();
+    }
+}
+
+FormatSelectCoreJoinOp::FormatSelectCoreJoinOp(SqliteSelect::Core::JoinOp* joinOp) :
+    joinOp(joinOp)
+{
+}
+
+void FormatSelectCoreJoinOp::formatInternal()
+{
+    if (joinOp->comma)
+    {
+        withListComma();
+        return;
+    }
+
+    switch (dialect)
+    {
+        case Dialect::Sqlite3:
+        {
+            if (joinOp->naturalKw)
+                withKeyword("NATURAL");
+
+            if (joinOp->leftKw)
+            {
+                withKeyword("LEFT");
+                if (joinOp->outerKw)
+                    withKeyword("OUTER");
+            }
+            else if (joinOp->innerKw)
+                withKeyword("INNER");
+            else if (joinOp->crossKw)
+                withKeyword("CROSS");
+
+            withKeyword("JOIN");
+            break;
+        }
+        case Dialect::Sqlite2:
+        {
+            if (joinOp->naturalKw)
+                withKeyword("NATURAL");
+
+            if (joinOp->leftKw)
+                withKeyword("LEFT");
+            else if (joinOp->rightKw)
+                withKeyword("RIGHT");
+            else if (joinOp->fullKw)
+                withKeyword("FULL");
+
+            if (joinOp->innerKw)
+                withKeyword("INNER");
+            else if (joinOp->crossKw)
+                withKeyword("CROSS");
+            else if (joinOp->outerKw)
+                withKeyword("OUTER");
+
+            withKeyword("JOIN");
+            break;
+        }
+    }
+}
+
+FormatSelectCoreJoinConstraint::FormatSelectCoreJoinConstraint(SqliteSelect::Core::JoinConstraint* joinConstr) :
+    joinConstr(joinConstr)
+{
+}
+
+void FormatSelectCoreJoinConstraint::formatInternal()
+{
+    if (joinConstr->expr)
+        withKeyword("ON").withStatement(joinConstr->expr, "joinConstr");
+    else
+        withKeyword("USING").withParDefLeft().incrIndent().withIdList(joinConstr->columnNames).decrIndent().withParDefRight();
+}
+
+FormatSelectCoreJoinSourceOther::FormatSelectCoreJoinSourceOther(SqliteSelect::Core::JoinSourceOther* joinSourceOther) :
+    joinSourceOther(joinSourceOther)
+{
+}
+
+void FormatSelectCoreJoinSourceOther::formatInternal()
+{
+    withStatement(joinSourceOther->joinOp).withStatement(joinSourceOther->singleSource).withStatement(joinSourceOther->joinConstraint);
+}
+
+
+FormatSelectCoreJoinSource::FormatSelectCoreJoinSource(SqliteSelect::Core::JoinSource* joinSource) :
+    joinSource(joinSource)
+{
+}
+
+void FormatSelectCoreJoinSource::formatInternal()
+{
+    withStatement(joinSource->singleSource).withStatementList(joinSource->otherSources, "otherSources", ListSeparator::NONE);
 }
