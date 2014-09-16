@@ -70,7 +70,7 @@ class GUI_API_EXPORT ConfigMapper : public QObject
         void addExtraWidgets(const QList<QWidget*>& list);
         void clearExtraWidgets();
 
-private:
+    private:
         void applyConfigToWidget(QWidget *widget, const QHash<QString, CfgEntry*>& allConfigEntries, const QHash<QString, QVariant> &config);
         void applyConfigToWidget(QWidget *widget, CfgEntry* cfgEntry, const QVariant& configValue);
         void handleSpecialWidgets(QWidget *widget, const QHash<QString, CfgEntry*>& allConfigEntries);
@@ -103,12 +103,14 @@ private:
 
         static constexpr const char* CFG_MODEL_PROPERTY = "cfg";
         static constexpr const char* CFG_NOTIFY_PROPERTY = "notify";
+        static constexpr const char* CFG_PREVIEW_PROPERTY = "preview";
 
     private slots:
         void handleModified();
         void entryChanged(const QVariant& newValue);
         void uiConfigEntryChanged();
         void updateConfigComboModel(const QVariant& value);
+        void notifiableConfigKeyChanged();
 
     signals:
         void modified();

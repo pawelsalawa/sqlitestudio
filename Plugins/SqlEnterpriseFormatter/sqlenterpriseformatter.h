@@ -7,6 +7,7 @@
 #include "config_builder.h"
 #include "common/utils_sql.h"
 #include "plugins/confignotifiableplugin.h"
+#include "parser/ast/sqlitequery.h"
 
 namespace Cfg
 {
@@ -28,7 +29,7 @@ CFG_CATEGORIES(SqlEnterpriseFormatterConfig,
         CFG_ENTRY(bool,        NlBeforeCloseParExpr,      false)
         CFG_ENTRY(bool,        NlAfterCloseParExpr,       false)
         CFG_ENTRY(bool,        NlAfterComma,              true)
-        CFG_ENTRY(bool,        NlAfterCommaInFnArg,       false)
+        CFG_ENTRY(bool,        NlAfterCommaInExpr,        false)
         CFG_ENTRY(bool,        NlAfterSemicolon,          true)
         CFG_ENTRY(bool,        NlNeverBeforeSemicolon,    true)
         CFG_ENTRY(bool,        SpaceBeforeCommaInList,    false)
@@ -46,8 +47,8 @@ CFG_CATEGORIES(SqlEnterpriseFormatterConfig,
         CFG_ENTRY(bool,        UppercaseDataTypes,        true)
         CFG_ENTRY(bool,        AlwaysUseNameWrapping,     false)
         CFG_ENTRY(QString,     PrefferedWrapper,          getNameWrapperStr(NameWrapper::BRACKET))
-        CFG_ENTRY(QStringList, Wrappers,                  getNameWrapperStrings())
-        CFG_ENTRY(QString,     PreviewCode,               QString())
+        CFG_ENTRY(QStringList, Wrappers,                  getNameWrapperStrings(),                  false)
+        CFG_ENTRY(QString,     PreviewCode,               QString(),                                false)
     )
 )
 
@@ -65,6 +66,9 @@ class SQLENTERPRISEFORMATTERSHARED_EXPORT SqlEnterpriseFormatter : public Generi
         bool init();
         void deinit();
         void configModified(CfgEntry* key, const QVariant& value);
+
+    private:
+        QList<SqliteQueryPtr> previewQueries;
 
     private slots:
         void updatePreview();
