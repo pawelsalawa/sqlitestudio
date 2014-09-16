@@ -82,7 +82,7 @@ QStringList SqliteForeignKey::getTablesInStatement()
 
 TokenList SqliteForeignKey::getTableTokensInStatement()
 {
-    return getTokenListFromNamedKey("nm");
+    return parentStatement()->getContextTableTokens(false, false);
 }
 
 QList<SqliteStatement::FullObject> SqliteForeignKey::getFullObjectsInStatement()

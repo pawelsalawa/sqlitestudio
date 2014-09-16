@@ -9,10 +9,38 @@ class FormatSelect : public FormatStatement
     public:
         FormatSelect(SqliteSelect *select);
 
-        QString format();
+    protected:
+        void formatInternal();
+        void resetInternal();
 
     private:
         SqliteSelect* select;
+};
+
+class FormatSelectCore : public FormatStatement
+{
+    public:
+        FormatSelectCore(SqliteSelect::Core *core);
+
+    protected:
+        void formatInternal();
+        void resetInternal();
+
+    private:
+        SqliteSelect::Core* core;
+};
+
+class FormatSelectCoreResultColumn : public FormatStatement
+{
+    public:
+        FormatSelectCoreResultColumn(SqliteSelect::Core::ResultColumn *resCol);
+
+    protected:
+        void formatInternal();
+        void resetInternal();
+
+    private:
+        SqliteSelect::Core::ResultColumn *resCol;
 };
 
 #endif // FORMATSELECT_H

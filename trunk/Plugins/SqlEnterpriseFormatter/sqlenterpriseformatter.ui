@@ -143,8 +143,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>578</width>
-             <height>300</height>
+             <width>582</width>
+             <height>257</height>
             </rect>
            </property>
            <property name="styleSheet">
@@ -283,10 +283,10 @@
             <item>
              <widget class="QCheckBox" name="checkBox_12">
               <property name="text">
-               <string>After comma in function arguments list</string>
+               <string>After comma in expressions</string>
               </property>
               <property name="cfg" stdset="0">
-               <string>SqlEnterpriseFormatter.NlAfterCommaInFnArg</string>
+               <string>SqlEnterpriseFormatter.NlAfterCommaInExpr</string>
               </property>
               <property name="notify" stdset="0">
                <bool>true</bool>
@@ -390,9 +390,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-109</y>
-             <width>578</width>
-             <height>275</height>
+             <y>0</y>
+             <width>582</width>
+             <height>236</height>
             </rect>
            </property>
            <property name="styleSheet">
@@ -697,6 +697,9 @@
         <widget class="SqlView" name="previewEdit">
          <property name="cfg" stdset="0">
           <string>SqlEnterpriseFormatter.PreviewCode</string>
+         </property>
+         <property name="preview" stdset="0">
+          <bool>true</bool>
          </property>
         </widget>
        </item>

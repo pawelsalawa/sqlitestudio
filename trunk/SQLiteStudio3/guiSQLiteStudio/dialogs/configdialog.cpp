@@ -147,6 +147,7 @@ void ConfigDialog::init()
     connect(configMapper, SIGNAL(modified()), this, SLOT(markModified()));
     connect(configMapper, &ConfigMapper::notifyEnabledWidgetModified, [=](QWidget* widget, CfgEntry* key, const QVariant& value)
     {
+        UNUSED(widget);
         for (ConfigNotifiablePlugin* plugin : notifiablePlugins)
             plugin->configModified(key, value);
     });

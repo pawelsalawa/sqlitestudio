@@ -78,6 +78,18 @@ class CfgTypedEntry : public CfgEntry
         CfgTypedEntry(const QString& name, DefaultValueProviderFunc func) :
             CfgTypedEntry(name, func, QString()) {}
 
+        CfgTypedEntry(const QString& name, const T& defValue, bool persistable) :
+            CfgTypedEntry(name, defValue, QString())
+        {
+            this->persistable = persistable;
+        }
+
+        CfgTypedEntry(const QString& name, DefaultValueProviderFunc func, bool persistable) :
+            CfgTypedEntry(name, func, QString())
+        {
+            this->persistable = persistable;
+        }
+
         CfgTypedEntry(const QString& name, const T& defValue) :
             CfgTypedEntry(name, defValue, QString()) {}
 

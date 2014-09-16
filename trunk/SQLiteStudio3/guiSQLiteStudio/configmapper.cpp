@@ -38,22 +38,28 @@
         return;\
     }
 
-#define APPLY_NOTIFIER(Widget, WidgetType, Notifier) \
+#define APPLY_NOTIFIER(Widget, Key, WidgetType, Notifier) \
     if (qobject_cast<WidgetType*>(Widget))\
     {\
         connect(Widget, Notifier, this, SLOT(handleModified()));\
         if (Widget->property(CFG_NOTIFY_PROPERTY).isValid() && Widget->property(CFG_NOTIFY_PROPERTY).toBool())\
             connect(Widget, Notifier, this, SLOT(uiConfigEntryChanged()));\
         \
+        if (Widget->property(CFG_PREVIEW_PROPERTY).isValid() && Widget->property(CFG_PREVIEW_PROPERTY).toBool())\
+            connect(Key, SIGNAL(changed(QVariant)), this, SLOT(notifiableConfigKeyChanged()));\
+        \
         return;\
     }
 
-#define APPLY_NOTIFIER_COND(Widget, WidgetType, Notifier, ExtraConditionMethod) \
+#define APPLY_NOTIFIER_COND(Widget, Key, WidgetType, Notifier, ExtraConditionMethod) \
     if (qobject_cast<WidgetType*>(Widget) && qobject_cast<WidgetType*>(Widget)->ExtraConditionMethod())\
     {\
         connect(Widget, Notifier, this, SLOT(handleModified()));\
         if (Widget->property(CFG_NOTIFY_PROPERTY).isValid() && Widget->property(CFG_NOTIFY_PROPERTY).toBool())\
             connect(Widget, Notifier, this, SLOT(uiConfigEntryChanged()));\
+        \
+        if (Widget->property(CFG_PREVIEW_PROPERTY).isValid() && Widget->property(CFG_PREVIEW_PROPERTY).toBool())\
+            connect(Key, SIGNAL(changed(QVariant)), this, SLOT(notifiableConfigKeyChanged()));\
         \
         return;\
     }
@@ -117,25 +123,25 @@ void ConfigMapper::applyCommonConfigToWidget(QWidget *widget, const QVariant &va
 
 void ConfigMapper::connectCommonNotifierToWidget(QWidget* widget, CfgEntry* key)
 {
-    APPLY_NOTIFIER(widget, QCheckBox, SIGNAL(stateChanged(int)));
-    APPLY_NOTIFIER(widget, QLineEdit, SIGNAL(textChanged(QString)));
-    APPLY_NOTIFIER(widget, QTextEdit, SIGNAL(textChanged()));
-    APPLY_NOTIFIER(widget, QPlainTextEdit, SIGNAL(textChanged()));
-    APPLY_NOTIFIER(widget, QSpinBox, SIGNAL(valueChanged(QString)));
-    APPLY_NOTIFIER(widget, QFontComboBox, SIGNAL(currentFontChanged(QFont)));
-    APPLY_NOTIFIER(widget, FontEdit, SIGNAL(fontChanged(QFont)));
-    APPLY_NOTIFIER(widget, FileEdit, SIGNAL(fileChanged(QString)));
-    APPLY_NOTIFIER(widget, QKeySequenceEdit, SIGNAL(editingFinished()));
-    APPLY_NOTIFIER(widget, ColorButton, SIGNAL(colorChanged(QColor)));
-    APPLY_NOTIFIER(widget, ConfigRadioButton, SIGNAL(toggledOn(QVariant)));
-    APPLY_NOTIFIER_COND(widget, QGroupBox, SIGNAL(clicked(bool)), isCheckable);
+    APPLY_NOTIFIER(widget, key, QCheckBox, SIGNAL(stateChanged(int)));
+    APPLY_NOTIFIER(widget, key, QLineEdit, SIGNAL(textChanged(QString)));
+    APPLY_NOTIFIER(widget, key, QTextEdit, SIGNAL(textChanged()));
+    APPLY_NOTIFIER(widget, key, QPlainTextEdit, SIGNAL(textChanged()));
+    APPLY_NOTIFIER(widget, key, QSpinBox, SIGNAL(valueChanged(QString)));
+    APPLY_NOTIFIER(widget, key, QFontComboBox, SIGNAL(currentFontChanged(QFont)));
+    APPLY_NOTIFIER(widget, key, FontEdit, SIGNAL(fontChanged(QFont)));
+    APPLY_NOTIFIER(widget, key, FileEdit, SIGNAL(fileChanged(QString)));
+    APPLY_NOTIFIER(widget, key, QKeySequenceEdit, SIGNAL(editingFinished()));
+    APPLY_NOTIFIER(widget, key, ColorButton, SIGNAL(colorChanged(QColor)));
+    APPLY_NOTIFIER(widget, key, ConfigRadioButton, SIGNAL(toggledOn(QVariant)));
+    APPLY_NOTIFIER_COND(widget, key, QGroupBox, SIGNAL(clicked(bool)), isCheckable);
     if (key->get().type() == QVariant::Int)
     {
-        APPLY_NOTIFIER(widget, QComboBox, SIGNAL(currentIndexChanged(int)));
+        APPLY_NOTIFIER(widget, key, QComboBox, SIGNAL(currentIndexChanged(int)));
     }
     else
     {
-        APPLY_NOTIFIER(widget, QComboBox, SIGNAL(currentTextChanged(QString)));
+        APPLY_NOTIFIER(widget, key, QComboBox, SIGNAL(currentTextChanged(QString)));
     }
 
     qWarning() << "Unhandled config widget type (for APPLY_NOTIFIER):" << widget->metaObject()->className();
@@ -350,6 +356,9 @@ bool ConfigMapper::connectCustomNotifierToWidget(QWidget* widget, CfgEntry* cfgE
             connect(widget, handler->getModifiedNotifier(), this, SIGNAL(modified()));
             if (widget->property(CFG_NOTIFY_PROPERTY).isValid() && widget->property(CFG_NOTIFY_PROPERTY).toBool())
                 connect(widget, handler->getModifiedNotifier(), this, SLOT(uiConfigEntryChanged()));
+
+            if (widget->property(CFG_PREVIEW_PROPERTY).isValid() && widget->property(CFG_PREVIEW_PROPERTY).toBool())
+                connect(cfgEntry, SIGNAL(changed(QVariant)), this, SLOT(notifiableConfigKeyChanged()));
 
             return true;
         }
@@ -574,6 +583,24 @@ void ConfigMapper::updateConfigComboModel(const QVariant& value)
     ccb->setModel(new QStringListModel(newList));
     if (newList.contains(cText))
         ccb->setCurrentText(cText);
+}
+
+void ConfigMapper::notifiableConfigKeyChanged()
+{
+    CfgEntry* key = dynamic_cast<CfgEntry*>(sender());
+    if (!key)
+    {
+        qCritical() << "ConfigMapper::notifiableConfigKeyChanged() called not from CfgEntry";
+        return;
+    }
+
+    if (!configEntryToWidgets.contains(key))
+    {
+        qCritical() << "No entry in configEntryToWidgets for key:" << key->getFullKey();
+        return;
+    }
+
+    loadToWidget(key, configEntryToWidgets[key]);
 }
 
 void ConfigMapper::bindToConfig(QWidget* topLevelWidget)
