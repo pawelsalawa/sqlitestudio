@@ -124,7 +124,6 @@ class FormatStatement
                 FUNC_ID,
                 DATA_TYPE,
                 NEW_LINE,
-                STATEMENT,
                 INDENT_MARKER,
                 INCR_INDENT,
                 DECR_INDENT
@@ -142,6 +141,8 @@ class FormatStatement
         void buildTokens();
         QString detokenize();
         void applyIndent();
+        void applySpace(FormatToken::Type type);
+        bool isSpaceExpectingType(FormatToken::Type type);
 
         static FormatStatement* forQuery(SqliteStatement *query, Dialect dialect, NameWrapper wrapper);
 
@@ -153,6 +154,7 @@ class FormatStatement
         bool deleteTokens = true;
         QStringList lines;
         QString line;
+        FormatToken* lastToken = nullptr;
 
         static const QString SPACE;
 };

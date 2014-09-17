@@ -382,6 +382,7 @@ QString FormatStatement::detokenize()
         {
             case FormatToken::KEYWORD:
                 applyIndent();
+                applySpace(token->type);
                 line += uppercaseKeywords ? token->value.toString().toUpper() : token->value.toString().toLower();
                 break;
             case FormatToken::LINED_UP_KEYWORD:
@@ -428,8 +429,6 @@ QString FormatStatement::detokenize()
                 break;
             case FormatToken::NEW_LINE:
                 break;
-            case FormatToken::STATEMENT:
-                break;
             case FormatToken::INDENT_MARKER:
                 break;
             case FormatToken::INCR_INDENT:
@@ -437,6 +436,7 @@ QString FormatStatement::detokenize()
             case FormatToken::DECR_INDENT:
                 break;
         }
+        lastToken = token;
 
     }
     return lines.join("\n");
@@ -449,6 +449,48 @@ void FormatStatement::applyIndent()
         return;
 
     line += SPACE.repeated(indentToAdd);
+}
+
+void FormatStatement::applySpace(FormatToken::Type type)
+{
+    if (lastToken && isSpaceExpectingType(type) && isSpaceExpectingType(lastToken->type))
+        line += " ";
+}
+
+bool FormatStatement::isSpaceExpectingType(FormatStatement::FormatToken::Type type)
+{
+    switch (type)
+    {
+        case FormatToken::KEYWORD:
+        case FormatToken::LINED_UP_KEYWORD:
+        case FormatToken::ID:
+        case FormatToken::FLOAT:
+        case FormatToken::STRING:
+        case FormatToken::INTEGER:
+        case FormatToken::BLOB:
+        case FormatToken::BIND_PARAM:
+        case FormatToken::FUNC_ID:
+        case FormatToken::DATA_TYPE:
+            return true;
+        case FormatToken::OPERATOR:
+        case FormatToken::STAR:
+        case FormatToken::ID_DOT:
+        case FormatToken::PAR_DEF_LEFT:
+        case FormatToken::PAR_DEF_RIGHT:
+        case FormatToken::PAR_EXPR_LEFT:
+        case FormatToken::PAR_EXPR_RIGHT:
+        case FormatToken::PAR_FUNC_LEFT:
+        case FormatToken::PAR_FUNC_RIGHT:
+        case FormatToken::SEMICOLON:
+        case FormatToken::COMMA_LIST:
+        case FormatToken::COMMA_OPER:
+        case FormatToken::NEW_LINE:
+        case FormatToken::INDENT_MARKER:
+        case FormatToken::INCR_INDENT:
+        case FormatToken::DECR_INDENT:
+            break;
+    }
+    return false;
 }
 
 FormatStatement* FormatStatement::forQuery(SqliteStatement* query, Dialect dialect, NameWrapper wrapper)
