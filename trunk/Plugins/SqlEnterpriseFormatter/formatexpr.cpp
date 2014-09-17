@@ -47,7 +47,7 @@ void FormatExpr::formatInternal()
             withStatement(expr->expr1).withOperator(expr->binaryOp).withStatement(expr->expr2, "binaryOp");
             break;
         case SqliteExpr::Mode::FUNCTION:
-            withFuncId(expr->function).withParFuncLeft().withStatementList(expr->exprList, "funcArgs").withParFuncRight();
+            withFuncId(expr->function).withParFuncLeft().withStatementList(expr->exprList, "funcArgs", FormatStatement::ListSeparator::EXPR_COMMA).withParFuncRight();
             break;
         case SqliteExpr::Mode::SUB_EXPR:
             withParExprLeft().withStatement(expr->expr1).withParExprRight();
@@ -154,15 +154,15 @@ void FormatExpr::formatInternal()
                 else
                     withKeyword("WHEN");
 
-                incrIndent("case");
+                withIncrIndent("case");
                 withStatement(expr);
-                decrIndent();
+                withDecrIndent();
 
                 then = !then;
             }
 
             if (expr->expr2)
-                withKeyword("ELSE").incrIndent("case").withStatement(expr->expr2).decrIndent();
+                withKeyword("ELSE").withIncrIndent("case").withStatement(expr->expr2).withDecrIndent();
 
             withKeyword("END");
             break;

@@ -142,9 +142,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
-             <width>582</width>
-             <height>257</height>
+             <y>-120</y>
+             <width>578</width>
+             <height>300</height>
             </rect>
            </property>
            <property name="styleSheet">
@@ -391,8 +391,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>582</width>
-             <height>236</height>
+             <width>578</width>
+             <height>300</height>
             </rect>
            </property>
            <property name="styleSheet">
@@ -483,6 +483,19 @@
               </property>
               <property name="cfg" stdset="0">
                <string>SqlEnterpriseFormatter.SpaceAfterClosePar</string>
+              </property>
+              <property name="notify" stdset="0">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBox_29">
+              <property name="text">
+               <string>No space between SQL function name and opening parenthesis</string>
+              </property>
+              <property name="cfg" stdset="0">
+               <string>SqlEnterpriseFormatter.NoSpaceAfterFunctionName</string>
               </property>
               <property name="notify" stdset="0">
                <bool>true</bool>
