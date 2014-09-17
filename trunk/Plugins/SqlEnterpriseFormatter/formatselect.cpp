@@ -11,7 +11,7 @@ void FormatSelect::formatInternal()
     keywordToLineUp("SELECT");
 
     if (select->with)
-        withLinedUpStatement(5, select->with);
+        withStatement(select->with);
 
     for (SqliteSelect::Core* core : select->coreSelects)
     {
@@ -136,7 +136,7 @@ void FormatSelectCoreSingleSource::formatInternal()
     }
     else if (singleSource->select)
     {
-        withParDefLeft().incrIndent().withStatement(singleSource->select).decrIndent().withParDefRight();
+        withParDefLeft().withStatement(singleSource->select).withParDefRight();
         if (!singleSource->alias.isNull())
         {
             if (singleSource->asKw)
@@ -147,7 +147,7 @@ void FormatSelectCoreSingleSource::formatInternal()
     }
     else
     {
-        withParDefLeft().incrIndent().withStatement(singleSource->joinSource).decrIndent().withParDefRight();
+        withParDefLeft().withStatement(singleSource->joinSource).withParDefRight();
     }
 }
 
@@ -220,7 +220,7 @@ void FormatSelectCoreJoinConstraint::formatInternal()
     if (joinConstr->expr)
         withKeyword("ON").withStatement(joinConstr->expr, "joinConstr");
     else
-        withKeyword("USING").withParDefLeft().incrIndent().withIdList(joinConstr->columnNames).decrIndent().withParDefRight();
+        withKeyword("USING").withParDefLeft().withIdList(joinConstr->columnNames).withParDefRight();
 }
 
 FormatSelectCoreJoinSourceOther::FormatSelectCoreJoinSourceOther(SqliteSelect::Core::JoinSourceOther* joinSourceOther) :

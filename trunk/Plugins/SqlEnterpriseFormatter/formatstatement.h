@@ -26,8 +26,6 @@ class FormatStatement
             COMMA
         };
 
-        virtual void formatInternal() = 0;
-        virtual void resetInternal();
         void keywordToLineUp(const QString& keyword);
         FormatStatement& withKeyword(const QString& kw);
         FormatStatement& withLinedUpKeyword(const QString& kw);
@@ -54,10 +52,7 @@ class FormatStatement
         FormatStatement& withDataType(const QString& dataType);
         FormatStatement& withNewLine();
         FormatStatement& withLiteral(const QVariant& value);
-        FormatStatement& withStatement(const QString& contents, const QString& indentName = QString());
         FormatStatement& withStatement(SqliteStatement* stmt, const QString& indentName = QString());
-        FormatStatement& withLinedUpStatement(int prefixLength, const QString& contents, const QString& indentName = QString());
-        FormatStatement& withLinedUpStatement(int prefixLength, SqliteStatement* stmt, const QString& indentName = QString());
         FormatStatement& markIndentForNextToken(const QString& name);
         FormatStatement& markIndentForLastToken(const QString& name);
         FormatStatement& markAndKeepIndent(const QString& name);
@@ -96,6 +91,9 @@ class FormatStatement
         }
 
     protected:
+        virtual void formatInternal() = 0;
+        virtual void resetInternal();
+
         Dialect dialect = Dialect::Sqlite3;
 
     private:
@@ -126,9 +124,7 @@ class FormatStatement
                 FUNC_ID,
                 DATA_TYPE,
                 NEW_LINE,
-                NEW_LINE_WITH_STATEMENT,
                 STATEMENT,
-                LINED_UP_STATEMENT,
                 INDENT_MARKER,
                 INCR_INDENT,
                 DECR_INDENT
@@ -143,7 +139,9 @@ class FormatStatement
         void withToken(FormatToken::Type type, const QVariant& value);
         void withToken(FormatToken::Type type, const QVariant& value, int lineUpPrefixLength);
         void cleanup();
+        void buildTokens();
         QString detokenize();
+        void applyIndent();
 
         static FormatStatement* forQuery(SqliteStatement *query, Dialect dialect, NameWrapper wrapper);
 
@@ -152,6 +150,9 @@ class FormatStatement
         QHash<QString,int> namedIndents;
         QStack<int> indents;
         QList<FormatToken*> tokens;
+        bool deleteTokens = true;
+        QStringList lines;
+        QString line;
 
         static const QString SPACE;
 };
