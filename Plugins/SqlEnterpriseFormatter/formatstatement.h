@@ -23,12 +23,12 @@ class FormatStatement
         enum class ListSeparator
         {
             NONE,
-            COMMA
+            COMMA,
+            EXPR_COMMA
         };
 
-        void keywordToLineUp(const QString& keyword);
         FormatStatement& withKeyword(const QString& kw);
-        FormatStatement& withLinedUpKeyword(const QString& kw);
+        FormatStatement& withLinedUpKeyword(const QString& kw, const QString& lineUpName = QString());
         FormatStatement& withId(const QString& id);
         FormatStatement& withIdList(const QStringList& names, const QString& indentName = QString(), ListSeparator sep = ListSeparator::COMMA);
         FormatStatement& withOperator(const QString& oper);
@@ -53,11 +53,11 @@ class FormatStatement
         FormatStatement& withNewLine();
         FormatStatement& withLiteral(const QVariant& value);
         FormatStatement& withStatement(SqliteStatement* stmt, const QString& indentName = QString());
-        FormatStatement& markIndentForNextToken(const QString& name);
-        FormatStatement& markIndentForLastToken(const QString& name);
+        FormatStatement& markIndent(const QString& name);
         FormatStatement& markAndKeepIndent(const QString& name);
-        FormatStatement& incrIndent(const QString& name = QString());
-        FormatStatement& decrIndent();
+        FormatStatement& withIncrIndent(const QString& name = QString());
+        FormatStatement& withDecrIndent();
+        FormatStatement& markKeywordLineUp(const QString& keyword, const QString& lineUpName = QString());
 
         template <class T>
         FormatStatement& withStatementList(QList<T*> stmtList, const QString& indentName = QString(), ListSeparator sep = ListSeparator::COMMA)
@@ -75,6 +75,9 @@ class FormatStatement
                         case ListSeparator::COMMA:
                             withListComma();
                             break;
+                        case ListSeparator::EXPR_COMMA:
+                            withCommaOper();
+                            break;
                         case ListSeparator::NONE:
                             break;
                     }
@@ -85,7 +88,7 @@ class FormatStatement
             }
 
             if (!indentName.isNull())
-                decrIndent();
+                withDecrIndent();
 
             return *this;
         }
@@ -126,27 +129,38 @@ class FormatStatement
                 NEW_LINE,
                 INDENT_MARKER,
                 INCR_INDENT,
-                DECR_INDENT
+                DECR_INDENT,
+                MARK_KEYWORD_LINEUP
             };
 
             Type type;
             QVariant value;
-            int lineUpPrefixLength = 0;
-            QString indentMarkName;
+            QVariant additionalValue;
         };
 
-        void withToken(FormatToken::Type type, const QVariant& value);
-        void withToken(FormatToken::Type type, const QVariant& value, int lineUpPrefixLength);
+        void withToken(FormatToken::Type type, const QVariant& value, const QVariant& additionalValue = QVariant());
         void cleanup();
         void buildTokens();
         QString detokenize();
-        void applyIndent();
+        bool applyIndent();
         void applySpace(FormatToken::Type type);
         bool isSpaceExpectingType(FormatToken::Type type);
+        bool isMetaType(FormatToken::Type type);
+        void newLine();
+        void incrIndent(const QString& name = QString());
+        void decrIndent();
+        bool endsWithSpace();
+        void detokenizeLeftPar(FormatToken* token, bool spaceBefore, bool spaceAfter, bool nlBefore, bool nlAfter);
+        void detokenizeRightPar(FormatToken* token, bool spaceBefore, bool spaceAfter, bool nlBefore, bool nlAfter);
+        void resetIndents();
+        void updateLastToken(FormatToken* token);
+        QString getFinalLineUpName(const QString& lineUpName);
+        int predictCurrentIndent(FormatToken* currentMetaToken);
+        bool willStartWithNewLine(FormatToken* token);
 
         static FormatStatement* forQuery(SqliteStatement *query, Dialect dialect, NameWrapper wrapper);
 
-        int kwLineUpPosition = 0;
+        QHash<QString,int> kwLineUpPosition;
         NameWrapper wrapper = NameWrapper::BRACKET;
         QHash<QString,int> namedIndents;
         QStack<int> indents;
@@ -155,8 +169,11 @@ class FormatStatement
         QStringList lines;
         QString line;
         FormatToken* lastToken = nullptr;
+        QString statementName;
 
+        static qint64 nameSeq;
         static const QString SPACE;
+        static const QString NEWLINE;
 };
 
 #endif // FORMATSTATEMENT_H

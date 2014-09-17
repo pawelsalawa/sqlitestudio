@@ -8,7 +8,7 @@ FormatSelect::FormatSelect(SqliteSelect* select) :
 
 void FormatSelect::formatInternal()
 {
-    keywordToLineUp("SELECT");
+    markKeywordLineUp("SELECT");
 
     if (select->with)
         withStatement(select->with);
@@ -43,7 +43,7 @@ FormatSelectCore::FormatSelectCore(SqliteSelect::Core *core) :
 
 void FormatSelectCore::formatInternal()
 {
-    keywordToLineUp("SELECT");
+    markKeywordLineUp("SELECT");
 
     if (core->valuesMode)
     {
@@ -98,11 +98,11 @@ void FormatSelectCoreResultColumn::formatInternal()
         withStatement(resCol->expr, "column");
         if (!resCol->alias.isNull())
         {
-            incrIndent("column");
+            withIncrIndent("column");
             if (resCol->asKw)
                 withKeyword("AS");
 
-            withId(resCol->alias).decrIndent();
+            withId(resCol->alias).withDecrIndent();
         }
     }
 }

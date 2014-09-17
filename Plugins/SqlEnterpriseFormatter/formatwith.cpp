@@ -8,7 +8,7 @@ FormatWith::FormatWith(SqliteWith *with) :
 
 void FormatWith::formatInternal()
 {
-    keywordToLineUp("SELECT");
+    markKeywordLineUp("SELECT");
 
     withLinedUpKeyword("WITH");
     if (with->recursive)

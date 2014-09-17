@@ -11,6 +11,7 @@
 #include "parser/ast/sqlitewith.h"
 #include "sqlenterpriseformatter.h"
 #include "common/utils_sql.h"
+#include "common/global.h"
 #include <QRegularExpression>
 #include <QDebug>
 
@@ -19,10 +20,15 @@
         return new FormatType(dynamic_cast<Type*>(query))
 
 const QString FormatStatement::SPACE = " ";
+const QString FormatStatement::NEWLINE = "\n";
+qint64 FormatStatement::nameSeq = 0;
 
 FormatStatement::FormatStatement()
 {
+    static_qstring(nameTpl, "statement_%1");
+
     indents.push(0);
+    statementName = nameTpl.arg(QString::number(nameSeq++));
 }
 
 FormatStatement::~FormatStatement()
@@ -67,8 +73,10 @@ FormatStatement *FormatStatement::forQuery(SqliteStatement *query)
 
     if (stmt)
         stmt->dialect = query->dialect;
+    else if (query)
+        qWarning() << "Unhandled query passed to enterprise formatter:" << query->metaObject()->className();
     else
-        qWarning() << "Unhandled query passed to enterprise formatter!";
+        qWarning() << "Null query passed to enterprise formatter!";
 
     return stmt;
 }
@@ -77,22 +85,15 @@ void FormatStatement::resetInternal()
 {
 }
 
-void FormatStatement::keywordToLineUp(const QString &keyword)
-{
-    int lgt = keyword.length();
-    if (lgt >= kwLineUpPosition)
-        kwLineUpPosition = lgt;
-}
-
 FormatStatement& FormatStatement::withKeyword(const QString& kw)
 {
     withToken(FormatToken::KEYWORD, kw);
     return *this;
 }
 
-FormatStatement& FormatStatement::withLinedUpKeyword(const QString& kw)
+FormatStatement& FormatStatement::withLinedUpKeyword(const QString& kw, const QString& lineUpName)
 {
-    withToken(FormatToken::LINED_UP_KEYWORD, kw);
+    withToken(FormatToken::LINED_UP_KEYWORD, kw, getFinalLineUpName(lineUpName));
     return *this;
 }
 
@@ -218,7 +219,7 @@ FormatStatement& FormatStatement::withDataType(const QString& dataType)
 
 FormatStatement& FormatStatement::withNewLine()
 {
-    withToken(FormatToken::NEW_LINE, "\n");
+    withToken(FormatToken::NEW_LINE, NEWLINE);
     return *this;
 }
 
@@ -258,6 +259,9 @@ FormatStatement& FormatStatement::withLiteral(const QVariant& value)
 
 FormatStatement& FormatStatement::withStatement(SqliteStatement* stmt, const QString& indentName)
 {
+    if (!stmt)
+        return *this;
+
     FormatStatement* formatStmt = forQuery(stmt, dialect, wrapper);
     if (!formatStmt)
         return *this;
@@ -271,43 +275,44 @@ FormatStatement& FormatStatement::withStatement(SqliteStatement* stmt, const QSt
     tokens += formatStmt->tokens;
 
     if (!indentName.isNull())
-        decrIndent();
+        withDecrIndent();
 
     delete formatStmt;
     return *this;
 }
 
-FormatStatement& FormatStatement::markIndentForNextToken(const QString& name)
+FormatStatement& FormatStatement::markIndent(const QString& name)
 {
-    withToken(FormatToken::INDENT_MARKER, name);
-    return *this;
-}
-
-FormatStatement& FormatStatement::markIndentForLastToken(const QString& name)
-{
-    if (tokens.size() == 0)
-        return *this;
-
-    tokens.last()->indentMarkName = name;
+    withToken(FormatToken::INDENT_MARKER, statementName + "_" + name);
     return *this;
 }
 
 FormatStatement& FormatStatement::markAndKeepIndent(const QString& name)
 {
-    markIndentForNextToken(name);
-    incrIndent(name);
+    markIndent(name);
+    withIncrIndent(name);
     return *this;
 }
 
-FormatStatement& FormatStatement::incrIndent(const QString& name)
+FormatStatement& FormatStatement::withIncrIndent(const QString& name)
 {
-    withToken(FormatToken::INCR_INDENT, name);
+    if (name.isNull())
+        withToken(FormatToken::INCR_INDENT, name);
+    else
+        withToken(FormatToken::INCR_INDENT, statementName + "_" + name);
+
     return *this;
 }
 
-FormatStatement& FormatStatement::decrIndent()
+FormatStatement& FormatStatement::withDecrIndent()
 {
     withToken(FormatToken::DECR_INDENT, QString());
+    return *this;
+}
+
+FormatStatement&FormatStatement::markKeywordLineUp(const QString& keyword, const QString& lineUpName)
+{
+    withToken(FormatToken::MARK_KEYWORD_LINEUP, getFinalLineUpName(lineUpName), keyword.length());
     return *this;
 }
 
@@ -326,6 +331,9 @@ FormatStatement& FormatStatement::withIdList(const QStringList& names, const QSt
                 case ListSeparator::COMMA:
                     withListComma();
                     break;
+                case ListSeparator::EXPR_COMMA:
+                    withCommaOper();
+                    break;
                 case ListSeparator::NONE:
                     break;
             }
@@ -336,33 +344,27 @@ FormatStatement& FormatStatement::withIdList(const QStringList& names, const QSt
     }
 
     if (!indentName.isNull())
-        decrIndent();
+        withDecrIndent();
 
     return *this;
 }
 
-void FormatStatement::withToken(FormatStatement::FormatToken::Type type, const QVariant& value)
-{
-    withToken(type, value, 0);
-}
-
-void FormatStatement::withToken(FormatStatement::FormatToken::Type type, const QVariant& value, int lineUpPrefixLength)
+void FormatStatement::withToken(FormatStatement::FormatToken::Type type, const QVariant& value, const QVariant& additionalValue)
 {
     FormatToken* token = new FormatToken;
     token->type = type;
     token->value = value;
-    token->lineUpPrefixLength = lineUpPrefixLength;
+    token->additionalValue = additionalValue;
     tokens << token;
 }
 
 void FormatStatement::cleanup()
 {
-    kwLineUpPosition = 0;
+    kwLineUpPosition.clear();
     line = "";
     lines.clear();
-    indents.clear();
     namedIndents.clear();
-    indents.push(0);
+    resetIndents();
     if (deleteTokens)
     {
         for (FormatToken* token : tokens)
@@ -378,83 +380,228 @@ QString FormatStatement::detokenize()
 
     for (FormatToken* token : tokens)
     {
+        applySpace(token->type);
         switch (token->type)
         {
             case FormatToken::KEYWORD:
+            {
                 applyIndent();
-                applySpace(token->type);
                 line += uppercaseKeywords ? token->value.toString().toUpper() : token->value.toString().toLower();
                 break;
+            }
             case FormatToken::LINED_UP_KEYWORD:
-                break;
-            case FormatToken::ID:
-                break;
-            case FormatToken::OPERATOR:
-                break;
-            case FormatToken::STAR:
-                break;
-            case FormatToken::FLOAT:
-                break;
-            case FormatToken::STRING:
-                break;
-            case FormatToken::INTEGER:
-                break;
-            case FormatToken::BLOB:
-                break;
-            case FormatToken::BIND_PARAM:
-                break;
-            case FormatToken::ID_DOT:
-                break;
-            case FormatToken::PAR_DEF_LEFT:
-                break;
-            case FormatToken::PAR_DEF_RIGHT:
-                break;
-            case FormatToken::PAR_EXPR_LEFT:
-                break;
-            case FormatToken::PAR_EXPR_RIGHT:
-                break;
-            case FormatToken::PAR_FUNC_LEFT:
-                break;
-            case FormatToken::PAR_FUNC_RIGHT:
-                break;
-            case FormatToken::SEMICOLON:
-                break;
-            case FormatToken::COMMA_LIST:
-                break;
-            case FormatToken::COMMA_OPER:
-                break;
-            case FormatToken::FUNC_ID:
-                break;
-            case FormatToken::DATA_TYPE:
-                break;
-            case FormatToken::NEW_LINE:
-                break;
-            case FormatToken::INDENT_MARKER:
-                break;
-            case FormatToken::INCR_INDENT:
-                break;
-            case FormatToken::DECR_INDENT:
-                break;
-        }
-        lastToken = token;
+            {
+                QString kw = token->value.toString();
+                QString lineUpName = token->additionalValue.toString();
+                int lineUpValue = kwLineUpPosition.contains(lineUpName) ? kwLineUpPosition[lineUpName] : 0;
 
+                int indentLength = lineUpValue - kw.length();
+                if (indentLength > 0)
+                    line += SPACE.repeated(indentLength);
+
+                line += uppercaseKeywords ? kw.toUpper() : kw.toLower();
+
+                break;
+            }
+            case FormatToken::ID:
+            case FormatToken::FUNC_ID:
+            case FormatToken::DATA_TYPE:
+            {
+                applyIndent();
+                if (CFG_ADV_FMT.SqlEnterpriseFormatter.AlwaysUseNameWrapping.get())
+                    line += wrapObjName(token->value.toString(), dialect, wrapper);
+                else
+                    line += wrapObjIfNeeded(token->value.toString(), dialect, wrapper);
+
+                break;
+            }
+            case FormatToken::STAR:
+            case FormatToken::FLOAT:
+            case FormatToken::INTEGER:
+            case FormatToken::BLOB:
+            case FormatToken::BIND_PARAM:
+            case FormatToken::STRING:
+            {
+                applyIndent();
+                line += token->value.toString();
+                break;
+            }
+            case FormatToken::OPERATOR:
+            {
+                bool spaceAdded = endsWithSpace() || applyIndent();
+                if (CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceBeforeMathOp.get() && !spaceAdded)
+                    line += SPACE;
+
+                line += token->value.toString();
+                if (CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceAfterMathOp.get())
+                    line += SPACE;
+
+                break;
+            }
+            case FormatToken::ID_DOT:
+            {
+                bool spaceAdded = endsWithSpace() || applyIndent();
+                if (CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceBeforeDot.get() && !spaceAdded)
+                    line += SPACE;
+
+                line += token->value.toString();
+                if (CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceAfterDot.get())
+                    line += SPACE;
+
+                break;
+            }
+            case FormatToken::PAR_DEF_LEFT:
+            {
+                bool spaceBefore = CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceBeforeOpenPar.get();
+                bool spaceAfter = CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceAfterOpenPar.get();
+                bool nlBefore = CFG_ADV_FMT.SqlEnterpriseFormatter.NlBeforeOpenParDef.get();
+                bool nlAfter = CFG_ADV_FMT.SqlEnterpriseFormatter.NlAfterOpenParDef.get();
+                detokenizeLeftPar(token, spaceBefore, spaceAfter, nlBefore, nlAfter);
+                break;
+            }
+            case FormatToken::PAR_DEF_RIGHT:
+            {
+                bool spaceBefore = CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceBeforeClosePar.get();
+                bool spaceAfter = CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceAfterClosePar.get();
+                bool nlBefore = CFG_ADV_FMT.SqlEnterpriseFormatter.NlBeforeCloseParDef.get();
+                bool nlAfter = CFG_ADV_FMT.SqlEnterpriseFormatter.NlAfterCloseParDef.get();
+                detokenizeRightPar(token, spaceBefore, spaceAfter, nlBefore, nlAfter);
+                break;
+            }
+            case FormatToken::PAR_EXPR_LEFT:
+            {
+                bool spaceBefore = CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceBeforeOpenPar.get();
+                bool spaceAfter = CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceAfterOpenPar.get();
+                bool nlBefore = CFG_ADV_FMT.SqlEnterpriseFormatter.NlBeforeOpenParExpr.get();
+                bool nlAfter = CFG_ADV_FMT.SqlEnterpriseFormatter.NlAfterOpenParExpr.get();
+                detokenizeLeftPar(token, spaceBefore, spaceAfter, nlBefore, nlAfter);
+                break;
+            }
+            case FormatToken::PAR_EXPR_RIGHT:
+            {
+                bool spaceBefore = CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceBeforeClosePar.get();
+                bool spaceAfter = CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceAfterClosePar.get();
+                bool nlBefore = CFG_ADV_FMT.SqlEnterpriseFormatter.NlBeforeCloseParExpr.get();
+                bool nlAfter = CFG_ADV_FMT.SqlEnterpriseFormatter.NlAfterCloseParExpr.get();
+                detokenizeRightPar(token, spaceBefore, spaceAfter, nlBefore, nlAfter);
+                break;
+            }
+            case FormatToken::PAR_FUNC_LEFT:
+            {
+                bool spaceBefore = CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceBeforeOpenPar.get() && !CFG_ADV_FMT.SqlEnterpriseFormatter.NoSpaceAfterFunctionName.get();
+                bool spaceAfter = CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceAfterOpenPar.get();
+                bool nlBefore = CFG_ADV_FMT.SqlEnterpriseFormatter.NlBeforeOpenParExpr.get();
+                bool nlAfter = CFG_ADV_FMT.SqlEnterpriseFormatter.NlAfterOpenParExpr.get();
+                detokenizeLeftPar(token, spaceBefore, spaceAfter, nlBefore, nlAfter);
+                break;
+            }
+            case FormatToken::PAR_FUNC_RIGHT:
+            {
+                bool spaceBefore = CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceBeforeClosePar.get();
+                bool spaceAfter = CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceAfterClosePar.get();
+                bool nlBefore = CFG_ADV_FMT.SqlEnterpriseFormatter.NlBeforeCloseParExpr.get();
+                bool nlAfter = CFG_ADV_FMT.SqlEnterpriseFormatter.NlAfterCloseParExpr.get();
+                detokenizeRightPar(token, spaceBefore, spaceAfter, nlBefore, nlAfter);
+                break;
+            }
+            case FormatToken::SEMICOLON:
+            {
+                bool spaceAdded = endsWithSpace() || applyIndent();
+                if (CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceBeforeMathOp.get() && !CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceNeverBeforeSemicolon.get() && !spaceAdded)
+                    line += SPACE;
+
+                line += token->value.toString();
+                if (CFG_ADV_FMT.SqlEnterpriseFormatter.NlAfterSemicolon.get())
+                    newLine();
+                else if (CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceAfterMathOp.get())
+                    line += SPACE;
+
+                break;
+            }
+            case FormatToken::COMMA_LIST:
+            {
+                bool spaceAdded = endsWithSpace() || applyIndent();
+                if (CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceBeforeCommaInList.get() && !spaceAdded)
+                    line += SPACE;
+
+                line += token->value.toString();
+                if (CFG_ADV_FMT.SqlEnterpriseFormatter.NlAfterComma.get())
+                    newLine();
+                else if (CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceAfterCommaInList.get())
+                    line += SPACE;
+
+                break;
+            }
+            case FormatToken::COMMA_OPER:
+            {
+                bool spaceAdded = endsWithSpace() || applyIndent();
+                if (CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceBeforeCommaInList.get() && !spaceAdded)
+                    line += SPACE;
+
+                line += token->value.toString();
+                if (CFG_ADV_FMT.SqlEnterpriseFormatter.NlAfterCommaInExpr.get())
+                    newLine();
+                else if (CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceAfterCommaInList.get())
+                    line += SPACE;
+
+                break;
+            }
+            case FormatToken::NEW_LINE:
+            {
+                newLine();
+//                indents.push(0);
+                break;
+            }
+            case FormatToken::INDENT_MARKER:
+            {
+                QString indentName = token->value.toString();
+                namedIndents[indentName] = predictCurrentIndent(token);
+                break;
+            }
+            case FormatToken::INCR_INDENT:
+            {
+                if (!token->value.isNull())
+                    incrIndent(token->value.toString());
+                else
+                    incrIndent();
+
+                break;
+            }
+            case FormatToken::DECR_INDENT:
+            {
+                decrIndent();
+                break;
+            }
+            case FormatToken::MARK_KEYWORD_LINEUP:
+            {
+                QString lineUpName = token->value.toString();
+                int lineUpLength = predictCurrentIndent(token) + token->additionalValue.toInt();
+                if (!kwLineUpPosition.contains(lineUpName) || lineUpLength > kwLineUpPosition[lineUpName])
+                    kwLineUpPosition[lineUpName] = lineUpLength;
+
+                break;
+            }
+        }
+        updateLastToken(token);
     }
-    return lines.join("\n");
+    newLine();
+    return lines.join(NEWLINE);
 }
 
-void FormatStatement::applyIndent()
+bool FormatStatement::applyIndent()
 {
     int indentToAdd = indents.top() - line.length();
     if (indentToAdd <= 0)
-        return;
+        return false;
 
     line += SPACE.repeated(indentToAdd);
+    return true;
 }
 
 void FormatStatement::applySpace(FormatToken::Type type)
 {
-    if (lastToken && isSpaceExpectingType(type) && isSpaceExpectingType(lastToken->type))
-        line += " ";
+    if (lastToken && isSpaceExpectingType(type) && isSpaceExpectingType(lastToken->type) && !endsWithSpace())
+        line += SPACE;
 }
 
 bool FormatStatement::isSpaceExpectingType(FormatStatement::FormatToken::Type type)
@@ -488,9 +635,225 @@ bool FormatStatement::isSpaceExpectingType(FormatStatement::FormatToken::Type ty
         case FormatToken::INDENT_MARKER:
         case FormatToken::INCR_INDENT:
         case FormatToken::DECR_INDENT:
+        case FormatToken::MARK_KEYWORD_LINEUP:
             break;
     }
     return false;
+}
+
+bool FormatStatement::isMetaType(FormatStatement::FormatToken::Type type)
+{
+    switch (type)
+    {
+        case FormatToken::INDENT_MARKER:
+        case FormatToken::INCR_INDENT:
+        case FormatToken::DECR_INDENT:
+        case FormatToken::MARK_KEYWORD_LINEUP:
+            return true;
+        case FormatToken::KEYWORD:
+        case FormatToken::LINED_UP_KEYWORD:
+        case FormatToken::ID:
+        case FormatToken::FLOAT:
+        case FormatToken::STRING:
+        case FormatToken::INTEGER:
+        case FormatToken::BLOB:
+        case FormatToken::BIND_PARAM:
+        case FormatToken::FUNC_ID:
+        case FormatToken::DATA_TYPE:
+        case FormatToken::OPERATOR:
+        case FormatToken::STAR:
+        case FormatToken::ID_DOT:
+        case FormatToken::PAR_DEF_LEFT:
+        case FormatToken::PAR_DEF_RIGHT:
+        case FormatToken::PAR_EXPR_LEFT:
+        case FormatToken::PAR_EXPR_RIGHT:
+        case FormatToken::PAR_FUNC_LEFT:
+        case FormatToken::PAR_FUNC_RIGHT:
+        case FormatToken::SEMICOLON:
+        case FormatToken::COMMA_LIST:
+        case FormatToken::COMMA_OPER:
+        case FormatToken::NEW_LINE:
+            break;
+    }
+    return false;
+}
+
+void FormatStatement::newLine()
+{
+    lines << line;
+    line = "";
+}
+
+void FormatStatement::incrIndent(const QString& name)
+{
+    if (!name.isNull())
+    {
+        if (namedIndents.contains(name))
+        {
+            indents.push(namedIndents[name]);
+        }
+        else
+        {
+            indents.push(indents.top() + CFG_ADV_FMT.SqlEnterpriseFormatter.TabSize.get());
+            qCritical() << __func__ << "No named indent found:" << name;
+        }
+    }
+    else
+        indents.push(indents.top() + CFG_ADV_FMT.SqlEnterpriseFormatter.TabSize.get());
+}
+
+void FormatStatement::decrIndent()
+{
+    if (indents.size() <= 1)
+        return;
+
+    indents.pop();
+}
+
+bool FormatStatement::endsWithSpace()
+{
+    return line.length() == 0 || line[line.length() - 1].isSpace();
+}
+
+void FormatStatement::detokenizeLeftPar(FormatToken* token, bool spaceBefore, bool spaceAfter, bool nlBefore, bool nlAfter)
+{
+    bool spaceAdded = endsWithSpace();
+    if (nlBefore)
+    {
+        newLine();
+        spaceAdded = true;
+    }
+
+    spaceAdded |= applyIndent();
+    if (spaceBefore && !spaceAdded)
+        line += SPACE;
+
+    line += token->value.toString();
+    if (nlAfter)
+    {
+        newLine();
+        incrIndent();
+    }
+    else if (spaceAfter)
+        line += SPACE;
+}
+
+void FormatStatement::detokenizeRightPar(FormatStatement::FormatToken* token, bool spaceBefore, bool spaceAfter, bool nlBefore, bool nlAfter)
+{
+    bool spaceAdded = endsWithSpace();
+    if (nlBefore)
+    {
+        newLine();
+        spaceAdded = true;
+        decrIndent();
+    }
+
+    spaceAdded |= applyIndent();
+    if (spaceBefore && !spaceAdded)
+        line += SPACE;
+
+    line += token->value.toString();
+    if (nlAfter)
+        newLine();
+    else if (spaceAfter)
+        line += SPACE;
+}
+
+void FormatStatement::resetIndents()
+{
+    indents.clear();
+    indents.push(0);
+}
+
+void FormatStatement::updateLastToken(FormatStatement::FormatToken* token)
+{
+    switch (token->type)
+    {
+        case FormatToken::KEYWORD:
+        case FormatToken::LINED_UP_KEYWORD:
+        case FormatToken::ID:
+        case FormatToken::FLOAT:
+        case FormatToken::STRING:
+        case FormatToken::INTEGER:
+        case FormatToken::BLOB:
+        case FormatToken::BIND_PARAM:
+        case FormatToken::FUNC_ID:
+        case FormatToken::DATA_TYPE:
+        case FormatToken::OPERATOR:
+        case FormatToken::STAR:
+        case FormatToken::ID_DOT:
+        case FormatToken::PAR_DEF_LEFT:
+        case FormatToken::PAR_DEF_RIGHT:
+        case FormatToken::PAR_EXPR_LEFT:
+        case FormatToken::PAR_EXPR_RIGHT:
+        case FormatToken::PAR_FUNC_LEFT:
+        case FormatToken::PAR_FUNC_RIGHT:
+        case FormatToken::SEMICOLON:
+        case FormatToken::COMMA_LIST:
+        case FormatToken::COMMA_OPER:
+        case FormatToken::NEW_LINE:
+            lastToken = token;
+        case FormatToken::INDENT_MARKER:
+        case FormatToken::INCR_INDENT:
+        case FormatToken::DECR_INDENT:
+        case FormatToken::MARK_KEYWORD_LINEUP:
+            break;
+    }
+}
+
+QString FormatStatement::getFinalLineUpName(const QString& lineUpName)
+{
+    QString finalName = statementName;
+    if (!lineUpName.isNull())
+        finalName += "_" + lineUpName;
+
+    return finalName;
+}
+
+int FormatStatement::predictCurrentIndent(FormatToken* currentMetaToken)
+{
+    QString lineBackup = line;
+    bool isSpace = applyIndent() || endsWithSpace();
+
+    if (!isSpace)
+    {
+        // We haven't added any space and there is no space currently at the end of line.
+        // We need to predict if next real (printable) token will require space to be added.
+        // If yes, we add it virtually here, so we know the indent required afterwards.
+        // First we need to find next real token:
+        int tokenIdx = tokens.indexOf(currentMetaToken);
+        FormatToken* nextRealToken = nullptr;
+        for (FormatToken* tk : tokens.mid(tokenIdx + 1))
+        {
+            if (!isMetaType(tk->type))
+            {
+                nextRealToken = tk;
+                break;
+            }
+        }
+
+        // If the real token was found we can see if it will require additional space for indent:
+        if ((nextRealToken && isSpaceExpectingType(lastToken->type) && isSpaceExpectingType(nextRealToken->type)) || willStartWithNewLine(nextRealToken))
+        {
+            // Next real token does not start with new line, but it does require additional space:
+            line += SPACE;
+        }
+    }
+
+    int result = line.length();
+    line = lineBackup;
+    return result;
+}
+
+bool FormatStatement::willStartWithNewLine(FormatStatement::FormatToken* token)
+{
+    return (token->type == FormatToken::PAR_DEF_LEFT && CFG_ADV_FMT.SqlEnterpriseFormatter.NlBeforeOpenParDef) ||
+            (token->type == FormatToken::PAR_EXPR_LEFT && CFG_ADV_FMT.SqlEnterpriseFormatter.NlBeforeOpenParExpr) ||
+            (token->type == FormatToken::PAR_FUNC_LEFT && CFG_ADV_FMT.SqlEnterpriseFormatter.NlBeforeOpenParExpr) ||
+            (token->type == FormatToken::PAR_DEF_RIGHT && CFG_ADV_FMT.SqlEnterpriseFormatter.NlBeforeCloseParDef) ||
+            (token->type == FormatToken::PAR_EXPR_RIGHT && CFG_ADV_FMT.SqlEnterpriseFormatter.NlBeforeCloseParExpr) ||
+            (token->type == FormatToken::PAR_FUNC_RIGHT && CFG_ADV_FMT.SqlEnterpriseFormatter.NlBeforeCloseParExpr) ||
+            (token->type == FormatToken::NEW_LINE);
 }
 
 FormatStatement* FormatStatement::forQuery(SqliteStatement* query, Dialect dialect, NameWrapper wrapper)
