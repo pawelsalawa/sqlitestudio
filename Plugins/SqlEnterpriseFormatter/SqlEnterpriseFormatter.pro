@@ -16,13 +16,19 @@ DEFINES += SQLENTERPRISEFORMATTER_LIBRARY
 SOURCES += sqlenterpriseformatter.cpp \
     formatstatement.cpp \
     formatselect.cpp \
-    formatexpr.cpp
+    formatexpr.cpp \
+    formatlimit.cpp \
+    formatwith.cpp \
+    formatraise.cpp
 
 HEADERS += sqlenterpriseformatter.h\
         sqlenterpriseformatter_global.h \
     formatstatement.h \
     formatselect.h \
-    formatexpr.h
+    formatexpr.h \
+    formatlimit.h \
+    formatwith.h \
+    formatraise.h
 
 OTHER_FILES += \
     sqlenterpriseformatter.json

@@ -50,11 +50,11 @@ void FormatExpr::formatInternal()
             withFuncId(expr->function).withParFuncLeft().withStatementList(expr->exprList, "funcArgs").withParFuncRight();
             break;
         case SqliteExpr::Mode::SUB_EXPR:
-            withParExprLeft().incrIndent().withStatement(expr->expr1).withParExprRight();
+            withParExprLeft().withStatement(expr->expr1).withParExprRight();
             break;
         case SqliteExpr::Mode::CAST:
-            withKeyword("CAST").withParExprLeft().incrIndent().withStatement(expr->expr1).withKeyword("AS")
-                    .withStatement(expr->columnType, "colType").decrIndent().withParExprRight();
+            withKeyword("CAST").withParExprLeft().withStatement(expr->expr1).withKeyword("AS")
+                    .withStatement(expr->columnType, "colType").withParExprRight();
             break;
         case SqliteExpr::Mode::COLLATE:
             withStatement(expr->expr1).withKeyword("COLLATE").withId(expr->collation);
@@ -122,11 +122,11 @@ void FormatExpr::formatInternal()
             withKeyword("IN");
             if (expr->select)
             {
-                withParDefLeft().incrIndent().withStatement(expr->select).decrIndent().withParDefRight();
+                withParDefLeft().withStatement(expr->select).withParDefRight();
             }
             else if (expr->exprList.size() > 0)
             {
-                withParExprLeft().incrIndent().withStatementList(expr->exprList).decrIndent().withParExprRight();
+                withParExprLeft().withStatementList(expr->exprList).withParExprRight();
             }
             else
             {
@@ -138,7 +138,7 @@ void FormatExpr::formatInternal()
             break;
         }
         case SqliteExpr::Mode::EXISTS:
-            withKeyword("EXISTS").withParDefLeft().incrIndent().withStatement(expr->select).decrIndent().withParDefRight();
+            withKeyword("EXISTS").withParDefLeft().withStatement(expr->select).withParDefRight();
             break;
         case SqliteExpr::Mode::CASE:
         {
@@ -168,7 +168,7 @@ void FormatExpr::formatInternal()
             break;
         }
         case SqliteExpr::Mode::SUB_SELECT:
-            withParDefLeft().incrIndent().withStatement(expr->select).decrIndent().withParDefRight();
+            withParDefLeft().withStatement(expr->select).withParDefRight();
             break;
         case SqliteExpr::Mode::RAISE:
             withStatement(expr->raiseFunction);
