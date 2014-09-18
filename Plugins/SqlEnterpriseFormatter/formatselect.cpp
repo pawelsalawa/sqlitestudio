@@ -241,5 +241,6 @@ FormatSelectCoreJoinSource::FormatSelectCoreJoinSource(SqliteSelect::Core::JoinS
 
 void FormatSelectCoreJoinSource::formatInternal()
 {
-    withStatement(joinSource->singleSource).withStatementList(joinSource->otherSources, "otherSources", ListSeparator::NONE);
+//    withStatement(joinSource->singleSource).withStatementList(joinSource->otherSources, "otherSources", ListSeparator::NONE);
+    withStatement(joinSource->singleSource).withStatementList(joinSource->otherSources, QString(), ListSeparator::NONE);
 }

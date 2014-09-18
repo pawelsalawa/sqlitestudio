@@ -141,7 +141,6 @@ class FormatStatement
         void withToken(FormatToken::Type type, const QVariant& value, const QVariant& additionalValue = QVariant());
         void cleanup();
         void buildTokens();
-        QString detokenize();
         bool applyIndent();
         void applySpace(FormatToken::Type type);
         bool isSpaceExpectingType(FormatToken::Type type);
@@ -150,9 +149,12 @@ class FormatStatement
         void incrIndent(const QString& name = QString());
         void decrIndent();
         bool endsWithSpace();
+        QString detokenize();
         void detokenizeLeftPar(FormatToken* token, bool spaceBefore, bool spaceAfter, bool nlBefore, bool nlAfter);
         void detokenizeRightPar(FormatToken* token, bool spaceBefore, bool spaceAfter, bool nlBefore, bool nlAfter);
         void resetIndents();
+        void removeAllSpaces();
+        void removeAllSpacesFromLine();
         void updateLastToken(FormatToken* token);
         QString getFinalLineUpName(const QString& lineUpName);
         int predictCurrentIndent(FormatToken* currentMetaToken);
