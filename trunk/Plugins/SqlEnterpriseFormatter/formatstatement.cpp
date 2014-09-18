@@ -520,9 +520,16 @@ QString FormatStatement::detokenize()
             }
             case FormatToken::COMMA_LIST:
             {
-                bool spaceAdded = endsWithSpace() || applyIndent();
-                if (CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceBeforeCommaInList.get() && !spaceAdded)
-                    line += SPACE;
+                if (CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceNeverBeforeComma.get())
+                {
+                    removeAllSpaces();
+                }
+                else
+                {
+                    bool spaceAdded = endsWithSpace() || applyIndent();
+                    if (CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceBeforeCommaInList.get() && !spaceAdded)
+                        line += SPACE;
+                }
 
                 line += token->value.toString();
                 if (CFG_ADV_FMT.SqlEnterpriseFormatter.NlAfterComma.get())
@@ -534,9 +541,16 @@ QString FormatStatement::detokenize()
             }
             case FormatToken::COMMA_OPER:
             {
-                bool spaceAdded = endsWithSpace() || applyIndent();
-                if (CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceBeforeCommaInList.get() && !spaceAdded)
-                    line += SPACE;
+                if (CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceNeverBeforeComma.get())
+                {
+                    removeAllSpaces();
+                }
+                else
+                {
+                    bool spaceAdded = endsWithSpace() || applyIndent();
+                    if (CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceBeforeCommaInList.get() && !spaceAdded)
+                        line += SPACE;
+                }
 
                 line += token->value.toString();
                 if (CFG_ADV_FMT.SqlEnterpriseFormatter.NlAfterCommaInExpr.get())
@@ -549,7 +563,6 @@ QString FormatStatement::detokenize()
             case FormatToken::NEW_LINE:
             {
                 newLine();
-//                indents.push(0);
                 break;
             }
             case FormatToken::INDENT_MARKER:
@@ -618,9 +631,9 @@ bool FormatStatement::isSpaceExpectingType(FormatStatement::FormatToken::Type ty
         case FormatToken::BIND_PARAM:
         case FormatToken::FUNC_ID:
         case FormatToken::DATA_TYPE:
+        case FormatToken::STAR:
             return true;
         case FormatToken::OPERATOR:
-        case FormatToken::STAR:
         case FormatToken::ID_DOT:
         case FormatToken::PAR_DEF_LEFT:
         case FormatToken::PAR_DEF_RIGHT:
@@ -763,6 +776,25 @@ void FormatStatement::resetIndents()
 {
     indents.clear();
     indents.push(0);
+}
+
+void FormatStatement::removeAllSpaces()
+{
+    removeAllSpacesFromLine();
+    while (endsWithSpace())
+    {
+        line = lines.takeLast();
+        removeAllSpacesFromLine();
+
+        if (lines.size() == 0)
+            break;
+    }
+}
+
+void FormatStatement::removeAllSpacesFromLine()
+{
+    while (endsWithSpace() && line.length() > 0)
+        line.chop(1);
 }
 
 void FormatStatement::updateLastToken(FormatStatement::FormatToken* token)

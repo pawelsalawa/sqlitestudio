@@ -39,7 +39,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="indentTab">
        <attribute name="title">
@@ -142,7 +142,7 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-120</y>
+             <y>0</y>
              <width>578</width>
              <height>300</height>
             </rect>
@@ -390,9 +390,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
+             <y>-159</y>
              <width>578</width>
-             <height>300</height>
+             <height>325</height>
             </rect>
            </property>
            <property name="styleSheet">
@@ -548,6 +548,19 @@
               </property>
               <property name="cfg" stdset="0">
                <string>SqlEnterpriseFormatter.SpaceAfterMathOp</string>
+              </property>
+              <property name="notify" stdset="0">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBox_30">
+              <property name="text">
+               <string>Never before comma</string>
+              </property>
+              <property name="cfg" stdset="0">
+               <string>SqlEnterpriseFormatter.SpaceNeverBeforeComma</string>
               </property>
               <property name="notify" stdset="0">
                <bool>true</bool>

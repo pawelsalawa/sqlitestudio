@@ -44,6 +44,7 @@ CFG_CATEGORIES(SqlEnterpriseFormatterConfig,
         CFG_ENTRY(bool,        SpaceAfterMathOp,          true)
         CFG_ENTRY(bool,        NoSpaceAfterFunctionName,  true)
         CFG_ENTRY(bool,        SpaceNeverBeforeSemicolon, true)
+        CFG_ENTRY(bool,        SpaceNeverBeforeComma,     true)
         CFG_ENTRY(bool,        UppercaseKeywords,         true)
         CFG_ENTRY(bool,        UppercaseDataTypes,        true)
         CFG_ENTRY(bool,        AlwaysUseNameWrapping,     false)
