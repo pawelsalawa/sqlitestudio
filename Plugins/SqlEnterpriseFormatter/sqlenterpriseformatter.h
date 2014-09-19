@@ -32,6 +32,7 @@ CFG_CATEGORIES(SqlEnterpriseFormatterConfig,
         CFG_ENTRY(bool,        NlAfterCommaInExpr,        false)
         CFG_ENTRY(bool,        NlAfterSemicolon,          true)
         CFG_ENTRY(bool,        NlNeverBeforeSemicolon,    true)
+        CFG_ENTRY(bool,        NlBetweenConstraints,      true)
         CFG_ENTRY(bool,        SpaceBeforeCommaInList,    false)
         CFG_ENTRY(bool,        SpaceAfterCommaInList,     true)
         CFG_ENTRY(bool,        SpaceBeforeOpenPar,        true)

@@ -1,6 +1,8 @@
 #include "sqliterollback.h"
 #include "sqlitequerytype.h"
 
+#include <parser/statementtokenbuilder.h>
+
 SqliteRollback::SqliteRollback()
 {
     queryType = SqliteQueryType::Rollback;
@@ -21,4 +23,25 @@ SqliteRollback::SqliteRollback(bool transactionKw, bool savePoint, const QString
     this->transactionKw = transactionKw;
     toKw = true;
     savepointKw = savePoint;
+}
+
+TokenList SqliteRollback::rebuildTokensFromContents()
+{
+    StatementTokenBuilder builder;
+
+    builder.withKeyword("ROLLBACK").withSpace();
+    if (transactionKw)
+        builder.withKeyword("TRANSACTION").withSpace();
+
+    if (!name.isNull())
+    {
+        builder.withKeyword("TO").withSpace();
+        if (savepointKw)
+            builder.withKeyword("SAVEPOINT").withSpace();
+
+        builder.withOther(name, dialect);
+    }
+    builder.withOperator(";");
+
+    return builder.build();
 }

@@ -18,6 +18,7 @@ class API_EXPORT SqliteDropView : public SqliteQuery
         QStringList getDatabasesInStatement();
         TokenList getDatabaseTokensInStatement();
         QList<FullObject> getFullObjectsInStatement();
+        TokenList rebuildTokensFromContents();
 };
 
 typedef QSharedPointer<SqliteDropView> SqliteDropViewPtr;

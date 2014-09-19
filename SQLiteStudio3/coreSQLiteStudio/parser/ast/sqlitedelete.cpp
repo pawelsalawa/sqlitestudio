@@ -106,7 +106,7 @@ TokenList SqliteDelete::rebuildTokensFromContents()
 
     builder.withKeyword("DELETE").withSpace().withKeyword("FROM").withSpace();
     if (!database.isNull())
-        builder.withOther(database, dialect).withSpace();
+        builder.withOther(database, dialect).withOperator(".");
 
     builder.withOther(table, dialect);
 

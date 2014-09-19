@@ -25,6 +25,7 @@ class API_EXPORT SqliteAlterTable : public SqliteQuery
         TokenList getTableTokensInStatement();
         TokenList getDatabaseTokensInStatement();
         QList<FullObject> getFullObjectsInStatement();
+        TokenList rebuildTokensFromContents();
 
     private:
         void initName(const QString& name1, const QString& name2);

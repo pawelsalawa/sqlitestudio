@@ -1,6 +1,7 @@
 #include "sqliteattach.h"
 #include "sqlitequerytype.h"
 #include "sqliteexpr.h"
+#include "parser/statementtokenbuilder.h"
 
 SqliteAttach::SqliteAttach()
 {
@@ -27,4 +28,22 @@ SqliteAttach::SqliteAttach(bool dbKw, SqliteExpr *url, SqliteExpr *name, SqliteE
 
 SqliteAttach::~SqliteAttach()
 {
+}
+
+TokenList SqliteAttach::rebuildTokensFromContents()
+{
+    StatementTokenBuilder builder;
+
+    builder.withKeyword("ATTACH").withSpace();
+
+    if (databaseKw)
+        builder.withKeyword("DATABASE").withSpace();
+
+    builder.withStatement(databaseUrl).withSpace().withKeyword("AS").withSpace().withStatement(name);
+    if (key)
+        builder.withSpace().withKeyword("KEY").withSpace().withStatement(key);
+
+    builder.withOperator(";");
+
+    return builder.build();
 }

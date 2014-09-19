@@ -39,7 +39,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="indentTab">
        <attribute name="title">
@@ -144,7 +144,7 @@
              <x>0</x>
              <y>0</y>
              <width>578</width>
-             <height>300</height>
+             <height>325</height>
             </rect>
            </property>
            <property name="styleSheet">
@@ -261,6 +261,19 @@
               </property>
               <property name="cfg" stdset="0">
                <string>SqlEnterpriseFormatter.NlAfterCloseParExpr</string>
+              </property>
+              <property name="notify" stdset="0">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBox_31">
+              <property name="text">
+               <string>Put each column constraint in CREATE TABLE into new line</string>
+              </property>
+              <property name="cfg" stdset="0">
+               <string>SqlEnterpriseFormatter.NlBetweenConstraints</string>
               </property>
               <property name="notify" stdset="0">
                <bool>true</bool>
@@ -390,8 +403,8 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-159</y>
-             <width>578</width>
+             <y>0</y>
+             <width>424</width>
              <height>325</height>
             </rect>
            </property>

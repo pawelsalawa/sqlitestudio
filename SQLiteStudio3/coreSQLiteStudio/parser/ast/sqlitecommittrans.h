@@ -13,6 +13,9 @@ class API_EXPORT SqliteCommitTrans : public SqliteQuery
         bool endKw = false;
         QString name = QString::null;
         bool transactionKw = false;
+
+    protected:
+        TokenList rebuildTokensFromContents();
 };
 
 typedef QSharedPointer<SqliteCommitTrans> SqliteCommitTransPtr;

@@ -16,6 +16,9 @@ class API_EXPORT SqliteAttach : public SqliteQuery
         SqliteExpr* databaseUrl = nullptr;
         SqliteExpr* name = nullptr;
         SqliteExpr* key = nullptr;
+
+    protected:
+        TokenList rebuildTokensFromContents();
 };
 
 typedef QSharedPointer<SqliteAttach> SqliteAttachPtr;

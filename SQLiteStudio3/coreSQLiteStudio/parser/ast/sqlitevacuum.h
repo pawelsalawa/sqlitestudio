@@ -17,6 +17,7 @@ class API_EXPORT SqliteVacuum : public SqliteQuery
         QStringList getDatabasesInStatement();
         TokenList getDatabaseTokensInStatement();
         QList<FullObject> getFullObjectsInStatement();
+        TokenList rebuildTokensFromContents();
 };
 
 typedef QSharedPointer<SqliteVacuum> SqliteVacuumPtr;

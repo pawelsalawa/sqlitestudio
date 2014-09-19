@@ -6,9 +6,14 @@ FormatWith::FormatWith(SqliteWith *with) :
 {
 }
 
+void FormatWith::setLineUpKeyword(const QString& kw)
+{
+    lineUpKeyword = kw;
+}
+
 void FormatWith::formatInternal()
 {
-    markKeywordLineUp("SELECT");
+    markKeywordLineUp(lineUpKeyword);
 
     withLinedUpKeyword("WITH");
     if (with->recursive)

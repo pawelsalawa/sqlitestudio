@@ -1,6 +1,8 @@
 #include "sqliteanalyze.h"
 #include "sqlitequerytype.h"
 
+#include <parser/statementtokenbuilder.h>
+
 SqliteAnalyze::SqliteAnalyze()
 {
     queryType = SqliteQueryType::Analyze;
@@ -51,4 +53,18 @@ QList<SqliteStatement::FullObject> SqliteAnalyze::getFullObjectsInStatement()
         result << fullObj;
 
     return result;
+}
+
+
+TokenList SqliteAnalyze::rebuildTokensFromContents()
+{
+    StatementTokenBuilder builder;
+
+    builder.withKeyword("ANALYZE").withSpace();
+
+    if (!database.isNull())
+        builder.withOther(database, dialect).withOperator(".");
+
+    builder.withOther(table).withOperator(";");
+    return builder.build();
 }

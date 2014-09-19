@@ -9,10 +9,12 @@ class FormatWith : public FormatStatement
     public:
         FormatWith(SqliteWith* with);
 
+        void setLineUpKeyword(const QString& kw);
         void formatInternal();
 
     private:
         SqliteWith *with;
+        QString lineUpKeyword;
 };
 
 class FormatWithCommonTableExpression : public FormatStatement

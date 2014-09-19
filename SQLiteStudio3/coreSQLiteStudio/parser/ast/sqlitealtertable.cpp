@@ -87,3 +87,30 @@ void SqliteAlterTable::initName(const QString &name1, const QString &name2)
         table = name1;
 }
 
+TokenList SqliteAlterTable::rebuildTokensFromContents()
+{
+    StatementTokenBuilder builder;
+
+    builder.withKeyword("ALTER").withSpace().withKeyword("TABLE").withSpace();
+
+    if (!database.isNull())
+        builder.withOther(database, dialect).withOperator(".");
+
+    builder.withOther(table).withSpace();
+
+    if (newColumn)
+    {
+        builder.withKeyword("ADD").withSpace();
+        if (columnKw)
+            builder.withKeyword("COLUMN").withSpace();
+
+        builder.withStatement(newColumn);
+    }
+    else if (!newName.isNull())
+    {
+        builder.withKeyword("RENAME").withSpace().withKeyword("TO").withSpace().withOther(newName, dialect);
+    }
+
+    builder.withOperator(";");
+    return builder.build();
+}

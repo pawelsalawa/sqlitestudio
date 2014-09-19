@@ -20,6 +20,7 @@ class API_EXPORT SqliteDropTable : public SqliteQuery
         TokenList getTableTokensInStatement();
         TokenList getDatabaseTokensInStatement();
         QList<FullObject> getFullObjectsInStatement();
+        TokenList rebuildTokensFromContents();
 };
 
 typedef QSharedPointer<SqliteDropTable> SqliteDropTablePtr;

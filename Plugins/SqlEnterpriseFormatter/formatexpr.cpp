@@ -1,4 +1,5 @@
 #include "formatexpr.h"
+#include "sqlenterpriseformatter.h"
 #include "parser/ast/sqliteexpr.h"
 #include "parser/ast/sqlitecolumntype.h"
 #include "parser/ast/sqliteselect.h"
@@ -11,6 +12,8 @@ FormatExpr::FormatExpr(SqliteExpr* expr) :
 
 void FormatExpr::formatInternal()
 {
+    static QStringList nlBiOp = {"AND", "OR"};
+
     switch (expr->mode)
     {
         case SqliteExpr::Mode::null:
@@ -41,11 +44,28 @@ void FormatExpr::formatInternal()
             break;
         }
         case SqliteExpr::Mode::UNARY_OP:
-            withOperator(expr->unaryOp).withStatement(expr->expr1, "unaryOp");
+        {
+            // Operator can be a keyword
+            QString opStr = CFG_ADV_FMT.SqlEnterpriseFormatter.UppercaseKeywords.get() ? expr->unaryOp.toUpper() : expr->unaryOp.toLower();
+            withOperator(opStr).withStatement(expr->expr1, "unaryOp");
             break;
+        }
         case SqliteExpr::Mode::BINARY_OP:
-            withStatement(expr->expr1).withOperator(expr->binaryOp).withStatement(expr->expr2, "binaryOp");
+        {
+            bool multiLine = nlBiOp.contains(expr->binaryOp.toUpper());
+
+            // Operator can be a keyword
+            QString opStr = CFG_ADV_FMT.SqlEnterpriseFormatter.UppercaseKeywords.get() ? expr->binaryOp.toUpper() : expr->binaryOp.toLower();
+            withStatement(expr->expr1, "binaryOp1").withOperator(opStr);
+
+            if (multiLine)
+                withNewLine().withIncrIndent("binaryOp1");
+
+            withStatement(expr->expr2, "binaryOp2");
+            if (multiLine)
+                withDecrIndent();
             break;
+        }
         case SqliteExpr::Mode::FUNCTION:
             withFuncId(expr->function).withParFuncLeft().withStatementList(expr->exprList, "funcArgs", FormatStatement::ListSeparator::EXPR_COMMA).withParFuncRight();
             break;

@@ -1,6 +1,8 @@
 #include "sqlitecopy.h"
 #include "sqlitequerytype.h"
 
+#include <parser/statementtokenbuilder.h>
+
 SqliteCopy::SqliteCopy()
 {
     queryType = SqliteQueryType::Copy;
@@ -56,4 +58,25 @@ QList<SqliteStatement::FullObject> SqliteCopy::getFullObjectsInStatement()
         result << fullObj;
 
     return result;
+}
+
+TokenList SqliteCopy::rebuildTokensFromContents()
+{
+    StatementTokenBuilder builder;
+
+    builder.withKeyword("COPY").withSpace();
+    if (onConflict != SqliteConflictAlgo::null)
+        builder.withKeyword("OR").withSpace().withKeyword(sqliteConflictAlgo(onConflict)).withSpace();
+
+    if (!database.isNull())
+        builder.withOther(database, dialect).withSpace();
+
+    builder.withOther(table, dialect).withSpace().withKeyword("FROM").withSpace().withString(file);
+
+    if (!delimiter.isNull())
+        builder.withSpace().withKeyword("USING").withSpace().withKeyword("DELIMITERS").withSpace().withString(delimiter);
+
+    builder.withOperator(";");
+
+    return builder.build();
 }
