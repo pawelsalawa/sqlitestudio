@@ -19,7 +19,36 @@ SOURCES += sqlenterpriseformatter.cpp \
     formatexpr.cpp \
     formatlimit.cpp \
     formatwith.cpp \
-    formatraise.cpp
+    formatraise.cpp \
+    formatcreatetable.cpp \
+    formatforeignkey.cpp \
+    formatcolumntype.cpp \
+    formatindexedcolumn.cpp \
+    formatinsert.cpp \
+    formatempty.cpp \
+    formataltertable.cpp \
+    formatanalyze.cpp \
+    formatattach.cpp \
+    formatbegintrans.cpp \
+    formatcommittrans.cpp \
+    formatcopy.cpp \
+    formatcreateindex.cpp \
+    formatcreatetrigger.cpp \
+    formatdelete.cpp \
+    formatupdate.cpp \
+    formatcreateview.cpp \
+    formatcreatevirtualtable.cpp \
+    formatdetach.cpp \
+    formatdropindex.cpp \
+    formatdroptable.cpp \
+    formatdroptrigger.cpp \
+    formatdropview.cpp \
+    formatpragma.cpp \
+    formatreindex.cpp \
+    formatrelease.cpp \
+    formatrollback.cpp \
+    formatsavepoint.cpp \
+    formatvacuum.cpp
 
 HEADERS += sqlenterpriseformatter.h\
         sqlenterpriseformatter_global.h \
@@ -28,7 +57,36 @@ HEADERS += sqlenterpriseformatter.h\
     formatexpr.h \
     formatlimit.h \
     formatwith.h \
-    formatraise.h
+    formatraise.h \
+    formatcreatetable.h \
+    formatforeignkey.h \
+    formatcolumntype.h \
+    formatindexedcolumn.h \
+    formatinsert.h \
+    formatempty.h \
+    formataltertable.h \
+    formatanalyze.h \
+    formatattach.h \
+    formatbegintrans.h \
+    formatcommittrans.h \
+    formatcopy.h \
+    formatcreateindex.h \
+    formatcreatetrigger.h \
+    formatdelete.h \
+    formatupdate.h \
+    formatcreateview.h \
+    formatcreatevirtualtable.h \
+    formatdetach.h \
+    formatdropindex.h \
+    formatdroptable.h \
+    formatdroptrigger.h \
+    formatdropview.h \
+    formatpragma.h \
+    formatreindex.h \
+    formatrelease.h \
+    formatrollback.h \
+    formatsavepoint.h \
+    formatvacuum.h
 
 OTHER_FILES += \
     sqlenterpriseformatter.json

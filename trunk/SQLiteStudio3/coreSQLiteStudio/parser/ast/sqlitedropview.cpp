@@ -1,6 +1,8 @@
 #include "sqlitedropview.h"
 #include "sqlitequerytype.h"
 
+#include <parser/statementtokenbuilder.h>
+
 SqliteDropView::SqliteDropView()
 {
     queryType = SqliteQueryType::DropView;
@@ -52,4 +54,22 @@ QList<SqliteStatement::FullObject> SqliteDropView::getFullObjectsInStatement()
         result << fullObj;
 
     return result;
+}
+
+
+TokenList SqliteDropView::rebuildTokensFromContents()
+{
+    StatementTokenBuilder builder;
+
+    builder.withKeyword("DROP").withSpace().withKeyword("VIEW").withSpace();
+
+    if (ifExistsKw)
+        builder.withKeyword("IF").withSpace().withKeyword("EXISTS").withSpace();
+
+    if (!database.isNull())
+        builder.withOther(database, dialect).withOperator(".");
+
+    builder.withOther(view).withOperator(";");
+
+    return builder.build();
 }

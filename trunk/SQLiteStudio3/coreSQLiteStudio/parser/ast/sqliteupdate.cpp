@@ -161,7 +161,7 @@ TokenList SqliteUpdate::rebuildTokensFromContents()
         builder.withKeyword("OR").withSpace().withKeyword(sqliteConflictAlgo(onConflict)).withSpace();
 
     if (!database.isNull())
-        builder.withOther(database, dialect).withSpace();
+        builder.withOther(database, dialect).withOperator(".");
 
     builder.withOther(table, dialect).withSpace();
 

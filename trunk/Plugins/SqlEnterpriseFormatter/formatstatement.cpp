@@ -4,11 +4,43 @@
 #include "formatlimit.h"
 #include "formatraise.h"
 #include "formatwith.h"
+#include "formatcreatetable.h"
+#include "formatforeignkey.h"
+#include "formatcolumntype.h"
+#include "formatindexedcolumn.h"
+#include "formatinsert.h"
+#include "formatempty.h"
+#include "formataltertable.h"
+#include "formatanalyze.h"
+#include "formatattach.h"
+#include "formatbegintrans.h"
+#include "formatcommittrans.h"
+#include "formatcopy.h"
+#include "formatcreateindex.h"
+#include "formatcreatetrigger.h"
+#include "formatdelete.h"
+#include "formatupdate.h"
 #include "parser/ast/sqliteselect.h"
 #include "parser/ast/sqliteexpr.h"
 #include "parser/ast/sqlitelimit.h"
 #include "parser/ast/sqliteraise.h"
 #include "parser/ast/sqlitewith.h"
+#include "parser/ast/sqlitecreatetable.h"
+#include "parser/ast/sqliteforeignkey.h"
+#include "parser/ast/sqlitecolumntype.h"
+#include "parser/ast/sqliteindexedcolumn.h"
+#include "parser/ast/sqliteinsert.h"
+#include "parser/ast/sqliteemptyquery.h"
+#include "parser/ast/sqlitealtertable.h"
+#include "parser/ast/sqliteanalyze.h"
+#include "parser/ast/sqliteattach.h"
+#include "parser/ast/sqlitebegintrans.h"
+#include "parser/ast/sqlitecommittrans.h"
+#include "parser/ast/sqlitecopy.h"
+#include "parser/ast/sqlitecreateindex.h"
+#include "parser/ast/sqlitecreatetrigger.h"
+#include "parser/ast/sqliteupdate.h"
+#include "parser/ast/sqlitedelete.h"
 #include "sqlenterpriseformatter.h"
 #include "common/utils_sql.h"
 #include "common/global.h"
@@ -39,7 +71,7 @@ FormatStatement::~FormatStatement()
 QString FormatStatement::format()
 {
     buildTokens();
-    return detokenize();
+    return detokenize() + NEWLINE; // extra space when formatting multiple top level (not in CREATE TRIGGER) queries
 }
 
 void FormatStatement::setSelectedWrapper(NameWrapper wrapper)
@@ -70,11 +102,31 @@ FormatStatement *FormatStatement::forQuery(SqliteStatement *query)
     FORMATTER_FACTORY_ENTRY(query, SqliteWith::CommonTableExpression, FormatWithCommonTableExpression);
     FORMATTER_FACTORY_ENTRY(query, SqliteRaise, FormatRaise);
     FORMATTER_FACTORY_ENTRY(query, SqliteLimit, FormatLimit);
+    FORMATTER_FACTORY_ENTRY(query, SqliteCreateTable, FormatCreateTable);
+    FORMATTER_FACTORY_ENTRY(query, SqliteCreateTable::Column, FormatCreateTableColumn);
+    FORMATTER_FACTORY_ENTRY(query, SqliteCreateTable::Column::Constraint, FormatCreateTableColumnConstraint);
+    FORMATTER_FACTORY_ENTRY(query, SqliteCreateTable::Constraint, FormatCreateTableConstraint);
+    FORMATTER_FACTORY_ENTRY(query, SqliteForeignKey, FormatForeignKey);
+    FORMATTER_FACTORY_ENTRY(query, SqliteColumnType, FormatColumnType);
+    FORMATTER_FACTORY_ENTRY(query, SqliteIndexedColumn, FormatIndexedColumn);
+    FORMATTER_FACTORY_ENTRY(query, SqliteInsert, FormatInsert);
+    FORMATTER_FACTORY_ENTRY(query, SqliteEmptyQuery, FormatEmpty);
+    FORMATTER_FACTORY_ENTRY(query, SqliteAlterTable, FormatAlterTable);
+    FORMATTER_FACTORY_ENTRY(query, SqliteAnalyze, FormatAnalyze);
+    FORMATTER_FACTORY_ENTRY(query, SqliteAttach, FormatAttach);
+    FORMATTER_FACTORY_ENTRY(query, SqliteBeginTrans, FormatBeginTrans);
+    FORMATTER_FACTORY_ENTRY(query, SqliteCommitTrans, FormatCommitTrans);
+    FORMATTER_FACTORY_ENTRY(query, SqliteCopy, FormatCopy);
+    FORMATTER_FACTORY_ENTRY(query, SqliteCreateIndex, FormatCreateIndex);
+    FORMATTER_FACTORY_ENTRY(query, SqliteCreateTrigger, FormatCreateTrigger);
+    FORMATTER_FACTORY_ENTRY(query, SqliteCreateTrigger::Event, FormatCreateTriggerEvent);
+    FORMATTER_FACTORY_ENTRY(query, SqliteUpdate, FormatUpdate);
+    FORMATTER_FACTORY_ENTRY(query, SqliteDelete, FormatDelete);
 
     if (stmt)
         stmt->dialect = query->dialect;
     else if (query)
-        qWarning() << "Unhandled query passed to enterprise formatter:" << query->metaObject()->className();
+        qWarning() << "Unhandled query passed to enterprise formatter!";
     else
         qWarning() << "Null query passed to enterprise formatter!";
 
@@ -189,7 +241,10 @@ FormatStatement& FormatStatement::withParFuncRight()
 
 FormatStatement& FormatStatement::withSemicolon()
 {
-    withToken(FormatToken::SEMICOLON, ";");
+    FormatToken* lastRealToken = getLastRealToken();
+    if (lastRealToken && lastRealToken->type != FormatToken::SEMICOLON)
+        withToken(FormatToken::SEMICOLON, ";");
+
     return *this;
 }
 
@@ -202,6 +257,22 @@ FormatStatement& FormatStatement::withListComma()
 FormatStatement& FormatStatement::withCommaOper()
 {
     withToken(FormatToken::COMMA_OPER, ",");
+    return *this;
+}
+
+FormatStatement&FormatStatement::withSortOrder(SqliteSortOrder sortOrder)
+{
+    if (sortOrder != SqliteSortOrder::null)
+        withKeyword(sqliteSortOrder(sortOrder));
+
+    return *this;
+}
+
+FormatStatement&FormatStatement::withConflict(SqliteConflictAlgo onConflict)
+{
+    if (onConflict != SqliteConflictAlgo::null)
+        withKeyword("ON").withKeyword("CONFLICT").withKeyword(sqliteConflictAlgo(onConflict));
+
     return *this;
 }
 
@@ -257,7 +328,7 @@ FormatStatement& FormatStatement::withLiteral(const QVariant& value)
     return *this;
 }
 
-FormatStatement& FormatStatement::withStatement(SqliteStatement* stmt, const QString& indentName)
+FormatStatement& FormatStatement::withStatement(SqliteStatement* stmt, const QString& indentName, FormatStatementEnricher enricher)
 {
     if (!stmt)
         return *this;
@@ -265,6 +336,9 @@ FormatStatement& FormatStatement::withStatement(SqliteStatement* stmt, const QSt
     FormatStatement* formatStmt = forQuery(stmt, dialect, wrapper);
     if (!formatStmt)
         return *this;
+
+    if (enricher)
+        enricher(formatStmt);
 
     formatStmt->buildTokens();
     formatStmt->deleteTokens = false;
@@ -294,6 +368,12 @@ FormatStatement& FormatStatement::markAndKeepIndent(const QString& name)
     return *this;
 }
 
+FormatStatement&FormatStatement::withIncrIndent(int newIndent)
+{
+    withToken(FormatToken::SET_INDENT, newIndent);
+    return *this;
+}
+
 FormatStatement& FormatStatement::withIncrIndent(const QString& name)
 {
     if (name.isNull())
@@ -316,6 +396,28 @@ FormatStatement&FormatStatement::markKeywordLineUp(const QString& keyword, const
     return *this;
 }
 
+FormatStatement&FormatStatement::withSeparator(FormatStatement::ListSeparator sep)
+{
+    switch (sep)
+    {
+        case ListSeparator::COMMA:
+            withListComma();
+            break;
+        case ListSeparator::EXPR_COMMA:
+            withCommaOper();
+            break;
+        case ListSeparator::NEW_LINE:
+            withNewLine();
+            break;
+        case ListSeparator::SEMICOLON:
+            withSemicolon();
+            break;
+        case ListSeparator::NONE:
+            break;
+    }
+    return *this;
+}
+
 FormatStatement& FormatStatement::withIdList(const QStringList& names, const QString& indentName, ListSeparator sep)
 {
     if (!indentName.isNull())
@@ -325,19 +427,7 @@ FormatStatement& FormatStatement::withIdList(const QStringList& names, const QSt
     foreach (const QString& name, names)
     {
         if (!first)
-        {
-            switch (sep)
-            {
-                case ListSeparator::COMMA:
-                    withListComma();
-                    break;
-                case ListSeparator::EXPR_COMMA:
-                    withCommaOper();
-                    break;
-                case ListSeparator::NONE:
-                    break;
-            }
-        }
+            withSeparator(sep);
 
         withId(name);
         first = false;
@@ -580,6 +670,11 @@ QString FormatStatement::detokenize()
 
                 break;
             }
+            case FormatToken::SET_INDENT:
+            {
+                setIndent(indents.top() + token->value.toInt());
+                break;
+            }
             case FormatToken::DECR_INDENT:
             {
                 decrIndent();
@@ -648,6 +743,7 @@ bool FormatStatement::isSpaceExpectingType(FormatStatement::FormatToken::Type ty
         case FormatToken::INDENT_MARKER:
         case FormatToken::INCR_INDENT:
         case FormatToken::DECR_INDENT:
+        case FormatToken::SET_INDENT:
         case FormatToken::MARK_KEYWORD_LINEUP:
             break;
     }
@@ -661,6 +757,7 @@ bool FormatStatement::isMetaType(FormatStatement::FormatToken::Type type)
         case FormatToken::INDENT_MARKER:
         case FormatToken::INCR_INDENT:
         case FormatToken::DECR_INDENT:
+        case FormatToken::SET_INDENT:
         case FormatToken::MARK_KEYWORD_LINEUP:
             return true;
         case FormatToken::KEYWORD:
@@ -693,6 +790,9 @@ bool FormatStatement::isMetaType(FormatStatement::FormatToken::Type type)
 
 void FormatStatement::newLine()
 {
+    if (line.length() == 0) // prevents double new-line when for example "))" occurs and it has new-line before and after
+        return;
+
     lines << line;
     line = "";
 }
@@ -723,9 +823,24 @@ void FormatStatement::decrIndent()
     indents.pop();
 }
 
+void FormatStatement::setIndent(int newIndent)
+{
+    indents.push(newIndent);
+}
+
 bool FormatStatement::endsWithSpace()
 {
     return line.length() == 0 || line[line.length() - 1].isSpace();
+}
+
+FormatStatement::FormatToken* FormatStatement::getLastRealToken(bool skipNewLines)
+{
+    for (FormatToken* tk : reverse(tokens))
+    {
+        if (!isMetaType(tk->type) && (!skipNewLines || tk->type != FormatToken::NEW_LINE))
+            return tk;
+    }
+    return nullptr;
 }
 
 void FormatStatement::detokenizeLeftPar(FormatToken* token, bool spaceBefore, bool spaceAfter, bool nlBefore, bool nlAfter)
@@ -799,38 +914,8 @@ void FormatStatement::removeAllSpacesFromLine()
 
 void FormatStatement::updateLastToken(FormatStatement::FormatToken* token)
 {
-    switch (token->type)
-    {
-        case FormatToken::KEYWORD:
-        case FormatToken::LINED_UP_KEYWORD:
-        case FormatToken::ID:
-        case FormatToken::FLOAT:
-        case FormatToken::STRING:
-        case FormatToken::INTEGER:
-        case FormatToken::BLOB:
-        case FormatToken::BIND_PARAM:
-        case FormatToken::FUNC_ID:
-        case FormatToken::DATA_TYPE:
-        case FormatToken::OPERATOR:
-        case FormatToken::STAR:
-        case FormatToken::ID_DOT:
-        case FormatToken::PAR_DEF_LEFT:
-        case FormatToken::PAR_DEF_RIGHT:
-        case FormatToken::PAR_EXPR_LEFT:
-        case FormatToken::PAR_EXPR_RIGHT:
-        case FormatToken::PAR_FUNC_LEFT:
-        case FormatToken::PAR_FUNC_RIGHT:
-        case FormatToken::SEMICOLON:
-        case FormatToken::COMMA_LIST:
-        case FormatToken::COMMA_OPER:
-        case FormatToken::NEW_LINE:
-            lastToken = token;
-        case FormatToken::INDENT_MARKER:
-        case FormatToken::INCR_INDENT:
-        case FormatToken::DECR_INDENT:
-        case FormatToken::MARK_KEYWORD_LINEUP:
-            break;
-    }
+    if (!isMetaType(token->type))
+        lastToken = token;
 }
 
 QString FormatStatement::getFinalLineUpName(const QString& lineUpName)

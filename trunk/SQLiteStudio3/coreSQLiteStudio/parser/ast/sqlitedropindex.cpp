@@ -1,6 +1,8 @@
 #include "sqlitedropindex.h"
 #include "sqlitequerytype.h"
 
+#include <parser/statementtokenbuilder.h>
+
 SqliteDropIndex::SqliteDropIndex()
 {
     queryType = SqliteQueryType::DropIndex;
@@ -45,4 +47,22 @@ QList<SqliteStatement::FullObject> SqliteDropIndex::getFullObjectsInStatement()
         result << fullObj;
 
     return result;
+}
+
+
+TokenList SqliteDropIndex::rebuildTokensFromContents()
+{
+    StatementTokenBuilder builder;
+
+    builder.withKeyword("DROP").withSpace().withKeyword("INDEX").withSpace();
+
+    if (ifExistsKw)
+        builder.withKeyword("IF").withSpace().withKeyword("EXISTS").withSpace();
+
+    if (!database.isNull())
+        builder.withOther(database, dialect).withOperator(".");
+
+    builder.withOther(index).withOperator(";");
+
+    return builder.build();
 }

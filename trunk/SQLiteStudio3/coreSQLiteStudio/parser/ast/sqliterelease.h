@@ -13,6 +13,9 @@ class API_EXPORT SqliteRelease : public SqliteQuery
 
         QString name = QString::null;
         bool savepointKw = false;
+
+    protected:
+        TokenList rebuildTokensFromContents();
 };
 
 typedef QSharedPointer<SqliteRelease> SqliteReleasePtr;

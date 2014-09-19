@@ -1,6 +1,8 @@
 #include "sqlitereindex.h"
 #include "sqlitequerytype.h"
 
+#include <parser/statementtokenbuilder.h>
+
 SqliteReindex::SqliteReindex()
 {
     queryType = SqliteQueryType::Reindex;
@@ -54,4 +56,17 @@ QList<SqliteStatement::FullObject> SqliteReindex::getFullObjectsInStatement()
         result << fullObj;
 
     return result;
+}
+
+TokenList SqliteReindex::rebuildTokensFromContents()
+{
+    StatementTokenBuilder builder;
+
+    builder.withKeyword("REINDEX");
+    if (!database.isNull())
+        builder.withOther(database, dialect).withOperator(".");
+
+    builder.withOther(table).withOperator(";");
+
+    return builder.build();
 }

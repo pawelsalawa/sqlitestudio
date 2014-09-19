@@ -149,7 +149,6 @@ TokenList SqliteForeignKey::Condition::rebuildTokensFromContents()
         case SqliteForeignKey::Condition::MATCH:
             builder.withKeyword("MATCH").withSpace().withOther(name);
             break;
-
     }
 
     return builder.build();

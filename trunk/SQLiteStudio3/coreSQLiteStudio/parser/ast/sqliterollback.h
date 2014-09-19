@@ -15,6 +15,9 @@ class API_EXPORT SqliteRollback : public SqliteQuery
         bool toKw = false;
         bool savepointKw = false;
         QString name = QString::null;
+
+    protected:
+        TokenList rebuildTokensFromContents();
 };
 
 typedef QSharedPointer<SqliteRollback> SqliteRollPtr;

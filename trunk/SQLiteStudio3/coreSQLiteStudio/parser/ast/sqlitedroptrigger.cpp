@@ -1,6 +1,8 @@
 #include "sqlitedroptrigger.h"
 #include "sqlitequerytype.h"
 
+#include <parser/statementtokenbuilder.h>
+
 SqliteDropTrigger::SqliteDropTrigger()
 {
     queryType = SqliteQueryType::DropTrigger;
@@ -46,4 +48,22 @@ QList<SqliteStatement::FullObject> SqliteDropTrigger::getFullObjectsInStatement(
         result << fullObj;
 
     return result;
+}
+
+
+TokenList SqliteDropTrigger::rebuildTokensFromContents()
+{
+    StatementTokenBuilder builder;
+
+    builder.withKeyword("DROP").withSpace().withKeyword("TRIGGER").withSpace();
+
+    if (ifExistsKw)
+        builder.withKeyword("IF").withSpace().withKeyword("EXISTS").withSpace();
+
+    if (!database.isNull())
+        builder.withOther(database, dialect).withOperator(".");
+
+    builder.withOther(trigger).withOperator(";");
+
+    return builder.build();
 }

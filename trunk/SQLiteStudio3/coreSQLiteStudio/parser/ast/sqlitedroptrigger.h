@@ -18,6 +18,7 @@ class API_EXPORT SqliteDropTrigger : public SqliteQuery
         QStringList getDatabasesInStatement();
         TokenList getDatabaseTokensInStatement();
         QList<FullObject> getFullObjectsInStatement();
+        TokenList rebuildTokensFromContents();
 };
 
 typedef QSharedPointer<SqliteDropTrigger> SqliteDropTriggerPtr;

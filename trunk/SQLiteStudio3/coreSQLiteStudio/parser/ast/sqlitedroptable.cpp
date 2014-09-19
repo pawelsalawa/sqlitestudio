@@ -1,6 +1,8 @@
 #include "sqlitedroptable.h"
 #include "sqlitequerytype.h"
 
+#include <parser/statementtokenbuilder.h>
+
 SqliteDropTable::SqliteDropTable()
 {
     queryType = SqliteQueryType::DropTable;
@@ -55,4 +57,21 @@ QList<SqliteStatement::FullObject> SqliteDropTable::getFullObjectsInStatement()
         result << fullObj;
 
     return result;
+}
+
+TokenList SqliteDropTable::rebuildTokensFromContents()
+{
+    StatementTokenBuilder builder;
+
+    builder.withKeyword("DROP").withSpace().withKeyword("TABLE").withSpace();
+
+    if (ifExistsKw)
+        builder.withKeyword("IF").withSpace().withKeyword("EXISTS").withSpace();
+
+    if (!database.isNull())
+        builder.withOther(database, dialect).withOperator(".");
+
+    builder.withOther(table).withOperator(";");
+
+    return builder.build();
 }

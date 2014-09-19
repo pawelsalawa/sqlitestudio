@@ -22,6 +22,7 @@ class API_EXPORT SqliteCopy : public SqliteQuery
         TokenList getTableTokensInStatement();
         TokenList getDatabaseTokensInStatement();
         QList<FullObject> getFullObjectsInStatement();
+        TokenList rebuildTokensFromContents();
 };
 
 typedef QSharedPointer<SqliteCopy> SqliteCopyPtr;

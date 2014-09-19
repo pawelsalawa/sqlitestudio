@@ -1,6 +1,8 @@
 #include "sqlitevacuum.h"
 #include "sqlitequerytype.h"
 
+#include <parser/statementtokenbuilder.h>
+
 SqliteVacuum::SqliteVacuum()
 {
     queryType = SqliteQueryType::Vacuum;
@@ -34,4 +36,12 @@ QList<SqliteStatement::FullObject> SqliteVacuum::getFullObjectsInStatement()
         result << fullObj;
 
     return result;
+}
+
+
+TokenList SqliteVacuum::rebuildTokensFromContents()
+{
+    StatementTokenBuilder builder;
+    builder.withKeyword("VACUUM").withOperator(";");
+    return builder.build();
 }

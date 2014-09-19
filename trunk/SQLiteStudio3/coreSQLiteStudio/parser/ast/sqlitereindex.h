@@ -20,6 +20,7 @@ class API_EXPORT SqliteReindex : public SqliteQuery
         TokenList getTableTokensInStatement();
         TokenList getDatabaseTokensInStatement();
         QList<SqliteStatement::FullObject> getFullObjectsInStatement();
+        TokenList rebuildTokensFromContents();
 };
 
 typedef QSharedPointer<SqliteReindex> SqliteReindexPtr;

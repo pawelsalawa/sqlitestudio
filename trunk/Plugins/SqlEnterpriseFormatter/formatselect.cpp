@@ -1,4 +1,5 @@
 #include "formatselect.h"
+#include "formatwith.h"
 #include "parser/ast/sqlitewith.h"
 
 FormatSelect::FormatSelect(SqliteSelect* select) :
@@ -11,7 +12,12 @@ void FormatSelect::formatInternal()
     markKeywordLineUp("SELECT");
 
     if (select->with)
-        withStatement(select->with);
+    {
+        withStatement(select->with, QString(), [](FormatStatement* stmt)
+        {
+            dynamic_cast<FormatWith*>(stmt)->setLineUpKeyword("SELECT");
+        });
+    }
 
     for (SqliteSelect::Core* core : select->coreSelects)
     {
@@ -34,6 +40,8 @@ void FormatSelect::formatInternal()
                 break;
         }
     }
+
+    withSemicolon();
 }
 
 FormatSelectCore::FormatSelectCore(SqliteSelect::Core *core) :
@@ -47,7 +55,7 @@ void FormatSelectCore::formatInternal()
 
     if (core->valuesMode)
     {
-        withKeyword("VALUES");
+        withKeyword("VALUES").withParDefLeft().withStatementList(core->resultColumns).withParDefRight();
         return;
     }
 

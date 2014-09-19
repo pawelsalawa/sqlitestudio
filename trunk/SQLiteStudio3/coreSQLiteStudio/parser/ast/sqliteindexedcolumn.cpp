@@ -42,8 +42,6 @@ TokenList SqliteIndexedColumn::rebuildTokensFromContents()
     if (!collate.isNull())
         builder.withSpace().withKeyword("COLLATE").withSpace().withOther(collate, dialect);
 
-    if (sortOrder != SqliteSortOrder::null)
-        builder.withSpace().withKeyword(sqliteSortOrder(sortOrder));
-
+    builder.withSortOrder(sortOrder);
     return builder.build();
 }

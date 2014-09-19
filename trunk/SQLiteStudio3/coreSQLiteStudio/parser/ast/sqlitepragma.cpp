@@ -1,6 +1,8 @@
 #include "sqlitepragma.h"
 #include "sqlitequerytype.h"
 
+#include <parser/statementtokenbuilder.h>
+
 SqlitePragma::SqlitePragma()
 {
     queryType = SqliteQueryType::Pragma;
@@ -73,4 +75,25 @@ void SqlitePragma::initName(const QString &name1, const QString &name2)
     }
     else
         pragmaName = name1;
+}
+
+TokenList SqlitePragma::rebuildTokensFromContents()
+{
+    StatementTokenBuilder builder;
+
+    builder.withKeyword("PRAGMA").withSpace();
+
+    if (!database.isNull())
+        builder.withOther(database, dialect).withOperator(".");
+
+    builder.withOther(pragmaName, dialect);
+
+    if (equalsOp)
+        builder.withSpace().withOperator("=").withSpace().withLiteralValue(value);
+    else if (parenthesis)
+        builder.withParLeft().withLiteralValue(value).withParRight();
+
+    builder.withOperator(";");
+
+    return builder.build();
 }
