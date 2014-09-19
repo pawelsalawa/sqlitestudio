@@ -1,4 +1,4 @@
-* enterprise SQL formatter
+* DDL history - podwojne sredniki
 * under macx when executing CREATE TABLE of the already existing table, execution never ends
 
 * deployment

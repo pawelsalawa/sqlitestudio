@@ -12,6 +12,7 @@
 #include "uiutils.h"
 #include "sqlite3.h"
 #include "windows/editorwindow.h"
+#include "services/codeformatter.h"
 #include <QDebug>
 #include <QGridLayout>
 #include <QSignalMapper>
@@ -279,7 +280,8 @@ void IndexDialog::updatePartialConditionState()
 void IndexDialog::updateDdl()
 {
     rebuildCreateIndex();
-    ui->ddlEdit->setPlainText(createIndex->detokenize());
+    QString formatted = FORMATTER->format("sql", createIndex->detokenize(), db);
+    ui->ddlEdit->setPlainText(formatted);
 }
 
 void IndexDialog::tabChanged(int tab)

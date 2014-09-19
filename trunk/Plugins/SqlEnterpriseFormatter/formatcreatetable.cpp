@@ -38,6 +38,8 @@ void FormatCreateTable::formatInternal()
         if (!createTable->withOutRowId.isNull())
             withKeyword("WITHOUT").withId("ROWID");
     }
+
+    withSemicolon();
 }
 
 void FormatCreateTable::formatColumns(const QList<SqliteCreateTable::Column*>& columns)
@@ -218,6 +220,4 @@ void FormatCreateTableConstraint::formatInternal()
         case SqliteCreateTable::Constraint::NAME_ONLY:
             break;
     }
-
-    withSemicolon();
 }

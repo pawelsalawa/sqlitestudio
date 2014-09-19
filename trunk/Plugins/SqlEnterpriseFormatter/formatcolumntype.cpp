@@ -1,5 +1,6 @@
 #include "formatcolumntype.h"
 #include "parser/ast/sqlitecolumntype.h"
+#include "sqlenterpriseformatter.h"
 
 FormatColumnType::FormatColumnType(SqliteColumnType* colType) :
     colType(colType)
@@ -11,7 +12,7 @@ void FormatColumnType::formatInternal()
     if (colType->name.isEmpty())
         return;
 
-    withId(colType->name);
+    withId(CFG_ADV_FMT.SqlEnterpriseFormatter.UppercaseDataTypes.get() ? colType->name.toUpper() : colType->name.toLower());
 
     if (!colType->scale.isNull())
     {
