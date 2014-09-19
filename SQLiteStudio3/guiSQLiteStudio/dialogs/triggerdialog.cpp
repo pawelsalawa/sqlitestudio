@@ -14,6 +14,7 @@
 #include "uiconfig.h"
 #include "services/config.h"
 #include "uiutils.h"
+#include "services/codeformatter.h"
 #include <QDebug>
 #include <QMessageBox>
 #include <QPushButton>
@@ -361,7 +362,8 @@ void TriggerDialog::updateDdlTab(int tabIdx)
         return;
 
     rebuildTrigger();
-    ui->ddlEdit->setPlainText(ddl);
+    QString formatted = FORMATTER->format("sql", ddl, db);
+    ui->ddlEdit->setPlainText(formatted);
 }
 
 void TriggerDialog::tableChanged(const QString& newValue)

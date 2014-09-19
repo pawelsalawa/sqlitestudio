@@ -596,9 +596,16 @@ QString FormatStatement::detokenize()
             }
             case FormatToken::SEMICOLON:
             {
-                bool spaceAdded = endsWithSpace() || applyIndent();
-                if (CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceBeforeMathOp.get() && !CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceNeverBeforeSemicolon.get() && !spaceAdded)
-                    line += SPACE;
+                if (CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceNeverBeforeSemicolon.get())
+                {
+                    removeAllSpaces();
+                }
+                else
+                {
+                    bool spaceAdded = endsWithSpace() || applyIndent();
+                    if (CFG_ADV_FMT.SqlEnterpriseFormatter.SpaceBeforeMathOp.get() && !spaceAdded)
+                        line += SPACE;
+                }
 
                 line += token->value.toString();
                 if (CFG_ADV_FMT.SqlEnterpriseFormatter.NlAfterSemicolon.get())

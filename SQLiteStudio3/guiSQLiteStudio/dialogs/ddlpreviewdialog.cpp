@@ -34,7 +34,7 @@ void DdlPreviewDialog::setDdl(const QStringList& ddlList)
         if (!newDdl.endsWith(";"))
             newDdl.append(";");
 
-        fixedList << newDdl;
+        fixedList << SQLITESTUDIO->getCodeFormatter()->format("sql", newDdl, db);
     }
     setDdl(fixedList.join("\n"));
 }
