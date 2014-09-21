@@ -66,6 +66,19 @@ void CodeFormatter::updateCurrent()
     modifyingConfig = false;
 }
 
+void CodeFormatter::storeCurrentSettings()
+{
+    QHash<QString,QVariant> config = CFG_CORE.General.ActiveCodeFormatter.get();
+    QHashIterator<QString,CodeFormatterPlugin*> it(currentFormatter);
+    while (it.hasNext())
+    {
+        it.next();
+        config[it.key()] = it.value()->getName();
+    }
+
+    CFG_CORE.General.ActiveCodeFormatter.set(config);
+}
+
 QString CodeFormatter::format(const QString& lang, const QString& code, Db* contextDb)
 {
     if (!hasFormatter(lang))

@@ -2,13 +2,14 @@
 #define MDICHILD_H
 
 #include "common/extactioncontainer.h"
+#include "committable.h"
 #include <QWidget>
 #include <QVariant>
 
 class MdiWindow;
 class Icon;
 
-class GUI_API_EXPORT MdiChild : public QWidget, public ExtActionContainer
+class GUI_API_EXPORT MdiChild : public QWidget, public ExtActionContainer, public Committable
 {
         Q_OBJECT
     public:

@@ -86,6 +86,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         SqlQueryView* getGridView() const;
         SqlQueryModel* getModel() const;
         QToolBar* getToolBar(int toolbar) const;
+        bool isUncommited() const;
 
         static void staticInit();
         static void insertAction(ExtActionPrototype* action, ToolBar toolbar = TOOLBAR_GRID);
@@ -159,6 +160,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         bool navigationState = false;
         bool totalPagesAvailable = false;
         QMutex manualPageChangeMutex;
+        bool uncommitted = false;
 
     signals:
 

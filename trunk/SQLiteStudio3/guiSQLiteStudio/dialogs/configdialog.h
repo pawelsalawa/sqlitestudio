@@ -112,6 +112,7 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         void updateStylePreview();
         void apply();
         void save();
+        void storeSelectedFormatters();
         void markModified();
         void setModified(bool modified);
         void updateModified();

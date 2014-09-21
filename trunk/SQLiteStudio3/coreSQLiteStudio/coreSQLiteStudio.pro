@@ -188,7 +188,8 @@ SOURCES += sqlitestudio.cpp \
     config_builder/cfgmain.cpp \
     config_builder/cfgcategory.cpp \
     config_builder/cfgentry.cpp \
-    config_builder/cfglazyinitializer.cpp
+    config_builder/cfglazyinitializer.cpp \
+    committable.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -364,7 +365,8 @@ HEADERS += sqlitestudio.h\
     config_builder/cfgcategory.h \
     config_builder/cfgentry.h \
     config_builder/cfglazyinitializer.h \
-    plugins/confignotifiableplugin.h
+    plugins/confignotifiableplugin.h \
+    committable.h
 
 unix:!symbian {
     maemo5 {

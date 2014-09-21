@@ -17,6 +17,7 @@ class API_EXPORT CodeFormatter
         bool hasFormatter(const QString& lang);
         void fullUpdate();
         void updateCurrent();
+        void storeCurrentSettings();
 
     private:
         QHash<QString,QHash<QString,CodeFormatterPlugin*>> availableFormatters;

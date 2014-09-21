@@ -156,7 +156,8 @@ SOURCES +=\
     dialogs/aboutdialog.cpp \
     dialogs/bugreportlogindialog.cpp \
     windows/bugreporthistorywindow.cpp \
-    dialogs/newversiondialog.cpp
+    dialogs/newversiondialog.cpp \
+    dialogs/quitconfirmdialog.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -297,7 +298,8 @@ HEADERS  += mainwindow.h \
     dialogs/bugreportlogindialog.h \
     windows/bugreporthistorywindow.h \
     dialogs/newversiondialog.h \
-    guiSQLiteStudio_global.h
+    guiSQLiteStudio_global.h \
+    dialogs/quitconfirmdialog.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \
@@ -343,7 +345,8 @@ FORMS    += mainwindow.ui \
     dialogs/aboutdialog.ui \
     dialogs/bugreportlogindialog.ui \
     windows/bugreporthistorywindow.ui \
-    dialogs/newversiondialog.ui
+    dialogs/newversiondialog.ui \
+    dialogs/quitconfirmdialog.ui
 
 RESOURCES += \
     icons.qrc

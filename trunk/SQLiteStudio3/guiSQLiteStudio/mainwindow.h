@@ -26,6 +26,7 @@ class FunctionsEditor;
 class CollationsEditor;
 class BugReportHistoryWindow;
 class NewVersionDialog;
+class Committable;
 
 #ifdef Q_OS_MACX
 #define PREV_TASK_KEY_SEQ Qt::CTRL + Qt::ALT + Qt::Key_Left
@@ -135,6 +136,8 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
 
         template <class T>
         T* openMdiWindow();
+
+        static bool confirmQuit(const QList<Committable*>& instances);
 
         static MainWindow* instance;
         static constexpr int closedWindowsStackSize = 20;

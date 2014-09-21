@@ -25,6 +25,8 @@ class GUI_API_EXPORT MdiWindow : public QMdiSubWindow
         void rename(const QString& title);
 
         void changeEvent(QEvent *event);
+        void closeEvent(QCloseEvent* e);
+
     protected:
 
     private:

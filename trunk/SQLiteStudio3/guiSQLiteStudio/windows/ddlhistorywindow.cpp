@@ -137,3 +137,14 @@ QToolBar* DdlHistoryWindow::getToolBar(int toolbar) const
     UNUSED(toolbar);
     return nullptr;
 }
+
+
+bool DdlHistoryWindow::isUncommited() const
+{
+    return false;
+}
+
+QString DdlHistoryWindow::getQuitUncommitedConfirmMessage() const
+{
+    return QString();
+}

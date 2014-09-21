@@ -198,10 +198,44 @@ void ConfigDialog::save()
     MainWindow::getInstance()->setStyle(ui->activeStyleCombo->currentText());
 
     QString loadedPlugins = collectLoadedPlugins();
+    storeSelectedFormatters();
     CFG->beginMassSave();
     CFG_CORE.General.LoadedPlugins.set(loadedPlugins);
     configMapper->saveFromWidget(ui->stackedWidget, true);
     CFG->commitMassSave();
+}
+
+void ConfigDialog::storeSelectedFormatters()
+{
+    CodeFormatterPlugin* plugin;
+    QTreeWidgetItem* item;
+    QComboBox* combo;
+    QString lang;
+    QString pluginName;
+    for (int i = 0, total = ui->formatterPluginsTree->topLevelItemCount(); i < total; ++i)
+    {
+        item = ui->formatterPluginsTree->topLevelItem(i);
+        lang = item->text(0);
+
+        combo = formatterLangToPluginComboMap[lang];
+        if (!combo)
+        {
+            qCritical() << "Could not find combo for lang " << lang << " in storeSelectedFormatters()";
+            continue;
+        }
+
+        pluginName = combo->currentData().toString();
+        plugin = dynamic_cast<CodeFormatterPlugin*>(PLUGINS->getLoadedPlugin(pluginName));
+        if (!plugin)
+        {
+            qCritical() << "Could not find plugin for lang " << lang << " in storeSelectedFormatters()";
+            continue;
+        }
+
+        FORMATTER->setFormatter(lang, plugin);
+    }
+
+    FORMATTER->storeCurrentSettings();
 }
 
 void ConfigDialog::markModified()
@@ -650,6 +684,7 @@ void ConfigDialog::configureFormatter(const QString& pluginTitle)
 
 void ConfigDialog::activeFormatterChanged()
 {
+    markModified();
     updateActiveFormatterState();
 }
 

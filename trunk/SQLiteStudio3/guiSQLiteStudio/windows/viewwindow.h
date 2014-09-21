@@ -66,6 +66,8 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
         Db* getDb() const;
         QString getDatabase() const;
         QString getView() const;
+        bool isUncommited() const;
+        QString getQuitUncommitedConfirmMessage() const;
 
         static void staticInit();
         static void insertAction(ExtActionPrototype* action, ToolBar toolbar = TOOLBAR_QUERY);
@@ -94,7 +96,7 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
         void parseDdl();
         void updateDdlTab();
         bool isModified() const;
-        bool validate();
+        bool validate(bool skipWarnings = false);
         void executeStructureChanges();
         QString getCurrentTrigger() const;
         void applyInitialTab();
@@ -118,7 +120,7 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
 
     private slots:
         void refreshView();
-        void commitView();
+        void commitView(bool skipWarnings = false);
         void rollbackView();
         void addTrigger();
         void editTrigger();

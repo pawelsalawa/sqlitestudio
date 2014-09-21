@@ -695,7 +695,7 @@ void TableWindow::refreshStructure()
     updateTriggers();
 }
 
-void TableWindow::commitStructure()
+void TableWindow::commitStructure(bool skipWarning)
 {
     if (!isModified())
     {
@@ -704,7 +704,7 @@ void TableWindow::commitStructure()
         return;
     }
 
-    if (!validate())
+    if (!validate(skipWarning))
         return;
 
     executeStructureChanges();
@@ -847,9 +847,9 @@ void TableWindow::addConstraint(ConstraintDialog::Constraint mode)
     ui->tableConstraintsView->resizeColumnToContents(1);
 }
 
-bool TableWindow::validate()
+bool TableWindow::validate(bool skipWarning)
 {
-    if (ui->tableNameEdit->text().trimmed().isEmpty() && !blankNameWarningDisplayed)
+    if (!skipWarning && ui->tableNameEdit->text().isEmpty() && !blankNameWarningDisplayed)
     {
         notifyWarn(tr("A blank name for the table is allowed in SQLite, but it is not recommended. "
                                "Hit the commit button again to ignore this warning and proceed."));
@@ -1106,7 +1106,7 @@ void TableWindow::populateTable()
 
 void TableWindow::createSimilarTable()
 {
-    // TODO
+    // TODO create similar table
 }
 
 void TableWindow::tabChanged(int newTab)
@@ -1115,6 +1115,21 @@ void TableWindow::tabChanged(int newTab)
     {
         case 1:
         {
+            if (isModified())
+            {
+                int res = QMessageBox::question(this, tr("Uncommited changes"),
+                                                tr("There are uncommited structure modifications. You cannot browse or edit data until you have "
+                                                   "table structure settled.\n"
+                                                   "Do you want to commit the structure, or do you want to go back to the structure tab?"),
+                                                tr("Go back to structure tab"), tr("Commit modifications and browse data."));
+
+                ui->tabWidget->setCurrentIndex(0);
+                if (res == 1)
+                    commitStructure(true);
+
+                break;
+            }
+
             if (!dataLoaded)
                 ui->dataView->refreshData();
 
@@ -1383,4 +1398,25 @@ bool TableWindow::handleInitialFocus()
         return true;
     }
     return false;
+}
+
+bool TableWindow::isUncommited() const
+{
+    return ui->dataView->isUncommited() || isModified();
+}
+
+QString TableWindow::getQuitUncommitedConfirmMessage() const
+{
+    QString title = getMdiWindow()->windowTitle();
+    if (ui->dataView->isUncommited() && isModified())
+        return tr("Table window \"%1\" has uncommited structure modifications and data.").arg(title);
+    else if (ui->dataView->isUncommited())
+        return tr("Table window \"%1\" has uncommited data.").arg(title);
+    else if (isModified())
+        return tr("Table window \"%1\" has uncommited structure modifications.").arg(title);
+    else
+    {
+        qCritical() << "Unhandled message case in TableWindow::getQuitUncommitedConfirmMessage().";
+        return QString();
+    }
 }
