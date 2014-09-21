@@ -49,6 +49,7 @@ int PopulateConfigDialog::exec()
 void PopulateConfigDialog::init()
 {
     ui->setupUi(this);
+    limitDialogWidth(this);
 
     QString headerString = tr("Configuring <b>%1</b> for column <b>%2</b>").arg(pluginName, column);
     ui->headerLabel->setText(headerString );

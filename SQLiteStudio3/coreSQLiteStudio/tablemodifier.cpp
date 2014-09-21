@@ -657,7 +657,7 @@ void TableModifier::init()
 void TableModifier::parseDdl()
 {
     SchemaResolver resolver(db);
-    QString ddl = resolver.getObjectDdl(database, table);
+    QString ddl = resolver.getObjectDdl(database, table, SchemaResolver::TABLE);
     if (ddl.isNull())
     {
         qCritical() << "Could not find object's ddl while parsing table ddl in the TableModifier.";

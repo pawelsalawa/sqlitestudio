@@ -30,6 +30,7 @@ ColumnDialog::~ColumnDialog()
 void ColumnDialog::init()
 {
     ui->setupUi(this);
+    limitDialogWidth(this);
     setWindowIcon(ICONS.COLUMN);
 
     ui->scale->setStrict(true);

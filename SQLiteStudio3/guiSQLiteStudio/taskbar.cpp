@@ -31,6 +31,7 @@ QAction* TaskBar::addTask(const QIcon& icon, const QString& text)
     QAction* action = QToolBar::addAction(icon, text);
     tasks << action;
     QToolButton* btn = getToolButton(action);
+    btn->setMaximumWidth(400);
     if (!btn)
         return action;
 
@@ -54,7 +55,6 @@ QList<QAction*> TaskBar::getTasks() const
 void TaskBar::init()
 {
     setAcceptDrops(true);
-//    connect(MAINWINDOW, SIGNAL(actionsCreated()), this, SLOT(initContextMenu()));
 }
 
 void TaskBar::mousePressed()

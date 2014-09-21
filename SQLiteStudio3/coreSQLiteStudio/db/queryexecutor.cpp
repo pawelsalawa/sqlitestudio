@@ -570,7 +570,7 @@ QList<DataType> QueryExecutor::resolveColumnTypes(Db* db, QList<QueryExecutor::R
     SqliteCreateTablePtr createTable;
     for (const Table& t : tables)
     {
-        createTable = resolver.getParsedObject(t.getDatabase(), t.getTable()).dynamicCast<SqliteCreateTable>();
+        createTable = resolver.getParsedObject(t.getDatabase(), t.getTable(), SchemaResolver::TABLE).dynamicCast<SqliteCreateTable>();
         if (!createTable)
         {
             qWarning() << "Could not resolve columns of table" << t.getTable() << "while quering datatypes for queryexecutor columns.";

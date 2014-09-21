@@ -318,7 +318,7 @@ bool ExportWorker::exportTable()
     }
 
     SchemaResolver resolver(db);
-    QString ddl = resolver.getObjectDdl(database, table);
+    QString ddl = resolver.getObjectDdl(database, table, SchemaResolver::TABLE);
 
     if (!parser->parse(ddl) || parser->getQueries().size() < 1)
     {
@@ -427,18 +427,18 @@ QList<ExportManager::ExportObjectPtr> ExportWorker::collectDbObjects(QString* er
         details = allDetails[objName];
 
         exportObj = ExportManager::ExportObjectPtr::create();
-        if (details.type == SchemaResolver::ObjectDetails::TABLE)
+        if (details.type == SchemaResolver::TABLE)
         {
             exportObj->type = ExportManager::ExportObject::TABLE;
             queryTableDataToExport(db, objName, exportObj->data, exportObj->providerData, errorMessage);
             if (!errorMessage->isNull())
                 return objectsToExport;
         }
-        else if (details.type == SchemaResolver::ObjectDetails::INDEX)
+        else if (details.type == SchemaResolver::INDEX)
             exportObj->type = ExportManager::ExportObject::INDEX;
-        else if (details.type == SchemaResolver::ObjectDetails::TRIGGER)
+        else if (details.type == SchemaResolver::TRIGGER)
             exportObj->type = ExportManager::ExportObject::TRIGGER;
-        else if (details.type == SchemaResolver::ObjectDetails::VIEW)
+        else if (details.type == SchemaResolver::VIEW)
             exportObj->type = ExportManager::ExportObject::VIEW;
         else
             continue; // warning about this case is already in SchemaResolver

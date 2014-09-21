@@ -69,6 +69,7 @@ void TriggerDialog::changeEvent(QEvent *e)
 void TriggerDialog::init()
 {
     ui->setupUi(this);
+    limitDialogWidth(this);
 
     connect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(updateDdlTab(int)));
     connect(ui->actionColumns, SIGNAL(clicked()), this, SLOT(showColumnsDialog()));
@@ -161,7 +162,7 @@ void TriggerDialog::initTrigger()
 void TriggerDialog::parseDdl()
 {
     SchemaResolver resolver(db);
-    SqliteQueryPtr parsedObject = resolver.getParsedObject(trigger);
+    SqliteQueryPtr parsedObject = resolver.getParsedObject(trigger, SchemaResolver::TRIGGER);
     if (!parsedObject.dynamicCast<SqliteCreateTrigger>())
     {
         notifyError(tr("Could not process trigger %1 correctly. Unable to open a trigger dialog.").arg(trigger));

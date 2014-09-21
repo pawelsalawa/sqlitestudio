@@ -153,7 +153,7 @@ void FormatCreateTableColumnConstraint::formatInternal()
             else if (!constr->ctime.isNull())
                 withKeyword(constr->ctime);
             else if (constr->expr)
-                withStatement(constr->expr);
+                withParExprLeft().withStatement(constr->expr).withParExprRight();
             else if (constr->literalNull)
                 withKeyword("NULL");
             else

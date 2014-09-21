@@ -737,7 +737,7 @@ QHash<Table, SqlQueryModel::TableDetails> SqlQueryModel::readTableDetails()
     {
         database = srcTable->database.isEmpty() ? "main" : srcTable->database;
 
-        query = resolver.getParsedObject(database, srcTable->table);
+        query = resolver.getParsedObject(database, srcTable->table, SchemaResolver::TABLE);
         if (!query || !query.dynamicCast<SqliteCreateTable>())
         {
             qWarning() << "Could not get parsed table while reading table details in SqlQueryModel. Queried table was:"

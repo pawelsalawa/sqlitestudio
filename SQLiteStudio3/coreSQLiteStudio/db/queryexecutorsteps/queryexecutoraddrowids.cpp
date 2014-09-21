@@ -103,7 +103,7 @@ QHash<QString,QString> QueryExecutorAddRowIds::getNextColNames(const SelectResol
     QHash<QString,QString> colNames;
 
     SchemaResolver resolver(db);
-    SqliteQueryPtr query = resolver.getParsedObject(table.database, table.table);
+    SqliteQueryPtr query = resolver.getParsedObject(table.database, table.table, SchemaResolver::TABLE);
     SqliteCreateTablePtr createTable = query.dynamicCast<SqliteCreateTable>();
     if (!createTable)
     {

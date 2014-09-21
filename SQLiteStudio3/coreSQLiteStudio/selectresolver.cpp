@@ -521,7 +521,7 @@ QList<SelectResolver::Column> SelectResolver::resolveSubSelect(SqliteSelect *sel
 QList<SelectResolver::Column> SelectResolver::resolveView(const QString& database, const QString& name, const QString& alias)
 {
     QList<Column> results;
-    SqliteQueryPtr query = schemaResolver->getParsedObject(database, name);
+    SqliteQueryPtr query = schemaResolver->getParsedObject(database, name, SchemaResolver::VIEW);
     if (!query)
     {
         qDebug() << "Could not get parsed CREATE VIEW in SelectResolver::resolveView().";

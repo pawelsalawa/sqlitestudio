@@ -535,6 +535,7 @@ void TableWindow::initDbAndTable()
 void TableWindow::setupCoverWidget()
 {
     widgetCover = new WidgetCover(this);
+    widgetCover->initWithInterruptContainer();
     widgetCover->hide();
     connect(widgetCover, SIGNAL(cancelClicked()), structureExecutor, SLOT(interrupt()));
 }
@@ -544,7 +545,7 @@ void TableWindow::parseDdl()
     if (existingTable)
     {
         SchemaResolver resolver(db);
-        SqliteQueryPtr parsedObject = resolver.getParsedObject(database, table);
+        SqliteQueryPtr parsedObject = resolver.getParsedObject(database, table, SchemaResolver::TABLE);
         if (!parsedObject.dynamicCast<SqliteCreateTable>())
         {
             notifyError(tr("Could not process the %1 table correctly. Unable to open a table window.").arg(table));
