@@ -39,6 +39,7 @@ ExportDialog::~ExportDialog()
 void ExportDialog::init()
 {
     ui->setupUi(this);
+    limitDialogWidth(this);
 
 #ifdef Q_OS_MACX
     resize(width() + 150, height());

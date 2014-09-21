@@ -24,12 +24,6 @@ MultiEditorDateTime::MultiEditorDateTime(QWidget *parent) :
     calendar = new QCalendarWidget();
     calendar->setFixedSize(calendar->sizeHint());
 
-//    QWidget* innerWidget = new QWidget();
-//    innerWidget->setLayout(new QHBoxLayout());
-//    layout()->addWidget(innerWidget);
-
-//    innerWidget->layout()->addWidget(dateTimeEdit);
-//    innerWidget->layout()->addWidget(calendar);
     vbox->addWidget(dateTimeEdit);
     vbox->addWidget(dateTimeLabel);
     vbox->addWidget(calendar);
@@ -84,6 +78,8 @@ QVariant MultiEditorDateTime::getValue()
 {
     if (formatType == STRING)
         return dateTimeEdit->dateTime().toString(originalValueFormat);
+    else if (formatType == UNIXTIME)
+        return dateTimeEdit->dateTime().toTime_t();
     else if (formatType == JULIAN_DAY)
         return toJulian(dateTimeEdit->dateTime());
     else
@@ -120,8 +116,17 @@ QDateTime MultiEditorDateTime::fromString(const QString& value)
         }
     }
 
-    // Try with Julian day
+    // Try with unixtime
     bool ok;
+    uint unixtime = value.toUInt(&ok);
+    if (ok)
+    {
+        dateTime = QDateTime::fromTime_t(unixtime);
+        formatType = UNIXTIME;
+        return dateTime;
+    }
+
+    // Try with Julian day
     double jd = value.toDouble(&ok);
     if (ok)
     {

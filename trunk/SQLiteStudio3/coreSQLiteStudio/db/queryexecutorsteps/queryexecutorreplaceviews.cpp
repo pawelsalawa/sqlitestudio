@@ -52,7 +52,7 @@ SqliteCreateViewPtr QueryExecutorReplaceViews::getView(const QString& database, 
     if (viewStatements.contains(view))
         return viewStatements[view];
 
-    SqliteQueryPtr query = schemaResolver->getParsedObject(database, viewName);
+    SqliteQueryPtr query = schemaResolver->getParsedObject(database, viewName, SchemaResolver::VIEW);
     if (!query)
         return SqliteCreateViewPtr();
 

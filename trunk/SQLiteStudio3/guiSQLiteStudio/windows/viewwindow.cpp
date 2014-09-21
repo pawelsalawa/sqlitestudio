@@ -565,7 +565,7 @@ void ViewWindow::parseDdl()
     if (existingView)
     {
         SchemaResolver resolver(db);
-        SqliteQueryPtr parsedObject = resolver.getParsedObject(database, view);
+        SqliteQueryPtr parsedObject = resolver.getParsedObject(database, view, SchemaResolver::VIEW);
         if (!parsedObject.dynamicCast<SqliteCreateView>())
         {
             notifyError(tr("Could not process the %1 view correctly. Unable to open a view window.").arg(view));

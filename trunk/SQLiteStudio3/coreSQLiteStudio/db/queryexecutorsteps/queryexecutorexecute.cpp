@@ -127,7 +127,7 @@ void QueryExecutorExecute::setupSqlite2ColumnDataTypes(SqlQueryPtr results)
             continue;
 
         key = QPair<QString,QString>(tab->database, tab->table);
-        createTable = resolver.getParsedObject(tab->database, tab->table).dynamicCast<SqliteCreateTable>();
+        createTable = resolver.getParsedObject(tab->database, tab->table, SchemaResolver::TABLE).dynamicCast<SqliteCreateTable>();
         tables[key] = createTable;
     }
 

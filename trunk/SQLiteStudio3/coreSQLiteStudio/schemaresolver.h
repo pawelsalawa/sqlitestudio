@@ -22,17 +22,18 @@ class SqliteCreateTable;
 class API_EXPORT SchemaResolver
 {
     public:
+        enum ObjectType
+        {
+            TABLE,
+            INDEX,
+            TRIGGER,
+            VIEW,
+            ANY
+        };
+
         struct ObjectDetails
         {
-            enum Type
-            {
-                TABLE,
-                INDEX,
-                TRIGGER,
-                VIEW
-            };
-
-            Type type;
+            ObjectType type;
             QString ddl;
         };
 
@@ -117,8 +118,8 @@ class API_EXPORT SchemaResolver
         QList<SelectResolver::Column> getViewColumnObjects(const QString& view);
         QList<SelectResolver::Column> getViewColumnObjects(const QString& database, const QString& view);
 
-        QString getObjectDdl(const QString& name);
-        QString getObjectDdl(const QString& database, const QString& name);
+        QString getObjectDdl(const QString& name, ObjectType type);
+        QString getObjectDdl(const QString& database, const QString& name, ObjectType type);
 
         /**
          * @brief Parses given object's DDL.
@@ -127,7 +128,7 @@ class API_EXPORT SchemaResolver
          *
          * Returned query has to be deleted outside!
          */
-        SqliteQueryPtr getParsedObject(const QString& name);
+        SqliteQueryPtr getParsedObject(const QString& name, ObjectType type);
 
         /**
          * @brief Parses given object's DDL.
@@ -136,7 +137,7 @@ class API_EXPORT SchemaResolver
          * @return Parsed object, or null pointer if named object was not in the database, or parsing error occured.
          * @overload
          */
-        SqliteQueryPtr getParsedObject(const QString& database, const QString& name);
+        SqliteQueryPtr getParsedObject(const QString& database, const QString& name, ObjectType type);
 
         QHash<QString,SqliteQueryPtr> getAllParsedObjects();
         QHash<QString,SqliteQueryPtr> getAllParsedObjects(const QString& database);
@@ -159,6 +160,9 @@ class API_EXPORT SchemaResolver
 
         bool getNoDbLocking() const;
         void setNoDbLocking(bool value);
+
+        static QString objectTypeToString(ObjectType type);
+        static ObjectType stringToObjectType(const QString& type);
 
     private:
         SqliteQueryPtr getParsedDdl(const QString& ddl);

@@ -43,6 +43,7 @@ class GUI_API_EXPORT MultiEditorDateTime : public MultiEditorWidget
         {
             STRING,
             JULIAN_DAY,
+            UNIXTIME,
             OTHER
         };
 

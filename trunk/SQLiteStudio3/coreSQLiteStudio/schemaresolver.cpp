@@ -75,7 +75,7 @@ QMap<QString, QStringList> SchemaResolver::getGroupedObjects(const QString &data
 
     foreach (QString object, inputList)
     {
-        parsedQuery = getParsedObject(database, object);
+        parsedQuery = getParsedObject(database, object, ANY);
         if (!parsedQuery)
         {
             qWarning() << "Could not get parsed object for " << strType << ":" << object;
@@ -124,7 +124,7 @@ QStringList SchemaResolver::getTableColumns(const QString &database, const QStri
 {
     QStringList columns; // result
 
-    SqliteQueryPtr query = getParsedObject(database, table);
+    SqliteQueryPtr query = getParsedObject(database, table, TABLE);
     if (!query)
         return columns;
 
@@ -161,7 +161,7 @@ QList<DataType> SchemaResolver::getTableColumnDataTypes(const QString& table, in
 QList<DataType> SchemaResolver::getTableColumnDataTypes(const QString& database, const QString& table, int expectedNumberOfTypes)
 {
     QList<DataType> dataTypes;
-    SqliteCreateTablePtr createTable = getParsedObject(database, table).dynamicCast<SqliteCreateTable>();
+    SqliteCreateTablePtr createTable = getParsedObject(database, table, TABLE).dynamicCast<SqliteCreateTable>();
     if (!createTable)
     {
         for (int i = 0; i < expectedNumberOfTypes; i++)
@@ -219,7 +219,7 @@ QList<SelectResolver::Column> SchemaResolver::getViewColumnObjects(const QString
 QList<SelectResolver::Column> SchemaResolver::getViewColumnObjects(const QString& database, const QString& view)
 {
     QList<SelectResolver::Column> results;
-    SqliteQueryPtr query = getParsedObject(database, view);
+    SqliteQueryPtr query = getParsedObject(database, view, VIEW);
     if (!query)
         return results;
 
@@ -252,7 +252,7 @@ SqliteCreateTablePtr SchemaResolver::virtualTableAsRegularTable(const QString &d
     db->exec(QString("CREATE TEMP TABLE %1 AS SELECT * FROM %2.%3 LIMIT 0;").arg(newTable, dbName, origTable), dbFlags);
 
     // Get parsed DDL of the temp table.
-    SqliteQueryPtr query = getParsedObject("temp", newTable);
+    SqliteQueryPtr query = getParsedObject("temp", newTable, TABLE);
     if (!query)
         return SqliteCreateTablePtr();
 
@@ -265,12 +265,12 @@ SqliteCreateTablePtr SchemaResolver::virtualTableAsRegularTable(const QString &d
     return createTable;
 }
 
-QString SchemaResolver::getObjectDdl(const QString& name)
+QString SchemaResolver::getObjectDdl(const QString& name, ObjectType type)
 {
-    return getObjectDdl("main", name);
+    return getObjectDdl("main", name, type);
 }
 
-QString SchemaResolver::getObjectDdl(const QString &database, const QString &name)
+QString SchemaResolver::getObjectDdl(const QString &database, const QString &name, ObjectType type)
 {
     if (name.isNull())
         return QString::null;
@@ -287,10 +287,21 @@ QString SchemaResolver::getObjectDdl(const QString &database, const QString &nam
     QString dbName = getPrefixDb(database, dialect);
 
     // Get the DDL
-    QVariant results = db->exec(QString(
-                "SELECT sql FROM %1.sqlite_master WHERE lower(name) = '%2';").arg(dbName, escapeString(lowerName)),
-                dbFlags
-            )->getSingleCell();
+    QVariant results;
+    if (type != ANY)
+    {
+        results = db->exec(QString(
+                    "SELECT sql FROM %1.sqlite_master WHERE lower(name) = '%2' AND type = '%3';").arg(dbName, escapeString(lowerName), objectTypeToString(type)),
+                    dbFlags
+                )->getSingleCell();
+    }
+    else
+    {
+        results = db->exec(QString(
+                    "SELECT sql FROM %1.sqlite_master WHERE lower(name) = '%2';").arg(dbName, escapeString(lowerName)),
+                    dbFlags
+                )->getSingleCell();
+    }
 
     // Validate query results
     if (!results.isValid() || results.isNull())
@@ -310,15 +321,15 @@ QString SchemaResolver::getObjectDdl(const QString &database, const QString &nam
     return resStr;
 }
 
-SqliteQueryPtr SchemaResolver::getParsedObject(const QString &name)
+SqliteQueryPtr SchemaResolver::getParsedObject(const QString &name, ObjectType type)
 {
-    return getParsedObject("main", name);
+    return getParsedObject("main", name, type);
 }
 
-SqliteQueryPtr SchemaResolver::getParsedObject(const QString &database, const QString &name)
+SqliteQueryPtr SchemaResolver::getParsedObject(const QString &database, const QString &name, ObjectType type)
 {
     // Get DDL
-    QString ddl = getObjectDdl(database, name);
+    QString ddl = getObjectDdl(database, name, type);
     if (ddl.isNull())
         return SqliteQueryPtr();
 
@@ -605,15 +616,8 @@ QHash<QString, SchemaResolver::ObjectDetails> SchemaResolver::getAllObjectDetail
     {
         row = results->next();
         type = row->value("type").toString();
-        if (type == "table")
-            detail.type = ObjectDetails::TABLE;
-        else if (type == "index")
-            detail.type = ObjectDetails::INDEX;
-        else if (type == "trigger")
-            detail.type = ObjectDetails::TRIGGER;
-        else if (type == "view")
-            detail.type = ObjectDetails::VIEW;
-        else
+        detail.type = stringToObjectType(type);
+        if (detail.type == ANY)
             qCritical() << "Unhlandled db object type:" << type;
 
         detail.ddl = row->value("sql").toString();
@@ -631,7 +635,7 @@ QList<SqliteCreateIndexPtr> SchemaResolver::getParsedIndexesForTable(const QStri
     SqliteCreateIndexPtr createIndex;
     foreach (const QString& index, indexes)
     {
-        query = getParsedObject(database, index);
+        query = getParsedObject(database, index, INDEX);
         if (!query)
             continue;
 
@@ -683,14 +687,14 @@ QList<SqliteCreateTriggerPtr> SchemaResolver::getParsedTriggersForTableOrView(co
     SqliteCreateTriggerPtr createTrigger;
     foreach (const QString& trig, triggers)
     {
-        query = getParsedObject(database, trig);
+        query = getParsedObject(database, trig, TRIGGER);
         if (!query)
             continue;
 
         createTrigger = query.dynamicCast<SqliteCreateTrigger>();
         if (!createTrigger)
         {
-            qWarning() << "Parsed DDL was not a CREATE TRIGGER statement, while queried for triggers.";
+            qWarning() << "Parsed DDL was not a CREATE TRIGGER statement, while queried for triggers." << createTrigger.data();
             continue;
         }
 
@@ -710,6 +714,38 @@ QList<SqliteCreateTriggerPtr> SchemaResolver::getParsedTriggersForTableOrView(co
     return createTriggerList;
 }
 
+QString SchemaResolver::objectTypeToString(SchemaResolver::ObjectType type)
+{
+    switch (type)
+    {
+        case TABLE:
+            return "table";
+        case INDEX:
+            return "index";
+        case TRIGGER:
+            return "trigger";
+        case VIEW:
+            return "view";
+        case ANY:
+            return QString();
+    }
+    return QString();
+}
+
+SchemaResolver::ObjectType SchemaResolver::stringToObjectType(const QString& type)
+{
+    if (type == "table")
+        return SchemaResolver::TABLE;
+    else if (type == "index")
+        return SchemaResolver::INDEX;
+    else if (type == "trigger")
+        return SchemaResolver::TRIGGER;
+    else if (type == "view")
+        return SchemaResolver::VIEW;
+    else
+        return SchemaResolver::ANY;
+}
+
 QList<SqliteCreateViewPtr> SchemaResolver::getParsedViewsForTable(const QString& database, const QString& table)
 {
     QList<SqliteCreateViewPtr> createViewList;
@@ -719,7 +755,7 @@ QList<SqliteCreateViewPtr> SchemaResolver::getParsedViewsForTable(const QString&
     SqliteCreateViewPtr createView;
     foreach (const QString& view, views)
     {
-        query = getParsedObject(database, view);
+        query = getParsedObject(database, view, VIEW);
         if (!query)
             continue;
 
@@ -759,7 +795,7 @@ bool SchemaResolver::isWithoutRowIdTable(const QString& table)
 
 bool SchemaResolver::isWithoutRowIdTable(const QString& database, const QString& table)
 {
-    SqliteQueryPtr query = getParsedObject(database, table);
+    SqliteQueryPtr query = getParsedObject(database, table, TABLE);
     if (!query)
         return false;
 
@@ -772,7 +808,7 @@ bool SchemaResolver::isWithoutRowIdTable(const QString& database, const QString&
 
 bool SchemaResolver::isVirtualTable(const QString& database, const QString& table)
 {
-    SqliteQueryPtr query = getParsedObject(database, table);
+    SqliteQueryPtr query = getParsedObject(database, table, TABLE);
     if (!query)
         return false;
 
@@ -804,7 +840,7 @@ QStringList SchemaResolver::getWithoutRowIdTableColumns(const QString& database,
 {
     QStringList columns;
 
-    SqliteQueryPtr query = getParsedObject(database, table);
+    SqliteQueryPtr query = getParsedObject(database, table, TABLE);
     if (!query)
         return columns;
 

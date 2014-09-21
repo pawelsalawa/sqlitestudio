@@ -44,6 +44,7 @@ void DbConverterDialog::setDb(Db* db)
 void DbConverterDialog::init()
 {
     ui->setupUi(this);
+    limitDialogWidth(this);
     setWindowTitle(tr("Convert database"));
 
     widgetCover = new WidgetCover(this);

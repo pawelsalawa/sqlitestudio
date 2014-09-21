@@ -38,6 +38,7 @@ void PopulateDialog::setDbAndTable(Db* db, const QString& table)
 void PopulateDialog::init()
 {
     ui->setupUi(this);
+    limitDialogWidth(this);
     ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Populate", "populate dialog button"));
 
     plugins = PLUGINS->getLoadedPlugins<PopulatePlugin>();

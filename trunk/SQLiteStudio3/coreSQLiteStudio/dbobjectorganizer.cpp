@@ -152,20 +152,23 @@ void DbObjectOrganizer::processPreparation()
 
         switch (details[srcName].type)
         {
-            case SchemaResolver::ObjectDetails::TABLE:
+            case SchemaResolver::TABLE:
                 srcTables << srcName;
                 findBinaryColumns(srcName, allParsedObjects);
                 collectReferencedTables(srcName, allParsedObjects);
                 collectReferencedIndexes(srcName);
                 collectReferencedTriggersForTable(srcName);
                 break;
-            case SchemaResolver::ObjectDetails::INDEX:
+            case SchemaResolver::INDEX:
                 break;
-            case SchemaResolver::ObjectDetails::TRIGGER:
+            case SchemaResolver::TRIGGER:
                 break;
-            case SchemaResolver::ObjectDetails::VIEW:
+            case SchemaResolver::VIEW:
                 srcViews << srcName;
                 collectReferencedTriggersForView(srcName);
+                break;
+            case SchemaResolver::ANY:
+                qCritical() << "Unhandled type in DbObjectOrganizer::processPreparation():" << SchemaResolver::objectTypeToString(details[srcName].type);
                 break;
         }
     }
@@ -338,11 +341,11 @@ bool DbObjectOrganizer::copyTableToDb(const QString& table)
     QString attachName = attach->getName();
     if (renamed.contains(table) || !attachName.isNull())
     {
-        SqliteQueryPtr parsedObject = srcResolver->getParsedObject(table);
+        SqliteQueryPtr parsedObject = srcResolver->getParsedObject(table, SchemaResolver::TABLE);
         SqliteCreateTablePtr createTable = parsedObject.dynamicCast<SqliteCreateTable>();
         if (!createTable)
         {
-            qCritical() << "Could not parse table while copying:" << table << ", ddl:" << srcResolver->getObjectDdl(table);
+            qCritical() << "Could not parse table while copying:" << table << ", ddl:" << srcResolver->getObjectDdl(table, SchemaResolver::TABLE);
             notifyError(tr("Error while creating table in target database: %1").arg(tr("Could not parse table.")));
             return false;
         }
@@ -359,7 +362,7 @@ bool DbObjectOrganizer::copyTableToDb(const QString& table)
     }
     else
     {
-        ddl = srcResolver->getObjectDdl(table);
+        ddl = srcResolver->getObjectDdl(table, SchemaResolver::TABLE);
     }
 
     ddl = convertDdlToDstVersion(ddl);
@@ -520,7 +523,7 @@ bool DbObjectOrganizer::copyTriggerToDb(const QString& trigger)
 
 bool DbObjectOrganizer::copySimpleObjectToDb(const QString& name, const QString& errorMessage)
 {
-    QString ddl = srcResolver->getObjectDdl(name);
+    QString ddl = srcResolver->getObjectDdl(name, SchemaResolver::ANY);
     QString convertedDdl = convertDdlToDstVersion(ddl);
     if (convertedDdl.trimmed() == ";") // empty query, result of ignored errors in UI
         return true;

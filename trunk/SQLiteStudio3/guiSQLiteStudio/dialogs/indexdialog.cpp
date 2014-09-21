@@ -58,6 +58,7 @@ void IndexDialog::changeEvent(QEvent *e)
 void IndexDialog::init()
 {
     ui->setupUi(this);
+    limitDialogWidth(this);
     if (!db || !db->isOpen())
     {
         qCritical() << "Created IndexDialog for null or closed database.";
@@ -124,7 +125,7 @@ void IndexDialog::init()
 void IndexDialog::readIndex()
 {
     SchemaResolver resolver(db);
-    SqliteQueryPtr parsedObject = resolver.getParsedObject(index);
+    SqliteQueryPtr parsedObject = resolver.getParsedObject(index, SchemaResolver::INDEX);
     if (!parsedObject.dynamicCast<SqliteCreateIndex>())
     {
         notifyError(tr("Could not process index %1 correctly. Unable to open an index dialog.").arg(index));

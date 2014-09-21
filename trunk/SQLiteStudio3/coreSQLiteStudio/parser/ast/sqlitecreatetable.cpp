@@ -721,7 +721,7 @@ TokenList SqliteCreateTable::Column::Constraint::rebuildTokensFromContents()
             else if (!ctime.isNull())
                 builder.withKeyword(ctime.toUpper());
             else if (expr)
-                builder.withStatement(expr);
+                builder.withParLeft().withStatement(expr).withParRight();
             else if (literalNull)
                 builder.withKeyword("NULL");
             else
