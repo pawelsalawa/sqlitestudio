@@ -33,12 +33,13 @@
 #include "dialogs/aboutdialog.h"
 #include "dialogs/bugdialog.h"
 #include "windows/bugreporthistorywindow.h"
+#include "dialogs/newversiondialog.h"
+#include "dialogs/quitconfirmdialog.h"
 #include <QMdiSubWindow>
 #include <QDebug>
 #include <QStyleFactory>
 #include <QUiLoader>
 #include <QInputDialog>
-#include <dialogs/newversiondialog.h>
 
 CFG_KEYS_DEFINE(MainWindow)
 MainWindow* MainWindow::instance = nullptr;
@@ -70,6 +71,8 @@ void MainWindow::init()
 #ifdef Q_OS_MACX
     ui->centralWidget->layout()->setMargin(0);
 #endif
+
+    Committable::init(MainWindow::confirmQuit);
 
     dbTree = new DbTree(this);
     addDockWidget(Qt::LeftDockWidgetArea, dbTree);
@@ -176,6 +179,12 @@ StatusField *MainWindow::getStatusField() const
 
 void MainWindow::closeEvent(QCloseEvent* event)
 {
+    if (!Committable::canQuit())
+    {
+        event->ignore();
+        return;
+    }
+
     closingApp = true;
     closeNonSessionWindows();
     MdiWindow* currWindow = ui->mdiArea->getCurrentWindow();
@@ -693,6 +702,25 @@ CollationsEditor* MainWindow::openCollationEditor()
 BugReportHistoryWindow* MainWindow::openReportHistory()
 {
     return openMdiWindow<BugReportHistoryWindow>();
+}
+
+bool MainWindow::confirmQuit(const QList<Committable*>& instances)
+{
+    QuitConfirmDialog dialog(MAINWINDOW);
+
+    for (Committable* c : instances)
+    {
+        if (c->isUncommited())
+            dialog.addMessage(c->getQuitUncommitedConfirmMessage());
+    }
+
+    if (dialog.getMessageCount() == 0)
+        return true;
+
+    if (dialog.exec() == QDialog::Accepted)
+        return true;
+
+    return false;
 }
 
 bool MainWindow::isClosingApp() const

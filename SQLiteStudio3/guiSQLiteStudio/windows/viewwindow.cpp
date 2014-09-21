@@ -22,6 +22,7 @@
 #include <QPushButton>
 #include <QProgressBar>
 #include <QDebug>
+#include <QMessageBox>
 
 CFG_KEYS_DEFINE(ViewWindow)
 
@@ -288,6 +289,27 @@ QString ViewWindow::getView() const
     return view;
 }
 
+bool ViewWindow::isUncommited() const
+{
+    return ui->dataView->isUncommited() || isModified();
+}
+
+QString ViewWindow::getQuitUncommitedConfirmMessage() const
+{
+    QString title = getMdiWindow()->windowTitle();
+    if (ui->dataView->isUncommited() && isModified())
+        return tr("View window \"%1\" has uncommited structure modifications and data.").arg(title);
+    else if (ui->dataView->isUncommited())
+        return tr("View window \"%1\" has uncommited data.").arg(title);
+    else if (isModified())
+        return tr("View window \"%1\" has uncommited structure modifications.").arg(title);
+    else
+    {
+        qCritical() << "Unhandled message case in ViewWindow::getQuitUncommitedConfirmMessage().";
+        return QString();
+    }
+}
+
 void ViewWindow::staticInit()
 {
     qRegisterMetaType<ViewWindow>("ViewWindow");
@@ -329,7 +351,7 @@ void ViewWindow::refreshView()
     updateTriggersState();
 }
 
-void ViewWindow::commitView()
+void ViewWindow::commitView(bool skipWarnings)
 {
     if (!isModified())
     {
@@ -338,7 +360,7 @@ void ViewWindow::commitView()
         return;
     }
 
-    if (!validate())
+    if (!validate(skipWarnings))
         return;
 
     executeStructureChanges();
@@ -417,6 +439,21 @@ void ViewWindow::tabChanged(int tabIdx)
     {
         case 1:
         {
+            if (isModified())
+            {
+                int res = QMessageBox::question(this, tr("Uncommited changes"),
+                                                tr("There are uncommited structure modifications. You cannot browse or edit data until you have "
+                                                   "the view structure settled.\n"
+                                                   "Do you want to commit the structure, or do you want to go back to the structure tab?"),
+                                                tr("Go back to structure tab"), tr("Commit modifications and browse data."));
+
+                ui->tabWidget->setCurrentIndex(0);
+                if (res == 1)
+                    commitView(true);
+
+                break;
+            }
+
             if (!dataLoaded)
                 ui->dataView->refreshData();
 
@@ -598,9 +635,9 @@ bool ViewWindow::isModified() const
             !existingView;
 }
 
-bool ViewWindow::validate()
+bool ViewWindow::validate(bool skipWarnings)
 {
-    if (ui->nameEdit->text().trimmed().isEmpty() && !blankNameWarningDisplayed)
+    if (!skipWarnings && ui->nameEdit->text().isEmpty() && !blankNameWarningDisplayed)
     {
         notifyWarn(tr("A blank name for the view is allowed in SQLite, but it is not recommended. "
                                "Hit the commit button again to ignore this warning and proceed."));

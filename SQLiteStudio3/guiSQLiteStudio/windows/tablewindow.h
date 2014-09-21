@@ -116,6 +116,8 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         QString getTable() const;
         Db* getDb() const;
         bool handleInitialFocus();
+        bool isUncommited() const;
+        QString getQuitUncommitedConfirmMessage() const;
 
     protected:
         void changeEvent(QEvent *e);
@@ -146,7 +148,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         void executeStructureChanges();
         QModelIndex structureCurrentIndex() const;
         void addConstraint(ConstraintDialog::Constraint mode);
-        bool validate();
+        bool validate(bool skipWarning = false);
         bool isModified() const;
         TokenList indexColumnTokens(SqliteCreateIndexPtr index);
         QString getCurrentIndex() const;
@@ -178,7 +180,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         void dbClosed();
         void checkIfTableDeleted(const QString& database, const QString& object, DbObjectType type);
         void refreshStructure();
-        void commitStructure();
+        void commitStructure(bool skipWarning = false);
         void changesSuccessfullyCommited();
         void changesFailedToCommit(int errorCode, const QString& errorText);
         void rollbackStructure();

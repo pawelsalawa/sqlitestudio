@@ -93,6 +93,8 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
         void execute();
         QToolBar* getToolBar(int toolbar) const;
         SqlEditor* getEditor() const;
+        bool isUncommited() const;
+        QString getQuitUncommitedConfirmMessage() const;
 
     protected:
         void changeEvent(QEvent *e);

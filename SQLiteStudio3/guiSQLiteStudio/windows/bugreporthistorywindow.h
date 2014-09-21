@@ -33,6 +33,8 @@ class GUI_API_EXPORT BugReportHistoryWindow : public MdiChild
         ~BugReportHistoryWindow();
 
         bool restoreSessionNextTime();
+        bool isUncommited() const;
+        QString getQuitUncommitedConfirmMessage() const;
 
     protected:
         QVariant saveSession();

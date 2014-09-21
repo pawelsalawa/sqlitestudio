@@ -411,6 +411,7 @@ void DataView::updateCommitRollbackActions(bool enabled)
 {
     actionMap[COMMIT_GRID]->setEnabled(enabled);
     actionMap[ROLLBACK_GRID]->setEnabled(enabled);
+    uncommitted = enabled;
 }
 
 void DataView::updateSelectiveCommitRollbackActions(bool enabled)
@@ -504,6 +505,11 @@ void DataView::updateFilterIcon()
             break;
         }
     }
+}
+
+bool DataView::isUncommited() const
+{
+    return uncommitted;
 }
 
 void DataView::dataLoadingEnded(bool successful)

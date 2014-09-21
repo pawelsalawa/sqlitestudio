@@ -606,3 +606,14 @@ int qHash(EditorWindow::ActionGroup actionGroup)
 {
     return static_cast<int>(actionGroup);
 }
+
+
+bool EditorWindow::isUncommited() const
+{
+    return ui->dataView->isUncommited();
+}
+
+QString EditorWindow::getQuitUncommitedConfirmMessage() const
+{
+    return tr("Editor window \"%1\" has uncommited data.").arg(getMdiWindow()->windowTitle());
+}

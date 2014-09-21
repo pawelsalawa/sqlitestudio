@@ -8,6 +8,7 @@
 #include <QDebug>
 #include <QFocusEvent>
 #include <QAction>
+#include <QMessageBox>
 
 MdiWindow::MdiWindow(MdiChild* mdiChild, MdiArea *mdiArea, Qt::WindowFlags flags) :
     QMdiSubWindow(mdiArea->viewport(), flags), mdiArea(mdiArea)
@@ -133,4 +134,19 @@ void MdiWindow::changeEvent(QEvent* event)
     }
     else
         QMdiSubWindow::changeEvent(event);
+}
+
+void MdiWindow::closeEvent(QCloseEvent* e)
+{
+    if (MAINWINDOW->isClosingApp() || !getMdiChild()->isUncommited())
+    {
+        QMdiSubWindow::closeEvent(e);
+        return;
+    }
+
+    int res = QMessageBox::question(this, tr("Uncommited changes"), getMdiChild()->getQuitUncommitedConfirmMessage(), tr("Don't close"), tr("Close anyway"));
+    if (res == 1)
+        QMdiSubWindow::closeEvent(e);
+    else
+        e->ignore();
 }
