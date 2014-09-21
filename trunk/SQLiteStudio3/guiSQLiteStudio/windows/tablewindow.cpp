@@ -720,6 +720,7 @@ void TableWindow::changesSuccessfullyCommited()
     originalCreateTable = createTable;
     structureModel->setCreateTable(createTable.data());
     structureConstraintsModel->setCreateTable(createTable.data());
+    dataLoaded = false;
 
     QString oldTable = table;
     database = createTable->database;

@@ -483,6 +483,7 @@ void ViewWindow::changesSuccessfullyCommited()
     widgetCover->hide();
 
     originalCreateView = createView;
+    dataLoaded = false;
 
     //QString oldView = view; // uncomment when implementing notify manager call
     database = createView->database;
