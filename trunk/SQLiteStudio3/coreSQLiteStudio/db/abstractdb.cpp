@@ -392,6 +392,8 @@ void AbstractDb::checkForDroppedObject(const QString& query)
     else
         object = tokens.first()->value;
 
+    object = stripObjName(object, getDialect());
+
     if (type == "TABLE")
         emit dbObjectDeleted(database, object, DbObjectType::TABLE);
     else if (type == "INDEX")
