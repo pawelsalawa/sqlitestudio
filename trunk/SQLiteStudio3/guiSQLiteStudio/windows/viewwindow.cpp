@@ -638,7 +638,7 @@ bool ViewWindow::isModified() const
 
 bool ViewWindow::validate(bool skipWarnings)
 {
-    if (!skipWarnings && ui->nameEdit->text().isEmpty() && !blankNameWarningDisplayed)
+    if (!existingView && !skipWarnings && ui->nameEdit->text().isEmpty() && !blankNameWarningDisplayed)
     {
         notifyWarn(tr("A blank name for the view is allowed in SQLite, but it is not recommended. "
                                "Hit the commit button again to ignore this warning and proceed."));
