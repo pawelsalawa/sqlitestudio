@@ -850,7 +850,7 @@ void TableWindow::addConstraint(ConstraintDialog::Constraint mode)
 
 bool TableWindow::validate(bool skipWarning)
 {
-    if (!skipWarning && ui->tableNameEdit->text().isEmpty() && !blankNameWarningDisplayed)
+    if (!existingTable && !skipWarning && ui->tableNameEdit->text().isEmpty() && !blankNameWarningDisplayed)
     {
         notifyWarn(tr("A blank name for the table is allowed in SQLite, but it is not recommended. "
                                "Hit the commit button again to ignore this warning and proceed."));
