@@ -207,6 +207,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         bool showLineNumbers = true;
         int storedSelectionStart = 0;
         int storedSelectionEnd = 0;
+        bool richFeaturesEnabled = true;
 
         /**
          * @brief virtualSqlExpression
