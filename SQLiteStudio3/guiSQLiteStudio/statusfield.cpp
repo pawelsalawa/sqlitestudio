@@ -90,6 +90,9 @@ void StatusField::addEntry(const QIcon &icon, const QString &text, const QColor&
     if (text.contains("<"))
     {
         QLabel* label = new QLabel(text);
+        QMargins margin = label->contentsMargins();
+        margin.setLeft(QApplication::style()->pixelMetric(QStyle::PM_LayoutHorizontalSpacing));
+        label->setContentsMargins(margin);
         label->setFont(font);
         label->setStyleSheet(colorTpl.arg(color.name()));
         connect(label, SIGNAL(linkActivated(QString)), this, SIGNAL(linkActivated(QString)));

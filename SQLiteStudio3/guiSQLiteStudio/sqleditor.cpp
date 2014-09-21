@@ -77,7 +77,6 @@ void SqlEditor::init()
     autoCompleteTimer->setSingleShot(true);
     autoCompleteTimer->setInterval(autoCompleterDelay);
     connect(autoCompleteTimer, SIGNAL(timeout()), this, SLOT(checkForAutoCompletion()));
-    //connect(this, SIGNAL(textChanged()), this, SLOT(scheduleAutoCompletion()));
 
     queryParserTimer = new QTimer(this);
     queryParserTimer->setSingleShot(true);
@@ -784,6 +783,19 @@ void SqlEditor::completerRightPressed()
 
 void SqlEditor::parseContents()
 {
+    if (document()->characterCount() > 100000)
+    {
+        if (richFeaturesEnabled)
+            notifyWarn(tr("Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled."));
+
+        richFeaturesEnabled = false;
+        return;
+    }
+    else if (!richFeaturesEnabled)
+    {
+        richFeaturesEnabled = true;
+    }
+
     // Updating dialect according to current database (if any)
     Dialect dialect = Dialect::Sqlite3;
     if (db && db->isValid())
