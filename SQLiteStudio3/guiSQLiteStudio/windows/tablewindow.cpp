@@ -371,7 +371,7 @@ void TableWindow::updateStructureCommitState()
 {
     bool modified = isModified();
     actionMap[COMMIT_STRUCTURE]->setEnabled(modified);
-    actionMap[ROLLBACK_STRUCTURE]->setEnabled(modified);
+    actionMap[ROLLBACK_STRUCTURE]->setEnabled(modified && existingTable);
 }
 
 void TableWindow::updateTableConstraintsToolbarState()
@@ -641,8 +641,9 @@ Icon* TableWindow::getIconNameForMdiWindow()
 
 QString TableWindow::getTitleForMdiWindow()
 {
+    QString dbSuffix = (!db ? "" : (" (" + db->getName() + ")"));
     if (existingTable)
-        return table + (!db ? "" : (" (" + db->getName() + ")"));
+        return table + dbSuffix;
 
     QStringList existingNames = MainWindow::getInstance()->getMdiArea()->getWindowTitles();
     if (existingNames.contains(windowTitle()))
@@ -653,6 +654,7 @@ QString TableWindow::getTitleForMdiWindow()
     while (existingNames.contains(title))
         title = tr("New table %1").arg(newTableWindowNum++);
 
+    title += dbSuffix;
     return title;
 }
 
@@ -971,6 +973,12 @@ void TableWindow::updateNewTableState()
 {
     for (int i = 1; i < 5; i++)
         ui->tabWidget->setTabEnabled(i, existingTable);
+
+    actionMap[EXPORT]->setEnabled(existingTable);
+    actionMap[IMPORT]->setEnabled(existingTable);
+    actionMap[POPULATE]->setEnabled(existingTable);
+    actionMap[CREATE_SIMILAR]->setEnabled(existingTable);
+    actionMap[REFRESH_STRUCTURE]->setEnabled(existingTable);
 }
 
 void TableWindow::updateBlankNameWarningState()

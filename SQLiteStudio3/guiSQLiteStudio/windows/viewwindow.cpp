@@ -142,8 +142,9 @@ Icon* ViewWindow::getIconNameForMdiWindow()
 
 QString ViewWindow::getTitleForMdiWindow()
 {
+    QString dbSuffix = (!db ? "" : (" (" + db->getName() + ")"));
     if (existingView)
-        return view + (!db ? "" : (" (" + db->getName() + ")"));
+        return view + dbSuffix;
 
     QStringList existingNames = MDIAREA->getWindowTitles();
     if (existingNames.contains(windowTitle()))
@@ -154,6 +155,7 @@ QString ViewWindow::getTitleForMdiWindow()
     while (existingNames.contains(title))
         title = tr("New view %1").arg(newViewWindowNum++);
 
+    title += dbSuffix;
     return title;
 }
 
@@ -472,7 +474,8 @@ void ViewWindow::updateQueryToolbarStatus()
     bool modified = isModified();
     bool queryOk = ui->queryEdit->isSyntaxChecked() && !ui->queryEdit->haveErrors();
     actionMap[COMMIT_QUERY]->setEnabled(modified && queryOk);
-    actionMap[ROLLBACK_QUERY]->setEnabled(modified);
+    actionMap[ROLLBACK_QUERY]->setEnabled(modified && existingView);
+    actionMap[REFRESH_QUERY]->setEnabled(existingView);
 }
 
 void ViewWindow::changesSuccessfullyCommited()
