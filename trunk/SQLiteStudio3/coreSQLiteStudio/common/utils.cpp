@@ -1,5 +1,6 @@
 #include "common/utils.h"
 #include "common/global.h"
+#include "dbobjecttype.h"
 #include <QTextCodec>
 #include <QString>
 #include <QSet>
@@ -16,6 +17,7 @@
 void initUtils()
 {
     qRegisterMetaType<QList<int>>("QList<int>");
+    qRegisterMetaType<DbObjectType>("DbObjectType");
 }
 
 bool isXDigit(const QChar& c)
