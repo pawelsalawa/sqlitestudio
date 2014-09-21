@@ -258,7 +258,7 @@ void ViewWindow::initView()
 
     refreshTriggers();
 
-    connect(db, SIGNAL(dbObjectDeleted(QString,QString,DbObjectType)), this, SLOT(checkIfTableDeleted(QString,QString,DbObjectType)));
+    connect(db, SIGNAL(dbObjectDeleted(QString,QString,DbObjectType)), this, SLOT(checkIfViewDeleted(QString,QString,DbObjectType)));
 }
 
 void ViewWindow::setupCoverWidget()
@@ -540,7 +540,7 @@ void ViewWindow::dbClosed()
     getMdiWindow()->close();
 }
 
-void ViewWindow::checkIfTableDeleted(const QString& database, const QString& object, DbObjectType type)
+void ViewWindow::checkIfViewDeleted(const QString& database, const QString& object, DbObjectType type)
 {
     UNUSED(database);
     if (type != DbObjectType::VIEW)

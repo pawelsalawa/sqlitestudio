@@ -135,7 +135,7 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
         void nextTab();
         void prevTab();
         void dbClosed();
-        void checkIfTableDeleted(const QString& database, const QString& object, DbObjectType type);
+        void checkIfViewDeleted(const QString& database, const QString& object, DbObjectType type);
 
     public slots:
         void refreshTriggers();
