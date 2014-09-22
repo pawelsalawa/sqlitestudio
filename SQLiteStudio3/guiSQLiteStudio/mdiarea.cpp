@@ -80,6 +80,19 @@ QList<MdiChild*> MdiArea::getMdiChilds() const
     return childs;
 }
 
+QList<MdiWindow*> MdiArea::getWindowsToTile() const
+{
+    QList<MdiWindow*> list;
+    foreach (MdiWindow *window, getWindows())
+    {
+        if (window->isMinimized())
+            continue;
+
+        list << window;
+    }
+    return list;
+}
+
 void MdiArea::taskActivated()
 {
     QAction* action = dynamic_cast<QAction*>(sender());
@@ -127,9 +140,11 @@ void MdiArea::tileHorizontally()
     if (taskBar->isEmpty())
         return;
 
+    bool gotFocus = false;
     QPoint position(0, 0);
-    int winCnt = getWindows().count();
-    foreach (MdiWindow *window, getWindows())
+    QList<MdiWindow*> windowsToTile = getWindowsToTile();
+    int winCnt = windowsToTile.count();
+    foreach (MdiWindow *window, windowsToTile)
     {
         if (window->isMaximized())
             window->showNormal();
@@ -138,7 +153,13 @@ void MdiArea::tileHorizontally()
         window->setGeometry(rect);
         window->move(position);
         position.setX(position.x() + window->width());
+
+        if (window->hasFocus())
+            gotFocus = true;
     }
+
+    if (!gotFocus && windowsToTile.size() > 0)
+        windowsToTile.first()->setFocus();
 }
 
 void MdiArea::tileVertically()
@@ -146,9 +167,11 @@ void MdiArea::tileVertically()
     if (taskBar->isEmpty())
         return;
 
+    bool gotFocus = false;
     QPoint position(0, 0);
-    int winCnt = getWindows().count();
-    foreach (MdiWindow *window, getWindows())
+    QList<MdiWindow*> windowsToTile = getWindowsToTile();
+    int winCnt = windowsToTile.count();
+    foreach (MdiWindow *window, windowsToTile)
     {
         if (window->isMaximized())
             window->showNormal();
@@ -157,7 +180,13 @@ void MdiArea::tileVertically()
         window->setGeometry(rect);
         window->move(position);
         position.setY(position.y() + window->height());
+
+        if (window->hasFocus())
+            gotFocus = true;
     }
+
+    if (!gotFocus && windowsToTile.size() > 0)
+        windowsToTile.first()->setFocus();
 }
 
 void MdiArea::closeAllButActive()

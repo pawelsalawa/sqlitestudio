@@ -33,6 +33,8 @@ class GUI_API_EXPORT MdiArea : public QMdiArea
         QList<T*> getMdiChilds() const;
 
     private:
+        QList<MdiWindow*> getWindowsToTile() const;
+
         TaskBar* taskBar = nullptr;
         QHash<QAction*,MdiWindow*> actionToWinMap;
         QHash<MdiWindow*,QAction*> winToActionMap;
