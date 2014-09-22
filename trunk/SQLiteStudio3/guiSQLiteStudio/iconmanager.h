@@ -42,7 +42,6 @@ class GUI_API_EXPORT IconManager : public QObject
             DEF_ICO2(COLUMN_CONSTRAINT_ADD,             COLUMN_CONSTRAINT, PLUS)
             DEF_ICO2(COLUMN_CONSTRAINT_DEL,             COLUMN_CONSTRAINT, MINUS)
             DEF_ICO2(COLUMN_CONSTRAINT_EDIT,            COLUMN_CONSTRAINT, EDIT)
-            DEF_ICON(COLUMN_EDIT,                       "column_edit")
             DEF_ICON(COLUMNS,                           "columns")
             DEF_ICON(COMMIT,                            "commit")
             DEF_ICON(COMPLETE,                          "complete")
