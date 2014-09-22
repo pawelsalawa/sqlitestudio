@@ -184,7 +184,6 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         void changesSuccessfullyCommited();
         void changesFailedToCommit(int errorCode, const QString& errorText);
         void rollbackStructure();
-        void addColumn();
         void editColumn();
         void delColumn();
         void moveColumnUp();
@@ -227,7 +226,9 @@ class GUI_API_EXPORT TableWindow : public MdiChild
     public slots:
         void updateIndexes();
         void updateTriggers();
+        void addColumn();
         void editColumn(const QString& columnName);
+        void delColumn(const QString& columnName);
 
     signals:
         void modifyStatusChanged();

@@ -1380,6 +1380,15 @@ void TableWindow::editColumn(const QString& columnName)
     editColumn(colIdx);
 }
 
+void TableWindow::delColumn(const QString& columnName)
+{
+    QModelIndex colIdx = structureModel->findColumn(columnName);
+    if (!colIdx.isValid())
+        return;
+
+    delColumn(colIdx);
+}
+
 bool TableWindow::restoreSessionNextTime()
 {
     return existingTable && db && !DBLIST->isTemporary(db);
