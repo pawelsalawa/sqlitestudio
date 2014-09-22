@@ -260,7 +260,12 @@ void DbTreeItem::updateDbIcon()
 
     Db* db = getDb();
     if (db->isValid())
-        setIcon(ICONS.DATABASE);
+    {
+        if (db->isOpen())
+            setIcon(ICONS.DATABASE_ONLINE);
+        else
+            setIcon(ICONS.DATABASE_OFFLINE);
+    }
     else
         setIcon(ICONS.DATABASE_INVALID);
 }

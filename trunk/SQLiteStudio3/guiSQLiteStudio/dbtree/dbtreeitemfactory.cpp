@@ -9,7 +9,7 @@ DbTreeItem *DbTreeItemFactory::createDir(const QString &name, QObject *parent)
 
 DbTreeItem *DbTreeItemFactory::createDb(const QString &name, QObject *parent)
 {
-    return new DbTreeItem(DbTreeItem::Type::DB, ICONS.DATABASE, name, parent);
+    return new DbTreeItem(DbTreeItem::Type::DB, ICONS.DATABASE_OFFLINE, name, parent);
 }
 
 DbTreeItem *DbTreeItemFactory::createTable(const QString &name, QObject *parent)

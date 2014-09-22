@@ -84,8 +84,8 @@ void DbTree::init()
 
     connect(DBLIST, SIGNAL(dbListLoaded()), treeModel, SLOT(loadDbList()));
     connect(ui->treeView->selectionModel(), &QItemSelectionModel::currentChanged, this, &DbTree::currentChanged);
-    connect(DBLIST, SIGNAL(dbConnected(Db*)), this, SLOT(updateActionsForCurrent()));
-    connect(DBLIST, SIGNAL(dbDisconnected(Db*)), this, SLOT(updateActionsForCurrent()));
+    connect(DBLIST, SIGNAL(dbConnected(Db*)), this, SLOT(dbConnected(Db*)));
+    connect(DBLIST, SIGNAL(dbDisconnected(Db*)), this, SLOT(dbDisconnected(Db*)));
     connect(IMPORT_MANAGER, SIGNAL(schemaModified(Db*)), this, SLOT(refreshSchema(Db*)));
 
     updateActionsForCurrent();
@@ -1397,6 +1397,25 @@ void DbTree::refreshSchema()
 void DbTree::updateActionsForCurrent()
 {
     updateActionStates(ui->treeView->currentItem());
+}
+
+void DbTree::dbConnected(Db* db)
+{
+    updateActionsForCurrent();
+    updateDbIcon(db);
+}
+
+void DbTree::dbDisconnected(Db* db)
+{
+    updateActionsForCurrent();
+    updateDbIcon(db);
+}
+
+void DbTree::updateDbIcon(Db* db)
+{
+    DbTreeItem* item = treeModel->findItem(DbTreeItem::Type::DB, db);
+    if (item)
+        item->updateDbIcon();
 }
 
 void DbTree::setupDefShortcuts()
