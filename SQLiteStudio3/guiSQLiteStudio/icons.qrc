@@ -185,5 +185,7 @@
         <file>img/config_data_editors.png</file>
         <file>img/database_export_wizard.svg</file>
         <file>img/database_import_wizard.svg</file>
+        <file>img/database_offline.png</file>
+        <file>img/database_online.png</file>
     </qresource>
 </RCC>

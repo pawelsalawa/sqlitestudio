@@ -187,6 +187,9 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void deleteItems(const QList<DbTreeItem*>& itemsToDelete);
         void refreshSchema();
         void updateActionsForCurrent();
+        void dbConnected(Db* db);
+        void dbDisconnected(Db* db);
+        void updateDbIcon(Db* db);
 };
 
 int qHash(DbTree::Action action);

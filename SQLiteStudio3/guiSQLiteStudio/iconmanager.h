@@ -84,6 +84,8 @@ class GUI_API_EXPORT IconManager : public QObject
             DEF_ICON(DATABASE_IMPORT_WIZARD,            "database_import_wizard")
             DEF_ICO2(DATABASE_INVALID,                  DATABASE, WARNING)
             DEF_ICON(DATABASE_NETWORK,                  "database_network")
+            DEF_ICON(DATABASE_OFFLINE,                  "database_offline")
+            DEF_ICON(DATABASE_ONLINE,                   "database_online")
             DEF_ICON(DATABASE_RELOAD,                   "database_reload")
             DEF_ICON(DDL_HISTORY,                       "ddl_history")
             DEF_ICON(DELETE_ROW,                        "delete_row")
