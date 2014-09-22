@@ -21,7 +21,6 @@ void FormatSelect::formatInternal()
 
     for (SqliteSelect::Core* core : select->coreSelects)
     {
-        withStatement(core);
         switch (core->compoundOp)
         {
             case SqliteSelect::CompoundOperator::UNION:
@@ -39,6 +38,7 @@ void FormatSelect::formatInternal()
             case SqliteSelect::CompoundOperator::null:
                 break;
         }
+        withStatement(core);
     }
 
     withSemicolon();
