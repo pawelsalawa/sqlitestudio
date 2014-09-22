@@ -75,7 +75,9 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
             ADD_VIEW,
             EDIT_VIEW,
             DEL_VIEW,
+            ADD_COLUMN,
             EDIT_COLUMN,
+            DEL_COLUMN,
             CLEAR_FILTER,
             REFRESH_SCHEMAS,
             REFRESH_SCHEMA,
@@ -171,11 +173,15 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void exportTable();
         void importTable();
         void populateTable();
+        void addColumn();
         void editColumn();
+        void delColumn();
         void convertDb();
         void vacuumDb();
         void integrityCheck();
+        void addColumn(DbTreeItem* item);
         void editColumn(DbTreeItem* item);
+        void delColumn(DbTreeItem* item);
         void currentChanged(const QModelIndex & current, const QModelIndex & previous);
         void deleteSelected();
         void deleteItems(const QList<DbTreeItem*>& itemsToDelete);

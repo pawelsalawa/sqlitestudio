@@ -124,7 +124,9 @@ void DbTree::createActions()
     createAction(ADD_VIEW, ICONS.VIEW_ADD, tr("Create a view"), this, SLOT(addView()), this);
     createAction(EDIT_VIEW, ICONS.VIEW_EDIT, tr("Edit the view"), this, SLOT(editView()), this);
     createAction(DEL_VIEW, ICONS.VIEW_DEL, tr("Drop the view"), this, SLOT(delView()), this);
-    createAction(EDIT_COLUMN, ICONS.COLUMN_EDIT, tr("Edit the column"), this, SLOT(editColumn()), this);
+    createAction(ADD_COLUMN, ICONS.TABLE_COLUMN_ADD, tr("Add a column"), this, SLOT(addColumn()), this);
+    createAction(EDIT_COLUMN, ICONS.TABLE_COLUMN_EDIT, tr("Edit the column"), this, SLOT(editColumn()), this);
+    createAction(DEL_COLUMN, ICONS.TABLE_COLUMN_DELETE, tr("Delete the column"), this, SLOT(delColumn()), this);
     createAction(DEL_SELECTED, ICONS.ACT_SELECT_ALL, tr("Select all"), this, SLOT(deleteSelected()), this);
     createAction(CLEAR_FILTER, tr("Clear filter"), ui->nameFilter, SLOT(clear()), this);
     createAction(REFRESH_SCHEMAS, ICONS.DATABASE_RELOAD, tr("Refresh all database schemas"), this, SLOT(refreshSchemas()), this);
@@ -182,7 +184,7 @@ void DbTree::updateActionStates(const QStandardItem *item)
                 case DbTreeItem::Type::TABLES:
                     break;
                 case DbTreeItem::Type::TABLE:
-                    enabled << EDIT_TABLE << DEL_TABLE << EXPORT_TABLE << IMPORT_TABLE << POPULATE_TABLE;
+                    enabled << EDIT_TABLE << DEL_TABLE << EXPORT_TABLE << IMPORT_TABLE << POPULATE_TABLE << ADD_COLUMN;
                     enabled << ADD_INDEX << ADD_TRIGGER;
                     break;
                 case DbTreeItem::Type::VIRTUAL_TABLE:
@@ -238,11 +240,11 @@ void DbTree::updateActionStates(const QStandardItem *item)
                     enabled << ADD_TRIGGER;
                     break;
                 case DbTreeItem::Type::COLUMNS:
-                    enabled << EDIT_TABLE << DEL_TABLE;
+                    enabled << EDIT_TABLE << DEL_TABLE << EXPORT_TABLE << IMPORT_TABLE << POPULATE_TABLE << ADD_COLUMN;
                     enabled << ADD_INDEX << ADD_TRIGGER;
                     break;
                 case DbTreeItem::Type::COLUMN:
-                    enabled << EDIT_TABLE << DEL_TABLE;
+                    enabled << EDIT_TABLE << DEL_TABLE << EXPORT_TABLE << IMPORT_TABLE << POPULATE_TABLE << ADD_COLUMN << DEL_COLUMN;
                     enabled << EDIT_COLUMN;
                     enabled << ADD_INDEX << ADD_TRIGGER;
                     break;
@@ -344,6 +346,7 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
                 actions += ActionEntry(EDIT_TABLE);
                 actions += ActionEntry(DEL_TABLE);
                 actions += ActionEntry(_separator);
+                actions += ActionEntry(ADD_COLUMN);
                 actions += ActionEntry(ADD_INDEX);
                 actions += ActionEntry(ADD_TRIGGER);
                 actions += ActionEntry(_separator);
@@ -405,10 +408,38 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
                 actions += dbEntryExt;
                 break;
             case DbTreeItem::Type::COLUMNS:
+                actions += ActionEntry(ADD_COLUMN);
+                actions += ActionEntry(_separator);
+                actions += ActionEntry(ADD_TABLE);
+                actions += ActionEntry(EDIT_TABLE);
+                actions += ActionEntry(DEL_TABLE);
+                actions += ActionEntry(_separator);
+                actions += ActionEntry(ADD_INDEX);
+                actions += ActionEntry(ADD_TRIGGER);
+                actions += ActionEntry(_separator);
+                actions += ActionEntry(IMPORT_TABLE);
+                actions += ActionEntry(EXPORT_TABLE);
+                actions += ActionEntry(POPULATE_TABLE);
+                actions += ActionEntry(_separator);
+                actions += dbEntryExt;
                 break;
             case DbTreeItem::Type::COLUMN:
+                actions += ActionEntry(ADD_COLUMN);
                 actions += ActionEntry(EDIT_COLUMN);
+                actions += ActionEntry(DEL_COLUMN);
                 actions += ActionEntry(_separator);
+                actions += ActionEntry(ADD_TABLE);
+                actions += ActionEntry(EDIT_TABLE);
+                actions += ActionEntry(DEL_TABLE);
+                actions += ActionEntry(_separator);
+                actions += ActionEntry(ADD_INDEX);
+                actions += ActionEntry(ADD_TRIGGER);
+                actions += ActionEntry(_separator);
+                actions += ActionEntry(IMPORT_TABLE);
+                actions += ActionEntry(EXPORT_TABLE);
+                actions += ActionEntry(POPULATE_TABLE);
+                actions += ActionEntry(_separator);
+                actions += dbEntryExt;
                 break;
             case DbTreeItem::Type::ITEM_PROTOTYPE:
                 break;
@@ -1158,6 +1189,15 @@ void DbTree::populateTable()
     dialog.exec();
 }
 
+void DbTree::addColumn()
+{
+    DbTreeItem* item = ui->treeView->currentItem();
+    if (!item)
+        return;
+
+    addColumn(item);
+}
+
 void DbTree::editColumn()
 {
     DbTreeItem* item = ui->treeView->currentItem();
@@ -1165,6 +1205,15 @@ void DbTree::editColumn()
         return;
 
     editColumn(item);
+}
+
+void DbTree::delColumn()
+{
+    DbTreeItem* item = ui->treeView->currentItem();
+    if (!item)
+        return;
+
+    delColumn(item);
 }
 
 void DbTree::convertDb()
@@ -1210,6 +1259,26 @@ void DbTree::integrityCheck()
     win->execute();
 }
 
+void DbTree::addColumn(DbTreeItem* item)
+{
+    Db* db = getSelectedOpenDb();
+    if (!db || !db->isValid())
+        return;
+
+    DbTreeItem* tableItem = nullptr;
+
+    if (item->getType() == DbTreeItem::Type::TABLE)
+        tableItem = item;
+    else
+        tableItem = item->findParentItem(DbTreeItem::Type::TABLE);
+
+    if (!tableItem)
+        return;
+
+    TableWindow* tableWin = openTable(tableItem);
+    tableWin->addColumn();
+}
+
 void DbTree::editColumn(DbTreeItem* item)
 {
     Db* db = getSelectedOpenDb();
@@ -1225,6 +1294,23 @@ void DbTree::editColumn(DbTreeItem* item)
 
     TableWindow* tableWin = openTable(tableItem);
     tableWin->editColumn(item->text());
+}
+
+void DbTree::delColumn(DbTreeItem* item)
+{
+    Db* db = getSelectedOpenDb();
+    if (!db || !db->isValid())
+        return;
+
+    if (item->getType() != DbTreeItem::Type::COLUMN)
+        return;
+
+    DbTreeItem* tableItem = item->findParentItem(DbTreeItem::Type::TABLE);
+    if (!tableItem)
+        return;
+
+    TableWindow* tableWin = openTable(tableItem);
+    tableWin->delColumn(item->text());
 }
 
 void DbTree::currentChanged(const QModelIndex &current, const QModelIndex &previous)
