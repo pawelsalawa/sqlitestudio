@@ -370,8 +370,8 @@ void ConfigDialog::updateDataTypeEditors()
 {
     QString typeName = ui->dataEditorsTypesList->currentItem()->text();
     DataType::Enum typeEnum = DataType::fromString(typeName);
-    QStringList editorsOrder = getPluginNamesFromDataTypeItem(ui->dataEditorsTypesList->currentItem());
-    bool usingCustomOrder = (editorsOrder.size() > 0);
+    bool usingCustomOrder = false;
+    QStringList editorsOrder = getPluginNamesFromDataTypeItem(ui->dataEditorsTypesList->currentItem(), &usingCustomOrder);
     QList<MultiEditorWidgetPlugin*> sortedPlugins;
 
     while (ui->dataEditorsSelectedTabs->count() > 0)
@@ -480,9 +480,13 @@ void ConfigDialog::transformDataTypeEditorsToCustomList(QListWidgetItem* typeIte
     setPluginNamesForDataTypeItem(typeItem, pluginNames);
 }
 
-QStringList ConfigDialog::getPluginNamesFromDataTypeItem(QListWidgetItem* typeItem)
+QStringList ConfigDialog::getPluginNamesFromDataTypeItem(QListWidgetItem* typeItem, bool* exists)
 {
-    return typeItem->data(QListWidgetItem::UserType).toStringList();
+    QVariant data = typeItem->data(QListWidgetItem::UserType);
+    if (exists)
+        *exists = data.isValid();
+
+    return data.toStringList();
 }
 
 void ConfigDialog::setPluginNamesForDataTypeItem(QListWidgetItem* typeItem, const QStringList& pluginNames)
@@ -535,8 +539,9 @@ void ConfigDialog::dataEditorAvailableChanged(QListWidgetItem* item)
     if (!typeItem)
         return;
 
-    QStringList pluginNames = getPluginNamesFromDataTypeItem(typeItem);
-    if (pluginNames.size() == 0)
+    bool exists = false;
+    QStringList pluginNames = getPluginNamesFromDataTypeItem(typeItem, &exists);
+    if (!exists)
     {
         transformDataTypeEditorsToCustomList(typeItem);
         pluginNames = getPluginNamesFromDataTypeItem(typeItem);
@@ -565,8 +570,9 @@ void ConfigDialog::dataEditorTabsOrderChanged(int from, int to)
     if (!typeItem)
         return;
 
-    QStringList pluginNames = getPluginNamesFromDataTypeItem(typeItem);
-    if (pluginNames.size() == 0)
+    bool exists = false;
+    QStringList pluginNames = getPluginNamesFromDataTypeItem(typeItem, &exists);
+    if (!exists)
     {
         transformDataTypeEditorsToCustomList(typeItem);
         pluginNames = getPluginNamesFromDataTypeItem(typeItem);
