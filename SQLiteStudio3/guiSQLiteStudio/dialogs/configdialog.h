@@ -77,7 +77,7 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         void removeDataTypeEditor(QListWidgetItem* item, const QString& pluginName);
         void removeDataTypeEditor(int idx);
         void transformDataTypeEditorsToCustomList(QListWidgetItem* typeItem);
-        QStringList getPluginNamesFromDataTypeItem(QListWidgetItem* typeItem);
+        QStringList getPluginNamesFromDataTypeItem(QListWidgetItem* typeItem, bool* exists = nullptr);
         void setPluginNamesForDataTypeItem(QListWidgetItem* typeItem, const QStringList& pluginNames);
         void addDataType(const QString& typeStr);
 

@@ -13,6 +13,7 @@
 
 
 * Next versions:
+- commiting DataView should be async
 - syntax checkers as services - per language
 - code assistants as services - per language
 - tcl highlighter
