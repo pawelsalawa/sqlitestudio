@@ -1273,6 +1273,25 @@ update_stmt(X) ::= with(WI) UPDATE orconf(C)
                                             }
 //%endif
 
+update_stmt(X) ::= with(WI) UPDATE
+            orconf(C).                      {
+                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                SqliteUpdate* q = new SqliteUpdate();
+                                                q->with = WI;
+                                                X = q;
+                                                objectForTokens = X;
+                                                delete C;
+                                            }
+update_stmt(X) ::= with(WI) UPDATE
+            orconf(C) nm(N) DOT.            {
+                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                SqliteUpdate* q = new SqliteUpdate();
+                                                q->with = WI;
+                                                q->database = *(N);
+                                                X = q;
+                                                objectForTokens = X;
+                                                delete C;
+                                            }
 update_stmt ::= with UPDATE orconf nm DOT
                     ID_TAB.                 {}
 update_stmt ::= with UPDATE orconf
