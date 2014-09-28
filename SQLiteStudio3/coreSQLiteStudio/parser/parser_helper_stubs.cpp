@@ -12,9 +12,9 @@ ParserIndexedBy::ParserIndexedBy(const QString &name)
     indexedBy = name;
 }
 
-ParserIndexedBy::ParserIndexedBy(bool indexedBy)
+ParserIndexedBy::ParserIndexedBy(bool notIndexed)
 {
-    this->indexedBy = indexedBy;
+    this->notIndexedKw = notIndexed;
 }
 
 

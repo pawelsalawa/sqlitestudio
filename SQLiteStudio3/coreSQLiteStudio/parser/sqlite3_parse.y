@@ -991,6 +991,8 @@ singlesrc(X) ::= nm(N1) dbnm(N2) as(A)
                                                 delete N1;
                                                 delete N2;
                                                 delete A;
+                                                if (I)
+                                                    delete I;
                                                 objectForTokens = X;
                                             }
 singlesrc(X) ::= LP select(S) RP as(A).     {
@@ -1208,6 +1210,7 @@ delete_stmt(X) ::= with(WI) DELETE FROM
                                                                 WI
                                                             );
                                                     }
+                                                    delete I;
                                                 }
                                                 else
                                                 {
@@ -1225,6 +1228,23 @@ delete_stmt(X) ::= with(WI) DELETE FROM
                                             }
 //%endif
 
+delete_stmt(X) ::= with(W) DELETE FROM.     {
+                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                SqliteDelete* q = new SqliteDelete();
+                                                q->with = W;
+                                                X = q;
+                                                objectForTokens = X;
+                                            }
+delete_stmt(X) ::= with(W) DELETE FROM
+            nm(N) DOT.                      {
+                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                SqliteDelete* q = new SqliteDelete();
+                                                q->with = W;
+                                                q->database = *(N);
+                                                X = q;
+                                                objectForTokens = X;
+                                                delete N;
+                                            }
 delete_stmt ::= with DELETE FROM
                             nm DOT ID_TAB.  {}
 delete_stmt ::= with DELETE FROM
@@ -1268,6 +1288,8 @@ update_stmt(X) ::= with(WI) UPDATE orconf(C)
                                                 delete C;
                                                 delete N;
                                                 delete L;
+                                                if (I)
+                                                    delete I;
                                                 // since it's used in trigger:
                                                 objectForTokens = X;
                                             }
@@ -1291,6 +1313,7 @@ update_stmt(X) ::= with(WI) UPDATE
                                                 X = q;
                                                 objectForTokens = X;
                                                 delete C;
+                                                delete N;
                                             }
 update_stmt ::= with UPDATE orconf nm DOT
                     ID_TAB.                 {}
@@ -1369,6 +1392,30 @@ insert_stmt(X) ::= with(W) insert_cmd(C)
                                                 objectForTokens = X;
                                             }
 
+insert_stmt(X) ::= with(W) insert_cmd(C)
+            INTO.                           {
+                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                SqliteInsert* q = new SqliteInsert();
+                                                q->replaceKw = C->replace;
+                                                q->onConflict = C->orConflict;
+                                                q->with = W;
+                                                X = q;
+                                                objectForTokens = X;
+                                                delete C;
+                                            }
+insert_stmt(X) ::= with(W) insert_cmd(C)
+            INTO nm(N) DOT.                 {
+                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                SqliteInsert* q = new SqliteInsert();
+                                                q->replaceKw = C->replace;
+                                                q->onConflict = C->orConflict;
+                                                q->with = W;
+                                                q->database = *(N);
+                                                X = q;
+                                                objectForTokens = X;
+                                                delete C;
+                                                delete N;
+                                            }
 insert_stmt ::= with insert_cmd INTO
                     ID_DB|ID_TAB.           {}
 insert_stmt ::= with insert_cmd INTO
