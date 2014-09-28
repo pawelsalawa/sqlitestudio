@@ -138,6 +138,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
 
         static QHash<DbTreeItem::Type,QList<DbTreeItem::Type>> allowedTypesInside;
         static QSet<DbTreeItem::Type> draggableTypes;
+        static const constexpr int ITEM_TEXT_LIMIT = 300;
 
     public slots:
         void refreshSchema(Db* db);

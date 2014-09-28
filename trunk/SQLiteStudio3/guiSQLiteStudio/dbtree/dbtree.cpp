@@ -868,7 +868,7 @@ void DbTree::deleteGroup()
         return;
 
     QMessageBox::StandardButton resp = QMessageBox::question(this, tr("Delete group"),
-            tr("Are you sure you want to delete group %1?\nAll objects from this group will be moved to parent group.").arg(item->text()));
+            tr("Are you sure you want to delete group %1?\nAll objects from this group will be moved to parent group.").arg(item->text().left(ITEM_TEXT_LIMIT)));
 
     if (resp != QMessageBox::Yes)
         return;
@@ -928,7 +928,7 @@ void DbTree::removeDb()
     if (!db)
         return;
 
-    int res = QMessageBox::question(this, tr("Delete database"), tr("Are you sure you want to delete database '%1'?").arg(db->getName()));
+    int res = QMessageBox::question(this, tr("Delete database"), tr("Are you sure you want to delete database '%1'?").arg(db->getName().left(ITEM_TEXT_LIMIT)));
     if (!res)
         return;
 
@@ -1345,7 +1345,7 @@ void DbTree::deleteItems(const QList<DbTreeItem*>& itemsToDelete)
     int groupItems = 0;
     foreach (DbTreeItem* item, items)
     {
-        itemStr = itemTmp.arg(item->getIcon()->toUrl()).arg(item->text());
+        itemStr = itemTmp.arg(item->getIcon()->toUrl()).arg(item->text().left(ITEM_TEXT_LIMIT));
 
         if (item->getType() == DbTreeItem::Type::DB)
             databasesToRemove << itemStr;
