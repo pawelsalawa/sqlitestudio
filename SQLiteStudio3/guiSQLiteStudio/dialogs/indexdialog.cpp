@@ -139,15 +139,7 @@ void IndexDialog::readIndex()
 void IndexDialog::buildColumns()
 {
     // Clean up
-    foreach (QCheckBox* cb, columnCheckBoxes)
-        delete cb;
-
-    foreach (QComboBox* cb, sortComboBoxes)
-        delete cb;
-
-    foreach (QComboBox* cb, collateComboBoxes)
-        delete cb;
-
+    ui->columnsTable->setRowCount(0);
     columnCheckBoxes.clear();
     sortComboBoxes.clear();
     collateComboBoxes.clear();
