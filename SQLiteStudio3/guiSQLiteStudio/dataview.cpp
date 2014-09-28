@@ -38,6 +38,7 @@ void DataView::init(SqlQueryModel* model)
 
     rowCountLabel = new QLabel();
     formViewRowCountLabel = new QLabel();
+    formViewCurrentRowLabel = new QLabel();
 
     initFormView();
     initPageEdit();
@@ -79,6 +80,7 @@ void DataView::initFormView()
     formView->setGridView(gridView);
     connect(formView, SIGNAL(commitStatusChanged()), this, SLOT(updateFormCommitRollbackActions()));
     connect(formView, SIGNAL(currentRowChanged()), this, SLOT(updateFormNavigationState()));
+    updateCurrentFormViewRow();
 }
 
 void DataView::initFilter()
@@ -198,6 +200,8 @@ void DataView::createActions()
     createAction(LAST_ROW, ICONS.PAGE_LAST, tr("Last last", "data view"), this, SLOT(lastRow()), formToolBar);
     formToolBar->addSeparator();
     actionMap[FORM_TOTAL_ROWS] = formToolBar->addWidget(formViewRowCountLabel);
+    formToolBar->addSeparator();
+    actionMap[FORM_CURRENT_ROW] = formToolBar->addWidget(formViewCurrentRowLabel);
 
     noConfigShortcutActions << FORM_TOTAL_ROWS;
 
@@ -326,6 +330,7 @@ void DataView::goToFormRow(IndexModifier idxMod)
 
     gridView->setCurrentIndex(newRowIdx);
     formView->updateFromGrid();
+    updateCurrentFormViewRow();
 }
 
 void DataView::setNavigationState(bool enabled)
@@ -386,6 +391,7 @@ void DataView::showGridView()
 void DataView::showFormView()
 {
     setCurrentIndex(1);
+    updateCurrentFormViewRow();
 }
 
 void DataView::updateTabsMode()
@@ -456,6 +462,7 @@ void DataView::updatePageEdit()
     pageEdit->setToolTip(QObject::tr("Total pages available: %1").arg(totalPages));
     pageValidator->setTop(totalPages);
     pageValidator->setDefaultValue(page);
+    updateCurrentFormViewRow();
 }
 
 void DataView::updateResultsCount(int resultsCount)
@@ -470,8 +477,8 @@ void DataView::updateResultsCount(int resultsCount)
     }
     else
     {
-        rowCountLabel->setText("         ");
-        formViewRowCountLabel->setText("         ");
+        rowCountLabel->setText("        "); // this might seem weird, but if it's not a wide, whitespace string, then icon is truncated from right side
+        formViewRowCountLabel->setText("        ");
         rowCountLabel->setMovie(ICONS.LOADING);
         formViewRowCountLabel->setMovie(ICONS.LOADING);
 
@@ -479,6 +486,14 @@ void DataView::updateResultsCount(int resultsCount)
         rowCountLabel->setToolTip(loadingMsg);
         formViewRowCountLabel->setToolTip(loadingMsg);
     }
+}
+
+void DataView::updateCurrentFormViewRow()
+{
+    int rowsPerPage = CFG_UI.General.NumberOfRowsPerPage.get();
+    int page = gridView->getModel()->getCurrentPage();
+    int row = rowsPerPage * page + 1 + gridView->currentIndex().row();
+    formViewCurrentRowLabel->setText(tr("Row: %1").arg(row));
 }
 
 void DataView::setFormViewEnabled(bool enabled)
