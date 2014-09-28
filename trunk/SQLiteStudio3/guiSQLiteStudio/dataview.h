@@ -63,7 +63,8 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
             PREV_ROW,
             NEXT_ROW,
             LAST_ROW,
-            FORM_TOTAL_ROWS
+            FORM_TOTAL_ROWS,
+            FORM_CURRENT_ROW
         };
 
         enum class ActionGroup
@@ -136,6 +137,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         void goToPage(const QString& pageStr);
         void updatePageEdit();
         void updateResultsCount(int resultsCount);
+        void updateCurrentFormViewRow();
         void setFormViewEnabled(bool enabled);
         void readData();
         void updateFilterIcon();
@@ -155,6 +157,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         ExtLineEdit* filterEdit;
         QLabel* rowCountLabel;
         QLabel* formViewRowCountLabel;
+        QLabel* formViewCurrentRowLabel;
         ExtLineEdit* pageEdit;
         IntValidator* pageValidator;
         bool navigationState = false;

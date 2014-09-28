@@ -157,6 +157,7 @@ void ConfigMapper::saveCommonConfigFromWidget(QWidget* widget, CfgEntry* key)
 
 QVariant ConfigMapper::getCommonConfigValueFromWidget(QWidget* widget, CfgEntry* key, bool& ok)
 {
+    ok = true;
     GET_CFG_VALUE(widget, key, QCheckBox, isChecked);
     GET_CFG_VALUE(widget, key, QLineEdit, text);
     GET_CFG_VALUE(widget, key, QTextEdit, toPlainText);

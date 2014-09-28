@@ -394,9 +394,18 @@ void ExportDialog::updateDbTables()
 
 void ExportDialog::browseForExportFile()
 {
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Pick file to export to"), QString(), QString(), 0, QFileDialog::DontConfirmOverwrite);
+    QStringList filters;
+    if (currentPlugin)
+        filters << currentPlugin->getFormatName()+" (*." + currentPlugin->defaultFileExtension() + ")";
+
+    filters << tr("All files (*)");
+
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Pick file to export to"), QString(), filters.join(";;"), 0, QFileDialog::DontConfirmOverwrite);
     if (fileName.isNull())
         return;
+
+    if (currentPlugin && !fileName.endsWith("." + currentPlugin->defaultFileExtension()))
+        fileName += "." + currentPlugin->defaultFileExtension();
 
     ui->exportFileEdit->setText(fileName);
 }
