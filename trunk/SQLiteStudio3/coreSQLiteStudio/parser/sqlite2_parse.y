@@ -1112,6 +1112,20 @@ delete_stmt(X) ::= DELETE FROM fullname(N)
                                                 objectForTokens = X;
                                             }
 
+delete_stmt(X) ::= DELETE FROM.             {
+                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                SqliteDelete* q = new SqliteDelete();
+                                                X = q;
+                                                objectForTokens = X;
+                                            }
+delete_stmt(X) ::= DELETE FROM nm(N) DOT.   {
+                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                SqliteDelete* q = new SqliteDelete();
+                                                q->database = *(N);
+                                                X = q;
+                                                objectForTokens = X;
+                                                delete N;
+                                            }
 delete_stmt ::= DELETE FROM nm DOT ID_TAB.  {}
 delete_stmt ::= DELETE FROM ID_DB|ID_TAB.   {}
 
@@ -1154,6 +1168,23 @@ update_stmt(X) ::= UPDATE orconf(C)
                                                 objectForTokens = X;
                                             }
 
+update_stmt(X) ::= UPDATE
+            orconf(C).                      {
+                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                X = new SqliteUpdate();
+                                                objectForTokens = X;
+                                                delete C;
+                                            }
+update_stmt(X) ::= UPDATE
+            orconf(C) nm(N) DOT.            {
+                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                SqliteUpdate* q = new SqliteUpdate();
+                                                q->database = *(N);
+                                                X = q;
+                                                objectForTokens = X;
+                                                delete C;
+                                                delete N;
+                                            }
 update_stmt ::= UPDATE orconf nm DOT
                     ID_TAB.                 {}
 update_stmt ::= UPDATE orconf ID_DB|ID_TAB. {}
@@ -1231,6 +1262,27 @@ insert_stmt(X) ::= insert_cmd(C) INTO
                                                 objectForTokens = X;
                                             }
 
+insert_stmt(X) ::= insert_cmd(C) INTO.      {
+                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                SqliteInsert* q = new SqliteInsert();
+                                                q->replaceKw = C->replace;
+                                                q->onConflict = C->orConflict;
+                                                X = q;
+                                                objectForTokens = X;
+                                                delete C;
+                                            }
+insert_stmt(X) ::= insert_cmd(C) INTO nm(N)
+            DOT.                            {
+                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                SqliteInsert* q = new SqliteInsert();
+                                                q->replaceKw = C->replace;
+                                                q->onConflict = C->orConflict;
+                                                q->database = *(N);
+                                                X = q;
+                                                objectForTokens = X;
+                                                delete C;
+                                                delete N;
+                                            }
 insert_stmt ::= insert_cmd INTO
                     ID_DB|ID_TAB.           {}
 insert_stmt ::= insert_cmd INTO
