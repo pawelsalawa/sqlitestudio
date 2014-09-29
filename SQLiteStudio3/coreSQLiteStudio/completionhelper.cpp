@@ -136,6 +136,9 @@ CompletionHelper::Results CompletionHelper::getExpectedTokens()
     // for the results comparer and table-alias mapping.
     parseFullSql();
 
+    // Collect used db names in original query (before using attach names)
+    collectOtherDatabases();
+
     // Handle transparent db attaching
     attachDatabases();
 
@@ -421,19 +424,33 @@ ExpectedTokenPtr CompletionHelper::getExpectedToken(ExpectedToken::Type type, co
     return token;
 }
 
+bool CompletionHelper::validatePreviousIdForGetObjects(QString* dbName)
+{
+    QString localDbName;
+    if (previousId)
+    {
+        localDbName = previousId->value;
+        QStringList databases = schemaResolver->getDatabases().toList();
+        databases += DBLIST->getDbNames();
+        if (!databases.contains(localDbName, Qt::CaseInsensitive))
+            return false; // if db is not on the set, then getObjects() would return empty list anyway;
+
+        if (dbName)
+            *dbName = localDbName;
+    }
+    return true;
+}
+
 QList<ExpectedTokenPtr> CompletionHelper::getTables()
 {
     QString dbName;
-    if (previousId)
-    {
-        dbName = previousId->value;
-        QStringList databases = schemaResolver->getDatabases().toList();
-        databases += DBLIST->getDbNames();
-        if (!databases.contains(dbName, Qt::CaseInsensitive))
-            return QList<ExpectedTokenPtr>(); // if db is not on the set, then getObjects() would return empty list anyway;
-    }
+    if (!validatePreviousIdForGetObjects(&dbName))
+        return QList<ExpectedTokenPtr>();
 
     QList<ExpectedTokenPtr> tables = getObjects(ExpectedToken::TABLE);
+    for (const QString& otherDb : otherDatabasesToLookupFor)
+        tables += getObjects(ExpectedToken::TABLE, otherDb);
+
     tables += getExpectedToken(ExpectedToken::TABLE, "sqlite_master", dbName);
     tables += getExpectedToken(ExpectedToken::TABLE, "sqlite_temp_master", dbName);
     return tables;
@@ -441,16 +458,25 @@ QList<ExpectedTokenPtr> CompletionHelper::getTables()
 
 QList<ExpectedTokenPtr> CompletionHelper::getIndexes()
 {
+    if (!validatePreviousIdForGetObjects())
+        return QList<ExpectedTokenPtr>();
+
     return getObjects(ExpectedToken::INDEX);
 }
 
 QList<ExpectedTokenPtr> CompletionHelper::getTriggers()
 {
+    if (!validatePreviousIdForGetObjects())
+        return QList<ExpectedTokenPtr>();
+
     return getObjects(ExpectedToken::TRIGGER);
 }
 
 QList<ExpectedTokenPtr> CompletionHelper::getViews()
 {
+    if (!validatePreviousIdForGetObjects())
+        return QList<ExpectedTokenPtr>();
+
     return getObjects(ExpectedToken::VIEW);
 }
 
@@ -485,12 +511,20 @@ QList<ExpectedTokenPtr> CompletionHelper::getDatabases()
 
 QList<ExpectedTokenPtr> CompletionHelper::getObjects(ExpectedToken::Type type)
 {
+    if (previousId)
+        return getObjects(type, previousId->value);
+    else
+        return getObjects(type, QString());
+}
+
+QList<ExpectedTokenPtr> CompletionHelper::getObjects(ExpectedToken::Type type, const QString& database)
+{
     QString dbName;
     QString originalDbName;
-    if (previousId)
+    if (!database.isNull())
     {
-        dbName = translateDatabase(previousId->value);
-        originalDbName = previousId->value;
+        dbName = translateDatabase(database);
+        originalDbName = database;
     }
 
     QString typeStr;
@@ -544,6 +578,21 @@ QList<ExpectedTokenPtr> CompletionHelper::getColumns()
 QList<ExpectedTokenPtr> CompletionHelper::getColumnsNoPrefix()
 {
     QList<ExpectedTokenPtr> results;
+
+    // Use available columns for other databases (transparently attached)
+    QString ctx;
+    for (SelectResolver::Column& column : selectAvailableColumns)
+    {
+        if (column.database.isNull())
+            continue;
+
+        if (column.tableAlias.isNull())
+            ctx = translateDatabaseBack(column.database)+"."+column.table;
+        else
+            ctx = column.tableAlias+" = "+translateDatabaseBack(column.database)+"."+column.table;
+
+        results << getExpectedToken(ExpectedToken::COLUMN, column.column, ctx);
+    }
 
     // No db or table provided. For each column its table is remembered,
     // so in case some column repeats in more than one table, then we need
@@ -818,6 +867,23 @@ QString CompletionHelper::translateDatabase(const QString& dbName)
     return dbAttacher->getDbNameToAttach().valueByLeft(dbName, Qt::CaseInsensitive);
 }
 
+QString CompletionHelper::translateDatabaseBack(const QString& dbName)
+{
+    if (!dbAttacher->getDbNameToAttach().containsRight(dbName, Qt::CaseInsensitive))
+        return dbName;
+
+    return dbAttacher->getDbNameToAttach().valueByRight(dbName, Qt::CaseInsensitive);
+}
+
+void CompletionHelper::collectOtherDatabases()
+{
+    otherDatabasesToLookupFor.clear();
+    if (!parsedQuery)
+        return;
+
+    otherDatabasesToLookupFor = parsedQuery->getContextDatabases();
+}
+
 QString CompletionHelper::removeStartedToken(const QString& adjustedSql, QString& finalFilter, bool& wrappedFilter)
 {
     QString result = adjustedSql;
@@ -983,7 +1049,10 @@ void CompletionHelper::parseFullSql()
 
     // Parsing query
     if (parser.parse(query, true) && !parser.getQueries().isEmpty())
+    {
         parsedQuery = parser.getQueries().first();
+        originalParsedQuery = SqliteQueryPtr(dynamic_cast<SqliteQuery*>(parsedQuery->clone()));
+    }
 }
 
 void CompletionHelper::sort(QList<ExpectedTokenPtr> &resultsSoFar)
@@ -1250,12 +1319,19 @@ void CompletionHelper::setDbAttacher(DbAttacher* value)
 
 bool CompletionHelper::extractSelectCore()
 {
-    if (!parsedQuery)
-        return false;
+    currentSelectCore = extractSelectCore(parsedQuery);
+    originalCurrentSelectCore = extractSelectCore(originalParsedQuery);
+    return (currentSelectCore != nullptr);
+}
+
+SqliteSelect::Core* CompletionHelper::extractSelectCore(SqliteQueryPtr query)
+{
+    if (!query)
+        return nullptr;
 
     // Finding in which statement the cursor is positioned
     // We're looking for curPos - 1, because tokens indexing ends in the same, with -1 index.
-    SqliteStatement* stmt = parsedQuery->findStatementWithPosition(cursorPosition - 1);
+    SqliteStatement* stmt = query->findStatementWithPosition(cursorPosition - 1);
 
     // Now going up in statements tree in order to find first select core
     while (stmt && !dynamic_cast<SqliteSelect::Core*>(stmt))
@@ -1264,11 +1340,10 @@ bool CompletionHelper::extractSelectCore()
     if (stmt && dynamic_cast<SqliteSelect::Core*>(stmt))
     {
         // We found our select core
-        currentSelectCore = dynamic_cast<SqliteSelect::Core*>(stmt);
-        return true;
+        return dynamic_cast<SqliteSelect::Core*>(stmt);
     }
 
-    return false;
+    return nullptr;
 }
 
 void CompletionHelper::extractSelectAvailableColumnsAndTables()

@@ -22,6 +22,7 @@ class API_EXPORT SqliteUpdate : public SqliteQuery
                      bool notIndexedKw, const QString& indexedBy, const QList<QPair<QString,SqliteExpr*> > values,
                      SqliteExpr* where, SqliteWith* with);
 
+        SqliteStatement* clone();
         SqliteExpr* getValueForColumnSet(const QString& column);
 
         SqliteConflictAlgo onConflict = SqliteConflictAlgo::null;

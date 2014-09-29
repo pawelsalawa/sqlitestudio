@@ -31,6 +31,11 @@ SqliteCreateVirtualTable::SqliteCreateVirtualTable(bool ifNotExists, const QStri
     this->args = args;
 }
 
+SqliteStatement*SqliteCreateVirtualTable::clone()
+{
+    return new SqliteCreateVirtualTable(*this);
+}
+
 QStringList SqliteCreateVirtualTable::getTablesInStatement()
 {
     return getStrListFromValue(table);

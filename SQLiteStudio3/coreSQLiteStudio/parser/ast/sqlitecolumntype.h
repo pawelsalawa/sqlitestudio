@@ -13,6 +13,7 @@ class API_EXPORT SqliteColumnType : public SqliteStatement
         explicit SqliteColumnType(const QString& name);
         SqliteColumnType(const QString& name, const QVariant &scale);
         SqliteColumnType(const QString& name, const QVariant &scale, const QVariant &precision);
+        SqliteStatement* clone();
 
         bool isPrecisionDouble();
         bool isScaleDouble();

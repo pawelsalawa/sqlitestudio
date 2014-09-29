@@ -9,7 +9,10 @@ class API_EXPORT SqliteSavepoint : public SqliteQuery
 {
     public:
         SqliteSavepoint();
+        SqliteSavepoint(const SqliteSavepoint& other);
         explicit SqliteSavepoint(const QString& name);
+
+        SqliteStatement* clone();
 
         QString name = QString::null;
 

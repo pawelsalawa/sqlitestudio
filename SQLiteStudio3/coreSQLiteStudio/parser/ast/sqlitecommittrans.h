@@ -9,6 +9,8 @@ class API_EXPORT SqliteCommitTrans : public SqliteQuery
     public:
         SqliteCommitTrans();
         SqliteCommitTrans(bool transactionKw, const QString &name, bool endKw);
+        SqliteCommitTrans(const SqliteCommitTrans& other);
+        SqliteStatement* clone();
 
         bool endKw = false;
         QString name = QString::null;

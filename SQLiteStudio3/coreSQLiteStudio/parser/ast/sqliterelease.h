@@ -9,7 +9,10 @@ class API_EXPORT SqliteRelease : public SqliteQuery
 {
     public:
         SqliteRelease();
+        SqliteRelease(const SqliteRelease& other);
         SqliteRelease(bool savepointKw, const QString &name);
+
+        SqliteStatement* clone();
 
         QString name = QString::null;
         bool savepointKw = false;

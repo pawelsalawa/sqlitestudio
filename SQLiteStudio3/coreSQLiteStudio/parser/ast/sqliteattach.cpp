@@ -2,6 +2,7 @@
 #include "sqlitequerytype.h"
 #include "sqliteexpr.h"
 #include "parser/statementtokenbuilder.h"
+#include "common/global.h"
 
 SqliteAttach::SqliteAttach()
 {
@@ -26,8 +27,21 @@ SqliteAttach::SqliteAttach(bool dbKw, SqliteExpr *url, SqliteExpr *name, SqliteE
         key->setParent(this);
 }
 
+SqliteAttach::SqliteAttach(const SqliteAttach& other) :
+    SqliteQuery(other), databaseKw(other.databaseKw)
+{
+    DEEP_COPY_FIELD(SqliteExpr, databaseUrl);
+    DEEP_COPY_FIELD(SqliteExpr, name);
+    DEEP_COPY_FIELD(SqliteExpr, key);
+}
+
 SqliteAttach::~SqliteAttach()
 {
+}
+
+SqliteStatement* SqliteAttach::clone()
+{
+    return new SqliteAttach(*this);
 }
 
 TokenList SqliteAttach::rebuildTokensFromContents()

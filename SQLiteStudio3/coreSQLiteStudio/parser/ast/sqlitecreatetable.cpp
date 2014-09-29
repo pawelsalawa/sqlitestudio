@@ -58,6 +58,11 @@ SqliteCreateTable::~SqliteCreateTable()
 {
 }
 
+SqliteStatement*SqliteCreateTable::clone()
+{
+    return new SqliteCreateTable(*this);
+}
+
 QList<SqliteCreateTable::Constraint*> SqliteCreateTable::getConstraints(SqliteCreateTable::Constraint::Type type) const
 {
     QList<SqliteCreateTable::Constraint*> results;
@@ -274,6 +279,11 @@ SqliteCreateTable::Column::Constraint::~Constraint()
 {
 }
 
+SqliteStatement* SqliteCreateTable::Column::Constraint::clone()
+{
+    return new SqliteCreateTable::Column::Constraint(*this);
+}
+
 void SqliteCreateTable::Column::Constraint::initDefNameOnly(const QString &name)
 {
     this->type = SqliteCreateTable::Column::Constraint::NAME_ONLY;
@@ -436,6 +446,11 @@ SqliteCreateTable::Constraint::Constraint(const SqliteCreateTable::Constraint& o
 
 SqliteCreateTable::Constraint::~Constraint()
 {
+}
+
+SqliteStatement*SqliteCreateTable::Constraint::clone()
+{
+    return new SqliteCreateTable::Constraint(*this);
 }
 
 void SqliteCreateTable::Constraint::initNameOnly(const QString &name)
@@ -638,6 +653,11 @@ SqliteCreateTable::Column::Column(const QString &name, SqliteColumnType *type, c
 
 SqliteCreateTable::Column::~Column()
 {
+}
+
+SqliteStatement*SqliteCreateTable::Column::clone()
+{
+    return new SqliteCreateTable::Column(*this);
 }
 
 bool SqliteCreateTable::Column::hasConstraint(SqliteCreateTable::Column::Constraint::Type type) const

@@ -8,6 +8,11 @@ SqliteDropView::SqliteDropView()
     queryType = SqliteQueryType::DropView;
 }
 
+SqliteDropView::SqliteDropView(const SqliteDropView& other) :
+    SqliteQuery(other), ifExistsKw(other.ifExistsKw), database(other.database), view(other.view)
+{
+}
+
 SqliteDropView::SqliteDropView(bool ifExists, const QString &name1, const QString &name2)
     : SqliteDropView()
 {
@@ -20,6 +25,11 @@ SqliteDropView::SqliteDropView(bool ifExists, const QString &name1, const QStrin
         database = name1;
         view = name2;
     }
+}
+
+SqliteStatement*SqliteDropView::clone()
+{
+    return new SqliteDropView(*this);
 }
 
 QStringList SqliteDropView::getDatabasesInStatement()

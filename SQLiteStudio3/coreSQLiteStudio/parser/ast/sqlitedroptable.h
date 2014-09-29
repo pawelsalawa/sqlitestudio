@@ -8,7 +8,10 @@ class API_EXPORT SqliteDropTable : public SqliteQuery
 {
     public:
         SqliteDropTable();
+        SqliteDropTable(const SqliteDropTable& other);
         SqliteDropTable(bool ifExistsKw, const QString& name1, const QString& name2);
+
+        SqliteStatement* clone();
 
         bool ifExistsKw = false;
         QString database = QString::null;

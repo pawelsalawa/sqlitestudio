@@ -8,12 +8,21 @@ SqliteVacuum::SqliteVacuum()
     queryType = SqliteQueryType::Vacuum;
 }
 
+SqliteVacuum::SqliteVacuum(const SqliteVacuum& other) :
+    SqliteQuery(other), database(other.database)
+{
+}
 
 SqliteVacuum::SqliteVacuum(const QString& name)
     : SqliteVacuum()
 {
     if (!name.isNull())
         database = name;
+}
+
+SqliteStatement*SqliteVacuum::clone()
+{
+    return new SqliteVacuum(*this);
 }
 
 QStringList SqliteVacuum::getDatabasesInStatement()

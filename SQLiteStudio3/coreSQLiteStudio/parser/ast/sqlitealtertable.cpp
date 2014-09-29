@@ -1,9 +1,16 @@
 #include "sqlitealtertable.h"
 #include "sqlitequerytype.h"
+#include "common/global.h"
 
 SqliteAlterTable::SqliteAlterTable()
 {
     queryType = SqliteQueryType::AlterTable;
+}
+
+SqliteAlterTable::SqliteAlterTable(const SqliteAlterTable& other)
+    : SqliteQuery(other), command(other.command), newName(other.newName), database(other.database), table(other.table), columnKw(other.columnKw)
+{
+    DEEP_COPY_FIELD(SqliteCreateTable::Column, newColumn);
 }
 
 SqliteAlterTable::SqliteAlterTable(const QString &name1, const QString &name2, const QString &newName)
@@ -29,6 +36,11 @@ SqliteAlterTable::~SqliteAlterTable()
 {
 //    if (newColumn)
     //        delete newColumn;
+}
+
+SqliteStatement* SqliteAlterTable::clone()
+{
+    return new SqliteAlterTable(*this);
 }
 
 QStringList SqliteAlterTable::getTablesInStatement()

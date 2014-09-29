@@ -76,6 +76,11 @@ SqliteSelect* SqliteSelect::append(SqliteSelect* select, SqliteSelect::CompoundO
     return select;
 }
 
+SqliteStatement*SqliteSelect::clone()
+{
+    return new SqliteSelect(*this);
+}
+
 QString SqliteSelect::compoundOperator(SqliteSelect::CompoundOperator op)
 {
     switch (op)
@@ -177,6 +182,11 @@ SqliteSelect::Core::Core(int distinct, const QList<ResultColumn *> &resCols, Sql
         resCol->setParent(this);
 }
 
+SqliteStatement*SqliteSelect::Core::clone()
+{
+    return new SqliteSelect::Core(*this);
+}
+
 SqliteSelect::Core::ResultColumn::ResultColumn()
 {
 }
@@ -216,6 +226,11 @@ bool SqliteSelect::Core::ResultColumn::isRowId()
         return false;
 
     return expr->column.compare("rowid", Qt::CaseInsensitive) == 0;
+}
+
+SqliteStatement*SqliteSelect::Core::ResultColumn::clone()
+{
+    return new SqliteSelect::Core::ResultColumn(*this);
 }
 
 QStringList SqliteSelect::Core::ResultColumn::getTablesInStatement()
@@ -296,6 +311,11 @@ SqliteSelect::Core::SingleSource::SingleSource(JoinSource *src, bool asKw, const
         src->setParent(this);
 }
 
+SqliteStatement*SqliteSelect::Core::SingleSource::clone()
+{
+    return new SqliteSelect::Core::SingleSource(*this);
+}
+
 QStringList SqliteSelect::Core::SingleSource::getTablesInStatement()
 {
     // This method returns tables only! No aliases.
@@ -374,6 +394,11 @@ SqliteSelect::Core::JoinConstraint::JoinConstraint(const QList<QString> &strList
     columnNames = strList;
 }
 
+SqliteStatement*SqliteSelect::Core::JoinConstraint::clone()
+{
+    return new SqliteSelect::Core::JoinConstraint(*this);
+}
+
 QStringList SqliteSelect::Core::JoinConstraint::getColumnsInStatement()
 {
     QStringList list;
@@ -432,6 +457,11 @@ SqliteSelect::Core::JoinOp::JoinOp(const QString &joinToken, const QString &word
     init(word2);
 }
 
+SqliteStatement*SqliteSelect::Core::JoinOp::clone()
+{
+    return new SqliteSelect::Core::JoinOp(*this);
+}
+
 void SqliteSelect::Core::JoinOp::init(const QString &str)
 {
     QString upStr = str.toUpper();
@@ -485,6 +515,11 @@ SqliteSelect::Core::JoinSourceOther::JoinSourceOther(SqliteSelect::Core::JoinOp 
         src->setParent(this);
 }
 
+SqliteStatement*SqliteSelect::Core::JoinSourceOther::clone()
+{
+    return new SqliteSelect::Core::JoinSourceOther(*this);
+}
+
 
 SqliteSelect::Core::JoinSource::JoinSource()
 {
@@ -506,6 +541,11 @@ SqliteSelect::Core::JoinSource::JoinSource(SqliteSelect::Core::SingleSource *sin
 
     foreach (JoinSourceOther* other, otherSources)
         other->setParent(this);
+}
+
+SqliteStatement*SqliteSelect::Core::JoinSource::clone()
+{
+    return new SqliteSelect::Core::JoinSource(*this);
 }
 
 

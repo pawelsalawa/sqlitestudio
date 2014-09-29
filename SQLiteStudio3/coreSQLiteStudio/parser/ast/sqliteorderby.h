@@ -14,6 +14,8 @@ class API_EXPORT SqliteOrderBy : public SqliteStatement
         SqliteOrderBy(SqliteExpr* expr, SqliteSortOrder order);
         ~SqliteOrderBy();
 
+        SqliteStatement* clone();
+
         SqliteExpr* expr = nullptr;
         SqliteSortOrder order;
 

@@ -8,8 +8,11 @@ class API_EXPORT SqliteRollback : public SqliteQuery
 {
     public:
         SqliteRollback();
+        SqliteRollback(const SqliteRollback& other);
         SqliteRollback(bool transactionKw, const QString& name);
         SqliteRollback(bool transactionKw, bool savePoint, const QString& name);
+
+        SqliteStatement* clone();
 
         bool transactionKw = false;
         bool toKw = false;

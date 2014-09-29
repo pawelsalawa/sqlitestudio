@@ -9,8 +9,10 @@ class API_EXPORT SqliteAttach : public SqliteQuery
 {
     public:
         SqliteAttach();
+        SqliteAttach(const SqliteAttach& other);
         SqliteAttach(bool dbKw, SqliteExpr* url, SqliteExpr* name, SqliteExpr* key);
         ~SqliteAttach();
+        SqliteStatement* clone();
 
         bool databaseKw = false;
         SqliteExpr* databaseUrl = nullptr;

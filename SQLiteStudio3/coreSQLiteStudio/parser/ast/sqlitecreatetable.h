@@ -39,6 +39,7 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery
                         Constraint();
                         Constraint(const Constraint& other);
                         ~Constraint();
+                        SqliteStatement* clone();
 
                         void initDefNameOnly(const QString& name);
                         void initDefId(const QString& id);
@@ -83,6 +84,7 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery
                 Column(const QString& name, SqliteColumnType* type,
                        const QList<Constraint*>& constraints);
                 ~Column();
+                SqliteStatement* clone();
 
                 bool hasConstraint(Constraint::Type type) const;
                 Constraint* getConstraint(Constraint::Type type) const;
@@ -122,6 +124,7 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery
                 Constraint();
                 Constraint(const Constraint& other);
                 ~Constraint();
+                SqliteStatement* clone();
 
                 void initNameOnly(const QString& name);
                 void initPk(const QList<SqliteIndexedColumn*>& indexedColumns,
@@ -163,6 +166,7 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery
         SqliteCreateTable(bool ifNotExistsKw, int temp, const QString& name1, const QString& name2,
                           SqliteSelect* select);
         ~SqliteCreateTable();
+        SqliteStatement* clone();
 
         QList<Constraint*> getConstraints(Constraint::Type type) const;
         SqliteStatement* getPrimaryKey() const;

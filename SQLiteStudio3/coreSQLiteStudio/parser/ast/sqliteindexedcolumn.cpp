@@ -24,6 +24,11 @@ SqliteIndexedColumn::SqliteIndexedColumn(const QString& name)
     this->name = name;
 }
 
+SqliteStatement*SqliteIndexedColumn::clone()
+{
+    return new SqliteIndexedColumn(*this);
+}
+
 QStringList SqliteIndexedColumn::getColumnsInStatement()
 {
     return getStrListFromValue(name);

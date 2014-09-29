@@ -56,9 +56,9 @@ class CompletionComparer
         bool compareValues(const ExpectedTokenPtr& token1, const ExpectedTokenPtr& token2);
         bool compareValues(const QString& token1, const QString& token2);
         bool compareByContext(const QString &token1, const QString &token2,
-                              const QStringList& contextValues);
+                              const QStringList& contextValues, bool* ok = nullptr);
         bool compareByContext(const QString &token1, const QString &token2,
-                              const QStringList& contextValues, const QStringList& secondaryContextValues);
+                              const QList<QStringList>& contextValues, bool* ok = nullptr);
         bool compareByContextOnly(const QString &token1, const QString &token2,
                               const QStringList& contextValues, bool* ok);
         bool isTokenOnAvailableList(const ExpectedTokenPtr& token);

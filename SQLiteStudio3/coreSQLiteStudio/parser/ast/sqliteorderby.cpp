@@ -25,6 +25,11 @@ SqliteOrderBy::~SqliteOrderBy()
 {
 }
 
+SqliteStatement*SqliteOrderBy::clone()
+{
+    return new SqliteOrderBy(*this);
+}
+
 TokenList SqliteOrderBy::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;

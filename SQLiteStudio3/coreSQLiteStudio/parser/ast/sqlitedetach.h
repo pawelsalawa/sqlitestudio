@@ -9,8 +9,11 @@ class API_EXPORT SqliteDetach : public SqliteQuery
 {
     public:
         SqliteDetach();
+        SqliteDetach(const SqliteDetach& other);
         SqliteDetach(bool databaseKw, SqliteExpr* name);
         ~SqliteDetach();
+
+        SqliteStatement* clone();
 
         bool databaseKw = false;
         SqliteExpr* name = nullptr;

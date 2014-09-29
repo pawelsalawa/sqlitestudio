@@ -60,6 +60,11 @@ SqliteForeignKey::Condition::Reaction SqliteForeignKey::Condition::toEnum(const 
     return SET_NULL;
 }
 
+SqliteStatement*SqliteForeignKey::Condition::clone()
+{
+    return new SqliteForeignKey::Condition(*this);
+}
+
 SqliteForeignKey::SqliteForeignKey()
 {
 }
@@ -73,6 +78,11 @@ SqliteForeignKey::SqliteForeignKey(const SqliteForeignKey& other) :
 
 SqliteForeignKey::~SqliteForeignKey()
 {
+}
+
+SqliteStatement*SqliteForeignKey::clone()
+{
+    return new SqliteForeignKey(*this);
 }
 
 QStringList SqliteForeignKey::getTablesInStatement()

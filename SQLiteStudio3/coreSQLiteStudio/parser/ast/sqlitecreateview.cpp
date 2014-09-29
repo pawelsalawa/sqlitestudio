@@ -43,8 +43,11 @@ SqliteCreateView::SqliteCreateView(int temp, bool ifNotExists, const QString &na
 
 SqliteCreateView::~SqliteCreateView()
 {
-//    if (select)
-    //        delete select;
+}
+
+SqliteStatement*SqliteCreateView::clone()
+{
+    return new SqliteCreateView(*this);
 }
 
 QStringList SqliteCreateView::getDatabasesInStatement()

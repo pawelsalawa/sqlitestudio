@@ -8,10 +8,20 @@ SqliteSavepoint::SqliteSavepoint()
     queryType = SqliteQueryType::Savepoint;
 }
 
+SqliteSavepoint::SqliteSavepoint(const SqliteSavepoint& other) :
+    SqliteQuery(other), name(other.name)
+{
+}
+
 SqliteSavepoint::SqliteSavepoint(const QString &name)
     : SqliteSavepoint()
 {
     this->name = name;
+}
+
+SqliteStatement*SqliteSavepoint::clone()
+{
+    return new SqliteSavepoint(*this);
 }
 
 TokenList SqliteSavepoint::rebuildTokensFromContents()

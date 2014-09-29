@@ -59,17 +59,17 @@ bool CompletionComparer::operator ()(const ExpectedTokenPtr& token1, const Expec
 
 void CompletionComparer::init()
 {
-    if (helper->parsedQuery)
+    if (helper->originalParsedQuery)
     {
         bool contextObjectsInitialized = false;
-        if (helper->parsedQuery->queryType == SqliteQueryType::Select)
+        if (helper->originalParsedQuery->queryType == SqliteQueryType::Select)
             contextObjectsInitialized = initSelect();
 
         if (!contextObjectsInitialized)
         {
-            contextColumns = helper->parsedQuery->getContextColumns();
-            contextTables = helper->parsedQuery->getContextTables();
-            contextDatabases = helper->parsedQuery->getContextDatabases();
+            contextColumns = helper->originalParsedQuery->getContextColumns();
+            contextTables = helper->originalParsedQuery->getContextTables();
+            contextDatabases = helper->originalParsedQuery->getContextDatabases(false);
         }
 
         foreach (SelectResolver::Table table, helper->selectAvailableTables + helper->parentSelectAvailableTables)
@@ -79,14 +79,14 @@ void CompletionComparer::init()
 
 bool CompletionComparer::initSelect()
 {
-    if (!helper->currentSelectCore)
+    if (!helper->originalCurrentSelectCore)
         return false;
 
     // This is similar to what is done in init() itself, except here it's limited
     // to the current select core, excluding parent statement.
-    contextColumns = helper->currentSelectCore->getContextColumns(false);
-    contextTables = helper->currentSelectCore->getContextTables(false);
-    contextDatabases = helper->currentSelectCore->getContextDatabases(false);
+    contextColumns = helper->originalCurrentSelectCore->getContextColumns(false);
+    contextTables = helper->originalCurrentSelectCore->getContextTables(false);
+    contextDatabases = helper->originalCurrentSelectCore->getContextDatabases(false);
 
     foreach (SqliteSelect::Core* core, helper->parentSelectCores)
     {
@@ -137,7 +137,7 @@ bool CompletionComparer::compareColumns(const ExpectedTokenPtr& token1, const Ex
     if (ok)
         return result;
 
-    return compareByContext(token1->value, token2->value, contextColumns, parentContextColumns);
+    return compareByContext(token1->value, token2->value, {contextColumns, parentContextColumns});
 }
 
 bool CompletionComparer::compareColumnsForSelectResCol(const ExpectedTokenPtr &token1, const ExpectedTokenPtr &token2, bool *result)
@@ -227,7 +227,20 @@ bool CompletionComparer::compareTables(const ExpectedTokenPtr& token1, const Exp
             return true;
     }
 
-    return compareByContext(token1->value, token2->value, contextTables, parentContextTables);
+    bool ok;
+    bool result = compareByContext(token1->value, token2->value, contextTables, &ok);
+    if (ok)
+        return result;
+
+    result = compareByContext(token1->contextInfo, token2->contextInfo, contextDatabases, &ok);
+    if (ok)
+        return result;
+
+    result = compareByContext(token1->value, token2->value, parentContextTables, &ok);
+    if (ok)
+        return result;
+
+    return compareByContext(token1->contextInfo, token2->contextInfo, parentContextDatabases);
 }
 
 bool CompletionComparer::compareIndexes(const ExpectedTokenPtr& token1, const ExpectedTokenPtr& token2)
@@ -250,7 +263,7 @@ bool CompletionComparer::compareDatabases(const ExpectedTokenPtr& token1, const 
     if (!helper->parsedQuery || helper->parsedQuery->queryType != SqliteQueryType::Select)
         return compareValues(token1, token2);
 
-    return compareByContext(token1->value, token2->value, contextDatabases, parentContextDatabases);
+    return compareByContext(token1->value, token2->value, {contextDatabases, parentContextDatabases});
 }
 
 bool CompletionComparer::compareValues(const ExpectedTokenPtr &token1, const ExpectedTokenPtr &token2)
@@ -264,32 +277,43 @@ bool CompletionComparer::compareValues(const QString &token1, const QString &tok
     return token1.compare(token2, Qt::CaseInsensitive) < 0;
 }
 
-bool CompletionComparer::compareByContext(const QString &token1, const QString &token2, const QStringList &contextValues)
+bool CompletionComparer::compareByContext(const QString &token1, const QString &token2, const QStringList &contextValues, bool* ok)
 {
-    bool ok = false;
-    bool result = compareByContextOnly(token1, token2, contextValues, &ok);
-
     if (ok)
+        *ok = true;
+
+    bool localOk = false;
+    bool result = compareByContextOnly(token1, token2, contextValues, &localOk);
+
+    if (localOk)
         return result;
 
     // Otherwise we compare by value.
+    if (ok)
+        *ok = false;
+
     return compareValues(token1, token2);
 }
 
-bool CompletionComparer::compareByContext(const QString &token1, const QString &token2, const QStringList &contextValues, const QStringList &secondaryContextValues)
+bool CompletionComparer::compareByContext(const QString &token1, const QString &token2, const QList<QStringList>& contextValues, bool* ok)
 {
-    bool ok = false;
-    bool result = compareByContextOnly(token1, token2, contextValues, &ok);
-
     if (ok)
-        return result;
+        *ok = true;
 
-    result = compareByContextOnly(token1, token2, secondaryContextValues, &ok);
+    bool localOk = false;
+    bool result;
 
-    if (ok)
-        return result;
+    for (const QStringList& ctxValues : contextValues)
+    {
+        result = compareByContextOnly(token1, token2, ctxValues, &localOk);
+        if (localOk)
+            return result;
+    }
 
     // Otherwise we compare by value.
+    if (ok)
+        *ok = false;
+
     return compareValues(token1, token2);
 }
 

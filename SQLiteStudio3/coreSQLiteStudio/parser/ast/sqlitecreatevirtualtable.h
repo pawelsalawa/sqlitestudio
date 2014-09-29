@@ -16,6 +16,8 @@ class API_EXPORT SqliteCreateVirtualTable : public SqliteQuery
         SqliteCreateVirtualTable(bool ifNotExists, const QString& name1, const QString& name2,
                                  const QString& name3, const QList<QString>& args);
 
+        SqliteStatement* clone();
+
     protected:
         QStringList getTablesInStatement();
         QStringList getDatabasesInStatement();

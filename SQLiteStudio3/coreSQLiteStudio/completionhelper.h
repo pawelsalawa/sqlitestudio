@@ -86,12 +86,14 @@ class API_EXPORT CompletionHelper : public QObject
         ExpectedTokenPtr getExpectedToken(ExpectedToken::Type type, const QString &value,
                                           const QString &contextInfo, const QString &label,
                                           const QString &prefix, int priority);
+        bool validatePreviousIdForGetObjects(QString* dbName = nullptr);
         QList<ExpectedTokenPtr> getTables();
         QList<ExpectedTokenPtr> getIndexes();
         QList<ExpectedTokenPtr> getTriggers();
         QList<ExpectedTokenPtr> getViews();
         QList<ExpectedTokenPtr> getDatabases();
         QList<ExpectedTokenPtr> getObjects(ExpectedToken::Type type);
+        QList<ExpectedTokenPtr> getObjects(ExpectedToken::Type type, const QString& database);
         QList<ExpectedTokenPtr> getColumns();
         QList<ExpectedTokenPtr> getColumnsNoPrefix();
         QList<ExpectedTokenPtr> getColumnsNoPrefix(const QString &column, const QStringList &tables);
@@ -106,6 +108,8 @@ class API_EXPORT CompletionHelper : public QObject
         void attachDatabases();
         void detachDatabases();
         QString translateDatabase(const QString& dbName);
+        QString translateDatabaseBack(const QString& dbName);
+        void collectOtherDatabases();
         QString removeStartedToken(const QString& adjustedSql, QString &finalFilter, bool& wrappedFilter);
         void filterContextKeywords(QList<ExpectedTokenPtr> &results, const TokenList& tokens);
         void filterOtherId(QList<ExpectedTokenPtr> &results, const TokenList& tokens);
@@ -117,6 +121,7 @@ class API_EXPORT CompletionHelper : public QObject
         void extractQueryAdditionalInfo();
         void extractSelectAvailableColumnsAndTables();
         bool extractSelectCore();
+        SqliteSelect::Core* extractSelectCore(SqliteQueryPtr query);
         void extractTableAliasMap();
         void extractCreateTableColumns();
         void detectSelectContext();
@@ -175,6 +180,7 @@ class API_EXPORT CompletionHelper : public QObject
         TokenPtr twoIdsBack;
         TokenList queryTokens;
         SqliteQueryPtr parsedQuery;
+        SqliteQueryPtr originalParsedQuery;
         SchemaResolver* schemaResolver = nullptr;
         SelectResolver* selectResolver = nullptr;
         DbAttacher* dbAttacher = nullptr;
@@ -199,6 +205,13 @@ class API_EXPORT CompletionHelper : public QObject
          * The SqliteSelect::Core object that contains current cursor position.
          */
         SqliteSelect::Core* currentSelectCore = nullptr;
+
+        /**
+         * @brief originalCurrentSelectCore
+         *
+         * The same as currentSelectCore, but relates to originalParsedQuery, not just parsedQuery.
+         */
+        SqliteSelect::Core* originalCurrentSelectCore = nullptr;
 
         /**
          * @brief selectAvailableColumns
@@ -238,6 +251,14 @@ class API_EXPORT CompletionHelper : public QObject
          * of regular computation.
          */
         QStringList favoredColumnNames;
+
+        /**
+         * @brief Context databases to look for objects in.
+         *
+         * If the query uses some other databases (not the currentone), then user might be interested
+         * also in objects from those databases. This list contains those databases.
+         */
+        QStringList otherDatabasesToLookupFor;
 };
 
 #endif // COMPLETIONHELPER_H

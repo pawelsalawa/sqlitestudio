@@ -8,6 +8,11 @@ SqliteAnalyze::SqliteAnalyze()
     queryType = SqliteQueryType::Analyze;
 }
 
+SqliteAnalyze::SqliteAnalyze(const SqliteAnalyze& other) :
+    SqliteQuery(other), database(other.database), table(other.table)
+{
+}
+
 SqliteAnalyze::SqliteAnalyze(const QString &name1, const QString &name2)
     : SqliteAnalyze()
 {
@@ -18,6 +23,11 @@ SqliteAnalyze::SqliteAnalyze(const QString &name1, const QString &name2)
     }
     else
         table = name1;
+}
+
+SqliteStatement* SqliteAnalyze::clone()
+{
+    return new SqliteAnalyze(*this);
 }
 
 QStringList SqliteAnalyze::getTablesInStatement()

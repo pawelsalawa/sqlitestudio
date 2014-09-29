@@ -1,11 +1,15 @@
 #include "sqlitedroptable.h"
 #include "sqlitequerytype.h"
-
 #include <parser/statementtokenbuilder.h>
 
 SqliteDropTable::SqliteDropTable()
 {
     queryType = SqliteQueryType::DropTable;
+}
+
+SqliteDropTable::SqliteDropTable(const SqliteDropTable& other) :
+    SqliteQuery(other), ifExistsKw(other.ifExistsKw), database(other.database), table(other.table)
+{
 }
 
 SqliteDropTable::SqliteDropTable(bool ifExists, const QString& name1, const QString& name2)
@@ -19,6 +23,11 @@ SqliteDropTable::SqliteDropTable(bool ifExists, const QString& name1, const QStr
         this->database = name1;
         this->table = name2;
     }
+}
+
+SqliteStatement* SqliteDropTable::clone()
+{
+    return new SqliteDropTable(*this);
 }
 
 QStringList SqliteDropTable::getTablesInStatement()

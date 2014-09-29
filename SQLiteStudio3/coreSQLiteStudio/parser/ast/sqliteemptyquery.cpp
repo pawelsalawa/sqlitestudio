@@ -14,6 +14,11 @@ SqliteEmptyQuery::SqliteEmptyQuery(const SqliteEmptyQuery& other) :
     UNUSED(other);
 }
 
+SqliteStatement*SqliteEmptyQuery::clone()
+{
+    return new SqliteEmptyQuery(*this);
+}
+
 TokenList SqliteEmptyQuery::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;

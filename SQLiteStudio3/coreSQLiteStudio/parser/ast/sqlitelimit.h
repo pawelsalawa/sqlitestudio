@@ -16,6 +16,8 @@ class API_EXPORT SqliteLimit : public SqliteStatement
         SqliteLimit(const QVariant& positiveInt1, const QVariant& positiveInt2);
         ~SqliteLimit();
 
+        SqliteStatement* clone();
+
         SqliteExpr* limit = nullptr;
         SqliteExpr* offset = nullptr;
         bool offsetKw = false;

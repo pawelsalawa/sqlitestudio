@@ -73,6 +73,11 @@ SqliteInsert::~SqliteInsert()
 {
 }
 
+SqliteStatement*SqliteInsert::clone()
+{
+    return new SqliteInsert(*this);
+}
+
 QStringList SqliteInsert::getColumnsInStatement()
 {
     QStringList columns;

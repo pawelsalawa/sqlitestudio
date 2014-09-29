@@ -8,6 +8,11 @@ SqliteDropIndex::SqliteDropIndex()
     queryType = SqliteQueryType::DropIndex;
 }
 
+SqliteDropIndex::SqliteDropIndex(const SqliteDropIndex& other) :
+    SqliteQuery(other), ifExistsKw(other.ifExistsKw), database(other.database), index(other.index)
+{
+}
+
 SqliteDropIndex::SqliteDropIndex(bool ifExists, const QString &name1, const QString &name2)
     : SqliteDropIndex()
 {
@@ -19,6 +24,11 @@ SqliteDropIndex::SqliteDropIndex(bool ifExists, const QString &name1, const QStr
     }
     else
         index = name1;
+}
+
+SqliteStatement*SqliteDropIndex::clone()
+{
+    return new SqliteDropIndex(*this);
 }
 
 QStringList SqliteDropIndex::getDatabasesInStatement()

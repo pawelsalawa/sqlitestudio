@@ -9,6 +9,8 @@ class API_EXPORT SqliteEmptyQuery : public SqliteQuery
         SqliteEmptyQuery();
         SqliteEmptyQuery(const SqliteEmptyQuery& other);
 
+        SqliteStatement* clone();
+
         TokenList rebuildTokensFromContents();
 };
 

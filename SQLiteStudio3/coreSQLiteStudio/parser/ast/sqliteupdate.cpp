@@ -63,6 +63,11 @@ SqliteUpdate::SqliteUpdate(SqliteConflictAlgo onConflict, const QString &name1, 
         keyValue.second->setParent(this);
 }
 
+SqliteStatement*SqliteUpdate::clone()
+{
+    return new SqliteUpdate(*this);
+}
+
 SqliteExpr* SqliteUpdate::getValueForColumnSet(const QString& column)
 {
     foreach (const ColumnAndValue& keyValue, keyValueMap)

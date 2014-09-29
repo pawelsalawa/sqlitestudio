@@ -22,6 +22,7 @@ class API_EXPORT SqliteCreateIndex : public SqliteQuery, public SqliteTableRelat
                           const QString& name3, const QList<SqliteIndexedColumn*>& columns,
                           SqliteExpr* where);
         ~SqliteCreateIndex();
+        SqliteStatement* clone();
 
         QString getTargetTable() const;
 

@@ -8,7 +8,10 @@ class API_EXPORT SqliteDropTrigger : public SqliteQuery
 {
     public:
         SqliteDropTrigger();
+        SqliteDropTrigger(const SqliteDropTrigger& other);
         SqliteDropTrigger(bool ifExistsKw, const QString& name1, const QString& name2);
+
+        SqliteStatement* clone();
 
         bool ifExistsKw = false;
         QString database = QString::null;
