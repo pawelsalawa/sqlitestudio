@@ -17,8 +17,10 @@ class API_EXPORT SqliteBeginTrans : public SqliteQuery
         };
 
         SqliteBeginTrans();
+        SqliteBeginTrans(const SqliteBeginTrans& other);
         SqliteBeginTrans(Type type, bool transactionKw, const QString& name);
         SqliteBeginTrans(bool transactionKw, const QString& name, SqliteConflictAlgo onConflict);
+        SqliteStatement* clone();
 
         SqliteConflictAlgo onConflict = SqliteConflictAlgo::null; // sqlite2 only
         QString name; // in docs sqlite2 only, but in gramma it's also sqlite3

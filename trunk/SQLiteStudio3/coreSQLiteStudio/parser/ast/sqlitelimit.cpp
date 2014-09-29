@@ -55,6 +55,11 @@ SqliteLimit::~SqliteLimit()
 {
 }
 
+SqliteStatement*SqliteLimit::clone()
+{
+    return new SqliteLimit(*this);
+}
+
 
 TokenList SqliteLimit::rebuildTokensFromContents()
 {

@@ -29,6 +29,11 @@ SqliteColumnType::SqliteColumnType(const QString &name, const QVariant& scale, c
     this->scale = scale;
 }
 
+SqliteStatement* SqliteColumnType::clone()
+{
+    return new SqliteColumnType(*this);
+}
+
 bool SqliteColumnType::isPrecisionDouble()
 {
     return !precision.isNull() && precision.toString().indexOf(".") > -1;

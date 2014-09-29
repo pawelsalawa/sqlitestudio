@@ -8,6 +8,11 @@ SqliteBeginTrans::SqliteBeginTrans()
     queryType = SqliteQueryType::BeginTrans;
 }
 
+SqliteBeginTrans::SqliteBeginTrans(const SqliteBeginTrans& other) :
+    SqliteQuery(other), onConflict(other.onConflict), name(other.name), transactionKw(other.transactionKw), type(other.type)
+{
+}
+
 SqliteBeginTrans::SqliteBeginTrans(SqliteBeginTrans::Type type, bool transactionKw, const QString& name)
     : SqliteBeginTrans()
 {
@@ -21,6 +26,11 @@ SqliteBeginTrans::SqliteBeginTrans(bool transactionKw, const QString &name, Sqli
     this->onConflict = onConflict;
     this->transactionKw = transactionKw;
     this->name = name;
+}
+
+SqliteStatement*SqliteBeginTrans::clone()
+{
+    return new SqliteBeginTrans(*this);
 }
 
 QString SqliteBeginTrans::typeToString(SqliteBeginTrans::Type type)

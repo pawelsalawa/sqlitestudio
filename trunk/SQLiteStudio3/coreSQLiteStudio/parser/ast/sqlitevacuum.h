@@ -9,7 +9,10 @@ class API_EXPORT SqliteVacuum : public SqliteQuery
 {
     public:
         SqliteVacuum();
+        SqliteVacuum(const SqliteVacuum& other);
         explicit SqliteVacuum(const QString &name);
+
+        SqliteStatement* clone();
 
         QString database;
 

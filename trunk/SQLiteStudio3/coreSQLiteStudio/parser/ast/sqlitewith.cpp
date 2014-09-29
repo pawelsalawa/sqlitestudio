@@ -1,9 +1,16 @@
 #include "sqlitewith.h"
 #include "parser/statementtokenbuilder.h"
 #include "sqliteselect.h"
+#include "common/global.h"
 
 SqliteWith::SqliteWith()
 {
+}
+
+SqliteWith::SqliteWith(const SqliteWith& other) :
+    SqliteStatement(other), recursive(other.recursive)
+{
+    DEEP_COPY_COLLECTION(CommonTableExpression, cteList);
 }
 
 SqliteWith* SqliteWith::append(const QString& tableName, const QList<SqliteIndexedColumn*>& indexedColumns, SqliteSelect* select)
@@ -26,6 +33,11 @@ SqliteWith* SqliteWith::append(SqliteWith* with, const QString& tableName, const
     return with;
 }
 
+SqliteStatement*SqliteWith::clone()
+{
+    return new SqliteWith(*this);
+}
+
 TokenList SqliteWith::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
@@ -39,9 +51,25 @@ TokenList SqliteWith::rebuildTokensFromContents()
     return builder.build();
 }
 
+SqliteWith::CommonTableExpression::CommonTableExpression()
+{
+}
+
+SqliteWith::CommonTableExpression::CommonTableExpression(const SqliteWith::CommonTableExpression& other) :
+    SqliteStatement(other), table(other.table)
+{
+    DEEP_COPY_COLLECTION(SqliteIndexedColumn, indexedColumns);
+    DEEP_COPY_FIELD(SqliteSelect, select);
+}
+
 SqliteWith::CommonTableExpression::CommonTableExpression(const QString& tableName, const QList<SqliteIndexedColumn*>& indexedColumns, SqliteSelect* select) :
     table(tableName), indexedColumns(indexedColumns), select(select)
 {
+}
+
+SqliteStatement*SqliteWith::CommonTableExpression::clone()
+{
+    return new SqliteWith::CommonTableExpression(*this);
 }
 
 TokenList SqliteWith::CommonTableExpression::rebuildTokensFromContents()

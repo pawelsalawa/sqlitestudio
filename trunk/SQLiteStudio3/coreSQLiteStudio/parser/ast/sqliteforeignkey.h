@@ -38,6 +38,8 @@ class API_EXPORT SqliteForeignKey : public SqliteStatement
                 static QString toString(Reaction reaction);
                 static Reaction toEnum(const QString& reaction);
 
+                SqliteStatement* clone();
+
                 Action action;
                 QString name = QString::null;
                 Reaction reaction = NO_ACTION;
@@ -52,6 +54,8 @@ class API_EXPORT SqliteForeignKey : public SqliteStatement
         SqliteForeignKey();
         SqliteForeignKey(const SqliteForeignKey& other);
         ~SqliteForeignKey();
+
+        SqliteStatement* clone();
 
         QString foreignTable = QString::null;
         QList<SqliteIndexedColumn*> indexedColumns;

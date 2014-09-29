@@ -103,6 +103,11 @@ SqliteCreateTrigger::~SqliteCreateTrigger()
 {
 }
 
+SqliteStatement*SqliteCreateTrigger::clone()
+{
+    return new SqliteCreateTrigger(*this);
+}
+
 QString SqliteCreateTrigger::getTargetTable() const
 {
     return table;
@@ -247,6 +252,11 @@ SqliteCreateTrigger::Event::Event(const QList<QString> &columns)
 {
     this->type = UPDATE_OF;
     columnNames = columns;
+}
+
+SqliteStatement*SqliteCreateTrigger::Event::clone()
+{
+    return new SqliteCreateTrigger::Event(*this);
 }
 
 TokenList SqliteCreateTrigger::Event::rebuildTokensFromContents()

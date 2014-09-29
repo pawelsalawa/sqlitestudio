@@ -36,6 +36,8 @@ class API_EXPORT SqliteCreateTrigger : public SqliteQuery, public SqliteTableRel
                 explicit Event(Type type);
                 Event(const Event& other);
                 explicit Event(const QList<QString>& columns);
+                SqliteStatement* clone();
+
                 TokenList rebuildTokensFromContents();
 
                 static QString typeToString(Type type);
@@ -58,6 +60,7 @@ class API_EXPORT SqliteCreateTrigger : public SqliteQuery, public SqliteTableRel
                             const QString& name3, Time time, Event* event, Scope scope,
                             SqliteExpr* precondition, const QList<SqliteQuery*>& queries, int sqliteVersion);
         ~SqliteCreateTrigger();
+        SqliteStatement* clone();
 
         QString getTargetTable() const;
 

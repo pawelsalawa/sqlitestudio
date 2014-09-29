@@ -17,6 +17,8 @@ class API_EXPORT SqliteDelete : public SqliteQuery
         SqliteDelete(const QString& name1, const QString& name2, bool notIndexedKw, SqliteExpr* where, SqliteWith* with);
         ~SqliteDelete();
 
+        SqliteStatement* clone();
+
     protected:
         QStringList getTablesInStatement();
         QStringList getDatabasesInStatement();

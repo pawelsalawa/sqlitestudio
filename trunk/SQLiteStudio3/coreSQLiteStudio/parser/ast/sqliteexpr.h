@@ -64,6 +64,7 @@ class API_EXPORT SqliteExpr : public SqliteStatement
         static NotNull notNullOp(const QString& value);
         static QString notNullOp(NotNull value);
 
+        SqliteStatement* clone();
         void initLiteral(const QVariant& value);
         void initNull();
         void initCTime(const QString& name);

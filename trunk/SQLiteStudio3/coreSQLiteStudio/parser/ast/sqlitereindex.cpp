@@ -8,6 +8,11 @@ SqliteReindex::SqliteReindex()
     queryType = SqliteQueryType::Reindex;
 }
 
+SqliteReindex::SqliteReindex(const SqliteReindex& other) :
+    SqliteQuery(other), database(other.database), table(other.table)
+{
+}
+
 SqliteReindex::SqliteReindex(const QString& name1, const QString& name2)
     : SqliteReindex()
 {
@@ -18,6 +23,11 @@ SqliteReindex::SqliteReindex(const QString& name1, const QString& name2)
     }
     else
         table = name1;
+}
+
+SqliteStatement*SqliteReindex::clone()
+{
+    return new SqliteReindex(*this);
 }
 
 QStringList SqliteReindex::getTablesInStatement()

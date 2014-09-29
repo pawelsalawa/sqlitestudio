@@ -21,6 +21,8 @@ class API_EXPORT SqliteRaise : public SqliteStatement
         explicit SqliteRaise(const QString& type);
         SqliteRaise(const QString& type, const QString& text);
 
+        SqliteStatement* clone();
+
         static Type raiseType(const QString& value);
         static QString raiseType(Type value);
 

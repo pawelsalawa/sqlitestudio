@@ -8,6 +8,11 @@ SqliteDropTrigger::SqliteDropTrigger()
     queryType = SqliteQueryType::DropTrigger;
 }
 
+SqliteDropTrigger::SqliteDropTrigger(const SqliteDropTrigger& other) :
+    SqliteQuery(other), ifExistsKw(other.ifExistsKw), database(other.database), trigger(other.trigger)
+{
+}
+
 SqliteDropTrigger::SqliteDropTrigger(bool ifExists, const QString &name1, const QString &name2)
     : SqliteDropTrigger()
 {
@@ -20,6 +25,11 @@ SqliteDropTrigger::SqliteDropTrigger(bool ifExists, const QString &name1, const 
         database = name1;
         trigger = name2;
     }
+}
+
+SqliteStatement*SqliteDropTrigger::clone()
+{
+    return new SqliteDropTrigger(*this);
 }
 
 QStringList SqliteDropTrigger::getDatabasesInStatement()

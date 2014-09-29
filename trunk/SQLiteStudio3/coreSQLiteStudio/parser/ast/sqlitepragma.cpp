@@ -8,6 +8,11 @@ SqlitePragma::SqlitePragma()
     queryType = SqliteQueryType::Pragma;
 }
 
+SqlitePragma::SqlitePragma(const SqlitePragma& other) :
+    SqliteQuery(other), database(other.database), pragmaName(other.pragmaName), value(other.value), equalsOp(other.equalsOp), parenthesis(other.parenthesis)
+{
+}
+
 SqlitePragma::SqlitePragma(const QString &name1, const QString &name2)
     : SqlitePragma()
 {
@@ -34,6 +39,11 @@ SqlitePragma::SqlitePragma(const QString &name1, const QString &name2, const QSt
         equalsOp = true;
     else
         parenthesis = true;
+}
+
+SqliteStatement*SqlitePragma::clone()
+{
+    return new SqlitePragma(*this);
 }
 
 QStringList SqlitePragma::getDatabasesInStatement()

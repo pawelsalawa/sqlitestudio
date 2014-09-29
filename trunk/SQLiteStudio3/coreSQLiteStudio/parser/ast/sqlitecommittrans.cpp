@@ -16,6 +16,16 @@ SqliteCommitTrans::SqliteCommitTrans(bool transactionKw, const QString& name, bo
     this->name = name;
 }
 
+SqliteCommitTrans::SqliteCommitTrans(const SqliteCommitTrans& other) :
+    SqliteQuery(other), endKw(other.endKw), name(other.name), transactionKw(other.transactionKw)
+{
+}
+
+SqliteStatement* SqliteCommitTrans::clone()
+{
+    return new SqliteCommitTrans(*this);
+}
+
 TokenList SqliteCommitTrans::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;

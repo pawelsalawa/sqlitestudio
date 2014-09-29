@@ -8,6 +8,11 @@ SqliteCopy::SqliteCopy()
     queryType = SqliteQueryType::Copy;
 }
 
+SqliteCopy::SqliteCopy(const SqliteCopy& other) :
+    SqliteQuery(other), onConflict(other.onConflict), database(other.database), table(other.table), file(other.file), delimiter(other.delimiter)
+{
+}
+
 SqliteCopy::SqliteCopy(SqliteConflictAlgo onConflict, const QString &name1, const QString &name2, const QString &name3, const QString &delim)
     : SqliteCopy()
 {
@@ -23,6 +28,11 @@ SqliteCopy::SqliteCopy(SqliteConflictAlgo onConflict, const QString &name1, cons
 
     file = name3;
     delimiter = delim;
+}
+
+SqliteStatement* SqliteCopy::clone()
+{
+    return new SqliteCopy(*this);
 }
 
 QStringList SqliteCopy::getTablesInStatement()

@@ -39,6 +39,7 @@ class API_EXPORT SqliteSelect : public SqliteQuery
                         explicit ResultColumn(bool star);
 
                         bool isRowId();
+                        SqliteStatement* clone();
 
                         SqliteExpr* expr = nullptr;
                         bool star = false;
@@ -64,6 +65,8 @@ class API_EXPORT SqliteSelect : public SqliteQuery
                                      bool asKw, const QString& alias, bool notIndexedKw, const QString& indexedBy);
                         SingleSource(SqliteSelect* select, bool asKw, const QString& alias);
                         SingleSource(JoinSource* src, bool asKw, const QString& alias);
+
+                        SqliteStatement* clone();
 
                         QString database = QString::null;
                         QString table = QString::null;
@@ -93,6 +96,8 @@ class API_EXPORT SqliteSelect : public SqliteQuery
                         explicit JoinOp(const QString& joinToken);
                         JoinOp(const QString& joinToken, const QString& word1);
                         JoinOp(const QString& joinToken, const QString& word1, const QString& word2);
+
+                        SqliteStatement* clone();
 
                     private:
                         void init(const QString& str);
@@ -127,6 +132,8 @@ class API_EXPORT SqliteSelect : public SqliteQuery
                         explicit JoinConstraint(SqliteExpr* expr);
                         explicit JoinConstraint(const QList<QString>& strList);
 
+                        SqliteStatement* clone();
+
                         SqliteExpr* expr = nullptr;
                         QList<QString> columnNames;
 
@@ -145,6 +152,8 @@ class API_EXPORT SqliteSelect : public SqliteQuery
                                         SqliteSelect::Core::SingleSource* src,
                                         SqliteSelect::Core::JoinConstraint* constr);
 
+                        SqliteStatement* clone();
+
                         JoinOp* joinOp = nullptr;
                         SingleSource* singleSource = nullptr;
                         JoinConstraint* joinConstraint = nullptr;
@@ -160,6 +169,8 @@ class API_EXPORT SqliteSelect : public SqliteQuery
                         JoinSource(const JoinSource& other);
                         JoinSource(SingleSource* singleSource, const QList<JoinSourceOther*>& list);
 
+                        SqliteStatement* clone();
+
                         SingleSource* singleSource = nullptr;
                         QList<JoinSourceOther*> otherSources;
 
@@ -172,6 +183,8 @@ class API_EXPORT SqliteSelect : public SqliteQuery
                 Core(int distinct, const QList<ResultColumn*>& resCols, JoinSource* src, SqliteExpr* where,
                      const QList<SqliteExpr*>& groupBy, SqliteExpr* having, const QList<SqliteOrderBy*>& orderBy,
                      SqliteLimit* limit);
+
+                SqliteStatement* clone();
 
                 CompoundOperator compoundOp = CompoundOperator::null;
                 QList<ResultColumn*> resultColumns;
@@ -197,6 +210,7 @@ class API_EXPORT SqliteSelect : public SqliteQuery
         static SqliteSelect* append(const QList<QList<SqliteExpr*>>& values);
         static SqliteSelect* append(SqliteSelect* select, SqliteSelect::CompoundOperator op, const QList<QList<SqliteExpr*>>& values);
 
+        SqliteStatement* clone();
         QString compoundOperator(CompoundOperator op);
         CompoundOperator compoundOperator(const QString& op);
         void reset();

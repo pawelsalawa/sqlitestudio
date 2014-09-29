@@ -14,6 +14,8 @@ class API_EXPORT SqliteCreateView : public SqliteQuery
         SqliteCreateView(int temp, bool ifNotExists, const QString& name1, const QString& name2, SqliteSelect* select);
         ~SqliteCreateView();
 
+        SqliteStatement* clone();
+
         bool tempKw = false;
         bool temporaryKw = false;
         bool ifNotExists = false;

@@ -13,6 +13,8 @@ class API_EXPORT SqliteIndexedColumn : public SqliteStatement
         SqliteIndexedColumn(const QString& name, const QString& collate, SqliteSortOrder sortOrder);
         explicit SqliteIndexedColumn(const QString& name);
 
+        SqliteStatement* clone();
+
         QString name = QString::null;
         SqliteSortOrder sortOrder = SqliteSortOrder::null;
         QString collate = QString::null;

@@ -24,6 +24,8 @@ class API_EXPORT SqliteInsert : public SqliteQuery
                      const QString& name2, const QList<QString>& columns, SqliteWith* with);
         ~SqliteInsert();
 
+        SqliteStatement* clone();
+
     protected:
         QStringList getColumnsInStatement();
         QStringList getTablesInStatement();

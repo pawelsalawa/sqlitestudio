@@ -8,11 +8,21 @@ SqliteRelease::SqliteRelease()
     queryType = SqliteQueryType::Release;
 }
 
+SqliteRelease::SqliteRelease(const SqliteRelease& other) :
+    SqliteQuery(other), name(other.name), savepointKw(other.savepointKw)
+{
+}
+
 SqliteRelease::SqliteRelease(bool savepointKw, const QString& name)
     : SqliteRelease()
 {
     this->name = name;
     this->savepointKw = savepointKw;
+}
+
+SqliteStatement*SqliteRelease::clone()
+{
+    return new SqliteRelease(*this);
 }
 
 TokenList SqliteRelease::rebuildTokensFromContents()

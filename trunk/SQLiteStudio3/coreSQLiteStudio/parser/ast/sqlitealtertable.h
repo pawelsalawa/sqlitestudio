@@ -15,9 +15,11 @@ class API_EXPORT SqliteAlterTable : public SqliteQuery
         };
 
         SqliteAlterTable();
+        SqliteAlterTable(const SqliteAlterTable& other);
         SqliteAlterTable(const QString& name1, const QString& name2, const QString& newName);
         SqliteAlterTable(const QString& name1, const QString& name2, bool columnKw, SqliteCreateTable::Column* column);
         ~SqliteAlterTable();
+        SqliteStatement* clone();
 
     protected:
         QStringList getTablesInStatement();
@@ -31,7 +33,6 @@ class API_EXPORT SqliteAlterTable : public SqliteQuery
         void initName(const QString& name1, const QString& name2);
 
     public:
-
         Command command = Command::null;
         QString newName = QString::null;
         QString database = QString::null;

@@ -9,7 +9,10 @@ class API_EXPORT SqliteReindex : public SqliteQuery
 {
     public:
         SqliteReindex();
+        SqliteReindex(const SqliteReindex& other);
         SqliteReindex(const QString& name1, const QString& name2);
+
+        SqliteStatement* clone();
 
         QString database = QString::null;
         QString table = QString::null;

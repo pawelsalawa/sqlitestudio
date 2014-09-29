@@ -1,12 +1,18 @@
 #include "sqlitedetach.h"
 #include "sqlitequerytype.h"
 #include "sqliteexpr.h"
-
-#include <parser/statementtokenbuilder.h>
+#include "common/global.h"
+#include "parser/statementtokenbuilder.h"
 
 SqliteDetach::SqliteDetach()
 {
     queryType = SqliteQueryType::Detach;
+}
+
+SqliteDetach::SqliteDetach(const SqliteDetach& other) :
+    SqliteQuery(other), databaseKw(other.databaseKw)
+{
+    DEEP_COPY_FIELD(SqliteExpr, name);
 }
 
 SqliteDetach::SqliteDetach(bool databaseKw, SqliteExpr *name)
@@ -20,6 +26,11 @@ SqliteDetach::SqliteDetach(bool databaseKw, SqliteExpr *name)
 
 SqliteDetach::~SqliteDetach()
 {
+}
+
+SqliteStatement*SqliteDetach::clone()
+{
+    return new SqliteDetach(*this);
 }
 
 TokenList SqliteDetach::rebuildTokensFromContents()

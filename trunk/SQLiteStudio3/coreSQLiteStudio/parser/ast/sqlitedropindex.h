@@ -8,7 +8,10 @@ class API_EXPORT SqliteDropIndex : public SqliteQuery
 {
     public:
         SqliteDropIndex();
+        SqliteDropIndex(const SqliteDropIndex& other);
         SqliteDropIndex(bool ifExistsKw, const QString& name1, const QString& name2);
+
+        SqliteStatement* clone();
 
         bool ifExistsKw = false;
         QString database = QString::null;

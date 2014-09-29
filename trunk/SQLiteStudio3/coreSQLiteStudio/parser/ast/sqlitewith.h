@@ -12,7 +12,11 @@ class SqliteWith : public SqliteStatement
         class CommonTableExpression : public SqliteStatement
         {
             public:
+                CommonTableExpression();
+                CommonTableExpression(const CommonTableExpression& other);
                 CommonTableExpression(const QString& tableName, const QList<SqliteIndexedColumn*>& indexedColumns, SqliteSelect* select);
+
+                SqliteStatement* clone();
 
                 QString table;
                 QList<SqliteIndexedColumn*> indexedColumns;
@@ -23,8 +27,11 @@ class SqliteWith : public SqliteStatement
         };
 
         SqliteWith();
+        SqliteWith(const SqliteWith& other);
         static SqliteWith* append(const QString& tableName, const QList<SqliteIndexedColumn*>& indexedColumns, SqliteSelect* select);
         static SqliteWith* append(SqliteWith* with, const QString& tableName, const QList<SqliteIndexedColumn*>& indexedColumns, SqliteSelect* select);
+
+        SqliteStatement* clone();
 
         QList<CommonTableExpression*> cteList;
         bool recursive = false;

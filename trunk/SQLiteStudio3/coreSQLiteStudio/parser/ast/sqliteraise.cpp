@@ -21,6 +21,11 @@ SqliteRaise::SqliteRaise(const QString &type, const QString &text)
     message = text;
 }
 
+SqliteStatement*SqliteRaise::clone()
+{
+    return new SqliteRaise(*this);
+}
+
 SqliteRaise::Type SqliteRaise::raiseType(const QString &value)
 {
     QString upper = value.toUpper();

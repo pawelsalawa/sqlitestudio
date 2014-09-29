@@ -8,6 +8,11 @@ SqliteRollback::SqliteRollback()
     queryType = SqliteQueryType::Rollback;
 }
 
+SqliteRollback::SqliteRollback(const SqliteRollback& other) :
+    SqliteQuery(other), transactionKw(other.transactionKw), toKw(other.toKw), savepointKw(other.savepointKw), name(other.name)
+{
+}
+
 SqliteRollback::SqliteRollback(bool transactionKw, const QString& name)
     : SqliteRollback()
 {
@@ -23,6 +28,11 @@ SqliteRollback::SqliteRollback(bool transactionKw, bool savePoint, const QString
     this->transactionKw = transactionKw;
     toKw = true;
     savepointKw = savePoint;
+}
+
+SqliteStatement*SqliteRollback::clone()
+{
+    return new SqliteRollback(*this);
 }
 
 TokenList SqliteRollback::rebuildTokensFromContents()

@@ -90,6 +90,11 @@ QString SqliteExpr::notNullOp(SqliteExpr::NotNull value)
     }
 }
 
+SqliteStatement*SqliteExpr::clone()
+{
+    return new SqliteExpr(*this);
+}
+
 void SqliteExpr::initLiteral(const QVariant &value)
 {
     mode = SqliteExpr::Mode::LITERAL_VALUE;

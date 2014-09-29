@@ -228,6 +228,7 @@ class API_EXPORT SqliteStatement : public QObject
         void setParent(QObject* parent);
         void attach(SqliteStatement*& memberForChild, SqliteStatement* childStatementToAttach);
         SqliteStatementPtr detach();
+        virtual SqliteStatement* clone() = 0;
 
         template <class T>
         void attach(QList<T*>& listMemberForChild, T* childStatementToAttach)

@@ -37,6 +37,11 @@ SqliteDelete::~SqliteDelete()
 {
 }
 
+SqliteStatement*SqliteDelete::clone()
+{
+    return new SqliteDelete(*this);
+}
+
 QStringList SqliteDelete::getTablesInStatement()
 {
     return getStrListFromValue(table);

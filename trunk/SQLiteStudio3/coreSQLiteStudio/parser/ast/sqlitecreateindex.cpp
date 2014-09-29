@@ -71,6 +71,11 @@ SqliteCreateIndex::~SqliteCreateIndex()
 {
 }
 
+SqliteStatement*SqliteCreateIndex::clone()
+{
+    return new SqliteCreateIndex(*this);
+}
+
 QString SqliteCreateIndex::getTargetTable() const
 {
     return table;

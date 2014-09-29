@@ -10,11 +10,14 @@ class API_EXPORT SqlitePragma : public SqliteQuery
 {
     public:
         SqlitePragma();
+        SqlitePragma(const SqlitePragma& other);
         SqlitePragma(const QString& name1, const QString& name2);
         SqlitePragma(const QString& name1, const QString& name2, const QVariant& value,
                      bool equals);
         SqlitePragma(const QString& name1, const QString& name2, const QString& value,
                      bool equals);
+
+        SqliteStatement* clone();
 
     protected:
         QStringList getDatabasesInStatement();
