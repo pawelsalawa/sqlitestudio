@@ -1,5 +1,6 @@
 #include "sqleditor.h"
 #include "uiconfig.h"
+#include "uiutils.h"
 #include "services/config.h"
 #include "iconmanager.h"
 #include "completer/completerwindow.h"
@@ -930,7 +931,9 @@ void SqlEditor::replaceSelectedText(const QString &newText)
 
 QString SqlEditor::getSelectedText() const
 {
-    return textCursor().selectedText();
+    QString txt = textCursor().selectedText();
+    fixTextCursorSelectedText(txt);
+    return txt;
 }
 
 void SqlEditor::openObject(const QString& database, const QString& name)
@@ -1133,6 +1136,7 @@ void SqlEditor::moveBlockDown(bool deleteOld)
     cursor.setPosition(startBlock.position());
     cursor.setPosition(startBlock.position() + textLength, QTextCursor::KeepAnchor);
     QString text = cursor.selectedText();
+    fixTextCursorSelectedText(text);
     if (deleteOld) // this is false when just copying
         cursor.removeSelectedText();
 
@@ -1178,6 +1182,7 @@ void SqlEditor::moveBlockUp(bool deleteOld)
     cursor.setPosition(startBlock.position());
     cursor.setPosition(startBlock.position() + textLength, QTextCursor::KeepAnchor);
     QString text = cursor.selectedText();
+    fixTextCursorSelectedText(text);
     if (deleteOld) // this is false when just copying
         cursor.removeSelectedText();
 

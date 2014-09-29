@@ -120,3 +120,8 @@ void limitDialogWidth(QDialog* dialog)
 {
     dialog->setMaximumWidth(QApplication::desktop()->availableGeometry().width());
 }
+
+void fixTextCursorSelectedText(QString& text)
+{
+    text.replace("\u2029", "\n");
+}
