@@ -164,7 +164,6 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         SqlTableModel* dataModel;
         bool dataLoaded = false;
         bool existingTable = true;
-        bool blankNameWarningDisplayed = false;
         SqliteCreateTablePtr createTable;
         SqliteCreateTablePtr originalCreateTable;
         TableStructureModel* structureModel = nullptr;
@@ -207,7 +206,6 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         void updateTableConstraintsToolbarState();
         void updateDdlTab();
         void updateNewTableState();
-        void updateBlankNameWarningState();
         void on_structureView_doubleClicked(const QModelIndex &index);
         void on_tableConstraintsView_doubleClicked(const QModelIndex &index);
         void nameChanged();

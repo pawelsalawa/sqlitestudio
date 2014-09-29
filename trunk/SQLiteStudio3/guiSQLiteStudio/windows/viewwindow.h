@@ -108,7 +108,6 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
         bool dataLoaded = false;
         int newViewWindowNum = 1;
         bool modified = false;
-        bool blankNameWarningDisplayed = false;
         SqliteCreateViewPtr originalCreateView;
         SqliteCreateViewPtr createView;
         SqlQueryModel* dataModel = nullptr;

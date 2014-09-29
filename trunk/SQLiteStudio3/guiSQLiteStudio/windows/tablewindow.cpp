@@ -149,7 +149,6 @@ void TableWindow::init()
     connect(dataModel, &SqlQueryModel::executionFailed, this, &TableWindow::executionFailed);
     connect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(tabChanged(int)));
     connect(this, SIGNAL(modifyStatusChanged()), this, SLOT(updateStructureCommitState()));
-    connect(this, SIGNAL(modifyStatusChanged()), this, SLOT(updateBlankNameWarningState()));
     connect(ui->tableNameEdit, SIGNAL(textChanged(QString)), this, SIGNAL(modifyStatusChanged()));
     connect(ui->tableNameEdit, SIGNAL(textChanged(QString)), this, SLOT(nameChanged()));
     connect(ui->indexList, SIGNAL(itemSelectionChanged()), this, SLOT(updateIndexesState()));
@@ -852,12 +851,13 @@ void TableWindow::addConstraint(ConstraintDialog::Constraint mode)
 
 bool TableWindow::validate(bool skipWarning)
 {
-    if (!existingTable && !skipWarning && ui->tableNameEdit->text().isEmpty() && !blankNameWarningDisplayed)
+    if (!existingTable && !skipWarning && ui->tableNameEdit->text().isEmpty())
     {
-        notifyWarn(tr("A blank name for the table is allowed in SQLite, but it is not recommended. "
-                               "Hit the commit button again to ignore this warning and proceed."));
-        blankNameWarningDisplayed = true;
-        return false;
+        int res = QMessageBox::warning(this, tr("Empty name"), tr("A blank name for the table is allowed in SQLite, but it is not recommended.\n"
+            "Are you sure you want to create a table with blank name?"), QMessageBox::Yes, QMessageBox::No);
+
+        if (res != QMessageBox::Yes)
+            return false;
     }
 
     if (structureModel->rowCount() == 0)
@@ -979,12 +979,6 @@ void TableWindow::updateNewTableState()
     actionMap[POPULATE]->setEnabled(existingTable);
     actionMap[CREATE_SIMILAR]->setEnabled(existingTable);
     actionMap[REFRESH_STRUCTURE]->setEnabled(existingTable);
-}
-
-void TableWindow::updateBlankNameWarningState()
-{
-    if (isModified())
-        blankNameWarningDisplayed = false;
 }
 
 void TableWindow::addConstraint()

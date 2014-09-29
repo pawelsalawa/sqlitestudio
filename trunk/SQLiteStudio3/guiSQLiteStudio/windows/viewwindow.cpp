@@ -641,12 +641,13 @@ bool ViewWindow::isModified() const
 
 bool ViewWindow::validate(bool skipWarnings)
 {
-    if (!existingView && !skipWarnings && ui->nameEdit->text().isEmpty() && !blankNameWarningDisplayed)
+    if (!existingView && !skipWarnings && ui->nameEdit->text().isEmpty())
     {
-        notifyWarn(tr("A blank name for the view is allowed in SQLite, but it is not recommended. "
-                               "Hit the commit button again to ignore this warning and proceed."));
-        blankNameWarningDisplayed = true;
-        return false;
+        int res = QMessageBox::warning(this, tr("Empty name"), tr("A blank name for the view is allowed in SQLite, but it is not recommended.\n"
+            "Are you sure you want to create a view with blank name?"), QMessageBox::Yes, QMessageBox::No);
+
+        if (res != QMessageBox::Yes)
+            return false;
     }
 
     // Rebuilding createView statement and validating it on the fly.
