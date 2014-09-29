@@ -112,7 +112,7 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
         void createActions();
         void createDbCombo();
         void setupDefShortcuts();
-        void selectCurrentQuery();
+        void selectCurrentQuery(bool fallBackToPreviousIfNecessary = false);
         void updateShortcutTips();
 
         static ResultsDisplayMode resultsDisplayMode;

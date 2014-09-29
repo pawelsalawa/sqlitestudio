@@ -1,5 +1,6 @@
 #include "editorwindow.h"
 #include "ui_editorwindow.h"
+#include "uiutils.h"
 #include "datagrid/sqlquerymodel.h"
 #include "iconmanager.h"
 #include "dblistmodel.h"
@@ -191,12 +192,14 @@ QString EditorWindow::getQueryToExecute(bool doSelectCurrentQuery)
     if (ui->sqlEdit->textCursor().hasSelection())
     {
         sql = ui->sqlEdit->textCursor().selectedText();
+        fixTextCursorSelectedText(sql);
     }
     else if (CFG_UI.General.ExecuteCurrentQueryOnly.get())
     {
         ui->sqlEdit->saveSelection();
-        selectCurrentQuery();
+        selectCurrentQuery(true);
         sql = ui->sqlEdit->textCursor().selectedText();
+        fixTextCursorSelectedText(sql);
         if (!doSelectCurrentQuery)
             ui->sqlEdit->restoreSelection();
     }
@@ -396,7 +399,7 @@ void EditorWindow::setupDefShortcuts()
     BIND_SHORTCUTS(EditorWindow, Action);
 }
 
-void EditorWindow::selectCurrentQuery()
+void EditorWindow::selectCurrentQuery(bool fallBackToPreviousIfNecessary)
 {
     Dialect dialect = Dialect::Sqlite3;
     Db* db = getCurrentDb();
@@ -406,10 +409,25 @@ void EditorWindow::selectCurrentQuery()
     QTextCursor cursor = ui->sqlEdit->textCursor();
     int pos = cursor.position();
     int queryStartPos;
-    QString query = getQueryWithPosition(ui->sqlEdit->toPlainText(), pos, dialect, &queryStartPos);
+    QString contents = ui->sqlEdit->toPlainText();
+    QString query = getQueryWithPosition(contents, pos, dialect, &queryStartPos);
     TokenList tokens = Lexer::tokenize(query, dialect);
     tokens.trim();
     tokens.trimRight(Token::OPERATOR, ";");
+
+    if (tokens.size() == 0 && fallBackToPreviousIfNecessary)
+    {
+        // Fallback
+        pos = contents.lastIndexOf(";", pos - 1);
+        if (pos > -1)
+        {
+            query = getQueryWithPosition(contents, pos, dialect, &queryStartPos);
+            tokens = Lexer::tokenize(query, dialect);
+            tokens.trim();
+            tokens.trimRight(Token::OPERATOR, ";");
+        }
+    }
+
     if (tokens.size() == 0)
     {
         qWarning() << "No tokens to select in EditorWindow::selectCurrentQuery().";
