@@ -10,10 +10,10 @@ void FormatForeignKey::formatInternal()
     withKeyword("REFERENCES").withId(fk->foreignTable);
 
     if (fk->indexedColumns.size() > 0)
-        withParDefLeft().withStatementList(fk->indexedColumns).withParDefRight();
+        withParExprLeft().withStatementList(fk->indexedColumns).withParExprRight();
 
     if (fk->conditions.size() > 0)
-        withStatementList(fk->conditions, "");
+        markAndKeepIndent("constr_conditions").withStatementList(fk->conditions, QString(), ListSeparator::NEW_LINE).withDecrIndent();
 
     if (fk->deferrable != SqliteDeferrable::null)
     {
@@ -39,20 +39,18 @@ void FormatForeignKeyCondition::formatInternal()
     {
         case SqliteForeignKey::Condition::UPDATE:
             withKeyword("ON").withKeyword("UPDATE");
-            formatReaction();
             break;
         case SqliteForeignKey::Condition::INSERT:
             withKeyword("ON").withKeyword("INSERT");
-            formatReaction();
             break;
         case SqliteForeignKey::Condition::DELETE:
             withKeyword("ON").withKeyword("DELETE");
-            formatReaction();
             break;
         case SqliteForeignKey::Condition::MATCH:
             withKeyword("MATCH").withId(cond->name);
-            break;
+            return;
     }
+    formatReaction();
 }
 
 void FormatForeignKeyCondition::formatReaction()
