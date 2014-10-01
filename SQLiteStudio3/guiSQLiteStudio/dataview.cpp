@@ -17,6 +17,7 @@
 #include <QLabel>
 #include <QAction>
 #include <QTime>
+#include <QStyleFactory>
 
 CFG_KEYS_DEFINE(DataView)
 DataView::FilterMode DataView::filterMode;
@@ -112,6 +113,12 @@ void DataView::createContents()
     formToolBar = new QToolBar();
     gridWidget->layout()->addWidget(gridToolBar);
     formWidget->layout()->addWidget(formToolBar);
+
+#ifdef Q_OS_MACX
+    QStyle *fusion = QStyleFactory::create("Fusion");
+    gridToolBar->setStyle(fusion);
+    formToolBar->setStyle(fusion);
+#endif
 
     gridView = new SqlQueryView();
     gridView->setCornerButtonEnabled(true);

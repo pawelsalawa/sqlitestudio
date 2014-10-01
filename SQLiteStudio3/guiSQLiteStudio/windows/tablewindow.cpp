@@ -42,6 +42,7 @@
 #include <QProgressBar>
 #include <QPushButton>
 #include <QDebug>
+#include <QStyleFactory>
 #include <dialogs/importdialog.h>
 #include <dialogs/populatedialog.h>
 
@@ -139,6 +140,18 @@ void TableWindow::init()
 {
     ui->setupUi(this);
     ui->structureSplitter->setStretchFactor(0, 2);
+
+#ifdef Q_OS_MACX
+    QStyle *fusion = QStyleFactory::create("Fusion");
+    ui->structureToolBar->setStyle(fusion);
+    ui->structureTab->layout()->setSpacing(0);
+    ui->tableConstraintsToolbar->setStyle(fusion);
+    ui->constraintsWidget->layout()->setSpacing(0);
+    ui->indexToolBar->setStyle(fusion);
+    ui->indexesTab->layout()->setSpacing(0);
+    ui->triggerToolBar->setStyle(fusion);
+    ui->triggersTab->layout()->setSpacing(0);
+#endif
 
     dataModel = new SqlTableModel(this);
     ui->dataView->init(dataModel);

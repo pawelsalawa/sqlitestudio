@@ -17,6 +17,7 @@
 #include "uiconfig.h"
 #include <QDebug>
 #include <QDesktopServices>
+#include <QStyleFactory>
 
 // TODO handle plugin loading/unloading to update editor state
 
@@ -67,9 +68,15 @@ void FunctionsEditor::createActions()
     createAction(ARG_ADD, ICONS.INSERT_FN_ARG, tr("Add function argument"), this, SLOT(addFunctionArg()), ui->argsToolBar);
     createAction(ARG_EDIT, ICONS.RENAME_FN_ARG, tr("Rename function argument"), this, SLOT(editFunctionArg()), ui->argsToolBar);
     createAction(ARG_DEL, ICONS.DELETE_FN_ARG, tr("Delete function argument"), this, SLOT(delFunctionArg()), ui->argsToolBar);
-    ui->toolBar->addSeparator();
+    ui->argsToolBar->addSeparator();
     createAction(ARG_MOVE_UP, ICONS.MOVE_UP, tr("Move function argument up"), this, SLOT(moveFunctionArgUp()), ui->argsToolBar);
     createAction(ARG_MOVE_DOWN, ICONS.MOVE_DOWN, tr("Move function argument down"), this, SLOT(moveFunctionArgDown()), ui->argsToolBar);
+
+#ifdef Q_OS_MACX
+    QStyle *fusion = QStyleFactory::create("Fusion");
+    ui->toolBar->setStyle(fusion);
+    ui->argsToolBar->setStyle(fusion);
+#endif
 }
 
 void FunctionsEditor::setupDefShortcuts()
