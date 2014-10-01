@@ -107,6 +107,7 @@ FormatStatement *FormatStatement::forQuery(SqliteStatement *query)
     FORMATTER_FACTORY_ENTRY(query, SqliteCreateTable::Column::Constraint, FormatCreateTableColumnConstraint);
     FORMATTER_FACTORY_ENTRY(query, SqliteCreateTable::Constraint, FormatCreateTableConstraint);
     FORMATTER_FACTORY_ENTRY(query, SqliteForeignKey, FormatForeignKey);
+    FORMATTER_FACTORY_ENTRY(query, SqliteForeignKey::Condition, FormatForeignKeyCondition);
     FORMATTER_FACTORY_ENTRY(query, SqliteColumnType, FormatColumnType);
     FORMATTER_FACTORY_ENTRY(query, SqliteIndexedColumn, FormatIndexedColumn);
     FORMATTER_FACTORY_ENTRY(query, SqliteInsert, FormatInsert);
