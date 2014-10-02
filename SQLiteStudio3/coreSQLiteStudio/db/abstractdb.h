@@ -287,13 +287,6 @@ class API_EXPORT AbstractDb : public Db
         BiHash<QString,Db*> attachedDbMap;
 
         /**
-         * @brief Map of databases attached to this database.
-         *
-         * This is an inversion of attachedDbMap.
-         */
-//        QHash<Db*,QString> attachedDbNameMap; // TODO replace attachedDbMap and attachedDbNameMap with BiDiMap.
-
-        /**
          * @brief Counter of attaching requrests for each database.
          *
          * When calling attach() on other Db, it gets its own entry in this mapping.
