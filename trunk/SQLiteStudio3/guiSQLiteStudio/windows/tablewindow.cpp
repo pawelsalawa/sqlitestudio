@@ -1308,7 +1308,7 @@ void TableWindow::updateIndexes()
         item->setFlags(Qt::ItemIsEnabled|Qt::ItemIsSelectable);
         ui->indexList->setItem(row, 0, item);
 
-        // TODO a deletate to make the checkbox in the center, or use setCellWidget()
+        // TODO a delegate to make the checkbox in the center, or use setCellWidget()
         item = new QTableWidgetItem();
         item->setFlags(Qt::ItemIsEnabled|Qt::ItemIsSelectable);
         item->setCheckState(index->uniqueKw ? Qt::Checked : Qt::Unchecked);
