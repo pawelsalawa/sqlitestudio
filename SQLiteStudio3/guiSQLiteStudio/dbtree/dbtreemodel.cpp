@@ -461,9 +461,6 @@ void DbTreeModel::refreshSchema(Db* db, QStandardItem *item)
     SchemaResolver resolver(db);
     resolver.setIgnoreSystemObjects(!CFG_UI.General.ShowSystemObjects.get());
 
-    // TODO all this below should be done in a separate thread
-    // TODO also disable any operations on this item (db) during refreshing
-
     // Collect all db objects and build the db branch
     bool sort = CFG_UI.General.SortObjects.get();
     QStringList tables = resolver.getTables();

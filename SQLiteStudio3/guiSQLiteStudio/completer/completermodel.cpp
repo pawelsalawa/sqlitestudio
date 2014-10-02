@@ -90,7 +90,6 @@ QString CompleterModel::getFilter() const
 
 void CompleterModel::applyFilter()
 {
-    // TODO check if CompleterModel::applyFilter works with "[table].[co..."
     bool empty = filter.isEmpty();
     QModelIndex idx;
     QString value;
