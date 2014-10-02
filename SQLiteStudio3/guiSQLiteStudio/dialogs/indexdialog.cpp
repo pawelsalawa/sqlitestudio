@@ -439,7 +439,7 @@ void IndexDialog::accept()
 
     if (executor.getSuccessfulExecution())
     {
-        CFG->addDdlHistory(sqls.join(";\n"), db->getName(), db->getPath());
+        CFG->addDdlHistory(sqls.join("\n"), db->getName(), db->getPath());
 
         QDialog::accept();
         DBTREE->refreshSchema(db);
