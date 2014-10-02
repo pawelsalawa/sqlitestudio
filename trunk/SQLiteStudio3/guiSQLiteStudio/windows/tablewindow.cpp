@@ -727,7 +727,7 @@ void TableWindow::commitStructure(bool skipWarning)
 void TableWindow::changesSuccessfullyCommited()
 {
     QStringList sqls = structureExecutor->getQueries();
-    CFG->addDdlHistory(sqls.join(";\n"), db->getName(), db->getPath());
+    CFG->addDdlHistory(sqls.join("\n"), db->getName(), db->getPath());
 
     widgetCover->hide();
 
