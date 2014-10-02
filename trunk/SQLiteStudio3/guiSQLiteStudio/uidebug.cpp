@@ -6,6 +6,7 @@
 #include <QTime>
 
 DebugConsole* sqliteStudioUiDebugConsole = nullptr;
+MsgHandlerThreadProxy* msgHandlerThreadProxy = nullptr;
 bool UI_DEBUG_ENABLED = false;
 bool UI_DEBUG_CONSOLE = true;
 
@@ -26,16 +27,16 @@ void uiMessageHandler(QtMsgType type, const QMessageLogContext &context, const Q
     {
         switch (type) {
             case QtDebugMsg:
-                sqliteStudioUiDebugConsole->debug(dbgMsg.arg(time, msg));
+                msgHandlerThreadProxy->debug(dbgMsg.arg(time, msg));
                 break;
             case QtWarningMsg:
-                sqliteStudioUiDebugConsole->warning(wrnMsg.arg(time, msg));
+                msgHandlerThreadProxy->warn(wrnMsg.arg(time, msg));
                 break;
             case QtCriticalMsg:
-                sqliteStudioUiDebugConsole->critical(criMsg.arg(time, msg));
+                msgHandlerThreadProxy->critical(criMsg.arg(time, msg));
                 break;
             case QtFatalMsg:
-                sqliteStudioUiDebugConsole->fatal(fatMsg.arg(time, msg));
+                msgHandlerThreadProxy->fatal(fatMsg.arg(time, msg));
                 abort();
         }
     }
@@ -66,9 +67,13 @@ void setUiDebug(bool enabled, bool useUiConsole)
 {
     UI_DEBUG_ENABLED = enabled;
     UI_DEBUG_CONSOLE =  useUiConsole;
+    safe_delete(msgHandlerThreadProxy);
     safe_delete(sqliteStudioUiDebugConsole);
     if (enabled && useUiConsole)
+    {
         sqliteStudioUiDebugConsole = new DebugConsole();
+        msgHandlerThreadProxy = new MsgHandlerThreadProxy();
+    }
 }
 
 void showUiDebugConsole()
@@ -85,4 +90,33 @@ bool isDebugEnabled()
 bool isDebugConsoleEnabled()
 {
     return UI_DEBUG_CONSOLE;
+}
+
+MsgHandlerThreadProxy::MsgHandlerThreadProxy(QObject *parent) :
+    QObject(parent)
+{
+    connect(this, SIGNAL(debugRequested(QString)), sqliteStudioUiDebugConsole, SLOT(debug(QString)));
+    connect(this, SIGNAL(warnRequested(QString)), sqliteStudioUiDebugConsole, SLOT(warning(QString)));
+    connect(this, SIGNAL(criticalRequested(QString)), sqliteStudioUiDebugConsole, SLOT(critical(QString)));
+    connect(this, SIGNAL(fatalRequested(QString)), sqliteStudioUiDebugConsole, SLOT(fatal(QString)));
+}
+
+void MsgHandlerThreadProxy::debug(const QString &msg)
+{
+    emit debugRequested(msg);
+}
+
+void MsgHandlerThreadProxy::warn(const QString &msg)
+{
+    emit warnRequested(msg);
+}
+
+void MsgHandlerThreadProxy::critical(const QString &msg)
+{
+    emit criticalRequested(msg);
+}
+
+void MsgHandlerThreadProxy::fatal(const QString &msg)
+{
+    emit fatalRequested(msg);
 }
