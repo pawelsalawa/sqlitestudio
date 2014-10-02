@@ -17,11 +17,6 @@ class GUI_API_EXPORT DebugConsole : public QDialog
         explicit DebugConsole(QWidget *parent = 0);
         ~DebugConsole();
 
-        void debug(const QString& msg);
-        void warning(const QString& msg);
-        void critical(const QString& msg);
-        void fatal(const QString& msg);
-
     protected:
         void showEvent(QShowEvent*);
 
@@ -38,6 +33,12 @@ class GUI_API_EXPORT DebugConsole : public QDialog
 
     private slots:
         void reset();
+
+    public slots:
+        void debug(const QString& msg);
+        void warning(const QString& msg);
+        void critical(const QString& msg);
+        void fatal(const QString& msg);
 };
 
 #endif // DEBUGCONSOLE_H
