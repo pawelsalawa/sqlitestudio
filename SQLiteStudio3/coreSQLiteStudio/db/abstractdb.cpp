@@ -151,7 +151,7 @@ QString AbstractDb::generateUniqueDbNameNoLock()
     if (results->isError())
     {
         qWarning() << "Could not get PRAGMA database_list. Falling back to internal db list. Error was:" << results->getErrorText();
-        return generateUniqueName("attached", attachedDbMap.keys());
+        return generateUniqueName("attached", attachedDbMap.leftValues());
     }
 
     QStringList existingDatabases;
@@ -580,10 +580,10 @@ QString AbstractDb::attach(Db* otherDb, bool silent)
     if (!isOpenInternal())
         return QString::null;
 
-    if (attachedDbNameMap.contains(otherDb))
+    if (attachedDbMap.containsRight(otherDb))
     {
         attachCounter[otherDb]++;
-        return attachedDbNameMap[otherDb];
+        return attachedDbMap.valueByRight(otherDb);
     }
 
     QString attName = generateUniqueDbName(false);
@@ -598,8 +598,7 @@ QString AbstractDb::attach(Db* otherDb, bool silent)
         return QString::null;
     }
 
-    attachedDbMap[attName] = otherDb;
-    attachedDbNameMap[otherDb] = attName;
+    attachedDbMap.insert(attName, otherDb);
 
     emit attached(otherDb);
     return attName;
@@ -617,7 +616,7 @@ void AbstractDb::detach(Db* otherDb)
 
 void AbstractDb::detachInternal(Db* otherDb)
 {
-    if (!attachedDbNameMap.contains(otherDb))
+    if (!attachedDbMap.containsRight(otherDb))
         return;
 
     if (attachCounter.contains(otherDb))
@@ -626,16 +625,14 @@ void AbstractDb::detachInternal(Db* otherDb)
         return;
     }
 
-    exec(QString("DETACH %1;").arg(attachedDbNameMap[otherDb]), Flag::NO_LOCK);
-    attachedDbMap.remove(attachedDbNameMap[otherDb]);
-    attachedDbNameMap.remove(otherDb);
+    exec(QString("DETACH %1;").arg(attachedDbMap.valueByRight(otherDb)), Flag::NO_LOCK);
+    attachedDbMap.removeRight(otherDb);
     emit detached(otherDb);
 }
 
 void AbstractDb::clearAttaches()
 {
     attachedDbMap.clear();
-    attachedDbNameMap.clear();
     attachCounter.clear();
 }
 
@@ -646,20 +643,20 @@ void AbstractDb::detachAll()
     if (!isOpenInternal())
         return;
 
-    foreach (Db* db, attachedDbMap.values())
+    foreach (Db* db, attachedDbMap.rightValues())
         detachInternal(db);
 }
 
 const QHash<Db *, QString> &AbstractDb::getAttachedDatabases()
 {
     QReadLocker locker(&dbOperLock);
-    return attachedDbNameMap;
+    return attachedDbMap.toInvertedQHash();
 }
 
 QSet<QString> AbstractDb::getAllAttaches()
 {
     QReadLocker locker(&dbOperLock);
-    QSet<QString> attaches = attachedDbMap.keys().toSet();
+    QSet<QString> attaches = attachedDbMap.leftValues().toSet();
     // TODO query database for attached databases and unite them here
     return attaches;
 }

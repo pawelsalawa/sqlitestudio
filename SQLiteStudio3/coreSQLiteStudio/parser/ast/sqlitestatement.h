@@ -12,7 +12,6 @@
 #include <QSharedPointer>
 
 // TODO start using attach() in most cases where setParent() is used
-// TODO implement rebuildTokensFromContents() in the rest of statements (not SELECT-related)
 
 class SqliteStatement;
 typedef QSharedPointer<SqliteStatement> SqliteStatementPtr;
