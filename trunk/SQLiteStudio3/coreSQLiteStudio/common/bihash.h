@@ -256,6 +256,24 @@ class BiHash
             return hash.isEmpty();
         }
 
+        /**
+         * @brief Provides QHash from this BiHash.
+         * @return QHash with left values as keys.
+         */
+        const QHash<L,R>& toQHash() const
+        {
+            return hash;
+        }
+
+        /**
+         * @brief Provides QHash with inverted values (right-to-left)
+         * @return QHash with right values as keys.
+         */
+        const QHash<R,L>& toInvertedQHash() const
+        {
+            return inverted;
+        }
+
     private:
         /**
          * @brief Fills inverted internal hash basing on values from hash class member.

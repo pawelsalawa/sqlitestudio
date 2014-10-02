@@ -20,8 +20,6 @@ QStringList sqlite2Functions;
 
 bool CompletionHelper::enableLemonDebug = false;
 
-// TODO smarter suggestions for UPDATE, DELETE and INSERT, just like for SELECT.
-
 CompletionHelper::CompletionHelper(const QString &sql, Db* db)
     : CompletionHelper(sql, sql.length(), db)
 {

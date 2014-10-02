@@ -5,6 +5,7 @@
 #include "sqlquery.h"
 #include "dialect.h"
 #include "db/db.h"
+#include "common/bihash.h"
 #include "services/functionmanager.h"
 #include "common/readwritelocker.h"
 #include "coreSQLiteStudio_global.h"
@@ -283,14 +284,14 @@ class API_EXPORT AbstractDb : public Db
          * It's mapping from ATTACH name to the database object. It contains only attaches
          * that were made with attach() calls.
          */
-        QHash<QString,Db*> attachedDbMap;
+        BiHash<QString,Db*> attachedDbMap;
 
         /**
          * @brief Map of databases attached to this database.
          *
          * This is an inversion of attachedDbMap.
          */
-        QHash<Db*,QString> attachedDbNameMap; // TODO replace attachedDbMap and attachedDbNameMap with BiDiMap.
+//        QHash<Db*,QString> attachedDbNameMap; // TODO replace attachedDbMap and attachedDbNameMap with BiDiMap.
 
         /**
          * @brief Counter of attaching requrests for each database.
