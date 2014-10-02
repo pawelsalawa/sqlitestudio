@@ -20,6 +20,7 @@ class GUI_API_EXPORT DbObjectDialogs : public QObject
 
         TableWindow* addTable();
         TableWindow* editTable(const QString& database, const QString& table);
+        TableWindow* addTableSimilarTo(const QString& database, const QString& table);
 
         void addIndex(const QString& table);
         void editIndex(const QString& index);

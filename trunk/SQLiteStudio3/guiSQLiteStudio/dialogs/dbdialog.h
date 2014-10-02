@@ -17,8 +17,6 @@ namespace Ui {
     class DbDialog;
 }
 
-// TODO do validation (name, path/url) when clicked "ok"
-
 class GUI_API_EXPORT DbDialog : public QDialog
 {
     Q_OBJECT

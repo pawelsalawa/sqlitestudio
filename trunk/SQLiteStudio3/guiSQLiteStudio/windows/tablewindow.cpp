@@ -1122,7 +1122,8 @@ void TableWindow::populateTable()
 
 void TableWindow::createSimilarTable()
 {
-    // TODO create similar table
+    DbObjectDialogs dialog(db);
+    dialog.addTableSimilarTo(QString(), table);
 }
 
 void TableWindow::tabChanged(int newTab)
@@ -1444,4 +1445,12 @@ QString TableWindow::getQuitUncommitedConfirmMessage() const
         qCritical() << "Unhandled message case in TableWindow::getQuitUncommitedConfirmMessage().";
         return QString();
     }
+}
+
+void TableWindow::useCurrentTableAsBaseForNew()
+{
+    newTable();
+    ui->tableNameEdit->clear();
+    updateWindowTitle();
+    ui->tableNameEdit->setFocus();
 }
