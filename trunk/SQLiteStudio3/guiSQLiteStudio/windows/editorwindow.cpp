@@ -16,11 +16,13 @@
 #include "services/config.h"
 #include "parser/lexer.h"
 #include "common/utils_sql.h"
+#include "parser/parser.h"
 #include <QComboBox>
 #include <QDebug>
 #include <QStringListModel>
 #include <QActionGroup>
 #include <QMessageBox>
+#include <dbobjectdialogs.h>
 #include <dialogs/exportdialog.h>
 
 CFG_KEYS_DEFINE(EditorWindow)
@@ -609,7 +611,15 @@ void EditorWindow::exportResults()
 
 void EditorWindow::createViewFromQuery()
 {
-    qDebug() << "not implemented"; // TODO implement createViewFromQuery
+    if (!getCurrentDb())
+    {
+        notifyError(tr("No database selected in the SQL editor. Cannot create a view for unknown database."));
+        return;
+    }
+
+    QString sql = getQueryToExecute(true);
+    DbObjectDialogs dialogs(getCurrentDb());
+    dialogs.addView(sql);
 }
 
 void EditorWindow::updateState()

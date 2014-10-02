@@ -29,7 +29,7 @@ class GUI_API_EXPORT DbObjectDialogs : public QObject
         void addTrigger(const QString& table, const QString& view);
         void editTrigger(const QString& trigger);
 
-        ViewWindow* addView();
+        ViewWindow* addView(const QString& initialSelect = QString());
         ViewWindow* editView(const QString& database, const QString& view);
 
         void editObject(const QString& name);

@@ -66,6 +66,7 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
         Db* getDb() const;
         QString getDatabase() const;
         QString getView() const;
+        void setSelect(const QString& selectSql);
         bool isUncommited() const;
         QString getQuitUncommitedConfirmMessage() const;
 

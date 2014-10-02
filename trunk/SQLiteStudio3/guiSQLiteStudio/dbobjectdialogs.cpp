@@ -86,9 +86,10 @@ void DbObjectDialogs::editTrigger(const QString& trigger)
     dialog.exec();
 }
 
-ViewWindow* DbObjectDialogs::addView()
+ViewWindow* DbObjectDialogs::addView(const QString &initialSelect)
 {
     ViewWindow* win = new ViewWindow(db, mdiArea);
+    win->setSelect(initialSelect);
     mdiArea->addSubWindow(win);
     return win;
 }

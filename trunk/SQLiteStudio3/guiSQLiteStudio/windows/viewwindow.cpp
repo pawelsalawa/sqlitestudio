@@ -291,6 +291,11 @@ QString ViewWindow::getView() const
     return view;
 }
 
+void ViewWindow::setSelect(const QString &selectSql)
+{
+    ui->queryEdit->setPlainText(selectSql);
+}
+
 bool ViewWindow::isUncommited() const
 {
     return ui->dataView->isUncommited() || isModified();
