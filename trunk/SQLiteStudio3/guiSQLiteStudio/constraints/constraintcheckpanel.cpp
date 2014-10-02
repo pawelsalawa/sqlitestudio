@@ -157,32 +157,9 @@ void ConstraintCheckPanel::updateVirtualSql()
 
 SqliteExprPtr ConstraintCheckPanel::parseExpression(const QString& sql)
 {
-    // TODO modify to use Parser::parseExpr()
     Parser parser(db->getDialect());
-    if (!parser.parse("SELECT "+sql))
-        return SqliteExprPtr();
-
-    QList<SqliteQueryPtr> queries = parser.getQueries();
-    if (queries.size() == 0)
-        return SqliteExprPtr();
-
-    SqliteQueryPtr first = queries.first();
-    if (first->queryType != SqliteQueryType::Select)
-        return SqliteExprPtr();
-
-    SqliteSelectPtr select = first.dynamicCast<SqliteSelect>();
-    if (select->coreSelects.size() < 1)
-        return SqliteExprPtr();
-
-    SqliteSelect::Core* core = select->coreSelects.first();
-    if (core->resultColumns.size() < 1)
-        return SqliteExprPtr();
-
-    SqliteSelect::Core::ResultColumn* resCol = core->resultColumns.first();
-    if (!resCol->expr)
-        return SqliteExprPtr();
-
-    return resCol->expr->detach().dynamicCast<SqliteExpr>();
+    SqliteExpr *expr = parser.parseExpr(sql);
+    return SqliteExprPtr(expr);
 }
 
 void ConstraintCheckPanel::updateState()
