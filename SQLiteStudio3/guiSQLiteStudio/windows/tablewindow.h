@@ -118,6 +118,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         bool handleInitialFocus();
         bool isUncommited() const;
         QString getQuitUncommitedConfirmMessage() const;
+        void useCurrentTableAsBaseForNew();
 
     protected:
         void changeEvent(QEvent *e);

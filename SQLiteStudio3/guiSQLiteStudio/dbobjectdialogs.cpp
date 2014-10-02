@@ -281,6 +281,14 @@ TableWindow* DbObjectDialogs::editTable(const QString& database, const QString& 
     return win;
 }
 
+TableWindow *DbObjectDialogs::addTableSimilarTo(const QString &database, const QString &table)
+{
+    TableWindow* win = new TableWindow(mdiArea, db, database, table);
+    mdiArea->addSubWindow(win);
+    win->useCurrentTableAsBaseForNew();
+    return win;
+}
+
 TableWindow* DbObjectDialogs::addTable()
 {
     TableWindow* win = new TableWindow(db, mdiArea);

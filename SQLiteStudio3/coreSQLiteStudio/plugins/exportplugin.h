@@ -13,8 +13,6 @@
 
 class CfgMain;
 
-// TODO handle virtual tables
-
 /**
  * @brief Provides support for particular export format.
  *
