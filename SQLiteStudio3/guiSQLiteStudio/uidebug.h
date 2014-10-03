@@ -22,6 +22,9 @@ class GUI_API_EXPORT MsgHandlerThreadProxy : public QObject
         void warnRequested(const QString& msg);
         void criticalRequested(const QString& msg);
         void fatalRequested(const QString& msg);
+
+    private slots:
+        void print(const QString& txt);
 };
 
 GUI_API_EXPORT void uiMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg);

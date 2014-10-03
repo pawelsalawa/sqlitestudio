@@ -16,6 +16,7 @@
 #include <QtConcurrent/QtConcurrentRun>
 
 static_qstring(DB_FILE_NAME, "settings3");
+qint64 ConfigImpl::sqlHistoryId = -1;
 
 ConfigImpl::~ConfigImpl()
 {
@@ -252,12 +253,24 @@ ConfigImpl::DbGroupPtr ConfigImpl::getDbGroup(const QString& dbName)
 
 qint64 ConfigImpl::addSqlHistory(const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected)
 {
-    SqlQueryPtr results = db->exec("INSERT INTO sqleditor_history (dbname, date, time_spent, rows, sql) VALUES (?, ?, ?, ?, ?)",
-                                    {dbName, (QDateTime::currentMSecsSinceEpoch() / 1000), timeSpentMillis, rowsAffected, sql});
+    if (sqlHistoryId < 0)
+    {
+        SqlQueryPtr results = db->exec("SELECT max(id) FROM sqleditor_history");
+        if (results->isError())
+        {
+            qCritical() << "Cannot add SQL history, because cannot determinate sqleditor_history max(id):" << results->getErrorText();
+            return -1;
+        }
 
-    qint64 rowId = results->getRegularInsertRowId();
-    QtConcurrent::run(this, &ConfigImpl::asyncApplySqlHistoryLimit);
-    return rowId;
+        if (results->hasNext())
+            sqlHistoryId = results->getSingleCell().toLongLong() + 1;
+        else
+            sqlHistoryId = 0;
+    }
+
+    QtConcurrent::run(this, &ConfigImpl::asyncAddSqlHistory, sqlHistoryId, sql, dbName, timeSpentMillis, rowsAffected);
+    sqlHistoryId++;
+    return sqlHistoryId;
 }
 
 void ConfigImpl::updateSqlHistory(qint64 id, const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected)
@@ -604,11 +617,22 @@ QVariant ConfigImpl::deserializeValue(const QVariant &value)
     return deserializedValue;
 }
 
-void ConfigImpl::asyncApplySqlHistoryLimit()
+void ConfigImpl::asyncAddSqlHistory(qint64 id, const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected)
 {
+    db->begin();
+    SqlQueryPtr results = db->exec("INSERT INTO sqleditor_history (id, dbname, date, time_spent, rows, sql) VALUES (?, ?, ?, ?, ?, ?)",
+                                    {id, dbName, (QDateTime::currentMSecsSinceEpoch() / 1000), timeSpentMillis, rowsAffected, sql});
+
+    if (results->isError())
+    {
+        qDebug() << "Error adding SQL history:" << results->getErrorText();
+        db->rollback();
+        return;
+    }
+
     int maxHistorySize = CFG_CORE.General.SqlHistorySize.get();
 
-    SqlQueryPtr results = db->exec("SELECT count(*) FROM sqleditor_history");
+    results = db->exec("SELECT count(*) FROM sqleditor_history");
     if (results->hasNext() && results->getSingleCell().toInt() > maxHistorySize)
     {
         results = db->exec(QString("SELECT id FROM sqleditor_history ORDER BY id DESC LIMIT 1 OFFSET %1").arg(maxHistorySize));
@@ -619,6 +643,7 @@ void ConfigImpl::asyncApplySqlHistoryLimit()
                 db->exec("DELETE FROM sqleditor_history WHERE id <= ?", {id});
         }
     }
+    db->commit();
 
     emit sqlHistoryRefreshNeeded();
 }

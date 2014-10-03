@@ -15,6 +15,7 @@ class GUI_API_EXPORT TableWidget : public QTableWidget
     protected:
         void keyPressEvent(QKeyEvent *event);
 
+
     public slots:
         void copy();
 };

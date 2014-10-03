@@ -111,6 +111,9 @@ void WidgetCover::show()
 
     actionInProgres = Action::SHOWING;
 
+    if (cancelButton)
+        cancelButton->setEnabled(true);
+
     QPalette pal = palette();
     animation->setStartValue(QVariant(pal.brush(QPalette::Window).color()));
     animation->setEndValue(QVariant(QColor(0, 0, 0, transparency)));
