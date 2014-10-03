@@ -9,6 +9,8 @@
 #include <QAction>
 #include <QDateTime>
 #include <QLabel>
+#include <QVariantAnimation>
+#include <QDebug>
 
 StatusField::StatusField(QWidget *parent) :
     QDockWidget(parent),
@@ -70,11 +72,19 @@ void StatusField::addEntry(const QIcon &icon, const QString &text, const QColor&
     int row = ui->tableWidget->rowCount();
     ui->tableWidget->setRowCount(row+1);
 
+    if (row > itemCountLimit)
+    {
+        ui->tableWidget->removeRow(0);
+        row--;
+    }
+
+    QList<QTableWidgetItem*> itemsCreated;
     QTableWidgetItem* item;
 
     item = new QTableWidgetItem();
     item->setIcon(icon);
     ui->tableWidget->setItem(row, 0, item);
+    itemsCreated << item;
 
     QFont font = CFG_UI.Fonts.StatusField.get();
 
@@ -83,6 +93,13 @@ void StatusField::addEntry(const QIcon &icon, const QString &text, const QColor&
     item->setForeground(QBrush(color));
     item->setFont(font);
     ui->tableWidget->setItem(row, 1, item);
+    itemsCreated << item;
+
+    item = new QTableWidgetItem();
+    item->setForeground(QBrush(color));
+    item->setFont(font);
+    ui->tableWidget->setItem(row, 2, item);
+    itemsCreated << item;
 
     static_qstring(colorTpl, "QLabel {color: %1}");
     // While QLabel does detect if the text is rich automatically, we don't want to use qlabel for plain text,
@@ -100,15 +117,41 @@ void StatusField::addEntry(const QIcon &icon, const QString &text, const QColor&
     }
     else
     {
-        item = new QTableWidgetItem(text);
-        item->setForeground(QBrush(color));
-        item->setFont(font);
-        ui->tableWidget->setItem(row, 2, item);
+        item->setText(text);
     }
 
     setVisible(true);
 
     ui->tableWidget->scrollToBottom();
+
+    if (!noFlashing)
+        flashItems(itemsCreated, color);
+}
+
+void StatusField::flashItems(const QList<QTableWidgetItem*>& items, const QColor& color)
+{
+    QColor alphaColor = color;
+    alphaColor.setAlpha(0);
+
+    QColor finalColor = color;
+    finalColor.setAlpha(150);
+
+    QVariantAnimation* anim = new QVariantAnimation();
+    anim->setDuration(500);
+    anim->setEasingCurve(QEasingCurve::OutQuad);
+    anim->setStartValue(finalColor);
+    anim->setEndValue(alphaColor);
+
+    itemAnimations << anim;
+    connect(anim, &QObject::destroyed, [this, anim]() {itemAnimations.removeOne(anim);});
+
+    connect(anim, &QVariantAnimation::valueChanged, [items](const QVariant& value)
+    {
+        for (QTableWidgetItem* item : items)
+            item->setBackground(value.value<QColor>());
+    });
+
+    anim->start(QAbstractAnimation::DeleteWhenStopped);
 }
 
 void StatusField::setupMenu()
@@ -131,6 +174,7 @@ void StatusField::setupMenu()
 
 void StatusField::readRecentMessages()
 {
+    noFlashing = true;
     foreach (const QString& msg, NotifyManager::getInstance()->getRecentInfos())
         info(msg);
 
@@ -139,6 +183,8 @@ void StatusField::readRecentMessages()
 
     foreach (const QString& msg, NotifyManager::getInstance()->getRecentErrors())
         error(msg);
+
+    noFlashing = false;
 }
 
 void StatusField::customContextMenuRequested(const QPoint &pos)
@@ -150,6 +196,10 @@ void StatusField::customContextMenuRequested(const QPoint &pos)
 
 void StatusField::reset()
 {
+    for (QAbstractAnimation* anim : itemAnimations)
+        anim->stop();
+
+    itemAnimations.clear();
     ui->tableWidget->clear();
     ui->tableWidget->setRowCount(0);
 }

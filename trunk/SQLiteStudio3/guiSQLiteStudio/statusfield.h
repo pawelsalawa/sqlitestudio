@@ -6,6 +6,8 @@
 #include <QDockWidget>
 
 class QMenu;
+class QAbstractAnimation;
+class QTableWidgetItem;
 
 namespace Ui {
     class StatusField;
@@ -26,6 +28,7 @@ class GUI_API_EXPORT StatusField : public QDockWidget
 
     private:
         void addEntry(const QIcon& icon, const QString& text, const QColor &color);
+        void flashItems(const QList<QTableWidgetItem*>& items, const QColor& color);
         void setupMenu();
         void readRecentMessages();
 
@@ -33,7 +36,11 @@ class GUI_API_EXPORT StatusField : public QDockWidget
         QMenu* menu;
         QAction* copyAction;
         QAction* clearAction;
+        QList<QAbstractAnimation*> itemAnimations;
+        bool noFlashing = false;
+
         static const int timeStampColumnWidth = 70;
+        static const int itemCountLimit = 30;
         static constexpr const char* timeStampFormat = "hh:mm:ss";
 
     private slots:

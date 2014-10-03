@@ -93,7 +93,7 @@ class ConfigImpl : public Config
         bool tryInitDbFile(const QString& dbPath);
         QVariant deserializeValue(const QVariant& value);
 
-        void asyncApplySqlHistoryLimit();
+        void asyncAddSqlHistory(qint64 id, const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected);
         void asyncUpdateSqlHistory(qint64 id, const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected);
         void asyncClearSqlHistory();
 
@@ -109,6 +109,8 @@ class ConfigImpl : public Config
         void asyncClearReportHistory();
 
         static Config* instance;
+        static qint64 sqlHistoryId;
+
         Db* db = nullptr;
         QString configDir;
         QString lastQueryError;
