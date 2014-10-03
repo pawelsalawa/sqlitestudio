@@ -555,6 +555,9 @@ void SqlQueryModel::loadData(SqlQueryPtr results)
     while (results->hasNext() && rowIdx < rowsPerPage)
     {
         row = results->next();
+        if (!row)
+            break;
+
         itemList = loadRow(row);
         insertRow(rowIdx, itemList);
 
@@ -563,8 +566,6 @@ void SqlQueryModel::loadData(SqlQueryPtr results)
 
         rowIdx++;
     }
-
-//    updateColumnsHeader();
 }
 
 QList<QStandardItem*> SqlQueryModel::loadRow(SqlResultsRowPtr row)
@@ -850,6 +851,7 @@ void SqlQueryModel::handleExecFinished(SqlQueryPtr results)
         emit totalRowsAndPagesAvailable(); // rows were counted manually
     else
         queryExecutor->countResults();
+
 }
 
 void SqlQueryModel::handleExecFailed(int code, QString errorMessage)
