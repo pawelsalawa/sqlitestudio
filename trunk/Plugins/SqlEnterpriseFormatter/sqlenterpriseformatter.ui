@@ -60,9 +60,6 @@
           <property name="cfg" stdset="0">
            <string>SqlEnterpriseFormatter.LineUpKeywords</string>
           </property>
-          <property name="notify" stdset="0">
-           <bool>true</bool>
-          </property>
          </widget>
         </item>
         <item row="2" column="0" colspan="3">
@@ -72,9 +69,6 @@
           </property>
           <property name="cfg" stdset="0">
            <string>SqlEnterpriseFormatter.IndentParenthesisBlock</string>
-          </property>
-          <property name="notify" stdset="0">
-           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -102,9 +96,6 @@
          <widget class="QSpinBox" name="spinBox">
           <property name="cfg" stdset="0">
            <string>SqlEnterpriseFormatter.TabSize</string>
-          </property>
-          <property name="notify" stdset="0">
-           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -143,7 +134,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>578</width>
+             <width>385</width>
              <height>325</height>
             </rect>
            </property>
@@ -171,9 +162,6 @@
               <property name="cfg" stdset="0">
                <string>SqlEnterpriseFormatter.NlBeforeOpenParDef</string>
               </property>
-              <property name="notify" stdset="0">
-               <bool>true</bool>
-              </property>
              </widget>
             </item>
             <item>
@@ -183,9 +171,6 @@
               </property>
               <property name="cfg" stdset="0">
                <string>SqlEnterpriseFormatter.NlAfterOpenParDef</string>
-              </property>
-              <property name="notify" stdset="0">
-               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -197,9 +182,6 @@
               <property name="cfg" stdset="0">
                <string>SqlEnterpriseFormatter.NlBeforeCloseParDef</string>
               </property>
-              <property name="notify" stdset="0">
-               <bool>true</bool>
-              </property>
              </widget>
             </item>
             <item>
@@ -209,9 +191,6 @@
               </property>
               <property name="cfg" stdset="0">
                <string>SqlEnterpriseFormatter.NlAfterCloseParDef</string>
-              </property>
-              <property name="notify" stdset="0">
-               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -223,9 +202,6 @@
               <property name="cfg" stdset="0">
                <string>SqlEnterpriseFormatter.NlBeforeOpenParExpr</string>
               </property>
-              <property name="notify" stdset="0">
-               <bool>true</bool>
-              </property>
              </widget>
             </item>
             <item>
@@ -235,9 +211,6 @@
               </property>
               <property name="cfg" stdset="0">
                <string>SqlEnterpriseFormatter.NlAfterOpenParExpr</string>
-              </property>
-              <property name="notify" stdset="0">
-               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -249,9 +222,6 @@
               <property name="cfg" stdset="0">
                <string>SqlEnterpriseFormatter.NlBeforeCloseParExpr</string>
               </property>
-              <property name="notify" stdset="0">
-               <bool>true</bool>
-              </property>
              </widget>
             </item>
             <item>
@@ -261,9 +231,6 @@
               </property>
               <property name="cfg" stdset="0">
                <string>SqlEnterpriseFormatter.NlAfterCloseParExpr</string>
-              </property>
-              <property name="notify" stdset="0">
-               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -275,9 +242,6 @@
               <property name="cfg" stdset="0">
                <string>SqlEnterpriseFormatter.NlBetweenConstraints</string>
               </property>
-              <property name="notify" stdset="0">
-               <bool>true</bool>
-              </property>
              </widget>
             </item>
             <item>
@@ -287,9 +251,6 @@
               </property>
               <property name="cfg" stdset="0">
                <string>SqlEnterpriseFormatter.NlAfterComma</string>
-              </property>
-              <property name="notify" stdset="0">
-               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -301,9 +262,6 @@
               <property name="cfg" stdset="0">
                <string>SqlEnterpriseFormatter.NlAfterCommaInExpr</string>
               </property>
-              <property name="notify" stdset="0">
-               <bool>true</bool>
-              </property>
              </widget>
             </item>
             <item>
@@ -314,9 +272,6 @@
               <property name="cfg" stdset="0">
                <string>SqlEnterpriseFormatter.NlAfterSemicolon</string>
               </property>
-              <property name="notify" stdset="0">
-               <bool>true</bool>
-              </property>
              </widget>
             </item>
             <item>
@@ -326,9 +281,6 @@
               </property>
               <property name="cfg" stdset="0">
                <string>SqlEnterpriseFormatter.NlNeverBeforeSemicolon</string>
-              </property>
-              <property name="notify" stdset="0">
-               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -432,9 +384,6 @@
               <property name="cfg" stdset="0">
                <string>SqlEnterpriseFormatter.SpaceBeforeCommaInList</string>
               </property>
-              <property name="notify" stdset="0">
-               <bool>true</bool>
-              </property>
              </widget>
             </item>
             <item>
@@ -444,9 +393,6 @@
               </property>
               <property name="cfg" stdset="0">
                <string>SqlEnterpriseFormatter.SpaceAfterCommaInList</string>
-              </property>
-              <property name="notify" stdset="0">
-               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -458,9 +404,6 @@
               <property name="cfg" stdset="0">
                <string>SqlEnterpriseFormatter.SpaceBeforeOpenPar</string>
               </property>
-              <property name="notify" stdset="0">
-               <bool>true</bool>
-              </property>
              </widget>
             </item>
             <item>
@@ -470,9 +413,6 @@
               </property>
               <property name="cfg" stdset="0">
                <string>SqlEnterpriseFormatter.SpaceAfterOpenPar</string>
-              </property>
-              <property name="notify" stdset="0">
-               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -484,9 +424,6 @@
               <property name="cfg" stdset="0">
                <string>SqlEnterpriseFormatter.SpaceBeforeClosePar</string>
               </property>
-              <property name="notify" stdset="0">
-               <bool>true</bool>
-              </property>
              </widget>
             </item>
             <item>
@@ -496,9 +433,6 @@
               </property>
               <property name="cfg" stdset="0">
                <string>SqlEnterpriseFormatter.SpaceAfterClosePar</string>
-              </property>
-              <property name="notify" stdset="0">
-               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -510,9 +444,6 @@
               <property name="cfg" stdset="0">
                <string>SqlEnterpriseFormatter.NoSpaceAfterFunctionName</string>
               </property>
-              <property name="notify" stdset="0">
-               <bool>true</bool>
-              </property>
              </widget>
             </item>
             <item>
@@ -522,9 +453,6 @@
               </property>
               <property name="cfg" stdset="0">
                <string>SqlEnterpriseFormatter.SpaceBeforeDot</string>
-              </property>
-              <property name="notify" stdset="0">
-               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -536,9 +464,6 @@
               <property name="cfg" stdset="0">
                <string>SqlEnterpriseFormatter.SpaceAfterDot</string>
               </property>
-              <property name="notify" stdset="0">
-               <bool>true</bool>
-              </property>
              </widget>
             </item>
             <item>
@@ -548,9 +473,6 @@
               </property>
               <property name="cfg" stdset="0">
                <string>SqlEnterpriseFormatter.SpaceBeforeMathOp</string>
-              </property>
-              <property name="notify" stdset="0">
-               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -562,9 +484,6 @@
               <property name="cfg" stdset="0">
                <string>SqlEnterpriseFormatter.SpaceAfterMathOp</string>
               </property>
-              <property name="notify" stdset="0">
-               <bool>true</bool>
-              </property>
              </widget>
             </item>
             <item>
@@ -575,9 +494,6 @@
               <property name="cfg" stdset="0">
                <string>SqlEnterpriseFormatter.SpaceNeverBeforeComma</string>
               </property>
-              <property name="notify" stdset="0">
-               <bool>true</bool>
-              </property>
              </widget>
             </item>
             <item>
@@ -587,9 +503,6 @@
               </property>
               <property name="cfg" stdset="0">
                <string>SqlEnterpriseFormatter.SpaceNeverBeforeSemicolon</string>
-              </property>
-              <property name="notify" stdset="0">
-               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -669,9 +582,6 @@
           <property name="modelName" stdset="0">
            <string>SqlEnterpriseFormatter.Wrappers</string>
           </property>
-          <property name="notify" stdset="0">
-           <bool>true</bool>
-          </property>
          </widget>
         </item>
         <item row="2" column="0" colspan="2">
@@ -681,9 +591,6 @@
           </property>
           <property name="SqlEnterpriseFormatter." stdset="0">
            <string>SqlEnterpriseFormatter.AlwaysUseNameWrapping</string>
-          </property>
-          <property name="notify" stdset="0">
-           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -695,9 +602,6 @@
           <property name="cfg" stdset="0">
            <string>SqlEnterpriseFormatter.UppercaseDataTypes</string>
           </property>
-          <property name="notify" stdset="0">
-           <bool>true</bool>
-          </property>
          </widget>
         </item>
         <item row="0" column="0" colspan="2">
@@ -708,17 +612,9 @@
           <property name="cfg" stdset="0">
            <string>SqlEnterpriseFormatter.UppercaseKeywords</string>
           </property>
-          <property name="notify" stdset="0">
-           <bool>true</bool>
-          </property>
          </widget>
         </item>
        </layout>
-      </widget>
-      <widget class="QWidget" name="commentsTab">
-       <attribute name="title">
-        <string>Comments</string>
-       </attribute>
       </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox">

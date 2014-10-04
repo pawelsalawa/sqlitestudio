@@ -4,6 +4,7 @@
 #include "parser/ast/sqlitecolumntype.h"
 #include "parser/ast/sqliteselect.h"
 #include "parser/ast/sqliteraise.h"
+#include "sqlenterpriseformatter.h"
 
 FormatExpr::FormatExpr(SqliteExpr* expr) :
     expr(expr)
@@ -46,7 +47,7 @@ void FormatExpr::formatInternal()
         case SqliteExpr::Mode::UNARY_OP:
         {
             // Operator can be a keyword
-            QString opStr = CFG_ADV_FMT.SqlEnterpriseFormatter.UppercaseKeywords.get() ? expr->unaryOp.toUpper() : expr->unaryOp.toLower();
+            QString opStr = cfg->SqlEnterpriseFormatter.UppercaseKeywords.get() ? expr->unaryOp.toUpper() : expr->unaryOp.toLower();
             withOperator(opStr).withStatement(expr->expr1, "unaryOp");
             break;
         }
@@ -55,7 +56,7 @@ void FormatExpr::formatInternal()
             bool multiLine = nlBiOp.contains(expr->binaryOp.toUpper());
 
             // Operator can be a keyword
-            QString opStr = CFG_ADV_FMT.SqlEnterpriseFormatter.UppercaseKeywords.get() ? expr->binaryOp.toUpper() : expr->binaryOp.toLower();
+            QString opStr = cfg->SqlEnterpriseFormatter.UppercaseKeywords.get() ? expr->binaryOp.toUpper() : expr->binaryOp.toLower();
             withStatement(expr->expr1, "binaryOp1").withOperator(opStr);
 
             if (multiLine)

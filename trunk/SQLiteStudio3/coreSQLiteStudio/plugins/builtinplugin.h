@@ -55,12 +55,6 @@
         QString getTitle() const;
 
         /**
-         * @brief Provides UI form name.
-         * @return Form name defined by :in plugin's metadata file with key "ui", or null QString if not defined.
-         */
-        QString getConfigUiForm() const;
-
-        /**
          * @brief Provides plugin description.
          * @return Description as defined in plugin's metadata file with key "description", or null QString if not defined.
          */

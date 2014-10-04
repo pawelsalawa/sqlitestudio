@@ -16,11 +16,6 @@ QString BuiltInPlugin::getTitle() const
     return title;
 }
 
-QString BuiltInPlugin::getConfigUiForm() const
-{
-    return getMetaInfo("ui");
-}
-
 QString BuiltInPlugin::getDescription() const
 {
     return getMetaInfo("description");

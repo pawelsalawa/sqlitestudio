@@ -5,6 +5,7 @@
 #include "plugins/sqlformatterplugin.h"
 #include "config_builder.h"
 #include "plugins/genericplugin.h"
+#include "plugins/uiconfiguredplugin.h"
 #include <QObject>
 
 CFG_CATEGORIES(SqlFormatterSimpleConfig,
@@ -14,9 +15,7 @@ CFG_CATEGORIES(SqlFormatterSimpleConfig,
      )
 )
 
-#define CFG_SIMPLE_FMT CFG_INSTANCE(SqlFormatterSimpleConfig)
-
-class SQLFORMATTERSIMPLESHARED_EXPORT SqlFormatterSimplePlugin : public GenericPlugin, public SqlFormatterPlugin
+class SQLFORMATTERSIMPLESHARED_EXPORT SqlFormatterSimplePlugin : public GenericPlugin, public SqlFormatterPlugin, public UiConfiguredPlugin
 {
         Q_OBJECT
         SQLITESTUDIO_PLUGIN("sqlformattersimple.json")
@@ -27,6 +26,13 @@ class SQLFORMATTERSIMPLESHARED_EXPORT SqlFormatterSimplePlugin : public GenericP
         QString format(SqliteQueryPtr query);
         bool init();
         void deinit();
+        QString getConfigUiForm() const;
+        CfgMain* getMainUiConfig();
+        void configDialogOpen();
+        void configDialogClosed();
+
+    private:
+        CFG_LOCAL_PERSISTABLE(SqlFormatterSimpleConfig, cfg)
 };
 
 #endif // SQLFORMATTERSIMPLEPLUGIN_H

@@ -429,29 +429,32 @@ CfgEntry* ConfigMapper::getEntryForProperty(QWidget* widget, const char* propert
 
 QHash<QString, CfgEntry *> ConfigMapper::getAllConfigEntries()
 {
-    QHash<QString, CfgEntry*> entries;
-    QString key;
-    for (CfgMain* cfgMain : cfgMainList)
+    if (allEntries.isEmpty())
     {
-        QHashIterator<QString,CfgCategory*> catIt(cfgMain->getCategories());
-        while (catIt.hasNext())
+        QString key;
+        for (CfgMain* cfgMain : cfgMainList)
         {
-            catIt.next();
-            QHashIterator<QString,CfgEntry*> entryIt( catIt.value()->getEntries());
-            while (entryIt.hasNext())
+            QHashIterator<QString,CfgCategory*> catIt(cfgMain->getCategories());
+            while (catIt.hasNext())
             {
-                entryIt.next();
-                key = catIt.key()+"."+entryIt.key();
-                if (entries.contains(key))
+                catIt.next();
+                QHashIterator<QString,CfgEntry*> entryIt( catIt.value()->getEntries());
+                while (entryIt.hasNext())
                 {
-                    qCritical() << "Duplicate config entry key:" << key;
-                    continue;
+                    entryIt.next();
+                    key = catIt.key()+"."+entryIt.key();
+                    if (allEntries.contains(key))
+                    {
+                        qCritical() << "Duplicate config entry key:" << key;
+                        continue;
+                    }
+                    allEntries[key] = entryIt.value();
                 }
-                entries[key] = entryIt.value();
             }
         }
     }
-    return entries;
+
+    return allEntries;
 }
 
 QList<QWidget*> ConfigMapper::getAllConfigWidgets(QWidget *parent)
@@ -606,16 +609,6 @@ void ConfigMapper::notifiableConfigKeyChanged()
 
 void ConfigMapper::bindToConfig(QWidget* topLevelWidget)
 {
-    // Check if any CfgMain is persistable - it's forbidden for binging.
-    for (CfgMain* cfgMain : cfgMainList)
-    {
-        if (cfgMain->isPersistable())
-        {
-            qCritical() << "Tried to use ConfigMapper::bindToConfig() with persitable CfgMain! CfgMain name:" << cfgMain->getName();
-            return;
-        }
-    }
-
     realTimeUpdates = true;
     loadToWidget(topLevelWidget);
     for (CfgEntry* cfgEntry : configEntryToWidgets.keys())

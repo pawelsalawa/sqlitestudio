@@ -15,9 +15,9 @@ QString GenericPlugin::getTitle() const
     return metaData["title"].toString();
 }
 
-QString GenericPlugin::getConfigUiForm() const
+CfgMain* GenericPlugin::getMainUiConfig()
 {
-    return metaData["ui"].toString();
+    return nullptr;
 }
 
 QString GenericPlugin::getDescription() const

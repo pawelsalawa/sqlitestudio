@@ -366,7 +366,8 @@ HEADERS += sqlitestudio.h\
     config_builder/cfgentry.h \
     config_builder/cfglazyinitializer.h \
     plugins/confignotifiableplugin.h \
-    committable.h
+    committable.h \
+    plugins/uiconfiguredplugin.h
 
 unix:!symbian {
     maemo5 {

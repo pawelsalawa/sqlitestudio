@@ -100,6 +100,7 @@ class GUI_API_EXPORT ConfigMapper : public QObject
         QHash<CfgEntry*,QWidget*> specialConfigEntryToWidgets;
         bool updatingEntry = false;
         QList<QWidget*> extraWidgets;
+        QHash<QString, CfgEntry*> allEntries;
 
         static constexpr const char* CFG_MODEL_PROPERTY = "cfg";
         static constexpr const char* CFG_NOTIFY_PROPERTY = "notify";

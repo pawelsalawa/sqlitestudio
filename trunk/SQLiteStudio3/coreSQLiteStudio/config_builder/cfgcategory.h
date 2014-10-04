@@ -24,9 +24,12 @@ class API_EXPORT CfgCategory : public QObject
         operator QString() const;
         QHash<QString,CfgEntry*>& getEntries();
         void reset();
-        void savepoint();
+        void savepoint(bool transaction = false);
         void restore();
         void release();
+        void commit();
+        void rollback();
+        void begin();
         QString getTitle() const;
         CfgMain* getMain() const;
         operator CfgCategory*();

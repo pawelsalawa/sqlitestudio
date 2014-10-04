@@ -16,6 +16,7 @@
 #define CFG_DEFINE(Type) _CFG_DEFINE(Type, true)
 #define CFG_DEFINE_RUNTIME(Type) _CFG_DEFINE(Type, false)
 #define CFG_LOCAL(Type, Name) Cfg::Type Name = Cfg::Type(false);
+#define CFG_LOCAL_PERSISTABLE(Type, Name) Cfg::Type Name = Cfg::Type(true);
 #define CFG_DEFINE_LAZY(Type) \
     namespace Cfg\
     {\

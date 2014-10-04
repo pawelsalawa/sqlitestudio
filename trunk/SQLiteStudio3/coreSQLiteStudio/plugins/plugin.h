@@ -7,6 +7,7 @@
 #include <QtPlugin>
 
 class PluginType;
+class CfgMain;
 
 /** @file */
 
@@ -77,19 +78,6 @@ class API_EXPORT Plugin
          * It's used solely for presenting plugin to the user, nothing more.
          */
         virtual QString getTitle() const = 0;
-
-        /**
-         * @brief Gets name of the configuration UI form.
-         * @return Name of the form object.
-         *
-         * Some plugins may link (during compilation) only to the coreSQLiteStudio part of the application, but they can still
-         * benefit from SQLiteStudio GUI application by providing UI form that will be used in ConfigDialog.
-         *
-         * This method should return the object name of the top-most widget found in the provided *.ui file.
-         *
-         * For more details see: http://wiki.sqlitestudio.pl/index.php/Plugin_UI_forms
-         */
-        virtual QString getConfigUiForm() const = 0;
 
         /**
          * @brief Provides name of the plugin's author.

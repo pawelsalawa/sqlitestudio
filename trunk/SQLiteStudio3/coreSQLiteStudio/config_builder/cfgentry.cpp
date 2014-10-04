@@ -66,16 +66,22 @@ QVariant CfgEntry::getDefultValue() const
 
 void CfgEntry::set(const QVariant &value)
 {
-    if (persistable)
-        CFG->set(parent->toString(), name, value);
-
+    bool doPersist = persistable && !transaction;
     bool wasChanged = (value != cachedValue);
 
-    cachedValue = value;
+    if (doPersist && wasChanged)
+        CFG->set(parent->toString(), name, value);
+
+    if (wasChanged)
+        cachedValue = value;
+
     cached = true;
 
     if (wasChanged)
         emit changed(value);
+
+    if (doPersist)
+        emit persisted(value);
 }
 
 void CfgEntry::defineDefaultValueFunction(CfgEntry::DefaultValueProviderFunc func)
@@ -111,19 +117,55 @@ bool CfgEntry::isPersisted() const
     return false;
 }
 
-void CfgEntry::savepoint()
+void CfgEntry::savepoint(bool transaction)
 {
     backup = get();
+    this->transaction = transaction;
+}
+
+void CfgEntry::begin()
+{
+    savepoint(true);
 }
 
 void CfgEntry::restore()
 {
-    set(backup);
+    cachedValue = backup;
+    cached = true;
+    transaction  = false;
 }
 
 void CfgEntry::release()
 {
     backup.clear();
+    if (transaction)
+    {
+        transaction = false;
+        if (cached)
+        {
+            QVariant valueToSet = cachedValue;
+            cachedValue = QVariant();
+            cached = false;
+            set(valueToSet);
+        }
+    }
+
+}
+
+void CfgEntry::commit()
+{
+    if (!transaction)
+        return;
+
+    release();
+}
+
+void CfgEntry::rollback()
+{
+    if (!transaction)
+        return;
+
+    restore();
 }
 
 CfgCategory* CfgEntry::getCategory() const

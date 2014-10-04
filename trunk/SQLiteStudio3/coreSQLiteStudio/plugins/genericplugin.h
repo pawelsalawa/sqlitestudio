@@ -23,7 +23,6 @@
  *     "type":        "ScriptingPlugin",
  *     "title":       "My plugin",
  *     "description": "Does nothing. It's an example plugin.",
- *     "ui":          "formObjectName"
  *     "version":     10000
  *     "author":      "sqlitestudio.pl"
  * };
@@ -59,10 +58,10 @@ class API_EXPORT GenericPlugin : public QObject, public virtual Plugin
         QString getTitle() const;
 
         /**
-         * @brief Provides UI form name.
-         * @return Form name defined by :in plugin's metadata file with key "ui", or null QString if not defined.
+         * @brief Provides configuration object to use in ConfigDialog.
+         * @return This implementation always returns null.
          */
-        QString getConfigUiForm() const;
+        CfgMain* getMainUiConfig();
 
         /**
          * @brief Provides plugin description.
@@ -77,7 +76,7 @@ class API_EXPORT GenericPlugin : public QObject, public virtual Plugin
         int getVersion() const;
 
         /**
-         * @brief Converts plugin version to human readable form.
+         * @brief Converts plugin version to human readable format.
          * @return Version in format X.Y.Z.
          */
         QString getPrintableVersion() const;
