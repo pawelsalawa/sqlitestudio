@@ -25,6 +25,7 @@ class QTableWidget;
 class ConfigMapper;
 class MultiEditorWidgetPlugin;
 class ConfigNotifiablePlugin;
+class UiConfiguredPlugin;
 
 class GUI_API_EXPORT ConfigDialog : public QDialog
 {
@@ -50,8 +51,8 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         void initFormatterPlugins();
         void initPlugins();
         void initPluginsPage();
-        void initPluginPage(const QString& pluginName, const QString& formName, bool skipConfigLoading);
-        void deinitPluginPage(const QString& pluginName);
+        bool initPluginPage(Plugin* plugin, bool skipConfigLoading);
+        void deinitPluginPage(Plugin* pluginName);
         void initDataEditors();
         void initShortcuts();
         void initShortcuts(CfgCategory* cfgCategory);
@@ -80,6 +81,8 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         QStringList getPluginNamesFromDataTypeItem(QListWidgetItem* typeItem, bool* exists = nullptr);
         void setPluginNamesForDataTypeItem(QListWidgetItem* typeItem, const QStringList& pluginNames);
         void addDataType(const QString& typeStr);
+        void rollbackPluginConfigs();
+        void commitPluginConfigs();
 
         Ui::ConfigDialog *ui;
         QStyle* previewStyle = nullptr;
@@ -90,6 +93,7 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         QHash<QString,QComboBox*> formatterLangToPluginComboMap;
         QHash<QString,QToolButton*> formatterLangToConfigButtonMap;
         ConfigMapper* configMapper = nullptr;
+        QHash<UiConfiguredPlugin*,ConfigMapper*> pluginConfigMappers;
         QAction* dataEditRenameAction = nullptr;
         QAction* dataEditDeleteAction = nullptr;
         bool updatingDataEditorItem = false;

@@ -61,10 +61,10 @@ void CfgMain::reset()
         ctg->reset();
 }
 
-void CfgMain::savepoint()
+void CfgMain::savepoint(bool transaction)
 {
     for (CfgCategory* ctg : childs)
-        ctg->savepoint();
+        ctg->savepoint(transaction);
 }
 
 void CfgMain::restore()
@@ -77,6 +77,21 @@ void CfgMain::release()
 {
     for (CfgCategory* ctg : childs)
         ctg->release();
+}
+
+void CfgMain::begin()
+{
+    savepoint(true);
+}
+
+void CfgMain::commit()
+{
+    release();
+}
+
+void CfgMain::rollback()
+{
+    restore();
 }
 
 bool CfgMain::isPersistable() const

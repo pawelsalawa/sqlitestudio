@@ -201,9 +201,22 @@ bool DbObjectOrganizer::processAll()
         return false;
     }
 
-    dstDb->begin();
+    if (!srcDb->begin())
+    {
+        // TODO message
+        return false;
+    }
+
+    if (!dstDb->begin())
+    {
+        // TODO message
+        srcDb->rollback();
+        return false;
+    }
+
     if (!setFkEnabled(false))
     {
+        srcDb->rollback();
         dstDb->rollback();
         return false;
     }
@@ -232,6 +245,7 @@ bool DbObjectOrganizer::processAll()
 
     if (!res)
     {
+        srcDb->rollback();
         dstDb->rollback();
         setFkEnabled(true);
         return false;
@@ -239,14 +253,24 @@ bool DbObjectOrganizer::processAll()
 
     if (!setFkEnabled(true))
     {
+        srcDb->rollback();
         dstDb->rollback();
         return false;
     }
 
     if (!dstDb->commit())
     {
-        notifyError(tr("Could not commit transaction in database '%1'.").arg(dstDb->getName()));
+        // notifyError(tr("Could not commit transaction in database '%1'.").arg(dstDb->getName())); // TODO this is in another thread, cannot use notifyError
         dstDb->rollback();
+        srcDb->rollback();
+        return false;
+    }
+
+    if (!srcDb->commit())
+    {
+        // TODO message - this can happen also for attached db operations, so also for creating objects in dstDb, so this affects not only srcDb, but also dstDb
+        srcDb->rollback();
+        return false;
     }
 
     return true;
@@ -656,7 +680,7 @@ bool DbObjectOrganizer::setFkEnabled(bool enabled)
     SqlQueryPtr result = dstDb->exec(QString("PRAGMA foreign_keys = %1").arg(enabled ? "on" : "off"));
     if (result->isError())
     {
-        notifyError(tr("Error while executing PRAGMA on target database: %1").arg(result->getErrorText()));
+        // notifyError(tr("Error while executing PRAGMA on target database: %1").arg(result->getErrorText())); // TODO this is in another thread, cannot use notifyError
         return false;
     }
     return true;

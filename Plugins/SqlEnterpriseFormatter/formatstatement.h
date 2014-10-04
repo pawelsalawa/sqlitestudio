@@ -5,6 +5,7 @@
 #include "parser/ast/sqlitesortorder.h"
 #include "parser/ast/sqliteconflictalgo.h"
 #include "common/utils_sql.h"
+#include "sqlenterpriseformatter.h"
 #include <QString>
 #include <QStringList>
 #include <QHash>
@@ -31,6 +32,7 @@ class FormatStatement
 
         QString format();
         void setSelectedWrapper(NameWrapper wrapper);
+        void setConfig(Cfg::SqlEnterpriseFormatterConfig* cfg);
 
         static FormatStatement* forQuery(SqliteStatement *query);
 
@@ -93,12 +95,19 @@ class FormatStatement
             return *this;
         }
 
+        template <class T>
+        T* getFormatStatement(SqliteStatement* stmt)
+        {
+            return dynamic_cast<T*>(forQuery(stmt, dialect, wrapper, cfg));
+        }
+
     protected:
         virtual void formatInternal() = 0;
         virtual void resetInternal();
 
         Dialect dialect = Dialect::Sqlite3;
         NameWrapper wrapper = NameWrapper::BRACKET;
+        Cfg::SqlEnterpriseFormatterConfig* cfg = nullptr;
 
     private:
         struct FormatToken
@@ -164,7 +173,7 @@ class FormatStatement
         int predictCurrentIndent(FormatToken* currentMetaToken);
         bool willStartWithNewLine(FormatToken* token);
 
-        static FormatStatement* forQuery(SqliteStatement *query, Dialect dialect, NameWrapper wrapper);
+        static FormatStatement* forQuery(SqliteStatement *query, Dialect dialect, NameWrapper wrapper, Cfg::SqlEnterpriseFormatterConfig* cfg);
 
         QHash<QString,int> kwLineUpPosition;
         QHash<QString,int> namedIndents;

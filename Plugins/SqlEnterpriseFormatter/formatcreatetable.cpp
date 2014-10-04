@@ -53,7 +53,8 @@ void FormatCreateTable::formatColumns(const QList<SqliteCreateTable::Column*>& c
 
         if (stmt->type)
         {
-            formatColType = new FormatColumnType(stmt->type);
+
+            formatColType = getFormatStatement<FormatColumnType>(stmt->type);
             maxColTypeIndent = qMax(formatColType->format().trimmed().length(), maxColTypeIndent);
             delete formatColType;
         }
@@ -78,7 +79,7 @@ void FormatCreateTable::formatColumns(const QList<SqliteCreateTable::Column*>& c
 
 int FormatCreateTable::getColNameLength(const QString& name)
 {
-    if (CFG_ADV_FMT.SqlEnterpriseFormatter.AlwaysUseNameWrapping.get())
+    if (cfg->SqlEnterpriseFormatter.AlwaysUseNameWrapping.get())
         return wrapObjName(name, dialect, wrapper).length();
     else
         return wrapObjIfNeeded(name, dialect, wrapper).length();
@@ -102,7 +103,7 @@ void FormatCreateTableColumn::setColTypeIndent(int value)
 void FormatCreateTableColumn::formatInternal()
 {
     ListSeparator sep = ListSeparator::NONE;
-    if (CFG_ADV_FMT.SqlEnterpriseFormatter.NlBetweenConstraints.get())
+    if (cfg->SqlEnterpriseFormatter.NlBetweenConstraints.get())
         sep = ListSeparator::NEW_LINE;
 
     withId(column->name).withIncrIndent(colNameIndent).withStatement(column->type).withIncrIndent(colTypeIndent)

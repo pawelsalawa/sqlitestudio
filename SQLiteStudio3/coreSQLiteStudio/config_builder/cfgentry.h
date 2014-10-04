@@ -32,9 +32,12 @@ class API_EXPORT CfgEntry : public QObject
         void reset();
         bool isPersistable() const;
         bool isPersisted() const;
-        void savepoint();
+        void savepoint(bool transaction = false);
+        void begin();
         void restore();
         void release();
+        void commit();
+        void rollback();
         CfgCategory* getCategory() const;
         CfgMain* getMain() const;
 
@@ -54,12 +57,14 @@ class API_EXPORT CfgEntry : public QObject
         QVariant defValue;
         QString title;
         QVariant backup;
+        bool transaction = false;
         mutable bool cached = false;
         mutable QVariant cachedValue;
         DefaultValueProviderFunc defValueFunc = nullptr;
 
     signals:
         void changed(const QVariant& newValue);
+        void persisted(const QVariant& newValue);
 };
 
 template <class T>

@@ -5,15 +5,13 @@
 #include <QDebug>
 #include <parser/parser.h>
 
-CFG_DEFINE(SqlEnterpriseFormatterConfig)
-
 SqlEnterpriseFormatter::SqlEnterpriseFormatter()
 {
 }
 
 QString SqlEnterpriseFormatter::format(SqliteQueryPtr query)
 {
-    int wrapperIdx = CFG_ADV_FMT.SqlEnterpriseFormatter.Wrappers.get().indexOf(CFG_ADV_FMT.SqlEnterpriseFormatter.PrefferedWrapper.get());
+    int wrapperIdx = cfg.SqlEnterpriseFormatter.Wrappers.get().indexOf(cfg.SqlEnterpriseFormatter.PrefferedWrapper.get());
     NameWrapper wrapper = static_cast<NameWrapper>(wrapperIdx);
 
     FormatStatement *formatStmt = FormatStatement::forQuery(query.data());
@@ -21,6 +19,7 @@ QString SqlEnterpriseFormatter::format(SqliteQueryPtr query)
         return query->detokenize();
 
     formatStmt->setSelectedWrapper(wrapper);
+    formatStmt->setConfig(&cfg);
     QString formatted = formatStmt->format();
     delete formatStmt;
 
@@ -49,6 +48,8 @@ bool SqlEnterpriseFormatter::init()
         previewQueries << parser.getQueries().first();
     }
 
+    updatePreview();
+
     return GenericPlugin::init();
 }
 
@@ -57,13 +58,22 @@ void SqlEnterpriseFormatter::deinit()
     Q_CLEANUP_RESOURCE(sqlenterpriseformatter);
 }
 
+
 void SqlEnterpriseFormatter::updatePreview()
 {
     QStringList output;
     for (const SqliteQueryPtr& q : previewQueries)
         output << format(q);
 
-    CFG_ADV_FMT.SqlEnterpriseFormatter.PreviewCode.set(output.join("\n\n"));
+    cfg.SqlEnterpriseFormatter.PreviewCode.set(output.join("\n\n"));
+}
+
+void SqlEnterpriseFormatter::configModified(CfgEntry* entry)
+{
+    if (entry == &cfg.SqlEnterpriseFormatter.PreviewCode)
+        return;
+
+    updatePreview();
 }
 
 QString Cfg::getNameWrapperStr(NameWrapper wrapper)
@@ -80,11 +90,22 @@ QStringList Cfg::getNameWrapperStrings()
     return strings;
 }
 
-void SqlEnterpriseFormatter::configModified(CfgEntry* key, const QVariant& value)
+CfgMain* SqlEnterpriseFormatter::getMainUiConfig()
 {
-    UNUSED(value);
-    if (key->getMain() != CFG_ADV_FMT)
-        return;
+    return &cfg;
+}
 
-    updatePreview();
+QString SqlEnterpriseFormatter::getConfigUiForm() const
+{
+    return "SqlEnterpriseFormatter";
+}
+
+void SqlEnterpriseFormatter::configDialogOpen()
+{
+    connect(&cfg.SqlEnterpriseFormatter, SIGNAL(changed(CfgEntry*)), this, SLOT(configModified(CfgEntry*)));
+}
+
+void SqlEnterpriseFormatter::configDialogClosed()
+{
+    disconnect(&cfg.SqlEnterpriseFormatter, SIGNAL(changed(CfgEntry*)), this, SLOT(configModified(CfgEntry*)));
 }

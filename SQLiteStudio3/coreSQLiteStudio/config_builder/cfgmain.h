@@ -23,9 +23,12 @@ class API_EXPORT CfgMain
 
         QHash<QString,CfgCategory*>& getCategories();
         void reset();
-        void savepoint();
+        void savepoint(bool transaction = false);
         void restore();
         void release();
+        void begin();
+        void commit();
+        void rollback();
 
         bool isPersistable() const;
         QString getName() const;

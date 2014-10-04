@@ -14,13 +14,13 @@
 #include "common/userinputfilter.h"
 #include "multieditor/multieditorwidget.h"
 #include "multieditor/multieditorwidgetplugin.h"
+#include "plugins/confignotifiableplugin.h"
 #include "mainwindow.h"
 #include "common/unused.h"
 #include "sqlitestudio.h"
 #include "configmapper.h"
 #include "datatype.h"
 #include "uiutils.h"
-#include "plugins/confignotifiableplugin.h"
 #include <QSignalMapper>
 #include <QLineEdit>
 #include <QSpinBox>
@@ -36,6 +36,7 @@
 #include <QDesktopServices>
 #include <QtUiTools/QUiLoader>
 #include <QKeySequenceEdit>
+#include <plugins/uiconfiguredplugin.h>
 
 #define GET_FILTER_STRING(Widget, WidgetType, Method) \
     if (qobject_cast<WidgetType*>(Widget))\
@@ -55,8 +56,29 @@ ConfigDialog::ConfigDialog(QWidget *parent) :
 
 ConfigDialog::~ConfigDialog()
 {
+    // Cancel transaction on CfgMain objects from plugins
+    rollbackPluginConfigs();
+
+    // Notify plugins about dialog being closed
+    UiConfiguredPlugin* cfgPlugin;
+    foreach (Plugin* plugin, PLUGINS->getLoadedPlugins())
+    {
+        cfgPlugin = dynamic_cast<UiConfiguredPlugin*>(plugin);
+        if (!cfgPlugin)
+            continue;
+
+        cfgPlugin->configDialogClosed();
+    }
+
+    // Delete UI and other resources
     delete ui;
     safe_delete(configMapper);
+
+    for (ConfigMapper* mapper : pluginConfigMappers.values())
+        delete mapper;
+
+    pluginConfigMappers.clear();
+
 }
 
 void ConfigDialog::configureDataEditors(const QString& dataTypeString)
@@ -202,6 +224,7 @@ void ConfigDialog::save()
     CFG->beginMassSave();
     CFG_CORE.General.LoadedPlugins.set(loadedPlugins);
     configMapper->saveFromWidget(ui->stackedWidget, true);
+    commitPluginConfigs();
     CFG->commitMassSave();
 }
 
@@ -505,6 +528,31 @@ void ConfigDialog::addDataType(const QString& typeStr)
     markModified();
 }
 
+void ConfigDialog::rollbackPluginConfigs()
+{
+    CfgMain* mainCfg;
+    for (UiConfiguredPlugin* plugin : pluginConfigMappers.keys())
+    {
+        mainCfg = plugin->getMainUiConfig();
+        if (mainCfg)
+            mainCfg->rollback();
+    }
+}
+
+void ConfigDialog::commitPluginConfigs()
+{
+    CfgMain* mainCfg;
+    for (UiConfiguredPlugin* plugin : pluginConfigMappers.keys())
+    {
+        mainCfg = plugin->getMainUiConfig();
+        if (mainCfg)
+        {
+            mainCfg->commit();
+            mainCfg->begin(); // be prepared for further changes after "Apply"
+        }
+    }
+}
+
 void ConfigDialog::updateDataTypeListState()
 {
     bool listEditingEnabled = ui->dataEditorsTypesList->selectedItems().size() > 0 && ui->dataEditorsTypesList->currentItem()->flags().testFlag(Qt::ItemIsEditable);
@@ -675,7 +723,7 @@ void ConfigDialog::updateActiveFormatterState()
             continue;
         }
 
-        button->setEnabled(!plugin->getConfigUiForm().isEmpty());
+        button->setEnabled(dynamic_cast<UiConfiguredPlugin*>(plugin));
     }
 }
 
@@ -787,7 +835,7 @@ void ConfigDialog::pluginAboutToUnload(Plugin* plugin, PluginType* type)
         notifiablePlugins.removeOne(notifiablePlugin);
 
     // Deinit page
-    deinitPluginPage(plugin->getName());
+    deinitPluginPage(plugin);
 
     // Update tree categories
     updatePluginCategoriesVisibility();
@@ -795,12 +843,13 @@ void ConfigDialog::pluginAboutToUnload(Plugin* plugin, PluginType* type)
 
 void ConfigDialog::pluginLoaded(Plugin* plugin, PluginType* type, bool skipConfigLoading)
 {
-    if (plugin->getConfigUiForm().isNull())
-        return;
-
     // Update formatters page
     if (type->isForPluginType<CodeFormatterPlugin>())
         codeFormatterLoaded();
+
+    // Init page
+    if (!initPluginPage(plugin, skipConfigLoading))
+        return;
 
     // Init tree item
     QTreeWidgetItem* typeItem = getPluginsCategoryItem(type);
@@ -808,9 +857,6 @@ void ConfigDialog::pluginLoaded(Plugin* plugin, PluginType* type, bool skipConfi
     pluginItem->setStatusTip(0, plugin->getName());
     typeItem->addChild(pluginItem);
     pluginToItemMap[plugin] = pluginItem;
-
-    // Init page
-    initPluginPage(plugin->getName(), plugin->getConfigUiForm(), skipConfigLoading);
 
     // Update tree categories
     updatePluginCategoriesVisibility();
@@ -1229,26 +1275,60 @@ void ConfigDialog::initPluginsPage()
     }
 }
 
-void ConfigDialog::initPluginPage(const QString& pluginName, const QString& formName, bool skipConfigLoading)
+bool ConfigDialog::initPluginPage(Plugin* plugin, bool skipConfigLoading)
 {
+    if (!dynamic_cast<UiConfiguredPlugin*>(plugin))
+        return false;
+
+    UiConfiguredPlugin* cfgPlugin = dynamic_cast<UiConfiguredPlugin*>(plugin);
+    QString pluginName = plugin->getName();
+    QString formName = cfgPlugin->getConfigUiForm();
     QWidget* widget = FORMS->createWidget(formName);
     if (!widget)
     {
         qWarning() << "Could not load plugin UI file" << formName << "for plugin:" << pluginName;
-        return;
+        return false;
     }
 
     nameToPage[pluginName] = widget;
     ui->stackedWidget->addWidget(widget);
-
-    if (!skipConfigLoading)
+    CfgMain* mainConfig = cfgPlugin->getMainUiConfig();
+    if (mainConfig)
+    {
+        pluginConfigMappers[cfgPlugin] = new ConfigMapper(mainConfig);
+        pluginConfigMappers[cfgPlugin]->bindToConfig(widget);
+        mainConfig->begin();
+    }
+    else if (!skipConfigLoading)
+    {
         configMapper->loadToWidget(widget);
+    }
+
+    cfgPlugin->configDialogOpen();
+    return true;
 }
 
-void ConfigDialog::deinitPluginPage(const QString& pluginName)
+void ConfigDialog::deinitPluginPage(Plugin* plugin)
 {
+    QString pluginName = plugin->getName();
     if (!nameToPage.contains(pluginName))
         return;
+
+    if (!dynamic_cast<UiConfiguredPlugin*>(plugin))
+    {
+        UiConfiguredPlugin* cfgPlugin = dynamic_cast<UiConfiguredPlugin*>(plugin);
+        CfgMain* mainCfg = cfgPlugin->getMainUiConfig();
+        if (mainCfg)
+            mainCfg->rollback();
+
+        cfgPlugin->configDialogClosed();
+
+        if (pluginConfigMappers.contains(cfgPlugin))
+        {
+            delete pluginConfigMappers[cfgPlugin];
+            pluginConfigMappers.remove(cfgPlugin);
+        }
+    }
 
     QWidget* widget = nameToPage[pluginName];
     nameToPage.remove(pluginName);

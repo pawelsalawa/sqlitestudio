@@ -40,10 +40,10 @@ void CfgCategory::reset()
         entry->reset();
 }
 
-void CfgCategory::savepoint()
+void CfgCategory::savepoint(bool transaction)
 {
     for (CfgEntry* entry : childs)
-        entry->savepoint();
+        entry->savepoint(transaction);
 }
 
 void CfgCategory::restore()
@@ -56,6 +56,21 @@ void CfgCategory::release()
 {
     for (CfgEntry* entry : childs)
         entry->release();
+}
+
+void CfgCategory::commit()
+{
+    release();
+}
+
+void CfgCategory::rollback()
+{
+    rollback();
+}
+
+void CfgCategory::begin()
+{
+    savepoint(true);
 }
 
 QString CfgCategory::getTitle() const

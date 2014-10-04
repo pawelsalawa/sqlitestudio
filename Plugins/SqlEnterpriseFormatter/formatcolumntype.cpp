@@ -12,7 +12,7 @@ void FormatColumnType::formatInternal()
     if (colType->name.isEmpty())
         return;
 
-    withId(CFG_ADV_FMT.SqlEnterpriseFormatter.UppercaseDataTypes.get() ? colType->name.toUpper() : colType->name.toLower());
+    withId(cfg->SqlEnterpriseFormatter.UppercaseDataTypes.get() ? colType->name.toUpper() : colType->name.toLower());
 
     if (!colType->scale.isNull())
     {

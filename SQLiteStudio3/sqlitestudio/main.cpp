@@ -20,12 +20,12 @@
 #include "services/updatemanager.h"
 #include "guiSQLiteStudio_global.h"
 #include "coreSQLiteStudio_global.h"
+#include "log.h"
 #include <QCommandLineParser>
 #include <QCommandLineOption>
 #include <QApplication>
 #include <QSplashScreen>
 #include <QThread>
-
 #include <QPluginLoader>
 #include <QDebug>
 
@@ -39,16 +39,23 @@ QString uiHandleCmdLineArgs()
     QCommandLineOption debugOption({"d", "debug"}, QObject::tr("enables debug messages in console (accessible with F12)."));
     QCommandLineOption debugStdOutOption("debug-stdout", QObject::tr("redirects debug messages into standard output (forces debug mode)."));
     QCommandLineOption lemonDebugOption("debug-lemon", QObject::tr("enables Lemon parser debug messages for SQL code assistant."));
+    QCommandLineOption sqlDebugOption("debug-sql", QObject::tr("enables debugging of every single SQL query being sent to any database."));
+    QCommandLineOption sqlDebugDbNameOption("debug-sql-db", QObject::tr("limits SQL query messages to only the given <database>."), QObject::tr("database"));
     parser.addOption(debugOption);
     parser.addOption(debugStdOutOption);
     parser.addOption(lemonDebugOption);
+    parser.addOption(sqlDebugOption);
+    parser.addOption(sqlDebugDbNameOption);
 
     parser.addPositionalArgument(QObject::tr("file"), QObject::tr("database file to open"));
 
     parser.process(qApp->arguments());
 
-    setUiDebug(parser.isSet(debugOption) || parser.isSet(debugStdOutOption), !parser.isSet(debugStdOutOption));
+    setUiDebug(parser.isSet(debugOption) || parser.isSet(debugStdOutOption) || parser.isSet(sqlDebugOption), !parser.isSet(debugStdOutOption));
     CompletionHelper::enableLemonDebug = parser.isSet(lemonDebugOption);
+    setSqlLoggingEnabled(parser.isSet(sqlDebugOption));
+    if (parser.isSet(sqlDebugDbNameOption))
+        setSqlLoggingFilter(parser.value(sqlDebugDbNameOption));
 
     QStringList args = parser.positionalArguments();
     if (args.size() > 0)
