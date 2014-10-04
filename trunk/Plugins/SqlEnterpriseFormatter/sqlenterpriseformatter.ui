@@ -589,7 +589,7 @@
           <property name="text">
            <string>Always use name wrapping</string>
           </property>
-          <property name="SqlEnterpriseFormatter." stdset="0">
+          <property name="cfg" stdset="0">
            <string>SqlEnterpriseFormatter.AlwaysUseNameWrapping</string>
           </property>
          </widget>

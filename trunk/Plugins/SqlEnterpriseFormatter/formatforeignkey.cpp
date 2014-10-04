@@ -13,7 +13,9 @@ void FormatForeignKey::formatInternal()
         withParExprLeft().withStatementList(fk->indexedColumns).withParExprRight();
 
     if (fk->conditions.size() > 0)
+    {
         markAndKeepIndent("constr_conditions").withStatementList(fk->conditions, QString(), ListSeparator::NEW_LINE).withDecrIndent();
+    }
 
     if (fk->deferrable != SqliteDeferrable::null)
     {

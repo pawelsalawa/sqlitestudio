@@ -479,29 +479,41 @@ QString FormatStatement::detokenize()
         applySpace(token->type);
         switch (token->type)
         {
+            case FormatToken::LINED_UP_KEYWORD:
+            {
+                if (cfg->SqlEnterpriseFormatter.LineUpKeywords.get())
+                {
+                    QString kw = token->value.toString();
+                    QString lineUpName = token->additionalValue.toString();
+                    int lineUpValue = kwLineUpPosition.contains(lineUpName) ? kwLineUpPosition[lineUpName] : 0;
+
+                    int indentLength = lineUpValue - kw.length();
+                    if (indentLength > 0)
+                        line += SPACE.repeated(indentLength);
+
+                    line += uppercaseKeywords ? kw.toUpper() : kw.toLower();
+
+                    break;
+                }
+                else
+                {
+                    // No 'break', so we go to next case, the regular KEYWORD
+                }
+            }
             case FormatToken::KEYWORD:
             {
                 applyIndent();
                 line += uppercaseKeywords ? token->value.toString().toUpper() : token->value.toString().toLower();
                 break;
             }
-            case FormatToken::LINED_UP_KEYWORD:
+            case FormatToken::FUNC_ID:
+            case FormatToken::DATA_TYPE:
             {
-                QString kw = token->value.toString();
-                QString lineUpName = token->additionalValue.toString();
-                int lineUpValue = kwLineUpPosition.contains(lineUpName) ? kwLineUpPosition[lineUpName] : 0;
-
-                int indentLength = lineUpValue - kw.length();
-                if (indentLength > 0)
-                    line += SPACE.repeated(indentLength);
-
-                line += uppercaseKeywords ? kw.toUpper() : kw.toLower();
-
+                applyIndent();
+                line += wrapObjIfNeeded(token->value.toString(), dialect, wrapper);
                 break;
             }
             case FormatToken::ID:
-            case FormatToken::FUNC_ID:
-            case FormatToken::DATA_TYPE:
             {
                 applyIndent();
                 if (cfg->SqlEnterpriseFormatter.AlwaysUseNameWrapping.get())
@@ -873,7 +885,8 @@ void FormatStatement::detokenizeLeftPar(FormatToken* token, bool spaceBefore, bo
     if (nlAfter)
     {
         newLine();
-        incrIndent();
+        if (cfg->SqlEnterpriseFormatter.IndentParenthesisBlock.get())
+            incrIndent();
     }
     else if (spaceAfter)
         line += SPACE;
@@ -886,7 +899,8 @@ void FormatStatement::detokenizeRightPar(FormatStatement::FormatToken* token, bo
     {
         newLine();
         spaceAdded = true;
-        decrIndent();
+        if (cfg->SqlEnterpriseFormatter.IndentParenthesisBlock.get())
+            decrIndent();
     }
 
     spaceAdded |= applyIndent();

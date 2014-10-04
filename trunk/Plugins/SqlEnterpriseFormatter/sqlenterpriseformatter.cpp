@@ -12,7 +12,8 @@ SqlEnterpriseFormatter::SqlEnterpriseFormatter()
 QString SqlEnterpriseFormatter::format(SqliteQueryPtr query)
 {
     int wrapperIdx = cfg.SqlEnterpriseFormatter.Wrappers.get().indexOf(cfg.SqlEnterpriseFormatter.PrefferedWrapper.get());
-    NameWrapper wrapper = static_cast<NameWrapper>(wrapperIdx);
+
+    NameWrapper wrapper = getAllNameWrappers()[wrapperIdx];
 
     FormatStatement *formatStmt = FormatStatement::forQuery(query.data());
     if (!formatStmt)
@@ -30,7 +31,7 @@ bool SqlEnterpriseFormatter::init()
 {
     Q_INIT_RESOURCE(sqlenterpriseformatter);
 
-    static_qstring(query1, "SELECT (2 + 4) AND (3 + 5), 4 NOT IN (SELECT t1.u + t2.y FROM xyz t1 JOIN zxc t2 ON (t1.aaa = t2.aaa)) "
+    static_qstring(query1, "SELECT (2 + 4) AND (3 + 5), 4 NOT IN (SELECT t1.'some[_]name' + t2.[some'name2] FROM xyz t1 JOIN zxc t2 ON (t1.aaa = t2.aaa)) "
                            "FROM a, (SELECT id FROM table2);");
     static_qstring(query2, "INSERT INTO table1 (id, value1, value2) VALUES (1, (2 + 5), (SELECT id FROM table2));");
     static_qstring(query3, "CREATE TABLE tab (id INTEGER PRIMARY KEY, value1 VARCHAR(6), value2 NUMBER(8,2) NOT NULL DEFAULT 1.0);");
@@ -84,7 +85,7 @@ QString Cfg::getNameWrapperStr(NameWrapper wrapper)
 QStringList Cfg::getNameWrapperStrings()
 {
     QStringList strings;
-    for (NameWrapper nw : {NameWrapper::BRACKET, NameWrapper::DOUBLE_QUOTE, NameWrapper::BACK_QUOTE, NameWrapper::QUOTE})
+    for (NameWrapper nw : getAllNameWrappers())
         strings << wrapObjName(QObject::tr("name", "example name wrapper"), nw);
 
     return strings;

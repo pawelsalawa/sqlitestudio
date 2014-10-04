@@ -49,6 +49,7 @@ API_EXPORT QPair<QChar,QChar> getQuoteCharacter(QString& obj, Dialect dialect,
                                      NameWrapper favWrapper = NameWrapper::null);
 API_EXPORT QList<QString> wrapObjNames(const QList<QString>& objList, Dialect dialect = Dialect::Sqlite3, NameWrapper favWrapper = NameWrapper::null);
 API_EXPORT QList<QString> wrapObjNamesIfNeeded(const QList<QString>& objList, Dialect dialect, NameWrapper favWrapper = NameWrapper::null);
+API_EXPORT QList<NameWrapper> getAllNameWrappers(Dialect dialect = Dialect::Sqlite3);
 API_EXPORT int qHash(NameWrapper wrapper);
 API_EXPORT QString getPrefixDb(const QString& origDbName, Dialect dialect);
 API_EXPORT bool isSystemTable(const QString& name);
