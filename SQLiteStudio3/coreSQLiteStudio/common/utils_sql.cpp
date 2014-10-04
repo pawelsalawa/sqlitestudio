@@ -151,6 +151,14 @@ QList<QString> wrapObjNamesIfNeeded(const QList<QString>& objList, Dialect diale
     return results;
 }
 
+QList<NameWrapper> getAllNameWrappers(Dialect dialect)
+{
+    if (dialect == Dialect::Sqlite3)
+        return {NameWrapper::BRACKET, NameWrapper::DOUBLE_QUOTE, NameWrapper::BACK_QUOTE, NameWrapper::QUOTE};
+    else
+        return {NameWrapper::BRACKET, NameWrapper::DOUBLE_QUOTE, NameWrapper::QUOTE};
+}
+
 QString wrapString(const QString& str)
 {
     QString result = str;
