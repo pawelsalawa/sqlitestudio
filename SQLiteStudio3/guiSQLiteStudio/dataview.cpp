@@ -388,6 +388,7 @@ void DataView::updateFormCommitRollbackActions()
     bool enabled = formView->isModified();
     actionMap[COMMIT_FORM]->setEnabled(enabled);
     actionMap[ROLLBACK_FORM]->setEnabled(enabled);
+    uncommitted = enabled;
 }
 
 void DataView::showGridView()
