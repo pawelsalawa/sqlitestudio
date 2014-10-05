@@ -1,5 +1,3 @@
-* enterprise formatter - updating preview in config must use notify values
-* uncommited checking doesn't work for FormView
 * shortcuts for commit/rollback/insert/delete should be related to grid/form/dataview - make it right
 
 * deployment
