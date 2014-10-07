@@ -1395,14 +1395,23 @@ void ConfigDialog::initShortcuts()
     new UserInputFilter(ui->shortcutsFilterEdit, this, SLOT(applyShortcutsFilter(QString)));
 
     static const QString metaName = CFG_SHORTCUTS_METANAME;
+    QList<CfgCategory*> categories;
     for (CfgMain* cfgMain : CfgMain::getInstances())
     {
         if (cfgMain->getMetaName() != metaName)
             continue;
 
         for (CfgCategory* cat : cfgMain->getCategories().values())
-            initShortcuts(cat);
+            categories << cat;
     }
+
+    qSort(categories.begin(), categories.end(), [](CfgCategory* cat1, CfgCategory* cat2) -> bool
+    {
+        return cat1->getTitle().compare(cat2->getTitle()) < 0;
+    });
+
+    for (CfgCategory* cat : categories)
+        initShortcuts(cat);
 }
 
 void ConfigDialog::initShortcuts(CfgCategory *cfgCategory)

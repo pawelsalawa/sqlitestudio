@@ -148,16 +148,15 @@ void DataView::createActions()
     gridToolBar->addSeparator();
     if (rowInserting)
     {
-        createAction(INSERT_ROW, ICONS.INSERT_ROW, tr("Insert row", "data view"), this, SLOT(insertRow()), gridToolBar, gridView);
-        createAction(INSERT_MULTIPLE_ROWS, ICONS.INSERT_ROWS, tr("Insert multiple row", "data view"), this, SLOT(insertMultipleRows()), this, gridView);
-        attachActionInMenu(INSERT_ROW, INSERT_MULTIPLE_ROWS, gridToolBar);
+        gridToolBar->addAction(gridView->getAction(SqlQueryView::INSERT_ROW));
+        attachActionInMenu(gridView->getAction(SqlQueryView::INSERT_ROW), gridView->getAction(SqlQueryView::INSERT_MULTIPLE_ROWS), gridToolBar);
     }
 
     if (rowDeleting)
-        createAction(DELETE_ROW, ICONS.DELETE_ROW, tr("Delete selected row", "data view"), this, SLOT(deleteRow()), gridToolBar, gridView);
+        gridToolBar->addAction(gridView->getAction(SqlQueryView::DELETE_ROW));
 
-    createAction(COMMIT_GRID, ICONS.COMMIT, tr("Commit changes", "data view"), this, SLOT(commitGrid()), gridToolBar, gridView);
-    createAction(ROLLBACK_GRID, ICONS.ROLLBACK, tr("Rollback changes", "data view"), this, SLOT(rollbackGrid()), gridToolBar, gridView);
+    gridToolBar->addAction(gridView->getAction(SqlQueryView::COMMIT));
+    gridToolBar->addAction(gridView->getAction(SqlQueryView::ROLLBACK));
     gridToolBar->addSeparator();
     createAction(FIRST_PAGE, ICONS.PAGE_FIRST, tr("First page", "data view"), this, SLOT(firstPage()), gridToolBar);
     createAction(PREV_PAGE, ICONS.PAGE_PREV, tr("Previous page", "data view"), this, SLOT(prevPage()), gridToolBar);
@@ -188,29 +187,43 @@ void DataView::createActions()
     createAction(SHOW_GRID_VIEW, tr("Show grid view of results", "sql editor"), this, SLOT(showGridView()), this);
     createAction(SHOW_FORM_VIEW, tr("Show form view of results", "sql editor"), this, SLOT(showFormView()), this);
 
+    connect(gridView, SIGNAL(requestForRowInsert()), this, SLOT(insertRow()));
+    connect(gridView, SIGNAL(requestForMultipleRowInsert()), this, SLOT(insertMultipleRows()));
+    connect(gridView, SIGNAL(requestForRowDelete()), this, SLOT(deleteRow()));
+
+
     // Form view actions
     if (rowInserting)
-        formToolBar->addAction(actionMap[INSERT_ROW]);
+        formToolBar->addAction(formView->getAction(FormView::INSERT_ROW));
 
     if (rowDeleting)
-        formToolBar->addAction(actionMap[DELETE_ROW]);
+        formToolBar->addAction(formView->getAction(FormView::DELETE_ROW));
 
     if (rowInserting || rowDeleting)
         formToolBar->addSeparator();
 
-    createAction(COMMIT_FORM, ICONS.COMMIT, tr("Commit row", "data view"), this, SLOT(commitForm()), formToolBar);
-    createAction(ROLLBACK_FORM, ICONS.ROLLBACK, tr("Rollback row", "data view"), this, SLOT(rollbackForm()), formToolBar);
+    formToolBar->addAction(formView->getAction(FormView::COMMIT));
+    formToolBar->addAction(formView->getAction(FormView::ROLLBACK));
     formToolBar->addSeparator();
-    createAction(FIRST_ROW, ICONS.PAGE_FIRST, tr("First row", "data view"), this, SLOT(firstRow()), formToolBar);
-    createAction(PREV_ROW, ICONS.PAGE_PREV, tr("Previous row", "data view"), this, SLOT(prevRow()), formToolBar);
-    createAction(NEXT_ROW, ICONS.PAGE_NEXT, tr("Next row", "data view"), this, SLOT(nextRow()), formToolBar);
-    createAction(LAST_ROW, ICONS.PAGE_LAST, tr("Last last", "data view"), this, SLOT(lastRow()), formToolBar);
+    formToolBar->addAction(formView->getAction(FormView::FIRST_ROW));
+    formToolBar->addAction(formView->getAction(FormView::PREV_ROW));
+    formToolBar->addAction(formView->getAction(FormView::NEXT_ROW));
+    formToolBar->addAction(formView->getAction(FormView::LAST_ROW));
     formToolBar->addSeparator();
     actionMap[FORM_TOTAL_ROWS] = formToolBar->addWidget(formViewRowCountLabel);
     formToolBar->addSeparator();
     actionMap[FORM_CURRENT_ROW] = formToolBar->addWidget(formViewCurrentRowLabel);
 
     noConfigShortcutActions << FORM_TOTAL_ROWS;
+
+    connect(formView, SIGNAL(requestForCommit()), this, SLOT(commitForm()));
+    connect(formView, SIGNAL(requestForRollback()), this, SLOT(rollbackForm()));
+    connect(formView, SIGNAL(requestForFirstRow()), this, SLOT(firstRow()));
+    connect(formView, SIGNAL(requestForPrevRow()), this, SLOT(prevRow()));
+    connect(formView, SIGNAL(requestForNextRow()), this, SLOT(nextRow()));
+    connect(formView, SIGNAL(requestForLastRow()), this, SLOT(lastRow()));
+    connect(formView, SIGNAL(requestForRowInsert()), this, SLOT(insertRow()));
+    connect(formView, SIGNAL(requestForRowDelete()), this, SLOT(deleteRow()));
 
     // Actions for grid menu only
     gridView->addAdditionalAction(staticActions[TABS_ON_TOP]);
@@ -222,16 +235,7 @@ void DataView::createActions()
 void DataView::setupDefShortcuts()
 {
     // Widget context
-    setShortcutContext({COMMIT_GRID, ROLLBACK_GRID, REFRESH_DATA, SHOW_GRID_VIEW, SHOW_FORM_VIEW}, Qt::WidgetWithChildrenShortcut);
-
-    bool rowInserting = model->features().testFlag(SqlQueryModel::INSERT_ROW);
-    bool rowDeleting = model->features().testFlag(SqlQueryModel::DELETE_ROW);
-
-    if (rowInserting)
-        setShortcutContext({INSERT_ROW}, Qt::WidgetWithChildrenShortcut);
-
-    if (rowDeleting)
-        setShortcutContext({DELETE_ROW}, Qt::WidgetWithChildrenShortcut);
+    setShortcutContext({REFRESH_DATA, SHOW_GRID_VIEW, SHOW_FORM_VIEW}, Qt::WidgetWithChildrenShortcut);
 
     BIND_SHORTCUTS(DataView, Action);
 }
@@ -376,8 +380,8 @@ void DataView::updateFormNavigationState()
     bool nextRowAvailable = row < lastRow;
     bool prevRowAvailable = row > 0;
 
-    actionMap[NEXT_ROW]->setEnabled(navigationState && nextRowAvailable);
-    actionMap[PREV_ROW]->setEnabled(navigationState && prevRowAvailable);
+    formView->getAction(FormView::NEXT_ROW)->setEnabled(navigationState && nextRowAvailable);
+    formView->getAction(FormView::PREV_ROW)->setEnabled(navigationState && prevRowAvailable);
 
     // We changed row in form view, this one might be already modified and be capable for commit/rollback
     updateFormCommitRollbackActions();
@@ -386,9 +390,9 @@ void DataView::updateFormNavigationState()
 void DataView::updateFormCommitRollbackActions()
 {
     bool enabled = formView->isModified();
-    actionMap[COMMIT_FORM]->setEnabled(enabled);
-    actionMap[ROLLBACK_FORM]->setEnabled(enabled);
-    uncommitted = enabled;
+    formView->getAction(FormView::COMMIT)->setEnabled(enabled);
+    formView->getAction(FormView::ROLLBACK)->setEnabled(enabled);
+    uncommittedForm = enabled;
 }
 
 void DataView::showGridView()
@@ -423,9 +427,9 @@ void DataView::filterModeSelected()
 
 void DataView::updateCommitRollbackActions(bool enabled)
 {
-    actionMap[COMMIT_GRID]->setEnabled(enabled);
-    actionMap[ROLLBACK_GRID]->setEnabled(enabled);
-    uncommitted = enabled;
+    gridView->getAction(SqlQueryView::COMMIT)->setEnabled(enabled);
+    gridView->getAction(SqlQueryView::ROLLBACK)->setEnabled(enabled);
+    uncommittedGrid = enabled;
 }
 
 void DataView::updateSelectiveCommitRollbackActions(bool enabled)
@@ -532,7 +536,7 @@ void DataView::updateFilterIcon()
 
 bool DataView::isUncommited() const
 {
-    return uncommitted;
+    return uncommittedGrid || uncommittedForm;
 }
 
 void DataView::dataLoadingEnded(bool successful)
@@ -564,18 +568,27 @@ void DataView::refreshData()
 
 void DataView::insertRow()
 {
+    if (!model->features().testFlag(SqlQueryModel::INSERT_ROW))
+        return;
+
     model->addNewRow();
     formView->updateFromGrid();
 }
 
 void DataView::insertMultipleRows()
 {
+    if (!model->features().testFlag(SqlQueryModel::INSERT_ROW))
+        return;
+
     model->addMultipleRows();
     formView->updateFromGrid();
 }
 
 void DataView::deleteRow()
 {
+    if (!model->features().testFlag(SqlQueryModel::DELETE_ROW))
+        return;
+
     model->deleteSelectedRows();
     formView->updateFromGrid();
 }

@@ -91,7 +91,12 @@ void ExtActionContainer::attachActionInMenu(int parentAction, int childAction, Q
 
 void ExtActionContainer::attachActionInMenu(int parentAction, QAction* childAction, QToolBar* toolbar)
 {
-    QToolButton* button = dynamic_cast<QToolButton*>(toolbar->widgetForAction(actionMap[parentAction]));
+    attachActionInMenu(actionMap[parentAction], childAction, toolbar);
+}
+
+void ExtActionContainer::attachActionInMenu(QAction* parentAction, QAction* childAction, QToolBar* toolbar)
+{
+    QToolButton* button = dynamic_cast<QToolButton*>(toolbar->widgetForAction(parentAction));
     QMenu* menu = button->menu();
 
     if (!menu)

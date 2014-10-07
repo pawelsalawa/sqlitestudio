@@ -142,6 +142,7 @@ class GUI_API_EXPORT SqlQueryModelColumn
         bool canEdit();
         QString getEditionForbiddenReason();
         bool isPk() const;
+        bool isRowIdPk() const;
         bool isAutoIncr() const;
         bool isNotNull() const;
         bool isUnique() const;

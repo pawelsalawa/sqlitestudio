@@ -31,6 +31,15 @@ class QSignalMapper;
 #define CFG_KEYS_DEFINE(Type) CFG_DEFINE_LAZY(Shortcuts##Type)
 
 /**
+ * @def Declares access object for defined shortuts.
+ *
+ * This is the same as CFG_INSTANCE for regular config values.
+ * It's optional. It doesn't need to be declared, but if you want to refer
+ * to keys as to configuration values, then you will need this.
+ */
+#define CFG_KEYS_INSTANCE(Type) (*Cfg::getShortcuts##Type##Instance())
+
+/**
  * @def Binds shortcuts configuration with actions enumerator.
  * @param Type Shortcuts category type that was passed to CFG_KEY_LIST.
  * @param EnumName Enumerator type which lists actions that you want bind shortcuts to.
@@ -48,6 +57,7 @@ class QSignalMapper;
         } \
     }
 
+#define GET_SHORTCUTS(Type) ExtActionContainer::getAllShortcutSequences(Cfg::getShortcuts##Type##Instance()->ShortcutsCategory##Type)
 
 class GUI_API_EXPORT ExtActionContainer
 {
@@ -121,6 +131,7 @@ class GUI_API_EXPORT ExtActionContainer
          */
         void attachActionInMenu(int parentAction, int childAction, QToolBar* toolbar);
         void attachActionInMenu(int parentAction, QAction* childAction, QToolBar* toolbar);
+        void attachActionInMenu(QAction* parentAction, QAction* childAction, QToolBar* toolbar);
         void updateShortcutTips();
 
         /**
