@@ -25,6 +25,8 @@ CFG_KEY_LIST(SqlQueryView, QObject::tr("Data grid view"),
     CFG_KEY_ENTRY(SET_NULL,          Qt::Key_Backspace,                 QObject::tr("Set NULL value to selected cell(s)"))
     CFG_KEY_ENTRY(COMMIT,            Qt::CTRL + Qt::Key_Return,         QObject::tr("Commit changes to cell(s) contents"))
     CFG_KEY_ENTRY(ROLLBACK,          Qt::Key_Escape,                    QObject::tr("Rollback changes to cell(s) contents"))
+    CFG_KEY_ENTRY(DELETE_ROW,        Qt::Key_Delete,                    QObject::tr("Delete selected data row"))
+    CFG_KEY_ENTRY(INSERT_ROW,        Qt::Key_Insert,                    QObject::tr("Insert new data row"))
     CFG_KEY_ENTRY(OPEN_VALUE_EDITOR, Qt::ALT + Qt::Key_Return,          QObject::tr("Open contents of selected cell in a separate editor"))
 )
 
@@ -44,6 +46,9 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
             ERASE,
             ROLLBACK,
             COMMIT,
+            INSERT_ROW,
+            INSERT_MULTIPLE_ROWS,
+            DELETE_ROW,
             SELECTIVE_COMMIT,
             SELECTIVE_ROLLBACK,
             OPEN_VALUE_EDITOR,
@@ -113,6 +118,9 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
 
     signals:
         void contextMenuRequested(SqlQueryItem* currentItem, const QList<SqlQueryItem*>& selectedItems);
+        void requestForRowInsert();
+        void requestForMultipleRowInsert();
+        void requestForRowDelete();
 };
 
 GUI_API_EXPORT int qHash(SqlQueryView::Action action);

@@ -109,6 +109,18 @@ bool SqlQueryModelColumn::isPk() const
     return getConstraints<ConstraintPk*>().size() > 0;
 }
 
+bool SqlQueryModelColumn::isRowIdPk() const
+{
+    if (dataType.getType() != DataType::INTEGER)
+        return false;
+
+    foreach (ConstraintPk* pk, getConstraints<ConstraintPk*>())
+        if (pk->scope == Constraint::Scope::COLUMN)
+            return true;
+
+    return false;
+}
+
 bool SqlQueryModelColumn::isAutoIncr() const
 {
     foreach (ConstraintPk* pk, getConstraints<ConstraintPk*>())

@@ -1,4 +1,5 @@
 #include "sqlquerymodel.h"
+#include "parser/keywords.h"
 #include "sqlqueryitem.h"
 #include "services/notifymanager.h"
 #include "common/utils_sql.h"
@@ -197,6 +198,25 @@ QList<QList<SqlQueryItem*> > SqlQueryModel::groupItemsByRows(const QList<SqlQuer
     return itemsByRow.values();
 }
 
+QHash<Table,QList<SqlQueryItem*>> SqlQueryModel::groupItemsByTable(const QList<SqlQueryItem*>& items)
+{
+    QHash<Table,QList<SqlQueryItem*>> itemsByTable;
+    Table table;
+    foreach (SqlQueryItem* item, items)
+    {
+        if (item->getColumn())
+        {
+            table.setDatabase(item->getColumn()->database.toLower());
+            table.setTable(item->getColumn()->table.toLower());
+            itemsByTable[table] << item;
+        }
+        else
+            itemsByTable[Table()] << item;
+    }
+
+    return itemsByTable;
+}
+
 QList<SqlQueryItem*> SqlQueryModel::filterOutCommitedItems(const QList<SqlQueryItem*>& items)
 {
     // This method doesn't make use of QMutableListIterator to remove items from passed list,
@@ -324,7 +344,7 @@ void SqlQueryModel::commitInternal(const QList<SqlQueryItem*>& items)
             it.remove();
     }
 
-    // Commiting to th database
+    // Commiting to the database
     if (ok)
     {
         if (!db->commit())
@@ -417,47 +437,82 @@ bool SqlQueryModel::commitEditedRow(const QList<SqlQueryItem*>& itemsInRow)
 
     Dialect dialect = db->getDialect();
 
+    QHash<Table,QList<SqlQueryItem*>> itemsByTable = groupItemsByTable(itemsInRow);
+
     // Values
     QString query;
     SqlQueryModelColumn* col;
     QHash<QString,QVariant> queryArgs;
+    QStringList assignmentArgs;
     RowId rowId;
+    RowId newRowId;
     CommitUpdateQueryBuilder queryBuilder;
-    foreach (SqlQueryItem* item, itemsInRow)
+    QHashIterator<Table,QList<SqlQueryItem*>> it(itemsByTable);
+    QList<SqlQueryItem*> items;
+    Table table;
+    while (it.hasNext())
     {
-        col = item->getColumn();
-        if (col->editionForbiddenReason.size() > 0 || item->isJustInsertedWithOutRowId())
+        it.next();
+        table = it.key();
+        if (table.getTable().isNull())
         {
-            notifyError(tr("Tried to commit a cell which is not editable (yet modified and waiting for commit)! This is a bug. Please report it."));
-            return false;
+            qCritical() << "Tried to commit null table in SqlQueryModel::commitEditedRow().";
+            continue;
         }
+
+        items = it.value();
+        if (items.size() == 0)
+            continue;
 
         // RowId
         queryBuilder.clear();
-        rowId = item->getRowId();
+        rowId = items.first()->getRowId();
         queryBuilder.setRowId(rowId);
+        newRowId = getNewRowId(rowId, items); // if any of item updates any of rowid columns, then this will be different than initial rowid
 
         // Database and table
-        queryBuilder.setTable(wrapObjIfNeeded(col->table, dialect));
-        if (!col->database.isNull())
-            queryBuilder.setDatabase(wrapObjIfNeeded(col->database, dialect));
+        queryBuilder.setTable(wrapObjIfNeeded(table.getTable(), dialect));
+        if (!table.getDatabase().isNull())
+            queryBuilder.setDatabase(wrapObjIfNeeded(table.getDatabase(), dialect));
+
+        for (SqlQueryItem* item : items)
+        {
+            col = item->getColumn();
+            if (col->editionForbiddenReason.size() > 0 || item->isJustInsertedWithOutRowId())
+            {
+                notifyError(tr("Tried to commit a cell which is not editable (yet modified and waiting for commit)! This is a bug. Please report it."));
+                return false;
+            }
+
+            // Column
+            queryBuilder.addColumn(wrapObjIfNeeded(col->column, dialect));
+        }
 
         // Completing query
-        queryBuilder.setColumn(wrapObjIfNeeded(col->column, dialect));
         query = queryBuilder.build();
 
-        // Adding updated value to arguments
+        // RowId condition arguments
         queryArgs = queryBuilder.getQueryArgs();
-        queryArgs[":value"] = item->getValue();
+
+        // Per-column arguments
+        assignmentArgs = queryBuilder.getAssignmentArgs();
+        for (int i = 0, total = items.size(); i < total; ++i)
+            queryArgs[assignmentArgs[i]] = items[i]->getValue();
 
         // Get the data
         SqlQueryPtr results = db->exec(query, queryArgs);
         if (results->isError())
         {
-            item->setCommitingError(true);
+            for (SqlQueryItem* item : items)
+                item->setCommitingError(true);
+
             notifyError(tr("An error occurred while commiting the data: %1").arg(results->getErrorText()));
             return false;
         }
+
+        // After successful commit, check if RowId was modified and upadate it accordingly
+        if (rowId != newRowId)
+            updateRowIdForAllItems(table, rowId, newRowId);
     }
 
     return true;
@@ -632,6 +687,65 @@ void SqlQueryModel::updateItem(SqlQueryItem* item, const QVariant& value, int co
     item->setColumn(column.data());
     item->setTextAlignment(alignment);
     item->setRowId(rowId);
+}
+
+RowId SqlQueryModel::getNewRowId(const RowId& currentRowId, const QList<SqlQueryItem*> items)
+{
+    if (currentRowId.size() > 1)
+    {
+        // For WITHOUT ROWID tables we need to look up all columns
+        QStringList rowIdColumns = currentRowId.keys();
+        RowId newRowIdCandidate = currentRowId;
+        int idx;
+        for (SqlQueryItem* item : items)
+        {
+            if (rowIdColumns.contains(item->getColumn()->column, Qt::CaseInsensitive))
+            {
+                idx = indexOf(rowIdColumns, item->getColumn()->column, Qt::CaseInsensitive);
+                newRowIdCandidate[rowIdColumns[idx]] = item->getValue();
+            }
+        }
+        return newRowIdCandidate;
+    }
+    else
+    {
+        // Check for an update on the standard ROWID
+        SqlQueryModelColumn* col;
+        for (SqlQueryItem* item : items)
+        {
+            col = item->getColumn();
+            if (isRowIdKeyword(col->column) || col->isRowIdPk())
+            {
+                RowId newRowId;
+                newRowId["ROWID"] = item->getValue();
+                return newRowId;
+            }
+        }
+    }
+
+    return currentRowId;
+}
+
+void SqlQueryModel::updateRowIdForAllItems(const Table& table, const RowId& rowId, const RowId& newRowId)
+{
+    SqlQueryItem* item;
+    for (int row = 0; row < rowCount(); row++)
+    {
+        for (int col = 0; col < columnCount(); col++)
+        {
+            item = itemFromIndex(row, col);
+            if (item->getColumn()->database.compare(table.getDatabase(), Qt::CaseInsensitive) != 0)
+                continue;
+
+            if (item->getColumn()->table.compare(table.getTable(), Qt::CaseInsensitive) != 0)
+                continue;
+
+            if (item->getRowId() != rowId)
+                continue;
+
+            item->setRowId(newRowId);
+        }
+    }
 }
 
 void SqlQueryModel::readColumns()
@@ -1296,7 +1410,10 @@ void SqlQueryModel::CommitUpdateQueryBuilder::clear()
 {
     database.clear();
     table.clear();
-    column.clear();
+    columns.clear();
+    queryArgs.clear();
+    conditions.clear();
+    assignmentArgs.clear();
 }
 
 void SqlQueryModel::CommitUpdateQueryBuilder::setDatabase(const QString& database)
@@ -1311,16 +1428,38 @@ void SqlQueryModel::CommitUpdateQueryBuilder::setTable(const QString& table)
 
 void SqlQueryModel::CommitUpdateQueryBuilder::setColumn(const QString& column)
 {
-    this->column = column;
+    this->columns = {column};
+}
+
+void SqlQueryModel::CommitUpdateQueryBuilder::addColumn(const QString& column)
+{
+    columns << column;
 }
 
 QString SqlQueryModel::CommitUpdateQueryBuilder::build()
 {
+    QString conditionsString = RowIdConditionBuilder::build();
+
     QString dbAndTable;
     if (!database.isNull())
-        dbAndTable += database+".";
+        dbAndTable += database + ".";
 
     dbAndTable += table;
-    QString conditionsString = RowIdConditionBuilder::build();
-    return "UPDATE "+dbAndTable+" SET "+column+" = :value WHERE "+conditionsString+";";
+
+    int argIndex = 0;
+    QString arg;
+    QStringList assignments;
+    for (const QString& col : columns)
+    {
+        arg = ":value_" + QString::number(argIndex++);
+        assignmentArgs << arg;
+        assignments << col + " = " + arg;
+    }
+
+    return "UPDATE " + dbAndTable + " SET "+ assignments.join(", ") +" WHERE " + conditionsString + ";";
+}
+
+QStringList SqlQueryModel::CommitUpdateQueryBuilder::getAssignmentArgs() const
+{
+    return assignmentArgs;
 }

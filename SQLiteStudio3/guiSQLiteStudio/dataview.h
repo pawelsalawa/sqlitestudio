@@ -16,10 +16,6 @@ class IntValidator;
 
 CFG_KEY_LIST(DataView, QObject::tr("Data view (both grid and form)"),
      CFG_KEY_ENTRY(REFRESH_DATA,    Qt::Key_F5,                   QObject::tr("Refresh data"))
-//     CFG_KEY_ENTRY(COMMIT_FORM,     Qt::CTRL + Qt::Key_Return,    QObject::tr("Commit")) // TODO this was commented - check why and if we can uncomment it
-//     CFG_KEY_ENTRY(ROLLBACK_FORM,   Qt::CTRL + Qt::Key_Backspace, QObject::tr("Rollback")) // TODO this was commented - check why and if we can uncomment it
-     CFG_KEY_ENTRY(DELETE_ROW,      Qt::Key_Delete,               QObject::tr("Delete selected data row"))
-     CFG_KEY_ENTRY(INSERT_ROW,      Qt::Key_Insert,               QObject::tr("Insert new data row"))
      CFG_KEY_ENTRY(SHOW_GRID_VIEW,  Qt::CTRL + Qt::Key_Comma,     QObject::tr("Switch to grid view of the data"))
      CFG_KEY_ENTRY(SHOW_FORM_VIEW,  Qt::CTRL + Qt::Key_Period,    QObject::tr("Switch to form view of the data"))
 )
@@ -38,11 +34,6 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
             TABS_AT_BOTTOM,
             // Grid view
             REFRESH_DATA,
-            INSERT_ROW,
-            INSERT_MULTIPLE_ROWS,
-            DELETE_ROW,
-            COMMIT_GRID,
-            ROLLBACK_GRID,
             FIRST_PAGE,
             PREV_PAGE,
             NEXT_PAGE,
@@ -57,12 +48,6 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
             SELECTIVE_COMMIT,
             SELECTIVE_ROLLBACK,
             // Form view
-            COMMIT_FORM,
-            ROLLBACK_FORM,
-            FIRST_ROW,
-            PREV_ROW,
-            NEXT_ROW,
-            LAST_ROW,
             FORM_TOTAL_ROWS,
             FORM_CURRENT_ROW
         };
@@ -163,7 +148,8 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         bool navigationState = false;
         bool totalPagesAvailable = false;
         QMutex manualPageChangeMutex;
-        bool uncommitted = false;
+        bool uncommittedGrid = false;
+        bool uncommittedForm = false;
 
     signals:
 

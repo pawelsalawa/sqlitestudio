@@ -5,11 +5,13 @@
 #include "widgetresizer.h"
 #include "datagrid/sqlqueryitem.h"
 #include "uiconfig.h"
-#include <QDataWidgetMapper>
+#include "common/datawidgetmapper.h"
 #include <QGroupBox>
 #include <QVBoxLayout>
 #include <QResizeEvent>
 #include <QDebug>
+
+CFG_KEYS_DEFINE(FormView)
 
 FormView::FormView(QWidget *parent) :
     QScrollArea(parent)
@@ -20,10 +22,14 @@ FormView::FormView(QWidget *parent) :
 void FormView::init()
 {
     setWidgetResizable(true);
+    initActions();
 
-    dataMapper = new QDataWidgetMapper(this);
-    dataMapper->setSubmitPolicy(QDataWidgetMapper::ManualSubmit);
-    connect(dataMapper, &QDataWidgetMapper::currentIndexChanged, this, &FormView::currentIndexChanged);
+    dataMapper = new DataWidgetMapper(this);
+    dataMapper->setSubmitFilter([](QWidget* w) -> bool
+    {
+        return dynamic_cast<MultiEditor*>(w)->isModified();
+    });
+    connect(dataMapper, &DataWidgetMapper::currentIndexChanged, this, &FormView::currentIndexChanged);
 
     contents = new QWidget();
     QVBoxLayout *contentsLayout = new QVBoxLayout();
@@ -62,7 +68,7 @@ void FormView::load()
 
 void FormView::reload()
 {
-    int idx = dataMapper->currentIndex();
+    int idx = dataMapper->getCurrentIndex();
     reloadInternal();
     dataMapper->setCurrentIndex(idx);
 }
@@ -146,7 +152,7 @@ bool FormView::isCurrentRowModifiedInGrid()
 
 void FormView::updateDeletedState()
 {
-    SqlQueryItem* item = model->itemFromIndex(dataMapper->currentIndex(), 0);
+    SqlQueryItem* item = model->itemFromIndex(dataMapper->getCurrentIndex(), 0);
     if (!item)
         return;
 
@@ -200,15 +206,7 @@ void FormView::gridCommitRollbackStatusChanged()
 
 void FormView::copyDataToGrid()
 {
-    int column;
-    foreach (MultiEditor* editor, editors)
-    {
-        column = dataMapper->mappedSection(editor);
-        if (!editor->isModified())
-            continue;
-
-        model->setData(model->index(dataMapper->currentIndex(), column), editor->getValue());
-    }
+    dataMapper->submit();
 }
 
 void FormView::updateFromGrid()
@@ -239,5 +237,30 @@ void FormView::setGridView(SqlQueryView* value)
 
 int FormView::getCurrentRow()
 {
-    return dataMapper->currentIndex();
+    return dataMapper->getCurrentIndex();
+}
+
+void FormView::createActions()
+{
+    createAction(COMMIT, ICONS.COMMIT, tr("Commit row", "form view"), this, SIGNAL(requestForCommit()), this);
+    createAction(ROLLBACK, ICONS.ROLLBACK, tr("Rollback row", "form view"), this, SIGNAL(requestForRollback()), this);
+    createAction(FIRST_ROW, ICONS.PAGE_FIRST, tr("First row", "form view"), this, SIGNAL(requestForFirstRow()), this);
+    createAction(PREV_ROW, ICONS.PAGE_PREV, tr("Previous row", "form view"), this, SIGNAL(requestForPrevRow()), this);
+    createAction(NEXT_ROW, ICONS.PAGE_NEXT, tr("Next row", "form view"), this, SIGNAL(requestForNextRow()), this);
+    createAction(LAST_ROW, ICONS.PAGE_LAST, tr("Last row", "form view"), this, SIGNAL(requestForLastRow()), this);
+    createAction(INSERT_ROW, ICONS.INSERT_ROW, tr("Insert new row", "form view"), this, SIGNAL(requestForRowInsert()), this);
+    createAction(DELETE_ROW, ICONS.DELETE_ROW, tr("Delete current row", "form view"), this, SIGNAL(requestForRowDelete()), this);
+}
+
+void FormView::setupDefShortcuts()
+{
+    setShortcutContext({ROLLBACK, COMMIT, NEXT_ROW, PREV_ROW, FIRST_ROW, LAST_ROW, INSERT_ROW, DELETE_ROW}, Qt::WidgetWithChildrenShortcut);
+
+    BIND_SHORTCUTS(FormView, Action);
+}
+
+QToolBar* FormView::getToolBar(int toolbar) const
+{
+    UNUSED(toolbar);
+    return nullptr;
 }

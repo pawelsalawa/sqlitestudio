@@ -1,4 +1,4 @@
-* shortcuts for commit/rollback/insert/delete should be related to grid/form/dataview - make it right
+* shortcuts for formview - QDataWidgetMapper messes with Key_Escape (and possibly with other shortcuts too), need to write own mapper
 
 * deployment
 * auto updates

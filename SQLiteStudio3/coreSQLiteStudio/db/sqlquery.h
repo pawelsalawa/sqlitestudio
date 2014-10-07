@@ -309,7 +309,7 @@ class API_EXPORT RowIdConditionBuilder
         const QHash<QString,QVariant>& getQueryArgs();
         QString build();
 
-    private:
+    protected:
         QStringList conditions;
         QHash<QString,QVariant> queryArgs;
 };

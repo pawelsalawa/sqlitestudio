@@ -116,7 +116,8 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         SqlQueryView* getView() const;
         void setView(SqlQueryView* value);
 
-        static QList<QList<SqlQueryItem*> > groupItemsByRows(const QList<SqlQueryItem*>& items);
+        static QList<QList<SqlQueryItem*>> groupItemsByRows(const QList<SqlQueryItem*>& items);
+        static QHash<Table, QList<SqlQueryItem*> > groupItemsByTable(const QList<SqlQueryItem*>& items);
 
     protected:
         class CommitUpdateQueryBuilder : public RowIdConditionBuilder
@@ -127,13 +128,16 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
                 void setDatabase(const QString& database);
                 void setTable(const QString& table);
                 void setColumn(const QString& column);
+                void addColumn(const QString& column);
 
                 QString build();
+                QStringList getAssignmentArgs() const;
 
             protected:
                 QString database;
                 QString table;
-                QString column;
+                QStringList columns;
+                QStringList assignmentArgs;
         };
 
         /**
@@ -196,6 +200,8 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         QList<SqlQueryModelColumnPtr> getTableColumnModels(const QString& database, const QString& table);
         QList<SqlQueryModelColumnPtr> getTableColumnModels(const QString& table);
         void updateItem(SqlQueryItem* item, const QVariant& value, int columnIndex, const RowId& rowId);
+        RowId getNewRowId(const RowId& currentRowId, const QList<SqlQueryItem*> items);
+        void updateRowIdForAllItems(const Table& table, const RowId& rowId, const RowId& newRowId);
 
         QueryExecutor* queryExecutor;
         Db* db = nullptr;

@@ -13,6 +13,7 @@
 #include "multieditorwidgetplugin.h"
 #include "uiconfig.h"
 #include "dialogs/configdialog.h"
+#include "formview.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QTabWidget>
@@ -24,6 +25,7 @@
 #include <QGraphicsColorizeEffect>
 #include <QToolButton>
 #include <QDebug>
+#include <QKeyEvent>
 
 static QHash<QString,bool> missingEditorPluginsAlreadyWarned;
 
