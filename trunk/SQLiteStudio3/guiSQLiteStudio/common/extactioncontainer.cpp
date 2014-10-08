@@ -150,8 +150,10 @@ void ExtActionContainer::refreshShortcuts()
 
 void ExtActionContainer::refreshShortcut(int action)
 {
-    actionMap[action]->setShortcut(QKeySequence(shortcuts[action]->get()));
-    actionMap[action]->setToolTip(actionMap[action]->text()+QString(" (%1)").arg(shortcuts[action]->get()));
+    QKeySequence seq(shortcuts[action]->get());
+    QString txt = seq.toString(QKeySequence::NativeText);
+    actionMap[action]->setShortcut(seq);
+    actionMap[action]->setToolTip(actionMap[action]->text() + QString(" (%1)").arg(txt));
 }
 
 QAction* ExtActionContainer::getAction(int action)
