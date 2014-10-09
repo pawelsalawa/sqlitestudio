@@ -9,9 +9,12 @@
 #include <QSysInfo>
 #include <QDebug>
 #include <QRegularExpression>
+#include <QDir>
 
 #ifdef Q_OS_LINUX
 #include <sys/utsname.h>
+
+#include <QFileInfo>
 #endif
 
 void initUtils()
@@ -746,4 +749,34 @@ QString formatVersion(int version)
     int minorVer = version % 10000 / 100;
     int patchVer = version % 100;
     return QString::number(majorVer) + "." + QString::number(minorVer) + "." + QString::number(patchVer);
+}
+
+bool copyRecursively(const QString& src, const QString& dst)
+{
+    // Code taken from QtCreator:
+    // https://qt.gitorious.org/qt-creator/qt-creator/source/1a37da73abb60ad06b7e33983ca51b266be5910e:src/app/main.cpp#L13-189
+    QFileInfo srcFileInfo(src);
+    if (srcFileInfo.isDir())
+    {
+        QDir targetDir(dst);
+        targetDir.cdUp();
+        if (!targetDir.mkdir(QFileInfo(dst).fileName()))
+            return false;
+
+        QDir sourceDir(src);
+        QStringList fileNames = sourceDir.entryList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot | QDir::Hidden | QDir::System);
+        for (const QString &fileName : fileNames)
+        {
+            const QString newSrcFilePath = src + QLatin1Char('/') + fileName;
+            const QString newTgtFilePath = dst + QLatin1Char('/') + fileName;
+            if (!copyRecursively(newSrcFilePath, newTgtFilePath))
+                return false;
+        }
+    }
+    else
+    {
+        if (!QFile::copy(src, dst))
+            return false;
+    }
+    return true;
 }

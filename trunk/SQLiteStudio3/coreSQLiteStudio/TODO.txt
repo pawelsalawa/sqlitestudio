@@ -1,6 +1,3 @@
-* shortcuts for formview - QDataWidgetMapper messes with Key_Escape (and possibly with other shortcuts too), need to write own mapper
-
-* deployment
 * auto updates
 * tclscripting for win32
 

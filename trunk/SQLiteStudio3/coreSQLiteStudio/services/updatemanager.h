@@ -31,8 +31,6 @@ class API_EXPORT UpdateManager : public QObject
         void update(AdminPassHandler adminPassHandler);
         bool isPlatformEligibleForUpdate() const;
 
-        static void installUpdate(const QString& component, const QString& componentPath, const QString& packagePath, bool requireAdmin, const QString& adminPassword = QString());
-
     private:
         QString getPlatformForUpdate() const;
         QString getCurrentVersions() const;
@@ -44,9 +42,15 @@ class API_EXPORT UpdateManager : public QObject
         void downloadUpdates();
         void updatingFailed(const QString& errMsg);
         void installUpdates();
-        void installComponent(const QString& component);
-        void collectComponentPaths();
+        bool installComponent(const QString& component, const QString& tempDir);
+        bool moveTempInstallationToFinal(const QString& tempDir);
         bool doRequireAdminPrivileges();
+        bool unpackToDir(const QString& packagePath, const QString& outputDir);
+        bool moveDir(const QString& src, const QString& dst);
+        bool moveDirLinux(const QString& src, const QString& dst);
+        bool deleteDir(const QString& path);
+        bool deleteDirLinux(const QString& path);
+        bool execLinux(const QString& cmd, const QStringList& args, QString* errorMsg = nullptr);
         void cleanup();
 
         QNetworkAccessManager* networkManager = nullptr;
@@ -65,10 +69,6 @@ class API_EXPORT UpdateManager : public QObject
         QString currentJobTitle;
         QString adminPassword;
         bool requireAdmin = false;
-
-        static bool unpackToDir(const QString& packagePath, const QString& outputDir);
-        static bool installApplicationComponent(const QString& pkgDirPath, bool requireAdmin, const QString& adminPassword);
-        static bool installPluginComponent(const QString& pkgDirPath, const QString& componentPath, bool requireAdmin, const QString& adminPassword);
 
         static_char* updateServiceUrl = "http://sqlitestudio.pl/updates3.rvt";
         static_char* manualUpdatesHelpUrl = "http://wiki.sqlitestudio.pl/index.php/User_Manual#Manual";

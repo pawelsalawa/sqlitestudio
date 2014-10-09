@@ -203,7 +203,7 @@ void UpdateManager::downloadUpdates()
         return;
     }
 
-    QString path = tempDir->path() + "/" + parts.last();
+    QString path = tempDir->path() + QLatin1Char('/') + parts.last();
     currentDownloadFile = new QFile(path);
     if (!currentDownloadFile->open(QIODevice::WriteOnly))
     {
@@ -232,7 +232,7 @@ void UpdateManager::installUpdates()
     totalPercent = (totalDownloadsCount - updatesToDownload.size()) * 100 / (totalDownloadsCount + 1);
     emit updatingProgress(currentJobTitle, 0, totalPercent);
 
-    collectComponentPaths();
+//    collectComponentPaths();
     requireAdmin = doRequireAdminPrivileges();
     if (requireAdmin && adminPassword.isNull())
     {
@@ -244,8 +244,23 @@ void UpdateManager::installUpdates()
         }
     }
 
+    QTemporaryDir installTempDir;
+    QString appDirName = QDir(qApp->applicationDirPath()).dirName();
+    QString targetDir = installTempDir.path() + QLatin1Char('/') + appDirName;
+    if (!copyRecursively(qApp->applicationDirPath(), targetDir))
+    {
+        updatingFailed(tr("Could not copy current application directory into %1 directory.").arg(installTempDir.path()));
+        return;
+    }
+
     for (const QString& component : updatesToInstall.keys())
-        installComponent(component);
+    {
+        if (!installComponent(component, targetDir))
+            return;
+    }
+
+    if (!moveTempInstallationToFinal(targetDir))
+        return;
 
     currentJobTitle = QString();
     totalPercent = 100;
@@ -254,28 +269,50 @@ void UpdateManager::installUpdates()
     updatesInProgress = false;
 }
 
-void UpdateManager::installComponent(const QString& component)
+bool UpdateManager::moveTempInstallationToFinal(const QString& tempDir)
 {
-    installUpdate(component, componentToPath[component], updatesToInstall[component], requireAdmin, adminPassword);
-}
+    // Find inexisting dir name next to app dir
+    static_qstring(bakDirTpl, "%1.old%2");
+    QDir backupDir(bakDirTpl.arg(qApp->applicationDirPath(), ""));
+    int cnt = 1;
+    while (backupDir.exists())
+        backupDir = QDir(bakDirTpl.arg(qApp->applicationDirPath(), QString::number(cnt)));
 
-void UpdateManager::installUpdate(const QString& component, const QString& componentPath, const QString& packagePath, bool requireAdmin, const QString& adminPassword)
-{
-    QTemporaryDir installTempDir;
-    unpackToDir(packagePath, installTempDir.path());
-    QDir installTempDirPath(installTempDir.path());
-    QStringList entries = installTempDirPath.entryList(QDir::Dirs);
-    if (entries.size() != 1)
+    if (!moveDir(qApp->applicationDirPath(), backupDir.absolutePath()))
     {
-        qCritical() << "Cannot install package" << packagePath << ", because it contains more than 1 directory. Don't know which to install.";
-        return;
+        updatingFailed(tr("Could not rename directory %1 to %2.").arg(qApp->applicationDirPath(), backupDir.dirName()));
+        return false;
     }
 
-    QString pkgDirPath = entries.first();
-    if (component == "SQLiteStudio")
-        installApplicationComponent(pkgDirPath, requireAdmin, adminPassword);
-    else
-        installPluginComponent(pkgDirPath, componentPath, requireAdmin, adminPassword);
+    if (!moveDir(tempDir, qApp->applicationDirPath()))
+    {
+        if (!moveDir(backupDir.absolutePath(), qApp->applicationDirPath()))
+        {
+            updatingFailed(tr("Could not move directory %1 to %2 and also failed to restore original directory, "
+                              "so the original SQLiteStudio directory is now located at: %3").arg(tempDir, qApp->applicationDirPath(), backupDir.absolutePath()));
+        }
+        else
+        {
+            updatingFailed(tr("Could not rename directory %1 to %2. Rolled back to the original SQLiteStudio version.").arg(tempDir, qApp->applicationDirPath()));
+        }
+        return false;
+    }
+
+    deleteDir(backupDir.absolutePath());
+
+    return true;
+}
+
+bool UpdateManager::installComponent(const QString& component, const QString& tempDir)
+{
+    if (!unpackToDir(updatesToInstall[component], tempDir))
+    {
+        updatingFailed(tr("Could not unpack component %1 into %2 directory.").arg(component, tempDir));
+        return false;
+    }
+
+    // In future here we might also delete/change some files, according to some update script.
+    return true;
 }
 
 void UpdateManager::cleanup()
@@ -300,14 +337,14 @@ bool UpdateManager::unpackToDir(const QString& packagePath, const QString& outpu
 #if defined(Q_OS_LINUX)
     if (!packagePath.endsWith("tar.gz"))
     {
-        qCritical() << "Package not in tar.gz format, cannot install:" << packagePath;
+        updatingFailed(tr("Package not in tar.gz format, cannot install: %1").arg(packagePath));
         return false;
     }
 
     proc.start("mv", {packagePath, outputDir});
     if (!proc.waitForFinished(-1))
     {
-        qCritical() << "Package" << packagePath << "cannot be installed, because cannot move it to temp dir:" << outputDir;
+        updatingFailed(tr("Package %1 cannot be installed, because cannot move it to directory: %2").arg(packagePath, outputDir));
         return false;
     }
 
@@ -316,7 +353,7 @@ bool UpdateManager::unpackToDir(const QString& packagePath, const QString& outpu
     proc.start("tar", {"-xzf", newPath});
     if (!proc.waitForFinished(-1))
     {
-        qCritical() << "Package" << packagePath << "cannot be installed, because cannot unpack it.";
+        updatingFailed(tr("Package %1 cannot be installed, because cannot unpack it: %2").arg(packagePath, proc.errorString()));
         return false;
     }
 
@@ -332,13 +369,10 @@ bool UpdateManager::unpackToDir(const QString& packagePath, const QString& outpu
     return true;
 }
 
-bool UpdateManager::installApplicationComponent(const QString& pkgDirPath, bool requireAdmin, const QString& adminPassword)
+bool UpdateManager::moveDir(const QString& src, const QString& dst)
 {
-    QProcess proc;
-
 #if defined(Q_OS_LINUX)
-    QDir pkgDir(pkgDirPath);
-//    for (const QString& filePath : pkgDir.entryList())
+    return moveDirLinux(src, dst);
 #elif defined(Q_OS_WIN32)
     // TODO implement for win32
 #elif defined(Q_OS_MACX)
@@ -347,12 +381,92 @@ bool UpdateManager::installApplicationComponent(const QString& pkgDirPath, bool 
     qCritical() << "Unknown update platform in UpdateManager::installApplicationComponent()";
     return false;
 #endif
+}
+
+bool UpdateManager::moveDirLinux(const QString& src, const QString& dst)
+{
+    QString msg;
+    if (!execLinux("mv", {src, dst}, &msg))
+    {
+        updatingFailed(msg);
+        return false;
+    }
+
     return true;
 }
 
-bool UpdateManager::installPluginComponent(const QString& pkgDirPath, const QString& componentPath, bool requireAdmin, const QString& adminPassword)
+bool UpdateManager::deleteDir(const QString& path)
 {
+#if defined(Q_OS_LINUX)
+    return deleteDirLinux(path);
+#elif defined(Q_OS_WIN32)
+    // TODO implement for win32
+#elif defined(Q_OS_MACX)
+    // TODO implement for macx
+#else
+    qCritical() << "Unknown update platform in UpdateManager::installApplicationComponent()";
+    return false;
+#endif
+}
 
+bool UpdateManager::deleteDirLinux(const QString& path)
+{
+    QString msg;
+    if (!execLinux("rm", {"-rf", path}, &msg))
+    {
+        qWarning() << "Problem with deleting dir in update:" << msg;
+        return false;
+    }
+
+    return true;
+}
+
+bool UpdateManager::execLinux(const QString& cmd, const QStringList& args, QString* errorMsg)
+{
+    QProcess proc;
+    QString cmdString;
+    if (requireAdmin)
+    {
+        QProcess passProc;
+        passProc.setStandardOutputProcess(&proc);
+        passProc.start("echo", {adminPassword});
+
+        proc.setProcessChannelMode(QProcess::ForwardedChannels);
+
+        QStringList newArgs;
+        newArgs << "-c";
+
+        QStringList innerArgs;
+        innerArgs << cmd;
+        QString newPath;
+        for (const QString& path : args)
+        {
+            newPath = path;
+            innerArgs << "\"" + newPath.replace('"', "\\\"") + "\"";
+        }
+
+        newArgs << innerArgs.join(" ");
+        proc.start("su", newArgs);
+
+        passProc.waitForFinished(-1);
+
+        cmdString = QString("su -c \"%1 \\\"%2\\\"\"").arg(cmd, args.join("\\\" \\\""));
+    }
+    else
+    {
+        proc.start(cmd, args);
+        cmdString = QString("%1 \"%2\"").arg(cmd, args.join("\\\" \\\""));
+    }
+
+    if (!proc.waitForFinished(-1))
+    {
+        if (errorMsg)
+            *errorMsg = tr("Error executing update command: %1\nError message: %2").arg(cmdString).arg(proc.errorString());
+
+        return false;
+    }
+
+    return true;
 }
 
 bool UpdateManager::doRequireAdminPrivileges()
@@ -369,18 +483,6 @@ bool UpdateManager::doRequireAdminPrivileges()
     }
 
     return false;
-}
-
-void UpdateManager::collectComponentPaths()
-{
-    for (const PluginManager::PluginDetails& details : PLUGINS->getAllPluginDetails())
-    {
-        if (!updatesToInstall.contains(details.name))
-            continue;
-
-        componentToPath[details.name] = details.filePath;
-    }
-    componentToPath["SQLiteStudio"] = QCoreApplication::applicationFilePath();
 }
 
 void UpdateManager::finished(QNetworkReply* reply)
