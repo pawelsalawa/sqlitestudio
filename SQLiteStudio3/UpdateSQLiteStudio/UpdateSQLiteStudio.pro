@@ -16,6 +16,11 @@ CONFIG   -= app_bundle
 
 TEMPLATE = app
 
+linux|portable {
+    QMAKE_LFLAGS += -Wl,-rpath,./lib
+}
+
+
 win32: {
     RC_FILE = windows.rc
 }

@@ -21,6 +21,9 @@ TEMPLATE = app
 
 CONFIG   += c++11
 QMAKE_CXXFLAGS += -pedantic
+linux|portable {
+    QMAKE_LFLAGS += -Wl,-rpath,./lib
+}
 
 SOURCES += main.cpp \
     cli.cpp \
