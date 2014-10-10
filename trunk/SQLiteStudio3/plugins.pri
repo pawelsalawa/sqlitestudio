@@ -106,4 +106,7 @@ win32|macx: {
 
 portable {
     QMAKE_LFLAGS += -Wl,-rpath,. -Wl,-rpath,..
+    linux: {
+        QMAKE_LFLAGS += -Wl,-rpath,../lib
+    }
 }

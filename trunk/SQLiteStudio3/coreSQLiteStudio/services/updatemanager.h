@@ -46,10 +46,14 @@ class API_EXPORT UpdateManager : public QObject
         bool moveTempInstallationToFinal(const QString& tempDir);
         bool doRequireAdminPrivileges();
         bool unpackToDir(const QString& packagePath, const QString& outputDir);
+        bool unpackToDirLinux(const QString& packagePath, const QString& outputDir);
+        bool unpackToDirMac(const QString& packagePath, const QString& outputDir);
         bool moveDir(const QString& src, const QString& dst);
         bool moveDirLinux(const QString& src, const QString& dst);
+        bool moveDirMac(const QString& src, const QString& dst);
         bool deleteDir(const QString& path);
         bool deleteDirLinux(const QString& path);
+        bool deleteDirMac(const QString& path);
         bool execLinux(const QString& cmd, const QStringList& args, QString* errorMsg = nullptr);
         void cleanup();
 

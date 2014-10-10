@@ -1,9 +1,12 @@
 #include "configmigration.h"
 #include "services/notifymanager.h"
 #include "sqlitestudio.h"
+#include "mainwindow.h"
+#include "statusfield.h"
 #include <QCoreApplication>
 #include <QDir>
 #include <QFileInfo>
+#include <QDebug>
 
 ConfigMigration::ConfigMigration()
 {
@@ -13,9 +16,13 @@ bool ConfigMigration::init()
 {
     QString oldCfg = findOldConfig();
     if (!oldCfg.isNull())
+    {
         notifyInfo(tr("A configuration from old SQLiteStudio 2.x.x has been detected. "
                       "Would you like to migrate old settings into the current version? "
-                      "<a href=\"%1\">Click here to do that</a>.").arg("migrateOldConfig"));
+                      "<a href=\"%1\">Click here to do that</a>.").arg(ACTION_LINK));
+
+        connect(MAINWINDOW->getStatusField(), SIGNAL(linkActivated(QString)), this, SLOT(linkActivated(QString)));
+    }
 
     return true;
 }
@@ -79,4 +86,12 @@ bool ConfigMigration::checkOldDir(const QString &dir, QString &output)
     }
 
     return false;
+}
+
+void ConfigMigration::linkActivated(const QString &link)
+{
+    if (link != ACTION_LINK)
+        return;
+
+    qDebug() << "jest";
 }

@@ -18,6 +18,11 @@ class CONFIGMIGRATIONSHARED_EXPORT ConfigMigration : public GenericPlugin, publi
     private:
         QString findOldConfig();
         bool checkOldDir(const QString& dir, QString& output);
+
+        static const constexpr char* ACTION_LINK = "migrateOldConfig";
+
+    private slots:
+        void linkActivated(const QString& link);
 };
 
 #endif // CONFIGMIGRATION_H

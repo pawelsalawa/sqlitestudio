@@ -232,7 +232,6 @@ void UpdateManager::installUpdates()
     totalPercent = (totalDownloadsCount - updatesToDownload.size()) * 100 / (totalDownloadsCount + 1);
     emit updatingProgress(currentJobTitle, 0, totalPercent);
 
-//    collectComponentPaths();
     requireAdmin = doRequireAdminPrivileges();
     if (requireAdmin && adminPassword.isNull())
     {
@@ -329,12 +328,25 @@ void UpdateManager::cleanup()
 
 bool UpdateManager::unpackToDir(const QString& packagePath, const QString& outputDir)
 {
+#if defined(Q_OS_LINUX)
+    return unpackToDirLinux(packagePath, outputDir);
+#elif defined(Q_OS_WIN32)
+    // TODO implement for win32
+#elif defined(Q_OS_MACX)
+    return unpackToDirMac(packagePath, outputDir);
+#else
+    qCritical() << "Unknown update platform in UpdateManager::unpackToDir() for package" << packagePath;
+    return false;
+#endif
+}
+
+bool UpdateManager::unpackToDirLinux(const QString &packagePath, const QString &outputDir)
+{
     QProcess proc;
     proc.setWorkingDirectory(outputDir);
     proc.setStandardOutputFile(QProcess::nullDevice());
     proc.setStandardErrorFile(QProcess::nullDevice());
 
-#if defined(Q_OS_LINUX)
     if (!packagePath.endsWith("tar.gz"))
     {
         updatingFailed(tr("Package not in tar.gz format, cannot install: %1").arg(packagePath));
@@ -358,14 +370,29 @@ bool UpdateManager::unpackToDir(const QString& packagePath, const QString& outpu
     }
 
     QProcess::execute("rm", {"-f", newPath});
-#elif defined(Q_OS_WIN32)
-    // TODO implement for win32
-#elif defined(Q_OS_MACX)
-    // TODO implement for macx
-#else
-    qCritical() << "Unknown update platform in UpdateManager::unpackToDir() for package" << packagePath;
-    return false;
-#endif
+    return true;
+}
+
+bool UpdateManager::unpackToDirMac(const QString &packagePath, const QString &outputDir)
+{
+    QProcess proc;
+    proc.setWorkingDirectory(outputDir);
+    proc.setStandardOutputFile(QProcess::nullDevice());
+    proc.setStandardErrorFile(QProcess::nullDevice());
+
+    if (!packagePath.endsWith("zip"))
+    {
+        updatingFailed(tr("Package not in zip format, cannot install: %1").arg(packagePath));
+        return false;
+    }
+
+    proc.start("unzip", {packagePath, "-d", outputDir});
+    if (!proc.waitForFinished(-1))
+    {
+        updatingFailed(tr("Package %1 cannot be installed, because cannot unzip it to directory: %2").arg(packagePath, outputDir));
+        return false;
+    }
+
     return true;
 }
 
@@ -376,7 +403,7 @@ bool UpdateManager::moveDir(const QString& src, const QString& dst)
 #elif defined(Q_OS_WIN32)
     // TODO implement for win32
 #elif defined(Q_OS_MACX)
-    // TODO implement for macx
+    return moveDirMac(src, dst);
 #else
     qCritical() << "Unknown update platform in UpdateManager::installApplicationComponent()";
     return false;
@@ -395,6 +422,12 @@ bool UpdateManager::moveDirLinux(const QString& src, const QString& dst)
     return true;
 }
 
+bool UpdateManager::moveDirMac(const QString &src, const QString &dst)
+{
+    // Currently the implementation is the same as for linux:
+    return moveDirLinux(src, dst);
+}
+
 bool UpdateManager::deleteDir(const QString& path)
 {
 #if defined(Q_OS_LINUX)
@@ -402,7 +435,7 @@ bool UpdateManager::deleteDir(const QString& path)
 #elif defined(Q_OS_WIN32)
     // TODO implement for win32
 #elif defined(Q_OS_MACX)
-    // TODO implement for macx
+    return deleteDirMac(path);
 #else
     qCritical() << "Unknown update platform in UpdateManager::installApplicationComponent()";
     return false;
@@ -419,6 +452,12 @@ bool UpdateManager::deleteDirLinux(const QString& path)
     }
 
     return true;
+}
+
+bool UpdateManager::deleteDirMac(const QString &path)
+{
+    // Currently the implementation is the same as for linux:
+    return deleteDirLinux(path);
 }
 
 bool UpdateManager::execLinux(const QString& cmd, const QStringList& args, QString* errorMsg)

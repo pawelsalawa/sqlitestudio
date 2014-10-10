@@ -12,7 +12,12 @@ include($$PWD/../utils.pri)
 OBJECTS_DIR = $$OBJECTS_DIR/guiSQLiteStudio
 MOC_DIR = $$MOC_DIR/guiSQLiteStudio
 UI_DIR = $$UI_DIR/guiSQLiteStudio
-DESTDIR = $$DESTDIR/lib
+
+linux: {
+    portable: {
+        DESTDIR = $$DESTDIR/lib
+    }
+}
 
 TARGET = guiSQLiteStudio
 TEMPLATE = lib

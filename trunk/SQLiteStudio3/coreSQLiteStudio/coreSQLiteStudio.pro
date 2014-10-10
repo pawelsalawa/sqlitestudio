@@ -10,7 +10,6 @@ include($$PWD/../utils.pri)
 OBJECTS_DIR = $$OBJECTS_DIR/coreSQLiteStudio
 MOC_DIR = $$MOC_DIR/coreSQLiteStudio
 UI_DIR = $$UI_DIR/coreSQLiteStudio
-DESTDIR = $$DESTDIR/lib
 
 QT       -= gui
 QT       += script network
@@ -24,6 +23,9 @@ win32 {
 
 linux: {
     DEFINES += SYS_PLUGINS_DIR=/usr/lib/sqlitestudio
+    portable: {
+        DESTDIR = $$DESTDIR/lib
+    }
 }
 
 macx: {

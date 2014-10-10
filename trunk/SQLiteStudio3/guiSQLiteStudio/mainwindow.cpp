@@ -428,6 +428,9 @@ void MainWindow::restoreSession()
             ui->mdiArea->setActiveSubWindow(window);
     }
 
+    if (statusField->hasMessages())
+        statusField->setVisible(true);
+
     updateWindowActions();
 }
 
