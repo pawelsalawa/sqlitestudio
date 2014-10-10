@@ -3,7 +3,7 @@ OBJECTS_DIR = $$PWD/../output/build
 MOC_DIR = $$PWD/../output/build
 UI_DIR = $$PWD/../output/build
 
-LIBS += -L$$DESTDIR -L$$DESTDIR/lib
+LIBS += -L$$DESTDIR
 
 macx: {
     QMAKE_CXXFLAGS += -Wno-gnu-zero-variadic-macro-arguments -Wno-overloaded-virtual
@@ -30,5 +30,7 @@ win32|macx: {
 
 portable {
     QMAKE_LFLAGS += -Wl,-rpath,.
-    # -Wl,-rpath,$$DESTDIR
+    linux: {
+        LIBS += -L$$DESTDIR/lib
+    }
 }

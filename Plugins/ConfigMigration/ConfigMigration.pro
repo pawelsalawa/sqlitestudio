@@ -6,6 +6,8 @@
 
 include($$PWD/../../SQLiteStudio3/plugins.pri)
 
+QT += widgets
+
 TARGET = ConfigMigration
 TEMPLATE = lib
 
