@@ -7,6 +7,7 @@
 #include "qio.h"
 #include "climsghandler.h"
 #include "completionhelper.h"
+#include "services/updatemanager.h"
 #include <QCoreApplication>
 #include <QtGlobal>
 #include <QCommandLineParser>
@@ -42,6 +43,11 @@ QString cliHandleCmdLineArgs()
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
+
+    int retCode = 1;
+    if (UpdateManager::handleUpdateOptions(a.arguments(), retCode))
+        return retCode;
+
     QCoreApplication::setApplicationName("SQLiteStudio");
     QCoreApplication::setApplicationVersion(SQLITESTUDIO->getVersionString());
 

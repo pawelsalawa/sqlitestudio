@@ -57,11 +57,7 @@ void NewVersionDialog::init()
 
 void NewVersionDialog::installUpdates()
 {
-    UPDATES->update([this]() -> QString
-    {
-        return QInputDialog::getText(this, tr("Administrator password"), tr("The administrator privileges are required for installing update.\n"
-                        "Please enter administrator password:"), QLineEdit::Password);
-    });
+    UPDATES->update();
 }
 
 void NewVersionDialog::showEvent(QShowEvent*)

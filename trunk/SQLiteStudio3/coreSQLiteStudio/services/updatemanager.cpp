@@ -33,18 +33,11 @@ void UpdateManager::checkForUpdates()
     getUpdatesMetadata(updatesCheckReply);
 }
 
-void UpdateManager::update(UpdateManager::AdminPassHandler adminPassHandler)
+void UpdateManager::update()
 {
     if (updatesGetUrlsReply || updatesInProgress)
         return;
 
-    if (!adminPassHandler)
-    {
-        qCritical() << "Null admin password handler. Updating aborted.";
-        return;
-    }
-
-    this->adminPassHandler = adminPassHandler;
     getUpdatesMetadata(updatesGetUrlsReply);
 }
 
@@ -233,15 +226,6 @@ void UpdateManager::installUpdates()
     emit updatingProgress(currentJobTitle, 0, totalPercent);
 
     requireAdmin = doRequireAdminPrivileges();
-    if (requireAdmin && adminPassword.isNull())
-    {
-        adminPassword = adminPassHandler();
-        if (adminPassword.isNull())
-        {
-            updatingFailed(tr("User aborted updates installation."));
-            return;
-        }
-    }
 
     QTemporaryDir installTempDir;
     QString appDirName = QDir(qApp->applicationDirPath()).dirName();
@@ -258,7 +242,7 @@ void UpdateManager::installUpdates()
             return;
     }
 
-    if (!moveTempInstallationToFinal(targetDir))
+    if (!executeFinalStep(targetDir))
         return;
 
     currentJobTitle = QString();
@@ -268,7 +252,50 @@ void UpdateManager::installUpdates()
     updatesInProgress = false;
 }
 
-bool UpdateManager::moveTempInstallationToFinal(const QString& tempDir)
+bool UpdateManager::executeFinalStep(const QString& tempDir, const QString& backupDir, const QString& appDir)
+{
+    if (!moveDir(appDir, backupDir))
+    {
+        staticUpdatingFailed(tr("Could not rename directory %1 to %2.").arg(appDir, backupDir));
+        return false;
+    }
+
+    if (!moveDir(tempDir, appDir))
+    {
+        if (!moveDir(backupDir, appDir))
+        {
+            staticUpdatingFailed(tr("Could not move directory %1 to %2 and also failed to restore original directory, "
+                              "so the original SQLiteStudio directory is now located at: %3").arg(tempDir, appDir, backupDir));
+        }
+        else
+        {
+            staticUpdatingFailed(tr("Could not rename directory %1 to %2. Rolled back to the original SQLiteStudio version.").arg(tempDir, appDir));
+        }
+        return false;
+    }
+
+    deleteDir(backupDir);
+
+    return true;
+}
+
+bool UpdateManager::handleUpdateOptions(const QStringList& argList, int& returnCode)
+{
+    if (argList.size() == 5 && argList[1] == UPDATE_OPTION_NAME)
+    {
+        bool result = UpdateManager::executeFinalStep(argList[2], argList[3], argList[4]);
+        if (result)
+            returnCode = 0;
+        else
+            returnCode = 1;
+
+        return true;
+    }
+
+    return false;
+}
+
+bool UpdateManager::executeFinalStep(const QString& tempDir)
 {
     // Find inexisting dir name next to app dir
     static_qstring(bakDirTpl, "%1.old%2");
@@ -277,29 +304,10 @@ bool UpdateManager::moveTempInstallationToFinal(const QString& tempDir)
     while (backupDir.exists())
         backupDir = QDir(bakDirTpl.arg(qApp->applicationDirPath(), QString::number(cnt)));
 
-    if (!moveDir(qApp->applicationDirPath(), backupDir.absolutePath()))
-    {
-        updatingFailed(tr("Could not rename directory %1 to %2.").arg(qApp->applicationDirPath(), backupDir.dirName()));
-        return false;
-    }
-
-    if (!moveDir(tempDir, qApp->applicationDirPath()))
-    {
-        if (!moveDir(backupDir.absolutePath(), qApp->applicationDirPath()))
-        {
-            updatingFailed(tr("Could not move directory %1 to %2 and also failed to restore original directory, "
-                              "so the original SQLiteStudio directory is now located at: %3").arg(tempDir, qApp->applicationDirPath(), backupDir.absolutePath()));
-        }
-        else
-        {
-            updatingFailed(tr("Could not rename directory %1 to %2. Rolled back to the original SQLiteStudio version.").arg(tempDir, qApp->applicationDirPath()));
-        }
-        return false;
-    }
-
-    deleteDir(backupDir.absolutePath());
-
-    return true;
+    if (requireAdmin)
+        return executeFinalStepAsRoot(tempDir, backupDir.absolutePath(), qApp->applicationDirPath());
+    else
+        return executeFinalStep(tempDir, backupDir.absolutePath(), qApp->applicationDirPath());
 }
 
 bool UpdateManager::installComponent(const QString& component, const QString& tempDir)
@@ -320,10 +328,155 @@ void UpdateManager::cleanup()
     safe_delete(tempDir);
     updatesToDownload.clear();
     updatesToInstall.clear();
-    componentToPath.clear();
-    adminPassword = QString();
-    adminPassHandler = nullptr;
     requireAdmin = false;
+}
+
+bool UpdateManager::waitForProcess(QProcess& proc)
+{
+    if (!proc.waitForFinished(-1))
+    {
+        qDebug() << "Update QProcess timed out.";
+        return false;
+    }
+
+    if (proc.exitStatus() == QProcess::CrashExit)
+    {
+        qDebug() << "Update QProcess finished by crashing.";
+        return false;
+    }
+
+    if (proc.exitCode() != 0)
+    {
+        qDebug() << "Update QProcess finished with code:" << proc.exitCode();
+        return false;
+    }
+
+    return true;
+}
+
+QString UpdateManager::readError(QProcess& proc, bool reverseOrder)
+{
+    QString err = QString::fromLocal8Bit(reverseOrder ? proc.readAllStandardOutput() : proc.readAllStandardError());
+    if (err.isEmpty())
+        err = QString::fromLocal8Bit(reverseOrder ? proc.readAllStandardError() : proc.readAllStandardOutput());
+
+    return err;
+}
+
+void UpdateManager::staticUpdatingFailed(const QString& errMsg)
+{
+    qCritical() << errMsg;
+}
+
+bool UpdateManager::executeFinalStepAsRoot(const QString& tempDir, const QString& backupDir, const QString& appDir)
+{
+#if defined(Q_OS_LINUX)
+    return executeFinalStepAsRootLinux(tempDir, backupDir, appDir);
+#elif defined(Q_OS_WIN32)
+    return executeFinalStepAsRootWin(tempDir, backupDir, appDir);
+#elif defined(Q_OS_MACX)
+    return executeFinalStepAsRootMac(tempDir, backupDir, appDir);
+#else
+    qCritical() << "Unknown update platform in UpdateManager::executeFinalStepAsRoot() for package" << packagePath;
+    return false;
+#endif
+}
+
+bool UpdateManager::executeFinalStepAsRootLinux(const QString& tempDir, const QString& backupDir, const QString& appDir)
+{
+    QStringList args = {qApp->applicationFilePath(), UPDATE_OPTION_NAME, tempDir, backupDir, appDir};
+
+    QProcess proc;
+    LinuxPermElevator elevator = findPermElevatorForLinux();
+    switch (elevator)
+    {
+        case LinuxPermElevator::KDESU:
+            proc.setProgram("kdesu");
+            args.prepend("-t");
+            proc.setArguments(args);
+            break;
+        case LinuxPermElevator::GKSU:
+            proc.setProgram("gksu"); // TODO test gksu updates
+            proc.setArguments(args);
+            break;
+        case LinuxPermElevator::PKEXEC:
+        {
+            // We call CLI for doing final step, because pkexec runs cmd completly in root env, so there's no X server.
+            args[0] += "cli";
+
+            QStringList newArgs;
+            for (const QString& arg : args)
+                newArgs << wrapCmdLineArgument(arg);
+
+            QString cmd = "cd " + wrapCmdLineArgument(qApp->applicationDirPath()) +"; " + newArgs.join(" ");
+
+            proc.setProgram("pkexec");
+            proc.setArguments({"sh", "-c", cmd});
+        }
+            break;
+        case LinuxPermElevator::NONE:
+            updatingFailed(tr("Could not find permissions elevator application to run update as a root. Looked for: %1").arg("kdesu, gksu, pkexec"));
+            return false;
+    }
+
+    proc.start();
+    if (!waitForProcess(proc))
+    {
+        updatingFailed(tr("Could not execute final updating steps as root: %1").arg(readError(proc, (elevator == LinuxPermElevator::KDESU))));
+        return false;
+    }
+
+    return true;
+}
+
+bool UpdateManager::executeFinalStepAsRootMac(const QString& tempDir, const QString& backupDir, const QString& appDir)
+{
+    // TODO
+}
+
+bool UpdateManager::executeFinalStepAsRootWin(const QString& tempDir, const QString& backupDir, const QString& appDir)
+{
+    // TODO
+}
+
+UpdateManager::LinuxPermElevator UpdateManager::findPermElevatorForLinux()
+{
+    QProcess proc;
+    proc.setProgram("which");
+
+    if (!SQLITESTUDIO->getEnv("DISPLAY").isEmpty())
+    {
+        proc.setArguments({"kdesu"});
+        proc.start();
+        if (waitForProcess(proc))
+            return LinuxPermElevator::KDESU;
+
+        proc.setArguments({"gksu"});
+        proc.start();
+        if (waitForProcess(proc))
+            return LinuxPermElevator::GKSU;
+    }
+
+    proc.setArguments({"pkexec"});
+    proc.start();
+    if (waitForProcess(proc))
+        return LinuxPermElevator::PKEXEC;
+
+    return LinuxPermElevator::NONE;
+}
+
+QString UpdateManager::wrapCmdLineArgument(const QString& arg)
+{
+    return "\"" + escapeCmdLineArgument(arg) + "\"";
+}
+
+QString UpdateManager::escapeCmdLineArgument(const QString& arg)
+{
+    if (!arg.contains("\\") && !arg.contains("\""))
+        return arg;
+
+    QString str = arg;
+    return str.replace("\\", "\\\\").replace("\"", "\\\"");
 }
 
 bool UpdateManager::unpackToDir(const QString& packagePath, const QString& outputDir)
@@ -331,7 +484,7 @@ bool UpdateManager::unpackToDir(const QString& packagePath, const QString& outpu
 #if defined(Q_OS_LINUX)
     return unpackToDirLinux(packagePath, outputDir);
 #elif defined(Q_OS_WIN32)
-    // TODO implement for win32
+    return unpackToDirWin(packagePath, outputDir);
 #elif defined(Q_OS_MACX)
     return unpackToDirMac(packagePath, outputDir);
 #else
@@ -354,7 +507,7 @@ bool UpdateManager::unpackToDirLinux(const QString &packagePath, const QString &
     }
 
     proc.start("mv", {packagePath, outputDir});
-    if (!proc.waitForFinished(-1))
+    if (!waitForProcess(proc))
     {
         updatingFailed(tr("Package %1 cannot be installed, because cannot move it to directory: %2").arg(packagePath, outputDir));
         return false;
@@ -363,9 +516,9 @@ bool UpdateManager::unpackToDirLinux(const QString &packagePath, const QString &
     QString fileName = packagePath.split("/").last();
     QString newPath = outputDir + "/" + fileName;
     proc.start("tar", {"-xzf", newPath});
-    if (!proc.waitForFinished(-1))
+    if (!waitForProcess(proc))
     {
-        updatingFailed(tr("Package %1 cannot be installed, because cannot unpack it: %2").arg(packagePath, proc.errorString()));
+        updatingFailed(tr("Package %1 cannot be installed, because cannot unpack it: %2").arg(packagePath, readError(proc)));
         return false;
     }
 
@@ -387,7 +540,7 @@ bool UpdateManager::unpackToDirMac(const QString &packagePath, const QString &ou
     }
 
     proc.start("unzip", {packagePath, "-d", outputDir});
-    if (!proc.waitForFinished(-1))
+    if (!waitForProcess(proc))
     {
         updatingFailed(tr("Package %1 cannot be installed, because cannot unzip it to directory: %2").arg(packagePath, outputDir));
         return false;
@@ -396,12 +549,17 @@ bool UpdateManager::unpackToDirMac(const QString &packagePath, const QString &ou
     return true;
 }
 
+bool UpdateManager::unpackToDirWin(const QString& packagePath, const QString& outputDir)
+{
+    // TODO
+}
+
 bool UpdateManager::moveDir(const QString& src, const QString& dst)
 {
 #if defined(Q_OS_LINUX)
     return moveDirLinux(src, dst);
 #elif defined(Q_OS_WIN32)
-    // TODO implement for win32
+    return moveDirWin(src, dst);
 #elif defined(Q_OS_MACX)
     return moveDirMac(src, dst);
 #else
@@ -415,7 +573,7 @@ bool UpdateManager::moveDirLinux(const QString& src, const QString& dst)
     QString msg;
     if (!execLinux("mv", {src, dst}, &msg))
     {
-        updatingFailed(msg);
+        staticUpdatingFailed(msg);
         return false;
     }
 
@@ -428,12 +586,17 @@ bool UpdateManager::moveDirMac(const QString &src, const QString &dst)
     return moveDirLinux(src, dst);
 }
 
+bool UpdateManager::moveDirWin(const QString& src, const QString& dst)
+{
+    // TODO
+}
+
 bool UpdateManager::deleteDir(const QString& path)
 {
 #if defined(Q_OS_LINUX)
     return deleteDirLinux(path);
 #elif defined(Q_OS_WIN32)
-    // TODO implement for win32
+    return deleteDirWin(path);
 #elif defined(Q_OS_MACX)
     return deleteDirMac(path);
 #else
@@ -460,47 +623,21 @@ bool UpdateManager::deleteDirMac(const QString &path)
     return deleteDirLinux(path);
 }
 
+bool UpdateManager::deleteDirWin(const QString& path)
+{
+    // TODO
+}
+
 bool UpdateManager::execLinux(const QString& cmd, const QStringList& args, QString* errorMsg)
 {
     QProcess proc;
-    QString cmdString;
-    if (requireAdmin)
-    {
-        QProcess passProc;
-        passProc.setStandardOutputProcess(&proc);
-        passProc.start("echo", {adminPassword});
+    proc.start(cmd, args);
+    QString cmdString = QString("%1 \"%2\"").arg(cmd, args.join("\\\" \\\""));
 
-        proc.setProcessChannelMode(QProcess::ForwardedChannels);
-
-        QStringList newArgs;
-        newArgs << "-c";
-
-        QStringList innerArgs;
-        innerArgs << cmd;
-        QString newPath;
-        for (const QString& path : args)
-        {
-            newPath = path;
-            innerArgs << "\"" + newPath.replace('"', "\\\"") + "\"";
-        }
-
-        newArgs << innerArgs.join(" ");
-        proc.start("su", newArgs);
-
-        passProc.waitForFinished(-1);
-
-        cmdString = QString("su -c \"%1 \\\"%2\\\"\"").arg(cmd, args.join("\\\" \\\""));
-    }
-    else
-    {
-        proc.start(cmd, args);
-        cmdString = QString("%1 \"%2\"").arg(cmd, args.join("\\\" \\\""));
-    }
-
-    if (!proc.waitForFinished(-1))
+    if (!waitForProcess(proc))
     {
         if (errorMsg)
-            *errorMsg = tr("Error executing update command: %1\nError message: %2").arg(cmdString).arg(proc.errorString());
+            *errorMsg = tr("Error executing update command: %1\nError message: %2").arg(cmdString).arg(readError(proc));
 
         return false;
     }
@@ -510,18 +647,14 @@ bool UpdateManager::execLinux(const QString& cmd, const QStringList& args, QStri
 
 bool UpdateManager::doRequireAdminPrivileges()
 {
-    QFileInfo fi;
-    for (const QString& path : componentToPath.values())
-    {
-        fi.setFile(path);
-        if (!fi.exists())
-            fi.setFile(fi.dir().path());
+    QDir appDir(qApp->applicationDirPath());
+    bool isWritable = isWritableRecursively(appDir.absolutePath());
 
-        if (!fi.isWritable())
-            return true;
-    }
+    appDir.cdUp();
+    QFileInfo fi(appDir.absolutePath());
+    isWritable &= fi.isWritable();
 
-    return false;
+    return !isWritable;
 }
 
 void UpdateManager::finished(QNetworkReply* reply)

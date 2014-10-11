@@ -780,3 +780,22 @@ bool copyRecursively(const QString& src, const QString& dst)
     }
     return true;
 }
+
+bool isWritableRecursively(const QString& dir)
+{
+    QFileInfo fi(dir);
+    if (!fi.isWritable())
+        return false;
+
+    if (fi.isDir())
+    {
+        QStringList fileNames = QDir(dir).entryList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot | QDir::Hidden | QDir::System);
+        for (const QString &fileName : fileNames)
+        {
+            if (!isWritableRecursively(dir + QLatin1Char('/') + fileName))
+                return false;
+        }
+    }
+    return true;
+}
+
