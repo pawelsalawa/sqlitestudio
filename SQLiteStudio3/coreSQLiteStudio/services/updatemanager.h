@@ -5,6 +5,7 @@
 #include "sqlitestudio.h"
 #include <QObject>
 #include <functional>
+#include <QProcess>
 
 class QNetworkAccessManager;
 class QNetworkReply;
@@ -22,16 +23,25 @@ class API_EXPORT UpdateManager : public QObject
             QString url;
         };
 
-        typedef std::function<QString()> AdminPassHandler;
-
         explicit UpdateManager(QObject *parent = 0);
         ~UpdateManager();
 
         void checkForUpdates();
-        void update(AdminPassHandler adminPassHandler);
+        void update();
         bool isPlatformEligibleForUpdate() const;
 
+        static bool executeFinalStep(const QString& tempDir, const QString& backupDir, const QString& appDir);
+        static bool handleUpdateOptions(const QStringList& argList, int& returnCode);
+
     private:
+        enum class LinuxPermElevator
+        {
+            KDESU,
+            GKSU,
+            PKEXEC,
+            NONE
+        };
+
         QString getPlatformForUpdate() const;
         QString getCurrentVersions() const;
         void handleAvailableUpdatesReply(QNetworkReply* reply);
@@ -43,37 +53,49 @@ class API_EXPORT UpdateManager : public QObject
         void updatingFailed(const QString& errMsg);
         void installUpdates();
         bool installComponent(const QString& component, const QString& tempDir);
-        bool moveTempInstallationToFinal(const QString& tempDir);
+        bool executeFinalStep(const QString& tempDir);
+        bool executeFinalStepAsRoot(const QString& tempDir, const QString& backupDir, const QString& appDir);
+        bool executeFinalStepAsRootLinux(const QString& tempDir, const QString& backupDir, const QString& appDir);
+        bool executeFinalStepAsRootMac(const QString& tempDir, const QString& backupDir, const QString& appDir);
+        bool executeFinalStepAsRootWin(const QString& tempDir, const QString& backupDir, const QString& appDir);
         bool doRequireAdminPrivileges();
         bool unpackToDir(const QString& packagePath, const QString& outputDir);
         bool unpackToDirLinux(const QString& packagePath, const QString& outputDir);
         bool unpackToDirMac(const QString& packagePath, const QString& outputDir);
-        bool moveDir(const QString& src, const QString& dst);
-        bool moveDirLinux(const QString& src, const QString& dst);
-        bool moveDirMac(const QString& src, const QString& dst);
-        bool deleteDir(const QString& path);
-        bool deleteDirLinux(const QString& path);
-        bool deleteDirMac(const QString& path);
-        bool execLinux(const QString& cmd, const QStringList& args, QString* errorMsg = nullptr);
+        bool unpackToDirWin(const QString& packagePath, const QString& outputDir);
         void cleanup();
+
+        static bool moveDir(const QString& src, const QString& dst);
+        static bool moveDirLinux(const QString& src, const QString& dst);
+        static bool moveDirMac(const QString& src, const QString& dst);
+        static bool moveDirWin(const QString& src, const QString& dst);
+        static bool deleteDir(const QString& path);
+        static bool deleteDirLinux(const QString& path);
+        static bool deleteDirMac(const QString& path);
+        static bool deleteDirWin(const QString& path);
+        static bool execLinux(const QString& cmd, const QStringList& args, QString* errorMsg = nullptr);
+        static bool waitForProcess(QProcess& proc);
+        static QString readError(QProcess& proc, bool reverseOrder = false);
+        static void staticUpdatingFailed(const QString& errMsg);
+        static LinuxPermElevator findPermElevatorForLinux();
+        static QString wrapCmdLineArgument(const QString& arg);
+        static QString escapeCmdLineArgument(const QString& arg);
 
         QNetworkAccessManager* networkManager = nullptr;
         QNetworkReply* updatesCheckReply = nullptr;
         QNetworkReply* updatesGetUrlsReply = nullptr;
         QNetworkReply* updatesGetReply = nullptr;
-        UpdateManager::AdminPassHandler adminPassHandler;
         bool updatesInProgress = false;
         QList<UpdateEntry> updatesToDownload;
         QHash<QString,QString> updatesToInstall;
-        QHash<QString,QString> componentToPath;
         QTemporaryDir* tempDir = nullptr;
         QFile* currentDownloadFile = nullptr;
         int totalPercent = 0;
         int totalDownloadsCount = 0;
         QString currentJobTitle;
-        QString adminPassword;
         bool requireAdmin = false;
 
+        static_char* UPDATE_OPTION_NAME = "--update-final-step";
         static_char* updateServiceUrl = "http://sqlitestudio.pl/updates3.rvt";
         static_char* manualUpdatesHelpUrl = "http://wiki.sqlitestudio.pl/index.php/User_Manual#Manual";
 

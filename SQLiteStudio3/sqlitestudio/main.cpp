@@ -68,6 +68,10 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
+    int retCode = 1;
+    if (UpdateManager::handleUpdateOptions(a.arguments(), retCode))
+        return retCode;
+
     qInstallMessageHandler(uiMessageHandler);
 
     QString dbToOpen = uiHandleCmdLineArgs();
