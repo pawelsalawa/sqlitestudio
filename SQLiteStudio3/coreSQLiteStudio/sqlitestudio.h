@@ -140,7 +140,10 @@ class API_EXPORT SQLiteStudio : public QObject
         UpdateManager* getUpdateManager() const;
         void setUpdateManager(UpdateManager* value);
 
-    private:
+        bool getImmediateQuit() const;
+        void setImmediateQuit(bool value);
+
+private:
         /**
          * @brief Creates singleton instance.
          *
@@ -177,6 +180,7 @@ class API_EXPORT SQLiteStudio : public QObject
         QStringList cmdLineArgs;
 
         bool guiAvailable = false;
+        bool immediateQuit = false;
         Config* config = nullptr;
         DbManager* dbManager = nullptr;
         FunctionManager* functionManager = nullptr;

@@ -18,7 +18,7 @@ TARGET = coreSQLiteStudio
 TEMPLATE = lib
 
 win32 {
-    LIBS += -lpsapi
+    LIBS += -lpsapi $$PWD/../../../lib/libquazip.a
 }
 
 linux: {

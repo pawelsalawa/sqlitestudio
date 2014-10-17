@@ -1,10 +1,11 @@
 #ifndef COMMITTABLE_H
 #define COMMITTABLE_H
 
+#include "coreSQLiteStudio_global.h"
 #include <QList>
 #include <functional>
 
-class Committable
+class API_EXPORT Committable
 {
     public:
         typedef std::function<bool(const QList<Committable*>& instances)> ConfirmFunction;
