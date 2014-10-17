@@ -48,6 +48,17 @@ SQLiteStudio::SQLiteStudio()
 SQLiteStudio::~SQLiteStudio()
 {
 }
+
+bool SQLiteStudio::getImmediateQuit() const
+{
+    return immediateQuit;
+}
+
+void SQLiteStudio::setImmediateQuit(bool value)
+{
+    immediateQuit = value;
+}
+
 UpdateManager* SQLiteStudio::getUpdateManager() const
 {
     return updateManager;
@@ -212,7 +223,6 @@ void SQLiteStudio::setConfig(Config* value)
     config = value;
 }
 
-
 void SQLiteStudio::init(const QStringList& cmdListArguments, bool guiAvailable)
 {
     env = new QProcessEnvironment(QProcessEnvironment::systemEnvironment());
@@ -293,21 +303,23 @@ void SQLiteStudio::cleanUp()
 {
     disconnect(pluginManager, SIGNAL(aboutToUnload(Plugin*,PluginType*)), this, SLOT(pluginToBeUnloaded(Plugin*,PluginType*)));
     disconnect(pluginManager, SIGNAL(unloaded(QString,PluginType*)), this, SLOT(pluginUnloaded(QString,PluginType*)));
-
-    safe_delete(updateManager);
-    safe_delete(bugReporter);
-    safe_delete(populateManager);
-    safe_delete(importManager);
-    safe_delete(exportManager);
-    safe_delete(functionManager);
-    pluginManager->deinit();
-    safe_delete(pluginManager); // PluginManager before DbManager, so Db objects are deleted while DbManager still exists
-    safe_delete(dbManager);
-    safe_delete(config);
-    safe_delete(codeFormatter);
-    safe_delete(dbAttacherFactory);
-    safe_delete(env);
-    NotifyManager::destroy();
+    if (!immediateQuit)
+    {
+        safe_delete(updateManager);
+        safe_delete(bugReporter);
+        safe_delete(populateManager);
+        safe_delete(importManager);
+        safe_delete(exportManager);
+        safe_delete(functionManager);
+        pluginManager->deinit();
+        safe_delete(pluginManager); // PluginManager before DbManager, so Db objects are deleted while DbManager still exists
+        safe_delete(dbManager);
+        safe_delete(config);
+        safe_delete(codeFormatter);
+        safe_delete(dbAttacherFactory);
+        safe_delete(env);
+        NotifyManager::destroy();
+    }
     Q_CLEANUP_RESOURCE(coresqlitestudio);
 }
 

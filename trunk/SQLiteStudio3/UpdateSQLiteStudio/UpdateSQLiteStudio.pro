@@ -11,8 +11,13 @@ QT       += core
 QT       -= gui
 
 TARGET = UpdateSQLiteStudio
-CONFIG   += console
+#CONFIG   += console
 CONFIG   -= app_bundle
+
+CONFIG   += c++11
+QMAKE_CXXFLAGS += -pedantic
+
+LIBS += -lcoreSQLiteStudio
 
 TEMPLATE = app
 
@@ -30,3 +35,5 @@ SOURCES += main.cpp
 OTHER_FILES += \
     windows.rc \
     UpdateSQLiteStudio.exe.manifest
+
+HEADERS +=

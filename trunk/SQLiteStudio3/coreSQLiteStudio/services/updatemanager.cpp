@@ -15,6 +15,15 @@
 #include <QJsonArray>
 #include <QJsonValue>
 #include <QProcess>
+#include <QThread>
+
+#ifdef Q_OS_WIN32
+#include "JlCompress.h"
+#include <windows.h>
+#include <shellapi.h>
+#endif
+
+QString UpdateManager::staticErrorMessage;
 
 UpdateManager::UpdateManager(QObject *parent) :
     QObject(parent)
@@ -86,6 +95,22 @@ QString UpdateManager::getCurrentVersions() const
 bool UpdateManager::isPlatformEligibleForUpdate() const
 {
     return !getPlatformForUpdate().isNull() && getDistributionType() != DistributionType::OS_MANAGED;
+}
+
+bool UpdateManager::executePreFinalStepWin(const QString &tempDir, const QString &backupDir, const QString &appDir, bool reqAdmin)
+{
+    bool res;
+    if (reqAdmin)
+        res = executeFinalStepAsRootWin(tempDir, backupDir, appDir);
+    else
+        res = executeFinalStep(tempDir, backupDir, appDir);
+
+    if (res)
+    {
+        QFileInfo path(qApp->applicationFilePath());
+        QProcess::startDetached(appDir + "/" + path.fileName(), {WIN_POST_FINAL_UPDATE_OPTION_NAME, tempDir});
+    }
+    return res;
 }
 
 void UpdateManager::handleAvailableUpdatesReply(QNetworkReply* reply)
@@ -250,19 +275,44 @@ void UpdateManager::installUpdates()
     emit updatingProgress(currentJobTitle, 100, totalPercent);
     cleanup();
     updatesInProgress = false;
+#ifdef Q_OS_WIN32
+    installTempDir.setAutoRemove(false);
+#endif
+
+    SQLITESTUDIO->setImmediateQuit(true);
+    qApp->exit(0);
 }
 
 bool UpdateManager::executeFinalStep(const QString& tempDir, const QString& backupDir, const QString& appDir)
 {
-    if (!moveDir(appDir, backupDir))
+    bool isWin = false;
+#ifdef Q_OS_WIN32
+    isWin = true;
+
+    // Windows needs to wait for previus process to exit
+    QThread::sleep(3);
+
+    QDir dir(backupDir);
+    QString dirName = dir.dirName();
+    dir.cdUp();
+    if (!dir.mkdir(dirName))
     {
-        staticUpdatingFailed(tr("Could not rename directory %1 to %2.").arg(appDir, backupDir));
+        staticUpdatingFailed(tr("Could not create directory %1.").arg(backupDir));
+        return false;
+    }
+#endif
+    // Under Windows we the parent directory, the appDir is locked, even the original application
+    // is not running at this step. appDir is locked, but not its contents (weird, but that's how it is),
+    // so we do all the same things, except we do it on contents of dirs, not on entire directories.
+    if (!moveDir(appDir, backupDir, isWin))
+    {
+        staticUpdatingFailed(tr("Could not rename directory %1 to %2.\nDetails: %3").arg(appDir, backupDir, staticErrorMessage));
         return false;
     }
 
-    if (!moveDir(tempDir, appDir))
+    if (!moveDir(tempDir, appDir, isWin))
     {
-        if (!moveDir(backupDir, appDir))
+        if (!moveDir(backupDir, appDir, isWin))
         {
             staticUpdatingFailed(tr("Could not move directory %1 to %2 and also failed to restore original directory, "
                               "so the original SQLiteStudio directory is now located at: %3").arg(tempDir, appDir, backupDir));
@@ -271,11 +321,11 @@ bool UpdateManager::executeFinalStep(const QString& tempDir, const QString& back
         {
             staticUpdatingFailed(tr("Could not rename directory %1 to %2. Rolled back to the original SQLiteStudio version.").arg(tempDir, appDir));
         }
+        deleteDir(backupDir);
         return false;
     }
 
     deleteDir(backupDir);
-
     return true;
 }
 
@@ -292,7 +342,33 @@ bool UpdateManager::handleUpdateOptions(const QStringList& argList, int& returnC
         return true;
     }
 
+#ifdef Q_OS_WIN32
+    if (argList.size() == 6 && argList[1] == WIN_PRE_FINAL_UPDATE_OPTION_NAME)
+    {
+        bool result = UpdateManager::executePreFinalStepWin(argList[2], argList[3], argList[4], (bool)argList[5].toInt());
+        if (result)
+            returnCode = 0;
+        else
+            returnCode = -1;
+
+        return true;
+    }
+
+    if (argList.size() == 3 && argList[1] == WIN_POST_FINAL_UPDATE_OPTION_NAME)
+    {
+        QThread::sleep(1); // to make sure that the previous process has quit
+        returnCode = 0;
+        UpdateManager::executePostFinalStepWin(argList[2]);
+        return true;
+    }
+#endif
+
     return false;
+}
+
+QString UpdateManager::getStaticErrorMessage()
+{
+    return staticErrorMessage;
 }
 
 bool UpdateManager::executeFinalStep(const QString& tempDir)
@@ -304,10 +380,18 @@ bool UpdateManager::executeFinalStep(const QString& tempDir)
     while (backupDir.exists())
         backupDir = QDir(bakDirTpl.arg(qApp->applicationDirPath(), QString::number(cnt)));
 
+#if defined(Q_OS_WIN32)
+    return runAnotherInstanceForUpdate(tempDir, backupDir.absolutePath(), qApp->applicationDirPath(), requireAdmin);
+#else
+    bool res;
     if (requireAdmin)
-        return executeFinalStepAsRoot(tempDir, backupDir.absolutePath(), qApp->applicationDirPath());
+        res = executeFinalStepAsRoot(tempDir, backupDir.absolutePath(), qApp->applicationDirPath());
     else
-        return executeFinalStep(tempDir, backupDir.absolutePath(), qApp->applicationDirPath());
+        res = executeFinalStep(tempDir, backupDir.absolutePath(), qApp->applicationDirPath());
+
+    QProcess::startDetached(qApp->applicationFilePath());
+    return res;
+#endif
 }
 
 bool UpdateManager::installComponent(const QString& component, const QString& tempDir)
@@ -360,11 +444,16 @@ QString UpdateManager::readError(QProcess& proc, bool reverseOrder)
     if (err.isEmpty())
         err = QString::fromLocal8Bit(reverseOrder ? proc.readAllStandardError() : proc.readAllStandardOutput());
 
+    QString errStr = proc.errorString();
+    if (!errStr.isEmpty())
+        err += "\n" + errStr;
+
     return err;
 }
 
 void UpdateManager::staticUpdatingFailed(const QString& errMsg)
 {
+    staticErrorMessage = errMsg;
     qCritical() << errMsg;
 }
 
@@ -382,6 +471,7 @@ bool UpdateManager::executeFinalStepAsRoot(const QString& tempDir, const QString
 #endif
 }
 
+#if defined(Q_OS_LINUX)
 bool UpdateManager::executeFinalStepAsRootLinux(const QString& tempDir, const QString& backupDir, const QString& appDir)
 {
     QStringList args = {qApp->applicationFilePath(), UPDATE_OPTION_NAME, tempDir, backupDir, appDir};
@@ -428,19 +518,114 @@ bool UpdateManager::executeFinalStepAsRootLinux(const QString& tempDir, const QS
 
     return true;
 }
+#endif
 
+#ifdef Q_OS_MACX
 bool UpdateManager::executeFinalStepAsRootMac(const QString& tempDir, const QString& backupDir, const QString& appDir)
 {
     // TODO
 }
+#endif
 
 bool UpdateManager::executeFinalStepAsRootWin(const QString& tempDir, const QString& backupDir, const QString& appDir)
 {
-    // TODO
+#ifdef Q_OS_WIN32
+    QString updateBin = qApp->applicationDirPath() + "/" + WIN_UPDATER_BINARY;
+
+    QString installFilePath = tempDir + "/" + WIN_INSTALL_FILE;
+    QFile installFile(installFilePath);
+    installFile.open(QIODevice::WriteOnly);
+    QString nl("\n");
+    installFile.write(UPDATE_OPTION_NAME);
+    installFile.write(nl.toLocal8Bit());
+    installFile.write(backupDir.toLocal8Bit());
+    installFile.write(nl.toLocal8Bit());
+    installFile.write(appDir.toLocal8Bit());
+    installFile.write(nl.toLocal8Bit());
+    installFile.close();
+
+    int res = (int)::ShellExecuteA(0, "runas", updateBin.toUtf8().constData(), 0, 0, SW_SHOWNORMAL);
+    if (res < 32)
+    {
+        staticUpdatingFailed(tr("Could not execute final updating steps as administrator."));
+        return false;
+    }
+
+    // Since I suck as a developer and I cannot implement a simple synchronous app call under Windows
+    // (QProcess does it somehow, but I'm too lazy to look it up and probably the solution wouldn't be compatible
+    // with our "privileges elevation" trick above... so after all I think we're stuck with this solution for now),
+    // I do the workaround here, which makes this process wait for the other process to create the "done"
+    // file when it's done, so this process knows when the other has ended. This way we can proceed with this
+    // process and we will delete some directories later on, which were required by that other process.
+    if (!waitForFileToDisappear(installFilePath, 10))
+    {
+        staticUpdatingFailed(tr("Could not execute final updating steps as administrator. Updater startup timed out."));
+        return false;
+    }
+
+    if (!waitForFileToAppear(appDir + QLatin1Char('/') + WIN_UPDATE_DONE_FILE, 30))
+    {
+        staticUpdatingFailed(tr("Could not execute final updating steps as administrator. Updater operation timed out."));
+        return false;
+    }
+
+#endif
+    return true;
+}
+
+bool UpdateManager::executePostFinalStepWin(const QString &tempDir)
+{
+    QString doneFile = qApp->applicationDirPath() + QLatin1Char('/') + WIN_UPDATE_DONE_FILE;
+    QFile::remove(doneFile);
+
+    QDir dir(tempDir);
+    dir.cdUp();
+    deleteDir(dir.absolutePath());
+
+    QProcess::startDetached(qApp->applicationFilePath());
+    return true;
+}
+
+bool UpdateManager::waitForFileToDisappear(const QString &filePath, int seconds)
+{
+    QFile file(filePath);
+    while (file.exists() && seconds > 0)
+    {
+        QThread::sleep(1);
+        seconds--;
+    }
+
+    return !file.exists();
+}
+
+bool UpdateManager::waitForFileToAppear(const QString &filePath, int seconds)
+{
+    QFile file(filePath);
+    while (!file.exists() && seconds > 0)
+    {
+        QThread::sleep(1);
+        seconds--;
+    }
+
+    return file.exists();
+}
+
+bool UpdateManager::runAnotherInstanceForUpdate(const QString &tempDir, const QString &backupDir, const QString &appDir, bool reqAdmin)
+{
+    bool res = QProcess::startDetached(tempDir + "/SQLiteStudio.exe", {WIN_PRE_FINAL_UPDATE_OPTION_NAME, tempDir, backupDir, appDir,
+                                                                       QString::number((int)reqAdmin)});
+    if (!res)
+    {
+        updatingFailed(tr("Could not run new version for continuing update."));
+        return false;
+    }
+
+    return true;
 }
 
 UpdateManager::LinuxPermElevator UpdateManager::findPermElevatorForLinux()
 {
+#if defined(Q_OS_LINUX)
     QProcess proc;
     proc.setProgram("which");
 
@@ -461,6 +646,7 @@ UpdateManager::LinuxPermElevator UpdateManager::findPermElevatorForLinux()
     proc.start();
     if (waitForProcess(proc))
         return LinuxPermElevator::PKEXEC;
+#endif
 
     return LinuxPermElevator::NONE;
 }
@@ -493,6 +679,7 @@ bool UpdateManager::unpackToDir(const QString& packagePath, const QString& outpu
 #endif
 }
 
+#if defined(Q_OS_LINUX)
 bool UpdateManager::unpackToDirLinux(const QString &packagePath, const QString &outputDir)
 {
     QProcess proc;
@@ -525,7 +712,9 @@ bool UpdateManager::unpackToDirLinux(const QString &packagePath, const QString &
     QProcess::execute("rm", {"-f", newPath});
     return true;
 }
+#endif
 
+#if defined(Q_OS_MACX)
 bool UpdateManager::unpackToDirMac(const QString &packagePath, const QString &outputDir)
 {
     QProcess proc;
@@ -548,24 +737,72 @@ bool UpdateManager::unpackToDirMac(const QString &packagePath, const QString &ou
 
     return true;
 }
+#endif
 
 bool UpdateManager::unpackToDirWin(const QString& packagePath, const QString& outputDir)
 {
-    // TODO
+#if defined(Q_OS_WIN32)
+    if (JlCompress::extractDir(packagePath, outputDir + "/..").isEmpty())
+    {
+        updatingFailed(tr("Package %1 cannot be installed, because cannot unzip it to directory: %2").arg(packagePath, outputDir));
+        return false;
+    }
+#endif
+
+    return true;
 }
 
-bool UpdateManager::moveDir(const QString& src, const QString& dst)
+bool UpdateManager::moveDir(const QString& src, const QString& dst, bool contentsOnly)
 {
-#if defined(Q_OS_LINUX)
-    return moveDirLinux(src, dst);
-#elif defined(Q_OS_WIN32)
-    return moveDirWin(src, dst);
-#elif defined(Q_OS_MACX)
-    return moveDirMac(src, dst);
-#else
-    qCritical() << "Unknown update platform in UpdateManager::installApplicationComponent()";
-    return false;
-#endif
+    QDir dir;
+    if (contentsOnly)
+    {
+        QString localSrc;
+        QString localDst;
+        QDir srcDir(src);
+        for (const QFileInfo& entry : srcDir.entryInfoList(QDir::Files|QDir::Dirs|QDir::NoDotAndDotDot|QDir::Hidden|QDir::System))
+        {
+            localSrc = entry.absoluteFilePath();
+            localDst = dst + "/" + entry.fileName();
+            if (entry.isDir())
+            {
+                if (!dir.rename(localSrc, localDst))
+                {
+                    staticUpdatingFailed(tr("Could not rename directory %1 to %2.").arg(localSrc, localDst));
+                    return false;
+                }
+            }
+            else
+            {
+                if (!QFile::rename(localSrc, localDst))
+                {
+                    staticUpdatingFailed(tr("Could not rename file %1 to %2.").arg(localSrc, localDst));
+                    return false;
+                }
+            }
+        }
+    }
+    else
+    {
+        if (!dir.rename(src, dst))
+        {
+            staticUpdatingFailed(tr("Could not rename directory %1 to %2.").arg(src, dst));
+            return false;
+        }
+    }
+
+    return true;
+
+//#if defined(Q_OS_LINUX)
+//    return moveDirLinux(src, dst);
+//#elif defined(Q_OS_WIN32)
+//    return moveDirWin(src, dst);
+//#elif defined(Q_OS_MACX)
+//    return moveDirMac(src, dst);
+//#else
+//    qCritical() << "Unknown update platform in UpdateManager::installApplicationComponent()";
+//    return false;
+//#endif
 }
 
 bool UpdateManager::moveDirLinux(const QString& src, const QString& dst)
@@ -588,21 +825,39 @@ bool UpdateManager::moveDirMac(const QString &src, const QString &dst)
 
 bool UpdateManager::moveDirWin(const QString& src, const QString& dst)
 {
-    // TODO
+#if defined(Q_OS_WIN32)
+    QString msg;
+    if (!execWin("move", {src, dst}, &msg))
+    {
+        staticUpdatingFailed(msg);
+        return false;
+    }
+#endif
+
+    return true;
 }
 
 bool UpdateManager::deleteDir(const QString& path)
 {
-#if defined(Q_OS_LINUX)
-    return deleteDirLinux(path);
-#elif defined(Q_OS_WIN32)
-    return deleteDirWin(path);
-#elif defined(Q_OS_MACX)
-    return deleteDirMac(path);
-#else
-    qCritical() << "Unknown update platform in UpdateManager::installApplicationComponent()";
-    return false;
-#endif
+    QDir dir(path);
+    if (!dir.removeRecursively())
+    {
+        staticUpdatingFailed(tr("Could not delete directory %1.").arg(path));
+        return false;
+    }
+
+    return true;
+
+//#if defined(Q_OS_LINUX)
+//    return deleteDirLinux(path);
+//#elif defined(Q_OS_WIN32)
+//    return deleteDirWin(path);
+//#elif defined(Q_OS_MACX)
+//    return deleteDirMac(path);
+//#else
+//    qCritical() << "Unknown update platform in UpdateManager::installApplicationComponent()";
+//    return false;
+//#endif
 }
 
 bool UpdateManager::deleteDirLinux(const QString& path)
@@ -625,7 +880,16 @@ bool UpdateManager::deleteDirMac(const QString &path)
 
 bool UpdateManager::deleteDirWin(const QString& path)
 {
-    // TODO
+#if defined(Q_OS_WIN32)
+    QString msg;
+    if (!execWin("rmdir", {"/S", "/Q", path}, &msg))
+    {
+        qWarning() << "Problem with deleting dir in update:" << msg;
+        return false;
+    }
+#endif
+
+    return true;
 }
 
 bool UpdateManager::execLinux(const QString& cmd, const QStringList& args, QString* errorMsg)
@@ -643,6 +907,12 @@ bool UpdateManager::execLinux(const QString& cmd, const QStringList& args, QStri
     }
 
     return true;
+}
+
+bool UpdateManager::execWin(const QString &cmd, const QStringList &args, QString *errorMsg)
+{
+    // Currently the implementation is the same as for linux:
+    return execLinux(cmd, args, errorMsg);
 }
 
 bool UpdateManager::doRequireAdminPrivileges()

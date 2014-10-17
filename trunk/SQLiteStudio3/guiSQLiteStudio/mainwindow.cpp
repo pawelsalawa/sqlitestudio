@@ -121,6 +121,9 @@ void MainWindow::init()
 
 void MainWindow::cleanUp()
 {
+    if (SQLITESTUDIO->getImmediateQuit())
+        return;
+
     for (MdiWindow* win : getMdiArea()->getWindows())
         delete win;
 
@@ -179,6 +182,13 @@ StatusField *MainWindow::getStatusField() const
 
 void MainWindow::closeEvent(QCloseEvent* event)
 {
+    if (SQLITESTUDIO->getImmediateQuit())
+    {
+        closingApp = true;
+        QMainWindow::closeEvent(event);
+        return;
+    }
+
     if (!Committable::canQuit())
     {
         event->ignore();

@@ -51,7 +51,7 @@
             Type(bool persistable) : CfgMain(#Type, persistable, MetaName, Title) {}\
             Body\
         };\
-        API_ONLY_CORE_EXPORT Type* get##Type##Instance();\
+        API_EXPORT Type* get##Type##Instance();\
     }
 
 #define _CFG_DEFINE(Type, Persistant) \
