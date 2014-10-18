@@ -321,7 +321,7 @@ void ConfigMapper::handleConfigComboBox(QWidget* widget, const QHash<QString, Cf
     if (realTimeUpdates)
     {
         specialConfigEntryToWidgets.insertMulti(key, widget);
-        connect(key, &CfgEntry::changed, this, &ConfigMapper::updateConfigComboModel);
+        connect(key, SIGNAL(changed(QVariant)), this, SLOT(updateConfigComboModel(QVariant)));
     }
 }
 

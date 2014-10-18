@@ -74,13 +74,7 @@ class API_EXPORT UpdateManager : public QObject
         void cleanup();
 
         static bool moveDir(const QString& src, const QString& dst, bool contentsOnly = false);
-        static bool moveDirLinux(const QString& src, const QString& dst);
-        static bool moveDirMac(const QString& src, const QString& dst);
-        static bool moveDirWin(const QString& src, const QString& dst);
         static bool deleteDir(const QString& path);
-        static bool deleteDirLinux(const QString& path);
-        static bool deleteDirMac(const QString& path);
-        static bool deleteDirWin(const QString& path);
         static bool execLinux(const QString& cmd, const QStringList& args, QString* errorMsg = nullptr);
         static bool execWin(const QString& cmd, const QStringList& args, QString* errorMsg = nullptr);
         static bool waitForProcess(QProcess& proc);

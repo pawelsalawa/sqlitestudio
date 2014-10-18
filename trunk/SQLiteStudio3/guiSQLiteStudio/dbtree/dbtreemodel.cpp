@@ -32,8 +32,8 @@ DbTreeModel::DbTreeModel()
     setItemPrototype(DbTreeItemFactory::createPrototype());
     connectDbManagerSignals();
 
-    connect(CFG, &Config::massSaveBegins, this, &DbTreeModel::massSaveBegins);
-    connect(CFG, &Config::massSaveCommited, this, &DbTreeModel::massSaveCommited);
+    connect(CFG, SIGNAL(massSaveBegins()), this, SLOT(massSaveBegins()));
+    connect(CFG, SIGNAL(massSaveCommited()), this, SLOT(massSaveCommited()));
     connect(CFG_UI.General.ShowSystemObjects, SIGNAL(changed(QVariant)), this, SLOT(markSchemaReloadingRequired()));
 
     dbOrganizer = new DbObjectOrganizer(confirmReferencedTables, resolveNameConflict, confirmConversion, confirmConversionErrors);
@@ -48,11 +48,11 @@ DbTreeModel::~DbTreeModel()
 
 void DbTreeModel::connectDbManagerSignals()
 {
-    connect(DBLIST, &DbManager::dbAdded, this, &DbTreeModel::dbAdded);
-    connect(DBLIST, &DbManager::dbUpdated, this, &DbTreeModel::dbUpdated);
+    connect(DBLIST, SIGNAL(dbAdded(Db*)), this, SLOT(dbAdded(Db*)));
+    connect(DBLIST, SIGNAL(dbUpdated(QString,Db*)), this, SLOT(dbUpdated(QString,Db*)));
     connect(DBLIST, SIGNAL(dbRemoved(Db*)), this, SLOT(dbRemoved(Db*)));
-    connect(DBLIST, &DbManager::dbConnected, this, &DbTreeModel::dbConnected);
-    connect(DBLIST, &DbManager::dbDisconnected, this, &DbTreeModel::dbDisconnected);
+    connect(DBLIST, SIGNAL(dbConnected(Db*)), this, SLOT(dbConnected(Db*)));
+    connect(DBLIST, SIGNAL(dbDisconnected(Db*)), this, SLOT(dbDisconnected(Db*)));
     connect(DBLIST, SIGNAL(dbLoaded(Db*)), this, SLOT(dbLoaded(Db*)));
     connect(DBLIST, SIGNAL(dbUnloaded(Db*)), this, SLOT(dbUnloaded(Db*)));
 }

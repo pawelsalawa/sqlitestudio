@@ -10,8 +10,8 @@ DbListModel::DbListModel(QObject *parent) :
 {
     unsortedList = DBLIST->getConnectedDbList();
 
-    connect(DBLIST, &DbManager::dbConnected, this, &DbListModel::dbConnected);
-    connect(DBLIST, &DbManager::dbDisconnected, this, &DbListModel::dbDisconnected);
+    connect(DBLIST, SIGNAL(dbConnected(Db*)), this, SLOT(dbConnected(Db*)));
+    connect(DBLIST, SIGNAL(dbDisconnected(Db*)), this, SLOT(dbDisconnected(Db*)));
 
     setSortMode(CFG_UI.General.SqlEditorDbListOrder.get());
 }

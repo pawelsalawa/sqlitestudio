@@ -135,6 +135,46 @@ void SqlQueryItem::setValue(const QVariant &value, bool limited, bool loadedFrom
     setLimitedValue(limited);
     setUncommited(modified);
 
+    // Value for display (in a cell) will always be limited, for performance reasons
+    QStandardItem::setData("x", DataRole::VALUE_FOR_DISPLAY); // the same trick as with the DataRole::VALUE
+    if (!limited)
+    {
+        int theLimit = SqlQueryModel::getCellDataLengthLimit();
+        switch (value.type())
+        {
+            case QVariant::ByteArray:
+            {
+                QByteArray newBytes = newValue.toByteArray();
+                if (newBytes.size() > theLimit)
+                {
+                    newBytes.resize(theLimit);
+                    setValueForDisplay(newBytes);
+                }
+                else
+                    setValueForDisplay(newValue);
+
+                break;
+            }
+            case QVariant::String:
+            {
+                QString newString = newValue.toString();
+                if (newString.size() > theLimit)
+                {
+                    newString.resize(theLimit);
+                    setValueForDisplay(newString);
+                }
+                else
+                    setValueForDisplay(newValue);
+
+                break;
+            }
+            default:
+                setValueForDisplay(newValue);
+        }
+    }
+    else
+        setValueForDisplay(newValue);
+
     if (modified)
         getModel()->itemValueEdited(this);
 }
@@ -152,6 +192,16 @@ QVariant SqlQueryItem::getOldValue() const
 void SqlQueryItem::setOldValue(const QVariant& value)
 {
     QStandardItem::setData(value, DataRole::OLD_VALUE);
+}
+
+QVariant SqlQueryItem::getValueForDisplay() const
+{
+    return QStandardItem::data(DataRole::VALUE_FOR_DISPLAY);
+}
+
+void SqlQueryItem::setValueForDisplay(const QVariant &value)
+{
+    QStandardItem::setData(value, DataRole::VALUE_FOR_DISPLAY);
 }
 
 void SqlQueryItem::setLimitedValue(bool limited)
@@ -299,7 +349,7 @@ QVariant SqlQueryItem::data(int role) const
             if (isDeletedRow())
                 return "";
 
-            QVariant value = getValue();
+            QVariant value = getValueForDisplay();
             if (value.isNull())
                 return "NULL";
 

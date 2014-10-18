@@ -26,7 +26,8 @@ class GUI_API_EXPORT SqlQueryItem : public QObject, public QStandardItem
                 NEW_ROW = 1007,
                 DELETED = 1008,
                 OLD_VALUE = 1009,
-                JUST_INSERTED_WITHOUT_ROWID = 1010
+                JUST_INSERTED_WITHOUT_ROWID = 1010,
+                VALUE_FOR_DISPLAY = 1011
             };
         };
 
@@ -60,6 +61,9 @@ class GUI_API_EXPORT SqlQueryItem : public QObject, public QStandardItem
 
         QVariant getOldValue() const;
         void setOldValue(const QVariant& value);
+
+        QVariant getValueForDisplay() const;
+        void setValueForDisplay(const QVariant& value);
 
         /**
          * @brief loadFullData Reloads entire value of the cell from database.

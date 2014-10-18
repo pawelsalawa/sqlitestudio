@@ -8,7 +8,7 @@
 class AsyncConfigHandler;
 class SqlHistoryModel;
 
-class ConfigImpl : public Config
+class API_EXPORT ConfigImpl : public Config
 {
     Q_OBJECT
 

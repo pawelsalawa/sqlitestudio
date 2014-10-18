@@ -8,7 +8,7 @@ class SqlFunctionPlugin;
 class Plugin;
 class PluginType;
 
-class FunctionManagerImpl : public FunctionManager
+class API_EXPORT FunctionManagerImpl : public FunctionManager
 {
     Q_OBJECT
 

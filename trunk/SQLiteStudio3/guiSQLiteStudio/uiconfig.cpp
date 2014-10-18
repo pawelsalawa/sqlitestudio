@@ -17,6 +17,8 @@ namespace Cfg
         QFont font = monoEdit.document()->defaultFont();
 #ifdef Q_OS_MACX
         font.setFamily("Courier New");
+#elif defined(Q_OS_WIN32)
+        font.setFamily("Consolas");
 #else
         font.setFamily("DejaVu Sans Mono");
 #endif
