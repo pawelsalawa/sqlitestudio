@@ -16,6 +16,7 @@
 #include <QJsonValue>
 #include <QProcess>
 #include <QThread>
+#include <QtConcurrent/QtConcurrent>
 
 #ifdef Q_OS_WIN32
 #include "JlCompress.h"
@@ -30,6 +31,7 @@ UpdateManager::UpdateManager(QObject *parent) :
 {
     networkManager = new QNetworkAccessManager(this);
     connect(networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(finished(QNetworkReply*)));
+    connect(this, SIGNAL(updatingError(QString)), NOTIFY_MANAGER, SLOT(error(QString)));
 }
 
 UpdateManager::~UpdateManager()
@@ -206,7 +208,7 @@ void UpdateManager::downloadUpdates()
 {
     if (updatesToDownload.size() == 0)
     {
-        installUpdates();
+        QtConcurrent::run(this, &UpdateManager::installUpdates);
         return;
     }
 
@@ -260,15 +262,28 @@ void UpdateManager::installUpdates()
         updatingFailed(tr("Could not copy current application directory into %1 directory.").arg(installTempDir.path()));
         return;
     }
+    emit updatingProgress(currentJobTitle, 40, totalPercent);
 
+    int i = 0;
+    int updatesCnt = updatesToInstall.size();
     for (const QString& component : updatesToInstall.keys())
     {
         if (!installComponent(component, targetDir))
+        {
+            cleanup();
+            updatesInProgress = false;
             return;
+        }
+        i++;
+        emit updatingProgress(currentJobTitle, (30 + (50 / updatesCnt * i)), totalPercent);
     }
 
     if (!executeFinalStep(targetDir))
+    {
+        cleanup();
+        updatesInProgress = false;
         return;
+    }
 
     currentJobTitle = QString();
     totalPercent = 100;
@@ -389,7 +404,9 @@ bool UpdateManager::executeFinalStep(const QString& tempDir)
     else
         res = executeFinalStep(tempDir, backupDir.absolutePath(), qApp->applicationDirPath());
 
-    QProcess::startDetached(qApp->applicationFilePath());
+    if (res)
+        QProcess::startDetached(qApp->applicationFilePath());
+
     return res;
 #endif
 }
@@ -453,7 +470,11 @@ QString UpdateManager::readError(QProcess& proc, bool reverseOrder)
 
 void UpdateManager::staticUpdatingFailed(const QString& errMsg)
 {
+#if defined(Q_OS_WIN32)
     staticErrorMessage = errMsg;
+#else
+    UPDATES->handleStaticFail(errMsg);
+#endif
     qCritical() << errMsg;
 }
 
@@ -752,8 +773,14 @@ bool UpdateManager::unpackToDirWin(const QString& packagePath, const QString& ou
     return true;
 }
 
+void UpdateManager::handleStaticFail(const QString& errMsg)
+{
+    emit updatingFailed(errMsg);
+}
+
 bool UpdateManager::moveDir(const QString& src, const QString& dst, bool contentsOnly)
 {
+
     QDir dir;
     if (contentsOnly)
     {
@@ -764,27 +791,16 @@ bool UpdateManager::moveDir(const QString& src, const QString& dst, bool content
         {
             localSrc = entry.absoluteFilePath();
             localDst = dst + "/" + entry.fileName();
-            if (entry.isDir())
+            if (!dir.rename(localSrc, localDst) && !renameBetweenPartitions(src, dst))
             {
-                if (!dir.rename(localSrc, localDst))
-                {
-                    staticUpdatingFailed(tr("Could not rename directory %1 to %2.").arg(localSrc, localDst));
-                    return false;
-                }
-            }
-            else
-            {
-                if (!QFile::rename(localSrc, localDst))
-                {
-                    staticUpdatingFailed(tr("Could not rename file %1 to %2.").arg(localSrc, localDst));
-                    return false;
-                }
+                staticUpdatingFailed(tr("Could not rename directory %1 to %2.").arg(localSrc, localDst));
+                return false;
             }
         }
     }
     else
     {
-        if (!dir.rename(src, dst))
+        if (!dir.rename(src, dst) && !renameBetweenPartitions(src, dst))
         {
             staticUpdatingFailed(tr("Could not rename directory %1 to %2.").arg(src, dst));
             return false;

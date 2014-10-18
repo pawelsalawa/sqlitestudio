@@ -773,12 +773,31 @@ bool copyRecursively(const QString& src, const QString& dst)
                 return false;
         }
     }
+    else if (srcFileInfo.isSymLink())
+    {
+        QString trg = QFile(src).symLinkTarget();
+        QFile::link(trg, dst);
+    }
     else
     {
         if (!QFile::copy(src, dst))
             return false;
     }
     return true;
+}
+
+bool renameBetweenPartitions(const QString& src, const QString& dst)
+{
+    if (QDir(dst).exists())
+        return false;
+
+    int res = copyRecursively(src, dst);
+    if (res)
+        QDir(src).removeRecursively();
+    else
+        QDir(dst).removeRecursively();
+
+    return res;
 }
 
 bool isWritableRecursively(const QString& dir)
