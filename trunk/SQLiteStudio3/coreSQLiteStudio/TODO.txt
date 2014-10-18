@@ -1,5 +1,6 @@
 * auto updates
 * tclscripting for win32
+* formatter is broken for subselects (adds ; for subselect)
 
 * 3.0 musi importowac ustawienia z 2.1:
   - lista baz
