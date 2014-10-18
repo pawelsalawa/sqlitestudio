@@ -49,6 +49,8 @@ class API_EXPORT NotifyManager : public QObject
         QStringList recentInfos;
 };
 
+#define NOTIFY_MANAGER NotifyManager::getInstance()
+
 void API_EXPORT notifyError(const QString& msg);
 void API_EXPORT notifyWarn(const QString& msg);
 void API_EXPORT notifyInfo(const QString& msg);

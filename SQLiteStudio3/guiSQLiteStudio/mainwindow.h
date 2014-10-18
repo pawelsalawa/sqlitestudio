@@ -27,6 +27,9 @@ class CollationsEditor;
 class BugReportHistoryWindow;
 class NewVersionDialog;
 class Committable;
+class WidgetCover;
+class QProgressBar;
+class QLabel;
 
 #ifdef Q_OS_MACX
 #define PREV_TASK_KEY_SEQ Qt::CTRL + Qt::ALT + Qt::Key_Left
@@ -156,6 +159,10 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         QMenu* toolsMenu = nullptr;
         QMenu* sqlitestudioMenu = nullptr;
         QPointer<NewVersionDialog> newVersionDialog;
+        WidgetCover* widgetCover = nullptr;
+        QLabel* updatingLabel = nullptr;
+        QProgressBar* updatingBusyBar = nullptr;
+        QProgressBar* updatingSubBar = nullptr;
 
     public slots:
         EditorWindow* openSqlEditor();
@@ -190,6 +197,8 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void updatesAvailable(const QList<UpdateManager::UpdateEntry>& updates);
         void statusFieldLinkClicked(const QString& link);
         void checkForUpdates();
+        void handleUpdatingProgress(const QString& jobTitle, int jobPercent, int totalPercent);
+        void handleUpdatingError();
 };
 
 template <class T>

@@ -198,6 +198,7 @@ API_EXPORT bool validateEmail(const QString& email);
 API_EXPORT bool isHex(const QString& str);
 API_EXPORT QString formatVersion(int version);
 API_EXPORT bool copyRecursively(const QString& src, const QString& dst);
+API_EXPORT bool renameBetweenPartitions(const QString& src, const QString& dst);
 API_EXPORT bool isWritableRecursively(const QString& dir);
 
 enum class DistributionType

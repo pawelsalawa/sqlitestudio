@@ -58,6 +58,7 @@ void NewVersionDialog::init()
 void NewVersionDialog::installUpdates()
 {
     UPDATES->update();
+    close();
 }
 
 void NewVersionDialog::showEvent(QShowEvent*)

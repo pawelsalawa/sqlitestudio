@@ -35,11 +35,14 @@
 #include "windows/bugreporthistorywindow.h"
 #include "dialogs/newversiondialog.h"
 #include "dialogs/quitconfirmdialog.h"
+#include "common/widgetcover.h"
 #include <QMdiSubWindow>
 #include <QDebug>
 #include <QStyleFactory>
 #include <QUiLoader>
 #include <QInputDialog>
+#include <QProgressBar>
+#include <QLabel>
 
 CFG_KEYS_DEFINE(MainWindow)
 MainWindow* MainWindow::instance = nullptr;
@@ -117,6 +120,30 @@ void MainWindow::init()
 
     connect(UPDATES, SIGNAL(updatesAvailable(QList<UpdateManager::UpdateEntry>)), this, SLOT(updatesAvailable(QList<UpdateManager::UpdateEntry>)));
     connect(statusField, SIGNAL(linkActivated(QString)), this, SLOT(statusFieldLinkClicked(QString)));
+
+    // Widget cover
+    widgetCover = new WidgetCover(this);
+    widgetCover->setVisible(false);
+
+    updatingBusyBar = new QProgressBar();
+    updatingBusyBar->setRange(0, 100);
+    updatingBusyBar->setTextVisible(true);
+    updatingBusyBar->setValue(0);
+    updatingBusyBar->setFixedWidth(300);
+
+    updatingSubBar = new QProgressBar();
+    updatingSubBar->setRange(0, 100);
+    updatingSubBar->setTextVisible(true);
+    updatingSubBar->setValue(0);
+    updatingSubBar->setFixedWidth(300);
+
+    updatingLabel = new QLabel();
+
+    widgetCover->getContainerLayout()->addWidget(updatingLabel, 0, 0);
+    widgetCover->getContainerLayout()->addWidget(updatingBusyBar, 1, 0);
+    widgetCover->getContainerLayout()->addWidget(updatingSubBar, 2, 0);
+    connect(UPDATES, SIGNAL(updatingProgress(QString,int,int)), this, SLOT(handleUpdatingProgress(QString,int,int)));
+    connect(UPDATES, SIGNAL(updatingError(QString)), this, SLOT(handleUpdatingError()));
 }
 
 void MainWindow::cleanUp()
@@ -695,6 +722,21 @@ void MainWindow::statusFieldLinkClicked(const QString& link)
 void MainWindow::checkForUpdates()
 {
     UPDATES->checkForUpdates();
+}
+
+void MainWindow::handleUpdatingProgress(const QString& jobTitle, int jobPercent, int totalPercent)
+{
+    if (!widgetCover->isVisible())
+        widgetCover->show();
+
+    updatingLabel->setText(jobTitle);
+    updatingBusyBar->setValue(totalPercent);
+    updatingSubBar->setValue(jobPercent);
+}
+
+void MainWindow::handleUpdatingError()
+{
+    widgetCover->hide();
 }
 
 DdlHistoryWindow* MainWindow::openDdlHistory()
