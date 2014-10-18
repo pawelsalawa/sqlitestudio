@@ -68,7 +68,6 @@ void DataWidgetMapper::setSubmitFilter(const SubmitFilter& value)
     submitFilter = value;
 }
 
-
 void DataWidgetMapper::setCurrentIndex(int rowIndex)
 {
     if (!model)

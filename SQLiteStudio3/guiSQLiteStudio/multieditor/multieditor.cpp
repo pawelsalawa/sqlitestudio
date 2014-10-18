@@ -153,7 +153,7 @@ void MultiEditor::setModified()
 void MultiEditor::addEditor(MultiEditorWidget* editorWidget)
 {
     editorWidget->setReadOnly(readOnly);
-    connect(editorWidget, &MultiEditorWidget::valueModified, this, &MultiEditor::invalidateValue);
+    connect(editorWidget, SIGNAL(valueModified()), this, SLOT(invalidateValue()));
     editors << editorWidget;
     tabs->addTab(editorWidget, editorWidget->getTabLabel().replace("&", "&&"));
     editorWidget->installEventFilter(this);

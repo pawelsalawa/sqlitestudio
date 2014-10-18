@@ -98,9 +98,9 @@ void EditorWindow::init()
     resultsModel->setDb(currentDb);
     ui->sqlEdit->setDb(currentDb);
 
-    connect(resultsModel, &SqlQueryModel::executionSuccessful, this, &EditorWindow::executionSuccessful);
-    connect(resultsModel, &SqlQueryModel::executionFailed, this, &EditorWindow::executionFailed);
-    connect(resultsModel, &SqlQueryModel::totalRowsAndPagesAvailable, this, &EditorWindow::totalRowsAndPagesAvailable);
+    connect(resultsModel, SIGNAL(executionSuccessful()), this, SLOT(executionSuccessful()));
+    connect(resultsModel, SIGNAL(executionFailed(QString)), this, SLOT(executionFailed(QString)));
+    connect(resultsModel, SIGNAL(totalRowsAndPagesAvailable()), this, SLOT(totalRowsAndPagesAvailable()));
 
     // SQL history list
     ui->historyList->setModel(CFG->getSqlHistoryModel());

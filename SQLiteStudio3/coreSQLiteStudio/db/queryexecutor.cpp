@@ -39,8 +39,8 @@ QueryExecutor::QueryExecutor(Db* db, const QString& query, QObject *parent) :
     setDb(db);
     setAutoDelete(false);
 
-    connect(this, &QueryExecutor::executionFinished, this, &QueryExecutor::cleanupAfterExecFinished);
-    connect(this, &QueryExecutor::executionFailed, this, &QueryExecutor::cleanupAfterExecFailed);
+    connect(this, SIGNAL(executionFinished(SqlQueryPtr)), this, SLOT(cleanupAfterExecFinished(SqlQueryPtr)));
+    connect(this, SIGNAL(executionFailed(int,QString)), this, SLOT(cleanupAfterExecFailed(int,QString)));
     connect(DBLIST, SIGNAL(dbAboutToBeUnloaded(Db*, DbPlugin*)), this, SLOT(cleanupBeforeDbDestroy(Db*, DbPlugin*)));
 }
 

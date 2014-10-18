@@ -24,7 +24,7 @@ DbManagerImpl::~DbManagerImpl()
 {
     foreach (Db* db, dbList)
     {
-        disconnect(db, &Db::disconnected, this, &DbManagerImpl::dbDisconnectedSlot);
+        disconnect(db, SIGNAL(disconnected()), this, SLOT(dbDisconnectedSlot()));
         if (db->isOpen())
             db->close();
 
@@ -174,8 +174,8 @@ void DbManagerImpl::removeDbInternal(Db* db, bool alsoFromConfig)
     nameToDb.remove(name);
     pathToDb.remove(db->getPath());
     dbList.removeOne(db);
-    disconnect(db, &Db::connected, this, &DbManagerImpl::dbConnectedSlot);
-    disconnect(db, &Db::disconnected, this, &DbManagerImpl::dbDisconnectedSlot);
+    disconnect(db, SIGNAL(connected()), this, SLOT(dbConnectedSlot()));
+    disconnect(db, SIGNAL(disconnected()), this, SLOT(dbDisconnectedSlot()));
 }
 
 QList<Db*> DbManagerImpl::getDbList()
@@ -301,8 +301,8 @@ void DbManagerImpl::addDbInternal(Db* db, bool alsoToConfig)
     dbList << db;
     nameToDb[db->getName()] = db;
     pathToDb[db->getPath()] = db;
-    connect(db, &Db::connected, this, &DbManagerImpl::dbConnectedSlot);
-    connect(db, &Db::disconnected, this, &DbManagerImpl::dbDisconnectedSlot);
+    connect(db, SIGNAL(connected()), this, SLOT(dbConnectedSlot()));
+    connect(db, SIGNAL(disconnected()), this, SLOT(dbDisconnectedSlot()));
 }
 
 QList<Db*> DbManagerImpl::getInvalidDatabases() const

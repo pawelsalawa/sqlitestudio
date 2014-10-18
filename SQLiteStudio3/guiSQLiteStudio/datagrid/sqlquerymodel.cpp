@@ -22,9 +22,9 @@ SqlQueryModel::SqlQueryModel(QObject *parent) :
 {
     queryExecutor = new QueryExecutor();
     queryExecutor->setDataLengthLimit(cellDataLengthLimit);
-    connect(queryExecutor, &QueryExecutor::executionFinished, this, &SqlQueryModel::handleExecFinished);
-    connect(queryExecutor, &QueryExecutor::executionFailed, this, &SqlQueryModel::handleExecFailed);
-    connect(queryExecutor, &QueryExecutor::resultsCountingFinished, this, &SqlQueryModel::resultsCountingFinished);
+    connect(queryExecutor, SIGNAL(executionFinished(SqlQueryPtr)), this, SLOT(handleExecFinished(SqlQueryPtr)));
+    connect(queryExecutor, SIGNAL(executionFailed(int,QString)), this, SLOT(handleExecFailed(int,QString)));
+    connect(queryExecutor, SIGNAL(resultsCountingFinished(quint64,quint64,int)), this, SLOT(resultsCountingFinished(quint64,quint64,int)));
     setItemPrototype(new SqlQueryItem());
 }
 
@@ -1404,6 +1404,23 @@ QVariant SqlQueryModel::headerData(int section, Qt::Orientation orientation, int
 bool SqlQueryModel::isExecutionInProgress() const
 {
     return queryExecutor->isExecutionInProgress();
+}
+
+void SqlQueryModel::loadFullDataForEntireRow(int row)
+{
+    int colCnt = columns.size();
+    SqlQueryItem *item;
+    for (int col = 0; col < colCnt; col++)
+    {
+        item = itemFromIndex(row, col);
+        if (!item)
+            continue;
+
+        if (!item->isLimitedValue())
+            continue;
+
+        item->loadFullData();
+    }
 }
 
 void SqlQueryModel::CommitUpdateQueryBuilder::clear()

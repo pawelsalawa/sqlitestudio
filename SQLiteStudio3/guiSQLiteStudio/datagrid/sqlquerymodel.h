@@ -33,6 +33,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         virtual ~SqlQueryModel();
 
         static void staticInit();
+        static int getCellDataLengthLimit();
 
         QString getQuery() const;
         void setQuery(const QString &value);
@@ -46,7 +47,6 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         QList<SqlQueryModelColumnPtr> getColumns();
         SqlQueryItem* itemFromIndex(const QModelIndex& index) const;
         SqlQueryItem* itemFromIndex(int row, int column) const;
-        static int getCellDataLengthLimit();
         QModelIndexList findIndexes(int role, const QVariant &value, int hits = -1) const;
         QModelIndexList findIndexes(const QModelIndex &start, const QModelIndex& end, int role, const QVariant &value, int hits = -1) const;
         QList<SqlQueryItem*> findItems(int role, const QVariant &value, int hits = -1) const;
@@ -56,6 +56,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         int columnCount(const QModelIndex& parent = QModelIndex()) const;
         QVariant headerData(int section, Qt::Orientation orientation, int role) const;
         bool isExecutionInProgress() const;
+        void loadFullDataForEntireRow(int row);
 
         virtual Features features() const;
 

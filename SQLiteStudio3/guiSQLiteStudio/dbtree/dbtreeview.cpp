@@ -14,7 +14,7 @@ DbTreeView::DbTreeView(QWidget *parent) :
     QTreeView(parent)
 {
     contextMenu = new QMenu(this);
-    connect(this, &DbTreeView::customContextMenuRequested, this, &DbTreeView::showMenu);
+    connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showMenu(QPoint)));
 
     setHeaderHidden(true);
     setContextMenuPolicy(Qt::CustomContextMenu);

@@ -5,7 +5,7 @@
 #include <QPluginLoader>
 #include <QHash>
 
-class PluginManagerImpl : public PluginManager
+class API_EXPORT PluginManagerImpl : public PluginManager
 {
     Q_OBJECT
 

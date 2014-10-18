@@ -7,7 +7,7 @@ class ScriptingPlugin;
 class Plugin;
 class PluginType;
 
-class CollationManagerImpl : public CollationManager
+class API_EXPORT CollationManagerImpl : public CollationManager
 {
     public:
         CollationManagerImpl();

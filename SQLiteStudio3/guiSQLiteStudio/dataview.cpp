@@ -340,6 +340,7 @@ void DataView::goToFormRow(IndexModifier idxMod)
         return;
 
     gridView->setCurrentIndex(newRowIdx);
+    model->loadFullDataForEntireRow(row);
     formView->updateFromGrid();
     updateCurrentFormViewRow();
 }
@@ -723,12 +724,21 @@ void DataView::tabChanged(int newIndex)
     switch (newIndex)
     {
         case 0:
+        {
             formView->copyDataToGrid();
             gridView->setFocus();
             break;
+        }
         case 1:
+        {
+            if (!gridView->currentIndex().isValid() && model->rowCount() > 0)
+                gridView->setCurrentRow(0);
+
+            int row = gridView->currentIndex().row();
+            model->loadFullDataForEntireRow(row);
             formView->updateFromGrid();
             break;
+        }
     }
 }
 

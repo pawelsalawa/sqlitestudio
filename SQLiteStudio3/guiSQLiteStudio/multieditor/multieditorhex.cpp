@@ -11,7 +11,7 @@ MultiEditorHex::MultiEditorHex()
 
     //hexEdit->setTabChangesFocus(true);
 
-    connect(hexEdit, &QHexEdit::dataChanged, this, &MultiEditorHex::modificationChanged);
+    connect(hexEdit, SIGNAL(dataChanged()), this, SLOT(modificationChanged()));
     setFocusProxy(hexEdit);
 }
 

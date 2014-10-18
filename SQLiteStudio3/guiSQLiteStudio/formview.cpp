@@ -29,7 +29,7 @@ void FormView::init()
     {
         return dynamic_cast<MultiEditor*>(w)->isModified();
     });
-    connect(dataMapper, &DataWidgetMapper::currentIndexChanged, this, &FormView::currentIndexChanged);
+    connect(dataMapper, SIGNAL(currentIndexChanged(int)), this, SLOT(currentIndexChanged(int)));
 
     contents = new QWidget();
     QVBoxLayout *contentsLayout = new QVBoxLayout();
@@ -51,13 +51,13 @@ void FormView::setModel(SqlQueryModel* value)
 {
     if (!model.isNull())
     {
-        disconnect(model.data(), &SqlQueryModel::loadingEnded, this, &FormView::dataLoaded);
-        disconnect(value, &SqlQueryModel::commitStatusChanged, this, &FormView::gridCommitRollbackStatusChanged);
+        disconnect(model.data(), SIGNAL(loadingEnded(bool)), this, SLOT(dataLoaded(bool)));
+        disconnect(value, SIGNAL(commitStatusChanged(bool)), this, SLOT(gridCommitRollbackStatusChanged()));
     }
 
     model = value;
-    connect(value, &SqlQueryModel::loadingEnded, this, &FormView::dataLoaded);
-    connect(value, &SqlQueryModel::commitStatusChanged, this, &FormView::gridCommitRollbackStatusChanged);
+    connect(value, SIGNAL(loadingEnded(bool)), this, SLOT(dataLoaded(bool)));
+    connect(value, SIGNAL(commitStatusChanged(bool)), this, SLOT(gridCommitRollbackStatusChanged()));
 }
 
 void FormView::load()

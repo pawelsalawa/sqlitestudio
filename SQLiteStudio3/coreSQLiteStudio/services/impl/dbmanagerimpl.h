@@ -14,7 +14,7 @@
 
 class InvalidDb;
 
-class DbManagerImpl : public DbManager
+class API_EXPORT DbManagerImpl : public DbManager
 {
     Q_OBJECT
 

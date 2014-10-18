@@ -808,49 +808,6 @@ bool UpdateManager::moveDir(const QString& src, const QString& dst, bool content
     }
 
     return true;
-
-//#if defined(Q_OS_LINUX)
-//    return moveDirLinux(src, dst);
-//#elif defined(Q_OS_WIN32)
-//    return moveDirWin(src, dst);
-//#elif defined(Q_OS_MACX)
-//    return moveDirMac(src, dst);
-//#else
-//    qCritical() << "Unknown update platform in UpdateManager::installApplicationComponent()";
-//    return false;
-//#endif
-}
-
-bool UpdateManager::moveDirLinux(const QString& src, const QString& dst)
-{
-    QString msg;
-    if (!execLinux("mv", {src, dst}, &msg))
-    {
-        staticUpdatingFailed(msg);
-        return false;
-    }
-
-    return true;
-}
-
-bool UpdateManager::moveDirMac(const QString &src, const QString &dst)
-{
-    // Currently the implementation is the same as for linux:
-    return moveDirLinux(src, dst);
-}
-
-bool UpdateManager::moveDirWin(const QString& src, const QString& dst)
-{
-#if defined(Q_OS_WIN32)
-    QString msg;
-    if (!execWin("move", {src, dst}, &msg))
-    {
-        staticUpdatingFailed(msg);
-        return false;
-    }
-#endif
-
-    return true;
 }
 
 bool UpdateManager::deleteDir(const QString& path)
@@ -861,49 +818,6 @@ bool UpdateManager::deleteDir(const QString& path)
         staticUpdatingFailed(tr("Could not delete directory %1.").arg(path));
         return false;
     }
-
-    return true;
-
-//#if defined(Q_OS_LINUX)
-//    return deleteDirLinux(path);
-//#elif defined(Q_OS_WIN32)
-//    return deleteDirWin(path);
-//#elif defined(Q_OS_MACX)
-//    return deleteDirMac(path);
-//#else
-//    qCritical() << "Unknown update platform in UpdateManager::installApplicationComponent()";
-//    return false;
-//#endif
-}
-
-bool UpdateManager::deleteDirLinux(const QString& path)
-{
-    QString msg;
-    if (!execLinux("rm", {"-rf", path}, &msg))
-    {
-        qWarning() << "Problem with deleting dir in update:" << msg;
-        return false;
-    }
-
-    return true;
-}
-
-bool UpdateManager::deleteDirMac(const QString &path)
-{
-    // Currently the implementation is the same as for linux:
-    return deleteDirLinux(path);
-}
-
-bool UpdateManager::deleteDirWin(const QString& path)
-{
-#if defined(Q_OS_WIN32)
-    QString msg;
-    if (!execWin("rmdir", {"/S", "/Q", path}, &msg))
-    {
-        qWarning() << "Problem with deleting dir in update:" << msg;
-        return false;
-    }
-#endif
 
     return true;
 }

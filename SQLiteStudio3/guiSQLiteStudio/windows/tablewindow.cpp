@@ -158,8 +158,8 @@ void TableWindow::init()
 
     initActions();
 
-    connect(dataModel, &SqlQueryModel::executionSuccessful, this, &TableWindow::executionSuccessful);
-    connect(dataModel, &SqlQueryModel::executionFailed, this, &TableWindow::executionFailed);
+    connect(dataModel, SIGNAL(executionSuccessful()), this, SLOT(executionSuccessful()));
+    connect(dataModel, SIGNAL(executionFailed(QString)), this, SLOT(executionFailed(QString)));
     connect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(tabChanged(int)));
     connect(this, SIGNAL(modifyStatusChanged()), this, SLOT(updateStructureCommitState()));
     connect(ui->tableNameEdit, SIGNAL(textChanged(QString)), this, SIGNAL(modifyStatusChanged()));
