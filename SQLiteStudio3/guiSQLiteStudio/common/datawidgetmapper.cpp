@@ -84,6 +84,7 @@ void DataWidgetMapper::setCurrentIndex(int rowIndex)
 
     currentIndex = rowIndex;
     loadFromModel();
+    emit currentIndexChanged(rowIndex);
 }
 
 void DataWidgetMapper::toFirst()
