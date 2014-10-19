@@ -1,7 +1,5 @@
 * auto updates
 * tclscripting for win32
-* formatter is broken for subselects (adds ; for subselect)
-* aliased column mentioned in ORDER BY is not replaced with query executor col name
 
 * 3.0 musi importowac ustawienia z 2.1:
   - lista baz
