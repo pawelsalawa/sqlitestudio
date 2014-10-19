@@ -19,6 +19,7 @@
 #include "queryexecutorsteps/queryexecutorreplaceviews.h"
 #include "queryexecutorsteps/queryexecutordetectschemaalter.h"
 #include "queryexecutorsteps/queryexecutorvaluesmode.h"
+#include "queryexecutorsteps/queryexecutorcolumnaliases.h"
 #include "common/unused.h"
 #include <QMutexLocker>
 #include <QDateTime>
@@ -65,6 +66,7 @@ void QueryExecutor::setupExecutionChain()
                    << new QueryExecutorParseQuery("after AddRowIds")
                    << new QueryExecutorColumns()
                    << new QueryExecutorParseQuery("after Columns")
+                   << new QueryExecutorColumnAliases()
                    << new QueryExecutorOrder()
                    << new QueryExecutorWrapDistinctResults()
                    << new QueryExecutorParseQuery("after WrapDistinctResults")
