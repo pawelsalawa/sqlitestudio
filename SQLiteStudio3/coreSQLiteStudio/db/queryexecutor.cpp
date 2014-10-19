@@ -131,6 +131,9 @@ void QueryExecutor::stepFailed(QueryExecutorStep* currentStep)
         return;
     }
 
+    // Clear anything meaningful set up for smart execution - it's not valid anymore and misleads results for simple method
+    context->rowIdColumns.clear();
+
     executeSimpleMethod();
 }
 
