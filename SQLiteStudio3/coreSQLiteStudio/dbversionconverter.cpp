@@ -1236,7 +1236,7 @@ void DbVersionConverter::convertDb()
 {
     resolver = new SchemaResolver(db);
     resolver->setIgnoreSystemObjects(true);
-    QHash<QString, SqliteQueryPtr> parsedObjects = resolver->getAllParsedObjects();
+    StrHash<SqliteQueryPtr> parsedObjects = resolver->getAllParsedObjects();
     for (SqliteQueryPtr query : parsedObjects.values())
     {
         switch (targetDialect)

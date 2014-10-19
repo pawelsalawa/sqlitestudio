@@ -140,8 +140,8 @@ void DbObjectOrganizer::copyOrMoveObjectsToDb(Db* srcDb, const QSet<QString>& ob
 
 void DbObjectOrganizer::processPreparation()
 {
-    QHash<QString, SqliteQueryPtr> allParsedObjects = srcResolver->getAllParsedObjects();
-    QHash<QString, SchemaResolver::ObjectDetails> details = srcResolver->getAllObjectDetails();
+    StrHash<SqliteQueryPtr> allParsedObjects = srcResolver->getAllParsedObjects();
+    StrHash<SchemaResolver::ObjectDetails> details = srcResolver->getAllObjectDetails();
     for (const QString& srcName : srcNames)
     {
         if (!details.contains(srcName))
@@ -573,7 +573,7 @@ QSet<QString> DbObjectOrganizer::resolveReferencedTables(const QString& table, c
     return tables;
 }
 
-void DbObjectOrganizer::collectDiffs(const QHash<QString, SchemaResolver::ObjectDetails>& details)
+void DbObjectOrganizer::collectDiffs(const StrHash<SchemaResolver::ObjectDetails>& details)
 {
     if (srcDb->getVersion() == dstDb->getVersion())
         return;
@@ -612,11 +612,11 @@ QString DbObjectOrganizer::convertDdlToDstVersion(const QString& ddl)
         return versionConverter->convert3To2(ddl);
 }
 
-void DbObjectOrganizer::collectReferencedTables(const QString& table, const QHash<QString, SqliteQueryPtr>& allParsedObjects)
+void DbObjectOrganizer::collectReferencedTables(const QString& table, const StrHash<SqliteQueryPtr>& allParsedObjects)
 {
     QList<SqliteCreateTablePtr> parsedTables;
     SqliteCreateTablePtr parsedTable;
-    for (SqliteQueryPtr query : allParsedObjects)
+    for (SqliteQueryPtr query : allParsedObjects.values())
     {
         parsedTable = query.dynamicCast<SqliteCreateTable>();
         if (parsedTable)
@@ -646,7 +646,7 @@ void DbObjectOrganizer::collectReferencedTriggersForView(const QString& view)
     srcTriggers += srcResolver->getTriggersForView(view).toSet();
 }
 
-void DbObjectOrganizer::findBinaryColumns(const QString& table, const QHash<QString, SqliteQueryPtr>& allParsedObjects)
+void DbObjectOrganizer::findBinaryColumns(const QString& table, const StrHash<SqliteQueryPtr>& allParsedObjects)
 {
     if (!allParsedObjects.contains(table))
     {
