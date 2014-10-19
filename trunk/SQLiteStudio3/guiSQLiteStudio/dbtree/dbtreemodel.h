@@ -5,6 +5,7 @@
 #include "dbtreeitem.h"
 #include "services/config.h"
 #include "guiSQLiteStudio_global.h"
+#include "common/strhash.h"
 #include <QStandardItemModel>
 #include <QObject>
 
@@ -61,14 +62,13 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         void collectExpandedState(QHash<QString, bool>& state, QStandardItem* parentItem = nullptr);
         QStandardItem* refreshSchemaDb(Db* db);
         QList<QStandardItem*> refreshSchemaTables(const QStringList &tables, const QStringList& virtualTables, bool sort);
-        QHash<QString, QList<QStandardItem *> > refreshSchemaTableColumns(const QHash<QString, QStringList> &columns);
-        QMap<QString,QList<QStandardItem*> > refreshSchemaIndexes(const QMap<QString, QStringList> &indexes, bool sort);
-        QMap<QString,QList<QStandardItem*> > refreshSchemaTriggers(const QMap<QString, QStringList> &triggers, bool sort);
+        StrHash<QList<QStandardItem*> > refreshSchemaTableColumns(const StrHash<QStringList>& columns);
+        StrHash<QList<QStandardItem*> > refreshSchemaIndexes(const StrHash<QStringList>& indexes, bool sort);
+        StrHash<QList<QStandardItem*> > refreshSchemaTriggers(const StrHash<QStringList>& triggers, bool sort);
         QList<QStandardItem*> refreshSchemaViews(const QStringList &views, bool sort);
         void populateChildItemsWithDb(QStandardItem* parentItem, Db* db);
-        void refreshSchemaBuild(QStandardItem* dbItem, QList<QStandardItem*> tables, QMap<QString,QList<QStandardItem*> > indexes,
-                                QMap<QString,QList<QStandardItem*> > triggers, QList<QStandardItem*> views, QHash<QString,
-                                QList<QStandardItem *> > allTableColumns);
+        void refreshSchemaBuild(QStandardItem* dbItem, QList<QStandardItem*> tables, StrHash<QList<QStandardItem*> > indexes,
+                                StrHash<QList<QStandardItem*> > triggers, QList<QStandardItem*> views, StrHash<QList<QStandardItem*> > allTableColumns);
         void restoreExpandedState(const QHash<QString, bool>& expandedState, QStandardItem* parentItem);
         QString getToolTip(DbTreeItem *item) const;
         QString getDbToolTip(DbTreeItem *item) const;

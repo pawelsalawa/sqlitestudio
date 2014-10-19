@@ -472,9 +472,9 @@ void DbTreeModel::refreshSchema(Db* db, QStandardItem *item)
     }
 
     QList<QStandardItem*> tableItems = refreshSchemaTables(tables, virtualTables, sort);
-    QHash<QString, QList<QStandardItem *> > allTableColumns = refreshSchemaTableColumns(resolver.getAllTableColumns());
-    QMap<QString,QList<QStandardItem*> > indexItems = refreshSchemaIndexes(resolver.getGroupedIndexes(), sort);
-    QMap<QString,QList<QStandardItem*> > triggerItems = refreshSchemaTriggers(resolver.getGroupedTriggers(), sort);
+    StrHash<QList<QStandardItem*>> allTableColumns = refreshSchemaTableColumns(resolver.getAllTableColumns());
+    StrHash<QList<QStandardItem*>> indexItems = refreshSchemaIndexes(resolver.getGroupedIndexes(), sort);
+    StrHash<QList<QStandardItem*>> triggerItems = refreshSchemaTriggers(resolver.getGroupedTriggers(), sort);
     QList<QStandardItem*> viewItems = refreshSchemaViews(resolver.getViews(), sort);
     refreshSchemaBuild(item, tableItems, indexItems, triggerItems, viewItems, allTableColumns);
     populateChildItemsWithDb(item, db);
@@ -512,57 +512,51 @@ QList<QStandardItem *> DbTreeModel::refreshSchemaTables(const QStringList &table
     return items;
 }
 
-QHash<QString, QList<QStandardItem *> > DbTreeModel::refreshSchemaTableColumns(const QHash<QString, QStringList> &columns)
+StrHash<QList<QStandardItem*>> DbTreeModel::refreshSchemaTableColumns(const StrHash<QStringList> &columns)
 {
     QStringList sortedColumns;
     bool sort = CFG_UI.General.SortColumns.get();
-    QHash<QString, QList<QStandardItem *> > items;
-    QHashIterator<QString,QStringList> it(columns);
-    while (it.hasNext())
+    StrHash<QList<QStandardItem*>> items;
+    for (const QString& key : columns.keys())
     {
-        it.next();
-        sortedColumns = it.value();
+        sortedColumns = columns[key];
         if (sort)
             qSort(sortedColumns);
 
-        foreach (const QString& column, sortedColumns)
-            items[it.key()] += DbTreeItemFactory::createColumn(column, this);
+        for (const QString& column : sortedColumns)
+            items[key] += DbTreeItemFactory::createColumn(column, this);
     }
     return items;
 }
 
-QMap<QString, QList<QStandardItem *> > DbTreeModel::refreshSchemaIndexes(const QMap<QString,QStringList> &indexes, bool sort)
+StrHash<QList<QStandardItem *> > DbTreeModel::refreshSchemaIndexes(const StrHash<QStringList> &indexes, bool sort)
 {
-    QMap<QString, QList<QStandardItem *> > items;
+    StrHash<QList<QStandardItem *> > items;
     QStringList sortedIndexes;
-    QMapIterator<QString,QStringList> it(indexes);
-    while (it.hasNext())
+    for (const QString& key : indexes.keys())
     {
-        it.next();
-        sortedIndexes = it.value();
+        sortedIndexes = indexes[key];
         if (sort)
             qSort(sortedIndexes);
 
-        foreach (const QString& index, sortedIndexes)
-            items[it.key()] += DbTreeItemFactory::createIndex(index, this);
+        for (const QString& index : sortedIndexes)
+            items[key] += DbTreeItemFactory::createIndex(index, this);
     }
     return items;
 }
 
-QMap<QString, QList<QStandardItem *> > DbTreeModel::refreshSchemaTriggers(const QMap<QString,QStringList> &triggers, bool sort)
+StrHash<QList<QStandardItem*>> DbTreeModel::refreshSchemaTriggers(const StrHash<QStringList> &triggers, bool sort)
 {
-    QMap<QString, QList<QStandardItem *> > items;
+    StrHash<QList<QStandardItem*>> items;
     QStringList sortedTriggers;
-    QMapIterator<QString,QStringList> it(triggers);
-    while (it.hasNext())
+    for (const QString& key : triggers.keys())
     {
-        it.next();
-        sortedTriggers = it.value();
+        sortedTriggers = triggers[key];
         if (sort)
             qSort(sortedTriggers);
 
-        foreach (const QString& trigger, sortedTriggers)
-            items[it.key()] += DbTreeItemFactory::createTrigger(trigger, this);
+        for (const QString& trigger : sortedTriggers)
+            items[key] += DbTreeItemFactory::createTrigger(trigger, this);
     }
     return items;
 }
@@ -591,9 +585,12 @@ void DbTreeModel::populateChildItemsWithDb(QStandardItem *parentItem, Db* db)
     }
 }
 
-void DbTreeModel::refreshSchemaBuild(QStandardItem *dbItem, QList<QStandardItem *> tables, QMap<QString,QList<QStandardItem*> > indexes,
-                                     QMap<QString, QList<QStandardItem *> > triggers, QList<QStandardItem *> views, QHash<QString,
-                                     QList<QStandardItem *> > allTableColumns)
+void DbTreeModel::refreshSchemaBuild(QStandardItem *dbItem,
+                                     QList<QStandardItem*> tables,
+                                     StrHash<QList<QStandardItem*> > indexes,
+                                     StrHash<QList<QStandardItem*> > triggers,
+                                     QList<QStandardItem*> views,
+                                     StrHash<QList<QStandardItem*> > allTableColumns)
 {
     DbTreeItem* tablesItem = DbTreeItemFactory::createTables(this);
     DbTreeItem* viewsItem = DbTreeItemFactory::createViews(this);

@@ -412,7 +412,7 @@ bool ExportWorker::exportTableInternal(const QString& database, const QString& t
 QList<ExportManager::ExportObjectPtr> ExportWorker::collectDbObjects(QString* errorMessage)
 {
     SchemaResolver resolver(db);
-    QHash<QString, SchemaResolver::ObjectDetails> allDetails = resolver.getAllObjectDetails();
+    StrHash<SchemaResolver::ObjectDetails> allDetails = resolver.getAllObjectDetails();
 
     QList<ExportManager::ExportObjectPtr> objectsToExport;
     ExportManager::ExportObjectPtr exportObj;

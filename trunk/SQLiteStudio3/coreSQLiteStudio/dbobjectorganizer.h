@@ -87,13 +87,13 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable, public In
         bool copyTriggerToDb(const QString& trigger);
         bool copySimpleObjectToDb(const QString& name, const QString& errorMessage);
         QSet<QString> resolveReferencedTables(const QString& table, const QList<SqliteCreateTablePtr>& parsedTables);
-        void collectDiffs(const QHash<QString, SchemaResolver::ObjectDetails>& details);
+        void collectDiffs(const StrHash<SchemaResolver::ObjectDetails>& details);
         QString convertDdlToDstVersion(const QString& ddl);
-        void collectReferencedTables(const QString& table, const QHash<QString, SqliteQueryPtr>& allParsedObjects);
+        void collectReferencedTables(const QString& table, const StrHash<SqliteQueryPtr>& allParsedObjects);
         void collectReferencedIndexes(const QString& table);
         void collectReferencedTriggersForTable(const QString& table);
         void collectReferencedTriggersForView(const QString& view);
-        void findBinaryColumns(const QString& table, const QHash<QString, SqliteQueryPtr>& allParsedObjects);
+        void findBinaryColumns(const QString& table, const StrHash<SqliteQueryPtr>& allParsedObjects);
         bool copyDataAsMiddleware(const QString& table);
         bool copyDataUsingAttach(const QString& table, const QString& attachName);
         void setupSqlite2Helper(SqlQueryPtr query, const QString& table, const QStringList& colNames);

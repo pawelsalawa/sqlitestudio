@@ -30,7 +30,7 @@ class StrHash
             lowerCaseHash.insert(key.toLower(), key);
         }
 
-        bool contains(const QString& key, Qt::CaseSensitivity cs = Qt::CaseSensitive)
+        bool contains(const QString& key, Qt::CaseSensitivity cs = Qt::CaseSensitive) const
         {
             if (cs == Qt::CaseSensitive)
                 return hash.contains(key);

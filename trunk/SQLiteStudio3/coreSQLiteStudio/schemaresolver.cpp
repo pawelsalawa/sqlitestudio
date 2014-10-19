@@ -53,22 +53,22 @@ QStringList SchemaResolver::getViews(const QString &database)
     return getObjects(database, "view");
 }
 
-QMap<QString, QStringList> SchemaResolver::getGroupedIndexes(const QString &database)
+StrHash<QStringList> SchemaResolver::getGroupedIndexes(const QString &database)
 {
     QStringList allIndexes = getIndexes(database);
     return getGroupedObjects(database, allIndexes, SqliteQueryType::CreateIndex);
 }
 
-QMap<QString, QStringList> SchemaResolver::getGroupedTriggers(const QString &database)
+StrHash<QStringList> SchemaResolver::getGroupedTriggers(const QString &database)
 {
     QStringList allTriggers = getTriggers(database);
     return getGroupedObjects(database, allTriggers, SqliteQueryType::CreateTrigger);
 }
 
-QMap<QString, QStringList> SchemaResolver::getGroupedObjects(const QString &database, const QStringList &inputList, SqliteQueryType type)
+StrHash< QStringList> SchemaResolver::getGroupedObjects(const QString &database, const QStringList &inputList, SqliteQueryType type)
 {
     QString strType = sqliteQueryTypeToString(type);
-    QMap<QString, QStringList> groupedTriggers;
+    StrHash< QStringList> groupedTriggers;
 
     SqliteQueryPtr parsedQuery;
     SqliteTableRelatedDdlPtr tableRelatedDdl;
@@ -187,9 +187,9 @@ QList<DataType> SchemaResolver::getTableColumnDataTypes(const QString& database,
     return dataTypes;
 }
 
-QHash<QString, QStringList> SchemaResolver::getAllTableColumns(const QString &database)
+StrHash<QStringList> SchemaResolver::getAllTableColumns(const QString &database)
 {
-    QHash<QString, QStringList> tableColumns;
+    StrHash< QStringList> tableColumns;
     foreach (QString table, getTables(database))
         tableColumns[table] = getTableColumns(database, table);
 
@@ -337,52 +337,52 @@ SqliteQueryPtr SchemaResolver::getParsedObject(const QString &database, const QS
     return getParsedDdl(ddl);
 }
 
-QHash<QString, SqliteQueryPtr> SchemaResolver::getAllParsedObjects()
+StrHash< SqliteQueryPtr> SchemaResolver::getAllParsedObjects()
 {
     return getAllParsedObjects("main");
 }
 
-QHash<QString, SqliteQueryPtr> SchemaResolver::getAllParsedObjects(const QString& database)
+StrHash< SqliteQueryPtr> SchemaResolver::getAllParsedObjects(const QString& database)
 {
     return getAllParsedObjectsForType<SqliteQuery>(database, QString::null);
 }
 
-QHash<QString, SqliteCreateTablePtr> SchemaResolver::getAllParsedTables()
+StrHash< SqliteCreateTablePtr> SchemaResolver::getAllParsedTables()
 {
     return getAllParsedTables("main");
 }
 
-QHash<QString, SqliteCreateTablePtr> SchemaResolver::getAllParsedTables(const QString& database)
+StrHash< SqliteCreateTablePtr> SchemaResolver::getAllParsedTables(const QString& database)
 {
     return getAllParsedObjectsForType<SqliteCreateTable>(database, "table");
 }
 
-QHash<QString, SqliteCreateIndexPtr> SchemaResolver::getAllParsedIndexes()
+StrHash< SqliteCreateIndexPtr> SchemaResolver::getAllParsedIndexes()
 {
     return getAllParsedIndexes("main");
 }
 
-QHash<QString, SqliteCreateIndexPtr> SchemaResolver::getAllParsedIndexes(const QString& database)
+StrHash< SqliteCreateIndexPtr> SchemaResolver::getAllParsedIndexes(const QString& database)
 {
     return getAllParsedObjectsForType<SqliteCreateIndex>(database, "index");
 }
 
-QHash<QString, SqliteCreateTriggerPtr> SchemaResolver::getAllParsedTriggers()
+StrHash< SqliteCreateTriggerPtr> SchemaResolver::getAllParsedTriggers()
 {
     return getAllParsedTriggers("main");
 }
 
-QHash<QString, SqliteCreateTriggerPtr> SchemaResolver::getAllParsedTriggers(const QString& database)
+StrHash< SqliteCreateTriggerPtr> SchemaResolver::getAllParsedTriggers(const QString& database)
 {
     return getAllParsedObjectsForType<SqliteCreateTrigger>(database, "trigger");
 }
 
-QHash<QString, SqliteCreateViewPtr> SchemaResolver::getAllParsedViews()
+StrHash< SqliteCreateViewPtr> SchemaResolver::getAllParsedViews()
 {
     return getAllParsedViews("main");
 }
 
-QHash<QString, SqliteCreateViewPtr> SchemaResolver::getAllParsedViews(const QString& database)
+StrHash< SqliteCreateViewPtr> SchemaResolver::getAllParsedViews(const QString& database)
 {
     return getAllParsedObjectsForType<SqliteCreateView>(database, "view");
 }
@@ -486,7 +486,7 @@ QStringList SchemaResolver::getFkReferencingTables(const QString& database, cons
         return QStringList();
 
     // Get all tables
-    QHash<QString, SqliteCreateTablePtr> parsedTables = getAllParsedTables(database);
+    StrHash<SqliteCreateTablePtr> parsedTables = getAllParsedTables(database);
 
     // Exclude queried table from the list
     parsedTables.remove(table);
@@ -593,14 +593,14 @@ QStringList SchemaResolver::getViewsForTable(const QString& table)
     return getViewsForTable("main", table);
 }
 
-QHash<QString, SchemaResolver::ObjectDetails> SchemaResolver::getAllObjectDetails()
+StrHash<SchemaResolver::ObjectDetails> SchemaResolver::getAllObjectDetails()
 {
     return getAllObjectDetails("main");
 }
 
-QHash<QString, SchemaResolver::ObjectDetails> SchemaResolver::getAllObjectDetails(const QString& database)
+StrHash<SchemaResolver::ObjectDetails> SchemaResolver::getAllObjectDetails(const QString& database)
 {
-    QHash<QString, ObjectDetails> details;
+    StrHash< ObjectDetails> details;
     ObjectDetails detail;
     QString type;
 

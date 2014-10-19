@@ -13,6 +13,7 @@
 #include "db/sqlresultsrow.h"
 #include "db/sqlquery.h"
 #include "db/db.h"
+#include "common/strhash.h"
 #include <QStringList>
 
 class SqliteCreateTable;
@@ -44,8 +45,8 @@ class API_EXPORT SchemaResolver
         QStringList getIndexes(const QString& database = QString::null);
         QStringList getTriggers(const QString& database = QString::null);
         QStringList getViews(const QString& database = QString::null);
-        QMap<QString, QStringList> getGroupedIndexes(const QString& database = QString::null);
-        QMap<QString, QStringList> getGroupedTriggers(const QString& database = QString::null);
+        StrHash<QStringList> getGroupedIndexes(const QString& database = QString::null);
+        StrHash<QStringList> getGroupedTriggers(const QString& database = QString::null);
         QSet<QString> getDatabases();
         QStringList getObjects(const QString& type);
         QStringList getObjects(const QString& database, const QString& type);
@@ -65,8 +66,8 @@ class API_EXPORT SchemaResolver
         QStringList getViewsForTable(const QString& database, const QString& table);
         QStringList getViewsForTable(const QString& table);
 
-        QHash<QString,ObjectDetails> getAllObjectDetails();
-        QHash<QString,ObjectDetails> getAllObjectDetails(const QString& database);
+        StrHash<ObjectDetails> getAllObjectDetails();
+        StrHash<ObjectDetails> getAllObjectDetails(const QString& database);
 
         QList<SqliteCreateIndexPtr> getParsedIndexesForTable(const QString& database, const QString& table);
         QList<SqliteCreateIndexPtr> getParsedIndexesForTable(const QString& table);
@@ -111,7 +112,7 @@ class API_EXPORT SchemaResolver
         QList<DataType> getTableColumnDataTypes(const QString& table, int expectedNumberOfTypes = -1);
         QList<DataType> getTableColumnDataTypes(const QString& database, const QString& table, int expectedNumberOfTypes = -1);
 
-        QHash<QString, QStringList> getAllTableColumns(const QString& database = QString::null);
+        StrHash<QStringList> getAllTableColumns(const QString& database = QString::null);
 
         QStringList getViewColumns(const QString& view);
         QStringList getViewColumns(const QString& database, const QString& view);
@@ -139,16 +140,16 @@ class API_EXPORT SchemaResolver
          */
         SqliteQueryPtr getParsedObject(const QString& database, const QString& name, ObjectType type);
 
-        QHash<QString,SqliteQueryPtr> getAllParsedObjects();
-        QHash<QString,SqliteQueryPtr> getAllParsedObjects(const QString& database);
-        QHash<QString,SqliteCreateTablePtr> getAllParsedTables();
-        QHash<QString,SqliteCreateTablePtr> getAllParsedTables(const QString& database);
-        QHash<QString,SqliteCreateIndexPtr> getAllParsedIndexes();
-        QHash<QString,SqliteCreateIndexPtr> getAllParsedIndexes(const QString& database);
-        QHash<QString,SqliteCreateTriggerPtr> getAllParsedTriggers();
-        QHash<QString,SqliteCreateTriggerPtr> getAllParsedTriggers(const QString& database);
-        QHash<QString,SqliteCreateViewPtr> getAllParsedViews();
-        QHash<QString,SqliteCreateViewPtr> getAllParsedViews(const QString& database);
+        StrHash<SqliteQueryPtr> getAllParsedObjects();
+        StrHash<SqliteQueryPtr> getAllParsedObjects(const QString& database);
+        StrHash<SqliteCreateTablePtr> getAllParsedTables();
+        StrHash<SqliteCreateTablePtr> getAllParsedTables(const QString& database);
+        StrHash<SqliteCreateIndexPtr> getAllParsedIndexes();
+        StrHash<SqliteCreateIndexPtr> getAllParsedIndexes(const QString& database);
+        StrHash<SqliteCreateTriggerPtr> getAllParsedTriggers();
+        StrHash<SqliteCreateTriggerPtr> getAllParsedTriggers(const QString& database);
+        StrHash<SqliteCreateViewPtr> getAllParsedViews();
+        StrHash<SqliteCreateViewPtr> getAllParsedViews(const QString& database);
 
         static QString getSqliteMasterDdl(bool temp = false);
         static QStringList getFkReferencingTables(const QString& table, const QList<SqliteCreateTablePtr>& allParsedTables);
@@ -167,13 +168,13 @@ class API_EXPORT SchemaResolver
     private:
         SqliteQueryPtr getParsedDdl(const QString& ddl);
         SqliteCreateTablePtr virtualTableAsRegularTable(const QString& database, const QString& table);
-        QMap<QString, QStringList> getGroupedObjects(const QString &database, const QStringList& inputList, SqliteQueryType type);
+        StrHash< QStringList> getGroupedObjects(const QString &database, const QStringList& inputList, SqliteQueryType type);
         bool isFilteredOut(const QString& value, const QString& type);
         void filterSystemIndexes(QStringList& indexes);
         QList<SqliteCreateTriggerPtr> getParsedTriggersForTableOrView(const QString& database, const QString& tableOrView, bool includeContentReferences, bool table);
 
         template <class T>
-        QHash<QString,QSharedPointer<T>> getAllParsedObjectsForType(const QString& database, const QString& type);
+        StrHash<QSharedPointer<T>> getAllParsedObjectsForType(const QString& database, const QString& type);
 
         Db* db = nullptr;
         Parser* parser;
@@ -182,9 +183,9 @@ class API_EXPORT SchemaResolver
 };
 
 template <class T>
-QHash<QString,QSharedPointer<T>> SchemaResolver::getAllParsedObjectsForType(const QString& database, const QString& type)
+StrHash<QSharedPointer<T>> SchemaResolver::getAllParsedObjectsForType(const QString& database, const QString& type)
 {
-     QHash<QString, QSharedPointer<T>> parsedObjects;
+     StrHash< QSharedPointer<T>> parsedObjects;
 
      QString dbName = getPrefixDb(database, db->getDialect());
 
