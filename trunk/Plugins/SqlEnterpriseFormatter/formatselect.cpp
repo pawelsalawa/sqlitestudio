@@ -41,7 +41,8 @@ void FormatSelect::formatInternal()
         withStatement(core);
     }
 
-    withSemicolon();
+    if (select->parentStatement() == nullptr) // it's not a subselect, it's top-level select
+        withSemicolon();
 }
 
 FormatSelectCore::FormatSelectCore(SqliteSelect::Core *core) :
