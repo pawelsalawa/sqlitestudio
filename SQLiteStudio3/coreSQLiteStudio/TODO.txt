@@ -1,6 +1,3 @@
-* auto updates
-* tclscripting for win32
-
 * 3.0 musi importowac ustawienia z 2.1:
   - lista baz
   - funkcje sql

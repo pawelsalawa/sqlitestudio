@@ -108,32 +108,19 @@ macx: {
 }
 
 win32: {
-    # Find tclsh
-    TCLSH = $$system(echo "puts 1" | tclsh)
-    !contains(TCLSH, 1): {
-        error("Could not find tclsh executable. ScriptingTcl plugin requires it to find out all Tcl libraries and headers. Make tclsh available in PATH.")
-    }
-    TCLSH = $$system(where tclsh)
-
-    # Find its version
-    TCL_VERSION = $$system(echo puts [info tclversion] | tclsh)
-    #message("Found tclsh: $$TCLSH (version: $$TCL_VERSION)")
-
-    # Find tclConfig.sh
-    TCL_CONFIG_DIR = $$system(echo puts [info library] | tclsh)
-    TCL_CONFIG = $$TCL_CONFIG_DIR/tclConfig.sh
-    TCL_CONFIG = $$replace(TCL_CONFIG, /, \\)
-
-    # Define headers dir
-    eval($$system(type $$TCL_CONFIG | findstr /c:TCL_INCLUDE_SPEC))
-    tcl_includes = $$replace(TCL_INCLUDE_SPEC, -I, "")
-    INCLUDEPATH += $$tcl_includes
-    DEPENDPATH += $$tcl_includes
-
-    # Find static library
-    eval($$system(type $$TCL_CONFIG | findstr /c:TCL_LIB_SPEC))
-    eval(LIBS += $$TCL_LIB_SPEC)
-    #LIBS += -LC:/Tcl/bin -LC:/Tcl/lib -ltcl86
+    # Under Windows we don't do the research. We just assume we have everything in the lib/ and include/
+    # directories, which contain all other dependencies for SQLiteStudio. Get them from any Tcl installation you want.
+    # Lib files required for compilation of this plugin:
+    # - tcl86.lib
+    # - tcl86.dll
+    # Include files required for compilation:
+    # - tcl.h
+    # - tclDecls.h
+    # - tclPlatDecls.h
+    # Lib files required for the runtime in applications directory:
+    # - tcl86.dll
+    # The "86" part may vary, depending on Tcl version you're linking with.
+    LIBS += -ltcl86
 }
 
 RESOURCES += \

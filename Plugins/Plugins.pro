@@ -15,9 +15,5 @@ SUBDIRS += \
     RegExpImport \
     Printing \
     SqlEnterpriseFormatter \
-    ConfigMigration
-
-!win32: {
-    SUBDIRS += \
-        ScriptingTcl
-}
+    ConfigMigration \
+    ScriptingTcl
