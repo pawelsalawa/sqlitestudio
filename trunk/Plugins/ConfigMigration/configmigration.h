@@ -4,6 +4,10 @@
 #include "configmigration_global.h"
 #include "plugins/generalpurposeplugin.h"
 #include "plugins/genericplugin.h"
+#include "configmigrationitem.h"
+#include <QList>
+
+class Db;
 
 class CONFIGMIGRATIONSHARED_EXPORT ConfigMigration : public GenericPlugin, public GeneralPurposePlugin
 {
@@ -16,11 +20,17 @@ class CONFIGMIGRATIONSHARED_EXPORT ConfigMigration : public GenericPlugin, publi
         bool init();
         void deinit();
 
+        QList<ConfigMigrationItem*> getItemsToMigrate() const;
+
     private:
         QString findOldConfig();
         bool checkOldDir(const QString& dir, QString& output);
+        QList<ConfigMigrationItem*> findItemsToMigrate();
 
         static const constexpr char* ACTION_LINK = "migrateOldConfig";
+
+        Db* db = nullptr;
+        QList<ConfigMigrationItem*> itemsToMigrate;
 
     private slots:
         void linkActivated(const QString& link);

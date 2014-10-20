@@ -1,14 +1,14 @@
 #ifndef CONFIGMIGRATIONITEM_H
 #define CONFIGMIGRATIONITEM_H
 
-struct
+struct ConfigMigrationItem
 {
     enum class Type
     {
-        COLORS,
         SQL_HISTORY,
         DATABASES,
-        FUNCTIONS
+        FUNCTION_LIST,
+        BUG_REPORTS
     };
 
     QString label;
