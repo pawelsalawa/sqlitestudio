@@ -26,6 +26,7 @@
 - expose query executor steps chain to plugins
 - complete plugin for "Search in database(s)"
 - complete plugin for compare tables/databases
+- executing queries with bind parameters
 
 CLI:
 - plugin management commands

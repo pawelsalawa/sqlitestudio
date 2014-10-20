@@ -3,6 +3,7 @@
 #include "sqlitestudio.h"
 #include "mainwindow.h"
 #include "statusfield.h"
+#include "configmigrationwizard.h"
 #include <QCoreApplication>
 #include <QDir>
 #include <QFileInfo>
@@ -14,6 +15,8 @@ ConfigMigration::ConfigMigration()
 
 bool ConfigMigration::init()
 {
+    Q_INIT_RESOURCE(configmigration);
+
     QString oldCfg = findOldConfig();
     if (!oldCfg.isNull())
     {
@@ -25,6 +28,12 @@ bool ConfigMigration::init()
     }
 
     return true;
+}
+
+void ConfigMigration::deinit()
+{
+    Q_CLEANUP_RESOURCE(configmigration);
+    GenericPlugin::deinit();
 }
 
 QString ConfigMigration::findOldConfig()
@@ -93,5 +102,6 @@ void ConfigMigration::linkActivated(const QString &link)
     if (link != ACTION_LINK)
         return;
 
-    qDebug() << "jest";
+    ConfigMigrationWizard wizard(MAINWINDOW);
+    wizard.exec();
 }
