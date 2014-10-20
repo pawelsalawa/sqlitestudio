@@ -95,6 +95,7 @@ int main(int argc, char *argv[])
     MainWindow::getInstance();
 
     SQLITESTUDIO->initPlugins();
+    IconManager::getInstance()->rescanResources();
 
     MainWindow::getInstance()->restoreSession();
     MainWindow::getInstance()->show();

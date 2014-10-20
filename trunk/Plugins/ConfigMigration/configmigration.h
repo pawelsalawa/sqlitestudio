@@ -14,6 +14,7 @@ class CONFIGMIGRATIONSHARED_EXPORT ConfigMigration : public GenericPlugin, publi
         ConfigMigration();
 
         bool init();
+        void deinit();
 
     private:
         QString findOldConfig();

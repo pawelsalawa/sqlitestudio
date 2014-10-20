@@ -74,7 +74,7 @@ void IconManager::rescanResources(const QString& pluginName)
     }
 
     for (const QString& name : resourceIcons)
-        movies.remove(name);
+        icons.remove(name);
 
     resourceMovies.clear();
     resourceIcons.clear();

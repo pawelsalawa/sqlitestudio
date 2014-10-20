@@ -13,10 +13,19 @@ TEMPLATE = lib
 
 DEFINES += CONFIGMIGRATION_LIBRARY
 
-SOURCES += configmigration.cpp
+SOURCES += configmigration.cpp \
+    configmigrationwizard.cpp
 
 HEADERS += configmigration.h\
-        configmigration_global.h
+        configmigration_global.h \
+    configmigrationwizard.h \
+    configmigrationitem.h
 
 OTHER_FILES += \
     configmigration.json
+
+FORMS += \
+    configmigrationwizard.ui
+
+RESOURCES += \
+    configmigration.qrc

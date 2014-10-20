@@ -259,9 +259,11 @@ class GUI_API_EXPORT IconManager : public QObject
 
     private slots:
         void rescanResources(Plugin* plugin, PluginType* pluginType);
-        void rescanResources(const QString& pluginName);
         void pluginsAboutToMassUnload();
         void pluginsInitiallyLoaded();
+
+    public slots:
+        void rescanResources(const QString& pluginName = QString());
 };
 
 #define ICONMANAGER IconManager::getInstance()
