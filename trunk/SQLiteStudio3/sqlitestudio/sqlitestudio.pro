@@ -43,4 +43,4 @@ macx: {
 
 OTHER_FILES += \
     windows.rc \
-    windows.manifest
+    SQLiteStudio.exe.manifest
