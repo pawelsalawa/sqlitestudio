@@ -7,18 +7,21 @@ namespace Ui {
 class ConfigMigrationWizard;
 }
 
+class ConfigMigration;
+
 class ConfigMigrationWizard : public QWizard
 {
         Q_OBJECT
 
     public:
-        explicit ConfigMigrationWizard(QWidget *parent = 0);
+        ConfigMigrationWizard(QWidget *parent, ConfigMigration* cfgMigration);
         ~ConfigMigrationWizard();
 
     private:
         void init();
 
         Ui::ConfigMigrationWizard *ui;
+        ConfigMigration* cfgMigration = nullptr;
 };
 
 #endif // CONFIGMIGRATIONWIZARD_H

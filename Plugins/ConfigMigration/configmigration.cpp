@@ -4,6 +4,7 @@
 #include "mainwindow.h"
 #include "statusfield.h"
 #include "configmigrationwizard.h"
+#include "db/dbsqlite3.h"
 #include <QCoreApplication>
 #include <QDir>
 #include <QFileInfo>
@@ -20,11 +21,17 @@ bool ConfigMigration::init()
     QString oldCfg = findOldConfig();
     if (!oldCfg.isNull())
     {
-        notifyInfo(tr("A configuration from old SQLiteStudio 2.x.x has been detected. "
-                      "Would you like to migrate old settings into the current version? "
-                      "<a href=\"%1\">Click here to do that</a>.").arg(ACTION_LINK));
+        db = new DbSqlite3("Old SQLiteStudio settings", oldCfg, {{DB_PURE_INIT, true}});
+        if (db->open())
+        {
+            itemsToMigrate = findItemsToMigrate();
+            notifyInfo(tr("A configuration from old SQLiteStudio 2.x.x has been detected. "
+                          "Would you like to migrate old settings into the current version? "
+                          "<a href=\"%1\">Click here to do that</a>.").arg(ACTION_LINK));
 
-        connect(MAINWINDOW->getStatusField(), SIGNAL(linkActivated(QString)), this, SLOT(linkActivated(QString)));
+            connect(MAINWINDOW->getStatusField(), SIGNAL(linkActivated(QString)), this, SLOT(linkActivated(QString)));
+            db->close();
+        }
     }
 
     return true;
@@ -33,6 +40,12 @@ bool ConfigMigration::init()
 void ConfigMigration::deinit()
 {
     Q_CLEANUP_RESOURCE(configmigration);
+    safe_delete(db);
+
+    for (ConfigMigrationItem* item : itemsToMigrate)
+        delete item;
+
+    itemsToMigrate.clear();
     GenericPlugin::deinit();
 }
 
@@ -97,11 +110,65 @@ bool ConfigMigration::checkOldDir(const QString &dir, QString &output)
     return false;
 }
 
+QList<ConfigMigrationItem*> ConfigMigration::findItemsToMigrate()
+{
+    static_qstring(bugsHistoryQuery, "SELECT count(*) FROM bugs");
+    static_qstring(dbListQuery, "SELECT count(*) FROM dblist");
+    static_qstring(funcListQuery, "SELECT count(*) FROM functions");
+    static_qstring(sqlHistoryQuery, "SELECT count(*) FROM history");
+
+    ConfigMigrationItem* item;
+    QList<ConfigMigrationItem*> results;
+
+    int bugReports = db->exec(bugsHistoryQuery)->getSingleCell().toInt();
+    if (bugReports > 0)
+    {
+        item = new ConfigMigrationItem;
+        item->type = ConfigMigrationItem::Type::BUG_REPORTS;
+        item->label = tr("Bug reports history (%1)").arg(bugReports);
+        results << item;
+    }
+
+    int dbCount = db->exec(dbListQuery)->getSingleCell().toInt();
+    if (dbCount > 0)
+    {
+        item = new ConfigMigrationItem;
+        item->type = ConfigMigrationItem::Type::DATABASES;
+        item->label = tr("Database list (%1)").arg(dbCount);
+        results << item;
+    }
+
+    int funcCount = db->exec(funcListQuery)->getSingleCell().toInt();
+    if (funcCount > 0)
+    {
+        item = new ConfigMigrationItem;
+        item->type = ConfigMigrationItem::Type::FUNCTION_LIST;
+        item->label = tr("Custom SQL functions (%1)").arg(funcCount);
+        results << item;
+    }
+
+    int sqlHistory = db->exec(sqlHistoryQuery)->getSingleCell().toInt();
+    if (sqlHistory > 0)
+    {
+        item = new ConfigMigrationItem;
+        item->type = ConfigMigrationItem::Type::SQL_HISTORY;
+        item->label = tr("SQL queries history (%1)").arg(sqlHistory);
+        results << item;
+    }
+
+    return results;
+}
+
+QList<ConfigMigrationItem*> ConfigMigration::getItemsToMigrate() const
+{
+    return itemsToMigrate;
+}
+
 void ConfigMigration::linkActivated(const QString &link)
 {
     if (link != ACTION_LINK)
         return;
 
-    ConfigMigrationWizard wizard(MAINWINDOW);
+    ConfigMigrationWizard wizard(MAINWINDOW, this);
     wizard.exec();
 }

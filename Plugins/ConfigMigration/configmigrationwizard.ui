@@ -6,12 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
-    <height>411</height>
+    <width>392</width>
+    <height>282</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Configuration migration</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QTreeView::item {margin-top: 5px;}</string>
   </property>
   <property name="options">
    <set>QWizard::NoDefaultButton</set>
@@ -26,6 +29,18 @@
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="QTreeWidget" name="itemsTree">
+      <property name="indentation">
+       <number>0</number>
+      </property>
+      <property name="rootIsDecorated">
+       <bool>false</bool>
+      </property>
+      <property name="itemsExpandable">
+       <bool>false</bool>
+      </property>
+      <property name="expandsOnDoubleClick">
+       <bool>false</bool>
+      </property>
       <attribute name="headerVisible">
        <bool>false</bool>
       </attribute>
