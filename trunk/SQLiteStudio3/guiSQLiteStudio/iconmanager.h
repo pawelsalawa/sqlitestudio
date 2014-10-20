@@ -18,6 +18,7 @@ class GUI_API_EXPORT IconManager : public QObject
 
     public:
         DEF_ICONS(Icons, iconEnums,
+            DEF_ICON(ABORT24,                           "abort24")
             DEF_ICON(ACT_ABORT,                         "act_abort")
             DEF_ICON(ACT_CLEAR,                         "act_clear")
             DEF_ICON(ACT_COPY,                          "act_copy")

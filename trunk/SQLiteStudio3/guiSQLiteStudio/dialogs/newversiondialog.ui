@@ -104,6 +104,12 @@
       <iconset resource="../icons.qrc">
        <normaloff>:/icons/img/get_update.png</normaloff>:/icons/img/get_update.png</iconset>
      </property>
+     <property name="iconSize">
+      <size>
+       <width>24</width>
+       <height>24</height>
+      </size>
+     </property>
      <property name="description">
       <string>The update will be automatically downloaded and installed. This will also restart application at the end.</string>
      </property>
@@ -116,10 +122,16 @@
      </property>
      <property name="icon">
       <iconset resource="../icons.qrc">
-       <normaloff>:/icons/img/act_abort.png</normaloff>:/icons/img/act_abort.png</iconset>
+       <normaloff>:/icons/img/abort24.png</normaloff>:/icons/img/abort24.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>24</width>
+       <height>24</height>
+      </size>
      </property>
      <property name="description">
-      <string>Skip the update and close this window.</string>
+      <string>Don't install the update and close this window.</string>
      </property>
     </widget>
    </item>
