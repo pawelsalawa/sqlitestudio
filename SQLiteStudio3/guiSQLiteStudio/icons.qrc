@@ -187,5 +187,6 @@
         <file>img/database_import_wizard.svg</file>
         <file>img/database_offline.png</file>
         <file>img/database_online.png</file>
+        <file>img/abort24.png</file>
     </qresource>
 </RCC>
