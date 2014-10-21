@@ -159,6 +159,11 @@ QList<ConfigMigrationItem*> ConfigMigration::findItemsToMigrate()
     return results;
 }
 
+Db* ConfigMigration::getOldCfgDb() const
+{
+    return db;
+}
+
 QList<ConfigMigrationItem*> ConfigMigration::getItemsToMigrate() const
 {
     return itemsToMigrate;

@@ -22,6 +22,8 @@ class CONFIGMIGRATIONSHARED_EXPORT ConfigMigration : public GenericPlugin, publi
 
         QList<ConfigMigrationItem*> getItemsToMigrate() const;
 
+        Db* getOldCfgDb() const;
+
     private:
         QString findOldConfig();
         bool checkOldDir(const QString& dir, QString& output);

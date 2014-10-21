@@ -64,7 +64,7 @@ void IconManager::init()
 
 void IconManager::rescanResources(const QString& pluginName)
 {
-    if (PLUGINS->isBuiltIn(pluginName))
+    if (!pluginName.isNull() && PLUGINS->isBuiltIn(pluginName))
         return;
 
     for (const QString& name : resourceMovies)
@@ -119,8 +119,6 @@ void IconManager::loadRecurently(QString dirPath, const QString& prefix, bool mo
 
         path = entry.absoluteFilePath();
         name = entry.baseName();
-        if (name.contains("printer"))
-            qDebug() << name << path;
         paths[name] = path;
         if (movie)
             movies[name] = new QMovie(path);

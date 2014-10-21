@@ -53,7 +53,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWizardPage" name="optionsPage">
+  <widget class="VerifiableWizardPage" name="optionsPage">
    <property name="title">
     <string>Options</string>
    </property>
@@ -96,6 +96,14 @@
    </layout>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>VerifiableWizardPage</class>
+   <extends>QWizardPage</extends>
+   <header>common/verifiablewizardpage.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
