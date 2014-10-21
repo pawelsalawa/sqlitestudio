@@ -87,6 +87,7 @@ void BugReportHistoryWindow::updateState()
 void BugReportHistoryWindow::reload()
 {
     static_qstring(urlTpl, "<a href=\"%1\">%2</a>");
+    QString invalidUrlTpl = tr("Invalid response from server.");
 
     QList<Config::ReportHistoryEntryPtr> entries = CFG->getReportHistory();
     ui->reportsList->clear();
@@ -104,7 +105,11 @@ void BugReportHistoryWindow::reload()
         item = new QTableWidgetItem(QDateTime::fromTime_t(entry->timestamp).toString("yyyy-MM-dd HH:mm:ss"));
         ui->reportsList->setItem(row, 1, item);
 
-        urlLabel = new QLabel(urlTpl.arg(entry->url, entry->url));
+        if (entry->url.startsWith("http://"))
+            urlLabel = new QLabel(urlTpl.arg(entry->url, entry->url));
+        else
+            urlLabel = new QLabel(invalidUrlTpl);
+
         urlLabel->setOpenExternalLinks(true);
         ui->reportsList->setCellWidget(row, 2, urlLabel);
 

@@ -19,7 +19,8 @@ class API_EXPORT ConfigImpl : public Config
 
         void init();
         void cleanUp();
-        const QString& getConfigDir();
+        const QString& getConfigDir() const;
+        QString getConfigFilePath() const;
 
         void beginMassSave();
         void commitMassSave();

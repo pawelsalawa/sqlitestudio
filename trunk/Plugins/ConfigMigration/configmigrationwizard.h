@@ -8,6 +8,7 @@ class ConfigMigrationWizard;
 }
 
 class ConfigMigration;
+class Db;
 
 class ConfigMigrationWizard : public QWizard
 {
@@ -19,9 +20,18 @@ class ConfigMigrationWizard : public QWizard
 
     private:
         void init();
+        void migrate();
+        bool migrateSelected(Db* oldCfgDb, Db* newCfgDb);
+        bool migrateBugReports(Db* oldCfgDb, Db* newCfgDb);
 
         Ui::ConfigMigrationWizard *ui;
         ConfigMigration* cfgMigration = nullptr;
+
+    public slots:
+        void accept();
+
+    signals:
+        void updateOptionsValidation();
 };
 
 #endif // CONFIGMIGRATIONWIZARD_H

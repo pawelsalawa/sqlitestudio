@@ -40,9 +40,17 @@ void ConfigImpl::cleanUp()
     safe_delete(db);
 }
 
-const QString &ConfigImpl::getConfigDir()
+const QString &ConfigImpl::getConfigDir() const
 {
     return configDir;
+}
+
+QString ConfigImpl::getConfigFilePath() const
+{
+    if (!db)
+        return QString();
+
+    return db->getPath();
 }
 
 void ConfigImpl::beginMassSave()
