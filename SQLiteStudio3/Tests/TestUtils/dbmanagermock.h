@@ -22,7 +22,7 @@ class DbManagerMock : public DbManager
         bool isTemporary(Db*);
 
     public slots:
-        void loadDbListFromConfig();
+        void notifyDatabasesAreLoaded();
 };
 
 #endif // DBMANAGERMOCK_H

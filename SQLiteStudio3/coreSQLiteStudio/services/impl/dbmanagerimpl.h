@@ -171,18 +171,8 @@ class API_EXPORT DbManagerImpl : public DbManager
         void loaded(Plugin* plugin, PluginType* type);
 
     public slots:
-        /**
-         * @brief Tries to load all databases from configuration.
-         *
-         * Gets list of registered databases from configuration and for each of them
-         * tries to find working DbPlugin. After the registered database was loaded successfully
-         * by some DbPlugin, the database gets registered in DbManager and will later be
-         * provided by getDbList(), getByName() and getByPath() methods.
-         *
-         * Any databases that failed to be loaded are not registered in DbManager.
-         * To get full list of registered databases (even those not loaded), use Config::dbList().
-         */
-        void loadDbListFromConfig();
+        void notifyDatabasesAreLoaded();
+        void scanForNewDatabasesInConfig();
 };
 
 #endif // DBMANAGERIMPL_H

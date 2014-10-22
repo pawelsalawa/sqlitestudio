@@ -174,17 +174,20 @@ class API_EXPORT DbManager : public QObject
 
     public slots:
         /**
-         * @brief Tries to load all databases from configuration.
+         * @brief Rescans configuration for new database entries.
          *
-         * Gets list of registered databases from configuration and for each of them
-         * tries to find working DbPlugin. After the registered database was loaded successfully
-         * by some DbPlugin, the database gets registered in DbManager and will later be
-         * provided by getDbList(), getByName() and getByPath() methods.
-         *
-         * Any databases that failed to be loaded are not registered in DbManager.
-         * To get full list of registered databases (even those not loaded), use Config::dbList().
+         * Looks into the configuration for new databases. If there are any, adds them to list of managed databases.
          */
-        virtual void loadDbListFromConfig() = 0;
+        virtual void scanForNewDatabasesInConfig() = 0;
+
+        /**
+         * @brief Sends signal to all interested entities, that databases are loaded.
+         *
+         * This is called by the managing entity (the SQLiteStudio instance) to let all know,
+         * that all db-related plugins and configuration related to databases are now loaded
+         * and list of databases in the manager is complete.
+         */
+        virtual void notifyDatabasesAreLoaded() = 0;
 
     signals:
         /**

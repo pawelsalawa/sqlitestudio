@@ -10,6 +10,7 @@
 #include "sqlitestudio.h"
 #include "db/dbsqlite3.h"
 #include "services/notifymanager.h"
+#include "services/dbmanager.h"
 
 ConfigMigrationWizard::ConfigMigrationWizard(QWidget *parent, ConfigMigration* cfgMigration) :
     QWizard(parent),
@@ -88,6 +89,8 @@ void ConfigMigrationWizard::init()
 
 void ConfigMigrationWizard::migrate()
 {
+    collectCheckedTypes();
+
     Db* oldCfgDb = cfgMigration->getOldCfgDb();
     if (!oldCfgDb->open())
     {
@@ -115,6 +118,10 @@ void ConfigMigrationWizard::migrate()
     {
         newCfgDb->rollback();
     }
+    else
+    {
+        finalize();
+    }
     oldCfgDb->close();
     newCfgDb->close();
     delete newCfgDb;
@@ -122,7 +129,10 @@ void ConfigMigrationWizard::migrate()
 
 bool ConfigMigrationWizard::migrateSelected(Db* oldCfgDb, Db* newCfgDb)
 {
-    if (!migrateBugReports(oldCfgDb, newCfgDb))
+//    if (checkedTypes.contains(ConfigMigrationItem::Type::BUG_REPORTS) && !migrateBugReports(oldCfgDb, newCfgDb))
+//        return false;
+
+    if (checkedTypes.contains(ConfigMigrationItem::Type::DATABASES) && !migrateDatabases(oldCfgDb, newCfgDb))
         return false;
 
     return true;
@@ -161,4 +171,118 @@ bool ConfigMigrationWizard::migrateBugReports(Db* oldCfgDb, Db* newCfgDb)
     }
 
     return true;
+}
+
+bool ConfigMigrationWizard::migrateDatabases(Db* oldCfgDb, Db* newCfgDb)
+{
+    static_qstring(oldDbListQuery, "SELECT name, path FROM dblist");
+    static_qstring(newDbListInsert, "INSERT INTO dblist (name, path) VALUES (?, ?)");
+    static_qstring(groupOrderQuery, "SELECT max([order]) + 1 FROM groups WHERE parent %1");
+    static_qstring(groupInsert, "INSERT INTO groups (name, [order], parent, open, dbname) VALUES (?, ?, ?, ?, ?)");
+
+    SqlQueryPtr groupResults;
+    SqlQueryPtr insertResults;
+    SqlResultsRowPtr row;
+    SqlQueryPtr results = oldCfgDb->exec(oldDbListQuery);
+    if (results->isError())
+    {
+        notifyError(tr("Could not read database list from old configuration file in order to migrate it: %1").arg(results->getErrorText()));
+        return false;
+    }
+
+    // Creating containing group
+    bool putInGroup = ui->dbGroup->isChecked();
+    qint64 groupId = -1;
+    int order;
+    if (putInGroup)
+    {
+        // Query order
+        groupResults = newCfgDb->exec(groupOrderQuery.arg("IS NULL"));
+        if (groupResults->isError())
+        {
+            notifyError(tr("Could query for available order for containing group in new configuration file in order to migrate the database list: %1")
+                        .arg(groupResults->getErrorText()));
+            return false;
+        }
+
+        order = groupResults->getSingleCell().toInt();
+
+        // Insert group
+        groupResults = newCfgDb->exec(groupInsert, {ui->groupNameEdit->text(), order, QVariant(), 1, QVariant()});
+        if (groupResults->isError())
+        {
+            notifyError(tr("Could not create containing group in new configuration file in order to migrate the database list: %1").arg(groupResults->getErrorText()));
+            return false;
+        }
+        groupId = groupResults->getRegularInsertRowId();
+    }
+
+    // Migrating the list
+    QString name;
+    QString path;
+    while (results->hasNext())
+    {
+        row = results->next();
+        name = row->value("name").toString();
+        path = row->value("path").toString();
+
+        if (DBLIST->getByName(name) || DBLIST->getByPath(path)) // already on the new list
+            continue;
+
+        insertResults = newCfgDb->exec(newDbListInsert, {name, path});
+        if (insertResults->isError())
+        {
+            notifyError(tr("Could not insert a database entry into new configuration file: %1").arg(insertResults->getErrorText()));
+            return false;
+        }
+
+        // Query order
+        if (putInGroup)
+            groupResults = newCfgDb->exec(groupOrderQuery.arg("= ?"), {groupId});
+        else
+            groupResults = newCfgDb->exec(groupOrderQuery.arg("IS NULL"));
+
+        if (groupResults->isError())
+        {
+            notifyError(tr("Could query for available order for next database in new configuration file in order to migrate the database list: %1")
+                        .arg(groupResults->getErrorText()));
+            return false;
+        }
+
+        order = groupResults->getSingleCell().toInt();
+
+        // Insert group
+        groupResults = newCfgDb->exec(groupInsert, {QVariant(), order, putInGroup ? QVariant(groupId) : QVariant(), 0, name});
+        if (groupResults->isError())
+        {
+            notifyError(tr("Could not create group referencing the database in new configuration file: %1").arg(groupResults->getErrorText()));
+            return false;
+        }
+    }
+
+    return true;
+}
+
+void ConfigMigrationWizard::finalize()
+{
+    if (checkedTypes.contains(ConfigMigrationItem::Type::DATABASES))
+    {
+        bool ignore = DBTREE->getModel()->getIgnoreDbLoadedSignal();
+        DBTREE->getModel()->setIgnoreDbLoadedSignal(true);
+        DBLIST->scanForNewDatabasesInConfig();
+        DBTREE->getModel()->setIgnoreDbLoadedSignal(ignore);
+        DBTREE->getModel()->loadDbList();
+    }
+}
+
+void ConfigMigrationWizard::collectCheckedTypes()
+{
+    checkedTypes.clear();
+
+    QTreeWidgetItem* item;
+    for (int i = 0, total = ui->itemsTree->topLevelItemCount(); i < total; ++i)
+    {
+        item = ui->itemsTree->topLevelItem(i);
+        checkedTypes << static_cast<ConfigMigrationItem::Type>(item->data(0, Qt::UserRole).toInt());
+    }
 }

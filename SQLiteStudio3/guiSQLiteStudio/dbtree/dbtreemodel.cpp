@@ -689,6 +689,9 @@ void DbTreeModel::dbUnloaded(Db* db)
 
 void DbTreeModel::dbLoaded(Db* db)
 {
+    if (ignoreDbLoadedSignal)
+        return;
+
     DbTreeItem* item = findItem(DbTreeItem::Type::DB, db->getName());
     if (!item)
     {
@@ -1123,6 +1126,16 @@ bool DbTreeModel::confirmConversionErrors(const QHash<QString,QSet<QString>>& er
     dialog.setErrors(errors);
     return dialog.exec() == QDialog::Accepted;
 }
+bool DbTreeModel::getIgnoreDbLoadedSignal() const
+{
+    return ignoreDbLoadedSignal;
+}
+
+void DbTreeModel::setIgnoreDbLoadedSignal(bool value)
+{
+    ignoreDbLoadedSignal = value;
+}
+
 
 void DbTreeModel::dbObjectsMoveFinished(bool success, Db* srcDb, Db* dstDb)
 {
