@@ -274,7 +274,7 @@ void SQLiteStudio::init(const QStringList& cmdListArguments, bool guiAvailable)
 
     cmdLineArgs = cmdListArguments;
 
-    connect(pluginManager, SIGNAL(pluginsInitiallyLoaded()), DBLIST, SLOT(loadDbListFromConfig()));
+    connect(pluginManager, SIGNAL(pluginsInitiallyLoaded()), DBLIST, SLOT(notifyDatabasesAreLoaded()));
 
     DbPluginSqlite3* sqlite3plugin = new DbPluginSqlite3;
     dynamic_cast<DbManagerImpl*>(dbManager)->setInMemDbCreatorPlugin(sqlite3plugin);

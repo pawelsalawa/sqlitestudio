@@ -67,6 +67,6 @@ bool DbManagerMock::isTemporary(Db*)
     return false;
 }
 
-void DbManagerMock::loadDbListFromConfig()
+void DbManagerMock::notifyDatabasesAreLoaded()
 {
 }

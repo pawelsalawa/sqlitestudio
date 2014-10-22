@@ -1,6 +1,8 @@
 #ifndef CONFIGMIGRATIONITEM_H
 #define CONFIGMIGRATIONITEM_H
 
+#include <QString>
+
 struct ConfigMigrationItem
 {
     enum class Type

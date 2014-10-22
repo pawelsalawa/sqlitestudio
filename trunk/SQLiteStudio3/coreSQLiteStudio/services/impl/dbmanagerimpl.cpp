@@ -287,10 +287,34 @@ void DbManagerImpl::loadInitialDbList()
     }
 }
 
-void DbManagerImpl::loadDbListFromConfig()
+void DbManagerImpl::notifyDatabasesAreLoaded()
 {
     // Any databases were already loaded by loaded() slot, which is called when DbPlugin was loaded.
     emit dbListLoaded();
+}
+
+void DbManagerImpl::scanForNewDatabasesInConfig()
+{
+    QList<Config::CfgDbPtr> cfgDbList = CFG->dbList();
+
+    QUrl url;
+    InvalidDb* db;
+    for (const Config::CfgDbPtr& cfgDb : cfgDbList)
+    {
+        if (getByName(cfgDb->name) || getByPath(cfgDb->path))
+            continue;
+
+        db = new InvalidDb(cfgDb->name, cfgDb->path, cfgDb->options);
+
+        url = QUrl::fromUserInput(cfgDb->path);
+        if (url.isLocalFile() && !QFile::exists(cfgDb->path))
+            db->setError(tr("Database file doesn't exist."));
+        else
+            db->setError(tr("No supporting plugin loaded."));
+
+        addDbInternal(db);
+        tryToLoadDb(db);
+    }
 }
 
 void DbManagerImpl::addDbInternal(Db* db, bool alsoToConfig)

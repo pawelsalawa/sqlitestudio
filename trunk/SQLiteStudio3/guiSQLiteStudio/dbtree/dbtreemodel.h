@@ -53,6 +53,9 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
 
         static const constexpr char* MIMETYPE = "application/x-sqlitestudio-dbtreeitem";
 
+        bool getIgnoreDbLoadedSignal() const;
+        void setIgnoreDbLoadedSignal(bool value);
+
     private:
         void readGroups(QList<Db*> dbList);
         QList<Config::DbGroupPtr> childsToConfig(QStandardItem* item);
@@ -94,6 +97,7 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         bool requireSchemaReloading = false;
         DbObjectOrganizer* dbOrganizer = nullptr;
         QList<Interruptable*> interruptables;
+        bool ignoreDbLoadedSignal = false;
 
     private slots:
         void expanded(const QModelIndex &index);
