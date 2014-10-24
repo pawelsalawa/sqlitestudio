@@ -5,9 +5,16 @@
 #include "plugins/generalpurposeplugin.h"
 #include "plugins/genericplugin.h"
 #include "configmigrationitem.h"
+#include "config_builder.h"
 #include <QList>
 
 class Db;
+
+CFG_CATEGORIES(ConfigMigration,
+    CFG_CATEGORY(CfgMigration,
+        CFG_ENTRY(bool, Migrated, false);
+    )
+)
 
 class CONFIGMIGRATIONSHARED_EXPORT ConfigMigration : public GenericPlugin, public GeneralPurposePlugin
 {
@@ -33,6 +40,7 @@ class CONFIGMIGRATIONSHARED_EXPORT ConfigMigration : public GenericPlugin, publi
 
         Db* db = nullptr;
         QList<ConfigMigrationItem*> itemsToMigrate;
+        CFG_LOCAL_PERSISTABLE(ConfigMigration, cfg)
 
     private slots:
         void linkActivated(const QString& link);

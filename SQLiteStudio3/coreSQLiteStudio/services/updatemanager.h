@@ -65,11 +65,12 @@ class API_EXPORT UpdateManager : public QObject
 #elif defined(Q_OS_MACX)
         bool unpackToDirMac(const QString& packagePath, const QString& outputDir);
         bool executeFinalStepAsRootMac(const QString& tempDir, const QString& backupDir, const QString& appDir);
-#endif
+#elif defined(Q_OS_WIN32)
         bool runAnotherInstanceForUpdate(const QString& tempDir, const QString& backupDir, const QString& appDir, bool reqAdmin);
+        bool unpackToDirWin(const QString& packagePath, const QString& outputDir);
+#endif
         bool doRequireAdminPrivileges();
         bool unpackToDir(const QString& packagePath, const QString& outputDir);
-        bool unpackToDirWin(const QString& packagePath, const QString& outputDir);
         void handleStaticFail(const QString& errMsg);
         void cleanup();
 
@@ -83,11 +84,13 @@ class API_EXPORT UpdateManager : public QObject
         static LinuxPermElevator findPermElevatorForLinux();
         static QString wrapCmdLineArgument(const QString& arg);
         static QString escapeCmdLineArgument(const QString& arg);
+#if defined(Q_OS_WIN32)
         static bool executePreFinalStepWin(const QString& tempDir, const QString& backupDir, const QString& appDir, bool reqAdmin);
         static bool executeFinalStepAsRootWin(const QString& tempDir, const QString& backupDir, const QString& appDir);
         static bool executePostFinalStepWin(const QString& tempDir);
         static bool waitForFileToDisappear(const QString& filePath, int seconds);
         static bool waitForFileToAppear(const QString& filePath, int seconds);
+#endif
 
         QNetworkAccessManager* networkManager = nullptr;
         QNetworkReply* updatesCheckReply = nullptr;
