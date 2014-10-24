@@ -18,6 +18,12 @@ bool ConfigMigration::init()
 {
     Q_INIT_RESOURCE(configmigration);
 
+    if (cfg.CfgMigration.Migrated.get())
+    {
+        qDebug() << "ConfigMigration: already migrated. Skipping.";
+        return true;
+    }
+
     QString oldCfg = findOldConfig();
     if (!oldCfg.isNull())
     {
@@ -176,4 +182,7 @@ void ConfigMigration::linkActivated(const QString &link)
 
     ConfigMigrationWizard wizard(MAINWINDOW, this);
     wizard.exec();
+
+    if (wizard.didMigrate())
+        cfg.CfgMigration.Migrated.set(true);
 }

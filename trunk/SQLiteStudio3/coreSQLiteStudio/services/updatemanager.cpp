@@ -99,6 +99,7 @@ bool UpdateManager::isPlatformEligibleForUpdate() const
     return !getPlatformForUpdate().isNull() && getDistributionType() != DistributionType::OS_MANAGED;
 }
 
+#if defined(Q_OS_WIN32)
 bool UpdateManager::executePreFinalStepWin(const QString &tempDir, const QString &backupDir, const QString &appDir, bool reqAdmin)
 {
     bool res;
@@ -114,6 +115,7 @@ bool UpdateManager::executePreFinalStepWin(const QString &tempDir, const QString
     }
     return res;
 }
+#endif
 
 void UpdateManager::handleAvailableUpdatesReply(QNetworkReply* reply)
 {
@@ -548,9 +550,9 @@ bool UpdateManager::executeFinalStepAsRootMac(const QString& tempDir, const QStr
 }
 #endif
 
+#ifdef Q_OS_WIN32
 bool UpdateManager::executeFinalStepAsRootWin(const QString& tempDir, const QString& backupDir, const QString& appDir)
 {
-#ifdef Q_OS_WIN32
     QString updateBin = qApp->applicationDirPath() + "/" + WIN_UPDATER_BINARY;
 
     QString installFilePath = tempDir + "/" + WIN_INSTALL_FILE;
@@ -590,10 +592,11 @@ bool UpdateManager::executeFinalStepAsRootWin(const QString& tempDir, const QStr
         return false;
     }
 
-#endif
     return true;
 }
+#endif
 
+#if defined(Q_OS_WIN32)
 bool UpdateManager::executePostFinalStepWin(const QString &tempDir)
 {
     QString doneFile = qApp->applicationDirPath() + QLatin1Char('/') + WIN_UPDATE_DONE_FILE;
@@ -643,6 +646,7 @@ bool UpdateManager::runAnotherInstanceForUpdate(const QString &tempDir, const QS
 
     return true;
 }
+#endif
 
 UpdateManager::LinuxPermElevator UpdateManager::findPermElevatorForLinux()
 {
@@ -760,18 +764,18 @@ bool UpdateManager::unpackToDirMac(const QString &packagePath, const QString &ou
 }
 #endif
 
+#if defined(Q_OS_WIN32)
 bool UpdateManager::unpackToDirWin(const QString& packagePath, const QString& outputDir)
 {
-#if defined(Q_OS_WIN32)
     if (JlCompress::extractDir(packagePath, outputDir + "/..").isEmpty())
     {
         updatingFailed(tr("Package %1 cannot be installed, because cannot unzip it to directory: %2").arg(packagePath, outputDir));
         return false;
     }
-#endif
 
     return true;
 }
+#endif
 
 void UpdateManager::handleStaticFail(const QString& errMsg)
 {

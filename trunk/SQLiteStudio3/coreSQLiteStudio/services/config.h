@@ -167,6 +167,10 @@ class API_EXPORT Config : public QObject
         void sqlHistoryRefreshNeeded();
         void ddlHistoryRefreshNeeded();
         void reportsHistoryRefreshNeeded();
+
+    public slots:
+        virtual void refreshSqlHistory() = 0;
+        virtual void refreshDdlHistory() = 0;
 };
 
 #define CFG SQLITESTUDIO->getConfig()

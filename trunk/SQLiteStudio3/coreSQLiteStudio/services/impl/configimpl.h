@@ -119,9 +119,9 @@ class API_EXPORT ConfigImpl : public Config
         SqlHistoryModel* sqlHistoryModel = nullptr;
         DdlHistoryModel* ddlHistoryModel = nullptr;
 
-    private slots:
-        void refreshSqlHistory();
+    public slots:
         void refreshDdlHistory();
+        void refreshSqlHistory();
 };
 
 #endif // CONFIGIMPL_H

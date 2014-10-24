@@ -22,7 +22,13 @@ ConfigMigrationWizard::ConfigMigrationWizard(QWidget *parent, ConfigMigration* c
 
 ConfigMigrationWizard::~ConfigMigrationWizard()
 {
+    clearFunctions();
     delete ui;
+}
+
+bool ConfigMigrationWizard::didMigrate()
+{
+    return migrated;
 }
 
 void ConfigMigrationWizard::accept()
@@ -46,7 +52,7 @@ void ConfigMigrationWizard::init()
 
         bool grpOk = true;
         QString grpErrorMsg;
-        if (ui->dbGroup->isChecked())
+        if (ui->dbGroup->isEnabled() && ui->dbGroup->isChecked())
         {
             if (grpName.isEmpty())
             {
@@ -83,14 +89,13 @@ void ConfigMigrationWizard::init()
     connect(ui->dbGroup, SIGNAL(clicked()), ui->optionsPage, SIGNAL(completeChanged()));
     connect(ui->groupNameEdit, SIGNAL(textChanged(QString)), ui->optionsPage, SIGNAL(completeChanged()));
     connect(this, SIGNAL(updateOptionsValidation()), ui->optionsPage, SIGNAL(completeChanged()));
+    connect(this, SIGNAL(currentIdChanged(int)), this, SLOT(updateOptions()));
 
     emit updateOptionsValidation();
 }
 
 void ConfigMigrationWizard::migrate()
 {
-    collectCheckedTypes();
-
     Db* oldCfgDb = cfgMigration->getOldCfgDb();
     if (!oldCfgDb->open())
     {
@@ -125,14 +130,21 @@ void ConfigMigrationWizard::migrate()
     oldCfgDb->close();
     newCfgDb->close();
     delete newCfgDb;
+    clearFunctions();
 }
 
 bool ConfigMigrationWizard::migrateSelected(Db* oldCfgDb, Db* newCfgDb)
 {
-//    if (checkedTypes.contains(ConfigMigrationItem::Type::BUG_REPORTS) && !migrateBugReports(oldCfgDb, newCfgDb))
-//        return false;
+    if (checkedTypes.contains(ConfigMigrationItem::Type::BUG_REPORTS) && !migrateBugReports(oldCfgDb, newCfgDb))
+        return false;
 
     if (checkedTypes.contains(ConfigMigrationItem::Type::DATABASES) && !migrateDatabases(oldCfgDb, newCfgDb))
+        return false;
+
+    if (checkedTypes.contains(ConfigMigrationItem::Type::FUNCTION_LIST) && !migrateFunction(oldCfgDb, newCfgDb))
+        return false;
+
+    if (checkedTypes.contains(ConfigMigrationItem::Type::SQL_HISTORY) && !migrateSqlHistory(oldCfgDb, newCfgDb))
         return false;
 
     return true;
@@ -191,7 +203,7 @@ bool ConfigMigrationWizard::migrateDatabases(Db* oldCfgDb, Db* newCfgDb)
     }
 
     // Creating containing group
-    bool putInGroup = ui->dbGroup->isChecked();
+    bool putInGroup = ui->dbGroup->isEnabled() && ui->dbGroup->isChecked();
     qint64 groupId = -1;
     int order;
     if (putInGroup)
@@ -263,8 +275,93 @@ bool ConfigMigrationWizard::migrateDatabases(Db* oldCfgDb, Db* newCfgDb)
     return true;
 }
 
+bool ConfigMigrationWizard::migrateFunction(Db* oldCfgDb, Db* newCfgDb)
+{
+    UNUSED(newCfgDb);
+
+    static_qstring(oldFunctionsQuery, "SELECT name, type, code FROM functions");
+
+    SqlResultsRowPtr row;
+    SqlQueryPtr results = oldCfgDb->exec(oldFunctionsQuery);
+    if (results->isError())
+    {
+        notifyError(tr("Could not read function list from old configuration file in order to migrate it: %1").arg(results->getErrorText()));
+        return false;
+    }
+
+    clearFunctions();
+    for (FunctionManager::ScriptFunction* fn : FUNCTIONS->getAllScriptFunctions())
+        fnList << new FunctionManager::ScriptFunction(*fn);
+
+    FunctionManager::ScriptFunction* fn;
+    while (results->hasNext())
+    {
+        row = results->next();
+
+        fn = new FunctionManager::ScriptFunction();
+        fn->type = FunctionManager::ScriptFunction::SCALAR;
+        fn->lang = row->value("type").toString();
+        fn->name = row->value("name").toString();
+        fn->code = row->value("code").toString();
+        fnList << fn;
+    }
+
+    return true;
+}
+
+bool ConfigMigrationWizard::migrateSqlHistory(Db* oldCfgDb, Db* newCfgDb)
+{
+    static_qstring(historyIdQuery, "SELECT CASE WHEN max(id) IS NULL THEN 0 ELSE max(id) + 1 END FROM sqleditor_history");
+    static_qstring(oldHistoryQuery, "SELECT dbname, date, time, rows, sql FROM history");
+    static_qstring(newHistoryInsert, "INSERT INTO sqleditor_history (id, dbname, date, time_spent, rows, sql) VALUES (?, ?, ?, ?, ?, ?)");
+
+    SqlQueryPtr insertResults;
+    SqlResultsRowPtr row;
+    SqlQueryPtr results = oldCfgDb->exec(oldHistoryQuery);
+    if (results->isError())
+    {
+        notifyError(tr("Could not read SQL queries history from old configuration file in order to migrate it: %1").arg(results->getErrorText()));
+        return false;
+    }
+
+    SqlQueryPtr idResults = newCfgDb->exec(historyIdQuery);
+    if (idResults->isError())
+    {
+        notifyError(tr("Could not read next ID for SQL queries history in new configuration file: %1").arg(idResults->getErrorText()));
+        return false;
+    }
+    qint64 nextId = idResults->getSingleCell().toLongLong();
+
+    int timeSpent;
+    int date;
+    while (results->hasNext())
+    {
+        row = results->next();
+        timeSpent = qRound(row->value("time").toDouble() * 1000);
+        date = QDateTime::fromString(row->value("date").toString(), "yyyy-MM-dd HH:mm").toTime_t();
+
+        insertResults = newCfgDb->exec(newHistoryInsert, {nextId++, row->value("dbname"), date, timeSpent, row->value("rows"), row->value("sql")});
+        if (insertResults->isError())
+        {
+            notifyError(tr("Could not insert SQL history entry into new configuration file: %1").arg(insertResults->getErrorText()));
+            return false;
+        }
+    }
+
+    return true;
+}
+
 void ConfigMigrationWizard::finalize()
 {
+    if (checkedTypes.contains(ConfigMigrationItem::Type::FUNCTION_LIST))
+    {
+        FUNCTIONS->setScriptFunctions(fnList);
+        fnList.clear();
+    }
+
+    if (checkedTypes.contains(ConfigMigrationItem::Type::SQL_HISTORY))
+        CFG->refreshSqlHistory();
+
     if (checkedTypes.contains(ConfigMigrationItem::Type::DATABASES))
     {
         bool ignore = DBTREE->getModel()->getIgnoreDbLoadedSignal();
@@ -273,6 +370,8 @@ void ConfigMigrationWizard::finalize()
         DBTREE->getModel()->setIgnoreDbLoadedSignal(ignore);
         DBTREE->getModel()->loadDbList();
     }
+
+    migrated = true;
 }
 
 void ConfigMigrationWizard::collectCheckedTypes()
@@ -283,6 +382,26 @@ void ConfigMigrationWizard::collectCheckedTypes()
     for (int i = 0, total = ui->itemsTree->topLevelItemCount(); i < total; ++i)
     {
         item = ui->itemsTree->topLevelItem(i);
+        if (item->checkState(0) != Qt::Checked)
+            continue;
+
         checkedTypes << static_cast<ConfigMigrationItem::Type>(item->data(0, Qt::UserRole).toInt());
+    }
+}
+
+void ConfigMigrationWizard::clearFunctions()
+{
+    for (FunctionManager::ScriptFunction* fn : fnList)
+        delete fn;
+
+    fnList.clear();
+}
+
+void ConfigMigrationWizard::updateOptions()
+{
+    if (currentPage() == ui->optionsPage)
+    {
+        collectCheckedTypes();
+        ui->dbGroup->setEnabled(checkedTypes.contains(ConfigMigrationItem::Type::DATABASES));
     }
 }
