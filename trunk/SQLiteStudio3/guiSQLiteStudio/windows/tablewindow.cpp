@@ -601,7 +601,7 @@ void TableWindow::changeEvent(QEvent *e)
 
 QVariant TableWindow::saveSession()
 {
-    if (DBLIST->isTemporary(db))
+    if (!db || DBLIST->isTemporary(db))
         return QVariant();
 
     QHash<QString,QVariant> sessionValue;

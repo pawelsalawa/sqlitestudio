@@ -49,14 +49,10 @@ cp -R $1/SQLiteStudio .
 
 # Make lib directory to move all *.so files (sqlitestudio files and Qt files and dependencies)
 cd SQLiteStudio
-mkdir lib
-cd lib
-mv ../*.so .
-mv ../*.so.* .
 
 # Copy SQLite libs
 cd $portable/SQLiteStudio
-sqlite3_lib=`ldd $1/SQLiteStudio/libcoreSQLiteStudio.so | grep libsqlite | awk '{print $3;}'`
+sqlite3_lib=`ldd $1/SQLiteStudio/lib/libcoreSQLiteStudio.so | grep libsqlite | awk '{print $3;}'`
 sqlite2_lib=`ldd plugins/libDbSqlite2.so | grep libsqlite | awk '{print $3;}'`
 cp $sqlite3_lib lib
 cp $sqlite2_lib lib
@@ -105,5 +101,6 @@ chrpath -r \$ORIGIN/lib sqlitestudiocli >/dev/null
 
 if [ "$3" == "tgz" ]; then
   cd $portable
-  tar czf SQLiteStudio.tar.gz SQLiteStudio
+  tar cf SQLiteStudio.tar SQLiteStudio
+  xz -z SQLiteStudio.tar
 fi
