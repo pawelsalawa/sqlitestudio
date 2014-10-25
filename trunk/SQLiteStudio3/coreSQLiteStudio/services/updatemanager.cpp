@@ -257,9 +257,9 @@ void UpdateManager::installUpdates()
     requireAdmin = doRequireAdminPrivileges();
 
     QTemporaryDir installTempDir;
-    QString appDirName = QDir(qApp->applicationDirPath()).dirName();
+    QString appDirName = QDir(getAppDirPath()).dirName();
     QString targetDir = installTempDir.path() + QLatin1Char('/') + appDirName;
-    if (!copyRecursively(qApp->applicationDirPath(), targetDir))
+    if (!copyRecursively(getAppDirPath(), targetDir))
     {
         updatingFailed(tr("Could not copy current application directory into %1 directory.").arg(installTempDir.path()));
         return;
@@ -390,21 +390,23 @@ QString UpdateManager::getStaticErrorMessage()
 
 bool UpdateManager::executeFinalStep(const QString& tempDir)
 {
+    QString appDir = getAppDirPath();
+
     // Find inexisting dir name next to app dir
     static_qstring(bakDirTpl, "%1.old%2");
-    QDir backupDir(bakDirTpl.arg(qApp->applicationDirPath(), ""));
+    QDir backupDir(bakDirTpl.arg(appDir, ""));
     int cnt = 1;
     while (backupDir.exists())
-        backupDir = QDir(bakDirTpl.arg(qApp->applicationDirPath(), QString::number(cnt)));
+        backupDir = QDir(bakDirTpl.arg(appDir, QString::number(cnt)));
 
 #if defined(Q_OS_WIN32)
     return runAnotherInstanceForUpdate(tempDir, backupDir.absolutePath(), qApp->applicationDirPath(), requireAdmin);
 #else
     bool res;
-    if (requireAdmin)
-        res = executeFinalStepAsRoot(tempDir, backupDir.absolutePath(), qApp->applicationDirPath());
+    if (requireAdmin || true)
+        res = executeFinalStepAsRoot(tempDir, backupDir.absolutePath(), appDir);
     else
-        res = executeFinalStep(tempDir, backupDir.absolutePath(), qApp->applicationDirPath());
+        res = executeFinalStep(tempDir, backupDir.absolutePath(), appDir);
 
     if (res)
         QProcess::startDetached(qApp->applicationFilePath());
@@ -546,7 +548,71 @@ bool UpdateManager::executeFinalStepAsRootLinux(const QString& tempDir, const QS
 #ifdef Q_OS_MACX
 bool UpdateManager::executeFinalStepAsRootMac(const QString& tempDir, const QString& backupDir, const QString& appDir)
 {
-    // TODO
+    // Prepare script for updater
+    // osascript -e "do shell script \"stufftorunasroot\" with administrator privileges"
+    QStringList args = {wrapCmdLineArgument(qApp->applicationFilePath() + "cli"),
+                        UPDATE_OPTION_NAME,
+                        wrapCmdLineArgument(tempDir),
+                        wrapCmdLineArgument(backupDir),
+                        wrapCmdLineArgument(appDir)};
+    QProcess proc;
+
+    QString innerCmd = wrapCmdLineArgument(args.join(" "));
+
+    static_qstring(scriptTpl, "do shell script %1 with administrator privileges");
+    QString scriptCmd = scriptTpl.arg(innerCmd);
+
+    // Prepare updater temporary directory
+    QTemporaryDir updaterDir;
+    if (!updaterDir.isValid())
+    {
+        updatingFailed(tr("Could not execute final updating steps as admin: %1").arg(tr("Cannot create temporary directory for updater.")));
+        return false;
+    }
+
+    // Create updater script
+    QString scriptPath = updaterDir.path() + "/UpdateSQLiteStudio.scpt";
+    QFile updaterScript(scriptPath);
+    if (!updaterScript.open(QIODevice::WriteOnly))
+    {
+        updatingFailed(tr("Could not execute final updating steps as admin: %1").arg(tr("Cannot create updater script file.")));
+        return false;
+    }
+    updaterScript.write(scriptCmd.toLocal8Bit());
+    updaterScript.close();
+
+    // Compile script to updater application
+    QString updaterApp = updaterDir.path() + "/UpdateSQLiteStudio.app";
+    proc.setProgram("osacompile");
+    proc.setArguments({"-o", updaterApp, scriptPath});
+    proc.start();
+    if (!waitForProcess(proc))
+    {
+        updatingFailed(tr("Could not execute final updating steps as admin: %1").arg(readError(proc)));
+        return false;
+    }
+
+    // Execute updater
+    proc.setProgram(updaterApp + "/Contents/MacOS/applet");
+    proc.setArguments({});
+    proc.start();
+    if (!waitForProcess(proc))
+    {
+        updatingFailed(tr("Could not execute final updating steps as admin: %1").arg(readError(proc)));
+        return false;
+    }
+
+    // Validating update
+    // The updater script will not return error if the user canceled the password prompt.
+    // We need to check if the update was actually made and return true only then.
+    if (QDir(tempDir).exists())
+    {
+        // Temp dir still exists, so it was not moved by root process
+        updatingFailed(tr("Updating canceled."));
+        return false;
+    }
+
+    return true;
 }
 #endif
 
@@ -753,10 +819,11 @@ bool UpdateManager::unpackToDirMac(const QString &packagePath, const QString &ou
         return false;
     }
 
-    proc.start("unzip", {packagePath, "-d", outputDir});
+    proc.start("unzip", {"-o", "-d", outputDir, packagePath});
     if (!waitForProcess(proc))
     {
-        updatingFailed(tr("Package %1 cannot be installed, because cannot unzip it to directory: %2").arg(packagePath, outputDir));
+        updatingFailed(tr("Package %1 cannot be installed, because cannot unzip it to directory %2: %3")
+                       .arg(packagePath, outputDir, readError(proc)));
         return false;
     }
 
@@ -780,6 +847,22 @@ bool UpdateManager::unpackToDirWin(const QString& packagePath, const QString& ou
 void UpdateManager::handleStaticFail(const QString& errMsg)
 {
     emit updatingFailed(errMsg);
+}
+
+QString UpdateManager::getAppDirPath() const
+{
+    static QString appDir;
+    if (appDir.isNull())
+    {
+        appDir = qApp->applicationDirPath();
+#ifdef Q_OS_MACX
+        QDir tmpAppDir(appDir);
+        tmpAppDir.cdUp();
+        tmpAppDir.cdUp();
+        appDir = tmpAppDir.absolutePath();
+#endif
+    }
+    return appDir;
 }
 
 bool UpdateManager::moveDir(const QString& src, const QString& dst, bool contentsOnly)
@@ -851,7 +934,7 @@ bool UpdateManager::execWin(const QString &cmd, const QStringList &args, QString
 
 bool UpdateManager::doRequireAdminPrivileges()
 {
-    QDir appDir(qApp->applicationDirPath());
+    QDir appDir(getAppDirPath());
     bool isWritable = isWritableRecursively(appDir.absolutePath());
 
     appDir.cdUp();

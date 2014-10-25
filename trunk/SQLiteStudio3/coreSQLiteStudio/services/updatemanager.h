@@ -72,6 +72,7 @@ class API_EXPORT UpdateManager : public QObject
         bool doRequireAdminPrivileges();
         bool unpackToDir(const QString& packagePath, const QString& outputDir);
         void handleStaticFail(const QString& errMsg);
+        QString getAppDirPath() const;
         void cleanup();
 
         static bool moveDir(const QString& src, const QString& dst, bool contentsOnly = false);
