@@ -1,10 +1,3 @@
-* 3.0 musi importowac ustawienia z 2.1:
-  - lista baz
-  - funkcje sql
-  - historie sql
-  - historie raportow bugow
-
-
 * Next versions:
 - commiting DataView should be async
 - syntax checkers as services - per language
