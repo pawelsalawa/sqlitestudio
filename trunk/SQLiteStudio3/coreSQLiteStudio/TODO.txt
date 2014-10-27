@@ -1,3 +1,8 @@
+Pod windowsem:
+* usuwanie db - dac nie - pod windowsem juz nie wstanie
+* crash przy rozwijaniu kolumn
+* crash przy kliknieciu na Databases menu
+
 * Next versions:
 - commiting DataView should be async
 - syntax checkers as services - per language
