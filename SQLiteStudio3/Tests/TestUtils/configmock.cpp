@@ -142,16 +142,6 @@ void ConfigMock::clearDdlHistory()
 {
 }
 
-bool ConfigMock::setFunctions(const QList<FunctionManager::FunctionPtr>&)
-{
-    return true;
-}
-
-QList<FunctionManager::FunctionPtr> ConfigMock::getFunctions() const
-{
-    return QList<FunctionManager::FunctionPtr>();
-}
-
 void ConfigMock::begin()
 {
 }
@@ -172,4 +162,45 @@ bool ConfigMock::setCollations(const QList<CollationManager::CollationPtr>&)
 QList<CollationManager::CollationPtr> ConfigMock::getCollations() const
 {
     return QList<CollationManager::CollationPtr>();
+}
+
+const QString &ConfigMock::getConfigDir() const
+{
+    static QString s;
+    return s;
+}
+
+QString ConfigMock::getConfigFilePath() const
+{
+    return QString();
+}
+
+bool ConfigMock::isMassSaving() const
+{
+    return false;
+}
+
+void ConfigMock::addReportHistory(bool, const QString &, const QString &)
+{
+}
+
+QList<Config::ReportHistoryEntryPtr> ConfigMock::getReportHistory()
+{
+    return QList<Config::ReportHistoryEntryPtr>();
+}
+
+void ConfigMock::deleteReport(int)
+{
+}
+
+void ConfigMock::clearReportHistory()
+{
+}
+
+void ConfigMock::refreshSqlHistory()
+{
+}
+
+void ConfigMock::refreshDdlHistory()
+{
 }

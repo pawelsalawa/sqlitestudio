@@ -516,6 +516,8 @@ void SqliteCreateTable::Constraint::initFk(const QList<SqliteIndexedColumn *> &i
 
     foreach (SqliteForeignKey::Condition* cond, conditions)
         cond->setParent(fk);
+
+    this->foreignKey = fk;
 }
 
 bool SqliteCreateTable::Constraint::doesAffectColumn(const QString& columnName)

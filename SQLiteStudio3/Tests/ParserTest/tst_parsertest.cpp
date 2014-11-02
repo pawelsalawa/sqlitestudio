@@ -1,5 +1,6 @@
 #include "parser/parser.h"
 #include "parser/ast/sqliteselect.h"
+#include "parser/ast/sqlitecreatetable.h"
 #include "parser/keywords.h"
 #include "parser/lexer.h"
 #include "parser/parsererror.h"
@@ -28,6 +29,7 @@ class ParserTest : public QObject
         void testCommentEnding2();
         void testOper1();
         void testBig1();
+        void testTableFk();
         void initTestCase();
         void cleanupTestCase();
 };
@@ -264,6 +266,25 @@ void ParserTest::testBig1()
     }
 
     QVERIFY(res);
+}
+
+void ParserTest::testTableFk()
+{
+    QString sql = "CREATE TABLE test (id INTEGER, FOREIGN KEY (id) REFERENCES test2 (id2));";
+
+    parser3->parse(sql);
+    QVERIFY(parser3->getErrors().size() == 0);
+
+    SqliteQueryPtr query = parser3->getQueries()[0];
+    SqliteCreateTablePtr creatrTable = query.dynamicCast<SqliteCreateTable>();
+    QVERIFY(creatrTable->constraints.size() == 1);
+    QVERIFY(creatrTable->constraints.first()->indexedColumns.size() == 1);
+    QVERIFY(creatrTable->constraints.first()->indexedColumns.first()->name == "id");
+    QVERIFY(creatrTable->constraints.first()->type == SqliteCreateTable::Constraint::FOREIGN_KEY);
+    QVERIFY(creatrTable->constraints.first()->foreignKey != nullptr);
+    QVERIFY(creatrTable->constraints.first()->foreignKey->foreignTable == "test2");
+    QVERIFY(creatrTable->constraints.first()->foreignKey->indexedColumns.size() == 1);
+    QVERIFY(creatrTable->constraints.first()->foreignKey->indexedColumns.first()->name == "id2");
 }
 
 void ParserTest::initTestCase()

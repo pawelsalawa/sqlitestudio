@@ -67,6 +67,15 @@ bool DbManagerMock::isTemporary(Db*)
     return false;
 }
 
+QString DbManagerMock::quickAddDb(const QString &, const QHash<QString, QVariant> &)
+{
+    return QString();
+}
+
 void DbManagerMock::notifyDatabasesAreLoaded()
+{
+}
+
+void DbManagerMock::scanForNewDatabasesInConfig()
 {
 }

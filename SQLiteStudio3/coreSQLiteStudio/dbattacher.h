@@ -19,7 +19,7 @@ class Db;
  * where the database name is valid by SQLite syntax (this is accomplished
  * with SqliteStatement::getContextDatabaseTokens()).
  */
-class DbAttacher
+class API_EXPORT DbAttacher
 {
     public:
         /**
@@ -83,7 +83,7 @@ class DbAttacher
  * (DbAttacherImpl), but it can be replaced with other factory to produce other attachers, just like unit tests
  * in this project do.
  */
-class DbAttacherFactory
+class API_EXPORT DbAttacherFactory
 {
     public:
         virtual ~DbAttacherFactory();
