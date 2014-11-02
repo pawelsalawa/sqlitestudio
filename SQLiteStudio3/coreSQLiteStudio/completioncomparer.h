@@ -53,14 +53,18 @@ class CompletionComparer
         bool compareTriggers(const ExpectedTokenPtr& token1, const ExpectedTokenPtr& token2);
         bool compareViews(const ExpectedTokenPtr& token1, const ExpectedTokenPtr& token2);
         bool compareDatabases(const ExpectedTokenPtr& token1, const ExpectedTokenPtr& token2);
-        bool compareValues(const ExpectedTokenPtr& token1, const ExpectedTokenPtr& token2);
-        bool compareValues(const QString& token1, const QString& token2);
+        bool compareValues(const ExpectedTokenPtr& token1, const ExpectedTokenPtr& token2, bool handleSystemNames = false);
+        bool compareValues(const QString& token1, const QString& token2, bool handleSystemNames = false);
         bool compareByContext(const QString &token1, const QString &token2,
                               const QStringList& contextValues, bool* ok = nullptr);
         bool compareByContext(const QString &token1, const QString &token2,
                               const QList<QStringList>& contextValues, bool* ok = nullptr);
+        bool compareByContext(const QString &token1, const QString &token2,
+                              const QStringList& contextValues, bool handleSystemNames, bool* ok = nullptr);
+        bool compareByContext(const QString &token1, const QString &token2,
+                              const QList<QStringList>& contextValues, bool handleSystemNames, bool* ok = nullptr);
         bool compareByContextOnly(const QString &token1, const QString &token2,
-                              const QStringList& contextValues, bool* ok);
+                              const QStringList& contextValues, bool handleSystemNames, bool* ok);
         bool isTokenOnAvailableList(const ExpectedTokenPtr& token);
         bool isTokenOnParentAvailableList(const ExpectedTokenPtr& token);
         bool isTokenOnResultColumns(const ExpectedTokenPtr& token);
