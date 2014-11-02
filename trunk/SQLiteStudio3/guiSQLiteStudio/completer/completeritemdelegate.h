@@ -18,6 +18,7 @@ class GUI_API_EXPORT CompleterItemDelegate : public QStyledItemDelegate
 
     private:
         QIcon* getIcon(ExpectedToken::Type type) const;
+        void paintBackground(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
         void paintIcon(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
         void paintText(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
         void paintPrefix(QPainter* painter, const QFontMetrics& metrics, int& x, int y, const QString& text) const;

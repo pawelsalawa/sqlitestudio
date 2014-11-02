@@ -25,12 +25,6 @@ void CompleterItemDelegate::paint(QPainter* painter, const QStyleOptionViewItem&
 
     paintIcon(painter, opt, index);
     paintText(painter, opt, index);
-    //QStyledItemDelegate::paint(painter, opt, index);
-
-//    ExpectedToken::Type type = (ExpectedToken::Type)index.data(CompleterModel::TYPE).toInt();
-//    QIcon* icon = getIcon(type);
-
-//    QApplication::style()->drawItemPixmap(painter, QRect(1, 1, itemHeight, 20), Qt::AlignVCenter, icon->pixmap(20, 20));
 }
 
 QSize CompleterItemDelegate::sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const
@@ -75,11 +69,16 @@ void CompleterItemDelegate::paintText(QPainter* painter, const QStyleOptionViewI
     QColor labelColor = option.palette.color(cg, QPalette::Link);
     if (option.state & QStyle::State_Selected)
     {
+#ifdef Q_OS_WIN32
+        prefixColor = option.palette.color(cg, QPalette::Text);
+        valueColor = option.palette.color(cg, QPalette::Text);
+        labelColor = option.palette.color(cg, QPalette::Text);
+#else
         prefixColor = option.palette.color(cg, QPalette::HighlightedText);
         valueColor = option.palette.color(cg, QPalette::HighlightedText);
         labelColor = option.palette.color(cg, QPalette::HighlightedText);
+#endif
     }
-
 
     // Using ascent() to measure usual height of the font, excluding anything below baseline.
     int x = option.rect.x() + 20;
