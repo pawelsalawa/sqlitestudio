@@ -117,6 +117,7 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
         ChainExecutor* structureExecutor = nullptr;
         ViewModifier* viewModifier = nullptr;
         Ui::ViewWindow *ui;
+        bool modifyingThisView = false;
 
     private slots:
         void refreshView();

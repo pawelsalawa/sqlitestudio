@@ -342,6 +342,7 @@ void TableWindow::executeStructureChanges()
             return;
     }
 
+    modifyingThisTable = true;
     structureExecutor->setDb(db);
     structureExecutor->setQueries(sqls);
     widgetCover->show();
@@ -440,11 +441,13 @@ void TableWindow::setupDefShortcuts()
 
 void TableWindow::executionSuccessful()
 {
+    modifyingThisTable = false;
     dataLoaded = true;
 }
 
 void TableWindow::executionFailed(const QString& errorText)
 {
+    modifyingThisTable = false;
     notifyError(tr("Could not load data for table %1. Error details: %2").arg(table).arg(errorText));
 }
 
@@ -692,6 +695,9 @@ void TableWindow::checkIfTableDeleted(const QString& database, const QString& ob
 {
     UNUSED(database);
     if (type != DbObjectType::TABLE)
+        return;
+
+    if (modifyingThisTable)
         return;
 
     // TODO uncomment below when dbnames are supported
