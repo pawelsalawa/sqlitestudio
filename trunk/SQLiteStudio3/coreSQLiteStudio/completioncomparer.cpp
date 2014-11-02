@@ -137,7 +137,20 @@ bool CompletionComparer::compareColumns(const ExpectedTokenPtr& token1, const Ex
     if (ok)
         return result;
 
-    return compareByContext(token1->value, token2->value, {contextColumns, parentContextColumns});
+    result = compareByContext(token1->value, token2->value, {contextColumns, parentContextColumns}, true, &ok);
+    if (ok)
+        return result;
+
+    // Context info of the column has a strong meaning when sorting (system tables are pushed to the end)
+    bool firstIsSystem = token1->contextInfo.toLower().startsWith("sqlite_");
+    bool secondIsSystem = token2->contextInfo.toLower().startsWith("sqlite_");
+    if (firstIsSystem && !secondIsSystem)
+        return false;
+
+    if (!firstIsSystem && secondIsSystem)
+        return true;
+
+    return compareValues(token1->value, token2->value, true);
 }
 
 bool CompletionComparer::compareColumnsForSelectResCol(const ExpectedTokenPtr &token1, const ExpectedTokenPtr &token2, bool *result)
@@ -240,12 +253,16 @@ bool CompletionComparer::compareTables(const ExpectedTokenPtr& token1, const Exp
     if (ok)
         return result;
 
-    return compareByContext(token1->contextInfo, token2->contextInfo, parentContextDatabases);
+    result = compareByContext(token1->contextInfo, token2->contextInfo, parentContextDatabases, &ok);
+    if (ok)
+        return result;
+
+    return compareValues(token1->value, token2->value, true);
 }
 
 bool CompletionComparer::compareIndexes(const ExpectedTokenPtr& token1, const ExpectedTokenPtr& token2)
 {
-    return compareValues(token1, token2);
+    return compareValues(token1, token2, true);
 }
 
 bool CompletionComparer::compareTriggers(const ExpectedTokenPtr& token1, const ExpectedTokenPtr& token2)
@@ -266,24 +283,45 @@ bool CompletionComparer::compareDatabases(const ExpectedTokenPtr& token1, const 
     return compareByContext(token1->value, token2->value, {contextDatabases, parentContextDatabases});
 }
 
-bool CompletionComparer::compareValues(const ExpectedTokenPtr &token1, const ExpectedTokenPtr &token2)
+bool CompletionComparer::compareValues(const ExpectedTokenPtr &token1, const ExpectedTokenPtr &token2, bool handleSystemNames)
 {
-    return token1->value.compare(token2->value, Qt::CaseInsensitive) < 0;
+    return compareValues(token1->value, token2->value, handleSystemNames);
 }
 
-bool CompletionComparer::compareValues(const QString &token1, const QString &token2)
+bool CompletionComparer::compareValues(const QString &token1, const QString &token2, bool handleSystemNames)
 {
     //qDebug() << "comparing" << token1 << "and" << token2 << "=" << token1.compare(token2, Qt::CaseInsensitive);
+    if (handleSystemNames)
+    {
+        bool firstIsSystem = token1.toLower().startsWith("sqlite_");
+        bool secondIsSystem = token2.toLower().startsWith("sqlite_");
+        if (firstIsSystem && !secondIsSystem)
+            return false;
+
+        if (!firstIsSystem && secondIsSystem)
+            return true;
+    }
+
     return token1.compare(token2, Qt::CaseInsensitive) < 0;
 }
 
-bool CompletionComparer::compareByContext(const QString &token1, const QString &token2, const QStringList &contextValues, bool* ok)
+bool CompletionComparer::compareByContext(const QString &token1, const QString &token2, const QStringList &contextValues, bool *ok)
+{
+    return compareByContext(token1, token2, contextValues, false, ok);
+}
+
+bool CompletionComparer::compareByContext(const QString &token1, const QString &token2, const QList<QStringList> &contextValues, bool *ok)
+{
+    return compareByContext(token1, token2, contextValues, false, ok);
+}
+
+bool CompletionComparer::compareByContext(const QString &token1, const QString &token2, const QStringList &contextValues, bool handleSystemNames, bool* ok)
 {
     if (ok)
         *ok = true;
 
     bool localOk = false;
-    bool result = compareByContextOnly(token1, token2, contextValues, &localOk);
+    bool result = compareByContextOnly(token1, token2, contextValues, handleSystemNames, &localOk);
 
     if (localOk)
         return result;
@@ -292,10 +330,10 @@ bool CompletionComparer::compareByContext(const QString &token1, const QString &
     if (ok)
         *ok = false;
 
-    return compareValues(token1, token2);
+    return compareValues(token1, token2, handleSystemNames);
 }
 
-bool CompletionComparer::compareByContext(const QString &token1, const QString &token2, const QList<QStringList>& contextValues, bool* ok)
+bool CompletionComparer::compareByContext(const QString &token1, const QString &token2, const QList<QStringList>& contextValues, bool handleSystemNames, bool* ok)
 {
     if (ok)
         *ok = true;
@@ -305,7 +343,7 @@ bool CompletionComparer::compareByContext(const QString &token1, const QString &
 
     for (const QStringList& ctxValues : contextValues)
     {
-        result = compareByContextOnly(token1, token2, ctxValues, &localOk);
+        result = compareByContextOnly(token1, token2, ctxValues, handleSystemNames, &localOk);
         if (localOk)
             return result;
     }
@@ -314,10 +352,10 @@ bool CompletionComparer::compareByContext(const QString &token1, const QString &
     if (ok)
         *ok = false;
 
-    return compareValues(token1, token2);
+    return compareValues(token1, token2, handleSystemNames);
 }
 
-bool CompletionComparer::compareByContextOnly(const QString &token1, const QString &token2, const QStringList &contextValues, bool *ok)
+bool CompletionComparer::compareByContextOnly(const QString &token1, const QString &token2, const QStringList &contextValues, bool handleSystemNames, bool *ok)
 {
     *ok = true;
 
@@ -332,6 +370,17 @@ bool CompletionComparer::compareByContextOnly(const QString &token1, const QStri
     // If token2 is in context, but token1 is not, then it's definite false.
     if (!token1InContext && token2InContext)
         return false;
+
+    if (handleSystemNames)
+    {
+        bool firstIsSystem = token1.toLower().startsWith("sqlite_");
+        bool secondIsSystem = token2.toLower().startsWith("sqlite_");
+        if (firstIsSystem && !secondIsSystem)
+            return false;
+
+        if (!firstIsSystem && secondIsSystem)
+            return true;
+    }
 
     *ok = false;
     return false;
