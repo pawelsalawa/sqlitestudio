@@ -127,7 +127,7 @@ void DbTree::createActions()
     createAction(ADD_COLUMN, ICONS.TABLE_COLUMN_ADD, tr("Add a column"), this, SLOT(addColumn()), this);
     createAction(EDIT_COLUMN, ICONS.TABLE_COLUMN_EDIT, tr("Edit the column"), this, SLOT(editColumn()), this);
     createAction(DEL_COLUMN, ICONS.TABLE_COLUMN_DELETE, tr("Delete the column"), this, SLOT(delColumn()), this);
-    createAction(DEL_SELECTED, ICONS.ACT_SELECT_ALL, tr("Select all"), this, SLOT(deleteSelected()), this);
+    createAction(DEL_SELECTED, ICONS.DELETE_SELECTED, tr("Delete selected items"), this, SLOT(deleteSelected()), this);
     createAction(CLEAR_FILTER, tr("Clear filter"), ui->nameFilter, SLOT(clear()), this);
     createAction(REFRESH_SCHEMAS, ICONS.DATABASE_RELOAD, tr("Refresh all database schemas"), this, SLOT(refreshSchemas()), this);
     createAction(REFRESH_SCHEMA, ICONS.DATABASE_RELOAD, tr("Refresh selected database schema"), this, SLOT(refreshSchema()), this);
@@ -459,6 +459,8 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
 
     actions += COPY;
     actions += PASTE;
+    actions += _separator;
+    actions += DEL_SELECTED;
     actions += _separator;
     actions += SELECT_ALL;
     actions += ActionEntry(REFRESH_SCHEMAS);

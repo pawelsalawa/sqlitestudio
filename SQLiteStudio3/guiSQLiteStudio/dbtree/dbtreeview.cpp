@@ -89,11 +89,7 @@ void DbTreeView::updateItemHidden(DbTreeItem* item)
 
 DbTreeItem *DbTreeView::getItemForAction() const
 {
-    QModelIndexList indexes = selectionModel()->selectedRows();
-    if (indexes.size() == 0)
-        return nullptr;
-
-    QModelIndex idx = indexes[0];
+    QModelIndex idx = selectionModel()->currentIndex();
     return dynamic_cast<DbTreeItem*>(model()->itemFromIndex(idx));
 }
 
