@@ -1,17 +1,22 @@
 #include "functionmanagermock.h"
 
-void FunctionManagerMock::setScriptFunctions(const QList<FunctionManager::FunctionPtr>&)
+void FunctionManagerMock::setScriptFunctions(const QList<ScriptFunction *> &)
 {
 }
 
-QList<FunctionManager::FunctionPtr> FunctionManagerMock::getAllScriptFunctions() const
+QList<FunctionManager::ScriptFunction *> FunctionManagerMock::getAllScriptFunctions() const
 {
-    return QList<FunctionManager::FunctionPtr>();
+    return QList<FunctionManager::ScriptFunction*>();
 }
 
-QList<FunctionManager::FunctionPtr> FunctionManagerMock::getScriptFunctionsForDatabase(const QString&) const
+QList<FunctionManager::ScriptFunction *> FunctionManagerMock::getScriptFunctionsForDatabase(const QString&) const
 {
-    return QList<FunctionManager::FunctionPtr>();
+    return QList<FunctionManager::ScriptFunction*>();
+}
+
+QList<FunctionManager::NativeFunction *> FunctionManagerMock::getAllNativeFunctions() const
+{
+    return QList<FunctionManager::NativeFunction*>();
 }
 
 QVariant FunctionManagerMock::evaluateScalar(const QString&, int, const QList<QVariant>&, Db*, bool&)

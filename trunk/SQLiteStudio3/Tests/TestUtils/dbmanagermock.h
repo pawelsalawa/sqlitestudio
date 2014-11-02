@@ -20,9 +20,11 @@ class DbManagerMock : public DbManager
         Db*getByPath(const QString&);
         Db*createInMemDb();
         bool isTemporary(Db*);
+        QString quickAddDb(const QString &path, const QHash<QString, QVariant> &);
 
     public slots:
         void notifyDatabasesAreLoaded();
+        void scanForNewDatabasesInConfig();
 };
 
 #endif // DBMANAGERMOCK_H

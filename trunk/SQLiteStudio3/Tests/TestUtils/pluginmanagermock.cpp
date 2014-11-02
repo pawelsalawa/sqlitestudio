@@ -135,3 +135,28 @@ QStringList PluginManagerMock::getConflicts(const QString&) const
 {
     return QStringList();
 }
+
+QList<PluginManager::PluginDetails> PluginManagerMock::getAllPluginDetails() const
+{
+        return QList<PluginManager::PluginDetails>();
+}
+
+QList<PluginManager::PluginDetails> PluginManagerMock::getLoadedPluginDetails() const
+{
+    return QList<PluginManager::PluginDetails>();
+}
+
+QStringList PluginManagerMock::getLoadedPluginNames() const
+{
+    return QStringList();
+}
+
+bool PluginManagerMock::arePluginsInitiallyLoaded() const
+{
+    return true;
+}
+
+QList<Plugin *> PluginManagerMock::getLoadedPlugins() const
+{
+    return QList<Plugin *>();
+}

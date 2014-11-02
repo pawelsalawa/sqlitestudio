@@ -39,13 +39,22 @@ class ConfigMock : public Config
         QList<DdlHistoryEntryPtr> getDdlHistoryFor(const QString&, const QString&, const QDate&);
         DdlHistoryModel* getDdlHistoryModel();
         void clearDdlHistory();
-        bool setFunctions(const QList<FunctionManager::FunctionPtr>&);
-        QList<FunctionManager::FunctionPtr> getFunctions() const;
         void begin();
         void commit();
         void rollback();
         bool setCollations(const QList<CollationManager::CollationPtr>&);
         QList<CollationManager::CollationPtr> getCollations() const;
+        const QString &getConfigDir() const;
+        QString getConfigFilePath() const;
+        bool isMassSaving() const;
+        void addReportHistory(bool, const QString &, const QString &);
+        QList<ReportHistoryEntryPtr> getReportHistory();
+        void deleteReport(int);
+        void clearReportHistory();
+
+    public slots:
+        void refreshSqlHistory();
+        void refreshDdlHistory();
 };
 
 #endif // CONFIGMOCK_H
