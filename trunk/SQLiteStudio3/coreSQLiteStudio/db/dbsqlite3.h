@@ -9,7 +9,7 @@ struct Sqlite3
     static_char* label = "SQLite 3";
 };
 
-class DbSqlite3 : public AbstractDb3<Sqlite3>
+class API_EXPORT DbSqlite3 : public AbstractDb3<Sqlite3>
 {
     public:
         /**
