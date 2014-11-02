@@ -173,6 +173,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         WidgetCover* widgetCover;
         ChainExecutor* structureExecutor = nullptr;
         TableModifier* tableModifier = nullptr;
+        bool modifyingThisTable = false;
 
     private slots:
         void executionSuccessful();

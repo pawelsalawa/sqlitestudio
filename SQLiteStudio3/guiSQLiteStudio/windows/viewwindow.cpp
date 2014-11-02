@@ -432,11 +432,13 @@ void ViewWindow::deleteTrigger()
 
 void ViewWindow::executionSuccessful()
 {
+    modifyingThisView = false;
     dataLoaded = true;
 }
 
 void ViewWindow::executionFailed(const QString& errorMessage)
 {
+    modifyingThisView = false;
     notifyError(tr("Could not load data for view %1. Error details: %2").arg(view).arg(errorMessage));
 }
 
@@ -549,6 +551,9 @@ void ViewWindow::checkIfViewDeleted(const QString& database, const QString& obje
 {
     UNUSED(database);
     if (type != DbObjectType::VIEW)
+        return;
+
+    if (modifyingThisView)
         return;
 
     // TODO uncomment below when dbnames are supported
@@ -726,6 +731,7 @@ void ViewWindow::executeStructureChanges()
             return;
     }
 
+    modifyingThisView = true;
     structureExecutor->setDb(db);
     structureExecutor->setQueries(sqls);
     structureExecutor->setMandatoryQueries(sqlMandatoryFlags);
