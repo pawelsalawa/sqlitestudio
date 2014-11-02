@@ -56,6 +56,7 @@ sqlite3_lib=`ldd $1/SQLiteStudio/lib/libcoreSQLiteStudio.so | grep libsqlite | a
 sqlite2_lib=`ldd plugins/libDbSqlite2.so | grep libsqlite | awk '{print $3;}'`
 cp $sqlite3_lib lib
 cp $sqlite2_lib lib
+strip lib/*libsqlite*
 
 # Copy Qt
 cd $portable/SQLiteStudio/lib
