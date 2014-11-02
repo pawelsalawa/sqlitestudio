@@ -928,8 +928,8 @@ void DbTree::removeDb()
     if (!db)
         return;
 
-    int res = QMessageBox::question(this, tr("Delete database"), tr("Are you sure you want to delete database '%1'?").arg(db->getName().left(ITEM_TEXT_LIMIT)));
-    if (!res)
+    QMessageBox::StandardButton result = QMessageBox::question(this, tr("Delete database"), tr("Are you sure you want to delete database '%1'?").arg(db->getName().left(ITEM_TEXT_LIMIT)));
+    if (result != QMessageBox::Yes)
         return;
 
     DBLIST->removeDb(db);
