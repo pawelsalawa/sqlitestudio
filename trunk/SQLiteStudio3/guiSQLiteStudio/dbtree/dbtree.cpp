@@ -291,6 +291,8 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
 
     if (currItem)
     {
+        DbTreeItem* parentItem = currItem->parentDbTreeItem();
+        DbTreeItem* grandParentItem = parentItem ? parentItem->parentDbTreeItem() : nullptr;
         DbTreeItem::Type itemType = currItem->getType();
         switch (itemType)
         {
@@ -366,6 +368,10 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
             case DbTreeItem::Type::INDEXES:
                 actions += ActionEntry(ADD_INDEX);
                 actions += ActionEntry(_separator);
+                actions += ActionEntry(ADD_TABLE);
+                actions += ActionEntry(EDIT_TABLE);
+                actions += ActionEntry(DEL_TABLE);
+                actions += ActionEntry(_separator);
                 actions += dbEntryExt;
                 break;
             case DbTreeItem::Type::INDEX:
@@ -373,11 +379,28 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
                 actions += ActionEntry(EDIT_INDEX);
                 actions += ActionEntry(DEL_INDEX);
                 actions += ActionEntry(_separator);
+                actions += ActionEntry(ADD_TABLE);
+                actions += ActionEntry(EDIT_TABLE);
+                actions += ActionEntry(DEL_TABLE);
+                actions += ActionEntry(_separator);
                 actions += dbEntryExt;
                 break;
             case DbTreeItem::Type::TRIGGERS:
             {
                 actions += ActionEntry(ADD_TRIGGER);
+                actions += ActionEntry(_separator);
+                if (parentItem->getType() == DbTreeItem::Type::TABLE)
+                {
+                    actions += ActionEntry(ADD_TABLE);
+                    actions += ActionEntry(EDIT_TABLE);
+                    actions += ActionEntry(DEL_TABLE);
+                }
+                else
+                {
+                    actions += ActionEntry(ADD_VIEW);
+                    actions += ActionEntry(EDIT_VIEW);
+                    actions += ActionEntry(DEL_VIEW);
+                }
                 actions += ActionEntry(_separator);
                 actions += dbEntryExt;
                 break;
@@ -387,6 +410,19 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
                 actions += ActionEntry(ADD_TRIGGER);
                 actions += ActionEntry(EDIT_TRIGGER);
                 actions += ActionEntry(DEL_TRIGGER);
+                actions += ActionEntry(_separator);
+                if (grandParentItem->getType() == DbTreeItem::Type::TABLE)
+                {
+                    actions += ActionEntry(ADD_TABLE);
+                    actions += ActionEntry(EDIT_TABLE);
+                    actions += ActionEntry(DEL_TABLE);
+                }
+                else
+                {
+                    actions += ActionEntry(ADD_VIEW);
+                    actions += ActionEntry(EDIT_VIEW);
+                    actions += ActionEntry(DEL_VIEW);
+                }
                 actions += ActionEntry(_separator);
                 actions += dbEntryExt;
                 break;
@@ -1024,7 +1060,20 @@ void DbTree::editTable()
 
 void DbTree::delTable()
 {
-    delSelectedObject();
+    Db* db = getSelectedOpenDb();
+    if (!db || !db->isValid())
+        return;
+
+    DbTreeItem* item = ui->treeView->currentItem();
+    QString table = item->getTable();
+    if (table.isNull())
+    {
+        qWarning() << "Tried to drop table, while table wasn't selected in DbTree.";
+        return;
+    }
+
+    DbObjectDialogs dialogs(db);
+    dialogs.dropObject(table); // TODO add database prefix when supported
 }
 
 void DbTree::addIndex()
@@ -1114,7 +1163,7 @@ void DbTree::editView()
         return;
     }
 
-    openView(item);
+    openView(db, QString(), view); // TODO handle named database when supported
 }
 
 void DbTree::delView()

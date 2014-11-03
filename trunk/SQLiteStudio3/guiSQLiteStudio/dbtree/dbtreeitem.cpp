@@ -231,7 +231,7 @@ const DbTreeItem* DbTreeItem::getParentItem(DbTreeItem::Type type) const
 
     DbTreeItem* parent = parentDbTreeItem();
     if (parent)
-        return parent->getParentItem(Type::TABLE);
+        return parent->getParentItem(type);
 
     return nullptr;
 }
