@@ -121,6 +121,7 @@ class API_EXPORT UpdateManager : public QObject
 
     signals:
         void updatesAvailable(const QList<UpdateManager::UpdateEntry>& updates);
+        void noUpdatesAvailable();
         void updatingProgress(const QString& jobTitle, int jobPercent, int totalPercent);
         void updatingFinished();
         void updatingError(const QString& errorMessage);
