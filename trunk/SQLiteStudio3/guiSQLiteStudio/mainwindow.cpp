@@ -121,6 +121,7 @@ void MainWindow::init()
     }
 
     connect(UPDATES, SIGNAL(updatesAvailable(QList<UpdateManager::UpdateEntry>)), this, SLOT(updatesAvailable(QList<UpdateManager::UpdateEntry>)));
+    connect(UPDATES, SIGNAL(noUpdatesAvailable()), this, SLOT(noUpdatesAvailable()));
     connect(statusField, SIGNAL(linkActivated(QString)), this, SLOT(statusFieldLinkClicked(QString)));
 
     // Widget cover
@@ -707,9 +708,19 @@ void MainWindow::reportHistory()
 
 void MainWindow::updatesAvailable(const QList<UpdateManager::UpdateEntry>& updates)
 {
+    manualUpdatesChecking = false;
     newVersionDialog = new NewVersionDialog(this);
     newVersionDialog->setUpdates(updates);
     notifyInfo(tr("New updates are available. <a href=\"%1\">Click here for details</a>.").arg(openUpdatesUrl));
+}
+
+void MainWindow::noUpdatesAvailable()
+{
+    if (!manualUpdatesChecking)
+        return;
+
+    notifyInfo(tr("You're running the most recent version. No updates are available."));
+    manualUpdatesChecking = false;
 }
 
 void MainWindow::statusFieldLinkClicked(const QString& link)
@@ -723,6 +734,7 @@ void MainWindow::statusFieldLinkClicked(const QString& link)
 
 void MainWindow::checkForUpdates()
 {
+    manualUpdatesChecking = true;
     UPDATES->checkForUpdates();
 }
 

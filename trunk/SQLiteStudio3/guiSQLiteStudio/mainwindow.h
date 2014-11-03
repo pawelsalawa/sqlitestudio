@@ -163,6 +163,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         QLabel* updatingLabel = nullptr;
         QProgressBar* updatingBusyBar = nullptr;
         QProgressBar* updatingSubBar = nullptr;
+        bool manualUpdatesChecking = false;
 
     public slots:
         EditorWindow* openSqlEditor();
@@ -195,6 +196,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void sqliteDocs();
         void reportHistory();
         void updatesAvailable(const QList<UpdateManager::UpdateEntry>& updates);
+        void noUpdatesAvailable();
         void statusFieldLinkClicked(const QString& link);
         void checkForUpdates();
         void handleUpdatingProgress(const QString& jobTitle, int jobPercent, int totalPercent);
