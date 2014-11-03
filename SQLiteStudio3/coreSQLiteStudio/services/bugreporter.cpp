@@ -77,16 +77,16 @@ void BugReporter::clearBugReportCredentials()
 void BugReporter::reportBug(const QString& title, const QString& details, const QString& version, const QString& os, const QString& plugins, BugReporter::ResponseHandler responseHandler, const QString& urlSuffix)
 {
     static_qstring(contentsTpl, "%1\n\n<b>Plugins loaded:</b>\n%2\n\n<b>Version:</b>\n%3\n\n<b>Operating System:</b>\n%4");
-    QString contents = contentsTpl.arg(details, plugins, version, os);
+    QString contents = contentsTpl.arg(details.toHtmlEscaped(), plugins, version, os);
 
     QUrlQuery query;
-    query.addQueryItem("brief", title);
-    query.addQueryItem("contents", contents);
+    query.addQueryItem("brief", escapeParam(title));
+    query.addQueryItem("contents", escapeParam(contents));
     query.addQueryItem("os", os);
     query.addQueryItem("version", version);
     query.addQueryItem("featureRequest", "0");
 
-    QUrl url = QUrl(QString::fromLatin1(bugReportServiceUrl) + "?" + query.query(QUrl::FullyEncoded) + urlSuffix);
+    QUrl url = QUrl(QString::fromLatin1(bugReportServiceUrl) + "?" + escapeUrl(query.query(QUrl::FullyEncoded) + urlSuffix));
     QNetworkRequest request(url);
     QNetworkReply* reply = networkManager->get(request);
     if (responseHandler)
@@ -98,17 +98,29 @@ void BugReporter::reportBug(const QString& title, const QString& details, const 
 void BugReporter::requestFeature(const QString& title, const QString& details, BugReporter::ResponseHandler responseHandler, const QString& urlSuffix)
 {
     QUrlQuery query;
-    query.addQueryItem("brief", title);
-    query.addQueryItem("contents", details);
+    query.addQueryItem("brief", escapeParam(title));
+    query.addQueryItem("contents", escapeParam(details));
     query.addQueryItem("featureRequest", "1");
 
-    QUrl url = QUrl(QString::fromLatin1(bugReportServiceUrl) + "?" + query.query(QUrl::FullyEncoded) + urlSuffix);
+    QUrl url = QUrl(QString::fromLatin1(bugReportServiceUrl) + "?" + escapeUrl(query.query(QUrl::FullyEncoded) + urlSuffix));
     QNetworkRequest request(url);
     QNetworkReply* reply = networkManager->get(request);
     if (responseHandler)
         replyToHandler[reply] = responseHandler;
 
     replyToTypeAndTitle[reply] = QPair<bool,QString>(true, title);
+}
+
+QString BugReporter::escapeParam(const QString &input)
+{
+    return input.toHtmlEscaped();
+}
+
+QString BugReporter::escapeUrl(const QString &input)
+{
+    // For some reason the ";" character is not encodedy by QUrlQuery when using FullEncoded. Pity. We have to do it manually.
+    QString copy = input;
+    return copy.replace(";", "%3B");
 }
 
 void BugReporter::finished(QNetworkReply* reply)

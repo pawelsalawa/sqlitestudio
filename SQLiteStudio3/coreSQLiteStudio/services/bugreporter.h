@@ -30,6 +30,9 @@ class API_EXPORT BugReporter : public QObject
                        ResponseHandler responseHandler, const QString& urlSuffix);
         void requestFeature(const QString& title, const QString& details, ResponseHandler responseHandler, const QString& urlSuffix);
 
+        static QString escapeParam(const QString& input);
+        static QString escapeUrl(const QString& input);
+
         QNetworkAccessManager* networkManager = nullptr;
         QHash<QNetworkReply*,ResponseHandler> replyToHandler;
         QHash<QNetworkReply*,QPair<bool,QString>> replyToTypeAndTitle;
