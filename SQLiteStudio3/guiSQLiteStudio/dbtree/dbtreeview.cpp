@@ -87,9 +87,12 @@ void DbTreeView::updateItemHidden(DbTreeItem* item)
     setRowHidden(item->index().row(), item->index().parent(), item->isHidden());
 }
 
-DbTreeItem *DbTreeView::getItemForAction() const
+DbTreeItem *DbTreeView::getItemForAction(bool onlySelected) const
 {
     QModelIndex idx = selectionModel()->currentIndex();
+    if (onlySelected && !selectionModel()->isSelected(idx))
+        return nullptr;
+
     return dynamic_cast<DbTreeItem*>(model()->itemFromIndex(idx));
 }
 
@@ -240,7 +243,7 @@ void DbTreeView::dropEvent(QDropEvent* e)
 {
     lastDropPosition = e->pos();
     QTreeView::dropEvent(e);
-    if (!e->isAccepted() && e->mimeData()->hasUrls())
+    if (!e->isAccepted() && e->mimeData()->hasUrls() && !dbTree->getModel()->hasDbTreeItem(e->mimeData()))
     {
         dbTree->getModel()->dropMimeData(e->mimeData(), Qt::CopyAction, -1, -1, dbTree->getModel()->root()->index());
         e->accept();

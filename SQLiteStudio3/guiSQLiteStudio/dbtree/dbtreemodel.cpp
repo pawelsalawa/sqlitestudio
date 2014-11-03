@@ -21,6 +21,7 @@
 #include <QInputDialog>
 #include <QCheckBox>
 #include <QWidgetAction>
+#include <QClipboard>
 
 const QString DbTreeModel::toolTipTableTmp = "<table>%1</table>";
 const QString DbTreeModel::toolTipHdrRowTmp = "<tr><th><img src=\"%1\"/></th><th colspan=2>%2</th></tr>";
@@ -60,13 +61,19 @@ void DbTreeModel::connectDbManagerSignals()
 void DbTreeModel::move(QStandardItem *itemToMove, QStandardItem *newParentItem, int newRow)
 {
     QStandardItem* currParent = dynamic_cast<DbTreeItem*>(itemToMove)->parentItem();
-    int r = itemToMove->index().row();
-    currParent->takeRow(r);
-
     if (!newParentItem)
         newParentItem = root();
 
-    if (newRow < 0)
+    if (newParentItem == currParent)
+    {
+        move(itemToMove, newRow);
+        return;
+    }
+
+    int oldRow = itemToMove->index().row();
+    currParent->takeRow(oldRow);
+
+    if (newRow > currParent->rowCount() || newRow < 0)
         newParentItem->appendRow(itemToMove);
     else
         newParentItem->insertRow(newRow, itemToMove);
@@ -75,8 +82,14 @@ void DbTreeModel::move(QStandardItem *itemToMove, QStandardItem *newParentItem, 
 void DbTreeModel::move(QStandardItem *itemToMove, int newRow)
 {
     QStandardItem* currParent = dynamic_cast<DbTreeItem*>(itemToMove)->parentItem();
-    currParent->takeRow(itemToMove->index().row());
-    currParent->insertRow(newRow, itemToMove);
+    int oldRow = itemToMove->index().row();
+    currParent->takeRow(oldRow);
+    if (newRow > currParent->rowCount() || newRow  < 0)
+        currParent->appendRow(itemToMove);
+    else if (oldRow < newRow)
+        currParent->insertRow(newRow - 1, itemToMove);
+    else
+        currParent->insertRow(newRow, itemToMove);
 }
 
 void DbTreeModel::deleteGroup(QStandardItem *groupItem)
@@ -885,10 +898,15 @@ bool DbTreeModel::dropMimeData(const QMimeData* data, Qt::DropAction action, int
 {
     UNUSED(action);
     // The result means: do we want the old item to be removed from the tree?
-    return pasteData(data, row, column, parent, Qt::IgnoreAction);
+    bool invokeStdAction = false;
+    bool res = pasteData(data, row, column, parent, Qt::IgnoreAction, &invokeStdAction);
+    if (!invokeStdAction)
+        return res;
+
+    return QStandardItemModel::dropMimeData(data, action, row, column, parent);
 }
 
-bool DbTreeModel::pasteData(const QMimeData* data, int row, int column, const QModelIndex& parent, Qt::DropAction defaultAction)
+bool DbTreeModel::pasteData(const QMimeData* data, int row, int column, const QModelIndex& parent, Qt::DropAction defaultAction, bool* invokeStdAction)
 {
     // The result means: do we want the old item to be removed from the tree?
     DbTreeItem* dstItem = nullptr;
@@ -901,10 +919,12 @@ bool DbTreeModel::pasteData(const QMimeData* data, int row, int column, const QM
             dstItem = dynamic_cast<DbTreeItem*>(itemFromIndex(parent));
     }
     else
+    {
         dstItem = dynamic_cast<DbTreeItem*>(item(row, column));
+    }
 
     if (data->formats().contains(MIMETYPE))
-        return dropDbTreeItem(getDragItems(data), dstItem, row, defaultAction);
+        return dropDbTreeItem(getDragItems(data), dstItem, defaultAction, *invokeStdAction);
     else if (data->hasUrls())
         return dropUrls(data->urls());
     else
@@ -945,11 +965,29 @@ QList<DbTreeItem*> DbTreeModel::getDragItems(const QMimeData* data)
     return items;
 }
 
-bool DbTreeModel::dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, int row, Qt::DropAction defaultAction)
+void DbTreeModel::staticInit()
 {
-    UNUSED(row);
+    cleanUpMimeData();
+}
+
+void DbTreeModel::cleanUpMimeData()
+{
+    const QMimeData *oldData = QApplication::clipboard()->mimeData();
+
+    QMimeData* data = new QMimeData();
+    for (const QString& format : oldData->formats())
+    {
+        if (format != MIMETYPE)
+            data->setData(format, oldData->data(format));
+    }
+
+    QApplication::clipboard()->setMimeData(data);
+}
+
+bool DbTreeModel::dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, Qt::DropAction defaultAction, bool& invokeStdDropAction)
+{
     // The result means: do we want the old item to be removed from the tree?
-    if (srcItems.size() == 0 || !dstItem)
+    if (srcItems.size() == 0)
         return false;
 
     DbTreeItem* srcItem = srcItems.first();
@@ -958,14 +996,19 @@ bool DbTreeModel::dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem*
         case DbTreeItem::Type::TABLE:
         case DbTreeItem::Type::VIEW:
         {
+            if (!dstItem)
+                return false;
+
             if (srcItem->getDb() == dstItem->getDb())
                 return true;
 
             return dropDbObjectItem(srcItems, dstItem, defaultAction);
         }
         case DbTreeItem::Type::DB:
-        case DbTreeItem::Type::COLUMN:
         case DbTreeItem::Type::DIR:
+            invokeStdDropAction = true;
+            break;
+        case DbTreeItem::Type::COLUMN:
         case DbTreeItem::Type::TABLES:
         case DbTreeItem::Type::INDEXES:
         case DbTreeItem::Type::INDEX:
@@ -1136,6 +1179,10 @@ void DbTreeModel::setIgnoreDbLoadedSignal(bool value)
     ignoreDbLoadedSignal = value;
 }
 
+bool DbTreeModel::hasDbTreeItem(const QMimeData *data)
+{
+    return data->formats().contains(MIMETYPE);
+}
 
 void DbTreeModel::dbObjectsMoveFinished(bool success, Db* srcDb, Db* dstDb)
 {

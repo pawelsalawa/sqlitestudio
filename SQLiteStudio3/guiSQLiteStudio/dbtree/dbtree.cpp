@@ -823,7 +823,7 @@ void DbTree::selectAll()
 void DbTree::createGroup()
 {
     QStringList existingItems;
-    QStandardItem* currItem = ui->treeView->getItemForAction();
+    QStandardItem* currItem = ui->treeView->getItemForAction(true);
     DbTreeItem* itemToMove = nullptr;
     if (currItem)
     {

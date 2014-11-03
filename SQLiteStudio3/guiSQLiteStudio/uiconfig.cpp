@@ -34,7 +34,11 @@ namespace Cfg
     QVariant getDefaultDbTreeLabelFont()
     {
         QFont font = getDefaultItemViewFont().value<QFont>();
+#ifdef Q_OS_WIN32
+        font.setPointSize(font.pointSize() - 1);
+#else
         font.setPointSize(font.pointSize() - 2);
+#endif
         return font;
     }
 

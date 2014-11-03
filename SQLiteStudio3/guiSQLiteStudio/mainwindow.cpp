@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "common/unused.h"
 #include "dbtree/dbtree.h"
+#include "dbtree/dbtreemodel.h"
 #include "iconmanager.h"
 #include "windows/editorwindow.h"
 #include "windows/tablewindow.h"
@@ -77,6 +78,7 @@ void MainWindow::init()
 
     Committable::init(MainWindow::confirmQuit);
 
+    DbTreeModel::staticInit();
     dbTree = new DbTree(this);
     addDockWidget(Qt::LeftDockWidgetArea, dbTree);
 
