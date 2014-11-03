@@ -76,8 +76,8 @@ void BugReporter::clearBugReportCredentials()
 
 void BugReporter::reportBug(const QString& title, const QString& details, const QString& version, const QString& os, const QString& plugins, BugReporter::ResponseHandler responseHandler, const QString& urlSuffix)
 {
-    static_qstring(contentsTpl, "%1\n\nPlugins loaded:\n%2");
-    QString contents = contentsTpl.arg(details, plugins);
+    static_qstring(contentsTpl, "%1\n\n<b>Plugins loaded:</b>\n%2\n\n<b>Version:</b>\n%3\n\n<b>Operating System:</b>\n%4");
+    QString contents = contentsTpl.arg(details, plugins, version, os);
 
     QUrlQuery query;
     query.addQueryItem("brief", title);
