@@ -1,3 +1,6 @@
+- default formatter is still not guaranteed to be enterprise
+- wrapping names for sql export
+
 * Next versions:
 - commiting DataView should be async
 - syntax checkers as services - per language
