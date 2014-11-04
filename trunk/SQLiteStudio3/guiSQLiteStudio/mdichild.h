@@ -8,6 +8,7 @@
 
 class MdiWindow;
 class Icon;
+class Db;
 
 class GUI_API_EXPORT MdiChild : public QWidget, public ExtActionContainer, public Committable
 {
@@ -25,8 +26,11 @@ class GUI_API_EXPORT MdiChild : public QWidget, public ExtActionContainer, publi
         void updateWindowTitle();
         virtual bool restoreSessionNextTime();
         virtual bool handleInitialFocus();
+        virtual Db* getAssociatedDb() const;
+        virtual void dbClosedFinalCleanup();
 
     protected:
+
         virtual QVariant saveSession() = 0;
         virtual bool restoreSession(const QVariant& sessionValue) = 0;
 

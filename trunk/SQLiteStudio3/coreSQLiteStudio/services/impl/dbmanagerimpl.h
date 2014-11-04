@@ -155,6 +155,11 @@ class API_EXPORT DbManagerImpl : public DbManager
         void dbDisconnectedSlot();
 
         /**
+         * @brief Passes Db::aboutToDisconnect() signal to dbAboutToBeDisconnected() signal.
+         */
+        void dbAboutToDisconnect(bool& deny);
+
+        /**
          * @brief Removes databases handled by the plugin from the list.
          * @param plugin DbPlugin (any other will be ignored).
          * @param type DbPlugin type.

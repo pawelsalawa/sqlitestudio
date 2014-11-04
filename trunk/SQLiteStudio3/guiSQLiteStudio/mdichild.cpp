@@ -66,3 +66,12 @@ bool MdiChild::handleInitialFocus()
 {
     return false;
 }
+
+Db* MdiChild::getAssociatedDb() const
+{
+    return nullptr;
+}
+
+void MdiChild::dbClosedFinalCleanup()
+{
+}

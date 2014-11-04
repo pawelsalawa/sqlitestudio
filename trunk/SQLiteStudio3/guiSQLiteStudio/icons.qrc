@@ -188,5 +188,7 @@
         <file>img/database_offline.png</file>
         <file>img/database_online.png</file>
         <file>img/abort24.png</file>
+        <file>img/close.png</file>
+        <file>img/go_back.png</file>
     </qresource>
 </RCC>

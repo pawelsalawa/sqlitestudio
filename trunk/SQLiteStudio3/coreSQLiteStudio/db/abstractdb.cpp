@@ -40,6 +40,11 @@ bool AbstractDb::open()
 
 bool AbstractDb::close()
 {
+    bool deny = false;
+    emit aboutToDisconnect(deny);
+    if (deny)
+        return false;
+
     bool res = !isOpen() || closeQuiet();
     if (res)
         emit disconnected();

@@ -7,6 +7,7 @@
 
 class MdiChild;
 class MdiArea;
+class Db;
 
 class GUI_API_EXPORT MdiWindow : public QMdiSubWindow
 {
@@ -27,11 +28,16 @@ class GUI_API_EXPORT MdiWindow : public QMdiSubWindow
         void changeEvent(QEvent *event);
         void closeEvent(QCloseEvent* e);
 
-    protected:
-
     private:
+        bool confirmClose();
+
         QPointer<QWidget> lastFocusedWidget;
         MdiArea* mdiArea;
+        bool dbBeingClosed = false;
+
+    private slots:
+        void dbAboutToBeDisconnected(Db* db, bool& deny);
+        void dbDisconnected(Db* db);
 };
 
 #endif // MDIWINDOW_H

@@ -3,18 +3,24 @@
 #include "common/unused.h"
 #include "mdiarea.h"
 #include "mainwindow.h"
+#include "services/dbmanager.h"
+#include "db/db.h"
 #include <QDateTime>
 #include <QApplication>
 #include <QDebug>
 #include <QFocusEvent>
 #include <QAction>
 #include <QMessageBox>
+#include <QAbstractButton>
 
 MdiWindow::MdiWindow(MdiChild* mdiChild, MdiArea *mdiArea, Qt::WindowFlags flags) :
     QMdiSubWindow(mdiArea->viewport(), flags), mdiArea(mdiArea)
 {
     setAttribute(Qt::WA_DeleteOnClose);
     setWidget(mdiChild);
+
+    connect(DBLIST, SIGNAL(dbAboutToBeDisconnected(Db*,bool&)), this, SLOT(dbAboutToBeDisconnected(Db*,bool&)));
+    connect(DBLIST, SIGNAL(dbDisconnected(Db*)), this, SLOT(dbDisconnected(Db*)));
 }
 
 MdiWindow::~MdiWindow()
@@ -141,15 +147,55 @@ void MdiWindow::changeEvent(QEvent* event)
 
 void MdiWindow::closeEvent(QCloseEvent* e)
 {
-    if (MAINWINDOW->isClosingApp() || !getMdiChild()->isUncommited())
+    if (dbBeingClosed || MAINWINDOW->isClosingApp() || !getMdiChild()->isUncommited())
     {
         QMdiSubWindow::closeEvent(e);
         return;
     }
 
-    int res = QMessageBox::question(this, tr("Uncommited changes"), getMdiChild()->getQuitUncommitedConfirmMessage(), tr("Don't close"), tr("Close anyway"));
-    if (res == 1)
+    if (confirmClose())
         QMdiSubWindow::closeEvent(e);
     else
         e->ignore();
+}
+
+void MdiWindow::dbAboutToBeDisconnected(Db* db, bool& deny)
+{
+    if (!db || getMdiChild()->getAssociatedDb() != db)
+        return;
+
+    if (MAINWINDOW->isClosingApp())
+        return;
+
+    if (getMdiChild()->isUncommited() && !confirmClose())
+        deny = true;
+    else
+        dbBeingClosed = true;
+}
+
+void MdiWindow::dbDisconnected(Db* db)
+{
+    if (!db || getMdiChild()->getAssociatedDb() != db)
+        return;
+
+    if (MAINWINDOW->isClosingApp())
+        return;
+
+    getMdiChild()->dbClosedFinalCleanup();
+    close();
+}
+
+bool MdiWindow::confirmClose()
+{
+    QMessageBox msgBox(QMessageBox::Question, tr("Uncommited changes"), getMdiChild()->getQuitUncommitedConfirmMessage(), QMessageBox::Yes|QMessageBox::No, this);
+    msgBox.setDefaultButton(QMessageBox::No);
+
+    QAbstractButton* closeBtn = msgBox.button(QMessageBox::Yes);
+    QAbstractButton* cancelBtn = msgBox.button(QMessageBox::No);
+    closeBtn->setText(tr("Close anyway"));
+    closeBtn->setIcon(ICONS.CLOSE);
+    cancelBtn->setText(tr("Don't close"));
+    cancelBtn->setIcon(ICONS.GO_BACK);
+
+    return (msgBox.exec() == QMessageBox::Yes);
 }

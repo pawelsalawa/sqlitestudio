@@ -205,6 +205,13 @@ class API_EXPORT DbManager : public QObject
         void dbDisconnected(Db* db);
 
         /**
+         * @brief The database is about to be disconnected and user can still deny it.
+         * @param db Database to be closed.
+         * @param deny If set to true, then disconnecting will be aborted.
+         */
+        void dbAboutToBeDisconnected(Db* db, bool& deny);
+
+        /**
          * @brief A database has been added to the application.
          * @param db Database added.
          * Emitted from addDb() methods in case of success.

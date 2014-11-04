@@ -25,6 +25,7 @@ DbManagerImpl::~DbManagerImpl()
     foreach (Db* db, dbList)
     {
         disconnect(db, SIGNAL(disconnected()), this, SLOT(dbDisconnectedSlot()));
+        disconnect(db, SIGNAL(aboutToDisconnect(bool&)), this, SLOT(dbAboutToDisconnect(bool&)));
         if (db->isOpen())
             db->close();
 
@@ -176,6 +177,7 @@ void DbManagerImpl::removeDbInternal(Db* db, bool alsoFromConfig)
     dbList.removeOne(db);
     disconnect(db, SIGNAL(connected()), this, SLOT(dbConnectedSlot()));
     disconnect(db, SIGNAL(disconnected()), this, SLOT(dbDisconnectedSlot()));
+    disconnect(db, SIGNAL(aboutToDisconnect(bool&)), this, SLOT(dbAboutToDisconnect(bool&)));
 }
 
 QList<Db*> DbManagerImpl::getDbList()
@@ -327,6 +329,7 @@ void DbManagerImpl::addDbInternal(Db* db, bool alsoToConfig)
     pathToDb[db->getPath()] = db;
     connect(db, SIGNAL(connected()), this, SLOT(dbConnectedSlot()));
     connect(db, SIGNAL(disconnected()), this, SLOT(dbDisconnectedSlot()));
+    connect(db, SIGNAL(aboutToDisconnect(bool&)), this, SLOT(dbAboutToDisconnect(bool&)));
 }
 
 QList<Db*> DbManagerImpl::getInvalidDatabases() const
@@ -421,6 +424,18 @@ void DbManagerImpl::dbDisconnectedSlot()
         return;
     }
     emit dbDisconnected(db);
+}
+
+void DbManagerImpl::dbAboutToDisconnect(bool& deny)
+{
+    QObject* sdr = sender();
+    Db* db = dynamic_cast<Db*>(sdr);
+    if (!db)
+    {
+        qWarning() << "Received dbAboutToDisconnect() signal but could not cast it to Db!";
+        return;
+    }
+    emit dbAboutToBeDisconnected(db, deny);
 }
 
 void DbManagerImpl::aboutToUnload(Plugin* plugin, PluginType* type)
