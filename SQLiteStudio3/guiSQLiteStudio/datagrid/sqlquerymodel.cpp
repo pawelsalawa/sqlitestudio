@@ -16,6 +16,7 @@
 #include <QMutableListIterator>
 #include <QInputDialog>
 #include <QTime>
+#include <QMessageBox>
 
 SqlQueryModel::SqlQueryModel(QObject *parent) :
     QStandardItemModel(parent)
@@ -75,13 +76,31 @@ void SqlQueryModel::executeQueryInternal()
     if (!db || !db->isValid())
     {
         notifyWarn("Cannot execute query on undefined or invalid database.");
+        internalExecutionStopped();
         return;
     }
 
     if (query.isEmpty())
     {
         notifyWarn("Cannot execute empty query.");
+        internalExecutionStopped();
         return;
+    }
+
+    QList<SqlQueryItem*> uncommitedItems = getUncommitedItems();
+    if (uncommitedItems.size() > 0)
+    {
+        QMessageBox::StandardButton result = QMessageBox::question(nullptr, tr("Uncommited data"),
+                                                                   tr("There are uncommited data changes. Do you want to proceed anyway? "
+                                                                      "All uncommited changes will be lost."));
+
+        if (result != QMessageBox::Yes)
+        {
+            internalExecutionStopped();
+            return;
+        }
+
+        rollback(uncommitedItems);
     }
 
     emit executionStarted();
@@ -91,6 +110,12 @@ void SqlQueryModel::executeQueryInternal()
     queryExecutor->setExplainMode(explain);
     queryExecutor->setPreloadResults(true);
     queryExecutor->exec();
+}
+
+void SqlQueryModel::internalExecutionStopped()
+{
+    reloading = false;
+    emit loadingEnded(false);
 }
 
 void SqlQueryModel::interrupt()

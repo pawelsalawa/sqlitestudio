@@ -238,6 +238,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         void updateColumnsHeader();
         void updateColumnHeaderLabels();
         void executeQueryInternal();
+        void internalExecutionStopped();
         QHash<Table,TableDetails> readTableDetails();
         QList<Table> getTablesForColumns();
         QList<bool> getColumnEditionEnabledList();
