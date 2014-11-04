@@ -207,6 +207,7 @@ void ViewWindow::init()
     ui->dataView->init(dataModel);
 
     ui->queryEdit->setVirtualSqlExpression("CREATE VIEW name AS %1");
+    ui->queryEdit->setDb(db);
 
     connect(dataModel, SIGNAL(executionSuccessful()), this, SLOT(executionSuccessful()));
     connect(dataModel, SIGNAL(executionFailed(QString)), this, SLOT(executionFailed(QString)));
