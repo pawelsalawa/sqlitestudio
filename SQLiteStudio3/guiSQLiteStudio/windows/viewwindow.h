@@ -69,6 +69,7 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
         void setSelect(const QString& selectSql);
         bool isUncommited() const;
         QString getQuitUncommitedConfirmMessage() const;
+        Db* getAssociatedDb() const;
 
         static void staticInit();
         static void insertAction(ExtActionPrototype* action, ToolBar toolbar = TOOLBAR_QUERY);
@@ -135,7 +136,7 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
         void updateTriggersState();
         void nextTab();
         void prevTab();
-        void dbClosed();
+        void dbClosedFinalCleanup();
         void checkIfViewDeleted(const QString& database, const QString& object, DbObjectType type);
 
     public slots:

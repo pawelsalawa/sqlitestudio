@@ -318,6 +318,11 @@ QString ViewWindow::getQuitUncommitedConfirmMessage() const
     }
 }
 
+Db* ViewWindow::getAssociatedDb() const
+{
+    return db;
+}
+
 void ViewWindow::staticInit()
 {
     qRegisterMetaType<ViewWindow>("ViewWindow");
@@ -539,13 +544,11 @@ void ViewWindow::prevTab()
     ui->tabWidget->setCurrentIndex(idx);
 }
 
-void ViewWindow::dbClosed()
+void ViewWindow::dbClosedFinalCleanup()
 {
     dataModel->setDb(nullptr);
     ui->queryEdit->setDb(nullptr);
     structureExecutor->setDb(nullptr);
-    disconnect(this, SLOT(dbClosed()));
-    getMdiWindow()->close();
 }
 
 void ViewWindow::checkIfViewDeleted(const QString& database, const QString& object, DbObjectType type)
@@ -562,7 +565,10 @@ void ViewWindow::checkIfViewDeleted(const QString& database, const QString& obje
 //        return;
 
     if (object.compare(view, Qt::CaseInsensitive) == 0)
-        dbClosed();
+    {
+        dbClosedFinalCleanup();
+        getMdiWindow()->close();
+    }
 }
 
 void ViewWindow::refreshTriggers()

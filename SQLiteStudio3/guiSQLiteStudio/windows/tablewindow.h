@@ -119,6 +119,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         bool isUncommited() const;
         QString getQuitUncommitedConfirmMessage() const;
         void useCurrentTableAsBaseForNew();
+        Db* getAssociatedDb() const;
 
     protected:
         void changeEvent(QEvent *e);
@@ -178,7 +179,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
     private slots:
         void executionSuccessful();
         void executionFailed(const QString& errorText);
-        void dbClosed();
+        void dbClosedFinalCleanup();
         void checkIfTableDeleted(const QString& database, const QString& object, DbObjectType type);
         void refreshStructure();
         void commitStructure(bool skipWarning = false);

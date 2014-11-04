@@ -536,8 +536,6 @@ void TableWindow::initDbAndTable()
     updateTriggers();
 
     // (Re)connect to DB signals
-    disconnect(this, SLOT(dbClosed()));
-    connect(db, SIGNAL(disconnected()), this, SLOT(dbClosed()));
     connect(db, SIGNAL(dbObjectDeleted(QString,QString,DbObjectType)), this, SLOT(checkIfTableDeleted(QString,QString,DbObjectType)));
 
     // Selection model is recreated when setModel() is called on the view
@@ -683,12 +681,10 @@ QString TableWindow::getTable() const
     return table;
 }
 
-void TableWindow::dbClosed()
+void TableWindow::dbClosedFinalCleanup()
 {
     dataModel->setDb(nullptr);
     structureExecutor->setDb(nullptr);
-    disconnect(this, SLOT(dbClosed()));
-    getMdiWindow()->close();
 }
 
 void TableWindow::checkIfTableDeleted(const QString& database, const QString& object, DbObjectType type)
@@ -705,7 +701,10 @@ void TableWindow::checkIfTableDeleted(const QString& database, const QString& ob
 //        return;
 
     if (object.compare(table, Qt::CaseInsensitive) == 0)
-        dbClosed();
+    {
+        dbClosedFinalCleanup();
+        getMdiWindow()->close();
+    }
 }
 
 void TableWindow::refreshStructure()
@@ -1459,4 +1458,9 @@ void TableWindow::useCurrentTableAsBaseForNew()
     ui->tableNameEdit->clear();
     updateWindowTitle();
     ui->tableNameEdit->setFocus();
+}
+
+Db* TableWindow::getAssociatedDb() const
+{
+    return db;
 }

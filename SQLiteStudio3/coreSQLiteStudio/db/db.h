@@ -732,6 +732,12 @@ class API_EXPORT Db : public QObject, public Interruptable
          */
         void dbObjectDeleted(const QString& database, const QString& name, DbObjectType type);
 
+        /**
+         * @brief Emitted just before disconnecting and user can deny it.
+         * @param disconnectingDenied If set to true by anybody, then disconnecting is aborted.
+         */
+        void aboutToDisconnect(bool& disconnectingDenied);
+
     public slots:
         /**
          * @brief Opens connection to the database.
