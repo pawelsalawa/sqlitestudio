@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/forms">
         <file>SqlExportQuery.ui</file>
+        <file>SqlExportCommon.ui</file>
     </qresource>
 </RCC>

@@ -4,6 +4,7 @@
 #include "config_builder.h"
 #include "services/exportmanager.h"
 #include "common/unused.h"
+#include "services/codeformatter.h"
 #include <QTextCodec>
 
 SqlExport::SqlExport()
@@ -27,7 +28,7 @@ CfgMain* SqlExport::getConfig()
 
 QString SqlExport::defaultFileExtension() const
 {
-    return ".sql";
+    return "sql";
 }
 
 QString SqlExport::getExportConfigFormName() const
@@ -35,12 +36,14 @@ QString SqlExport::getExportConfigFormName() const
     if (exportMode == ExportManager::QUERY_RESULTS)
         return "sqlExportQueryConfig";
 
-    return QString::null;
+    return "sqlExportCommonConfig";
 }
 
 bool SqlExport::beforeExportQueryResults(const QString& query, QList<QueryExecutor::ResultColumnPtr>& columns, const QHash<ExportManager::ExportProviderFlag, QVariant> providedData)
 {
     UNUSED(providedData);
+    static_qstring(dropDdl, "DROP TABLE IF EXISTS %1;");
+
     Dialect dialect = db->getDialect();
     QStringList colDefs;
     for (QueryExecutor::ResultColumnPtr resCol : columns)
@@ -64,7 +67,11 @@ bool SqlExport::beforeExportQueryResults(const QString& query, QList<QueryExecut
     theTable = wrapObjIfNeeded(cfg.SqlExport.QueryTable.get(), dialect);
     QString ddl = "CREATE TABLE " + theTable + " (" + this->columns + ");";
     writeln("");
-    writeln(ddl);
+
+    if (cfg.SqlExport.GenerateDrop.get())
+        writeln(formatQuery(dropDdl.arg(theTable)));
+
+    writeln(formatQuery(ddl));
     return true;
 }
 
@@ -93,6 +100,8 @@ bool SqlExport::exportVirtualTable(const QString& database, const QString& table
 
 bool SqlExport::exportTable(const QString& database, const QString& table, const QStringList& columnNames, const QString& ddl)
 {
+    static_qstring(dropDdl, "DROP TABLE IF EXISTS %1;");
+
     Dialect dialect = db->getDialect();
 
     QStringList colList;
@@ -113,7 +122,11 @@ bool SqlExport::exportTable(const QString& database, const QString& table, const
     writeln(tr("-- Table: %1").arg(fullName));
 
     theTable = getNameForObject(database, table, true, dialect);
-    writeln(ddl);
+
+    if (cfg.SqlExport.GenerateDrop.get())
+        writeln(formatQuery(dropDdl.arg(theTable)));
+
+    writeln(formatQuery(ddl));
     return true;
 }
 
@@ -122,6 +135,9 @@ bool SqlExport::exportTableRow(SqlResultsRowPtr data)
     QStringList argList = rowToArgList(data);
     QString argStr = argList.join(", ");
     QString sql = "INSERT INTO " + theTable + " (" + columns + ") VALUES (" + argStr + ");";
+    if (!cfg.SqlExport.FormatDdlsOnly.get())
+        sql = formatQuery(sql);
+
     writeln(sql);
     return true;
 }
@@ -144,30 +160,51 @@ bool SqlExport::beforeExportDatabase(const QString& database)
 bool SqlExport::exportIndex(const QString& database, const QString& name, const QString& ddl, SqliteCreateIndexPtr createIndex)
 {
     UNUSED(createIndex);
+    static_qstring(dropDdl, "DROP INDEX IF EXISTS %1;");
+
     QString index = getNameForObject(database, name, false);
     writeln("");
     writeln(tr("-- Index: %1").arg(index));
-    writeln(ddl);
+
+    QString fullName = getNameForObject(database, name, true, db->getDialect());
+    if (cfg.SqlExport.GenerateDrop.get())
+        writeln(formatQuery(dropDdl.arg(fullName)));
+
+    writeln(formatQuery(ddl));
     return true;
 }
 
 bool SqlExport::exportTrigger(const QString& database, const QString& name, const QString& ddl, SqliteCreateTriggerPtr createTrigger)
 {
     UNUSED(createTrigger);
+    static_qstring(dropDdl, "DROP TRIGGER IF EXISTS %1;");
+
     QString trig = getNameForObject(database, name, false);
     writeln("");
     writeln(tr("-- Trigger: %1").arg(trig));
-    writeln(ddl);
+
+    QString fullName = getNameForObject(database, name, true, db->getDialect());
+    if (cfg.SqlExport.GenerateDrop.get())
+        writeln(dropDdl.arg(fullName));
+
+    writeln(formatQuery(formatQuery(ddl)));
     return true;
 }
 
 bool SqlExport::exportView(const QString& database, const QString& name, const QString& ddl, SqliteCreateViewPtr createView)
 {
     UNUSED(createView);
+    static_qstring(dropDdl, "DROP VIEW IF EXISTS %1;");
+
     QString view = getNameForObject(database, name, false);
     writeln("");
     writeln(tr("-- View: %1").arg(view));
-    writeln(ddl);
+
+    QString fullName = getNameForObject(database, name, true, db->getDialect());
+    if (cfg.SqlExport.GenerateDrop.get())
+        writeln(dropDdl.arg(fullName));
+
+    writeln(formatQuery(formatQuery(ddl)));
     return true;
 }
 
@@ -200,6 +237,14 @@ void SqlExport::writeFkDisable()
     writeln("PRAGMA foreign_keys = off;");
 }
 
+QString SqlExport::formatQuery(const QString& sql)
+{
+    if (cfg.SqlExport.UseFormatter.get())
+        return FORMATTER->format("sql", sql, db);
+
+    return sql;
+}
+
 QString SqlExport::getNameForObject(const QString& database, const QString& name, bool wrapped, Dialect dialect)
 {
     QString obj = wrapped ? wrapObjIfNeeded(name, dialect) : name;
@@ -214,6 +259,12 @@ QStringList SqlExport::rowToArgList(SqlResultsRowPtr row)
     QStringList argList;
     for (const QVariant& value : row->valueList())
     {
+        if (!value.isValid() || value.isNull())
+        {
+            argList << "NULL";
+            continue;
+        }
+
         switch (value.userType())
         {
             case QVariant::Int:
@@ -250,6 +301,19 @@ void SqlExport::validateOptions()
     {
         bool valid = !cfg.SqlExport.QueryTable.get().isEmpty();
         EXPORT_MANAGER->handleValidationFromPlugin(valid, cfg.SqlExport.QueryTable, tr("Table name for INSERT statements is mandatory."));
+    }
+
+    bool useFormatter = cfg.SqlExport.UseFormatter.get();
+    EXPORT_MANAGER->updateVisibilityAndEnabled(cfg.SqlExport.FormatDdlsOnly, true, useFormatter);
+    if (!useFormatter)
+        cfg.SqlExport.FormatDdlsOnly.set(false);
+
+    if (exportMode == ExportManager::QUERY_RESULTS)
+    {
+        bool generateCreate = cfg.SqlExport.GenerateCreateTable.get();
+        EXPORT_MANAGER->updateVisibilityAndEnabled(cfg.SqlExport.GenerateDrop, true, generateCreate);
+        if (!generateCreate)
+            cfg.SqlExport.GenerateDrop.set(false);
     }
 }
 

@@ -19,7 +19,8 @@ HEADERS += sqlexport.h\
         sqlexport_global.h
 
 FORMS += \
-    SqlExportQuery.ui
+    SqlExportQuery.ui \
+    SqlExportCommon.ui
 
 OTHER_FILES += \
     sqlexport.json
