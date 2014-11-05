@@ -10,6 +10,9 @@ CFG_CATEGORIES(SqlExportConfig,
          CFG_ENTRY(QString, QueryTable,             QString::null)
          CFG_ENTRY(bool,    GenerateCreateTable,    false)
          CFG_ENTRY(bool,    IncludeQueryInComments, true)
+         CFG_ENTRY(bool,    UseFormatter,           false)
+         CFG_ENTRY(bool,    FormatDdlsOnly,         false)
+         CFG_ENTRY(bool,    GenerateDrop,           false)
      )
 )
 
@@ -50,6 +53,7 @@ class SQLEXPORTSHARED_EXPORT SqlExport : public GenericExportPlugin
         void writeBegin();
         void writeCommit();
         void writeFkDisable();
+        QString formatQuery(const QString& sql);
         QString getNameForObject(const QString& database, const QString& name, bool wrapped, Dialect dialect = Dialect::Sqlite3);
         QStringList rowToArgList(SqlResultsRowPtr row);
 
