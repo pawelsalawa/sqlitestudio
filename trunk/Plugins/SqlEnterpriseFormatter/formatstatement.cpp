@@ -5,6 +5,7 @@
 #include "formatraise.h"
 #include "formatwith.h"
 #include "formatcreatetable.h"
+#include "formatcreatevirtualtable.h"
 #include "formatforeignkey.h"
 #include "formatcolumntype.h"
 #include "formatindexedcolumn.h"
@@ -20,12 +21,17 @@
 #include "formatcreatetrigger.h"
 #include "formatdelete.h"
 #include "formatupdate.h"
+#include "formatdropindex.h"
+#include "formatdroptable.h"
+#include "formatdroptrigger.h"
+#include "formatdropview.h"
 #include "parser/ast/sqliteselect.h"
 #include "parser/ast/sqliteexpr.h"
 #include "parser/ast/sqlitelimit.h"
 #include "parser/ast/sqliteraise.h"
 #include "parser/ast/sqlitewith.h"
 #include "parser/ast/sqlitecreatetable.h"
+#include "parser/ast/sqlitecreatevirtualtable.h"
 #include "parser/ast/sqliteforeignkey.h"
 #include "parser/ast/sqlitecolumntype.h"
 #include "parser/ast/sqliteindexedcolumn.h"
@@ -41,6 +47,10 @@
 #include "parser/ast/sqlitecreatetrigger.h"
 #include "parser/ast/sqliteupdate.h"
 #include "parser/ast/sqlitedelete.h"
+#include "parser/ast/sqlitedropindex.h"
+#include "parser/ast/sqlitedroptable.h"
+#include "parser/ast/sqlitedroptrigger.h"
+#include "parser/ast/sqlitedropview.h"
 #include "sqlenterpriseformatter.h"
 #include "common/utils_sql.h"
 #include "common/global.h"
@@ -123,11 +133,16 @@ FormatStatement *FormatStatement::forQuery(SqliteStatement *query)
     FORMATTER_FACTORY_ENTRY(query, SqliteBeginTrans, FormatBeginTrans);
     FORMATTER_FACTORY_ENTRY(query, SqliteCommitTrans, FormatCommitTrans);
     FORMATTER_FACTORY_ENTRY(query, SqliteCopy, FormatCopy);
+    FORMATTER_FACTORY_ENTRY(query, SqliteCreateVirtualTable, FormatCreateVirtualTable);
     FORMATTER_FACTORY_ENTRY(query, SqliteCreateIndex, FormatCreateIndex);
     FORMATTER_FACTORY_ENTRY(query, SqliteCreateTrigger, FormatCreateTrigger);
     FORMATTER_FACTORY_ENTRY(query, SqliteCreateTrigger::Event, FormatCreateTriggerEvent);
     FORMATTER_FACTORY_ENTRY(query, SqliteUpdate, FormatUpdate);
     FORMATTER_FACTORY_ENTRY(query, SqliteDelete, FormatDelete);
+    FORMATTER_FACTORY_ENTRY(query, SqliteDropIndex, FormatDropIndex);
+    FORMATTER_FACTORY_ENTRY(query, SqliteDropTable, FormatDropTable);
+    FORMATTER_FACTORY_ENTRY(query, SqliteDropTrigger, FormatDropTrigger);
+    FORMATTER_FACTORY_ENTRY(query, SqliteDropView, FormatDropView);
 
     if (stmt)
         stmt->dialect = query->dialect;

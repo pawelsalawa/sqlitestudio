@@ -16,9 +16,10 @@ void FormatCreateVirtualTable::formatInternal()
     if (!cvt->database.isNull())
         withId(cvt->database).withIdDot();
 
-    withKeyword("USING").withId(cvt->module);
+    withId(cvt->table).withKeyword("USING").withId(cvt->module);
     if (!cvt->args.isEmpty())
     {
+        withParDefLeft();
         int i = 0;
         for (const QString& arg : cvt->args)
         {
@@ -30,6 +31,7 @@ void FormatCreateVirtualTable::formatInternal()
 
             i++;
         }
+        withParDefRight();
     }
 
     withSemicolon();
