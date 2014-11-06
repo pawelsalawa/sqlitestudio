@@ -20,8 +20,8 @@ bool QueryExecutorLimit::exec()
 
     // The original query is last, so if it contained any %N strings,
     // they won't be replaced.
-    QString newSelect = "SELECT * FROM (%3) LIMIT %1 OFFSET %2";
-    newSelect = newSelect.arg(limit).arg(offset).arg(select->detokenize());
+    static_qstring(selectTpl, "SELECT * FROM (%1) LIMIT %2 OFFSET %3");
+    QString newSelect = selectTpl.arg(select->detokenize(), QString::number(limit), QString::number(offset));
 
     int begin = select->tokens.first()->start;
     int length = select->tokens.last()->end - select->tokens.first()->start + 1;

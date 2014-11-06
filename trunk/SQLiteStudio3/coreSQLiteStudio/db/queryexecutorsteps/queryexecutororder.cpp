@@ -20,8 +20,8 @@ bool QueryExecutorOrder::exec()
     if (tokens.size() == 0)
         return false;
 
-    // Not using QString::arg() below, because it could replace %N strings in either SELECT or ORDER BY columns.
-    QString newSelect = "SELECT * FROM (" + select->detokenize() + ") ORDER BY " + tokens.detokenize();
+    static_qstring(selectTpl, "SELECT * FROM (%1) ORDER BY %2");
+    QString newSelect = selectTpl.arg(select->detokenize(), tokens.detokenize());
 
     Parser parser(dialect);
     if (!parser.parse(newSelect) || parser.getQueries().size() == 0)

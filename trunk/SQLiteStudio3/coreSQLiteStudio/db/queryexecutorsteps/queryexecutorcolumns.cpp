@@ -27,30 +27,41 @@ bool QueryExecutorColumns::exec()
 
     // Deleting old result columns and defining new ones
     SqliteSelect::Core* core = select->coreSelects.first();
-    foreach (SqliteSelect::Core::ResultColumn* resCol, core->resultColumns)
+    for (SqliteSelect::Core::ResultColumn* resCol : core->resultColumns)
         delete resCol;
 
     core->resultColumns.clear();
 
+    // Count total rowId columns
+    int rowIdColCount = 0;
+    for (const QueryExecutor::ResultRowIdColumnPtr& rowIdCol : context->rowIdColumns)
+        rowIdColCount += rowIdCol->queryExecutorAliasToColumn.size();
+
     // Defining result columns
     QueryExecutor::ResultColumnPtr resultColumn;
     SqliteSelect::Core::ResultColumn* resultColumnForSelect;
-    foreach (const SelectResolver::Column& col, columns)
+    bool isRowIdColumn = false;
+    int i = 0;
+    for (const SelectResolver::Column& col : columns)
     {
         // Convert column to QueryExecutor result column
         resultColumn = getResultColumn(col);
 
         // Adding new result column to the query
-        resultColumnForSelect = getResultColumnForSelect(resultColumn, col);
+        isRowIdColumn = (i < rowIdColCount);
+        resultColumnForSelect = getResultColumnForSelect(resultColumn, col, isRowIdColumn);
         resultColumnForSelect->setParent(core);
         core->resultColumns << resultColumnForSelect;
 
-        if (!isRowIdColumnAlias(col.alias))
+        if (!isRowIdColumn)
             context->resultColumns << resultColumn; // store it in context for later usage by any step
+
+        i++;
     }
 
     // Update query
     select->rebuildTokens();
+    wrapWithAliasedColumns(select.data());
     updateQueries();
 
 //    qDebug() << context->processedQuery;
@@ -103,7 +114,7 @@ QueryExecutor::ResultColumnPtr QueryExecutorColumns::getResultColumn(const Selec
     return resultColumn;
 }
 
-SqliteSelect::Core::ResultColumn* QueryExecutorColumns::getResultColumnForSelect(const QueryExecutor::ResultColumnPtr& resultColumn, const SelectResolver::Column& col)
+SqliteSelect::Core::ResultColumn* QueryExecutorColumns::getResultColumnForSelect(const QueryExecutor::ResultColumnPtr& resultColumn, const SelectResolver::Column& col, bool rowIdColumn)
 {
     SqliteSelect::Core::ResultColumn* selectResultColumn = new SqliteSelect::Core::ResultColumn();
 
@@ -136,8 +147,16 @@ SqliteSelect::Core::ResultColumn* QueryExecutorColumns::getResultColumnForSelect
         }
     }
 
-    selectResultColumn->asKw = true;
-    selectResultColumn->alias = resultColumn->queryExecutorAlias;
+    if (rowIdColumn || resultColumn->expression)
+    {
+        selectResultColumn->asKw = true;
+        selectResultColumn->alias = resultColumn->queryExecutorAlias;
+    }
+    else if (!col.alias.isNull())
+    {
+        selectResultColumn->asKw = true;
+        selectResultColumn->alias = col.alias;
+    }
 
     return selectResultColumn;
 }
@@ -158,4 +177,77 @@ bool QueryExecutorColumns::isRowIdColumnAlias(const QString& alias)
             return true;
     }
     return false;
+}
+
+void QueryExecutorColumns::wrapWithAliasedColumns(SqliteSelect* select)
+{
+    // Wrap everything in a surrounding SELECT and given query executor alias to all columns this time
+    TokenList sepTokens;
+    sepTokens << TokenPtr::create(Token::OPERATOR, ",") << TokenPtr::create(Token::SPACE, " ");
+
+    bool first = true;
+    TokenList outerColumns;
+    for (const QueryExecutor::ResultRowIdColumnPtr& rowIdColumn : context->rowIdColumns)
+    {
+        for (const QString& alias : rowIdColumn->queryExecutorAliasToColumn.keys())
+        {
+            if (!first)
+                outerColumns += sepTokens;
+
+            outerColumns << TokenPtr::create(Token::OTHER, alias);
+            first = false;
+        }
+    }
+
+    for (const QueryExecutor::ResultColumnPtr& resCol : context->resultColumns)
+    {
+        if (!first)
+            outerColumns += sepTokens;
+
+        if (resCol->expression)
+        {
+            // Just alias (below if-else), because expressions were provided with the query executor alias in the inner select
+        }
+        else if (!resCol->alias.isNull())
+        {
+            outerColumns << TokenPtr::create(Token::OTHER, wrapObjIfNeeded(resCol->alias, dialect));
+            outerColumns << TokenPtr::create(Token::SPACE, " ");
+            outerColumns << TokenPtr::create(Token::KEYWORD, "AS");
+            outerColumns << TokenPtr::create(Token::SPACE, " ");
+        }
+        else if (!resCol->tableAlias.isNull())
+        {
+            outerColumns << TokenPtr::create(Token::OTHER, wrapObjIfNeeded(resCol->tableAlias, dialect));
+            outerColumns << TokenPtr::create(Token::OPERATOR, ".");
+            outerColumns << TokenPtr::create(Token::OTHER, wrapObjIfNeeded(resCol->column, dialect));
+            outerColumns << TokenPtr::create(Token::SPACE, " ");
+            outerColumns << TokenPtr::create(Token::KEYWORD, "AS");
+            outerColumns << TokenPtr::create(Token::SPACE, " ");
+        }
+        else if (!resCol->column.isNull())
+        {
+            if (!resCol->table.isNull())
+            {
+                if (!resCol->database.isNull())
+                {
+                    outerColumns << TokenPtr::create(Token::OTHER, wrapObjIfNeeded(resCol->database, dialect));
+                    outerColumns << TokenPtr::create(Token::OPERATOR, ".");
+                }
+                outerColumns << TokenPtr::create(Token::OTHER, wrapObjIfNeeded(resCol->table, dialect));
+                outerColumns << TokenPtr::create(Token::OPERATOR, ".");
+            }
+            outerColumns << TokenPtr::create(Token::OTHER, wrapObjIfNeeded(resCol->column, dialect));
+            outerColumns << TokenPtr::create(Token::SPACE, " ");
+            outerColumns << TokenPtr::create(Token::KEYWORD, "AS");
+            outerColumns << TokenPtr::create(Token::SPACE, " ");
+        }
+        else
+        {
+            qCritical() << "Not expression, but neither alias or column - in QueryExecutorColumns::wrapWithAliasedColumns. Fix it!";
+        }
+        outerColumns << TokenPtr::create(Token::OTHER, resCol->queryExecutorAlias);
+        first = false;
+    }
+
+    select->tokens = wrapSelect(select->tokens, outerColumns);
 }

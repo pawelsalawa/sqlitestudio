@@ -47,9 +47,10 @@ class QueryExecutorColumns : public QueryExecutorStep
          * @brief Generates result column object with proper alias name.
          * @param resultColumn Original result column from the query.
          * @param col Original result column as resolved by SelectResolver.
+         * @param rowIdColumn Indicates if this is a call for ROWID column added by QueryExecutorRowId step.
          * @return Result column object ready for rebuilding tokens and detokenizing.
          */
-        SqliteSelect::Core::ResultColumn* getResultColumnForSelect(const QueryExecutor::ResultColumnPtr& resultColumn, const SelectResolver::Column& col);
+        SqliteSelect::Core::ResultColumn* getResultColumnForSelect(const QueryExecutor::ResultColumnPtr& resultColumn, const SelectResolver::Column& col, bool rowIdColumn);
 
         /**
          * @brief Translates attach name into database name.
@@ -64,6 +65,8 @@ class QueryExecutorColumns : public QueryExecutorStep
          * @return true if the alias belongs to ROWID column, or false otherwise.
          */
         bool isRowIdColumnAlias(const QString& alias);
+
+        void wrapWithAliasedColumns(SqliteSelect* select);
 };
 
 #endif // QUERYEXECUTORCOLUMNS_H

@@ -44,3 +44,20 @@ void QueryExecutorStep::init()
 {
 }
 
+TokenList QueryExecutorStep::wrapSelect(const TokenList& selectTokens, const TokenList& resultColumnsTokens)
+{
+    TokenList oldSelectTokens = selectTokens;
+    oldSelectTokens.trimRight(Token::OPERATOR, ";");
+
+    TokenList newTokens;
+    newTokens << TokenPtr::create(Token::KEYWORD, "SELECT")
+              << TokenPtr::create(Token::SPACE, " ");
+    newTokens += resultColumnsTokens;
+    newTokens << TokenPtr::create(Token::SPACE, " ")
+              << TokenPtr::create(Token::KEYWORD, "FROM")
+              << TokenPtr::create(Token::SPACE, " ")
+              << TokenPtr::create(Token::PAR_LEFT, "(");
+    newTokens += oldSelectTokens;
+    newTokens << TokenPtr::create(Token::PAR_RIGHT, ")");
+    return newTokens;
+}
