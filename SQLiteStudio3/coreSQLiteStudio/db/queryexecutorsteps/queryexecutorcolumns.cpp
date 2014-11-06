@@ -147,15 +147,15 @@ SqliteSelect::Core::ResultColumn* QueryExecutorColumns::getResultColumnForSelect
         }
     }
 
-    if (rowIdColumn || resultColumn->expression)
-    {
-        selectResultColumn->asKw = true;
-        selectResultColumn->alias = resultColumn->queryExecutorAlias;
-    }
-    else if (!col.alias.isNull())
+    if (!col.alias.isNull())
     {
         selectResultColumn->asKw = true;
         selectResultColumn->alias = col.alias;
+    }
+    else if (rowIdColumn || resultColumn->expression)
+    {
+        selectResultColumn->asKw = true;
+        selectResultColumn->alias = resultColumn->queryExecutorAlias;
     }
 
     return selectResultColumn;
@@ -204,16 +204,16 @@ void QueryExecutorColumns::wrapWithAliasedColumns(SqliteSelect* select)
         if (!first)
             outerColumns += sepTokens;
 
-        if (resCol->expression)
-        {
-            // Just alias (below if-else), because expressions were provided with the query executor alias in the inner select
-        }
-        else if (!resCol->alias.isNull())
+        if (!resCol->alias.isNull())
         {
             outerColumns << TokenPtr::create(Token::OTHER, wrapObjIfNeeded(resCol->alias, dialect));
             outerColumns << TokenPtr::create(Token::SPACE, " ");
             outerColumns << TokenPtr::create(Token::KEYWORD, "AS");
             outerColumns << TokenPtr::create(Token::SPACE, " ");
+        }
+        else if (resCol->expression)
+        {
+            // Just query executor alias (as below if-else), because unaliased expressions were provided with the query executor alias in the inner select
         }
         else if (!resCol->tableAlias.isNull())
         {
@@ -249,5 +249,6 @@ void QueryExecutorColumns::wrapWithAliasedColumns(SqliteSelect* select)
         first = false;
     }
 
+    //QString t = outerColumns.detokenize(); // keeping it for debug purposes
     select->tokens = wrapSelect(select->tokens, outerColumns);
 }

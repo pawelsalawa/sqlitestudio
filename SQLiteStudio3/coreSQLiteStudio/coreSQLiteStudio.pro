@@ -192,8 +192,7 @@ SOURCES += sqlitestudio.cpp \
     config_builder/cfgcategory.cpp \
     config_builder/cfgentry.cpp \
     config_builder/cfglazyinitializer.cpp \
-    committable.cpp \
-    db/queryexecutorsteps/queryexecutorcolumnaliases.cpp
+    committable.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -371,8 +370,7 @@ HEADERS += sqlitestudio.h\
     config_builder/cfglazyinitializer.h \
     plugins/confignotifiableplugin.h \
     committable.h \
-    plugins/uiconfiguredplugin.h \
-    db/queryexecutorsteps/queryexecutorcolumnaliases.h
+    plugins/uiconfiguredplugin.h
 
 unix:!symbian {
     maemo5 {
