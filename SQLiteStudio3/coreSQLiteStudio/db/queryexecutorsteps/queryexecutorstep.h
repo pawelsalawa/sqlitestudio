@@ -120,6 +120,17 @@ class QueryExecutorStep : public QObject
         virtual void init();
 
         /**
+         * @brief Puts the SELECT as a subselect.
+         * @param selectTokens All tokens of the original SELECT.
+         * @param resultColumnsTokens Result columns tokens for the new SELECT.
+         * @return New SELECT tokens.
+         *
+         * Original SELECT tokens are put into subselect of the new SELECT statement. New SELECT statement
+         * is built using given \p resultColumnTokens.
+         */
+        TokenList wrapSelect(const TokenList& selectTokens, const TokenList& resultColumnsTokens);
+
+        /**
          * @brief Pointer to the calling executor.
          */
         QueryExecutor* queryExecutor;

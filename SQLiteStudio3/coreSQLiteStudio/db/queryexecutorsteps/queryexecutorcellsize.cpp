@@ -97,18 +97,3 @@ TokenList QueryExecutorCellSize::getSeparatorTokens()
     newTokens << TokenPtr::create(Token::SPACE, " ");
     return newTokens;
 }
-
-TokenList QueryExecutorCellSize::wrapSelect(const TokenList& selectTokens, const TokenList& resultColumnsTokens)
-{
-    TokenList newTokens;
-    newTokens << TokenPtr::create(Token::KEYWORD, "SELECT")
-              << TokenPtr::create(Token::SPACE, " ");
-    newTokens += resultColumnsTokens;
-    newTokens << TokenPtr::create(Token::SPACE, " ")
-              << TokenPtr::create(Token::KEYWORD, "FROM")
-              << TokenPtr::create(Token::SPACE, " ")
-              << TokenPtr::create(Token::PAR_LEFT, "(");
-    newTokens += selectTokens;
-    newTokens << TokenPtr::create(Token::PAR_RIGHT, ")");
-    return newTokens;
-}

@@ -364,8 +364,8 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
              * This is mapping from QueryExecutor's internal aliases for columns
              * into primary key column names of the table that the result column comes from.
              *
-             * If you want to get list of column names used for RowId, use keys() on this member.
-             * If you want to get list of query executor aliases, use values() on this member.
+             * If you want to get list of column names used for RowId, use values() on this member.
+             * If you want to get list of query executor aliases, use keys() on this member.
              */
             QHash<QString,QString> queryExecutorAliasToColumn;
         };
