@@ -204,46 +204,14 @@ void QueryExecutorColumns::wrapWithAliasedColumns(SqliteSelect* select)
         if (!first)
             outerColumns += sepTokens;
 
-        if (!resCol->alias.isNull())
+        // If alias was given, we use it. If it was anything but expression, we also use its display name,
+        // because it's explicit column (no matter if from table, or table alias).
+        if (!resCol->alias.isNull() || !resCol->expression)
         {
-            outerColumns << TokenPtr::create(Token::OTHER, wrapObjIfNeeded(resCol->alias, dialect));
+            outerColumns << TokenPtr::create(Token::OTHER, wrapObjIfNeeded(resCol->displayName, dialect));
             outerColumns << TokenPtr::create(Token::SPACE, " ");
             outerColumns << TokenPtr::create(Token::KEYWORD, "AS");
             outerColumns << TokenPtr::create(Token::SPACE, " ");
-        }
-        else if (resCol->expression)
-        {
-            // Just query executor alias (as below if-else), because unaliased expressions were provided with the query executor alias in the inner select
-        }
-        else if (!resCol->tableAlias.isNull())
-        {
-            outerColumns << TokenPtr::create(Token::OTHER, wrapObjIfNeeded(resCol->tableAlias, dialect));
-            outerColumns << TokenPtr::create(Token::OPERATOR, ".");
-            outerColumns << TokenPtr::create(Token::OTHER, wrapObjIfNeeded(resCol->column, dialect));
-            outerColumns << TokenPtr::create(Token::SPACE, " ");
-            outerColumns << TokenPtr::create(Token::KEYWORD, "AS");
-            outerColumns << TokenPtr::create(Token::SPACE, " ");
-        }
-        else if (!resCol->column.isNull())
-        {
-            if (!resCol->table.isNull())
-            {
-                if (!resCol->database.isNull())
-                {
-                    outerColumns << TokenPtr::create(Token::OTHER, wrapObjIfNeeded(resCol->database, dialect));
-                    outerColumns << TokenPtr::create(Token::OPERATOR, ".");
-                }
-                outerColumns << TokenPtr::create(Token::OTHER, wrapObjIfNeeded(resCol->table, dialect));
-                outerColumns << TokenPtr::create(Token::OPERATOR, ".");
-            }
-            outerColumns << TokenPtr::create(Token::OTHER, wrapObjIfNeeded(resCol->column, dialect));
-            outerColumns << TokenPtr::create(Token::SPACE, " ");
-            outerColumns << TokenPtr::create(Token::KEYWORD, "AS");
-            outerColumns << TokenPtr::create(Token::SPACE, " ");
-        }
-        else
-        {
-            qCritical() << "Not expression, but neither alias or column - in QueryExecutorColumns::wrapWithAliasedColumns. Fix it!";
         }
         outerColumns << TokenPtr::create(Token::OTHER, resCol->queryExecutorAlias);
         first = false;
