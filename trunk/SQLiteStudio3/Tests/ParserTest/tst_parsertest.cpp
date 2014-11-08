@@ -30,6 +30,7 @@ class ParserTest : public QObject
         void testOper1();
         void testBig1();
         void testTableFk();
+        void testDoubleQuotes();
         void initTestCase();
         void cleanupTestCase();
 };
@@ -285,6 +286,29 @@ void ParserTest::testTableFk()
     QVERIFY(creatrTable->constraints.first()->foreignKey->foreignTable == "test2");
     QVERIFY(creatrTable->constraints.first()->foreignKey->indexedColumns.size() == 1);
     QVERIFY(creatrTable->constraints.first()->foreignKey->indexedColumns.first()->name == "id2");
+}
+
+void ParserTest::testDoubleQuotes()
+{
+    QString sql = "select \"1\"";
+    bool res = parser3->parse(sql);
+    QVERIFY(res);
+    QVERIFY(parser3->getQueries().size() > 0);
+
+    SqliteQueryPtr query = parser3->getQueries().first();
+    QVERIFY(query);
+
+    SqliteSelectPtr select = query.dynamicCast<SqliteSelect>();
+    QVERIFY(select);
+    QVERIFY(select->coreSelects.size() > 0);
+    QVERIFY(select->coreSelects.first()->resultColumns.size() > 0);
+
+    SqliteSelect::Core::ResultColumn* rc = select->coreSelects.first()->resultColumns.first();
+    SqliteExpr* e = rc->expr;
+    QVERIFY(e);
+
+    QVERIFY(e->mode == SqliteExpr::Mode::ID);
+    QVERIFY(e->possibleDoubleQuotedString);
 }
 
 void ParserTest::initTestCase()

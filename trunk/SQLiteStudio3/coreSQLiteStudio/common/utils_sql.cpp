@@ -22,13 +22,13 @@ void initUtilsSql()
     wrapperChars[NameWrapper::BACK_QUOTE] = QPair<QChar,QChar>('`', '`');
     wrapperChars[NameWrapper::DOUBLE_QUOTE] = QPair<QChar,QChar>('"', '"');
 
-    sqlite3Wrappers << NameWrapper::BRACKET
+    sqlite3Wrappers << NameWrapper::DOUBLE_QUOTE
+                    << NameWrapper::BRACKET
                     << NameWrapper::QUOTE
-                    << NameWrapper::BACK_QUOTE
-                    << NameWrapper::DOUBLE_QUOTE;
-    sqlite2Wrappers << NameWrapper::BRACKET
-                    << NameWrapper::QUOTE
-                    << NameWrapper::DOUBLE_QUOTE;
+                    << NameWrapper::BACK_QUOTE;
+    sqlite2Wrappers << NameWrapper::DOUBLE_QUOTE
+                    << NameWrapper::BRACKET
+                    << NameWrapper::QUOTE;
 
     qRegisterMetaType<SqlQueryPtr>("SqlQueryPtr");
 }
@@ -154,9 +154,9 @@ QList<QString> wrapObjNamesIfNeeded(const QList<QString>& objList, Dialect diale
 QList<NameWrapper> getAllNameWrappers(Dialect dialect)
 {
     if (dialect == Dialect::Sqlite3)
-        return {NameWrapper::BRACKET, NameWrapper::DOUBLE_QUOTE, NameWrapper::BACK_QUOTE, NameWrapper::QUOTE};
+        return {NameWrapper::DOUBLE_QUOTE, NameWrapper::BRACKET, NameWrapper::BACK_QUOTE, NameWrapper::QUOTE};
     else
-        return {NameWrapper::BRACKET, NameWrapper::DOUBLE_QUOTE, NameWrapper::QUOTE};
+        return {NameWrapper::DOUBLE_QUOTE, NameWrapper::BRACKET, NameWrapper::QUOTE};
 }
 
 QString wrapString(const QString& str)

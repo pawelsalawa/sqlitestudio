@@ -41,7 +41,10 @@ void FormatExpr::formatInternal()
             if (!expr->table.isNull())
                 withId(expr->table).withIdDot();
 
-            withId(expr->column);
+            if (expr->possibleDoubleQuotedString)
+                withStringOrId(expr->column);
+            else
+                withId(expr->column);
             break;
         }
         case SqliteExpr::Mode::UNARY_OP:

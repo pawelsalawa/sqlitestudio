@@ -103,6 +103,13 @@ SqliteStatementPtr SqliteStatement::detach()
     return SqliteStatementPtr(this);
 }
 
+void SqliteStatement::processPostParsing()
+{
+    evaluatePostParsing();
+    foreach (SqliteStatement* stmt, childStatements())
+        stmt->processPostParsing();
+}
+
 QStringList SqliteStatement::getContextColumns(SqliteStatement *caller, bool checkParent, bool checkChilds)
 {
     QStringList results = getColumnsInStatement();
@@ -208,6 +215,10 @@ TokenList SqliteStatement::rebuildTokensFromContents()
 {
     qCritical() << "called rebuildTokensFromContents() for SqliteStatement that has no implementation for it.";
     return TokenList();
+}
+
+void SqliteStatement::evaluatePostParsing()
+{
 }
 
 QList<SqliteStatement *> SqliteStatement::getContextStatements(SqliteStatement *caller, bool checkParent, bool checkChilds)

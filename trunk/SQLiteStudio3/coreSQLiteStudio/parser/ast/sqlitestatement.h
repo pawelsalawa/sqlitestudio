@@ -227,6 +227,7 @@ class API_EXPORT SqliteStatement : public QObject
         void setParent(QObject* parent);
         void attach(SqliteStatement*& memberForChild, SqliteStatement* childStatementToAttach);
         SqliteStatementPtr detach();
+        void processPostParsing();
         virtual SqliteStatement* clone() = 0;
 
         template <class T>
@@ -302,6 +303,7 @@ class API_EXPORT SqliteStatement : public QObject
         virtual TokenList getDatabaseTokensInStatement();
         virtual QList<FullObject> getFullObjectsInStatement();
         virtual TokenList rebuildTokensFromContents();
+        virtual void evaluatePostParsing();
 
         static TokenList extractPrintableTokens(const TokenList& tokens, bool skipMeaningless = true);
         QStringList getStrListFromValue(const QString& value);

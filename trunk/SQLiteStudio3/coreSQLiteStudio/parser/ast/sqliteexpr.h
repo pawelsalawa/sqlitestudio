@@ -116,6 +116,7 @@ class API_EXPORT SqliteExpr : public SqliteStatement
         LikeOp like = LikeOp::null;
         NotNull notNull = NotNull::null;
         SqliteRaise* raiseFunction = nullptr;
+        bool possibleDoubleQuotedString = false;
 
     protected:
         QStringList getColumnsInStatement();
@@ -126,6 +127,7 @@ class API_EXPORT SqliteExpr : public SqliteStatement
         TokenList getDatabaseTokensInStatement();
         QList<FullObject> getFullObjectsInStatement();
         TokenList rebuildTokensFromContents();
+        void evaluatePostParsing();
 
     private:
         TokenList rebuildId();

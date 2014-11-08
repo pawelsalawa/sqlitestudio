@@ -76,6 +76,18 @@ class StatementTokenBuilder
         StatementTokenBuilder& withOther(const QString& value, Dialect dialect);
 
         /**
+         * @brief Adds string using double-quote wrapping.
+         * @param value Value for the token.
+         * @param dialect Dialect used for wrapping the value if double-quote could not be used.
+         * @return Reference to the builder for the further building.
+         *
+         * The \p value is wrapped with double quote, but if it's not possible then the proper wrapper is used by wrapObjIfNeeded().
+         *
+         * @overload
+         */
+        StatementTokenBuilder& withStringPossiblyOther(const QString& value, Dialect dialect);
+
+        /**
          * @brief Adds list of "other" tokens.
          * @param value List of values for tokens.
          * @param dialect Dialect used for wrapping values.
