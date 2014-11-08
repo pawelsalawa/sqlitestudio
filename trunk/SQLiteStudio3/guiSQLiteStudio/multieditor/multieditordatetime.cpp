@@ -22,7 +22,8 @@ MultiEditorDateTime::MultiEditorDateTime(QWidget *parent) :
     dateTimeEdit = new QDateTimeEdit();
     dateTimeLabel = new QLabel();
     calendar = new QCalendarWidget();
-    calendar->setFixedSize(calendar->sizeHint());
+    // Extending width, becuase day labels are truncated on some systems.
+    calendar->setFixedSize(calendar->sizeHint() + QSize(80, 0));
 
     vbox->addWidget(dateTimeEdit);
     vbox->addWidget(dateTimeLabel);
