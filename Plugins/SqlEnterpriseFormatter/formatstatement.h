@@ -41,6 +41,7 @@ class FormatStatement
         FormatStatement& withId(const QString& id);
         FormatStatement& withIdList(const QStringList& names, const QString& indentName = QString(), ListSeparator sep = ListSeparator::COMMA);
         FormatStatement& withOperator(const QString& oper);
+        FormatStatement& withStringOrId(const QString& id);
         FormatStatement& withIdDot();
         FormatStatement& withStar();
         FormatStatement& withFloat(double value);
@@ -117,6 +118,7 @@ class FormatStatement
                 KEYWORD,
                 LINED_UP_KEYWORD,
                 ID,
+                STRING_OR_ID,
                 OPERATOR,
                 STAR,
                 FLOAT,
@@ -172,6 +174,7 @@ class FormatStatement
         QString getFinalLineUpName(const QString& lineUpName);
         int predictCurrentIndent(FormatToken* currentMetaToken);
         bool willStartWithNewLine(FormatToken* token);
+        void formatId(const QString& value);
 
         static FormatStatement* forQuery(SqliteStatement *query, Dialect dialect, NameWrapper wrapper, Cfg::SqlEnterpriseFormatterConfig* cfg);
 

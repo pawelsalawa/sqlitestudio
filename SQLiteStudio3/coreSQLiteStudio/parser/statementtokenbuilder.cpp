@@ -18,6 +18,14 @@ StatementTokenBuilder& StatementTokenBuilder::withOther(const QString& value, Di
     return withOther(wrapObjIfNeeded(value, dialect));
 }
 
+StatementTokenBuilder&StatementTokenBuilder::withStringPossiblyOther(const QString& value, Dialect dialect)
+{
+    if (value.contains("\""))
+        return withOther(wrapObjIfNeeded(value, dialect));
+    else
+        return withOther(wrapObjName(value, NameWrapper::DOUBLE_QUOTE));
+}
+
 StatementTokenBuilder& StatementTokenBuilder::withOtherList(const QList<QString>& value, Dialect dialect, const QString& separator)
 {
     bool first = true;

@@ -16,7 +16,7 @@ SqliteExpr::SqliteExpr(const SqliteExpr& other) :
     mode(other.mode), literalValue(other.literalValue), literalNull(other.literalNull), bindParam(other.bindParam), database(other.database), table(other.table),
     column(other.column), unaryOp(other.unaryOp), binaryOp(other.binaryOp), function(other.function), collation(other.collation),
     ctime(other.ctime), distinctKw(other.distinctKw), allKw(other.allKw), star(other.star), notKw(other.notKw), like(other.like),
-    notNull(other.notNull)
+    notNull(other.notNull), possibleDoubleQuotedString(other.possibleDoubleQuotedString)
 {
     DEEP_COPY_FIELD(SqliteColumnType, columnType);
     DEEP_COPY_FIELD(SqliteExpr, expr1);
@@ -504,6 +504,16 @@ TokenList SqliteExpr::rebuildTokensFromContents()
     return builder.build();
 }
 
+void SqliteExpr::evaluatePostParsing()
+{
+    if (tokens.size() > 0)
+    {
+        QString val = tokens.first()->value;
+        if (val[0] == '"' && val[0] == val[val.length() - 1])
+            possibleDoubleQuotedString = true;
+    }
+}
+
 TokenList SqliteExpr::rebuildId()
 {
     StatementTokenBuilder builder;
@@ -513,7 +523,11 @@ TokenList SqliteExpr::rebuildId()
     if (!table.isNull())
         builder.withOther(table, dialect).withOperator(".");
 
-    builder.withOther(column, dialect);
+    if (possibleDoubleQuotedString)
+        builder.withStringPossiblyOther(column, dialect);
+    else
+        builder.withOther(column, dialect);
+
     return builder.build();
 }
 

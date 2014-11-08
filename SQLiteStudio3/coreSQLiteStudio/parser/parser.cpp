@@ -201,6 +201,13 @@ bool Parser::parseInternal(const QString &sql, bool lookForExpectedToken)
     parseFree(pParser, free);
 
     context->flushErrors();
+
+    if (context->isSuccessful())
+    {
+        for (SqliteQueryPtr query : context->parsedQueries)
+            query->processPostParsing();
+    }
+
     return context->isSuccessful();
 }
 

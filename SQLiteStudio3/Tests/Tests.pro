@@ -17,6 +17,9 @@ table_modifier.depends = test_utils
 hash_tables.subdir = HashTablesTest
 hash_tables.depends = test_utils
 
+db_ver_conv.subdir = DbVersionConverterTest
+db_ver_conv.depends = test_utils
+
 SUBDIRS += \
     test_utils \
     completion_helper \
@@ -24,4 +27,4 @@ SUBDIRS += \
     parser \
     table_modifier \
     hash_tables \
-    DbVersionConverterTest
+    db_ver_conv

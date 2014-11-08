@@ -25,6 +25,7 @@
 #include "formatdroptable.h"
 #include "formatdroptrigger.h"
 #include "formatdropview.h"
+#include "formatorderby.h"
 #include "parser/ast/sqliteselect.h"
 #include "parser/ast/sqliteexpr.h"
 #include "parser/ast/sqlitelimit.h"
@@ -51,6 +52,7 @@
 #include "parser/ast/sqlitedroptable.h"
 #include "parser/ast/sqlitedroptrigger.h"
 #include "parser/ast/sqlitedropview.h"
+#include "parser/ast/sqliteorderby.h"
 #include "sqlenterpriseformatter.h"
 #include "common/utils_sql.h"
 #include "common/global.h"
@@ -143,6 +145,7 @@ FormatStatement *FormatStatement::forQuery(SqliteStatement *query)
     FORMATTER_FACTORY_ENTRY(query, SqliteDropTable, FormatDropTable);
     FORMATTER_FACTORY_ENTRY(query, SqliteDropTrigger, FormatDropTrigger);
     FORMATTER_FACTORY_ENTRY(query, SqliteDropView, FormatDropView);
+    FORMATTER_FACTORY_ENTRY(query, SqliteOrderBy, FormatOrderBy);
 
     if (stmt)
         stmt->dialect = query->dialect;
@@ -179,6 +182,12 @@ FormatStatement& FormatStatement::withId(const QString& id)
 FormatStatement& FormatStatement::withOperator(const QString& oper)
 {
     withToken(FormatToken::OPERATOR, oper);
+    return *this;
+}
+
+FormatStatement&FormatStatement::withStringOrId(const QString& id)
+{
+    withToken(FormatToken::STRING_OR_ID, id);
     return *this;
 }
 
@@ -531,10 +540,17 @@ QString FormatStatement::detokenize()
             case FormatToken::ID:
             {
                 applyIndent();
-                if (cfg->SqlEnterpriseFormatter.AlwaysUseNameWrapping.get())
-                    line += wrapObjName(token->value.toString(), dialect, wrapper);
+                formatId(token->value.toString());
+                break;
+            }
+            case FormatToken::STRING_OR_ID:
+            {
+                applyIndent();
+                QString val = token->value.toString();
+                if (val.contains("\""))
+                    formatId(token->value.toString());
                 else
-                    line += wrapObjIfNeeded(token->value.toString(), dialect, wrapper);
+                    line += wrapObjName(token->value.toString(), NameWrapper::DOUBLE_QUOTE);
 
                 break;
             }
@@ -759,6 +775,7 @@ bool FormatStatement::isSpaceExpectingType(FormatStatement::FormatToken::Type ty
         case FormatToken::KEYWORD:
         case FormatToken::LINED_UP_KEYWORD:
         case FormatToken::ID:
+        case FormatToken::STRING_OR_ID:
         case FormatToken::FLOAT:
         case FormatToken::STRING:
         case FormatToken::INTEGER:
@@ -803,6 +820,7 @@ bool FormatStatement::isMetaType(FormatStatement::FormatToken::Type type)
         case FormatToken::KEYWORD:
         case FormatToken::LINED_UP_KEYWORD:
         case FormatToken::ID:
+        case FormatToken::STRING_OR_ID:
         case FormatToken::FLOAT:
         case FormatToken::STRING:
         case FormatToken::INTEGER:
@@ -1013,6 +1031,14 @@ bool FormatStatement::willStartWithNewLine(FormatStatement::FormatToken* token)
             (token->type == FormatToken::PAR_EXPR_RIGHT && cfg->SqlEnterpriseFormatter.NlBeforeCloseParExpr) ||
             (token->type == FormatToken::PAR_FUNC_RIGHT && cfg->SqlEnterpriseFormatter.NlBeforeCloseParExpr) ||
             (token->type == FormatToken::NEW_LINE);
+}
+
+void FormatStatement::formatId(const QString& value)
+{
+    if (cfg->SqlEnterpriseFormatter.AlwaysUseNameWrapping.get())
+        line += wrapObjName(value, dialect, wrapper);
+    else
+        line += wrapObjIfNeeded(value, dialect, wrapper);
 }
 
 FormatStatement* FormatStatement::forQuery(SqliteStatement* query, Dialect dialect, NameWrapper wrapper, Cfg::SqlEnterpriseFormatterConfig* cfg)
