@@ -24,6 +24,10 @@
 #include <shellapi.h>
 #endif
 
+// Note on creating update packages:
+// Packages for Linux and MacOSX should be an archive of _contents_ of SQLiteStudio directory,
+// while for Windows it should be an archive of SQLiteStudio directory itself.
+
 QString UpdateManager::staticErrorMessage;
 
 UpdateManager::UpdateManager(QObject *parent) :
