@@ -405,7 +405,7 @@ bool UpdateManager::executeFinalStep(const QString& tempDir)
     return runAnotherInstanceForUpdate(tempDir, backupDir.absolutePath(), qApp->applicationDirPath(), requireAdmin);
 #else
     bool res;
-    if (requireAdmin || true)
+    if (requireAdmin)
         res = executeFinalStepAsRoot(tempDir, backupDir.absolutePath(), appDir);
     else
         res = executeFinalStep(tempDir, backupDir.absolutePath(), appDir);
