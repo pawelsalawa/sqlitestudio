@@ -199,6 +199,10 @@ void QueryExecutorColumns::wrapWithAliasedColumns(SqliteSelect* select)
         }
     }
 
+    QStringList columnNamesUsed;
+    QString baseColName;
+    QString colName;
+    static_qstring(colNameTpl, "%1:%2");
     for (const QueryExecutor::ResultColumnPtr& resCol : context->resultColumns)
     {
         if (!first)
@@ -206,9 +210,20 @@ void QueryExecutorColumns::wrapWithAliasedColumns(SqliteSelect* select)
 
         // If alias was given, we use it. If it was anything but expression, we also use its display name,
         // because it's explicit column (no matter if from table, or table alias).
-        if (!resCol->alias.isNull() || !resCol->expression)
+        baseColName = QString();
+        if (!resCol->alias.isNull())
+            baseColName = resCol->alias;
+        else if (!resCol->expression)
+            baseColName = resCol->column;
+
+        if (!baseColName.isNull())
         {
-            outerColumns << TokenPtr::create(Token::OTHER, wrapObjIfNeeded(resCol->displayName, dialect));
+            colName = baseColName;
+            for (int i = 1; columnNamesUsed.contains(colName, Qt::CaseInsensitive); i++)
+                colName = colNameTpl.arg(resCol->column, QString::number(i));
+
+            columnNamesUsed << colName;
+            outerColumns << TokenPtr::create(Token::OTHER, wrapObjIfNeeded(colName, dialect));
             outerColumns << TokenPtr::create(Token::SPACE, " ");
             outerColumns << TokenPtr::create(Token::KEYWORD, "AS");
             outerColumns << TokenPtr::create(Token::SPACE, " ");

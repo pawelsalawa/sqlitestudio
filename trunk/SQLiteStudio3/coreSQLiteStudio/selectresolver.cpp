@@ -258,22 +258,13 @@ void SelectResolver::resolveStar(SqliteSelect::Core::ResultColumn *resCol)
             {
                 continue;
             }
+        }
 
-            // If source column name is aliased, use it
-            if (!column.alias.isNull())
-                column.displayName = column.alias;
-            else
-                column.displayName = (column.tableAlias.isNull() ? column.table : column.tableAlias) +
-                    "." + column.column;
-        }
+        // If source column name is aliased, use it
+        if (!column.alias.isNull())
+            column.displayName = column.alias;
         else
-        {
-            // If source column name is aliased, use it
-            if (!column.alias.isNull())
-                column.displayName = column.alias;
-            else
-                column.displayName = column.column;
-        }
+            column.displayName = column.column;
 
         column.originalColumn = resCol;
         currentCoreResults << column;
@@ -316,17 +307,7 @@ void SelectResolver::resolveDbAndTable(SqliteSelect::Core::ResultColumn *resCol)
 
     // Display name
     if (col.alias.isNull())
-    {
-        QStringList dispNameList;
-        if (!expr->database.isNull())
-            dispNameList << resolveDatabase(expr->database);
-
-        if (!expr->table.isNull())
-            dispNameList << expr->table;
-
-        dispNameList << expr->column;
-        col.displayName = dispNameList.join(".");
-    }
+        col.displayName = expr->column;
     else
         col.displayName = col.alias;
 
