@@ -37,7 +37,7 @@ bool QueryExecutorAddRowIds::exec()
     return true;
 }
 
-QHash<SelectResolver::Table,QHash<QString,QString>> QueryExecutorAddRowIds::addRowIdForTables(SqliteSelect* select, bool& ok)
+QHash<SelectResolver::Table,QHash<QString,QString>> QueryExecutorAddRowIds::addRowIdForTables(SqliteSelect* select, bool& ok, bool isTopSelect)
 {
     QHash<SelectResolver::Table,QHash<QString,QString>> rowIdColsMap;
     if (select->coreSelects.size() > 1)
@@ -54,7 +54,7 @@ QHash<SelectResolver::Table,QHash<QString,QString>> QueryExecutorAddRowIds::addR
     // Go trough subselects to add ROWID result columns there and collect rowId mapping to use here.
     foreach (SqliteSelect* subSelect, getSubSelects(core))
     {
-        rowIdColsMap.unite(addRowIdForTables(subSelect, ok));
+        rowIdColsMap.unite(addRowIdForTables(subSelect, ok, false));
         if (!ok)
             return rowIdColsMap;
     }
@@ -69,7 +69,7 @@ QHash<SelectResolver::Table,QHash<QString,QString>> QueryExecutorAddRowIds::addR
         if (table.flags & (SelectResolver::FROM_COMPOUND_SELECT | SelectResolver::FROM_DISTINCT_SELECT | SelectResolver::FROM_GROUPED_SELECT))
             continue; // we don't get ROWID from compound, distinct or aggregated subselects
 
-        if (!addResultColumns(core, table, rowIdColsMap))
+        if (!addResultColumns(core, table, rowIdColsMap, isTopSelect))
         {
             ok = false;
             return rowIdColsMap;
@@ -146,7 +146,7 @@ QHash<QString,QString> QueryExecutorAddRowIds::getNextColNames(const SelectResol
 }
 
 bool QueryExecutorAddRowIds::addResultColumns(SqliteSelect::Core* core, const SelectResolver::Table& table,
-                                        QHash<SelectResolver::Table,QHash<QString,QString>>& rowIdColsMap)
+                                        QHash<SelectResolver::Table,QHash<QString,QString>>& rowIdColsMap, bool isTopSelect)
 {
     QHash<QString, QString> executorToRealColumns;
     if (rowIdColsMap.contains(table))
@@ -173,13 +173,16 @@ bool QueryExecutorAddRowIds::addResultColumns(SqliteSelect::Core* core, const Se
             return false;
     }
 
-    // Query executor result column description
-    QueryExecutor::ResultRowIdColumnPtr queryExecutorResCol = QueryExecutor::ResultRowIdColumnPtr::create();
-    queryExecutorResCol->database = table.database;
-    queryExecutorResCol->table = table.table;
-    queryExecutorResCol->tableAlias = table.alias;
-    queryExecutorResCol->queryExecutorAliasToColumn = executorToRealColumns;
-    context->rowIdColumns << queryExecutorResCol;
+    if (isTopSelect)
+    {
+        // Query executor result column description
+        QueryExecutor::ResultRowIdColumnPtr queryExecutorResCol = QueryExecutor::ResultRowIdColumnPtr::create();
+        queryExecutorResCol->database = table.database;
+        queryExecutorResCol->table = table.table;
+        queryExecutorResCol->tableAlias = table.alias;
+        queryExecutorResCol->queryExecutorAliasToColumn = executorToRealColumns;
+        context->rowIdColumns << queryExecutorResCol;
+    }
 
     return true;
 }

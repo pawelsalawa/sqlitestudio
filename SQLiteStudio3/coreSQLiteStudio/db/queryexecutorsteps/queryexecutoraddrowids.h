@@ -25,12 +25,13 @@ class QueryExecutorAddRowIds : public QueryExecutorStep
          * @param core SELECT's core that keeps result columns.
          * @param table Table we want to add ROWID columns for.
          * @param rowIdColsMap Map of ROWID columns from inner selects (built with addRowIdForTables()).
+         * @param isTopSelect True only for top-most select to store rowid columns in context only for the final list of columns.
          * @return true on success, false on any failure.
          *
          * Finds columns representing ROWID for the \p table and adds them to result columns and to the context.
          */
         bool addResultColumns(SqliteSelect::Core* core, const SelectResolver::Table& table,
-                              QHash<SelectResolver::Table, QHash<QString, QString> >& rowIdColsMap);
+                              QHash<SelectResolver::Table, QHash<QString, QString> >& rowIdColsMap, bool isTopSelect);
 
         /**
          * @brief Adds the column to result columns list.
@@ -49,12 +50,15 @@ class QueryExecutorAddRowIds : public QueryExecutorStep
          * @brief Adds all necessary ROWID columns to result columns.
          * @param select SELECT that keeps result columns.
          * @param ok[out] Reference to a flag for telling if the method was executed successly (true), or not (false).
+         * @param isTopSelect True only for top-most select call of this method, so the list of rowid columns is stored
+         * only basing on this select (and rowid mappind for it), not all subqueries. This is to avoid redundant rowid columns in context
+         * in case of subselects.
          * @return Mapping for every table mentioned in the SELECT with map of ROWID columns for the table.
          * The column map is a query_executor_alias to real_database_column_name.
          *
          * Adds ROWID columns for all tables mentioned in result columns of the \p select.
          */
-        QHash<SelectResolver::Table,QHash<QString,QString>> addRowIdForTables(SqliteSelect* select, bool& ok);
+        QHash<SelectResolver::Table,QHash<QString,QString>> addRowIdForTables(SqliteSelect* select, bool& ok, bool isTopSelect = true);
 
         /**
          * @brief Extracts all subselects used in the SELECT.
