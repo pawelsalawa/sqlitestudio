@@ -77,11 +77,11 @@ void BugReporter::clearBugReportCredentials()
 void BugReporter::reportBug(const QString& title, const QString& details, const QString& version, const QString& os, const QString& plugins, BugReporter::ResponseHandler responseHandler, const QString& urlSuffix)
 {
     static_qstring(contentsTpl, "%1\n\n<b>Plugins loaded:</b>\n%2\n\n<b>Version:</b>\n%3\n\n<b>Operating System:</b>\n%4");
-    QString contents = contentsTpl.arg(details.toHtmlEscaped(), plugins, version, os);
+    QString contents = contentsTpl.arg(escapeParam(details), plugins, version, os);
 
     QUrlQuery query;
     query.addQueryItem("brief", escapeParam(title));
-    query.addQueryItem("contents", escapeParam(contents));
+    query.addQueryItem("contents", contents);
     query.addQueryItem("os", os);
     query.addQueryItem("version", version);
     query.addQueryItem("featureRequest", "0");
