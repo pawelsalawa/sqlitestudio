@@ -54,6 +54,9 @@ QString DbDialog::getName()
 
 Db* DbDialog::getDb()
 {
+    if (ui->typeCombo->currentIndex() < 0)
+        return nullptr;
+
     Db* testDb = nullptr;
     QHash<QString, QVariant> options = collectOptions();
     QString path = ui->fileEdit->text();
@@ -323,6 +326,9 @@ void DbDialog::updateType()
 QHash<QString, QVariant> DbDialog::collectOptions()
 {
     QHash<QString, QVariant> options;
+    if (ui->typeCombo->currentIndex() < 0)
+        return options;
+
     foreach (QString key, optionKeyToWidget.keys())
         options[key] = getValueFrom(optionKeyToType[key], optionKeyToWidget[key]);
 
