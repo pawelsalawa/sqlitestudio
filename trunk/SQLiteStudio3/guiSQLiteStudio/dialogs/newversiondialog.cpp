@@ -41,6 +41,7 @@ void NewVersionDialog::setUpdates(const QList<UpdateManager::UpdateEntry>& updat
 
         row++;
     }
+    ui->updateList->resizeColumnsToContents();
 }
 
 void NewVersionDialog::init()
