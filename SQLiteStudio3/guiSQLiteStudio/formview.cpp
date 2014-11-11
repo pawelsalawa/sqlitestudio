@@ -145,8 +145,8 @@ bool FormView::isCurrentRowModifiedInGrid()
     if (!model)
         return false;
 
-    QModelIndex startIdx = model->index(gridView->currentIndex().row(), 0);
-    QModelIndex endIdx = model->index(gridView->currentIndex().row(), model->columnCount() - 1);
+    QModelIndex startIdx = model->index(gridView->getCurrentIndex().row(), 0);
+    QModelIndex endIdx = model->index(gridView->getCurrentIndex().row(), model->columnCount() - 1);
     return model->findIndexes(startIdx, endIdx, SqlQueryItem::DataRole::UNCOMMITED, true, 1).size() > 0;
 }
 
@@ -213,7 +213,7 @@ void FormView::updateFromGrid()
 {
     currentIndexUpdating = true;
 
-    dataMapper->setCurrentIndex(gridView->currentIndex().row());
+    dataMapper->setCurrentIndex(gridView->getCurrentIndex().row());
 
     // Already modified in grid?
     valueModified = isCurrentRowModifiedInGrid();

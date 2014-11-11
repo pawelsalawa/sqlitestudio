@@ -69,6 +69,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         SqlQueryItem *itemAt(const QPoint& pos);
         QToolBar* getToolBar(int toolbar) const;
         void addAdditionalAction(QAction* action);
+        QModelIndex getCurrentIndex() const;
 
     protected:
         void mouseDoubleClickEvent(QMouseEvent* event);
