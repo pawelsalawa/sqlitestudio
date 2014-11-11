@@ -897,6 +897,8 @@ singlesrc(X) ::= nm(N) DOT.                 {
 
 singlesrc ::= nm DOT ID_TAB.                {}
 singlesrc ::= ID_DB|ID_TAB.                 {}
+singlesrc ::= nm DOT ID_VIEW.               {}
+singlesrc ::= ID_DB|ID_VIEW.                {}
 
 %type joinconstr_opt {SqliteSelect::Core::JoinConstraint*}
 %destructor joinconstr_opt {delete $$;}

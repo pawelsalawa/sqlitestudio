@@ -182,6 +182,8 @@ void Lexer::staticInit()
     createTokenType(Dialect::Sqlite3, TK3_ID_ERR_MSG, Token::CTX_ERROR_MESSAGE, "");
     createTokenType(Dialect::Sqlite3, TK3_ID_IDX, Token::CTX_INDEX, "");
     createTokenType(Dialect::Sqlite3, TK3_ID_IDX_NEW, Token::CTX_INDEX_NEW, "");
+    createTokenType(Dialect::Sqlite3, TK3_ID_VIEW, Token::CTX_VIEW, "");
+    createTokenType(Dialect::Sqlite3, TK3_ID_VIEW_NEW, Token::CTX_VIEW_NEW, "");
     createTokenType(Dialect::Sqlite3, TK3_ID_JOIN_OPTS, Token::CTX_JOIN_OPTS, "");
     createTokenType(Dialect::Sqlite3, TK3_ID_CONSTR, Token::CTX_CONSTRAINT, "");
     createTokenType(Dialect::Sqlite3, TK3_ID_FK_MATCH, Token::CTX_FK_MATCH, "");
@@ -250,6 +252,8 @@ void Lexer::staticInit()
     createTokenType(Dialect::Sqlite2, TK2_ID_ERR_MSG, Token::CTX_ERROR_MESSAGE, "");
     createTokenType(Dialect::Sqlite2, TK2_ID_IDX, Token::CTX_INDEX, "");
     createTokenType(Dialect::Sqlite2, TK2_ID_IDX_NEW, Token::CTX_INDEX_NEW, "");
+    createTokenType(Dialect::Sqlite2, TK2_ID_VIEW, Token::CTX_VIEW, "");
+    createTokenType(Dialect::Sqlite2, TK2_ID_VIEW_NEW, Token::CTX_VIEW_NEW, "");
     createTokenType(Dialect::Sqlite2, TK2_ID_JOIN_OPTS, Token::CTX_JOIN_OPTS, "");
     createTokenType(Dialect::Sqlite2, TK2_ID_CONSTR, Token::CTX_CONSTRAINT, "");
     createTokenType(Dialect::Sqlite2, TK2_ID_FK_MATCH, Token::CTX_FK_MATCH, "");
