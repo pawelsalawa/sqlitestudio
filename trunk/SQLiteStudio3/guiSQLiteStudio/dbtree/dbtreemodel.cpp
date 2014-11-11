@@ -985,6 +985,18 @@ QList<DbTreeItem*> DbTreeModel::getDragItems(const QMimeData* data)
     return items;
 }
 
+QList<DbTreeItem*> DbTreeModel::getItemsForIndexes(const QModelIndexList& indexes) const
+{
+    QList<DbTreeItem*> items;
+    for (const QModelIndex& idx : indexes)
+    {
+        if (idx.isValid())
+            items << dynamic_cast<DbTreeItem*>(itemFromIndex(idx));
+    }
+
+    return items;
+}
+
 void DbTreeModel::staticInit()
 {
 }

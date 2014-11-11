@@ -51,6 +51,7 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         void setIgnoreDbLoadedSignal(bool value);
         bool hasDbTreeItem(const QMimeData* data);
         QList<DbTreeItem*> getDragItems(const QMimeData* data);
+        QList<DbTreeItem*> getItemsForIndexes(const QModelIndexList& indexes) const;
 
         static DbTreeItem* findItem(QStandardItem *parentItem, DbTreeItem::Type type, const QString &name);
         static DbTreeItem* findItem(QStandardItem* parentItem, DbTreeItem::Type type, Db* db);
