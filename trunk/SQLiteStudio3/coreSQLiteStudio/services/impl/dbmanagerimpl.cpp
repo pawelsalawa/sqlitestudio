@@ -156,13 +156,13 @@ void DbManagerImpl::removeDbByPath(const QString &path)
 
 void DbManagerImpl::removeDb(Db* db)
 {
+    db->close();
+
     listLock.lockForWrite();
     removeDbInternal(db);
     listLock.unlock();
 
     emit dbRemoved(db);
-
-    db->close();
     delete db;
 }
 
