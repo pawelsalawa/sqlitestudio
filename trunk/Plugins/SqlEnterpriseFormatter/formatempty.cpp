@@ -7,4 +7,5 @@ FormatEmpty::FormatEmpty(SqliteEmptyQuery* eq) :
 
 void FormatEmpty::formatInternal()
 {
+    withSemicolon();
 }
