@@ -32,7 +32,7 @@ void DbTreeItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
     opt.fontMetrics = QFontMetrics(opt.font);
 
     QModelIndex currIndex = DBTREE->getView()->selectionModel()->currentIndex();
-    if (item->index() == currIndex)
+    if (currIndex.isValid() && item->index() == currIndex)
         opt.state |= QStyle::State_HasFocus;
 
     QStyledItemDelegate::paint(painter, opt, index);
