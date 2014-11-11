@@ -25,6 +25,7 @@
 - complete plugin for compare tables/databases
 - executing queries with bind parameters
 - completer: when suggesting table in FROM clause, look at columns after SELECT to give related tables first.
+- constraints tab in table window should have toolbar for adding/editing/deleting constraints
 
 CLI:
 - plugin management commands
