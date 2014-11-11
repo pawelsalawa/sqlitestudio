@@ -63,7 +63,7 @@ class GUI_API_EXPORT DbTreeItem : public QObject, public QStandardItem
         QList<DbTreeItem*> getPathToParentItem(Type type, const QString& name);
         DbTreeItem* findParentItem(Type type);
         DbTreeItem* findParentItem(Type type, const QString& name);
-        QString signature();
+        QString signature() const;
 
         Type getType() const;
         void setType(Type type);

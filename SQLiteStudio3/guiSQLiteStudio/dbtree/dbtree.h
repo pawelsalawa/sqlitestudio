@@ -102,9 +102,9 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void showWidgetCover();
         void hideWidgetCover();
         void setSelectedItem(DbTreeItem* item);
+        bool isMimeDataValidForItem(const QMimeData* mimeData, const DbTreeItem* item);
         QToolBar* getToolBar(int toolbar) const;
 
-        static bool isMimeDataValidForItem(const QMimeData* mimeData, const DbTreeItem* item);
         static bool isItemDraggable(const DbTreeItem* item);
 
     protected:

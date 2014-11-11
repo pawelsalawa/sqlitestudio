@@ -565,7 +565,7 @@ DbTreeModel* DbTree::getModel() const
 bool DbTree::isMimeDataValidForItem(const QMimeData* mimeData, const DbTreeItem* item)
 {
     if (mimeData->formats().contains(DbTreeModel::MIMETYPE))
-        return areDbTreeItemsValidForItem(DbTreeModel::getDragItems(mimeData), item);
+        return areDbTreeItemsValidForItem(getModel()->getDragItems(mimeData), item);
     else if (mimeData->hasUrls())
         return areUrlsValidForItem(mimeData->urls(), item);
 
