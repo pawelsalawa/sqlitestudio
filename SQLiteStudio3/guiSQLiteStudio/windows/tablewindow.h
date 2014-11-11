@@ -181,6 +181,8 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         void executionFailed(const QString& errorText);
         void dbClosedFinalCleanup();
         void checkIfTableDeleted(const QString& database, const QString& object, DbObjectType type);
+        void checkIfIndexDeleted(const QString& object);
+        void checkIfTriggerDeleted(const QString& object);
         void refreshStructure();
         void commitStructure(bool skipWarning = false);
         void changesSuccessfullyCommited();
