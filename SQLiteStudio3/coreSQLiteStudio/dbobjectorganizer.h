@@ -95,7 +95,7 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable, public In
         void collectReferencedTriggersForView(const QString& view);
         void findBinaryColumns(const QString& table, const StrHash<SqliteQueryPtr>& allParsedObjects);
         bool copyDataAsMiddleware(const QString& table);
-        bool copyDataUsingAttach(const QString& table, const QString& attachName);
+        bool copyDataUsingAttach(const QString& table);
         void setupSqlite2Helper(SqlQueryPtr query, const QString& table, const QStringList& colNames);
         void dropTable(const QString& table);
         void dropView(const QString& view);
@@ -138,6 +138,7 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable, public In
         DbVersionConverter* versionConverter = nullptr;
         QMutex interruptMutex;
         QMutex executingMutex;
+        QString attachName;
 
     private slots:
         void processPreparationFinished();

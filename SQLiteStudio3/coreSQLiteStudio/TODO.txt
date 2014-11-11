@@ -1,5 +1,4 @@
-- default formatter is still not guaranteed to be enterprise
-- wrapping names for sql export
+- remembering last directory when browsing for db file, export file, import file, SQL save/load file.
 
 * Next versions:
 - commiting DataView should be async
