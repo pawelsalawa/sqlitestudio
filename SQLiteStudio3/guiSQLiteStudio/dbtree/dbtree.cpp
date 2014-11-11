@@ -562,6 +562,11 @@ DbTreeModel* DbTree::getModel() const
     return treeModel;
 }
 
+DbTreeView*DbTree::getView() const
+{
+    return ui->treeView;
+}
+
 bool DbTree::isMimeDataValidForItem(const QMimeData* mimeData, const DbTreeItem* item)
 {
     if (mimeData->formats().contains(DbTreeModel::MIMETYPE))
@@ -1372,7 +1377,7 @@ void DbTree::currentChanged(const QModelIndex &current, const QModelIndex &previ
 
 void DbTree::deleteSelected()
 {
-    QModelIndexList idxList = ui->treeView->selectionModel()->selectedRows();
+    QModelIndexList idxList = ui->treeView->getSelectedIndexes();
     QList<DbTreeItem*> items;
     foreach (const QModelIndex& idx, idxList)
         items << dynamic_cast<DbTreeItem*>(treeModel->itemFromIndex(idx));
