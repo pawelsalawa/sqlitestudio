@@ -102,6 +102,7 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         DbObjectOrganizer* dbOrganizer = nullptr;
         QList<Interruptable*> interruptables;
         bool ignoreDbLoadedSignal = false;
+        QString currentFilter;
 
     private slots:
         void expanded(const QModelIndex &index);

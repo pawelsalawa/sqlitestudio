@@ -128,6 +128,7 @@ QStringList DbTreeModel::getGroupFor(QStandardItem *item)
 void DbTreeModel::applyFilter(const QString &filter)
 {
     applyFilter(root(), filter);
+    currentFilter = filter;
 }
 
 bool DbTreeModel::applyFilter(QStandardItem *parentItem, const QString &filter)
@@ -339,6 +340,7 @@ void DbTreeModel::refreshSchema(Db* db)
         return;
     }
     refreshSchema(db, item);
+    applyFilter(item, currentFilter);
 }
 
 QList<DbTreeItem*> DbTreeModel::getAllItemsAsFlatList() const
