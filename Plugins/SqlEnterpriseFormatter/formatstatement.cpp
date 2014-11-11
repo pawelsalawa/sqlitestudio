@@ -272,7 +272,7 @@ FormatStatement& FormatStatement::withParFuncRight()
 FormatStatement& FormatStatement::withSemicolon()
 {
     FormatToken* lastRealToken = getLastRealToken();
-    if (lastRealToken && lastRealToken->type != FormatToken::SEMICOLON)
+    if ((lastRealToken && lastRealToken->type != FormatToken::SEMICOLON) || tokens.size() == 0)
         withToken(FormatToken::SEMICOLON, ";");
 
     return *this;
@@ -956,7 +956,7 @@ void FormatStatement::resetIndents()
 void FormatStatement::removeAllSpaces()
 {
     removeAllSpacesFromLine();
-    while (endsWithSpace())
+    while (endsWithSpace() && lines.size() > 0)
     {
         line = lines.takeLast();
         removeAllSpacesFromLine();
