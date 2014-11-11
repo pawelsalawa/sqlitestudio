@@ -172,13 +172,7 @@ void TableWindow::init()
     connect(structureExecutor, SIGNAL(failure(int,QString)), this, SLOT(changesFailedToCommit(int,QString)));
 
     setupCoverWidget();
-
-    updateStructureCommitState();
-    updateStructureToolbarState();
-    updateTableConstraintsToolbarState();
-    updateNewTableState();
-    updateIndexesState();
-    updateTriggersState();
+    updateAfterInit();
 }
 
 void TableWindow::createActions()
@@ -347,6 +341,16 @@ void TableWindow::executeStructureChanges()
     structureExecutor->setQueries(sqls);
     widgetCover->show();
     structureExecutor->exec();
+}
+
+void TableWindow::updateAfterInit()
+{
+    updateStructureCommitState();
+    updateStructureToolbarState();
+    updateTableConstraintsToolbarState();
+    updateNewTableState();
+    updateIndexesState();
+    updateTriggersState();
 }
 
 QModelIndex TableWindow::structureCurrentIndex() const
@@ -1494,6 +1498,7 @@ void TableWindow::useCurrentTableAsBaseForNew()
     ui->tableNameEdit->clear();
     updateWindowTitle();
     ui->tableNameEdit->setFocus();
+    updateAfterInit();
 }
 
 Db* TableWindow::getAssociatedDb() const
