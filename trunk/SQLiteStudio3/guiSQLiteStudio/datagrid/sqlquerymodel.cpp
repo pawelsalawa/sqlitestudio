@@ -347,6 +347,11 @@ void SqlQueryModel::commitInternal(const QList<SqlQueryItem*>& items)
         return;
     }
 
+    // Removing "commit error" mark from items that are going to be commited now
+    for (SqlQueryItem* item : items)
+        item->setCommitingError(false);
+
+    // Grouping by row and commiting
     QList<QList<SqlQueryItem*> > groupedItems = groupItemsByRows(items);
     bool ok = true;
     foreach (const QList<SqlQueryItem*>& itemsInRow, groupedItems)
