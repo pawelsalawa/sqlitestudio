@@ -36,10 +36,6 @@ QString getDbPath(const QString &startWith)
     QString filter = filters.join(";;");
 
     QString path = QFileDialog::getSaveFileName(0, QObject::tr("Database file"), dir, filter, &filters[0], QFileDialog::DontConfirmOverwrite);
-
-    if (!path.isNull())
-        CFG->set("dialogCache", "lastDbDir", QFileInfo(path).dir().absolutePath());
-
     return path;
 }
 

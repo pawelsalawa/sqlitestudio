@@ -14,6 +14,7 @@
 #include "schemaresolver.h"
 #include "common/widgetcover.h"
 #include "services/notifymanager.h"
+#include "uiconfig.h"
 #include <QClipboard>
 #include <QDebug>
 #include <QDir>
@@ -400,7 +401,8 @@ void ExportDialog::browseForExportFile()
 
     filters << tr("All files (*)");
 
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Pick file to export to"), QString(), filters.join(";;"), 0, QFileDialog::DontConfirmOverwrite);
+    QString dir = getFileDialogInitPath();
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Pick file to export to"), dir, filters.join(";;"), 0, QFileDialog::DontConfirmOverwrite);
     if (fileName.isNull())
         return;
 
@@ -408,6 +410,7 @@ void ExportDialog::browseForExportFile()
         fileName += "." + currentPlugin->defaultFileExtension();
 
     ui->exportFileEdit->setText(fileName);
+    setFileDialogInitPathByFile(fileName);
 }
 
 void ExportDialog::pluginSelected()

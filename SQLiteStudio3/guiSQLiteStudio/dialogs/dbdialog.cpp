@@ -4,6 +4,7 @@
 #include "plugins/dbplugin.h"
 #include "uiutils.h"
 #include "common/utils.h"
+#include "uiconfig.h"
 #include "services/dbmanager.h"
 #include "common/global.h"
 #include "iconmanager.h"
@@ -409,12 +410,15 @@ void DbDialog::valueForNameGenerationChanged()
 
 void DbDialog::browseForFile()
 {
-    QString path = QFileDialog::getOpenFileName();
+    QString dir = getFileDialogInitPath();
+    QString path = QFileDialog::getOpenFileName(0, QString(), dir);
     if (path.isNull())
         return;
 
     QString key = helperToKey[dynamic_cast<QWidget*>(sender())];
     setValueFor(optionKeyToType[key], optionKeyToWidget[key], path);
+
+    setFileDialogInitPathByFile(path);
 }
 
 void DbDialog::generateNameSwitched(bool checked)
@@ -444,14 +448,20 @@ void DbDialog::browseClicked()
 {
     QFileInfo fileInfo(ui->fileEdit->text());
     QString dir;
-    if (fileInfo.exists() && fileInfo.isFile())
+    if (ui->fileEdit->text().isEmpty())
+        dir = getFileDialogInitPath();
+    else if (fileInfo.exists() && fileInfo.isFile())
         dir = fileInfo.absolutePath();
     else if (fileInfo.dir().exists())
         dir = fileInfo.dir().absolutePath();
+    else
+        dir = getFileDialogInitPath();
 
     QString path = getDbPath(dir);
     if (path.isNull())
         return;
+
+    setFileDialogInitPathByFile(path);
 
     ui->fileEdit->setText(path);
     updateState();
