@@ -148,6 +148,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         void editConstraint(const QModelIndex& idx);
         void delConstraint(const QModelIndex& idx);
         void executeStructureChanges();
+        void updateAfterInit();
         QModelIndex structureCurrentIndex() const;
         void addConstraint(ConstraintDialog::Constraint mode);
         bool validate(bool skipWarning = false);
