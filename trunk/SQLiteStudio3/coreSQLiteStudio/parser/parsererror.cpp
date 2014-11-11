@@ -3,8 +3,19 @@
 
 ParserError::ParserError(TokenPtr token, const QString &text)
 {
-    errorToken = token;
+    if (token)
+    {
+        start = token->start;
+        end = token->end;
+    }
     message = text;
+}
+
+ParserError::ParserError(qint64 start, qint64 end, const QString& text) :
+    message(text),
+    start(start),
+    end(end)
+{
 }
 
 ParserError::ParserError(const QString &text)
@@ -19,26 +30,15 @@ QString &ParserError::getMessage()
 
 qint64 ParserError::getFrom()
 {
-    if (errorToken)
-        return errorToken->start;
-    else
-        return -1;
+    return start;
 }
 
 qint64 ParserError::getTo()
 {
-    if (errorToken)
-        return errorToken->end;
-    else
-        return -1;
-}
-
-TokenPtr ParserError::getErrorToken()
-{
-    return errorToken;
+    return end;
 }
 
 QString ParserError::toString()
 {
-    return QString("%1: %2").arg(errorToken->start).arg(message);
+    return QString("%1: %2").arg(start).arg(message);
 }

@@ -6,6 +6,7 @@
 #include "parser/parsererror.h"
 #include <QString>
 #include <QtTest>
+#include <parser/ast/sqliteinsert.h>
 
 class ParserTest : public QObject
 {
@@ -31,6 +32,7 @@ class ParserTest : public QObject
         void testBig1();
         void testTableFk();
         void testDoubleQuotes();
+        void testInsertError();
         void initTestCase();
         void cleanupTestCase();
 };
@@ -309,6 +311,14 @@ void ParserTest::testDoubleQuotes()
 
     QVERIFY(e->mode == SqliteExpr::Mode::ID);
     QVERIFY(e->possibleDoubleQuotedString);
+}
+
+void ParserTest::testInsertError()
+{
+    QString sql = "INSERT INTO test ";
+    bool res = parser3->parse(sql);
+    QVERIFY(!res);
+    QVERIFY(parser3->getErrors().size() == 1);
 }
 
 void ParserTest::initTestCase()

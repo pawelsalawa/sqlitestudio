@@ -1,16 +1,16 @@
 #include "dbattachermock.h"
 
-bool DbAttacherMock::attachDatabases(const QString& query)
+bool DbAttacherMock::attachDatabases(const QString&)
 {
     return true;
 }
 
-bool DbAttacherMock::attachDatabases(const QList<SqliteQueryPtr>& queries)
+bool DbAttacherMock::attachDatabases(const QList<SqliteQueryPtr>&)
 {
     return true;
 }
 
-bool DbAttacherMock::attachDatabases(SqliteQueryPtr query)
+bool DbAttacherMock::attachDatabases(SqliteQueryPtr)
 {
     return true;
 }
@@ -29,7 +29,7 @@ QString DbAttacherMock::getQuery() const
     return QString();
 }
 
-DbAttacher* DbAttacherFactoryMock::create(Db* db)
+DbAttacher* DbAttacherFactoryMock::create(Db*)
 {
     return new DbAttacherMock();
 }
