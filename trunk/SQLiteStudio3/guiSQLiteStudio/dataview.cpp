@@ -317,7 +317,7 @@ void DataView::goToFormRow(IndexModifier idxMod)
     if (formView->isModified())
         formView->copyDataToGrid();
 
-    int row = gridView->currentIndex().row();
+    int row = gridView->getCurrentIndex().row();
 
     switch (idxMod)
     {
@@ -376,7 +376,7 @@ void DataView::updateGridNavigationState()
 
 void DataView::updateFormNavigationState()
 {
-    int row = gridView->currentIndex().row();
+    int row = gridView->getCurrentIndex().row();
     int lastRow = model->rowCount() - 1;
     bool nextRowAvailable = row < lastRow;
     bool prevRowAvailable = row > 0;
@@ -482,7 +482,7 @@ void DataView::updateResultsCount(int resultsCount)
 {
     if (resultsCount >= 0)
     {
-        QString msg = QObject::tr("Total rows: %1").arg(resultsCount);
+        QString msg = QObject::tr("Total rows loaded: %1").arg(resultsCount);
         rowCountLabel->setText(msg);
         formViewRowCountLabel->setText(msg);
         rowCountLabel->setToolTip(QString::null);
@@ -505,7 +505,7 @@ void DataView::updateCurrentFormViewRow()
 {
     int rowsPerPage = CFG_UI.General.NumberOfRowsPerPage.get();
     int page = gridView->getModel()->getCurrentPage();
-    int row = rowsPerPage * page + 1 + gridView->currentIndex().row();
+    int row = rowsPerPage * page + 1 + gridView->getCurrentIndex().row();
     formViewCurrentRowLabel->setText(tr("Row: %1").arg(row));
 }
 
@@ -574,6 +574,7 @@ void DataView::insertRow()
 
     model->addNewRow();
     formView->updateFromGrid();
+    updateCurrentFormViewRow();
 }
 
 void DataView::insertMultipleRows()
@@ -583,6 +584,7 @@ void DataView::insertMultipleRows()
 
     model->addMultipleRows();
     formView->updateFromGrid();
+    updateCurrentFormViewRow();
 }
 
 void DataView::deleteRow()
@@ -592,6 +594,7 @@ void DataView::deleteRow()
 
     model->deleteSelectedRows();
     formView->updateFromGrid();
+    updateCurrentFormViewRow();
 }
 
 void DataView::commitGrid()
@@ -684,6 +687,7 @@ void DataView::commitForm()
     formView->copyDataToGrid();
     gridView->selectRow(formView->getCurrentRow());
     selectiveCommitGrid();
+    formView->updateFromGrid();
 }
 
 void DataView::rollbackForm()
@@ -731,12 +735,13 @@ void DataView::tabChanged(int newIndex)
         }
         case 1:
         {
-            if (!gridView->currentIndex().isValid() && model->rowCount() > 0)
+            if (!gridView->getCurrentIndex().isValid() && model->rowCount() > 0)
                 gridView->setCurrentRow(0);
 
-            int row = gridView->currentIndex().row();
+            int row = gridView->getCurrentIndex().row();
             model->loadFullDataForEntireRow(row);
             formView->updateFromGrid();
+            updateCurrentFormViewRow();
             break;
         }
     }

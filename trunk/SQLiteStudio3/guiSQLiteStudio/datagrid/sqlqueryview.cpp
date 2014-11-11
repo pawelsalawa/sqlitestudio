@@ -38,6 +38,10 @@ QList<SqlQueryItem*> SqlQueryView::getSelectedItems()
 {
     QList<SqlQueryItem*> items;
     QModelIndexList idxList = selectionModel()->selectedIndexes();
+    QModelIndex currIdx = getCurrentIndex();
+    if (!idxList.contains(currIdx))
+        idxList << currIdx;
+
     if (idxList.size() == 0)
         return items;
 
@@ -50,7 +54,7 @@ QList<SqlQueryItem*> SqlQueryView::getSelectedItems()
 
 SqlQueryItem* SqlQueryView::getCurrentItem()
 {
-    const QModelIndex idx = selectionModel()->currentIndex();
+    QModelIndex idx = getCurrentIndex();
     if (!idx.isValid())
         return nullptr;
 
@@ -84,6 +88,11 @@ QToolBar* SqlQueryView::getToolBar(int toolbar) const
 void SqlQueryView::addAdditionalAction(QAction* action)
 {
     additionalActions << action;
+}
+
+QModelIndex SqlQueryView::getCurrentIndex() const
+{
+    return currentIndex();
 }
 
 void SqlQueryView::mouseDoubleClickEvent(QMouseEvent* event)
