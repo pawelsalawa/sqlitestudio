@@ -52,6 +52,7 @@ class GUI_API_EXPORT DbTreeView : public QTreeView
     private slots:
         void showMenu(const QPoint &pos);
         void updateItemHidden(DbTreeItem* item);
+        void selectionChanged(const QItemSelection &selected, const QItemSelection &deselected);
 };
 
 #endif // DBTREEVIEW_H

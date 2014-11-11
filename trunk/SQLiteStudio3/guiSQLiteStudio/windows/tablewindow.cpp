@@ -687,6 +687,7 @@ QString TableWindow::getTable() const
 
 void TableWindow::dbClosedFinalCleanup()
 {
+    db = nullptr;
     dataModel->setDb(nullptr);
     structureExecutor->setDb(nullptr);
 }
