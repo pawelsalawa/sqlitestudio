@@ -8,11 +8,11 @@ class CollationManagerMock : public CollationManager
     public:
         CollationManagerMock();
 
-        void setCollations(const QList<CollationPtr>& newCollations);
+        void setCollations(const QList<CollationPtr>&);
         QList<CollationPtr> getAllCollations() const;
-        QList<CollationPtr> getCollationsForDatabase(const QString& dbName) const;
-        int evaluate(const QString& name, const QString& value1, const QString& value2);
-        int evaluateDefault(const QString& value1, const QString& value2);
+        QList<CollationPtr> getCollationsForDatabase(const QString&) const;
+        int evaluate(const QString&, const QString&, const QString&);
+        int evaluateDefault(const QString&, const QString&);
 };
 
 #endif // COLLATIONMANAGERMOCK_H

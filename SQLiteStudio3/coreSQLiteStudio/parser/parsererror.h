@@ -21,6 +21,14 @@ class API_EXPORT ParserError
         ParserError(TokenPtr token, const QString& text);
 
         /**
+         * @brief Creates error with given range and message.
+         * @param start Position where the error starts.
+         * @param end Position where the error ends.
+         * @param text Error message.
+         */
+        ParserError(qint64 start, qint64 end, const QString& text);
+
+        /**
          * @brief Creates global error with given message.
          * @param text Error message.
          *
@@ -47,12 +55,6 @@ class API_EXPORT ParserError
         qint64 getTo();
 
         /**
-         * @brief Provides token that the error occurred on.
-         * @return Token for the error, or null pointer if the error is not related to any token (global error).
-         */
-        TokenPtr getErrorToken();
-
-        /**
          * @brief Serializes error to readable string.
          * @return Start position and error message in form: <tt>"position: message"</tt>.
          */
@@ -65,11 +67,14 @@ class API_EXPORT ParserError
         QString message = QString::null;
 
         /**
-         * @brief Token, on which the error occured.
-         *
-         * Can be null.
+         * @brief Error start position.
          */
-        TokenPtr errorToken;
+        qint64 start = -1;
+
+        /**
+         * @brief Error end position.
+         */
+        qint64 end = -1;
 };
 
 #endif // PARSERERROR_H

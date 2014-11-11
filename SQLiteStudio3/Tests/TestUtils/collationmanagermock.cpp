@@ -4,7 +4,7 @@ CollationManagerMock::CollationManagerMock()
 {
 }
 
-void CollationManagerMock::setCollations(const QList<CollationManager::CollationPtr>& newCollations)
+void CollationManagerMock::setCollations(const QList<CollationManager::CollationPtr>&)
 {
 }
 
@@ -13,17 +13,17 @@ QList<CollationManager::CollationPtr> CollationManagerMock::getAllCollations() c
     return QList<CollationManager::CollationPtr>();
 }
 
-QList<CollationManager::CollationPtr> CollationManagerMock::getCollationsForDatabase(const QString& dbName) const
+QList<CollationManager::CollationPtr> CollationManagerMock::getCollationsForDatabase(const QString&) const
 {
     return QList<CollationManager::CollationPtr>();
 }
 
-int CollationManagerMock::evaluate(const QString& name, const QString& value1, const QString& value2)
+int CollationManagerMock::evaluate(const QString&, const QString&, const QString&)
 {
     return 0;
 }
 
-int CollationManagerMock::evaluateDefault(const QString& value1, const QString& value2)
+int CollationManagerMock::evaluateDefault(const QString&, const QString&)
 {
     return 0;
 }

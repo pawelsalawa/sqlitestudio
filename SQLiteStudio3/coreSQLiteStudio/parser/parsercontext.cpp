@@ -15,14 +15,19 @@ void ParserContext::addQuery(SqliteQuery *query)
 
 void ParserContext::error(TokenPtr token, const QString &text)
 {
-    errors << new ParserError(token, text);
+    if (token->start > -1 && token->end > -1)
+        errors << new ParserError(token, text);
+    else if (managedTokens.size() > 0)
+        errors << new ParserError(managedTokens.last()->start, managedTokens.last()->end + 1, text);
+    else
+        errors << new ParserError(text);
+
     successful = false;
 }
 
 void ParserContext::error(Token* token, const QString& text)
 {
-    errors << new ParserError(getTokenPtr(token), text);
-    successful = false;
+    error(getTokenPtr(token), text);
 }
 
 void ParserContext::error(const QString &text)

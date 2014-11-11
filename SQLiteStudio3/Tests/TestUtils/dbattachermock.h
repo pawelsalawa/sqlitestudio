@@ -6,9 +6,9 @@
 class DbAttacherMock : public DbAttacher
 {
     public:
-        bool attachDatabases(const QString& query);
-        bool attachDatabases(const QList<SqliteQueryPtr>& queries);
-        bool attachDatabases(SqliteQueryPtr query);
+        bool attachDatabases(const QString&);
+        bool attachDatabases(const QList<SqliteQueryPtr>&);
+        bool attachDatabases(SqliteQueryPtr);
         void detachDatabases();
         BiStrHash getDbNameToAttach() const;
         QString getQuery() const;
@@ -17,7 +17,7 @@ class DbAttacherMock : public DbAttacher
 class DbAttacherFactoryMock : public DbAttacherFactory
 {
     public:
-        DbAttacher* create(Db* db);
+        DbAttacher* create(Db*);
 };
 
 #endif // DBATTACHERMOCK_H
