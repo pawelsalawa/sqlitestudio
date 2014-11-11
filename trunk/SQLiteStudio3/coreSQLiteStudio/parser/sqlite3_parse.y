@@ -1357,7 +1357,7 @@ cmd(X) ::= insert_stmt(S).                  {
 
 %type insert_stmt {SqliteQuery*}
 %destructor insert_stmt {delete $$;}
-insert_stmt(X) ::= with(W) insert_cmd(C)
+/*insert_stmt(X) ::= with(W) insert_cmd(C)
             INTO fullname(N)
             inscollist_opt(I) select(S).    {
                                                 X = new SqliteInsert(
@@ -1374,7 +1374,7 @@ insert_stmt(X) ::= with(W) insert_cmd(C)
                                                 delete I;
                                                 // since it's used in trigger:
                                                 objectForTokens = X;
-                                            }
+                                            }*/
 insert_stmt(X) ::= with(W) insert_cmd(C)
             INTO fullname(N)
             inscollist_opt(I) DEFAULT
