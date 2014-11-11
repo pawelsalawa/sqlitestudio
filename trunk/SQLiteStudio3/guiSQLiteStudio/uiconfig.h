@@ -77,8 +77,13 @@ CFG_CATEGORIES(Ui,
         CFG_ENTRY(bool,                  OpenTablesOnData,        false)
         CFG_ENTRY(bool,                  OpenViewsOnData,         false)
         CFG_ENTRY(Cfg::DataEditorsOrder, DataEditorsOrder,        Cfg::DataEditorsOrder())
+        CFG_ENTRY(QString,               FileDialogLastPath,      QString())
     )
 )
+
+QString getFileDialogInitPath();
+void setFileDialogInitPath(const QString& path);
+void setFileDialogInitPathByFile(const QString& filePath);
 
 #define CFG_UI CFG_INSTANCE(Ui)
 

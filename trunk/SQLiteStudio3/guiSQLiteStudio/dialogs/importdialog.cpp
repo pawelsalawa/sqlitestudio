@@ -13,6 +13,7 @@
 #include "configmapper.h"
 #include "formmanager.h"
 #include "common/utils.h"
+#include "uiconfig.h"
 #include <QDir>
 #include <QDebug>
 #include <QFileDialog>
@@ -319,12 +320,14 @@ void ImportDialog::browseForInputFile()
         return;
     }
 
+    QString dir = getFileDialogInitPath();
     QString filter = currentPlugin->getFileFilter();
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Pick file to import from"), QString(), filter);
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Pick file to import from"), dir, filter);
     if (fileName.isNull())
         return;
 
     ui->inputFileEdit->setText(fileName);
+    setFileDialogInitPathByFile(fileName);
 }
 
 void ImportDialog::success()

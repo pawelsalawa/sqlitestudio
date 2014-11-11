@@ -1012,9 +1012,12 @@ void SqlEditor::formatSql()
 
 void SqlEditor::saveToFile()
 {
-    QString fName = QFileDialog::getSaveFileName(this, tr("Save to file"));
+    QString dir = getFileDialogInitPath();
+    QString fName = QFileDialog::getSaveFileName(this, tr("Save to file"), dir);
     if (fName.isNull())
         return;
+
+    setFileDialogInitPathByFile(fName);
 
     QFile file(fName);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
@@ -1032,10 +1035,13 @@ void SqlEditor::saveToFile()
 
 void SqlEditor::loadFromFile()
 {
+    QString dir = getFileDialogInitPath();
     QString filters = tr("SQL scripts (*.sql);;All files (*)");
-    QString fName = QFileDialog::getOpenFileName(this, tr("Open file"), QString(), filters);
+    QString fName = QFileDialog::getOpenFileName(this, tr("Open file"), dir, filters);
     if (fName.isNull())
         return;
+
+    setFileDialogInitPathByFile(fName);
 
     QFile file(fName);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))

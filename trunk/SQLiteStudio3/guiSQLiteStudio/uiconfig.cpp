@@ -3,6 +3,7 @@
 #include <QPlainTextEdit>
 #include <QStyle>
 #include <QStandardItem>
+#include <QDir>
 
 namespace Cfg
 {
@@ -45,3 +46,23 @@ namespace Cfg
 }
 
 CFG_DEFINE(Ui)
+
+void setFileDialogInitPathByFile(const QString& filePath)
+{
+    if (filePath.isNull())
+        return;
+
+    QDir newDir(filePath);
+    newDir.cdUp();
+    setFileDialogInitPath(newDir.absolutePath());
+}
+
+void setFileDialogInitPath(const QString& path)
+{
+    CFG_UI.General.FileDialogLastPath.set(path);
+}
+
+QString getFileDialogInitPath()
+{
+    return CFG_UI.General.FileDialogLastPath.get();
+}

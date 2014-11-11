@@ -90,7 +90,6 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         static bool resolveNameConflict(QString& nameInConflict);
         static bool confirmConversion(const QList<QPair<QString,QString>>& diffs);
         static bool confirmConversionErrors(const QHash<QString, QSet<QString> >& errors);
-        static void cleanUpMimeData();
 
         static const QString toolTipTableTmp;
         static const QString toolTipHdrRowTmp;

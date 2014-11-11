@@ -987,21 +987,6 @@ QList<DbTreeItem*> DbTreeModel::getDragItems(const QMimeData* data)
 
 void DbTreeModel::staticInit()
 {
-    cleanUpMimeData();
-}
-
-void DbTreeModel::cleanUpMimeData()
-{
-    const QMimeData *oldData = QApplication::clipboard()->mimeData();
-
-    QMimeData* data = new QMimeData();
-    for (const QString& format : oldData->formats())
-    {
-        if (format != MIMETYPE)
-            data->setData(format, oldData->data(format));
-    }
-
-    QApplication::clipboard()->setMimeData(data);
 }
 
 bool DbTreeModel::dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, Qt::DropAction defaultAction, bool& invokeStdDropAction)

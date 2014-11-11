@@ -1,5 +1,6 @@
 #include "fileedit.h"
 #include "iconmanager.h"
+#include "uiconfig.h"
 #include <QHBoxLayout>
 #include <QLineEdit>
 #include <QToolButton>
@@ -44,15 +45,17 @@ QString FileEdit::getFilters() const
 void FileEdit::browse()
 {
     QString path;
+    QString dir = getFileDialogInitPath();
     if (save)
-        path = QFileDialog::getSaveFileName(this, dialogTitle, QString(), filters);
+        path = QFileDialog::getSaveFileName(this, dialogTitle, dir, filters);
     else
-        path = QFileDialog::getOpenFileName(this, dialogTitle, QString(), filters);
+        path = QFileDialog::getOpenFileName(this, dialogTitle, dir, filters);
 
     if (path.isNull())
         return;
 
     setFile(path);
+    setFileDialogInitPathByFile(path);
 }
 
 void FileEdit::lineTextChanged()
