@@ -198,9 +198,9 @@ QString DbTreeItem::signature() const
 {
     QString sig;
     if (parentDbTreeItem())
-        sig += parentDbTreeItem()->signature();
+        sig += parentDbTreeItem()->signature() + "_";
 
-    sig += "_" + QString::number(type()) + "." + QString::fromLatin1(text().toUtf8().toBase64());
+    sig += QString::number(type()) + "." + QString::fromLatin1(text().toUtf8().toBase64());
     return sig;
 }
 
