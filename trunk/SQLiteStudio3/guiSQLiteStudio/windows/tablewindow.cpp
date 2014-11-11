@@ -690,20 +690,56 @@ void TableWindow::dbClosedFinalCleanup()
 void TableWindow::checkIfTableDeleted(const QString& database, const QString& object, DbObjectType type)
 {
     UNUSED(database);
-    if (type != DbObjectType::TABLE)
-        return;
-
-    if (modifyingThisTable)
-        return;
 
     // TODO uncomment below when dbnames are supported
 //    if (this->database != database)
 //        return;
 
+    switch (type)
+    {
+        case DbObjectType::TABLE:
+            break;
+        case DbObjectType::INDEX:
+            checkIfIndexDeleted(object);
+            return;
+        case DbObjectType::TRIGGER:
+            checkIfTriggerDeleted(object);
+            return;
+        case DbObjectType::VIEW:
+            return;
+    }
+
+    if (modifyingThisTable)
+        return;
+
     if (object.compare(table, Qt::CaseInsensitive) == 0)
     {
         dbClosedFinalCleanup();
         getMdiWindow()->close();
+    }
+}
+
+void TableWindow::checkIfIndexDeleted(const QString& object)
+{
+    for (int i = 0, total = ui->indexList->rowCount(); i < total; ++i)
+    {
+        if (ui->indexList->item(i, 0)->text().compare(object, Qt::CaseInsensitive) == 0)
+        {
+            ui->indexList->removeRow(i);
+            return;
+        }
+    }
+}
+
+void TableWindow::checkIfTriggerDeleted(const QString& object)
+{
+    for (int i = 0, total = ui->triggerList->rowCount(); i < total; ++i)
+    {
+        if (ui->triggerList->item(i, 0)->text().compare(object, Qt::CaseInsensitive) == 0)
+        {
+            ui->triggerList->removeRow(i);
+            return;
+        }
     }
 }
 

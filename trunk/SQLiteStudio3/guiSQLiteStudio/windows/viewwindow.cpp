@@ -554,6 +554,19 @@ void ViewWindow::dbClosedFinalCleanup()
 void ViewWindow::checkIfViewDeleted(const QString& database, const QString& object, DbObjectType type)
 {
     UNUSED(database);
+
+    if (type == DbObjectType::TRIGGER)
+    {
+        for (int i = 0, total = ui->triggersList->rowCount(); i < total; ++i)
+        {
+            if (ui->triggersList->item(i, 0)->text().compare(object, Qt::CaseInsensitive) == 0)
+            {
+                ui->triggersList->removeRow(i);
+                return;
+            }
+        }
+    }
+
     if (type != DbObjectType::VIEW)
         return;
 
