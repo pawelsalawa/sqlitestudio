@@ -149,8 +149,7 @@ void DbTree::updateActionStates(const QStandardItem *item)
         if (isMimeDataValidForItem(QApplication::clipboard()->mimeData(), dbTreeItem))
             enabled << PASTE;
 
-        // Deleting any item should be enabled if just any is selected.
-        enabled << DEL_SELECTED << CLEAR_FILTER;
+        enabled << CLEAR_FILTER;
 
         // Group actions
         if (dbTreeItem->getType() == DbTreeItem::Type::DIR)
@@ -248,6 +247,38 @@ void DbTree::updateActionStates(const QStandardItem *item)
                     enabled << EDIT_COLUMN;
                     enabled << ADD_INDEX << ADD_TRIGGER;
                     break;
+            }
+        }
+
+        // Do we have any deletable object selected? If yes, enable "Del" action.
+        bool enableDel = false;
+        for (DbTreeItem* selItem : getModel()->getItemsForIndexes(getView()->getSelectedIndexes()))
+        {
+            switch (selItem->getType())
+            {
+                case DbTreeItem::Type::COLUMN:
+                case DbTreeItem::Type::DB:
+                case DbTreeItem::Type::DIR:
+                case DbTreeItem::Type::INDEX:
+                case DbTreeItem::Type::TABLE:
+                case DbTreeItem::Type::TRIGGER:
+                case DbTreeItem::Type::VIEW:
+                case DbTreeItem::Type::VIRTUAL_TABLE:
+                    enableDel = true;
+                    break;
+                case DbTreeItem::Type::COLUMNS:
+                case DbTreeItem::Type::INDEXES:
+                case DbTreeItem::Type::ITEM_PROTOTYPE:
+                case DbTreeItem::Type::TABLES:
+                case DbTreeItem::Type::TRIGGERS:
+                case DbTreeItem::Type::VIEWS:
+                    break;
+            }
+
+            if (enableDel)
+            {
+                enabled  << DEL_SELECTED;
+                break;
             }
         }
     }
