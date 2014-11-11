@@ -27,6 +27,7 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         void connectDbManagerSignals();
         DbTreeItem* findItem(DbTreeItem::Type type, const QString &name);
         DbTreeItem* findItem(DbTreeItem::Type type, Db* db);
+        DbTreeItem* findItemBySignature(const QString& signature);
         QList<DbTreeItem*> findItems(DbTreeItem::Type type);
         void move(QStandardItem* itemToMove, QStandardItem* newParentItem, int newRow = -1);
         void move(QStandardItem* itemToMove, int newRow);
@@ -49,11 +50,11 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         bool getIgnoreDbLoadedSignal() const;
         void setIgnoreDbLoadedSignal(bool value);
         bool hasDbTreeItem(const QMimeData* data);
+        QList<DbTreeItem*> getDragItems(const QMimeData* data);
 
         static DbTreeItem* findItem(QStandardItem *parentItem, DbTreeItem::Type type, const QString &name);
         static DbTreeItem* findItem(QStandardItem* parentItem, DbTreeItem::Type type, Db* db);
         static QList<DbTreeItem*> findItems(QStandardItem* parentItem, DbTreeItem::Type type);
-        static QList<DbTreeItem*> getDragItems(const QMimeData* data);
         static void staticInit();
 
         static const constexpr char* MIMETYPE = "application/x-sqlitestudio-dbtreeitem";

@@ -774,6 +774,25 @@ DbTreeItem *DbTreeModel::findItem(DbTreeItem::Type type, Db* db)
     return findItem(root(), type, db);
 }
 
+DbTreeItem *DbTreeModel::findItemBySignature(const QString &signature)
+{
+    QStringList parts = signature.split("_");
+    QStringList pair;
+    DbTreeItem* currItem = nullptr;
+    DbTreeItem::Type type;
+    QString name;
+    for (const QString& part : parts)
+    {
+        pair = part.split(".");
+        type = static_cast<DbTreeItem::Type>(pair.first().toInt());
+        name = QString::fromUtf8(QByteArray::fromBase64(pair.last().toLatin1()));
+        currItem = findItem((currItem ? currItem : root()), type, name);
+        if (!currItem)
+            return nullptr; // not found the target item
+    }
+    return currItem;
+}
+
 QList<DbTreeItem*> DbTreeModel::findItems(DbTreeItem::Type type)
 {
     return findItems(root(), type);
@@ -875,13 +894,11 @@ QMimeData *DbTreeModel::mimeData(const QModelIndexList &indexes) const
     QStringList textList;
 
     DbTreeItem* item;
-    quint64 itemAddr;
     stream << reinterpret_cast<qint32>(indexes.size());
     for (const QModelIndex& idx : indexes)
     {
         item = dynamic_cast<DbTreeItem*>(itemFromIndex(idx));
-        itemAddr = reinterpret_cast<quint64>(item);
-        stream << itemAddr;
+        stream << item->signature();
 
         textList << item->text();
         if (item->getType() == DbTreeItem::Type::DB)
@@ -955,11 +972,14 @@ QList<DbTreeItem*> DbTreeModel::getDragItems(const QMimeData* data)
     qint32 itemCount;
     stream >> itemCount;
 
-    quint64 itemAddr;
+    DbTreeItem* item;
+    QString signature;
     for (qint32 i = 0; i < itemCount; i++)
     {
-        stream >> itemAddr;
-        items << reinterpret_cast<DbTreeItem*>(itemAddr);
+        stream >> signature;
+        item = findItemBySignature(signature);
+        if (item)
+            items << item;
     }
 
     return items;

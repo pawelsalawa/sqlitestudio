@@ -194,13 +194,13 @@ void DbTreeItem::getPathToRoot(QList<DbTreeItem *> &path)
         parentDbTreeItem()->getPathToRoot(path);
 }
 
-QString DbTreeItem::signature()
+QString DbTreeItem::signature() const
 {
     QString sig;
     if (parentDbTreeItem())
         sig += parentDbTreeItem()->signature();
 
-    sig += "_"+QString::number(type())+text();
+    sig += "_" + QString::number(type()) + "." + QString::fromLatin1(text().toUtf8().toBase64());
     return sig;
 }
 
@@ -314,15 +314,15 @@ void DbTreeItem::init()
 
 QDataStream &operator <<(QDataStream &out, const DbTreeItem *item)
 {
-    out << reinterpret_cast<quint64>(item);
+    out << item->signature();
     return out;
 }
 
 QDataStream &operator >>(QDataStream &in, DbTreeItem *&item)
 {
-    quint64 ptr;
-    in >> ptr;
-    item = reinterpret_cast<DbTreeItem*>(ptr);
+    QString signature;
+    in >> signature;
+    item = DBTREE->getModel()->findItemBySignature(signature);
     return in;
 }
 
