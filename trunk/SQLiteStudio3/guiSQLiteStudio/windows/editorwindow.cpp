@@ -585,6 +585,11 @@ void EditorWindow::historyEntryActivated(const QModelIndex& current)
 
 void EditorWindow::clearHistory()
 {
+    QMessageBox::StandardButton res = QMessageBox::question(this, tr("Clear execution history"), tr("Are you sure you want to erase the entire SQL execution history? "
+                                                                                                    "This cannot be undone."));
+    if (res != QMessageBox::Yes)
+        return;
+
     CFG->clearSqlHistory();
 }
 
