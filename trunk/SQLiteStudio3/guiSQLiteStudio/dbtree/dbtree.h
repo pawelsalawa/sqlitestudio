@@ -17,6 +17,7 @@ class QTimer;
 class TableWindow;
 class ViewWindow;
 class UserInputFilter;
+class DbTreeView;
 
 namespace Ui {
     class DbTree;
@@ -99,6 +100,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         QVariant saveSession();
         void restoreSession(const QVariant& sessionValue);
         DbTreeModel* getModel() const;
+        DbTreeView* getView() const;
         void showWidgetCover();
         void hideWidgetCover();
         void setSelectedItem(DbTreeItem* item);

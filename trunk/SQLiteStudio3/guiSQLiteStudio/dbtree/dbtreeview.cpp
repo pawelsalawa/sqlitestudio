@@ -87,20 +87,6 @@ void DbTreeView::updateItemHidden(DbTreeItem* item)
     setRowHidden(item->index().row(), item->index().parent(), item->isHidden());
 }
 
-void DbTreeView::selectionChanged(const QItemSelection& selected, const QItemSelection& deselected)
-{
-    QAbstractItemView::selectionChanged(selected, deselected);
-    if (selected.isEmpty())
-    {
-        if (!deselected.isEmpty())
-            selectionModel()->select(deselected, QItemSelectionModel::Current|QItemSelectionModel::ClearAndSelect);
-        else if (selectionModel()->currentIndex().isValid())
-            selectionModel()->select(selectionModel()->currentIndex(), QItemSelectionModel::Current|QItemSelectionModel::ClearAndSelect);
-        else if (model()->rowCount() > 0)
-            selectionModel()->select(model()->index(0, 0), QItemSelectionModel::Current|QItemSelectionModel::ClearAndSelect);
-    }
-}
-
 DbTreeItem *DbTreeView::getItemForAction(bool onlySelected) const
 {
     QModelIndex idx = selectionModel()->currentIndex();
@@ -250,7 +236,11 @@ QPoint DbTreeView::getLastDropPosition() const
 
 QModelIndexList DbTreeView::getSelectedIndexes() const
 {
-    return selectedIndexes();
+    QModelIndexList idxList = selectedIndexes();
+    if (currentIndex().isValid() && !idxList.contains(currentIndex()))
+        idxList << currentIndex();
+
+    return idxList;
 }
 
 void DbTreeView::dropEvent(QDropEvent* e)

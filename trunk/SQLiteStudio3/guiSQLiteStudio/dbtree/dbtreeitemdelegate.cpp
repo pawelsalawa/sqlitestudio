@@ -3,6 +3,8 @@
 #include "dbtreemodel.h"
 #include "common/utils_sql.h"
 #include "uiconfig.h"
+#include "dbtree.h"
+#include "dbtreeview.h"
 #include <QPainter>
 #include <QDebug>
 
@@ -23,16 +25,20 @@ void DbTreeItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &op
     QStyleOptionViewItem opt = option;
     initStyleOption(&opt, index);
 
+    const DbTreeModel* model = dynamic_cast<const DbTreeModel*>(index.model());
+    DbTreeItem* item = dynamic_cast<DbTreeItem*>(model->itemFromIndex(index));
+
     opt.font = CFG_UI.Fonts.DbTree.get();
     opt.fontMetrics = QFontMetrics(opt.font);
+
+    QModelIndex currIndex = DBTREE->getView()->selectionModel()->currentIndex();
+    if (item->index() == currIndex)
+        opt.state |= QStyle::State_HasFocus;
 
     QStyledItemDelegate::paint(painter, opt, index);
 
     if (!CFG_UI.General.ShowDbTreeLabels.get())
         return;
-
-    const DbTreeModel* model = dynamic_cast<const DbTreeModel*>(index.model());
-    DbTreeItem* item = dynamic_cast<DbTreeItem*>(model->itemFromIndex(index));
 
     switch (item->getType())
     {
