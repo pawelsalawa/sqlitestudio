@@ -84,6 +84,7 @@ void DbObjectOrganizer::run()
 
 void DbObjectOrganizer::reset()
 {
+    attachName = QString();
     mode = Mode::COPY_OBJECTS;
     srcDb = nullptr;
     dstDb = nullptr;
@@ -199,6 +200,14 @@ bool DbObjectOrganizer::processAll()
     {
         //notifyError(tr("Cannot copy or move objects to closed database. Open it first.")); // TODO this is in another thread - handle it
         return false;
+    }
+
+    // Attaching target db if needed
+    AttachGuard attach;
+    if (!(referencedTables + srcTables).isEmpty())
+    {
+        attach = srcDb->guardedAttach(dstDb, true);
+        attachName = attach->getName();
     }
 
     if (!srcDb->begin())
@@ -361,8 +370,8 @@ bool DbObjectOrganizer::copyTableToDb(const QString& table)
 {
     QString ddl;
     QString targetTable = table;
-    AttachGuard attach = srcDb->guardedAttach(dstDb, true);
-    QString attachName = attach->getName();
+//    AttachGuard attach = srcDb->guardedAttach(dstDb, true);
+//    QString attachName = attach->getName();
     if (renamed.contains(table) || !attachName.isNull())
     {
         SqliteQueryPtr parsedObject = srcResolver->getParsedObject(table, SchemaResolver::TABLE);
@@ -424,7 +433,7 @@ bool DbObjectOrganizer::copyTableToDb(const QString& table)
     }
     else
     {
-        res = copyDataUsingAttach(targetTable, attachName);
+        res = copyDataUsingAttach(targetTable);
     }
     return res;
 }
@@ -479,7 +488,7 @@ bool DbObjectOrganizer::copyDataAsMiddleware(const QString& table)
     return true;
 }
 
-bool DbObjectOrganizer::copyDataUsingAttach(const QString& table, const QString& attachName)
+bool DbObjectOrganizer::copyDataUsingAttach(const QString& table)
 {
     QString wrappedSrcTable = wrapObjIfNeeded(srcTable, srcDb->getDialect());
     QString wrappedDstTable = wrapObjIfNeeded(table, srcDb->getDialect());
