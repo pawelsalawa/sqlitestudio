@@ -1,4 +1,4 @@
-- remembering last directory when browsing for db file, export file, import file, SQL save/load file.
+- LIMIT 0,10 -> format -> LIMIT ,10
 
 * Next versions:
 - commiting DataView should be async
