@@ -41,5 +41,6 @@ linux: {
 macx: {
     bundle.commands = sh $$PWD/create_macosx_bundle.sh $$PWD/../output $$QMAKE_QMAKE
     dmg.commands = sh $$PWD/create_macosx_bundle.sh $$PWD/../output $$QMAKE_QMAKE dmg
-    QMAKE_EXTRA_TARGETS += bundle dmg
+    dist.commands = sh $$PWD/create_macosx_bundle.sh $$PWD/../output $$QMAKE_QMAKE dist
+    QMAKE_EXTRA_TARGETS += bundle dmg dist
 }
