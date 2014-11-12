@@ -123,6 +123,8 @@ elif [ "$3" == "dist" ]; then
   rm -rf platforms
   rm -rf platformthemes
   rm -rf printsupport
+  rm -f lib/libicu*
+  rm -f lib/libsqlite.so.0 ;# this is for SQLite 2
   find . -type l -exec rm -f {} \;
   tar cf sqlitestudio-$VERSION.tar *
   gzip -9 sqlitestudio-$VERSION.tar
