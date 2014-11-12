@@ -415,7 +415,7 @@ bool UpdateManager::executeFinalStep(const QString& tempDir)
         res = executeFinalStep(tempDir, backupDir.absolutePath(), appDir);
 
     if (res)
-        QProcess::startDetached(qApp->applicationFilePath());
+        QProcess::startDetached(qApp->applicationFilePath(), QStringList());
 
     return res;
 #endif
