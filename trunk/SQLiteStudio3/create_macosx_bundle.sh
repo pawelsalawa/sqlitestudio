@@ -1,7 +1,7 @@
 #!/bin/sh
 
 printUsage() {
-  echo "$0 <sqlitestudio build output directory> <qmake path> [dmg]"
+  echo "$0 <sqlitestudio build output directory> <qmake path> [dmg|dist]"
 }
 
 if [ "$#" -lt 2 ] || [ "$#" -gt 3 ]; then
@@ -9,7 +9,7 @@ if [ "$#" -lt 2 ] || [ "$#" -gt 3 ]; then
   exit 1
 fi
 
-if [ "$#" -eq 3 ] && [ "$3" != "dmg" ]; then
+if [ "$#" -eq 3 ] && [ "$3" != "dmg" ] && [ "$3" != "dist" ]; then
   printUsage
   exit 1
 fi
@@ -46,6 +46,43 @@ cp -RP ../../../lib/*.dylib SQLiteStudio.app/Contents/Frameworks
 
 if [ "$3" == "dmg" ]; then
     $qt_deploy_bin SQLiteStudio.app -dmg
+elif [ "$3" == "dist" ]; then
+    $qt_deploy_bin SQLiteStudio.app -dmg
+
+    cd $1/SQLiteStudio
+    VERSION=`SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}'`
+
+    mv SQLiteStudio.dmg sqlitestudio-$VERSION.dmg
+
+    # App
+    echo "Building incremental update package: sqlitestudio-$VERSION.zip"
+    cp -R SQLiteStudio.app app
+    cd app/Contents
+    rm -rf PlugIns
+    rm -rf Frameworks/Qt*.framework
+    find Frameworks -type l -exec rm -f {} \;
+    cd ..
+    zip -r sqlitestudio-$VERSION.zip *
+    mv sqlitestudio-$VERSION.zip ..
+    cd ..
+    rm -rf app
+
+    # Plugins
+    mkdir Contents Contents/PlugIns
+    SQLiteStudio.app/Contents/MacOS/sqlitestudiocli --list-plugins | while read line
+    do
+    PLUGIN=`echo $line | awk '{print $1}'`
+    PLUGIN_VER=`echo $line | awk '{print $2}'`
+    echo "Building plugin package: $PLUGIN-$PLUGIN_VER.tar.gz"
+    if [ -f SQLiteStudio.app/Contents/PlugIns/lib$PLUGIN.dylib ]; then
+        cp SQLiteStudio.app/Contents/PlugIns/lib$PLUGIN.dylib Contents/PlugIns
+        zip -r $PLUGIN\-$PLUGIN_VER.zip Contents
+    fi
+    rm -f Contents/PlugIns/*
+    done
+    rm -rf Contents
+
+    echo "Done."
 else
     $qt_deploy_bin SQLiteStudio.app
 fi
