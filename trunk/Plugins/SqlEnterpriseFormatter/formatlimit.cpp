@@ -9,6 +9,9 @@ FormatLimit::FormatLimit(SqliteLimit *limit) :
 
 void FormatLimit::formatInternal()
 {
+    if (limit->limit)
+        withStatement(limit->limit);
+
     if (limit->offset)
     {
         if (limit->offsetKw)
