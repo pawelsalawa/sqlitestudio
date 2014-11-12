@@ -34,7 +34,8 @@ win32: {
 linux: {
     portable.commands = sh $$PWD/create_linux_portable.sh $$PWD/../output $$QMAKE_QMAKE
     tgz.commands = sh $$PWD/create_linux_portable.sh $$PWD/../output $$QMAKE_QMAKE tgz
-    QMAKE_EXTRA_TARGETS += portable tgz
+    dist.commands = sh $$PWD/create_linux_portable.sh $$PWD/../output $$QMAKE_QMAKE dist
+    QMAKE_EXTRA_TARGETS += portable tgz dist
 }
 
 macx: {

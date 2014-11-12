@@ -1,7 +1,7 @@
 #!/bin/sh
 
 printUsage() {
-  echo "$0 <sqlitestudio build output directory> <qmake path> [tgz]"
+  echo "$0 <sqlitestudio build output directory> <qmake path> [tgz|dist]"
 }
 
 if [ "$#" -lt 2 ] || [ "$#" -gt 3 ]; then
@@ -9,7 +9,7 @@ if [ "$#" -lt 2 ] || [ "$#" -gt 3 ]; then
   exit 1
 fi
 
-if [ "$#" -eq 3 ] && [ "$3" != "tgz" ]; then
+if [ "$#" -eq 3 ] && [ "$3" != "tgz" ] && [ "$3" != "dist" ]; then
   printUsage
   exit 1
 fi
@@ -100,8 +100,51 @@ cd $portable/SQLiteStudio
 chrpath -r \$ORIGIN/lib sqlitestudio >/dev/null
 chrpath -r \$ORIGIN/lib sqlitestudiocli >/dev/null
 
+cd $portable
+VERSION=`SQLiteStudio/sqlitestudiocli -v | awk '{print $2}'`
+
 if [ "$3" == "tgz" ]; then
-  cd $portable
-  tar cf SQLiteStudio.tar SQLiteStudio
-  xz -z SQLiteStudio.tar
+  tar cf sqlitestudio-$VERSION.tar SQLiteStudio
+  xz -z sqlitestudio-$VERSION.tar
+elif [ "$3" == "dist" ]; then
+  # Complete
+  echo "Building complete package: sqlitestudio-$VERSION.tar.xz"
+  tar cf sqlitestudio-$VERSION.tar SQLiteStudio
+  xz -z sqlitestudio-$VERSION.tar
+  
+  # App
+  echo "Building incremental update package: sqlitestudio-$VERSION.tar.gz"
+  cp -R SQLiteStudio app
+  cd app
+  rm -rf plugins
+  rm -f lib/libQ*
+  rm -rf iconengines
+  rm -rf imageformats
+  rm -rf platforms
+  rm -rf platformthemes
+  rm -rf printsupport
+  find . -type l -exec rm -f {} \;
+  tar cf sqlitestudio-$VERSION.tar *
+  gzip -9 sqlitestudio-$VERSION.tar
+  mv sqlitestudio-$VERSION.tar.gz ..
+  cd ..
+  rm -rf app
+
+  # Plugins
+  mkdir plugins
+  SQLiteStudio/sqlitestudiocli --list-plugins | while read line
+  do
+    PLUGIN=`echo $line | awk '{print $1}'`
+    PLUGIN_VER=`echo $line | awk '{print $2}'`
+    echo "Building plugin package: $PLUGIN-$PLUGIN_VER.tar.gz"
+    if [ -f SQLiteStudio/plugins/lib$PLUGIN.so ]; then
+      cp SQLiteStudio/plugins/lib$PLUGIN.so plugins/
+      tar cf $PLUGIN\-$PLUGIN_VER.tar plugins
+      gzip -9 $PLUGIN\-$PLUGIN_VER.tar
+    fi
+    rm -f plugins/*
+  done
+  rm -rf plugins
+  
+  echo "Done."
 fi
