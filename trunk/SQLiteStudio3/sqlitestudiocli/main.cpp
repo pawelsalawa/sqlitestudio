@@ -8,10 +8,13 @@
 #include "climsghandler.h"
 #include "completionhelper.h"
 #include "services/updatemanager.h"
+#include "services/pluginmanager.h"
 #include <QCoreApplication>
 #include <QtGlobal>
 #include <QCommandLineParser>
 #include <QCommandLineOption>
+
+bool listPlugins = false;
 
 QString cliHandleCmdLineArgs()
 {
@@ -20,16 +23,22 @@ QString cliHandleCmdLineArgs()
     parser.addHelpOption();
     parser.addVersionOption();
 
-    QCommandLineOption debugOption({"d", "debug"}, QObject::tr("enables debug messages on standard error output."));
-    QCommandLineOption lemonDebugOption("debug-lemon", QObject::tr("enables Lemon parser debug messages for SQL code assistant."));
+    QCommandLineOption debugOption({"d", "debug"}, QObject::tr("Enables debug messages on standard error output."));
+    QCommandLineOption lemonDebugOption("debug-lemon", QObject::tr("Enables Lemon parser debug messages for SQL code assistant."));
+    QCommandLineOption listPluginsOption("list-plugins", QObject::tr("Lists plugins installed in the SQLiteStudio end exists."));
     parser.addOption(debugOption);
+    parser.addOption(lemonDebugOption);
+    parser.addOption(listPluginsOption);
 
-    parser.addPositionalArgument(QObject::tr("file"), QObject::tr("database file to open"));
+    parser.addPositionalArgument(QObject::tr("file"), QObject::tr("Database file to open"));
 
     parser.process(qApp->arguments());
 
     if (parser.isSet(debugOption))
         setCliDebug(true);
+
+    if (parser.isSet(listPluginsOption))
+        listPlugins = true;
 
     CompletionHelper::enableLemonDebug = parser.isSet(lemonDebugOption);
 
@@ -60,6 +69,14 @@ int main(int argc, char *argv[])
 
     SQLITESTUDIO->init(a.arguments(), false);
     SQLITESTUDIO->initPlugins();
+
+    if (listPlugins)
+    {
+        for (const PluginManager::PluginDetails& details : PLUGINS->getAllPluginDetails())
+            qOut << details.name << " " << details.versionString << "\n";
+
+        return 0;
+    }
 
     CliCommandExecutor executor;
 
