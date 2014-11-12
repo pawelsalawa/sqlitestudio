@@ -248,6 +248,10 @@ void TableStructureModel::moveColumnTo(int colIdx, int newIdx)
     if (newIdx == colIdx)
         return;
 
+    int totalCols = createTable->columns.size();
+    if (colIdx + 1 == totalCols && newIdx == totalCols) // Moving last column out of range? Nothing to do.
+        return;
+
     if (newIdx == colIdx+1)
     {
         // From Qt docs: "you must ensure that the destinationChild is not within the range of sourceFirst and sourceLast + 1".
@@ -259,7 +263,7 @@ void TableStructureModel::moveColumnTo(int colIdx, int newIdx)
     }
 
     beginMoveRows(QModelIndex(), colIdx, colIdx, QModelIndex(), newIdx);
-    if (newIdx >= createTable->columns.size())
+    if (newIdx >= totalCols)
     {
         SqliteCreateTable::Column* col = createTable->columns.takeAt(colIdx);
         createTable->columns.append(col);
