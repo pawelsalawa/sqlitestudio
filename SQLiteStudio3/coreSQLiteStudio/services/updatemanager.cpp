@@ -678,7 +678,7 @@ bool UpdateManager::executePostFinalStepWin(const QString &tempDir)
     dir.cdUp();
     deleteDir(dir.absolutePath());
 
-    QProcess::startDetached(qApp->applicationFilePath());
+    QProcess::startDetached(qApp->applicationFilePath(), QStringList());
     return true;
 }
 
