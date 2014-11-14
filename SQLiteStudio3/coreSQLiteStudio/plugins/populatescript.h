@@ -27,7 +27,7 @@ class PopulateScript : public BuiltInPlugin, public PopulatePlugin
 
         SQLITESTUDIO_PLUGIN_TITLE("Constant")
         SQLITESTUDIO_PLUGIN_DESC("Support for populating tables with a constant value.")
-        SQLITESTUDIO_PLUGIN_VERSION(10000)
+        SQLITESTUDIO_PLUGIN_VERSION(10001)
         SQLITESTUDIO_PLUGIN_AUTHOR("sqlitestudio.pl")
 
     public:
@@ -41,7 +41,7 @@ class PopulateScriptEngine : public PopulateEngine
 {
     public:
         bool beforePopulating(Db* db, const QString& table);
-        QVariant nextValue();
+        QVariant nextValue(bool& nextValueError);
         void afterPopulating();
         CfgMain* getConfig();
         QString getPopulateConfigFormName() const;

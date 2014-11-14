@@ -20,7 +20,7 @@ class API_EXPORT PopulateEngine
         virtual ~PopulateEngine() {}
 
         virtual bool beforePopulating(Db* db, const QString& table) = 0;
-        virtual QVariant nextValue() = 0;
+        virtual QVariant nextValue(bool& nextValueError) = 0;
         virtual void afterPopulating() = 0;
 
         /**

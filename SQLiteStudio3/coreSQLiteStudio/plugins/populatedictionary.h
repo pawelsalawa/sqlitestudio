@@ -22,7 +22,7 @@ class PopulateDictionary : public BuiltInPlugin, public PopulatePlugin
 
         SQLITESTUDIO_PLUGIN_TITLE("Dictionary")
         SQLITESTUDIO_PLUGIN_DESC("Support for populating tables with values from a dictionary file.")
-        SQLITESTUDIO_PLUGIN_VERSION(10000)
+        SQLITESTUDIO_PLUGIN_VERSION(10001)
         SQLITESTUDIO_PLUGIN_AUTHOR("sqlitestudio.pl")
 
     public:
@@ -36,7 +36,7 @@ class PopulateDictionaryEngine : public PopulateEngine
 {
     public:
         bool beforePopulating(Db* db, const QString& table);
-        QVariant nextValue();
+        QVariant nextValue(bool& nextValueError);
         void afterPopulating();
         CfgMain* getConfig();
         QString getPopulateConfigFormName() const;

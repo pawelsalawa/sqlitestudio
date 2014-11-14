@@ -22,8 +22,9 @@ bool PopulateConstantEngine::beforePopulating(Db* db, const QString& table)
     return true;
 }
 
-QVariant PopulateConstantEngine::nextValue()
+QVariant PopulateConstantEngine::nextValue(bool& nextValueError)
 {
+    UNUSED(nextValueError);
     return cfg.PopulateConstant.Value.get();
 }
 

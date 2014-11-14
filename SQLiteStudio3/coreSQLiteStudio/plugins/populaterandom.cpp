@@ -26,8 +26,9 @@ bool PopulateRandomEngine::beforePopulating(Db* db, const QString& table)
     return (range > 0);
 }
 
-QVariant PopulateRandomEngine::nextValue()
+QVariant PopulateRandomEngine::nextValue(bool& nextValueError)
 {
+    UNUSED(nextValueError);
     QString randValue = QString::number((qrand() % range) + cfg.PopulateRandom.MinValue.get());
     return (cfg.PopulateRandom.Prefix.get() + randValue + cfg.PopulateRandom.Suffix.get());
 }
