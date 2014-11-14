@@ -50,8 +50,9 @@ bool PopulateRandomTextEngine::beforePopulating(Db* db, const QString& table)
     return !chars.isEmpty();
 }
 
-QVariant PopulateRandomTextEngine::nextValue()
+QVariant PopulateRandomTextEngine::nextValue(bool& nextValueError)
 {
+    UNUSED(nextValueError);
     int lgt = (qrand() % range) + cfg.PopulateRandomText.MinLength.get();
     return randStr(lgt, chars);
 }

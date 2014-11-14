@@ -67,7 +67,7 @@ bool PopulateScriptEngine::beforePopulating(Db* db, const QString& table)
     return true;
 }
 
-QVariant PopulateScriptEngine::nextValue()
+QVariant PopulateScriptEngine::nextValue(bool& nextValueError)
 {
     QVariant result;
     if (dbAwarePlugin)
@@ -79,6 +79,7 @@ QVariant PopulateScriptEngine::nextValue()
     {
         notifyError(QObject::tr("Error while executing populating code: %1").arg(scriptingPlugin->getErrorMessage(context)));
         releaseContext();
+        nextValueError = true;
         return QVariant();
     }
 

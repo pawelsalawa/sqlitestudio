@@ -40,6 +40,7 @@ void PopulateWorker::run()
     SqlQueryPtr query = db->prepare(finalSql);
 
     QList<QVariant> args;
+    bool nextValueError = false;
     for (qint64 i = 0; i < rows; i++)
     {
         if (i == 0 && !beforePopulating())
@@ -47,7 +48,12 @@ void PopulateWorker::run()
 
         args.clear();
         for (PopulateEngine* engine : engines)
-            args << engine->nextValue();
+        {
+            args << engine->nextValue(nextValueError);
+            db->rollback();
+            emit finished(false);
+            return;
+        }
 
         query->setArgs(args);
         if (!query->execute())

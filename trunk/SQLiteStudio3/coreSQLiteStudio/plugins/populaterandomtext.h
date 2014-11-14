@@ -23,7 +23,7 @@ class PopulateRandomText : public BuiltInPlugin, public PopulatePlugin
 
        SQLITESTUDIO_PLUGIN_TITLE("Random text")
        SQLITESTUDIO_PLUGIN_DESC("Support for populating tables with random characters.")
-       SQLITESTUDIO_PLUGIN_VERSION(10000)
+       SQLITESTUDIO_PLUGIN_VERSION(10001)
        SQLITESTUDIO_PLUGIN_AUTHOR("sqlitestudio.pl")
 
     public:
@@ -37,7 +37,7 @@ class PopulateRandomTextEngine : public PopulateEngine
 {
     public:
         bool beforePopulating(Db* db, const QString& table);
-        QVariant nextValue();
+        QVariant nextValue(bool& nextValueError);
         void afterPopulating();
         CfgMain* getConfig();
         QString getPopulateConfigFormName() const;

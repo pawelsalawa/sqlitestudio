@@ -50,8 +50,9 @@ bool PopulateDictionaryEngine::beforePopulating(Db* db, const QString& table)
     return true;
 }
 
-QVariant PopulateDictionaryEngine::nextValue()
+QVariant PopulateDictionaryEngine::nextValue(bool& nextValueError)
 {
+    UNUSED(nextValueError);
     if (cfg.PopulateDictionary.Random.get())
     {
         int r = qrand() % dictionarySize;

@@ -27,8 +27,9 @@ bool PopulateSequenceEngine::beforePopulating(Db* db, const QString& table)
     return true;
 }
 
-QVariant PopulateSequenceEngine::nextValue()
+QVariant PopulateSequenceEngine::nextValue(bool& nextValueError)
 {
+    UNUSED(nextValueError);
     return seq += step;
 }
 
