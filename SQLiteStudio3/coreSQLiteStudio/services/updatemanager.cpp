@@ -123,6 +123,13 @@ bool UpdateManager::executePreFinalStepWin(const QString &tempDir, const QString
 
 void UpdateManager::handleAvailableUpdatesReply(QNetworkReply* reply)
 {
+    if (reply->error() != QNetworkReply::NoError)
+    {
+        updatingFailed(tr("An error occurred while checking for updates: %1.").arg(reply->errorString()));
+        reply->deleteLater();
+        return;
+    }
+
     QJsonParseError err;
     QByteArray data = reply->readAll();
     reply->deleteLater();
@@ -160,6 +167,13 @@ void UpdateManager::getUpdatesMetadata(QNetworkReply*& replyStoragePointer)
 
 void UpdateManager::handleUpdatesMetadata(QNetworkReply* reply)
 {
+    if (reply->error() != QNetworkReply::NoError)
+    {
+        updatingFailed(tr("An error occurred while reading updates metadata: %1.").arg(reply->errorString()));
+        reply->deleteLater();
+        return;
+    }
+
     QJsonParseError err;
     QByteArray data = reply->readAll();
     reply->deleteLater();
