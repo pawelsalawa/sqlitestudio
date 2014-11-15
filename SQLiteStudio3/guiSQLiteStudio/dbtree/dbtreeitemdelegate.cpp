@@ -16,7 +16,10 @@ DbTreeItemDelegate::DbTreeItemDelegate(QObject *parent) :
 QSize DbTreeItemDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     QSize size = QStyledItemDelegate::sizeHint(option, index);
-    size.setHeight(18);
+
+    QFont f = CFG_UI.Fonts.DbTree.get();
+    QFontMetrics fm(f);
+    size.setHeight(qMax(18, fm.height()));
     return size;
 }
 

@@ -193,6 +193,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void dbConnected(Db* db);
         void dbDisconnected(Db* db);
         void updateDbIcon(Db* db);
+        void refreshFont();
 };
 
 int qHash(DbTree::Action action);

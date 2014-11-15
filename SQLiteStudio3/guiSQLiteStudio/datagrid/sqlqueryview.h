@@ -99,6 +99,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void openSortDialog();
         void resetSorting();
         void sortingUpdated(const QueryExecutor::SortList& sortOrder);
+        void updateFont();
 
     public slots:
         void executionStarted();

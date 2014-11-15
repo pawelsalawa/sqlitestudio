@@ -9,6 +9,7 @@
 #include "common/extaction.h"
 #include "multieditor/multieditor.h"
 #include "multieditor/multieditordialog.h"
+#include "uiconfig.h"
 #include <QHeaderView>
 #include <QPushButton>
 #include <QProgressBar>
@@ -114,10 +115,11 @@ void SqlQueryView::init()
     contextMenu = new QMenu(this);
 
     connect(this, &QWidget::customContextMenuRequested, this, &SqlQueryView::customContextMenuRequested);
+    connect(CFG_UI.Fonts.DataView, SIGNAL(changed(QVariant)), this, SLOT(updateFont()));
 
     horizontalHeader()->setSortIndicatorShown(false);
     horizontalHeader()->setSectionsClickable(true);
-    verticalHeader()->setDefaultSectionSize(fontMetrics().height() + 4);
+    updateFont();
 
     setupWidgetCover();
     initActions();
@@ -284,6 +286,13 @@ void SqlQueryView::resetSorting()
 void SqlQueryView::sortingUpdated(const QueryExecutor::SortList& sortOrder)
 {
     actionMap[RESET_SORTING]->setEnabled(sortOrder.size() > 0);
+}
+
+void SqlQueryView::updateFont()
+{
+    QFont f = CFG_UI.Fonts.DataView.get();
+    QFontMetrics fm(f);
+    verticalHeader()->setDefaultSectionSize(fm.height() + 4);
 }
 
 void SqlQueryView::executionStarted()
