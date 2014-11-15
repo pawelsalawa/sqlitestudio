@@ -31,6 +31,7 @@
 #include "plugins/importplugin.h"
 #include "plugins/populateplugin.h"
 #include "services/bugreporter.h"
+#include "services/extralicensemanager.h"
 #include <QProcessEnvironment>
 #include <QThreadPool>
 #include <QCoreApplication>
@@ -48,6 +49,17 @@ SQLiteStudio::SQLiteStudio()
 SQLiteStudio::~SQLiteStudio()
 {
 }
+
+ExtraLicenseManager* SQLiteStudio::getExtraLicenseManager() const
+{
+    return extraLicenseManager;
+}
+
+void SQLiteStudio::setExtraLicenseManager(ExtraLicenseManager* value)
+{
+    extraLicenseManager = value;
+}
+
 
 bool SQLiteStudio::getImmediateQuit() const
 {
@@ -288,6 +300,7 @@ void SQLiteStudio::init(const QStringList& cmdListArguments, bool guiAvailable)
     populateManager = new PopulateManager();
     bugReporter = new BugReporter();
     updateManager = new UpdateManager();
+    extraLicenseManager = new ExtraLicenseManager();
 }
 
 void SQLiteStudio::initPlugins()
@@ -305,14 +318,15 @@ void SQLiteStudio::cleanUp()
     disconnect(pluginManager, SIGNAL(unloaded(QString,PluginType*)), this, SLOT(pluginUnloaded(QString,PluginType*)));
     if (!immediateQuit)
     {
+        pluginManager->deinit();
+        safe_delete(pluginManager); // PluginManager before DbManager, so Db objects are deleted while DbManager still exists
         safe_delete(updateManager);
         safe_delete(bugReporter);
         safe_delete(populateManager);
         safe_delete(importManager);
         safe_delete(exportManager);
         safe_delete(functionManager);
-        pluginManager->deinit();
-        safe_delete(pluginManager); // PluginManager before DbManager, so Db objects are deleted while DbManager still exists
+        safe_delete(extraLicenseManager);
         safe_delete(dbManager);
         safe_delete(config);
         safe_delete(codeFormatter);
