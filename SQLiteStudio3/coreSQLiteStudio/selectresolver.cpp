@@ -30,36 +30,17 @@ SelectResolver::~SelectResolver()
 
 QList<SelectResolver::Column> SelectResolver::resolve(SqliteSelect::Core *selectCore)
 {
-    if (selectCore->from)
-        currentCoreSourceColumns = resolveJoinSource(selectCore->from);
-
-    foreach (SqliteSelect::Core::ResultColumn* resCol, selectCore->resultColumns)
-        resolve(resCol);
-
-    if (selectCore->distinctKw)
-        markDistinctColumns();
-
-    if (selectCore->groupBy.size() > 0)
-        markGroupedColumns();
-
-    fixColumnNames();
-
-    SqliteSelect* select = dynamic_cast<SqliteSelect*>(selectCore->parentStatement());
-    if (select && select->coreSelects.size() > 1)
-        markCompoundColumns();
-
-    if (select && select->with)
-        markCteColumns();
-
-    return currentCoreResults;
+    errors.clear();
+    return resolveCore(selectCore);
 }
 
 QList<QList<SelectResolver::Column> > SelectResolver::resolve(SqliteSelect *select)
 {
+    errors.clear();
     QList<QList<SelectResolver::Column> > results;
     foreach (SqliteSelect::Core* core, select->coreSelects)
     {
-        results << resolve(core);
+        results << resolveCore(core);
         currentCoreResults.clear();
     }
 
@@ -68,22 +49,16 @@ QList<QList<SelectResolver::Column> > SelectResolver::resolve(SqliteSelect *sele
 
 QList<SelectResolver::Column> SelectResolver::resolveAvailableColumns(SqliteSelect::Core *selectCore)
 {
-    QList<Column> columns;
-    if (selectCore->from)
-        columns = resolveJoinSource(selectCore->from);
-
-    SqliteSelect* select = dynamic_cast<SqliteSelect*>(selectCore->parentStatement());
-    if (select && select->with)
-        markCteColumns();
-
-    return columns;
+    errors.clear();
+    return resolveAvailableCoreColumns(selectCore);
 }
 
 QList<QList<SelectResolver::Column> > SelectResolver::resolveAvailableColumns(SqliteSelect *select)
 {
+    errors.clear();
     QList<QList<SelectResolver::Column> > results;
     foreach (SqliteSelect::Core* core, select->coreSelects)
-        results << resolveAvailableColumns(core);
+        results << resolveAvailableCoreColumns(core);
 
     return results;
 }
@@ -116,14 +91,70 @@ QList<QSet<SelectResolver::Table> > SelectResolver::resolveTables(SqliteSelect *
 
 QList<SelectResolver::Column> SelectResolver::translateToColumns(SqliteSelect* select, const TokenList& columnTokens)
 {
+    errors.clear();
     QList<SelectResolver::Column> results;
     foreach (TokenPtr token, columnTokens)
-        results << translateToColumns(select, token);
+        results << translateTokenToColumn(select, token);
 
     return results;
 }
 
 SelectResolver::Column SelectResolver::translateToColumns(SqliteSelect* select, TokenPtr token)
+{
+    errors.clear();
+    return translateTokenToColumn(select, token);
+}
+
+bool SelectResolver::hasErrors() const
+{
+    return !errors.isEmpty();
+}
+
+const QStringList& SelectResolver::getErrors() const
+{
+    return errors;
+}
+
+QList<SelectResolver::Column> SelectResolver::resolveCore(SqliteSelect::Core* selectCore)
+{
+    if (selectCore->from)
+        currentCoreSourceColumns = resolveJoinSource(selectCore->from);
+
+    foreach (SqliteSelect::Core::ResultColumn* resCol, selectCore->resultColumns)
+        resolve(resCol);
+
+    if (selectCore->distinctKw)
+        markDistinctColumns();
+
+    if (selectCore->groupBy.size() > 0)
+        markGroupedColumns();
+
+    fixColumnNames();
+
+    SqliteSelect* select = dynamic_cast<SqliteSelect*>(selectCore->parentStatement());
+    if (select && select->coreSelects.size() > 1)
+        markCompoundColumns();
+
+    if (select && select->with)
+        markCteColumns();
+
+    return currentCoreResults;
+}
+
+QList<SelectResolver::Column> SelectResolver::resolveAvailableCoreColumns(SqliteSelect::Core* selectCore)
+{
+    QList<Column> columns;
+    if (selectCore->from)
+        columns = resolveJoinSource(selectCore->from);
+
+    SqliteSelect* select = dynamic_cast<SqliteSelect*>(selectCore->parentStatement());
+    if (select && select->with)
+        markCteColumns();
+
+    return columns;
+}
+
+SelectResolver::Column SelectResolver::translateTokenToColumn(SqliteSelect* select, TokenPtr token)
 {
     // Default result
     Column notTranslatedColumn;
@@ -224,6 +255,7 @@ void SelectResolver::resolve(SqliteSelect::Core::ResultColumn *resCol)
 
 void SelectResolver::resolveStar(SqliteSelect::Core::ResultColumn *resCol)
 {
+    bool foundAtLeastOne = false;
     foreach (SelectResolver::Column column, currentCoreSourceColumns)
     {
         if (!resCol->table.isNull())
@@ -268,7 +300,11 @@ void SelectResolver::resolveStar(SqliteSelect::Core::ResultColumn *resCol)
 
         column.originalColumn = resCol;
         currentCoreResults << column;
+        foundAtLeastOne = true;
     }
+
+    if (!foundAtLeastOne)
+        errors << QObject::tr("Could not resolve data source for column: %1").arg(resCol->detokenize());
 }
 
 void SelectResolver::resolveExpr(SqliteSelect::Core::ResultColumn *resCol)

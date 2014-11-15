@@ -19,6 +19,12 @@ bool QueryExecutorColumns::exec()
     resolver.resolveMultiCore = true;
     QList<SelectResolver::Column> columns = resolver.resolve(select.data()).first();
 
+    if (resolver.hasErrors())
+    {
+        qWarning() << "SelectResolver could not resolve the SELECT properly:" << resolver.getErrors().join("\n");
+        return false;
+    }
+
     if (columns.size() == 0)
     {
         qWarning() << "SelectResolver could not resolve any column. Probably wrong table name entered by user, or something like that.";

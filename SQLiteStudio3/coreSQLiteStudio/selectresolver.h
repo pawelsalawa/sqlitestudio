@@ -130,7 +130,7 @@ class API_EXPORT SelectResolver
         QList<QSet<Table> > resolveTables(SqliteSelect* select);
 
         /**
-         * @brief translateToColumns Translates tokens representing column name in the SELECT into full column objects.
+         * @brief Translates tokens representing column name in the SELECT into full column objects.
          * @param select Select statement containing all queried tokens.
          * @param columnTokens Column tokens to translate.
          * @return Full column objects with table and database fields filled in, unless translation failed for some column.
@@ -151,7 +151,7 @@ class API_EXPORT SelectResolver
         QList<Column> translateToColumns(SqliteSelect* select, const TokenList& columnTokens);
 
         /**
-         * @brief translateToColumns Translates token representing column name in the SELECT into full column objects.
+         * @brief Translates token representing column name in the SELECT into full column objects.
          * @param select Select statement containing queried token.
          * @param token Column token to translate.
          * @return Full column object with table and database fields filled in.
@@ -161,6 +161,18 @@ class API_EXPORT SelectResolver
          * Internally this method is used by #translateToColumns(SqliteSelect*,const TokenList&) in a loop.
          */
         Column translateToColumns(SqliteSelect* select, TokenPtr token);
+
+        /**
+         * @brief Tells whether there were any errors during resolving.
+         * @return true if there were any errors, or false otherwise.
+         */
+        bool hasErrors() const;
+
+        /**
+         * @brief Provides list of errors encountered during resolving.
+         * @return List of localized error messages.
+         */
+        const QStringList& getErrors() const;
 
         /**
          * @brief resolveMultiCore
@@ -178,6 +190,9 @@ class API_EXPORT SelectResolver
         bool ignoreInvalidNames = false;
 
     private:
+        QList<Column> resolveCore(SqliteSelect::Core* selectCore);
+        QList<Column> resolveAvailableCoreColumns(SqliteSelect::Core* selectCore);
+        Column translateTokenToColumn(SqliteSelect* select, TokenPtr token);
         void resolve(SqliteSelect::Core::ResultColumn* resCol);
         void resolveStar(SqliteSelect::Core::ResultColumn* resCol);
         void resolveExpr(SqliteSelect::Core::ResultColumn* resCol);
@@ -266,6 +281,13 @@ class API_EXPORT SelectResolver
          * Used to get list of column names in a table.
          */
         SchemaResolver* schemaResolver;
+
+        /**
+         * @brief List of errors encountered during resolving.
+         *
+         * This may contain errors like missing table alias that was used in result column list, etc.
+         */
+        QStringList errors;
 };
 
 API_EXPORT int operator==(const SelectResolver::Table& t1, const SelectResolver::Table& t2);
