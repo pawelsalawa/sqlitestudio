@@ -27,6 +27,7 @@ class SelectResolverTest : public QObject
         void testTableHash();
         void testColumnHash();
         void testWithCommonTableExpression();
+        void testStarWithJoinAndError();
         void test1();
 };
 
@@ -194,6 +195,18 @@ void SelectResolverTest::testWithCommonTableExpression()
     QVERIFY(coreColumns[0].flags & SelectResolver::Flag::FROM_CTE_SELECT);
 }
 
+void SelectResolverTest::testStarWithJoinAndError()
+{
+    QString sql = "SELECT t1.*, t2.* FROM test t1 JOIN test2 USING (col1)";
+    SelectResolver resolver(db, sql);
+    Parser parser(db->getDialect());
+    QVERIFY(parser.parse(sql));
+
+    QList<QList<SelectResolver::Column> > columns = resolver.resolve(parser.getQueries().first().dynamicCast<SqliteSelect>().data());
+    QVERIFY(columns.first().size() == 3);
+    QVERIFY(resolver.hasErrors());
+}
+
 void SelectResolverTest::test1()
 {
     QString sql = "SELECT * FROM (SELECT count(col1), col2 FROM test)";
@@ -219,7 +232,8 @@ void SelectResolverTest::initTestCase()
     db->open();
     db->exec("CREATE TABLE test (col1, col2, col3);");
     db->exec("CREATE TABLE org (name TEXT PRIMARY KEY, boss TEXT REFERENCES org, height INT)");
-    SqlQueryPtr results = db->exec("SELECT name FROM sqlite_master");
+    db->exec("CREATE TABLE test2 (col1);");
+    //SqlQueryPtr results = db->exec("SELECT name FROM sqlite_master");
 }
 
 void SelectResolverTest::cleanupTestCase()
