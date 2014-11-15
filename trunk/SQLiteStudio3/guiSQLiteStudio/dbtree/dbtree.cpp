@@ -23,6 +23,7 @@
 #include "dialogs/populatedialog.h"
 #include "services/importmanager.h"
 #include "windows/editorwindow.h"
+#include "uiconfig.h"
 #include <QApplication>
 #include <QClipboard>
 #include <QAction>
@@ -87,6 +88,8 @@ void DbTree::init()
     connect(DBLIST, SIGNAL(dbConnected(Db*)), this, SLOT(dbConnected(Db*)));
     connect(DBLIST, SIGNAL(dbDisconnected(Db*)), this, SLOT(dbDisconnected(Db*)));
     connect(IMPORT_MANAGER, SIGNAL(schemaModified(Db*)), this, SLOT(refreshSchema(Db*)));
+
+    connect(CFG_UI.Fonts.DbTree, SIGNAL(changed(QVariant)), this, SLOT(refreshFont()));
 
     updateActionsForCurrent();
 }
@@ -1503,6 +1506,11 @@ void DbTree::updateDbIcon(Db* db)
     DbTreeItem* item = treeModel->findItem(DbTreeItem::Type::DB, db);
     if (item)
         item->updateDbIcon();
+}
+
+void DbTree::refreshFont()
+{
+    ui->treeView->doItemsLayout();
 }
 
 void DbTree::setupDefShortcuts()

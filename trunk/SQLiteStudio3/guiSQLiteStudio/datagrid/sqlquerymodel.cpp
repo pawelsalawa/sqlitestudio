@@ -1428,6 +1428,9 @@ QVariant SqlQueryModel::headerData(int section, Qt::Orientation orientation, int
         return QVariant();
     }
 
+    if (role == Qt::FontRole)
+        return CFG_UI.Fonts.DataView.get();
+
     return QAbstractItemModel::headerData(section, orientation, role);
 }
 
