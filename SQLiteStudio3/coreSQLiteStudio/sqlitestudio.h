@@ -26,6 +26,7 @@ class PopulateManager;
 class PluginLoadingHandler;
 class BugReporter;
 class UpdateManager;
+class ExtraLicenseManager;
 
 /** @file */
 
@@ -143,7 +144,10 @@ class API_EXPORT SQLiteStudio : public QObject
         bool getImmediateQuit() const;
         void setImmediateQuit(bool value);
 
-private:
+        ExtraLicenseManager* getExtraLicenseManager() const;
+        void setExtraLicenseManager(ExtraLicenseManager* value);
+
+    private:
         /**
          * @brief Creates singleton instance.
          *
@@ -192,6 +196,7 @@ private:
         PopulateManager* populateManager = nullptr;
         BugReporter* bugReporter = nullptr;
         UpdateManager* updateManager = nullptr;
+        ExtraLicenseManager* extraLicenseManager = nullptr;
 
     private slots:
         void pluginLoaded(Plugin* plugin,PluginType* pluginType);

@@ -41,6 +41,13 @@ win32: {
     contains(QT, gui) {
         LIBS += -lguiSQLiteStudio
     }
+
+    SO_NAME = ddl
+    SO_PREFIX = lib
+    PLATFORM = win32
+    export(SO_NAME)
+    export(SO_PREFIX)
+    export(PLATFORM)
 }
 
 unix: {
@@ -56,6 +63,18 @@ unix: {
 
     target.path = /usr/lib/sqlitestudio
     INSTALLS += target
+}
+
+linux: {
+    SO_NAME = so
+    SO_PREFIX = lib
+    PLATFORM = linux32
+    equals(QMAKE_HOST.arch, "x86_64") {
+        PLATFORM = linux64
+    }
+    export(SO_NAME)
+    export(SO_PREFIX)
+    export(PLATFORM)
 }
 
 macx: {
@@ -94,6 +113,13 @@ macx: {
         LIBS += $$linker_flag
         export(LIBS)
     }
+
+    SO_NAME = dylib
+    SO_PREFIX = lib
+    PLATFORM = macosx
+    export(SO_NAME)
+    export(SO_PREFIX)
+    export(PLATFROM)
 }
 
 win32|macx: {

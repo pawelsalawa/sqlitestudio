@@ -36,7 +36,8 @@ struct DbPluginOption
         INT = 1, /**< QSpinBox will be added */
         BOOL = 2, /**< QCheckBox will be added */
         DOUBLE = 3, /**< QDoubleSpinBox will be added */
-        FILE = 4 /**< QLineEdit will be added. */
+        FILE = 4, /**< QLineEdit will be added */
+        PASSWORD /**< QLineEdit with value masking will be added */
     };
 
     /**
@@ -49,6 +50,16 @@ struct DbPluginOption
      * @brief Label text to be used in DbDialog to inform user what is this option.
      */
     QString label;
+
+    /**
+     * @brief Optional tooltip to show for added widget.
+     */
+    QString toolTip;
+
+    /**
+     * @brief Optional placeholder text for QLineEdit widget.
+     */
+    QString placeholderText;
 
     /**
      * @brief Expected data type for the option.

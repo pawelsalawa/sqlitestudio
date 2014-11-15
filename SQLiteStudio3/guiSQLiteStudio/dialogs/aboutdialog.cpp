@@ -3,6 +3,7 @@
 #include "common/utils.h"
 #include "sqlitestudio.h"
 #include "iconmanager.h"
+#include "services/extralicensemanager.h"
 #include <QDebug>
 #include <QFile>
 
@@ -49,6 +50,15 @@ void AboutDialog::init(InitialMode initialMode)
     readLicense(row++, "Fugue icons", ":/docs/licenses/fugue_icons.txt");
     readLicense(row++, "Qt, QHexEdit (LGPL v2.1)", ":/docs/licenses/lgpl.txt");
     readLicense(row++, "diff_match (Apache License v2.0)", ":/docs/licenses/diff_match.txt");
+
+    QHash<QString,QString> licenses = SQLITESTUDIO->getExtraLicenseManager()->getLicenses();
+    QHashIterator<QString,QString> it(licenses);
+    while (it.hasNext())
+    {
+        it.next();
+        readLicense(row++, it.key(), it.value());
+    }
+
     buildIndex();
 
     ui->licenseEdit->setHtml(licenseContents);

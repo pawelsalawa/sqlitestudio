@@ -159,6 +159,8 @@ void DbDialog::updateOptions()
     optionKeyToType.clear();
     helperToKey.clear();
 
+    lastWidgetInTabOrder = ui->permamentCheckBox;
+
     // Retrieve new list
     DbPlugin* plugin = nullptr;
     if (dbPlugins.count() > 0)
@@ -171,7 +173,7 @@ void DbDialog::updateOptions()
             if (optList.size() > 0)
             {
                 // Add new options
-                int row = 3;
+                int row = ADDITIONAL_ROWS_BEGIN_INDEX;
                 foreach (DbPluginOption opt, optList)
                     addOption(opt, row++);
             }
@@ -188,8 +190,11 @@ void DbDialog::addOption(const DbPluginOption& option, int row)
     QWidget* editor = nullptr;
     QWidget* editorHelper = nullptr; // TODO, based on plugins for Url handlers
 
-    editor = getEditor(option.type, editorHelper);
+    editor = getEditor(option.type, editorHelper, option.placeholderText);
     Q_ASSERT(editor != nullptr);
+
+    if (!option.toolTip.isNull())
+        editor->setToolTip(option.toolTip);
 
     optionWidgets << label << editor;
 
@@ -197,22 +202,37 @@ void DbDialog::addOption(const DbPluginOption& option, int row)
     optionKeyToType[option.key] = option.type;
     ui->gridLayout->addWidget(label, row, 0);
     ui->gridLayout->addWidget(editor, row, 1);
+
+    setTabOrder(lastWidgetInTabOrder, editor);
+    lastWidgetInTabOrder = editor;
+
     if (editorHelper)
     {
         ui->gridLayout->addWidget(editorHelper, row, 2);
         optionWidgets << editorHelper;
         helperToKey[editorHelper] = option.key;
+
+        setTabOrder(lastWidgetInTabOrder, editorHelper);
+        lastWidgetInTabOrder = editorHelper;
     }
 }
 
-QWidget *DbDialog::getEditor(DbPluginOption::Type type, QWidget*& editorHelper)
+QWidget *DbDialog::getEditor(DbPluginOption::Type type, QWidget*& editorHelper, const QString& placeholderText)
 {
     QWidget* editor = nullptr;
+    QLineEdit* le = nullptr;
     editorHelper = nullptr;
     switch (type)
     {
         case DbPluginOption::STRING:
             editor = new QLineEdit(this);
+            le = dynamic_cast<QLineEdit*>(editor);
+            connect(editor, SIGNAL(textChanged(QString)), this, SLOT(propertyChanged()));
+            break;
+        case DbPluginOption::PASSWORD:
+            editor = new QLineEdit(this);
+            le = dynamic_cast<QLineEdit*>(editor);
+            le->setEchoMode(QLineEdit::Password);
             connect(editor, SIGNAL(textChanged(QString)), this, SLOT(propertyChanged()));
             break;
         case DbPluginOption::INT:
@@ -221,6 +241,7 @@ QWidget *DbDialog::getEditor(DbPluginOption::Type type, QWidget*& editorHelper)
             break;
         case DbPluginOption::FILE:
             editor = new QLineEdit(this);
+            le = dynamic_cast<QLineEdit*>(editor);
             editorHelper = new QPushButton(tr("Browse"), this);
             connect(editor, SIGNAL(textChanged(QString)), this, SLOT(propertyChanged()));
             connect(editorHelper, SIGNAL(pressed()), this, SLOT(browseForFile()));
@@ -237,6 +258,10 @@ QWidget *DbDialog::getEditor(DbPluginOption::Type type, QWidget*& editorHelper)
             // TODO plugin based handling of custom editors
             break;
     }
+
+    if (le && !placeholderText.isNull())
+        le->setPlaceholderText(placeholderText);
+
     return editor;
 }
 
