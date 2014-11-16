@@ -134,8 +134,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>385</width>
-             <height>325</height>
+             <width>578</width>
+             <height>350</height>
             </rect>
            </property>
            <property name="styleSheet">
@@ -231,6 +231,16 @@
               </property>
               <property name="cfg" stdset="0">
                <string>SqlEnterpriseFormatter.NlAfterCloseParExpr</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBox_32">
+              <property name="text">
+               <string>After *JOIN keywords in FROM clause</string>
+              </property>
+              <property name="cfg" stdset="0">
+               <string>SqlEnterpriseFormatter.NlAfterJoinStmt</string>
               </property>
              </widget>
             </item>

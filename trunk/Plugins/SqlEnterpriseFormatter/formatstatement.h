@@ -175,6 +175,7 @@ class FormatStatement
         int predictCurrentIndent(FormatToken* currentMetaToken);
         bool willStartWithNewLine(FormatToken* token);
         void formatId(const QString& value);
+        int getLineUpValue(const QString& lineUpName);
 
         static FormatStatement* forQuery(SqliteStatement *query, Dialect dialect, NameWrapper wrapper, Cfg::SqlEnterpriseFormatterConfig* cfg);
 
@@ -187,6 +188,7 @@ class FormatStatement
         QString line;
         FormatToken* lastToken = nullptr;
         QString statementName;
+        FormatStatement* parentFormatStatement = nullptr;
 
         static qint64 nameSeq;
         static const QString SPACE;

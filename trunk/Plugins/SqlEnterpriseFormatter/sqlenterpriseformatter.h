@@ -28,6 +28,7 @@ CFG_CATEGORIES(SqlEnterpriseFormatterConfig,
         CFG_ENTRY(bool,        NlAfterOpenParExpr,        false)
         CFG_ENTRY(bool,        NlBeforeCloseParExpr,      false)
         CFG_ENTRY(bool,        NlAfterCloseParExpr,       false)
+        CFG_ENTRY(bool,        NlAfterJoinStmt,           true)
         CFG_ENTRY(bool,        NlAfterComma,              true)
         CFG_ENTRY(bool,        NlAfterCommaInExpr,        false)
         CFG_ENTRY(bool,        NlAfterSemicolon,          true)
