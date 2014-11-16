@@ -256,10 +256,12 @@ void SqlTableModel::updateColumnsAndValues(const QList<SqlQueryItem*>& itemsInRo
 {
     Dialect dialect = db->getDialect();
 
+    SqlQueryItem* item;
     int i = 0;
     foreach (SqlQueryModelColumnPtr modelColumn, modelColumns)
     {
-        if (itemsInRow[i]->getValue().isNull())
+        item = itemsInRow[i++];
+        if (item->getValue().isNull())
         {
             if (modelColumn->isDefault())
                 continue;
@@ -270,7 +272,7 @@ void SqlTableModel::updateColumnsAndValues(const QList<SqlQueryItem*>& itemsInRo
 
         colNameList << wrapObjIfNeeded(modelColumn->column, dialect);
         sqlValues << ":arg" + QString::number(i);
-        args << itemsInRow[i++]->getFullValue();
+        args << item->getFullValue();
     }
 }
 
