@@ -367,6 +367,8 @@ FormatStatement& FormatStatement::withStatement(SqliteStatement* stmt, const QSt
     if (!formatStmt)
         return *this;
 
+    formatStmt->parentFormatStatement = this;
+
     if (enricher)
         enricher(formatStmt);
 
@@ -494,6 +496,14 @@ void FormatStatement::cleanup()
     tokens.clear();
 }
 
+int FormatStatement::getLineUpValue(const QString& lineUpName)
+{
+    if (kwLineUpPosition.contains(lineUpName))
+        return kwLineUpPosition[lineUpName];
+
+    return 0;
+}
+
 QString FormatStatement::detokenize()
 {
     bool uppercaseKeywords = cfg->SqlEnterpriseFormatter.UppercaseKeywords.get();
@@ -509,7 +519,7 @@ QString FormatStatement::detokenize()
                 {
                     QString kw = token->value.toString();
                     QString lineUpName = token->additionalValue.toString();
-                    int lineUpValue = kwLineUpPosition.contains(lineUpName) ? kwLineUpPosition[lineUpName] : 0;
+                    int lineUpValue = getLineUpValue(lineUpName);
 
                     int indentLength = lineUpValue - kw.length();
                     if (indentLength > 0)

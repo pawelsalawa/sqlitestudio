@@ -52,7 +52,7 @@ FormatSelectCore::FormatSelectCore(SqliteSelect::Core *core) :
 
 void FormatSelectCore::formatInternal()
 {
-    markKeywordLineUp("SELECT");
+    markKeywordLineUp("SELECT", "selectCore");
 
     if (core->valuesMode)
     {
@@ -69,22 +69,22 @@ void FormatSelectCore::formatInternal()
     withStatementList(core->resultColumns, "resultColumns");
 
     if (core->from)
-        withNewLine().withLinedUpKeyword("FROM").withStatement(core->from, "source");
+        withNewLine().withLinedUpKeyword("FROM", "selectCore").withStatement(core->from, "source");
 
     if (core->where)
-        withNewLine().withLinedUpKeyword("WHERE").withStatement(core->where, "conditions");
+        withNewLine().withLinedUpKeyword("WHERE", "selectCore").withStatement(core->where, "conditions");
 
     if (core->groupBy.size() > 0)
-        withNewLine().withLinedUpKeyword("GROUP").withKeyword("BY").withStatementList(core->groupBy, "grouping");
+        withNewLine().withLinedUpKeyword("GROUP", "selectCore").withKeyword("BY").withStatementList(core->groupBy, "grouping");
 
     if (core->having)
-        withNewLine().withLinedUpKeyword("HAVING").withStatement(core->having, "having");
+        withNewLine().withLinedUpKeyword("HAVING", "selectCore").withStatement(core->having, "having");
 
     if (core->orderBy.size() > 0)
-        withNewLine().withLinedUpKeyword("ORDER").withKeyword("BY").withStatementList(core->orderBy, "order");
+        withNewLine().withLinedUpKeyword("ORDER", "selectCore").withKeyword("BY").withStatementList(core->orderBy, "order");
 
     if (core->limit)
-        withNewLine().withLinedUpKeyword("LIMIT").withStatement(core->limit, "limit");
+        withNewLine().withLinedUpKeyword("LIMIT", "selectCore").withStatement(core->limit, "limit");
 }
 
 FormatSelectCoreResultColumn::FormatSelectCoreResultColumn(SqliteSelect::Core::ResultColumn *resCol) :
@@ -173,50 +173,61 @@ void FormatSelectCoreJoinOp::formatInternal()
         return;
     }
 
+    withNewLine();
+    QStringList keywords;
     switch (dialect)
     {
         case Dialect::Sqlite3:
         {
             if (joinOp->naturalKw)
-                withKeyword("NATURAL");
+                keywords << "NATURAL";
 
             if (joinOp->leftKw)
             {
-                withKeyword("LEFT");
+                keywords << "LEFT";
                 if (joinOp->outerKw)
-                    withKeyword("OUTER");
+                    keywords << "OUTER";
             }
             else if (joinOp->innerKw)
-                withKeyword("INNER");
+                keywords << "INNER";
             else if (joinOp->crossKw)
-                withKeyword("CROSS");
+                keywords << "CROSS";
 
-            withKeyword("JOIN");
+            keywords << "JOIN";
             break;
         }
         case Dialect::Sqlite2:
         {
             if (joinOp->naturalKw)
-                withKeyword("NATURAL");
+                keywords << "NATURAL";
 
             if (joinOp->leftKw)
-                withKeyword("LEFT");
+                keywords << "LEFT";
             else if (joinOp->rightKw)
-                withKeyword("RIGHT");
+                keywords << "RIGHT";
             else if (joinOp->fullKw)
-                withKeyword("FULL");
+                keywords << "FULL";
 
             if (joinOp->innerKw)
-                withKeyword("INNER");
+                keywords << "INNER";
             else if (joinOp->crossKw)
-                withKeyword("CROSS");
+                keywords << "CROSS";
             else if (joinOp->outerKw)
-                withKeyword("OUTER");
+                keywords << "OUTER";
 
-            withKeyword("JOIN");
+            keywords << "JOIN";
             break;
         }
     }
+
+    if (keywords.size() == 0)
+        return;
+
+    for (const QString& kw : keywords)
+        withKeyword(kw);
+
+    if (cfg->SqlEnterpriseFormatter.NlAfterJoinStmt.get())
+        withNewLine();
 }
 
 FormatSelectCoreJoinConstraint::FormatSelectCoreJoinConstraint(SqliteSelect::Core::JoinConstraint* joinConstr) :
