@@ -40,7 +40,7 @@ QList<SqlQueryItem*> SqlQueryView::getSelectedItems()
     QList<SqlQueryItem*> items;
     QModelIndexList idxList = selectionModel()->selectedIndexes();
     QModelIndex currIdx = getCurrentIndex();
-    if (!idxList.contains(currIdx))
+    if (!idxList.contains(currIdx) && currIdx.isValid())
         idxList << currIdx;
 
     if (idxList.size() == 0)

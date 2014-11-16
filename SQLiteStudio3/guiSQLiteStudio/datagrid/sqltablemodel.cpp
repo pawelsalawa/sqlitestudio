@@ -180,10 +180,13 @@ void SqlTableModel::updateRowAfterInsert(const QList<SqlQueryItem*>& itemsInRow,
 {
     // Update cells with data just like it was entered. Only DEFAULT and PRIMARY KEY AUTOINCREMENT will have special values.
     QList<QVariant> values;
+    SqlQueryItem* item;
     int i = 0;
-    foreach (SqlQueryModelColumnPtr modelColumn, modelColumns)
+    for (const SqlQueryModelColumnPtr& modelColumn : modelColumns)
     {
-        if (itemsInRow[i]->getValue().isNull())
+        item = itemsInRow[i++];
+//        qDebug() << "Item is for column" << item->getColumn()->column << ", column iterated:" << modelColumn->column;
+        if (item->getValue().isNull())
         {
             if (modelColumn->isDefault())
             {
@@ -194,23 +197,22 @@ void SqlTableModel::updateRowAfterInsert(const QList<SqlQueryItem*>& itemsInRow,
             // If this is the PK AUTOINCR column we use RowId as value, because it was skipped when setting values to items
             if (modelColumn->isPk() && modelColumn->isAutoIncr())
             {
-                values << rowId;
+                values << rowId["ROWID"];
                 continue;
             }
         }
 
-        values << itemsInRow[i]->getValue();
-        i++;
+        values << item->getValue();
     }
 
     // Update cell data with results
     int colIdx = 0;
-    foreach (SqlQueryItem* item, itemsInRow)
+    for (SqlQueryItem* itemToUpdate : itemsInRow)
     {
-        updateItem(item, values[colIdx], colIdx, rowId);
+        updateItem(itemToUpdate, values[colIdx], colIdx, rowId);
 
         if (isWithOutRowIdTable && rowId.isEmpty())
-            item->setJustInsertedWithOutRowId(true);
+            itemToUpdate->setJustInsertedWithOutRowId(true);
 
         colIdx++;
     }
