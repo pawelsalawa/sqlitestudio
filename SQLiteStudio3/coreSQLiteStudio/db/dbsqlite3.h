@@ -23,7 +23,7 @@ struct Sqlite3
     static const int ROW = SQLITE_ROW;
     static const int DONE = SQLITE_DONE;
 
-    typedef sqlite3 sqlite3;
+    typedef ::sqlite3 sqlite3;
     typedef sqlite3_stmt stmt;
     typedef sqlite3_context context;
     typedef sqlite3_value value;
