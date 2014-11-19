@@ -175,7 +175,7 @@ void SqlQueryItem::setValue(const QVariant &value, bool limited, bool loadedFrom
     else
         setValueForDisplay(newValue);
 
-    if (modified)
+    if (modified && getModel())
         getModel()->itemValueEdited(this);
 }
 

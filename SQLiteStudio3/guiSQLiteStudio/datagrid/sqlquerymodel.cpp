@@ -1239,12 +1239,16 @@ void SqlQueryModel::addNewRowInternal(int rowIdx)
     QList<QStandardItem*> items;
     int colCnt = columnCount();
     SqlQueryItem* item = nullptr;
+    SqlQueryModelColumn* columnModel = nullptr;
     for (int i = 0; i < colCnt; i++)
     {
+        columnModel = columns[i].data();
+
         item = new SqlQueryItem();
         item->setNewRow(true);
         item->setUncommited(true);
-        item->setColumn(columns[i].data());
+        item->setColumn(columnModel);
+
         items << item;
     }
     insertRow(rowIdx, items);
