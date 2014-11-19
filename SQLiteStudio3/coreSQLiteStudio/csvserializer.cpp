@@ -65,12 +65,12 @@ QList<QStringList> CsvSerializer::deserialize(const QString& data, const CsvForm
                quotes = false;
             }
         }
-        else if (!quotes && c == format.columnSeparator)
+        else if (!quotes && format.columnSeparator.contains(c))
         {
             cells << field;
             field.clear();
         }
-        else if (!quotes && c == format.rowSeparator)
+        else if (!quotes && format.rowSeparator.contains(c))
         {
             cells << field;
             rows << cells;
