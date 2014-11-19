@@ -32,7 +32,7 @@ class GUI_API_EXPORT ColumnDefaultPanel : public ConstraintPanel
         void updateVirtualSql();
         SqliteExprPtr parseExpression(const QString& sql);
 
-        Ui::ColumnDefaultPanel *ui;
+        Ui::ColumnDefaultPanel *ui = nullptr;
 
     private slots:
         void updateState();

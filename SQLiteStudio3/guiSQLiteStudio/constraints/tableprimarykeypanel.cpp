@@ -43,8 +43,8 @@ void TablePrimaryKeyPanel::updateState()
 
     // Autoincr
     QStringList columns;
-    QWidget* item;
-    QCheckBox* cb;
+    QWidget* item = nullptr;
+    QCheckBox* cb = nullptr;
     for (int i = 0; i < totalColumns; i++)
     {
         item = columnsLayout->itemAtPosition(i, 0)->widget();

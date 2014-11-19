@@ -535,7 +535,7 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
     actions += SELECT_ALL;
     actions += ActionEntry(REFRESH_SCHEMAS);
 
-    QMenu* subMenu;
+    QMenu* subMenu = nullptr;
     foreach (ActionEntry actionEntry, actions)
     {
         switch (actionEntry.type)
@@ -813,8 +813,8 @@ void DbTree::filterUndeletableItems(QList<DbTreeItem*>& items)
 void DbTree::filterItemsWithParentInList(QList<DbTreeItem*>& items)
 {
     QMutableListIterator<DbTreeItem*> it(items);
-    DbTreeItem* item;
-    DbTreeItem* pathItem;
+    DbTreeItem* item = nullptr;
+    DbTreeItem* pathItem = nullptr;
     while (it.hasNext())
     {
         item = it.next();

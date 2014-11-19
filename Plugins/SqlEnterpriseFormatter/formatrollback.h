@@ -14,7 +14,7 @@ class FormatRollback : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteRollback* rollback;
+        SqliteRollback* rollback = nullptr;
 };
 
 #endif // FORMATROLLBACK_H

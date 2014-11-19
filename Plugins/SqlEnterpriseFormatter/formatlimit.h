@@ -13,7 +13,7 @@ class FormatLimit : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteLimit *limit;
+        SqliteLimit *limit = nullptr;
 };
 
 #endif // FORMATLIMIT_H

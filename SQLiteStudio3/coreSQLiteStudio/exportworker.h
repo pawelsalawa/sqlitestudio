@@ -45,7 +45,7 @@ class API_EXPORT ExportWorker : public QObject, public QRunnable
         QString database;
         QString table;
         QStringList objectListToExport;
-        QueryExecutor* executor;
+        QueryExecutor* executor = nullptr;
         bool interrupted = false;
         QMutex interruptMutex;
         Parser* parser = nullptr;

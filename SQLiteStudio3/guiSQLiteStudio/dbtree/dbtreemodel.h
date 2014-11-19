@@ -97,7 +97,7 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         static const QString toolTipRowTmp;
         static const QString toolTipIconRowTmp;
 
-        DbTreeView* treeView;
+        DbTreeView* treeView = nullptr;
         bool requireSchemaReloading = false;
         DbObjectOrganizer* dbOrganizer = nullptr;
         QList<Interruptable*> interruptables;

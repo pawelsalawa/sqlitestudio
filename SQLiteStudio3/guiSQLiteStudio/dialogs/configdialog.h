@@ -84,7 +84,7 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         void rollbackPluginConfigs();
         void commitPluginConfigs();
 
-        Ui::ConfigDialog *ui;
+        Ui::ConfigDialog *ui = nullptr;
         QStyle* previewStyle = nullptr;
         QHash<QString,QWidget*> nameToPage;
         BiHash<QTreeWidgetItem*,QString> itemToPluginNameMap;

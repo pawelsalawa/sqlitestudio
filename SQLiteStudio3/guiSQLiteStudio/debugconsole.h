@@ -24,7 +24,7 @@ class GUI_API_EXPORT DebugConsole : public QDialog
         void initFormats();
         void message(const QString& msg, const QTextCharFormat& format);
 
-        Ui::DebugConsole *ui;
+        Ui::DebugConsole *ui = nullptr;
         QTextCharFormat dbgFormat;
         QTextCharFormat wrnFormat;
         QTextCharFormat criFormat;

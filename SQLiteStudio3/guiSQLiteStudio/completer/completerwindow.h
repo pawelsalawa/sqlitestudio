@@ -42,9 +42,9 @@ class GUI_API_EXPORT CompleterWindow : public QDialog
         void updateFilter();
         void init();
 
-        Ui::CompleterWindow *ui;
-        CompleterModel* model;
-        SqlEditor* sqlEditor;
+        Ui::CompleterWindow *ui = nullptr;
+        CompleterModel* model = nullptr;
+        SqlEditor* sqlEditor = nullptr;
         QString filter;
         Db* db = nullptr;
         bool wrappedFilter = false;

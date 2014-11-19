@@ -114,10 +114,10 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
         SqliteCreateViewPtr createView;
         SqlQueryModel* dataModel = nullptr;
         QString originalQuery;
-        WidgetCover* widgetCover;
+        WidgetCover* widgetCover = nullptr;
         ChainExecutor* structureExecutor = nullptr;
         ViewModifier* viewModifier = nullptr;
-        Ui::ViewWindow *ui;
+        Ui::ViewWindow *ui = nullptr;
         bool modifyingThisView = false;
 
     private slots:

@@ -135,7 +135,7 @@ bool DbTreeModel::applyFilter(QStandardItem *parentItem, const QString &filter)
 {
     bool empty = filter.isEmpty();
     bool visibilityForParent = false;
-    DbTreeItem* item;
+    DbTreeItem* item = nullptr;
     QModelIndex index;
     bool subFilterResult;
     bool matched;
@@ -179,7 +179,7 @@ QList<Config::DbGroupPtr> DbTreeModel::childsToConfig(QStandardItem *item)
 {
     QList<Config::DbGroupPtr> groups;
     Config::DbGroupPtr group;
-    DbTreeItem* dbTreeItem;
+    DbTreeItem* dbTreeItem = nullptr;
     for (int i = 0; i < item->rowCount(); i++)
     {
         dbTreeItem = dynamic_cast<DbTreeItem*>(item->child(i));
@@ -215,7 +215,7 @@ QList<Config::DbGroupPtr> DbTreeModel::childsToConfig(QStandardItem *item)
 void DbTreeModel::restoreGroup(const Config::DbGroupPtr& group, QList<Db*>* dbList, QStandardItem* parent)
 {
     Db* db = nullptr;
-    DbTreeItem* item;
+    DbTreeItem* item = nullptr;
     if (group->referencedDbName.isNull())
     {
         item = DbTreeItemFactory::createDir(group->name, this);
@@ -351,7 +351,7 @@ QList<DbTreeItem*> DbTreeModel::getAllItemsAsFlatList() const
 QList<DbTreeItem*> DbTreeModel::getChildsAsFlatList(QStandardItem* item) const
 {
     QList<DbTreeItem*> items;
-    QStandardItem* child;
+    QStandardItem* child = nullptr;
     for (int i = 0; i < item->rowCount(); i++)
     {
         child = item->child(i);
@@ -591,7 +591,7 @@ QList<QStandardItem *> DbTreeModel::refreshSchemaViews(const QStringList &views,
 
 void DbTreeModel::populateChildItemsWithDb(QStandardItem *parentItem, Db* db)
 {
-    QStandardItem* childItem;
+    QStandardItem* childItem = nullptr;
     for (int i = 0; i < parentItem->rowCount(); i++)
     {
         childItem = parentItem->child(i);
@@ -613,9 +613,9 @@ void DbTreeModel::refreshSchemaBuild(QStandardItem *dbItem,
     dbItem->appendRow(tablesItem);
     dbItem->appendRow(viewsItem);
 
-    DbTreeItem* columnsItem;
-    DbTreeItem* indexesItem;
-    DbTreeItem* triggersItem;
+    DbTreeItem* columnsItem = nullptr;
+    DbTreeItem* indexesItem = nullptr;
+    DbTreeItem* triggersItem = nullptr;
     foreach (QStandardItem* tableItem, tables)
     {
         tablesItem->appendRow(tableItem);
@@ -745,8 +745,8 @@ DbTreeItem* DbTreeModel::findItem(DbTreeItem::Type type, const QString &name)
 
 DbTreeItem *DbTreeModel::findItem(QStandardItem* parentItem, DbTreeItem::Type type, const QString& name)
 {
-    DbTreeItem* item;
-    DbTreeItem* subItem;
+    DbTreeItem* item = nullptr;
+    DbTreeItem* subItem = nullptr;
     for (int i = 0; i < parentItem->rowCount(); i++)
     {
          item = dynamic_cast<DbTreeItem*>(parentItem->child(i));
@@ -802,8 +802,8 @@ QList<DbTreeItem*> DbTreeModel::findItems(DbTreeItem::Type type)
 
 DbTreeItem *DbTreeModel::findItem(QStandardItem* parentItem, DbTreeItem::Type type, Db* db)
 {
-    DbTreeItem* item;
-    DbTreeItem* subItem;
+    DbTreeItem* item = nullptr;
+    DbTreeItem* subItem = nullptr;
     for (int i = 0; i < parentItem->rowCount(); i++)
     {
         item = dynamic_cast<DbTreeItem*>(parentItem->child(i));
@@ -831,7 +831,7 @@ DbTreeItem *DbTreeModel::findItem(QStandardItem* parentItem, DbTreeItem::Type ty
 QList<DbTreeItem*> DbTreeModel::findItems(QStandardItem* parentItem, DbTreeItem::Type type)
 {
     QList<DbTreeItem*> items;
-    DbTreeItem* item;
+    DbTreeItem* item = nullptr;
     for (int i = 0; i < parentItem->rowCount(); i++)
     {
         item = dynamic_cast<DbTreeItem*>(parentItem->child(i));
@@ -895,7 +895,7 @@ QMimeData *DbTreeModel::mimeData(const QModelIndexList &indexes) const
     QList<QUrl> urlList;
     QStringList textList;
 
-    DbTreeItem* item;
+    DbTreeItem* item = nullptr;
     stream << reinterpret_cast<qint32>(indexes.size());
     for (const QModelIndex& idx : indexes)
     {
@@ -974,7 +974,7 @@ QList<DbTreeItem*> DbTreeModel::getDragItems(const QMimeData* data)
     qint32 itemCount;
     stream >> itemCount;
 
-    DbTreeItem* item;
+    DbTreeItem* item = nullptr;
     QString signature;
     for (qint32 i = 0; i < itemCount; i++)
     {

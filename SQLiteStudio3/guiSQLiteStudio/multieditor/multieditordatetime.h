@@ -35,7 +35,7 @@ class GUI_API_EXPORT MultiEditorDateTime : public MultiEditorWidget
 
         virtual QStringList getParsingFormats();
 
-        QDateTimeEdit* dateTimeEdit;
+        QDateTimeEdit* dateTimeEdit = nullptr;
         bool showCalendars = true;
 
     private:
@@ -52,8 +52,8 @@ class GUI_API_EXPORT MultiEditorDateTime : public MultiEditorWidget
 
         static QStringList formats;
 
-        QLabel* dateTimeLabel;
-        QCalendarWidget* calendar;
+        QLabel* dateTimeLabel = nullptr;
+        QCalendarWidget* calendar = nullptr;
         QString originalValueFormat;
         FormatType formatType;
         bool updatingCalendar = false;

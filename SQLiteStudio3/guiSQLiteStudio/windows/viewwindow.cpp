@@ -602,7 +602,7 @@ void ViewWindow::refreshTriggers()
                                                  tr("Details", "table window triggers")
                                              });
 
-    QTableWidgetItem* item;
+    QTableWidgetItem* item = nullptr;
     QString event;
     int row = 0;
     foreach (SqliteCreateTriggerPtr trig, triggers)

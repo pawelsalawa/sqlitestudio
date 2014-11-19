@@ -48,7 +48,7 @@ SqliteSelect* SqliteSelect::append(SqliteSelect* select, SqliteSelect::CompoundO
 
     bool first = true;
 
-    Core::ResultColumn* resCol;
+    Core::ResultColumn* resCol = nullptr;
     QList<Core::ResultColumn*> resColList;
     foreach (const QList<SqliteExpr*>& singleValues, values)
     {

@@ -23,8 +23,8 @@ void SqlCompareView::setSides(const QList<QPair<QString, QString>>& data)
     setRowCount(data.size());
 
     int row = 0;
-    SqlView* leftView;
-    SqlView* rightView;
+    SqlView* leftView = nullptr;
+    SqlView* rightView = nullptr;
     for (const QPair<QString, QString>& rowData : data)
     {
         leftView = new SqlView();
@@ -73,8 +73,8 @@ void SqlCompareView::updateSizes()
     int leftWidth = horizontalHeader()->sectionSize(0);
     int rightWidth = horizontalHeader()->sectionSize(1);
 
-    SqlView* leftView;
-    SqlView* rightView;
+    SqlView* leftView = nullptr;
+    SqlView* rightView = nullptr;
     QSize leftSize;
     QSize rightSize;
     for (int row = 0, total = rowCount(); row < total; ++row)

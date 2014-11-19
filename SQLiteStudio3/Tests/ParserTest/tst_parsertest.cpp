@@ -16,8 +16,8 @@ class ParserTest : public QObject
         ParserTest();
 
     private:
-        Parser* parser2;
-        Parser* parser3;
+        Parser* parser2 = nullptr;
+        Parser* parser3 = nullptr;
 
     private Q_SLOTS:
         void testGetTableTokens();

@@ -254,7 +254,7 @@ void ColumnDialog::addEmptyConstraint(SqliteCreateTable::Column::Constraint::Typ
 
 void ColumnDialog::delAllConstraint(SqliteCreateTable::Column::Constraint::Type type)
 {
-    SqliteCreateTable::Column::Constraint* constr;
+    SqliteCreateTable::Column::Constraint* constr = nullptr;
     while ((constr = column->getConstraint(type)) != nullptr)
         constraintsModel->delConstraint(constr);
 }

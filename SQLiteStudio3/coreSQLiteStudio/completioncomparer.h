@@ -15,7 +15,7 @@ class CompletionComparer
         bool operator()(const ExpectedTokenPtr& token1, const ExpectedTokenPtr& token2);
 
     private:
-        CompletionHelper* helper;
+        CompletionHelper* helper = nullptr;
         Dialect dialect;
         /**
          * @brief contextDatabases

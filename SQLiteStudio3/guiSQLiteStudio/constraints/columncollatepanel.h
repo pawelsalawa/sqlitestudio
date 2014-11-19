@@ -30,8 +30,8 @@ class GUI_API_EXPORT ColumnCollatePanel : public ConstraintPanel
         void readConstraint();
         void readCollations();
 
-        QStringListModel* collationModel;
-        Ui::ColumnCollatePanel *ui;
+        QStringListModel* collationModel = nullptr;
+        Ui::ColumnCollatePanel *ui = nullptr;
 
     private slots:
         void updateState();

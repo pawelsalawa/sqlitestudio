@@ -186,7 +186,7 @@ template <class T>
 bool AbstractDb2<T>::openInternal()
 {
     resetError();
-    sqlite* handle;
+    sqlite* handle = nullptr;
     char* errMsg = nullptr;
     handle = sqlite_open(path.toUtf8().constData(), 0, &errMsg);
     if (!handle)

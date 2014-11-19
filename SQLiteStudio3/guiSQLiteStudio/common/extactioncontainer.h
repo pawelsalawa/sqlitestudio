@@ -241,7 +241,7 @@ template <class T>
 QList<T*> ExtActionContainer::getInstances()
 {
     QList<T*> typedInstances;
-    T* typedInstance;
+    T* typedInstance = nullptr;
     for (ExtActionContainer* instance : instances)
     {
         typedInstance = dynamic_cast<T*>(instance);

@@ -76,7 +76,7 @@ void ConfigMigrationWizard::init()
     });
 
 
-    QTreeWidgetItem* treeItem;
+    QTreeWidgetItem* treeItem = nullptr;
     for (ConfigMigrationItem* cfgItem : cfgMigration->getItemsToMigrate())
     {
         treeItem = new QTreeWidgetItem({cfgItem->label});
@@ -293,7 +293,7 @@ bool ConfigMigrationWizard::migrateFunction(Db* oldCfgDb, Db* newCfgDb)
     for (FunctionManager::ScriptFunction* fn : FUNCTIONS->getAllScriptFunctions())
         fnList << new FunctionManager::ScriptFunction(*fn);
 
-    FunctionManager::ScriptFunction* fn;
+    FunctionManager::ScriptFunction* fn = nullptr;
     while (results->hasNext())
     {
         row = results->next();
@@ -378,7 +378,7 @@ void ConfigMigrationWizard::collectCheckedTypes()
 {
     checkedTypes.clear();
 
-    QTreeWidgetItem* item;
+    QTreeWidgetItem* item = nullptr;
     for (int i = 0, total = ui->itemsTree->topLevelItemCount(); i < total; ++i)
     {
         item = ui->itemsTree->topLevelItem(i);

@@ -119,7 +119,7 @@ QStringList CLI::getHistory() const
     int length = historyLength();
 
     QString line;
-    HIST_ENTRY* entry;
+    HIST_ENTRY* entry = nullptr;
     for (int i = 0; i < length; i++)
     {
         entry = history_get(i);
@@ -236,11 +236,11 @@ void CLI::doWork()
 {
     static const QString prompt = "%1>";
 
-    CliCommand* cliCommand;
+    CliCommand* cliCommand = nullptr;
     QString cmd;
     QStringList cmdArgs;
     QString cPrompt;
-    char *cline;
+    char *cline = nullptr;
     while (!doExit)
     {
         line.clear();

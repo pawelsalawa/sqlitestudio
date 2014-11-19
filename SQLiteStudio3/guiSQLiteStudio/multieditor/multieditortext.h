@@ -56,8 +56,8 @@ class GUI_API_EXPORT MultiEditorText : public MultiEditorWidget, public ExtActio
     private:
         void setupMenu();
 
-        QPlainTextEdit* textEdit;
-        QMenu* contextMenu;
+        QPlainTextEdit* textEdit = nullptr;
+        QMenu* contextMenu = nullptr;
 
     private slots:
         void modificationChanged(bool changed);

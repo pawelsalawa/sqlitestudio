@@ -31,7 +31,7 @@ class GUI_API_EXPORT MessageListDialog : public QDialog
     private:
         QBrush getGradient(qreal r, qreal g, qreal b, qreal a) const;
 
-        Ui::MessageListDialog *ui;
+        Ui::MessageListDialog *ui = nullptr;
 };
 
 #endif // MESSAGELISTDIALOG_H

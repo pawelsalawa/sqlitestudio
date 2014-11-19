@@ -345,7 +345,7 @@ void SqlQueryView::paste(const CsvFormat& format)
     int rowIdx = topLeft->row();
     int colIdx = topLeft->column();
 
-    SqlQueryItem* item;
+    SqlQueryItem* item = nullptr;
 
     foreach (const QStringList& cells, deserializedRows)
     {

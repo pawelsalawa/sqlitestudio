@@ -103,8 +103,8 @@ void TablePrimaryKeyAndUniquePanel::buildColumn(SqliteCreateTable::Column* colum
 
 int TablePrimaryKeyAndUniquePanel::getColumnIndex(const QString& colName)
 {
-    QWidget* item;
-    QCheckBox* cb;
+    QWidget* item = nullptr;
+    QCheckBox* cb = nullptr;
     for (int i = 0; i < totalColumns; i++)
     {
         item = columnsLayout->itemAtPosition(i, 0)->widget();
@@ -149,8 +149,8 @@ void TablePrimaryKeyAndUniquePanel::constraintAvailable()
 bool TablePrimaryKeyAndUniquePanel::validate()
 {
     bool countOk  = false;
-    QWidget* item;
-    QCheckBox* cb;
+    QWidget* item = nullptr;
+    QCheckBox* cb = nullptr;
     for (int i = 0; i < totalColumns; i++)
     {
         item = columnsLayout->itemAtPosition(i, 0)->widget();
@@ -195,9 +195,9 @@ void TablePrimaryKeyAndUniquePanel::storeConfiguration()
 
     constr->indexedColumns.clear();
 
-    QCheckBox* check;
-    QComboBox* combo;
-    SqliteIndexedColumn* idxCol;
+    QCheckBox* check = nullptr;
+    QComboBox* combo = nullptr;
+    SqliteIndexedColumn* idxCol = nullptr;
     QString name;
     QString collate;
     SqliteSortOrder sortOrder;
@@ -254,8 +254,8 @@ void TablePrimaryKeyAndUniquePanel::readConstraint()
 
     // Columns
     int idx;
-    QCheckBox* check;
-    QComboBox* combo;
+    QCheckBox* check = nullptr;
+    QComboBox* combo = nullptr;
     foreach (SqliteIndexedColumn* idxCol, constr->indexedColumns)
     {
         idx = getColumnIndex(idxCol->name);

@@ -14,7 +14,7 @@ class FormatColumnType : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteColumnType* colType;
+        SqliteColumnType* colType = nullptr;
 };
 
 #endif // FORMATCOLUMNTYPE_H

@@ -375,7 +375,7 @@ void TableModifier::handleTrigger(SqliteCreateTriggerPtr trigger)
     if (trigger->event->type == SqliteCreateTrigger::Event::UPDATE_OF)
         handleColumnNames(trigger->event->columnNames);
 
-    SqliteQuery* newQuery;
+    SqliteQuery* newQuery = nullptr;
     QList<SqliteQuery*> newQueries;
     foreach (SqliteQuery* query, trigger->queries)
     {
@@ -554,7 +554,7 @@ bool TableModifier::handleSubSelects(SqliteStatement* stmt)
 {
     bool embedSelectsOk = true;
     QList<SqliteSelect*> selects = stmt->getAllTypedStatements<SqliteSelect>();
-    SqliteExpr* expr;
+    SqliteExpr* expr = nullptr;
     foreach (SqliteSelect* select, selects)
     {
         expr = dynamic_cast<SqliteExpr*>(select->parentStatement());

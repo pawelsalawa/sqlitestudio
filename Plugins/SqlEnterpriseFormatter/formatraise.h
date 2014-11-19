@@ -14,7 +14,7 @@ class FormatRaise : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteRaise* raise;
+        SqliteRaise* raise = nullptr;
 };
 
 #endif // FORMATRAISE_H

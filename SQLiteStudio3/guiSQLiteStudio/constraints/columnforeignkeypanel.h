@@ -37,7 +37,7 @@ class GUI_API_EXPORT ColumnForeignKeyPanel : public ConstraintPanel
         void storeCondition(SqliteForeignKey::Condition::Action action, const QString& reaction);
         void storeMatchCondition(const QString& reaction);
 
-        Ui::ColumnForeignKeyPanel *ui;
+        Ui::ColumnForeignKeyPanel *ui = nullptr;
         QStringListModel fkColumnsModel;
 
     private slots:

@@ -16,7 +16,7 @@ SqliteUpdate::SqliteUpdate(const SqliteUpdate& other) :
     notIndexedKw(other.notIndexedKw), indexedBy(other.indexedBy)
 {
     // Special case of deep collection copy
-    SqliteExpr* newExpr;
+    SqliteExpr* newExpr = nullptr;
     foreach (const ColumnAndValue& keyValue, other.keyValueMap)
     {
         newExpr = new SqliteExpr(*keyValue.second);
@@ -108,7 +108,7 @@ TokenList SqliteUpdate::getColumnTokensInStatement()
     TokenList setListTokens = getTokenListFromNamedKey("setlist");
     int setListTokensSize = setListTokens.size();
     int colNameTokenIdx;
-    SqliteExpr* expr;
+    SqliteExpr* expr = nullptr;
     foreach (const ColumnAndValue& keyValue, keyValueMap)
     {
         expr = keyValue.second;

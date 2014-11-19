@@ -48,13 +48,13 @@ class GUI_API_EXPORT IndexDialog : public QDialog
         SqliteCreateIndexPtr createIndex;
         SqliteCreateIndexPtr originalCreateIndex;
         QStringList tableColumns;
-        QSignalMapper* columnStateSignalMapping;
+        QSignalMapper* columnStateSignalMapping = nullptr;
         QStringListModel collations;
         QList<QCheckBox*> columnCheckBoxes;
         QList<QComboBox*> sortComboBoxes;
         QList<QComboBox*> collateComboBoxes;
         int totalColumns = 0;
-        Ui::IndexDialog *ui;
+        Ui::IndexDialog *ui = nullptr;
 
     private slots:
         void updateValidation();

@@ -280,7 +280,7 @@ class API_EXPORT SelectResolver
          * @brief schemaResolver
          * Used to get list of column names in a table.
          */
-        SchemaResolver* schemaResolver;
+        SchemaResolver* schemaResolver = nullptr;
 
         /**
          * @brief List of errors encountered during resolving.

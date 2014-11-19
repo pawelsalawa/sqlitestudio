@@ -13,7 +13,7 @@ class FormatForeignKey : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteForeignKey* fk;
+        SqliteForeignKey* fk = nullptr;
 };
 
 class FormatForeignKeyCondition : public FormatStatement
@@ -27,7 +27,7 @@ class FormatForeignKeyCondition : public FormatStatement
     private:
         void formatReaction();
 
-        SqliteForeignKey::Condition* cond;
+        SqliteForeignKey::Condition* cond = nullptr;
 };
 
 #endif // FORMATFOREIGNKEY_H

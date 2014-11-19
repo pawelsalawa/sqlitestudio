@@ -134,7 +134,7 @@ bool Parser::parseInternal(const QString &sql, bool lookForExpectedToken)
     void* pParser = parseAlloc( malloc );
     if (debugLemon)
     {
-        char* label;
+        char* label = nullptr;
         if (dialect == Dialect::Sqlite2)
             label = const_cast<char*>("[LEMON2]: ");
         else

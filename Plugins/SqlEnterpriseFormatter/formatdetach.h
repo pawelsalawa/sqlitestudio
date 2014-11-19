@@ -14,7 +14,7 @@ class FormatDetach : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteDetach* detach;
+        SqliteDetach* detach = nullptr;
 };
 
 #endif // FORMATDETACH_H

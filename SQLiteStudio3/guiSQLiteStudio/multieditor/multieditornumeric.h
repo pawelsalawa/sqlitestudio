@@ -20,7 +20,7 @@ class GUI_API_EXPORT MultiEditorNumeric : public MultiEditorWidget
         QList<QWidget*> getNoScrollWidgets();
 
     private:
-        NumericSpinBox* spinBox;
+        NumericSpinBox* spinBox = nullptr;
 };
 
 class GUI_API_EXPORT MultiEditorNumericPlugin : public BuiltInPlugin, public MultiEditorWidgetPlugin

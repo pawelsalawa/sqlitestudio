@@ -17,7 +17,7 @@ class FormatCreateVirtualTable : public FormatStatement
     private:
         void handleToken(const TokenPtr& token);
 
-        SqliteCreateVirtualTable* cvt;
+        SqliteCreateVirtualTable* cvt = nullptr;
 };
 
 #endif // FORMATCREATEVIRTUALTABLE_H

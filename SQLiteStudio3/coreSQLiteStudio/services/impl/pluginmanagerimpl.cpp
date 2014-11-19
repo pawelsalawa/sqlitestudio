@@ -109,7 +109,7 @@ void PluginManagerImpl::scanPlugins()
     QStringList nameFilters;
     nameFilters << "*.so" << "*.dll" << "*.dylib";
 
-    QPluginLoader* loader;
+    QPluginLoader* loader = nullptr;
     foreach (QString pluginDirPath, pluginDirs)
     {
         QDir pluginDir(pluginDirPath);

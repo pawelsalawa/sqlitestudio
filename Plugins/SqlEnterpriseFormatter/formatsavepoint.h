@@ -14,7 +14,7 @@ class FormatSavepoint : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteSavepoint* savepoint;
+        SqliteSavepoint* savepoint = nullptr;
 };
 
 #endif // FORMATSAVEPOINT_H

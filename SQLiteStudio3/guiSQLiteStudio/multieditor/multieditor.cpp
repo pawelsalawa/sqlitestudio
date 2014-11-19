@@ -132,7 +132,7 @@ void MultiEditor::invalidateValue()
         return;
     }
 
-    QWidget* editorWidget;
+    QWidget* editorWidget = nullptr;
     for (int i = 0; i < tabs->count(); i++)
     {
         editorWidget = tabs->widget(i);
@@ -250,7 +250,7 @@ QList<MultiEditorWidget*> MultiEditor::getEditorTypes(const DataType& dataType)
     QHash<QString,QVariant> editorsOrder = CFG_UI.General.DataEditorsOrder.get();
     if (editorsOrder.contains(typeStr))
     {
-        MultiEditorWidgetPlugin* plugin;
+        MultiEditorWidgetPlugin* plugin = nullptr;
         for (const QString& editorPluginName : editorsOrder[typeStr].toStringList())
         {
             plugin = dynamic_cast<MultiEditorWidgetPlugin*>(PLUGINS->getLoadedPlugin(editorPluginName));
@@ -330,7 +330,7 @@ void MultiEditor::updateNullEffect()
 void MultiEditor::updateValue(const QVariant& newValue)
 {
     invalidatingDisabled = true;
-    MultiEditorWidget* editorWidget;
+    MultiEditorWidget* editorWidget = nullptr;
     for (int i = 0; i < tabs->count(); i++)
     {
         editorWidget = dynamic_cast<MultiEditorWidget*>(tabs->widget(i));

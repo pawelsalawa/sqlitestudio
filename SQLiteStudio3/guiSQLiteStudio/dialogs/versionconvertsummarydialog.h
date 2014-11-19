@@ -22,7 +22,7 @@ class GUI_API_EXPORT VersionConvertSummaryDialog : public QDialog
         void showEvent(QShowEvent* e);
 
     private:
-        Ui::VersionConvertSummaryDialog *ui;
+        Ui::VersionConvertSummaryDialog *ui = nullptr;
 };
 
 #endif // VERSIONCONVERTSUMMARYDIALOG_H

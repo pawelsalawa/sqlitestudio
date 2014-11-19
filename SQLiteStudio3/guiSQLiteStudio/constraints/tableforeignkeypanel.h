@@ -41,11 +41,11 @@ class GUI_API_EXPORT TableForeignKeyPanel : public ConstraintPanel
         void storeCondition(SqliteForeignKey::Condition::Action action, const QString& reaction);
         void storeMatchCondition(const QString& reaction);
 
-        Ui::TableForeignKeyPanel *ui;
-        QGridLayout* columnsLayout;
+        Ui::TableForeignKeyPanel *ui = nullptr;
+        QGridLayout* columnsLayout = nullptr;
         int totalColumns = 0;
         QStringListModel fkColumnsModel;
-        QSignalMapper* columnSignalMapping;
+        QSignalMapper* columnSignalMapping = nullptr;
 
     private slots:
         void updateState();

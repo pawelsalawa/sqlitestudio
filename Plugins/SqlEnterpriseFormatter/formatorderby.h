@@ -13,7 +13,7 @@ class FormatOrderBy : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteOrderBy *orderBy;
+        SqliteOrderBy *orderBy = nullptr;
 };
 
 #endif // FORMATORDERBY_H

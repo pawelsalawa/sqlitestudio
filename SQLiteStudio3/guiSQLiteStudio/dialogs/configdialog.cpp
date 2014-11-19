@@ -60,7 +60,7 @@ ConfigDialog::~ConfigDialog()
     rollbackPluginConfigs();
 
     // Notify plugins about dialog being closed
-    UiConfiguredPlugin* cfgPlugin;
+    UiConfiguredPlugin* cfgPlugin = nullptr;
     foreach (Plugin* plugin, PLUGINS->getLoadedPlugins())
     {
         cfgPlugin = dynamic_cast<UiConfiguredPlugin*>(plugin);
@@ -230,9 +230,9 @@ void ConfigDialog::save()
 
 void ConfigDialog::storeSelectedFormatters()
 {
-    CodeFormatterPlugin* plugin;
-    QTreeWidgetItem* item;
-    QComboBox* combo;
+    CodeFormatterPlugin* plugin = nullptr;
+    QTreeWidgetItem* item = nullptr;
+    QComboBox* combo = nullptr;
     QString lang;
     QString pluginName;
     for (int i = 0, total = ui->formatterPluginsTree->topLevelItemCount(); i < total; ++i)
@@ -334,7 +334,7 @@ QHash<QWidget*, QTreeWidgetItem*> ConfigDialog::buildPageToCategoryItemMap() con
     foreach (QTreeWidgetItem* item, getAllCategoryItems())
         pageNameToCategoryItem[item->statusTip(0)] = item;
 
-    QWidget* page;
+    QWidget* page = nullptr;
     QHash<QWidget*,QTreeWidgetItem*> pageToCategoryItem;
     for (int i = 0; i < ui->stackedWidget->count(); i++)
     {
@@ -417,7 +417,7 @@ QList<MultiEditorWidgetPlugin*> ConfigDialog::updateCustomDataTypeEditors(const 
     // Building plugins list
     QList<MultiEditorWidgetPlugin*> plugins = PLUGINS->getLoadedPlugins<MultiEditorWidgetPlugin>();
     QList<MultiEditorWidgetPlugin*> enabledPlugins;
-    QListWidgetItem* item;
+    QListWidgetItem* item = nullptr;
     for (MultiEditorWidgetPlugin* plugin : plugins)
     {
         item = new QListWidgetItem(plugin->getTitle());
@@ -443,7 +443,7 @@ QList<MultiEditorWidgetPlugin*> ConfigDialog::updateDefaultDataTypeEditors(DataT
     // Building plugins list
     QList<MultiEditorWidgetPlugin*> plugins = PLUGINS->getLoadedPlugins<MultiEditorWidgetPlugin>();
     QList<MultiEditorWidgetPlugin*> enabledPlugins = getDefaultEditorsForType(typeEnum);
-    QListWidgetItem* item;
+    QListWidgetItem* item = nullptr;
     for (MultiEditorWidgetPlugin* plugin : plugins)
     {
         item = new QListWidgetItem(plugin->getTitle());
@@ -530,7 +530,7 @@ void ConfigDialog::addDataType(const QString& typeStr)
 
 void ConfigDialog::rollbackPluginConfigs()
 {
-    CfgMain* mainCfg;
+    CfgMain* mainCfg = nullptr;
     for (UiConfiguredPlugin* plugin : pluginConfigMappers.keys())
     {
         mainCfg = plugin->getMainUiConfig();
@@ -541,7 +541,7 @@ void ConfigDialog::rollbackPluginConfigs()
 
 void ConfigDialog::commitPluginConfigs()
 {
-    CfgMain* mainCfg;
+    CfgMain* mainCfg = nullptr;
     for (UiConfiguredPlugin* plugin : pluginConfigMappers.keys())
     {
         mainCfg = plugin->getMainUiConfig();
@@ -688,10 +688,10 @@ void ConfigDialog::dataTypesHelp()
 
 void ConfigDialog::updateActiveFormatterState()
 {
-    CodeFormatterPlugin* plugin;
-    QTreeWidgetItem* item;
-    QComboBox* combo;
-    QToolButton* button;
+    CodeFormatterPlugin* plugin = nullptr;
+    QTreeWidgetItem* item = nullptr;
+    QComboBox* combo = nullptr;
+    QToolButton* button = nullptr;
     QString lang;
     QString pluginName;
     for (int i = 0, total = ui->formatterPluginsTree->topLevelItemCount(); i < total; ++i)
@@ -899,9 +899,9 @@ void ConfigDialog::updateBuiltInPluginsVisibility()
 
 void ConfigDialog::applyShortcutsFilter(const QString &filter)
 {
-    QTreeWidgetItem* categoryItem;
-    QTreeWidgetItem* item;
-    QKeySequenceEdit* seqEdit;
+    QTreeWidgetItem* categoryItem = nullptr;
+    QTreeWidgetItem* item = nullptr;
+    QKeySequenceEdit* seqEdit = nullptr;
     bool empty = filter.isEmpty();
     bool visible = true;
     int foundInCategory = 0;
@@ -946,7 +946,7 @@ QString ConfigDialog::collectLoadedPlugins() const
 void ConfigDialog::initPageMap()
 {
     int pages = ui->stackedWidget->count();
-    QWidget* widget;
+    QWidget* widget = nullptr;
     for (int i = 0; i < pages; i++)
     {
         widget = ui->stackedWidget->widget(i);
@@ -986,9 +986,9 @@ void ConfigDialog::refreshFormattersPage()
     formatterLangToPluginComboMap.clear();
     formatterLangToConfigButtonMap.clear();
     int row = 0;
-    QTreeWidgetItem* item;
-    QComboBox* combo;
-    QToolButton* configButton;
+    QTreeWidgetItem* item = nullptr;
+    QComboBox* combo = nullptr;
+    QToolButton* configButton = nullptr;
     QStringList pluginTitles;
     QStringList pluginNames;
     QStringList sortedPluginNames;
@@ -1149,7 +1149,7 @@ void ConfigDialog::initPlugins()
     QTreeWidgetItem *item = getPluginsCategoryItem();
 
     // Recreate
-    QTreeWidgetItem *typeItem;
+    QTreeWidgetItem *typeItem = nullptr;
     foreach (PluginType* pluginType, PLUGINS->getPluginTypes())
     {
         typeItem = createPluginsTypeItem(pluginType->getConfigUiForm(), pluginType->getTitle());
@@ -1175,15 +1175,15 @@ void ConfigDialog::initPluginsPage()
                                              "but modified list of plugins to load at startup is not saved until "
                                              "you commit the whole configuration dialog."));
 
-    QTreeWidgetItem* category;
-    QTreeWidgetItem* item;
+    QTreeWidgetItem* category = nullptr;
+    QTreeWidgetItem* item = nullptr;
     QFont font;
     QModelIndex categoryIndex;
     QModelIndex itemIndex;
     int itemRow;
     int categoryRow;
     bool builtIn;
-    QLabel* detailsLabel;
+    QLabel* detailsLabel = nullptr;
     QString title;
     QSize itemSize;
     QStringList pluginNames;
@@ -1346,7 +1346,7 @@ void ConfigDialog::initDataEditors()
     QStringList dataTypeList = dataTypeSet.toList();
     qSort(dataTypeList);
 
-    QListWidgetItem* item;
+    QListWidgetItem* item = nullptr;
     for (const QString& type : dataTypeList)
     {
         item = new QListWidgetItem(type);
@@ -1416,12 +1416,12 @@ void ConfigDialog::initShortcuts()
 
 void ConfigDialog::initShortcuts(CfgCategory *cfgCategory)
 {
-    QTreeWidgetItem* item;
+    QTreeWidgetItem* item = nullptr;
     QFont font;
     QModelIndex categoryIndex;
     QModelIndex itemIndex;
-    QKeySequenceEdit *sequenceEdit;
-    QToolButton* clearButton;
+    QKeySequenceEdit *sequenceEdit = nullptr;
+    QToolButton* clearButton = nullptr;
     QString title;
     QSize itemSize;
 

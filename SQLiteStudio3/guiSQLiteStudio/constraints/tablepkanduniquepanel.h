@@ -29,8 +29,8 @@ class GUI_API_EXPORT TablePrimaryKeyAndUniquePanel : public ConstraintPanel
         void constraintAvailable();
         virtual void readConstraint();
 
-        Ui::TablePrimaryKeyAndUniquePanel *ui;
-        QGridLayout* columnsLayout;
+        Ui::TablePrimaryKeyAndUniquePanel *ui = nullptr;
+        QGridLayout* columnsLayout = nullptr;
 
         /**
          * @brief totalColumns
@@ -51,7 +51,7 @@ class GUI_API_EXPORT TablePrimaryKeyAndUniquePanel : public ConstraintPanel
         int getColumnIndex(const QString& colName);
 
         QStringListModel collations;
-        QSignalMapper* columnSignalMapping;
+        QSignalMapper* columnSignalMapping = nullptr;
 
     private slots:
         void updateColumnState(int colIdx);

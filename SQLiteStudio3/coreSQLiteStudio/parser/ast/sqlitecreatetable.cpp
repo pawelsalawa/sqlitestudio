@@ -25,7 +25,7 @@ SqliteCreateTable::SqliteCreateTable(bool ifNotExistsKw, int temp, const QString
     foreach (Column* column, columns)
         column->setParent(this);
 
-    SqliteCreateTable::Constraint* constr;
+    SqliteCreateTable::Constraint* constr = nullptr;
     foreach (constr, constraints)
     {
         if (this->constraints.size() > 0 &&
@@ -78,7 +78,7 @@ SqliteStatement* SqliteCreateTable::getPrimaryKey() const
     foreach (Constraint* constr, getConstraints(Constraint::PRIMARY_KEY))
         return constr;
 
-    Column::Constraint* colConstr;
+    Column::Constraint* colConstr = nullptr;
     foreach (Column* col, columns)
     {
         colConstr = col->getConstraint(Column::Constraint::PRIMARY_KEY);
@@ -619,7 +619,7 @@ SqliteCreateTable::Column::Column(const QString &name, SqliteColumnType *type, c
     if (type)
         type->setParent(this);
 
-    SqliteCreateTable::Column::Constraint* constr;
+    SqliteCreateTable::Column::Constraint* constr = nullptr;
     foreach (constr, constraints)
     {
         // If last constraint on list is NAME_ONLY we apply the name

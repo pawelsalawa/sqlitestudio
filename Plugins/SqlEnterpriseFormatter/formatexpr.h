@@ -14,7 +14,7 @@ class FormatExpr : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteExpr* expr;
+        SqliteExpr* expr = nullptr;
 };
 
 #endif // FORMATEXPR_H

@@ -39,7 +39,7 @@ class GUI_API_EXPORT MultiEditorBool : public MultiEditorWidget
 
         static QStringList validValues;
 
-        QCheckBox* checkBox;
+        QCheckBox* checkBox = nullptr;
         Format valueFormat = ONE_ZERO;
         bool upperCaseValue = false;
         bool readOnly = false;

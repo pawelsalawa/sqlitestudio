@@ -55,7 +55,7 @@ class GUI_API_EXPORT ExportDialog : public QWizard
 
         QHash<ExportManager::ExportMode,QList<QWizardPage*>> pageOrder;
 
-        Ui::ExportDialog *ui;
+        Ui::ExportDialog *ui = nullptr;
         ExportManager::ExportMode exportMode = ExportManager::UNDEFINED;
         Db* db = nullptr;
         QString query;

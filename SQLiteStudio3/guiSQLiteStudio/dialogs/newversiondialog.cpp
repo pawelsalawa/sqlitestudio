@@ -19,7 +19,7 @@ NewVersionDialog::~NewVersionDialog()
 
 void NewVersionDialog::setUpdates(const QList<UpdateManager::UpdateEntry>& updates)
 {
-    QTableWidgetItem* item;
+    QTableWidgetItem* item = nullptr;
     QString currVersion;
     int row = 0;
     ui->updateList->setRowCount(updates.size());

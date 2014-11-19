@@ -44,7 +44,7 @@ class GUI_API_EXPORT SearchTextLocator : public QObject
         QTextCursor findInWholeDoc(QTextDocument::FindFlags flags);
         void replaceCurrent();
 
-        QTextDocument* document;
+        QTextDocument* document = nullptr;
         int initialStartPosition;
         int lastMatchStart = -1;
         int lastMatchEnd = -1;

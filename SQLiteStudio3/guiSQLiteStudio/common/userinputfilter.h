@@ -17,8 +17,8 @@ class GUI_API_EXPORT UserInputFilter : public QObject
         void setDelay(int msecs);
 
     private:
-        QTimer* timer;
-        QLineEdit* lineEdit;
+        QTimer* timer = nullptr;
+        QLineEdit* lineEdit = nullptr;
 
     private slots:
         void filterModified(const QString& newValue);

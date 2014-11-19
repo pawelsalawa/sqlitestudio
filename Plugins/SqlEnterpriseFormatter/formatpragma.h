@@ -14,7 +14,7 @@ class FormatPragma : public FormatStatement
         void formatInternal();
 
     private:
-        SqlitePragma* pragma;
+        SqlitePragma* pragma = nullptr;
 };
 
 #endif // FORMATPRAGMA_H

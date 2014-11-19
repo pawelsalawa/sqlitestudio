@@ -133,7 +133,7 @@ void CollationsEditorModel::setData(const QList<CollationManager::CollationPtr>&
 {
     beginResetModel();
 
-    Collation* collationPtr;
+    Collation* collationPtr = nullptr;
     foreach (collationPtr, collationList)
         delete collationPtr;
 

@@ -14,7 +14,7 @@ class FormatReindex : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteReindex* reindex;
+        SqliteReindex* reindex = nullptr;
 };
 
 #endif // FORMATREINDEX_H

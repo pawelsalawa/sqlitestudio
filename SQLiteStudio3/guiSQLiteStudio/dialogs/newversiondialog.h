@@ -25,7 +25,7 @@ class GUI_API_EXPORT NewVersionDialog : public QDialog
     private:
         void init();
 
-        Ui::NewVersionDialog *ui;
+        Ui::NewVersionDialog *ui = nullptr;
 
     private slots:
         void installUpdates();

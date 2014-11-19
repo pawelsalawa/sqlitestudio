@@ -25,7 +25,7 @@ class GUI_API_EXPORT BugDialog : public QDialog
         static void finishedBugReport(bool success, const QString& errorMsg);
         static void finishedFeatureRequest(bool success, const QString& errorMsg);
 
-        Ui::BugDialog *ui;
+        Ui::BugDialog *ui = nullptr;
         bool bugMode = true;
         QString user;
 

@@ -62,7 +62,7 @@ class GUI_API_EXPORT CollationsEditor : public MdiChild
         QStringList getCurrentDatabases() const;
         void setFont(const QFont& font);
 
-        Ui::CollationsEditor *ui;
+        Ui::CollationsEditor *ui = nullptr;
         CollationsEditorModel* model = nullptr;
         QSortFilterProxyModel* collationFilterModel = nullptr;
         SelectableDbModel* dbListModel = nullptr;

@@ -14,7 +14,7 @@ class FormatUpdate : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteUpdate* upd;
+        SqliteUpdate* upd = nullptr;
 };
 
 #endif // FORMATUPDATE_H

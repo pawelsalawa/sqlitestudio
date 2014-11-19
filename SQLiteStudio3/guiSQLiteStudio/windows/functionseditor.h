@@ -73,7 +73,7 @@ class GUI_API_EXPORT FunctionsEditor : public MdiChild
         QStringList getCurrentDatabases() const;
         FunctionManager::ScriptFunction::Type getCurrentFunctionType() const;
 
-        Ui::FunctionsEditor *ui;
+        Ui::FunctionsEditor *ui = nullptr;
         FunctionsEditorModel* model = nullptr;
         QSortFilterProxyModel* functionFilterModel = nullptr;
         bool currentModified = false;

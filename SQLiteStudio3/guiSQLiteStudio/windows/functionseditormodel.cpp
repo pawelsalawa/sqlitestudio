@@ -194,8 +194,7 @@ void FunctionsEditorModel::setData(const QList<FunctionManager::ScriptFunction*>
 {
     beginResetModel();
 
-    Function* functionPtr;
-    foreach (functionPtr, functionList)
+    for (Function* functionPtr : functionList)
         delete functionPtr;
 
     functionList.clear();

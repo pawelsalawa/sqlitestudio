@@ -46,7 +46,7 @@ class GUI_API_EXPORT SortDialog : public QDialog, public ExtActionContainer
         void rebuildComboForItem(QTreeWidgetItem* item);
         void updateSortLabel();
 
-        Ui::SortDialog *ui;
+        Ui::SortDialog *ui = nullptr;
         QStringList originalColumns;
 
     private slots:

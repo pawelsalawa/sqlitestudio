@@ -14,7 +14,7 @@ class FormatDropIndex : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteDropIndex* dropIndex;
+        SqliteDropIndex* dropIndex = nullptr;
 };
 
 #endif // FORMATDROPINDEX_H

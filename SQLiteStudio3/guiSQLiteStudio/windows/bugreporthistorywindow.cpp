@@ -93,8 +93,8 @@ void BugReportHistoryWindow::reload()
     ui->reportsList->clear();
     ui->reportsList->setRowCount(entries.size());
 
-    QTableWidgetItem* item;
-    QLabel* urlLabel;
+    QTableWidgetItem* item = nullptr;
+    QLabel* urlLabel = nullptr;
     int row = 0;
     for (const Config::ReportHistoryEntryPtr& entry : entries)
     {

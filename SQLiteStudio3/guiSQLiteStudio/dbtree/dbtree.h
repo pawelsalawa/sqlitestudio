@@ -134,8 +134,8 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
 
         static void initDndTypes();
 
-        Ui::DbTree *ui;
-        DbTreeModel* treeModel;
+        Ui::DbTree *ui = nullptr;
+        DbTreeModel* treeModel = nullptr;
         WidgetCover* widgetCover = nullptr;
 
         static QHash<DbTreeItem::Type,QList<DbTreeItem::Type>> allowedTypesInside;

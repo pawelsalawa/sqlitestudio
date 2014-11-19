@@ -14,7 +14,7 @@ class FormatAnalyze : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteAnalyze* analyze;
+        SqliteAnalyze* analyze = nullptr;
 };
 
 #endif // FORMATANALYZE_H

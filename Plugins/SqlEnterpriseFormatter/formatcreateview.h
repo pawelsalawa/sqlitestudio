@@ -14,7 +14,7 @@ class FormatCreateView : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteCreateView* createView;
+        SqliteCreateView* createView = nullptr;
 };
 
 #endif // FORMATCREATEVIEW_H

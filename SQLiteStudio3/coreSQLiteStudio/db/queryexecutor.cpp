@@ -585,7 +585,7 @@ QList<DataType> QueryExecutor::resolveColumnTypes(Db* db, QList<QueryExecutor::R
 
     QList<DataType> datatypeList;
     Table t;
-    SqliteCreateTable::Column* parsedCol;
+    SqliteCreateTable::Column* parsedCol = nullptr;
     for (ResultColumnPtr col : columns)
     {
         t = Table(col->database, col->table);

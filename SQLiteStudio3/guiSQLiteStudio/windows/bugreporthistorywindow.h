@@ -53,7 +53,7 @@ class GUI_API_EXPORT BugReportHistoryWindow : public MdiChild
 
         void init();
 
-        Ui::BugReportHistoryWindow *ui;
+        Ui::BugReportHistoryWindow *ui = nullptr;
 
     private slots:
         void updateState();

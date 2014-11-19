@@ -22,7 +22,7 @@ class GUI_API_EXPORT ErrorsConfirmDialog : public QDialog
         void setBottomLabel(const QString& text);
 
     private:
-        Ui::ErrorsConfirmDialog *ui;
+        Ui::ErrorsConfirmDialog *ui = nullptr;
 };
 
 #endif // ERRORSCONFIRMDIALOG_H

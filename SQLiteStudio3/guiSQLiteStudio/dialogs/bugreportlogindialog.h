@@ -25,7 +25,7 @@ class GUI_API_EXPORT BugReportLoginDialog : public QDialog
     private:
         void init();
 
-        Ui::BugReportLoginDialog *ui;
+        Ui::BugReportLoginDialog *ui = nullptr;
         bool validCredentials = false;
         WidgetCover* widgetCover = nullptr;
 

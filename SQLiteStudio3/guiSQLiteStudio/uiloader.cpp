@@ -40,7 +40,7 @@ UiLoader::UiLoader(QObject *parent) :
 
 QWidget* UiLoader::createWidget(const QString& className, QWidget* parent, const QString& name)
 {
-    QWidget* w;
+    QWidget* w = nullptr;
     if (registeredClasses.contains(className))
         w = registeredClasses[className](parent, name);
     else

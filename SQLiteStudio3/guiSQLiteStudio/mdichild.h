@@ -40,7 +40,7 @@ class GUI_API_EXPORT MdiChild : public QWidget, public ExtActionContainer, publi
         bool invalid = false;
 
     private:
-        MdiWindow* mdiWindow;
+        MdiWindow* mdiWindow = nullptr;
 };
 
 

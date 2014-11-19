@@ -22,8 +22,8 @@ class GUI_API_EXPORT MultiEditorDialog : public QDialog
         void setReadOnly(bool readOnly);
 
     private:
-        MultiEditor* multiEditor;
-        QDialogButtonBox* buttonBox;
+        MultiEditor* multiEditor = nullptr;
+        QDialogButtonBox* buttonBox = nullptr;
 };
 
 #endif // MULTIEDITORDIALOG_H

@@ -54,9 +54,9 @@ class GUI_API_EXPORT DbObjectDialogs : public QObject
         Type getObjectType(const QString& database, const QString& name);
 
         Db* db = nullptr;
-        QWidget* parentWidget;
-        MainWindow* mainWindow;
-        MdiArea* mdiArea;
+        QWidget* parentWidget = nullptr;
+        MainWindow* mainWindow = nullptr;
+        MdiArea* mdiArea = nullptr;
         bool noConfirmation = false;
 };
 

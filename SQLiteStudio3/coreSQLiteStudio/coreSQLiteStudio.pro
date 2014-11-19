@@ -372,7 +372,8 @@ HEADERS += sqlitestudio.h\
     plugins/confignotifiableplugin.h \
     committable.h \
     plugins/uiconfiguredplugin.h \
-    services/extralicensemanager.h
+    services/extralicensemanager.h \
+    db/stdsqlite3driver.h
 
 unix:!symbian {
     maemo5 {

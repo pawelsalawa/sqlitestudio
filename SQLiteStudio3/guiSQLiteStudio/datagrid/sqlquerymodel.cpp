@@ -471,7 +471,7 @@ bool SqlQueryModel::commitEditedRow(const QList<SqlQueryItem*>& itemsInRow)
 
     // Values
     QString query;
-    SqlQueryModelColumn* col;
+    SqlQueryModelColumn* col = nullptr;
     QHash<QString,QVariant> queryArgs;
     QStringList assignmentArgs;
     RowId rowId;
@@ -656,7 +656,7 @@ void SqlQueryModel::loadData(SqlQueryPtr results)
 QList<QStandardItem*> SqlQueryModel::loadRow(SqlResultsRowPtr row)
 {
     QList<QStandardItem*> itemList;
-    SqlQueryItem* item;
+    SqlQueryItem* item = nullptr;
     RowId rowId;
     int colIdx = 0;
     foreach (const QVariant& value, row->valueList().mid(rowIdColumns))
@@ -740,7 +740,7 @@ RowId SqlQueryModel::getNewRowId(const RowId& currentRowId, const QList<SqlQuery
     else
     {
         // Check for an update on the standard ROWID
-        SqlQueryModelColumn* col;
+        SqlQueryModelColumn* col = nullptr;
         for (SqlQueryItem* item : items)
         {
             col = item->getColumn();
@@ -758,7 +758,7 @@ RowId SqlQueryModel::getNewRowId(const RowId& currentRowId, const QList<SqlQuery
 
 void SqlQueryModel::updateRowIdForAllItems(const Table& table, const RowId& rowId, const RowId& newRowId)
 {
-    SqlQueryItem* item;
+    SqlQueryItem* item = nullptr;
     for (int row = 0; row < rowCount(); row++)
     {
         for (int col = 0; col < columnCount(); col++)
@@ -821,7 +821,7 @@ void SqlQueryModel::readColumnDetails()
 
     SqlQueryModelColumnPtr modelColumn;
     SqliteColumnTypePtr modelColumnType;
-    SqlQueryModelColumn::Constraint* modelConstraint;
+    SqlQueryModelColumn::Constraint* modelConstraint = nullptr;
 
     foreach (const QueryExecutor::ResultColumnPtr& resCol, queryExecutor->getResultColumns())
     {
@@ -1238,7 +1238,7 @@ void SqlQueryModel::addNewRowInternal(int rowIdx)
 {
     QList<QStandardItem*> items;
     int colCnt = columnCount();
-    SqlQueryItem* item;
+    SqlQueryItem* item = nullptr;
     for (int i = 0; i < colCnt; i++)
     {
         item = new SqlQueryItem();
@@ -1442,7 +1442,7 @@ bool SqlQueryModel::isExecutionInProgress() const
 void SqlQueryModel::loadFullDataForEntireRow(int row)
 {
     int colCnt = columns.size();
-    SqlQueryItem *item;
+    SqlQueryItem *item = nullptr;
     for (int col = 0; col < colCnt; col++)
     {
         item = itemFromIndex(row, col);

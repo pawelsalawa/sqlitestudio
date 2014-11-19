@@ -186,7 +186,7 @@ QVariant ConfigMapper::getCommonConfigValueFromWidget(QWidget* widget, CfgEntry*
 
 QVariant ConfigMapper::getCustomConfigValueFromWidget(QWidget* widget, CfgEntry* key, bool& ok)
 {
-    CustomConfigWidgetPlugin* plugin;
+    CustomConfigWidgetPlugin* plugin = nullptr;
     QList<CustomConfigWidgetPlugin*> handlers;
     handlers += internalCustomConfigWidgets;
     handlers += PLUGINS->getLoadedPlugins<CustomConfigWidgetPlugin>();
@@ -327,7 +327,7 @@ void ConfigMapper::handleConfigComboBox(QWidget* widget, const QHash<QString, Cf
 
 bool ConfigMapper::applyCustomConfigToWidget(CfgEntry* key, QWidget* widget, const QVariant& value)
 {
-    CustomConfigWidgetPlugin* handler;
+    CustomConfigWidgetPlugin* handler = nullptr;
     QList<CustomConfigWidgetPlugin*> handlers;
     handlers += internalCustomConfigWidgets;
     handlers += PLUGINS->getLoadedPlugins<CustomConfigWidgetPlugin>();
@@ -345,7 +345,7 @@ bool ConfigMapper::applyCustomConfigToWidget(CfgEntry* key, QWidget* widget, con
 
 bool ConfigMapper::connectCustomNotifierToWidget(QWidget* widget, CfgEntry* cfgEntry)
 {
-    CustomConfigWidgetPlugin* handler;
+    CustomConfigWidgetPlugin* handler = nullptr;
     QList<CustomConfigWidgetPlugin*> handlers;
     handlers += internalCustomConfigWidgets;
     handlers += PLUGINS->getLoadedPlugins<CustomConfigWidgetPlugin>();
@@ -387,7 +387,7 @@ void ConfigMapper::saveFromWidget(QWidget* widget, CfgEntry* cfgEntry)
 
 bool ConfigMapper::saveCustomConfigFromWidget(QWidget* widget, CfgEntry* key)
 {
-    CustomConfigWidgetPlugin* plugin;
+    CustomConfigWidgetPlugin* plugin = nullptr;
     QList<CustomConfigWidgetPlugin*> handlers;
     handlers += internalCustomConfigWidgets;
     handlers += PLUGINS->getLoadedPlugins<CustomConfigWidgetPlugin>();

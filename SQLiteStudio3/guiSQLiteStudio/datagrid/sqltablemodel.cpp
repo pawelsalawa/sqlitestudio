@@ -180,7 +180,7 @@ void SqlTableModel::updateRowAfterInsert(const QList<SqlQueryItem*>& itemsInRow,
 {
     // Update cells with data just like it was entered. Only DEFAULT and PRIMARY KEY AUTOINCREMENT will have special values.
     QList<QVariant> values;
-    SqlQueryItem* item;
+    SqlQueryItem* item = nullptr;
     int i = 0;
     for (const SqlQueryModelColumnPtr& modelColumn : modelColumns)
     {
@@ -256,7 +256,7 @@ void SqlTableModel::updateColumnsAndValues(const QList<SqlQueryItem*>& itemsInRo
 {
     Dialect dialect = db->getDialect();
 
-    SqlQueryItem* item;
+    SqlQueryItem* item = nullptr;
     int i = 0;
     foreach (SqlQueryModelColumnPtr modelColumn, modelColumns)
     {

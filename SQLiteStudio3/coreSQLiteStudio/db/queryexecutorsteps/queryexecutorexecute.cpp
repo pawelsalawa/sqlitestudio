@@ -133,7 +133,7 @@ void QueryExecutorExecute::setupSqlite2ColumnDataTypes(SqlQueryPtr results)
 
     sqlite2Helper->clearBinaryTypes();
 
-    SqliteCreateTable::Column* column;
+    SqliteCreateTable::Column* column = nullptr;
     int idx = -1 + context->rowIdColumns.size();
     for (QueryExecutor::ResultColumnPtr resCol : context->resultColumns)
     {

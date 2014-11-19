@@ -63,14 +63,14 @@ class GUI_API_EXPORT MultiEditor : public QWidget
         static const int margins = 2;
         static const int spacing = 2;
 
-        QCheckBox* nullCheck;
-        QTabWidget* tabs;
+        QCheckBox* nullCheck = nullptr;
+        QTabWidget* tabs = nullptr;
         QList<MultiEditorWidget*> editors;
-        QLabel* stateLabel;
+        QLabel* stateLabel = nullptr;
         bool readOnly = false;
         bool deleted = false;
         bool invalidatingDisabled = false;
-        QGraphicsEffect* nullEffect;
+        QGraphicsEffect* nullEffect = nullptr;
         bool valueModified = false;
         QVariant valueBeforeNull;
         QToolButton* configBtn = nullptr;

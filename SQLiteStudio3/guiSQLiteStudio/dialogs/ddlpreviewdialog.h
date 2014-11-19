@@ -25,7 +25,7 @@ class GUI_API_EXPORT DdlPreviewDialog : public QDialog
         void changeEvent(QEvent *e);
 
     private:
-        Ui::DdlPreviewDialog *ui;
+        Ui::DdlPreviewDialog *ui = nullptr;
         Db* db = nullptr;
 
     public slots:

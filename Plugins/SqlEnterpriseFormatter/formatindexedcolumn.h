@@ -14,7 +14,7 @@ class FormatIndexedColumn : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteIndexedColumn* idxCol;
+        SqliteIndexedColumn* idxCol = nullptr;
 };
 
 #endif // FORMATINDEXEDCOLUMN_H

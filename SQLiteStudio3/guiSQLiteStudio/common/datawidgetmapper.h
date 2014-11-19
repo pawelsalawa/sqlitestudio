@@ -33,7 +33,7 @@ class DataWidgetMapper : public QObject
 
         void loadFromModel();
 
-        QAbstractItemModel* model;
+        QAbstractItemModel* model = nullptr;
         int currentIndex = -1;
         QHash<QWidget*,MappingEntry*> mappings;
         SubmitFilter submitFilter = nullptr;

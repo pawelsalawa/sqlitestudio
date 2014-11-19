@@ -58,7 +58,7 @@ class API_EXPORT DbVersionConverter : public QObject
         {
             Dialect from;
             Dialect to;
-            Db* srcDb;
+            Db* srcDb = nullptr;
             QString targetFile;
             QString targetName;
             ConversionConfimFunction confirmFunc = nullptr;
