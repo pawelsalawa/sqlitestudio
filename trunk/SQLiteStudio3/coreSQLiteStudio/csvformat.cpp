@@ -1,8 +1,8 @@
 #include "csvformat.h"
 #include <QtGlobal>
 
-const CsvFormat CsvFormat::DEFAULT = {",", "\n"};
-const CsvFormat CsvFormat::CLIPBOARD = {"\t", "\n"};
+const CsvFormat CsvFormat::DEFAULT = {",", "\r\n"};
+const CsvFormat CsvFormat::CLIPBOARD = {"\t", "\r\n"};
 
 CsvFormat::CsvFormat()
 {
