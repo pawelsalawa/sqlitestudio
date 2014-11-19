@@ -25,7 +25,7 @@ class GUI_API_EXPORT MultiEditorHex : public MultiEditorWidget
         QList<QWidget*> getNoScrollWidgets();
 
     private:
-        QHexEdit* hexEdit;
+        QHexEdit* hexEdit = nullptr;
 
     private slots:
         void modificationChanged();

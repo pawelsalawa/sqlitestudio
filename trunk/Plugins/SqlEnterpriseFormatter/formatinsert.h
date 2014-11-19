@@ -14,7 +14,7 @@ class FormatInsert : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteInsert* insert;
+        SqliteInsert* insert = nullptr;
 };
 
 #endif // FORMATINSERT_H

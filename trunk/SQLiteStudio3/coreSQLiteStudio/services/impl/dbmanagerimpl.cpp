@@ -274,7 +274,7 @@ void DbManagerImpl::init()
 void DbManagerImpl::loadInitialDbList()
 {
     QUrl url;
-    InvalidDb* db;
+    InvalidDb* db = nullptr;
     foreach (const Config::CfgDbPtr& cfgDb, CFG->dbList())
     {
         db = new InvalidDb(cfgDb->name, cfgDb->path, cfgDb->options);
@@ -300,7 +300,7 @@ void DbManagerImpl::scanForNewDatabasesInConfig()
     QList<Config::CfgDbPtr> cfgDbList = CFG->dbList();
 
     QUrl url;
-    InvalidDb* db;
+    InvalidDb* db = nullptr;
     for (const Config::CfgDbPtr& cfgDb : cfgDbList)
     {
         if (getByName(cfgDb->name) || getByPath(cfgDb->path))
@@ -365,8 +365,8 @@ Db* DbManagerImpl::tryToLoadDb(InvalidDb* invalidDb)
 Db* DbManagerImpl::createDb(const QString &name, const QString &path, const QHash<QString,QVariant> &options, QString* errorMessages)
 {
     QList<DbPlugin*> dbPlugins = PLUGINS->getLoadedPlugins<DbPlugin>();
-    DbPlugin* dbPlugin;
-    Db* db;
+    DbPlugin* dbPlugin = nullptr;
+    Db* db = nullptr;
     QStringList messages;
     QString message;
     foreach (dbPlugin, dbPlugins)
@@ -445,11 +445,17 @@ void DbManagerImpl::aboutToUnload(Plugin* plugin, PluginType* type)
 
     InvalidDb* invalidDb = nullptr;
     DbPlugin* dbPlugin = dynamic_cast<DbPlugin*>(plugin);
-    foreach (Db* db, dbList)
+    QList<Db*> toRemove;
+    for (Db* db : dbList)
     {
         if (!dbPlugin->checkIfDbServedByPlugin(db))
             continue;
 
+        toRemove << db;
+    }
+
+    for (Db* db : toRemove)
+    {
         emit dbAboutToBeUnloaded(db, dbPlugin);
 
         if (db->isOpen())

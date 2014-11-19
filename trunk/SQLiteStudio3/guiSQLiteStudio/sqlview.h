@@ -16,7 +16,7 @@ class GUI_API_EXPORT SqlView : public QTextEdit
         void setTextBackgroundColor(int from, int to, const QColor& color);
 
     private:
-        SqliteSyntaxHighlighter* highlighter;
+        SqliteSyntaxHighlighter* highlighter = nullptr;
 
     private slots:
         void changeFont(const QVariant& font);

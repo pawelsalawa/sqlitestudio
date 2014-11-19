@@ -415,7 +415,7 @@ bool TableConstraintsModel::handleColumnDeleted(SqliteCreateTable::Constraint* c
         case SqliteCreateTable::Constraint::UNIQUE:
         {
             QMutableListIterator<SqliteIndexedColumn*> it(constr->indexedColumns);
-            SqliteIndexedColumn* idxCol;
+            SqliteIndexedColumn* idxCol = nullptr;
             while (it.hasNext())
             {
                 idxCol = it.next();

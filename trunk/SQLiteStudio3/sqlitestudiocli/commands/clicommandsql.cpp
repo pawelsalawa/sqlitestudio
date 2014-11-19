@@ -185,7 +185,7 @@ void CliCommandSql::printResultsColumns(QueryExecutor* executor, SqlQueryPtr res
 
     // Get widths of each column in every data row, remember the longest ones
     QList<SortedColumnWidth*> columnWidths;
-    SortedColumnWidth* colWidth;
+    SortedColumnWidth* colWidth = nullptr;
     foreach (const QueryExecutor::ResultColumnPtr& resCol, resultColumns)
     {
         colWidth = new SortedColumnWidth();

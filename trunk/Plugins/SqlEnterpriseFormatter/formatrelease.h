@@ -14,7 +14,7 @@ class FormatRelease : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteRelease* release;
+        SqliteRelease* release = nullptr;
 };
 
 #endif // FORMATRELEASE_H

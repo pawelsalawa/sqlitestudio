@@ -84,9 +84,9 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void setupHeaderMenu();
         bool handleDoubleClick(SqlQueryItem* item);
 
-        SqlQueryItemDelegate* itemDelegate;
-        QMenu* contextMenu;
-        QMenu* headerContextMenu;
+        SqlQueryItemDelegate* itemDelegate = nullptr;
+        QMenu* contextMenu = nullptr;
+        QMenu* headerContextMenu = nullptr;
         WidgetCover* widgetCover = nullptr;
         QPushButton* cancelButton = nullptr;
         QProgressBar* busyBar = nullptr;

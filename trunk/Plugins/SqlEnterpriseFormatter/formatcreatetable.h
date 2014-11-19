@@ -16,7 +16,7 @@ class FormatCreateTable : public FormatStatement
         void formatColumns(const QList<SqliteCreateTable::Column*>& columns);
         int getColNameLength(const QString& name);
 
-        SqliteCreateTable* createTable;
+        SqliteCreateTable* createTable = nullptr;
 };
 
 class FormatCreateTableColumn : public FormatStatement
@@ -31,7 +31,7 @@ class FormatCreateTableColumn : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteCreateTable::Column* column;
+        SqliteCreateTable::Column* column = nullptr;
         int colNameIndent = 0;
         int colTypeIndent = 0;
 };
@@ -45,7 +45,7 @@ class FormatCreateTableColumnConstraint : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteCreateTable::Column::Constraint* constr;
+        SqliteCreateTable::Column::Constraint* constr = nullptr;
 };
 
 class FormatCreateTableConstraint : public FormatStatement
@@ -57,7 +57,7 @@ class FormatCreateTableConstraint : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteCreateTable::Constraint* constr;
+        SqliteCreateTable::Constraint* constr = nullptr;
 };
 
 #endif // FORMATCREATETABLE_H

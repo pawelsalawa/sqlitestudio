@@ -14,6 +14,7 @@
 #include <QDebug>
 #include <QPushButton>
 #include <QFileDialog>
+#include <QComboBox>
 
 DbDialog::DbDialog(Mode mode, QWidget *parent) :
     QDialog(parent),
@@ -190,7 +191,7 @@ void DbDialog::addOption(const DbPluginOption& option, int row)
     QWidget* editor = nullptr;
     QWidget* editorHelper = nullptr; // TODO, based on plugins for Url handlers
 
-    editor = getEditor(option.type, editorHelper, option.placeholderText);
+    editor = getEditor(option, editorHelper);
     Q_ASSERT(editor != nullptr);
 
     if (!option.toolTip.isNull())
@@ -217,50 +218,100 @@ void DbDialog::addOption(const DbPluginOption& option, int row)
     }
 }
 
-QWidget *DbDialog::getEditor(DbPluginOption::Type type, QWidget*& editorHelper, const QString& placeholderText)
+QWidget *DbDialog::getEditor(const DbPluginOption& opt, QWidget*& editorHelper)
 {
     QWidget* editor = nullptr;
     QLineEdit* le = nullptr;
     editorHelper = nullptr;
-    switch (type)
+    switch (opt.type)
     {
         case DbPluginOption::STRING:
+        {
             editor = new QLineEdit(this);
             le = dynamic_cast<QLineEdit*>(editor);
-            connect(editor, SIGNAL(textChanged(QString)), this, SLOT(propertyChanged()));
+            connect(le, SIGNAL(textChanged(QString)), this, SLOT(propertyChanged()));
             break;
+        }
         case DbPluginOption::PASSWORD:
+        {
             editor = new QLineEdit(this);
             le = dynamic_cast<QLineEdit*>(editor);
             le->setEchoMode(QLineEdit::Password);
-            connect(editor, SIGNAL(textChanged(QString)), this, SLOT(propertyChanged()));
+            connect(le, SIGNAL(textChanged(QString)), this, SLOT(propertyChanged()));
             break;
+        }
+        case DbPluginOption::CHOICE:
+        {
+            QComboBox* cb = new QComboBox(this);
+            editor = cb;
+            cb->setEditable(!opt.choiceReadOnly);
+            cb->addItems(opt.choiceValues);
+            cb->setCurrentText(opt.defaultValue.toString());
+            connect(cb, SIGNAL(currentIndexChanged(QString)), this, SLOT(propertyChanged()));
+            break;
+        }
         case DbPluginOption::INT:
-            editor = new QSpinBox(this);
-            connect(editor, SIGNAL(valueChanged(int)), this, SLOT(propertyChanged()));
+        {
+            QSpinBox* sb = new QSpinBox(this);
+            editor = sb;
+            if (!opt.minValue.isNull())
+                sb->setMinimum(opt.minValue.toInt());
+
+            if (!opt.maxValue.isNull())
+                sb->setMaximum(opt.maxValue.toInt());
+
+            if (!opt.defaultValue.isNull())
+                sb->setValue(opt.defaultValue.toInt());
+
+            connect(sb, SIGNAL(valueChanged(int)), this, SLOT(propertyChanged()));
             break;
+        }
         case DbPluginOption::FILE:
+        {
             editor = new QLineEdit(this);
             le = dynamic_cast<QLineEdit*>(editor);
             editorHelper = new QPushButton(tr("Browse"), this);
-            connect(editor, SIGNAL(textChanged(QString)), this, SLOT(propertyChanged()));
+            connect(le, SIGNAL(textChanged(QString)), this, SLOT(propertyChanged()));
             connect(editorHelper, SIGNAL(pressed()), this, SLOT(browseForFile()));
             break;
+        }
         case DbPluginOption::BOOL:
-            editor = new QCheckBox(this);
-            connect(editor, SIGNAL(stateChanged(int)), this, SLOT(propertyChanged()));
+        {
+            QCheckBox* cb = new QCheckBox(this);
+            editor = cb;
+            if (!opt.defaultValue.isNull())
+                cb->setChecked(opt.defaultValue.toBool());
+
+            connect(cb, SIGNAL(stateChanged(int)), this, SLOT(propertyChanged()));
             break;
+        }
         case DbPluginOption::DOUBLE:
-            editor = new QDoubleSpinBox(this);
-            connect(editor, SIGNAL(valueChanged(double)), this, SLOT(propertyChanged()));
+        {
+            QDoubleSpinBox* sb = new QDoubleSpinBox(this);
+            editor = sb;
+            if (!opt.minValue.isNull())
+                sb->setMinimum(opt.minValue.toDouble());
+
+            if (!opt.maxValue.isNull())
+                sb->setMaximum(opt.maxValue.toDouble());
+
+            if (!opt.defaultValue.isNull())
+                sb->setValue(opt.defaultValue.toDouble());
+
+            connect(sb, SIGNAL(valueChanged(double)), this, SLOT(propertyChanged()));
             break;
+        }
         default:
             // TODO plugin based handling of custom editors
+            qWarning() << "Unhandled DbDialog option for creating editor.";
             break;
     }
 
-    if (le && !placeholderText.isNull())
-        le->setPlaceholderText(placeholderText);
+    if (le)
+    {
+        le->setPlaceholderText(opt.placeholderText);
+        le->setText(opt.defaultValue.toString());
+    }
 
     return editor;
 }
@@ -271,13 +322,12 @@ QVariant DbDialog::getValueFrom(DbPluginOption::Type type, QWidget *editor)
     switch (type)
     {
         case DbPluginOption::STRING:
+        case DbPluginOption::PASSWORD:
+        case DbPluginOption::FILE:
             value = dynamic_cast<QLineEdit*>(editor)->text();
             break;
         case DbPluginOption::INT:
             value = dynamic_cast<QSpinBox*>(editor)->value();
-            break;
-        case DbPluginOption::FILE:
-            value = dynamic_cast<QLineEdit*>(editor)->text();
             break;
         case DbPluginOption::BOOL:
             value = dynamic_cast<QCheckBox*>(editor)->isChecked();
@@ -285,8 +335,12 @@ QVariant DbDialog::getValueFrom(DbPluginOption::Type type, QWidget *editor)
         case DbPluginOption::DOUBLE:
             value = dynamic_cast<QDoubleSpinBox*>(editor)->value();
             break;
+        case DbPluginOption::CHOICE:
+            value = dynamic_cast<QComboBox*>(editor)->currentText();
+            break;
         default:
             // TODO plugin based handling of custom editors
+            qWarning() << "Unhandled DbDialog option for value.";
             break;
     }
     return value;
@@ -297,13 +351,12 @@ void DbDialog::setValueFor(DbPluginOption::Type type, QWidget *editor, const QVa
     switch (type)
     {
         case DbPluginOption::STRING:
+        case DbPluginOption::FILE:
+        case DbPluginOption::PASSWORD:
             dynamic_cast<QLineEdit*>(editor)->setText(value.toString());
             break;
         case DbPluginOption::INT:
             dynamic_cast<QSpinBox*>(editor)->setValue(value.toInt());
-            break;
-        case DbPluginOption::FILE:
-            dynamic_cast<QLineEdit*>(editor)->setText(value.toString());
             break;
         case DbPluginOption::BOOL:
             dynamic_cast<QCheckBox*>(editor)->setChecked(value.toBool());
@@ -311,7 +364,11 @@ void DbDialog::setValueFor(DbPluginOption::Type type, QWidget *editor, const QVa
         case DbPluginOption::DOUBLE:
             dynamic_cast<QDoubleSpinBox*>(editor)->setValue(value.toDouble());
             break;
+        case DbPluginOption::CHOICE:
+            dynamic_cast<QComboBox*>(editor)->setCurrentText(value.toString());
+            break;
         default:
+            qWarning() << "Unhandled DbDialog option to set value.";
             // TODO plugin based handling of custom editors
             break;
     }

@@ -33,7 +33,7 @@ class ConfigMigrationWizard : public QWizard
         void collectCheckedTypes();
         void clearFunctions();
 
-        Ui::ConfigMigrationWizard *ui;
+        Ui::ConfigMigrationWizard *ui = nullptr;
         ConfigMigration* cfgMigration = nullptr;
         QList<ConfigMigrationItem::Type> checkedTypes;
         QList<FunctionManager::ScriptFunction*> fnList;

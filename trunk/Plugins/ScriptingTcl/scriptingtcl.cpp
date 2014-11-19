@@ -262,7 +262,7 @@ QVariant ScriptingTcl::tclObjToVariant(Tcl_Obj* obj)
         {
             QList<QVariant> list;
             int objc;
-            Tcl_Obj** objv;
+            Tcl_Obj** objv = nullptr;
             Tcl_ListObjGetElements(nullptr, obj, &objc, &objv);
             for (int i = 0; i < objc; i++)
                 list << tclObjToVariant(objv[i]);
@@ -273,8 +273,8 @@ QVariant ScriptingTcl::tclObjToVariant(Tcl_Obj* obj)
         case TclDataType::Dict:
         {
             Tcl_DictSearch search;
-            Tcl_Obj* key;
-            Tcl_Obj* value;
+            Tcl_Obj* key = nullptr;
+            Tcl_Obj* value = nullptr;
             QString keyStr;
             QVariant valueVariant;
             int done;

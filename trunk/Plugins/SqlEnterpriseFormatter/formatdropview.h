@@ -14,7 +14,7 @@ class FormatDropView : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteDropView* dropView;
+        SqliteDropView* dropView = nullptr;
 };
 
 #endif // FORMATDROPVIEW_H

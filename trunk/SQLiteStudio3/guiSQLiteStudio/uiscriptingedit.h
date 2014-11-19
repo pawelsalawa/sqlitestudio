@@ -27,7 +27,7 @@ class GUI_API_EXPORT UiScriptingEdit : public UiLoaderPropertyHandler
             private:
                 void installNewHighlighter(const QVariant& prop);
 
-                QWidget* watchedWidget;
+                QWidget* watchedWidget = nullptr;
                 QString currentLang;
                 QSyntaxHighlighter* currentHighlighter = nullptr;
                 bool changingHighlighter = false;

@@ -14,7 +14,7 @@ class FormatAttach : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteAttach* att;
+        SqliteAttach* att = nullptr;
 };
 
 #endif // FORMATATTACH_H

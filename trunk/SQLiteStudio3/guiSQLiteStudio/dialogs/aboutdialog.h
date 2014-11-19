@@ -29,7 +29,7 @@ class GUI_API_EXPORT AboutDialog : public QDialog
         void readLicense(int row, const QString& title, const QString& path);
         QString readFile(const QString& path);
 
-        Ui::AboutDialog *ui;
+        Ui::AboutDialog *ui = nullptr;
         QStringList indexContents;
         QString licenseContents;
 };

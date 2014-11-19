@@ -14,7 +14,7 @@ class FormatDelete : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteDelete* del;
+        SqliteDelete* del = nullptr;
 };
 
 #endif // FORMATDELETE_H

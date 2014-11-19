@@ -79,7 +79,7 @@ void StatusField::addEntry(const QIcon &icon, const QString &text, const QColor&
     }
 
     QList<QTableWidgetItem*> itemsCreated;
-    QTableWidgetItem* item;
+    QTableWidgetItem* item = nullptr;
 
     item = new QTableWidgetItem();
     item->setIcon(icon);

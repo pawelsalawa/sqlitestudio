@@ -31,7 +31,7 @@ class GUI_API_EXPORT DbConverterDialog : public QDialog
         static bool confirmConversion(const QList<QPair<QString, QString> >& diffs);
         static bool confirmConversionErrors(const QSet<QString>& errors);
 
-        Ui::DbConverterDialog *ui;
+        Ui::DbConverterDialog *ui = nullptr;
         DbListModel* dbListModel = nullptr;
         Db* srcDb = nullptr;
         DbVersionConverter* converter = nullptr;

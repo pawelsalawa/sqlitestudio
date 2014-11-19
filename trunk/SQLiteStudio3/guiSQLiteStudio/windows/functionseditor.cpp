@@ -203,7 +203,7 @@ void FunctionsEditor::functionSelected(int row)
 
     // Arguments
     ui->argsList->clear();
-    QListWidgetItem* item;
+    QListWidgetItem* item = nullptr;
     foreach (const QString& arg, model->getArguments(row))
     {
         item = new QListWidgetItem(arg);
@@ -441,7 +441,7 @@ void FunctionsEditor::updateCurrentFunctionState()
     QString lang = ui->langCombo->currentText();
     if (lang != currentHighlighterLang)
     {
-        QSyntaxHighlighter* highlighter;
+        QSyntaxHighlighter* highlighter = nullptr;
         if (currentMainHighlighter)
         {
             // A pointers swap with local var - this is necessary, cause deleting highlighter

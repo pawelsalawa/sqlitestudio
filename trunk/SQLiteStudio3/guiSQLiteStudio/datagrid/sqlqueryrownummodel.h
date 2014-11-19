@@ -21,7 +21,7 @@ class GUI_API_EXPORT SqlQueryRowNumModel : public QAbstractItemModel
 
     private:
         int rowNumBase = 1;
-        QAbstractItemModel* mainModel;
+        QAbstractItemModel* mainModel = nullptr;
 };
 
 #endif // SQLQUERYROWNUMMODEL_H

@@ -40,10 +40,10 @@ class GUI_API_EXPORT DdlHistoryWindow : public MdiChild
     private:
         void init();
 
-        Ui::DdlHistoryWindow *ui;
-        QStringListModel* dbListModel;
-        DdlHistoryModel* dataModel;
-        UserInputFilter* filter;
+        Ui::DdlHistoryWindow *ui = nullptr;
+        QStringListModel* dbListModel = nullptr;
+        DdlHistoryModel* dataModel = nullptr;
+        UserInputFilter* filter = nullptr;
 
     private slots:
         void activated(const QModelIndex& current, const QModelIndex& previous);

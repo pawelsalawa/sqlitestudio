@@ -27,7 +27,7 @@ class GUI_API_EXPORT ColumnPrimaryKeyPanel : public ConstraintPanel
         void init();
         void readConstraint();
 
-        Ui::ColumnPrimaryKeyPanel *ui;
+        Ui::ColumnPrimaryKeyPanel *ui = nullptr;
 
     private slots:
         void updateState();

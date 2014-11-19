@@ -123,7 +123,7 @@ QList<ConfigMigrationItem*> ConfigMigration::findItemsToMigrate()
     static_qstring(funcListQuery, "SELECT count(*) FROM functions");
     static_qstring(sqlHistoryQuery, "SELECT count(*) FROM history");
 
-    ConfigMigrationItem* item;
+    ConfigMigrationItem* item = nullptr;
     QList<ConfigMigrationItem*> results;
 
     int bugReports = db->exec(bugsHistoryQuery)->getSingleCell().toInt();

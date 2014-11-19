@@ -39,8 +39,8 @@ bool TableForeignKeyPanel::validate()
     bool columnsOk = false;
     bool columnsSelected = true;
     bool idxOk = true;
-    QCheckBox* check;
-    QComboBox* combo;
+    QCheckBox* check = nullptr;
+    QComboBox* combo = nullptr;
     for (int i = 0; i < totalColumns; i++)
     {
         check = qobject_cast<QCheckBox*>(columnsLayout->itemAtPosition(i, 0)->widget());
@@ -243,10 +243,10 @@ void TableForeignKeyPanel::readConstraint()
 
     // Columns
     int idx;
-    QCheckBox* check;
-    QComboBox* combo;
-    SqliteIndexedColumn* localCol;
-    SqliteIndexedColumn* foreignCol;
+    QCheckBox* check = nullptr;
+    QComboBox* combo = nullptr;
+    SqliteIndexedColumn* localCol = nullptr;
+    SqliteIndexedColumn* foreignCol = nullptr;
     int i = 0;
     foreach (localCol, constr->indexedColumns)
     {
@@ -324,9 +324,9 @@ void TableForeignKeyPanel::storeConfiguration()
     constr->foreignKey->foreignTable = ui->fkTableCombo->currentText();
 
     // Columns
-    QCheckBox* check;
-    QComboBox* combo;
-    SqliteIndexedColumn* idxCol;
+    QCheckBox* check = nullptr;
+    QComboBox* combo = nullptr;
+    SqliteIndexedColumn* idxCol = nullptr;
     QString name;
     for (int i = 0; i < totalColumns; i++)
     {
@@ -405,8 +405,8 @@ void TableForeignKeyPanel::readTables()
 
 int TableForeignKeyPanel::getColumnIndex(const QString& colName)
 {
-    QWidget* item;
-    QCheckBox* cb;
+    QWidget* item = nullptr;
+    QCheckBox* cb = nullptr;
     for (int i = 0; i < totalColumns; i++)
     {
         item = columnsLayout->itemAtPosition(i, 0)->widget();

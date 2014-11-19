@@ -14,7 +14,7 @@ class FormatCopy : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteCopy* copy;
+        SqliteCopy* copy = nullptr;
 };
 
 #endif // FORMATCOPY_H

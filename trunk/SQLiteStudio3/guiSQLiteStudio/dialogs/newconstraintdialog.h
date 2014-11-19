@@ -39,7 +39,7 @@ class GUI_API_EXPORT NewConstraintDialog : public QDialog
         int createTableConstraint(ConstraintDialog::Constraint constraintType);
         int editConstraint();
 
-        Ui::NewConstraintDialog *ui;
+        Ui::NewConstraintDialog *ui = nullptr;
         ConstraintDialog::Type type;
         Db* db = nullptr;
         ConstraintDialog::Constraint predefinedConstraintType = ConstraintDialog::UNKNOWN;

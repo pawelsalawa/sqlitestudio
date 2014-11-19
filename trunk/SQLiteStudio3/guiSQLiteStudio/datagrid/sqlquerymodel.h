@@ -204,7 +204,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         RowId getNewRowId(const RowId& currentRowId, const QList<SqlQueryItem*> items);
         void updateRowIdForAllItems(const Table& table, const RowId& rowId, const RowId& newRowId);
 
-        QueryExecutor* queryExecutor;
+        QueryExecutor* queryExecutor = nullptr;
         Db* db = nullptr;
         QList<SqlQueryModelColumnPtr> columns;
 

@@ -146,11 +146,11 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         static constexpr int closedWindowsStackSize = 20;
         static_char* openUpdatesUrl = "open_updates://";
 
-        Ui::MainWindow *ui;
-        DbTree* dbTree;
-        StatusField* statusField;
+        Ui::MainWindow *ui = nullptr;
+        DbTree* dbTree = nullptr;
+        StatusField* statusField = nullptr;
         QMenu* mdiMenu = nullptr;
-        FormManager* formManager;
+        FormManager* formManager = nullptr;
         QQueue<QVariant> closedWindowSessionValues;
         bool closingApp = false;
         QMenu* dbMenu = nullptr;

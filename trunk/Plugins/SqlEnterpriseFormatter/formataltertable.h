@@ -14,7 +14,7 @@ class FormatAlterTable : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteAlterTable* alterTable;
+        SqliteAlterTable* alterTable = nullptr;
 };
 
 #endif // FORMATALTERTABLE_H

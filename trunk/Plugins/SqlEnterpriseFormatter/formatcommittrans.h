@@ -14,7 +14,7 @@ class FormatCommitTrans : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteCommitTrans* ct;
+        SqliteCommitTrans* ct = nullptr;
 };
 
 #endif // FORMATCOMMITTRANS_H

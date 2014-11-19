@@ -87,7 +87,7 @@ class CliCommand : public QObject
         QStringList getCompletionInternalDbs();
         virtual QStringList getCompletionValuesFor(int id, const QString& partialValue);
 
-        CLI* cli;
+        CLI* cli = nullptr;
         CliCommandSyntax syntax;
 
     signals:

@@ -22,7 +22,7 @@ class QuitConfirmDialog : public QDialog
     private:
         void init();
 
-        Ui::QuitConfirmDialog *ui;
+        Ui::QuitConfirmDialog *ui = nullptr;
 };
 
 #endif // QUITCONFIRMDIALOG_H

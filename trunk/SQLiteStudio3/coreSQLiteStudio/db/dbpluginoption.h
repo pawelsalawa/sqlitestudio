@@ -2,6 +2,7 @@
 #define DBPLUGINOPTION_H
 
 #include <QString>
+#include <QVariant>
 
 /**
  * @brief Database plugin connection options.
@@ -37,7 +38,8 @@ struct DbPluginOption
         BOOL = 2, /**< QCheckBox will be added */
         DOUBLE = 3, /**< QDoubleSpinBox will be added */
         FILE = 4, /**< QLineEdit will be added */
-        PASSWORD /**< QLineEdit with value masking will be added */
+        PASSWORD = 5, /**< QLineEdit with value masking will be added */
+        CHOICE = 6 /**< QComboBox will be added */
     };
 
     /**
@@ -60,6 +62,31 @@ struct DbPluginOption
      * @brief Optional placeholder text for QLineEdit widget.
      */
     QString placeholderText;
+
+    /**
+     * @brief List of values for QComboBox.
+     */
+    QStringList choiceValues;
+
+    /**
+     * @brief Default value to be set in the editor widget.
+     */
+    QVariant defaultValue;
+
+    /**
+     * @brief Indicates if the combobox should be read only or writable.
+     */
+    bool choiceReadOnly = true;
+
+    /**
+     * @brief Minimum value for numeric editors (double or int).
+     */
+    QVariant minValue;
+
+    /**
+     * @brief Maximum value for numeric editors (double or int).
+     */
+    QVariant maxValue;
 
     /**
      * @brief Expected data type for the option.

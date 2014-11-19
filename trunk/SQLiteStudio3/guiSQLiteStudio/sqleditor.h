@@ -118,7 +118,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
                 void paintEvent(QPaintEvent *event);
 
             private:
-                SqlEditor *codeEditor;
+                SqlEditor *codeEditor = nullptr;
         };
 
         struct DbObject
@@ -186,7 +186,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         const DbObject* getValidObjectForPosition(const QPoint& point);
         void handleValidObjectCursor(const QPoint& point);
 
-        SqliteSyntaxHighlighter* highlighter;
+        SqliteSyntaxHighlighter* highlighter = nullptr;
         QMenu* contextMenu = nullptr;
         QMenu* validObjContextMenu = nullptr;
         Db* db = nullptr;

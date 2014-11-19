@@ -25,8 +25,8 @@ class GUI_API_EXPORT SearchTextDialog : public QDialog
     private:
         void applyConfigToLocator();
 
-        Ui::SearchTextDialog *ui;
-        SearchTextLocator* textLocator;
+        Ui::SearchTextDialog *ui = nullptr;
+        SearchTextLocator* textLocator = nullptr;
         bool configModifiedState = false;
 
     private slots:

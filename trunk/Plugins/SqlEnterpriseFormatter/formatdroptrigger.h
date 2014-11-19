@@ -14,7 +14,7 @@ class FormatDropTrigger : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteDropTrigger* dropTrig;
+        SqliteDropTrigger* dropTrig = nullptr;
 };
 
 #endif // FORMATDROPTRIGGER_H

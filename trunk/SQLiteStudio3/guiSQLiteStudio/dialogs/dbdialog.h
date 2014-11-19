@@ -48,7 +48,7 @@ class GUI_API_EXPORT DbDialog : public QDialog
         void init();
         void updateOptions();
         void addOption(const DbPluginOption& option, int row);
-        QWidget* getEditor(DbPluginOption::Type type, QWidget *&editorHelper, const QString& placeholderText);
+        QWidget* getEditor(const DbPluginOption& opt, QWidget *&editorHelper);
         QVariant getValueFrom(DbPluginOption::Type type, QWidget* editor);
         void setValueFor(DbPluginOption::Type type, QWidget* editor, const QVariant& value);
         void updateType();
@@ -57,7 +57,7 @@ class GUI_API_EXPORT DbDialog : public QDialog
         bool validate();
         void updateState();
 
-        Ui::DbDialog *ui;
+        Ui::DbDialog *ui = nullptr;
         Mode mode;
         QStringList existingDatabaseNames;
         Db* db = nullptr;

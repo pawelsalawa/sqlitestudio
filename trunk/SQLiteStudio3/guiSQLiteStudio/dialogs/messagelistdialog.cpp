@@ -88,7 +88,7 @@ void MessageListDialog::resizeEvent(QResizeEvent*)
     QFontMetrics metrics = ui->listWidget->fontMetrics();
     QRect rect = ui->listWidget->rect();
     int cnt = ui->listWidget->count();
-    QListWidgetItem* item;
+    QListWidgetItem* item = nullptr;
     for (int row = 0; row < cnt; row++)
     {
         item = ui->listWidget->item(row);

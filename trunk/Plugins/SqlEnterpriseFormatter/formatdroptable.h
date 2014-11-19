@@ -14,7 +14,7 @@ class FormatDropTable : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteDropTable* dropTable;
+        SqliteDropTable* dropTable = nullptr;
 };
 
 #endif // FORMATDROPTABLE_H

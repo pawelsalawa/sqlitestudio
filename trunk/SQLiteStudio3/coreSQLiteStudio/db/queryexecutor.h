@@ -1094,7 +1094,7 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          * Finally, the context serves as a results container from all steps. QueryExecutor reads
          * result columns metadata, total rows number, affected rows and other information from the context.
          */
-        Context* context;
+        Context* context = nullptr;
 
         /**
          * @brief Database that all queries will be executed on.

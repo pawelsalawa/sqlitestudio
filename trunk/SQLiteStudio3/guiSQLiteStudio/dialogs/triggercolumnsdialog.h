@@ -27,7 +27,7 @@ class GUI_API_EXPORT TriggerColumnsDialog : public QDialog
 
     private:
         QList<QCheckBox*> checkBoxList;
-        Ui::TriggerColumnsDialog *ui;
+        Ui::TriggerColumnsDialog *ui = nullptr;
 };
 
 #endif // TRIGGERCOLUMNSDIALOG_H

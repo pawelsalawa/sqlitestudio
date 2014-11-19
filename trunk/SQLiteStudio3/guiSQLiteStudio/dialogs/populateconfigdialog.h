@@ -28,7 +28,7 @@ class GUI_API_EXPORT PopulateConfigDialog : public QDialog
     private:
         void init();
 
-        Ui::PopulateConfigDialog *ui;
+        Ui::PopulateConfigDialog *ui = nullptr;
         PopulateEngine* engine = nullptr;
         ConfigMapper* configMapper = nullptr;
         QHash<CfgEntry*,bool> pluginConfigOk;

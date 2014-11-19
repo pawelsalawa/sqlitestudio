@@ -32,7 +32,7 @@ class GUI_API_EXPORT MdiWindow : public QMdiSubWindow
         bool confirmClose();
 
         QPointer<QWidget> lastFocusedWidget;
-        MdiArea* mdiArea;
+        MdiArea* mdiArea = nullptr;
         bool dbBeingClosed = false;
 
     private slots:

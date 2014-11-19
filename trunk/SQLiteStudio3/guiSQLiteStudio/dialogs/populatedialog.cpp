@@ -140,9 +140,9 @@ void PopulateDialog::refreshColumns()
 
     SchemaResolver resolver(db);
     QStringList columns = resolver.getTableColumns(ui->tableCombo->currentText());
-    QCheckBox* check;
-    QComboBox* combo;
-    QToolButton* btn;
+    QCheckBox* check = nullptr;
+    QComboBox* combo = nullptr;
+    QToolButton* btn = nullptr;
     int row = 0;
     for (const QString& column : columns)
     {

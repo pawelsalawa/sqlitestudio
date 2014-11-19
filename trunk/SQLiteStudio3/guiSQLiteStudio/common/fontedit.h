@@ -30,7 +30,7 @@ class GUI_API_EXPORT FontEdit : public QWidget
         void init();
         void updateFont();
 
-        Ui::FontEdit *ui;
+        Ui::FontEdit *ui = nullptr;
         QFont font;
 
     private slots:

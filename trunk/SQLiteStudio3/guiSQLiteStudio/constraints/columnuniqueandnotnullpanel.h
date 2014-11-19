@@ -28,7 +28,7 @@ class GUI_API_EXPORT ColumnUniqueAndNotNullPanel : public ConstraintPanel
         void init();
         void readConstraint();
 
-        Ui::ColumnUniqueAndNotNullPanel *ui;
+        Ui::ColumnUniqueAndNotNullPanel *ui = nullptr;
 
     private slots:
         void updateState();

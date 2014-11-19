@@ -119,11 +119,11 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
         static QHash<Action,QAction*> staticActions;
         static QHash<ActionGroup,QActionGroup*> staticActionGroups;
 
-        Ui::EditorWindow *ui;
-        SqlQueryModel* resultsModel;
+        Ui::EditorWindow *ui = nullptr;
+        SqlQueryModel* resultsModel = nullptr;
         QHash<ActionGroup,QActionGroup*> actionGroups;
-        QComboBox* dbCombo;
-        DbListModel* dbComboModel;
+        QComboBox* dbCombo = nullptr;
+        DbListModel* dbComboModel = nullptr;
         int sqlEditorNum = 1;
         qint64 lastQueryHistoryId = 0;
         QString lastSuccessfulQuery;

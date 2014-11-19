@@ -52,7 +52,7 @@ class API_EXPORT CfgEntry : public QObject
 
     protected:
         bool persistable = true;
-        CfgCategory* parent;
+        CfgCategory* parent = nullptr;
         QString name;
         QVariant defValue;
         QString title;

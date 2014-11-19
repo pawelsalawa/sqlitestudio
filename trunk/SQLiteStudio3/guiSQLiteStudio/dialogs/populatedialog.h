@@ -46,7 +46,7 @@ class GUI_API_EXPORT PopulateDialog : public QDialog
         void deleteEngines(const QList<PopulateEngine*>& engines);
         void rebuildEngines();
 
-        Ui::PopulateDialog *ui;
+        Ui::PopulateDialog *ui = nullptr;
         QGridLayout* columnsGrid = nullptr;
         DbListModel* dbListModel = nullptr;
         DbObjListModel* tablesModel = nullptr;

@@ -42,7 +42,7 @@ class CLI : public QObject
         static CLI* instance;
 
         QString lastHistoryEntry;
-        QThread* thread;
+        QThread* thread = nullptr;
         Db* currentDb = nullptr;
         bool executionFinished = false;
         bool doExit = false;

@@ -61,7 +61,7 @@ class GUI_API_EXPORT ConstraintDialog : public QDialog
         ConstraintPanel* createConstraintPanel();
         void updateDefinitionHeader();
 
-        Ui::ConstraintDialog *ui;
+        Ui::ConstraintDialog *ui = nullptr;
         Type type;
         Mode mode;
         Db* db = nullptr;

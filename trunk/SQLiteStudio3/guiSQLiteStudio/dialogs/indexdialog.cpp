@@ -332,7 +332,7 @@ void IndexDialog::rebuildCreateIndex()
 
     createIndex->uniqueKw = ui->uniqueCheck->isChecked();
 
-    SqliteIndexedColumn* idxCol;
+    SqliteIndexedColumn* idxCol = nullptr;
     int i = -1;
     for (const QString& column : tableColumns)
     {

@@ -13,7 +13,7 @@ class FormatSelect : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteSelect* select;
+        SqliteSelect* select = nullptr;
 };
 
 class FormatSelectCore : public FormatStatement
@@ -25,7 +25,7 @@ class FormatSelectCore : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteSelect::Core* core;
+        SqliteSelect::Core* core = nullptr;
 };
 
 class FormatSelectCoreResultColumn : public FormatStatement
@@ -37,7 +37,7 @@ class FormatSelectCoreResultColumn : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteSelect::Core::ResultColumn *resCol;
+        SqliteSelect::Core::ResultColumn *resCol = nullptr;
 };
 
 class FormatSelectCoreSingleSource : public FormatStatement
@@ -49,7 +49,7 @@ class FormatSelectCoreSingleSource : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteSelect::Core::SingleSource *singleSource;
+        SqliteSelect::Core::SingleSource *singleSource = nullptr;
 };
 
 class FormatSelectCoreJoinOp : public FormatStatement
@@ -61,7 +61,7 @@ class FormatSelectCoreJoinOp : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteSelect::Core::JoinOp *joinOp;
+        SqliteSelect::Core::JoinOp *joinOp = nullptr;
 };
 
 class FormatSelectCoreJoinConstraint : public FormatStatement
@@ -73,7 +73,7 @@ class FormatSelectCoreJoinConstraint : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteSelect::Core::JoinConstraint *joinConstr;
+        SqliteSelect::Core::JoinConstraint *joinConstr = nullptr;
 };
 
 class FormatSelectCoreJoinSourceOther : public FormatStatement
@@ -85,7 +85,7 @@ class FormatSelectCoreJoinSourceOther : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteSelect::Core::JoinSourceOther *joinSourceOther;
+        SqliteSelect::Core::JoinSourceOther *joinSourceOther = nullptr;
 };
 
 class FormatSelectCoreJoinSource : public FormatStatement
@@ -97,7 +97,7 @@ class FormatSelectCoreJoinSource : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteSelect::Core::JoinSource *joinSource;
+        SqliteSelect::Core::JoinSource *joinSource = nullptr;
 };
 
 #endif // FORMATSELECT_H

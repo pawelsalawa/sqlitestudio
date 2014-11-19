@@ -308,7 +308,7 @@ void FunctionManagerImpl::loadFromConfig()
 
     QVariantList list = CFG_CORE.Internal.Functions.get();
     QHash<QString,QVariant> fnHash;
-    ScriptFunction* func;
+    ScriptFunction* func = nullptr;
     for (const QVariant& var : list)
     {
         fnHash = var.toHash();

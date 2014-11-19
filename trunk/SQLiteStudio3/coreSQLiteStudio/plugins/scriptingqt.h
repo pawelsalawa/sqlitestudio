@@ -50,7 +50,7 @@ class ScriptingQt : public BuiltInPlugin, public DbAwareScriptingPlugin
                 ContextQt();
                 ~ContextQt();
 
-                QScriptEngine* engine;
+                QScriptEngine* engine = nullptr;
                 QCache<QString,QScriptProgram> scriptCache;
                 QString error;
                 ScriptingQtDbProxy* dbProxy = nullptr;
@@ -64,9 +64,9 @@ class ScriptingQt : public BuiltInPlugin, public DbAwareScriptingPlugin
 
         static const constexpr int cacheSize = 5;
 
-        ContextQt* mainContext;
+        ContextQt* mainContext = nullptr;
         QList<Context*> contexts;
-        QMutex* mainEngineMutex;
+        QMutex* mainEngineMutex = nullptr;
 };
 
 #endif // SCRIPTINGQT_H

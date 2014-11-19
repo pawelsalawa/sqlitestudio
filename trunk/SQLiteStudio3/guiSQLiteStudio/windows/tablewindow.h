@@ -163,8 +163,8 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         Db* db = nullptr;
         QString database;
         QString table;
-        Ui::TableWindow *ui;
-        SqlTableModel* dataModel;
+        Ui::TableWindow *ui = nullptr;
+        SqlTableModel* dataModel = nullptr;
         bool dataLoaded = false;
         bool existingTable = true;
         SqliteCreateTablePtr createTable;
@@ -172,7 +172,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         TableStructureModel* structureModel = nullptr;
         TableConstraintsModel* structureConstraintsModel = nullptr;
         ConstraintTabModel* constraintTabModel = nullptr;
-        WidgetCover* widgetCover;
+        WidgetCover* widgetCover = nullptr;
         ChainExecutor* structureExecutor = nullptr;
         TableModifier* tableModifier = nullptr;
         bool modifyingThisTable = false;

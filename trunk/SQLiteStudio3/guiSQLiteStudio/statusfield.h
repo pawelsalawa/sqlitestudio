@@ -32,10 +32,10 @@ class GUI_API_EXPORT StatusField : public QDockWidget
         void setupMenu();
         void readRecentMessages();
 
-        Ui::StatusField *ui;
-        QMenu* menu;
-        QAction* copyAction;
-        QAction* clearAction;
+        Ui::StatusField *ui = nullptr;
+        QMenu* menu = nullptr;
+        QAction* copyAction = nullptr;
+        QAction* clearAction = nullptr;
         QList<QAbstractAnimation*> itemAnimations;
         bool noFlashing = false;
 

@@ -133,19 +133,19 @@ class QueryExecutorStep : public QObject
         /**
          * @brief Pointer to the calling executor.
          */
-        QueryExecutor* queryExecutor;
+        QueryExecutor* queryExecutor = nullptr;
 
         /**
          * @brief Pointer to a shared context for all steps.
          */
-        QueryExecutor::Context* context;
+        QueryExecutor::Context* context = nullptr;
 
         /**
          * @brief Database that all queries will be executed on.
          *
          * Defined by init().
          */
-        Db* db;
+        Db* db = nullptr;
 
         /**
          * @brief SQLite dialect of the database.

@@ -14,7 +14,7 @@ class FormatVacuum : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteVacuum* vacuum;
+        SqliteVacuum* vacuum = nullptr;
 };
 
 #endif // FORMATVACUUM_H

@@ -75,10 +75,10 @@ class GUI_API_EXPORT FormView : public QScrollArea, public ExtActionContainer
         static const int spacing = 2;
         static const int minimumFieldHeight = 40;
 
-        DataWidgetMapper* dataMapper;
+        DataWidgetMapper* dataMapper = nullptr;
         QPointer<SqlQueryView> gridView;
         QPointer<SqlQueryModel> model;
-        QWidget* contents;
+        QWidget* contents = nullptr;
         QList<QWidget*> widgets;
         QList<MultiEditor*> editors;
         QList<bool> readOnly;

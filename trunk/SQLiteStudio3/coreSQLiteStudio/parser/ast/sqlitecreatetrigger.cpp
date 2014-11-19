@@ -21,7 +21,7 @@ SqliteCreateTrigger::SqliteCreateTrigger(const SqliteCreateTrigger& other) :
     DEEP_COPY_FIELD(SqliteExpr, precondition);
 
     // Special case of deep collection copy
-    SqliteQuery* newQuery;
+    SqliteQuery* newQuery = nullptr;
     foreach (SqliteQuery* query, other.queries)
     {
         switch (query->queryType)

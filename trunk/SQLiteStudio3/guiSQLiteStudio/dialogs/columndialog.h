@@ -68,10 +68,10 @@ class GUI_API_EXPORT ColumnDialog : public QDialog, public ExtActionContainer
         QToolButton* getToolButtonForConstraint(SqliteCreateTable::Column::Constraint* constraint);
         bool isUnofficialSqlite2Constraint(SqliteCreateTable::Column::Constraint* constraint);
 
-        Ui::ColumnDialog *ui;
+        Ui::ColumnDialog *ui = nullptr;
         SqliteCreateTable::ColumnPtr column;
-        ColumnDialogConstraintsModel* constraintsModel;
-        QCheckBox* modeCheckBox;
+        ColumnDialogConstraintsModel* constraintsModel = nullptr;
+        QCheckBox* modeCheckBox = nullptr;
         Db* db = nullptr;
 
     private slots:

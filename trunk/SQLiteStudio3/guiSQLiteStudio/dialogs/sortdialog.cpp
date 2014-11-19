@@ -36,7 +36,7 @@ void SortDialog::setColumns(const QStringList& columns)
     originalColumns = columns;
     ui->list->clear();
 
-    QTreeWidgetItem* item;
+    QTreeWidgetItem* item = nullptr;
     for (int row = 0, total = columns.size(); row < total; ++row)
     {
         item = new QTreeWidgetItem({columns[row], "ASC"});
@@ -53,8 +53,8 @@ QueryExecutor::SortList SortDialog::getSortOrder() const
 {
     QueryExecutor::SortList sortOrder;
 
-    QTreeWidgetItem* item;
-    QComboBox* combo;
+    QTreeWidgetItem* item = nullptr;
+    QComboBox* combo = nullptr;
     for (int row = 0, total = ui->list->topLevelItemCount(); row < total; ++row)
     {
         item = ui->list->topLevelItem(row);
@@ -80,8 +80,8 @@ void SortDialog::setSortOrder(const QueryExecutor::SortList& sortOrder)
 
     // Select proper columns and set order
     bool checked;
-    QTreeWidgetItem* item;
-    QComboBox* combo;
+    QTreeWidgetItem* item = nullptr;
+    QComboBox* combo = nullptr;
     for (int row = 0, total = ui->list->topLevelItemCount(); row < total; ++row)
     {
         item = ui->list->topLevelItem(row);
@@ -159,7 +159,7 @@ void SortDialog::rebuildComboForItem(QTreeWidgetItem* item)
 void SortDialog::updateSortLabel()
 {
     QStringList entries;
-    QTreeWidgetItem* item;
+    QTreeWidgetItem* item = nullptr;
     for (int row = 0, total = ui->list->topLevelItemCount(); row < total; ++row)
     {
         item = ui->list->topLevelItem(row);

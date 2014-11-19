@@ -13,7 +13,7 @@ class FormatWith : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteWith *with;
+        SqliteWith *with = nullptr;
         QString lineUpKeyword;
 };
 
@@ -25,7 +25,7 @@ class FormatWithCommonTableExpression : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteWith::CommonTableExpression* cte;
+        SqliteWith::CommonTableExpression* cte = nullptr;
 };
 
 #endif // FORMATWITH_H

@@ -45,7 +45,7 @@ bool QueryExecutorColumns::exec()
 
     // Defining result columns
     QueryExecutor::ResultColumnPtr resultColumn;
-    SqliteSelect::Core::ResultColumn* resultColumnForSelect;
+    SqliteSelect::Core::ResultColumn* resultColumnForSelect = nullptr;
     bool isRowIdColumn = false;
     int i = 0;
     for (const SelectResolver::Column& col : columns)

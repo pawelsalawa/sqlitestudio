@@ -14,7 +14,7 @@ class FormatBeginTrans : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteBeginTrans* bt;
+        SqliteBeginTrans* bt = nullptr;
 };
 
 #endif // FORMATBEGINTRANS_H

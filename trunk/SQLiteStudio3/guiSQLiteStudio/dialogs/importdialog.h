@@ -39,7 +39,7 @@ class GUI_API_EXPORT ImportDialog : public QWizard
         void updatePluginOptions(int& rows);
         bool isPluginConfigValid() const;
 
-        Ui::ImportDialog *ui;
+        Ui::ImportDialog *ui = nullptr;
         DbListModel* dbListModel = nullptr;
         DbObjListModel* tablesModel = nullptr;
         ConfigMapper* configMapper = nullptr;

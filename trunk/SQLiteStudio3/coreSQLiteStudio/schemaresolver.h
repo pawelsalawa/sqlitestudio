@@ -177,7 +177,7 @@ class API_EXPORT SchemaResolver
         StrHash<QSharedPointer<T>> getAllParsedObjectsForType(const QString& database, const QString& type);
 
         Db* db = nullptr;
-        Parser* parser;
+        Parser* parser = nullptr;
         bool ignoreSystemObjects = false;
         Db::Flags dbFlags;
 };

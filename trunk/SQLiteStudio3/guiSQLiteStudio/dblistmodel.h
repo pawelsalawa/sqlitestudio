@@ -56,7 +56,7 @@ class GUI_API_EXPORT DbListModel : public QAbstractListModel
         QList<Db*> unsortedList;
         QList<Db*> dbList;
         SortMode sortMode = SortMode::ConnectionOrder;
-        QComboBox* comboBox;
+        QComboBox* comboBox = nullptr;
 
     private slots:
         void dbConnected(Db* db);

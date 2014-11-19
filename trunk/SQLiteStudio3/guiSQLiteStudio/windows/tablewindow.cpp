@@ -933,7 +933,7 @@ bool TableWindow::validate(bool skipWarning)
         if (createTable->getConstraints(SqliteCreateTable::Constraint::PRIMARY_KEY).size() > 0)
             hasPk = true;
 
-        SqliteCreateTable::Column::Constraint* colConstraint;
+        SqliteCreateTable::Column::Constraint* colConstraint = nullptr;
         foreach (SqliteCreateTable::Column* column, createTable->columns)
         {
             colConstraint = column->getConstraint(SqliteCreateTable::Column::Constraint::PRIMARY_KEY);
@@ -1346,7 +1346,7 @@ void TableWindow::updateIndexes()
 
     ui->indexList->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Stretch);
 
-    QTableWidgetItem* item;
+    QTableWidgetItem* item = nullptr;
     int row = 0;
     foreach (SqliteCreateIndexPtr index, indexes)
     {
@@ -1396,7 +1396,7 @@ void TableWindow::updateTriggers()
                                                  tr("Details", "table window triggers")
                                              });
 
-    QTableWidgetItem* item;
+    QTableWidgetItem* item = nullptr;
     QString timeAndEvent;
     int row = 0;
     foreach (SqliteCreateTriggerPtr trig, triggers)

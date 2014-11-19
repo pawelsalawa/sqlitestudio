@@ -44,8 +44,8 @@ class GUI_API_EXPORT DbTreeView : public QTreeView
         bool handleViewDoubleClick(DbTreeItem* item);
         bool handleColumnDoubleClick(DbTreeItem* item);
 
-        QMenu* contextMenu;
-        DbTree* dbTree;
+        QMenu* contextMenu = nullptr;
+        DbTree* dbTree = nullptr;
         DbTreeItemDelegate* itemDelegate = nullptr;
         QPoint lastDropPosition;
 

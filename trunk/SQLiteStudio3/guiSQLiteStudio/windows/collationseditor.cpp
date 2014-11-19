@@ -297,7 +297,7 @@ void CollationsEditor::updateCurrentCollationState()
     QString lang = ui->langCombo->currentText();
     if (lang != currentHighlighterLang)
     {
-        QSyntaxHighlighter* highlighter;
+        QSyntaxHighlighter* highlighter = nullptr;
         if (currentHighlighter)
         {
             // A pointers swap with local var - this is necessary, cause deleting highlighter

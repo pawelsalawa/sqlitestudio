@@ -28,7 +28,7 @@ ObjectPool::ObjectPool(quint32 min, quint32 max)
     : min(min), max(max)
 {
     Q_ASSERT(min > 0);
-    T* obj;
+    T* obj = nullptr;
     for (int i = 0; i < min; i++)
     {
         obj = new T();

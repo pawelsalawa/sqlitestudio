@@ -40,7 +40,7 @@ class GUI_API_EXPORT ConstraintCheckPanel : public ConstraintPanel
         void updateVirtualSql();
         SqliteExprPtr parseExpression(const QString& sql);
 
-        Ui::ConstraintCheckPanel *ui;
+        Ui::ConstraintCheckPanel *ui = nullptr;
 
     private slots:
         void updateState();

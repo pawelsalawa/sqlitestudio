@@ -13,7 +13,7 @@ class FormatCreateTrigger : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteCreateTrigger* createTrig;
+        SqliteCreateTrigger* createTrig = nullptr;
 };
 
 class FormatCreateTriggerEvent : public FormatStatement
@@ -25,7 +25,7 @@ class FormatCreateTriggerEvent : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteCreateTrigger::Event* ev;
+        SqliteCreateTrigger::Event* ev = nullptr;
 };
 
 #endif // FORMATCREATETRIGGER_H

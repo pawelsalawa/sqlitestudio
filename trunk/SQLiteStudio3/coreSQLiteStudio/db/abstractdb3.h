@@ -112,7 +112,7 @@ class AbstractDb3 : public AbstractDb
         struct CollationUserData
         {
             QString name;
-            AbstractDb3<T>* db;
+            AbstractDb3<T>* db = nullptr;
         };
 
         QString extractLastError();
@@ -270,7 +270,7 @@ class AbstractDb3 : public AbstractDb
          *
          * Default collation is implemented by evaluateDefaultCollation().
          */
-        static void registerDefaultCollation(void* fnUserData, typename T::sqlite3* fnDbHandle, int eTextRep, const char* collationName);
+        static void registerDefaultCollation(void* fnUserData, typename T::handle* fnDbHandle, int eTextRep, const char* collationName);
 
         /**
          * @brief Called as a default collation implementation.
@@ -283,7 +283,7 @@ class AbstractDb3 : public AbstractDb
          */
         static int evaluateDefaultCollation(void* userData, int length1, const void* value1, int length2, const void* value2);
 
-        typename T::sqlite3* dbHandle = nullptr;
+        typename T::handle* dbHandle = nullptr;
         QString dbErrorMessage;
         int dbErrorCode = T::OK;
         QList<Query*> queries;
@@ -345,7 +345,7 @@ template <class T>
 bool AbstractDb3<T>::openInternal()
 {
     resetError();
-    typename T::sqlite3* handle;
+    typename T::handle* handle = nullptr;
     int res = T::open_v2(path.toUtf8().constData(), &handle, T::OPEN_READWRITE|T::OPEN_CREATE, nullptr);
     if (res != T::OK)
     {
@@ -698,7 +698,7 @@ void AbstractDb3<T>::releaseAggregateContext(typename T::context* context)
 }
 
 template <class T>
-void AbstractDb3<T>::registerDefaultCollation(void* fnUserData, typename T::sqlite3* fnDbHandle, int eTextRep, const char* collationName)
+void AbstractDb3<T>::registerDefaultCollation(void* fnUserData, typename T::handle* fnDbHandle, int eTextRep, const char* collationName)
 {
     CollationUserData* defUserData = reinterpret_cast<CollationUserData*>(fnUserData);
     if (!defUserData)

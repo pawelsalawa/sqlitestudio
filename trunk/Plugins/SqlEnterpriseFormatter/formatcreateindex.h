@@ -14,7 +14,7 @@ class FormatCreateIndex : public FormatStatement
         void formatInternal();
 
     private:
-        SqliteCreateIndex* createIndex;
+        SqliteCreateIndex* createIndex = nullptr;
 };
 
 #endif // FORMATCREATEINDEX_H
