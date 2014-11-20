@@ -1,6 +1,7 @@
 #include "queryexecutorcolumns.h"
 #include "common/utils_sql.h"
 #include "parser/parser.h"
+#include "parser/parsererror.h"
 #include <QDebug>
 
 // TODO need to test if attach name resolving works here
@@ -56,6 +57,9 @@ bool QueryExecutorColumns::exec()
         // Adding new result column to the query
         isRowIdColumn = (i < rowIdColCount);
         resultColumnForSelect = getResultColumnForSelect(resultColumn, col, isRowIdColumn);
+        if (!resultColumnForSelect)
+            return false;
+
         resultColumnForSelect->setParent(core);
         core->resultColumns << resultColumnForSelect;
 
@@ -130,6 +134,15 @@ SqliteSelect::Core::ResultColumn* QueryExecutorColumns::getResultColumnForSelect
 
     Parser parser(dialect);
     SqliteExpr* expr = parser.parseExpr(colString);
+    if (!expr)
+    {
+        qWarning() << "Could not parse result column expr:" << colString;
+        if (parser.getErrors().size() > 0)
+            qWarning() << "The error was:" << parser.getErrors().first()->getFrom() << ":" << parser.getErrors().first()->getMessage();
+
+        return nullptr;
+    }
+
     expr->setParent(selectResultColumn);
     selectResultColumn->expr = expr;
 

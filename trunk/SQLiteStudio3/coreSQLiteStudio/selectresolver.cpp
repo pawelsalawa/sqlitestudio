@@ -449,7 +449,27 @@ TokenList SelectResolver::getResColTokensWithoutAlias(SqliteSelect::Core::Result
     TokenList allTokens = resCol->tokens;
     if (!resCol->alias.isNull())
     {
-        int idx = allTokens.indexOf(Token::KEYWORD, "AS", Qt::CaseInsensitive);
+        int depth = 0;
+        int idx = -1;
+        int idxCandidate = -1;
+        for (const TokenPtr& token : allTokens)
+        {
+            idxCandidate++;
+            if (token->type == Token::PAR_LEFT)
+            {
+                depth++;
+            }
+            else if (token->type == Token::PAR_RIGHT)
+            {
+                depth--;
+            }
+            else if (token->type == Token::KEYWORD && token->value.compare("AS", Qt::CaseInsensitive) && depth <= 0)
+            {
+                idx = idxCandidate;
+                break;
+            }
+        }
+
         if (idx > -1)
             allTokens = allTokens.mid(0, idx - 1);
     }
