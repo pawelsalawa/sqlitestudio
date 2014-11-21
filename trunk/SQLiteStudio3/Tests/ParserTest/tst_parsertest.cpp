@@ -34,6 +34,7 @@ class ParserTest : public QObject
         void testDoubleQuotes();
         void testInsertError();
         void testExpr();
+        void testCommentBeginMultiline();
         void initTestCase();
         void cleanupTestCase();
 };
@@ -327,6 +328,14 @@ void ParserTest::testExpr()
     QString sql = "CAST (CASE WHEN port REGEXP '^[A-Z]' THEN substr(port, 2) ELSE port END AS INT) AS port";
     SqliteExpr* expr = parser3->parseExpr(sql);
     QVERIFY(expr);
+}
+
+void ParserTest::testCommentBeginMultiline()
+{
+    QString sql = "/*";
+    TokenList tokens = Lexer::tokenize(sql, Dialect::Sqlite3);
+    QVERIFY(tokens.size() == 1);
+    QVERIFY(tokens[0]->type == Token::COMMENT);
 }
 
 void ParserTest::initTestCase()
