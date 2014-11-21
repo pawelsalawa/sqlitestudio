@@ -232,6 +232,15 @@ void MultiEditor::setDataType(const DataType& dataType)
     configBtn->setEnabled(true);
 }
 
+void MultiEditor::focusThisEditor()
+{
+    MultiEditorWidget* w = dynamic_cast<MultiEditorWidget*>(tabs->currentWidget());
+    if (!w)
+        return;
+
+    w->focusThisWidget();
+}
+
 void MultiEditor::loadBuiltInEditors()
 {
     PLUGINS->loadBuiltInPlugin(new MultiEditorBoolPlugin);

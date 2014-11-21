@@ -130,6 +130,11 @@ QString MultiEditorBool::getTabLabel()
     return tr("Boolean");
 }
 
+void MultiEditorBool::focusThisWidget()
+{
+    checkBox->setFocus();
+}
+
 void MultiEditorBool::updateLabel()
 {
     checkBox->setText(getValue().toString());

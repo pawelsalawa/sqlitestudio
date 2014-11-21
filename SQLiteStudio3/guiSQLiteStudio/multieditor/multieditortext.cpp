@@ -51,6 +51,11 @@ QToolBar* MultiEditorText::getToolBar(int toolbar) const
     return nullptr;
 }
 
+void MultiEditorText::focusThisWidget()
+{
+    textEdit->setFocus();
+}
+
 QList<QWidget*> MultiEditorText::getNoScrollWidgets()
 {
     // We don't return text, we want it to be scrolled.

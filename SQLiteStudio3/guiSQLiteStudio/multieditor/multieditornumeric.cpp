@@ -35,6 +35,11 @@ QString MultiEditorNumeric::getTabLabel()
     return tr("Number");
 }
 
+void MultiEditorNumeric::focusThisWidget()
+{
+    spinBox->setFocus();
+}
+
 QList<QWidget*> MultiEditorNumeric::getNoScrollWidgets()
 {
     QList<QWidget*> list;
