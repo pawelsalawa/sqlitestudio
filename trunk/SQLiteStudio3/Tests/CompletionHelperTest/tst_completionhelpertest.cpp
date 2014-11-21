@@ -191,13 +191,13 @@ void CompletionHelperTest::testFrom2()
     QVERIFY(!contains(tokens, ExpectedToken::COLUMN));
 
     // Because abc was already used, the order should be:
+    // test
     // sqlite_master
     // sqlite_temp_master
-    // test
     // abc
-    QVERIFY(find(tokens, ExpectedToken::TABLE, "sqlite_master") == 0);
-    QVERIFY(find(tokens, ExpectedToken::TABLE, "sqlite_temp_master") == 1);
-    QVERIFY(find(tokens, ExpectedToken::TABLE, "test") == 2);
+    QVERIFY(find(tokens, ExpectedToken::TABLE, "test") == 0);
+    QVERIFY(find(tokens, ExpectedToken::TABLE, "sqlite_master") == 1);
+    QVERIFY(find(tokens, ExpectedToken::TABLE, "sqlite_temp_master") == 2);
     QVERIFY(find(tokens, ExpectedToken::TABLE, "abc") == 3);
 }
 
