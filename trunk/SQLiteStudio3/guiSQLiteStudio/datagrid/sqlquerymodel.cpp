@@ -216,8 +216,8 @@ QList<SqlQueryItem*> SqlQueryModel::getUncommitedItems() const
 
 QList<QList<SqlQueryItem*> > SqlQueryModel::groupItemsByRows(const QList<SqlQueryItem*>& items)
 {
-    QHash<int,QList<SqlQueryItem*> > itemsByRow;
-    foreach (SqlQueryItem* item, items)
+    QMap<int,QList<SqlQueryItem*>> itemsByRow;
+    for (SqlQueryItem* item : items)
         itemsByRow[item->row()] << item;
 
     return itemsByRow.values();

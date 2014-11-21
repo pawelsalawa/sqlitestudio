@@ -3,13 +3,14 @@
 #include "sqlquerymodel.h"
 #include "sqlqueryitem.h"
 #include "common/widgetcover.h"
-#include "csvserializer.h"
+#include "tsvserializer.h"
 #include "iconmanager.h"
 #include "common/unused.h"
 #include "common/extaction.h"
 #include "multieditor/multieditor.h"
 #include "multieditor/multieditordialog.h"
 #include "uiconfig.h"
+#include "dialogs/sortdialog.h"
 #include <QHeaderView>
 #include <QPushButton>
 #include <QProgressBar>
@@ -20,7 +21,6 @@
 #include <QClipboard>
 #include <QAction>
 #include <QMenu>
-#include <dialogs/sortdialog.h>
 
 CFG_KEYS_DEFINE(SqlQueryView)
 
@@ -46,6 +46,7 @@ QList<SqlQueryItem*> SqlQueryView::getSelectedItems()
     if (idxList.size() == 0)
         return items;
 
+    qSort(idxList);
     const SqlQueryModel* model = dynamic_cast<const SqlQueryModel*>(idxList.first().model());
     foreach (const QModelIndex& idx, idxList)
         items << model->itemFromIndex(idx);
@@ -310,10 +311,9 @@ void SqlQueryView::setCurrentRow(int row)
     setCurrentIndex(model()->index(row, 0));
 }
 
-void SqlQueryView::copy(const CsvFormat& format)
+void SqlQueryView::copy()
 {
     QList<SqlQueryItem*> selectedItems = getSelectedItems();
-    qSort(selectedItems);
     QList<QList<SqlQueryItem*> > groupedItems = SqlQueryModel::groupItemsByRows(selectedItems);
 
     QStringList cells;
@@ -328,13 +328,13 @@ void SqlQueryView::copy(const CsvFormat& format)
         cells.clear();
     }
 
-    QString csv = CsvSerializer::serialize(rows, format);
-    qApp->clipboard()->setText(csv);
+    QString tsv = TsvSerializer::serialize(rows);
+    qApp->clipboard()->setText(tsv);
 }
 
-void SqlQueryView::paste(const CsvFormat& format)
+void SqlQueryView::paste()
 {
-    QList<QStringList> deserializedRows = CsvSerializer::deserialize(qApp->clipboard()->text(), format);
+    QList<QStringList> deserializedRows = TsvSerializer::deserialize(qApp->clipboard()->text());
 
     QList<SqlQueryItem*> selectedItems = getSelectedItems();
     qSort(selectedItems);

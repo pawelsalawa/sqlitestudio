@@ -193,7 +193,8 @@ SOURCES += sqlitestudio.cpp \
     config_builder/cfgentry.cpp \
     config_builder/cfglazyinitializer.cpp \
     committable.cpp \
-    services/extralicensemanager.cpp
+    services/extralicensemanager.cpp \
+    tsvserializer.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -373,7 +374,8 @@ HEADERS += sqlitestudio.h\
     committable.h \
     plugins/uiconfiguredplugin.h \
     services/extralicensemanager.h \
-    db/stdsqlite3driver.h
+    db/stdsqlite3driver.h \
+    tsvserializer.h
 
 unix:!symbian {
     maemo5 {

@@ -84,7 +84,7 @@ bool CsvImport::extractColumns()
 void CsvImport::defineCsvFormat()
 {
     csvFormat = CsvFormat();
-    csvFormat.rowSeparator = '\n';
+    csvFormat.rowSeparator = '\r\n';
 
     switch (cfg.CsvImport.Separator.get())
     {

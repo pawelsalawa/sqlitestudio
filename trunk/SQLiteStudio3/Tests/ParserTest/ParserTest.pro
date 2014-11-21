@@ -10,8 +10,6 @@ include($$PWD/../testdirs.pri)
 QT       += testlib
 QT       -= gui
 
-QMAKE_CXXFLAGS += -std=c++11
-
 TARGET = tst_parsertest
 CONFIG   += console
 CONFIG   -= app_bundle
@@ -21,5 +19,3 @@ TEMPLATE = app
 
 SOURCES += tst_parsertest.cpp
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
-
-LIBS += -lTestUtils -lcoreSQLiteStudio
