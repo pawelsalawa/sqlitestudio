@@ -1,15 +1,13 @@
 #include "csvformat.h"
 #include <QtGlobal>
 
-const CsvFormat CsvFormat::DEFAULT = {",", "\r\n"};
-const CsvFormat CsvFormat::CLIPBOARD = {"\t", "\r\n"};
+const CsvFormat CsvFormat::DEFAULT = {",", "\n"};
 
 CsvFormat::CsvFormat()
 {
 }
 
-CsvFormat::CsvFormat(const QString& columnSeparator, const QString& rowSeparator)
+CsvFormat::CsvFormat(const QString& columnSeparator, const QString& rowSeparator) :
+    columnSeparator(columnSeparator), rowSeparator(rowSeparator)
 {
-    this->columnSeparator = columnSeparator;
-    this->rowSeparator = rowSeparator;
 }

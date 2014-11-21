@@ -13,7 +13,6 @@ struct API_EXPORT CsvFormat
     QString rowSeparator;
 
     static const CsvFormat DEFAULT;
-    static const CsvFormat CLIPBOARD;
 };
 
 #endif // CSVFORMAT_H

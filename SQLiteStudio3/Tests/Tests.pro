@@ -27,4 +27,5 @@ SUBDIRS += \
     parser \
     table_modifier \
     hash_tables \
-    db_ver_conv
+    db_ver_conv \
+    DsvFormatsTest

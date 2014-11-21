@@ -15,12 +15,8 @@ TARGET = tst_dbversionconvertertesttest
 CONFIG   += console
 CONFIG   -= app_bundle
 
-QMAKE_CXXFLAGS += -std=c++11
-
 TEMPLATE = app
 
 
 SOURCES += tst_dbversionconvertertesttest.cpp
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
-
-LIBS += -lTestUtils -lcoreSQLiteStudio

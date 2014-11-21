@@ -105,8 +105,8 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void executionStarted();
         void executionEnded();
         void setCurrentRow(int row);
-        void copy(const CsvFormat& format = CsvFormat::CLIPBOARD);
-        void paste(const CsvFormat& format = CsvFormat::CLIPBOARD);
+        void copy();
+        void paste();
         void copyAs();
         void pasteAs();
         void setNull();
