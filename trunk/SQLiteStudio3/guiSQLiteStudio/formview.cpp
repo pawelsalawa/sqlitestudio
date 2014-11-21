@@ -73,6 +73,14 @@ void FormView::reload()
     dataMapper->setCurrentIndex(idx);
 }
 
+void FormView::focusFirstEditor()
+{
+    if (editors.size() == 0)
+        return;
+
+    editors.first()->focusThisEditor();
+}
+
 void FormView::reloadInternal()
 {
     // Cleanup

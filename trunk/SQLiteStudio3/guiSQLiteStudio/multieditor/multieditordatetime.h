@@ -28,6 +28,7 @@ class GUI_API_EXPORT MultiEditorDateTime : public MultiEditorWidget
         bool getReadOnly() const;
         void setReadOnly(bool value);
         QString getTabLabel();
+        void focusThisWidget();
 
     protected:
         void updateCalendarDisplay();

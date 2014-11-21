@@ -181,6 +181,11 @@ QString MultiEditorDateTime::getTabLabel()
     return tr("Date & time");
 }
 
+void MultiEditorDateTime::focusThisWidget()
+{
+    dateTimeEdit->setFocus();
+}
+
 QStringList MultiEditorDateTime::getParsingFormats()
 {
     return formats;

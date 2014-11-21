@@ -10,6 +10,7 @@
 #include "common/extaction.h"
 #include "iconmanager.h"
 #include "uiconfig.h"
+#include "datagrid/sqlqueryitem.h"
 #include <QDebug>
 #include <QHeaderView>
 #include <QVBoxLayout>
@@ -573,8 +574,10 @@ void DataView::insertRow()
         return;
 
     model->addNewRow();
+    initFormViewForNewRow();
     formView->updateFromGrid();
     updateCurrentFormViewRow();
+    formViewFocusFirstEditor();
 }
 
 void DataView::insertMultipleRows()
@@ -585,6 +588,7 @@ void DataView::insertMultipleRows()
     model->addMultipleRows();
     formView->updateFromGrid();
     updateCurrentFormViewRow();
+    formViewFocusFirstEditor();
 }
 
 void DataView::deleteRow()
@@ -595,6 +599,7 @@ void DataView::deleteRow()
     model->deleteSelectedRows();
     formView->updateFromGrid();
     updateCurrentFormViewRow();
+    formViewFocusFirstEditor();
 }
 
 void DataView::commitGrid()
@@ -688,6 +693,7 @@ void DataView::commitForm()
     gridView->selectRow(formView->getCurrentRow());
     selectiveCommitGrid();
     formView->updateFromGrid();
+    formViewFocusFirstEditor();
 }
 
 void DataView::rollbackForm()
@@ -696,26 +702,48 @@ void DataView::rollbackForm()
     gridView->selectRow(formView->getCurrentRow());
     selectiveRollbackGrid();
     formView->updateFromGrid();
+    updateCurrentFormViewRow();
+    formViewFocusFirstEditor();
 }
 
 void DataView::firstRow()
 {
     goToFormRow(IndexModifier::FIRST);
+    formViewFocusFirstEditor();
 }
 
 void DataView::prevRow()
 {
     goToFormRow(IndexModifier::PREV);
+    formViewFocusFirstEditor();
 }
 
 void DataView::nextRow()
 {
     goToFormRow(IndexModifier::NEXT);
+    formViewFocusFirstEditor();
 }
 
 void DataView::lastRow()
 {
     goToFormRow(IndexModifier::LAST);
+    formViewFocusFirstEditor();
+}
+
+void DataView::initFormViewForNewRow()
+{
+    if (currentWidget() != formWidget)
+        return;
+
+    int row = gridView->getCurrentIndex().row();
+    for (SqlQueryItem* item : getModel()->getRow(row))
+        item->setValue("");
+}
+
+void DataView::formViewFocusFirstEditor()
+{
+    if (currentWidget() == formWidget)
+        formView->focusFirstEditor();
 }
 
 void DataView::columnsHeaderClicked(int columnIdx)

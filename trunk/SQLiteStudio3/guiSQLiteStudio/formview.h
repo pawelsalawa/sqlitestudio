@@ -96,6 +96,7 @@ class GUI_API_EXPORT FormView : public QScrollArea, public ExtActionContainer
         void updateFromGrid();
         void load();
         void reload();
+        void focusFirstEditor();
 
     signals:
         void commitStatusChanged();

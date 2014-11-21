@@ -21,6 +21,7 @@ class GUI_API_EXPORT MultiEditorHex : public MultiEditorWidget
         QVariant getValue();
         void setReadOnly(bool value);
         QString getTabLabel();
+        void focusThisWidget();
 
         QList<QWidget*> getNoScrollWidgets();
 

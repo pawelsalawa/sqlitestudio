@@ -39,6 +39,11 @@ QString MultiEditorHex::getTabLabel()
     return tr("Hex");
 }
 
+void MultiEditorHex::focusThisWidget()
+{
+    hexEdit->setFocus();
+}
+
 QList<QWidget*> MultiEditorHex::getNoScrollWidgets()
 {
     return QList<QWidget*>();

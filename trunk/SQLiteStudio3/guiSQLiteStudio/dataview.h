@@ -126,6 +126,8 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         void setFormViewEnabled(bool enabled);
         void readData();
         void updateFilterIcon();
+        void initFormViewForNewRow();
+        void formViewFocusFirstEditor();
 
         static FilterMode filterMode;
         static TabsPosition tabsPosition;

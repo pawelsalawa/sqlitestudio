@@ -23,6 +23,7 @@ class GUI_API_EXPORT MultiEditorBool : public MultiEditorWidget
         void setReadOnly(bool boolValue);
         QList<QWidget*> getNoScrollWidgets();
         QString getTabLabel();
+        void focusThisWidget();
 
     private:
         enum Format

@@ -39,14 +39,12 @@ class GUI_API_EXPORT MultiEditor : public QWidget
         void setValue(const QVariant& value);
         QVariant getValue() const;
         bool isModified() const;
-
         bool eventFilter(QObject* obj, QEvent* event);
-
         bool getReadOnly() const;
         void setReadOnly(bool value);
         void setDeletedRow(bool value);
-
         void setDataType(const DataType& dataType);
+        void focusThisEditor();
 
         static void loadBuiltInEditors();
 

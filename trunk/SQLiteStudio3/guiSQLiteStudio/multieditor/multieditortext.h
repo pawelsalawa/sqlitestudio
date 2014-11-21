@@ -46,7 +46,7 @@ class GUI_API_EXPORT MultiEditorText : public MultiEditorWidget, public ExtActio
         void setReadOnly(bool value);
         QString getTabLabel();
         QToolBar* getToolBar(int toolbar) const;
-
+        void focusThisWidget();
         QList<QWidget*> getNoScrollWidgets();
 
     protected:
