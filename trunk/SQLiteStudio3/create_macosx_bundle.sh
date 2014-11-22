@@ -73,8 +73,8 @@ elif [ "$3" == "dist" ]; then
     do
     PLUGIN=`echo $line | awk '{print $1}'`
     PLUGIN_VER=`echo $line | awk '{print $2}'`
-    echo "Building plugin package: $PLUGIN-$PLUGIN_VER.tar.gz"
     if [ -f SQLiteStudio.app/Contents/PlugIns/lib$PLUGIN.dylib ]; then
+        echo "Building plugin package: $PLUGIN-$PLUGIN_VER.tar.gz"
         cp SQLiteStudio.app/Contents/PlugIns/lib$PLUGIN.dylib Contents/PlugIns
         zip -r $PLUGIN\-$PLUGIN_VER.zip Contents
     fi
