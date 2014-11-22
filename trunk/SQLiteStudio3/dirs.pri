@@ -3,9 +3,8 @@ OBJECTS_DIR = $$PWD/../output/build
 MOC_DIR = $$PWD/../output/build
 UI_DIR = $$PWD/../output/build
 
-LIBS += -L$$DESTDIR -lTestUtils -lcoreSQLiteStudio
+LIBS += -L$$DESTDIR
 
-CONFIG += c++11
 
 macx: {
     QMAKE_CXXFLAGS += -Wno-gnu-zero-variadic-macro-arguments -Wno-overloaded-virtual

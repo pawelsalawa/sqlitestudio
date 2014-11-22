@@ -84,8 +84,7 @@ cd %PORTABLE%\..\incremental
 rem Plugin packages
 echo Creating plugin updates
 cd %PORTABLE%\..
-for /f "delims=" %%p in ('SQLiteStudio\sqlitestudiocli --list-plugins') do (
-	echo Creating plugin update: %%p
+for /f "delims=" %%p in ('SQLiteStudio\SQLiteStudio.exe --list-plugins') do (
 	call:preparePlugin %%p
 )
 
@@ -96,6 +95,7 @@ GOTO:EOF
 	set plugin=%~1
 	set plugin_ver=%~2
 	if exist SQLiteStudio\plugins\%plugin%.dll (
+		echo Creating plugin update: %%p
 		mkdir plugins\%plugin%\SQLiteStudio
 		copy SQLiteStudio\plugins\%plugin%.dll plugins\%plugin%\SQLiteStudio > nul
 

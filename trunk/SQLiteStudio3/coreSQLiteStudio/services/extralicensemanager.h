@@ -1,10 +1,11 @@
 #ifndef EXTRALICENSEMANAGER_H
 #define EXTRALICENSEMANAGER_H
 
+#include "coreSQLiteStudio_global.h"
 #include <QString>
 #include <QHash>
 
-class ExtraLicenseManager
+class API_EXPORT ExtraLicenseManager
 {
     public:
         ExtraLicenseManager();
