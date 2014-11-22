@@ -69,7 +69,7 @@ elif [ "$3" == "dist" ]; then
 
     # Plugins
     mkdir Contents Contents/PlugIns
-    SQLiteStudio.app/Contents/MacOS/sqlitestudiocli --list-plugins | while read line
+    SQLiteStudio.app/Contents/MacOS/sqlitestudio --list-plugins | while read line
     do
     PLUGIN=`echo $line | awk '{print $1}'`
     PLUGIN_VER=`echo $line | awk '{print $2}'`
