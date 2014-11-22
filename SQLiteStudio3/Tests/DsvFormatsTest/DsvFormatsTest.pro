@@ -4,8 +4,7 @@
 #
 #-------------------------------------------------
 
-include($$PWD/../../dirs.pri)
-include($$PWD/../testdirs.pri)
+include($$PWD/../TestUtils/test_common.pri)
 
 QT       += testlib
 

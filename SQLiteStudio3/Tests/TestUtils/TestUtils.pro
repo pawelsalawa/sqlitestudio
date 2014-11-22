@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-include($$PWD/../../dirs.pri)
+include(test_common.pri)
 
 QT       -= gui
 
@@ -47,3 +47,6 @@ unix:!symbian {
 }
 
 LIBS += -lcoreSQLiteStudio -lsqlite3
+
+OTHER_FILES += \
+    test_common.pri

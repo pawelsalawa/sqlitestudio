@@ -21,6 +21,8 @@
 #include "guiSQLiteStudio_global.h"
 #include "coreSQLiteStudio_global.h"
 #include "log.h"
+#include "qio.h"
+#include "services/pluginmanager.h"
 #include <QCommandLineParser>
 #include <QCommandLineOption>
 #include <QApplication>
@@ -28,6 +30,8 @@
 #include <QThread>
 #include <QPluginLoader>
 #include <QDebug>
+
+bool listPlugins = false;
 
 QString uiHandleCmdLineArgs()
 {
@@ -41,11 +45,13 @@ QString uiHandleCmdLineArgs()
     QCommandLineOption lemonDebugOption("debug-lemon", QObject::tr("Enables Lemon parser debug messages for SQL code assistant."));
     QCommandLineOption sqlDebugOption("debug-sql", QObject::tr("Enables debugging of every single SQL query being sent to any database."));
     QCommandLineOption sqlDebugDbNameOption("debug-sql-db", QObject::tr("Limits SQL query messages to only the given <database>."), QObject::tr("database"));
+    QCommandLineOption listPluginsOption("list-plugins", QObject::tr("Lists plugins installed in the SQLiteStudio end exists."));
     parser.addOption(debugOption);
     parser.addOption(debugStdOutOption);
     parser.addOption(lemonDebugOption);
     parser.addOption(sqlDebugOption);
     parser.addOption(sqlDebugDbNameOption);
+    parser.addOption(listPluginsOption);
 
     parser.addPositionalArgument(QObject::tr("file"), QObject::tr("Database file to open"));
 
@@ -56,6 +62,9 @@ QString uiHandleCmdLineArgs()
     setSqlLoggingEnabled(parser.isSet(sqlDebugOption));
     if (parser.isSet(sqlDebugDbNameOption))
         setSqlLoggingFilter(parser.value(sqlDebugDbNameOption));
+
+    if (parser.isSet(listPluginsOption))
+        listPlugins = true;
 
     QStringList args = parser.positionalArguments();
     if (args.size() > 0)
@@ -95,6 +104,15 @@ int main(int argc, char *argv[])
     MainWindow::getInstance();
 
     SQLITESTUDIO->initPlugins();
+
+    if (listPlugins)
+    {
+        for (const PluginManager::PluginDetails& details : PLUGINS->getAllPluginDetails())
+            qOut << details.name << " " << details.versionString << "\n";
+
+        return 0;
+    }
+
     IconManager::getInstance()->rescanResources();
 
     MainWindow::getInstance()->restoreSession();
