@@ -11,12 +11,7 @@ FormatDelete::FormatDelete(SqliteDelete* del) :
 void FormatDelete::formatInternal()
 {
     if (del->with)
-    {
-        withStatement(del->with, QString(), [](FormatStatement* stmt)
-        {
-            dynamic_cast<FormatWith*>(stmt)->setLineUpKeyword("DELETE");
-        });
-    }
+        withStatement(del->with);
 
     markKeywordLineUp("DELETE FROM");
 

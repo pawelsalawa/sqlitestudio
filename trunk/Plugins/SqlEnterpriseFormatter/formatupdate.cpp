@@ -11,12 +11,7 @@ FormatUpdate::FormatUpdate(SqliteUpdate* upd) :
 void FormatUpdate::formatInternal()
 {
     if (upd->with)
-    {
-        withStatement(upd->with, QString(), [](FormatStatement* stmt)
-        {
-            dynamic_cast<FormatWith*>(stmt)->setLineUpKeyword("DELETE");
-        });
-    }
+        withStatement(upd->with);
 
     markKeywordLineUp("UPDATE");
     withKeyword("UPDATE");

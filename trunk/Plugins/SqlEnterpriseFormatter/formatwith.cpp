@@ -30,6 +30,9 @@ FormatWithCommonTableExpression::FormatWithCommonTableExpression(SqliteWith::Com
 
 void FormatWithCommonTableExpression::formatInternal()
 {
-    withId(cte->table).withParDefLeft().withStatementList(cte->indexedColumns, "idxCols").withParDefRight()
-            .withKeyword("AS").withParDefLeft().withStatement(cte->select).withParDefRight();
+    withId(cte->table);
+    if (cte->indexedColumns.size() > 0)
+        withParDefLeft().withStatementList(cte->indexedColumns, "idxCols").withParDefRight();
+
+    withKeyword("AS").withParDefLeft().withStatement(cte->select).withParDefRight();
 }

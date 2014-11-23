@@ -425,10 +425,11 @@ void QueryExecutor::simpleExecutionFinished(SqlQueryPtr results)
     else
         context->rowsCountingRequired = true;
 
-    ResultColumnPtr resCol = ResultColumnPtr::create();
+    ResultColumnPtr resCol;
     context->resultColumns.clear();
     foreach (const QString& colName, results->getColumnNames())
     {
+        resCol = ResultColumnPtr::create();
         resCol->displayName = colName;
         context->resultColumns << resCol;
     }
