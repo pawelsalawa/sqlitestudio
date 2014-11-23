@@ -850,6 +850,7 @@ void DbTree::deleteItem(DbTreeItem* item)
             Db* db = item->getDb();
             DbObjectDialogs dialogs(db);
             dialogs.setNoConfirmation(true); // confirmation is done in deleteSelected()
+            dialogs.setNoSchemaRefreshing(true); // we will refresh after all items are deleted
             dialogs.dropObject(item->text()); // TODO database name when supported
             break;
         }
@@ -1483,8 +1484,15 @@ void DbTree::deleteItems(const QList<DbTreeItem*>& itemsToDelete)
         return;
 
     // Deleting items
-    foreach (DbTreeItem* item, items)
+    QSet<Db*> databasesToRefresh;
+    for (DbTreeItem* item : items)
+    {
+        databasesToRefresh << item->getDb();
         deleteItem(item);
+    }
+
+    for (Db* dbToRefresh : databasesToRefresh)
+        DBTREE->refreshSchema(dbToRefresh);
 }
 
 void DbTree::refreshSchemas()

@@ -221,7 +221,9 @@ bool DbObjectDialogs::dropObject(const QString& database, const QString& name)
     }
 
     CFG->addDdlHistory(finalSql, db->getName(), db->getPath());
-    DBTREE->refreshSchema(db);
+    if (!noSchemaRefreshing)
+        DBTREE->refreshSchema(db);
+
     return true;
 }
 
@@ -243,6 +245,16 @@ DbObjectDialogs::Type DbObjectDialogs::getObjectType(const QString& database, co
     QString typeStr = results->getSingleCell().toString();
     return static_cast<Type>(types.indexOf(typeStr));
 }
+bool DbObjectDialogs::getNoSchemaRefreshing() const
+{
+    return noSchemaRefreshing;
+}
+
+void DbObjectDialogs::setNoSchemaRefreshing(bool value)
+{
+    noSchemaRefreshing = value;
+}
+
 bool DbObjectDialogs::getNoConfirmation() const
 {
     return noConfirmation;

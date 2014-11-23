@@ -41,6 +41,9 @@ class GUI_API_EXPORT DbObjectDialogs : public QObject
         bool getNoConfirmation() const;
         void setNoConfirmation(bool value);
 
+        bool getNoSchemaRefreshing() const;
+        void setNoSchemaRefreshing(bool value);
+
     private:
         enum class Type
         {
@@ -58,6 +61,7 @@ class GUI_API_EXPORT DbObjectDialogs : public QObject
         MainWindow* mainWindow = nullptr;
         MdiArea* mdiArea = nullptr;
         bool noConfirmation = false;
+        bool noSchemaRefreshing = false;
 };
 
 #endif // DBOBJECTDIALOGS_H
