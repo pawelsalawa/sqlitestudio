@@ -140,14 +140,16 @@ void ConfigImpl::printErrorIfSet(SqlQueryPtr results)
 
 bool ConfigImpl::addDb(const QString& name, const QString& path, const QHash<QString,QVariant>& options)
 {
-    SqlQueryPtr results = db->exec("INSERT INTO dblist VALUES (?, ?, ?)", {name, path, options});
+    QByteArray optBytes = hashToBytes(options);
+    SqlQueryPtr results = db->exec("INSERT INTO dblist VALUES (?, ?, ?)", {name, path, optBytes});
     return !storeErrorAndReturn(results);
 }
 
 bool ConfigImpl::updateDb(const QString &name, const QString &newName, const QString &path, const QHash<QString,QVariant> &options)
 {
+    QByteArray optBytes = hashToBytes(options);
     SqlQueryPtr results = db->exec("UPDATE dblist SET name = ?, path = ?, options = ? WHERE name = ?",
-                                     {newName, path, options, name});
+                                     {newName, path, optBytes, name});
 
     return (!storeErrorAndReturn(results)  && results->rowsAffected() > 0);
 }
@@ -185,7 +187,7 @@ QList<ConfigImpl::CfgDbPtr> ConfigImpl::dbList()
         cfgDb = CfgDbPtr::create();
         cfgDb->name = row->value("name").toString();
         cfgDb->path = row->value("path").toString();
-        cfgDb->options = row->value("options").toHash();
+        cfgDb->options = deserializeValue(row->value("options")).toHash();
         entries += cfgDb;
     }
 
@@ -204,7 +206,7 @@ ConfigImpl::CfgDbPtr ConfigImpl::getDb(const QString& dbName)
     CfgDbPtr cfgDb = CfgDbPtr::create();
     cfgDb->name = dbName;
     cfgDb->path = row->value("path").toString();
-    cfgDb->options = row->value("options").toHash();
+    cfgDb->options = deserializeValue(row->value("options")).toHash();
     return cfgDb;
 }
 

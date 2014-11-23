@@ -484,6 +484,9 @@ void DbManagerImpl::loaded(Plugin* plugin, PluginType* type)
     QUrl url;
     for (Db* invalidDb : getInvalidDatabases())
     {
+        if (invalidDb->getConnectionOptions().contains(DB_PLUGIN) && invalidDb->getConnectionOptions()[DB_PLUGIN].toString() != dbPlugin->getName())
+            continue;
+
         url = QUrl::fromUserInput(invalidDb->getPath());
         if (url.isLocalFile() && !QFile::exists(invalidDb->getPath()))
             continue;
@@ -505,6 +508,13 @@ void DbManagerImpl::loaded(Plugin* plugin, PluginType* type)
         delete invalidDb;
 
         addDbInternal(db, false);
+
+        if (!db->getConnectionOptions().contains(DB_PLUGIN))
+        {
+            db->getConnectionOptions()[DB_PLUGIN] = dbPlugin->getName();
+            if (!CFG->updateDb(db->getName(), db->getName(), db->getPath(), db->getConnectionOptions()))
+                qWarning() << "Could not store handling plugin in options for database" << db->getName();
+        }
 
         if (CFG->getDbGroup(db->getName())->open)
             db->open();

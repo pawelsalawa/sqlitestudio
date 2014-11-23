@@ -78,7 +78,13 @@ bool AbstractDb::openForProbing()
 {
     QWriteLocker locker(&dbOperLock);
     QWriteLocker connectionLocker(&connectionStateLock);
-    return openInternal();
+    bool res = openInternal();
+    if (!res)
+        return res;
+
+    // Implementation specific initialization
+    initAfterOpen();
+    return res;
 }
 
 void AbstractDb::registerAllFunctions()
