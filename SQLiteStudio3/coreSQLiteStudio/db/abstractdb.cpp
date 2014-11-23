@@ -598,7 +598,7 @@ QString AbstractDb::attach(Db* otherDb, bool silent)
     }
 
     QString attName = generateUniqueDbName(false);
-    SqlQueryPtr results = exec(QString("ATTACH '%1' AS %2;").arg(otherDb->getPath(), attName), Flag::NO_LOCK);
+    SqlQueryPtr results = exec(getAttachSql(otherDb, attName), Flag::NO_LOCK);
     if (results->isError())
     {
         if (!silent)
@@ -732,6 +732,11 @@ int AbstractDb::getTimeout() const
 bool AbstractDb::isValid() const
 {
     return true;
+}
+
+QString AbstractDb::getAttachSql(Db* otherDb, const QString& generatedAttachName)
+{
+    return QString("ATTACH '%1' AS %2;").arg(otherDb->getPath(), generatedAttachName);
 }
 
 quint32 AbstractDb::generateAsyncId()

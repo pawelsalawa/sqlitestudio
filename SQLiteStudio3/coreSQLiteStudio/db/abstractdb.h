@@ -95,6 +95,8 @@ class API_EXPORT AbstractDb : public Db
             Db* db = nullptr;
         };
 
+        virtual QString getAttachSql(Db* otherDb, const QString& generatedAttachName);
+
         /**
          * @brief Generates unique database name for ATTACH.
          * @param lock Defines if the lock on dbOperLock mutex.
