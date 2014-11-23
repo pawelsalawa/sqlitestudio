@@ -287,6 +287,25 @@ QStringList prefixEach(const QString& prefix, const QStringList& list)
     return result;
 }
 
+QByteArray hashToBytes(const QHash<QString,QVariant>& hash)
+{
+    QByteArray bytes;
+    QDataStream stream(&bytes, QIODevice::WriteOnly);
+    stream << QVariant(hash);
+    return bytes;
+}
+
+QHash<QString,QVariant> bytesToHash(const QByteArray& bytes)
+{
+    if (bytes.isNull())
+        return QHash<QString,QVariant>();
+
+    QVariant deserializedValue;
+    QDataStream stream(bytes);
+    stream >> deserializedValue;
+    return deserializedValue.toHash();
+}
+
 int indexOf(const QStringList& list, const QString& value, Qt::CaseSensitivity cs)
 {
     return indexOf(list, value, 0, cs);

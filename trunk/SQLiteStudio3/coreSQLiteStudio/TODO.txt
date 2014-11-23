@@ -1,6 +1,3 @@
-* Otworzyc baze ze sterownika SQLCipher, wyjsc z aplikacji -> crash
-* bledy z forum
-
 * Next versions:
 - commiting DataView should be async
 - syntax checkers as services - per language

@@ -37,6 +37,14 @@ typedef QSharedPointer<SqlQuery> SqlQueryPtr;
 static_char* DB_PURE_INIT = "sqlitestudio_pure_db_initalization";
 
 /**
+ * @brief Option name for plugin handling the database.
+ *
+ * This is a constant naming the connection option, which tells SQLiteStudio which plugin was dedicated to handle
+ * particular database.
+ */
+static_char* DB_PLUGIN = "plugin";
+
+/**
  * @brief Database managed by application.
  *
  * Everything you might want to do with SQLite databases goes through this interface in the application.

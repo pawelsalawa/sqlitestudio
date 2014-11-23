@@ -64,6 +64,9 @@ Db* DbDialog::getDb()
     QString path = ui->fileEdit->text();
     foreach (DbPlugin* plugin, dbPlugins)
     {
+        if (options.contains(DB_PLUGIN) && options[DB_PLUGIN].toString() != plugin->getName())
+            continue;
+
         testDb = plugin->getInstance("", path, options);
         if (testDb)
             return testDb;
@@ -216,6 +219,9 @@ void DbDialog::addOption(const DbPluginOption& option, int row)
         setTabOrder(lastWidgetInTabOrder, editorHelper);
         lastWidgetInTabOrder = editorHelper;
     }
+
+    if (db && db->getConnectionOptions().contains(option.key))
+        setValueFor(option.type, editor, db->getConnectionOptions()[option.key]);
 }
 
 QWidget *DbDialog::getEditor(const DbPluginOption& opt, QWidget*& editorHelper)
@@ -419,7 +425,7 @@ QHash<QString, QVariant> DbDialog::collectOptions()
     if (dbPlugins.count() > 0)
     {
         plugin = dbPlugins[ui->typeCombo->currentIndex()];
-        options["plugin"] = plugin->getName();
+        options[DB_PLUGIN] = plugin->getName();
     }
 
     return options;

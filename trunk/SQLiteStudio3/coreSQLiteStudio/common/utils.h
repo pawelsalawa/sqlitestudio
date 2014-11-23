@@ -61,6 +61,8 @@ API_EXPORT bool isNumeric(const QVariant& value);
 API_EXPORT QString rStrip(const QString& str);
 API_EXPORT QStringList tokenizeArgs(const QString& str);
 API_EXPORT QStringList prefixEach(const QString& prefix, const QStringList& list);
+API_EXPORT QByteArray hashToBytes(const QHash<QString,QVariant>& hash);
+API_EXPORT QHash<QString,QVariant> bytesToHash(const QByteArray& bytes);
 /**
   * @brief indexOf Extension to QStringList::indexOf().
   *
