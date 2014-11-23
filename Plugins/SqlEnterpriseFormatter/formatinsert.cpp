@@ -12,20 +12,12 @@ void FormatInsert::formatInternal()
 {
     if (insert->replaceKw)
     {
-        withStatement(insert->with, QString(), [](FormatStatement* stmt)
-        {
-            dynamic_cast<FormatWith*>(stmt)->setLineUpKeyword("REPLACE");
-        });
-
+        withStatement(insert->with);
         withKeyword("REPLACE");
     }
     else
     {
-        withStatement(insert->with, QString(), [](FormatStatement* stmt)
-        {
-            dynamic_cast<FormatWith*>(stmt)->setLineUpKeyword("INSERT");
-        });
-
+        withStatement(insert->with);
         withKeyword("INSERT");
         if (insert->onConflict != SqliteConflictAlgo::null)
             withKeyword("OR").withKeyword(sqliteConflictAlgo(insert->onConflict));

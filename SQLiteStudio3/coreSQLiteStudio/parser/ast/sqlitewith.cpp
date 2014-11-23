@@ -65,6 +65,7 @@ SqliteWith::CommonTableExpression::CommonTableExpression(const SqliteWith::Commo
 SqliteWith::CommonTableExpression::CommonTableExpression(const QString& tableName, const QList<SqliteIndexedColumn*>& indexedColumns, SqliteSelect* select) :
     table(tableName), indexedColumns(indexedColumns), select(select)
 {
+    select->setParent(this);
 }
 
 SqliteStatement*SqliteWith::CommonTableExpression::clone()
@@ -75,8 +76,12 @@ SqliteStatement*SqliteWith::CommonTableExpression::clone()
 TokenList SqliteWith::CommonTableExpression::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
-    builder.withOther(table, dialect).withSpace().withParLeft().withStatementList(indexedColumns).withParRight()
-            .withSpace().withKeyword("AS").withSpace().withParLeft().withStatement(select).withParRight();
+    builder.withOther(table, dialect);
+
+    if (indexedColumns.size() > 0)
+        builder.withSpace().withParLeft().withStatementList(indexedColumns).withParRight();
+
+    builder.withSpace().withKeyword("AS").withSpace().withParLeft().withStatement(select).withParRight();
 
     return builder.build();
 }

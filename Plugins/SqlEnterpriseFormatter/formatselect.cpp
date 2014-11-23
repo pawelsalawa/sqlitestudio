@@ -12,12 +12,7 @@ void FormatSelect::formatInternal()
     markKeywordLineUp("SELECT");
 
     if (select->with)
-    {
-        withStatement(select->with, QString(), [](FormatStatement* stmt)
-        {
-            dynamic_cast<FormatWith*>(stmt)->setLineUpKeyword("SELECT");
-        });
-    }
+        withStatement(select->with);
 
     for (SqliteSelect::Core* core : select->coreSelects)
     {
