@@ -46,11 +46,6 @@ void AboutDialog::init(InitialMode initialMode)
     licenseContents = "";
     int row = 1;
 
-    readLicense(row++, "SQLiteStudio license (GPL v3)", ":/docs/licenses/sqlitestudio_license.txt");
-    readLicense(row++, "Fugue icons", ":/docs/licenses/fugue_icons.txt");
-    readLicense(row++, "Qt, QHexEdit (LGPL v2.1)", ":/docs/licenses/lgpl.txt");
-    readLicense(row++, "diff_match (Apache License v2.0)", ":/docs/licenses/diff_match.txt");
-
     QHash<QString,QString> licenses = SQLITESTUDIO->getExtraLicenseManager()->getLicenses();
     QHashIterator<QString,QString> it(licenses);
     while (it.hasNext())

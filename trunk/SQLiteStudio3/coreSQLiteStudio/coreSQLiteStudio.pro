@@ -194,7 +194,12 @@ SOURCES += sqlitestudio.cpp \
     config_builder/cfglazyinitializer.cpp \
     committable.cpp \
     services/extralicensemanager.cpp \
-    tsvserializer.cpp
+    tsvserializer.cpp \
+    rsa/BigInt.cpp \
+    rsa/Key.cpp \
+    rsa/KeyPair.cpp \
+    rsa/PrimeGenerator.cpp \
+    rsa/RSA.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -375,7 +380,12 @@ HEADERS += sqlitestudio.h\
     plugins/uiconfiguredplugin.h \
     services/extralicensemanager.h \
     db/stdsqlite3driver.h \
-    tsvserializer.h
+    tsvserializer.h \
+    rsa/BigInt.h \
+    rsa/Key.h \
+    rsa/KeyPair.h \
+    rsa/PrimeGenerator.h \
+    rsa/RSA.h
 
 unix:!symbian {
     maemo5 {
@@ -396,7 +406,8 @@ OTHER_FILES += \
     licenses/qhexedit.txt \
     licenses/sqlitestudio_license.txt \
     licenses/lgpl.txt \
-    licenses/diff_match.txt
+    licenses/diff_match.txt \
+    licenses/gpl.txt
 
 FORMS += \
     plugins/populatesequence.ui \
