@@ -29,6 +29,7 @@
 // while for Windows it should be an archive of SQLiteStudio directory itself.
 
 QString UpdateManager::staticErrorMessage;
+UpdateManager::RetryFunction UpdateManager::retryFunction = nullptr;
 
 UpdateManager::UpdateManager(QObject *parent) :
     QObject(parent)
@@ -322,34 +323,29 @@ void UpdateManager::installUpdates()
 
 bool UpdateManager::executeFinalStep(const QString& tempDir, const QString& backupDir, const QString& appDir)
 {
-    bool isWin = false;
 #ifdef Q_OS_WIN32
-    isWin = true;
-
     // Windows needs to wait for previus process to exit
     QThread::sleep(3);
-
-    QDir dir(backupDir);
-    QString dirName = dir.dirName();
-    dir.cdUp();
-    if (!dir.mkdir(dirName))
-    {
-        staticUpdatingFailed(tr("Could not create directory %1.").arg(backupDir));
-        return false;
-    }
 #endif
-    // Under Windows we the parent directory, the appDir is locked, even the original application
-    // is not running at this step. appDir is locked, but not its contents (weird, but that's how it is),
-    // so we do all the same things, except we do it on contents of dirs, not on entire directories.
-    if (!moveDir(appDir, backupDir, isWin))
+    while (!moveDir(appDir, backupDir))
     {
-        staticUpdatingFailed(tr("Could not rename directory %1 to %2.\nDetails: %3").arg(appDir, backupDir, staticErrorMessage));
-        return false;
+        if (!retryFunction)
+        {
+            staticUpdatingFailed(tr("Could not rename directory %1 to %2.\nDetails: %3").arg(appDir, backupDir, staticErrorMessage));
+            return false;
+        }
+
+        if (!retryFunction(tr("Cannot not rename directory %1 to %2.\nDetails: %3").arg(appDir, backupDir, staticErrorMessage)))
+            return false;
     }
 
-    if (!moveDir(tempDir, appDir, isWin))
+#ifdef Q_OS_WIN32
+    if (!copyRecursively(tempDir, appDir))
+#else
+    if (!moveDir(tempDir, appDir))
+#endif
     {
-        if (!moveDir(backupDir, appDir, isWin))
+        if (!moveDir(backupDir, appDir))
         {
             staticUpdatingFailed(tr("Could not move directory %1 to %2 and also failed to restore original directory, "
                               "so the original SQLiteStudio directory is now located at: %3").arg(tempDir, appDir, backupDir));
@@ -690,7 +686,8 @@ bool UpdateManager::executePostFinalStepWin(const QString &tempDir)
 
     QDir dir(tempDir);
     dir.cdUp();
-    deleteDir(dir.absolutePath());
+    if (!deleteDir(dir.absolutePath()))
+        staticUpdatingFailed(tr("Could not clean up temporary directory %1. You can delete it manually at any time.").arg(dir.absolutePath()));
 
     QProcess::startDetached(qApp->applicationFilePath(), QStringList());
     return true;
@@ -718,6 +715,11 @@ bool UpdateManager::waitForFileToAppear(const QString &filePath, int seconds)
     }
 
     return file.exists();
+}
+
+void UpdateManager::setRetryFunction(const RetryFunction &value)
+{
+    retryFunction = value;
 }
 
 bool UpdateManager::runAnotherInstanceForUpdate(const QString &tempDir, const QString &backupDir, const QString &appDir, bool reqAdmin)
@@ -885,33 +887,20 @@ QString UpdateManager::getAppDirPath() const
     return appDir;
 }
 
-bool UpdateManager::moveDir(const QString& src, const QString& dst, bool contentsOnly)
+bool UpdateManager::moveDir(const QString& src, const QString& dst)
 {
+    // If we're doing a rename in the very same parent directory then we don't want
+    // the 'move between partitions' to be involved, cause any failure to rename
+    // is due to permissions or file lock.
+    QFileInfo srcFi(src);
+    QFileInfo dstFi(dst);
+    bool sameParentDir = (srcFi.dir() == dstFi.dir());
 
-    QDir dir;
-    if (contentsOnly)
+    QDir d;
+    if (!d.rename(src, dst) && (sameParentDir || !renameBetweenPartitions(src, dst)))
     {
-        QString localSrc;
-        QString localDst;
-        QDir srcDir(src);
-        for (const QFileInfo& entry : srcDir.entryInfoList(QDir::Files|QDir::Dirs|QDir::NoDotAndDotDot|QDir::Hidden|QDir::System))
-        {
-            localSrc = entry.absoluteFilePath();
-            localDst = dst + "/" + entry.fileName();
-            if (!dir.rename(localSrc, localDst) && !renameBetweenPartitions(src, dst))
-            {
-                staticUpdatingFailed(tr("Could not rename directory %1 to %2.").arg(localSrc, localDst));
-                return false;
-            }
-        }
-    }
-    else
-    {
-        if (!dir.rename(src, dst) && !renameBetweenPartitions(src, dst))
-        {
-            staticUpdatingFailed(tr("Could not rename directory %1 to %2.").arg(src, dst));
-            return false;
-        }
+        staticUpdatingFailed(tr("Could not rename directory %1 to %2.").arg(src, dst));
+        return false;
     }
 
     return true;
@@ -929,7 +918,7 @@ bool UpdateManager::deleteDir(const QString& path)
     return true;
 }
 
-bool UpdateManager::execLinux(const QString& cmd, const QStringList& args, QString* errorMsg)
+bool UpdateManager::execCmd(const QString& cmd, const QStringList& args, QString* errorMsg)
 {
     QProcess proc;
     proc.start(cmd, args);
@@ -944,12 +933,6 @@ bool UpdateManager::execLinux(const QString& cmd, const QStringList& args, QStri
     }
 
     return true;
-}
-
-bool UpdateManager::execWin(const QString &cmd, const QStringList &args, QString *errorMsg)
-{
-    // Currently the implementation is the same as for linux:
-    return execLinux(cmd, args, errorMsg);
 }
 
 bool UpdateManager::doRequireAdminPrivileges()
