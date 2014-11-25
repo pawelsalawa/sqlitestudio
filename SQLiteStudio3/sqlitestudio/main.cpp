@@ -30,6 +30,7 @@
 #include <QThread>
 #include <QPluginLoader>
 #include <QDebug>
+#include <QMessageBox>
 
 bool listPlugins = false;
 
@@ -73,13 +74,27 @@ QString uiHandleCmdLineArgs()
     return QString::null;
 }
 
+bool updateRetryFunction(const QString& msg)
+{
+    QMessageBox mb(QMessageBox::Critical, QObject::tr("Error"), msg);
+    mb.addButton(QMessageBox::Retry);
+    mb.addButton(QMessageBox::Abort);
+    return (mb.exec() == QMessageBox::Retry);
+}
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
     int retCode = 1;
+    UpdateManager::setRetryFunction(updateRetryFunction);
     if (UpdateManager::handleUpdateOptions(a.arguments(), retCode))
+    {
+        if (retCode)
+            QMessageBox::critical(nullptr, QObject::tr("Error"), UpdateManager::getStaticErrorMessage());
+
         return retCode;
+    }
 
     qInstallMessageHandler(uiMessageHandler);
 

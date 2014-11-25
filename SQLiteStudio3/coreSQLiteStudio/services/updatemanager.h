@@ -16,6 +16,8 @@ class API_EXPORT UpdateManager : public QObject
 {
         Q_OBJECT
     public:
+        typedef std::function<bool(const QString& msg)> RetryFunction;
+
         struct UpdateEntry
         {
             QString compontent;
@@ -32,6 +34,8 @@ class API_EXPORT UpdateManager : public QObject
         static bool executeFinalStep(const QString& tempDir, const QString& backupDir, const QString& appDir);
         static bool handleUpdateOptions(const QStringList& argList, int& returnCode);
         static QString getStaticErrorMessage();
+
+        static void setRetryFunction(const RetryFunction &value);
 
         static_char* UPDATE_OPTION_NAME = "--update-final-step";
         static_char* WIN_INSTALL_FILE = "install.dat";
@@ -75,10 +79,9 @@ class API_EXPORT UpdateManager : public QObject
         QString getAppDirPath() const;
         void cleanup();
 
-        static bool moveDir(const QString& src, const QString& dst, bool contentsOnly = false);
+        static bool moveDir(const QString& src, const QString& dst);
         static bool deleteDir(const QString& path);
-        static bool execLinux(const QString& cmd, const QStringList& args, QString* errorMsg = nullptr);
-        static bool execWin(const QString& cmd, const QStringList& args, QString* errorMsg = nullptr);
+        static bool execCmd(const QString& cmd, const QStringList& args, QString* errorMsg = nullptr);
         static bool waitForProcess(QProcess& proc);
         static QString readError(QProcess& proc, bool reverseOrder = false);
         static void staticUpdatingFailed(const QString& errMsg);
@@ -106,6 +109,7 @@ class API_EXPORT UpdateManager : public QObject
         int totalDownloadsCount = 0;
         QString currentJobTitle;
         bool requireAdmin = false;
+        static RetryFunction retryFunction;
 
         static QString staticErrorMessage;
         static_char* WIN_PRE_FINAL_UPDATE_OPTION_NAME = "--update-pre-final-step";
