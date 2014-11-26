@@ -1,6 +1,7 @@
 #include "common/utils.h"
 #include "common/global.h"
 #include "dbobjecttype.h"
+#include "rsa/RSA.h"
 #include <QTextCodec>
 #include <QString>
 #include <QSet>
@@ -837,3 +838,18 @@ bool isWritableRecursively(const QString& dir)
     return true;
 }
 
+QString encryptRsa(const QString& input, const QString& modulus, const QString& exponent)
+{
+    std::string inputStdStr = input.toStdString();
+    Key key = Key(BigInt(modulus.toStdString()), BigInt(exponent.toStdString()));
+    std::string result = RSA::Encrypt(inputStdStr, key);
+    return QString::fromStdString(result);
+}
+
+QString decryptRsa(const QString& input, const QString& modulus, const QString& exponent)
+{
+    std::string inputStdStr = input.toStdString();
+    Key key = Key(BigInt(modulus.toStdString()), BigInt(exponent.toStdString()));
+    std::string result = RSA::Decrypt(inputStdStr, key);
+    return QString::fromStdString(result);
+}

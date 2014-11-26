@@ -717,11 +717,6 @@ bool UpdateManager::waitForFileToAppear(const QString &filePath, int seconds)
     return file.exists();
 }
 
-void UpdateManager::setRetryFunction(const RetryFunction &value)
-{
-    retryFunction = value;
-}
-
 bool UpdateManager::runAnotherInstanceForUpdate(const QString &tempDir, const QString &backupDir, const QString &appDir, bool reqAdmin)
 {
     bool res = QProcess::startDetached(tempDir + "/SQLiteStudio.exe", {WIN_PRE_FINAL_UPDATE_OPTION_NAME, tempDir, backupDir, appDir,
@@ -933,6 +928,11 @@ bool UpdateManager::execCmd(const QString& cmd, const QStringList& args, QString
     }
 
     return true;
+}
+
+void UpdateManager::setRetryFunction(const RetryFunction &value)
+{
+    retryFunction = value;
 }
 
 bool UpdateManager::doRequireAdminPrivileges()

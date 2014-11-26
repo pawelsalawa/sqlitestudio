@@ -52,8 +52,9 @@
 #include "KeyPair.h"
 #include "Key.h"
 #include "BigInt.h"
+#include "coreSQLiteStudio_global.h"
 
-class RSA
+class API_EXPORT RSA
 {
 	private:
 		/* Instantiation of objects of type RSA is forbidden. */
