@@ -45,7 +45,7 @@ class API_EXPORT DbManager : public QObject
          * @param path Path to the database file.
          * @param options Key-value custom options for database, that can be used in the DbPlugin implementation, like connection password, etc.
          * @param permanent If true, then the database will be remembered in configuration, otherwise it will be disappear after application restart.
-         * @return true if the database has been successfly added, or false otherwise.
+         * @return true if the database has been successfully added, or false otherwise.
          *
          * The method can return false if given database file exists, but is not supported SQLite version (including invalid files,
          * that are not SQLite database). It basicly returns false if DbPlugin#getInstance() returned null for given database parameters.
@@ -61,7 +61,7 @@ class API_EXPORT DbManager : public QObject
          * @brief Adds database as temporary, with generated name.
          * @param path Path to database.
          * @param options Key-value custom options for database.
-         * @return Added database name, if the database has been successfly added, or null string otherwise.
+         * @return Added database name, if the database has been successfully added, or null string otherwise.
          *
          * This method is used for example when database was passed as argument to application command line arguments.
          */
@@ -74,7 +74,7 @@ class API_EXPORT DbManager : public QObject
          * @param path New database file path.
          * @param options New database options. See addDb() for details.
          * @param permanent True to make the database stored in configuration, false to make it disappear after application restart.
-         * @return true if the database was successfly updated, or false otherwise.
+         * @return true if the database was successfully updated, or false otherwise.
          */
         virtual bool updateDb(Db* db, const QString &name, const QString &path, const QHash<QString, QVariant> &options, bool permanent) = 0;
 

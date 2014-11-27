@@ -1330,7 +1330,7 @@ void DbTree::vacuumDb()
     if (res->isError())
         notifyError(tr("Error while executing VACUUM on the database %1: %2").arg(db->getName(), res->getErrorText()));
     else
-        notifyInfo(tr("VACUUM execution finished successfly."));
+        notifyInfo(tr("VACUUM execution finished successfully."));
 }
 
 void DbTree::integrityCheck()

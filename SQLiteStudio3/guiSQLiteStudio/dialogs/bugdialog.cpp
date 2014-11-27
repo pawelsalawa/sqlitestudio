@@ -72,7 +72,7 @@ void BugDialog::finishedBugReport(bool success, const QString& errorMsg)
 {
     if (success)
     {
-        notifyInfo(tr("A bug report sent successfly.") + " " + getMessageAboutReportHistory());
+        notifyInfo(tr("A bug report sent successfully.") + " " + getMessageAboutReportHistory());
     }
     else
     {
@@ -86,7 +86,7 @@ void BugDialog::finishedFeatureRequest(bool success, const QString& errorMsg)
 {
     if (success)
     {
-        notifyInfo(tr("An idea proposal sent successfly.") + " " + getMessageAboutReportHistory());
+        notifyInfo(tr("An idea proposal sent successfully.") + " " + getMessageAboutReportHistory());
     }
     else
     {

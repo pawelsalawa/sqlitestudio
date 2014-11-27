@@ -278,28 +278,28 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
 
         /**
          * @brief lastExecutionTime
-         * Keeps number of milliseconds that recently successfly executed query took to complete.
+         * Keeps number of milliseconds that recently successfully executed query took to complete.
          * If there was no such query executed, this will be 0.
          */
         quint64 lastExecutionTime = 0;
 
         /**
          * @brief totalRowsReturned
-         * Keeps number of rows returned from recently successfly executed query.
+         * Keeps number of rows returned from recently successfully executed query.
          * If there was no such query executed, this will be 0.
          */
         quint64 totalRowsReturned = 0;
 
         /**
          * @brief rowsAffected
-         * Keeps number of rows affected by recently successfly executed query.
+         * Keeps number of rows affected by recently successfully executed query.
          * If there was no such query executed, this will be 0.
          */
         quint64 rowsAffected = 0;
 
         /**
          * @brief totalPages
-         * Keeps number of pages available in recently successfly executed query.
+         * Keeps number of pages available in recently successfully executed query.
          * If there was no such query executed, this will be -1.
          */
         int totalPages = -1;

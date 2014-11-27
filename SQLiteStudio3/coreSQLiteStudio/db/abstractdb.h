@@ -409,7 +409,7 @@ class API_EXPORT AbstractDb : public Db
          * @brief Registers single custom SQL function.
          * @param function Function to register.
          *
-         * If function got registered successfly, it's added to registeredFunctions.
+         * If function got registered successfully, it's added to registeredFunctions.
          * If there was a function with the same name, argument count and type already registered,
          * it will be overwritten (both in SQLite and in registeredFunctions).
          */
