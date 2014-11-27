@@ -79,7 +79,7 @@ class API_EXPORT UpdateManager : public QObject
         QString getAppDirPath() const;
         void cleanup();
 
-        static bool moveDir(const QString& src, const QString& dst);
+        static bool moveDir(const QString& src, const QString& dst, bool contentsOnly = false);
         static bool deleteDir(const QString& path);
         static bool execCmd(const QString& cmd, const QStringList& args, QString* errorMsg = nullptr);
         static bool waitForProcess(QProcess& proc);
@@ -88,6 +88,7 @@ class API_EXPORT UpdateManager : public QObject
         static LinuxPermElevator findPermElevatorForLinux();
         static QString wrapCmdLineArgument(const QString& arg);
         static QString escapeCmdLineArgument(const QString& arg);
+        static QString getBackupDir(const QString& appDir);
 #if defined(Q_OS_WIN32)
         static bool executePreFinalStepWin(const QString& tempDir, const QString& backupDir, const QString& appDir, bool reqAdmin);
         static bool executeFinalStepAsRootWin(const QString& tempDir, const QString& backupDir, const QString& appDir);

@@ -323,11 +323,23 @@ void UpdateManager::installUpdates()
 
 bool UpdateManager::executeFinalStep(const QString& tempDir, const QString& backupDir, const QString& appDir)
 {
+    bool isWin = false;
 #ifdef Q_OS_WIN32
+    isWin = true;
+
     // Windows needs to wait for previus process to exit
     QThread::sleep(3);
+
+    QDir dir(backupDir);
+    QString dirName = dir.dirName();
+    dir.cdUp();
+    if (!dir.mkdir(dirName))
+    {
+        staticUpdatingFailed(tr("Could not create directory %1.").arg(backupDir));
+        return false;
+    }
 #endif
-    while (!moveDir(appDir, backupDir))
+    while (!moveDir(appDir, backupDir, isWin))
     {
         if (!retryFunction)
         {
@@ -339,13 +351,9 @@ bool UpdateManager::executeFinalStep(const QString& tempDir, const QString& back
             return false;
     }
 
-#ifdef Q_OS_WIN32
-    if (!copyRecursively(tempDir, appDir))
-#else
-    if (!moveDir(tempDir, appDir))
-#endif
+    if (!moveDir(tempDir, appDir, isWin))
     {
-        if (!moveDir(backupDir, appDir))
+        if (!moveDir(backupDir, appDir, isWin))
         {
             staticUpdatingFailed(tr("Could not move directory %1 to %2 and also failed to restore original directory, "
                               "so the original SQLiteStudio directory is now located at: %3").arg(tempDir, appDir, backupDir));
@@ -409,11 +417,7 @@ bool UpdateManager::executeFinalStep(const QString& tempDir)
     QString appDir = getAppDirPath();
 
     // Find inexisting dir name next to app dir
-    static_qstring(bakDirTpl, "%1.old%2");
-    QDir backupDir(bakDirTpl.arg(appDir, ""));
-    int cnt = 1;
-    while (backupDir.exists())
-        backupDir = QDir(bakDirTpl.arg(appDir, QString::number(cnt)));
+    QDir backupDir(getBackupDir(appDir));
 
 #if defined(Q_OS_WIN32)
     return runAnotherInstanceForUpdate(tempDir, backupDir.absolutePath(), qApp->applicationDirPath(), requireAdmin);
@@ -773,6 +777,17 @@ QString UpdateManager::escapeCmdLineArgument(const QString& arg)
     return str.replace("\\", "\\\\").replace("\"", "\\\"");
 }
 
+QString UpdateManager::getBackupDir(const QString &appDir)
+{
+    static_qstring(bakDirTpl, "%1.old%2");
+    QDir backupDir(bakDirTpl.arg(appDir, ""));
+    int cnt = 1;
+    while (backupDir.exists())
+        backupDir = QDir(bakDirTpl.arg(appDir, QString::number(cnt)));
+
+    return backupDir.absolutePath();
+}
+
 bool UpdateManager::unpackToDir(const QString& packagePath, const QString& outputDir)
 {
 #if defined(Q_OS_LINUX)
@@ -882,7 +897,7 @@ QString UpdateManager::getAppDirPath() const
     return appDir;
 }
 
-bool UpdateManager::moveDir(const QString& src, const QString& dst)
+bool UpdateManager::moveDir(const QString& src, const QString& dst, bool contentsOnly)
 {
     // If we're doing a rename in the very same parent directory then we don't want
     // the 'move between partitions' to be involved, cause any failure to rename
@@ -891,11 +906,30 @@ bool UpdateManager::moveDir(const QString& src, const QString& dst)
     QFileInfo dstFi(dst);
     bool sameParentDir = (srcFi.dir() == dstFi.dir());
 
-    QDir d;
-    if (!d.rename(src, dst) && (sameParentDir || !renameBetweenPartitions(src, dst)))
+    QDir dir;
+    if (contentsOnly)
     {
-        staticUpdatingFailed(tr("Could not rename directory %1 to %2.").arg(src, dst));
-        return false;
+        QString localSrc;
+        QString localDst;
+        QDir srcDir(src);
+        for (const QFileInfo& entry : srcDir.entryInfoList(QDir::Files|QDir::Dirs|QDir::NoDotAndDotDot|QDir::Hidden|QDir::System))
+        {
+            localSrc = entry.absoluteFilePath();
+            localDst = dst + "/" + entry.fileName();
+            if (!dir.rename(localSrc, localDst) && (sameParentDir || !renameBetweenPartitions(localSrc, localDst)))
+            {
+                staticUpdatingFailed(tr("Could not rename directory %1 to %2.").arg(localSrc, localDst));
+                return false;
+            }
+        }
+    }
+    else
+    {
+        if (!dir.rename(src, dst) && (sameParentDir || !renameBetweenPartitions(src, dst)))
+        {
+            staticUpdatingFailed(tr("Could not rename directory %1 to %2.").arg(src, dst));
+            return false;
+        }
     }
 
     return true;
@@ -937,12 +971,24 @@ void UpdateManager::setRetryFunction(const RetryFunction &value)
 
 bool UpdateManager::doRequireAdminPrivileges()
 {
-    QDir appDir(getAppDirPath());
+    QString appDirPath = getAppDirPath();
+    QDir appDir(appDirPath);
     bool isWritable = isWritableRecursively(appDir.absolutePath());
 
     appDir.cdUp();
     QFileInfo fi(appDir.absolutePath());
     isWritable &= fi.isWritable();
+
+    if (isWritable)
+    {
+        QDir backupDir(getBackupDir(appDirPath));
+        QString backupDirName = backupDir.dirName();
+        backupDir.cdUp();
+        if (backupDir.mkdir(backupDirName))
+            backupDir.rmdir(backupDirName);
+        else
+            isWritable = false;
+    }
 
     return !isWritable;
 }

@@ -96,8 +96,8 @@ GOTO:EOF
 	set plugin_ver=%~2
 	if exist SQLiteStudio\plugins\%plugin%.dll (
 		echo Creating plugin update: %plugin%
-		mkdir plugins\%plugin%\SQLiteStudio
-		copy SQLiteStudio\plugins\%plugin%.dll plugins\%plugin%\SQLiteStudio > nul
+		mkdir plugins\%plugin%\SQLiteStudio\plugins
+		copy SQLiteStudio\plugins\%plugin%.dll plugins\%plugin%\SQLiteStudio\plugins > nul
 
 		cd plugins\%plugin%
 		%ZIP% a -r ..\%plugin%-%plugin_ver%.zip SQLiteStudio > nul
