@@ -384,7 +384,7 @@ void SqlQueryModel::commitInternal(const QList<SqlQueryItem*>& items)
         }
         else
         {
-            // Commited successfly
+            // Commited successfully
             foreach (SqlQueryItem* item, itemsLeft)
             {
                 item->setUncommited(false);
@@ -1173,7 +1173,7 @@ void SqlQueryModel::restoreNumbersToQueryExecutor()
     /*
      * Currently only page and sort order have to be restored after failed execution,
      * so reloading current data works on the old page and order, not the ones that were
-     * requested but never loaded successfly.
+     * requested but never loaded successfully.
      */
     queryExecutor->setPage(page);
     queryExecutor->setSortOrder(sortOrder);
