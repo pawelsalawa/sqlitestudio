@@ -1,7 +1,14 @@
-DESTDIR = $$PWD/../output/SQLiteStudio
-OBJECTS_DIR = $$PWD/../output/build
-MOC_DIR = $$PWD/../output/build
-UI_DIR = $$PWD/../output/build
+release {
+    OUTPUT_DIR_NAME = output
+}
+debug {
+    OUTPUT_DIR_NAME = output_debug
+}
+
+DESTDIR = $$PWD/../$$OUTPUT_DIR_NAME/SQLiteStudio
+OBJECTS_DIR = $$PWD/../$$OUTPUT_DIR_NAME/build
+MOC_DIR = $$PWD/../$$OUTPUT_DIR_NAME/build
+UI_DIR = $$PWD/../$$OUTPUT_DIR_NAME/build
 
 LIBS += -L$$DESTDIR
 
@@ -21,7 +28,7 @@ INCLUDEPATH += $$PWD/coreSQLiteStudio
 DEPENDPATH += $$PWD/coreSQLiteStudio
 
 contains(QT, gui): {
-    INCLUDEPATH += $$PWD/guiSQLiteStudio $$PWD/../output/build/guiSQLiteStudio
+    INCLUDEPATH += $$PWD/guiSQLiteStudio $$PWD/../$$OUTPUT_DIR_NAME/build/guiSQLiteStudio
     DEPENDPATH += $$PWD/guiSQLiteStudio
 }
 

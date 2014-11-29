@@ -1,9 +1,16 @@
+release {
+    OUTPUT_DIR_NAME = output
+}
+debug {
+    OUTPUT_DIR_NAME = output_debug
+}
+
 CONFIG += c++11 plugin
 
-DESTDIR = $$PWD/../output/SQLiteStudio/plugins
-OBJECTS_DIR = $$PWD/../output/build
-MOC_DIR = $$PWD/../output/build
-UI_DIR = $$PWD/../output/build
+DESTDIR = $$PWD/../$$OUTPUT_DIR_NAME/SQLiteStudio/plugins
+OBJECTS_DIR = $$PWD/../$$OUTPUT_DIR_NAME/build
+MOC_DIR = $$PWD/../$$OUTPUT_DIR_NAME/build
+UI_DIR = $$PWD/../$$OUTPUT_DIR_NAME/build
 
 INCLUDEPATH += $$PWD/coreSQLiteStudio
 DEPENDPATH += $$PWD/coreSQLiteStudio
@@ -22,7 +29,7 @@ contains(QT, gui) {
 
 win32: {
     INCLUDEPATH += $$PWD/../../include
-    LIBS += -L$$PWD/../../lib -L$$DESTDIR/.. -lcoreSQLiteStudio -L$$PWD/../output/SQLiteStudio/plugins
+    LIBS += -L$$PWD/../../lib -L$$DESTDIR/.. -lcoreSQLiteStudio -L$$PWD/../$$OUTPUT_DIR_NAME/SQLiteStudio/plugins
 
     defineTest(pluginDep) {
         linker_flag_parts = -l $$1
@@ -78,10 +85,10 @@ linux: {
 }
 
 macx: {
-    GUI_APP = $$PWD/../output/SQLiteStudio/SQLiteStudio.app/Contents/MacOS/SQLiteStudio
+    GUI_APP = $$PWD/../$$OUTPUT_DIR_NAME/SQLiteStudio/SQLiteStudio.app/Contents/MacOS/SQLiteStudio
     export (GUI_APP)
 
-    LIBS += -L$$PWD/../output/SQLiteStudio -lcoreSQLiteStudio
+    LIBS += -L$$PWD/../$$OUTPUT_DIR_NAME/SQLiteStudio -lcoreSQLiteStudio
     INCLUDEPATH += $$PWD/../../include
     LIBS += -L$$PWD/../../lib -L$$DESTDIR
     QMAKE_CXXFLAGS += -stdlib=libc++ -mmacosx-version-min=10.7
