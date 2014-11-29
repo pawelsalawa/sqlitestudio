@@ -27,20 +27,27 @@ if(contains(DEFINES,tests)) {
     SUBDIRS += tests
 }
 
+release {
+    OUTPUT_DIR_NAME = output
+}
+debug {
+    OUTPUT_DIR_NAME = output_debug
+}
+
 win32: {
     SUBDIRS += update_app
 }
 
 linux: {
-    portable.commands = sh $$PWD/create_linux_portable.sh $$PWD/../output $$QMAKE_QMAKE
-    tgz.commands = sh $$PWD/create_linux_portable.sh $$PWD/../output $$QMAKE_QMAKE tgz
-    dist.commands = sh $$PWD/create_linux_portable.sh $$PWD/../output $$QMAKE_QMAKE dist
+    portable.commands = sh $$PWD/create_linux_portable.sh $$PWD/../$$OUTPUT_DIR_NAME $$QMAKE_QMAKE
+    tgz.commands = sh $$PWD/create_linux_portable.sh $$PWD/../$$OUTPUT_DIR_NAME $$QMAKE_QMAKE tgz
+    dist.commands = sh $$PWD/create_linux_portable.sh $$PWD/../$$OUTPUT_DIR_NAME $$QMAKE_QMAKE dist
     QMAKE_EXTRA_TARGETS += portable tgz dist
 }
 
 macx: {
-    bundle.commands = sh $$PWD/create_macosx_bundle.sh $$PWD/../output $$QMAKE_QMAKE
-    dmg.commands = sh $$PWD/create_macosx_bundle.sh $$PWD/../output $$QMAKE_QMAKE dmg
-    dist.commands = sh $$PWD/create_macosx_bundle.sh $$PWD/../output $$QMAKE_QMAKE dist
+    bundle.commands = sh $$PWD/create_macosx_bundle.sh $$PWD/../$$OUTPUT_DIR_NAME $$QMAKE_QMAKE
+    dmg.commands = sh $$PWD/create_macosx_bundle.sh $$PWD/../$$OUTPUT_DIR_NAME $$QMAKE_QMAKE dmg
+    dist.commands = sh $$PWD/create_macosx_bundle.sh $$PWD/../$$OUTPUT_DIR_NAME $$QMAKE_QMAKE dist
     QMAKE_EXTRA_TARGETS += bundle dmg dist
 }
