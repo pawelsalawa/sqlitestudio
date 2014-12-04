@@ -153,7 +153,7 @@ void UpdateManager::handleAvailableUpdatesReply(QNetworkReply* reply)
 void UpdateManager::getUpdatesMetadata(QNetworkReply*& replyStoragePointer)
 {
 #ifndef NO_AUTO_UPDATES
-    if (!isPlatformEligibleForUpdate() || replyStoragePointer)
+    if (!CFG_CORE.General.CheckUpdatesOnStartup.get() || !isPlatformEligibleForUpdate() || replyStoragePointer)
         return;
 
     QUrlQuery query;
