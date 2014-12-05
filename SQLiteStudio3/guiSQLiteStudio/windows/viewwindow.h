@@ -102,6 +102,7 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
         void executeStructureChanges();
         QString getCurrentTrigger() const;
         void applyInitialTab();
+        QString getCurrentDdl() const;
 
         Db* db = nullptr;
         QString database;

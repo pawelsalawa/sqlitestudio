@@ -19,6 +19,7 @@
 #include "dialogs/ddlpreviewdialog.h"
 #include "uiconfig.h"
 #include "services/config.h"
+#include "services/codeformatter.h"
 #include <QPushButton>
 #include <QProgressBar>
 #include <QDebug>
@@ -407,6 +408,12 @@ void ViewWindow::applyInitialTab()
         ui->tabWidget->setCurrentIndex(0);
 }
 
+QString ViewWindow::getCurrentDdl() const
+{
+    static_qstring(ddlTpl, "CREATE VIEW %1 AS %2");
+    return ddlTpl.arg(wrapObjIfNeeded(ui->nameEdit->text(), db->getDialect())).arg(ui->queryEdit->toPlainText());
+}
+
 void ViewWindow::addTrigger()
 {
     DbObjectDialogs dialogs(db, this);
@@ -658,8 +665,7 @@ void ViewWindow::parseDdl()
 
 void ViewWindow::updateDdlTab()
 {
-    QString ddl = "CREATE VIEW %1 AS %2";
-    ui->ddlEdit->setPlainText(ddl.arg(wrapObjIfNeeded(ui->nameEdit->text(), db->getDialect())).arg(ui->queryEdit->toPlainText()));
+    ui->ddlEdit->setPlainText(FORMATTER->format("sql", getCurrentDdl(), db));
 }
 
 bool ViewWindow::isModified() const
@@ -711,13 +717,22 @@ void ViewWindow::executeStructureChanges()
     QStringList sqls;
     QList<bool> sqlMandatoryFlags;
 
-    createView->rebuildTokens();
+    QString theDdl = getCurrentDdl();
     if (!existingView)
     {
-        sqls << createView->detokenize();
+        sqls << theDdl;
     }
     else
     {
+        Parser parser(db->getDialect());
+        if (!parser.parse(theDdl))
+        {
+            qCritical() << "Could not re-parse the view for executing it:" << parser.getErrorString();
+            notifyError(tr("The view code could not be parsed properly for execution. This is a SQLiteStudio's bug. Please report it."));
+            return;
+        }
+
+        createView = parser.getQueries().first().dynamicCast<SqliteCreateView>();
         if (viewModifier)
             delete viewModifier;
 
