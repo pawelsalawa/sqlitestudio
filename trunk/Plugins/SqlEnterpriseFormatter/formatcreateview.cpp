@@ -22,5 +22,5 @@ void FormatCreateView::formatInternal()
     if (dialect == Dialect::Sqlite3 && !createView->database.isNull())
         withId(createView->database).withIdDot();
 
-    withId(createView->view).withKeyword("AS").withStatement(createView->select).withSemicolon();
+    withId(createView->view).withKeyword("AS").withNewLine().withIncrIndent().withStatement(createView->select).withSemicolon().withDecrIndent();
 }
