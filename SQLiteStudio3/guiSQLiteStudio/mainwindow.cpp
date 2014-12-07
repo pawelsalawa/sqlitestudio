@@ -520,7 +520,10 @@ MdiWindow* MainWindow::restoreWindowSession(const QVariant &windowSessions)
     // Add the window to MDI area and restore its session
     MdiWindow* window = ui->mdiArea->addSubWindow(mdiChild);
     if (!window->restoreSession(winSessionHash))
+    {
+        window->setCloseWithoutSessionSaving(true);
         delete window;
+    }
 
     return window;
 }
