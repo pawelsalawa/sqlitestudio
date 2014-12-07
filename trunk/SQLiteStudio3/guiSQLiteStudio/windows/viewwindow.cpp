@@ -660,7 +660,9 @@ void ViewWindow::parseDdl()
         createView->dialect = db->getDialect();
     }
     originalCreateView = SqliteCreateViewPtr::create(*createView);
-    originalQuery = originalCreateView->select->detokenize();
+
+    // Replacing \r\n with \n, cause \r\n can be carried over from version 2.x.x, which did this incorrectly.
+    originalQuery = originalCreateView->select->detokenize().replace("\r\n", "\n");
 }
 
 void ViewWindow::updateDdlTab()
