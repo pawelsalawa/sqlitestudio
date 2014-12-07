@@ -28,7 +28,7 @@ MdiWindow::~MdiWindow()
     if (SQLITESTUDIO->getImmediateQuit())
         return;
 
-    if (!MAINWINDOW->isClosingApp())
+    if (!closeWithoutSessionSaving && !MAINWINDOW->isClosingApp())
         MAINWINDOW->pushClosedWindowSessionValue(saveSession());
 
     mdiArea->windowDestroyed(this);
@@ -199,3 +199,13 @@ bool MdiWindow::confirmClose()
 
     return (msgBox.exec() == QMessageBox::Yes);
 }
+bool MdiWindow::getCloseWithoutSessionSaving() const
+{
+    return closeWithoutSessionSaving;
+}
+
+void MdiWindow::setCloseWithoutSessionSaving(bool value)
+{
+    closeWithoutSessionSaving = value;
+}
+

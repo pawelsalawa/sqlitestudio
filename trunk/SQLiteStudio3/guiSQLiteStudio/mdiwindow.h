@@ -28,12 +28,16 @@ class GUI_API_EXPORT MdiWindow : public QMdiSubWindow
         void changeEvent(QEvent *event);
         void closeEvent(QCloseEvent* e);
 
+        bool getCloseWithoutSessionSaving() const;
+        void setCloseWithoutSessionSaving(bool value);
+
     private:
         bool confirmClose();
 
         QPointer<QWidget> lastFocusedWidget;
         MdiArea* mdiArea = nullptr;
         bool dbBeingClosed = false;
+        bool closeWithoutSessionSaving = false;
 
     private slots:
         void dbAboutToBeDisconnected(Db* db, bool& deny);
