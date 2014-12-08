@@ -31,10 +31,11 @@ QAction* TaskBar::addTask(const QIcon& icon, const QString& text)
     QAction* action = QToolBar::addAction(icon, text);
     tasks << action;
     QToolButton* btn = getToolButton(action);
-    btn->setMaximumWidth(400);
     if (!btn)
         return action;
 
+    btn->setMaximumWidth(400);
+    btn->installEventFilter(this);
     taskGroup.addAction(action);
     connect(btn, SIGNAL(pressed()), this, SLOT(mousePressed()));
     return action;
@@ -202,6 +203,21 @@ void TaskBar::dragMoveEvent(QDragMoveEvent* event)
 void TaskBar::dropEvent(QDropEvent *event)
 {
     event->acceptProposedAction();
+}
+
+bool TaskBar::eventFilter(QObject* obj, QEvent* event)
+{
+    if (event->type() == QEvent::MouseButtonPress && dynamic_cast<QMouseEvent*>(event)->button() == Qt::MiddleButton)
+    {
+        QToolButton* btn = dynamic_cast<QToolButton*>(obj);
+        if (btn && btn->defaultAction())
+        {
+            btn->defaultAction()->trigger();
+            MDIAREA->closeActiveSubWindow();
+            return true;
+        }
+    }
+    return QObject::eventFilter(obj, event);
 }
 
 void TaskBar::dragTaskTo(QAction* task, const QPoint& position)

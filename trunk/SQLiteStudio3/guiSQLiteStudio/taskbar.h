@@ -30,6 +30,7 @@ class GUI_API_EXPORT TaskBar : public QToolBar
         void dragEnterEvent(QDragEnterEvent* event);
         void dragMoveEvent(QDragMoveEvent* event);
         void dropEvent(QDropEvent* event);
+        bool eventFilter(QObject *obj, QEvent *event);
 
     private:
         void init();
