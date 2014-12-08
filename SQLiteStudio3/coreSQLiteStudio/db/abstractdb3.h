@@ -725,7 +725,7 @@ void AbstractDb3<T>::registerDefaultCollation(void* fnUserData, typename T::hand
         return;
     }
 
-    int res = T::create_collation_v2(fnDbHandle, collationName, eTextRep, nullptr,
+    int res = T::create_collation_v2(fnDbHandle, collationName, T::UTF8, nullptr,
                                           &AbstractDb3<T>::evaluateDefaultCollation, nullptr);
 
     if (res != T::OK)
@@ -738,7 +738,7 @@ int AbstractDb3<T>::evaluateDefaultCollation(void* userData, int length1, const 
     UNUSED(userData);
     UNUSED(length1);
     UNUSED(length2);
-    return COLLATIONS->evaluateDefault(QString::fromUtf8((const char*)value1), QString::fromUtf8((const char*)value2));
+    return COLLATIONS->evaluateDefault(QString::fromUtf8((const char*)value1, length1), QString::fromUtf8((const char*)value2, length2));
 }
 
 template <class T>
