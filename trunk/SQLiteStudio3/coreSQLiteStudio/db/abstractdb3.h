@@ -700,6 +700,8 @@ void AbstractDb3<T>::releaseAggregateContext(typename T::context* context)
 template <class T>
 void AbstractDb3<T>::registerDefaultCollation(void* fnUserData, typename T::handle* fnDbHandle, int eTextRep, const char* collationName)
 {
+    UNUSED(eTextRep);
+
     CollationUserData* defUserData = reinterpret_cast<CollationUserData*>(fnUserData);
     if (!defUserData)
     {
