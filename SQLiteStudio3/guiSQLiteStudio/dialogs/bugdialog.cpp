@@ -119,9 +119,9 @@ void BugDialog::updateState()
         ui->currentLoginLabel->setToolTip(tr("Reporting as an unregistered user, using e-mail address."));
         ui->currentLoginLabel->setPixmap(ICONS.USER_UNKNOWN);
         ui->emailEdit->setEnabled(true);
-        ui->emailEdit->clear();
         ui->loginButton->setText(tr("Log in"));
         ui->loginButton->setIcon(ICONS.USER);
+        validate();
     }
     else
     {
