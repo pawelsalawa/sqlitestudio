@@ -47,6 +47,7 @@ unix:!symbian {
 }
 
 LIBS += -lcoreSQLiteStudio -lsqlite3
+LIBS -= -lTestUtils
 
 OTHER_FILES += \
     test_common.pri
