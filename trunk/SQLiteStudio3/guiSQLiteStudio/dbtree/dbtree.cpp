@@ -1484,15 +1484,24 @@ void DbTree::deleteItems(const QList<DbTreeItem*>& itemsToDelete)
         return;
 
     // Deleting items
+    QSet<Db*> deletedDatabases;
     QSet<Db*> databasesToRefresh;
     for (DbTreeItem* item : items)
     {
+        if (item->getType() == DbTreeItem::Type::DB)
+            deletedDatabases << item->getDb();
+
         databasesToRefresh << item->getDb();
         deleteItem(item);
     }
 
     for (Db* dbToRefresh : databasesToRefresh)
+    {
+        if (deletedDatabases.contains(dbToRefresh))
+            continue;
+
         DBTREE->refreshSchema(dbToRefresh);
+    }
 }
 
 void DbTree::refreshSchemas()
