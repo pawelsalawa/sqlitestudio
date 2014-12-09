@@ -1001,6 +1001,8 @@ QList<DbTreeItem*> DbTreeModel::getItemsForIndexes(const QModelIndexList& indexe
 
 void DbTreeModel::staticInit()
 {
+    qRegisterMetaType<DbTreeModel::ModelDiffList>("DbTreeModel::ModelDiffList");
+    qRegisterMetaType<DbTreeModel::ErrorList>("DbTreeModel::ErrorList");
 }
 
 bool DbTreeModel::dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, Qt::DropAction defaultAction, bool& invokeStdDropAction)
@@ -1151,13 +1153,43 @@ void DbTreeModel::moveOrCopyDbObjects(const QList<DbTreeItem*>& srcItems, DbTree
 
 bool DbTreeModel::confirmReferencedTables(const QStringList& tables)
 {
+    bool res;
+    bool invokation = QMetaObject::invokeMethod(DBTREE->getModel(), "confirmReferencedTablesSlot", Qt::BlockingQueuedConnection,
+                                                Q_RETURN_ARG(bool, res), Q_ARG(QStringList, tables));
+
+    if (!invokation)
+    {
+        qCritical() << "Could not call confirmReferencedTablesSlot() between threads!";
+        return false;
+    }
+
+    return res;
+}
+
+bool DbTreeModel::confirmReferencedTablesSlot(const QStringList& tables)
+{
     QMessageBox::StandardButton result = QMessageBox::question(MAINWINDOW, tr("Referenced tables"),
-        tr("Do you want to include following referenced tables as well:\n%1").arg(tables.join(", ")));
+                                                               tr("Do you want to include following referenced tables as well:\n%1").arg(tables.join(", ")));
 
     return result == QMessageBox::Yes;
 }
 
 bool DbTreeModel::resolveNameConflict(QString& nameInConflict)
+{
+    bool res;
+    bool invokation = QMetaObject::invokeMethod(DBTREE->getModel(), "resolveNameConflictSlot", Qt::BlockingQueuedConnection,
+                                                Q_RETURN_ARG(bool, res), Q_ARG(QString, nameInConflict));
+
+    if (!invokation)
+    {
+        qCritical() << "Could not call resolveNameConflictSlot() between threads!";
+        return false;
+    }
+
+    return res;
+}
+
+bool DbTreeModel::resolveNameConflictSlot(QString& nameInConflict)
 {
     bool ok = false;
     QInputDialog tmpDialog; // just for a cancel button text
@@ -1172,7 +1204,22 @@ bool DbTreeModel::resolveNameConflict(QString& nameInConflict)
     return ok;
 }
 
-bool DbTreeModel::confirmConversion(const QList<QPair<QString, QString> >& diffs)
+bool DbTreeModel::confirmConversion(const ModelDiffList &diffs)
+{
+    bool res;
+    bool invokation = QMetaObject::invokeMethod(DBTREE->getModel(), "confirmConversionSlot", Qt::BlockingQueuedConnection,
+                                                Q_RETURN_ARG(bool, res), Q_ARG(DbTreeModel::ModelDiffList, diffs));
+
+    if (!invokation)
+    {
+        qCritical() << "Could not call confirmConversionSlot() between threads!";
+        return false;
+    }
+
+    return res;
+}
+
+bool DbTreeModel::confirmConversionSlot(const ModelDiffList &diffs)
 {
     VersionConvertSummaryDialog dialog(MAINWINDOW);
     dialog.setWindowTitle(tr("SQL statements conversion"));
@@ -1180,7 +1227,22 @@ bool DbTreeModel::confirmConversion(const QList<QPair<QString, QString> >& diffs
     return dialog.exec() == QDialog::Accepted;
 }
 
-bool DbTreeModel::confirmConversionErrors(const QHash<QString,QSet<QString>>& errors)
+bool DbTreeModel::confirmConversionErrors(const ErrorList &errors)
+{
+    bool res;
+    bool invokation = QMetaObject::invokeMethod(DBTREE->getModel(), "confirmConversionErrorsSlot", Qt::BlockingQueuedConnection,
+                                                Q_RETURN_ARG(bool, res), Q_ARG(DbTreeModel::ErrorList, errors));
+
+    if (!invokation)
+    {
+        qCritical() << "Could not call confirmConversionErrorsSlot() between threads!";
+        return false;
+    }
+
+    return res;
+}
+
+bool DbTreeModel::confirmConversionErrorsSlot(const ErrorList &errors)
 {
     ErrorsConfirmDialog dialog(MAINWINDOW);
     dialog.setTopLabel(tr("Following error occurred while converting SQL statements to the target SQLite version:"));
@@ -1188,6 +1250,7 @@ bool DbTreeModel::confirmConversionErrors(const QHash<QString,QSet<QString>>& er
     dialog.setErrors(errors);
     return dialog.exec() == QDialog::Accepted;
 }
+
 bool DbTreeModel::getIgnoreDbLoadedSignal() const
 {
     return ignoreDbLoadedSignal;
