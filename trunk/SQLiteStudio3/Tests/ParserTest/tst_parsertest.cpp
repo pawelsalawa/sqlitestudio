@@ -35,6 +35,7 @@ class ParserTest : public QObject
         void testInsertError();
         void testExpr();
         void testCommentBeginMultiline();
+        void testBetween();
         void initTestCase();
         void cleanupTestCase();
 };
@@ -336,6 +337,13 @@ void ParserTest::testCommentBeginMultiline()
     TokenList tokens = Lexer::tokenize(sql, Dialect::Sqlite3);
     QVERIFY(tokens.size() == 1);
     QVERIFY(tokens[0]->type == Token::COMMENT);
+}
+
+void ParserTest::testBetween()
+{
+    QString sql = "SELECT * FROM test WHERE a BETWEEN 1 and 2";
+    bool res = parser3->parse(sql);
+    QVERIFY(res);
 }
 
 void ParserTest::initTestCase()

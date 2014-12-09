@@ -1559,7 +1559,7 @@ exprx(X) ::= nm(N1) DOT nm(N2) DOT.         {
                                                 parserContext->minorErrorBeforeNextToken("Syntax error");
                                             }
 exprx(X) ::= expr(E1) not_opt(N) BETWEEN
-                expr(E2). [BETWEEN]         {
+                expr(E2) AND.               {
                                                 X = new SqliteExpr();
                                                 delete N;
                                                 delete E1;
