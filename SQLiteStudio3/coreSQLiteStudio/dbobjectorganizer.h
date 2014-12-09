@@ -108,6 +108,7 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable, public In
         bool commit();
         bool rollback();
         void emitFinished(bool success);
+        bool execConfirmFunctionInMainThread(const QStringList& tables);
 
         ReferencedTablesConfimFunction confirmFunction;
         NameConflictResolveFunction nameConflictResolveFunction;
@@ -142,6 +143,7 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable, public In
 
     private slots:
         void processPreparationFinished();
+        bool confirmFunctionSlot(const QStringList& tables);
 
     signals:
         void finishedDbObjectsMove(bool success, Db* srcDb, Db* dstDb);
