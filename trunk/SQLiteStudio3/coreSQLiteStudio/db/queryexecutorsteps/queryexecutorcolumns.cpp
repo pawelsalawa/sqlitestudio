@@ -164,6 +164,28 @@ SqliteSelect::Core::ResultColumn* QueryExecutorColumns::getResultColumnForSelect
 
             selectResultColumn->expr->table = resultColumn->table;
         }
+
+//        // SQLite2 requires special treatment here. It won't allow selecting db.table.col from a subquery - it needs escaped ID that reflects db.table.col.
+//        if (dialect == Dialect::Sqlite2)
+//        {
+//            selectResultColumn->expr->rebuildTokens();
+//            colString = wrapObjIfNeeded(selectResultColumn->expr->detokenize(), dialect);
+//            delete selectResultColumn->expr;
+//            selectResultColumn->expr = nullptr;
+
+//            expr = parser.parseExpr(colString);
+//            if (!expr)
+//            {
+//                qWarning() << "Could not parse result column expr in SQLite2's second parsing phase:" << colString;
+//                if (parser.getErrors().size() > 0)
+//                    qWarning() << "The error was:" << parser.getErrors().first()->getFrom() << ":" << parser.getErrors().first()->getMessage();
+
+//                return nullptr;
+//            }
+
+//            expr->setParent(selectResultColumn);
+//            selectResultColumn->expr = expr;
+//        }
     }
 
     if (!col.alias.isNull())
@@ -232,8 +254,10 @@ void QueryExecutorColumns::wrapWithAliasedColumns(SqliteSelect* select)
         baseColName = QString();
         if (!resCol->alias.isNull())
             baseColName = resCol->alias;
-        else if (!resCol->expression)
+        else if (dialect == Dialect::Sqlite3 && !resCol->expression)
             baseColName = resCol->column;
+        else if (dialect == Dialect::Sqlite2 && !resCol->expression)
+            baseColName = getAliasedColumnNameForSqlite2(resCol);
 
         if (!baseColName.isNull())
         {
@@ -253,4 +277,22 @@ void QueryExecutorColumns::wrapWithAliasedColumns(SqliteSelect* select)
 
     //QString t = outerColumns.detokenize(); // keeping it for debug purposes
     select->tokens = wrapSelect(select->tokens, outerColumns);
+}
+
+QString QueryExecutorColumns::getAliasedColumnNameForSqlite2(const QueryExecutor::ResultColumnPtr& resCol)
+{
+    QStringList colNameParts;
+    if (!resCol->table.isNull())
+    {
+        if (!resCol->database.isNull())
+        {
+            if (context->dbNameToAttach.containsLeft(resCol->database, Qt::CaseInsensitive))
+                colNameParts << context->dbNameToAttach.valueByLeft(resCol->database, Qt::CaseInsensitive);
+            else
+                colNameParts << resCol->database;
+        }
+        colNameParts << resCol->table;
+    }
+    colNameParts << resCol->column;
+    return colNameParts.join(".");
 }

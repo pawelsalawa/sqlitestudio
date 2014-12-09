@@ -67,6 +67,8 @@ class QueryExecutorColumns : public QueryExecutorStep
         bool isRowIdColumnAlias(const QString& alias);
 
         void wrapWithAliasedColumns(SqliteSelect* select);
+
+        QString getAliasedColumnNameForSqlite2(const QueryExecutor::ResultColumnPtr& resCol);
 };
 
 #endif // QUERYEXECUTORCOLUMNS_H

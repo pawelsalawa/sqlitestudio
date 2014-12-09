@@ -174,7 +174,7 @@ void DbObjectOrganizer::processPreparation()
         }
     }
 
-    if (referencedTables.size() > 0 && !confirmFunction(referencedTables.toList()))
+    if (referencedTables.size() > 0 && !execConfirmFunctionInMainThread(referencedTables.toList()))
         referencedTables.clear();
 
     for (const QString& srcTable : referencedTables)
@@ -370,8 +370,6 @@ bool DbObjectOrganizer::copyTableToDb(const QString& table)
 {
     QString ddl;
     QString targetTable = table;
-//    AttachGuard attach = srcDb->guardedAttach(dstDb, true);
-//    QString attachName = attach->getName();
     if (renamed.contains(table) || !attachName.isNull())
     {
         SqliteQueryPtr parsedObject = srcResolver->getParsedObject(table, SchemaResolver::TABLE);
@@ -737,6 +735,21 @@ void DbObjectOrganizer::emitFinished(bool success)
     setExecuting(false);
 }
 
+bool DbObjectOrganizer::execConfirmFunctionInMainThread(const QStringList& tables)
+{
+    bool res;
+    bool invokation = QMetaObject::invokeMethod(this, "confirmFunctionSlot", Qt::BlockingQueuedConnection,
+                                                Q_RETURN_ARG(bool, res), Q_ARG(QStringList, tables));
+
+    if (!invokation)
+    {
+        qCritical() << "Could not call DbObjectOrganizer::confirmFunctionSlot() between threads!";
+        return false;
+    }
+
+    return res;
+}
+
 void DbObjectOrganizer::processPreparationFinished()
 {
     if (errorsToConfirm.size() > 0 && !conversionErrorsConfimFunction(errorsToConfirm))
@@ -774,4 +787,9 @@ void DbObjectOrganizer::processPreparationFinished()
     }
 
     QThreadPool::globalInstance()->start(this);
+}
+
+bool DbObjectOrganizer::confirmFunctionSlot(const QStringList& tables)
+{
+    return confirmFunction(tables);
 }

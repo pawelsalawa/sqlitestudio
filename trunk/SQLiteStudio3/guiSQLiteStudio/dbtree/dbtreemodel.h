@@ -21,9 +21,6 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
     Q_OBJECT
 
     public:
-        typedef QList<QPair<QString, QString>> ModelDiffList;
-        typedef QHash<QString, QSet<QString>> ErrorList;
-
         DbTreeModel();
         ~DbTreeModel();
 
@@ -92,8 +89,8 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
 
         static bool confirmReferencedTables(const QStringList& tables);
         static bool resolveNameConflict(QString& nameInConflict);
-        static bool confirmConversion(const ModelDiffList& diffs);
-        static bool confirmConversionErrors(const ErrorList& errors);
+        static bool confirmConversion(const QList<QPair<QString, QString>>& diffs);
+        static bool confirmConversionErrors(const QHash<QString, QSet<QString>>& errors);
 
         static const QString toolTipTableTmp;
         static const QString toolTipHdrRowTmp;
@@ -130,10 +127,6 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         void dbRemoved(const QString& name);
         void dbRemoved(QStandardItem* item);
         void interrupt();
-        bool confirmReferencedTablesSlot(const QStringList& tables);
-        bool resolveNameConflictSlot(QString& nameInConflict);
-        bool confirmConversionSlot(const ModelDiffList& diffs);
-        bool confirmConversionErrorsSlot(const ErrorList& errors);
 
     signals:
         void updateItemHidden(DbTreeItem* item);
