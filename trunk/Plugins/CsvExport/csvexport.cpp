@@ -59,11 +59,14 @@ bool CsvExport::beforeExportQueryResults(const QString& query, QList<QueryExecut
     UNUSED(providedData);
     defineCsvFormat();
 
-    QStringList cols;
-    for (QueryExecutor::ResultColumnPtr resCol : columns)
-        cols << resCol->displayName;
+    if (cfg.CsvExport.ColumnsInFirstRow.get())
+    {
+        QStringList cols;
+        for (QueryExecutor::ResultColumnPtr resCol : columns)
+            cols << resCol->displayName;
 
-    writeln(CsvSerializer::serialize(cols, format));
+        writeln(CsvSerializer::serialize(cols, format));
+    }
     return true;
 }
 
@@ -99,7 +102,9 @@ bool CsvExport::exportTable(const QStringList& columnNames)
         return false;
 
     defineCsvFormat();
-    writeln(CsvSerializer::serialize(columnNames, format));
+    if (cfg.CsvExport.ColumnsInFirstRow.get())
+        writeln(CsvSerializer::serialize(columnNames, format));
+
     return true;
 }
 
