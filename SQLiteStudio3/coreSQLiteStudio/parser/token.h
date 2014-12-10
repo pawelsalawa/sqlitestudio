@@ -574,21 +574,21 @@ class API_EXPORT TokenList : public QList<TokenPtr>
          *
          * White-space tokens are tested with Token::isWhitespace().
          */
-        void trimLeft();
+        TokenList &trimLeft();
 
         /**
          * @brief Removes all white-space tokens from the end of the list.
          *
          * White-space tokens are tested with Token::isWhitespace().
          */
-        void trimRight();
+        TokenList &trimRight();
 
         /**
          * @brief Removes all white-space tokens from both the beginning and the end of the list.
          *
          * White-space tokens are tested with Token::isWhitespace().
          */
-        void trim();
+        TokenList &trim();
 
         /**
          * @brief Removes all tokens that match given criteria from the beginning of the list.
@@ -598,7 +598,7 @@ class API_EXPORT TokenList : public QList<TokenPtr>
          * This method is an extension to the regular trimLeft(). It removes white-space tokens,
          * as well as tokens that are of given \p type and have given \p value (both conditions must be met).
          */
-        void trimLeft(Token::Type type, const QString& alsoTrim);
+        TokenList &trimLeft(Token::Type type, const QString& alsoTrim);
 
         /**
          * @brief Removes all tokens that match given criteria from the end of the list.
@@ -608,7 +608,7 @@ class API_EXPORT TokenList : public QList<TokenPtr>
          * This method is an extension to the regular trimRight(). It removes white-space tokens,
          * as well as tokens that are of given \p type and have given \p value (both conditions must be met).
          */
-        void trimRight(Token::Type type, const QString& alsoTrim);
+        TokenList &trimRight(Token::Type type, const QString& alsoTrim);
 
         /**
          * @brief Removes all tokens that match given criteria from the beginning and the end of the list.
@@ -618,7 +618,7 @@ class API_EXPORT TokenList : public QList<TokenPtr>
          * This method is an extension to the regular trim(). It removes white-space tokens,
          * as well as tokens that are of given \p type and have given \p value (both conditions must be met).
          */
-        void trim(Token::Type type, const QString& alsoTrim);
+        TokenList &trim(Token::Type type, const QString& alsoTrim);
 
         /**
          * @brief Creates list of tokens from this list, letting through only tokens of given type.

@@ -358,7 +358,9 @@ TokenPtr SqliteStatement::getDbTokenFromNmDbnm(const QString &tokensMapKey1, con
 //    if (tokensMap[tokensMapKey2].size() == 0)
 //        return TokenPtr();
 
-    if (!tokensMap.contains("DOT") && tokensMap[tokensMapKey2].size() == 0)
+    TokenList listForKey1 = extractPrintableTokens(tokensMap[tokensMapKey1]);
+    TokenList listForKey2 = extractPrintableTokens(tokensMap[tokensMapKey2]);
+    if (!tokensMap.contains("DOT") && listForKey2.size() == 0)
     {
         // In this case the query is "SELECT * FROM test" and there is no database,
         // but if there was a dot after the "test", then the "test" is a database name,
@@ -366,7 +368,7 @@ TokenPtr SqliteStatement::getDbTokenFromNmDbnm(const QString &tokensMapKey1, con
         return TokenPtr();
     }
 
-    return extractPrintableTokens(tokensMap[tokensMapKey1])[0];
+    return extractPrintableTokens(listForKey1)[0];
 }
 
 TokenPtr SqliteStatement::getObjectTokenFromNmDbnm(const QString &tokensMapKey1, const QString &tokensMapKey2)
@@ -383,10 +385,12 @@ TokenPtr SqliteStatement::getObjectTokenFromNmDbnm(const QString &tokensMapKey1,
         return TokenPtr();
     }
 
-    if (tokensMap[tokensMapKey2].size() == 0)
-        return extractPrintableTokens(tokensMap[tokensMapKey1])[0];
+    TokenList listForKey1 = extractPrintableTokens(tokensMap[tokensMapKey1]);
+    TokenList listForKey2 = extractPrintableTokens(tokensMap[tokensMapKey2]);
+    if (listForKey2.size() == 0)
+        return extractPrintableTokens(listForKey1)[0];
 
-    return extractPrintableTokens(tokensMap[tokensMapKey2])[1];
+    return extractPrintableTokens(listForKey2)[1];
 }
 
 TokenList SqliteStatement::getDbTokenListFromFullname(const QString &tokensMapKey)
