@@ -434,40 +434,50 @@ bool TokenList::remove(Token::Type type)
     return true;
 }
 
-void TokenList::trimLeft()
+TokenList& TokenList::trimLeft()
 {
     while (size() > 0 && first()->isWhitespace())
         removeFirst();
+
+    return *this;
 }
 
-void TokenList::trimRight()
+TokenList& TokenList::trimRight()
 {
     while (size() > 0 && last()->isWhitespace())
         removeLast();
+
+    return *this;
 }
 
-void TokenList::trim()
+TokenList& TokenList::trim()
 {
     trimLeft();
     trimRight();
+    return *this;
 }
 
-void TokenList::trimLeft(Token::Type type, const QString& alsoTrim)
+TokenList& TokenList::trimLeft(Token::Type type, const QString& alsoTrim)
 {
     while (size() > 0 && (first()->isWhitespace() || (first()->type == type && first()->value == alsoTrim)))
         removeFirst();
+
+    return *this;
 }
 
-void TokenList::trimRight(Token::Type type, const QString& alsoTrim)
+TokenList& TokenList::trimRight(Token::Type type, const QString& alsoTrim)
 {
     while (size() > 0 && (last()->isWhitespace() || (last()->type == type && last()->value == alsoTrim)))
         removeLast();
+
+    return *this;
 }
 
-void TokenList::trim(Token::Type type, const QString& alsoTrim)
+TokenList& TokenList::trim(Token::Type type, const QString& alsoTrim)
 {
     trimLeft(type, alsoTrim);
     trimRight(type, alsoTrim);
+    return *this;
 }
 
 TokenList TokenList::filter(Token::Type type) const
