@@ -6,6 +6,7 @@
 #include <QHash>
 #include <QStack>
 #include <QXmlDefaultHandler>
+#include <functional>
 
 class UiLoaderPropertyHandler;
 

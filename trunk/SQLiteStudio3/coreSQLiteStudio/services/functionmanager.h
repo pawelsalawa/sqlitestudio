@@ -7,6 +7,7 @@
 #include <QSharedPointer>
 #include <QObject>
 #include <QStringList>
+#include <functional>
 
 class Db;
 

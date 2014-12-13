@@ -3,6 +3,7 @@
 
 #include "guiSQLiteStudio_global.h"
 #include <QWizardPage>
+#include <functional>
 
 class GUI_API_EXPORT VerifiableWizardPage : public QWizardPage
 {

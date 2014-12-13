@@ -1,3 +1,5 @@
+include($$PWD/dirs.pri)
+
 release {
     OUTPUT_DIR_NAME = output
 }
@@ -68,7 +70,7 @@ unix: {
         export(LIBS)
     }
 
-    target.path = /usr/lib/sqlitestudio
+    target.path = $$LIBDIR/sqlitestudio
     INSTALLS += target
 }
 
