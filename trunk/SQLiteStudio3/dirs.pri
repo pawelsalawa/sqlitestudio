@@ -43,16 +43,13 @@ portable {
     }
 }
 
-linux: {
-    !portable: {
-        isEmpty(LIBDIR) {
-            LIBDIR = /usr/lib
-        }
-	export(LIBDIR)
-        isEmpty(BINDIR) {
-            BINDIR = /usr/bin
-        }
-	export(BINDIR)
+unix: {
+    isEmpty(LIBDIR) {
+	LIBDIR = /usr/lib
     }
+    export(LIBDIR)
+    isEmpty(BINDIR) {
+	BINDIR = /usr/bin
+    }
+    export(BINDIR)
 }
-
