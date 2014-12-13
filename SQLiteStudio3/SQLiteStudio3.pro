@@ -27,12 +27,7 @@ if(contains(DEFINES,tests)) {
     SUBDIRS += tests
 }
 
-release {
-    OUTPUT_DIR_NAME = output
-}
-debug {
-    OUTPUT_DIR_NAME = output_debug
-}
+OUTPUT_DIR_NAME = output
 
 win32: {
     SUBDIRS += update_app
