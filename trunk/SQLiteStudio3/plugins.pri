@@ -1,12 +1,5 @@
 include($$PWD/dirs.pri)
 
-release {
-    OUTPUT_DIR_NAME = output
-}
-debug {
-    OUTPUT_DIR_NAME = output_debug
-}
-
 CONFIG += c++11 plugin
 
 DESTDIR = $$PWD/../$$OUTPUT_DIR_NAME/SQLiteStudio/plugins

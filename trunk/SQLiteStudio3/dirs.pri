@@ -1,9 +1,5 @@
-release {
-    OUTPUT_DIR_NAME = output
-}
-debug {
-    OUTPUT_DIR_NAME = output_debug
-}
+OUTPUT_DIR_NAME = output
+export(OUTPUT_DIR_NAME)
 
 DESTDIR = $$PWD/../$$OUTPUT_DIR_NAME/SQLiteStudio
 OBJECTS_DIR = $$PWD/../$$OUTPUT_DIR_NAME/build
