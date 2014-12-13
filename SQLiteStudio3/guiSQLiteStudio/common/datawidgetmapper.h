@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QHash>
+#include <functional>
 
 class QAbstractItemModel;
 

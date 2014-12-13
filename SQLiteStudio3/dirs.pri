@@ -42,3 +42,17 @@ portable {
         LIBS += -L$$DESTDIR/lib
     }
 }
+
+linux: {
+    !portable: {
+        isEmpty(LIBDIR) {
+            LIBDIR = /usr/lib
+        }
+	export(LIBDIR)
+        isEmpty(BINDIR) {
+            BINDIR = /usr/bin
+        }
+	export(BINDIR)
+    }
+}
+

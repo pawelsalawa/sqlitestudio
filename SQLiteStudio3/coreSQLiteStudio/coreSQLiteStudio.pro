@@ -22,7 +22,7 @@ win32 {
 }
 
 linux: {
-    DEFINES += SYS_PLUGINS_DIR=/usr/lib/sqlitestudio
+    DEFINES += SYS_PLUGINS_DIR=$$LIBDIR/sqlitestudio
     portable: {
         DESTDIR = $$DESTDIR/lib
     }
@@ -387,12 +387,8 @@ HEADERS += sqlitestudio.h\
     rsa/PrimeGenerator.h \
     rsa/RSA.h
 
-unix:!symbian {
-    maemo5 {
-        target.path = /opt/usr/lib
-    } else {
-        target.path = /usr/lib
-    }
+unix: {
+    target.path = $$LIBDIR
     INSTALLS += target
 }
 

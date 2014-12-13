@@ -361,4 +361,9 @@ RESOURCES += \
 
 OTHER_FILES +=
 
+unix: {
+    target.path = $$LIBDIR
+    INSTALLS += target
+}
+
 LIBS += -lcoreSQLiteStudio

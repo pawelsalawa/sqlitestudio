@@ -93,3 +93,9 @@ HEADERS += \
     commands/clicommandtree.h \
     clicompleter.h \
     commands/clicommanddesc.h
+
+unix: {
+    target.path = $$BINDIR
+    INSTALLS += target
+}
+

@@ -36,6 +36,16 @@ linux: {
     # Find tclConfig.sh
     TCL_CONFIG_DIR = $$system(echo "puts [info library]" | tclsh)
     TCL_CONFIG = $$TCL_CONFIG_DIR/tclConfig.sh
+    message("Looking for $$TCL_CONFIG")
+    !exists($$TCL_CONFIG) {
+	# Debian case
+	TCL_CONFIG = $$system(echo "/usr/lib/`dpkg-architecture -qDEB_HOST_MULTIARCH`/tcl$$TCL_VERSION/tclConfig.sh")
+    }
+    message("Looking for $$TCL_CONFIG")
+    !exists($$TCL_CONFIG) {
+	error("Could not find tclConfig.sh file. You can define its absolute path by qmake parameter: TCL_CONFIG=/path/to/tclConfig.sh")
+    }
+    message("Using tclconfig: $$TCL_CONFIG")
 
     # Define other libs required when linking with Tcl
     eval($$system(cat $$TCL_CONFIG | grep TCL_LIBS))

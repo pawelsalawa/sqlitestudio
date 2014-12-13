@@ -44,3 +44,8 @@ macx: {
 OTHER_FILES += \
     windows.rc \
     SQLiteStudio.exe.manifest
+
+unix: {
+    target.path = $$BINDIR
+    INSTALLS += target
+}

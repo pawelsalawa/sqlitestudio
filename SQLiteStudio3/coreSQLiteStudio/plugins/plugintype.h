@@ -5,6 +5,7 @@
 #include <QList>
 #include <QString>
 #include <QObject>
+#include <typeinfo>
 
 class Plugin;
 

@@ -8,6 +8,7 @@
 #include <QChar>
 #include <QStringList>
 #include <QFileInfo>
+#include <functional>
 
 class QTextCodec;
 
