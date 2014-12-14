@@ -241,6 +241,17 @@ void DataView::setupDefShortcuts()
     BIND_SHORTCUTS(DataView, Action);
 }
 
+void DataView::resizeColumnsInitiallyToContents()
+{
+    int cols = gridView->model()->columnCount();
+    gridView->resizeColumnsToContents();
+    for (int i = 0; i < cols ; i++)
+    {
+        if (gridView->columnWidth(i) > CFG_UI.General.MaxInitialColumnWith.get())
+            gridView->setColumnWidth(i, CFG_UI.General.MaxInitialColumnWith.get());
+    }
+}
+
 void DataView::createStaticActions()
 {
     // Filtering actions
@@ -544,7 +555,10 @@ bool DataView::isUncommited() const
 void DataView::dataLoadingEnded(bool successful)
 {
     if (successful)
+    {
         updatePageEdit();
+        resizeColumnsInitiallyToContents();
+    }
 
     setNavigationState(true);
 }

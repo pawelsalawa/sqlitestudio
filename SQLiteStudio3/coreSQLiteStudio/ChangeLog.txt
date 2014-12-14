@@ -1,3 +1,6 @@
+[3.0.1]
+        * [ADDED]: When the data is being read into the Gird View, columns width gets automatically adjusted, so for small values they are shrinked and for bigger values they're enlarged, but never above the configured limit (a new option in config dialog).
+
 [3.0.0]
         * [ADDED]: Application has been rewritten from scratch in C++ and Qt (was previously written in Tcl/Tk). This means improvements in all areas, especially in application performance, good looking interface, more friendly interface and more stability.
         * [ADDED]: Database list can now group databases in named groups (groups can be embedded in each other).
