@@ -403,7 +403,8 @@ OTHER_FILES += \
     licenses/sqlitestudio_license.txt \
     licenses/lgpl.txt \
     licenses/diff_match.txt \
-    licenses/gpl.txt
+    licenses/gpl.txt \
+    ChangeLog.txt
 
 FORMS += \
     plugins/populatesequence.ui \

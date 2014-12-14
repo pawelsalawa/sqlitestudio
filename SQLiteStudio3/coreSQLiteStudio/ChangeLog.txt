@@ -1,0 +1,936 @@
+[3.0.0]
+        * [ADDED]: Application has been rewritten from scratch in C++ and Qt (was previously written in Tcl/Tk). This means improvements in all areas, especially in application performance, good looking interface, more friendly interface and more stability.
+        * [ADDED]: Database list can now group databases in named groups (groups can be embedded in each other).
+        * [ADDED]: Changes made to database schema (modifying/adding/dropping tables, indexes, etc) are now confirmed with user by a DDL dialog (can be disabled).
+        * [ADDED]: Form View for data is now configurable and extensible (with plugins). You can configure which editors you want to make available for which data type.
+        * [ADDED]: Custom collation editor window, so you can implement custom collations using any scripting language available in SQLiteStudio
+        * [ADDED]: Changes made to database schema can now always be tracked down by a DDL history window, which keeps track of all changes you do to the database.
+        * [ADDED]: Database conversion utility now previews changes to be made to the database.
+        * [ADDED]: Drag&drop of objects between databases will preview changes that need to be made to objects before they can be created in the target database.
+        * [ADDED]: Most of the dialogs/forms is validated on-the-fly and user is notified about any problems immediately with a small red icons over the problematic field.
+        * [ADDED]: Scripting languages are now provided by plugins. With this version there is support for QtScript (built in), SQL (built in) and Tcl (as a plugin).
+        * [ADDED]: Support for sorting data by multiple columns by right-clicking on the data grid header.
+        * [ADDED]: Support for "WITHOUT ROWID" tables and "WITH" clause in queries.
+        * [ADDED]: If there are any uncommited changes (in data or schema), user will be asked for confirmation before closing application or MDI window.
+        * [ADDED]: Printing (for data, schema and query) support.
+        * [ADDED]: Much, much more, it's just hard to put every single detail in the changelog. After all, the entire application was written from the very beginning.
+        * [CHANGE]: Table is now edited in the table window directly, not in any special dialog.
+        * [CHANGE]: SQL syntax validator now underlines errors, instead of changing background color.
+        * [CHANGE]: SQL parsing is done in separate threads, making the UI smooth and responsive.
+        * [CHANGE]: Executing queries is done in separate threads, making the UI smooth and responsive.
+        * [CHANGE]: Custom SQL functions editor is now a MDI window with more powerful editing capabilities.
+        * [CHANGE]: Import and export dialogs are now a "Wizard" dialogs and they become more organized.
+        * [CHANGE]: SQLite3 version updated to 3.8.7.4.
+        * [BUGFIX]: The new version deals much better with huge databases than the old version did.
+        * [BUGFIX]: The MacOS X port doesn't crash all the time, like it was for version 2.1.x. It's just as stable as for any other operating system.
+        * [BUGFIX]: SQL syntax assistant got smarter and it deals much better with complex queries.
+        * [BUGFIX]: Enterprise SQL formatter deals better with complex queries.
+
+[2.1.5]
+        * [BUGFIX]: Fixed conversion dialog: http://bugs.sqlitestudio.pl/?id=2515
+        * [BUGFIX]: Fixed conversion dialog: http://bugs.sqlitestudio.pl/?id=2513
+
+[2.1.4]
+        * [BUGFIX]: Fixed conversion dialog: http://bugs.sqlitestudio.pl/?id=2021
+
+[2.1.3]
+        * [ADDED]: Shortcut for editing cell value in BLOB editor dialog (default is Shift-Return, but can be configured).
+        * [ADDED]: Configuration option (on Misc config tab) to define how wide (maximum) can grid column be.
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1879
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1878
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1883
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1893
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1907
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1921
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1916
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=2062
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=2093
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=2095
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=2141
+        * [BUGFIX]: Fixed few exporting bugs (errors raised, no data exported, ...).
+        * [BUGFIX]: Fixed "Vacuum" in database context menu.
+
+[2.1.2]
+        * [ADDED]: When dropping a table, SQLiteStudio checks if it's used in any view and if it is, then asks user for confirmation.
+        * [CHANGE]: Database convering dialog now proposes database file basing on typed name.
+        * [CHANGE]: Database convering works in background, not blocking the UI.
+        * [CHANGE]: Main menu reorganized. Now it's also interactive according to what's to what's selected in the databases list.
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1711
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1738
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1713
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1699
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1709
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1734
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1703
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1555
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1707
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1760
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1784
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1774
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1817
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1804
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1743
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1700
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1763
+        * [BUGFIX]: When editing a cell from query results and commiting changes, then all cells representing the same database cell will be updated with new value as well.
+        * [BUGFIX]: Fonts initialization optimized. SQL editor widgets should open slightly faster, especially under Windows.
+        * [BUGFIX]: Transparent attach/detach mechanism fixed to avoid multiple attaches of the same database.
+        * [BUGFIX]: Fixed column edition dialog to not hide under Windows after being open with "double click".
+        * [BUGFIX]: When renaming task the old name is typed by in the entry field, instead of "0".
+        * [BUGFIX]: Fixed saving custom toolbar order.
+
+[2.1.1]
+        * [ADDED]: Setting (on "Fonts" tab) for configuring whether you want keywords to be displayed with bold font or not.
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1474
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1518
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1517
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1520
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1361
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1540
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1475
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1622
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1597
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1598
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1479
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1483
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1563
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1532
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1649
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1650
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1533
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1514
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1489
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1485
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1482
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1473
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1627
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1480
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1655
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1680
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1584
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1561
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1683
+        * [BUGFIX]: Optimized executing huge SQL directly from a file.
+        * [BUGFIX]: Other minor speed optimizations.
+
+[2.1.0]
+        * [ADDED]: Support for NULL values in form view, blob edit dialog and query parameters dialog.
+        * [ADDED]: Importing engine based on plugins. Currently SQLiteStudio can import from CSV, Clipboard (same as CSV, but from clipboard), DBF (dBase) and from any text files using Regular Expression (RegExp plugin).
+        * [ADDED]: Full Foreign Keys altering support - when modifying table, foreign keys will follow table changes.
+        * [ADDED]: Support for system tables in table window -> they can be viewed but cannot be modified (SQLite itself prevents that).
+        * [ADDED]: Completion hints can suggest columns from Views now.
+        * [ADDED]: Option in configuration to define what to do when user opens a view - show edition dialog or data from view (http://bugs.sqlitestudio.pl/?id=386).
+        * [ADDED]: Button for adding custom number of rows to table data grid at once.
+        * [ADDED]: If application is started first time, it asks for language to use before showing main window.
+        * [ADDED]: Support for "BEGIN", "COMMIT" and "ROLLBACK" statements to be executed from SQL editor.
+        * [ADDED]: Smart "home" key in SQL editor, which goes either to begining of line or to begining of actual text in the line.
+        * [ADDED]: 'Return' key opens selected element from databases tree.
+        * [ADDED]: Context menu option to edit selected cell using BLOB editor, even the cell data size is small.
+        * [ADDED]: Databases tree filter, so user can easly find any database (in long list) or any table/index/trigger/view in any open database by entering any piece of its name.
+        * [ADDED]: Form view of data has now resizable fields (but only for TEXT, BLOB and similar datatypes), so you can see more data at once instead of scrolling a lot.
+        * [ADDED]: Grid row (table data grid or query results grid) can select whole row at once by clicking on ROWNUM column or by Control-click on any cell. (http://bugs.sqlitestudio.pl/?id=208)
+        * [ADDED]: An entry in "View" menu to restore last closed window (and one before that and so on), also a configurable keyboard shortcut and entry in taskbar context menu to do the same.
+        * [ADDED]: Database list tooltips for databases, so you can quickly view what's the path to database file, what's its size, etc.
+        * [ADDED]: Tooltips for tables and views to get quick informations about the object.
+        * [ADDED]: Tooltips for taskbar to display full button title (even long one), database associated with the window and table (in case of table window).
+        * [ADDED]: SQL editor - matching parenthesis pairs highlighting when insertion cursor positioned at the one from the pair.
+        * [ADDED]: Context menu entry to reset AUTOINCREMENT sequence for selected table.
+        * [ADDED]: Option to make indexes linked to (under) tables in databases tree. This is enabled by default and can be disabled in configuration dialog.
+        * [ADDED]: Option to show columns linked to (under) tables in databases tree.
+        * [ADDED]: Portable mode for configuration. If there's a "sqlitestudio-cfg" directory next to the SQLiteStudio binary, then it is used to read and store configuration.
+        * [ADDED]: Option to display ROWIDs in table data as default (after each table window is open).
+        * [ADDED]: Defining order of databases in the list by Drag&Drop of databases.
+        * [ADDED]: Drag&Drop of databases and objects between databases. Now you can copy/move tables (also indexes, triggers and views) between databases simply by D&D. It's possible even between SQLite3 and SQLite2 databases!
+        * [ADDED]: When modifying a table, all views that reference the table are adjusted to the new form of table (new name, column changes, etc), just like indexes and triggers were adjusted so far.
+        * [ADDED]: Help hint about parameters to SQL function in Custom SQL Functions dialog.
+        * [ADDED]: Support for multiple value sets in INSERT statements (introduced in SQLite 3.7.11).
+        * [ADDED]: When editing the table cell, all the contents of that cell are selected by default. This can be disabled in configuration dialog.
+        * [ADDED]: Context menu command to generate SELECT statement for selected cells (in both data grid and results grid).
+        * [ADDED]: Now it's possible to export data from view, just like from a table.
+        * [ADDED]: Positional parameters (@, ?, $, :, ...) are now remebered and recalled when used again in same or similar query (with same parameters).
+        * [ADDED]: Positional parameters dialog has button to copy the value to other parameters in the dialog that are named exactly the same. The button is displayed only if there are more than one parameter with a certain name.
+        * [ADDED]: Context menu for table to erase all data from table (after confirmation).
+        * [ADDED]: Bug report dialog can now use an account from http://bugs.sqlitestudio.pl to report bugs.
+        * [ADDED]: Two new data populating plugins: SQL and Tcl.
+        * [ADDED]: New exporting plugins: DBF (dBase), PDF, JSON, Clipboard, XLS (MS Excel).
+        * [ADDED]: The "ON CONFLICT" algorithm exposed to user when using Populating Dialog. Now any duplicates, can be ignored (http://bugs.sqlitestudio.pl/?id=576).
+        * [CHANGE]: Table window opening speed up. Loading related triggers and indexes postponed to moment of displaying proper tab.
+        * [CHANGE]: Displaying and editing huge data volumes (both in table window and SQL editor) is now supported much better and faster.
+        * [CHANGE]: Memory usage for exporting minimized. Now it's possible to export any amount of data at once.
+        * [CHANGE]: Enabled exporting for cross-database queries.
+        * [CHANGE]: Interrupting query execution now actually works! You can cancel query at any moment.
+        * [CHANGE]: Dropped "PRAGMA full_column_names" usage, as it is deprecated SQLite3 interface.
+        * [CHANGE]: Editing query results now supports editing results from cross-database queries! The only condition is that columns are selected directly, without expression modifiers, such as math operations, etc.
+        * [CHANGE]: Introduced support for custom number of table constraints (not column constraints), so for example two or more primary keys defined as separated table constraints is now possible from table dialog. (http://bugs.sqlitestudio.pl/?id=200)
+        * [CHANGE]: Trigger DDL support enhanced. Now it supports "UPDATE OF <columns>" statements.
+        * [CHANGE]: Supported languages are now displayed in human readable form, by names, not by strange locale symbols.
+        * [CHANGE]: Session management improoved. It's easier to write session-aware classes now.
+        * [CHANGE]: Using thread pools instead of individual threads wherever it's possible. This made SQL editor windows to open a little quicker and to work more smoothly.
+        * [CHANGE]: SQL Editor completion hints display "busy" animated icon if parsing some huge SQL takes a little longer.
+        * [CHANGE]: Platform detecting code unified.
+        * [CHANGE]: Parser and lexer classes enclosed in UniversalParser and UniversalLexer, preventing many potential memory leaks.
+        * [CHANGE]: Switched from BEGIN to SAVEPOINT in most cases (only in SQLite3, in SQLite2 BEGIN usage remains).
+        * [CHANGE]: Table grid view menu context reorganized to be more readable.
+        * [CHANGE]: Changed icons for "Export table" and "Export database" to fit general schema of icons.
+        * [CHANGE]: Enhanced layout of context hints for tables (table data and results data).
+        * [CHANGE]: Auto-update checks directory permissions, so it allows automatic update only if privileges are sufficient.
+        * [CHANGE]: Session saving now stores the full image of what objects were expanded or collapsed, so it gets fully restored.
+        * [CHANGE]: Added shadows for hints under Windows.
+        * [CHANGE]: Simplified bug reporting dialog.
+        * [REMOVED]: Solaris binaries. Nobody seems to use them. Users still can run SQLiteStudio from sources with some Tcl distribution.
+        * [BUGFIX]: Again improved performance for huge table data and huge query results.
+        * [BUGFIX]: Column context information in table window fixed to display constraints correctly.
+        * [BUGFIX]: Fixed virtual table exporting (http://bugs.sqlitestudio.pl/?id=201).
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1199
+
+[2.0.28]
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1086
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1091
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1128
+        * [BUGFIX]: Fixed "maximized" window state, so it's correctly restored on Unixes.
+        * [BUGFIX]: Fixed font picker dialog to use proper theming engine.
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1110
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1115
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=977
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1198
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1144
+
+[2.0.27]
+        * [ADDED]: http://bugs.sqlitestudio.pl/?id=967
+        * [ADDED]: http://bugs.sqlitestudio.pl/?id=934
+        * [BUGFIX]: Fix for white icons on disabled toolbar buttons on MacOSX.
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=815
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=818
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=828
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=829
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=844
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=852
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=913
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=973
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=947
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=983
+        * [BUGFIX]: Fixed error when completion hint was invoked for alias name that is also a proper table name.
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=984
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1029
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=607
+        * [BUGFIX]: Fixed invalid focus when clicked on "data" tab. In result the user was unable to use keyboard shortcut to switch between subtabs.
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=959
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=921
+        * [BUGFIX]: Added debug details for http://bugs.sqlitestudio.pl/?id=921
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1000
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1071
+        * [BUGFIX]: Fixed http://forum.sqlitestudio.pl/viewtopic.php?f=11&t=93
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=834
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=949
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=971
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=981
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1083
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=965
+
+[2.0.26]
+        * [BUGFIX]: SQL editor in Trigger Dialog uses now configured keyboard shortcut for SQL formatting, instead of hardcoded ctrl-f.
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=768
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=759 (thanks to Kevin Walzer)
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=771
+        * [BUGFIX]: Fixed context menu on MacOSX, so it's now invoked by right-click, not the middle-click.
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=784
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=798
+
+[2.0.25]
+        * [ADDED]: "Donate" in "Help" menu. Voluntary donations help maintain the hosting server and keep me motivated.
+        * [BUGFIX]: Fixed sorting of completion hint for "INSERT INTO table (". Now columns from "table" are first.
+        * [BUGFIX]: Tooltips fixed to display in intelligent spot, so it won't go out of screen edge.
+        * [BUGFIX]: Fixed formatting of "x BETWEEN y AND z" so there's a whitespace after "AND".
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=715
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=721
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=722
+        * [BUGFIX]: Binary distribution for Mac OS X is now deployed with a little different menthod which should result in less critical crashes. Also resolved problem with starting on some OSX machines. Big thanks to Michal Janiak for helping with this!
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=725
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=728
+        * [BUGFIX]: Fixed parsing and formatting of CREATE TRIGGER with "CASE ... END" in it.
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=747
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=755
+
+[2.0.24]
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=702
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=707
+
+[2.0.23]
+        * [CHANGE]: SQLite updated to 3.0.9 in binary distributions. Also a binary for Mac OS X got recompiled with SQLITE_ENABLE_LOCKING_STYLE, so it works with network file systems well.
+        * [BUGFIX]: Fixed error checking, that was not running when used "Enter" or "Backspace" or at application startup.
+        * [BUGFIX]: Fixed Enterprise Formatter to put whitespace after "BETWEEN" keyword.
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=587
+        * [BUGFIX]: Fixed AUTOINCREMENT column constraint in Enterprise Formatter (it missed the keyword while formatting).
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=664
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=666
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=583
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=614
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=685
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=676
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=673
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=601
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=680
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=701
+
+[2.0.22]
+        * [NEW]: Implemented http://bugs.sqlitestudio.pl/?id=490
+        * [BUGFIX]: Completion hint (in SQL Editor) will not disappear if users hits "completion key shortcut" again accidentally.
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=479
+        * [BUGFIX]: Fixed very slow execution SQL custom functions implemented in Tcl. Discussion: http://forum.sqlitestudio.pl/viewtopic.php?f=11&t=31
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=474
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=486
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=243
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=498
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=499
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=501
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=519
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=522
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=566
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=526
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=508
+        * [BUGFIX]: E-mail field in Bug Report dialog is now validated, so only valid or empty value is accepted.
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=573
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=523
+
+[2.0.21]
+        * [ADDED]: Bug report dialog have new field "e-mail". It is optional and it's only for SQLiteStudio developer to contact reporter about some details of error report. It will never be shared to anyone or used for any other purpose. It won't be published anywhere.
+        * [BUGFIX]: Fixed enterprise SQL formatter to not wrap "ALL" in "UNION ALL" with "[]".
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=454
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=461
+        * [BUGFIX]: Export dialog and database dialog handles manually typed file names (not picked with file dialog) correctly.
+        * [BUGFIX]: Export dialog title changed to 'Output file' to avoid any misunderstands.
+
+[2.0.20]
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=447
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=452
+
+[2.0.19]
+        * [BUGFIX]: Fixed help tip text in CSV export plugin configuration.
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=432
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=430
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=434
+
+[2.0.18]
+        * [CHANGE]: In table and column dialogs the insertion cursor in name field is initially placed at the end of value.
+        * [CHANGE]: Added more debug information regarding http://bugs.sqlitestudio.pl/?id=411
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=408
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=416
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=419
+
+[2.0.17]
+        * [BUGFIX]: Fixed completion hints for vies, triggers and indexes in case of "DROP" statement.
+        * [BUGFIX]: Enabled encoding configuration for SQL export format for entire database.
+        * [BUGFIX]: Fixed some problems with switching MDI windows (especially when used Control+click on table name in SQL editor).
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=403
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=402
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=405
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=406
+
+[2.0.16]
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=391
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=397
+        * [BUGFIX]: Fixed copying DDL code from DDL tab in various dialog windows.
+        * [BUGFIX]: Fixed button names in trigger, index and view dialogs in case of editing existing object.
+
+[2.0.15]
+        * [BUGFIX]: Fixed file() SQL function to handle binary files.
+        * [BUGFIX]: Fixed "identity encoding" issue while exporting data.
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=385
+        * [BUGFIX]: Fixed parser support for primary key table constraint with single column in it.
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=389
+
+[2.0.14]
+        * [CHANGE]: Updated to SQLite 3.7.8 (http://bugs.sqlitestudio.pl/?id=247)
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=241
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=242
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=268
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=285
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=256
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=266
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=250
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=240
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=245
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=248
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=251
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=253
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=269
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=271
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=323
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=363
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=302
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=304
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=365
+        * [BUGFIX]: Fixed completion hint not working when used with alias for table name typed with different case.
+        * [BUGFIX]: Fixed deleting any object from database (in database objects tree) with Delete key. It always tried to delete database, instead of selected object.
+
+[2.0.13]
+        * [NEW]: Introduced Chinese translation, thanks to Yu Longzhen! It's not yet complete, but already more than a half is done.
+        * [NEW]: Home page added to help menu, also manual link updated (http://bugs.sqlitestudio.pl/?id=193)
+        * [NEW]: Added Google Chrome to list of predefined browsers under unix systems.
+        * [CHANGE]: Datatypes in column edition dialog are now autocompleted while typing, so it's enough to type "t" to get "TEXT" type.
+        * [CHANGE]: Datatype list in column edition can now be fast navigated using keys, so if you drop down the list, you can press "i" to select "INT" type fast. (http://bugs.sqlitestudio.pl/?id=190)
+        * [BUGFIX]: Fixed bug related to "_toCommit".
+        * [BUGFIX]: Fixed bug, when user was able to edit deleted but uncommited row (even the edition was ignored).
+        * [BUGFIX]: Fixed insertion of numeric values in data view - they're now treated as numeric if column type says so (they used to be treated as string and CHECK constraint was not satisfied very often).
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=168
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=172
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=173
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=175
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=176
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=177
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=178
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=179
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=182
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=184
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=185
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=188
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=189
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=191
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=193
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=194
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=195
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=196
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=197
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=198
+        * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=203
+        * [BUGFIX]: Fixed several issues related to inserting new rows from Form View of table data.
+        * [BUGFIX]: Fixed issue related to table and column names with strange characters in name.
+        * [BUGFIX]: Enterprise SQL formatter indents sub-selected datasources better.
+        * [BUGFIX]: Some other, minor bugs fixed.
+
+[2.0.12]
+        * [BUGFIX]: Fixed error for SQLite2 DDL that uses "REFERENCES" keyword, even it's unsupported by SQLite2.
+        * [BUGFIX]: Binary compatibility for MacOS X restored from 2.0.9.
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4632
+
+[2.0.11]
+        * [BUGFIX]: Removed SQL debug messages enabled in 2.0.10, causing "stdout" related error under Windows.
+
+[2.0.10]
+        * [CHANGE]: If query could not be executed by Smart Query Executor, then simple executor adds its signature to eventual error message in status.
+        * [CHANGE]: Added <Delete> key shortcut to delete selected database from list.
+        * [CHANGE]: Various MacOS X appearance improovements.
+        * [BUGFIX]: Significat configuration saving speedup.
+        * [BUGFIX]: Fixed nasty bug related to character encoding for SQLite2 under Windows: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3860
+        * [BUGFIX]: Column Drag&Drop in table dialog works again.
+        * [BUGFIX]: TreeCtrl extension updated to 2.3.1, which fixes 2 major bugs in data grid header.
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4495
+        * [BUGFIX]: 'removeComments' routine fixed (by maovrn).
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4500
+        * [BUGFIX]: Fixed minor SQL formatting error for SQlite 2.
+        * [BUGFIX]: Message about "ATTACH DATABASE" limit exceed is now wrapped in nice readable message dialog.
+        * [BUGFIX]: Fixed "unknown execution error" in case of problem with transparent attaching database.
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4579
+        * [BUGFIX]: Removed "-force" from all [focus] calls.
+        * [BUGFIX]: Added additional debug routines for some bugs. Hope to fix them with next release.
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4553
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4586
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4550
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4510 (UNION SELECTs forbids to edit results data, for now).
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4583
+        * [BUGFIX]: Fixed grid to form synchronization when adding new row in grid.
+
+[2.0.9]
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4484
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4485
+        * [BUGFIX]: Entering edition mode in grid works now for international characters too.
+        * [BUGFIX]: Added all missing encoding systems to binary distributions.
+
+[2.0.8]
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4476
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4465 (unknown option "0")
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4473
+        * [BUGFIX]: If updating process doesn't have right to write to disk, then human readable message is displayed.
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4479
+
+[2.0.7]
+        * [BUGFIX]: Fixed nasty bug with "-notnull1": http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4455
+        * [BUGFIX]: Fixed another nasty bug with "-tableAlias": http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4456
+        * [BUGFIX]: Added more debug information for bug "row(sql)": http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4458
+
+[2.0.6]
+        * [ADDED]: Context menu (with copy/cut/paste) in text fields.
+        * [CHANGE]: Removed "autoCommit". Now all changes have to be commited.
+        * [CHANGE]: Database add/edit dialog modified for Mac OS X. Now it uses two dialogs to pick file - native OSX dialogs!
+        * [BUGFIX]: Commit/Rollback buttons activates when editing starts by typing value.
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3972
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3974
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3973
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3977
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3979
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=2&t=4020
+        * [BUGFIX]: Fixed error for SQLite2 with "unknown command total_cahnges".
+        * [BUGFIX]: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4184
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4163
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4160
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4159
+        * [BUGFIX]: Fixed support for "CREATE TRIGGER" defined on "database.table".
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4261
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4155
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4161
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3980
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4009
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4042
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4068
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4023
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3987
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4388
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4059
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4284
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4339
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4372
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3990
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4078
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4238
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=2&t=4019
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4016
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4086
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4273
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3966
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4407
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4070
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=2&t=4106
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4243
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3874
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=2&t=4139
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4166
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4223
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4280
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4357
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4245
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4298
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4067
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4124
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4083
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4152
+        * [BUGFIX]: Fixed SQL syntax error marking in SQLEditor under Windows.
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=4429
+
+[2.0.5]
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3943
+        * [BUGFIX]: Plain text export fixed.
+        * [BUGFIX]: Fixed crash when exporting database with virtual table.
+        * [BUGFIX]: Foreign keys enforcing is now enabled by default and can be disabled by proper PRAGMA call.
+        * [BUGFIX]: Fixed counting "affected rows".
+
+[2.0.4]
+        * [CHANGE]: Trigger dialog is now resizable.
+        * [CHANGE]: Enterprise formatter enforced to be selected for this one time. It still can be changed in configuration. Many people don't even realize there's such formatter.
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3831
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3832
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3847
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3837
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3836
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3838
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3850
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3882
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3894
+        * [BUGFIX]: Fixed opening database passed in command line.
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3863
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3890
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3875
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3872
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3891
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3873
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3927
+        * [BUGFIX]: Fixed recreating of indexes and triggers while table structure is modified.
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3899
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3901
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3937
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3893
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3929
+
+[2.0.3]
+        * [CHANGE]: Enabled additional keys to enter edit mode in data grid.
+        * [CHANGE]: Added transactions tracing for better transaction-related problems debugging in bug reports.
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3668
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3768
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3767
+        * [BUGFIX]: Various form view key binding fixes.
+        * [BUGFIX]: Trying to edit system index caused critical error.
+        * [BUGFIX]: Added upper-case file name extensions for database file selector.
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3772
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3774
+        * [BUGFIX]: Undo mechanism fixed for SQL code formatting - doesn't need to call Ctrl+z twice anymore.
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3785
+        * [BUGFIX]: Again improved performance for huge table data and huge query results.
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=9&t=3780
+        * [BUGFIX]: Fixed index dialog for SQLite 2.
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=3&t=3798
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3810
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3817
+        * [BUGFIX]: Fixed EXPLAIN results displaying.
+        * [BUGFIX]: Fixed MDI windows closing in custom order.
+
+[2.0.2]
+        * [ADDED]: Character encoding for exporting data can be selected now.
+        * [CHANGE]: SQLiteStudio version included in bug reports and feature request reports.
+        * [CHANGE]: Various MacOSX user interface improvements.
+        * [CHANGE]: Various liftings of user interface.
+        * [CHANGE]: Index dialog has now database in a list separated from table list.
+        * [CHANGE]: Trigger dialog supports "FOR EACH ROW" and "FOR EACH STATEMENT" (the second one for SQLite 2 only).
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3716
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3718
+        * [BUGFIX]: Fixed indentation for 2 or more column constraints for CREATE TABLE in Enterprise formatter.
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3724
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3687
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3723
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3726
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3730
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3729
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3734
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3731
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=3&t=3733
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3744
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3722
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3751
+
+[2.0.1]
+        * [ADDED]: Support to vacuum databases with custom collation sequences.
+        * [ADDED]: Databases list sorting in databases context menu.
+        * [CHANGE]: Bug reporting dialog includes OS version in its report.
+        * [CHANGE]: "SQLiteStudio" menu renamed to "Help".
+        * [CHANGE]: Database adding/editing dialog reorganization. The "file" field is now the most important. Name (alias) is auto-generated, or manually entered (as an option).
+        * [BUGFIX]: Fixed updates-checking and auto-update functions. They didn't work in 2.0.0.
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3651
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3654
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3668
+        * [BUGFIX]: Bug reporting dialog allows using Return key in its fields, instead of sending unfinished report immediately.
+        * [BUGFIX]: SQL code in View Dialog is now stored in SQLite as it's written and displayed just like read from SQLite - no formatting changes are applied.
+        * [BUGFIX]: Fixed wrong results from queries with custom collation sequences.
+        * [BUGFIX]: Performance improved significantly for huge table data and huge query results.
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3656
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3660
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3676
+        * [BUGFIX]: Fixed switching between pages of query results.
+        * [BUGFIX]: Fixed opening tables from SQL editor links (control+click) with different case size.
+        * [BUGFIX]: Fixed error with "_colItem(query)" reported on comp.lang.tcl group.
+        * [BUGFIX]: Fixed problem with inserting first row to empty table using Form View.
+        * [BUGFIX]: The progressbar dialog won't stay any longer after critical error occured, so user was unable to report the bug.
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3659
+        * [BUGFIX]: Fixed viewing data from View in SQlite 2.
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3662
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3679
+        * [BUGFIX]: Initial size of application window on Mac OS X is now reasonable.
+        * [BUGFIX]: Fixed support for loadable SQLite extensions. Now you can load them with load_extension() in query and use extension as you would expect it.
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3701
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3706
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3708
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3695
+        * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3712
+
+[2.0.0]
+        * [ADDED]: Updates checking on startup.
+        * [ADDED]: Real SQL parser based on lexer&parser pair! It provides many, many possibilities. Few of them are already implemented and listed in changelog below.
+        * [ADDED]: (SQL parser stuff) SQL syntax validation on the fly with error markers.
+        * [ADDED]: (SQL parser stuff) Enterprise SQL code formatter. It's very powerful and configurable, but works only on valid code, so if the SQL is marked to be incorrect (see paragraph above) then formatter won't format such SQL.
+        * [ADDED]: Table columns can be edited directly from table window by double-clicking on them.
+        * [ADDED]: Columns order in TableDialog can be now be managed by drag&drop.
+        * [ADDED]: Possibility to display ROWID in table data view. Just right-click and pick it from context menu.
+        * [ADDED]: Internal stuff: [final] procedure, so important internal variables are secured.
+        * [ADDED]: Internal stuff: Introduced threads. GUI acts more shmoothly.
+        * [ADDED]: Possibility to add database only for current session (it won't be on the list after application restart).
+        * [ADDED]: Window/task can be renamed now from taskbar context menu.
+        * [ADDED]: Tasks order in taskbar at the bottom can now be managed using drag&drop.
+        * [ADDED]: Progress bar for export dialog, populate dalog and table dialog (good to keep track on tasks done on tables with lots of data) with possibility to interrupt the process.
+        * [ADDED]: Long query executions can be interrupted.
+        * [ADDED]: Pending commits (with autocommit as option in configuration). User can modify some data (add, edit or delete rows) and commit them all togather at the end.
+        * [ADDED]: Filter entry in form view of table data tab.
+        * [ADDED]: Added "(filtered)" information next to "Total rows" in case of filtered table data view.
+        * [ADDED]: Edit trigger and edit index buttons added in table triggers and indexes tabs.
+        * [ADDED]: "Execute SQL from file" button in SQL editor window.
+        * [ADDED]: Context menu for SQL editor window.
+        * [ADDED]: SQL functions available while managing databases in SQLiteStudio: md5(), base64_encode(), base64_decode(), file(), sha1(), hmac().
+        * [ADDED]: "Create similar table" option.
+        * [ADDED]: Quick opening of tables typed in SQL editor. Press Control key and click on table name to open it.
+        * [ADDED]: Database integrity checking pragma added to database context menu.
+        * [ADDED]: Full informations about installed plugins and used Tcl packages available in About dialog.
+        * [ADDED]: Option to open items from database tree by single-click.
+        * [ADDED]: While creating an unique index: if there are duplicates in table, then SQLiteStudio proposes to create SQL to select all duplicated rows.
+        * [ADDED]: Button in SQL editor to create a view from query typed in the editor.
+        * [ADDED]: Support for parameters (?, ?NNN, :VVV, @VVV, $VVV) in queries typed in SQL editor.
+        * [ADDED]: Option to place SQL editor results below the query, not in separated tab.
+        * [ADDED]: When holding mouse over data grid or results grid, the hint pops up with some context information about cell under mouse cursor.
+        * [ADDED]: DDL tab in all Table/Index/Trigger/View dialog windows to see objects DDL before it's actualy created.
+        * [ADDED]: New versions checking at startup or on demand and auto-upadte support for binary distributions.
+        * [ADDED]: MacOS X port.
+        * [ADDED]: Binaries for linux (ix86_64), freebsd (ix86_64) and macosx (ix86_64) platforms.
+        * [CHANGE]: Exporting was rewritten from scratch. It was the ugliest code in whole application. Now it's based on plugins, so it's much easier to add new exporting engines.
+        * [CHANGE]: (SQL parser stuff) Smart completion hints - now SQLiteStudio knows better if next argument should be a keyword, or a table name, or index, name, etc. Moreover - object names (tables, indexes, etc) already used somewhere in the SQL query appear higher in completion hint, since user seems to be interested in them. It really kicks ass! Try it out!
+        * [CHANGE]: Internal stuff: 'Array' class has been completly replaced by Tcl Dicts from Tcl 8.5.
+        * [CHANGE]: Small unification in layout of database edit dialog and convert database dialog.
+        * [CHANGE]: Configuration settings saving enclosed in transaction - major speed improvement of this action.
+        * [CHANGE]: Bug reporting engine completly rewritten. Know it is very simple to report a bug.
+        * [CHANGE]: Numerous scrollbars are now shown/hidden dynamically when needed.
+        * [CHANGE]: Query execution status field shows icon (info, warning, error) for all messages to identify type of message easier.
+        * [CHANGE]: Results as plain text moved to separated tab.
+        * [CHANGE]: Context menu in databases list reorganized.
+        * [CHANGE]: Refreshing database schema doesn't collapse its branches.
+        * [CHANGE]: Executing queries in SQL editor refreshes schema in databases tree, so all new, changed or deleted objects are noticed immediately.
+        * [CHANGE]: Balloon hints appears now faster and allows to browse help hints for many widgets placed close to each other very quickly.
+        * [CHANGE]: New icons.
+        * [CHANGE]: Table window now displays all constraints in "Columns" tab as icons. Therefore "constraints" tab has been removed from table window.
+        * [CHANGE]: More intuitive inserting data in form view.
+        * [CHANGE]: Plain text results are now configurable (NULL representation, column width).
+        * [CHANGE]: Pressing key Right/Left while editing cell and being on the begin/end of the edited value moves keyboard focus to cell on the left/right side.
+        * [BUGFIX]: Fixed highlighting of comment which starts in the middle of contents with '/*' and never ends.
+        * [BUGFIX]: Closing configuration window in other way than "cancel" or "ok" makes it close as for "cancel".
+        * [BUGFIX]: (SQL parser stuff) Detecting symbolic database names (databases from objects tree) in SQL editor has been fixed, so table name same as database name won't be a problem anymore.
+        * [BUGFIX]: (SQL parser stuff) All dialog windows for editing SQLite objets (tables, indexes, ...) use now built-in SQL parser, so they read all object definitions correctly.
+        * [BUGFIX]: Triggers created for table are recreated after table is edited.
+        * [BUGFIX]: File choosing dialog fixes under Unix (filters updating and <escape> key binding).
+        * [BUGFIX]: Database adding/editing dialog under Windows unified to Unix version, so now there's only one button for file picking. No more confusion here.
+        * [BUGFIX]: Many, many, many other bug fixes not listed here, because I didn't write them down during fixing.
+        * [BUGFIX]: Scrolling grids horizontally is now smooth.
+        * [BUGFIX]: Added *(*autoindex*)* indexes of SQLite2 to list of system indexes, so they can be filtered out.
+        * [BUGFIX]: Many, many other minor and major bugfixes not mentioned here.
+
+[1.1.3]
+        * [ADDED]: Port to FreeBSD!
+        * [ADDED]: Support for lang/ subdirectory in starting directory, so testing new translations is now very simple.
+        * [ADDED]: Ctrl+c shortcut now works for databases tree - you can copy label of any element from the tree.
+        * [ADDED]: New translation: Espanol (Spanish).
+        * [ADDED]: New translation: German.
+        * [CHANGE]: Internal change: [foreach] replaced with [lassign] to adjust code to Tcl 8.5.
+        * [CHANGE]: Export dialog suggests same directory for output file as exported database is in.
+        * [CHANGE]: Tcl/Tk updated to 8.5.7, SQLite3 updated to 3.6.16, TreeCtrl updated to 2.2.9 - for binary packages.
+        * [BUGFIX]: Fixed dialogs: About, ChangeLog and Roadmap.
+        * [BUGFIX]: Minor fixes in messages and translations.
+        * [BUGFIX]: Toolbar doesn't display undefined (empty) tooltips anymore.
+        * [BUGFIX]: Fixed support of some constraints. Caused numerous problems.
+        * [BUGFIX]: Indexes for incorrect/not existing columns are now handled properly when user opens index edit dialog.
+        * [BUGFIX]: Fixed issue with Ctrl+c (and similar) shortcuts on Windows while having enabled CapsLock.
+        * [BUGFIX]: Blob edit widget fixed for Form View to display current row value correctly.
+        * [BUGFIX]: Duplicated themes fixed.
+        * [BUGFIX]: Fixed error while trying to enter new value of cell in grid while there was no cell selected.
+
+[1.1.2]
+        * [ADDED]: SQLite3 engine version used by application in the About dialog.
+        * [CHANGE]: MDI windows remembers their position and dimensions in session.
+        * [CHANGE]: Renamed "Open editor" to "Open SQL editor" in configuration "Shortcuts" tab.
+        * [CHANGE]: SQLite system tables (if enabled to display) are now marked so user can recognize them easly.
+        * [BUGFIX]: Copying&pasting cells with NULLs handled properly.
+        * [BUGFIX]: Columns with strange names are now handled correctly.
+        * [BUGFIX]: Fixed editing table data using form view for SQLite 2.
+        * [BUGFIX]: Populating dialog won't allow to enter negative number of rows to insert.
+        * [BUGFIX]: Critical error occuring when clicking fast in Unix file choosing dialog.
+        * [BUGFIX]: Font choosing dialog doesn't crash anymore if invoked twice without closing first one.
+        * [BUGFIX]: Exporting results to some formats was crashing every time. Not anymore.
+        * [BUGFIX]: Resizing windows without proper cursor fixed.
+        * [BUGFIX]: Fixed changing index table.
+        * [BUGFIX]: Fixed support in table edit dialog for column names with dots and commas.
+        * [BUGFIX]: Fixed renaming tables in SQLite2 database.
+        * [BUGFIX]: Better handling of advanced tables DDL.
+        * [BUGFIX]: Rolling back transactions won't cause problems anymore.
+        * [BUGFIX]: Fixed current directory of binary distribution.
+        * [BUGFIX]: Several fixes of drawing for dark themes of operating system interface.
+        * [BUGFIX]: Fixed many problems with Foreign Keys.
+        * [BUGFIX]: SrolledFrame widget fixed for uncommon localizations.
+        * [BUGFIX]: Exporting database to HTML format fixed.
+        * [BUGFIX]: Fixed error occuring sometimes while trying to commit edited value.
+        * [BUGFIX]: Tab-key order in Form View fixed.
+        * [BUGFIX]: Allow to open read-only database files.
+        * [BUGFIX]: Form View shortcuts, additional toolbar buttons.
+        * [BUGFIX]: Result grid editing for table name with whitespace fixed.
+        * [BUGFIX]: Fixed control-a shortcut for some edit fields.
+        * [BUGFIX]: Keyboard/mouse input focus grabbing for some of modal dialogs fixed.
+        * [BUGFIX]: Handling of uncommited grid editions while closing MDI window.
+        * [BUGFIX]: Handling of NOT NULL constraint used and no DEFAULT specified in table column editing dialog in case when table already contains some data filled in.
+        * [BUGFIX]: Small grammar fixes in tips dialog.
+        * [BUGFIX]: Font handling rewritten. Should not cause problems anymore, but if it does, then fixing will be now much easier.
+        * [BUGFIX]: Fixed 100% CPU usage for sequence: open 2 table windows, edit data cell in one window, then focus the other one window without commiting edition before.
+        * [BUGFIX]: Fixed MDI window placement, so they won't appear at exactly same position while creating anymore.
+        * [BUGFIX]: Added DATETIME data type support.
+        * [BUGFIX]: DEFAULT values handled properly. Now you can use functions and other expressions, as well as literal values.
+        * [BUGFIX]: Fixed chosing other database in 'new table' dialog.
+        * [BUGFIX]: Fixed crashing when changing configuration while image-type cell in grid is selected.
+        * [BUGFIX]: Prevention against duplicated column names in table edition dialog.
+        * [BUGFIX]: New trigger dialog doesn't allow to use 'INSTEAD OF' for table triggers.
+        * [BUGFIX]: Fixed FK window visibility under Windows.
+        * [BUGFIX]: Grid navigation to right/left scrolls a view.
+
+[1.1.1]
+        * [CHANGE]: "Export table data" button moved from table structure toolbar to table data toolbar.
+        * [CHANGE]: Results in plain text are now formatted so they're more readable.
+        * [CHANGE]: Nasty behaviour when trying to edit data cell and commit invalid value (like alpha-characters in INTEGER-PK column) has been modified so application asks user what would he like to do.
+        * [BUGFIX]: Windows default font size for few text fields (i.e. "did you know that..." dialog) has been increased, so it's readable now.
+        * [BUGFIX]: Taskbar button "more" is now hidden correctly (its frame was visible even when it supposed to be hidden).
+        * [BUGFIX]: Formatter plugin is now set up correctly after closing configuration window.
+        * [BUGFIX]: Custom SQL function results handled better when they're null.
+        * [BUGFIX]: Fixed support for using symbolic database names in SQL editor (it was causing problems sometimes).
+        * [BUGFIX]: Fixed switching tasks back to previously active one when executed "Show view data" in some cases.
+        * [BUGFIX]: Fixed bug when reading triggers with unusual names.
+        * [BUGFIX]: Index dialog uses Grid widget to display columns proposition. Now there's no problem with adjusting header and widgets.
+
+[1.1.0]
+        * [ADDED]: Full support for SQLite 2 databases! Binary distribution includes SQLite 2.8.17.
+        * [ADDED]: Solaris port.
+        * [ADDED]: Selecting multiple cells/rows/columns in data grids is now possible. It enables user to delete multiple rows at once.
+        * [ADDED]: Advanced copy-paste routines: copying multiple rows/columns results in clipboard format applicable for pasting into many famous spreadsheets. It's also easy to read when pasted into regular text file. It also can be pasted into other SQLiteStudio grid. User also can copy from spreadsheet and paste into SQLiteStudio grid!
+        * [ADDED]: Custom SQL functions can be defined by user, so they're registered in all opened databases.
+        * [ADDED]: Support for usage many databases in single SQL query using symbolic names of databases that are displayed in the databases tree.
+        * [ADDED]: Support for editing cell values in Results grid, including pasting to it! Even for combined SELECT with JOINs!
+        * [ADDED]: Table data filtering. Just type the word you're looking for in filter entry.
+        * [ADDED]: sqlite_* objects can be displayed in databases tree as an option (in configuration dialog).
+        * [ADDED]: Find&Replace dialog for SQL editor widget.
+        * [ADDED]: Populating tables. It's first feature in SQLiteStudio that is based on plugins. Plugins will be described in documentation.
+        * [ADDED]: Keramik and Plastik image-based themes (multi-platform).
+        * [ADDED]: Database name in DB tree is now labeled with identification of database handler, so you'll know if the database is SQLite 2 or SQLite 3.
+        * [ADDED]: String class highlighting for SQL editor.
+        * [ADDED]: Execution of SQL directly from file. Available from database context menu or SQL function sqlfile().
+        * [ADDED]: Importing schema (not data!) from one database to another. To copy schema and data use "copy file" feature in your operating system.
+        * [ADDED]: Configuration of "hint baloon" is now possible (colors, font).
+        * [ADDED]: Added sorting of data in table window by custom columns.
+        * [ADDED]: Handler of common database errors (such as 'database is locked') to display such errors in dialog window that is less scary than default critical error dialog.
+        * [ADDED]: Command line parameters. Database file can be passed as parameter to application so it will be managed with SQLiteStudio.
+        * [ADDED]: Duplicating table data row feature.
+        * [ADDED]: Navigation buttons for Form View of table data, so user can walk through all rows in grid without switching to grid.
+        * [ADDED]: Option to open Data tab in table window when that window was just opened, instead of Structure tab.
+        * [ADDED]: GTK and QT themes in linux binary distribution.
+        * [ADDED]: Results of query execution as plain text.
+        * [CHANGE]: Moved to Tcl/Tk 8.5.
+        * [CHANGE]: SQLite3 updated to newest - 3.6.7.
+        * [CHANGE]: Foreign Key support upgraded to join it with table editor dialog. Any foreign key-related changes in table editor will also affect FK triggers. Separate creating FK is no more needed, just set it in table definition. It means SQLiteStudio emulates Foreign Keys transparently!
+        * [CHANGE]: Optimization of HEX editor. Huge performance gain!
+        * [CHANGE]: Added support for img::png package as alternation to tkpng (img::png is still more popular on some platforms).
+        * [CHANGE]: printStackTract procedure modified a little to produce more readable stack traces.
+        * [CHANGE]: API documentation updated. More classess documented.
+        * [CHANGE]: Shortcut edit widget takes Escape key as a way to cancel edition, instead of binding a shortcut with it.
+        * [CHANGE]: New rows which user adds to table data appears below currently selected row, instead of end of grid.
+        * [CHANGE]: SQL formatter externalized to plugin. Now anyone can write his own SQL formatter as plugin.
+        * [CHANGE]: SQL errors are no longer connected with full Tcl stack trace in error/warning dialogs, so they are more readable to user.
+        * [BUGFIX]: NULL handling fixed (for SQLite3). Note that setting NULL in SQLite2 databases works, but it cannot be read as NULL, so for NULLs in SQLite2 you'll see just empty cells.
+        * [BUGFIX]: Exporting results of query with number of rows greater than 1000 was exporting only 1000 - the ones currently visible in results table.
+        * [BUGFIX]: /* This kind of comments */ is now highlighted.
+        * [BUGFIX]: Shortcut edits doesn't crash when Control key was pressed and released without any other key togather.
+        * [BUGFIX]: ScrolledFrame fixed to fit well into parent widgets. It affects numerous Configuration Dialog tabs as well, as Form View of data, Index dialog and others.
+        * [BUGFIX]: Fixed editing tables with name containing whitespaces.
+        * [BUGFIX]: Font of grids is now set properly.
+        * [BUGFIX]: Fixed indexes for columns with spaces in name.
+        * [BUGFIX]: Fixed new index dialog when choosing target table from database with uncommon name.
+        * [BUGFIX]: Fixed view edit dialog to support views with spaces in name.
+        * [BUGFIX]: Fixed editing table columns with value length specified, as 'VARCHAR(10)'.
+        * [BUGFIX]: Fixed validation of integer value for maximum results per page in data preview.
+        * [BUGFIX]: Font dialog fixed so it looks a bit better.
+        * [BUGFIX]: Total number of rows in table data tab updates on the fly when new rows are added or deleted.
+        * [BUGFIX]: Fixed SQL highlighting in editor history tab.
+        * [BUGFIX]: Setting Foreign Key for column(s) while creating new table (it worked for editing tables).
+        * [BUGFIX]: Fixed restoring session - in some cases it wasn't restoring properly.
+        * [BUGFIX]: Fixed creating and opening table with strange names, like '''''''''''.
+        * [BUGFIX]: Edit widget (for non-BLOB columns) is now moved correctly when scrolling grid.
+        * [BUGFIX]: Exporting dialog doesn't close on input error anymore and lets user to fix input.
+        * [BUGFIX]: Add/Edit database dialog doesn't change main window title anymore.
+        * [BUGFIX]: Fixed support for strange database names (such as abc';'efg).
+        * [BUGFIX]: Refreshing toolbar after changing schema is now performed correctly.
+        * [BUGFIX]: Fixed View dialog database selection.
+        * [BUGFIX]: CSV exporting fixed in case of spearator character in cell value.
+        * [BUGFIX]: Other minor fixes.
+
+[1.0.1]
+        * [CHANGE]: SQLite 3 engine updated to 3.5.9 for binary distributions.
+        * [CHANGE]: Index dialog modified to use ScrolledFrame instead of canvas, so it looks much better.
+        * [BUGFIX]: Fixed common error "item X column Y has no style" that was very hard to reproduce, at last!
+        * [BUGFIX]: Fixed running binary application with "[" character in its file name.
+        * [BUGFIX]: Granted permissions to load external SQLite extensions using load_extension() SQL function.
+
+[1.0.0]
+        * [CHANGE]: SQLiteStudio has been released on GPLv2 licence!
+        * [CHANGE]: Removed licence-responsible code. Tbcload extension is no more required.
+
+[1.0.0-beta6]
+        * [CHANGE]: Columns in table data view and editor results view can be resized now, but BLOB fileds still can't be loaded whole directly to grid cell (I think the reason is obvious).
+        * [CHANGE]: There is a known bug that is not 100%-repeatable. It occurs sometimes when switching to FormView of table data. This change has added some additional logs to debug the bug.
+        * [BUGFIX]: A very obvious bug included in beta5 - adding database dialog didn't disappear when database is added correctly.
+        * [BUGFIX]: Fixed error while switching from standard BLOB editor to hexadecimal editor.
+        * [BUGFIX]: Fixed commiting new rows from FormView of table data.
+
+[1.0.0-beta5]
+        * [ADDED]: Databases tree refresh button on toolbar and in View menu.
+        * [CHANGE]: SQLite engine updated to 3.5.4 for binary distributions.
+        * [CHANGE]: Now 'Triggers' tab in table window contains triggers related to the table by 'ON' clause only.
+        * [CHANGE]: View dialogs (new and edit) can be resized now.
+        * [BUGFIX]: Another fixes related to proper SQL updates and inserts with strange data characters.
+        * [BUGFIX]: Fixed support for 'main'.'table' expressions in triggers.
+        * [BUGFIX]: Fixed crashes on closing main window (quiting). Sometimes it denied to quit because of error...
+        * [BUGFIX]: Fixed errors occuring on few Grid widgets containing images or widgets inside of them.
+        * [BUGFIX]: Fixed error when right-clicking on empty tree list on the left.
+        * [BUGFIX]: Added handling of settings file from previous versions of SQLiteStudio.
+        * [BUGFIX]: Fixed bug when maximizing the only one MDI window, which was in normal mode while application startup.
+        * [BUGFIX]: Fixed 'window name "edit" already exists in parent' bug occuring in DataGrid and ResultGrid.
+        * [BUGFIX]: Fixed error while closing application and some of MDI windows has closed before it's session was saved.
+        * [BUGFIX]: Fixed exporting query results to CSV format (new line characters).
+        * [BUGFIX]: Fixed executing queries with semi-colon and white-space at the end of query.
+        * [BUGFIX]: Fixed problem with untranslated messages and unsupported localizations so '%s' are substituted correctly.
+        * [BUGFIX]: Fixed Tcl core critical error related to exporting large databases/tables (problem with memory allocation).
+        * [BUGFIX]: Fixed displaying list of indexes in table window in Indexes tab.
+        * [BUGFIX]: Few minor fixes related to object names (like tables, columns) that are surrounded with [] or " characters.
+        * [BUGFIX]: Fixed error while clicking on Primary Key column in table structure with no primary key set.
+        * [BUGFIX]: Fixed 'Add database' dialog so it doesn't disappear when database cannot be added for some reason, but lets user fix it.
+        * [BUGFIX]: Full support for NULL values while exporting to various formats.
+
+[1.0.0-beta4]
+        * [ADDED]: New SQL function tcl() to execute Tcl code in separate interpreter and return its results.
+        * [ADDED]: Full support for NULL value (which is not same as empty value).
+        * [ADDED]: Universal 'Delete' shortcut for databases tree. Deletes selected item (if possible).
+        * [CHANGE]: 'New database' label renamed to 'Add database' to be less confusing.
+        * [CHANGE]: SQLite engine updated to 3.4.2 for binary distributions.
+        * [REMOVED]: Removed date() function while there is standard SQLite date() function.
+        * [BUGFIX]: 'View data preview' window is now properly stored in session so it's title is restored in next session.
+        * [BUGFIX]: 'View data preview' can not be opened in two separate windows now, so it will not cause problems with doubled tasks on taskbar anymore.
+        * [BUGFIX]: Another little bug with 'REFERENCES' in table edition dialog - occured when column reference was wrapped with white-spaces.
+        * [BUGFIX]: Detection of 'REFERENCES' constraints in table browsing window on Constraints tab. It used to detect more constraints than there was.
+        * [BUGFIX]: Handling table global constraints in table browsing window on Constraints tab.
+        * [BUGFIX]: Fixed (finally?) problem with UTF-8 data in database.
+        * [BUGFIX]: While editing table schema: renaming a column causes losing data from that column. Fixed.
+        * [BUGFIX]: Support for multi-word names enclosed in quotes, instead of square brackets.
+        * [BUGFIX]: Yet another fix related to global table contraints. This time - named global constraints.
+        * [BUGFIX]: Right-click (context menu) now selects currently clicked node - it's common behaviour.
+        * [BUGFIX]: Disabling clipboard pasting to SQL editor on systems that causes problems with that feature.
+        * [BUGFIX]: Fixed error with trying to create second editor in Grid widget, while there still is a first.
+        * [BUGFIX]: Foreign key wizard dialog now interpretes main table and foreign table as they should be: foreign table/fields determinates cascades on main table.
+        * [BUGFIX]: Fixed 'Refresh' shortcut in table data preview, as well as in table structure tab and table DDL tab.
+        * [BUGFIX]: Fixed international characters support in various edit widgets.
+
+[1.0.0-beta3]
+        * [ADDED]: 'Report the bug' button in critical error dialog. Now it's much easier to report these kind of bugs.
+        * [BUGFIX]: Few detection bugs with constraints detection (in table editon dialog).
+        * [BUGFIX]: Browsing table data with BLOB columns (broken in beta2).
+        * [BUGFIX]: Bugs with exporting whole database to SQL and XML formats.
+
+[1.0.0-beta2]
+        * [ADDED]: date() function to read unixtime from database. It formats unixtime value into human-readable format.
+        * [ADDED]: Support for 'REFERENCES' keyword in columns and all stuff related to this keyword.
+        * [ADDED]: Support for table global constraints.
+        * [ADDED]: Support for triggers on views.
+        * [ADDED]: ChangeLog dialog.
+        * [ADDED]: 'Escape' shortcut in editor window to hide status field.
+        * [CHANGE]: SQLite engine updated to 3.4.1 for binary distributions.
+        * [CHANGE]: Insertion cursor in SQL editor blinks a little faster so it's easier to locate it.
+        * [CHANGE]: PageDown and PageUp shortcuts upgraded (moves cursor too, not just pages).
+        * [CHANGE]: Tab and Shift+Tab upgraded to let indent and unindent multiple lines as well as single lines.
+        * [CHANGE]: Handling completion for column names entered in function arguments, like 'max(columnname)'.
+        * [BUGFIX]: ColorPicker handles incorrect colors passed to it and in that case it uses white color as default.
+        * [BUGFIX]: ColorPicker handles HTML color editing much better then before. Now it might be impossible to break it.
+        * [BUGFIX]: Better detection of operating system (fixed problems with Windows Vista and Windows 2000).
+        * [BUGFIX]: Fixed adding new row to table data grid when there was an error while commiting previous row.
+        * [BUGFIX]: Shortcuts Ctrl+Left, Ctrl+Right, Ctrl+Shift+Left and Ctrl+Shift+Right are back!
+        * [BUGFIX]: Detection of 'language changed' in configuration dialog fixed (it used to detect change even there was no change).
+        * [BUGFIX]: Fixed active task changing while setting MDI windows in cascade layout, then pushing maximize button on some window other than the currently active.
+        * [BUGFIX]: Fixed formatting of preformatted table DDL code.
+        * [BUGFIX]: Refreshing toolbar state after deletion of any object in the tree.
+        * [BUGFIX]: Problems with highlighting of first line in SQL editor in View Edit Dialog.
+        * [BUGFIX]: Numerous fixes in all dialog windows, so they don't disappear on errors, but let user fix his input.
+        * [BUGFIX]: Minor fixes in Polish translation.
+        * [BUGFIX]: SQLiteStudio doesn't let to create objects with empty names (or just whitespaces in name) anymore.
+        * [BUGFIX]: Changing table in New Index Dialog didn't work.
+        * [BUGFIX]: Clear History toolbar button in SQL Editor window has been fixed.
+        * [BUGFIX]: Mouse Wheel is now working on Windows platform.
+        * [BUGFIX]: Minor memory leaks fixed in Edit Table Dialog.
+        * [BUGFIX]: Constraints list in table window displays now correct list of constraints.
+        * [BUGFIX]: Using ' (single quote) character in table data grid has been fixed.
+        * [BUGFIX]: SQLite objects containing spaces in name are now supported correctly.
+        * [BUGFIX]: Fixed execution of multiple SQL statements that are creating some SQLite objects (it tried to create some of them twice).
+        * [BUGFIX]: DDL formatting in table window fixed.
+        * [BUGFIX]: Fixed critical error while exporting some data as a XML.
+        * [BUGFIX]: Fixed critical error while some error occured when trying to create trigger.
+        * [BUGFIX]: Fixed critical errors while customizing toolbar.
