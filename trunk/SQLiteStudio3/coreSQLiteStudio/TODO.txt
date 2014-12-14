@@ -1,3 +1,5 @@
+* 3.0.1:
+
 * Next versions:
 - commiting DataView should be async
 - syntax checkers as services - per language

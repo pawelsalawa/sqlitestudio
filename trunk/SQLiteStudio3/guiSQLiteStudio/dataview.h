@@ -83,6 +83,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
     protected:
         void createActions();
         void setupDefShortcuts();
+        void resizeColumnsInitiallyToContents();
 
     private:
         enum class TabsPosition

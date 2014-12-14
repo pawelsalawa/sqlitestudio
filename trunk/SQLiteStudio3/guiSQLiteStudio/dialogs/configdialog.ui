@@ -227,7 +227,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="dataBrowsingPage">
           <layout class="QVBoxLayout" name="verticalLayout_21">
@@ -260,6 +260,35 @@
                 </property>
                 <property name="cfg" stdset="0">
                  <string>General.NumberOfRowsPerPage</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="initColWidthLimitLabel">
+                <property name="toolTip">
+                 <string>&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit.&lt;/p&gt;</string>
+                </property>
+                <property name="text">
+                 <string>Limit initial data column width to (in pixels):</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QSpinBox" name="initColWidthLimitSpin">
+                <property name="toolTip">
+                 <string>&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit.&lt;/p&gt;</string>
+                </property>
+                <property name="minimum">
+                 <number>10</number>
+                </property>
+                <property name="maximum">
+                 <number>99999</number>
+                </property>
+                <property name="value">
+                 <number>600</number>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string>General.MaxInitialColumnWith</string>
                 </property>
                </widget>
               </item>
