@@ -420,17 +420,20 @@ void MainWindow::saveSession(MdiWindow* currWindow)
     sessionValue["state"] = saveState();
     sessionValue["geometry"] = saveGeometry();
 
-    QList<QVariant> windowSessions;
-    foreach (MdiWindow* window, ui->mdiArea->getWindows())
-        if (window->restoreSessionNextTime())
-            windowSessions << window->saveSession();
-
-    sessionValue["windowSessions"] = windowSessions;
-
-    if (currWindow && currWindow->restoreSessionNextTime())
+    if (CFG_UI.General.RestoreSession.get())
     {
-        QString title = currWindow->windowTitle();
-        sessionValue["activeWindowTitle"] = title;
+        QList<QVariant> windowSessions;
+        foreach (MdiWindow* window, ui->mdiArea->getWindows())
+            if (window->restoreSessionNextTime())
+                windowSessions << window->saveSession();
+
+        sessionValue["windowSessions"] = windowSessions;
+
+        if (currWindow && currWindow->restoreSessionNextTime())
+        {
+            QString title = currWindow->windowTitle();
+            sessionValue["activeWindowTitle"] = title;
+        }
     }
 
     sessionValue["dbTree"] = dbTree->saveSession();
@@ -457,15 +460,18 @@ void MainWindow::restoreSession()
     if (sessionValue.contains("dbTree"))
         dbTree->restoreSession(sessionValue["dbTree"]);
 
-    if (sessionValue.contains("windowSessions"))
-        restoreWindowSessions(sessionValue["windowSessions"].toList());
-
-    if (sessionValue.contains("activeWindowTitle"))
+    if (CFG_UI.General.RestoreSession.get())
     {
-        QString title = sessionValue["activeWindowTitle"].toString();
-        MdiWindow* window = ui->mdiArea->getWindowByTitle(title);
-        if (window)
-            ui->mdiArea->setActiveSubWindow(window);
+        if (sessionValue.contains("windowSessions"))
+            restoreWindowSessions(sessionValue["windowSessions"].toList());
+
+        if (sessionValue.contains("activeWindowTitle"))
+        {
+            QString title = sessionValue["activeWindowTitle"].toString();
+            MdiWindow* window = ui->mdiArea->getWindowByTitle(title);
+            if (window)
+                ui->mdiArea->setActiveSubWindow(window);
+        }
     }
 
     if (statusField->hasMessages())
