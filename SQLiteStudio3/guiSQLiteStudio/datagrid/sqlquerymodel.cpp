@@ -633,6 +633,7 @@ void SqlQueryModel::loadData(SqlQueryPtr results)
     SqlResultsRowPtr row;
     int rowIdx = 0;
     int rowsPerPage = CFG_UI.General.NumberOfRowsPerPage.get();
+    int refreshEvery = rowsPerPage / 10;
     rowNumBase = getCurrentPage() * rowsPerPage + 1;
 
     updateColumnHeaderLabels();
@@ -646,7 +647,7 @@ void SqlQueryModel::loadData(SqlQueryPtr results)
         itemList = loadRow(row);
         insertRow(rowIdx, itemList);
 
-        if ((rowIdx % 100) == 0)
+        if ((rowIdx % refreshEvery) == 0)
             qApp->processEvents();
 
         rowIdx++;
