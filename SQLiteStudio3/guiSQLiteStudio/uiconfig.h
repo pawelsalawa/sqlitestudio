@@ -73,6 +73,7 @@ CFG_CATEGORIES(Ui,
         CFG_ENTRY(int,                   NumberOfRowsPerPage,     1000)
         CFG_ENTRY(QString,               Style,                   &Cfg::getStyleDefaultValue)
         CFG_ENTRY(Cfg::Session,          Session,                 Cfg::Session())
+        CFG_ENTRY(bool,                  RestoreSession,          true)
         CFG_ENTRY(bool,                  DontShowDdlPreview,      false)
         CFG_ENTRY(bool,                  OpenTablesOnData,        false)
         CFG_ENTRY(bool,                  OpenViewsOnData,         false)

@@ -227,7 +227,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="dataBrowsingPage">
           <layout class="QVBoxLayout" name="verticalLayout_21">
@@ -521,6 +521,25 @@
                 </property>
                 <property name="cfg" stdset="0">
                  <string>General.CheckUpdatesOnStartup</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="sessionGroup">
+             <property name="title">
+              <string>Session</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_11">
+              <item row="0" column="0">
+               <widget class="QCheckBox" name="sessionCheck">
+                <property name="text">
+                 <string>Restore last session (active MDI windows) after startup</string>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string>General.RestoreSession</string>
                 </property>
                </widget>
               </item>
