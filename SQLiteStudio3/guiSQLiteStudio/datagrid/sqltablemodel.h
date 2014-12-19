@@ -31,6 +31,13 @@ class GUI_API_EXPORT SqlTableModel : public SqlQueryModel
                 QString build();
         };
 
+        class SelectColumnsQueryBuilder : public CommitUpdateQueryBuilder
+        {
+            public:
+                QString build();
+                void addColumn(const QString& col);
+        };
+
 
         void updateColumnsAndValuesWithDefaultValues(const QList<SqlQueryModelColumnPtr>& modelColumns, QStringList& colNameList,
                                                      QStringList& sqlValues, QList<QVariant>& args);

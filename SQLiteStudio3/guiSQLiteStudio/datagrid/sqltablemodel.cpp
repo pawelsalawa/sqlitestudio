@@ -76,7 +76,21 @@ bool SqlTableModel::commitAddedRow(const QList<SqlQueryItem*>& itemsInRow)
     }
 
     // Reloading row with actual values (because of DEFAULT, AUTOINCR)
-    RowId rowId = result->getInsertRowId();
+    RowId rowId;
+    if (isWithOutRowIdTable)
+    {
+        SqlQueryItem* item = nullptr;
+        int i = 0;
+        for (const SqlQueryModelColumnPtr& modelColumn : modelColumns)
+        {
+            item = itemsInRow[i++];
+            if (modelColumn->isPk())
+                rowId[modelColumn->column] = item->getValue();
+        }
+    }
+    else
+        rowId = result->getInsertRowId();
+
     updateRowAfterInsert(itemsInRow, modelColumns, rowId);
     return true;
 }
@@ -178,8 +192,14 @@ void SqlTableModel::resetFilter()
 
 void SqlTableModel::updateRowAfterInsert(const QList<SqlQueryItem*>& itemsInRow, const QList<SqlQueryModelColumnPtr>& modelColumns, RowId rowId)
 {
+    Dialect dialect = db->getDialect();
+
     // Update cells with data just like it was entered. Only DEFAULT and PRIMARY KEY AUTOINCREMENT will have special values.
-    QList<QVariant> values;
+    // If the DEFAULT is not an explicit literal, but an expression and db is SQLite3, we have to read the inserted value from DB.
+    QHash<SqlQueryModelColumnPtr,SqlQueryItem*> columnsToReadFromDb;
+    Parser parser(dialect);
+    SqliteExpr* expr = nullptr;
+    QHash<SqlQueryItem*,QVariant> values;
     SqlQueryItem* item = nullptr;
     int i = 0;
     for (const SqlQueryModelColumnPtr& modelColumn : modelColumns)
@@ -190,26 +210,95 @@ void SqlTableModel::updateRowAfterInsert(const QList<SqlQueryItem*>& itemsInRow,
         {
             if (modelColumn->isDefault())
             {
-                values << modelColumn->getDefaultConstraint()->defaultValue;
+                if (dialect == Dialect::Sqlite3)
+                {
+                    expr = parser.parseExpr(modelColumn->getDefaultConstraint()->defaultValue);
+                    if (expr && expr->mode != SqliteExpr::Mode::LITERAL_VALUE)
+                    {
+                        if (isWithOutRowIdTable && rowId.isEmpty())
+                        {
+                            qWarning() << "Inserted expression as DEFAULT value for table WITHOUT ROWID and actually no ROWID."
+                                       << "This is currently unsupported to refresh such cell value instantly.";
+                            values[item] = QVariant();
+                        }
+                        else
+                            columnsToReadFromDb[modelColumn] = item;
+
+                        continue;
+                    }
+                }
+                values[item] = modelColumn->getDefaultConstraint()->defaultValue;
                 continue;
             }
 
             // If this is the PK AUTOINCR column we use RowId as value, because it was skipped when setting values to items
             if (modelColumn->isPk() && modelColumn->isAutoIncr())
             {
-                values << rowId["ROWID"];
+                values[item] = rowId["ROWID"];
                 continue;
             }
         }
 
-        values << item->getValue();
+        values[item] = item->getValue();
+    }
+
+    // Reading values for DEFAULT values being an expression
+    if (columnsToReadFromDb.size() > 0)
+    {
+        // Preparing query
+        static_qstring(limitedColTpl, "substr(%1, 1, %2)");
+        SelectColumnsQueryBuilder queryBuilder;
+        queryBuilder.setTable(wrapObjIfNeeded(table, dialect));
+        queryBuilder.setRowId(rowId);
+        QList<SqlQueryModelColumnPtr> columnKeys = columnsToReadFromDb.keys();
+        for (const SqlQueryModelColumnPtr& modelColumn : columnKeys)
+            queryBuilder.addColumn(limitedColTpl.arg(wrapObjIfNeeded(modelColumn->column, dialect), QString::number(cellDataLengthLimit)));
+
+        // Executing query
+        SqlQueryPtr defColValues = db->exec(queryBuilder.build(), queryBuilder.getQueryArgs(), Db::Flag::PRELOAD);
+
+        // Handling error
+        if (defColValues->isError())
+        {
+            qCritical() << "Could not load inserted values for DEFAULT expression in the table, so filling them with NULL. Error from database was:"
+                        << defColValues->getErrorText();
+
+            for (const SqlQueryModelColumnPtr& modelColumn : columnKeys)
+                values[columnsToReadFromDb[modelColumn]] = QVariant();
+        }
+        else if (!defColValues->hasNext())
+        {
+            qCritical() << "Could not load inserted values for DEFAULT expression in the table, so filling them with NULL. There were no result rows.";
+
+            for (const SqlQueryModelColumnPtr& modelColumn : columnKeys)
+                values[columnsToReadFromDb[modelColumn]] = QVariant();
+        }
+        else
+        {
+            // Reading a row
+            SqlResultsRowPtr row = defColValues->next();
+            if (row->valueList().size() != columnKeys.size())
+            {
+                qCritical() << "Could not load inserted values for DEFAULT expression in the table, so filling them with NULL. Number of columns from results was invalid:"
+                            << row->valueList().size() << ", while expected:" << columnKeys.size();
+
+                for (const SqlQueryModelColumnPtr& modelColumn : columnKeys)
+                    values[columnsToReadFromDb[modelColumn]] = QVariant();
+            }
+            else
+            {
+                int colIdx = 0;
+                for (const SqlQueryModelColumnPtr& modelColumn : columnKeys)
+                    values[columnsToReadFromDb[modelColumn]] = row->value(colIdx++);
+            }
+        }
     }
 
     // Update cell data with results
     int colIdx = 0;
     for (SqlQueryItem* itemToUpdate : itemsInRow)
     {
-        updateItem(itemToUpdate, values[colIdx], colIdx, rowId);
+        updateItem(itemToUpdate, values[itemToUpdate], colIdx, rowId);
 
         if (isWithOutRowIdTable && rowId.isEmpty())
             itemToUpdate->setJustInsertedWithOutRowId(true);
@@ -328,5 +417,26 @@ QString SqlTableModel::CommitDeleteQueryBuilder::build()
 
     dbAndTable += table;
     QString conditions = RowIdConditionBuilder::build();
-    return "DELETE FROM  "+dbAndTable+" WHERE "+conditions+";";
+
+    static_qstring(sql, "DELETE FROM %1 WHERE %2;");
+    return sql.arg(dbAndTable, conditions);
+}
+
+
+QString SqlTableModel::SelectColumnsQueryBuilder::build()
+{
+    QString dbAndTable;
+    if (!database.isNull())
+        dbAndTable += database+".";
+
+    dbAndTable += table;
+    QString conditions = RowIdConditionBuilder::build();
+
+    static_qstring(sql, "SELECT %1 FROM %2 WHERE %3 LIMIT 1;");
+    return sql.arg(columns.join(", "), dbAndTable, conditions);
+}
+
+void SqlTableModel::SelectColumnsQueryBuilder::addColumn(const QString& col)
+{
+    columns << col;
 }
