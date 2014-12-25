@@ -2,6 +2,7 @@
         * [ADDED]: When the data is being read into the Gird View, columns width gets automatically adjusted, so for small values they are shrinked and for bigger values they're enlarged, but never above the configured limit (a new option in config dialog).
         * [ADDED]: Implemented support for immediate editing of rows just added to the WITHOUT ROWID tables (previously the manual refresh of data view was required).
         * [BUGFIX]: Fixed support for expressions as DEFAULT value in table.
+        * [BUGFIX]: Fixed support under Windows for running portable distribution, while having different version of Qt installed in the system (added the qt.conf file).
 
 [3.0.0]
         * [ADDED]: Application has been rewritten from scratch in C++ and Qt (was previously written in Tcl/Tk). This means improvements in all areas, especially in application performance, good looking interface, more friendly interface and more stability.
