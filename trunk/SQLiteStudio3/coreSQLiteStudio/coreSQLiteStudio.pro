@@ -19,6 +19,7 @@ TEMPLATE = lib
 
 win32 {
     LIBS += -lpsapi $$PWD/../../../lib/libquazip.a
+    DISTFILES += qt.conf
 }
 
 linux: {
@@ -404,7 +405,8 @@ OTHER_FILES += \
     licenses/lgpl.txt \
     licenses/diff_match.txt \
     licenses/gpl.txt \
-    ChangeLog.txt
+    ChangeLog.txt \
+    qt.conf
 
 FORMS += \
     plugins/populatesequence.ui \
