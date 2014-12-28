@@ -354,9 +354,16 @@ void TableModifier::handleIndex(SqliteCreateIndexPtr index)
 {
     handleName(originalTable, index->table);
     handleIndexedColumns(index->indexedColumns);
-    index->rebuildTokens();
-    sqls << index->detokenize();
-    modifiedIndexes << index->index;
+    if (index->indexedColumns.size() > 0)
+    {
+        index->rebuildTokens();
+        sqls << index->detokenize();
+        modifiedIndexes << index->index;
+    }
+    else
+    {
+        warnings << QObject::tr("All columns indexed by the index %1 are gone. The index will not be recreated after table modification.").arg(index->index);
+    }
 
     // TODO partial index needs handling expr here
 }
@@ -388,9 +395,16 @@ void TableModifier::handleTrigger(SqliteCreateTriggerPtr trigger)
     }
     trigger->queries = newQueries;
 
-    trigger->rebuildTokens();
-    sqls << trigger->detokenize();
-    modifiedTriggers << trigger->trigger;
+    if (trigger->event->type == SqliteCreateTrigger::Event::UPDATE_OF && trigger->event->columnNames.size() == 0)
+    {
+        warnings << QObject::tr("All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.").arg(trigger->trigger);
+    }
+    else
+    {
+        trigger->rebuildTokens();
+        sqls << trigger->detokenize();
+        modifiedTriggers << trigger->trigger;
+    }
 }
 
 void TableModifier::handleViews()
