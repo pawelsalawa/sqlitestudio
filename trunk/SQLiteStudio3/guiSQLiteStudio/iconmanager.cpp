@@ -62,6 +62,11 @@ void IconManager::init()
         connect(PLUGINS, SIGNAL(pluginsInitiallyLoaded()), this, SLOT(pluginsInitiallyLoaded()));
 }
 
+QStringList IconManager::getIconDirs() const
+{
+    return iconDirs;
+}
+
 void IconManager::rescanResources(const QString& pluginName)
 {
     if (!pluginName.isNull() && PLUGINS->isBuiltIn(pluginName))

@@ -46,6 +46,11 @@ QStringList FormManager::getAvailableForms() const
     return widgetNameToFullPath.keys();
 }
 
+QStringList FormManager::getFormDirs() const
+{
+    return formDirs;
+}
+
 QWidget* FormManager::createWidgetByFullPath(const QString& path)
 {
     QWidget* widget = uiLoader->load(path);
@@ -104,22 +109,21 @@ void FormManager::init()
 
 void FormManager::load()
 {
-    QStringList dirs;
-    dirs += qApp->applicationDirPath() + "/forms";
-    dirs += ":/forms";
-    dirs += QDir(CFG->getConfigDir()).absoluteFilePath("forms");
+    formDirs += qApp->applicationDirPath() + "/forms";
+    formDirs += ":/forms";
+    formDirs += QDir(CFG->getConfigDir()).absoluteFilePath("forms");
 
     QString envDirs = SQLITESTUDIO->getEnv("SQLITESTUDIO_FORMS");
     if (!envDirs.isNull())
-        dirs += envDirs.split(PATH_LIST_SEPARATOR);
+        formDirs += envDirs.split(PATH_LIST_SEPARATOR);
 
-    dirs += PLUGINS->getPluginDirs();
+    formDirs += PLUGINS->getPluginDirs();
 
 #ifdef FORMS_DIR
-    dirs += STRINGIFY(FORMS_DIR);
+    formDirs += STRINGIFY(FORMS_DIR);
 #endif
 
-    foreach (QString dirPath, dirs)
+    foreach (QString dirPath, formDirs)
         loadRecurently(dirPath, "");
 }
 

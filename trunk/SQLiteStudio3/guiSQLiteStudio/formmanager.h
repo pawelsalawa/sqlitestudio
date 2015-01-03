@@ -19,6 +19,7 @@ class GUI_API_EXPORT FormManager : public QObject
         QWidget* createWidget(const QString& name);
         bool hasWidget(const QString& name);
         QStringList getAvailableForms() const;
+        QStringList getFormDirs() const;
 
     private:
         void init();
@@ -30,6 +31,7 @@ class GUI_API_EXPORT FormManager : public QObject
         UiLoader* uiLoader = nullptr;
         QHash<QString,QString> widgetNameToFullPath;
         QStringList resourceForms;
+        QStringList formDirs;
 
     private slots:
         void rescanResources(Plugin* plugin, PluginType* pluginType);
