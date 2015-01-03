@@ -244,6 +244,7 @@ class GUI_API_EXPORT IconManager : public QObject
         QMovie* getMovie(const QString& name);
         QIcon* getIcon(const QString& name);
         void init();
+        QStringList getIconDirs() const;
 
     private:
         IconManager();

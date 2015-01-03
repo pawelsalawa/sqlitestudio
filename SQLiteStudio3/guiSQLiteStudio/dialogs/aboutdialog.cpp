@@ -4,6 +4,9 @@
 #include "sqlitestudio.h"
 #include "iconmanager.h"
 #include "services/extralicensemanager.h"
+#include "services/pluginmanager.h"
+#include "formmanager.h"
+#include "iconmanager.h"
 #include <QDebug>
 #include <QFile>
 
@@ -26,6 +29,7 @@ void AboutDialog::init(InitialMode initialMode)
 
     ui->tabWidget->setCurrentWidget(initialMode == ABOUT ? ui->about : ui->license);
 
+    // About
     QString distName;
     switch (getDistributionType())
     {
@@ -43,6 +47,7 @@ void AboutDialog::init(InitialMode initialMode)
     QString newLabelValue = ui->aboutLabel->text().arg(SQLITESTUDIO->getVersionString(), distName);
     ui->aboutLabel->setText(newLabelValue);
 
+    // Licenses
     licenseContents = "";
     int row = 1;
 
@@ -59,6 +64,18 @@ void AboutDialog::init(InitialMode initialMode)
     ui->licenseEdit->setHtml(licenseContents);
     indexContents.clear();
     licenseContents.clear();
+
+    // Environment
+    copyAct = new QAction(tr("Copy"), this);
+    ui->appDirEdit->setText(qApp->applicationDirPath());
+    ui->cfgDirEdit->setText(CFG->getConfigDir());
+    ui->pluginDirList->addItems(filterResourcePaths(PLUGINS->getPluginDirs()));
+    ui->iconDirList->addItems(filterResourcePaths(ICONMANAGER->getIconDirs()));
+    ui->formDirList->addItems(filterResourcePaths(FORMS->getFormDirs()));
+    ui->qtVerEdit->setText(QT_VERSION_STR);
+    ui->pluginDirList->addAction(copyAct);
+    ui->iconDirList->addAction(copyAct);
+    ui->formDirList->addAction(copyAct);
 }
 
 void AboutDialog::buildIndex()
@@ -91,4 +108,17 @@ QString AboutDialog::readFile(const QString& path)
     QString contents = QString::fromLatin1(file.readAll()).toHtmlEscaped();
     file.close();
     return contents;
+}
+
+QStringList AboutDialog::filterResourcePaths(const QStringList& paths)
+{
+    QStringList output;
+    for (const QString& path : paths)
+    {
+        if (path.startsWith(":"))
+            continue;
+
+        output << path;
+    }
+    return output;
 }

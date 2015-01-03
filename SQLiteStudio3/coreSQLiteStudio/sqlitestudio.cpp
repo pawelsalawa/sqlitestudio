@@ -325,7 +325,9 @@ void SQLiteStudio::cleanUp()
     disconnect(pluginManager, SIGNAL(unloaded(QString,PluginType*)), this, SLOT(pluginUnloaded(QString,PluginType*)));
     if (!immediateQuit)
     {
-        pluginManager->deinit();
+        if (pluginManager)
+            pluginManager->deinit();
+
         safe_delete(pluginManager); // PluginManager before DbManager, so Db objects are deleted while DbManager still exists
         safe_delete(updateManager);
         safe_delete(bugReporter);

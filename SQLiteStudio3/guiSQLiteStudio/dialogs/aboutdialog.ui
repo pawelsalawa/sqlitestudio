@@ -17,7 +17,7 @@
    <item row="0" column="1">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="about">
       <attribute name="title">
@@ -45,6 +45,97 @@
         <widget class="QTextEdit" name="licenseEdit">
          <property name="readOnly">
           <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="env">
+      <attribute name="title">
+       <string>Environment</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="3" column="0">
+        <widget class="QLabel" name="iconDirLabel">
+         <property name="text">
+          <string>Icon directories</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QListWidget" name="pluginDirList">
+         <property name="contextMenuPolicy">
+          <enum>Qt::ActionsContextMenu</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="formDirLabel">
+         <property name="text">
+          <string>Form directories</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QListWidget" name="iconDirList">
+         <property name="contextMenuPolicy">
+          <enum>Qt::ActionsContextMenu</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="pluginDirLabel">
+         <property name="text">
+          <string>Plugin directories</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="appDirLabel">
+         <property name="text">
+          <string>Application directory</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLineEdit" name="appDirEdit">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="cfgDirLabel">
+         <property name="text">
+          <string>Configuration directory</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2">
+        <widget class="QListWidget" name="formDirList">
+         <property name="contextMenuPolicy">
+          <enum>Qt::ActionsContextMenu</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLineEdit" name="cfgDirEdit">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="qtVerLabel">
+         <property name="text">
+          <string>Qt version:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="2">
+        <widget class="QLabel" name="qtVerEdit">
+         <property name="text">
+          <string/>
          </property>
         </widget>
        </item>
