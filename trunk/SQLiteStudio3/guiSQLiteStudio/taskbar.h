@@ -39,7 +39,6 @@ class GUI_API_EXPORT TaskBar : public QToolBar
         QAction* getNextClosestAction(const QPoint& position);
         void dragTaskTo(QAction* task, const QPoint& position);
         void dragTaskTo(QAction* task, int positionIndex);
-        QAction* getDragTask(const QMimeData* data);
         QMimeData* generateMimeData();
         int getActiveTaskIdx();
 
