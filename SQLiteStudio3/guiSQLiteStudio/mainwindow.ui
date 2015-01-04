@@ -57,7 +57,7 @@
      <x>0</x>
      <y>0</y>
      <width>964</width>
-     <height>22</height>
+     <height>19</height>
     </rect>
    </property>
   </widget>
@@ -95,6 +95,9 @@
    </attribute>
   </widget>
   <widget class="TaskBar" name="taskBar">
+   <property name="mouseTracking">
+    <bool>true</bool>
+   </property>
    <property name="contextMenuPolicy">
     <enum>Qt::CustomContextMenu</enum>
    </property>

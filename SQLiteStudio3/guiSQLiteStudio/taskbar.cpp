@@ -10,7 +10,6 @@
 #include <QStyle>
 #include <QRubberBand>
 #include <QApplication>
-#include <QDebug>
 #include <QMenu>
 
 TaskBar::TaskBar(const QString& title, QWidget *parent) :
@@ -179,6 +178,7 @@ bool TaskBar::handleMouseMoveEvent(QMouseEvent* event)
     drag->setMimeData(generateMimeData());
 
     dragStartIndex = tasks.indexOf(dragStartTask);
+    drag->start(Qt::MoveAction);
     return true;
 }
 
