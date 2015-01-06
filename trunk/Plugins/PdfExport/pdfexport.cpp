@@ -227,7 +227,7 @@ bool PdfExport::exportIndex(const QString& database, const QString& name, const 
     exportObjectRow({tr("Indexed table"), name});
     exportObjectRow({tr("Unique index"), (createIndex->uniqueKw ? tr("Yes") : tr("No"))});
 
-    indexColumns = {tr("Column"), tr("Collation"), tr("Sort order")};
+    indexColumns = QStringList({tr("Column"), tr("Collation"), tr("Sort order")});
     exportObjectColumnsHeader(indexColumns);
 
     QString sort;
@@ -243,7 +243,7 @@ bool PdfExport::exportIndex(const QString& database, const QString& name, const 
 
     if (createIndex->where)
     {
-        indexColumns = {tr("Partial index condition")};
+        indexColumns = QStringList({tr("Partial index condition")});
         exportObjectColumnsHeader(indexColumns);
         exportObjectRow(createIndex->where->detokenize());
     }

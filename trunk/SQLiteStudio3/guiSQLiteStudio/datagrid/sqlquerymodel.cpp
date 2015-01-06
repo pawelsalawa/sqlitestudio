@@ -1483,7 +1483,7 @@ void SqlQueryModel::CommitUpdateQueryBuilder::setTable(const QString& table)
 
 void SqlQueryModel::CommitUpdateQueryBuilder::setColumn(const QString& column)
 {
-    this->columns = {column};
+    this->columns = QStringList({column});
 }
 
 void SqlQueryModel::CommitUpdateQueryBuilder::addColumn(const QString& column)
