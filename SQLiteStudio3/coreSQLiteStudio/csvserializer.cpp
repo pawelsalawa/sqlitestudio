@@ -43,12 +43,14 @@ QList<QStringList> CsvSerializer::deserialize(const QString& data, const CsvForm
     int pos = 0;
     int lgt = data.length();
     bool quotes = false;
+    bool sepAsLast = false;
     QString field = "";
     QChar c;
 
     while (pos < lgt)
     {
         c = data[pos];
+        sepAsLast = false;
         if (!quotes && c == '"' )
         {
             quotes = true;
@@ -69,6 +71,7 @@ QList<QStringList> CsvSerializer::deserialize(const QString& data, const CsvForm
         {
             cells << field;
             field.clear();
+            sepAsLast = true;
         }
         else if (!quotes && format.rowSeparator.contains(c))
         {
@@ -84,7 +87,7 @@ QList<QStringList> CsvSerializer::deserialize(const QString& data, const CsvForm
         pos++;
     }
 
-    if (field.size() > 0)
+    if (field.size() > 0 || sepAsLast)
         cells << field;
 
     if (cells.size() > 0)
