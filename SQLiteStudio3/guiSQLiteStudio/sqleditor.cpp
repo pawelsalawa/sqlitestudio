@@ -28,6 +28,7 @@
 #include <QTextBlock>
 #include <QScrollBar>
 #include <QFileDialog>
+#include <QtConcurrent/QtConcurrent>
 
 CFG_KEYS_DEFINE(SqlEditor)
 
@@ -184,6 +185,7 @@ Db* SqlEditor::getDb() const
 void SqlEditor::setDb(Db* value)
 {
     db = value;
+    refreshValidObjects();
     scheduleQueryParser(true);
 }
 
@@ -487,17 +489,21 @@ void SqlEditor::refreshValidObjects()
     if (!db || !db->isValid())
         return;
 
-    objectsInNamedDb.clear();
-
-    SchemaResolver resolver(db);
-    QSet<QString> databases = resolver.getDatabases();
-    databases << "main";
-    QStringList objects;
-    foreach (const QString& dbName, databases)
+    QtConcurrent::run([this]()
     {
-        objects = resolver.getAllObjects();
-        objectsInNamedDb[dbName] << objects;
-    }
+        QMutexLocker lock(&objectsInNamedDbMutex);
+        objectsInNamedDb.clear();
+
+        SchemaResolver resolver(db);
+        QSet<QString> databases = resolver.getDatabases();
+        databases << "main";
+        QStringList objects;
+        foreach (const QString& dbName, databases)
+        {
+            objects = resolver.getAllObjects();
+            objectsInNamedDb[dbName] << objects;
+        }
+    });
 }
 
 Dialect SqlEditor::getDialect()
@@ -855,6 +861,7 @@ void SqlEditor::checkForValidObjects()
     if (!db || !db->isValid())
         return;
 
+    QMutexLocker lock(&objectsInNamedDbMutex);
     Dialect dialect = db->getDialect();
     QList<SqliteStatement::FullObject> fullObjects;
     QString dbName;
