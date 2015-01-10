@@ -9,6 +9,7 @@
 #include <QTextEdit>
 #include <QFont>
 #include <QHash>
+#include <QMutex>
 
 class CompleterWindow;
 class QTimer;
@@ -197,6 +198,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         QTimer* queryParserTimer = nullptr;
         Parser* queryParser = nullptr;
         QHash<QString,QStringList> objectsInNamedDb;
+        QMutex objectsInNamedDbMutex;
         bool objectLinksEnabled = false;
         QList<DbObject> validDbObjects;
         QWidget* lineNumberArea = nullptr;
