@@ -32,6 +32,7 @@
 #include "plugins/populateplugin.h"
 #include "services/bugreporter.h"
 #include "services/extralicensemanager.h"
+#include "translations.h"
 #include <QProcessEnvironment>
 #include <QThreadPool>
 #include <QCoreApplication>
@@ -48,6 +49,21 @@ SQLiteStudio::SQLiteStudio()
 
 SQLiteStudio::~SQLiteStudio()
 {
+}
+QStringList SQLiteStudio::getInitialTranslationFiles() const
+{
+    return initialTranslationFiles;
+}
+
+void SQLiteStudio::setInitialTranslationFiles(const QStringList& value)
+{
+    initialTranslationFiles = value;
+}
+
+
+QString SQLiteStudio::getCurrentLang() const
+{
+    return currentLang;
 }
 
 ExtraLicenseManager* SQLiteStudio::getExtraLicenseManager() const
@@ -262,6 +278,9 @@ void SQLiteStudio::init(const QStringList& cmdListArguments, bool guiAvailable)
 
     config = new ConfigImpl();
     config->init();
+
+    currentLang = CFG_CORE.General.Language.get();
+    loadTranslations(initialTranslationFiles);
 
     pluginManager = new PluginManagerImpl();
     dbManager = new DbManagerImpl();

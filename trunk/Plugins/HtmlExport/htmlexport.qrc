@@ -5,4 +5,7 @@
     <qresource prefix="/forms">
         <file>htmlexport.ui</file>
     </qresource>
+    <qresource prefix="/msg">
+        <file>HtmlExport_pl.qm</file>
+    </qresource>
 </RCC>

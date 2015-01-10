@@ -98,3 +98,8 @@ FORMS += \
 
 RESOURCES += \
     sqlenterpriseformatter.qrc
+
+
+TRANSLATIONS += SqlEnterpriseFormatter_pl.ts \
+		SqlEnterpriseFormatter_en.ts
+

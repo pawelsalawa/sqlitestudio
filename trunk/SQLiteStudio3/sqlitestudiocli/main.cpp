@@ -67,6 +67,7 @@ int main(int argc, char *argv[])
     CliResultsDisplay::staticInit();
     initCliUtils();
 
+    SQLITESTUDIO->setInitialTranslationFiles({"coreSQLiteStudio", "sqlitestudiocli"});
     SQLITESTUDIO->init(a.arguments(), false);
     SQLITESTUDIO->initPlugins();
 

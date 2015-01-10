@@ -27,3 +27,8 @@ RESOURCES += \
 
 FORMS += \
     htmlexport.ui
+
+
+TRANSLATIONS += HtmlExport_pl.ts \
+		HtmlExport_en.ts
+

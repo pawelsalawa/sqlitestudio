@@ -2,4 +2,7 @@
     <qresource prefix="/forms">
         <file>jsonexport.ui</file>
     </qresource>
+    <qresource prefix="/msg">
+        <file>JsonExport_pl.qm</file>
+    </qresource>
 </RCC>

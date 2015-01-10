@@ -56,6 +56,7 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         void initDataEditors();
         void initShortcuts();
         void initShortcuts(CfgCategory* cfgCategory);
+        void initLangs();
         void applyStyle(QWidget* widget, QStyle* style);
         QTreeWidgetItem* getPluginsCategoryItem() const;
         QTreeWidgetItem* getPluginsCategoryItem(PluginType* type) const;

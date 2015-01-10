@@ -2,4 +2,7 @@
     <qresource prefix="/forms">
         <file>XmlExport.ui</file>
     </qresource>
+    <qresource prefix="/msg">
+        <file>XmlExport_pl.qm</file>
+    </qresource>
 </RCC>

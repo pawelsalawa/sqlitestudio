@@ -21,6 +21,7 @@
 #include "configmapper.h"
 #include "datatype.h"
 #include "uiutils.h"
+#include "translations.h"
 #include <QSignalMapper>
 #include <QLineEdit>
 #include <QSpinBox>
@@ -186,6 +187,7 @@ void ConfigDialog::init()
     initFormatterPlugins();
     initDataEditors();
     initShortcuts();
+    initLangs();
 
     connect(ui->categoriesTree, SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)), this, SLOT(switchPage(QTreeWidgetItem*)));
     connect(ui->previewTabs, SIGNAL(currentChanged(int)), this, SLOT(updateStylePreview()));
@@ -959,6 +961,7 @@ void ConfigDialog::initInternalCustomConfigWidgets()
     QList<CustomConfigWidgetPlugin*> customWidgets;
     customWidgets << new StyleConfigWidget();
     customWidgets << new ListToStringListHash(&CFG_UI.General.DataEditorsOrder);
+    customWidgets << new ComboDataWidget(&CFG_CORE.General.Language);
     configMapper->setInternalCustomConfigWidgets(customWidgets);
 }
 
@@ -1487,6 +1490,23 @@ void ConfigDialog::initShortcuts(CfgCategory *cfgCategory)
     }
 
     category->setExpanded(true);
+}
+
+void ConfigDialog::initLangs()
+{
+    QMap<QString, QString> langs = getAvailableLanguages();
+    int idx = 0;
+    int selected = -1;
+    for (const QString& lang : langs.keys())
+    {
+        ui->langCombo->addItem(lang, langs[lang]);
+        if (langs[lang] == SQLITESTUDIO->getCurrentLang())
+            selected = idx;
+
+        idx++;
+    }
+
+    ui->langCombo->setCurrentIndex(selected);
 }
 
 bool ConfigDialog::isPluginCategoryItem(QTreeWidgetItem *item) const

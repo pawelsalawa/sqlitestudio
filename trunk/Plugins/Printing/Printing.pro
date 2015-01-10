@@ -33,3 +33,8 @@ win32|macx: {
 
 RESOURCES += \
     printing.qrc
+
+
+TRANSLATIONS += Printing_pl.ts \
+		Printing_en.ts
+

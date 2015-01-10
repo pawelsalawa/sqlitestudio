@@ -2,4 +2,7 @@
     <qresource prefix="/scriptingtcl">
         <file>scriptingtcl.png</file>
     </qresource>
+    <qresource prefix="/msg">
+        <file>ScriptingTcl_pl.qm</file>
+    </qresource>
 </RCC>

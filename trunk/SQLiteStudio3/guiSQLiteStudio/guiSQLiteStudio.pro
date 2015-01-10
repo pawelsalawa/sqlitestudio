@@ -27,6 +27,9 @@ QMAKE_CXXFLAGS += -pedantic
 
 DEFINES += GUISQLITESTUDIO_LIBRARY
 
+TRANSLATIONS += translations/guiSQLiteStudio_pl.ts \
+                translations/guiSQLiteStudio_en.ts
+
 SOURCES +=\
         mainwindow.cpp \
     iconmanager.cpp \
@@ -357,7 +360,8 @@ FORMS    += mainwindow.ui \
     dialogs/quitconfirmdialog.ui
 
 RESOURCES += \
-    icons.qrc
+    icons.qrc \
+    guiSQLiteStudio.qrc
 
 OTHER_FILES +=
 

@@ -5,6 +5,7 @@
 #include "statusfield.h"
 #include "configmigrationwizard.h"
 #include "db/dbsqlite3.h"
+#include "translations.h"
 #include <QCoreApplication>
 #include <QDir>
 #include <QFileInfo>
@@ -17,6 +18,7 @@ ConfigMigration::ConfigMigration()
 bool ConfigMigration::init()
 {
     Q_INIT_RESOURCE(configmigration);
+    loadTranslation("ConfigMigration");
 
     if (cfg.CfgMigration.Migrated.get())
     {

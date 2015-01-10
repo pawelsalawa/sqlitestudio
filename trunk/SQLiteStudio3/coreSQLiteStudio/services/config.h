@@ -23,6 +23,7 @@ CFG_CATEGORIES(Core,
         CFG_ENTRY(QString,      LoadedPlugins,           "")
         CFG_ENTRY(QVariantHash, ActiveCodeFormatter,     QVariantHash())
         CFG_ENTRY(bool,         CheckUpdatesOnStartup,   true)
+        CFG_ENTRY(QString,      Language,                "en")
     )
     CFG_CATEGORY(Console,
         CFG_ENTRY(int,          HistorySize,             100)

@@ -3,4 +3,7 @@
         <file>SqlExportQuery.ui</file>
         <file>SqlExportCommon.ui</file>
     </qresource>
+    <qresource prefix="/msg">
+        <file>SqlExport_pl.qm</file>
+    </qresource>
 </RCC>

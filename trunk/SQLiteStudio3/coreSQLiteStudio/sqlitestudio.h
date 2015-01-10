@@ -147,6 +147,11 @@ class API_EXPORT SQLiteStudio : public QObject
         ExtraLicenseManager* getExtraLicenseManager() const;
         void setExtraLicenseManager(ExtraLicenseManager* value);
 
+        QString getCurrentLang() const;
+
+        QStringList getInitialTranslationFiles() const;
+        void setInitialTranslationFiles(const QStringList& value);
+
     private:
         /**
          * @brief Creates singleton instance.
@@ -197,6 +202,8 @@ class API_EXPORT SQLiteStudio : public QObject
         BugReporter* bugReporter = nullptr;
         UpdateManager* updateManager = nullptr;
         ExtraLicenseManager* extraLicenseManager = nullptr;
+        QString currentLang;
+        QStringList initialTranslationFiles;
 
     private slots:
         void pluginLoaded(Plugin* plugin,PluginType* pluginType);

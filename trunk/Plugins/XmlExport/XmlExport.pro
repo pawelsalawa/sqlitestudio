@@ -25,3 +25,8 @@ OTHER_FILES += \
 
 RESOURCES += \
     xmlexport.qrc
+
+
+TRANSLATIONS += XmlExport_pl.ts \
+		XmlExport_en.ts
+

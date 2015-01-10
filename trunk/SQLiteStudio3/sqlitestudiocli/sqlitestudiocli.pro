@@ -25,6 +25,9 @@ linux|portable {
     QMAKE_LFLAGS += -Wl,-rpath,./lib
 }
 
+TRANSLATIONS += translations/sqlitestudiocli_pl.ts \
+                translations/sqlitestudiocli_en.ts
+
 SOURCES += main.cpp \
     cli.cpp \
     commands/clicommand.cpp \
@@ -98,4 +101,7 @@ unix: {
     target.path = $$BINDIR
     INSTALLS += target
 }
+
+RESOURCES += \
+    sqlitestudiocli.qrc
 
