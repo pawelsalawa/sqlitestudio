@@ -33,6 +33,9 @@ LIBS += -lcoreSQLiteStudio -lguiSQLiteStudio
 
 SOURCES += main.cpp
 
+TRANSLATIONS += translations/sqlitestudio_pl.ts \
+                translations/sqlitestudio_en.ts
+
 win32: {
     RC_FILE = windows.rc
 }
@@ -49,3 +52,6 @@ unix: {
     target.path = $$BINDIR
     INSTALLS += target
 }
+
+RESOURCES += \
+    sqlitestudio.qrc

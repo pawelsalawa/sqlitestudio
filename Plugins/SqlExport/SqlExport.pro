@@ -27,3 +27,8 @@ OTHER_FILES += \
 
 RESOURCES += \
     sqlexport.qrc
+
+
+TRANSLATIONS += SqlExport_pl.ts \
+		SqlExport_en.ts
+

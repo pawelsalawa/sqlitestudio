@@ -3,6 +3,7 @@
 #include "plugins/genericplugin.h"
 #include "services/notifymanager.h"
 #include "common/unused.h"
+#include "translations.h"
 #include <QCoreApplication>
 #include <QDir>
 #include <QDebug>
@@ -465,6 +466,7 @@ void PluginManagerImpl::unload(const QString& pluginName)
     // Deinitializing and unloading plugin
     emit aboutToUnload(container->plugin, container->type);
     container->plugin->deinit();
+    unloadTranslation(container->name);
 
     QPluginLoader* loader = container->loader;
     if (!loader->isLoaded())
@@ -586,6 +588,7 @@ void PluginManagerImpl::pluginLoaded(PluginManagerImpl::PluginContainer* contain
 {
     if (!container->builtIn)
     {
+        loadTranslation(container->name);
         container->plugin = dynamic_cast<Plugin*>(container->loader->instance());
         container->loaded = true;
     }

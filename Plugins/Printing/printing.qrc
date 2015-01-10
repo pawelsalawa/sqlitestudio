@@ -2,4 +2,7 @@
     <qresource prefix="/icons">
         <file>printer.png</file>
     </qresource>
+    <qresource prefix="/msg">
+        <file>Printing_pl.qm</file>
+    </qresource>
 </RCC>

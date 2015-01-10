@@ -2,4 +2,7 @@
     <qresource prefix="/forms">
         <file>sqlenterpriseformatter.ui</file>
     </qresource>
+    <qresource prefix="/msg">
+        <file>SqlEnterpriseFormatter_pl.qm</file>
+    </qresource>
 </RCC>

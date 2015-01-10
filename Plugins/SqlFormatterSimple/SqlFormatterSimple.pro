@@ -26,3 +26,8 @@ OTHER_FILES += \
 
 RESOURCES += \
     sqlformattersimple.qrc
+
+
+TRANSLATIONS += SqlFormatterSimple_pl.ts \
+		SqlFormatterSimple_en.ts
+

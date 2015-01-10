@@ -136,3 +136,8 @@ win32: {
 
 RESOURCES += \
     scriptingtcl.qrc
+
+
+TRANSLATIONS += ScriptingTcl_pl.ts \
+		ScriptingTcl_en.ts
+

@@ -2,4 +2,7 @@
     <qresource prefix="/icons">
         <file>config_migration.png</file>
     </qresource>
+    <qresource prefix="/msg">
+        <file>ConfigMigration_pl.qm</file>
+    </qresource>
 </RCC>

@@ -227,7 +227,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>2</number>
+          <number>4</number>
          </property>
          <widget class="QWidget" name="dataBrowsingPage">
           <layout class="QVBoxLayout" name="verticalLayout_21">
@@ -651,12 +651,35 @@
             <number>0</number>
            </property>
            <item>
+            <widget class="QGroupBox" name="langGroup">
+             <property name="title">
+              <string>Language</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_30">
+              <item>
+               <widget class="QLabel" name="label">
+                <property name="text">
+                 <string>Changing language requires application restart to take effect.</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="langCombo">
+                <property name="cfg" stdset="0">
+                 <string>General.Language</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
             <widget class="QGroupBox" name="dbListGroup">
              <property name="title">
               <string>Database list</string>
              </property>
              <layout class="QGridLayout" name="gridLayout">
-              <item row="3" column="0">
+              <item row="4" column="0">
                <widget class="QCheckBox" name="sortColumns">
                 <property name="toolTip">
                  <string>If switched off, then columns will be sorted in the order they are typed in CREATE TABLE statement.</string>
@@ -669,7 +692,7 @@
                 </property>
                </widget>
               </item>
-              <item row="0" column="0">
+              <item row="1" column="0">
                <widget class="QCheckBox" name="expandTablesCheck">
                 <property name="text">
                  <string>Expand tables node when connected to a database</string>
@@ -679,7 +702,7 @@
                 </property>
                </widget>
               </item>
-              <item row="5" column="0">
+              <item row="6" column="0">
                <widget class="QGroupBox" name="addLabelsGroup">
                 <property name="toolTip">
                  <string>&lt;p&gt;Additional labels are those displayed next to the names on the databases list (they are blue, unless configured otherwise). Enabling this option will result in labels for databases, invalid databases and aggregated nodes (column group, index group, trigger group). For more labels see options below.&lt;p&gt;</string>
@@ -726,7 +749,7 @@
                 </layout>
                </widget>
               </item>
-              <item row="1" column="0">
+              <item row="2" column="0">
                <widget class="QCheckBox" name="expandViewsCheck">
                 <property name="text">
                  <string>Expand views node when connected to a database</string>
@@ -736,7 +759,7 @@
                 </property>
                </widget>
               </item>
-              <item row="2" column="0">
+              <item row="3" column="0">
                <widget class="QCheckBox" name="sortObjects">
                 <property name="toolTip">
                  <string>If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</string>
@@ -749,7 +772,7 @@
                 </property>
                </widget>
               </item>
-              <item row="4" column="0">
+              <item row="5" column="0">
                <widget class="QCheckBox" name="dispSysTableCheck">
                 <property name="text">
                  <string>Display system tables and indexes on the list</string>

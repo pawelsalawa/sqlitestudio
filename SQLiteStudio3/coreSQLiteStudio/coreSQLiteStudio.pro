@@ -45,6 +45,9 @@ portable {
 CONFIG   += c++11
 QMAKE_CXXFLAGS += -pedantic
 
+TRANSLATIONS += translations/coreSQLiteStudio_pl.ts \
+                translations/coreSQLiteStudio_en.ts
+
 SOURCES += sqlitestudio.cpp \
     returncode.cpp \
     services/config.cpp \
@@ -200,7 +203,8 @@ SOURCES += sqlitestudio.cpp \
     rsa/Key.cpp \
     rsa/KeyPair.cpp \
     rsa/PrimeGenerator.cpp \
-    rsa/RSA.cpp
+    rsa/RSA.cpp \
+    translations.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -386,7 +390,8 @@ HEADERS += sqlitestudio.h\
     rsa/Key.h \
     rsa/KeyPair.h \
     rsa/PrimeGenerator.h \
-    rsa/RSA.h
+    rsa/RSA.h \
+    translations.h
 
 unix: {
     target.path = $$LIBDIR

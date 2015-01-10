@@ -27,3 +27,8 @@ OTHER_FILES += \
 RESOURCES += \
     csvexport.qrc
 
+
+
+TRANSLATIONS += CsvExport_pl.ts \
+		CsvExport_en.ts
+

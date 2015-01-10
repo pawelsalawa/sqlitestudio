@@ -9,6 +9,7 @@
 #include "exportworker.h"
 #include "services/notifymanager.h"
 #include "sqleditor.h"
+#include "translations.h"
 #include <QDebug>
 #include <QPrinter>
 #include <QPrintDialog>
@@ -22,6 +23,8 @@ bool Printing::init()
     bool printingExportInit = printingExport->init();
     if (!printingExportInit)
         return false;
+
+    loadTranslation("Printing");
 
     printingConfig = new ExportManager::StandardExportConfig();
     printingConfig->exportData = true;
