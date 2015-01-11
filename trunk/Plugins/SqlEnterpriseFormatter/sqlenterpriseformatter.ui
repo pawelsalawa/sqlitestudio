@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string notr="true">Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="leftMargin">
@@ -39,7 +39,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="indentTab">
        <attribute name="title">
@@ -58,7 +58,7 @@
            <string>Line up keywords in multi-line queries</string>
           </property>
           <property name="cfg" stdset="0">
-           <string>SqlEnterpriseFormatter.LineUpKeywords</string>
+           <string notr="true">SqlEnterpriseFormatter.LineUpKeywords</string>
           </property>
          </widget>
         </item>
@@ -68,7 +68,7 @@
            <string>Indent contents of parenthesis block</string>
           </property>
           <property name="cfg" stdset="0">
-           <string>SqlEnterpriseFormatter.IndentParenthesisBlock</string>
+           <string notr="true">SqlEnterpriseFormatter.IndentParenthesisBlock</string>
           </property>
          </widget>
         </item>
@@ -95,7 +95,7 @@
         <item row="3" column="2">
          <widget class="QSpinBox" name="spinBox">
           <property name="cfg" stdset="0">
-           <string>SqlEnterpriseFormatter.TabSize</string>
+           <string notr="true">SqlEnterpriseFormatter.TabSize</string>
           </property>
          </widget>
         </item>
@@ -133,7 +133,7 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>0</y>
+             <y>-166</y>
              <width>578</width>
              <height>350</height>
             </rect>
@@ -160,7 +160,7 @@
                <string>Before opening parenthesis in column definitions</string>
               </property>
               <property name="cfg" stdset="0">
-               <string>SqlEnterpriseFormatter.NlBeforeOpenParDef</string>
+               <string notr="true">SqlEnterpriseFormatter.NlBeforeOpenParDef</string>
               </property>
              </widget>
             </item>
@@ -170,7 +170,7 @@
                <string>After opening parenthesis in column definitions</string>
               </property>
               <property name="cfg" stdset="0">
-               <string>SqlEnterpriseFormatter.NlAfterOpenParDef</string>
+               <string notr="true">SqlEnterpriseFormatter.NlAfterOpenParDef</string>
               </property>
              </widget>
             </item>
@@ -180,7 +180,7 @@
                <string>Before closing parenthesis in column definitions</string>
               </property>
               <property name="cfg" stdset="0">
-               <string>SqlEnterpriseFormatter.NlBeforeCloseParDef</string>
+               <string notr="true">SqlEnterpriseFormatter.NlBeforeCloseParDef</string>
               </property>
              </widget>
             </item>
@@ -190,7 +190,7 @@
                <string>After closing parenthesis in column definitions</string>
               </property>
               <property name="cfg" stdset="0">
-               <string>SqlEnterpriseFormatter.NlAfterCloseParDef</string>
+               <string notr="true">SqlEnterpriseFormatter.NlAfterCloseParDef</string>
               </property>
              </widget>
             </item>
@@ -200,7 +200,7 @@
                <string>Before opening parenthesis in expressions</string>
               </property>
               <property name="cfg" stdset="0">
-               <string>SqlEnterpriseFormatter.NlBeforeOpenParExpr</string>
+               <string notr="true">SqlEnterpriseFormatter.NlBeforeOpenParExpr</string>
               </property>
              </widget>
             </item>
@@ -210,7 +210,7 @@
                <string>After opening parenthesis in expressions</string>
               </property>
               <property name="cfg" stdset="0">
-               <string>SqlEnterpriseFormatter.NlAfterOpenParExpr</string>
+               <string notr="true">SqlEnterpriseFormatter.NlAfterOpenParExpr</string>
               </property>
              </widget>
             </item>
@@ -220,7 +220,7 @@
                <string>Before closing parenthesis in expressions</string>
               </property>
               <property name="cfg" stdset="0">
-               <string>SqlEnterpriseFormatter.NlBeforeCloseParExpr</string>
+               <string notr="true">SqlEnterpriseFormatter.NlBeforeCloseParExpr</string>
               </property>
              </widget>
             </item>
@@ -230,17 +230,17 @@
                <string>After closing parenthesis in expressions</string>
               </property>
               <property name="cfg" stdset="0">
-               <string>SqlEnterpriseFormatter.NlAfterCloseParExpr</string>
+               <string notr="true">SqlEnterpriseFormatter.NlAfterCloseParExpr</string>
               </property>
              </widget>
             </item>
             <item>
              <widget class="QCheckBox" name="checkBox_32">
               <property name="text">
-               <string>After *JOIN keywords in FROM clause</string>
+               <string>After JOIN keywords in FROM clause</string>
               </property>
               <property name="cfg" stdset="0">
-               <string>SqlEnterpriseFormatter.NlAfterJoinStmt</string>
+               <string notr="true">SqlEnterpriseFormatter.NlAfterJoinStmt</string>
               </property>
              </widget>
             </item>
@@ -250,7 +250,7 @@
                <string>Put each column constraint in CREATE TABLE into new line</string>
               </property>
               <property name="cfg" stdset="0">
-               <string>SqlEnterpriseFormatter.NlBetweenConstraints</string>
+               <string notr="true">SqlEnterpriseFormatter.NlBetweenConstraints</string>
               </property>
              </widget>
             </item>
@@ -260,7 +260,7 @@
                <string>After comma</string>
               </property>
               <property name="cfg" stdset="0">
-               <string>SqlEnterpriseFormatter.NlAfterComma</string>
+               <string notr="true">SqlEnterpriseFormatter.NlAfterComma</string>
               </property>
              </widget>
             </item>
@@ -270,7 +270,7 @@
                <string>After comma in expressions</string>
               </property>
               <property name="cfg" stdset="0">
-               <string>SqlEnterpriseFormatter.NlAfterCommaInExpr</string>
+               <string notr="true">SqlEnterpriseFormatter.NlAfterCommaInExpr</string>
               </property>
              </widget>
             </item>
@@ -280,7 +280,7 @@
                <string>After semicolon</string>
               </property>
               <property name="cfg" stdset="0">
-               <string>SqlEnterpriseFormatter.NlAfterSemicolon</string>
+               <string notr="true">SqlEnterpriseFormatter.NlAfterSemicolon</string>
               </property>
              </widget>
             </item>
@@ -290,7 +290,7 @@
                <string>Never before semicolon</string>
               </property>
               <property name="cfg" stdset="0">
-               <string>SqlEnterpriseFormatter.NlNeverBeforeSemicolon</string>
+               <string notr="true">SqlEnterpriseFormatter.NlNeverBeforeSemicolon</string>
               </property>
              </widget>
             </item>
@@ -392,7 +392,7 @@
                <string>Before comma in lists</string>
               </property>
               <property name="cfg" stdset="0">
-               <string>SqlEnterpriseFormatter.SpaceBeforeCommaInList</string>
+               <string notr="true">SqlEnterpriseFormatter.SpaceBeforeCommaInList</string>
               </property>
              </widget>
             </item>
@@ -402,7 +402,7 @@
                <string>After comma in lists</string>
               </property>
               <property name="cfg" stdset="0">
-               <string>SqlEnterpriseFormatter.SpaceAfterCommaInList</string>
+               <string notr="true">SqlEnterpriseFormatter.SpaceAfterCommaInList</string>
               </property>
              </widget>
             </item>
@@ -412,7 +412,7 @@
                <string>Before opening parenthesis</string>
               </property>
               <property name="cfg" stdset="0">
-               <string>SqlEnterpriseFormatter.SpaceBeforeOpenPar</string>
+               <string notr="true">SqlEnterpriseFormatter.SpaceBeforeOpenPar</string>
               </property>
              </widget>
             </item>
@@ -422,7 +422,7 @@
                <string>After opening parenthesis</string>
               </property>
               <property name="cfg" stdset="0">
-               <string>SqlEnterpriseFormatter.SpaceAfterOpenPar</string>
+               <string notr="true">SqlEnterpriseFormatter.SpaceAfterOpenPar</string>
               </property>
              </widget>
             </item>
@@ -432,7 +432,7 @@
                <string>Before closing parenthesis</string>
               </property>
               <property name="cfg" stdset="0">
-               <string>SqlEnterpriseFormatter.SpaceBeforeClosePar</string>
+               <string notr="true">SqlEnterpriseFormatter.SpaceBeforeClosePar</string>
               </property>
              </widget>
             </item>
@@ -442,7 +442,7 @@
                <string>After closing parenthesis</string>
               </property>
               <property name="cfg" stdset="0">
-               <string>SqlEnterpriseFormatter.SpaceAfterClosePar</string>
+               <string notr="true">SqlEnterpriseFormatter.SpaceAfterClosePar</string>
               </property>
              </widget>
             </item>
@@ -452,7 +452,7 @@
                <string>No space between SQL function name and opening parenthesis</string>
               </property>
               <property name="cfg" stdset="0">
-               <string>SqlEnterpriseFormatter.NoSpaceAfterFunctionName</string>
+               <string notr="true">SqlEnterpriseFormatter.NoSpaceAfterFunctionName</string>
               </property>
              </widget>
             </item>
@@ -462,7 +462,7 @@
                <string>Before dot operator (in path to database object)</string>
               </property>
               <property name="cfg" stdset="0">
-               <string>SqlEnterpriseFormatter.SpaceBeforeDot</string>
+               <string notr="true">SqlEnterpriseFormatter.SpaceBeforeDot</string>
               </property>
              </widget>
             </item>
@@ -472,7 +472,7 @@
                <string>After dot operator (in path to database object)</string>
               </property>
               <property name="cfg" stdset="0">
-               <string>SqlEnterpriseFormatter.SpaceAfterDot</string>
+               <string notr="true">SqlEnterpriseFormatter.SpaceAfterDot</string>
               </property>
              </widget>
             </item>
@@ -482,7 +482,7 @@
                <string>Before mathematical operator</string>
               </property>
               <property name="cfg" stdset="0">
-               <string>SqlEnterpriseFormatter.SpaceBeforeMathOp</string>
+               <string notr="true">SqlEnterpriseFormatter.SpaceBeforeMathOp</string>
               </property>
              </widget>
             </item>
@@ -492,7 +492,7 @@
                <string>After mathematical operator</string>
               </property>
               <property name="cfg" stdset="0">
-               <string>SqlEnterpriseFormatter.SpaceAfterMathOp</string>
+               <string notr="true">SqlEnterpriseFormatter.SpaceAfterMathOp</string>
               </property>
              </widget>
             </item>
@@ -502,7 +502,7 @@
                <string>Never before comma</string>
               </property>
               <property name="cfg" stdset="0">
-               <string>SqlEnterpriseFormatter.SpaceNeverBeforeComma</string>
+               <string notr="true">SqlEnterpriseFormatter.SpaceNeverBeforeComma</string>
               </property>
              </widget>
             </item>
@@ -512,7 +512,7 @@
                <string>Never before semicolon</string>
               </property>
               <property name="cfg" stdset="0">
-               <string>SqlEnterpriseFormatter.SpaceNeverBeforeSemicolon</string>
+               <string notr="true">SqlEnterpriseFormatter.SpaceNeverBeforeSemicolon</string>
               </property>
              </widget>
             </item>
@@ -587,10 +587,10 @@
         <item row="3" column="1">
          <widget class="ConfigComboBox" name="comboBox">
           <property name="cfg" stdset="0">
-           <string>SqlEnterpriseFormatter.PrefferedWrapper</string>
+           <string notr="true">SqlEnterpriseFormatter.PrefferedWrapper</string>
           </property>
           <property name="modelName" stdset="0">
-           <string>SqlEnterpriseFormatter.Wrappers</string>
+           <string notr="true">SqlEnterpriseFormatter.Wrappers</string>
           </property>
          </widget>
         </item>
@@ -600,7 +600,7 @@
            <string>Always use name wrapping</string>
           </property>
           <property name="cfg" stdset="0">
-           <string>SqlEnterpriseFormatter.AlwaysUseNameWrapping</string>
+           <string notr="true">SqlEnterpriseFormatter.AlwaysUseNameWrapping</string>
           </property>
          </widget>
         </item>
@@ -610,7 +610,7 @@
            <string>Uppercase data type names</string>
           </property>
           <property name="cfg" stdset="0">
-           <string>SqlEnterpriseFormatter.UppercaseDataTypes</string>
+           <string notr="true">SqlEnterpriseFormatter.UppercaseDataTypes</string>
           </property>
          </widget>
         </item>
@@ -620,7 +620,7 @@
            <string>Uppercase keywords</string>
           </property>
           <property name="cfg" stdset="0">
-           <string>SqlEnterpriseFormatter.UppercaseKeywords</string>
+           <string notr="true">SqlEnterpriseFormatter.UppercaseKeywords</string>
           </property>
          </widget>
         </item>
@@ -641,7 +641,7 @@
        <item>
         <widget class="SqlView" name="previewEdit">
          <property name="cfg" stdset="0">
-          <string>SqlEnterpriseFormatter.PreviewCode</string>
+          <string notr="true">SqlEnterpriseFormatter.PreviewCode</string>
          </property>
          <property name="preview" stdset="0">
           <bool>true</bool>

@@ -4,79 +4,54 @@
 <context>
     <name>CsvExport</name>
     <message>
-        <location filename="CsvExport.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="CsvExport.ui" line="20"/>
         <source>Column names in first row</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="CsvExport.ui" line="23"/>
-        <source>CsvExport.ColumnsInFirstRow</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwy kolumn w pierwszym wierszu</translation>
     </message>
     <message>
         <location filename="CsvExport.ui" line="30"/>
         <source>Column separator:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="CsvExport.ui" line="37"/>
-        <source>CsvExport.Separator</source>
-        <translation type="unfinished"></translation>
+        <translation>Separator kolumny:</translation>
     </message>
     <message>
         <location filename="CsvExport.ui" line="41"/>
         <source>, (comma)</source>
-        <translation type="unfinished"></translation>
+        <translation>, (przecinek)</translation>
     </message>
     <message>
         <location filename="CsvExport.ui" line="46"/>
         <source>; (semicolon)</source>
-        <translation type="unfinished"></translation>
+        <translation>; (średnik)</translation>
     </message>
     <message>
         <location filename="CsvExport.ui" line="51"/>
         <source>\t (tab)</source>
-        <translation type="unfinished"></translation>
+        <translation>\t (znak tabulacji)</translation>
     </message>
     <message>
         <location filename="CsvExport.ui" line="56"/>
         <source>  (whitespace)</source>
-        <translation type="unfinished"></translation>
+        <translation>  (spacja)</translation>
     </message>
     <message>
         <location filename="CsvExport.ui" line="61"/>
         <source>Custom:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="CsvExport.ui" line="75"/>
-        <source>CsvExport.CustomSeparator</source>
-        <translation type="unfinished"></translation>
+        <translation>Własny:</translation>
     </message>
     <message>
         <location filename="CsvExport.ui" line="82"/>
         <source>Export NULL values as:</source>
-        <translation type="unfinished"></translation>
+        <translation>Eksportuj wartości NULL jako:</translation>
     </message>
     <message>
         <location filename="CsvExport.ui" line="89"/>
         <source>Empty string</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="CsvExport.ui" line="92"/>
-        <source>CsvExport.NullValueString</source>
-        <translation type="unfinished"></translation>
+        <translation>Pusty łańcuch</translation>
     </message>
     <message>
         <location filename="csvexport.cpp" line="42"/>
         <source>Enter the custom separator character.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź własny znak separatora.</translation>
     </message>
 </context>
 </TS>

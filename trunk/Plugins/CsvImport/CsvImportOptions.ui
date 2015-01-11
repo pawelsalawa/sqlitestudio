@@ -11,13 +11,13 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string notr="true">Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="1" column="1">
     <widget class="QComboBox" name="separatorCombo">
      <property name="cfg" stdset="0">
-      <string>CsvImport.Separator</string>
+      <string notr="true">CsvImport.Separator</string>
      </property>
      <item>
       <property name="text">
@@ -48,11 +48,11 @@
    </item>
    <item row="0" column="0" colspan="3">
     <widget class="QCheckBox" name="firstRowAsColumnsCheck">
-     <property name="cfg" stdset="0">
-      <string>CsvImport.FirstRowAsColumns</string>
-     </property>
      <property name="text">
       <string>First row represents column names</string>
+     </property>
+     <property name="cfg" stdset="0">
+      <string notr="true">CsvImport.FirstRowAsColumns</string>
      </property>
     </widget>
    </item>
@@ -72,17 +72,17 @@
       </size>
      </property>
      <property name="cfg" stdset="0">
-      <string>CsvImport.CustomSeparator</string>
+      <string notr="true">CsvImport.CustomSeparator</string>
      </property>
     </widget>
    </item>
    <item row="2" column="0">
     <widget class="QCheckBox" name="nullCheck">
-     <property name="cfg" stdset="0">
-      <string>CsvImport.NullValues</string>
-     </property>
      <property name="text">
       <string>NULL values:</string>
+     </property>
+     <property name="cfg" stdset="0">
+      <string notr="true">CsvImport.NullValues</string>
      </property>
     </widget>
    </item>
@@ -92,7 +92,7 @@
       <string>If your CSV data contains null values, define how are they represented in the CSV.</string>
      </property>
      <property name="cfg" stdset="0">
-      <string>CsvImport.NullValueString</string>
+      <string notr="true">CsvImport.NullValueString</string>
      </property>
     </widget>
    </item>

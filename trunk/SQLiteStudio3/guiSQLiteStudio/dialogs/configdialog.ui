@@ -104,7 +104,7 @@
               <string>General</string>
              </property>
              <property name="statusTip">
-              <string>generalPage</string>
+              <string notr="true">generalPage</string>
              </property>
              <property name="icon">
               <iconset resource="../icons.qrc">
@@ -116,7 +116,7 @@
               <string>Keyboard shortcuts</string>
              </property>
              <property name="statusTip">
-              <string>shortcutsPage</string>
+              <string notr="true">shortcutsPage</string>
              </property>
              <property name="icon">
               <iconset resource="../icons.qrc">
@@ -128,7 +128,7 @@
               <string>Look &amp; feel</string>
              </property>
              <property name="statusTip">
-              <string>lookAndFeelPage</string>
+              <string notr="true">lookAndFeelPage</string>
              </property>
              <property name="icon">
               <iconset resource="../icons.qrc">
@@ -139,7 +139,7 @@
                <string>Style</string>
               </property>
               <property name="statusTip">
-               <string>stylePage</string>
+               <string notr="true">stylePage</string>
               </property>
               <property name="icon">
                <iconset resource="../icons.qrc">
@@ -151,7 +151,7 @@
                <string>Fonts</string>
               </property>
               <property name="statusTip">
-               <string>fontsPage</string>
+               <string notr="true">fontsPage</string>
               </property>
               <property name="icon">
                <iconset resource="../icons.qrc">
@@ -163,7 +163,7 @@
                <string>Colors</string>
               </property>
               <property name="statusTip">
-               <string>colorsPage</string>
+               <string notr="true">colorsPage</string>
               </property>
               <property name="icon">
                <iconset resource="../icons.qrc">
@@ -176,7 +176,7 @@
               <string>Plugins</string>
              </property>
              <property name="statusTip">
-              <string>pluginsPage</string>
+              <string notr="true">pluginsPage</string>
              </property>
              <property name="icon">
               <iconset resource="../icons.qrc">
@@ -187,7 +187,7 @@
                <string>Code formatters</string>
               </property>
               <property name="statusTip">
-               <string>formatterPluginsPage</string>
+               <string notr="true">formatterPluginsPage</string>
               </property>
              </item>
             </item>
@@ -196,7 +196,7 @@
               <string>Data browsing</string>
              </property>
              <property name="statusTip">
-              <string>dataBrowsingPage</string>
+              <string notr="true">dataBrowsingPage</string>
              </property>
              <property name="icon">
               <iconset resource="../icons.qrc">
@@ -207,7 +207,7 @@
                <string>Data editors</string>
               </property>
               <property name="statusTip">
-               <string>dataEditorsPage</string>
+               <string notr="true">dataEditorsPage</string>
               </property>
               <property name="icon">
                <iconset resource="../icons.qrc">
@@ -227,7 +227,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>4</number>
+          <number>6</number>
          </property>
          <widget class="QWidget" name="dataBrowsingPage">
           <layout class="QVBoxLayout" name="verticalLayout_21">
@@ -259,7 +259,7 @@
                  <number>99999</number>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>General.NumberOfRowsPerPage</string>
+                 <string notr="true">General.NumberOfRowsPerPage</string>
                 </property>
                </widget>
               </item>
@@ -288,7 +288,7 @@
                  <number>600</number>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>General.MaxInitialColumnWith</string>
+                 <string notr="true">General.MaxInitialColumnWith</string>
                 </property>
                </widget>
               </item>
@@ -334,7 +334,7 @@
                <item>
                 <widget class="QListWidget" name="dataEditorsTypesList">
                  <property name="cfg" stdset="0">
-                  <string>General.DataEditorsOrder</string>
+                  <string notr="true">General.DataEditorsOrder</string>
                  </property>
                 </widget>
                </item>
@@ -433,7 +433,7 @@
                  <number>9999999</number>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>General.DdlHistorySize</string>
+                 <string notr="true">General.DdlHistorySize</string>
                 </property>
                </widget>
               </item>
@@ -450,7 +450,7 @@
                  <string>Don't show DDL preview dialog when commiting schema changes</string>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>General.DontShowDdlPreview</string>
+                 <string notr="true">General.DontShowDdlPreview</string>
                 </property>
                </widget>
               </item>
@@ -478,7 +478,7 @@
                  <number>999999</number>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>General.SqlHistorySize</string>
+                 <string notr="true">General.SqlHistorySize</string>
                 </property>
                </widget>
               </item>
@@ -501,7 +501,7 @@
                  <string>Execute only the query under the cursor</string>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>General.ExecuteCurrentQueryOnly</string>
+                 <string notr="true">General.ExecuteCurrentQueryOnly</string>
                 </property>
                </widget>
               </item>
@@ -520,7 +520,7 @@
                  <string>Automatically check for updates at startup</string>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>General.CheckUpdatesOnStartup</string>
+                 <string notr="true">General.CheckUpdatesOnStartup</string>
                 </property>
                </widget>
               </item>
@@ -539,7 +539,7 @@
                  <string>Restore last session (active MDI windows) after startup</string>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>General.RestoreSession</string>
+                 <string notr="true">General.RestoreSession</string>
                 </property>
                </widget>
               </item>
@@ -666,7 +666,7 @@
               <item>
                <widget class="QComboBox" name="langCombo">
                 <property name="cfg" stdset="0">
-                 <string>General.Language</string>
+                 <string notr="true">General.Language</string>
                 </property>
                </widget>
               </item>
@@ -688,7 +688,7 @@
                  <string>Sort table columns alphabetically</string>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>General.SortColumns</string>
+                 <string notr="true">General.SortColumns</string>
                 </property>
                </widget>
               </item>
@@ -698,7 +698,7 @@
                  <string>Expand tables node when connected to a database</string>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>General.ExpandTables</string>
+                 <string notr="true">General.ExpandTables</string>
                 </property>
                </widget>
               </item>
@@ -717,7 +717,7 @@
                  <bool>false</bool>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>General.ShowDbTreeLabels</string>
+                 <string notr="true">General.ShowDbTreeLabels</string>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_20">
                  <item>
@@ -729,7 +729,7 @@
                     <string>Display labels for regular tables</string>
                    </property>
                    <property name="cfg" stdset="0">
-                    <string>General.ShowRegularTableLabels</string>
+                    <string notr="true">General.ShowRegularTableLabels</string>
                    </property>
                   </widget>
                  </item>
@@ -742,7 +742,7 @@
                     <string>Display labels for virtual tables</string>
                    </property>
                    <property name="cfg" stdset="0">
-                    <string>General.ShowVirtualTableLabels</string>
+                    <string notr="true">General.ShowVirtualTableLabels</string>
                    </property>
                   </widget>
                  </item>
@@ -755,7 +755,7 @@
                  <string>Expand views node when connected to a database</string>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>General.ExpandViews</string>
+                 <string notr="true">General.ExpandViews</string>
                 </property>
                </widget>
               </item>
@@ -768,7 +768,7 @@
                  <string>Sort objects (tables, indexes, triggers and views) alphabetically</string>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>General.SortObjects</string>
+                 <string notr="true">General.SortObjects</string>
                 </property>
                </widget>
               </item>
@@ -778,7 +778,7 @@
                  <string>Display system tables and indexes on the list</string>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>General.ShowSystemObjects</string>
+                 <string notr="true">General.ShowSystemObjects</string>
                 </property>
                </widget>
               </item>
@@ -800,7 +800,7 @@
                  <string>Open Table Windows with the data tab for start</string>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>General.OpenTablesOnData</string>
+                 <string notr="true">General.OpenTablesOnData</string>
                 </property>
                </widget>
               </item>
@@ -822,7 +822,7 @@
                  <string>Open View Windows with the data tab for start</string>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>General.OpenViewsOnData</string>
+                 <string notr="true">General.OpenViewsOnData</string>
                 </property>
                </widget>
               </item>
@@ -966,7 +966,7 @@
               <item>
                <widget class="QComboBox" name="activeStyleCombo">
                 <property name="cfg" stdset="0">
-                 <string>General.Style</string>
+                 <string notr="true">General.Style</string>
                 </property>
                </widget>
               </item>
@@ -1014,7 +1014,7 @@
                      <item row="1" column="6">
                       <widget class="QCheckBox" name="previewCheckBox">
                        <property name="text">
-                        <string>CheckBox</string>
+                        <string notr="true">CheckBox</string>
                        </property>
                       </widget>
                      </item>
@@ -1038,7 +1038,7 @@
                      <item row="0" column="3" colspan="2">
                       <widget class="QPushButton" name="previewPushButton">
                        <property name="text">
-                        <string>PushButton</string>
+                        <string notr="true">PushButton</string>
                        </property>
                       </widget>
                      </item>
@@ -1062,46 +1062,46 @@
                       <widget class="QTreeWidget" name="previewTreeWidget">
                        <column>
                         <property name="text">
-                         <string>Column</string>
+                         <string notr="true">Column</string>
                         </property>
                        </column>
                        <item>
                         <property name="text">
-                         <string>123</string>
+                         <string notr="true">123</string>
                         </property>
                         <item>
                          <property name="text">
-                          <string>11111</string>
+                          <string notr="true">11111</string>
                          </property>
                         </item>
                         <item>
                          <property name="text">
-                          <string>22222</string>
+                          <string notr="true">22222</string>
                          </property>
                         </item>
                         <item>
                          <property name="text">
-                          <string>33333</string>
+                          <string notr="true">33333</string>
                          </property>
                         </item>
                        </item>
                        <item>
                         <property name="text">
-                         <string>456</string>
+                         <string notr="true">456</string>
                         </property>
                         <item>
                          <property name="text">
-                          <string>44444</string>
+                          <string notr="true">44444</string>
                          </property>
                         </item>
                         <item>
                          <property name="text">
-                          <string>55555</string>
+                          <string notr="true">55555</string>
                          </property>
                         </item>
                         <item>
                          <property name="text">
-                          <string>66666</string>
+                          <string notr="true">66666</string>
                          </property>
                         </item>
                        </item>
@@ -1110,7 +1110,7 @@
                      <item row="0" column="5">
                       <widget class="QToolButton" name="previewToolButton">
                        <property name="text">
-                        <string>...</string>
+                        <string notr="true">...</string>
                        </property>
                       </widget>
                      </item>
@@ -1120,20 +1120,23 @@
                      <item row="0" column="6">
                       <widget class="QRadioButton" name="previewRadioButton">
                        <property name="text">
-                        <string>RadioButton</string>
+                        <string notr="true">RadioButton</string>
                        </property>
                       </widget>
                      </item>
                      <item row="1" column="0">
                       <widget class="QComboBox" name="previewComboBox">
+                       <property name="currentText">
+                        <string notr="true">ABC</string>
+                       </property>
                        <item>
                         <property name="text">
-                         <string>ABC</string>
+                         <string notr="true">ABC</string>
                         </property>
                        </item>
                        <item>
                         <property name="text">
-                         <string>XYZ</string>
+                         <string notr="true">XYZ</string>
                         </property>
                        </item>
                       </widget>
@@ -1141,7 +1144,7 @@
                      <item row="3" column="3" colspan="5">
                       <widget class="QTextEdit" name="previewTextEdit">
                        <property name="html">
-                        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+                        <string notr="true">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -1249,7 +1252,7 @@ p, li { white-space: pre-wrap; }
                   <item>
                    <widget class="FontEdit" name="sqlEditorFont" native="true">
                     <property name="cfg" stdset="0">
-                     <string>Fonts.SqlEditor</string>
+                     <string notr="true">Fonts.SqlEditor</string>
                     </property>
                    </widget>
                   </item>
@@ -1265,7 +1268,7 @@ p, li { white-space: pre-wrap; }
                   <item>
                    <widget class="FontEdit" name="dbTreeFont" native="true">
                     <property name="cfg" stdset="0">
-                     <string>Fonts.DbTree</string>
+                     <string notr="true">Fonts.DbTree</string>
                     </property>
                    </widget>
                   </item>
@@ -1281,7 +1284,7 @@ p, li { white-space: pre-wrap; }
                   <item>
                    <widget class="FontEdit" name="dbTreeLabelFont" native="true">
                     <property name="cfg" stdset="0">
-                     <string>Fonts.DbTreeLabel</string>
+                     <string notr="true">Fonts.DbTreeLabel</string>
                     </property>
                    </widget>
                   </item>
@@ -1297,7 +1300,7 @@ p, li { white-space: pre-wrap; }
                   <item>
                    <widget class="FontEdit" name="dataViewFont" native="true">
                     <property name="cfg" stdset="0">
-                     <string>Fonts.DataView</string>
+                     <string notr="true">Fonts.DataView</string>
                     </property>
                    </widget>
                   </item>
@@ -1313,7 +1316,7 @@ p, li { white-space: pre-wrap; }
                   <item>
                    <widget class="FontEdit" name="statusFieldfont" native="true">
                     <property name="cfg" stdset="0">
-                     <string>Fonts.StatusField</string>
+                     <string notr="true">Fonts.StatusField</string>
                     </property>
                    </widget>
                   </item>
@@ -1397,7 +1400,7 @@ p, li { white-space: pre-wrap; }
                      <string/>
                     </property>
                     <property name="cfg" stdset="0">
-                     <string>Colors.SqlEditorKeywordFg</string>
+                     <string notr="true">Colors.SqlEditorKeywordFg</string>
                     </property>
                    </widget>
                   </item>
@@ -1413,7 +1416,7 @@ p, li { white-space: pre-wrap; }
                      <string/>
                     </property>
                     <property name="cfg" stdset="0">
-                     <string>Colors.SqlEditorStringFg</string>
+                     <string notr="true">Colors.SqlEditorStringFg</string>
                     </property>
                    </widget>
                   </item>
@@ -1429,7 +1432,7 @@ p, li { white-space: pre-wrap; }
                      <string/>
                     </property>
                     <property name="cfg" stdset="0">
-                     <string>Colors.SqlEditorCommentFg</string>
+                     <string notr="true">Colors.SqlEditorCommentFg</string>
                     </property>
                    </widget>
                   </item>
@@ -1445,7 +1448,7 @@ p, li { white-space: pre-wrap; }
                      <string/>
                     </property>
                     <property name="cfg" stdset="0">
-                     <string>Colors.SqlEditorForeground</string>
+                     <string notr="true">Colors.SqlEditorForeground</string>
                     </property>
                    </widget>
                   </item>
@@ -1461,7 +1464,7 @@ p, li { white-space: pre-wrap; }
                      <string/>
                     </property>
                     <property name="cfg" stdset="0">
-                     <string>Colors.SqlEditorCurrentLineBg</string>
+                     <string notr="true">Colors.SqlEditorCurrentLineBg</string>
                     </property>
                    </widget>
                   </item>
@@ -1477,7 +1480,7 @@ p, li { white-space: pre-wrap; }
                      <string/>
                     </property>
                     <property name="cfg" stdset="0">
-                     <string>Colors.SqlEditorLineNumAreaBg</string>
+                     <string notr="true">Colors.SqlEditorLineNumAreaBg</string>
                     </property>
                    </widget>
                   </item>
@@ -1503,7 +1506,7 @@ p, li { white-space: pre-wrap; }
                      <string/>
                     </property>
                     <property name="cfg" stdset="0">
-                     <string>Colors.SqlEditorParenthesisBg</string>
+                     <string notr="true">Colors.SqlEditorParenthesisBg</string>
                     </property>
                    </widget>
                   </item>
@@ -1550,7 +1553,7 @@ p, li { white-space: pre-wrap; }
                      <string/>
                     </property>
                     <property name="cfg" stdset="0">
-                     <string>Colors.SqlEditorBlobFg</string>
+                     <string notr="true">Colors.SqlEditorBlobFg</string>
                     </property>
                    </widget>
                   </item>
@@ -1587,7 +1590,7 @@ p, li { white-space: pre-wrap; }
                      <string/>
                     </property>
                     <property name="cfg" stdset="0">
-                     <string>Colors.SqlEditorNumberFg</string>
+                     <string notr="true">Colors.SqlEditorNumberFg</string>
                     </property>
                    </widget>
                   </item>
@@ -1603,7 +1606,7 @@ p, li { white-space: pre-wrap; }
                      <string/>
                     </property>
                     <property name="cfg" stdset="0">
-                     <string>Colors.SqlEditorBindParamFg</string>
+                     <string notr="true">Colors.SqlEditorBindParamFg</string>
                     </property>
                    </widget>
                   </item>
@@ -1629,7 +1632,7 @@ p, li { white-space: pre-wrap; }
                      <string/>
                     </property>
                     <property name="cfg" stdset="0">
-                     <string>Colors.SqlEditorValidObject</string>
+                     <string notr="true">Colors.SqlEditorValidObject</string>
                     </property>
                    </widget>
                   </item>
@@ -1664,7 +1667,7 @@ p, li { white-space: pre-wrap; }
                      <string/>
                     </property>
                     <property name="cfg" stdset="0">
-                     <string>Colors.DataUncommited</string>
+                     <string notr="true">Colors.DataUncommited</string>
                     </property>
                    </widget>
                   </item>
@@ -1690,7 +1693,7 @@ p, li { white-space: pre-wrap; }
                      <string/>
                     </property>
                     <property name="cfg" stdset="0">
-                     <string>Colors.DataUncommitedError</string>
+                     <string notr="true">Colors.DataUncommitedError</string>
                     </property>
                    </widget>
                   </item>
@@ -1713,7 +1716,7 @@ p, li { white-space: pre-wrap; }
                      <string/>
                     </property>
                     <property name="cfg" stdset="0">
-                     <string>Colors.DataNullFg</string>
+                     <string notr="true">Colors.DataNullFg</string>
                     </property>
                    </widget>
                   </item>
@@ -1736,7 +1739,7 @@ p, li { white-space: pre-wrap; }
                      <string/>
                     </property>
                     <property name="cfg" stdset="0">
-                     <string>Colors.DataDeletedBg</string>
+                     <string notr="true">Colors.DataDeletedBg</string>
                     </property>
                    </widget>
                   </item>
@@ -1771,7 +1774,7 @@ p, li { white-space: pre-wrap; }
                      <string/>
                     </property>
                     <property name="cfg" stdset="0">
-                     <string>Colors.DbTreeLabelsFg</string>
+                     <string notr="true">Colors.DbTreeLabelsFg</string>
                     </property>
                    </widget>
                   </item>
@@ -1803,7 +1806,7 @@ p, li { white-space: pre-wrap; }
                      <string/>
                     </property>
                     <property name="cfg" stdset="0">
-                     <string>Colors.StatusFieldInfoFg</string>
+                     <string notr="true">Colors.StatusFieldInfoFg</string>
                     </property>
                    </widget>
                   </item>
@@ -1826,7 +1829,7 @@ p, li { white-space: pre-wrap; }
                      <string/>
                     </property>
                     <property name="cfg" stdset="0">
-                     <string>Colors.StatusFieldWarnFg</string>
+                     <string notr="true">Colors.StatusFieldWarnFg</string>
                     </property>
                    </widget>
                   </item>
@@ -1849,7 +1852,7 @@ p, li { white-space: pre-wrap; }
                      <string/>
                     </property>
                     <property name="cfg" stdset="0">
-                     <string>Colors.StatusFieldErrorFg</string>
+                     <string notr="true">Colors.StatusFieldErrorFg</string>
                     </property>
                    </widget>
                   </item>

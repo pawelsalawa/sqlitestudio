@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string notr="true">Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -29,10 +29,10 @@
          <bool>true</bool>
         </property>
         <property name="assignedValue" stdset="0">
-         <string>format</string>
+         <string notr="true">format</string>
         </property>
         <property name="cfg" stdset="0">
-         <string>JsonExport.Format</string>
+         <string notr="true">JsonExport.Format</string>
         </property>
        </widget>
       </item>
@@ -42,10 +42,10 @@
          <string>Compress (everything in one line)</string>
         </property>
         <property name="assignedValue" stdset="0">
-         <string>compress</string>
+         <string notr="true">compress</string>
         </property>
         <property name="cfg" stdset="0">
-         <string>JsonExport.Format</string>
+         <string notr="true">JsonExport.Format</string>
         </property>
        </widget>
       </item>

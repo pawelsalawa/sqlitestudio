@@ -11,10 +11,19 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>SQL editor</string>
+   <string notr="true">SQL editor</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <property name="margin">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
     <number>0</number>
    </property>
    <item>
@@ -42,7 +51,16 @@
          </widget>
          <widget class="QWidget" name="resultsContainer" native="true">
           <layout class="QVBoxLayout" name="verticalLayout_5">
-           <property name="margin">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
             <number>0</number>
            </property>
           </layout>
@@ -59,7 +77,16 @@
        <item>
         <widget class="QWidget" name="resultsFrame" native="true">
          <layout class="QVBoxLayout" name="verticalLayout_6">
-          <property name="margin">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
            <number>0</number>
           </property>
           <item>
@@ -116,6 +143,11 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>SqlView</class>
+   <extends>QPlainTextEdit</extends>
+   <header>sqlview.h</header>
+  </customwidget>
+  <customwidget>
    <class>DataView</class>
    <extends>QTabWidget</extends>
    <header>dataview.h</header>
@@ -125,11 +157,6 @@
    <class>SqlEditor</class>
    <extends>QPlainTextEdit</extends>
    <header>sqleditor.h</header>
-  </customwidget>
-  <customwidget>
-   <class>SqlView</class>
-   <extends>QPlainTextEdit</extends>
-   <header>sqlview.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -46,7 +46,7 @@ QString CliCommandHistory::fullHelp() const
                 "Every history entry is separated with a horizontal line, so multiline entries are easier to read.\n"
                 "\n"
                 "When the -c or --clear option is passed, then the history gets erased.\n"
-                "When the -l or --limit option is passed, it sets the new history entries limit. It requires an additional argument"
+                "When the -l or --limit option is passed, it sets the new history entries limit. It requires an additional argument "
                 "saying how many entries do you want the history to be limited to.\n"
                 "Use -ql or --querylimit option to see the current limit value."
              );

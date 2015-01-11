@@ -172,7 +172,7 @@ QHash<ExportManager::ExportProviderFlag, QVariant> ExportWorker::getProviderData
         }
         else if (results->isError())
         {
-            notifyError(tr("Error while counting data column width to export from query results: %2").arg(results->getErrorText()));
+            notifyError(tr("Error while counting data column width to export from query results: %1").arg(results->getErrorText()));
         }
         else
         {

@@ -14,7 +14,7 @@ void CliCommandCd::execute()
 
 QString CliCommandCd::shortHelp() const
 {
-    return tr("changes current workind directory");
+    return tr("changes current working directory");
 }
 
 QString CliCommandCd::fullHelp() const

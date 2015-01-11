@@ -2,6 +2,7 @@
 #include "common/numericspinbox.h"
 #include <QVariant>
 #include <QVBoxLayout>
+#include <QDebug>
 
 MultiEditorNumeric::MultiEditorNumeric(QWidget* parent)
     : MultiEditorWidget(parent)

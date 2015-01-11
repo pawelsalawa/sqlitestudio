@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Export dialog</string>
+   <string>Export</string>
   </property>
   <property name="options">
    <set>QWizard::CancelButtonOnLeft|QWizard::NoDefaultButton</set>
@@ -111,7 +111,7 @@
        <item row="1" column="1">
         <widget class="QLabel" name="exportTableSeparatorLabel">
          <property name="text">
-          <string>.</string>
+          <string notr="true">.</string>
          </property>
         </widget>
        </item>
@@ -289,8 +289,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>298</width>
-         <height>288</height>
+         <width>483</width>
+         <height>318</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -347,7 +347,7 @@
            <item row="0" column="2">
             <widget class="QToolButton" name="exportFileButton">
              <property name="text">
-              <string>...</string>
+              <string notr="true">...</string>
              </property>
             </widget>
            </item>
@@ -422,15 +422,15 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>SqlEditor</class>
+   <extends>QPlainTextEdit</extends>
+   <header>sqleditor.h</header>
+  </customwidget>
+  <customwidget>
    <class>VerifiableWizardPage</class>
    <extends>QWizardPage</extends>
    <header>common/verifiablewizardpage.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>SqlEditor</class>
-   <extends>QPlainTextEdit</extends>
-   <header>sqleditor.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

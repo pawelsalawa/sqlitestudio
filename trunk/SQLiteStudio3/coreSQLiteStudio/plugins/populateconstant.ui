@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string notr="true">Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -23,7 +23,7 @@
       <item>
        <widget class="QLineEdit" name="valueEdit">
         <property name="cfg" stdset="0">
-         <string>PopulateConstant.Value</string>
+         <string notr="true">PopulateConstant.Value</string>
         </property>
        </widget>
       </item>

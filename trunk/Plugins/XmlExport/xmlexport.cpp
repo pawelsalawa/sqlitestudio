@@ -35,7 +35,7 @@ void XmlExport::validateOptions()
     EXPORT_MANAGER->updateVisibilityAndEnabled(cfg.XmlExport.Namespace, true, useNs);
 
     bool nsValid = !useNs || !cfg.XmlExport.Namespace.get().isEmpty();
-    EXPORT_MANAGER->handleValidationFromPlugin(nsValid, cfg.XmlExport.Namespace, tr("Enter the namespace to use (for example: http://my.namespace.org"));
+    EXPORT_MANAGER->handleValidationFromPlugin(nsValid, cfg.XmlExport.Namespace, tr("Enter the namespace to use (for example: http://my.namespace.org)"));
 }
 
 QString XmlExport::defaultFileExtension() const

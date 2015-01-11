@@ -27,8 +27,7 @@ QMAKE_CXXFLAGS += -pedantic
 
 DEFINES += GUISQLITESTUDIO_LIBRARY
 
-TRANSLATIONS += translations/guiSQLiteStudio_pl.ts \
-                translations/guiSQLiteStudio_en.ts
+TRANSLATIONS += translations/guiSQLiteStudio_pl.ts
 
 SOURCES +=\
         mainwindow.cpp \

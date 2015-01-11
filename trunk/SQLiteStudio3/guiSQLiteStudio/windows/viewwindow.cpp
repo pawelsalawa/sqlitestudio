@@ -284,9 +284,9 @@ void ViewWindow::createTriggersTabActions()
 {
     createAction(REFRESH_TRIGGERS, ICONS.RELOAD, tr("Refresh trigger list", "view window"), this, SLOT(refreshTriggers()), ui->triggersToolbar, ui->triggersList);
     ui->triggersToolbar->addSeparator();
-    createAction(ADD_TRIGGER, ICONS.TRIGGER_ADD, tr("Create new triger", "view window"), this, SLOT(addTrigger()), ui->triggersToolbar, ui->triggersList);
-    createAction(EDIT_TRIGGER, ICONS.TRIGGER_EDIT, tr("Edit selected triger", "view window"), this, SLOT(editTrigger()), ui->triggersToolbar, ui->triggersList);
-    createAction(DEL_TRIGGER, ICONS.TRIGGER_DEL, tr("Delete selected triger", "view window"), this, SLOT(deleteTrigger()), ui->triggersToolbar, ui->triggersList);
+    createAction(ADD_TRIGGER, ICONS.TRIGGER_ADD, tr("Create new trigger", "view window"), this, SLOT(addTrigger()), ui->triggersToolbar, ui->triggersList);
+    createAction(EDIT_TRIGGER, ICONS.TRIGGER_EDIT, tr("Edit selected trigger", "view window"), this, SLOT(editTrigger()), ui->triggersToolbar, ui->triggersList);
+    createAction(DEL_TRIGGER, ICONS.TRIGGER_DEL, tr("Delete selected trigger", "view window"), this, SLOT(deleteTrigger()), ui->triggersToolbar, ui->triggersList);
 }
 QString ViewWindow::getView() const
 {

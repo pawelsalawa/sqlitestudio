@@ -103,13 +103,15 @@ bool SqlTableModel::commitDeletedRow(const QList<SqlQueryItem*>& itemsInRow)
         return false;
     }
 
-    if (itemsInRow[0]->isJustInsertedWithOutRowId())
-    {
-        QString msg = tr("When inserted new row to the WITHOUT ROWID table, using DEFAULT value for PRIMARY KEY, "
-                         "the table has to be reloaded in order to delete the new row.");
-        notifyError(tr("Error while deleting row from table %1: %2").arg(table).arg(msg));
-        return false;
-    }
+    // This should not happen anymore (since WITHOUT ROWID tables should be handled properly now,
+    // but we will keep this here for a while, just in case.
+//    if (itemsInRow[0]->isJustInsertedWithOutRowId())
+//    {
+//        QString msg = tr("When inserted new row to the WITHOUT ROWID table, using DEFAULT value for PRIMARY KEY, "
+//                         "the table has to be reloaded in order to delete the new row.");
+//        notifyError(tr("Error while deleting row from table %1: %2").arg(table).arg(msg));
+//        return false;
+//    }
 
     RowId rowId = itemsInRow[0]->getRowId();
     if (rowId.isEmpty())

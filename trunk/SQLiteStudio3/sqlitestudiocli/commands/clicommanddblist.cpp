@@ -58,7 +58,7 @@ void CliCommandDbList::execute()
 
         msg = pad(name, maxNameLength, ' ');
         msg += "|";
-        msg += pad((open ? tr("Open") : tr("Closed")), connStateLength, ' ');
+        msg += pad((open ? tr("Open", "CLI connection state column") : tr("Closed", "CLI connection state column")), connStateLength, ' ');
         msg += "|";
         msg += path;
         println(msg);
@@ -74,9 +74,9 @@ QString CliCommandDbList::fullHelp() const
 {
     return tr(
                 "Prints list of databases registered in the SQLiteStudio. Each database on the list can be in open or closed state "
-                "and .dblist tells you that. The current working database (aka default database) is also marked on the list with '*' at the start of its name. "
-                "See help for %1 command to learn about the default database."
-                ).arg(cmdName("use"));
+                "and %1 tells you that. The current working database (aka default database) is also marked on the list with '*' at the start of its name. "
+                "See help for %2 command to learn about the default database."
+                ).arg(cmdName("dblist"), cmdName("use"));
 }
 
 void CliCommandDbList::defineSyntax()

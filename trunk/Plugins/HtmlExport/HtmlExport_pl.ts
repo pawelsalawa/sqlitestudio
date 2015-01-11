@@ -6,214 +6,168 @@
     <message>
         <location filename="htmlexport.cpp" line="46"/>
         <source>SQL query results</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyniki zapytania SQL</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="78"/>
         <location filename="htmlexport.cpp" line="155"/>
         <source>no type</source>
-        <translation type="unfinished"></translation>
+        <translation>brak typu</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="115"/>
         <location filename="htmlexport.cpp" line="243"/>
         <source>Exported table: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Eksportowana tabela: %1</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="127"/>
         <location filename="htmlexport.cpp" line="255"/>
         <source>Table: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabela: %1</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="255"/>
         <source>virtual</source>
-        <translation type="unfinished"></translation>
+        <translation>wirtualna</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="308"/>
         <source>Exported database: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Eksportowana baza: %1</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="324"/>
         <source>Index: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Indeks: %1</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="330"/>
         <source>For table:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dla tabeli:</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="337"/>
         <source>Unique:</source>
-        <translation type="unfinished"></translation>
+        <translation>Unikalny:</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="338"/>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>Tak</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="338"/>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="344"/>
         <source>Column</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolumna</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="345"/>
         <source>Collating</source>
-        <translation type="unfinished"></translation>
+        <translation>Zestawienie</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="346"/>
         <source>Sort order</source>
-        <translation type="unfinished"></translation>
+        <translation>Sortowanie</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="377"/>
         <source>Trigger: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyzwalacz: %1</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="383"/>
         <source>Activated:</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktywowany:</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="391"/>
         <source>Action:</source>
-        <translation type="unfinished"></translation>
+        <translation>Akcja:</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="398"/>
         <source>On view:</source>
-        <translation type="unfinished"></translation>
+        <translation>Na widoku:</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="400"/>
         <source>On table:</source>
-        <translation type="unfinished"></translation>
+        <translation>Na tabeli:</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="411"/>
         <source>Activate condition:</source>
-        <translation type="unfinished"></translation>
+        <translation>Warunek aktywacji:</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="418"/>
         <source>Code executed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Wykonywany kod:</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="452"/>
         <source>View: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Widok: %1</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="477"/>
         <source>Document generated by SQLiteStudio v%1 on %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokument wygenerowany przez SQLiteStudio v%1 dnia %2</translation>
     </message>
 </context>
 <context>
     <name>HtmlExportConfig</name>
     <message>
-        <location filename="htmlexport.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="htmlexport.ui" line="29"/>
-        <source>HtmlExport.ByteLengthLimit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="htmlexport.ui" line="36"/>
         <source>Maximum number of characters per cell:</source>
-        <translation type="unfinished"></translation>
+        <translation>Maksymalna liczba znaków w komórce:</translation>
     </message>
     <message>
         <location filename="htmlexport.ui" line="43"/>
         <source>Include data types in first row</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="htmlexport.ui" line="46"/>
-        <source>HtmlExport.PrintDataTypes</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj typy danych w pierwszym wierszu</translation>
     </message>
     <message>
         <location filename="htmlexport.ui" line="53"/>
         <source>Column names as first row</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="htmlexport.ui" line="56"/>
-        <source>HtmlExport.PrintHeader</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwy kolumn w pierwszym wierszu</translation>
     </message>
     <message>
         <location filename="htmlexport.ui" line="63"/>
         <source>Row numbers as first column</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="htmlexport.ui" line="66"/>
-        <source>HtmlExport.PrintRowNum</source>
-        <translation type="unfinished"></translation>
+        <translation>Numery wierszy w pierwszej kolumnie</translation>
     </message>
     <message>
         <location filename="htmlexport.ui" line="73"/>
         <source>Output format</source>
-        <translation type="unfinished"></translation>
+        <translation>Format wyjściowy</translation>
     </message>
     <message>
         <location filename="htmlexport.ui" line="79"/>
         <source>Format document (new lines, indentation)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="htmlexport.ui" line="82"/>
-        <location filename="htmlexport.ui" line="95"/>
-        <source>HtmlExport.Format</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="htmlexport.ui" line="85"/>
-        <source>format</source>
-        <translation type="unfinished"></translation>
+        <translation>Formatuj dokument (nowe linie, wcięcia)</translation>
     </message>
     <message>
         <location filename="htmlexport.ui" line="92"/>
         <source>Compress (everything in one line)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="htmlexport.ui" line="98"/>
-        <source>compress</source>
-        <translation type="unfinished"></translation>
+        <translation>Kompresuj (wszystko w jednej linii)</translation>
     </message>
     <message>
         <location filename="htmlexport.ui" line="108"/>
         <source>&lt;p&gt;When enabled, HTML characters such as &amp;lt;, &amp;gt; and &amp;amp; are not escaped in exported values. This allows you for example to export hyper-link enabled documents, but it also may result in incorrect HTML document (unmatched pairs of &amp;lt; and &amp;gt; characters). Be warned.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Kiedy włączone, znaki HTML takie jak &amp;lt;, &amp;gt; i &amp;amp; nie będą podmieniane w wyeksportowanych wartościach. Pozwala to przykładowo na eksportowanie odnośników w dokumencie, ale może też spowodować, ze dokument HTML będzie niepoprawny (niedopasowane pary znaków &amp;lt; i &amp;gt;). Miej tego świadomość.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="htmlexport.ui" line="111"/>
         <source>Don&apos;t escape HTML characters</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="htmlexport.ui" line="114"/>
-        <source>HtmlExport.DontEscapeHtml</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie podmieniaj znaków HTML.</translation>
     </message>
 </context>
 </TS>

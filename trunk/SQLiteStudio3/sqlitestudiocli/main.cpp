@@ -25,7 +25,7 @@ QString cliHandleCmdLineArgs()
 
     QCommandLineOption debugOption({"d", "debug"}, QObject::tr("Enables debug messages on standard error output."));
     QCommandLineOption lemonDebugOption("debug-lemon", QObject::tr("Enables Lemon parser debug messages for SQL code assistant."));
-    QCommandLineOption listPluginsOption("list-plugins", QObject::tr("Lists plugins installed in the SQLiteStudio end exists."));
+    QCommandLineOption listPluginsOption("list-plugins", QObject::tr("Lists plugins installed in the SQLiteStudio and quits."));
     parser.addOption(debugOption);
     parser.addOption(lemonDebugOption);
     parser.addOption(listPluginsOption);

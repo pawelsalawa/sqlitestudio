@@ -29,6 +29,5 @@ RESOURCES += \
 
 
 
-TRANSLATIONS += CsvExport_pl.ts \
-		CsvExport_en.ts
+TRANSLATIONS += CsvExport_pl.ts
 

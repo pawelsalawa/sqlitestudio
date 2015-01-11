@@ -408,7 +408,7 @@ int ScriptingTcl::dbCommand(ClientData clientData, Tcl_Interp* interp, int objc,
     Tcl_Obj* result = nullptr;
     if (!ctx->db)
     {
-        result = Tcl_NewStringObj(tr("No database available in current context, while called Tcl's 'db' command.").toUtf8().constData(), -1);
+        result = Tcl_NewStringObj(tr("No database available in current context, while called Tcl's '%1' command.").arg("db").toUtf8().constData(), -1);
         Tcl_SetObjResult(interp, result);
         return TCL_ERROR;
     }
@@ -430,7 +430,7 @@ int ScriptingTcl::dbCommand(ClientData clientData, Tcl_Interp* interp, int objc,
         return dbEvalOneColumn(ctx, interp, objv);
     }
 
-    result = Tcl_NewStringObj(tr("Invalid 'db' command sytax. Should be: db eval sql").toUtf8().constData(), -1);
+    result = Tcl_NewStringObj(tr("Invalid '%1' command sytax. Should be: %2").arg("db", "db eval sql").toUtf8().constData(), -1);
     Tcl_SetObjResult(interp, result);
     return TCL_ERROR;
 }
@@ -551,7 +551,7 @@ SqlQueryPtr ScriptingTcl::dbCommonEval(ContextTcl* ctx, Tcl_Interp* interp, Tcl_
     SqlQueryPtr execResults = ctx->db->exec(sql, queryArgs, flags);
     if (execResults->isError())
     {
-        result = Tcl_NewStringObj(tr("Error from Tcl's' 'db' command: %1").arg(execResults->getErrorText()).toUtf8().constData(), -1);
+        result = Tcl_NewStringObj(tr("Error from Tcl's' '%1' command: %2").arg("db", execResults->getErrorText()).toUtf8().constData(), -1);
         Tcl_SetObjResult(interp, result);
     }
     return execResults;

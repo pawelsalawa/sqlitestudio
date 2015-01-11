@@ -45,8 +45,7 @@ portable {
 CONFIG   += c++11
 QMAKE_CXXFLAGS += -pedantic
 
-TRANSLATIONS += translations/coreSQLiteStudio_pl.ts \
-                translations/coreSQLiteStudio_en.ts
+TRANSLATIONS += translations/coreSQLiteStudio_pl.ts
 
 SOURCES += sqlitestudio.cpp \
     returncode.cpp \

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string notr="true">Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="1" column="0" colspan="2">
@@ -26,10 +26,10 @@
          <string>Treat all RegExp capture groups as columns</string>
         </property>
         <property name="assignedValue" stdset="0">
-         <string>all</string>
+         <string notr="true">all</string>
         </property>
         <property name="cfg" stdset="0">
-         <string>RegExpImport.GroupsMode</string>
+         <string notr="true">RegExpImport.GroupsMode</string>
         </property>
        </widget>
       </item>
@@ -39,10 +39,10 @@
          <string>Import only following groups:</string>
         </property>
         <property name="assignedValue" stdset="0">
-         <string>custom</string>
+         <string notr="true">custom</string>
         </property>
         <property name="cfg" stdset="0">
-         <string>RegExpImport.GroupsMode</string>
+         <string notr="true">RegExpImport.GroupsMode</string>
         </property>
        </widget>
       </item>
@@ -56,7 +56,7 @@
          <string>Example: 1, 3, 4</string>
         </property>
         <property name="cfg" stdset="0">
-         <string>RegExpImport.CustomGroupList</string>
+         <string notr="true">RegExpImport.CustomGroupList</string>
         </property>
        </widget>
       </item>
@@ -81,7 +81,7 @@ You can use named groups and refer to them in group list below. To name a group 
       <string>Example: (\d+)\s+((\d+)\w+)\s+(\w+)</string>
      </property>
      <property name="cfg" stdset="0">
-      <string>RegExpImport.Pattern</string>
+      <string notr="true">RegExpImport.Pattern</string>
      </property>
     </widget>
    </item>

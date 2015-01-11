@@ -406,12 +406,14 @@ QString SqlQueryItem::loadFullData()
         return tr("This cell is not editable, because: %1").arg(SqlQueryModelColumn::resolveMessage(col->editionForbiddenReason.values().first()));
     }
 
-    if (isJustInsertedWithOutRowId())
-    {
-        QString msg = tr("When inserted new row to the WITHOUT ROWID table, using DEFAULT value for PRIMARY KEY, "
-                         "the table has to be reloaded in order to edit the new row.");
-        return tr("This cell is not editable, because: %1").arg(msg);
-    }
+    // This should not happen anymore (since WITHOUT ROWID tables should be handled properly now,
+    // but we will keep this here for a while, just in case.
+//    if (isJustInsertedWithOutRowId())
+//    {
+//        QString msg = tr("When inserted new row to the WITHOUT ROWID table, using DEFAULT value for PRIMARY KEY, "
+//                         "the table has to be reloaded in order to edit the new row.");
+//        return tr("This cell is not editable, because: %1").arg(msg);
+//    }
 
     SqlQueryModel *model = getModel();
     Db* db = model->getDb();

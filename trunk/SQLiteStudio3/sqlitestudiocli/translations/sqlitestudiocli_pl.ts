@@ -5,208 +5,202 @@
     <name>CLI</name>
     <message>
         <source>Current database: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Bieżąca baza danych: %1</translation>
     </message>
     <message>
         <source>No current working database is set.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie ustawiono bieżącej bazy danych.</translation>
     </message>
     <message>
         <source>Type %1 for help</source>
-        <translation type="unfinished"></translation>
+        <translation>Wpisz %1, aby uzyskać pomoc.</translation>
     </message>
     <message>
         <source>Could not add database %1 to list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie udało się dodać bazy danych %1 do listy.</translation>
     </message>
     <message>
         <source>closed</source>
-        <translation type="unfinished"></translation>
+        <translation>zamknięta</translation>
     </message>
 </context>
 <context>
     <name>CliCommand</name>
     <message>
         <source>Usage: %1%2</source>
-        <translation type="unfinished"></translation>
+        <translation>Sposób użycia: %1%2</translation>
     </message>
 </context>
 <context>
     <name>CliCommandAdd</name>
     <message>
         <source>Could not add database %1 to list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie udało się dodać bazy danych %1 do listy.</translation>
     </message>
     <message>
         <source>Database added: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Baza danych dodana: %1</translation>
     </message>
     <message>
         <source>adds new database to the list</source>
-        <translation type="unfinished"></translation>
+        <translation>dodaje bazę danych do listy</translation>
     </message>
     <message>
         <source>Adds given database pointed by &lt;path&gt; with given &lt;name&gt; to list the databases list. The &lt;name&gt; is just a symbolic name that you can later refer to. Just pick any unique name. For list of databases already on the list use %1 command.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaje bazę danych wskazaną przez &lt;ścieżkę&gt; z daną &lt;nazwą&gt; do listy baz danych. &lt;nazwa&gt; jest tylko symboliczną nazwą, do której możesz się potem odwoływać. Po prostu wybierz dowolną, unikalną nazwę. Aby wypisać listę baz danych, które są już na liście, użyj polecenia %1.</translation>
     </message>
     <message>
         <source>name</source>
         <comment>CLI command syntax</comment>
-        <translation type="unfinished"></translation>
+        <translation>nazwa</translation>
     </message>
     <message>
         <source>path</source>
         <comment>CLI command syntax</comment>
-        <translation type="unfinished"></translation>
+        <translation>ścieżka</translation>
     </message>
 </context>
 <context>
     <name>CliCommandCd</name>
     <message>
         <source>Changed directory to: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmieniono katalog na: %1</translation>
     </message>
     <message>
         <source>Could not change directory to: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>changes current workind directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie udało się zmienić katalogu na: %1</translation>
     </message>
     <message>
         <source>Very similar command to &apos;cd&apos; known from Unix systems and Windows. It requires a &lt;path&gt; argument to be passed, therefore calling %1 will always cause a change of the directory. To learn what&apos;s the current working directory use %2 command and to list contents of the current working directory use %3 command.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bardzo podobne polecenie do &apos;cd&apos; znanego z systemów Unixowych i Windowsa. Wymaga &lt;ścieżki&gt; jako argumentu, stąd wywołanie %1 zawsze spowoduje zmianę katalogu. Aby poznać jaki jest bieżący katalog, użyj polecenia %2, a żeby wypisać listę zawartości bieżącego katalogu użyj polecenia %3.</translation>
     </message>
     <message>
         <source>path</source>
         <comment>CLI command syntax</comment>
-        <translation type="unfinished"></translation>
+        <translation>ścieżka</translation>
+    </message>
+    <message>
+        <source>changes current working directory</source>
+        <translation>zmienia bieżący katalog</translation>
     </message>
 </context>
 <context>
     <name>CliCommandClose</name>
     <message>
         <source>Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można wywołać %1, gdy żadna z baz nie jest ustawiona jako bieżąca. Okreś bieżącą bazę używając polecenia %2, lub podaj nazwę bazy do %3.</translation>
     </message>
     <message>
         <source>Connection to database %1 closed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Połączenie z bazą %1 zostało zamknięte.</translation>
     </message>
     <message>
         <source>No such database: %1. Use %2 to see list of known databases.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie znaleziono bazy danych: %1. Użyj %2 aby zonaczyć listę znanych baz danych.</translation>
     </message>
     <message>
         <source>closes given (or current) database</source>
-        <translation type="unfinished"></translation>
+        <translation>zamyka daną (lub bieżącą) bazę danych</translation>
     </message>
     <message>
         <source>Closes database connection. If the database was already closed, nothing happens. If &lt;name&gt; is provided, it should be name of the database to close (as printed by %1 command). The the &lt;name&gt; is not provided, then current working database is closed (see help for %2 for details).</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamyka połączenie z bazą danych. Jeśli baza danych była już zamknięta, nic się nie stanie. Jeśli &lt;nazwa&gt; jest podana, to powinna ona być nazwą bazy danych do zamknięcia (wg. tego jak wyświetla ją polecenie %1). Gdy &lt;nazwa&gt; nie jest podana, to bieżąca baza danych zostanie zamknięta (więcej szczegółów w pomocy dla %2).</translation>
     </message>
     <message>
         <source>name</source>
         <comment>CLI command syntax</comment>
-        <translation type="unfinished"></translation>
+        <translation>nazwa</translation>
     </message>
 </context>
 <context>
     <name>CliCommandDbList</name>
     <message>
         <source>No current working database defined.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie określono bieżącej bazy danych.</translation>
     </message>
     <message>
         <source>Databases:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bazy danych:</translation>
     </message>
     <message>
         <source>Name</source>
         <comment>CLI db name column</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa</translation>
     </message>
     <message>
         <source>Open</source>
         <comment>CLI connection state column</comment>
-        <translation type="unfinished"></translation>
+        <translation>Otwarta</translation>
     </message>
     <message>
         <source>Closed</source>
         <comment>CLI connection state column</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zamknięta</translation>
     </message>
     <message>
         <source>Connection</source>
         <comment>CLI connection state column</comment>
-        <translation type="unfinished"></translation>
+        <translation>Połączenie</translation>
     </message>
     <message>
         <source>Database file path</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Open</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Closed</source>
-        <translation type="unfinished"></translation>
+        <translation>Ścieżka do pliku bazy danych</translation>
     </message>
     <message>
         <source>prints list of registered databases</source>
-        <translation type="unfinished"></translation>
+        <translation>wypisuje listę zarejestrowanych baz danych</translation>
     </message>
     <message>
-        <source>Prints list of databases registered in the SQLiteStudio. Each database on the list can be in open or closed state and .dblist tells you that. The current working database (aka default database) is also marked on the list with &apos;*&apos; at the start of its name. See help for %1 command to learn about the default database.</source>
-        <translation type="unfinished"></translation>
+        <source>Prints list of databases registered in the SQLiteStudio. Each database on the list can be in open or closed state and %1 tells you that. The current working database (aka default database) is also marked on the list with &apos;*&apos; at the start of its name. See help for %2 command to learn about the default database.</source>
+        <translation>Wypisuje listę zarejestrowanych w SQLiteStudio baz danych. Każda baza danych na liście może być otwarta, lub zamknięta i %1 o tym mówi. Bieżąca baza danych (nazywana również domyślną bazą danych) jest również zaznaczona na liście znakiem &apos;*&apos; na początku swojej nazwy. Zobacz pomoc dla polecenia %2, żeby dowiedzieć się więcej o domyślnej bazie danych.</translation>
     </message>
 </context>
 <context>
     <name>CliCommandDesc</name>
     <message>
         <source>shows details about the table</source>
-        <translation type="unfinished"></translation>
+        <translation>pokazuje szczegóły o tabeli</translation>
     </message>
     <message>
         <source>table</source>
-        <translation type="unfinished"></translation>
+        <translation>tabela</translation>
     </message>
 </context>
 <context>
     <name>CliCommandDir</name>
     <message>
         <source>lists directories and files in current working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>wypisuje listę katalogów i plików w bieżącym katalogu</translation>
     </message>
     <message>
         <source>This is very similar to &apos;dir&apos; command known from Windows and &apos;ls&apos; command from Unix systems.
 
 You can pass &lt;pattern&gt; with wildcard characters to filter output.</source>
-        <translation type="unfinished"></translation>
+        <translation>To jest polecenie bardzo podobne do &apos;dir&apos; znanego z systemu Windows, oraz &apos;ls&apos; znanego z systemów Unixowych.
+
+Możesz podać &lt;wzorzec&gt; ze znakami maskującymi, aby filtrować wynik.</translation>
     </message>
     <message>
         <source>pattern</source>
-        <translation type="unfinished"></translation>
+        <translation>wzorzec</translation>
     </message>
 </context>
 <context>
     <name>CliCommandExit</name>
     <message>
         <source>quits the application</source>
-        <translation type="unfinished"></translation>
+        <translation>zamyka aplikację</translation>
     </message>
     <message>
         <source>Quits the application. Settings are stored in configuration file and will be restored on next startup.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamyka aplikację. Ustawienia są zapisywane w pliku konfiguracyjnym i zostaną przywrócone przy następnym starcie.</translation>
     </message>
 </context>
 <context>
     <name>CliCommandHelp</name>
     <message>
         <source>shows this help message</source>
-        <translation type="unfinished"></translation>
+        <translation>pokazuje tą treść pomocy</translation>
     </message>
     <message>
         <source>Use %1 to learn about certain commands supported by the command line interface (CLI) of the SQLiteStudio.
@@ -215,82 +209,91 @@ To see list of supported commands, type %2 without any arguments.
 When passing &lt;command&gt; name, you can skip special prefix character (&apos;%3&apos;).
 
 You can always execute any command with exactly single &apos;--help&apos; option to see help for that command. It&apos;s an alternative for typing: %1 &lt;command&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Używaj %1 aby poznać poszczególne polecenia obsługiwane przez interfejs linii poleceń (CLI) SQLiteStudio.
+Aby zobaczyć listę obsługiwanych poleceń, wpisz %2 bez żadnych argumentów.
+
+Kiedy podaje się nazwę &lt;polecenia&gt;, można pominąć specjalny znak przedrostka (&apos;%3&apos;).
+
+Zawsze możesz wywołać dowolne polecenie z dokładnie jedną opcją &apos;--help&apos;, aby zobaczyć pomoc dla tego polecenia. Jest to alternatywa dla wpisywania: %1 &lt;polecenie&gt;.</translation>
     </message>
     <message>
         <source>command</source>
         <comment>CLI command syntax</comment>
-        <translation type="unfinished"></translation>
+        <translation>polecenie</translation>
     </message>
     <message>
         <source>No such command: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie ma takiego polecenia: %1</translation>
     </message>
     <message>
         <source>Type &apos;%1&apos; for list of available commands.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wpisz &apos;%1&apos; aby poznać listę dostępnych poleceń.</translation>
     </message>
     <message>
         <source>Usage: %1%2</source>
-        <translation type="unfinished"></translation>
+        <translation>Sposób użycia: %1%2</translation>
     </message>
     <message>
         <source>Aliases: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Aliasy: %1</translation>
     </message>
 </context>
 <context>
     <name>CliCommandHistory</name>
     <message>
         <source>Current history limit is set to: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Bieżący limit historii jest ustawiony na: %1</translation>
     </message>
     <message>
         <source>prints history or erases it</source>
-        <translation type="unfinished"></translation>
+        <translation>wyświetla historię lub ją kasuje</translation>
+    </message>
+    <message>
+        <source>number</source>
+        <translation>liczba</translation>
+    </message>
+    <message>
+        <source>Console history erased.</source>
+        <translation>Historia konsoli skasowana.</translation>
+    </message>
+    <message>
+        <source>Invalid number: %1</source>
+        <translation>Niepoprawna liczba: %1</translation>
+    </message>
+    <message>
+        <source>History limit set to %1</source>
+        <translation>Limit historii ustawiono na %1</translation>
     </message>
     <message>
         <source>When no argument was passed, this command prints command line history. Every history entry is separated with a horizontal line, so multiline entries are easier to read.
 
 When the -c or --clear option is passed, then the history gets erased.
-When the -l or --limit option is passed, it sets the new history entries limit. It requires an additional argumentsaying how many entries do you want the history to be limited to.
+When the -l or --limit option is passed, it sets the new history entries limit. It requires an additional argument saying how many entries do you want the history to be limited to.
 Use -ql or --querylimit option to see the current limit value.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Console history erased.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Invalid number: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>History limit set to %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Gdy nie poda się żadnego argumentu, to polecenie wyświetla historię linii poleceń. Każdy wpis w historii jest oddzielony linią poziomą, żeby łatwiej było czytać więcej wpisów.
+
+Kiedy poda się opcję -c lub --clear, to historia jest kasowana.
+Kiedy poda się opcję -l lub --limit, to ustawiany jest nowy limit na historii. Wymaga to podania dodatkowego argumentu, mówiącego o tym, ile ma być wpisów przechowywanych w historii.
+Użyj opcji -ql lub --querylimit, aby poznać aktualną wartość limitu.</translation>
     </message>
 </context>
 <context>
     <name>CliCommandMode</name>
     <message>
         <source>Current results printing mode: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualny tryb wyświetlania wyników: %1</translation>
     </message>
     <message>
         <source>Invalid results printing mode: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Niepoprawny tryb wyświetlania wyników: %1</translation>
     </message>
     <message>
         <source>New results printing mode: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nowy tryb wyświetlania wyników: %1</translation>
     </message>
     <message>
         <source>tells or changes the query results format</source>
-        <translation type="unfinished"></translation>
+        <translation>wyświetla lub zmienia format wyników zapytania</translation>
     </message>
     <message>
         <source>When called without argument, tells the current output format for a query results. When the &lt;mode&gt; is passed, the mode is changed to the given one. Supported modes are:
@@ -307,98 +310,112 @@ The COLUMNS mode is similar to FIXED mode, except it tries to be smart and make 
 ATTENTION! The COLUMNS mode reads all the results from the query at once in order to evaluate column widhts, therefore it is dangerous to use this mode when working with huge result sets. Keep in mind that this mode will load entire result set into memory.
 
 The ROW mode is recommended if you need to see whole values and you don&apos;t expect many rows to be displayed, because this mode displays a line of output per each column, so you&apos;ll get 10 lines for single row with 10 columns, then if you have 10 of such rows, you will get 100 lines of output (+1 extra line per each row, to separate rows from each other).</source>
-        <translation type="unfinished"></translation>
+        <translation>Jeśli nie poda się argumentu, wyświetla aktualny format wyjściowy dla wyników zapytania. Kiedy poda się &lt;tryb&gt;, to jest on zmieniany na podany tryb.
+Obsługiwane tryby to:
+- CLASSIC - kolumny są oddzielone przecinkiem, bez wyrównania,
+- FIXED   - kolumny mają równą i ustaloną szerokość, zawsze mieszczą się w oknie terminala, ale dane w kolumnach mogą być ucięte,
+- COLUMNS - taki jak FIXED, ale sprytniejszy (nie używać z ogromnymi wynikami zapytań, szczegóły poniżej),
+- ROW     - każda kolumna w wierszu jest wyświetlana w osobnej linii, więc pełne dane są wyświetlane.
+
+Tryb CLASSIC jest zalecane, jeśli chcesz widzieć wszystkie dane, ale nie chcesz marnować linii na każdą kolumnę. Każdy wiersz wyświetli całe dane dla każdej kolumny, ale oznacza to również, że kolumny nie będą wyrównane do siebie względem kolejnych wierszy. Tryb CLASSIC również nie patrzy na szerokość okna terminala (konsoli), więc jeśli wartości w kolumnach są szersze niż okno, to wiersz będzie kontynuowany w następnej linii.
+
+Tryb FIXED jest zalecany, jeśli chcesz czytelny wynik i nie przejmujesz się zbyt długimi danymi. Kolumny będą wyrównane, otrzymując ładną tabelę. Szerokość kolumn jest obliczana dzieląc szerokość okna konsoli przez liczbę kolumn.
+
+Tryb COLUMNS jest podobny do trybu FIXED, z tą różnicą, że póbuje być sprytny i szerokość kolumn zawierających krótsze dane jest mniejsza, niż kolumn z dłuższymi danymi. Pierwsze w kolejności odchudzane są kolumny z najdłuższymi nagłówkami (więc nazwy nagłówków są pierwsze w kolejce do obcięcia), następnie kolumny z najdłuższymi wartościami, aż do momentu, kiedy wszystkie kolumny mieszczą się w oknie terminala.
+UWAGA! Tryb COLUMNS od razu odczytuje wszystkie dane z wyników zapytania, aby określić szerokość kolumn, więc jest to niebezpieczne, gdy pracuje się z ogromnymi zestawami danych w wynikach. Miej na uwadze, że ten tryb wczyta wszystkie dane do pamięci na raz.
+
+Tryb ROW jest zalecane, kiedy musisz widzieć całe wartości i nie spodziewasz się wielu wierszy do wyświetlenia, ponieważ ten tryb wyświetla linię dla każdej kolumny, więc dostaniesz 10 linii dla jednego wiersza z 10 kolumnami, następnie będziesz miał 10 takich wierszy, więc skończysz ze 100 liniami wyjścia (+1 dodatkowa dla każdego wiersza danych, aby oddzielić je od siebie).</translation>
     </message>
 </context>
 <context>
     <name>CliCommandNullValue</name>
     <message>
         <source>Current NULL representation string: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualny łańcuch reprezentujący wartość NULL: %1</translation>
     </message>
     <message>
         <source>tells or changes the NULL representation string</source>
-        <translation type="unfinished"></translation>
+        <translation>wyświetla lub zmienia łąńcuch reprezentujący wartość NULL</translation>
     </message>
     <message>
         <source>If no argument was passed, it tells what&apos;s the current NULL value representation (that is - what is printed in place of NULL values in query results). If the argument is given, then it&apos;s used as a new string to be used for NULL representation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Jeśli nie poda się argumentu, to wyświetlana jest aktualna reprezentacja wartości NULL (to znaczy to, co jest wyświetlane zamiast wartości NULL w wynikach zapytań). Jeśli podano argument, to staje się on nową reprezentacją wartości NULL.</translation>
     </message>
 </context>
 <context>
     <name>CliCommandOpen</name>
     <message>
         <source>Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można wywołać %1, gdy żadna z baz nie jest ustawiona jako bieżąca. Okreś bieżącą bazę używając polecenia %2, lub podaj nazwę bazy do %3.</translation>
     </message>
     <message>
         <source>Could not add database %1 to list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie udało się dodać bazy danych %1 do listy.</translation>
     </message>
     <message>
         <source>File %1 doesn&apos;t exist in %2. Cannot open inexisting database with %3 command. To create a new database, use %4 command.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Database %1 has been open and set as the current working database.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>opens database connection</source>
-        <translation type="unfinished"></translation>
+        <translation>otwiera połączenie z bazą</translation>
     </message>
     <message>
         <source>Opens connection to the database. If no additional argument was passed, then the connection is open to the current default database (see help for %1 for details). However if an argument was passed, it can be either &lt;name&gt; of the registered database to open, or it can be &lt;path&gt; to the database file to open. In the second case, the &lt;path&gt; gets registered on the list with a generated name, but only for the period of current application session. After restarting application such database is not restored on the list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwiera połączenie do bazy. Jeśli nie podano dodatkowych argumentów, to połączenie jest nawiązywane z domyślną bazą (więcej szczegółów w pomocy dla polecenia %1). Natomiast gdy poda się argument, to może to być albo &lt;nazwa&gt; zarejestrowanej bazy danych do otwarcia, lub może to być &lt;ścieżka&gt; do pliku bazy danych do otwarcia. W drugim przypadku &lt;ścieżka&gt; zostanie zarejestrowana na liście baz danych z wygenerowaną nazwą, ale tylko na czas aktualnej sesji aplikacji. Po restarcie aplikacji taka baza danych nie jest przywracana na listę.</translation>
     </message>
     <message>
         <source>name</source>
         <comment>CLI command syntax</comment>
-        <translation type="unfinished"></translation>
+        <translation>nazwa</translation>
     </message>
     <message>
         <source>path</source>
         <comment>CLI command syntax</comment>
-        <translation type="unfinished"></translation>
+        <translation>ścieżka</translation>
     </message>
 </context>
 <context>
     <name>CliCommandPwd</name>
     <message>
         <source>prints the current working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>wypisuje bieżący katalog</translation>
     </message>
     <message>
         <source>This is the same as &apos;pwd&apos; command on Unix systems and &apos;cd&apos; command without arguments on Windows. It prints current working directory. You can change the current working directory with %1 command and you can also list contents of the current working directory with %2 command.</source>
-        <translation type="unfinished"></translation>
+        <translation>Jest to polecenie podobne do &apos;pwd&apos; znanego z sytemów Unixowych oraz polecenia &apos;cd&apos; bez argumentów dla systemów Windows. Wypisuje bieżący katalog. Możesz zmienić bieżący katalog za pomocą polecenia %1, oraz możesz wypisać zawartość bieżącego katalogu za pomocą polecenia %2.</translation>
     </message>
 </context>
 <context>
     <name>CliCommandRemove</name>
     <message>
         <source>No such database: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie ma takiej bazy danych: %1</translation>
     </message>
     <message>
         <source>Database removed: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Baza danych usunięta: %1</translation>
     </message>
     <message>
         <source>New current database set:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nowa domyślna baza danych:</translation>
     </message>
     <message>
         <source>removes database from the list</source>
-        <translation type="unfinished"></translation>
+        <translation>usuwa bazę danych z listy</translation>
     </message>
     <message>
         <source>Removes &lt;name&gt; database from the list of registered databases. If the database was not on the list (see %1 command), then error message is printed and nothing more happens.</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuwa &lt;nazwaną&gt; bazę danych z listy zarejestrowanych baz danych. Jeśli baza nie była na liście (patrz - polecenie %1), to zostanie wyświetlony komunikat błędu i nic się nie stanie.</translation>
     </message>
     <message>
         <source>name</source>
         <comment>CLI command syntax</comment>
-        <translation type="unfinished"></translation>
+        <translation>nazwa</translation>
     </message>
 </context>
 <context>
@@ -407,130 +424,135 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
         <source>No working database is set.
 Call %1 command to set working database.
 Call %2 to see list of all databases.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie wybrano domyślnej bazy danych.
+Użyj polecenia %1, aby ustawić domyślną bazę danych.
+Użyj polecenie %2, aby wypisać listę wszystkich baz.</translation>
     </message>
     <message>
         <source>Database is not open.</source>
-        <translation type="unfinished"></translation>
+        <translation>Baz danych nie jest otwarta.</translation>
     </message>
     <message>
         <source>executes SQL query</source>
-        <translation type="unfinished"></translation>
+        <translation>wykonuje zapytanie SQL</translation>
     </message>
     <message>
         <source>This command is executed every time you enter SQL query in command prompt. It executes the query on the current working database (see help for %1 for details). There&apos;s no sense in executing this command explicitly. Instead just type the SQL query in the command prompt, without any command prefixed.</source>
-        <translation type="unfinished"></translation>
+        <translation>To polecenie jest wywoływane za każdym razem, kiedy wpisujesz zapytanie SQL w linii poleceń. Wykonuje ono zapytanie na bieżącej bazie danych (więcej szczegółów w pomocy dla %1). Nie ma sensu wywoływanie tego polecenia bezpośrednio. Zamiast tego po prostu wpisuj zapytania SQL w linii poleceń, bez polecenia poprzedzającego.</translation>
     </message>
     <message>
         <source>sql</source>
         <comment>CLI command syntax</comment>
-        <translation type="unfinished"></translation>
+        <translation>sql</translation>
     </message>
     <message>
         <source>Too many columns to display in %1 mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zbyt wiele kolumn, aby wyświetlić w trybie %1.</translation>
     </message>
     <message>
         <source>Row %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Wiersz %1</translation>
     </message>
     <message>
         <source>Query execution error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Błąd wykonywania zapytania: %1</translation>
     </message>
 </context>
 <context>
     <name>CliCommandTables</name>
     <message>
-        <source>No such database: %1. Use .dblist to see list of known databases.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Cannot call %1 when no database is set to be current. Specify current database with %2 command or pass database name to %3.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można wywołać %1, gdy żadna z baz nie jest ustawiona jako bieżąca. Okreś bieżącą bazę używając polecenia %2, lub podaj nazwę bazy do %3.</translation>
     </message>
     <message>
         <source>Database %1 is closed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Baza danych %1 jest zamknięta.</translation>
     </message>
     <message>
         <source>Database</source>
-        <translation type="unfinished"></translation>
+        <translation>Baza danych</translation>
     </message>
     <message>
         <source>Table</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabela</translation>
     </message>
     <message>
         <source>prints list of tables in the database</source>
-        <translation type="unfinished"></translation>
+        <translation>wypisuje listę tabel w bazie danych</translation>
     </message>
     <message>
         <source>Prints list of tables in given &lt;database&gt; or in the current working database. Note, that the &lt;database&gt; should be the name of the registered database (see %1). The output list includes all tables from any other databases attached to the queried database.
 When the -s option is given, then system tables are also listed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wypisuje listę tabel w danej &lt;bazie danych&gt; lub w bieżącej bazie danych. &lt;baza danych&gt; powinna być nazwą zarejestrowanej bazy danych (patrz %1). List wyjściowa zawiera wszystkie tabele ze wszystkich baz dołączonych do odpytywanej bazy. Gdy podana jest opcja -s, to również systemowe tabele pojawią się na liście.</translation>
     </message>
     <message>
         <source>database</source>
         <comment>CLI command syntax</comment>
-        <translation type="unfinished"></translation>
+        <translation>baza danych</translation>
+    </message>
+    <message>
+        <source>No such database: %1. Use %2 to see list of known databases.</source>
+        <translation>Nie znaleziono bazy danych: %1. Użyj %2 aby zonaczyć listę znanych baz danych.</translation>
     </message>
 </context>
 <context>
     <name>CliCommandTree</name>
     <message>
         <source>No current working database is selected. Use %1 to define one and then run %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie wybrano bieżącej bazy danych. Użyj %1 aby taką zdefiniować i wtedy uruchom %2.</translation>
     </message>
     <message>
         <source>Tables</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabele</translation>
     </message>
     <message>
         <source>Views</source>
-        <translation type="unfinished"></translation>
+        <translation>Widoki</translation>
     </message>
     <message>
         <source>Columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolumny</translation>
     </message>
     <message>
         <source>Indexes</source>
-        <translation type="unfinished"></translation>
+        <translation>Indeksy</translation>
     </message>
     <message>
         <source>Triggers</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyzwalacze</translation>
     </message>
     <message>
         <source>prints all objects in the database as a tree</source>
-        <translation type="unfinished"></translation>
+        <translation>wypisuje wszystkie obiekty w bazie danych w postaci drzewa</translation>
     </message>
     <message>
         <source>Prints all objects (tables, indexes, triggers and views) that are in the database as a tree. The tree is very similar to the one that you can see in GUI client of the SQLiteStudio.
 When -c option is given, then also columns will be listed under each table.
 When -s option is given, then also system objects will be printed (sqlite_* tables, autoincrement indexes, etc).
 The database argument is optional and if provided, then only given database will be printed. This is not a registered database name, but instead it&apos;s an internal SQLite database name, like &apos;main&apos;, &apos;temp&apos;, or any attached database name. To print tree for other registered database, call %1 first to switch the working database, and then use %2 command.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wypisuje wszystkie obiekty (tabele, indeksy, wyzwalacze i widoki) znajdujące się w bazie danych w postaci drzewa. Drzewo to jest podobne do tego, które można zobaczyć w interfejsie graficznym SQLiteStudio.
+Kiedy poda się opcję -c, to pod każdą tabelą wylistowane zostaną kolumny.
+Kiedy poda się opcję -s, to również obiekty systemowe będą wypisane (tabele sqlite_*, indeksy autoinkrementacji, itp).
+Argument bazy danych jest opcjonalny i gdy się go poda, to tylko ta baza zostanie wypisana. Nie jest to nazwa zarejestrowanej nazwy, ale nazwa wewnętrzna bazy SQLite, jak np &apos;main&apos;, &apos;temp&apos;, lub dowolna nazwa dołączonej bazy. Aby wypisać drzewo dla innej zarejestrowanej bazy, użyj najpierw %1, aby zmienić bieżącą bazę danych i wtedy użyj polecenia %2.</translation>
     </message>
 </context>
 <context>
     <name>CliCommandUse</name>
     <message>
         <source>No current database selected.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bieżąca baza danych nie jest wybrana.</translation>
     </message>
     <message>
         <source>Current database: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Bieżąca baza danych: %1</translation>
     </message>
     <message>
         <source>No such database: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie ma takiej bazy danych: %1</translation>
     </message>
     <message>
         <source>changes default working database</source>
-        <translation type="unfinished"></translation>
+        <translation>zmienia domyślną bazę danych</translation>
     </message>
     <message>
         <source>Changes current working database to &lt;name&gt;. If the &lt;name&gt; database is not registered in the application, then the error message is printed and no change is made.
@@ -544,67 +566,77 @@ The default database can be selected in various ways:
 - by passing registered database name to the application startup parameters,
 - by restoring previously selected default database from saved configuration,
 - or when default database was not selected by any of the above, then first database from the registered databases list becomes the default one.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmienia domyślną bazę danych na &lt;nazwaną&gt;. Jeśli &lt;nazwana&gt; baza danych nie jest zarejestrowana w aplikacji, to wyświetlony zostanie komunikat błędu i żadne zmiany nie nastąpią.
+
+Czym jest domyślna baza danych?
+Kiedy piszesz zapytanie SQL do wykonania, jest ono wykonywane na domyślnej bazie danych, która jest również nazywana bieżącą bazą danych. Większość poleceń związanych z bazą danych może pracować z użyciem domyślnej bazy danych, jeśli nie poda się bazy w ich argumentach. Bieżąca baza danych jest zawsze widoczna w wierszu poleceń. Domyślna baza danych jest zawsze zdefiniowana (z wyjątkiem, gdy nie ma żadnej bazy na liście).
+
+Domyślna baza danych może być wybrana na kilka sposobów:
+- używając polecenia %1,
+- podając plik bazy danych jako parametr do uruchomienia aplikacji,
+- podając nazwę zarejestrowanej bazy danych jako parametr do uruchomienia aplikacji,
+- lub gdy domyślna baza nie została wybrana przez żadne z powyższych, to pierwsza baza z listy zarejestrowanych baz stanie się domyślną.</translation>
     </message>
     <message>
         <source>name</source>
         <comment>CLI command syntax</comment>
-        <translation type="unfinished"></translation>
+        <translation>nazwa</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
         <source>Insufficient number of arguments.</source>
-        <translation type="unfinished"></translation>
+        <translation>Niewystarająca liczba arugmentów.</translation>
     </message>
     <message>
         <source>Too many arguments.</source>
-        <translation type="unfinished"></translation>
+        <translation>Za dużo argumentów.</translation>
     </message>
     <message>
         <source>Invalid argument value: %1.
 Expected one of: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Niepoprawna wartość argumentu: %1.
+Oczekiwano jednej z: %2</translation>
     </message>
     <message>
         <source>Unknown option: %1</source>
         <comment>CLI command syntax</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nieznana opcja: %1</translation>
     </message>
     <message>
         <source>Option %1 requires an argument.</source>
         <comment>CLI command syntax</comment>
-        <translation type="unfinished"></translation>
+        <translation>Opcja %1 wymaga argumentu.</translation>
     </message>
     <message>
         <source>string</source>
         <comment>CLI command syntax</comment>
-        <translation type="unfinished"></translation>
+        <translation>łańcuch</translation>
     </message>
     <message>
         <source>Command line interface to SQLiteStudio, a SQLite manager.</source>
-        <translation type="unfinished"></translation>
+        <translation>Interfejs linii poleceń dla SQLiteStudio, menażera SQLite.</translation>
     </message>
     <message>
         <source>Enables debug messages on standard error output.</source>
-        <translation type="unfinished"></translation>
+        <translation>Włącza wiadomości debugujące na standardowym wyjściu błędów.</translation>
     </message>
     <message>
         <source>Enables Lemon parser debug messages for SQL code assistant.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Lists plugins installed in the SQLiteStudio end exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>Włącza wiadomości debugujące analizatora Lemon dla asystenta kodu SQL.</translation>
     </message>
     <message>
         <source>file</source>
-        <translation type="unfinished"></translation>
+        <translation>plik</translation>
     </message>
     <message>
         <source>Database file to open</source>
-        <translation type="unfinished"></translation>
+        <translation>Baza danych do otwarcia</translation>
+    </message>
+    <message>
+        <source>Lists plugins installed in the SQLiteStudio and quits.</source>
+        <translation>Wypisuje listę zainstalowanych w SQLiteStudio wtyczek i wychodzi.</translation>
     </message>
 </context>
 </TS>

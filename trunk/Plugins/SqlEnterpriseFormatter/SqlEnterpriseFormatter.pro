@@ -100,6 +100,5 @@ RESOURCES += \
     sqlenterpriseformatter.qrc
 
 
-TRANSLATIONS += SqlEnterpriseFormatter_pl.ts \
-		SqlEnterpriseFormatter_en.ts
+TRANSLATIONS += SqlEnterpriseFormatter_pl.ts
 

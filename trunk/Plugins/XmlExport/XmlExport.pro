@@ -27,6 +27,5 @@ RESOURCES += \
     xmlexport.qrc
 
 
-TRANSLATIONS += XmlExport_pl.ts \
-		XmlExport_en.ts
+TRANSLATIONS += XmlExport_pl.ts
 

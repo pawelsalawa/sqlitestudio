@@ -28,6 +28,5 @@ RESOURCES += \
     csvimport.qrc
 
 
-TRANSLATIONS += CsvImport_pl.ts \
-		CsvImport_en.ts
+TRANSLATIONS += CsvImport_pl.ts
 

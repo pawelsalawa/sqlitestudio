@@ -12,7 +12,7 @@ void CliCommandTables::execute()
         db = DBLIST->getByName(syntax.getArgument(DB_NAME));
         if (!db)
         {
-            println(tr("No such database: %1. Use .dblist to see list of known databases.").arg(syntax.getArgument(DB_NAME)));
+            println(tr("No such database: %1. Use %2 to see list of known databases.").arg(syntax.getArgument(DB_NAME), cmdName("dblist")));
             return;
         }
     }
