@@ -7,17 +7,17 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>197</height>
+    <height>211</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string notr="true">Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QGroupBox" name="exprGroup">
      <property name="title">
-      <string>The expression</string>
+      <string>The condition</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>

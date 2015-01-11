@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string notr="true">Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
@@ -29,10 +29,10 @@
          <bool>true</bool>
         </property>
         <property name="assignedValue" stdset="0">
-         <string>format</string>
+         <string notr="true">format</string>
         </property>
         <property name="cfg" stdset="0">
-         <string>XmlExport.Format</string>
+         <string notr="true">XmlExport.Format</string>
         </property>
        </widget>
       </item>
@@ -42,10 +42,10 @@
          <string>Compress (everything in one line)</string>
         </property>
         <property name="assignedValue" stdset="0">
-         <string>compress</string>
+         <string notr="true">compress</string>
         </property>
         <property name="cfg" stdset="0">
-         <string>XmlExport.Format</string>
+         <string notr="true">XmlExport.Format</string>
         </property>
        </widget>
       </item>
@@ -70,10 +70,10 @@
          <bool>true</bool>
         </property>
         <property name="assignedValue" stdset="0">
-         <string>mixed</string>
+         <string notr="true">mixed</string>
         </property>
         <property name="cfg" stdset="0">
-         <string>XmlExport.Escaping</string>
+         <string notr="true">XmlExport.Escaping</string>
         </property>
        </widget>
       </item>
@@ -86,10 +86,10 @@
          <string>Always use CDATA</string>
         </property>
         <property name="assignedValue" stdset="0">
-         <string>cdata</string>
+         <string notr="true">cdata</string>
         </property>
         <property name="cfg" stdset="0">
-         <string>XmlExport.Escaping</string>
+         <string notr="true">XmlExport.Escaping</string>
         </property>
        </widget>
       </item>
@@ -102,10 +102,10 @@
          <string>Always use ampersand</string>
         </property>
         <property name="assignedValue" stdset="0">
-         <string>ampersand</string>
+         <string notr="true">ampersand</string>
         </property>
         <property name="cfg" stdset="0">
-         <string>XmlExport.Escaping</string>
+         <string notr="true">XmlExport.Escaping</string>
         </property>
        </widget>
       </item>
@@ -124,13 +124,13 @@
       <bool>false</bool>
      </property>
      <property name="cfg" stdset="0">
-      <string>XmlExport.UseNamespace</string>
+      <string notr="true">XmlExport.UseNamespace</string>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QLineEdit" name="namespaceEdit">
         <property name="cfg" stdset="0">
-         <string>XmlExport.Namespace</string>
+         <string notr="true">XmlExport.Namespace</string>
         </property>
        </widget>
       </item>

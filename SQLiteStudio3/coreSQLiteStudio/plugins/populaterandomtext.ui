@@ -11,19 +11,19 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string notr="true">Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="1" column="0" colspan="2">
     <widget class="ConfigRadioButton" name="commonSetRadio">
-     <property name="cfg" stdset="0">
-      <string>PopulateRandomText.UseCustomSets</string>
-     </property>
      <property name="text">
       <string>Use characters from common sets:</string>
      </property>
      <property name="checked">
       <bool>true</bool>
+     </property>
+     <property name="cfg" stdset="0">
+      <string notr="true">PopulateRandomText.UseCustomSets</string>
      </property>
      <property name="assignedValue" stdset="0">
       <bool>false</bool>
@@ -38,11 +38,11 @@
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
        <widget class="QSpinBox" name="minLengthSpin">
-        <property name="cfg" stdset="0">
-         <string>PopulateRandomText.MinLength</string>
-        </property>
         <property name="maximum">
          <number>999999999</number>
+        </property>
+        <property name="cfg" stdset="0">
+         <string notr="true">PopulateRandomText.MinLength</string>
         </property>
        </widget>
       </item>
@@ -63,11 +63,11 @@
         <property name="toolTip">
          <string>Letters from a to z.</string>
         </property>
-        <property name="cfg" stdset="0">
-         <string>PopulateRandomText.IncludeAlpha</string>
-        </property>
         <property name="text">
          <string>Alpha</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string notr="true">PopulateRandomText.IncludeAlpha</string>
         </property>
        </widget>
       </item>
@@ -76,11 +76,11 @@
         <property name="toolTip">
          <string>Numbers from 0 to 9.</string>
         </property>
-        <property name="cfg" stdset="0">
-         <string>PopulateRandomText.IncludeNumeric</string>
-        </property>
         <property name="text">
          <string>Numeric</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string notr="true">PopulateRandomText.IncludeNumeric</string>
         </property>
        </widget>
       </item>
@@ -89,11 +89,11 @@
         <property name="toolTip">
          <string>A whitespace, a tab and a new line character.</string>
         </property>
-        <property name="cfg" stdset="0">
-         <string>PopulateRandomText.IncludeWhitespace</string>
-        </property>
         <property name="text">
          <string>Whitespace</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string notr="true">PopulateRandomText.IncludeWhitespace</string>
         </property>
        </widget>
       </item>
@@ -102,11 +102,11 @@
         <property name="toolTip">
          <string>Includes all above and all others.</string>
         </property>
-        <property name="cfg" stdset="0">
-         <string>PopulateRandomText.IncludeBinary</string>
-        </property>
         <property name="text">
          <string>Binary</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string notr="true">PopulateRandomText.IncludeBinary</string>
         </property>
        </widget>
       </item>
@@ -115,11 +115,11 @@
    </item>
    <item row="3" column="0" colspan="2">
     <widget class="ConfigRadioButton" name="customSetRadio">
-     <property name="cfg" stdset="0">
-      <string>PopulateRandomText.UseCustomSets</string>
-     </property>
      <property name="text">
       <string>Use characters from my custom set:</string>
+     </property>
+     <property name="cfg" stdset="0">
+      <string notr="true">PopulateRandomText.UseCustomSets</string>
      </property>
      <property name="assignedValue" stdset="0">
       <bool>true</bool>
@@ -134,11 +134,11 @@
      <layout class="QVBoxLayout" name="verticalLayout_4">
       <item>
        <widget class="QSpinBox" name="maxLengthSpin">
-        <property name="cfg" stdset="0">
-         <string>PopulateRandomText.MaxLength</string>
-        </property>
         <property name="maximum">
          <number>999999999</number>
+        </property>
+        <property name="cfg" stdset="0">
+         <string notr="true">PopulateRandomText.MaxLength</string>
         </property>
        </widget>
       </item>
@@ -160,7 +160,7 @@
          <string>If you type some character multiple times, it's more likely to be used.</string>
         </property>
         <property name="cfg" stdset="0">
-         <string>PopulateRandomText.CustomCharacters</string>
+         <string notr="true">PopulateRandomText.CustomCharacters</string>
         </property>
        </widget>
       </item>

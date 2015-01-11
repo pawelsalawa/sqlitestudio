@@ -5,47 +5,47 @@
     <name>QObject</name>
     <message>
         <source>GUI interface to SQLiteStudio, a SQLite manager.</source>
-        <translation type="unfinished"></translation>
+        <translation>Interfejs graficzny dla SQLiteStudio, menadżera SQLite.</translation>
     </message>
     <message>
         <source>Enables debug messages in console (accessible with F12).</source>
-        <translation type="unfinished"></translation>
+        <translation>Włącza wiadomości debugujące w konsoli (dostępnej przez F12).</translation>
     </message>
     <message>
         <source>Redirects debug messages into standard output (forces debug mode).</source>
-        <translation type="unfinished"></translation>
+        <translation>Przekierowuje wiadomości debugujące na standardowe wyjście (wymusza tryb debugujący).</translation>
     </message>
     <message>
         <source>Enables Lemon parser debug messages for SQL code assistant.</source>
-        <translation type="unfinished"></translation>
+        <translation>Włącza wiadomości debugujące analizatora Lemon dla asystenta kodu SQL.</translation>
     </message>
     <message>
         <source>Enables debugging of every single SQL query being sent to any database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Włacza debugowanie każdego pojedynczego zapytania SQL, wykonywanego na dowolnej bazie danych.</translation>
     </message>
     <message>
         <source>Limits SQL query messages to only the given &lt;database&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ogranicze wiadomości zapytań SQL do podanej &lt;bazy danych&gt;.</translation>
     </message>
     <message>
         <source>database</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Lists plugins installed in the SQLiteStudio end exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>baza danych</translation>
     </message>
     <message>
         <source>file</source>
-        <translation type="unfinished"></translation>
+        <translation>plik</translation>
     </message>
     <message>
         <source>Database file to open</source>
-        <translation type="unfinished"></translation>
+        <translation>Baza danych do otwarcia</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Błąd</translation>
+    </message>
+    <message>
+        <source>Lists plugins installed in the SQLiteStudio and quits.</source>
+        <translation>Wypisuje listę zainstalowanych w SQLiteStudio wtyczek i wychodzi.</translation>
     </message>
 </context>
 </TS>

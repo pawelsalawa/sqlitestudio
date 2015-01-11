@@ -4,29 +4,29 @@
 <context>
     <name>Printing</name>
     <message>
-        <location filename="printing.cpp" line="32"/>
+        <location filename="printing.cpp" line="35"/>
         <source>Print data</source>
-        <translation type="unfinished"></translation>
+        <translation>Drukuj dane</translation>
     </message>
     <message>
-        <location filename="printing.cpp" line="34"/>
+        <location filename="printing.cpp" line="37"/>
         <source>Print query</source>
         <translation>Drukuj zapytanie</translation>
     </message>
     <message>
-        <location filename="printing.cpp" line="72"/>
+        <location filename="printing.cpp" line="75"/>
         <source>No data to print.</source>
-        <translation type="unfinished"></translation>
+        <translation>Brak danych do wydruku.</translation>
     </message>
     <message>
-        <location filename="printing.cpp" line="81"/>
+        <location filename="printing.cpp" line="84"/>
         <source>Printing data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Drukuj dane.</translation>
     </message>
     <message>
-        <location filename="printing.cpp" line="107"/>
+        <location filename="printing.cpp" line="110"/>
         <source>Printing query.</source>
-        <translation type="unfinished"></translation>
+        <translation>Drukuj zapytanie.</translation>
     </message>
 </context>
 <context>
@@ -34,7 +34,7 @@
     <message>
         <location filename="printingexport.cpp" line="34"/>
         <source>Printing</source>
-        <translation type="unfinished"></translation>
+        <translation>Drukuj</translation>
     </message>
 </context>
 </TS>

@@ -1238,7 +1238,7 @@ void ConfigDialog::initPluginsPage()
             builtIn = PLUGINS->isBuiltIn(pluginName);
             title = PLUGINS->getTitle(pluginName);
             if (builtIn)
-                title += tr(" (built-in)", "plugins manager in configuration dialog");
+                title += tr("%1 (built-in)", "plugins manager in configuration dialog").arg(title);
 
             item = new QTreeWidgetItem({title});
             item->setCheckState(0, PLUGINS->isLoaded(pluginName) ? Qt::Checked : Qt::Unchecked);

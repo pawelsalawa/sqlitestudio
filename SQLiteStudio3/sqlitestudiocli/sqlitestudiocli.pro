@@ -25,8 +25,7 @@ linux|portable {
     QMAKE_LFLAGS += -Wl,-rpath,./lib
 }
 
-TRANSLATIONS += translations/sqlitestudiocli_pl.ts \
-                translations/sqlitestudiocli_en.ts
+TRANSLATIONS += translations/sqlitestudiocli_pl.ts
 
 SOURCES += main.cpp \
     cli.cpp \

@@ -713,10 +713,7 @@ void SqlEditor::indentNewLine()
 void SqlEditor::showSearchDialog()
 {
     if (!searchDialog)
-    {
         searchDialog = new SearchTextDialog(textLocator, this);
-        searchDialog->setWindowTitle(tr("Find or replace", "sql editor find/replace dialog"));
-    }
 
     if (searchDialog->isVisible())
         searchDialog->hide();
@@ -1029,7 +1026,7 @@ void SqlEditor::saveToFile()
     QFile file(fName);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
     {
-        notifyError(tr("Could not open file '%1'' for writing: %2").arg(fName).arg(file.errorString()));
+        notifyError(tr("Could not open file '%1' for writing: %2").arg(fName).arg(file.errorString()));
         return;
     }
 
@@ -1053,7 +1050,7 @@ void SqlEditor::loadFromFile()
     QFile file(fName);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
-        notifyError(tr("Could not open file '%1'' for reading: %2").arg(fName).arg(file.errorString()));
+        notifyError(tr("Could not open file '%1' for reading: %2").arg(fName).arg(file.errorString()));
         return;
     }
 

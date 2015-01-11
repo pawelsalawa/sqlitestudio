@@ -221,7 +221,7 @@ void ExportManager::finalizeExport(bool result, QIODevice* output)
         else if (!config->outputFileName.isEmpty())
             notifyInfo(tr("Export to the file '%1' was successful.").arg(config->outputFileName));
         else
-            notifyInfo(tr("Export to was successful.").arg(config->outputFileName));
+            notifyInfo(tr("Export was successful."));
 
         emit exportSuccessful();
     }

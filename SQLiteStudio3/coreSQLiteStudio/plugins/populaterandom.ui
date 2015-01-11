@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string notr="true">Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="2" column="0">
@@ -22,11 +22,11 @@
      <layout class="QVBoxLayout" name="verticalLayout_4">
       <item>
        <widget class="QLineEdit" name="prefixEdit">
-        <property name="cfg" stdset="0">
-         <string>PopulateRandom.Prefix</string>
-        </property>
         <property name="placeholderText">
          <string>No prefix</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string notr="true">PopulateRandom.Prefix</string>
         </property>
        </widget>
       </item>
@@ -41,14 +41,14 @@
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <widget class="QSpinBox" name="minSpin">
-        <property name="cfg" stdset="0">
-         <string>PopulateRandom.MinValue</string>
-        </property>
         <property name="minimum">
          <number>-999999999</number>
         </property>
         <property name="maximum">
          <number>999999999</number>
+        </property>
+        <property name="cfg" stdset="0">
+         <string notr="true">PopulateRandom.MinValue</string>
         </property>
        </widget>
       </item>
@@ -63,9 +63,6 @@
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
        <widget class="QSpinBox" name="maxSpin">
-        <property name="cfg" stdset="0">
-         <string>PopulateRandom.MaxValue</string>
-        </property>
         <property name="minimum">
          <number>-999999999</number>
         </property>
@@ -74,6 +71,9 @@
         </property>
         <property name="value">
          <number>999999999</number>
+        </property>
+        <property name="cfg" stdset="0">
+         <string notr="true">PopulateRandom.MaxValue</string>
         </property>
        </widget>
       </item>
@@ -88,11 +88,11 @@
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QLineEdit" name="suffixEdit">
-        <property name="cfg" stdset="0">
-         <string>PopulateRandom.Suffix</string>
-        </property>
         <property name="placeholderText">
          <string>No suffix</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string notr="true">PopulateRandom.Suffix</string>
         </property>
        </widget>
       </item>

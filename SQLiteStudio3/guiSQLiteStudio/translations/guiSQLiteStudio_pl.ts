@@ -11,280 +11,272 @@
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="24"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>O programie</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="30"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;SQLiteStudio v%1&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Free, open-source, cross-platform SQLite database manager.&lt;br/&gt;&lt;a href=&quot;http://sqlitestudio.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://sqlitestudio.pl&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;%2&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Author and active maintainer:&lt;br/&gt;SalSoft (&lt;a href=&quot;http://salsoft.com.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://salsoft.com.pl&lt;/span&gt;&lt;/a&gt;)&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;SQLiteStudio v%1&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Darmowy, otwartoźródłowy, wieloplatformowy menadżer baz danych SQLite.&lt;br/&gt;&lt;a href=&quot;http://sqlitestudio.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://sqlitestudio.pl&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;%2&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Autor i aktywny opiekun:&lt;br/&gt;SalSoft (&lt;a href=&quot;http://salsoft.com.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://salsoft.com.pl&lt;/span&gt;&lt;/a&gt;)&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="41"/>
         <source>Licenses</source>
-        <translation type="unfinished"></translation>
+        <translation>Licencje</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="55"/>
         <source>Environment</source>
-        <translation type="unfinished"></translation>
+        <translation>Środowisko</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="61"/>
         <source>Icon directories</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalogi ikon</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="75"/>
         <source>Form directories</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalogi formularzy</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="89"/>
         <source>Plugin directories</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalogi wtyczek</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="96"/>
         <source>Application directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalog aplikacji</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="110"/>
         <source>Configuration directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalog konfiguracji</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="131"/>
         <source>Qt version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Wersja Qt:</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.cpp" line="37"/>
         <source>Portable distribution.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dystrybucja przenośna.</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.cpp" line="40"/>
         <source>MacOS X application boundle distribution.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dytrybucja aplikacji MacOS X.</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.cpp" line="43"/>
         <source>Operating system managed distribution.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dystrybucja zarządzana przez system operacyjny.</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.cpp" line="69"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiuj</translation>
     </message>
 </context>
 <context>
     <name>BugDialog</name>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="14"/>
-        <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <source>Bugs and ideas</source>
+        <translation>Błędy i pomysły</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="20"/>
         <source>Reporter</source>
-        <translation type="unfinished"></translation>
+        <translation>Zgłaszający</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="36"/>
         <source>E-mail address</source>
-        <translation type="unfinished"></translation>
+        <translation>Adres e-mail</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="43"/>
         <location filename="../dialogs/bugdialog.cpp" line="122"/>
         <source>Log in</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/bugdialog.ui" line="54"/>
-        <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaloguj</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="68"/>
         <source>Short description</source>
-        <translation type="unfinished"></translation>
+        <translation>Krótki opis</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="80"/>
         <source>Detailed description</source>
-        <translation type="unfinished"></translation>
+        <translation>Opis szczegółowy</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="92"/>
         <source>Show more details</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż więcej szczegółów</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="119"/>
         <source>SQLiteStudio version</source>
-        <translation type="unfinished"></translation>
+        <translation>Wersja SQLiteStudio</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="131"/>
         <source>Operating system</source>
-        <translation type="unfinished"></translation>
+        <translation>System operacyjny</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="143"/>
         <source>Loaded plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Załadowane wtyczki</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="39"/>
         <source>Send</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyślij</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="66"/>
         <source>You can see all your reported bugs and ideas by selecting menu &apos;%1&apos; and then &apos;%2&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Możesz zobaczyć wszystkie błędy i pomysły zgłoszone przez ciebie wybierając menu &apos;%1&apos; i dalej &apos;%2&apos;.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="75"/>
         <source>A bug report sent successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Błąd został zgłoszony pomyślnie.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="80"/>
         <source>An error occurred while sending a bug report: %1
 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Wystąpił błąd podczas zgłaszania błędu: %1
+%2</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="81"/>
         <location filename="../dialogs/bugdialog.cpp" line="95"/>
         <source>You can retry sending. The contents will be restored when you open a report dialog after an error like this.</source>
-        <translation type="unfinished"></translation>
+        <translation>Możesz spróbować powtórzyć wysyłkę. Zawartość będzie przywrócona, kiedy otworzysz okno zgłaszania po błędzie takim jak ten.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="89"/>
         <source>An idea proposal sent successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomysł został zgłoszony pomyślnie.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="94"/>
         <source>An error occurred while sending an idea proposal: %1
 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Wystąpił błąd podczas zgłaszania pomysłu: %1
+%2</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="106"/>
         <source>A bug report</source>
-        <translation type="unfinished"></translation>
+        <translation>Zgłoś błąd</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="107"/>
         <source>Describe problem in few words</source>
-        <translation type="unfinished"></translation>
+        <translation>Opisz problem w kilku słowach</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="108"/>
         <source>Describe problem and how to reproduce it</source>
-        <translation type="unfinished"></translation>
+        <translation>Opisz problem, oraz jak go powtórzyć</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="112"/>
         <source>A new feature idea</source>
-        <translation type="unfinished"></translation>
+        <translation>Zgłoś pomysł</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="113"/>
         <source>A title for your idea</source>
-        <translation type="unfinished"></translation>
+        <translation>Tytuł twojego pomysłu</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="114"/>
         <source>Describe your idea in more details</source>
-        <translation type="unfinished"></translation>
+        <translation>Opisz twój pomysł szerzej</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="119"/>
         <source>Reporting as an unregistered user, using e-mail address.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zgłaszanie jako niezarejestrowany użytkownik, używając adresu e-mail.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="128"/>
         <source>Reporting as a registered user.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zgłaszanie jako zarejestrowany użytkownik.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="132"/>
         <source>Log out</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyloguj</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="145"/>
         <source>Providing true email address will make it possible to contact you regarding your report. To learn more, press &apos;help&apos; button on the right side.</source>
-        <translation type="unfinished"></translation>
+        <translation>Podanie prawdziwego adresu e-mail pozwoli na skontaktowanie się z tobą w związku z twoim zgłoszeniem. Aby dowiedzieć się więcej, kliknij przycisk &apos;pomoc&apos; po prawej stronie.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="147"/>
         <source>Enter vaild e-mail address, or log in.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wpisz poprawny adres e-mail, lub zaloguj się.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="149"/>
         <source>Short description requires at least 10 characters, but not more than 100. Longer description can be entered in the field below.</source>
-        <translation type="unfinished"></translation>
+        <translation>Krótki opis wymaga przynajmniej 10 znaków, ale nie więcej niż 100. Dłuższy opis może być wpisany w polu poniżej.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="152"/>
         <source>Long description requires at least 30 characters.</source>
-        <translation type="unfinished"></translation>
+        <translation>Długi opis wymaga przynajmniej 30 znaków.</translation>
     </message>
 </context>
 <context>
     <name>BugReportHistoryWindow</name>
     <message>
-        <location filename="../windows/bugreporthistorywindow.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../windows/bugreporthistorywindow.ui" line="36"/>
         <location filename="../windows/bugreporthistorywindow.cpp" line="119"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Tytuł</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.ui" line="41"/>
         <location filename="../windows/bugreporthistorywindow.cpp" line="119"/>
         <source>Reported at</source>
-        <translation type="unfinished"></translation>
+        <translation>Zgłoszony dnia</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.ui" line="46"/>
         <location filename="../windows/bugreporthistorywindow.cpp" line="119"/>
         <source>URL</source>
-        <translation type="unfinished"></translation>
+        <translation>URL</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.cpp" line="45"/>
         <source>Reports history</source>
-        <translation type="unfinished"></translation>
+        <translation>Historia zgłoszeń</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.cpp" line="50"/>
         <source>Clear reports history</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyść historię zgłoszeń</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.cpp" line="51"/>
         <source>Delete selected entry</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń wybraną pozycję</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.cpp" line="90"/>
         <source>Invalid response from server.</source>
-        <translation type="unfinished"></translation>
+        <translation>Niepoprawna odpowiedź z serwera.</translation>
     </message>
 </context>
 <context>
@@ -292,150 +284,145 @@
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="14"/>
         <source>Log in</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaloguj</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="20"/>
         <source>Credentials</source>
-        <translation type="unfinished"></translation>
+        <translation>Dane do logowania</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="26"/>
         <source>Login:</source>
-        <translation type="unfinished"></translation>
+        <translation>Login:</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="36"/>
-        <source>Password</source>
-        <translation type="unfinished"></translation>
+        <source>Password:</source>
+        <translation>Hasło:</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="53"/>
         <source>Validation</source>
-        <translation type="unfinished"></translation>
+        <translation>Walidacja</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="59"/>
         <source>Validate</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprawdź</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="73"/>
         <source>Validation result message</source>
-        <translation type="unfinished"></translation>
+        <translation>Treść wyniku walidacji</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.cpp" line="45"/>
         <source>Abort</source>
-        <translation type="unfinished"></translation>
+        <translation>Przerwij</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.cpp" line="65"/>
         <source>A login must be at least 2 characters long.</source>
-        <translation type="unfinished"></translation>
+        <translation>Login musi mieć przynajmniej 2 znaki.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.cpp" line="66"/>
         <source>A password must be at least 5 characters long.</source>
-        <translation type="unfinished"></translation>
+        <translation>Hasło musi mieć przynajmniej 5 znaków.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.cpp" line="91"/>
         <source>Valid</source>
-        <translation type="unfinished"></translation>
+        <translation>Poprawne</translation>
     </message>
 </context>
 <context>
     <name>CollationsEditor</name>
     <message>
-        <location filename="../windows/collationseditor.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../windows/collationseditor.ui" line="75"/>
         <source>Filter collations</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtruj zestawienia</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.ui" line="110"/>
         <source>Collation name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa zestawienia:</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.ui" line="120"/>
         <source>Implementation language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Język implementacji:</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.ui" line="152"/>
         <source>Databases</source>
-        <translation type="unfinished"></translation>
+        <translation>Bazy danych</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.ui" line="158"/>
         <source>Register in all databases</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarejestruj we wszystkich bazach danych</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.ui" line="165"/>
         <source>Register in following databases:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarejestruj w następujących bazach danych:</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.ui" line="186"/>
         <source>Implementation code:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kod implementacji:</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="52"/>
         <source>Collations editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Edytor zestawień</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="57"/>
         <source>Commit all collation changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Zatwierdź wszystkie zmiany w zestawieniach</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="58"/>
         <source>Rollback all collation changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Wycofaj wszystkie zmiany w zestawieniach</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="60"/>
         <source>Create new collation</source>
-        <translation type="unfinished"></translation>
+        <translation>Utwórz nowe zestawienie</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="61"/>
         <source>Delete selected collation</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń wybrane zestawienie</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="63"/>
         <source>Editing collations manual</source>
-        <translation type="unfinished"></translation>
+        <translation>Podręcznik edycji zestawień</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="283"/>
         <source>Enter a non-empty, unique name of the collation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Podaj niepustą, unikalną nazwę zestawienia.</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="291"/>
         <source>Pick the implementation language.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz język implementacji.</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="294"/>
         <source>Enter a non-empty implementation code.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź niepusty kod implementacji.</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="388"/>
         <source>Collations editor window has uncommited modifications.</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno edytora zestawień ma niezatwierdzone zmiany.</translation>
     </message>
 </context>
 <context>
@@ -443,63 +430,53 @@
     <message>
         <location filename="../common/colorbutton.cpp" line="29"/>
         <source>Pick a color</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz kolor</translation>
     </message>
 </context>
 <context>
     <name>ColumnCollatePanel</name>
     <message>
-        <location filename="../constraints/columncollatepanel.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../constraints/columncollatepanel.ui" line="32"/>
+        <location filename="../constraints/columncollatepanel.ui" line="41"/>
         <source>Collation name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa zestawienia:</translation>
     </message>
     <message>
-        <location filename="../constraints/columncollatepanel.ui" line="55"/>
+        <location filename="../constraints/columncollatepanel.ui" line="73"/>
         <source>Named constraint:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ograniczenie nazwane:</translation>
     </message>
     <message>
         <location filename="../constraints/columncollatepanel.cpp" line="80"/>
         <source>Enter a name of the constraint.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź nazwę ograniczenia.</translation>
     </message>
     <message>
         <location filename="../constraints/columncollatepanel.cpp" line="81"/>
         <source>Enter a collation name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź nazwę zestawienia.</translation>
     </message>
 </context>
 <context>
     <name>ColumnDefaultPanel</name>
     <message>
-        <location filename="../constraints/columndefaultpanel.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../constraints/columndefaultpanel.ui" line="20"/>
         <source>Default value:</source>
-        <translation type="unfinished"></translation>
+        <translation>Domyślna wartość:</translation>
     </message>
     <message>
         <location filename="../constraints/columndefaultpanel.ui" line="35"/>
         <source>Named constraint:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ograniczenie nazwane:</translation>
     </message>
     <message>
         <location filename="../constraints/columndefaultpanel.cpp" line="46"/>
         <source>Enter a default value expression.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź wyrażenie wartości domyślnej.</translation>
     </message>
     <message>
         <location filename="../constraints/columndefaultpanel.cpp" line="47"/>
         <source>Enter a name of the constraint.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź nazwę ograniczenia.</translation>
     </message>
 </context>
 <context>
@@ -507,42 +484,37 @@
     <message>
         <location filename="../dialogs/columndialog.ui" line="14"/>
         <source>Column</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolumna</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="23"/>
         <source>Name and type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/columndialog.ui" line="39"/>
-        <source>,</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa i typ</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="56"/>
         <source>Data type:</source>
-        <translation type="unfinished"></translation>
+        <translation>Typ danych:</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="63"/>
         <source>Column name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa kolumny:</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="73"/>
         <source>Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozmiar:</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="96"/>
         <source>Constraints</source>
-        <translation type="unfinished"></translation>
+        <translation>Ograniczenia</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="109"/>
         <source>Unique</source>
-        <translation type="unfinished"></translation>
+        <translation>Wartości unikalne</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="116"/>
@@ -553,132 +525,133 @@
         <location filename="../dialogs/columndialog.ui" line="193"/>
         <location filename="../dialogs/columndialog.ui" line="200"/>
         <source>Configure</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfiguruj</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="123"/>
         <source>Foreign Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Klucz obcy</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="137"/>
         <source>Collate</source>
-        <translation type="unfinished"></translation>
+        <translation>Zestawienie</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="144"/>
         <source>Not NULL</source>
-        <translation type="unfinished"></translation>
+        <translation>Niepuste</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="151"/>
         <source>Check condition</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprawdzaj warunek</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="158"/>
         <source>Primary Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Klucz główny</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="165"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Wartość domyślna</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="264"/>
         <source>Advanced mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Tryb zaawandowany</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="83"/>
         <source>Add constraint</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj ograniczenie</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="84"/>
         <source>Edit constraint</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Edytuj ograniczenie</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="85"/>
         <location filename="../dialogs/columndialog.cpp" line="229"/>
         <source>Delete constraint</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Usuń ograniczenie</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="86"/>
         <source>Move constraint up</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Przenieś ograniczenie w górę</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="87"/>
         <source>Move constraint down</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Przenieś ograniczenie w dół</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="89"/>
         <source>Add a primary key</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj klucz główny</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="90"/>
         <source>Add a foreign key</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj klucz obcy</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="91"/>
         <source>Add an unique constraint</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj ograniczenie wartości unikalnych</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="92"/>
         <source>Add a check constraint</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj ograniczenie sprawdzania wartości</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="93"/>
         <source>Add a not null constraint</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj ograniczenie niepustych wartości</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="94"/>
         <source>Add a collate constraint</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj ograniczenie zestawienia</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="95"/>
         <source>Add a default constraint</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj ograniczenie wartości domyślnej</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="228"/>
         <source>Are you sure you want to delete constraint &apos;%1&apos;?</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Czy na pewno chcesz usunąć ograniczenie &apos;%1&apos;?</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="290"/>
         <source>Correct the constraint&apos;s configuration.</source>
-        <translation type="unfinished"></translation>
+        <translation>Popraw konfigurację ograniczenia.</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="293"/>
         <source>This constraint is not officially supported by SQLite 2,
 but it&apos;s okay to use it.</source>
-        <translation type="unfinished"></translation>
+        <translation>To ograniczenie nie jest oficjalnie wspireane przez SQLite 2,
+ale można go używać.</translation>
     </message>
 </context>
 <context>
@@ -687,149 +660,119 @@ but it&apos;s okay to use it.</source>
         <location filename="../dialogs/columndialogconstraintsmodel.cpp" line="328"/>
         <source>Type</source>
         <comment>column dialog constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialogconstraintsmodel.cpp" line="330"/>
         <source>Name</source>
         <comment>column dialog constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialogconstraintsmodel.cpp" line="332"/>
         <source>Details</source>
         <comment>column dialog constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Szczegóły</translation>
     </message>
 </context>
 <context>
     <name>ColumnForeignKeyPanel</name>
     <message>
-        <location filename="../constraints/columnforeignkeypanel.ui" line="20"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../constraints/columnforeignkeypanel.ui" line="29"/>
         <source>Foreign table:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabela obca:</translation>
     </message>
     <message>
         <location filename="../constraints/columnforeignkeypanel.ui" line="45"/>
         <source>Foreign column:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolumn obca:</translation>
     </message>
     <message>
         <location filename="../constraints/columnforeignkeypanel.ui" line="58"/>
         <source>Reactions</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../constraints/columnforeignkeypanel.ui" line="64"/>
-        <source>ON UPDATE</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../constraints/columnforeignkeypanel.ui" line="74"/>
-        <source>ON DELETE</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../constraints/columnforeignkeypanel.ui" line="81"/>
-        <source>MATCH</source>
-        <translation type="unfinished"></translation>
+        <translation>Reakcje</translation>
     </message>
     <message>
         <location filename="../constraints/columnforeignkeypanel.ui" line="97"/>
         <source>Deferred foreign key</source>
-        <translation type="unfinished"></translation>
+        <translation>Klucz obcy odroczony</translation>
     </message>
     <message>
         <location filename="../constraints/columnforeignkeypanel.ui" line="115"/>
         <source>Named constraint</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwane ograniczenie</translation>
     </message>
     <message>
         <location filename="../constraints/columnforeignkeypanel.ui" line="122"/>
         <source>Constraint name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa ograniczenia</translation>
     </message>
     <message>
         <location filename="../constraints/columnforeignkeypanel.cpp" line="40"/>
         <source>Pick the foreign table.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz tabelę obcą</translation>
     </message>
     <message>
         <location filename="../constraints/columnforeignkeypanel.cpp" line="41"/>
         <source>Pick the foreign column.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz kolumnę obcą</translation>
     </message>
     <message>
         <location filename="../constraints/columnforeignkeypanel.cpp" line="42"/>
         <source>Enter a name of the constraint.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź nazwę ograniczenia.</translation>
     </message>
 </context>
 <context>
     <name>ColumnPrimaryKeyPanel</name>
     <message>
-        <location filename="../constraints/columnprimarykeypanel.ui" line="20"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../constraints/columnprimarykeypanel.ui" line="26"/>
         <source>Autoincrement</source>
-        <translation type="unfinished"></translation>
+        <translation>Autoinkrementacja</translation>
     </message>
     <message>
-        <location filename="../constraints/columnprimarykeypanel.ui" line="39"/>
+        <location filename="../constraints/columnprimarykeypanel.ui" line="48"/>
         <source>Sort order:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kierunek sortowania:</translation>
     </message>
     <message>
-        <location filename="../constraints/columnprimarykeypanel.ui" line="65"/>
+        <location filename="../constraints/columnprimarykeypanel.ui" line="83"/>
         <source>Named constraint:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ograniczenie nazwane:</translation>
     </message>
     <message>
-        <location filename="../constraints/columnprimarykeypanel.ui" line="84"/>
+        <location filename="../constraints/columnprimarykeypanel.ui" line="111"/>
         <source>On conflict:</source>
-        <translation type="unfinished"></translation>
+        <translation>W razie konfliktu:</translation>
     </message>
     <message>
         <location filename="../constraints/columnprimarykeypanel.cpp" line="87"/>
         <source>Enter a name of the constraint.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź nazwę ograniczenia.</translation>
     </message>
     <message>
         <location filename="../constraints/columnprimarykeypanel.cpp" line="103"/>
         <source>Autoincrement (only for %1 type columns)</source>
         <comment>column primary key</comment>
-        <translation type="unfinished"></translation>
+        <translation>Autoinkrementacja (tylko dla kolumn o typie %1)</translation>
     </message>
 </context>
 <context>
     <name>ColumnUniqueAndNotNullPanel</name>
     <message>
-        <location filename="../constraints/columnuniqueandnotnullpanel.ui" line="20"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../constraints/columnuniqueandnotnullpanel.ui" line="32"/>
+        <location filename="../constraints/columnuniqueandnotnullpanel.ui" line="41"/>
         <source>Named constraint:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ograniczenie nazwane:</translation>
     </message>
     <message>
-        <location filename="../constraints/columnuniqueandnotnullpanel.ui" line="51"/>
+        <location filename="../constraints/columnuniqueandnotnullpanel.ui" line="69"/>
         <source>On conflict:</source>
-        <translation type="unfinished"></translation>
+        <translation>W razie konfliktu:</translation>
     </message>
     <message>
         <location filename="../constraints/columnuniqueandnotnullpanel.cpp" line="73"/>
         <source>Enter a name of the constraint.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź nazwę ograniczenia.</translation>
     </message>
 </context>
 <context>
@@ -838,1125 +781,771 @@ but it&apos;s okay to use it.</source>
         <location filename="../completer/completerwindow.cpp" line="159"/>
         <source>Column: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Kolumna: %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="161"/>
         <source>Table: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Tabela: %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="163"/>
         <source>Index: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Indeks: %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="165"/>
         <source>Trigger: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Wyzwalacz: %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="167"/>
         <source>View: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Widok: %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="169"/>
         <source>Database: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Baza danych: %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="181"/>
         <source>Keyword: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Słowo kluczowe: %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="183"/>
         <source>Function: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Funkcja: %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="185"/>
         <source>Operator: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Operator: %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="187"/>
         <source>String</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Tekst</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="189"/>
         <source>Number</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Liczba</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="191"/>
         <source>Binary data</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dane binarne</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="193"/>
         <source>Collation: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zestawienie: %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="195"/>
         <source>Pragma function: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Funkcja pragma: %1</translation>
     </message>
 </context>
 <context>
     <name>ConfigDialog</name>
     <message>
         <location filename="../dialogs/configdialog.ui" line="14"/>
-        <location filename="../dialogs/configdialog.ui" line="1190"/>
+        <location filename="../dialogs/configdialog.ui" line="1216"/>
         <source>Configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfiguracja</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="73"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Szukaj</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="104"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="107"/>
-        <source>generalPage</source>
-        <translation type="unfinished"></translation>
+        <translation>Ogólne</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="116"/>
         <source>Keyboard shortcuts</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="119"/>
-        <source>shortcutsPage</source>
-        <translation type="unfinished"></translation>
+        <translation>Skróty klawiszowe</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="128"/>
         <source>Look &amp; feel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="131"/>
-        <source>lookAndFeelPage</source>
-        <translation type="unfinished"></translation>
+        <translation>Wygląd i zachowanie</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="139"/>
         <source>Style</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="142"/>
-        <source>stylePage</source>
-        <translation type="unfinished"></translation>
+        <translation>Style</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="151"/>
         <source>Fonts</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="154"/>
-        <source>fontsPage</source>
-        <translation type="unfinished"></translation>
+        <translation>Czcionki</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="163"/>
         <source>Colors</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="166"/>
-        <source>colorsPage</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolory</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="176"/>
         <source>Plugins</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="179"/>
-        <source>pluginsPage</source>
-        <translation type="unfinished"></translation>
+        <translation>Wtyczki</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="187"/>
         <source>Code formatters</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="190"/>
-        <source>formatterPluginsPage</source>
-        <translation type="unfinished"></translation>
+        <translation>Formatery kodu</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="196"/>
         <source>Data browsing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="199"/>
-        <source>dataBrowsingPage</source>
-        <translation type="unfinished"></translation>
+        <translation>Przeglądanie danych</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="207"/>
         <source>Data editors</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="210"/>
-        <source>dataEditorsPage</source>
-        <translation type="unfinished"></translation>
+        <translation>Edytory danych</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="237"/>
         <source>Data browsing and editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Przeglądanie i edycja danych</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="243"/>
         <source>Number of data rows per page:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="262"/>
-        <source>General.NumberOfRowsPerPage</source>
-        <translation type="unfinished"></translation>
+        <translation>Liczba wierszy danych na stronie:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="269"/>
         <location filename="../dialogs/configdialog.ui" line="279"/>
         <source>&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Kiedy dane są wczytane do widoku siatki, szerokość kolumn jest automatycznie dostosowywana. Ta wartość ogranicza początkową szerokość tego dostosowywania, ale użytkownik nadal może rozszerzać kolumnę ręcznie poza ten limit.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="272"/>
         <source>Limit initial data column width to (in pixels):</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="291"/>
-        <source>General.MaxInitialColumnWith</source>
-        <translation type="unfinished"></translation>
+        <translation>Ogranicz początkową szerokość kolumn danych (w pikselach):</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="328"/>
         <source>Data types</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="337"/>
-        <source>General.DataEditorsOrder</source>
-        <translation type="unfinished"></translation>
+        <translation>Type danych</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="366"/>
         <source>Available editors:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dostępne edytory:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="382"/>
         <source>Editors selected for this data type:</source>
-        <translation type="unfinished"></translation>
+        <translation>Edytory wybrane dla tego typu danych:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="418"/>
         <source>Schema editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Edycja schematu</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="430"/>
         <source>Number of DDL changes kept in history.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="436"/>
-        <source>General.DdlHistorySize</source>
-        <translation type="unfinished"></translation>
+        <translation>Liczba zmian DDL trzymanych w historii.</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="443"/>
         <source>DDL history size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozmiar historii DDL:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="450"/>
         <source>Don&apos;t show DDL preview dialog when commiting schema changes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="453"/>
-        <source>General.DontShowDdlPreview</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie pokazuj okna podglądu DDL podczas zatwierdzania zmian schematu</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="463"/>
         <source>SQL queries</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapytania SQL</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="475"/>
         <location filename="../dialogs/configdialog.ui" line="488"/>
         <source>Number of queries kept in the history.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="481"/>
-        <source>General.SqlHistorySize</source>
-        <translation type="unfinished"></translation>
+        <translation>Liczba zapytań trzymana w historii.</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="491"/>
         <source>History size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozmiar historii:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="498"/>
         <source>&lt;p&gt;If there is more than one query in the SQL editor window, then (if this option is enabled) only a single query will be executed - the one under the keyboard insertion cursor. Otherwise all queries will be executed. You can always limit queries to be executed by selecting those queries before calling to execute.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Jeśli w oknie edytora SQL jest więcej niż jedno zapytanie, to (jeśli ta opcja jest włączona) tylko jedno zapytanie będzie wykonana - to, które znajduje się pod kursorem pisania. W przeciwnym wypadku wszystkie zapytania będą wykonywane. Zawsze możesz ograniczyć zapytania do wywołania przez zaznaczenie tych zapytań, które chcesz wywołać.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="501"/>
         <source>Execute only the query under the cursor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="504"/>
-        <source>General.ExecuteCurrentQueryOnly</source>
-        <translation type="unfinished"></translation>
+        <translation>Wykonuj tylko zapytania będące pod kursorem</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="514"/>
         <source>Updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizacje</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="520"/>
         <source>Automatically check for updates at startup</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="523"/>
-        <source>General.CheckUpdatesOnStartup</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprawdzaj aktualizacje automatycznie przy starcie</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="533"/>
         <source>Session</source>
-        <translation type="unfinished"></translation>
+        <translation>Sesje</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="539"/>
         <source>Restore last session (active MDI windows) after startup</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="542"/>
-        <source>General.RestoreSession</source>
-        <translation type="unfinished"></translation>
+        <translation>Przywróć ostatnią sesję (aktywne okna MDI) po starcie</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="581"/>
         <source>Filter shortcuts by name or key combination</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtruj skróty po nazwie, lub kombinacji klawiszy</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="622"/>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>Akcja</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="627"/>
         <source>Key combination</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="656"/>
-        <source>Database list</source>
-        <translation type="unfinished"></translation>
+        <translation>Kombinacja klawiszy</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="662"/>
-        <source>If switched off, then columns will be sorted in the order they are typed in CREATE TABLE statement.</source>
-        <translation type="unfinished"></translation>
+        <source>Changing language requires application restart to take effect.</source>
+        <translation>Zmiana języka wymaga restartu aplikacji, aby zadziałać.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="665"/>
-        <source>Sort table columns alphabetically</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="668"/>
-        <source>General.SortColumns</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="675"/>
-        <source>Expand tables node when connected to a database</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="678"/>
-        <source>General.ExpandTables</source>
-        <translation type="unfinished"></translation>
+        <location filename="../dialogs/configdialog.ui" line="679"/>
+        <source>Database list</source>
+        <translation>Lista baz</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="685"/>
-        <source>&lt;p&gt;Additional labels are those displayed next to the names on the databases list (they are blue, unless configured otherwise). Enabling this option will result in labels for databases, invalid databases and aggregated nodes (column group, index group, trigger group). For more labels see options below.&lt;p&gt;</source>
-        <translation type="unfinished"></translation>
+        <source>If switched off, then columns will be sorted in the order they are typed in CREATE TABLE statement.</source>
+        <translation>Gdy wyłączone, to kolumny będą ułożone w takiej kolejności, w jakiej wystąpiły w zapytaniu CREATE TABLE.</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="688"/>
+        <source>Sort table columns alphabetically</source>
+        <translation>Sortuj kolumny tabel alfabetycznie.</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.ui" line="698"/>
+        <source>Expand tables node when connected to a database</source>
+        <translation>Rozwiń listę tabel po połączeniu z bazą danych</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.ui" line="708"/>
+        <source>&lt;p&gt;Additional labels are those displayed next to the names on the databases list (they are blue, unless configured otherwise). Enabling this option will result in labels for databases, invalid databases and aggregated nodes (column group, index group, trigger group). For more labels see options below.&lt;p&gt;</source>
+        <translation>&lt;p&gt;Dodatkowe etykiety, to te wyświetlane obok nazw na liście baz danych (są niebieskie, chyba że skonfigurowano je inaczej). Włączenie tej opcji spowoduje wyświetlenie etykiet dla baz danych, niepoprawnych baz danych, oraz dla węzłów agregujących (grupa kolumn, grupa indeksów, grupa wyzwalaczy). Więcej etykiet jest dostępne niżej.&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.ui" line="711"/>
         <source>Display additional labels on the list</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyświetlaj dodatkowe etykiety na liście</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="697"/>
-        <source>General.ShowDbTreeLabels</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="703"/>
+        <location filename="../dialogs/configdialog.ui" line="726"/>
         <source>For regular tables labels will show number of columns, indexes and triggers for each of tables.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dla zwykłych tabel etykiety będą pokazywać liczbę kolumn, inseksów, oraz wyzwalaczy dla tych tabel.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="706"/>
+        <location filename="../dialogs/configdialog.ui" line="729"/>
         <source>Display labels for regular tables</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyświetlaj etykiety dla zwykłych tabel</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="709"/>
-        <source>General.ShowRegularTableLabels</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="716"/>
+        <location filename="../dialogs/configdialog.ui" line="739"/>
         <source>Virtual tables will be marked with a &apos;virtual&apos; label.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="719"/>
-        <source>Display labels for virtual tables</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="722"/>
-        <source>General.ShowVirtualTableLabels</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="732"/>
-        <source>Expand views node when connected to a database</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="735"/>
-        <source>General.ExpandViews</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabele wirtualne będą oznaczone etykietą &apos;wirtualna&apos;.</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="742"/>
-        <source>If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="745"/>
-        <source>Sort objects (tables, indexes, triggers and views) alphabetically</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="748"/>
-        <source>General.SortObjects</source>
-        <translation type="unfinished"></translation>
+        <source>Display labels for virtual tables</source>
+        <translation>Wyświetlaj etykiety dla tabel wirtualnych</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="755"/>
-        <source>Display system tables and indexes on the list</source>
-        <translation type="unfinished"></translation>
+        <source>Expand views node when connected to a database</source>
+        <translation>Rozwiń listę widoków po połączeniu z bazą.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="758"/>
-        <source>General.ShowSystemObjects</source>
-        <translation type="unfinished"></translation>
+        <location filename="../dialogs/configdialog.ui" line="765"/>
+        <source>If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</source>
+        <translation>Gdy ta opcja jest wyłączona, to wszystkie obiekty będą ułożone w takiej kolejności, w jakiej występują w tabeli sqlite_master (czyli w takiej, w jakiej zostały stworzone)</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="768"/>
+        <source>Sort objects (tables, indexes, triggers and views) alphabetically</source>
+        <translation>Sortuj obiekty (tabele, indeksy, wyzwalacze i widoki) alfabetycznie</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.ui" line="778"/>
+        <source>Display system tables and indexes on the list</source>
+        <translation>Wyświetlaj tabele i indeksy systemowe na liście</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.ui" line="791"/>
         <source>Table windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Okna tabel</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="774"/>
+        <location filename="../dialogs/configdialog.ui" line="797"/>
         <source>When enabled, Table Windows will show up with the data tab, instead of the structure tab.</source>
-        <translation type="unfinished"></translation>
+        <translation>Gdy włączone, Okna Tabel będą się pokazywać z zakładką danych, zamiast z zakładką struktury.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="777"/>
+        <location filename="../dialogs/configdialog.ui" line="800"/>
         <source>Open Table Windows with the data tab for start</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwieraj Okna Tabeli z zakładką danych na początek</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="780"/>
-        <source>General.OpenTablesOnData</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="790"/>
+        <location filename="../dialogs/configdialog.ui" line="813"/>
         <source>View windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Okna Widoków</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="796"/>
+        <location filename="../dialogs/configdialog.ui" line="819"/>
         <source>When enabled, View Windows will show up with the data tab, instead of the structure tab.</source>
-        <translation type="unfinished"></translation>
+        <translation>Gdy włączone, Okna Widoków będą się pokazywać z zakładką danych, zamiast z zakładką struktury.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="799"/>
+        <location filename="../dialogs/configdialog.ui" line="822"/>
         <source>Open View Windows with the data tab for start</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwieraj Okna Widoku z zakładką danych na początek</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="802"/>
-        <source>General.OpenViewsOnData</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="910"/>
+        <location filename="../dialogs/configdialog.ui" line="933"/>
         <source>Hide built-in plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukryj wtyczki wbudowane</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="939"/>
+        <location filename="../dialogs/configdialog.ui" line="962"/>
         <source>Current style:</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualny styl:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="946"/>
-        <source>General.Style</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="956"/>
+        <location filename="../dialogs/configdialog.ui" line="979"/>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Podgląd</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="966"/>
+        <location filename="../dialogs/configdialog.ui" line="989"/>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Włączone</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="994"/>
-        <source>CheckBox</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1018"/>
-        <source>PushButton</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1042"/>
         <source>Column</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Kolumna</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1047"/>
-        <source>123</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1051"/>
-        <source>11111</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1056"/>
-        <source>22222</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1061"/>
-        <source>33333</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1067"/>
-        <source>456</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1071"/>
-        <source>44444</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1076"/>
-        <source>55555</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1081"/>
-        <source>66666</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1090"/>
-        <source>...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1100"/>
-        <source>RadioButton</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1108"/>
-        <source>ABC</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1113"/>
-        <source>XYZ</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1121"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8pt;&quot;&gt;Abcdefgh&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1136"/>
+        <location filename="../dialogs/configdialog.ui" line="1162"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyłączone</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1180"/>
+        <location filename="../dialogs/configdialog.ui" line="656"/>
+        <location filename="../dialogs/configdialog.ui" line="1206"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Język</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1185"/>
+        <location filename="../dialogs/configdialog.ui" line="1211"/>
         <source>Active formatter plugin</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktywna wtyczka formatera</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1223"/>
+        <location filename="../dialogs/configdialog.ui" line="1249"/>
         <source>SQL editor font</source>
-        <translation type="unfinished"></translation>
+        <translation>Czcionka edytora SQL</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1229"/>
-        <source>Fonts.SqlEditor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1239"/>
+        <location filename="../dialogs/configdialog.ui" line="1265"/>
         <source>Database list font</source>
-        <translation type="unfinished"></translation>
+        <translation>Czcionka listy baz danych</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1245"/>
-        <source>Fonts.DbTree</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1255"/>
+        <location filename="../dialogs/configdialog.ui" line="1281"/>
         <source>Database list additional label font</source>
-        <translation type="unfinished"></translation>
+        <translation>Czcionka dodatkowych etykiety listy baz danych</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1261"/>
-        <source>Fonts.DbTreeLabel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1271"/>
+        <location filename="../dialogs/configdialog.ui" line="1297"/>
         <source>Data view font</source>
-        <translation type="unfinished"></translation>
+        <translation>Czcionka widoku danych</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1277"/>
-        <source>Fonts.DataView</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1287"/>
+        <location filename="../dialogs/configdialog.ui" line="1313"/>
         <source>Status field font</source>
-        <translation type="unfinished"></translation>
+        <translation>Czcionka pola statusu</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1293"/>
-        <source>Fonts.StatusField</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1345"/>
+        <location filename="../dialogs/configdialog.ui" line="1371"/>
         <source>SQL editor colors</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1351"/>
-        <source>Current line background</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1358"/>
-        <source>&lt;p&gt;SQL strings are enclosed with single quote characters.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1361"/>
-        <source>String foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolory edytora SQL</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1377"/>
-        <source>Colors.SqlEditorKeywordFg</source>
-        <translation type="unfinished"></translation>
+        <source>Current line background</source>
+        <translation>Tło bieżącej linii</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1393"/>
-        <source>Colors.SqlEditorStringFg</source>
-        <translation type="unfinished"></translation>
+        <location filename="../dialogs/configdialog.ui" line="1384"/>
+        <source>&lt;p&gt;SQL strings are enclosed with single quote characters.&lt;/p&gt;</source>
+        <translation>&lt;p&gt;Łańcuchy znaków SQL są zamknięte pomiędzy znakami apostrofu.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1409"/>
-        <source>Colors.SqlEditorCommentFg</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1425"/>
-        <source>Colors.SqlEditorForeground</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1441"/>
-        <source>Colors.SqlEditorCurrentLineBg</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1457"/>
-        <source>Colors.SqlEditorLineNumAreaBg</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1464"/>
-        <source>&lt;p&gt;Bind parameters are placeholders for values yet to be provided by the user. They have one of the forms:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;:param_name&lt;/li&gt;&lt;li&gt;$param_name&lt;/li&gt;&lt;li&gt;@param_name&lt;/li&gt;&lt;li&gt;?&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1467"/>
-        <source>Bind parameter foreground</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1483"/>
-        <source>Colors.SqlEditorParenthesisBg</source>
-        <translation type="unfinished"></translation>
+        <location filename="../dialogs/configdialog.ui" line="1387"/>
+        <source>String foreground</source>
+        <translation>Czcionka łańcucha znaków</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1490"/>
+        <source>&lt;p&gt;Bind parameters are placeholders for values yet to be provided by the user. They have one of the forms:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;:param_name&lt;/li&gt;&lt;li&gt;$param_name&lt;/li&gt;&lt;li&gt;@param_name&lt;/li&gt;&lt;li&gt;?&lt;/li&gt;&lt;/ul&gt;</source>
+        <translation>&lt;b&gt;Parametry wiążące to wyrażenia zastępcze dla wartości, które mają być dopiero dostarczone przez użytkownika. Mają one jedną z form: &lt;/p&gt;&lt;ul&gt;&lt;li&gt;:nazwa_parametru&lt;/li&gt;&lt;li&gt;$nazwa_parametru&lt;/li&gt;&lt;li&gt;@nazwa_parametru&lt;/li&gt;&lt;li&gt;?&lt;/li&gt;&lt;/ul&gt;</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.ui" line="1493"/>
+        <source>Bind parameter foreground</source>
+        <translation>Czcionka parametru wiążącego</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.ui" line="1516"/>
         <source>Highlighted parenthesis background</source>
-        <translation type="unfinished"></translation>
+        <translation>Tło podświetlonych nawiasów</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1497"/>
+        <location filename="../dialogs/configdialog.ui" line="1523"/>
         <source>&lt;p&gt;BLOB values are binary values represented as hexadecimal numbers, like:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;X&apos;12B4&apos;&lt;/li&gt;&lt;li&gt;x&apos;46A2F4&apos;&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Wartości BLOB są wartościami binarnymi, reprezentowanymi jako liczby heksadecymalne, jak np:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;X&apos;12B4&apos;&lt;/li&gt;&lt;li&gt;x&apos;46A2F4&apos;&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1500"/>
+        <location filename="../dialogs/configdialog.ui" line="1526"/>
         <source>BLOB value foreground</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1507"/>
+        <location filename="../dialogs/configdialog.ui" line="1533"/>
         <source>Regular foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Standardowa czcionka</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1514"/>
+        <location filename="../dialogs/configdialog.ui" line="1540"/>
         <source>Line numbers area background</source>
-        <translation type="unfinished"></translation>
+        <translation>Tło obszaru numerów linii</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1530"/>
-        <source>Colors.SqlEditorBlobFg</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1537"/>
+        <location filename="../dialogs/configdialog.ui" line="1563"/>
         <source>Keyword foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Czcionka słowa kluczowego</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1544"/>
+        <location filename="../dialogs/configdialog.ui" line="1570"/>
         <source>Number foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Czcionka liczby</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1551"/>
+        <location filename="../dialogs/configdialog.ui" line="1577"/>
         <source>Comment foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Czcionka komentarza</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1567"/>
-        <source>Colors.SqlEditorNumberFg</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1583"/>
-        <source>Colors.SqlEditorBindParamFg</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1590"/>
+        <location filename="../dialogs/configdialog.ui" line="1616"/>
         <source>&lt;p&gt;Valid objects are name of tables, indexes, triggers, or views that exist in the SQLite database.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1593"/>
-        <source>Valid objects foreground</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1609"/>
-        <source>Colors.SqlEditorValidObject</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Poprawne obiekty to nazwy tabel, indekstów, wyzwalaczy i widoków, które istnieją w basie SQLite.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1619"/>
+        <source>Valid objects foreground</source>
+        <translation>Czcionka poprawnych obiektów</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.ui" line="1645"/>
         <source>Data view colors</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1625"/>
-        <source>&lt;p&gt;Any data changes will be outlined with this color, until they&apos;re commited to the database.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1628"/>
-        <source>Uncommited data outline color</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1644"/>
-        <source>Colors.DataUncommited</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolory widoku danych</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1651"/>
-        <source>&lt;p&gt;In case of error while commiting data changes, the problematic cell will be outlined with this color.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <source>&lt;p&gt;Any data changes will be outlined with this color, until they&apos;re commited to the database.&lt;/p&gt;</source>
+        <translation>&lt;p&gt;Jakakolwiek zmiana danych będzie obrysowana tym kolorem, dopóki nie zostanie zatwierdzona do bazy danych.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1654"/>
-        <source>Commit error outline color</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1670"/>
-        <source>Colors.DataUncommitedError</source>
-        <translation type="unfinished"></translation>
+        <source>Uncommited data outline color</source>
+        <translation>Kolor obrysu niezatwierdzonych danych</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1677"/>
+        <source>&lt;p&gt;In case of error while commiting data changes, the problematic cell will be outlined with this color.&lt;/p&gt;</source>
+        <translation>&lt;p&gt;W przypadku błędu podczas zatwierdzania zmian danych, komórka będąca przyczyną problemu zostanie obrysowana tym kolorem.&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.ui" line="1680"/>
+        <source>Commit error outline color</source>
+        <translation>Kolor obrysu błędu zatwierdzania</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.ui" line="1703"/>
         <source>NULL value foreground</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1693"/>
-        <source>Colors.DataNullFg</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1700"/>
-        <source>Deleted row background</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1716"/>
-        <source>Colors.DataDeletedBg</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolor czcionki wartości NULL</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1726"/>
+        <source>Deleted row background</source>
+        <translation>Tło wiersza usuniętego</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.ui" line="1752"/>
         <source>Database list colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolory listy baz danych</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1732"/>
+        <location filename="../dialogs/configdialog.ui" line="1758"/>
         <source>&lt;p&gt;Additional labels are those which tell you SQLite version, number of objects deeper in the tree, etc.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1735"/>
-        <source>Additional labels foreground</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1751"/>
-        <source>Colors.DbTreeLabelsFg</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Dodatkowe etykiety to te, które mówią o wersji SQLite, liczbie obiektów w głębszych częściach drzewa, itp.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1761"/>
+        <source>Additional labels foreground</source>
+        <translation>Czcionka dodatkowych etykiet</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.ui" line="1787"/>
         <source>Status field colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolory pola statusu</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1767"/>
+        <location filename="../dialogs/configdialog.ui" line="1793"/>
         <source>Information message foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Czcionka wiadomości informującej</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1783"/>
-        <source>Colors.StatusFieldInfoFg</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1790"/>
+        <location filename="../dialogs/configdialog.ui" line="1816"/>
         <source>Warning message foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Czcionka wiadomości ostrzegającej</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1806"/>
-        <source>Colors.StatusFieldWarnFg</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1813"/>
+        <location filename="../dialogs/configdialog.ui" line="1839"/>
         <source>Error message foreground</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1829"/>
-        <source>Colors.StatusFieldErrorFg</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.cpp" line="763"/>
-        <source>Description:</source>
-        <comment>plugin details</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.cpp" line="764"/>
-        <source>Category:</source>
-        <comment>plugin details</comment>
-        <translation type="unfinished"></translation>
+        <translation>Czcionka wiadomości błędu</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="765"/>
-        <source>Version:</source>
+        <source>Description:</source>
         <comment>plugin details</comment>
-        <translation type="unfinished"></translation>
+        <translation>Opis:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="766"/>
-        <source>Author:</source>
+        <source>Category:</source>
         <comment>plugin details</comment>
-        <translation type="unfinished"></translation>
+        <translation>Kategoria:</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.cpp" line="767"/>
+        <source>Version:</source>
+        <comment>plugin details</comment>
+        <translation>Wersja:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="768"/>
-        <source>Internal name:</source>
+        <source>Author:</source>
         <comment>plugin details</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.cpp" line="769"/>
-        <source>Dependencies:</source>
-        <comment>plugin details</comment>
-        <translation type="unfinished"></translation>
+        <translation>Autor:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="770"/>
+        <source>Internal name:</source>
+        <comment>plugin details</comment>
+        <translation>Nazwa wewnętrzna:</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.cpp" line="771"/>
+        <source>Dependencies:</source>
+        <comment>plugin details</comment>
+        <translation>Zależności:</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.cpp" line="772"/>
         <source>Conflicts:</source>
         <comment>plugin details</comment>
-        <translation type="unfinished"></translation>
+        <translation>Konflikty:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="774"/>
+        <location filename="../dialogs/configdialog.cpp" line="776"/>
         <source>Plugin details</source>
-        <translation type="unfinished"></translation>
+        <translation>Szczegóły wtyczki</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1174"/>
+        <location filename="../dialogs/configdialog.cpp" line="1177"/>
         <source>Plugins are loaded/unloaded immediately when checked/unchecked, but modified list of plugins to load at startup is not saved until you commit the whole configuration dialog.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wtyczki są ładowane/wyładowywane natychmiast po zaznaczeniu/odznaczeniu, ale zmodyfikowana lista wtyczek, które należy załadować przy starcie nie jest zapisana, dopóki nie zatwierdzisz całego okna configuracji.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1238"/>
-        <source> (built-in)</source>
+        <location filename="../dialogs/configdialog.cpp" line="1241"/>
+        <source>%1 (built-in)</source>
         <comment>plugins manager in configuration dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 (wbudowany)</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1251"/>
+        <location filename="../dialogs/configdialog.cpp" line="1254"/>
         <source>Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Szczegóły</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1263"/>
+        <location filename="../dialogs/configdialog.cpp" line="1266"/>
         <source>No plugins in this category.</source>
-        <translation type="unfinished"></translation>
+        <translation>Brak wtyczek w tej kategorii.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1359"/>
+        <location filename="../dialogs/configdialog.cpp" line="1362"/>
         <source>Add new data type</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj nowy typ danych</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1363"/>
+        <location filename="../dialogs/configdialog.cpp" line="1366"/>
         <source>Rename selected data type</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmień nazwę wybranego typu danych</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1367"/>
+        <location filename="../dialogs/configdialog.cpp" line="1370"/>
         <source>Delete selected data type</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń wybrany typ danych</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1371"/>
+        <location filename="../dialogs/configdialog.cpp" line="1374"/>
         <source>Help for configuring data type editors</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomoc w konfiguracji edytorów typów danych</translation>
     </message>
 </context>
 <context>
     <name>ConstraintCheckPanel</name>
     <message>
-        <location filename="../constraints/constraintcheckpanel.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../constraints/constraintcheckpanel.ui" line="20"/>
-        <source>The expression</source>
-        <translation type="unfinished"></translation>
+        <source>The condition</source>
+        <translation>Warunek</translation>
     </message>
     <message>
         <location filename="../constraints/constraintcheckpanel.ui" line="35"/>
         <source>Named constraint:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ograniczenie nazwane:</translation>
     </message>
     <message>
         <location filename="../constraints/constraintcheckpanel.ui" line="51"/>
         <source>On conflict</source>
-        <translation type="unfinished"></translation>
+        <translation>W razie konfliktu</translation>
     </message>
     <message>
         <location filename="../constraints/constraintcheckpanel.cpp" line="46"/>
         <source>Enter a valid condition.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź poprawny warunek.</translation>
     </message>
     <message>
         <location filename="../constraints/constraintcheckpanel.cpp" line="47"/>
         <source>Enter a name of the constraint.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź nazwę ograniczenia.</translation>
     </message>
 </context>
 <context>
     <name>ConstraintDialog</name>
     <message>
-        <location filename="../dialogs/constraintdialog.ui" line="20"/>
-        <source>Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../dialogs/constraintdialog.cpp" line="62"/>
         <source>New constraint</source>
         <comment>constraint dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nowe ograniczenie</translation>
     </message>
     <message>
         <location filename="../dialogs/constraintdialog.cpp" line="63"/>
         <source>Create</source>
         <comment>constraint dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Utwórz</translation>
     </message>
     <message>
         <location filename="../dialogs/constraintdialog.cpp" line="66"/>
         <source>Edit constraint</source>
         <comment>dialog window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Edytuj ograniczenie</translation>
     </message>
     <message>
         <location filename="../dialogs/constraintdialog.cpp" line="67"/>
         <source>Apply</source>
         <comment>constraint dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zastosuj</translation>
     </message>
     <message>
         <location filename="../dialogs/constraintdialog.cpp" line="170"/>
         <source>Primary key</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Klucz główny</translation>
     </message>
     <message>
         <location filename="../dialogs/constraintdialog.cpp" line="174"/>
         <source>Foreign key</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Klucz obcy</translation>
     </message>
     <message>
         <location filename="../dialogs/constraintdialog.cpp" line="178"/>
         <source>Unique</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Wartości unikalne</translation>
     </message>
     <message>
         <location filename="../dialogs/constraintdialog.cpp" line="182"/>
         <source>Not NULL</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Niepuste</translation>
     </message>
     <message>
         <location filename="../dialogs/constraintdialog.cpp" line="186"/>
         <source>Check</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Warunek</translation>
     </message>
     <message>
         <location filename="../dialogs/constraintdialog.cpp" line="190"/>
         <source>Collate</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zestawienie</translation>
     </message>
     <message>
         <location filename="../dialogs/constraintdialog.cpp" line="194"/>
         <source>Default</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Wartość domyślna</translation>
     </message>
 </context>
 <context>
@@ -1965,37 +1554,37 @@ p, li { white-space: pre-wrap; }
         <location filename="../windows/constrainttabmodel.cpp" line="68"/>
         <source>Table</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Tabela</translation>
     </message>
     <message>
         <location filename="../windows/constrainttabmodel.cpp" line="109"/>
         <source>Column (%1)</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Kolumna (%1)</translation>
     </message>
     <message>
         <location filename="../windows/constrainttabmodel.cpp" line="153"/>
         <source>Scope</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zakres</translation>
     </message>
     <message>
         <location filename="../windows/constrainttabmodel.cpp" line="155"/>
         <source>Type</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <location filename="../windows/constrainttabmodel.cpp" line="157"/>
         <source>Details</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Szczegóły</translation>
     </message>
     <message>
         <location filename="../windows/constrainttabmodel.cpp" line="159"/>
         <source>Name</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa</translation>
     </message>
 </context>
 <context>
@@ -2004,221 +1593,217 @@ p, li { white-space: pre-wrap; }
         <location filename="../dataview.cpp" line="95"/>
         <source>Filter data</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Filtruj dane</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="104"/>
         <source>Grid view</source>
-        <translation type="unfinished"></translation>
+        <translation>Widok siatki</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="105"/>
         <source>Form view</source>
-        <translation type="unfinished"></translation>
+        <translation>Widok formularza</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="148"/>
         <source>Refresh table data</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Odśwież dane tabeli</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="162"/>
         <source>First page</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Pierwsza strona</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="163"/>
         <source>Previous page</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Poprzednia strona</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="165"/>
         <source>Next page</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Następna strona</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="166"/>
         <source>Last page</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ostatnia strona</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="171"/>
         <source>Apply filter</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zastosuj filtr</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="186"/>
         <source>Commit changes for selected cells</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zatwierdź zmiany dla wybranych komórek</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="187"/>
         <source>Rollback changes for selected cells</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Wycofaj zmiany dla wybranych komórek</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="188"/>
         <source>Show grid view of results</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż widok siatki dla wyników</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="189"/>
         <source>Show form view of results</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż widok formularza dla wyników</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="258"/>
         <source>Filter by text</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Filtruj po tekście</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="259"/>
         <source>Filter by the Regular Expression</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Filtruj używając Wyrażeń Regularnych</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="260"/>
         <source>Filter by SQL expression</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Filtruj używając wyrażenia SQL</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="291"/>
         <source>Tabs on top</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Karty na górze</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="292"/>
         <source>Tabs at bottom</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Karty na dole</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="510"/>
         <source>Total number of rows is being counted.
 Browsing other pages will be possible after the row counting is done.</source>
-        <translation type="unfinished"></translation>
+        <translation>Całkowita liczba wierszy jest liczona.
+Przeglądanie pozostałych stron będzie możliwe kiedy liczenie wierszy zostanie zakończone.</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="521"/>
         <source>Row: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Wiersz: %1</translation>
     </message>
 </context>
 <context>
     <name>DbConverterDialog</name>
     <message>
-        <location filename="../dialogs/dbconverterdialog.ui" line="14"/>
-        <source>Dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="20"/>
         <source>Source database</source>
-        <translation type="unfinished"></translation>
+        <translation>Źródłowa baza danych</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="29"/>
         <source>Source database version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Wersja źródłowej bazy:</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="46"/>
         <source>Target database</source>
-        <translation type="unfinished"></translation>
+        <translation>Docelowa baza danych</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="52"/>
         <source>Target version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Wersja docelowej bazy:</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="59"/>
         <source>This is the file that will be created as a result of the conversion.</source>
-        <translation type="unfinished"></translation>
+        <translation>To jest plik, który będzie stworzony jako wynik konwersji.</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="66"/>
         <source>Target file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Docelowy plik:</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="73"/>
         <source>Name of the new database:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa nowej bazy:</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="90"/>
         <source>This is the name that the converted database will be added to SQLiteStudio with.</source>
-        <translation type="unfinished"></translation>
+        <translation>To jest nazwa z jaką skonwertowana baza będzie dodana do SQLiteStudio.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbconverterdialog.cpp" line="48"/>
+        <location filename="../dialogs/dbconverterdialog.ui" line="14"/>
         <source>Convert database</source>
-        <translation type="unfinished"></translation>
+        <translation>Konwertuj bazę danych</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbconverterdialog.cpp" line="124"/>
+        <location filename="../dialogs/dbconverterdialog.cpp" line="123"/>
         <source>Select source database</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz źródłową bazę danych</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbconverterdialog.cpp" line="130"/>
+        <location filename="../dialogs/dbconverterdialog.cpp" line="129"/>
         <source>Enter valid and writable file path.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź poprawną ścieżkę do pliku, do której masz prawo zapisywać.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbconverterdialog.cpp" line="132"/>
+        <location filename="../dialogs/dbconverterdialog.cpp" line="131"/>
         <source>Entered file exists and will be overwritten.</source>
-        <translation type="unfinished"></translation>
+        <translation>Podany plik istnieje i zostanie nadpisany.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbconverterdialog.cpp" line="136"/>
+        <location filename="../dialogs/dbconverterdialog.cpp" line="135"/>
         <source>Enter a not empty, unique name (as in the list of databases on the left).</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź niepustą, unikalną nazwę (w kontekście listy baz danych po lewej).</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbconverterdialog.cpp" line="141"/>
+        <location filename="../dialogs/dbconverterdialog.cpp" line="140"/>
         <source>No valid target dialect available. Conversion not possible.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie ma dostępnego poprawnego docelowego dialektu. Konwersja nie jest możliwa.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbconverterdialog.cpp" line="143"/>
+        <location filename="../dialogs/dbconverterdialog.cpp" line="142"/>
         <source>Select valid target dialect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz poprawny docelowy dialekt.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbconverterdialog.cpp" line="195"/>
+        <location filename="../dialogs/dbconverterdialog.cpp" line="194"/>
         <source>Database %1 has been successfully converted and now is available under new name: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Baza danych %1 została przekonwertowana pomyślnie i jest teraz dostępna pod nazwą: %2</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbconverterdialog.cpp" line="207"/>
+        <location filename="../dialogs/dbconverterdialog.cpp" line="206"/>
         <source>SQL statements conversion</source>
-        <translation type="unfinished"></translation>
+        <translation>Konwersja zapytań SQL</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/dbconverterdialog.cpp" line="214"/>
+        <source>Following error occurred while converting SQL statements to the target SQLite version:</source>
+        <translation>Następujące błędy wystąpiły podczas konwersji zapytań SQL do docelowej wersji SQLite:</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.cpp" line="215"/>
-        <source>Following error occurred while converting SQL statements to the target SQLite version:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/dbconverterdialog.cpp" line="216"/>
         <source>Would you like to ignore those errors and proceed?</source>
-        <translation type="unfinished"></translation>
+        <translation>Czy chcesz zignorować te błędy i kontynuować?</translation>
     </message>
 </context>
 <context>
@@ -2226,68 +1811,68 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="20"/>
         <source>Database</source>
-        <translation type="unfinished"></translation>
+        <translation>Baza danych</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="43"/>
         <source>Database driver</source>
-        <translation type="unfinished"></translation>
+        <translation>Sterownik bazy danych</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="59"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="66"/>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="78"/>
         <source>Browse for database file on local computer</source>
-        <translation type="unfinished"></translation>
+        <translation>Przeglądaj w poszukiwaniu pliku bazy danych na lokalnym komputerze</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="90"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>Plik</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="97"/>
         <source>Generate name basing on file path</source>
-        <translation type="unfinished"></translation>
+        <translation>Generuj nazwę bazując na ścieżce do pliku</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="110"/>
         <source>Permanent</source>
-        <translation type="unfinished"></translation>
+        <translation>Trwała</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="132"/>
         <source>&lt;p&gt;Enable this if you want the database to be stored in configuration file and restored every time SQLiteStudio is started.&lt;/p&gt;</source>
         <extracomment>aasfd</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Włącz to, jeśli chcesz aby baza danych była przechowywana w pliku konfiguracji i przywracana za każdym razem, gdy startuje SQLiteStudio.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="164"/>
         <source>Test database connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Testuj połączenie z bazą</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="279"/>
         <source>Browse</source>
-        <translation type="unfinished"></translation>
+        <translation>Przeglądaj</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="516"/>
         <source>The name will be auto-generated</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa będzie generowana automatycznie</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="521"/>
         <source>Type the name</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź nazwę</translation>
     </message>
 </context>
 <context>
@@ -2295,47 +1880,47 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="174"/>
         <source>Delete table</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń tabelę</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="175"/>
         <source>Are you sure you want to delete table %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>Czy na pewno chcesz usunąć tabelę %1?</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="179"/>
         <source>Delete index</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń indeks</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="180"/>
         <source>Are you sure you want to delete index %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>Czy na pewno chcesz usunąć indeks %1?</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="184"/>
         <source>Delete trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń wyzwalacz</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="185"/>
         <source>Are you sure you want to delete trigger %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>Czy na pewno chcesz usunąć wyzwalacz %1?</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="189"/>
         <source>Delete view</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń widok</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="190"/>
         <source>Are you sure you want to delete view %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>Czy na pewno chcesz usunąć widok %1?</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="218"/>
         <source>Error while dropping %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Błąd podczas porzucania %1: %2</translation>
     </message>
 </context>
 <context>
@@ -2343,311 +1928,324 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbtree/dbtree.ui" line="23"/>
         <source>Databases</source>
-        <translation type="unfinished"></translation>
+        <translation>Bazy danych</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.ui" line="67"/>
         <source>Filter by name</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtruj po nazwie</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="99"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiuj</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="100"/>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Wklej</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="101"/>
         <source>Select all</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz wszystko</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="102"/>
         <source>Create a group</source>
-        <translation type="unfinished"></translation>
+        <translation>Utwórz grupę</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="103"/>
         <source>Delete the group</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń grupę</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="104"/>
         <source>Rename the group</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmień nazwę grupy</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="105"/>
         <source>Add a database</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj bazę danych</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="106"/>
         <source>Edit the database</source>
-        <translation type="unfinished"></translation>
+        <translation>Edytuj bazę danych</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="107"/>
         <source>Remove the database</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń bazę danych</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="108"/>
         <source>Connect to the database</source>
-        <translation type="unfinished"></translation>
+        <translation>Połącz z bazą danych</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="109"/>
         <source>Disconnect from the database</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozłącz się z bazą danych</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="110"/>
         <source>Import</source>
-        <translation type="unfinished"></translation>
+        <translation>Importuj</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="111"/>
         <source>Export the database</source>
-        <translation type="unfinished"></translation>
+        <translation>Eksportuj bazę danych</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="112"/>
         <source>Convert database type</source>
-        <translation type="unfinished"></translation>
+        <translation>Konwertuj typ bazy danych</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="113"/>
         <source>Vacuum</source>
-        <translation type="unfinished"></translation>
+        <translation>Odkurz</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="114"/>
         <source>Integrity check</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprawdź spójność</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="115"/>
         <source>Create a table</source>
-        <translation type="unfinished"></translation>
+        <translation>Utwórz tabelę</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="116"/>
         <source>Edit the table</source>
-        <translation type="unfinished"></translation>
+        <translation>Edytuj tabelę</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="117"/>
+        <location filename="../dbtree/dbtree.cpp" line="932"/>
+        <source>Entry with name %1 already exists in group %2.</source>
+        <translation>Pozycja o nazwie %1 istnieje już w grupie %2.</translation>
+    </message>
+    <message>
         <source>Drop the table</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Porzuć tabelę</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="118"/>
         <source>Export the table</source>
-        <translation type="unfinished"></translation>
+        <translation>Eksportuj tabelę</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="119"/>
         <source>Import into the table</source>
-        <translation type="unfinished"></translation>
+        <translation>Importuj do tabeli</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="120"/>
         <source>Populate table</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaludnij tabelę</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="121"/>
         <source>Create similar table</source>
-        <translation type="unfinished"></translation>
+        <translation>Utwórz podobną tabelę</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="122"/>
         <source>Create an index</source>
-        <translation type="unfinished"></translation>
+        <translation>Utwórz indeks</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="123"/>
         <source>Edit the index</source>
-        <translation type="unfinished"></translation>
+        <translation>Edytuj indeks</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="124"/>
         <source>Drop the index</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Porzuć indeks</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="125"/>
         <source>Create a trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Utwórz wyzwalacz</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="126"/>
         <source>Edit the trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Edytuj wyzwalacz</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="127"/>
         <source>Drop the trigger</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Porzuć wyzwalacz</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="128"/>
         <source>Create a view</source>
-        <translation type="unfinished"></translation>
+        <translation>Utwórz widok</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="129"/>
         <source>Edit the view</source>
-        <translation type="unfinished"></translation>
+        <translation>Edytuj widok</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="130"/>
         <source>Drop the view</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Porzuć widok</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="131"/>
         <source>Add a column</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj kolumnę</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="132"/>
         <source>Edit the column</source>
-        <translation type="unfinished"></translation>
+        <translation>Edytuj kolumnę</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="133"/>
         <source>Delete the column</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń kolumnę</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="134"/>
         <source>Delete selected items</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń wybrane elementy</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="135"/>
         <source>Clear filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyść filtr</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="136"/>
         <source>Refresh all database schemas</source>
-        <translation type="unfinished"></translation>
+        <translation>Odśwież schematy wszystkich baz danych</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="137"/>
         <source>Refresh selected database schema</source>
-        <translation type="unfinished"></translation>
+        <translation>Odśwież schemat wybranej bazy danych</translation>
+    </message>
+    <message>
+        <location filename="../dbtree/dbtree.cpp" line="117"/>
+        <source>Delete the table</source>
+        <translation>Usuń tabelę</translation>
+    </message>
+    <message>
+        <location filename="../dbtree/dbtree.cpp" line="124"/>
+        <source>Delete the index</source>
+        <translation>Usuń indeks</translation>
+    </message>
+    <message>
+        <location filename="../dbtree/dbtree.cpp" line="127"/>
+        <source>Delete the trigger</source>
+        <translation>Usuń wyzwalacz</translation>
+    </message>
+    <message>
+        <location filename="../dbtree/dbtree.cpp" line="130"/>
+        <source>Delete the view</source>
+        <translation>Usuń widok</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="307"/>
         <location filename="../dbtree/dbtree.cpp" line="312"/>
-        <source>Datatabase</source>
-        <translation type="unfinished"></translation>
+        <source>Database</source>
+        <translation>Baza danych</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="322"/>
         <source>Grouping</source>
-        <translation type="unfinished"></translation>
+        <translation>Grupowanie</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="929"/>
+        <location filename="../dbtree/dbtree.cpp" line="932"/>
         <source>Create group</source>
-        <translation type="unfinished"></translation>
+        <translation>Utwórz grupę</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="929"/>
         <source>Group name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbtree/dbtree.cpp" line="932"/>
-        <source>Create directory</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dbtree/dbtree.cpp" line="932"/>
-        <source>Entry with name %1 already exists in directory %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa grupy</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="950"/>
         <source>Delete group</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń grupę</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="951"/>
         <source>Are you sure you want to delete group %1?
 All objects from this group will be moved to parent group.</source>
-        <translation type="unfinished"></translation>
+        <translation>Czy na pewno chcesz usunąć grupę %1?
+Wszystkie obiekty z tej grupy zostaną przeniesione do nadrzędnej grupy.</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1011"/>
         <source>Delete database</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń bazę danych</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1011"/>
         <source>Are you sure you want to delete database &apos;%1&apos;?</source>
-        <translation type="unfinished"></translation>
+        <translation>Czy na pewno chcesz usunąć bazę danych &apos;%1&apos;?</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1047"/>
         <location filename="../dbtree/dbtree.cpp" line="1257"/>
         <source>Cannot import, because no import plugin is loaded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można zaimportować, ponieważ żadna wtyczka importu nie została załadowana.</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1067"/>
         <location filename="../dbtree/dbtree.cpp" line="1232"/>
         <source>Cannot export, because no export plugin is loaded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można wyeksportować, ponieważ żadna wtyczka eksportu nie została załadowana.</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1331"/>
         <source>Error while executing VACUUM on the database %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Błąd podczas wykonywania VACUUM na bazie danych %1: %2</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1333"/>
         <source>VACUUM execution finished successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wykonanie VACUUM przebiegło pomyślnie.</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1350"/>
         <source>Integrity check (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprawdzanie spójności (%1)</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1472"/>
         <source>Following objects will be deleted: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Następujące obiekty zostaną usunięte: %1</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1475"/>
         <source>Following databases will be removed from list: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Następujące bazy danych zostaną usunięte z listy: %1</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1478"/>
         <source>Remainig objects from deleted group will be moved in place where the group used to be.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pozostałe obiekty z usuniętej grupy będą przeniesione w miejsce, gdzie dotychczas była ta grupa.</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1480"/>
         <source>%1&lt;br&gt;&lt;br&gt;Are you sure you want to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1&lt;br&gt;&lt;br&gt;Czy na pewno chcesz kontynuować?</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1482"/>
         <source>Delete objects</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń obiekty</translation>
     </message>
 </context>
 <context>
@@ -2656,25 +2254,25 @@ All objects from this group will be moved to parent group.</source>
         <location filename="../dbtree/dbtreeitemdelegate.cpp" line="92"/>
         <source>error</source>
         <comment>dbtree labels</comment>
-        <translation type="unfinished"></translation>
+        <translation>błąd</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreeitemdelegate.cpp" line="109"/>
         <source>(system table)</source>
         <comment>database tree label</comment>
-        <translation type="unfinished"></translation>
+        <translation>(tabela systemowa)</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreeitemdelegate.cpp" line="127"/>
         <source>(virtual)</source>
         <comment>virtual table label</comment>
-        <translation type="unfinished"></translation>
+        <translation>(wirtualna)</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreeitemdelegate.cpp" line="139"/>
         <source>(system index)</source>
         <comment>database tree label</comment>
-        <translation type="unfinished"></translation>
+        <translation>(indeks systemowy)</translation>
     </message>
 </context>
 <context>
@@ -2683,147 +2281,146 @@ All objects from this group will be moved to parent group.</source>
         <location filename="../dbtree/dbtreemodel.cpp" line="405"/>
         <source>Database: %1</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Baza danych: %1</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="410"/>
         <source>Version:</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Wersja:</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="411"/>
         <source>File size:</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Rozmiar pliku:</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="412"/>
         <source>Encoding:</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Kodowanie:</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="417"/>
         <source>Error details:</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Szczegóły błędu:</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="427"/>
         <source>Table : %1</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Tablela: : %1</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="450"/>
         <source>Columns (%1):</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Kolumny (%1):</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="453"/>
         <source>Indexes (%1):</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Indeksy (%1):</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="456"/>
         <source>Triggers (%1):</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Wyzwalacze (%!1):</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1071"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiuj</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1072"/>
         <source>Move</source>
-        <translation type="unfinished"></translation>
+        <translation>Przenieś</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1074"/>
         <source>Include data</source>
-        <translation type="unfinished"></translation>
+        <translation>Również dane</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1075"/>
         <source>Include indexes</source>
-        <translation type="unfinished"></translation>
+        <translation>Również indeksy</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1076"/>
         <source>Include triggers</source>
-        <translation type="unfinished"></translation>
+        <translation>Również wyzwalacze</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1078"/>
         <source>Abort</source>
-        <translation type="unfinished"></translation>
+        <translation>Przerwij</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1154"/>
         <source>Referenced tables</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabele powiązane</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1155"/>
         <source>Do you want to include following referenced tables as well:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Czy chcesz zawrzeć również powiązane tabele:
+%1</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1164"/>
         <source>Name conflict</source>
-        <translation type="unfinished"></translation>
+        <translation>Konflikt nazwy</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1165"/>
         <source>Following object already exists in the target database.
 Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</source>
-        <translation type="unfinished"></translation>
+        <translation>Następująy obiekt istnieje już w docelowej bazie danych.
+Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przerwać operację.</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1178"/>
         <source>SQL statements conversion</source>
-        <translation type="unfinished"></translation>
+        <translation>Konwersja zapytań SQL</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1186"/>
         <source>Following error occurred while converting SQL statements to the target SQLite version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Następujące błędy wystąpiły podczas konwersji zapytań SQL do docelowej wersji SQLite:</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1187"/>
         <source>Would you like to ignore those errors and proceed?</source>
-        <translation type="unfinished"></translation>
+        <translation>Czy chcesz zignorować te błędy i kontynuować?</translation>
     </message>
 </context>
 <context>
     <name>DdlHistoryWindow</name>
     <message>
-        <location filename="../windows/ddlhistorywindow.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../windows/ddlhistorywindow.ui" line="35"/>
         <source>Filter by database:</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtruj po bazie danych:</translation>
     </message>
     <message>
         <location filename="../windows/ddlhistorywindow.cpp" line="73"/>
         <source>-- Queries executed on database %1 (%2)
 -- Date and time of execution: %3
 %4</source>
-        <translation type="unfinished"></translation>
+        <translation>-- Zapytania wykonane na bazie %1 (%2)
+-- Data i godzina wykonania: %3
+%4</translation>
     </message>
     <message>
         <location filename="../windows/ddlhistorywindow.cpp" line="124"/>
         <source>DDL history</source>
-        <translation type="unfinished"></translation>
+        <translation>Historia DDL</translation>
     </message>
 </context>
 <context>
@@ -2831,12 +2428,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/ddlpreviewdialog.ui" line="14"/>
         <source>Queries to be executed</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapytania do wykonania</translation>
     </message>
     <message>
         <location filename="../dialogs/ddlpreviewdialog.ui" line="42"/>
         <source>Don&apos;t show again</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie pokazuj więcej</translation>
     </message>
 </context>
 <context>
@@ -2844,419 +2441,384 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../debugconsole.ui" line="14"/>
         <source>SQLiteStudio Debug Console</source>
-        <translation type="unfinished"></translation>
+        <translation>Konsola Debugowania SQLiteStudio</translation>
     </message>
 </context>
 <context>
     <name>EditorWindow</name>
     <message>
-        <location filename="../windows/editorwindow.ui" line="14"/>
-        <source>SQL editor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../windows/editorwindow.ui" line="30"/>
+        <location filename="../windows/editorwindow.ui" line="39"/>
         <source>Query</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapytanie</translation>
     </message>
     <message>
-        <location filename="../windows/editorwindow.ui" line="82"/>
+        <location filename="../windows/editorwindow.ui" line="109"/>
         <source>History</source>
-        <translation type="unfinished"></translation>
+        <translation>Historia</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="126"/>
         <source>Results in the separate tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyniki w osobnej karcie</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="127"/>
         <source>Results below the query</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyniki pod zapytaniem</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="160"/>
         <location filename="../windows/editorwindow.cpp" line="162"/>
         <source>SQL editor %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Edytor SQL %1</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="320"/>
         <source>Results</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyniki</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="353"/>
         <source>Execute query</source>
-        <translation type="unfinished"></translation>
+        <translation>Wykonaj zapytanie</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="354"/>
         <source>Explain query</source>
-        <translation type="unfinished"></translation>
+        <translation>Wytłumacz zapytanie</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="357"/>
         <source>Clear execution history</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Wymaż historię zapytań</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="359"/>
         <source>Export results</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Wyeksportuj wyniki</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="361"/>
         <source>Create view from query</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Utwórz widok z zapytania</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="370"/>
         <source>Previous database</source>
-        <translation type="unfinished"></translation>
+        <translation>Poprzednia baza danych</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="371"/>
         <source>Next database</source>
-        <translation type="unfinished"></translation>
+        <translation>Następna baza danych</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="374"/>
         <source>Show next tab</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż następną kartę</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="375"/>
         <source>Show previous tab</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż poprzednią kartę</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="376"/>
         <source>Focus results below</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Aktywuj wyniki poniżej</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="377"/>
         <source>Focus SQL editor above</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Aktywuj edytor SQL powyżej</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="451"/>
         <source>Active database (%1/%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktywna baza danych (%1/%2)</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="487"/>
         <source>Query finished in %2 second(s).</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapytanie ukończone w %2 sekund(y).</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="588"/>
         <source>Clear execution history</source>
-        <translation type="unfinished"></translation>
+        <translation>Wymaż historię zapytań</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="588"/>
         <source>Are you sure you want to erase the entire SQL execution history? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation>Czy na pewno chcesz wymazać całą historię zapytań SQL? Tego nie można odwrócić.</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="600"/>
         <source>Cannot export, because no export plugin is loaded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można wyeksportować, ponieważ żadna wtyczka eksportu nie została załadowana.</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="621"/>
         <source>No database selected in the SQL editor. Cannot create a view for unknown database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie wybrano bazdy danych w edytorze SQL. Nie można utworzyć widoku dla nieznanej bazy.</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="651"/>
         <source>Editor window &quot;%1&quot; has uncommited data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno edytora &quot;%1&quot; ma niezatwierdzone dane.</translation>
     </message>
 </context>
 <context>
     <name>ErrorsConfirmDialog</name>
     <message>
         <location filename="../dialogs/errorsconfirmdialog.ui" line="14"/>
-        <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <source>Errors</source>
+        <translation>Błędy</translation>
     </message>
     <message>
         <location filename="../dialogs/errorsconfirmdialog.ui" line="20"/>
         <source>Following errors occured:</source>
-        <translation type="unfinished"></translation>
+        <translation>Wystąpiły następujące błędy:</translation>
     </message>
     <message>
         <location filename="../dialogs/errorsconfirmdialog.ui" line="34"/>
         <source>Would you like to proceed?</source>
-        <translation type="unfinished"></translation>
+        <translation>Czy chcesz kontynuować?</translation>
     </message>
 </context>
 <context>
     <name>ExportDialog</name>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="14"/>
-        <source>Export dialog</source>
-        <translation type="unfinished"></translation>
+        <source>Export</source>
+        <translation>Eksportuj</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="21"/>
         <source>What do you want to export?</source>
-        <translation type="unfinished"></translation>
+        <translation>Co chcesz eksportować?</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="36"/>
         <source>A database</source>
-        <translation type="unfinished"></translation>
+        <translation>Bazę danych</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="46"/>
         <source>A single table</source>
-        <translation type="unfinished"></translation>
+        <translation>Pojedynczą tabelę</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="53"/>
         <source>Query results</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyniki zapytania</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="65"/>
         <source>Table to export</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabela do wyeksportowania</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="100"/>
         <source>Database</source>
-        <translation type="unfinished"></translation>
+        <translation>Baza danych</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="107"/>
         <source>Table</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/exportdialog.ui" line="114"/>
-        <source>.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabela</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="124"/>
         <source>Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Opcje</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="130"/>
         <source>When this option is unchecked, then only table DDL (CREATE TABLE statement) is exported.</source>
-        <translation type="unfinished"></translation>
+        <translation>Gdy ta opcja jest odznaczona, to tylko DDL tabeli (zapytanie CREATE TABLE) jest eksportowane.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="133"/>
         <source>Export table data</source>
-        <translation type="unfinished"></translation>
+        <translation>Eksportuj dane tabeli</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="143"/>
         <source>Export table indexes</source>
-        <translation type="unfinished"></translation>
+        <translation>Eksportuj indeksy tabeli</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="153"/>
         <source>Export table triggers</source>
-        <translation type="unfinished"></translation>
+        <translation>Eksportuj wyzwalacze tabeli</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="175"/>
         <source>Note, that exporting table indexes and triggers may be unsupported by some output formats.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zwróć uwagę, że eksportowanie indeksów i wyzwalaczy tabeli może nie być obsługiwane przez niektóre formaty wyjściowe.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="189"/>
         <source>Select database objects to export</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz obiekty bazy danych do eksportu</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="202"/>
         <source>Export data from tables</source>
-        <translation type="unfinished"></translation>
+        <translation>Eksportuj dane z tabel</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="212"/>
         <source>Select all</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz wszystko</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="219"/>
         <source>Deselect all</source>
-        <translation type="unfinished"></translation>
+        <translation>Odznacz wszystko</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="229"/>
         <location filename="../dialogs/exportdialog.ui" line="249"/>
         <source>Database:</source>
-        <translation type="unfinished"></translation>
+        <translation>Baza danych:</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="237"/>
         <source>Query to export results for</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapytanie dla wyników do eksportu</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="256"/>
         <source>Query to be executed for results:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapytanie, które należy wykonać dla wyników:</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="264"/>
         <source>Export format and options</source>
-        <translation type="unfinished"></translation>
+        <translation>Format eksportu i opcje</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="318"/>
         <source>Export format</source>
-        <translation type="unfinished"></translation>
+        <translation>Format eksportu</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="330"/>
         <source>Output</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyjście</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="336"/>
         <source>Exported file path</source>
-        <translation type="unfinished"></translation>
+        <translation>Ścieżka do wyeksportowanego pliku</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="343"/>
         <source>Clipboard</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/exportdialog.ui" line="350"/>
-        <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>Schowek</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="357"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>Plik</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="382"/>
         <source>Exported text encoding:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kodowanie wyeksportowanego tekstu:</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="398"/>
         <source>Export format options</source>
-        <translation type="unfinished"></translation>
+        <translation>Opcje formatu eksportowania</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="51"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Anuluj</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="141"/>
         <location filename="../dialogs/exportdialog.cpp" line="165"/>
         <location filename="../dialogs/exportdialog.cpp" line="188"/>
         <source>Select database to export.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz bazę do eksportu.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="142"/>
         <source>Select table to export.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz tabelę do eksportu.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="166"/>
         <source>Enter valid query to export.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź poprawne zapytanie do eksportu.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="189"/>
         <source>Select at least one object to export.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz przynajmniej jeden obiekt do eksportu.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="212"/>
         <source>You must provide a file name to export to.</source>
-        <translation type="unfinished"></translation>
+        <translation>Musisz podać nazwę pliku do którego należy wyeksportować.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="219"/>
         <source>Path you provided is an existing directory. You cannot overwrite it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ścieżka którą podałeś jest istniejącym katalogiem. Nie można go nadpisać.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="225"/>
         <source>The directory &apos;%1&apos; does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalog &apos;%1&apos; nie istnieje.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="231"/>
         <source>The file &apos;%1&apos; exists and will be overwritten.</source>
-        <translation type="unfinished"></translation>
+        <translation>Plik &apos;%1&apos; istnieje i zostanie nadpisany.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="402"/>
         <source>All files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Wszystkie pliki (*)</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="405"/>
         <source>Pick file to export to</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz plik do eksportu</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="694"/>
         <source>Internal error during export. This is a bug. Please report it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wystąpił wewnętrzny błąd podczas eksportu. To jest błąd programu. Proszę to zgłosić.</translation>
     </message>
 </context>
 <context>
     <name>FontEdit</name>
     <message>
-        <location filename="../common/fontedit.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../common/fontedit.ui" line="20"/>
-        <source>TextLabel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../common/fontedit.ui" line="27"/>
-        <source>...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../common/fontedit.cpp" line="61"/>
         <source>Choose font</source>
         <comment>font configuration</comment>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz czcionkę</translation>
     </message>
 </context>
 <context>
     <name>Form</name>
     <message>
-        <location filename="../forms/sqlformatterplugin.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../forms/sqlformatterplugin.ui" line="20"/>
         <source>Active SQL formatter plugin</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktywna wtyczka formatera SQL</translation>
     </message>
 </context>
 <context>
@@ -3265,214 +2827,209 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../formview.cpp" line="253"/>
         <source>Commit row</source>
         <comment>form view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zatwierdź wiersz</translation>
     </message>
     <message>
         <location filename="../formview.cpp" line="254"/>
         <source>Rollback row</source>
         <comment>form view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Wycofaj wiersz</translation>
     </message>
     <message>
         <location filename="../formview.cpp" line="255"/>
         <source>First row</source>
         <comment>form view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Pierwszy wiersz</translation>
     </message>
     <message>
         <location filename="../formview.cpp" line="256"/>
         <source>Previous row</source>
         <comment>form view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Poprzedni wiersz</translation>
     </message>
     <message>
         <location filename="../formview.cpp" line="257"/>
         <source>Next row</source>
         <comment>form view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Następny wiersz</translation>
     </message>
     <message>
         <location filename="../formview.cpp" line="258"/>
         <source>Last row</source>
         <comment>form view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ostatni wiersz</translation>
     </message>
     <message>
         <location filename="../formview.cpp" line="259"/>
         <source>Insert new row</source>
         <comment>form view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Wstaw nowy wiersz</translation>
     </message>
     <message>
         <location filename="../formview.cpp" line="260"/>
         <source>Delete current row</source>
         <comment>form view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Usuń bieżący wiersz</translation>
     </message>
 </context>
 <context>
     <name>FunctionsEditor</name>
     <message>
-        <location filename="../windows/functionseditor.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../windows/functionseditor.ui" line="81"/>
         <source>Filter funtions</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtruj funkcje</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="151"/>
         <source>Function name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa funkcji:</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="161"/>
         <source>Implementation language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Język implementacji:</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="171"/>
         <source>Type:</source>
-        <translation type="unfinished"></translation>
+        <translation>Typ:</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="187"/>
         <source>Input arguments</source>
-        <translation type="unfinished"></translation>
+        <translation>Argumenty wejściowe</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="193"/>
         <source>Undefined</source>
-        <translation type="unfinished"></translation>
+        <translation>Niezdefiniowane</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="235"/>
         <source>Databases</source>
-        <translation type="unfinished"></translation>
+        <translation>Bazy danych</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="241"/>
         <source>Register in all databases</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarejestruj we wszystkich bazach danych</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="248"/>
         <source>Register in following databases:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zarejestruj w następujących bazach danych:</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="278"/>
         <source>Initialization code:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kod inicjalizacji:</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="294"/>
         <location filename="../windows/functionseditor.cpp" line="426"/>
         <source>Function implementation code:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kod implementacji funkcji:</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="310"/>
         <source>Final step implementation code:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kod implementacji ostatniego kroku:</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="54"/>
         <source>SQL function editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Edytor funkcji SQL</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="59"/>
         <source>Commit all function changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Zatwierdź zmiany we wszystkich funkcjach</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="60"/>
         <source>Rollback all function changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Wycofaj zmiany we wszystkich funkcjach</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="62"/>
         <source>Create new function</source>
-        <translation type="unfinished"></translation>
+        <translation>Utwórz nową funkcję</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="63"/>
         <source>Delete selected function</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń wybraną funkcję</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="65"/>
         <source>Custom SQL functions manual</source>
-        <translation type="unfinished"></translation>
+        <translation>Podręcznik własnych funkcji SQL</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="68"/>
         <source>Add function argument</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj argument funkcji</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="69"/>
         <source>Rename function argument</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmień nazwę argumentu funkcji</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="70"/>
         <source>Delete function argument</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń argument funkcji</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="72"/>
         <source>Move function argument up</source>
-        <translation type="unfinished"></translation>
+        <translation>Przesuń argument funkcji w górę</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="73"/>
         <source>Move function argument down</source>
-        <translation type="unfinished"></translation>
+        <translation>Przesuń argument funkcji w dół</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="111"/>
         <source>Scalar</source>
-        <translation type="unfinished"></translation>
+        <translation>Skalarna</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="112"/>
         <source>Aggregate</source>
-        <translation type="unfinished"></translation>
+        <translation>Agregacyjna</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="410"/>
         <source>Enter a non-empty, unique name of the function.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź niepustą, unikalną nazwę funkcji</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="422"/>
         <source>Pick the implementation language.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz język implementacji.</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="426"/>
         <source>Per step code:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kod pojedynczego kroku:</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="432"/>
         <source>Enter a non-empty implementation code.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź niepusty kod implementacji.</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="505"/>
         <source>argument</source>
         <comment>new function argument name in function editor window</comment>
-        <translation type="unfinished"></translation>
+        <translation>argument</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="631"/>
         <source>Functions editor window has uncommited modifications.</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno edytora funkcji ma niezatwierdzone zmiany.</translation>
     </message>
 </context>
 <context>
@@ -3480,499 +3037,481 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/importdialog.ui" line="14"/>
         <source>Import data</source>
-        <translation type="unfinished"></translation>
+        <translation>Importuj dane</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="21"/>
         <source>Table to import to</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabela do której należy importować</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="36"/>
         <source>Table</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabela</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="43"/>
         <source>Database</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/importdialog.ui" line="50"/>
-        <source>.</source>
-        <translation type="unfinished"></translation>
+        <translation>Baza danych</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="84"/>
         <source>Data source to import from</source>
-        <translation type="unfinished"></translation>
+        <translation>Źródło danych z którego należy importować</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="129"/>
         <source>Data source type</source>
-        <translation type="unfinished"></translation>
+        <translation>Typ źródła danych</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="141"/>
         <source>Options</source>
-        <translation type="unfinished"></translation>
+        <translation>OOpcje</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="147"/>
         <source>Input file:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/importdialog.ui" line="172"/>
-        <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>Plik wejściowy:</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="182"/>
         <source>Text encoding:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kodowanie tekstu:</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="195"/>
         <source>Data source options</source>
-        <translation type="unfinished"></translation>
+        <translation>Opcje źródła danych</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="71"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Anuluj</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="101"/>
         <source>If you type table name that doesn&apos;t exist, it will be created.</source>
-        <translation type="unfinished"></translation>
+        <translation>Jeśli wpiszesz nazwę tabeli, która nie istnieje, to zostanie ona stworzona.</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="101"/>
         <source>Enter the table name</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź nazwę tabeli</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="119"/>
         <source>Select import plugin.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz wtyczkę importu</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="128"/>
         <source>You must provide a file to import from.</source>
-        <translation type="unfinished"></translation>
+        <translation>Musisz podać plik z którego należy zaimportować.</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="135"/>
         <source>The file &apos;%1&apos; does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Plik &apos;%1&apos; nie istnieje.</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="141"/>
         <source>Path you provided is a directory. A regular file is required.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ścieżka którą podałeś jest katalogiem. Wymagany jest zwykły plik.</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="325"/>
         <source>Pick file to import from</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz plik do importu</translation>
     </message>
 </context>
 <context>
     <name>IndexDialog</name>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="20"/>
-        <source>Index dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../dialogs/indexdialog.ui" line="30"/>
         <source>Index</source>
-        <translation type="unfinished"></translation>
+        <translation>Indeks</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="36"/>
         <source>On table:</source>
-        <translation type="unfinished"></translation>
+        <translation>Na tabeli:</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="43"/>
         <source>Index name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa indeksu:</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="50"/>
         <source>Partial index condition</source>
-        <translation type="unfinished"></translation>
+        <translation>Warunek indeksu częściowego:</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="67"/>
         <source>Unique index</source>
-        <translation type="unfinished"></translation>
+        <translation>Indeks unikalny</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="90"/>
         <source>Column</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolumna</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="95"/>
         <source>Collation</source>
-        <translation type="unfinished"></translation>
+        <translation>Zestawienie</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="100"/>
         <source>Sort</source>
-        <translation type="unfinished"></translation>
+        <translation>Sortowanie</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="115"/>
         <source>DDL</source>
-        <translation type="unfinished"></translation>
+        <translation>DDL</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="65"/>
         <source>Tried to open index dialog for closed or inexisting database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Próbowano otworzyć okno indeksu dla zamkniętej lub nieistniejącej bazy.</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="131"/>
         <source>Could not process index %1 correctly. Unable to open an index dialog.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie udało się przetworzyć poprawnie indeksu %1. Nie można otworzyć okna indeksu.</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="185"/>
         <source>Pick the table for the index.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz tabelę dla indeksu.</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="186"/>
         <source>Select at least one column.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz przynajmniej jedną kolumnę.</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="187"/>
         <source>Enter a valid condition.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź poprawny warunek.</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="236"/>
         <source>default</source>
         <comment>index dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>domyślne</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="247"/>
         <source>Sort order</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Kierunek sortowania</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="452"/>
         <location filename="../dialogs/indexdialog.cpp" line="465"/>
         <source>Error</source>
         <comment>index dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Błąd</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="453"/>
         <source>Cannot create unique index, because values in selected columns are not unique. Would you like to execute SELECT query to see problematic values?</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można utworzyć indeksu, ponieważ wartości w wybranych kolumnach nie są unikalne. Czy chcesz wykonać zapytanie SELECT, aby zobaczyć wartości stwarzające problem?</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="465"/>
         <source>An error occurred while executing SQL statements:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Wystąpił błąd podczas wykonywania zapytań SQL:
+%1</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../mainwindow.ui" line="14"/>
-        <source>SQLiteStudio (?.?.?)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../mainwindow.ui" line="66"/>
         <source>Database toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasek narzędzi baz danych</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="77"/>
         <source>Structure toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasek narzędzi struktury</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="88"/>
         <source>Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>Narzędzia</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="105"/>
         <source>Window list</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista okien</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="119"/>
         <source>View toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Pasek narzędzi widoku</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="104"/>
         <source>Configuration widgets</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontrolki konfiguracji</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="105"/>
         <source>Syntax highlighting engines</source>
-        <translation type="unfinished"></translation>
+        <translation>Silniki podświetlania składni</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="106"/>
         <source>Data editors</source>
-        <translation type="unfinished"></translation>
+        <translation>Edytory danych</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="118"/>
         <source>Running in debug mode. Press %1 or use &apos;Help / Open debug console&apos; menu entry to open the debug console.</source>
-        <translation type="unfinished"></translation>
+        <translation>Uruchomiono tryb debugowania. Wciśnij %1 lub wybierz menu &apos;Pomoc / Otwórz konsolę debugowania&apos; aby otworzyć konsolę debugowania.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="120"/>
         <source>Running in debug mode. Debug messages are printed to the standard output.</source>
-        <translation type="unfinished"></translation>
+        <translation>Uruchomiono tryb debugowania. Wiadomości debugujące są wyświetlane na standardowym wyjściu.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="238"/>
         <source>Open SQL editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz edytor SQL</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="239"/>
         <source>Open DDL history</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz historię DDL</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="240"/>
         <source>Open SQL functions editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz edytor funkcji SQL</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="241"/>
         <source>Open collations editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz edytor zestawień</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="242"/>
         <source>Import</source>
-        <translation type="unfinished"></translation>
+        <translation>Importuj</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="243"/>
         <source>Export</source>
-        <translation type="unfinished"></translation>
+        <translation>Eksportuj</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="245"/>
         <source>Open configuration dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz okno konfiguracji</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="247"/>
         <source>Tile windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustaw okna w płytki</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="248"/>
         <source>Tile windows horizontally</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustaw okno poziomo</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="249"/>
         <source>Tile windows vertically</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustaw okna pionowo</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="250"/>
         <source>Cascade windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustaw okna caskadowo</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="251"/>
         <source>Next window</source>
-        <translation type="unfinished"></translation>
+        <translation>Następne okno</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="252"/>
         <source>Previous window</source>
-        <translation type="unfinished"></translation>
+        <translation>Poprzednie okno</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="253"/>
         <source>Hide status field</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukryj pole statusu</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="255"/>
         <source>Close selected window</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamknij wybrane okno</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="256"/>
         <source>Close all windows but selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamknij wszystkie okna, oprócz wybranego</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="257"/>
         <source>Close all windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamknij wszystkie okna</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="258"/>
         <source>Restore recently closed window</source>
-        <translation type="unfinished"></translation>
+        <translation>Przywróć ostatnio zamknięte okno</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="259"/>
         <source>Rename selected window</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmień nazwę wybranego okna</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="261"/>
         <source>Open Debug Console</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz Konsolę Debugowania</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="262"/>
         <source>Report a bug</source>
-        <translation type="unfinished"></translation>
+        <translation>Zgłoś błąd</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="263"/>
         <source>Propose a new feature</source>
-        <translation type="unfinished"></translation>
+        <translation>Zgłoś pomysł</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="264"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>O programie</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="265"/>
         <source>Licenses</source>
-        <translation type="unfinished"></translation>
+        <translation>Licencje</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="266"/>
         <source>Open home page</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz stronę domową</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="267"/>
         <source>Open forum page</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz stronę forum</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="268"/>
         <source>User Manual</source>
-        <translation type="unfinished"></translation>
+        <translation>Podręcznik Użytkownika</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="269"/>
         <source>SQLite documentation</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokumentacja SQLite</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="270"/>
         <source>Report history</source>
-        <translation type="unfinished"></translation>
+        <translation>Historia zgłoszeń</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="271"/>
         <source>Check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprawdź aktualizacje</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="308"/>
         <source>Database</source>
         <comment>menubar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Baza danych</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="328"/>
         <source>Structure</source>
         <comment>menubar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Struktura</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="349"/>
         <source>View</source>
         <comment>menubar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Widok</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="353"/>
         <source>Window list</source>
         <comment>menubar view menu</comment>
-        <translation type="unfinished"></translation>
+        <translation>Lista okien</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="374"/>
         <source>Tools</source>
         <comment>menubar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Narzędzia</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="388"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomoc</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="542"/>
         <source>Could not set style: %1</source>
         <comment>main window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nie udało się ustawić stylu: %1</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="614"/>
         <source>Cannot export, because no export plugin is loaded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można wyeksportować, ponieważ żadna wtyczka eksportu nie została załadowana.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="626"/>
         <source>Cannot import, because no import plugin is loaded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można zaimportować, ponieważ żadna wtyczka importu nie została załadowana.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="655"/>
         <source>Rename window</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmień nazwę okna</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="655"/>
         <source>Enter new name for the window:</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź nową nazwę dla okna:</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="723"/>
         <source>New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nowe aktualizacje są dostępne: &lt;a href=&quot;%1&quot;&gt;Kliknij aby poznać szczegóły&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="731"/>
         <source>You&apos;re running the most recent version. No updates are available.</source>
-        <translation type="unfinished"></translation>
+        <translation>Uruchomiona jest najnowsza wersja. Nie ma dostępnych aktualizacji.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="830"/>
         <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Baza danych podana w linii poleceń (%1) jest tymczasowo dodana do listy pod nazwą: %2</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="835"/>
         <source>Could not add database %1 to list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie udało się dodać bazy danych %1 do listy.</translation>
     </message>
 </context>
 <context>
@@ -3980,25 +3519,17 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mdiwindow.cpp" line="190"/>
         <source>Uncommited changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Niezatwierdzone dane</translation>
     </message>
     <message>
         <location filename="../mdiwindow.cpp" line="195"/>
         <source>Close anyway</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamknij mimo to</translation>
     </message>
     <message>
         <location filename="../mdiwindow.cpp" line="197"/>
         <source>Don&apos;t close</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>MessageListDialog</name>
-    <message>
-        <location filename="../dialogs/messagelistdialog.ui" line="14"/>
-        <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie zamykaj</translation>
     </message>
 </context>
 <context>
@@ -4007,29 +3538,29 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../multieditor/multieditor.cpp" line="53"/>
         <source>Null value</source>
         <comment>multieditor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Wartość null</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditor.cpp" line="68"/>
         <source>Configure editors for this data type</source>
-        <translation type="unfinished"></translation>
+        <translation>Skonfiguruj edytory dla tego typu danych</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditor.cpp" line="271"/>
         <source>Data editor plugin &apos;%1&apos; not loaded, while it is defined for editing &apos;%1&apos; data type.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wtyczka edytora danych &apos;%1&apos; nie jest załadowana, podczas gdy jest ona zdefiniowana do edycji typu danych &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditor.cpp" line="356"/>
         <source>Deleted</source>
         <comment>multieditor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Usunięto</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditor.cpp" line="358"/>
         <source>Read only</source>
         <comment>multieditor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Tylko do odczytu</translation>
     </message>
 </context>
 <context>
@@ -4037,7 +3568,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../multieditor/multieditorbool.cpp" line="130"/>
         <source>Boolean</source>
-        <translation type="unfinished"></translation>
+        <translation>Logiczna</translation>
     </message>
 </context>
 <context>
@@ -4045,7 +3576,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../multieditor/multieditordate.cpp" line="14"/>
         <source>Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Data</translation>
     </message>
 </context>
 <context>
@@ -4053,7 +3584,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../multieditor/multieditordatetime.cpp" line="181"/>
         <source>Date &amp; time</source>
-        <translation type="unfinished"></translation>
+        <translation>Data i czas</translation>
     </message>
 </context>
 <context>
@@ -4061,7 +3592,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../multieditor/multieditorhex.cpp" line="39"/>
         <source>Hex</source>
-        <translation type="unfinished"></translation>
+        <translation>Heks</translation>
     </message>
 </context>
 <context>
@@ -4069,7 +3600,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../multieditor/multieditornumeric.cpp" line="35"/>
         <source>Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Liczba</translation>
     </message>
 </context>
 <context>
@@ -4077,42 +3608,42 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../multieditor/multieditortext.cpp" line="45"/>
         <source>Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Tekst</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.cpp" line="106"/>
         <source>Tab changes focus</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabulator zmienia aktywność</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.cpp" line="107"/>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>Wytnij</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.cpp" line="108"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiuj</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.cpp" line="109"/>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Wklej</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.cpp" line="110"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.cpp" line="111"/>
         <source>Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>Cofnij</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.cpp" line="112"/>
         <source>Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>Przywróć</translation>
     </message>
 </context>
 <context>
@@ -4120,7 +3651,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../multieditor/multieditortime.cpp" line="16"/>
         <source>Time</source>
-        <translation type="unfinished"></translation>
+        <translation>Czas</translation>
     </message>
 </context>
 <context>
@@ -4128,53 +3659,53 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/newconstraintdialog.ui" line="20"/>
         <source>New constraint</source>
-        <translation type="unfinished"></translation>
+        <translation>Nowe ograniczenie</translation>
     </message>
     <message>
         <location filename="../dialogs/newconstraintdialog.cpp" line="87"/>
         <location filename="../dialogs/newconstraintdialog.cpp" line="97"/>
         <source>Primary Key</source>
         <comment>new constraint dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Klucz główny</translation>
     </message>
     <message>
         <location filename="../dialogs/newconstraintdialog.cpp" line="89"/>
         <location filename="../dialogs/newconstraintdialog.cpp" line="99"/>
         <source>Foreign Key</source>
         <comment>new constraint dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Klucz obcy</translation>
     </message>
     <message>
         <location filename="../dialogs/newconstraintdialog.cpp" line="91"/>
         <location filename="../dialogs/newconstraintdialog.cpp" line="101"/>
         <source>Unique</source>
         <comment>new constraint dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Wartości unikalne</translation>
     </message>
     <message>
         <location filename="../dialogs/newconstraintdialog.cpp" line="92"/>
         <location filename="../dialogs/newconstraintdialog.cpp" line="102"/>
         <source>Check</source>
         <comment>new constraint dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Warunek</translation>
     </message>
     <message>
         <location filename="../dialogs/newconstraintdialog.cpp" line="103"/>
         <source>Not NULL</source>
         <comment>new constraint dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Niepuste</translation>
     </message>
     <message>
         <location filename="../dialogs/newconstraintdialog.cpp" line="105"/>
         <source>Collate</source>
         <comment>new constraint dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zestawienie</translation>
     </message>
     <message>
         <location filename="../dialogs/newconstraintdialog.cpp" line="107"/>
         <source>Default</source>
         <comment>new constraint dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Wartość domyślna</translation>
     </message>
 </context>
 <context>
@@ -4182,52 +3713,52 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="14"/>
         <source>SQLiteStudio updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizacje SQLiteStudio</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="26"/>
         <source>New updates are available!</source>
-        <translation type="unfinished"></translation>
+        <translation>Dostępne są nowe aktualizacje!</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="70"/>
         <source>Component</source>
-        <translation type="unfinished"></translation>
+        <translation>Komponent</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="75"/>
         <source>Current version</source>
-        <translation type="unfinished"></translation>
+        <translation>Obecna wersja</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="80"/>
         <source>Update version</source>
-        <translation type="unfinished"></translation>
+        <translation>Wersja aktualizacji</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="91"/>
         <source>Check for updates on startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprawdzaj aktualizacje na starcie</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="101"/>
         <source>Update to new version!</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizuj do nowej wersji!</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="114"/>
         <source>The update will be automatically downloaded and installed. This will also restart application at the end.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizacja będzie pobrana i zainstalowana automatycznie. Spowoduje to również na końcu restart aplikacji.</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="121"/>
         <source>Not now.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie teraz.</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="134"/>
         <source>Don&apos;t install the update and close this window.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie instaluj aktualizacji i zamknij to okno.</translation>
     </message>
 </context>
 <context>
@@ -4235,12 +3766,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/populateconfigdialog.ui" line="14"/>
         <source>Populating configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfiguracja zaludniania</translation>
     </message>
     <message>
         <location filename="../dialogs/populateconfigdialog.cpp" line="54"/>
         <source>Configuring &lt;b&gt;%1&lt;/b&gt; for column &lt;b&gt;%2&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfigurowanie &lt;b&gt;%1&lt;/b&gt; dla kolumny &lt;b&gt;%2&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
@@ -4248,655 +3779,655 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/populatedialog.ui" line="14"/>
         <source>Populate table</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaludnij tabelę</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.ui" line="26"/>
         <source>Database</source>
-        <translation type="unfinished"></translation>
+        <translation>Baza danych</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.ui" line="44"/>
         <source>Table</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabela</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.ui" line="72"/>
         <source>Columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolumny</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.ui" line="102"/>
         <source>Number of rows to populate:</source>
-        <translation type="unfinished"></translation>
+        <translation>Liczba wierszy do zaludnienia:</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="42"/>
         <source>Populate</source>
         <comment>populate dialog button</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zaludnij</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="158"/>
         <source>Configure</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfiguruj</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="256"/>
         <source>Populating configuration for this column is invalid or incomplete.</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfiguracja zaludniania dla tej kolumny jest niepoprawna lub niekompletna.</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="287"/>
         <source>Select database with table to populate</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz bazę danych z tabelą do zaludnienia</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="288"/>
         <source>Select table to populate</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz tabelę do zaludnienia</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="289"/>
         <source>You have to select at least one column.</source>
-        <translation type="unfinished"></translation>
+        <translation>Musisz zaznaczyć przynajmniej jedną kolumnę.</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="66"/>
-        <source>Cannot edit columns that are result of compound SELECT statements (one that includes UNION, INTERSECT or EXCEPT keywords).</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="68"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="69"/>
         <source>The query execution mechanism had problems with extracting ROWID&apos;s properly. This might be a bug in the application. You may want to report this.</source>
-        <translation type="unfinished"></translation>
+        <translation>Mechanizm wykonywania zapytań miał problemy z wyciągnięciem własności ROWID. To może być błąd aplikacji. Możesz to zgłosić.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="70"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="71"/>
         <source>Requested column is a result of SQL expression, instead of a simple column selection. Such columns cannot be edited.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta kolumna jest wynikiem wyrażenia SQL, a nie zwykłej selekcji kolumny. Takie kolumny nie mogą być edytowane.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="72"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="73"/>
         <source>Requested column belongs to restricted SQLite table. Those tables cannot be edited directly.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta kolumna należy do systemowej tabeli SQLite. Te tabele nie mogą być edytowane bezpośrednio.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="74"/>
-        <source>Cannot edit results of query other than SELECT.</source>
-        <translation type="unfinished"></translation>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="66"/>
+        <source>Cannot edit columns that are result of compound %1 statements (one that includes %2, %3 or %4 keywords).</source>
+        <translation>Nie można edytować kolumn, które są wynikiem złożonego zapytania %1 (tego, które zawiera słowo kluczowe %2, %3, lub %4).</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="76"/>
-        <source>Cannot edit columns that are result of aggregated SELECT statements.</source>
-        <translation type="unfinished"></translation>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="75"/>
+        <source>Cannot edit results of query other than %1.</source>
+        <translation>Nie można edytować wyników zapytania innego niż %1.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="78"/>
-        <source>Cannot edit columns that are result of SELECT DISTINCT statement.</source>
-        <translation type="unfinished"></translation>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="77"/>
+        <source>Cannot edit columns that are result of aggregated %1 statements.</source>
+        <translation>Nie można edytować kolumn, które są wynikiem zapytania agregacyjnego %1.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="80"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="79"/>
+        <source>Cannot edit columns that are result of %1 statement.</source>
+        <translation>Nie można edytować kolumn, które są wynikiem zapytania %1.</translation>
+    </message>
+    <message>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="81"/>
         <source>Cannot edit columns that are result of common table expression statement (%1).</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można edytować kolumn, które są wynikiem zapytania ze wspólnym wyrażeniem tabeli (%1).</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="352"/>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="388"/>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="406"/>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="442"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="353"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="389"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="407"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="443"/>
         <source>on conflict: %1</source>
         <comment>data view tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>w razie konfliktu: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="372"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="373"/>
         <source>references table %1, column %2</source>
         <comment>data view tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>odwołuje się do tabeli %1, kolumny %2</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="439"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="440"/>
         <source>condition: %1</source>
         <comment>data view tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>warunek: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="459"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="460"/>
         <source>collation name: %1</source>
         <comment>data view tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>nazwa zestawienia: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="19"/>
         <source>Data grid view</source>
-        <translation type="unfinished"></translation>
+        <translation>Widok siatki danych</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="20"/>
         <source>Copy cell(s) contents to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Skopiuj zawartość komórek do schowka.</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="22"/>
         <source>Paste cell(s) contents from clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Wklej zawartość komórkek ze schowka.</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="24"/>
         <source>Set empty value to selected cell(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustaw pustą wartość dla wybranych komórek</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="25"/>
         <source>Set NULL value to selected cell(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustaw wartość NULL dla wybranych komórek</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="26"/>
         <source>Commit changes to cell(s) contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Zatwierdź zmiany dla zawartości komórek</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="27"/>
         <source>Rollback changes to cell(s) contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Wycofaj zmiany dla zawartości komórek</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="28"/>
         <source>Delete selected data row</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń wybrane wiersze danych</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="29"/>
         <source>Insert new data row</source>
-        <translation type="unfinished"></translation>
+        <translation>Wstaw nowy wiersz danych</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="30"/>
         <source>Open contents of selected cell in a separate editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz zawartość wybranej komórki w osobnym edytorze</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="487"/>
         <source>Total pages available: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Liczba dostępnych stron: %1</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="497"/>
         <source>Total rows loaded: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Liczba załadowanych wierszy: %1</translation>
     </message>
     <message>
         <location filename="../dataview.h" line="17"/>
         <source>Data view (both grid and form)</source>
-        <translation type="unfinished"></translation>
+        <translation>Widok danych (zarówno siatki i formularza)</translation>
     </message>
     <message>
         <location filename="../dataview.h" line="18"/>
         <source>Refresh data</source>
-        <translation type="unfinished"></translation>
+        <translation>Odśwież dane</translation>
     </message>
     <message>
         <location filename="../dataview.h" line="19"/>
         <source>Switch to grid view of the data</source>
-        <translation type="unfinished"></translation>
+        <translation>Przełącz do widoku siatki danych</translation>
     </message>
     <message>
         <location filename="../dataview.h" line="20"/>
         <source>Switch to form view of the data</source>
-        <translation type="unfinished"></translation>
+        <translation>Przełącz do widoku formularza danych</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="26"/>
         <source>Database list</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista baz</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="27"/>
         <source>Delete selected item</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń zaznaczony element</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="28"/>
         <source>Clear filter contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyść zawartość filtra</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="29"/>
         <source>Refresh schema</source>
-        <translation type="unfinished"></translation>
+        <translation>Odśwież schemat</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="30"/>
         <source>Refresh all schemas</source>
-        <translation type="unfinished"></translation>
+        <translation>Odśwież wszystkie schematy</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="31"/>
         <source>Add database</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj bazę danych</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="32"/>
         <source>Select all items</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz wszystkie elementy</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="33"/>
         <source>Copy selected item(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiuj zaznaczone elementy</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="34"/>
         <location filename="../multieditor/multieditortext.h" line="15"/>
-        <location filename="../sqleditor.h" line="23"/>
+        <location filename="../sqleditor.h" line="24"/>
         <source>Paste from clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Wklej ze schowka</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreeitemfactory.cpp" line="47"/>
         <source>Tables</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabele</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreeitemfactory.cpp" line="52"/>
         <source>Indexes</source>
-        <translation type="unfinished"></translation>
+        <translation>Indeksy</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreeitemfactory.cpp" line="57"/>
         <source>Triggers</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyzwalacze</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreeitemfactory.cpp" line="62"/>
         <source>Views</source>
-        <translation type="unfinished"></translation>
+        <translation>Widoki</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreeitemfactory.cpp" line="67"/>
         <source>Columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolumny</translation>
     </message>
     <message>
         <location filename="../formview.h" line="16"/>
         <source>Data form view</source>
-        <translation type="unfinished"></translation>
+        <translation>Widok formularza danych</translation>
     </message>
     <message>
         <location filename="../formview.h" line="17"/>
         <source>Commit changes for current row</source>
-        <translation type="unfinished"></translation>
+        <translation>Zatawierdź zmiany dla bieżącego wiersza</translation>
     </message>
     <message>
         <location filename="../formview.h" line="18"/>
         <source>Rollback changes for current row</source>
-        <translation type="unfinished"></translation>
+        <translation>Wycofaj zmiany dla bieżącego wiersza</translation>
     </message>
     <message>
         <location filename="../formview.h" line="19"/>
         <source>Go to first row on current page</source>
-        <translation type="unfinished"></translation>
+        <translation>Przejdź do pierwszego wiersza na bieżącej stronie</translation>
     </message>
     <message>
         <location filename="../formview.h" line="20"/>
         <source>Go to next row</source>
-        <translation type="unfinished"></translation>
+        <translation>Przejdź do następnego wiersza</translation>
     </message>
     <message>
         <location filename="../formview.h" line="21"/>
         <source>Go to previous row</source>
-        <translation type="unfinished"></translation>
+        <translation>Przejdź do poprzedniego wiersza</translation>
     </message>
     <message>
         <location filename="../formview.h" line="22"/>
         <source>Go to last row on current page</source>
-        <translation type="unfinished"></translation>
+        <translation>Przejdź do ostatniego wiersza na bieżącej stronie</translation>
     </message>
     <message>
         <location filename="../formview.h" line="23"/>
         <source>Insert new row</source>
-        <translation type="unfinished"></translation>
+        <translation>Wstaw nowy wiersz</translation>
     </message>
     <message>
         <location filename="../formview.h" line="24"/>
         <source>Delete current row</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń bieżący wiersz</translation>
     </message>
     <message>
         <location filename="../mainwindow.h" line="42"/>
         <source>Main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno główne</translation>
     </message>
     <message>
         <location filename="../mainwindow.h" line="43"/>
         <source>Open SQL editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz edytor SQL</translation>
     </message>
     <message>
         <location filename="../mainwindow.h" line="44"/>
         <source>Previous window</source>
-        <translation type="unfinished"></translation>
+        <translation>Poprzednie okno</translation>
     </message>
     <message>
         <location filename="../mainwindow.h" line="45"/>
         <source>Next window</source>
-        <translation type="unfinished"></translation>
+        <translation>Następne okno</translation>
     </message>
     <message>
         <location filename="../mainwindow.h" line="46"/>
         <source>Hide status area</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukryj pole statusu</translation>
     </message>
     <message>
         <location filename="../mainwindow.h" line="47"/>
         <source>Open configuration dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz okno konfiguracji</translation>
     </message>
     <message>
         <location filename="../mainwindow.h" line="48"/>
         <source>Open Debug Console</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz Konsolę Debugowania</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.h" line="12"/>
         <source>Cell text value editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Edytor tekstowy wartości komórki</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.h" line="13"/>
-        <location filename="../sqleditor.h" line="21"/>
+        <location filename="../sqleditor.h" line="22"/>
         <source>Cut selected text</source>
-        <translation type="unfinished"></translation>
+        <translation>Wytnij wybrany tekst</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.h" line="14"/>
-        <location filename="../sqleditor.h" line="22"/>
+        <location filename="../sqleditor.h" line="23"/>
         <source>Copy selected text</source>
-        <translation type="unfinished"></translation>
+        <translation>Skopiuj wybrany tekst</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.h" line="16"/>
-        <location filename="../sqleditor.h" line="24"/>
+        <location filename="../sqleditor.h" line="25"/>
         <source>Delete selected text</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń wybrany tekst</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.h" line="17"/>
-        <location filename="../sqleditor.h" line="26"/>
+        <location filename="../sqleditor.h" line="27"/>
         <source>Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>Cofnij</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.h" line="18"/>
-        <location filename="../sqleditor.h" line="27"/>
-        <source>Redo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../sqleditor.h" line="20"/>
-        <source>SQL editor input field</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../sqleditor.h" line="25"/>
-        <source>Select whole editor contents</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../sqleditor.h" line="28"/>
-        <source>Save contents into a file</source>
-        <translation type="unfinished"></translation>
+        <source>Redo</source>
+        <translation>Przywróć</translation>
+    </message>
+    <message>
+        <location filename="../sqleditor.h" line="21"/>
+        <source>SQL editor input field</source>
+        <translation>Pole wprowadzania edytora SQL</translation>
+    </message>
+    <message>
+        <location filename="../sqleditor.h" line="26"/>
+        <source>Select whole editor contents</source>
+        <translation>Zaznacz całą zawartość edytora</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="29"/>
-        <source>Load contents from a file</source>
-        <translation type="unfinished"></translation>
+        <source>Save contents into a file</source>
+        <translation>Zapisz zawartość do pliku</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="30"/>
-        <source>Find in text</source>
-        <translation type="unfinished"></translation>
+        <source>Load contents from a file</source>
+        <translation>Wczytaj zawartość z pliku</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="31"/>
-        <source>Find next</source>
-        <translation type="unfinished"></translation>
+        <source>Find in text</source>
+        <translation>Znajdź w tekście</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="32"/>
-        <source>Find previous</source>
-        <translation type="unfinished"></translation>
+        <source>Find next</source>
+        <translation>Znajdź następny</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="33"/>
-        <source>Replace in text</source>
-        <translation type="unfinished"></translation>
+        <source>Find previous</source>
+        <translation>Znajdź poprzedni</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="34"/>
-        <source>Delete current line</source>
-        <translation type="unfinished"></translation>
+        <source>Replace in text</source>
+        <translation>Zmień w tekście</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="35"/>
-        <source>Request code assistant</source>
-        <translation type="unfinished"></translation>
+        <source>Delete current line</source>
+        <translation>Usuń bieżącą linię</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="36"/>
-        <source>Format contents</source>
-        <translation type="unfinished"></translation>
+        <source>Request code assistant</source>
+        <translation>Wywołaj asystenta kodu</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="37"/>
-        <source>Move selected block of text one line down</source>
-        <translation type="unfinished"></translation>
+        <source>Format contents</source>
+        <translation>Formatuj zawartość</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="38"/>
-        <source>Move selected block of text one line up</source>
-        <translation type="unfinished"></translation>
+        <source>Move selected block of text one line down</source>
+        <translation>Przenieś wybrany blok tekstu o jedną linię w dół</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="39"/>
-        <source>Copy selected block of text and paste it a line below</source>
-        <translation type="unfinished"></translation>
+        <source>Move selected block of text one line up</source>
+        <translation>Przenieś wybrany blok tekstu o jedną linię w górę</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="40"/>
+        <source>Copy selected block of text and paste it a line below</source>
+        <translation>Skopiuj wybrany blok tekstu i wklej go poniżej</translation>
+    </message>
+    <message>
+        <location filename="../sqleditor.h" line="41"/>
         <source>Copy selected block of text and paste it a line above</source>
-        <translation type="unfinished"></translation>
+        <translation>Skopiuj wybrany blok tekstu i wklej go powyżej</translation>
     </message>
     <message>
         <location filename="../uiutils.cpp" line="32"/>
         <source>All SQLite databases</source>
-        <translation type="unfinished"></translation>
+        <translation>Wszystkie bazy danych SQLite</translation>
     </message>
     <message>
         <location filename="../uiutils.cpp" line="35"/>
         <source>All files</source>
-        <translation type="unfinished"></translation>
+        <translation>Wszystkie pliki</translation>
     </message>
     <message>
         <location filename="../uiutils.cpp" line="38"/>
         <source>Database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Plik bazy danych</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.h" line="11"/>
         <source>Reports history window</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno history zgłoszeń</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.h" line="12"/>
         <source>Delete selected entry</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń wybraną pozycję</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.h" line="26"/>
         <source>SQL editor window</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno edytora SQL</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.h" line="27"/>
         <source>Execute query</source>
-        <translation type="unfinished"></translation>
+        <translation>Wykonaj zapytanie</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.h" line="28"/>
-        <source>Execute &quot;EXPLAIN&quot; query</source>
-        <translation type="unfinished"></translation>
+        <source>Execute &quot;%1&quot; query</source>
+        <translation>Wykonaj zapytanie &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.h" line="29"/>
         <source>Switch current working database to previous on the list</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmień roboczą bazę danych na poprzednią z listy</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.h" line="30"/>
         <source>Switch current working database to next on the list</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmień roboczą bazę danych na następną z listy</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.h" line="31"/>
         <source>Go to next editor tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Przejdź do następnej karty edytora</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.h" line="32"/>
         <source>Go to previous editor tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Przejdź do poprzedniej karty edytora</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.h" line="33"/>
         <source>Move keyboard input focus to the results view below</source>
-        <translation type="unfinished"></translation>
+        <translation>Przenieś aktywność klawiatury do widoku wyników poniżej</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.h" line="34"/>
         <source>Move keyboard input focus to the SQL editor above</source>
-        <translation type="unfinished"></translation>
+        <translation>Przenieś aktywność klawiatury do edytora SQL powyżej</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="30"/>
         <source>Table window</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno tabeli</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="31"/>
         <source>Refresh table structure</source>
-        <translation type="unfinished"></translation>
+        <translation>Odśwież strukturę tabeli</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="32"/>
         <source>Add new column</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj nową kolumnę</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="33"/>
         <source>Edit selected column</source>
-        <translation type="unfinished"></translation>
+        <translation>Edytuj wybraną kolumnę</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="34"/>
         <source>Delete selected column</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń wybraną kolumnę</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="35"/>
         <source>Export table data</source>
-        <translation type="unfinished"></translation>
+        <translation>Eksportuj dane tabeli</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="36"/>
         <source>Import data to the table</source>
-        <translation type="unfinished"></translation>
+        <translation>Importuj dane do tabeli</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="37"/>
         <source>Add new table constraint</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj nowe ograniczenie tabeli</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="38"/>
         <source>Edit selected table constraint</source>
-        <translation type="unfinished"></translation>
+        <translation>Edytuj wybrane ograniczenie tabeli</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="39"/>
         <source>Delete selected table constraint</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń wybrane ograniczenie tabeli</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="40"/>
         <source>Refresh table index list</source>
-        <translation type="unfinished"></translation>
+        <translation>Odśwież listę indeksów tabeli</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="41"/>
         <source>Add new index</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj nowy indeks</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="42"/>
         <source>Edit selected index</source>
-        <translation type="unfinished"></translation>
+        <translation>Edytuj wybrany indeks</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="43"/>
         <source>Delete selected index</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń wybrany indeks</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="44"/>
         <source>Refresh table trigger list</source>
-        <translation type="unfinished"></translation>
+        <translation>Odśwież listę wyzwalaczy tabeli</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="45"/>
         <location filename="../windows/viewwindow.h" line="25"/>
         <source>Add new trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj nowy wyzwalacz</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="46"/>
         <location filename="../windows/viewwindow.h" line="26"/>
         <source>Edit selected trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Edytuj wybrany wyzwalacz</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="47"/>
         <location filename="../windows/viewwindow.h" line="27"/>
         <source>Delete selected trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń wybrany wyzwalacz</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="48"/>
         <location filename="../windows/viewwindow.h" line="28"/>
         <source>Go to next tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Przejdź do następnej karty</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="49"/>
         <location filename="../windows/viewwindow.h" line="29"/>
         <source>Go to previous tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Przejdź do poprzedniej karty</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.h" line="23"/>
         <source>A view window</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno widoku</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.h" line="24"/>
         <source>Refresh view trigger list</source>
-        <translation type="unfinished"></translation>
+        <translation>Odśwież listę wizwalaczy widoku</translation>
     </message>
 </context>
 <context>
@@ -4904,63 +4435,66 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/quitconfirmdialog.ui" line="14"/>
         <source>Uncommited changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Niezatwierdzone dane</translation>
     </message>
     <message>
         <location filename="../dialogs/quitconfirmdialog.ui" line="20"/>
         <source>Are you sure you want to quit the application?
 
 Following items are pending:</source>
-        <translation type="unfinished"></translation>
+        <translation>Czy na pewno chcesz zamknąć aplikację?
+
+Następujące elementy są w toku:</translation>
     </message>
 </context>
 <context>
     <name>SearchTextDialog</name>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="14"/>
-        <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <source>Find or replace</source>
+        <translation>Znajdź lub zastąp</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="23"/>
         <source>Find:</source>
-        <translation type="unfinished"></translation>
+        <translation>Znajdź:</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="36"/>
         <source>Case sensitive</source>
-        <translation type="unfinished"></translation>
+        <translation>Uwzględniaj wielkość liter</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="43"/>
         <source>Search backwards</source>
-        <translation type="unfinished"></translation>
+        <translation>Szukaj wstecz</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="50"/>
         <source>Regular expression matching</source>
-        <translation type="unfinished"></translation>
+        <translation>Dopasowywanie wyrażeniem regularnym</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="60"/>
         <source>Replace &amp;&amp;
 find next</source>
-        <translation type="unfinished"></translation>
+        <translation>Zastąp i
+znajdź następny</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="78"/>
         <source>Replace with:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zastąp:</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="91"/>
         <source>Replace all</source>
-        <translation type="unfinished"></translation>
+        <translation>Zastąp wszystkie</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="98"/>
         <source>Find</source>
-        <translation type="unfinished"></translation>
+        <translation>Znajdź</translation>
     </message>
 </context>
 <context>
@@ -4968,203 +4502,197 @@ find next</source>
     <message>
         <location filename="../dialogs/sortdialog.ui" line="14"/>
         <source>Sort by columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Sortuj wg. kolumn</translation>
     </message>
     <message>
         <location filename="../dialogs/sortdialog.ui" line="45"/>
         <location filename="../dialogs/sortdialog.cpp" line="48"/>
         <source>Column</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolumna</translation>
     </message>
     <message>
         <location filename="../dialogs/sortdialog.ui" line="50"/>
         <location filename="../dialogs/sortdialog.cpp" line="48"/>
         <source>Order</source>
-        <translation type="unfinished"></translation>
+        <translation>Kierunek</translation>
     </message>
     <message>
         <location filename="../dialogs/sortdialog.cpp" line="178"/>
         <source>Sort by: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Sortuj po: %1</translation>
     </message>
     <message>
         <location filename="../dialogs/sortdialog.cpp" line="242"/>
         <source>Move column up</source>
-        <translation type="unfinished"></translation>
+        <translation>Przesuń kolumnę w górę</translation>
     </message>
     <message>
         <location filename="../dialogs/sortdialog.cpp" line="243"/>
         <source>Move column down</source>
-        <translation type="unfinished"></translation>
+        <translation>Przesuń kolumnę w dół</translation>
     </message>
 </context>
 <context>
     <name>SqlEditor</name>
     <message>
-        <location filename="../sqleditor.cpp" line="117"/>
+        <location filename="../sqleditor.cpp" line="118"/>
         <source>Cut</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../sqleditor.cpp" line="118"/>
-        <source>Copy</source>
-        <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Wytnij</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="119"/>
-        <source>Paste</source>
+        <source>Copy</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Kopiuj</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="120"/>
-        <source>Delete</source>
+        <source>Paste</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Wklej</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="121"/>
-        <source>Select all</source>
+        <source>Delete</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Usuń</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="122"/>
-        <source>Undo</source>
+        <source>Select all</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz wszystko</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="123"/>
-        <source>Redo</source>
+        <source>Undo</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Cofnij</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="124"/>
-        <source>Complete</source>
+        <source>Redo</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Przywróć</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="125"/>
-        <source>Format SQL</source>
+        <source>Complete</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dopełnij</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="126"/>
-        <source>Save SQL to file</source>
+        <source>Format SQL</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Formatuj SQL</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="127"/>
-        <source>Load SQL from file</source>
+        <source>Save SQL to file</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zapisz SQL do pliku</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="128"/>
-        <source>Delete line</source>
+        <source>Load SQL from file</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Wczytaj SQL z pliku</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="129"/>
-        <source>Move block down</source>
+        <source>Delete line</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Usuń linię</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="130"/>
-        <source>Move block up</source>
+        <source>Move block down</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Przesuń blok w dół</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="131"/>
-        <source>Copy block down</source>
+        <source>Move block up</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Przesuń blok w górę</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="132"/>
-        <source>Copy up down</source>
+        <source>Copy block down</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Skopiuj blok w dół</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="133"/>
-        <source>Find</source>
+        <source>Copy up down</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Skopiuj blok w górę</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="134"/>
-        <source>Find next</source>
+        <source>Find</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Znajdź</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="135"/>
-        <source>Find previous</source>
+        <source>Find next</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Znajdź następny</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="136"/>
+        <source>Find previous</source>
+        <comment>sql editor</comment>
+        <translation>Znajdź poprzedni</translation>
+    </message>
+    <message>
+        <location filename="../sqleditor.cpp" line="137"/>
         <source>Replace</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zastąp</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="403"/>
+        <location filename="../sqleditor.cpp" line="405"/>
         <source>Syntax completion can be used only when a valid database is set for the SQL editor.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dopełnianie składni może być użyte tylko wtedy, gdy poprawna baza danych jest ustawiona w edytorze SQL.</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="712"/>
-        <source>Find or replace</source>
-        <comment>sql editor find/replace dialog</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../sqleditor.cpp" line="790"/>
+        <location filename="../sqleditor.cpp" line="793"/>
         <source>Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zawartość edytora SQL jest ogromna, więc sprawdzanie błędów i podświetlanie istniejących obiektów zostało tymczasowo wyłączone.</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1016"/>
+        <location filename="../sqleditor.cpp" line="1020"/>
         <source>Save to file</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapisz do pliku</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1025"/>
-        <source>Could not open file &apos;%1&apos;&apos; for writing: %2</source>
-        <translation type="unfinished"></translation>
+        <location filename="../sqleditor.cpp" line="1029"/>
+        <source>Could not open file &apos;%1&apos; for writing: %2</source>
+        <translation>Nie udało się otworzyć pliku &apos;%1&apos; do zapisu: %2</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1039"/>
+        <location filename="../sqleditor.cpp" line="1043"/>
         <source>SQL scripts (*.sql);;All files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Skrypty SQL (*.sql);;Wszystkie pliki (*)</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1040"/>
+        <location filename="../sqleditor.cpp" line="1044"/>
         <source>Open file</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz plik</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1049"/>
-        <source>Could not open file &apos;%1&apos;&apos; for reading: %2</source>
-        <translation type="unfinished"></translation>
+        <location filename="../sqleditor.cpp" line="1053"/>
+        <source>Could not open file &apos;%1&apos; for reading: %2</source>
+        <translation>Nie udało się otworzyć pliku &apos;%1&apos; do odczytu: %2</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1256"/>
+        <location filename="../sqleditor.cpp" line="1260"/>
         <source>Reached the end of document. Hit the find again to restart the search.</source>
-        <translation type="unfinished"></translation>
+        <translation>Osiągnięto koniec dokumentu. Wciśnij szukanie ponownie, aby zrestartować szukanie.</translation>
     </message>
 </context>
 <context>
@@ -5173,41 +4701,35 @@ find next</source>
         <location filename="../datagrid/sqlqueryitem.cpp" line="259"/>
         <source>Column:</source>
         <comment>data view tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Kolumna:</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryitem.cpp" line="260"/>
         <source>Data type:</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Typ danych:</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryitem.cpp" line="263"/>
         <source>Table:</source>
         <comment>data view tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Tabela:</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryitem.cpp" line="293"/>
         <source>Constraints:</source>
         <comment>data view tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ograniczenie:</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryitem.cpp" line="406"/>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="413"/>
         <source>This cell is not editable, because: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Tej komórki nie można edytować, ponieważ: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="411"/>
-        <source>When inserted new row to the WITHOUT ROWID table, using DEFAULT value for PRIMARY KEY, the table has to be reloaded in order to edit the new row.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="421"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="423"/>
         <source>Cannot load the data for a cell that refers to the already closed database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można załadować danych dla komórki, która odwołuje się do zamkniętej już bazy danych.</translation>
     </message>
 </context>
 <context>
@@ -5216,12 +4738,12 @@ find next</source>
         <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="41"/>
         <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="47"/>
         <source>Cannot edit this cell. Details: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można edytować tej komórki. Szczegóły: %2</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="41"/>
         <source>The row is marked for deletion.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wiersz jest zaznaczony do usunięcia.</translation>
     </message>
 </context>
 <context>
@@ -5230,68 +4752,68 @@ find next</source>
         <location filename="../datagrid/sqlquerymodel.cpp" line="61"/>
         <location filename="../datagrid/sqlquerymodel.cpp" line="430"/>
         <source>Only one query can be executed simultaneously.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tylko jedno zapytanie może być wykonywane w danym momencie.</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="93"/>
         <source>Uncommited data</source>
-        <translation type="unfinished"></translation>
+        <translation>Niezatwierdzone dane</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="94"/>
         <source>There are uncommited data changes. Do you want to proceed anyway? All uncommited changes will be lost.</source>
-        <translation type="unfinished"></translation>
+        <translation>Niektóre zmiany w danych nie zostały zatwierdzone. Czy na pewno chcesz kontynuować? Wszystkie niezatwierdzone zmiany zostaną utracone.</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="340"/>
         <source>Cannot commit the data for a cell that refers to the already closed database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można zatwierdzić danych dla komórki, która odnosi się do zamkniętej już bazy danych.</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="346"/>
         <source>Could not begin transaction on the database. Details: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie udało się rozpocząć transakcji na bazie danych. Szczegóły: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="383"/>
         <source>An error occurred while commiting the transaction: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Wystąpił błąd podczas zatwierdzania transakcji: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="402"/>
         <source>An error occurred while rolling back the transaction: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Wystąpił błąd podczas wycofywania transakcji: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="513"/>
         <source>Tried to commit a cell which is not editable (yet modified and waiting for commit)! This is a bug. Please report it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Próbowano zatwierdzić komórkę, której nie można edytować (a mimo to została zmodyfikowana i czeka na zatwierdzenie)! To jest błąd. Proszę to zgłosić.</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="539"/>
         <source>An error occurred while commiting the data: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Wystąpił błąd podczas zatwierdzania danych: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="978"/>
         <location filename="../datagrid/sqlquerymodel.cpp" line="1022"/>
         <source>Error while executing SQL query: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Błąd podczas wykonywania zapytania SQL: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="1019"/>
         <source>Error while loading query results: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Błąd podczas wczytywania wyników zapytania: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="1328"/>
         <source>Insert multiple rows</source>
-        <translation type="unfinished"></translation>
+        <translation>Wstaw wiele wierszy</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="1328"/>
         <source>Number of rows to insert:</source>
-        <translation type="unfinished"></translation>
+        <translation>Liczba wierszy do wstawienia:</translation>
     </message>
 </context>
 <context>
@@ -5299,87 +4821,87 @@ find next</source>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="138"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiuj</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="139"/>
         <source>Copy as...</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiuj jako...</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="140"/>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Wklej</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="141"/>
         <source>Paste as...</source>
-        <translation type="unfinished"></translation>
+        <translation>Wklej jako...</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="142"/>
         <source>Set NULL values</source>
-        <translation type="unfinished"></translation>
+        <translation>Ustaw wartości NULL</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="143"/>
         <source>Erase values</source>
-        <translation type="unfinished"></translation>
+        <translation>Wymaż wartości</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="144"/>
         <source>Edit value in editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Edytuj wartość w edytorze</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="145"/>
         <source>Commit</source>
-        <translation type="unfinished"></translation>
+        <translation>Zatwierdź</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="146"/>
         <source>Rollback</source>
-        <translation type="unfinished"></translation>
+        <translation>Wycofaj</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="147"/>
         <source>Commit selected cells</source>
-        <translation type="unfinished"></translation>
+        <translation>Zatwierdź zaznaczone komórki</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="148"/>
         <source>Rollback selected cells</source>
-        <translation type="unfinished"></translation>
+        <translation>Wycofaj zaznaczone komórki</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="149"/>
         <source>Define columns to sort by</source>
-        <translation type="unfinished"></translation>
+        <translation>Zdefiniuj kolumny po których sortować</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="150"/>
         <source>Remove custom sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>Wycofaj własne sortowanie</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="151"/>
         <source>Insert row</source>
-        <translation type="unfinished"></translation>
+        <translation>Wstaw wiersz</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="152"/>
         <source>Insert multiple rows</source>
-        <translation type="unfinished"></translation>
+        <translation>Wstaw wiele wierszy</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="153"/>
         <source>Delete selected row</source>
-        <translation type="unfinished"></translation>
+        <translation>Usuń zaznaczony wiersz</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="435"/>
         <source>Edit value</source>
-        <translation type="unfinished"></translation>
+        <translation>Edytuj wartość</translation>
     </message>
 </context>
 <context>
@@ -5387,18 +4909,12 @@ find next</source>
     <message>
         <location filename="../datagrid/sqltablemodel.cpp" line="74"/>
         <source>Error while commiting new row: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Błąd podczas zatwierdzania nowego wiersza: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqltablemodel.cpp" line="108"/>
-        <source>When inserted new row to the WITHOUT ROWID table, using DEFAULT value for PRIMARY KEY, the table has to be reloaded in order to delete the new row.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../datagrid/sqltablemodel.cpp" line="110"/>
-        <location filename="../datagrid/sqltablemodel.cpp" line="130"/>
+        <location filename="../datagrid/sqltablemodel.cpp" line="132"/>
         <source>Error while deleting row from table %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Błąd podczas usuwania wiersza z tabeli %1: %2</translation>
     </message>
 </context>
 <context>
@@ -5406,17 +4922,17 @@ find next</source>
     <message>
         <location filename="../statusfield.ui" line="14"/>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Status</translation>
     </message>
     <message>
         <location filename="../statusfield.cpp" line="161"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiuj</translation>
     </message>
     <message>
         <location filename="../statusfield.cpp" line="168"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyść</translation>
     </message>
 </context>
 <context>
@@ -5425,189 +4941,165 @@ find next</source>
         <location filename="../windows/tableconstraintsmodel.cpp" line="75"/>
         <source>Type</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <location filename="../windows/tableconstraintsmodel.cpp" line="77"/>
         <source>Details</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Szczegóły</translation>
     </message>
     <message>
         <location filename="../windows/tableconstraintsmodel.cpp" line="79"/>
         <source>Name</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa</translation>
     </message>
 </context>
 <context>
     <name>TableForeignKeyPanel</name>
     <message>
-        <location filename="../constraints/tableforeignkeypanel.ui" line="20"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../constraints/tableforeignkeypanel.ui" line="29"/>
         <source>Foreign table:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabela obca:</translation>
     </message>
     <message>
         <location filename="../constraints/tableforeignkeypanel.ui" line="48"/>
         <source>SQLite 2 does not support foreign keys officially,
 but it&apos;s okay to use them anyway.</source>
-        <translation type="unfinished"></translation>
+        <translation>SQLite 2 oficjalnie nie obsługuje kluczy obcych,
+ale można ich używać.</translation>
     </message>
     <message>
         <location filename="../constraints/tableforeignkeypanel.ui" line="62"/>
         <source>Columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolumny</translation>
     </message>
     <message>
         <location filename="../constraints/tableforeignkeypanel.ui" line="77"/>
         <source>Local column</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolumna lokalna</translation>
     </message>
     <message>
         <location filename="../constraints/tableforeignkeypanel.ui" line="90"/>
         <source>Foreign column</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolumna obca</translation>
     </message>
     <message>
         <location filename="../constraints/tableforeignkeypanel.ui" line="126"/>
         <source>Reactions</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../constraints/tableforeignkeypanel.ui" line="132"/>
-        <source>ON UPDATE</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../constraints/tableforeignkeypanel.ui" line="142"/>
-        <source>ON DELETE</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../constraints/tableforeignkeypanel.ui" line="149"/>
-        <source>MATCH</source>
-        <translation type="unfinished"></translation>
+        <translation>Reakcje</translation>
     </message>
     <message>
         <location filename="../constraints/tableforeignkeypanel.ui" line="165"/>
         <source>Deferred foreign key</source>
-        <translation type="unfinished"></translation>
+        <translation>Klucz obcy odroczony</translation>
     </message>
     <message>
         <location filename="../constraints/tableforeignkeypanel.ui" line="183"/>
         <source>Named constraint</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwane ograniczenie</translation>
     </message>
     <message>
         <location filename="../constraints/tableforeignkeypanel.ui" line="190"/>
         <source>Constraint name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa ograniczenia</translation>
     </message>
     <message>
         <location filename="../constraints/tableforeignkeypanel.cpp" line="53"/>
         <source>Pick the foreign column.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz kolumnę obcą</translation>
     </message>
     <message>
         <location filename="../constraints/tableforeignkeypanel.cpp" line="65"/>
         <source>Pick the foreign table.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz tabelę obcą</translation>
     </message>
     <message>
         <location filename="../constraints/tableforeignkeypanel.cpp" line="66"/>
         <source>Select at least one foreign column.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz przynajmnie jedną kolumnę obcą.</translation>
     </message>
     <message>
         <location filename="../constraints/tableforeignkeypanel.cpp" line="67"/>
         <source>Enter a name of the constraint.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź nazwę ograniczenia.</translation>
     </message>
     <message>
         <location filename="../constraints/tableforeignkeypanel.cpp" line="209"/>
         <source>Foreign column</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Kolumna obca</translation>
     </message>
 </context>
 <context>
     <name>TablePrimaryKeyAndUniquePanel</name>
     <message>
-        <location filename="../constraints/tablepkanduniquepanel.ui" line="14"/>
-        <source>PrimaryKeyOrUniquePanel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../constraints/tablepkanduniquepanel.ui" line="32"/>
         <source>Columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolumny</translation>
     </message>
     <message>
         <location filename="../constraints/tablepkanduniquepanel.ui" line="59"/>
         <source>Column</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolumna</translation>
     </message>
     <message>
         <location filename="../constraints/tablepkanduniquepanel.ui" line="84"/>
         <source>Collation</source>
-        <translation type="unfinished"></translation>
+        <translation>Zestawienie</translation>
     </message>
     <message>
         <location filename="../constraints/tablepkanduniquepanel.ui" line="109"/>
         <source>Sort</source>
-        <translation type="unfinished"></translation>
+        <translation>Sortowanie</translation>
     </message>
     <message>
         <location filename="../constraints/tablepkanduniquepanel.ui" line="142"/>
         <source>Valid only for a single column with INTEGER data type</source>
-        <translation type="unfinished"></translation>
+        <translation>Dozwolone tylko dla jednej kolumny o typie danych INTEGER</translation>
     </message>
     <message>
         <location filename="../constraints/tablepkanduniquepanel.ui" line="145"/>
         <source>Autoincrement</source>
-        <translation type="unfinished"></translation>
+        <translation>Autoinkrementacja</translation>
     </message>
     <message>
         <location filename="../constraints/tablepkanduniquepanel.ui" line="167"/>
         <source>Named constraint</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwane ograniczenie</translation>
     </message>
     <message>
         <location filename="../constraints/tablepkanduniquepanel.ui" line="174"/>
         <source>Constraint name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa ograniczenia</translation>
     </message>
     <message>
         <location filename="../constraints/tablepkanduniquepanel.ui" line="199"/>
         <source>On conflict</source>
-        <translation type="unfinished"></translation>
+        <translation>W razie konfliktu</translation>
     </message>
     <message>
         <location filename="../constraints/tablepkanduniquepanel.cpp" line="86"/>
         <source>Collate</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zestawienie</translation>
     </message>
     <message>
         <location filename="../constraints/tablepkanduniquepanel.cpp" line="93"/>
         <source>Sort order</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Kierunek sortowania</translation>
     </message>
     <message>
         <location filename="../constraints/tablepkanduniquepanel.cpp" line="169"/>
         <source>Select at least one column.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaznacz przynajmniej jedną kolumnę.</translation>
     </message>
     <message>
         <location filename="../constraints/tablepkanduniquepanel.cpp" line="170"/>
         <source>Enter a name of the constraint.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź nazwę ograniczenia.</translation>
     </message>
 </context>
 <context>
@@ -5616,549 +5108,534 @@ but it&apos;s okay to use them anyway.</source>
         <location filename="../windows/tablestructuremodel.cpp" line="299"/>
         <source>Name</source>
         <comment>table structure columns</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa</translation>
     </message>
     <message>
         <location filename="../windows/tablestructuremodel.cpp" line="301"/>
         <source>Data type</source>
         <comment>table structure columns</comment>
-        <translation type="unfinished"></translation>
+        <translation>Typ danych</translation>
     </message>
     <message>
         <location filename="../windows/tablestructuremodel.cpp" line="315"/>
         <source>Default value</source>
         <comment>table structure columns</comment>
-        <translation type="unfinished"></translation>
+        <translation>Domyślna wartość</translation>
     </message>
 </context>
 <context>
     <name>TableWindow</name>
     <message>
-        <location filename="../windows/tablewindow.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../windows/tablewindow.ui" line="36"/>
         <source>Structure</source>
-        <translation type="unfinished"></translation>
+        <translation>Struktura</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.ui" line="60"/>
         <source>Table name:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../windows/tablewindow.ui" line="77"/>
-        <source>WITHOUT ROWID</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa tabeli:</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.ui" line="184"/>
         <source>Data</source>
-        <translation type="unfinished"></translation>
+        <translation>Dane</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.ui" line="201"/>
         <source>Constraints</source>
-        <translation type="unfinished"></translation>
+        <translation>Ograniczenia</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.ui" line="215"/>
         <source>Indexes</source>
-        <translation type="unfinished"></translation>
+        <translation>Indeksy</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.ui" line="244"/>
         <source>Triggers</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyzwalacze</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.ui" line="276"/>
         <source>DDL</source>
-        <translation type="unfinished"></translation>
+        <translation>DDL</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="180"/>
         <source>Export table</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Eksportuj tabelę</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="181"/>
         <source>Import data to table</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Importuj do tabeli</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="182"/>
         <source>Populate table</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zaludnij tabelę</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="196"/>
         <source>Refresh structure</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Odśwież strukturę</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="198"/>
         <source>Commit structure changes</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zatwierdź zmiany w strukturze</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="199"/>
         <source>Rollback structure changes</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Wycofaj zmiany w strukturze</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="200"/>
         <source>Add column</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj kolumnę</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="201"/>
         <source>Edit column</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Edytuj kolumnę</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="202"/>
         <location filename="../windows/tablewindow.cpp" line="288"/>
         <source>Delete column</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Usuń kolumnę</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="203"/>
         <source>Move column up</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Przesuń kolumnę w górę</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="204"/>
         <source>Move column down</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Przesuń kolumnę w dół</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="210"/>
         <source>Create similar table</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Utwórz podobną tabelę</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="213"/>
         <source>Add table constraint</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj ograniczenie tabeli</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="214"/>
         <source>Edit table constraint</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Edytuj ograniczenie tabeli</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="215"/>
         <source>Delete table constraint</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Usuń ograniczenie tabeli</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="216"/>
         <source>Move table constraint up</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Przesuń ograniczenie tabeli w górę</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="217"/>
         <source>Move table constraint down</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Przesuń ograniczenie tabeli w dół</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="219"/>
         <source>Add table primary key</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj klucz główny tabeli</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="220"/>
         <source>Add table foreign key</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj klucz obcy tabeli</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="221"/>
         <source>Add table unique constraint</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj ograniczenie unikalnych wartości tabeli</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="222"/>
         <source>Add table check constraint</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dodaj ograniczenie warunkiem tabeli</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="240"/>
         <source>Refresh index list</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Odśwież listę indeksów</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="242"/>
         <source>Create index</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Utwórz indeks</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="243"/>
         <source>Edit index</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Edytuj indeks</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="244"/>
         <source>Delete index</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Usuń indeks</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="250"/>
         <source>Refresh trigger list</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Odśwież listę wyzwalaczy</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="252"/>
         <source>Create trigger</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Utwórz wyzwalacz</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="253"/>
         <source>Edit trigger</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Edytuj wyzwalacz</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="254"/>
         <source>Delete trigger</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Usuń wyzwalacz</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="287"/>
         <source>Are you sure you want to delete column &apos;%1&apos;?</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Czy na pewno chcesz usunąć kolumnę &apos;%1&apos;?</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="315"/>
         <source>Following problems will take place while modifying the table.
 Would you like to proceed?</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Następujące problemy wystąpią podczas modyfikacji tabeli.
+Czy chcesz kontynuować?</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="317"/>
         <source>Table modification</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Modyfikacja tabeli</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="455"/>
         <source>Could not load data for table %1. Error details: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie udało się załadować danych dla tabeli %1. Szczegóły błędu: %2</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="568"/>
         <source>Could not process the %1 table correctly. Unable to open a table window.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie udało się przetworzyć poprawnie tabeli %1. Nie można otworzyć okna tabeli.</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="636"/>
         <source>Could not restore window, because database %1 could not be resolved.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można przywrócić okna, ponieważ nie znaleziono bazy danych %1.</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="645"/>
         <source>Could not restore window, because the table %1 doesn&apos;t exist in the database %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można przywrócić okna, ponieważ tabela %1 już nie jestnieje w bazie danych %2.</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="670"/>
         <location filename="../windows/tablewindow.cpp" line="672"/>
         <source>New table %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nowa tabela %1</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="823"/>
         <source>Could not commit table structure. Error message: %1</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nie udało się zatwierdzić struktury tabeli. Treść błędu: %1</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="915"/>
         <source>Empty name</source>
-        <translation type="unfinished"></translation>
+        <translation>Pusta nazwa</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="915"/>
         <source>A blank name for the table is allowed in SQLite, but it is not recommended.
 Are you sure you want to create a table with blank name?</source>
-        <translation type="unfinished"></translation>
+        <translation>Pusta nazwa dla tabeli jest dozwolona w SQLite, ale nie jest zalecana.
+Czy na pewno chcesz utworzyć tabelę o pustej nazwie?</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="924"/>
         <source>Cannot create a table without at least one column.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można utworzyć tabeli bez przynajmniej jednej kolumny.</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="950"/>
-        <source>Cannot create table without ROWID, if it has no PRIMARY KEY defined. Either uncheck the WITHOUT ROWID, or define a PRIMARY KEY.</source>
-        <translation type="unfinished"></translation>
+        <source>Cannot create table %1, if it has no primary key defined. Either uncheck the %2, or define a primary key.</source>
+        <translation>Nie można utworzyć tabeli %1, jeśli nie ma zdefiniowanego klucza głównego. Albo udznacz %2, albo zdefiniuj klucz główny.</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="957"/>
-        <source>Cannot use AUTOINCREMENT for PRIMARY KEY when WITHOUT ROWID clause is used. Either uncheck the WITHOUT ROWID, or the AUTOINCREMENT in a PRIMARY KEY.</source>
-        <translation type="unfinished"></translation>
+        <source>Cannot use autoincrement for primary key when %1 clause is used. Either uncheck the %2, or the autoincrement in a primary key.</source>
+        <translation>Nie można użyć autoinkrementacji dla klucza głównego, kiedy klauzula %1 jest użyta. Albo odnacz %2, albo autonkrementację w kluczu głównym.</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1083"/>
         <source>Are you sure you want to delete table constraint &apos;%1&apos;?</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Czy na pewno chcesz usunąć ograniczenie tabeli &apos;%1&apos;?</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1084"/>
         <source>Delete constraint</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Usuń ograniczenie</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1138"/>
         <source>Cannot export, because no export plugin is loaded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można wyeksportować, ponieważ żadna wtyczka eksportu nie została załadowana.</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1151"/>
         <source>Cannot import, because no import plugin is loaded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można zaimportować, ponieważ żadna wtyczka importu nie została załadowana.</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1183"/>
         <source>Uncommited changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Niezatwierdzone dane</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1184"/>
         <source>There are uncommited structure modifications. You cannot browse or edit data until you have table structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmiany w strukturze nie zostały zatwierdzone. Nie można przeglądać, ani edytować danych, dopóki struktura tabeli nie zostanie ustalona.
+Czy chcesz zatwierdzić strukturę, czy jednak chcesz wrócić do karty struktury?</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1187"/>
         <source>Go back to structure tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Wróć do karty struktury</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1187"/>
         <source>Commit modifications and browse data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zatwierdź modyfikacje i przeglądaj dane.</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1337"/>
         <source>Name</source>
         <comment>table window indexes</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1338"/>
         <source>Unique</source>
         <comment>table window indexes</comment>
-        <translation type="unfinished"></translation>
+        <translation>Wartości unikalne</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1339"/>
         <source>Columns</source>
         <comment>table window indexes</comment>
-        <translation type="unfinished"></translation>
+        <translation>Kolumny</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1340"/>
         <source>Partial index condition</source>
         <comment>table window indexes</comment>
-        <translation type="unfinished"></translation>
+        <translation>Warunek indeksu częściowego:</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1393"/>
         <source>Name</source>
         <comment>table window triggers</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1394"/>
         <source>Event</source>
         <comment>table window triggers</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zdarzenie</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1395"/>
         <source>Condition</source>
         <comment>table window triggers</comment>
-        <translation type="unfinished"></translation>
+        <translation>Warunek</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1396"/>
         <source>Details</source>
         <comment>table window triggers</comment>
-        <translation type="unfinished"></translation>
+        <translation>Szczegóły</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1484"/>
         <source>Table window &quot;%1&quot; has uncommited structure modifications and data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno tabeli &quot;%1&quot; ma niezatwierdzone modyfikacje struktury i danych.</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1486"/>
         <source>Table window &quot;%1&quot; has uncommited data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno tabeli &quot;%1&quot; ma niezatwierdzone dane.</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1488"/>
         <source>Table window &quot;%1&quot; has uncommited structure modifications.</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno tabeli &quot;%1&quot; ma niezatwierdzone modyfikacje struktury.</translation>
     </message>
 </context>
 <context>
     <name>TriggerColumnsDialog</name>
     <message>
         <location filename="../dialogs/triggercolumnsdialog.ui" line="14"/>
-        <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <source>Trigger columns</source>
+        <translation>Kolumny wyzwalacza</translation>
     </message>
     <message>
-        <location filename="../dialogs/triggercolumnsdialog.ui" line="38"/>
+        <location filename="../dialogs/triggercolumnsdialog.ui" line="47"/>
         <source>Triggering columns:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolumny wyzwalające:</translation>
     </message>
 </context>
 <context>
     <name>TriggerDialog</name>
     <message>
         <location filename="../dialogs/triggerdialog.ui" line="14"/>
-        <source>Trigger dialog</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../dialogs/triggerdialog.ui" line="24"/>
         <source>Trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyzwalacz</translation>
     </message>
     <message>
         <location filename="../dialogs/triggerdialog.ui" line="30"/>
         <source>On table:</source>
-        <translation type="unfinished"></translation>
+        <translation>Na tabeli:</translation>
     </message>
     <message>
         <location filename="../dialogs/triggerdialog.ui" line="40"/>
         <source>Action:</source>
-        <translation type="unfinished"></translation>
+        <translation>Akcja:</translation>
     </message>
     <message>
         <location filename="../dialogs/triggerdialog.ui" line="56"/>
         <location filename="../dialogs/triggerdialog.ui" line="124"/>
         <source>&lt;p&gt;SQL condition that will be evaluated before the actual trigger code. In case the condition returns false, the trigger will not be fired for that row.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Warunek SQL, który będzie wykonany przed właściwym kodem wyzwalacza. W przypadku gdy warunek zwróci fałsz, wyzwalacz nie zostanie uruchomiony dla tego wiersza.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/triggerdialog.ui" line="59"/>
         <source>Pre-condition:</source>
-        <translation type="unfinished"></translation>
+        <translation>Warunek wstępny:</translation>
     </message>
     <message>
         <location filename="../dialogs/triggerdialog.ui" line="66"/>
         <source>The scope is still not fully supported by the SQLite database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zakres wciąż nie jest w pełni obsługiwany przez bazy danych SQLite.</translation>
     </message>
     <message>
         <location filename="../dialogs/triggerdialog.ui" line="73"/>
         <source>Trigger name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa wyzwalacza:</translation>
     </message>
     <message>
         <location filename="../dialogs/triggerdialog.ui" line="80"/>
         <source>When:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kiedy:</translation>
     </message>
     <message>
         <location filename="../dialogs/triggerdialog.ui" line="87"/>
         <source>List of columns for UPDATE OF action.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/triggerdialog.ui" line="90"/>
-        <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista kolumn dla akcji UPDATE OF.</translation>
     </message>
     <message>
         <location filename="../dialogs/triggerdialog.ui" line="97"/>
         <source>Scope:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zakres:</translation>
     </message>
     <message>
         <location filename="../dialogs/triggerdialog.ui" line="104"/>
         <source>Code:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kod:</translation>
     </message>
     <message>
         <location filename="../dialogs/triggerdialog.ui" line="111"/>
         <source>Trigger statements to be executed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapytania wyzwalacz do wykonania.</translation>
     </message>
     <message>
         <location filename="../dialogs/triggerdialog.ui" line="132"/>
         <source>DDL</source>
-        <translation type="unfinished"></translation>
+        <translation>DDL</translation>
     </message>
     <message>
         <location filename="../dialogs/triggerdialog.cpp" line="145"/>
         <source>On view:</source>
-        <translation type="unfinished"></translation>
+        <translation>Na widoku:</translation>
     </message>
     <message>
         <location filename="../dialogs/triggerdialog.cpp" line="168"/>
         <source>Could not process trigger %1 correctly. Unable to open a trigger dialog.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie udało się przetworzyć poprawnie wyzwalacza %1. Nie można otworzyć okna wyzwalacza.</translation>
     </message>
     <message>
         <location filename="../dialogs/triggerdialog.cpp" line="338"/>
         <source>Enter a valid condition.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź poprawny warunek.</translation>
     </message>
     <message>
         <location filename="../dialogs/triggerdialog.cpp" line="339"/>
         <source>Enter a valid trigger code.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź poprawny kod wyzwalacza.</translation>
     </message>
     <message>
         <location filename="../dialogs/triggerdialog.cpp" line="411"/>
         <source>Error</source>
         <comment>trigger dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Błąd</translation>
     </message>
     <message>
         <location filename="../dialogs/triggerdialog.cpp" line="411"/>
         <source>An error occurred while executing SQL statements:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Wystąpił błąd podczas wykonywania zapytań SQL:
+%1</translation>
     </message>
 </context>
 <context>
@@ -6166,234 +5643,233 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
         <location filename="../dialogs/versionconvertsummarydialog.ui" line="14"/>
         <source>Database version convert</source>
-        <translation type="unfinished"></translation>
+        <translation>Konwersja bazy danych</translation>
     </message>
     <message>
         <location filename="../dialogs/versionconvertsummarydialog.ui" line="20"/>
         <source>Following changes to the SQL statements will be made:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokonane będą następujące zmiany w zapytaniach SQL:</translation>
     </message>
     <message>
         <location filename="../dialogs/versionconvertsummarydialog.cpp" line="10"/>
         <source>Before</source>
-        <translation type="unfinished"></translation>
+        <translation>Przed</translation>
     </message>
     <message>
         <location filename="../dialogs/versionconvertsummarydialog.cpp" line="11"/>
         <source>After</source>
-        <translation type="unfinished"></translation>
+        <translation>Po</translation>
     </message>
 </context>
 <context>
     <name>ViewWindow</name>
     <message>
-        <location filename="../windows/viewwindow.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../windows/viewwindow.ui" line="27"/>
+        <location filename="../windows/viewwindow.ui" line="36"/>
         <source>Query</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapytanie</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.ui" line="42"/>
+        <location filename="../windows/viewwindow.ui" line="60"/>
         <source>View name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa widoku:</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.ui" line="59"/>
+        <location filename="../windows/viewwindow.ui" line="77"/>
         <source>Data</source>
-        <translation type="unfinished"></translation>
+        <translation>Dane</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.ui" line="69"/>
+        <location filename="../windows/viewwindow.ui" line="87"/>
         <source>Triggers</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyzwalacze</translation>
     </message>
     <message>
-        <location filename="../windows/viewwindow.ui" line="101"/>
+        <location filename="../windows/viewwindow.ui" line="119"/>
         <source>DDL</source>
-        <translation type="unfinished"></translation>
+        <translation>DDL</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="115"/>
         <source>Could not restore window, because database %1 could not be resolved.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można przywrócić okna, ponieważ nie znaleziono bazy danych %1.</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="121"/>
         <source>Could not restore window, because database %1 could not be open.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można przywrócić okna, ponieważ nie udało się otworzyć bazy danych %1.</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="130"/>
         <source>Could not restore window, because the view %1 doesn&apos;t exist in the database %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można przywrócić okna, ponieważ widok %1 już nie jestnieje w bazie danych %2.</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="155"/>
         <location filename="../windows/viewwindow.cpp" line="157"/>
         <source>New view %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nowy widok %1</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="275"/>
         <source>Refresh the view</source>
         <comment>view window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Odśwież widok</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="277"/>
         <source>Commit the view changes</source>
         <comment>view window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zatwierdź zmiany w widoku</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="278"/>
         <source>Rollback the view changes</source>
         <comment>view window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Wycofaj zmiany w widoku</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="285"/>
         <source>Refresh trigger list</source>
         <comment>view window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Odśwież listę wyzwalaczy</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="287"/>
-        <source>Create new triger</source>
+        <source>Create new trigger</source>
         <comment>view window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Utwórz nowy wyzwalacz</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="288"/>
-        <source>Edit selected triger</source>
+        <source>Edit selected trigger</source>
         <comment>view window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Edytuj wybrany wyzwalacz</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="289"/>
-        <source>Delete selected triger</source>
+        <source>Delete selected trigger</source>
         <comment>view window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Usuń wybrany wyzwalacz</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="310"/>
         <source>View window &quot;%1&quot; has uncommited structure modifications and data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno widoku &quot;%1&quot; ma niezatwierdzone modyfikacje struktury i danych.</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="312"/>
         <source>View window &quot;%1&quot; has uncommited data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno widoku &quot;%1&quot; ma niezatwierdzone dane.</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="314"/>
         <source>View window &quot;%1&quot; has uncommited structure modifications.</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno widoku &quot;%1&quot; ma niezatwierdzone modyfikacje struktury.</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="455"/>
         <source>Could not load data for view %1. Error details: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie udało się załadować danych dla widoku %1. Szczegóły błędu: %2</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="466"/>
         <source>Uncommited changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Niezatwierdzone dane</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="467"/>
         <source>There are uncommited structure modifications. You cannot browse or edit data until you have the view structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-        <translation type="unfinished"></translation>
+        <translation>Zmiany w strukturze nie zostały zatwierdzone. Nie można przeglądać, ani edytować danych, dopóki struktura widoku nie zostanie ustalona.
+Czy chcesz zatwierdzić strukturę, czy jednak chcesz wrócić do karty struktury?</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="470"/>
         <source>Go back to structure tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Wróć do karty struktury</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="470"/>
         <source>Commit modifications and browse data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zatwierdź modyfikacje i przeglądaj dane.</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="528"/>
         <source>Could not commit view changes. Error message: %1</source>
         <comment>view window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nie udało się zatwierdzić widoku. Treść błędu: %1</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="606"/>
         <source>Name</source>
         <comment>view window triggers</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="607"/>
         <source>Instead of</source>
         <comment>view window triggers</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zamiast</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="608"/>
         <source>Condition</source>
         <comment>view window triggers</comment>
-        <translation type="unfinished"></translation>
+        <translation>Warunek</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="609"/>
         <source>Details</source>
         <comment>table window triggers</comment>
-        <translation type="unfinished"></translation>
+        <translation>Szczegóły</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="649"/>
         <source>Could not process the %1 view correctly. Unable to open a view window.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie udało się przetworzyć poprawnie widoku %1. Nie można otworzyć okna widoku.</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="684"/>
         <source>Empty name</source>
-        <translation type="unfinished"></translation>
+        <translation>Pusta nazwa</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="684"/>
         <source>A blank name for the view is allowed in SQLite, but it is not recommended.
 Are you sure you want to create a view with blank name?</source>
-        <translation type="unfinished"></translation>
+        <translation>Pusta nazwa dla widoku jest dozwolona w SQLite, ale nie jest zalecana.
+Czy na pewno chcesz utworzyć widok o pustej nazwie?</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="699"/>
         <source>The SELECT statement could not be parsed. Please correct the query and retry.
 Details: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapytanie SELECT nie mogło być poprawnie przeanalizowane. Proszę poprawić zapytanie i spróbować ponownie.
+Szczegóły: %1</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="707"/>
         <source>The view could not be modified due to internal SQLiteStudio error. Please report this!</source>
-        <translation type="unfinished"></translation>
+        <translation>Widok nie mógł być zmodyfikowany w związku z wewnętrznym błędem SQLiteStudio. Proszę to zgłosić!</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="733"/>
         <source>The view code could not be parsed properly for execution. This is a SQLiteStudio&apos;s bug. Please report it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kod widok nie mógł być poprawnie przeanalizowany. To jest błąd SQLiteStudio Proszę to zgłosić!</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="746"/>
         <source>Following problems will take place while modifying the view.
 Would you like to proceed?</source>
         <comment>view window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Następujące problemy wystąpią podczas modyfikacji widoku.
+Czy chcesz kontynuować?</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="748"/>
         <source>View modification</source>
         <comment>view window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Modyfikacja widoku</translation>
     </message>
 </context>
 <context>
@@ -6401,7 +5877,7 @@ Would you like to proceed?</source>
     <message>
         <location filename="../common/widgetcover.cpp" line="198"/>
         <source>Interrupt</source>
-        <translation type="unfinished"></translation>
+        <translation>Przerwij</translation>
     </message>
 </context>
 </TS>

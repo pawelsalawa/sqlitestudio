@@ -63,7 +63,8 @@ QString SqlQueryModelColumn::resolveMessage(SqlQueryModelColumn::EditionForbidde
     switch (reason)
     {
         case EditionForbiddenReason::COMPOUND_SELECT:
-            return QObject::tr("Cannot edit columns that are result of compound SELECT statements (one that includes UNION, INTERSECT or EXCEPT keywords).");
+            return QObject::tr("Cannot edit columns that are result of compound %1 statements (one that includes %2, %3 or %4 keywords).")
+                    .arg("SELECT", "UNION", "INTERSECT", "EXCEPT");
         case EditionForbiddenReason::SMART_EXECUTION_FAILED:
             return QObject::tr("The query execution mechanism had problems with extracting ROWID's properly. This might be a bug in the application. You may want to report this.");
         case EditionForbiddenReason::EXPRESSION:
@@ -71,11 +72,11 @@ QString SqlQueryModelColumn::resolveMessage(SqlQueryModelColumn::EditionForbidde
         case EditionForbiddenReason::SYSTEM_TABLE:
             return QObject::tr("Requested column belongs to restricted SQLite table. Those tables cannot be edited directly.");
         case EditionForbiddenReason::NOT_A_SELECT:
-            return QObject::tr("Cannot edit results of query other than SELECT.");
+            return QObject::tr("Cannot edit results of query other than %1.").arg("SELECT");
         case EditionForbiddenReason::GROUPED_RESULTS:
-            return QObject::tr("Cannot edit columns that are result of aggregated SELECT statements.");
+            return QObject::tr("Cannot edit columns that are result of aggregated %1 statements.").arg("SELECT");
         case EditionForbiddenReason::DISTINCT_RESULTS:
-            return QObject::tr("Cannot edit columns that are result of SELECT DISTINCT statement.");
+            return QObject::tr("Cannot edit columns that are result of %1 statement.").arg("SELECT DISTINCT");
         case EditionForbiddenReason::COMMON_TABLE_EXPRESSION:
             return QObject::tr("Cannot edit columns that are result of common table expression statement (%1).").arg("WITH ... SELECT ...");
     }

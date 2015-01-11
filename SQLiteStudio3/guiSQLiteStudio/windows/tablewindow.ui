@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string notr="true">Form</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <property name="leftMargin">
@@ -74,7 +74,7 @@
           <item>
            <widget class="QCheckBox" name="withoutRowIdCheck">
             <property name="text">
-             <string>WITHOUT ROWID</string>
+             <string notr="true">WITHOUT ROWID</string>
             </property>
            </widget>
           </item>

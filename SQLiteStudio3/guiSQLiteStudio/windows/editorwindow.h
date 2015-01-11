@@ -25,7 +25,7 @@ class SqlEditor;
 
 CFG_KEY_LIST(EditorWindow, QObject::tr("SQL editor window"),
      CFG_KEY_ENTRY(EXEC_QUERY,          Qt::Key_F9,                 QObject::tr("Execute query"))
-     CFG_KEY_ENTRY(EXPLAIN_QUERY,       Qt::Key_F8,                 QObject::tr("Execute \"EXPLAIN\" query"))
+     CFG_KEY_ENTRY(EXPLAIN_QUERY,       Qt::Key_F8,                 QObject::tr("Execute \"%1\" query").arg("EXPLAIN"))
      CFG_KEY_ENTRY(PREV_DB,             Qt::CTRL + Qt::Key_Up,      QObject::tr("Switch current working database to previous on the list"))
      CFG_KEY_ENTRY(NEXT_DB,             Qt::CTRL + Qt::Key_Down,    QObject::tr("Switch current working database to next on the list"))
      CFG_KEY_ENTRY(SHOW_NEXT_TAB,       Qt::ALT + Qt::Key_Right,    QObject::tr("Go to next editor tab"))

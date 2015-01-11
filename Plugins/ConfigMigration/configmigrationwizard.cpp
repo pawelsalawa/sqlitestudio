@@ -212,7 +212,7 @@ bool ConfigMigrationWizard::migrateDatabases(Db* oldCfgDb, Db* newCfgDb)
         groupResults = newCfgDb->exec(groupOrderQuery.arg("IS NULL"));
         if (groupResults->isError())
         {
-            notifyError(tr("Could query for available order for containing group in new configuration file in order to migrate the database list: %1")
+            notifyError(tr("Could not query for available order for containing group in new configuration file in order to migrate the database list: %1")
                         .arg(groupResults->getErrorText()));
             return false;
         }
@@ -256,7 +256,7 @@ bool ConfigMigrationWizard::migrateDatabases(Db* oldCfgDb, Db* newCfgDb)
 
         if (groupResults->isError())
         {
-            notifyError(tr("Could query for available order for next database in new configuration file in order to migrate the database list: %1")
+            notifyError(tr("Could not query for available order for next database in new configuration file in order to migrate the database list: %1")
                         .arg(groupResults->getErrorText()));
             return false;
         }

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Trigger dialog</string>
+   <string>Trigger</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -87,7 +87,7 @@
           <string>List of columns for UPDATE OF action.</string>
          </property>
          <property name="text">
-          <string>...</string>
+          <string notr="true">...</string>
          </property>
         </widget>
        </item>

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string notr="true">Form</string>
   </property>
   <property name="initialSize" stdset="0">
    <size>
@@ -29,7 +29,7 @@
       <item>
        <widget class="QPlainTextEdit" name="initCodeEdit">
         <property name="cfg" stdset="0">
-         <string>PopulateScript.InitCode</string>
+         <string notr="true">PopulateScript.InitCode</string>
         </property>
         <property name="scriptingEdit" stdset="0">
          <bool>true</bool>
@@ -48,7 +48,7 @@
       <item>
        <widget class="QPlainTextEdit" name="codeEdit">
         <property name="cfg" stdset="0">
-         <string>PopulateScript.Code</string>
+         <string notr="true">PopulateScript.Code</string>
         </property>
         <property name="scriptingEdit" stdset="0">
          <bool>true</bool>
@@ -73,7 +73,7 @@
       <item>
        <widget class="QComboBox" name="langCombo">
         <property name="cfg" stdset="0">
-         <string>PopulateScript.Language</string>
+         <string notr="true">PopulateScript.Language</string>
         </property>
         <property name="ScriptingLangCombo" stdset="0">
          <bool>true</bool>
@@ -92,13 +92,13 @@
       <item>
        <widget class="QToolButton" name="toolButton">
         <property name="text">
-         <string>...</string>
+         <string notr="true">...</string>
         </property>
         <property name="openUrl" stdset="0">
-         <string>http://sqlitestudio.pl/wiki/index.php/Official_plugins#Script_.28built-in.29</string>
+         <string notr="true">http://sqlitestudio.pl/wiki/index.php/Official_plugins#Script_.28built-in.29</string>
         </property>
         <property name="customIcon" stdset="0">
-         <string>help</string>
+         <string notr="true">help</string>
         </property>
        </widget>
       </item>

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string notr="true">Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0" colspan="3">
@@ -20,7 +20,7 @@
       <string>Column names in first row</string>
      </property>
      <property name="cfg" stdset="0">
-      <string>CsvExport.ColumnsInFirstRow</string>
+      <string notr="true">CsvExport.ColumnsInFirstRow</string>
      </property>
     </widget>
    </item>
@@ -34,7 +34,7 @@
    <item row="1" column="1">
     <widget class="QComboBox" name="comboBox">
      <property name="cfg" stdset="0">
-      <string>CsvExport.Separator</string>
+      <string notr="true">CsvExport.Separator</string>
      </property>
      <item>
       <property name="text">
@@ -72,7 +72,7 @@
       </size>
      </property>
      <property name="cfg" stdset="0">
-      <string>CsvExport.CustomSeparator</string>
+      <string notr="true">CsvExport.CustomSeparator</string>
      </property>
     </widget>
    </item>
@@ -89,7 +89,7 @@
       <string>Empty string</string>
      </property>
      <property name="cfg" stdset="0">
-      <string>CsvExport.NullValueString</string>
+      <string notr="true">CsvExport.NullValueString</string>
      </property>
     </widget>
    </item>

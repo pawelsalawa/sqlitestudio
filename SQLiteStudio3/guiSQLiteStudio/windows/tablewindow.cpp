@@ -947,15 +947,15 @@ bool TableWindow::validate(bool skipWarning)
 
         if (!hasPk)
         {
-            notifyError(tr("Cannot create table without ROWID, if it has no PRIMARY KEY defined."
-                           " Either uncheck the WITHOUT ROWID, or define a PRIMARY KEY."));
+            notifyError(tr("Cannot create table %1, if it has no primary key defined."
+                           " Either uncheck the %2, or define a primary key.").arg("WITHOUT ROWID", "WITHOUT ROWID"));
             return false;
         }
 
         if (isPkAutoIncr)
         {
-            notifyError(tr("Cannot use AUTOINCREMENT for PRIMARY KEY when WITHOUT ROWID clause is used."
-                           " Either uncheck the WITHOUT ROWID, or the AUTOINCREMENT in a PRIMARY KEY."));
+            notifyError(tr("Cannot use autoincrement for primary key when %1 clause is used."
+                           " Either uncheck the %2, or the autoincrement in a primary key.").arg("WITHOUT ROWID", "WITHOUT ROWID"));
             return false;
         }
     }

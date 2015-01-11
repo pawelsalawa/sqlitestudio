@@ -7,24 +7,24 @@
     <x>0</x>
     <y>0</y>
     <width>451</width>
-    <height>35</height>
+    <height>37</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string notr="true">Form</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>TextLabel</string>
+      <string notr="true">TextLabel</string>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QToolButton" name="button">
      <property name="text">
-      <string>...</string>
+      <string notr="true">...</string>
      </property>
     </widget>
    </item>

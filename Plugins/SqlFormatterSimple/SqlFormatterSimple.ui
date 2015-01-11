@@ -10,6 +10,9 @@
     <height>290</height>
    </rect>
   </property>
+  <property name="windowTitle">
+   <string notr="true"/>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QCheckBox" name="upperKeywordsCheck">
@@ -17,7 +20,7 @@
       <string>Upper case keywords</string>
      </property>
      <property name="cfg" stdset="0">
-      <string>SqlFormatterSimple.UpperCaseKeywords</string>
+      <string notr="true">SqlFormatterSimple.UpperCaseKeywords</string>
      </property>
     </widget>
    </item>
@@ -27,7 +30,7 @@
       <string>Reduce multiple whitespaces to single whitespace</string>
      </property>
      <property name="cfg" stdset="0">
-      <string>SqlFormatterSimple.TrimLongSpaces</string>
+      <string notr="true">SqlFormatterSimple.TrimLongSpaces</string>
      </property>
     </widget>
    </item>

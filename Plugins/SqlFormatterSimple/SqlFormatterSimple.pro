@@ -28,6 +28,5 @@ RESOURCES += \
     sqlformattersimple.qrc
 
 
-TRANSLATIONS += SqlFormatterSimple_pl.ts \
-		SqlFormatterSimple_en.ts
+TRANSLATIONS += SqlFormatterSimple_pl.ts
 

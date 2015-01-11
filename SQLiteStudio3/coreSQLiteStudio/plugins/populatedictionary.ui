@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string notr="true">Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -23,7 +23,7 @@
       <item>
        <widget class="FileEdit" name="fileEdit" native="true">
         <property name="cfg" stdset="0">
-         <string>PopulateDictionary.File</string>
+         <string notr="true">PopulateDictionary.File</string>
         </property>
         <property name="dialogTitle" stdset="0">
          <string>Pick dictionary file</string>
@@ -41,11 +41,11 @@
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <widget class="ConfigRadioButton" name="whitespaceRadio">
-        <property name="cfg" stdset="0">
-         <string>PopulateDictionary.Lines</string>
-        </property>
         <property name="text">
          <string>Whitespace</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string notr="true">PopulateDictionary.Lines</string>
         </property>
         <property name="assignedValue" stdset="0">
          <bool>false</bool>
@@ -54,11 +54,11 @@
       </item>
       <item>
        <widget class="ConfigRadioButton" name="libeBreakRadio">
-        <property name="cfg" stdset="0">
-         <string>PopulateDictionary.Lines</string>
-        </property>
         <property name="text">
          <string>Line break</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string notr="true">PopulateDictionary.Lines</string>
         </property>
         <property name="assignedValue" stdset="0">
          <bool>true</bool>
@@ -76,11 +76,11 @@
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
        <widget class="ConfigRadioButton" name="orderedRadio">
-        <property name="cfg" stdset="0">
-         <string>PopulateDictionary.Random</string>
-        </property>
         <property name="text">
          <string>Ordered</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string notr="true">PopulateDictionary.Random</string>
         </property>
         <property name="assignedValue" stdset="0">
          <bool>false</bool>
@@ -89,11 +89,11 @@
       </item>
       <item>
        <widget class="ConfigRadioButton" name="randomlyRadio">
-        <property name="cfg" stdset="0">
-         <string>PopulateDictionary.Random</string>
-        </property>
         <property name="text">
          <string>Randomly</string>
+        </property>
+        <property name="cfg" stdset="0">
+         <string notr="true">PopulateDictionary.Random</string>
         </property>
         <property name="assignedValue" stdset="0">
          <bool>true</bool>

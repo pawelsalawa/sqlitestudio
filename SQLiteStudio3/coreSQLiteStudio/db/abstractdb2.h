@@ -195,7 +195,7 @@ bool AbstractDb2<T>::openInternal()
 
         if (errMsg)
         {
-            dbErrorMessage = tr("Could not open database: %1").arg(QString::fromUtf8(errMsg));
+            dbErrorMessage = QObject::tr("Could not open database: %1").arg(QString::fromUtf8(errMsg));
             sqlite_freemem(errMsg);
         }
         return false;
@@ -788,7 +788,7 @@ int AbstractDb2<T>::Query::fetchNext()
 
     if (!rowAvailable || !stmt)
     {
-        setError(SQLITE_MISUSE, tr("Result set expired or no row available."));
+        setError(SQLITE_MISUSE, QObject::tr("Result set expired or no row available."));
         return SQLITE_MISUSE;
     }
 

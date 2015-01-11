@@ -352,7 +352,7 @@ bool AbstractDb3<T>::openInternal()
         if (handle)
             T::close(handle);
 
-        dbErrorMessage = tr("Could not open database: %1").arg(extractLastError());
+        dbErrorMessage = QObject::tr("Could not open database: %1").arg(extractLastError());
         dbErrorCode = res;
         return false;
     }
@@ -372,7 +372,7 @@ bool AbstractDb3<T>::closeInternal()
     int res = T::close(dbHandle);
     if (res != T::OK)
     {
-        dbErrorMessage = tr("Could not close database: %1").arg(extractLastError());
+        dbErrorMessage = QObject::tr("Could not close database: %1").arg(extractLastError());
         dbErrorCode = res;
         qWarning() << "Error closing database. That's weird:" << dbErrorMessage;
         return false;
@@ -1075,7 +1075,7 @@ int AbstractDb3<T>::Query::fetchNext()
 
     if (!rowAvailable || !stmt)
     {
-        setError(T::MISUSE, tr("Result set expired or no row available."));
+        setError(T::MISUSE, QObject::tr("Result set expired or no row available."));
         return T::MISUSE;
     }
 

@@ -11,19 +11,19 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string notr="true">Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="1">
     <widget class="QSpinBox" name="startValueSpin">
-     <property name="cfg" stdset="0">
-      <string>PopulateSequence.StartValue</string>
-     </property>
      <property name="minimum">
       <number>-99999999</number>
      </property>
      <property name="maximum">
       <number>99999999</number>
+     </property>
+     <property name="cfg" stdset="0">
+      <string notr="true">PopulateSequence.StartValue</string>
      </property>
     </widget>
    </item>
@@ -36,9 +36,6 @@
    </item>
    <item row="1" column="1">
     <widget class="QSpinBox" name="stepSpin">
-     <property name="cfg" stdset="0">
-      <string>PopulateSequence.Step</string>
-     </property>
      <property name="minimum">
       <number>-999999</number>
      </property>
@@ -47,6 +44,9 @@
      </property>
      <property name="value">
       <number>1</number>
+     </property>
+     <property name="cfg" stdset="0">
+      <string notr="true">PopulateSequence.Step</string>
      </property>
     </widget>
    </item>

@@ -134,12 +134,12 @@ SqliteQueryPtr DbVersionConverter::convert3To2(SqliteQueryPtr query)
     switch (query->queryType)
     {
         case SqliteQueryType::AlterTable:
-            errors << QObject::tr("SQLite 2 does not support 'ALTER TABLE' statement.");
+            errors << QObject::tr("SQLite %1 does not support '%2' statement.").arg("2", "ALTER TABLE");
             newQuery = SqliteEmptyQueryPtr::create();
             storeErrorDiff(query.data());
             break;
         case SqliteQueryType::Analyze:
-            errors << QObject::tr("SQLite 2 does not support 'ANAYLZE' statement.");
+            errors << QObject::tr("SQLite %1 does not support '%2' statement.").arg("2", "ANAYLZE");
             newQuery = SqliteEmptyQueryPtr::create();
             storeErrorDiff(query.data());
             break;
@@ -192,13 +192,14 @@ SqliteQueryPtr DbVersionConverter::convert3To2(SqliteQueryPtr query)
             newQuery = copyQuery<SqliteCreateVirtualTable>(query);
             if (!modifyVirtualTableForVesion2(newQuery, newQuery.dynamicCast<SqliteCreateVirtualTable>().data()))
             {
-                errors << QObject::tr("SQLite 2 does not support 'CREATE VIRTUAL TABLE' statement.");
+                errors << QObject::tr("SQLite %1 does not support '%2' statement.").arg("2", "CREATE VIRTUAL TABLE");
                 newQuery = SqliteEmptyQueryPtr::create();
                 storeErrorDiff(query.data());
             }
             else
             {
-                errors << QObject::tr("SQLite 2 does not support 'CREATE VIRTUAL TABLE' statement. The regular table can be created instead if you proceed.");
+                errors << QObject::tr("SQLite %1 does not support '%2' statement, but the regular table can be created instead if you proceed.")
+                          .arg("2", "CREATE VIRTUAL TABLE");
             }
             break;
         case SqliteQueryType::Delete:
@@ -236,12 +237,12 @@ SqliteQueryPtr DbVersionConverter::convert3To2(SqliteQueryPtr query)
             newQuery = copyQuery<SqlitePragma>(query);
             break;
         case SqliteQueryType::Reindex:
-            errors << QObject::tr("SQLite 2 does not support 'REINDEX' statement.");
+            errors << QObject::tr("SQLite %1 does not support '%2' statement.").arg("2", "REINDEX");
             newQuery = SqliteEmptyQueryPtr::create();
             storeErrorDiff(query.data());
             break;
         case SqliteQueryType::Release:
-            errors << QObject::tr("SQLite 2 does not support 'RELEASE' statement.");
+            errors << QObject::tr("SQLite %1 does not support '%2' statement.").arg("2", "RELEASE");
             newQuery = SqliteEmptyQueryPtr::create();
             storeErrorDiff(query.data());
             break;
@@ -249,7 +250,7 @@ SqliteQueryPtr DbVersionConverter::convert3To2(SqliteQueryPtr query)
             newQuery = copyQuery<SqliteRollback>(query);
             break;
         case SqliteQueryType::Savepoint:
-            errors << QObject::tr("SQLite 2 does not support 'SAVEPOINT' statement.");
+            errors << QObject::tr("SQLite %1 does not support '%2' statement.").arg("2", "SAVEPOINT");
             newQuery = SqliteEmptyQueryPtr::create();
             storeErrorDiff(query.data());
             break;
@@ -327,7 +328,7 @@ SqliteQueryPtr DbVersionConverter::convert2To3(SqliteQueryPtr query)
             newQuery = copyQuery<SqliteCommitTrans>(query);
             break;
         case SqliteQueryType::Copy:
-            errors << QObject::tr("SQLite 3 does not support 'COPY' statement.");
+            errors << QObject::tr("SQLite %1 does not support '%2' statement.").arg("3", "COPY");
             newQuery = SqliteEmptyQueryPtr::create();
             storeErrorDiff(query.data());
             break;
@@ -431,7 +432,7 @@ bool DbVersionConverter::modifySelectForVersion2(SqliteSelect* select)
 {
     if (select->with)
     {
-        errors << QObject::tr("SQLite 2 does not support the 'WITH' clause. Cannot convert '%1' statement with that clause.").arg("SELECT");
+        errors << QObject::tr("SQLite %1 does not support the '%2' clause. Cannot convert '%3' statement with that clause.").arg("2", "WITH", "SELECT");
         return false;
     }
 
@@ -457,7 +458,7 @@ bool DbVersionConverter::modifyDeleteForVersion2(SqliteDelete* del)
 {
     if (del->with)
     {
-        errors << QObject::tr("SQLite 2 does not support the 'WITH' clause. Cannot convert '%1' statement with that clause.").arg("DELETE");
+        errors << QObject::tr("SQLite %1 does not support the '%2' clause. Cannot convert '%3' statement with that clause.").arg("2", "WITH", "DELETE");
         return false;
     }
 
@@ -478,13 +479,13 @@ bool DbVersionConverter::modifyInsertForVersion2(SqliteInsert* insert)
 {
     if (insert->with)
     {
-        errors << QObject::tr("SQLite 2 does not support the 'WITH' clause. Cannot convert '%1' statement with that clause.").arg("INSERT");
+        errors << QObject::tr("SQLite %1 does not support the '%2' clause. Cannot convert '%3' statement with that clause.").arg("2", "WITH", "INSERT");
         return false;
     }
 
     if (insert->defaultValuesKw)
     {
-        errors << QObject::tr("SQLite 2 does not support the 'DEFAULT VALUES' clause in the 'INSERT' clause.");
+        errors << QObject::tr("SQLite %1 does not support the '%2' clause in the '%3' statement.").arg("2", "DEFAULT VALUES", "INSERT");
         return false;
     }
 
@@ -511,7 +512,7 @@ bool DbVersionConverter::modifyUpdateForVersion2(SqliteUpdate* update)
 {
     if (update->with)
     {
-        errors << QObject::tr("SQLite 2 does not support the 'WITH' clause. Cannot convert '%1' statement with that clause.").arg("UPDATE");
+        errors << QObject::tr("SQLite %1 does not support the '%2' clause. Cannot convert '%3' statement with that clause.").arg("2", "WITH", "UPDATE");
         return false;
     }
 
@@ -752,7 +753,7 @@ bool DbVersionConverter::modifySingleExprForVersion2(SqliteExpr* expr)
         case SqliteExpr::Mode::RAISE:
             break;
         case SqliteExpr::Mode::CTIME:
-            errors << QObject::tr("SQLite 2 does not support current date or time clauses in expressions.");
+            errors << QObject::tr("SQLite %1 does not support current date or time clauses in expressions.").arg("2");
             return false;
         case SqliteExpr::Mode::IN:
         case SqliteExpr::Mode::SUB_SELECT:
@@ -763,10 +764,10 @@ bool DbVersionConverter::modifySingleExprForVersion2(SqliteExpr* expr)
             break;
         }
         case SqliteExpr::Mode::CAST:
-            errors << QObject::tr("SQLite 2 does not support 'CAST' clause in expressions.");
+            errors << QObject::tr("SQLite %1 does not support '%2' clause in expressions.").arg("2", "CAST");
             return false;
         case SqliteExpr::Mode::EXISTS:
-            errors << QObject::tr("SQLite 2 does not support 'EXISTS' clause in expressions.");
+            errors << QObject::tr("SQLite %1 does not support '%2' clause in expressions.").arg("2", "EXISTS");
             return false;
         case SqliteExpr::Mode::COLLATE:
         {
@@ -777,7 +778,7 @@ bool DbVersionConverter::modifySingleExprForVersion2(SqliteExpr* expr)
             }
             else
             {
-                errors << QObject::tr("SQLite 2 does not support 'COLLATE' clause in expressions.");
+                errors << QObject::tr("SQLite %1 does not support '%2' clause in expressions.").arg("2", "COLLATE");
                 return false;
             }
         }

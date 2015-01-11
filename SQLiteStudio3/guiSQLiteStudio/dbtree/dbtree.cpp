@@ -114,20 +114,20 @@ void DbTree::createActions()
     createAction(INTEGRITY_CHECK, ICONS.INTEGRITY_CHECK, tr("Integrity check"), this, SLOT(integrityCheck()), this);
     createAction(ADD_TABLE, ICONS.TABLE_ADD, tr("Create a table"), this, SLOT(addTable()), this);
     createAction(EDIT_TABLE, ICONS.TABLE_EDIT, tr("Edit the table"), this, SLOT(editTable()), this);
-    createAction(DEL_TABLE, ICONS.TABLE_DEL, tr("Drop the table"), this, SLOT(delTable()), this);
+    createAction(DEL_TABLE, ICONS.TABLE_DEL, tr("Delete the table"), this, SLOT(delTable()), this);
     createAction(EXPORT_TABLE, ICONS.TABLE_EXPORT, tr("Export the table"), this, SLOT(exportTable()), this);
     createAction(IMPORT_TABLE, ICONS.TABLE_IMPORT, tr("Import into the table"), this, SLOT(importTable()), this);
     createAction(POPULATE_TABLE, ICONS.TABLE_POPULATE, tr("Populate table"), this, SLOT(populateTable()), this);
     createAction(CREATE_SIMILAR_TABLE, ICONS.TABLE_CREATE_SIMILAR, tr("Create similar table"), this, SLOT(createSimilarTable()), this);
     createAction(ADD_INDEX, ICONS.INDEX_ADD, tr("Create an index"), this, SLOT(addIndex()), this);
     createAction(EDIT_INDEX, ICONS.INDEX_EDIT, tr("Edit the index"), this, SLOT(editIndex()), this);
-    createAction(DEL_INDEX, ICONS.INDEX_DEL, tr("Drop the index"), this, SLOT(delIndex()), this);
+    createAction(DEL_INDEX, ICONS.INDEX_DEL, tr("Delete the index"), this, SLOT(delIndex()), this);
     createAction(ADD_TRIGGER, ICONS.TRIGGER_ADD, tr("Create a trigger"), this, SLOT(addTrigger()), this);
     createAction(EDIT_TRIGGER, ICONS.TRIGGER_EDIT, tr("Edit the trigger"), this, SLOT(editTrigger()), this);
-    createAction(DEL_TRIGGER, ICONS.TRIGGER_DEL, tr("Drop the trigger"), this, SLOT(delTrigger()), this);
+    createAction(DEL_TRIGGER, ICONS.TRIGGER_DEL, tr("Delete the trigger"), this, SLOT(delTrigger()), this);
     createAction(ADD_VIEW, ICONS.VIEW_ADD, tr("Create a view"), this, SLOT(addView()), this);
     createAction(EDIT_VIEW, ICONS.VIEW_EDIT, tr("Edit the view"), this, SLOT(editView()), this);
-    createAction(DEL_VIEW, ICONS.VIEW_DEL, tr("Drop the view"), this, SLOT(delView()), this);
+    createAction(DEL_VIEW, ICONS.VIEW_DEL, tr("Delete the view"), this, SLOT(delView()), this);
     createAction(ADD_COLUMN, ICONS.TABLE_COLUMN_ADD, tr("Add a column"), this, SLOT(addColumn()), this);
     createAction(EDIT_COLUMN, ICONS.TABLE_COLUMN_EDIT, tr("Edit the column"), this, SLOT(editColumn()), this);
     createAction(DEL_COLUMN, ICONS.TABLE_COLUMN_DELETE, tr("Delete the column"), this, SLOT(delColumn()), this);
@@ -304,12 +304,12 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
 {
     QList<ActionEntry> actions;
 
-    ActionEntry dbEntry(ICONS.DATABASE, tr("Datatabase"));
+    ActionEntry dbEntry(ICONS.DATABASE, tr("Database"));
     dbEntry += ADD_DB;
     dbEntry += EDIT_DB;
     dbEntry += DELETE_DB;
 
-    ActionEntry dbEntryExt(ICONS.DATABASE, tr("Datatabase"));
+    ActionEntry dbEntryExt(ICONS.DATABASE, tr("Database"));
     dbEntryExt += CONNECT_TO_DB;
     dbEntryExt += DISCONNECT_FROM_DB;
     dbEntryExt += _separator;
@@ -929,7 +929,7 @@ void DbTree::createGroup()
     while (existingItems.contains(name = QInputDialog::getText(this, tr("Create group"), tr("Group name"))) ||
            (name.isEmpty() && !name.isNull()))
     {
-        QMessageBox::information(this, tr("Create directory"), tr("Entry with name %1 already exists in directory %2.")
+        QMessageBox::information(this, tr("Create group"), tr("Entry with name %1 already exists in group %2.")
                                  .arg(name).arg(currItem->text()), QMessageBox::Ok);
     }
 

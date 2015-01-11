@@ -4,24 +4,14 @@
 <context>
     <name>SqlFormatterSimplePlugin</name>
     <message>
-        <location filename="SqlFormatterSimple.ui" line="17"/>
-        <source>Upper case keywords</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="SqlFormatterSimple.ui" line="20"/>
-        <source>SqlFormatterSimple.UpperCaseKeywords</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="SqlFormatterSimple.ui" line="27"/>
-        <source>Reduce multiple whitespaces to single whitespace</source>
-        <translation type="unfinished"></translation>
+        <source>Upper case keywords</source>
+        <translation>Zmień litery słów kluczowych na duże</translation>
     </message>
     <message>
         <location filename="SqlFormatterSimple.ui" line="30"/>
-        <source>SqlFormatterSimple.TrimLongSpaces</source>
-        <translation type="unfinished"></translation>
+        <source>Reduce multiple whitespaces to single whitespace</source>
+        <translation>Zredukuj wiele znaków białych do pojedynczego</translation>
     </message>
 </context>
 </TS>
