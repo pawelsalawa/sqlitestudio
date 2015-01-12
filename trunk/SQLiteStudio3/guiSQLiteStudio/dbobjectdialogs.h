@@ -14,6 +14,8 @@ class ViewWindow;
 
 class GUI_API_EXPORT DbObjectDialogs : public QObject
 {
+        Q_OBJECT
+
     public:
         explicit DbObjectDialogs(Db* db);
         DbObjectDialogs(Db* db, QWidget* parentWidget);

@@ -5,6 +5,8 @@
 
 class CliCommandDesc : public CliCommand
 {
+        Q_OBJECT
+
     public:
         CliCommandDesc();
         void execute();

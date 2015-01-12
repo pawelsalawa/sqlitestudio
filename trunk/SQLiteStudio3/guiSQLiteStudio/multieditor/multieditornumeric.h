@@ -9,6 +9,8 @@ class NumericSpinBox;
 
 class GUI_API_EXPORT MultiEditorNumeric : public MultiEditorWidget
 {
+        Q_OBJECT
+
     public:
         explicit MultiEditorNumeric(QWidget *parent = 0);
 

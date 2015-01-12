@@ -5,6 +5,8 @@
 
 class CliCommandUse : public CliCommand
 {
+        Q_OBJECT
+
     public:
         void execute();
         QString shortHelp() const;

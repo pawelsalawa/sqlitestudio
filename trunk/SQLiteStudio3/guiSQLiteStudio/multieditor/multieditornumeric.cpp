@@ -33,7 +33,7 @@ void MultiEditorNumeric::setReadOnly(bool value)
 
 QString MultiEditorNumeric::getTabLabel()
 {
-    return tr("Number");
+    return tr("Number", "numeric multi editor tab name");
 }
 
 void MultiEditorNumeric::focusThisWidget()

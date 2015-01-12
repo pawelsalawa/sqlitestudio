@@ -6,6 +6,8 @@
 
 class API_EXPORT GenericExportPlugin : virtual public GenericPlugin, public ExportPlugin
 {
+        Q_OBJECT
+
     public:
         bool initBeforeExport(Db* db, QIODevice* output, const ExportManager::StandardExportConfig& config);
         ExportManager::ExportModes getSupportedModes() const;
