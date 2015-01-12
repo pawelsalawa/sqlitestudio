@@ -6,6 +6,8 @@
 
 class GUI_API_EXPORT MultiEditorTime : public MultiEditorDateTime
 {
+        Q_OBJECT
+
     public:
         explicit MultiEditorTime(QWidget *parent = 0);
 

@@ -18,6 +18,8 @@ class DbAttacher;
 
 class API_EXPORT CompletionHelper : public QObject
 {
+        Q_OBJECT
+
     friend class CompletionComparer;
 
     public:

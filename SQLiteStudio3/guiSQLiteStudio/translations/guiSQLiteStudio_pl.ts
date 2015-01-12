@@ -3598,8 +3598,13 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
 <context>
     <name>MultiEditorNumeric</name>
     <message>
-        <location filename="../multieditor/multieditornumeric.cpp" line="35"/>
         <source>Number</source>
+        <translation type="obsolete">Liczba</translation>
+    </message>
+    <message>
+        <location filename="../multieditor/multieditornumeric.cpp" line="36"/>
+        <source>Number</source>
+        <comment>numeric multi editor tab name</comment>
         <translation>Liczba</translation>
     </message>
 </context>

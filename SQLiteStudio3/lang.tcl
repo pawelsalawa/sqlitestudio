@@ -33,7 +33,7 @@ switch -- $op {
 	foreach f $files {
 	    catch {
 		if {$op == "update"} {
-		    exec lupdate $f $::ERR_NULL
+		    exec lupdate $f
 		} else {
 		    exec lrelease $f $::ERR_NULL
 		}
@@ -42,11 +42,14 @@ switch -- $op {
 		puts $res
 	    } else {
 		foreach line [split $res \n] {
+		    if {[string first Q_OBJECT $line] > -1} {
+			puts $line
+		    }
 		    if {[regexp -- {^.*\w+\.ts.*$} $line]} {
 			puts -nonewline [lindex [regexp -inline -- {^.*"([\w\/\\\.]+\.ts)".*$} $line] 1]
 			puts -nonewline ": "
 		    }
-		    if {[regexp -- {^.*\d+[^\d]+\d+[^\d]+\d+.*$} $line]} {
+		    if {[regexp -- {^.*\d+[^\d]+\(\d+[^\d]+\d+.*\).*$} $line]} {
 			puts -nonewline [lindex [regexp -inline -- {\S+.*} $line] 0]
 			set new [lindex [regexp -inline -- {^.*\d+[^\d]+(\d+)[^\d]+\d+.*$} $line] 1]
 			if {$new > 0} {

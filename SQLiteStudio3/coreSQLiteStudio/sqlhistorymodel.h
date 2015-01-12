@@ -7,6 +7,8 @@ class Db;
 
 class SqlHistoryModel : public QueryModel
 {
+        Q_OBJECT
+
     public:
         SqlHistoryModel(Db* db, QObject *parent = nullptr);
 
