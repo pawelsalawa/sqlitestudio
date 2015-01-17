@@ -14,6 +14,7 @@ class GUI_API_EXPORT SqlQueryItemDelegate : public QStyledItemDelegate
 
         void paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const;
         QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const;
+        QString	displayText(const QVariant & value, const QLocale & locale) const;
 
     private:
         SqlQueryItem* getItem(const QModelIndex &index) const;
