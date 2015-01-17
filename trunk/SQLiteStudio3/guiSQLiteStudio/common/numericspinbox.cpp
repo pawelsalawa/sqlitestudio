@@ -34,7 +34,6 @@ QValidator::State NumericSpinBox::validate(QString& input, int& pos) const
 {
     UNUSED(input);
     UNUSED(pos);
-    emit modified();
 
     if (strict)
         return validateStrict(input, pos);
@@ -103,6 +102,7 @@ void NumericSpinBox::setStrict(bool value, bool allowEmpty)
 void NumericSpinBox::valueEdited(const QString& value)
 {
     setValueInternal(value);
+    emit modified();
 }
 
 QAbstractSpinBox::StepEnabled NumericSpinBox::stepEnabled() const
