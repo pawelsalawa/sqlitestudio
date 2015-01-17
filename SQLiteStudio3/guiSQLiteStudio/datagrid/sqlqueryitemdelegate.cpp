@@ -7,6 +7,7 @@
 #include <QPainter>
 #include <QEvent>
 #include <QLineEdit>
+#include <QDebug>
 
 SqlQueryItemDelegate::SqlQueryItemDelegate(QObject *parent) :
     QStyledItemDelegate(parent)
@@ -16,7 +17,6 @@ SqlQueryItemDelegate::SqlQueryItemDelegate(QObject *parent) :
 void SqlQueryItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     QStyledItemDelegate::paint(painter, option, index);
-
     SqlQueryItem* item = getItem(index);
 
     if (item->isUncommited())
@@ -52,6 +52,16 @@ QWidget* SqlQueryItemDelegate::createEditor(QWidget* parent, const QStyleOptionV
         item->loadFullData();
 
     return getEditor(item->getValue().userType(), parent);
+}
+
+QString SqlQueryItemDelegate::displayText(const QVariant& value, const QLocale& locale) const
+{
+    UNUSED(locale);
+
+    if (value.type() == QVariant::Double)
+        return value.toString();
+
+    return QStyledItemDelegate::displayText(value, locale);
 }
 
 SqlQueryItem* SqlQueryItemDelegate::getItem(const QModelIndex &index) const
