@@ -153,6 +153,7 @@ class GUI_API_EXPORT IconManager : public QObject
             DEF_ICON(RELOAD,                            "reload")
             DEF_ICON(RENAME_FN_ARG,                     "rename_fn_arg")
             DEF_ICO3(RENAME_DATATYPE,                   RENAME_FN_ARG)
+            DEF_ICON(RESET_AUTOINCREMENT,               "reset_autoincrement")
             DEF_ICON(RESULTS_BELOW,                     "results_below")
             DEF_ICON(RESULTS_IN_TAB,                    "results_in_tab")
             DEF_ICON(ROLLBACK,                          "rollback")

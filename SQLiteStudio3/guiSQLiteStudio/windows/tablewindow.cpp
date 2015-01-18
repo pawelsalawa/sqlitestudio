@@ -208,6 +208,7 @@ void TableWindow::createStructureActions()
     ui->structureToolBar->addAction(actionMap[POPULATE]);
     ui->structureToolBar->addSeparator();
     createAction(CREATE_SIMILAR, ICONS.TABLE_CREATE_SIMILAR, tr("Create similar table", "table window"), this, SLOT(createSimilarTable()), ui->structureToolBar);
+    createAction(RESET_AUTOINCREMENT, ICONS.RESET_AUTOINCREMENT, tr("Reset autoincrement value", "table window"), this, SLOT(resetAutoincrement()), ui->structureToolBar);
 
     // Table constraints
     createAction(ADD_TABLE_CONSTRAINT, ICONS.TABLE_CONSTRAINT_ADD, tr("Add table constraint", "table window"), this, SLOT(addConstraint()), ui->tableConstraintsToolbar, ui->tableConstraintsView);
@@ -836,6 +837,23 @@ void TableWindow::rollbackStructure()
     updateTableConstraintsToolbarState();
 }
 
+void TableWindow::resetAutoincrement()
+{
+    if (!existingTable)
+        return;
+
+    QMessageBox::StandardButton btn = QMessageBox::question(this, tr("Reset autoincrement"), tr("Are you sure you want to reset autoincrement value for table '%1'?")
+                                                            .arg(table));
+    if (btn != QMessageBox::Yes)
+        return;
+
+    SqlQueryPtr res = db->exec("DELETE FROM sqlite_sequence WHERE name = ?;", {table});
+    if (res->isError())
+        notifyError(tr("An error occurred while trying to reset autoincrement value for table '%1': %2").arg(table, res->getErrorText()));
+    else
+        notifyInfo(tr("Autoincrement value for table '%1' has been reset successfly.").arg(table));
+}
+
 void TableWindow::addColumn()
 {
     SqliteCreateTable::Column column;
@@ -1037,6 +1055,7 @@ void TableWindow::updateNewTableState()
     actionMap[IMPORT]->setEnabled(existingTable);
     actionMap[POPULATE]->setEnabled(existingTable);
     actionMap[CREATE_SIMILAR]->setEnabled(existingTable);
+    actionMap[RESET_AUTOINCREMENT]->setEnabled(existingTable);
     actionMap[REFRESH_STRUCTURE]->setEnabled(existingTable);
 }
 

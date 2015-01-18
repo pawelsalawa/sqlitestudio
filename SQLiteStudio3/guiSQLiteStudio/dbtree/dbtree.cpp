@@ -119,6 +119,7 @@ void DbTree::createActions()
     createAction(IMPORT_TABLE, ICONS.TABLE_IMPORT, tr("Import into the table"), this, SLOT(importTable()), this);
     createAction(POPULATE_TABLE, ICONS.TABLE_POPULATE, tr("Populate table"), this, SLOT(populateTable()), this);
     createAction(CREATE_SIMILAR_TABLE, ICONS.TABLE_CREATE_SIMILAR, tr("Create similar table"), this, SLOT(createSimilarTable()), this);
+    createAction(RESET_AUTOINCREMENT, ICONS.RESET_AUTOINCREMENT, tr("Reset autoincrement sequence"), this, SLOT(resetAutoincrement()), this);
     createAction(ADD_INDEX, ICONS.INDEX_ADD, tr("Create an index"), this, SLOT(addIndex()), this);
     createAction(EDIT_INDEX, ICONS.INDEX_EDIT, tr("Edit the index"), this, SLOT(editIndex()), this);
     createAction(DEL_INDEX, ICONS.INDEX_DEL, tr("Delete the index"), this, SLOT(delIndex()), this);
@@ -188,7 +189,7 @@ void DbTree::updateActionStates(const QStandardItem *item)
                     break;
                 case DbTreeItem::Type::TABLE:
                     enabled << EDIT_TABLE << DEL_TABLE << EXPORT_TABLE << IMPORT_TABLE << POPULATE_TABLE << ADD_COLUMN << CREATE_SIMILAR_TABLE;
-                    enabled << ADD_INDEX << ADD_TRIGGER;
+                    enabled << RESET_AUTOINCREMENT << ADD_INDEX << ADD_TRIGGER;
                     break;
                 case DbTreeItem::Type::VIRTUAL_TABLE:
                     // TODO change below when virtual tables can be edited
@@ -391,6 +392,7 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
                 actions += ActionEntry(EXPORT_TABLE);
                 actions += ActionEntry(POPULATE_TABLE);
                 actions += ActionEntry(CREATE_SIMILAR_TABLE);
+                actions += ActionEntry(RESET_AUTOINCREMENT);
                 actions += ActionEntry(_separator);
                 actions += dbEntryExt;
                 break;
@@ -1368,6 +1370,32 @@ void DbTree::createSimilarTable()
 
     DbObjectDialogs dialog(db);
     dialog.addTableSimilarTo(QString(), table);
+}
+
+void DbTree::resetAutoincrement()
+{
+    Db* db = getSelectedDb();
+    if (!db || !db->isValid())
+        return;
+
+    DbTreeItem* item = ui->treeView->currentItem();
+    QString table = item->getTable();
+    if (table.isNull())
+    {
+        qWarning() << "Tried to reset autoincrement, while table wasn't selected in DbTree.";
+        return;
+    }
+
+    QMessageBox::StandardButton btn = QMessageBox::question(this, tr("Reset autoincrement"), tr("Are you sure you want to reset autoincrement value for table '%1'?")
+                                                            .arg(table));
+    if (btn != QMessageBox::Yes)
+        return;
+
+    SqlQueryPtr res = db->exec("DELETE FROM sqlite_sequence WHERE name = ?;", {table});
+    if (res->isError())
+        notifyError(tr("An error occurred while trying to reset autoincrement value for table '%1': %2").arg(table, res->getErrorText()));
+    else
+        notifyInfo(tr("Autoincrement value for table '%1' has been reset successfly.").arg(table));
 }
 
 void DbTree::addColumn(DbTreeItem* item)
