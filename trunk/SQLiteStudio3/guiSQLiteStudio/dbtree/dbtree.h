@@ -83,6 +83,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
             REFRESH_SCHEMAS,
             REFRESH_SCHEMA,
             CREATE_SIMILAR_TABLE,
+            RESET_AUTOINCREMENT,
             _separator // Never use it directly, it's just for menu setup
         };
 
@@ -184,6 +185,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void vacuumDb();
         void integrityCheck();
         void createSimilarTable();
+        void resetAutoincrement();
         void addColumn(DbTreeItem* item);
         void editColumn(DbTreeItem* item);
         void delColumn(DbTreeItem* item);

@@ -79,6 +79,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
             IMPORT,
             POPULATE,
             CREATE_SIMILAR,
+            RESET_AUTOINCREMENT,
             // Indexes tab
             REFRESH_INDEXES,
             ADD_INDEX,
@@ -189,6 +190,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         void changesSuccessfullyCommited();
         void changesFailedToCommit(int errorCode, const QString& errorText);
         void rollbackStructure();
+        void resetAutoincrement();
         void editColumn();
         void delColumn();
         void moveColumnUp();
