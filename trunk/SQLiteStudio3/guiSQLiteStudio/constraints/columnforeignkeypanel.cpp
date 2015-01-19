@@ -217,7 +217,7 @@ void ColumnForeignKeyPanel::storeConfiguration()
         storeCondition(SqliteForeignKey::Condition::DELETE, ui->onDeleteCombo->currentText());
 
     if (ui->onUpdateCheckBox->isChecked())
-        storeCondition(SqliteForeignKey::Condition::UPDATE, ui->onDeleteCombo->currentText());
+        storeCondition(SqliteForeignKey::Condition::UPDATE, ui->onUpdateCombo->currentText());
 
     if (ui->matchCheckBox->isChecked())
         storeMatchCondition(ui->matchCombo->currentText());

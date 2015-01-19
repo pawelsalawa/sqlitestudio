@@ -327,7 +327,6 @@ void TableForeignKeyPanel::storeConfiguration()
     QCheckBox* check = nullptr;
     QComboBox* combo = nullptr;
     SqliteIndexedColumn* idxCol = nullptr;
-    QString name;
     for (int i = 0; i < totalColumns; i++)
     {
         // Local column
@@ -352,7 +351,7 @@ void TableForeignKeyPanel::storeConfiguration()
         storeCondition(SqliteForeignKey::Condition::DELETE, ui->onDeleteCombo->currentText());
 
     if (ui->onUpdateCheckBox->isChecked())
-        storeCondition(SqliteForeignKey::Condition::UPDATE, ui->onDeleteCombo->currentText());
+        storeCondition(SqliteForeignKey::Condition::UPDATE, ui->onUpdateCombo->currentText());
 
     if (ui->matchCheckBox->isChecked())
         storeMatchCondition(ui->matchCombo->currentText());
