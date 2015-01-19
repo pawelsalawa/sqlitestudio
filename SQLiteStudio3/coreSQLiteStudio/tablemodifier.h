@@ -60,9 +60,9 @@ class API_EXPORT TableModifier
          * @param newCreateTable
          * Finds all tables referencing currently modified table and updates their referenced table name and columns.
          */
-        void handleFks();
-        void subHandleFks(const QString& oldName);
-        bool subHandleFks(SqliteForeignKey* fk, const QString& oldName);
+        void handleFks(const QString& tempTableName);
+        void subHandleFks(const QString& oldName, const QString& oldTempName);
+        bool subHandleFks(SqliteForeignKey* fk, const QString& oldName, const QString& oldTempName);
 
         bool handleName(const QString& oldName, QString& valueToUpdate);
         bool handleIndexedColumns(QList<SqliteIndexedColumn*>& columnsToUpdate);
