@@ -1150,10 +1150,10 @@ void SqlQueryModel::storeStep1NumbersFromExecution()
     lastExecutionTime = queryExecutor->getLastExecutionTime();
     page = queryExecutor->getPage();
     sortOrder = queryExecutor->getSortOrder();
+    rowsAffected = queryExecutor->getRowsAffected();
 
     if (!queryExecutor->getSkipRowCounting())
     {
-        rowsAffected = queryExecutor->getRowsAffected();
         totalPages = queryExecutor->getTotalPages();
         if (!queryExecutor->isRowCountingRequired())
             totalRowsReturned = queryExecutor->getTotalRowsReturned();

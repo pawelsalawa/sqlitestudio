@@ -278,13 +278,14 @@ qint64 ConfigImpl::addSqlHistory(const QString& sql, const QString& dbName, int 
             sqlHistoryId = 0;
     }
 
+    sqlHistoryMutex.lock();
     QtConcurrent::run(this, &ConfigImpl::asyncAddSqlHistory, sqlHistoryId, sql, dbName, timeSpentMillis, rowsAffected);
-    sqlHistoryId++;
-    return sqlHistoryId;
+    return sqlHistoryId++;
 }
 
 void ConfigImpl::updateSqlHistory(qint64 id, const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected)
 {
+    sqlHistoryMutex.lock();
     QtConcurrent::run(this, &ConfigImpl::asyncUpdateSqlHistory, id, sql, dbName, timeSpentMillis, rowsAffected);
 }
 
@@ -638,6 +639,7 @@ void ConfigImpl::asyncAddSqlHistory(qint64 id, const QString& sql, const QString
     {
         qDebug() << "Error adding SQL history:" << results->getErrorText();
         db->rollback();
+        sqlHistoryMutex.unlock();
         return;
     }
 
@@ -657,6 +659,7 @@ void ConfigImpl::asyncAddSqlHistory(qint64 id, const QString& sql, const QString
     db->commit();
 
     emit sqlHistoryRefreshNeeded();
+    sqlHistoryMutex.unlock();
 }
 
 void ConfigImpl::asyncUpdateSqlHistory(qint64 id, const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected)
@@ -665,6 +668,7 @@ void ConfigImpl::asyncUpdateSqlHistory(qint64 id, const QString& sql, const QStr
             {dbName, timeSpentMillis, rowsAffected, sql, id});
 
     emit sqlHistoryRefreshNeeded();
+    sqlHistoryMutex.unlock();
 }
 
 void ConfigImpl::asyncClearSqlHistory()
