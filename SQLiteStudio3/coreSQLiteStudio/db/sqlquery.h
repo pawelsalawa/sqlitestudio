@@ -133,7 +133,6 @@ class API_EXPORT SqlQuery
          * @brief Gets number of rows that were affected by the query.
          * @return Number of rows affected.
          *
-         * For SELECT statements this is number of returned rows.
          * For UPDATE this is number of rows updated.
          * For DELETE this is number of rows deleted.
          * FOR INSERT this is number of rows inserted (starting with SQLite 3.7.11 you can insert multiple rows with single INSERT statement).

@@ -4,6 +4,7 @@
 #include "coreSQLiteStudio_global.h"
 #include "services/config.h"
 #include "db/sqlquery.h"
+#include <QMutex>
 
 class AsyncConfigHandler;
 class SqlHistoryModel;
@@ -118,6 +119,7 @@ class API_EXPORT ConfigImpl : public Config
         bool massSaving = false;
         SqlHistoryModel* sqlHistoryModel = nullptr;
         DdlHistoryModel* ddlHistoryModel = nullptr;
+        QMutex sqlHistoryMutex;
 
     public slots:
         void refreshDdlHistory();
