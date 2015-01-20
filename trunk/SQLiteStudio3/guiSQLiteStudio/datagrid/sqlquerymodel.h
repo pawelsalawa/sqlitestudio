@@ -113,6 +113,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
          * @return true if schema was modified, or false if not.
          */
         bool wasSchemaModified() const;
+        bool wasDataModifyingQuery() const;
 
         SqlQueryView* getView() const;
         void setView(SqlQueryView* value);

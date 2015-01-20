@@ -32,6 +32,7 @@ bool QueryExecutorExecute::executeQueries()
 {
     QHash<QString, QVariant> bindParamsForQuery;
     SqlQueryPtr results;
+    context->rowsAffected = 0;
 
     Db::Flags flags;
     if (context->preloadResults)
@@ -56,6 +57,8 @@ bool QueryExecutorExecute::executeQueries()
             handleFailResult(results);
             return false;
         }
+
+        context->rowsAffected += results->rowsAffected();
     }
     handleSuccessfulResult(results);
     return true;
@@ -72,7 +75,6 @@ void QueryExecutorExecute::handleSuccessfulResult(SqlQueryPtr results)
     }
 
     context->executionTime = QDateTime::currentMSecsSinceEpoch() - startTime;
-    context->rowsAffected = results->rowsAffected();
 
     // For PRAGMA and EXPLAIN we simply count results for rows returned
     SqliteQueryPtr lastQuery = context->parsedQueries.last();

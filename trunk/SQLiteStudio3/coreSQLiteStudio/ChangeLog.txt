@@ -2,6 +2,7 @@
         * [ADDED]: Full support for the interface translations.
         * [ADDED]: Polish translation.
         * [ADDED]: #219 Reset autoincrement feature to context menu of table and to structure toolbar in table window.
+        * [ADDED]: #2715 Added "rows affected" to the execution result message for INSERT/DELETE/UPDATE queries.
         * [BUGFIX]: Fixed deleting column from table that is the only column covered by an index or an "UPDATE OF" trigger.
         * [BUGFIX]: #2703 Fixed compilation errors on GCC 4.9.
         * [BUGFIX]: #2707 Fixed crash when importing CSV file with empty value for last column.
@@ -10,6 +11,7 @@
         * [BUGFIX]: #2698 Fixed double precision numbers displaying in the Grid View.
         * [BUGFIX]: #2696 Fixed handling foreign keys when the main table was not renamed, just columns changed.
         * [BUGFIX]: #2713 Fixed foreign key actions in Foreign Key dialog, so they are no longer the same for ON UPDATE and ON DELETE, even they were configured differently.
+        * [BUGFIX]: #2715 Fixed storing rows affected/selected in SQL Editor history (bug since version 3.0.0 caused "rows" column in SQL history to be always 0).
 
 [3.0.1]
         * [ADDED]: When the data is being read into the Gird View, columns width gets automatically adjusted, so for small values they are shrinked and for bigger values they're enlarged, but never above the configured limit (a new option in config dialog).

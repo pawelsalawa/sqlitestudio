@@ -18,6 +18,10 @@ bool QueryExecutorDetectSchemaAlter::exec()
             case SqliteQueryType::CreateVirtualTable:
                 context->schemaModified = true;
                 break;
+            case SqliteQueryType::Insert:
+            case SqliteQueryType::Delete:
+            case SqliteQueryType::Update:
+                context->dataModifyingQuery = true;
             default:
                 break;
         }
