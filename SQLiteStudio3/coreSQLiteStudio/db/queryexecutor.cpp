@@ -562,6 +562,11 @@ bool QueryExecutor::wasSchemaModified() const
     return context->schemaModified;
 }
 
+bool QueryExecutor::wasDataModifyingQuery() const
+{
+    return context->dataModifyingQuery;
+}
+
 QList<DataType> QueryExecutor::resolveColumnTypes(Db* db, QList<QueryExecutor::ResultColumnPtr>& columns, bool noDbLocking)
 {
     QSet<Table> tables;

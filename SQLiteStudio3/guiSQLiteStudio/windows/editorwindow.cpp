@@ -484,7 +484,16 @@ void EditorWindow::executionSuccessful()
 {
     double secs = ((double)resultsModel->getExecutionTime()) / 1000;
     QString time = QString::number(secs, 'f', 3);
-    notifyInfo(tr("Query finished in %2 second(s).").arg(time));
+
+    if (resultsModel->wasDataModifyingQuery())
+    {
+        QString rowsAffected = QString::number(resultsModel->getTotalRowsAffected());
+        notifyInfo(tr("Query finished in %1 second(s). Rows affected: %2").arg(time, rowsAffected));
+    }
+    else
+    {
+        notifyInfo(tr("Query finished in %1 second(s).").arg(time));
+    }
 
     lastQueryHistoryId = CFG->addSqlHistory(resultsModel->getQuery(), resultsModel->getDb()->getName(), resultsModel->getExecutionTime(), 0);
 

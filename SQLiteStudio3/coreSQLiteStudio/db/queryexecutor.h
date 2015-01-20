@@ -604,6 +604,11 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
             bool schemaModified = false;
 
             /**
+             * @brief Tells if executed query was one of DELETE, UPDATE or INSERT.
+             */
+            bool dataModifyingQuery = false;
+
+            /**
              * @brief Forbids QueryExecutor to return meta columns.
              *
              * See QueryExecutor::noMetaColumns for details.
@@ -976,6 +981,7 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
 
         SqlQueryPtr getResults() const;
         bool wasSchemaModified() const;
+        bool wasDataModifyingQuery() const;
 
         static QList<DataType> resolveColumnTypes(Db* db, QList<ResultColumnPtr>& columns, bool noDbLocking = false);
 

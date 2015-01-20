@@ -1214,6 +1214,11 @@ bool SqlQueryModel::wasSchemaModified() const
     return queryExecutor->wasSchemaModified();
 }
 
+bool SqlQueryModel::wasDataModifyingQuery() const
+{
+    return queryExecutor->wasDataModifyingQuery();
+}
+
 void SqlQueryModel::updateSelectiveCommitRollbackActions(const QItemSelection& selected, const QItemSelection& deselected)
 {
     UNUSED(selected);
