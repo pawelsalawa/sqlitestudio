@@ -877,6 +877,7 @@ void DbTree::refreshSchema(Db* db)
         return;
 
     treeModel->refreshSchema(db);
+    updateActionsForCurrent();
 }
 
 void DbTree::copy()
@@ -1528,7 +1529,7 @@ void DbTree::deleteItems(const QList<DbTreeItem*>& itemsToDelete)
         if (deletedDatabases.contains(dbToRefresh))
             continue;
 
-        DBTREE->refreshSchema(dbToRefresh);
+        refreshSchema(dbToRefresh);
     }
 }
 
@@ -1536,6 +1537,8 @@ void DbTree::refreshSchemas()
 {
     foreach (Db* db, DBLIST->getDbList())
         treeModel->refreshSchema(db);
+
+    updateActionsForCurrent();
 }
 
 void DbTree::interrupt()

@@ -2329,7 +2329,7 @@ Wszystkie obiekty z tej grupy zostaną przeniesione do nadrzędnej grupy.</trans
         <location filename="../dbtree/dbtreemodel.cpp" line="456"/>
         <source>Triggers (%1):</source>
         <comment>dbtree tooltip</comment>
-        <translation>Wyzwalacze (%!1):</translation>
+        <translation>Wyzwalacze (%1):</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1071"/>
