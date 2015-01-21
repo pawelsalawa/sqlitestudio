@@ -224,6 +224,7 @@ class ExportPlugin : virtual public Plugin
          * @param database "Attach" name of the database that the table belongs to. Can be "main", "temp", or any attach name.
          * @param table Name of the table to export.
          * @param columnNames Name of columns in the table, in order they will appear in the rows passed to exportTableRow().
+         * This will be empty if data is not being exported. This is different than for exportTable(), where columnNames are always present.
          * @param ddl The DDL of the table.
          * @param createTable Table DDL parsed into an object.
          * @param providedData All data entries requested by the plugin in the return value of getProviderFlags().
