@@ -378,14 +378,21 @@ bool ExportWorker::exportTableInternal(const QString& database, const QString& t
     SqliteCreateTablePtr createTable = parsedDdl.dynamicCast<SqliteCreateTable>();
     SqliteCreateVirtualTablePtr createVirtualTable = parsedDdl.dynamicCast<SqliteCreateVirtualTable>();
 
+    QStringList colNames;
+    if (results)
+        colNames = results->getColumnNames();
+
     if (createTable)
     {
-        if (!plugin->exportTable(database, table, results->getColumnNames(), ddl, createTable, providerData))
+        if (!results)
+            colNames = createTable->getColumnNames();
+
+        if (!plugin->exportTable(database, table, colNames, ddl, createTable, providerData))
             return false;
     }
     else
     {
-        if (!plugin->exportVirtualTable(database, table, results->getColumnNames(), ddl, createVirtualTable, providerData))
+        if (!plugin->exportVirtualTable(database, table, colNames, ddl, createVirtualTable, providerData))
             return false;
     }
 
@@ -393,14 +400,17 @@ bool ExportWorker::exportTableInternal(const QString& database, const QString& t
         return false;
 
     SqlResultsRowPtr row;
-    while (results->hasNext())
+    if (results)
     {
-        row = results->next();
-        if (!plugin->exportTableRow(row))
-            return false;
+        while (results->hasNext())
+        {
+            row = results->next();
+            if (!plugin->exportTableRow(row))
+                return false;
 
-        if (isInterrupted())
-            return false;
+            if (isInterrupted())
+                return false;
+        }
     }
 
     if (!plugin->afterExportTable())
@@ -467,7 +477,6 @@ void ExportWorker::queryTableDataToExport(Db* db, const QString& table, SqlQuery
     if (config->exportData)
     {
         QString wrappedTable = wrapObjIfNeeded(table, db->getDialect());
-
         dataPtr = db->exec(sql.arg(wrappedTable));
         if (dataPtr->isError())
             *errorMessage = tr("Error while reading data to export from table %1: %2").arg(table, dataPtr->getErrorText());
