@@ -614,6 +614,26 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
              * See QueryExecutor::noMetaColumns for details.
              */
             bool noMetaColumns = false;
+
+            /**
+             * @brief Contains error code from smart execution.
+             *
+             * This is always set by the smart execution method. It's useful if the smart execution
+             * failed and the simple execution method is being performed. In that case the query
+             * result will contain error code from simple execution, hiding the original error code
+             * from smart execution.
+             */
+            int errorCodeFromSmartExecution = 0;
+
+            /**
+             * @brief Contains error message from smart execution.
+             *
+             * This is always set by the smart execution method. It's useful if the smart execution
+             * failed and the simple execution method is being performed. In that case the query
+             * result will contain error message from simple execution, hiding the original error
+             * message from smart execution.
+             */
+            QString errorMessageFromSmartExecution;
         };
 
         /**
@@ -987,6 +1007,8 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
 
         bool getNoMetaColumns() const;
         void setNoMetaColumns(bool value);
+
+        void handleErrorsFromSmartAndSimpleMethods(SqlQueryPtr results);
 
     private:
         /**

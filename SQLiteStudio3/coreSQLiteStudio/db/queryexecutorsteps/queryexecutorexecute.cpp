@@ -94,6 +94,8 @@ void QueryExecutorExecute::handleFailResult(SqlQueryPtr results)
 {
     if (!results->isInterrupted())
     {
+        context->errorCodeFromSmartExecution = results->getErrorCode();
+        context->errorMessageFromSmartExecution = results->getErrorText();
         qWarning() << "Could not execute query with smart method:" << queryExecutor->getOriginalQuery()
                    << "\nError message:" << results->getErrorText()
                    << "\nSkipping smart execution.";
