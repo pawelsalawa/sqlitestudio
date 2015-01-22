@@ -1,9 +1,9 @@
 #include "columndefaultpanel.h"
 #include "ui_columndefaultpanel.h"
-#include "parser/ast/sqlitecreatetable.h"
 #include "parser/parser.h"
 #include "parser/keywords.h"
 #include "uiutils.h"
+#include "schemaresolver.h"
 #include <QDebug>
 
 ColumnDefaultPanel::ColumnDefaultPanel(QWidget *parent) :
@@ -34,6 +34,22 @@ void ColumnDefaultPanel::changeEvent(QEvent *e)
 
 bool ColumnDefaultPanel::validate()
 {
+    if (!ui->exprEdit->isSyntaxChecked())
+    {
+        setValidState(ui->exprEdit, false, tr("Enter a default value expression."));
+        currentMode = Mode::ERROR;
+        return false;
+    }
+
+    // First check if we already validated this text.
+    // This method is called twice, by both errors checking and syntax highlighting,
+    // because signal for textChange() is connected with call to updateValidation().
+    QString text = ui->exprEdit->toPlainText();
+    if (!lastValidatedText.isNull() && lastValidatedText == text)
+        return lastValidationResult;
+
+    lastValidatedText = text;
+
     bool nameOk = true;
     if (ui->namedCheck->isChecked() && ui->namedEdit->text().isEmpty())
         nameOk = false;
@@ -41,12 +57,40 @@ bool ColumnDefaultPanel::validate()
     bool exprOk = !ui->exprEdit->toPlainText().trimmed().isEmpty() &&
             !ui->exprEdit->haveErrors();
 
-    bool exprCheckedOk = exprOk && ui->exprEdit->isSyntaxChecked();
+    QString exprError;
+    if (exprOk)
+    {
+        // Everything looks fine, so lets do the final check - if the value is considered constant by SQLite.
+        static QString tempDdlLiteralTpl = QStringLiteral("CREATE TABLE temp.%1 (col DEFAULT %2);");
+        static QString tempDdlExprTpl = QStringLiteral("CREATE TABLE temp.%1 (col DEFAULT (%2));");
+        static QString dropTempDdl = QStringLiteral("DROP TABLE IF EXISTS temp.%1;");
 
-    setValidState(ui->exprEdit, exprOk, tr("Enter a default value expression."));
+        QString tableName = getTempTable();
+        QString tempDdl = tempDdlExprTpl.arg(tableName, ui->exprEdit->toPlainText());
+        SqlQueryPtr res = db->exec(tempDdl);
+        if (res->isError())
+        {
+            tempDdl = tempDdlLiteralTpl.arg(tableName, ui->exprEdit->toPlainText());
+            res = db->exec(tempDdl);
+            if (res->isError())
+            {
+                exprOk = false;
+                exprError = tr("Invalid default value expression: %1").arg(res->getErrorText());
+            }
+            else
+                currentMode = Mode::LITERAL;
+        }
+        else
+                currentMode = Mode::EXPR;
+
+        db->exec(dropTempDdl.arg(tableName));
+    }
+
+    setValidState(ui->exprEdit, exprOk, exprError);
     setValidState(ui->namedEdit, nameOk, tr("Enter a name of the constraint."));
 
-    return exprCheckedOk && nameOk;
+    lastValidationResult = (exprOk && nameOk);
+    return lastValidationResult;
 }
 
 bool ColumnDefaultPanel::validateOnly()
@@ -69,16 +113,97 @@ void ColumnDefaultPanel::storeConfiguration()
     if (constraint.isNull())
         return;
 
+    if (currentMode == Mode::ERROR)
+    {
+        qCritical() << "Call to ColumnDefaultPanel::storeConfiguration() while its mode is in ERROR state.";
+        return;
+    }
+
     SqliteCreateTable::Column::Constraint* constr = dynamic_cast<SqliteCreateTable::Column::Constraint*>(constraint.data());
     constr->type = SqliteCreateTable::Column::Constraint::DEFAULT;
 
-    SqliteExprPtr expr = parseExpression(ui->exprEdit->toPlainText());
-    SqliteExpr* newExpr = new SqliteExpr(*expr.data());
-    newExpr->setParent(constraint.data());
-    constr->expr = newExpr;
+    switch (currentMode)
+    {
+        case Mode::EXPR:
+            storeExpr(constr);
+            break;
+        case Mode::LITERAL:
+            storeLiteral(constr);
+            break;
+        case Mode::ERROR:
+            return;
+    }
 
     if (ui->namedCheck->isChecked())
         constr->name = ui->namedEdit->text();
+}
+
+void ColumnDefaultPanel::storeExpr(SqliteCreateTable::Column::Constraint* constr)
+{
+    QString text = ui->exprEdit->toPlainText();
+    clearDefault(constr);
+    if (text.toUpper() == "NULL")
+    {
+        // We will just use literal null, no need to create expression with null.
+        constr->literalNull = true;
+        return;
+    }
+
+    Parser parser(db->getDialect());
+    SqliteExpr* newExpr = parser.parseExpr(text);
+    newExpr->setParent(constraint.data());
+    constr->expr = newExpr;
+}
+
+void ColumnDefaultPanel::storeLiteral(SqliteCreateTable::Column::Constraint* constr)
+{
+    QString text = ui->exprEdit->toPlainText();
+
+    Parser parser(db->getDialect());
+    SqliteCreateTablePtr createTable = parser.parse<SqliteCreateTable>("CREATE TABLE tab (col DEFAULT "+text+");");
+    if (!createTable || createTable->columns.size() == 0 || createTable->columns.first()->constraints.size() == 0)
+    {
+        qCritical() << "ColumnDefaultPanel::storeLiteral(): create table not parsed! Cannot store literal. Expression was:" << text;
+        return;
+    }
+
+    SqliteCreateTable::Column::Constraint* parsedConstr = createTable->columns.first()->constraints.first();
+    if (parsedConstr->type != SqliteCreateTable::Column::Constraint::Type::DEFAULT)
+    {
+        qCritical() << "ColumnDefaultPanel::storeLiteral(): parsed constraint not a DEFAULT! Cannot store literal. Expression was:" << text;
+        return;
+    }
+
+    clearDefault(constr);
+    if (!parsedConstr->id.isNull())
+        constr->id = parsedConstr->id;
+    else if (!parsedConstr->ctime.isNull())
+        constr->ctime = parsedConstr->ctime.toUpper();
+    else if (parsedConstr->expr)
+    {
+        qWarning() << "ColumnDefaultPanel::storeLiteral(): parsed constraint turned out to be an expression. This should be handled by ColumnDefaultPanel::storeExpr."
+                   << "Expression was:" << text;
+        constr->expr = parsedConstr->expr;
+        parsedConstr->expr = nullptr;
+        constr->expr->setParent(constr);
+    }
+    else if (parsedConstr->literalNull)
+        constr->literalNull = true;
+    else
+        constr->literalValue = parsedConstr->literalValue;
+}
+
+void ColumnDefaultPanel::clearDefault(SqliteCreateTable::Column::Constraint* constr)
+{
+    if (constr->expr)
+    {
+        delete constr->expr;
+        constr->expr = nullptr;
+    }
+    constr->literalNull = false;
+    constr->literalValue = QVariant();
+    constr->id = QString();
+    constr->ctime = QString();
 }
 
 void ColumnDefaultPanel::init()
@@ -101,9 +226,30 @@ void ColumnDefaultPanel::readConstraint()
     SqliteCreateTable::Column::Constraint* constr = dynamic_cast<SqliteCreateTable::Column::Constraint*>(constraint.data());
 
     if (constr->expr)
+    {
         ui->exprEdit->setPlainText(constr->expr->detokenize());
+        currentMode = Mode::EXPR;
+    }
     else if (!constr->literalValue.isNull())
+    {
         ui->exprEdit->setPlainText(constr->literalValue.toString());
+        currentMode = Mode::LITERAL;
+    }
+    else if (!constr->id.isNull())
+    {
+        ui->exprEdit->setPlainText(constr->id);
+        currentMode = Mode::LITERAL;
+    }
+    else if (!constr->ctime.isNull())
+    {
+        ui->exprEdit->setPlainText(constr->ctime);
+        currentMode = Mode::LITERAL;
+    }
+    else if (constr->literalNull)
+    {
+        ui->exprEdit->setPlainText("NULL");
+        currentMode = Mode::LITERAL;
+    }
 
     if (!constr->name.isNull())
     {
@@ -114,88 +260,15 @@ void ColumnDefaultPanel::readConstraint()
 
 void ColumnDefaultPanel::updateVirtualSql()
 {
+    static QString sql = QStringLiteral("CREATE TABLE tab (col DEFAULT %1)");
     ui->exprEdit->setDb(db);
-
-    SqliteCreateTable::Column* column = dynamic_cast<SqliteCreateTable::Column*>(constraint->parentStatement());
-    SqliteCreateTable* createTable = dynamic_cast<SqliteCreateTable*>(column->parentStatement());
-
-    createTable->rebuildTokens();
-    TokenList tokens = createTable->tokens;
-    TokenList colTokens = column->tokens;
-    if (createTable->columns.indexOf(column) == -1)
-    {
-        if (createTable->columns.size() == 0)
-        {
-            // No columns. Cannot get any context info.
-            return;
-        }
-
-        colTokens = createTable->columns.last()->tokens;
-    }
-
-    if (colTokens.size() == 0)
-    {
-        qWarning() << "CREATE TABLE tokens are invalid (0) while call to ColumnDefaultPanel::updateVirtualSql().";
-        return;
-    }
-
-    int idx = tokens.lastIndexOf(colTokens.last());
-    if (idx == -1)
-    {
-        qWarning() << "CREATE TABLE tokens are invalid while call to ColumnDefaultPanel::updateVirtualSql().";
-        return;
-    }
-    idx++;
-
-    TokenList newTokens;
-    newTokens << TokenPtr::create(Token::SPACE, " ")
-              << TokenPtr::create(Token::KEYWORD, "DEFAULT")
-              << TokenPtr::create(Token::SPACE, " ");
-
-    if (constraint->dialect == Dialect::Sqlite3)
-    {
-        newTokens << TokenPtr::create(Token::PAR_LEFT, "(")
-                  << TokenPtr::create(Token::OTHER, "%1")
-                  << TokenPtr::create(Token::PAR_RIGHT, ")");
-    }
-    else
-    {
-        newTokens << TokenPtr::create(Token::OTHER, "%1");
-    }
-
-    tokens.insert(idx, newTokens);
-    QString sql = tokens.detokenize();
-
-    ui->exprEdit->setVirtualSqlExpression(sql);
+    ui->exprEdit->setVirtualSqlExpression(sql.arg(db->getDialect() == Dialect::Sqlite3 ? "(%1)" : "%1"));
 }
 
-SqliteExprPtr ColumnDefaultPanel::parseExpression(const QString& sql)
+QString ColumnDefaultPanel::getTempTable()
 {
-    Parser parser(db->getDialect());
-    if (!parser.parse("SELECT "+sql))
-        return SqliteExprPtr();
-
-    QList<SqliteQueryPtr> queries = parser.getQueries();
-    if (queries.size() == 0)
-        return SqliteExprPtr();
-
-    SqliteQueryPtr first = queries.first();
-    if (first->queryType != SqliteQueryType::Select)
-        return SqliteExprPtr();
-
-    SqliteSelectPtr select = first.dynamicCast<SqliteSelect>();
-    if (select->coreSelects.size() < 1)
-        return SqliteExprPtr();
-
-    SqliteSelect::Core* core = select->coreSelects.first();
-    if (core->resultColumns.size() < 1)
-        return SqliteExprPtr();
-
-    SqliteSelect::Core::ResultColumn* resCol = core->resultColumns.first();
-    if (!resCol->expr)
-        return SqliteExprPtr();
-
-    return resCol->expr->detach().dynamicCast<SqliteExpr>();
+    SchemaResolver resolver(db);
+    return resolver.getUniqueName("temp", "sqlitestudio_temp_table");
 }
 
 void ColumnDefaultPanel::updateState()
