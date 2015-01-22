@@ -1041,9 +1041,12 @@ void TableWindow::applyInitialTab()
 
 void TableWindow::updateDdlTab()
 {
-    CodeFormatter* formatter = SQLITESTUDIO->getCodeFormatter();
     createTable->rebuildTokens();
-    ui->ddlEdit->setPlainText(formatter->format("sql", createTable->detokenize(), db));
+    QString ddl = createTable->detokenize();
+    if (createTable->columns.size() > 0)
+        ddl = SQLITESTUDIO->getCodeFormatter()->format("sql", ddl, db);
+
+    ui->ddlEdit->setPlainText(ddl);
 }
 
 void TableWindow::updateNewTableState()
