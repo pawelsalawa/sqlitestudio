@@ -416,7 +416,7 @@ void QueryExecutor::simpleExecutionFinished(SqlQueryPtr results)
         executionMutex.lock();
         executionInProgress = false;
         executionMutex.unlock();
-        error(results->getErrorCode(), results->getErrorText());
+        handleErrorsFromSmartAndSimpleMethods(results);
         return;
     }
 
@@ -550,6 +550,28 @@ bool QueryExecutor::getNoMetaColumns() const
 void QueryExecutor::setNoMetaColumns(bool value)
 {
     noMetaColumns = value;
+}
+
+void QueryExecutor::handleErrorsFromSmartAndSimpleMethods(SqlQueryPtr results)
+{
+    QString simpleText = results->getErrorText();
+
+    // Smart text may contain messages from steps before the actual execution, but they will have negative error code.
+    // Positive error code means that the error came directly from SQLite.
+    QString smartText = context->errorCodeFromSmartExecution > 0 ? context->errorMessageFromSmartExecution : QString();
+
+    if (simpleText.contains("no such") && smartText.contains("no such"))
+    {
+        // This happens if user refers to invalid column in attached database.
+        // Smart execution will tell "no such column: xxx", while simple method will tell:
+        // "no such table: attach.table". In that case we're more interested in smart method message.
+        // This also applies to views.
+        error(context->errorCodeFromSmartExecution, smartText);
+        return;
+    }
+
+    // No special case, use simple method error
+    error(results->getErrorCode(), simpleText);
 }
 
 SqlQueryPtr QueryExecutor::getResults() const
