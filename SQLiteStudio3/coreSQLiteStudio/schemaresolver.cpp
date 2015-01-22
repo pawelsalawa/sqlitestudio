@@ -306,7 +306,7 @@ QString SchemaResolver::getObjectDdl(const QString &database, const QString &nam
     // Validate query results
     if (!results.isValid() || results.isNull())
     {
-        qDebug() << "Could not get object's DDL:" << database << "." << name;
+        qDebug() << "Could not get object's DDL:" << dbName << "." << name;
         return QString::null;
     }
 
