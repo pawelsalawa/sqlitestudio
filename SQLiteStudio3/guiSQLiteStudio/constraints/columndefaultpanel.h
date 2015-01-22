@@ -4,6 +4,7 @@
 #include "constraintpanel.h"
 #include "parser/ast/sqliteconflictalgo.h"
 #include "guiSQLiteStudio_global.h"
+#include "parser/ast/sqlitecreatetable.h"
 #include <QWidget>
 
 namespace Ui {
@@ -27,12 +28,25 @@ class GUI_API_EXPORT ColumnDefaultPanel : public ConstraintPanel
         void storeConfiguration();
 
     private:
+        enum class Mode
+        {
+            EXPR,
+            LITERAL,
+            ERROR
+        };
+
         void init();
         void readConstraint();
         void updateVirtualSql();
-        SqliteExprPtr parseExpression(const QString& sql);
+        QString getTempTable();
+        void storeExpr(SqliteCreateTable::Column::Constraint* constr);
+        void storeLiteral(SqliteCreateTable::Column::Constraint* constr);
+        void clearDefault(SqliteCreateTable::Column::Constraint* constr);
 
         Ui::ColumnDefaultPanel *ui = nullptr;
+        QString lastValidatedText;
+        bool lastValidationResult = false;
+        Mode currentMode = Mode::ERROR;
 
     private slots:
         void updateState();
