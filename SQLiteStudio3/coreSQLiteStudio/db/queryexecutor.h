@@ -679,6 +679,7 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
 
         /**
          * @brief Executes counting query.
+         * @return true if counting query is executed (in async mode) or was executed correctly (in sync mode), false on error.
          *
          * Executes (asynchronously) counting query for currently defined query. After execution is done, the resultsCountingFinished()
          * signal is emitted.
@@ -686,8 +687,10 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          * Counting query is made of original query wrapped with "SELECT count(*) FROM (original_query)".
          *
          * It is executed after the main query execution has finished.
+         *
+         * If query is being executed in async mode, the true result (sucess/fail) will be known from later, not from this method.
          */
-        void countResults();
+        bool countResults();
 
         /**
          * @brief Gets time of how long it took to execute query.
@@ -1009,6 +1012,11 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
         void setNoMetaColumns(bool value);
 
         void handleErrorsFromSmartAndSimpleMethods(SqlQueryPtr results);
+
+        /**
+         * @brief Clears results handle and detaches any attached databases.
+         */
+        void releaseResultsAndCleanup();
 
     private:
         /**
@@ -1361,14 +1369,6 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          * to execute query with a "simple method".
          */
         void stepFailed(QueryExecutorStep *currentStep);
-
-        /**
-         * @brief Cleanup routines after successful query execution.
-         * @param results Query results.
-         *
-         * Releases resources that are no longer used. Currently simply calls cleanup().
-         */
-        void cleanupAfterExecFinished(SqlQueryPtr results);
 
         /**
          * @brief Cleanup routines after failed query execution.

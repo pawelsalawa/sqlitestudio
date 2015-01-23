@@ -992,11 +992,18 @@ void SqlQueryModel::handleExecFinished(SqlQueryPtr results)
 
     reloading = false;
 
-    if (queryExecutor->isRowCountingRequired() || rowCount() < CFG_UI.General.NumberOfRowsPerPage.get())
-        emit totalRowsAndPagesAvailable(); // rows were counted manually
+    bool rowsCountedManually = queryExecutor->isRowCountingRequired() || rowCount() < CFG_UI.General.NumberOfRowsPerPage.get();
+    bool countRes = false;
+    if (rowsCountedManually)
+        emit totalRowsAndPagesAvailable();
     else
-        queryExecutor->countResults();
+        countRes = queryExecutor->countResults();
 
+    if (!countRes || !queryExecutor->getAsyncMode())
+    {
+        results.clear();
+        detachDatabases();
+    }
 }
 
 void SqlQueryModel::handleExecFailed(int code, QString errorMessage)
@@ -1032,6 +1039,7 @@ void SqlQueryModel::resultsCountingFinished(quint64 rowsAffected, quint64 rowsRe
     this->rowsAffected = rowsAffected;
     this->totalRowsReturned = rowsReturned;
     this->totalPages = totalPages;
+    detachDatabases();
     emit totalRowsAndPagesAvailable();
 }
 
@@ -1313,6 +1321,11 @@ Icon& SqlQueryModel::getIconForIdx(int idx) const
             return ICONS.SORT_COUNT_20;
     }
     return ICONS.SORT_COUNT_20_PLUS;
+}
+
+void SqlQueryModel::detachDatabases()
+{
+    queryExecutor->releaseResultsAndCleanup();
 }
 
 void SqlQueryModel::addNewRow()
