@@ -636,7 +636,13 @@ void AbstractDb::detachInternal(Db* otherDb)
         return;
     }
 
-    exec(QString("DETACH %1;").arg(attachedDbMap.valueByRight(otherDb)), Flag::NO_LOCK);
+    QString dbName = attachedDbMap.valueByRight(otherDb);
+    SqlQueryPtr res = exec(QString("DETACH %1;").arg(dbName), Flag::NO_LOCK);
+    if (res->isError())
+    {
+        qCritical() << "Cannot detach" << dbName << " / " << otherDb->getName() << ":" << res->getErrorText();
+        return;
+    }
     attachedDbMap.removeRight(otherDb);
     emit detached(otherDb);
 }

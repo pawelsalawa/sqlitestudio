@@ -39,7 +39,6 @@ QueryExecutor::QueryExecutor(Db* db, const QString& query, QObject *parent) :
     setDb(db);
     setAutoDelete(false);
 
-    connect(this, SIGNAL(executionFinished(SqlQueryPtr)), this, SLOT(cleanupAfterExecFinished(SqlQueryPtr)));
     connect(this, SIGNAL(executionFailed(int,QString)), this, SLOT(cleanupAfterExecFailed(int,QString)));
     connect(DBLIST, SIGNAL(dbAboutToBeUnloaded(Db*, DbPlugin*)), this, SLOT(cleanupBeforeDbDestroy(Db*, DbPlugin*)));
 }
@@ -138,12 +137,6 @@ void QueryExecutor::stepFailed(QueryExecutorStep* currentStep)
     executeSimpleMethod();
 }
 
-void QueryExecutor::cleanupAfterExecFinished(SqlQueryPtr results)
-{
-    UNUSED(results);
-    cleanup();
-}
-
 void QueryExecutor::cleanupAfterExecFailed(int code, QString errorMessage)
 {
     UNUSED(code);
@@ -213,6 +206,7 @@ void QueryExecutor::execInternal()
     {
         resultsCountingAsyncId = 0;
         db->interrupt();
+        releaseResultsAndCleanup();
     }
 
     // Reset context
@@ -242,13 +236,13 @@ void QueryExecutor::interrupt()
     db->asyncInterrupt();
 }
 
-void QueryExecutor::countResults()
+bool QueryExecutor::countResults()
 {
     if (context->skipRowCounting)
-        return;
+        return false;
 
     if (context->countingQuery.isEmpty()) // simple method doesn't provide that
-        return;
+        return false;
 
     if (asyncMode)
     {
@@ -267,8 +261,10 @@ void QueryExecutor::countResults()
         {
             notifyError(tr("An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1")
                         .arg(results->getErrorText()));
+            return false;
         }
     }
+    return true;
 }
 
 qint64 QueryExecutor::getLastExecutionTime() const
@@ -572,6 +568,14 @@ void QueryExecutor::handleErrorsFromSmartAndSimpleMethods(SqlQueryPtr results)
 
     // No special case, use simple method error
     error(results->getErrorCode(), simpleText);
+}
+
+void QueryExecutor::releaseResultsAndCleanup()
+{
+    // The results have to be releases, otherwise attached databases cannot be detached.
+    // Results handle cannot be kept elsewhere, otherwise detach will fail.
+    context->executionResults.clear();
+    cleanup();
 }
 
 SqlQueryPtr QueryExecutor::getResults() const

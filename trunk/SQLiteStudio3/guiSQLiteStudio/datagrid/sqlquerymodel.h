@@ -255,6 +255,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         void reloadInternal();
         void addNewRowInternal(int rowIdx);
         Icon& getIconForIdx(int idx) const;
+        void detachDatabases();
 
         QString query;
         bool explain = false;
