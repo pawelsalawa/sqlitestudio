@@ -975,7 +975,7 @@ void SqlQueryModel::handleExecFinished(SqlQueryPtr results)
 {
     if (results->isError())
     {
-        emit executionFailed(tr("Error while executing SQL query: %1").arg(results->getErrorText()));
+        emit executionFailed(tr("Error while executing SQL query on database '%1': %2").arg(db->getName(), results->getErrorText()));
         return;
     }
 
@@ -1026,7 +1026,7 @@ void SqlQueryModel::handleExecFailed(int code, QString errorMessage)
             emit executionFailed(tr("Error while loading query results: %1").arg(errorMessage));
     }
     else
-        emit executionFailed(tr("Error while executing SQL query: %1").arg(errorMessage));
+        emit executionFailed(tr("Error while executing SQL query on database '%1': %2").arg(db->getName(), errorMessage));
 
     restoreNumbersToQueryExecutor();
     resultsCountingFinished(0, 0, 0);
