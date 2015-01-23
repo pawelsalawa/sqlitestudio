@@ -71,9 +71,6 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void addAdditionalAction(QAction* action);
         QModelIndex getCurrentIndex() const;
 
-    protected:
-        void mouseDoubleClickEvent(QMouseEvent* event);
-
     private:
         void init();
         void setupWidgetCover();
@@ -82,7 +79,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void refreshShortcuts();
         void setupActionsForMenu(SqlQueryItem* currentItem, const QList<SqlQueryItem*>& selectedItems);
         void setupHeaderMenu();
-        bool handleDoubleClick(SqlQueryItem* item);
+        bool editInEditorIfNecessary(SqlQueryItem* item);
 
         SqlQueryItemDelegate* itemDelegate = nullptr;
         QMenu* contextMenu = nullptr;
@@ -100,6 +97,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void resetSorting();
         void sortingUpdated(const QueryExecutor::SortList& sortOrder);
         void updateFont();
+        void itemActivated(const QModelIndex& index);
 
     public slots:
         void executionStarted();
