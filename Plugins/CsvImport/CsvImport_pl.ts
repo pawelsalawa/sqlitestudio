@@ -58,21 +58,30 @@
     </message>
     <message>
         <location filename="CsvImportOptions.ui" line="52"/>
-        <source>First row represents column names</source>
-        <translation>Pierwszy wiersz reprezentuje nazwy kolumn</translation>
+        <source>&lt;p&gt;Enable this if the first data line in your CSV file represents column names. You don&apos;t want column names to be imported into the table as a regular data.&lt;/p&gt;</source>
+        <translation>&lt;p&gt;Włącz to, jeśli pierwsza linia danych w twoim pliku CSV reprezentuje nazwy kolumn. Nie chcesz, aby nazwy kolumn zostały zaimportowane jako zwykłe dane.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="CsvImportOptions.ui" line="62"/>
+        <location filename="CsvImportOptions.ui" line="55"/>
+        <source>Skip first row of data</source>
+        <translation>Pomiń pierwszy wiersz danych</translation>
+    </message>
+    <message>
+        <source>First row represents column names</source>
+        <translation type="obsolete">Pierwszy wiersz reprezentuje nazwy kolumn</translation>
+    </message>
+    <message>
+        <location filename="CsvImportOptions.ui" line="65"/>
         <source>Field separator:</source>
         <translation>Separator pól:</translation>
     </message>
     <message>
-        <location filename="CsvImportOptions.ui" line="82"/>
+        <location filename="CsvImportOptions.ui" line="85"/>
         <source>NULL values:</source>
         <translation>Wartości NULL:</translation>
     </message>
     <message>
-        <location filename="CsvImportOptions.ui" line="92"/>
+        <location filename="CsvImportOptions.ui" line="95"/>
         <source>If your CSV data contains null values, define how are they represented in the CSV.</source>
         <translation>Jeśli twoje dane CSV zawierają wartości null, zdefiniuj jak są one reprezentowane w CSV.</translation>
     </message>

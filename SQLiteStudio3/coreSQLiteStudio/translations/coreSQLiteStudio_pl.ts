@@ -343,17 +343,17 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
         <translation>Nie udało się przeanalizować %1 w celu wyeksportowania. Element ten zostanie pominięty w wynikach eksportu.</translation>
     </message>
     <message>
-        <location filename="../exportworker.cpp" line="473"/>
+        <location filename="../exportworker.cpp" line="482"/>
         <source>Error while reading data to export from table %1: %2</source>
         <translation>Błąd podczas odczytu danych do eksportu z tabeli %1: %2</translation>
     </message>
     <message>
-        <location filename="../exportworker.cpp" line="481"/>
+        <location filename="../exportworker.cpp" line="490"/>
         <source>Error while counting data to export from table %1: %2</source>
         <translation>Błąd podczas liczenia danych do eksportu z tabeli %1: %2</translation>
     </message>
     <message>
-        <location filename="../exportworker.cpp" line="497"/>
+        <location filename="../exportworker.cpp" line="506"/>
         <source>Error while counting data column width to export from table %1: %2</source>
         <translation>Błąd podczas obliczania szerokości kolumn danych do eksportu z tabeli %1: %2</translation>
     </message>
@@ -754,12 +754,12 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
         <translation>Nie udało się rozpocząć transakcji w celu zaludnienia tabeli. Szczegóły błędu: %1</translation>
     </message>
     <message>
-        <location filename="../populateworker.cpp" line="61"/>
+        <location filename="../populateworker.cpp" line="56"/>
         <source>Error while populating table: %1</source>
         <translation>Błąd podczas zaludniania tabeli: %2</translation>
     </message>
     <message>
-        <location filename="../populateworker.cpp" line="70"/>
+        <location filename="../populateworker.cpp" line="65"/>
         <source>Could not commit transaction after table populating. Error details: %1</source>
         <translation>Nie udało się zatwierdzić transakcji po zaludnieniu tabeli. Szczegóły błędy: %1</translation>
     </message>
@@ -824,20 +824,20 @@ Szczegóły błędu: %2</translation>
         <translation>Nie udało się dołączyć bazy danych %1: %2</translation>
     </message>
     <message>
-        <location filename="../parser/parsercontext.cpp" line="103"/>
-        <location filename="../parser/parsercontext.cpp" line="105"/>
+        <location filename="../parser/parsercontext.cpp" line="108"/>
+        <location filename="../parser/parsercontext.cpp" line="110"/>
         <source>Incomplete query.</source>
         <translation>Niekompletne zapytanie.</translation>
     </message>
     <message>
-        <location filename="../parser/sqlite2_parse.cpp" line="1904"/>
-        <location filename="../parser/sqlite3_parse.cpp" line="2170"/>
+        <location filename="../parser/sqlite2_parse.cpp" line="1905"/>
+        <location filename="../parser/sqlite3_parse.cpp" line="2171"/>
         <source>Parser stack overflow</source>
         <translation>Przeciążenie stosu analizatora.</translation>
     </message>
     <message>
-        <location filename="../parser/sqlite2_parse.cpp" line="4461"/>
-        <location filename="../parser/sqlite3_parse.cpp" line="5076"/>
+        <location filename="../parser/sqlite2_parse.cpp" line="4471"/>
+        <location filename="../parser/sqlite3_parse.cpp" line="5086"/>
         <source>Syntax error</source>
         <translation>Błąd składni</translation>
     </message>
@@ -897,7 +897,7 @@ Szczegóły błędu: %2</translation>
         <translation>Nie znaleziono źródła danych dla kolumny: %1</translation>
     </message>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="589"/>
+        <location filename="../services/impl/configimpl.cpp" line="590"/>
         <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Tried to initialize the file at following localizations: %1.</source>
         <translation>Nie udało się zainicjalizować pliku konfiguracyjnego. Jakiekolwiek zmiany w konfiguracji i historia zapytań będą utracone po zrestartowaniu aplikacji. Próbowano zainicjalizować plik konfiguracyjny w następujących lokalizacjach: %1.</translation>
     </message>
@@ -949,31 +949,31 @@ Szczegóły błędu: %2</translation>
         <translation>Tabela %1 odwołuje się do tabeli %2, ale definicja klucza obcego nie zostanie zaktualizowane dla definicji nowej tabeli w związku z problemami przy analizowaniu DDL tabeli %3.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="365"/>
+        <location filename="../tablemodifier.cpp" line="373"/>
         <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
         <translation>Wszystkie kolumny indeksowane przez indeks %1 już nie istnieją. Indeks ten nie będzie odtworzony po modyfikacji tabeli.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="394"/>
+        <location filename="../tablemodifier.cpp" line="402"/>
         <source>Cannot not update trigger %1 according to table %2 modification.</source>
         <translation>Nie można zaktualizować wyzwalacza %1 zgodnie z modyfikacjami tabeli %2.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="400"/>
+        <location filename="../tablemodifier.cpp" line="408"/>
         <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
         <translation>Wszystkie kolumny obsługiwane przez wyzwalacz %1 już nie istnieją. Wyzwalacz ten nie będzie odtworzony po modyfikacji tabeli.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="423"/>
+        <location filename="../tablemodifier.cpp" line="431"/>
         <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
         <translation>Nie można zaktualizować widoku %1 w związku z modyfikacjami tabeli %2.
 Widok pozostanie nienaruszony.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="520"/>
-        <location filename="../tablemodifier.cpp" line="541"/>
-        <location filename="../tablemodifier.cpp" line="559"/>
+        <location filename="../tablemodifier.cpp" line="528"/>
+        <location filename="../tablemodifier.cpp" line="549"/>
+        <location filename="../tablemodifier.cpp" line="567"/>
         <source>There is a problem with updating an %1 statement within %2 trigger. One of the SELECT substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
         <translation>Jest problem ze zaktualizowaniem zapytania %1 w wyzwalaczu %2. Jedeno z podzapytań SELECT, które może odwoływać się do tabeli %2 nie może być poprawnie zmodyfikowane. Ręczna aktualizacja tego wyzwalacza może być niezbędna.</translation>
     </message>
@@ -1020,28 +1020,28 @@ Widok pozostanie nienaruszony.</translation>
 <context>
     <name>QueryExecutor</name>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="131"/>
+        <location filename="../db/queryexecutor.cpp" line="130"/>
         <source>Execution interrupted.</source>
         <translation>Wykonywanie przerwane.</translation>
     </message>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="179"/>
+        <location filename="../db/queryexecutor.cpp" line="172"/>
         <source>Database is not open.</source>
         <translation>Baza danych nie jest otwarta.</translation>
     </message>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="187"/>
+        <location filename="../db/queryexecutor.cpp" line="180"/>
         <source>Only one query can be executed simultaneously.</source>
         <translation>Tylko jedno zapytanie może być wykonywane w danym momencie.</translation>
     </message>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="268"/>
-        <location filename="../db/queryexecutor.cpp" line="539"/>
+        <location filename="../db/queryexecutor.cpp" line="262"/>
+        <location filename="../db/queryexecutor.cpp" line="535"/>
         <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
         <translation>Wystąpił błąd podczas wykonywania zapytania count(*), przez co stronicowanie danych będzie wyłączone. Szczegóły błędy z bazy danych: %1</translation>
     </message>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="450"/>
+        <location filename="../db/queryexecutor.cpp" line="446"/>
         <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
         <translation>SQLiteStudio nie mogło uzyskać metadanych z zapytania. Nie będzie można edytować wyników zapytania.</translation>
     </message>
