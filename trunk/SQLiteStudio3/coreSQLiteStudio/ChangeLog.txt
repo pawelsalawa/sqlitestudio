@@ -21,6 +21,7 @@
         * [BUGFIX]: #2734 Fixed code assistant crash in Trigger Dialog.
         * [BUGFIX]: #2721 Fixed initial selection of database in SQL Editor window, so it's set to the database currently selected in databases list on the left.
         * [BUGFIX]: #2721 Added database name to error message when the SQL query execution failed.
+        * [BUGFIX]: #2718 Checkbox in CSV import plugin renamed to "Skip first row of data".
 
 [3.0.1]
         * [ADDED]: When the data is being read into the Gird View, columns width gets automatically adjusted, so for small values they are shrinked and for bigger values they're enlarged, but never above the configured limit (a new option in config dialog).

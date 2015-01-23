@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>333</width>
+    <width>365</width>
     <height>90</height>
    </rect>
   </property>
@@ -48,8 +48,11 @@
    </item>
    <item row="0" column="0" colspan="3">
     <widget class="QCheckBox" name="firstRowAsColumnsCheck">
+     <property name="toolTip">
+      <string>&lt;p&gt;Enable this if the first data line in your CSV file represents column names. You don't want column names to be imported into the table as a regular data.&lt;/p&gt;</string>
+     </property>
      <property name="text">
-      <string>First row represents column names</string>
+      <string>Skip first row of data</string>
      </property>
      <property name="cfg" stdset="0">
       <string notr="true">CsvImport.FirstRowAsColumns</string>
