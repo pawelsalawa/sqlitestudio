@@ -566,6 +566,14 @@ void QueryExecutor::handleErrorsFromSmartAndSimpleMethods(SqlQueryPtr results)
         return;
     }
 
+    if (simpleText.contains("no such") && smartText.contains("ambiguous"))
+    {
+        // This happens when smart execution raised "amigous column name" or something like that,
+        // but simple method failed to work because of transparent database attaching. We prefer smart method error.
+        error(context->errorCodeFromSmartExecution, smartText);
+        return;
+    }
+
     // No special case, use simple method error
     error(results->getErrorCode(), simpleText);
 }
