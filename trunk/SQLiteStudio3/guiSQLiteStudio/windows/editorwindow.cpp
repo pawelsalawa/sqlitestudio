@@ -17,13 +17,13 @@
 #include "parser/lexer.h"
 #include "common/utils_sql.h"
 #include "parser/parser.h"
+#include "dbobjectdialogs.h"
+#include "dialogs/exportdialog.h"
 #include <QComboBox>
 #include <QDebug>
 #include <QStringListModel>
 #include <QActionGroup>
 #include <QMessageBox>
-#include <dbobjectdialogs.h>
-#include <dialogs/exportdialog.h>
 
 CFG_KEYS_DEFINE(EditorWindow)
 EditorWindow::ResultsDisplayMode EditorWindow::resultsDisplayMode;
@@ -93,6 +93,10 @@ void EditorWindow::init()
     createDbCombo();
     initActions();
     updateShortcutTips();
+
+    Db* treeSelectedDb = DBTREE->getSelectedOpenDb();
+    if (treeSelectedDb)
+        dbCombo->setCurrentIndex(dbComboModel->getIndexForDb(treeSelectedDb));
 
     Db* currentDb = getCurrentDb();
     resultsModel->setDb(currentDb);

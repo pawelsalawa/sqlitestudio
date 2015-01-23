@@ -55,6 +55,11 @@ Db* DbListModel::getDb(int index)
     return dbList[index];
 }
 
+int DbListModel::getIndexForDb(Db* db)
+{
+    return dbList.indexOf(db);
+}
+
 void DbListModel::setSortMode(DbListModel::SortMode sortMode)
 {
     this->sortMode = sortMode;

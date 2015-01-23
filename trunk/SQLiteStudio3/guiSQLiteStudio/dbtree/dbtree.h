@@ -108,6 +108,8 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void setSelectedItem(DbTreeItem* item);
         bool isMimeDataValidForItem(const QMimeData* mimeData, const DbTreeItem* item);
         QToolBar* getToolBar(int toolbar) const;
+        Db* getSelectedDb();
+        Db* getSelectedOpenDb();
 
         static bool isItemDraggable(const DbTreeItem* item);
 
@@ -117,8 +119,6 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
 
     private:
         void setActionEnabled(int action, bool enabled);
-        Db* getSelectedDb();
-        Db* getSelectedOpenDb();
         TableWindow* openTable(DbTreeItem* item);
         TableWindow* openTable(Db* db, const QString& database, const QString& table);
         TableWindow* newTable(DbTreeItem* item);
