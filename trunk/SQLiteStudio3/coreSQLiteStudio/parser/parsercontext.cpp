@@ -27,7 +27,12 @@ void ParserContext::error(TokenPtr token, const QString &text)
 
 void ParserContext::error(Token* token, const QString& text)
 {
-    error(getTokenPtr(token), text);
+    if (token->type != Token::INVALID)
+        error(getTokenPtr(token), text);
+    else if (managedTokens.size() > 0)
+        error(managedTokens.last(), text);
+    else
+        error(text);
 }
 
 void ParserContext::error(const QString &text)
