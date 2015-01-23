@@ -35,88 +35,19 @@ SqlQueryView::~SqlQueryView()
     delete itemDelegate;
 }
 
-QList<SqlQueryItem*> SqlQueryView::getSelectedItems()
-{
-    QList<SqlQueryItem*> items;
-    QModelIndexList idxList = selectionModel()->selectedIndexes();
-    QModelIndex currIdx = getCurrentIndex();
-    if (!idxList.contains(currIdx) && currIdx.isValid())
-        idxList << currIdx;
-
-    if (idxList.size() == 0)
-        return items;
-
-    qSort(idxList);
-    const SqlQueryModel* model = dynamic_cast<const SqlQueryModel*>(idxList.first().model());
-    foreach (const QModelIndex& idx, idxList)
-        items << model->itemFromIndex(idx);
-
-    return items;
-}
-
-SqlQueryItem* SqlQueryView::getCurrentItem()
-{
-    QModelIndex idx = getCurrentIndex();
-    if (!idx.isValid())
-        return nullptr;
-
-    return getModel()->itemFromIndex(idx);
-}
-
-SqlQueryModel* SqlQueryView::getModel()
-{
-    return dynamic_cast<SqlQueryModel*>(model());
-}
-
-void SqlQueryView::setModel(QAbstractItemModel* model)
-{
-    QTableView::setModel(model);
-    connect(widgetCover, SIGNAL(cancelClicked()), getModel(), SLOT(interrupt()));
-    connect(getModel(), &SqlQueryModel::commitStatusChanged, this, &SqlQueryView::updateCommitRollbackActions);
-    connect(getModel(), &SqlQueryModel::sortingUpdated, this, &SqlQueryView::sortingUpdated);
-}
-
-SqlQueryItem* SqlQueryView::itemAt(const QPoint& pos)
-{
-    return dynamic_cast<SqlQueryItem*>(getModel()->itemFromIndex(indexAt(pos)));
-}
-
-QToolBar* SqlQueryView::getToolBar(int toolbar) const
-{
-    UNUSED(toolbar);
-    return nullptr;
-}
-
-void SqlQueryView::addAdditionalAction(QAction* action)
-{
-    additionalActions << action;
-}
-
-QModelIndex SqlQueryView::getCurrentIndex() const
-{
-    return currentIndex();
-}
-
-void SqlQueryView::mouseDoubleClickEvent(QMouseEvent* event)
-{
-    SqlQueryItem* item = itemAt(event->pos());
-    if (item && !handleDoubleClick(item))
-        return;
-
-    QTableView::mouseDoubleClickEvent(event);
-}
-
 void SqlQueryView::init()
 {
     itemDelegate = new SqlQueryItemDelegate();
     setItemDelegate(itemDelegate);
     setMouseTracking(true);
+    setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     setContextMenuPolicy(Qt::CustomContextMenu);
     contextMenu = new QMenu(this);
 
     connect(this, &QWidget::customContextMenuRequested, this, &SqlQueryView::customContextMenuRequested);
     connect(CFG_UI.Fonts.DataView, SIGNAL(changed(QVariant)), this, SLOT(updateFont()));
+    connect(this, SIGNAL(activated(QModelIndex)), this, SLOT(itemActivated(QModelIndex)));
 
     horizontalHeader()->setSortIndicatorShown(false);
     horizontalHeader()->setSectionsClickable(true);
@@ -227,7 +158,84 @@ void SqlQueryView::setupHeaderMenu()
     headerContextMenu->addAction(actionMap[RESET_SORTING]);
 }
 
-bool SqlQueryView::handleDoubleClick(SqlQueryItem* item)
+QList<SqlQueryItem*> SqlQueryView::getSelectedItems()
+{
+    QList<SqlQueryItem*> items;
+    QModelIndexList idxList = selectionModel()->selectedIndexes();
+    QModelIndex currIdx = getCurrentIndex();
+    if (!idxList.contains(currIdx) && currIdx.isValid())
+        idxList << currIdx;
+
+    if (idxList.size() == 0)
+        return items;
+
+    qSort(idxList);
+    const SqlQueryModel* model = dynamic_cast<const SqlQueryModel*>(idxList.first().model());
+    foreach (const QModelIndex& idx, idxList)
+        items << model->itemFromIndex(idx);
+
+    return items;
+}
+
+SqlQueryItem* SqlQueryView::getCurrentItem()
+{
+    QModelIndex idx = getCurrentIndex();
+    if (!idx.isValid())
+        return nullptr;
+
+    return getModel()->itemFromIndex(idx);
+}
+
+SqlQueryModel* SqlQueryView::getModel()
+{
+    return dynamic_cast<SqlQueryModel*>(model());
+}
+
+void SqlQueryView::setModel(QAbstractItemModel* model)
+{
+    QTableView::setModel(model);
+    connect(widgetCover, SIGNAL(cancelClicked()), getModel(), SLOT(interrupt()));
+    connect(getModel(), &SqlQueryModel::commitStatusChanged, this, &SqlQueryView::updateCommitRollbackActions);
+    connect(getModel(), &SqlQueryModel::sortingUpdated, this, &SqlQueryView::sortingUpdated);
+}
+
+SqlQueryItem* SqlQueryView::itemAt(const QPoint& pos)
+{
+    return dynamic_cast<SqlQueryItem*>(getModel()->itemFromIndex(indexAt(pos)));
+}
+
+QToolBar* SqlQueryView::getToolBar(int toolbar) const
+{
+    UNUSED(toolbar);
+    return nullptr;
+}
+
+void SqlQueryView::addAdditionalAction(QAction* action)
+{
+    additionalActions << action;
+}
+
+QModelIndex SqlQueryView::getCurrentIndex() const
+{
+    return currentIndex();
+}
+
+void SqlQueryView::itemActivated(const QModelIndex& index)
+{
+    if (!index.isValid())
+        return;
+
+    SqlQueryItem* item = getModel()->itemFromIndex(index);
+    if (!item)
+        return;
+
+    if (!editInEditorIfNecessary(item))
+        return;
+
+    edit(getCurrentIndex());
+}
+
+bool SqlQueryView::editInEditorIfNecessary(SqlQueryItem* item)
 {
     if (item->getColumn()->dataType.getType() == DataType::BLOB)
     {
