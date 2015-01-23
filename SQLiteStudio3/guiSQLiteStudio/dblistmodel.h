@@ -26,6 +26,7 @@ class GUI_API_EXPORT DbListModel : public QAbstractListModel
         QModelIndex sibling(int row, int column, const QModelIndex & idx) const;
 
         Db* getDb(int index);
+        int getIndexForDb(Db* db);
         void setSortMode(SortMode sortMode);
         SortMode getSortMode() const;
         void setSortMode(const QString& sortMode);
