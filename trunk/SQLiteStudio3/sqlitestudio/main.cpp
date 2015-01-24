@@ -22,6 +22,8 @@
 #include "coreSQLiteStudio_global.h"
 #include "log.h"
 #include "qio.h"
+#include "translations.h"
+#include "dialogs/languagedialog.h"
 #include "services/pluginmanager.h"
 #include <QCommandLineParser>
 #include <QCommandLineOption>
@@ -130,6 +132,21 @@ int main(int argc, char *argv[])
     }
 
     IconManager::getInstance()->rescanResources();
+
+    if (!CFG_UI.General.LanguageAsked.get())
+    {
+        CFG_UI.General.LanguageAsked.set(true);
+        QMap<QString, QString> langs = getAvailableLanguages();
+
+        LanguageDialog dialog;
+        dialog.setLanguages(langs);
+        dialog.setSelectedLang(CFG_CORE.General.Language.getDefultValue().toString());
+        if (dialog.exec() == QDialog::Accepted)
+            CFG_CORE.General.Language.set(dialog.getSelectedLang());
+
+        QProcess::startDetached(a.applicationFilePath(), QStringList());
+        return 0;
+    }
 
     MainWindow::getInstance()->restoreSession();
     MainWindow::getInstance()->show();

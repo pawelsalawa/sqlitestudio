@@ -74,9 +74,14 @@
         <translation>Dystrybucja zarządzana przez system operacyjny.</translation>
     </message>
     <message>
-        <location filename="../dialogs/aboutdialog.cpp" line="69"/>
+        <location filename="../dialogs/aboutdialog.cpp" line="76"/>
         <source>Copy</source>
         <translation>Kopiuj</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/aboutdialog.cpp" line="95"/>
+        <source>&lt;h3&gt;Table of contents:&lt;/h3&gt;&lt;ol&gt;%2&lt;/ol&gt;</source>
+        <translation>&lt;h3&gt;Zawartość:&lt;/h3&gt;&lt;ol&gt;%2&lt;/ol&gt;</translation>
     </message>
 </context>
 <context>
@@ -3267,6 +3272,19 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
 %1</source>
         <translation>Wystąpił błąd podczas wykonywania zapytań SQL:
 %1</translation>
+    </message>
+</context>
+<context>
+    <name>LanguageDialog</name>
+    <message>
+        <location filename="../dialogs/languagedialog.ui" line="14"/>
+        <source>Language</source>
+        <translation>Język</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/languagedialog.ui" line="20"/>
+        <source>Please choose language:</source>
+        <translation>Proszę wybrać język:</translation>
     </message>
 </context>
 <context>
