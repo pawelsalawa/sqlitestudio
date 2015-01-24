@@ -51,12 +51,19 @@ void AboutDialog::init(InitialMode initialMode)
     licenseContents = "";
     int row = 1;
 
-    QHash<QString,QString> licenses = SQLITESTUDIO->getExtraLicenseManager()->getLicenses();
+    QHash<QString,QString> licenses = SQLITESTUDIO->getExtraLicenseManager()->getLicensesContents();
+    QString violation;
+    QString title;
     QHashIterator<QString,QString> it(licenses);
     while (it.hasNext())
     {
         it.next();
-        readLicense(row++, it.key(), it.value());
+        violation = QString();
+        title = it.key();
+        if (SQLITESTUDIO->getExtraLicenseManager()->isViolatedLicense(title))
+            violation = SQLITESTUDIO->getExtraLicenseManager()->getViolationMessage(title);
+
+        addLicense(row++, title, it.value(), violation);
     }
 
     buildIndex();
@@ -85,16 +92,19 @@ void AboutDialog::buildIndex()
     for (const QString& idx : indexContents)
         entries += entryTpl.arg(idx);
 
-    licenseContents.prepend("<h3>Table of contents:</h3><ol>" + entries.join("") + "</ol>");
+    licenseContents.prepend(tr("<h3>Table of contents:</h3><ol>%2</ol>").arg(entries.join("")));
 }
 
-void AboutDialog::readLicense(int row, const QString& title, const QString& path)
+void AboutDialog::addLicense(int row, const QString& title, const QString& contents, const QString& violation)
 {
+    static_qstring(violatedTpl, "<span style=\"color: #FF0000;\">%1 (%2)</span>");
+
+    QString escapedTitle = title.toHtmlEscaped();
+    QString finalTitle = violation.isNull() ? escapedTitle : violatedTpl.arg(escapedTitle, violation);
     QString rowNum = QString::number(row);
-    QString contents = readFile(path);
-    licenseContents += "<h3>" + rowNum + ". " + title + "</h3>";
-    licenseContents += "<pre>" + contents + "</pre>";
-    indexContents += title;
+    licenseContents += "<h3>" + rowNum + ". " + finalTitle + "</h3>";
+    licenseContents += "<pre>" + contents.toHtmlEscaped() + "</pre>";
+    indexContents += finalTitle;
 }
 
 QString AboutDialog::readFile(const QString& path)

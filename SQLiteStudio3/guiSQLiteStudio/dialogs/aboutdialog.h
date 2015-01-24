@@ -26,7 +26,7 @@ class GUI_API_EXPORT AboutDialog : public QDialog
     private:
         void init(InitialMode initialMode);
         void buildIndex();
-        void readLicense(int row, const QString& title, const QString& path);
+        void addLicense(int row, const QString& title, const QString& contents, const QString& violation);
         QString readFile(const QString& path);
 
         static QStringList filterResourcePaths(const QStringList& paths);
