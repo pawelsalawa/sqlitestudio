@@ -80,6 +80,7 @@ CFG_CATEGORIES(Ui,
         CFG_ENTRY(Cfg::DataEditorsOrder, DataEditorsOrder,        Cfg::DataEditorsOrder())
         CFG_ENTRY(QString,               FileDialogLastPath,      QString())
         CFG_ENTRY(int,                   MaxInitialColumnWith,    600)
+        CFG_ENTRY(bool,                  LanguageAsked,           false)
     )
 )
 
