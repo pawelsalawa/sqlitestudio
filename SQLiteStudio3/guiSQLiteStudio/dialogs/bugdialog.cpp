@@ -65,7 +65,6 @@ QString BugDialog::getMessageAboutReportHistory()
 {
     return tr("You can see all your reported bugs and ideas by selecting menu '%1' and then '%2'.").arg(MAINWINDOW->getSQLiteStudioMenu()->title())
             .arg(MAINWINDOW->getAction(MainWindow::BUG_REPORT_HISTORY)->text());
-    return "";
 }
 
 void BugDialog::finishedBugReport(bool success, const QString& errorMsg)

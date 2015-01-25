@@ -107,7 +107,6 @@ void SqlCompareView::setupHighlighting(const QString& left, const QString& right
 {
     QList<Diff> diffs = diff->diff_main(left, right);
     int leftPos = 0;
-    int rightPos = 0;
     int lgt = 0;
     for (const Diff& d : diffs)
     {
@@ -120,11 +119,9 @@ void SqlCompareView::setupHighlighting(const QString& left, const QString& right
                 break;
             case EQUAL:
                 leftPos += lgt;
-                rightPos += lgt;
                 break;
             case INSERT:
                 rightView->setTextBackgroundColor(leftPos, leftPos + lgt - 1, Qt::green);
-                rightPos += lgt;
                 break;
         }
     }
