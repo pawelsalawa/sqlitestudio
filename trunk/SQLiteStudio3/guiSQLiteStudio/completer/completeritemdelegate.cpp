@@ -51,7 +51,7 @@ void CompleterItemDelegate::paintIcon(QPainter* painter, const QStyleOptionViewI
     iconRect.setSize(iconSize + QSize(spacer*2, spacer*2));
     iconRect.setTopLeft(iconRect.topLeft() + QPoint(spacer, spacer));
 
-    QIcon::State state = option.state & QStyle::State_Open ? QIcon::On : QIcon::Off;
+    QIcon::State state = (option.state & QStyle::State_Open) ? QIcon::On : QIcon::Off;
     icon.paint(painter, iconRect, option.decorationAlignment, mode, state);
 }
 
@@ -60,7 +60,7 @@ void CompleterItemDelegate::paintText(QPainter* painter, const QStyleOptionViewI
     painter->save();
 
     // Colors
-    QPalette::ColorGroup cg = option.state & QStyle::State_Enabled ? QPalette::Normal : QPalette::Disabled;
+    QPalette::ColorGroup cg = (option.state & QStyle::State_Enabled) ? QPalette::Normal : QPalette::Disabled;
     if (cg == QPalette::Normal && !(option.state & QStyle::State_Active))
         cg = QPalette::Inactive;
 

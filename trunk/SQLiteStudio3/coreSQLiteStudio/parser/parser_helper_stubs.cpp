@@ -21,6 +21,7 @@ ParserIndexedBy::ParserIndexedBy(bool notIndexed)
 ParserStubInsertOrReplace::ParserStubInsertOrReplace(bool replace)
 {
     this->replace = replace;
+    this->orConflict = SqliteConflictAlgo::null;
 }
 
 ParserStubInsertOrReplace::ParserStubInsertOrReplace(bool replace, SqliteConflictAlgo orConflict)
