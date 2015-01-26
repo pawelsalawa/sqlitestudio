@@ -196,34 +196,41 @@ void SqlEditor::setAutoCompletion(bool enabled)
 
 void SqlEditor::customContextMenuRequested(const QPoint &pos)
 {
-    if (objectLinksEnabled)
-    {
-        const DbObject* obj = getValidObjectForPosition(pos);
-        QString objName = toPlainText().mid(obj->from, (obj->to - obj->from + 1));
-
-        validObjContextMenu->clear();
-
-        DbTreeItem* item = nullptr;
-        for (DbTreeItem::Type type : {DbTreeItem::Type::TABLE, DbTreeItem::Type::INDEX, DbTreeItem::Type::TRIGGER, DbTreeItem::Type::VIEW})
-        {
-            item = DBTREE->getModel()->findItem(type, objName);
-            if (item)
-                break;
-        }
-
-        if (item)
-        {
-            DBTREE->setSelectedItem(item);
-            DBTREE->setupActionsForMenu(item, validObjContextMenu);
-            if (validObjContextMenu->actions().size() == 0)
-                return;
-
-            DBTREE->updateActionStates(item);
-            validObjContextMenu->popup(mapToGlobal(pos));
-        }
+    if (objectLinksEnabled && handleValidObjectContextMenu(pos))
         return;
-    }
+
     contextMenu->popup(mapToGlobal(pos));
+}
+
+bool SqlEditor::handleValidObjectContextMenu(const QPoint& pos)
+{
+    const DbObject* obj = getValidObjectForPosition(pos);
+    if (!obj)
+        return false;
+
+    QString objName = toPlainText().mid(obj->from, (obj->to - obj->from + 1));
+
+    validObjContextMenu->clear();
+
+    DbTreeItem* item = nullptr;
+    for (DbTreeItem::Type type : {DbTreeItem::Type::TABLE, DbTreeItem::Type::INDEX, DbTreeItem::Type::TRIGGER, DbTreeItem::Type::VIEW})
+    {
+        item = DBTREE->getModel()->findItem(type, objName);
+        if (item)
+            break;
+    }
+
+    if (!item)
+        return false;
+
+    DBTREE->setSelectedItem(item);
+    DBTREE->setupActionsForMenu(item, validObjContextMenu);
+    if (validObjContextMenu->actions().size() == 0)
+        return false;
+
+    DBTREE->updateActionStates(item);
+    validObjContextMenu->popup(mapToGlobal(pos));
+    return true;
 }
 
 void SqlEditor::updateUndoAction(bool enabled)
@@ -1397,6 +1404,7 @@ void SqlEditor::handleValidObjectCursor(const QPoint& point)
     }
     viewport()->setCursor(isValid ? Qt::PointingHandCursor : Qt::IBeamCursor);
 }
+
 bool SqlEditor::getVirtualSqlCompleteSemicolon() const
 {
     return virtualSqlCompleteSemicolon;

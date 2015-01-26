@@ -186,6 +186,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         const DbObject* getValidObjectForPosition(int position, bool movedLeft);
         const DbObject* getValidObjectForPosition(const QPoint& point);
         void handleValidObjectCursor(const QPoint& point);
+        bool handleValidObjectContextMenu(const QPoint& pos);
 
         SqliteSyntaxHighlighter* highlighter = nullptr;
         QMenu* contextMenu = nullptr;
