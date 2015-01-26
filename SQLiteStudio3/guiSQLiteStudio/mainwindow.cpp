@@ -147,6 +147,8 @@ void MainWindow::init()
     widgetCover->getContainerLayout()->addWidget(updatingSubBar, 2, 0);
     connect(UPDATES, SIGNAL(updatingProgress(QString,int,int)), this, SLOT(handleUpdatingProgress(QString,int,int)));
     connect(UPDATES, SIGNAL(updatingError(QString)), this, SLOT(handleUpdatingError()));
+
+    connect(CFG_CORE.General.Language, SIGNAL(changed(QVariant)), this, SLOT(notifyAboutLanguageChange()));
 }
 
 void MainWindow::cleanUp()
@@ -193,6 +195,11 @@ void MainWindow::updateWindowActions()
     actionMap[CLOSE_ALL_WINDOWS]->setEnabled(hasActiveTask);
     actionMap[RENAME_WINDOW]->setEnabled(hasActiveTask);
     actionMap[RESTORE_WINDOW]->setEnabled(hasClosedWindowToRestore());
+}
+
+void MainWindow::notifyAboutLanguageChange()
+{
+    notifyInfo(tr("You need to restart application to make the language change take effect."));
 }
 
 MdiArea *MainWindow::getMdiArea() const
