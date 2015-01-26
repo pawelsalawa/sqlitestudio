@@ -40,7 +40,7 @@ void SqlQueryView::init()
     itemDelegate = new SqlQueryItemDelegate();
     setItemDelegate(itemDelegate);
     setMouseTracking(true);
-    setEditTriggers(QAbstractItemView::NoEditTriggers);
+    setEditTriggers(QAbstractItemView::AnyKeyPressed);
 
     setContextMenuPolicy(Qt::CustomContextMenu);
     contextMenu = new QMenu(this);
