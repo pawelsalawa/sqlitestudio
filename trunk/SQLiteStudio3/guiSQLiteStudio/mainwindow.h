@@ -170,6 +170,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void updateWindowActions();
 
     private slots:
+        void notifyAboutLanguageChange();
         void cleanUp();
         void openSqlEditorSlot();
         void refreshMdiWindows();
