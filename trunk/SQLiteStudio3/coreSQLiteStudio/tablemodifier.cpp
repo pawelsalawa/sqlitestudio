@@ -44,11 +44,12 @@ void TableModifier::alterTable(SqliteCreateTablePtr newCreateTable)
     sqls << newCreateTable->detokenize();
     copyDataTo(newCreateTable);
 
+    handleFks(tempTableName);
+
     // If temp table was created, it means that table name hasn't changed. In that case we need to cleanup temp table (drop it).
     // Otherwise, the table name has changed, therefor there still remains the old table which we copied data from - we need to drop it here.
     sqls << QString("DROP TABLE %1;").arg(wrapObjIfNeeded(tempTableName.isNull() ? originalTable : tempTableName, dialect));
 
-    handleFks(tempTableName);
     handleIndexes();
     handleTriggers();
     handleViews();
@@ -108,6 +109,7 @@ void TableModifier::handleFks(const QString& tempTableName)
             continue;
         }
 
+        subModifier.usedTempTableNames = usedTempTableNames;
         subModifier.tableColMap = tableColMap;
         subModifier.existingColumns = existingColumns;
         subModifier.newName = newName;
@@ -150,6 +152,8 @@ void TableModifier::subHandleFks(const QString& oldName, const QString& oldTempN
     sqls << createTable->detokenize();
 
     copyDataTo(originalTable);
+
+    handleFks(tempName);
 
     sqls << QString("DROP TABLE %1;").arg(wrapObjIfNeeded(tempName, dialect));
 
@@ -710,8 +714,10 @@ void TableModifier::parseDdl()
     this->createTable = createTable;
 }
 
-QString TableModifier::getTempTableName() const
+QString TableModifier::getTempTableName()
 {
     SchemaResolver resolver(db);
-    return resolver.getUniqueName("sqlitestudio_temp_table");
+    QString name = resolver.getUniqueName("sqlitestudio_temp_table", usedTempTableNames);
+    usedTempTableNames << name;
+    return name;
 }

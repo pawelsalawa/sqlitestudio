@@ -31,7 +31,7 @@ class API_EXPORT TableModifier
     private:
         void init();
         void parseDdl();
-        QString getTempTableName() const;
+        QString getTempTableName();
         void copyDataTo(const QString& targetTable, const QStringList& srcCols, const QStringList& dstCols);
         void renameTo(const QString& newName);
         QString renameToTemp();
@@ -74,18 +74,18 @@ class API_EXPORT TableModifier
         Dialect dialect;
 
         /**
-         * @brief database Database name. The "main" is default.
+         * @brief Database name. The "main" is default.
          * Other databases (temp, attached...) are not supported at the moment.
          */
         QString database;
 
         /**
-         * @brief table Current table name (after renaming)
+         * @brief Current table name (after renaming)
          */
         QString table;
 
         /**
-         * @brief originalTable Initial table name, before any renaming.
+         * @brief Initial table name, before any renaming.
          */
         QString originalTable;
 
@@ -95,7 +95,7 @@ class API_EXPORT TableModifier
         SqliteCreateTablePtr createTable;
 
         /**
-         * @brief sqls Statements to be executed to make changes real.
+         * @brief Statements to be executed to make changes real.
          */
         QStringList sqls;
 
@@ -109,6 +109,7 @@ class API_EXPORT TableModifier
         QStringList modifiedIndexes;
         QStringList modifiedTriggers;
         QStringList modifiedViews;
+        QStringList usedTempTableNames;
 };
 
 #endif // TABLEMODIFIER_H
