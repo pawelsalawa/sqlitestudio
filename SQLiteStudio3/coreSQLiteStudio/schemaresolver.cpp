@@ -458,9 +458,10 @@ QStringList SchemaResolver::getAllObjects(const QString& database)
     return resList;
 }
 
-QString SchemaResolver::getUniqueName(const QString& database, const QString& namePrefix)
+QString SchemaResolver::getUniqueName(const QString& database, const QString& namePrefix, const QStringList& forbiddenNames)
 {
     QStringList allObjects = getAllObjects(database);
+    allObjects += forbiddenNames;
     QString baseName = namePrefix;
     QString name = baseName;
     for (int i = 0; allObjects.contains(name); i++)
@@ -469,9 +470,9 @@ QString SchemaResolver::getUniqueName(const QString& database, const QString& na
     return name;
 }
 
-QString SchemaResolver::getUniqueName(const QString& namePrefix)
+QString SchemaResolver::getUniqueName(const QString& namePrefix, const QStringList& forbiddenNames)
 {
-    return getUniqueName("main", namePrefix);
+    return getUniqueName("main", namePrefix, forbiddenNames);
 }
 
 QStringList SchemaResolver::getFkReferencingTables(const QString& table)

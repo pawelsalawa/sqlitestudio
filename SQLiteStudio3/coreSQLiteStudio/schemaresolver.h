@@ -52,8 +52,8 @@ class API_EXPORT SchemaResolver
         QStringList getObjects(const QString& database, const QString& type);
         QStringList getAllObjects();
         QStringList getAllObjects(const QString& database);
-        QString getUniqueName(const QString& database, const QString& namePrefix);
-        QString getUniqueName(const QString& namePrefix = QString::null);
+        QString getUniqueName(const QString& database, const QString& namePrefix, const QStringList& forbiddenNames = QStringList());
+        QString getUniqueName(const QString& namePrefix = QString::null, const QStringList& forbiddenNames = QStringList());
         QStringList getFkReferencingTables(const QString& table);
         QStringList getFkReferencingTables(const QString& database, const QString& table);
 
