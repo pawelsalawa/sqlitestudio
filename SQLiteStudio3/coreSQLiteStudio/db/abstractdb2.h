@@ -7,6 +7,7 @@
 #include "common/unused.h"
 #include "db/sqlerrorcodes.h"
 #include "db/sqlerrorresults.h"
+#include "log.h"
 #include <sqlite.h>
 #include <QThread>
 #include <QPointer>
@@ -570,6 +571,8 @@ bool AbstractDb2<T>::Query::execInternal(const QList<QVariant>& args)
 
     ReadWriteLocker locker(&(db->dbOperLock), query, Dialect::Sqlite2, flags.testFlag(Db::Flag::NO_LOCK));
 
+    logSql(db.data(), query, args, flags);
+
     QueryWithParamCount queryWithParams = getQueryWithParamCount(query, Dialect::Sqlite2);
     QString singleStr = replaceNamedParams(queryWithParams.first);
 
@@ -603,6 +606,8 @@ bool AbstractDb2<T>::Query::execInternal(const QHash<QString, QVariant>& args)
         return false;
 
     ReadWriteLocker locker(&(db->dbOperLock), query, Dialect::Sqlite2, flags.testFlag(Db::Flag::NO_LOCK));
+
+    logSql(db.data(), query, args, flags);
 
     QueryWithParamNames queryWithParams = getQueryWithParamNames(query, Dialect::Sqlite2);
     QString singleStr = replaceNamedParams(queryWithParams.first);

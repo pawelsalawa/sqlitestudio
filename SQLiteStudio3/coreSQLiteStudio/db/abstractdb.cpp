@@ -305,7 +305,6 @@ SqlQueryPtr AbstractDb::execHashArg(const QString& query, const QHash<QString,QV
     if (!isOpenInternal())
         return SqlQueryPtr(new SqlErrorResults(SqlErrorCode::DB_NOT_OPEN, tr("Cannot execute query on closed database.")));
 
-    logSql(this, query, args, flags);
     QString newQuery = query;
     SqlQueryPtr queryStmt = prepare(newQuery);
     queryStmt->setArgs(args);
@@ -323,7 +322,6 @@ SqlQueryPtr AbstractDb::execListArg(const QString& query, const QList<QVariant>&
     if (!isOpenInternal())
         return SqlQueryPtr(new SqlErrorResults(SqlErrorCode::DB_NOT_OPEN, tr("Cannot execute query on closed database.")));
 
-    logSql(this, query, args, flags);
     QString newQuery = query;
     SqlQueryPtr queryStmt = prepare(newQuery);
     queryStmt->setArgs(args);

@@ -8,6 +8,7 @@
 #include "services/collationmanager.h"
 #include "sqlitestudio.h"
 #include "db/sqlerrorcodes.h"
+#include "log.h"
 #include <QThread>
 #include <QPointer>
 #include <QDebug>
@@ -854,6 +855,8 @@ bool AbstractDb3<T>::Query::execInternal(const QList<QVariant>& args)
         return false;
 
     ReadWriteLocker locker(&(db->dbOperLock), query, Dialect::Sqlite3, flags.testFlag(Db::Flag::NO_LOCK));
+    logSql(db.data(), query, args, flags);
+
     QueryWithParamCount queryWithParams = getQueryWithParamCount(query, Dialect::Sqlite3);
 
     int res;
@@ -890,6 +893,7 @@ bool AbstractDb3<T>::Query::execInternal(const QHash<QString, QVariant>& args)
         return false;
 
     ReadWriteLocker locker(&(db->dbOperLock), query, Dialect::Sqlite3, flags.testFlag(Db::Flag::NO_LOCK));
+    logSql(db.data(), query, args, flags);
 
     QueryWithParamNames queryWithParams = getQueryWithParamNames(query, Dialect::Sqlite3);
 
