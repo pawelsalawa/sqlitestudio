@@ -48,6 +48,7 @@ set QT_LIB_LIST=Qt5Core Qt5Gui Qt5Network Qt5PrintSupport Qt5Script Qt5Svg Qt5Wi
 for %%i in (%QT_LIB_LIST%) do (
 	copy "%%i.dll" %PORTABLE% > nul
 )
+copy qt.conf %PORTABLE% > nul
 
 mkdir %PORTABLE%\iconengines %PORTABLE%\imageformats %PORTABLE%\platforms %PORTABLE%\printsupport
 cd %QT_DIR%\..\plugins
