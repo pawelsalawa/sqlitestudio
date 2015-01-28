@@ -835,6 +835,7 @@ void TableWindow::rollbackStructure()
     updateStructureCommitState();
     updateStructureToolbarState();
     updateTableConstraintsToolbarState();
+    updateDdlTab();
 }
 
 void TableWindow::resetAutoincrement()
