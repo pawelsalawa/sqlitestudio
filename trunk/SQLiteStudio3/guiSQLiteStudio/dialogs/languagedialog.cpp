@@ -1,5 +1,6 @@
 #include "languagedialog.h"
 #include "ui_languagedialog.h"
+#include "uiconfig.h"
 
 LanguageDialog::LanguageDialog(QWidget *parent) :
     QDialog(parent),
@@ -31,4 +32,14 @@ void LanguageDialog::setSelectedLang(const QString& lang)
         idx = 0;
 
     ui->comboBox->setCurrentIndex(idx);
+}
+
+bool LanguageDialog::didAskForDefaultLanguage()
+{
+    return CFG_UI.General.LanguageAsked.get();
+}
+
+void LanguageDialog::askedForDefaultLanguage()
+{
+    CFG_UI.General.LanguageAsked.set(true);
 }

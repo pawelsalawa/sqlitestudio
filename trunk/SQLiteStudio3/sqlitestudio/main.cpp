@@ -133,16 +133,16 @@ int main(int argc, char *argv[])
 
     IconManager::getInstance()->rescanResources();
 
-    if (!CFG_UI.General.LanguageAsked.get())
+    if (!LanguageDialog::didAskForDefaultLanguage())
     {
-        CFG_UI.General.LanguageAsked.set(true);
+        LanguageDialog::askedForDefaultLanguage();
         QMap<QString, QString> langs = getAvailableLanguages();
 
         LanguageDialog dialog;
         dialog.setLanguages(langs);
-        dialog.setSelectedLang(CFG_CORE.General.Language.getDefultValue().toString());
+        dialog.setSelectedLang(getConfigLanguageDefault());
         if (dialog.exec() == QDialog::Accepted)
-            CFG_CORE.General.Language.set(dialog.getSelectedLang());
+            setDefaultLanguage(dialog.getSelectedLang());
 
         QProcess::startDetached(a.applicationFilePath(), QStringList());
         return 0;
