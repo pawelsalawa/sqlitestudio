@@ -1,18 +1,21 @@
 #ifndef TRANSLATIONS_H
 #define TRANSLATIONS_H
 
+#include "coreSQLiteStudio_global.h"
 #include <QString>
 #include <QMap>
 
-void loadTranslations(const QStringList& baseNames);
-void loadTranslation(const QString& baseName);
-void unloadTranslation(const QString& baseName);
+API_EXPORT void loadTranslations(const QStringList& baseNames);
+API_EXPORT void loadTranslation(const QString& baseName);
+API_EXPORT void unloadTranslation(const QString& baseName);
+API_EXPORT void setDefaultLanguage(const QString& lang);
+API_EXPORT QString getConfigLanguageDefault();
 
 /**
  * @brief Provides list of translations as code names.
  * @return List of available translations in their code names (pl, pt, de, ...).
  */
-QStringList getAvailableTranslations();
+API_EXPORT QStringList getAvailableTranslations();
 
 /**
  * @brief Provides list of languages and their code names.
@@ -20,6 +23,6 @@ QStringList getAvailableTranslations();
  *
  * As the result is a QMap, it comes sorted by a translated names of languages.
  */
-QMap<QString, QString> getAvailableLanguages();
+API_EXPORT QMap<QString, QString> getAvailableLanguages();
 
 #endif // TRANSLATIONS_H

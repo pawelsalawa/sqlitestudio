@@ -106,3 +106,13 @@ QMap<QString,QString> getAvailableLanguages()
 
     return langs;
 }
+
+void setDefaultLanguage(const QString& lang)
+{
+    CFG_CORE.General.Language.set(lang);
+}
+
+QString getConfigLanguageDefault()
+{
+    return CFG_CORE.General.Language.getDefultValue().toString();
+}
