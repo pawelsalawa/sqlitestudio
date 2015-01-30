@@ -248,8 +248,8 @@ cmd(X) ::= CREATE temp(T) TABLE
             conslist_opt(CS) RP
             table_options(F).               {
                                                 X = new SqliteCreateTable(
-                                                        *(T),
                                                         *(E),
+                                                        *(T),
                                                         N->name1,
                                                         N->name2,
                                                         *(CL),
@@ -268,8 +268,8 @@ cmd(X) ::= CREATE temp(T) TABLE
             ifnotexists(E) fullname(N)
             AS select(S).                   {
                                                 X = new SqliteCreateTable(
-                                                        *(T),
                                                         *(E),
+                                                        *(T),
                                                         N->name1,
                                                         N->name2,
                                                         S
