@@ -71,8 +71,14 @@ void FormatExpr::formatInternal()
             break;
         }
         case SqliteExpr::Mode::FUNCTION:
-            withFuncId(expr->function).withParFuncLeft().withStatementList(expr->exprList, "funcArgs", FormatStatement::ListSeparator::EXPR_COMMA).withParFuncRight();
+        {
+            withFuncId(expr->function).withParFuncLeft();
+            if (expr->distinctKw)
+                withKeyword("DISTINCT");
+
+            withStatementList(expr->exprList, "funcArgs", FormatStatement::ListSeparator::EXPR_COMMA).withParFuncRight();
             break;
+        }
         case SqliteExpr::Mode::SUB_EXPR:
             withParExprLeft().withStatement(expr->expr1).withParExprRight();
             break;
