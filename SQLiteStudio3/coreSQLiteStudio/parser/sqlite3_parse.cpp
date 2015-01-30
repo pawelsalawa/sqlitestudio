@@ -2882,8 +2882,8 @@ static void yy_reduce(
       case 29: /* cmd ::= CREATE temp TABLE ifnotexists fullname LP columnlist conslist_opt RP table_options */
 {
                                                 yygotominor.yy399 = new SqliteCreateTable(
-                                                        *(yymsp[-8].minor.yy376),
                                                         *(yymsp[-6].minor.yy237),
+                                                        *(yymsp[-8].minor.yy376),
                                                         yymsp[-5].minor.yy66->name1,
                                                         yymsp[-5].minor.yy66->name2,
                                                         *(yymsp[-3].minor.yy118),
@@ -2902,8 +2902,8 @@ static void yy_reduce(
       case 30: /* cmd ::= CREATE temp TABLE ifnotexists fullname AS select */
 {
                                                 yygotominor.yy399 = new SqliteCreateTable(
-                                                        *(yymsp[-5].minor.yy376),
                                                         *(yymsp[-3].minor.yy237),
+                                                        *(yymsp[-5].minor.yy376),
                                                         yymsp[-2].minor.yy66->name1,
                                                         yymsp[-2].minor.yy66->name2,
                                                         yymsp[0].minor.yy123

@@ -184,8 +184,8 @@ cmd(X) ::= CREATE temp(T) TABLE
             LP columnlist(CL)
             conslist_opt(CS) RP.            {
                                                 X = new SqliteCreateTable(
-                                                        *(T),
                                                         false,
+                                                        *(T),
                                                         N->name1,
                                                         N->name2,
                                                         *(CL),
@@ -201,8 +201,8 @@ cmd(X) ::= CREATE temp(T) TABLE
             fullname(N)
             AS select(S).                   {
                                                 X = new SqliteCreateTable(
-                                                        *(T),
                                                         false,
+                                                        *(T),
                                                         N->name1,
                                                         N->name2,
                                                         S
