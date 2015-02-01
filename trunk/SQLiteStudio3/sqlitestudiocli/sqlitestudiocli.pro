@@ -25,7 +25,8 @@ linux|portable {
     QMAKE_LFLAGS += -Wl,-rpath,./lib
 }
 
-TRANSLATIONS += translations/sqlitestudiocli_pt_BR.ts \
+TRANSLATIONS += translations/sqlitestudiocli_ru.ts \
+		translations/sqlitestudiocli_pt_BR.ts \
 		translations/sqlitestudiocli_fr.ts \
 		translations/sqlitestudiocli_es.ts \
 		translations/sqlitestudiocli_pl.ts
@@ -106,6 +107,7 @@ unix: {
 
 RESOURCES += \
     sqlitestudiocli.qrc
+
 
 
 

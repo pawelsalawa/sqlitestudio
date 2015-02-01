@@ -35,10 +35,12 @@ RESOURCES += \
     printing.qrc
 
 
-TRANSLATIONS += Printing_pt_BR.ts \
+TRANSLATIONS += Printing_ru.ts \
+		Printing_pt_BR.ts \
 		Printing_fr.ts \
 		Printing_es.ts \
 		Printing_pl.ts
+
 
 
 

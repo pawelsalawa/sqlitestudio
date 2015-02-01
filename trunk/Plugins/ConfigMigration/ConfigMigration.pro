@@ -31,10 +31,12 @@ RESOURCES += \
     configmigration.qrc
 
 
-TRANSLATIONS += ConfigMigration_pt_BR.ts \
+TRANSLATIONS += ConfigMigration_ru.ts \
+		ConfigMigration_pt_BR.ts \
 		ConfigMigration_fr.ts \
 		ConfigMigration_es.ts \
 		ConfigMigration_pl.ts
+
 
 
 
