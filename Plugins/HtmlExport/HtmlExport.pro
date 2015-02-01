@@ -29,10 +29,12 @@ FORMS += \
     htmlexport.ui
 
 
-TRANSLATIONS += HtmlExport_pt_BR.ts \
+TRANSLATIONS += HtmlExport_ru.ts \
+		HtmlExport_pt_BR.ts \
 		HtmlExport_fr.ts \
 		HtmlExport_es.ts \
 		HtmlExport_pl.ts
+
 
 
 

@@ -50,7 +50,8 @@ portable {
 CONFIG   += c++11
 QMAKE_CXXFLAGS += -pedantic
 
-TRANSLATIONS += translations/coreSQLiteStudio_pt_BR.ts \
+TRANSLATIONS += translations/coreSQLiteStudio_ru.ts \
+		translations/coreSQLiteStudio_pt_BR.ts \
 		translations/coreSQLiteStudio_fr.ts \
 		translations/coreSQLiteStudio_es.ts \
 		translations/coreSQLiteStudio_pl.ts
@@ -430,6 +431,7 @@ FORMS += \
 
 RESOURCES += \
     coresqlitestudio.qrc
+
 
 
 
