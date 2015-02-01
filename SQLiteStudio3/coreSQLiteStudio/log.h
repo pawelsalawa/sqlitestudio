@@ -2,7 +2,7 @@
 #define LOG_H
 
 #include "db/db.h"
-#include "guiSQLiteStudio_global.h"
+#include "coreSQLiteStudio_global.h"
 #include <QString>
 #include <QHash>
 #include <QList>

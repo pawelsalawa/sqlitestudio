@@ -93,14 +93,14 @@ switch -- $op {
 	    set data [read $fd]
 	    close $fd
 	
-	    set ts "${p}_$lang.ts"
+	    set ts "${d}_$lang.ts"
 	    if {$op == "add"} {
 		set data [string map [list "TRANSLATIONS += " "TRANSLATIONS += $ts \\\n\t\t"] $data]
 	    } else {
 		regsub -- "$ts\\s*(\\\\)?\n\\s*" $data "" data
 	    }
 	    
-	    set fd [open ../Plugins/$p/$p.pro w+]
+	    set fd [open ../Plugins/$d/$d.pro w+]
 	    puts $fd $data
 	    close $fd
 	    

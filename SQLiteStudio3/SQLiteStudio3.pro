@@ -36,13 +36,15 @@ win32: {
 linux: {
     portable.commands = sh $$PWD/create_linux_portable.sh $$PWD/../$$OUTPUT_DIR_NAME $$QMAKE_QMAKE
     tgz.commands = sh $$PWD/create_linux_portable.sh $$PWD/../$$OUTPUT_DIR_NAME $$QMAKE_QMAKE tgz
-    dist.commands = sh $$PWD/create_linux_portable.sh $$PWD/../$$OUTPUT_DIR_NAME $$QMAKE_QMAKE dist
-    QMAKE_EXTRA_TARGETS += portable tgz dist
+    pkg.commands = sh $$PWD/create_linux_portable.sh $$PWD/../$$OUTPUT_DIR_NAME $$QMAKE_QMAKE dist
+    pkg_plugins.commands = sh $$PWD/create_linux_portable.sh $$PWD/../$$OUTPUT_DIR_NAME $$QMAKE_QMAKE dist_plugins
+    QMAKE_EXTRA_TARGETS += portable tgz pkg pkg_plugins
 }
 
 macx: {
     bundle.commands = sh $$PWD/create_macosx_bundle.sh $$PWD/../$$OUTPUT_DIR_NAME $$QMAKE_QMAKE
     dmg.commands = sh $$PWD/create_macosx_bundle.sh $$PWD/../$$OUTPUT_DIR_NAME $$QMAKE_QMAKE dmg
-    dist.commands = sh $$PWD/create_macosx_bundle.sh $$PWD/../$$OUTPUT_DIR_NAME $$QMAKE_QMAKE dist
-    QMAKE_EXTRA_TARGETS += bundle dmg dist
+    pkg.commands = sh $$PWD/create_macosx_bundle.sh $$PWD/../$$OUTPUT_DIR_NAME $$QMAKE_QMAKE dist
+    pkg_plugins.commands = sh $$PWD/create_macosx_bundle.sh $$PWD/../$$OUTPUT_DIR_NAME $$QMAKE_QMAKE dist_plugins
+    QMAKE_EXTRA_TARGETS += bundle dmg pkg pkg_plugins
 }

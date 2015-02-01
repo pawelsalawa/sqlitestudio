@@ -9,7 +9,7 @@ if [ "$#" -lt 2 ] || [ "$#" -gt 3 ]; then
   exit 1
 fi
 
-if [ "$#" -eq 3 ] && [ "$3" != "dmg" ] && [ "$3" != "dist" ]; then
+if [ "$#" -eq 3 ] && [ "$3" != "dmg" ] && [ "$3" != "dist" ] && [ "$3" != "dist_plugins" ]; then
   printUsage
   exit 1
 fi
@@ -44,6 +44,23 @@ install_name_tool -change $qtcore_path $new_qtcore_path SQLiteStudio.app/Content
 
 cp -RP ../../../lib/*.dylib SQLiteStudio.app/Contents/Frameworks
 
+function deployPlugins()
+{
+    mkdir Contents Contents/PlugIns
+    SQLiteStudio.app/Contents/MacOS/sqlitestudio --list-plugins | while read line
+    do
+    PLUGIN=`echo $line | awk '{print $1}'`
+    PLUGIN_VER=`echo $line | awk '{print $2}'`
+    if [ -f SQLiteStudio.app/Contents/PlugIns/lib$PLUGIN.dylib ]; then
+        echo "Building plugin package: $PLUGIN-$PLUGIN_VER.tar.gz"
+        cp SQLiteStudio.app/Contents/PlugIns/lib$PLUGIN.dylib Contents/PlugIns
+        zip -r $PLUGIN\-$PLUGIN_VER.zip Contents
+    fi
+    rm -f Contents/PlugIns/*
+    done
+    rm -rf Contents
+}
+
 if [ "$3" == "dmg" ]; then
     $qt_deploy_bin SQLiteStudio.app -dmg
 elif [ "$3" == "dist" ]; then
@@ -68,21 +85,10 @@ elif [ "$3" == "dist" ]; then
     rm -rf app
 
     # Plugins
-    mkdir Contents Contents/PlugIns
-    SQLiteStudio.app/Contents/MacOS/sqlitestudio --list-plugins | while read line
-    do
-    PLUGIN=`echo $line | awk '{print $1}'`
-    PLUGIN_VER=`echo $line | awk '{print $2}'`
-    if [ -f SQLiteStudio.app/Contents/PlugIns/lib$PLUGIN.dylib ]; then
-        echo "Building plugin package: $PLUGIN-$PLUGIN_VER.tar.gz"
-        cp SQLiteStudio.app/Contents/PlugIns/lib$PLUGIN.dylib Contents/PlugIns
-        zip -r $PLUGIN\-$PLUGIN_VER.zip Contents
-    fi
-    rm -f Contents/PlugIns/*
-    done
-    rm -rf Contents
-
+    deployPlugins
     echo "Done."
+else if [ "$3" == "dist_plugins" ]; then
+    deployPlugins
 else
     $qt_deploy_bin SQLiteStudio.app
 fi
