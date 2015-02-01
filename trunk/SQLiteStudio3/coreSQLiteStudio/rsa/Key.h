@@ -34,9 +34,10 @@
 #define KEY_H_
 
 #include "BigInt.h"
+#include "coreSQLiteStudio_global.h"
 #include <iostream>
 
-class Key
+class API_EXPORT Key
 {
 	private:
 		BigInt modulus;

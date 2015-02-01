@@ -4,9 +4,9 @@
 #
 #-------------------------------------------------
 
-include($$PWD/../../SQLiteStudio3/plugins.pri)
-
 QT += widgets
+
+include($$PWD/../../SQLiteStudio3/plugins.pri)
 
 TARGET = ConfigMigration
 TEMPLATE = lib

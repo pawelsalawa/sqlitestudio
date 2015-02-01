@@ -4,9 +4,8 @@
 #
 #-------------------------------------------------
 
-include($$PWD/../../SQLiteStudio3/plugins.pri)
-
 QT       -= gui
+
 
 TARGET = JsonExport
 TEMPLATE = lib

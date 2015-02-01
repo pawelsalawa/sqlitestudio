@@ -30,9 +30,10 @@
 #ifndef PRIMEGENERATOR_H_
 #define PRIMEGENERATOR_H_
 
+#include "coreSQLiteStudio_global.h"
 #include "BigInt.h"
 
-class PrimeGenerator
+class API_EXPORT PrimeGenerator
 {
 	private:
 		/* Generates a random "number" such as 1 <= "number" < "top".

@@ -32,10 +32,11 @@
 #ifndef KEYPAIR_H_
 #define KEYPAIR_H_
 
+#include "coreSQLiteStudio_global.h"
 #include "Key.h"
 #include <iostream>
 
-class KeyPair
+class API_EXPORT KeyPair
 {
 	private:
 		const Key privateKey;

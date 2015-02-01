@@ -110,11 +110,12 @@
 #ifndef BIGINT_H_
 #define BIGINT_H_
 
+#include "coreSQLiteStudio_global.h"
 #include <iostream>	//ostream, istream
 #include <cmath>	//sqrt()
 #include <string>	//ToString(), BigInt(std::string)
 
-class BigInt
+class API_EXPORT BigInt
 {
 	private:
 		/* An array of digits stored right to left,

@@ -40,9 +40,10 @@ win32: {
         export(LIBS)
     }
 
-    contains(QT, gui) {
-        LIBS += -lguiSQLiteStudio
-    }
+    # Duplicated later on, not sure why yet.
+    #contains(QT, gui) {
+    #    LIBS += -lguiSQLiteStudio
+    #}
 
     SO_NAME = ddl
     SO_PREFIX = lib
