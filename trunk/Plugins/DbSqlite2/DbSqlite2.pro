@@ -24,3 +24,10 @@ LIBS += -lsqlite
 
 OTHER_FILES += \
     dbsqlite2.json
+
+
+
+
+
+
+

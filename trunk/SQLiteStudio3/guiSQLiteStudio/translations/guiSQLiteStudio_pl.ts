@@ -5465,156 +5465,156 @@ Czy chcesz kontynuować?</translation>
         <translation>Nie udało się zatwierdzić struktury tabeli. Treść błędu: %1</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="845"/>
+        <location filename="../windows/tablewindow.cpp" line="846"/>
         <source>Reset autoincrement</source>
         <translation>Wyzeruj autoinkrementację</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="845"/>
+        <location filename="../windows/tablewindow.cpp" line="846"/>
         <source>Are you sure you want to reset autoincrement value for table &apos;%1&apos;?</source>
         <translation>Czy na pewno chcesz wyzerować wartość autoinkrementacji dla tabeli &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="852"/>
+        <location filename="../windows/tablewindow.cpp" line="853"/>
         <source>An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</source>
         <translation>Wystąpił błąd podczas próby wyzerowania wartości autoinkrementacji dla tabeli &apos;%1&apos;: %2</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="854"/>
+        <location filename="../windows/tablewindow.cpp" line="855"/>
         <source>Autoincrement value for table &apos;%1&apos; has been reset successfly.</source>
         <translation>Wartość autoinkrementacji dla tabeli &apos;%1&apos; została pomyślnie wyzerowana.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="933"/>
+        <location filename="../windows/tablewindow.cpp" line="934"/>
         <source>Empty name</source>
         <translation>Pusta nazwa</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="933"/>
+        <location filename="../windows/tablewindow.cpp" line="934"/>
         <source>A blank name for the table is allowed in SQLite, but it is not recommended.
 Are you sure you want to create a table with blank name?</source>
         <translation>Pusta nazwa dla tabeli jest dozwolona w SQLite, ale nie jest zalecana.
 Czy na pewno chcesz utworzyć tabelę o pustej nazwie?</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="942"/>
+        <location filename="../windows/tablewindow.cpp" line="943"/>
         <source>Cannot create a table without at least one column.</source>
         <translation>Nie można utworzyć tabeli bez przynajmniej jednej kolumny.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="968"/>
+        <location filename="../windows/tablewindow.cpp" line="969"/>
         <source>Cannot create table %1, if it has no primary key defined. Either uncheck the %2, or define a primary key.</source>
         <translation>Nie można utworzyć tabeli %1, jeśli nie ma zdefiniowanego klucza głównego. Albo udznacz %2, albo zdefiniuj klucz główny.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="975"/>
+        <location filename="../windows/tablewindow.cpp" line="976"/>
         <source>Cannot use autoincrement for primary key when %1 clause is used. Either uncheck the %2, or the autoincrement in a primary key.</source>
         <translation>Nie można użyć autoinkrementacji dla klucza głównego, kiedy klauzula %1 jest użyta. Albo odnacz %2, albo autonkrementację w kluczu głównym.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1105"/>
+        <location filename="../windows/tablewindow.cpp" line="1106"/>
         <source>Are you sure you want to delete table constraint &apos;%1&apos;?</source>
         <comment>table window</comment>
         <translation>Czy na pewno chcesz usunąć ograniczenie tabeli &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1106"/>
+        <location filename="../windows/tablewindow.cpp" line="1107"/>
         <source>Delete constraint</source>
         <comment>table window</comment>
         <translation>Usuń ograniczenie</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1160"/>
+        <location filename="../windows/tablewindow.cpp" line="1161"/>
         <source>Cannot export, because no export plugin is loaded.</source>
         <translation>Nie można wyeksportować, ponieważ żadna wtyczka eksportu nie została załadowana.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1173"/>
+        <location filename="../windows/tablewindow.cpp" line="1174"/>
         <source>Cannot import, because no import plugin is loaded.</source>
         <translation>Nie można zaimportować, ponieważ żadna wtyczka importu nie została załadowana.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1205"/>
+        <location filename="../windows/tablewindow.cpp" line="1206"/>
         <source>Uncommited changes</source>
         <translation>Niezatwierdzone dane</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1206"/>
+        <location filename="../windows/tablewindow.cpp" line="1207"/>
         <source>There are uncommited structure modifications. You cannot browse or edit data until you have table structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
         <translation>Zmiany w strukturze nie zostały zatwierdzone. Nie można przeglądać, ani edytować danych, dopóki struktura tabeli nie zostanie ustalona.
 Czy chcesz zatwierdzić strukturę, czy jednak chcesz wrócić do karty struktury?</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1209"/>
+        <location filename="../windows/tablewindow.cpp" line="1210"/>
         <source>Go back to structure tab</source>
         <translation>Wróć do karty struktury</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1209"/>
+        <location filename="../windows/tablewindow.cpp" line="1210"/>
         <source>Commit modifications and browse data.</source>
         <translation>Zatwierdź modyfikacje i przeglądaj dane.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1359"/>
+        <location filename="../windows/tablewindow.cpp" line="1360"/>
         <source>Name</source>
         <comment>table window indexes</comment>
         <translation>Nazwa</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1360"/>
+        <location filename="../windows/tablewindow.cpp" line="1361"/>
         <source>Unique</source>
         <comment>table window indexes</comment>
         <translation>Wartości unikalne</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1361"/>
+        <location filename="../windows/tablewindow.cpp" line="1362"/>
         <source>Columns</source>
         <comment>table window indexes</comment>
         <translation>Kolumny</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1362"/>
+        <location filename="../windows/tablewindow.cpp" line="1363"/>
         <source>Partial index condition</source>
         <comment>table window indexes</comment>
         <translation>Warunek indeksu częściowego:</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1415"/>
+        <location filename="../windows/tablewindow.cpp" line="1416"/>
         <source>Name</source>
         <comment>table window triggers</comment>
         <translation>Nazwa</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1416"/>
+        <location filename="../windows/tablewindow.cpp" line="1417"/>
         <source>Event</source>
         <comment>table window triggers</comment>
         <translation>Zdarzenie</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1417"/>
+        <location filename="../windows/tablewindow.cpp" line="1418"/>
         <source>Condition</source>
         <comment>table window triggers</comment>
         <translation>Warunek</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1418"/>
+        <location filename="../windows/tablewindow.cpp" line="1419"/>
         <source>Details</source>
         <comment>table window triggers</comment>
         <translation>Szczegóły</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1506"/>
+        <location filename="../windows/tablewindow.cpp" line="1507"/>
         <source>Table window &quot;%1&quot; has uncommited structure modifications and data.</source>
         <translation>Okno tabeli &quot;%1&quot; ma niezatwierdzone modyfikacje struktury i danych.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1508"/>
+        <location filename="../windows/tablewindow.cpp" line="1509"/>
         <source>Table window &quot;%1&quot; has uncommited data.</source>
         <translation>Okno tabeli &quot;%1&quot; ma niezatwierdzone dane.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1510"/>
+        <location filename="../windows/tablewindow.cpp" line="1511"/>
         <source>Table window &quot;%1&quot; has uncommited structure modifications.</source>
         <translation>Okno tabeli &quot;%1&quot; ma niezatwierdzone modyfikacje struktury.</translation>
     </message>

@@ -5,12 +5,12 @@
     <name>AbstractDb</name>
     <message>
         <location filename="../db/abstractdb.cpp" line="306"/>
-        <location filename="../db/abstractdb.cpp" line="324"/>
+        <location filename="../db/abstractdb.cpp" line="323"/>
         <source>Cannot execute query on closed database.</source>
         <translation>Nie można wykonać zapytania na zamkniętej bazie danych.</translation>
     </message>
     <message>
-        <location filename="../db/abstractdb.cpp" line="605"/>
+        <location filename="../db/abstractdb.cpp" line="603"/>
         <source>Error attaching database %1: %2</source>
         <translation>Błąd podczas dołączania bazy danych %1: %2</translation>
     </message>
@@ -944,36 +944,36 @@ Szczegóły błędu: %2</translation>
         <translation>Zaludnianie tabel</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="106"/>
+        <location filename="../tablemodifier.cpp" line="107"/>
         <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
         <translation>Tabela %1 odwołuje się do tabeli %2, ale definicja klucza obcego nie zostanie zaktualizowane dla definicji nowej tabeli w związku z problemami przy analizowaniu DDL tabeli %3.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="373"/>
+        <location filename="../tablemodifier.cpp" line="377"/>
         <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
         <translation>Wszystkie kolumny indeksowane przez indeks %1 już nie istnieją. Indeks ten nie będzie odtworzony po modyfikacji tabeli.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="402"/>
+        <location filename="../tablemodifier.cpp" line="406"/>
         <source>Cannot not update trigger %1 according to table %2 modification.</source>
         <translation>Nie można zaktualizować wyzwalacza %1 zgodnie z modyfikacjami tabeli %2.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="408"/>
+        <location filename="../tablemodifier.cpp" line="412"/>
         <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
         <translation>Wszystkie kolumny obsługiwane przez wyzwalacz %1 już nie istnieją. Wyzwalacz ten nie będzie odtworzony po modyfikacji tabeli.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="431"/>
+        <location filename="../tablemodifier.cpp" line="435"/>
         <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
         <translation>Nie można zaktualizować widoku %1 w związku z modyfikacjami tabeli %2.
 Widok pozostanie nienaruszony.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="528"/>
-        <location filename="../tablemodifier.cpp" line="549"/>
-        <location filename="../tablemodifier.cpp" line="567"/>
+        <location filename="../tablemodifier.cpp" line="532"/>
+        <location filename="../tablemodifier.cpp" line="553"/>
+        <location filename="../tablemodifier.cpp" line="571"/>
         <source>There is a problem with updating an %1 statement within %2 trigger. One of the SELECT substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
         <translation>Jest problem ze zaktualizowaniem zapytania %1 w wyzwalaczu %2. Jedeno z podzapytań SELECT, które może odwoływać się do tabeli %2 nie może być poprawnie zmodyfikowane. Ręczna aktualizacja tego wyzwalacza może być niezbędna.</translation>
     </message>
@@ -993,19 +993,19 @@ Widok pozostanie nienaruszony.</translation>
         <translation>SQLiteStudio nie było w stanie określić kolumn zwracanych przez nowy widok, w związku z czym nie może określić które wyzwalacze mogą się nie powieść podczas procesu odtwarzania.</translation>
     </message>
     <message>
-        <location filename="../db/abstractdb2.h" line="198"/>
-        <location filename="../db/abstractdb3.h" line="355"/>
+        <location filename="../db/abstractdb2.h" line="199"/>
+        <location filename="../db/abstractdb3.h" line="356"/>
         <source>Could not open database: %1</source>
         <translation>Nie udało się otworzyć bazy danych: %1</translation>
     </message>
     <message>
-        <location filename="../db/abstractdb3.h" line="375"/>
+        <location filename="../db/abstractdb3.h" line="376"/>
         <source>Could not close database: %1</source>
         <translation>Nie udało się zamknąć bazy danych: %1</translation>
     </message>
     <message>
-        <location filename="../db/abstractdb2.h" line="791"/>
-        <location filename="../db/abstractdb3.h" line="1078"/>
+        <location filename="../db/abstractdb2.h" line="796"/>
+        <location filename="../db/abstractdb3.h" line="1082"/>
         <source>Result set expired or no row available.</source>
         <translation>Wyniki zapytania są nieaktualne, lub nie ma dostępnych wierszy.</translation>
     </message>

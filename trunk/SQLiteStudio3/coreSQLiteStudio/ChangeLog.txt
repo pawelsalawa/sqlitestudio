@@ -1,3 +1,7 @@
+[3.0.3]
+        * [BUGFIX]: Fixed support for "function(DISTINCT args)" in Enterprise formatter.
+        * [BUGFIX]: #2753 Fixed parsing TEMP and IF NOT EXISTS in CREATE TABLE statement.
+
 [3.0.2]
         * [ADDED]: Full support for the interface translations.
         * [ADDED]: Polish translation.

@@ -29,5 +29,15 @@ RESOURCES += \
     sqlexport.qrc
 
 
-TRANSLATIONS += SqlExport_pl.ts
+TRANSLATIONS += SqlExport_pt_BR.ts \
+		SqlExport_fr.ts \
+		SqlExport_es.ts \
+		SqlExport_pl.ts
+
+
+
+
+
+
+
 

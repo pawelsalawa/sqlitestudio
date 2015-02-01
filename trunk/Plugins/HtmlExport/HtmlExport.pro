@@ -29,5 +29,15 @@ FORMS += \
     htmlexport.ui
 
 
-TRANSLATIONS += HtmlExport_pl.ts
+TRANSLATIONS += HtmlExport_pt_BR.ts \
+		HtmlExport_fr.ts \
+		HtmlExport_es.ts \
+		HtmlExport_pl.ts
+
+
+
+
+
+
+
 

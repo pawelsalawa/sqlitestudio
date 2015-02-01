@@ -6,6 +6,7 @@
 
 QT       -= gui
 
+include($$PWD/../../SQLiteStudio3/plugins.pri)
 
 TARGET = JsonExport
 TEMPLATE = lib
@@ -27,5 +28,15 @@ RESOURCES += \
     jsonexport.qrc
 
 
-TRANSLATIONS += JsonExport_pl.ts
+TRANSLATIONS += JsonExport_pt_BR.ts \
+		JsonExport_fr.ts \
+		JsonExport_es.ts \
+		JsonExport_pl.ts
+
+
+
+
+
+
+
 

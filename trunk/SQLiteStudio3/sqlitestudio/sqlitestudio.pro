@@ -33,7 +33,10 @@ LIBS += -lcoreSQLiteStudio -lguiSQLiteStudio
 
 SOURCES += main.cpp
 
-TRANSLATIONS += translations/sqlitestudio_pl.ts
+TRANSLATIONS += translations/sqlitestudio_pt_BR.ts \
+		translations/sqlitestudio_fr.ts \
+		translations/sqlitestudio_es.ts \
+		translations/sqlitestudio_pl.ts
 
 win32: {
     RC_FILE = windows.rc
@@ -54,3 +57,10 @@ unix: {
 
 RESOURCES += \
     sqlitestudio.qrc
+
+
+
+
+
+
+
