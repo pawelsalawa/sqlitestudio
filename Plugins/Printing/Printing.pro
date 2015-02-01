@@ -4,9 +4,9 @@
 #
 #-------------------------------------------------
 
-include($$PWD/../../SQLiteStudio3/plugins.pri)
-
 QT += printsupport
+
+include($$PWD/../../SQLiteStudio3/plugins.pri)
 
 TARGET = Printing
 TEMPLATE = lib

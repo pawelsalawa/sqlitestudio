@@ -4,9 +4,9 @@
 #
 #-------------------------------------------------
 
-include($$PWD/../../SQLiteStudio3/plugins.pri)
-
 QT       -= gui
+
+include($$PWD/../../SQLiteStudio3/plugins.pri)
 
 TARGET = DbSqlite2
 TEMPLATE = lib

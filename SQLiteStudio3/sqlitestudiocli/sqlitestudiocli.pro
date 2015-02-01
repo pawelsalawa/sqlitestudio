@@ -4,14 +4,14 @@
 #
 #-------------------------------------------------
 
+QT       += core
+QT       -= gui
+
 include($$PWD/../dirs.pri)
 
 OBJECTS_DIR = $$OBJECTS_DIR/sqlitestudiocli
 MOC_DIR = $$MOC_DIR/sqlitestudiocli
 UI_DIR = $$UI_DIR/sqlitestudiocli
-
-QT       += core
-QT       -= gui
 
 TARGET = sqlitestudiocli
 CONFIG   += console
