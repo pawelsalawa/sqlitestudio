@@ -118,6 +118,7 @@ class API_EXPORT CompletionHelper : public QObject
         void filterDuplicates(QList<ExpectedTokenPtr> &results);
         bool isFilterType(Token::Type type);
         void parseFullSql();
+        bool tryToParse(Parser* parser, const QString& query);
         void sort(QList<ExpectedTokenPtr> &results);
         void extractPreviousIdTokens(const TokenList& parsedTokens);
         void extractQueryAdditionalInfo();
