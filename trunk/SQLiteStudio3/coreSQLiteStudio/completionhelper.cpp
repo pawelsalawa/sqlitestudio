@@ -1029,9 +1029,6 @@ void CompletionHelper::parseFullSql()
 {
     Dialect dialect = db->getDialect();
 
-    Parser parser(dialect);
-    parser.setLemonDebug(enableLemonDebug);
-
     QString sql = fullSql;
 
     // Selecting query at cursor position
@@ -1046,11 +1043,30 @@ void CompletionHelper::parseFullSql()
         query += ";";
 
     // Parsing query
-    if (parser.parse(query, true) && !parser.getQueries().isEmpty())
+    Parser parser(dialect);
+    parser.setLemonDebug(enableLemonDebug);
+    if (tryToParse(&parser, query))
+        return;
+
+    // Second try - handling open parenthesis for expr (which could not be handled by the grammar, because of bug #2755)
+    parser.setLemonDebug(false); // avoid spamming with lemon debug
+    QString truncatedSql = sql.left(cursorPosition);
+    query = getQueryWithPosition(truncatedSql, cursorPosition, dialect);
+    query += ");";
+
+    if (tryToParse(&parser, query))
+        return;
+}
+
+bool CompletionHelper::tryToParse(Parser* parser, const QString& query)
+{
+    if (parser->parse(query, true) && !parser->getQueries().isEmpty())
     {
-        parsedQuery = parser.getQueries().first();
+        parsedQuery = parser->getQueries().first();
         originalParsedQuery = SqliteQueryPtr(dynamic_cast<SqliteQuery*>(parsedQuery->clone()));
+        return true;
     }
+    return false;
 }
 
 void CompletionHelper::sort(QList<ExpectedTokenPtr> &resultsSoFar)

@@ -1586,12 +1586,15 @@ exprx(X) ::= expr(E) not_opt(N) IN LP
                                                 objectForTokens = X;
                                                 parserContext->minorErrorBeforeNextToken("Syntax error");
                                             }
+/*
+This introduces premature reduce for LP-expr and causes bug #2755
 exprx(X) ::= LP expr(E).                    {
                                                 X = new SqliteExpr();
                                                 X->initSubExpr(E);
                                                 objectForTokens = X;
                                                 parserContext->minorErrorBeforeNextToken("Syntax error");
                                             }
+*/
 
 exprx ::= expr not_opt IN ID_DB. [IN]       {}
 exprx ::= expr not_opt IN nm DOT
