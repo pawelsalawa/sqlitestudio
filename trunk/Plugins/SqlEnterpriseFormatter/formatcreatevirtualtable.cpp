@@ -54,7 +54,7 @@ void FormatCreateVirtualTable::handleToken(const TokenPtr& token)
             withFloat(token->value.toDouble());
             break;
         case Token::INTEGER:
-            withInteger(token->value.toInt());
+            withInteger(token->value.toLongLong());
             break;
         case Token::BIND_PARAM:
             withBindParam(token->value);

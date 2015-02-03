@@ -213,14 +213,6 @@ QVariant SqlQueryItem::adjustVariantType(const QVariant& value)
 {
     QVariant newValue;
     bool ok;
-    newValue = value.toInt(&ok);
-    if (ok)
-    {
-        ok = (value.toString() == newValue.toString());
-        if (ok)
-            return newValue;
-    }
-
     newValue = value.toLongLong(&ok);
     if (ok)
     {

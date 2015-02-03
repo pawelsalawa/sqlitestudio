@@ -77,7 +77,7 @@ StatementTokenBuilder& StatementTokenBuilder::withFloat(double value)
     return with(Token::FLOAT, QString::number(value));
 }
 
-StatementTokenBuilder& StatementTokenBuilder::withInteger(int value)
+StatementTokenBuilder& StatementTokenBuilder::withInteger(qint64 value)
 {
     return with(Token::INTEGER, QString::number(value));
 }
@@ -168,10 +168,10 @@ StatementTokenBuilder& StatementTokenBuilder::withLiteralValue(const QVariant& v
         }
     }
 
-    value.toInt(&ok);
+    qint64 longVal = value.toLongLong(&ok);
     if (ok)
     {
-        withInteger(value.toInt());
+        withInteger(longVal);
         return *this;
     }
 
