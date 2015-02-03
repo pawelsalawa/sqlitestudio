@@ -550,32 +550,24 @@ void QueryExecutor::setNoMetaColumns(bool value)
 
 void QueryExecutor::handleErrorsFromSmartAndSimpleMethods(SqlQueryPtr results)
 {
-    QString simpleText = results->getErrorText();
-
-    // Smart text may contain messages from steps before the actual execution, but they will have negative error code.
-    // Positive error code means that the error came directly from SQLite.
-    QString smartText = context->errorCodeFromSmartExecution > 0 ? context->errorMessageFromSmartExecution : QString();
-
-    if (simpleText.contains("no such") && smartText.contains("no such"))
+    UNUSED(results);
+    // It turns out that currently smart execution error has more sense to be displayed to user than the simple execution error,
+    // so we're ignoring error from simple method, because it's usually misleading.
+    // The case when simple method error is more true than smart method error is very rare nowdays.
+    // Just rename attach names in the message.
+    QString msg = context->errorMessageFromSmartExecution;
+    QString match;
+    QString replaceName;
+    Dialect dialect = db->getDialect();
+    for (const QString& attachName : context->dbNameToAttach.rightValues())
     {
-        // This happens if user refers to invalid column in attached database.
-        // Smart execution will tell "no such column: xxx", while simple method will tell:
-        // "no such table: attach.table". In that case we're more interested in smart method message.
-        // This also applies to views.
-        error(context->errorCodeFromSmartExecution, smartText);
-        return;
+        match = attachName + ".";
+        replaceName = wrapObjIfNeeded(context->dbNameToAttach.valueByRight(attachName), dialect) + ".";
+        while (msg.contains(match))
+            msg.replace(match, replaceName);
     }
 
-    if (simpleText.contains("no such") && smartText.contains("ambiguous"))
-    {
-        // This happens when smart execution raised "amigous column name" or something like that,
-        // but simple method failed to work because of transparent database attaching. We prefer smart method error.
-        error(context->errorCodeFromSmartExecution, smartText);
-        return;
-    }
-
-    // No special case, use simple method error
-    error(results->getErrorCode(), simpleText);
+    error(context->errorCodeFromSmartExecution, msg);
 }
 
 void QueryExecutor::releaseResultsAndCleanup()
