@@ -343,10 +343,10 @@ FormatStatement& FormatStatement::withLiteral(const QVariant& value)
         }
     }
 
-    value.toInt(&ok);
+    qint64 longVal = value.toLongLong(&ok);
     if (ok)
     {
-        withInteger(value.toInt());
+        withInteger(longVal);
         return *this;
     }
 

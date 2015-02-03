@@ -352,7 +352,7 @@ void AbstractDb2<T>::storeResult(sqlite_func* func, const QVariant& result, bool
         case QVariant::UInt:
         case QVariant::LongLong:
         {
-            sqlite_set_result_int(func, result.toInt());
+            sqlite_set_result_int(func, result.toLongLong());
             break;
         }
         case QVariant::Double:

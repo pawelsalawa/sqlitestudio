@@ -20,6 +20,9 @@ hash_tables.depends = test_utils
 db_ver_conv.subdir = DbVersionConverterTest
 db_ver_conv.depends = test_utils
 
+dsv.subdir = DsvFormatsTest
+dsv.depends = test_utils
+
 SUBDIRS += \
     test_utils \
     completion_helper \
@@ -28,4 +31,4 @@ SUBDIRS += \
     table_modifier \
     hash_tables \
     db_ver_conv \
-    DsvFormatsTest
+    dsv

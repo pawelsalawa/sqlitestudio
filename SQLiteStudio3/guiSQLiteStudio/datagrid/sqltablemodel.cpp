@@ -392,10 +392,10 @@ void SqlTableModel::updateColumnsAndValuesWithDefaultValues(const QList<SqlQuery
             QString colName = wrapObjIfNeeded(modelColumn->column, dialect);
             QString tableName = wrapObjIfNeeded(table, dialect);
             SqlQueryPtr results = db->exec("SELECT max("+colName+") FROM "+tableName);
-            int rowid = 0;
+            qint64 rowid = 0;
             QVariant cellValue = results->getSingleCell();
             if (!cellValue.isNull())
-                rowid = cellValue.toInt();
+                rowid = cellValue.toLongLong();
 
             colNameList << wrapObjIfNeeded(modelColumn->column, dialect);
             sqlValues << ":defValue";

@@ -36,6 +36,7 @@ class ParserTest : public QObject
         void testExpr();
         void testCommentBeginMultiline();
         void testBetween();
+        void testBigNum();
         void initTestCase();
         void cleanupTestCase();
 };
@@ -342,6 +343,13 @@ void ParserTest::testCommentBeginMultiline()
 void ParserTest::testBetween()
 {
     QString sql = "SELECT * FROM test WHERE a BETWEEN 1 and 2";
+    bool res = parser3->parse(sql);
+    QVERIFY(res);
+}
+
+void ParserTest::testBigNum()
+{
+    QString sql = "SELECT ( col - 73016000000 ) FROM tab";
     bool res = parser3->parse(sql);
     QVERIFY(res);
 }

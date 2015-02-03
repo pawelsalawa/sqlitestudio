@@ -138,7 +138,7 @@ class StatementTokenBuilder
          * @param value Value for the token.
          * @return Reference to the builder for the further building.
          */
-        StatementTokenBuilder& withInteger(int value);
+        StatementTokenBuilder& withInteger(qint64 value);
 
         /**
          * @brief Adds bind parameter token.
