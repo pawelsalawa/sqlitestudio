@@ -309,6 +309,7 @@ void IndexDialog::applyIndex()
 {
     applyColumnValues();
 
+    ui->uniqueCheck->setChecked(createIndex->uniqueKw);
     ui->partialIndexCheck->setChecked(createIndex->where != nullptr);
     if (createIndex->where)
         ui->partialIndexEdit->setPlainText(createIndex->where->detokenize());
