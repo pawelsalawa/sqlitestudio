@@ -5,6 +5,7 @@
         * [BUGFIX]: Switched error message from simple method error to smart method error in QueryExecutor to avoid misleading messages.
         * [BUGFIX]: #2760 Fixed marking "unique" in index dialog when opening existing unique index.
         * [BUGFIX]: #2757 Fixed int64 rounding problem.
+        * [BUGFIX]: #2767 Fixed NOT NULL dialog in column dialog, so it doesn't convert to UNIQUE.
 
 [3.0.2]
         * [ADDED]: Full support for the interface translations.

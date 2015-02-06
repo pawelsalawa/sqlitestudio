@@ -272,7 +272,7 @@ void TableWindow::editColumn(const QModelIndex& idx)
 
     SqliteCreateTable::Column* modifiedColumn = columnDialog.getModifiedColumn();
     structureModel->replaceColumn(idx.row(), modifiedColumn);
-    ui->structureView->resizeColumnToContents(0);
+    resizeStructureViewColumns();
 }
 
 void TableWindow::delColumn(const QModelIndex& idx)
@@ -291,7 +291,7 @@ void TableWindow::delColumn(const QModelIndex& idx)
         return;
 
     structureModel->delColumn(idx.row());
-    ui->structureView->resizeColumnToContents(0);
+    resizeStructureViewColumns();
 }
 
 void TableWindow::executeStructureChanges()
@@ -870,6 +870,7 @@ void TableWindow::addColumn()
     ui->structureView->resizeColumnToContents(0);
 
     ui->structureView->setCurrentIndex(structureModel->index(structureModel->rowCount()-1, 0));
+    resizeStructureViewColumns();
 }
 
 void TableWindow::editColumn()
@@ -1038,6 +1039,13 @@ void TableWindow::applyInitialTab()
         ui->tabWidget->setCurrentIndex(1);
     else
         ui->tabWidget->setCurrentIndex(0);
+}
+
+void TableWindow::resizeStructureViewColumns()
+{
+    // Resize all except last one, to avoid shrinking the "extend to end" column.
+    for (int c = 0, total = (ui->structureView->horizontalHeader()->count() - 1); c < total; ++c)
+        ui->structureView->resizeColumnToContents(c);
 }
 
 void TableWindow::updateDdlTab()

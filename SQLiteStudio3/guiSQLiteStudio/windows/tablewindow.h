@@ -158,6 +158,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         QString getCurrentIndex() const;
         QString getCurrentTrigger() const;
         void applyInitialTab();
+        void resizeStructureViewColumns();
 
         int newTableWindowNum = 1;
 
