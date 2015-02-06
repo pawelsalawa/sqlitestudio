@@ -44,8 +44,34 @@ install_name_tool -change $qtcore_path $new_qtcore_path SQLiteStudio.app/Content
 
 cp -RP ../../../lib/*.dylib SQLiteStudio.app/Contents/Frameworks
 
-function deployPlugins()
-{
+if [ "$3" == "dmg" ]; then
+    $qt_deploy_bin SQLiteStudio.app -dmg
+elif [ "$3" == "dist" ] || [ "$3" == "dist_plugins" ]; then
+    if [ "$3" == "dist" ]; then
+        $qt_deploy_bin SQLiteStudio.app -dmg
+
+        cd $1/SQLiteStudio
+        VERSION=`SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}'`
+
+        mv SQLiteStudio.dmg sqlitestudio-$VERSION.dmg
+
+        # App
+        echo "Building incremental update package: sqlitestudio-$VERSION.zip"
+        cp -R SQLiteStudio.app app
+        cd app/Contents
+        rm -rf PlugIns
+        rm -rf Frameworks/Qt*.framework
+        find Frameworks -type l -exec rm -f {} \;
+        cd ..
+        zip -r sqlitestudio-$VERSION.zip *
+        mv sqlitestudio-$VERSION.zip ..
+        cd ..
+        rm -rf app
+    else
+        $qt_deploy_bin SQLiteStudio.app
+    fi
+
+    # Plugins
     mkdir Contents Contents/PlugIns
     SQLiteStudio.app/Contents/MacOS/sqlitestudio --list-plugins | while read line
     do
@@ -59,36 +85,7 @@ function deployPlugins()
     rm -f Contents/PlugIns/*
     done
     rm -rf Contents
-}
-
-if [ "$3" == "dmg" ]; then
-    $qt_deploy_bin SQLiteStudio.app -dmg
-elif [ "$3" == "dist" ]; then
-    $qt_deploy_bin SQLiteStudio.app -dmg
-
-    cd $1/SQLiteStudio
-    VERSION=`SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}'`
-
-    mv SQLiteStudio.dmg sqlitestudio-$VERSION.dmg
-
-    # App
-    echo "Building incremental update package: sqlitestudio-$VERSION.zip"
-    cp -R SQLiteStudio.app app
-    cd app/Contents
-    rm -rf PlugIns
-    rm -rf Frameworks/Qt*.framework
-    find Frameworks -type l -exec rm -f {} \;
-    cd ..
-    zip -r sqlitestudio-$VERSION.zip *
-    mv sqlitestudio-$VERSION.zip ..
-    cd ..
-    rm -rf app
-
-    # Plugins
-    deployPlugins
     echo "Done."
-else if [ "$3" == "dist_plugins" ]; then
-    deployPlugins
 else
     $qt_deploy_bin SQLiteStudio.app
 fi

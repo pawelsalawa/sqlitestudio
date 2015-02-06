@@ -9,5 +9,5 @@ ColumnNotNullPanel::ColumnNotNullPanel(QWidget *parent) :
 void ColumnNotNullPanel::storeType()
 {
     SqliteCreateTable::Column::Constraint* constr = dynamic_cast<SqliteCreateTable::Column::Constraint*>(constraint.data());
-    constr->type = SqliteCreateTable::Column::Constraint::UNIQUE;
+    constr->type = SqliteCreateTable::Column::Constraint::NOT_NULL;
 }
