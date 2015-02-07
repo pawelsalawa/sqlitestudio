@@ -6,27 +6,27 @@
     <message>
         <location filename="csvimport.cpp" line="30"/>
         <source>Cannot read file %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно прочитать файл %1</translation>
     </message>
     <message>
         <location filename="csvimport.cpp" line="62"/>
         <source>Could not find any data in the file %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно найти данные в файле %1.</translation>
     </message>
     <message>
         <location filename="csvimport.cpp" line="167"/>
         <source>Enter the custom separator character.</source>
-        <translation type="unfinished"></translation>
+        <translation>Введите произвольный символ разделителя.</translation>
     </message>
     <message>
         <location filename="csvimport.cpp" line="181"/>
         <source>Enter the value that will be interpreted as a NULL.</source>
-        <translation type="unfinished"></translation>
+        <translation>Введите значение, которое будет интерпретировано как NULL.</translation>
     </message>
     <message>
         <location filename="csvimport.cpp" line="194"/>
         <source>CSV files (*.csv);;Text files (*.txt);;All files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Файлы CSV (*.csv);;Текстовые файлы (*.txt);;Все файлы (*)</translation>
     </message>
 </context>
 <context>
@@ -34,52 +34,52 @@
     <message>
         <location filename="CsvImportOptions.ui" line="24"/>
         <source>, (comma)</source>
-        <translation type="unfinished"></translation>
+        <translation>, (запятая)</translation>
     </message>
     <message>
         <location filename="CsvImportOptions.ui" line="29"/>
         <source>; (semicolon)</source>
-        <translation type="unfinished"></translation>
+        <translation>; (точка с запятой)</translation>
     </message>
     <message>
         <location filename="CsvImportOptions.ui" line="34"/>
         <source>\t (tab)</source>
-        <translation type="unfinished"></translation>
+        <translation>\t (табуляция)</translation>
     </message>
     <message>
         <location filename="CsvImportOptions.ui" line="39"/>
         <source>  (whitespace)</source>
-        <translation type="unfinished"></translation>
+        <translation>  (пробел)</translation>
     </message>
     <message>
         <location filename="CsvImportOptions.ui" line="44"/>
         <source>Custom:</source>
-        <translation type="unfinished"></translation>
+        <translation>Произвольный:</translation>
     </message>
     <message>
         <location filename="CsvImportOptions.ui" line="52"/>
         <source>&lt;p&gt;Enable this if the first data line in your CSV file represents column names. You don&apos;t want column names to be imported into the table as a regular data.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Активируйте эту опцию, если в первой строке файла CSV содержатся имена столбцов. Имена столбцов не нужно импортировать как обычные данные.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="CsvImportOptions.ui" line="55"/>
         <source>Skip first row of data</source>
-        <translation type="unfinished"></translation>
+        <translation>Пропустить первую строку данных</translation>
     </message>
     <message>
         <location filename="CsvImportOptions.ui" line="65"/>
         <source>Field separator:</source>
-        <translation type="unfinished"></translation>
+        <translation>Разделитель поля:</translation>
     </message>
     <message>
         <location filename="CsvImportOptions.ui" line="85"/>
         <source>NULL values:</source>
-        <translation type="unfinished"></translation>
+        <translation>Значения NULL:</translation>
     </message>
     <message>
         <location filename="CsvImportOptions.ui" line="95"/>
         <source>If your CSV data contains null values, define how are they represented in the CSV.</source>
-        <translation type="unfinished"></translation>
+        <translation>Если данные в CSV содержат значения NULL, укажите, как они представлены в файле CSV</translation>
     </message>
 </context>
 </TS>

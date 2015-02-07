@@ -100,11 +100,15 @@ RESOURCES += \
     sqlenterpriseformatter.qrc
 
 
-TRANSLATIONS += SqlEnterpriseFormatter_ru.ts \
+TRANSLATIONS += SqlEnterpriseFormatter_sk.ts \
+		SqlEnterpriseFormatter_de.ts \
+		SqlEnterpriseFormatter_ru.ts \
 		SqlEnterpriseFormatter_pt_BR.ts \
 		SqlEnterpriseFormatter_fr.ts \
 		SqlEnterpriseFormatter_es.ts \
 		SqlEnterpriseFormatter_pl.ts
+
+
 
 
 

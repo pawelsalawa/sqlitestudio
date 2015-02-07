@@ -830,14 +830,14 @@ Szczegóły błędu: %2</translation>
         <translation>Niekompletne zapytanie.</translation>
     </message>
     <message>
-        <location filename="../parser/sqlite2_parse.cpp" line="1905"/>
-        <location filename="../parser/sqlite3_parse.cpp" line="2171"/>
+        <location filename="../parser/sqlite2_parse.cpp" line="1904"/>
+        <location filename="../parser/sqlite3_parse.cpp" line="2170"/>
         <source>Parser stack overflow</source>
         <translation>Przeciążenie stosu analizatora.</translation>
     </message>
     <message>
-        <location filename="../parser/sqlite2_parse.cpp" line="4471"/>
-        <location filename="../parser/sqlite3_parse.cpp" line="5086"/>
+        <location filename="../parser/sqlite2_parse.cpp" line="4461"/>
+        <location filename="../parser/sqlite3_parse.cpp" line="5076"/>
         <source>Syntax error</source>
         <translation>Błąd składni</translation>
     </message>

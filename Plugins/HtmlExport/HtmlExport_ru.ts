@@ -6,120 +6,120 @@
     <message>
         <location filename="htmlexport.cpp" line="46"/>
         <source>SQL query results</source>
-        <translation type="unfinished"></translation>
+        <translation>Реузльтаты запроса SQL</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="78"/>
         <location filename="htmlexport.cpp" line="155"/>
         <source>no type</source>
-        <translation type="unfinished"></translation>
+        <translation>без типа</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="115"/>
         <location filename="htmlexport.cpp" line="243"/>
         <source>Exported table: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Экспортированная таблица: %1</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="127"/>
         <location filename="htmlexport.cpp" line="255"/>
         <source>Table: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Таблица: %1</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="255"/>
         <source>virtual</source>
-        <translation type="unfinished"></translation>
+        <translation>виртуальная</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="308"/>
         <source>Exported database: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Экспортированная база данных: %1</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="324"/>
         <source>Index: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Индекс: %1</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="330"/>
         <source>For table:</source>
-        <translation type="unfinished"></translation>
+        <translation>Для таблицы:</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="337"/>
         <source>Unique:</source>
-        <translation type="unfinished"></translation>
+        <translation>Уникальный:</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="338"/>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>Да</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="338"/>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="344"/>
         <source>Column</source>
-        <translation type="unfinished"></translation>
+        <translation>Столбец</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="345"/>
         <source>Collating</source>
-        <translation type="unfinished"></translation>
+        <translation>Сравнение</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="346"/>
         <source>Sort order</source>
-        <translation type="unfinished"></translation>
+        <translation>Порядок сортировки</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="377"/>
         <source>Trigger: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Триггер: %1</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="383"/>
         <source>Activated:</source>
-        <translation type="unfinished"></translation>
+        <translation>Активирован:</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="391"/>
         <source>Action:</source>
-        <translation type="unfinished"></translation>
+        <translation>Действие:</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="398"/>
         <source>On view:</source>
-        <translation type="unfinished"></translation>
+        <translation>Для представления:</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="400"/>
         <source>On table:</source>
-        <translation type="unfinished"></translation>
+        <translation>Для таблицы:</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="411"/>
         <source>Activate condition:</source>
-        <translation type="unfinished"></translation>
+        <translation>Условие активации:</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="418"/>
         <source>Code executed:</source>
-        <translation type="unfinished"></translation>
+        <translation>Исполненный код:</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="452"/>
         <source>View: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Представление: %1</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="477"/>
         <source>Document generated by SQLiteStudio v%1 on %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Документ сгенерирован с помощью SQLiteStudio v%1 в %2</translation>
     </message>
 </context>
 <context>
@@ -127,47 +127,47 @@
     <message>
         <location filename="htmlexport.ui" line="36"/>
         <source>Maximum number of characters per cell:</source>
-        <translation type="unfinished"></translation>
+        <translation>Максимальное количество символов в ячейке:</translation>
     </message>
     <message>
         <location filename="htmlexport.ui" line="43"/>
         <source>Include data types in first row</source>
-        <translation type="unfinished"></translation>
+        <translation>Включить типы данных в первую строку</translation>
     </message>
     <message>
         <location filename="htmlexport.ui" line="53"/>
         <source>Column names as first row</source>
-        <translation type="unfinished"></translation>
+        <translation>Имена столбцов в первой строке</translation>
     </message>
     <message>
         <location filename="htmlexport.ui" line="63"/>
         <source>Row numbers as first column</source>
-        <translation type="unfinished"></translation>
+        <translation>Номера строк в первом столбце</translation>
     </message>
     <message>
         <location filename="htmlexport.ui" line="73"/>
         <source>Output format</source>
-        <translation type="unfinished"></translation>
+        <translation>Выходной формат</translation>
     </message>
     <message>
         <location filename="htmlexport.ui" line="79"/>
         <source>Format document (new lines, indentation)</source>
-        <translation type="unfinished"></translation>
+        <translation>Форматировать документ (переносы строк, отступы)</translation>
     </message>
     <message>
         <location filename="htmlexport.ui" line="92"/>
         <source>Compress (everything in one line)</source>
-        <translation type="unfinished"></translation>
+        <translation>Сжать (всё в одну строку)</translation>
     </message>
     <message>
         <location filename="htmlexport.ui" line="108"/>
         <source>&lt;p&gt;When enabled, HTML characters such as &amp;lt;, &amp;gt; and &amp;amp; are not escaped in exported values. This allows you for example to export hyper-link enabled documents, but it also may result in incorrect HTML document (unmatched pairs of &amp;lt; and &amp;gt; characters). Be warned.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Когда опция активирована, символы HTML, такие как &amp;lt;, &amp;gt; и &amp;amp;, не экранируются в экспортируемых значениях. Это позволяет, к примеру, создавать документы со ссылками, но также может привести к порче документа HTML (при незакрытых символах &amp;lt; и &amp;gt;). Будьте внимательны.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="htmlexport.ui" line="111"/>
         <source>Don&apos;t escape HTML characters</source>
-        <translation type="unfinished"></translation>
+        <translation>Не экранировать символы HTML</translation>
     </message>
 </context>
 </TS>

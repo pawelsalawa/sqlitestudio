@@ -6,58 +6,58 @@
     <message>
         <location filename="../main.cpp" line="42"/>
         <source>GUI interface to SQLiteStudio, a SQLite manager.</source>
-        <translation type="unfinished"></translation>
+        <translation>Графический интерфейс для SQLiteStudio, менеджера баз данных SQLite.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="46"/>
         <source>Enables debug messages in console (accessible with F12).</source>
-        <translation type="unfinished"></translation>
+        <translation>Включает вывод отладочных сообщений в консоль (доступную по нажатию F12).</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="47"/>
         <source>Redirects debug messages into standard output (forces debug mode).</source>
-        <translation type="unfinished"></translation>
+        <translation>Перенаправляет отладочные сообщения в стандартный поток (принудительный отладочный режим).</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="48"/>
         <source>Enables Lemon parser debug messages for SQL code assistant.</source>
-        <translation type="unfinished"></translation>
+        <translation>Включает вывод отладочных сообщений анализатора Lemon для автодополнения SQL кода.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="49"/>
         <source>Enables debugging of every single SQL query being sent to any database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Включает отладку каждого запроса SQL, посылаемого к любой базе данных.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="50"/>
         <source>Limits SQL query messages to only the given &lt;database&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничивает сообщения запросов SQL только для указанной &lt;базы данных&gt;.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="50"/>
         <source>database</source>
-        <translation type="unfinished"></translation>
+        <translation>база данных</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="51"/>
         <source>Lists plugins installed in the SQLiteStudio and quits.</source>
-        <translation type="unfinished"></translation>
+        <translation>Выводит список установленных в SQLiteStudio модулей и осуществляет выход.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="59"/>
         <source>file</source>
-        <translation type="unfinished"></translation>
+        <translation>файл</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="59"/>
         <source>Database file to open</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл базы данных для открытия</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="81"/>
         <location filename="../main.cpp" line="96"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка</translation>
     </message>
 </context>
 </TS>
