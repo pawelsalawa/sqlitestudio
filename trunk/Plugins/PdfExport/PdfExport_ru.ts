@@ -6,164 +6,164 @@
     <message>
         <location filename="pdfexport.cpp" line="28"/>
         <source>SQLiteStudio v%1</source>
-        <translation type="unfinished"></translation>
+        <translation>SQLiteStudio v%1</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="60"/>
         <source>SQL query results</source>
-        <translation type="unfinished"></translation>
+        <translation>Результаты запроса SQL</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="89"/>
         <location filename="pdfexport.cpp" line="143"/>
         <source>Exported table: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Экспортированная таблица: %1</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="92"/>
         <location filename="pdfexport.cpp" line="158"/>
         <source>Table: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Таблица: %1</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="94"/>
         <location filename="pdfexport.cpp" line="230"/>
         <source>Column</source>
-        <translation type="unfinished"></translation>
+        <translation>Столбец</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="94"/>
         <source>Data type</source>
-        <translation type="unfinished"></translation>
+        <translation>Тип данных</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="94"/>
         <source>Constraints</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничения</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="125"/>
         <source>Global table constraints</source>
-        <translation type="unfinished"></translation>
+        <translation>Глобальные ограничения на таблицу</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="214"/>
         <source>Exported database: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Экспортированная база данных: %1</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="222"/>
         <source>Index: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Индекс: %1</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="224"/>
         <source>Property</source>
         <comment>index header</comment>
-        <translation type="unfinished"></translation>
+        <translation>Свойство</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="224"/>
         <source>Value</source>
         <comment>index header</comment>
-        <translation type="unfinished"></translation>
+        <translation>Значение</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="227"/>
         <source>Indexed table</source>
-        <translation type="unfinished"></translation>
+        <translation>Проиндексированная таблица</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="228"/>
         <source>Unique index</source>
-        <translation type="unfinished"></translation>
+        <translation>Уникальный индекс</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="228"/>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>Да</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="228"/>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="230"/>
         <source>Collation</source>
-        <translation type="unfinished"></translation>
+        <translation>Сравнение</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="230"/>
         <source>Sort order</source>
-        <translation type="unfinished"></translation>
+        <translation>Порядок сортировки</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="246"/>
         <source>Partial index condition</source>
-        <translation type="unfinished"></translation>
+        <translation>Условие для частичного индекса</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="260"/>
         <source>Trigger: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Триггер: %1</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="262"/>
         <source>Property</source>
         <comment>trigger header</comment>
-        <translation type="unfinished"></translation>
+        <translation>Свойство</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="262"/>
         <source>Value</source>
         <comment>trigger header</comment>
-        <translation type="unfinished"></translation>
+        <translation>Значение</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="264"/>
         <source>Activation time</source>
-        <translation type="unfinished"></translation>
+        <translation>Время активации</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="267"/>
         <source>For action</source>
-        <translation type="unfinished"></translation>
+        <translation>Для действия</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="271"/>
         <source>On view</source>
-        <translation type="unfinished"></translation>
+        <translation>Для представления</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="273"/>
         <source>On table</source>
-        <translation type="unfinished"></translation>
+        <translation>Для таблицы</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="278"/>
         <source>Activation condition</source>
-        <translation type="unfinished"></translation>
+        <translation>Условие активации</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="284"/>
         <source>Code executed</source>
-        <translation type="unfinished"></translation>
+        <translation>Исполненный код</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="296"/>
         <source>View: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Представление: %1</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="297"/>
         <source>Query:</source>
-        <translation type="unfinished"></translation>
+        <translation>Запрос:</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="649"/>
         <source>Document generated with SQLiteStudio v%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Документ сгенерирован с помощью SQLiteStudio v%1</translation>
     </message>
 </context>
 <context>
@@ -171,32 +171,32 @@
     <message>
         <location filename="pdfexport.ui" line="20"/>
         <source>Size and layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Размеры и разметка</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="36"/>
         <source>Page size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Размер страницы:</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="63"/>
         <source>Right margin:</source>
-        <translation type="unfinished"></translation>
+        <translation>Правое поле:</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="70"/>
         <source>Left margin:</source>
-        <translation type="unfinished"></translation>
+        <translation>Левое поле:</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="77"/>
         <source>Cell padding:</source>
-        <translation type="unfinished"></translation>
+        <translation>Отступ в ячейке:</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="84"/>
         <source>Limit characters in single cell:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничение количества символов в ячейке:</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="91"/>
@@ -205,52 +205,52 @@
         <location filename="pdfexport.ui" line="132"/>
         <location filename="pdfexport.ui" line="156"/>
         <source>mm</source>
-        <translation type="unfinished"></translation>
+        <translation>мм</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="139"/>
         <source>Bottom margin:</source>
-        <translation type="unfinished"></translation>
+        <translation>Нижнее поле:</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="163"/>
         <source>Top margin:</source>
-        <translation type="unfinished"></translation>
+        <translation>Верхнее поле:</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="183"/>
         <source>Font</source>
-        <translation type="unfinished"></translation>
+        <translation>Шрифт</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="206"/>
         <source>Colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Цвета</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="212"/>
         <source>Headers background:</source>
-        <translation type="unfinished"></translation>
+        <translation>Фон заголовков:</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="235"/>
         <source>NULL value color:</source>
-        <translation type="unfinished"></translation>
+        <translation>Цвет значения NULL:</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="261"/>
         <source>Other settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Прочие настройки</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="267"/>
         <source>Print row numbers for data</source>
-        <translation type="unfinished"></translation>
+        <translation>Выводить номера строк данных</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="277"/>
         <source>Print page numbers</source>
-        <translation type="unfinished"></translation>
+        <translation>Выводить номера страниц</translation>
     </message>
 </context>
 </TS>

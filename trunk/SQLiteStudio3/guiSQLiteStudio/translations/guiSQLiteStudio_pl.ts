@@ -3255,19 +3255,19 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
         <translation>Kierunek sortowania</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="452"/>
-        <location filename="../dialogs/indexdialog.cpp" line="465"/>
+        <location filename="../dialogs/indexdialog.cpp" line="453"/>
+        <location filename="../dialogs/indexdialog.cpp" line="466"/>
         <source>Error</source>
         <comment>index dialog</comment>
         <translation>Błąd</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="453"/>
+        <location filename="../dialogs/indexdialog.cpp" line="454"/>
         <source>Cannot create unique index, because values in selected columns are not unique. Would you like to execute SELECT query to see problematic values?</source>
         <translation>Nie można utworzyć indeksu, ponieważ wartości w wybranych kolumnach nie są unikalne. Czy chcesz wykonać zapytanie SELECT, aby zobaczyć wartości stwarzające problem?</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="465"/>
+        <location filename="../dialogs/indexdialog.cpp" line="466"/>
         <source>An error occurred while executing SQL statements:
 %1</source>
         <translation>Wystąpił błąd podczas wykonywania zapytań SQL:
@@ -4765,36 +4765,36 @@ znajdź następny</translation>
 <context>
     <name>SqlQueryItem</name>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="259"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="251"/>
         <source>Column:</source>
         <comment>data view tooltip</comment>
         <translation>Kolumna:</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="260"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="252"/>
         <source>Data type:</source>
         <comment>data view</comment>
         <translation>Typ danych:</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="263"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="255"/>
         <source>Table:</source>
         <comment>data view tooltip</comment>
         <translation>Tabela:</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="293"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="285"/>
         <source>Constraints:</source>
         <comment>data view tooltip</comment>
         <translation>Ograniczenie:</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="406"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="398"/>
         <source>This cell is not editable, because: %1</source>
         <translation>Tej komórki nie można edytować, ponieważ: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="423"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="415"/>
         <source>Cannot load the data for a cell that refers to the already closed database.</source>
         <translation>Nie można załadować danych dla komórki, która odwołuje się do zamkniętej już bazy danych.</translation>
     </message>
