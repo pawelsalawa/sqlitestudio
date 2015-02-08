@@ -446,17 +446,54 @@ bool DbDialog::testDatabase()
 
 bool DbDialog::validate()
 {
+    // Name
+    if (!ui->generateCheckBox->isChecked())
+    {
+        if (ui->nameEdit->text().isEmpty())
+        {
+            setValidState(ui->nameEdit, false, tr("Enter an unique database name."));
+            return false;
+        }
+
+        if (DBLIST->getByName(ui->nameEdit->text()))
+        {
+            qDebug() << ui->generateCheckBox->isChecked();
+            setValidState(ui->nameEdit, false, tr("This name is already in use. Please enter unique name."));
+            return false;
+        }
+    }
+    setValidState(ui->nameEdit, true);
+
+    // File
     if (ui->fileEdit->text().isEmpty())
+    {
+        setValidState(ui->fileEdit, false, tr("Enter a database file path."));
         return false;
+    }
 
-    if (ui->nameEdit->text().isEmpty())
+    Db* db =  DBLIST->getByPath(ui->fileEdit->text());
+    if (db)
+    {
+        setValidState(ui->fileEdit, false, tr("This database is already on the list under name: %1").arg(db->getName()));
         return false;
+    }
+    setValidState(ui->fileEdit, true);
 
+    // Type
     if (ui->typeCombo->count() == 0)
+    {
+        // No need to set validation message here. SQLite3 plugin is built in,
+        // so if this happens, something is really, really wrong.
+        qCritical() << "No db plugins loaded in db dialog!";
         return false;
+    }
 
     if (ui->typeCombo->currentIndex() < 0)
+    {
+        setValidState(ui->typeCombo, false, tr("Select a database type."));
         return false;
+    }
+    setValidState(ui->typeCombo, true);
 
     return true;
 }
@@ -480,11 +517,9 @@ void DbDialog::typeChanged(int index)
 
 void DbDialog::valueForNameGenerationChanged()
 {
+    updateState();
     if (!ui->generateCheckBox->isChecked())
-    {
-        updateState();
         return;
-    }
 
     DbPlugin* plugin = nullptr;
     if (dbPlugins.count() > 0)
