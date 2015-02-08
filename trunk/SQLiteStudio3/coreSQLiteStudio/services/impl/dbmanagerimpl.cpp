@@ -12,6 +12,7 @@
 #include <QPluginLoader>
 #include <QDebug>
 #include <QUrl>
+#include <QDir>
 #include <db/invaliddb.h>
 
 DbManagerImpl::DbManagerImpl(QObject *parent) :
@@ -46,7 +47,13 @@ bool DbManagerImpl::addDb(const QString &name, const QString &path, const QHash<
     if (getByName(name))
     {
         qWarning() << "Tried to add database with name that was already on the list:" << name;
-        return false; // db with this name exists
+        return false;
+    }
+
+    if (getByPath(path))
+    {
+        qWarning() << "Tried to add database with path that was already on the list:" << path;
+        return false;
     }
 
     QString errorMessage;
@@ -74,24 +81,27 @@ bool DbManagerImpl::updateDb(Db* db, const QString &name, const QString &path, c
             return false;
     }
 
+    QDir pathDir(path);
+    QString normalizedPath = pathDir.absolutePath();
+
     listLock.lockForWrite();
     nameToDb.remove(db->getName(), Qt::CaseInsensitive);
     pathToDb.remove(db->getPath());
 
-    bool pathDifferent = db->getPath() != path;
+    bool pathDifferent = db->getPath() != normalizedPath;
 
     QString oldName = db->getName();
     db->setName(name);
-    db->setPath(path);
+    db->setPath(normalizedPath);
     db->setConnectionOptions(options);
 
     bool result = false;
     if (permanent)
     {
         if (CFG->isDbInConfig(oldName))
-            result = CFG->updateDb(oldName, name, path, options);
+            result = CFG->updateDb(oldName, name, normalizedPath, options);
         else
-            result = CFG->addDb(name, path, options);
+            result = CFG->addDb(name, normalizedPath, options);
     }
     else if (CFG->isDbInConfig(name)) // switched "permanent" off?
         result = CFG->removeDb(name);
@@ -105,7 +115,7 @@ bool DbManagerImpl::updateDb(Db* db, const QString &name, const QString &path, c
         db = reloadedDb;
 
     nameToDb[name] = db;
-    pathToDb[path] = db;
+    pathToDb[normalizedPath] = db;
 
     listLock.unlock();
 
@@ -138,14 +148,17 @@ void DbManagerImpl::removeDbByName(const QString &name, Qt::CaseSensitivity cs)
 
 void DbManagerImpl::removeDbByPath(const QString &path)
 {
+    // Using QDir to normalize separator
+    QDir pathDir(path);
+
     listLock.lockForRead();
-    bool contains = pathToDb.contains(path);
+    bool contains = pathToDb.contains(pathDir.absolutePath());
     listLock.unlock();
     if (!contains)
         return;
 
     listLock.lockForWrite();
-    Db* db = pathToDb[path];
+    Db* db = pathToDb[pathDir.absolutePath()];
     removeDbInternal(db);
     listLock.unlock();
 
@@ -230,7 +243,9 @@ Db* DbManagerImpl::getByName(const QString &name, Qt::CaseSensitivity cs)
 
 Db* DbManagerImpl::getByPath(const QString &path)
 {
-    return pathToDb.value(path);
+    // Using QDir to normalize separator
+    QDir pathDir(path);
+    return pathToDb.value(pathDir.absolutePath());
 }
 
 Db* DbManagerImpl::createInMemDb()
@@ -369,12 +384,13 @@ Db* DbManagerImpl::createDb(const QString &name, const QString &path, const QHas
     Db* db = nullptr;
     QStringList messages;
     QString message;
+    QDir pathDir(path); // Using QDir to normalize separator
     foreach (dbPlugin, dbPlugins)
     {
         if (options.contains("plugin") && options["plugin"] != dbPlugin->getName())
             continue;
 
-        db = dbPlugin->getInstance(name, path, options, &message);
+        db = dbPlugin->getInstance(name, pathDir.absolutePath(), options, &message);
         if (!db)
         {
             messages << message;

@@ -831,11 +831,18 @@ QToolBar* MainWindow::getToolBar(int toolbar) const
 
 void MainWindow::openDb(const QString& path)
 {
+    Db* db = DBLIST->getByPath(path);
+    if (db)
+    {
+        notifyInfo(tr("Database passed in command line parameters (%1) was already on the list under name: %2").arg(path, db->getName()));
+        return;
+    }
+
     QString name = DBLIST->quickAddDb(path, QHash<QString,QVariant>());
     if (!name.isNull())
     {
         notifyInfo(tr("Database passed in command line parameters (%1) has been temporarily added to the list under name: %2").arg(path, name));
-        Db* db = DBLIST->getByName(name);
+        db = DBLIST->getByName(name);
         db->open();
     }
     else
