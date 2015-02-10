@@ -4,5 +4,7 @@
     </qresource>
     <qresource prefix="/msg">
         <file>SqlEnterpriseFormatter_pl.qm</file>
+        <file>SqlEnterpriseFormatter_ru.qm</file>
+        <file>SqlEnterpriseFormatter_fr.qm</file>
     </qresource>
 </RCC>

@@ -7,5 +7,7 @@
     </qresource>
     <qresource prefix="/msg">
         <file>HtmlExport_pl.qm</file>
+        <file>HtmlExport_ru.qm</file>
+        <file>HtmlExport_fr.qm</file>
     </qresource>
 </RCC>

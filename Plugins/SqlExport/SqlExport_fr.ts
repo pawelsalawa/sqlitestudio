@@ -6,42 +6,42 @@
     <message>
         <location filename="sqlexport.cpp" line="57"/>
         <source>-- Results of query:</source>
-        <translation type="unfinished"></translation>
+        <translation>-- Résultats de la requête:</translation>
     </message>
     <message>
         <location filename="sqlexport.cpp" line="122"/>
         <source>-- Table: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>-- Table: %1</translation>
     </message>
     <message>
         <location filename="sqlexport.cpp" line="167"/>
         <source>-- Index: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>-- Indéxe: %1</translation>
     </message>
     <message>
         <location filename="sqlexport.cpp" line="184"/>
         <source>-- Trigger: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>-- Déclencheur: %1</translation>
     </message>
     <message>
         <location filename="sqlexport.cpp" line="201"/>
         <source>-- View: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>-- Vue: %1</translation>
     </message>
     <message>
         <location filename="sqlexport.cpp" line="215"/>
         <source>-- File generated with SQLiteStudio v%1 on %2</source>
-        <translation type="unfinished"></translation>
+        <translation>-- Fichier généré par SQLiteStudio v%1sur %2</translation>
     </message>
     <message>
         <location filename="sqlexport.cpp" line="219"/>
         <source>-- Text encoding used: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>-- Encodage texte utilisé: %1</translation>
     </message>
     <message>
         <location filename="sqlexport.cpp" line="303"/>
         <source>Table name for INSERT statements is mandatory.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom de table pour la déclaration INSERT est obligatoire.</translation>
     </message>
 </context>
 <context>
@@ -49,17 +49,17 @@
     <message>
         <location filename="SqlExportCommon.ui" line="20"/>
         <source>Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</source>
-        <translation type="unfinished"></translation>
+        <translation>Genere &quot;DROP IF EXISTS&quot; Déclaration avant &quot;CREATE&quot;déclaration</translation>
     </message>
     <message>
         <location filename="SqlExportCommon.ui" line="30"/>
         <source>Format DDL statements only (excludes &quot;INSERT&quot; statements)</source>
-        <translation type="unfinished"></translation>
+        <translation>Format DDL déclarations seulement (déclaration exclus &quot;INSERT&quot;)</translation>
     </message>
     <message>
         <location filename="SqlExportCommon.ui" line="40"/>
         <source>Use SQL formatter to format exported SQL statements</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilisez le formatage SQL pour formater des déclarations SQL exportables</translation>
     </message>
 </context>
 <context>
@@ -67,32 +67,32 @@
     <message>
         <location filename="SqlExportQuery.ui" line="20"/>
         <source>Use SQL formatter to format exported SQL statements</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilisez le formatage SQL pour formater des déclarations SQL exportables</translation>
     </message>
     <message>
         <location filename="SqlExportQuery.ui" line="30"/>
         <source>Table name to use for INSERT statements:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom de table pour utiliser la déclaration INSERT:</translation>
     </message>
     <message>
         <location filename="SqlExportQuery.ui" line="37"/>
         <source>Generate &quot;CREATE TABLE&quot; statement at the begining</source>
-        <translation type="unfinished"></translation>
+        <translation>Genre la déclaration   &quot;CREATE TABLE&quot; au debut</translation>
     </message>
     <message>
         <location filename="SqlExportQuery.ui" line="47"/>
         <source>Include the query in comments</source>
-        <translation type="unfinished"></translation>
+        <translation>Inclus la requête dans les commentaires</translation>
     </message>
     <message>
         <location filename="SqlExportQuery.ui" line="57"/>
         <source>Generate &quot;DROP IF EXISTS&quot; statement before &quot;CREATE&quot; statement</source>
-        <translation type="unfinished"></translation>
+        <translation>Génere la déclaration &quot;DROP IF EXISTS&quot; avant la déclaration &quot;CREATE&quot;</translation>
     </message>
     <message>
         <location filename="SqlExportQuery.ui" line="74"/>
         <source>Format DDL statements only (excludes &quot;INSERT&quot; statements)</source>
-        <translation type="unfinished"></translation>
+        <translation>Format DDL seulement déclaration (exclus déclaration &quot;INSERT&quot;)</translation>
     </message>
 </context>
 </TS>

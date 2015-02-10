@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/msg">
         <file>translations/sqlitestudio_pl.qm</file>
+        <file>translations/sqlitestudio_ru.qm</file>
+        <file>translations/sqlitestudio_fr.qm</file>
     </qresource>
 </RCC>

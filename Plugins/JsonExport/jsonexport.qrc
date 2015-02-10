@@ -4,5 +4,7 @@
     </qresource>
     <qresource prefix="/msg">
         <file>JsonExport_pl.qm</file>
+        <file>JsonExport_ru.qm</file>
+        <file>JsonExport_fr.qm</file>
     </qresource>
 </RCC>
