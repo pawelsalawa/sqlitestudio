@@ -4,5 +4,7 @@
     </qresource>
     <qresource prefix="/msg">
         <file>XmlExport_pl.qm</file>
+        <file>XmlExport_ru.qm</file>
+        <file>XmlExport_fr.qm</file>
     </qresource>
 </RCC>

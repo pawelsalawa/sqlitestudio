@@ -4,5 +4,7 @@
     </qresource>
     <qresource prefix="/msg">
         <file>CsvImport_pl.qm</file>
+        <file>CsvImport_ru.qm</file>
+        <file>CsvImport_fr.qm</file>
     </qresource>
 </RCC>

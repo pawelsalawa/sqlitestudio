@@ -6,52 +6,52 @@
     <message>
         <location filename="CsvExport.ui" line="20"/>
         <source>Column names in first row</source>
-        <translation type="unfinished"></translation>
+        <translation>Noms des colonnes dans la 1ère ligne</translation>
     </message>
     <message>
         <location filename="CsvExport.ui" line="30"/>
         <source>Column separator:</source>
-        <translation type="unfinished"></translation>
+        <translation>Séparateur de colonnes:</translation>
     </message>
     <message>
         <location filename="CsvExport.ui" line="41"/>
         <source>, (comma)</source>
-        <translation type="unfinished"></translation>
+        <translation>, (virgule)</translation>
     </message>
     <message>
         <location filename="CsvExport.ui" line="46"/>
         <source>; (semicolon)</source>
-        <translation type="unfinished"></translation>
+        <translation>; (point virgule)</translation>
     </message>
     <message>
         <location filename="CsvExport.ui" line="51"/>
         <source>\t (tab)</source>
-        <translation type="unfinished"></translation>
+        <translation>\t (tab)</translation>
     </message>
     <message>
         <location filename="CsvExport.ui" line="56"/>
         <source>  (whitespace)</source>
-        <translation type="unfinished"></translation>
+        <translation>(espace)</translation>
     </message>
     <message>
         <location filename="CsvExport.ui" line="61"/>
         <source>Custom:</source>
-        <translation type="unfinished"></translation>
+        <translation>personnalisation:</translation>
     </message>
     <message>
         <location filename="CsvExport.ui" line="82"/>
         <source>Export NULL values as:</source>
-        <translation type="unfinished"></translation>
+        <translation>Exporter la  valeur NULL comme:</translation>
     </message>
     <message>
         <location filename="CsvExport.ui" line="89"/>
         <source>Empty string</source>
-        <translation type="unfinished"></translation>
+        <translation>Chaine de caractères vide</translation>
     </message>
     <message>
         <location filename="csvexport.cpp" line="42"/>
         <source>Enter the custom separator character.</source>
-        <translation type="unfinished"></translation>
+        <translation>Saisir le caractère séparateur personnalisé.</translation>
     </message>
 </context>
 </TS>

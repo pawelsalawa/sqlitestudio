@@ -4,5 +4,7 @@
     </qresource>
     <qresource prefix="/msg">
         <file>Printing_pl.qm</file>
+        <file>Printing_ru.qm</file>
+        <file>Printing_fr.qm</file>
     </qresource>
 </RCC>

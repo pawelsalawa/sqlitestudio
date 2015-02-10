@@ -4,5 +4,7 @@
     </qresource>
     <qresource prefix="/msg">
         <file>ScriptingTcl_pl.qm</file>
+        <file>ScriptingTcl_ru.qm</file>
+        <file>ScriptingTcl_fr.qm</file>
     </qresource>
 </RCC>

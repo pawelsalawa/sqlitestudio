@@ -4,5 +4,7 @@
     </qresource>
     <qresource prefix="/msg">
         <file>ConfigMigration_pl.qm</file>
+        <file>ConfigMigration_ru.qm</file>
+        <file>ConfigMigration_fr.qm</file>
     </qresource>
 </RCC>

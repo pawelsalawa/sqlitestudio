@@ -4,5 +4,7 @@
     </qresource>
     <qresource prefix="/msg">
         <file>RegExpImport_pl.qm</file>
+        <file>RegExpImport_ru.qm</file>
+        <file>RegExpImport_fr.qm</file>
     </qresource>
 </RCC>
