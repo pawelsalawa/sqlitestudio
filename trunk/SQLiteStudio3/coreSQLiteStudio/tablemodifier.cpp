@@ -111,11 +111,13 @@ void TableModifier::handleFks(const QString& tempTableName)
 
         subModifier.usedTempTableNames = usedTempTableNames;
         subModifier.tableColMap = tableColMap;
+        subModifier.triggerNameToDdlMap = triggerNameToDdlMap;
         subModifier.existingColumns = existingColumns;
         subModifier.newName = newName;
         subModifier.subHandleFks(originalTable, tempTableName);
         sqls += subModifier.generateSqls();
         modifiedTables << fkTable;
+        triggerNameToDdlMap = subModifier.triggerNameToDdlMap;
 
         modifiedTables += subModifier.getModifiedTables();
         modifiedIndexes += subModifier.getModifiedIndexes();
@@ -390,10 +392,67 @@ void TableModifier::handleTriggers()
 
 void TableModifier::handleTrigger(SqliteCreateTriggerPtr trigger)
 {
-    handleName(originalTable, trigger->table);
-    if (trigger->event->type == SqliteCreateTrigger::Event::UPDATE_OF)
-        handleColumnNames(trigger->event->columnNames);
+    trigger->rebuildTokens();
+    QString originalQueryString = trigger->detokenize();
 
+    bool forThisTable = (originalTable.compare(trigger->table, Qt::CaseInsensitive) == 0);
+    bool alreadyProcessedOnce = modifiedTriggers.contains(trigger->trigger, Qt::CaseInsensitive);
+
+    if (forThisTable)
+    {
+        // Those routines should run only for trigger targeted for originalTable.
+        handleName(originalTable, trigger->table);
+        if (trigger->event->type == SqliteCreateTrigger::Event::UPDATE_OF)
+            handleColumnNames(trigger->event->columnNames);
+    }
+
+    if (alreadyProcessedOnce)
+    {
+        // The trigger was already modified by handling of some referencing table.
+        QString oldDdl = triggerNameToDdlMap[trigger->trigger];
+        Parser parser(dialect);
+        trigger = parser.parse<SqliteCreateTrigger>(oldDdl);
+        if (!trigger)
+        {
+            qCritical() << "Could not parse old (already processed once) trigger. Parser error:" << parser.getErrorString() << ", Old DDL: " << oldDdl;
+            warnings << QObject::tr("There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.")
+                        .arg(trigger->trigger);
+            return;
+        }
+    }
+
+    handleTriggerQueries(trigger);
+
+    trigger->rebuildTokens();
+    QString newQueryString = trigger->detokenize();
+    if (originalQueryString == newQueryString && !forThisTable)
+        return; // No query modification was made and trigger is not deleted by this table drop.
+
+    if (trigger->event->type == SqliteCreateTrigger::Event::UPDATE_OF && trigger->event->columnNames.size() == 0)
+    {
+        warnings << QObject::tr("All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.").arg(trigger->trigger);
+        return;
+    }
+
+    if (alreadyProcessedOnce)
+    {
+        // We will add new sql to list, at the end, so it's executed after all tables were altered.
+        sqls.removeOne(triggerNameToDdlMap[trigger->trigger]);
+    }
+
+    if (!forThisTable)
+    {
+        // If this is for other table, than trigger might be still existing, cause altering this table will not delete trigger.
+        sqls << QString("DROP TRIGGER IF EXISTS %1").arg(wrapObjIfNeeded(trigger->trigger, dialect));
+    }
+
+    sqls << newQueryString;
+    modifiedTriggers << trigger->trigger;
+    triggerNameToDdlMap[trigger->trigger] = newQueryString;
+}
+
+void TableModifier::handleTriggerQueries(SqliteCreateTriggerPtr trigger)
+{
     SqliteQuery* newQuery = nullptr;
     QList<SqliteQuery*> newQueries;
     foreach (SqliteQuery* query, trigger->queries)
@@ -406,17 +465,6 @@ void TableModifier::handleTrigger(SqliteCreateTriggerPtr trigger)
             errors << QObject::tr("Cannot not update trigger %1 according to table %2 modification.").arg(trigger->trigger, originalTable);
     }
     trigger->queries = newQueries;
-
-    if (trigger->event->type == SqliteCreateTrigger::Event::UPDATE_OF && trigger->event->columnNames.size() == 0)
-    {
-        warnings << QObject::tr("All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.").arg(trigger->trigger);
-    }
-    else
-    {
-        trigger->rebuildTokens();
-        sqls << trigger->detokenize();
-        modifiedTriggers << trigger->trigger;
-    }
 }
 
 void TableModifier::handleViews()

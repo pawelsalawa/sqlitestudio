@@ -12,6 +12,7 @@
         * [BUGFIX]: #2767 Fixed NOT NULL dialog in column dialog, so it doesn't convert to UNIQUE.
         * [BUGFIX]: #2763 Fixed possibility of adding 2 same databases to the list.
         * [BUGFIX]: Fixed copying values from Environment tab of the About dialog.
+        * [BUGFIX]: #2774 Fixed handling triggers (when modifying table) in foreign tables, triggers referencing table in its subqueries, etc.
 
 [3.0.2]
         * [ADDED]: Full support for the interface translations.
