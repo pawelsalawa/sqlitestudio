@@ -142,36 +142,36 @@
 <context>
     <name>DbManagerImpl</name>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="56"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="63"/>
         <source>Could not add database %1: %2</source>
         <translation>Не удалось добавить базу данных %1: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="115"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="125"/>
         <source>Database %1 could not be updated, because of an error: %2</source>
         <translation>Невозможно обновить базу данных %1 из-за ошибки: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="284"/>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="313"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="299"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="328"/>
         <source>Database file doesn&apos;t exist.</source>
         <translation>Файл базы данных не существует.</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="286"/>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="315"/>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="467"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="301"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="330"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="483"/>
         <source>No supporting plugin loaded.</source>
         <translatorcomment>Unclear error string. Checking the source didn&apos;t help.</translatorcomment>
         <translation>Модуль поддержки не загружен.</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="386"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="402"/>
         <source>Database could not be initialized.</source>
         <translation>Невозможно инициализировать базу данных.</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="396"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="412"/>
         <source>No suitable database driver plugin found.</source>
         <translation>Не найден подходящий драйвер базы данных.</translation>
     </message>
@@ -835,14 +835,14 @@ Error details: %2</source>
         <translation>Незавершённый запрос.</translation>
     </message>
     <message>
-        <location filename="../parser/sqlite2_parse.cpp" line="1905"/>
-        <location filename="../parser/sqlite3_parse.cpp" line="2171"/>
+        <location filename="../parser/sqlite2_parse.cpp" line="1904"/>
+        <location filename="../parser/sqlite3_parse.cpp" line="2170"/>
         <source>Parser stack overflow</source>
         <translation>Переполнение стека анализатора</translation>
     </message>
     <message>
-        <location filename="../parser/sqlite2_parse.cpp" line="4471"/>
-        <location filename="../parser/sqlite3_parse.cpp" line="5086"/>
+        <location filename="../parser/sqlite2_parse.cpp" line="4461"/>
+        <location filename="../parser/sqlite3_parse.cpp" line="5076"/>
         <source>Syntax error</source>
         <translation>Синтаксическая ошибка</translation>
     </message>
