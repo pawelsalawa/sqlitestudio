@@ -42,6 +42,7 @@ class API_EXPORT TableModifier
         void handleIndex(SqliteCreateIndexPtr index);
         void handleTriggers();
         void handleTrigger(SqliteCreateTriggerPtr trigger);
+        void handleTriggerQueries(SqliteCreateTriggerPtr trigger);
         void handleViews();
         void handleView(SqliteCreateViewPtr view);
         SqliteQuery* handleTriggerQuery(SqliteQuery* query, const QString& trigName);
@@ -105,6 +106,7 @@ class API_EXPORT TableModifier
         QString newName;
         QStringList existingColumns;
         QHash<QString, QString> tableColMap;
+        QHash<QString, QString> triggerNameToDdlMap;
         QStringList modifiedTables;
         QStringList modifiedIndexes;
         QStringList modifiedTriggers;
