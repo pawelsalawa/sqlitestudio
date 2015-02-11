@@ -36,6 +36,7 @@ class API_EXPORT ConfigImpl : public Config
         bool removeDb(const QString& name);
         bool isDbInConfig(const QString& name);
         QString getLastErrorString() const;
+        QString getSqlite3Version() const;
 
         /**
          * @brief Provides list of all registered databases.
@@ -120,6 +121,7 @@ class API_EXPORT ConfigImpl : public Config
         SqlHistoryModel* sqlHistoryModel = nullptr;
         DdlHistoryModel* ddlHistoryModel = nullptr;
         QMutex sqlHistoryMutex;
+        QString sqlite3Version;
 
     public slots:
         void refreshDdlHistory();

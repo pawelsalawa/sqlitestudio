@@ -28,6 +28,8 @@ void ConfigImpl::init()
     initDbFile();
     initTables();
 
+    sqlite3Version = db->exec("SELECT sqlite_version()")->getSingleCell().toString();
+
     connect(this, SIGNAL(sqlHistoryRefreshNeeded()), this, SLOT(refreshSqlHistory()));
     connect(this, SIGNAL(ddlHistoryRefreshNeeded()), this, SLOT(refreshDdlHistory()));
 }
@@ -173,6 +175,11 @@ QString ConfigImpl::getLastErrorString() const
         return lastQueryError;
 
     return msg;
+}
+
+QString ConfigImpl::getSqlite3Version() const
+{
+    return sqlite3Version;
 }
 
 QList<ConfigImpl::CfgDbPtr> ConfigImpl::dbList()

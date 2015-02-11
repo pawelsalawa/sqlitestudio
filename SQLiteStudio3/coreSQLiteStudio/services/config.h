@@ -162,6 +162,8 @@ class API_EXPORT Config : public QObject
         virtual void commit() = 0;
         virtual void rollback() = 0;
 
+        virtual QString getSqlite3Version() const = 0;
+
     signals:
         void massSaveBegins();
         void massSaveCommited();

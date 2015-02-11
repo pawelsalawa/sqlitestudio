@@ -9,6 +9,8 @@
 #include "iconmanager.h"
 #include <QDebug>
 #include <QFile>
+#include <QApplication>
+#include <QClipboard>
 
 AboutDialog::AboutDialog(InitialMode initialMode, QWidget *parent) :
     QDialog(parent),
@@ -73,16 +75,21 @@ void AboutDialog::init(InitialMode initialMode)
     licenseContents.clear();
 
     // Environment
-    copyAct = new QAction(tr("Copy"), this);
     ui->appDirEdit->setText(qApp->applicationDirPath());
     ui->cfgDirEdit->setText(CFG->getConfigDir());
     ui->pluginDirList->addItems(filterResourcePaths(PLUGINS->getPluginDirs()));
     ui->iconDirList->addItems(filterResourcePaths(ICONMANAGER->getIconDirs()));
     ui->formDirList->addItems(filterResourcePaths(FORMS->getFormDirs()));
     ui->qtVerEdit->setText(QT_VERSION_STR);
-    ui->pluginDirList->addAction(copyAct);
-    ui->iconDirList->addAction(copyAct);
-    ui->formDirList->addAction(copyAct);
+    ui->sqlite3Edit->setText(CFG->getSqlite3Version());
+
+    QAction* copyAct;
+    for (QListWidget* w : {ui->pluginDirList, ui->iconDirList, ui->formDirList})
+    {
+        copyAct = new QAction(tr("Copy"), w);
+        w->addAction(copyAct);
+        connect(copyAct, SIGNAL(triggered()), this, SLOT(copy()));
+    }
 }
 
 void AboutDialog::buildIndex()
@@ -131,4 +138,21 @@ QStringList AboutDialog::filterResourcePaths(const QStringList& paths)
         output << path;
     }
     return output;
+}
+
+void AboutDialog::copy()
+{
+    QListWidget* list = dynamic_cast<QListWidget*>(sender()->parent());
+    if (!list)
+        return;
+
+    QList<QListWidgetItem*> items = list->selectedItems();
+    if (items.size() == 0)
+        return;
+
+    QStringList lines;
+    for (QListWidgetItem* item : items)
+        lines << item->text();
+
+    QApplication::clipboard()->setText(lines.join("\n"));
 }

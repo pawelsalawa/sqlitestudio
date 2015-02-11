@@ -2,6 +2,7 @@
         * [ADDED]: Added visual validation indicators to DbDialog, so user is informed why the "Ok" button is disabled at the moment.
         * [ADDED]: Russian translation.
         * [ADDED]: French translation.
+        * [ADDED]: #2770 Added SQLite 3 version used by application in the Environment tab of the About dialog.
         * [BUGFIX]: Fixed support for "function(DISTINCT args)" in Enterprise formatter.
         * [BUGFIX]: #2753 Fixed parsing TEMP and IF NOT EXISTS in CREATE TABLE statement.
         * [BUGFIX]: #2755 Fixed error checking for recurrent expression with LIKE/GLOB operator in it.
@@ -10,6 +11,7 @@
         * [BUGFIX]: #2757 Fixed int64 rounding problem.
         * [BUGFIX]: #2767 Fixed NOT NULL dialog in column dialog, so it doesn't convert to UNIQUE.
         * [BUGFIX]: #2763 Fixed possibility of adding 2 same databases to the list.
+        * [BUGFIX]: Fixed copying values from Environment tab of the About dialog.
 
 [3.0.2]
         * [ADDED]: Full support for the interface translations.
