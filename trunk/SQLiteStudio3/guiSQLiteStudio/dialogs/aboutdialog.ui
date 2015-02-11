@@ -60,12 +60,18 @@
          <property name="text">
           <string>Icon directories</string>
          </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </item>
        <item row="2" column="2">
         <widget class="QListWidget" name="pluginDirList">
          <property name="contextMenuPolicy">
           <enum>Qt::ActionsContextMenu</enum>
+         </property>
+         <property name="selectionMode">
+          <enum>QAbstractItemView::ExtendedSelection</enum>
          </property>
         </widget>
        </item>
@@ -74,12 +80,18 @@
          <property name="text">
           <string>Form directories</string>
          </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </item>
        <item row="3" column="2">
         <widget class="QListWidget" name="iconDirList">
          <property name="contextMenuPolicy">
           <enum>Qt::ActionsContextMenu</enum>
+         </property>
+         <property name="selectionMode">
+          <enum>QAbstractItemView::ExtendedSelection</enum>
          </property>
         </widget>
        </item>
@@ -88,12 +100,38 @@
          <property name="text">
           <string>Plugin directories</string>
          </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="cfgDirLabel">
+         <property name="text">
+          <string>Configuration directory</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
         </widget>
        </item>
        <item row="0" column="0">
         <widget class="QLabel" name="appDirLabel">
          <property name="text">
           <string>Application directory</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2">
+        <widget class="QListWidget" name="formDirList">
+         <property name="contextMenuPolicy">
+          <enum>Qt::ActionsContextMenu</enum>
+         </property>
+         <property name="selectionMode">
+          <enum>QAbstractItemView::ExtendedSelection</enum>
          </property>
         </widget>
        </item>
@@ -104,17 +142,20 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="cfgDirLabel">
+       <item row="5" column="0">
+        <widget class="QLabel" name="qtVerLabel">
          <property name="text">
-          <string>Configuration directory</string>
+          <string>Qt version:</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
         </widget>
        </item>
-       <item row="4" column="2">
-        <widget class="QListWidget" name="formDirList">
-         <property name="contextMenuPolicy">
-          <enum>Qt::ActionsContextMenu</enum>
+       <item row="5" column="2">
+        <widget class="QLabel" name="qtVerEdit">
+         <property name="text">
+          <string/>
          </property>
         </widget>
        </item>
@@ -125,15 +166,18 @@
          </property>
         </widget>
        </item>
-       <item row="5" column="0">
-        <widget class="QLabel" name="qtVerLabel">
+       <item row="6" column="0">
+        <widget class="QLabel" name="sqlite3Label">
          <property name="text">
-          <string>Qt version:</string>
+          <string>SQLite 3 version:</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
          </property>
         </widget>
        </item>
-       <item row="5" column="2">
-        <widget class="QLabel" name="qtVerEdit">
+       <item row="6" column="2">
+        <widget class="QLabel" name="sqlite3Edit">
          <property name="text">
           <string/>
          </property>
