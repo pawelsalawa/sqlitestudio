@@ -1870,12 +1870,37 @@ Browsing other pages will be possible after the row counting is done.</source>
         <translation>Обзор</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="516"/>
+        <location filename="../dialogs/dbdialog.cpp" line="454"/>
+        <source>Enter an unique database name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/dbdialog.cpp" line="461"/>
+        <source>This name is already in use. Please enter unique name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/dbdialog.cpp" line="470"/>
+        <source>Enter a database file path.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/dbdialog.cpp" line="477"/>
+        <source>This database is already on the list under name: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/dbdialog.cpp" line="493"/>
+        <source>Select a database type.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/dbdialog.cpp" line="551"/>
         <source>The name will be auto-generated</source>
         <translation>Имя будет сгенерировано автоматически</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="521"/>
+        <location filename="../dialogs/dbdialog.cpp" line="556"/>
         <source>Type the name</source>
         <translation>Введите имя</translation>
     </message>
@@ -3229,19 +3254,19 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>Порядок сортировки</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="452"/>
-        <location filename="../dialogs/indexdialog.cpp" line="465"/>
+        <location filename="../dialogs/indexdialog.cpp" line="453"/>
+        <location filename="../dialogs/indexdialog.cpp" line="466"/>
         <source>Error</source>
         <comment>index dialog</comment>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="453"/>
+        <location filename="../dialogs/indexdialog.cpp" line="454"/>
         <source>Cannot create unique index, because values in selected columns are not unique. Would you like to execute SELECT query to see problematic values?</source>
         <translation>Невозможно создать уникальный индекс, т.к. данные в выбранных столбцах неуникальны. Вы хотите выполнить запрос SELECT для просмотра проблемных данных?</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="465"/>
+        <location filename="../dialogs/indexdialog.cpp" line="466"/>
         <source>An error occurred while executing SQL statements:
 %1</source>
         <translation>При выполнении конструкций SQL произошла ошибка:
@@ -3541,11 +3566,16 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="837"/>
+        <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="844"/>
         <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
         <translation>База данных, переданная через аргумент командной строки (%1), была временно добавлена в список под именем %2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="842"/>
+        <location filename="../mainwindow.cpp" line="849"/>
         <source>Could not add database %1 to list.</source>
         <translation>Невозможно добавить базу данных %1 в список.</translation>
     </message>
@@ -4734,36 +4764,36 @@ find next</source>
 <context>
     <name>SqlQueryItem</name>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="259"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="251"/>
         <source>Column:</source>
         <comment>data view tooltip</comment>
         <translation>Столбец:</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="260"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="252"/>
         <source>Data type:</source>
         <comment>data view</comment>
         <translation>Тип данных:</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="263"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="255"/>
         <source>Table:</source>
         <comment>data view tooltip</comment>
         <translation>Таблица:</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="293"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="285"/>
         <source>Constraints:</source>
         <comment>data view tooltip</comment>
         <translation>Ограничения:</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="406"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="398"/>
         <source>This cell is not editable, because: %1</source>
         <translation>Эта ячейка нередактируема, причина: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryitem.cpp" line="423"/>
+        <location filename="../datagrid/sqlqueryitem.cpp" line="415"/>
         <source>Cannot load the data for a cell that refers to the already closed database.</source>
         <translation>Невозможно загрузить данные ячейки, которая ссылается на уже закрытую базу данных.</translation>
     </message>
@@ -5450,136 +5480,136 @@ Would you like to proceed?</source>
         <translation>Сброс счётчика автоинкремента у таблицы &apos;%1&apos; успешно выполнен.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="934"/>
+        <location filename="../windows/tablewindow.cpp" line="935"/>
         <source>Empty name</source>
         <translation>Пустое имя</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="934"/>
+        <location filename="../windows/tablewindow.cpp" line="935"/>
         <source>A blank name for the table is allowed in SQLite, but it is not recommended.
 Are you sure you want to create a table with blank name?</source>
         <translation>SQLite позволяет таблице иметь пустое имя, хотя это не рекомендуется.
 Вы действительно хотите создать таблицу с пустым именем?</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="943"/>
+        <location filename="../windows/tablewindow.cpp" line="944"/>
         <source>Cannot create a table without at least one column.</source>
         <translation>Невозможно создать таблицу без хотя бы одного столбца.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="969"/>
+        <location filename="../windows/tablewindow.cpp" line="970"/>
         <source>Cannot create table %1, if it has no primary key defined. Either uncheck the %2, or define a primary key.</source>
         <translation>Невозможно создать таблицу %1, если не определён первичный ключ. Отключите %2, либо определите первичный ключ.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="976"/>
+        <location filename="../windows/tablewindow.cpp" line="977"/>
         <source>Cannot use autoincrement for primary key when %1 clause is used. Either uncheck the %2, or the autoincrement in a primary key.</source>
         <translation>Невозможно использовать автоинкремент первичного ключа при использовании оператора %1. Отключите либо %2, либо автоинкремент первичного ключа.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1106"/>
+        <location filename="../windows/tablewindow.cpp" line="1114"/>
         <source>Are you sure you want to delete table constraint &apos;%1&apos;?</source>
         <comment>table window</comment>
         <translation>Вы действительно хотите удалить ограничение на таблицу &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1107"/>
+        <location filename="../windows/tablewindow.cpp" line="1115"/>
         <source>Delete constraint</source>
         <comment>table window</comment>
         <translation>Удалить ограничение</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1161"/>
+        <location filename="../windows/tablewindow.cpp" line="1169"/>
         <source>Cannot export, because no export plugin is loaded.</source>
         <translation>Невозможно произвести экспорт, т.к. не загружено ни одного модуля экспорта.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1174"/>
+        <location filename="../windows/tablewindow.cpp" line="1182"/>
         <source>Cannot import, because no import plugin is loaded.</source>
         <translation>Невозможно произвести импорт, т.к. не загружено ни одного модуля импорта.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1206"/>
+        <location filename="../windows/tablewindow.cpp" line="1214"/>
         <source>Uncommited changes</source>
         <translation>Неподтверждённые изменения</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1207"/>
+        <location filename="../windows/tablewindow.cpp" line="1215"/>
         <source>There are uncommited structure modifications. You cannot browse or edit data until you have table structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
         <translation>Имеются неподтверждённые изменения структуры. Невозможно просматривать или редактировать данные, пока структура таблицы не подтверждена.
 Подтвердить структуру таблицы или вернуться на вкладку структуры?</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1210"/>
+        <location filename="../windows/tablewindow.cpp" line="1218"/>
         <source>Go back to structure tab</source>
         <translation>Вернуться на вкладку структуры</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1210"/>
+        <location filename="../windows/tablewindow.cpp" line="1218"/>
         <source>Commit modifications and browse data.</source>
         <translation>Подтвердить изменения и перейти к данным.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1360"/>
+        <location filename="../windows/tablewindow.cpp" line="1368"/>
         <source>Name</source>
         <comment>table window indexes</comment>
         <translation>Имя</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1361"/>
+        <location filename="../windows/tablewindow.cpp" line="1369"/>
         <source>Unique</source>
         <comment>table window indexes</comment>
         <translation>Уникальность</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1362"/>
+        <location filename="../windows/tablewindow.cpp" line="1370"/>
         <source>Columns</source>
         <comment>table window indexes</comment>
         <translation>Столбцы</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1363"/>
+        <location filename="../windows/tablewindow.cpp" line="1371"/>
         <source>Partial index condition</source>
         <comment>table window indexes</comment>
         <translation>Условие для частичного индекса</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1416"/>
+        <location filename="../windows/tablewindow.cpp" line="1424"/>
         <source>Name</source>
         <comment>table window triggers</comment>
         <translation>Имя</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1417"/>
+        <location filename="../windows/tablewindow.cpp" line="1425"/>
         <source>Event</source>
         <comment>table window triggers</comment>
         <translation>Событие</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1418"/>
+        <location filename="../windows/tablewindow.cpp" line="1426"/>
         <source>Condition</source>
         <comment>table window triggers</comment>
         <translation>Условие</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1419"/>
+        <location filename="../windows/tablewindow.cpp" line="1427"/>
         <source>Details</source>
         <comment>table window triggers</comment>
         <translation>Подробности</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1507"/>
+        <location filename="../windows/tablewindow.cpp" line="1515"/>
         <source>Table window &quot;%1&quot; has uncommited structure modifications and data.</source>
         <translation>В окне таблицы &quot;%1&quot; имеются неподтверждённые изменения структуры и данных.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1509"/>
+        <location filename="../windows/tablewindow.cpp" line="1517"/>
         <source>Table window &quot;%1&quot; has uncommited data.</source>
         <translation>В окне таблицы &quot;%1&quot; имеются неподтверждённые изменения данных.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1511"/>
+        <location filename="../windows/tablewindow.cpp" line="1519"/>
         <source>Table window &quot;%1&quot; has uncommited structure modifications.</source>
         <translation>В окне таблицы &quot;%1&quot; имеются неподтверждённые изменения структуры.</translation>
     </message>

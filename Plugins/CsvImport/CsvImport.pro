@@ -28,13 +28,15 @@ RESOURCES += \
     csvimport.qrc
 
 
-TRANSLATIONS += CsvImport_sk.ts \
+TRANSLATIONS += CsvImport_zh_CN.ts \
+		CsvImport_sk.ts \
 		CsvImport_de.ts \
 		CsvImport_ru.ts \
 		CsvImport_pt_BR.ts \
 		CsvImport_fr.ts \
 		CsvImport_es.ts \
 		CsvImport_pl.ts
+
 
 
 

@@ -20,11 +20,16 @@
     </message>
     <message>
         <location filename="../cli.cpp" line="228"/>
+        <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../cli.cpp" line="235"/>
         <source>Could not add database %1 to list.</source>
         <translation>Невозможно добавить базу данных %1 в список.</translation>
     </message>
     <message>
-        <location filename="../cli.cpp" line="254"/>
+        <location filename="../cli.cpp" line="261"/>
         <source>closed</source>
         <translation>закрыта</translation>
     </message>

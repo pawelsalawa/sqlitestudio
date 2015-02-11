@@ -23,6 +23,10 @@
         <source>closed</source>
         <translation>zamknięta</translation>
     </message>
+    <message>
+        <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CliCommand</name>
