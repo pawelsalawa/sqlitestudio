@@ -289,10 +289,10 @@ QString QueryExecutorColumns::getAliasedColumnNameForSqlite2(const QueryExecutor
             if (context->dbNameToAttach.containsLeft(resCol->database, Qt::CaseInsensitive))
                 colNameParts << context->dbNameToAttach.valueByLeft(resCol->database, Qt::CaseInsensitive);
             else
-                colNameParts << resCol->database;
+                colNameParts << wrapObjIfNeeded(resCol->database, dialect);
         }
-        colNameParts << resCol->table;
+        colNameParts << wrapObjIfNeeded(resCol->table, dialect);
     }
-    colNameParts << resCol->column;
+    colNameParts << wrapObjIfNeeded(resCol->column, dialect);
     return colNameParts.join(".");
 }
