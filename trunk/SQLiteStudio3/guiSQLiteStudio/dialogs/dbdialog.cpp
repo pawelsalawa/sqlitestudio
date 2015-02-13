@@ -454,13 +454,14 @@ bool DbDialog::validate()
             setValidState(ui->nameEdit, false, tr("Enter an unique database name."));
             return false;
         }
+    }
 
-        if (DBLIST->getByName(ui->nameEdit->text()))
-        {
-            qDebug() << ui->generateCheckBox->isChecked();
-            setValidState(ui->nameEdit, false, tr("This name is already in use. Please enter unique name."));
-            return false;
-        }
+    Db* registeredDb = DBLIST->getByName(ui->nameEdit->text());
+    if (registeredDb && (mode == Mode::ADD || registeredDb != db))
+    {
+        qDebug() << ui->generateCheckBox->isChecked();
+        setValidState(ui->nameEdit, false, tr("This name is already in use. Please enter unique name."));
+        return false;
     }
     setValidState(ui->nameEdit, true);
 
@@ -471,10 +472,10 @@ bool DbDialog::validate()
         return false;
     }
 
-    Db* db =  DBLIST->getByPath(ui->fileEdit->text());
-    if (db)
+    registeredDb = DBLIST->getByPath(ui->fileEdit->text());
+    if (registeredDb && (mode == Mode::ADD || registeredDb != db))
     {
-        setValidState(ui->fileEdit, false, tr("This database is already on the list under name: %1").arg(db->getName()));
+        setValidState(ui->fileEdit, false, tr("This database is already on the list under name: %1").arg(registeredDb->getName()));
         return false;
     }
     setValidState(ui->fileEdit, true);
