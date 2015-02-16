@@ -10,6 +10,7 @@
 #include "uiconfig.h"
 #include "datagrid/sqlqueryview.h"
 #include "datagrid/sqlqueryrownummodel.h"
+#include "services/dbmanager.h"
 #include <QHeaderView>
 #include <QDebug>
 #include <QApplication>
@@ -341,6 +342,31 @@ void SqlQueryModel::commitInternal(const QList<SqlQueryItem*>& items)
         return;
     }
 
+    dbNameToAttachNameMapForCommit.clear();
+    QList<Db*> dbListToDetach;
+    QString attachName;
+    for (const QString& reqAttach : queryExecutor->getRequiredDbAttaches())
+    {
+        Db* attachDb = DBLIST->getByName(reqAttach, Qt::CaseInsensitive);
+        if (!attachDb)
+        {
+            qCritical() << "Could not resolve database" << reqAttach << ", while it's a required attach name for SqlQueryModel to commit edited data!"
+                        << "This may result in errors when commiting some data modifications.";
+            continue;
+        }
+
+        attachName = db->attach(attachDb);
+        if (attachName.isNull())
+        {
+            qCritical() << "Could not attach database" << reqAttach << ", while it's a required attach name for SqlQueryModel to commit edited data!"
+                        << "This may result in errors when commiting some data modifications.";
+            continue;
+        }
+
+        dbNameToAttachNameMapForCommit[reqAttach] = attachName;
+        dbListToDetach << attachDb;
+    }
+
     if (!db->begin())
     {
         notifyError(tr("Could not begin transaction on the database. Details: %1").arg(db->getErrorText()));
@@ -403,6 +429,10 @@ void SqlQueryModel::commitInternal(const QList<SqlQueryItem*>& items)
             // Nothing else we can do about it, but it should not happen.
         }
     }
+
+    dbNameToAttachNameMapForCommit.clear();
+    for (Db* dbToDetach : dbListToDetach)
+        db->detach(dbToDetach);
 }
 
 void SqlQueryModel::rollbackInternal(const QList<SqlQueryItem*>& items)
@@ -503,7 +533,10 @@ bool SqlQueryModel::commitEditedRow(const QList<SqlQueryItem*>& itemsInRow)
         // Database and table
         queryBuilder.setTable(wrapObjIfNeeded(table.getTable(), dialect));
         if (!table.getDatabase().isNull())
-            queryBuilder.setDatabase(wrapObjIfNeeded(table.getDatabase(), dialect));
+        {
+            QString tableDb = getDatabaseForCommit(table.getDatabase());
+            queryBuilder.setDatabase(wrapObjIfNeeded(tableDb, dialect));
+        }
 
         for (SqlQueryItem* item : items)
         {
@@ -789,7 +822,7 @@ void SqlQueryModel::readColumns()
     Table table;
     foreach (const QueryExecutor::ResultRowIdColumnPtr& resCol, queryExecutor->getRowIdResultColumns())
     {
-        table.setDatabase(resCol->database);
+        table.setDatabase(resCol->dbName);
         table.setTable(resCol->table);
         tableToRowIdColumn[table] = resCol->queryExecutorAliasToColumn;
         totalRowIdCols += resCol->queryExecutorAliasToColumn.size();
@@ -983,6 +1016,7 @@ void SqlQueryModel::handleExecFinished(SqlQueryPtr results)
     loadData(results);
     storeStep2NumbersFromExecution();
 
+    requiredDbAttaches = queryExecutor->getRequiredDbAttaches();
     reloadAvailable = true;
 
     emit loadingEnded(true);
@@ -1326,6 +1360,14 @@ Icon& SqlQueryModel::getIconForIdx(int idx) const
 void SqlQueryModel::detachDatabases()
 {
     queryExecutor->releaseResultsAndCleanup();
+}
+
+QString SqlQueryModel::getDatabaseForCommit(const QString& database)
+{
+    if (dbNameToAttachNameMapForCommit.contains(database, Qt::CaseInsensitive))
+        return dbNameToAttachNameMapForCommit[database];
+
+    return database;
 }
 
 void SqlQueryModel::addNewRow()

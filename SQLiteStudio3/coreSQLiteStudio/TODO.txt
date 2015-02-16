@@ -1,4 +1,6 @@
-* 3.0.1:
+* 3.0.3:
+- ctrl+w shortcut config and hint in menu context
+- testing of existing translations - priority
 
 * Next versions:
 - commiting DataView should be async

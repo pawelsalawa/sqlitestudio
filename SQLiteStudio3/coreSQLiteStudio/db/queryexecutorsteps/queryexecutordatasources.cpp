@@ -14,7 +14,7 @@ bool QueryExecutorDataSources::exec()
     if (select->coreSelects.first()->valuesMode)
         return true;
 
-    SelectResolver resolver(db, select->tokens.detokenize());
+    SelectResolver resolver(db, select->tokens.detokenize(), context->dbNameToAttach);
     resolver.resolveMultiCore = false; // multicore subselects result in not editable columns, skip them
 
     SqliteSelect::Core* core = select->coreSelects.first();

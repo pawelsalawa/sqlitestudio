@@ -10,6 +10,7 @@
 #include "guiSQLiteStudio_global.h"
 #include <QStandardItemModel>
 #include <QItemSelection>
+#include <common/strhash.h>
 
 class SqlQueryItem;
 class FormView;
@@ -256,6 +257,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         void addNewRowInternal(int rowIdx);
         Icon& getIconForIdx(int idx) const;
         void detachDatabases();
+        QString getDatabaseForCommit(const QString& database);
 
         QString query;
         bool explain = false;
@@ -326,6 +328,8 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         int rowNumBase = 0;
         SqlQueryView* view = nullptr;
         quint32 resultsCountingAsyncId = 0;
+        QStringList requiredDbAttaches;
+        StrHash<QString> dbNameToAttachNameMapForCommit;
 
         /**
          * @brief rowIdColumns

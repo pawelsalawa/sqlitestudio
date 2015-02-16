@@ -14,6 +14,7 @@
         * [BUGFIX]: Fixed copying values from Environment tab of the About dialog.
         * [BUGFIX]: #2774 Fixed handling triggers (when modifying table) in foreign tables, triggers referencing table in its subqueries, etc.
         * [BUGFIX]: Fixed executing SELECT in SQLite2 for columns that need wrapping.
+        * [BUGFIX]: Fixed editing data for tables transparently attached in the SQL query.
 
 [3.0.2]
         * [ADDED]: Full support for the interface translations.

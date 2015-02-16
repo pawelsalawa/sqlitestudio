@@ -60,7 +60,7 @@ QHash<SelectResolver::Table,QHash<QString,QString>> QueryExecutorAddRowIds::addR
     }
 
     // Getting all tables we need to get ROWID for
-    SelectResolver resolver(db, select->tokens.detokenize());
+    SelectResolver resolver(db, select->tokens.detokenize(), context->dbNameToAttach);
     resolver.resolveMultiCore = false; // multicore subselects result in not editable columns, skip them
 
     QSet<SelectResolver::Table> tables = resolver.resolveTables(core);
@@ -177,6 +177,7 @@ bool QueryExecutorAddRowIds::addResultColumns(SqliteSelect::Core* core, const Se
     {
         // Query executor result column description
         QueryExecutor::ResultRowIdColumnPtr queryExecutorResCol = QueryExecutor::ResultRowIdColumnPtr::create();
+        queryExecutorResCol->dbName = table.originalDatabase;
         queryExecutorResCol->database = table.database;
         queryExecutorResCol->table = table.table;
         queryExecutorResCol->tableAlias = table.alias;
