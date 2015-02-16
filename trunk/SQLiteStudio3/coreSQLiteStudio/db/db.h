@@ -501,7 +501,8 @@ class API_EXPORT Db : public QObject, public Interruptable
          * @brief Attaches given database to this database.
          * @param otherDb Other registered database object.
          * @param silent If true, no errors or warnings will be reported to the NotifyManager (they will still appear in logs).
-         * @return Name of the attached database (it's not the symbolic name of the other database, it's a name you would use in <tt>ATTACH 'name'</tt> statement).
+         * @return Name of the attached database (it's not the symbolic name of the other database, it's a name you would use in <tt>ATTACH 'name'</tt> statement),
+         * or null string if error occurred.
          *
          * This is convinent method to attach other registered databases to this database. It generates attached database name, so it doesn't conflict
          * with other - already attached - database names, attaches the database with that name and returns that name to you, so you can refer to it in queries.

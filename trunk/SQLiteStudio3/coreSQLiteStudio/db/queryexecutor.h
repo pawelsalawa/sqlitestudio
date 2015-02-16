@@ -344,8 +344,17 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
         {
             /**
              * @brief Database name that the table with this row ID is in.
+             *
+             * It's the actual database name as SQLite sees it. That means it is a "main", or any attach name.
              */
             QString database;
+
+            /**
+             * @brief Symbolic database name as listed in databases list.
+             *
+             * It can be empty if database was not explicitly passed in the query.
+             */
+            QString dbName;
 
             /**
              * @brief Table name that the row ID is for.
@@ -1018,6 +1027,8 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          */
         void releaseResultsAndCleanup();
 
+        const QStringList& getRequiredDbAttaches() const;
+
     private:
         /**
          * @brief Executes query.
@@ -1278,6 +1289,16 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          * Meta columns are placed always at the begining.
          */
         bool noMetaColumns = false;
+
+        /**
+         * @brief List of required databases to attach.
+         *
+         * List of database names (symbolic names, as they appear on the list) that needs to be
+         * attached to access all columns returned by the most recent successful execution.
+         *
+         * This is set after every successful execution.
+         */
+        QStringList requiredDbAttaches;
 
         /**
          * @brief Chain of executor steps.

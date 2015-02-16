@@ -107,6 +107,8 @@ void QueryExecutor::executeChain()
         }
     }
 
+    requiredDbAttaches = context->dbNameToAttach.leftValues();
+
     // We're done.
     clearChain();
 
@@ -433,6 +435,7 @@ void QueryExecutor::simpleExecutionFinished(SqlQueryPtr results)
     context->executionTime = QDateTime::currentMSecsSinceEpoch() - simpleExecutionStartTime;
     context->rowsAffected = results->rowsAffected();
     context->totalRowsReturned = 0;
+    requiredDbAttaches = context->dbNameToAttach.leftValues();
 
     executionMutex.lock();
     executionInProgress = false;
@@ -538,6 +541,12 @@ bool QueryExecutor::handleRowCountingResults(quint32 asyncId, SqlQueryPtr result
 
     return true;
 }
+
+const QStringList& QueryExecutor::getRequiredDbAttaches() const
+{
+    return requiredDbAttaches;
+}
+
 bool QueryExecutor::getNoMetaColumns() const
 {
     return noMetaColumns;
