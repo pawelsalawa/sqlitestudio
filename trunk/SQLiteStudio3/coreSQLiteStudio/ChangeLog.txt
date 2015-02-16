@@ -3,6 +3,7 @@
         * [ADDED]: Russian translation.
         * [ADDED]: French translation.
         * [ADDED]: #2770 Added SQLite 3 version used by application in the Environment tab of the About dialog.
+        * [CHANGE]: Language translations located in a separate directory have now higher precedense, than translations compiled in, so it's possible to test updated translations "on the fly".
         * [BUGFIX]: Fixed support for "function(DISTINCT args)" in Enterprise formatter.
         * [BUGFIX]: #2753 Fixed parsing TEMP and IF NOT EXISTS in CREATE TABLE statement.
         * [BUGFIX]: #2755 Fixed error checking for recurrent expression with LIKE/GLOB operator in it.

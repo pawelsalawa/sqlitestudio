@@ -7,7 +7,7 @@
 #include <QRegularExpression>
 
 QHash<QString,QTranslator*> SQLITESTUDIO_TRANSLATIONS;
-QStringList SQLITESTUDIO_TRANSLATION_DIRS = QStringList({":/msg", ":/msg/translations", "msg", "translations"});
+QStringList SQLITESTUDIO_TRANSLATION_DIRS = QStringList({"msg", "translations", ":/msg", ":/msg/translations"});
 
 void loadTranslation(const QString& baseName)
 {
