@@ -34,6 +34,16 @@ QHash<QString, CfgEntry *> &CfgCategory::getEntries()
     return childs;
 }
 
+void CfgCategory::translateTitle()
+{
+    // This needs to be "QObject::tr" and not just "tr", because this guarantees proper message context for retranslating
+    // titles for objects initialized in global scope (as CfgCategories are).
+    title = QObject::tr(title.toUtf8().constData());
+    for (CfgEntry* entry : childs)
+        entry->translateTitle();
+
+}
+
 void CfgCategory::reset()
 {
     for (CfgEntry* entry : childs)

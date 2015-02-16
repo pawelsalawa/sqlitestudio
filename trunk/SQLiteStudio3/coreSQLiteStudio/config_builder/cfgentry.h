@@ -29,6 +29,7 @@ class API_EXPORT CfgEntry : public QObject
         void defineDefaultValueFunction(DefaultValueProviderFunc func);
         QString getFullKey() const;
         QString getTitle() const;
+        void translateTitle();
         void reset();
         bool isPersistable() const;
         bool isPersisted() const;

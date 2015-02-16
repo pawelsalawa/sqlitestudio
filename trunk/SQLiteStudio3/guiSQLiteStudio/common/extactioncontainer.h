@@ -83,6 +83,8 @@ class GUI_API_EXPORT ExtActionContainer
         QAction* getAction(int action);
         virtual const QMetaObject* metaObject() const = 0;
 
+        static void refreshShortcutTranslations();
+
         template <class T>
         static void insertAction(ExtActionPrototype* action, int toolbar = -1);
 

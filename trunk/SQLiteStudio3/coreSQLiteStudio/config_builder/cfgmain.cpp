@@ -55,6 +55,13 @@ QHash<QString, CfgCategory *> &CfgMain::getCategories()
     return childs;
 }
 
+void CfgMain::translateTitle()
+{
+    title = QObject::tr(title.toUtf8().constData());
+    for (CfgCategory* ctg : childs)
+        ctg->translateTitle();
+}
+
 void CfgMain::reset()
 {
     for (CfgCategory* ctg : childs)
