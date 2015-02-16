@@ -23,6 +23,7 @@ class API_EXPORT CfgCategory : public QObject
         QString toString() const;
         operator QString() const;
         QHash<QString,CfgEntry*>& getEntries();
+        void translateTitle();
         void reset();
         void savepoint(bool transaction = false);
         void restore();

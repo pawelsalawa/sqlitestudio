@@ -148,6 +148,10 @@ int main(int argc, char *argv[])
         return 0;
     }
 
+    // Shortcuts titles needs to be retranslated, because their titles were set initially in global scope,
+    // while translation files were not loaded yet. Now they are.
+    ExtActionContainer::refreshShortcutTranslations();
+
     MainWindow::getInstance()->restoreSession();
     MainWindow::getInstance()->show();
 

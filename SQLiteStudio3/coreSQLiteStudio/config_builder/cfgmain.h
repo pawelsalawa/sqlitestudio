@@ -22,6 +22,7 @@ class API_EXPORT CfgMain
         static QList<CfgMain*> getPersistableInstances();
 
         QHash<QString,CfgCategory*>& getCategories();
+        void translateTitle();
         void reset();
         void savepoint(bool transaction = false);
         void restore();

@@ -164,6 +164,18 @@ QAction* ExtActionContainer::getAction(int action)
     return actionMap.value(action);
 }
 
+void ExtActionContainer::refreshShortcutTranslations()
+{
+    static const QString metaName = CFG_SHORTCUTS_METANAME;
+    for (CfgMain* cfgMain : CfgMain::getInstances())
+    {
+        if (cfgMain->getMetaName() != metaName)
+            continue;
+
+        cfgMain->translateTitle();
+    }
+}
+
 void ExtActionContainer::handleActionInsert(int toolbar, ActionDetails* details)
 {
     if (details->position > -1 && !actionMap.contains(details->position))
