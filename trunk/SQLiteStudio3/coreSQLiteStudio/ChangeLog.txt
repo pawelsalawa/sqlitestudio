@@ -17,6 +17,7 @@
         * [BUGFIX]: Fixed executing SELECT in SQLite2 for columns that need wrapping.
         * [BUGFIX]: Fixed editing data for tables transparently attached in the SQL query.
         * [BUGFIX]: Fixed Shortcut titles translation in configuration dialog.
+        * [BUGFIX]: Fixed aggregate functions, so initial and final codes are executed, not only the per-step code.
 
 [3.0.2]
         * [ADDED]: Full support for the interface translations.

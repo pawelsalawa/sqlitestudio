@@ -147,9 +147,9 @@ void FunctionManagerImpl::evaluateScriptAggregateInitial(ScriptFunction* func, D
     aggregateStorage["context"] = QVariant::fromValue(ctx);
 
     if (dbAwarePlugin)
-        dbAwarePlugin->evaluate(ctx, func->code, {}, db, false);
+        dbAwarePlugin->evaluate(ctx, func->initCode, {}, db, false);
     else
-        plugin->evaluate(ctx, func->code, {});
+        plugin->evaluate(ctx, func->initCode, {});
 
     if (plugin->hasError(ctx))
     {
@@ -203,9 +203,9 @@ QVariant FunctionManagerImpl::evaluateScriptAggregateFinal(ScriptFunction* func,
 
     QVariant result;
     if (dbAwarePlugin)
-        result = dbAwarePlugin->evaluate(ctx, func->code, {}, db, false);
+        result = dbAwarePlugin->evaluate(ctx, func->finalCode, {}, db, false);
     else
-        result = plugin->evaluate(ctx, func->code, {});
+        result = plugin->evaluate(ctx, func->finalCode, {});
 
     if (plugin->hasError(ctx))
     {
