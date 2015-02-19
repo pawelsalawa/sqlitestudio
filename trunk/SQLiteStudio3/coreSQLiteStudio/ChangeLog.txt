@@ -18,6 +18,7 @@
         * [BUGFIX]: Fixed editing data for tables transparently attached in the SQL query.
         * [BUGFIX]: Fixed Shortcut titles translation in configuration dialog.
         * [BUGFIX]: Fixed aggregate functions, so initial and final codes are executed, not only the per-step code.
+        * [BUGFIX]: #2781 Portable configuration directory can now be either in the running directory, or in applications directory. It's auto-detected.
 
 [3.0.2]
         * [ADDED]: Full support for the interface translations.
