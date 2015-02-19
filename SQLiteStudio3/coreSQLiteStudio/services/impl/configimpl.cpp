@@ -13,6 +13,7 @@
 #include <QRegExp>
 #include <QDateTime>
 #include <QSysInfo>
+#include <QCoreApplication>
 #include <QtConcurrent/QtConcurrentRun>
 
 static_qstring(DB_FILE_NAME, "settings3");
@@ -474,23 +475,42 @@ QString ConfigImpl::getConfigPath()
 
 QString ConfigImpl::getPortableConfigPath()
 {
-    QFileInfo file;
-    QDir dir("./sqlitestudio-cfg");
-
-    file = QFileInfo(dir.absolutePath());
-    if (!file.exists())
-        return dir.absolutePath();
-
-    if (!file.isDir() || !file.isReadable() || !file.isWritable())
-        return QString::null;
-
-    foreach (file, dir.entryInfoList())
+    QStringList paths = QStringList({"./sqlitestudio-cfg", qApp->applicationDirPath() + "/sqlitestudio-cfg"});
+    QSet<QString> pathSet;
+    QDir dir;
+    for (const QString& path : paths)
     {
-        if (!file.isReadable() || !file.isWritable())
-            return QString::null;
+        dir = QDir(path);
+        pathSet << dir.absolutePath();
     }
 
-    return dir.absolutePath();
+    QString potentialPath;
+    QFileInfo file;
+    for (const QString& path : pathSet)
+    {
+        dir = QDir(path);
+        file = QFileInfo(dir.absolutePath());
+        if (!file.exists())
+        {
+            if (potentialPath.isNull())
+                potentialPath = dir.absolutePath();
+
+            continue;
+        }
+
+        if (!file.isDir() || !file.isReadable() || !file.isWritable())
+            continue;
+
+        foreach (file, dir.entryInfoList())
+        {
+            if (!file.isReadable() || !file.isWritable())
+                continue;
+        }
+
+        return dir.absolutePath();
+    }
+
+    return potentialPath;
 }
 
 void ConfigImpl::initTables()
