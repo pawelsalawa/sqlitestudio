@@ -1,7 +1,5 @@
-* 3.0.3:
-- ctrl+w shortcut config and hint in menu context
-
 * Next versions:
+- small useful features: generating template queries from context menu for table/view, from data view.
 - commiting DataView should be async
 - syntax checkers as services - per language
 - code assistants as services - per language
