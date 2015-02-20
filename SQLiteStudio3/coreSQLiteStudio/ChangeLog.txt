@@ -20,6 +20,7 @@
         * [BUGFIX]: Fixed aggregate functions, so initial and final codes are executed, not only the per-step code.
         * [BUGFIX]: #2781 Portable configuration directory can now be either in the running directory, or in applications directory. It's auto-detected.
         * [BUGFIX]: Optimized loading huge data sets into data grid. It's faster and the progress bar acts more smoothly.
+        * [BUGFIX]: Shortcut for closing current window is now displayed in the context menu for taskbar.
 
 [3.0.2]
         * [ADDED]: Full support for the interface translations.
