@@ -666,11 +666,11 @@ void SqlQueryModel::loadData(SqlQueryPtr results)
     SqlResultsRowPtr row;
     int rowIdx = 0;
     int rowsPerPage = CFG_UI.General.NumberOfRowsPerPage.get();
-    int refreshEvery = rowsPerPage / 10;
     rowNumBase = getCurrentPage() * rowsPerPage + 1;
 
     updateColumnHeaderLabels();
     QList<QStandardItem*> itemList;
+    QList<QList<QStandardItem*>> rowList;
     while (results->hasNext() && rowIdx < rowsPerPage)
     {
         row = results->next();
@@ -678,13 +678,18 @@ void SqlQueryModel::loadData(SqlQueryPtr results)
             break;
 
         itemList = loadRow(row);
-        insertRow(rowIdx, itemList);
+        //insertRow(rowIdx, itemList);
+        rowList << itemList;
 
-        if ((rowIdx % refreshEvery) == 0)
+        if ((rowIdx % 50) == 0)
             qApp->processEvents();
 
         rowIdx++;
     }
+
+    rowIdx = 0;
+    for (const QList<QStandardItem*>& row : rowList)
+        insertRow(rowIdx++, row);
 }
 
 QList<QStandardItem*> SqlQueryModel::loadRow(SqlResultsRowPtr row)
