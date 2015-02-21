@@ -34,52 +34,57 @@
         <translation>Katalogi ikon</translation>
     </message>
     <message>
-        <location filename="../dialogs/aboutdialog.ui" line="75"/>
+        <location filename="../dialogs/aboutdialog.ui" line="81"/>
         <source>Form directories</source>
         <translation>Katalogi formularzy</translation>
     </message>
     <message>
-        <location filename="../dialogs/aboutdialog.ui" line="89"/>
+        <location filename="../dialogs/aboutdialog.ui" line="101"/>
         <source>Plugin directories</source>
         <translation>Katalogi wtyczek</translation>
     </message>
     <message>
-        <location filename="../dialogs/aboutdialog.ui" line="96"/>
+        <location filename="../dialogs/aboutdialog.ui" line="121"/>
         <source>Application directory</source>
         <translation>Katalog aplikacji</translation>
     </message>
     <message>
-        <location filename="../dialogs/aboutdialog.ui" line="110"/>
+        <location filename="../dialogs/aboutdialog.ui" line="172"/>
+        <source>SQLite 3 version:</source>
+        <translation>Wersja SQLite 3:</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/aboutdialog.ui" line="111"/>
         <source>Configuration directory</source>
         <translation>Katalog konfiguracji</translation>
     </message>
     <message>
-        <location filename="../dialogs/aboutdialog.ui" line="131"/>
+        <location filename="../dialogs/aboutdialog.ui" line="148"/>
         <source>Qt version:</source>
         <translation>Wersja Qt:</translation>
     </message>
     <message>
-        <location filename="../dialogs/aboutdialog.cpp" line="37"/>
+        <location filename="../dialogs/aboutdialog.cpp" line="39"/>
         <source>Portable distribution.</source>
         <translation>Dystrybucja przenośna.</translation>
     </message>
     <message>
-        <location filename="../dialogs/aboutdialog.cpp" line="40"/>
+        <location filename="../dialogs/aboutdialog.cpp" line="42"/>
         <source>MacOS X application boundle distribution.</source>
         <translation>Dytrybucja aplikacji MacOS X.</translation>
     </message>
     <message>
-        <location filename="../dialogs/aboutdialog.cpp" line="43"/>
+        <location filename="../dialogs/aboutdialog.cpp" line="45"/>
         <source>Operating system managed distribution.</source>
         <translation>Dystrybucja zarządzana przez system operacyjny.</translation>
     </message>
     <message>
-        <location filename="../dialogs/aboutdialog.cpp" line="76"/>
+        <location filename="../dialogs/aboutdialog.cpp" line="89"/>
         <source>Copy</source>
         <translation>Kopiuj</translation>
     </message>
     <message>
-        <location filename="../dialogs/aboutdialog.cpp" line="95"/>
+        <location filename="../dialogs/aboutdialog.cpp" line="102"/>
         <source>&lt;h3&gt;Table of contents:&lt;/h3&gt;&lt;ol&gt;%2&lt;/ol&gt;</source>
         <translation>&lt;h3&gt;Zawartość:&lt;/h3&gt;&lt;ol&gt;%2&lt;/ol&gt;</translation>
     </message>
@@ -1877,35 +1882,35 @@ Przeglądanie pozostałych stron będzie możliwe kiedy liczenie wierszy zostani
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="454"/>
         <source>Enter an unique database name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź unikalną nazwę bazy danych.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="461"/>
+        <location filename="../dialogs/dbdialog.cpp" line="463"/>
         <source>This name is already in use. Please enter unique name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta nazwa jest już w użyciu. Proszę wprowadzić unikalną nazwę.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="470"/>
+        <location filename="../dialogs/dbdialog.cpp" line="471"/>
         <source>Enter a database file path.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wprowadź ścieżkę do pliku bazy danych.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="477"/>
+        <location filename="../dialogs/dbdialog.cpp" line="478"/>
         <source>This database is already on the list under name: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta baza jest już na liście pod nazwą: %1</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="493"/>
+        <location filename="../dialogs/dbdialog.cpp" line="494"/>
         <source>Select a database type.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz typ bazy danych.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="551"/>
+        <location filename="../dialogs/dbdialog.cpp" line="552"/>
         <source>The name will be auto-generated</source>
         <translation>Nazwa będzie generowana automatycznie</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="556"/>
+        <location filename="../dialogs/dbdialog.cpp" line="557"/>
         <source>Type the name</source>
         <translation>Wprowadź nazwę</translation>
     </message>
@@ -3561,47 +3566,47 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
         <translation>Nie udało się ustawić stylu: %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="621"/>
+        <location filename="../mainwindow.cpp" line="625"/>
         <source>Cannot export, because no export plugin is loaded.</source>
         <translation>Nie można wyeksportować, ponieważ żadna wtyczka eksportu nie została załadowana.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="633"/>
+        <location filename="../mainwindow.cpp" line="637"/>
         <source>Cannot import, because no import plugin is loaded.</source>
         <translation>Nie można zaimportować, ponieważ żadna wtyczka importu nie została załadowana.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="662"/>
+        <location filename="../mainwindow.cpp" line="666"/>
         <source>Rename window</source>
         <translation>Zmień nazwę okna</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="662"/>
+        <location filename="../mainwindow.cpp" line="666"/>
         <source>Enter new name for the window:</source>
         <translation>Wprowadź nową nazwę dla okna:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="730"/>
+        <location filename="../mainwindow.cpp" line="734"/>
         <source>New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</source>
         <translation>Nowe aktualizacje są dostępne: &lt;a href=&quot;%1&quot;&gt;Kliknij aby poznać szczegóły&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="738"/>
+        <location filename="../mainwindow.cpp" line="742"/>
         <source>You&apos;re running the most recent version. No updates are available.</source>
         <translation>Uruchomiona jest najnowsza wersja. Nie ma dostępnych aktualizacji.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="837"/>
+        <location filename="../mainwindow.cpp" line="841"/>
         <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Baza danych podana w parametrach linii poleceń (%1) była już na liście pod nazwą: %2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="844"/>
+        <location filename="../mainwindow.cpp" line="848"/>
         <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
         <translation>Baza danych podana w linii poleceń (%1) jest tymczasowo dodana do listy pod nazwą: %2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="849"/>
+        <location filename="../mainwindow.cpp" line="853"/>
         <source>Could not add database %1 to list.</source>
         <translation>Nie udało się dodać bazy danych %1 do listy.</translation>
     </message>
@@ -4846,54 +4851,54 @@ znajdź następny</translation>
 <context>
     <name>SqlQueryModel</name>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="61"/>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="430"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="62"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="460"/>
         <source>Only one query can be executed simultaneously.</source>
         <translation>Tylko jedno zapytanie może być wykonywane w danym momencie.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="93"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="94"/>
         <source>Uncommited data</source>
         <translation>Niezatwierdzone dane</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="94"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="95"/>
         <source>There are uncommited data changes. Do you want to proceed anyway? All uncommited changes will be lost.</source>
         <translation>Niektóre zmiany w danych nie zostały zatwierdzone. Czy na pewno chcesz kontynuować? Wszystkie niezatwierdzone zmiany zostaną utracone.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="340"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="341"/>
         <source>Cannot commit the data for a cell that refers to the already closed database.</source>
         <translation>Nie można zatwierdzić danych dla komórki, która odnosi się do zamkniętej już bazy danych.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="346"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="372"/>
         <source>Could not begin transaction on the database. Details: %1</source>
         <translation>Nie udało się rozpocząć transakcji na bazie danych. Szczegóły: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="383"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="409"/>
         <source>An error occurred while commiting the transaction: %1</source>
         <translation>Wystąpił błąd podczas zatwierdzania transakcji: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="402"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="428"/>
         <source>An error occurred while rolling back the transaction: %1</source>
         <translation>Wystąpił błąd podczas wycofywania transakcji: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="513"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="546"/>
         <source>Tried to commit a cell which is not editable (yet modified and waiting for commit)! This is a bug. Please report it.</source>
         <translation>Próbowano zatwierdzić komórkę, której nie można edytować (a mimo to została zmodyfikowana i czeka na zatwierdzenie)! To jest błąd. Proszę to zgłosić.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="539"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="572"/>
         <source>An error occurred while commiting the data: %1</source>
         <translation>Wystąpił błąd podczas zatwierdzania danych: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="978"/>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1029"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1016"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1068"/>
         <source>Error while executing SQL query on database &apos;%1&apos;: %2</source>
         <translation>Błąd podczas wykonywania zapytania SQL na bazie &apos;%1&apos;: %2</translation>
     </message>
@@ -4902,17 +4907,17 @@ znajdź następny</translation>
         <translation type="obsolete">Błąd podczas wykonywania zapytania SQL: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1026"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1065"/>
         <source>Error while loading query results: %1</source>
         <translation>Błąd podczas wczytywania wyników zapytania: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1346"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1393"/>
         <source>Insert multiple rows</source>
         <translation>Wstaw wiele wierszy</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1346"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1393"/>
         <source>Number of rows to insert:</source>
         <translation>Liczba wierszy do wstawienia:</translation>
     </message>

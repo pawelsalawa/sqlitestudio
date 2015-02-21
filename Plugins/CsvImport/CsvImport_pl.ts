@@ -63,8 +63,12 @@
     </message>
     <message>
         <location filename="CsvImportOptions.ui" line="55"/>
+        <source>First line represents CSV column names</source>
+        <translation>Pierwsza linia reprezentuje nazwy kolumn CSV</translation>
+    </message>
+    <message>
         <source>Skip first row of data</source>
-        <translation>Pomiń pierwszy wiersz danych</translation>
+        <translation type="obsolete">Pomiń pierwszy wiersz danych</translation>
     </message>
     <message>
         <source>First row represents column names</source>
