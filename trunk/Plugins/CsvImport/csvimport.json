@@ -2,6 +2,6 @@
     "type":        "ImportPlugin",
     "title":       "CSV import",
     "description": "CSV format support for importing data",
-    "version":     10001,
+    "version":     10002,
     "author":      "SalSoft"
 }
