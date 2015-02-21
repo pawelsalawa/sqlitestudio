@@ -584,7 +584,8 @@ class API_EXPORT Db : public QObject, public Interruptable
          * @return Database type label.
          *
          * The database type label is used on UI to tell user what database it is (SQLite 3, SQLite 2, Encrypted SQLite 3, etc).
-         * This is defined by DbPlugin.
+         * This is usually the same as DbPlugin::getTitle(), but getTitle() is used in list of plugins in configuration dialog,
+         * while getTypeLabel() is used on databases list.
          */
         virtual QString getTypeLabel() = 0;
 

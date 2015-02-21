@@ -52,7 +52,7 @@
       <string>&lt;p&gt;Enable this if the first data line in your CSV file represents column names. You don't want column names to be imported into the table as a regular data.&lt;/p&gt;</string>
      </property>
      <property name="text">
-      <string>Skip first row of data</string>
+      <string>First line represents CSV column names</string>
      </property>
      <property name="cfg" stdset="0">
       <string notr="true">CsvImport.FirstRowAsColumns</string>
