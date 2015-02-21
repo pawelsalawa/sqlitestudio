@@ -34,52 +34,57 @@
         <translation>Каталоги иконок</translation>
     </message>
     <message>
-        <location filename="../dialogs/aboutdialog.ui" line="75"/>
+        <location filename="../dialogs/aboutdialog.ui" line="81"/>
         <source>Form directories</source>
         <translation>Каталоги форм</translation>
     </message>
     <message>
-        <location filename="../dialogs/aboutdialog.ui" line="89"/>
+        <location filename="../dialogs/aboutdialog.ui" line="101"/>
         <source>Plugin directories</source>
         <translation>Каталоги модулей</translation>
     </message>
     <message>
-        <location filename="../dialogs/aboutdialog.ui" line="96"/>
+        <location filename="../dialogs/aboutdialog.ui" line="121"/>
         <source>Application directory</source>
         <translation>Каталог программы</translation>
     </message>
     <message>
-        <location filename="../dialogs/aboutdialog.ui" line="110"/>
+        <location filename="../dialogs/aboutdialog.ui" line="172"/>
+        <source>SQLite 3 version:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/aboutdialog.ui" line="111"/>
         <source>Configuration directory</source>
         <translation>Каталог конфигурации</translation>
     </message>
     <message>
-        <location filename="../dialogs/aboutdialog.ui" line="131"/>
+        <location filename="../dialogs/aboutdialog.ui" line="148"/>
         <source>Qt version:</source>
         <translation>Версия Qt:</translation>
     </message>
     <message>
-        <location filename="../dialogs/aboutdialog.cpp" line="37"/>
+        <location filename="../dialogs/aboutdialog.cpp" line="39"/>
         <source>Portable distribution.</source>
         <translation>Портабельная версия.</translation>
     </message>
     <message>
-        <location filename="../dialogs/aboutdialog.cpp" line="40"/>
+        <location filename="../dialogs/aboutdialog.cpp" line="42"/>
         <source>MacOS X application boundle distribution.</source>
         <translation>Пакет приложения MacOS X.</translation>
     </message>
     <message>
-        <location filename="../dialogs/aboutdialog.cpp" line="43"/>
+        <location filename="../dialogs/aboutdialog.cpp" line="45"/>
         <source>Operating system managed distribution.</source>
         <translation>Версия, управляемая операционной системой.</translation>
     </message>
     <message>
-        <location filename="../dialogs/aboutdialog.cpp" line="76"/>
+        <location filename="../dialogs/aboutdialog.cpp" line="89"/>
         <source>Copy</source>
         <translation>Копировать</translation>
     </message>
     <message>
-        <location filename="../dialogs/aboutdialog.cpp" line="95"/>
+        <location filename="../dialogs/aboutdialog.cpp" line="102"/>
         <source>&lt;h3&gt;Table of contents:&lt;/h3&gt;&lt;ol&gt;%2&lt;/ol&gt;</source>
         <translation>&lt;h3&gt;Содержание:&lt;/h3&gt;&lt;ol&gt;%2&lt;/ol&gt;</translation>
     </message>
@@ -1875,32 +1880,32 @@ Browsing other pages will be possible after the row counting is done.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="461"/>
+        <location filename="../dialogs/dbdialog.cpp" line="463"/>
         <source>This name is already in use. Please enter unique name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="470"/>
+        <location filename="../dialogs/dbdialog.cpp" line="471"/>
         <source>Enter a database file path.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="477"/>
+        <location filename="../dialogs/dbdialog.cpp" line="478"/>
         <source>This database is already on the list under name: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="493"/>
+        <location filename="../dialogs/dbdialog.cpp" line="494"/>
         <source>Select a database type.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="551"/>
+        <location filename="../dialogs/dbdialog.cpp" line="552"/>
         <source>The name will be auto-generated</source>
         <translation>Имя будет сгенерировано автоматически</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="556"/>
+        <location filename="../dialogs/dbdialog.cpp" line="557"/>
         <source>Type the name</source>
         <translation>Введите имя</translation>
     </message>
@@ -3535,47 +3540,47 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>Невозможно применить стиль: %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="621"/>
+        <location filename="../mainwindow.cpp" line="625"/>
         <source>Cannot export, because no export plugin is loaded.</source>
         <translation>Невозможно произвести экспорт, т.к. не загружено ни одного модуля экспорта.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="633"/>
+        <location filename="../mainwindow.cpp" line="637"/>
         <source>Cannot import, because no import plugin is loaded.</source>
         <translation>Невозможно произвести импорт, т.к. не загружено ни одного модуля импорта.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="662"/>
+        <location filename="../mainwindow.cpp" line="666"/>
         <source>Rename window</source>
         <translation>Переименовать окно</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="662"/>
+        <location filename="../mainwindow.cpp" line="666"/>
         <source>Enter new name for the window:</source>
         <translation>Введите новое имя для окна:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="730"/>
+        <location filename="../mainwindow.cpp" line="734"/>
         <source>New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</source>
         <translation>Доступны обновления. &lt;a href=&quot;%1&quot;&gt;Нажмите здесь для подробностей&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="738"/>
+        <location filename="../mainwindow.cpp" line="742"/>
         <source>You&apos;re running the most recent version. No updates are available.</source>
         <translation>Установлена последняя версия. Обновлений нет.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="837"/>
+        <location filename="../mainwindow.cpp" line="841"/>
         <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="844"/>
+        <location filename="../mainwindow.cpp" line="848"/>
         <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
         <translation>База данных, переданная через аргумент командной строки (%1), была временно добавлена в список под именем %2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="849"/>
+        <location filename="../mainwindow.cpp" line="853"/>
         <source>Could not add database %1 to list.</source>
         <translation>Невозможно добавить базу данных %1 в список.</translation>
     </message>
@@ -4815,69 +4820,69 @@ find next</source>
 <context>
     <name>SqlQueryModel</name>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="61"/>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="430"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="62"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="460"/>
         <source>Only one query can be executed simultaneously.</source>
         <translation>Одновременно может быть выполнен только один запрос.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="93"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="94"/>
         <source>Uncommited data</source>
         <translation>Неподтверждённые данные</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="94"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="95"/>
         <source>There are uncommited data changes. Do you want to proceed anyway? All uncommited changes will be lost.</source>
         <translation>Имеются неподтверждённые изменения данных. Вы действительно хотите продолжить? Все неподтверждённые изменения будут утеряны.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="340"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="341"/>
         <source>Cannot commit the data for a cell that refers to the already closed database.</source>
         <translation>Невозможно подтвердить данные для ячейки, которая ссылается на уже закрытую базу данных.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="346"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="372"/>
         <source>Could not begin transaction on the database. Details: %1</source>
         <translation>Невозможно начать транзакцию в базе данных. Подробности: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="383"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="409"/>
         <source>An error occurred while commiting the transaction: %1</source>
         <translation>При завершении транзакции возникла ошибка: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="402"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="428"/>
         <source>An error occurred while rolling back the transaction: %1</source>
         <translation>При отмене транзакции возникла ошибка: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="513"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="546"/>
         <source>Tried to commit a cell which is not editable (yet modified and waiting for commit)! This is a bug. Please report it.</source>
         <translation>Попытка подтверждения данных для нередактируемой ячейки (которая тем не менее была изменена и ожидает подтверждения). Это программная ошибка. Пожалуйста, отправьте о ней отчёт.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="539"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="572"/>
         <source>An error occurred while commiting the data: %1</source>
         <translation>При подтверждении данных произошла ошибка: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="978"/>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1029"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1016"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1068"/>
         <source>Error while executing SQL query on database &apos;%1&apos;: %2</source>
         <translation>Ошибка при выполнении SQL запроса к базе данных &apos;%1&apos;: %2</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1026"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1065"/>
         <source>Error while loading query results: %1</source>
         <translation>Ошибка при загрузке результатов запроса: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1346"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1393"/>
         <source>Insert multiple rows</source>
         <translation>Вставить несколько строк</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1346"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1393"/>
         <source>Number of rows to insert:</source>
         <translation>Количество вставляемых строк:</translation>
     </message>

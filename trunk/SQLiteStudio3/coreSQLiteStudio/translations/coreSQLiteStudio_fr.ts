@@ -902,7 +902,7 @@ Détails erreur: %2</translation>
         <translation>Impossible de résoudre la source de données pour la colonnes: %1</translation>
     </message>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="590"/>
+        <location filename="../services/impl/configimpl.cpp" line="617"/>
         <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Tried to initialize the file at following localizations: %1.</source>
         <translation>Impossible d&apos;initialiser le fichier de configuration. Aucune modification et les requêtes seront perdues après redémarrage. Essayez d&apos;initialiser le fichier avec cette localisation: %1.</translation>
     </message>
@@ -954,31 +954,36 @@ Détails erreur: %2</translation>
         <translation>La table %1 référence la table %2, mais la clé étrangère ne pourra être mise à jour pour la nouvelle table à cause de problèmes lors de l&apos;analyse DDL de la table %3.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="377"/>
+        <location filename="../tablemodifier.cpp" line="379"/>
         <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
         <translation>Toutes les colonnes indéxées par l&apos;indexe %1 sont faites. L&apos;indexe ne sera pas recréé après la modification de la table.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="406"/>
+        <location filename="../tablemodifier.cpp" line="418"/>
+        <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tablemodifier.cpp" line="465"/>
         <source>Cannot not update trigger %1 according to table %2 modification.</source>
         <translation>Impossible de mettre à jour le déclencheur%1 selon la modification de la table %2.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="412"/>
+        <location filename="../tablemodifier.cpp" line="433"/>
         <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
         <translation>Toutes les colonnes couvertes par le déclencheur %1 sont faites. Le déclencheur ne sera pas recréé après la modification de la table.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="435"/>
+        <location filename="../tablemodifier.cpp" line="483"/>
         <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
         <translation>Impossible de mettre à jour les modifications de la vue %1 issue de la table %2
 La vue restera telque.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="532"/>
-        <location filename="../tablemodifier.cpp" line="553"/>
-        <location filename="../tablemodifier.cpp" line="571"/>
+        <location filename="../tablemodifier.cpp" line="580"/>
+        <location filename="../tablemodifier.cpp" line="601"/>
+        <location filename="../tablemodifier.cpp" line="619"/>
         <source>There is a problem with updating an %1 statement within %2 trigger. One of the SELECT substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
         <translation>Il y a un problème à la mise à jour l&apos;instruction %1 avec le déclencheur %2. Une partie de l&apos;instruction SELECT référençant la table %3 ne ppermet pas sa modification. La mise à jour manuelle du déclencheur est nécessaire.</translation>
     </message>
@@ -1001,28 +1006,28 @@ La vue restera telque.</translation>
 <context>
     <name>QueryExecutor</name>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="130"/>
+        <location filename="../db/queryexecutor.cpp" line="132"/>
         <source>Execution interrupted.</source>
         <translation>Exécution interrompue.</translation>
     </message>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="172"/>
+        <location filename="../db/queryexecutor.cpp" line="174"/>
         <source>Database is not open.</source>
         <translation>La base de données n&apos;est ouverte.</translation>
     </message>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="180"/>
+        <location filename="../db/queryexecutor.cpp" line="182"/>
         <source>Only one query can be executed simultaneously.</source>
         <translation>Une seule requête peut être exécutée à la fois.</translation>
     </message>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="262"/>
-        <location filename="../db/queryexecutor.cpp" line="535"/>
+        <location filename="../db/queryexecutor.cpp" line="264"/>
+        <location filename="../db/queryexecutor.cpp" line="538"/>
         <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
         <translation>Une erreur s&apos;est produite à l&apos;exécution de la requête count(*), la recherche des données est arrêtée. Erreur de la base de données:%1</translation>
     </message>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="446"/>
+        <location filename="../db/queryexecutor.cpp" line="449"/>
         <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
         <translation>SQLiteStudio ne peut extraire des métadonnées d&apos;une requête. Les résultats ne peut être affichés.</translation>
     </message>
