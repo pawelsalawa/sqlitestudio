@@ -1,3 +1,5 @@
+- auto detecting sqlcipher db doesn't work in dbdialog
+
 * Next versions:
 - small useful features: generating template queries from context menu for table/view, from data view.
 - commiting DataView should be async
