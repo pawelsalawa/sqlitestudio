@@ -8,6 +8,7 @@ FormatDropView::FormatDropView(SqliteDropView* dropView) :
 
 void FormatDropView::formatInternal()
 {
+    handleExplainQuery(dropView);
     withKeyword("DROP").withKeyword("VIEW");
 
     if (dropView->ifExistsKw)

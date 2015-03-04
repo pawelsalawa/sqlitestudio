@@ -103,6 +103,8 @@ class FormatStatement
         }
 
     protected:
+        void handleExplainQuery(SqliteQuery* query);
+
         virtual void formatInternal() = 0;
         virtual void resetInternal();
 

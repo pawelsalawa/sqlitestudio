@@ -9,6 +9,7 @@ FormatSelect::FormatSelect(SqliteSelect* select) :
 
 void FormatSelect::formatInternal()
 {
+    handleExplainQuery(select);
     markKeywordLineUp("SELECT");
 
     if (select->with)

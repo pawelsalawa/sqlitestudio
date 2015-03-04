@@ -71,7 +71,7 @@ QList<SqliteStatement::FullObject> SqliteReindex::getFullObjectsInStatement()
 TokenList SqliteReindex::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
-
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
     builder.withKeyword("REINDEX");
     if (!database.isNull())
         builder.withOther(database, dialect).withOperator(".");

@@ -9,6 +9,7 @@ FormatCreateVirtualTable::FormatCreateVirtualTable(SqliteCreateVirtualTable* cvt
 
 void FormatCreateVirtualTable::formatInternal()
 {
+    handleExplainQuery(cvt);
     withKeyword("CREATE").withKeyword("VIRTUAL").withKeyword("TABLE");
     if (cvt->ifNotExistsKw)
         withKeyword("IF").withKeyword("NOT").withKeyword("EXISTS");

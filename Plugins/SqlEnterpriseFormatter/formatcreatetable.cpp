@@ -9,6 +9,7 @@ FormatCreateTable::FormatCreateTable(SqliteCreateTable* createTable) :
 
 void FormatCreateTable::formatInternal()
 {
+    handleExplainQuery(createTable);
     withKeyword("CREATE");
     if (createTable->tempKw)
         withKeyword("TEMP");

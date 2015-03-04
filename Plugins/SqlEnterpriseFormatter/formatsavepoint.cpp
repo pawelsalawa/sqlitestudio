@@ -8,5 +8,6 @@ FormatSavepoint::FormatSavepoint(SqliteSavepoint* savepoint) :
 
 void FormatSavepoint::formatInternal()
 {
+    handleExplainQuery(savepoint);
     withKeyword("SAVEPOINT").withId(savepoint->name).withSemicolon();
 }

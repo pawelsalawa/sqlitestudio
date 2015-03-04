@@ -9,6 +9,7 @@ FormatCreateView::FormatCreateView(SqliteCreateView* createView) :
 
 void FormatCreateView::formatInternal()
 {
+    handleExplainQuery(createView);
     withKeyword("CREATE");
     if (createView->tempKw)
         withKeyword("TEMP");

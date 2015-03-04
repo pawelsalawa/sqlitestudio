@@ -8,6 +8,7 @@ FormatAlterTable::FormatAlterTable(SqliteAlterTable* alterTable) :
 
 void FormatAlterTable::formatInternal()
 {
+    handleExplainQuery(alterTable);
     withKeyword("ALTER").withKeyword("TABLE");
 
     if (!alterTable->database.isNull())

@@ -63,7 +63,7 @@ QList<SqliteStatement::FullObject> SqliteDropIndex::getFullObjectsInStatement()
 TokenList SqliteDropIndex::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
-
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
     builder.withKeyword("DROP").withSpace().withKeyword("INDEX").withSpace();
 
     if (ifExistsKw)

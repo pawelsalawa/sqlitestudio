@@ -168,7 +168,7 @@ QList<SqliteStatement::FullObject> SqliteUpdate::getFullObjectsInStatement()
 TokenList SqliteUpdate::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
-
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
     if (with)
         builder.withStatement(with);
 

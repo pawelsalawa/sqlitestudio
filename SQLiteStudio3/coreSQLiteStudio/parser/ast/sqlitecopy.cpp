@@ -73,7 +73,7 @@ QList<SqliteStatement::FullObject> SqliteCopy::getFullObjectsInStatement()
 TokenList SqliteCopy::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
-
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
     builder.withKeyword("COPY").withSpace();
     if (onConflict != SqliteConflictAlgo::null)
         builder.withKeyword("OR").withSpace().withKeyword(sqliteConflictAlgo(onConflict)).withSpace();

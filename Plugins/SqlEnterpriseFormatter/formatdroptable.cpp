@@ -8,6 +8,7 @@ FormatDropTable::FormatDropTable(SqliteDropTable* dropTable) :
 
 void FormatDropTable::formatInternal()
 {
+    handleExplainQuery(dropTable);
     withKeyword("DROP").withKeyword("TABLE");
 
     if (dropTable->ifExistsKw)

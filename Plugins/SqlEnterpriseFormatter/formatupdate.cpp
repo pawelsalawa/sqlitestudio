@@ -10,6 +10,7 @@ FormatUpdate::FormatUpdate(SqliteUpdate* upd) :
 
 void FormatUpdate::formatInternal()
 {
+    handleExplainQuery(upd);
     if (upd->with)
         withStatement(upd->with);
 

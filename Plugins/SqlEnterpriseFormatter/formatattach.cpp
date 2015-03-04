@@ -9,6 +9,7 @@ FormatAttach::FormatAttach(SqliteAttach* att) :
 
 void FormatAttach::formatInternal()
 {
+    handleExplainQuery(att);
     withKeyword("ATTACH");
 
     if (att->databaseKw)

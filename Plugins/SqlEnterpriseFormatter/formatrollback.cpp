@@ -8,6 +8,7 @@ FormatRollback::FormatRollback(SqliteRollback* rollback) :
 
 void FormatRollback::formatInternal()
 {
+    handleExplainQuery(rollback);
     withKeyword("ROLLBACK");
     if (rollback->transactionKw)
         withKeyword("TRANSACTION");

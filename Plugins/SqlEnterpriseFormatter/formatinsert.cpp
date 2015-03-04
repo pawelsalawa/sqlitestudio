@@ -10,6 +10,7 @@ FormatInsert::FormatInsert(SqliteInsert* insert) :
 
 void FormatInsert::formatInternal()
 {
+    handleExplainQuery(insert);
     if (insert->replaceKw)
     {
         withStatement(insert->with);

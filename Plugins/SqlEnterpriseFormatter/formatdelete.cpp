@@ -10,6 +10,7 @@ FormatDelete::FormatDelete(SqliteDelete* del) :
 
 void FormatDelete::formatInternal()
 {
+    handleExplainQuery(del);
     if (del->with)
         withStatement(del->with);
 

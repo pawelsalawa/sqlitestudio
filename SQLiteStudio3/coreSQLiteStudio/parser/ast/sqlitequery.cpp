@@ -1,4 +1,5 @@
 #include "sqlitequery.h"
+#include "parser/statementtokenbuilder.h"
 
 SqliteQuery::SqliteQuery()
 {
@@ -48,4 +49,16 @@ bool SqliteQuery::isReadOnly()
             break;
     }
     return readOnly;
+}
+
+TokenList SqliteQuery::rebuildTokensFromContents()
+{
+    StatementTokenBuilder builder;
+    if (explain)
+    {
+        builder.withKeyword("EXPLAIN").withSpace();
+        if (queryPlan)
+            builder.withKeyword("QUERY").withSpace().withKeyword("PLAN").withSpace();
+    }
+    return builder.build();
 }

@@ -8,6 +8,7 @@ FormatPragma::FormatPragma(SqlitePragma* pragma) :
 
 void FormatPragma::formatInternal()
 {
+    handleExplainQuery(pragma);
     withKeyword("PRAGMA");
 
     if (!pragma->database.isNull())

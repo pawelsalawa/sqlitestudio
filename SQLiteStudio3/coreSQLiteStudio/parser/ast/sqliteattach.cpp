@@ -47,7 +47,7 @@ SqliteStatement* SqliteAttach::clone()
 TokenList SqliteAttach::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
-
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
     builder.withKeyword("ATTACH").withSpace();
 
     if (databaseKw)

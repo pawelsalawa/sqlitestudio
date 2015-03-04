@@ -69,7 +69,7 @@ QList<SqliteStatement::FullObject> SqliteAnalyze::getFullObjectsInStatement()
 TokenList SqliteAnalyze::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
-
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
     builder.withKeyword("ANALYZE").withSpace();
 
     if (!database.isNull())

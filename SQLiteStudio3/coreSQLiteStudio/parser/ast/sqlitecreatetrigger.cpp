@@ -322,7 +322,7 @@ SqliteCreateTrigger::Event::Type SqliteCreateTrigger::Event::stringToType(const 
 TokenList SqliteCreateTrigger::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
-
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
     builder.withKeyword("CREATE").withSpace();
     if (tempKw)
         builder.withKeyword("TEMP").withSpace();

@@ -9,6 +9,7 @@ FormatCreateIndex::FormatCreateIndex(SqliteCreateIndex* createIndex) :
 
 void FormatCreateIndex::formatInternal()
 {
+    handleExplainQuery(createIndex);
     withKeyword("CREATE");
     if (createIndex->uniqueKw)
         withKeyword("UNIQUE");
