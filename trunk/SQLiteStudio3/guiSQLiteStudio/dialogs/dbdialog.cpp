@@ -178,8 +178,11 @@ void DbDialog::updateOptions()
             {
                 // Add new options
                 int row = ADDITIONAL_ROWS_BEGIN_INDEX;
-                foreach (DbPluginOption opt, optList)
-                    addOption(opt, row++);
+                for (const DbPluginOption& opt : optList)
+                {
+                    addOption(opt, row);
+                    row++;
+                }
             }
         }
     }
@@ -188,8 +191,15 @@ void DbDialog::updateOptions()
     setUpdatesEnabled(true);
 }
 
-void DbDialog::addOption(const DbPluginOption& option, int row)
+void DbDialog::addOption(const DbPluginOption& option, int& row)
 {
+    if (option.type == DbPluginOption::CUSTOM_PATH_BROWSE)
+    {
+        // This option does not add any editor.
+        row--;
+        return;
+    }
+
     QLabel* label = new QLabel(option.label, this);
     QWidget* editor = nullptr;
     QWidget* editorHelper = nullptr; // TODO, based on plugins for Url handlers
@@ -307,6 +317,8 @@ QWidget *DbDialog::getEditor(const DbPluginOption& opt, QWidget*& editorHelper)
             connect(sb, SIGNAL(valueChanged(double)), this, SLOT(propertyChanged()));
             break;
         }
+        case DbPluginOption::CUSTOM_PATH_BROWSE:
+            return nullptr; // should not happen ever, asserted one stack level before
         default:
             // TODO plugin based handling of custom editors
             qWarning() << "Unhandled DbDialog option for creating editor.";
@@ -344,6 +356,8 @@ QVariant DbDialog::getValueFrom(DbPluginOption::Type type, QWidget *editor)
         case DbPluginOption::CHOICE:
             value = dynamic_cast<QComboBox*>(editor)->currentText();
             break;
+        case DbPluginOption::CUSTOM_PATH_BROWSE:
+            break; // should not happen ever
         default:
             // TODO plugin based handling of custom editors
             qWarning() << "Unhandled DbDialog option for value.";
@@ -373,6 +387,8 @@ void DbDialog::setValueFor(DbPluginOption::Type type, QWidget *editor, const QVa
         case DbPluginOption::CHOICE:
             dynamic_cast<QComboBox*>(editor)->setCurrentText(value.toString());
             break;
+        case DbPluginOption::CUSTOM_PATH_BROWSE:
+            break; // should not happen ever
         default:
             qWarning() << "Unhandled DbDialog option to set value.";
             // TODO plugin based handling of custom editors

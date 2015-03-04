@@ -27,6 +27,11 @@
 struct DbPluginOption
 {
     /**
+     * @brief Handler for custom path browser implemented by the plugin.
+     */
+    typedef std::function<QString(const QString&)> CustomBrowseHandler;
+
+    /**
      * @brief Option data type
      *
      * Determinates what kind of input widget will be added to DbDialog.
@@ -39,7 +44,8 @@ struct DbPluginOption
         DOUBLE = 3, /**< QDoubleSpinBox will be added */
         FILE = 4, /**< QLineEdit will be added */
         PASSWORD = 5, /**< QLineEdit with value masking will be added */
-        CHOICE = 6 /**< QComboBox will be added */
+        CHOICE = 6, /**< QComboBox will be added */
+        CUSTOM_PATH_BROWSE = 7 /**< File path browse button will be handled by the plugin. No additional editor will be added. */
     };
 
     /**
@@ -92,6 +98,11 @@ struct DbPluginOption
      * @brief Expected data type for the option.
      */
     Type type;
+
+    /**
+     * @brief Handler for custom path browser implemented by the plugin.
+     */
+    CustomBrowseHandler customBrowseHandler;
 };
 
 #endif // DBPLUGINOPTION_H
