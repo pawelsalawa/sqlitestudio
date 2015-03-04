@@ -8,6 +8,7 @@ FormatReindex::FormatReindex(SqliteReindex* reindex) :
 
 void FormatReindex::formatInternal()
 {
+    handleExplainQuery(reindex);
     withKeyword("REINDEX");
     if (!reindex->database.isNull())
         withId(reindex->database).withIdDot();

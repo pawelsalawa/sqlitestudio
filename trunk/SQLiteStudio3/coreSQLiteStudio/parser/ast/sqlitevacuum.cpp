@@ -51,6 +51,7 @@ QList<SqliteStatement::FullObject> SqliteVacuum::getFullObjectsInStatement()
 TokenList SqliteVacuum::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
     builder.withKeyword("VACUUM").withOperator(";");
     return builder.build();
 }

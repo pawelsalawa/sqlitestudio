@@ -2,6 +2,6 @@
     "type":         "ScriptingPlugin",
     "title":        "Tcl scripting",
     "description":  "Provides Tcl scripting language support for SQLiteStudio.",
-    "version":      10001,
+    "version":      10002,
     "author":       "SalSoft"
 }

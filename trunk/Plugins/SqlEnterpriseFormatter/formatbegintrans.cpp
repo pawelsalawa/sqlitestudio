@@ -8,6 +8,7 @@ FormatBeginTrans::FormatBeginTrans(SqliteBeginTrans* bt) :
 
 void FormatBeginTrans::formatInternal()
 {
+    handleExplainQuery(bt);
     withKeyword("BEGIN");
 
     if (bt->type != SqliteBeginTrans::Type::null)

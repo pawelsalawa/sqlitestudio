@@ -208,7 +208,7 @@ QList<SqliteStatement::FullObject> SqliteCreateTable::getFullObjectsInStatement(
 TokenList SqliteCreateTable::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
-
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
     builder.withKeyword("CREATE");
     if (tempKw)
         builder.withSpace().withKeyword("TEMP");
@@ -706,7 +706,6 @@ TokenList SqliteCreateTable::Column::rebuildTokensFromContents()
 TokenList SqliteCreateTable::Column::Constraint::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
-
     if (!name.isNull())
         builder.withKeyword("CONSTRAINT").withSpace().withOther(name, dialect).withSpace();
 

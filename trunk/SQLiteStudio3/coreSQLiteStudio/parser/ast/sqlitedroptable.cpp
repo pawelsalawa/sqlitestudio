@@ -71,7 +71,7 @@ QList<SqliteStatement::FullObject> SqliteDropTable::getFullObjectsInStatement()
 TokenList SqliteDropTable::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
-
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
     builder.withKeyword("DROP").withSpace().withKeyword("TABLE").withSpace();
 
     if (ifExistsKw)

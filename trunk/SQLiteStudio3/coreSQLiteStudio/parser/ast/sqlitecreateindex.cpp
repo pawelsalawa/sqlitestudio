@@ -149,6 +149,7 @@ QList<SqliteStatement::FullObject> SqliteCreateIndex::getFullObjectsInStatement(
 TokenList SqliteCreateIndex::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
     builder.withKeyword("CREATE").withSpace();
     if (uniqueKw)
         builder.withKeyword("UNIQUE").withSpace();

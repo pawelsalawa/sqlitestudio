@@ -8,6 +8,7 @@ FormatCopy::FormatCopy(SqliteCopy* copy) :
 
 void FormatCopy::formatInternal()
 {
+    handleExplainQuery(copy);
     withKeyword("COPY");
     if (copy->onConflict != SqliteConflictAlgo::null)
         withKeyword("OR").withKeyword(sqliteConflictAlgo(copy->onConflict));

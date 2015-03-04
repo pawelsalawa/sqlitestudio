@@ -113,7 +113,7 @@ void SqliteDelete::init(const QString &name1, const QString &name2, SqliteExpr *
 TokenList SqliteDelete::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
-
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
     if (with)
         builder.withStatement(with);
 

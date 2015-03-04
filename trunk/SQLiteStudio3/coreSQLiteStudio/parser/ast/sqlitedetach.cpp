@@ -36,7 +36,7 @@ SqliteStatement*SqliteDetach::clone()
 TokenList SqliteDetach::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
-
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
     builder.withKeyword("DETACH").withSpace();
 
     if (databaseKw)

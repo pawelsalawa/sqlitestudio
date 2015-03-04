@@ -29,7 +29,7 @@ SqliteStatement* SqliteCommitTrans::clone()
 TokenList SqliteCommitTrans::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
-
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
     if (endKw)
         builder.withKeyword("END");
     else

@@ -167,7 +167,7 @@ void SqliteInsert::initMode(bool replace, SqliteConflictAlgo onConflict)
 TokenList SqliteInsert::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
-
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
     if (with)
         builder.withStatement(with);
 

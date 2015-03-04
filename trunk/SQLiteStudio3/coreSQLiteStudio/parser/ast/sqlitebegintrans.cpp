@@ -52,7 +52,7 @@ QString SqliteBeginTrans::typeToString(SqliteBeginTrans::Type type)
 TokenList SqliteBeginTrans::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
-
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
     builder.withKeyword("BEGIN");
 
     if (type != Type::null)

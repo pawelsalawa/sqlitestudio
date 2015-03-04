@@ -102,7 +102,7 @@ void SqliteAlterTable::initName(const QString &name1, const QString &name2)
 TokenList SqliteAlterTable::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
-
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
     builder.withKeyword("ALTER").withSpace().withKeyword("TABLE").withSpace();
 
     if (!database.isNull())

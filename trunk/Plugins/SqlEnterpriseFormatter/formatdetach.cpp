@@ -9,6 +9,7 @@ FormatDetach::FormatDetach(SqliteDetach* detach) :
 
 void FormatDetach::formatInternal()
 {
+    handleExplainQuery(detach);
     withKeyword("DETACH");
 
     if (detach->databaseKw)

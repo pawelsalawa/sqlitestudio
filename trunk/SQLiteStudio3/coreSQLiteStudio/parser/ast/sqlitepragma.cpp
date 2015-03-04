@@ -90,7 +90,7 @@ void SqlitePragma::initName(const QString &name1, const QString &name2)
 TokenList SqlitePragma::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
-
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
     builder.withKeyword("PRAGMA").withSpace();
 
     if (!database.isNull())

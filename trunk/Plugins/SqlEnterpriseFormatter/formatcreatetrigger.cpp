@@ -8,6 +8,7 @@ FormatCreateTrigger::FormatCreateTrigger(SqliteCreateTrigger* createTrig) :
 
 void FormatCreateTrigger::formatInternal()
 {
+    handleExplainQuery(createTrig);
     withKeyword("CREATE");
     if (createTrig->tempKw)
         withKeyword("TEMP");

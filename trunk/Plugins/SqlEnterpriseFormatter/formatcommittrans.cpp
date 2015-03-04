@@ -8,6 +8,7 @@ FormatCommitTrans::FormatCommitTrans(SqliteCommitTrans* ct) :
 
 void FormatCommitTrans::formatInternal()
 {
+    handleExplainQuery(ct);
     if (ct->endKw)
         withKeyword("END");
     else

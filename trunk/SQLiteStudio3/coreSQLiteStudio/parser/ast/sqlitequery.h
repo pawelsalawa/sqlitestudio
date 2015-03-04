@@ -20,6 +20,9 @@ class API_EXPORT SqliteQuery : public SqliteStatement
 
         bool explain = false;
         bool queryPlan = false;
+
+    protected:
+        TokenList rebuildTokensFromContents();
 };
 
 /**

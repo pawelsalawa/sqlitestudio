@@ -2,6 +2,6 @@
     "type":         "ExportPlugin",
     "title":        "JSON export",
     "description":  "Provides JSON format for exporting.",
-    "version":      10000,
+    "version":      10001,
     "author":       "SalSoft"
 }

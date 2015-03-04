@@ -91,7 +91,7 @@ void SqliteCreateVirtualTable::initName(const QString &name1, const QString &nam
 TokenList SqliteCreateVirtualTable::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
-
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
     builder.withKeyword("CREATE").withSpace().withKeyword("VIRTUAL").withSpace().withKeyword("TABLE");
     if (ifNotExistsKw)
         builder.withKeyword("IF").withSpace().withKeyword("NOT").withSpace().withKeyword("EXISTS").withSpace();

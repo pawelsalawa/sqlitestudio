@@ -8,6 +8,7 @@ FormatRelease::FormatRelease(SqliteRelease* release) :
 
 void FormatRelease::formatInternal()
 {
+    handleExplainQuery(release);
     withKeyword("RELEASE");
     if (release->savepointKw)
         withKeyword("SAVEPOINT");

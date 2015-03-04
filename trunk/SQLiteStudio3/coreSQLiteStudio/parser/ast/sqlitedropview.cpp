@@ -70,7 +70,7 @@ QList<SqliteStatement::FullObject> SqliteDropView::getFullObjectsInStatement()
 TokenList SqliteDropView::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
-
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
     builder.withKeyword("DROP").withSpace().withKeyword("VIEW").withSpace();
 
     if (ifExistsKw)

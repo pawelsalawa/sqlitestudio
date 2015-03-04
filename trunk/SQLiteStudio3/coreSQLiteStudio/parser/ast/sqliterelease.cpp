@@ -28,7 +28,7 @@ SqliteStatement*SqliteRelease::clone()
 TokenList SqliteRelease::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
-
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
     builder.withKeyword("RELEASE").withSpace();
     if (savepointKw)
         builder.withKeyword("SAVEPOINT").withSpace();

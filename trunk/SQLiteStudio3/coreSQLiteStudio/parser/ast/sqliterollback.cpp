@@ -38,7 +38,7 @@ SqliteStatement*SqliteRollback::clone()
 TokenList SqliteRollback::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
-
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
     builder.withKeyword("ROLLBACK").withSpace();
     if (transactionKw)
         builder.withKeyword("TRANSACTION").withSpace();

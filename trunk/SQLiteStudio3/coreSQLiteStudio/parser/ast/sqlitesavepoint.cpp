@@ -27,6 +27,7 @@ SqliteStatement*SqliteSavepoint::clone()
 TokenList SqliteSavepoint::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
     builder.withKeyword("SAVEPOINT").withSpace().withOther(name, dialect).withOperator(";");
     return builder.build();
 }

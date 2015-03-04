@@ -453,6 +453,16 @@ FormatStatement&FormatStatement::withSeparator(FormatStatement::ListSeparator se
     return *this;
 }
 
+void FormatStatement::handleExplainQuery(SqliteQuery* query)
+{
+    if (query->explain)
+    {
+        withKeyword("EXPLAIN");
+        if (query->queryPlan)
+            withKeyword("QUERY").withKeyword("PLAN");
+    }
+}
+
 FormatStatement& FormatStatement::withIdList(const QStringList& names, const QString& indentName, ListSeparator sep)
 {
     if (!indentName.isNull())

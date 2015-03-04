@@ -1,4 +1,5 @@
 #include "formatvacuum.h"
+#include "parser/ast/sqlitevacuum.h"
 
 FormatVacuum::FormatVacuum(SqliteVacuum* vacuum) :
     vacuum(vacuum)
@@ -7,5 +8,6 @@ FormatVacuum::FormatVacuum(SqliteVacuum* vacuum) :
 
 void FormatVacuum::formatInternal()
 {
+    handleExplainQuery(vacuum);
     withKeyword("VACUUM").withSemicolon();
 }

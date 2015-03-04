@@ -98,7 +98,7 @@ QList<SqliteStatement::FullObject> SqliteCreateView::getFullObjectsInStatement()
 TokenList SqliteCreateView::rebuildTokensFromContents()
 {
     StatementTokenBuilder builder;
-
+    builder.withTokens(SqliteQuery::rebuildTokensFromContents());
     builder.withKeyword("CREATE").withSpace();
     if (tempKw)
         builder.withKeyword("TEMP").withSpace();

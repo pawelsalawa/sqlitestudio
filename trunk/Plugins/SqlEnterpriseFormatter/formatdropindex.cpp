@@ -8,6 +8,7 @@ FormatDropIndex::FormatDropIndex(SqliteDropIndex* dropIndex) :
 
 void FormatDropIndex::formatInternal()
 {
+    handleExplainQuery(dropIndex);
     withKeyword("DROP").withKeyword("INDEX");
 
     if (dropIndex->ifExistsKw)

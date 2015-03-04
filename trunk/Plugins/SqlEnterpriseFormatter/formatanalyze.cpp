@@ -8,6 +8,7 @@ FormatAnalyze::FormatAnalyze(SqliteAnalyze* analyze) :
 
 void FormatAnalyze::formatInternal()
 {
+    handleExplainQuery(analyze);
     withKeyword("ANALYZE");
 
     if (!analyze->database.isNull())

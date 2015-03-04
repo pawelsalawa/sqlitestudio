@@ -8,6 +8,7 @@ FormatDropTrigger::FormatDropTrigger(SqliteDropTrigger* dropTrig) :
 
 void FormatDropTrigger::formatInternal()
 {
+    handleExplainQuery(dropTrig);
     withKeyword("DROP").withKeyword("TRIGGER");
 
     if (dropTrig->ifExistsKw)
