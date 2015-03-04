@@ -1,3 +1,7 @@
+[3.0.4]
+        * [BUGFIX]: XmlExport plugin: Fixed crash that happend in most exports.
+        * [BUGFIX]: XmlExport plugin: Fixed column number attribute incrementing for data rows.
+
 [3.0.3]
         * [ADDED]: Added visual validation indicators to DbDialog, so user is informed why the "Ok" button is disabled at the moment.
         * [ADDED]: Russian translation.
