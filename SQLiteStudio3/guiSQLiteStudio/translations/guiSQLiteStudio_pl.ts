@@ -575,7 +575,7 @@
     <message>
         <location filename="../dialogs/columndialog.ui" line="264"/>
         <source>Advanced mode</source>
-        <translation>Tryb zaawandowany</translation>
+        <translation>Tryb zaawansowany</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="83"/>
