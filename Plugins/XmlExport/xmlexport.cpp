@@ -103,6 +103,8 @@ bool XmlExport::exportQueryResultsRow(SqlResultsRowPtr row)
             writeln(nullTpl.arg(i));
         else
             writeln(rowTpl.arg(i).arg(escape(value.toString())));
+
+        i++;
     }
 
     decrIndent();
@@ -408,7 +410,7 @@ void XmlExport::writeln(const QString& str)
         QStringList lines = str.split("\n");
         QMutableStringListIterator it(lines);
         while (it.hasNext())
-            it.value().prepend(indentStr);
+            it.next().prepend(indentStr);
 
         newStr = lines.join("\n") + newLineStr;
     }
