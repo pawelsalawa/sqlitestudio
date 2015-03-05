@@ -2,6 +2,7 @@
         * [BUGFIX]: #2795 XmlExport plugin: Fixed crash that happend in most exports.
         * [BUGFIX]: XmlExport plugin: Fixed column number attribute incrementing for data rows.
         * [BUGFIX]: #2793 SqlEnterpriseFormatter plugin: Fixed formatting queries starting with EXPLAIN and EXPLAIN QUERY PLAN.
+        * [BUGFIX]: #2786 Fixed double plugin names in config dialog for built-in plugins.
 
 [3.0.3]
         * [ADDED]: Added visual validation indicators to DbDialog, so user is informed why the "Ok" button is disabled at the moment.
