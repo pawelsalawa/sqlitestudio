@@ -297,6 +297,7 @@ void DbTreeModel::dbUpdated(const QString& oldName, Db* db)
 
     item->setText(db->getName());
     item->setDb(db->getName());
+    item->updateDbIcon();
 }
 
 void DbTreeModel::dbRemoved(Db* db)

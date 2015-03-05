@@ -94,7 +94,7 @@ class API_EXPORT DbManagerImpl : public DbManager
          */
         QList<Db*> getInvalidDatabases() const;
 
-        Db* tryToLoadDb(InvalidDb* invalidDb);
+        Db* tryToLoadDb(InvalidDb* invalidDb, bool emitNotifySignal = true);
 
         /**
          * @brief Creates database object.
