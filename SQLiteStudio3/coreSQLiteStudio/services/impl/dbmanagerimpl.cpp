@@ -107,9 +107,14 @@ bool DbManagerImpl::updateDb(Db* db, const QString &name, const QString &path, c
         result = CFG->removeDb(name);
 
     InvalidDb* invalidDb = dynamic_cast<InvalidDb*>(db);
+    bool wasReloaded = false;
     Db* reloadedDb = db;
     if (pathDifferent && invalidDb)
-        reloadedDb = tryToLoadDb(invalidDb);
+    {
+        reloadedDb = tryToLoadDb(invalidDb, false);
+        if (reloadedDb) // we need to know that, so we can emit dbLoaded() signal later, out of the listLock
+            wasReloaded = true;
+    }
 
     if (reloadedDb) // reloading was not necessary (was not invalid) or it was successful
         db = reloadedDb;
@@ -118,6 +123,10 @@ bool DbManagerImpl::updateDb(Db* db, const QString &name, const QString &path, c
     pathToDb[normalizedPath] = db;
 
     listLock.unlock();
+
+    // If we did reload the db, we need to emit proper signal, because it was suppressed in tryToLoadDb(), because of the listLock
+    if (wasReloaded)
+        emit dbLoaded(db);
 
     if (result && reloadedDb)
         emit dbUpdated(oldName, db);
@@ -355,7 +364,7 @@ QList<Db*> DbManagerImpl::getInvalidDatabases() const
     });
 }
 
-Db* DbManagerImpl::tryToLoadDb(InvalidDb* invalidDb)
+Db* DbManagerImpl::tryToLoadDb(InvalidDb* invalidDb, bool emitNotifySignal)
 {
     QUrl url = QUrl::fromUserInput(invalidDb->getPath());
     if (url.isLocalFile() && !QFile::exists(invalidDb->getPath()))
@@ -373,7 +382,9 @@ Db* DbManagerImpl::tryToLoadDb(InvalidDb* invalidDb)
     if (CFG->getDbGroup(db->getName())->open)
         db->open();
 
-    emit dbLoaded(db);
+    if (emitNotifySignal)
+        emit dbLoaded(db);
+
     return db;
 }
 
