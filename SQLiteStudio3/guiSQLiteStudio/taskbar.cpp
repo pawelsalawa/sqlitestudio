@@ -65,6 +65,22 @@ void TaskBar::mousePressed()
         dragStartTask->trigger();
 }
 
+void TaskBar::taskBarMenuAboutToShow()
+{
+    // This is a hack. We want to display "Ctrl+W" shortcut to the user in this menu, but assigning that shortcut
+    // permanently to the action makes it ambigous to Qt, because it's already a standard shortcut,
+    // thus making Qt confused and this shortcut working only every second time.
+    // Here we assign the shortcut only for the time of displaying the menu. Rest of the time it's not assigned.
+    QList<QKeySequence> bindings = QKeySequence::keyBindings(QKeySequence::Close);
+    if (bindings.size() > 0)
+        MAINWINDOW->getAction(MainWindow::Action::CLOSE_WINDOW)->setShortcut(bindings.first());
+}
+
+void TaskBar::taskBarMenuAboutToHide()
+{
+    MAINWINDOW->getAction(MainWindow::Action::CLOSE_WINDOW)->setShortcut(QKeySequence());
+}
+
 int TaskBar::getActiveTaskIdx()
 {
     QAction* checked = taskGroup.checkedAction();
@@ -95,6 +111,14 @@ void TaskBar::prevTask()
     tasks[idx]->trigger();
 }
 
+void TaskBar::setActiveTask(QAction* task)
+{
+    if (!task)
+        return;
+
+    task->trigger();
+}
+
 void TaskBar::initContextMenu(ExtActionContainer* mainWin)
 {
     // MainWindow is passed as argument to this function, so it's not referenced with MAINWINDOW macro,
@@ -107,6 +131,8 @@ void TaskBar::initContextMenu(ExtActionContainer* mainWin)
     taskMenu->addAction(mainWin->getAction(MainWindow::RESTORE_WINDOW));
     taskMenu->addAction(mainWin->getAction(MainWindow::RENAME_WINDOW));
 
+    connect(taskMenu, SIGNAL(aboutToShow()), this, SLOT(taskBarMenuAboutToShow()));
+    connect(taskMenu, SIGNAL(aboutToHide()), this, SLOT(taskBarMenuAboutToHide()));
     connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(taskBarMenuRequested(QPoint)));
 }
 
@@ -312,4 +338,45 @@ bool TaskBar::isEmpty()
 int TaskBar::count()
 {
     return tasks.count();
+}
+
+QAction* TaskBar::getActiveTask() const
+{
+    QAction* checked = taskGroup.checkedAction();
+    if (!checked)
+        return nullptr;
+
+    return checked;
+}
+
+QAction* TaskBar::getNextTask(QAction* from) const
+{
+    if (!from)
+        from = getActiveTask();
+
+    if (!from)
+        return nullptr;
+
+    int idx = tasks.indexOf(from);
+    idx++;
+    if (idx < tasks.size())
+        return tasks[idx];
+
+    return nullptr;
+}
+
+QAction* TaskBar::getPrevTask(QAction* from) const
+{
+    if (!from)
+        from = getActiveTask();
+
+    if (!from)
+        return nullptr;
+
+    int idx = tasks.indexOf(from);
+    idx--;
+    if (idx > 0)
+        return tasks[idx];
+
+    return nullptr;
 }

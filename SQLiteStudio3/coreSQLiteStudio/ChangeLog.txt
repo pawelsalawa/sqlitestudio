@@ -1,10 +1,13 @@
 [3.0.4]
+        * [CHANGE]: Enhanced Copy&Paste capabilities of data grid, so copying and pasting internally in SQLiteStudio will not be limited by TSV format (NULL values will be distinguished, tab characters will be allowed in values), only pasting from outside will be affected by TSV limitations.
         * [BUGFIX]: #2795 XmlExport plugin: Fixed crash that happend in most exports.
         * [BUGFIX]: XmlExport plugin: Fixed column number attribute incrementing for data rows.
         * [BUGFIX]: #2793 SqlEnterpriseFormatter plugin: Fixed formatting queries starting with EXPLAIN and EXPLAIN QUERY PLAN.
         * [BUGFIX]: #2786 Fixed double plugin names in config dialog for built-in plugins.
         * [BUGFIX]: Fixed dead-lock when fixing path for a database that pointed to inexisting file.
         * [BUGFIX]: Fixed data editing for SQL queries joining the same table several times.
+        * [BUGFIX]: Fixed "Ctrl+W"/"Cmd+W" shortcut to work every time, not only every second time.
+        * [BUGFIX]: Fixed order of window focusing when closing with "Ctrl+W"/"Cmd+W" shortcut.
 
 [3.0.3]
         * [ADDED]: Added visual validation indicators to DbDialog, so user is informed why the "Ok" button is disabled at the moment.

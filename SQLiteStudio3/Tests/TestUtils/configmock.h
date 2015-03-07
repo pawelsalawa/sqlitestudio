@@ -51,6 +51,7 @@ class ConfigMock : public Config
         QList<ReportHistoryEntryPtr> getReportHistory();
         void deleteReport(int);
         void clearReportHistory();
+        QString getSqlite3Version() const;
 
     public slots:
         void refreshSqlHistory();

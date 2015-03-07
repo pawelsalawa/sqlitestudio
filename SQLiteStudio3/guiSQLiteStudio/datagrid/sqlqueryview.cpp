@@ -21,6 +21,8 @@
 #include <QClipboard>
 #include <QAction>
 #include <QMenu>
+#include <QMimeData>
+#include <QCryptographicHash>
 
 CFG_KEYS_DEFINE(SqlQueryView)
 
@@ -245,6 +247,53 @@ bool SqlQueryView::editInEditorIfNecessary(SqlQueryItem* item)
     return true;
 }
 
+void SqlQueryView::paste(const QList<QList<QVariant> >& data)
+{
+    QList<SqlQueryItem*> selectedItems = getSelectedItems();
+    qSort(selectedItems);
+    SqlQueryItem* topLeft = selectedItems.first();
+
+    int columnCount = getModel()->columnCount();
+    int rowCount = getModel()->rowCount();
+    int rowIdx = topLeft->row();
+    int colIdx = topLeft->column();
+
+    SqlQueryItem* item = nullptr;
+
+    foreach (const QList<QVariant>& cells, data)
+    {
+        // Check if we're out of rows range
+        if (rowIdx >= rowCount)
+        {
+            // No more rows available.
+            qDebug() << "Tried to paste more rows than available in the grid.";
+            break;
+        }
+
+        foreach (const QVariant& cell, cells)
+        {
+            // Get current cell
+            if (colIdx >= columnCount)
+            {
+                // No more columns available.
+                qDebug() << "Tried to paste more columns than available in the grid.";
+                break;
+            }
+            item = getModel()->itemFromIndex(rowIdx, colIdx);
+
+            // Set value to the cell
+            item->setValue(cell, false, false);
+
+            // Go to next cell
+            colIdx++;
+        }
+
+        // Go to next row, first cell
+        rowIdx++;
+        colIdx = topLeft->column();
+    }
+}
+
 void SqlQueryView::updateCommitRollbackActions(bool enabled)
 {
     actionMap[COMMIT]->setEnabled(enabled);
@@ -324,69 +373,80 @@ void SqlQueryView::copy()
     QList<SqlQueryItem*> selectedItems = getSelectedItems();
     QList<QList<SqlQueryItem*> > groupedItems = SqlQueryModel::groupItemsByRows(selectedItems);
 
+    QVariant itemValue;
     QStringList cells;
     QList<QStringList> rows;
+
+    QPair<QString,QList<QList<QVariant>>> theDataPair;
+    QList<QList<QVariant>> theData;
+    QList<QVariant> theDataRow;
 
     foreach (const QList<SqlQueryItem*>& itemsInRows, groupedItems)
     {
         foreach (SqlQueryItem* item, itemsInRows)
-            cells << item->getFullValue().toString();
+        {
+            itemValue = item->getFullValue();
+            cells << itemValue.toString();
+            theDataRow << itemValue;
+        }
 
         rows << cells;
         cells.clear();
+
+        theData << theDataRow;
+        theDataRow.clear();
     }
 
+    QMimeData* mimeData = new QMimeData();
     QString tsv = TsvSerializer::serialize(rows);
-    qApp->clipboard()->setText(tsv);
+    mimeData->setText(tsv);
+
+    QString md5 = QCryptographicHash::hash(tsv.toUtf8(), QCryptographicHash::Md5);
+    theDataPair.first = md5;
+    theDataPair.second = theData;
+
+    QByteArray serializedData;
+    QDataStream stream(&serializedData, QIODevice::WriteOnly);
+    stream << theDataPair;
+    mimeData->setData(mimeDataId, serializedData);
+
+    qApp->clipboard()->setMimeData(mimeData);
 }
 
 void SqlQueryView::paste()
 {
-    QList<QStringList> deserializedRows = TsvSerializer::deserialize(qApp->clipboard()->text());
-
-    QList<SqlQueryItem*> selectedItems = getSelectedItems();
-    qSort(selectedItems);
-    SqlQueryItem* topLeft = selectedItems.first();
-
-    int columnCount = getModel()->columnCount();
-    int rowCount = getModel()->rowCount();
-    int rowIdx = topLeft->row();
-    int colIdx = topLeft->column();
-
-    SqlQueryItem* item = nullptr;
-
-    foreach (const QStringList& cells, deserializedRows)
+    const QMimeData* mimeData = qApp->clipboard()->mimeData();
+    if (mimeData->hasFormat(mimeDataId))
     {
-        // Check if we're out of rows range
-        if (rowIdx >= rowCount)
+        QString tsv = mimeData->text();
+        QString md5 = QCryptographicHash::hash(tsv.toUtf8(), QCryptographicHash::Md5);
+
+        QPair<QString,QList<QList<QVariant>>> theDataPair;
+        QByteArray serializedData = mimeData->data(mimeDataId);
+        QDataStream stream(&serializedData, QIODevice::ReadOnly);
+        stream >> theDataPair;
+
+        if (md5 == theDataPair.first)
         {
-            // No more rows available.
-            qDebug() << "Tried to paste more rows than available in the grid.";
-            break;
+            paste(theDataPair.second);
+            return;
         }
-
-        foreach (const QString& cell, cells)
-        {
-            // Get current cell
-            if (colIdx >= columnCount)
-            {
-                // No more columns available.
-                qDebug() << "Tried to paste more columns than available in the grid.";
-                break;
-            }
-            item = getModel()->itemFromIndex(rowIdx, colIdx);
-
-            // Set value to the cell
-            item->setValue(cell, false, false);
-
-            // Go to next cell
-            colIdx++;
-        }
-
-        // Go to next row, first cell
-        rowIdx++;
-        colIdx = topLeft->column();
     }
+
+    QList<QStringList> deserializedRows = TsvSerializer::deserialize(mimeData->text());
+
+    QList<QVariant> dataRow;
+    QList<QList<QVariant>> dataToPaste;
+    for (const QStringList& cells : deserializedRows)
+    {
+        for (const QString& cell : cells)
+            dataRow << cell;
+
+        dataToPaste << dataRow;
+        dataRow.clear();
+    }
+
+    paste(dataToPaste);
 }
 
 void SqlQueryView::copyAs()

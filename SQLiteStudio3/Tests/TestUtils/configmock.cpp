@@ -204,3 +204,8 @@ void ConfigMock::refreshSqlHistory()
 void ConfigMock::refreshDdlHistory()
 {
 }
+
+QString ConfigMock::getSqlite3Version() const
+{
+    return "3.8.8";
+}
