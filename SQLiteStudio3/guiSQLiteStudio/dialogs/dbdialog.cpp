@@ -425,7 +425,7 @@ void DbDialog::updateType()
     if (validPlugin)
         ui->typeCombo->setCurrentText(validPlugin->getLabel());
 
-    ui->typeCombo->setEnabled(!validPlugin);
+    ui->typeCombo->setEnabled(!validPlugin || !db);
 }
 
 QHash<QString, QVariant> DbDialog::collectOptions()
