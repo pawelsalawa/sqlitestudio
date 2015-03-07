@@ -478,7 +478,7 @@ void ExportWorker::queryTableDataToExport(Db* db, const QString& table, SqlQuery
     {
         QString wrappedTable = wrapObjIfNeeded(table, db->getDialect());
         dataPtr = db->exec(sql.arg(wrappedTable));
-        if (dataPtr->isError())
+        if (dataPtr->isError() && !errorMessage->isNull())
             *errorMessage = tr("Error while reading data to export from table %1: %2").arg(table, dataPtr->getErrorText());
 
         if (plugin->getProviderFlags().testFlag(ExportManager::ROW_COUNT))
@@ -486,8 +486,8 @@ void ExportWorker::queryTableDataToExport(Db* db, const QString& table, SqlQuery
             SqlQueryPtr countQuery = db->exec(countSql.arg(wrappedTable));
             if (countQuery->isError())
             {
-                if (errorMessage->isNull())
-                    *errorMessage = tr("Error while counting data to export from table %1: %2").arg(table, dataPtr->getErrorText());
+                if (!errorMessage->isNull())
+                    *errorMessage = tr("Error while counting data to export from table %1: %2").arg(table, countQuery->getErrorText());
             }
             else
                 providerData[ExportManager::ROW_COUNT] = countQuery->getSingleCell().toInt();
@@ -502,8 +502,8 @@ void ExportWorker::queryTableDataToExport(Db* db, const QString& table, SqlQuery
             SqlQueryPtr colLengthQuery = db->exec(colLengthSql.arg(wrappedCols.join(", "), wrappedTable));
             if (colLengthQuery->isError())
             {
-                if (errorMessage->isNull())
-                    *errorMessage = tr("Error while counting data column width to export from table %1: %2").arg(table, dataPtr->getErrorText());
+                if (!errorMessage->isNull())
+                    *errorMessage = tr("Error while counting data column width to export from table %1: %2").arg(table, colLengthQuery->getErrorText());
             }
             else
             {

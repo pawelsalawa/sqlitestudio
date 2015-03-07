@@ -9,6 +9,7 @@
         * [BUGFIX]: Fixed "Ctrl+W"/"Cmd+W" shortcut to work every time, not only every second time.
         * [BUGFIX]: Fixed order of window focusing when closing with "Ctrl+W"/"Cmd+W" shortcut.
         * [BUGFIX]: #2797 Database type is no longer disabled when adding existing database file.
+        * [BUGFIX]: SqlExport appends Foreign Key (re)enabling pragma at the end.
 
 [3.0.3]
         * [ADDED]: Added visual validation indicators to DbDialog, so user is informed why the "Ok" button is disabled at the moment.
