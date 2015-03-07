@@ -13,6 +13,7 @@
         * [BUGFIX]: #2797 Database type is no longer disabled when adding existing database file.
         * [BUGFIX]: SqlExport appends Foreign Key (re)enabling pragma at the end.
         * [BUGFIX]: "Maximized" MDI window state is no longer lost after closing last MDI window.
+        * [BUGFIX]: TableModifier is now much smarter about when to recreate triggers and how to do it.
 
 [3.0.3]
         * [ADDED]: Added visual validation indicators to DbDialog, so user is informed why the "Ok" button is disabled at the moment.
