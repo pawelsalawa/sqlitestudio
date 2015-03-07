@@ -7,6 +7,7 @@ SqlQueryModelColumn::SqlQueryModelColumn(const QueryExecutor::ResultColumnPtr& r
     displayName = resultColumn->displayName;
     column = resultColumn->column;
     table = resultColumn->table;
+    tableAlias = resultColumn->tableAlias;
     database = resultColumn->database.isEmpty() ? "main": resultColumn->database;
     foreach (QueryExecutor::ColumnEditionForbiddenReason reason, resultColumn->editionForbiddenReasons)
         editionForbiddenReason << SqlQueryModelColumn::convert(reason);

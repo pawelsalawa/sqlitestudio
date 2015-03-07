@@ -120,7 +120,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         void setView(SqlQueryView* value);
 
         static QList<QList<SqlQueryItem*>> groupItemsByRows(const QList<SqlQueryItem*>& items);
-        static QHash<Table, QList<SqlQueryItem*> > groupItemsByTable(const QList<SqlQueryItem*>& items);
+        static QHash<AliasedTable, QList<SqlQueryItem*> > groupItemsByTable(const QList<SqlQueryItem*>& items);
 
     protected:
         class CommitUpdateQueryBuilder : public RowIdConditionBuilder
@@ -204,7 +204,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         QList<SqlQueryModelColumnPtr> getTableColumnModels(const QString& table);
         void updateItem(SqlQueryItem* item, const QVariant& value, int columnIndex, const RowId& rowId);
         RowId getNewRowId(const RowId& currentRowId, const QList<SqlQueryItem*> items);
-        void updateRowIdForAllItems(const Table& table, const RowId& rowId, const RowId& newRowId);
+        void updateRowIdForAllItems(const AliasedTable& table, const RowId& rowId, const RowId& newRowId);
 
         QueryExecutor* queryExecutor = nullptr;
         Db* db = nullptr;
@@ -241,8 +241,8 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         void updateColumnHeaderLabels();
         void executeQueryInternal();
         void internalExecutionStopped();
-        QHash<Table,TableDetails> readTableDetails();
-        QList<Table> getTablesForColumns();
+        QHash<AliasedTable,TableDetails> readTableDetails();
+        QList<AliasedTable> getTablesForColumns();
         QList<bool> getColumnEditionEnabledList();
         QList<SqlQueryItem*> toItemList(const QModelIndexList& indexes) const;
         bool commitRow(const QList<SqlQueryItem*>& itemsInRow);
@@ -323,7 +323,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         QueryExecutor::SortList sortOrder;
 
         QHash<Column,SqlQueryModelColumnPtr> columnMap;
-        QHash<Table,QHash<QString,QString>> tableToRowIdColumn;
+        QHash<AliasedTable,QHash<QString,QString>> tableToRowIdColumn;
         QStringList headerColumns;
         int rowNumBase = 0;
         SqlQueryView* view = nullptr;
@@ -342,7 +342,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
          * @brief tablesForColumns
          * List of tables associated to \link #columns by order index.
          */
-        QList<Table> tablesForColumns;
+        QList<AliasedTable> tablesForColumns;
 
         /**
          * @brief columnEditionStatus
