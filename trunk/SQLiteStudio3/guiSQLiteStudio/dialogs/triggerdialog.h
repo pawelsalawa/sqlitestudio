@@ -22,6 +22,8 @@ class GUI_API_EXPORT TriggerDialog : public QDialog
         void setParentView(const QString& name);
         void setTrigger(const QString& name);
 
+        static void staticInit();
+
     protected:
         void changeEvent(QEvent *e);
 
@@ -34,6 +36,9 @@ class GUI_API_EXPORT TriggerDialog : public QDialog
         void readColumns();
         QString getTargetObjectName() const;
         void rebuildTrigger();
+
+        static QStringList tableEventNames;
+        static QStringList viewEventNames;
 
         QString originalTriggerName;
         QString trigger;

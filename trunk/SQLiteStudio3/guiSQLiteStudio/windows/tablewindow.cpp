@@ -1406,6 +1406,7 @@ void TableWindow::updateIndexes()
     }
 
     ui->indexList->resizeColumnsToContents();
+    ui->indexList->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Stretch);
     updateIndexesState();
 }
 
@@ -1453,6 +1454,7 @@ void TableWindow::updateTriggers()
     }
 
     ui->triggerList->resizeColumnsToContents();
+    ui->triggerList->horizontalHeader()->setSectionResizeMode(3, QHeaderView::Stretch);
     updateTriggersState();
 }
 

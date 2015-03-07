@@ -19,6 +19,9 @@
 #include <QMessageBox>
 #include <QPushButton>
 
+QStringList TriggerDialog::tableEventNames;
+QStringList TriggerDialog::viewEventNames;
+
 TriggerDialog::TriggerDialog(Db* db, QWidget *parent) :
     QDialog(parent),
     db(db),
@@ -52,6 +55,18 @@ void TriggerDialog::setTrigger(const QString& name)
     originalTriggerName = name;
     existingTrigger = true;
     initTrigger();
+}
+
+void TriggerDialog::staticInit()
+{
+    tableEventNames = QStringList({
+                                      SqliteCreateTrigger::time(SqliteCreateTrigger::Time::null),
+                                      SqliteCreateTrigger::time(SqliteCreateTrigger::Time::AFTER),
+                                      SqliteCreateTrigger::time(SqliteCreateTrigger::Time::BEFORE)
+                                  });
+    viewEventNames = QStringList({
+                                     SqliteCreateTrigger::time(SqliteCreateTrigger::Time::INSTEAD_OF)
+                                  });
 }
 
 void TriggerDialog::changeEvent(QEvent *e)
@@ -99,6 +114,9 @@ void TriggerDialog::init()
                                  });
     }
 
+    // Event combo - default values
+    ui->whenCombo->addItems(tableEventNames + viewEventNames);
+
     // Precondition
     connect(ui->preconditionCheck, SIGNAL(clicked()), this, SLOT(updateState()));
     connect(ui->preconditionEdit, SIGNAL(errorsChecked(bool)), this, SLOT(updateValidation()));
@@ -128,22 +146,19 @@ void TriggerDialog::initTrigger()
     }
 
     // Event combo
+    QString eventValue = ui->whenCombo->currentText();
+    ui->whenCombo->clear();
     if (forTable)
     {
-        ui->whenCombo->addItems({
-                                    SqliteCreateTrigger::time(SqliteCreateTrigger::Time::null),
-                                    SqliteCreateTrigger::time(SqliteCreateTrigger::Time::BEFORE),
-                                    SqliteCreateTrigger::time(SqliteCreateTrigger::Time::AFTER)
-                                });
+        ui->whenCombo->addItems(tableEventNames);
     }
     else
     {
-        ui->whenCombo->addItems({
-                                    SqliteCreateTrigger::time(SqliteCreateTrigger::Time::INSTEAD_OF)
-                                });
+        ui->whenCombo->addItems(viewEventNames);
         ui->whenCombo->setEnabled(false);
         ui->onLabel->setText(tr("On view:"));
     }
+    ui->whenCombo->setCurrentText(eventValue);
 
     if (!view.isNull() || !table.isNull())
     {
