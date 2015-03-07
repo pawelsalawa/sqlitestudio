@@ -10,6 +10,7 @@
 #include "parser/ast/sqliteupdate.h"
 #include "parser/ast/sqliteinsert.h"
 #include "parser/ast/sqlitedelete.h"
+#include "common/unused.h"
 #include <QDebug>
 
 // TODO no attach/temp db name support in this entire class
@@ -458,7 +459,7 @@ void TableModifier::handleTriggerQueries(SqliteCreateTriggerPtr trigger)
     foreach (SqliteQuery* query, trigger->queries)
     {
         // The handleTriggerQuery() may delete the input query object. Don't refer to it later.
-        newQuery = handleTriggerQuery(query, trigger->trigger);
+        newQuery = handleTriggerQuery(query, trigger->trigger, trigger->table);
         if (newQuery)
             newQueries << newQuery;
         else
@@ -497,28 +498,28 @@ void TableModifier::handleView(SqliteCreateViewPtr view)
     modifiedViews << view->view;
 }
 
-SqliteQuery* TableModifier::handleTriggerQuery(SqliteQuery* query, const QString& trigName)
+SqliteQuery* TableModifier::handleTriggerQuery(SqliteQuery* query, const QString& trigName, const QString& trigTable)
 {
     SqliteSelect* select = dynamic_cast<SqliteSelect*>(query);
     if (select)
-        return handleSelect(select);
+        return handleSelect(select, trigTable);
 
     SqliteUpdate* update = dynamic_cast<SqliteUpdate*>(query);
     if (update)
-        return handleTriggerUpdate(update, trigName);
+        return handleTriggerUpdate(update, trigName, trigTable);
 
     SqliteInsert* insert = dynamic_cast<SqliteInsert*>(query);
     if (insert)
-        return handleTriggerInsert(insert, trigName);
+        return handleTriggerInsert(insert, trigName, trigTable);
 
     SqliteDelete* del = dynamic_cast<SqliteDelete*>(query);
     if (del)
-        return handleTriggerDelete(del, trigName);
+        return handleTriggerDelete(del, trigName, trigTable);
 
     return nullptr;
 }
 
-SqliteSelect* TableModifier::handleSelect(SqliteSelect* select)
+SqliteSelect* TableModifier::handleSelect(SqliteSelect* select, const QString& trigTable)
 {
     // Table name
     TokenList tableTokens = select->getContextTableTokens(false);
@@ -561,76 +562,92 @@ SqliteSelect* TableModifier::handleSelect(SqliteSelect* select)
         return nullptr;
     }
 
+    if (!trigTable.isNull() && !handleAllExprWithTrigTable(selectPtr.data(), trigTable))
+        return nullptr;
+
     return new SqliteSelect(*selectPtr.data());
 }
 
-SqliteUpdate* TableModifier::handleTriggerUpdate(SqliteUpdate* update, const QString& trigName)
+SqliteUpdate* TableModifier::handleTriggerUpdate(SqliteUpdate* update, const QString& trigName, const QString& trigTable)
 {
-    // Table name
     if (update->table.compare(originalTable, Qt::CaseInsensitive) == 0)
+    {
+        // Table name
         update->table = newName;
 
-    // Column names
-    handleUpdateColumns(update);
+        // Column names
+        handleUpdateColumns(update);
+    }
 
     // Any embedded selects
-    bool embedSelectsOk = handleSubSelects(update);
-    if (!embedSelectsOk)
+    bool embedSelectsOk = handleSubSelects(update, trigTable);
+    bool embedExprOk = handleAllExprWithTrigTable(update, trigTable);
+    if (!embedSelectsOk || !embedExprOk)
     {
         warnings << QObject::tr("There is a problem with updating an %1 statement within %2 trigger. "
-                                "One of the SELECT substatements which might be referring to table %3 cannot be properly modified. "
-                                "Manual update of the trigger may be necessary.").arg("UPDATE").arg(trigName).arg(originalTable);
+                                "One of the %1 substatements which might be referring to table %3 cannot be properly modified. "
+                                "Manual update of the trigger may be necessary.").arg("UPDATE", trigName, originalTable);
     }
 
     return update;
 }
 
-SqliteInsert* TableModifier::handleTriggerInsert(SqliteInsert* insert, const QString& trigName)
+SqliteInsert* TableModifier::handleTriggerInsert(SqliteInsert* insert, const QString& trigName, const QString& trigTable)
 {
-    // Table name
     if (insert->table.compare(originalTable, Qt::CaseInsensitive) == 0)
+    {
+        // Table name
         insert->table = newName;
 
-    // Column names
-    handleColumnNames(insert->columnNames);
+        // Column names
+        handleColumnNames(insert->columnNames);
+    }
 
     // Any embedded selects
-    bool embedSelectsOk = handleSubSelects(insert);
-    if (!embedSelectsOk)
+    bool embedSelectsOk = handleSubSelects(insert, trigTable);
+    bool embedExprOk = handleAllExprWithTrigTable(insert, trigTable);
+    if (!embedSelectsOk || !embedExprOk)
     {
         warnings << QObject::tr("There is a problem with updating an %1 statement within %2 trigger. "
-                                "One of the SELECT substatements which might be referring to table %3 cannot be properly modified. "
+                                "One of the %1 substatements which might be referring to table %3 cannot be properly modified. "
                                 "Manual update of the trigger may be necessary.").arg("INSERT", trigName, originalTable);
     }
 
     return insert;
 }
 
-SqliteDelete* TableModifier::handleTriggerDelete(SqliteDelete* del, const QString& trigName)
+SqliteDelete* TableModifier::handleTriggerDelete(SqliteDelete* del, const QString& trigName, const QString& trigTable)
 {
     // Table name
     if (del->table.compare(originalTable, Qt::CaseInsensitive) == 0)
         del->table = newName;
 
     // Any embedded selects
-    bool embedSelectsOk = handleSubSelects(del);
-    if (!embedSelectsOk)
+    bool embedSelectsOk = handleSubSelects(del, trigTable);
+    bool embedExprOk = handleAllExprWithTrigTable(del, trigTable);
+    if (!embedSelectsOk || !embedExprOk)
     {
         warnings << QObject::tr("There is a problem with updating an %1 statement within %2 trigger. "
-                                "One of the SELECT substatements which might be referring to table %3 cannot be properly modified. "
+                                "One of the %1 substatements which might be referring to table %3 cannot be properly modified. "
                                 "Manual update of the trigger may be necessary.").arg("DELETE", trigName, originalTable);
     }
 
     return del;
 }
 
-bool TableModifier::handleSubSelects(SqliteStatement* stmt)
+bool TableModifier::handleSubSelects(SqliteStatement* stmt, const QString& trigTable)
 {
     bool embedSelectsOk = true;
     QList<SqliteSelect*> selects = stmt->getAllTypedStatements<SqliteSelect>();
     SqliteExpr* expr = nullptr;
     foreach (SqliteSelect* select, selects)
     {
+        if (select->coreSelects.size() >= 1 && select->coreSelects.first()->valuesMode)
+        {
+            // INSERT with VALUES() as subselect
+            continue;
+        }
+
         expr = dynamic_cast<SqliteExpr*>(select->parentStatement());
         if (!expr)
         {
@@ -638,13 +655,13 @@ bool TableModifier::handleSubSelects(SqliteStatement* stmt)
             continue;
         }
 
-        if (!handleExprWithSelect(expr))
+        if (!handleExprWithSelect(expr, trigTable))
             embedSelectsOk = false;
     }
     return embedSelectsOk;
 }
 
-bool TableModifier::handleExprWithSelect(SqliteExpr* expr)
+bool TableModifier::handleExprWithSelect(SqliteExpr* expr, const QString& trigTable)
 {
     if (!expr->select)
     {
@@ -652,7 +669,7 @@ bool TableModifier::handleExprWithSelect(SqliteExpr* expr)
         return false;
     }
 
-    SqliteSelect* newSelect = handleSelect(expr->select);
+    SqliteSelect* newSelect = handleSelect(expr->select, trigTable);
     if (!newSelect)
     {
         qCritical() << "Could not generate new SELECT in TableModifier::handleExprWithSelect()";
@@ -662,6 +679,49 @@ bool TableModifier::handleExprWithSelect(SqliteExpr* expr)
     delete expr->select;
     expr->select = newSelect;
     expr->select->setParent(expr);
+    return true;
+}
+
+bool TableModifier::handleAllExprWithTrigTable(SqliteStatement* stmt, const QString& contextTable)
+{
+    if (contextTable != originalTable)
+        return true;
+
+    return handleExprListWithTrigTable(stmt->getAllTypedStatements<SqliteExpr>());
+}
+
+bool TableModifier::handleExprListWithTrigTable(const QList<SqliteExpr*>& exprList)
+{
+    for (SqliteExpr* expr : exprList)
+    {
+        if (!handleExprWithTrigTable(expr))
+            return false;
+    }
+    return true;
+}
+
+bool TableModifier::handleExprWithTrigTable(SqliteExpr* expr)
+{
+    if (expr->mode != SqliteExpr::Mode::ID)
+        return true;
+
+    if (!expr->database.isNull())
+        return true;
+
+    if (expr->table.compare("old", Qt::CaseInsensitive) != 0 && expr->table.compare("new", Qt::CaseInsensitive) != 0)
+        return true;
+
+    QStringList columns = QStringList({expr->column});
+    if (!handleColumnNames(columns))
+        return true;
+
+    if (columns.isEmpty())
+    {
+        qDebug() << "Column in the expression is no longer present in the table. Cannot update the expression automatically.";
+        return false;
+    }
+
+    expr->column = columns.first();
     return true;
 }
 

@@ -1,6 +1,8 @@
+- when modifying cell value, then marking for deletion and hitting rollback - modified values are restored
 - auto detecting sqlcipher db doesn't work in dbdialog
 
 * Next versions:
+- object names (columns, tables, etc) in dialogs should be validated against suffix/prefix whitespaces and if they appear, user should be asked for confirmation
 - small useful features: generating template queries from context menu for table/view, from data view.
 - commiting DataView should be async
 - syntax checkers as services - per language

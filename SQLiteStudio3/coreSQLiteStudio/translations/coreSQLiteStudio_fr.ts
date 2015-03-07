@@ -147,30 +147,30 @@
         <translation>Impossible d&apos;ajouter une base de données %1: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="125"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="134"/>
         <source>Database %1 could not be updated, because of an error: %2</source>
         <translation>La base de données %1 ne peut ëtre mise à jour à cause de l&apos;erreur: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="299"/>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="328"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="308"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="337"/>
         <source>Database file doesn&apos;t exist.</source>
         <translation>Le fichier de la base de données n&apos;existe pas.</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="301"/>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="330"/>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="483"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="310"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="339"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="494"/>
         <source>No supporting plugin loaded.</source>
         <translation>Aucun plugin supporté chargé.</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="402"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="413"/>
         <source>Database could not be initialized.</source>
         <translation>La base de données ne peut être initialisée.</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="412"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="423"/>
         <source>No suitable database driver plugin found.</source>
         <translation>Aucun pilote de base de données approprié trouvé.</translation>
     </message>
@@ -969,6 +969,13 @@ Détails erreur: %2</translation>
         <translation>Impossible de mettre à jour le déclencheur%1 selon la modification de la table %2.</translation>
     </message>
     <message>
+        <location filename="../tablemodifier.cpp" line="580"/>
+        <location filename="../tablemodifier.cpp" line="601"/>
+        <location filename="../tablemodifier.cpp" line="619"/>
+        <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../tablemodifier.cpp" line="433"/>
         <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
         <translation>Toutes les colonnes couvertes par le déclencheur %1 sont faites. Le déclencheur ne sera pas recréé après la modification de la table.</translation>
@@ -981,11 +988,8 @@ The view will remain as it is.</source>
 La vue restera telque.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="580"/>
-        <location filename="../tablemodifier.cpp" line="601"/>
-        <location filename="../tablemodifier.cpp" line="619"/>
         <source>There is a problem with updating an %1 statement within %2 trigger. One of the SELECT substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
-        <translation>Il y a un problème à la mise à jour l&apos;instruction %1 avec le déclencheur %2. Une partie de l&apos;instruction SELECT référençant la table %3 ne ppermet pas sa modification. La mise à jour manuelle du déclencheur est nécessaire.</translation>
+        <translation type="obsolete">Il y a un problème à la mise à jour l&apos;instruction %1 avec le déclencheur %2. Une partie de l&apos;instruction SELECT référençant la table %3 ne ppermet pas sa modification. La mise à jour manuelle du déclencheur est nécessaire.</translation>
     </message>
     <message>
         <location filename="../viewmodifier.cpp" line="25"/>

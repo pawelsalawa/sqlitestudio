@@ -81,7 +81,7 @@ CFG_CATEGORIES(Ui,
         CFG_ENTRY(QString,               FileDialogLastPath,      QString())
         CFG_ENTRY(int,                   MaxInitialColumnWith,    600)
         CFG_ENTRY(bool,                  LanguageAsked,           false)
-        CFG_ENTRY(bool,                  OpenMaximized,           false)
+        CFG_ENTRY(bool,                  OpenMaximized,           true)
     )
 )
 
