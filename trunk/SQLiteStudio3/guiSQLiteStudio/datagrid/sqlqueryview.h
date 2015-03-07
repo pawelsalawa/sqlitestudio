@@ -80,6 +80,9 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void setupActionsForMenu(SqlQueryItem* currentItem, const QList<SqlQueryItem*>& selectedItems);
         void setupHeaderMenu();
         bool editInEditorIfNecessary(SqlQueryItem* item);
+        void paste(const QList<QList<QVariant>>& data);
+
+        constexpr static const char* mimeDataId = "application/x-sqlitestudio-data-view-data";
 
         SqlQueryItemDelegate* itemDelegate = nullptr;
         QMenu* contextMenu = nullptr;

@@ -45,7 +45,39 @@ QList<QStringList> TsvSerializer::deserialize(const QString& data)
 {
     QList<QStringList> rows;
     QStringList cells;
+    QStringList tokens;
+    QStringList parts = data.split(columnSeparator);
+    for (const QString& part : parts)
+    {
+        if (!part.contains(rowSeparator))
+        {
+            cells << part;
+            continue;
+        }
 
+        tokens = tokenizeStrWithRowSeparator(part);
+        for (const QString& token : tokens)
+        {
+            if (token != rowSeparator)
+            {
+                cells << token;
+                continue;
+            }
+
+            rows << cells;
+            cells.clear();
+        }
+    }
+
+    if ((cells.size() > 0 && !cells.first().isEmpty()) || cells.size() > 1)
+        rows << cells;
+
+    return rows;
+}
+
+QStringList TsvSerializer::tokenizeStrWithRowSeparator(const QString& data)
+{
+    QStringList tokens;
     int pos = 0;
     int lgt = data.length();
     bool quotes = false;
@@ -59,32 +91,27 @@ QList<QStringList> TsvSerializer::deserialize(const QString& data)
         {
             if (field.isEmpty())
                 quotes = true;
-            else
-                field += c;
+
+            field += c;
         }
         else if (quotes && c == '"' )
         {
+            field += c;
             if (pos + 1 < data.length() && data[pos+1] == '"' )
             {
-               field += c;
-               pos++;
+                field += c;
+                pos++;
             }
             else
             {
-               quotes = false;
+                quotes = false;
             }
-        }
-        else if (!quotes && c == columnSeparator)
-        {
-            cells << field;
-            field.clear();
         }
         else if (!quotes && c == rowSeparator)
         {
-            cells << field;
-            rows << cells;
-            cells.clear();
+            tokens << flushToken(field);
             field.clear();
+            tokens << QString(c);
         }
         else
         {
@@ -94,10 +121,19 @@ QList<QStringList> TsvSerializer::deserialize(const QString& data)
     }
 
     if (field.size() > 0)
-        cells << field;
+        tokens << flushToken(field);
 
-    if (cells.size() > 0)
-        rows << cells;
+    return tokens;
+}
 
-    return rows;
+QString TsvSerializer::flushToken(const QString& token)
+{
+    if (!token.startsWith('"') || !token.contains(rowSeparator))
+        return token;
+
+    int decr = 1;
+    if (token.endsWith('"'))
+        decr++;
+
+    return token.mid(1, token.length() - decr).replace("\"\"", "\"");
 }

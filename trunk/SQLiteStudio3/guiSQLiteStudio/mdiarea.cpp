@@ -111,12 +111,19 @@ void MdiArea::windowDestroyed(MdiWindow* window)
         return;
 
     QAction* action = winToActionMap[window];
+    QAction* taskToSelect = taskBar->getNextTask(action);
+    if (!taskToSelect)
+        taskToSelect = taskBar->getPrevTask(action);
+
     winToActionMap.remove(window);
     actionToWinMap.remove(action);
     taskBar->removeTask(action);
     delete action;
 
     emit windowListChanged();
+
+    if (taskToSelect)
+        taskBar->setActiveTask(taskToSelect);
 }
 
 void MdiArea::windowActivated()

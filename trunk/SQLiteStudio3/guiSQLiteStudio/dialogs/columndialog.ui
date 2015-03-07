@@ -31,6 +31,9 @@
           <height>0</height>
          </size>
         </property>
+        <property name="toolTip">
+         <string>Scale</string>
+        </property>
        </widget>
       </item>
       <item row="1" column="3">
@@ -47,6 +50,9 @@
           <width>50</width>
           <height>0</height>
          </size>
+        </property>
+        <property name="toolTip">
+         <string>Precision</string>
         </property>
        </widget>
       </item>

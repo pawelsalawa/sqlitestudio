@@ -13,6 +13,8 @@ class API_EXPORT TsvSerializer
         static QList<QStringList> deserialize(const QString& data);
 
     private:
+        static QStringList tokenizeStrWithRowSeparator(const QString& data);
+        static QString flushToken(const QString& token);
         static QString rowSeparator;
         static QString columnSeparator;
 };

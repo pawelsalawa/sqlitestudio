@@ -571,10 +571,6 @@ FormManager* MainWindow::getFormManager() const
 void MainWindow::setupDefShortcuts()
 {
     BIND_SHORTCUTS(MainWindow, Action);
-
-    QList<QKeySequence> bindings = QKeySequence::keyBindings(QKeySequence::Close);
-    if (bindings.size() > 0)
-        actionMap[Action::CLOSE_WINDOW]->setShortcut(bindings.first());
 }
 
 void MainWindow::openSqlEditorSlot()

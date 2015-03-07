@@ -23,6 +23,9 @@ class GUI_API_EXPORT TaskBar : public QToolBar
         QList<QAction*> getTasks() const;
         bool isEmpty();
         int count();
+        QAction* getActiveTask() const;
+        QAction* getNextTask(QAction* from = nullptr) const;
+        QAction* getPrevTask(QAction* from = nullptr) const;
 
     protected:
         void mousePressEvent(QMouseEvent* event);
@@ -63,11 +66,14 @@ class GUI_API_EXPORT TaskBar : public QToolBar
     public slots:
         void nextTask();
         void prevTask();
+        void setActiveTask(QAction* task);
         void initContextMenu(ExtActionContainer *mainWin);
 
     private slots:
         void taskBarMenuRequested(const QPoint& p);
         void mousePressed();
+        void taskBarMenuAboutToShow();
+        void taskBarMenuAboutToHide();
 };
 
 #endif // TASKBAR_H
