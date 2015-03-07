@@ -138,7 +138,7 @@ void CompleterWindow::changeEvent(QEvent *e)
 
 void CompleterWindow::keyPressEvent(QKeyEvent* e)
 {
-    if (e->key() == Qt::Key_Return)
+    if (e->key() == Qt::Key_Return || e->key() == Qt::Key_Enter)
     {
         accept();
         return;
