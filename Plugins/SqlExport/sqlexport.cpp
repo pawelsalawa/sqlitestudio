@@ -145,6 +145,7 @@ bool SqlExport::exportTableRow(SqlResultsRowPtr data)
 bool SqlExport::afterExport()
 {
     writeCommit();
+    writeFkEnable();
     return true;
 }
 
@@ -235,6 +236,11 @@ void SqlExport::writeCommit()
 void SqlExport::writeFkDisable()
 {
     writeln("PRAGMA foreign_keys = off;");
+}
+
+void SqlExport::writeFkEnable()
+{
+    writeln("PRAGMA foreign_keys = on;");
 }
 
 QString SqlExport::formatQuery(const QString& sql)
