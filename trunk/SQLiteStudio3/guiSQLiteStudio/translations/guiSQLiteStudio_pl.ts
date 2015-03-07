@@ -507,73 +507,83 @@
         <translation>Nazwa i typ</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="56"/>
+        <location filename="../dialogs/columndialog.ui" line="35"/>
+        <source>Scale</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/columndialog.ui" line="55"/>
+        <source>Precision</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/columndialog.ui" line="62"/>
         <source>Data type:</source>
         <translation>Typ danych:</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="63"/>
+        <location filename="../dialogs/columndialog.ui" line="69"/>
         <source>Column name:</source>
         <translation>Nazwa kolumny:</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="73"/>
+        <location filename="../dialogs/columndialog.ui" line="79"/>
         <source>Size:</source>
         <translation>Rozmiar:</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="96"/>
+        <location filename="../dialogs/columndialog.ui" line="102"/>
         <source>Constraints</source>
         <translation>Ograniczenia</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="109"/>
+        <location filename="../dialogs/columndialog.ui" line="115"/>
         <source>Unique</source>
         <translation>Wartości unikalne</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="116"/>
-        <location filename="../dialogs/columndialog.ui" line="130"/>
-        <location filename="../dialogs/columndialog.ui" line="172"/>
-        <location filename="../dialogs/columndialog.ui" line="179"/>
-        <location filename="../dialogs/columndialog.ui" line="186"/>
-        <location filename="../dialogs/columndialog.ui" line="193"/>
-        <location filename="../dialogs/columndialog.ui" line="200"/>
+        <location filename="../dialogs/columndialog.ui" line="122"/>
+        <location filename="../dialogs/columndialog.ui" line="136"/>
+        <location filename="../dialogs/columndialog.ui" line="178"/>
+        <location filename="../dialogs/columndialog.ui" line="185"/>
+        <location filename="../dialogs/columndialog.ui" line="192"/>
+        <location filename="../dialogs/columndialog.ui" line="199"/>
+        <location filename="../dialogs/columndialog.ui" line="206"/>
         <source>Configure</source>
         <translation>Konfiguruj</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="123"/>
+        <location filename="../dialogs/columndialog.ui" line="129"/>
         <source>Foreign Key</source>
         <translation>Klucz obcy</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="137"/>
+        <location filename="../dialogs/columndialog.ui" line="143"/>
         <source>Collate</source>
         <translation>Zestawienie</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="144"/>
+        <location filename="../dialogs/columndialog.ui" line="150"/>
         <source>Not NULL</source>
         <translation>Niepuste</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="151"/>
+        <location filename="../dialogs/columndialog.ui" line="157"/>
         <source>Check condition</source>
         <translation>Sprawdzaj warunek</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="158"/>
+        <location filename="../dialogs/columndialog.ui" line="164"/>
         <source>Primary Key</source>
         <translation>Klucz główny</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="165"/>
+        <location filename="../dialogs/columndialog.ui" line="171"/>
         <source>Default</source>
         <translation>Wartość domyślna</translation>
     </message>
     <message>
-        <location filename="../dialogs/columndialog.ui" line="264"/>
+        <location filename="../dialogs/columndialog.ui" line="270"/>
         <source>Advanced mode</source>
         <translation>Tryb zaawansowany</translation>
     </message>
@@ -1875,42 +1885,42 @@ Przeglądanie pozostałych stron będzie możliwe kiedy liczenie wierszy zostani
         <translation>Testuj połączenie z bazą</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="279"/>
+        <location filename="../dialogs/dbdialog.cpp" line="289"/>
         <source>Browse</source>
         <translation>Przeglądaj</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="454"/>
+        <location filename="../dialogs/dbdialog.cpp" line="470"/>
         <source>Enter an unique database name.</source>
         <translation>Wprowadź unikalną nazwę bazy danych.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="463"/>
+        <location filename="../dialogs/dbdialog.cpp" line="479"/>
         <source>This name is already in use. Please enter unique name.</source>
         <translation>Ta nazwa jest już w użyciu. Proszę wprowadzić unikalną nazwę.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="471"/>
+        <location filename="../dialogs/dbdialog.cpp" line="487"/>
         <source>Enter a database file path.</source>
         <translation>Wprowadź ścieżkę do pliku bazy danych.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="478"/>
+        <location filename="../dialogs/dbdialog.cpp" line="494"/>
         <source>This database is already on the list under name: %1</source>
         <translation>Ta baza jest już na liście pod nazwą: %1</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="494"/>
+        <location filename="../dialogs/dbdialog.cpp" line="510"/>
         <source>Select a database type.</source>
         <translation>Wybierz typ bazy danych.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="552"/>
+        <location filename="../dialogs/dbdialog.cpp" line="568"/>
         <source>The name will be auto-generated</source>
         <translation>Nazwa będzie generowana automatycznie</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="557"/>
+        <location filename="../dialogs/dbdialog.cpp" line="573"/>
         <source>Type the name</source>
         <translation>Wprowadź nazwę</translation>
     </message>
@@ -2343,125 +2353,125 @@ Wszystkie obiekty z tej grupy zostaną przeniesione do nadrzędnej grupy.</trans
 <context>
     <name>DbTreeModel</name>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="405"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="406"/>
         <source>Database: %1</source>
         <comment>dbtree tooltip</comment>
         <translation>Baza danych: %1</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="410"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="411"/>
         <source>Version:</source>
         <comment>dbtree tooltip</comment>
         <translation>Wersja:</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="411"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="412"/>
         <source>File size:</source>
         <comment>dbtree tooltip</comment>
         <translation>Rozmiar pliku:</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="412"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="413"/>
         <source>Encoding:</source>
         <comment>dbtree tooltip</comment>
         <translation>Kodowanie:</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="417"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="418"/>
         <source>Error details:</source>
         <comment>dbtree tooltip</comment>
         <translation>Szczegóły błędu:</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="427"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="428"/>
         <source>Table : %1</source>
         <comment>dbtree tooltip</comment>
         <translation>Tablela: : %1</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="450"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="451"/>
         <source>Columns (%1):</source>
         <comment>dbtree tooltip</comment>
         <translation>Kolumny (%1):</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="453"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="454"/>
         <source>Indexes (%1):</source>
         <comment>dbtree tooltip</comment>
         <translation>Indeksy (%1):</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="456"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="457"/>
         <source>Triggers (%1):</source>
         <comment>dbtree tooltip</comment>
         <translation>Wyzwalacze (%1):</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1071"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1072"/>
         <source>Copy</source>
         <translation>Kopiuj</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1072"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1073"/>
         <source>Move</source>
         <translation>Przenieś</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1074"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1075"/>
         <source>Include data</source>
         <translation>Również dane</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1075"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1076"/>
         <source>Include indexes</source>
         <translation>Również indeksy</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1076"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1077"/>
         <source>Include triggers</source>
         <translation>Również wyzwalacze</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1078"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1079"/>
         <source>Abort</source>
         <translation>Przerwij</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1154"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1155"/>
         <source>Referenced tables</source>
         <translation>Tabele powiązane</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1155"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1156"/>
         <source>Do you want to include following referenced tables as well:
 %1</source>
         <translation>Czy chcesz zawrzeć również powiązane tabele:
 %1</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1164"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1165"/>
         <source>Name conflict</source>
         <translation>Konflikt nazwy</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1165"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1166"/>
         <source>Following object already exists in the target database.
 Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</source>
         <translation>Następująy obiekt istnieje już w docelowej bazie danych.
 Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przerwać operację.</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1178"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1179"/>
         <source>SQL statements conversion</source>
         <translation>Konwersja zapytań SQL</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1186"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1187"/>
         <source>Following error occurred while converting SQL statements to the target SQLite version:</source>
         <translation>Następujące błędy wystąpiły podczas konwersji zapytań SQL do docelowej wersji SQLite:</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1187"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1188"/>
         <source>Would you like to ignore those errors and proceed?</source>
         <translation>Czy chcesz zignorować te błędy i kontynuować?</translation>
     </message>
@@ -3566,47 +3576,47 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
         <translation>Nie udało się ustawić stylu: %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="625"/>
+        <location filename="../mainwindow.cpp" line="621"/>
         <source>Cannot export, because no export plugin is loaded.</source>
         <translation>Nie można wyeksportować, ponieważ żadna wtyczka eksportu nie została załadowana.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="637"/>
+        <location filename="../mainwindow.cpp" line="633"/>
         <source>Cannot import, because no import plugin is loaded.</source>
         <translation>Nie można zaimportować, ponieważ żadna wtyczka importu nie została załadowana.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="666"/>
+        <location filename="../mainwindow.cpp" line="662"/>
         <source>Rename window</source>
         <translation>Zmień nazwę okna</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="666"/>
+        <location filename="../mainwindow.cpp" line="662"/>
         <source>Enter new name for the window:</source>
         <translation>Wprowadź nową nazwę dla okna:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="734"/>
+        <location filename="../mainwindow.cpp" line="730"/>
         <source>New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</source>
         <translation>Nowe aktualizacje są dostępne: &lt;a href=&quot;%1&quot;&gt;Kliknij aby poznać szczegóły&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="742"/>
+        <location filename="../mainwindow.cpp" line="738"/>
         <source>You&apos;re running the most recent version. No updates are available.</source>
         <translation>Uruchomiona jest najnowsza wersja. Nie ma dostępnych aktualizacji.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="841"/>
+        <location filename="../mainwindow.cpp" line="837"/>
         <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
         <translation>Baza danych podana w parametrach linii poleceń (%1) była już na liście pod nazwą: %2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="848"/>
+        <location filename="../mainwindow.cpp" line="844"/>
         <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
         <translation>Baza danych podana w linii poleceń (%1) jest tymczasowo dodana do listy pod nazwą: %2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="853"/>
+        <location filename="../mainwindow.cpp" line="849"/>
         <source>Could not add database %1 to list.</source>
         <translation>Nie udało się dodać bazy danych %1 do listy.</translation>
     </message>
@@ -3614,17 +3624,17 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
 <context>
     <name>MdiWindow</name>
     <message>
-        <location filename="../mdiwindow.cpp" line="190"/>
+        <location filename="../mdiwindow.cpp" line="196"/>
         <source>Uncommited changes</source>
         <translation>Niezatwierdzone dane</translation>
     </message>
     <message>
-        <location filename="../mdiwindow.cpp" line="195"/>
+        <location filename="../mdiwindow.cpp" line="201"/>
         <source>Close anyway</source>
         <translation>Zamknij mimo to</translation>
     </message>
     <message>
-        <location filename="../mdiwindow.cpp" line="197"/>
+        <location filename="../mdiwindow.cpp" line="203"/>
         <source>Don&apos;t close</source>
         <translation>Nie zamykaj</translation>
     </message>
@@ -3938,68 +3948,68 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="69"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="70"/>
         <source>The query execution mechanism had problems with extracting ROWID&apos;s properly. This might be a bug in the application. You may want to report this.</source>
         <translation>Mechanizm wykonywania zapytań miał problemy z wyciągnięciem własności ROWID. To może być błąd aplikacji. Możesz to zgłosić.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="71"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="72"/>
         <source>Requested column is a result of SQL expression, instead of a simple column selection. Such columns cannot be edited.</source>
         <translation>Ta kolumna jest wynikiem wyrażenia SQL, a nie zwykłej selekcji kolumny. Takie kolumny nie mogą być edytowane.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="73"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="74"/>
         <source>Requested column belongs to restricted SQLite table. Those tables cannot be edited directly.</source>
         <translation>Ta kolumna należy do systemowej tabeli SQLite. Te tabele nie mogą być edytowane bezpośrednio.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="66"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="67"/>
         <source>Cannot edit columns that are result of compound %1 statements (one that includes %2, %3 or %4 keywords).</source>
         <translation>Nie można edytować kolumn, które są wynikiem złożonego zapytania %1 (tego, które zawiera słowo kluczowe %2, %3, lub %4).</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="75"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="76"/>
         <source>Cannot edit results of query other than %1.</source>
         <translation>Nie można edytować wyników zapytania innego niż %1.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="77"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="78"/>
         <source>Cannot edit columns that are result of aggregated %1 statements.</source>
         <translation>Nie można edytować kolumn, które są wynikiem zapytania agregacyjnego %1.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="79"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="80"/>
         <source>Cannot edit columns that are result of %1 statement.</source>
         <translation>Nie można edytować kolumn, które są wynikiem zapytania %1.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="81"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="82"/>
         <source>Cannot edit columns that are result of common table expression statement (%1).</source>
         <translation>Nie można edytować kolumn, które są wynikiem zapytania ze wspólnym wyrażeniem tabeli (%1).</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="353"/>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="389"/>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="407"/>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="443"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="354"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="390"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="408"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="444"/>
         <source>on conflict: %1</source>
         <comment>data view tooltip</comment>
         <translation>w razie konfliktu: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="373"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="374"/>
         <source>references table %1, column %2</source>
         <comment>data view tooltip</comment>
         <translation>odwołuje się do tabeli %1, kolumny %2</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="440"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="441"/>
         <source>condition: %1</source>
         <comment>data view tooltip</comment>
         <translation>warunek: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="460"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="461"/>
         <source>collation name: %1</source>
         <comment>data view tooltip</comment>
         <translation>nazwa zestawienia: %1</translation>
@@ -4852,7 +4862,7 @@ znajdź następny</translation>
     <name>SqlQueryModel</name>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="62"/>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="460"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="461"/>
         <source>Only one query can be executed simultaneously.</source>
         <translation>Tylko jedno zapytanie może być wykonywane w danym momencie.</translation>
     </message>
@@ -4867,38 +4877,38 @@ znajdź następny</translation>
         <translation>Niektóre zmiany w danych nie zostały zatwierdzone. Czy na pewno chcesz kontynuować? Wszystkie niezatwierdzone zmiany zostaną utracone.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="341"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="342"/>
         <source>Cannot commit the data for a cell that refers to the already closed database.</source>
         <translation>Nie można zatwierdzić danych dla komórki, która odnosi się do zamkniętej już bazy danych.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="372"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="373"/>
         <source>Could not begin transaction on the database. Details: %1</source>
         <translation>Nie udało się rozpocząć transakcji na bazie danych. Szczegóły: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="409"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="410"/>
         <source>An error occurred while commiting the transaction: %1</source>
         <translation>Wystąpił błąd podczas zatwierdzania transakcji: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="428"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="429"/>
         <source>An error occurred while rolling back the transaction: %1</source>
         <translation>Wystąpił błąd podczas wycofywania transakcji: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="546"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="547"/>
         <source>Tried to commit a cell which is not editable (yet modified and waiting for commit)! This is a bug. Please report it.</source>
         <translation>Próbowano zatwierdzić komórkę, której nie można edytować (a mimo to została zmodyfikowana i czeka na zatwierdzenie)! To jest błąd. Proszę to zgłosić.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="572"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="573"/>
         <source>An error occurred while commiting the data: %1</source>
         <translation>Wystąpił błąd podczas zatwierdzania danych: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1016"/>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1068"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1018"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1070"/>
         <source>Error while executing SQL query on database &apos;%1&apos;: %2</source>
         <translation>Błąd podczas wykonywania zapytania SQL na bazie &apos;%1&apos;: %2</translation>
     </message>
@@ -4907,17 +4917,17 @@ znajdź następny</translation>
         <translation type="obsolete">Błąd podczas wykonywania zapytania SQL: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1065"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1067"/>
         <source>Error while loading query results: %1</source>
         <translation>Błąd podczas wczytywania wyników zapytania: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1393"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1395"/>
         <source>Insert multiple rows</source>
         <translation>Wstaw wiele wierszy</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1393"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1395"/>
         <source>Number of rows to insert:</source>
         <translation>Liczba wierszy do wstawienia:</translation>
     </message>
@@ -4925,87 +4935,87 @@ znajdź następny</translation>
 <context>
     <name>SqlQueryView</name>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="69"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="71"/>
         <source>Copy</source>
         <translation>Kopiuj</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="70"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="72"/>
         <source>Copy as...</source>
         <translation>Kopiuj jako...</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="71"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="73"/>
         <source>Paste</source>
         <translation>Wklej</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="72"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="74"/>
         <source>Paste as...</source>
         <translation>Wklej jako...</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="73"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="75"/>
         <source>Set NULL values</source>
         <translation>Ustaw wartości NULL</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="74"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="76"/>
         <source>Erase values</source>
         <translation>Wymaż wartości</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="75"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="77"/>
         <source>Edit value in editor</source>
         <translation>Edytuj wartość w edytorze</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="76"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="78"/>
         <source>Commit</source>
         <translation>Zatwierdź</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="77"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="79"/>
         <source>Rollback</source>
         <translation>Wycofaj</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="78"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="80"/>
         <source>Commit selected cells</source>
         <translation>Zatwierdź zaznaczone komórki</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="79"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="81"/>
         <source>Rollback selected cells</source>
         <translation>Wycofaj zaznaczone komórki</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="80"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="82"/>
         <source>Define columns to sort by</source>
         <translation>Zdefiniuj kolumny po których sortować</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="81"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="83"/>
         <source>Remove custom sorting</source>
         <translation>Wycofaj własne sortowanie</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="82"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="84"/>
         <source>Insert row</source>
         <translation>Wstaw wiersz</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="83"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="85"/>
         <source>Insert multiple rows</source>
         <translation>Wstaw wiele wierszy</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="84"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="86"/>
         <source>Delete selected row</source>
         <translation>Usuń zaznaczony wiersz</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="443"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="503"/>
         <source>Edit value</source>
         <translation>Edytuj wartość</translation>
     </message>

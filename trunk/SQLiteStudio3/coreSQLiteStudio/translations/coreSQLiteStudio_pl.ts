@@ -147,30 +147,30 @@
         <translation>Nie udało się dodać bazę danych %1: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="125"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="134"/>
         <source>Database %1 could not be updated, because of an error: %2</source>
         <translation>Nie udało się zaktualizować baza danych %1 z powodu błędu: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="299"/>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="328"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="308"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="337"/>
         <source>Database file doesn&apos;t exist.</source>
         <translation>Plik bazy danych nie istnieje.</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="301"/>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="330"/>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="483"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="310"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="339"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="494"/>
         <source>No supporting plugin loaded.</source>
         <translation>Nie załadowano obsługującej wtyczki.</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="402"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="413"/>
         <source>Database could not be initialized.</source>
         <translation>Nie udało się zainicjalizować bazy danych.</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="412"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="423"/>
         <source>No suitable database driver plugin found.</source>
         <translation>Nie znaleziono odpowiedniej wtyczki sterownika.</translation>
     </message>
@@ -964,6 +964,13 @@ Szczegóły błędu: %2</translation>
         <translation>Nie można zaktualizować wyzwalacza %1 zgodnie z modyfikacjami tabeli %2.</translation>
     </message>
     <message>
+        <location filename="../tablemodifier.cpp" line="580"/>
+        <location filename="../tablemodifier.cpp" line="601"/>
+        <location filename="../tablemodifier.cpp" line="619"/>
+        <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
+        <translation>Jest problem ze zaktualizowaniem zapytania %1 w wyzwalaczu %2. Jedeno z podzapytań %1, które może odwoływać się do tabeli %3 nie może być poprawnie zmodyfikowane. Ręczna aktualizacja tego wyzwalacza może być niezbędna.</translation>
+    </message>
+    <message>
         <location filename="../tablemodifier.cpp" line="433"/>
         <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
         <translation>Wszystkie kolumny obsługiwane przez wyzwalacz %1 już nie istnieją. Wyzwalacz ten nie będzie odtworzony po modyfikacji tabeli.</translation>
@@ -976,11 +983,8 @@ The view will remain as it is.</source>
 Widok pozostanie nienaruszony.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="580"/>
-        <location filename="../tablemodifier.cpp" line="601"/>
-        <location filename="../tablemodifier.cpp" line="619"/>
         <source>There is a problem with updating an %1 statement within %2 trigger. One of the SELECT substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
-        <translation>Jest problem ze zaktualizowaniem zapytania %1 w wyzwalaczu %2. Jedeno z podzapytań SELECT, które może odwoływać się do tabeli %2 nie może być poprawnie zmodyfikowane. Ręczna aktualizacja tego wyzwalacza może być niezbędna.</translation>
+        <translation type="obsolete">Jest problem ze zaktualizowaniem zapytania %1 w wyzwalaczu %2. Jedeno z podzapytań SELECT, które może odwoływać się do tabeli %3 nie może być poprawnie zmodyfikowane. Ręczna aktualizacja tego wyzwalacza może być niezbędna.</translation>
     </message>
     <message>
         <location filename="../viewmodifier.cpp" line="25"/>

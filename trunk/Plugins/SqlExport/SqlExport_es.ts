@@ -14,32 +14,32 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="sqlexport.cpp" line="167"/>
+        <location filename="sqlexport.cpp" line="168"/>
         <source>-- Index: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="sqlexport.cpp" line="184"/>
+        <location filename="sqlexport.cpp" line="185"/>
         <source>-- Trigger: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="sqlexport.cpp" line="201"/>
+        <location filename="sqlexport.cpp" line="202"/>
         <source>-- View: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="sqlexport.cpp" line="215"/>
+        <location filename="sqlexport.cpp" line="216"/>
         <source>-- File generated with SQLiteStudio v%1 on %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="sqlexport.cpp" line="219"/>
+        <location filename="sqlexport.cpp" line="220"/>
         <source>-- Text encoding used: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="sqlexport.cpp" line="303"/>
+        <location filename="sqlexport.cpp" line="309"/>
         <source>Table name for INSERT statements is mandatory.</source>
         <translation type="unfinished"></translation>
     </message>

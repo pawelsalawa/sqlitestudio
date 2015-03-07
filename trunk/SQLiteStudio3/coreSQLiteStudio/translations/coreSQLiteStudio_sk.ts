@@ -147,30 +147,30 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="125"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="134"/>
         <source>Database %1 could not be updated, because of an error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="299"/>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="328"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="308"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="337"/>
         <source>Database file doesn&apos;t exist.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="301"/>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="330"/>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="483"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="310"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="339"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="494"/>
         <source>No supporting plugin loaded.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="402"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="413"/>
         <source>Database could not be initialized.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="412"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="423"/>
         <source>No suitable database driver plugin found.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -967,6 +967,13 @@ Error details: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../tablemodifier.cpp" line="580"/>
+        <location filename="../tablemodifier.cpp" line="601"/>
+        <location filename="../tablemodifier.cpp" line="619"/>
+        <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../tablemodifier.cpp" line="433"/>
         <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
         <translation type="unfinished"></translation>
@@ -975,13 +982,6 @@ Error details: %2</source>
         <location filename="../tablemodifier.cpp" line="483"/>
         <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../tablemodifier.cpp" line="580"/>
-        <location filename="../tablemodifier.cpp" line="601"/>
-        <location filename="../tablemodifier.cpp" line="619"/>
-        <source>There is a problem with updating an %1 statement within %2 trigger. One of the SELECT substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
