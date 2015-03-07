@@ -156,6 +156,7 @@ class GUI_API_EXPORT SqlQueryModelColumn
         QString column;
         QString table;
         QString database;
+        QString tableAlias;
         DataType dataType;
         QSet<EditionForbiddenReason> editionForbiddenReason;
         QList<Constraint*> constraints;

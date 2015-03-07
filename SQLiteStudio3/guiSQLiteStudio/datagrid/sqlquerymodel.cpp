@@ -224,20 +224,21 @@ QList<QList<SqlQueryItem*> > SqlQueryModel::groupItemsByRows(const QList<SqlQuer
     return itemsByRow.values();
 }
 
-QHash<Table,QList<SqlQueryItem*>> SqlQueryModel::groupItemsByTable(const QList<SqlQueryItem*>& items)
+QHash<AliasedTable, QList<SqlQueryItem*> > SqlQueryModel::groupItemsByTable(const QList<SqlQueryItem*>& items)
 {
-    QHash<Table,QList<SqlQueryItem*>> itemsByTable;
-    Table table;
+    QHash<AliasedTable,QList<SqlQueryItem*>> itemsByTable;
+    AliasedTable table;
     foreach (SqlQueryItem* item, items)
     {
         if (item->getColumn())
         {
             table.setDatabase(item->getColumn()->database.toLower());
             table.setTable(item->getColumn()->table.toLower());
+            table.setTableAlias(item->getColumn()->tableAlias.toLower());
             itemsByTable[table] << item;
         }
         else
-            itemsByTable[Table()] << item;
+            itemsByTable[AliasedTable()] << item;
     }
 
     return itemsByTable;
@@ -497,7 +498,7 @@ bool SqlQueryModel::commitEditedRow(const QList<SqlQueryItem*>& itemsInRow)
 
     Dialect dialect = db->getDialect();
 
-    QHash<Table,QList<SqlQueryItem*>> itemsByTable = groupItemsByTable(itemsInRow);
+    QHash<AliasedTable,QList<SqlQueryItem*>> itemsByTable = groupItemsByTable(itemsInRow);
 
     // Values
     QString query;
@@ -507,9 +508,9 @@ bool SqlQueryModel::commitEditedRow(const QList<SqlQueryItem*>& itemsInRow)
     RowId rowId;
     RowId newRowId;
     CommitUpdateQueryBuilder queryBuilder;
-    QHashIterator<Table,QList<SqlQueryItem*>> it(itemsByTable);
+    QHashIterator<AliasedTable,QList<SqlQueryItem*>> it(itemsByTable);
     QList<SqlQueryItem*> items;
-    Table table;
+    AliasedTable table;
     while (it.hasNext())
     {
         it.next();
@@ -713,7 +714,7 @@ QList<QStandardItem*> SqlQueryModel::loadRow(SqlResultsRowPtr row)
 RowId SqlQueryModel::getRowIdValue(SqlResultsRowPtr row, int columnIdx)
 {
     RowId rowId;
-    Table table = tablesForColumns[columnIdx];
+    AliasedTable table = tablesForColumns[columnIdx];
     QHash<QString,QString> rowIdColumns = tableToRowIdColumn[table];
     QHashIterator<QString,QString> it(rowIdColumns);
     QString col;
@@ -795,7 +796,7 @@ RowId SqlQueryModel::getNewRowId(const RowId& currentRowId, const QList<SqlQuery
     return currentRowId;
 }
 
-void SqlQueryModel::updateRowIdForAllItems(const Table& table, const RowId& rowId, const RowId& newRowId)
+void SqlQueryModel::updateRowIdForAllItems(const AliasedTable& table, const RowId& rowId, const RowId& newRowId)
 {
     SqlQueryItem* item = nullptr;
     for (int row = 0; row < rowCount(); row++)
@@ -824,11 +825,12 @@ void SqlQueryModel::readColumns()
 
     // Reading column mapping for ROWID columns
     int totalRowIdCols = 0;
-    Table table;
+    AliasedTable table;
     foreach (const QueryExecutor::ResultRowIdColumnPtr& resCol, queryExecutor->getRowIdResultColumns())
     {
         table.setDatabase(resCol->dbName);
         table.setTable(resCol->table);
+        table.setTableAlias(resCol->tableAlias);
         tableToRowIdColumn[table] = resCol->queryExecutorAliasToColumn;
         totalRowIdCols += resCol->queryExecutorAliasToColumn.size();
     }
@@ -850,10 +852,10 @@ void SqlQueryModel::readColumnDetails()
         editionForbiddenGlobalReasons << SqlQueryModelColumn::convert(reason);
 
     // Reading all the details from query executor source tables
-    QHash<Table, TableDetails> tableDetails = readTableDetails();
+    QHash<AliasedTable, TableDetails> tableDetails = readTableDetails();
 
     // Preparing for processing
-    Table table;
+    AliasedTable table;
     Column column;
     TableDetails details;
     TableDetails::ColumnDetails colDetails;
@@ -871,7 +873,7 @@ void SqlQueryModel::readColumnDetails()
         modelColumn->editionForbiddenReason += editionForbiddenGlobalReasons;
 
         // Getting details of given table and column
-        table = Table(modelColumn->database, modelColumn->table);
+        table = AliasedTable(modelColumn->database, modelColumn->table, modelColumn->tableAlias);
         column = Column(modelColumn->database, modelColumn->table, modelColumn->column);
 
         details = tableDetails[table];
@@ -906,15 +908,15 @@ void SqlQueryModel::readColumnDetails()
     }
 }
 
-QHash<Table, SqlQueryModel::TableDetails> SqlQueryModel::readTableDetails()
+QHash<AliasedTable, SqlQueryModel::TableDetails> SqlQueryModel::readTableDetails()
 {
-    QHash<Table, TableDetails> results;
+    QHash<AliasedTable, TableDetails> results;
     SqliteQueryPtr query;
     SqliteCreateTablePtr createTable;
     Dialect dialect = db->getDialect();
     SchemaResolver resolver(getDb());
     QString database;
-    Table table;
+    AliasedTable table;
     QString columnName;
 
     foreach (const QueryExecutor::SourceTablePtr& srcTable, queryExecutor->getSourceTables())
@@ -932,7 +934,7 @@ QHash<Table, SqlQueryModel::TableDetails> SqlQueryModel::readTableDetails()
 
         // Table details
         TableDetails tableDetails;
-        table = {database, srcTable->table};
+        table = {database, srcTable->table, srcTable->alias};
 
         // Table constraints
         foreach (SqliteCreateTable::Constraint* tableConstr, createTable->constraints)
@@ -965,18 +967,18 @@ QHash<Table, SqlQueryModel::TableDetails> SqlQueryModel::readTableDetails()
 
 }
 
-QList<Table> SqlQueryModel::getTablesForColumns()
+QList<AliasedTable> SqlQueryModel::getTablesForColumns()
 {
-    QList<Table> columnTables;
-    Table table;
+    QList<AliasedTable> columnTables;
+    AliasedTable table;
     foreach (SqlQueryModelColumnPtr column, columns)
     {
         if (column->editionForbiddenReason.size() > 0)
         {
-            columnTables << Table();
+            columnTables << AliasedTable();
             continue;
         }
-        table = Table(column->database, column->table);
+        table = AliasedTable(column->database, column->table, column->tableAlias);
         columnTables << table;
     }
     return columnTables;

@@ -50,3 +50,43 @@ int qHash(Table table)
 {
     return qHash(table.getDatabase() + "." + table.getTable());
 }
+
+AliasedTable::AliasedTable()
+{
+}
+
+AliasedTable::AliasedTable(const QString& database, const QString& table, const QString& alias) :
+    Table(database, table)
+{
+    setTableAlias(alias);
+}
+
+AliasedTable::AliasedTable(const AliasedTable& other) :
+    Table(other.database, other.table)
+{
+    tableAlias = other.tableAlias;
+}
+
+AliasedTable::~AliasedTable()
+{
+}
+
+int AliasedTable::operator ==(const AliasedTable& other) const
+{
+    return other.database == this->database && other.table == this->table && other.tableAlias == this->tableAlias;
+}
+
+QString AliasedTable::getTableAlias() const
+{
+    return tableAlias;
+}
+
+void AliasedTable::setTableAlias(const QString& value)
+{
+    tableAlias = value;
+}
+
+int qHash(AliasedTable table)
+{
+    return qHash(table.getDatabase() + "." + table.getTable() + " " + table.getTableAlias());
+}
