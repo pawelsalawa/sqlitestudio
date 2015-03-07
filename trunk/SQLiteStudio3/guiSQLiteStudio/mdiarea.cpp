@@ -4,6 +4,7 @@
 #include "mdichild.h"
 #include "mdiwindow.h"
 #include "taskbar.h"
+#include "uiconfig.h"
 #include <QMdiSubWindow>
 #include <QAction>
 #include <QActionGroup>
@@ -34,6 +35,12 @@ MdiWindow *MdiArea::addSubWindow(MdiChild *mdiChild)
 
     if (!mdiChild->handleInitialFocus())
         mdiChild->setFocus();
+
+    if (taskBar)
+    {
+        if (taskBar->getTasks().size() == 1 && CFG_UI.General.OpenMaximized.get())
+            mdiWin->setWindowState(mdiWin->windowState()|Qt::WindowMaximized);
+    }
 
     emit windowListChanged();
     return mdiWin;

@@ -5,6 +5,7 @@
 #include "mainwindow.h"
 #include "services/dbmanager.h"
 #include "db/db.h"
+#include "uiconfig.h"
 #include <QDateTime>
 #include <QApplication>
 #include <QDebug>
@@ -143,6 +144,11 @@ void MdiWindow::changeEvent(QEvent* event)
     }
     else
         QMdiSubWindow::changeEvent(event);
+
+    bool wasMaximized = changeEvent->oldState().testFlag(Qt::WindowMaximized);
+    bool isMaximized = windowState().testFlag(Qt::WindowMaximized);
+    if (wasMaximized != isMaximized && CFG_UI.General.OpenMaximized.get() != isMaximized)
+        CFG_UI.General.OpenMaximized.set(isMaximized);
 }
 
 void MdiWindow::closeEvent(QCloseEvent* e)
