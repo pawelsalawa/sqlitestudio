@@ -24,6 +24,7 @@
 #include "qio.h"
 #include "translations.h"
 #include "dialogs/languagedialog.h"
+#include "dialogs/triggerdialog.h"
 #include "services/pluginmanager.h"
 #include <QCommandLineParser>
 #include <QCommandLineOption>
@@ -118,6 +119,7 @@ int main(int argc, char *argv[])
     MultiEditorTime::staticInit();
     MultiEditorDate::staticInit();
     MultiEditorBool::staticInit();
+    TriggerDialog::staticInit();
 
     MainWindow::getInstance();
 
