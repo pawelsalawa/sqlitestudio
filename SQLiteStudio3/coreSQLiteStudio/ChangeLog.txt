@@ -16,6 +16,7 @@
         * [BUGFIX]: TableModifier is now much smarter about when to recreate triggers and how to do it.
         * [BUGFIX]: TriggerDialog no longer loses "When" field when editing existing trigger.
         * [BUGFIX]: Columns of Indexes and Triggers tabs in Table Window don't shring after refresh anymore.
+        * [BUGFIX]: NumPad Enter key also accepts the Code Assistant choice.
 
 [3.0.3]
         * [ADDED]: Added visual validation indicators to DbDialog, so user is informed why the "Ok" button is disabled at the moment.
