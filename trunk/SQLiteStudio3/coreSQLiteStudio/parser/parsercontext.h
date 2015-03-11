@@ -187,6 +187,9 @@ class ParserContext
          */
         const QList<ParserError*>& getErrors();
 
+        QVariant* handleNumberToken(const QString& tokenValue);
+        bool isCandidateForMaxNegativeNumber() const;
+
         /**
          * @brief Flag indicating if the Lemon parser should setup token collections.
          *
@@ -284,6 +287,18 @@ class ParserContext
          * Defined by errorBeforeNextToken() and minorErrorBeforeNextToken().
          */
         QString nextTokenError;
+
+        /**
+         * @brief Indicates that the number value is 1 over the max longlong value.
+         *
+         * Then the positive number is over max longlong by 1, then this is a candidate
+         * for max negative longlong value, but this is to be identified in the next parser reduce level.
+         *
+         * Because of that this flag is set to false by default each time the number is parsed and is set afterwards
+         * to true each timethe value is 1 over max longlong. This way if the 'term' rule includes 'minus' token,
+         * then it will be properly converted to max negative longlong.
+         */
+        bool recentNumberIsCandidateForMaxNegative = false;
 };
 
 #endif // PARSERCONTEXT_H

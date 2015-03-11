@@ -17,6 +17,7 @@
         * [BUGFIX]: TriggerDialog no longer loses "When" field when editing existing trigger.
         * [BUGFIX]: Columns of Indexes and Triggers tabs in Table Window don't shring after refresh anymore.
         * [BUGFIX]: NumPad Enter key also accepts the Code Assistant choice.
+        * [BUGFIX]: #2790 Fixed hexadecimal literals evaluation in SQL queries.
 
 [3.0.3]
         * [ADDED]: Added visual validation indicators to DbDialog, so user is informed why the "Ok" button is disabled at the moment.
@@ -42,6 +43,7 @@
         * [BUGFIX]: Optimized loading huge data sets into data grid. It's faster and the progress bar acts more smoothly.
         * [BUGFIX]: Shortcut for closing current window is now displayed in the context menu for taskbar.
         * [BUGFIX]: "Skip first line" option in CSV import renamed to "First line represents CSV columns". Maybe this time it won't confused anyone.
+        * [BUGFIX]: #2790 Fixed hexadecimal literals evaluation in SQL queries.
 
 [3.0.2]
         * [ADDED]: Full support for the interface translations.

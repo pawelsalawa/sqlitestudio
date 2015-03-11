@@ -164,6 +164,36 @@ const QList<ParserError *> &ParserContext::getErrors()
     return errors;
 }
 
+QVariant *ParserContext::handleNumberToken(const QString &tokenValue)
+{
+    recentNumberIsCandidateForMaxNegative = false;
+    if (tokenValue.startsWith("0x", Qt::CaseInsensitive))
+    {
+        bool ok;
+        qint64 i64 = tokenValue.toLongLong(&ok, 16);
+        if (!ok)
+        {
+            quint64 ui64 = tokenValue.toULongLong(&ok, 16);
+            i64 = static_cast<qint64>(ui64);
+        }
+        return new QVariant(i64);
+    }
+    else if (tokenValue == "9223372036854775808") // max negative longlong value, but without a sign
+    {
+        recentNumberIsCandidateForMaxNegative = true;
+        return new QVariant(static_cast<qint64>(0L));
+    }
+    else
+    {
+        return new QVariant(QVariant(tokenValue).toLongLong());
+    }
+}
+
+bool ParserContext::isCandidateForMaxNegativeNumber() const
+{
+    return recentNumberIsCandidateForMaxNegative;
+}
+
 void ParserContext::cleanUp()
 {
     foreach (ParserError* err, errors)

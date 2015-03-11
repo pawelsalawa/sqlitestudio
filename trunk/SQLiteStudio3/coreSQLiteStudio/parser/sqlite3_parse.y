@@ -57,6 +57,7 @@
 #include "parser/ast/sqlitewith.h"
 #include <QObject>
 #include <QDebug>
+#include <limits.h>
 
 #define assert(X) Q_ASSERT(X)
 #define UNUSED_PARAMETER(X) (void)(X)
@@ -539,19 +540,9 @@ ccons(X) ::= CHECK LP RP.                   {
 
 %type term {QVariant*}
 %destructor term {delete $$;}
-term(X) ::= NULL.                           {
-                                                X = new QVariant();
-                                            }
-term(X) ::= INTEGER(N).                     {
-                                                int base = 10;
-                                                if (N->value.startsWith("0x", Qt::CaseInsensitive))
-                                                    base = 16;
-
-                                                X = new QVariant(N->value.toLongLong(nullptr, base));
-                                            }
-term(X) ::= FLOAT(N).                       {
-                                                X = new QVariant(QVariant(N->value).toDouble());
-                                            }
+term(X) ::= NULL.                           {X = new QVariant();}
+term(X) ::= INTEGER(N).                     {X = parserContext->handleNumberToken(N->value);}
+term(X) ::= FLOAT(N).                       {X = new QVariant(QVariant(N->value).toDouble());}
 term(X) ::= STRING|BLOB(S).                 {X = new QVariant(S->value);}
 
 // The optional AUTOINCREMENT keyword
@@ -1625,7 +1616,17 @@ exprx(X) ::= BITNOT(O) expr(E).             {
                                             }
 exprx(X) ::= MINUS(O) expr(E). [BITNOT]     {
                                                 X = new SqliteExpr();
-                                                X->initUnaryOp(E, O->value);
+                                                if (E->mode == SqliteExpr::Mode::LITERAL_VALUE &&
+                                                    parserContext->isCandidateForMaxNegativeNumber() &&
+                                                    E->literalValue == static_cast<qint64>(0L))
+                                                {
+                                                    X->initLiteral(std::numeric_limits<qint64>::min());
+                                                    delete E;
+                                                }
+                                                else
+                                                {
+                                                    X->initUnaryOp(E, O->value);
+                                                }
                                                 objectForTokens = X;
                                             }
 exprx(X) ::= PLUS(O) expr(E). [BITNOT]      {
@@ -1991,7 +1992,12 @@ minus_num(X) ::= MINUS number(N).           {
                                                 if (N->type() == QVariant::Double)
                                                     *(N) = -(N->toDouble());
                                                 else if (N->type() == QVariant::LongLong)
-                                                    *(N) = -(N->toLongLong());
+                                                {
+                                                    if (parserContext->isCandidateForMaxNegativeNumber())
+                                                        *(N) = std::numeric_limits<qint64>::min();
+                                                    else
+                                                        *(N) = -(N->toLongLong());
+                                                }
                                                 else
                                                     Q_ASSERT_X(true, "producing minus number", "QVariant is neither of Double or LongLong.");
 
@@ -2000,7 +2006,7 @@ minus_num(X) ::= MINUS number(N).           {
 
 %type number {QVariant*}
 %destructor number {delete $$;}
-number(X) ::= INTEGER(N).                   {X = new QVariant(QVariant(N->value).toLongLong());}
+number(X) ::= INTEGER(N).                   {X = parserContext->handleNumberToken(N->value);}
 number(X) ::= FLOAT(N).                     {X = new QVariant(QVariant(N->value).toDouble());}
 
 //////////////////////////// The CREATE TRIGGER command /////////////////////
