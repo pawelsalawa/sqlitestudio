@@ -145,10 +145,13 @@ void MdiWindow::changeEvent(QEvent* event)
     else
         QMdiSubWindow::changeEvent(event);
 
-    bool wasMaximized = changeEvent->oldState().testFlag(Qt::WindowMaximized);
-    bool isMaximized = windowState().testFlag(Qt::WindowMaximized);
-    if (wasMaximized != isMaximized && CFG_UI.General.OpenMaximized.get() != isMaximized)
-        CFG_UI.General.OpenMaximized.set(isMaximized);
+    if (!MAINWINDOW->isClosingApp())
+    {
+        bool wasMaximized = changeEvent->oldState().testFlag(Qt::WindowMaximized);
+        bool isMaximized = windowState().testFlag(Qt::WindowMaximized);
+        if (wasMaximized != isMaximized && CFG_UI.General.OpenMaximized.get() != isMaximized)
+            CFG_UI.General.OpenMaximized.set(isMaximized);
+    }
 }
 
 void MdiWindow::closeEvent(QCloseEvent* e)

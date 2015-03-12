@@ -17,6 +17,7 @@
         * [BUGFIX]: TriggerDialog no longer loses "When" field when editing existing trigger.
         * [BUGFIX]: Columns of Indexes and Triggers tabs in Table Window don't shring after refresh anymore.
         * [BUGFIX]: NumPad Enter key also accepts the Code Assistant choice.
+        * [BUGFIX]: Fixed drawing items in SQL code assistant, so they no longer are "black on dark blue" when using classic Windows theme.
         * [BUGFIX]: #2790 Fixed hexadecimal literals evaluation in SQL queries.
 
 [3.0.3]

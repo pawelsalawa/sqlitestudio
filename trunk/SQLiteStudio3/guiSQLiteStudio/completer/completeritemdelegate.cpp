@@ -1,5 +1,6 @@
 #include "completeritemdelegate.h"
 #include "completermodel.h"
+#include "common/unused.h"
 #include <QPainter>
 #include <QIcon>
 #include <QApplication>
@@ -21,8 +22,7 @@ void CompleterItemDelegate::paint(QPainter* painter, const QStyleOptionViewItem&
     QStyleOptionViewItem opt = option;
     initStyleOption(&opt, index);
 
-    QApplication::style()->drawPrimitive(QStyle::PE_PanelItemViewItem, &opt, painter, opt.widget);
-
+    paintBackground(painter, opt, index);
     paintIcon(painter, opt, index);
     paintText(painter, opt, index);
 }
@@ -34,6 +34,25 @@ QSize CompleterItemDelegate::sizeHint(const QStyleOptionViewItem& option, const 
         size.setHeight(18); // at least 1 pixel larger than icons
 
     return size;
+}
+
+void CompleterItemDelegate::paintBackground(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
+{
+    UNUSED(index);
+
+    painter->save();
+    QPalette::ColorGroup cg = (option.state & QStyle::State_Enabled) ? QPalette::Normal : QPalette::Disabled;
+    if (cg == QPalette::Normal && !(option.state & QStyle::State_Active))
+        cg = QPalette::Inactive;
+
+    QColor bg = option.palette.color(cg, QPalette::Base);
+    if (option.state & QStyle::State_Selected)
+        bg = option.palette.color(cg, QPalette::Highlight);
+
+    painter->setPen(Qt::NoPen);
+    painter->setBrush(bg);
+    painter->drawRect(option.rect);
+    painter->restore();
 }
 
 void CompleterItemDelegate::paintIcon(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const
@@ -69,15 +88,9 @@ void CompleterItemDelegate::paintText(QPainter* painter, const QStyleOptionViewI
     QColor labelColor = option.palette.color(cg, QPalette::Link);
     if (option.state & QStyle::State_Selected)
     {
-#ifdef Q_OS_WIN32
-        prefixColor = option.palette.color(cg, QPalette::Text);
-        valueColor = option.palette.color(cg, QPalette::Text);
-        labelColor = option.palette.color(cg, QPalette::Text);
-#else
         prefixColor = option.palette.color(cg, QPalette::HighlightedText);
         valueColor = option.palette.color(cg, QPalette::HighlightedText);
         labelColor = option.palette.color(cg, QPalette::HighlightedText);
-#endif
     }
 
     // Using ascent() to measure usual height of the font, excluding anything below baseline.
