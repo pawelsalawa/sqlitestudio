@@ -23,6 +23,7 @@ ExportWorker::~ExportWorker()
 
 void ExportWorker::run()
 {
+    qDebug() << "ExportWorker thread started. Export mode: " << static_cast<int>(exportMode);
     bool res = false;
     switch (exportMode)
     {
@@ -109,39 +110,64 @@ bool ExportWorker::exportQueryResults()
     QHash<ExportManager::ExportProviderFlag,QVariant> providerData = getProviderDataForQueryResults();
 
     if (results->isInterrupted())
+    {
+        logExportFail("exportQueryResults() -> interrupted(1)");
         return false;
+    }
 
     if (results->isError())
     {
+        logExportFail("exportQueryResults() -> error");
         notifyError(tr("Error while exporting query results: %1").arg(results->getErrorText()));
         return false;
     }
 
     if (!plugin->initBeforeExport(db, output, *config))
+    {
+        logExportFail("initBeforeExport()");
         return false;
+    }
 
     if (!plugin->beforeExportQueryResults(query, resultColumns, providerData))
+    {
+        logExportFail("beforeExportQueryResults()");
         return false;
+    }
 
     if (isInterrupted())
+    {
+        logExportFail("exportQueryResults() -> interrupted(2)");
         return false;
+    }
 
     SqlResultsRowPtr row;
     while (results->hasNext())
     {
         row = results->next();
         if (!plugin->exportQueryResultsRow(row))
+        {
+            logExportFail("exportQueryResultsRow()");
             return false;
+        }
 
         if (isInterrupted())
+        {
+            logExportFail("exportQueryResults() -> interrupted(3)");
             return false;
+        }
     }
 
     if (!plugin->afterExportQueryResults())
+    {
+        logExportFail("afterExportQueryResults()");
         return false;
+    }
 
     if (!plugin->afterExport())
+    {
+        logExportFail("afterExport()");
         return false;
+    }
 
     return true;
 }
@@ -192,18 +218,28 @@ bool ExportWorker::exportDatabase()
     QList<ExportManager::ExportObjectPtr> dbObjects = collectDbObjects(&err);
     if (!err.isNull())
     {
+        logExportFail("exportDatabase() -> dbObjects");
         notifyError(err);
         return false;
     }
 
     if (!plugin->initBeforeExport(db, output, *config))
+    {
+        logExportFail("initBeforeExport()");
         return false;
+    }
 
     if (!plugin->beforeExportDatabase(db->getName()))
+    {
+        logExportFail("beforeExportDatabase()");
         return false;
+    }
 
     if (isInterrupted())
+    {
+        logExportFail("exportDatabase() -> interrupted(1)");
         return false;
+    }
 
     QList<ExportManager::ExportObject::Type> order = {
         ExportManager::ExportObject::TABLE, ExportManager::ExportObject::INDEX, ExportManager::ExportObject::TRIGGER, ExportManager::ExportObject::VIEW
@@ -215,46 +251,88 @@ bool ExportWorker::exportDatabase()
     });
 
     if (!plugin->beforeExportTables())
+    {
+        logExportFail("beforeExportTables()");
         return false;
+    }
 
     if (!exportDatabaseObjects(dbObjects, ExportManager::ExportObject::TABLE))
+    {
+        logExportFail("exportDatabaseObjects()");
         return false;
+    }
 
     if (!plugin->afterExportTables())
+    {
+        logExportFail("afterExportTables()");
         return false;
+    }
 
     if (!plugin->beforeExportIndexes())
+    {
+        logExportFail("beforeExportIndexes()");
         return false;
+    }
 
     if (!exportDatabaseObjects(dbObjects, ExportManager::ExportObject::INDEX))
+    {
+        logExportFail("exportDatabaseObjects()");
         return false;
+    }
 
     if (!plugin->afterExportIndexes())
+    {
+        logExportFail("afterExportIndexes()");
         return false;
+    }
 
     if (!plugin->beforeExportTriggers())
+    {
+        logExportFail("beforeExportTriggers()");
         return false;
+    }
 
     if (!exportDatabaseObjects(dbObjects, ExportManager::ExportObject::TRIGGER))
+    {
+        logExportFail("exportDatabaseObjects()");
         return false;
+    }
 
     if (!plugin->afterExportTriggers())
+    {
+        logExportFail("afterExportTriggers()");
         return false;
+    }
 
     if (!plugin->beforeExportViews())
+    {
+        logExportFail("beforeExportViews()");
         return false;
+    }
 
     if (!exportDatabaseObjects(dbObjects, ExportManager::ExportObject::VIEW))
+    {
+        logExportFail("exportDatabaseObjects()");
         return false;
+    }
 
     if (!plugin->afterExportViews())
+    {
+        logExportFail("afterExportViews()");
         return false;
+    }
 
     if (!plugin->afterExportDatabase())
+    {
+        logExportFail("afterExportDatabase()");
         return false;
+    }
 
     if (!plugin->afterExport())
+    {
+        logExportFail("afterExport()");
         return false;
+    }
 
     return true;
 }
@@ -297,10 +375,16 @@ bool ExportWorker::exportDatabaseObjects(const QList<ExportManager::ExportObject
         }
 
         if (!res)
+        {
+            logExportFail("database objects export " + obj->name);
             return false;
+        }
 
         if (isInterrupted())
+        {
+            logExportFail("database objects export (interrupted)");
             return false;
+        }
     }
     return true;
 }
@@ -313,6 +397,7 @@ bool ExportWorker::exportTable()
     queryTableDataToExport(db, table, results, providerData, &errorMessage);
     if (!errorMessage.isNull())
     {
+        logExportFail("fetching table data");
         notifyError(errorMessage);
         return false;
     }
@@ -329,45 +414,72 @@ bool ExportWorker::exportTable()
 
     SqliteQueryPtr createTable = parser->getQueries().first();
     if (!plugin->initBeforeExport(db, output, *config))
+    {
+        logExportFail("initBeforeExport()");
         return false;
+    }
 
     if (!exportTableInternal(database, table, ddl, createTable, results, providerData))
+    {
+        logExportFail("exportTableInternal()");
         return false;
+    }
 
     if (config->exportTableIndexes)
     {
         if (!plugin->beforeExportIndexes())
+        {
+            logExportFail("beforeExportIndexes()");
             return false;
+        }
 
         QList<SqliteCreateIndexPtr> parsedIndexesForTable = resolver.getParsedIndexesForTable(database, table);
         for (const SqliteCreateIndexPtr& idx : parsedIndexesForTable)
         {
             if (!plugin->exportIndex(database, idx->index, idx->detokenize(), idx))
+            {
+                logExportFail("exportIndex()");
                 return false;
+            }
         }
 
         if (!plugin->afterExportIndexes())
+        {
+            logExportFail("afterExportIndexes()");
             return false;
+        }
     }
 
     if (config->exportTableTriggers)
     {
         if (!plugin->beforeExportTriggers())
+        {
+            logExportFail("beforeExportTriggers()");
             return false;
+        }
 
         QList<SqliteCreateTriggerPtr> parsedTriggersForTable = resolver.getParsedTriggersForTable(database, table);
         for (const SqliteCreateTriggerPtr& trig : parsedTriggersForTable)
         {
             if (!plugin->exportTrigger(database, trig->trigger, trig->detokenize(), trig))
+            {
+                logExportFail("exportTrigger()");
                 return false;
+            }
         }
 
         if (!plugin->afterExportTriggers())
+        {
+            logExportFail("afterExportTriggers()");
             return false;
+        }
     }
 
     if (!plugin->afterExport())
+    {
+        logExportFail("afterExport()");
         return false;
+    }
 
     return true;
 }
@@ -388,16 +500,25 @@ bool ExportWorker::exportTableInternal(const QString& database, const QString& t
             colNames = createTable->getColumnNames();
 
         if (!plugin->exportTable(database, table, colNames, ddl, createTable, providerData))
+        {
+            logExportFail("exportTable()");
             return false;
+        }
     }
     else
     {
         if (!plugin->exportVirtualTable(database, table, colNames, ddl, createVirtualTable, providerData))
+        {
+            logExportFail("exportVirtualTable()");
             return false;
+        }
     }
 
     if (isInterrupted())
+    {
+        logExportFail("internal table export interruption");
         return false;
+    }
 
     SqlResultsRowPtr row;
     if (results)
@@ -406,15 +527,24 @@ bool ExportWorker::exportTableInternal(const QString& database, const QString& t
         {
             row = results->next();
             if (!plugin->exportTableRow(row))
+            {
+                logExportFail("exportTableRow()");
                 return false;
+            }
 
             if (isInterrupted())
+            {
+                logExportFail("internal table export interruption (2)");
                 return false;
+            }
         }
     }
 
     if (!plugin->afterExportTable())
+    {
+        logExportFail("afterExportTable()");
         return false;
+    }
 
     return true;
 }
@@ -521,5 +651,10 @@ bool ExportWorker::isInterrupted()
 {
     QMutexLocker locker(&interruptMutex);
     return interrupted;
+}
+
+void ExportWorker::logExportFail(const QString &stageName)
+{
+    qWarning() << "Export has faild at" << stageName << "stage.";
 }
 

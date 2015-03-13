@@ -1,4 +1,5 @@
 #include "services/notifymanager.h"
+#include <QDebug>
 
 DEFINE_SINGLETON(NotifyManager)
 
@@ -71,11 +72,13 @@ QList<QString> NotifyManager::getRecentErrors() const
 
 void notifyError(const QString &msg)
 {
+    qDebug() << "Error from notify manager:" << msg;
     NotifyManager::getInstance()->error(msg);
 }
 
 void notifyWarn(const QString &msg)
 {
+    qDebug() << "Warning from notify manager:" << msg;
     NotifyManager::getInstance()->warn(msg);
 }
 
