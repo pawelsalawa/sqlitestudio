@@ -35,6 +35,7 @@ class API_EXPORT ExportWorker : public QObject, public QRunnable
         void queryTableDataToExport(Db* db, const QString& table, SqlQueryPtr& dataPtr, QHash<ExportManager::ExportProviderFlag, QVariant>& providerData,
                                     QString* errorMessage) const;
         bool isInterrupted();
+        void logExportFail(const QString& stageName);
 
         ExportPlugin* plugin = nullptr;
         ExportManager::StandardExportConfig* config = nullptr;
