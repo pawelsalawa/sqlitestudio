@@ -222,15 +222,16 @@ void DbTreeModel::restoreGroup(const Config::DbGroupPtr& group, QList<Db*>* dbLi
     }
     else
     {
-        // If db is managed by manager, it means it was successfully loaded.
-        // Otherwise there was a problem with the file, or with plugin for that database
-        // and we still want to have dbtree item for that database, we will just hide it.
-        // Later, when plugin is loaded, item might become visible.
+        db = DBLIST->getByName(group->referencedDbName);
+
+        // Databases referenced in groups must exist on database list. If not, we ignore them.
+        // Even invalid (no plugin, no file) databases have entry in dblist.
+        if (!db)
+            return;
+
         item = DbTreeItemFactory::createDb(group->referencedDbName, this);
         item->setDb(group->referencedDbName);
-
-        db = DBLIST->getByName(group->referencedDbName);
-        if (db && dbList)
+        if (dbList)
             dbList->removeOne(db);
     }
 

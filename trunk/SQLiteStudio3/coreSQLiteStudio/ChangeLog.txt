@@ -19,6 +19,7 @@
         * [BUGFIX]: NumPad Enter key also accepts the Code Assistant choice.
         * [BUGFIX]: Fixed drawing items in SQL code assistant, so they no longer are "black on dark blue" when using classic Windows theme.
         * [BUGFIX]: #2790 Fixed hexadecimal literals evaluation in SQL queries.
+        * [BUGFIX]: #2798 Fixed crash when restoring DbList group for inexisting database.
 
 [3.0.3]
         * [ADDED]: Added visual validation indicators to DbDialog, so user is informed why the "Ok" button is disabled at the moment.
