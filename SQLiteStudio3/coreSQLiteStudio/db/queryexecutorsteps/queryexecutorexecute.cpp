@@ -8,6 +8,7 @@
 #include <QDateTime>
 #include <QDebug>
 #include <schemaresolver.h>
+#include <common/table.h>
 
 bool QueryExecutorExecute::exec()
 {
@@ -120,17 +121,17 @@ void QueryExecutorExecute::setupSqlite2ColumnDataTypes(SqlQueryPtr results)
     if (!sqlite2Helper)
         return;
 
-    QPair<QString,QString> key;
+    Table key;
     SqliteCreateTablePtr createTable;
 
     SchemaResolver resolver(db);
-    QHash<QPair<QString,QString>,SqliteCreateTablePtr> tables;
+    QHash<Table,SqliteCreateTablePtr> tables;
     for (QueryExecutor::SourceTablePtr tab : context->sourceTables)
     {
         if (tab->table.isNull())
             continue;
 
-        key = QPair<QString,QString>(tab->database, tab->table);
+        key = Table(tab->database, tab->table);
         createTable = resolver.getParsedObject(tab->database, tab->table, SchemaResolver::TABLE).dynamicCast<SqliteCreateTable>();
         tables[key] = createTable;
     }
@@ -142,7 +143,7 @@ void QueryExecutorExecute::setupSqlite2ColumnDataTypes(SqlQueryPtr results)
     for (QueryExecutor::ResultColumnPtr resCol : context->resultColumns)
     {
         idx++;
-        key = QPair<QString,QString>(resCol->database, resCol->table);
+        key = Table(resCol->database, resCol->table);
         if (!tables.contains(key))
             continue;
 

@@ -40,14 +40,13 @@ bool QueryExecutorColumns::exec()
     core->resultColumns.clear();
 
     // Count total rowId columns
-    int rowIdColCount = 0;
     for (const QueryExecutor::ResultRowIdColumnPtr& rowIdCol : context->rowIdColumns)
-        rowIdColCount += rowIdCol->queryExecutorAliasToColumn.size();
+        rowIdColNames += rowIdCol->queryExecutorAliasToColumn.keys();
 
     // Defining result columns
     QueryExecutor::ResultColumnPtr resultColumn;
     SqliteSelect::Core::ResultColumn* resultColumnForSelect = nullptr;
-    bool isRowIdColumn = false;
+    bool rowIdColumn = false;
     int i = 0;
     for (const SelectResolver::Column& col : columns)
     {
@@ -55,15 +54,18 @@ bool QueryExecutorColumns::exec()
         resultColumn = getResultColumn(col);
 
         // Adding new result column to the query
-        isRowIdColumn = (i < rowIdColCount);
-        resultColumnForSelect = getResultColumnForSelect(resultColumn, col, isRowIdColumn);
+        rowIdColumn = isRowIdColumn(col.alias);
+        if (rowIdColumn && col.alias.contains(":"))
+            continue; // duplicate ROWID column provided by SelectResolver. See isRowIdColumn() for details.
+
+        resultColumnForSelect = getResultColumnForSelect(resultColumn, col);
         if (!resultColumnForSelect)
             return false;
 
         resultColumnForSelect->setParent(core);
         core->resultColumns << resultColumnForSelect;
 
-        if (!isRowIdColumn)
+        if (!rowIdColumn)
             context->resultColumns << resultColumn; // store it in context for later usage by any step
 
         i++;
@@ -89,7 +91,6 @@ QueryExecutor::ResultColumnPtr QueryExecutorColumns::getResultColumn(const Selec
         resultColumn->column = resolvedColumn.column;
         resultColumn->alias = resolvedColumn.alias;
         resultColumn->expression = true;
-        resultColumn->queryExecutorAlias = getNextColName();
     }
     else
     {
@@ -111,20 +112,20 @@ QueryExecutor::ResultColumnPtr QueryExecutorColumns::getResultColumn(const Selec
         resultColumn->tableAlias = resolvedColumn.tableAlias;
         resultColumn->alias = resolvedColumn.alias;
         resultColumn->displayName = resolvedColumn.displayName;
+    }
 
-        if (isRowIdColumnAlias(resultColumn->alias))
-        {
-            resultColumn->queryExecutorAlias = resultColumn->alias;
-        }
-        else
-        {
-            resultColumn->queryExecutorAlias = getNextColName();
-        }
+    if (isRowIdColumnAlias(resultColumn->alias))
+    {
+        resultColumn->queryExecutorAlias = resultColumn->alias;
+    }
+    else
+    {
+        resultColumn->queryExecutorAlias = getNextColName();
     }
     return resultColumn;
 }
 
-SqliteSelect::Core::ResultColumn* QueryExecutorColumns::getResultColumnForSelect(const QueryExecutor::ResultColumnPtr& resultColumn, const SelectResolver::Column& col, bool rowIdColumn)
+SqliteSelect::Core::ResultColumn* QueryExecutorColumns::getResultColumnForSelect(const QueryExecutor::ResultColumnPtr& resultColumn, const SelectResolver::Column& col)
 {
     SqliteSelect::Core::ResultColumn* selectResultColumn = new SqliteSelect::Core::ResultColumn();
 
@@ -164,28 +165,6 @@ SqliteSelect::Core::ResultColumn* QueryExecutorColumns::getResultColumnForSelect
 
             selectResultColumn->expr->table = resultColumn->table;
         }
-
-//        // SQLite2 requires special treatment here. It won't allow selecting db.table.col from a subquery - it needs escaped ID that reflects db.table.col.
-//        if (dialect == Dialect::Sqlite2)
-//        {
-//            selectResultColumn->expr->rebuildTokens();
-//            colString = wrapObjIfNeeded(selectResultColumn->expr->detokenize(), dialect);
-//            delete selectResultColumn->expr;
-//            selectResultColumn->expr = nullptr;
-
-//            expr = parser.parseExpr(colString);
-//            if (!expr)
-//            {
-//                qWarning() << "Could not parse result column expr in SQLite2's second parsing phase:" << colString;
-//                if (parser.getErrors().size() > 0)
-//                    qWarning() << "The error was:" << parser.getErrors().first()->getFrom() << ":" << parser.getErrors().first()->getMessage();
-
-//                return nullptr;
-//            }
-
-//            expr->setParent(selectResultColumn);
-//            selectResultColumn->expr = expr;
-//        }
     }
 
     if (!col.alias.isNull())
@@ -193,7 +172,7 @@ SqliteSelect::Core::ResultColumn* QueryExecutorColumns::getResultColumnForSelect
         selectResultColumn->asKw = true;
         selectResultColumn->alias = col.alias;
     }
-    else if (rowIdColumn || resultColumn->expression)
+    else
     {
         selectResultColumn->asKw = true;
         selectResultColumn->alias = resultColumn->queryExecutorAlias;
@@ -252,12 +231,10 @@ void QueryExecutorColumns::wrapWithAliasedColumns(SqliteSelect* select)
         // If alias was given, we use it. If it was anything but expression, we also use its display name,
         // because it's explicit column (no matter if from table, or table alias).
         baseColName = QString();
-        if (!resCol->alias.isNull())
+        if (!resCol->queryExecutorAlias.isNull())
             baseColName = resCol->alias;
-        else if (dialect == Dialect::Sqlite3 && !resCol->expression)
+        else if (!resCol->expression)
             baseColName = resCol->column;
-        else if (dialect == Dialect::Sqlite2 && !resCol->expression)
-            baseColName = getAliasedColumnNameForSqlite2(resCol);
 
         if (!baseColName.isNull())
         {
@@ -279,20 +256,17 @@ void QueryExecutorColumns::wrapWithAliasedColumns(SqliteSelect* select)
     select->tokens = wrapSelect(select->tokens, outerColumns);
 }
 
-QString QueryExecutorColumns::getAliasedColumnNameForSqlite2(const QueryExecutor::ResultColumnPtr& resCol)
+bool QueryExecutorColumns::isRowIdColumn(const QString& columnAlias)
 {
-    QStringList colNameParts;
-    if (!resCol->table.isNull())
-    {
-        if (!resCol->database.isNull())
-        {
-            if (context->dbNameToAttach.containsLeft(resCol->database, Qt::CaseInsensitive))
-                colNameParts << context->dbNameToAttach.valueByLeft(resCol->database, Qt::CaseInsensitive);
-            else
-                colNameParts << wrapObjIfNeeded(resCol->database, dialect);
-        }
-        colNameParts << wrapObjIfNeeded(resCol->table, dialect);
-    }
-    colNameParts << wrapObjIfNeeded(resCol->column, dialect);
-    return colNameParts.join(".");
+    // In case of "SELECT * FROM (SELECT * FROM test);" the SelectResolver will return ROWID columns twice for each table listed,
+    // because ROWID columns are recurrently handled by QueryExecutorAddRowIds step. We need to identify such columns and make them unique
+    // in the final query.
+    // Currently all columns have QueryExecutor aliased names, so we can assume they have unified alias name in form ResCol_N.
+    // If SelectResolver returns any column like ResCol_N:X, then it means that the column is result of the query like above.
+    // Note, that this assumption is correct for RowId columns. There can be columns aliased by user and those aliases won't be unified.
+    QString aliasOnly = columnAlias;
+    if (aliasOnly.contains(":"))
+        aliasOnly = aliasOnly.left(aliasOnly.indexOf(":"));
+
+    return rowIdColNames.contains(aliasOnly);
 }
