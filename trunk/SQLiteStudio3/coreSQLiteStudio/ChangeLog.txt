@@ -19,6 +19,8 @@
         * [BUGFIX]: NumPad Enter key also accepts the Code Assistant choice.
         * [BUGFIX]: Fixed drawing items in SQL code assistant, so they no longer are "black on dark blue" when using classic Windows theme.
         * [BUGFIX]: #2790 Fixed hexadecimal literals evaluation in SQL queries.
+        * [BUGFIX]: #2804 Fixed querying SQLite 2 database.
+        * [BUGFIX]: Fixed executing query like: SELECT * FROM (SELECT * FROM table); - it used to crash.
         * [BUGFIX]: #2798 Fixed crash when restoring DbList group for inexisting database.
 
 [3.0.3]
