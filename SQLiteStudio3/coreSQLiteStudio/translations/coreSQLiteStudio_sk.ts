@@ -20,7 +20,7 @@
     <message>
         <location filename="../services/bugreporter.cpp" line="46"/>
         <source>Invalid login or password</source>
-        <translation type="unfinished"></translation>
+        <translation>Neplatné meno alebo heslo</translation>
     </message>
 </context>
 <context>
@@ -155,7 +155,7 @@
         <location filename="../services/impl/dbmanagerimpl.cpp" line="308"/>
         <location filename="../services/impl/dbmanagerimpl.cpp" line="337"/>
         <source>Database file doesn&apos;t exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Databázový súbor neexistuje.</translation>
     </message>
     <message>
         <location filename="../services/impl/dbmanagerimpl.cpp" line="310"/>
@@ -181,7 +181,7 @@
         <location filename="../dbobjectorganizer.cpp" line="380"/>
         <location filename="../dbobjectorganizer.cpp" line="412"/>
         <source>Error while creating table in target database: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyskytla sa chyba počas vytvárania tabuľky v cieľovej databáze: %1</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="380"/>
@@ -242,7 +242,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
         <location filename="../dbversionconverter.cpp" line="1176"/>
         <source>Error while converting database: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyskytla sa chyba počas konvertovania databázy: %1</translation>
     </message>
 </context>
 <context>
@@ -297,22 +297,22 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
         <location filename="../services/exportmanager.cpp" line="218"/>
         <source>Export to the clipboard was successful.</source>
-        <translation type="unfinished"></translation>
+        <translation>Export do schránky bol úspešný.</translation>
     </message>
     <message>
         <location filename="../services/exportmanager.cpp" line="222"/>
         <source>Export to the file &apos;%1&apos; was successful.</source>
-        <translation type="unfinished"></translation>
+        <translation>Export do súboru &apos;%1&apos; bol úspešný.</translation>
     </message>
     <message>
         <location filename="../services/exportmanager.cpp" line="224"/>
         <source>Export was successful.</source>
-        <translation type="unfinished"></translation>
+        <translation>Export bol úspešný.</translation>
     </message>
     <message>
         <location filename="../services/exportmanager.cpp" line="266"/>
         <source>Could not export to file %1. File cannot be open for writting.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemôžem exportovať do súboru %1.Súbor nieje možné otvoriť pre zápis.</translation>
     </message>
 </context>
 <context>
