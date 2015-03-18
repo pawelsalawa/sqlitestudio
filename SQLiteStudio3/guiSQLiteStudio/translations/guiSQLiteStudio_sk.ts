@@ -6,7 +6,7 @@
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="14"/>
         <source>About SQLiteStudio and licenses</source>
-        <translation type="unfinished"></translation>
+        <translation>O programe SQLiteStudio a licenciách</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="24"/>
@@ -16,37 +16,37 @@
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="30"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;SQLiteStudio v%1&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Free, open-source, cross-platform SQLite database manager.&lt;br/&gt;&lt;a href=&quot;http://sqlitestudio.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://sqlitestudio.pl&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;%2&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Author and active maintainer:&lt;br/&gt;SalSoft (&lt;a href=&quot;http://salsoft.com.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://salsoft.com.pl&lt;/span&gt;&lt;/a&gt;)&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;SQLiteStudio v%1&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Slobodný, open-source, multi-platformový SQLite databázový manažér.&lt;br/&gt;&lt;a href=&quot;http://sqlitestudio.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://sqlitestudio.pl&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;%2&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Autor a aktívny správca:&lt;br/&gt;SalSoft (&lt;a href=&quot;http://salsoft.com.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://salsoft.com.pl&lt;/span&gt;&lt;/a&gt;)&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="41"/>
         <source>Licenses</source>
-        <translation type="unfinished"></translation>
+        <translation>Licencie</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="55"/>
         <source>Environment</source>
-        <translation type="unfinished"></translation>
+        <translation>Prostredie</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="61"/>
         <source>Icon directories</source>
-        <translation type="unfinished"></translation>
+        <translation>Adresáre s ikonami</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="81"/>
         <source>Form directories</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="101"/>
         <source>Plugin directories</source>
-        <translation type="unfinished"></translation>
+        <translation>Adresáre s pluginmi</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="121"/>
         <source>Application directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Adresár aplikácie</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="172"/>
@@ -56,7 +56,7 @@
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="111"/>
         <source>Configuration directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Adresár s konfiguráciou</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="148"/>
@@ -66,7 +66,7 @@
     <message>
         <location filename="../dialogs/aboutdialog.cpp" line="39"/>
         <source>Portable distribution.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prenosná distribúcia.</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.cpp" line="42"/>
@@ -76,17 +76,17 @@
     <message>
         <location filename="../dialogs/aboutdialog.cpp" line="45"/>
         <source>Operating system managed distribution.</source>
-        <translation type="unfinished"></translation>
+        <translation>Distribúcia spravovaná operačným systémom.</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.cpp" line="89"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopírovať</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.cpp" line="102"/>
         <source>&lt;h3&gt;Table of contents:&lt;/h3&gt;&lt;ol&gt;%2&lt;/ol&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h3&gt;Tabuľka obsahu:&lt;/h3&gt;&lt;ol&gt;%2&lt;/ol&gt;</translation>
     </message>
 </context>
 <context>
@@ -94,7 +94,7 @@
     <message>
         <location filename="../dialogs/bugdialog.ui" line="14"/>
         <source>Bugs and ideas</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyby a nápady</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="20"/>
@@ -104,48 +104,48 @@
     <message>
         <location filename="../dialogs/bugdialog.ui" line="36"/>
         <source>E-mail address</source>
-        <translation type="unfinished"></translation>
+        <translation>emailová adresa</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="43"/>
         <location filename="../dialogs/bugdialog.cpp" line="121"/>
         <source>Log in</source>
-        <translation type="unfinished"></translation>
+        <translation>Prihlásenie</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="68"/>
         <source>Short description</source>
-        <translation type="unfinished"></translation>
+        <translation>Krátky popis</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="80"/>
         <source>Detailed description</source>
-        <translation type="unfinished"></translation>
+        <translation>Detailný popis</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="92"/>
         <source>Show more details</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobraziť viacej detailov</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="119"/>
         <source>SQLiteStudio version</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzia SQLiteStudio</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="131"/>
         <source>Operating system</source>
-        <translation type="unfinished"></translation>
+        <translation>Operačný systém</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="143"/>
         <source>Loaded plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Načítané pluginy</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="39"/>
         <source>Send</source>
-        <translation type="unfinished"></translation>
+        <translation>Odoslať</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="66"/>
@@ -155,13 +155,14 @@
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="74"/>
         <source>A bug report sent successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Správa o chybe bola úspešne odoslaná.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="79"/>
         <source>An error occurred while sending a bug report: %1
 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyskytol sa problém pri posielaní správy o chybe: %1
+%2</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="80"/>
@@ -264,7 +265,7 @@
         <location filename="../windows/bugreporthistorywindow.ui" line="46"/>
         <location filename="../windows/bugreporthistorywindow.cpp" line="119"/>
         <source>URL</source>
-        <translation type="unfinished"></translation>
+        <translation>URL</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.cpp" line="45"/>
@@ -279,7 +280,7 @@
     <message>
         <location filename="../windows/bugreporthistorywindow.cpp" line="51"/>
         <source>Delete selected entry</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať vybranú položku</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.cpp" line="90"/>
@@ -302,12 +303,12 @@
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="26"/>
         <source>Login:</source>
-        <translation type="unfinished"></translation>
+        <translation>Meno:</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="36"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Heslo:</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="53"/>
@@ -1730,27 +1731,27 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="14"/>
         <source>Convert database</source>
-        <translation type="unfinished"></translation>
+        <translation>Konvertovať databázu</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="20"/>
         <source>Source database</source>
-        <translation type="unfinished"></translation>
+        <translation>Zdrojová databáza</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="29"/>
         <source>Source database version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzia zdrojovej databázy:</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="46"/>
         <source>Target database</source>
-        <translation type="unfinished"></translation>
+        <translation>Cieľová databáza</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="52"/>
         <source>Target version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cieľová databáza:</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="59"/>
@@ -1765,7 +1766,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="73"/>
         <source>Name of the new database:</source>
-        <translation type="unfinished"></translation>
+        <translation>Názov novej databázy:</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="90"/>
@@ -1922,12 +1923,12 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="174"/>
         <source>Delete table</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať tabuľku</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="175"/>
         <source>Are you sure you want to delete table %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ste si istý, že chcete vymazať tabuľku %1?</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="179"/>
@@ -3285,12 +3286,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/languagedialog.ui" line="14"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Jazyk</translation>
     </message>
     <message>
         <location filename="../dialogs/languagedialog.ui" line="20"/>
         <source>Please choose language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím vyberte si jazyk:</translation>
     </message>
 </context>
 <context>
@@ -3453,7 +3454,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="269"/>
         <source>Report a bug</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahlásiť chybu</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="270"/>
@@ -3463,12 +3464,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="271"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">O programe</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="272"/>
         <source>Licenses</source>
-        <translation type="unfinished"></translation>
+        <translation>Licencie</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="273"/>
@@ -3498,7 +3499,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="278"/>
         <source>Check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Skontrolovať akutalizácie</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="315"/>
