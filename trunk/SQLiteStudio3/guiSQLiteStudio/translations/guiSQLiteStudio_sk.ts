@@ -11,7 +11,7 @@
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="24"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>O programe</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="30"/>
@@ -51,7 +51,7 @@
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="172"/>
         <source>SQLite 3 version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzia SQLite3:</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="111"/>
@@ -61,7 +61,7 @@
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="148"/>
         <source>Qt version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzia Qt:</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.cpp" line="39"/>
@@ -1828,93 +1828,93 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="20"/>
         <source>Database</source>
-        <translation type="unfinished"></translation>
+        <translation>Databáza</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="43"/>
         <source>Database driver</source>
-        <translation type="unfinished"></translation>
+        <translation>Databázový ovládač</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="59"/>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Názov</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="66"/>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="78"/>
         <source>Browse for database file on local computer</source>
-        <translation type="unfinished"></translation>
+        <translation>Hľadať databázový súbor na lokálnom počítači</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="90"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>Súbor</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="97"/>
         <source>Generate name basing on file path</source>
-        <translation type="unfinished"></translation>
+        <translation>Generovať názov na základe cesty k súboru</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="110"/>
         <source>Permanent</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložiť natrvalo</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="132"/>
         <source>&lt;p&gt;Enable this if you want the database to be stored in configuration file and restored every time SQLiteStudio is started.&lt;/p&gt;</source>
         <extracomment>aasfd</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Databáza sa uloží do konfiguračného súboru a bude obnovená pri každom spustení SQLiteStudia.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="164"/>
         <source>Test database connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Otestovať spojenie s databázou</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="289"/>
         <source>Browse</source>
-        <translation type="unfinished"></translation>
+        <translation>Prehľadávať</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="470"/>
         <source>Enter an unique database name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadajte názov databázy.</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="479"/>
         <source>This name is already in use. Please enter unique name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tento názov už existuje. Prosím zadajte iný názov.</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="487"/>
         <source>Enter a database file path.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadajte cestu k databázovému súboru.</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="494"/>
         <source>This database is already on the list under name: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Táto databáza už je v zozname pod názvom: %1</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="510"/>
         <source>Select a database type.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyberte typ databázy.</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="568"/>
         <source>The name will be auto-generated</source>
-        <translation type="unfinished"></translation>
+        <translation>Názov bude vygenerovaný automaticky</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="573"/>
         <source>Type the name</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadajte meno</translation>
     </message>
 </context>
 <context>
@@ -1970,82 +1970,82 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbtree/dbtree.ui" line="23"/>
         <source>Databases</source>
-        <translation type="unfinished"></translation>
+        <translation>Databázy</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.ui" line="67"/>
         <source>Filter by name</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrovať podľa názvu</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="99"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopírovať</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="100"/>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Vložiť</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="101"/>
         <source>Select all</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybrať všetko</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="102"/>
         <source>Create a group</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvoriť skupinu</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="103"/>
         <source>Delete the group</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať skupinu</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="104"/>
         <source>Rename the group</source>
-        <translation type="unfinished"></translation>
+        <translation>Premenovať skupinu</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="105"/>
         <source>Add a database</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridať databázu</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="106"/>
         <source>Edit the database</source>
-        <translation type="unfinished"></translation>
+        <translation>Upraviť databázu</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="107"/>
         <source>Remove the database</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstrániť databázu</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="108"/>
         <source>Connect to the database</source>
-        <translation type="unfinished"></translation>
+        <translation>Pripojiť sa k databáze</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="109"/>
         <source>Disconnect from the database</source>
-        <translation type="unfinished"></translation>
+        <translation>Odpojiť sa od databázy</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="110"/>
         <source>Import</source>
-        <translation type="unfinished"></translation>
+        <translation>Importovať</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="111"/>
         <source>Export the database</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportovať databázu</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="112"/>
         <source>Convert database type</source>
-        <translation type="unfinished"></translation>
+        <translation>Konvertovať databázu</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="113"/>
@@ -2055,32 +2055,32 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="114"/>
         <source>Integrity check</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontrola integrity</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="115"/>
         <source>Create a table</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvoriť tabuľku</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="116"/>
         <source>Edit the table</source>
-        <translation type="unfinished"></translation>
+        <translation>Upraviť tabuľku</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="117"/>
         <source>Delete the table</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať tabuľku</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="118"/>
         <source>Export the table</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportovať tabuľku</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="119"/>
         <source>Import into the table</source>
-        <translation type="unfinished"></translation>
+        <translation>Importovať do tabuľky</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="120"/>
@@ -2090,7 +2090,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="121"/>
         <source>Create similar table</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvoriť rovnakú tabuľku</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="122"/>
@@ -2100,12 +2100,12 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="123"/>
         <source>Create an index</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvoriť index</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="124"/>
         <source>Edit the index</source>
-        <translation type="unfinished"></translation>
+        <translation>Upraviť index</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="125"/>
@@ -2181,7 +2181,7 @@ Browsing other pages will be possible after the row counting is done.</source>
         <location filename="../dbtree/dbtree.cpp" line="308"/>
         <location filename="../dbtree/dbtree.cpp" line="313"/>
         <source>Database</source>
-        <translation type="unfinished"></translation>
+        <translation>Databáza</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="323"/>
