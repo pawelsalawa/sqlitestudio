@@ -4095,14 +4095,14 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dbtree/dbtree.h" line="33"/>
         <source>Copy selected item(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopírovať vybrané položky</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="34"/>
         <location filename="../multieditor/multieditortext.h" line="15"/>
         <location filename="../sqleditor.h" line="24"/>
         <source>Paste from clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Vložiť zo schránky</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreeitemfactory.cpp" line="47"/>
@@ -4112,22 +4112,22 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dbtree/dbtreeitemfactory.cpp" line="52"/>
         <source>Indexes</source>
-        <translation type="unfinished"></translation>
+        <translation>Indexy</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreeitemfactory.cpp" line="57"/>
         <source>Triggers</source>
-        <translation type="unfinished"></translation>
+        <translation>Spúšťače</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreeitemfactory.cpp" line="62"/>
         <source>Views</source>
-        <translation type="unfinished"></translation>
+        <translation>Pohľady</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreeitemfactory.cpp" line="67"/>
         <source>Columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Stĺpce</translation>
     </message>
     <message>
         <location filename="../formview.h" line="16"/>
@@ -4172,27 +4172,27 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../formview.h" line="24"/>
         <source>Delete current row</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať aktuálny riadok</translation>
     </message>
     <message>
         <location filename="../mainwindow.h" line="42"/>
         <source>Main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Hlavné okno</translation>
     </message>
     <message>
         <location filename="../mainwindow.h" line="43"/>
         <source>Open SQL editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Otvoriť SQL editor</translation>
     </message>
     <message>
         <location filename="../mainwindow.h" line="44"/>
         <source>Previous window</source>
-        <translation type="unfinished"></translation>
+        <translation>Predchádzajúce okno</translation>
     </message>
     <message>
         <location filename="../mainwindow.h" line="45"/>
         <source>Next window</source>
-        <translation type="unfinished"></translation>
+        <translation>Nasledujúce okno</translation>
     </message>
     <message>
         <location filename="../mainwindow.h" line="46"/>
@@ -4230,7 +4230,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../multieditor/multieditortext.h" line="16"/>
         <location filename="../sqleditor.h" line="25"/>
         <source>Delete selected text</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať vybraný text</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.h" line="17"/>
