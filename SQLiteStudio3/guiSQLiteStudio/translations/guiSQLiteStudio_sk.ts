@@ -4107,7 +4107,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dbtree/dbtreeitemfactory.cpp" line="47"/>
         <source>Tables</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabuľky</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreeitemfactory.cpp" line="52"/>
