@@ -3309,7 +3309,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.ui" line="88"/>
         <source>Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>Nástroje</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="105"/>
@@ -3349,12 +3349,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="202"/>
         <source>You need to restart application to make the language change take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Je potrebné reštartovať aplikáciu aby sa zmena jazyka prejavila.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="245"/>
         <source>Open SQL editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Otvoriť SQL editor</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="246"/>
@@ -3464,7 +3464,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="271"/>
         <source>About</source>
-        <translation type="unfinished">O programe</translation>
+        <translation>O programe</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="272"/>
@@ -3474,22 +3474,22 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="273"/>
         <source>Open home page</source>
-        <translation type="unfinished"></translation>
+        <translation>Otvoriť domovskú stránku</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="274"/>
         <source>Open forum page</source>
-        <translation type="unfinished"></translation>
+        <translation>Otvoriť fórum</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="275"/>
         <source>User Manual</source>
-        <translation type="unfinished"></translation>
+        <translation>Užívateľský manuál</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="276"/>
         <source>SQLite documentation</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokumentácia SQLite</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="277"/>
@@ -3650,7 +3650,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../multieditor/multieditordate.cpp" line="14"/>
         <source>Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Dátum</translation>
     </message>
 </context>
 <context>
@@ -3658,7 +3658,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../multieditor/multieditordatetime.cpp" line="181"/>
         <source>Date &amp; time</source>
-        <translation type="unfinished"></translation>
+        <translation>Dátum a čas</translation>
     </message>
 </context>
 <context>
@@ -3793,7 +3793,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="26"/>
         <source>New updates are available!</source>
-        <translation type="unfinished"></translation>
+        <translation>Nové aktualizácie sú dostupné!</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="70"/>
@@ -3803,7 +3803,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="75"/>
         <source>Current version</source>
-        <translation type="unfinished"></translation>
+        <translation>Nainštalovaná verzia</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="80"/>
@@ -3813,7 +3813,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="91"/>
         <source>Check for updates on startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontrolovať aktualizácie pri štarte</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="101"/>
