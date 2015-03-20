@@ -71,7 +71,7 @@
     <message>
         <location filename="../dialogs/aboutdialog.cpp" line="42"/>
         <source>MacOS X application boundle distribution.</source>
-        <translation type="unfinished"></translation>
+        <translation>MacOS X aplikačná distribúcia.</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.cpp" line="45"/>
@@ -150,7 +150,7 @@
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="66"/>
         <source>You can see all your reported bugs and ideas by selecting menu &apos;%1&apos; and then &apos;%2&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Všetky svoje nahlásené chyby a nápady môžte vidieť výberom &apos;%1&apos; a následne &apos;%2&apos;.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="74"/>
@@ -3374,47 +3374,47 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="249"/>
         <source>Import</source>
-        <translation type="unfinished"></translation>
+        <translation>Import</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="250"/>
         <source>Export</source>
-        <translation type="unfinished"></translation>
+        <translation>Export</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="252"/>
         <source>Open configuration dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfigurácia</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="254"/>
         <source>Tile windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Oddeliť okná</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="255"/>
         <source>Tile windows horizontally</source>
-        <translation type="unfinished"></translation>
+        <translation>Oddeliť okná horizontálne</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="256"/>
         <source>Tile windows vertically</source>
-        <translation type="unfinished"></translation>
+        <translation>Oddeliť okná vertikálne</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="257"/>
         <source>Cascade windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Okná kaskádovito</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="258"/>
         <source>Next window</source>
-        <translation type="unfinished"></translation>
+        <translation>Nasledujúce okno</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="259"/>
         <source>Previous window</source>
-        <translation type="unfinished"></translation>
+        <translation>Predchádzajúce okno</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="260"/>
@@ -3424,27 +3424,27 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="262"/>
         <source>Close selected window</source>
-        <translation type="unfinished"></translation>
+        <translation>Zatvoriť vybrané okno</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="263"/>
         <source>Close all windows but selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Zatvoriť všetky okná okrem vybraného</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="264"/>
         <source>Close all windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Zatvoriť všetky okná</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="265"/>
         <source>Restore recently closed window</source>
-        <translation type="unfinished"></translation>
+        <translation>Obnoviť posledné zatvorené okno</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="266"/>
         <source>Rename selected window</source>
-        <translation type="unfinished"></translation>
+        <translation>Premenovať vybrané okno</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="268"/>
@@ -3459,7 +3459,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="270"/>
         <source>Propose a new feature</source>
-        <translation type="unfinished"></translation>
+        <translation>Navrhnúť novú funkciu</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="271"/>
@@ -3494,7 +3494,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="277"/>
         <source>Report history</source>
-        <translation type="unfinished"></translation>
+        <translation>História hlásení</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="278"/>
@@ -3523,13 +3523,13 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../mainwindow.cpp" line="360"/>
         <source>Window list</source>
         <comment>menubar view menu</comment>
-        <translation type="unfinished"></translation>
+        <translation>Lišta okien</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="381"/>
         <source>Tools</source>
         <comment>menubar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nástroje</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="395"/>
@@ -3540,7 +3540,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../mainwindow.cpp" line="549"/>
         <source>Could not set style: %1</source>
         <comment>main window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nemôžem nastaviť štýl: %1</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="621"/>
@@ -3555,12 +3555,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="662"/>
         <source>Rename window</source>
-        <translation type="unfinished"></translation>
+        <translation>Premenovať okno</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="662"/>
         <source>Enter new name for the window:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadajte nový názov pre okno:</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="730"/>
@@ -3585,7 +3585,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="849"/>
         <source>Could not add database %1 to list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemôžem pridať databázu %1 do zoznamu.</translation>
     </message>
 </context>
 <context>
@@ -5779,7 +5779,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
         <location filename="../windows/viewwindow.ui" line="119"/>
         <source>DDL</source>
-        <translation type="unfinished"></translation>
+        <translation>DDL</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="115"/>
