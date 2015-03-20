@@ -3299,12 +3299,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.ui" line="66"/>
         <source>Database toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Databázová  lišta</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="77"/>
         <source>Structure toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Lišta štruktúr</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="88"/>
@@ -3314,12 +3314,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.ui" line="105"/>
         <source>Window list</source>
-        <translation type="unfinished"></translation>
+        <translation>Lišta okien</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="119"/>
         <source>View toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Lišta pohľadov</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="104"/>
@@ -3359,12 +3359,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="246"/>
         <source>Open DDL history</source>
-        <translation type="unfinished"></translation>
+        <translation>Otvoriť DDL históriu</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="247"/>
         <source>Open SQL functions editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Otvoriť editor SQL funkcií</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="248"/>
@@ -3505,19 +3505,19 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../mainwindow.cpp" line="315"/>
         <source>Database</source>
         <comment>menubar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Databázy</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="335"/>
         <source>Structure</source>
         <comment>menubar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Štruktúry</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="356"/>
         <source>View</source>
         <comment>menubar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zobrazenie</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="360"/>
@@ -3534,7 +3534,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="395"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomoc</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="549"/>
