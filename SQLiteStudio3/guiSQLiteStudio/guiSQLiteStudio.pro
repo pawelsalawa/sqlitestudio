@@ -174,7 +174,8 @@ SOURCES +=\
     dialogs/newversiondialog.cpp \
     dialogs/quitconfirmdialog.cpp \
     common/datawidgetmapper.cpp \
-    dialogs/languagedialog.cpp
+    dialogs/languagedialog.cpp \
+    common/ipvalidator.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -318,7 +319,8 @@ HEADERS  += mainwindow.h \
     guiSQLiteStudio_global.h \
     dialogs/quitconfirmdialog.h \
     common/datawidgetmapper.h \
-    dialogs/languagedialog.h
+    dialogs/languagedialog.h \
+    common/ipvalidator.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \
