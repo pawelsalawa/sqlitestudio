@@ -1933,37 +1933,38 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="179"/>
         <source>Delete index</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať index</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="180"/>
         <source>Are you sure you want to delete index %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ste si istý, že chcete vymazať index %1?</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="184"/>
         <source>Delete trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať spúšťač</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="185"/>
         <source>Are you sure you want to delete trigger %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ste si istý, že chcete vymazať spúšťač %1?</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="189"/>
         <source>Delete view</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať pohľad</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="190"/>
         <source>Are you sure you want to delete view %1?</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Ste si istý, že chcete vymazať pohľad %1?</translatorcomment>
+        <translation></translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="218"/>
         <source>Error while dropping %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyskystla sa chyba počas mazania %1: %2</translation>
     </message>
 </context>
 <context>
@@ -2111,22 +2112,22 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="125"/>
         <source>Delete the index</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať index</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="126"/>
         <source>Create a trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvoriť spúšťač</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="127"/>
         <source>Edit the trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Upraviť spúšťač</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="128"/>
         <source>Delete the trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať spúšťač</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="129"/>
