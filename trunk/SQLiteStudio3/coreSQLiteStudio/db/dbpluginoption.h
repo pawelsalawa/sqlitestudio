@@ -102,7 +102,7 @@ struct DbPluginOption
     /**
      * @brief Handler for custom path browser implemented by the plugin.
      */
-    CustomBrowseHandler customBrowseHandler;
+    CustomBrowseHandler customBrowseHandler = nullptr;
 };
 
 #endif // DBPLUGINOPTION_H

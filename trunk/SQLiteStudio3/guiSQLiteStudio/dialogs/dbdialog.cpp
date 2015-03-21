@@ -158,6 +158,9 @@ void DbDialog::updateOptions()
     }
     adjustSize();
 
+    customBrowseHandler = nullptr;
+    ui->fileLabel->setText(tr("File"));
+
     optionWidgets.clear();
     optionKeyToWidget.clear();
     optionKeyToType.clear();
@@ -195,8 +198,10 @@ void DbDialog::addOption(const DbPluginOption& option, int& row)
 {
     if (option.type == DbPluginOption::CUSTOM_PATH_BROWSE)
     {
-        // This option does not add any editor.
+        // This option does not add any editor, but has it's own label for path edit.
         row--;
+        ui->fileLabel->setText(option.label);
+        customBrowseHandler = option.customBrowseHandler;
         return;
     }
 
@@ -450,7 +455,11 @@ QHash<QString, QVariant> DbDialog::collectOptions()
 bool DbDialog::testDatabase()
 {
     QString path = ui->fileEdit->text();
-    bool existed = QFile::exists(path);
+    QUrl url(path);
+    bool existed = false;
+    if (url.isLocalFile() && QFile::exists(path))
+        existed = QFile::exists(path);
+
     bool res = getDb() != nullptr;
     if (!existed)
     {
@@ -586,6 +595,12 @@ void DbDialog::fileChanged(const QString &arg1)
 
 void DbDialog::browseClicked()
 {
+    if (customBrowseHandler)
+    {
+        customBrowseHandler(ui->fileEdit->text());
+        return;
+    }
+
     QFileInfo fileInfo(ui->fileEdit->text());
     QString dir;
     if (ui->fileEdit->text().isEmpty())

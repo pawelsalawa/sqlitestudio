@@ -67,6 +67,7 @@ class GUI_API_EXPORT DbDialog : public QDialog
         QHash<QString,DbPluginOption::Type> optionKeyToType;
         QHash<QWidget*,QString> helperToKey;
         QWidget* lastWidgetInTabOrder = nullptr;
+        DbPluginOption::CustomBrowseHandler customBrowseHandler = nullptr;
 
         static const constexpr int ADDITIONAL_ROWS_BEGIN_INDEX = 4;
 
