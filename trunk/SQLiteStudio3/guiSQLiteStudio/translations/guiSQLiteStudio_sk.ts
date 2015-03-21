@@ -2132,37 +2132,37 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="129"/>
         <source>Create a view</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvoriť pohľad</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="130"/>
         <source>Edit the view</source>
-        <translation type="unfinished"></translation>
+        <translation>Upraviť pohľad</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="131"/>
         <source>Delete the view</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať pohľad</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="132"/>
         <source>Add a column</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridať stĺpec</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="133"/>
         <source>Edit the column</source>
-        <translation type="unfinished"></translation>
+        <translation>Upraviť stĺpec</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="134"/>
         <source>Delete the column</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať stĺpec</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="135"/>
         <source>Delete selected items</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať vybrané položky</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="136"/>
