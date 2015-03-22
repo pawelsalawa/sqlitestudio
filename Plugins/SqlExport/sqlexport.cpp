@@ -248,7 +248,10 @@ QString SqlExport::formatQuery(const QString& sql)
     if (cfg.SqlExport.UseFormatter.get())
         return FORMATTER->format("sql", sql, db);
 
-    return sql;
+    if (sql.trimmed().endsWith(";"))
+        return sql;
+
+    return sql.trimmed() + ";";
 }
 
 QString SqlExport::getNameForObject(const QString& database, const QString& name, bool wrapped, Dialect dialect)

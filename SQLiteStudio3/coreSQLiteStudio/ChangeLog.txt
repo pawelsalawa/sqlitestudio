@@ -23,6 +23,7 @@
         * [BUGFIX]: Fixed executing query like: SELECT * FROM (SELECT * FROM table); - it used to crash.
         * [BUGFIX]: #2798 Fixed crash when restoring DbList group for inexisting database.
         * [BUGFIX]: #2808 Sorting indicators in data grid fixed to point the right direction and got a little bit larger.
+        * [BUGFIX]: #2807 Fixed SQL export plugin when exporting whole database without formatting SQL, so the missing semicolons are appended to each DDL.
 
 [3.0.3]
         * [ADDED]: Added visual validation indicators to DbDialog, so user is informed why the "Ok" button is disabled at the moment.
