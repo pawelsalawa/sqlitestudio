@@ -14,12 +14,7 @@ QVariant DbObjListModel::data(const QModelIndex& index, int role) const
         return QVariant();
 
     if (role == Qt::DisplayRole || role == Qt::EditRole)
-    {
-        if (sortMode == SortMode::Alphabetical)
-            return objectList[index.row()];
-        else
-            return unsortedObjectList[index.row()];
-    }
+        return objectList[index.row()];
 
     return QVariant();
 }
@@ -84,7 +79,19 @@ void DbObjListModel::updateList()
     resolver.setIgnoreSystemObjects(!includeSystemObjects);
     objectList = resolver.getObjects(typeString().toLower());
     unsortedObjectList = objectList;
-    qSort(objectList);
+
+    switch (sortMode)
+    {
+        case SortMode::Alphabetical:
+            objectList.sort();
+            break;
+        case SortMode::AlphabeticalCaseInsensitive:
+            objectList.sort(Qt::CaseInsensitive);
+            break;
+        case SortMode::LikeInDb:
+            break;
+    }
+
     endResetModel();
 }
 

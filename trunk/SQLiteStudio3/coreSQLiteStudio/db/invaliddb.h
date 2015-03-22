@@ -9,10 +9,10 @@ class API_EXPORT InvalidDb : public Db
         InvalidDb(const QString& name, const QString& path, const QHash<QString, QVariant>& connOptions);
 
         bool isOpen();
-        QString getName();
-        QString getPath();
-        quint8 getVersion();
-        Dialect getDialect();
+        QString getName() const;
+        QString getPath() const;
+        quint8 getVersion() const;
+        Dialect getDialect() const;
         QString getEncoding();
         QHash<QString, QVariant>& getConnectionOptions();
         void setName(const QString& value);

@@ -1,5 +1,6 @@
 #include "db.h"
 #include <QMetaEnum>
+#include <QDebug>
 
 Db::Db()
 {
@@ -54,4 +55,11 @@ bool Sqlite2ColumnDataTypeHelper::isBinaryColumn(int columnIndex) const
 void Sqlite2ColumnDataTypeHelper::clearBinaryTypes()
 {
     binaryColumns.clear();
+}
+
+
+QDebug operator<<(QDebug dbg, const Db* db)
+{
+    dbg.nospace() << "<DB:" << db->getName() << ">";
+    return dbg.space();
 }

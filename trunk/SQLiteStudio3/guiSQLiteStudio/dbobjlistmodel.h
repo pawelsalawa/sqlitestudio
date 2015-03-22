@@ -14,7 +14,8 @@ class GUI_API_EXPORT DbObjListModel : public QAbstractListModel
         enum class SortMode
         {
             LikeInDb,
-            Alphabetical
+            Alphabetical,
+            AlphabeticalCaseInsensitive
         };
 
         enum class ObjectType

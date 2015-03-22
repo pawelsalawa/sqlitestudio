@@ -77,6 +77,8 @@ void DbListModel::setSortMode(const QString& sortMode)
         this->sortMode = SortMode::LikeDbTree;
     else if (sortMode == "Alphabetical")
         this->sortMode = SortMode::Alphabetical;
+    else if (sortMode == "AlphabeticalCaseInsensitive")
+        this->sortMode = SortMode::AlphabeticalCaseInsensitive;
     else
         this->sortMode = SortMode::ConnectionOrder;
 
@@ -91,6 +93,8 @@ QString DbListModel::getSortModeString() const
             return "LikeDbTree";
         case DbListModel::SortMode::Alphabetical:
             return "Alphabetical";
+        case DbListModel::SortMode::AlphabeticalCaseInsensitive:
+            return "AlphabeticalCaseInsensitive";
         case DbListModel::SortMode::ConnectionOrder:
             break;
     }
@@ -116,6 +120,12 @@ void DbListModel::sort()
         case DbListModel::SortMode::Alphabetical:
         {
             AlphaComparer comparer;
+            qSort(dbList.begin(), dbList.end(), comparer);
+            break;
+        }
+        case DbListModel::SortMode::AlphabeticalCaseInsensitive:
+        {
+            AlphaComparer comparer(Qt::CaseInsensitive);
             qSort(dbList.begin(), dbList.end(), comparer);
             break;
         }
@@ -183,7 +193,12 @@ bool DbListModel::DbTreeComparer::operator()(Db* db1, Db* db2)
     return dbTreeOrder.indexOf(db1->getName()) < dbTreeOrder.indexOf(db2->getName());
 }
 
+DbListModel::AlphaComparer::AlphaComparer(Qt::CaseSensitivity cs) :
+    cs(cs)
+{
+}
+
 bool DbListModel::AlphaComparer::operator()(Db* db1, Db* db2)
 {
-    return db1->getName().compare(db2->getName()) < 0;
+    return db1->getName().compare(db2->getName(), cs) < 0;
 }

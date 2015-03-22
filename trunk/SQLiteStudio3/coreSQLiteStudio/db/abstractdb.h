@@ -45,10 +45,10 @@ class API_EXPORT AbstractDb : public Db
         virtual ~AbstractDb();
 
         bool isOpen();
-        QString getName();
-        QString getPath();
-        quint8 getVersion();
-        Dialect getDialect();
+        QString getName() const;
+        QString getPath() const;
+        quint8 getVersion() const;
+        Dialect getDialect() const;
         QString getEncoding();
         QHash<QString,QVariant>& getConnectionOptions();
         void setName(const QString& value);
