@@ -195,13 +195,13 @@ class API_EXPORT Db : public QObject, public Interruptable
          * @brief Gets database symbolic name.
          * @return Database symbolic name (as it was defined in call to DbManager#addDb() or DbManager#updateDb()).
          */
-        virtual QString getName() = 0;
+        virtual QString getName() const = 0;
 
         /**
          * @brief Gets database file path.
          * @return Database file path (as it was defined in call to DbManager#addDb() or DbManager#updateDb()).
          */
-        virtual QString getPath() = 0;
+        virtual QString getPath() const = 0;
 
         /**
          * @brief Gets SQLite version major number for this database.
@@ -209,7 +209,7 @@ class API_EXPORT Db : public QObject, public Interruptable
          *
          * You don't have to open the database. This information is always available.
          */
-        virtual quint8 getVersion() = 0;
+        virtual quint8 getVersion() const = 0;
 
         /**
          * @brief Gets database dialect.
@@ -217,7 +217,7 @@ class API_EXPORT Db : public QObject, public Interruptable
          *
          * You don't have to open the database. This information is always available.
          */
-        virtual Dialect getDialect() = 0;
+        virtual Dialect getDialect() const = 0;
 
         /**
          * @brief Gets database encoding.
@@ -815,6 +815,8 @@ class API_EXPORT Db : public QObject, public Interruptable
 
 QDataStream &operator<<(QDataStream &out, const Db* myObj);
 QDataStream &operator>>(QDataStream &in, Db*& myObj);
+
+QDebug operator<<(QDebug dbg, const Db* db);
 
 Q_DECLARE_METATYPE(Db*)
 Q_DECLARE_OPERATORS_FOR_FLAGS(Db::Flags)

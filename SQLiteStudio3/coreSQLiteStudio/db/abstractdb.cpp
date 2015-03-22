@@ -177,22 +177,22 @@ ReadWriteLocker::Mode AbstractDb::getLockingMode(const QString &query, Flags fla
     return ReadWriteLocker::getMode(query, getDialect(), flags.testFlag(Flag::NO_LOCK));
 }
 
-QString AbstractDb::getName()
+QString AbstractDb::getName() const
 {
     return name;
 }
 
-QString AbstractDb::getPath()
+QString AbstractDb::getPath() const
 {
     return path;
 }
 
-quint8 AbstractDb::getVersion()
+quint8 AbstractDb::getVersion() const
 {
     return version;
 }
 
-Dialect AbstractDb::getDialect()
+Dialect AbstractDb::getDialect() const
 {
     if (version == 2)
         return Dialect::Sqlite2;

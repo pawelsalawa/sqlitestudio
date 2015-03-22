@@ -12,22 +12,22 @@ bool InvalidDb::isOpen()
     return false;
 }
 
-QString InvalidDb::getName()
+QString InvalidDb::getName() const
 {
     return name;
 }
 
-QString InvalidDb::getPath()
+QString InvalidDb::getPath() const
 {
     return path;
 }
 
-quint8 InvalidDb::getVersion()
+quint8 InvalidDb::getVersion() const
 {
     return 0;
 }
 
-Dialect InvalidDb::getDialect()
+Dialect InvalidDb::getDialect() const
 {
     return Dialect::Sqlite3;
 }

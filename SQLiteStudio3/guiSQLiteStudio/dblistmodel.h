@@ -15,6 +15,7 @@ class GUI_API_EXPORT DbListModel : public QAbstractListModel
         {
             LikeDbTree,
             Alphabetical,
+            AlphabeticalCaseInsensitive,
             ConnectionOrder
         };
 
@@ -49,7 +50,12 @@ class GUI_API_EXPORT DbListModel : public QAbstractListModel
         class AlphaComparer
         {
             public:
+                AlphaComparer(Qt::CaseSensitivity cs = Qt::CaseSensitive);
+
                 bool operator()(Db* db1, Db* db2);
+
+            private:
+                Qt::CaseSensitivity cs;
         };
 
         void sort();

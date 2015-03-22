@@ -146,10 +146,11 @@ void ExportDialog::initTablePage()
 
     dbListModel = new DbListModel(this);
     dbListModel->setCombo(ui->exportTableDbNameCombo);
-    dbListModel->setSortMode(DbListModel::SortMode::Alphabetical);
+    dbListModel->setSortMode(DbListModel::SortMode::AlphabeticalCaseInsensitive);
 
     tablesModel = new DbObjListModel(this);
     tablesModel->setType(DbObjListModel::ObjectType::TABLE);
+    tablesModel->setSortMode(DbObjListModel::SortMode::AlphabeticalCaseInsensitive);
 
     connect(this, SIGNAL(tablePageCompleteChanged()), ui->tablePage, SIGNAL(completeChanged()));
 }
