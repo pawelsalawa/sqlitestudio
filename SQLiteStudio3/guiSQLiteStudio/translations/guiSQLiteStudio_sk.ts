@@ -2167,17 +2167,17 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="136"/>
         <source>Clear filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Zrušiť filter</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="137"/>
         <source>Refresh all database schemas</source>
-        <translation type="unfinished"></translation>
+        <translation>Obnoviť všetky databázové schémy</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="138"/>
         <source>Refresh selected database schema</source>
-        <translation type="unfinished"></translation>
+        <translation>Obnoviť vybranú databázovú schému</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="308"/>
@@ -2188,18 +2188,18 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="323"/>
         <source>Grouping</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoskupovanie</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="932"/>
         <location filename="../dbtree/dbtree.cpp" line="935"/>
         <source>Create group</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvoriť skupinu</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="932"/>
         <source>Group name</source>
-        <translation type="unfinished"></translation>
+        <translation>Názov skupiny</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="935"/>
@@ -2209,23 +2209,24 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="953"/>
         <source>Delete group</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať skupinu</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="954"/>
         <source>Are you sure you want to delete group %1?
 All objects from this group will be moved to parent group.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ste si istý, že chcete vymazať skupinu %1?
+Všetky objekty z tejto skupiny budú presunuté do nadradenej skupiny.</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1014"/>
         <source>Delete database</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať databázu</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1014"/>
         <source>Are you sure you want to delete database &apos;%1&apos;?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ste si istý, že chcete vymazať databázu &apos;%1&apos;?</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1050"/>
@@ -2252,7 +2253,7 @@ All objects from this group will be moved to parent group.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1353"/>
         <source>Integrity check (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontrola integrity (%1)</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1390"/>
@@ -2468,7 +2469,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/ddlhistorywindow.cpp" line="124"/>
         <source>DDL history</source>
-        <translation type="unfinished"></translation>
+        <translation>DDL história</translation>
     </message>
 </context>
 <context>
@@ -4398,32 +4399,32 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/tablewindow.h" line="31"/>
         <source>Refresh table structure</source>
-        <translation type="unfinished"></translation>
+        <translation>Obnoviť štruktúru tabuľky</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="32"/>
         <source>Add new column</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridať nový stĺpec</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="33"/>
         <source>Edit selected column</source>
-        <translation type="unfinished"></translation>
+        <translation>Upraviť vybraný stĺpec</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="34"/>
         <source>Delete selected column</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať vybraný stĺpec</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="35"/>
         <source>Export table data</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportovať dáta z tabuľky</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="36"/>
         <source>Import data to the table</source>
-        <translation type="unfinished"></translation>
+        <translation>Importovať dáta do tabuľky</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="37"/>
@@ -5200,17 +5201,17 @@ but it&apos;s okay to use them anyway.</source>
     <message>
         <location filename="../windows/tablewindow.ui" line="36"/>
         <source>Structure</source>
-        <translation type="unfinished"></translation>
+        <translation>Štruktúra</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.ui" line="60"/>
         <source>Table name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Názov tabuľky:</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.ui" line="184"/>
         <source>Data</source>
-        <translation type="unfinished"></translation>
+        <translation>Dáta</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.ui" line="201"/>
