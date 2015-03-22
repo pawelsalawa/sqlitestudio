@@ -333,12 +333,12 @@
     <message>
         <location filename="../dialogs/bugreportlogindialog.cpp" line="65"/>
         <source>A login must be at least 2 characters long.</source>
-        <translation type="unfinished"></translation>
+        <translation>meno musí mať dĺžku minimálne 2 znaky.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.cpp" line="66"/>
         <source>A password must be at least 5 characters long.</source>
-        <translation type="unfinished"></translation>
+        <translation>Heslo musí mať dĺžku minimálne 5 znakov.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.cpp" line="91"/>
@@ -2497,12 +2497,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/editorwindow.ui" line="39"/>
         <source>Query</source>
-        <translation type="unfinished"></translation>
+        <translation>Dotaz</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.ui" line="109"/>
         <source>History</source>
-        <translation type="unfinished"></translation>
+        <translation>História</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="130"/>
@@ -2523,7 +2523,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/editorwindow.cpp" line="324"/>
         <source>Results</source>
-        <translation type="unfinished"></translation>
+        <translation>Výsledky</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="357"/>
@@ -3860,17 +3860,17 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/populatedialog.ui" line="26"/>
         <source>Database</source>
-        <translation type="unfinished"></translation>
+        <translation>Databáza</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.ui" line="44"/>
         <source>Table</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabuľka</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.ui" line="72"/>
         <source>Columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Stĺpce</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.ui" line="102"/>
@@ -3896,17 +3896,17 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="287"/>
         <source>Select database with table to populate</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyberte databázu s tabuľkou na naplnenie</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="288"/>
         <source>Select table to populate</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyberte tabuľku na naplnenie</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="289"/>
         <source>You have to select at least one column.</source>
-        <translation type="unfinished"></translation>
+        <translation>Musíte vybrať minimálne jeden stĺpec.</translation>
     </message>
 </context>
 <context>
