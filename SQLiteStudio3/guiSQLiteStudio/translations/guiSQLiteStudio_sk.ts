@@ -2358,36 +2358,36 @@ Všetky objekty z tejto skupiny budú presunuté do nadradenej skupiny.</transla
         <location filename="../dbtree/dbtreemodel.cpp" line="418"/>
         <source>Error details:</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Detaily chyby:</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="428"/>
         <source>Table : %1</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Tabuľka : %1</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="451"/>
         <source>Columns (%1):</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Stĺpce (%1):</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="454"/>
         <source>Indexes (%1):</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Indexy (%1):</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="457"/>
         <source>Triggers (%1):</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Spúšťače (%1):</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1072"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopírovať</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1073"/>
@@ -2412,7 +2412,7 @@ Všetky objekty z tejto skupiny budú presunuté do nadradenej skupiny.</transla
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1079"/>
         <source>Abort</source>
-        <translation type="unfinished"></translation>
+        <translation>Zrušiť</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1155"/>
@@ -2652,12 +2652,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/exportdialog.ui" line="14"/>
         <source>Export</source>
-        <translation type="unfinished"></translation>
+        <translation>Export</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="21"/>
         <source>What do you want to export?</source>
-        <translation type="unfinished"></translation>
+        <translation>Čo chcete exportovať?</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="36"/>
@@ -2677,150 +2677,150 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/exportdialog.ui" line="65"/>
         <source>Table to export</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabuľka na export</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="100"/>
         <source>Database</source>
-        <translation type="unfinished"></translation>
+        <translation>Databáza</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="107"/>
         <source>Table</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabuľka</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="124"/>
         <source>Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Voľby</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="130"/>
         <source>When this option is unchecked, then only table DDL (CREATE TABLE statement) is exported.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ak táto voľba nebude označená, tak sa vyexportuje len DDL tabuľky(príkaz CREATE TABLE).</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="133"/>
         <source>Export table data</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportovať dáta tabuľky</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="143"/>
         <source>Export table indexes</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportovať indexy tabuľky</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="153"/>
         <source>Export table triggers</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportovať spúšťače tabuľky</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="175"/>
         <source>Note, that exporting table indexes and triggers may be unsupported by some output formats.</source>
-        <translation type="unfinished"></translation>
+        <translation>Poznámka. Niektoré exportné formáty nemusia podporovať export indexov a spúšťačov.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="189"/>
         <source>Select database objects to export</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyberte databázové objekty, ktoré chcete exportovať</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="202"/>
         <source>Export data from tables</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportovať dáta z tabuliek</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="212"/>
         <source>Select all</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybrať všetko</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="219"/>
         <source>Deselect all</source>
-        <translation type="unfinished"></translation>
+        <translation>Zrušiť výber</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="229"/>
         <location filename="../dialogs/exportdialog.ui" line="249"/>
         <source>Database:</source>
-        <translation type="unfinished"></translation>
+        <translation>Databáza:</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="237"/>
         <source>Query to export results for</source>
-        <translation type="unfinished"></translation>
+        <translation>Dotaz pre export výsledkov pre</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="256"/>
         <source>Query to be executed for results:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dotaz, ktorý bude vykonaný pre získanie dát:</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="264"/>
         <source>Export format and options</source>
-        <translation type="unfinished"></translation>
+        <translation>Formát exportu a možnosti</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="318"/>
         <source>Export format</source>
-        <translation type="unfinished"></translation>
+        <translation>Formát exportu</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="330"/>
         <source>Output</source>
-        <translation type="unfinished"></translation>
+        <translation>Výstup</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="336"/>
         <source>Exported file path</source>
-        <translation type="unfinished"></translation>
+        <translation>Cesta k výstupnému súboru</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="343"/>
         <source>Clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Schránka</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="357"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>Súbor</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="382"/>
         <source>Exported text encoding:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kódovanie vyexportovaného textu:</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="398"/>
         <source>Export format options</source>
-        <translation type="unfinished"></translation>
+        <translation>Možnosti formátu exportu</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="51"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Zrušiť</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="141"/>
         <location filename="../dialogs/exportdialog.cpp" line="165"/>
         <location filename="../dialogs/exportdialog.cpp" line="188"/>
         <source>Select database to export.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyberte databázu, ktorú chcete exportovať.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="142"/>
         <source>Select table to export.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyberte tabuľku, ktorú chcete exportovať.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="166"/>
         <source>Enter valid query to export.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadajte platný dotaz pre export.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="189"/>
         <source>Select at least one object to export.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyberte aspoň jeden objekt pre export.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="212"/>
@@ -2830,32 +2830,32 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="219"/>
         <source>Path you provided is an existing directory. You cannot overwrite it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cesta, ktorú ste zadali je existujúci adresár. Nemôžte ho prepísať.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="225"/>
         <source>The directory &apos;%1&apos; does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Adresár %1 neexistuje.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="231"/>
         <source>The file &apos;%1&apos; exists and will be overwritten.</source>
-        <translation type="unfinished"></translation>
+        <translation>Súbor %1 už existuje a bude prepísaný.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="402"/>
         <source>All files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Všetky súbory (*)</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="405"/>
         <source>Pick file to export to</source>
-        <translation type="unfinished"></translation>
+        <translation>Výber súboru do ktorého sa budú exportovať dáta</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="694"/>
         <source>Internal error during export. This is a bug. Please report it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Počas exportu sa vyskytla interná chyba. Toto je chyba v programe. Prosím nahláste ju.</translation>
     </message>
 </context>
 <context>
