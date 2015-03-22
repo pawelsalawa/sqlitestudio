@@ -5761,7 +5761,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
         <location filename="../windows/viewwindow.ui" line="36"/>
         <source>Query</source>
-        <translation type="unfinished"></translation>
+        <translation>Dotaz</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.ui" line="60"/>
@@ -5771,12 +5771,12 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
         <location filename="../windows/viewwindow.ui" line="77"/>
         <source>Data</source>
-        <translation type="unfinished"></translation>
+        <translation>Dáta</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.ui" line="87"/>
         <source>Triggers</source>
-        <translation type="unfinished"></translation>
+        <translation>Spúšťače</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.ui" line="119"/>
@@ -5832,19 +5832,19 @@ Do you want to commit the structure, or do you want to go back to the structure 
         <location filename="../windows/viewwindow.cpp" line="287"/>
         <source>Create new trigger</source>
         <comment>view window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vytvoriť nový spúšťač</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="288"/>
         <source>Edit selected trigger</source>
         <comment>view window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Upraviť vybraný spúšťač</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="289"/>
         <source>Delete selected trigger</source>
         <comment>view window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať vybraný spúšťač</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="310"/>
@@ -5869,7 +5869,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
         <location filename="../windows/viewwindow.cpp" line="466"/>
         <source>Uncommited changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepotvrdené zmeny</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="467"/>
@@ -5915,7 +5915,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
         <location filename="../windows/viewwindow.cpp" line="609"/>
         <source>Details</source>
         <comment>table window triggers</comment>
-        <translation type="unfinished"></translation>
+        <translation>Detaily</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="649"/>
