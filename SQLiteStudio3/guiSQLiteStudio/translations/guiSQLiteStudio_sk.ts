@@ -99,7 +99,7 @@
     <message>
         <location filename="../dialogs/bugdialog.ui" line="20"/>
         <source>Reporter</source>
-        <translation type="unfinished"></translation>
+        <translation>Reportér</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="36"/>
@@ -498,7 +498,7 @@
     <message>
         <location filename="../dialogs/columndialog.ui" line="14"/>
         <source>Column</source>
-        <translation type="unfinished"></translation>
+        <translation>Stĺpec</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="23"/>
@@ -528,7 +528,7 @@
     <message>
         <location filename="../dialogs/columndialog.ui" line="79"/>
         <source>Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Veľkosť:</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="102"/>
@@ -564,7 +564,7 @@
     <message>
         <location filename="../dialogs/columndialog.ui" line="150"/>
         <source>Not NULL</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie NULL</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="157"/>
@@ -574,7 +574,7 @@
     <message>
         <location filename="../dialogs/columndialog.ui" line="164"/>
         <source>Primary Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Primárny klúč</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="171"/>
@@ -1397,7 +1397,7 @@ but it&apos;s okay to use it.</source>
         <location filename="../dialogs/configdialog.cpp" line="767"/>
         <source>Version:</source>
         <comment>plugin details</comment>
-        <translation type="unfinished"></translation>
+        <translation>Verzia:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="768"/>
@@ -1612,107 +1612,107 @@ but it&apos;s okay to use it.</source>
         <location filename="../dataview.cpp" line="95"/>
         <source>Filter data</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Filtrovať dáta</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="104"/>
         <source>Grid view</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabuľkové zobrazenie</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="105"/>
         <source>Form view</source>
-        <translation type="unfinished"></translation>
+        <translation>Formulárové zobrazenie</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="148"/>
         <source>Refresh table data</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Obnoviť dáta v tabuľke</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="162"/>
         <source>First page</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Prvá strana</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="163"/>
         <source>Previous page</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Predchádzajúca strana</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="165"/>
         <source>Next page</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nasledujúca strana</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="166"/>
         <source>Last page</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Posledná strana</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="171"/>
         <source>Apply filter</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Aplikovať filter</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="186"/>
         <source>Commit changes for selected cells</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Potvrdiť zmeny pre vybrané bunky</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="187"/>
         <source>Rollback changes for selected cells</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vrátiť späť zmeny pre vybrané bunky</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="188"/>
         <source>Show grid view of results</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Výsledky zobraziť v tabuľke</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="189"/>
         <source>Show form view of results</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Výsledky zobraziť vo formulári</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="258"/>
         <source>Filter by text</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Filtrovať pomocou textu</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="259"/>
         <source>Filter by the Regular Expression</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Filtrovať pomocou regulárneho výrazu</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="260"/>
         <source>Filter by SQL expression</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Filtrovať pomocou SQL výrazu</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="291"/>
         <source>Tabs on top</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Záložky hore</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="292"/>
         <source>Tabs at bottom</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Záložky dole</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="510"/>
@@ -1723,7 +1723,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dataview.cpp" line="521"/>
         <source>Row: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Riadok:%1</translation>
     </message>
 </context>
 <context>
@@ -1761,7 +1761,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="66"/>
         <source>Target file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cieľový súbor:</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="73"/>
@@ -2087,7 +2087,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="120"/>
         <source>Populate table</source>
-        <translation type="unfinished"></translation>
+        <translation>Naplniť tabuľku</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="121"/>
@@ -2204,7 +2204,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="935"/>
         <source>Entry with name %1 already exists in group %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Položka s názvom %1 už existuje v skupine %2.</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="953"/>
@@ -2340,19 +2340,19 @@ Všetky objekty z tejto skupiny budú presunuté do nadradenej skupiny.</transla
         <location filename="../dbtree/dbtreemodel.cpp" line="411"/>
         <source>Version:</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Verzia:</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="412"/>
         <source>File size:</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Veľkosť súboru:</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="413"/>
         <source>Encoding:</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Kódovanie:</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="418"/>
@@ -2519,7 +2519,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../windows/editorwindow.cpp" line="164"/>
         <location filename="../windows/editorwindow.cpp" line="166"/>
         <source>SQL editor %1</source>
-        <translation type="unfinished"></translation>
+        <translation>SQL editor %1</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="324"/>
@@ -2529,7 +2529,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/editorwindow.cpp" line="357"/>
         <source>Execute query</source>
-        <translation type="unfinished"></translation>
+        <translation>Vykonať dotaz</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="358"/>
@@ -2546,23 +2546,23 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../windows/editorwindow.cpp" line="363"/>
         <source>Export results</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vyexportovať výsledky</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="365"/>
         <source>Create view from query</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vytvoriť pohľad z dotazu</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="374"/>
         <source>Previous database</source>
-        <translation type="unfinished"></translation>
+        <translation>Predchádzajúca databáza</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="375"/>
         <source>Next database</source>
-        <translation type="unfinished"></translation>
+        <translation>Nasledujúca databáza</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="378"/>

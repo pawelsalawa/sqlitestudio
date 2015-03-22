@@ -232,12 +232,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
         <location filename="../dbversionconverter.cpp" line="923"/>
         <source>Target file exists, but could not be overwritten.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cieľový súbor existuje ale nemôže byť prepísaný.</translation>
     </message>
     <message>
         <location filename="../dbversionconverter.cpp" line="942"/>
         <source>Could not find proper database plugin to create target database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nieje možné nájsť správny databázový plugin pre vytvorenie cieľovej databázy.</translation>
     </message>
     <message>
         <location filename="../dbversionconverter.cpp" line="1176"/>
