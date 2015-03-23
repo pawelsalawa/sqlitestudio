@@ -1854,6 +1854,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="90"/>
+        <location filename="../dialogs/dbdialog.cpp" line="162"/>
         <source>File</source>
         <translation>Fichier</translation>
     </message>
@@ -1879,42 +1880,42 @@ Browsing other pages will be possible after the row counting is done.</source>
         <translation>Test de connexion</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="289"/>
+        <location filename="../dialogs/dbdialog.cpp" line="294"/>
         <source>Browse</source>
         <translation>Navigateur</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="470"/>
+        <location filename="../dialogs/dbdialog.cpp" line="479"/>
         <source>Enter an unique database name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="479"/>
+        <location filename="../dialogs/dbdialog.cpp" line="488"/>
         <source>This name is already in use. Please enter unique name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="487"/>
+        <location filename="../dialogs/dbdialog.cpp" line="496"/>
         <source>Enter a database file path.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="494"/>
+        <location filename="../dialogs/dbdialog.cpp" line="503"/>
         <source>This database is already on the list under name: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="510"/>
+        <location filename="../dialogs/dbdialog.cpp" line="519"/>
         <source>Select a database type.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="568"/>
+        <location filename="../dialogs/dbdialog.cpp" line="577"/>
         <source>The name will be auto-generated</source>
         <translation>Le non sera généré automatiquement</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="573"/>
+        <location filename="../dialogs/dbdialog.cpp" line="582"/>
         <source>Type the name</source>
         <translation>Saississez le nom</translation>
     </message>
@@ -2331,125 +2332,125 @@ Tous les objets de ce groupe seront déplacés dans le groupe parent.</translati
 <context>
     <name>DbTreeModel</name>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="406"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="407"/>
         <source>Database: %1</source>
         <comment>dbtree tooltip</comment>
         <translation>Base de données: %1</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="411"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="412"/>
         <source>Version:</source>
         <comment>dbtree tooltip</comment>
         <translation>Version:</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="412"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="413"/>
         <source>File size:</source>
         <comment>dbtree tooltip</comment>
         <translation>Taille fichier:</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="413"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="414"/>
         <source>Encoding:</source>
         <comment>dbtree tooltip</comment>
         <translation>Codage:</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="418"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="419"/>
         <source>Error details:</source>
         <comment>dbtree tooltip</comment>
         <translation>Détails erreur:</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="428"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="429"/>
         <source>Table : %1</source>
         <comment>dbtree tooltip</comment>
         <translation>Table: %1</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="451"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="452"/>
         <source>Columns (%1):</source>
         <comment>dbtree tooltip</comment>
         <translation>Colonnes:(%1):</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="454"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="455"/>
         <source>Indexes (%1):</source>
         <comment>dbtree tooltip</comment>
         <translation>Index (%1):</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="457"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="458"/>
         <source>Triggers (%1):</source>
         <comment>dbtree tooltip</comment>
         <translation>Déclencheurs (%1):</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1072"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1073"/>
         <source>Copy</source>
         <translation>Copier</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1073"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1074"/>
         <source>Move</source>
         <translation>Déplcer</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1075"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1076"/>
         <source>Include data</source>
         <translation>Données incluses</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1076"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1077"/>
         <source>Include indexes</source>
         <translation>Index inclus</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1077"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1078"/>
         <source>Include triggers</source>
         <translation>Déclencheurs inclus</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1079"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1080"/>
         <source>Abort</source>
         <translation>Abandonner</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1155"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1156"/>
         <source>Referenced tables</source>
         <translation>Tables référencées</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1156"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1157"/>
         <source>Do you want to include following referenced tables as well:
 %1</source>
         <translation>Vous voulez inclure des tables référencées suivantes aussi :
 %1</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1165"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1166"/>
         <source>Name conflict</source>
         <translation>Conflit de nom</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1166"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1167"/>
         <source>Following object already exists in the target database.
 Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</source>
         <translation>L&apos;objet suivant existe déjà dans la base de données cible.
 Entrez SVP un nouveau nom, unique, ou cliquez &apos;%1&apos; pour d&apos;interrompre l&apos;opération :</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1179"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1180"/>
         <source>SQL statements conversion</source>
         <translation>Conversion des déclarations SQL </translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1187"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1188"/>
         <source>Following error occurred while converting SQL statements to the target SQLite version:</source>
         <translation>L&apos;erreur suivante est survenue en convertissant des déclarations de SQL de la version cible SQLite :</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1188"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1189"/>
         <source>Would you like to ignore those errors and proceed?</source>
         <translation>Voulez-vous ignorer ces erreurs et procéder?</translation>
     </message>
@@ -2806,8 +2807,8 @@ Entrez SVP un nouveau nom, unique, ou cliquez &apos;%1&apos; pour d&apos;interro
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="141"/>
-        <location filename="../dialogs/exportdialog.cpp" line="165"/>
-        <location filename="../dialogs/exportdialog.cpp" line="188"/>
+        <location filename="../dialogs/exportdialog.cpp" line="166"/>
+        <location filename="../dialogs/exportdialog.cpp" line="189"/>
         <source>Select database to export.</source>
         <translation>Sélecctionnez la base de données à exporter.</translation>
     </message>
@@ -2817,47 +2818,47 @@ Entrez SVP un nouveau nom, unique, ou cliquez &apos;%1&apos; pour d&apos;interro
         <translation>Sélectionnez la table à exporter.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="166"/>
+        <location filename="../dialogs/exportdialog.cpp" line="167"/>
         <source>Enter valid query to export.</source>
         <translation>Saississez une requête  valide à exporter.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="189"/>
+        <location filename="../dialogs/exportdialog.cpp" line="190"/>
         <source>Select at least one object to export.</source>
         <translation>Sélectionnez au moins un objet à exporter.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="212"/>
+        <location filename="../dialogs/exportdialog.cpp" line="213"/>
         <source>You must provide a file name to export to.</source>
         <translation>Vous devez fournir le nom d&apos;un fichier à exporter.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="219"/>
+        <location filename="../dialogs/exportdialog.cpp" line="220"/>
         <source>Path you provided is an existing directory. You cannot overwrite it.</source>
         <translation>Le  chemin fourni est un répertoire existant. Vous ne pouvez pas l&apos;écraser.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="225"/>
+        <location filename="../dialogs/exportdialog.cpp" line="226"/>
         <source>The directory &apos;%1&apos; does not exist.</source>
         <translation>Le répertoire %1 n&apos;existe pas.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="231"/>
+        <location filename="../dialogs/exportdialog.cpp" line="232"/>
         <source>The file &apos;%1&apos; exists and will be overwritten.</source>
         <translation>Le fichier &apos;%1&apos; existe et sera écrasé.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="402"/>
+        <location filename="../dialogs/exportdialog.cpp" line="403"/>
         <source>All files (*)</source>
         <translation>tous les fichiers(*)</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="405"/>
+        <location filename="../dialogs/exportdialog.cpp" line="406"/>
         <source>Pick file to export to</source>
         <translation>Sélectionnez un fichier à exporter</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="694"/>
+        <location filename="../dialogs/exportdialog.cpp" line="695"/>
         <source>Internal error during export. This is a bug. Please report it.</source>
         <translation>Erreur interne pendant l&apos;exportation. c&apos;est un bug.  SVP veuillez le reporter.</translation>
     </message>
@@ -3598,17 +3599,17 @@ Entrez SVP un nouveau nom, unique, ou cliquez &apos;%1&apos; pour d&apos;interro
 <context>
     <name>MdiWindow</name>
     <message>
-        <location filename="../mdiwindow.cpp" line="196"/>
+        <location filename="../mdiwindow.cpp" line="199"/>
         <source>Uncommited changes</source>
         <translation>Modification non enregistrées</translation>
     </message>
     <message>
-        <location filename="../mdiwindow.cpp" line="201"/>
+        <location filename="../mdiwindow.cpp" line="204"/>
         <source>Close anyway</source>
         <translation>Fermer</translation>
     </message>
     <message>
-        <location filename="../mdiwindow.cpp" line="203"/>
+        <location filename="../mdiwindow.cpp" line="206"/>
         <source>Don&apos;t close</source>
         <translation>Ne pas fermer</translation>
     </message>
@@ -4899,87 +4900,92 @@ recherche suivant</translation>
 <context>
     <name>SqlQueryView</name>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="71"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="72"/>
         <source>Copy</source>
         <translation>Copier</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="72"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="73"/>
         <source>Copy as...</source>
         <translation>Copier comme ...</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="73"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="74"/>
         <source>Paste</source>
         <translation>Coller</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="74"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="75"/>
         <source>Paste as...</source>
         <translation>Coller comme ...</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="75"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="76"/>
         <source>Set NULL values</source>
         <translation>Valeurs NULL positionnées</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="76"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="77"/>
         <source>Erase values</source>
         <translation>valeurs écrasées</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="77"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="78"/>
         <source>Edit value in editor</source>
         <translation>Valeur modifiée par l&apos;éditeur</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="78"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="79"/>
         <source>Commit</source>
         <translation>Enregistrer</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="79"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="80"/>
         <source>Rollback</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="80"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="81"/>
         <source>Commit selected cells</source>
         <translation>Enregistrer les cellules sélectionnées</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="81"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="82"/>
         <source>Rollback selected cells</source>
         <translation>Annuler les modifications des cellules sélectionnées</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="82"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="83"/>
         <source>Define columns to sort by</source>
         <translation>Définit les colonnes triées par</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="83"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="84"/>
         <source>Remove custom sorting</source>
         <translation>Enléve le tri personnalisé</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="84"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="85"/>
         <source>Insert row</source>
         <translation>Insérer une ligne</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="85"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="86"/>
         <source>Insert multiple rows</source>
         <translation>Insérer plusieurs lignes</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="86"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="87"/>
         <source>Delete selected row</source>
         <translation>Supprimer les lignes sélectionnées</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="503"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="256"/>
+        <source>No items selected to paste clipboard contents to.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../datagrid/sqlqueryview.cpp" line="510"/>
         <source>Edit value</source>
         <translation>Modifier la valeur</translation>
     </message>
@@ -5588,41 +5594,41 @@ Voulez-vous enregistrer la structure, ou voulez-vous retourner à l&apos;onglet 
         <translation>Condition partielle d&apos;index</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1424"/>
+        <location filename="../windows/tablewindow.cpp" line="1425"/>
         <source>Name</source>
         <comment>table window triggers</comment>
         <translation>Nom</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1425"/>
+        <location filename="../windows/tablewindow.cpp" line="1426"/>
         <source>Event</source>
         <comment>table window triggers</comment>
         <translation>Événement</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1426"/>
+        <location filename="../windows/tablewindow.cpp" line="1427"/>
         <source>Condition</source>
         <comment>table window triggers</comment>
         <translation>Condition</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1427"/>
+        <location filename="../windows/tablewindow.cpp" line="1428"/>
         <source>Details</source>
         <comment>table window triggers</comment>
         <translation>Details</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1515"/>
+        <location filename="../windows/tablewindow.cpp" line="1517"/>
         <source>Table window &quot;%1&quot; has uncommited structure modifications and data.</source>
         <translation>La fenêtre de table &quot;%1&quot; n&apos;a pas enregistré les modifications de structure et de données.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1517"/>
+        <location filename="../windows/tablewindow.cpp" line="1519"/>
         <source>Table window &quot;%1&quot; has uncommited data.</source>
         <translation>La fenêtre de table &quot;%1&quot; n&apos;a pas enregistrer les données.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1519"/>
+        <location filename="../windows/tablewindow.cpp" line="1521"/>
         <source>Table window &quot;%1&quot; has uncommited structure modifications.</source>
         <translation>La fenêtre de table &quot;%1&quot; n&apos;a pas enregistré les modifications de structure.</translation>
     </message>
@@ -5710,33 +5716,33 @@ Voulez-vous enregistrer la structure, ou voulez-vous retourner à l&apos;onglet 
         <translation>DDL</translation>
     </message>
     <message>
-        <location filename="../dialogs/triggerdialog.cpp" line="145"/>
+        <location filename="../dialogs/triggerdialog.cpp" line="159"/>
         <source>On view:</source>
         <translation>Sur vue:</translation>
     </message>
     <message>
-        <location filename="../dialogs/triggerdialog.cpp" line="168"/>
+        <location filename="../dialogs/triggerdialog.cpp" line="183"/>
         <source>Could not process trigger %1 correctly. Unable to open a trigger dialog.</source>
         <translation>Impossible d&apos;exécuter correctement  le déclencheur %1. Ouverture invalide du dialogue de déclencheur.</translation>
     </message>
     <message>
-        <location filename="../dialogs/triggerdialog.cpp" line="338"/>
+        <location filename="../dialogs/triggerdialog.cpp" line="353"/>
         <source>Enter a valid condition.</source>
         <translation>Saisissez une condition valide.</translation>
     </message>
     <message>
-        <location filename="../dialogs/triggerdialog.cpp" line="339"/>
+        <location filename="../dialogs/triggerdialog.cpp" line="354"/>
         <source>Enter a valid trigger code.</source>
         <translation>Saisissez un code de déclencheur valide.</translation>
     </message>
     <message>
-        <location filename="../dialogs/triggerdialog.cpp" line="411"/>
+        <location filename="../dialogs/triggerdialog.cpp" line="426"/>
         <source>Error</source>
         <comment>trigger dialog</comment>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../dialogs/triggerdialog.cpp" line="411"/>
+        <location filename="../dialogs/triggerdialog.cpp" line="426"/>
         <source>An error occurred while executing SQL statements:
 %1</source>
         <translation>Une erreur survenue lors de l&apos;exécution de l&apos;intruction SQL: %1</translation>

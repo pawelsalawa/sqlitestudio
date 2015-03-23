@@ -323,7 +323,7 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
 <context>
     <name>ExportWorker</name>
     <message>
-        <location filename="../exportworker.cpp" line="116"/>
+        <location filename="../exportworker.cpp" line="121"/>
         <source>Error while exporting query results: %1</source>
         <translation>Błąd podczas eksportowania wyników zapytania: %1</translation>
     </message>
@@ -332,28 +332,28 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
         <translation type="obsolete">Błąd podczas liczenia szerokości kolumn danych do eksportu wyników zapytania: %2</translation>
     </message>
     <message>
-        <location filename="../exportworker.cpp" line="175"/>
+        <location filename="../exportworker.cpp" line="201"/>
         <source>Error while counting data column width to export from query results: %1</source>
         <translation>Błąd podczas liczenia szerokości kolumn danych do eksportu wyników zapytania: %1</translation>
     </message>
     <message>
-        <location filename="../exportworker.cpp" line="275"/>
-        <location filename="../exportworker.cpp" line="326"/>
+        <location filename="../exportworker.cpp" line="353"/>
+        <location filename="../exportworker.cpp" line="411"/>
         <source>Could not parse %1 in order to export it. It will be excluded from the export output.</source>
         <translation>Nie udało się przeanalizować %1 w celu wyeksportowania. Element ten zostanie pominięty w wynikach eksportu.</translation>
     </message>
     <message>
-        <location filename="../exportworker.cpp" line="482"/>
+        <location filename="../exportworker.cpp" line="612"/>
         <source>Error while reading data to export from table %1: %2</source>
         <translation>Błąd podczas odczytu danych do eksportu z tabeli %1: %2</translation>
     </message>
     <message>
-        <location filename="../exportworker.cpp" line="490"/>
+        <location filename="../exportworker.cpp" line="620"/>
         <source>Error while counting data to export from table %1: %2</source>
         <translation>Błąd podczas liczenia danych do eksportu z tabeli %1: %2</translation>
     </message>
     <message>
-        <location filename="../exportworker.cpp" line="506"/>
+        <location filename="../exportworker.cpp" line="636"/>
         <source>Error while counting data column width to export from table %1: %2</source>
         <translation>Błąd podczas obliczania szerokości kolumn danych do eksportu z tabeli %1: %2</translation>
     </message>
@@ -831,13 +831,13 @@ Szczegóły błędu: %2</translation>
     </message>
     <message>
         <location filename="../parser/sqlite2_parse.cpp" line="1904"/>
-        <location filename="../parser/sqlite3_parse.cpp" line="2170"/>
+        <location filename="../parser/sqlite3_parse.cpp" line="2167"/>
         <source>Parser stack overflow</source>
         <translation>Przeciążenie stosu analizatora.</translation>
     </message>
     <message>
         <location filename="../parser/sqlite2_parse.cpp" line="4461"/>
-        <location filename="../parser/sqlite3_parse.cpp" line="5076"/>
+        <location filename="../parser/sqlite3_parse.cpp" line="5080"/>
         <source>Syntax error</source>
         <translation>Błąd składni</translation>
     </message>
@@ -944,39 +944,39 @@ Szczegóły błędu: %2</translation>
         <translation>Zaludnianie tabel</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="107"/>
+        <location filename="../tablemodifier.cpp" line="108"/>
         <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
         <translation>Tabela %1 odwołuje się do tabeli %2, ale definicja klucza obcego nie zostanie zaktualizowane dla definicji nowej tabeli w związku z problemami przy analizowaniu DDL tabeli %3.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="379"/>
+        <location filename="../tablemodifier.cpp" line="380"/>
         <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
         <translation>Wszystkie kolumny indeksowane przez indeks %1 już nie istnieją. Indeks ten nie będzie odtworzony po modyfikacji tabeli.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="418"/>
+        <location filename="../tablemodifier.cpp" line="419"/>
         <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
         <translation>Wystąpił problem z poprawnym przetworzeniem wyzwalacza %1. Może on zostać zaktualizowany tylko częściowo i będzie wymagał twojej uwagi.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="465"/>
+        <location filename="../tablemodifier.cpp" line="466"/>
         <source>Cannot not update trigger %1 according to table %2 modification.</source>
         <translation>Nie można zaktualizować wyzwalacza %1 zgodnie z modyfikacjami tabeli %2.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="580"/>
-        <location filename="../tablemodifier.cpp" line="601"/>
-        <location filename="../tablemodifier.cpp" line="619"/>
+        <location filename="../tablemodifier.cpp" line="587"/>
+        <location filename="../tablemodifier.cpp" line="611"/>
+        <location filename="../tablemodifier.cpp" line="630"/>
         <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
         <translation>Jest problem ze zaktualizowaniem zapytania %1 w wyzwalaczu %2. Jedeno z podzapytań %1, które może odwoływać się do tabeli %3 nie może być poprawnie zmodyfikowane. Ręczna aktualizacja tego wyzwalacza może być niezbędna.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="433"/>
+        <location filename="../tablemodifier.cpp" line="434"/>
         <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
         <translation>Wszystkie kolumny obsługiwane przez wyzwalacz %1 już nie istnieją. Wyzwalacz ten nie będzie odtworzony po modyfikacji tabeli.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="483"/>
+        <location filename="../tablemodifier.cpp" line="484"/>
         <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
         <translation>Nie można zaktualizować widoku %1 w związku z modyfikacjami tabeli %2.
