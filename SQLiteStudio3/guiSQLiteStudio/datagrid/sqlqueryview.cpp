@@ -11,6 +11,7 @@
 #include "multieditor/multieditordialog.h"
 #include "uiconfig.h"
 #include "dialogs/sortdialog.h"
+#include "services/notifymanager.h"
 #include <QHeaderView>
 #include <QPushButton>
 #include <QProgressBar>
@@ -250,6 +251,12 @@ bool SqlQueryView::editInEditorIfNecessary(SqlQueryItem* item)
 void SqlQueryView::paste(const QList<QList<QVariant> >& data)
 {
     QList<SqlQueryItem*> selectedItems = getSelectedItems();
+    if (selectedItems.isEmpty())
+    {
+        notifyWarn(tr("No items selected to paste clipboard contents to."));
+        return;
+    }
+
     qSort(selectedItems);
     SqlQueryItem* topLeft = selectedItems.first();
 
