@@ -891,72 +891,72 @@ but it&apos;s okay to use it.</source>
         <location filename="../dialogs/configdialog.ui" line="14"/>
         <location filename="../dialogs/configdialog.ui" line="1216"/>
         <source>Configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfigurácia</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="73"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Hľadať</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="104"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Všeobecné</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="116"/>
         <source>Keyboard shortcuts</source>
-        <translation type="unfinished"></translation>
+        <translation>Klávesové skratky</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="128"/>
         <source>Look &amp; feel</source>
-        <translation type="unfinished"></translation>
+        <translation>Vzhľad</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="139"/>
         <source>Style</source>
-        <translation type="unfinished"></translation>
+        <translation>Štýl</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="151"/>
         <source>Fonts</source>
-        <translation type="unfinished"></translation>
+        <translation>Fonty</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="163"/>
         <source>Colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Farby</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="176"/>
         <source>Plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Pluginy</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="187"/>
         <source>Code formatters</source>
-        <translation type="unfinished"></translation>
+        <translation>Formát kódu</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="196"/>
         <source>Data browsing</source>
-        <translation type="unfinished"></translation>
+        <translation>Prezeranie dát</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="207"/>
         <source>Data editors</source>
-        <translation type="unfinished"></translation>
+        <translation>Editory dát</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="237"/>
         <source>Data browsing and editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Prezeranie a úprava dát</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="243"/>
         <source>Number of data rows per page:</source>
-        <translation type="unfinished"></translation>
+        <translation>Počet data riadkov na stranu:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="269"/>
@@ -972,12 +972,12 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="328"/>
         <source>Data types</source>
-        <translation type="unfinished"></translation>
+        <translation>Typy dát</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="366"/>
         <source>Available editors:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dostupné editory:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="382"/>
@@ -1069,12 +1069,12 @@ but it&apos;s okay to use it.</source>
         <location filename="../dialogs/configdialog.ui" line="656"/>
         <location filename="../dialogs/configdialog.ui" line="1206"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Jazyk</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="662"/>
         <source>Changing language requires application restart to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Je potrebné reštartovať aplikáciu aby sa zmena jazyka prejavila.</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="679"/>
@@ -1179,7 +1179,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="933"/>
         <source>Hide built-in plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Nezobrazovať interné pluginy</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="962"/>
@@ -2662,17 +2662,17 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/exportdialog.ui" line="36"/>
         <source>A database</source>
-        <translation type="unfinished"></translation>
+        <translation>Databáza</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="46"/>
         <source>A single table</source>
-        <translation type="unfinished"></translation>
+        <translation>Jednotlivá tabuľka</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="53"/>
         <source>Query results</source>
-        <translation type="unfinished"></translation>
+        <translation>Výsledky dotazu</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="65"/>
@@ -2825,7 +2825,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="212"/>
         <source>You must provide a file name to export to.</source>
-        <translation type="unfinished"></translation>
+        <translation>Musíte zadať názov súboru, do ktorého sa budú exportovať dáta.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="219"/>
@@ -3091,92 +3091,92 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/importdialog.ui" line="14"/>
         <source>Import data</source>
-        <translation type="unfinished"></translation>
+        <translation>Import dát</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="21"/>
         <source>Table to import to</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabuľka na import</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="36"/>
         <source>Table</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabuľka</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="43"/>
         <source>Database</source>
-        <translation type="unfinished"></translation>
+        <translation>Databáza</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="84"/>
         <source>Data source to import from</source>
-        <translation type="unfinished"></translation>
+        <translation>Dátový zdroj na import</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="129"/>
         <source>Data source type</source>
-        <translation type="unfinished"></translation>
+        <translation>Typ dátového zdroja</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="141"/>
         <source>Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Voľby</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="147"/>
         <source>Input file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vstupný súbor:</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="182"/>
         <source>Text encoding:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kódovanie textu:</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="195"/>
         <source>Data source options</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastavenia dátového zdroja</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="71"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Zrušiť</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="101"/>
         <source>If you type table name that doesn&apos;t exist, it will be created.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ak zadáte názov neexistujúcej tabuľky, tak bude vytvorená.</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="101"/>
         <source>Enter the table name</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadajte názov tabuľky</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="119"/>
         <source>Select import plugin.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyberte importný plugin.</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="128"/>
         <source>You must provide a file to import from.</source>
-        <translation type="unfinished"></translation>
+        <translation>Musíte zadať súbor, z ktorého sa budú importovať dáta.</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="135"/>
         <source>The file &apos;%1&apos; does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Súbor %1 neexistuje.</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="141"/>
         <source>Path you provided is a directory. A regular file is required.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cesta, ktorú ste zadali je adresár. Prosím zadajte celú cestu.</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="325"/>
         <source>Pick file to import from</source>
-        <translation type="unfinished"></translation>
+        <translation>Výber súboru, z ktorého sa budú importovať dáta</translation>
     </message>
 </context>
 <context>
@@ -5216,95 +5216,95 @@ but it&apos;s okay to use them anyway.</source>
     <message>
         <location filename="../windows/tablewindow.ui" line="201"/>
         <source>Constraints</source>
-        <translation type="unfinished"></translation>
+        <translation>Obmedzovače</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.ui" line="215"/>
         <source>Indexes</source>
-        <translation type="unfinished"></translation>
+        <translation>Indexy</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.ui" line="244"/>
         <source>Triggers</source>
-        <translation type="unfinished"></translation>
+        <translation>Spúšťače</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.ui" line="276"/>
         <source>DDL</source>
-        <translation type="unfinished"></translation>
+        <translation>DDL</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="180"/>
         <source>Export table</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Exportovať tabuľku</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="181"/>
         <source>Import data to table</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Importovať dáta do tabuľky</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="182"/>
         <source>Populate table</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Naplniť tabuľku</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="196"/>
         <source>Refresh structure</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Obnoviť štruktúru</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="198"/>
         <source>Commit structure changes</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Potvrdiť zmeny štruktúr</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="199"/>
         <source>Rollback structure changes</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vrátiť späť zmeny štruktúr</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="200"/>
         <source>Add column</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Pridať stĺpec</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="201"/>
         <source>Edit column</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Upraviť stĺpec</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="202"/>
         <location filename="../windows/tablewindow.cpp" line="289"/>
         <source>Delete column</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať stĺpec</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="203"/>
         <source>Move column up</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Posunúť stĺpec hore</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="204"/>
         <source>Move column down</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Posunúť stĺpec dole</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="210"/>
         <source>Create similar table</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vytvoriť rovnakú tabuľku</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="211"/>
@@ -5766,7 +5766,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
         <location filename="../windows/viewwindow.ui" line="60"/>
         <source>View name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Názov pohľadu:</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.ui" line="77"/>
@@ -5808,7 +5808,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
         <location filename="../windows/viewwindow.cpp" line="275"/>
         <source>Refresh the view</source>
         <comment>view window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Obnoviť pohľad</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="277"/>
