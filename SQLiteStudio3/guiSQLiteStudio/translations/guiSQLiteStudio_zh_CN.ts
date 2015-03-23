@@ -254,39 +254,39 @@
         <location filename="../windows/bugreporthistorywindow.ui" line="36"/>
         <location filename="../windows/bugreporthistorywindow.cpp" line="119"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">标题</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.ui" line="41"/>
         <location filename="../windows/bugreporthistorywindow.cpp" line="119"/>
         <source>Reported at</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">报告时间</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.ui" line="46"/>
         <location filename="../windows/bugreporthistorywindow.cpp" line="119"/>
         <source>URL</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">URL</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.cpp" line="45"/>
         <source>Reports history</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">报告历史</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.cpp" line="50"/>
         <source>Clear reports history</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">清空报告历史</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.cpp" line="51"/>
         <source>Delete selected entry</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">删除选中项</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.cpp" line="90"/>
         <source>Invalid response from server.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无效的服务器回应。</translation>
     </message>
 </context>
 <context>
@@ -294,57 +294,59 @@
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="14"/>
         <source>Log in</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">登录</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="20"/>
         <source>Credentials</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">认证信息</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="26"/>
         <source>Login:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">登录名：</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="36"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">密码：</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="53"/>
         <source>Validation</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>这里不是很确认。Not sure about this translation.</translatorcomment>
+        <translation type="unfinished">确认</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="59"/>
         <source>Validate</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>not sure about this translation</translatorcomment>
+        <translation>确认</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="73"/>
         <source>Validation result message</source>
-        <translation type="unfinished"></translation>
+        <translation>验证信息</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.cpp" line="45"/>
         <source>Abort</source>
-        <translation type="unfinished"></translation>
+        <translation>中止</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.cpp" line="65"/>
         <source>A login must be at least 2 characters long.</source>
-        <translation type="unfinished"></translation>
+        <translation>登录名至少2个字符。</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.cpp" line="66"/>
         <source>A password must be at least 5 characters long.</source>
-        <translation type="unfinished"></translation>
+        <translation>密码至少5个字符。</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.cpp" line="91"/>
         <source>Valid</source>
-        <translation type="unfinished"></translation>
+        <translation>已验证</translation>
     </message>
 </context>
 <context>
