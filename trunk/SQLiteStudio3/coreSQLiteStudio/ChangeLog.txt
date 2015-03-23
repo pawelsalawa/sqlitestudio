@@ -25,6 +25,7 @@
         * [BUGFIX]: #2808 Sorting indicators in data grid fixed to point the right direction and got a little bit larger.
         * [BUGFIX]: #2807 Fixed SQL export plugin when exporting whole database without formatting SQL, so the missing semicolons are appended to each DDL.
         * [BUGFIX]: #2806 Fixed table sorting in Export Dialog.
+        * [BUGFIX]: #2809 Fixed crash when trying to paste data into data grid with no rows in it.
 
 [3.0.3]
         * [ADDED]: Added visual validation indicators to DbDialog, so user is informed why the "Ok" button is disabled at the moment.
