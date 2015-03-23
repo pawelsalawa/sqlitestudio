@@ -470,7 +470,7 @@
     <message>
         <location filename="../constraints/columndefaultpanel.ui" line="20"/>
         <source>Default value:</source>
-        <translation type="unfinished"></translation>
+        <translation>Prednastavená hodnota:</translation>
     </message>
     <message>
         <location filename="../constraints/columndefaultpanel.ui" line="35"/>
@@ -503,7 +503,7 @@
     <message>
         <location filename="../dialogs/columndialog.ui" line="23"/>
         <source>Name and type</source>
-        <translation type="unfinished"></translation>
+        <translation>Názov a typ</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="35"/>
@@ -518,12 +518,12 @@
     <message>
         <location filename="../dialogs/columndialog.ui" line="62"/>
         <source>Data type:</source>
-        <translation type="unfinished"></translation>
+        <translation>Datový typ:</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="69"/>
         <source>Column name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Názov stĺpca:</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="79"/>
@@ -533,7 +533,7 @@
     <message>
         <location filename="../dialogs/columndialog.ui" line="102"/>
         <source>Constraints</source>
-        <translation type="unfinished">Obmedzovače</translation>
+        <translation>Obmedzenia</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="115"/>
@@ -554,7 +554,7 @@
     <message>
         <location filename="../dialogs/columndialog.ui" line="129"/>
         <source>Foreign Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Cudzí klúč</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="143"/>
@@ -972,7 +972,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="328"/>
         <source>Data types</source>
-        <translation>Typy dát</translation>
+        <translation>Datové typy</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="366"/>
@@ -1442,7 +1442,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="1254"/>
         <source>Details</source>
-        <translation type="unfinished">Detaily</translation>
+        <translation>Detaily</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="1266"/>
@@ -1452,17 +1452,17 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="1362"/>
         <source>Add new data type</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridať nový datový typ</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="1366"/>
         <source>Rename selected data type</source>
-        <translation type="unfinished"></translation>
+        <translation>Premenovať vybraný datový typ</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="1370"/>
         <source>Delete selected data type</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať vybraný datový typ</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="1374"/>
@@ -2478,12 +2478,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/ddlpreviewdialog.ui" line="14"/>
         <source>Queries to be executed</source>
-        <translation type="unfinished"></translation>
+        <translation>Dotazy, ktoré budú vykonané</translation>
     </message>
     <message>
         <location filename="../dialogs/ddlpreviewdialog.ui" line="42"/>
         <source>Don&apos;t show again</source>
-        <translation type="unfinished"></translation>
+        <translation>Znovu nezobrazovať</translation>
     </message>
 </context>
 <context>
@@ -2509,12 +2509,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/editorwindow.cpp" line="130"/>
         <source>Results in the separate tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Výsledky zobraziť v samostatnej záložke</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="131"/>
         <source>Results below the query</source>
-        <translation type="unfinished"></translation>
+        <translation>Výsledky zobraziť pod dotaz</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="164"/>
@@ -2541,7 +2541,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../windows/editorwindow.cpp" line="361"/>
         <source>Clear execution history</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vyprázdniť históriu dotazov</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="363"/>
@@ -2882,7 +2882,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../formview.cpp" line="253"/>
         <source>Commit row</source>
         <comment>form view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Potvrdiť riadok</translation>
     </message>
     <message>
         <location filename="../formview.cpp" line="254"/>
@@ -3211,7 +3211,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/indexdialog.ui" line="90"/>
         <source>Column</source>
-        <translation type="unfinished">Stĺpec</translation>
+        <translation>Stĺpec</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="95"/>
@@ -3226,7 +3226,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/indexdialog.ui" line="115"/>
         <source>DDL</source>
-        <translation type="unfinished">DDL</translation>
+        <translation>DDL</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="65"/>
@@ -3596,7 +3596,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mdiwindow.cpp" line="199"/>
         <source>Uncommited changes</source>
-        <translation type="unfinished">Nepotvrdené zmeny</translation>
+        <translation>Nepotvrdené zmeny</translation>
     </message>
     <message>
         <location filename="../mdiwindow.cpp" line="204"/>
@@ -3615,7 +3615,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../multieditor/multieditor.cpp" line="53"/>
         <source>Null value</source>
         <comment>multieditor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Hodnota null</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditor.cpp" line="68"/>
@@ -4038,7 +4038,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dataview.cpp" line="497"/>
         <source>Total rows loaded: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Celkový počet riadkov: %1</translation>
     </message>
     <message>
         <location filename="../dataview.h" line="17"/>
@@ -4140,7 +4140,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../formview.h" line="17"/>
         <source>Commit changes for current row</source>
-        <translation type="unfinished"></translation>
+        <translation>Potvrdiť zmeny pre aktuálny riadok</translation>
     </message>
     <message>
         <location filename="../formview.h" line="18"/>
@@ -4170,7 +4170,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../formview.h" line="23"/>
         <source>Insert new row</source>
-        <translation type="unfinished"></translation>
+        <translation>Vložiť nový riadok</translation>
     </message>
     <message>
         <location filename="../formview.h" line="24"/>
@@ -4205,7 +4205,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.h" line="47"/>
         <source>Open configuration dialog</source>
-        <translation type="unfinished">Konfigurácia</translation>
+        <translation>Otvoriť konfiguračné okno</translation>
     </message>
     <message>
         <location filename="../mainwindow.h" line="48"/>
@@ -4221,13 +4221,13 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../multieditor/multieditortext.h" line="13"/>
         <location filename="../sqleditor.h" line="22"/>
         <source>Cut selected text</source>
-        <translation type="unfinished"></translation>
+        <translation>Vystrihnúť vybraný text</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.h" line="14"/>
         <location filename="../sqleditor.h" line="23"/>
         <source>Copy selected text</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopírovať vybraný text</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.h" line="16"/>
@@ -4335,7 +4335,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../uiutils.cpp" line="38"/>
         <source>Database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Databázový súbor</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.h" line="11"/>
@@ -4345,7 +4345,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/bugreporthistorywindow.h" line="12"/>
         <source>Delete selected entry</source>
-        <translation type="unfinished">Vymazať vybranú položku</translation>
+        <translation>Vymazať vybranú položku</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.h" line="26"/>
@@ -4355,7 +4355,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/editorwindow.h" line="27"/>
         <source>Execute query</source>
-        <translation type="unfinished">Vykonať dotaz</translation>
+        <translation>Vykonať dotaz</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.h" line="28"/>
@@ -4450,17 +4450,17 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/tablewindow.h" line="41"/>
         <source>Add new index</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridať nový index</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="42"/>
         <source>Edit selected index</source>
-        <translation type="unfinished"></translation>
+        <translation>Upraviť vybraný index</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="43"/>
         <source>Delete selected index</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať vybraný index</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="44"/>
@@ -4471,19 +4471,19 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../windows/tablewindow.h" line="45"/>
         <location filename="../windows/viewwindow.h" line="25"/>
         <source>Add new trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridať nový spúšťač</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="46"/>
         <location filename="../windows/viewwindow.h" line="26"/>
         <source>Edit selected trigger</source>
-        <translation type="unfinished">Upraviť vybraný spúšťač</translation>
+        <translation>Upraviť vybraný spúšťač</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="47"/>
         <location filename="../windows/viewwindow.h" line="27"/>
         <source>Delete selected trigger</source>
-        <translation type="unfinished">Vymazať vybraný spúšťač</translation>
+        <translation>Vymazať vybraný spúšťač</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="48"/>
@@ -4513,7 +4513,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/quitconfirmdialog.ui" line="14"/>
         <source>Uncommited changes</source>
-        <translation type="unfinished">Nepotvrdené zmeny</translation>
+        <translation>Nepotvrdené zmeny</translation>
     </message>
     <message>
         <location filename="../dialogs/quitconfirmdialog.ui" line="20"/>
@@ -4661,25 +4661,25 @@ find next</source>
         <location filename="../sqleditor.cpp" line="126"/>
         <source>Format SQL</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Formátovať SQL</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="127"/>
         <source>Save SQL to file</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Uložiť SQL do súboru</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="128"/>
         <source>Load SQL from file</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Načítať SQL zo súboru</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="129"/>
         <source>Delete line</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať riadok</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="130"/>
@@ -4727,7 +4727,7 @@ find next</source>
         <location filename="../sqleditor.cpp" line="137"/>
         <source>Replace</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nahradiť</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="412"/>
@@ -4742,7 +4742,7 @@ find next</source>
     <message>
         <location filename="../sqleditor.cpp" line="1027"/>
         <source>Save to file</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložiť do súboru</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="1036"/>
@@ -4757,7 +4757,7 @@ find next</source>
     <message>
         <location filename="../sqleditor.cpp" line="1051"/>
         <source>Open file</source>
-        <translation type="unfinished"></translation>
+        <translation>Otvoriť súbor</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="1060"/>
@@ -4776,30 +4776,30 @@ find next</source>
         <location filename="../datagrid/sqlqueryitem.cpp" line="251"/>
         <source>Column:</source>
         <comment>data view tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Stĺpec:</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryitem.cpp" line="252"/>
         <source>Data type:</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Datový typ:</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryitem.cpp" line="255"/>
         <source>Table:</source>
         <comment>data view tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Tabuľka:</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryitem.cpp" line="285"/>
         <source>Constraints:</source>
         <comment>data view tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Obmedzenia:</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryitem.cpp" line="398"/>
         <source>This cell is not editable, because: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Táto bunka nieje editovateľná, pretože: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryitem.cpp" line="415"/>
@@ -4832,12 +4832,12 @@ find next</source>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="94"/>
         <source>Uncommited data</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepotvrdené dáta</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="95"/>
         <source>There are uncommited data changes. Do you want to proceed anyway? All uncommited changes will be lost.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sú tu nepotvrdené zmeny. Chcete aj napriek tomu pokračovať? Všetky nepotvrdené zmeny budú stratené.</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="342"/>
@@ -4896,7 +4896,7 @@ find next</source>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="72"/>
         <source>Copy</source>
-        <translation type="unfinished">Kopírovať</translation>
+        <translation>Kopírovať</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="73"/>
@@ -4906,7 +4906,7 @@ find next</source>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="74"/>
         <source>Paste</source>
-        <translation type="unfinished">Vložiť</translation>
+        <translation>Vložiť</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="75"/>
@@ -4916,7 +4916,7 @@ find next</source>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="76"/>
         <source>Set NULL values</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastaviť null hodnoty</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="77"/>
@@ -4931,17 +4931,17 @@ find next</source>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="79"/>
         <source>Commit</source>
-        <translation type="unfinished"></translation>
+        <translation>Potvrdiť</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="80"/>
         <source>Rollback</source>
-        <translation type="unfinished"></translation>
+        <translation>Vrátiť späť</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="81"/>
         <source>Commit selected cells</source>
-        <translation type="unfinished"></translation>
+        <translation>Potvrdiť vybrané bunky</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="82"/>
@@ -4989,12 +4989,12 @@ find next</source>
     <message>
         <location filename="../datagrid/sqltablemodel.cpp" line="74"/>
         <source>Error while commiting new row: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyskytla sa chyba počas potvrdzovania nového riadka: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqltablemodel.cpp" line="132"/>
         <source>Error while deleting row from table %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyskytla sa chyba počas mazania riadka z tabuľky %1: %2</translation>
     </message>
 </context>
 <context>
@@ -5116,12 +5116,12 @@ but it&apos;s okay to use them anyway.</source>
     <message>
         <location filename="../constraints/tablepkanduniquepanel.ui" line="32"/>
         <source>Columns</source>
-        <translation type="unfinished">Stĺpce</translation>
+        <translation>Stĺpce</translation>
     </message>
     <message>
         <location filename="../constraints/tablepkanduniquepanel.ui" line="59"/>
         <source>Column</source>
-        <translation type="unfinished">Stĺpec</translation>
+        <translation>Stĺpec</translation>
     </message>
     <message>
         <location filename="../constraints/tablepkanduniquepanel.ui" line="84"/>
@@ -5187,19 +5187,19 @@ but it&apos;s okay to use them anyway.</source>
         <location filename="../windows/tablestructuremodel.cpp" line="299"/>
         <source>Name</source>
         <comment>table structure columns</comment>
-        <translation type="unfinished">Názov</translation>
+        <translation>Názov</translation>
     </message>
     <message>
         <location filename="../windows/tablestructuremodel.cpp" line="301"/>
         <source>Data type</source>
         <comment>table structure columns</comment>
-        <translation type="unfinished"></translation>
+        <translation>Datový typ</translation>
     </message>
     <message>
         <location filename="../windows/tablestructuremodel.cpp" line="315"/>
         <source>Default value</source>
         <comment>table structure columns</comment>
-        <translation type="unfinished"></translation>
+        <translation>Prednastavená hodnota</translation>
     </message>
 </context>
 <context>
@@ -5322,43 +5322,43 @@ but it&apos;s okay to use them anyway.</source>
         <location filename="../windows/tablewindow.cpp" line="214"/>
         <source>Add table constraint</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Pridať obmedzenie</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="215"/>
         <source>Edit table constraint</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Upraviť obmedzenie</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="216"/>
         <source>Delete table constraint</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať obmedzenie</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="217"/>
         <source>Move table constraint up</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Posunúť obmedzenie hore</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="218"/>
         <source>Move table constraint down</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Posunúť obmedzenie dole</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="220"/>
         <source>Add table primary key</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Pridať primárny kľúč</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="221"/>
         <source>Add table foreign key</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Pridať cudzí kľúč</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="222"/>
@@ -5376,55 +5376,55 @@ but it&apos;s okay to use them anyway.</source>
         <location filename="../windows/tablewindow.cpp" line="241"/>
         <source>Refresh index list</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Obnoviť zoznam indexov</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="243"/>
         <source>Create index</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vytvoriť index</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="244"/>
         <source>Edit index</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Upraviť index</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="245"/>
         <source>Delete index</source>
         <comment>table window</comment>
-        <translation type="unfinished">Vymazať index</translation>
+        <translation>Vymazať index</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="251"/>
         <source>Refresh trigger list</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Obnoviť zoznam spúšťačov</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="253"/>
         <source>Create trigger</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vytvoriť spúšťač</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="254"/>
         <source>Edit trigger</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Upraviť spúšťač</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="255"/>
         <source>Delete trigger</source>
         <comment>table window</comment>
-        <translation type="unfinished">Vymazať spúšťač</translation>
+        <translation>Vymazať spúšťač</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="288"/>
         <source>Are you sure you want to delete column &apos;%1&apos;?</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ste si istý, že chcete vymazať stĺpec &apos;%1&apos; ?</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="316"/>
@@ -5542,29 +5542,30 @@ Are you sure you want to create a table with blank name?</source>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1214"/>
         <source>Uncommited changes</source>
-        <translation type="unfinished">Nepotvrdené zmeny</translation>
+        <translation>Nepotvrdené zmeny</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1215"/>
         <source>There are uncommited structure modifications. You cannot browse or edit data until you have table structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-        <translation type="unfinished"></translation>
+        <translation>Sú tu nepotvrdené zmeny štruktúr. Nemôžte prezerať alebo editovať dáta dokiaľ nebude štruktúra tabuľky jasná.
+Chcete potvrdiť štruktúru alebo sa chcete vrátiť do záložky štruktúr?</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1218"/>
         <source>Go back to structure tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Choď späť na záložku štruktúr</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1218"/>
         <source>Commit modifications and browse data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Potvrdiť zmeny a prezerať dáta.</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1368"/>
         <source>Name</source>
         <comment>table window indexes</comment>
-        <translation type="unfinished">Názov</translation>
+        <translation>Názov</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1369"/>
@@ -5576,7 +5577,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
         <location filename="../windows/tablewindow.cpp" line="1370"/>
         <source>Columns</source>
         <comment>table window indexes</comment>
-        <translation type="unfinished">Stĺpce</translation>
+        <translation>Stĺpce</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1371"/>
@@ -5588,25 +5589,25 @@ Do you want to commit the structure, or do you want to go back to the structure 
         <location filename="../windows/tablewindow.cpp" line="1425"/>
         <source>Name</source>
         <comment>table window triggers</comment>
-        <translation type="unfinished">Názov</translation>
+        <translation>Názov</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1426"/>
         <source>Event</source>
         <comment>table window triggers</comment>
-        <translation type="unfinished"></translation>
+        <translation>Udalosť</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1427"/>
         <source>Condition</source>
         <comment>table window triggers</comment>
-        <translation type="unfinished"></translation>
+        <translation>Podmienka</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1428"/>
         <source>Details</source>
         <comment>table window triggers</comment>
-        <translation type="unfinished">Detaily</translation>
+        <translation>Detaily</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1517"/>
@@ -5820,19 +5821,19 @@ Do you want to commit the structure, or do you want to go back to the structure 
         <location filename="../windows/viewwindow.cpp" line="277"/>
         <source>Commit the view changes</source>
         <comment>view window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Potvrdiť zmeny v pohľade</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="278"/>
         <source>Rollback the view changes</source>
         <comment>view window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vrátiť späť zmeny v pohľade</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="285"/>
         <source>Refresh trigger list</source>
         <comment>view window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Obnoviť zoznam spúšťačov</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="287"/>
@@ -5881,29 +5882,30 @@ Do you want to commit the structure, or do you want to go back to the structure 
         <location filename="../windows/viewwindow.cpp" line="467"/>
         <source>There are uncommited structure modifications. You cannot browse or edit data until you have the view structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-        <translation type="unfinished"></translation>
+        <translation>Sú tu nepotvrdené zmeny štruktúr. Nemôžte prezerať alebo editovať dáta dokiaľ nebude štruktúra tabuľky jasná.
+Chcete potvrdiť štruktúru alebo sa chcete vrátiť do záložky štruktúr?</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="470"/>
         <source>Go back to structure tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Choď späť na záložku štruktúr</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="470"/>
         <source>Commit modifications and browse data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Potvrdiť zmeny a prezerať dáta.</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="528"/>
         <source>Could not commit view changes. Error message: %1</source>
         <comment>view window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nemôžem potvrdiť zmeny v pohľade. Chyba: %1</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="606"/>
         <source>Name</source>
         <comment>view window triggers</comment>
-        <translation type="unfinished">Názov</translation>
+        <translation>Názov</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="607"/>
