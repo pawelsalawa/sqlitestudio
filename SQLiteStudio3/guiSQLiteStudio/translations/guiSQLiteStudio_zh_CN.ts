@@ -1,92 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="zh_CN">
+<TS version="2.1" language="zh_CN">
 <context>
     <name>AboutDialog</name>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="14"/>
         <source>About SQLiteStudio and licenses</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">关于 SQLiteStudio 和许可协议</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="24"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">关于</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="30"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;SQLiteStudio v%1&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Free, open-source, cross-platform SQLite database manager.&lt;br/&gt;&lt;a href=&quot;http://sqlitestudio.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://sqlitestudio.pl&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;%2&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Author and active maintainer:&lt;br/&gt;SalSoft (&lt;a href=&quot;http://salsoft.com.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://salsoft.com.pl&lt;/span&gt;&lt;/a&gt;)&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;SQLiteStudio v%1&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;自由，开源，跨平台的 SQLite 数据库管理工具。&lt;br/&gt;&lt;a href=&quot;http://sqlitestudio.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://sqlitestudio.pl&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;%2&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;作者和活跃维护人：&lt;br/&gt;SalSoft (&lt;a href=&quot;http://salsoft.com.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://salsoft.com.pl&lt;/span&gt;&lt;/a&gt;)&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="41"/>
         <source>Licenses</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">许可协议</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="55"/>
         <source>Environment</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">环境</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="61"/>
         <source>Icon directories</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">图标目录</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="81"/>
         <source>Form directories</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">表格目录</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="101"/>
         <source>Plugin directories</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">插件目录</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="121"/>
         <source>Application directory</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">应用程序目录</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="172"/>
         <source>SQLite 3 version:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">SQLite 3 版本：</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="111"/>
         <source>Configuration directory</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">配置文件目录</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="148"/>
         <source>Qt version:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Qt版本：</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.cpp" line="39"/>
         <source>Portable distribution.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">便携版。</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.cpp" line="42"/>
         <source>MacOS X application boundle distribution.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">MacOS X 应用版。</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.cpp" line="45"/>
         <source>Operating system managed distribution.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">系统提供版。</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.cpp" line="89"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">复制</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.cpp" line="102"/>
         <source>&lt;h3&gt;Table of contents:&lt;/h3&gt;&lt;ol&gt;%2&lt;/ol&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;h3&gt;目录：&lt;/h3&gt;&lt;ol&gt;%2&lt;/ol&gt;</translation>
     </message>
 </context>
 <context>
@@ -94,156 +94,158 @@
     <message>
         <location filename="../dialogs/bugdialog.ui" line="14"/>
         <source>Bugs and ideas</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bugs 和想法</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="20"/>
         <source>Reporter</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">上报人</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="36"/>
         <source>E-mail address</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">E-mail 地址</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="43"/>
         <location filename="../dialogs/bugdialog.cpp" line="121"/>
         <source>Log in</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">登录</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="68"/>
         <source>Short description</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">简要描述</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="80"/>
         <source>Detailed description</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">详细描述</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="92"/>
         <source>Show more details</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">更多详细信息</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="119"/>
         <source>SQLiteStudio version</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">SQLiteStudio 版本</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="131"/>
         <source>Operating system</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">操作系统</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="143"/>
         <source>Loaded plugins</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">已加载插件</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="39"/>
         <source>Send</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">发送</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="66"/>
         <source>You can see all your reported bugs and ideas by selecting menu &apos;%1&apos; and then &apos;%2&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">您可以通过选择菜单 “1%”下的“%2”来查看全部您报告的bugs和想法。</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="74"/>
         <source>A bug report sent successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bug报告提交成功。</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="79"/>
         <source>An error occurred while sending a bug report: %1
 %2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">提交bug报告时发生了错误：%1
+%2</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="80"/>
         <location filename="../dialogs/bugdialog.cpp" line="94"/>
         <source>You can retry sending. The contents will be restored when you open a report dialog after an error like this.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">您可以重新发送试试。当你在发生错误后重新打开上报对话框时，你之前输入的内容将会恢复。</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="88"/>
         <source>An idea proposal sent successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">提交建议成功。</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="93"/>
         <source>An error occurred while sending an idea proposal: %1
 %2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在提交建议时发生错误：%1
+%2</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="105"/>
         <source>A bug report</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bug报告</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="106"/>
         <source>Describe problem in few words</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">简要描述一下问题</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="107"/>
         <source>Describe problem and how to reproduce it</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">描述一下问题，怎么复现问题</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="111"/>
         <source>A new feature idea</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">新功能建议</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="112"/>
         <source>A title for your idea</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">您的建议题目</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="113"/>
         <source>Describe your idea in more details</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">仔细描述一下您的想法</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="118"/>
         <source>Reporting as an unregistered user, using e-mail address.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">使用e-mail地址以未注册用户身份上报。</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="127"/>
         <source>Reporting as a registered user.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">作为已注册用户报告。</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="131"/>
         <source>Log out</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">退出</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="144"/>
         <source>Providing true email address will make it possible to contact you regarding your report. To learn more, press &apos;help&apos; button on the right side.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">使用真实email地址有助于您上报后联系到您。如果想了解更多，请点击右方的“帮助”按钮。</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="146"/>
         <source>Enter vaild e-mail address, or log in.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">输入正确的e-mail地址，或者登录。</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="148"/>
         <source>Short description requires at least 10 characters, but not more than 100. Longer description can be entered in the field below.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">简要描述至少10个字符，但不超过100个字符。更详细的描述内容请在下面的区域填写。</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="151"/>
         <source>Long description requires at least 30 characters.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">详细描述内容至少30个字符。</translation>
     </message>
 </context>
 <context>
