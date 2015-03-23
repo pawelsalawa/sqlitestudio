@@ -320,33 +320,33 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
 <context>
     <name>ExportWorker</name>
     <message>
-        <location filename="../exportworker.cpp" line="116"/>
+        <location filename="../exportworker.cpp" line="121"/>
         <source>Error while exporting query results: %1</source>
         <translation>Ошибка при экспорте результатов запроса: %1</translation>
     </message>
     <message>
-        <location filename="../exportworker.cpp" line="175"/>
+        <location filename="../exportworker.cpp" line="201"/>
         <source>Error while counting data column width to export from query results: %1</source>
         <translation>Ошибка при подсчёте ширины столбца данных для экспорта результатов запроса: %1</translation>
     </message>
     <message>
-        <location filename="../exportworker.cpp" line="275"/>
-        <location filename="../exportworker.cpp" line="326"/>
+        <location filename="../exportworker.cpp" line="353"/>
+        <location filename="../exportworker.cpp" line="411"/>
         <source>Could not parse %1 in order to export it. It will be excluded from the export output.</source>
         <translation>Невозможно проанализировать структуру %1. Данный объект будет исключён при выполнении экспорта.</translation>
     </message>
     <message>
-        <location filename="../exportworker.cpp" line="482"/>
+        <location filename="../exportworker.cpp" line="612"/>
         <source>Error while reading data to export from table %1: %2</source>
         <translation>Ошибка при считывании данных для экспорта из таблицы %1: %2</translation>
     </message>
     <message>
-        <location filename="../exportworker.cpp" line="490"/>
+        <location filename="../exportworker.cpp" line="620"/>
         <source>Error while counting data to export from table %1: %2</source>
         <translation>Ошибка при подсчёте количества данных для экспорта из таблицы %1: %2</translation>
     </message>
     <message>
-        <location filename="../exportworker.cpp" line="506"/>
+        <location filename="../exportworker.cpp" line="636"/>
         <source>Error while counting data column width to export from table %1: %2</source>
         <translation>Ошибка при подсчёте ширины столбца данных для экспорта из таблицы %1: %2</translation>
     </message>
@@ -836,13 +836,13 @@ Error details: %2</source>
     </message>
     <message>
         <location filename="../parser/sqlite2_parse.cpp" line="1904"/>
-        <location filename="../parser/sqlite3_parse.cpp" line="2170"/>
+        <location filename="../parser/sqlite3_parse.cpp" line="2167"/>
         <source>Parser stack overflow</source>
         <translation>Переполнение стека анализатора</translation>
     </message>
     <message>
         <location filename="../parser/sqlite2_parse.cpp" line="4461"/>
-        <location filename="../parser/sqlite3_parse.cpp" line="5076"/>
+        <location filename="../parser/sqlite3_parse.cpp" line="5080"/>
         <source>Syntax error</source>
         <translation>Синтаксическая ошибка</translation>
     </message>
@@ -949,39 +949,39 @@ Error details: %2</source>
         <translation>Заполнение таблиц</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="107"/>
+        <location filename="../tablemodifier.cpp" line="108"/>
         <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
         <translation>Таблица %1 ссылается на таблицу %2, но описание внешнего ключа не будет обновлено для описания новой таблицы из-за проблем с анализом DDL таблицы %3.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="379"/>
+        <location filename="../tablemodifier.cpp" line="380"/>
         <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
         <translation>Все столбцы, проиндексированные индексом %1, удалены. Индекс не будет воссоздан после модификации таблицы.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="418"/>
+        <location filename="../tablemodifier.cpp" line="419"/>
         <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="465"/>
+        <location filename="../tablemodifier.cpp" line="466"/>
         <source>Cannot not update trigger %1 according to table %2 modification.</source>
         <translation>Невозможно обновить триггер %1 в соответствии с модификацией таблицы %2.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="580"/>
-        <location filename="../tablemodifier.cpp" line="601"/>
-        <location filename="../tablemodifier.cpp" line="619"/>
+        <location filename="../tablemodifier.cpp" line="587"/>
+        <location filename="../tablemodifier.cpp" line="611"/>
+        <location filename="../tablemodifier.cpp" line="630"/>
         <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="433"/>
+        <location filename="../tablemodifier.cpp" line="434"/>
         <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
         <translation>Все столбцы, затронутые в триггере %1, удалены. Триггер не будет воссоздан после модификации таблицы.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="483"/>
+        <location filename="../tablemodifier.cpp" line="484"/>
         <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
         <translation>Невозможно обновить представление %1 в соответствии с модификациями таблицы %2.

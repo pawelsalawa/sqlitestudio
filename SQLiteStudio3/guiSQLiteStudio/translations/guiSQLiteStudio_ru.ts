@@ -1855,6 +1855,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="90"/>
+        <location filename="../dialogs/dbdialog.cpp" line="162"/>
         <source>File</source>
         <translation>Файл</translation>
     </message>
@@ -1880,42 +1881,42 @@ Browsing other pages will be possible after the row counting is done.</source>
         <translation>Тест соединения с базой данных</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="289"/>
+        <location filename="../dialogs/dbdialog.cpp" line="294"/>
         <source>Browse</source>
         <translation>Обзор</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="470"/>
+        <location filename="../dialogs/dbdialog.cpp" line="479"/>
         <source>Enter an unique database name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="479"/>
+        <location filename="../dialogs/dbdialog.cpp" line="488"/>
         <source>This name is already in use. Please enter unique name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="487"/>
+        <location filename="../dialogs/dbdialog.cpp" line="496"/>
         <source>Enter a database file path.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="494"/>
+        <location filename="../dialogs/dbdialog.cpp" line="503"/>
         <source>This database is already on the list under name: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="510"/>
+        <location filename="../dialogs/dbdialog.cpp" line="519"/>
         <source>Select a database type.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="568"/>
+        <location filename="../dialogs/dbdialog.cpp" line="577"/>
         <source>The name will be auto-generated</source>
         <translation>Имя будет сгенерировано автоматически</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="573"/>
+        <location filename="../dialogs/dbdialog.cpp" line="582"/>
         <source>Type the name</source>
         <translation>Введите имя</translation>
     </message>
@@ -2331,125 +2332,125 @@ All objects from this group will be moved to parent group.</source>
 <context>
     <name>DbTreeModel</name>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="406"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="407"/>
         <source>Database: %1</source>
         <comment>dbtree tooltip</comment>
         <translation>База данных: %1</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="411"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="412"/>
         <source>Version:</source>
         <comment>dbtree tooltip</comment>
         <translation>Версия:</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="412"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="413"/>
         <source>File size:</source>
         <comment>dbtree tooltip</comment>
         <translation>Размер файла:</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="413"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="414"/>
         <source>Encoding:</source>
         <comment>dbtree tooltip</comment>
         <translation>Кодировка:</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="418"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="419"/>
         <source>Error details:</source>
         <comment>dbtree tooltip</comment>
         <translation>Подробности ошибки:</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="428"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="429"/>
         <source>Table : %1</source>
         <comment>dbtree tooltip</comment>
         <translation>Таблица: %1</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="451"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="452"/>
         <source>Columns (%1):</source>
         <comment>dbtree tooltip</comment>
         <translation>Столбцы (%1):</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="454"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="455"/>
         <source>Indexes (%1):</source>
         <comment>dbtree tooltip</comment>
         <translation>Индексы (%1):</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="457"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="458"/>
         <source>Triggers (%1):</source>
         <comment>dbtree tooltip</comment>
         <translation>Триггеры (%1):</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1072"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1073"/>
         <source>Copy</source>
         <translation>Копировать</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1073"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1074"/>
         <source>Move</source>
         <translation>Переместить</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1075"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1076"/>
         <source>Include data</source>
         <translation>Включая данные</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1076"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1077"/>
         <source>Include indexes</source>
         <translation>Включая индексы</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1077"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1078"/>
         <source>Include triggers</source>
         <translation>Включая триггеры</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1079"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1080"/>
         <source>Abort</source>
         <translation>Прервать</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1155"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1156"/>
         <source>Referenced tables</source>
         <translation>Связанные таблицы</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1156"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1157"/>
         <source>Do you want to include following referenced tables as well:
 %1</source>
         <translation>Вы хотите также включить следующие связанные таблицы:
 %1</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1165"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1166"/>
         <source>Name conflict</source>
         <translation>Конфликт имён</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1166"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1167"/>
         <source>Following object already exists in the target database.
 Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</source>
         <translation>Данный объект уже существует в целевой базе данных.
 Пожалуйста введите новое уникальное имя или нажмите %1 для прерывания операции:</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1179"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1180"/>
         <source>SQL statements conversion</source>
         <translation>Конвертация конструкций SQL</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1187"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1188"/>
         <source>Following error occurred while converting SQL statements to the target SQLite version:</source>
         <translation>При конвертации конструкций SQL в новую версию SQLite произошла ошибка:</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtreemodel.cpp" line="1188"/>
+        <location filename="../dbtree/dbtreemodel.cpp" line="1189"/>
         <source>Would you like to ignore those errors and proceed?</source>
         <translation>Вы хотите проигнорировать эти ошибки и продолжить?</translation>
     </message>
@@ -2806,8 +2807,8 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="141"/>
-        <location filename="../dialogs/exportdialog.cpp" line="165"/>
-        <location filename="../dialogs/exportdialog.cpp" line="188"/>
+        <location filename="../dialogs/exportdialog.cpp" line="166"/>
+        <location filename="../dialogs/exportdialog.cpp" line="189"/>
         <source>Select database to export.</source>
         <translation>Выберите базу данных для экспорта.</translation>
     </message>
@@ -2817,47 +2818,47 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>Выберите таблицу для экспорта.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="166"/>
+        <location filename="../dialogs/exportdialog.cpp" line="167"/>
         <source>Enter valid query to export.</source>
         <translation>Введи корректный запрос для экспорта.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="189"/>
+        <location filename="../dialogs/exportdialog.cpp" line="190"/>
         <source>Select at least one object to export.</source>
         <translation>Выберите хотя бы один объект для экспорта.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="212"/>
+        <location filename="../dialogs/exportdialog.cpp" line="213"/>
         <source>You must provide a file name to export to.</source>
         <translation>Необходимо указать имя файла, в который будет произведён экспорт.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="219"/>
+        <location filename="../dialogs/exportdialog.cpp" line="220"/>
         <source>Path you provided is an existing directory. You cannot overwrite it.</source>
         <translation>Указанный путь является существующим каталогом. Его невозможно перезаписать.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="225"/>
+        <location filename="../dialogs/exportdialog.cpp" line="226"/>
         <source>The directory &apos;%1&apos; does not exist.</source>
         <translation>Каталог &apos;%1&apos; не существует.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="231"/>
+        <location filename="../dialogs/exportdialog.cpp" line="232"/>
         <source>The file &apos;%1&apos; exists and will be overwritten.</source>
         <translation>Файл &apos;%1&apos; существует и будет перезаписан.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="402"/>
+        <location filename="../dialogs/exportdialog.cpp" line="403"/>
         <source>All files (*)</source>
         <translation>Все файлы (*)</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="405"/>
+        <location filename="../dialogs/exportdialog.cpp" line="406"/>
         <source>Pick file to export to</source>
         <translation>Выберите файл для экспорта</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="694"/>
+        <location filename="../dialogs/exportdialog.cpp" line="695"/>
         <source>Internal error during export. This is a bug. Please report it.</source>
         <translation>Внутренняя ошибка во время экспорта. Пожалуйста, вышлите отчёт об этой ошибке.</translation>
     </message>
@@ -3598,17 +3599,17 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
 <context>
     <name>MdiWindow</name>
     <message>
-        <location filename="../mdiwindow.cpp" line="196"/>
+        <location filename="../mdiwindow.cpp" line="199"/>
         <source>Uncommited changes</source>
         <translation>Неподтверждённые изменения</translation>
     </message>
     <message>
-        <location filename="../mdiwindow.cpp" line="201"/>
+        <location filename="../mdiwindow.cpp" line="204"/>
         <source>Close anyway</source>
         <translation>Всё равно закрыть</translation>
     </message>
     <message>
-        <location filename="../mdiwindow.cpp" line="203"/>
+        <location filename="../mdiwindow.cpp" line="206"/>
         <source>Don&apos;t close</source>
         <translation>Не закрывать</translation>
     </message>
@@ -4900,87 +4901,92 @@ find next</source>
 <context>
     <name>SqlQueryView</name>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="71"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="72"/>
         <source>Copy</source>
         <translation>Копировать</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="72"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="73"/>
         <source>Copy as...</source>
         <translation>Копировать как...</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="73"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="74"/>
         <source>Paste</source>
         <translation>Вставить</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="74"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="75"/>
         <source>Paste as...</source>
         <translation>Вставить как...</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="75"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="76"/>
         <source>Set NULL values</source>
         <translation>Установить значения на NULL</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="76"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="77"/>
         <source>Erase values</source>
         <translation>Стереть содержимое</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="77"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="78"/>
         <source>Edit value in editor</source>
         <translation>Править содержимое в редакторе</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="78"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="79"/>
         <source>Commit</source>
         <translation>Подтвердить</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="79"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="80"/>
         <source>Rollback</source>
         <translation>Откатить</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="80"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="81"/>
         <source>Commit selected cells</source>
         <translation>Подтвердить выбранные ячейки</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="81"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="82"/>
         <source>Rollback selected cells</source>
         <translation>Откатить выбранные ячейки</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="82"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="83"/>
         <source>Define columns to sort by</source>
         <translation>Определить столбцы для сортировки</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="83"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="84"/>
         <source>Remove custom sorting</source>
         <translation>Сбросить указанную сортировку</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="84"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="85"/>
         <source>Insert row</source>
         <translation>Вставить строку</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="85"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="86"/>
         <source>Insert multiple rows</source>
         <translation>Вставить несколько строк</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="86"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="87"/>
         <source>Delete selected row</source>
         <translation>Удалить выбранную строку</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlqueryview.cpp" line="503"/>
+        <location filename="../datagrid/sqlqueryview.cpp" line="256"/>
+        <source>No items selected to paste clipboard contents to.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../datagrid/sqlqueryview.cpp" line="510"/>
         <source>Edit value</source>
         <translation>Править содержимое</translation>
     </message>
@@ -5590,41 +5596,41 @@ Do you want to commit the structure, or do you want to go back to the structure 
         <translation>Условие для частичного индекса</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1424"/>
+        <location filename="../windows/tablewindow.cpp" line="1425"/>
         <source>Name</source>
         <comment>table window triggers</comment>
         <translation>Имя</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1425"/>
+        <location filename="../windows/tablewindow.cpp" line="1426"/>
         <source>Event</source>
         <comment>table window triggers</comment>
         <translation>Событие</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1426"/>
+        <location filename="../windows/tablewindow.cpp" line="1427"/>
         <source>Condition</source>
         <comment>table window triggers</comment>
         <translation>Условие</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1427"/>
+        <location filename="../windows/tablewindow.cpp" line="1428"/>
         <source>Details</source>
         <comment>table window triggers</comment>
         <translation>Подробности</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1515"/>
+        <location filename="../windows/tablewindow.cpp" line="1517"/>
         <source>Table window &quot;%1&quot; has uncommited structure modifications and data.</source>
         <translation>В окне таблицы &quot;%1&quot; имеются неподтверждённые изменения структуры и данных.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1517"/>
+        <location filename="../windows/tablewindow.cpp" line="1519"/>
         <source>Table window &quot;%1&quot; has uncommited data.</source>
         <translation>В окне таблицы &quot;%1&quot; имеются неподтверждённые изменения данных.</translation>
     </message>
     <message>
-        <location filename="../windows/tablewindow.cpp" line="1519"/>
+        <location filename="../windows/tablewindow.cpp" line="1521"/>
         <source>Table window &quot;%1&quot; has uncommited structure modifications.</source>
         <translation>В окне таблицы &quot;%1&quot; имеются неподтверждённые изменения структуры.</translation>
     </message>
@@ -5712,33 +5718,33 @@ Do you want to commit the structure, or do you want to go back to the structure 
         <translation>DDL</translation>
     </message>
     <message>
-        <location filename="../dialogs/triggerdialog.cpp" line="145"/>
+        <location filename="../dialogs/triggerdialog.cpp" line="159"/>
         <source>On view:</source>
         <translation>Для представления:</translation>
     </message>
     <message>
-        <location filename="../dialogs/triggerdialog.cpp" line="168"/>
+        <location filename="../dialogs/triggerdialog.cpp" line="183"/>
         <source>Could not process trigger %1 correctly. Unable to open a trigger dialog.</source>
         <translation>Не удалось корректно обработать триггер %1. Невозможно открыть окно триггера.</translation>
     </message>
     <message>
-        <location filename="../dialogs/triggerdialog.cpp" line="338"/>
+        <location filename="../dialogs/triggerdialog.cpp" line="353"/>
         <source>Enter a valid condition.</source>
         <translation>Введите корректное условие.</translation>
     </message>
     <message>
-        <location filename="../dialogs/triggerdialog.cpp" line="339"/>
+        <location filename="../dialogs/triggerdialog.cpp" line="354"/>
         <source>Enter a valid trigger code.</source>
         <translation>Введите корректный код триггера.</translation>
     </message>
     <message>
-        <location filename="../dialogs/triggerdialog.cpp" line="411"/>
+        <location filename="../dialogs/triggerdialog.cpp" line="426"/>
         <source>Error</source>
         <comment>trigger dialog</comment>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <location filename="../dialogs/triggerdialog.cpp" line="411"/>
+        <location filename="../dialogs/triggerdialog.cpp" line="426"/>
         <source>An error occurred while executing SQL statements:
 %1</source>
         <translation>При выполнении конструкций SQL произошла ошибка:
