@@ -39,7 +39,7 @@
         <translation>-- Encodage texte utilisé: %1</translation>
     </message>
     <message>
-        <location filename="sqlexport.cpp" line="309"/>
+        <location filename="sqlexport.cpp" line="312"/>
         <source>Table name for INSERT statements is mandatory.</source>
         <translation>Nom de table pour la déclaration INSERT est obligatoire.</translation>
     </message>

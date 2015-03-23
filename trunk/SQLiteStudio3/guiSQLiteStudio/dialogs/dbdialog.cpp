@@ -54,26 +54,6 @@ QString DbDialog::getName()
     return ui->nameEdit->text();
 }
 
-Db* DbDialog::getDb()
-{
-    if (ui->typeCombo->currentIndex() < 0)
-        return nullptr;
-
-    Db* testDb = nullptr;
-    QHash<QString, QVariant> options = collectOptions();
-    QString path = ui->fileEdit->text();
-    foreach (DbPlugin* plugin, dbPlugins)
-    {
-        if (options.contains(DB_PLUGIN) && options[DB_PLUGIN].toString() != plugin->getName())
-            continue;
-
-        testDb = plugin->getInstance("", path, options);
-        if (testDb)
-            return testDb;
-    }
-    return testDb;
-}
-
 bool DbDialog::isPermanent()
 {
     return ui->permamentCheckBox->isChecked();
@@ -95,17 +75,18 @@ void DbDialog::showEvent(QShowEvent *e)
 {
     if (db)
     {
+        disableTypeAutodetection = true;
         int idx = ui->typeCombo->findText(db->getTypeLabel());
         ui->typeCombo->setCurrentIndex(idx);
-        ui->typeCombo->setEnabled(false); // converting to other type is in separate dialog, it's different feature
 
         ui->generateCheckBox->setChecked(false);
         ui->fileEdit->setText(db->getPath());
         ui->nameEdit->setText(db->getName());
+        disableTypeAutodetection = false;
     }
     else if (ui->typeCombo->count() > 0)
     {
-        int idx = ui->typeCombo->findText("SQLite3"); // we should have SQLite3 plugin
+        int idx = ui->typeCombo->findText("SQLite 3", Qt::MatchFixedString); // we should have SQLite 3 plugin
         if (idx > -1)
             ui->typeCombo->setCurrentIndex(idx);
         else
@@ -127,11 +108,14 @@ void DbDialog::init()
     ui->setupUi(this);
 
     ui->browseButton->setIcon(ICONS.DATABASE_FILE);
-    dbPlugins = PLUGINS->getLoadedPlugins<DbPlugin>();
-    foreach (DbPlugin* dbPlugin, dbPlugins)
-    {
-        ui->typeCombo->addItem(dbPlugin->getLabel());
-    }
+
+    for (DbPlugin* dbPlugin : PLUGINS->getLoadedPlugins<DbPlugin>())
+        dbPlugins[dbPlugin->getLabel()] = dbPlugin;
+
+    QStringList typeLabels;
+    typeLabels += dbPlugins.keys();
+    typeLabels.sort(Qt::CaseInsensitive);
+    ui->typeCombo->addItems(typeLabels);
 
     ui->browseButton->setVisible(true);
     ui->testConnIcon->setVisible(false);
@@ -169,23 +153,18 @@ void DbDialog::updateOptions()
     lastWidgetInTabOrder = ui->permamentCheckBox;
 
     // Retrieve new list
-    DbPlugin* plugin = nullptr;
-    if (dbPlugins.count() > 0)
+    if (ui->typeCombo->currentIndex() > -1)
     {
-        int idx = ui->typeCombo->currentIndex();
-        if (idx > -1 )
+        DbPlugin* plugin = dbPlugins[ui->typeCombo->currentText()];
+        QList<DbPluginOption> optList = plugin->getOptionsList();
+        if (optList.size() > 0)
         {
-            plugin = dbPlugins[idx];
-            QList<DbPluginOption> optList = plugin->getOptionsList();
-            if (optList.size() > 0)
+            // Add new options
+            int row = ADDITIONAL_ROWS_BEGIN_INDEX;
+            for (const DbPluginOption& opt : optList)
             {
-                // Add new options
-                int row = ADDITIONAL_ROWS_BEGIN_INDEX;
-                for (const DbPluginOption& opt : optList)
-                {
-                    addOption(opt, row);
-                    row++;
-                }
+                addOption(opt, row);
+                row++;
             }
         }
     }
@@ -403,12 +382,12 @@ void DbDialog::setValueFor(DbPluginOption::Type type, QWidget *editor, const QVa
 
 void DbDialog::updateType()
 {
+    if (disableTypeAutodetection)
+        return;
+
     QFileInfo file(ui->fileEdit->text());
     if (!file.exists() || file.isDir())
-    {
-        ui->typeCombo->setEnabled(true);
         return;
-    }
 
     DbPlugin* validPlugin = nullptr;
     QHash<QString,QVariant> options;
@@ -429,8 +408,6 @@ void DbDialog::updateType()
 
     if (validPlugin)
         ui->typeCombo->setCurrentText(validPlugin->getLabel());
-
-    ui->typeCombo->setEnabled(!validPlugin || !db);
 }
 
 QHash<QString, QVariant> DbDialog::collectOptions()
@@ -445,7 +422,7 @@ QHash<QString, QVariant> DbDialog::collectOptions()
     DbPlugin* plugin = nullptr;
     if (dbPlugins.count() > 0)
     {
-        plugin = dbPlugins[ui->typeCombo->currentIndex()];
+        plugin = dbPlugins[ui->typeCombo->currentText()];
         options[DB_PLUGIN] = plugin->getName();
     }
 
@@ -454,13 +431,29 @@ QHash<QString, QVariant> DbDialog::collectOptions()
 
 bool DbDialog::testDatabase()
 {
+    if (ui->typeCombo->currentIndex() < 0)
+        return false;
+
     QString path = ui->fileEdit->text();
     QUrl url(path);
+    if (url.scheme().isEmpty())
+        url.setScheme("file");
+
     bool existed = false;
     if (url.isLocalFile() && QFile::exists(path))
         existed = QFile::exists(path);
 
-    bool res = getDb() != nullptr;
+    QHash<QString, QVariant> options = collectOptions();
+    DbPlugin* plugin = dbPlugins[ui->typeCombo->currentText()];
+    Db* testDb = plugin->getInstance("", path, options);
+
+    bool res = false;
+    if (testDb)
+    {
+        res = true;
+        delete testDb;
+    }
+
     if (!existed)
     {
         QFile file(path);
@@ -547,10 +540,9 @@ void DbDialog::valueForNameGenerationChanged()
     if (!ui->generateCheckBox->isChecked())
         return;
 
-    DbPlugin* plugin = nullptr;
     if (dbPlugins.count() > 0)
     {
-        plugin = dbPlugins[ui->typeCombo->currentIndex()];
+        DbPlugin* plugin = dbPlugins[ui->typeCombo->currentText()];
         QString generatedName = plugin->generateDbName(ui->fileEdit->text());
         generatedName = generateUniqueName(generatedName, existingDatabaseNames);
         ui->nameEdit->setText(generatedName);
