@@ -13,7 +13,7 @@
         * [BUGFIX]: #2797 Database type is no longer disabled when adding existing database file.
         * [BUGFIX]: SqlExport appends Foreign Key (re)enabling pragma at the end.
         * [BUGFIX]: "Maximized" MDI window state is no longer lost after closing last MDI window.
-        * [BUGFIX]: TableModifier is now much smarter about when to recreate triggers and how to do it.
+        * [BUGFIX]: #2812 TableModifier is now much smarter about when to recreate triggers and how to do it.
         * [BUGFIX]: TriggerDialog no longer loses "When" field when editing existing trigger.
         * [BUGFIX]: Columns of Indexes and Triggers tabs in Table Window don't shring after refresh anymore.
         * [BUGFIX]: NumPad Enter key also accepts the Code Assistant choice.
