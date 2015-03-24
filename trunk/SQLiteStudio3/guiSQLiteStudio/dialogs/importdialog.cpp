@@ -83,12 +83,13 @@ void ImportDialog::initTablePage()
 {
     dbListModel = new DbListModel(this);
     dbListModel->setCombo(ui->dbNameCombo);
-    dbListModel->setSortMode(DbListModel::SortMode::Alphabetical);
+    dbListModel->setSortMode(DbListModel::SortMode::AlphabeticalCaseInsensitive);
     ui->dbNameCombo->setModel(dbListModel);
 
     tablesModel = new DbObjListModel(this);
     tablesModel->setIncludeSystemObjects(false);
     tablesModel->setType(DbObjListModel::ObjectType::TABLE);
+    tablesModel->setSortMode(DbObjListModel::SortMode::AlphabeticalCaseInsensitive);
     ui->tableNameCombo->setModel(tablesModel);
     refreshTables();
 

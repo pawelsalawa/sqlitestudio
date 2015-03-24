@@ -26,6 +26,7 @@ class GUI_API_EXPORT ExportDialog : public QWizard
         void setTableMode(Db* db, const QString& table);
         void setQueryMode(Db* db, const QString& query);
         void setDatabaseMode(Db* db);
+        void setPreselectedDb(Db* db);
         int nextId() const;
         bool isPluginConfigValid() const;
 

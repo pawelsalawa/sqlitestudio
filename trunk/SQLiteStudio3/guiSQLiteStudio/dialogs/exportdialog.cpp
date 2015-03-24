@@ -124,6 +124,14 @@ void ExportDialog::setDatabaseMode(Db* db)
     this->db = db;
 }
 
+void ExportDialog::setPreselectedDb(Db *db)
+{
+    if (!db->isOpen())
+        return;
+
+    this->db = db;
+}
+
 void ExportDialog::initModePage()
 {
     connect(ui->subjectDatabaseRadio, SIGNAL(clicked()), this, SLOT(updateExportMode()));
@@ -296,6 +304,9 @@ void ExportDialog::tablePageDisplayed()
         if (table.isNull()) // table mode selected by user, not forced by setTableMode().
         {
             ui->exportTableDbNameCombo->setModel(dbListModel);
+            if (db)
+                ui->exportTableDbNameCombo->setCurrentText(db->getName());
+
             connect(ui->exportTableDbNameCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(updateDbTables()));
 
             ui->exportTableNameCombo->setModel(tablesModel);
@@ -314,6 +325,9 @@ void ExportDialog::queryPageDisplayed()
         if (query.isNull()) // query mode selected by user, not forced by setQueryMode().
         {
             ui->queryDatabaseCombo->setModel(dbListModel);
+            if (db)
+                ui->queryDatabaseCombo->setCurrentText(db->getName());
+
             connect(ui->queryDatabaseCombo, SIGNAL(currentIndexChanged(int)), ui->queryPage, SIGNAL(completeChanged()));
         }
 
