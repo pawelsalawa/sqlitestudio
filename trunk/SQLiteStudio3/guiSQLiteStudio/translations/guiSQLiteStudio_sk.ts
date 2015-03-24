@@ -452,12 +452,12 @@
     <message>
         <location filename="../constraints/columncollatepanel.ui" line="73"/>
         <source>Named constraint:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomenovanie obmedzenia:</translation>
     </message>
     <message>
         <location filename="../constraints/columncollatepanel.cpp" line="80"/>
         <source>Enter a name of the constraint.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadajte názov obmedzenia.</translation>
     </message>
     <message>
         <location filename="../constraints/columncollatepanel.cpp" line="81"/>
@@ -475,7 +475,7 @@
     <message>
         <location filename="../constraints/columndefaultpanel.ui" line="35"/>
         <source>Named constraint:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomenovanie obmedzenia:</translation>
     </message>
     <message>
         <location filename="../constraints/columndefaultpanel.cpp" line="39"/>
@@ -490,7 +490,7 @@
     <message>
         <location filename="../constraints/columndefaultpanel.cpp" line="90"/>
         <source>Enter a name of the constraint.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadajte názov obmedzenia.</translation>
     </message>
 </context>
 <context>
@@ -584,50 +584,50 @@
     <message>
         <location filename="../dialogs/columndialog.ui" line="270"/>
         <source>Advanced mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozšírený mód</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="83"/>
         <source>Add constraint</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Pridať obmedzenie</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="84"/>
         <source>Edit constraint</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Upraviť obmedzenie</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="85"/>
         <location filename="../dialogs/columndialog.cpp" line="229"/>
         <source>Delete constraint</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať obmedzenie</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="86"/>
         <source>Move constraint up</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Posunúť obmedzenie hore</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="87"/>
         <source>Move constraint down</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Posunúť obmedzenie dole</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="89"/>
         <source>Add a primary key</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Pridať primárny kľúč</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="90"/>
         <source>Add a foreign key</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Pridať cudzí kľúč</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="91"/>
@@ -683,19 +683,19 @@ but it&apos;s okay to use it.</source>
         <location filename="../dialogs/columndialogconstraintsmodel.cpp" line="328"/>
         <source>Type</source>
         <comment>column dialog constraints</comment>
-        <translation type="unfinished">Typ</translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialogconstraintsmodel.cpp" line="330"/>
         <source>Name</source>
         <comment>column dialog constraints</comment>
-        <translation type="unfinished">Názov</translation>
+        <translation>Názov</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialogconstraintsmodel.cpp" line="332"/>
         <source>Details</source>
         <comment>column dialog constraints</comment>
-        <translation type="unfinished">Detaily</translation>
+        <translation>Detaily</translation>
     </message>
 </context>
 <context>
@@ -751,33 +751,33 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../constraints/columnprimarykeypanel.ui" line="26"/>
         <source>Autoincrement</source>
-        <translation type="unfinished"></translation>
+        <translation>Autoikrement</translation>
     </message>
     <message>
         <location filename="../constraints/columnprimarykeypanel.ui" line="48"/>
         <source>Sort order:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoradiť:</translation>
     </message>
     <message>
         <location filename="../constraints/columnprimarykeypanel.ui" line="83"/>
         <source>Named constraint:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomenovanie obmedzenia:</translation>
     </message>
     <message>
         <location filename="../constraints/columnprimarykeypanel.ui" line="111"/>
         <source>On conflict:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pri konflikte:</translation>
     </message>
     <message>
         <location filename="../constraints/columnprimarykeypanel.cpp" line="87"/>
         <source>Enter a name of the constraint.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadajte názov obmedzenia.</translation>
     </message>
     <message>
         <location filename="../constraints/columnprimarykeypanel.cpp" line="103"/>
         <source>Autoincrement (only for %1 type columns)</source>
         <comment>column primary key</comment>
-        <translation type="unfinished"></translation>
+        <translation>Autoinkrement (iba pre stĺpec typu %1)</translation>
     </message>
 </context>
 <context>
@@ -822,7 +822,7 @@ but it&apos;s okay to use it.</source>
         <location filename="../completer/completerwindow.cpp" line="165"/>
         <source>Trigger: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Spúšťač: %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="167"/>
@@ -1475,27 +1475,27 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../constraints/constraintcheckpanel.ui" line="20"/>
         <source>The condition</source>
-        <translation type="unfinished"></translation>
+        <translation>Podmienka</translation>
     </message>
     <message>
         <location filename="../constraints/constraintcheckpanel.ui" line="35"/>
         <source>Named constraint:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomenovanie obmedzenia:</translation>
     </message>
     <message>
         <location filename="../constraints/constraintcheckpanel.ui" line="51"/>
         <source>On conflict</source>
-        <translation type="unfinished"></translation>
+        <translation>Pri konflikte</translation>
     </message>
     <message>
         <location filename="../constraints/constraintcheckpanel.cpp" line="46"/>
         <source>Enter a valid condition.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadajte platnú podmienku.</translation>
     </message>
     <message>
         <location filename="../constraints/constraintcheckpanel.cpp" line="47"/>
         <source>Enter a name of the constraint.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadajte názov obmedzenia.</translation>
     </message>
 </context>
 <context>
@@ -1504,37 +1504,37 @@ but it&apos;s okay to use it.</source>
         <location filename="../dialogs/constraintdialog.cpp" line="62"/>
         <source>New constraint</source>
         <comment>constraint dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nové obmedzenie</translation>
     </message>
     <message>
         <location filename="../dialogs/constraintdialog.cpp" line="63"/>
         <source>Create</source>
         <comment>constraint dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vytvoriť</translation>
     </message>
     <message>
         <location filename="../dialogs/constraintdialog.cpp" line="66"/>
         <source>Edit constraint</source>
         <comment>dialog window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Upraviť obmedzenie</translation>
     </message>
     <message>
         <location filename="../dialogs/constraintdialog.cpp" line="67"/>
         <source>Apply</source>
         <comment>constraint dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Aplikovať</translation>
     </message>
     <message>
         <location filename="../dialogs/constraintdialog.cpp" line="170"/>
         <source>Primary key</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Primárny klúč</translation>
     </message>
     <message>
         <location filename="../dialogs/constraintdialog.cpp" line="174"/>
         <source>Foreign key</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Cudzí klúč</translation>
     </message>
     <message>
         <location filename="../dialogs/constraintdialog.cpp" line="178"/>
@@ -1546,7 +1546,7 @@ but it&apos;s okay to use it.</source>
         <location filename="../dialogs/constraintdialog.cpp" line="182"/>
         <source>Not NULL</source>
         <comment>table constraints</comment>
-        <translation type="unfinished">Nie NULL</translation>
+        <translation>Nie NULL</translation>
     </message>
     <message>
         <location filename="../dialogs/constraintdialog.cpp" line="186"/>
@@ -1573,13 +1573,13 @@ but it&apos;s okay to use it.</source>
         <location filename="../windows/constrainttabmodel.cpp" line="68"/>
         <source>Table</source>
         <comment>table constraints</comment>
-        <translation type="unfinished">Tabuľka</translation>
+        <translation>Tabuľka</translation>
     </message>
     <message>
         <location filename="../windows/constrainttabmodel.cpp" line="109"/>
         <source>Column (%1)</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Stĺpec (%1)</translation>
     </message>
     <message>
         <location filename="../windows/constrainttabmodel.cpp" line="153"/>
@@ -1591,19 +1591,19 @@ but it&apos;s okay to use it.</source>
         <location filename="../windows/constrainttabmodel.cpp" line="155"/>
         <source>Type</source>
         <comment>table constraints</comment>
-        <translation type="unfinished">Typ</translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <location filename="../windows/constrainttabmodel.cpp" line="157"/>
         <source>Details</source>
         <comment>table constraints</comment>
-        <translation type="unfinished">Detaily</translation>
+        <translation>Detaily</translation>
     </message>
     <message>
         <location filename="../windows/constrainttabmodel.cpp" line="159"/>
         <source>Name</source>
         <comment>table constraints</comment>
-        <translation type="unfinished">Názov</translation>
+        <translation>Názov</translation>
     </message>
 </context>
 <context>
@@ -1612,7 +1612,7 @@ but it&apos;s okay to use it.</source>
         <location filename="../dataview.cpp" line="95"/>
         <source>Filter data</source>
         <comment>data view</comment>
-        <translation>Filtrovať dáta</translation>
+        <translation>Filtrovať</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="104"/>
@@ -1718,7 +1718,8 @@ but it&apos;s okay to use it.</source>
         <location filename="../dataview.cpp" line="510"/>
         <source>Total number of rows is being counted.
 Browsing other pages will be possible after the row counting is done.</source>
-        <translation type="unfinished"></translation>
+        <translation>Spočítava sa celkový počet riadkov.
+Prezeranie ďalších strán bude možné až po dokončení spočítavania.</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="521"/>
@@ -2607,7 +2608,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/editorwindow.cpp" line="601"/>
         <source>Clear execution history</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyprázdniť históriu dotazov</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="601"/>
@@ -3737,21 +3738,21 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/newconstraintdialog.ui" line="20"/>
         <source>New constraint</source>
-        <translation type="unfinished"></translation>
+        <translation>Nové obmedzenie</translation>
     </message>
     <message>
         <location filename="../dialogs/newconstraintdialog.cpp" line="87"/>
         <location filename="../dialogs/newconstraintdialog.cpp" line="97"/>
         <source>Primary Key</source>
         <comment>new constraint dialog</comment>
-        <translation type="unfinished">Primárny klúč</translation>
+        <translation>Primárny klúč</translation>
     </message>
     <message>
         <location filename="../dialogs/newconstraintdialog.cpp" line="89"/>
         <location filename="../dialogs/newconstraintdialog.cpp" line="99"/>
         <source>Foreign Key</source>
         <comment>new constraint dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Cudzí klúč</translation>
     </message>
     <message>
         <location filename="../dialogs/newconstraintdialog.cpp" line="91"/>
@@ -3771,7 +3772,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../dialogs/newconstraintdialog.cpp" line="103"/>
         <source>Not NULL</source>
         <comment>new constraint dialog</comment>
-        <translation type="unfinished">Nie NULL</translation>
+        <translation>Nie NULL</translation>
     </message>
     <message>
         <location filename="../dialogs/newconstraintdialog.cpp" line="105"/>
@@ -4088,12 +4089,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dbtree/dbtree.h" line="31"/>
         <source>Add database</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridať databázu</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="32"/>
         <source>Select all items</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybrať všetky položky</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="33"/>
@@ -5002,17 +5003,17 @@ find next</source>
     <message>
         <location filename="../statusfield.ui" line="14"/>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Status</translation>
     </message>
     <message>
         <location filename="../statusfield.cpp" line="161"/>
         <source>Copy</source>
-        <translation type="unfinished">Kopírovať</translation>
+        <translation>Kopírovať</translation>
     </message>
     <message>
         <location filename="../statusfield.cpp" line="168"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyčistiť</translation>
     </message>
 </context>
 <context>
@@ -5612,17 +5613,17 @@ Chcete potvrdiť štruktúru alebo sa chcete vrátiť do záložky štruktúr?</
     <message>
         <location filename="../windows/tablewindow.cpp" line="1517"/>
         <source>Table window &quot;%1&quot; has uncommited structure modifications and data.</source>
-        <translation type="unfinished"></translation>
+        <translation>V okne tabuľky %1 sú nepotvrdené zmeny štruktúry a dáta.</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1519"/>
         <source>Table window &quot;%1&quot; has uncommited data.</source>
-        <translation type="unfinished"></translation>
+        <translation>V okne tabuľky %1 sú nepotvrdené dáta.</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1521"/>
         <source>Table window &quot;%1&quot; has uncommited structure modifications.</source>
-        <translation type="unfinished"></translation>
+        <translation>V okne tabuľky %1 sú nepotvrdené zmeny štruktúry.</translation>
     </message>
 </context>
 <context>
@@ -5644,17 +5645,17 @@ Chcete potvrdiť štruktúru alebo sa chcete vrátiť do záložky štruktúr?</
         <location filename="../dialogs/triggerdialog.ui" line="14"/>
         <location filename="../dialogs/triggerdialog.ui" line="24"/>
         <source>Trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Spúšťač</translation>
     </message>
     <message>
         <location filename="../dialogs/triggerdialog.ui" line="30"/>
         <source>On table:</source>
-        <translation type="unfinished"></translation>
+        <translation>Na tabuľke:</translation>
     </message>
     <message>
         <location filename="../dialogs/triggerdialog.ui" line="40"/>
         <source>Action:</source>
-        <translation type="unfinished"></translation>
+        <translation>Akcia:</translation>
     </message>
     <message>
         <location filename="../dialogs/triggerdialog.ui" line="56"/>
@@ -5675,12 +5676,12 @@ Chcete potvrdiť štruktúru alebo sa chcete vrátiť do záložky štruktúr?</
     <message>
         <location filename="../dialogs/triggerdialog.ui" line="73"/>
         <source>Trigger name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Názov spúšťača:</translation>
     </message>
     <message>
         <location filename="../dialogs/triggerdialog.ui" line="80"/>
         <source>When:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kedy:</translation>
     </message>
     <message>
         <location filename="../dialogs/triggerdialog.ui" line="87"/>
@@ -5695,7 +5696,7 @@ Chcete potvrdiť štruktúru alebo sa chcete vrátiť do záložky štruktúr?</
     <message>
         <location filename="../dialogs/triggerdialog.ui" line="104"/>
         <source>Code:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kód:</translation>
     </message>
     <message>
         <location filename="../dialogs/triggerdialog.ui" line="111"/>
@@ -5705,7 +5706,7 @@ Chcete potvrdiť štruktúru alebo sa chcete vrátiť do záložky štruktúr?</
     <message>
         <location filename="../dialogs/triggerdialog.ui" line="132"/>
         <source>DDL</source>
-        <translation type="unfinished">DDL</translation>
+        <translation>DDL</translation>
     </message>
     <message>
         <location filename="../dialogs/triggerdialog.cpp" line="159"/>
@@ -5725,7 +5726,7 @@ Chcete potvrdiť štruktúru alebo sa chcete vrátiť do záložky štruktúr?</
     <message>
         <location filename="../dialogs/triggerdialog.cpp" line="354"/>
         <source>Enter a valid trigger code.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadajte validný kód spúšťača.</translation>
     </message>
     <message>
         <location filename="../dialogs/triggerdialog.cpp" line="426"/>

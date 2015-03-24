@@ -12,7 +12,7 @@
     <message>
         <location filename="../db/abstractdb.cpp" line="603"/>
         <source>Error attaching database %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba pri pripájaní databázy %1: %2</translation>
     </message>
 </context>
 <context>
@@ -144,7 +144,7 @@
     <message>
         <location filename="../services/impl/dbmanagerimpl.cpp" line="63"/>
         <source>Could not add database %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemôžem pridať databázu %1: %2</translation>
     </message>
     <message>
         <location filename="../services/impl/dbmanagerimpl.cpp" line="134"/>
@@ -565,7 +565,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
         <location filename="../services/populatemanager.cpp" line="88"/>
         <source>Table &apos;%1&apos; populated successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabuľka %1 úspešne naplnená.</translation>
     </message>
 </context>
 <context>
@@ -573,7 +573,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
         <location filename="../plugins/populaterandom.cpp" line="12"/>
         <source>Random number</source>
-        <translation type="unfinished"></translation>
+        <translation>Náhodné číslo</translation>
     </message>
 </context>
 <context>
