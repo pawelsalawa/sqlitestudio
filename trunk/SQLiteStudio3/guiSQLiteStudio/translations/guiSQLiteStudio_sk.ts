@@ -351,12 +351,12 @@
     <message>
         <location filename="../windows/collationseditor.ui" line="75"/>
         <source>Filter collations</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrovať porovnávania</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.ui" line="110"/>
         <source>Collation name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Názov porovnánavania:</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.ui" line="120"/>
@@ -366,7 +366,7 @@
     <message>
         <location filename="../windows/collationseditor.ui" line="152"/>
         <source>Databases</source>
-        <translation type="unfinished">Databázy</translation>
+        <translation>Databázy</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.ui" line="158"/>
@@ -386,27 +386,27 @@
     <message>
         <location filename="../windows/collationseditor.cpp" line="52"/>
         <source>Collations editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Editor porovnávaní</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="57"/>
         <source>Commit all collation changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Potvrdiť všetky zmeny v porovnávaní</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="58"/>
         <source>Rollback all collation changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Vrátiť späť všetky zmeny v porovnávaní</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="60"/>
         <source>Create new collation</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvoriť nové porovnávanie</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="61"/>
         <source>Delete selected collation</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať vybrané porovnávanie</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="63"/>
@@ -431,7 +431,7 @@
     <message>
         <location filename="../windows/collationseditor.cpp" line="388"/>
         <source>Collations editor window has uncommited modifications.</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno editora porovnávaní obsahuje nepotvrdené zmeny.</translation>
     </message>
 </context>
 <context>
@@ -447,7 +447,7 @@
     <message>
         <location filename="../constraints/columncollatepanel.ui" line="41"/>
         <source>Collation name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Názov porovnánavania:</translation>
     </message>
     <message>
         <location filename="../constraints/columncollatepanel.ui" line="73"/>
@@ -462,7 +462,7 @@
     <message>
         <location filename="../constraints/columncollatepanel.cpp" line="81"/>
         <source>Enter a collation name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadajte názov porovnávania.</translation>
     </message>
 </context>
 <context>
@@ -870,19 +870,19 @@ but it&apos;s okay to use it.</source>
         <location filename="../completer/completerwindow.cpp" line="191"/>
         <source>Binary data</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Binárne dáta</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="193"/>
         <source>Collation: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Porovnávanie: %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="195"/>
         <source>Pragma function: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Pragma funkcia : %1</translation>
     </message>
 </context>
 <context>
@@ -2099,7 +2099,7 @@ Prezeranie ďalších strán bude možné až po dokončení spočítavania.</tr
     <message>
         <location filename="../dbtree/dbtree.cpp" line="122"/>
         <source>Reset autoincrement sequence</source>
-        <translation type="unfinished"></translation>
+        <translation>Resetovať sekvenciu autoinkrementu</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="123"/>
@@ -2260,17 +2260,17 @@ Všetky objekty z tejto skupiny budú presunuté do nadradenej skupiny.</transla
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1390"/>
         <source>Reset autoincrement</source>
-        <translation type="unfinished"></translation>
+        <translation>Resetovať autoinkrement</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1390"/>
         <source>Are you sure you want to reset autoincrement value for table &apos;%1&apos;?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ste si istý, že chcete zresetovať hodnotu autoinkrementu pre tabuľku %1 ?</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1397"/>
         <source>An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyskytla sa chyba pri pokuse o zresetovanie hodnoty autoinkrementu pre tebuľku &apos;%1&apos;: %2</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1399"/>
@@ -2889,43 +2889,43 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../formview.cpp" line="254"/>
         <source>Rollback row</source>
         <comment>form view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vrátiť späť riadok</translation>
     </message>
     <message>
         <location filename="../formview.cpp" line="255"/>
         <source>First row</source>
         <comment>form view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Prvý riadok</translation>
     </message>
     <message>
         <location filename="../formview.cpp" line="256"/>
         <source>Previous row</source>
         <comment>form view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Predchádzajúci riadok</translation>
     </message>
     <message>
         <location filename="../formview.cpp" line="257"/>
         <source>Next row</source>
         <comment>form view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nasledujúci riadok</translation>
     </message>
     <message>
         <location filename="../formview.cpp" line="258"/>
         <source>Last row</source>
         <comment>form view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Posledný riadok</translation>
     </message>
     <message>
         <location filename="../formview.cpp" line="259"/>
         <source>Insert new row</source>
         <comment>form view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vložiť nový riadok</translation>
     </message>
     <message>
         <location filename="../formview.cpp" line="260"/>
         <source>Delete current row</source>
         <comment>form view</comment>
-        <translation type="unfinished">Vymazať aktuálny riadok</translation>
+        <translation>Vymazať aktuálny riadok</translation>
     </message>
 </context>
 <context>
@@ -3187,7 +3187,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../dialogs/indexdialog.ui" line="20"/>
         <location filename="../dialogs/indexdialog.ui" line="30"/>
         <source>Index</source>
-        <translation type="unfinished"></translation>
+        <translation>Index</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="36"/>
@@ -3197,7 +3197,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/indexdialog.ui" line="43"/>
         <source>Index name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Názov indexu:</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="50"/>
@@ -3217,7 +3217,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/indexdialog.ui" line="95"/>
         <source>Collation</source>
-        <translation type="unfinished"></translation>
+        <translation>Porovnávanie</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="100"/>
@@ -3338,7 +3338,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="106"/>
         <source>Data editors</source>
-        <translation type="unfinished">Editory dát</translation>
+        <translation>Editory dát</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="118"/>
@@ -3348,7 +3348,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="120"/>
         <source>Running in debug mode. Debug messages are printed to the standard output.</source>
-        <translation type="unfinished"></translation>
+        <translation>Beží v ladiacom móde. Ladiace správy sú vypisované na štandardný výstup.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="202"/>
@@ -3373,7 +3373,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="248"/>
         <source>Open collations editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Otvoriť editor porovnávaní</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="249"/>
@@ -3453,7 +3453,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="268"/>
         <source>Open Debug Console</source>
-        <translation type="unfinished"></translation>
+        <translation>Otvoriť ladiacu konzolu</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="269"/>
@@ -3979,7 +3979,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="461"/>
         <source>collation name: %1</source>
         <comment>data view tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Názov porovnánavania: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="19"/>
@@ -4024,7 +4024,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="29"/>
         <source>Insert new data row</source>
-        <translation type="unfinished"></translation>
+        <translation>Vložiť nový riadok</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="30"/>
@@ -4578,34 +4578,34 @@ find next</source>
     <message>
         <location filename="../dialogs/sortdialog.ui" line="14"/>
         <source>Sort by columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoradiť podľa stĺpcov</translation>
     </message>
     <message>
         <location filename="../dialogs/sortdialog.ui" line="45"/>
         <location filename="../dialogs/sortdialog.cpp" line="48"/>
         <source>Column</source>
-        <translation type="unfinished">Stĺpec</translation>
+        <translation>Stĺpec</translation>
     </message>
     <message>
         <location filename="../dialogs/sortdialog.ui" line="50"/>
         <location filename="../dialogs/sortdialog.cpp" line="48"/>
         <source>Order</source>
-        <translation type="unfinished"></translation>
+        <translation>Usporiadanie</translation>
     </message>
     <message>
         <location filename="../dialogs/sortdialog.cpp" line="178"/>
         <source>Sort by: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoradiť podľa : %1</translation>
     </message>
     <message>
         <location filename="../dialogs/sortdialog.cpp" line="242"/>
         <source>Move column up</source>
-        <translation type="unfinished">Posunúť stĺpec hore</translation>
+        <translation>Posunúť stĺpec hore</translation>
     </message>
     <message>
         <location filename="../dialogs/sortdialog.cpp" line="243"/>
         <source>Move column down</source>
-        <translation type="unfinished">Posunúť stĺpec dole</translation>
+        <translation>Posunúť stĺpec dole</translation>
     </message>
 </context>
 <context>
@@ -4884,12 +4884,12 @@ find next</source>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="1395"/>
         <source>Insert multiple rows</source>
-        <translation type="unfinished"></translation>
+        <translation>Vložiť viacero riadkov</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="1395"/>
         <source>Number of rows to insert:</source>
-        <translation type="unfinished"></translation>
+        <translation>Počet vkládaných riadkov:</translation>
     </message>
 </context>
 <context>
@@ -4902,7 +4902,7 @@ find next</source>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="73"/>
         <source>Copy as...</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopírovať ako...</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="74"/>
@@ -4912,7 +4912,7 @@ find next</source>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="75"/>
         <source>Paste as...</source>
-        <translation type="unfinished"></translation>
+        <translation>Vložiť ako...</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="76"/>
@@ -4922,12 +4922,12 @@ find next</source>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="77"/>
         <source>Erase values</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať hodnoty</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="78"/>
         <source>Edit value in editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Upraviť hodnotu v editory</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="79"/>
@@ -4947,42 +4947,42 @@ find next</source>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="82"/>
         <source>Rollback selected cells</source>
-        <translation type="unfinished"></translation>
+        <translation>Vrátiť späť vybrané bunky</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="83"/>
         <source>Define columns to sort by</source>
-        <translation type="unfinished"></translation>
+        <translation>Vybrať stĺpce na zoradenie podľa</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="84"/>
         <source>Remove custom sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstrániť užívateľské triedenie</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="85"/>
         <source>Insert row</source>
-        <translation type="unfinished"></translation>
+        <translation>Vložiť riadok</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="86"/>
         <source>Insert multiple rows</source>
-        <translation type="unfinished"></translation>
+        <translation>Vložiť viacero riadkov</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="87"/>
         <source>Delete selected row</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať viacero riadkov</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="256"/>
         <source>No items selected to paste clipboard contents to.</source>
-        <translation type="unfinished"></translation>
+        <translation>Neboli vybrané žiadne položky na vloženie obsahu schránky.</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="510"/>
         <source>Edit value</source>
-        <translation type="unfinished"></translation>
+        <translation>Upraviť hodnotu</translation>
     </message>
 </context>
 <context>
@@ -5127,59 +5127,59 @@ but it&apos;s okay to use them anyway.</source>
     <message>
         <location filename="../constraints/tablepkanduniquepanel.ui" line="84"/>
         <source>Collation</source>
-        <translation type="unfinished"></translation>
+        <translation>Porovnávanie</translation>
     </message>
     <message>
         <location filename="../constraints/tablepkanduniquepanel.ui" line="109"/>
         <source>Sort</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoradiť</translation>
     </message>
     <message>
         <location filename="../constraints/tablepkanduniquepanel.ui" line="142"/>
         <source>Valid only for a single column with INTEGER data type</source>
-        <translation type="unfinished"></translation>
+        <translation>Platné len pre jeden stĺpec s datovým typom INTEGER</translation>
     </message>
     <message>
         <location filename="../constraints/tablepkanduniquepanel.ui" line="145"/>
         <source>Autoincrement</source>
-        <translation type="unfinished"></translation>
+        <translation>Autoinkrement</translation>
     </message>
     <message>
         <location filename="../constraints/tablepkanduniquepanel.ui" line="167"/>
         <source>Named constraint</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomenovanie obmedzenia</translation>
     </message>
     <message>
         <location filename="../constraints/tablepkanduniquepanel.ui" line="174"/>
         <source>Constraint name</source>
-        <translation type="unfinished"></translation>
+        <translation>Názov obmedzenia</translation>
     </message>
     <message>
         <location filename="../constraints/tablepkanduniquepanel.ui" line="199"/>
         <source>On conflict</source>
-        <translation type="unfinished"></translation>
+        <translation>Pri konflikte</translation>
     </message>
     <message>
         <location filename="../constraints/tablepkanduniquepanel.cpp" line="86"/>
         <source>Collate</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Porovnať</translation>
     </message>
     <message>
         <location filename="../constraints/tablepkanduniquepanel.cpp" line="93"/>
         <source>Sort order</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zoradiť</translation>
     </message>
     <message>
         <location filename="../constraints/tablepkanduniquepanel.cpp" line="169"/>
         <source>Select at least one column.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyberte minimálne jeden stĺpec.</translation>
     </message>
     <message>
         <location filename="../constraints/tablepkanduniquepanel.cpp" line="170"/>
         <source>Enter a name of the constraint.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadajte názov obmedzenia.</translation>
     </message>
 </context>
 <context>
@@ -5317,7 +5317,7 @@ but it&apos;s okay to use them anyway.</source>
         <location filename="../windows/tablewindow.cpp" line="211"/>
         <source>Reset autoincrement value</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Resetovať hodnotu autoinkrementu</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="214"/>
@@ -5475,17 +5475,17 @@ Would you like to proceed?</source>
     <message>
         <location filename="../windows/tablewindow.cpp" line="846"/>
         <source>Reset autoincrement</source>
-        <translation type="unfinished"></translation>
+        <translation>Resetovať autoinkrement</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="846"/>
         <source>Are you sure you want to reset autoincrement value for table &apos;%1&apos;?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ste si istý, že chcete zresetovať hodnotu autoinkrementu pre tabuľku %1 ?</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="853"/>
         <source>An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyskytla sa chyba pri pokuse o zresetovanie hodnoty autoinkrementu pre tebuľku &apos;%1&apos;: %2</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="855"/>
