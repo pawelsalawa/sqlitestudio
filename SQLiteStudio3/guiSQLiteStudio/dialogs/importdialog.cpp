@@ -167,14 +167,6 @@ void ImportDialog::updateStandardOptions()
     bool showFileName = currentPlugin->standardOptionsToEnable().testFlag(ImportManager::FILE_NAME);
     bool showCodec = currentPlugin->standardOptionsToEnable().testFlag(ImportManager::CODEC);
 
-    if (!showFileName && !showCodec)
-    {
-        ui->dsOptionsGroup->setVisible(false);
-        return;
-    }
-
-    ui->dsOptionsGroup->setVisible(true);
-
     int row = 0;
     QGridLayout* grid = dynamic_cast<QGridLayout*>(ui->dsOptionsGroup->layout());
     if (showFileName)
@@ -355,6 +347,8 @@ void ImportDialog::accept()
 
     if (currentPlugin->standardOptionsToEnable().testFlag(ImportManager::CODEC))
         stdConfig.codec = ui->codecCombo->currentText();
+
+    stdConfig.ignoreErrors = ui->ignoreErrorsCheck->isChecked();
 
     Db* db = DBLIST->getByName(ui->dbNameCombo->currentText());;
     if (!db)

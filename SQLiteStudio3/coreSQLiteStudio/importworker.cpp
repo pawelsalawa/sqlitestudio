@@ -149,8 +149,19 @@ bool ImportWorker::importData()
         query->setArgs(row.mid(0, colCount));
         if (!query->execute())
         {
-            error(tr("Error while importing data: %1").arg(query->getErrorText()));
-            return false;
+            if (config->ignoreErrors)
+            {
+                qDebug() << "Could not import data row number" << (rowCnt+1) << ". The row was ignored. Problem details:"
+                         << query->getErrorText();
+
+                notifyWarn(tr("Could not import data row number %1. The row was ignored. Problem details: %2")
+                           .arg(QString::number(rowCnt + 1), query->getErrorText()));
+            }
+            else
+            {
+                error(tr("Error while importing data: %1").arg(query->getErrorText()));
+                return false;
+            }
         }
 
         if ((rowCnt % 100) == 0 && isInterrupted())

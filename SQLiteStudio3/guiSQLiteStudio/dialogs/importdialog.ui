@@ -103,8 +103,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>479</width>
-         <height>310</height>
+         <width>269</width>
+         <height>280</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -141,13 +141,6 @@
            <string>Options</string>
           </property>
           <layout class="QGridLayout" name="gridLayout">
-           <item row="0" column="0">
-            <widget class="QLabel" name="inputFileLabel">
-             <property name="text">
-              <string>Input file:</string>
-             </property>
-            </widget>
-           </item>
            <item row="0" column="1">
             <widget class="QWidget" name="inputFileWidget" native="true">
              <layout class="QHBoxLayout" name="horizontalLayout">
@@ -183,8 +176,25 @@
              </property>
             </widget>
            </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="inputFileLabel">
+             <property name="text">
+              <string>Input file:</string>
+             </property>
+            </widget>
+           </item>
            <item row="1" column="1">
             <widget class="QComboBox" name="codecCombo"/>
+           </item>
+           <item row="2" column="0" colspan="2">
+            <widget class="QCheckBox" name="ignoreErrorsCheck">
+             <property name="toolTip">
+              <string>&lt;p&gt;If enabled, any constraint violation, or invalid data format (wrong column count), or any other problem encountered during import will be ignored and the importing will be continued.&lt;/p&gt;</string>
+             </property>
+             <property name="text">
+              <string>Ignore errors</string>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>
