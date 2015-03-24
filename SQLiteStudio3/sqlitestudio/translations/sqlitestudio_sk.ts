@@ -6,17 +6,17 @@
     <message>
         <location filename="../main.cpp" line="43"/>
         <source>GUI interface to SQLiteStudio, a SQLite manager.</source>
-        <translation type="unfinished"></translation>
+        <translation>GUI rozhranie pre SQLiteStudio, SQLite manažér.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="47"/>
         <source>Enables debug messages in console (accessible with F12).</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivuje ladiace správy v konzole (dostupné pomocou F12).</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="48"/>
         <source>Redirects debug messages into standard output (forces debug mode).</source>
-        <translation type="unfinished"></translation>
+        <translation>Presmerovať ladiace informácie na štandardný výstup (vynútený ladiaci mód).</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="49"/>
@@ -36,7 +36,7 @@
     <message>
         <location filename="../main.cpp" line="51"/>
         <source>database</source>
-        <translation type="unfinished"></translation>
+        <translation>databáza</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="52"/>
@@ -46,7 +46,7 @@
     <message>
         <location filename="../main.cpp" line="60"/>
         <source>file</source>
-        <translation type="unfinished"></translation>
+        <translation>Súbor</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="60"/>
@@ -57,7 +57,7 @@
         <location filename="../main.cpp" line="82"/>
         <location filename="../main.cpp" line="97"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba</translation>
     </message>
 </context>
 </TS>
