@@ -36,6 +36,8 @@ class API_EXPORT ImportManager : public PluginServiceBase
              * (for example from a clipboard).
              */
             QString inputFileName;
+
+            bool ignoreErrors = false;
         };
 
         enum StandardConfigFlag
