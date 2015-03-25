@@ -293,7 +293,7 @@
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="14"/>
         <source>Log in</source>
-        <translation type="unfinished">Prihlásenie</translation>
+        <translation>Prihlásenie</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="20"/>
@@ -328,7 +328,7 @@
     <message>
         <location filename="../dialogs/bugreportlogindialog.cpp" line="45"/>
         <source>Abort</source>
-        <translation type="unfinished">Zrušiť</translation>
+        <translation>Zrušiť</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.cpp" line="65"/>
@@ -538,7 +538,7 @@
     <message>
         <location filename="../dialogs/columndialog.ui" line="115"/>
         <source>Unique</source>
-        <translation type="unfinished"></translation>
+        <translation>Jedinečný</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="122"/>
@@ -549,7 +549,7 @@
         <location filename="../dialogs/columndialog.ui" line="199"/>
         <location filename="../dialogs/columndialog.ui" line="206"/>
         <source>Configure</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfigurovať</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="129"/>
@@ -559,7 +559,7 @@
     <message>
         <location filename="../dialogs/columndialog.ui" line="143"/>
         <source>Collate</source>
-        <translation type="unfinished"></translation>
+        <translation>Porovnanie</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="150"/>
@@ -579,7 +579,7 @@
     <message>
         <location filename="../dialogs/columndialog.ui" line="171"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Prednastavená hodnota</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="270"/>
@@ -633,7 +633,7 @@
         <location filename="../dialogs/columndialog.cpp" line="91"/>
         <source>Add an unique constraint</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Pridať jedinečné obmedzenie</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="92"/>
@@ -703,17 +703,17 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../constraints/columnforeignkeypanel.ui" line="29"/>
         <source>Foreign table:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cudzia tabuľka:</translation>
     </message>
     <message>
         <location filename="../constraints/columnforeignkeypanel.ui" line="45"/>
         <source>Foreign column:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cudzí stĺpec:</translation>
     </message>
     <message>
         <location filename="../constraints/columnforeignkeypanel.ui" line="58"/>
         <source>Reactions</source>
-        <translation type="unfinished"></translation>
+        <translation>Reakcie</translation>
     </message>
     <message>
         <location filename="../constraints/columnforeignkeypanel.ui" line="97"/>
@@ -723,27 +723,27 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../constraints/columnforeignkeypanel.ui" line="115"/>
         <source>Named constraint</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomenovanie obmedzenia</translation>
     </message>
     <message>
         <location filename="../constraints/columnforeignkeypanel.ui" line="122"/>
         <source>Constraint name</source>
-        <translation type="unfinished"></translation>
+        <translation>Názov obmedzenia</translation>
     </message>
     <message>
         <location filename="../constraints/columnforeignkeypanel.cpp" line="40"/>
         <source>Pick the foreign table.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyberte cudziu tabuľku.</translation>
     </message>
     <message>
         <location filename="../constraints/columnforeignkeypanel.cpp" line="41"/>
         <source>Pick the foreign column.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyberte cudzí stĺpec.</translation>
     </message>
     <message>
         <location filename="../constraints/columnforeignkeypanel.cpp" line="42"/>
         <source>Enter a name of the constraint.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadajte názov obmedzenia.</translation>
     </message>
 </context>
 <context>
@@ -785,17 +785,17 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../constraints/columnuniqueandnotnullpanel.ui" line="41"/>
         <source>Named constraint:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomenovanie obmedzenia:</translation>
     </message>
     <message>
         <location filename="../constraints/columnuniqueandnotnullpanel.ui" line="69"/>
         <source>On conflict:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pri konflikte:</translation>
     </message>
     <message>
         <location filename="../constraints/columnuniqueandnotnullpanel.cpp" line="73"/>
         <source>Enter a name of the constraint.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadajte názov obmedzenia.</translation>
     </message>
 </context>
 <context>
@@ -804,19 +804,19 @@ but it&apos;s okay to use it.</source>
         <location filename="../completer/completerwindow.cpp" line="159"/>
         <source>Column: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Stĺpec: %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="161"/>
         <source>Table: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Tabuľka: %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="163"/>
         <source>Index: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Index: %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="165"/>
@@ -828,43 +828,43 @@ but it&apos;s okay to use it.</source>
         <location filename="../completer/completerwindow.cpp" line="167"/>
         <source>View: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Pohľad: %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="169"/>
         <source>Database: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Databáza: %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="181"/>
         <source>Keyword: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Kľúčové slovo: %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="183"/>
         <source>Function: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Funkcia: %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="185"/>
         <source>Operator: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Operátor: %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="187"/>
         <source>String</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Reťazec</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="189"/>
         <source>Number</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Číslo</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="191"/>
@@ -1540,7 +1540,7 @@ but it&apos;s okay to use it.</source>
         <location filename="../dialogs/constraintdialog.cpp" line="178"/>
         <source>Unique</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Jedinečnosť</translation>
     </message>
     <message>
         <location filename="../dialogs/constraintdialog.cpp" line="182"/>
@@ -1558,13 +1558,13 @@ but it&apos;s okay to use it.</source>
         <location filename="../dialogs/constraintdialog.cpp" line="190"/>
         <source>Collate</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Porovnanie</translation>
     </message>
     <message>
         <location filename="../dialogs/constraintdialog.cpp" line="194"/>
         <source>Default</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Prednastavená hodnota</translation>
     </message>
 </context>
 <context>
@@ -2948,7 +2948,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/functionseditor.ui" line="171"/>
         <source>Type:</source>
-        <translation type="unfinished"></translation>
+        <translation>Typ:</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="187"/>
@@ -2963,7 +2963,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/functionseditor.ui" line="235"/>
         <source>Databases</source>
-        <translation type="unfinished">Databázy</translation>
+        <translation>Databázy</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="241"/>
@@ -3679,7 +3679,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../multieditor/multieditornumeric.cpp" line="36"/>
         <source>Number</source>
         <comment>numeric multi editor tab name</comment>
-        <translation type="unfinished"></translation>
+        <translation>Číslo</translation>
     </message>
 </context>
 <context>
@@ -3759,7 +3759,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../dialogs/newconstraintdialog.cpp" line="101"/>
         <source>Unique</source>
         <comment>new constraint dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Jedinečnosť</translation>
     </message>
     <message>
         <location filename="../dialogs/newconstraintdialog.cpp" line="92"/>
@@ -3778,13 +3778,13 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../dialogs/newconstraintdialog.cpp" line="105"/>
         <source>Collate</source>
         <comment>new constraint dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Porovnanie</translation>
     </message>
     <message>
         <location filename="../dialogs/newconstraintdialog.cpp" line="107"/>
         <source>Default</source>
         <comment>new constraint dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Prednastavená hodnota</translation>
     </message>
 </context>
 <context>
@@ -3858,7 +3858,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/populatedialog.ui" line="14"/>
         <source>Populate table</source>
-        <translation type="unfinished">Naplniť tabuľku</translation>
+        <translation>Naplniť tabuľku</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.ui" line="26"/>
@@ -3878,18 +3878,18 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/populatedialog.ui" line="102"/>
         <source>Number of rows to populate:</source>
-        <translation type="unfinished"></translation>
+        <translation>Počet riadkov na naplnenie:</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="42"/>
         <source>Populate</source>
         <comment>populate dialog button</comment>
-        <translation type="unfinished"></translation>
+        <translation>Naplniť</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="158"/>
         <source>Configure</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfigurovať</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="256"/>
@@ -3961,7 +3961,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="444"/>
         <source>on conflict: %1</source>
         <comment>data view tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Pri konflikte: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="374"/>
@@ -5053,17 +5053,17 @@ but it&apos;s okay to use them anyway.</source>
     <message>
         <location filename="../constraints/tableforeignkeypanel.ui" line="62"/>
         <source>Columns</source>
-        <translation type="unfinished">Stĺpce</translation>
+        <translation>Stĺpce</translation>
     </message>
     <message>
         <location filename="../constraints/tableforeignkeypanel.ui" line="77"/>
         <source>Local column</source>
-        <translation type="unfinished"></translation>
+        <translation>Lokálny stĺpec</translation>
     </message>
     <message>
         <location filename="../constraints/tableforeignkeypanel.ui" line="90"/>
         <source>Foreign column</source>
-        <translation type="unfinished"></translation>
+        <translation>Cudzí stĺpec</translation>
     </message>
     <message>
         <location filename="../constraints/tableforeignkeypanel.ui" line="126"/>
@@ -5365,7 +5365,7 @@ but it&apos;s okay to use them anyway.</source>
         <location filename="../windows/tablewindow.cpp" line="222"/>
         <source>Add table unique constraint</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Pridať jedinečné obmedzenie</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="223"/>
@@ -5522,13 +5522,13 @@ Are you sure you want to create a table with blank name?</source>
         <location filename="../windows/tablewindow.cpp" line="1114"/>
         <source>Are you sure you want to delete table constraint &apos;%1&apos;?</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ste si istý, že chcete vymazať obmedzenie &apos;%1&apos;?</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1115"/>
         <source>Delete constraint</source>
         <comment>table window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať obmedzenie</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1169"/>
@@ -5572,7 +5572,7 @@ Chcete potvrdiť štruktúru alebo sa chcete vrátiť do záložky štruktúr?</
         <location filename="../windows/tablewindow.cpp" line="1369"/>
         <source>Unique</source>
         <comment>table window indexes</comment>
-        <translation type="unfinished"></translation>
+        <translation>Jedinečný</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1370"/>
