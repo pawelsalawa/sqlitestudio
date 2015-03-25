@@ -19,6 +19,7 @@ TEMPLATE = lib
 
 win32 {
     LIBS += -lpsapi $$PWD/../../../lib/libquazip.a
+    LIBS += -limagehlp
 
     THE_FILE = $$PWD/qt.conf
     THE_DEST = $${DESTDIR}
