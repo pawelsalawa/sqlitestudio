@@ -3,12 +3,14 @@
 #include "qio.h"
 #include "debugconsole.h"
 #include "common/global.h"
+#include <QFile>
 #include <QTime>
 
 DebugConsole* sqliteStudioUiDebugConsole = nullptr;
 MsgHandlerThreadProxy* msgHandlerThreadProxy = nullptr;
 bool UI_DEBUG_ENABLED = false;
 bool UI_DEBUG_CONSOLE = true;
+QString UI_DEBUG_FILE;
 
 void uiMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
@@ -39,18 +41,22 @@ void uiMessageHandler(QtMsgType type, const QMessageLogContext &context, const Q
     }
 }
 
-void setUiDebug(bool enabled, bool useUiConsole)
+void setUiDebug(bool enabled, bool useUiConsole, const QString& file)
 {
     UI_DEBUG_ENABLED = enabled;
-    UI_DEBUG_CONSOLE =  useUiConsole;
+    UI_DEBUG_CONSOLE =  useUiConsole && file.isEmpty();
+    UI_DEBUG_FILE = file;
     safe_delete(msgHandlerThreadProxy);
     safe_delete(sqliteStudioUiDebugConsole);
     if (enabled)
     {
-        if (useUiConsole)
+        if (UI_DEBUG_CONSOLE)
             sqliteStudioUiDebugConsole = new DebugConsole();
 
-        msgHandlerThreadProxy = new MsgHandlerThreadProxy();
+        if (file.isEmpty())
+            msgHandlerThreadProxy = new MsgHandlerThreadProxy();
+        else
+            msgHandlerThreadProxy = new MsgHandlerThreadProxy(file);
     }
 }
 
@@ -73,12 +79,40 @@ bool isDebugConsoleEnabled()
 MsgHandlerThreadProxy::MsgHandlerThreadProxy(QObject *parent) :
     QObject(parent)
 {
+    init();
+}
+
+MsgHandlerThreadProxy::MsgHandlerThreadProxy(const QString &file, QObject *parent) :
+    QObject(parent)
+{
+    initFile(file);
+    init();
+}
+
+MsgHandlerThreadProxy::~MsgHandlerThreadProxy()
+{
+    if (outFile)
+    {
+        outFile->close();
+        safe_delete(outFile);
+    }
+}
+
+void MsgHandlerThreadProxy::init()
+{
     if (sqliteStudioUiDebugConsole)
     {
         connect(this, SIGNAL(debugRequested(QString)), sqliteStudioUiDebugConsole, SLOT(debug(QString)));
         connect(this, SIGNAL(warnRequested(QString)), sqliteStudioUiDebugConsole, SLOT(warning(QString)));
         connect(this, SIGNAL(criticalRequested(QString)), sqliteStudioUiDebugConsole, SLOT(critical(QString)));
         connect(this, SIGNAL(fatalRequested(QString)), sqliteStudioUiDebugConsole, SLOT(fatal(QString)));
+    }
+    else if (outFile)
+    {
+        connect(this, SIGNAL(debugRequested(QString)), this, SLOT(printToFile(QString)));
+        connect(this, SIGNAL(warnRequested(QString)), this, SLOT(printToFile(QString)));
+        connect(this, SIGNAL(criticalRequested(QString)), this, SLOT(printToFile(QString)));
+        connect(this, SIGNAL(fatalRequested(QString)), this, SLOT(printToFile(QString)));
     }
     else
     {
@@ -87,6 +121,15 @@ MsgHandlerThreadProxy::MsgHandlerThreadProxy(QObject *parent) :
         connect(this, SIGNAL(criticalRequested(QString)), this, SLOT(print(QString)));
         connect(this, SIGNAL(fatalRequested(QString)), this, SLOT(print(QString)));
     }
+}
+
+void MsgHandlerThreadProxy::initFile(const QString &fileName)
+{
+    outFile = new QFile(fileName);
+    if (outFile->open(QIODevice::WriteOnly))
+        outFileStream.setDevice(outFile);
+    else
+        safe_delete(outFile);
 }
 
 void MsgHandlerThreadProxy::debug(const QString &msg)
@@ -113,4 +156,10 @@ void MsgHandlerThreadProxy::print(const QString& txt)
 {
     qOut << txt << "\n";
     qOut.flush();
+}
+
+void MsgHandlerThreadProxy::printToFile(const QString &txt)
+{
+    outFileStream << txt << "\n";
+    outFileStream.flush();
 }
