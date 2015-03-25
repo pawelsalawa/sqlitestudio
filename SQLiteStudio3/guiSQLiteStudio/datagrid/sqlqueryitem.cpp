@@ -94,7 +94,7 @@ bool SqlQueryItem::isDeletedRow() const
 
 void SqlQueryItem::setDeletedRow(bool isDeleted)
 {
-    if (isDeleted)
+    if (isDeleted && !getOldValue().isValid())
         setOldValue(getValue());
 
     QStandardItem::setData(QVariant(isDeleted), DataRole::DELETED);
