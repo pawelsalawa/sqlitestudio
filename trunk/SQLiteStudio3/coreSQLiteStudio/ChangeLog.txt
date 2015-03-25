@@ -27,6 +27,7 @@
         * [BUGFIX]: #2807 Fixed SQL export plugin when exporting whole database without formatting SQL, so the missing semicolons are appended to each DDL.
         * [BUGFIX]: #2806 Fixed table sorting in Export Dialog.
         * [BUGFIX]: #2809 Fixed crash when trying to paste data into data grid with no rows in it.
+        * [BUGFIX]: Fixed rolling back of row marked to deletion, if it was previously already marked as edited.
 
 [3.0.3]
         * [ADDED]: Added visual validation indicators to DbDialog, so user is informed why the "Ok" button is disabled at the moment.
