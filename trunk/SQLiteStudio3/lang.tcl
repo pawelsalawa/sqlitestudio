@@ -2,7 +2,7 @@
 
 proc usage {} {
     puts "$::argv0 (add|remove) <lang_name>"
-    puts "$::argv0 (update|release)"
+    puts "$::argv0 (update|release|status)"
 }
 
 lassign $argv op lang
@@ -11,6 +11,41 @@ if {$::tcl_platform(platform) == "windows"} {
     set ERR_NULL "2>NUL"
 } else {
     set ERR_NULL "2>/dev/null"
+}
+
+proc countstrings {data search} {
+    set l [string length $search]
+    set count 0
+    while {[set i [string first $search $data]]>=0} {
+        incr count
+        incr i $l
+        set data [string range $data $i end]
+    }
+    set count
+}
+
+proc scanLangs {} {
+    set langs [dict create]
+    foreach f [exec find .. -name "*.ts"] {
+        set lang [lindex [regexp -inline {[^_]*_(\w+(\w+)?).ts$} $f] 1]
+        if {[dict exists $langs $lang]} {
+            set langDict [dict get $langs $lang]
+        } else {
+            set langDict [dict create translated 0 untranslated 0]
+        }
+    
+        set fd [open $f r]
+        set data [read $fd]
+        close $fd
+        
+        set c1 [countstrings $data "<translation>"]
+        set c2 [countstrings $data "<translation type=\"unfinished\">"]
+        dict incr langDict translated $c1
+        dict incr langDict untranslated $c2
+        dict set langs $lang $langDict
+    }
+
+    return $langs
 }
 
 switch -- $op {
@@ -59,6 +94,21 @@ switch -- $op {
 		    }
 		}
 	    }
+	}
+    }
+    "status" {
+	set langs [scanLangs]
+	foreach k [dict keys $langs] {
+	    set lang [dict get $langs $k]
+	    set tr [dict get $lang translated]
+	    set untr [dict get $lang untranslated]
+	    set all [expr {$tr + $untr}]
+	    if {$all == 0} continue
+
+	    set perc [expr {int(round(double($tr)/$all * 100))}]
+	    
+	    set lang [string tolower $lang]
+	    puts "$k - ${perc}% ($tr / $all)"
 	}
     }
     "add" - "remove" {
