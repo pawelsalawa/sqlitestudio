@@ -1048,31 +1048,32 @@ The view will remain as it is.</source>
         <location filename="../sqlhistorymodel.cpp" line="30"/>
         <source>Database</source>
         <comment>sql history header</comment>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Dátum spustenia</translatorcomment>
+        <translation>Databáza</translation>
     </message>
     <message>
         <location filename="../sqlhistorymodel.cpp" line="32"/>
         <source>Execution date</source>
         <comment>sql history header</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dátum spustenia</translation>
     </message>
     <message>
         <location filename="../sqlhistorymodel.cpp" line="34"/>
         <source>Time spent</source>
         <comment>sql history header</comment>
-        <translation type="unfinished"></translation>
+        <translation>Trvanie dotazu</translation>
     </message>
     <message>
         <location filename="../sqlhistorymodel.cpp" line="36"/>
         <source>Rows affected</source>
         <comment>sql history header</comment>
-        <translation type="unfinished"></translation>
+        <translation>Počet riadkov</translation>
     </message>
     <message>
         <location filename="../sqlhistorymodel.cpp" line="38"/>
         <source>SQL</source>
         <comment>sql history header</comment>
-        <translation type="unfinished"></translation>
+        <translation>SQL</translation>
     </message>
 </context>
 <context>
