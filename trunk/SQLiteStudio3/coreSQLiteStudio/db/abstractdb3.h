@@ -868,7 +868,8 @@ bool AbstractDb3<T>::Query::execInternal(const QList<QVariant>& args)
     if (res != T::OK)
         return false;
 
-    for (int paramIdx = 1; paramIdx <= queryWithParams.second; paramIdx++)
+
+    for (int paramIdx = 1, argCount = args.size(); paramIdx <= queryWithParams.second && paramIdx <= argCount; paramIdx++)
     {
         res = bindParam(paramIdx, args[paramIdx-1]);
         if (res != T::OK)
@@ -906,16 +907,25 @@ bool AbstractDb3<T>::Query::execInternal(const QHash<QString, QVariant>& args)
     if (res != T::OK)
         return false;
 
-    int paramIdx = 1;
-    foreach (const QString& paramName, queryWithParams.second)
+    int paramIdx = -1;
+    for (const QString& paramName : queryWithParams.second)
     {
         if (!args.contains(paramName))
         {
+            qWarning() << "Could not bind parameter" << paramName << "because it was not found in passed arguments.";
             setError(SqlErrorCode::OTHER_EXECUTION_ERROR, "Error while preparing statement: could not bind parameter " + paramName);
             return false;
         }
 
-        res = bindParam(paramIdx++, args[paramName]);
+        paramIdx = T::bind_parameter_index(stmt, paramName.toUtf8().constData());
+        if (paramIdx <= 0)
+        {
+            qWarning() << "Could not bind parameter" << paramName << "because it was not found in prepared statement.";
+            setError(SqlErrorCode::OTHER_EXECUTION_ERROR, "Error while preparing statement: could not bind parameter " + paramName);
+            return false;
+        }
+
+        res = bindParam(paramIdx, args[paramName]);
         if (res != T::OK)
         {
             db->extractLastError();

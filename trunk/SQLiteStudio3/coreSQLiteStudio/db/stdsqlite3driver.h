@@ -41,6 +41,7 @@
         static int bind_int(stmt* a1, int a2, int a3) {return Prefix##sqlite3_bind_int(a1, a2, a3);} \
         static int bind_int64(stmt* a1, int a2, int64 a3) {return Prefix##sqlite3_bind_int64(a1, a2, a3);} \
         static int bind_null(stmt* a1, int a2) {return Prefix##sqlite3_bind_null(a1, a2);} \
+        static int bind_parameter_index(stmt* a1, const char* a2) {return Prefix##sqlite3_bind_parameter_index(a1, a2);} \
         static int bind_text16(stmt* a1, int a2, const void* a3, int a4, void(*a5)(void*)) {return Prefix##sqlite3_bind_text16(a1, a2, a3, a4, a5);} \
         static void result_blob(context* a1, const void* a2, int a3, void(*a4)(void*)) {Prefix##sqlite3_result_blob(a1, a2, a3, a4);} \
         static void result_double(context* a1, double a2) {Prefix##sqlite3_result_double(a1, a2);} \
