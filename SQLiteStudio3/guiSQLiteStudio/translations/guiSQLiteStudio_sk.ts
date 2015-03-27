@@ -987,38 +987,38 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="418"/>
         <source>Schema editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Úprava schémy</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="430"/>
         <source>Number of DDL changes kept in history.</source>
-        <translation type="unfinished"></translation>
+        <translation>Počet DDL zmien uchovávaných v histórii.</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="443"/>
         <source>DDL history size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Veľkosť DDL histórie:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="450"/>
         <source>Don&apos;t show DDL preview dialog when commiting schema changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Nezobrazovať náhľad DDL pri potvrdzovaní zmien v schéme</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="463"/>
         <source>SQL queries</source>
-        <translation type="unfinished"></translation>
+        <translation>SQL dotazy</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="475"/>
         <location filename="../dialogs/configdialog.ui" line="488"/>
         <source>Number of queries kept in the history.</source>
-        <translation type="unfinished"></translation>
+        <translation>Počet dotazov uchovávaných v histórii.</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="491"/>
         <source>History size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Veľkosť SQL histórie:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="498"/>
@@ -1033,37 +1033,37 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="514"/>
         <source>Updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizácie</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="520"/>
         <source>Automatically check for updates at startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontrolovať aktualizácie pri štarte</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="533"/>
         <source>Session</source>
-        <translation type="unfinished"></translation>
+        <translation>Sedenie</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="539"/>
         <source>Restore last session (active MDI windows) after startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Obnoviť posledné sedenie (aktívne okná) pri štarte</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="581"/>
         <source>Filter shortcuts by name or key combination</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrovať podľa názvu alebo klávesovej skratky</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="622"/>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>Akcia</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="627"/>
         <source>Key combination</source>
-        <translation type="unfinished"></translation>
+        <translation>Klávesová skratka</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="656"/>
