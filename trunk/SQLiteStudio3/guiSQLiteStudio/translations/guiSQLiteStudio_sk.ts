@@ -3989,12 +3989,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="20"/>
         <source>Copy cell(s) contents to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopírovať obsah buniek do schránky</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="22"/>
         <source>Paste cell(s) contents from clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Vložiť obsah buniek zo schránky</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="24"/>
@@ -4004,7 +4004,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="25"/>
         <source>Set NULL value to selected cell(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastaviť NULL hodnotu do vybraných buniek</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="26"/>
@@ -4019,7 +4019,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="28"/>
         <source>Delete selected data row</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať vybraný riadok</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="29"/>
@@ -4049,7 +4049,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dataview.h" line="18"/>
         <source>Refresh data</source>
-        <translation type="unfinished"></translation>
+        <translation>Obnoviť dáta</translation>
     </message>
     <message>
         <location filename="../dataview.h" line="19"/>
@@ -4146,27 +4146,27 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../formview.h" line="18"/>
         <source>Rollback changes for current row</source>
-        <translation type="unfinished"></translation>
+        <translation>Vrátiť späť zmeny na aktuálnom riadku</translation>
     </message>
     <message>
         <location filename="../formview.h" line="19"/>
         <source>Go to first row on current page</source>
-        <translation type="unfinished"></translation>
+        <translation>Prejsť na prvý riadok na aktuálnej strane</translation>
     </message>
     <message>
         <location filename="../formview.h" line="20"/>
         <source>Go to next row</source>
-        <translation type="unfinished"></translation>
+        <translation>Prejsť na nasledujúci riadok</translation>
     </message>
     <message>
         <location filename="../formview.h" line="21"/>
         <source>Go to previous row</source>
-        <translation type="unfinished"></translation>
+        <translation>Prejsť na predchádzajúci riadok</translation>
     </message>
     <message>
         <location filename="../formview.h" line="22"/>
         <source>Go to last row on current page</source>
-        <translation type="unfinished"></translation>
+        <translation>Prejsť na posledný riadok na aktuálnej strane</translation>
     </message>
     <message>
         <location filename="../formview.h" line="23"/>
@@ -4431,22 +4431,22 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/tablewindow.h" line="37"/>
         <source>Add new table constraint</source>
-        <translation type="unfinished"></translation>
+        <translation>Pridať nové obmedzenie</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="38"/>
         <source>Edit selected table constraint</source>
-        <translation type="unfinished"></translation>
+        <translation>Upraviť vybrané obmedzenie</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="39"/>
         <source>Delete selected table constraint</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazaťˇvybrané obmedzenie</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="40"/>
         <source>Refresh table index list</source>
-        <translation type="unfinished"></translation>
+        <translation>Obnoviť zoznam indexov</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="41"/>
@@ -4466,7 +4466,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/tablewindow.h" line="44"/>
         <source>Refresh table trigger list</source>
-        <translation type="unfinished"></translation>
+        <translation>Obnoviť zoznam spúšťačov</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="45"/>
@@ -4490,13 +4490,13 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../windows/tablewindow.h" line="48"/>
         <location filename="../windows/viewwindow.h" line="28"/>
         <source>Go to next tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Prechod na nasledujúcu záložku</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="49"/>
         <location filename="../windows/viewwindow.h" line="29"/>
         <source>Go to previous tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Prechod na predchádzajúcu záložku</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.h" line="23"/>
