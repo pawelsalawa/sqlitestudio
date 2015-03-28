@@ -3984,7 +3984,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="19"/>
         <source>Data grid view</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabuľkové zobrazenie dát</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="20"/>
@@ -3999,22 +3999,22 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="24"/>
         <source>Set empty value to selected cell(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať hodnoty z vybraných buniek</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="25"/>
         <source>Set NULL value to selected cell(s)</source>
-        <translation>Nastaviť NULL hodnotu do vybraných buniek</translation>
+        <translation>Nastaviť NULL hodnotu vo vybraných bunkách</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="26"/>
         <source>Commit changes to cell(s) contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Potvrdiť zmeny v bunkách</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="27"/>
         <source>Rollback changes to cell(s) contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Vrátiť späť zmeny v bunkách</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="28"/>
@@ -4029,12 +4029,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="30"/>
         <source>Open contents of selected cell in a separate editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Otvoriť obsah vybranej bunky v samostatnom editore</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="487"/>
         <source>Total pages available: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Celkový počet strán: %1</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="497"/>
@@ -4044,7 +4044,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dataview.h" line="17"/>
         <source>Data view (both grid and form)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobrazenie dát (tabuľka a formulár)</translation>
     </message>
     <message>
         <location filename="../dataview.h" line="18"/>
@@ -4054,22 +4054,22 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dataview.h" line="19"/>
         <source>Switch to grid view of the data</source>
-        <translation type="unfinished"></translation>
+        <translation>Prepnúť na tabuľkové zobrazenie dát</translation>
     </message>
     <message>
         <location filename="../dataview.h" line="20"/>
         <source>Switch to form view of the data</source>
-        <translation type="unfinished"></translation>
+        <translation>Prepnúť na formulárové zobrazenie dát</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="26"/>
         <source>Database list</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoznam databáz</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="27"/>
         <source>Delete selected item</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať vybranú položku</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="28"/>
@@ -4136,7 +4136,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../formview.h" line="16"/>
         <source>Data form view</source>
-        <translation type="unfinished"></translation>
+        <translation>Formulárové zobrazenie dát</translation>
     </message>
     <message>
         <location filename="../formview.h" line="17"/>
@@ -4201,7 +4201,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.h" line="46"/>
         <source>Hide status area</source>
-        <translation type="unfinished"></translation>
+        <translation>Skryť status okno</translation>
     </message>
     <message>
         <location filename="../mainwindow.h" line="47"/>
@@ -4211,7 +4211,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.h" line="48"/>
         <source>Open Debug Console</source>
-        <translation type="unfinished"></translation>
+        <translation>Otvoriť ladiacu konzolu</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.h" line="12"/>
@@ -4271,7 +4271,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../sqleditor.h" line="31"/>
         <source>Find in text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nájsť v kóde</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="32"/>
@@ -4291,12 +4291,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../sqleditor.h" line="35"/>
         <source>Delete current line</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať aktuálny riadok</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="36"/>
         <source>Request code assistant</source>
-        <translation type="unfinished"></translation>
+        <translation>Otvoriť SQL pomocníka</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="37"/>
@@ -4306,22 +4306,22 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../sqleditor.h" line="38"/>
         <source>Move selected block of text one line down</source>
-        <translation type="unfinished"></translation>
+        <translation>Presunúť blok kódu o riadok nižšie</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="39"/>
         <source>Move selected block of text one line up</source>
-        <translation type="unfinished"></translation>
+        <translation>Presunúť blok kódu o riadok vyššie</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="40"/>
         <source>Copy selected block of text and paste it a line below</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopírovať blok kódu a vložiť ho na riadok nižšie</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="41"/>
         <source>Copy selected block of text and paste it a line above</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopírovať blok kódu a vložiť ho na riadok vyššie</translation>
     </message>
     <message>
         <location filename="../uiutils.cpp" line="32"/>
@@ -4529,12 +4529,12 @@ Following items are pending:</source>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="14"/>
         <source>Find or replace</source>
-        <translation type="unfinished"></translation>
+        <translation>Nájsť alebo nahradiť</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="23"/>
         <source>Find:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nájsť:</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="36"/>
@@ -4570,7 +4570,7 @@ find next</source>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="98"/>
         <source>Find</source>
-        <translation type="unfinished"></translation>
+        <translation>Nájsť</translation>
     </message>
 </context>
 <context>
