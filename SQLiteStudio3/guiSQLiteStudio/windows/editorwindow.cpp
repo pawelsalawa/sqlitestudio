@@ -104,7 +104,7 @@ void EditorWindow::init()
 
     connect(resultsModel, SIGNAL(executionSuccessful()), this, SLOT(executionSuccessful()));
     connect(resultsModel, SIGNAL(executionFailed(QString)), this, SLOT(executionFailed(QString)));
-    connect(resultsModel, SIGNAL(totalRowsAndPagesAvailable()), this, SLOT(totalRowsAndPagesAvailable()));
+    connect(resultsModel, SIGNAL(storeExecutionInHistory()), this, SLOT(storeExecutionInHistory()));
 
     // SQL history list
     ui->historyList->setModel(CFG->getSqlHistoryModel());
@@ -520,7 +520,7 @@ void EditorWindow::executionFailed(const QString &errorText)
     updateState();
 }
 
-void EditorWindow::totalRowsAndPagesAvailable()
+void EditorWindow::storeExecutionInHistory()
 {
     qint64 rowsReturned = resultsModel->getTotalRowsReturned();
     qint64 rowsAffected = resultsModel->getTotalRowsAffected();

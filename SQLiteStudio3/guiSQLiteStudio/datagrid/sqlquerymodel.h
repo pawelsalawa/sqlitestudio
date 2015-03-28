@@ -258,6 +258,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         Icon& getIconForIdx(int idx) const;
         void detachDatabases();
         QString getDatabaseForCommit(const QString& database);
+        void recalculateRowsAndPages(int rowsDelta);
 
         QString query;
         bool explain = false;
@@ -417,6 +418,8 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
          * When the main query execution failed, this signal will be emitted to inform about total rows and pages being 0.
          */
         void totalRowsAndPagesAvailable();
+
+        void storeExecutionInHistory();
 
         /**
          * @brief commitStatusChanged
