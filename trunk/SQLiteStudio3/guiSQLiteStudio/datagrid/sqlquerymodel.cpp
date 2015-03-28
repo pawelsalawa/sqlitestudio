@@ -17,6 +17,7 @@
 #include <QMutableListIterator>
 #include <QInputDialog>
 #include <QTime>
+#include <QtMath>
 #include <QMessageBox>
 
 SqlQueryModel::SqlQueryModel(QObject *parent) :
@@ -374,12 +375,16 @@ void SqlQueryModel::commitInternal(const QList<SqlQueryItem*>& items)
         return;
     }
 
+    // Getting number of rows to be added and deleted, so we can update totalPages at the end
+    int numberOfItemsAdded = groupItemsByRows(findItems(SqlQueryItem::DataRole::NEW_ROW, true)).size();
+    int numberOfItemsDeleted = groupItemsByRows(findItems(SqlQueryItem::DataRole::DELETED, true)).size();
+
     // Removing "commit error" mark from items that are going to be commited now
     for (SqlQueryItem* item : items)
         item->setCommitingError(false);
 
     // Grouping by row and commiting
-    QList<QList<SqlQueryItem*> > groupedItems = groupItemsByRows(items);
+    QList<QList<SqlQueryItem*>> groupedItems = groupItemsByRows(items);
     bool ok = true;
     foreach (const QList<SqlQueryItem*>& itemsInRow, groupedItems)
     {
@@ -434,6 +439,14 @@ void SqlQueryModel::commitInternal(const QList<SqlQueryItem*>& items)
     dbNameToAttachNameMapForCommit.clear();
     for (Db* dbToDetach : dbListToDetach)
         db->detach(dbToDetach);
+
+
+    // Updating added/deleted counts, to honor rows not deleted because of some errors
+    numberOfItemsAdded -= groupItemsByRows(findItems(SqlQueryItem::DataRole::NEW_ROW, true)).size();
+    numberOfItemsDeleted -= groupItemsByRows(findItems(SqlQueryItem::DataRole::DELETED, true)).size();
+    int itemsAddedDeletedDelta = numberOfItemsAdded - numberOfItemsDeleted;
+
+    recalculateRowsAndPages(itemsAddedDeletedDelta);
 }
 
 void SqlQueryModel::rollbackInternal(const QList<SqlQueryItem*>& items)
@@ -1036,7 +1049,10 @@ void SqlQueryModel::handleExecFinished(SqlQueryPtr results)
     bool rowsCountedManually = queryExecutor->isRowCountingRequired() || rowCount() < CFG_UI.General.NumberOfRowsPerPage.get();
     bool countRes = false;
     if (rowsCountedManually)
+    {
         emit totalRowsAndPagesAvailable();
+        emit storeExecutionInHistory();
+    }
     else
         countRes = queryExecutor->countResults();
 
@@ -1082,6 +1098,7 @@ void SqlQueryModel::resultsCountingFinished(quint64 rowsAffected, quint64 rowsRe
     this->totalPages = totalPages;
     detachDatabases();
     emit totalRowsAndPagesAvailable();
+    emit storeExecutionInHistory();
 }
 
 void SqlQueryModel::itemValueEdited(SqlQueryItem* item)
@@ -1375,6 +1392,18 @@ QString SqlQueryModel::getDatabaseForCommit(const QString& database)
         return dbNameToAttachNameMapForCommit[database];
 
     return database;
+}
+
+void SqlQueryModel::recalculateRowsAndPages(int rowsDelta)
+{
+    totalRowsReturned += rowsDelta;
+
+    int rowsPerPage = CFG_UI.General.NumberOfRowsPerPage.get();
+    totalPages = (int)qCeil(((double)totalRowsReturned) / ((double)rowsPerPage));
+    emit totalRowsAndPagesAvailable();
+
+    if (rowCount() == 0)
+        reload();
 }
 
 void SqlQueryModel::addNewRow()

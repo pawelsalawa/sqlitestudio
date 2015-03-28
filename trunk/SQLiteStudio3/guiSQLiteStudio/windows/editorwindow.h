@@ -134,7 +134,7 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
         void dbChanged();
         void executionSuccessful();
         void executionFailed(const QString& errorText);
-        void totalRowsAndPagesAvailable();
+        void storeExecutionInHistory();
         void updateResultsDisplayMode();
         void prevDb();
         void nextDb();

@@ -29,6 +29,7 @@
         * [BUGFIX]: #2809 Fixed crash when trying to paste data into data grid with no rows in it.
         * [BUGFIX]: Fixed rolling back of row marked to deletion, if it was previously already marked as edited.
         * [BUGFIX]: #2814 Fixed executing custom SQL function with same bind parameter used multiple times.
+        * [BUGFIX]: #2815 Fixed refreshing data pages after adding/deleting rows in grid view.
 
 [3.0.3]
         * [ADDED]: Added visual validation indicators to DbDialog, so user is informed why the "Ok" button is disabled at the moment.
