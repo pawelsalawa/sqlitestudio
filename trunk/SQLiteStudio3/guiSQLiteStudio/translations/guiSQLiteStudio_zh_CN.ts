@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="zh_CN">
+<TS version="2.1" language="zh_CN">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -511,7 +511,7 @@
     <message>
         <location filename="../dialogs/columndialog.ui" line="35"/>
         <source>Scale</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">小数长度</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="55"/>
@@ -731,7 +731,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../constraints/columnforeignkeypanel.ui" line="122"/>
         <source>Constraint name</source>
-        <translation type="unfinished"></translation>
+        <translation>约束名称</translation>
     </message>
     <message>
         <location filename="../constraints/columnforeignkeypanel.cpp" line="40"/>
@@ -746,7 +746,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../constraints/columnforeignkeypanel.cpp" line="42"/>
         <source>Enter a name of the constraint.</source>
-        <translation type="unfinished"></translation>
+        <translation>输入约束名称</translation>
     </message>
 </context>
 <context>
@@ -759,7 +759,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../constraints/columnprimarykeypanel.ui" line="48"/>
         <source>Sort order:</source>
-        <translation type="unfinished"></translation>
+        <translation>排序：</translation>
     </message>
     <message>
         <location filename="../constraints/columnprimarykeypanel.ui" line="83"/>
@@ -769,7 +769,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../constraints/columnprimarykeypanel.ui" line="111"/>
         <source>On conflict:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">冲突：</translation>
     </message>
     <message>
         <location filename="../constraints/columnprimarykeypanel.cpp" line="87"/>
@@ -780,7 +780,7 @@ but it&apos;s okay to use it.</source>
         <location filename="../constraints/columnprimarykeypanel.cpp" line="103"/>
         <source>Autoincrement (only for %1 type columns)</source>
         <comment>column primary key</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Autoincrement (只能%1类型的字段才能有该属性)</translation>
     </message>
 </context>
 <context>
@@ -793,12 +793,12 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../constraints/columnuniqueandnotnullpanel.ui" line="69"/>
         <source>On conflict:</source>
-        <translation type="unfinished"></translation>
+        <translation>冲突：</translation>
     </message>
     <message>
         <location filename="../constraints/columnuniqueandnotnullpanel.cpp" line="73"/>
         <source>Enter a name of the constraint.</source>
-        <translation type="unfinished"></translation>
+        <translation>输入约束名。</translation>
     </message>
 </context>
 <context>
@@ -807,49 +807,49 @@ but it&apos;s okay to use it.</source>
         <location filename="../completer/completerwindow.cpp" line="159"/>
         <source>Column: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>字段：%1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="161"/>
         <source>Table: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>表：%1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="163"/>
         <source>Index: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>索引：%1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="165"/>
         <source>Trigger: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>触发器：%1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="167"/>
         <source>View: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>视图：%1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="169"/>
         <source>Database: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>数据库：%1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="181"/>
         <source>Keyword: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>关键字：%1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="183"/>
         <source>Function: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>函数：%1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="185"/>
@@ -861,19 +861,19 @@ but it&apos;s okay to use it.</source>
         <location filename="../completer/completerwindow.cpp" line="187"/>
         <source>String</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>字符串</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="189"/>
         <source>Number</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished">数值</translation>
+        <translation>数值</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="191"/>
         <source>Binary data</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>二进制数据</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="193"/>
@@ -914,144 +914,144 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="128"/>
         <source>Look &amp; feel</source>
-        <translation type="unfinished"></translation>
+        <translation>外观</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="139"/>
         <source>Style</source>
-        <translation type="unfinished"></translation>
+        <translation>风格</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="151"/>
         <source>Fonts</source>
-        <translation type="unfinished"></translation>
+        <translation>字体</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="163"/>
         <source>Colors</source>
-        <translation type="unfinished"></translation>
+        <translation>颜色</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="176"/>
         <source>Plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>插件</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="187"/>
         <source>Code formatters</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">代码格式化</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="196"/>
         <source>Data browsing</source>
-        <translation type="unfinished"></translation>
+        <translation>浏览数据</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="207"/>
         <source>Data editors</source>
-        <translation type="unfinished">数据编辑器</translation>
+        <translation>数据编辑器</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="237"/>
         <source>Data browsing and editing</source>
-        <translation type="unfinished"></translation>
+        <translation>流量和编辑数据</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="243"/>
         <source>Number of data rows per page:</source>
-        <translation type="unfinished"></translation>
+        <translation>每页的行数：</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="269"/>
         <location filename="../dialogs/configdialog.ui" line="279"/>
         <source>&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;在以列表方式显示数据时，列宽度会自动调整。该值控制初始列宽度，之后您可以手动调整列宽度，不受此限制。&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="272"/>
         <source>Limit initial data column width to (in pixels):</source>
-        <translation type="unfinished"></translation>
+        <translation>限制宽度（单位：像素）：</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="328"/>
         <source>Data types</source>
-        <translation type="unfinished"></translation>
+        <translation>数据类型</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="366"/>
         <source>Available editors:</source>
-        <translation type="unfinished"></translation>
+        <translation>可用的编辑器：</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="382"/>
         <source>Editors selected for this data type:</source>
-        <translation type="unfinished"></translation>
+        <translation>已选的该数据类型编辑器：</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="418"/>
         <source>Schema editing</source>
-        <translation type="unfinished"></translation>
+        <translation>架构编辑</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="430"/>
         <source>Number of DDL changes kept in history.</source>
-        <translation type="unfinished"></translation>
+        <translation>数据库定义（DDL）的更改历史记录数量。</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="443"/>
         <source>DDL history size:</source>
-        <translation type="unfinished"></translation>
+        <translation>数据库定义（DDL）历史大小：</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="450"/>
         <source>Don&apos;t show DDL preview dialog when commiting schema changes</source>
-        <translation type="unfinished"></translation>
+        <translation>当提交schema变动时不显示数据库定义（DDL）预览对话框</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="463"/>
         <source>SQL queries</source>
-        <translation type="unfinished"></translation>
+        <translation>SQL查询</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="475"/>
         <location filename="../dialogs/configdialog.ui" line="488"/>
         <source>Number of queries kept in the history.</source>
-        <translation type="unfinished"></translation>
+        <translation>查询历史记录数量。</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="491"/>
         <source>History size:</source>
-        <translation type="unfinished"></translation>
+        <translation>历史大小：</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="498"/>
         <source>&lt;p&gt;If there is more than one query in the SQL editor window, then (if this option is enabled) only a single query will be executed - the one under the keyboard insertion cursor. Otherwise all queries will be executed. You can always limit queries to be executed by selecting those queries before calling to execute.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;如果SQL编辑器中有多个语句，如果启用该选项，只执行光标下的语句；反之则执行全部语句。另外您可以选择需要执行的语句来执行&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="501"/>
         <source>Execute only the query under the cursor</source>
-        <translation type="unfinished"></translation>
+        <translation>只执行光标下的语句</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="514"/>
         <source>Updates</source>
-        <translation type="unfinished"></translation>
+        <translation>更新</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="520"/>
         <source>Automatically check for updates at startup</source>
-        <translation type="unfinished"></translation>
+        <translation>在启动时自己检查更新</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="533"/>
         <source>Session</source>
-        <translation type="unfinished"></translation>
+        <translation>会话</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="539"/>
         <source>Restore last session (active MDI windows) after startup</source>
-        <translation type="unfinished"></translation>
+        <translation>启动后恢复上一次会话。</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="581"/>
@@ -1066,38 +1066,38 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="627"/>
         <source>Key combination</source>
-        <translation type="unfinished"></translation>
+        <translation>按键编定</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="656"/>
         <location filename="../dialogs/configdialog.ui" line="1206"/>
         <source>Language</source>
-        <translation type="unfinished">语言</translation>
+        <translation>语言</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="662"/>
         <source>Changing language requires application restart to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>更改语言后，重启程序生效。</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="679"/>
         <source>Database list</source>
-        <translation type="unfinished"></translation>
+        <translation>数据库列表</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="685"/>
         <source>If switched off, then columns will be sorted in the order they are typed in CREATE TABLE statement.</source>
-        <translation type="unfinished"></translation>
+        <translation>如果关闭，将会以 CREATE TABLE 中的顺序对列进行排序。</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="688"/>
         <source>Sort table columns alphabetically</source>
-        <translation type="unfinished"></translation>
+        <translation>按字母对列排序</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="698"/>
         <source>Expand tables node when connected to a database</source>
-        <translation type="unfinished"></translation>
+        <translation>当连接到数据库时，展开数据库节点。</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="708"/>
@@ -1192,67 +1192,67 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="979"/>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>预览</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="989"/>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>已启用</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1162"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>已禁用</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1211"/>
         <source>Active formatter plugin</source>
-        <translation type="unfinished"></translation>
+        <translation>启用格式化插件</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1249"/>
         <source>SQL editor font</source>
-        <translation type="unfinished"></translation>
+        <translation>SQL编辑器字体</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1265"/>
         <source>Database list font</source>
-        <translation type="unfinished"></translation>
+        <translation>数据库字体</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1281"/>
         <source>Database list additional label font</source>
-        <translation type="unfinished"></translation>
+        <translation>数据库额外标签字体</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1297"/>
         <source>Data view font</source>
-        <translation type="unfinished"></translation>
+        <translation>数据浏览字体</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1313"/>
         <source>Status field font</source>
-        <translation type="unfinished"></translation>
+        <translation>状态栏字体</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1371"/>
         <source>SQL editor colors</source>
-        <translation type="unfinished"></translation>
+        <translation>SQL编辑器颜色</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1377"/>
         <source>Current line background</source>
-        <translation type="unfinished"></translation>
+        <translation>当前行的背景色</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1384"/>
         <source>&lt;p&gt;SQL strings are enclosed with single quote characters.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;单引号内的SQL字符串&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1387"/>
         <source>String foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>字符串颜色</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1490"/>
@@ -1277,32 +1277,32 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1526"/>
         <source>BLOB value foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>BLOB值的颜色</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1533"/>
         <source>Regular foreground</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">背景色</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1540"/>
         <source>Line numbers area background</source>
-        <translation type="unfinished"></translation>
+        <translation>行号的背景色</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1563"/>
         <source>Keyword foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>关键字的颜色</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1570"/>
         <source>Number foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>数字颜色</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1577"/>
         <source>Comment foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>注释颜色</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1616"/>
@@ -1342,17 +1342,17 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1703"/>
         <source>NULL value foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>NULL值的颜色</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1726"/>
         <source>Deleted row background</source>
-        <translation type="unfinished"></translation>
+        <translation>已删除行的背景色</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1752"/>
         <source>Database list colors</source>
-        <translation type="unfinished"></translation>
+        <translation>数据库列表颜色</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1758"/>
@@ -1372,47 +1372,47 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1793"/>
         <source>Information message foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>信息颜色</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1816"/>
         <source>Warning message foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>警告信息颜色</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1839"/>
         <source>Error message foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>错误信息颜色</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="765"/>
         <source>Description:</source>
         <comment>plugin details</comment>
-        <translation type="unfinished"></translation>
+        <translation>描述：</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="766"/>
         <source>Category:</source>
         <comment>plugin details</comment>
-        <translation type="unfinished"></translation>
+        <translation>分类：</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="767"/>
         <source>Version:</source>
         <comment>plugin details</comment>
-        <translation type="unfinished"></translation>
+        <translation>版本：</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="768"/>
         <source>Author:</source>
         <comment>plugin details</comment>
-        <translation type="unfinished"></translation>
+        <translation>作者：</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="770"/>
         <source>Internal name:</source>
         <comment>plugin details</comment>
-        <translation type="unfinished"></translation>
+        <translation>内部名字：</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="771"/>
@@ -1429,7 +1429,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="776"/>
         <source>Plugin details</source>
-        <translation type="unfinished"></translation>
+        <translation>插件详情</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="1177"/>
@@ -1445,27 +1445,27 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="1254"/>
         <source>Details</source>
-        <translation type="unfinished">详情</translation>
+        <translation>详情</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="1266"/>
         <source>No plugins in this category.</source>
-        <translation type="unfinished"></translation>
+        <translation>该分类下没有插件。</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="1362"/>
         <source>Add new data type</source>
-        <translation type="unfinished"></translation>
+        <translation>添加新的数据类型</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="1366"/>
         <source>Rename selected data type</source>
-        <translation type="unfinished"></translation>
+        <translation>重命名选择的数据类型</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="1370"/>
         <source>Delete selected data type</source>
-        <translation type="unfinished"></translation>
+        <translation>删除已选数据类型</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="1374"/>
@@ -3197,7 +3197,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/indexdialog.ui" line="43"/>
         <source>Index name:</source>
-        <translation type="unfinished">索引名</translation>
+        <translation>索引名：</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="50"/>
