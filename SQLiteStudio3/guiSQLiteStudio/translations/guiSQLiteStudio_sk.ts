@@ -4074,17 +4074,17 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dbtree/dbtree.h" line="28"/>
         <source>Clear filter contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať filter</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="29"/>
         <source>Refresh schema</source>
-        <translation type="unfinished"></translation>
+        <translation>Obnoviť schému</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="30"/>
         <source>Refresh all schemas</source>
-        <translation type="unfinished"></translation>
+        <translation>Obnoviť všetky schémy</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="31"/>
@@ -4539,12 +4539,12 @@ Following items are pending:</source>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="36"/>
         <source>Case sensitive</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozlišovať veľké písmená</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="43"/>
         <source>Search backwards</source>
-        <translation type="unfinished"></translation>
+        <translation>Hľadať spätne</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="50"/>
@@ -4555,17 +4555,18 @@ Following items are pending:</source>
         <location filename="../dialogs/searchtextdialog.ui" line="60"/>
         <source>Replace &amp;&amp;
 find next</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahradiť a
+nájsť ďalší</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="78"/>
         <source>Replace with:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahradiť s:</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="91"/>
         <source>Replace all</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahradiť všetko</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="98"/>
