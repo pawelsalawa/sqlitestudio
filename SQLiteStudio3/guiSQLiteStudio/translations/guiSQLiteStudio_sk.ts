@@ -4256,37 +4256,37 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../sqleditor.h" line="26"/>
         <source>Select whole editor contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Označiť všetko</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="29"/>
         <source>Save contents into a file</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložiť SQL do súboru</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="30"/>
         <source>Load contents from a file</source>
-        <translation type="unfinished"></translation>
+        <translation>Načítať SQL zo súboru</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="31"/>
         <source>Find in text</source>
-        <translation type="unfinished">Nájsť v kóde</translation>
+        <translation>Nájsť v SQL</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="32"/>
         <source>Find next</source>
-        <translation type="unfinished"></translation>
+        <translation>Nájsť ďalší</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="33"/>
         <source>Find previous</source>
-        <translation type="unfinished"></translation>
+        <translation>Nájsť predchádzajúci</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="34"/>
         <source>Replace in text</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahradiť v SQL</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="35"/>
@@ -4301,7 +4301,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../sqleditor.h" line="37"/>
         <source>Format contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Formátovať SQL</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="38"/>
