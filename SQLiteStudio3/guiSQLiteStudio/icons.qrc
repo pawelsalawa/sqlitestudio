@@ -190,5 +190,6 @@
         <file>img/close.png</file>
         <file>img/go_back.png</file>
         <file>img/reset_autoincrement.png</file>
+        <file>img/plus.png</file>
     </qresource>
 </RCC>

@@ -22,7 +22,7 @@ const QStringList pageSizes = {
 
 const QStringList pageSizesWithDimensions;
 
-QString getDbPath(const QString &startWith)
+QString getDbPath(bool newFileMode, const QString &startWith)
 {
     QString dir = startWith;
     if (dir.isNull())
@@ -35,8 +35,10 @@ QString getDbPath(const QString &startWith)
     filters += QObject::tr("All files")+" (*)";
     QString filter = filters.join(";;");
 
-    QString path = QFileDialog::getSaveFileName(0, QObject::tr("Database file"), dir, filter, &filters[0], QFileDialog::DontConfirmOverwrite);
-    return path;
+    if (newFileMode)
+        return QFileDialog::getSaveFileName(0, QObject::tr("Database file"), dir, filter, &filters[0], QFileDialog::DontConfirmOverwrite);
+    else
+        return QFileDialog::getOpenFileName(0, QObject::tr("Database file"), dir, filter, &filters[0]);
 }
 
 void setValidState(QWidget *widget, bool valid, const QString& message)
