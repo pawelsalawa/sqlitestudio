@@ -150,6 +150,7 @@ class GUI_API_EXPORT IconManager : public QObject
             DEF_ICON(PAGE_PREV,                         "page_prev")
             DEF_ICO3(MOVE_LEFT,                         PAGE_PREV)
             DEF_ICO3(MOVE_RIGHT,                        PAGE_NEXT)
+            DEF_ICON(PLUS,                              "plus")
             DEF_ICON(RELOAD,                            "reload")
             DEF_ICON(RENAME_FN_ARG,                     "rename_fn_arg")
             DEF_ICO3(RENAME_DATATYPE,                   RENAME_FN_ARG)

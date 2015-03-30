@@ -107,7 +107,7 @@ void DbDialog::init()
 {
     ui->setupUi(this);
 
-    ui->browseButton->setIcon(ICONS.DATABASE_FILE);
+    ui->browseCreateButton->setIcon(ICONS.PLUS);
 
     for (DbPlugin* dbPlugin : PLUGINS->getLoadedPlugins<DbPlugin>())
         dbPlugins[dbPlugin->getLabel()] = dbPlugin;
@@ -117,13 +117,14 @@ void DbDialog::init()
     typeLabels.sort(Qt::CaseInsensitive);
     ui->typeCombo->addItems(typeLabels);
 
-    ui->browseButton->setVisible(true);
+    ui->browseCreateButton->setVisible(true);
     ui->testConnIcon->setVisible(false);
 
     connect(ui->fileEdit, SIGNAL(textChanged(QString)), this, SLOT(fileChanged(QString)));
     connect(ui->nameEdit, SIGNAL(textChanged(QString)), this, SLOT(nameModified(QString)));
     connect(ui->generateCheckBox, SIGNAL(toggled(bool)), this, SLOT(generateNameSwitched(bool)));
-    connect(ui->browseButton, SIGNAL(clicked()), this, SLOT(browseClicked()));
+    connect(ui->browseCreateButton, SIGNAL(clicked()), this, SLOT(browseClicked()));
+    connect(ui->browseOpenButton, SIGNAL(clicked()), this, SLOT(browseClicked()));
     connect(ui->testConnButton, SIGNAL(clicked()), this, SLOT(testConnectionClicked()));
     connect(ui->typeCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(dbTypeChanged(int)));
 
@@ -144,6 +145,8 @@ void DbDialog::updateOptions()
 
     customBrowseHandler = nullptr;
     ui->fileLabel->setText(tr("File"));
+    ui->browseOpenButton->setToolTip(tr("Browse for existing database file on local computer"));
+    ui->browseCreateButton->setVisible(true);
 
     optionWidgets.clear();
     optionKeyToWidget.clear();
@@ -180,11 +183,16 @@ void DbDialog::addOption(const DbPluginOption& option, int& row)
         // This option does not add any editor, but has it's own label for path edit.
         row--;
         ui->fileLabel->setText(option.label);
+        ui->browseCreateButton->setVisible(false);
+        if (!option.toolTip.isEmpty())
+            ui->browseOpenButton->setToolTip(option.toolTip);
+
         customBrowseHandler = option.customBrowseHandler;
         return;
     }
 
     QLabel* label = new QLabel(option.label, this);
+    label->setAlignment(Qt::AlignVCenter|Qt::AlignRight);
     QWidget* editor = nullptr;
     QWidget* editorHelper = nullptr; // TODO, based on plugins for Url handlers
 
@@ -596,6 +604,8 @@ void DbDialog::browseClicked()
         return;
     }
 
+    bool createMode = (sender() == ui->browseCreateButton);
+
     QFileInfo fileInfo(ui->fileEdit->text());
     QString dir;
     if (ui->fileEdit->text().isEmpty())
@@ -607,7 +617,7 @@ void DbDialog::browseClicked()
     else
         dir = getFileDialogInitPath();
 
-    QString path = getDbPath(dir);
+    QString path = getDbPath(createMode, dir);
     if (path.isNull())
         return;
 

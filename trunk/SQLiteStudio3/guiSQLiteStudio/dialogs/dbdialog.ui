@@ -58,12 +58,18 @@
        <property name="text">
         <string>Name</string>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
       </widget>
      </item>
      <item row="2" column="0">
       <widget class="QLabel" name="typeLabel">
        <property name="text">
         <string>Type</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
      </item>
@@ -73,12 +79,27 @@
      <item row="0" column="2">
       <layout class="QHBoxLayout" name="horizontalLayout_3">
        <item>
-        <widget class="QToolButton" name="browseButton">
+        <widget class="QToolButton" name="browseCreateButton">
          <property name="toolTip">
-          <string>Browse for database file on local computer</string>
+          <string>Create new database file</string>
          </property>
          <property name="text">
           <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../icons.qrc">
+           <normaloff>:/icons/img/plus.png</normaloff>:/icons/img/plus.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="browseOpenButton">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="../icons.qrc">
+           <normaloff>:/icons/img/open_sql_file.png</normaloff>:/icons/img/open_sql_file.png</iconset>
          </property>
         </widget>
        </item>
@@ -89,6 +110,9 @@
        <property name="text">
         <string>File</string>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
       </widget>
      </item>
      <item row="1" column="2">
@@ -97,7 +121,7 @@
         <string>Generate name basing on file path</string>
        </property>
        <property name="text">
-        <string/>
+        <string>Auto</string>
        </property>
        <property name="checked">
         <bool>true</bool>
@@ -108,6 +132,9 @@
       <widget class="QLabel" name="label">
        <property name="text">
         <string>Permanent</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
      </item>
@@ -192,13 +219,15 @@
  </widget>
  <tabstops>
   <tabstop>fileEdit</tabstop>
-  <tabstop>browseButton</tabstop>
+  <tabstop>browseCreateButton</tabstop>
   <tabstop>nameEdit</tabstop>
   <tabstop>generateCheckBox</tabstop>
   <tabstop>typeCombo</tabstop>
   <tabstop>permamentCheckBox</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="../icons.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>buttonBox</sender>
