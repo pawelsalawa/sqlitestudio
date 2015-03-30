@@ -51,7 +51,7 @@
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="172"/>
         <source>SQLite 3 version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Версия SQLite 3:</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="111"/>
@@ -509,12 +509,12 @@
     <message>
         <location filename="../dialogs/columndialog.ui" line="35"/>
         <source>Scale</source>
-        <translation type="unfinished"></translation>
+        <translation>Размер</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="55"/>
         <source>Precision</source>
-        <translation type="unfinished"></translation>
+        <translation>Точность</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="62"/>
@@ -1888,27 +1888,27 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="479"/>
         <source>Enter an unique database name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Введите уникальное имя базы данных.</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="488"/>
         <source>This name is already in use. Please enter unique name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Данное имя уже используется. Пожалуйста, укажите уникальное имя.</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="496"/>
         <source>Enter a database file path.</source>
-        <translation type="unfinished"></translation>
+        <translation>Введите путь к базе данных.</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="503"/>
         <source>This database is already on the list under name: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Указанная база данных уже находится в списке под именем %1</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="519"/>
         <source>Select a database type.</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите тип базы данных.</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="577"/>
@@ -3583,12 +3583,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="837"/>
         <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>База данных, переданная через аргументы командной строки (%1), уже находится в списке под именем %2</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="844"/>
         <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
-        <translation>База данных, переданная через аргумент командной строки (%1), была временно добавлена в список под именем %2</translation>
+        <translation>База данных, переданная через аргументы командной строки (%1), была временно добавлена в список под именем %2</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="849"/>
@@ -4983,7 +4983,7 @@ find next</source>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="256"/>
         <source>No items selected to paste clipboard contents to.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не выбраны элементы для вставки в них содержимого буфера обмена.</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="510"/>

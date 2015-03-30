@@ -64,7 +64,7 @@
     <message>
         <location filename="CsvImportOptions.ui" line="55"/>
         <source>First line represents CSV column names</source>
-        <translation type="unfinished"></translation>
+        <translation>Имена столбцов в первой строке</translation>
     </message>
     <message>
         <source>Skip first row of data</source>
