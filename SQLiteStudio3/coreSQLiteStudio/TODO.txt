@@ -1,4 +1,4 @@
-- when modifying cell value, then marking for deletion and hitting rollback - modified values are restored
+- cannot add "db.sqlite3" on mac, fixinf name manualy preselects sqlcipher
 
 * Next versions:
 - object names (columns, tables, etc) in dialogs should be validated against suffix/prefix whitespaces and if they appear, user should be asked for confirmation
