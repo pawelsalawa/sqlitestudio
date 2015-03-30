@@ -389,11 +389,12 @@ void DbDialog::updateType()
     if (!file.exists() || file.isDir())
         return;
 
-    DbPlugin* validPlugin = nullptr;
+    QString currentPluginLabel = ui->typeCombo->currentText();
+    QList<DbPlugin*> validPlugins;
     QHash<QString,QVariant> options;
     QString path = ui->fileEdit->text();
     Db* probeDb = nullptr;
-    foreach (DbPlugin* plugin, dbPlugins)
+    for (DbPlugin* plugin : dbPlugins)
     {
         probeDb = plugin->getInstance("", path, options);
         if (probeDb)
@@ -401,13 +402,15 @@ void DbDialog::updateType()
             delete probeDb;
             probeDb = nullptr;
 
-            validPlugin = plugin;
-            break;
+            if (plugin->getLabel() == currentPluginLabel)
+                return; // current plugin is among valid plugins, no need to change anything
+
+            validPlugins << plugin;
         }
     }
 
-    if (validPlugin)
-        ui->typeCombo->setCurrentText(validPlugin->getLabel());
+    if (validPlugins.size() > 0)
+        ui->typeCombo->setCurrentText(validPlugins.first()->getLabel());
 }
 
 QHash<QString, QVariant> DbDialog::collectOptions()
