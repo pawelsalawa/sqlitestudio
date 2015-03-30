@@ -961,7 +961,7 @@ Error details: %2</source>
     <message>
         <location filename="../tablemodifier.cpp" line="419"/>
         <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
-        <translation type="unfinished"></translation>
+        <translation>Возникла проблема при обработке триггера %1. Впоследствии он не будет полностью обновлён и потребует вашего внимания.</translation>
     </message>
     <message>
         <location filename="../tablemodifier.cpp" line="466"/>
@@ -973,7 +973,7 @@ Error details: %2</source>
         <location filename="../tablemodifier.cpp" line="611"/>
         <location filename="../tablemodifier.cpp" line="630"/>
         <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
-        <translation type="unfinished"></translation>
+        <translation>Возникла проблема при обновлении конструкции %1 внутри триггера %2. Одна из вложенных конструкций %1, которая возможно ссылается на таблицу %3, не может быть корректно модифицирована. Возможно необходима ручная правка триггера.</translation>
     </message>
     <message>
         <location filename="../tablemodifier.cpp" line="434"/>
