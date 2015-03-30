@@ -1079,7 +1079,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="679"/>
         <source>Database list</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zoznam databáz</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="685"/>
@@ -1843,79 +1843,93 @@ Prezeranie ďalších strán bude možné až po dokončení spočítavania.</tr
         <translation>Názov</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="66"/>
+        <location filename="../dialogs/dbdialog.ui" line="69"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="78"/>
         <source>Browse for database file on local computer</source>
-        <translation>Hľadať databázový súbor na lokálnom počítači</translation>
+        <translation type="obsolete">Hľadať databázový súbor na lokálnom počítači</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="90"/>
-        <location filename="../dialogs/dbdialog.cpp" line="162"/>
+        <location filename="../dialogs/dbdialog.ui" line="84"/>
+        <source>Create new database file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/dbdialog.ui" line="111"/>
+        <location filename="../dialogs/dbdialog.cpp" line="147"/>
         <source>File</source>
         <translation>Súbor</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="97"/>
+        <location filename="../dialogs/dbdialog.ui" line="121"/>
         <source>Generate name basing on file path</source>
         <translation>Generovať názov na základe cesty k súboru</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="110"/>
+        <location filename="../dialogs/dbdialog.ui" line="124"/>
+        <source>Auto</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/dbdialog.ui" line="134"/>
         <source>Permanent</source>
         <translation>Uložiť natrvalo</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="132"/>
+        <location filename="../dialogs/dbdialog.ui" line="159"/>
         <source>&lt;p&gt;Enable this if you want the database to be stored in configuration file and restored every time SQLiteStudio is started.&lt;/p&gt;</source>
         <extracomment>aasfd</extracomment>
         <translation>&lt;p&gt;Databáza sa uloží do konfiguračného súboru a bude obnovená pri každom spustení SQLiteStudia.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="164"/>
+        <location filename="../dialogs/dbdialog.ui" line="191"/>
         <source>Test database connection</source>
         <translation>Otestovať spojenie s databázou</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="294"/>
+        <location filename="../dialogs/dbdialog.cpp" line="148"/>
+        <source>Browse for existing database file on local computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/dbdialog.cpp" line="281"/>
         <source>Browse</source>
         <translation>Prehľadávať</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="479"/>
+        <location filename="../dialogs/dbdialog.cpp" line="483"/>
         <source>Enter an unique database name.</source>
         <translation>Zadajte názov databázy.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="488"/>
+        <location filename="../dialogs/dbdialog.cpp" line="492"/>
         <source>This name is already in use. Please enter unique name.</source>
         <translation>Tento názov už existuje. Prosím zadajte iný názov.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="496"/>
+        <location filename="../dialogs/dbdialog.cpp" line="500"/>
         <source>Enter a database file path.</source>
         <translation>Zadajte cestu k databázovému súboru.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="503"/>
+        <location filename="../dialogs/dbdialog.cpp" line="507"/>
         <source>This database is already on the list under name: %1</source>
         <translation>Táto databáza už je v zozname pod názvom: %1</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="519"/>
+        <location filename="../dialogs/dbdialog.cpp" line="523"/>
         <source>Select a database type.</source>
         <translation>Vyberte typ databázy.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="577"/>
+        <location filename="../dialogs/dbdialog.cpp" line="580"/>
         <source>The name will be auto-generated</source>
         <translation>Názov bude vygenerovaný automaticky</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="582"/>
+        <location filename="../dialogs/dbdialog.cpp" line="585"/>
         <source>Type the name</source>
         <translation>Zadajte meno</translation>
     </message>
@@ -2336,7 +2350,7 @@ Všetky objekty z tejto skupiny budú presunuté do nadradenej skupiny.</transla
         <location filename="../dbtree/dbtreemodel.cpp" line="407"/>
         <source>Database: %1</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Databáza: %1</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="412"/>
@@ -2803,59 +2817,59 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>Zrušiť</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="141"/>
-        <location filename="../dialogs/exportdialog.cpp" line="166"/>
-        <location filename="../dialogs/exportdialog.cpp" line="189"/>
+        <location filename="../dialogs/exportdialog.cpp" line="149"/>
+        <location filename="../dialogs/exportdialog.cpp" line="174"/>
+        <location filename="../dialogs/exportdialog.cpp" line="197"/>
         <source>Select database to export.</source>
         <translation>Vyberte databázu, ktorú chcete exportovať.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="142"/>
+        <location filename="../dialogs/exportdialog.cpp" line="150"/>
         <source>Select table to export.</source>
         <translation>Vyberte tabuľku, ktorú chcete exportovať.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="167"/>
+        <location filename="../dialogs/exportdialog.cpp" line="175"/>
         <source>Enter valid query to export.</source>
         <translation>Zadajte platný dotaz pre export.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="190"/>
+        <location filename="../dialogs/exportdialog.cpp" line="198"/>
         <source>Select at least one object to export.</source>
         <translation>Vyberte aspoň jeden objekt pre export.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="213"/>
+        <location filename="../dialogs/exportdialog.cpp" line="221"/>
         <source>You must provide a file name to export to.</source>
         <translation>Musíte zadať názov súboru, do ktorého sa budú exportovať dáta.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="220"/>
+        <location filename="../dialogs/exportdialog.cpp" line="228"/>
         <source>Path you provided is an existing directory. You cannot overwrite it.</source>
         <translation>Cesta, ktorú ste zadali je existujúci adresár. Nemôžte ho prepísať.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="226"/>
+        <location filename="../dialogs/exportdialog.cpp" line="234"/>
         <source>The directory &apos;%1&apos; does not exist.</source>
         <translation>Adresár %1 neexistuje.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="232"/>
+        <location filename="../dialogs/exportdialog.cpp" line="240"/>
         <source>The file &apos;%1&apos; exists and will be overwritten.</source>
         <translation>Súbor %1 už existuje a bude prepísaný.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="403"/>
+        <location filename="../dialogs/exportdialog.cpp" line="417"/>
         <source>All files (*)</source>
         <translation>Všetky súbory (*)</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="406"/>
+        <location filename="../dialogs/exportdialog.cpp" line="420"/>
         <source>Pick file to export to</source>
         <translation>Výber súboru do ktorého sa budú exportovať dáta</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="695"/>
+        <location filename="../dialogs/exportdialog.cpp" line="709"/>
         <source>Internal error during export. This is a bug. Please report it.</source>
         <translation>Počas exportu sa vyskytla interná chyba. Toto je chyba v programe. Prosím nahláste ju.</translation>
     </message>
@@ -3126,17 +3140,27 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>Voľby</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.ui" line="147"/>
+        <location filename="../dialogs/importdialog.ui" line="182"/>
         <source>Input file:</source>
         <translation>Vstupný súbor:</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.ui" line="182"/>
+        <location filename="../dialogs/importdialog.ui" line="175"/>
         <source>Text encoding:</source>
         <translation>Kódovanie textu:</translation>
     </message>
     <message>
+        <location filename="../dialogs/importdialog.ui" line="192"/>
+        <source>&lt;p&gt;If enabled, any constraint violation, or invalid data format (wrong column count), or any other problem encountered during import will be ignored and the importing will be continued.&lt;/p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../dialogs/importdialog.ui" line="195"/>
+        <source>Ignore errors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/importdialog.ui" line="205"/>
         <source>Data source options</source>
         <translation>Nastavenia dátového zdroja</translation>
     </message>
@@ -3146,37 +3170,37 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>Zrušiť</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="101"/>
+        <location filename="../dialogs/importdialog.cpp" line="102"/>
         <source>If you type table name that doesn&apos;t exist, it will be created.</source>
         <translation>Ak zadáte názov neexistujúcej tabuľky, tak bude vytvorená.</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="101"/>
+        <location filename="../dialogs/importdialog.cpp" line="102"/>
         <source>Enter the table name</source>
         <translation>Zadajte názov tabuľky</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="119"/>
+        <location filename="../dialogs/importdialog.cpp" line="120"/>
         <source>Select import plugin.</source>
         <translation>Vyberte importný plugin.</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="128"/>
+        <location filename="../dialogs/importdialog.cpp" line="129"/>
         <source>You must provide a file to import from.</source>
         <translation>Musíte zadať súbor, z ktorého sa budú importovať dáta.</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="135"/>
+        <location filename="../dialogs/importdialog.cpp" line="136"/>
         <source>The file &apos;%1&apos; does not exist.</source>
         <translation>Súbor %1 neexistuje.</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="141"/>
+        <location filename="../dialogs/importdialog.cpp" line="142"/>
         <source>Path you provided is a directory. A regular file is required.</source>
         <translation>Cesta, ktorú ste zadali je adresár. Prosím zadajte celú cestu.</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="325"/>
+        <location filename="../dialogs/importdialog.cpp" line="318"/>
         <source>Pick file to import from</source>
         <translation>Výber súboru, z ktorého sa budú importovať dáta</translation>
     </message>
@@ -3192,7 +3216,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/indexdialog.ui" line="36"/>
         <source>On table:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Na tabuľke:</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="43"/>
@@ -3222,7 +3246,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/indexdialog.ui" line="100"/>
         <source>Sort</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zoradiť</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="115"/>
@@ -3247,12 +3271,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="186"/>
         <source>Select at least one column.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vyberte minimálne jeden stĺpec.</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="187"/>
         <source>Enter a valid condition.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zadajte platnú podmienku.</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="236"/>
@@ -3264,7 +3288,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../dialogs/indexdialog.cpp" line="247"/>
         <source>Sort order</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zoradiť</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="453"/>
@@ -3552,42 +3576,42 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="633"/>
+        <location filename="../mainwindow.cpp" line="637"/>
         <source>Cannot import, because no import plugin is loaded.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="662"/>
+        <location filename="../mainwindow.cpp" line="670"/>
         <source>Rename window</source>
         <translation>Premenovať okno</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="662"/>
+        <location filename="../mainwindow.cpp" line="670"/>
         <source>Enter new name for the window:</source>
         <translation>Zadajte nový názov pre okno:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="730"/>
+        <location filename="../mainwindow.cpp" line="738"/>
         <source>New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="738"/>
+        <location filename="../mainwindow.cpp" line="746"/>
         <source>You&apos;re running the most recent version. No updates are available.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="837"/>
+        <location filename="../mainwindow.cpp" line="845"/>
         <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="844"/>
+        <location filename="../mainwindow.cpp" line="852"/>
         <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="849"/>
+        <location filename="../mainwindow.cpp" line="857"/>
         <source>Could not add database %1 to list.</source>
         <translation>Nemôžem pridať databázu %1 do zoznamu.</translation>
     </message>
@@ -4334,7 +4358,8 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../uiutils.cpp" line="38"/>
+        <location filename="../uiutils.cpp" line="39"/>
+        <location filename="../uiutils.cpp" line="41"/>
         <source>Database file</source>
         <translation>Databázový súbor</translation>
     </message>
@@ -4711,19 +4736,19 @@ nájsť ďalší</translation>
         <location filename="../sqleditor.cpp" line="134"/>
         <source>Find</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nájsť</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="135"/>
         <source>Find next</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nájsť ďalší</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="136"/>
         <source>Find previous</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nájsť predchádzajúci</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="137"/>
@@ -4826,69 +4851,69 @@ nájsť ďalší</translation>
 <context>
     <name>SqlQueryModel</name>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="62"/>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="461"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="63"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="474"/>
         <source>Only one query can be executed simultaneously.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="94"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="95"/>
         <source>Uncommited data</source>
         <translation>Nepotvrdené dáta</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="95"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="96"/>
         <source>There are uncommited data changes. Do you want to proceed anyway? All uncommited changes will be lost.</source>
         <translation>Sú tu nepotvrdené zmeny. Chcete aj napriek tomu pokračovať? Všetky nepotvrdené zmeny budú stratené.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="342"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="343"/>
         <source>Cannot commit the data for a cell that refers to the already closed database.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="373"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="374"/>
         <source>Could not begin transaction on the database. Details: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="410"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="415"/>
         <source>An error occurred while commiting the transaction: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="429"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="434"/>
         <source>An error occurred while rolling back the transaction: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="547"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="560"/>
         <source>Tried to commit a cell which is not editable (yet modified and waiting for commit)! This is a bug. Please report it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="573"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="586"/>
         <source>An error occurred while commiting the data: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1018"/>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1070"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1031"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1086"/>
         <source>Error while executing SQL query on database &apos;%1&apos;: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1067"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1083"/>
         <source>Error while loading query results: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1395"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1424"/>
         <source>Insert multiple rows</source>
         <translation>Vložiť viacero riadkov</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1395"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1424"/>
         <source>Number of rows to insert:</source>
         <translation>Počet vkládaných riadkov:</translation>
     </message>
@@ -5043,7 +5068,7 @@ nájsť ďalší</translation>
     <message>
         <location filename="../constraints/tableforeignkeypanel.ui" line="29"/>
         <source>Foreign table:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Cudzia tabuľka:</translation>
     </message>
     <message>
         <location filename="../constraints/tableforeignkeypanel.ui" line="48"/>
@@ -5069,7 +5094,7 @@ but it&apos;s okay to use them anyway.</source>
     <message>
         <location filename="../constraints/tableforeignkeypanel.ui" line="126"/>
         <source>Reactions</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Reakcie</translation>
     </message>
     <message>
         <location filename="../constraints/tableforeignkeypanel.ui" line="165"/>
@@ -5079,22 +5104,22 @@ but it&apos;s okay to use them anyway.</source>
     <message>
         <location filename="../constraints/tableforeignkeypanel.ui" line="183"/>
         <source>Named constraint</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pomenovanie obmedzenia</translation>
     </message>
     <message>
         <location filename="../constraints/tableforeignkeypanel.ui" line="190"/>
         <source>Constraint name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Názov obmedzenia</translation>
     </message>
     <message>
         <location filename="../constraints/tableforeignkeypanel.cpp" line="53"/>
         <source>Pick the foreign column.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vyberte cudzí stĺpec.</translation>
     </message>
     <message>
         <location filename="../constraints/tableforeignkeypanel.cpp" line="65"/>
         <source>Pick the foreign table.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vyberte cudziu tabuľku.</translation>
     </message>
     <message>
         <location filename="../constraints/tableforeignkeypanel.cpp" line="66"/>
@@ -5104,13 +5129,13 @@ but it&apos;s okay to use them anyway.</source>
     <message>
         <location filename="../constraints/tableforeignkeypanel.cpp" line="67"/>
         <source>Enter a name of the constraint.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zadajte názov obmedzenia.</translation>
     </message>
     <message>
         <location filename="../constraints/tableforeignkeypanel.cpp" line="209"/>
         <source>Foreign column</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Cudzí stĺpec</translation>
     </message>
 </context>
 <context>
@@ -5722,7 +5747,7 @@ Chcete potvrdiť štruktúru alebo sa chcete vrátiť do záložky štruktúr?</
     <message>
         <location filename="../dialogs/triggerdialog.cpp" line="353"/>
         <source>Enter a valid condition.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zadajte platnú podmienku.</translation>
     </message>
     <message>
         <location filename="../dialogs/triggerdialog.cpp" line="354"/>
@@ -5919,7 +5944,7 @@ Chcete potvrdiť štruktúru alebo sa chcete vrátiť do záložky štruktúr?</
         <location filename="../windows/viewwindow.cpp" line="608"/>
         <source>Condition</source>
         <comment>view window triggers</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Podmienka</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="609"/>

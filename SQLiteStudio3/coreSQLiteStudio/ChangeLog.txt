@@ -3,6 +3,7 @@
         * [CHANGE]: Enhanced Copy&Paste capabilities of data grid, so copying and pasting internally in SQLiteStudio will not be limited by TSV format (NULL values will be distinguished, tab characters will be allowed in values), only pasting from outside will be affected by TSV limitations.
         * [CHANGE]: "Invalid database" icon changed, so it's no longer confusing with "Connected" database.
         * [CHANGE]: "Databases" panel cannot be closed/hidden anymore.
+        * [CHANGE]: Database dialog modified - now it has 2 "browse" buttons - for existing and for creating new files.
         * [BUGFIX]: #2795 XmlExport plugin: Fixed crash that happend in most exports.
         * [BUGFIX]: XmlExport plugin: Fixed column number attribute incrementing for data rows.
         * [BUGFIX]: #2793 SqlEnterpriseFormatter plugin: Fixed formatting queries starting with EXPLAIN and EXPLAIN QUERY PLAN.

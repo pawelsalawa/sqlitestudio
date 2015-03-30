@@ -444,17 +444,22 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     </message>
     <message>
         <location filename="../importworker.cpp" line="125"/>
-        <location filename="../importworker.cpp" line="152"/>
-        <location filename="../importworker.cpp" line="158"/>
+        <location filename="../importworker.cpp" line="162"/>
+        <location filename="../importworker.cpp" line="169"/>
         <source>Error while importing data: %1</source>
         <translation>Erreur lors de l&apos;import des données: %1</translation>
     </message>
     <message>
         <location filename="../importworker.cpp" line="125"/>
-        <location filename="../importworker.cpp" line="158"/>
+        <location filename="../importworker.cpp" line="169"/>
         <source>Interrupted.</source>
         <comment>import process status update</comment>
         <translation>Transaction interrompue.</translation>
+    </message>
+    <message>
+        <location filename="../importworker.cpp" line="157"/>
+        <source>Could not import data row number %1. The row was ignored. Problem details: %2</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -766,7 +771,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     </message>
     <message>
         <location filename="../db/abstractdb2.h" line="796"/>
-        <location filename="../db/abstractdb3.h" line="1082"/>
+        <location filename="../db/abstractdb3.h" line="1092"/>
         <source>Result set expired or no row available.</source>
         <translation>Terminé ou aucune ligne valide.</translation>
     </message>
