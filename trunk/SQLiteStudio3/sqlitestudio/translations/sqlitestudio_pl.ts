@@ -47,5 +47,13 @@
         <source>Lists plugins installed in the SQLiteStudio and quits.</source>
         <translation>Wypisuje listę zainstalowanych w SQLiteStudio wtyczek i wychodzi.</translation>
     </message>
+    <message>
+        <source>Redirects debug messages into given file (forces debug mode).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>log file</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

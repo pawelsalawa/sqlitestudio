@@ -1849,79 +1849,93 @@ Przeglądanie pozostałych stron będzie możliwe kiedy liczenie wierszy zostani
         <translation>Nazwa</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="66"/>
+        <location filename="../dialogs/dbdialog.ui" line="69"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="78"/>
         <source>Browse for database file on local computer</source>
-        <translation>Przeglądaj w poszukiwaniu pliku bazy danych na lokalnym komputerze</translation>
+        <translation type="obsolete">Przeglądaj w poszukiwaniu pliku bazy danych na lokalnym komputerze</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="90"/>
-        <location filename="../dialogs/dbdialog.cpp" line="162"/>
+        <location filename="../dialogs/dbdialog.ui" line="84"/>
+        <source>Create new database file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/dbdialog.ui" line="111"/>
+        <location filename="../dialogs/dbdialog.cpp" line="147"/>
         <source>File</source>
         <translation>Plik</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="97"/>
+        <location filename="../dialogs/dbdialog.ui" line="121"/>
         <source>Generate name basing on file path</source>
         <translation>Generuj nazwę bazując na ścieżce do pliku</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="110"/>
+        <location filename="../dialogs/dbdialog.ui" line="124"/>
+        <source>Auto</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/dbdialog.ui" line="134"/>
         <source>Permanent</source>
         <translation>Trwała</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="132"/>
+        <location filename="../dialogs/dbdialog.ui" line="159"/>
         <source>&lt;p&gt;Enable this if you want the database to be stored in configuration file and restored every time SQLiteStudio is started.&lt;/p&gt;</source>
         <extracomment>aasfd</extracomment>
         <translation>&lt;p&gt;Włącz to, jeśli chcesz aby baza danych była przechowywana w pliku konfiguracji i przywracana za każdym razem, gdy startuje SQLiteStudio.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="164"/>
+        <location filename="../dialogs/dbdialog.ui" line="191"/>
         <source>Test database connection</source>
         <translation>Testuj połączenie z bazą</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="294"/>
+        <location filename="../dialogs/dbdialog.cpp" line="148"/>
+        <source>Browse for existing database file on local computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/dbdialog.cpp" line="281"/>
         <source>Browse</source>
         <translation>Przeglądaj</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="479"/>
+        <location filename="../dialogs/dbdialog.cpp" line="483"/>
         <source>Enter an unique database name.</source>
         <translation>Wprowadź unikalną nazwę bazy danych.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="488"/>
+        <location filename="../dialogs/dbdialog.cpp" line="492"/>
         <source>This name is already in use. Please enter unique name.</source>
         <translation>Ta nazwa jest już w użyciu. Proszę wprowadzić unikalną nazwę.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="496"/>
+        <location filename="../dialogs/dbdialog.cpp" line="500"/>
         <source>Enter a database file path.</source>
         <translation>Wprowadź ścieżkę do pliku bazy danych.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="503"/>
+        <location filename="../dialogs/dbdialog.cpp" line="507"/>
         <source>This database is already on the list under name: %1</source>
         <translation>Ta baza jest już na liście pod nazwą: %1</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="519"/>
+        <location filename="../dialogs/dbdialog.cpp" line="523"/>
         <source>Select a database type.</source>
         <translation>Wybierz typ bazy danych.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="577"/>
+        <location filename="../dialogs/dbdialog.cpp" line="580"/>
         <source>The name will be auto-generated</source>
         <translation>Nazwa będzie generowana automatycznie</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="582"/>
+        <location filename="../dialogs/dbdialog.cpp" line="585"/>
         <source>Type the name</source>
         <translation>Wprowadź nazwę</translation>
     </message>
@@ -2832,59 +2846,59 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
         <translation>Anuluj</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="141"/>
-        <location filename="../dialogs/exportdialog.cpp" line="166"/>
-        <location filename="../dialogs/exportdialog.cpp" line="189"/>
+        <location filename="../dialogs/exportdialog.cpp" line="149"/>
+        <location filename="../dialogs/exportdialog.cpp" line="174"/>
+        <location filename="../dialogs/exportdialog.cpp" line="197"/>
         <source>Select database to export.</source>
         <translation>Wybierz bazę do eksportu.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="142"/>
+        <location filename="../dialogs/exportdialog.cpp" line="150"/>
         <source>Select table to export.</source>
         <translation>Wybierz tabelę do eksportu.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="167"/>
+        <location filename="../dialogs/exportdialog.cpp" line="175"/>
         <source>Enter valid query to export.</source>
         <translation>Wprowadź poprawne zapytanie do eksportu.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="190"/>
+        <location filename="../dialogs/exportdialog.cpp" line="198"/>
         <source>Select at least one object to export.</source>
         <translation>Wybierz przynajmniej jeden obiekt do eksportu.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="213"/>
+        <location filename="../dialogs/exportdialog.cpp" line="221"/>
         <source>You must provide a file name to export to.</source>
         <translation>Musisz podać nazwę pliku do którego należy wyeksportować.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="220"/>
+        <location filename="../dialogs/exportdialog.cpp" line="228"/>
         <source>Path you provided is an existing directory. You cannot overwrite it.</source>
         <translation>Ścieżka którą podałeś jest istniejącym katalogiem. Nie można go nadpisać.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="226"/>
+        <location filename="../dialogs/exportdialog.cpp" line="234"/>
         <source>The directory &apos;%1&apos; does not exist.</source>
         <translation>Katalog &apos;%1&apos; nie istnieje.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="232"/>
+        <location filename="../dialogs/exportdialog.cpp" line="240"/>
         <source>The file &apos;%1&apos; exists and will be overwritten.</source>
         <translation>Plik &apos;%1&apos; istnieje i zostanie nadpisany.</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="403"/>
+        <location filename="../dialogs/exportdialog.cpp" line="417"/>
         <source>All files (*)</source>
         <translation>Wszystkie pliki (*)</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="406"/>
+        <location filename="../dialogs/exportdialog.cpp" line="420"/>
         <source>Pick file to export to</source>
         <translation>Wybierz plik do eksportu</translation>
     </message>
     <message>
-        <location filename="../dialogs/exportdialog.cpp" line="695"/>
+        <location filename="../dialogs/exportdialog.cpp" line="709"/>
         <source>Internal error during export. This is a bug. Please report it.</source>
         <translation>Wystąpił wewnętrzny błąd podczas eksportu. To jest błąd programu. Proszę to zgłosić.</translation>
     </message>
@@ -3155,17 +3169,27 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
         <translation>OOpcje</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.ui" line="147"/>
+        <location filename="../dialogs/importdialog.ui" line="182"/>
         <source>Input file:</source>
         <translation>Plik wejściowy:</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.ui" line="182"/>
+        <location filename="../dialogs/importdialog.ui" line="175"/>
         <source>Text encoding:</source>
         <translation>Kodowanie tekstu:</translation>
     </message>
     <message>
+        <location filename="../dialogs/importdialog.ui" line="192"/>
+        <source>&lt;p&gt;If enabled, any constraint violation, or invalid data format (wrong column count), or any other problem encountered during import will be ignored and the importing will be continued.&lt;/p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../dialogs/importdialog.ui" line="195"/>
+        <source>Ignore errors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/importdialog.ui" line="205"/>
         <source>Data source options</source>
         <translation>Opcje źródła danych</translation>
     </message>
@@ -3175,37 +3199,37 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
         <translation>Anuluj</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="101"/>
+        <location filename="../dialogs/importdialog.cpp" line="102"/>
         <source>If you type table name that doesn&apos;t exist, it will be created.</source>
         <translation>Jeśli wpiszesz nazwę tabeli, która nie istnieje, to zostanie ona stworzona.</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="101"/>
+        <location filename="../dialogs/importdialog.cpp" line="102"/>
         <source>Enter the table name</source>
         <translation>Wprowadź nazwę tabeli</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="119"/>
+        <location filename="../dialogs/importdialog.cpp" line="120"/>
         <source>Select import plugin.</source>
         <translation>Wybierz wtyczkę importu</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="128"/>
+        <location filename="../dialogs/importdialog.cpp" line="129"/>
         <source>You must provide a file to import from.</source>
         <translation>Musisz podać plik z którego należy zaimportować.</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="135"/>
+        <location filename="../dialogs/importdialog.cpp" line="136"/>
         <source>The file &apos;%1&apos; does not exist.</source>
         <translation>Plik &apos;%1&apos; nie istnieje.</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="141"/>
+        <location filename="../dialogs/importdialog.cpp" line="142"/>
         <source>Path you provided is a directory. A regular file is required.</source>
         <translation>Ścieżka którą podałeś jest katalogiem. Wymagany jest zwykły plik.</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="325"/>
+        <location filename="../dialogs/importdialog.cpp" line="318"/>
         <source>Pick file to import from</source>
         <translation>Wybierz plik do importu</translation>
     </message>
@@ -3582,42 +3606,42 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
         <translation>Nie można wyeksportować, ponieważ żadna wtyczka eksportu nie została załadowana.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="633"/>
+        <location filename="../mainwindow.cpp" line="637"/>
         <source>Cannot import, because no import plugin is loaded.</source>
         <translation>Nie można zaimportować, ponieważ żadna wtyczka importu nie została załadowana.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="662"/>
+        <location filename="../mainwindow.cpp" line="670"/>
         <source>Rename window</source>
         <translation>Zmień nazwę okna</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="662"/>
+        <location filename="../mainwindow.cpp" line="670"/>
         <source>Enter new name for the window:</source>
         <translation>Wprowadź nową nazwę dla okna:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="730"/>
+        <location filename="../mainwindow.cpp" line="738"/>
         <source>New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</source>
         <translation>Nowe aktualizacje są dostępne: &lt;a href=&quot;%1&quot;&gt;Kliknij aby poznać szczegóły&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="738"/>
+        <location filename="../mainwindow.cpp" line="746"/>
         <source>You&apos;re running the most recent version. No updates are available.</source>
         <translation>Uruchomiona jest najnowsza wersja. Nie ma dostępnych aktualizacji.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="837"/>
+        <location filename="../mainwindow.cpp" line="845"/>
         <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
         <translation>Baza danych podana w parametrach linii poleceń (%1) była już na liście pod nazwą: %2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="844"/>
+        <location filename="../mainwindow.cpp" line="852"/>
         <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
         <translation>Baza danych podana w linii poleceń (%1) jest tymczasowo dodana do listy pod nazwą: %2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="849"/>
+        <location filename="../mainwindow.cpp" line="857"/>
         <source>Could not add database %1 to list.</source>
         <translation>Nie udało się dodać bazy danych %1 do listy.</translation>
     </message>
@@ -4368,7 +4392,8 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
         <translation>Wszystkie pliki</translation>
     </message>
     <message>
-        <location filename="../uiutils.cpp" line="38"/>
+        <location filename="../uiutils.cpp" line="39"/>
+        <location filename="../uiutils.cpp" line="41"/>
         <source>Database file</source>
         <translation>Plik bazy danych</translation>
     </message>
@@ -4862,54 +4887,54 @@ znajdź następny</translation>
 <context>
     <name>SqlQueryModel</name>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="62"/>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="461"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="63"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="474"/>
         <source>Only one query can be executed simultaneously.</source>
         <translation>Tylko jedno zapytanie może być wykonywane w danym momencie.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="94"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="95"/>
         <source>Uncommited data</source>
         <translation>Niezatwierdzone dane</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="95"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="96"/>
         <source>There are uncommited data changes. Do you want to proceed anyway? All uncommited changes will be lost.</source>
         <translation>Niektóre zmiany w danych nie zostały zatwierdzone. Czy na pewno chcesz kontynuować? Wszystkie niezatwierdzone zmiany zostaną utracone.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="342"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="343"/>
         <source>Cannot commit the data for a cell that refers to the already closed database.</source>
         <translation>Nie można zatwierdzić danych dla komórki, która odnosi się do zamkniętej już bazy danych.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="373"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="374"/>
         <source>Could not begin transaction on the database. Details: %1</source>
         <translation>Nie udało się rozpocząć transakcji na bazie danych. Szczegóły: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="410"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="415"/>
         <source>An error occurred while commiting the transaction: %1</source>
         <translation>Wystąpił błąd podczas zatwierdzania transakcji: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="429"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="434"/>
         <source>An error occurred while rolling back the transaction: %1</source>
         <translation>Wystąpił błąd podczas wycofywania transakcji: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="547"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="560"/>
         <source>Tried to commit a cell which is not editable (yet modified and waiting for commit)! This is a bug. Please report it.</source>
         <translation>Próbowano zatwierdzić komórkę, której nie można edytować (a mimo to została zmodyfikowana i czeka na zatwierdzenie)! To jest błąd. Proszę to zgłosić.</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="573"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="586"/>
         <source>An error occurred while commiting the data: %1</source>
         <translation>Wystąpił błąd podczas zatwierdzania danych: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1018"/>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1070"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1031"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1086"/>
         <source>Error while executing SQL query on database &apos;%1&apos;: %2</source>
         <translation>Błąd podczas wykonywania zapytania SQL na bazie &apos;%1&apos;: %2</translation>
     </message>
@@ -4918,17 +4943,17 @@ znajdź następny</translation>
         <translation type="obsolete">Błąd podczas wykonywania zapytania SQL: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1067"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1083"/>
         <source>Error while loading query results: %1</source>
         <translation>Błąd podczas wczytywania wyników zapytania: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1395"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1424"/>
         <source>Insert multiple rows</source>
         <translation>Wstaw wiele wierszy</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1395"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1424"/>
         <source>Number of rows to insert:</source>
         <translation>Liczba wierszy do wstawienia:</translation>
     </message>

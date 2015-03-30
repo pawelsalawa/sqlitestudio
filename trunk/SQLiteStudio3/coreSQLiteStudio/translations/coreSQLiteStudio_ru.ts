@@ -445,17 +445,22 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     </message>
     <message>
         <location filename="../importworker.cpp" line="125"/>
-        <location filename="../importworker.cpp" line="152"/>
-        <location filename="../importworker.cpp" line="158"/>
+        <location filename="../importworker.cpp" line="162"/>
+        <location filename="../importworker.cpp" line="169"/>
         <source>Error while importing data: %1</source>
         <translation>Ошибка при импорте данных: %1</translation>
     </message>
     <message>
         <location filename="../importworker.cpp" line="125"/>
-        <location filename="../importworker.cpp" line="158"/>
+        <location filename="../importworker.cpp" line="169"/>
         <source>Interrupted.</source>
         <comment>import process status update</comment>
         <translation>Прервано.</translation>
+    </message>
+    <message>
+        <location filename="../importworker.cpp" line="157"/>
+        <source>Could not import data row number %1. The row was ignored. Problem details: %2</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -767,7 +772,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     </message>
     <message>
         <location filename="../db/abstractdb2.h" line="796"/>
-        <location filename="../db/abstractdb3.h" line="1082"/>
+        <location filename="../db/abstractdb3.h" line="1092"/>
         <source>Result set expired or no row available.</source>
         <translation>Результирующая выборка устарела или ни одна строка не доступна.</translation>
     </message>
