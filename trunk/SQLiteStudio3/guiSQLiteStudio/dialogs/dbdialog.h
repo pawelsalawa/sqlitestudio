@@ -69,7 +69,7 @@ class GUI_API_EXPORT DbDialog : public QDialog
         DbPluginOption::CustomBrowseHandler customBrowseHandler = nullptr;
         bool disableTypeAutodetection = false;
 
-        static const constexpr int ADDITIONAL_ROWS_BEGIN_INDEX = 4;
+        static const constexpr int ADDITIONAL_ROWS_BEGIN_INDEX = 1;
 
     private slots:
         void typeChanged(int index);
