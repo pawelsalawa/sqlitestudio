@@ -3832,7 +3832,7 @@ static void yy_reduce(
       case 250: /* exprx ::= expr not_opt IN nm dbnm */
 {
                                                 yygotominor.yy192 = new SqliteExpr();
-                                                yygotominor.yy192->initIn(yymsp[-4].minor.yy192, yymsp[-3].minor.yy291, *(yymsp[-1].minor.yy319), *(yymsp[0].minor.yy319));
+                                                yygotominor.yy192->initIn(yymsp[-4].minor.yy192, *(yymsp[-3].minor.yy291), *(yymsp[-1].minor.yy319), *(yymsp[0].minor.yy319));
                                                 delete yymsp[-3].minor.yy291;
                                                 delete yymsp[-1].minor.yy319;
                                                 objectForTokens = yygotominor.yy192;

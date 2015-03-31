@@ -3,7 +3,7 @@
         * [CHANGE]: Enhanced Copy&Paste capabilities of data grid, so copying and pasting internally in SQLiteStudio will not be limited by TSV format (NULL values will be distinguished, tab characters will be allowed in values), only pasting from outside will be affected by TSV limitations.
         * [CHANGE]: "Invalid database" icon changed, so it's no longer confusing with "Connected" database.
         * [CHANGE]: "Databases" panel cannot be closed/hidden anymore.
-        * [CHANGE]: Database dialog modified - now it has 2 "browse" buttons - for existing and for creating new files.
+        * [CHANGE]: Database dialog reorganized to look a bit nicer, db type moved to top, URL browse button for file is now separated to 2 buttons.
         * [BUGFIX]: #2795 XmlExport plugin: Fixed crash that happend in most exports.
         * [BUGFIX]: XmlExport plugin: Fixed column number attribute incrementing for data rows.
         * [BUGFIX]: #2793 SqlEnterpriseFormatter plugin: Fixed formatting queries starting with EXPLAIN and EXPLAIN QUERY PLAN.
@@ -31,6 +31,7 @@
         * [BUGFIX]: Fixed rolling back of row marked to deletion, if it was previously already marked as edited.
         * [BUGFIX]: #2814 Fixed executing custom SQL function with same bind parameter used multiple times.
         * [BUGFIX]: #2815 Fixed refreshing data pages after adding/deleting rows in grid view.
+        * [BUGFIX]: #2820 Fixed parsing 'IN table.column' expression (used to incorrectly assume a 'NOT' keyword to be present, even it wasn't).
 
 [3.0.3]
         * [ADDED]: Added visual validation indicators to DbDialog, so user is informed why the "Ok" button is disabled at the moment.

@@ -1513,7 +1513,7 @@ exprx(X) ::= expr(E) not_opt(N) IN LP
 exprx(X) ::= expr(E) not_opt(N) IN nm(N1)
                 dbnm(N2). [IN]              {
                                                 X = new SqliteExpr();
-                                                X->initIn(E, N, *(N1), *(N2));
+                                                X->initIn(E, *(N), *(N1), *(N2));
                                                 delete N;
                                                 delete N1;
                                                 objectForTokens = X;

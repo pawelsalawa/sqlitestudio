@@ -224,7 +224,10 @@ SqlQueryModelColumn::Constraint* SqlQueryModelColumn::Constraint::create(const Q
             int idx = tableConstraint->getAffectedColumnIdx(column);
             if (idx < 0 || tableConstraint->foreignKey->indexedColumns.size() <= idx)
             {
-                qWarning() << "Could not find FK column for definition:" << tableConstraint->detokenize();
+                // This case is perfectly fine if there are for example 2 foreign keys on the table,
+                // for 2 different columns. For each of those columns there will be 1 FK
+                // that enters here.
+                //qWarning() << "Could not find FK column for definition:" << tableConstraint->detokenize();
                 return nullptr;
             }
 
