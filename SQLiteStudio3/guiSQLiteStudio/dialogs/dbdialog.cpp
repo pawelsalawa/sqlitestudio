@@ -15,6 +15,7 @@
 #include <QPushButton>
 #include <QFileDialog>
 #include <QComboBox>
+#include <QTimer>
 
 DbDialog::DbDialog(Mode mode, QWidget *parent) :
     QDialog(parent),
@@ -138,13 +139,12 @@ void DbDialog::updateOptions()
     // Remove olds
     foreach (QWidget* w, optionWidgets)
     {
-        ui->gridLayout->removeWidget(w);
+        ui->optionsGrid->removeWidget(w);
         delete w;
     }
-    adjustSize();
 
     customBrowseHandler = nullptr;
-    ui->fileLabel->setText(tr("File"));
+    ui->pathGroup->setTitle(tr("File"));
     ui->browseOpenButton->setToolTip(tr("Browse for existing database file on local computer"));
     ui->browseCreateButton->setVisible(true);
 
@@ -171,9 +171,17 @@ void DbDialog::updateOptions()
             }
         }
     }
-
-    adjustSize();
     setUpdatesEnabled(true);
+
+    // Now, this is a hack to make sure that the dialog size is adjusted properly.
+    // Because we remove/add several widgets (options), the size may change drasticly and Qt
+    // doesn't deal well with shrinking the dialog, until all widgets are really gone,
+    // that is after its eventloop redraws contents of the dialog.
+    // By using QTimer, we schedule the size update in the Qt's eventloop, so it will happen
+    // after dialog is repaing.
+    // This causes a little "shake" of the dialog when resizing, but it's acceptable,
+    // cause we get a good result out of it.
+    QTimer::singleShot(1, Qt::PreciseTimer, [this]() {adjustSize();});
 }
 
 void DbDialog::addOption(const DbPluginOption& option, int& row)
@@ -182,7 +190,7 @@ void DbDialog::addOption(const DbPluginOption& option, int& row)
     {
         // This option does not add any editor, but has it's own label for path edit.
         row--;
-        ui->fileLabel->setText(option.label);
+        ui->pathGroup->setTitle(option.label);
         ui->browseCreateButton->setVisible(false);
         if (!option.toolTip.isEmpty())
             ui->browseOpenButton->setToolTip(option.toolTip);
@@ -206,15 +214,15 @@ void DbDialog::addOption(const DbPluginOption& option, int& row)
 
     optionKeyToWidget[option.key] = editor;
     optionKeyToType[option.key] = option.type;
-    ui->gridLayout->addWidget(label, row, 0);
-    ui->gridLayout->addWidget(editor, row, 1);
+    ui->optionsGrid->addWidget(label, row, 0);
+    ui->optionsGrid->addWidget(editor, row, 1);
 
     setTabOrder(lastWidgetInTabOrder, editor);
     lastWidgetInTabOrder = editor;
 
     if (editorHelper)
     {
-        ui->gridLayout->addWidget(editorHelper, row, 2);
+        ui->optionsGrid->addWidget(editorHelper, row, 2);
         optionWidgets << editorHelper;
         helperToKey[editorHelper] = option.key;
 
