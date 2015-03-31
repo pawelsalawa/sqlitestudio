@@ -82,6 +82,7 @@ class GUI_API_EXPORT DbDialog : public QDialog
         void propertyChanged();
         void dbTypeChanged(int index);
         void nameModified(const QString &arg1);
+        void delayedSizeAdjust();
 
     public slots:
         void accept();
