@@ -130,6 +130,8 @@ void DbDialog::init()
     connect(ui->typeCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(dbTypeChanged(int)));
 
     generateNameSwitched(true);
+
+    layout()->setSizeConstraint(QLayout::SetFixedSize);
 }
 
 void DbDialog::updateOptions()
@@ -142,7 +144,6 @@ void DbDialog::updateOptions()
         ui->optionsGrid->removeWidget(w);
         delete w;
     }
-    adjustSize();
 
     customBrowseHandler = nullptr;
     ui->pathGroup->setTitle(tr("File"));
@@ -173,18 +174,8 @@ void DbDialog::updateOptions()
         }
     }
 
-    adjustSize();
-    setUpdatesEnabled(true);
 
-    // Now, this is a hack to make sure that the dialog size is adjusted properly.
-    // Because we remove/add several widgets (options), the size may change drasticly and Qt
-    // doesn't deal well with shrinking the dialog, until all widgets are really gone,
-    // that is after its eventloop redraws contents of the dialog.
-    // By using QTimer, we schedule the size update in the Qt's eventloop, so it will happen
-    // after dialog is repaing.
-    // This causes a little "shake" of the dialog when resizing, but it's acceptable,
-    // cause we get a good result out of it.
-    QTimer::singleShot(1, this, SLOT(delayedSizeAdjust()));
+    setUpdatesEnabled(true);
 }
 
 void DbDialog::addOption(const DbPluginOption& option, int& row)
@@ -654,11 +645,6 @@ void DbDialog::nameModified(const QString &arg1)
 {
     UNUSED(arg1);
     updateState();
-}
-
-void DbDialog::delayedSizeAdjust()
-{
-    adjustSize();
 }
 
 void DbDialog::accept()
