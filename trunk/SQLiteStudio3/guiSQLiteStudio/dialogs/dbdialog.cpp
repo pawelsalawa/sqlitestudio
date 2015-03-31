@@ -448,6 +448,9 @@ bool DbDialog::testDatabase()
         return false;
 
     QString path = ui->fileEdit->text();
+    if (path.isEmpty())
+        return false;
+
     QUrl url(path);
     if (url.scheme().isEmpty())
         url.setScheme("file");
@@ -579,7 +582,7 @@ void DbDialog::generateNameSwitched(bool checked)
 {
     if (checked)
     {
-        ui->nameEdit->setPlaceholderText(tr("The name will be auto-generated"));
+        ui->nameEdit->setPlaceholderText(tr("Auto-generated"));
         valueForNameGenerationChanged();
     }
     else
