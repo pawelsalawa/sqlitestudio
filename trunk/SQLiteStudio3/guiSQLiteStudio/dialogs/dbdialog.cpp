@@ -142,6 +142,7 @@ void DbDialog::updateOptions()
         ui->optionsGrid->removeWidget(w);
         delete w;
     }
+    adjustSize();
 
     customBrowseHandler = nullptr;
     ui->pathGroup->setTitle(tr("File"));
@@ -171,6 +172,8 @@ void DbDialog::updateOptions()
             }
         }
     }
+
+    adjustSize();
     setUpdatesEnabled(true);
 
     // Now, this is a hack to make sure that the dialog size is adjusted properly.
@@ -181,7 +184,7 @@ void DbDialog::updateOptions()
     // after dialog is repaing.
     // This causes a little "shake" of the dialog when resizing, but it's acceptable,
     // cause we get a good result out of it.
-    QTimer::singleShot(1, Qt::PreciseTimer, [this]() {adjustSize();});
+    QTimer::singleShot(1, this, SLOT(delayedSizeAdjust()));
 }
 
 void DbDialog::addOption(const DbPluginOption& option, int& row)
@@ -651,6 +654,11 @@ void DbDialog::nameModified(const QString &arg1)
 {
     UNUSED(arg1);
     updateState();
+}
+
+void DbDialog::delayedSizeAdjust()
+{
+    adjustSize();
 }
 
 void DbDialog::accept()
