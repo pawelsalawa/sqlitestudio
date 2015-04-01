@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="ru_RU">
+<TS version="2.1" language="ru_RU">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -1834,103 +1834,128 @@ Browsing other pages will be possible after the row counting is done.</source>
         <translation>База данных</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="43"/>
+        <location filename="../dialogs/dbdialog.ui" line="26"/>
+        <source>Database type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/dbdialog.ui" line="32"/>
         <source>Database driver</source>
         <translation>Драйвер базы данных</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="59"/>
-        <source>Name</source>
-        <translation>Имя</translation>
+        <location filename="../dialogs/dbdialog.ui" line="95"/>
+        <source>Generate automatically</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="69"/>
+        <location filename="../dialogs/dbdialog.ui" line="108"/>
+        <source>Options</source>
+        <translation type="unfinished">Опции</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/dbdialog.ui" line="117"/>
+        <source>Permanent (keep it in configuration)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/dbdialog.ui" line="161"/>
+        <source>Test connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="vanished">Имя</translation>
+    </message>
+    <message>
         <source>Type</source>
-        <translation>Тип</translation>
+        <translation type="vanished">Тип</translation>
     </message>
     <message>
         <source>Browse for database file on local computer</source>
         <translation type="obsolete">Указать файл базы данных на локальном компьютере</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="84"/>
+        <location filename="../dialogs/dbdialog.ui" line="51"/>
         <source>Create new database file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="111"/>
-        <location filename="../dialogs/dbdialog.cpp" line="147"/>
+        <location filename="../dialogs/dbdialog.ui" line="42"/>
+        <location filename="../dialogs/dbdialog.cpp" line="149"/>
         <source>File</source>
         <translation>Файл</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="121"/>
+        <location filename="../dialogs/dbdialog.ui" line="79"/>
+        <source>Name (on the list)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/dbdialog.ui" line="92"/>
         <source>Generate name basing on file path</source>
         <translation>Генерировать имя на основе пути к файлу</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="124"/>
-        <source>Auto</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/dbdialog.ui" line="134"/>
         <source>Permanent</source>
-        <translation>Запомнить</translation>
+        <translation type="vanished">Запомнить</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="159"/>
+        <location filename="../dialogs/dbdialog.ui" line="114"/>
         <source>&lt;p&gt;Enable this if you want the database to be stored in configuration file and restored every time SQLiteStudio is started.&lt;/p&gt;</source>
         <extracomment>aasfd</extracomment>
         <translation>&lt;p&gt;Активируйте эту опцию для сохранения базы данных в конфигурационном файле и добавления её в список при каждом запуске SQLiteStudio.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="191"/>
         <source>Test database connection</source>
-        <translation>Тест соединения с базой данных</translation>
+        <translation type="vanished">Тест соединения с базой данных</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="148"/>
+        <location filename="../dialogs/dbdialog.cpp" line="150"/>
         <source>Browse for existing database file on local computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="281"/>
+        <location filename="../dialogs/dbdialog.cpp" line="283"/>
         <source>Browse</source>
         <translation>Обзор</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="483"/>
+        <location filename="../dialogs/dbdialog.cpp" line="488"/>
         <source>Enter an unique database name.</source>
         <translation>Введите уникальное имя базы данных.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="492"/>
+        <location filename="../dialogs/dbdialog.cpp" line="497"/>
         <source>This name is already in use. Please enter unique name.</source>
         <translation>Данное имя уже используется. Пожалуйста, укажите уникальное имя.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="500"/>
+        <location filename="../dialogs/dbdialog.cpp" line="505"/>
         <source>Enter a database file path.</source>
         <translation>Введите путь к базе данных.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="507"/>
+        <location filename="../dialogs/dbdialog.cpp" line="512"/>
         <source>This database is already on the list under name: %1</source>
         <translation>Указанная база данных уже находится в списке под именем %1</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="523"/>
+        <location filename="../dialogs/dbdialog.cpp" line="528"/>
         <source>Select a database type.</source>
         <translation>Выберите тип базы данных.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="580"/>
-        <source>The name will be auto-generated</source>
-        <translation>Имя будет сгенерировано автоматически</translation>
+        <location filename="../dialogs/dbdialog.cpp" line="585"/>
+        <source>Auto-generated</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="585"/>
+        <source>The name will be auto-generated</source>
+        <translation type="vanished">Имя будет сгенерировано автоматически</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/dbdialog.cpp" line="590"/>
         <source>Type the name</source>
         <translation>Введите имя</translation>
     </message>
@@ -3983,28 +4008,28 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>Невозможно редактировать столцбы, являющиеся результатом обобщённого табличного выражения (%1).</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="354"/>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="390"/>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="408"/>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="444"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="357"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="393"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="411"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="447"/>
         <source>on conflict: %1</source>
         <comment>data view tooltip</comment>
         <translation>при конфликте: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="374"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="377"/>
         <source>references table %1, column %2</source>
         <comment>data view tooltip</comment>
         <translation>ссылается на таблицу %1, столбец %2</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="441"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="444"/>
         <source>condition: %1</source>
         <comment>data view tooltip</comment>
         <translation>условие: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="461"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="464"/>
         <source>collation name: %1</source>
         <comment>data view tooltip</comment>
         <translation>имя сравнения: %1</translation>

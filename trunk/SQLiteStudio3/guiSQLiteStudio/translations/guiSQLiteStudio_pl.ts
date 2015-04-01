@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="pl_PL">
+<TS version="2.1" language="pl_PL">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -1839,103 +1839,128 @@ Przeglądanie pozostałych stron będzie możliwe kiedy liczenie wierszy zostani
         <translation>Baza danych</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="43"/>
+        <location filename="../dialogs/dbdialog.ui" line="26"/>
+        <source>Database type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/dbdialog.ui" line="32"/>
         <source>Database driver</source>
         <translation>Sterownik bazy danych</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="59"/>
-        <source>Name</source>
-        <translation>Nazwa</translation>
+        <location filename="../dialogs/dbdialog.ui" line="95"/>
+        <source>Generate automatically</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="69"/>
+        <location filename="../dialogs/dbdialog.ui" line="108"/>
+        <source>Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/dbdialog.ui" line="117"/>
+        <source>Permanent (keep it in configuration)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/dbdialog.ui" line="161"/>
+        <source>Test connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="vanished">Nazwa</translation>
+    </message>
+    <message>
         <source>Type</source>
-        <translation>Typ</translation>
+        <translation type="vanished">Typ</translation>
     </message>
     <message>
         <source>Browse for database file on local computer</source>
         <translation type="obsolete">Przeglądaj w poszukiwaniu pliku bazy danych na lokalnym komputerze</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="84"/>
+        <location filename="../dialogs/dbdialog.ui" line="51"/>
         <source>Create new database file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="111"/>
-        <location filename="../dialogs/dbdialog.cpp" line="147"/>
+        <location filename="../dialogs/dbdialog.ui" line="42"/>
+        <location filename="../dialogs/dbdialog.cpp" line="149"/>
         <source>File</source>
         <translation>Plik</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="121"/>
+        <location filename="../dialogs/dbdialog.ui" line="79"/>
+        <source>Name (on the list)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/dbdialog.ui" line="92"/>
         <source>Generate name basing on file path</source>
         <translation>Generuj nazwę bazując na ścieżce do pliku</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="124"/>
-        <source>Auto</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/dbdialog.ui" line="134"/>
         <source>Permanent</source>
-        <translation>Trwała</translation>
+        <translation type="vanished">Trwała</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="159"/>
+        <location filename="../dialogs/dbdialog.ui" line="114"/>
         <source>&lt;p&gt;Enable this if you want the database to be stored in configuration file and restored every time SQLiteStudio is started.&lt;/p&gt;</source>
         <extracomment>aasfd</extracomment>
         <translation>&lt;p&gt;Włącz to, jeśli chcesz aby baza danych była przechowywana w pliku konfiguracji i przywracana za każdym razem, gdy startuje SQLiteStudio.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.ui" line="191"/>
         <source>Test database connection</source>
-        <translation>Testuj połączenie z bazą</translation>
+        <translation type="vanished">Testuj połączenie z bazą</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="148"/>
+        <location filename="../dialogs/dbdialog.cpp" line="150"/>
         <source>Browse for existing database file on local computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="281"/>
+        <location filename="../dialogs/dbdialog.cpp" line="283"/>
         <source>Browse</source>
         <translation>Przeglądaj</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="483"/>
+        <location filename="../dialogs/dbdialog.cpp" line="488"/>
         <source>Enter an unique database name.</source>
         <translation>Wprowadź unikalną nazwę bazy danych.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="492"/>
+        <location filename="../dialogs/dbdialog.cpp" line="497"/>
         <source>This name is already in use. Please enter unique name.</source>
         <translation>Ta nazwa jest już w użyciu. Proszę wprowadzić unikalną nazwę.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="500"/>
+        <location filename="../dialogs/dbdialog.cpp" line="505"/>
         <source>Enter a database file path.</source>
         <translation>Wprowadź ścieżkę do pliku bazy danych.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="507"/>
+        <location filename="../dialogs/dbdialog.cpp" line="512"/>
         <source>This database is already on the list under name: %1</source>
         <translation>Ta baza jest już na liście pod nazwą: %1</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="523"/>
+        <location filename="../dialogs/dbdialog.cpp" line="528"/>
         <source>Select a database type.</source>
         <translation>Wybierz typ bazy danych.</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="580"/>
-        <source>The name will be auto-generated</source>
-        <translation>Nazwa będzie generowana automatycznie</translation>
+        <location filename="../dialogs/dbdialog.cpp" line="585"/>
+        <source>Auto-generated</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="585"/>
+        <source>The name will be auto-generated</source>
+        <translation type="vanished">Nazwa będzie generowana automatycznie</translation>
+    </message>
+    <message>
+        <location filename="../dialogs/dbdialog.cpp" line="590"/>
         <source>Type the name</source>
         <translation>Wprowadź nazwę</translation>
     </message>
@@ -4013,28 +4038,28 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
         <translation>Nie można edytować kolumn, które są wynikiem zapytania ze wspólnym wyrażeniem tabeli (%1).</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="354"/>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="390"/>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="408"/>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="444"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="357"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="393"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="411"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="447"/>
         <source>on conflict: %1</source>
         <comment>data view tooltip</comment>
         <translation>w razie konfliktu: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="374"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="377"/>
         <source>references table %1, column %2</source>
         <comment>data view tooltip</comment>
         <translation>odwołuje się do tabeli %1, kolumny %2</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="441"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="444"/>
         <source>condition: %1</source>
         <comment>data view tooltip</comment>
         <translation>warunek: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="461"/>
+        <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="464"/>
         <source>collation name: %1</source>
         <comment>data view tooltip</comment>
         <translation>nazwa zestawienia: %1</translation>
