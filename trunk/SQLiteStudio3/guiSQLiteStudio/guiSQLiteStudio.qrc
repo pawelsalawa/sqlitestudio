@@ -3,5 +3,7 @@
         <file>translations/guiSQLiteStudio_pl.qm</file>
         <file>translations/guiSQLiteStudio_ru.qm</file>
         <file>translations/guiSQLiteStudio_fr.qm</file>
+        <file>translations/guiSQLiteStudio_sk.qm</file>
+        <file>translations/guiSQLiteStudio_zh_CN.qm</file>
     </qresource>
 </RCC>

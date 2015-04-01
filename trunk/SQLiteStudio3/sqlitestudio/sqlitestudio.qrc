@@ -3,5 +3,7 @@
         <file>translations/sqlitestudio_pl.qm</file>
         <file>translations/sqlitestudio_ru.qm</file>
         <file>translations/sqlitestudio_fr.qm</file>
+        <file>translations/sqlitestudio_sk.qm</file>
+        <file>translations/sqlitestudio_zh_CN.qm</file>
     </qresource>
 </RCC>

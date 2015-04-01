@@ -6,5 +6,7 @@
         <file>PdfExport_pl.qm</file>
         <file>PdfExport_ru.qm</file>
         <file>PdfExport_fr.qm</file>
+        <file>PdfExport_sk.qm</file>
+        <file>PdfExport_zh_CN.qm</file>
     </qresource>
 </RCC>

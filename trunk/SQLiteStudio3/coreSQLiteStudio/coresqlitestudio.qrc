@@ -22,5 +22,7 @@
         <file>translations/coreSQLiteStudio_pl.qm</file>
         <file>translations/coreSQLiteStudio_ru.qm</file>
         <file>translations/coreSQLiteStudio_fr.qm</file>
+        <file>translations/coreSQLiteStudio_sk.qm</file>
+        <file>translations/coreSQLiteStudio_zh_CN.qm</file>
     </qresource>
 </RCC>

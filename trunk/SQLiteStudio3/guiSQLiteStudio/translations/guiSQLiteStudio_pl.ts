@@ -509,12 +509,12 @@
     <message>
         <location filename="../dialogs/columndialog.ui" line="35"/>
         <source>Scale</source>
-        <translation type="unfinished"></translation>
+        <translation>Skala</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="55"/>
         <source>Precision</source>
-        <translation type="unfinished"></translation>
+        <translation>Precyzja</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="62"/>
@@ -1841,7 +1841,7 @@ Przeglądanie pozostałych stron będzie możliwe kiedy liczenie wierszy zostani
     <message>
         <location filename="../dialogs/dbdialog.ui" line="26"/>
         <source>Database type</source>
-        <translation type="unfinished"></translation>
+        <translation>Typ bazy danych</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="32"/>
@@ -1851,22 +1851,22 @@ Przeglądanie pozostałych stron będzie możliwe kiedy liczenie wierszy zostani
     <message>
         <location filename="../dialogs/dbdialog.ui" line="95"/>
         <source>Generate automatically</source>
-        <translation type="unfinished"></translation>
+        <translation>Generuj automatycznie</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="108"/>
         <source>Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Opcje</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="117"/>
         <source>Permanent (keep it in configuration)</source>
-        <translation type="unfinished"></translation>
+        <translation>Trwała (trzymaj w konfiguracji)</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="161"/>
         <source>Test connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Testuj połączenie</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1883,7 +1883,7 @@ Przeglądanie pozostałych stron będzie możliwe kiedy liczenie wierszy zostani
     <message>
         <location filename="../dialogs/dbdialog.ui" line="51"/>
         <source>Create new database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Utwórz nową bazę</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="42"/>
@@ -1894,7 +1894,7 @@ Przeglądanie pozostałych stron będzie możliwe kiedy liczenie wierszy zostani
     <message>
         <location filename="../dialogs/dbdialog.ui" line="79"/>
         <source>Name (on the list)</source>
-        <translation type="unfinished"></translation>
+        <translation>Nazwa (na liście)</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="92"/>
@@ -1918,7 +1918,7 @@ Przeglądanie pozostałych stron będzie możliwe kiedy liczenie wierszy zostani
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="150"/>
         <source>Browse for existing database file on local computer</source>
-        <translation type="unfinished"></translation>
+        <translation>Przeglądaj lokalny komputer w poszukiwaniu istniejącej bazy</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="283"/>
@@ -1953,7 +1953,7 @@ Przeglądanie pozostałych stron będzie możliwe kiedy liczenie wierszy zostani
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="585"/>
         <source>Auto-generated</source>
-        <translation type="unfinished"></translation>
+        <translation>Auto-generowana</translation>
     </message>
     <message>
         <source>The name will be auto-generated</source>
@@ -3206,12 +3206,12 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
     <message>
         <location filename="../dialogs/importdialog.ui" line="192"/>
         <source>&lt;p&gt;If enabled, any constraint violation, or invalid data format (wrong column count), or any other problem encountered during import will be ignored and the importing will be continued.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Jeśli włączone, to jakiekolwiek naruszenia ograniczeń, lub niepoprawny format danych (niepoprawna liczba kolumn), lub jakikolwiek inny problem, który wystąpi podczas importu zostanie zignorowany i importowanie będzie kontynuowane.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="195"/>
         <source>Ignore errors</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignoruj błędy</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="205"/>
@@ -5068,7 +5068,7 @@ znajdź następny</translation>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="256"/>
         <source>No items selected to paste clipboard contents to.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie wybrano elementów do których należy wkleić zawartość schowka.</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="510"/>
