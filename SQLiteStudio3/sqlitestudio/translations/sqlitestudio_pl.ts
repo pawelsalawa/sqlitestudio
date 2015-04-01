@@ -49,11 +49,11 @@
     </message>
     <message>
         <source>Redirects debug messages into given file (forces debug mode).</source>
-        <translation type="unfinished"></translation>
+        <translation>Przekierowuje wiadomości debugujące do danego pliku (wymusza tryb debugujący).</translation>
     </message>
     <message>
         <source>log file</source>
-        <translation type="unfinished"></translation>
+        <translation>plik logów</translation>
     </message>
 </context>
 </TS>

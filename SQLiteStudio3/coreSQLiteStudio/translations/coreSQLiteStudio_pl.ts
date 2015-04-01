@@ -467,7 +467,7 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
     <message>
         <location filename="../importworker.cpp" line="157"/>
         <source>Could not import data row number %1. The row was ignored. Problem details: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie udało się zaimportować wiersza danych numer %1. Wiersz ten został zignorowany. Szczegóły problemu: %2</translation>
     </message>
 </context>
 <context>

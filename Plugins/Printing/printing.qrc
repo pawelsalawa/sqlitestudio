@@ -6,5 +6,7 @@
         <file>Printing_pl.qm</file>
         <file>Printing_ru.qm</file>
         <file>Printing_fr.qm</file>
+        <file>Printing_sk.qm</file>
+        <file>Printing_zh_CN.qm</file>
     </qresource>
 </RCC>

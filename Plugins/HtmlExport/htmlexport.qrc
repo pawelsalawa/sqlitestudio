@@ -9,5 +9,7 @@
         <file>HtmlExport_pl.qm</file>
         <file>HtmlExport_ru.qm</file>
         <file>HtmlExport_fr.qm</file>
+        <file>HtmlExport_sk.qm</file>
+        <file>HtmlExport_zh_CN.qm</file>
     </qresource>
 </RCC>

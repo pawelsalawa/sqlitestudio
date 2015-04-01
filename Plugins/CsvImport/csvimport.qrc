@@ -6,5 +6,7 @@
         <file>CsvImport_pl.qm</file>
         <file>CsvImport_ru.qm</file>
         <file>CsvImport_fr.qm</file>
+        <file>CsvImport_sk.qm</file>
+        <file>CsvImport_zh_CN.qm</file>
     </qresource>
 </RCC>

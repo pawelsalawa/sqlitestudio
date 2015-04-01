@@ -6,5 +6,7 @@
         <file>SqlEnterpriseFormatter_pl.qm</file>
         <file>SqlEnterpriseFormatter_ru.qm</file>
         <file>SqlEnterpriseFormatter_fr.qm</file>
+        <file>SqlEnterpriseFormatter_sk.qm</file>
+        <file>SqlEnterpriseFormatter_zh_CN.qm</file>
     </qresource>
 </RCC>
