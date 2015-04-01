@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="sk_SK">
+<TS version="2.0" language="sk_SK">
 <context>
     <name>PdfExport</name>
     <message>
@@ -171,12 +171,12 @@
     <message>
         <location filename="pdfexport.ui" line="20"/>
         <source>Size and layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Veľkosť a rozvrhnutie</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="36"/>
         <source>Page size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Veľkosť strany:</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="63"/>
@@ -205,7 +205,7 @@
         <location filename="pdfexport.ui" line="132"/>
         <location filename="pdfexport.ui" line="156"/>
         <source>mm</source>
-        <translation type="unfinished"></translation>
+        <translation>mm</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="139"/>
@@ -225,7 +225,7 @@
     <message>
         <location filename="pdfexport.ui" line="206"/>
         <source>Colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Farby</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="212"/>
