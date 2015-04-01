@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ru_RU">
+<TS version="2.0" language="ru_RU">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -1836,7 +1836,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="26"/>
         <source>Database type</source>
-        <translation type="unfinished"></translation>
+        <translation>Тип базы данных</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="32"/>
@@ -1846,30 +1846,30 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="95"/>
         <source>Generate automatically</source>
-        <translation type="unfinished"></translation>
+        <translation>Сгенерировать автоматически</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="108"/>
         <source>Options</source>
-        <translation type="unfinished">Опции</translation>
+        <translation>Опции</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="117"/>
         <source>Permanent (keep it in configuration)</source>
-        <translation type="unfinished"></translation>
+        <translation>Постоянная (сохранить базу в конфигурационном файле)</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="161"/>
         <source>Test connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Тест соединения</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="vanished">Имя</translation>
+        <translation>Имя</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation type="vanished">Тип</translation>
+        <translation>Тип</translation>
     </message>
     <message>
         <source>Browse for database file on local computer</source>
@@ -1878,7 +1878,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="51"/>
         <source>Create new database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Создать новый файл базы данных</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="42"/>
@@ -1889,7 +1889,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="79"/>
         <source>Name (on the list)</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя (в списке)</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="92"/>
@@ -1898,7 +1898,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     </message>
     <message>
         <source>Permanent</source>
-        <translation type="vanished">Запомнить</translation>
+        <translation>Запомнить</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="114"/>
@@ -1908,12 +1908,12 @@ Browsing other pages will be possible after the row counting is done.</source>
     </message>
     <message>
         <source>Test database connection</source>
-        <translation type="vanished">Тест соединения с базой данных</translation>
+        <translation>Тест соединения с базой данных</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="150"/>
         <source>Browse for existing database file on local computer</source>
-        <translation type="unfinished"></translation>
+        <translation>Указать существующий файл базы данных на локальном компьютере</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="283"/>
@@ -1948,11 +1948,11 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="585"/>
         <source>Auto-generated</source>
-        <translation type="unfinished"></translation>
+        <translation>Автоматически сгенерировано</translation>
     </message>
     <message>
         <source>The name will be auto-generated</source>
-        <translation type="vanished">Имя будет сгенерировано автоматически</translation>
+        <translation>Имя будет сгенерировано автоматически</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="590"/>
@@ -3180,12 +3180,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/importdialog.ui" line="192"/>
         <source>&lt;p&gt;If enabled, any constraint violation, or invalid data format (wrong column count), or any other problem encountered during import will be ignored and the importing will be continued.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Если опция активирована, все нарушения ограничений, неправильный формат данных (неверное количество столбцов) и любые другие проблемы, возникшие при осуществлении импорта, будут проигнорированы и импорт будет продолжен.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="195"/>
         <source>Ignore errors</source>
-        <translation type="unfinished"></translation>
+        <translation>Игнорировать ошибки</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="205"/>

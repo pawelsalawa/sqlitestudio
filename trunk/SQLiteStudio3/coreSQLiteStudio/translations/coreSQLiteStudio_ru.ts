@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ru_RU">
+<TS version="2.0" language="ru_RU">
 <context>
     <name>AbstractDb</name>
     <message>
@@ -460,7 +460,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
         <location filename="../importworker.cpp" line="157"/>
         <source>Could not import data row number %1. The row was ignored. Problem details: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно импортировать строку данных № %1. Строка пропущена. Подробности проблемы: %2</translation>
     </message>
 </context>
 <context>
