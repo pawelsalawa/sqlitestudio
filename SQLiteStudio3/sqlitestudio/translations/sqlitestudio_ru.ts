@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ru_RU">
+<TS version="2.0" language="ru_RU">
 <context>
     <name>QObject</name>
     <message>
@@ -21,12 +21,12 @@
     <message>
         <location filename="../main.cpp" line="49"/>
         <source>Redirects debug messages into given file (forces debug mode).</source>
-        <translation type="unfinished"></translation>
+        <translation>Перенаправляет отладочные сообщения в указанный файл (принудительный отладочный режим).</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="49"/>
         <source>log file</source>
-        <translation type="unfinished"></translation>
+        <translation>файл журнала</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="50"/>
