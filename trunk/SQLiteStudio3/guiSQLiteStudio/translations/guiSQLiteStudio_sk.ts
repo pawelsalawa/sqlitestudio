@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="sk_SK">
+<TS version="2.0" language="sk_SK">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -1079,7 +1079,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="679"/>
         <source>Database list</source>
-        <translation type="unfinished">Zoznam databáz</translation>
+        <translation>Zoznam databáz</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="685"/>
@@ -1864,11 +1864,11 @@ Prezeranie ďalších strán bude možné až po dokončení spočítavania.</tr
     </message>
     <message>
         <source>Name</source>
-        <translation type="vanished">Názov</translation>
+        <translation>Názov</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation type="vanished">Typ</translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <source>Browse for database file on local computer</source>
@@ -1897,7 +1897,7 @@ Prezeranie ďalších strán bude možné až po dokončení spočítavania.</tr
     </message>
     <message>
         <source>Permanent</source>
-        <translation type="vanished">Uložiť natrvalo</translation>
+        <translation>Uložiť natrvalo</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="114"/>
@@ -1907,7 +1907,7 @@ Prezeranie ďalších strán bude možné až po dokončení spočítavania.</tr
     </message>
     <message>
         <source>Test database connection</source>
-        <translation type="vanished">Otestovať spojenie s databázou</translation>
+        <translation>Otestovať spojenie s databázou</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="150"/>
@@ -1951,7 +1951,7 @@ Prezeranie ďalších strán bude možné až po dokončení spočítavania.</tr
     </message>
     <message>
         <source>The name will be auto-generated</source>
-        <translation type="vanished">Názov bude vygenerovaný automaticky</translation>
+        <translation>Názov bude vygenerovaný automaticky</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="590"/>
@@ -2093,7 +2093,7 @@ Prezeranie ďalších strán bude možné až po dokončení spočítavania.</tr
     <message>
         <location filename="../dbtree/dbtree.cpp" line="113"/>
         <source>Vacuum</source>
-        <translation type="unfinished"></translation>
+        <translation>Vacuum</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="114"/>
@@ -2284,12 +2284,12 @@ Všetky objekty z tejto skupiny budú presunuté do nadradenej skupiny.</transla
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1334"/>
         <source>Error while executing VACUUM on the database %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyskytla sa chyba počas vykonávania príkazu VACUUM na databáze %1: %2</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1336"/>
         <source>VACUUM execution finished successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>VACUUM úspešne skončilo.</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1353"/>
