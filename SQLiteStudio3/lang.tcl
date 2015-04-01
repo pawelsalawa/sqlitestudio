@@ -105,7 +105,7 @@ switch -- $op {
 	    set all [expr {$tr + $untr}]
 	    if {$all == 0} continue
 
-	    set perc [expr {int(round(double($tr)/$all * 100))}]
+	    set perc [expr {round(double($tr)/$all * 1000)/10.0}]
 	    
 	    set lang [string tolower $lang]
 	    puts "$k - ${perc}% ($tr / $all)"
