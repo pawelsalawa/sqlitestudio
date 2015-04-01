@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="sk_SK">
+<TS version="2.0" language="sk_SK">
 <context>
     <name>HtmlExport</name>
     <message>
@@ -127,37 +127,37 @@
     <message>
         <location filename="htmlexport.ui" line="36"/>
         <source>Maximum number of characters per cell:</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximálny počet znakov na bunku:</translation>
     </message>
     <message>
         <location filename="htmlexport.ui" line="43"/>
         <source>Include data types in first row</source>
-        <translation type="unfinished"></translation>
+        <translation>Dátové typy pridať do prvého riadka k názvom stĺpcov</translation>
     </message>
     <message>
         <location filename="htmlexport.ui" line="53"/>
         <source>Column names as first row</source>
-        <translation type="unfinished"></translation>
+        <translation>Názvy stĺpcov ako prvý riadok</translation>
     </message>
     <message>
         <location filename="htmlexport.ui" line="63"/>
         <source>Row numbers as first column</source>
-        <translation type="unfinished"></translation>
+        <translation>Číslovanie riadkov ako prvý stĺpec</translation>
     </message>
     <message>
         <location filename="htmlexport.ui" line="73"/>
         <source>Output format</source>
-        <translation type="unfinished"></translation>
+        <translation>Výstupný formát</translation>
     </message>
     <message>
         <location filename="htmlexport.ui" line="79"/>
         <source>Format document (new lines, indentation)</source>
-        <translation type="unfinished"></translation>
+        <translation>Formátovať dokument (nové riadky, odsadenie)</translation>
     </message>
     <message>
         <location filename="htmlexport.ui" line="92"/>
         <source>Compress (everything in one line)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zhustiť (všetko do jedného riadka)</translation>
     </message>
     <message>
         <location filename="htmlexport.ui" line="108"/>
