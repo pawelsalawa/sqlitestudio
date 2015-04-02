@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="sk_SK">
+<TS version="2.0" language="sk_SK">
 <context>
     <name>AbstractDb</name>
     <message>
@@ -502,7 +502,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
         <location filename="../plugins/populateconstant.cpp" line="10"/>
         <source>Constant</source>
         <comment>populate constant plugin name</comment>
-        <translation type="unfinished"></translation>
+        <translation>Konštanta</translation>
     </message>
 </context>
 <context>
@@ -510,7 +510,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
         <location filename="../plugins/populateconstant.ui" line="20"/>
         <source>Constant value:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hodnota konštanty:</translation>
     </message>
 </context>
 <context>
@@ -519,7 +519,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
         <location filename="../plugins/populatedictionary.cpp" line="15"/>
         <source>Dictionary</source>
         <comment>dictionary populating plugin name</comment>
-        <translation type="unfinished"></translation>
+        <translation>Slovník</translation>
     </message>
 </context>
 <context>
@@ -619,7 +619,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
         <location filename="../plugins/populaterandomtext.cpp" line="12"/>
         <source>Random text</source>
-        <translation type="unfinished"></translation>
+        <translation>Náhodný text</translation>
     </message>
 </context>
 <context>
@@ -695,7 +695,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
         <location filename="../plugins/populatescript.cpp" line="13"/>
         <source>Script</source>
-        <translation type="unfinished"></translation>
+        <translation>Skript</translation>
     </message>
 </context>
 <context>
@@ -726,7 +726,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
         <location filename="../plugins/populatesequence.cpp" line="13"/>
         <source>Sequence</source>
-        <translation type="unfinished"></translation>
+        <translation>Sekvencia</translation>
     </message>
 </context>
 <context>
@@ -847,7 +847,7 @@ Error details: %2</source>
         <location filename="../parser/sqlite2_parse.cpp" line="4461"/>
         <location filename="../parser/sqlite3_parse.cpp" line="5080"/>
         <source>Syntax error</source>
-        <translation type="unfinished"></translation>
+        <translation>Chyba syntaxe</translation>
     </message>
     <message>
         <location filename="../plugins/populatedictionary.cpp" line="30"/>
@@ -931,7 +931,7 @@ Error details: %2</source>
         <location filename="../sqlitestudio.cpp" line="291"/>
         <source>Scripting languages</source>
         <comment>plugin category name</comment>
-        <translation type="unfinished"></translation>
+        <translation>Skriptovacie jazyky</translation>
     </message>
     <message>
         <location filename="../sqlitestudio.cpp" line="292"/>
@@ -1262,12 +1262,12 @@ Details: %3</source>
         <location filename="../services/updatemanager.cpp" line="921"/>
         <location filename="../services/updatemanager.cpp" line="930"/>
         <source>Could not rename directory %1 to %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemôžem premenovať adresár %1na %2.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="943"/>
         <source>Could not delete directory %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemôžem vymazať adresár %1.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="959"/>
