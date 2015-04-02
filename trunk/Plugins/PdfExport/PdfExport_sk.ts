@@ -181,12 +181,12 @@
     <message>
         <location filename="pdfexport.ui" line="63"/>
         <source>Right margin:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pravý okraj:</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="70"/>
         <source>Left margin:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ľavý okraj:</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="77"/>
@@ -210,17 +210,17 @@
     <message>
         <location filename="pdfexport.ui" line="139"/>
         <source>Bottom margin:</source>
-        <translation type="unfinished"></translation>
+        <translation>Spodný okraj:</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="163"/>
         <source>Top margin:</source>
-        <translation type="unfinished"></translation>
+        <translation>Horný okraj:</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="183"/>
         <source>Font</source>
-        <translation type="unfinished"></translation>
+        <translation>Písmo</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="206"/>
@@ -240,7 +240,7 @@
     <message>
         <location filename="pdfexport.ui" line="261"/>
         <source>Other settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Iné nastavenia</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="267"/>
