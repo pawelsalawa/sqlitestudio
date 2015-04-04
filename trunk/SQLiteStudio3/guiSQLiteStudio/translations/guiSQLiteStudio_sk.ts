@@ -36,7 +36,7 @@
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="81"/>
         <source>Form directories</source>
-        <translation type="unfinished"></translation>
+        <translation>Adresáre so štýlmi</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="101"/>
@@ -253,7 +253,7 @@
         <location filename="../windows/bugreporthistorywindow.ui" line="36"/>
         <location filename="../windows/bugreporthistorywindow.cpp" line="119"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titulok</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.ui" line="41"/>
@@ -361,7 +361,7 @@
     <message>
         <location filename="../windows/collationseditor.ui" line="120"/>
         <source>Implementation language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Implementačný jazyk:</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.ui" line="152"/>
