@@ -36,7 +36,7 @@
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="81"/>
         <source>Form directories</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="101"/>
@@ -439,7 +439,7 @@
     <message>
         <location filename="../common/colorbutton.cpp" line="29"/>
         <source>Pick a color</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyberte farbu</translation>
     </message>
 </context>
 <context>
@@ -2575,7 +2575,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/editorwindow.cpp" line="358"/>
         <source>Explain query</source>
-        <translation type="unfinished"></translation>
+        <translation>Vysvetliť dotaz</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="361"/>
@@ -2609,13 +2609,13 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../windows/editorwindow.cpp" line="378"/>
         <source>Show next tab</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zobraziť nasledujúcu záložku</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="379"/>
         <source>Show previous tab</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zobraziť predchádzajúcu záložku</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="380"/>
@@ -2632,17 +2632,17 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/editorwindow.cpp" line="455"/>
         <source>Active database (%1/%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktívna databáza (%1/%2)</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="495"/>
         <source>Query finished in %1 second(s). Rows affected: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Dotaz trval %1 sekúnd. Počet dotknutých riadkov: %2</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="499"/>
         <source>Query finished in %1 second(s).</source>
-        <translation type="unfinished"></translation>
+        <translation>Dotaz trval %1 sekúnd.</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="601"/>
@@ -2652,22 +2652,22 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/editorwindow.cpp" line="601"/>
         <source>Are you sure you want to erase the entire SQL execution history? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ste si istý, že chete vymazať celú históriu SQL dotazov? Túto operáciu nieje možné vrátiť späť.</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="613"/>
         <source>Cannot export, because no export plugin is loaded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemôžem exportovať, lebo nebol načítaný žiaden plugin na export.</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="634"/>
         <source>No database selected in the SQL editor. Cannot create a view for unknown database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nebola vybraná žiadna databáza v SQL editore. Nemôžem vytvoriť view pre neznámu databázu.</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="664"/>
         <source>Editor window &quot;%1&quot; has uncommited data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno editora &quot;%1&quot; obsahuje nepotrdené dáta.</translation>
     </message>
 </context>
 <context>
@@ -3241,7 +3241,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/indexdialog.ui" line="36"/>
         <source>On table:</source>
-        <translation type="unfinished">Na tabuľke:</translation>
+        <translation>Na tabuľke:</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="43"/>
@@ -3256,7 +3256,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/indexdialog.ui" line="67"/>
         <source>Unique index</source>
-        <translation type="unfinished"></translation>
+        <translation>Jedinečný index</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="90"/>
@@ -3271,7 +3271,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/indexdialog.ui" line="100"/>
         <source>Sort</source>
-        <translation type="unfinished">Zoradiť</translation>
+        <translation>Zoradiť</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="115"/>
@@ -3296,12 +3296,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="186"/>
         <source>Select at least one column.</source>
-        <translation type="unfinished">Vyberte minimálne jeden stĺpec.</translation>
+        <translation>Vyberte minimálne jeden stĺpec.</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="187"/>
         <source>Enter a valid condition.</source>
-        <translation type="unfinished">Zadajte platnú podmienku.</translation>
+        <translation>Zadajte platnú podmienku.</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="236"/>
@@ -3313,7 +3313,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../dialogs/indexdialog.cpp" line="247"/>
         <source>Sort order</source>
         <comment>table constraints</comment>
-        <translation type="unfinished">Zoradiť</translation>
+        <translation>Zoradiť</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="453"/>
@@ -3598,12 +3598,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="621"/>
         <source>Cannot export, because no export plugin is loaded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemôžem exportovať, lebo nebol načítaný žiaden plugin na export.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="637"/>
         <source>Cannot import, because no import plugin is loaded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemôžem importovať, lebo nebol načítaný žiaden plugin na import.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="670"/>
@@ -3618,12 +3618,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="738"/>
         <source>New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nové aktualizácie sú dostupné. &lt;a href=&quot;%1&quot;&gt;Kliknite sem pre zobrazenie detailov&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="746"/>
         <source>You&apos;re running the most recent version. No updates are available.</source>
-        <translation type="unfinished"></translation>
+        <translation>Niesú dostupné žiadne aktualizácie. Používate aktuálnu verziu.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="845"/>
@@ -3746,22 +3746,22 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../multieditor/multieditortext.cpp" line="107"/>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>Vystrihnúť</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.cpp" line="108"/>
         <source>Copy</source>
-        <translation type="unfinished">Kopírovať</translation>
+        <translation>Kopírovať</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.cpp" line="109"/>
         <source>Paste</source>
-        <translation type="unfinished">Vložiť</translation>
+        <translation>Vložiť</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.cpp" line="110"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.cpp" line="111"/>
@@ -4879,7 +4879,7 @@ nájsť ďalší</translation>
         <location filename="../datagrid/sqlquerymodel.cpp" line="63"/>
         <location filename="../datagrid/sqlquerymodel.cpp" line="474"/>
         <source>Only one query can be executed simultaneously.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemôže byť spustených viacero dotazov súčasne.</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="95"/>
@@ -4894,43 +4894,43 @@ nájsť ďalší</translation>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="343"/>
         <source>Cannot commit the data for a cell that refers to the already closed database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemôžem potrdiť dáta bunky, ktorá odkazuje na už uzatvorenú databázu.</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="374"/>
         <source>Could not begin transaction on the database. Details: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemôžem začať tranzakciu na databáze. Detaily: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="415"/>
         <source>An error occurred while commiting the transaction: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyskytla sa chyba počas potvrdzovania tranzakcie: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="434"/>
         <source>An error occurred while rolling back the transaction: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyskytla sa chyba počas vracania späť tranzakcie: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="560"/>
         <source>Tried to commit a cell which is not editable (yet modified and waiting for commit)! This is a bug. Please report it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastal pokus o potvrdenie zmien v bunke, ktorú nieje možné upravovať (napriek tomu bola upravená a čaká na potvrdenie)! Toto je chyba. Prosím nahláste ju.</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="586"/>
         <source>An error occurred while commiting the data: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyskytla sa chyba počas potvrdzovania dát: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="1031"/>
         <location filename="../datagrid/sqlquerymodel.cpp" line="1086"/>
         <source>Error while executing SQL query on database &apos;%1&apos;: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyskytla sa chyba počas vykonávania SQL dotazu na databáze &apos;%1&apos;: %2</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="1083"/>
         <source>Error while loading query results: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyskytla sa chyba počas načítavania výsledkov dotazu: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="1424"/>
