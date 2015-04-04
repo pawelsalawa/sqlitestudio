@@ -6,164 +6,164 @@
     <message>
         <location filename="pdfexport.cpp" line="28"/>
         <source>SQLiteStudio v%1</source>
-        <translation type="unfinished"></translation>
+        <translation>SQLiteStudio v%1</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="60"/>
         <source>SQL query results</source>
-        <translation type="unfinished"></translation>
+        <translation>Výsledky SQL dotazu</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="89"/>
         <location filename="pdfexport.cpp" line="143"/>
         <source>Exported table: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyexportovaná tabuľka: %1</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="92"/>
         <location filename="pdfexport.cpp" line="158"/>
         <source>Table: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabuľka: %1</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="94"/>
         <location filename="pdfexport.cpp" line="230"/>
         <source>Column</source>
-        <translation type="unfinished"></translation>
+        <translation>Stĺpec</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="94"/>
         <source>Data type</source>
-        <translation type="unfinished"></translation>
+        <translation>Dátový typ</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="94"/>
         <source>Constraints</source>
-        <translation type="unfinished"></translation>
+        <translation>Obmedzenia</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="125"/>
         <source>Global table constraints</source>
-        <translation type="unfinished"></translation>
+        <translation>Globálne tabuľkové obmedzenia</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="214"/>
         <source>Exported database: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyexportovaná databáza: %1</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="222"/>
         <source>Index: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Index: %1</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="224"/>
         <source>Property</source>
         <comment>index header</comment>
-        <translation type="unfinished"></translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="224"/>
         <source>Value</source>
         <comment>index header</comment>
-        <translation type="unfinished"></translation>
+        <translation>Hodnota</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="227"/>
         <source>Indexed table</source>
-        <translation type="unfinished"></translation>
+        <translation>Indexovaná tabuľka</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="228"/>
         <source>Unique index</source>
-        <translation type="unfinished"></translation>
+        <translation>Jedinečný index</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="228"/>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>Áno</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="228"/>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="230"/>
         <source>Collation</source>
-        <translation type="unfinished"></translation>
+        <translation>Porovnávanie</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="230"/>
         <source>Sort order</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoradenie</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="246"/>
         <source>Partial index condition</source>
-        <translation type="unfinished"></translation>
+        <translation>Podmienka parciálneho indexu</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="260"/>
         <source>Trigger: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Spúšťač: %1</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="262"/>
         <source>Property</source>
         <comment>trigger header</comment>
-        <translation type="unfinished"></translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="262"/>
         <source>Value</source>
         <comment>trigger header</comment>
-        <translation type="unfinished"></translation>
+        <translation>Hodnota</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="264"/>
         <source>Activation time</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivačný čas</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="267"/>
         <source>For action</source>
-        <translation type="unfinished"></translation>
+        <translation>Pre akciu</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="271"/>
         <source>On view</source>
-        <translation type="unfinished"></translation>
+        <translation>Na pohľade</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="273"/>
         <source>On table</source>
-        <translation type="unfinished"></translation>
+        <translation>Na tabuľke</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="278"/>
         <source>Activation condition</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivačná podmienka</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="284"/>
         <source>Code executed</source>
-        <translation type="unfinished"></translation>
+        <translation>Vykonaný kód</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="296"/>
         <source>View: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Pohľad: %1</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="297"/>
         <source>Query:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dotaz:</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="649"/>
         <source>Document generated with SQLiteStudio v%1</source>
-        <translation type="unfinished"></translation>
+        <translation>Dokument vygenerovaný programom SQLiteStudio v%1</translation>
     </message>
 </context>
 <context>
@@ -191,12 +191,12 @@
     <message>
         <location filename="pdfexport.ui" line="77"/>
         <source>Cell padding:</source>
-        <translation type="unfinished"></translation>
+        <translation>Odsadenie od okrajov bunky:</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="84"/>
         <source>Limit characters in single cell:</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximálny počet znakov v jednej bunke:</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="91"/>
@@ -230,12 +230,12 @@
     <message>
         <location filename="pdfexport.ui" line="212"/>
         <source>Headers background:</source>
-        <translation type="unfinished"></translation>
+        <translation>Farba pozadia štruktúr:</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="235"/>
         <source>NULL value color:</source>
-        <translation type="unfinished"></translation>
+        <translation>Farba NULL hodnoty:</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="261"/>
@@ -245,12 +245,12 @@
     <message>
         <location filename="pdfexport.ui" line="267"/>
         <source>Print row numbers for data</source>
-        <translation type="unfinished"></translation>
+        <translation>Číslovanie dátových riadkov</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="277"/>
         <source>Print page numbers</source>
-        <translation type="unfinished"></translation>
+        <translation>Číslovanie strán</translation>
     </message>
 </context>
 </TS>
