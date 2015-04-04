@@ -9,7 +9,7 @@ if [ "$#" -lt 2 ] || [ "$#" -gt 3 ]; then
   exit 1
 fi
 
-if [ "$#" -eq 3 ] && [ "$3" != "tgz" ] && [ "$3" != "dist" ] && [ "$3" != "dist_plugins" ]; then
+if [ "$#" -eq 3 ] && [ "$3" != "tgz" ] && [ "$3" != "dist" ] && [ "$3" != "dist_plugins" ] && [ "$3" != "dist_full" ]; then
   printUsage
   exit 1
 fi
