@@ -216,7 +216,8 @@ SOURCES += sqlitestudio.cpp \
     rsa/KeyPair.cpp \
     rsa/PrimeGenerator.cpp \
     rsa/RSA.cpp \
-    translations.cpp
+    translations.cpp \
+    common/signalwait.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -403,7 +404,8 @@ HEADERS += sqlitestudio.h\
     rsa/KeyPair.h \
     rsa/PrimeGenerator.h \
     rsa/RSA.h \
-    translations.h
+    translations.h \
+    common/signalwait.h
 
 unix: {
     target.path = $$LIBDIR

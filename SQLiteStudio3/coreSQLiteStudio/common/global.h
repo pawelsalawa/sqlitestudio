@@ -32,6 +32,13 @@
         var = nullptr; \
     }
 
+#define qobject_safe_delete(var) \
+    if (var) \
+    { \
+        var->deleteLater(); \
+        var = nullptr; \
+    }
+
 #define static_char static constexpr const char
 
 #define static_qstring(N,V) const static QString N = QStringLiteral(V)

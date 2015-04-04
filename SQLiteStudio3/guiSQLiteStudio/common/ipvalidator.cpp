@@ -1,34 +1,21 @@
 #include "ipvalidator.h"
 #include <QDebug>
 
+QString IpValidator::reStr = "^%1(\\d%2)%1\\.%1(\\d%2)%1\\.%1(\\d%2)%1\\.%1(\\d%2)%1$";
+
 IpValidator::IpValidator(QObject* parent) :
     QValidator(parent)
 {
-
 }
 
 IpValidator::~IpValidator()
 {
-
 }
 
 QValidator::State IpValidator::validate(QString& input, int&) const
 {
-    qDebug() << "input:" << input;
-    QString reStr = "%1(\\d*)%1\\.%1(\\d*)%1\\.%1(\\d*)%1\\.%1(\\d*)%1";
-    if (acceptWhiteSpaces)
-    {
-        if (whitespaceCharacter == ' ')
-            reStr = reStr.arg("\\s*");
-        else
-            reStr = reStr.arg(whitespaceCharacter + QString("*"));
-    }
-    else
-    {
-        reStr = reStr.arg("");
-    }
-
-    QRegularExpression re(reStr);
+    QString regexp = getPattern(acceptWhiteSpaces, false, whitespaceCharacter);
+    QRegularExpression re(regexp);
     QRegularExpressionMatch match = re.match(input);
     if (!match.hasMatch())
         return Invalid;
@@ -86,5 +73,23 @@ void IpValidator::setWhitespaceCharacter(const QChar& value)
     whitespaceCharacter = value;
 }
 
+bool IpValidator::check(const QString& input, bool acceptWhiteSpaces)
+{
+    QString regexp = getPattern(acceptWhiteSpaces, true, ' ');
+    QRegularExpression re(regexp);
+    return re.match(input).hasMatch();
+}
 
-
+QString IpValidator::getPattern(bool acceptWhiteSpaces, bool requireFull, QChar whitespaceCharacter)
+{
+    QString countChar = requireFull ? "+" : "*";
+    if (acceptWhiteSpaces)
+    {
+        if (whitespaceCharacter == ' ')
+            return reStr.arg("\\s*", countChar);
+        else
+            return reStr.arg(whitespaceCharacter + QString("*"), countChar);
+    }
+    else
+        return reStr.arg("", countChar);
+}
