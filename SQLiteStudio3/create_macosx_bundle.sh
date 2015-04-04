@@ -1,7 +1,7 @@
 #!/bin/sh
 
 printUsage() {
-  echo "$0 <sqlitestudio build output directory> <qmake path> [dmg|dist]"
+  echo "$0 <sqlitestudio build output directory> <qmake path> [dmg|dist|dist_full]"
 }
 
 if [ "$#" -lt 2 ] || [ "$#" -gt 3 ]; then
@@ -9,7 +9,7 @@ if [ "$#" -lt 2 ] || [ "$#" -gt 3 ]; then
   exit 1
 fi
 
-if [ "$#" -eq 3 ] && [ "$3" != "dmg" ] && [ "$3" != "dist" ] && [ "$3" != "dist_plugins" ]; then
+if [ "$#" -eq 3 ] && [ "$3" != "dmg" ] && [ "$3" != "dist" ] && [ "$3" != "dist_plugins" ] && [ "$3" != "dist_full" ]; then
   printUsage
   exit 1
 fi
@@ -46,8 +46,8 @@ cp -RP ../../../lib/*.dylib SQLiteStudio.app/Contents/Frameworks
 
 if [ "$3" == "dmg" ]; then
     $qt_deploy_bin SQLiteStudio.app -dmg
-elif [ "$3" == "dist" ] || [ "$3" == "dist_plugins" ]; then
-    if [ "$3" == "dist" ]; then
+elif [ "$3" == "dist" ] || [ "$3" == "dist_plugins" ] || [ "$3" == "dist_full" ]; then
+    if [ "$3" == "dist" ] || [ "$3" == "dist_full" ]; then
         $qt_deploy_bin SQLiteStudio.app -dmg
 
         cd $1/SQLiteStudio
@@ -59,8 +59,10 @@ elif [ "$3" == "dist" ] || [ "$3" == "dist_plugins" ]; then
         echo "Building incremental update package: sqlitestudio-$VERSION.zip"
         cp -R SQLiteStudio.app app
         cd app/Contents
-        rm -rf PlugIns
-        rm -rf Frameworks/Qt*.framework
+        if [ "$3" == "dist" ]; then
+            rm -rf PlugIns
+            rm -rf Frameworks/Qt*.framework
+        fi
         find Frameworks -type l -exec rm -f {} \;
         cd ..
         zip -r sqlitestudio-$VERSION.zip *

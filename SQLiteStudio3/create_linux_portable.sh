@@ -1,7 +1,7 @@
 #!/bin/sh
 
 printUsage() {
-  echo "$0 <sqlitestudio build output directory> <qmake path> [tgz|dist]"
+  echo "$0 <sqlitestudio build output directory> <qmake path> [tgz|dist|dist_full]"
 }
 
 if [ "$#" -lt 2 ] || [ "$#" -gt 3 ]; then
@@ -106,8 +106,8 @@ VERSION=`SQLiteStudio/sqlitestudiocli -v | awk '{print $2}'`
 if [ "$3" == "tgz" ]; then
   tar cf sqlitestudio-$VERSION.tar SQLiteStudio
   xz -z sqlitestudio-$VERSION.tar
-elif [ "$3" == "dist" ] || [ "$3" == "dist_plugins" ]; then
-  if [ "$3" == "dist" ]; then
+elif [ "$3" == "dist" ] || [ "$3" == "dist_plugins" ] || [ "$3" == "dist_full" ]; then
+  if [ "$3" == "dist" ] || [ "$3" == "dist_full" ]; then
     # Complete
     echo "Building complete package: sqlitestudio-$VERSION.tar.xz"
     tar cf sqlitestudio-$VERSION.tar SQLiteStudio
@@ -117,13 +117,15 @@ elif [ "$3" == "dist" ] || [ "$3" == "dist_plugins" ]; then
     echo "Building incremental update package: sqlitestudio-$VERSION.tar.gz"
     cp -R SQLiteStudio app
     cd app
-    rm -rf plugins
-    rm -f lib/libQ*
-    rm -rf iconengines
-    rm -rf imageformats
-    rm -rf platforms
-    rm -rf platformthemes
-    rm -rf printsupport
+    if [ "$3" == "dist" ]; then
+        rm -rf plugins
+        rm -f lib/libQ*
+        rm -rf iconengines
+        rm -rf imageformats
+        rm -rf platforms
+        rm -rf platformthemes
+        rm -rf printsupport
+    fi
     rm -f lib/libicu*
     rm -f lib/libsqlite.so.0 ;# this is for SQLite 2
     find . -type l -exec rm -f {} \;
