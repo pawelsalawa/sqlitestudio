@@ -81,8 +81,12 @@ bool DbManagerImpl::updateDb(Db* db, const QString &name, const QString &path, c
             return false;
     }
 
-    QDir pathDir(path);
-    QString normalizedPath = pathDir.absolutePath();
+    QString normalizedPath;
+    QUrl url(path);
+    if (url.scheme().isEmpty() || url.scheme() == "file")
+        normalizedPath = QDir(path).absolutePath();
+    else
+        normalizedPath = path;
 
     listLock.lockForWrite();
     nameToDb.remove(db->getName(), Qt::CaseInsensitive);
@@ -343,6 +347,58 @@ void DbManagerImpl::scanForNewDatabasesInConfig()
     }
 }
 
+void DbManagerImpl::rescanInvalidDatabasesForPlugin(DbPlugin* dbPlugin)
+{
+    if (!dbPlugin)
+    {
+        qWarning() << "Call to DbManagerImpl::rescanInvalidDatabasesForPlugin() with null plugin.";
+        return;
+    }
+
+    Db* db = nullptr;
+
+    QUrl url;
+    for (Db* invalidDb : getInvalidDatabases())
+    {
+        if (invalidDb->getConnectionOptions().contains(DB_PLUGIN) && invalidDb->getConnectionOptions()[DB_PLUGIN].toString() != dbPlugin->getName())
+            continue;
+
+        url = QUrl::fromUserInput(invalidDb->getPath());
+        if (url.isLocalFile() && !QFile::exists(invalidDb->getPath()))
+            continue;
+
+        db = createDb(invalidDb->getName(), invalidDb->getPath(), invalidDb->getConnectionOptions());
+        if (!db)
+            continue; // For this db driver was not loaded yet.
+
+        if (!dbPlugin->checkIfDbServedByPlugin(db))
+        {
+            qDebug() << "Managed to load database" << db->getPath() << " (" << db->getName() << ")"
+                     << "but it doesn't use DbPlugin that was just loaded, so it will not be loaded to the db manager";
+
+            delete db;
+            continue;
+        }
+
+        removeDbInternal(invalidDb, false);
+        delete invalidDb;
+
+        addDbInternal(db, false);
+
+        if (!db->getConnectionOptions().contains(DB_PLUGIN))
+        {
+            db->getConnectionOptions()[DB_PLUGIN] = dbPlugin->getName();
+            if (!CFG->updateDb(db->getName(), db->getName(), db->getPath(), db->getConnectionOptions()))
+                qWarning() << "Could not store handling plugin in options for database" << db->getName();
+        }
+
+        if (CFG->getDbGroup(db->getName())->open)
+            db->open();
+
+        emit dbLoaded(db);
+    }
+}
+
 void DbManagerImpl::addDbInternal(Db* db, bool alsoToConfig)
 {
     if (alsoToConfig)
@@ -395,13 +451,20 @@ Db* DbManagerImpl::createDb(const QString &name, const QString &path, const QHas
     Db* db = nullptr;
     QStringList messages;
     QString message;
-    QDir pathDir(path); // Using QDir to normalize separator
+
+    QString normalizedPath;
+    QUrl url(path);
+    if (url.scheme().isEmpty() || url.scheme() == "file")
+        normalizedPath = QDir(path).absolutePath();
+    else
+        normalizedPath = path;
+
     foreach (dbPlugin, dbPlugins)
     {
         if (options.contains("plugin") && options["plugin"] != dbPlugin->getName())
             continue;
 
-        db = dbPlugin->getInstance(name, pathDir.absolutePath(), options, &message);
+        db = dbPlugin->getInstance(name, normalizedPath, options, &message);
         if (!db)
         {
             messages << message;
@@ -506,46 +569,47 @@ void DbManagerImpl::loaded(Plugin* plugin, PluginType* type)
         return;
 
     DbPlugin* dbPlugin = dynamic_cast<DbPlugin*>(plugin);
-    Db* db = nullptr;
+    rescanInvalidDatabasesForPlugin(dbPlugin);
+//    Db* db = nullptr;
 
-    QUrl url;
-    for (Db* invalidDb : getInvalidDatabases())
-    {
-        if (invalidDb->getConnectionOptions().contains(DB_PLUGIN) && invalidDb->getConnectionOptions()[DB_PLUGIN].toString() != dbPlugin->getName())
-            continue;
+//    QUrl url;
+//    for (Db* invalidDb : getInvalidDatabases())
+//    {
+//        if (invalidDb->getConnectionOptions().contains(DB_PLUGIN) && invalidDb->getConnectionOptions()[DB_PLUGIN].toString() != dbPlugin->getName())
+//            continue;
 
-        url = QUrl::fromUserInput(invalidDb->getPath());
-        if (url.isLocalFile() && !QFile::exists(invalidDb->getPath()))
-            continue;
+//        url = QUrl::fromUserInput(invalidDb->getPath());
+//        if (url.isLocalFile() && !QFile::exists(invalidDb->getPath()))
+//            continue;
 
-        db = createDb(invalidDb->getName(), invalidDb->getPath(), invalidDb->getConnectionOptions());
-        if (!db)
-            continue; // For this db driver was not loaded yet.
+//        db = createDb(invalidDb->getName(), invalidDb->getPath(), invalidDb->getConnectionOptions());
+//        if (!db)
+//            continue; // For this db driver was not loaded yet.
 
-        if (!dbPlugin->checkIfDbServedByPlugin(db))
-        {
-            qDebug() << "Managed to load database" << db->getPath() << " (" << db->getName() << ")"
-                     << "but it doesn't use DbPlugin that was just loaded, so it will not be loaded to the db manager";
+//        if (!dbPlugin->checkIfDbServedByPlugin(db))
+//        {
+//            qDebug() << "Managed to load database" << db->getPath() << " (" << db->getName() << ")"
+//                     << "but it doesn't use DbPlugin that was just loaded, so it will not be loaded to the db manager";
 
-            delete db;
-            continue;
-        }
+//            delete db;
+//            continue;
+//        }
 
-        removeDbInternal(invalidDb, false);
-        delete invalidDb;
+//        removeDbInternal(invalidDb, false);
+//        delete invalidDb;
 
-        addDbInternal(db, false);
+//        addDbInternal(db, false);
 
-        if (!db->getConnectionOptions().contains(DB_PLUGIN))
-        {
-            db->getConnectionOptions()[DB_PLUGIN] = dbPlugin->getName();
-            if (!CFG->updateDb(db->getName(), db->getName(), db->getPath(), db->getConnectionOptions()))
-                qWarning() << "Could not store handling plugin in options for database" << db->getName();
-        }
+//        if (!db->getConnectionOptions().contains(DB_PLUGIN))
+//        {
+//            db->getConnectionOptions()[DB_PLUGIN] = dbPlugin->getName();
+//            if (!CFG->updateDb(db->getName(), db->getName(), db->getPath(), db->getConnectionOptions()))
+//                qWarning() << "Could not store handling plugin in options for database" << db->getName();
+//        }
 
-        if (CFG->getDbGroup(db->getName())->open)
-            db->open();
+//        if (CFG->getDbGroup(db->getName())->open)
+//            db->open();
 
-        emit dbLoaded(db);
-    }
+//        emit dbLoaded(db);
+//    }
 }

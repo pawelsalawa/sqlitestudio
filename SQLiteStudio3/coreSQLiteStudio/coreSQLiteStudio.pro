@@ -217,7 +217,10 @@ SOURCES += sqlitestudio.cpp \
     rsa/PrimeGenerator.cpp \
     rsa/RSA.cpp \
     translations.cpp \
-    common/signalwait.cpp
+    common/signalwait.cpp \
+    common/blockingsocket.cpp \
+    common/threadwitheventloop.cpp \
+    common/private/blockingsocketprivate.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -405,7 +408,10 @@ HEADERS += sqlitestudio.h\
     rsa/PrimeGenerator.h \
     rsa/RSA.h \
     translations.h \
-    common/signalwait.h
+    common/signalwait.h \
+    common/blockingsocket.h \
+    common/threadwitheventloop.h \
+    common/private/blockingsocketprivate.h
 
 unix: {
     target.path = $$LIBDIR

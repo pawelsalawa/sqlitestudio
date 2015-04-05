@@ -178,6 +178,7 @@ class API_EXPORT DbManagerImpl : public DbManager
     public slots:
         void notifyDatabasesAreLoaded();
         void scanForNewDatabasesInConfig();
+        void rescanInvalidDatabasesForPlugin(DbPlugin* dbPlugin);
 };
 
 #endif // DBMANAGERIMPL_H

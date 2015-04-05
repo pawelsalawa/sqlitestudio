@@ -189,6 +189,8 @@ class API_EXPORT DbManager : public QObject
          */
         virtual void notifyDatabasesAreLoaded() = 0;
 
+        virtual void rescanInvalidDatabasesForPlugin(DbPlugin* dbPlugin) = 0;
+
     signals:
         /**
          * @brief Application just connected to the database.
