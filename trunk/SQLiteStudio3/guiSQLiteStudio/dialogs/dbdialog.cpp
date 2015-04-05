@@ -605,7 +605,12 @@ void DbDialog::browseClicked()
 {
     if (customBrowseHandler)
     {
-        customBrowseHandler(ui->fileEdit->text());
+        QString newUrl = customBrowseHandler(ui->fileEdit->text());
+        if (!newUrl.isNull())
+        {
+            ui->fileEdit->setText(newUrl);
+            updateState();
+        }
         return;
     }
 
