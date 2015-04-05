@@ -1028,7 +1028,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="501"/>
         <source>Execute only the query under the cursor</source>
-        <translation type="unfinished"></translation>
+        <translation>Vykonať len dotaz, na ktorom stojí kurzor</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="514"/>
@@ -3325,7 +3325,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="454"/>
         <source>Cannot create unique index, because values in selected columns are not unique. Would you like to execute SELECT query to see problematic values?</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemôžem vytvoriť jedinečný index, pretože hodnoty vo vybraných stĺpcoch nie sú jedinečné. Chcete spustiť dotaz SELECT na zobrazenie problematických hodnôt?</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="466"/>

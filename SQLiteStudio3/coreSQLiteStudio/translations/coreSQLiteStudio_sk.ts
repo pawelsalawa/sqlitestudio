@@ -7,7 +7,7 @@
         <location filename="../db/abstractdb.cpp" line="306"/>
         <location filename="../db/abstractdb.cpp" line="323"/>
         <source>Cannot execute query on closed database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemôžem spustiť dotaz na uzatvorenej databáze.</translation>
     </message>
     <message>
         <location filename="../db/abstractdb.cpp" line="603"/>
@@ -466,22 +466,22 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
         <location filename="../services/impl/pluginmanagerimpl.cpp" line="541"/>
         <source>Cannot load plugin %1, because it&apos;s in conflict with plugin %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemôžem načítať plugin %1, pretože je v konflikte s pluginom %2.</translation>
     </message>
     <message>
         <location filename="../services/impl/pluginmanagerimpl.cpp" line="552"/>
         <source>Cannot load plugin %1, because its dependency was not loaded: %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemôžem načítať plugin %1, pretože neboli načítané jeho závislosti %2.</translation>
     </message>
     <message>
         <location filename="../services/impl/pluginmanagerimpl.cpp" line="561"/>
         <source>Cannot load plugin %1. Error details: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemôžem načítať plugin %1. Detaily chyby %2</translation>
     </message>
     <message>
         <location filename="../services/impl/pluginmanagerimpl.cpp" line="577"/>
         <source>Cannot load plugin %1 (error while initializing plugin).</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemôžem načítať plugin %1 (nastala chyba pri jeho inicializácii).</translation>
     </message>
     <message>
         <location filename="../services/impl/pluginmanagerimpl.cpp" line="730"/>
