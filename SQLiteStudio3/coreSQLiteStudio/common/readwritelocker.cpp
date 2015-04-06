@@ -1,8 +1,10 @@
 #include "readwritelocker.h"
 #include "parser/lexer.h"
+#include "common/utils_sql.h"
 #include <QReadWriteLock>
 #include <QReadLocker>
 #include <QWriteLocker>
+#include <QDebug>
 
 ReadWriteLocker::ReadWriteLocker(QReadWriteLock* lock, Mode mode)
 {
@@ -47,57 +49,18 @@ void ReadWriteLocker::init(QReadWriteLock* lock, ReadWriteLocker::Mode mode)
 
 ReadWriteLocker::Mode ReadWriteLocker::getMode(const QString &query, Dialect dialect, bool noLock)
 {
-    static QStringList readOnlyCommands = {"ANALYZE", "EXPLAIN", "PRAGMA"};
-
     if (noLock)
         return ReadWriteLocker::NONE;
 
-    TokenList tokens = Lexer::tokenize(query, dialect);
-    int keywordIdx = tokens.indexOf(Token::KEYWORD);
-
-    if (keywordIdx > -1 && readOnlyCommands.contains(tokens[keywordIdx]->value.toUpper()))
-        return ReadWriteLocker::READ;
-
-    if (keywordIdx > -1 && tokens[keywordIdx]->value.toUpper() == "WITH")
+    QueryAccessMode queryMode = getQueryAccessMode(query, dialect);
+    switch (queryMode)
     {
-        bool matched = false;
-        bool isSelect = false;
-        int depth = 0;
-        for (TokenPtr token : tokens)
-        {
-            switch (token->type)
-            {
-                case Token::PAR_LEFT:
-                    depth++;
-                    break;
-                case Token::PAR_RIGHT:
-                    depth--;
-                    break;
-                case Token::KEYWORD:
-                    if (depth == 0)
-                    {
-                        QString val = token->value.toUpper();
-                        if (val == "SELECT")
-                        {
-                            matched = true;
-                            isSelect = true;
-                        }
-                        else if (val == "DELETE" || val == "UPDATE" || val == "INSERT")
-                        {
-                            matched = true;
-                        }
-                    }
-                    break;
-                default:
-                    break;
-            }
-
-            if (matched)
-                break;
-        }
-        if (isSelect)
+        case QueryAccessMode::READ:
             return ReadWriteLocker::READ;
+        case QueryAccessMode::WRITE:
+            return ReadWriteLocker::WRITE;
     }
 
-    return ReadWriteLocker::WRITE;
+    qCritical() << "Unhandled query access mode:" << static_cast<int>(queryMode);
+    return ReadWriteLocker::NONE;
 }

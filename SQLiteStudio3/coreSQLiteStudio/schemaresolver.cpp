@@ -14,6 +14,8 @@ const char* sqliteMasterDdl =
 const char* sqliteTempMasterDdl =
     "CREATE TABLE sqlite_temp_master (type text, name text, tbl_name text, rootpage integer, sql text)";
 
+ExpiringCache<SchemaResolver::ObjectCacheKey,QVariant> SchemaResolver::cache;
+
 SchemaResolver::SchemaResolver(Db *db)
     : db(db)
 {
@@ -286,12 +288,19 @@ QString SchemaResolver::getObjectDdl(const QString &database, const QString &nam
     // Prepare db prefix.
     QString dbName = getPrefixDb(database, dialect);
 
+    // Cache
+    QString typeStr = objectTypeToString(type);
+    bool useCache = usesCache();
+    ObjectCacheKey key(ObjectCacheKey::OBJECT_DDL, db, dbName, lowerName, typeStr);
+    if (useCache && cache.contains(key))
+        return cache.object(key, true)->toString();
+
     // Get the DDL
     QVariant results;
     if (type != ANY)
     {
         results = db->exec(QString(
-                    "SELECT sql FROM %1.sqlite_master WHERE lower(name) = '%2' AND type = '%3';").arg(dbName, escapeString(lowerName), objectTypeToString(type)),
+                    "SELECT sql FROM %1.sqlite_master WHERE lower(name) = '%2' AND type = '%3';").arg(dbName, escapeString(lowerName), typeStr),
                     dbFlags
                 )->getSingleCell();
     }
@@ -316,6 +325,9 @@ QString SchemaResolver::getObjectDdl(const QString &database, const QString &nam
     // If the DDL doesn't have semicolon at the end (usually the case), add it.
     if (!resStr.trimmed().endsWith(";"))
         resStr += ";";
+
+    if (useCache)
+        cache.insert(key, new QVariant(resStr));
 
     // Return the DDL
     return resStr;
@@ -417,6 +429,11 @@ QStringList SchemaResolver::getObjects(const QString &type)
 
 QStringList SchemaResolver::getObjects(const QString &database, const QString &type)
 {
+    bool useCache = usesCache();
+    ObjectCacheKey key(ObjectCacheKey::OBJECT_NAMES, db, database, type);
+    if (useCache && cache.contains(key))
+        return cache.object(key, true)->toStringList();
+
     QStringList resList;
     QString dbName = getPrefixDb(database, db->getDialect());
 
@@ -430,6 +447,9 @@ QStringList SchemaResolver::getObjects(const QString &database, const QString &t
             resList << value;
     }
 
+    if (useCache)
+        cache.insert(key, new QVariant(resList));
+
     return resList;
 }
 
@@ -440,6 +460,11 @@ QStringList SchemaResolver::getAllObjects()
 
 QStringList SchemaResolver::getAllObjects(const QString& database)
 {
+    bool useCache = usesCache();
+    ObjectCacheKey key(ObjectCacheKey::OBJECT_NAMES, db, database);
+    if (useCache && cache.contains(key))
+        return cache.object(key, true)->toStringList();
+
     QStringList resList;
     QString dbName = getPrefixDb(database, db->getDialect());
 
@@ -454,6 +479,9 @@ QStringList SchemaResolver::getAllObjects(const QString& database)
         if (!isFilteredOut(value, type))
             resList << value;
     }
+
+    if (useCache)
+        cache.insert(key, new QVariant(resList));
 
     return resList;
 }
@@ -605,25 +633,42 @@ StrHash<SchemaResolver::ObjectDetails> SchemaResolver::getAllObjectDetails(const
     ObjectDetails detail;
     QString type;
 
-    SqlQueryPtr results = db->exec(QString("SELECT name, type, sql FROM %1.sqlite_master").arg(getPrefixDb(database, db->getDialect())), dbFlags);
-    if (results->isError())
+    QList<QVariant> rows;
+    bool useCache = usesCache();
+    ObjectCacheKey key(ObjectCacheKey::OBJECT_DETAILS, db, database);
+    if (useCache && cache.contains(key))
     {
-        qCritical() << "Error while getting all object details in SchemaResolver:" << results->getErrorCode();
-        return details;
+        rows = cache.object(key, true)->toList();
+    }
+    else
+    {
+        SqlQueryPtr results = db->exec(QString("SELECT name, type, sql FROM %1.sqlite_master").arg(getPrefixDb(database, db->getDialect())), dbFlags);
+        if (results->isError())
+        {
+            qCritical() << "Error while getting all object details in SchemaResolver:" << results->getErrorCode();
+            return details;
+        }
+
+        for (const SqlResultsRowPtr& row : results->getAll())
+            rows << row->valueMap();
+
+        if (useCache)
+            cache.insert(key, new QVariant(rows));
     }
 
-    SqlResultsRowPtr row;
-    while (results->hasNext())
+    QHash<QString, QVariant> row;
+    for (const QVariant& rowVariant : rows)
     {
-        row = results->next();
-        type = row->value("type").toString();
+        row = rowVariant.toHash();
+        type = row["type"].toString();
         detail.type = stringToObjectType(type);
         if (detail.type == ANY)
             qCritical() << "Unhlandled db object type:" << type;
 
-        detail.ddl = row->value("sql").toString();
-        details[row->value("name").toString()] = detail;
+        detail.ddl = row["sql"].toString();
+        details[row["name"].toString()] = detail;
     }
+
     return details;
 }
 
@@ -745,6 +790,16 @@ SchemaResolver::ObjectType SchemaResolver::stringToObjectType(const QString& typ
         return SchemaResolver::VIEW;
     else
         return SchemaResolver::ANY;
+}
+
+void SchemaResolver::staticInit()
+{
+    cache.setExpireTime(3000);
+}
+
+bool SchemaResolver::usesCache()
+{
+    return db->getConnectionOptions().contains(USE_SCHEMA_CACHING) && db->getConnectionOptions()[USE_SCHEMA_CACHING].toBool();
 }
 
 QList<SqliteCreateViewPtr> SchemaResolver::getParsedViewsForTable(const QString& database, const QString& table)
@@ -909,3 +964,18 @@ void SchemaResolver::setNoDbLocking(bool value)
         dbFlags ^= Db::Flag::NO_LOCK;
 }
 
+
+SchemaResolver::ObjectCacheKey::ObjectCacheKey(Type type, Db* db, const QString& value1, const QString& value2, const QString& value3) :
+    type(type), db(db), value1(value1), value2(value2), value3(value3)
+{
+}
+
+int qHash(const SchemaResolver::ObjectCacheKey& key)
+{
+    return qHash(key.type) ^ qHash(key.db) ^ qHash(key.value1) ^ qHash(key.value2) ^ qHash(key.value3);
+}
+
+int operator==(const SchemaResolver::ObjectCacheKey& k1, const SchemaResolver::ObjectCacheKey& k2)
+{
+    return (k1.type == k2.type && k1.db == k2.db && k1.value1 == k2.value1 && k1.value2 == k2.value2 && k1.value3 == k2.value3);
+}

@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QAbstractSocket>
+#include <QMutex>
 
 class BlockingSocketPrivate;
 class ThreadWithEventLoop;
@@ -28,6 +29,7 @@ class BlockingSocket : public QObject
     private:
         ThreadWithEventLoop* socketThread = nullptr;
         BlockingSocketPrivate* socket = nullptr;
+        QMutex socketOperationMutex;
 
     signals:
         void callForConnect(const QString& host, int port, bool& result);
@@ -35,6 +37,7 @@ class BlockingSocket : public QObject
         void callForIsConnected(bool& connected);
         void callForSend(const QByteArray& bytes, bool& result);
         void callForRead(qint64 count, int timeout, QByteArray& resultBytes, bool& result);
+        void disconnected();
 };
 
 #endif // THREADEDSOCKET_H

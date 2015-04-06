@@ -14,6 +14,7 @@
 #include "db/sqlquery.h"
 #include "db/db.h"
 #include "common/strhash.h"
+#include "common/expiringcache.h"
 #include <QStringList>
 
 class SqliteCreateTable;
@@ -36,6 +37,24 @@ class API_EXPORT SchemaResolver
         {
             ObjectType type;
             QString ddl;
+        };
+
+        struct ObjectCacheKey
+        {
+            enum Type
+            {
+                OBJECT_NAMES,
+                OBJECT_DETAILS,
+                OBJECT_DDL
+            };
+
+            ObjectCacheKey(Type type, Db* db, const QString& value1 = QString(), const QString& value2 = QString(), const QString& value3 = QString());
+
+            Type type;
+            Db* db;
+            QString value1;
+            QString value2;
+            QString value3;
         };
 
         explicit SchemaResolver(Db* db);
@@ -164,8 +183,12 @@ class API_EXPORT SchemaResolver
 
         static QString objectTypeToString(ObjectType type);
         static ObjectType stringToObjectType(const QString& type);
+        static void staticInit();
+
+        static_char* USE_SCHEMA_CACHING = "useSchemaCaching";
 
     private:
+        bool usesCache();
         SqliteQueryPtr getParsedDdl(const QString& ddl);
         SqliteCreateTablePtr virtualTableAsRegularTable(const QString& database, const QString& table);
         StrHash< QStringList> getGroupedObjects(const QString &database, const QStringList& inputList, SqliteQueryType type);
@@ -180,7 +203,12 @@ class API_EXPORT SchemaResolver
         Parser* parser = nullptr;
         bool ignoreSystemObjects = false;
         Db::Flags dbFlags;
+
+        static ExpiringCache<ObjectCacheKey,QVariant> cache;
 };
+
+int qHash(const SchemaResolver::ObjectCacheKey& key);
+int operator==(const SchemaResolver::ObjectCacheKey& k1, const SchemaResolver::ObjectCacheKey& k2);
 
 template <class T>
 StrHash<QSharedPointer<T>> SchemaResolver::getAllParsedObjectsForType(const QString& database, const QString& type)

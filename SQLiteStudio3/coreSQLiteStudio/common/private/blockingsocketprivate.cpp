@@ -7,6 +7,7 @@
 BlockingSocketPrivate::BlockingSocketPrivate()
 {
     socket = new QTcpSocket(this);
+    connect(socket, SIGNAL(disconnected()), this, SIGNAL(disconnected()));
 }
 
 BlockingSocketPrivate::~BlockingSocketPrivate()
@@ -17,6 +18,11 @@ void BlockingSocketPrivate::setError(QAbstractSocket::SocketError errorCode, con
 {
     this->errorCode = errorCode;
     this->errorText = errMsg;
+}
+
+bool BlockingSocketPrivate::isConnected()
+{
+    return (socket->isOpen() && socket->state() == QAbstractSocket::ConnectedState);
 }
 
 QAbstractSocket::SocketError BlockingSocketPrivate::getErrorCode()
@@ -60,9 +66,9 @@ void BlockingSocketPrivate::handleReadCall(qint64 count, int timeout, QByteArray
 
     while (resultBytes.size() < count && timer.isActive())
     {
-        if (socket->state() != QAbstractSocket::ConnectedState)
+        if (!isConnected())
         {
-            socket->readAll();
+            qWarning() << "Blocking socket closed in the middle of reading.";
             result = false;
             setError(socket->error(), socket->errorString());
             return;
@@ -84,6 +90,9 @@ void BlockingSocketPrivate::handleReadCall(qint64 count, int timeout, QByteArray
 void BlockingSocketPrivate::handleConnectCall(const QString& host, int port, bool& result)
 {
     result = true;
+    if (isConnected())
+        return;
+
     socket->connectToHost(host, port);
     if (!socket->waitForConnected())
     {
@@ -94,11 +103,15 @@ void BlockingSocketPrivate::handleConnectCall(const QString& host, int port, boo
 
 void BlockingSocketPrivate::handleDisconnectCall()
 {
-    socket->disconnectFromHost();
-    socket->waitForDisconnected();
+    if (!isConnected())
+        return;
+
+    socket->abort();
+    socket->close();
+
 }
 
 void BlockingSocketPrivate::handleIsConnectedCall(bool& connected)
 {
-    connected = (socket->isOpen() && socket->state() == QAbstractSocket::ConnectedState);
+    connected = isConnected();
 }

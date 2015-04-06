@@ -19,6 +19,12 @@ enum class NameWrapper
     null
 };
 
+enum class QueryAccessMode
+{
+    READ,
+    WRITE
+};
+
 typedef QPair<QString,QStringList> QueryWithParamNames;
 typedef QPair<QString,int> QueryWithParamCount;
 
@@ -66,6 +72,7 @@ API_EXPORT QueryWithParamCount getQueryWithParamCount(const QString& query, Dial
 API_EXPORT QString trimBindParamPrefix(const QString& param);
 API_EXPORT QString commentAllSqlLines(const QString& sql);
 API_EXPORT QString getBindTokenName(const TokenPtr& token);
+API_EXPORT QueryAccessMode getQueryAccessMode(const QString& query, Dialect dialect);
 
 
 #endif // UTILS_SQL_H
