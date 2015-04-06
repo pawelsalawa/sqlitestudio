@@ -203,7 +203,9 @@ void WidgetCover::displayProgress(int maxValue, const QString& format)
         return;
 
     busyBar->setRange(0, maxValue);
-    busyBar->setFormat(format);
+    if (!format.isNull())
+        busyBar->setFormat(format);
+
     busyBar->setTextVisible(true);
 }
 
@@ -214,6 +216,16 @@ void WidgetCover::noDisplayProgress()
 
     busyBar->setRange(0, 0);
     busyBar->setTextVisible(true);
+}
+
+void WidgetCover::initWithProgressBarOnly(const QString& format)
+{
+    busyBar = new QProgressBar();
+    busyBar->setRange(0, 100);
+    busyBar->setFormat(format);
+    busyBar->setTextVisible(true);
+
+    containerLayout->addWidget(busyBar, 0, 0);
 }
 
 void WidgetCover::initWithInterruptContainer(const QString& interruptButtonText)

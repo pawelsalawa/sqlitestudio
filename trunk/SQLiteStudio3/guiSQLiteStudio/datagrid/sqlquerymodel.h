@@ -351,6 +351,8 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
          */
         QList<bool> columnEditionStatus;
 
+        QList<int> rowsDeletedSuccessfullyInTheCommit;
+
     private slots:
         void handleExecFinished(SqlQueryPtr results);
         void handleExecFailed(int code, QString errorMessage);
@@ -446,6 +448,10 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
          * Emitted after columns header sorting has been changed.
          */
         void sortingUpdated(const QueryExecutor::SortList& sortOrder);
+
+        void aboutToCommit(int totalSteps);
+        void commitingStepFinished(int step);
+        void commitFinished();
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(SqlQueryModel::Features)
