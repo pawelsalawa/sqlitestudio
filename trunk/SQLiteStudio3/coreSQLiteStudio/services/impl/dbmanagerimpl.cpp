@@ -447,7 +447,6 @@ Db* DbManagerImpl::tryToLoadDb(InvalidDb* invalidDb, bool emitNotifySignal)
 Db* DbManagerImpl::createDb(const QString &name, const QString &path, const QHash<QString,QVariant> &options, QString* errorMessages)
 {
     QList<DbPlugin*> dbPlugins = PLUGINS->getLoadedPlugins<DbPlugin>();
-    DbPlugin* dbPlugin = nullptr;
     Db* db = nullptr;
     QStringList messages;
     QString message;
@@ -459,7 +458,7 @@ Db* DbManagerImpl::createDb(const QString &name, const QString &path, const QHas
     else
         normalizedPath = path;
 
-    foreach (dbPlugin, dbPlugins)
+    for (DbPlugin* dbPlugin : dbPlugins)
     {
         if (options.contains("plugin") && options["plugin"] != dbPlugin->getName())
             continue;
@@ -473,6 +472,7 @@ Db* DbManagerImpl::createDb(const QString &name, const QString &path, const QHas
 
         if (!db->initAfterCreated())
         {
+            safe_delete(db);
             messages << tr("Database could not be initialized.");
             continue;
         }
