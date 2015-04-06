@@ -929,10 +929,10 @@ void DbVersionConverter::fullConvertStep2()
     for (DbPlugin* plugin : PLUGINS->getLoadedPlugins<DbPlugin>())
     {
         tmpDb = plugin->getInstance("", ":memory:", QHash<QString,QVariant>());
-        if (tmpDb->initAfterCreated() && tmpDb->getDialect() == fullConversionConfig->to)
+        if (tmpDb && tmpDb->initAfterCreated() && tmpDb->getDialect() == fullConversionConfig->to)
             db = plugin->getInstance(fullConversionConfig->targetName, fullConversionConfig->targetFile, QHash<QString,QVariant>());
 
-        delete tmpDb;
+        safe_delete(tmpDb);
         if (db)
             break;
     }
@@ -1105,7 +1105,7 @@ QList<Db*> DbVersionConverter::getAllPossibleDbInstances() const
     for (DbPlugin* plugin : PLUGINS->getLoadedPlugins<DbPlugin>())
     {
         db = plugin->getInstance("", ":memory:", QHash<QString,QVariant>());
-        if (!db->initAfterCreated())
+        if (!db || !db->initAfterCreated())
             continue;
 
         dbList << db;

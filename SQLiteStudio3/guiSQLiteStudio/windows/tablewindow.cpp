@@ -621,20 +621,20 @@ bool TableWindow::restoreSession(const QVariant& sessionValue)
     QHash<QString, QVariant> value = sessionValue.toHash();
     if (value.size() == 0)
     {
-        notifyWarn("Could not restore window, because no database or table was stored in session for this window.");
+        notifyWarn(tr("Could not restore window %1, because no database or table was stored in session for this window.").arg(value["title"].toString()));
         return false;
     }
 
     if (!value.contains("db") || !value.contains("table"))
     {
-        notifyWarn("Could not restore window, because no database or table was stored in session for this window.");
+        notifyWarn(tr("Could not restore window '%1', because no database or table was stored in session for this window.").arg(value["title"].toString()));
         return false;
     }
 
     db = DBLIST->getByName(value["db"].toString());
     if (!db || !db->isValid() || (!db->isOpen() && !db->open()))
     {
-        notifyWarn(tr("Could not restore window, because database %1 could not be resolved.").arg(value["db"].toString()));
+        notifyWarn(tr("Could not restore window '%1', because database %2 could not be resolved.").arg(value["title"].toString(), value["db"].toString()));
         return false;
     }
 
@@ -643,7 +643,7 @@ bool TableWindow::restoreSession(const QVariant& sessionValue)
     SchemaResolver resolver(db);
     if (!resolver.getTables(database).contains(table, Qt::CaseInsensitive))
     {
-        notifyWarn(tr("Could not restore window, because the table %1 doesn't exist in the database %2.").arg(table).arg(db->getName()));
+        notifyWarn(tr("Could not restore window '%1'', because the table %2 doesn't exist in the database %3.").arg(value["title"].toString(), table, db->getName()));
         return false;
     }
 

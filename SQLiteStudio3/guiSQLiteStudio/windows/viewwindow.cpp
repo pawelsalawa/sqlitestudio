@@ -99,26 +99,26 @@ bool ViewWindow::restoreSession(const QVariant& sessionValue)
     QHash<QString, QVariant> value = sessionValue.toHash();
     if (value.size() == 0)
     {
-        notifyWarn("Could not restore window, because no database or view was stored in session for this window.");
+        notifyWarn(tr("Could not restore window '%1', because no database or view was stored in session for this window.").arg(value["title"].toString()));
         return false;
     }
 
     if (!value.contains("db") || !value.contains("view"))
     {
-        notifyWarn("Could not restore window, because no database or view was stored in session for this window.");
+        notifyWarn(tr("Could not restore window '%1', because no database or view was stored in session for this window.").arg(value["title"].toString()));
         return false;
     }
 
     db = DBLIST->getByName(value["db"].toString());
     if (!db)
     {
-        notifyWarn(tr("Could not restore window, because database %1 could not be resolved.").arg(value["db"].toString()));
+        notifyWarn(tr("Could not restore window '%1', because database %2 could not be resolved.").arg(value["title"].toString(), value["db"].toString()));
         return false;
     }
 
     if (!db->isOpen() && !db->open())
     {
-        notifyWarn(tr("Could not restore window, because database %1 could not be open.").arg(value["db"].toString()));
+        notifyWarn(tr("Could not restore window '%1', because database %2 could not be open.").arg(value["title"].toString(), value["db"].toString()));
         return false;
     }
 
@@ -127,7 +127,7 @@ bool ViewWindow::restoreSession(const QVariant& sessionValue)
     SchemaResolver resolver(db);
     if (!resolver.getViews(database).contains(view, Qt::CaseInsensitive))
     {
-        notifyWarn(tr("Could not restore window, because the view %1 doesn't exist in the database %2.").arg(view).arg(db->getName()));
+        notifyWarn(tr("Could not restore window '%1', because the view %2 doesn't exist in the database %3.").arg(value["title"].toString(), view, db->getName()));
         return false;
     }
 
