@@ -36,6 +36,7 @@ class PopulateWorker : public QObject, public QRunnable
 
     signals:
         void finished(bool result);
+        void finishedStep(int step);
 };
 
 #endif // POPULATEWORKER_H

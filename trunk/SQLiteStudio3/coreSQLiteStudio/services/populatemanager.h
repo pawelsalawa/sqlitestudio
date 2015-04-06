@@ -41,6 +41,7 @@ class API_EXPORT PopulateManager : public PluginServiceBase
         void populatingSuccessful();
         void populatingFailed();
         void orderWorkerToInterrupt();
+        void finishedStep(int step);
 };
 
 #define POPULATE_MANAGER SQLITESTUDIO->getPopulateManager()

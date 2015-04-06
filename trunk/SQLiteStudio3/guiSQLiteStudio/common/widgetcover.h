@@ -22,16 +22,14 @@ class GUI_API_EXPORT WidgetCover : public QWidget
 
         QEasingCurve getEasingCurve() const;
         void setEasingCurve(const QEasingCurve& value);
-
         int getDuration() const;
         void setDuration(int value);
-
         int getTransparency() const;
         void setTransparency(int value);
-
         QGridLayout* getContainerLayout();
         bool eventFilter(QObject* obj, QEvent* e);
-
+        void displayProgress(int maxValue, const QString& format);
+        void noDisplayProgress();
         void initWithInterruptContainer(const QString& interruptButtonText = QString());
 
     private:
@@ -67,6 +65,7 @@ class GUI_API_EXPORT WidgetCover : public QWidget
     public slots:
         void show();
         void hide();
+        void setProgress(int value);
 };
 
 #endif // WIDGETCOVER_H

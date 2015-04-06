@@ -58,6 +58,8 @@ void PopulateWorker::run()
             emit finished(false);
             return;
         }
+
+        emit finishedStep(i + 1);
     }
 
     if (!db->commit())
