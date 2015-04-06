@@ -385,14 +385,19 @@ void SqlQueryModel::commitInternal(const QList<SqlQueryItem*>& items)
 
     // Grouping by row and commiting
     QList<QList<SqlQueryItem*>> groupedItems = groupItemsByRows(items);
+    emit aboutToCommit(groupedItems.size());
+
+    int step = 1;
+    rowsDeletedSuccessfullyInTheCommit.clear();
     bool ok = true;
-    foreach (const QList<SqlQueryItem*>& itemsInRow, groupedItems)
+    for (const QList<SqlQueryItem*>& itemsInRow : groupedItems)
     {
         if (!commitRow(itemsInRow))
         {
             ok = false;
             break;
         }
+        emit commitingStepFinished(step++);
     }
 
     // Getting current uncommited list (after rows deletion it may be different)
@@ -417,15 +422,21 @@ void SqlQueryModel::commitInternal(const QList<SqlQueryItem*>& items)
         else
         {
             // Commited successfully
-            foreach (SqlQueryItem* item, itemsLeft)
+            for (SqlQueryItem* item : itemsLeft)
             {
                 item->setUncommited(false);
                 item->setNewRow(false);
             }
 
+            qSort(rowsDeletedSuccessfullyInTheCommit);
+            int removeOffset = 0;
+            for (int row : rowsDeletedSuccessfullyInTheCommit)
+                removeRow(row - removeOffset++); // deleting row decrements all rows below
+
             emit commitStatusChanged(getUncommitedItems().size() > 0);
         }
     }
+    rowsDeletedSuccessfullyInTheCommit.clear();
 
     if (!ok)
     {
@@ -447,6 +458,8 @@ void SqlQueryModel::commitInternal(const QList<SqlQueryItem*>& items)
     int itemsAddedDeletedDelta = numberOfItemsAdded - numberOfItemsDeleted;
 
     recalculateRowsAndPages(itemsAddedDeletedDelta);
+
+    emit commitFinished();
 }
 
 void SqlQueryModel::rollbackInternal(const QList<SqlQueryItem*>& items)
@@ -604,7 +617,8 @@ bool SqlQueryModel::commitDeletedRow(const QList<SqlQueryItem*>& itemsInRow)
     }
 
     int row = itemsInRow[0]->index().row();
-    return removeRow(row);
+    rowsDeletedSuccessfullyInTheCommit << row;
+    return true;
 }
 
 void SqlQueryModel::rollbackAddedRow(const QList<SqlQueryItem*>& itemsInRow)

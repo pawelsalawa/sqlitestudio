@@ -13,6 +13,7 @@ class FormView;
 class ExtLineEdit;
 class QLabel;
 class IntValidator;
+class WidgetCover;
 
 CFG_KEY_LIST(DataView, QObject::tr("Data view (both grid and form)"),
      CFG_KEY_ENTRY(REFRESH_DATA,    Qt::Key_F5,                   QObject::tr("Refresh data"))
@@ -115,6 +116,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         void initUpdates();
         void initSlots();
         void initPageEdit();
+        void initWidgetCover();
         void createContents();
         void goToFormRow(IndexModifier idxMod);
         void setNavigationState(bool enabled);
@@ -153,6 +155,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         QMutex manualPageChangeMutex;
         bool uncommittedGrid = false;
         bool uncommittedForm = false;
+        WidgetCover* widgetCover = nullptr;
 
     signals:
 
@@ -193,6 +196,9 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         void showFormView();
         void updateTabsMode();
         void filterModeSelected();
+        void coverForGridCommit(int total);
+        void updateGridCommitCover(int value);
+        void hideGridCommitCover();
 };
 
 int qHash(DataView::ActionGroup action);

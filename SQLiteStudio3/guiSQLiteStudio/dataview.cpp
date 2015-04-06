@@ -11,6 +11,7 @@
 #include "iconmanager.h"
 #include "uiconfig.h"
 #include "datagrid/sqlqueryitem.h"
+#include "common/widgetcover.h"
 #include <QDebug>
 #include <QHeaderView>
 #include <QVBoxLayout>
@@ -42,6 +43,7 @@ void DataView::init(SqlQueryModel* model)
     formViewRowCountLabel = new QLabel();
     formViewCurrentRowLabel = new QLabel();
 
+    initWidgetCover();
     initFormView();
     initPageEdit();
     initFilter();
@@ -137,6 +139,15 @@ void DataView::initPageEdit()
     pageEdit->setExpanding(true);
     pageEdit->setExpandingMinWidth(20);
     connect(pageEdit, SIGNAL(editingFinished()), this, SLOT(pageEntered()));
+}
+
+void DataView::initWidgetCover()
+{
+    widgetCover = new WidgetCover(this);
+    widgetCover->initWithProgressBarOnly("%v / %m");
+    connect(model, SIGNAL(aboutToCommit(int)), this, SLOT(coverForGridCommit(int)));
+    connect(model, SIGNAL(commitingStepFinished(int)), this, SLOT(updateGridCommitCover(int)));
+    connect(model, SIGNAL(commitFinished()), this, SLOT(hideGridCommitCover()));
 }
 
 void DataView::createActions()
@@ -436,6 +447,34 @@ void DataView::filterModeSelected()
 {
     QAction* modeAction = dynamic_cast<QAction*>(sender());
     actionMap[FILTER]->setIcon(modeAction->icon());
+}
+
+void DataView::coverForGridCommit(int total)
+{
+    if (total <= 3)
+        return;
+
+    widgetCover->displayProgress(total);
+    widgetCover->show();
+    QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+}
+
+void DataView::updateGridCommitCover(int value)
+{
+    if (!widgetCover->isVisible())
+        return;
+
+    widgetCover->setProgress(value);
+    QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+}
+
+void DataView::hideGridCommitCover()
+{
+    if (!widgetCover->isVisible())
+        return;
+
+    widgetCover->hide();
+    QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 }
 
 void DataView::updateCommitRollbackActions(bool enabled)

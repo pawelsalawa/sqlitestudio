@@ -28,8 +28,9 @@ class GUI_API_EXPORT WidgetCover : public QWidget
         void setTransparency(int value);
         QGridLayout* getContainerLayout();
         bool eventFilter(QObject* obj, QEvent* e);
-        void displayProgress(int maxValue, const QString& format);
+        void displayProgress(int maxValue, const QString& format = QString());
         void noDisplayProgress();
+        void initWithProgressBarOnly(const QString& format);
         void initWithInterruptContainer(const QString& interruptButtonText = QString());
 
     private:
