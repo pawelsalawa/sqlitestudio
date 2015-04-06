@@ -52,6 +52,7 @@ class AbstractDb2 : public AbstractDb
         int getErrorCodeInternal();
         bool openInternal();
         bool closeInternal();
+        bool initAfterCreated();
         void initAfterOpen();
         SqlQueryPtr prepare(const QString& query);
         QString getTypeLabel();
@@ -217,6 +218,13 @@ bool AbstractDb2<T>::closeInternal()
     sqlite_close(dbHandle);
     dbHandle = nullptr;
     return true;
+}
+
+template <class T>
+bool AbstractDb2<T>::initAfterCreated()
+{
+    version = 2;
+    return AbstractDb::initAfterCreated();
 }
 
 template <class T>

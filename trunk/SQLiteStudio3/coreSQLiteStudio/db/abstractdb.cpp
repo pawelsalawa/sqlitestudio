@@ -703,23 +703,6 @@ int AbstractDb::getErrorCode()
 
 bool AbstractDb::initAfterCreated()
 {
-    bool isOpenBefore = isOpen();
-    if (!isOpenBefore)
-    {
-        if (!openForProbing())
-        {
-            qWarning() << "Could not open database for initAfterCreated(). Database:" << name;
-            return false;
-        }
-    }
-
-    // SQLite version
-    QVariant value = exec("SELECT sqlite_version()")->getSingleCell();
-    version = value.toString().mid(0, 1).toUInt();
-
-    if (!isOpenBefore)
-        closeQuiet();
-
     return true;
 }
 

@@ -51,6 +51,7 @@ class AbstractDb3 : public AbstractDb
         int getErrorCodeInternal();
         bool openInternal();
         bool closeInternal();
+        bool initAfterCreated();
         void initAfterOpen();
         SqlQueryPtr prepare(const QString& query);
         QString getTypeLabel();
@@ -380,6 +381,13 @@ bool AbstractDb3<T>::closeInternal()
     }
     dbHandle = nullptr;
     return true;
+}
+
+template <class T>
+bool AbstractDb3<T>::initAfterCreated()
+{
+    version = 3;
+    return AbstractDb::initAfterCreated();
 }
 
 template <class T>
