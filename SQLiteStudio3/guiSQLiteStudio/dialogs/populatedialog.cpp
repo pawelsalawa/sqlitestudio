@@ -51,6 +51,7 @@ void PopulateDialog::init()
         pluginTitles << plugin->getTitle();
 
     widgetCover = new WidgetCover(this);
+    widgetCover->initWithInterruptContainer();
     widgetCover->setVisible(false);
 
     ui->scrollArea->setAutoFillBackground(false);
@@ -71,6 +72,7 @@ void PopulateDialog::init()
     connect(ui->databaseCombo, SIGNAL(currentTextChanged(QString)), this, SLOT(refreshTables()));
     connect(ui->tableCombo, SIGNAL(currentTextChanged(QString)), this, SLOT(refreshColumns()));
     connect(POPULATE_MANAGER, SIGNAL(populatingFinished()), widgetCover, SLOT(hide()));
+    connect(POPULATE_MANAGER, SIGNAL(finishedStep(int)), widgetCover, SLOT(setProgress(int)));
     connect(POPULATE_MANAGER, SIGNAL(populatingSuccessful()), this, SLOT(finished()));
 }
 
@@ -317,6 +319,7 @@ void PopulateDialog::accept()
     QString table = ui->tableCombo->currentText();
     qint64 rows = ui->rowsSpin->value();
 
+    widgetCover->displayProgress(rows, "%v / %m");
     widgetCover->show();
     POPULATE_MANAGER->populate(db, table, engines, rows);
 }

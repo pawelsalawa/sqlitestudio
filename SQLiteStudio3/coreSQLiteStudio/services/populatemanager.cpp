@@ -55,6 +55,7 @@ void PopulateManager::populate(Db* db, const QString& table, const QHash<QString
 
     PopulateWorker* worker = new PopulateWorker(db, table, columns, engineList, rows);
     connect(worker, SIGNAL(finished(bool)), this, SLOT(finalizePopulating(bool)));
+    connect(worker, SIGNAL(finishedStep(int)), this, SIGNAL(finishedStep(int)));
     connect(this, SIGNAL(orderWorkerToInterrupt()), worker, SLOT(interrupt()));
 
     QThreadPool::globalInstance()->start(worker);

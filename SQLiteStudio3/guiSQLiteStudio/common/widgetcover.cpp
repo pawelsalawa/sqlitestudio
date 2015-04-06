@@ -140,6 +140,11 @@ void WidgetCover::hide()
     animation->start();
 }
 
+void WidgetCover::setProgress(int value)
+{
+    busyBar->setValue(value);
+}
+
 QEasingCurve WidgetCover::getEasingCurve() const
 {
     return easingCurve;
@@ -190,6 +195,25 @@ bool WidgetCover::eventFilter(QObject* obj, QEvent* e)
         widgetResized();
 
     return false;
+}
+
+void WidgetCover::displayProgress(int maxValue, const QString& format)
+{
+    if (!busyBar)
+        return;
+
+    busyBar->setRange(0, maxValue);
+    busyBar->setFormat(format);
+    busyBar->setTextVisible(true);
+}
+
+void WidgetCover::noDisplayProgress()
+{
+    if (!busyBar)
+        return;
+
+    busyBar->setRange(0, 0);
+    busyBar->setTextVisible(true);
 }
 
 void WidgetCover::initWithInterruptContainer(const QString& interruptButtonText)
