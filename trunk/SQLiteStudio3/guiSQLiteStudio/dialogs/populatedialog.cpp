@@ -51,8 +51,9 @@ void PopulateDialog::init()
         pluginTitles << plugin->getTitle();
 
     widgetCover = new WidgetCover(this);
-    widgetCover->initWithInterruptContainer();
+    widgetCover->initWithInterruptContainer(tr("Abort"));
     widgetCover->setVisible(false);
+    connect(widgetCover, SIGNAL(cancelClicked()), POPULATE_MANAGER, SLOT(interrupt()));
 
     ui->scrollArea->setAutoFillBackground(false);
     ui->scrollArea->viewport()->setAutoFillBackground(false);
@@ -319,9 +320,18 @@ void PopulateDialog::accept()
     QString table = ui->tableCombo->currentText();
     qint64 rows = ui->rowsSpin->value();
 
+    started = true;
     widgetCover->displayProgress(rows, "%v / %m");
     widgetCover->show();
     POPULATE_MANAGER->populate(db, table, engines, rows);
+}
+
+void PopulateDialog::reject()
+{
+    if (started)
+        POPULATE_MANAGER->interrupt();
+
+    QDialog::reject();
 }
 
 PopulateDialog::ColumnEntry::ColumnEntry(QCheckBox* check, QComboBox* combo, QToolButton* button) :

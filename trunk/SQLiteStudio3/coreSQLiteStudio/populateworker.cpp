@@ -46,6 +46,13 @@ void PopulateWorker::run()
         if (i == 0 && !beforePopulating())
             return;
 
+        if (isInterrupted())
+        {
+            db->rollback();
+            emit finished(false);
+            return;
+        }
+
         args.clear();
         for (PopulateEngine* engine : engines)
             args << engine->nextValue(nextValueError);

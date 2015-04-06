@@ -1,3 +1,7 @@
+[3.0.5]
+        * [CHANGE]: Data view has now a 'cover' with progress bar when commiting more changes at once. This eliminates weird GUI freeze when commiting lots of new/deleted rows.
+        * [CHANGE]: Populate dialog has now progress bar when working.
+
 [3.0.4]
         * [ADDED]: Import dialog has now "Ignore errors" option, to skip rows that causes problems (constraint violation, wrong column count, etc).
         * [CHANGE]: Enhanced Copy&Paste capabilities of data grid, so copying and pasting internally in SQLiteStudio will not be limited by TSV format (NULL values will be distinguished, tab characters will be allowed in values), only pasting from outside will be affected by TSV limitations.

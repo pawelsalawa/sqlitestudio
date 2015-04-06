@@ -58,6 +58,7 @@ class GUI_API_EXPORT PopulateDialog : public QDialog
         QSignalMapper* buttonMapper = nullptr;
         QHash<int,bool> columnsValid;
         WidgetCover* widgetCover = nullptr;
+        bool started = false;
 
     private slots:
         void refreshTables();
@@ -71,6 +72,7 @@ class GUI_API_EXPORT PopulateDialog : public QDialog
 
     public:
         void accept();
+        void reject();
 };
 
 #endif // POPULATEDIALOG_H
