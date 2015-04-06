@@ -2,6 +2,7 @@
 #include "common/global.h"
 #include "common/threadwitheventloop.h"
 #include "common/private/blockingsocketprivate.h"
+#include <QMutexLocker>
 
 BlockingSocket::BlockingSocket(QObject* parent) :
     QObject(parent)
@@ -17,27 +18,32 @@ BlockingSocket::BlockingSocket(QObject* parent) :
     connect(this, SIGNAL(callForConnect(QString,int,bool&)), socket, SLOT(handleConnectCall(QString,int,bool&)), Qt::BlockingQueuedConnection);
     connect(this, SIGNAL(callForDisconnect()), socket, SLOT(handleDisconnectCall()), Qt::BlockingQueuedConnection);
     connect(this, SIGNAL(callForIsConnected(bool&)), socket, SLOT(handleIsConnectedCall(bool&)), Qt::BlockingQueuedConnection);
+    connect(socket, SIGNAL(disconnected()), this, SIGNAL(disconnected()));
 
     socketThread->start();
 }
 
 BlockingSocket::~BlockingSocket()
 {
+    QMutexLocker lock(&socketOperationMutex);
     socketThread->quit();
 }
 
 QAbstractSocket::SocketError BlockingSocket::getErrorCode()
 {
+    QMutexLocker lock(&socketOperationMutex);
     return socket->getErrorCode();
 }
 
 QString BlockingSocket::getErrorText()
 {
+    QMutexLocker lock(&socketOperationMutex);
     return socket->getErrorText();
 }
 
 bool BlockingSocket::connectToHost(const QString& host, int port)
 {
+    QMutexLocker lock(&socketOperationMutex);
     bool res = false;
     emit callForConnect(host, port, res);
     return res;
@@ -45,11 +51,13 @@ bool BlockingSocket::connectToHost(const QString& host, int port)
 
 void BlockingSocket::disconnectFromHost()
 {
+    QMutexLocker lock(&socketOperationMutex);
     emit callForDisconnect();
 }
 
 bool BlockingSocket::isConnected()
 {
+    QMutexLocker lock(&socketOperationMutex);
     bool res = false;
     emit callForIsConnected(res);
     return res;
@@ -57,6 +65,7 @@ bool BlockingSocket::isConnected()
 
 bool BlockingSocket::send(const QByteArray& bytes)
 {
+    QMutexLocker lock(&socketOperationMutex);
     bool res = false;
     emit callForSend(bytes, res);
     return res;
@@ -64,6 +73,7 @@ bool BlockingSocket::send(const QByteArray& bytes)
 
 QByteArray BlockingSocket::read(qint64 count, int timeout, bool* ok)
 {
+    QMutexLocker lock(&socketOperationMutex);
     bool res = false;
     QByteArray bytes;
     emit callForRead(count, timeout, bytes, res);
@@ -75,10 +85,12 @@ QByteArray BlockingSocket::read(qint64 count, int timeout, bool* ok)
 
 void BlockingSocket::quit()
 {
+    QMutexLocker lock(&socketOperationMutex);
     socketThread->quit();
 }
 
 void BlockingSocket::exit()
 {
+    QMutexLocker lock(&socketOperationMutex);
     socketThread->quit();
 }

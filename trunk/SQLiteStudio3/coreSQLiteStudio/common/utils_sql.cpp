@@ -550,3 +550,57 @@ QString getBindTokenName(const TokenPtr& token)
 
     return token->value.mid(1);
 }
+
+QueryAccessMode getQueryAccessMode(const QString& query, Dialect dialect)
+{
+    static QStringList readOnlyCommands = {"ANALYZE", "EXPLAIN", "PRAGMA", "SELECT"};
+
+    TokenList tokens = Lexer::tokenize(query, dialect);
+    int keywordIdx = tokens.indexOf(Token::KEYWORD);
+
+    if (keywordIdx > -1 && readOnlyCommands.contains(tokens[keywordIdx]->value.toUpper()))
+        return QueryAccessMode::READ;
+
+    if (keywordIdx > -1 && tokens[keywordIdx]->value.toUpper() == "WITH")
+    {
+        bool matched = false;
+        bool isSelect = false;
+        int depth = 0;
+        for (TokenPtr token : tokens)
+        {
+            switch (token->type)
+            {
+                case Token::PAR_LEFT:
+                    depth++;
+                    break;
+                case Token::PAR_RIGHT:
+                    depth--;
+                    break;
+                case Token::KEYWORD:
+                    if (depth == 0)
+                    {
+                        QString val = token->value.toUpper();
+                        if (val == "SELECT")
+                        {
+                            matched = true;
+                            isSelect = true;
+                        }
+                        else if (val == "DELETE" || val == "UPDATE" || val == "INSERT")
+                        {
+                            matched = true;
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            if (matched)
+                break;
+        }
+        if (isSelect)
+            return QueryAccessMode::READ;
+    }
+
+    return QueryAccessMode::WRITE;
+}

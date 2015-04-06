@@ -411,7 +411,8 @@ HEADERS += sqlitestudio.h\
     common/signalwait.h \
     common/blockingsocket.h \
     common/threadwitheventloop.h \
-    common/private/blockingsocketprivate.h
+    common/private/blockingsocketprivate.h \
+    common/expiringcache.h
 
 unix: {
     target.path = $$LIBDIR

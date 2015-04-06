@@ -266,6 +266,7 @@ void SQLiteStudio::init(const QStringList& cmdListArguments, bool guiAvailable)
     CfgMain::staticInit();
     Db::metaInit();
     initUtilsSql();
+    SchemaResolver::staticInit();
     initKeywords();
     Lexer::staticInit();
     CompletionHelper::init();
