@@ -401,8 +401,12 @@ QString DbTreeModel::getDbToolTip(DbTreeItem* item) const
     QStringList rows;
 
     Db* db = item->getDb();
-    QFile dbFile(db->getPath());
     QString iconPath = db->isValid() ? ICONS.DATABASE.toImgSrc() : ICONS.DATABASE_INVALID.toImgSrc();
+    int fileSize = -1;
+
+    QUrl url(db->getPath());
+    if (url.scheme().isEmpty() || url.scheme() == "file")
+        fileSize = QFile(db->getPath()).size();
 
     rows << toolTipHdrRowTmp.arg(iconPath).arg(tr("Database: %1", "dbtree tooltip").arg(db->getName()));
     rows << toolTipRowTmp.arg("URI:").arg(db->getPath());
@@ -410,8 +414,12 @@ QString DbTreeModel::getDbToolTip(DbTreeItem* item) const
     if (db->isValid())
     {
         rows << toolTipRowTmp.arg(tr("Version:", "dbtree tooltip")).arg(QString("SQLite %1").arg(db->getVersion()));
-        rows << toolTipRowTmp.arg(tr("File size:", "dbtree tooltip")).arg(formatFileSize(dbFile.size()));
-        rows << toolTipRowTmp.arg(tr("Encoding:", "dbtree tooltip")).arg(db->getEncoding());
+
+        if (fileSize > -1)
+            rows << toolTipRowTmp.arg(tr("File size:", "dbtree tooltip")).arg(formatFileSize(fileSize));
+
+        if (db->isOpen())
+            rows << toolTipRowTmp.arg(tr("Encoding:", "dbtree tooltip")).arg(db->getEncoding());
     }
     else
     {
