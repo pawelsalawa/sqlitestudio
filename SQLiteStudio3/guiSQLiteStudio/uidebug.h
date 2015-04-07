@@ -20,6 +20,8 @@ class GUI_API_EXPORT MsgHandlerThreadProxy : public QObject
         void init();
         void initFile(const QString& fileName);
 
+        static QStringList ignoredWarnings;
+
         QFile* outFile = nullptr;
         QTextStream outFileStream;
 
