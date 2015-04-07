@@ -12,6 +12,8 @@ bool UI_DEBUG_ENABLED = false;
 bool UI_DEBUG_CONSOLE = true;
 QString UI_DEBUG_FILE;
 
+QStringList MsgHandlerThreadProxy::ignoredWarnings;
+
 void uiMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
     if (!UI_DEBUG_ENABLED)
@@ -100,6 +102,9 @@ MsgHandlerThreadProxy::~MsgHandlerThreadProxy()
 
 void MsgHandlerThreadProxy::init()
 {
+    ignoredWarnings << QStringLiteral("libpng warning: Unknown iTXt compression type or method");
+    ignoredWarnings << QStringLiteral("QPainter::font: Painter not active");
+
     if (sqliteStudioUiDebugConsole)
     {
         connect(this, SIGNAL(debugRequested(QString)), sqliteStudioUiDebugConsole, SLOT(debug(QString)));
@@ -139,6 +144,9 @@ void MsgHandlerThreadProxy::debug(const QString &msg)
 
 void MsgHandlerThreadProxy::warn(const QString &msg)
 {
+    if (ignoredWarnings.contains(msg.mid(25)))
+        return;
+
     emit warnRequested(msg);
 }
 

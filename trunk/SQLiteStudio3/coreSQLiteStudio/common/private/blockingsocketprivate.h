@@ -16,6 +16,7 @@ class BlockingSocketPrivate : public QObject
         QAbstractSocket::SocketError getErrorCode();
 
     private:
+        void createSocketIfNecessary();
         void setError(QAbstractSocket::SocketError errorCode, const QString& errMsg);
         bool isConnected();
 

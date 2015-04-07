@@ -6,8 +6,6 @@
 
 BlockingSocketPrivate::BlockingSocketPrivate()
 {
-    socket = new QTcpSocket(this);
-    connect(socket, SIGNAL(disconnected()), this, SIGNAL(disconnected()));
 }
 
 BlockingSocketPrivate::~BlockingSocketPrivate()
@@ -22,12 +20,23 @@ void BlockingSocketPrivate::setError(QAbstractSocket::SocketError errorCode, con
 
 bool BlockingSocketPrivate::isConnected()
 {
-    return (socket->isOpen() && socket->state() == QAbstractSocket::ConnectedState);
+    return (socket && socket->isOpen() && socket->state() == QAbstractSocket::ConnectedState);
 }
 
 QAbstractSocket::SocketError BlockingSocketPrivate::getErrorCode()
 {
     return errorCode;
+}
+
+void BlockingSocketPrivate::createSocketIfNecessary()
+{
+    // This method is called only when the socket is already called,
+    // so we're sure the socket is created in the target thread.
+    if (socket)
+        return;
+
+    socket = new QTcpSocket(this);
+    connect(socket, SIGNAL(disconnected()), this, SIGNAL(disconnected()));
 }
 
 QString BlockingSocketPrivate::getErrorText()
@@ -37,6 +46,7 @@ QString BlockingSocketPrivate::getErrorText()
 
 void BlockingSocketPrivate::handleSendCall(const QByteArray& bytes, bool& result)
 {
+    createSocketIfNecessary();
     result = true;
     qint64 size = bytes.size();
     qint64 totalBytesSent = 0;
@@ -56,6 +66,7 @@ void BlockingSocketPrivate::handleSendCall(const QByteArray& bytes, bool& result
 
 void BlockingSocketPrivate::handleReadCall(qint64 count, int timeout, QByteArray& resultBytes, bool& result)
 {
+    createSocketIfNecessary();
     resultBytes.clear();
     QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 
@@ -93,6 +104,7 @@ void BlockingSocketPrivate::handleConnectCall(const QString& host, int port, boo
     if (isConnected())
         return;
 
+    createSocketIfNecessary();
     socket->connectToHost(host, port);
     if (!socket->waitForConnected())
     {
@@ -106,6 +118,7 @@ void BlockingSocketPrivate::handleDisconnectCall()
     if (!isConnected())
         return;
 
+    createSocketIfNecessary();
     socket->abort();
     socket->close();
 

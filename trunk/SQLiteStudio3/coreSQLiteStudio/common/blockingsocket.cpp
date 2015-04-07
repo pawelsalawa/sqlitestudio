@@ -26,6 +26,7 @@ BlockingSocket::BlockingSocket(QObject* parent) :
 BlockingSocket::~BlockingSocket()
 {
     QMutexLocker lock(&socketOperationMutex);
+    emit callForDisconnect();
     socketThread->quit();
 }
 

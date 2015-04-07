@@ -466,7 +466,11 @@ bool DbDialog::testDatabase()
     bool res = false;
     if (testDb)
     {
-        res = true;
+        if (testDb->openForProbing())
+        {
+            res = !testDb->getEncoding().isEmpty();
+            testDb->closeQuiet();
+        }
         delete testDb;
     }
 
