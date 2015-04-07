@@ -1835,7 +1835,7 @@ Prezeranie ďalších strán bude možné až po dokončení spočítavania.</tr
     <message>
         <location filename="../dialogs/dbdialog.ui" line="26"/>
         <source>Database type</source>
-        <translation type="unfinished"></translation>
+        <translation>Typ databázy</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="32"/>
@@ -1845,22 +1845,22 @@ Prezeranie ďalších strán bude možné až po dokončení spočítavania.</tr
     <message>
         <location filename="../dialogs/dbdialog.ui" line="95"/>
         <source>Generate automatically</source>
-        <translation type="unfinished"></translation>
+        <translation>Generovať automaticky</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="108"/>
         <source>Options</source>
-        <translation type="unfinished">Voľby</translation>
+        <translation>Voľby</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="117"/>
         <source>Permanent (keep it in configuration)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapamätať si databázu</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="161"/>
         <source>Test connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Test spojenia</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1877,7 +1877,7 @@ Prezeranie ďalších strán bude možné až po dokončení spočítavania.</tr
     <message>
         <location filename="../dialogs/dbdialog.ui" line="51"/>
         <source>Create new database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvoriť nový databázový súbor</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="42"/>
@@ -1888,7 +1888,7 @@ Prezeranie ďalších strán bude možné až po dokončení spočítavania.</tr
     <message>
         <location filename="../dialogs/dbdialog.ui" line="79"/>
         <source>Name (on the list)</source>
-        <translation type="unfinished"></translation>
+        <translation>Názov (v zozname)</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="92"/>
@@ -1912,7 +1912,7 @@ Prezeranie ďalších strán bude možné až po dokončení spočítavania.</tr
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="150"/>
         <source>Browse for existing database file on local computer</source>
-        <translation type="unfinished"></translation>
+        <translation>Hľadať databázový súbor na lokálnom počítači</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="283"/>
@@ -1947,7 +1947,7 @@ Prezeranie ďalších strán bude možné až po dokončení spočítavania.</tr
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="585"/>
         <source>Auto-generated</source>
-        <translation type="unfinished"></translation>
+        <translation>Automaticky vygenerovaný</translation>
     </message>
     <message>
         <source>The name will be auto-generated</source>
