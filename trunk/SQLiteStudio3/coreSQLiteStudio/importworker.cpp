@@ -53,6 +53,7 @@ void ImportWorker::run()
     if (tableCreated)
         emit createdTable(db, table);
 
+    plugin->afterImport();
     emit finished(true);
 }
 
