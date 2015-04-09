@@ -21,6 +21,8 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery
             public:
                 class API_EXPORT Constraint : public SqliteStatement
                 {
+                    friend class Column;
+
                     public:
                         enum Type
                         {
@@ -70,11 +72,14 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery
                         QString id;
                         QString collationName = QString::null;
                         SqliteForeignKey* foreignKey = nullptr;
-                        SqliteDeferrable deferrable = SqliteDeferrable::null;
-                        SqliteInitially initially = SqliteInitially::null;
 
                     protected:
                         TokenList rebuildTokensFromContents();
+
+                    private:
+                        SqliteDeferrable deferrable = SqliteDeferrable::null; // only a temporary field for parse time, before merging with actual FK
+                        SqliteInitially initially = SqliteInitially::null; // only a temporary field for parse time, before merging with actual FK
+
                 };
 
                 typedef QSharedPointer<Constraint> ConstraintPtr;

@@ -640,8 +640,8 @@ SqliteCreateTable::Column::Column(const QString &name, SqliteColumnType *type, c
             this->constraints.last()->type != SqliteCreateTable::Column::Constraint::NAME_ONLY)
         {
             SqliteCreateTable::Column::Constraint* last = this->constraints.last();
-            last->deferrable = constr->deferrable;
-            last->initially = constr->initially;
+            last->foreignKey->deferrable = constr->deferrable;
+            last->foreignKey->initially = constr->initially;
             delete constr;
 
             // We don't want deleted constr to be added to list. We finish this now.
