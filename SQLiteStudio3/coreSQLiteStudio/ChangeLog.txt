@@ -5,6 +5,7 @@
         * [BUGFIX]: Fixed warning messages when there was a problem with restoring windows from last session. A message contains now window name that caused problem.
         * [BUGFIX]: #2830 Closing database list made impossible.
         * [BUGFIX]: #2829 Fixed support for DEFERRABLE (and related) keywords in foreign keys.
+        * [BUGFIX]: #2827 Release a file after import.
 
 [3.0.4]
         * [ADDED]: Import dialog has now "Ignore errors" option, to skip rows that causes problems (constraint violation, wrong column count, etc).
