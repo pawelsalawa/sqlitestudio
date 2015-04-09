@@ -1591,6 +1591,11 @@ void DbTree::setupDefShortcuts()
     BIND_SHORTCUTS(DbTree, Action);
 }
 
+void DbTree::closeEvent(QCloseEvent *e)
+{
+    e->ignore();
+}
+
 int qHash(DbTree::Action action)
 {
     return static_cast<int>(action);

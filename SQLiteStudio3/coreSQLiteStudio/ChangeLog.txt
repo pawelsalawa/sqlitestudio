@@ -3,6 +3,7 @@
         * [CHANGE]: Populate dialog has now progress bar when working.
         * [BUGFIX]: Fixed crash when closing Populate Dialog while populating was in progress.
         * [BUGFIX]: Fixed warning messages when there was a problem with restoring windows from last session. A message contains now window name that caused problem.
+        * [BUGFIX]: #2830 Closing database list made impossible.
 
 [3.0.4]
         * [ADDED]: Import dialog has now "Ignore errors" option, to skip rows that causes problems (constraint violation, wrong column count, etc).
