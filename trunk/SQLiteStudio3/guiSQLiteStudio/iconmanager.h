@@ -90,6 +90,7 @@ class GUI_API_EXPORT IconManager : public QObject
             DEF_ICON(DATABASE_ONLINE,                   "database_online")
             DEF_ICON(DATABASE_RELOAD,                   "database_reload")
             DEF_ICON(DDL_HISTORY,                       "ddl_history")
+            DEF_ICON(DELETE,                            "delete")
             DEF_ICON(DELETE_ROW,                        "delete_row")
             DEF_ICO3(DELETE_COLLATION,                  DELETE_ROW)
             DEF_ICO3(DELETE_DATATYPE,                   DELETE_ROW)
