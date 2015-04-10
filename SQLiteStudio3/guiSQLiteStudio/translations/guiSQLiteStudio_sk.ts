@@ -4401,7 +4401,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/editorwindow.h" line="26"/>
         <source>SQL editor window</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno SQL editora</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.h" line="27"/>
@@ -4411,42 +4411,42 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/editorwindow.h" line="28"/>
         <source>Execute &quot;%1&quot; query</source>
-        <translation type="unfinished"></translation>
+        <translation>Vykonať &quot;%1&quot; dotaz</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.h" line="29"/>
         <source>Switch current working database to previous on the list</source>
-        <translation type="unfinished"></translation>
+        <translation>Prepnúť sa na predchádzajúcu databázu v zozname</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.h" line="30"/>
         <source>Switch current working database to next on the list</source>
-        <translation type="unfinished"></translation>
+        <translation>Prepnúť sa na nasledujúcu databázu v zozname</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.h" line="31"/>
         <source>Go to next editor tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Prechod na nasledujúcu záložku editora</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.h" line="32"/>
         <source>Go to previous editor tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Prechod na predchádzajúcu záložku editora</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.h" line="33"/>
         <source>Move keyboard input focus to the results view below</source>
-        <translation type="unfinished"></translation>
+        <translation>Prepnúť kurzor na výsledky</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.h" line="34"/>
         <source>Move keyboard input focus to the SQL editor above</source>
-        <translation type="unfinished"></translation>
+        <translation>Prepnúť kurzor do editora</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="30"/>
         <source>Table window</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno tabuľky</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="31"/>
