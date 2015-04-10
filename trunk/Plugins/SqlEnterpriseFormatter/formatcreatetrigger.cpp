@@ -9,55 +9,71 @@ FormatCreateTrigger::FormatCreateTrigger(SqliteCreateTrigger* createTrig) :
 void FormatCreateTrigger::formatInternal()
 {
     handleExplainQuery(createTrig);
-    withKeyword("CREATE");
-    if (createTrig->tempKw)
-        withKeyword("TEMP");
-    else if (createTrig->temporaryKw)
-        withKeyword("TEMPORARY");
 
-    withKeyword("TRIGGER");
+    QStringList keywords;
+
+    keywords << "CREATE";
+    if (createTrig->tempKw)
+        keywords << "TEMP";
+    else if (createTrig->temporaryKw)
+        keywords << "TEMPORARY";
+
+    keywords << "TRIGGER";
     if (createTrig->ifNotExistsKw)
-        withKeyword("IF").withKeyword("NOT").withKeyword("EXISTS");
+        keywords << "IF" << "NOT" << "EXISTS";
+
+    QString kwLineUp = keywords.join(" ");
+    markKeywordLineUp(kwLineUp, TRIGGER_MARK);
+
+    for (const QString& kw : keywords)
+        withKeyword(kw);
 
     if (dialect == Dialect::Sqlite3 && !createTrig->database.isNull())
         withId(createTrig->database).withIdDot();
 
-    withId(createTrig->trigger);
+    withId(createTrig->trigger).withNewLine();
+
+    FormatStatementEnricher eventStmtEnricher = nullptr;
     switch (createTrig->eventTime)
     {
         case SqliteCreateTrigger::Time::BEFORE:
-            withKeyword("BEFORE");
+            withLinedUpKeyword("BEFORE", TRIGGER_MARK);
             break;
         case SqliteCreateTrigger::Time::AFTER:
-            withKeyword("AFTER");
+            withLinedUpKeyword("AFTER", TRIGGER_MARK);
             break;
         case SqliteCreateTrigger::Time::INSTEAD_OF:
-            withKeyword("INSTEAD").withKeyword("OF");
+            withLinedUpKeyword("INSTEAD OF", TRIGGER_MARK);
             break;
         case SqliteCreateTrigger::Time::null:
+            eventStmtEnricher = [kwLineUp](FormatStatement* stmt)
+            {
+                dynamic_cast<FormatCreateTriggerEvent*>(stmt)->setLineUpKeyword(kwLineUp);
+            };
             break;
     }
 
-    withStatement(createTrig->event).withKeyword("ON");
+    withStatement(createTrig->event, QString(), eventStmtEnricher).withNewLine();
+    withLinedUpKeyword("ON", TRIGGER_MARK);
     if (dialect == Dialect::Sqlite2 && !createTrig->database.isNull())
         withId(createTrig->database).withIdDot();
 
-    withId(createTrig->table);
+    withId(createTrig->table).withNewLine();
 
     switch (createTrig->scope)
     {
         case SqliteCreateTrigger::Scope::FOR_EACH_ROW:
-            withKeyword("FOR").withKeyword("EACH").withKeyword("ROW");
+            withLinedUpKeyword("FOR EACH", TRIGGER_MARK).withKeyword("ROW").withNewLine();
             break;
         case SqliteCreateTrigger::Scope::FOR_EACH_STATEMENT:
-            withKeyword("FOR").withKeyword("EACH").withKeyword("STATEMENT");
+            withLinedUpKeyword("FOR EACH", TRIGGER_MARK).withKeyword("STATEMENT").withNewLine();
             break;
         case SqliteCreateTrigger::Scope::null:
             break;
     }
 
     if (createTrig->precondition)
-        withKeyword("WHEN").withStatement(createTrig->precondition);
+        withLinedUpKeyword("WHEN", TRIGGER_MARK).withStatement(createTrig->precondition);
 
     withNewLine().withKeyword("BEGIN").withNewLine().withIncrIndent().withStatementList(createTrig->queries, QString(), ListSeparator::SEMICOLON).withSemicolon();
     withDecrIndent().withKeyword("END").withSemicolon();
@@ -69,21 +85,29 @@ FormatCreateTriggerEvent::FormatCreateTriggerEvent(SqliteCreateTrigger::Event* e
 {
 }
 
+void FormatCreateTriggerEvent::setLineUpKeyword(const QString& lineUpKw)
+{
+    this->lineUpKw = lineUpKw;
+}
+
 void FormatCreateTriggerEvent::formatInternal()
 {
+    if (!lineUpKw.isNull())
+        markKeywordLineUp(lineUpKw, TRIGGER_MARK);
+
     switch (ev->type)
     {
         case SqliteCreateTrigger::Event::INSERT:
-            withKeyword("INSERT");
+            withLinedUpKeyword("INSERT", TRIGGER_MARK);
             break;
         case SqliteCreateTrigger::Event::UPDATE:
-            withKeyword("UPDATE");
+            withLinedUpKeyword("UPDATE", TRIGGER_MARK);
             break;
         case SqliteCreateTrigger::Event::DELETE:
-            withKeyword("DELETE");
+            withLinedUpKeyword("DELETE", TRIGGER_MARK);
             break;
         case SqliteCreateTrigger::Event::UPDATE_OF:
-            withKeyword("UPDATE").withKeyword("OF").withIdList(ev->columnNames);
+            withLinedUpKeyword("UPDATE OF", TRIGGER_MARK).withIdList(ev->columnNames);
             break;
         case SqliteCreateTrigger::Event::null:
             break;

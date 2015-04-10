@@ -107,6 +107,7 @@ void FormatExpr::formatInternal()
             break;
         case SqliteExpr::Mode::NOTNULL:
         {
+            withStatement(expr->expr1);
             switch (expr->notNull)
             {
                 case SqliteExpr::NotNull::ISNULL:
