@@ -192,5 +192,6 @@
         <file>img/reset_autoincrement.png</file>
         <file>img/plus.png</file>
         <file>img/erase_table_data.png</file>
+        <file>img/delete.png</file>
     </qresource>
 </RCC>
