@@ -136,6 +136,7 @@ void DbTree::createActions()
     createAction(CLEAR_FILTER, tr("Clear filter"), ui->nameFilter, SLOT(clear()), this);
     createAction(REFRESH_SCHEMAS, ICONS.DATABASE_RELOAD, tr("Refresh all database schemas"), this, SLOT(refreshSchemas()), this);
     createAction(REFRESH_SCHEMA, ICONS.DATABASE_RELOAD, tr("Refresh selected database schema"), this, SLOT(refreshSchema()), this);
+    createAction(ERASE_TABLE_DATA, ICONS.ERASE_TABLE_DATA, tr("Erase table data"), this, SLOT(eraseTableData()), this);
 }
 
 void DbTree::updateActionStates(const QStandardItem *item)
@@ -189,7 +190,7 @@ void DbTree::updateActionStates(const QStandardItem *item)
                     break;
                 case DbTreeItem::Type::TABLE:
                     enabled << EDIT_TABLE << DEL_TABLE << EXPORT_TABLE << IMPORT_TABLE << POPULATE_TABLE << ADD_COLUMN << CREATE_SIMILAR_TABLE;
-                    enabled << RESET_AUTOINCREMENT << ADD_INDEX << ADD_TRIGGER;
+                    enabled << RESET_AUTOINCREMENT << ADD_INDEX << ADD_TRIGGER << ERASE_TABLE_DATA;
                     break;
                 case DbTreeItem::Type::VIRTUAL_TABLE:
                     // TODO change below when virtual tables can be edited
@@ -393,6 +394,7 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
                 actions += ActionEntry(POPULATE_TABLE);
                 actions += ActionEntry(CREATE_SIMILAR_TABLE);
                 actions += ActionEntry(RESET_AUTOINCREMENT);
+                actions += ActionEntry(ERASE_TABLE_DATA);
                 actions += ActionEntry(_separator);
                 actions += dbEntryExt;
                 break;
@@ -1397,6 +1399,35 @@ void DbTree::resetAutoincrement()
         notifyError(tr("An error occurred while trying to reset autoincrement value for table '%1': %2").arg(table, res->getErrorText()));
     else
         notifyInfo(tr("Autoincrement value for table '%1' has been reset successfly.").arg(table));
+}
+
+void DbTree::eraseTableData()
+{
+    Db* db = getSelectedDb();
+    if (!db || !db->isValid())
+        return;
+
+    DbTreeItem* item = ui->treeView->currentItem();
+    QString table = item->getTable();
+    if (table.isNull())
+    {
+        qWarning() << "Tried to erase table data, while table wasn't selected in DbTree.";
+        return;
+    }
+
+    QMessageBox::StandardButton btn = QMessageBox::question(this, tr("Erase table data"), tr("Are you sure you want to delete all data from table '%1'?")
+                                                            .arg(table));
+    if (btn != QMessageBox::Yes)
+        return;
+
+    SqlQueryPtr res = db->exec(QString("DELETE FROM %1;").arg(wrapObjIfNeeded(table, db->getDialect())));
+    if (res->isError())
+    {
+        notifyError(tr("An error occurred while trying to delete data from table '%1': %2").arg(table, res->getErrorText()));
+        return;
+    }
+
+    notifyInfo(tr("All data has been deleted for table '%1'.").arg(table));
 }
 
 void DbTree::addColumn(DbTreeItem* item)
