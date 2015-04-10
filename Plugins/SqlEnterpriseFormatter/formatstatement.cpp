@@ -459,7 +459,7 @@ void FormatStatement::handleExplainQuery(SqliteQuery* query)
     {
         withKeyword("EXPLAIN");
         if (query->queryPlan)
-            withKeyword("QUERY").withKeyword("PLAN");
+            withKeyword("QUERY").withKeyword("PLAN").withNewLine();
     }
 }
 

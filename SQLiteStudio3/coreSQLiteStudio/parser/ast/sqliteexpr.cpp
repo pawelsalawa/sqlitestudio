@@ -65,11 +65,12 @@ QString SqliteExpr::likeOp(SqliteExpr::LikeOp value)
 
 SqliteExpr::NotNull SqliteExpr::notNullOp(const QString &value)
 {
-    if (value == "ISNULL")
+    QString upper = value.toUpper();
+    if (upper == "ISNULL")
         return SqliteExpr::NotNull::ISNULL;
-    else if (value == "NOTNULL")
+    else if (upper == "NOTNULL")
         return SqliteExpr::NotNull::NOTNULL;
-    else if (value == "NOT NULL")
+    else if (upper == "NOT NULL")
         return SqliteExpr::NotNull::NOT_NULL;
     else
         return SqliteExpr::NotNull::null;
