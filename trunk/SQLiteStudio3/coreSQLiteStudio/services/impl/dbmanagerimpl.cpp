@@ -358,6 +358,7 @@ void DbManagerImpl::rescanInvalidDatabasesForPlugin(DbPlugin* dbPlugin)
     Db* db = nullptr;
 
     QUrl url;
+    QString errorMessages;
     for (Db* invalidDb : getInvalidDatabases())
     {
         if (invalidDb->getConnectionOptions().contains(DB_PLUGIN) && invalidDb->getConnectionOptions()[DB_PLUGIN].toString() != dbPlugin->getName())
@@ -367,9 +368,16 @@ void DbManagerImpl::rescanInvalidDatabasesForPlugin(DbPlugin* dbPlugin)
         if (url.isLocalFile() && !QFile::exists(invalidDb->getPath()))
             continue;
 
-        db = createDb(invalidDb->getName(), invalidDb->getPath(), invalidDb->getConnectionOptions());
+        errorMessages = QString();
+        db = createDb(invalidDb->getName(), invalidDb->getPath(), invalidDb->getConnectionOptions(), &errorMessages);
         if (!db)
+        {
+            if (!errorMessages.isNull())
+            {
+                dynamic_cast<InvalidDb*>(invalidDb)->setError(errorMessages);
+            }
             continue; // For this db driver was not loaded yet.
+        }
 
         if (!dbPlugin->checkIfDbServedByPlugin(db))
         {
