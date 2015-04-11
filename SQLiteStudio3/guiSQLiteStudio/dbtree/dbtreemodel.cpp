@@ -424,7 +424,7 @@ QString DbTreeModel::getDbToolTip(DbTreeItem* item) const
     else
     {
         InvalidDb* idb = dynamic_cast<InvalidDb*>(db);
-        rows << toolTipRowTmp.arg(tr("Error details:", "dbtree tooltip")).arg(idb->getError());
+        rows << toolTipRowTmp.arg(tr("Error:", "dbtree tooltip")).arg(idb->getError());
     }
 
     return toolTipTableTmp.arg(rows.join(""));
