@@ -1089,12 +1089,12 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="688"/>
         <source>Sort table columns alphabetically</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoradiť stĺpce tabuľky abecedne</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="698"/>
         <source>Expand tables node when connected to a database</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozbaliť zoznam tabuliek po pripojení k databáze</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="708"/>
@@ -1104,7 +1104,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="711"/>
         <source>Display additional labels on the list</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobraziť doplnkové popisky v zozname</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="726"/>
@@ -1114,7 +1114,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="729"/>
         <source>Display labels for regular tables</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobraziť popisky pre regulárne tabuľky</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="739"/>
@@ -1124,12 +1124,12 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="742"/>
         <source>Display labels for virtual tables</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobraziť popisky pre virtuálne tabuľky</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="755"/>
         <source>Expand views node when connected to a database</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozbaliť zoznam pohľadov po pripojení k databáze</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="765"/>
@@ -1139,42 +1139,42 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="768"/>
         <source>Sort objects (tables, indexes, triggers and views) alphabetically</source>
-        <translation type="unfinished"></translation>
+        <translation>Zoradiť objekty (tabuľky, indexy, spúšťače a pohľady) abecedne</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="778"/>
         <source>Display system tables and indexes on the list</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobraziť systémové tabuľky a indexy v zozname</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="791"/>
         <source>Table windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Okná tabuľky</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="797"/>
         <source>When enabled, Table Windows will show up with the data tab, instead of the structure tab.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ak je táto možnosť zaškrtnutá, tak sa v okne zobrazia dáta a nie štruktúra tabuľky.</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="800"/>
         <source>Open Table Windows with the data tab for start</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobraziť dáta po otvorení tabuľky</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="813"/>
         <source>View windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Okná pohľadov</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="819"/>
         <source>When enabled, View Windows will show up with the data tab, instead of the structure tab.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ak je táto možnosť zaškrtnutá, tak sa v okne zobrazia dáta a nie SQL dotaz.</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="822"/>
         <source>Open View Windows with the data tab for start</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobraziť dáta po otvorení pohľadu</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="933"/>
@@ -1184,22 +1184,22 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="962"/>
         <source>Current style:</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktuálny štýl:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="979"/>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Náhľad</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="989"/>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Zapnutý</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1162"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Vypnutý</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1211"/>
@@ -1209,17 +1209,17 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1249"/>
         <source>SQL editor font</source>
-        <translation type="unfinished"></translation>
+        <translation>Písmo SQL editora</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1265"/>
         <source>Database list font</source>
-        <translation type="unfinished"></translation>
+        <translation>Font zoznamu databáz</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1281"/>
         <source>Database list additional label font</source>
-        <translation type="unfinished"></translation>
+        <translation>Font doplnkového popisku</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1297"/>
@@ -4265,7 +4265,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../multieditor/multieditortext.h" line="12"/>
         <source>Cell text value editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Úprava hodnôt v bunkách</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.h" line="13"/>
@@ -4491,7 +4491,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/tablewindow.h" line="39"/>
         <source>Delete selected table constraint</source>
-        <translation>Vymazaťˇvybrané obmedzenie</translation>
+        <translation>Vymazať vybrané obmedzenie</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="40"/>
