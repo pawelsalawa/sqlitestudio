@@ -250,8 +250,19 @@ void DbTreeModel::restoreGroup(const Config::DbGroupPtr& group, QList<Db*>* dbLi
     {
         if (db)
         {
-            if (db->open())
+            // If the db was stored in cfg as open, it was already open by DbManager.
+            // Now the DbTreeModel didn't catch that (as it didn't exist yet), so we need to
+            // call handler for 'connected' event, instead of forcing another open call.
+            // Otherwise the database that could not be open would be requested to open twice:
+            // 1. when restoring DbManager
+            // 2. here
+            // Instead of that, we just check if the database is already open (by DbManager)
+            // and call proper handler to refresh database's schema and create tree nodes.
+            if (db->isOpen())
+            {
+                dbConnected(db);
                 treeView->expand(item->index());
+            }
         }
         else
         {
