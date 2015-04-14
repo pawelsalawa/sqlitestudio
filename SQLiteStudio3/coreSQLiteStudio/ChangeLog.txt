@@ -9,6 +9,8 @@
         * [BUGFIX]: #2829 Fixed support for DEFERRABLE (and related) keywords in foreign keys.
         * [BUGFIX]: #2827 Release a file after import.
         * [BUGFIX]: #2826 Fixed bug in SQL formatter causing 'expr ISNULL' expressions to disappear.
+        * [BUGFIX]: #2834 Removed './lib' form rpath for linux non-portable compilation.
+        * [BUGFIX]: #2836 Removed termcap dependency, as it was deprecated and no longer required.
 
 [3.0.4]
         * [ADDED]: Import dialog has now "Ignore errors" option, to skip rows that causes problems (constraint violation, wrong column count, etc).
