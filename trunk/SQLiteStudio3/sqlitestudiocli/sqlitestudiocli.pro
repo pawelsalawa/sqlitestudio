@@ -21,8 +21,10 @@ TEMPLATE = app
 
 CONFIG   += c++11
 QMAKE_CXXFLAGS += -pedantic
-linux|portable {
-    QMAKE_LFLAGS += -Wl,-rpath,./lib
+linux {
+    portable {
+        QMAKE_LFLAGS += -Wl,-rpath,./lib
+    }
 }
 
 TRANSLATIONS += translations/sqlitestudiocli_zh_CN.ts \
@@ -71,7 +73,7 @@ win32: {
 }
 
 unix: {
-    LIBS += -lreadline -ltermcap
+    LIBS += -lreadline
 }
 
 HEADERS += \
