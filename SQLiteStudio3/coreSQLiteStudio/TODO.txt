@@ -5,6 +5,7 @@
 - Foreign Key value suggestions in GridView
 - code templates
 - executing query with bind params
+- migrate updates engine to Qt Install Framework
 
 * Next versions:
 - object names (columns, tables, etc) in dialogs should be validated against suffix/prefix whitespaces and if they appear, user should be asked for confirmation
