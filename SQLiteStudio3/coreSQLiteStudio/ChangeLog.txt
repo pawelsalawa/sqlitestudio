@@ -3,6 +3,7 @@
         * [CHANGE]: Data view has now a 'cover' with progress bar when commiting more changes at once. This eliminates weird GUI freeze when commiting lots of new/deleted rows.
         * [CHANGE]: Populate dialog has now progress bar when working.
         * [CHANGE]: Enhanced SQL formatter to format CREATE TRIGGER statements in a bit more readable way.
+        * [BUGFIX]: #2838 Fixed outstanding bug causing database file to be deleted if a user tried "Test connection" on the database under Windows.
         * [BUGFIX]: Fixed crash when closing Populate Dialog while populating was in progress.
         * [BUGFIX]: Fixed warning messages when there was a problem with restoring windows from last session. A message contains now window name that caused problem.
         * [BUGFIX]: #2830 Closing database list made impossible.

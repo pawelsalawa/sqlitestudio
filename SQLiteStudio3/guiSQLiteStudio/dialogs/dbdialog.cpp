@@ -455,10 +455,6 @@ bool DbDialog::testDatabase()
     if (url.scheme().isEmpty())
         url.setScheme("file");
 
-    bool existed = false;
-    if (url.isLocalFile() && QFile::exists(path))
-        existed = QFile::exists(path);
-
     QHash<QString, QVariant> options = collectOptions();
     DbPlugin* plugin = dbPlugins[ui->typeCombo->currentText()];
     Db* testDb = plugin->getInstance("", path, options);
@@ -474,11 +470,6 @@ bool DbDialog::testDatabase()
         delete testDb;
     }
 
-    if (!existed)
-    {
-        QFile file(path);
-        file.remove();
-    }
     return res;
 }
 
