@@ -73,7 +73,7 @@ win32: {
 }
 
 unix: {
-    LIBS += -lreadline
+    LIBS += -lreadline -lcurses
 }
 
 HEADERS += \
