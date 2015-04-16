@@ -1,9 +1,10 @@
 #ifndef IPVALIDATOR_H
 #define IPVALIDATOR_H
 
+#include "guiSQLiteStudio_global.h"
 #include <QValidator>
 
-class IpValidator : public QValidator
+class GUI_API_EXPORT IpValidator : public QValidator
 {
     public:
         IpValidator(QObject* parent = 0);
