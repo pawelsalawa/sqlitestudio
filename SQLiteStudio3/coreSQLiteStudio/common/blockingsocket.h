@@ -1,6 +1,7 @@
 #ifndef THREADEDSOCKET_H
 #define THREADEDSOCKET_H
 
+#include "coreSQLiteStudio_global.h"
 #include <QObject>
 #include <QAbstractSocket>
 #include <QMutex>
@@ -8,7 +9,7 @@
 class BlockingSocketPrivate;
 class ThreadWithEventLoop;
 
-class BlockingSocket : public QObject
+class API_EXPORT BlockingSocket : public QObject
 {
         Q_OBJECT
 
