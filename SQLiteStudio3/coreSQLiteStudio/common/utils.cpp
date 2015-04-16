@@ -18,6 +18,33 @@
 #include <QFileInfo>
 #endif
 
+#ifdef Q_OS_WIN
+#include <windows.h>
+#include <tchar.h>
+
+typedef BOOL (WINAPI *LPFN_ISWOW64PROCESS) (HANDLE, PBOOL);
+bool is64BitWindows()
+{
+#if defined(_WIN64)
+    return true;  // 64-bit programs run only on Win64
+#elif defined(_WIN32)
+    // 32-bit programs run on both 32-bit and 64-bit Windows
+    // so must sniff
+    BOOL f64 = false;
+    LPFN_ISWOW64PROCESS fnIsWow64Process;
+
+    fnIsWow64Process = (LPFN_ISWOW64PROCESS) GetProcAddress(GetModuleHandle(TEXT("kernel32")), "IsWow64Process");
+    if (fnIsWow64Process)
+    {
+        return fnIsWow64Process(GetCurrentProcess(), &f64) && f64;
+    }
+    return false;
+#else
+    return true; // Win64 does not support Win16
+#endif
+}
+#endif
+
 void initUtils()
 {
     qRegisterMetaType<QList<int>>("QList<int>");
@@ -735,7 +762,14 @@ QString getOsString()
     QString os = "Unknown";
 #endif
 
-    os += ", " + QString::number(QSysInfo::WordSize) + "bit";
+    os += ", ";
+#ifdef Q_OS_WIN
+    os += (is64BitWindows() ? "64" : "32");
+#else
+    os += QString::number(QSysInfo::WordSize);
+#endif
+    os += "bit";
+
     return os;
 }
 
