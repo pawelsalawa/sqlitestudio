@@ -85,9 +85,9 @@ CFG_CATEGORIES(Ui,
     )
 )
 
-QString getFileDialogInitPath();
-void setFileDialogInitPath(const QString& path);
-void setFileDialogInitPathByFile(const QString& filePath);
+API_EXPORT QString getFileDialogInitPath();
+API_EXPORT void setFileDialogInitPath(const QString& path);
+API_EXPORT void setFileDialogInitPathByFile(const QString& filePath);
 
 #define CFG_UI CFG_INSTANCE(Ui)
 
