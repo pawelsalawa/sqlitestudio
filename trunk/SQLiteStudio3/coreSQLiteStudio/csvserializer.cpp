@@ -36,6 +36,38 @@ QString CsvSerializer::serialize(const QStringList& data, const CsvFormat& forma
 }
 
 template <class T>
+bool isCsvColumnSeparator(const T& data, int pos, const CsvFormat& format)
+{
+    if (!format.strictColumnSeparator && format.columnSeparator.contains(data[pos]))
+        return true;
+
+    for (const QChar& c : format.columnSeparator)
+    {
+        if (c != data[pos++])
+            return false;
+    }
+
+    return true;
+}
+
+template <class T>
+bool isCsvRowSeparator(const T& data, int& pos, const CsvFormat& format)
+{
+    if (!format.strictRowSeparator && format.rowSeparator.contains(data[pos]))
+        return true;
+
+    int localPos = pos;
+    for (const QChar& c : format.rowSeparator)
+    {
+        if (localPos >= data.size() || c != data[localPos++])
+            return false;
+    }
+
+    pos = localPos - 1;
+    return true;
+}
+
+template <class T>
 QList<QList<T>> typedDeserialize(const T& data, const CsvFormat& format)
 {
     QList<QList<T>> rows;
@@ -68,13 +100,13 @@ QList<QList<T>> typedDeserialize(const T& data, const CsvFormat& format)
                quotes = false;
             }
         }
-        else if (!quotes && format.columnSeparator.contains(c))
+        else if (!quotes && isCsvColumnSeparator(data, pos, format))
         {
             cells << field;
             field.clear();
             sepAsLast = true;
         }
-        else if (!quotes && format.rowSeparator.contains(c))
+        else if (!quotes && isCsvRowSeparator(data, pos, format))
         {
             cells << field;
             rows << cells;
