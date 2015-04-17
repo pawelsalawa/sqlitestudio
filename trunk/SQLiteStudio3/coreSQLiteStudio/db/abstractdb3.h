@@ -107,7 +107,6 @@ class AbstractDb3 : public AbstractDb
                 QString errorMessage;
                 int colCount = 0;
                 QStringList colNames;
-                int affected = 0;
                 bool rowAvailable = false;
         };
 
@@ -1076,13 +1075,14 @@ int AbstractDb3<T>::Query::fetchFirst()
     for (int i = 0; i < colCount; i++)
         colNames << QString::fromUtf8(T::column_name(stmt, i));
 
+    int changesBefore =  T::total_changes(db->dbHandle);
     rowAvailable = true;
     int res = fetchNext();
 
     affected = 0;
     if (res == T::OK)
     {
-        affected = T::changes(db->dbHandle);
+        affected =  T::total_changes(db->dbHandle) - changesBefore;
         insertRowId["ROWID"] = T::last_insert_rowid(db->dbHandle);
     }
 
