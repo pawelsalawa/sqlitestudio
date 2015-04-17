@@ -7,6 +7,7 @@
 #include "datatype.h"
 #include <QDateTime>
 #include <QDebug>
+#include <QStack>
 #include <schemaresolver.h>
 #include <common/table.h>
 
@@ -34,6 +35,7 @@ bool QueryExecutorExecute::executeQueries()
     QHash<QString, QVariant> bindParamsForQuery;
     SqlQueryPtr results;
     context->rowsAffected = 0;
+    QStack<int> rowsAffectedBeforeTransaction;
 
     Db::Flags flags;
     if (context->preloadResults)
@@ -51,6 +53,9 @@ bool QueryExecutorExecute::executeQueries()
         if (queryCount == 0) // last query?
             setupSqlite2ColumnDataTypes(results);
 
+        if (isBeginTransaction(query->queryType))
+            rowsAffectedBeforeTransaction.push(context->rowsAffected);
+
         results->execute();
 
         if (results->isError())
@@ -60,6 +65,14 @@ bool QueryExecutorExecute::executeQueries()
         }
 
         context->rowsAffected += results->rowsAffected();
+
+        if (rowsAffectedBeforeTransaction.size() > 0)
+        {
+            if (isCommitTransaction(query->queryType))
+                rowsAffectedBeforeTransaction.pop();
+            else if (isRollbackTransaction(query->queryType))
+                context->rowsAffected = rowsAffectedBeforeTransaction.pop();
+        }
     }
     handleSuccessfulResult(results);
     return true;
@@ -151,4 +164,19 @@ void QueryExecutorExecute::setupSqlite2ColumnDataTypes(SqlQueryPtr results)
         if (column->type && DataType::isBinary(column->type->name))
             sqlite2Helper->setBinaryType(idx);
     }
+}
+
+bool QueryExecutorExecute::isBeginTransaction(SqliteQueryType queryType)
+{
+    return (queryType == SqliteQueryType::BeginTrans || queryType == SqliteQueryType::Savepoint);
+}
+
+bool QueryExecutorExecute::isCommitTransaction(SqliteQueryType queryType)
+{
+    return (queryType == SqliteQueryType::CommitTrans || queryType == SqliteQueryType::Release);
+}
+
+bool QueryExecutorExecute::isRollbackTransaction(SqliteQueryType queryType)
+{
+    return queryType == SqliteQueryType::Rollback;
 }

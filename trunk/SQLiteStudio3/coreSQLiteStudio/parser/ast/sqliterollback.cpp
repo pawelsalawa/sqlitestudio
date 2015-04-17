@@ -20,7 +20,8 @@ SqliteRollback::SqliteRollback(bool transactionKw, const QString& name)
     this->transactionKw = transactionKw;
 }
 
-SqliteRollback::SqliteRollback(bool transactionKw, bool savePoint, const QString& name)
+SqliteRollback::SqliteRollback(bool transactionKw, bool savePoint, const QString& name) :
+    SqliteRollback()
 {
     // we ignore name from trans_opt,
     // it's not officialy supported in sqlite3
