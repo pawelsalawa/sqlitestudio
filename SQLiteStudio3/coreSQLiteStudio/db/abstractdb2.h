@@ -109,7 +109,6 @@ class AbstractDb2 : public AbstractDb
                 int colCount = -1;
                 QStringList colNames;
                 QList<QVariant> nextRowValues;
-                int affected = 0;
                 bool rowAvailable = false;
         };
 

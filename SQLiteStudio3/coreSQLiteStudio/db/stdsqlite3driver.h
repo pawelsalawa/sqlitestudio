@@ -64,6 +64,7 @@
         static int column_type(stmt* arg1, int arg2) {return Prefix##sqlite3_column_type(arg1, arg2);} \
         static int column_count(stmt* arg1) {return Prefix##sqlite3_column_count(arg1);} \
         static int changes(handle* arg) {return Prefix##sqlite3_changes(arg);} \
+        static int total_changes(handle* arg) {return Prefix##sqlite3_total_changes(arg);} \
         static int last_insert_rowid(handle* arg) {return Prefix##sqlite3_last_insert_rowid(arg);} \
         static int step(stmt* arg) {return Prefix##sqlite3_step(arg);} \
         static int reset(stmt* arg) {return Prefix##sqlite3_reset(arg);} \
