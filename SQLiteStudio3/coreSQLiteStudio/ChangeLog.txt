@@ -1,3 +1,6 @@
+[3.0.6]
+        * [BUGFIX]: Fixed 'rows affected' counter when using transactions and executing everything at once.
+
 [3.0.5]
         * [ADDED]: #2831 Ported 'Erase table data' feature (in table's context menu) from version 2.1.5.
         * [CHANGE]: Data view has now a 'cover' with progress bar when commiting more changes at once. This eliminates weird GUI freeze when commiting lots of new/deleted rows.
