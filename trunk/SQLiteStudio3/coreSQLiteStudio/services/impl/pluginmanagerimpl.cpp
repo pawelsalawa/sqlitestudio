@@ -20,7 +20,9 @@ PluginManagerImpl::~PluginManagerImpl()
 
 void PluginManagerImpl::init()
 {
-    pluginDirs += qApp->applicationDirPath() + "/plugins";
+    if (getDistributionType() != DistributionType::OS_MANAGED)
+        pluginDirs += qApp->applicationDirPath() + "/plugins";
+
     pluginDirs += QDir(CFG->getConfigDir()).absoluteFilePath("plugins");
 
     QString envDirs = SQLITESTUDIO->getEnv("SQLITESTUDIO_PLUGINS");
