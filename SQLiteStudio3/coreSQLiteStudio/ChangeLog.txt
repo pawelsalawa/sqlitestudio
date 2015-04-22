@@ -1,6 +1,7 @@
 [3.0.6]
         * [BUGFIX]: Fixed 'rows affected' counter when using transactions and executing everything at once.
         * [BUGFIX]: Fixed importing from CSV with empty (NULL) values in last column of last data row.
+        * [BUGFIX]: #2853 Allow '$' character as a part of an identifier.
 
 [3.0.5]
         * [ADDED]: #2831 Ported 'Erase table data' feature (in table's context menu) from version 2.1.5.
