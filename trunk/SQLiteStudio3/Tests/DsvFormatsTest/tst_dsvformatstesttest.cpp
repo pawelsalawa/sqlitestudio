@@ -26,6 +26,7 @@ class DsvFormatsTestTest : public QObject
         void cleanupTestCase();
         void testTsv1();
         void testTsv2();
+        void testCsv1();
 };
 
 DsvFormatsTestTest::DsvFormatsTestTest()
@@ -94,6 +95,14 @@ void DsvFormatsTestTest::testTsv2()
     QList<QStringList> result = TsvSerializer::deserialize(sampleTsv);
 
     QVERIFY2(result == sampleDeserializedData, QString("Sample: %1\nGot: %2").arg(toString(sampleDeserializedData), toString(result)).toLocal8Bit().data());
+}
+
+void DsvFormatsTestTest::testCsv1()
+{
+    QList<QStringList> result = CsvSerializer::deserialize(QString("a,\"\""), CsvFormat::DEFAULT);
+
+    QVERIFY(result.size() == 1);
+    QVERIFY(result.first().size() == 2);
 }
 
 QTEST_APPLESS_MAIN(DsvFormatsTestTest)

@@ -25,6 +25,7 @@ class DbManagerMock : public DbManager
     public slots:
         void notifyDatabasesAreLoaded();
         void scanForNewDatabasesInConfig();
+        void rescanInvalidDatabasesForPlugin(DbPlugin*);
 };
 
 #endif // DBMANAGERMOCK_H

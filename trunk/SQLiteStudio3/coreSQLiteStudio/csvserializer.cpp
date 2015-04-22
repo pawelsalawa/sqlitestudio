@@ -90,14 +90,24 @@ QList<QList<T>> typedDeserialize(const T& data, const CsvFormat& format)
         }
         else if (quotes && c == '"' )
         {
-            if (pos + 1 < data.length() && data[pos+1] == '"' )
+            if (pos + 1 < data.length())
             {
-               field += c;
-               pos++;
+                if (data[pos+1] == '"' )
+                {
+                   field += c;
+                   pos++;
+                }
+                else
+                {
+                   quotes = false;
+                }
             }
             else
             {
-               quotes = false;
+                if (field.length() == 0)
+                    cells << field;
+
+                quotes = false;
             }
         }
         else if (!quotes && isCsvColumnSeparator(data, pos, format))
