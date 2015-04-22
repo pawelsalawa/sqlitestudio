@@ -79,3 +79,7 @@ void DbManagerMock::notifyDatabasesAreLoaded()
 void DbManagerMock::scanForNewDatabasesInConfig()
 {
 }
+
+void DbManagerMock::rescanInvalidDatabasesForPlugin(DbPlugin*)
+{
+}
