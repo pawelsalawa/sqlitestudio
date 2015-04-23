@@ -173,7 +173,7 @@
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="88"/>
         <source>An idea proposal sent successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahlásenie prebehlo úspešne.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="93"/>
@@ -184,57 +184,57 @@
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="105"/>
         <source>A bug report</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahlásenie chyby</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="106"/>
         <source>Describe problem in few words</source>
-        <translation type="unfinished"></translation>
+        <translation>Popíšte problém niekoľkými slovami</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="107"/>
         <source>Describe problem and how to reproduce it</source>
-        <translation type="unfinished"></translation>
+        <translation>Popíšte problém a spôsob ako ho reprodukovať</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="111"/>
         <source>A new feature idea</source>
-        <translation type="unfinished"></translation>
+        <translation>Nová funkcia</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="112"/>
         <source>A title for your idea</source>
-        <translation type="unfinished"></translation>
+        <translation>Titulok novej funkcie</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="113"/>
         <source>Describe your idea in more details</source>
-        <translation type="unfinished"></translation>
+        <translation>Detailnejšie popíšte svoj návrh na funkciu</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="118"/>
         <source>Reporting as an unregistered user, using e-mail address.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahlásenie ako neregistrovaný užívateľ pomocou emailovej adresy.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="127"/>
         <source>Reporting as a registered user.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahlásenie ako registrovaný užívateľ.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="131"/>
         <source>Log out</source>
-        <translation type="unfinished"></translation>
+        <translation>Odhlásiť sa</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="144"/>
         <source>Providing true email address will make it possible to contact you regarding your report. To learn more, press &apos;help&apos; button on the right side.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadaním reálnej emailovej adresy umožníte kontaktovať vás ohľadom vášho nahlásenia. Pre zistenie bližších detailov, kliknite na tlačitko &apos;i&apos; na pravej strane okna.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="146"/>
         <source>Enter vaild e-mail address, or log in.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadajte platný email alebo sa prihláste.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="148"/>
@@ -259,7 +259,7 @@
         <location filename="../windows/bugreporthistorywindow.ui" line="41"/>
         <location filename="../windows/bugreporthistorywindow.cpp" line="119"/>
         <source>Reported at</source>
-        <translation type="unfinished"></translation>
+        <translation>Nahlásené</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.ui" line="46"/>
@@ -270,12 +270,12 @@
     <message>
         <location filename="../windows/bugreporthistorywindow.cpp" line="45"/>
         <source>Reports history</source>
-        <translation type="unfinished"></translation>
+        <translation>História hlásení</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.cpp" line="50"/>
         <source>Clear reports history</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať históriu hlásení</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.cpp" line="51"/>
@@ -285,7 +285,7 @@
     <message>
         <location filename="../windows/bugreporthistorywindow.cpp" line="90"/>
         <source>Invalid response from server.</source>
-        <translation type="unfinished"></translation>
+        <translation>Neplatná odpoveď zo servera.</translation>
     </message>
 </context>
 <context>
@@ -298,7 +298,7 @@
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="20"/>
         <source>Credentials</source>
-        <translation type="unfinished"></translation>
+        <translation>Prihlasovacie údaje</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="26"/>
@@ -313,17 +313,17 @@
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="53"/>
         <source>Validation</source>
-        <translation type="unfinished"></translation>
+        <translation>Overenie</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="59"/>
         <source>Validate</source>
-        <translation type="unfinished"></translation>
+        <translation>Overiť</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="73"/>
         <source>Validation result message</source>
-        <translation type="unfinished"></translation>
+        <translation>Výsledok overenia</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.cpp" line="45"/>
@@ -343,7 +343,7 @@
     <message>
         <location filename="../dialogs/bugreportlogindialog.cpp" line="91"/>
         <source>Valid</source>
-        <translation type="unfinished"></translation>
+        <translation>Úspešné overenie</translation>
     </message>
 </context>
 <context>
@@ -2581,7 +2581,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../windows/editorwindow.cpp" line="361"/>
         <source>Clear execution history</source>
         <comment>sql editor</comment>
-        <translation>Vyprázdniť históriu dotazov</translation>
+        <translation>Vymazať históriu dotazov</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="363"/>
@@ -2647,7 +2647,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/editorwindow.cpp" line="601"/>
         <source>Clear execution history</source>
-        <translation>Vyprázdniť históriu dotazov</translation>
+        <translation>Vymazať históriu dotazov</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="601"/>
@@ -3841,7 +3841,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="14"/>
         <source>SQLiteStudio updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizácie SQLiteStudia</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="26"/>
@@ -3851,7 +3851,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="70"/>
         <source>Component</source>
-        <translation type="unfinished"></translation>
+        <translation>Komponenta</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="75"/>
@@ -3861,7 +3861,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="80"/>
         <source>Update version</source>
-        <translation type="unfinished"></translation>
+        <translation>Dostupná verzia</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="91"/>
@@ -3871,22 +3871,22 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="101"/>
         <source>Update to new version!</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizovať na novú verziu!</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="114"/>
         <source>The update will be automatically downloaded and installed. This will also restart application at the end.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizácie budú automaticky stiahnuté a nainštalované. Na konci sa aplikácia reštartuje.</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="121"/>
         <source>Not now.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie teraz.</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="134"/>
         <source>Don&apos;t install the update and close this window.</source>
-        <translation type="unfinished"></translation>
+        <translation>Neinštalovať aktializácie a zatvoriť toto okno.</translation>
     </message>
 </context>
 <context>
@@ -5064,7 +5064,7 @@ nájsť ďalší</translation>
     <message>
         <location filename="../statusfield.cpp" line="168"/>
         <source>Clear</source>
-        <translation>Vyčistiť</translation>
+        <translation>Vymazať</translation>
     </message>
 </context>
 <context>
