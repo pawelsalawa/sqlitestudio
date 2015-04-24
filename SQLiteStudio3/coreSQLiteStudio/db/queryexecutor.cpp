@@ -40,7 +40,8 @@ QueryExecutor::QueryExecutor(Db* db, const QString& query, QObject *parent) :
     setAutoDelete(false);
 
     connect(this, SIGNAL(executionFailed(int,QString)), this, SLOT(cleanupAfterExecFailed(int,QString)));
-    connect(DBLIST, SIGNAL(dbAboutToBeUnloaded(Db*, DbPlugin*)), this, SLOT(cleanupBeforeDbDestroy(Db*, DbPlugin*)));
+    connect(DBLIST, SIGNAL(dbAboutToBeUnloaded(Db*, DbPlugin*)), this, SLOT(cleanupBeforeDbDestroy(Db*)));
+    connect(DBLIST, SIGNAL(dbRemoved(Db*)), this, SLOT(cleanupBeforeDbDestroy(Db*)));
 }
 
 QueryExecutor::~QueryExecutor()
@@ -146,9 +147,8 @@ void QueryExecutor::cleanupAfterExecFailed(int code, QString errorMessage)
     cleanup();
 }
 
-void QueryExecutor::cleanupBeforeDbDestroy(Db* dbToBeUnloaded, DbPlugin* plugin)
+void QueryExecutor::cleanupBeforeDbDestroy(Db* dbToBeUnloaded)
 {
-    UNUSED(plugin);
     if (!dbToBeUnloaded || dbToBeUnloaded != db)
         return;
 
