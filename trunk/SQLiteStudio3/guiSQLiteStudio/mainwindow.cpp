@@ -37,6 +37,7 @@
 #include "dialogs/newversiondialog.h"
 #include "dialogs/quitconfirmdialog.h"
 #include "common/widgetcover.h"
+#include "dialogs/cssdebugdialog.h"
 #include <QMdiSubWindow>
 #include <QDebug>
 #include <QStyleFactory>
@@ -77,6 +78,7 @@ void MainWindow::init()
 #endif
 
     Committable::init(MainWindow::confirmQuit);
+    updateCornerDocking();
 
     DbTreeModel::staticInit();
     dbTree = new DbTree(this);
@@ -266,6 +268,7 @@ void MainWindow::createActions()
     createAction(RENAME_WINDOW, ICONS.WIN_RENAME, tr("Rename selected window"), this, SLOT(renameWindow()), this);
 
     createAction(OPEN_DEBUG_CONSOLE, tr("Open Debug Console"), this, SLOT(openDebugConsole()), this);
+    createAction(OPEN_CSS_CONSOLE, tr("Open CSS Console"), this, SLOT(openCssConsole()), this);
     createAction(REPORT_BUG, ICONS.BUG, tr("Report a bug"), this, SLOT(reportBug()), this);
     createAction(FEATURE_REQUEST, ICONS.FEATURE_REQUEST, tr("Propose a new feature"), this, SLOT(requestFeature()), this);
     createAction(ABOUT, ICONS.SQLITESTUDIO_APP16, tr("About"), this, SLOT(aboutSqlitestudio()), this);
@@ -484,6 +487,7 @@ void MainWindow::restoreSession()
     if (statusField->hasMessages())
         statusField->setVisible(true);
 
+    updateCornerDocking();
     updateWindowActions();
 }
 
@@ -680,6 +684,12 @@ void MainWindow::openDebugConsole()
     showUiDebugConsole();
 }
 
+void MainWindow::openCssConsole()
+{
+    CssDebugDialog* dialog = new CssDebugDialog;
+    dialog->show();
+}
+
 void MainWindow::reportBug()
 {
     BugDialog dialog(this);
@@ -775,6 +785,21 @@ void MainWindow::handleUpdatingProgress(const QString& jobTitle, int jobPercent,
 void MainWindow::handleUpdatingError()
 {
     widgetCover->hide();
+}
+
+void MainWindow::updateCornerDocking()
+{
+    if (CFG_UI.General.DockLayout.get() == "vertical") {
+        setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
+        setCorner(Qt::BottomLeftCorner, Qt::LeftDockWidgetArea);
+        setCorner(Qt::TopRightCorner, Qt::RightDockWidgetArea);
+        setCorner(Qt::BottomRightCorner, Qt::RightDockWidgetArea);
+    } else {
+        setCorner(Qt::TopLeftCorner, Qt::TopDockWidgetArea);
+        setCorner(Qt::TopRightCorner, Qt::TopDockWidgetArea);
+        setCorner(Qt::BottomLeftCorner, Qt::BottomDockWidgetArea);
+        setCorner(Qt::BottomRightCorner, Qt::BottomDockWidgetArea);
+    }
 }
 
 DdlHistoryWindow* MainWindow::openDdlHistory()

@@ -60,18 +60,20 @@ UNIT TESTS:
 
 
 
+Fusion style tuning:
+QToolBar {
+        margin: 0px;
+        padding: 0px;
+}
 
+QToolBar > QToolButton {
+        padding: 0px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+}
 
+QToolBar > QToolButton[popupMode="1"] {
+        padding-right: 6px;
+        padding-left: 6px;
+}
 
-Qt mingw:
-Not an easy task. I got Perl, Python, Ruby and MinGw/bin in path and
-use this line
-
-configure -opensource -confirm-license -platform win32-g++ -make libs
--qt-libjpeg -qt-libpng -no-openssl -no-icu  -qt-zlib -qt-pcre
--no-iconv -nomake examples -nomake tests -qt-style-windowsxp
--qt-style-windowsvista -opengl
-desktop
-
-Qt linux:
-./configure -no-icu -nomake examples -nomake tests -no-dbus -opensource -skip webkit -skip quickcontrols -prefix /home/spakowane/qt5.3.1/output

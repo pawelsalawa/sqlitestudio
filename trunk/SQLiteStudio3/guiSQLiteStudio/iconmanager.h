@@ -104,6 +104,8 @@ class GUI_API_EXPORT IconManager : public QObject
             DEF_ICON(DIRECTORY_OPEN,                    "directory_open")
             DEF_ICON(DIRECTORY_OPEN_WITH_DB,            "directory_open_with_db")
             DEF_ICON(DIRECTORY_WITH_DB,                 "directory_with_db")
+            DEF_ICON(DOCK_LAYOUT_HORIZONTAL,            "dock_layout_horizontal")
+            DEF_ICON(DOCK_LAYOUT_VERTICAL,              "dock_layout_vertical")
             DEF_ICON(ERASE,                             "erase")
             DEF_ICON(ERASE_TABLE_DATA,                  "erase_table_data")
             DEF_ICON(EXEC_QUERY,                        "exec_query")
