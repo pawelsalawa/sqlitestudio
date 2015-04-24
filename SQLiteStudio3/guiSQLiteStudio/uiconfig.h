@@ -82,6 +82,7 @@ CFG_CATEGORIES(Ui,
         CFG_ENTRY(int,                   MaxInitialColumnWith,    600)
         CFG_ENTRY(bool,                  LanguageAsked,           false)
         CFG_ENTRY(bool,                  OpenMaximized,           true)
+        CFG_ENTRY(QString,               DockLayout,              "vertical")
     )
 )
 

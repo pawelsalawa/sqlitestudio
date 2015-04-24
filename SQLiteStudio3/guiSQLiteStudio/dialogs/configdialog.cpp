@@ -228,6 +228,8 @@ void ConfigDialog::save()
     configMapper->saveFromWidget(ui->stackedWidget, true);
     commitPluginConfigs();
     CFG->commitMassSave();
+
+    MainWindow::getInstance()->updateCornerDocking();
 }
 
 void ConfigDialog::storeSelectedFormatters()

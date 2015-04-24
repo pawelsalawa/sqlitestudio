@@ -175,7 +175,8 @@ SOURCES +=\
     dialogs/quitconfirmdialog.cpp \
     common/datawidgetmapper.cpp \
     dialogs/languagedialog.cpp \
-    common/ipvalidator.cpp
+    common/ipvalidator.cpp \
+    dialogs/cssdebugdialog.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -320,7 +321,8 @@ HEADERS  += mainwindow.h \
     dialogs/quitconfirmdialog.h \
     common/datawidgetmapper.h \
     dialogs/languagedialog.h \
-    common/ipvalidator.h
+    common/ipvalidator.h \
+    dialogs/cssdebugdialog.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \
@@ -368,7 +370,8 @@ FORMS    += mainwindow.ui \
     windows/bugreporthistorywindow.ui \
     dialogs/newversiondialog.ui \
     dialogs/quitconfirmdialog.ui \
-    dialogs/languagedialog.ui
+    dialogs/languagedialog.ui \
+    dialogs/cssdebugdialog.ui
 
 RESOURCES += \
     icons.qrc \

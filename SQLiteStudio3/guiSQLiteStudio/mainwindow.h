@@ -46,6 +46,7 @@ CFG_KEY_LIST(MainWindow, QObject::tr("Main window"),
      CFG_KEY_ENTRY(HIDE_STATUS_FIELD,  Qt::Key_Escape,              QObject::tr("Hide status area"))
      CFG_KEY_ENTRY(OPEN_CONFIG,        Qt::Key_F2,                  QObject::tr("Open configuration dialog"))
      CFG_KEY_ENTRY(OPEN_DEBUG_CONSOLE, Qt::Key_F12,                 QObject::tr("Open Debug Console"))
+     CFG_KEY_ENTRY(OPEN_CSS_CONSOLE,   Qt::Key_F11,                 QObject::tr("Open CSS Console"))
 )
 
 class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
@@ -76,6 +77,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
             RESTORE_WINDOW,
             RENAME_WINDOW,
             OPEN_DEBUG_CONSOLE,
+            OPEN_CSS_CONSOLE,
             LICENSES,
             HOMEPAGE,
             FORUM,
@@ -168,6 +170,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
     public slots:
         EditorWindow* openSqlEditor();
         void updateWindowActions();
+        void updateCornerDocking();
 
     private slots:
         void notifyAboutLanguageChange();
@@ -187,6 +190,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void restoreLastClosedWindow();
         void renameWindow();
         void openDebugConsole();
+        void openCssConsole();
         void reportBug();
         void requestFeature();
         void aboutSqlitestudio();

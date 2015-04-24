@@ -193,5 +193,7 @@
         <file>img/plus.png</file>
         <file>img/erase_table_data.png</file>
         <file>img/delete.png</file>
+        <file>img/dock_layout_horizontal.png</file>
+        <file>img/dock_layout_vertical.png</file>
     </qresource>
 </RCC>
