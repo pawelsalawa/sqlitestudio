@@ -2,6 +2,7 @@
         * [BUGFIX]: Fixed 'rows affected' counter when using transactions and executing everything at once.
         * [BUGFIX]: Fixed importing from CSV with empty (NULL) values in last column of last data row.
         * [BUGFIX]: #2853 Allow '$' character as a part of an identifier.
+        * [BUGFIX]: #2846 Fixed crash when executing query on a database after just removed other database from the list.
 
 [3.0.5]
         * [ADDED]: #2831 Ported 'Erase table data' feature (in table's context menu) from version 2.1.5.

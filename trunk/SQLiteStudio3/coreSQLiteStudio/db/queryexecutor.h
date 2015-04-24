@@ -1407,7 +1407,7 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          * from deleted Db. Keeping results is dangerous, becuase the Db driver (plugin) is most likely to
          * be unloaded soon and we won't be able to call results destructor.
          */
-        void cleanupBeforeDbDestroy(Db* dbToBeUnloaded, DbPlugin* plugin);
+        void cleanupBeforeDbDestroy(Db* dbToBeUnloaded);
 };
 
 int qHash(QueryExecutor::EditionForbiddenReason reason);
