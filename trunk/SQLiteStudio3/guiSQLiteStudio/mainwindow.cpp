@@ -759,7 +759,7 @@ void MainWindow::statusFieldLinkClicked(const QString& link)
 void MainWindow::checkForUpdates()
 {
     manualUpdatesChecking = true;
-    UPDATES->checkForUpdates();
+    UPDATES->checkForUpdates(true);
 }
 
 void MainWindow::handleUpdatingProgress(const QString& jobTitle, int jobPercent, int totalPercent)

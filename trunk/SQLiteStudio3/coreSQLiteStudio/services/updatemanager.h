@@ -28,7 +28,7 @@ class API_EXPORT UpdateManager : public QObject
         explicit UpdateManager(QObject *parent = 0);
         ~UpdateManager();
 
-        void checkForUpdates();
+        void checkForUpdates(bool force = false);
         void update();
         bool isPlatformEligibleForUpdate() const;
         static bool executeFinalStep(const QString& tempDir, const QString& backupDir, const QString& appDir);
@@ -54,7 +54,7 @@ class API_EXPORT UpdateManager : public QObject
         QString getCurrentVersions() const;
         void handleAvailableUpdatesReply(QNetworkReply* reply);
         void handleDownloadReply(QNetworkReply* reply);
-        void getUpdatesMetadata(QNetworkReply*& replyStoragePointer);
+        void getUpdatesMetadata(QNetworkReply*& replyStoragePointer, bool force = false);
         void handleUpdatesMetadata(QNetworkReply* reply);
         QList<UpdateEntry> readMetadata(const QJsonDocument& doc);
         void downloadUpdates();

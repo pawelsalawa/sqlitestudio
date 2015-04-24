@@ -44,9 +44,9 @@ UpdateManager::~UpdateManager()
     cleanup();
 }
 
-void UpdateManager::checkForUpdates()
+void UpdateManager::checkForUpdates(bool force)
 {
-    getUpdatesMetadata(updatesCheckReply);
+    getUpdatesMetadata(updatesCheckReply, force);
 }
 
 void UpdateManager::update()
@@ -150,10 +150,10 @@ void UpdateManager::handleAvailableUpdatesReply(QNetworkReply* reply)
         emit noUpdatesAvailable();
 }
 
-void UpdateManager::getUpdatesMetadata(QNetworkReply*& replyStoragePointer)
+void UpdateManager::getUpdatesMetadata(QNetworkReply*& replyStoragePointer, bool force)
 {
 #ifndef NO_AUTO_UPDATES
-    if (!CFG_CORE.General.CheckUpdatesOnStartup.get() || !isPlatformEligibleForUpdate() || replyStoragePointer)
+    if ((!CFG_CORE.General.CheckUpdatesOnStartup.get() && !force) || !isPlatformEligibleForUpdate() || replyStoragePointer)
         return;
 
     QUrlQuery query;
