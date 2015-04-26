@@ -1,6 +1,7 @@
 #include "cssdebugdialog.h"
 #include "ui_cssdebugdialog.h"
 #include "mainwindow.h"
+#include <QApplication>
 
 CssDebugDialog::CssDebugDialog(QWidget *parent) :
     QDialog(parent),

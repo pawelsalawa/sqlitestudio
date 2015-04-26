@@ -227,7 +227,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>4</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="dataBrowsingPage">
           <layout class="QVBoxLayout" name="verticalLayout_21">
@@ -594,7 +594,7 @@
               <bool>false</bool>
              </property>
              <property name="selectionMode">
-              <enum>QAbstractItemView::SingleSelection</enum>
+              <enum>QAbstractItemView::NoSelection</enum>
              </property>
              <property name="indentation">
               <number>0</number>
@@ -659,7 +659,7 @@
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>-71</y>
+                <y>0</y>
                 <width>587</width>
                 <height>566</height>
                </rect>

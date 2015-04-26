@@ -1,0 +1,15 @@
+QToolBar {
+        margin: 0px;
+        padding: 0px;
+}
+
+QToolBar > QToolButton {
+        padding: 0px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+}
+
+QToolBar > QToolButton[popupMode="1"] {
+        padding-right: 6px;
+        padding-left: 6px;
+}
