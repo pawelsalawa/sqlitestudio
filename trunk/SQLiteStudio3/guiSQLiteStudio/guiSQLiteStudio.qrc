@@ -6,4 +6,7 @@
         <file>translations/guiSQLiteStudio_sk.qm</file>
         <file>translations/guiSQLiteStudio_zh_CN.qm</file>
     </qresource>
+    <qresource prefix="/css">
+        <file>general.css</file>
+    </qresource>
 </RCC>

@@ -176,7 +176,8 @@ SOURCES +=\
     common/datawidgetmapper.cpp \
     dialogs/languagedialog.cpp \
     common/ipvalidator.cpp \
-    dialogs/cssdebugdialog.cpp
+    dialogs/cssdebugdialog.cpp \
+    themetuner.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -322,7 +323,8 @@ HEADERS  += mainwindow.h \
     common/datawidgetmapper.h \
     dialogs/languagedialog.h \
     common/ipvalidator.h \
-    dialogs/cssdebugdialog.h
+    dialogs/cssdebugdialog.h \
+    themetuner.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \
@@ -385,6 +387,9 @@ unix: {
 }
 
 LIBS += -lcoreSQLiteStudio
+
+DISTFILES += \
+    general.css
 
 
 
