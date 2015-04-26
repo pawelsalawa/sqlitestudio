@@ -168,7 +168,7 @@
         <location filename="../dialogs/bugdialog.cpp" line="80"/>
         <location filename="../dialogs/bugdialog.cpp" line="94"/>
         <source>You can retry sending. The contents will be restored when you open a report dialog after an error like this.</source>
-        <translation type="unfinished"></translation>
+        <translation>Môžte zopakovať odoslanie. Keď otvoríte nahlasovacie okno po takejto chybe, obsah bude obnovený.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="88"/>
@@ -179,7 +179,8 @@
         <location filename="../dialogs/bugdialog.cpp" line="93"/>
         <source>An error occurred while sending an idea proposal: %1
 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyskytla sa chyba pri odoslieaní: %1
+%2</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="105"/>
@@ -239,12 +240,12 @@
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="148"/>
         <source>Short description requires at least 10 characters, but not more than 100. Longer description can be entered in the field below.</source>
-        <translation type="unfinished"></translation>
+        <translation>Krátky popis by mal obsahovať minimálne 10 znakov ale nie viacej ako 100. Dlhší popis môžte zadať v poli nižšie.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="151"/>
         <source>Long description requires at least 30 characters.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dlhší popis by mal obsahovať minimálne 30 znakov.</translation>
     </message>
 </context>
 <context>
@@ -1224,17 +1225,17 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1297"/>
         <source>Data view font</source>
-        <translation type="unfinished"></translation>
+        <translation>Font dát</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1313"/>
         <source>Status field font</source>
-        <translation type="unfinished"></translation>
+        <translation>Font status okna</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1371"/>
         <source>SQL editor colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Farby SQL editora</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1377"/>
@@ -1385,13 +1386,13 @@ but it&apos;s okay to use it.</source>
         <location filename="../dialogs/configdialog.cpp" line="765"/>
         <source>Description:</source>
         <comment>plugin details</comment>
-        <translation type="unfinished"></translation>
+        <translation>Popis:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="766"/>
         <source>Category:</source>
         <comment>plugin details</comment>
-        <translation type="unfinished"></translation>
+        <translation>Kategória:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="767"/>
@@ -1403,41 +1404,41 @@ but it&apos;s okay to use it.</source>
         <location filename="../dialogs/configdialog.cpp" line="768"/>
         <source>Author:</source>
         <comment>plugin details</comment>
-        <translation type="unfinished"></translation>
+        <translation>Autor:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="770"/>
         <source>Internal name:</source>
         <comment>plugin details</comment>
-        <translation type="unfinished"></translation>
+        <translation>Interný názov:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="771"/>
         <source>Dependencies:</source>
         <comment>plugin details</comment>
-        <translation type="unfinished"></translation>
+        <translation>Závislosti:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="772"/>
         <source>Conflicts:</source>
         <comment>plugin details</comment>
-        <translation type="unfinished"></translation>
+        <translation>Konflikty:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="776"/>
         <source>Plugin details</source>
-        <translation type="unfinished"></translation>
+        <translation>Detaily pluginu</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="1177"/>
         <source>Plugins are loaded/unloaded immediately when checked/unchecked, but modified list of plugins to load at startup is not saved until you commit the whole configuration dialog.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pluginy sú načítané/uvoľnené okamžite pri zaškrtnutí/odškrtnutí ale midifikovaný zoznam pluginov načítaných pri štarte nieje uložený až kým nepotvrdíte celý konfiguračný dialóg.</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="1241"/>
         <source>%1 (built-in)</source>
         <comment>plugins manager in configuration dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 (interný)</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="1254"/>
@@ -4375,12 +4376,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../uiutils.cpp" line="32"/>
         <source>All SQLite databases</source>
-        <translation type="unfinished"></translation>
+        <translation>Všetky SQLite databázy</translation>
     </message>
     <message>
         <location filename="../uiutils.cpp" line="35"/>
         <source>All files</source>
-        <translation type="unfinished"></translation>
+        <translation>Všetky súbory</translation>
     </message>
     <message>
         <location filename="../uiutils.cpp" line="39"/>
@@ -4391,7 +4392,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/bugreporthistorywindow.h" line="11"/>
         <source>Reports history window</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno histórie hlásení</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.h" line="12"/>
@@ -4665,31 +4666,31 @@ nájsť ďalší</translation>
         <location filename="../sqleditor.cpp" line="118"/>
         <source>Cut</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vystrihnúť</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="119"/>
         <source>Copy</source>
         <comment>sql editor</comment>
-        <translation type="unfinished">Kopírovať</translation>
+        <translation>Kopírovať</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="120"/>
         <source>Paste</source>
         <comment>sql editor</comment>
-        <translation type="unfinished">Vložiť</translation>
+        <translation>Vložiť</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="121"/>
         <source>Delete</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="122"/>
         <source>Select all</source>
         <comment>sql editor</comment>
-        <translation type="unfinished">Vybrať všetko</translation>
+        <translation>Vybrať všetko</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="123"/>
@@ -4761,19 +4762,19 @@ nájsť ďalší</translation>
         <location filename="../sqleditor.cpp" line="134"/>
         <source>Find</source>
         <comment>sql editor</comment>
-        <translation type="unfinished">Nájsť</translation>
+        <translation>Nájsť</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="135"/>
         <source>Find next</source>
         <comment>sql editor</comment>
-        <translation type="unfinished">Nájsť ďalší</translation>
+        <translation>Nájsť ďalší</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="136"/>
         <source>Find previous</source>
         <comment>sql editor</comment>
-        <translation type="unfinished">Nájsť predchádzajúci</translation>
+        <translation>Nájsť predchádzajúci</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="137"/>
@@ -5073,19 +5074,19 @@ nájsť ďalší</translation>
         <location filename="../windows/tableconstraintsmodel.cpp" line="75"/>
         <source>Type</source>
         <comment>table constraints</comment>
-        <translation type="unfinished">Typ</translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <location filename="../windows/tableconstraintsmodel.cpp" line="77"/>
         <source>Details</source>
         <comment>table constraints</comment>
-        <translation type="unfinished">Detaily</translation>
+        <translation>Detaily</translation>
     </message>
     <message>
         <location filename="../windows/tableconstraintsmodel.cpp" line="79"/>
         <source>Name</source>
         <comment>table constraints</comment>
-        <translation type="unfinished">Názov</translation>
+        <translation>Názov</translation>
     </message>
 </context>
 <context>
@@ -5969,7 +5970,7 @@ Chcete potvrdiť štruktúru alebo sa chcete vrátiť do záložky štruktúr?</
         <location filename="../windows/viewwindow.cpp" line="608"/>
         <source>Condition</source>
         <comment>view window triggers</comment>
-        <translation type="unfinished">Podmienka</translation>
+        <translation>Podmienka</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="609"/>
@@ -5997,7 +5998,8 @@ Are you sure you want to create a view with blank name?</source>
         <location filename="../windows/viewwindow.cpp" line="699"/>
         <source>The SELECT statement could not be parsed. Please correct the query and retry.
 Details: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>SELECT nemôže byť analyzovaný. Prosím opravte dotaz a skúste to znovu.
+Detaily: %1</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="707"/>
