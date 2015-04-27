@@ -219,7 +219,8 @@ void ConfigDialog::load()
 
 void ConfigDialog::save()
 {
-    MainWindow::getInstance()->setStyle(ui->activeStyleCombo->currentText());
+    if (MainWindow::getInstance()->currentStyle().compare(ui->activeStyleCombo->currentText(), Qt::CaseInsensitive) != 0)
+        MainWindow::getInstance()->setStyle(ui->activeStyleCombo->currentText());
 
     QString loadedPlugins = collectLoadedPlugins();
     storeSelectedFormatters();

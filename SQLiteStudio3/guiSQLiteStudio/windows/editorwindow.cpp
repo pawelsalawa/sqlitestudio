@@ -24,6 +24,7 @@
 #include <QStringListModel>
 #include <QActionGroup>
 #include <QMessageBox>
+#include <themetuner.h>
 
 CFG_KEYS_DEFINE(EditorWindow)
 EditorWindow::ResultsDisplayMode EditorWindow::resultsDisplayMode;
@@ -86,6 +87,12 @@ void EditorWindow::init()
 {
     setFocusProxy(ui->sqlEdit);
     updateResultsDisplayMode();
+
+    THEME_TUNER->manageCompactLayout({
+                                         ui->query,
+                                         ui->results,
+                                         ui->history
+                                     });
 
     resultsModel = new SqlQueryModel(this);
     ui->dataView->init(resultsModel);

@@ -20,6 +20,7 @@
 #include "uiconfig.h"
 #include "services/config.h"
 #include "services/codeformatter.h"
+#include "themetuner.h"
 #include <QPushButton>
 #include <QProgressBar>
 #include <QDebug>
@@ -203,6 +204,13 @@ QToolBar* ViewWindow::getToolBar(int toolbar) const
 void ViewWindow::init()
 {
     ui->setupUi(this);
+
+    THEME_TUNER->manageCompactLayout({
+                                      ui->queryTab,
+                                      ui->dataTab,
+                                      ui->triggersTab,
+                                      ui->ddl
+                                     });
 
     dataModel = new SqlQueryModel(this);
     ui->dataView->init(dataModel);

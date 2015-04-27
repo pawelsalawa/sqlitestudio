@@ -33,6 +33,9 @@
 #include "services/importmanager.h"
 #include "dbobjectdialogs.h"
 #include "dialogs/exportdialog.h"
+#include "themetuner.h"
+#include "dialogs/importdialog.h"
+#include "dialogs/populatedialog.h"
 #include <QMenu>
 #include <QToolButton>
 #include <QLabel>
@@ -43,8 +46,6 @@
 #include <QPushButton>
 #include <QDebug>
 #include <QStyleFactory>
-#include <dialogs/importdialog.h>
-#include <dialogs/populatedialog.h>
 
 // TODO extend QTableView for columns and constraints, so they show full-row-width drop indicator,
 // instead of single column drop indicator.
@@ -170,6 +171,16 @@ void TableWindow::init()
     structureExecutor = new ChainExecutor(this);
     connect(structureExecutor, SIGNAL(success()), this, SLOT(changesSuccessfullyCommited()));
     connect(structureExecutor, SIGNAL(failure(int,QString)), this, SLOT(changesFailedToCommit(int,QString)));
+
+    THEME_TUNER->manageCompactLayout({
+                                         ui->structureTab,
+                                         ui->constraintsWidget,
+                                         ui->dataTab,
+                                         ui->constraintsTab,
+                                         ui->indexesTab,
+                                         ui->triggersTab,
+                                         ui->ddlTab
+                                     });
 
     setupCoverWidget();
     updateAfterInit();

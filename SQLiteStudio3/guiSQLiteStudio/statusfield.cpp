@@ -3,6 +3,7 @@
 #include "mainwindow.h"
 #include "uiconfig.h"
 #include "iconmanager.h"
+#include "themetuner.h"
 #include "common/tablewidget.h"
 #include "services/notifymanager.h"
 #include <QMenu>
@@ -26,6 +27,8 @@ StatusField::StatusField(QWidget *parent) :
     connect(nm, SIGNAL(notifyError(QString)), this, SLOT(error(QString)));
     connect(nm, SIGNAL(notifyWarning(QString)), this, SLOT(warn(QString)));
     connect(CFG_UI.Fonts.StatusField, SIGNAL(changed(QVariant)), this, SLOT(fontChanged(QVariant)));
+
+    THEME_TUNER->manageCompactLayout(widget());
 
     readRecentMessages();
 }

@@ -79,7 +79,6 @@ void MainWindow::init()
 #endif
 
     Committable::init(MainWindow::confirmQuit);
-    ThemeTuner::staticInit();
     updateCornerDocking();
 
     DbTreeModel::staticInit();
@@ -170,6 +169,8 @@ void MainWindow::cleanUp()
     safe_delete(statusField);
 
     delete ui;
+
+    ThemeTuner::cleanUp();
 
     safe_delete(formManager);
 }
@@ -459,14 +460,14 @@ void MainWindow::restoreSession()
     QHash<QString,QVariant> sessionValue = CFG_UI.General.Session.get();
     if (sessionValue.size() == 0)
     {
-        ThemeTuner::tuneCurrentTheme();
+        THEME_TUNER->tuneCurrentTheme();
         return;
     }
 
     if (sessionValue.contains("style"))
         setStyle(sessionValue["style"].toString());
     else
-        ThemeTuner::tuneCurrentTheme();
+        THEME_TUNER->tuneCurrentTheme();
 
     if (sessionValue.contains("geometry"))
         restoreGeometry(sessionValue["geometry"].toByteArray());
@@ -561,7 +562,7 @@ void MainWindow::setStyle(const QString& styleName)
         return;
     }
     QApplication::setStyle(style);
-    ThemeTuner::tuneTheme(styleName);
+    THEME_TUNER->tuneTheme(styleName);
 }
 
 QString MainWindow::currentStyle() const

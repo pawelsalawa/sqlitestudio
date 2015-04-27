@@ -1,7 +1,9 @@
 #include "cssdebugdialog.h"
 #include "ui_cssdebugdialog.h"
 #include "mainwindow.h"
+#include "themetuner.h"
 #include <QApplication>
+#include <QPushButton>
 
 CssDebugDialog::CssDebugDialog(QWidget *parent) :
     QDialog(parent),
@@ -9,7 +11,12 @@ CssDebugDialog::CssDebugDialog(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(buttonClicked(QAbstractButton*)));
-    ui->cssEdit->setPlainText(MAINWINDOW->styleSheet());
+
+    appliedCss = MAINWINDOW->styleSheet();
+    ui->cssEdit->setPlainText(appliedCss);
+    updateState();
+
+    connect(ui->cssEdit, SIGNAL(textChanged()), this, SLOT(updateState()));
 }
 
 CssDebugDialog::~CssDebugDialog()
@@ -19,10 +26,22 @@ CssDebugDialog::~CssDebugDialog()
 
 void CssDebugDialog::buttonClicked(QAbstractButton* button)
 {
-    if (ui->buttonBox->buttonRole(button) != QDialogButtonBox::ApplyRole)
-        return;
+    if (ui->buttonBox->standardButton(button) == QDialogButtonBox::RestoreDefaults)
+    {
+        ui->cssEdit->setPlainText(THEME_TUNER->getDefaultCss());
+    }
+    else if (ui->buttonBox->buttonRole(button) == QDialogButtonBox::ApplyRole)
+    {
+        appliedCss = ui->cssEdit->toPlainText();
+        MAINWINDOW->setStyleSheet(appliedCss);
+    }
 
-    MAINWINDOW->setStyleSheet(ui->cssEdit->toPlainText());
+    updateState();
+}
+
+void CssDebugDialog::updateState()
+{
+    ui->buttonBox->button(QDialogButtonBox::Apply)->setEnabled(ui->cssEdit->toPlainText() != appliedCss);
 }
 
 void CssDebugDialog::closeEvent(QCloseEvent*)

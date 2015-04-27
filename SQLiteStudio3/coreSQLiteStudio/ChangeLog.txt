@@ -1,5 +1,6 @@
 [3.0.6]
-        * [ADDED]: Option to configure whether bottom dock area (with status field) should extend to left border, or should it leave space for database list.
+        * [ADDED]: #2740 Option to configure whether bottom dock area (with status field) should extend to left border, or should it leave space for database list.
+        * [ADDED]: #2819 Introduced "compact layout" as an option (enabled by default) to minimize all margins on the interface.
         * [ADDED]: CSS console for SQLiteStudio (under F11 key) to allow customizing all aspects UI look and feel at a low level.
         * [CHANGE]: Database list is by default from top to bottom, making the status field placed next to the database list, instead of being below it.
         * [BUGFIX]: Fixed 'rows affected' counter when using transactions and executing everything at once.

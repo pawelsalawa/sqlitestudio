@@ -22,9 +22,11 @@ class CssDebugDialog : public QDialog
 
     private:
         Ui::CssDebugDialog *ui;
+        QString appliedCss;
 
     private slots:
         void buttonClicked(QAbstractButton* button);
+        void updateState();
 };
 
 #endif // CSSDEBUGDIALOG_H

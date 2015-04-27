@@ -24,6 +24,12 @@
   </property>
   <widget class="QWidget" name="dockWidgetContents">
    <layout class="QGridLayout" name="gridLayout">
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="verticalSpacing">
+     <number>0</number>
+    </property>
     <item row="1" column="0">
      <widget class="DbTreeView" name="treeView">
       <property name="sizePolicy">
