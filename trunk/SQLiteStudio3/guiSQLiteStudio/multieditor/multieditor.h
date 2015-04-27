@@ -45,6 +45,7 @@ class GUI_API_EXPORT MultiEditor : public QWidget
         void setDeletedRow(bool value);
         void setDataType(const DataType& dataType);
         void focusThisEditor();
+        void setCornerLabel(const QString& label);
 
         static void loadBuiltInEditors();
 
@@ -61,6 +62,7 @@ class GUI_API_EXPORT MultiEditor : public QWidget
         static const int margins = 2;
         static const int spacing = 2;
 
+        QLabel* cornerLabel = nullptr;
         QCheckBox* nullCheck = nullptr;
         QTabWidget* tabs = nullptr;
         QList<MultiEditorWidget*> editors;

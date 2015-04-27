@@ -18,8 +18,6 @@ ThemeTuner::ThemeTuner(QObject* parent) :
 void ThemeTuner::tuneTheme(const QString& themeName)
 {
     tuneCss(themeName);
-    if (themeName == "macintosh")
-        tuneMacx();
 }
 
 void ThemeTuner::tuneCurrentTheme()
@@ -91,11 +89,6 @@ void ThemeTuner::tuneCss(const QString& themeName)
     applyCss(getDefaultCss(themeName));
 }
 
-void ThemeTuner::tuneMacx()
-{
-    // TODO
-}
-
 void ThemeTuner::applyCss(const QString& css)
 {
     MAINWINDOW->setStyleSheet(css);
@@ -104,7 +97,7 @@ void ThemeTuner::applyCss(const QString& css)
 void ThemeTuner::handleWidgetDestroyed()
 {
     QWidget* w = dynamic_cast<QWidget*>(sender());
-    if (w)
+    if (!w)
         return;
 
     widgetsForCompactLayout.removeOne(w);
