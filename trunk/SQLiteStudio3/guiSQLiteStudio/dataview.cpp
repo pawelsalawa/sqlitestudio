@@ -9,6 +9,7 @@
 #include "common/intvalidator.h"
 #include "common/extaction.h"
 #include "iconmanager.h"
+#include "themetuner.h"
 #include "uiconfig.h"
 #include "datagrid/sqlqueryitem.h"
 #include "common/widgetcover.h"
@@ -116,6 +117,11 @@ void DataView::createContents()
     formToolBar = new QToolBar();
     gridWidget->layout()->addWidget(gridToolBar);
     formWidget->layout()->addWidget(formToolBar);
+
+    THEME_TUNER->manageCompactLayout({
+                                         gridWidget,
+                                         formWidget
+                                    });
 
 #ifdef Q_OS_MACX
     QStyle *fusion = QStyleFactory::create("Fusion");

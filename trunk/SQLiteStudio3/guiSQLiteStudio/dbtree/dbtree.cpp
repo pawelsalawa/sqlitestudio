@@ -34,6 +34,7 @@
 #include <QDebug>
 #include <QKeyEvent>
 #include <QMimeData>
+#include <themetuner.h>
 #include <dialogs/dbconverterdialog.h>
 
 CFG_KEYS_DEFINE(DbTree)
@@ -62,6 +63,8 @@ void DbTree::init()
 {
     ui->setupUi(this);
     initDndTypes();
+
+    THEME_TUNER->manageCompactLayout(widget());
 
     ui->nameFilter->setClearButtonEnabled(true);
 

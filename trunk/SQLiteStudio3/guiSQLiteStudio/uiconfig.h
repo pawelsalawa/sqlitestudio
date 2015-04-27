@@ -84,6 +84,7 @@ CFG_CATEGORIES(Ui,
         CFG_ENTRY(bool,                  OpenMaximized,           true)
         CFG_ENTRY(QString,               DockLayout,              "vertical")
         CFG_ENTRY(QString,               CustomCss,               QString())
+        CFG_ENTRY(bool,                  CompactLayout,           true)
     )
 )
 

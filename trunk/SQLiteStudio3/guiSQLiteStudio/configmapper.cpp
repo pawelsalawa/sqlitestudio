@@ -72,6 +72,16 @@
     if (qobject_cast<WidgetType*>(Widget) && qobject_cast<WidgetType*>(Widget)->ExtraConditionMethod())\
         return qobject_cast<WidgetType*>(Widget)->Method();
 
+#define GET_CFG_VALUE_COND_OK(Widget, Key, WidgetType, Method, ExtraConditionMethod, Ok, DefaultValue) \
+    if (qobject_cast<WidgetType*>(Widget))\
+    {\
+        if (qobject_cast<WidgetType*>(Widget)->ExtraConditionMethod())\
+            return qobject_cast<WidgetType*>(Widget)->Method();\
+    \
+        Ok = false;\
+        return DefaultValue;\
+    }
+
 ConfigMapper::ConfigMapper(CfgMain* cfgMain)
 {
     this->cfgMainList << cfgMain;
@@ -168,7 +178,7 @@ QVariant ConfigMapper::getCommonConfigValueFromWidget(QWidget* widget, CfgEntry*
     GET_CFG_VALUE(widget, key, FileEdit, getFile);
     GET_CFG_VALUE(widget, key, QKeySequenceEdit, keySequence().toString);
     GET_CFG_VALUE(widget, key, ColorButton, getColor);
-    GET_CFG_VALUE_COND(widget, key, ConfigRadioButton, getAssignedValue, isChecked);
+    GET_CFG_VALUE_COND_OK(widget, key, ConfigRadioButton, getAssignedValue, isChecked, ok, QVariant());
     GET_CFG_VALUE_COND(widget, key, QGroupBox, isChecked, isCheckable);
     if (key->get().type() == QVariant::Int)
     {

@@ -30,6 +30,7 @@ class Committable;
 class WidgetCover;
 class QProgressBar;
 class QLabel;
+class ThemeTuner;
 
 #ifdef Q_OS_MACX
 #define PREV_TASK_KEY_SEQ Qt::CTRL + Qt::ALT + Qt::Key_Left
@@ -117,6 +118,8 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         QMenu* getViewMenu() const;
         QMenu* getToolsMenu() const;
         QMenu* getSQLiteStudioMenu() const;
+        QString currentStyle() const;
+        ThemeTuner* getThemeTuner() const;
 
     protected:
         void closeEvent(QCloseEvent *event);
@@ -132,7 +135,6 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void saveSession(MdiWindow* currWindow);
         void restoreWindowSessions(const QList<QVariant>& windowSessions);
         MdiWindow *restoreWindowSession(const QVariant& windowSessions);
-        QString currentStyle() const;
         void closeNonSessionWindows();
         DdlHistoryWindow* openDdlHistory();
         FunctionsEditor* openFunctionEditor();

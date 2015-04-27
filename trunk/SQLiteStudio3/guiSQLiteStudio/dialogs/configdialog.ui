@@ -227,7 +227,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>3</number>
+          <number>6</number>
          </property>
          <widget class="QWidget" name="dataBrowsingPage">
           <layout class="QVBoxLayout" name="verticalLayout_21">
@@ -660,8 +660,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>587</width>
-                <height>566</height>
+                <width>458</width>
+                <height>630</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_31">
@@ -682,6 +682,31 @@
                    <widget class="QComboBox" name="langCombo">
                     <property name="cfg" stdset="0">
                      <string notr="true">General.Language</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="compactLayoutGroup">
+                 <property name="title">
+                  <string>Compact layout</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_32">
+                  <item>
+                   <widget class="QCheckBox" name="compactLayoutCheck">
+                    <property name="toolTip">
+                     <string>&lt;p&gt;Compact layout reduces all margins and spacing on the UI to minimum, making space for displaying more data. It makes the interface a little bit less aesthetic, but allows to display more data at once.&lt;/p&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>Use compact layout</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                    <property name="cfg" stdset="0">
+                     <string>General.CompactLayout</string>
                     </property>
                    </widget>
                   </item>
