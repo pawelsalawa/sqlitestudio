@@ -26,6 +26,7 @@
 #include <QToolButton>
 #include <QDebug>
 #include <QKeyEvent>
+#include <themetuner.h>
 
 static QHash<QString,bool> missingEditorPluginsAlreadyWarned;
 
@@ -47,8 +48,16 @@ void MultiEditor::init()
 
     QHBoxLayout* hbox = new QHBoxLayout();
     hbox->setMargin(0);
-    hbox->setSpacing(0);
+    hbox->setSpacing(10);
     top->setLayout(hbox);
+
+    cornerLabel = new QLabel();
+    QFont font = cornerLabel->font();
+    font.setBold(true);
+    cornerLabel->setFont(font);
+    cornerLabel->setFrameStyle(QFrame::StyledPanel|QFrame::Plain);
+    hbox->addWidget(cornerLabel);
+    cornerLabel->setVisible(false);
 
     nullCheck = new QCheckBox(tr("Null value", "multieditor"));
     hbox->addWidget(nullCheck);
@@ -156,6 +165,7 @@ void MultiEditor::addEditor(MultiEditorWidget* editorWidget)
     connect(editorWidget, SIGNAL(valueModified()), this, SLOT(invalidateValue()));
     editors << editorWidget;
     tabs->addTab(editorWidget, editorWidget->getTabLabel().replace("&", "&&"));
+    THEME_TUNER->manageCompactLayout(editorWidget);
     editorWidget->installEventFilter(this);
 }
 
@@ -239,6 +249,12 @@ void MultiEditor::focusThisEditor()
         return;
 
     w->focusThisWidget();
+}
+
+void MultiEditor::setCornerLabel(const QString &label)
+{
+    cornerLabel->setText(label);
+    cornerLabel->setVisible(!label.isNull());
 }
 
 void MultiEditor::loadBuiltInEditors()

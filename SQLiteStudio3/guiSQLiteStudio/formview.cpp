@@ -113,26 +113,14 @@ void FormView::addColumn(int colIdx, const QString& name, const DataType& dataTy
     if (!dataType.toString().isEmpty())
         groupLabel += " (" + dataType.toString() + ")";
 
-    QGroupBox* group = new QGroupBox(groupLabel);
-    QFont font = group->font();
-    font.setBold(true);
-    group->setFont(font);
-
-    QVBoxLayout *vbox = new QVBoxLayout();
-    vbox->setSpacing(spacing);
-    vbox->setMargin(margins);
-    group->setLayout(vbox);
-
     // MultiEditor
     MultiEditor* multiEditor = new MultiEditor();
-    font.setBold(false);
-    multiEditor->setFont(font);
     multiEditor->setReadOnly(readOnly);
+    multiEditor->setCornerLabel(groupLabel);
     dataMapper->addMapping(multiEditor, colIdx, "value");
-    vbox->addWidget(multiEditor);
-    widgets << group;
+    widgets << multiEditor;
     editors << multiEditor;
-    contents->layout()->addWidget(group);
+    contents->layout()->addWidget(multiEditor);
     this->readOnly << readOnly;
 
     connect(multiEditor, SIGNAL(modified()), this, SLOT(editorValueModified()));
@@ -142,7 +130,7 @@ void FormView::addColumn(int colIdx, const QString& name, const DataType& dataTy
 
     // Resizer
     WidgetResizer* resizer = new WidgetResizer(Qt::Vertical);
-    resizer->setWidget(group);
+    resizer->setWidget(multiEditor);
     resizer->setWidgetMinimumSize(0, minimumFieldHeight);
     widgets << resizer;
     contents->layout()->addWidget(resizer);
