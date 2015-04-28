@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="ru_RU">
+<TS version="2.1" language="ru_RU">
 <context>
     <name>AbstractDb</name>
     <message>
@@ -147,31 +147,31 @@
         <translation>Не удалось добавить базу данных %1: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="134"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="138"/>
         <source>Database %1 could not be updated, because of an error: %2</source>
         <translation>Невозможно обновить базу данных %1 из-за ошибки: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="308"/>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="337"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="312"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="341"/>
         <source>Database file doesn&apos;t exist.</source>
         <translation>Файл базы данных не существует.</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="310"/>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="339"/>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="494"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="314"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="343"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="565"/>
         <source>No supporting plugin loaded.</source>
         <translatorcomment>Unclear error string. Checking the source didn&apos;t help.</translatorcomment>
         <translation>Модуль поддержки не загружен.</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="413"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="484"/>
         <source>Database could not be initialized.</source>
         <translation>Невозможно инициализировать базу данных.</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="423"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="494"/>
         <source>No suitable database driver plugin found.</source>
         <translation>Не найден подходящий драйвер базы данных.</translation>
     </message>
@@ -429,36 +429,36 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
         <translation>Невозможно завершить транзакцию для импортированных данных: %1</translation>
     </message>
     <message>
-        <location filename="../importworker.cpp" line="93"/>
+        <location filename="../importworker.cpp" line="94"/>
         <source>Table &apos;%1&apos; has less columns than there are columns in the data to be imported. Excessive data columns will be ignored.</source>
         <translation>В таблице &apos;%1&apos; столбцов меньше, чем в импортируемых данных. Лишние столбцы будут проигнорированы.</translation>
     </message>
     <message>
-        <location filename="../importworker.cpp" line="98"/>
+        <location filename="../importworker.cpp" line="99"/>
         <source>Table &apos;%1&apos; has more columns than there are columns in the data to be imported. Some columns in the table will be left empty.</source>
         <translation>В таблице &apos;%1&apos; столбцов больше, чем в импортируемых данных. Недостающие столбцы будут оставлены пустыми.</translation>
     </message>
     <message>
-        <location filename="../importworker.cpp" line="116"/>
+        <location filename="../importworker.cpp" line="117"/>
         <source>Could not create table to import to: %1</source>
         <translation>Невозможно создать таблицу для импорта: %1</translation>
     </message>
     <message>
-        <location filename="../importworker.cpp" line="125"/>
-        <location filename="../importworker.cpp" line="162"/>
-        <location filename="../importworker.cpp" line="169"/>
+        <location filename="../importworker.cpp" line="126"/>
+        <location filename="../importworker.cpp" line="163"/>
+        <location filename="../importworker.cpp" line="170"/>
         <source>Error while importing data: %1</source>
         <translation>Ошибка при импорте данных: %1</translation>
     </message>
     <message>
-        <location filename="../importworker.cpp" line="125"/>
-        <location filename="../importworker.cpp" line="169"/>
+        <location filename="../importworker.cpp" line="126"/>
+        <location filename="../importworker.cpp" line="170"/>
         <source>Interrupted.</source>
         <comment>import process status update</comment>
         <translation>Прервано.</translation>
     </message>
     <message>
-        <location filename="../importworker.cpp" line="157"/>
+        <location filename="../importworker.cpp" line="158"/>
         <source>Could not import data row number %1. The row was ignored. Problem details: %2</source>
         <translation>Невозможно импортировать строку данных № %1. Строка пропущена. Подробности проблемы: %2</translation>
     </message>
@@ -466,33 +466,33 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
 <context>
     <name>PluginManagerImpl</name>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="541"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="543"/>
         <source>Cannot load plugin %1, because it&apos;s in conflict with plugin %2.</source>
         <translation>Невозможно загрузить модуль %1, так как он конфликтует с модулем %2.</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="552"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="554"/>
         <source>Cannot load plugin %1, because its dependency was not loaded: %2.</source>
         <translation>Невозможно загрузить модуль %1, так как не загружен необходимый ему модуль: %2.</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="561"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="563"/>
         <source>Cannot load plugin %1. Error details: %2</source>
         <translation>Невозможно загрузить модуль %1. Подробности ошибки: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="577"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="579"/>
         <source>Cannot load plugin %1 (error while initializing plugin).</source>
         <translation>Невозможно загрузить модуль %1 (ошибка при инициализации модуля).</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="730"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="732"/>
         <source>min: %1</source>
         <comment>plugin dependency version</comment>
         <translation>минимальная: %1</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="731"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="733"/>
         <source>max: %1</source>
         <comment>plugin dependency version</comment>
         <translation>максимальная: %1</translation>
@@ -570,7 +570,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
 <context>
     <name>PopulateManager</name>
     <message>
-        <location filename="../services/populatemanager.cpp" line="88"/>
+        <location filename="../services/populatemanager.cpp" line="89"/>
         <source>Table &apos;%1&apos; populated successfully.</source>
         <translation>Таблица &apos;%1&apos; успешно заполнена.</translation>
     </message>
@@ -752,12 +752,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
         <translation>Невозможно начать транзакцию для заполнения таблицы. Подробности ошибки: %1</translation>
     </message>
     <message>
-        <location filename="../populateworker.cpp" line="56"/>
+        <location filename="../populateworker.cpp" line="63"/>
         <source>Error while populating table: %1</source>
         <translation>Ошибка при заполнении таблицы: %1</translation>
     </message>
     <message>
-        <location filename="../populateworker.cpp" line="65"/>
+        <location filename="../populateworker.cpp" line="74"/>
         <source>Could not commit transaction after table populating. Error details: %1</source>
         <translation>Невозможно завершить транзакцию после заполнения таблицы. Подробности ошибки: %1</translation>
     </message>
@@ -771,8 +771,8 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
         <translation>Невозможно открыть базу данных: %1</translation>
     </message>
     <message>
-        <location filename="../db/abstractdb2.h" line="796"/>
-        <location filename="../db/abstractdb3.h" line="1092"/>
+        <location filename="../db/abstractdb2.h" line="803"/>
+        <location filename="../db/abstractdb3.h" line="1100"/>
         <source>Result set expired or no row available.</source>
         <translation>Результирующая выборка устарела или ни одна строка не доступна.</translation>
     </message>
@@ -912,43 +912,43 @@ Error details: %2</source>
         <translation>Невозможно инициализировать файл конфигурации. Любые изменения конфигурации и история запросов будут утеряны после перезапуска приложения. Попытки инициализации файла предпринимались в следующих местах: %1.</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="288"/>
+        <location filename="../sqlitestudio.cpp" line="289"/>
         <source>General purpose</source>
         <comment>plugin category name</comment>
         <translation>Общего назначения</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="289"/>
+        <location filename="../sqlitestudio.cpp" line="290"/>
         <source>Database support</source>
         <comment>plugin category name</comment>
         <translation>Поддержка баз данных</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="290"/>
+        <location filename="../sqlitestudio.cpp" line="291"/>
         <source>Code formatter</source>
         <comment>plugin category name</comment>
         <translation>Форматирование кода</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="291"/>
+        <location filename="../sqlitestudio.cpp" line="292"/>
         <source>Scripting languages</source>
         <comment>plugin category name</comment>
         <translation>Скриптовые языки</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="292"/>
+        <location filename="../sqlitestudio.cpp" line="293"/>
         <source>Exporting</source>
         <comment>plugin category name</comment>
         <translation>Экспорт</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="293"/>
+        <location filename="../sqlitestudio.cpp" line="294"/>
         <source>Importing</source>
         <comment>plugin category name</comment>
         <translation>Импорт</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="294"/>
+        <location filename="../sqlitestudio.cpp" line="295"/>
         <source>Table populating</source>
         <comment>plugin category name</comment>
         <translation>Заполнение таблиц</translation>
@@ -1015,7 +1015,7 @@ The view will remain as it is.</source>
 <context>
     <name>QueryExecutor</name>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="132"/>
+        <location filename="../db/queryexecutor.cpp" line="133"/>
         <source>Execution interrupted.</source>
         <translation>Выполнение прервано.</translation>
     </message>

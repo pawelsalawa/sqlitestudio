@@ -9,6 +9,7 @@
         * [BUGFIX]: #2846 Fixed crash when executing query on a database after just removed other database from the list.
         * [BUGFIX]: #2856 Fixed not working updates manual checking if automatic checking was disabled.
         * [BUGFIX]: #2863 Fixed config dialog to honor DbTree presentation options (sorting, labels) immediately, no manual refreshing required.
+        * [BUGFIX]: #2862 Fixed loading SQL scripts into editor when using Chinese language.
 
 [3.0.5]
         * [ADDED]: #2831 Ported 'Erase table data' feature (in table's context menu) from version 2.1.5.
