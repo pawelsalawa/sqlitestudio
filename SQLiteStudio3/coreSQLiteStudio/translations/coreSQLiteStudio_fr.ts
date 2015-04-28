@@ -147,30 +147,30 @@
         <translation>Impossible d&apos;ajouter une base de données %1: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="134"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="138"/>
         <source>Database %1 could not be updated, because of an error: %2</source>
         <translation>La base de données %1 ne peut ëtre mise à jour à cause de l&apos;erreur: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="308"/>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="337"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="312"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="341"/>
         <source>Database file doesn&apos;t exist.</source>
         <translation>Le fichier de la base de données n&apos;existe pas.</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="310"/>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="339"/>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="494"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="314"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="343"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="565"/>
         <source>No supporting plugin loaded.</source>
         <translation>Aucun plugin supporté chargé.</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="413"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="484"/>
         <source>Database could not be initialized.</source>
         <translation>La base de données ne peut être initialisée.</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="423"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="494"/>
         <source>No suitable database driver plugin found.</source>
         <translation>Aucun pilote de base de données approprié trouvé.</translation>
     </message>
@@ -428,36 +428,36 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
         <translation>Impossible d&apos;enregistrer la transaction d&apos;import de données: %1</translation>
     </message>
     <message>
-        <location filename="../importworker.cpp" line="93"/>
+        <location filename="../importworker.cpp" line="94"/>
         <source>Table &apos;%1&apos; has less columns than there are columns in the data to be imported. Excessive data columns will be ignored.</source>
         <translation>La table %1 a moins de colonnes que de données à importer. Les colonnes supplèmentaires seront ignorées.</translation>
     </message>
     <message>
-        <location filename="../importworker.cpp" line="98"/>
+        <location filename="../importworker.cpp" line="99"/>
         <source>Table &apos;%1&apos; has more columns than there are columns in the data to be imported. Some columns in the table will be left empty.</source>
         <translation>La table %1 a plus de colonnes que de colonnes de données à importer. Certaines colonnes de la table seront vides.</translation>
     </message>
     <message>
-        <location filename="../importworker.cpp" line="116"/>
+        <location filename="../importworker.cpp" line="117"/>
         <source>Could not create table to import to: %1</source>
         <translation>Impossible de créer la table d&apos;import: %1</translation>
     </message>
     <message>
-        <location filename="../importworker.cpp" line="125"/>
-        <location filename="../importworker.cpp" line="162"/>
-        <location filename="../importworker.cpp" line="169"/>
+        <location filename="../importworker.cpp" line="126"/>
+        <location filename="../importworker.cpp" line="163"/>
+        <location filename="../importworker.cpp" line="170"/>
         <source>Error while importing data: %1</source>
         <translation>Erreur lors de l&apos;import des données: %1</translation>
     </message>
     <message>
-        <location filename="../importworker.cpp" line="125"/>
-        <location filename="../importworker.cpp" line="169"/>
+        <location filename="../importworker.cpp" line="126"/>
+        <location filename="../importworker.cpp" line="170"/>
         <source>Interrupted.</source>
         <comment>import process status update</comment>
         <translation>Transaction interrompue.</translation>
     </message>
     <message>
-        <location filename="../importworker.cpp" line="157"/>
+        <location filename="../importworker.cpp" line="158"/>
         <source>Could not import data row number %1. The row was ignored. Problem details: %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -465,33 +465,33 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
 <context>
     <name>PluginManagerImpl</name>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="541"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="543"/>
         <source>Cannot load plugin %1, because it&apos;s in conflict with plugin %2.</source>
         <translation>Chargement impossible du plugin %1 celui-ci est en conflit avec le plugin %2.</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="552"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="554"/>
         <source>Cannot load plugin %1, because its dependency was not loaded: %2.</source>
         <translation>Chargement impossible du plugin %1, les dépendances n&apos;ont pa été chargées: %2.</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="561"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="563"/>
         <source>Cannot load plugin %1. Error details: %2</source>
         <translation>Chargement impossible du plugin %1, Détails de l&apos;erreur: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="577"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="579"/>
         <source>Cannot load plugin %1 (error while initializing plugin).</source>
         <translation>Chargement impossible du plugin %1 (erreur à initialisation du plugin).</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="730"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="732"/>
         <source>min: %1</source>
         <comment>plugin dependency version</comment>
         <translation>min %1</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="731"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="733"/>
         <source>max: %1</source>
         <comment>plugin dependency version</comment>
         <translation>max %1</translation>
@@ -569,7 +569,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
 <context>
     <name>PopulateManager</name>
     <message>
-        <location filename="../services/populatemanager.cpp" line="88"/>
+        <location filename="../services/populatemanager.cpp" line="89"/>
         <source>Table &apos;%1&apos; populated successfully.</source>
         <translation>Table &apos;%1&apos; remplie avec succès.</translation>
     </message>
@@ -751,12 +751,12 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
         <translation>Impossible d&apos;initialiser la transaction pour remplir la table.Détails de l&apos;erreur %1</translation>
     </message>
     <message>
-        <location filename="../populateworker.cpp" line="56"/>
+        <location filename="../populateworker.cpp" line="63"/>
         <source>Error while populating table: %1</source>
         <translation>Erreur lors du remplissage de la table: %1</translation>
     </message>
     <message>
-        <location filename="../populateworker.cpp" line="65"/>
+        <location filename="../populateworker.cpp" line="74"/>
         <source>Could not commit transaction after table populating. Error details: %1</source>
         <translation>Impossible d&apos;enregistrer la transaction après le remplissage de la table. Erreur %1</translation>
     </message>
@@ -770,8 +770,8 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
         <translation>Impossible d&apos;ouvrir la base de données: %1</translation>
     </message>
     <message>
-        <location filename="../db/abstractdb2.h" line="796"/>
-        <location filename="../db/abstractdb3.h" line="1092"/>
+        <location filename="../db/abstractdb2.h" line="803"/>
+        <location filename="../db/abstractdb3.h" line="1100"/>
         <source>Result set expired or no row available.</source>
         <translation>Terminé ou aucune ligne valide.</translation>
     </message>
@@ -912,43 +912,43 @@ Détails erreur: %2</translation>
         <translation>Impossible d&apos;initialiser le fichier de configuration. Aucune modification et les requêtes seront perdues après redémarrage. Essayez d&apos;initialiser le fichier avec cette localisation: %1.</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="288"/>
+        <location filename="../sqlitestudio.cpp" line="289"/>
         <source>General purpose</source>
         <comment>plugin category name</comment>
         <translation>Objectif général</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="289"/>
+        <location filename="../sqlitestudio.cpp" line="290"/>
         <source>Database support</source>
         <comment>plugin category name</comment>
         <translation>Support base de données</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="290"/>
+        <location filename="../sqlitestudio.cpp" line="291"/>
         <source>Code formatter</source>
         <comment>plugin category name</comment>
         <translation>Format code</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="291"/>
+        <location filename="../sqlitestudio.cpp" line="292"/>
         <source>Scripting languages</source>
         <comment>plugin category name</comment>
         <translation>Langages script</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="292"/>
+        <location filename="../sqlitestudio.cpp" line="293"/>
         <source>Exporting</source>
         <comment>plugin category name</comment>
         <translation>Export</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="293"/>
+        <location filename="../sqlitestudio.cpp" line="294"/>
         <source>Importing</source>
         <comment>plugin category name</comment>
         <translation>Import</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="294"/>
+        <location filename="../sqlitestudio.cpp" line="295"/>
         <source>Table populating</source>
         <comment>plugin category name</comment>
         <translation>Peuplement de la table</translation>
@@ -1015,7 +1015,7 @@ La vue restera telque.</translation>
 <context>
     <name>QueryExecutor</name>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="132"/>
+        <location filename="../db/queryexecutor.cpp" line="133"/>
         <source>Execution interrupted.</source>
         <translation>Exécution interrompue.</translation>
     </message>
