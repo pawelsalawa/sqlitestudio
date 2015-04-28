@@ -100,6 +100,7 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         bool updatingDataEditorItem = false;
         bool modifiedFlag = false;
         QList<ConfigNotifiablePlugin*> notifiablePlugins;
+        bool requiresSchemasRefresh = false;
 
     private slots:
         void refreshFormattersPage();
@@ -134,6 +135,7 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         void updatePluginCategoriesVisibility();
         void updateBuiltInPluginsVisibility();
         void applyShortcutsFilter(const QString& filter);
+        void markRequiresSchemasRefresh();
 
     public slots:
         void accept();

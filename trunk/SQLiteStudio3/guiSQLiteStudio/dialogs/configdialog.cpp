@@ -38,6 +38,7 @@
 #include <QtUiTools/QUiLoader>
 #include <QKeySequenceEdit>
 #include <plugins/uiconfiguredplugin.h>
+#include <dbtree/dbtree.h>
 
 #define GET_FILTER_STRING(Widget, WidgetType, Method) \
     if (qobject_cast<WidgetType*>(Widget))\
@@ -195,6 +196,17 @@ void ConfigDialog::init()
     connect(ui->buttonBox->button(QDialogButtonBox::Apply), SIGNAL(clicked()), this, SLOT(apply()));
     connect(ui->hideBuiltInPluginsCheck, SIGNAL(toggled(bool)), this, SLOT(updateBuiltInPluginsVisibility()));
 
+    QList<CfgEntry*> entries;
+    entries << CFG_UI.General.SortObjects
+            << CFG_UI.General.SortColumns
+            << CFG_UI.General.ShowDbTreeLabels
+            << CFG_UI.General.ShowRegularTableLabels
+            << CFG_UI.General.ShowSystemObjects
+            << CFG_UI.General.ShowVirtualTableLabels;
+
+    for (CfgEntry* cfg : entries)
+        connect(cfg, &CfgEntry::changed, this, &ConfigDialog::markRequiresSchemasRefresh);
+
     ui->activeStyleCombo->addItems(QStyleFactory::keys());
 
     connect(ui->stackedWidget, SIGNAL(currentChanged(int)), this, SLOT(pageSwitched()));
@@ -230,6 +242,11 @@ void ConfigDialog::save()
     commitPluginConfigs();
     CFG->commitMassSave();
 
+    if (requiresSchemasRefresh)
+    {
+        requiresSchemasRefresh = false;
+        DBTREE->refreshSchemas();
+    }
     MainWindow::getInstance()->updateCornerDocking();
 }
 
@@ -928,6 +945,11 @@ void ConfigDialog::applyShortcutsFilter(const QString &filter)
 
         categoryItem->setHidden(foundInCategory == 0);
     }
+}
+
+void ConfigDialog::markRequiresSchemasRefresh()
+{
+    requiresSchemasRefresh = true;
 }
 
 void ConfigDialog::updatePluginCategoriesVisibility(QTreeWidgetItem* categoryItem)
