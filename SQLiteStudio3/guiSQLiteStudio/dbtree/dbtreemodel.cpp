@@ -534,7 +534,7 @@ QList<QStandardItem *> DbTreeModel::refreshSchemaTables(const QStringList &table
 {
     QStringList sortedTables = tables;
     if (sort)
-        qSort(sortedTables);
+        sortedTables.sort(Qt::CaseInsensitive);
 
     QList<QStandardItem *> items;
     foreach (const QString& table, sortedTables)
@@ -573,7 +573,7 @@ StrHash<QList<QStandardItem *> > DbTreeModel::refreshSchemaIndexes(const StrHash
     {
         sortedIndexes = indexes[key];
         if (sort)
-            qSort(sortedIndexes);
+            sortedIndexes.sort(Qt::CaseInsensitive);
 
         for (const QString& index : sortedIndexes)
             items[key] += DbTreeItemFactory::createIndex(index, this);
@@ -589,7 +589,7 @@ StrHash<QList<QStandardItem*>> DbTreeModel::refreshSchemaTriggers(const StrHash<
     {
         sortedTriggers = triggers[key];
         if (sort)
-            qSort(sortedTriggers);
+            sortedTriggers.sort(Qt::CaseInsensitive);
 
         for (const QString& trigger : sortedTriggers)
             items[key] += DbTreeItemFactory::createTrigger(trigger, this);
@@ -601,10 +601,10 @@ QList<QStandardItem *> DbTreeModel::refreshSchemaViews(const QStringList &views,
 {
     QStringList sortedViews = views;
     if (sort)
-        qSort(sortedViews);
+        sortedViews.sort(Qt::CaseInsensitive);
 
     QList<QStandardItem *> items;
-    foreach (const QString& view, views)
+    foreach (const QString& view, sortedViews)
         items += DbTreeItemFactory::createView(view, this);
 
     return items;
