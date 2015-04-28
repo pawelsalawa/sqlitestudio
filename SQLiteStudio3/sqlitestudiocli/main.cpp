@@ -53,9 +53,11 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
+#ifdef PORTABLE_CONFIG
     int retCode = 1;
     if (UpdateManager::handleUpdateOptions(a.arguments(), retCode))
         return retCode;
+#endif
 
     QCoreApplication::setApplicationName("SQLiteStudio");
     QCoreApplication::setApplicationVersion(SQLITESTUDIO->getVersionString());

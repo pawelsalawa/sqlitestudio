@@ -87,6 +87,7 @@ void SQLiteStudio::setImmediateQuit(bool value)
     immediateQuit = value;
 }
 
+#ifdef PORTABLE_CONFIG
 UpdateManager* SQLiteStudio::getUpdateManager() const
 {
     return updateManager;
@@ -96,6 +97,7 @@ void SQLiteStudio::setUpdateManager(UpdateManager* value)
 {
     updateManager = value;
 }
+#endif
 
 BugReporter* SQLiteStudio::getBugReporter() const
 {
@@ -319,7 +321,9 @@ void SQLiteStudio::init(const QStringList& cmdListArguments, bool guiAvailable)
     importManager = new ImportManager();
     populateManager = new PopulateManager();
     bugReporter = new BugReporter();
+#ifdef PORTABLE_CONFIG
     updateManager = new UpdateManager();
+#endif
     extraLicenseManager = new ExtraLicenseManager();
 
     extraLicenseManager->addLicense("SQLiteStudio license (GPL v3)", ":/docs/licenses/sqlitestudio_license.txt");
@@ -349,7 +353,9 @@ void SQLiteStudio::cleanUp()
             pluginManager->deinit();
 
         safe_delete(pluginManager); // PluginManager before DbManager, so Db objects are deleted while DbManager still exists
+#ifdef PORTABLE_CONFIG
         safe_delete(updateManager);
+#endif
         safe_delete(bugReporter);
         safe_delete(populateManager);
         safe_delete(importManager);

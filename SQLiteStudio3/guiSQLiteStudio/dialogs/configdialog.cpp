@@ -213,7 +213,7 @@ void ConfigDialog::init()
 
     ui->hideBuiltInPluginsCheck->setChecked(true);
 
-#ifdef NO_AUTO_UPDATES
+#ifndef PORTABLE_CONFIG
     ui->updatesGroup->setVisible(false);
 #endif
 

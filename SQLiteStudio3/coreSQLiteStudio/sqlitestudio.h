@@ -25,7 +25,9 @@ class ImportManager;
 class PopulateManager;
 class PluginLoadingHandler;
 class BugReporter;
+#ifdef PORTABLE_CONFIG
 class UpdateManager;
+#endif
 class ExtraLicenseManager;
 
 /** @file */
@@ -138,8 +140,10 @@ class API_EXPORT SQLiteStudio : public QObject
         QString getUserManualPage() const;
         QString getSqliteDocsPage() const;
 
+#ifdef PORTABLE_CONFIG
         UpdateManager* getUpdateManager() const;
         void setUpdateManager(UpdateManager* value);
+#endif
 
         bool getImmediateQuit() const;
         void setImmediateQuit(bool value);
@@ -200,7 +204,9 @@ class API_EXPORT SQLiteStudio : public QObject
         ImportManager* importManager = nullptr;
         PopulateManager* populateManager = nullptr;
         BugReporter* bugReporter = nullptr;
+#ifdef PORTABLE_CONFIG
         UpdateManager* updateManager = nullptr;
+#endif
         ExtraLicenseManager* extraLicenseManager = nullptr;
         QString currentLang;
         QStringList initialTranslationFiles;

@@ -1,6 +1,8 @@
 #ifndef NEWVERSIONDIALOG_H
 #define NEWVERSIONDIALOG_H
 
+#ifdef PORTABLE_CONFIG
+
 #include "services/updatemanager.h"
 #include "guiSQLiteStudio_global.h"
 #include <QDialog>
@@ -31,4 +33,5 @@ class GUI_API_EXPORT NewVersionDialog : public QDialog
         void installUpdates();
 };
 
+#endif // PORTABLE_CONFIG
 #endif // NEWVERSIONDIALOG_H

@@ -1,3 +1,5 @@
+#ifdef PORTABLE_CONFIG
+
 #include "updatemanager.h"
 #include "services/pluginmanager.h"
 #include "services/notifymanager.h"
@@ -152,7 +154,7 @@ void UpdateManager::handleAvailableUpdatesReply(QNetworkReply* reply)
 
 void UpdateManager::getUpdatesMetadata(QNetworkReply*& replyStoragePointer, bool force)
 {
-#ifndef NO_AUTO_UPDATES
+#ifdef PORTABLE_CONFIG
     if ((!CFG_CORE.General.CheckUpdatesOnStartup.get() && !force) || !isPlatformEligibleForUpdate() || replyStoragePointer)
         return;
 
@@ -1056,3 +1058,5 @@ void UpdateManager::readDownload()
 {
     currentDownloadFile->write(updatesGetReply->readAll());
 }
+
+#endif // PORTABLE_CONFIG

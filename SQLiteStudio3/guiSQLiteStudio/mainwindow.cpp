@@ -123,8 +123,10 @@ void MainWindow::init()
             notifyInfo(tr("Running in debug mode. Debug messages are printed to the standard output."));
     }
 
+#ifdef PORTABLE_CONFIG
     connect(UPDATES, SIGNAL(updatesAvailable(QList<UpdateManager::UpdateEntry>)), this, SLOT(updatesAvailable(QList<UpdateManager::UpdateEntry>)));
     connect(UPDATES, SIGNAL(noUpdatesAvailable()), this, SLOT(noUpdatesAvailable()));
+#endif
     connect(statusField, SIGNAL(linkActivated(QString)), this, SLOT(statusFieldLinkClicked(QString)));
 
     // Widget cover
@@ -148,8 +150,10 @@ void MainWindow::init()
     widgetCover->getContainerLayout()->addWidget(updatingLabel, 0, 0);
     widgetCover->getContainerLayout()->addWidget(updatingBusyBar, 1, 0);
     widgetCover->getContainerLayout()->addWidget(updatingSubBar, 2, 0);
+#ifdef PORTABLE_CONFIG
     connect(UPDATES, SIGNAL(updatingProgress(QString,int,int)), this, SLOT(handleUpdatingProgress(QString,int,int)));
     connect(UPDATES, SIGNAL(updatingError(QString)), this, SLOT(handleUpdatingError()));
+#endif
 
     connect(CFG_CORE.General.Language, SIGNAL(changed(QVariant)), this, SLOT(notifyAboutLanguageChange()));
 }
@@ -281,7 +285,9 @@ void MainWindow::createActions()
     createAction(USER_MANUAL, ICONS.USER_MANUAL, tr("User Manual"), this, SLOT(userManual()), this);
     createAction(SQLITE_DOCS, ICONS.SQLITE_DOCS, tr("SQLite documentation"), this, SLOT(sqliteDocs()), this);
     createAction(BUG_REPORT_HISTORY, ICONS.BUG_LIST, tr("Report history"), this, SLOT(reportHistory()), this);
+#ifdef PORTABLE_CONFIG
     createAction(CHECK_FOR_UPDATES, ICONS.GET_UPDATE, tr("Check for updates"), this, SLOT(checkForUpdates()), this);
+#endif
 
     actionMap[ABOUT]->setMenuRole(QAction::AboutRole);
     actionMap[OPEN_CONFIG]->setMenuRole(QAction::PreferencesRole);
@@ -410,11 +416,13 @@ void MainWindow::initMenuBar()
     sqlitestudioMenu->addAction(actionMap[HOMEPAGE]);
     sqlitestudioMenu->addAction(actionMap[FORUM]);
     sqlitestudioMenu->addSeparator();
+#ifdef PORTABLE_CONFIG
     if (UPDATES->isPlatformEligibleForUpdate())
     {
         sqlitestudioMenu->addAction(actionMap[CHECK_FOR_UPDATES]);
         sqlitestudioMenu->addSeparator();
     }
+#endif
     sqlitestudioMenu->addAction(actionMap[REPORT_BUG]);
     sqlitestudioMenu->addAction(actionMap[FEATURE_REQUEST]);
     sqlitestudioMenu->addAction(actionMap[BUG_REPORT_HISTORY]);
@@ -749,6 +757,18 @@ void MainWindow::reportHistory()
     openReportHistory();
 }
 
+void MainWindow::statusFieldLinkClicked(const QString& link)
+{
+#ifdef PORTABLE_CONFIG
+    if (link == openUpdatesUrl && newVersionDialog)
+    {
+        newVersionDialog->exec();
+        return;
+    }
+#endif
+}
+
+#ifdef PORTABLE_CONFIG
 void MainWindow::updatesAvailable(const QList<UpdateManager::UpdateEntry>& updates)
 {
     manualUpdatesChecking = false;
@@ -764,15 +784,6 @@ void MainWindow::noUpdatesAvailable()
 
     notifyInfo(tr("You're running the most recent version. No updates are available."));
     manualUpdatesChecking = false;
-}
-
-void MainWindow::statusFieldLinkClicked(const QString& link)
-{
-    if (link == openUpdatesUrl && newVersionDialog)
-    {
-        newVersionDialog->exec();
-        return;
-    }
 }
 
 void MainWindow::checkForUpdates()
@@ -795,6 +806,7 @@ void MainWindow::handleUpdatingError()
 {
     widgetCover->hide();
 }
+#endif
 
 void MainWindow::updateCornerDocking()
 {
