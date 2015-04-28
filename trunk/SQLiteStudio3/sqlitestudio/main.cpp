@@ -34,6 +34,7 @@
 #include <QPluginLoader>
 #include <QDebug>
 #include <QMessageBox>
+#include <QProcess>
 
 bool listPlugins = false;
 
@@ -92,6 +93,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
+#ifdef PORTABLE_CONFIG
     int retCode = 1;
     UpdateManager::setRetryFunction(updateRetryFunction);
     if (UpdateManager::handleUpdateOptions(a.arguments(), retCode))
@@ -101,6 +103,7 @@ int main(int argc, char *argv[])
 
         return retCode;
     }
+#endif
 
     qInstallMessageHandler(uiMessageHandler);
 
@@ -163,7 +166,9 @@ int main(int argc, char *argv[])
     if (!dbToOpen.isNull())
         MainWindow::getInstance()->openDb(dbToOpen);
 
+#ifdef PORTABLE_CONFIG
     UPDATES->checkForUpdates();
+#endif
 
     return a.exec();
 }

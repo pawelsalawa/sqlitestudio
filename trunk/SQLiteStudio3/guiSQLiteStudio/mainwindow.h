@@ -162,7 +162,9 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         QMenu* viewMenu = nullptr;
         QMenu* toolsMenu = nullptr;
         QMenu* sqlitestudioMenu = nullptr;
+#ifdef PORTABLE_CONFIG
         QPointer<NewVersionDialog> newVersionDialog;
+#endif
         WidgetCover* widgetCover = nullptr;
         QLabel* updatingLabel = nullptr;
         QProgressBar* updatingBusyBar = nullptr;
@@ -202,12 +204,14 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void userManual();
         void sqliteDocs();
         void reportHistory();
+#ifdef PORTABLE_CONFIG
         void updatesAvailable(const QList<UpdateManager::UpdateEntry>& updates);
         void noUpdatesAvailable();
-        void statusFieldLinkClicked(const QString& link);
         void checkForUpdates();
         void handleUpdatingProgress(const QString& jobTitle, int jobPercent, int totalPercent);
         void handleUpdatingError();
+#endif
+        void statusFieldLinkClicked(const QString& link);
 };
 
 template <class T>

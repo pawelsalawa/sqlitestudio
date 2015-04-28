@@ -10,6 +10,7 @@
         * [BUGFIX]: #2856 Fixed not working updates manual checking if automatic checking was disabled.
         * [BUGFIX]: #2863 Fixed config dialog to honor DbTree presentation options (sorting, labels) immediately, no manual refreshing required.
         * [BUGFIX]: #2862 Fixed loading SQL scripts into editor when using Chinese language.
+        * [BUGFIX]: #2855 Automatic updates are now enabled only for portable build and are disabled by default for other builds.
 
 [3.0.5]
         * [ADDED]: #2831 Ported 'Erase table data' feature (in table's context menu) from version 2.1.5.

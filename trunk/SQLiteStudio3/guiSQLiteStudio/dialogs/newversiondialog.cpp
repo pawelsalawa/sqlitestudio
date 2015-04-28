@@ -1,3 +1,5 @@
+#ifdef PORTABLE_CONFIG
+
 #include "newversiondialog.h"
 #include "services/pluginmanager.h"
 #include "sqlitestudio.h"
@@ -66,3 +68,5 @@ void NewVersionDialog::showEvent(QShowEvent*)
 {
     ui->checkOnStartupCheck->setChecked(CFG_CORE.General.CheckUpdatesOnStartup.get());
 }
+
+#endif // PORTABLE_CONFIG

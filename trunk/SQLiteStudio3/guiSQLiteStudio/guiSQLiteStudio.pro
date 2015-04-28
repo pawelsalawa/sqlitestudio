@@ -19,6 +19,10 @@ linux: {
     }
 }
 
+portable: {
+    DEFINES += PORTABLE_CONFIG
+}
+
 TARGET = guiSQLiteStudio
 TEMPLATE = lib
 

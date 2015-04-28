@@ -1,6 +1,8 @@
 #ifndef UPDATEMANAGER_H
 #define UPDATEMANAGER_H
 
+#ifdef PORTABLE_CONFIG
+
 #include "common/global.h"
 #include "sqlitestudio.h"
 #include <QObject>
@@ -134,4 +136,5 @@ class API_EXPORT UpdateManager : public QObject
 
 #define UPDATES SQLITESTUDIO->getUpdateManager()
 
+#endif // PORTABLE_CONFIG
 #endif // UPDATEMANAGER_H
