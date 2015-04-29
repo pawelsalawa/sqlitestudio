@@ -15,6 +15,12 @@ namespace Cfg
     GUI_API_EXPORT QVariant getDefaultDbTreeLabelFont();
     typedef QHash<QString,QVariant> Session;
     typedef QHash<QString,QVariant> DataEditorsOrder;
+    enum InsertRowPlacement
+    {
+        BEFORE_CURRENT,
+        AFTER_CURRENT,
+        AT_THE_END
+    };
 }
 
 CFG_CATEGORIES(Ui,
@@ -85,6 +91,7 @@ CFG_CATEGORIES(Ui,
         CFG_ENTRY(QString,               DockLayout,              "vertical")
         CFG_ENTRY(QString,               CustomCss,               QString())
         CFG_ENTRY(bool,                  CompactLayout,           true)
+        CFG_ENTRY(int,                   InsertRowPlacement,      Cfg::BEFORE_CURRENT)
     )
 )
 

@@ -168,6 +168,9 @@ void DataView::createActions()
     {
         gridToolBar->addAction(gridView->getAction(SqlQueryView::INSERT_ROW));
         attachActionInMenu(gridView->getAction(SqlQueryView::INSERT_ROW), gridView->getAction(SqlQueryView::INSERT_MULTIPLE_ROWS), gridToolBar);
+        addSeparatorInMenu(gridView->getAction(SqlQueryView::INSERT_ROW), gridToolBar);
+        for (Action act : {INSERT_ROW_BEFORE, INSERT_ROW_AFTER, INSERT_ROW_AT_END})
+            attachActionInMenu(gridView->getAction(SqlQueryView::INSERT_ROW), staticActions[act], gridToolBar);
     }
 
     if (rowDeleting)
@@ -330,6 +333,44 @@ void DataView::createStaticActions()
     else
         staticActions[TABS_AT_BOTTOM]->setChecked(true);
 
+    // Insert row positioning
+    staticActions[INSERT_ROW_BEFORE] = new ExtAction(tr("Place new rows above selected row", "data view"), MainWindow::getInstance());
+    staticActions[INSERT_ROW_AFTER] = new ExtAction(tr("Place new rows below selected row", "data view"), MainWindow::getInstance());
+    staticActions[INSERT_ROW_AT_END] = new ExtAction(tr("Place new rows at the end of the data view", "data view"), MainWindow::getInstance());
+
+    staticActionGroups[ActionGroup::INSERT_ROW_POSITIONING] = new QActionGroup(MainWindow::getInstance());
+    staticActionGroups[ActionGroup::INSERT_ROW_POSITIONING]->addAction(staticActions[INSERT_ROW_BEFORE]);
+    staticActionGroups[ActionGroup::INSERT_ROW_POSITIONING]->addAction(staticActions[INSERT_ROW_AFTER]);
+    staticActionGroups[ActionGroup::INSERT_ROW_POSITIONING]->addAction(staticActions[INSERT_ROW_AT_END]);
+
+    connect(staticActions[INSERT_ROW_BEFORE], &QAction::triggered, [=]()
+    {
+        CFG_UI.General.InsertRowPlacement.set(Cfg::BEFORE_CURRENT);
+    });
+    connect(staticActions[INSERT_ROW_AFTER], &QAction::triggered, [=]()
+    {
+        CFG_UI.General.InsertRowPlacement.set(Cfg::AFTER_CURRENT);
+    });
+    connect(staticActions[INSERT_ROW_AT_END], &QAction::triggered, [=]()
+    {
+        CFG_UI.General.InsertRowPlacement.set(Cfg::AT_THE_END);
+    });
+
+    staticActions[INSERT_ROW_BEFORE]->setCheckable(true);
+    staticActions[INSERT_ROW_AFTER]->setCheckable(true);
+    staticActions[INSERT_ROW_AT_END]->setCheckable(true);
+    switch (static_cast<Cfg::InsertRowPlacement>(CFG_UI.General.InsertRowPlacement.get()))
+    {
+        case Cfg::BEFORE_CURRENT:
+            staticActions[INSERT_ROW_BEFORE]->setChecked(true);
+            break;
+        case Cfg::AFTER_CURRENT:
+            staticActions[INSERT_ROW_AFTER]->setChecked(true);
+            break;
+        case Cfg::AT_THE_END:
+            staticActions[INSERT_ROW_AT_END]->setChecked(true);
+            break;
+    }
 }
 
 void DataView::loadTabsMode()

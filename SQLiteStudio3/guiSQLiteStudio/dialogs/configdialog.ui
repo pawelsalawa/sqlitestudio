@@ -227,7 +227,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>6</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="dataBrowsingPage">
           <layout class="QVBoxLayout" name="verticalLayout_21">
@@ -289,6 +289,57 @@
                 </property>
                 <property name="cfg" stdset="0">
                  <string notr="true">General.MaxInitialColumnWith</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="insertRowPlacementGroup">
+             <property name="title">
+              <string>Inserting new row in data grid</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_33">
+              <item>
+               <widget class="ConfigRadioButton" name="insertRowBeforeRadio">
+                <property name="text">
+                 <string>Before currently selected row</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+                <property name="assignedValue" stdset="0">
+                 <number>0</number>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string>General.InsertRowPlacement</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="ConfigRadioButton" name="insertRowAfterRadio">
+                <property name="text">
+                 <string>After currently selected row</string>
+                </property>
+                <property name="assignedValue" stdset="0">
+                 <number>1</number>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string>General.InsertRowPlacement</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="ConfigRadioButton" name="insertRowAtEndRadio">
+                <property name="text">
+                 <string>At the end of data view</string>
+                </property>
+                <property name="assignedValue" stdset="0">
+                 <number>2</number>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string>General.InsertRowPlacement</string>
                 </property>
                </widget>
               </item>
@@ -660,8 +711,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>458</width>
-                <height>630</height>
+                <width>456</width>
+                <height>608</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_31">
@@ -1224,7 +1275,7 @@
                         <string notr="true">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.Helvetica Neue DeskInterface'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt;&quot;&gt;Abcdefgh&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                        </property>
                       </widget>
@@ -1315,8 +1366,8 @@ p, li { white-space: pre-wrap; }
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>258</width>
-                <height>286</height>
+                <width>249</width>
+                <height>322</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -1437,8 +1488,8 @@ p, li { white-space: pre-wrap; }
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>307</width>
-                <height>666</height>
+                <width>329</width>
+                <height>813</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_12">

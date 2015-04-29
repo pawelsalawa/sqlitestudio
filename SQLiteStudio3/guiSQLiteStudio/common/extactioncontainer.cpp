@@ -96,17 +96,14 @@ void ExtActionContainer::attachActionInMenu(int parentAction, QAction* childActi
 
 void ExtActionContainer::attachActionInMenu(QAction* parentAction, QAction* childAction, QToolBar* toolbar)
 {
-    QToolButton* button = dynamic_cast<QToolButton*>(toolbar->widgetForAction(parentAction));
-    QMenu* menu = button->menu();
-
-    if (!menu)
-    {
-        menu = new QMenu(button);
-        button->setMenu(menu);
-        button->setPopupMode(QToolButton::MenuButtonPopup);
-    }
-
+    QMenu* menu = getMenuForAction(parentAction, toolbar);
     menu->addAction(childAction);
+}
+
+void ExtActionContainer::addSeparatorInMenu(QAction *parentAction, QToolBar* toolbar)
+{
+    QMenu* menu = getMenuForAction(parentAction, toolbar);
+    menu->addSeparator();
 }
 
 void ExtActionContainer::updateShortcutTips()
@@ -260,6 +257,19 @@ void ExtActionContainer::handleExtraActions()
             handleActionInsert(toolbarId, actionDetails);
         }
     }
+}
+
+QMenu *ExtActionContainer::getMenuForAction(QAction *parentAction, QToolBar* toolbar)
+{
+    QToolButton* button = dynamic_cast<QToolButton*>(toolbar->widgetForAction(parentAction));
+    QMenu* menu = button->menu();
+    if (!menu)
+    {
+        menu = new QMenu(button);
+        button->setMenu(menu);
+        button->setPopupMode(QToolButton::MenuButtonPopup);
+    }
+    return menu;
 }
 
 ExtActionContainer::ActionDetails::ActionDetails()
