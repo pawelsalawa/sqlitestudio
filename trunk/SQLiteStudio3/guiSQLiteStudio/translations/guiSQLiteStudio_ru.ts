@@ -1200,20 +1200,17 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="875"/>
         <source>Main window dock areas</source>
-        <translatorcomment>unclear meaning</translatorcomment>
-        <translation>Области прикрепления главного окна</translation>
+        <translation>Области прикрепления вокруг главного окна</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="881"/>
         <source>Left and right areas occupy corners</source>
-        <translatorcomment>unclear meaning</translatorcomment>
-        <translation>Правая и левая области</translation>
+        <translation>Углы занимают правая и левая области</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="901"/>
         <source>Top and bottom areas occupy corners</source>
-        <translatorcomment>unclear meaning</translatorcomment>
-        <translation>Верхняя и нижняя области</translation>
+        <translation>Углы занимают верхняя и нижняя области</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1010"/>
