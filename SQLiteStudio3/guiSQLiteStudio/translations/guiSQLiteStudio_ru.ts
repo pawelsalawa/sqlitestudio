@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ru_RU">
+<TS version="2.0" language="ru_RU">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -1080,22 +1080,22 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="694"/>
         <source>Compact layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Компактный режим</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="700"/>
         <source>&lt;p&gt;Compact layout reduces all margins and spacing on the UI to minimum, making space for displaying more data. It makes the interface a little bit less aesthetic, but allows to display more data at once.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;В компактном режиме все поля и отступы в интерфейсе минимизированы для отображения большего количества данных. Интерфейс станет чуть менее эстетичным, однако это позволит уместить больше данных на экране.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="703"/>
         <source>Use compact layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Включить компактный режим</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="709"/>
         <source>General.CompactLayout</source>
-        <translation type="unfinished"></translation>
+        <translation>General.CompactLayout</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="719"/>
@@ -1200,17 +1200,20 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="875"/>
         <source>Main window dock areas</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>unclear meaning</translatorcomment>
+        <translation>Области прикрепления главного окна</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="881"/>
         <source>Left and right areas occupy corners</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>unclear meaning</translatorcomment>
+        <translation>Правая и левая области</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="901"/>
         <source>Top and bottom areas occupy corners</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>unclear meaning</translatorcomment>
+        <translation>Верхняя и нижняя области</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1010"/>
@@ -1647,7 +1650,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/cssdebugdialog.ui" line="14"/>
         <source>SQLiteStudio CSS console</source>
-        <translation type="unfinished"></translation>
+        <translation>Консоль CSS SQLiteStudio</translation>
     </message>
 </context>
 <context>
@@ -1908,11 +1911,11 @@ Browsing other pages will be possible after the row counting is done.</source>
     </message>
     <message>
         <source>Name</source>
-        <translation type="vanished">Имя</translation>
+        <translation>Имя</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation type="vanished">Тип</translation>
+        <translation>Тип</translation>
     </message>
     <message>
         <source>Browse for database file on local computer</source>
@@ -1941,7 +1944,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     </message>
     <message>
         <source>Permanent</source>
-        <translation type="vanished">Запомнить</translation>
+        <translation>Запомнить</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="114"/>
@@ -1951,7 +1954,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     </message>
     <message>
         <source>Test database connection</source>
-        <translation type="vanished">Тест соединения с базой данных</translation>
+        <translation>Тест соединения с базой данных</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="150"/>
@@ -1995,7 +1998,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     </message>
     <message>
         <source>The name will be auto-generated</source>
-        <translation type="vanished">Имя будет сгенерировано автоматически</translation>
+        <translation>Имя будет сгенерировано автоматически</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="585"/>
@@ -2267,7 +2270,7 @@ Browsing other pages will be possible after the row counting is done.</source>
         <location filename="../dbtree/dbtree.cpp" line="142"/>
         <location filename="../dbtree/dbtree.cpp" line="1421"/>
         <source>Erase table data</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить данные из таблицы</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="312"/>
@@ -2367,17 +2370,17 @@ All objects from this group will be moved to parent group.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1421"/>
         <source>Are you sure you want to delete all data from table &apos;%1&apos;?</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы действительно хотите удалить все данные из таблицы &apos;%1&apos;?</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1429"/>
         <source>An error occurred while trying to delete data from table &apos;%1&apos;: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>При попытке удаления данных из таблицы &apos;%1&apos; произошла ошибка: %2</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1433"/>
         <source>All data has been deleted for table &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Из таблицы &apos;%1&apos; были удалены все данные.</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1535"/>
@@ -2461,13 +2464,13 @@ All objects from this group will be moved to parent group.</source>
     <message>
         <source>Error details:</source>
         <comment>dbtree tooltip</comment>
-        <translation type="vanished">Подробности ошибки:</translation>
+        <translation>Подробности ошибки:</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="438"/>
         <source>Error:</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка:</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="448"/>
@@ -3580,7 +3583,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="278"/>
         <source>Open CSS Console</source>
-        <translation type="unfinished"></translation>
+        <translation>Открыть консоль CSS</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="279"/>
@@ -4016,7 +4019,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="54"/>
         <source>Abort</source>
-        <translation type="unfinished">Прервать</translation>
+        <translation>Прервать</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="161"/>
@@ -4348,7 +4351,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.h" line="50"/>
         <source>Open CSS Console</source>
-        <translation type="unfinished"></translation>
+        <translation>Открыть консоль CSS</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.h" line="12"/>
@@ -4745,7 +4748,7 @@ find next</source>
     <message>
         <location filename="../dialogs/sortdialog.cpp" line="243"/>
         <source>Move column down</source>
-        <translation>Переместить столбец вних</translation>
+        <translation>Переместить столбец вниз</translation>
     </message>
 </context>
 <context>
@@ -4814,7 +4817,7 @@ find next</source>
         <location filename="../sqleditor.cpp" line="128"/>
         <source>Select file to save SQL</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Выбрать файл для сохранения SQL</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="129"/>
@@ -4879,7 +4882,7 @@ find next</source>
     <message>
         <location filename="../sqleditor.cpp" line="252"/>
         <source>Saved SQL contents to file: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>SQL-код сохранён в файле %1</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="431"/>
@@ -5457,7 +5460,7 @@ but it&apos;s okay to use them anyway.</source>
         <location filename="../windows/tablewindow.cpp" line="215"/>
         <source>Move column down</source>
         <comment>table window</comment>
-        <translation>Переместить столбец вних</translation>
+        <translation>Переместить столбец вниз</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="221"/>
@@ -5606,30 +5609,30 @@ Would you like to proceed?</source>
     <message>
         <location filename="../windows/tablewindow.cpp" line="635"/>
         <source>Could not restore window %1, because no database or table was stored in session for this window.</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно восстановить окно %1, так как в сессии для этого окна не была сохранена база данных или таблица.</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="641"/>
         <source>Could not restore window &apos;%1&apos;, because no database or table was stored in session for this window.</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно восстановить окно &apos;%1&apos;, так как в сессии для этого окна не была сохранена база данных или таблица.</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="648"/>
         <source>Could not restore window &apos;%1&apos;, because database %2 could not be resolved.</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно восстановить окно &apos;%1&apos;, так как невозможно определить базу данных %2</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="657"/>
         <source>Could not restore window &apos;%1&apos;&apos;, because the table %2 doesn&apos;t exist in the database %3.</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно восстановить окно &apos;%1&apos;, так как таблица %2 не существует в базе данных %3.</translation>
     </message>
     <message>
         <source>Could not restore window, because database %1 could not be resolved.</source>
-        <translation type="vanished">Невозможно восстановить окно, так как невозможно определить базу данных %1</translation>
+        <translation>Невозможно восстановить окно, так как невозможно определить базу данных %1</translation>
     </message>
     <message>
         <source>Could not restore window, because the table %1 doesn&apos;t exist in the database %2.</source>
-        <translation type="vanished">Невозможно восстановить окно, так как таблица %1 не существует в базе данных %2.</translation>
+        <translation>Невозможно восстановить окно, так как таблица %1 не существует в базе данных %2.</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="682"/>
@@ -5966,36 +5969,36 @@ Do you want to commit the structure, or do you want to go back to the structure 
     </message>
     <message>
         <source>Could not restore window, because database %1 could not be resolved.</source>
-        <translation type="vanished">Невозможно восстановить окно, так как невозможно определить базу данных %1.</translation>
+        <translation>Невозможно восстановить окно, так как невозможно определить базу данных %1.</translation>
     </message>
     <message>
         <source>Could not restore window, because database %1 could not be open.</source>
-        <translation type="vanished">Невозможно восстановить окно, так как невозможно открыть базу данных %1.</translation>
+        <translation>Невозможно восстановить окно, так как невозможно открыть базу данных %1.</translation>
     </message>
     <message>
         <source>Could not restore window, because the view %1 doesn&apos;t exist in the database %2.</source>
-        <translation type="vanished">Невозможно восстановить окно, так как представление %1 не существует в базе данных %2.</translation>
+        <translation>Невозможно восстановить окно, так как представление %1 не существует в базе данных %2.</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="103"/>
         <location filename="../windows/viewwindow.cpp" line="109"/>
         <source>Could not restore window &apos;%1&apos;, because no database or view was stored in session for this window.</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно восстановить окно &apos;%1&apos;, так как в сессии для этого окна не была сохранена база данных или представление.</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="116"/>
         <source>Could not restore window &apos;%1&apos;, because database %2 could not be resolved.</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно восстановить окно &apos;%1&apos;, так как невозможно определить базу данных %2.</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="122"/>
         <source>Could not restore window &apos;%1&apos;, because database %2 could not be open.</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно восстановить окно &apos;%1&apos;, так как невозможно открыть базу данных %2.</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="131"/>
         <source>Could not restore window &apos;%1&apos;, because the view %2 doesn&apos;t exist in the database %3.</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно восстановить окно &apos;%1&apos;, так как представление %2 не существует в базе данных %3.</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="156"/>
