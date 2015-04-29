@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="sk_SK">
+<TS version="2.0" language="sk_SK">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -1240,7 +1240,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1288"/>
         <source>Active formatter plugin</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktívny formátovací plugin</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1326"/>
@@ -1310,7 +1310,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1603"/>
         <source>BLOB value foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Farba BLOB hodnoty</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1610"/>
@@ -1360,7 +1360,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1731"/>
         <source>Uncommited data outline color</source>
-        <translation type="unfinished"></translation>
+        <translation>Farba rámčeka nepotvrdených dát</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1754"/>
@@ -1370,22 +1370,22 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1757"/>
         <source>Commit error outline color</source>
-        <translation type="unfinished"></translation>
+        <translation>Farba rámčeka s chybou potvrdenia dát</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1780"/>
         <source>NULL value foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Farba NULL hodnoty</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1803"/>
         <source>Deleted row background</source>
-        <translation type="unfinished"></translation>
+        <translation>Pozadie vymazaného riadka</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1829"/>
         <source>Database list colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Farby zoznamu databáz</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1835"/>
@@ -1395,27 +1395,27 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1838"/>
         <source>Additional labels foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Farba doplnkového popisku</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1864"/>
         <source>Status field colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Farby status okna</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1870"/>
         <source>Information message foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Farba informačnej správy</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1893"/>
         <source>Warning message foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Farba upozornenia</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1916"/>
         <source>Error message foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Farba chybovej správy</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="785"/>
@@ -1908,11 +1908,11 @@ Prezeranie ďalších strán bude možné až po dokončení spočítavania.</tr
     </message>
     <message>
         <source>Name</source>
-        <translation type="vanished">Názov</translation>
+        <translation>Názov</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation type="vanished">Typ</translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <source>Browse for database file on local computer</source>
@@ -1941,7 +1941,7 @@ Prezeranie ďalších strán bude možné až po dokončení spočítavania.</tr
     </message>
     <message>
         <source>Permanent</source>
-        <translation type="vanished">Uložiť natrvalo</translation>
+        <translation>Uložiť natrvalo</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="114"/>
@@ -1951,7 +1951,7 @@ Prezeranie ďalších strán bude možné až po dokončení spočítavania.</tr
     </message>
     <message>
         <source>Test database connection</source>
-        <translation type="vanished">Otestovať spojenie s databázou</translation>
+        <translation>Otestovať spojenie s databázou</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="150"/>
@@ -1995,7 +1995,7 @@ Prezeranie ďalších strán bude možné až po dokončení spočítavania.</tr
     </message>
     <message>
         <source>The name will be auto-generated</source>
-        <translation type="vanished">Názov bude vygenerovaný automaticky</translation>
+        <translation>Názov bude vygenerovaný automaticky</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="585"/>
@@ -2463,7 +2463,7 @@ Všetky objekty z tejto skupiny budú presunuté do nadradenej skupiny.</transla
     <message>
         <source>Error details:</source>
         <comment>dbtree tooltip</comment>
-        <translation type="vanished">Detaily chyby:</translation>
+        <translation>Detaily chyby:</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="438"/>
