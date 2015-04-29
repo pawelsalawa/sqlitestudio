@@ -560,47 +560,38 @@ void ConfigImpl::initDbFile()
     QString globalPath = getConfigPath();
     QString portablePath = getPortableConfigPath();
 
-    QStringList paths;
+    QList<QPair<QString,bool>> paths;
     if (!globalPath.isNull() && !portablePath.isNull())
     {
         if (QFileInfo(portablePath).exists())
         {
-            paths << portablePath+"/"+DB_FILE_NAME;
-            paths << globalPath+"/"+DB_FILE_NAME;
+            paths << QPair<QString,bool>(portablePath+"/"+DB_FILE_NAME, false);
+            paths << QPair<QString,bool>(globalPath+"/"+DB_FILE_NAME, true);
         }
         else
         {
-            paths << globalPath+"/"+DB_FILE_NAME;
-            paths << portablePath+"/"+DB_FILE_NAME;
+            paths << QPair<QString,bool>(globalPath+"/"+DB_FILE_NAME, true);
+            paths << QPair<QString,bool>(portablePath+"/"+DB_FILE_NAME, false);
         }
     }
     else if (!globalPath.isNull())
     {
-        paths << globalPath+"/"+DB_FILE_NAME;
+        paths << QPair<QString,bool>(globalPath+"/"+DB_FILE_NAME, true);
     }
     else if (!portablePath.isNull())
     {
-        paths << portablePath+"/"+DB_FILE_NAME;
-    }
-
-    // Create global config directory if not existing
-    QDir dir;
-    if (!globalPath.isNull())
-    {
-        dir = QDir(globalPath);
-        if (!dir.exists())
-            QDir::root().mkpath(globalPath);
+        paths << QPair<QString,bool>(portablePath+"/"+DB_FILE_NAME, false);
     }
 
     // A fallback to in-memory db
-    paths << ":memory:";
+    paths << QPair<QString,bool>(":memory:", false);
 
     // Go through all candidates and pick one
-    QString path;
-    foreach (path, paths)
+    QDir dir;
+    for (const QPair<QString,bool>& path : paths)
     {
-        dir = QDir(path);
-        if (path != ":memory:")
+        dir = QDir(path.first);
+        if (path.first != ":memory:")
             dir.cdUp();
 
         if (tryInitDbFile(path))
@@ -614,17 +605,29 @@ void ConfigImpl::initDbFile()
     if (configDir == ":memory:")
     {
         paths.removeLast();
+        QStringList pathStrings;
+        for (const QPair<QString,bool>& path : paths)
+            pathStrings << path.first;
+
         notifyError(QObject::tr("Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart."
-                       " Tried to initialize the file at following localizations: %1.").arg(paths.join(", ")));
+                       " Tried to initialize the file at following localizations: %1.").arg(pathStrings.join(", ")));
     }
 
     qDebug() << "Using configuration directory:" << configDir;
     db->exec("PRAGMA foreign_keys = 1;");
 }
 
-bool ConfigImpl::tryInitDbFile(const QString &dbPath)
+bool ConfigImpl::tryInitDbFile(const QPair<QString, bool> &dbPath)
 {
-    db = new DbSqlite3("SQLiteStudio settings", dbPath, {{DB_PURE_INIT, true}});
+    // Create global config directory if not existing
+    if (dbPath.second && !dbPath.first.isNull())
+    {
+        QDir dir(dbPath.first.mid(0, dbPath.first.length() - DB_FILE_NAME.length() - 1));
+        if (!dir.exists())
+            QDir::root().mkpath(dir.absolutePath());
+    }
+
+    db = new DbSqlite3("SQLiteStudio settings", dbPath.first, {{DB_PURE_INIT, true}});
     if (!db->open())
     {
         safe_delete(db);

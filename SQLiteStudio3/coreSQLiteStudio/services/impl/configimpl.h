@@ -93,7 +93,7 @@ class API_EXPORT ConfigImpl : public Config
         QString getPortableConfigPath();
         void initTables();
         void initDbFile();
-        bool tryInitDbFile(const QString& dbPath);
+        bool tryInitDbFile(const QPair<QString, bool>& dbPath);
         QVariant deserializeValue(const QVariant& value);
 
         void asyncAddSqlHistory(qint64 id, const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected);
