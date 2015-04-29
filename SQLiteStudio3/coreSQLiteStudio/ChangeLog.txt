@@ -16,6 +16,7 @@
         * [BUGFIX]: #2867 Fixed support for "ISNULL" in query execution.
         * [BUGFIX]: Fixed synchronization bug in DbSqlite2 plugin causing random crashes.
         * [BUGFIX]: Views are recreated after table modification only if they really need to be updated according to the table change.
+        * [BUGFIX]: Fixed querying selects with numerous subselects with '*' operators for result columns.
 
 [3.0.5]
         * [ADDED]: #2831 Ported 'Erase table data' feature (in table's context menu) from version 2.1.5.
