@@ -59,6 +59,16 @@ QHash<SelectResolver::Table,QHash<QString,QString>> QueryExecutorAddRowIds::addR
             return rowIdColsMap;
     }
 
+    bool hasStar = false;
+    for (SqliteSelect::Core::ResultColumn* resCol : core->resultColumns)
+    {
+        if (resCol->star)
+        {
+            hasStar = true;
+            break;
+        }
+    }
+
     // Getting all tables we need to get ROWID for
     SelectResolver resolver(db, select->tokens.detokenize(), context->dbNameToAttach);
     resolver.resolveMultiCore = false; // multicore subselects result in not editable columns, skip them
@@ -69,7 +79,7 @@ QHash<SelectResolver::Table,QHash<QString,QString>> QueryExecutorAddRowIds::addR
         if (table.flags & (SelectResolver::FROM_COMPOUND_SELECT | SelectResolver::FROM_DISTINCT_SELECT | SelectResolver::FROM_GROUPED_SELECT))
             continue; // we don't get ROWID from compound, distinct or aggregated subselects
 
-        if (!addResultColumns(core, table, rowIdColsMap, isTopSelect))
+        if (!addResultColumns(core, table, rowIdColsMap, isTopSelect, hasStar))
         {
             ok = false;
             return rowIdColsMap;
@@ -146,12 +156,14 @@ QHash<QString,QString> QueryExecutorAddRowIds::getNextColNames(const SelectResol
 }
 
 bool QueryExecutorAddRowIds::addResultColumns(SqliteSelect::Core* core, const SelectResolver::Table& table,
-                                        QHash<SelectResolver::Table,QHash<QString,QString>>& rowIdColsMap, bool isTopSelect)
+                                        QHash<SelectResolver::Table,QHash<QString,QString>>& rowIdColsMap, bool isTopSelect, bool hasStar)
 {
     QHash<QString, QString> executorToRealColumns;
+    bool aliasOnlyAsSelectColumn = false;
     if (rowIdColsMap.contains(table))
     {
         executorToRealColumns = rowIdColsMap[table]; // we already have resCol names from subselect
+        aliasOnlyAsSelectColumn = true;
     }
     else
     {
@@ -169,7 +181,7 @@ bool QueryExecutorAddRowIds::addResultColumns(SqliteSelect::Core* core, const Se
     while (it.hasNext())
     {
         it.next();
-        if (!addResultColumns(core, table, it.key(), it.value()))
+        if (!addResultColumns(core, table, it.key(), it.value(), aliasOnlyAsSelectColumn))
             return false;
     }
 
@@ -189,7 +201,7 @@ bool QueryExecutorAddRowIds::addResultColumns(SqliteSelect::Core* core, const Se
 }
 
 bool QueryExecutorAddRowIds::addResultColumns(SqliteSelect::Core* core, const SelectResolver::Table& table, const QString& queryExecutorColumn,
-                                        const QString& realColumn)
+                                        const QString& realColumn, bool aliasOnlyAsSelectColumn)
 {
     SqliteSelect::Core::ResultColumn* resCol = new SqliteSelect::Core::ResultColumn();
     resCol->setParent(core);
@@ -197,17 +209,25 @@ bool QueryExecutorAddRowIds::addResultColumns(SqliteSelect::Core* core, const Se
     resCol->expr = new SqliteExpr();
     resCol->expr->setParent(resCol);
 
-    resCol->expr->initId(realColumn);
-    if (!table.alias.isNull())
+    if (aliasOnlyAsSelectColumn)
     {
-        resCol->expr->table = table.alias;
+        // We are re-querying this column from subselect, we already have it as an alias
+        resCol->expr->initId(queryExecutorColumn);
     }
     else
     {
-        if (!table.database.isNull())
-            resCol->expr->database = table.database;
+        resCol->expr->initId(realColumn);
+        if (!table.alias.isNull())
+        {
+            resCol->expr->table = table.alias;
+        }
+        else
+        {
+            if (!table.database.isNull())
+                resCol->expr->database = table.database;
 
-        resCol->expr->table = table.table;
+            resCol->expr->table = table.table;
+        }
     }
     resCol->asKw = true;
     resCol->alias = queryExecutorColumn;
