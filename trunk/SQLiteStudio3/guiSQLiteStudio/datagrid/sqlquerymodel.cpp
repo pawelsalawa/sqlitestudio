@@ -1420,14 +1420,28 @@ void SqlQueryModel::recalculateRowsAndPages(int rowsDelta)
         reload();
 }
 
+int SqlQueryModel::getInsertRowIndex()
+{
+    Cfg::InsertRowPlacement placement = static_cast<Cfg::InsertRowPlacement>(CFG_UI.General.InsertRowPlacement.get());
+
+    int row = rowCount();
+    if (placement == Cfg::AT_THE_END)
+        return row;
+
+    SqlQueryItem* currentItem = view->getCurrentItem();
+    if (!currentItem)
+        return row;
+
+    row = currentItem->index().row();
+    if (placement == Cfg::AFTER_CURRENT)
+        row++;
+
+    return row;
+}
+
 void SqlQueryModel::addNewRow()
 {
-    int row = rowCount();
-    SqlQueryItem* currentItem = view->getCurrentItem();
-    if (currentItem)
-        row = currentItem->index().row();
-
-    addNewRowInternal(row);
+    addNewRowInternal(getInsertRowIndex());
 
     emit commitStatusChanged(true);
 }
@@ -1439,13 +1453,9 @@ void SqlQueryModel::addMultipleRows()
     if (!ok)
         return;
 
-    int row = rowCount();
-    SqlQueryItem* currentItem = view->getCurrentItem();
-    if (currentItem)
-        row = currentItem->index().row();
-
+    int row = getInsertRowIndex();
     for (int i = 0; i < rows; i++)
-        addNewRowInternal(row);
+        addNewRowInternal(row++);
 
     emit commitStatusChanged(true);
 }

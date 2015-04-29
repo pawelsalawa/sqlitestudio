@@ -48,6 +48,9 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
             GRID_TOTAL_ROWS,
             SELECTIVE_COMMIT,
             SELECTIVE_ROLLBACK,
+            INSERT_ROW_BEFORE,
+            INSERT_ROW_AFTER,
+            INSERT_ROW_AT_END,
             // Form view
             FORM_TOTAL_ROWS,
             FORM_CURRENT_ROW
@@ -56,7 +59,8 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         enum class ActionGroup
         {
             FILTER_MODE,
-            TABS_POSITION
+            TABS_POSITION,
+            INSERT_ROW_POSITIONING
         };
 
         enum ToolBar

@@ -17,6 +17,7 @@ class QWidget;
 class QActionGroup;
 class QToolBar;
 class QSignalMapper;
+class QMenu;
 
 #define CFG_SHORTCUTS_METANAME "Shortcuts"
 
@@ -134,6 +135,7 @@ class GUI_API_EXPORT ExtActionContainer
         void attachActionInMenu(int parentAction, int childAction, QToolBar* toolbar);
         void attachActionInMenu(int parentAction, QAction* childAction, QToolBar* toolbar);
         void attachActionInMenu(QAction* parentAction, QAction* childAction, QToolBar* toolbar);
+        void addSeparatorInMenu(QAction* parentAction, QToolBar *toolbar);
         void updateShortcutTips();
 
         /**
@@ -166,6 +168,7 @@ class GUI_API_EXPORT ExtActionContainer
         void deleteActions();
         void createAction(int action, QAction* qAction, const QObject* receiver, const char* slot, QWidget* container, QWidget* owner);
         void handleExtraActions();
+        QMenu* getMenuForAction(QAction* parentAction, QToolBar *toolbar);
 
         template <class T>
         static QList<T*> getInstances();

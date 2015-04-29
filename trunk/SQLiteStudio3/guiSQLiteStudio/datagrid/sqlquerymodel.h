@@ -259,6 +259,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         void detachDatabases();
         QString getDatabaseForCommit(const QString& database);
         void recalculateRowsAndPages(int rowsDelta);
+        int getInsertRowIndex();
 
         QString query;
         bool explain = false;
