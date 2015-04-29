@@ -481,7 +481,7 @@ TokenList SqliteExpr::rebuildTokensFromContents()
             builder.withKeyword("NULL");
             break;
         case SqliteExpr::Mode::NOTNULL:
-            builder.withTokens(rebuildNotNull());
+            builder.withStatement(expr1).withSpace().withTokens(rebuildNotNull());
             break;
         case SqliteExpr::Mode::IS:
             builder.withTokens(rebuildIs());
