@@ -333,6 +333,7 @@ void IndexDialog::rebuildCreateIndex()
 
     createIndex->uniqueKw = ui->uniqueCheck->isChecked();
 
+    Dialect dialect = db->getDialect();
     SqliteIndexedColumn* idxCol = nullptr;
     int i = -1;
     for (const QString& column : tableColumns)
@@ -343,7 +344,7 @@ void IndexDialog::rebuildCreateIndex()
             continue;
 
         idxCol = addIndexedColumn(column);
-        if (!collateComboBoxes[i]->currentText().isEmpty())
+        if (dialect == Dialect::Sqlite3 && !collateComboBoxes[i]->currentText().isEmpty())
             idxCol->collate = collateComboBoxes[i]->currentText();
 
         if (sortComboBoxes[i]->currentIndex() > 0)

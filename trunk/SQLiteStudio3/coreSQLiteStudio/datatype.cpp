@@ -2,7 +2,7 @@
 #include <QMetaEnum>
 #include <QRegularExpression>
 
-QList<DataType::Enum> DataType::values = [=]() -> QList<DataType::Enum>
+QList<DataType::Enum> DataType::values = []() -> QList<DataType::Enum>
 {
     QList<DataType::Enum> list;
     QMetaEnum metaEnum = DataType::staticMetaObject.enumerator(0);
@@ -19,7 +19,7 @@ QList<DataType::Enum> DataType::values = [=]() -> QList<DataType::Enum>
     return list;
 }();
 
-const QStringList DataType::names = [=]() -> QStringList
+const QStringList DataType::names = []() -> QStringList
 {
     QStringList list;
     QMetaEnum metaEnum = DataType::staticMetaObject.enumerator(0);
