@@ -910,43 +910,43 @@ Error details: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="289"/>
+        <location filename="../sqlitestudio.cpp" line="291"/>
         <source>General purpose</source>
         <comment>plugin category name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="290"/>
+        <location filename="../sqlitestudio.cpp" line="292"/>
         <source>Database support</source>
         <comment>plugin category name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="291"/>
+        <location filename="../sqlitestudio.cpp" line="293"/>
         <source>Code formatter</source>
         <comment>plugin category name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="292"/>
+        <location filename="../sqlitestudio.cpp" line="294"/>
         <source>Scripting languages</source>
         <comment>plugin category name</comment>
         <translation>Skriptovacie jazyky</translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="293"/>
+        <location filename="../sqlitestudio.cpp" line="295"/>
         <source>Exporting</source>
         <comment>plugin category name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="294"/>
+        <location filename="../sqlitestudio.cpp" line="296"/>
         <source>Importing</source>
         <comment>plugin category name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="295"/>
+        <location filename="../sqlitestudio.cpp" line="297"/>
         <source>Table populating</source>
         <comment>plugin category name</comment>
         <translation type="unfinished"></translation>
@@ -1084,199 +1084,199 @@ The view will remain as it is.</source>
 <context>
     <name>UpdateManager</name>
     <message>
-        <location filename="../services/updatemanager.cpp" line="129"/>
+        <location filename="../services/updatemanager.cpp" line="131"/>
         <source>An error occurred while checking for updates: %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="142"/>
+        <location filename="../services/updatemanager.cpp" line="144"/>
         <source>Could not check available updates, because server responded with invalid message format. It is safe to ignore this warning.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="173"/>
+        <location filename="../services/updatemanager.cpp" line="175"/>
         <source>An error occurred while reading updates metadata: %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="186"/>
+        <location filename="../services/updatemanager.cpp" line="188"/>
         <source>Could not download updates, because server responded with invalid message format. You can try again later or download and install updates manually. See &lt;a href=&quot;%1&quot;&gt;User Manual&lt;/a&gt; for details.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="193"/>
+        <location filename="../services/updatemanager.cpp" line="195"/>
         <source>Could not create temporary directory for downloading the update. Updating aborted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="204"/>
+        <location filename="../services/updatemanager.cpp" line="206"/>
         <source>There was no updates to download. Updating aborted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="239"/>
+        <location filename="../services/updatemanager.cpp" line="241"/>
         <source>Downloading: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="245"/>
+        <location filename="../services/updatemanager.cpp" line="247"/>
         <source>Could not determinate file name from update URL: %1. Updating aborted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="253"/>
+        <location filename="../services/updatemanager.cpp" line="255"/>
         <source>Failed to open file &apos;%1&apos; for writting: %2. Updating aborted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="274"/>
+        <location filename="../services/updatemanager.cpp" line="276"/>
         <source>Installing updates.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="285"/>
+        <location filename="../services/updatemanager.cpp" line="287"/>
         <source>Could not copy current application directory into %1 directory.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="338"/>
+        <location filename="../services/updatemanager.cpp" line="340"/>
         <source>Could not create directory %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="346"/>
+        <location filename="../services/updatemanager.cpp" line="348"/>
         <source>Could not rename directory %1 to %2.
 Details: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="350"/>
+        <location filename="../services/updatemanager.cpp" line="352"/>
         <source>Cannot not rename directory %1 to %2.
 Details: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="358"/>
+        <location filename="../services/updatemanager.cpp" line="360"/>
         <source>Could not move directory %1 to %2 and also failed to restore original directory, so the original SQLiteStudio directory is now located at: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="363"/>
+        <location filename="../services/updatemanager.cpp" line="365"/>
         <source>Could not rename directory %1 to %2. Rolled back to the original SQLiteStudio version.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="442"/>
+        <location filename="../services/updatemanager.cpp" line="444"/>
         <source>Could not unpack component %1 into %2 directory.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="553"/>
+        <location filename="../services/updatemanager.cpp" line="555"/>
         <source>Could not find permissions elevator application to run update as a root. Looked for: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="560"/>
+        <location filename="../services/updatemanager.cpp" line="562"/>
         <source>Could not execute final updating steps as root: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="589"/>
-        <location filename="../services/updatemanager.cpp" line="598"/>
-        <location filename="../services/updatemanager.cpp" line="611"/>
-        <location filename="../services/updatemanager.cpp" line="621"/>
+        <location filename="../services/updatemanager.cpp" line="591"/>
+        <location filename="../services/updatemanager.cpp" line="600"/>
+        <location filename="../services/updatemanager.cpp" line="613"/>
+        <location filename="../services/updatemanager.cpp" line="623"/>
         <source>Could not execute final updating steps as admin: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="589"/>
+        <location filename="../services/updatemanager.cpp" line="591"/>
         <source>Cannot create temporary directory for updater.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="598"/>
+        <location filename="../services/updatemanager.cpp" line="600"/>
         <source>Cannot create updater script file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="631"/>
+        <location filename="../services/updatemanager.cpp" line="633"/>
         <source>Updating canceled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="659"/>
+        <location filename="../services/updatemanager.cpp" line="661"/>
         <source>Could not execute final updating steps as administrator.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="671"/>
+        <location filename="../services/updatemanager.cpp" line="673"/>
         <source>Could not execute final updating steps as administrator. Updater startup timed out.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="677"/>
+        <location filename="../services/updatemanager.cpp" line="679"/>
         <source>Could not execute final updating steps as administrator. Updater operation timed out.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="694"/>
+        <location filename="../services/updatemanager.cpp" line="696"/>
         <source>Could not clean up temporary directory %1. You can delete it manually at any time.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="730"/>
+        <location filename="../services/updatemanager.cpp" line="732"/>
         <source>Could not run new version for continuing update.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="815"/>
+        <location filename="../services/updatemanager.cpp" line="817"/>
         <source>Package not in tar.gz format, cannot install: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="822"/>
+        <location filename="../services/updatemanager.cpp" line="824"/>
         <source>Package %1 cannot be installed, because cannot move it to directory: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="831"/>
+        <location filename="../services/updatemanager.cpp" line="833"/>
         <source>Package %1 cannot be installed, because cannot unpack it: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="850"/>
+        <location filename="../services/updatemanager.cpp" line="852"/>
         <source>Package not in zip format, cannot install: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="857"/>
+        <location filename="../services/updatemanager.cpp" line="859"/>
         <source>Package %1 cannot be installed, because cannot unzip it to directory %2: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="871"/>
+        <location filename="../services/updatemanager.cpp" line="873"/>
         <source>Package %1 cannot be installed, because cannot unzip it to directory: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="921"/>
-        <location filename="../services/updatemanager.cpp" line="930"/>
+        <location filename="../services/updatemanager.cpp" line="923"/>
+        <location filename="../services/updatemanager.cpp" line="932"/>
         <source>Could not rename directory %1 to %2.</source>
         <translation>Nemôžem premenovať adresár %1na %2.</translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="943"/>
+        <location filename="../services/updatemanager.cpp" line="945"/>
         <source>Could not delete directory %1.</source>
         <translation>Nemôžem vymazať adresár %1.</translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="959"/>
+        <location filename="../services/updatemanager.cpp" line="961"/>
         <source>Error executing update command: %1
 Error message: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="1026"/>
+        <location filename="../services/updatemanager.cpp" line="1028"/>
         <source>An error occurred while downloading updates: %1. Updating aborted.</source>
         <translation type="unfinished"></translation>
     </message>

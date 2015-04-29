@@ -125,6 +125,7 @@ void SqlEditor::createActions()
     createAction(COMPLETE, ICONS.COMPLETE, tr("Complete", "sql editor"), this, SLOT(complete()), this);
     createAction(FORMAT_SQL, ICONS.FORMAT_SQL, tr("Format SQL", "sql editor"), this, SLOT(formatSql()), this);
     createAction(SAVE_SQL_FILE, ICONS.SAVE_SQL_FILE, tr("Save SQL to file", "sql editor"), this, SLOT(saveToFile()), this);
+    createAction(SAVE_AS_SQL_FILE, ICONS.SAVE_SQL_FILE, tr("Select file to save SQL", "sql editor"), this, SLOT(saveAsToFile()), this);
     createAction(OPEN_SQL_FILE, ICONS.OPEN_SQL_FILE, tr("Load SQL from file", "sql editor"), this, SLOT(loadFromFile()), this);
     createAction(DELETE_LINE, ICONS.ACT_DEL_LINE, tr("Delete line", "sql editor"), this, SLOT(deleteLine()), this);
     createAction(MOVE_BLOCK_DOWN, tr("Move block down", "sql editor"), this, SLOT(moveBlockDown()), this);
@@ -231,6 +232,24 @@ bool SqlEditor::handleValidObjectContextMenu(const QPoint& pos)
     DBTREE->updateActionStates(item);
     validObjContextMenu->popup(mapToGlobal(pos));
     return true;
+}
+
+void SqlEditor::saveToFile(const QString &fileName)
+{
+    QFile file(fileName);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        notifyError(tr("Could not open file '%1' for writing: %2").arg(fileName).arg(file.errorString()));
+        return;
+    }
+
+    QTextStream stream(&file);
+    stream.setCodec("UTF-8");
+    stream << toPlainText();
+    stream.flush();
+    file.close();
+
+    notifyInfo(tr("Saved SQL contents to file: %1").arg(fileName));
 }
 
 void SqlEditor::updateUndoAction(bool enabled)
@@ -1023,25 +1042,22 @@ void SqlEditor::formatSql()
 
 void SqlEditor::saveToFile()
 {
+    if (loadedFile.isNull())
+        saveAsToFile();
+    else
+        saveToFile(loadedFile);
+}
+
+void SqlEditor::saveAsToFile()
+{
     QString dir = getFileDialogInitPath();
     QString fName = QFileDialog::getSaveFileName(this, tr("Save to file"), dir);
     if (fName.isNull())
         return;
 
     setFileDialogInitPathByFile(fName);
-
-    QFile file(fName);
-    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
-    {
-        notifyError(tr("Could not open file '%1' for writing: %2").arg(fName).arg(file.errorString()));
-        return;
-    }
-
-    QTextStream stream(&file);
-    stream.setCodec("UTF-8");
-    stream << toPlainText();
-    stream.flush();
-    file.close();
+    loadedFile = fName;
+    saveToFile(loadedFile);
 }
 
 void SqlEditor::loadFromFile()
@@ -1066,6 +1082,8 @@ void SqlEditor::loadFromFile()
     QString sql = stream.readAll();
     file.close();
     setPlainText(sql);
+
+    loadedFile = fName;
 }
 
 void SqlEditor::deleteLine()
