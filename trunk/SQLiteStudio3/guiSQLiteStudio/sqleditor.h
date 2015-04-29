@@ -59,6 +59,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
             FORMAT_SQL,
             OPEN_SQL_FILE,
             SAVE_SQL_FILE,
+            SAVE_AS_SQL_FILE,
             DELETE_LINE,
             COMPLETE,
             MOVE_BLOCK_DOWN,
@@ -187,6 +188,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         const DbObject* getValidObjectForPosition(const QPoint& point);
         void handleValidObjectCursor(const QPoint& point);
         bool handleValidObjectContextMenu(const QPoint& pos);
+        void saveToFile(const QString& fileName);
 
         SqliteSyntaxHighlighter* highlighter = nullptr;
         QMenu* contextMenu = nullptr;
@@ -231,6 +233,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         int virtualSqlRightOffset = 0;
         bool virtualSqlCompleteSemicolon = false;
         QString createTriggerTable;
+        QString loadedFile;
 
         static const int autoCompleterDelay = 300;
         static const int queryParserDelay = 500;
@@ -260,6 +263,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void cursorMoved();
         void formatSql();
         void saveToFile();
+        void saveAsToFile();
         void loadFromFile();
         void deleteLine();
         void moveBlockDown(bool deleteOld = true);

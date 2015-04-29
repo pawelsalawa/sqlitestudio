@@ -4,68 +4,68 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../main.cpp" line="43"/>
+        <location filename="../main.cpp" line="44"/>
         <source>GUI interface to SQLiteStudio, a SQLite manager.</source>
         <translation>GUI rozhranie pre SQLiteStudio, SQLite manažér.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="47"/>
+        <location filename="../main.cpp" line="48"/>
         <source>Enables debug messages in console (accessible with F12).</source>
         <translation>Aktivuje ladiace správy v konzole (dostupné pomocou F12).</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="48"/>
+        <location filename="../main.cpp" line="49"/>
         <source>Redirects debug messages into standard output (forces debug mode).</source>
         <translation>Presmerovať ladiace informácie na štandardný výstup (vynútený ladiaci mód).</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="49"/>
+        <location filename="../main.cpp" line="50"/>
         <source>Redirects debug messages into given file (forces debug mode).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="49"/>
+        <location filename="../main.cpp" line="50"/>
         <source>log file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="50"/>
+        <location filename="../main.cpp" line="51"/>
         <source>Enables Lemon parser debug messages for SQL code assistant.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="51"/>
+        <location filename="../main.cpp" line="52"/>
         <source>Enables debugging of every single SQL query being sent to any database.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="52"/>
+        <location filename="../main.cpp" line="53"/>
         <source>Limits SQL query messages to only the given &lt;database&gt;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="52"/>
+        <location filename="../main.cpp" line="53"/>
         <source>database</source>
         <translation>databáza</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="53"/>
+        <location filename="../main.cpp" line="54"/>
         <source>Lists plugins installed in the SQLiteStudio and quits.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="62"/>
+        <location filename="../main.cpp" line="63"/>
         <source>file</source>
         <translation>Súbor</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="62"/>
+        <location filename="../main.cpp" line="63"/>
         <source>Database file to open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="85"/>
-        <location filename="../main.cpp" line="100"/>
+        <location filename="../main.cpp" line="86"/>
+        <location filename="../main.cpp" line="102"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>

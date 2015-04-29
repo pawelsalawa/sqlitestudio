@@ -372,6 +372,7 @@ void EditorWindow::createActions()
     createAction(CREATE_VIEW_FROM_QUERY, ICONS.VIEW_ADD, tr("Create view from query", "sql editor"), this, SLOT(createViewFromQuery()), ui->toolBar);
     ui->toolBar->addSeparator();
     ui->toolBar->addAction(ui->sqlEdit->getAction(SqlEditor::SAVE_SQL_FILE));
+    attachActionInMenu(ui->sqlEdit->getAction(SqlEditor::SAVE_SQL_FILE), ui->sqlEdit->getAction(SqlEditor::SAVE_AS_SQL_FILE), ui->toolBar);
     ui->toolBar->addAction(ui->sqlEdit->getAction(SqlEditor::OPEN_SQL_FILE));
     ui->toolBar->addSeparator();
     actionMap[CURRENT_DB] = ui->toolBar->addWidget(dbCombo);
