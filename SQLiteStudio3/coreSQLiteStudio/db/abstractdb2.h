@@ -724,6 +724,8 @@ SqlResultsRowPtr AbstractDb2<T>::Query::nextInternal()
     if (!rowAvailable || db.isNull())
         return SqlResultsRowPtr();
 
+    ReadWriteLocker locker(&(db->dbOperLock), query, Dialect::Sqlite2, flags.testFlag(Db::Flag::NO_LOCK));
+
     Row* row = new Row;
     row->init(colNames, nextRowValues);
 

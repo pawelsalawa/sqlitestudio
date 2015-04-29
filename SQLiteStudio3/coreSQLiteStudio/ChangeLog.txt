@@ -14,6 +14,7 @@
         * [BUGFIX]: #2862 Fixed loading SQL scripts into editor when using Chinese language.
         * [BUGFIX]: #2855 Automatic updates are now enabled only for portable build and are disabled by default for other builds.
         * [BUGFIX]: #2867 Fixed support for "ISNULL" in query execution.
+        * [BUGFIX]: Fixed synchronization bug in DbSqlite2 plugin causing random crashes.
 
 [3.0.5]
         * [ADDED]: #2831 Ported 'Erase table data' feature (in table's context menu) from version 2.1.5.
