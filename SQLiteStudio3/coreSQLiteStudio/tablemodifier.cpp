@@ -485,6 +485,15 @@ void TableModifier::handleView(SqliteCreateViewPtr view)
         return;
     }
 
+    view->select->rebuildTokens();
+    QString originalSelect = view->select->tokens.detokenize();
+
+    newSelect->rebuildTokens();
+    QString newSelectStr = newSelect->tokens.detokenize();
+
+    if (originalSelect == newSelectStr)
+        return;
+
     delete view->select;
     view->select = newSelect;
     view->select->setParent(view.data());
