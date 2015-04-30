@@ -35,6 +35,7 @@ class GUI_API_EXPORT CompleterWindow : public QDialog
     protected:
         void changeEvent(QEvent *e);
         void keyPressEvent(QKeyEvent* e);
+        void showEvent(QShowEvent* e);
 
     private:
         void updateCurrent();
