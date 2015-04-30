@@ -231,5 +231,7 @@ void CompleterWindow::currentRowChanged(const QModelIndex& current, const QModel
 void CompleterWindow::showEvent(QShowEvent*e)
 {
     QDialog::showEvent(e);
-    ui->list->setFocus();
+
+    // A hack for Gnome3 to give this widget a focus. Harmless for others.
+    ui->list->activateWindow();
 }
