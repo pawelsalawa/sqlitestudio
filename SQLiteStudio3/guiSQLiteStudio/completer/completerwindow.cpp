@@ -227,3 +227,9 @@ void CompleterWindow::currentRowChanged(const QModelIndex& current, const QModel
     UNUSED(previous);
     ui->status->showMessage(getStatusMsg(current));
 }
+
+void CompleterWindow::showEvent(QShowEvent*e)
+{
+    QDialog::showEvent(e);
+    ui->list->setFocus();
+}
