@@ -34,6 +34,7 @@ class GUI_API_EXPORT SearchTextDialog : public QDialog
         void on_findButton_clicked();
         void on_replaceButton_clicked();
         void on_replaceAllButton_clicked();
+        void markModifiedState();
 };
 
 #endif // SEARCHTEXTDIALOG_H

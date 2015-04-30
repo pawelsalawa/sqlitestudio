@@ -9,6 +9,10 @@ SearchTextDialog::SearchTextDialog(SearchTextLocator* textLocator, QWidget *pare
 {
     ui->setupUi(this);
     connect(textLocator, SIGNAL(replaceAvailable(bool)), this, SLOT(setReplaceAvailable(bool)));
+    connect(ui->findEdit, SIGNAL(textChanged(QString)), this, SLOT(markModifiedState()));
+    connect(ui->caseSensitiveCheck, SIGNAL(toggled(bool)), this, SLOT(markModifiedState()));
+    connect(ui->backwardsCheck, SIGNAL(toggled(bool)), this, SLOT(markModifiedState()));
+    connect(ui->regExpCheck, SIGNAL(toggled(bool)), this, SLOT(markModifiedState()));
 }
 
 SearchTextDialog::~SearchTextDialog()
@@ -72,4 +76,9 @@ void SearchTextDialog::on_replaceAllButton_clicked()
     applyConfigToLocator();
     textLocator->setReplaceString(ui->replaceEdit->text());
     textLocator->replaceAll();
+}
+
+void SearchTextDialog::markModifiedState()
+{
+    configModifiedState = true;
 }

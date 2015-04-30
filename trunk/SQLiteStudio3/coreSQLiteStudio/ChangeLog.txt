@@ -18,6 +18,7 @@
         * [BUGFIX]: Views are recreated after table modification only if they really need to be updated according to the table change.
         * [BUGFIX]: Fixed querying selects with numerous subselects with '*' operators for result columns.
         * [BUGFIX]: #2868 Global configuration directory is not created (even empty) when using portable configuration.
+        * [BUGFIX]: #2866 Fixed Search dialog in SQL editor to honor changes of the searched value during the single session of searching.
 
 [3.0.5]
         * [ADDED]: #2831 Ported 'Erase table data' feature (in table's context menu) from version 2.1.5.

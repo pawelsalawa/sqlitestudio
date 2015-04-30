@@ -4,6 +4,7 @@
 - ERD plugin
 - DB compare plugin
 - Foreign Key value suggestions in GridView
+- Foreign Key previews in subframes
 - code templates
 - executing query with bind params
 - migrate updates engine to Qt Install Framework
@@ -17,6 +18,7 @@
 - specialized validation of expressions for DEFAULT constraint.
 - "recovery" after failed startup - detecting if previous start crashed and if yes, propose cleaning of configuration.
 - tcl highlighter
+- highlighting occurrences of the same object in the query when cursor is on it
 - plugin to do performance testing
 - plugins to generate artifacts
 - qtscript syntax checker
