@@ -17,6 +17,7 @@
 #include <QDir>
 #include <QDebug>
 #include <QFileDialog>
+#include <QKeyEvent>
 
 ImportDialog::ImportDialog(QWidget *parent) :
     QWizard(parent),
@@ -368,4 +369,14 @@ void ImportDialog::showEvent(QShowEvent* e)
 {
     QWizard::showEvent(e);
     ui->tableNameCombo->setFocus();
+}
+
+void ImportDialog::keyPressEvent(QKeyEvent* e)
+{
+    if ((e->key() == Qt::Key_Enter || e->key() == Qt::Key_Return) && QApplication::focusWidget() == ui->tableNameCombo)
+    {
+        next();
+        return;
+    }
+    QWizard::keyPressEvent(e);
 }

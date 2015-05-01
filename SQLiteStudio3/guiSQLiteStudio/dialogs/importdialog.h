@@ -29,6 +29,7 @@ class GUI_API_EXPORT ImportDialog : public QWizard
 
     protected:
         void showEvent(QShowEvent* e);
+        void keyPressEvent(QKeyEvent* e);
 
     private:
         void init();
