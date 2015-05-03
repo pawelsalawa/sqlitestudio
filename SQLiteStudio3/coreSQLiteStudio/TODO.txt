@@ -1,17 +1,17 @@
 * Outstanding features for 3.1:
+- migrate updates engine to Qt Install Framework
 - loadable extensions full support
 - BLOB preview engine based on plugins
 - ERD plugin
 - DB compare plugin
 - Foreign Key value suggestions in GridView
 - Foreign Key previews in subframes
-- code templates
 - executing query with bind params
-- migrate updates engine to Qt Install Framework
 
 * Next versions:
 - object names (columns, tables, etc) in dialogs should be validated against suffix/prefix whitespaces and if they appear, user should be asked for confirmation
 - small useful features: generating template queries from context menu for table/view, from data view.
+- code templates
 - commiting DataView should be async
 - syntax checkers as services - per language
 - code assistants as services - per language
