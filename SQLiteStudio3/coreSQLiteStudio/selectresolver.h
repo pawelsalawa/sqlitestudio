@@ -113,7 +113,7 @@ class API_EXPORT SelectResolver
             SqliteSelect::Core::ResultColumn* originalColumn = nullptr;
 
             int operator==(const Column& other);
-            Table getTable();
+            Table getTable() const;
         };
 
         SelectResolver(Db* db, const QString &originalQuery);

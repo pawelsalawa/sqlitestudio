@@ -25,6 +25,7 @@ bool QueryExecutorReplaceViews::exec()
         return true;
 
     replaceViews(select.data());
+    select->rebuildTokens();
     updateQueries();
 
     return true;
@@ -72,7 +73,7 @@ void QueryExecutorReplaceViews::replaceViews(SqliteSelect* select)
     SqliteCreateViewPtr view;
 
     QList<SqliteSelect::Core::SingleSource*> sources = core->getAllTypedStatements<SqliteSelect::Core::SingleSource>();
-    foreach (SqliteSelect::Core::SingleSource* src, sources)
+    for (SqliteSelect::Core::SingleSource* src : sources)
     {
         if (src->table.isNull())
             continue;
@@ -92,9 +93,9 @@ void QueryExecutorReplaceViews::replaceViews(SqliteSelect* select)
         src->select = view->select;
         src->database = QString::null;
         src->table = QString::null;
-    }
 
-    select->rebuildTokens();
+        replaceViews(src->select);
+    }
 }
 
 uint qHash(const QueryExecutorReplaceViews::View& view)

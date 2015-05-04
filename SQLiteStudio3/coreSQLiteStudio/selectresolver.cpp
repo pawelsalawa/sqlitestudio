@@ -38,7 +38,7 @@ QList<QList<SelectResolver::Column> > SelectResolver::resolve(SqliteSelect *sele
 {
     errors.clear();
     QList<QList<SelectResolver::Column> > results;
-    foreach (SqliteSelect::Core* core, select->coreSelects)
+    for (SqliteSelect::Core* core : select->coreSelects)
     {
         results << resolveCore(core);
         currentCoreResults.clear();
@@ -57,7 +57,7 @@ QList<QList<SelectResolver::Column> > SelectResolver::resolveAvailableColumns(Sq
 {
     errors.clear();
     QList<QList<SelectResolver::Column> > results;
-    foreach (SqliteSelect::Core* core, select->coreSelects)
+    for (SqliteSelect::Core* core : select->coreSelects)
         results << resolveAvailableCoreColumns(core);
 
     return results;
@@ -67,8 +67,13 @@ QSet<SelectResolver::Table> SelectResolver::resolveTables(SqliteSelect::Core *se
 {
     QSet<Table> tables;
     QList<Column> columns = resolveAvailableColumns(selectCore);
-    foreach (Column col, columns)
+    for (const Column& col : columns)
+    {
+        if (col.type != Column::Type::COLUMN)
+            continue;
+
         tables << col.getTable();
+    }
 
     return tables;
 }
@@ -77,11 +82,16 @@ QList<QSet<SelectResolver::Table> > SelectResolver::resolveTables(SqliteSelect *
 {
     QList<QSet<Table> > results;
     QList<QList<Column> > columnLists = resolveAvailableColumns(select);
-    foreach (QList<Column> columns, columnLists)
+    for (const QList<Column>& columns : columnLists)
     {
         QSet<Table> tables;
-        foreach (Column col, columns)
+        for (const Column& col : columns)
+        {
+            if (col.type != Column::Type::COLUMN)
+                continue;
+
             tables << col.getTable();
+        }
 
         results << tables;
     }
@@ -93,7 +103,7 @@ QList<SelectResolver::Column> SelectResolver::translateToColumns(SqliteSelect* s
 {
     errors.clear();
     QList<SelectResolver::Column> results;
-    foreach (TokenPtr token, columnTokens)
+    for (const TokenPtr& token : columnTokens)
         results << translateTokenToColumn(select, token);
 
     return results;
@@ -120,7 +130,7 @@ QList<SelectResolver::Column> SelectResolver::resolveCore(SqliteSelect::Core* se
     if (selectCore->from)
         currentCoreSourceColumns = resolveJoinSource(selectCore->from);
 
-    foreach (SqliteSelect::Core::ResultColumn* resCol, selectCore->resultColumns)
+    for (SqliteSelect::Core::ResultColumn* resCol : selectCore->resultColumns)
         resolve(resCol);
 
     if (selectCore->distinctKw)
@@ -188,7 +198,7 @@ SelectResolver::Column SelectResolver::translateTokenToColumn(SqliteSelect* sele
         }
 
         // Search through available columns
-        foreach (const Column& availableColumn, resolveAvailableColumns(core))
+        for (const Column& availableColumn : resolveAvailableColumns(core))
         {
             if (availableColumn.type == Column::COLUMN && availableColumn.column.compare(token->value, Qt::CaseInsensitive) == 0)
                 return availableColumn;
@@ -256,7 +266,7 @@ void SelectResolver::resolve(SqliteSelect::Core::ResultColumn *resCol)
 void SelectResolver::resolveStar(SqliteSelect::Core::ResultColumn *resCol)
 {
     bool foundAtLeastOne = false;
-    foreach (SelectResolver::Column column, currentCoreSourceColumns)
+    for (SelectResolver::Column column : currentCoreSourceColumns)
     {
         if (!resCol->table.isNull())
         {
@@ -379,7 +389,7 @@ void SelectResolver::resolveDbAndTable(SqliteSelect::Core::ResultColumn *resCol)
 SelectResolver::Column SelectResolver::resolveRowIdColumn(SqliteExpr *expr)
 {
     // Looking for first source that can provide ROWID.
-    foreach (Column column, currentCoreSourceColumns)
+    for (const Column& column : currentCoreSourceColumns)
     {
         if (column.table.isNull())
             continue; // ROWID cannot be related to source with no table
@@ -392,7 +402,7 @@ SelectResolver::Column SelectResolver::resolveRowIdColumn(SqliteExpr *expr)
 
 SelectResolver::Column SelectResolver::resolveExplicitColumn(const QString &columnName)
 {
-    foreach (const Column& column, currentCoreSourceColumns)
+    for (const Column& column : currentCoreSourceColumns)
     {
         if (columnName.compare(column.column, Qt::CaseInsensitive) != 0 && columnName.compare(column.alias, Qt::CaseInsensitive) != 0)
             continue;
@@ -404,7 +414,7 @@ SelectResolver::Column SelectResolver::resolveExplicitColumn(const QString &colu
 
 SelectResolver::Column SelectResolver::resolveExplicitColumn(const QString &table, const QString &columnName)
 {
-    foreach (const Column& column, currentCoreSourceColumns)
+    for (const Column& column : currentCoreSourceColumns)
     {
         if (columnName.compare(column.column, Qt::CaseInsensitive) != 0 && columnName.compare(column.alias, Qt::CaseInsensitive) != 0)
             continue;
@@ -419,7 +429,7 @@ SelectResolver::Column SelectResolver::resolveExplicitColumn(const QString &tabl
 
 SelectResolver::Column SelectResolver::resolveExplicitColumn(const QString &database, const QString &table, const QString &columnName)
 {
-    foreach (const Column& column, currentCoreSourceColumns)
+    for (const Column& column : currentCoreSourceColumns)
     {
         if (columnName.compare(column.column, Qt::CaseInsensitive) != 0 && columnName.compare(column.alias, Qt::CaseInsensitive) != 0)
             continue;
@@ -481,7 +491,7 @@ QList<SelectResolver::Column> SelectResolver::resolveJoinSource(SqliteSelect::Co
 {
     QList<SelectResolver::Column> columnSources;
     columnSources += resolveSingleSource(joinSrc->singleSource);
-    foreach (SqliteSelect::Core::JoinSourceOther* otherSrc, joinSrc->otherSources)
+    for (SqliteSelect::Core::JoinSourceOther* otherSrc : joinSrc->otherSources)
         columnSources += resolveOtherSource(otherSrc);
 
     return columnSources;
@@ -504,7 +514,7 @@ QList<SelectResolver::Column> SelectResolver::resolveSingleSource(SqliteSelect::
     QList<Column> columnSources;
     QStringList columns = getTableColumns(joinSrc->database, joinSrc->table, joinSrc->alias);
     Column column;
-    foreach (QString columnName, columns)
+    for (const QString& columnName : columns)
     {
         column.type = Column::COLUMN;
         column.column = columnName;
@@ -650,7 +660,7 @@ int SelectResolver::Column::operator ==(const SelectResolver::Column &other)
     return table == other.table && database == other.database && column == other.column && tableAlias == other.tableAlias;
 }
 
-SelectResolver::Table SelectResolver::Column::getTable()
+SelectResolver::Table SelectResolver::Column::getTable() const
 {
     Table resTable;
     resTable.table = table;
