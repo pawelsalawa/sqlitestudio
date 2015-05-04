@@ -1836,7 +1836,7 @@ Prezeranie ďalších strán bude možné až po dokončení spočítavania.</tr
     <message>
         <location filename="../dialogs/dbconverterdialog.cpp" line="135"/>
         <source>Enter a not empty, unique name (as in the list of databases on the left).</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadajte jedinečný názov.</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.cpp" line="140"/>
@@ -3726,12 +3726,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mdiwindow.cpp" line="204"/>
         <source>Close anyway</source>
-        <translation type="unfinished"></translation>
+        <translation>Zatvoriť aj napriek tomu</translation>
     </message>
     <message>
         <location filename="../mdiwindow.cpp" line="206"/>
         <source>Don&apos;t close</source>
-        <translation type="unfinished"></translation>
+        <translation>Nezatvárať</translation>
     </message>
 </context>
 <context>
@@ -5189,7 +5189,7 @@ nájsť ďalší</translation>
     <message>
         <location filename="../constraints/tableforeignkeypanel.ui" line="29"/>
         <source>Foreign table:</source>
-        <translation type="unfinished">Cudzia tabuľka:</translation>
+        <translation>Cudzia tabuľka:</translation>
     </message>
     <message>
         <location filename="../constraints/tableforeignkeypanel.ui" line="48"/>
@@ -5215,7 +5215,7 @@ but it&apos;s okay to use them anyway.</source>
     <message>
         <location filename="../constraints/tableforeignkeypanel.ui" line="126"/>
         <source>Reactions</source>
-        <translation type="unfinished">Reakcie</translation>
+        <translation>Reakcie</translation>
     </message>
     <message>
         <location filename="../constraints/tableforeignkeypanel.ui" line="165"/>
@@ -5225,38 +5225,38 @@ but it&apos;s okay to use them anyway.</source>
     <message>
         <location filename="../constraints/tableforeignkeypanel.ui" line="183"/>
         <source>Named constraint</source>
-        <translation type="unfinished">Pomenovanie obmedzenia</translation>
+        <translation>Pomenovanie obmedzenia</translation>
     </message>
     <message>
         <location filename="../constraints/tableforeignkeypanel.ui" line="190"/>
         <source>Constraint name</source>
-        <translation type="unfinished">Názov obmedzenia</translation>
+        <translation>Názov obmedzenia</translation>
     </message>
     <message>
         <location filename="../constraints/tableforeignkeypanel.cpp" line="53"/>
         <source>Pick the foreign column.</source>
-        <translation type="unfinished">Vyberte cudzí stĺpec.</translation>
+        <translation>Vyberte cudzí stĺpec.</translation>
     </message>
     <message>
         <location filename="../constraints/tableforeignkeypanel.cpp" line="65"/>
         <source>Pick the foreign table.</source>
-        <translation type="unfinished">Vyberte cudziu tabuľku.</translation>
+        <translation>Vyberte cudziu tabuľku.</translation>
     </message>
     <message>
         <location filename="../constraints/tableforeignkeypanel.cpp" line="66"/>
         <source>Select at least one foreign column.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyberte aspoň jeden cudzí stĺpec.</translation>
     </message>
     <message>
         <location filename="../constraints/tableforeignkeypanel.cpp" line="67"/>
         <source>Enter a name of the constraint.</source>
-        <translation type="unfinished">Zadajte názov obmedzenia.</translation>
+        <translation>Zadajte názov obmedzenia.</translation>
     </message>
     <message>
         <location filename="../constraints/tableforeignkeypanel.cpp" line="209"/>
         <source>Foreign column</source>
         <comment>table constraints</comment>
-        <translation type="unfinished">Cudzí stĺpec</translation>
+        <translation>Cudzí stĺpec</translation>
     </message>
 </context>
 <context>
@@ -5973,7 +5973,7 @@ Chcete potvrdiť štruktúru alebo sa chcete vrátiť do záložky štruktúr?</
         <location filename="../windows/viewwindow.cpp" line="156"/>
         <location filename="../windows/viewwindow.cpp" line="158"/>
         <source>New view %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nový pohľad %1</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="283"/>
