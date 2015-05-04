@@ -404,7 +404,16 @@ void QueryExecutor::executeSimpleMethod()
     simpleExecution = true;
     context->editionForbiddenReasons << EditionForbiddenReason::SMART_EXECUTION_FAILED;
     simpleExecutionStartTime = QDateTime::currentMSecsSinceEpoch();
-    asyncId = db->asyncExec(originalQuery, context->queryParameters, Db::Flag::PRELOAD);
+
+    if (asyncMode)
+    {
+        asyncId = db->asyncExec(originalQuery, context->queryParameters, Db::Flag::PRELOAD);
+    }
+    else
+    {
+        SqlQueryPtr results = db->exec(originalQuery, context->queryParameters, Db::Flag::PRELOAD);
+        simpleExecutionFinished(results);
+    }
 }
 
 void QueryExecutor::simpleExecutionFinished(SqlQueryPtr results)
@@ -435,6 +444,7 @@ void QueryExecutor::simpleExecutionFinished(SqlQueryPtr results)
     context->executionTime = QDateTime::currentMSecsSinceEpoch() - simpleExecutionStartTime;
     context->rowsAffected = results->rowsAffected();
     context->totalRowsReturned = 0;
+    context->executionResults = results;
     requiredDbAttaches = context->dbNameToAttach.leftValues();
 
     executionMutex.lock();
