@@ -30,7 +30,7 @@ esac
 if [ -d $parent_dir/output ]; then
 	read -p "Directory $parent_dir/output already exists. The script will delete and recreate it. Is that okay? (y/N) : " yn
 	case $yn in
-	    [Yy]* ) break;;
+	    [Yy]* ) rm -rf $parent_dir/output; break;;
 	    * ) echo "Aborted."; exit;;
 	esac
 fi
@@ -43,7 +43,7 @@ $QMAKE CONFIG+=portable ../../SQLiteStudio3
 make -j $cpu_cores
 
 cd Plugins
-$QMAKE CONFIG+=portable ../../SQLiteStudio3
+$QMAKE CONFIG+=portable ../../../Plugins
 make -j $cpu_cores
 
 cd $cdir
