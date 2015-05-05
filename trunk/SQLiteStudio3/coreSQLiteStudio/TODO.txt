@@ -7,6 +7,7 @@
 - Foreign Key value suggestions in GridView
 - Foreign Key previews in subframes
 - executing query with bind params
+- comments support in formatter
 
 * Next versions:
 - object names (columns, tables, etc) in dialogs should be validated against suffix/prefix whitespaces and if they appear, user should be asked for confirmation
