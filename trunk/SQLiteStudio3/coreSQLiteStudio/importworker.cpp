@@ -108,7 +108,7 @@ bool ImportWorker::prepareTable()
     {
         QStringList colDefs;
         for (int i = 0; i < columnsFromPlugin.size(); i++)
-            colDefs << (columnsFromPlugin[i] + " " + columnTypesFromPlugin[i]).trimmed();
+            colDefs << (wrapObjIfNeeded(columnsFromPlugin[i], dialect) + " " + columnTypesFromPlugin[i]).trimmed();
 
         static const QString ddl = QStringLiteral("CREATE TABLE %1 (%2)");
         SqlQueryPtr result = db->exec(ddl.arg(wrapObjIfNeeded(table, dialect), colDefs.join(", ")));

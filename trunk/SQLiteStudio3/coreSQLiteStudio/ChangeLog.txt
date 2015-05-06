@@ -19,6 +19,7 @@
         * [BUGFIX]: Fixed querying selects with numerous subselects with '*' operators for result columns.
         * [BUGFIX]: #2868 Global configuration directory is not created (even empty) when using portable configuration.
         * [BUGFIX]: #2866 Fixed Search dialog in SQL editor to honor changes of the searched value during the single session of searching.
+        * [BUGFIX]: Fixed importing from data source that provides columns with special characters - they are no longer splitted to column name and datatype.
         * [BUGFIX]: Fixed problem with keyboard focus for syntax completer under Gnome 3.
         * [BUGFIX]: #2872 'Enter' key in table name of import dialog now triggers 'Next' action, not clearing the table name.
         * [BUGFIX]: #2864 & #2791 Fixed synchronouse execution in QueryExecutor, which also fixes the misterious bug in export dialog, causing empty files being exported.
