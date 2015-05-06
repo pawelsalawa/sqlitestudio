@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="de_DE">
+<TS version="2.0" language="de_DE">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -2069,7 +2069,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="108"/>
         <source>Add a database</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Datenbank öffnen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="109"/>
