@@ -294,7 +294,7 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
     <message>
         <location filename="../services/exportmanager.cpp" line="155"/>
         <source>Export format &apos;%1&apos; is not supported. Supported formats are: %2.</source>
-        <translation>Das Exportformat %1 wird nicht unterstützt. Unterstützte Formate sind: %2</translation>
+        <translation>Das Exportformat %1 wird nicht unterstützt. Unterstützte Formate sind: %2.</translation>
     </message>
     <message>
         <location filename="../services/exportmanager.cpp" line="218"/>
@@ -322,33 +322,34 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
     <message>
         <location filename="../exportworker.cpp" line="121"/>
         <source>Error while exporting query results: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Exportieren der Abfrageergebnisse: %1</translation>
     </message>
     <message>
         <location filename="../exportworker.cpp" line="201"/>
         <source>Error while counting data column width to export from query results: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Ermitteln der Spaltenbreite für den Export der Abfrageergebnisse: %1</translation>
     </message>
     <message>
         <location filename="../exportworker.cpp" line="353"/>
         <location filename="../exportworker.cpp" line="411"/>
         <source>Could not parse %1 in order to export it. It will be excluded from the export output.</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Hier fehlt mir der passende Kontext. Evtl. muss die Übersetzung noch einmal korrigiert werden.</translatorcomment>
+        <translation>%1 konnte zum Exportieren nicht korrekt analysiert werden. Diese Daten werden nicht exportiert.</translation>
     </message>
     <message>
         <location filename="../exportworker.cpp" line="612"/>
         <source>Error while reading data to export from table %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Lesen der zu exportierenden Daten aus der Tabelle %1: %2</translation>
     </message>
     <message>
         <location filename="../exportworker.cpp" line="620"/>
         <source>Error while counting data to export from table %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Ermitteln der zu exportierenden Daten aus der Tabelle %1: %2</translation>
     </message>
     <message>
         <location filename="../exportworker.cpp" line="636"/>
         <source>Error while counting data column width to export from table %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Ermitteln der Spaltenbreite für den Export aus Tabelle %1: %2</translation>
     </message>
 </context>
 <context>
@@ -356,43 +357,44 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
     <message>
         <location filename="../services/impl/functionmanagerimpl.cpp" line="232"/>
         <source>Invalid number of arguments to function &apos;%1&apos;. Expected %2, but got %3.</source>
-        <translation type="unfinished"></translation>
+        <translation>Falsche Anzahl an Parametern für Funktion &apos;%1&apos;. Erwartet wurden %2, angegeben wurden jedoch %3.</translation>
     </message>
     <message>
         <location filename="../services/impl/functionmanagerimpl.cpp" line="341"/>
         <source>No such function registered in SQLiteStudio: %1(%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Diese Funktion ist in SQLiteStudio nicht verfügbar: %1(%2)</translation>
     </message>
     <message>
         <location filename="../services/impl/functionmanagerimpl.cpp" line="347"/>
         <source>Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Auch hier ist sicherlich eine Überarbeitung nötig, wenn der Kontext der Meldung bekannt ist.</translatorcomment>
+        <translation>Die Funktion %1(%2) wurde für die Sprache %3 erstellt, jedoch ist das Plugin, welches diese Sprache unterstützt, derzeit nicht geladen.</translation>
     </message>
     <message>
         <location filename="../services/impl/functionmanagerimpl.cpp" line="365"/>
         <source>Invalid regular expression pattern: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültiges Muster für die regulären Ausdrücke: %1</translation>
     </message>
     <message>
         <location filename="../services/impl/functionmanagerimpl.cpp" line="384"/>
         <location filename="../services/impl/functionmanagerimpl.cpp" line="417"/>
         <source>Could not open file %1 for reading: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei %1 kann nicht für Lesezugriffe geöffnet werden: %2</translation>
     </message>
     <message>
         <location filename="../services/impl/functionmanagerimpl.cpp" line="439"/>
         <source>Could not open file %1 for writting: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei %1 kann nicht für Schreibzugriffe geöffnet werden: %2</translation>
     </message>
     <message>
         <location filename="../services/impl/functionmanagerimpl.cpp" line="459"/>
         <source>Error while writting to file %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Schreiben in Datei %1: %2</translation>
     </message>
     <message>
         <location filename="../services/impl/functionmanagerimpl.cpp" line="477"/>
         <source>Unsupported scripting language: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nicht unterstützte Skriptsprache: %1</translation>
     </message>
 </context>
 <context>
