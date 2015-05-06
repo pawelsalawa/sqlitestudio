@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="de_DE">
+<TS version="2.0" language="de_DE">
 <context>
     <name>AbstractDb</name>
     <message>
         <location filename="../db/abstractdb.cpp" line="306"/>
         <location filename="../db/abstractdb.cpp" line="323"/>
         <source>Cannot execute query on closed database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Abfrage kann nicht auf einer ungeöffneten Datenbank ausgeführt werden.</translation>
     </message>
     <message>
         <location filename="../db/abstractdb.cpp" line="603"/>
         <source>Error attaching database %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Anhängen der Datenbank %1: %2</translation>
     </message>
 </context>
 <context>
@@ -20,7 +20,7 @@
     <message>
         <location filename="../services/bugreporter.cpp" line="46"/>
         <source>Invalid login or password</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültiger Nutzername oder Passwort</translation>
     </message>
 </context>
 <context>
@@ -29,31 +29,31 @@
         <location filename="../db/chainexecutor.cpp" line="35"/>
         <source>The database for executing queries was not defined.</source>
         <comment>chain executor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Es wurde keine Datenbank zur Ausführung von Abfragen festgelegt.</translation>
     </message>
     <message>
         <location filename="../db/chainexecutor.cpp" line="41"/>
         <source>The database for executing queries was not open.</source>
         <comment>chain executor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Die Datenbank ist zur Ausführung von Abfragen nicht geöffnet worden.</translation>
     </message>
     <message>
         <location filename="../db/chainexecutor.cpp" line="47"/>
         <source>Could not start a database transaction. Details: %1</source>
         <comment>chain executor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Es kann keine Datenbanktransaktion gestartet werden. Details: %1</translation>
     </message>
     <message>
         <location filename="../db/chainexecutor.cpp" line="74"/>
         <source>Interrupted</source>
         <comment>chain executor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Abgebrochen</translation>
     </message>
     <message>
         <location filename="../db/chainexecutor.cpp" line="134"/>
         <source>Could not commit a database transaction. Details: %1</source>
         <comment>chain executor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Die Datenbanktransaktion kann nicht &apos;committet&apos; werden. Details: %1</translation>
     </message>
 </context>
 <context>
@@ -61,82 +61,83 @@
     <message>
         <location filename="../completionhelper.cpp" line="196"/>
         <source>New row reference</source>
-        <translation type="unfinished"></translation>
+        <translation>Neue Zeilenreferenz</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="203"/>
         <source>Old row reference</source>
-        <translation type="unfinished"></translation>
+        <translation>Alte Zeilenreferenz</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="208"/>
         <source>New table name</source>
-        <translation type="unfinished"></translation>
+        <translation>Neuer Tabellenname</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="211"/>
         <source>New index name</source>
-        <translation type="unfinished"></translation>
+        <translation>Neuer Indizename</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="214"/>
         <source>New view name</source>
-        <translation type="unfinished"></translation>
+        <translation>Neuer Viewname</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="217"/>
         <source>New trigger name</source>
-        <translation type="unfinished"></translation>
+        <translation>Neuer Triggername</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="220"/>
         <source>Table or column alias</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabellen- oder Spaltenalias</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="223"/>
         <source>transaction name</source>
-        <translation type="unfinished"></translation>
+        <translation>Transaktionsname</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="226"/>
         <source>New column name</source>
-        <translation type="unfinished"></translation>
+        <translation>Neuer Spaltenname</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="229"/>
         <source>Column data type</source>
-        <translation type="unfinished"></translation>
+        <translation>Spaltendatentyp</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="232"/>
         <source>Constraint name</source>
-        <translation type="unfinished"></translation>
+        <translation>Abhängigkeitsname</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="245"/>
         <source>Error message</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehlermeldung</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="289"/>
         <source>Collation name</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Hier weiß ich nicht wie man das sprechend übersetzen kann.</translatorcomment>
+        <translation>Kollationsname</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="304"/>
         <source>Any word</source>
-        <translation type="unfinished"></translation>
+        <translation>Beliebiges Wort</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="485"/>
         <source>Default database</source>
-        <translation type="unfinished"></translation>
+        <translation>Standarddatenbank</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="486"/>
         <source>Temporary objects database</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbank für temporäre Objekte</translation>
     </message>
 </context>
 <context>
@@ -144,35 +145,35 @@
     <message>
         <location filename="../services/impl/dbmanagerimpl.cpp" line="63"/>
         <source>Could not add database %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Datenbank %1 kann nicht hinzugefügt werden: %2</translation>
     </message>
     <message>
         <location filename="../services/impl/dbmanagerimpl.cpp" line="138"/>
         <source>Database %1 could not be updated, because of an error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Datenbank %1 kann nicht aktualisiert werden. Grund: %2</translation>
     </message>
     <message>
         <location filename="../services/impl/dbmanagerimpl.cpp" line="312"/>
         <location filename="../services/impl/dbmanagerimpl.cpp" line="341"/>
         <source>Database file doesn&apos;t exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Datenbankdatei existiert nicht.</translation>
     </message>
     <message>
         <location filename="../services/impl/dbmanagerimpl.cpp" line="314"/>
         <location filename="../services/impl/dbmanagerimpl.cpp" line="343"/>
         <location filename="../services/impl/dbmanagerimpl.cpp" line="565"/>
         <source>No supporting plugin loaded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es wurde kein passendes plugin geladen.</translation>
     </message>
     <message>
         <location filename="../services/impl/dbmanagerimpl.cpp" line="484"/>
         <source>Database could not be initialized.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Datenbank kann nicht initialisiert werden.</translation>
     </message>
     <message>
         <location filename="../services/impl/dbmanagerimpl.cpp" line="494"/>
         <source>No suitable database driver plugin found.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es wurde kein passender Datenbanktreiber (plugin) gefunden.</translation>
     </message>
 </context>
 <context>
@@ -181,50 +182,51 @@
         <location filename="../dbobjectorganizer.cpp" line="380"/>
         <location filename="../dbobjectorganizer.cpp" line="412"/>
         <source>Error while creating table in target database: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Erstellen einer Tabelle in der Zieldatenbank %1</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="380"/>
         <source>Could not parse table.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Tabelle konnte nicht durchsuchent werden.</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="426"/>
         <source>Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbank %1 konnte nicht mit Datenbank %2 verbunden werden, daher werden die Daten der Tabelle %3 durch SQLiteStudio kopiert. Diese Methode kann bei großen Tabellen sehr lange dauern, bitte haben Sie Geduld.</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="447"/>
         <source>Error while copying data for table %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Kopieren von Daten für Tabelle %1: %2</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="466"/>
         <location filename="../dbobjectorganizer.cpp" line="473"/>
         <location filename="../dbobjectorganizer.cpp" line="496"/>
         <source>Error while copying data to table %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Kopieren von Daten in die Tabelle %1: %2</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="535"/>
         <source>Error while dropping source view %1: %2
 Tables, indexes, triggers and views copied to database %3 will remain.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Entfernen des Quellviews %1: %2
+Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden auf der Quelldatenbank verbleiben.</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="542"/>
         <source>Error while creating view in target database: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Erstellen eines Views  in der Zieldatenbank %1</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="547"/>
         <source>Error while creating index in target database: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Erstellen eines Indizes  in der Zieldatenbank %1</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="552"/>
         <source>Error while creating trigger in target database: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Erstellen eines Triggers in der Zieldatenbank %1</translation>
     </message>
 </context>
 <context>
@@ -232,17 +234,17 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
         <location filename="../dbversionconverter.cpp" line="923"/>
         <source>Target file exists, but could not be overwritten.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Zieldatei existiert zwar, konnte aber nicht überschrieben werden.</translation>
     </message>
     <message>
         <location filename="../dbversionconverter.cpp" line="942"/>
         <source>Could not find proper database plugin to create target database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es konnte kein geeignetes Datenbankplugin gefunden werden, um die Zieldatenbank zu erzeugen.</translation>
     </message>
     <message>
         <location filename="../dbversionconverter.cpp" line="1176"/>
         <source>Error while converting database: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Konvertieren der Datenbank: %1</translation>
     </message>
 </context>
 <context>
@@ -251,25 +253,25 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
         <location filename="../ddlhistorymodel.cpp" line="65"/>
         <source>Database name</source>
         <comment>ddl history header</comment>
-        <translation type="unfinished"></translation>
+        <translation>Datenbankname</translation>
     </message>
     <message>
         <location filename="../ddlhistorymodel.cpp" line="67"/>
         <source>Database file</source>
         <comment>ddl history header</comment>
-        <translation type="unfinished"></translation>
+        <translation>Datenbankdatei</translation>
     </message>
     <message>
         <location filename="../ddlhistorymodel.cpp" line="69"/>
         <source>Date of execution</source>
         <comment>ddl history header</comment>
-        <translation type="unfinished"></translation>
+        <translation>Datum der Ausführung</translation>
     </message>
     <message>
         <location filename="../ddlhistorymodel.cpp" line="71"/>
         <source>Changes</source>
         <comment>ddl history header</comment>
-        <translation type="unfinished"></translation>
+        <translation>Änderungen</translation>
     </message>
 </context>
 <context>
@@ -277,42 +279,42 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
         <location filename="../services/exportmanager.cpp" line="72"/>
         <source>Export plugin %1 doesn&apos;t support exporing query results.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Exportplugin %1 unterstützt das Exportieren der Abfrageergebnisse nicht.</translation>
     </message>
     <message>
         <location filename="../services/exportmanager.cpp" line="98"/>
         <source>Export plugin %1 doesn&apos;t support exporing tables.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Exportplugin %1 unterstützt das Exportieren von Tabellen nicht.</translation>
     </message>
     <message>
         <location filename="../services/exportmanager.cpp" line="122"/>
         <source>Export plugin %1 doesn&apos;t support exporing databases.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Exportplugin %1 unterstützt das Exportieren von Datenbanken nicht.</translation>
     </message>
     <message>
         <location filename="../services/exportmanager.cpp" line="155"/>
         <source>Export format &apos;%1&apos; is not supported. Supported formats are: %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Exportformat %1 wird nicht unterstützt. Unterstützte Formate sind: %2</translation>
     </message>
     <message>
         <location filename="../services/exportmanager.cpp" line="218"/>
         <source>Export to the clipboard was successful.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Export in die Zwischenablage war erfolgreich.</translation>
     </message>
     <message>
         <location filename="../services/exportmanager.cpp" line="222"/>
         <source>Export to the file &apos;%1&apos; was successful.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Export in die Datei %1 war erfolgreich.</translation>
     </message>
     <message>
         <location filename="../services/exportmanager.cpp" line="224"/>
         <source>Export was successful.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Export war erfolgreich.</translation>
     </message>
     <message>
         <location filename="../services/exportmanager.cpp" line="266"/>
         <source>Could not export to file %1. File cannot be open for writting.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es kann nicht in die Datei %1 exportiert werden. Die Datei lässt sich nicht für Schreibzugriffe öffnen.</translation>
     </message>
 </context>
 <context>
