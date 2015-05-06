@@ -372,17 +372,17 @@
     <message>
         <location filename="../windows/collationseditor.ui" line="138"/>
         <source>Register in all databases</source>
-        <translation type="unfinished"></translation>
+        <translation>Registrovať vo všetkých databázach</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.ui" line="145"/>
         <source>Register in following databases:</source>
-        <translation type="unfinished"></translation>
+        <translation>Registrovať v nasledujúcich databázach:</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.ui" line="166"/>
         <source>Implementation code:</source>
-        <translation type="unfinished"></translation>
+        <translation>Implementačný kód:</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="52"/>
@@ -412,22 +412,22 @@
     <message>
         <location filename="../windows/collationseditor.cpp" line="63"/>
         <source>Editing collations manual</source>
-        <translation type="unfinished"></translation>
+        <translation>Manuál úpravy porovnávaní</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="283"/>
         <source>Enter a non-empty, unique name of the collation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadajte jedinečný názov porovnávania.</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="291"/>
         <source>Pick the implementation language.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyberte implementačný jazyk.</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="294"/>
         <source>Enter a non-empty implementation code.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zadajte implementačný kód.</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="388"/>
@@ -2268,7 +2268,7 @@ Prezeranie ďalších strán bude možné až po dokončení spočítavania.</tr
         <location filename="../dbtree/dbtree.cpp" line="142"/>
         <location filename="../dbtree/dbtree.cpp" line="1421"/>
         <source>Erase table data</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazať dáta z tabuľky</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="312"/>
@@ -2312,24 +2312,24 @@ Všetky objekty z tejto skupiny budú presunuté do nadradenej skupiny.</transla
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1019"/>
         <source>Delete database</source>
-        <translation>Vymazať databázu</translation>
+        <translation>Odstrániť databázu</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1019"/>
         <source>Are you sure you want to delete database &apos;%1&apos;?</source>
-        <translation>Ste si istý, že chcete vymazať databázu &apos;%1&apos;?</translation>
+        <translation>Ste si istý, že chcete odstrániť databázu &apos;%1&apos;?</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1055"/>
         <location filename="../dbtree/dbtree.cpp" line="1265"/>
         <source>Cannot import, because no import plugin is loaded.</source>
-        <translation type="unfinished">Nemôžem importovať, lebo nebol načítaný žiaden plugin na import.</translation>
+        <translation>Nemôžem importovať, lebo nebol načítaný žiaden plugin na import.</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1075"/>
         <location filename="../dbtree/dbtree.cpp" line="1240"/>
         <source>Cannot export, because no export plugin is loaded.</source>
-        <translation type="unfinished">Nemôžem exportovať, lebo nebol načítaný žiaden plugin na export.</translation>
+        <translation>Nemôžem exportovať, lebo nebol načítaný žiaden plugin na export.</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1339"/>
@@ -2369,17 +2369,17 @@ Všetky objekty z tejto skupiny budú presunuté do nadradenej skupiny.</transla
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1421"/>
         <source>Are you sure you want to delete all data from table &apos;%1&apos;?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ste si istý, že chcete vymazať všetky dáta z tabuľky &apos;%1&apos;?</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1429"/>
         <source>An error occurred while trying to delete data from table &apos;%1&apos;: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyskytla sa chyba pri pokuse vymazať dáta z tabuľky &apos;%1&apos;: %2</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1433"/>
         <source>All data has been deleted for table &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Všetky dáta z tabuľky &apos;%1&apos; boli vymazané.</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1535"/>
@@ -3577,7 +3577,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="278"/>
         <source>Open CSS Console</source>
-        <translation type="unfinished"></translation>
+        <translation>Otvoriť CSS konzolu</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="279"/>
@@ -3703,12 +3703,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="891"/>
         <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Databáza prebratá z príkazového riadka (%1) už je v zozname pod názvom: %2</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="898"/>
         <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Databáza prebratá z príkazového riadka (%1) bola dočasne pridaná do zoznamu pod názvom: %2</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="903"/>
@@ -4636,7 +4636,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/viewwindow.h" line="23"/>
         <source>A view window</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno pohľadu</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.h" line="24"/>
@@ -6020,22 +6020,22 @@ Chcete potvrdiť štruktúru alebo sa chcete vrátiť do záložky štruktúr?</
     <message>
         <location filename="../windows/viewwindow.cpp" line="318"/>
         <source>View window &quot;%1&quot; has uncommited structure modifications and data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno pohľadu &quot;%1&quot; obsahuje nepotrdené zmeny štruktúr a dát.</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="320"/>
         <source>View window &quot;%1&quot; has uncommited data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno pohľadu &quot;%1&quot; obsahuje nepotrdené dáta.</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="322"/>
         <source>View window &quot;%1&quot; has uncommited structure modifications.</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno pohľadu &quot;%1&quot; obsahuje nepotrdené zmeny štruktúr.</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="463"/>
         <source>Could not load data for view %1. Error details: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Nemôžem načítať dáta z pohľadu %1. Detaily chyby: %2</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="474"/>
