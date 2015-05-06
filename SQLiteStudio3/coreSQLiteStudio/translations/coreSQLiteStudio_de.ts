@@ -885,94 +885,95 @@ Problembeschreibung: %2</translation>
     <message>
         <location filename="../plugins/populatescript.cpp" line="40"/>
         <source>Could not find plugin to support scripting language: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Plugin zur Unterstützung der folgenden Skriptsprache kann nicht gefunden werden: %1</translation>
     </message>
     <message>
         <location filename="../plugins/populatescript.cpp" line="58"/>
         <source>Error while executing populating initial code: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Ausführen des Initialisierungsprozesses: %1</translation>
     </message>
     <message>
         <location filename="../plugins/populatescript.cpp" line="80"/>
         <source>Error while executing populating code: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Ausführen des Auffüllprozesses: %1</translation>
     </message>
     <message>
         <location filename="../plugins/populatescript.cpp" line="112"/>
         <source>Select implementation language.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wählen Sie die Implementationssprache.</translation>
     </message>
     <message>
         <location filename="../plugins/populatescript.cpp" line="113"/>
         <source>Implementation code cannot be empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Implementationscode darf nicht leer sein.</translation>
     </message>
     <message>
         <location filename="../selectresolver.cpp" line="307"/>
         <source>Could not resolve data source for column: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Datenquelle für Spalte %1 kann nicht aufgelöst werden.</translation>
     </message>
     <message>
         <location filename="../services/impl/configimpl.cpp" line="617"/>
         <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Tried to initialize the file at following localizations: %1.</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Ich hoffe, dass ich &quot;to initialize&quot; hier richtig mit &quot;erstellt&quot; übersetzt habe.</translatorcomment>
+        <translation>Die Konfigurationsdatei kann nicht erstellt werden. Alle Änderungen an der Konfiguration sowie die Abfragehistorie sind nach einem Programmneustart verloren. Es wurde versucht die Konfigurationsdatei in folgendem Verzeichnis zu erstellen: %1</translation>
     </message>
     <message>
         <location filename="../sqlitestudio.cpp" line="291"/>
         <source>General purpose</source>
         <comment>plugin category name</comment>
-        <translation type="unfinished"></translation>
+        <translation>Allgemeine Verwendung</translation>
     </message>
     <message>
         <location filename="../sqlitestudio.cpp" line="292"/>
         <source>Database support</source>
         <comment>plugin category name</comment>
-        <translation type="unfinished"></translation>
+        <translation>Datenbankunterstützung</translation>
     </message>
     <message>
         <location filename="../sqlitestudio.cpp" line="293"/>
         <source>Code formatter</source>
         <comment>plugin category name</comment>
-        <translation type="unfinished"></translation>
+        <translation>Codeformatierer</translation>
     </message>
     <message>
         <location filename="../sqlitestudio.cpp" line="294"/>
         <source>Scripting languages</source>
         <comment>plugin category name</comment>
-        <translation type="unfinished"></translation>
+        <translation>Skriptsprachen</translation>
     </message>
     <message>
         <location filename="../sqlitestudio.cpp" line="295"/>
         <source>Exporting</source>
         <comment>plugin category name</comment>
-        <translation type="unfinished"></translation>
+        <translation>Exportieren</translation>
     </message>
     <message>
         <location filename="../sqlitestudio.cpp" line="296"/>
         <source>Importing</source>
         <comment>plugin category name</comment>
-        <translation type="unfinished"></translation>
+        <translation>Importieren</translation>
     </message>
     <message>
         <location filename="../sqlitestudio.cpp" line="297"/>
         <source>Table populating</source>
         <comment>plugin category name</comment>
-        <translation type="unfinished"></translation>
+        <translation>Tabellen füllen</translation>
     </message>
     <message>
         <location filename="../tablemodifier.cpp" line="108"/>
         <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabelle %1 referenziert Tabelle %2, jedoch wird die &apos;foreign key&apos;-Definition für die neue Tabellendefinition nicht aktualisiert, da es Probleme bei der DDL-Analyse von Tabelle %3 gibt.</translation>
     </message>
     <message>
         <location filename="../tablemodifier.cpp" line="380"/>
         <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Spalten, die von Index %1 indiziert wurden, sind verloren. Der Index wird nach der Tabellenmodifikation nicht neu erstellt.</translation>
     </message>
     <message>
         <location filename="../tablemodifier.cpp" line="419"/>
         <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es ist ein Problem bei der korrekten Verarbeitung von Trigger %1 aufgetreten. Er wird möglicherweise nicht vollständig aktualisert und sollte geprüft werden.</translation>
     </message>
     <message>
         <location filename="../tablemodifier.cpp" line="466"/>
