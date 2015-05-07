@@ -1350,12 +1350,12 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1722"/>
         <source>Data view colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Farby dát</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1728"/>
         <source>&lt;p&gt;Any data changes will be outlined with this color, until they&apos;re commited to the database.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Všetky zmeny dát budú ohraničené touto farbou, dokiaľ nebudú potvrdené.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1731"/>
@@ -1365,7 +1365,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1754"/>
         <source>&lt;p&gt;In case of error while commiting data changes, the problematic cell will be outlined with this color.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;V prípade chyby pri potvrdzovaní zmien dát, budú problematické bunky ohraničené touto farbou.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1757"/>
