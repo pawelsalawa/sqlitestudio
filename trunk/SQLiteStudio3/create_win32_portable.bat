@@ -1,7 +1,7 @@
 @echo off
 
-set QT_DIR=c:\Qt\5.3\mingw482_32\bin
-set ZIP="c:\Program Files (x86)\7-Zip\7z.exe"
+set QT_DIR=c:\Qt\5.4\mingw491_32\bin
+set ZIP="c:\Program Files\7-Zip\7z.exe"
 
 set QMAKE=%QT_DIR%\qmake.exe
 set OLDDIR=%CD%
@@ -44,7 +44,7 @@ cd plugins
 del /q *.a
 rem Copy Qt files
 cd %QT_DIR%
-set QT_LIB_LIST=Qt5Core Qt5Gui Qt5Network Qt5PrintSupport Qt5Script Qt5Svg Qt5Widgets Qt5Xml icudt52 icuin52 icuuc52 libgcc_s_dw2-1 libstdc++-6 libwinpthread-1
+set QT_LIB_LIST=Qt5Core Qt5Gui Qt5Network Qt5PrintSupport Qt5Script Qt5Svg Qt5Widgets Qt5Xml icudt53 icuin53 icuuc53 libgcc_s_dw2-1 libstdc++-6 libwinpthread-1
 for %%i in (%QT_LIB_LIST%) do (
 	copy "%%i.dll" %PORTABLE% > nul
 )

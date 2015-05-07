@@ -21,6 +21,8 @@ LIBS += -lcoreSQLiteStudio
 
 TEMPLATE = app
 
+DEFINES += PORTABLE_CONFIG
+
 linux|portable {
     QMAKE_LFLAGS += -Wl,-rpath,./lib
 }
