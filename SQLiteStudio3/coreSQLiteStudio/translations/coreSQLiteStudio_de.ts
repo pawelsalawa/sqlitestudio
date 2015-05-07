@@ -972,7 +972,7 @@ Problembeschreibung: %2</translation>
     <message>
         <location filename="../tablemodifier.cpp" line="419"/>
         <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
-        <translation>Es ist ein Problem bei der korrekten Verarbeitung von Trigger %1 aufgetreten. Er wird möglicherweise nicht vollständig aktualisert und sollte geprüft werden.</translation>
+        <translation>Es ist ein Problem bei der korrekten Verarbeitung des Triggers %1 aufgetreten. Er wird möglicherweise nicht vollständig aktualisert werden und sollte geprüft werden.</translation>
     </message>
     <message>
         <location filename="../tablemodifier.cpp" line="466"/>
@@ -984,7 +984,7 @@ Problembeschreibung: %2</translation>
         <location filename="../tablemodifier.cpp" line="611"/>
         <location filename="../tablemodifier.cpp" line="630"/>
         <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
-        <translation>Es ist ein Problem beim Aktualisieren einer %1 Abfrage innerhalb eines %2 Triggers aufgetreten. Eine der %1 Unterabfragen, welche möglicherweise Tabelle %3 referenziert, kann nicht geändert werden. Eine manuelle Anpassung des Triggers wird nötig sein.</translation>
+        <translation>Es ist ein Problem beim Aktualisieren einer %1 Abfrage innerhalb eines %2 Triggers aufgetreten. Eine der %1 Unterabfragen, welche möglicherweise die Tabelle %3 referenziert, kann nicht geändert werden. Eine manuelle Anpassung des Triggers wird nötig sein.</translation>
     </message>
     <message>
         <location filename="../tablemodifier.cpp" line="434"/>
@@ -995,7 +995,7 @@ Problembeschreibung: %2</translation>
         <location filename="../tablemodifier.cpp" line="484"/>
         <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
-        <translation>Die Aktualisierung des Views %1, resultierend aus der Änderung der Tabelle %2, kann nicht ausgeführt werden. Der View wird nicht geändert.</translation>
+        <translation>Die Aktualisierung des Views %1, resultierend aus der Änderung der Tabelle %2, kann nicht ausgeführt werden. Der View wird daher nicht geändert.</translation>
     </message>
     <message>
         <location filename="../viewmodifier.cpp" line="25"/>
@@ -1099,94 +1099,96 @@ The view will remain as it is.</source>
     <message>
         <location filename="../services/updatemanager.cpp" line="144"/>
         <source>Could not check available updates, because server responded with invalid message format. It is safe to ignore this warning.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es konnte  nicht auf neue Updates geprüft werden, da der Updateserver in einem ungültigen Nachrichtenformat antwortet. Diese Meldung kann gefahrlos ignoriert werden.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="175"/>
         <source>An error occurred while reading updates metadata: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Beim Lesen der Update-Metadaten ist ein Fehler aufgetreten: %1.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="188"/>
         <source>Could not download updates, because server responded with invalid message format. You can try again later or download and install updates manually. See &lt;a href=&quot;%1&quot;&gt;User Manual&lt;/a&gt; for details.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Update konnte nicht heruntergeladen werden, da der Updateserver in einem ungültigen Nachrichtenformat antwortet. Sie können es später noch einmal versuchen oder das Update und die Installation manuell ausführen. Weitere Infoamtionen hierzu finden Sie in der &lt;a href=&quot;%1&quot;&gt;Programmdokumentation&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="195"/>
         <source>Could not create temporary directory for downloading the update. Updating aborted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das temporäre Verzeichnis zum Herunterladen des Updates konnte nicht erstellt werden. Der Updatevorgang wird abgebrochen.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="206"/>
         <source>There was no updates to download. Updating aborted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine neuen Updates vorhanden. Der Updatevorgang wird beendet.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="241"/>
         <source>Downloading: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Herunterladen von: %1</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="247"/>
         <source>Could not determinate file name from update URL: %1. Updating aborted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Dateiname der Update-URL %1 konnte nicht ermittelt werden. Der Updatevorgang wird abgebrochen.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="255"/>
         <source>Failed to open file &apos;%1&apos; for writting: %2. Updating aborted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Beim Schreiben in die Datei &apos;%1&apos; trat folgender Fehler auf: %2. Der Updatevorgang wird abgebrochen.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="276"/>
         <source>Installing updates.</source>
-        <translation type="unfinished"></translation>
+        <translation>Update wird installiert.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="287"/>
         <source>Could not copy current application directory into %1 directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das aktuelle Programmverzeichnis konnte  nicht in das Verzeichnis %1 kopiert werden.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="340"/>
         <source>Could not create directory %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Verzeichnis %1 konnte nicht erstellt werden.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="348"/>
         <source>Could not rename directory %1 to %2.
 Details: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Verzeichnis %1 konnte nicht in %2 umbenannt werden.
+Details: %3</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="352"/>
         <source>Cannot not rename directory %1 to %2.
 Details: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Verzeichnis %1 kann nicht in %2 umbenannt werden.
+Details: %3</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="360"/>
         <source>Could not move directory %1 to %2 and also failed to restore original directory, so the original SQLiteStudio directory is now located at: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Verzeichnis %1 konnte nicht nach %2 verschoben werden. Ebenso schlug das Wiederherstellen des originalen Verzeichnissses fehlt, daher befindet sich das SQLiteStudio Verzeichnis nun hier: %3</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="365"/>
         <source>Could not rename directory %1 to %2. Rolled back to the original SQLiteStudio version.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Das Verzeichnis %1 konnte nicht nach %2 umbenannt werden.SQLiteStudio wird auf den Ursprungszustand zurückgesetzt.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="444"/>
         <source>Could not unpack component %1 into %2 directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Komponente %1 konnte nicht in das Verzeichnis %2 extrahiert werden.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="555"/>
         <source>Could not find permissions elevator application to run update as a root. Looked for: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Rechteerweiterung zum Ausführen des Updates als &apos;root&apos; konnte nicht gefunden werden. Es wurde gesucht nach: %1</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="562"/>
         <source>Could not execute final updating steps as root: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Die abschließenden Aktualisierungsschritte konnten nicht als &apos;root&apos; ausgeführt werden: %1</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="591"/>
@@ -1194,99 +1196,100 @@ Details: %3</source>
         <location filename="../services/updatemanager.cpp" line="613"/>
         <location filename="../services/updatemanager.cpp" line="623"/>
         <source>Could not execute final updating steps as admin: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Die abschließenden Aktualisierungsschritte konnten nicht als &apos;admin&apos; ausgeführt werden: %1</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="591"/>
         <source>Cannot create temporary directory for updater.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das temporäre Verzeichnis für den Updater konnte nicht erstellt werden.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="600"/>
         <source>Cannot create updater script file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Skriptdatei für den Updater konnte nicht erstellt werden.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="633"/>
         <source>Updating canceled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Updatevorgang abgebrochen.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="661"/>
         <source>Could not execute final updating steps as administrator.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die abschließenden Aktualisierungsschritte konnten nicht als &apos;administrator&apos; ausgeführt werden.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="673"/>
         <source>Could not execute final updating steps as administrator. Updater startup timed out.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die abschließenden Aktualisierungsschritte konnten nicht als &apos;administrator&apos; ausgeführt werden. Die Updatevorbereitungen liefen auf Zeitüberschreitung.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="679"/>
         <source>Could not execute final updating steps as administrator. Updater operation timed out.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die abschließenden Aktualisierungsschritte konnten nicht als &apos;administrator&apos; ausgeführt werden. Der Updatevorgang lief auf Zeitüberschreitung.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="696"/>
         <source>Could not clean up temporary directory %1. You can delete it manually at any time.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das temporäre Verzeichnis %1 konnte nicht aufgeräumt werden. Sie können es später manuell löschen.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="732"/>
         <source>Could not run new version for continuing update.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die neue Version zum Fortführen des Updates kann nicht gestartet werden.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="817"/>
         <source>Package not in tar.gz format, cannot install: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Paket liegt nicht im tar.gz Format vor. %1 kann nicht installiert werden.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="824"/>
         <source>Package %1 cannot be installed, because cannot move it to directory: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Paket %1 kann nicht installiert werden, weil es nicht in das Verzeichnis %2 verschoben werden kann.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="833"/>
         <source>Package %1 cannot be installed, because cannot unpack it: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Paket %1 kann nicht installiert werden, weil es nicht extrahiert werden kann: %2</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="852"/>
         <source>Package not in zip format, cannot install: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Paket liegt nicht im zip Format vor. %1 kann nicht installiert werden.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="859"/>
         <source>Package %1 cannot be installed, because cannot unzip it to directory %2: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Paket %1 kann nicht installiert werden, weil es nicht in das Verzeichnis %2: %3 extrahiert werden kann.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="873"/>
         <source>Package %1 cannot be installed, because cannot unzip it to directory: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Paket %1 kann nicht installiert werden, weil es nicht in das Verzeichnis %2 entzippt werden kann.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="923"/>
         <location filename="../services/updatemanager.cpp" line="932"/>
         <source>Could not rename directory %1 to %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Verzeichnis %1 konnte nicht in %2 umbenannt werden.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="945"/>
         <source>Could not delete directory %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Verzeichnis %1 konnte nicht gelöscht werden.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="961"/>
         <source>Error executing update command: %1
 Error message: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Ausführen des Updatekommandos %1.
+Fehlerbeschreibung: %2</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="1028"/>
         <source>An error occurred while downloading updates: %1. Updating aborted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Beim Herunterladen des Updates %1 ist ein fehelr aufgetreten. Der Updatevorgang wurde abgebrochen.</translation>
     </message>
 </context>
 </TS>
