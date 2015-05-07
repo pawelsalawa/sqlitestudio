@@ -187,7 +187,7 @@
     <message>
         <location filename="../dbobjectorganizer.cpp" line="380"/>
         <source>Could not parse table.</source>
-        <translation>Die Tabelle konnte nicht durchsuchent werden.</translation>
+        <translation>Die Tabelle konnte nicht verarbeitet werden.</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="426"/>
@@ -333,8 +333,7 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
         <location filename="../exportworker.cpp" line="353"/>
         <location filename="../exportworker.cpp" line="411"/>
         <source>Could not parse %1 in order to export it. It will be excluded from the export output.</source>
-        <translatorcomment>Hier fehlt mir der passende Kontext. Evtl. muss die Übersetzung noch einmal korrigiert werden.</translatorcomment>
-        <translation>%1 konnte zum Exportieren nicht korrekt analysiert werden. Diese Daten werden nicht exportiert.</translation>
+        <translation>%1 konnte zum Exportieren nicht korrekt verarbeitet werden. Diese Daten werden nicht exportiert.</translation>
     </message>
     <message>
         <location filename="../exportworker.cpp" line="612"/>
@@ -794,18 +793,18 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
         <location filename="../dbversionconverter.cpp" line="253"/>
         <location filename="../dbversionconverter.cpp" line="331"/>
         <source>SQLite %1 does not support &apos;%2&apos; statement.</source>
-        <translation>SQLite %1 unterstützt kein &apos;%2&apos; Statement.</translation>
+        <translation>SQLite %1 unterstützt keine &apos;%2&apos; Abfrage.</translation>
     </message>
     <message>
         <location filename="../dbversionconverter.cpp" line="201"/>
         <source>SQLite %1 does not support &apos;%2&apos; statement, but the regular table can be created instead if you proceed.</source>
-        <translation>SQLite %1 unterstützt kein &apos;%2&apos; Statement, aber die normale Tabelle kann stattdessen erzeugt werden, wenn Sie fortfahren.</translation>
+        <translation>SQLite %1 unterstützt keine &apos;%2&apos; Abfrage, aber die normale Tabelle kann stattdessen erzeugt werden, wenn Sie fortfahren.</translation>
     </message>
     <message>
         <location filename="../dbversionconverter.cpp" line="424"/>
         <source>Could not parse statement: %1
 Error details: %2</source>
-        <translation>Das Statement kann nicht analysieren werden: %1
+        <translation>Die Abfrage kann nicht verarbeitet werden: %1
 Problembeschreibung: %2</translation>
     </message>
     <message>
@@ -814,12 +813,12 @@ Problembeschreibung: %2</translation>
         <location filename="../dbversionconverter.cpp" line="482"/>
         <location filename="../dbversionconverter.cpp" line="515"/>
         <source>SQLite %1 does not support the &apos;%2&apos; clause. Cannot convert &apos;%3&apos; statement with that clause.</source>
-        <translation>SQLite %1 unterstützt keine &apos;%2&apos; Klausel. Das %3 Statement kann mit dieser Klausel nicht konvertiert werden.</translation>
+        <translation>SQLite %1 unterstützt keine &apos;%2&apos; Klausel. Die %3 Abfrage kann mit dieser Klausel nicht konvertiert werden.</translation>
     </message>
     <message>
         <location filename="../dbversionconverter.cpp" line="488"/>
         <source>SQLite %1 does not support the &apos;%2&apos; clause in the &apos;%3&apos; statement.</source>
-        <translation>SQLite %1 unterstützt keine &apos;%2&apos; Klausel im %3 Statement.</translation>
+        <translation>SQLite %1 unterstützt keine &apos;%2&apos; Klausel in der %3 Abfrage.</translation>
     </message>
     <message>
         <location filename="../dbversionconverter.cpp" line="756"/>
@@ -849,7 +848,7 @@ Problembeschreibung: %2</translation>
         <location filename="../parser/sqlite2_parse.cpp" line="1904"/>
         <location filename="../parser/sqlite3_parse.cpp" line="2167"/>
         <source>Parser stack overflow</source>
-        <translation>Parser Stacküberlauf</translation>
+        <translation>Stacküberlauf bei Verarbeitung</translation>
     </message>
     <message>
         <location filename="../parser/sqlite2_parse.cpp" line="4461"/>
@@ -978,40 +977,40 @@ Problembeschreibung: %2</translation>
     <message>
         <location filename="../tablemodifier.cpp" line="466"/>
         <source>Cannot not update trigger %1 according to table %2 modification.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Aktualisierung des Triggers %1, resultierend aus der Änderung der Tabelle %2, kann nicht ausgeführt werden.</translation>
     </message>
     <message>
         <location filename="../tablemodifier.cpp" line="587"/>
         <location filename="../tablemodifier.cpp" line="611"/>
         <location filename="../tablemodifier.cpp" line="630"/>
         <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es ist ein Problem beim Aktualisieren einer %1 Abfrage innerhalb eines %2 Triggers aufgetreten. Eine der %1 Unterabfragen, welche möglicherweise Tabelle %3 referenziert, kann nicht geändert werden. Eine manuelle Anpassung des Triggers wird nötig sein.</translation>
     </message>
     <message>
         <location filename="../tablemodifier.cpp" line="434"/>
         <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Spalten, die durch den Trigger %1 abgedeckt wurden, sind verloren. Der Trigger wird nach der Änderung nicht wiederhergestellt.</translation>
     </message>
     <message>
         <location filename="../tablemodifier.cpp" line="484"/>
         <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Aktualisierung des Views %1, resultierend aus der Änderung der Tabelle %2, kann nicht ausgeführt werden. Der View wird nicht geändert.</translation>
     </message>
     <message>
         <location filename="../viewmodifier.cpp" line="25"/>
         <source>Could not parse DDL of the view to be created. Details: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>DDL des zu erzeugenden Views kann nicht verarbeitet werden. Details: %1</translation>
     </message>
     <message>
         <location filename="../viewmodifier.cpp" line="34"/>
         <source>Parsed query is not CREATE VIEW. It&apos;s: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Die zu verarbeitende Abfrage ist nicht CREATE VIEW, es ist: %1</translation>
     </message>
     <message>
         <location filename="../viewmodifier.cpp" line="82"/>
         <source>SQLiteStudio was unable to resolve columns returned by the new view, therefore it won&apos;t be able to tell which triggers might fail during the recreation process.</source>
-        <translation type="unfinished"></translation>
+        <translation>SQLiteStudio konnte die vom View zurückgegebenen Spalten nicht auflösen, daher kann nicht ermittelt werden, welcher Trigger beim Wiederherstelllungsprozess einen Fehler verusracht haben könnte.</translation>
     </message>
 </context>
 <context>
@@ -1019,28 +1018,29 @@ The view will remain as it is.</source>
     <message>
         <location filename="../db/queryexecutor.cpp" line="133"/>
         <source>Execution interrupted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausführung abgebrochen.</translation>
     </message>
     <message>
         <location filename="../db/queryexecutor.cpp" line="174"/>
         <source>Database is not open.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Datenbank ist nicht geöffnet.</translation>
     </message>
     <message>
         <location filename="../db/queryexecutor.cpp" line="182"/>
         <source>Only one query can be executed simultaneously.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es kann nur eine Abfrage gleichzeitig ausgeführt werden.</translation>
     </message>
     <message>
         <location filename="../db/queryexecutor.cpp" line="264"/>
         <location filename="../db/queryexecutor.cpp" line="538"/>
         <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Hier muss ggf. noch das &apos;data paging&apos; korrekt übersetzt werden.</translatorcomment>
+        <translation>Beim Ausführen der count(*) Abfrage ist ein Fehler aufgetreten, daher wird das data paging abgeschaltet. Problemdetails der Datenbank: %1</translation>
     </message>
     <message>
         <location filename="../db/queryexecutor.cpp" line="449"/>
         <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
-        <translation type="unfinished"></translation>
+        <translation>SQLiteStudio konnte keine Metadaten aus der Abfrage extrahieren. Die Ergebnismenge kann daher nicht editiert werden.</translation>
     </message>
 </context>
 <context>
@@ -1048,12 +1048,12 @@ The view will remain as it is.</source>
     <message>
         <location filename="../plugins/scriptingqtdbproxy.cpp" line="48"/>
         <source>No database available in current context, while called QtScript&apos;s %1 command.</source>
-        <translation type="unfinished"></translation>
+        <translation>Beim Aufruf des QtSkript Kommandos %1 ist im zugehörigen Kontext keine Datenbank verfügbar.</translation>
     </message>
     <message>
         <location filename="../plugins/scriptingqtdbproxy.cpp" line="65"/>
         <source>Error from %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler von %1: %2</translation>
     </message>
 </context>
 <context>
@@ -1062,31 +1062,31 @@ The view will remain as it is.</source>
         <location filename="../sqlhistorymodel.cpp" line="30"/>
         <source>Database</source>
         <comment>sql history header</comment>
-        <translation type="unfinished"></translation>
+        <translation>Datenbank</translation>
     </message>
     <message>
         <location filename="../sqlhistorymodel.cpp" line="32"/>
         <source>Execution date</source>
         <comment>sql history header</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ausführungsdatum</translation>
     </message>
     <message>
         <location filename="../sqlhistorymodel.cpp" line="34"/>
         <source>Time spent</source>
         <comment>sql history header</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dauer</translation>
     </message>
     <message>
         <location filename="../sqlhistorymodel.cpp" line="36"/>
         <source>Rows affected</source>
         <comment>sql history header</comment>
-        <translation type="unfinished"></translation>
+        <translation>Anzahl Zeilen</translation>
     </message>
     <message>
         <location filename="../sqlhistorymodel.cpp" line="38"/>
         <source>SQL</source>
         <comment>sql history header</comment>
-        <translation type="unfinished"></translation>
+        <translation>SQL</translation>
     </message>
 </context>
 <context>
@@ -1094,7 +1094,7 @@ The view will remain as it is.</source>
     <message>
         <location filename="../services/updatemanager.cpp" line="131"/>
         <source>An error occurred while checking for updates: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Beim Prüfen auf Updates trat folgender Fehler auf: %1</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="144"/>
