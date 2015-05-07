@@ -6,87 +6,89 @@
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="14"/>
         <source>About SQLiteStudio and licenses</source>
-        <translation type="unfinished"></translation>
+        <translation>Über SQLiteStudio und deren Lizenzen</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="24"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Über SQLiteStudio</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="30"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;SQLiteStudio v%1&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Free, open-source, cross-platform SQLite database manager.&lt;br/&gt;&lt;a href=&quot;http://sqlitestudio.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://sqlitestudio.pl&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;%2&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Author and active maintainer:&lt;br/&gt;SalSoft (&lt;a href=&quot;http://salsoft.com.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://salsoft.com.pl&lt;/span&gt;&lt;/a&gt;)&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;SQLiteStudio v%1&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Freier, open-source, multiplattformfähiger SQLite Datenbankmanager.&lt;br/&gt;&lt;a href=&quot;http://sqlitestudio.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://sqlitestudio.pl&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;%2&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Author und aktiver Verantwortlicher:&lt;br/&gt;SalSoft (&lt;a href=&quot;http://salsoft.com.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://salsoft.com.pl&lt;/span&gt;&lt;/a&gt;)&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="41"/>
         <source>Licenses</source>
-        <translation type="unfinished"></translation>
+        <translation>Lizenzen</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="55"/>
         <source>Environment</source>
-        <translation type="unfinished"></translation>
+        <translation>Programmumgebung</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="61"/>
         <source>Icon directories</source>
-        <translation type="unfinished"></translation>
+        <translation>Icon Verzeichnisse</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="81"/>
         <source>Form directories</source>
-        <translation type="unfinished"></translation>
+        <translation>Formular Verzeichnisse</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="101"/>
         <source>Plugin directories</source>
-        <translation type="unfinished"></translation>
+        <translation>Plugin Verzeichnisse</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="121"/>
         <source>Application directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Programmverzeichnis</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="172"/>
         <source>SQLite 3 version:</source>
-        <translation type="unfinished"></translation>
+        <translation>SQLite 3 Version:</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="111"/>
         <source>Configuration directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfigurationsverzeichnis</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="148"/>
         <source>Qt version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Qt Version:</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.cpp" line="39"/>
         <source>Portable distribution.</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Sollte hier vermutlich &quot;Portable Version&quot; heißen?</translatorcomment>
+        <translation>Portable Version</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.cpp" line="42"/>
         <source>MacOS X application boundle distribution.</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Das müsste mal genauer übersetzt werden.</translatorcomment>
+        <translation>MacOS X Programmbundle-Version</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.cpp" line="45"/>
         <source>Operating system managed distribution.</source>
-        <translation type="unfinished"></translation>
+        <translation>Betriebssystemverwaltete Version.</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.cpp" line="89"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopie</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.cpp" line="102"/>
         <source>&lt;h3&gt;Table of contents:&lt;/h3&gt;&lt;ol&gt;%2&lt;/ol&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;h3&gt;Inhaltsverzeichnis:&lt;/h3&gt;&lt;ol&gt;%2&lt;/ol&gt;</translation>
     </message>
 </context>
 <context>
@@ -94,156 +96,156 @@
     <message>
         <location filename="../dialogs/bugdialog.ui" line="14"/>
         <source>Bugs and ideas</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler und Anregungen</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="20"/>
         <source>Reporter</source>
-        <translation type="unfinished"></translation>
+        <translation>Gemeldet von</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="36"/>
         <source>E-mail address</source>
-        <translation type="unfinished"></translation>
+        <translation>Ihre E-mail Adresse oder Ihr &apos;bugtracker&apos; Login</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="43"/>
         <location filename="../dialogs/bugdialog.cpp" line="121"/>
         <source>Log in</source>
-        <translation type="unfinished"></translation>
+        <translation>Anmelden</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="68"/>
         <source>Short description</source>
-        <translation type="unfinished"></translation>
+        <translation>Kurzbeschreibung</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="80"/>
         <source>Detailed description</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausführliche Fehlerbeschreibung</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="92"/>
         <source>Show more details</source>
-        <translation type="unfinished"></translation>
+        <translation>Mehr Details</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="119"/>
         <source>SQLiteStudio version</source>
-        <translation type="unfinished"></translation>
+        <translation>SQLiteStudio Version</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="131"/>
         <source>Operating system</source>
-        <translation type="unfinished"></translation>
+        <translation>Betriebssystem</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="143"/>
         <source>Loaded plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Geladene Plugins</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="39"/>
         <source>Send</source>
-        <translation type="unfinished"></translation>
+        <translation>Absenden</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="66"/>
         <source>You can see all your reported bugs and ideas by selecting menu &apos;%1&apos; and then &apos;%2&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sie können Ihre gemeldeten Fehler und Anregungen sehen, wenn Sie im Menü &apos;%1&apos; den Eintrag &apos;%2&apos; auswählen.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="74"/>
         <source>A bug report sent successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ihr Fehlerbericht wurde erfolgreich versendet.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="79"/>
         <source>An error occurred while sending a bug report: %1
 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Beim Absenden des Fehlerberichts ist ein Fehler aufgetreten: %1 %2</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="80"/>
         <location filename="../dialogs/bugdialog.cpp" line="94"/>
         <source>You can retry sending. The contents will be restored when you open a report dialog after an error like this.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sie können versuchen den Bericht erneut abzusenden. Ihr eingegebener Text wird nach einem Fehler wie diesem wieder hergestellt.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="88"/>
         <source>An idea proposal sent successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ihre Anregung wurde erfolgreich versendet.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="93"/>
         <source>An error occurred while sending an idea proposal: %1
 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Beim Absenden der Anregung ist ein Fehler aufgetreten: %1 %2</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="105"/>
         <source>A bug report</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehlerbericht erfassen</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="106"/>
         <source>Describe problem in few words</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreiben Sie das Problem mit wenigen Worten</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="107"/>
         <source>Describe problem and how to reproduce it</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreiben Sie das Problem hier genauer und die Schritte, um es zu reproduzieren</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="111"/>
         <source>A new feature idea</source>
-        <translation type="unfinished"></translation>
+        <translation>Anregung zu einer neuen Funktion erfassen</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="112"/>
         <source>A title for your idea</source>
-        <translation type="unfinished"></translation>
+        <translation>Ein kurzer Titel für ihre Anregung</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="113"/>
         <source>Describe your idea in more details</source>
-        <translation type="unfinished"></translation>
+        <translation>Beschreiben Sie hier Ihre Anregung ausführlich</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="118"/>
         <source>Reporting as an unregistered user, using e-mail address.</source>
-        <translation type="unfinished"></translation>
+        <translation>Versenden als nicht registrierter Benutzer mittels E-mail Adresse</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="127"/>
         <source>Reporting as a registered user.</source>
-        <translation type="unfinished"></translation>
+        <translation>Versenden als registrierter Benutzer</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="131"/>
         <source>Log out</source>
-        <translation type="unfinished"></translation>
+        <translation>Abmelden</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="144"/>
         <source>Providing true email address will make it possible to contact you regarding your report. To learn more, press &apos;help&apos; button on the right side.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Angabe Ihrer echten E-mail Adresse ermöglicht es uns Sie bzgl. Ihres Berichts zu kontaktieren. Erfahren Sie mehr dazu und klicken Sie den &apos;Hilfe&apos; Knopf auf der rechtehn Seite.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="146"/>
         <source>Enter vaild e-mail address, or log in.</source>
-        <translation type="unfinished"></translation>
+        <translation>Geben Sie Ihre gültige E-mail Adresse oder Ihre Anmeldedaten an.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="148"/>
         <source>Short description requires at least 10 characters, but not more than 100. Longer description can be entered in the field below.</source>
-        <translation type="unfinished"></translation>
+        <translation>Eine Kurzbeschreibung benötigt mindestens 10 Zeichen, maximal jedoch 100 Zeichen. Eine ausführlichere Beschreibung kann in dem Feld unten erfasst werden.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="151"/>
         <source>Long description requires at least 30 characters.</source>
-        <translation type="unfinished"></translation>
+        <translation>Eine ausführliche Beschreibung benötigt mindestens 30 Zeichen.</translation>
     </message>
 </context>
 <context>
@@ -252,39 +254,39 @@
         <location filename="../windows/bugreporthistorywindow.ui" line="36"/>
         <location filename="../windows/bugreporthistorywindow.cpp" line="119"/>
         <source>Title</source>
-        <translation type="unfinished"></translation>
+        <translation>Titel</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.ui" line="41"/>
         <location filename="../windows/bugreporthistorywindow.cpp" line="119"/>
         <source>Reported at</source>
-        <translation type="unfinished"></translation>
+        <translation>Gemeldet am</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.ui" line="46"/>
         <location filename="../windows/bugreporthistorywindow.cpp" line="119"/>
         <source>URL</source>
-        <translation type="unfinished"></translation>
+        <translation>URL</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.cpp" line="45"/>
         <source>Reports history</source>
-        <translation type="unfinished"></translation>
+        <translation>Berichtshistorie</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.cpp" line="50"/>
         <source>Clear reports history</source>
-        <translation type="unfinished"></translation>
+        <translation>Lösche Berichtshistorie</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.cpp" line="51"/>
         <source>Delete selected entry</source>
-        <translation type="unfinished"></translation>
+        <translation>Lösche markierten Eintrag</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.cpp" line="90"/>
         <source>Invalid response from server.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültige Antwort vom Server</translation>
     </message>
 </context>
 <context>
@@ -292,57 +294,58 @@
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="14"/>
         <source>Log in</source>
-        <translation type="unfinished"></translation>
+        <translation>Anmelden</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="20"/>
         <source>Credentials</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Hier fehlt mir der Kontext!!!</translatorcomment>
+        <translation>Überprüfung</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="26"/>
         <source>Login:</source>
-        <translation type="unfinished"></translation>
+        <translation>Login:</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="36"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Passwort:</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="53"/>
         <source>Validation</source>
-        <translation type="unfinished"></translation>
+        <translation>Überprüfung</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="59"/>
         <source>Validate</source>
-        <translation type="unfinished"></translation>
+        <translation>Überprüfe</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="73"/>
         <source>Validation result message</source>
-        <translation type="unfinished"></translation>
+        <translation>Ergebnis der Überprüfung</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.cpp" line="45"/>
         <source>Abort</source>
-        <translation type="unfinished"></translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.cpp" line="65"/>
         <source>A login must be at least 2 characters long.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ein Login Kürzel muss mindestens 2 Zeichen lang sein</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.cpp" line="66"/>
         <source>A password must be at least 5 characters long.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ein Passwort muss mindestens 5 Zeichen lang sein</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.cpp" line="91"/>
         <source>Valid</source>
-        <translation type="unfinished"></translation>
+        <translation>Gültig</translation>
     </message>
 </context>
 <context>
@@ -350,87 +353,87 @@
     <message>
         <location filename="../windows/collationseditor.ui" line="75"/>
         <source>Filter collations</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter-Vergleiche</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.ui" line="194"/>
         <source>Collation name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vergleichsname:</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.ui" line="204"/>
         <source>Implementation language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprache</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.ui" line="132"/>
         <source>Databases</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbanken</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.ui" line="138"/>
         <source>Register in all databases</source>
-        <translation type="unfinished"></translation>
+        <translation>In allen Datenbanken registrieren</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.ui" line="145"/>
         <source>Register in following databases:</source>
-        <translation type="unfinished"></translation>
+        <translation>In den folgenden Datenbanken registrieren</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.ui" line="166"/>
         <source>Implementation code:</source>
-        <translation type="unfinished"></translation>
+        <translation>Anweisungen</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="52"/>
         <source>Collations editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Editor für Vergleiche</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="57"/>
         <source>Commit all collation changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Speichern aller Vergleichsänderungen</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="58"/>
         <source>Rollback all collation changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Zurücknehmen aller Vergleichsänderungen</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="60"/>
         <source>Create new collation</source>
-        <translation type="unfinished"></translation>
+        <translation>Neuen Vergleich erstellen</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="61"/>
         <source>Delete selected collation</source>
-        <translation type="unfinished"></translation>
+        <translation>Lösche markierten Verlgeich</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="63"/>
         <source>Editing collations manual</source>
-        <translation type="unfinished"></translation>
+        <translation>Editieren der Vergleichsanleitung</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="283"/>
         <source>Enter a non-empty, unique name of the collation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Geben Sie einen eindeutigen Namen für den Vergleich ein.</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="291"/>
         <source>Pick the implementation language.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wählen Sie die Sprache aus.</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="294"/>
         <source>Enter a non-empty implementation code.</source>
-        <translation type="unfinished"></translation>
+        <translation>Geben Sie eine eindeutige Anweisung ein.</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="388"/>
         <source>Collations editor window has uncommited modifications.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Vergleichseditor enthält nicht gespeicherte Änderungen.</translation>
     </message>
 </context>
 <context>
@@ -438,7 +441,7 @@
     <message>
         <location filename="../common/colorbutton.cpp" line="29"/>
         <source>Pick a color</source>
-        <translation type="unfinished"></translation>
+        <translation>Wählen Sie eine Farbe aus.</translation>
     </message>
 </context>
 <context>
@@ -446,22 +449,22 @@
     <message>
         <location filename="../constraints/columncollatepanel.ui" line="41"/>
         <source>Collation name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Name der Sammlung:</translation>
     </message>
     <message>
         <location filename="../constraints/columncollatepanel.ui" line="73"/>
         <source>Named constraint:</source>
-        <translation type="unfinished"></translation>
+        <translation>Name der Abhängigkeit:</translation>
     </message>
     <message>
         <location filename="../constraints/columncollatepanel.cpp" line="80"/>
         <source>Enter a name of the constraint.</source>
-        <translation type="unfinished"></translation>
+        <translation>Geben Sie einen Namen für die Abhängigkeit ein.</translation>
     </message>
     <message>
         <location filename="../constraints/columncollatepanel.cpp" line="81"/>
         <source>Enter a collation name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Geben Sie einen Namen für die Sammlung ein.</translation>
     </message>
 </context>
 <context>
@@ -469,27 +472,27 @@
     <message>
         <location filename="../constraints/columndefaultpanel.ui" line="20"/>
         <source>Default value:</source>
-        <translation type="unfinished"></translation>
+        <translation>Standardwert:</translation>
     </message>
     <message>
         <location filename="../constraints/columndefaultpanel.ui" line="35"/>
         <source>Named constraint:</source>
-        <translation type="unfinished"></translation>
+        <translation>Name der Abhängigkeit:</translation>
     </message>
     <message>
         <location filename="../constraints/columndefaultpanel.cpp" line="39"/>
         <source>Enter a default value expression.</source>
-        <translation type="unfinished"></translation>
+        <translation>Geben Sie einen Standardwert an</translation>
     </message>
     <message>
         <location filename="../constraints/columndefaultpanel.cpp" line="78"/>
         <source>Invalid default value expression: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültiger Standardwert: %1</translation>
     </message>
     <message>
         <location filename="../constraints/columndefaultpanel.cpp" line="90"/>
         <source>Enter a name of the constraint.</source>
-        <translation type="unfinished"></translation>
+        <translation>Geben Sie einen Namen für die Abhängigkeit ein.</translation>
     </message>
 </context>
 <context>
