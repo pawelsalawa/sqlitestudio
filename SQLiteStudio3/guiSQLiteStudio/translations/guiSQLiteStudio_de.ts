@@ -353,12 +353,12 @@
     <message>
         <location filename="../windows/collationseditor.ui" line="75"/>
         <source>Filter collations</source>
-        <translation>Filter-Vergleiche</translation>
+        <translation>Filter Vergleichsoperatoren</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.ui" line="194"/>
         <source>Collation name:</source>
-        <translation>Vergleichsname:</translation>
+        <translation>Vergleichsoperatorname:</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.ui" line="204"/>
@@ -388,37 +388,37 @@
     <message>
         <location filename="../windows/collationseditor.cpp" line="52"/>
         <source>Collations editor</source>
-        <translation>Editor für Vergleiche</translation>
+        <translation>Editor für Vergleichsoperatoren</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="57"/>
         <source>Commit all collation changes</source>
-        <translation>Speichern aller Vergleichsänderungen</translation>
+        <translation>Speichern aller Änderungen an Vergleichsoperatoren</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="58"/>
         <source>Rollback all collation changes</source>
-        <translation>Zurücknehmen aller Vergleichsänderungen</translation>
+        <translation>Zurücknehmen aller Änderungen an Vergleichsoperatoren</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="60"/>
         <source>Create new collation</source>
-        <translation>Neuen Vergleich erstellen</translation>
+        <translation>Neuen Vergleichsoperator erstellen</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="61"/>
         <source>Delete selected collation</source>
-        <translation>Lösche markierten Verlgeich</translation>
+        <translation>Lösche markierten Vergleichsoperator</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="63"/>
         <source>Editing collations manual</source>
-        <translation>Editieren der Vergleichsanleitung</translation>
+        <translation>Editieren der Vergleichsoperatordefinition</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="283"/>
         <source>Enter a non-empty, unique name of the collation.</source>
-        <translation>Geben Sie einen eindeutigen Namen für den Vergleich ein.</translation>
+        <translation>Geben Sie einen eindeutigen Namen für den Vergleichsoperator ein.</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="291"/>
@@ -428,12 +428,12 @@
     <message>
         <location filename="../windows/collationseditor.cpp" line="294"/>
         <source>Enter a non-empty implementation code.</source>
-        <translation>Geben Sie eine eindeutige Anweisung ein.</translation>
+        <translation>Geben Sie eine eindeutige Vergleichsoperatorendefinition ein.</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="388"/>
         <source>Collations editor window has uncommited modifications.</source>
-        <translation>Der Vergleichseditor enthält nicht gespeicherte Änderungen.</translation>
+        <translation>Der Vergleichsoperatoreditor enthält nicht gespeicherte Änderungen.</translation>
     </message>
 </context>
 <context>
@@ -449,7 +449,7 @@
     <message>
         <location filename="../constraints/columncollatepanel.ui" line="41"/>
         <source>Collation name:</source>
-        <translation>Name der Sammlung:</translation>
+        <translation>Name des Vergleichsoperators:</translation>
     </message>
     <message>
         <location filename="../constraints/columncollatepanel.ui" line="73"/>
@@ -464,7 +464,7 @@
     <message>
         <location filename="../constraints/columncollatepanel.cpp" line="81"/>
         <source>Enter a collation name.</source>
-        <translation>Geben Sie einen Namen für die Sammlung ein.</translation>
+        <translation>Geben Sie einen Namen für den Vergleichsoperator  ein.</translation>
     </message>
 </context>
 <context>
@@ -482,12 +482,12 @@
     <message>
         <location filename="../constraints/columndefaultpanel.cpp" line="39"/>
         <source>Enter a default value expression.</source>
-        <translation>Geben Sie einen Standardwert an</translation>
+        <translation>Geben Sie einen Standardwert für den Ausdruck an</translation>
     </message>
     <message>
         <location filename="../constraints/columndefaultpanel.cpp" line="78"/>
         <source>Invalid default value expression: %1</source>
-        <translation>Ungültiger Standardwert: %1</translation>
+        <translation>Ungültiger Standardwert für Ausdruck: %1</translation>
     </message>
     <message>
         <location filename="../constraints/columndefaultpanel.cpp" line="90"/>
@@ -500,47 +500,47 @@
     <message>
         <location filename="../dialogs/columndialog.ui" line="14"/>
         <source>Column</source>
-        <translation type="unfinished"></translation>
+        <translation>Spalte</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="23"/>
         <source>Name and type</source>
-        <translation type="unfinished"></translation>
+        <translation>Name und Typ</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="35"/>
         <source>Scale</source>
-        <translation type="unfinished"></translation>
+        <translation>Skalierung</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="55"/>
         <source>Precision</source>
-        <translation type="unfinished"></translation>
+        <translation>Präzision</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="62"/>
         <source>Data type:</source>
-        <translation type="unfinished"></translation>
+        <translation>Datentyp:</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="69"/>
         <source>Column name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Spaltenname:</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="79"/>
         <source>Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Größe:</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="102"/>
         <source>Constraints</source>
-        <translation type="unfinished"></translation>
+        <translation>Abhängigkeiten</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="115"/>
         <source>Unique</source>
-        <translation type="unfinished"></translation>
+        <translation>Eindeutigkeit</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="122"/>
@@ -551,132 +551,132 @@
         <location filename="../dialogs/columndialog.ui" line="199"/>
         <location filename="../dialogs/columndialog.ui" line="206"/>
         <source>Configure</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfigurieren</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="129"/>
         <source>Foreign Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Fremdschlüssel</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="143"/>
         <source>Collate</source>
-        <translation type="unfinished"></translation>
+        <translation>Vergleichsoperator</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="150"/>
         <source>Not NULL</source>
-        <translation type="unfinished"></translation>
+        <translation>Nicht NULL</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="157"/>
         <source>Check condition</source>
-        <translation type="unfinished"></translation>
+        <translation>Zustandsprüfung</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="164"/>
         <source>Primary Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Primärer Schlüssel</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="171"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="270"/>
         <source>Advanced mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Erweiterter Modus</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="83"/>
         <source>Add constraint</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Abhängigkeit hinzufügen</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="84"/>
         <source>Edit constraint</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Abhängigkeit editieren</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="85"/>
         <location filename="../dialogs/columndialog.cpp" line="229"/>
         <source>Delete constraint</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Abhängigkeit löschen</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="86"/>
         <source>Move constraint up</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Abhängigkeit nach oben bewegen</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="87"/>
         <source>Move constraint down</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Abhängigkeit nach unten bewegen</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="89"/>
         <source>Add a primary key</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Primären Schlüssel zufügen</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="90"/>
         <source>Add a foreign key</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Fremdschlüssel zufügen</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="91"/>
         <source>Add an unique constraint</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Eindeutige Abhängigkeit hinzufügen</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="92"/>
         <source>Add a check constraint</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Prüfungsabhängigkeit hinzufügen</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="93"/>
         <source>Add a not null constraint</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nicht-NULL Abhängigkeit hinzufügen</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="94"/>
         <source>Add a collate constraint</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vergleichsoperatorenabhängigkeit hinzufügen</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="95"/>
         <source>Add a default constraint</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Standardabhängigkeit hinzufügen</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="228"/>
         <source>Are you sure you want to delete constraint &apos;%1&apos;?</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Sind Sie sicher, dass Sie die folgende Abhängigkeit löschen wollen: &apos;%1&apos;?</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="290"/>
         <source>Correct the constraint&apos;s configuration.</source>
-        <translation type="unfinished"></translation>
+        <translation>Korrigieren Sie die Konfiguration der Abhängigkeit.</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="293"/>
         <source>This constraint is not officially supported by SQLite 2,
 but it&apos;s okay to use it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Diese Abhängigkeit wird von SQLite 2 offiziell nicht unterstützt, aber sie kann dennoch benutzt werden.</translation>
     </message>
 </context>
 <context>
