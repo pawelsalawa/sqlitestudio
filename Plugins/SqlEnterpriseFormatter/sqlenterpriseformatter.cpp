@@ -3,6 +3,7 @@
 #include "common/unused.h"
 #include "common/global.h"
 #include <QDebug>
+#include <parser/lexer.h>
 #include <parser/parser.h>
 
 SqlEnterpriseFormatter::SqlEnterpriseFormatter()
@@ -11,6 +12,8 @@ SqlEnterpriseFormatter::SqlEnterpriseFormatter()
 
 QString SqlEnterpriseFormatter::format(SqliteQueryPtr query)
 {
+    QList<Comment*> comments = collectComments(query->tokens);
+
     int wrapperIdx = cfg.SqlEnterpriseFormatter.Wrappers.get().indexOf(cfg.SqlEnterpriseFormatter.PrefferedWrapper.get());
 
     NameWrapper wrapper = getAllNameWrappers()[wrapperIdx];
@@ -24,7 +27,11 @@ QString SqlEnterpriseFormatter::format(SqliteQueryPtr query)
     QString formatted = formatStmt->format();
     delete formatStmt;
 
-    return formatted;
+    QString formattedWithComments = applyComments(formatted, comments, query->dialect);
+    for (Comment* c : comments)
+        delete c;
+
+    return formattedWithComments;
 }
 
 bool SqlEnterpriseFormatter::init()
@@ -109,4 +116,78 @@ void SqlEnterpriseFormatter::configDialogOpen()
 void SqlEnterpriseFormatter::configDialogClosed()
 {
     disconnect(&cfg.SqlEnterpriseFormatter, SIGNAL(changed(CfgEntry*)), this, SLOT(configModified(CfgEntry*)));
+}
+
+QList<SqlEnterpriseFormatter::Comment *> SqlEnterpriseFormatter::collectComments(const TokenList &tokens)
+{
+    QList<Comment*> results;
+
+    QList<TokenList> tokensInLines = tokensByLines(tokens);
+    Comment* prevCommentInThisLine = nullptr;
+    Comment* cmt = nullptr;
+    bool tokensBefore = false;
+    int pos = 0;
+    int line = 0;
+    for (const TokenList& tokensInLine : tokensInLines)
+    {
+        tokensBefore = true;
+        prevCommentInThisLine = nullptr;
+        for (const TokenPtr& token : tokensInLine)
+        {
+            if (token->type == Token::Type::SPACE)
+                continue;
+
+            if (prevCommentInThisLine)
+                prevCommentInThisLine->tokensAfter = true;
+
+            if (token->type == Token::Type::COMMENT)
+            {
+                cmt = new Comment;
+                cmt->tokensBefore = tokensBefore;
+                cmt->contents = token->value;
+                cmt->position = pos;
+                cmt->multiline = token->value.startsWith("/*");
+                results << cmt;
+                prevCommentInThisLine = cmt;
+            }
+            tokensBefore = true;
+            pos++;
+        }
+        line++;
+    }
+}
+
+QList<TokenList> SqlEnterpriseFormatter::tokensByLines(const TokenList &tokens)
+{
+    QList<TokenList> tokensInLines;
+    TokenList tokensInLine;
+    for (const TokenPtr& token : tokens)
+    {
+        if (token->type != Token::Type::SPACE)
+        {
+            tokensInLine << token;
+            continue;
+        }
+
+        if (token->value.contains('\n'))
+        {
+            tokensInLines << tokensInLine;
+            tokensInLine.clear();
+        }
+    }
+    return tokensInLines;
+}
+
+QString SqlEnterpriseFormatter::applyComments(const QString& formatted, const QList<SqlEnterpriseFormatter::Comment*>& comments, Dialect dialect)
+{
+    TokenList allTokens = Lexer::tokenize(formatted, dialect);
+    TokenList tokensWithoutSpaces = allTokens.filterWhiteSpaces(false);
+
+    // Insert comments initially just as their index in comments collection
+    int pos = 0;
+    for (Comment* cmt : comments)
+        tokensWithoutSpaces.insert(cmt->position, TokenPtr::create(Token::Type::COMMENT, QString::number(pos++)));
+
+//    QList<TokenList> tokensInLines = tokensByLines(tokensWithoutSpaces);
+    return tokensWithoutSpaces.detokenize();
 }

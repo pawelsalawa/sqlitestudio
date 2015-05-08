@@ -8,7 +8,9 @@ CliCommandExecutor::CliCommandExecutor(QObject *parent) :
 
 void CliCommandExecutor::execCommand(CliCommand* cmd)
 {
-    connect(cmd, SIGNAL(execComplete()), this, SLOT(asyncExecutionComplete()));
+    if (cmd->isAsyncExecution())
+        connect(cmd, SIGNAL(execComplete()), this, SLOT(asyncExecutionComplete()));
+
     cmd->execute();
     if (!cmd->isAsyncExecution())
     {

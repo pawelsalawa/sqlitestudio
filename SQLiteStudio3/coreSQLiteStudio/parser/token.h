@@ -190,7 +190,7 @@ struct API_EXPORT Token
      *
      * Note, that from SQL perspective also comments are whitespaces.
      */
-    bool isWhitespace() const;
+    bool isWhitespace(bool includeComments = true) const;
 
     /**
      * @brief Tests whether this token represents separating value (like an operator, or parenthesis) in SQL understanding.

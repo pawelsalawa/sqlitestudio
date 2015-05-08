@@ -140,9 +140,9 @@ Range Token::getRange()
     return Range(start, end);
 }
 
-bool Token::isWhitespace() const
+bool Token::isWhitespace(bool includeComments) const
 {
-    return (type == SPACE || type == COMMENT);
+    return (type == SPACE || (includeComments && type == COMMENT));
 }
 
 bool Token::isSeparating() const

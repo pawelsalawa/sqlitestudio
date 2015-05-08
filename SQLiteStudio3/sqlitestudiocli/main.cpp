@@ -90,6 +90,7 @@ int main(int argc, char *argv[])
         CLI::getInstance()->openDbFile(dbToOpen);
 
     CLI::getInstance()->start();
-
-    return a.exec();
+    int res = a.exec();
+    CLI::dispose();
+    return res;
 }

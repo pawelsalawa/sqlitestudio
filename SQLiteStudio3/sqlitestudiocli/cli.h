@@ -20,6 +20,7 @@ class CLI : public QObject
         ~CLI();
 
         static CLI* getInstance();
+        static void dispose();
 
         void start();
         void setCurrentDb(Db* db);
@@ -48,8 +49,10 @@ class CLI : public QObject
         bool doExit = false;
         QString line;
 
-    signals:
-        void execCommand(CliCommand* cmd);
+    private slots:
+        void printInfo(const QString& msg);
+        void printWarn(const QString& msg);
+        void printError(const QString& msg);
 
     public slots:
         void doWork();
@@ -57,6 +60,9 @@ class CLI : public QObject
         void executionComplete();
         void clearHistory();
         void openDbFile(const QString& path);
+
+    signals:
+        void execCommand(CliCommand* cmd);
 };
 
 #endif // CLI_H

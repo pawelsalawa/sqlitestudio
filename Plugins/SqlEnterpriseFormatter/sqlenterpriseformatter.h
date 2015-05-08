@@ -73,6 +73,19 @@ class SQLENTERPRISEFORMATTERSHARED_EXPORT SqlEnterpriseFormatter : public Generi
         void configDialogClosed();
 
     private:
+        struct Comment
+        {
+            int position = 0;
+            QString contents;
+            bool tokensBefore = false;
+            bool tokensAfter = false;
+            bool multiline = false;
+        };
+
+        QList<Comment*> collectComments(const TokenList& tokens);
+        QString applyComments(const QString& formatted, const QList<Comment*>& comments);
+        QList<TokenList> tokensByLines(const TokenList& tokens);
+
         QList<SqliteQueryPtr> previewQueries;
         CFG_LOCAL_PERSISTABLE(SqlEnterpriseFormatterConfig, cfg)
 
