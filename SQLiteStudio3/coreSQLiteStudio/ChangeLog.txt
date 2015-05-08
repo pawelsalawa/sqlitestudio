@@ -23,6 +23,7 @@
         * [BUGFIX]: Fixed problem with keyboard focus for syntax completer under Gnome 3.
         * [BUGFIX]: #2872 'Enter' key in table name of import dialog now triggers 'Next' action, not clearing the table name.
         * [BUGFIX]: #2864 & #2791 Fixed synchronouse execution in QueryExecutor, which also fixes the misterious bug in export dialog, causing empty files being exported.
+        * [BUGFIX]: Fixed encoding detection and connection testing for SQLite2.
 
 [3.0.5]
         * [ADDED]: #2831 Ported 'Erase table data' feature (in table's context menu) from version 2.1.5.

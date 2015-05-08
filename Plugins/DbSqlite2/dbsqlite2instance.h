@@ -22,6 +22,8 @@ class DbSqlite2Instance : public AbstractDb2<Sqlite2>
          * All values from this constructor are just passed to AbstractDb2 constructor.
          */
         DbSqlite2Instance(const QString& name, const QString& path, const QHash<QString, QVariant>& connOptions);
+
+        QString getEncoding();
 };
 
 #endif // DBSQLITE2INSTANCE_H

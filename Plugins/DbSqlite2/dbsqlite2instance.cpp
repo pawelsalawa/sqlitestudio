@@ -5,3 +5,8 @@ DbSqlite2Instance::DbSqlite2Instance(const QString& name, const QString& path, c
 {
 
 }
+
+QString DbSqlite2Instance::getEncoding()
+{
+    return "UTF-8";
+}
