@@ -188,7 +188,7 @@
     <message>
         <location filename="pdfexport.ui" line="70"/>
         <source>Left margin:</source>
-        <translation>Seienabstand Links:</translation>
+        <translation>Seitenabstand Links:</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="77"/>
@@ -212,7 +212,7 @@
     <message>
         <location filename="pdfexport.ui" line="139"/>
         <source>Bottom margin:</source>
-        <translation>Abstand Unten:</translation>
+        <translation>Seitenabstand Unten:</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="163"/>
