@@ -9,6 +9,7 @@
 #include "common/global.h"
 #include "iconmanager.h"
 #include "common/unused.h"
+#include "db/sqlquery.h"
 #include <QDateTimeEdit>
 #include <QSpinBox>
 #include <QDebug>
@@ -464,7 +465,7 @@ bool DbDialog::testDatabase()
     {
         if (testDb->openForProbing())
         {
-            res = !testDb->getEncoding().isEmpty();
+            res = !testDb->exec("SELECT sqlite_version();")->getSingleCell().toString().isEmpty();
             testDb->closeQuiet();
         }
         delete testDb;
