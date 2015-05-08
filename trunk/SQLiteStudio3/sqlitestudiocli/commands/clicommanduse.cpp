@@ -6,7 +6,7 @@
 
 void CliCommandUse::execute()
 {
-    if (syntax.isArgumentSet(DB_NAME))
+    if (!syntax.isArgumentSet(DB_NAME))
     {
         if (!cli->getCurrentDb())
         {

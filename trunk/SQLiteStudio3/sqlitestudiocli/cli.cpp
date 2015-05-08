@@ -9,12 +9,14 @@
 #include "common/utils_sql.h"
 #include "climsghandler.h"
 #include "clicompleter.h"
+#include "services/notifymanager.h"
 #include <QCoreApplication>
 #include <QThread>
 #include <QFile>
 #include <QSet>
 #include <QStringList>
 #include <QLibrary>
+#include <QString>
 
 #if defined(Q_OS_WIN32)
 #include "readline.h"
@@ -36,6 +38,9 @@ CLI::CLI(QObject* parent) :
     history_base = 0; // for some reason this was set to 1 under Unix, making 1st history entry to be always ommited
 #endif
 
+    connect(NOTIFY_MANAGER, SIGNAL(notifyInfo(QString)), this, SLOT(printInfo(QString)));
+    connect(NOTIFY_MANAGER, SIGNAL(notifyWarning(QString)), this, SLOT(printWarn(QString)));
+    connect(NOTIFY_MANAGER, SIGNAL(notifyError(QString)), this, SLOT(printError(QString)));
 
     loadHistory();
     CliCompleter::getInstance()->init(this);
@@ -43,6 +48,7 @@ CLI::CLI(QObject* parent) :
 
 CLI::~CLI()
 {
+    safe_delete(thread);
 }
 
 CLI* CLI::getInstance()
@@ -51,6 +57,11 @@ CLI* CLI::getInstance()
         instance = new CLI();
 
     return instance;
+}
+
+void CLI::dispose()
+{
+    safe_delete(instance);
 }
 
 void CLI::start()
@@ -151,6 +162,24 @@ int CLI::historyLength() const
 #elif defined(Q_OS_UNIX)
     return history_length;
 #endif
+}
+
+void CLI::printWarn(const QString &msg)
+{
+    static_qstring(tpl, "[WARNING] %1");
+    qOut << tpl.arg(msg) << "\n";
+}
+
+void CLI::printError(const QString &msg)
+{
+    static_qstring(tpl, "[ERROR] %1");
+    qOut << tpl.arg(msg) << "\n";
+}
+
+void CLI::printInfo(const QString &msg)
+{
+    static_qstring(tpl, "[INFO] %1");
+    qOut << tpl.arg(msg) << "\n";
 }
 
 void CLI::waitForExecution()
