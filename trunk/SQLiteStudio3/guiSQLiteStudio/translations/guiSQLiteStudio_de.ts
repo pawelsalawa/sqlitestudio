@@ -685,19 +685,19 @@ but it&apos;s okay to use it.</source>
         <location filename="../dialogs/columndialogconstraintsmodel.cpp" line="328"/>
         <source>Type</source>
         <comment>column dialog constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialogconstraintsmodel.cpp" line="330"/>
         <source>Name</source>
         <comment>column dialog constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialogconstraintsmodel.cpp" line="332"/>
         <source>Details</source>
         <comment>column dialog constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Details</translation>
     </message>
 </context>
 <context>
@@ -705,47 +705,47 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../constraints/columnforeignkeypanel.ui" line="29"/>
         <source>Foreign table:</source>
-        <translation type="unfinished"></translation>
+        <translation>Fremde Tabelle:</translation>
     </message>
     <message>
         <location filename="../constraints/columnforeignkeypanel.ui" line="45"/>
         <source>Foreign column:</source>
-        <translation type="unfinished"></translation>
+        <translation>Fremde Spalte:</translation>
     </message>
     <message>
         <location filename="../constraints/columnforeignkeypanel.ui" line="58"/>
         <source>Reactions</source>
-        <translation type="unfinished"></translation>
+        <translation>Reaktion</translation>
     </message>
     <message>
         <location filename="../constraints/columnforeignkeypanel.ui" line="97"/>
         <source>Deferred foreign key</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzögerter Fremdschlüssel</translation>
     </message>
     <message>
         <location filename="../constraints/columnforeignkeypanel.ui" line="115"/>
         <source>Named constraint</source>
-        <translation type="unfinished"></translation>
+        <translation>Benannte Abhängigkeit</translation>
     </message>
     <message>
         <location filename="../constraints/columnforeignkeypanel.ui" line="122"/>
         <source>Constraint name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name der Abhängigkeit</translation>
     </message>
     <message>
         <location filename="../constraints/columnforeignkeypanel.cpp" line="40"/>
         <source>Pick the foreign table.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wählen Sie die Fremdtabelle aus.</translation>
     </message>
     <message>
         <location filename="../constraints/columnforeignkeypanel.cpp" line="41"/>
         <source>Pick the foreign column.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wählen Sie die Fremdspalte aus.</translation>
     </message>
     <message>
         <location filename="../constraints/columnforeignkeypanel.cpp" line="42"/>
         <source>Enter a name of the constraint.</source>
-        <translation type="unfinished"></translation>
+        <translation>Geben Sie einen Namen für die Abhängigkeit ein.</translation>
     </message>
 </context>
 <context>
@@ -753,33 +753,33 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../constraints/columnprimarykeypanel.ui" line="26"/>
         <source>Autoincrement</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatischer Zähler</translation>
     </message>
     <message>
         <location filename="../constraints/columnprimarykeypanel.ui" line="48"/>
         <source>Sort order:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sortierfolge:</translation>
     </message>
     <message>
         <location filename="../constraints/columnprimarykeypanel.ui" line="83"/>
         <source>Named constraint:</source>
-        <translation type="unfinished"></translation>
+        <translation>Benannte Abhängigkeit:</translation>
     </message>
     <message>
         <location filename="../constraints/columnprimarykeypanel.ui" line="111"/>
         <source>On conflict:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bei Konflikt:</translation>
     </message>
     <message>
         <location filename="../constraints/columnprimarykeypanel.cpp" line="87"/>
         <source>Enter a name of the constraint.</source>
-        <translation type="unfinished"></translation>
+        <translation>Geben Sie einen Namen für die Abhängigkeit ein.</translation>
     </message>
     <message>
         <location filename="../constraints/columnprimarykeypanel.cpp" line="103"/>
         <source>Autoincrement (only for %1 type columns)</source>
         <comment>column primary key</comment>
-        <translation type="unfinished"></translation>
+        <translation>Automatischer Zähler (nur für %1 Spaltentypen)</translation>
     </message>
 </context>
 <context>
@@ -787,17 +787,17 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../constraints/columnuniqueandnotnullpanel.ui" line="41"/>
         <source>Named constraint:</source>
-        <translation type="unfinished"></translation>
+        <translation>Benannte Abhängigkeit:</translation>
     </message>
     <message>
         <location filename="../constraints/columnuniqueandnotnullpanel.ui" line="69"/>
         <source>On conflict:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bei Konflikt:</translation>
     </message>
     <message>
         <location filename="../constraints/columnuniqueandnotnullpanel.cpp" line="73"/>
         <source>Enter a name of the constraint.</source>
-        <translation type="unfinished"></translation>
+        <translation>Geben Sie einen Namen für die Abhängigkeit ein.</translation>
     </message>
 </context>
 <context>
@@ -806,85 +806,85 @@ but it&apos;s okay to use it.</source>
         <location filename="../completer/completerwindow.cpp" line="159"/>
         <source>Column: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Spalte: %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="161"/>
         <source>Table: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Tabelle: %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="163"/>
         <source>Index: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Index: %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="165"/>
         <source>Trigger: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Trigger: %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="167"/>
         <source>View: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>View: %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="169"/>
         <source>Database: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Datenbank: %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="181"/>
         <source>Keyword: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Schlüsselwort: %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="183"/>
         <source>Function: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Funktion: %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="185"/>
         <source>Operator: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Operator: %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="187"/>
         <source>String</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zeichenkette</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="189"/>
         <source>Number</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nummer</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="191"/>
         <source>Binary data</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Binäre Daten</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="193"/>
         <source>Collation: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vergleichsoperator: %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="195"/>
         <source>Pragma function: %1</source>
         <comment>completer statusbar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Pragma Funktion: %1</translation>
     </message>
 </context>
 <context>
@@ -893,230 +893,230 @@ but it&apos;s okay to use it.</source>
         <location filename="../dialogs/configdialog.ui" line="14"/>
         <location filename="../dialogs/configdialog.ui" line="1293"/>
         <source>Configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfiguration</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="73"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Suchen</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="104"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Allgemein</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="116"/>
         <source>Keyboard shortcuts</source>
-        <translation type="unfinished"></translation>
+        <translation>Tastaturkürzel</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="128"/>
         <source>Look &amp; feel</source>
-        <translation type="unfinished"></translation>
+        <translation>Aussehen</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="139"/>
         <source>Style</source>
-        <translation type="unfinished"></translation>
+        <translation>Stil</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="151"/>
         <source>Fonts</source>
-        <translation type="unfinished"></translation>
+        <translation>Schriftarten</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="163"/>
         <source>Colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Farben</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="176"/>
         <source>Plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Plugins</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="187"/>
         <source>Code formatters</source>
-        <translation type="unfinished"></translation>
+        <translation>Codeformatierer</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="196"/>
         <source>Data browsing</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbearbeitung</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="207"/>
         <source>Data editors</source>
-        <translation type="unfinished"></translation>
+        <translation>Dateneditoren</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="237"/>
         <source>Data browsing and editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbearbeitung</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="243"/>
         <source>Number of data rows per page:</source>
-        <translation type="unfinished"></translation>
+        <translation>Anzahl an Datenzeilen pro Seite:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="269"/>
         <location filename="../dialogs/configdialog.ui" line="279"/>
         <source>&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Wenn Daten in das Ergebnisfenster eingelesen werden, dann wird die Breite der Spalten dabei automatisch angepasst. Dieser Wert begrenzt maximale Breite für die automatische Breitenanpassung. Der Anwender kann die Spaltenbreite jedoch manuell über dieses Limit verbreitern.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="272"/>
         <source>Limit initial data column width to (in pixels):</source>
-        <translation type="unfinished"></translation>
+        <translation>Begrenze die initiale Spaltenbreite im Ergebnisfenster auf (Pixel):</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="328"/>
         <source>Data types</source>
-        <translation type="unfinished"></translation>
+        <translation>Datentypen</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="366"/>
         <source>Available editors:</source>
-        <translation type="unfinished"></translation>
+        <translation>Verfügbare Editoren:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="382"/>
         <source>Editors selected for this data type:</source>
-        <translation type="unfinished"></translation>
+        <translation>Für diesen Datentyp ausgewählte Editoren:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="418"/>
         <source>Schema editing</source>
-        <translation type="unfinished"></translation>
+        <translation>Schema</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="430"/>
         <source>Number of DDL changes kept in history.</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximale Anzahl an DDL Änderungen in der Historie.</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="443"/>
         <source>DDL history size:</source>
-        <translation type="unfinished"></translation>
+        <translation>DDL Historiengröße</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="450"/>
         <source>Don&apos;t show DDL preview dialog when commiting schema changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeige keine DDL Vorschau, wenn Schemaänderungen committed werden.</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="463"/>
         <source>SQL queries</source>
-        <translation type="unfinished"></translation>
+        <translation>SQL Abfragen</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="475"/>
         <location filename="../dialogs/configdialog.ui" line="488"/>
         <source>Number of queries kept in the history.</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximale Anzahl an SQL Abfragen in der Historie.</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="491"/>
         <source>History size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Historiengröße</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="498"/>
         <source>&lt;p&gt;If there is more than one query in the SQL editor window, then (if this option is enabled) only a single query will be executed - the one under the keyboard insertion cursor. Otherwise all queries will be executed. You can always limit queries to be executed by selecting those queries before calling to execute.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Wenn diese Option aktiviert ist und sich mehrere SQL Abfragen im Editorfenster befinden, dann wird nur die SQL Abfrage ausgeführt, in der sich der Cursor befindet. Ist diese Option nicht gesetzt, dann werden alle SQL Abfragen ausgeführt. Sie können die auszuführenden SQL Abfragen selbst bestimmen, indem Sie diese vor der Ausführung mit der Maus oder Tastatur markieren.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="501"/>
         <source>Execute only the query under the cursor</source>
-        <translation type="unfinished"></translation>
+        <translation>Führt nur die Abfrage unter dem Cursor aus.</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="514"/>
         <source>Updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Updates</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="520"/>
         <source>Automatically check for updates at startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Prüfe vor dem Start automatisch auf Updates</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="533"/>
         <source>Session</source>
-        <translation type="unfinished"></translation>
+        <translation>Sitzung</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="539"/>
         <source>Restore last session (active MDI windows) after startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Stelle letzte Sitzung nach dem Start wieder her (aktive MDI Fenster)</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="581"/>
         <source>Filter shortcuts by name or key combination</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtere Tastaturkürzel nach Name oder Tastenkombination</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="622"/>
         <source>Action</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktion</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="627"/>
         <source>Key combination</source>
-        <translation type="unfinished"></translation>
+        <translation>Tastenkombination</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="671"/>
         <location filename="../dialogs/configdialog.ui" line="1283"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprache</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="677"/>
         <source>Changing language requires application restart to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Änderung der Sprache erfordert einen Neustart des Programms.</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="694"/>
         <source>Compact layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Kompaktes Layout</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="700"/>
         <source>&lt;p&gt;Compact layout reduces all margins and spacing on the UI to minimum, making space for displaying more data. It makes the interface a little bit less aesthetic, but allows to display more data at once.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Das kompakte Layout reduziert alle Lücken und Abstände der Oberfläche auf ein Minimum, um mehr Platz für die Darstellung der Daten zu schaffen. Die Oberfläche sieht dann zwar nicht mehr sehr ästhetisch aus, aber man hat mehr Daten im Überblick.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="703"/>
         <source>Use compact layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutze kompaktes Layout</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="709"/>
         <source>General.CompactLayout</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard.KompaktesLayout</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="719"/>
         <source>Database list</source>
-        <translation type="unfinished"></translation>
+        <translation>Liste der Datenbanken</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="725"/>
         <source>If switched off, then columns will be sorted in the order they are typed in CREATE TABLE statement.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wenn die Option deaktiviert ist, werden die Spalten in der Reihenfolge  sortiert in der sie im CREATE TABLE Statement angegeben wurden.</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="728"/>
         <source>Sort table columns alphabetically</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabellenspalten alphabetisch sortieren</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="738"/>
         <source>Expand tables node when connected to a database</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabellenknoten aufklappen, wenn eine Datenbank verbunden ist</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="748"/>
