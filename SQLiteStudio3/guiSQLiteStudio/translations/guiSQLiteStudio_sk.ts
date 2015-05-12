@@ -2384,12 +2384,12 @@ Všetky objekty z tejto skupiny budú presunuté do nadradenej skupiny.</transla
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1535"/>
         <source>Following objects will be deleted: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nasledujúce objekty budú odstránené: %1.</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1538"/>
         <source>Following databases will be removed from list: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nasledujúce databázy budú odstránené zo zoznamu: %1.</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1541"/>
@@ -2399,12 +2399,12 @@ Všetky objekty z tejto skupiny budú presunuté do nadradenej skupiny.</transla
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1543"/>
         <source>%1&lt;br&gt;&lt;br&gt;Are you sure you want to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1&lt;br&gt;&lt;br&gt;Ste si istý, že chcete pokračovať?</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1545"/>
         <source>Delete objects</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstránenie objektov</translation>
     </message>
 </context>
 <context>
