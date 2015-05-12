@@ -6,12 +6,12 @@
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="14"/>
         <source>About SQLiteStudio and licenses</source>
-        <translation>Über SQLiteStudio und deren Lizenzen</translation>
+        <translation>Informationen über SQLiteStudio und die verwendeten Lizenzen</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="24"/>
         <source>About</source>
-        <translation>Über SQLiteStudio</translation>
+        <translation>SQLiteStudio</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="30"/>
@@ -26,7 +26,7 @@
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="55"/>
         <source>Environment</source>
-        <translation>Programmumgebung</translation>
+        <translation>Programmpfade</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="61"/>
@@ -1116,277 +1116,277 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="738"/>
         <source>Expand tables node when connected to a database</source>
-        <translation>Tabellenknoten aufklappen, wenn eine Datenbank verbunden ist</translation>
+        <translation>Tabellenknoten aufklappen, wenn SQLiteStudio mit einer Datenbank verbunden ist</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="748"/>
         <source>&lt;p&gt;Additional labels are those displayed next to the names on the databases list (they are blue, unless configured otherwise). Enabling this option will result in labels for databases, invalid databases and aggregated nodes (column group, index group, trigger group). For more labels see options below.&lt;p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Zusätzliche Labels sind Bezeichnungen, die neben dem Namen in der Datenbankliste erscheinen (falls nicht anders konfiguriert, werden sie in blauer Farbe angezeigt). Ist diese Option aktiviert, dann werden für die Anzeige von Datenbanken, ungültigen Datenbanken und aggregierte Knoten (Spalten-, Index- und Trigger-Gruppen) die jeweiligen Labelbezeichnungen benutzt. Für weitere Informationen siehe die Optionen unten.&lt;p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="751"/>
         <source>Display additional labels on the list</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeige zusätzlich Labels in der Liste an</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="766"/>
         <source>For regular tables labels will show number of columns, indexes and triggers for each of tables.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bei normalen Tabellen zeigen die Labels die Anzahl der  Spalten, Indizes und Trigger jeder Tabelle an.</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="769"/>
         <source>Display labels for regular tables</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeigt Labels für normale Tabellen an</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="779"/>
         <source>Virtual tables will be marked with a &apos;virtual&apos; label.</source>
-        <translation type="unfinished"></translation>
+        <translation>Virtuelle Tabellen werden mit einem &apos;virtuell&apos;-Kürzel markiert.</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="782"/>
         <source>Display labels for virtual tables</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeigt Labels für virtuelle Tabellen an</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="795"/>
         <source>Expand views node when connected to a database</source>
-        <translation type="unfinished"></translation>
+        <translation>Klappt alle Knoten in der Ansicht auf, wenn eine Datenbank verbunden ist</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="805"/>
         <source>If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</source>
-        <translation type="unfinished"></translation>
+        <translation>Wenn diem Option deaktiviert ist, dann werden Objekte in der Reihenfolge sortiert wie sie in der sqlite_master Tabelle sortiert sind (entspricht der Reihenfolge in der die Objekte angelegt worden sind).</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="808"/>
         <source>Sort objects (tables, indexes, triggers and views) alphabetically</source>
-        <translation type="unfinished"></translation>
+        <translation>Sortiert Objekte (Tabellen, Indizes, Trigger und Views) alphabetisch</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="818"/>
         <source>Display system tables and indexes on the list</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeigt Systemtabellen und Systemindizes in der Liste</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="831"/>
         <source>Table windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabellen-Fenster</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="837"/>
         <source>When enabled, Table Windows will show up with the data tab, instead of the structure tab.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wenn die Option aktiviert ist, wird im Tabellen-Fenster der Reiter &apos;Daten&apos; aktiviert statt &apos;Struktur&apos;.</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="840"/>
         <source>Open Table Windows with the data tab for start</source>
-        <translation type="unfinished"></translation>
+        <translation>Öffnet das Tabellen-Fenster und aktiviert den Reiter &apos;Daten&apos;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="853"/>
         <source>View windows</source>
-        <translation type="unfinished"></translation>
+        <translation>View Fenster</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="859"/>
         <source>When enabled, View Windows will show up with the data tab, instead of the structure tab.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wenn die Option aktiviert ist, wird im View-Fenster der Reiter &apos;Daten&apos; aktiviert statt &apos;Struktur&apos;.</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="862"/>
         <source>Open View Windows with the data tab for start</source>
-        <translation type="unfinished"></translation>
+        <translation>Öffnet das View-Fenster und aktiviert den Reiter &apos;Daten&apos;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="875"/>
         <source>Main window dock areas</source>
-        <translation type="unfinished"></translation>
+        <translation>Dockingflächen des Hauptfensters</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="881"/>
         <source>Left and right areas occupy corners</source>
-        <translation type="unfinished"></translation>
+        <translation>Linke und rechte Flächen belegen die Ecken</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="901"/>
         <source>Top and bottom areas occupy corners</source>
-        <translation type="unfinished"></translation>
+        <translation>Obere und untere Flächen belegen die Ecken</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1010"/>
         <source>Hide built-in plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Verberge eigene Plugins</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1039"/>
         <source>Current style:</source>
-        <translation type="unfinished"></translation>
+        <translation>Derzeitiger Stil:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1056"/>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorschau</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1066"/>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktiviert</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1239"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Deaktiviert</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1288"/>
         <source>Active formatter plugin</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktuelles Formatierungsplugin</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1326"/>
         <source>SQL editor font</source>
-        <translation type="unfinished"></translation>
+        <translation>Schriftart des SQL Editors</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1342"/>
         <source>Database list font</source>
-        <translation type="unfinished"></translation>
+        <translation>Schriftart der Datenbankliste</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1358"/>
         <source>Database list additional label font</source>
-        <translation type="unfinished"></translation>
+        <translation>Schriftart der zusätzlichen Labels in der Datenbankliste</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1374"/>
         <source>Data view font</source>
-        <translation type="unfinished"></translation>
+        <translation>Schriftart der Datenansicht</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1390"/>
         <source>Status field font</source>
-        <translation type="unfinished"></translation>
+        <translation>Schriftart des Statusfelds</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1448"/>
         <source>SQL editor colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Farben des SQL Editors</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1454"/>
         <source>Current line background</source>
-        <translation type="unfinished"></translation>
+        <translation>Hintergrundfarbe der aktuellen Zeile</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1461"/>
         <source>&lt;p&gt;SQL strings are enclosed with single quote characters.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;SQL Zeichenketten sind mit einem einfachen Anführungszeichen umschlossen.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1464"/>
         <source>String foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Vordergrundfarbe für Zeichenketten</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1567"/>
         <source>&lt;p&gt;Bind parameters are placeholders for values yet to be provided by the user. They have one of the forms:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;:param_name&lt;/li&gt;&lt;li&gt;$param_name&lt;/li&gt;&lt;li&gt;@param_name&lt;/li&gt;&lt;li&gt;?&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Bind Parameter sind derzeit nur Platzhalter für Werte, die der Benutzer später angibt. Sie haben eines der folgenden Formate:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;:param_name&lt;/li&gt;&lt;li&gt;$param_name&lt;/li&gt;&lt;li&gt;@param_name&lt;/li&gt;&lt;li&gt;?&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1570"/>
         <source>Bind parameter foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Vordergrundfarbe für Bind Parameter</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1593"/>
         <source>Highlighted parenthesis background</source>
-        <translation type="unfinished"></translation>
+        <translation>Hintergrundfarbe für hervorgehobene Klammern</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1600"/>
         <source>&lt;p&gt;BLOB values are binary values represented as hexadecimal numbers, like:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;X&apos;12B4&apos;&lt;/li&gt;&lt;li&gt;x&apos;46A2F4&apos;&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;BLOB Werte sind binäre Daten, die in Form von hexadezimalen Zahlen dargestelt werden, z.B.:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;X&apos;12B4&apos;&lt;/li&gt;&lt;li&gt;x&apos;46A2F4&apos;&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1603"/>
         <source>BLOB value foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Vordergrundfarbe für BLOB Werte</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1610"/>
         <source>Regular foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Standard-Vordergrundfarbe</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1617"/>
         <source>Line numbers area background</source>
-        <translation type="unfinished"></translation>
+        <translation>Hintergrundfarbe des Bereichs der Zeilennummern</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1640"/>
         <source>Keyword foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Vordergrundfarbe für Schlüsselwörter</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1647"/>
         <source>Number foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Vordergrundfarbe für Nummern</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1654"/>
         <source>Comment foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Vordergrundfarbe für Kommentare</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1693"/>
         <source>&lt;p&gt;Valid objects are name of tables, indexes, triggers, or views that exist in the SQLite database.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Gültige Objekte sind Namen von Tabellen, Indizes, Triggern oder Views, die in der SQLite Datenbank existieren.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1696"/>
         <source>Valid objects foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Vordergrundfarbe für gültige Objekte</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1722"/>
         <source>Data view colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Farben des Datenbetrachters</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1728"/>
         <source>&lt;p&gt;Any data changes will be outlined with this color, until they&apos;re commited to the database.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Geänderte Daten werden mit dieser Farbe umrandet bis sie in der Datenbank committet worden sind.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1731"/>
         <source>Uncommited data outline color</source>
-        <translation type="unfinished"></translation>
+        <translation>Farbe für nicht committete Datenänderungen</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1754"/>
         <source>&lt;p&gt;In case of error while commiting data changes, the problematic cell will be outlined with this color.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Bei Fehlern während des committens von Datenänderungen, wird die Problemauslösende Zelle mit dieser Farbe umrandet.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1757"/>
         <source>Commit error outline color</source>
-        <translation type="unfinished"></translation>
+        <translation>Farbe für fehlerhaft committete Datenänderungen</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1780"/>
         <source>NULL value foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Vordergrundfarbe für NULL Werte</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1803"/>
         <source>Deleted row background</source>
-        <translation type="unfinished"></translation>
+        <translation>Hintergrundfarbe von gelöschten Zeilen</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1829"/>
         <source>Database list colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Farben der Datenbankliste</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1835"/>
