@@ -633,7 +633,7 @@ class API_EXPORT TokenList : public QList<TokenPtr>
          *
          * The condition to test if tokens is a whitespace is a call to Token::isWhitespace().
          */
-        TokenList filterWhiteSpaces() const;
+        TokenList filterWhiteSpaces(bool includeComments = true) const;
 
         /**
          * @brief Returns sub-list of tokens from this list.

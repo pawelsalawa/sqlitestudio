@@ -53,6 +53,10 @@ CFG_CATEGORIES(SqlEnterpriseFormatterConfig,
         CFG_ENTRY(QString,     PrefferedWrapper,          getNameWrapperStr(NameWrapper::BRACKET))
         CFG_ENTRY(QStringList, Wrappers,                  getNameWrapperStrings(),                  false)
         CFG_ENTRY(QString,     PreviewCode,               QString(),                                false)
+        CFG_ENTRY(bool,        MoveAllCommentsToLineEnd,  false)
+        CFG_ENTRY(bool,        LineUpCommentsAtLineEnd,   true)
+        CFG_ENTRY(QString,     PreferredCommentMarker,    "--")
+        CFG_ENTRY(QStringList, CommentMarkers,            QStringList({"--", "/* */"}))
     )
 )
 
@@ -83,8 +87,9 @@ class SQLENTERPRISEFORMATTERSHARED_EXPORT SqlEnterpriseFormatter : public Generi
         };
 
         QList<Comment*> collectComments(const TokenList& tokens);
-        QString applyComments(const QString& formatted, const QList<Comment*>& comments);
-        QList<TokenList> tokensByLines(const TokenList& tokens);
+        QString applyComments(const QString& formatted, QList<Comment *> comments, Dialect dialect);
+        QList<TokenList> tokensByLines(const TokenList& tokens, bool includeSpaces = false);
+        TokenList adjustTokensToEnd(const TokenList& inputTokens);
 
         QList<SqliteQueryPtr> previewQueries;
         CFG_LOCAL_PERSISTABLE(SqlEnterpriseFormatterConfig, cfg)

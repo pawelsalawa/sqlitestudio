@@ -12,9 +12,6 @@ class FormatEmpty : public FormatStatement
 
     protected:
         void formatInternal();
-
-    private:
-        SqliteEmptyQuery* eq = nullptr;
 };
 
 #endif // FORMATEMPTY_H
