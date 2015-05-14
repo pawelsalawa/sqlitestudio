@@ -41,7 +41,9 @@ bool SqlEnterpriseFormatter::init()
     static_qstring(query1, "SELECT (2 + 4) AND (3 + 5), 4 NOT IN (SELECT t1.'some[_]name' + t2.[some'name2] FROM xyz t1 JOIN zxc t2 ON (t1.aaa = t2.aaa)) "
                            "FROM a, (SELECT id FROM table2);");
     static_qstring(query2, "INSERT INTO table1 (id, value1, value2) VALUES (1, (2 + 5), (SELECT id FROM table2));");
-    static_qstring(query3, "CREATE TABLE tab (id INTEGER PRIMARY KEY, value1 VARCHAR(6), value2 NUMBER(8,2) NOT NULL DEFAULT 1.0);");
+    static_qstring(query3, "CREATE TABLE tab (id INTEGER PRIMARY KEY, /*a primary key column*/ value1 VARCHAR(6), "
+                           "value2 /*column with constraints*/ NUMBER(8,2) NOT NULL DEFAULT 1.0"
+                           ");");
     static_qstring(query4, "CREATE UNIQUE INDEX IF NOT EXISTS dbName.idx1 ON [messages column] (id COLLATE x ASC, lang DESC, description);");
 
     Parser parser(Dialect::Sqlite3);
@@ -144,50 +146,114 @@ QList<SqlEnterpriseFormatter::Comment *> SqlEnterpriseFormatter::collectComments
             {
                 cmt = new Comment;
                 cmt->tokensBefore = tokensBefore;
-                cmt->contents = token->value;
                 cmt->position = pos;
                 cmt->multiline = token->value.startsWith("/*");
+                if (cmt->multiline)
+                    cmt->contents = token->value.mid(2, token->value.length() - 4).trimmed();
+                else
+                    cmt->contents = token->value.mid(2).trimmed();
+
                 results << cmt;
                 prevCommentInThisLine = cmt;
+                continue;
             }
+
             tokensBefore = true;
             pos++;
         }
         line++;
     }
+
+    return results;
 }
 
-QList<TokenList> SqlEnterpriseFormatter::tokensByLines(const TokenList &tokens)
+QList<TokenList> SqlEnterpriseFormatter::tokensByLines(const TokenList &tokens, bool includeSpaces)
 {
     QList<TokenList> tokensInLines;
     TokenList tokensInLine;
     for (const TokenPtr& token : tokens)
     {
-        if (token->type != Token::Type::SPACE)
-        {
+        if (includeSpaces || token->type != Token::Type::SPACE)
             tokensInLine << token;
-            continue;
-        }
 
-        if (token->value.contains('\n'))
+        if (token->type == Token::Type::SPACE && token->value.contains('\n'))
         {
             tokensInLines << tokensInLine;
             tokensInLine.clear();
         }
     }
+    if (tokensInLine.size() > 0)
+        tokensInLines << tokensInLine;
+
     return tokensInLines;
 }
 
-QString SqlEnterpriseFormatter::applyComments(const QString& formatted, const QList<SqlEnterpriseFormatter::Comment*>& comments, Dialect dialect)
+TokenList SqlEnterpriseFormatter::adjustTokensToEnd(const TokenList &inputTokens)
 {
+    static_qstring(endLineCommentTpl, "-- %1");
+
+    QList<TokenList> tokensInLines = tokensByLines(inputTokens, true);
+    TokenList newTokens;
+    TokenList commentTokensForLine;
+    TokenPtr newLineToken;
+    for (const TokenList& tokensInLine : tokensInLines)
+    {
+        commentTokensForLine.clear();
+        newLineToken.clear();
+        for (const TokenPtr& token : tokensInLine)
+        {
+            if (token->type == Token::Type::COMMENT)
+            {
+                token->value = " " + endLineCommentTpl.arg(token->value);
+                commentTokensForLine << token;
+            }
+            else if (token->type == Token::Type::SPACE && token->value.contains("\n"))
+                newLineToken = token;
+            else
+                newTokens << token;
+        }
+
+        newTokens += commentTokensForLine;
+        if (newLineToken)
+            newTokens << newLineToken;
+    }
+    return newTokens;
+}
+
+QString SqlEnterpriseFormatter::applyComments(const QString& formatted, QList<SqlEnterpriseFormatter::Comment*> comments, Dialect dialect)
+{
+    if (comments.size() == 0)
+        return formatted;
+
+//    static_qstring(multiCommentTpl, "/* %1 */");
+//    static_qstring(endLineCommentTpl, "-- %1");
+
+    int currentCommentPosition = comments.first()->position;
+
     TokenList allTokens = Lexer::tokenize(formatted, dialect);
-    TokenList tokensWithoutSpaces = allTokens.filterWhiteSpaces(false);
+    TokenList newTokens;
+    int currentTokenPosition = 0;
+    for (const TokenPtr& token : allTokens)
+    {
+        if (currentTokenPosition == currentCommentPosition)
+        {
+            newTokens << TokenPtr::create(Token::Type::COMMENT, comments.first()->contents);
+            comments.removeFirst();
+            if (comments.size() > 0)
+                currentCommentPosition = comments.first()->position;
+            else
+                currentCommentPosition = -1;
+        }
 
-    // Insert comments initially just as their index in comments collection
-    int pos = 0;
+        newTokens << token;
+        if (token->type != Token::Type::SPACE)
+            currentTokenPosition++;
+    }
+
+    // Any remaining comments
     for (Comment* cmt : comments)
-        tokensWithoutSpaces.insert(cmt->position, TokenPtr::create(Token::Type::COMMENT, QString::number(pos++)));
+        newTokens << TokenPtr::create(Token::Type::COMMENT, cmt->contents);
 
-//    QList<TokenList> tokensInLines = tokensByLines(tokensWithoutSpaces);
-    return tokensWithoutSpaces.detokenize();
+    newTokens = adjustTokensToEnd(newTokens);
+    return newTokens.detokenize();
 }

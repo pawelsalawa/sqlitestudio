@@ -39,7 +39,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="indentTab">
        <attribute name="title">
@@ -133,9 +133,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-166</y>
-             <width>578</width>
-             <height>350</height>
+             <y>0</y>
+             <width>390</width>
+             <height>299</height>
             </rect>
            </property>
            <property name="styleSheet">
@@ -366,8 +366,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>424</width>
-             <height>325</height>
+             <width>418</width>
+             <height>278</height>
             </rect>
            </property>
            <property name="styleSheet">
@@ -623,6 +623,63 @@
            <string notr="true">SqlEnterpriseFormatter.UppercaseKeywords</string>
           </property>
          </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="commentsTab">
+       <attribute name="title">
+        <string>Comments</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Preferred comment marker (where possible):</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="ConfigComboBox" name="comboBox_2">
+          <property name="cfg" stdset="0">
+           <string notr="true">SqlEnterpriseFormatter.PreferredCommentMarker</string>
+          </property>
+          <property name="modelName" stdset="0">
+           <string>SqlEnterpriseFormatter.CommentMarkers</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0" colspan="2">
+         <widget class="QCheckBox" name="checkBox_33">
+          <property name="text">
+           <string>Move all comments to the line end</string>
+          </property>
+          <property name="cfg" stdset="0">
+           <string notr="true">SqlEnterpriseFormatter.MoveAllCommentsToLineEnd</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" colspan="2">
+         <widget class="QCheckBox" name="checkBox_34">
+          <property name="text">
+           <string>Line up comments at the line end</string>
+          </property>
+          <property name="cfg" stdset="0">
+           <string notr="true">SqlEnterpriseFormatter.LineUpCommentsAtLineEnd</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0" colspan="2">
+         <spacer name="verticalSpacer_5">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
         </item>
        </layout>
       </widget>

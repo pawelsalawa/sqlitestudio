@@ -490,11 +490,11 @@ TokenList TokenList::filter(Token::Type type) const
     return filtered;
 }
 
-TokenList TokenList::filterWhiteSpaces() const
+TokenList TokenList::filterWhiteSpaces(bool includeComments) const
 {
     TokenList filtered;
     foreach (TokenPtr token, *this)
-        if (!token->isWhitespace())
+        if (!token->isWhitespace(includeComments))
             filtered << token;
 
     return filtered;
