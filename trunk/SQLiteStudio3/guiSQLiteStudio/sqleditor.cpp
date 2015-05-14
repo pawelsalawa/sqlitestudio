@@ -40,6 +40,9 @@ SqlEditor::SqlEditor(QWidget *parent) :
 
 SqlEditor::~SqlEditor()
 {
+    if (objectsInNamedDbFuture.isRunning())
+        objectsInNamedDbFuture.waitForFinished();
+
     if (queryParser)
     {
         delete queryParser;
@@ -515,7 +518,7 @@ void SqlEditor::refreshValidObjects()
     if (!db || !db->isValid())
         return;
 
-    QtConcurrent::run([this]()
+    objectsInNamedDbFuture = QtConcurrent::run([this]()
     {
         QMutexLocker lock(&objectsInNamedDbMutex);
         objectsInNamedDb.clear();
@@ -526,7 +529,7 @@ void SqlEditor::refreshValidObjects()
         QStringList objects;
         foreach (const QString& dbName, databases)
         {
-            objects = resolver.getAllObjects();
+            objects = resolver.getAllObjects(dbName);
             objectsInNamedDb[dbName] << objects;
         }
     });

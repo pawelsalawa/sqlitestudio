@@ -10,6 +10,7 @@
 #include <QFont>
 #include <QHash>
 #include <QMutex>
+#include <QFuture>
 
 class CompleterWindow;
 class QTimer;
@@ -234,6 +235,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         bool virtualSqlCompleteSemicolon = false;
         QString createTriggerTable;
         QString loadedFile;
+        QFuture<void> objectsInNamedDbFuture;
 
         static const int autoCompleterDelay = 300;
         static const int queryParserDelay = 500;
