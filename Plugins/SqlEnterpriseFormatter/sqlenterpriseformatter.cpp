@@ -188,10 +188,8 @@ QList<TokenList> SqlEnterpriseFormatter::tokensByLines(const TokenList &tokens, 
     return tokensInLines;
 }
 
-TokenList SqlEnterpriseFormatter::adjustTokensToEnd(const TokenList &inputTokens)
+TokenList SqlEnterpriseFormatter::adjustCommentsToEnd(const TokenList &inputTokens)
 {
-    static_qstring(endLineCommentTpl, "-- %1");
-
     QList<TokenList> tokensInLines = tokensByLines(inputTokens, true);
     TokenList newTokens;
     TokenList commentTokensForLine;
@@ -204,7 +202,8 @@ TokenList SqlEnterpriseFormatter::adjustTokensToEnd(const TokenList &inputTokens
         {
             if (token->type == Token::Type::COMMENT)
             {
-                token->value = " " + endLineCommentTpl.arg(token->value);
+                wrapComment(token, true);
+                //token->value = " " + endLineCommentTpl.arg(token->value);
                 commentTokensForLine << token;
             }
             else if (token->type == Token::Type::SPACE && token->value.contains("\n"))
@@ -220,13 +219,61 @@ TokenList SqlEnterpriseFormatter::adjustTokensToEnd(const TokenList &inputTokens
     return newTokens;
 }
 
+TokenList SqlEnterpriseFormatter::wrapOnlyComments(const TokenList &inputTokens)
+{
+    QList<TokenList> tokensInLines = tokensByLines(inputTokens, true);
+    TokenList newTokens;
+    bool lineEnd = true;
+    for (const TokenList& tokensInLine : reverse(tokensInLines))
+    {
+        lineEnd = true;
+        for (const TokenPtr& token : reverse(tokensInLine))
+        {
+            if (!token->isWhitespace())
+                lineEnd = false;
+
+            if (token->type == Token::Type::COMMENT)
+                wrapComment(token, lineEnd);
+
+            newTokens << token;
+        }
+    }
+    return reverse(newTokens);
+}
+
+TokenList SqlEnterpriseFormatter::optimizeInnerComments(const TokenList &inputTokens)
+{
+    // TODO
+    return inputTokens;
+}
+
+TokenList SqlEnterpriseFormatter::optimizeEndLineComments(const TokenList &inputTokens)
+{
+    // TODO
+    return inputTokens;
+}
+
+void SqlEnterpriseFormatter::indentMultiLineComments(const TokenList &inputTokens)
+{
+    // TODO
+}
+
+void SqlEnterpriseFormatter::wrapComment(const TokenPtr &token, bool isAtLineEnd)
+{
+    static_qstring(multiCommentTpl, "/* %1 */");
+    static_qstring(endLineCommentTpl, "-- %1");
+
+    bool isMultiLine = token->value.contains("\n");
+    if (isAtLineEnd && !isMultiLine && cfg.SqlEnterpriseFormatter.PreferredCommentMarker.get() == "--")
+        token->value = endLineCommentTpl.arg(token->value);
+    else
+        token->value = multiCommentTpl.arg(token->value);
+}
+
 QString SqlEnterpriseFormatter::applyComments(const QString& formatted, QList<SqlEnterpriseFormatter::Comment*> comments, Dialect dialect)
 {
     if (comments.size() == 0)
         return formatted;
-
-//    static_qstring(multiCommentTpl, "/* %1 */");
-//    static_qstring(endLineCommentTpl, "-- %1");
 
     int currentCommentPosition = comments.first()->position;
 
@@ -254,6 +301,14 @@ QString SqlEnterpriseFormatter::applyComments(const QString& formatted, QList<Sq
     for (Comment* cmt : comments)
         newTokens << TokenPtr::create(Token::Type::COMMENT, cmt->contents);
 
-    newTokens = adjustTokensToEnd(newTokens);
+    if (cfg.SqlEnterpriseFormatter.MoveAllCommentsToLineEnd.get())
+        newTokens = adjustCommentsToEnd(newTokens);
+    else
+        newTokens = wrapOnlyComments(newTokens);
+
+    newTokens = optimizeInnerComments(newTokens);
+    newTokens = optimizeEndLineComments(newTokens);
+    indentMultiLineComments(newTokens);
+
     return newTokens.detokenize();
 }

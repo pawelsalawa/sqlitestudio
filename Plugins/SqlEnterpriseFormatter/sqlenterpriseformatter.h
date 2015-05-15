@@ -89,7 +89,12 @@ class SQLENTERPRISEFORMATTERSHARED_EXPORT SqlEnterpriseFormatter : public Generi
         QList<Comment*> collectComments(const TokenList& tokens);
         QString applyComments(const QString& formatted, QList<Comment *> comments, Dialect dialect);
         QList<TokenList> tokensByLines(const TokenList& tokens, bool includeSpaces = false);
-        TokenList adjustTokensToEnd(const TokenList& inputTokens);
+        TokenList adjustCommentsToEnd(const TokenList& inputTokens);
+        TokenList wrapOnlyComments(const TokenList& inputTokens);
+        TokenList optimizeInnerComments(const TokenList& inputTokens);
+        TokenList optimizeEndLineComments(const TokenList& inputTokens);
+        void indentMultiLineComments(const TokenList& inputTokens);
+        void wrapComment(const TokenPtr& token, bool isAtLineEnd);
 
         QList<SqliteQueryPtr> previewQueries;
         CFG_LOCAL_PERSISTABLE(SqlEnterpriseFormatterConfig, cfg)
