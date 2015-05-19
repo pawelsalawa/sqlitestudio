@@ -353,12 +353,12 @@
     <message>
         <location filename="../windows/collationseditor.ui" line="75"/>
         <source>Filter collations</source>
-        <translation>Filter Vergleichsoperatoren</translation>
+        <translation>Kollationen filtern</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.ui" line="194"/>
         <source>Collation name:</source>
-        <translation>Vergleichsoperatorname:</translation>
+        <translation>Kollationsname:</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.ui" line="204"/>
@@ -388,37 +388,37 @@
     <message>
         <location filename="../windows/collationseditor.cpp" line="52"/>
         <source>Collations editor</source>
-        <translation>Editor für Vergleichsoperatoren</translation>
+        <translation>Editor für Kollationen</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="57"/>
         <source>Commit all collation changes</source>
-        <translation>Speichern aller Änderungen an Vergleichsoperatoren</translation>
+        <translation>Speichern aller Änderungen an Kollationen</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="58"/>
         <source>Rollback all collation changes</source>
-        <translation>Zurücknehmen aller Änderungen an Vergleichsoperatoren</translation>
+        <translation>Zurücknehmen aller Änderungen an Kollationen</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="60"/>
         <source>Create new collation</source>
-        <translation>Neuen Vergleichsoperator erstellen</translation>
+        <translation>Neue Kollation erstellen</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="61"/>
         <source>Delete selected collation</source>
-        <translation>Lösche markierten Vergleichsoperator</translation>
+        <translation>Markierte Kollationen löschen</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="63"/>
         <source>Editing collations manual</source>
-        <translation>Editieren der Vergleichsoperatordefinition</translation>
+        <translation>Kollationen manuell editieren</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="283"/>
         <source>Enter a non-empty, unique name of the collation.</source>
-        <translation>Geben Sie einen eindeutigen Namen für den Vergleichsoperator ein.</translation>
+        <translation>Geben Sie einen eindeutigen Namen für die Kollation ein.</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="291"/>
@@ -433,7 +433,7 @@
     <message>
         <location filename="../windows/collationseditor.cpp" line="388"/>
         <source>Collations editor window has uncommited modifications.</source>
-        <translation>Der Vergleichsoperatoreditor enthält nicht gespeicherte Änderungen.</translation>
+        <translation>Der Editorfür Kollationen enthält nicht gespeicherte Änderungen.</translation>
     </message>
 </context>
 <context>
@@ -449,22 +449,22 @@
     <message>
         <location filename="../constraints/columncollatepanel.ui" line="41"/>
         <source>Collation name:</source>
-        <translation>Name des Vergleichsoperators:</translation>
+        <translation>Name der Kollation:</translation>
     </message>
     <message>
         <location filename="../constraints/columncollatepanel.ui" line="73"/>
         <source>Named constraint:</source>
-        <translation>Name der Abhängigkeit:</translation>
+        <translation>Name der Bedingung:</translation>
     </message>
     <message>
         <location filename="../constraints/columncollatepanel.cpp" line="80"/>
         <source>Enter a name of the constraint.</source>
-        <translation>Geben Sie einen Namen für die Abhängigkeit ein.</translation>
+        <translation>Geben Sie einen Namen für die Bedingung ein.</translation>
     </message>
     <message>
         <location filename="../constraints/columncollatepanel.cpp" line="81"/>
         <source>Enter a collation name.</source>
-        <translation>Geben Sie einen Namen für den Vergleichsoperator  ein.</translation>
+        <translation>Geben Sie einen Namen für die Kollation ein.</translation>
     </message>
 </context>
 <context>
@@ -477,7 +477,7 @@
     <message>
         <location filename="../constraints/columndefaultpanel.ui" line="35"/>
         <source>Named constraint:</source>
-        <translation>Name der Abhängigkeit:</translation>
+        <translation>Benannte Bedingung:</translation>
     </message>
     <message>
         <location filename="../constraints/columndefaultpanel.cpp" line="39"/>
@@ -492,7 +492,7 @@
     <message>
         <location filename="../constraints/columndefaultpanel.cpp" line="90"/>
         <source>Enter a name of the constraint.</source>
-        <translation>Geben Sie einen Namen für die Abhängigkeit ein.</translation>
+        <translation>Geben Sie einen Namen für die Bedingung ein.</translation>
     </message>
 </context>
 <context>
@@ -535,7 +535,7 @@
     <message>
         <location filename="../dialogs/columndialog.ui" line="102"/>
         <source>Constraints</source>
-        <translation>Abhängigkeiten</translation>
+        <translation>Bedingungen</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="115"/>
@@ -561,7 +561,7 @@
     <message>
         <location filename="../dialogs/columndialog.ui" line="143"/>
         <source>Collate</source>
-        <translation>Vergleichsoperator</translation>
+        <translation>Kollationieren</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="150"/>
@@ -592,38 +592,38 @@
         <location filename="../dialogs/columndialog.cpp" line="83"/>
         <source>Add constraint</source>
         <comment>column dialog</comment>
-        <translation>Abhängigkeit hinzufügen</translation>
+        <translation>Bedingung hinzufügen</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="84"/>
         <source>Edit constraint</source>
         <comment>column dialog</comment>
-        <translation>Abhängigkeit editieren</translation>
+        <translation>Bedingung editieren</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="85"/>
         <location filename="../dialogs/columndialog.cpp" line="229"/>
         <source>Delete constraint</source>
         <comment>column dialog</comment>
-        <translation>Abhängigkeit löschen</translation>
+        <translation>Bedingung löschen</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="86"/>
         <source>Move constraint up</source>
         <comment>column dialog</comment>
-        <translation>Abhängigkeit nach oben bewegen</translation>
+        <translation>Bedingung nach oben verschieben</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="87"/>
         <source>Move constraint down</source>
         <comment>column dialog</comment>
-        <translation>Abhängigkeit nach unten bewegen</translation>
+        <translation>Bedingung nach unten verschieben</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="89"/>
         <source>Add a primary key</source>
         <comment>column dialog</comment>
-        <translation>Primären Schlüssel zufügen</translation>
+        <translation>Primärschlüssel zufügen</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="90"/>
@@ -635,48 +635,48 @@
         <location filename="../dialogs/columndialog.cpp" line="91"/>
         <source>Add an unique constraint</source>
         <comment>column dialog</comment>
-        <translation>Eindeutige Abhängigkeit hinzufügen</translation>
+        <translation>Eindeutige Bedingung hinzufügen</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="92"/>
         <source>Add a check constraint</source>
         <comment>column dialog</comment>
-        <translation>Prüfungsabhängigkeit hinzufügen</translation>
+        <translation>Prüfungsbedingung hinzufügen</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="93"/>
         <source>Add a not null constraint</source>
         <comment>column dialog</comment>
-        <translation>Nicht-NULL Abhängigkeit hinzufügen</translation>
+        <translation>Nicht-NULL Bedingung hinzufügen</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="94"/>
         <source>Add a collate constraint</source>
         <comment>column dialog</comment>
-        <translation>Vergleichsoperatorenabhängigkeit hinzufügen</translation>
+        <translation>Kollationsbedingung hinzufügen</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="95"/>
         <source>Add a default constraint</source>
         <comment>column dialog</comment>
-        <translation>Standardabhängigkeit hinzufügen</translation>
+        <translation>Standardbedingung hinzufügen</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="228"/>
         <source>Are you sure you want to delete constraint &apos;%1&apos;?</source>
         <comment>column dialog</comment>
-        <translation>Sind Sie sicher, dass Sie die folgende Abhängigkeit löschen wollen: &apos;%1&apos;?</translation>
+        <translation>Sind Sie sicher, dass Sie die folgende Bedingung löschen wollen: &apos;%1&apos;?</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="290"/>
         <source>Correct the constraint&apos;s configuration.</source>
-        <translation>Korrigieren Sie die Konfiguration der Abhängigkeit.</translation>
+        <translation>Korrigiert die Konfiguration der Bedingung.</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="293"/>
         <source>This constraint is not officially supported by SQLite 2,
 but it&apos;s okay to use it.</source>
-        <translation>Diese Abhängigkeit wird von SQLite 2 offiziell nicht unterstützt, aber sie kann dennoch benutzt werden.</translation>
+        <translation>Diese Bedingung wird von SQLite 2 offiziell nicht unterstützt, aber sie kann dennoch benutzt werden.</translation>
     </message>
 </context>
 <context>
@@ -715,7 +715,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../constraints/columnforeignkeypanel.ui" line="58"/>
         <source>Reactions</source>
-        <translation>Reaktion</translation>
+        <translation>Reaktionen</translation>
     </message>
     <message>
         <location filename="../constraints/columnforeignkeypanel.ui" line="97"/>
@@ -725,12 +725,12 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../constraints/columnforeignkeypanel.ui" line="115"/>
         <source>Named constraint</source>
-        <translation>Benannte Abhängigkeit</translation>
+        <translation>Benannte Bedingung</translation>
     </message>
     <message>
         <location filename="../constraints/columnforeignkeypanel.ui" line="122"/>
         <source>Constraint name</source>
-        <translation>Name der Abhängigkeit</translation>
+        <translation>Name der Bedingung</translation>
     </message>
     <message>
         <location filename="../constraints/columnforeignkeypanel.cpp" line="40"/>
@@ -745,7 +745,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../constraints/columnforeignkeypanel.cpp" line="42"/>
         <source>Enter a name of the constraint.</source>
-        <translation>Geben Sie einen Namen für die Abhängigkeit ein.</translation>
+        <translation>Geben Sie einen Namen für die Bedingung ein.</translation>
     </message>
 </context>
 <context>
@@ -753,7 +753,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../constraints/columnprimarykeypanel.ui" line="26"/>
         <source>Autoincrement</source>
-        <translation>Automatischer Zähler</translation>
+        <translation>Automatisch hochzählend</translation>
     </message>
     <message>
         <location filename="../constraints/columnprimarykeypanel.ui" line="48"/>
@@ -763,7 +763,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../constraints/columnprimarykeypanel.ui" line="83"/>
         <source>Named constraint:</source>
-        <translation>Benannte Abhängigkeit:</translation>
+        <translation>Benannte Bedingung:</translation>
     </message>
     <message>
         <location filename="../constraints/columnprimarykeypanel.ui" line="111"/>
@@ -773,13 +773,13 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../constraints/columnprimarykeypanel.cpp" line="87"/>
         <source>Enter a name of the constraint.</source>
-        <translation>Geben Sie einen Namen für die Abhängigkeit ein.</translation>
+        <translation>Geben Sie einen Namen für die Bedingung ein.</translation>
     </message>
     <message>
         <location filename="../constraints/columnprimarykeypanel.cpp" line="103"/>
         <source>Autoincrement (only for %1 type columns)</source>
         <comment>column primary key</comment>
-        <translation>Automatischer Zähler (nur für %1 Spaltentypen)</translation>
+        <translation>Automatische Zählung (nur für %1 Spaltentypen)</translation>
     </message>
 </context>
 <context>
@@ -787,7 +787,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../constraints/columnuniqueandnotnullpanel.ui" line="41"/>
         <source>Named constraint:</source>
-        <translation>Benannte Abhängigkeit:</translation>
+        <translation>Benannte Bedingung:</translation>
     </message>
     <message>
         <location filename="../constraints/columnuniqueandnotnullpanel.ui" line="69"/>
@@ -797,7 +797,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../constraints/columnuniqueandnotnullpanel.cpp" line="73"/>
         <source>Enter a name of the constraint.</source>
-        <translation>Geben Sie einen Namen für die Abhängigkeit ein.</translation>
+        <translation>Geben Sie einen Namen für die Bedingung ein.</translation>
     </message>
 </context>
 <context>
@@ -878,7 +878,7 @@ but it&apos;s okay to use it.</source>
         <location filename="../completer/completerwindow.cpp" line="193"/>
         <source>Collation: %1</source>
         <comment>completer statusbar</comment>
-        <translation>Vergleichsoperator: %1</translation>
+        <translation>Kollation: %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="195"/>
@@ -1176,117 +1176,117 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="837"/>
         <source>When enabled, Table Windows will show up with the data tab, instead of the structure tab.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wenn die Option aktiviert ist, dann wird im Tabellenfenster der Reiter &quot;Daten&quot; angezeigt statt &quot;Strukturen&quot;.</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="840"/>
         <source>Open Table Windows with the data tab for start</source>
-        <translation type="unfinished"></translation>
+        <translation>Öffnet das Tabellenfenster mit dem Reiter &quot;Daten&quot; im Vordergrund</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="853"/>
         <source>View windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Viewfenster</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="859"/>
         <source>When enabled, View Windows will show up with the data tab, instead of the structure tab.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wenn die Option aktiviert ist, dann wird im Viewfenster der Reiter &quot;Daten&quot; angezeigt statt &quot;Strukturen&quot;.</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="862"/>
         <source>Open View Windows with the data tab for start</source>
-        <translation type="unfinished"></translation>
+        <translation>Öffnet das Viewfenster mit dem Reiter &quot;Daten&quot; im Vordergrund</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="875"/>
         <source>Main window dock areas</source>
-        <translation type="unfinished"></translation>
+        <translation>Dockingbereiche des Hauptfensters</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="881"/>
         <source>Left and right areas occupy corners</source>
-        <translation type="unfinished"></translation>
+        <translation>Linke und rechte Bereiche belegen die Ecken</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="901"/>
         <source>Top and bottom areas occupy corners</source>
-        <translation type="unfinished"></translation>
+        <translation>Obere und untere Bereiche belegen die Ecken</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1010"/>
         <source>Hide built-in plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Verberge eingebaute Plugins</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1039"/>
         <source>Current style:</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktueller Stil:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1056"/>
         <source>Preview</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorschau</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1066"/>
         <source>Enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktiviert</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1239"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Deaktiviert</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1288"/>
         <source>Active formatter plugin</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktives Formatierungsplugin</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1326"/>
         <source>SQL editor font</source>
-        <translation type="unfinished"></translation>
+        <translation>SQL Editor</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1342"/>
         <source>Database list font</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbankliste</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1358"/>
         <source>Database list additional label font</source>
-        <translation type="unfinished"></translation>
+        <translation>Zusätzliche Bezeichnungen in der Datenbankliste</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1374"/>
         <source>Data view font</source>
-        <translation type="unfinished"></translation>
+        <translation>Ergebnisansicht</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1390"/>
         <source>Status field font</source>
-        <translation type="unfinished"></translation>
+        <translation>Statusfeld</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1448"/>
         <source>SQL editor colors</source>
-        <translation type="unfinished"></translation>
+        <translation>SQL Editor</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1454"/>
         <source>Current line background</source>
-        <translation type="unfinished"></translation>
+        <translation>Hintergrundfarbe der aktuellen Zeile</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1461"/>
         <source>&lt;p&gt;SQL strings are enclosed with single quote characters.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;SQL Zeichenketten sind mit einfachen Anführungszeichen umschlossen.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1464"/>
         <source>String foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Vordergrundfarbe von Zeichenketten</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1567"/>
