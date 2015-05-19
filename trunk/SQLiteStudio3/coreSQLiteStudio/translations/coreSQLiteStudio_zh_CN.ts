@@ -20,7 +20,7 @@
     <message>
         <location filename="../services/bugreporter.cpp" line="46"/>
         <source>Invalid login or password</source>
-        <translation type="unfinished"></translation>
+        <translation>用户名或密码错误</translation>
     </message>
 </context>
 <context>

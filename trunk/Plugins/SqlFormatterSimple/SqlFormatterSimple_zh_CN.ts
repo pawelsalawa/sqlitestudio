@@ -6,12 +6,12 @@
     <message>
         <location filename="SqlFormatterSimple.ui" line="20"/>
         <source>Upper case keywords</source>
-        <translation type="unfinished"></translation>
+        <translation>大写关键字</translation>
     </message>
     <message>
         <location filename="SqlFormatterSimple.ui" line="30"/>
         <source>Reduce multiple whitespaces to single whitespace</source>
-        <translation type="unfinished"></translation>
+        <translation>将多个空白转换为一个空白</translation>
     </message>
 </context>
 </TS>
