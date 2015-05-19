@@ -156,6 +156,8 @@ void MainWindow::init()
 #endif
 
     connect(CFG_CORE.General.Language, SIGNAL(changed(QVariant)), this, SLOT(notifyAboutLanguageChange()));
+
+    fixFonts();
 }
 
 void MainWindow::cleanUp()
@@ -841,6 +843,17 @@ CollationsEditor* MainWindow::openCollationEditor()
 BugReportHistoryWindow* MainWindow::openReportHistory()
 {
     return openMdiWindow<BugReportHistoryWindow>();
+}
+
+void MainWindow::fixFonts()
+{
+    CfgTypedEntry<QFont>* typed = nullptr;
+    for (CfgEntry* cfg : CFG_UI.Fonts.getEntries())
+    {
+        typed = dynamic_cast<CfgTypedEntry<QFont>*>(cfg);
+        if (typed->get().pointSize() == 0)
+            cfg->set(cfg->getDefultValue());
+    }
 }
 
 bool MainWindow::confirmQuit(const QList<Committable*>& instances)
