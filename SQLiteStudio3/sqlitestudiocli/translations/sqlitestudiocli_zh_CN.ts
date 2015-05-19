@@ -6,17 +6,17 @@
     <message>
         <location filename="../cli.cpp" line="87"/>
         <source>Current database: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>当前数据库：%1</translation>
     </message>
     <message>
         <location filename="../cli.cpp" line="89"/>
         <source>No current working database is set.</source>
-        <translation type="unfinished"></translation>
+        <translation>当前没有选定工作数据库。</translation>
     </message>
     <message>
         <location filename="../cli.cpp" line="91"/>
         <source>Type %1 for help</source>
-        <translation type="unfinished"></translation>
+        <translation>输入 %1 获取帮助</translation>
     </message>
     <message>
         <location filename="../cli.cpp" line="228"/>
@@ -26,12 +26,12 @@
     <message>
         <location filename="../cli.cpp" line="235"/>
         <source>Could not add database %1 to list.</source>
-        <translation type="unfinished"></translation>
+        <translation>未能将数据库“%1”添加到列表。</translation>
     </message>
     <message>
         <location filename="../cli.cpp" line="261"/>
         <source>closed</source>
-        <translation type="unfinished"></translation>
+        <translation>已关闭</translation>
     </message>
 </context>
 <context>
@@ -39,7 +39,7 @@
     <message>
         <location filename="../commands/clicommand.cpp" line="107"/>
         <source>Usage: %1%2</source>
-        <translation type="unfinished"></translation>
+        <translation>用法： %1%2</translation>
     </message>
 </context>
 <context>
@@ -47,12 +47,12 @@
     <message>
         <location filename="../commands/clicommandadd.cpp" line="9"/>
         <source>Could not add database %1 to list.</source>
-        <translation type="unfinished"></translation>
+        <translation>未能将数据库“%1”添加到列表。</translation>
     </message>
     <message>
         <location filename="../commands/clicommandadd.cpp" line="14"/>
         <source>Database added: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>已添加数据库：%1</translation>
     </message>
     <message>
         <location filename="../commands/clicommandadd.cpp" line="19"/>
@@ -68,7 +68,7 @@
         <location filename="../commands/clicommandadd.cpp" line="34"/>
         <source>name</source>
         <comment>CLI command syntax</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../commands/clicommandadd.cpp" line="35"/>
@@ -82,12 +82,12 @@
     <message>
         <location filename="../commands/clicommandcd.cpp" line="10"/>
         <source>Changed directory to: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>已切换到：%1</translation>
     </message>
     <message>
         <location filename="../commands/clicommandcd.cpp" line="12"/>
         <source>Could not change directory to: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>未能切换到：%1</translation>
     </message>
     <message>
         <location filename="../commands/clicommandcd.cpp" line="17"/>
@@ -203,12 +203,12 @@
     <message>
         <location filename="../commands/clicommanddesc.cpp" line="14"/>
         <source>shows details about the table</source>
-        <translation type="unfinished"></translation>
+        <translation>显示表的详情</translation>
     </message>
     <message>
         <location filename="../commands/clicommanddesc.cpp" line="25"/>
         <source>table</source>
-        <translation type="unfinished"></translation>
+        <translation>表</translation>
     </message>
 </context>
 <context>
@@ -236,7 +236,7 @@ You can pass &lt;pattern&gt; with wildcard characters to filter output.</source>
     <message>
         <location filename="../commands/clicommandexit.cpp" line="12"/>
         <source>quits the application</source>
-        <translation type="unfinished"></translation>
+        <translation>退出本程序</translation>
     </message>
     <message>
         <location filename="../commands/clicommandexit.cpp" line="17"/>

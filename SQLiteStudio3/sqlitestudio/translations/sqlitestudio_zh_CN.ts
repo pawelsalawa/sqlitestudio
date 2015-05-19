@@ -26,7 +26,7 @@
     <message>
         <location filename="../main.cpp" line="50"/>
         <source>log file</source>
-        <translation type="unfinished"></translation>
+        <translation>日志文件</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="51"/>
@@ -46,28 +46,28 @@
     <message>
         <location filename="../main.cpp" line="53"/>
         <source>database</source>
-        <translation type="unfinished"></translation>
+        <translation>数据库</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="54"/>
         <source>Lists plugins installed in the SQLiteStudio and quits.</source>
-        <translation type="unfinished"></translation>
+        <translation>列出已安装的插件并退出。</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="63"/>
         <source>file</source>
-        <translation type="unfinished"></translation>
+        <translation>文件</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="63"/>
         <source>Database file to open</source>
-        <translation type="unfinished"></translation>
+        <translation>要打开的数据库文件</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="86"/>
         <location filename="../main.cpp" line="102"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>错误</translation>
     </message>
 </context>
 </TS>

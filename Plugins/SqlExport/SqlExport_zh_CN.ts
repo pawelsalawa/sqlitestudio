@@ -6,37 +6,37 @@
     <message>
         <location filename="sqlexport.cpp" line="57"/>
         <source>-- Results of query:</source>
-        <translation type="unfinished"></translation>
+        <translation>-- 执行结果：</translation>
     </message>
     <message>
         <location filename="sqlexport.cpp" line="122"/>
         <source>-- Table: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>-- 表：%1</translation>
     </message>
     <message>
         <location filename="sqlexport.cpp" line="168"/>
         <source>-- Index: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>-- 索引：%1</translation>
     </message>
     <message>
         <location filename="sqlexport.cpp" line="185"/>
         <source>-- Trigger: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>-- 触发器：%1</translation>
     </message>
     <message>
         <location filename="sqlexport.cpp" line="202"/>
         <source>-- View: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>-- 视图：%1</translation>
     </message>
     <message>
         <location filename="sqlexport.cpp" line="216"/>
         <source>-- File generated with SQLiteStudio v%1 on %2</source>
-        <translation type="unfinished"></translation>
+        <translation>-- 由SQLiteStudio v%1 产生的文件 %2</translation>
     </message>
     <message>
         <location filename="sqlexport.cpp" line="220"/>
         <source>-- Text encoding used: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>-- 文本编码：%1</translation>
     </message>
     <message>
         <location filename="sqlexport.cpp" line="312"/>
