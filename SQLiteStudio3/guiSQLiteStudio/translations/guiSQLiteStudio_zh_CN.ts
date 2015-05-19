@@ -754,7 +754,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../constraints/columnprimarykeypanel.ui" line="26"/>
         <source>Autoincrement</source>
-        <translation type="unfinished"></translation>
+        <translation>Autoincrement</translation>
     </message>
     <message>
         <location filename="../constraints/columnprimarykeypanel.ui" line="48"/>
@@ -769,7 +769,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../constraints/columnprimarykeypanel.ui" line="111"/>
         <source>On conflict:</source>
-        <translation type="unfinished">冲突：</translation>
+        <translation>冲突：</translation>
     </message>
     <message>
         <location filename="../constraints/columnprimarykeypanel.cpp" line="87"/>
@@ -894,12 +894,12 @@ but it&apos;s okay to use it.</source>
         <location filename="../dialogs/configdialog.ui" line="14"/>
         <location filename="../dialogs/configdialog.ui" line="1293"/>
         <source>Configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>配置</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="73"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>搜索</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="104"/>
@@ -909,7 +909,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="116"/>
         <source>Keyboard shortcuts</source>
-        <translation type="unfinished"></translation>
+        <translation>快捷键</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="128"/>
@@ -939,7 +939,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="187"/>
         <source>Code formatters</source>
-        <translation type="unfinished">代码格式化</translation>
+        <translation>代码格式化</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="196"/>
@@ -1222,7 +1222,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1039"/>
         <source>Current style:</source>
-        <translation type="unfinished"></translation>
+        <translation>当前风格：</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1056"/>
@@ -1453,7 +1453,7 @@ but it&apos;s okay to use it.</source>
         <location filename="../dialogs/configdialog.cpp" line="791"/>
         <source>Dependencies:</source>
         <comment>plugin details</comment>
-        <translation type="unfinished"></translation>
+        <translation>依赖：</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="792"/>
@@ -1475,7 +1475,7 @@ but it&apos;s okay to use it.</source>
         <location filename="../dialogs/configdialog.cpp" line="1266"/>
         <source>%1 (built-in)</source>
         <comment>plugins manager in configuration dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 （内建）</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="1279"/>
@@ -1680,25 +1680,25 @@ but it&apos;s okay to use it.</source>
         <location filename="../dataview.cpp" line="179"/>
         <source>First page</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>首页</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="180"/>
         <source>Previous page</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>上一页</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="182"/>
         <source>Next page</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>下一页</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="183"/>
         <source>Last page</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>末页</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="188"/>
@@ -1769,7 +1769,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dataview.cpp" line="566"/>
         <source>Row: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>行：%1</translation>
     </message>
 </context>
 <context>
@@ -1777,27 +1777,27 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="14"/>
         <source>Convert database</source>
-        <translation type="unfinished"></translation>
+        <translation>转换数据库</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="20"/>
         <source>Source database</source>
-        <translation type="unfinished"></translation>
+        <translation>源数据库</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="29"/>
         <source>Source database version:</source>
-        <translation type="unfinished"></translation>
+        <translation>源数据库版本：</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="46"/>
         <source>Target database</source>
-        <translation type="unfinished"></translation>
+        <translation>目的数据库</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="52"/>
         <source>Target version:</source>
-        <translation type="unfinished"></translation>
+        <translation>目标版本：</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="59"/>
@@ -1807,7 +1807,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="66"/>
         <source>Target file:</source>
-        <translation type="unfinished"></translation>
+        <translation>目标文件：</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="73"/>
@@ -1822,7 +1822,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dialogs/dbconverterdialog.cpp" line="123"/>
         <source>Select source database</source>
-        <translation type="unfinished"></translation>
+        <translation>选择源数据库</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.cpp" line="129"/>
@@ -1875,17 +1875,17 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="20"/>
         <source>Database</source>
-        <translation type="unfinished">数据库</translation>
+        <translation>数据库</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="26"/>
         <source>Database type</source>
-        <translation type="unfinished"></translation>
+        <translation>数据类型</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="32"/>
         <source>Database driver</source>
-        <translation type="unfinished"></translation>
+        <translation>数据库驱动</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="95"/>
@@ -1895,17 +1895,17 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="108"/>
         <source>Options</source>
-        <translation type="unfinished">选项</translation>
+        <translation>选项</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="117"/>
         <source>Permanent (keep it in configuration)</source>
-        <translation type="unfinished"></translation>
+        <translation>记住该数据库</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="161"/>
         <source>Test connection</source>
-        <translation type="unfinished"></translation>
+        <translation>测试连接</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1918,13 +1918,13 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="51"/>
         <source>Create new database file</source>
-        <translation type="unfinished"></translation>
+        <translation>创建新数据库文件</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="42"/>
         <location filename="../dialogs/dbdialog.cpp" line="149"/>
         <source>File</source>
-        <translation type="unfinished">文件</translation>
+        <translation>文件</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="79"/>
@@ -1945,12 +1945,12 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="150"/>
         <source>Browse for existing database file on local computer</source>
-        <translation type="unfinished"></translation>
+        <translation>浏览计算上已存在的文件</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="283"/>
         <source>Browse</source>
-        <translation type="unfinished"></translation>
+        <translation>浏览</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="483"/>
@@ -1965,27 +1965,27 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="500"/>
         <source>Enter a database file path.</source>
-        <translation type="unfinished"></translation>
+        <translation>输入数据库文件位置。</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="507"/>
         <source>This database is already on the list under name: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>该数据库已在列表中：%1</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="523"/>
         <source>Select a database type.</source>
-        <translation type="unfinished"></translation>
+        <translation>选择数据库类型。</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="580"/>
         <source>Auto-generated</source>
-        <translation type="unfinished"></translation>
+        <translation>自动产生</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="585"/>
         <source>Type the name</source>
-        <translation type="unfinished"></translation>
+        <translation>输入名字</translation>
     </message>
 </context>
 <context>
@@ -1993,42 +1993,42 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="174"/>
         <source>Delete table</source>
-        <translation type="unfinished"></translation>
+        <translation>删除表</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="175"/>
         <source>Are you sure you want to delete table %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>确定要删除表“%1”吗?</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="179"/>
         <source>Delete index</source>
-        <translation type="unfinished"></translation>
+        <translation>删除索引</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="180"/>
         <source>Are you sure you want to delete index %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>确定要删除索引“%1”吗?</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="184"/>
         <source>Delete trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>删除触发器</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="185"/>
         <source>Are you sure you want to delete trigger %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>确定要删除触发器“%1”吗?</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="189"/>
         <source>Delete view</source>
-        <translation type="unfinished"></translation>
+        <translation>删除视图</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="190"/>
         <source>Are you sure you want to delete view %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>确定要删除视图“%1”吗?</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="218"/>
@@ -2041,7 +2041,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbtree/dbtree.ui" line="23"/>
         <source>Databases</source>
-        <translation type="unfinished">数据库</translation>
+        <translation>数据库</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.ui" line="73"/>
@@ -2051,72 +2051,72 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="102"/>
         <source>Copy</source>
-        <translation type="unfinished">复制</translation>
+        <translation>复制</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="103"/>
         <source>Paste</source>
-        <translation type="unfinished">粘贴</translation>
+        <translation>粘贴</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="104"/>
         <source>Select all</source>
-        <translation type="unfinished">全选</translation>
+        <translation>全选</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="105"/>
         <source>Create a group</source>
-        <translation type="unfinished"></translation>
+        <translation>创建分组</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="106"/>
         <source>Delete the group</source>
-        <translation type="unfinished"></translation>
+        <translation>删除分组</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="107"/>
         <source>Rename the group</source>
-        <translation type="unfinished"></translation>
+        <translation>重命名分组</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="108"/>
         <source>Add a database</source>
-        <translation type="unfinished"></translation>
+        <translation>添加数据库</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="109"/>
         <source>Edit the database</source>
-        <translation type="unfinished"></translation>
+        <translation>编辑数据库</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="110"/>
         <source>Remove the database</source>
-        <translation type="unfinished"></translation>
+        <translation>移除数据库</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="111"/>
         <source>Connect to the database</source>
-        <translation type="unfinished"></translation>
+        <translation>连接到数据库</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="112"/>
         <source>Disconnect from the database</source>
-        <translation type="unfinished"></translation>
+        <translation>断开数据库连接</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="113"/>
         <source>Import</source>
-        <translation type="unfinished">导入</translation>
+        <translation>导入</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="114"/>
         <source>Export the database</source>
-        <translation type="unfinished"></translation>
+        <translation>导数该数据库</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="115"/>
         <source>Convert database type</source>
-        <translation type="unfinished"></translation>
+        <translation>转换数据库类型</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="116"/>
@@ -2126,37 +2126,37 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="117"/>
         <source>Integrity check</source>
-        <translation type="unfinished"></translation>
+        <translation>检查完整性</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="118"/>
         <source>Create a table</source>
-        <translation type="unfinished"></translation>
+        <translation>新建表</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="119"/>
         <source>Edit the table</source>
-        <translation type="unfinished"></translation>
+        <translation>编辑该表</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="120"/>
         <source>Delete the table</source>
-        <translation type="unfinished"></translation>
+        <translation>删除该表</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="121"/>
         <source>Export the table</source>
-        <translation type="unfinished"></translation>
+        <translation>导出该表</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="122"/>
         <source>Import into the table</source>
-        <translation type="unfinished"></translation>
+        <translation>导入到该表</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="123"/>
         <source>Populate table</source>
-        <translation type="unfinished"></translation>
+        <translation>填充表</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="124"/>
@@ -2171,62 +2171,62 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="126"/>
         <source>Create an index</source>
-        <translation type="unfinished"></translation>
+        <translation>创建索引</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="127"/>
         <source>Edit the index</source>
-        <translation type="unfinished"></translation>
+        <translation>编辑该索引</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="128"/>
         <source>Delete the index</source>
-        <translation type="unfinished"></translation>
+        <translation>删除该索引</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="129"/>
         <source>Create a trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>创建触发器</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="130"/>
         <source>Edit the trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>编辑该触发器</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="131"/>
         <source>Delete the trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>删除该触发器</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="132"/>
         <source>Create a view</source>
-        <translation type="unfinished"></translation>
+        <translation>创建视图</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="133"/>
         <source>Edit the view</source>
-        <translation type="unfinished"></translation>
+        <translation>编辑该视图</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="134"/>
         <source>Delete the view</source>
-        <translation type="unfinished"></translation>
+        <translation>删除该视图</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="135"/>
         <source>Add a column</source>
-        <translation type="unfinished"></translation>
+        <translation>添加字段</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="136"/>
         <source>Edit the column</source>
-        <translation type="unfinished"></translation>
+        <translation>编辑该字段</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="137"/>
         <source>Delete the column</source>
-        <translation type="unfinished"></translation>
+        <translation>删除该字段</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="138"/>
@@ -2241,40 +2241,40 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="140"/>
         <source>Refresh all database schemas</source>
-        <translation type="unfinished"></translation>
+        <translation>刷新全部数据库的结构</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="141"/>
         <source>Refresh selected database schema</source>
-        <translation type="unfinished"></translation>
+        <translation>刷新已选数据库的结构</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="142"/>
         <location filename="../dbtree/dbtree.cpp" line="1421"/>
         <source>Erase table data</source>
-        <translation type="unfinished"></translation>
+        <translation>擦除该表的数据</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="312"/>
         <location filename="../dbtree/dbtree.cpp" line="317"/>
         <source>Database</source>
-        <translation type="unfinished">数据库</translation>
+        <translation>数据库</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="327"/>
         <source>Grouping</source>
-        <translation type="unfinished"></translation>
+        <translation>分组</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="937"/>
         <location filename="../dbtree/dbtree.cpp" line="940"/>
         <source>Create group</source>
-        <translation type="unfinished"></translation>
+        <translation>创建分组</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="937"/>
         <source>Group name</source>
-        <translation type="unfinished"></translation>
+        <translation>分组名</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="940"/>
@@ -2284,7 +2284,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="958"/>
         <source>Delete group</source>
-        <translation type="unfinished"></translation>
+        <translation>删除分组</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="959"/>
@@ -2295,7 +2295,7 @@ All objects from this group will be moved to parent group.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1019"/>
         <source>Delete database</source>
-        <translation type="unfinished"></translation>
+        <translation>删除数据库</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1019"/>
@@ -2332,7 +2332,7 @@ All objects from this group will be moved to parent group.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1395"/>
         <source>Reset autoincrement</source>
-        <translation type="unfinished"></translation>
+        <translation>重置autoincrement</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1395"/>
@@ -2396,13 +2396,13 @@ All objects from this group will be moved to parent group.</source>
         <location filename="../dbtree/dbtreeitemdelegate.cpp" line="92"/>
         <source>error</source>
         <comment>dbtree labels</comment>
-        <translation type="unfinished"></translation>
+        <translation>错误</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreeitemdelegate.cpp" line="109"/>
         <source>(system table)</source>
         <comment>database tree label</comment>
-        <translation type="unfinished"></translation>
+        <translation>（系统表）</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreeitemdelegate.cpp" line="127"/>
@@ -2423,13 +2423,13 @@ All objects from this group will be moved to parent group.</source>
         <location filename="../dbtree/dbtreemodel.cpp" line="422"/>
         <source>Database: %1</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished">数据库：%1</translation>
+        <translation>数据库：%1</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="427"/>
         <source>Version:</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished">版本：</translation>
+        <translation>版本：</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="430"/>
@@ -2441,47 +2441,47 @@ All objects from this group will be moved to parent group.</source>
         <location filename="../dbtree/dbtreemodel.cpp" line="433"/>
         <source>Encoding:</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>编码：</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="438"/>
         <source>Error:</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>错误：</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="448"/>
         <source>Table : %1</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>表：%1</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="471"/>
         <source>Columns (%1):</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>字段（%1）</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="474"/>
         <source>Indexes (%1):</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>索引（%1）</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="477"/>
         <source>Triggers (%1):</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>触发器（%1）</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1092"/>
         <source>Copy</source>
-        <translation type="unfinished">复制</translation>
+        <translation>复制</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1093"/>
         <source>Move</source>
-        <translation type="unfinished"></translation>
+        <translation>移动</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1095"/>
@@ -2501,7 +2501,7 @@ All objects from this group will be moved to parent group.</source>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1099"/>
         <source>Abort</source>
-        <translation type="unfinished">中止</translation>
+        <translation>中止</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1175"/>
@@ -2517,7 +2517,7 @@ All objects from this group will be moved to parent group.</source>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1185"/>
         <source>Name conflict</source>
-        <translation type="unfinished"></translation>
+        <translation>名字冲突</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1186"/>
@@ -2571,7 +2571,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/ddlpreviewdialog.ui" line="42"/>
         <source>Don&apos;t show again</source>
-        <translation type="unfinished"></translation>
+        <translation>不再显示</translation>
     </message>
 </context>
 <context>
@@ -2579,7 +2579,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../debugconsole.ui" line="14"/>
         <source>SQLiteStudio Debug Console</source>
-        <translation type="unfinished">SQLiteStudio 调试终端</translation>
+        <translation>SQLiteStudio 调试终端</translation>
     </message>
 </context>
 <context>
@@ -2592,7 +2592,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/editorwindow.ui" line="112"/>
         <source>History</source>
-        <translation type="unfinished"></translation>
+        <translation>历史</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="137"/>
@@ -2613,7 +2613,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/editorwindow.cpp" line="331"/>
         <source>Results</source>
-        <translation type="unfinished"></translation>
+        <translation>结果</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="364"/>
@@ -2651,7 +2651,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/editorwindow.cpp" line="383"/>
         <source>Next database</source>
-        <translation type="unfinished"></translation>
+        <translation>下一个数据库</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="386"/>
@@ -2723,7 +2723,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/errorsconfirmdialog.ui" line="14"/>
         <source>Errors</source>
-        <translation type="unfinished"></translation>
+        <translation>错误</translation>
     </message>
     <message>
         <location filename="../dialogs/errorsconfirmdialog.ui" line="20"/>
@@ -2733,7 +2733,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/errorsconfirmdialog.ui" line="34"/>
         <source>Would you like to proceed?</source>
-        <translation type="unfinished"></translation>
+        <translation>仍然继续吗?</translation>
     </message>
 </context>
 <context>
@@ -2970,49 +2970,49 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../formview.cpp" line="241"/>
         <source>Commit row</source>
         <comment>form view</comment>
-        <translation type="unfinished"></translation>
+        <translation>提交</translation>
     </message>
     <message>
         <location filename="../formview.cpp" line="242"/>
         <source>Rollback row</source>
         <comment>form view</comment>
-        <translation type="unfinished"></translation>
+        <translation>回滚</translation>
     </message>
     <message>
         <location filename="../formview.cpp" line="243"/>
         <source>First row</source>
         <comment>form view</comment>
-        <translation type="unfinished"></translation>
+        <translation>首行</translation>
     </message>
     <message>
         <location filename="../formview.cpp" line="244"/>
         <source>Previous row</source>
         <comment>form view</comment>
-        <translation type="unfinished"></translation>
+        <translation>前一行</translation>
     </message>
     <message>
         <location filename="../formview.cpp" line="245"/>
         <source>Next row</source>
         <comment>form view</comment>
-        <translation type="unfinished"></translation>
+        <translation>下一行</translation>
     </message>
     <message>
         <location filename="../formview.cpp" line="246"/>
         <source>Last row</source>
         <comment>form view</comment>
-        <translation type="unfinished"></translation>
+        <translation>末行</translation>
     </message>
     <message>
         <location filename="../formview.cpp" line="247"/>
         <source>Insert new row</source>
         <comment>form view</comment>
-        <translation type="unfinished"></translation>
+        <translation>新插入行</translation>
     </message>
     <message>
         <location filename="../formview.cpp" line="248"/>
         <source>Delete current row</source>
         <comment>form view</comment>
-        <translation type="unfinished"></translation>
+        <translation>删除当前行</translation>
     </message>
 </context>
 <context>
@@ -3020,42 +3020,42 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/functionseditor.ui" line="81"/>
         <source>Filter funtions</source>
-        <translation type="unfinished"></translation>
+        <translation>过滤函数</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="260"/>
         <source>Function name:</source>
-        <translation type="unfinished"></translation>
+        <translation>函数名：</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="273"/>
         <source>Implementation language:</source>
-        <translation type="unfinished">实现语言：</translation>
+        <translation>实现语言：</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="253"/>
         <source>Type:</source>
-        <translation type="unfinished"></translation>
+        <translation>类型：</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="157"/>
         <source>Input arguments</source>
-        <translation type="unfinished"></translation>
+        <translation>输入参数</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="163"/>
         <source>Undefined</source>
-        <translation type="unfinished"></translation>
+        <translation>Undefined</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="205"/>
         <source>Databases</source>
-        <translation type="unfinished">数据库</translation>
+        <translation>数据库</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="211"/>
         <source>Register in all databases</source>
-        <translation type="unfinished">在所有数据库中注册</translation>
+        <translation>在所有数据库中注册</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="218"/>
@@ -3065,7 +3065,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/functionseditor.ui" line="293"/>
         <source>Initialization code:</source>
-        <translation type="unfinished"></translation>
+        <translation>初始化代码：</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="309"/>
@@ -3081,57 +3081,57 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/functionseditor.cpp" line="54"/>
         <source>SQL function editor</source>
-        <translation type="unfinished"></translation>
+        <translation>SQL函数编辑器</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="59"/>
         <source>Commit all function changes</source>
-        <translation type="unfinished"></translation>
+        <translation>提交所有对函数的更改</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="60"/>
         <source>Rollback all function changes</source>
-        <translation type="unfinished"></translation>
+        <translation>回滚所有对函数的更改</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="62"/>
         <source>Create new function</source>
-        <translation type="unfinished"></translation>
+        <translation>新建函数</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="63"/>
         <source>Delete selected function</source>
-        <translation type="unfinished"></translation>
+        <translation>删除已选函数</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="65"/>
         <source>Custom SQL functions manual</source>
-        <translation type="unfinished"></translation>
+        <translation>自定义SQL函数手册</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="68"/>
         <source>Add function argument</source>
-        <translation type="unfinished"></translation>
+        <translation>添加函数参数</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="69"/>
         <source>Rename function argument</source>
-        <translation type="unfinished"></translation>
+        <translation>重命名函数参数</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="70"/>
         <source>Delete function argument</source>
-        <translation type="unfinished"></translation>
+        <translation>删除函数参数</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="72"/>
         <source>Move function argument up</source>
-        <translation type="unfinished"></translation>
+        <translation>上移函数参数</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="73"/>
         <source>Move function argument down</source>
-        <translation type="unfinished"></translation>
+        <translation>下移函数参数</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="111"/>
@@ -3146,12 +3146,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/functionseditor.cpp" line="410"/>
         <source>Enter a non-empty, unique name of the function.</source>
-        <translation type="unfinished"></translation>
+        <translation>输入非空唯一的函数名称</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="422"/>
         <source>Pick the implementation language.</source>
-        <translation type="unfinished">选择实现语言。</translation>
+        <translation>选择实现语言。</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="426"/>
@@ -3180,47 +3180,47 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/importdialog.ui" line="14"/>
         <source>Import data</source>
-        <translation type="unfinished"></translation>
+        <translation>导入数据</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="21"/>
         <source>Table to import to</source>
-        <translation type="unfinished"></translation>
+        <translation>目的表</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="36"/>
         <source>Table</source>
-        <translation type="unfinished">表</translation>
+        <translation>表</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="43"/>
         <source>Database</source>
-        <translation type="unfinished">数据库</translation>
+        <translation>数据库</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="84"/>
         <source>Data source to import from</source>
-        <translation type="unfinished"></translation>
+        <translation>数据源</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="129"/>
         <source>Data source type</source>
-        <translation type="unfinished"></translation>
+        <translation>数据源类型</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="141"/>
         <source>Options</source>
-        <translation type="unfinished">选项</translation>
+        <translation>选项</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="182"/>
         <source>Input file:</source>
-        <translation type="unfinished"></translation>
+        <translation>输入文件：</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="175"/>
         <source>Text encoding:</source>
-        <translation type="unfinished"></translation>
+        <translation>文本编码：</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="192"/>
@@ -3230,52 +3230,52 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/importdialog.ui" line="195"/>
         <source>Ignore errors</source>
-        <translation type="unfinished"></translation>
+        <translation>忽略错误</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="205"/>
         <source>Data source options</source>
-        <translation type="unfinished"></translation>
+        <translation>数据源选项</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="71"/>
         <source>Cancel</source>
-        <translation type="unfinished">取消</translation>
+        <translation>取消</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="102"/>
         <source>If you type table name that doesn&apos;t exist, it will be created.</source>
-        <translation type="unfinished"></translation>
+        <translation>如果输入的表不存在，则新建该表。</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="102"/>
         <source>Enter the table name</source>
-        <translation type="unfinished"></translation>
+        <translation>输入表名</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="120"/>
         <source>Select import plugin.</source>
-        <translation type="unfinished"></translation>
+        <translation>选择导入插件。</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="129"/>
         <source>You must provide a file to import from.</source>
-        <translation type="unfinished"></translation>
+        <translation>必须提供一个导入文件。</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="136"/>
         <source>The file &apos;%1&apos; does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>文件“%1”不存在。</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="142"/>
         <source>Path you provided is a directory. A regular file is required.</source>
-        <translation type="unfinished"></translation>
+        <translation>你提供的是一个目录。我们需要的是文件。</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="318"/>
         <source>Pick file to import from</source>
-        <translation type="unfinished"></translation>
+        <translation>选择要导入的文件</translation>
     </message>
 </context>
 <context>
@@ -3319,7 +3319,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/indexdialog.ui" line="100"/>
         <source>Sort</source>
-        <translation type="unfinished"></translation>
+        <translation>排序</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="115"/>
@@ -3344,7 +3344,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="186"/>
         <source>Select at least one column.</source>
-        <translation type="unfinished"></translation>
+        <translation>至少选择一列</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="187"/>
@@ -3355,7 +3355,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../dialogs/indexdialog.cpp" line="236"/>
         <source>default</source>
         <comment>index dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>默认</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="247"/>
@@ -3368,7 +3368,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../dialogs/indexdialog.cpp" line="466"/>
         <source>Error</source>
         <comment>index dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>错误</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="454"/>
@@ -3379,7 +3379,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../dialogs/indexdialog.cpp" line="466"/>
         <source>An error occurred while executing SQL statements:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>在执行SQL语句“%1”时发生了错误。</translation>
     </message>
 </context>
 <context>
@@ -3400,12 +3400,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.ui" line="81"/>
         <source>Database toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>数据工具栏</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="92"/>
         <source>Structure toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>结构工具栏</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="103"/>
@@ -3450,7 +3450,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="211"/>
         <source>You need to restart application to make the language change take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>更改语言后重启程序生效。</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="254"/>
@@ -3646,17 +3646,17 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../mainwindow.cpp" line="569"/>
         <source>Could not set style: %1</source>
         <comment>main window</comment>
-        <translation type="unfinished"></translation>
+        <translation>未能设置风格：%1</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="642"/>
         <source>Cannot export, because no export plugin is loaded.</source>
-        <translation type="unfinished"></translation>
+        <translation>未能导出，因为没有导出插件被加载。</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="658"/>
         <source>Cannot import, because no import plugin is loaded.</source>
-        <translation type="unfinished"></translation>
+        <translation>未能导入，因为没有导入插件被加载。</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="691"/>
@@ -3676,7 +3676,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="785"/>
         <source>You&apos;re running the most recent version. No updates are available.</source>
-        <translation type="unfinished">您使用的是最新版，不需要更新。</translation>
+        <translation>您使用的是最新版，不需要更新。</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="891"/>
@@ -3691,7 +3691,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="903"/>
         <source>Could not add database %1 to list.</source>
-        <translation type="unfinished"></translation>
+        <translation>未能将数据%1添加到列表</translation>
     </message>
 </context>
 <context>
@@ -3789,7 +3789,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../multieditor/multieditortext.cpp" line="45"/>
         <source>Text</source>
-        <translation type="unfinished"></translation>
+        <translation>文本</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.cpp" line="106"/>
@@ -3880,13 +3880,13 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../dialogs/newconstraintdialog.cpp" line="105"/>
         <source>Collate</source>
         <comment>new constraint dialog</comment>
-        <translation type="unfinished">排序规则</translation>
+        <translation>排序规则</translation>
     </message>
     <message>
         <location filename="../dialogs/newconstraintdialog.cpp" line="107"/>
         <source>Default</source>
         <comment>new constraint dialog</comment>
-        <translation type="unfinished">默认</translation>
+        <translation>默认</translation>
     </message>
 </context>
 <context>
@@ -3947,7 +3947,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/populateconfigdialog.ui" line="14"/>
         <source>Populating configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>配置填充</translation>
     </message>
     <message>
         <location filename="../dialogs/populateconfigdialog.cpp" line="54"/>
@@ -3960,7 +3960,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/populatedialog.ui" line="14"/>
         <source>Populate table</source>
-        <translation type="unfinished"></translation>
+        <translation>填充表</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.ui" line="26"/>
@@ -3980,23 +3980,23 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/populatedialog.ui" line="102"/>
         <source>Number of rows to populate:</source>
-        <translation type="unfinished"></translation>
+        <translation>填充的行数：</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="42"/>
         <source>Populate</source>
         <comment>populate dialog button</comment>
-        <translation type="unfinished"></translation>
+        <translation>填充</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="54"/>
         <source>Abort</source>
-        <translation type="unfinished">中止</translation>
+        <translation>中止</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="161"/>
         <source>Configure</source>
-        <translation type="unfinished">配置</translation>
+        <translation>配置</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="259"/>
@@ -4011,7 +4011,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="291"/>
         <source>Select table to populate</source>
-        <translation type="unfinished"></translation>
+        <translation>选择要填充的表</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="292"/>
@@ -4627,14 +4627,14 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/quitconfirmdialog.ui" line="14"/>
         <source>Uncommited changes</source>
-        <translation type="unfinished">未提交的更改</translation>
+        <translation>未提交的更改</translation>
     </message>
     <message>
         <location filename="../dialogs/quitconfirmdialog.ui" line="20"/>
         <source>Are you sure you want to quit the application?
 
 Following items are pending:</source>
-        <translation type="unfinished"></translation>
+        <translation>您确定要退出本程序吗?</translation>
     </message>
 </context>
 <context>
@@ -4642,17 +4642,17 @@ Following items are pending:</source>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="14"/>
         <source>Find or replace</source>
-        <translation type="unfinished"></translation>
+        <translation>查找与替换</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="23"/>
         <source>Find:</source>
-        <translation type="unfinished"></translation>
+        <translation>查找：</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="36"/>
         <source>Case sensitive</source>
-        <translation type="unfinished"></translation>
+        <translation>大小写敏感</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="43"/>
@@ -4662,28 +4662,28 @@ Following items are pending:</source>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="50"/>
         <source>Regular expression matching</source>
-        <translation type="unfinished"></translation>
+        <translation>正则表达式</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="60"/>
         <source>Replace &amp;&amp;
 find next</source>
-        <translation type="unfinished"></translation>
+        <translation>替换并查找下一个</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="78"/>
         <source>Replace with:</source>
-        <translation type="unfinished"></translation>
+        <translation>替换为：</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="91"/>
         <source>Replace all</source>
-        <translation type="unfinished"></translation>
+        <translation>全部替换</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="98"/>
         <source>Find</source>
-        <translation type="unfinished">查找</translation>
+        <translation>查找</translation>
     </message>
 </context>
 <context>
@@ -4697,13 +4697,13 @@ find next</source>
         <location filename="../dialogs/sortdialog.ui" line="45"/>
         <location filename="../dialogs/sortdialog.cpp" line="48"/>
         <source>Column</source>
-        <translation type="unfinished">字段</translation>
+        <translation>字段</translation>
     </message>
     <message>
         <location filename="../dialogs/sortdialog.ui" line="50"/>
         <location filename="../dialogs/sortdialog.cpp" line="48"/>
         <source>Order</source>
-        <translation type="unfinished"></translation>
+        <translation>排序</translation>
     </message>
     <message>
         <location filename="../dialogs/sortdialog.cpp" line="178"/>
@@ -4901,25 +4901,25 @@ find next</source>
         <location filename="../datagrid/sqlqueryitem.cpp" line="251"/>
         <source>Column:</source>
         <comment>data view tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>字段：</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryitem.cpp" line="252"/>
         <source>Data type:</source>
         <comment>data view</comment>
-        <translation type="unfinished">数据类型：</translation>
+        <translation>数据类型：</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryitem.cpp" line="255"/>
         <source>Table:</source>
         <comment>data view tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>表：</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryitem.cpp" line="285"/>
         <source>Constraints:</source>
         <comment>data view tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>约束：</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryitem.cpp" line="398"/>
@@ -5021,32 +5021,32 @@ find next</source>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="72"/>
         <source>Copy</source>
-        <translation type="unfinished">复制</translation>
+        <translation>复制</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="73"/>
         <source>Copy as...</source>
-        <translation type="unfinished"></translation>
+        <translation>复制为...</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="74"/>
         <source>Paste</source>
-        <translation type="unfinished">粘贴</translation>
+        <translation>粘贴</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="75"/>
         <source>Paste as...</source>
-        <translation type="unfinished"></translation>
+        <translation>粘贴为...</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="76"/>
         <source>Set NULL values</source>
-        <translation type="unfinished"></translation>
+        <translation>设置为NULL</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="77"/>
         <source>Erase values</source>
-        <translation type="unfinished"></translation>
+        <translation>擦除</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="78"/>
@@ -5056,12 +5056,12 @@ find next</source>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="79"/>
         <source>Commit</source>
-        <translation type="unfinished"></translation>
+        <translation>提交</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="80"/>
         <source>Rollback</source>
-        <translation type="unfinished"></translation>
+        <translation>回滚</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="81"/>
@@ -5086,17 +5086,17 @@ find next</source>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="85"/>
         <source>Insert row</source>
-        <translation type="unfinished"></translation>
+        <translation>插入行</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="86"/>
         <source>Insert multiple rows</source>
-        <translation type="unfinished"></translation>
+        <translation>插入多行</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="87"/>
         <source>Delete selected row</source>
-        <translation type="unfinished"></translation>
+        <translation>删除已选行</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="256"/>
@@ -5106,7 +5106,7 @@ find next</source>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="510"/>
         <source>Edit value</source>
-        <translation type="unfinished"></translation>
+        <translation>编辑值</translation>
     </message>
 </context>
 <context>
@@ -5114,12 +5114,12 @@ find next</source>
     <message>
         <location filename="../datagrid/sqltablemodel.cpp" line="74"/>
         <source>Error while commiting new row: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>写入新行时发生了错误：%1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqltablemodel.cpp" line="132"/>
         <source>Error while deleting row from table %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>删除行时发生了错误 %1：%2</translation>
     </message>
 </context>
 <context>
@@ -5879,7 +5879,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
         <location filename="../dialogs/versionconvertsummarydialog.ui" line="14"/>
         <source>Database version convert</source>
-        <translation type="unfinished"></translation>
+        <translation>数据库版本转换</translation>
     </message>
     <message>
         <location filename="../dialogs/versionconvertsummarydialog.ui" line="20"/>
@@ -5912,12 +5912,12 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
         <location filename="../windows/viewwindow.ui" line="77"/>
         <source>Data</source>
-        <translation type="unfinished"></translation>
+        <translation>数据</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.ui" line="87"/>
         <source>Triggers</source>
-        <translation type="unfinished"></translation>
+        <translation>触发器</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.ui" line="119"/>
