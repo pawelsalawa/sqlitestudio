@@ -31,7 +31,7 @@ class QueryExecutorAddRowIds : public QueryExecutorStep
          * Finds columns representing ROWID for the \p table and adds them to result columns and to the context.
          */
         bool addResultColumns(SqliteSelect::Core* core, const SelectResolver::Table& table,
-                              QHash<SelectResolver::Table, QHash<QString, QString> >& rowIdColsMap, bool isTopSelect, bool hasStar);
+                              QHash<SelectResolver::Table, QHash<QString, QString> >& rowIdColsMap, bool isTopSelect);
 
         /**
          * @brief Adds the column to result columns list.
