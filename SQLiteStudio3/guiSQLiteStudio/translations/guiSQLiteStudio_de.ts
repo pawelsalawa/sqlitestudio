@@ -1246,12 +1246,12 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1326"/>
         <source>SQL editor font</source>
-        <translation>SQL Editor</translation>
+        <translation>Schriftart des SQL Editors</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1342"/>
         <source>Database list font</source>
-        <translation>Datenbankliste</translation>
+        <translation>Schriftart der Datenbankliste</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1358"/>
@@ -1261,12 +1261,12 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1374"/>
         <source>Data view font</source>
-        <translation>Ergebnisansicht</translation>
+        <translation>Schriftart der Ergebnisansicht</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1390"/>
         <source>Status field font</source>
-        <translation>Statusfeld</translation>
+        <translation>Schriftart des Statusfelds</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1448"/>
@@ -1391,120 +1391,120 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1835"/>
         <source>&lt;p&gt;Additional labels are those which tell you SQLite version, number of objects deeper in the tree, etc.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Zusätzliche Bezeichnungen sind solche, die z.B. die  SQLite Version oder die Anzahl an Einträgen in einer Baumliste usw. anzeigen.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1838"/>
         <source>Additional labels foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Vordergrundfarbe für zusätzliche Bezeichnungen</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1864"/>
         <source>Status field colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Farben des Statusfelds</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1870"/>
         <source>Information message foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Vordergrundfarbe für Infomeldungen</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1893"/>
         <source>Warning message foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Vordergrundfarbe für Warnmeldungen</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1916"/>
         <source>Error message foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Vordergrundfarbe für Fehlermeldungen</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="785"/>
         <source>Description:</source>
         <comment>plugin details</comment>
-        <translation type="unfinished"></translation>
+        <translation>Bezeichnung:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="786"/>
         <source>Category:</source>
         <comment>plugin details</comment>
-        <translation type="unfinished"></translation>
+        <translation>Kategorie:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="787"/>
         <source>Version:</source>
         <comment>plugin details</comment>
-        <translation type="unfinished"></translation>
+        <translation>Version:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="788"/>
         <source>Author:</source>
         <comment>plugin details</comment>
-        <translation type="unfinished"></translation>
+        <translation>Autor:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="790"/>
         <source>Internal name:</source>
         <comment>plugin details</comment>
-        <translation type="unfinished"></translation>
+        <translation>Interner Name:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="791"/>
         <source>Dependencies:</source>
         <comment>plugin details</comment>
-        <translation type="unfinished"></translation>
+        <translation>Abhängigkeiten:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="792"/>
         <source>Conflicts:</source>
         <comment>plugin details</comment>
-        <translation type="unfinished"></translation>
+        <translation>Konflikte:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="796"/>
         <source>Plugin details</source>
-        <translation type="unfinished"></translation>
+        <translation>Plugin Details</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="1202"/>
         <source>Plugins are loaded/unloaded immediately when checked/unchecked, but modified list of plugins to load at startup is not saved until you commit the whole configuration dialog.</source>
-        <translation type="unfinished"></translation>
+        <translation>Plugins werden direkt beim Aktivieren/Deaktivieren geladen bzw. entfernt, die modifizierte Pluginliste wird jedoch erst beim Bestätigen  und Schließen des Konfigurationsfensters gespeichert.</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="1266"/>
         <source>%1 (built-in)</source>
         <comment>plugins manager in configuration dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 (eingebaut)</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="1279"/>
         <source>Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Details</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="1291"/>
         <source>No plugins in this category.</source>
-        <translation type="unfinished"></translation>
+        <translation>Keine Plugins in dieser Kategorie.</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="1387"/>
         <source>Add new data type</source>
-        <translation type="unfinished"></translation>
+        <translation>Neuen Datentypen zufügen</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="1391"/>
         <source>Rename selected data type</source>
-        <translation type="unfinished"></translation>
+        <translation>Markierten Datentypen umbenennen</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="1395"/>
         <source>Delete selected data type</source>
-        <translation type="unfinished"></translation>
+        <translation>Markierten Datentypen löschen</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="1399"/>
         <source>Help for configuring data type editors</source>
-        <translation type="unfinished"></translation>
+        <translation>Hilfe zur Konfiguration des Datentypen Editors</translation>
     </message>
 </context>
 <context>
@@ -1512,27 +1512,27 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../constraints/constraintcheckpanel.ui" line="20"/>
         <source>The condition</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Zustand:</translation>
     </message>
     <message>
         <location filename="../constraints/constraintcheckpanel.ui" line="35"/>
         <source>Named constraint:</source>
-        <translation type="unfinished"></translation>
+        <translation>Benannte Bedingung:</translation>
     </message>
     <message>
         <location filename="../constraints/constraintcheckpanel.ui" line="51"/>
         <source>On conflict</source>
-        <translation type="unfinished"></translation>
+        <translation>Bei Konflikt</translation>
     </message>
     <message>
         <location filename="../constraints/constraintcheckpanel.cpp" line="46"/>
         <source>Enter a valid condition.</source>
-        <translation type="unfinished"></translation>
+        <translation>Geben Sie einen gültigen Zustand ein.</translation>
     </message>
     <message>
         <location filename="../constraints/constraintcheckpanel.cpp" line="47"/>
         <source>Enter a name of the constraint.</source>
-        <translation type="unfinished"></translation>
+        <translation>Geben Sie einen Namen für die Bedingung ein.</translation>
     </message>
 </context>
 <context>
@@ -1541,67 +1541,67 @@ but it&apos;s okay to use it.</source>
         <location filename="../dialogs/constraintdialog.cpp" line="62"/>
         <source>New constraint</source>
         <comment>constraint dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Neue Bedingung</translation>
     </message>
     <message>
         <location filename="../dialogs/constraintdialog.cpp" line="63"/>
         <source>Create</source>
         <comment>constraint dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Erstellen</translation>
     </message>
     <message>
         <location filename="../dialogs/constraintdialog.cpp" line="66"/>
         <source>Edit constraint</source>
         <comment>dialog window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Bedingung editieren</translation>
     </message>
     <message>
         <location filename="../dialogs/constraintdialog.cpp" line="67"/>
         <source>Apply</source>
         <comment>constraint dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Übernehmen</translation>
     </message>
     <message>
         <location filename="../dialogs/constraintdialog.cpp" line="170"/>
         <source>Primary key</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Primärer Schlüssel</translation>
     </message>
     <message>
         <location filename="../dialogs/constraintdialog.cpp" line="174"/>
         <source>Foreign key</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Fremdschlüssel</translation>
     </message>
     <message>
         <location filename="../dialogs/constraintdialog.cpp" line="178"/>
         <source>Unique</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Eindeutigkeit</translation>
     </message>
     <message>
         <location filename="../dialogs/constraintdialog.cpp" line="182"/>
         <source>Not NULL</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nicht NULL</translation>
     </message>
     <message>
         <location filename="../dialogs/constraintdialog.cpp" line="186"/>
         <source>Check</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Prüfung</translation>
     </message>
     <message>
         <location filename="../dialogs/constraintdialog.cpp" line="190"/>
         <source>Collate</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Kollation</translation>
     </message>
     <message>
         <location filename="../dialogs/constraintdialog.cpp" line="194"/>
         <source>Default</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Standard</translation>
     </message>
 </context>
 <context>
@@ -1610,37 +1610,37 @@ but it&apos;s okay to use it.</source>
         <location filename="../windows/constrainttabmodel.cpp" line="68"/>
         <source>Table</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Tabelle</translation>
     </message>
     <message>
         <location filename="../windows/constrainttabmodel.cpp" line="109"/>
         <source>Column (%1)</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Spalte (%1)</translation>
     </message>
     <message>
         <location filename="../windows/constrainttabmodel.cpp" line="153"/>
         <source>Scope</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Bereich</translation>
     </message>
     <message>
         <location filename="../windows/constrainttabmodel.cpp" line="155"/>
         <source>Type</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <location filename="../windows/constrainttabmodel.cpp" line="157"/>
         <source>Details</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Details</translation>
     </message>
     <message>
         <location filename="../windows/constrainttabmodel.cpp" line="159"/>
         <source>Name</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
 </context>
 <context>
@@ -1648,7 +1648,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/cssdebugdialog.ui" line="14"/>
         <source>SQLiteStudio CSS console</source>
-        <translation type="unfinished"></translation>
+        <translation>SQLiteStudio CSS Konsole</translation>
     </message>
 </context>
 <context>
@@ -1657,118 +1657,119 @@ but it&apos;s okay to use it.</source>
         <location filename="../dataview.cpp" line="98"/>
         <source>Filter data</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Daten filtern</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="107"/>
         <source>Grid view</source>
-        <translation type="unfinished"></translation>
+        <translation>Gitteransicht</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="108"/>
         <source>Form view</source>
-        <translation type="unfinished"></translation>
+        <translation>Formularansicht</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="165"/>
         <source>Refresh table data</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Aktualisiere Tabellendaten</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="179"/>
         <source>First page</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Erste Seite</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="180"/>
         <source>Previous page</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vorherige Seite</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="182"/>
         <source>Next page</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nächste Seite</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="183"/>
         <source>Last page</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Letzte Seite</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="188"/>
         <source>Apply filter</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Filter anwenden</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="203"/>
         <source>Commit changes for selected cells</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Änderungen für die selektierten Zellen speichern</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="204"/>
         <source>Rollback changes for selected cells</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Änderungen für die selektierten Zellen zurücknehmen</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="205"/>
         <source>Show grid view of results</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zeige Ergebnismenge in der Gitteransicht</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="206"/>
         <source>Show form view of results</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zeige Ergebnismenge in der Formularansicht</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="275"/>
         <source>Filter by text</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nach Text filtern</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="276"/>
         <source>Filter by the Regular Expression</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nach regulärem Ausdruck filtern</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="277"/>
         <source>Filter by SQL expression</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nach einem SQL Ausdruck filtern</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="308"/>
         <source>Tabs on top</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Reiterleiste oben</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="309"/>
         <source>Tabs at bottom</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Reiterleiste unten</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="555"/>
         <source>Total number of rows is being counted.
 Browsing other pages will be possible after the row counting is done.</source>
-        <translation type="unfinished"></translation>
+        <translation>Gesamtanzahl der Zeilen wird ermittelt.
+Das Aufrufen anderer Seiten ist erst nach Abschluss der Zählung möglich.</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="566"/>
         <source>Row: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeile: %1</translation>
     </message>
 </context>
 <context>
@@ -1776,97 +1777,97 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="14"/>
         <source>Convert database</source>
-        <translation type="unfinished"></translation>
+        <translation>Konvertiere Datenbank</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="20"/>
         <source>Source database</source>
-        <translation type="unfinished"></translation>
+        <translation>Quelldatenbank</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="29"/>
         <source>Source database version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Version der Quelldatenbank:</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="46"/>
         <source>Target database</source>
-        <translation type="unfinished"></translation>
+        <translation>Zieldatenbank</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="52"/>
         <source>Target version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Version der Zieldatenbank:</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="59"/>
         <source>This is the file that will be created as a result of the conversion.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dies ist die Datei, die durch die Konvertierung erzeut werden wird.</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="66"/>
         <source>Target file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zieldatei:</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="73"/>
         <source>Name of the new database:</source>
-        <translation type="unfinished"></translation>
+        <translation>Name der neuen Datenbank:</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.ui" line="90"/>
         <source>This is the name that the converted database will be added to SQLiteStudio with.</source>
-        <translation type="unfinished"></translation>
+        <translation>Mit diesem Namen wird die konvertierte Datenbank SQLiteStudio zugefügt werden.</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.cpp" line="123"/>
         <source>Select source database</source>
-        <translation type="unfinished"></translation>
+        <translation>Quelldatenbank auswählen</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.cpp" line="129"/>
         <source>Enter valid and writable file path.</source>
-        <translation type="unfinished"></translation>
+        <translation>Geben Sie einen gültigen und beschreibbaren Dateipfad ein.</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.cpp" line="131"/>
         <source>Entered file exists and will be overwritten.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die angegebene Datei existiert bereits und wird überschrieben werden.</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.cpp" line="135"/>
         <source>Enter a not empty, unique name (as in the list of databases on the left).</source>
-        <translation type="unfinished"></translation>
+        <translation>Geben Sie einen eindeutigen Namen an (so wie links in der Datenbankliste)</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.cpp" line="140"/>
         <source>No valid target dialect available. Conversion not possible.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es ist kein gültiger Zieldialekt verfügbar. Die Konvertierung kann nicht durchgeführt werden.</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.cpp" line="142"/>
         <source>Select valid target dialect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wählen Sie einen gültigen Zieldialekt aus.</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.cpp" line="194"/>
         <source>Database %1 has been successfully converted and now is available under new name: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbank %1 wurde erfolgreich konvertiert und ist verfügbar unter dem neuen Namen: %2</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.cpp" line="206"/>
         <source>SQL statements conversion</source>
-        <translation type="unfinished"></translation>
+        <translation>SQL Statements Konvertierung</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.cpp" line="214"/>
         <source>Following error occurred while converting SQL statements to the target SQLite version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Folgender Fehler ist aufgetreten, während der Konvertierung von SQL Statements in die Ziel-SQLite Version:</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.cpp" line="215"/>
         <source>Would you like to ignore those errors and proceed?</source>
-        <translation type="unfinished"></translation>
+        <translation>Möchten Sie diese Fehler ignorieren und fortfahren?</translation>
     </message>
 </context>
 <context>
