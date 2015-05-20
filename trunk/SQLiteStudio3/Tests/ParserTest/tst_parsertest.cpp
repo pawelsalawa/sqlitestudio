@@ -357,11 +357,6 @@ void ParserTest::testBigNum()
 
 void ParserTest::testUniqConflict()
 {
-    QString sql2 = "CREATE TABLE test (x NOT NULL ON CONFLICT IGNORE);";
-    parser3->parse(sql2);
-    SqliteQueryPtr qx = parser3->getQueries().first();
-    TokenList tx = qx->tokens;
-
     QString sql = "CREATE TABLE test (x UNIQUE ON CONFLICT FAIL);";
     bool res = parser3->parse(sql);
     QVERIFY(res);

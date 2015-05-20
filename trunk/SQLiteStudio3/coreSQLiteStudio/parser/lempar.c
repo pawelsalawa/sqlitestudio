@@ -717,7 +717,11 @@ static void yy_reduce(
       {
           tokens.clear();
           const char* fieldName = yyTokenName[yypParser->yystack[i].major];
-          if (parserContext->isManagedToken(yypParser->yystack[i].minor.yy0))
+
+          // Adding token being subject of this reduction. It's usually not includes in the inherited tokens,
+          // although if inheriting from simple statements, like "FAIL" or "ROLLBACK", this tends to be redundant with the inherited tokens.
+          // That's why we're checking if it's not contained in the inherited tokens and add it only then.
+          if (parserContext->isManagedToken(yypParser->yystack[i].minor.yy0) && !yypParser->yystack[i].tokens->contains(yypParser->yystack[i].minor.yy0))
               tokens += yypParser->yystack[i].minor.yy0;
 
           tokens += *(yypParser->yystack[i].tokens);
