@@ -1,11 +1,16 @@
 #!/bin/sh
 
+path=trunk
+if [ "$1" != "" ]; then
+    path=branches/$1
+fi
+
 OLDDIR=`pwd`
 
 TEMP=`mktemp -d`
 cd $TEMP
 
-svn co svn://sqlitestudio.pl/sqlitestudio3/trunk sqlitestudio
+svn co svn://sqlitestudio.pl/sqlitestudio3/$path sqlitestudio
 
 cd sqlitestudio
 rm -rf .svn
