@@ -1,6 +1,7 @@
 [3.0.7]
         * [ADDED]: #2875 Fixed font misconfiguration after Qt update.
         * [ADDED]: #2879 Fixed View updating after table modification, when view uses SELECT with table alias same as table name.
+        * [ADDED]: #2885 Fixed tokens parsing, causing random problems, such as incorrect formatting performed by the simple formatter.
 
 [3.0.6]
         * [ADDED]: #2740 Option to configure whether bottom dock area (with status field) should extend to left border, or should it leave space for database list.
