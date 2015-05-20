@@ -2,6 +2,7 @@
 #define TABLEMODIFIER_H
 
 #include "db/db.h"
+#include "selectresolver.h"
 #include "parser/ast/sqlitecreatetable.h"
 #include "parser/ast/sqliteupdate.h"
 #include "parser/ast/sqliteinsert.h"
@@ -9,6 +10,7 @@
 #include "parser/ast/sqlitecreateindex.h"
 #include "parser/ast/sqlitecreatetrigger.h"
 #include "parser/ast/sqlitecreateview.h"
+#include "common/strhash.h"
 
 class API_EXPORT TableModifier
 {
@@ -50,6 +52,8 @@ class API_EXPORT TableModifier
         SqliteUpdate* handleTriggerUpdate(SqliteUpdate* update, const QString& trigName, const QString& trigTable);
         SqliteInsert* handleTriggerInsert(SqliteInsert* insert, const QString& trigName, const QString& trigTable);
         SqliteDelete* handleTriggerDelete(SqliteDelete* del, const QString& trigName, const QString& trigTable);
+        StrHash<SelectResolver::Table> tablesAsNameHash(const QSet<SelectResolver::Table> &resolvedTables);
+        bool isTableAliasUsedForColumn(const TokenPtr& token, const StrHash<SelectResolver::Table>& resolvedTables, const QList<SqliteSelect::Core::SingleSource*>& selSources);
         bool handleSubSelects(SqliteStatement* stmt, const QString& trigTable);
         bool handleExprWithSelect(SqliteExpr* expr, const QString& trigTable);
         bool handleAllExprWithTrigTable(SqliteStatement* stmt, const QString& contextTable);

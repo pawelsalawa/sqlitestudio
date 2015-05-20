@@ -2,7 +2,6 @@
 #include "common/utils_sql.h"
 #include "parser/parser.h"
 #include "schemaresolver.h"
-#include "selectresolver.h"
 #include "parser/ast/sqlitecreateindex.h"
 #include "parser/ast/sqlitecreatetrigger.h"
 #include "parser/ast/sqlitecreateview.h"
@@ -530,17 +529,32 @@ SqliteQuery* TableModifier::handleTriggerQuery(SqliteQuery* query, const QString
 
 SqliteSelect* TableModifier::handleSelect(SqliteSelect* select, const QString& trigTable)
 {
+    SelectResolver selectResolver(db, select->detokenize());
+
     // Table name
-    TokenList tableTokens = select->getContextTableTokens(false);
-    foreach (TokenPtr token, tableTokens)
+    QList<SqliteSelect::Core::SingleSource*> selSources = select->getAllTypedStatements<SqliteSelect::Core::SingleSource>();
+    TokenList tableTokens;
+    StrHash<SelectResolver::Table> resolvedTables;
+    for (SqliteSelect::Core* core : select->coreSelects)
     {
-        if (token->value.compare(originalTable, Qt::CaseInsensitive) == 0)
+        resolvedTables = tablesAsNameHash(selectResolver.resolveTables(core));
+
+        tableTokens = core->getContextTableTokens(false);
+        foreach (TokenPtr token, tableTokens)
+        {
+            if (token->value.compare(originalTable, Qt::CaseInsensitive) != 0)
+                continue;
+
+            // Check if that table name is the same as its alias name, so we use alias name and we don't rename it here, cause it's alias, not table
+            if (isTableAliasUsedForColumn(token, resolvedTables, selSources))
+                continue;
+
             token->value = newName;
+        }
     }
 
     // Column names
     TokenList columnTokens = select->getContextColumnTokens(false);
-    SelectResolver selectResolver(db, select->detokenize());
     QList<SelectResolver::Column> columns = selectResolver.translateToColumns(select, columnTokens);
 
     TokenList columnTokensToChange;
@@ -575,6 +589,41 @@ SqliteSelect* TableModifier::handleSelect(SqliteSelect* select, const QString& t
         return nullptr;
 
     return new SqliteSelect(*selectPtr.data());
+}
+
+StrHash<SelectResolver::Table> TableModifier::tablesAsNameHash(const QSet<SelectResolver::Table>& resolvedTables)
+{
+    StrHash<SelectResolver::Table> result;
+    for (const SelectResolver::Table& tab : resolvedTables)
+        result[tab.table] = tab;
+
+    return result;
+}
+
+bool TableModifier::isTableAliasUsedForColumn(const TokenPtr &token, const StrHash<SelectResolver::Table> &resolvedTables, const QList<SqliteSelect::Core::SingleSource *> &selSources)
+{
+    // If we don't have the table token on the list of resolved select tables, we don't consider it as aliased
+    if (!resolvedTables.contains(token->value, Qt::CaseInsensitive))
+    {
+        qWarning() << "Table" << token->value << "in table tokens processed by TableModifier, but not in resolved SELECT tables.";
+        return false;
+    }
+
+    SelectResolver::Table table = resolvedTables.value(token->value, Qt::CaseInsensitive);
+    if (table.alias.isNull())
+        return false;
+
+    if (table.alias.compare(token->value), Qt::CaseInsensitive != 0)
+        return false;
+
+    // If the table token is mentioned in FROM clause, it's not a subject for aliased usage, cuase it defines alias, not uses it.
+    for (SqliteSelect::Core::SingleSource* src : selSources)
+    {
+        if (src->tokens.contains(token))
+            return false;
+    }
+
+    return true;
 }
 
 SqliteUpdate* TableModifier::handleTriggerUpdate(SqliteUpdate* update, const QString& trigName, const QString& trigTable)
