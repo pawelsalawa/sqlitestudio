@@ -20,6 +20,7 @@ class ParserTest : public QObject
         Parser* parser3 = nullptr;
 
     private Q_SLOTS:
+        void testUniqConflict();
         void testGetTableTokens();
         void testGetTableTokens2();
         void testGetDatabaseTokens();
@@ -352,6 +353,21 @@ void ParserTest::testBigNum()
     QString sql = "SELECT ( col - 73016000000 ) FROM tab";
     bool res = parser3->parse(sql);
     QVERIFY(res);
+}
+
+void ParserTest::testUniqConflict()
+{
+    QString sql2 = "CREATE TABLE test (x NOT NULL ON CONFLICT IGNORE);";
+    parser3->parse(sql2);
+    SqliteQueryPtr qx = parser3->getQueries().first();
+    TokenList tx = qx->tokens;
+
+    QString sql = "CREATE TABLE test (x UNIQUE ON CONFLICT FAIL);";
+    bool res = parser3->parse(sql);
+    QVERIFY(res);
+    SqliteQueryPtr q = parser3->getQueries().first();
+    TokenList tokens = q->tokens;
+    QVERIFY(tokens[16]->type == Token::Type::PAR_RIGHT);
 }
 
 void ParserTest::initTestCase()
