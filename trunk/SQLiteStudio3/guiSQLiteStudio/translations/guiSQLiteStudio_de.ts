@@ -1271,7 +1271,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1448"/>
         <source>SQL editor colors</source>
-        <translation>SQL Editor</translation>
+        <translation>Farben des SQL Editors</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1454"/>
@@ -1291,102 +1291,102 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1567"/>
         <source>&lt;p&gt;Bind parameters are placeholders for values yet to be provided by the user. They have one of the forms:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;:param_name&lt;/li&gt;&lt;li&gt;$param_name&lt;/li&gt;&lt;li&gt;@param_name&lt;/li&gt;&lt;li&gt;?&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Bind Parameter sind Platzhalter für Werte, die der Anwender eingibt. Sie haben dabei eine der folgenden Formen:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;:param_name&lt;/li&gt;&lt;li&gt;$param_name&lt;/li&gt;&lt;li&gt;@param_name&lt;/li&gt;&lt;li&gt;?&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1570"/>
         <source>Bind parameter foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Vordergrundfarbe von Bind Parametern</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1593"/>
         <source>Highlighted parenthesis background</source>
-        <translation type="unfinished"></translation>
+        <translation>Hintergrundfarbe von hervorgehobener Klammern</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1600"/>
         <source>&lt;p&gt;BLOB values are binary values represented as hexadecimal numbers, like:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;X&apos;12B4&apos;&lt;/li&gt;&lt;li&gt;x&apos;46A2F4&apos;&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;BLOB Werte sind hexadezimale Werte wie z.B.:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;X&apos;12B4&apos;&lt;/li&gt;&lt;li&gt;x&apos;46A2F4&apos;&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1603"/>
         <source>BLOB value foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Vordergrundfarbe von BLOB Werten</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1610"/>
         <source>Regular foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Reguläre Vordergrundfarbe</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1617"/>
         <source>Line numbers area background</source>
-        <translation type="unfinished"></translation>
+        <translation>Hintergrundfarbe der Zeilennummernleiste</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1640"/>
         <source>Keyword foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Vordergrundfarbe von Schlüsselwörtern</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1647"/>
         <source>Number foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Vordergrundfarbe von Ziffern</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1654"/>
         <source>Comment foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Vordergrundfarbe von Kommentaren</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1693"/>
         <source>&lt;p&gt;Valid objects are name of tables, indexes, triggers, or views that exist in the SQLite database.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Gültige Objekte sind Namen von Tabellen, Indizes, Triggern oder Views die in der SQLite Datenbank existieren.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1696"/>
         <source>Valid objects foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Vordergrundfarbe von gültigen Objekten</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1722"/>
         <source>Data view colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Farben der Ergebnisansicht</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1728"/>
         <source>&lt;p&gt;Any data changes will be outlined with this color, until they&apos;re commited to the database.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Jede Datenänderung wird mit dieser Farbe kenntlich gemacht, bis die geänderten Daten in die Datenbank zurückgeschrieben worden sind.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1731"/>
         <source>Uncommited data outline color</source>
-        <translation type="unfinished"></translation>
+        <translation>Rahmenfarbe von nicht gespeicherten Daten</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1754"/>
         <source>&lt;p&gt;In case of error while commiting data changes, the problematic cell will be outlined with this color.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Tritt beim Speichern einer Änderung ein Problem auf, dann wird die problematische Zelle mit dieser Farbe markiert.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1757"/>
         <source>Commit error outline color</source>
-        <translation type="unfinished"></translation>
+        <translation>Rahmenfarbe für fehlerhafte Daten</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1780"/>
         <source>NULL value foreground</source>
-        <translation type="unfinished"></translation>
+        <translation>Vordergrundfarbe für NULL Werte</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1803"/>
         <source>Deleted row background</source>
-        <translation type="unfinished"></translation>
+        <translation>Hintergrundfarbe von gelöschten Zeilen</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1829"/>
         <source>Database list colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Farben der Datenbankliste</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1835"/>
