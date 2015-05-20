@@ -59,16 +59,6 @@ QHash<SelectResolver::Table,QHash<QString,QString>> QueryExecutorAddRowIds::addR
             return rowIdColsMap;
     }
 
-    bool hasStar = false;
-    for (SqliteSelect::Core::ResultColumn* resCol : core->resultColumns)
-    {
-        if (resCol->star)
-        {
-            hasStar = true;
-            break;
-        }
-    }
-
     // Getting all tables we need to get ROWID for
     SelectResolver resolver(db, select->tokens.detokenize(), context->dbNameToAttach);
     resolver.resolveMultiCore = false; // multicore subselects result in not editable columns, skip them
@@ -79,7 +69,7 @@ QHash<SelectResolver::Table,QHash<QString,QString>> QueryExecutorAddRowIds::addR
         if (table.flags & (SelectResolver::FROM_COMPOUND_SELECT | SelectResolver::FROM_DISTINCT_SELECT | SelectResolver::FROM_GROUPED_SELECT))
             continue; // we don't get ROWID from compound, distinct or aggregated subselects
 
-        if (!addResultColumns(core, table, rowIdColsMap, isTopSelect, hasStar))
+        if (!addResultColumns(core, table, rowIdColsMap, isTopSelect))
         {
             ok = false;
             return rowIdColsMap;
@@ -156,7 +146,7 @@ QHash<QString,QString> QueryExecutorAddRowIds::getNextColNames(const SelectResol
 }
 
 bool QueryExecutorAddRowIds::addResultColumns(SqliteSelect::Core* core, const SelectResolver::Table& table,
-                                        QHash<SelectResolver::Table,QHash<QString,QString>>& rowIdColsMap, bool isTopSelect, bool hasStar)
+                                        QHash<SelectResolver::Table,QHash<QString,QString>>& rowIdColsMap, bool isTopSelect)
 {
     QHash<QString, QString> executorToRealColumns;
     bool aliasOnlyAsSelectColumn = false;
