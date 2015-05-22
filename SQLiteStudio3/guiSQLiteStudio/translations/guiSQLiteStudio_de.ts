@@ -1875,109 +1875,109 @@ Das Aufrufen anderer Seiten ist erst nach Abschluss der Zählung möglich.</tran
     <message>
         <location filename="../dialogs/dbdialog.ui" line="20"/>
         <source>Database</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbank</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="26"/>
         <source>Database type</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbanktyp</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="32"/>
         <source>Database driver</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbanktreiber</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="95"/>
         <source>Generate automatically</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatisch generieren</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="108"/>
         <source>Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Optionen</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="117"/>
         <source>Permanent (keep it in configuration)</source>
-        <translation type="unfinished"></translation>
+        <translation>Permanent (in der Konfiguration behalten)</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="161"/>
         <source>Test connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbindung testen</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="51"/>
         <source>Create new database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Neue Datenbank erzeugen</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="42"/>
         <location filename="../dialogs/dbdialog.cpp" line="149"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="79"/>
         <source>Name (on the list)</source>
-        <translation type="unfinished"></translation>
+        <translation>Name (in der Liste)</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="92"/>
         <source>Generate name basing on file path</source>
-        <translation type="unfinished"></translation>
+        <translation>Leitet den Namen vom Dateipfad ab</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="114"/>
         <source>&lt;p&gt;Enable this if you want the database to be stored in configuration file and restored every time SQLiteStudio is started.&lt;/p&gt;</source>
         <extracomment>aasfd</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Wenn diese Option aktiviert ist, wird die Datenbank in der Konfiguration gespeichert und bei jedem Start von SQLiteStudio wieder hergestellt.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="150"/>
         <source>Browse for existing database file on local computer</source>
-        <translation type="unfinished"></translation>
+        <translation>Lokalen Computer nach Datenbankdateien durchsuchen</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="283"/>
         <source>Browse</source>
-        <translation type="unfinished"></translation>
+        <translation>Durchsuchen</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="483"/>
         <source>Enter an unique database name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Geben Sie einen eindeutigen Datenbanknamen ein.</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="492"/>
         <source>This name is already in use. Please enter unique name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Name wird bereits benutzt, bitte geben Sie einen freien, eindeutigen Namen ein.</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="500"/>
         <source>Enter a database file path.</source>
-        <translation type="unfinished"></translation>
+        <translation>Geben Sie einen Dateipfad für die Datenbank ein.</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="507"/>
         <source>This database is already on the list under name: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Datenbank ist bereits unter folgendem Namen in der Liste enthalten: %1</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="523"/>
         <source>Select a database type.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wählen Sie einen Datebanktypen aus.</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="580"/>
         <source>Auto-generated</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatisch generiert</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="585"/>
         <source>Type the name</source>
-        <translation type="unfinished"></translation>
+        <translation>Geben Sie den Namen ein</translation>
     </message>
 </context>
 <context>
@@ -1985,47 +1985,47 @@ Das Aufrufen anderer Seiten ist erst nach Abschluss der Zählung möglich.</tran
     <message>
         <location filename="../dbobjectdialogs.cpp" line="174"/>
         <source>Delete table</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabelle löschen</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="175"/>
         <source>Are you sure you want to delete table %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>Sind Sie sicher, dass Sie die Tabelle %1 löschen möchten?</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="179"/>
         <source>Delete index</source>
-        <translation type="unfinished"></translation>
+        <translation>Index löschen</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="180"/>
         <source>Are you sure you want to delete index %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>Sind Sie sicher, dass Sie den Index %1 löschen möchten?</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="184"/>
         <source>Delete trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Trigger löschen</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="185"/>
         <source>Are you sure you want to delete trigger %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>Sind Sie sicher, dass Sie den Trigger %1 löschen möchten?</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="189"/>
         <source>Delete view</source>
-        <translation type="unfinished"></translation>
+        <translation>View löschen</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="190"/>
         <source>Are you sure you want to delete view %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>Sind Sie sicher, dass Sie den View %1 löschen möchten?</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="218"/>
         <source>Error while dropping %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Löschen: %1 %2</translation>
     </message>
 </context>
 <context>
@@ -2033,202 +2033,203 @@ Das Aufrufen anderer Seiten ist erst nach Abschluss der Zählung möglich.</tran
     <message>
         <location filename="../dbtree/dbtree.ui" line="23"/>
         <source>Databases</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbanken</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.ui" line="73"/>
         <source>Filter by name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nach Name filtern</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="102"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopieren</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="103"/>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Einfügen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="104"/>
         <source>Select all</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle selektieren</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="105"/>
         <source>Create a group</source>
-        <translation type="unfinished"></translation>
+        <translation>Gruppe erstellen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="106"/>
         <source>Delete the group</source>
-        <translation type="unfinished"></translation>
+        <translation>Diese Gruppe löschen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="107"/>
         <source>Rename the group</source>
-        <translation type="unfinished"></translation>
+        <translation>Gruppe umbenennen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="108"/>
         <source>Add a database</source>
-        <translation type="unfinished">Datenbank öffnen</translation>
+        <translation>Datenbank hinzufügen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="109"/>
         <source>Edit the database</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbank editieren</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="110"/>
         <source>Remove the database</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbank entfernen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="111"/>
         <source>Connect to the database</source>
-        <translation type="unfinished"></translation>
+        <translation>Mit der Datenbank verbinden</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="112"/>
         <source>Disconnect from the database</source>
-        <translation type="unfinished"></translation>
+        <translation>Verbindung zur Datenbank trennen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="113"/>
         <source>Import</source>
-        <translation type="unfinished"></translation>
+        <translation>Import</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="114"/>
         <source>Export the database</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbank exportieren</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="115"/>
         <source>Convert database type</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbanktyp konvertieren</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="116"/>
         <source>Vacuum</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>???</translatorcomment>
+        <translation>Vakuum</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="117"/>
         <source>Integrity check</source>
-        <translation type="unfinished"></translation>
+        <translation>Integritätsprüfung</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="118"/>
         <source>Create a table</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabelle erstellen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="119"/>
         <source>Edit the table</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbank editieren</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="120"/>
         <source>Delete the table</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabelle löschen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="121"/>
         <source>Export the table</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabelle exportieren</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="122"/>
         <source>Import into the table</source>
-        <translation type="unfinished"></translation>
+        <translation>In die Tabelle importieren</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="123"/>
         <source>Populate table</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabelle füllen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="124"/>
         <source>Create similar table</source>
-        <translation type="unfinished"></translation>
+        <translation>Erzeuge identische Tabelle</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="125"/>
         <source>Reset autoincrement sequence</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatischen Zähler zurücksetzen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="126"/>
         <source>Create an index</source>
-        <translation type="unfinished"></translation>
+        <translation>Index erstellen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="127"/>
         <source>Edit the index</source>
-        <translation type="unfinished"></translation>
+        <translation>Index editieren</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="128"/>
         <source>Delete the index</source>
-        <translation type="unfinished"></translation>
+        <translation>Index löschen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="129"/>
         <source>Create a trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Trigger erstellen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="130"/>
         <source>Edit the trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Trigger editieren</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="131"/>
         <source>Delete the trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Trigger löschen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="132"/>
         <source>Create a view</source>
-        <translation type="unfinished"></translation>
+        <translation>View erstellen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="133"/>
         <source>Edit the view</source>
-        <translation type="unfinished"></translation>
+        <translation>View editieren</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="134"/>
         <source>Delete the view</source>
-        <translation type="unfinished"></translation>
+        <translation>View löschen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="135"/>
         <source>Add a column</source>
-        <translation type="unfinished"></translation>
+        <translation>Spalte zufügen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="136"/>
         <source>Edit the column</source>
-        <translation type="unfinished"></translation>
+        <translation>Spalte editieren</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="137"/>
         <source>Delete the column</source>
-        <translation type="unfinished"></translation>
+        <translation>Spalte löschen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="138"/>
         <source>Delete selected items</source>
-        <translation type="unfinished"></translation>
+        <translation>Gewählte Einträge löschen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="139"/>
         <source>Clear filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter zurücksetzen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="140"/>
