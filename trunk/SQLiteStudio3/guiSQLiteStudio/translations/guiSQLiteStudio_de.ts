@@ -2251,23 +2251,23 @@ Das Aufrufen anderer Seiten ist erst nach Abschluss der Zählung möglich.</tran
         <location filename="../dbtree/dbtree.cpp" line="312"/>
         <location filename="../dbtree/dbtree.cpp" line="317"/>
         <source>Database</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbank</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="327"/>
         <source>Grouping</source>
-        <translation type="unfinished"></translation>
+        <translation>Gruppieren</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="937"/>
         <location filename="../dbtree/dbtree.cpp" line="940"/>
         <source>Create group</source>
-        <translation type="unfinished"></translation>
+        <translation>Gruppe erstellen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="937"/>
         <source>Group name</source>
-        <translation type="unfinished"></translation>
+        <translation>Gruppenname</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="940"/>
@@ -2277,7 +2277,7 @@ Das Aufrufen anderer Seiten ist erst nach Abschluss der Zählung möglich.</tran
     <message>
         <location filename="../dbtree/dbtree.cpp" line="958"/>
         <source>Delete group</source>
-        <translation type="unfinished"></translation>
+        <translation>Gruppe löschen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="959"/>
@@ -2293,7 +2293,7 @@ All objects from this group will be moved to parent group.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1019"/>
         <source>Are you sure you want to delete database &apos;%1&apos;?</source>
-        <translation type="unfinished"></translation>
+        <translation>Sind sie sich sicher, das Sie die Datenbank &apos;%1&apos; löschen möchten?</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1055"/>
@@ -2305,42 +2305,42 @@ All objects from this group will be moved to parent group.</source>
         <location filename="../dbtree/dbtree.cpp" line="1075"/>
         <location filename="../dbtree/dbtree.cpp" line="1240"/>
         <source>Cannot export, because no export plugin is loaded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Export fehlgeschlagen, da keine Export Plugins geladen sind.</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1339"/>
         <source>Error while executing VACUUM on the database %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim ausführen des VACUUM-Befehls auf die Datenbank %1: %2</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1341"/>
         <source>VACUUM execution finished successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>VACUUM erfolgreich abgeschlossen.</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1358"/>
         <source>Integrity check (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Integritätsprüfung (%1)</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1395"/>
         <source>Reset autoincrement</source>
-        <translation type="unfinished"></translation>
+        <translation>Autoincrement zurücksetzen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1395"/>
         <source>Are you sure you want to reset autoincrement value for table &apos;%1&apos;?</source>
-        <translation type="unfinished"></translation>
+        <translation>Sind Sie sich sicher, das Sie den Autoincrement Wert für die Tabelle &apos;%1&apos; zurücksetzen möchten?</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1402"/>
         <source>An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Ein Fehler ist aufgetreten beim Zurücksetzen des Autoincrementwertes für die Tabelle &apos;%1&apos;: %2</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1404"/>
         <source>Autoincrement value for table &apos;%1&apos; has been reset successfly.</source>
-        <translation type="unfinished"></translation>
+        <translation>Autoincrementwert für die Tabelle &apos;%1&apos; wurde erfolgreich zurückgesetzt.</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1421"/>
@@ -2360,12 +2360,12 @@ All objects from this group will be moved to parent group.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1535"/>
         <source>Following objects will be deleted: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Folgende Objekte werden gelöscht: %1.</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1538"/>
         <source>Following databases will be removed from list: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Folgende Datenbanken werden aus der Liste entfernt: %1.</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1541"/>
@@ -2375,12 +2375,12 @@ All objects from this group will be moved to parent group.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1543"/>
         <source>%1&lt;br&gt;&lt;br&gt;Are you sure you want to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1&lt;br&gt;&lt;br&gt;Sind Sie sich sicher, das sie fortfahren möchten?</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1545"/>
         <source>Delete objects</source>
-        <translation type="unfinished"></translation>
+        <translation>Objekte löschen</translation>
     </message>
 </context>
 <context>
@@ -2389,25 +2389,25 @@ All objects from this group will be moved to parent group.</source>
         <location filename="../dbtree/dbtreeitemdelegate.cpp" line="92"/>
         <source>error</source>
         <comment>dbtree labels</comment>
-        <translation type="unfinished"></translation>
+        <translation>Fehler</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreeitemdelegate.cpp" line="109"/>
         <source>(system table)</source>
         <comment>database tree label</comment>
-        <translation type="unfinished"></translation>
+        <translation>(Systemtabelle)</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreeitemdelegate.cpp" line="127"/>
         <source>(virtual)</source>
         <comment>virtual table label</comment>
-        <translation type="unfinished"></translation>
+        <translation>(Virtual)</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreeitemdelegate.cpp" line="139"/>
         <source>(system index)</source>
         <comment>database tree label</comment>
-        <translation type="unfinished"></translation>
+        <translation>(Systemindex)</translation>
     </message>
 </context>
 <context>
@@ -2416,65 +2416,65 @@ All objects from this group will be moved to parent group.</source>
         <location filename="../dbtree/dbtreemodel.cpp" line="422"/>
         <source>Database: %1</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Datenbank: %1</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="427"/>
         <source>Version:</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Version:</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="430"/>
         <source>File size:</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Dateigröße:</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="433"/>
         <source>Encoding:</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Kodierung:</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="438"/>
         <source>Error:</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Fehlerbeschreibung:</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="448"/>
         <source>Table : %1</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Tabelle: %1</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="471"/>
         <source>Columns (%1):</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Spalten (%1)</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="474"/>
         <source>Indexes (%1):</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Indizes (%1)</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="477"/>
         <source>Triggers (%1):</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Trigger (%1)</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1092"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopieren</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1093"/>
         <source>Move</source>
-        <translation type="unfinished"></translation>
+        <translation>Verschieben</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1095"/>
@@ -2494,7 +2494,7 @@ All objects from this group will be moved to parent group.</source>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1099"/>
         <source>Abort</source>
-        <translation type="unfinished"></translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1175"/>
@@ -2510,7 +2510,7 @@ All objects from this group will be moved to parent group.</source>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1185"/>
         <source>Name conflict</source>
-        <translation type="unfinished"></translation>
+        <translation>Namenskonflikt</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1186"/>
@@ -2564,7 +2564,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/ddlpreviewdialog.ui" line="42"/>
         <source>Don&apos;t show again</source>
-        <translation type="unfinished"></translation>
+        <translation>Nicht wieder anzeigen</translation>
     </message>
 </context>
 <context>
@@ -2572,7 +2572,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../debugconsole.ui" line="14"/>
         <source>SQLiteStudio Debug Console</source>
-        <translation type="unfinished"></translation>
+        <translation>SQLiteStudio Debug Konsole</translation>
     </message>
 </context>
 <context>
@@ -2580,12 +2580,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/editorwindow.ui" line="42"/>
         <source>Query</source>
-        <translation type="unfinished"></translation>
+        <translation>Abfrage</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.ui" line="112"/>
         <source>History</source>
-        <translation type="unfinished"></translation>
+        <translation>Verlauf</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="137"/>
@@ -2616,7 +2616,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/editorwindow.cpp" line="365"/>
         <source>Explain query</source>
-        <translation type="unfinished"></translation>
+        <translation>Abfrage ausführen (explain)</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="368"/>
@@ -2634,29 +2634,29 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../windows/editorwindow.cpp" line="372"/>
         <source>Create view from query</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>View aus der Abfrage erstellen</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="382"/>
         <source>Previous database</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorherige Datenbank</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="383"/>
         <source>Next database</source>
-        <translation type="unfinished"></translation>
+        <translation>Nächste Datenbank</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="386"/>
         <source>Show next tab</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nächsten Reiter zeigen</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="387"/>
         <source>Show previous tab</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vorherigen Reiter zeigen</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="388"/>
@@ -2673,17 +2673,17 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/editorwindow.cpp" line="463"/>
         <source>Active database (%1/%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktive Datenbank (%1/%2)</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="503"/>
         <source>Query finished in %1 second(s). Rows affected: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Abfrage in %1 Sekunde(n) abgeschlossen. %2 Zeile(n) betroffen</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="507"/>
         <source>Query finished in %1 second(s).</source>
-        <translation type="unfinished"></translation>
+        <translation>Abfrage in %1 Sekunde(n) abgeschlossen.</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="609"/>
@@ -2716,17 +2716,17 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/errorsconfirmdialog.ui" line="14"/>
         <source>Errors</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler</translation>
     </message>
     <message>
         <location filename="../dialogs/errorsconfirmdialog.ui" line="20"/>
         <source>Following errors occured:</source>
-        <translation type="unfinished"></translation>
+        <translation>Folgende Fehler sind aufgetreten:</translation>
     </message>
     <message>
         <location filename="../dialogs/errorsconfirmdialog.ui" line="34"/>
         <source>Would you like to proceed?</source>
-        <translation type="unfinished"></translation>
+        <translation>Möchten Sie fortsetzen?</translation>
     </message>
 </context>
 <context>
@@ -2946,7 +2946,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../common/fontedit.cpp" line="61"/>
         <source>Choose font</source>
         <comment>font configuration</comment>
-        <translation type="unfinished"></translation>
+        <translation>Schriftart auswählen</translation>
     </message>
 </context>
 <context>
@@ -2954,7 +2954,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../forms/sqlformatterplugin.ui" line="20"/>
         <source>Active SQL formatter plugin</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aktives SQL Formatierungsplugin</translation>
     </message>
 </context>
 <context>
@@ -2975,37 +2975,37 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../formview.cpp" line="243"/>
         <source>First row</source>
         <comment>form view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Erste Zeile</translation>
     </message>
     <message>
         <location filename="../formview.cpp" line="244"/>
         <source>Previous row</source>
         <comment>form view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vorherige Zeile</translation>
     </message>
     <message>
         <location filename="../formview.cpp" line="245"/>
         <source>Next row</source>
         <comment>form view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nächste Zeile</translation>
     </message>
     <message>
         <location filename="../formview.cpp" line="246"/>
         <source>Last row</source>
         <comment>form view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Letzte Zeile</translation>
     </message>
     <message>
         <location filename="../formview.cpp" line="247"/>
         <source>Insert new row</source>
         <comment>form view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Neue Zeile einfügen</translation>
     </message>
     <message>
         <location filename="../formview.cpp" line="248"/>
         <source>Delete current row</source>
         <comment>form view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Derzeitige Zeile löschen</translation>
     </message>
 </context>
 <context>
@@ -3018,7 +3018,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/functionseditor.ui" line="260"/>
         <source>Function name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Funktionsname:</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="273"/>
@@ -3028,7 +3028,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/functionseditor.ui" line="253"/>
         <source>Type:</source>
-        <translation type="unfinished"></translation>
+        <translation>Typ:</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="157"/>
@@ -3038,12 +3038,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/functionseditor.ui" line="163"/>
         <source>Undefined</source>
-        <translation type="unfinished"></translation>
+        <translation>Undefiniert</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="205"/>
         <source>Databases</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbanken</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="211"/>
@@ -3074,7 +3074,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/functionseditor.cpp" line="54"/>
         <source>SQL function editor</source>
-        <translation type="unfinished"></translation>
+        <translation>SQL Funktionseditor</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="59"/>
@@ -3089,12 +3089,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/functionseditor.cpp" line="62"/>
         <source>Create new function</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Neue Funktion erstellen</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="63"/>
         <source>Delete selected function</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ausgewählte Funktion löschen</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="65"/>
@@ -3173,7 +3173,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/importdialog.ui" line="14"/>
         <source>Import data</source>
-        <translation type="unfinished"></translation>
+        <translation>Daten importieren</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="21"/>
@@ -3183,12 +3183,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/importdialog.ui" line="36"/>
         <source>Table</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabelle</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="43"/>
         <source>Database</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbank</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="84"/>
@@ -3203,7 +3203,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/importdialog.ui" line="141"/>
         <source>Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Optionen</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="182"/>
@@ -3233,7 +3233,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/importdialog.cpp" line="71"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="102"/>
@@ -3243,12 +3243,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/importdialog.cpp" line="102"/>
         <source>Enter the table name</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbankname eingeben</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="120"/>
         <source>Select import plugin.</source>
-        <translation type="unfinished"></translation>
+        <translation>Importplugin auswählen</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="129"/>
@@ -3258,7 +3258,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/importdialog.cpp" line="136"/>
         <source>The file &apos;%1&apos; does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Datei &apos;%1&apos; existiert nicht.</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="142"/>
@@ -3277,7 +3277,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../dialogs/indexdialog.ui" line="20"/>
         <location filename="../dialogs/indexdialog.ui" line="30"/>
         <source>Index</source>
-        <translation type="unfinished"></translation>
+        <translation>Index</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="36"/>
@@ -3287,7 +3287,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/indexdialog.ui" line="43"/>
         <source>Index name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Indexname:</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="50"/>
@@ -3297,27 +3297,27 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/indexdialog.ui" line="67"/>
         <source>Unique index</source>
-        <translation type="unfinished"></translation>
+        <translation>Einzigartiger Index</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="90"/>
         <source>Column</source>
-        <translation type="unfinished"></translation>
+        <translation>Spalte</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="95"/>
         <source>Collation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kollation</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="100"/>
         <source>Sort</source>
-        <translation type="unfinished"></translation>
+        <translation>Sortierung</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="115"/>
         <source>DDL</source>
-        <translation type="unfinished"></translation>
+        <translation>DDL</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="65"/>
@@ -3332,12 +3332,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="185"/>
         <source>Pick the table for the index.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabelle für den Index auswählen.</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="186"/>
         <source>Select at least one column.</source>
-        <translation type="unfinished"></translation>
+        <translation>Mindestens eine Spalte auswählen.</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="187"/>
@@ -3361,7 +3361,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../dialogs/indexdialog.cpp" line="466"/>
         <source>Error</source>
         <comment>index dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Fehler</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="454"/>
@@ -3380,12 +3380,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/languagedialog.ui" line="14"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprache</translation>
     </message>
     <message>
         <location filename="../dialogs/languagedialog.ui" line="20"/>
         <source>Please choose language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte Sprache auswählen:</translation>
     </message>
 </context>
 <context>
@@ -3393,12 +3393,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.ui" line="81"/>
         <source>Database toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbankleiste</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="92"/>
         <source>Structure toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Bearbeitungsleiste</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="103"/>
@@ -3408,12 +3408,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.ui" line="120"/>
         <source>Window list</source>
-        <translation type="unfinished"></translation>
+        <translation>Fensterliste</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="134"/>
         <source>View toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Ansichtenleiste</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="107"/>
@@ -3448,7 +3448,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="254"/>
         <source>Open SQL editor</source>
-        <translation type="unfinished"></translation>
+        <translation>SQL Editor öffnen</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="255"/>
@@ -3458,7 +3458,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="256"/>
         <source>Open SQL functions editor</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="257"/>
@@ -3468,17 +3468,17 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="258"/>
         <source>Import</source>
-        <translation type="unfinished"></translation>
+        <translation>Importieren</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="259"/>
         <source>Export</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportieren</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="261"/>
         <source>Open configuration dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Einstellungen</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="263"/>
@@ -3503,47 +3503,47 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="267"/>
         <source>Next window</source>
-        <translation type="unfinished"></translation>
+        <translation>Nächstes Fenster</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="268"/>
         <source>Previous window</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorheriges Fenster</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="269"/>
         <source>Hide status field</source>
-        <translation type="unfinished"></translation>
+        <translation>Statusfeld verbergen</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="271"/>
         <source>Close selected window</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausgewähltes Fenster schließen</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="272"/>
         <source>Close all windows but selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle anderen Fenster schließen</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="273"/>
         <source>Close all windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Fenster schließen</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="274"/>
         <source>Restore recently closed window</source>
-        <translation type="unfinished"></translation>
+        <translation>Zuletzt geöffnetes Fenster wiederherstellen</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="275"/>
         <source>Rename selected window</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausgewähltes Fenster umbenennen</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="277"/>
         <source>Open Debug Console</source>
-        <translation type="unfinished"></translation>
+        <translation>Debug Konsole öffnen</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="278"/>
@@ -3553,7 +3553,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="279"/>
         <source>Report a bug</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler melden</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="280"/>
@@ -3563,48 +3563,48 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="281"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Über SQLiteStudio</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="282"/>
         <source>Licenses</source>
-        <translation type="unfinished"></translation>
+        <translation>Lizenzen</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="283"/>
         <source>Open home page</source>
-        <translation type="unfinished"></translation>
+        <translation>Homepage aufrufen</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="284"/>
         <source>Open forum page</source>
-        <translation type="unfinished"></translation>
+        <translation>Forum aufrufen</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="285"/>
         <source>User Manual</source>
-        <translation type="unfinished"></translation>
+        <translation>Bedienungsanleitung</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="286"/>
         <source>SQLite documentation</source>
-        <translation type="unfinished"></translation>
+        <translation>SQLite Dokumentation</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="287"/>
         <source>Report history</source>
-        <translation type="unfinished"></translation>
+        <translation>Verlauf gemeldeter Fehler</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="289"/>
         <source>Check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Auf Updates prüfen</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="327"/>
         <source>Database</source>
         <comment>menubar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Datenbank</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="347"/>
@@ -3616,13 +3616,13 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../mainwindow.cpp" line="368"/>
         <source>View</source>
         <comment>menubar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ansicht</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="372"/>
         <source>Window list</source>
         <comment>menubar view menu</comment>
-        <translation type="unfinished"></translation>
+        <translation>Fensterliste</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="393"/>
@@ -3633,7 +3633,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="407"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Hilfe</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="569"/>
@@ -3654,7 +3654,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="691"/>
         <source>Rename window</source>
-        <translation type="unfinished"></translation>
+        <translation>Fenster umbenennen</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="691"/>
@@ -3664,12 +3664,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="777"/>
         <source>New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Neues Update verfügbar. &lt;a href=&quot;%1&quot;&gt;Weitere Details&lt;/a&gt;.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="785"/>
         <source>You&apos;re running the most recent version. No updates are available.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sie haben bereits die aktuellste Version. Keine Update verfügbar.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="891"/>
@@ -3684,7 +3684,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mainwindow.cpp" line="903"/>
         <source>Could not add database %1 to list.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Datenbank %1 konnte nicht hinzugefügt werden.</translation>
     </message>
 </context>
 <context>
@@ -3697,12 +3697,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../mdiwindow.cpp" line="204"/>
         <source>Close anyway</source>
-        <translation type="unfinished"></translation>
+        <translation>Trotzdem schließen</translation>
     </message>
     <message>
         <location filename="../mdiwindow.cpp" line="206"/>
         <source>Don&apos;t close</source>
-        <translation type="unfinished"></translation>
+        <translation>Nicht schließen</translation>
     </message>
 </context>
 <context>
@@ -3727,7 +3727,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../multieditor/multieditor.cpp" line="372"/>
         <source>Deleted</source>
         <comment>multieditor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Gelöscht</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditor.cpp" line="374"/>
@@ -3782,7 +3782,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../multieditor/multieditortext.cpp" line="45"/>
         <source>Text</source>
-        <translation type="unfinished"></translation>
+        <translation>Text</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.cpp" line="106"/>
@@ -3792,32 +3792,32 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../multieditor/multieditortext.cpp" line="107"/>
         <source>Cut</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausschneiden</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.cpp" line="108"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopieren</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.cpp" line="109"/>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Einfügen</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.cpp" line="110"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Löschen</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.cpp" line="111"/>
         <source>Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>Rückgängig</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.cpp" line="112"/>
         <source>Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>Wiederholen</translation>
     </message>
 </context>
 <context>
@@ -3840,21 +3840,21 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../dialogs/newconstraintdialog.cpp" line="97"/>
         <source>Primary Key</source>
         <comment>new constraint dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Primärschlüssel</translation>
     </message>
     <message>
         <location filename="../dialogs/newconstraintdialog.cpp" line="89"/>
         <location filename="../dialogs/newconstraintdialog.cpp" line="99"/>
         <source>Foreign Key</source>
         <comment>new constraint dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Fremdschlüssel</translation>
     </message>
     <message>
         <location filename="../dialogs/newconstraintdialog.cpp" line="91"/>
         <location filename="../dialogs/newconstraintdialog.cpp" line="101"/>
         <source>Unique</source>
         <comment>new constraint dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Einzigartig</translation>
     </message>
     <message>
         <location filename="../dialogs/newconstraintdialog.cpp" line="92"/>
@@ -3867,7 +3867,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../dialogs/newconstraintdialog.cpp" line="103"/>
         <source>Not NULL</source>
         <comment>new constraint dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nicht NULL</translation>
     </message>
     <message>
         <location filename="../dialogs/newconstraintdialog.cpp" line="105"/>
@@ -3887,52 +3887,52 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="14"/>
         <source>SQLiteStudio updates</source>
-        <translation type="unfinished"></translation>
+        <translation>SQLiteStudio Updates</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="26"/>
         <source>New updates are available!</source>
-        <translation type="unfinished"></translation>
+        <translation>Neues Update verfügbar!</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="70"/>
         <source>Component</source>
-        <translation type="unfinished"></translation>
+        <translation>Komponente</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="75"/>
         <source>Current version</source>
-        <translation type="unfinished"></translation>
+        <translation>Derzeitige Version</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="80"/>
         <source>Update version</source>
-        <translation type="unfinished"></translation>
+        <translation>Neue Version</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="91"/>
         <source>Check for updates on startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Beim Programmstart auf Updates prüfen</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="101"/>
         <source>Update to new version!</source>
-        <translation type="unfinished"></translation>
+        <translation>Auf neue Version aktualisieren!</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="114"/>
         <source>The update will be automatically downloaded and installed. This will also restart application at the end.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Update wird automatisch heruntergeladen und installiert. Die Anwendung wird daraufhin neugestartet.</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="121"/>
         <source>Not now.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nicht jetzt.</translation>
     </message>
     <message>
         <location filename="../dialogs/newversiondialog.ui" line="134"/>
         <source>Don&apos;t install the update and close this window.</source>
-        <translation type="unfinished"></translation>
+        <translation>Update nicht installieren und Fenster schließen.</translation>
     </message>
 </context>
 <context>
@@ -4720,73 +4720,73 @@ find next</source>
         <location filename="../sqleditor.cpp" line="118"/>
         <source>Cut</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ausschneiden</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="119"/>
         <source>Copy</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Kopieren</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="120"/>
         <source>Paste</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Einfügen</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="121"/>
         <source>Delete</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Löschen</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="122"/>
         <source>Select all</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Alles auswählen</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="123"/>
         <source>Undo</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Rückgängig</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="124"/>
         <source>Redo</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Wiederholen</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="125"/>
         <source>Complete</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Komplett</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="126"/>
         <source>Format SQL</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>SQL formatieren</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="127"/>
         <source>Save SQL to file</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>SQL in Datei speichern</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="128"/>
         <source>Select file to save SQL</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>SQL aus Datei laden</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="129"/>
         <source>Load SQL from file</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zeile löschen</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="130"/>
@@ -4840,7 +4840,7 @@ find next</source>
         <location filename="../sqleditor.cpp" line="138"/>
         <source>Replace</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ersetzen</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="252"/>
@@ -4860,7 +4860,7 @@ find next</source>
     <message>
         <location filename="../sqleditor.cpp" line="1054"/>
         <source>Save to file</source>
-        <translation type="unfinished"></translation>
+        <translation>In Datei speichern</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="242"/>
@@ -4875,7 +4875,7 @@ find next</source>
     <message>
         <location filename="../sqleditor.cpp" line="1067"/>
         <source>Open file</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei öffnen</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="1076"/>
@@ -5120,7 +5120,7 @@ find next</source>
     <message>
         <location filename="../statusfield.ui" line="14"/>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Status</translation>
     </message>
     <message>
         <location filename="../statusfield.cpp" line="164"/>
@@ -5305,19 +5305,19 @@ but it&apos;s okay to use them anyway.</source>
         <location filename="../windows/tablestructuremodel.cpp" line="299"/>
         <source>Name</source>
         <comment>table structure columns</comment>
-        <translation type="unfinished"></translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="../windows/tablestructuremodel.cpp" line="301"/>
         <source>Data type</source>
         <comment>table structure columns</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Datentyp</translation>
     </message>
     <message>
         <location filename="../windows/tablestructuremodel.cpp" line="315"/>
         <source>Default value</source>
         <comment>table structure columns</comment>
-        <translation type="unfinished"></translation>
+        <translation>Standardwert</translation>
     </message>
 </context>
 <context>
