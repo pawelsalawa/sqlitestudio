@@ -29,6 +29,7 @@ void TableWidget::copy()
         if (!item(i, 0)->isSelected())
             continue;
 
+        cols.clear();
         for (int c = 1; c <= 2; c++)
         {
             if (cellWidget(i, c))
