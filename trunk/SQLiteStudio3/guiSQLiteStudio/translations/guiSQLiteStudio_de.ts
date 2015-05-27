@@ -271,12 +271,12 @@
     <message>
         <location filename="../windows/bugreporthistorywindow.cpp" line="45"/>
         <source>Reports history</source>
-        <translation>Berichtshistorie</translation>
+        <translation>Berichtsverlauf</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.cpp" line="50"/>
         <source>Clear reports history</source>
-        <translation>Lösche Berichtshistorie</translation>
+        <translation>Lösche Berichtsverlauf</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.cpp" line="51"/>
@@ -994,12 +994,12 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="430"/>
         <source>Number of DDL changes kept in history.</source>
-        <translation>Maximale Anzahl an DDL Änderungen in der Historie.</translation>
+        <translation>Maximale Anzahl an DDL Änderungen im Verlauf.</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="443"/>
         <source>DDL history size:</source>
-        <translation>DDL Historiengröße</translation>
+        <translation>DDL Verlaufsgröße</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="450"/>
@@ -1015,12 +1015,12 @@ but it&apos;s okay to use it.</source>
         <location filename="../dialogs/configdialog.ui" line="475"/>
         <location filename="../dialogs/configdialog.ui" line="488"/>
         <source>Number of queries kept in the history.</source>
-        <translation>Maximale Anzahl an SQL Abfragen in der Historie.</translation>
+        <translation>Maximale Anzahl an SQL Abfragen im Verlauf.</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="491"/>
         <source>History size:</source>
-        <translation>Historiengröße</translation>
+        <translation>Verlaufsgröße</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="498"/>
@@ -2548,12 +2548,14 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
         <source>-- Queries executed on database %1 (%2)
 -- Date and time of execution: %3
 %4</source>
-        <translation type="unfinished"></translation>
+        <translation>-- Abfragen werden ausgeführt auf Datenbank %1 (%2)
+-- Datum und Ausführungszeitpunkt: %3
+%4</translation>
     </message>
     <message>
         <location filename="../windows/ddlhistorywindow.cpp" line="124"/>
         <source>DDL history</source>
-        <translation type="unfinished"></translation>
+        <translation>DDL Verlauf</translation>
     </message>
 </context>
 <context>
@@ -2561,7 +2563,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../dialogs/ddlpreviewdialog.ui" line="14"/>
         <source>Queries to be executed</source>
-        <translation type="unfinished"></translation>
+        <translation>Auszuführende Abfragen</translation>
     </message>
     <message>
         <location filename="../dialogs/ddlpreviewdialog.ui" line="42"/>
@@ -2592,28 +2594,28 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../windows/editorwindow.cpp" line="137"/>
         <source>Results in the separate tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Ergebnisse in separatem Reiter</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="138"/>
         <source>Results below the query</source>
-        <translation type="unfinished"></translation>
+        <translation>Ergebnisse unter der Abfrage</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="171"/>
         <location filename="../windows/editorwindow.cpp" line="173"/>
         <source>SQL editor %1</source>
-        <translation type="unfinished"></translation>
+        <translation>SQL Editor %1</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="331"/>
         <source>Results</source>
-        <translation type="unfinished"></translation>
+        <translation>Ergebnisse</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="364"/>
         <source>Execute query</source>
-        <translation type="unfinished"></translation>
+        <translation>Abfrage ausführen</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="365"/>
@@ -2624,13 +2626,13 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
         <location filename="../windows/editorwindow.cpp" line="368"/>
         <source>Clear execution history</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ausführungsverlauf löschen</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="370"/>
         <source>Export results</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ergebnisse exportieren</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="372"/>
@@ -2664,13 +2666,13 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
         <location filename="../windows/editorwindow.cpp" line="388"/>
         <source>Focus results below</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Fokus auf die Ergebnisse unten</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="389"/>
         <source>Focus SQL editor above</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Fokus auf den SQL Editor oben</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="463"/>
@@ -2690,27 +2692,27 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../windows/editorwindow.cpp" line="609"/>
         <source>Clear execution history</source>
-        <translation type="unfinished"></translation>
+        <translation>Lösche Ausführungsverlauf</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="609"/>
         <source>Are you sure you want to erase the entire SQL execution history? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sind Sie sicher, dass Sie den gesamten SQL Ausführungsverlauf löschen möchten? Dieser Vorgang kann nicht rückgängig gemacht werden.</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="621"/>
         <source>Cannot export, because no export plugin is loaded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es kann nicht exportiert werden, da keine Export Plugin geladen ist.</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="642"/>
         <source>No database selected in the SQL editor. Cannot create a view for unknown database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es ist keine Datenbank im SQL Editor selektiert. Für eine unbekannte Datenbank kann kein View erzeugt werden.</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="672"/>
         <source>Editor window &quot;%1&quot; has uncommited data.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Editorfenster &quot;%1&quot; hat ungespeicherte Daten.</translation>
     </message>
 </context>
 <context>
@@ -2736,52 +2738,52 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../dialogs/exportdialog.ui" line="14"/>
         <source>Export</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportieren</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="21"/>
         <source>What do you want to export?</source>
-        <translation type="unfinished"></translation>
+        <translation>Was möchten Sie exportieren?</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="36"/>
         <source>A database</source>
-        <translation type="unfinished"></translation>
+        <translation>Eine Datenbank</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="46"/>
         <source>A single table</source>
-        <translation type="unfinished"></translation>
+        <translation>Eine einzelne Tabelle</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="53"/>
         <source>Query results</source>
-        <translation type="unfinished"></translation>
+        <translation>Abfrageergebnisse</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="65"/>
         <source>Table to export</source>
-        <translation type="unfinished"></translation>
+        <translation>Zu exportierende Tabelle</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="100"/>
         <source>Database</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbank</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="107"/>
         <source>Table</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabelle</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="124"/>
         <source>Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Optionen</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="130"/>
         <source>When this option is unchecked, then only table DDL (CREATE TABLE statement) is exported.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wenn die Option deaktiviert ist, dann wird nur das Tabellen DDL (CREATE TABLE Statement) exportiert.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="133"/>
