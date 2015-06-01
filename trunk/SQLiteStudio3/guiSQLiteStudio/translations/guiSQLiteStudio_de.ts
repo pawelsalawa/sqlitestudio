@@ -2053,7 +2053,7 @@ Das Aufrufen anderer Seiten ist erst nach Abschluss der Zählung möglich.</tran
     <message>
         <location filename="../dbtree/dbtree.cpp" line="104"/>
         <source>Select all</source>
-        <translation>Alle selektieren</translation>
+        <translation>Alles auswählen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="105"/>
@@ -2788,160 +2788,163 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../dialogs/exportdialog.ui" line="133"/>
         <source>Export table data</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabellendaten exportieren</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="143"/>
         <source>Export table indexes</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabellenindizes exportieren</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="153"/>
         <source>Export table triggers</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabellentrigger exportieren</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="175"/>
         <source>Note, that exporting table indexes and triggers may be unsupported by some output formats.</source>
-        <translation type="unfinished"></translation>
+        <translation>Hinweis: Das Exportieren von Tabellen, Indizes und Triggern könnte von einigen Ausgabeformaten nicht unterstützt werden.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="189"/>
         <source>Select database objects to export</source>
-        <translation type="unfinished"></translation>
+        <translation>Wählen Sie die zu exportierenden Datebankobjekte aus.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="202"/>
         <source>Export data from tables</source>
-        <translation type="unfinished"></translation>
+        <translation>Daten aus Tabellen exportieren</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="212"/>
         <source>Select all</source>
-        <translation type="unfinished"></translation>
+        <translation>Alles auswählen</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="219"/>
         <source>Deselect all</source>
-        <translation type="unfinished"></translation>
+        <translation>Auswahl aufheben</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="229"/>
         <location filename="../dialogs/exportdialog.ui" line="249"/>
         <source>Database:</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbank:</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="237"/>
         <source>Query to export results for</source>
-        <translation type="unfinished"></translation>
+        <translation>Abfrage deren Ergebnisse exportiert werden sollen</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="256"/>
         <source>Query to be executed for results:</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>???</translatorcomment>
+        <translation>Auszuführende Abfrage... :</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="264"/>
         <source>Export format and options</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportformat und Optionen</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="318"/>
         <source>Export format</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportformat</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="330"/>
         <source>Output</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausgabe</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="336"/>
         <source>Exported file path</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>???</translatorcomment>
+        <translation>Exportverzeichnis</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="343"/>
         <source>Clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Zwischenablage</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="357"/>
         <source>File</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="382"/>
         <source>Exported text encoding:</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportierte Textkodierung</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="398"/>
         <source>Export format options</source>
-        <translation type="unfinished"></translation>
+        <translation>Optionen des Exportformats</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="51"/>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="149"/>
         <location filename="../dialogs/exportdialog.cpp" line="174"/>
         <location filename="../dialogs/exportdialog.cpp" line="197"/>
         <source>Select database to export.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wählen Sie die zu exportierenden Datebank aus.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="150"/>
         <source>Select table to export.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wählen Sie die zu exportierenden Tabellen aus.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="175"/>
         <source>Enter valid query to export.</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>???</translatorcomment>
+        <translation>Geben Sie eine gültige Abfrage für den Export an.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="198"/>
         <source>Select at least one object to export.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wählen Sie ein zu exportierendes Datebankobjekt aus.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="221"/>
         <source>You must provide a file name to export to.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sie müssen einen Namen für die Exportdatei angeben.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="228"/>
         <source>Path you provided is an existing directory. You cannot overwrite it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das von Ihnen angegebene Verzeichnis existiert bereits. Es kann nicht überschrieben werden.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="234"/>
         <source>The directory &apos;%1&apos; does not exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Verzeichnis &apos;%1&apos; existiert nicht.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="240"/>
         <source>The file &apos;%1&apos; exists and will be overwritten.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Datei &apos;%1&apos; existiert bereits und wird überschrieben werden.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="417"/>
         <source>All files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Dateien (*)</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="420"/>
         <source>Pick file to export to</source>
-        <translation type="unfinished"></translation>
+        <translation>Wählen Sie eine Datei aus in die exportiert werden soll.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="709"/>
         <source>Internal error during export. This is a bug. Please report it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es trat ein interner Fehler während des Exportvorgangs auf. Dies ist ein Fehler, bitte melden Sie ihn dem Programmautor.</translation>
     </message>
 </context>
 <context>
@@ -2958,7 +2961,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../forms/sqlformatterplugin.ui" line="20"/>
         <source>Active SQL formatter plugin</source>
-        <translation type="unfinished">Aktives SQL Formatierungsplugin</translation>
+        <translation>Aktives SQL Formatierungsplugin</translation>
     </message>
 </context>
 <context>
