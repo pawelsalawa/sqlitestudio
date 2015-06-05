@@ -2306,12 +2306,12 @@ Alle Objekte in dieser Gruppe werden in die übergeordnete Gruppe verschoben.</t
         <location filename="../dbtree/dbtree.cpp" line="1075"/>
         <location filename="../dbtree/dbtree.cpp" line="1240"/>
         <source>Cannot export, because no export plugin is loaded.</source>
-        <translation>Export fehlgeschlagen, da keine Export Plugins geladen sind.</translation>
+        <translation>Export fehlgeschlagen, da kein Export Plugins geladen sind.</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1339"/>
         <source>Error while executing VACUUM on the database %1: %2</source>
-        <translation>Fehler beim ausführen des VACUUM-Befehls auf die Datenbank %1: %2</translation>
+        <translation>Fehler beim Ausführen des VACUUM-Befehls auf die Datenbank %1: %2</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1341"/>
@@ -2702,7 +2702,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../windows/editorwindow.cpp" line="621"/>
         <source>Cannot export, because no export plugin is loaded.</source>
-        <translation>Es kann nicht exportiert werden, da keine Export Plugin geladen ist.</translation>
+        <translation>Es kann nicht exportiert werden, da kein Export Plugin geladen ist.</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.cpp" line="642"/>
@@ -2970,13 +2970,13 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
         <location filename="../formview.cpp" line="241"/>
         <source>Commit row</source>
         <comment>form view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zeile speichern (Commit)</translation>
     </message>
     <message>
         <location filename="../formview.cpp" line="242"/>
         <source>Rollback row</source>
         <comment>form view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zeile rückgängig (Rollback)</translation>
     </message>
     <message>
         <location filename="../formview.cpp" line="243"/>
@@ -3020,7 +3020,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../windows/functionseditor.ui" line="81"/>
         <source>Filter funtions</source>
-        <translation type="unfinished"></translation>
+        <translation>Filterfunktionen</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="260"/>
@@ -3030,7 +3030,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../windows/functionseditor.ui" line="273"/>
         <source>Implementation language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Implementationssprache:</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="253"/>
@@ -3040,7 +3040,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../windows/functionseditor.ui" line="157"/>
         <source>Input arguments</source>
-        <translation type="unfinished"></translation>
+        <translation>Eingabeargumente</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="163"/>
@@ -3055,28 +3055,28 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../windows/functionseditor.ui" line="211"/>
         <source>Register in all databases</source>
-        <translation type="unfinished"></translation>
+        <translation>In allen Datenbanken registrieren</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="218"/>
         <source>Register in following databases:</source>
-        <translation type="unfinished"></translation>
+        <translation>In den folgenden Datenbanken registrieren:</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="293"/>
         <source>Initialization code:</source>
-        <translation type="unfinished"></translation>
+        <translation>Initialisierungsanweisungen:</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="309"/>
         <location filename="../windows/functionseditor.cpp" line="426"/>
         <source>Function implementation code:</source>
-        <translation type="unfinished"></translation>
+        <translation>Funktionsanweisungen:</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="325"/>
         <source>Final step implementation code:</source>
-        <translation type="unfinished"></translation>
+        <translation>Abschlussanweisungen</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="54"/>
@@ -3086,93 +3086,94 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../windows/functionseditor.cpp" line="59"/>
         <source>Commit all function changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Speichern aller Funktionsänderungen</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="60"/>
         <source>Rollback all function changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Zurücknehmen aller Funktionsänderungen</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="62"/>
         <source>Create new function</source>
-        <translation type="unfinished">Neue Funktion erstellen</translation>
+        <translation>Neue Funktion erstellen</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="63"/>
         <source>Delete selected function</source>
-        <translation type="unfinished">Ausgewählte Funktion löschen</translation>
+        <translation>Ausgewählte Funktion löschen</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="65"/>
         <source>Custom SQL functions manual</source>
-        <translation type="unfinished"></translation>
+        <translation>Anleitung zu &apos;Benutzerdefinierte SQL Funktionen&apos;</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="68"/>
         <source>Add function argument</source>
-        <translation type="unfinished"></translation>
+        <translation>Funktionsargument zufügen</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="69"/>
         <source>Rename function argument</source>
-        <translation type="unfinished"></translation>
+        <translation>Funktionsargument umbenennen</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="70"/>
         <source>Delete function argument</source>
-        <translation type="unfinished"></translation>
+        <translation>Funktionsargument löschen</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="72"/>
         <source>Move function argument up</source>
-        <translation type="unfinished"></translation>
+        <translation>Funktionsargument hochschieben</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="73"/>
         <source>Move function argument down</source>
-        <translation type="unfinished"></translation>
+        <translation>Funktionsargument runterschieben</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="111"/>
         <source>Scalar</source>
-        <translation type="unfinished"></translation>
+        <translation>Skalar</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="112"/>
         <source>Aggregate</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggregat</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="410"/>
         <source>Enter a non-empty, unique name of the function.</source>
-        <translation type="unfinished"></translation>
+        <translation>Geben Sie einen eindeutigen Namen für die Funktion ein.</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="422"/>
         <source>Pick the implementation language.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wählen Sie die Sprache aus.</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="426"/>
         <source>Per step code:</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>evtl. Einzelschrittanweisung???</translatorcomment>
+        <translation>Pro Schritt Anweisung</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="432"/>
         <source>Enter a non-empty implementation code.</source>
-        <translation type="unfinished"></translation>
+        <translation>Geben Sie die Anweisungen ein.</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="505"/>
         <source>argument</source>
         <comment>new function argument name in function editor window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Argument</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="631"/>
         <source>Functions editor window has uncommited modifications.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Editorfür Funktionen enthält nicht gespeicherte Änderungen.</translation>
     </message>
 </context>
 <context>
@@ -3185,7 +3186,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../dialogs/importdialog.ui" line="21"/>
         <source>Table to import to</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabelle in die importiert werden soll</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="36"/>
@@ -3200,12 +3201,12 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../dialogs/importdialog.ui" line="84"/>
         <source>Data source to import from</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenquelle von der aus importiert werden soll</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="129"/>
         <source>Data source type</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenquellentyp</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="141"/>
@@ -3215,27 +3216,27 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../dialogs/importdialog.ui" line="182"/>
         <source>Input file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Eingabedatei:</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="175"/>
         <source>Text encoding:</source>
-        <translation type="unfinished"></translation>
+        <translation>Textkodierung:</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="192"/>
         <source>&lt;p&gt;If enabled, any constraint violation, or invalid data format (wrong column count), or any other problem encountered during import will be ignored and the importing will be continued.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Wenn diese Option aktiviert ist, wird jede Verletzung von Bedingungen oder ein ungültiges Datenformat (falsche Anzahl an Spalten) oder jedes andere Problem, das während des Imports auftritt, ignoriert und der Import wird fortgesetzt.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="195"/>
         <source>Ignore errors</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler ignorieren</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="205"/>
         <source>Data source options</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenquellenoptionen</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="71"/>
@@ -3245,7 +3246,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../dialogs/importdialog.cpp" line="102"/>
         <source>If you type table name that doesn&apos;t exist, it will be created.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wenn Sie einen Tabellenname eingeben, der noch nicht existiert, dann wird diese neue Tabelle erzeugt werden.</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="102"/>
@@ -3260,7 +3261,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../dialogs/importdialog.cpp" line="129"/>
         <source>You must provide a file to import from.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sie müssen den Namen der Importdatei angeben.</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="136"/>
@@ -3270,12 +3271,12 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../dialogs/importdialog.cpp" line="142"/>
         <source>Path you provided is a directory. A regular file is required.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der von Ihnen angegebene Pfad ist ein Verzeichnis. Es wird jedoch eine Datei benötigt.</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="318"/>
         <source>Pick file to import from</source>
-        <translation type="unfinished"></translation>
+        <translation>Wählen Sie eine Datei aus von der importiert werden soll.</translation>
     </message>
 </context>
 <context>
@@ -3289,7 +3290,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../dialogs/indexdialog.ui" line="36"/>
         <source>On table:</source>
-        <translation type="unfinished"></translation>
+        <translation>Auf Tabelle:</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="43"/>
@@ -3299,7 +3300,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../dialogs/indexdialog.ui" line="50"/>
         <source>Partial index condition</source>
-        <translation type="unfinished"></translation>
+        <translation>Partieller Indexzustand</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="67"/>
@@ -3314,7 +3315,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../dialogs/indexdialog.ui" line="95"/>
         <source>Collation</source>
-        <translation type="unfinished">Kollation</translation>
+        <translation>Kollation</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="100"/>
@@ -3329,12 +3330,12 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="65"/>
         <source>Tried to open index dialog for closed or inexisting database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es wurde versucht den Index-Dialog für eine geschlossene oder nicht existente Datenbank zu öffnen.</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="131"/>
         <source>Could not process index %1 correctly. Unable to open an index dialog.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Index %1 kann nicht vollständig bearbeitet werden, da der Index-Dialog nicht geöffnet werden kann.</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="185"/>
@@ -3349,19 +3350,19 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="187"/>
         <source>Enter a valid condition.</source>
-        <translation type="unfinished"></translation>
+        <translation>Geben Sie einen gültigen Zustand ein.</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="236"/>
         <source>default</source>
         <comment>index dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Standard</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="247"/>
         <source>Sort order</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation>Sortierung</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="453"/>
@@ -3373,13 +3374,14 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="454"/>
         <source>Cannot create unique index, because values in selected columns are not unique. Would you like to execute SELECT query to see problematic values?</source>
-        <translation type="unfinished"></translation>
+        <translation>Der eindeutige Index kann nicht erzeigt werden, da Werte in den selektierten Spalten nicht eundeutig sind. Möchten Sie die zugehörige SELECT Abfrage ausführen, um die uneindeutigen Werte zu sehen?</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="466"/>
         <source>An error occurred while executing SQL statements:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Ausführen des folgenden SQL Statments:
+%1</translation>
     </message>
 </context>
 <context>
@@ -3410,7 +3412,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../mainwindow.ui" line="103"/>
         <source>Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>Werkzeuge</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="120"/>
@@ -3425,32 +3427,32 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../mainwindow.cpp" line="107"/>
         <source>Configuration widgets</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfigurationshelfer</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="108"/>
         <source>Syntax highlighting engines</source>
-        <translation type="unfinished"></translation>
+        <translation>Syntaxhervorhebungen</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="109"/>
         <source>Data editors</source>
-        <translation type="unfinished"></translation>
+        <translation>Dateneditoren</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="121"/>
         <source>Running in debug mode. Press %1 or use &apos;Help / Open debug console&apos; menu entry to open the debug console.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ablauf im Debugmodus. Zum Öffnen der Debugkonsole drücken Sie %1 oder wählen Menü &apos;Hilfe&apos; den Eintrag &apos;Debugkonsole öffnen&apos; aus.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="123"/>
         <source>Running in debug mode. Debug messages are printed to the standard output.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ablauf im Debugmodus. Debugmeldungen werden in der Standardausgabe angezeigt..</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="211"/>
         <source>You need to restart application to make the language change take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Programm muss neu gestartet werden, damit die Änderung der Sprache wirksam wird.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="254"/>
@@ -3460,7 +3462,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../mainwindow.cpp" line="255"/>
         <source>Open DDL history</source>
-        <translation type="unfinished"></translation>
+        <translation>DDL Verlauf öffnen</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="256"/>
@@ -3470,7 +3472,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../mainwindow.cpp" line="257"/>
         <source>Open collations editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Editor für Kollationen öffnen</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="258"/>
@@ -3490,22 +3492,22 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../mainwindow.cpp" line="263"/>
         <source>Tile windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Fenster aufteilen</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="264"/>
         <source>Tile windows horizontally</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Fenster horizontal aufteilen</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="265"/>
         <source>Tile windows vertically</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Fenster vertikal aufteilen</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="266"/>
         <source>Cascade windows</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Fenster kaskadiert aufteilen</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="267"/>
@@ -3555,7 +3557,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../mainwindow.cpp" line="278"/>
         <source>Open CSS Console</source>
-        <translation type="unfinished"></translation>
+        <translation>CSS Konsole öffnen</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="279"/>
@@ -3565,7 +3567,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../mainwindow.cpp" line="280"/>
         <source>Propose a new feature</source>
-        <translation type="unfinished"></translation>
+        <translation>Eine neue Programmfunktion vorschlagen</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="281"/>
@@ -3617,7 +3619,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
         <location filename="../mainwindow.cpp" line="347"/>
         <source>Structure</source>
         <comment>menubar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Struktur</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="368"/>
@@ -3635,7 +3637,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
         <location filename="../mainwindow.cpp" line="393"/>
         <source>Tools</source>
         <comment>menubar</comment>
-        <translation type="unfinished"></translation>
+        <translation>Werkzeuge</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="407"/>
@@ -3646,17 +3648,17 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
         <location filename="../mainwindow.cpp" line="569"/>
         <source>Could not set style: %1</source>
         <comment>main window</comment>
-        <translation type="unfinished"></translation>
+        <translation>Der folgende Stil kann nicht gesetzt werden: %1</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="642"/>
         <source>Cannot export, because no export plugin is loaded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es kann nicht exportiert werden, da kein Export Plugin geladen ist.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="658"/>
         <source>Cannot import, because no import plugin is loaded.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es kann nicht importiert werden, da kein Import Plugin geladen ist.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="691"/>
@@ -3666,7 +3668,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../mainwindow.cpp" line="691"/>
         <source>Enter new name for the window:</source>
-        <translation type="unfinished"></translation>
+        <translation>Geben Sie einen neuen Namen für das Fenster ein.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="777"/>
@@ -3681,12 +3683,12 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../mainwindow.cpp" line="891"/>
         <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Datenbank, die mittels Programmparameter übergeben wurde (%1), war bereits in der Liste unter dem Namen %2 vorhanden.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="898"/>
         <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Datenbank, die mittels Programmparameter übergeben wurde (%1), wurde in der Liste termporär unter dem Namen %2 zugefügt.</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="903"/>
@@ -3699,7 +3701,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../mdiwindow.cpp" line="199"/>
         <source>Uncommited changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Nicht gespeicherte Änderungen</translation>
     </message>
     <message>
         <location filename="../mdiwindow.cpp" line="204"/>
@@ -3718,17 +3720,17 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
         <location filename="../multieditor/multieditor.cpp" line="62"/>
         <source>Null value</source>
         <comment>multieditor</comment>
-        <translation type="unfinished"></translation>
+        <translation>NULL Wert</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditor.cpp" line="77"/>
         <source>Configure editors for this data type</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfigurationseditoren für diesen Datentyp</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditor.cpp" line="287"/>
         <source>Data editor plugin &apos;%1&apos; not loaded, while it is defined for editing &apos;%1&apos; data type.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Dateneditor Plugin &apos;%1&apos; ist nicht geladen, obwohl es für den &apos;%1&apos; Datentypen als Editor definiert ist.</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditor.cpp" line="372"/>
@@ -3740,7 +3742,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
         <location filename="../multieditor/multieditor.cpp" line="374"/>
         <source>Read only</source>
         <comment>multieditor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nur lesend</translation>
     </message>
 </context>
 <context>
@@ -3748,7 +3750,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../multieditor/multieditorbool.cpp" line="130"/>
         <source>Boolean</source>
-        <translation type="unfinished"></translation>
+        <translation>Boolean</translation>
     </message>
 </context>
 <context>
@@ -3756,7 +3758,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../multieditor/multieditordate.cpp" line="14"/>
         <source>Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum</translation>
     </message>
 </context>
 <context>
@@ -3764,7 +3766,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../multieditor/multieditordatetime.cpp" line="181"/>
         <source>Date &amp; time</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum &amp; Zeit</translation>
     </message>
 </context>
 <context>
@@ -3772,7 +3774,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../multieditor/multieditorhex.cpp" line="39"/>
         <source>Hex</source>
-        <translation type="unfinished"></translation>
+        <translation>Hexadezimal</translation>
     </message>
 </context>
 <context>
@@ -3781,7 +3783,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
         <location filename="../multieditor/multieditornumeric.cpp" line="36"/>
         <source>Number</source>
         <comment>numeric multi editor tab name</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nummer</translation>
     </message>
 </context>
 <context>
@@ -3794,7 +3796,8 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../multieditor/multieditortext.cpp" line="106"/>
         <source>Tab changes focus</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Hier fehlt mir der Kontext... Nacharbeiten nötig.</translatorcomment>
+        <translation>Reiter Änderungen Fokus</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.cpp" line="107"/>
@@ -3832,7 +3835,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../multieditor/multieditortime.cpp" line="16"/>
         <source>Time</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeit</translation>
     </message>
 </context>
 <context>
@@ -3840,7 +3843,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../dialogs/newconstraintdialog.ui" line="20"/>
         <source>New constraint</source>
-        <translation type="unfinished"></translation>
+        <translation>Neue Bedingung</translation>
     </message>
     <message>
         <location filename="../dialogs/newconstraintdialog.cpp" line="87"/>
@@ -3868,7 +3871,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
         <location filename="../dialogs/newconstraintdialog.cpp" line="102"/>
         <source>Check</source>
         <comment>new constraint dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Prüfung</translation>
     </message>
     <message>
         <location filename="../dialogs/newconstraintdialog.cpp" line="103"/>
@@ -3880,13 +3883,13 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
         <location filename="../dialogs/newconstraintdialog.cpp" line="105"/>
         <source>Collate</source>
         <comment>new constraint dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Kollation</translation>
     </message>
     <message>
         <location filename="../dialogs/newconstraintdialog.cpp" line="107"/>
         <source>Default</source>
         <comment>new constraint dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Standard</translation>
     </message>
 </context>
 <context>
@@ -3947,12 +3950,12 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../dialogs/populateconfigdialog.ui" line="14"/>
         <source>Populating configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfiguration auffüllen</translation>
     </message>
     <message>
         <location filename="../dialogs/populateconfigdialog.cpp" line="54"/>
         <source>Configuring &lt;b&gt;%1&lt;/b&gt; for column &lt;b&gt;%2&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfiguriere &lt;b&gt;%1&lt;/b&gt; für Spalte &lt;b&gt;%2&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
@@ -3960,63 +3963,63 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../dialogs/populatedialog.ui" line="14"/>
         <source>Populate table</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabelle füllen</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.ui" line="26"/>
         <source>Database</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbank</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.ui" line="44"/>
         <source>Table</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabelle</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.ui" line="72"/>
         <source>Columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Spalten</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.ui" line="102"/>
         <source>Number of rows to populate:</source>
-        <translation type="unfinished"></translation>
+        <translation>Anzahl an Datenzeilen zum Auffüllen:</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="42"/>
         <source>Populate</source>
         <comment>populate dialog button</comment>
-        <translation type="unfinished"></translation>
+        <translation>Füllen</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="54"/>
         <source>Abort</source>
-        <translation type="unfinished"></translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="161"/>
         <source>Configure</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfigurieren</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="259"/>
         <source>Populating configuration for this column is invalid or incomplete.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Konfigurationsauffüllung für diese Spalte ist ungültig oder unvollständig.</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="290"/>
         <source>Select database with table to populate</source>
-        <translation type="unfinished"></translation>
+        <translation>Wählen Sie die Datebank und Tabelle zum Auffüllen aus.</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="291"/>
         <source>Select table to populate</source>
-        <translation type="unfinished"></translation>
+        <translation>Wählen Sie die Tabelle zum Auffüllen aus.</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="292"/>
         <source>You have to select at least one column.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sie müssen mindestens eine Spalte auswählen.</translation>
     </message>
 </context>
 <context>
