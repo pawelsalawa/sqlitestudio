@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="pl_PL">
+<TS version="2.0" language="pl_PL">
 <context>
     <name>AbstractDb</name>
     <message>
@@ -748,7 +748,7 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
     <message>
         <location filename="../plugins/populatesequence.ui" line="56"/>
         <source>Step:</source>
-        <translation>Wartość końcowa:</translation>
+        <translation>Krok:</translation>
     </message>
 </context>
 <context>
