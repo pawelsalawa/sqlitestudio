@@ -4027,12 +4027,12 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="67"/>
         <source>Cannot edit columns that are result of compound %1 statements (one that includes %2, %3 or %4 keywords).</source>
-        <translation type="unfinished"></translation>
+        <translation>Spalten, die das Ergebnis von verbundenen %1 Abfragen sind (solche, die %2, %3 oder %4 Schlüsselwörter enthalten), können nicht editiert werden.</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="70"/>
         <source>The query execution mechanism had problems with extracting ROWID&apos;s properly. This might be a bug in the application. You may want to report this.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Ausführungsmechanismus hat Probleme die ROWID korrekt zu extrahieren. Dies könnte ein Programmfehler sein, den Sie evtl. melden möchten.</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="72"/>
