@@ -4037,22 +4037,22 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="72"/>
         <source>Requested column is a result of SQL expression, instead of a simple column selection. Such columns cannot be edited.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die betreffende Spalte ist das Ergebnis eines SQL-Ausdrucks statt einer einfachen Spaltenselektion. Solche Spalten können nicht editiert werden.</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="74"/>
         <source>Requested column belongs to restricted SQLite table. Those tables cannot be edited directly.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die betreffende Spalte gehört zu einer eingeschränkten SQLite Tabelle. Solche Tabellen können nicht direkt editiert werden.</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="76"/>
         <source>Cannot edit results of query other than %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es können keine Ergebnisse von einer von %1 abweichenden Abfrage editiert werden.</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="78"/>
         <source>Cannot edit columns that are result of aggregated %1 statements.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es können keine Spalten editiert werden, die das Ergebnis einer aggregierten %1 Abfrage sind.</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="80"/>
