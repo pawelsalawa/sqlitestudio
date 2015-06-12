@@ -28,7 +28,8 @@ RESOURCES += \
     jsonexport.qrc
 
 
-TRANSLATIONS += JsonExport_zh_CN.ts \
+TRANSLATIONS += JsonExport_it.ts \
+		JsonExport_zh_CN.ts \
 		JsonExport_sk.ts \
 		JsonExport_de.ts \
 		JsonExport_ru.ts \
@@ -36,6 +37,7 @@ TRANSLATIONS += JsonExport_zh_CN.ts \
 		JsonExport_fr.ts \
 		JsonExport_es.ts \
 		JsonExport_pl.ts
+
 
 
 

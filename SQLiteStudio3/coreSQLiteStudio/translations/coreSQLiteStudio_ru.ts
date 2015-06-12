@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="ru_RU">
+<TS version="2.1" language="ru_RU">
 <context>
     <name>AbstractDb</name>
     <message>
@@ -771,7 +771,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
         <translation>Невозможно открыть базу данных: %1</translation>
     </message>
     <message>
-        <location filename="../db/abstractdb2.h" line="803"/>
+        <location filename="../db/abstractdb2.h" line="805"/>
         <location filename="../db/abstractdb3.h" line="1100"/>
         <source>Result set expired or no row available.</source>
         <translation>Результирующая выборка устарела или ни одна строка не доступна.</translation>
@@ -846,8 +846,8 @@ Error details: %2</source>
         <translation>Переполнение стека анализатора</translation>
     </message>
     <message>
-        <location filename="../parser/sqlite2_parse.cpp" line="4461"/>
-        <location filename="../parser/sqlite3_parse.cpp" line="5080"/>
+        <location filename="../parser/sqlite2_parse.cpp" line="4465"/>
+        <location filename="../parser/sqlite3_parse.cpp" line="5084"/>
         <source>Syntax error</source>
         <translation>Синтаксическая ошибка</translation>
     </message>
@@ -902,12 +902,12 @@ Error details: %2</source>
         <translation>Заполняющий код не может быть пустым.</translation>
     </message>
     <message>
-        <location filename="../selectresolver.cpp" line="307"/>
+        <location filename="../selectresolver.cpp" line="317"/>
         <source>Could not resolve data source for column: %1</source>
         <translation>Невозможно определить источник данных для столбца: %1</translation>
     </message>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="617"/>
+        <location filename="../services/impl/configimpl.cpp" line="612"/>
         <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Tried to initialize the file at following localizations: %1.</source>
         <translation>Невозможно инициализировать файл конфигурации. Любые изменения конфигурации и история запросов будут утеряны после перезапуска приложения. Попытки инициализации файла предпринимались в следующих местах: %1.</translation>
     </message>
@@ -954,39 +954,39 @@ Error details: %2</source>
         <translation>Заполнение таблиц</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="108"/>
+        <location filename="../tablemodifier.cpp" line="107"/>
         <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
         <translation>Таблица %1 ссылается на таблицу %2, но описание внешнего ключа не будет обновлено для описания новой таблицы из-за проблем с анализом DDL таблицы %3.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="380"/>
+        <location filename="../tablemodifier.cpp" line="379"/>
         <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
         <translation>Все столбцы, проиндексированные индексом %1, удалены. Индекс не будет воссоздан после модификации таблицы.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="419"/>
+        <location filename="../tablemodifier.cpp" line="418"/>
         <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
         <translation>Возникла проблема при обработке триггера %1. Впоследствии он не будет полностью обновлён и потребует вашего внимания.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="466"/>
+        <location filename="../tablemodifier.cpp" line="465"/>
         <source>Cannot not update trigger %1 according to table %2 modification.</source>
         <translation>Невозможно обновить триггер %1 в соответствии с модификацией таблицы %2.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="587"/>
-        <location filename="../tablemodifier.cpp" line="611"/>
-        <location filename="../tablemodifier.cpp" line="630"/>
+        <location filename="../tablemodifier.cpp" line="645"/>
+        <location filename="../tablemodifier.cpp" line="669"/>
+        <location filename="../tablemodifier.cpp" line="688"/>
         <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
         <translation>Возникла проблема при обновлении конструкции %1 внутри триггера %2. Одна из вложенных конструкций %1, которая возможно ссылается на таблицу %3, не может быть корректно модифицирована. Возможно необходима ручная правка триггера.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="434"/>
+        <location filename="../tablemodifier.cpp" line="433"/>
         <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
         <translation>Все столбцы, затронутые в триггере %1, удалены. Триггер не будет воссоздан после модификации таблицы.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="484"/>
+        <location filename="../tablemodifier.cpp" line="483"/>
         <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
         <translation>Невозможно обновить представление %1 в соответствии с модификациями таблицы %2.
@@ -1031,12 +1031,12 @@ The view will remain as it is.</source>
     </message>
     <message>
         <location filename="../db/queryexecutor.cpp" line="264"/>
-        <location filename="../db/queryexecutor.cpp" line="538"/>
+        <location filename="../db/queryexecutor.cpp" line="548"/>
         <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
         <translation>Возникла ошибка при выполнении запроса count(*), поэтому разбивка данных по страницам отключена. Детали ошибки из базы данных: %1</translation>
     </message>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="449"/>
+        <location filename="../db/queryexecutor.cpp" line="459"/>
         <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
         <translation>SQLiteStudio не удалось извлечь метаданные из запроса. Результаты нельзя будет редактировать.</translation>
     </message>

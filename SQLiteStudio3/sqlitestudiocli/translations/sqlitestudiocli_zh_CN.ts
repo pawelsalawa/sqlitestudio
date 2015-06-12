@@ -4,32 +4,32 @@
 <context>
     <name>CLI</name>
     <message>
-        <location filename="../cli.cpp" line="87"/>
+        <location filename="../cli.cpp" line="98"/>
         <source>Current database: %1</source>
         <translation>当前数据库：%1</translation>
     </message>
     <message>
-        <location filename="../cli.cpp" line="89"/>
+        <location filename="../cli.cpp" line="100"/>
         <source>No current working database is set.</source>
         <translation>当前没有选定工作数据库。</translation>
     </message>
     <message>
-        <location filename="../cli.cpp" line="91"/>
+        <location filename="../cli.cpp" line="102"/>
         <source>Type %1 for help</source>
         <translation>输入 %1 获取帮助</translation>
     </message>
     <message>
-        <location filename="../cli.cpp" line="228"/>
+        <location filename="../cli.cpp" line="257"/>
         <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../cli.cpp" line="235"/>
+        <location filename="../cli.cpp" line="264"/>
         <source>Could not add database %1 to list.</source>
         <translation>未能将数据库“%1”添加到列表。</translation>
     </message>
     <message>
-        <location filename="../cli.cpp" line="261"/>
+        <location filename="../cli.cpp" line="290"/>
         <source>closed</source>
         <translation>已关闭</translation>
     </message>
@@ -201,14 +201,66 @@
 <context>
     <name>CliCommandDesc</name>
     <message>
-        <location filename="../commands/clicommanddesc.cpp" line="14"/>
+        <location filename="../commands/clicommanddesc.cpp" line="15"/>
+        <source>No working database is set.
+Call %1 command to set working database.
+Call %2 to see list of all databases.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../commands/clicommanddesc.cpp" line="26"/>
+        <source>Database is not open.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../commands/clicommanddesc.cpp" line="35"/>
+        <source>Cannot find table named: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../commands/clicommanddesc.cpp" line="52"/>
         <source>shows details about the table</source>
         <translation>显示表的详情</translation>
     </message>
     <message>
-        <location filename="../commands/clicommanddesc.cpp" line="25"/>
+        <location filename="../commands/clicommanddesc.cpp" line="63"/>
         <source>table</source>
         <translation>表</translation>
+    </message>
+    <message>
+        <location filename="../commands/clicommanddesc.cpp" line="70"/>
+        <source>Table: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../commands/clicommanddesc.cpp" line="74"/>
+        <source>Column name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../commands/clicommanddesc.cpp" line="76"/>
+        <source>Data type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../commands/clicommanddesc.cpp" line="80"/>
+        <source>Constraints</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../commands/clicommanddesc.cpp" line="105"/>
+        <source>Virtual table: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../commands/clicommanddesc.cpp" line="109"/>
+        <source>Construction arguments:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../commands/clicommanddesc.cpp" line="114"/>
+        <source>No construction arguments were passed for this virtual table.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -280,7 +332,7 @@ You can always execute any command with exactly single &apos;--help&apos; option
     <message>
         <location filename="../commands/clicommandhelp.cpp" line="52"/>
         <source>Usage: %1%2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">用法： %1%2</translation>
     </message>
     <message>
         <location filename="../commands/clicommandhelp.cpp" line="62"/>
@@ -399,7 +451,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
         <location filename="../commands/clicommandopen.cpp" line="29"/>
         <source>Could not add database %1 to list.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">未能将数据库“%1”添加到列表。</translation>
     </message>
     <message>
         <location filename="../commands/clicommandopen.cpp" line="37"/>
@@ -632,7 +684,7 @@ The database argument is optional and if provided, then only given database will
         <location filename="../commands/clicommanduse.cpp" line="16"/>
         <location filename="../commands/clicommanduse.cpp" line="30"/>
         <source>Current database: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">当前数据库：%1</translation>
     </message>
     <message>
         <location filename="../commands/clicommanduse.cpp" line="23"/>

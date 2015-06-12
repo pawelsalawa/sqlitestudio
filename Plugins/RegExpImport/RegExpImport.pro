@@ -28,7 +28,8 @@ RESOURCES += \
     regexpimport.qrc
 
 
-TRANSLATIONS += RegExpImport_zh_CN.ts \
+TRANSLATIONS += RegExpImport_it.ts \
+		RegExpImport_zh_CN.ts \
 		RegExpImport_sk.ts \
 		RegExpImport_de.ts \
 		RegExpImport_ru.ts \
@@ -36,6 +37,7 @@ TRANSLATIONS += RegExpImport_zh_CN.ts \
 		RegExpImport_fr.ts \
 		RegExpImport_es.ts \
 		RegExpImport_pl.ts
+
 
 
 

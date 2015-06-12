@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="de_DE">
+<TS version="2.1" language="de_DE">
 <context>
     <name>AbstractDb</name>
     <message>
@@ -774,7 +774,7 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
         <translation>Die Datenbank %1 kann nicht geöffnet werden.</translation>
     </message>
     <message>
-        <location filename="../db/abstractdb2.h" line="803"/>
+        <location filename="../db/abstractdb2.h" line="805"/>
         <location filename="../db/abstractdb3.h" line="1100"/>
         <source>Result set expired or no row available.</source>
         <translation>Das Abfrageergebniss ist ungültig oder es ist keine Datenzeile verfügbar.</translation>
@@ -851,8 +851,8 @@ Problembeschreibung: %2</translation>
         <translation>Stacküberlauf bei Verarbeitung</translation>
     </message>
     <message>
-        <location filename="../parser/sqlite2_parse.cpp" line="4461"/>
-        <location filename="../parser/sqlite3_parse.cpp" line="5080"/>
+        <location filename="../parser/sqlite2_parse.cpp" line="4465"/>
+        <location filename="../parser/sqlite3_parse.cpp" line="5084"/>
         <source>Syntax error</source>
         <translation>Syntaxfehler</translation>
     </message>
@@ -907,12 +907,12 @@ Problembeschreibung: %2</translation>
         <translation>Der Implementationscode darf nicht leer sein.</translation>
     </message>
     <message>
-        <location filename="../selectresolver.cpp" line="307"/>
+        <location filename="../selectresolver.cpp" line="317"/>
         <source>Could not resolve data source for column: %1</source>
         <translation>Die Datenquelle für Spalte %1 kann nicht aufgelöst werden.</translation>
     </message>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="617"/>
+        <location filename="../services/impl/configimpl.cpp" line="612"/>
         <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Tried to initialize the file at following localizations: %1.</source>
         <translatorcomment>Ich hoffe, dass ich &quot;to initialize&quot; hier richtig mit &quot;erstellt&quot; übersetzt habe.</translatorcomment>
         <translation>Die Konfigurationsdatei kann nicht erstellt werden. Alle Änderungen an der Konfiguration sowie die Abfragehistorie sind nach einem Programmneustart verloren. Es wurde versucht die Konfigurationsdatei in folgendem Verzeichnis zu erstellen: %1</translation>
@@ -960,39 +960,39 @@ Problembeschreibung: %2</translation>
         <translation>Tabellen füllen</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="108"/>
+        <location filename="../tablemodifier.cpp" line="107"/>
         <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
         <translation>Tabelle %1 referenziert Tabelle %2, jedoch wird die &apos;foreign key&apos;-Definition für die neue Tabellendefinition nicht aktualisiert, da es Probleme bei der DDL-Analyse von Tabelle %3 gibt.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="380"/>
+        <location filename="../tablemodifier.cpp" line="379"/>
         <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
         <translation>Alle Spalten, die von Index %1 indiziert wurden, sind verloren. Der Index wird nach der Tabellenmodifikation nicht neu erstellt.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="419"/>
+        <location filename="../tablemodifier.cpp" line="418"/>
         <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
         <translation>Es ist ein Problem bei der korrekten Verarbeitung des Triggers %1 aufgetreten. Er wird möglicherweise nicht vollständig aktualisert werden und sollte geprüft werden.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="466"/>
+        <location filename="../tablemodifier.cpp" line="465"/>
         <source>Cannot not update trigger %1 according to table %2 modification.</source>
         <translation>Die Aktualisierung des Triggers %1, resultierend aus der Änderung der Tabelle %2, kann nicht ausgeführt werden.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="587"/>
-        <location filename="../tablemodifier.cpp" line="611"/>
-        <location filename="../tablemodifier.cpp" line="630"/>
+        <location filename="../tablemodifier.cpp" line="645"/>
+        <location filename="../tablemodifier.cpp" line="669"/>
+        <location filename="../tablemodifier.cpp" line="688"/>
         <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
         <translation>Es ist ein Problem beim Aktualisieren einer %1 Abfrage innerhalb eines %2 Triggers aufgetreten. Eine der %1 Unterabfragen, welche möglicherweise die Tabelle %3 referenziert, kann nicht geändert werden. Eine manuelle Anpassung des Triggers wird nötig sein.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="434"/>
+        <location filename="../tablemodifier.cpp" line="433"/>
         <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
         <translation>Alle Spalten, die durch den Trigger %1 abgedeckt wurden, sind verloren. Der Trigger wird nach der Änderung nicht wiederhergestellt.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="484"/>
+        <location filename="../tablemodifier.cpp" line="483"/>
         <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
         <translation>Die Aktualisierung des Views %1, resultierend aus der Änderung der Tabelle %2, kann nicht ausgeführt werden. Der View wird daher nicht geändert.</translation>
@@ -1032,13 +1032,13 @@ The view will remain as it is.</source>
     </message>
     <message>
         <location filename="../db/queryexecutor.cpp" line="264"/>
-        <location filename="../db/queryexecutor.cpp" line="538"/>
+        <location filename="../db/queryexecutor.cpp" line="548"/>
         <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
         <translatorcomment>Hier muss ggf. noch das &apos;data paging&apos; korrekt übersetzt werden.</translatorcomment>
         <translation>Beim Ausführen der count(*) Abfrage ist ein Fehler aufgetreten, daher wird das data paging abgeschaltet. Problemdetails der Datenbank: %1</translation>
     </message>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="449"/>
+        <location filename="../db/queryexecutor.cpp" line="459"/>
         <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
         <translation>SQLiteStudio konnte keine Metadaten aus der Abfrage extrahieren. Die Ergebnismenge kann daher nicht editiert werden.</translation>
     </message>
