@@ -4,32 +4,32 @@
 <context>
     <name>CLI</name>
     <message>
-        <location filename="../cli.cpp" line="87"/>
+        <location filename="../cli.cpp" line="98"/>
         <source>Current database: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../cli.cpp" line="89"/>
+        <location filename="../cli.cpp" line="100"/>
         <source>No current working database is set.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../cli.cpp" line="91"/>
+        <location filename="../cli.cpp" line="102"/>
         <source>Type %1 for help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../cli.cpp" line="228"/>
+        <location filename="../cli.cpp" line="257"/>
         <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../cli.cpp" line="235"/>
+        <location filename="../cli.cpp" line="264"/>
         <source>Could not add database %1 to list.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../cli.cpp" line="261"/>
+        <location filename="../cli.cpp" line="290"/>
         <source>closed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -201,13 +201,65 @@
 <context>
     <name>CliCommandDesc</name>
     <message>
-        <location filename="../commands/clicommanddesc.cpp" line="14"/>
+        <location filename="../commands/clicommanddesc.cpp" line="15"/>
+        <source>No working database is set.
+Call %1 command to set working database.
+Call %2 to see list of all databases.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../commands/clicommanddesc.cpp" line="26"/>
+        <source>Database is not open.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../commands/clicommanddesc.cpp" line="35"/>
+        <source>Cannot find table named: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../commands/clicommanddesc.cpp" line="52"/>
         <source>shows details about the table</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../commands/clicommanddesc.cpp" line="25"/>
+        <location filename="../commands/clicommanddesc.cpp" line="63"/>
         <source>table</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../commands/clicommanddesc.cpp" line="70"/>
+        <source>Table: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../commands/clicommanddesc.cpp" line="74"/>
+        <source>Column name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../commands/clicommanddesc.cpp" line="76"/>
+        <source>Data type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../commands/clicommanddesc.cpp" line="80"/>
+        <source>Constraints</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../commands/clicommanddesc.cpp" line="105"/>
+        <source>Virtual table: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../commands/clicommanddesc.cpp" line="109"/>
+        <source>Construction arguments:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../commands/clicommanddesc.cpp" line="114"/>
+        <source>No construction arguments were passed for this virtual table.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

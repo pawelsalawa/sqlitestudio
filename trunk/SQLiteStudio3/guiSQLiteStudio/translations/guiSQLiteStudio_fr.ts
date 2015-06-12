@@ -890,7 +890,7 @@ mais c&apos;est OK pour l&apos;utiliser.</translation>
     <name>ConfigDialog</name>
     <message>
         <location filename="../dialogs/configdialog.ui" line="14"/>
-        <location filename="../dialogs/configdialog.ui" line="1293"/>
+        <location filename="../dialogs/configdialog.ui" line="1344"/>
         <source>Configuration</source>
         <translation>Configuration</translation>
     </message>
@@ -971,449 +971,476 @@ mais c&apos;est OK pour l&apos;utiliser.</translation>
         <translation>Lilite initial de la largeur de la colonne de données (en pixel):</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="328"/>
+        <location filename="../dialogs/configdialog.ui" line="301"/>
+        <source>Inserting new row in data grid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.ui" line="307"/>
+        <source>Before currently selected row</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.ui" line="316"/>
+        <location filename="../dialogs/configdialog.ui" line="329"/>
+        <location filename="../dialogs/configdialog.ui" line="342"/>
+        <source>General.InsertRowPlacement</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.ui" line="323"/>
+        <source>After currently selected row</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.ui" line="336"/>
+        <source>At the end of data view</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dialogs/configdialog.ui" line="379"/>
         <source>Data types</source>
         <translation>Types de données</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="366"/>
+        <location filename="../dialogs/configdialog.ui" line="417"/>
         <source>Available editors:</source>
         <translation>Editeurs disponibles:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="382"/>
+        <location filename="../dialogs/configdialog.ui" line="433"/>
         <source>Editors selected for this data type:</source>
         <translation>Editeur sélectionné pour ce type de données:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="418"/>
+        <location filename="../dialogs/configdialog.ui" line="469"/>
         <source>Schema editing</source>
         <translation>Edition de schéma</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="430"/>
+        <location filename="../dialogs/configdialog.ui" line="481"/>
         <source>Number of DDL changes kept in history.</source>
         <translation>Nombre de DDL modifiés gardés dans l&apos;historique.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="443"/>
+        <location filename="../dialogs/configdialog.ui" line="494"/>
         <source>DDL history size:</source>
         <translation>Dimension de l&apos;historique DDL:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="450"/>
+        <location filename="../dialogs/configdialog.ui" line="501"/>
         <source>Don&apos;t show DDL preview dialog when commiting schema changes</source>
         <translation>Ne pas montrer la présualisation DDL pendant l&apos;enregistrement de schéma modifié</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="463"/>
+        <location filename="../dialogs/configdialog.ui" line="514"/>
         <source>SQL queries</source>
         <translation>Requêtes SQL</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="475"/>
-        <location filename="../dialogs/configdialog.ui" line="488"/>
+        <location filename="../dialogs/configdialog.ui" line="526"/>
+        <location filename="../dialogs/configdialog.ui" line="539"/>
         <source>Number of queries kept in the history.</source>
         <translation>Nombre de requêtes gardées dans l&apos;historique.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="491"/>
+        <location filename="../dialogs/configdialog.ui" line="542"/>
         <source>History size:</source>
         <translation>Dimension de l&apos;historique:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="498"/>
+        <location filename="../dialogs/configdialog.ui" line="549"/>
         <source>&lt;p&gt;If there is more than one query in the SQL editor window, then (if this option is enabled) only a single query will be executed - the one under the keyboard insertion cursor. Otherwise all queries will be executed. You can always limit queries to be executed by selecting those queries before calling to execute.&lt;/p&gt;</source>
         <translation>&lt;p&gt;S&apos;il y a plus d&apos;une requête dans l&apos;éditeur d&apos;SQL, alors (si cette option est permise) seulement une seule requête sera exécutée -cellesous le curseur d&apos;insertion. Autrement toutes les requêtes seront exécutées. Vous pouvez limiter le nombre de requêtes devant être exécutées en sélectionnant ces requêtes avant leur exécution.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="501"/>
+        <location filename="../dialogs/configdialog.ui" line="552"/>
         <source>Execute only the query under the cursor</source>
         <translation>Exécuter seulement la requête sous le curseur</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="514"/>
+        <location filename="../dialogs/configdialog.ui" line="565"/>
         <source>Updates</source>
         <translation>Mises à jour</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="520"/>
+        <location filename="../dialogs/configdialog.ui" line="571"/>
         <source>Automatically check for updates at startup</source>
         <translation>Contrôle automatique des mises à jour au lancement</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="533"/>
+        <location filename="../dialogs/configdialog.ui" line="584"/>
         <source>Session</source>
         <translation>Session</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="539"/>
+        <location filename="../dialogs/configdialog.ui" line="590"/>
         <source>Restore last session (active MDI windows) after startup</source>
         <translation>Restaurer la dernière session(Fenêtre MDI active) après lancement</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="581"/>
+        <location filename="../dialogs/configdialog.ui" line="632"/>
         <source>Filter shortcuts by name or key combination</source>
         <translation>Filtre par nom raccourci ou combinaison de touches</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="622"/>
+        <location filename="../dialogs/configdialog.ui" line="673"/>
         <source>Action</source>
         <translation>Action</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="627"/>
+        <location filename="../dialogs/configdialog.ui" line="678"/>
         <source>Key combination</source>
         <translation>Combinaison de touches</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="671"/>
-        <location filename="../dialogs/configdialog.ui" line="1283"/>
+        <location filename="../dialogs/configdialog.ui" line="722"/>
+        <location filename="../dialogs/configdialog.ui" line="1334"/>
         <source>Language</source>
         <translation>Langage</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="677"/>
+        <location filename="../dialogs/configdialog.ui" line="728"/>
         <source>Changing language requires application restart to take effect.</source>
         <translation>Le changement de langage requiére le redemarrage de l&apos;application pour prendre effet.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="694"/>
+        <location filename="../dialogs/configdialog.ui" line="745"/>
         <source>Compact layout</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="700"/>
+        <location filename="../dialogs/configdialog.ui" line="751"/>
         <source>&lt;p&gt;Compact layout reduces all margins and spacing on the UI to minimum, making space for displaying more data. It makes the interface a little bit less aesthetic, but allows to display more data at once.&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="703"/>
+        <location filename="../dialogs/configdialog.ui" line="754"/>
         <source>Use compact layout</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="709"/>
+        <location filename="../dialogs/configdialog.ui" line="760"/>
         <source>General.CompactLayout</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="719"/>
+        <location filename="../dialogs/configdialog.ui" line="770"/>
         <source>Database list</source>
         <translation>Liste de base de données</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="725"/>
+        <location filename="../dialogs/configdialog.ui" line="776"/>
         <source>If switched off, then columns will be sorted in the order they are typed in CREATE TABLE statement.</source>
         <translation>Sur off, les colonnes seront triées dans l&apos;ordre de saisie de l&apos;instruction CREATE TABLE. </translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="728"/>
+        <location filename="../dialogs/configdialog.ui" line="779"/>
         <source>Sort table columns alphabetically</source>
         <translation>Ordre de tri alpha de la colonne</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="738"/>
+        <location filename="../dialogs/configdialog.ui" line="789"/>
         <source>Expand tables node when connected to a database</source>
         <translation>Déployez le noeud des tables lors de la connexion de la base de données</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="748"/>
+        <location filename="../dialogs/configdialog.ui" line="799"/>
         <source>&lt;p&gt;Additional labels are those displayed next to the names on the databases list (they are blue, unless configured otherwise). Enabling this option will result in labels for databases, invalid databases and aggregated nodes (column group, index group, trigger group). For more labels see options below.&lt;p&gt;</source>
         <translation>&lt;p&gt;Les labels supplémentaires sont ceux montrés à côté des noms dans la liste de bases de données ( bleus,sauf autre configaration). Permettre cette option aboutira aux lablels pour des bases de données, des bases de données invalides et des noeuds (colonnes, index, déclancheur). Pour plus de labels voir des options ci-dessous.&lt;p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="751"/>
+        <location filename="../dialogs/configdialog.ui" line="802"/>
         <source>Display additional labels on the list</source>
         <translation>Afficher des labels supplémentairesà la liste </translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="766"/>
+        <location filename="../dialogs/configdialog.ui" line="817"/>
         <source>For regular tables labels will show number of columns, indexes and triggers for each of tables.</source>
         <translation>Pour des tables courantes les labels montrerons le nombre der colonnes, index et déclencheurs pour chaque tables.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="769"/>
+        <location filename="../dialogs/configdialog.ui" line="820"/>
         <source>Display labels for regular tables</source>
         <translation>Afficher les labels pour les tables courantes</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="779"/>
+        <location filename="../dialogs/configdialog.ui" line="830"/>
         <source>Virtual tables will be marked with a &apos;virtual&apos; label.</source>
         <translation>Les tables vituelles seront marquées avec un label virtuel.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="782"/>
+        <location filename="../dialogs/configdialog.ui" line="833"/>
         <source>Display labels for virtual tables</source>
         <translation>Afficher les labels pour les tables virtuelles</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="795"/>
+        <location filename="../dialogs/configdialog.ui" line="846"/>
         <source>Expand views node when connected to a database</source>
         <translation>Etendre le noeud des vues lorsque la base de données est connectée</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="805"/>
+        <location filename="../dialogs/configdialog.ui" line="856"/>
         <source>If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</source>
         <translation>Si cette option est déactivée, les objets seront triés pour qu&apos; ils apparaissent dans la table sqlite_master (dans l&apos;ordre de création)</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="808"/>
+        <location filename="../dialogs/configdialog.ui" line="859"/>
         <source>Sort objects (tables, indexes, triggers and views) alphabetically</source>
         <translation>Tri d&apos;objets (tables, index, déclancheurs et vues) en alpha</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="818"/>
+        <location filename="../dialogs/configdialog.ui" line="869"/>
         <source>Display system tables and indexes on the list</source>
         <translation>Afficher les tables système et index dans la liste</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="831"/>
+        <location filename="../dialogs/configdialog.ui" line="882"/>
         <source>Table windows</source>
         <translation>Fenêtre de ta table</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="837"/>
+        <location filename="../dialogs/configdialog.ui" line="888"/>
         <source>When enabled, Table Windows will show up with the data tab, instead of the structure tab.</source>
         <translation>Lorsque c&apos;est permis, la fenêtre des tables sera  affichée avec l&apos;onglet des données, à la place de l&apos;onglet structure.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="840"/>
+        <location filename="../dialogs/configdialog.ui" line="891"/>
         <source>Open Table Windows with the data tab for start</source>
         <translation>Ourerture la fenêtre de table avec l&apos;onglet des données au départ</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="853"/>
+        <location filename="../dialogs/configdialog.ui" line="904"/>
         <source>View windows</source>
         <translation>Fenêtre de vue</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="859"/>
+        <location filename="../dialogs/configdialog.ui" line="910"/>
         <source>When enabled, View Windows will show up with the data tab, instead of the structure tab.</source>
         <translation>Lorsque c&apos;est permis, la fenêtre des vues sera affichée avec l&apos;onglet des données, à la place de l&apos;onglet structure.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="862"/>
+        <location filename="../dialogs/configdialog.ui" line="913"/>
         <source>Open View Windows with the data tab for start</source>
         <translation>Ourerture la fenêtre de vue avec l&apos;onglet des données au départ</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="875"/>
+        <location filename="../dialogs/configdialog.ui" line="926"/>
         <source>Main window dock areas</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="881"/>
+        <location filename="../dialogs/configdialog.ui" line="932"/>
         <source>Left and right areas occupy corners</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="901"/>
+        <location filename="../dialogs/configdialog.ui" line="952"/>
         <source>Top and bottom areas occupy corners</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1010"/>
+        <location filename="../dialogs/configdialog.ui" line="1061"/>
         <source>Hide built-in plugins</source>
         <translation>Cacher des plugins incorporés</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1039"/>
+        <location filename="../dialogs/configdialog.ui" line="1090"/>
         <source>Current style:</source>
         <translation>Style actuel:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1056"/>
+        <location filename="../dialogs/configdialog.ui" line="1107"/>
         <source>Preview</source>
         <translation>Aperçu</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1066"/>
+        <location filename="../dialogs/configdialog.ui" line="1117"/>
         <source>Enabled</source>
         <translation>En service</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1239"/>
+        <location filename="../dialogs/configdialog.ui" line="1290"/>
         <source>Disabled</source>
         <translation>Hors service</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1288"/>
+        <location filename="../dialogs/configdialog.ui" line="1339"/>
         <source>Active formatter plugin</source>
         <translation>Plugin de formattage actf</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1326"/>
+        <location filename="../dialogs/configdialog.ui" line="1377"/>
         <source>SQL editor font</source>
         <translation>Police de l&apos;éditeur SQL</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1342"/>
+        <location filename="../dialogs/configdialog.ui" line="1393"/>
         <source>Database list font</source>
         <translation>Liste des polices de base de données</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1358"/>
+        <location filename="../dialogs/configdialog.ui" line="1409"/>
         <source>Database list additional label font</source>
         <translation>Police additionel de la liste des base de données </translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1374"/>
+        <location filename="../dialogs/configdialog.ui" line="1425"/>
         <source>Data view font</source>
         <translation>Police des données de vue</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1390"/>
+        <location filename="../dialogs/configdialog.ui" line="1441"/>
         <source>Status field font</source>
         <translation>Police du champ status</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1448"/>
+        <location filename="../dialogs/configdialog.ui" line="1499"/>
         <source>SQL editor colors</source>
         <translation>Couleurs de l&apos;éditeur SQL</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1454"/>
+        <location filename="../dialogs/configdialog.ui" line="1505"/>
         <source>Current line background</source>
         <translation>Fond actuel de la ligne</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1461"/>
+        <location filename="../dialogs/configdialog.ui" line="1512"/>
         <source>&lt;p&gt;SQL strings are enclosed with single quote characters.&lt;/p&gt;</source>
         <translation>&lt;p&gt;Les chaines SQL sont encadrées avec de caractères simple quote.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1464"/>
+        <location filename="../dialogs/configdialog.ui" line="1515"/>
         <source>String foreground</source>
         <translation>Avant plan chaine</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1567"/>
+        <location filename="../dialogs/configdialog.ui" line="1618"/>
         <source>&lt;p&gt;Bind parameters are placeholders for values yet to be provided by the user. They have one of the forms:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;:param_name&lt;/li&gt;&lt;li&gt;$param_name&lt;/li&gt;&lt;li&gt;@param_name&lt;/li&gt;&lt;li&gt;?&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>&lt;p&gt;Les paramètres fournis par l&apos;utilisateur sont passés par valeur. Ils ont l&apos;une de ces formes:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;:param_name&lt;/li&gt;&lt;li&gt;$param_name&lt;/li&gt;&lt;li&gt;@param_name&lt;/li&gt;&lt;li&gt;?&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1570"/>
+        <location filename="../dialogs/configdialog.ui" line="1621"/>
         <source>Bind parameter foreground</source>
         <translation>Premier plan de paramètre de lien</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1593"/>
+        <location filename="../dialogs/configdialog.ui" line="1644"/>
         <source>Highlighted parenthesis background</source>
         <translation>Parenthèses surlignées</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1600"/>
+        <location filename="../dialogs/configdialog.ui" line="1651"/>
         <source>&lt;p&gt;BLOB values are binary values represented as hexadecimal numbers, like:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;X&apos;12B4&apos;&lt;/li&gt;&lt;li&gt;x&apos;46A2F4&apos;&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>&lt;p&gt;les valeurs BLOB sont binaire représentés comme nombres hexadécimaux, comme:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;X&apos;12B4&apos;&lt;/li&gt;&lt;li&gt;x&apos;46A2F4&apos;&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1603"/>
+        <location filename="../dialogs/configdialog.ui" line="1654"/>
         <source>BLOB value foreground</source>
         <translation>Premier plan de valeur BLOB</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1610"/>
+        <location filename="../dialogs/configdialog.ui" line="1661"/>
         <source>Regular foreground</source>
         <translation>Avant plan courant</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1617"/>
+        <location filename="../dialogs/configdialog.ui" line="1668"/>
         <source>Line numbers area background</source>
         <translation>Zone des numéros de ligne en arrière plan</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1640"/>
+        <location filename="../dialogs/configdialog.ui" line="1691"/>
         <source>Keyword foreground</source>
         <translation>Mot clé en avant plan</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1647"/>
+        <location filename="../dialogs/configdialog.ui" line="1698"/>
         <source>Number foreground</source>
         <translation>Nombre en avant plan</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1654"/>
+        <location filename="../dialogs/configdialog.ui" line="1705"/>
         <source>Comment foreground</source>
         <translation>Commentaire en avant plan</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1693"/>
+        <location filename="../dialogs/configdialog.ui" line="1744"/>
         <source>&lt;p&gt;Valid objects are name of tables, indexes, triggers, or views that exist in the SQLite database.&lt;/p&gt;</source>
         <translation>&lt;p&gt;Les objets valides sont les nom de tables, index, déclencheurs, ou vues qui existent dans la base de données SQLite.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1696"/>
+        <location filename="../dialogs/configdialog.ui" line="1747"/>
         <source>Valid objects foreground</source>
         <translation>Objets valides en avant plan</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1722"/>
+        <location filename="../dialogs/configdialog.ui" line="1773"/>
         <source>Data view colors</source>
         <translation>Couleurs de vue de données</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1728"/>
+        <location filename="../dialogs/configdialog.ui" line="1779"/>
         <source>&lt;p&gt;Any data changes will be outlined with this color, until they&apos;re commited to the database.&lt;/p&gt;</source>
         <translation>&lt;p&gt;Touts les modifications de données seront écrits avec cette couleur,à l&apos;enregistrement de la base de données.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1731"/>
+        <location filename="../dialogs/configdialog.ui" line="1782"/>
         <source>Uncommited data outline color</source>
         <translation>Annulation de la couleur des données</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1754"/>
+        <location filename="../dialogs/configdialog.ui" line="1805"/>
         <source>&lt;p&gt;In case of error while commiting data changes, the problematic cell will be outlined with this color.&lt;/p&gt;</source>
         <translation>&lt;p&gt;En cas de l&apos;erreur à l&apos;enregistrement des modifications de données, la cellule problématique sera indiquée avec cette couleur.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1757"/>
+        <location filename="../dialogs/configdialog.ui" line="1808"/>
         <source>Commit error outline color</source>
         <translation>Erreur d&apos;enregistrement du surlignage</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1780"/>
+        <location filename="../dialogs/configdialog.ui" line="1831"/>
         <source>NULL value foreground</source>
         <translation>Valeur NULL au premier plan</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1803"/>
+        <location filename="../dialogs/configdialog.ui" line="1854"/>
         <source>Deleted row background</source>
         <translation>Ligne supprimée en arrier plan</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1829"/>
+        <location filename="../dialogs/configdialog.ui" line="1880"/>
         <source>Database list colors</source>
         <translation>Liste de couleurs des bases de données</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1835"/>
+        <location filename="../dialogs/configdialog.ui" line="1886"/>
         <source>&lt;p&gt;Additional labels are those which tell you SQLite version, number of objects deeper in the tree, etc.&lt;/p&gt;</source>
         <translation>&lt;p&gt;Des labels supplémentaires indique la version SQLITE, le nombre d&apos;objets au nieau inférieur, etc.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1838"/>
+        <location filename="../dialogs/configdialog.ui" line="1889"/>
         <source>Additional labels foreground</source>
         <translation>Labels additionels en avant plan</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1864"/>
+        <location filename="../dialogs/configdialog.ui" line="1915"/>
         <source>Status field colors</source>
         <translation>Couleurs du status des champs</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1870"/>
+        <location filename="../dialogs/configdialog.ui" line="1921"/>
         <source>Information message foreground</source>
         <translation>Message d&apos;information devant</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1893"/>
+        <location filename="../dialogs/configdialog.ui" line="1944"/>
         <source>Warning message foreground</source>
         <translation>Warning devant</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1916"/>
+        <location filename="../dialogs/configdialog.ui" line="1967"/>
         <source>Error message foreground</source>
         <translation>Message d&apos;erreur devant</translation>
     </message>
@@ -1675,97 +1702,115 @@ mais c&apos;est OK pour l&apos;utiliser.</translation>
         <translation>Actualiser les données de la table</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="179"/>
+        <location filename="../dataview.cpp" line="182"/>
         <source>First page</source>
         <comment>data view</comment>
         <translation>Première page</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="180"/>
+        <location filename="../dataview.cpp" line="183"/>
         <source>Previous page</source>
         <comment>data view</comment>
         <translation>Page précédente</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="182"/>
+        <location filename="../dataview.cpp" line="185"/>
         <source>Next page</source>
         <comment>data view</comment>
         <translation>Page suivante</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="183"/>
+        <location filename="../dataview.cpp" line="186"/>
         <source>Last page</source>
         <comment>data view</comment>
         <translation>Dernière page</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="188"/>
+        <location filename="../dataview.cpp" line="191"/>
         <source>Apply filter</source>
         <comment>data view</comment>
         <translation>Appliquer le filtre</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="203"/>
+        <location filename="../dataview.cpp" line="206"/>
         <source>Commit changes for selected cells</source>
         <comment>data view</comment>
         <translation>Enregistrer les modifications des cellules sélectionnées</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="204"/>
+        <location filename="../dataview.cpp" line="207"/>
         <source>Rollback changes for selected cells</source>
         <comment>data view</comment>
         <translation>Annuler les modifications des celulles sélectionnées</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="205"/>
+        <location filename="../dataview.cpp" line="208"/>
         <source>Show grid view of results</source>
         <comment>sql editor</comment>
         <translation>Afficache des résultats en tableau</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="206"/>
+        <location filename="../dataview.cpp" line="209"/>
         <source>Show form view of results</source>
         <comment>sql editor</comment>
         <translation>Affichage des résultat en formulaire</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="275"/>
+        <location filename="../dataview.cpp" line="278"/>
         <source>Filter by text</source>
         <comment>data view</comment>
         <translation>Filtrer par texte</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="276"/>
+        <location filename="../dataview.cpp" line="279"/>
         <source>Filter by the Regular Expression</source>
         <comment>data view</comment>
         <translation>Filtrer par une expression standard</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="277"/>
+        <location filename="../dataview.cpp" line="280"/>
         <source>Filter by SQL expression</source>
         <comment>data view</comment>
         <translation>Filtrer par une expression SQL</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="308"/>
+        <location filename="../dataview.cpp" line="311"/>
         <source>Tabs on top</source>
         <comment>data view</comment>
         <translation>Onglets en haut</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="309"/>
+        <location filename="../dataview.cpp" line="312"/>
         <source>Tabs at bottom</source>
         <comment>data view</comment>
         <translation>Onglet en bas</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="555"/>
+        <location filename="../dataview.cpp" line="337"/>
+        <source>Place new rows above selected row</source>
+        <comment>data view</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dataview.cpp" line="338"/>
+        <source>Place new rows below selected row</source>
+        <comment>data view</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dataview.cpp" line="339"/>
+        <source>Place new rows at the end of the data view</source>
+        <comment>data view</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dataview.cpp" line="596"/>
         <source>Total number of rows is being counted.
 Browsing other pages will be possible after the row counting is done.</source>
         <translation>Le total des lignes en cours de comptage. La navigation d&apos;autres pages à la fin du comptage.</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="566"/>
+        <location filename="../dataview.cpp" line="607"/>
         <source>Row: %1</source>
         <translation>Lignes: %1</translation>
     </message>
@@ -1924,7 +1969,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="42"/>
-        <location filename="../dialogs/dbdialog.cpp" line="149"/>
+        <location filename="../dialogs/dbdialog.cpp" line="150"/>
         <source>File</source>
         <translation>Fichier</translation>
     </message>
@@ -1953,42 +1998,42 @@ Browsing other pages will be possible after the row counting is done.</source>
         <translation type="vanished">Test de connexion</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="150"/>
+        <location filename="../dialogs/dbdialog.cpp" line="151"/>
         <source>Browse for existing database file on local computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="283"/>
+        <location filename="../dialogs/dbdialog.cpp" line="284"/>
         <source>Browse</source>
         <translation>Navigateur</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="483"/>
+        <location filename="../dialogs/dbdialog.cpp" line="484"/>
         <source>Enter an unique database name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="492"/>
+        <location filename="../dialogs/dbdialog.cpp" line="493"/>
         <source>This name is already in use. Please enter unique name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="500"/>
+        <location filename="../dialogs/dbdialog.cpp" line="501"/>
         <source>Enter a database file path.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="507"/>
+        <location filename="../dialogs/dbdialog.cpp" line="508"/>
         <source>This database is already on the list under name: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="523"/>
+        <location filename="../dialogs/dbdialog.cpp" line="524"/>
         <source>Select a database type.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="580"/>
+        <location filename="../dialogs/dbdialog.cpp" line="581"/>
         <source>Auto-generated</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1997,7 +2042,7 @@ Browsing other pages will be possible after the row counting is done.</source>
         <translation type="vanished">Le non sera généré automatiquement</translation>
     </message>
     <message>
-        <location filename="../dialogs/dbdialog.cpp" line="585"/>
+        <location filename="../dialogs/dbdialog.cpp" line="586"/>
         <source>Type the name</source>
         <translation>Saississez le nom</translation>
     </message>
@@ -3262,42 +3307,42 @@ Entrez SVP un nouveau nom, unique, ou cliquez &apos;%1&apos; pour d&apos;interro
         <translation>Optrions de source de données </translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="71"/>
+        <location filename="../dialogs/importdialog.cpp" line="72"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="102"/>
+        <location filename="../dialogs/importdialog.cpp" line="103"/>
         <source>If you type table name that doesn&apos;t exist, it will be created.</source>
         <translation>Si vous saississez un nom de table inexistant, celle-ci sera créée.</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="102"/>
+        <location filename="../dialogs/importdialog.cpp" line="103"/>
         <source>Enter the table name</source>
         <translation>Saississez un nom de table</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="120"/>
+        <location filename="../dialogs/importdialog.cpp" line="121"/>
         <source>Select import plugin.</source>
         <translation>Sélectionnez un plugin d&apos;importation.</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="129"/>
+        <location filename="../dialogs/importdialog.cpp" line="130"/>
         <source>You must provide a file to import from.</source>
         <translation>Vous devez fournir un fichier à importer.</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="136"/>
+        <location filename="../dialogs/importdialog.cpp" line="137"/>
         <source>The file &apos;%1&apos; does not exist.</source>
         <translation>Le fichier &apos;%1&apos; n&apos;existe pas.</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="142"/>
+        <location filename="../dialogs/importdialog.cpp" line="143"/>
         <source>Path you provided is a directory. A regular file is required.</source>
         <translation>Le chemin indiqué est un répertoire. Un fichier est requis.</translation>
     </message>
     <message>
-        <location filename="../dialogs/importdialog.cpp" line="318"/>
+        <location filename="../dialogs/importdialog.cpp" line="319"/>
         <source>Pick file to import from</source>
         <translation>Sélectionnez le fichier d&apos;importation</translation>
     </message>
@@ -3388,19 +3433,19 @@ Entrez SVP un nouveau nom, unique, ou cliquez &apos;%1&apos; pour d&apos;interro
         <translation>ordre de tri</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="453"/>
-        <location filename="../dialogs/indexdialog.cpp" line="466"/>
+        <location filename="../dialogs/indexdialog.cpp" line="454"/>
+        <location filename="../dialogs/indexdialog.cpp" line="467"/>
         <source>Error</source>
         <comment>index dialog</comment>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="454"/>
+        <location filename="../dialogs/indexdialog.cpp" line="455"/>
         <source>Cannot create unique index, because values in selected columns are not unique. Would you like to execute SELECT query to see problematic values?</source>
         <translation>Impossible de créer un index, car les valeurs des colonnes sélectionnées ne sont pas uniques. Voulez-vous exécuter une requête SELECT pour voir les valeurs problématiques?</translation>
     </message>
     <message>
-        <location filename="../dialogs/indexdialog.cpp" line="466"/>
+        <location filename="../dialogs/indexdialog.cpp" line="467"/>
         <source>An error occurred while executing SQL statements:
 %1</source>
         <translation>Une erreur survenue à l&apos;exécution de l&apos;SQL:
@@ -3473,248 +3518,248 @@ Entrez SVP un nouveau nom, unique, ou cliquez &apos;%1&apos; pour d&apos;interro
         <translation>Passage en mode débogue. Les messages de débogage sont imprimés dans la sortie standard.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="211"/>
+        <location filename="../mainwindow.cpp" line="213"/>
         <source>You need to restart application to make the language change take effect.</source>
         <translation>Vous devez relancer l&apos;application pour que le langage prenne effet.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="254"/>
+        <location filename="../mainwindow.cpp" line="256"/>
         <source>Open SQL editor</source>
         <translation>Ouvrir éditeur SQL</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="255"/>
+        <location filename="../mainwindow.cpp" line="257"/>
         <source>Open DDL history</source>
         <translation>Ouvrir Historique DDL</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="256"/>
+        <location filename="../mainwindow.cpp" line="258"/>
         <source>Open SQL functions editor</source>
         <translation>Editeur de fonctions SQL</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="257"/>
+        <location filename="../mainwindow.cpp" line="259"/>
         <source>Open collations editor</source>
         <translation>Ouvrir editeur de collections</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="258"/>
+        <location filename="../mainwindow.cpp" line="260"/>
         <source>Import</source>
         <translation>Importer</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="259"/>
+        <location filename="../mainwindow.cpp" line="261"/>
         <source>Export</source>
         <translation>Exporter</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="261"/>
+        <location filename="../mainwindow.cpp" line="263"/>
         <source>Open configuration dialog</source>
         <translation>Ouvrir dialogue de configuration</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="263"/>
+        <location filename="../mainwindow.cpp" line="265"/>
         <source>Tile windows</source>
         <translation>Organisation des fenêtres</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="264"/>
+        <location filename="../mainwindow.cpp" line="266"/>
         <source>Tile windows horizontally</source>
         <translation>Organisation des fenêtres horizontalement</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="265"/>
+        <location filename="../mainwindow.cpp" line="267"/>
         <source>Tile windows vertically</source>
         <translation>Organisation des fenêtres verticalement</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="266"/>
+        <location filename="../mainwindow.cpp" line="268"/>
         <source>Cascade windows</source>
         <translation>Organisation des fenêtres en cascade</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="267"/>
+        <location filename="../mainwindow.cpp" line="269"/>
         <source>Next window</source>
         <translation>Fenêtre suivante</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="268"/>
+        <location filename="../mainwindow.cpp" line="270"/>
         <source>Previous window</source>
         <translation>Fenêtre précédante</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="269"/>
+        <location filename="../mainwindow.cpp" line="271"/>
         <source>Hide status field</source>
         <translation>Ca</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="271"/>
+        <location filename="../mainwindow.cpp" line="273"/>
         <source>Close selected window</source>
         <translation>Fermeture fenêtre  sélectionnée</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="272"/>
+        <location filename="../mainwindow.cpp" line="274"/>
         <source>Close all windows but selected</source>
         <translation>Fermeture de toutes les fenêtres sélectionnées</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="273"/>
+        <location filename="../mainwindow.cpp" line="275"/>
         <source>Close all windows</source>
         <translation>Fermeture de toutes les fenêtres</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="274"/>
+        <location filename="../mainwindow.cpp" line="276"/>
         <source>Restore recently closed window</source>
         <translation>Restaure une fenêtre récemment fermée</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="275"/>
+        <location filename="../mainwindow.cpp" line="277"/>
         <source>Rename selected window</source>
         <translation>Renomme la fenêtre sélectionnée</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="277"/>
+        <location filename="../mainwindow.cpp" line="279"/>
         <source>Open Debug Console</source>
         <translation>Ouvrir la console de debogage</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="278"/>
+        <location filename="../mainwindow.cpp" line="280"/>
         <source>Open CSS Console</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="279"/>
+        <location filename="../mainwindow.cpp" line="281"/>
         <source>Report a bug</source>
         <translation>Rapport de bug</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="280"/>
+        <location filename="../mainwindow.cpp" line="282"/>
         <source>Propose a new feature</source>
         <translation>Proposer une nouvelle fonction</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="281"/>
+        <location filename="../mainwindow.cpp" line="283"/>
         <source>About</source>
         <translation>Apropos</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="282"/>
+        <location filename="../mainwindow.cpp" line="284"/>
         <source>Licenses</source>
         <translation>Licences</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="283"/>
+        <location filename="../mainwindow.cpp" line="285"/>
         <source>Open home page</source>
         <translation>Ouvrir la home page</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="284"/>
+        <location filename="../mainwindow.cpp" line="286"/>
         <source>Open forum page</source>
         <translation>Ouvrir la page des forums</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="285"/>
+        <location filename="../mainwindow.cpp" line="287"/>
         <source>User Manual</source>
         <translation>Manuel utilisateurs</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="286"/>
+        <location filename="../mainwindow.cpp" line="288"/>
         <source>SQLite documentation</source>
         <translation>Documentation SQLite</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="287"/>
+        <location filename="../mainwindow.cpp" line="289"/>
         <source>Report history</source>
         <translation>Raport d&apos;historique</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="289"/>
+        <location filename="../mainwindow.cpp" line="291"/>
         <source>Check for updates</source>
         <translation>Vérification de mises à jour</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="327"/>
+        <location filename="../mainwindow.cpp" line="329"/>
         <source>Database</source>
         <comment>menubar</comment>
         <translation>Base de données</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="347"/>
+        <location filename="../mainwindow.cpp" line="349"/>
         <source>Structure</source>
         <comment>menubar</comment>
         <translation>Structure</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="368"/>
+        <location filename="../mainwindow.cpp" line="370"/>
         <source>View</source>
         <comment>menubar</comment>
         <translation>Vue</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="372"/>
+        <location filename="../mainwindow.cpp" line="374"/>
         <source>Window list</source>
         <comment>menubar view menu</comment>
         <translation>Liste de fenêtres</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="393"/>
+        <location filename="../mainwindow.cpp" line="395"/>
         <source>Tools</source>
         <comment>menubar</comment>
         <translation>Outils</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="407"/>
+        <location filename="../mainwindow.cpp" line="409"/>
         <source>Help</source>
         <translation>Aide</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="569"/>
+        <location filename="../mainwindow.cpp" line="571"/>
         <source>Could not set style: %1</source>
         <comment>main window</comment>
         <translation>Impossible de positionner le style: %1</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="642"/>
+        <location filename="../mainwindow.cpp" line="644"/>
         <source>Cannot export, because no export plugin is loaded.</source>
         <translation>Exportation impossible, aucun plugin d&apos;exportation n&apos;est chargé.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="658"/>
+        <location filename="../mainwindow.cpp" line="660"/>
         <source>Cannot import, because no import plugin is loaded.</source>
         <translation>Importation impossible, aucun plugin d&apos;importation n&apos;est chargé.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="691"/>
+        <location filename="../mainwindow.cpp" line="693"/>
         <source>Rename window</source>
         <translation>Renommer la fenêtre</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="691"/>
+        <location filename="../mainwindow.cpp" line="693"/>
         <source>Enter new name for the window:</source>
         <translation>Saississez un nouveau nom de fenêtre:</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="777"/>
+        <location filename="../mainwindow.cpp" line="779"/>
         <source>New updates are available. &lt;a href=&quot;%1&quot;&gt;Click here for details&lt;/a&gt;.</source>
         <translation>Une nouvelle mise à jour est disponible. &lt;a href=&quot;%1&quot;&gt; cliquez ici pour détails&lt;/a&gt;.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="785"/>
+        <location filename="../mainwindow.cpp" line="787"/>
         <source>You&apos;re running the most recent version. No updates are available.</source>
         <translation>Vous utilisez la dernière version. Aucune mise à jour de disponible.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="891"/>
+        <location filename="../mainwindow.cpp" line="904"/>
         <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="898"/>
+        <location filename="../mainwindow.cpp" line="911"/>
         <source>Database passed in command line parameters (%1) has been temporarily added to the list under name: %2</source>
         <translation>La base de données passée en paramètre dans la ligne de commande (%1)a été temporaire ajoutée à la liste sous le nom: %2</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="903"/>
+        <location filename="../mainwindow.cpp" line="916"/>
         <source>Could not add database %1 to list.</source>
         <translation>Impossible d&apos;ajouter la base de données %1 à la liste.</translation>
     </message>
@@ -4164,12 +4209,12 @@ Entrez SVP un nouveau nom, unique, ou cliquez &apos;%1&apos; pour d&apos;interro
         <translation>Contenu ouvert de cellule choisie dans un éditeur séparé</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="532"/>
+        <location filename="../dataview.cpp" line="573"/>
         <source>Total pages available: %1</source>
         <translation>Total de pages: %1</translation>
     </message>
     <message>
-        <location filename="../dataview.cpp" line="542"/>
+        <location filename="../dataview.cpp" line="583"/>
         <source>Total rows loaded: %1</source>
         <translation>Total dee lignes chargées: %1</translation>
     </message>
@@ -4236,7 +4281,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez &apos;%1&apos; pour d&apos;interro
     <message>
         <location filename="../dbtree/dbtree.h" line="34"/>
         <location filename="../multieditor/multieditortext.h" line="15"/>
-        <location filename="../sqleditor.h" line="24"/>
+        <location filename="../sqleditor.h" line="25"/>
         <source>Paste from clipboard</source>
         <translation>Collé dans le presse-papier</translation>
     </message>
@@ -4357,106 +4402,106 @@ Entrez SVP un nouveau nom, unique, ou cliquez &apos;%1&apos; pour d&apos;interro
     </message>
     <message>
         <location filename="../multieditor/multieditortext.h" line="13"/>
-        <location filename="../sqleditor.h" line="22"/>
+        <location filename="../sqleditor.h" line="23"/>
         <source>Cut selected text</source>
         <translation>Couper le texte sélectionné</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.h" line="14"/>
-        <location filename="../sqleditor.h" line="23"/>
+        <location filename="../sqleditor.h" line="24"/>
         <source>Copy selected text</source>
         <translation>Copie du texte sélectionné</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.h" line="16"/>
-        <location filename="../sqleditor.h" line="25"/>
+        <location filename="../sqleditor.h" line="26"/>
         <source>Delete selected text</source>
         <translation>Suppression du texte sélectionné</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.h" line="17"/>
-        <location filename="../sqleditor.h" line="27"/>
+        <location filename="../sqleditor.h" line="28"/>
         <source>Undo</source>
         <translation>Défaire</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.h" line="18"/>
-        <location filename="../sqleditor.h" line="28"/>
+        <location filename="../sqleditor.h" line="29"/>
         <source>Redo</source>
         <translation>Refaire</translation>
     </message>
     <message>
-        <location filename="../sqleditor.h" line="21"/>
+        <location filename="../sqleditor.h" line="22"/>
         <source>SQL editor input field</source>
         <translation>Editeur SQL saisie de champ</translation>
     </message>
     <message>
-        <location filename="../sqleditor.h" line="26"/>
+        <location filename="../sqleditor.h" line="27"/>
         <source>Select whole editor contents</source>
         <translation>Sélectionnez le contenu entier de l&apos;éditeur</translation>
     </message>
     <message>
-        <location filename="../sqleditor.h" line="29"/>
+        <location filename="../sqleditor.h" line="30"/>
         <source>Save contents into a file</source>
         <translation>Sauver le contenu dans un fichier</translation>
     </message>
     <message>
-        <location filename="../sqleditor.h" line="30"/>
+        <location filename="../sqleditor.h" line="31"/>
         <source>Load contents from a file</source>
         <translation>Charger le contenu d&apos;un fichier</translation>
     </message>
     <message>
-        <location filename="../sqleditor.h" line="31"/>
+        <location filename="../sqleditor.h" line="32"/>
         <source>Find in text</source>
         <translation>Rechercher un texte</translation>
     </message>
     <message>
-        <location filename="../sqleditor.h" line="32"/>
+        <location filename="../sqleditor.h" line="33"/>
         <source>Find next</source>
         <translation>Recherche suivante</translation>
     </message>
     <message>
-        <location filename="../sqleditor.h" line="33"/>
+        <location filename="../sqleditor.h" line="34"/>
         <source>Find previous</source>
         <translation>Recherche précédente</translation>
     </message>
     <message>
-        <location filename="../sqleditor.h" line="34"/>
+        <location filename="../sqleditor.h" line="35"/>
         <source>Replace in text</source>
         <translation>Remplacer dans le texte</translation>
     </message>
     <message>
-        <location filename="../sqleditor.h" line="35"/>
+        <location filename="../sqleditor.h" line="36"/>
         <source>Delete current line</source>
         <translation>Supprimer la ligne courante</translation>
     </message>
     <message>
-        <location filename="../sqleditor.h" line="36"/>
+        <location filename="../sqleditor.h" line="37"/>
         <source>Request code assistant</source>
         <translation>Assistant de code nécessaire</translation>
     </message>
     <message>
-        <location filename="../sqleditor.h" line="37"/>
+        <location filename="../sqleditor.h" line="38"/>
         <source>Format contents</source>
         <translation>Format de contenu</translation>
     </message>
     <message>
-        <location filename="../sqleditor.h" line="38"/>
+        <location filename="../sqleditor.h" line="39"/>
         <source>Move selected block of text one line down</source>
         <translation>Déplacer le block de texte sélectionné à la ligne inférieure</translation>
     </message>
     <message>
-        <location filename="../sqleditor.h" line="39"/>
+        <location filename="../sqleditor.h" line="40"/>
         <source>Move selected block of text one line up</source>
         <translation>Déplacer le block de texte sélectionné à la ligne supérieure</translation>
     </message>
     <message>
-        <location filename="../sqleditor.h" line="40"/>
+        <location filename="../sqleditor.h" line="41"/>
         <source>Copy selected block of text and paste it a line below</source>
         <translation>Copier le block de texte sélectionné à la ligne au dessus</translation>
     </message>
     <message>
-        <location filename="../sqleditor.h" line="41"/>
+        <location filename="../sqleditor.h" line="42"/>
         <source>Copy selected block of text and paste it a line above</source>
         <translation>Copier le block de texte sélectionné à la ligne au dessous</translation>
     </message>
@@ -4750,173 +4795,173 @@ recherche suivant</translation>
 <context>
     <name>SqlEditor</name>
     <message>
-        <location filename="../sqleditor.cpp" line="118"/>
+        <location filename="../sqleditor.cpp" line="121"/>
         <source>Cut</source>
         <comment>sql editor</comment>
         <translation>Couper</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="119"/>
+        <location filename="../sqleditor.cpp" line="122"/>
         <source>Copy</source>
         <comment>sql editor</comment>
         <translation>Copier</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="120"/>
+        <location filename="../sqleditor.cpp" line="123"/>
         <source>Paste</source>
         <comment>sql editor</comment>
         <translation>Coller</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="121"/>
+        <location filename="../sqleditor.cpp" line="124"/>
         <source>Delete</source>
         <comment>sql editor</comment>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="122"/>
+        <location filename="../sqleditor.cpp" line="125"/>
         <source>Select all</source>
         <comment>sql editor</comment>
         <translation>Tout sélectionner</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="123"/>
+        <location filename="../sqleditor.cpp" line="126"/>
         <source>Undo</source>
         <comment>sql editor</comment>
         <translation>Défaire</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="124"/>
+        <location filename="../sqleditor.cpp" line="127"/>
         <source>Redo</source>
         <comment>sql editor</comment>
         <translation>Refaire</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="125"/>
+        <location filename="../sqleditor.cpp" line="128"/>
         <source>Complete</source>
         <comment>sql editor</comment>
         <translation>Complet</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="126"/>
+        <location filename="../sqleditor.cpp" line="129"/>
         <source>Format SQL</source>
         <comment>sql editor</comment>
         <translation>Format SQL</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="127"/>
+        <location filename="../sqleditor.cpp" line="130"/>
         <source>Save SQL to file</source>
         <comment>sql editor</comment>
         <translation>Enregistrer le SQL</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="128"/>
+        <location filename="../sqleditor.cpp" line="131"/>
         <source>Select file to save SQL</source>
         <comment>sql editor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="129"/>
+        <location filename="../sqleditor.cpp" line="132"/>
         <source>Load SQL from file</source>
         <comment>sql editor</comment>
         <translation>Charger le SQL</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="130"/>
+        <location filename="../sqleditor.cpp" line="133"/>
         <source>Delete line</source>
         <comment>sql editor</comment>
         <translation>Ligne suppimée</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="131"/>
+        <location filename="../sqleditor.cpp" line="134"/>
         <source>Move block down</source>
         <comment>sql editor</comment>
         <translation>Descendre le block</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="132"/>
+        <location filename="../sqleditor.cpp" line="135"/>
         <source>Move block up</source>
         <comment>sql editor</comment>
         <translation>Monter le block</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="133"/>
+        <location filename="../sqleditor.cpp" line="136"/>
         <source>Copy block down</source>
         <comment>sql editor</comment>
         <translation>Copier block au-dessus</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="134"/>
+        <location filename="../sqleditor.cpp" line="137"/>
         <source>Copy up down</source>
         <comment>sql editor</comment>
         <translation>Copier block au-dessous</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="135"/>
+        <location filename="../sqleditor.cpp" line="138"/>
         <source>Find</source>
         <comment>sql editor</comment>
         <translation>Chercher</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="136"/>
+        <location filename="../sqleditor.cpp" line="139"/>
         <source>Find next</source>
         <comment>sql editor</comment>
         <translation>Chercher suivant</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="137"/>
+        <location filename="../sqleditor.cpp" line="140"/>
         <source>Find previous</source>
         <comment>sql editor</comment>
         <translation>Chercher précédent</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="138"/>
+        <location filename="../sqleditor.cpp" line="141"/>
         <source>Replace</source>
         <comment>sql editor</comment>
         <translation>Remplacer</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="252"/>
+        <location filename="../sqleditor.cpp" line="255"/>
         <source>Saved SQL contents to file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="431"/>
+        <location filename="../sqleditor.cpp" line="434"/>
         <source>Syntax completion can be used only when a valid database is set for the SQL editor.</source>
         <translation>L&apos;achèvement de syntaxe peut être utilisé seulement quand une base de données valable est utilisée dans l&apos;éditeur SQL.</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="819"/>
+        <location filename="../sqleditor.cpp" line="822"/>
         <source>Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled.</source>
         <translation>Le contenu l&apos;éditeur SQL est important, aussi la détectiond&apos;objets en erreur est temporairement mise hors de service.</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1054"/>
+        <location filename="../sqleditor.cpp" line="1057"/>
         <source>Save to file</source>
         <translation>Sauvegarder</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="242"/>
+        <location filename="../sqleditor.cpp" line="245"/>
         <source>Could not open file &apos;%1&apos; for writing: %2</source>
         <translation>Impossible d&apos;ouvrir en écriture le fichier &apos;%1&apos;: %2</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1066"/>
+        <location filename="../sqleditor.cpp" line="1069"/>
         <source>SQL scripts (*.sql);;All files (*)</source>
         <translation>Scripts SQL (*.sql);;tous fichiers (*)</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1067"/>
+        <location filename="../sqleditor.cpp" line="1070"/>
         <source>Open file</source>
         <translation>Fichier ouvert</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1076"/>
+        <location filename="../sqleditor.cpp" line="1079"/>
         <source>Could not open file &apos;%1&apos; for reading: %2</source>
         <translation>Impossible d&apos;ouvrir en lecture le fichier &apos;%1&apos;: %2</translation>
     </message>
     <message>
-        <location filename="../sqleditor.cpp" line="1285"/>
+        <location filename="../sqleditor.cpp" line="1288"/>
         <source>Reached the end of document. Hit the find again to restart the search.</source>
         <translation>Fin de document atteint. Saississez de nouveau la recherche pour relancer la recherche.</translation>
     </message>
@@ -5032,12 +5077,12 @@ recherche suivant</translation>
         <translation>Erreur lors du chargement des résultats de la requête: %1</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1438"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1452"/>
         <source>Insert multiple rows</source>
         <translation>Insérer plusieurs lignes</translation>
     </message>
     <message>
-        <location filename="../datagrid/sqlquerymodel.cpp" line="1438"/>
+        <location filename="../datagrid/sqlquerymodel.cpp" line="1452"/>
         <source>Number of rows to insert:</source>
         <translation>Nombre de lignes à inserrer:</translation>
     </message>

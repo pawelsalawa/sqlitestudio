@@ -31,7 +31,8 @@ RESOURCES += \
     configmigration.qrc
 
 
-TRANSLATIONS += ConfigMigration_zh_CN.ts \
+TRANSLATIONS += ConfigMigration_it.ts \
+		ConfigMigration_zh_CN.ts \
 		ConfigMigration_sk.ts \
 		ConfigMigration_de.ts \
 		ConfigMigration_ru.ts \
@@ -39,6 +40,7 @@ TRANSLATIONS += ConfigMigration_zh_CN.ts \
 		ConfigMigration_fr.ts \
 		ConfigMigration_es.ts \
 		ConfigMigration_pl.ts
+
 
 
 

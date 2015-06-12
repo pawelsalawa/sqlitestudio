@@ -4,8 +4,8 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="sqlenterpriseformatter.cpp" line="82"/>
-        <location filename="sqlenterpriseformatter.cpp" line="89"/>
+        <location filename="sqlenterpriseformatter.cpp" line="91"/>
+        <location filename="sqlenterpriseformatter.cpp" line="98"/>
         <source>name</source>
         <comment>example name wrapper</comment>
         <translation>имя</translation>
@@ -200,7 +200,32 @@
         <translation>Приводить ключевые слова к верхнему регистру</translation>
     </message>
     <message>
-        <location filename="sqlenterpriseformatter.ui" line="638"/>
+        <location filename="sqlenterpriseformatter.ui" line="631"/>
+        <source>Comments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="sqlenterpriseformatter.ui" line="637"/>
+        <source>Preferred comment marker (where possible):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="sqlenterpriseformatter.ui" line="647"/>
+        <source>SqlEnterpriseFormatter.CommentMarkers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="sqlenterpriseformatter.ui" line="654"/>
+        <source>Move all comments to the line end</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="sqlenterpriseformatter.ui" line="664"/>
+        <source>Line up comments at the line end</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="sqlenterpriseformatter.ui" line="695"/>
         <source>Preview</source>
         <translation>Предпросмотр</translation>
     </message>

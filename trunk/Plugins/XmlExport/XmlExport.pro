@@ -27,7 +27,8 @@ RESOURCES += \
     xmlexport.qrc
 
 
-TRANSLATIONS += XmlExport_zh_CN.ts \
+TRANSLATIONS += XmlExport_it.ts \
+		XmlExport_zh_CN.ts \
 		XmlExport_sk.ts \
 		XmlExport_de.ts \
 		XmlExport_ru.ts \
@@ -35,6 +36,7 @@ TRANSLATIONS += XmlExport_zh_CN.ts \
 		XmlExport_fr.ts \
 		XmlExport_es.ts \
 		XmlExport_pl.ts
+
 
 
 

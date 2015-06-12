@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="zh_CN">
+<TS version="2.1" language="it_IT">
 <context>
     <name>AbstractDb</name>
     <message>
@@ -20,7 +20,7 @@
     <message>
         <location filename="../services/bugreporter.cpp" line="46"/>
         <source>Invalid login or password</source>
-        <translation>用户名或密码错误</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -967,8 +967,19 @@ Error details: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../tablemodifier.cpp" line="433"/>
+        <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../tablemodifier.cpp" line="465"/>
         <source>Cannot not update trigger %1 according to table %2 modification.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../tablemodifier.cpp" line="483"/>
+        <source>Cannot not update view %1 according to table %2 modifications.
+The view will remain as it is.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -976,17 +987,6 @@ Error details: %2</source>
         <location filename="../tablemodifier.cpp" line="669"/>
         <location filename="../tablemodifier.cpp" line="688"/>
         <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../tablemodifier.cpp" line="433"/>
-        <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../tablemodifier.cpp" line="483"/>
-        <source>Cannot not update view %1 according to table %2 modifications.
-The view will remain as it is.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

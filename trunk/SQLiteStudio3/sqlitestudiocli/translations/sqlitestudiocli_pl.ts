@@ -169,6 +169,50 @@
         <source>table</source>
         <translation>tabela</translation>
     </message>
+    <message>
+        <source>No working database is set.
+Call %1 command to set working database.
+Call %2 to see list of all databases.</source>
+        <translation type="unfinished">Nie wybrano domyślnej bazy danych.
+Użyj polecenia %1, aby ustawić domyślną bazę danych.
+Użyj polecenie %2, aby wypisać listę wszystkich baz.</translation>
+    </message>
+    <message>
+        <source>Database is not open.</source>
+        <translation type="unfinished">Baz danych nie jest otwarta.</translation>
+    </message>
+    <message>
+        <source>Cannot find table named: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Table: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Column name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Data type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Constraints</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Virtual table: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Construction arguments:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No construction arguments were passed for this virtual table.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CliCommandDir</name>
