@@ -16,7 +16,7 @@
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="30"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;SQLiteStudio v%1&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Free, open-source, cross-platform SQLite database manager.&lt;br/&gt;&lt;a href=&quot;http://sqlitestudio.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://sqlitestudio.pl&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;%2&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Author and active maintainer:&lt;br/&gt;SalSoft (&lt;a href=&quot;http://salsoft.com.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://salsoft.com.pl&lt;/span&gt;&lt;/a&gt;)&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;SQLiteStudio v%1&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Freier, open-source, multiplattformfähiger SQLite Datenbankmanager.&lt;br/&gt;&lt;a href=&quot;http://sqlitestudio.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://sqlitestudio.pl&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;%2&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Author und aktiver Verantwortlicher:&lt;br/&gt;SalSoft (&lt;a href=&quot;http://salsoft.com.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://salsoft.com.pl&lt;/span&gt;&lt;/a&gt;)&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;SQLiteStudio v%1&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Freier, open-source, multiplattformfähiger SQLite Datenbankmanager.&lt;br/&gt;&lt;a href=&quot;http://sqlitestudio.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://sqlitestudio.pl&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;%2&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Autor und aktiver Verantwortlicher:&lt;br/&gt;SalSoft (&lt;a href=&quot;http://salsoft.com.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://salsoft.com.pl&lt;/span&gt;&lt;/a&gt;)&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="41"/>
@@ -4057,12 +4057,12 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="80"/>
         <source>Cannot edit columns that are result of %1 statement.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es können keine Spalten editiert werden, die das Ergebnis von %1 Abfragen sind.</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="82"/>
         <source>Cannot edit columns that are result of common table expression statement (%1).</source>
-        <translation type="unfinished"></translation>
+        <translation>Es können keine Spalten editiert werden, die das Ergebnis von allgemeinen Tabellenausdrücken sind (%1).</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="357"/>
@@ -4071,307 +4071,307 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
         <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="447"/>
         <source>on conflict: %1</source>
         <comment>data view tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Bei Konfikt: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="377"/>
         <source>references table %1, column %2</source>
         <comment>data view tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Referenztabelle %1, Zeile %2</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="444"/>
         <source>condition: %1</source>
         <comment>data view tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zustand: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodelcolumn.cpp" line="464"/>
         <source>collation name: %1</source>
         <comment>data view tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Name der Kollation: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="19"/>
         <source>Data grid view</source>
-        <translation type="unfinished"></translation>
+        <translation>Ergebnisansicht</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="20"/>
         <source>Copy cell(s) contents to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiert Zelleninhalt(e) in die Zwischenablage</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="22"/>
         <source>Paste cell(s) contents from clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Fügt Zelleninhalt(e) von der Zwischenablage ein</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="24"/>
         <source>Set empty value to selected cell(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fügt einen leeren Wert in die selektierte(n) Zelle(n) ein</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="25"/>
         <source>Set NULL value to selected cell(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fügt den NULL Wert in die selektierte(n) Zelle(n) ein</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="26"/>
         <source>Commit changes to cell(s) contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Änderungen der Zellenninhalte speichern</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="27"/>
         <source>Rollback changes to cell(s) contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Änderungen der Zelleninhalte zurücknehmen</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="28"/>
         <source>Delete selected data row</source>
-        <translation type="unfinished"></translation>
+        <translation>Markierte Datenzeile löschen</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="29"/>
         <source>Insert new data row</source>
-        <translation type="unfinished"></translation>
+        <translation>Neue Datenzeile einfügen</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.h" line="30"/>
         <source>Open contents of selected cell in a separate editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Inhalt der markierten Zelle im separaten Editor öffnen</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="532"/>
         <source>Total pages available: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Verfügbare Gesamtseiten: %1</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="542"/>
         <source>Total rows loaded: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Insgesamt geladene Zeilen: %1</translation>
     </message>
     <message>
         <location filename="../dataview.h" line="18"/>
         <source>Data view (both grid and form)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ergebnisansicht (tabellarisch und Formular)</translation>
     </message>
     <message>
         <location filename="../dataview.h" line="19"/>
         <source>Refresh data</source>
-        <translation type="unfinished"></translation>
+        <translation>Daten aktualisieren</translation>
     </message>
     <message>
         <location filename="../dataview.h" line="20"/>
         <source>Switch to grid view of the data</source>
-        <translation type="unfinished"></translation>
+        <translation>Zur tabellarischen Ergebnisansicht wechseln</translation>
     </message>
     <message>
         <location filename="../dataview.h" line="21"/>
         <source>Switch to form view of the data</source>
-        <translation type="unfinished"></translation>
+        <translation>Zur Formularansicht wechseln</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="26"/>
         <source>Database list</source>
-        <translation type="unfinished"></translation>
+        <translation>Liste der Datenbanken</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="27"/>
         <source>Delete selected item</source>
-        <translation type="unfinished"></translation>
+        <translation>Gewählten Eintrag löschen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="28"/>
         <source>Clear filter contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter zurücksetzen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="29"/>
         <source>Refresh schema</source>
-        <translation type="unfinished"></translation>
+        <translation>Schema aktualisieren</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="30"/>
         <source>Refresh all schemas</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Schemas aktualisieren</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="31"/>
         <source>Add database</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbank hinzufügen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="32"/>
         <source>Select all items</source>
-        <translation type="unfinished"></translation>
+        <translation>Alles auswählen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="33"/>
         <source>Copy selected item(s)</source>
-        <translation type="unfinished"></translation>
+        <translation>Gewählte Einträge kopieren</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="34"/>
         <location filename="../multieditor/multieditortext.h" line="15"/>
         <location filename="../sqleditor.h" line="24"/>
         <source>Paste from clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Von der Zwischenablage einfügen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreeitemfactory.cpp" line="47"/>
         <source>Tables</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabellen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreeitemfactory.cpp" line="52"/>
         <source>Indexes</source>
-        <translation type="unfinished"></translation>
+        <translation>Indizes</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreeitemfactory.cpp" line="57"/>
         <source>Triggers</source>
-        <translation type="unfinished"></translation>
+        <translation>Trigger</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreeitemfactory.cpp" line="62"/>
         <source>Views</source>
-        <translation type="unfinished"></translation>
+        <translation>Views</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreeitemfactory.cpp" line="67"/>
         <source>Columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Spalten</translation>
     </message>
     <message>
         <location filename="../formview.h" line="16"/>
         <source>Data form view</source>
-        <translation type="unfinished"></translation>
+        <translation>Formularansicht der Ergebnisse</translation>
     </message>
     <message>
         <location filename="../formview.h" line="17"/>
         <source>Commit changes for current row</source>
-        <translation type="unfinished"></translation>
+        <translation>Änderungen der aktuellen Zeile speichern</translation>
     </message>
     <message>
         <location filename="../formview.h" line="18"/>
         <source>Rollback changes for current row</source>
-        <translation type="unfinished"></translation>
+        <translation>Änderungen der aktuellen Zeile zurücknehmen</translation>
     </message>
     <message>
         <location filename="../formview.h" line="19"/>
         <source>Go to first row on current page</source>
-        <translation type="unfinished"></translation>
+        <translation>Springe zur ersten Zeile dieser Seite</translation>
     </message>
     <message>
         <location filename="../formview.h" line="20"/>
         <source>Go to next row</source>
-        <translation type="unfinished"></translation>
+        <translation>Springe zur nächsten Zeile</translation>
     </message>
     <message>
         <location filename="../formview.h" line="21"/>
         <source>Go to previous row</source>
-        <translation type="unfinished"></translation>
+        <translation>Springe zur vorherigen Zeile</translation>
     </message>
     <message>
         <location filename="../formview.h" line="22"/>
         <source>Go to last row on current page</source>
-        <translation type="unfinished"></translation>
+        <translation>Springe zur letzten Zeile dieser Seite</translation>
     </message>
     <message>
         <location filename="../formview.h" line="23"/>
         <source>Insert new row</source>
-        <translation type="unfinished"></translation>
+        <translation>Neue Zeile einfügen</translation>
     </message>
     <message>
         <location filename="../formview.h" line="24"/>
         <source>Delete current row</source>
-        <translation type="unfinished"></translation>
+        <translation>Derzeitige Zeile löschen</translation>
     </message>
     <message>
         <location filename="../mainwindow.h" line="43"/>
         <source>Main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Hauptfenster</translation>
     </message>
     <message>
         <location filename="../mainwindow.h" line="44"/>
         <source>Open SQL editor</source>
-        <translation type="unfinished"></translation>
+        <translation>SQL Editor öffnen</translation>
     </message>
     <message>
         <location filename="../mainwindow.h" line="45"/>
         <source>Previous window</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorheriges Fenster</translation>
     </message>
     <message>
         <location filename="../mainwindow.h" line="46"/>
         <source>Next window</source>
-        <translation type="unfinished"></translation>
+        <translation>Nächstes Fenster</translation>
     </message>
     <message>
         <location filename="../mainwindow.h" line="47"/>
         <source>Hide status area</source>
-        <translation type="unfinished"></translation>
+        <translation>Statusfeld verbergen</translation>
     </message>
     <message>
         <location filename="../mainwindow.h" line="48"/>
         <source>Open configuration dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfigurationsdialog öffnen</translation>
     </message>
     <message>
         <location filename="../mainwindow.h" line="49"/>
         <source>Open Debug Console</source>
-        <translation type="unfinished"></translation>
+        <translation>Debug Konsole öffnen</translation>
     </message>
     <message>
         <location filename="../mainwindow.h" line="50"/>
         <source>Open CSS Console</source>
-        <translation type="unfinished"></translation>
+        <translation>CSS Konsole öffnen</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.h" line="12"/>
         <source>Cell text value editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Editor für Textwerte in Zellen</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.h" line="13"/>
         <location filename="../sqleditor.h" line="22"/>
         <source>Cut selected text</source>
-        <translation type="unfinished"></translation>
+        <translation>Gewählten Text ausschneiden</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.h" line="14"/>
         <location filename="../sqleditor.h" line="23"/>
         <source>Copy selected text</source>
-        <translation type="unfinished"></translation>
+        <translation>Gewählten Text kopieren</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.h" line="16"/>
         <location filename="../sqleditor.h" line="25"/>
         <source>Delete selected text</source>
-        <translation type="unfinished"></translation>
+        <translation>Gewählten Text löschen</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.h" line="17"/>
         <location filename="../sqleditor.h" line="27"/>
         <source>Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>Rückgängig</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditortext.h" line="18"/>
         <location filename="../sqleditor.h" line="28"/>
         <source>Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>Wiederholen</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="21"/>
         <source>SQL editor input field</source>
-        <translation type="unfinished"></translation>
+        <translation>SQL Editor Eingabefeld</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="26"/>
         <source>Select whole editor contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Gesamten Editorinhalt auswählen</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="29"/>
