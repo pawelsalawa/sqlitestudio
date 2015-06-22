@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ru_RU">
+<TS version="2.0" language="ru_RU">
 <context>
     <name>QObject</name>
     <message>
@@ -202,27 +202,27 @@
     <message>
         <location filename="sqlenterpriseformatter.ui" line="631"/>
         <source>Comments</source>
-        <translation type="unfinished"></translation>
+        <translation>Комментарии</translation>
     </message>
     <message>
         <location filename="sqlenterpriseformatter.ui" line="637"/>
         <source>Preferred comment marker (where possible):</source>
-        <translation type="unfinished"></translation>
+        <translation>Предпочитаемый символ комментирования (где применимо):</translation>
     </message>
     <message>
         <location filename="sqlenterpriseformatter.ui" line="647"/>
         <source>SqlEnterpriseFormatter.CommentMarkers</source>
-        <translation type="unfinished"></translation>
+        <translation>SqlEnterpriseFormatter.CommentMarkers</translation>
     </message>
     <message>
         <location filename="sqlenterpriseformatter.ui" line="654"/>
         <source>Move all comments to the line end</source>
-        <translation type="unfinished"></translation>
+        <translation>Перемещать все комментарии в конец строки</translation>
     </message>
     <message>
         <location filename="sqlenterpriseformatter.ui" line="664"/>
         <source>Line up comments at the line end</source>
-        <translation type="unfinished"></translation>
+        <translation>Выравнивать комментарии в конце строки</translation>
     </message>
     <message>
         <location filename="sqlenterpriseformatter.ui" line="695"/>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ru_RU">
+<TS version="2.0" language="ru_RU">
 <context>
     <name>CLI</name>
     <message>
@@ -205,17 +205,19 @@
         <source>No working database is set.
 Call %1 command to set working database.
 Call %2 to see list of all databases.</source>
-        <translation type="unfinished">Не указана рабочая база данных. Укажите рабочую базу данных командой %1. Для просмотра списка баз данных воспользуйтесь командой %2.</translation>
+        <translation>Не указана рабочая база данных. 
+Укажите рабочую базу данных командой %1. 
+Для просмотра списка баз данных воспользуйтесь командой %2.</translation>
     </message>
     <message>
         <location filename="../commands/clicommanddesc.cpp" line="26"/>
         <source>Database is not open.</source>
-        <translation type="unfinished">База данных не открыта.</translation>
+        <translation>База данных не открыта.</translation>
     </message>
     <message>
         <location filename="../commands/clicommanddesc.cpp" line="35"/>
         <source>Cannot find table named: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось найти таблицу с именем %1</translation>
     </message>
     <message>
         <location filename="../commands/clicommanddesc.cpp" line="52"/>
@@ -230,37 +232,37 @@ Call %2 to see list of all databases.</source>
     <message>
         <location filename="../commands/clicommanddesc.cpp" line="70"/>
         <source>Table: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Таблица: %1</translation>
     </message>
     <message>
         <location filename="../commands/clicommanddesc.cpp" line="74"/>
         <source>Column name</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя столбца</translation>
     </message>
     <message>
         <location filename="../commands/clicommanddesc.cpp" line="76"/>
         <source>Data type</source>
-        <translation type="unfinished"></translation>
+        <translation>Тип данных</translation>
     </message>
     <message>
         <location filename="../commands/clicommanddesc.cpp" line="80"/>
         <source>Constraints</source>
-        <translation type="unfinished"></translation>
+        <translation>Ограничения</translation>
     </message>
     <message>
         <location filename="../commands/clicommanddesc.cpp" line="105"/>
         <source>Virtual table: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Виртуальная таблица: %1</translation>
     </message>
     <message>
         <location filename="../commands/clicommanddesc.cpp" line="109"/>
         <source>Construction arguments:</source>
-        <translation type="unfinished"></translation>
+        <translation>Параметры создания:</translation>
     </message>
     <message>
         <location filename="../commands/clicommanddesc.cpp" line="114"/>
         <source>No construction arguments were passed for this virtual table.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не указаны параметры создания для этой виртуальной таблицы.</translation>
     </message>
 </context>
 <context>

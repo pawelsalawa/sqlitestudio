@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ru_RU">
+<TS version="2.0" language="ru_RU">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -973,29 +973,29 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="301"/>
         <source>Inserting new row in data grid</source>
-        <translation type="unfinished"></translation>
+        <translation>Вставка новой строки в таблице данных</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="307"/>
         <source>Before currently selected row</source>
-        <translation type="unfinished"></translation>
+        <translation>Перед текущей выделенной строкой</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="316"/>
         <location filename="../dialogs/configdialog.ui" line="329"/>
         <location filename="../dialogs/configdialog.ui" line="342"/>
         <source>General.InsertRowPlacement</source>
-        <translation type="unfinished"></translation>
+        <translation>General.InsertRowPlacement</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="323"/>
         <source>After currently selected row</source>
-        <translation type="unfinished"></translation>
+        <translation>После текущей выделенной строки</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="336"/>
         <source>At the end of data view</source>
-        <translation type="unfinished"></translation>
+        <translation>В конец области просмотра данных</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="379"/>
@@ -1789,19 +1789,19 @@ but it&apos;s okay to use it.</source>
         <location filename="../dataview.cpp" line="337"/>
         <source>Place new rows above selected row</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Поместить новые строки перед выделенной строкой</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="338"/>
         <source>Place new rows below selected row</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Поместить новые строки после выделенной строки</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="339"/>
         <source>Place new rows at the end of the data view</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Поместить новые строки в конец области просмотра данных</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="596"/>
@@ -1953,11 +1953,11 @@ Browsing other pages will be possible after the row counting is done.</source>
     </message>
     <message>
         <source>Name</source>
-        <translation type="vanished">Имя</translation>
+        <translation>Имя</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation type="vanished">Тип</translation>
+        <translation>Тип</translation>
     </message>
     <message>
         <source>Browse for database file on local computer</source>
@@ -1986,7 +1986,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     </message>
     <message>
         <source>Permanent</source>
-        <translation type="vanished">Запомнить</translation>
+        <translation>Запомнить</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="114"/>
@@ -1996,7 +1996,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     </message>
     <message>
         <source>Test database connection</source>
-        <translation type="vanished">Тест соединения с базой данных</translation>
+        <translation>Тест соединения с базой данных</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="151"/>
@@ -2040,7 +2040,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     </message>
     <message>
         <source>The name will be auto-generated</source>
-        <translation type="vanished">Имя будет сгенерировано автоматически</translation>
+        <translation>Имя будет сгенерировано автоматически</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="586"/>
@@ -2506,7 +2506,7 @@ All objects from this group will be moved to parent group.</source>
     <message>
         <source>Error details:</source>
         <comment>dbtree tooltip</comment>
-        <translation type="vanished">Подробности ошибки:</translation>
+        <translation>Подробности ошибки:</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="438"/>
@@ -5670,11 +5670,11 @@ Would you like to proceed?</source>
     </message>
     <message>
         <source>Could not restore window, because database %1 could not be resolved.</source>
-        <translation type="vanished">Невозможно восстановить окно, так как невозможно определить базу данных %1</translation>
+        <translation>Невозможно восстановить окно, так как невозможно определить базу данных %1</translation>
     </message>
     <message>
         <source>Could not restore window, because the table %1 doesn&apos;t exist in the database %2.</source>
-        <translation type="vanished">Невозможно восстановить окно, так как таблица %1 не существует в базе данных %2.</translation>
+        <translation>Невозможно восстановить окно, так как таблица %1 не существует в базе данных %2.</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="682"/>
@@ -6011,15 +6011,15 @@ Do you want to commit the structure, or do you want to go back to the structure 
     </message>
     <message>
         <source>Could not restore window, because database %1 could not be resolved.</source>
-        <translation type="vanished">Невозможно восстановить окно, так как невозможно определить базу данных %1.</translation>
+        <translation>Невозможно восстановить окно, так как невозможно определить базу данных %1.</translation>
     </message>
     <message>
         <source>Could not restore window, because database %1 could not be open.</source>
-        <translation type="vanished">Невозможно восстановить окно, так как невозможно открыть базу данных %1.</translation>
+        <translation>Невозможно восстановить окно, так как невозможно открыть базу данных %1.</translation>
     </message>
     <message>
         <source>Could not restore window, because the view %1 doesn&apos;t exist in the database %2.</source>
-        <translation type="vanished">Невозможно восстановить окно, так как представление %1 не существует в базе данных %2.</translation>
+        <translation>Невозможно восстановить окно, так как представление %1 не существует в базе данных %2.</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="103"/>
