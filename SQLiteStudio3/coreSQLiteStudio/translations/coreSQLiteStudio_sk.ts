@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="sk_SK">
+<TS version="2.0" language="sk_SK">
 <context>
     <name>AbstractDb</name>
     <message>
@@ -149,7 +149,7 @@
     <message>
         <location filename="../services/impl/dbmanagerimpl.cpp" line="138"/>
         <source>Database %1 could not be updated, because of an error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Databáza %1 nemôže byť aktualizovaná kvôli chybe: %2</translation>
     </message>
     <message>
         <location filename="../services/impl/dbmanagerimpl.cpp" line="312"/>
@@ -446,7 +446,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
         <location filename="../importworker.cpp" line="163"/>
         <location filename="../importworker.cpp" line="170"/>
         <source>Error while importing data: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyskytla sa chyba počas importu dát: %1</translation>
     </message>
     <message>
         <location filename="../importworker.cpp" line="126"/>
@@ -752,7 +752,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
         <location filename="../populateworker.cpp" line="63"/>
         <source>Error while populating table: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyskytla sa chyba počas napĺňania tabuľky: %1</translation>
     </message>
     <message>
         <location filename="../populateworker.cpp" line="74"/>
@@ -1026,7 +1026,7 @@ The view will remain as it is.</source>
         <location filename="../db/queryexecutor.cpp" line="264"/>
         <location filename="../db/queryexecutor.cpp" line="548"/>
         <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyskytla sa chyba počas vykonávania dotazu count(*), dôsledkom čoho bolo zablokované stránkovanie. Detail chyby: %1</translation>
     </message>
     <message>
         <location filename="../db/queryexecutor.cpp" line="459"/>
@@ -1086,7 +1086,7 @@ The view will remain as it is.</source>
     <message>
         <location filename="../services/updatemanager.cpp" line="131"/>
         <source>An error occurred while checking for updates: %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyskytla sa chyba počas kontroly aktualizácii: %1.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="144"/>
@@ -1116,7 +1116,7 @@ The view will remain as it is.</source>
     <message>
         <location filename="../services/updatemanager.cpp" line="241"/>
         <source>Downloading: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Sťahujem: %1</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="247"/>
@@ -1131,7 +1131,7 @@ The view will remain as it is.</source>
     <message>
         <location filename="../services/updatemanager.cpp" line="276"/>
         <source>Installing updates.</source>
-        <translation type="unfinished"></translation>
+        <translation>Inštalujem aktualizácie.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="287"/>
@@ -1278,7 +1278,7 @@ Error message: %2</source>
     <message>
         <location filename="../services/updatemanager.cpp" line="1028"/>
         <source>An error occurred while downloading updates: %1. Updating aborted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyskytla sa chyba počas sťahovani aktualizácií:%1. Aktualizácia zrušená.</translation>
     </message>
 </context>
 </TS>

@@ -664,7 +664,7 @@
         <location filename="../dialogs/columndialog.cpp" line="228"/>
         <source>Are you sure you want to delete constraint &apos;%1&apos;?</source>
         <comment>column dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ste si istý, že chcete vymazať obmedzenie &apos;%1&apos;?</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="290"/>
@@ -3052,7 +3052,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/functionseditor.ui" line="273"/>
         <source>Implementation language:</source>
-        <translation type="unfinished">Implementačný jazyk:</translation>
+        <translation>Implementačný jazyk:</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.ui" line="253"/>
@@ -3252,7 +3252,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/importdialog.ui" line="195"/>
         <source>Ignore errors</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorovať chyby</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="205"/>
@@ -3390,7 +3390,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../dialogs/indexdialog.cpp" line="466"/>
         <source>Error</source>
         <comment>index dialog</comment>
-        <translation type="unfinished"></translation>
+        <translation>Chyba</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="454"/>
@@ -3762,7 +3762,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <location filename="../multieditor/multieditor.cpp" line="374"/>
         <source>Read only</source>
         <comment>multieditor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Iba na čítanie</translation>
     </message>
 </context>
 <context>
@@ -4013,7 +4013,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="54"/>
         <source>Abort</source>
-        <translation type="unfinished">Zrušiť</translation>
+        <translation>Zrušiť</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="161"/>
