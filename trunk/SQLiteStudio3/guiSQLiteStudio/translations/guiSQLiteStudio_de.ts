@@ -281,7 +281,7 @@
     <message>
         <location filename="../windows/bugreporthistorywindow.cpp" line="51"/>
         <source>Delete selected entry</source>
-        <translation>Lösche markierten Eintrag</translation>
+        <translation>Gewählten Eintrag löschen</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.cpp" line="90"/>
@@ -3012,7 +3012,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
         <location filename="../formview.cpp" line="248"/>
         <source>Delete current row</source>
         <comment>form view</comment>
-        <translation>Derzeitige Zeile löschen</translation>
+        <translation>Aktuelle Zeile löschen</translation>
     </message>
 </context>
 <context>
@@ -4376,208 +4376,209 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../sqleditor.h" line="29"/>
         <source>Save contents into a file</source>
-        <translation type="unfinished"></translation>
+        <translation>Inhalte in eine Datei speichern</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="30"/>
         <source>Load contents from a file</source>
-        <translation type="unfinished"></translation>
+        <translation>Inhalte aus einer Datei laden</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="31"/>
         <source>Find in text</source>
-        <translation type="unfinished"></translation>
+        <translation>Suche im Text</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="32"/>
         <source>Find next</source>
-        <translation type="unfinished"></translation>
+        <translation>Nächster Fund</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="33"/>
         <source>Find previous</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorheriger Fund</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="34"/>
         <source>Replace in text</source>
-        <translation type="unfinished"></translation>
+        <translation>Ersetze im Text</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="35"/>
         <source>Delete current line</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktuelle Zeile löschen</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="36"/>
         <source>Request code assistant</source>
-        <translation type="unfinished"></translation>
+        <translation>Code-Assistenten anfordern</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="37"/>
         <source>Format contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Format-Inhalte</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="38"/>
         <source>Move selected block of text one line down</source>
-        <translation type="unfinished"></translation>
+        <translation>Selektierten Textblock eine Zeile nach unten verschieben</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="39"/>
         <source>Move selected block of text one line up</source>
-        <translation type="unfinished"></translation>
+        <translation>Selektierten Textblock eine Zeile nach oben verschieben</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="40"/>
         <source>Copy selected block of text and paste it a line below</source>
-        <translation type="unfinished"></translation>
+        <translation>Selektierten Textblock kopieren und unterhalb einfügen</translation>
     </message>
     <message>
         <location filename="../sqleditor.h" line="41"/>
         <source>Copy selected block of text and paste it a line above</source>
-        <translation type="unfinished"></translation>
+        <translation>Selektierten Textblock kopieren und oberhalb einfügen</translation>
     </message>
     <message>
         <location filename="../uiutils.cpp" line="32"/>
         <source>All SQLite databases</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle SQLite Datenbanken</translation>
     </message>
     <message>
         <location filename="../uiutils.cpp" line="35"/>
         <source>All files</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Dateien</translation>
     </message>
     <message>
         <location filename="../uiutils.cpp" line="39"/>
         <location filename="../uiutils.cpp" line="41"/>
         <source>Database file</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbankdatei</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.h" line="11"/>
         <source>Reports history window</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Diese Übersetzung muss noch einmal geprüft werden, wenn ich den Kontext dazu kenne.</translatorcomment>
+        <translation>Report-Verlaufsfenster</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.h" line="12"/>
         <source>Delete selected entry</source>
-        <translation type="unfinished"></translation>
+        <translation>Gewählten Eintrag löschen</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.h" line="26"/>
         <source>SQL editor window</source>
-        <translation type="unfinished"></translation>
+        <translation>SQL Editor-Fenster</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.h" line="27"/>
         <source>Execute query</source>
-        <translation type="unfinished"></translation>
+        <translation>Abfrage ausführen</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.h" line="28"/>
         <source>Execute &quot;%1&quot; query</source>
-        <translation type="unfinished"></translation>
+        <translation>Abfrage &quot;%1&quot; ausführen</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.h" line="29"/>
         <source>Switch current working database to previous on the list</source>
-        <translation type="unfinished"></translation>
+        <translation>Wechsel von der aktuellen Datenbank zur vorherigen in der Liste</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.h" line="30"/>
         <source>Switch current working database to next on the list</source>
-        <translation type="unfinished"></translation>
+        <translation>Wechsel von der aktuellen Datenbank zur nächsten in der Liste</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.h" line="31"/>
         <source>Go to next editor tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Gehe zum nächsten Editor-Reiter</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.h" line="32"/>
         <source>Go to previous editor tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Gehe zum vorherigen Editor-Reiter</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.h" line="33"/>
         <source>Move keyboard input focus to the results view below</source>
-        <translation type="unfinished"></translation>
+        <translation>Tastatureingabe-Fokus in das untere Ergebnisfenster setzen</translation>
     </message>
     <message>
         <location filename="../windows/editorwindow.h" line="34"/>
         <source>Move keyboard input focus to the SQL editor above</source>
-        <translation type="unfinished"></translation>
+        <translation>Tastatureingabe-Fokus in das obere SQL Editorfenster setzen</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="30"/>
         <source>Table window</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabellenfenster</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="31"/>
         <source>Refresh table structure</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualisiere Tabellenstruktur</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="32"/>
         <source>Add new column</source>
-        <translation type="unfinished"></translation>
+        <translation>Neue Spalte zufügen</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="33"/>
         <source>Edit selected column</source>
-        <translation type="unfinished"></translation>
+        <translation>Gewählte Spalte bearbeiten</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="34"/>
         <source>Delete selected column</source>
-        <translation type="unfinished"></translation>
+        <translation>Gewählte Spalte löschen</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="35"/>
         <source>Export table data</source>
-        <translation type="unfinished"></translation>
+        <translation>Tabellendaten exportieren</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="36"/>
         <source>Import data to the table</source>
-        <translation type="unfinished"></translation>
+        <translation>Daten in die Tabelle importieren</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="37"/>
         <source>Add new table constraint</source>
-        <translation type="unfinished"></translation>
+        <translation>Neue Tabellenbedingung zufügen</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="38"/>
         <source>Edit selected table constraint</source>
-        <translation type="unfinished"></translation>
+        <translation>Markierte Tabellenbedingung bearbeiten</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="39"/>
         <source>Delete selected table constraint</source>
-        <translation type="unfinished"></translation>
+        <translation>Markierte Tabellenbedingung löschen</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="40"/>
         <source>Refresh table index list</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualisiere Tabellenindexliste</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="41"/>
         <source>Add new index</source>
-        <translation type="unfinished"></translation>
+        <translation>Neuen Index zufügen</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="42"/>
         <source>Edit selected index</source>
-        <translation type="unfinished"></translation>
+        <translation>Gewählten Index bearbeiten</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="43"/>
         <source>Delete selected index</source>
-        <translation type="unfinished"></translation>
+        <translation>Gewählten Index löschen</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="44"/>
