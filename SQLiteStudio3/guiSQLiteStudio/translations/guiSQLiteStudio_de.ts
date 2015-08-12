@@ -4583,47 +4583,48 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../windows/tablewindow.h" line="44"/>
         <source>Refresh table trigger list</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualisiere Tabellentriggerliste</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="45"/>
         <location filename="../windows/viewwindow.h" line="25"/>
         <source>Add new trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Neuen Trigger zufügen</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="46"/>
         <location filename="../windows/viewwindow.h" line="26"/>
         <source>Edit selected trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Gewählten Trigger bearbeiten</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="47"/>
         <location filename="../windows/viewwindow.h" line="27"/>
         <source>Delete selected trigger</source>
-        <translation type="unfinished"></translation>
+        <translation>Gewählten Trigger löschen</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="48"/>
         <location filename="../windows/viewwindow.h" line="28"/>
         <source>Go to next tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Springe zum nächsten Reiter</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="49"/>
         <location filename="../windows/viewwindow.h" line="29"/>
         <source>Go to previous tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Springe zum vorherigen Reiter</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.h" line="23"/>
         <source>A view window</source>
-        <translation type="unfinished"></translation>
+        <translation>Neues Fenster zufügen</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.h" line="24"/>
         <source>Refresh view trigger list</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Ggf. View mit Ansicht übersetzen, muss im Kontext geklärt werden</translatorcomment>
+        <translation>Aktualisiere View Triggerliste</translation>
     </message>
 </context>
 <context>
@@ -4631,14 +4632,16 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../dialogs/quitconfirmdialog.ui" line="14"/>
         <source>Uncommited changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Nicht gespeicherte Änderungen</translation>
     </message>
     <message>
         <location filename="../dialogs/quitconfirmdialog.ui" line="20"/>
         <source>Are you sure you want to quit the application?
 
 Following items are pending:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sind Sie sicher, dass Sie das Programm beenden wollen?
+
+Folgende Punkte sind unerledigt:</translation>
     </message>
 </context>
 <context>
@@ -4646,48 +4649,49 @@ Following items are pending:</source>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="14"/>
         <source>Find or replace</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Ggf. Suchen statt Finden?</translatorcomment>
+        <translation>Finden oder Ersetzen</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="23"/>
         <source>Find:</source>
-        <translation type="unfinished"></translation>
+        <translation>Finden:</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="36"/>
         <source>Case sensitive</source>
-        <translation type="unfinished"></translation>
+        <translation>Groß- und Kleinschreibung beachten</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="43"/>
         <source>Search backwards</source>
-        <translation type="unfinished"></translation>
+        <translation>Suche rückwärts</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="50"/>
         <source>Regular expression matching</source>
-        <translation type="unfinished"></translation>
+        <translation>Prüfung nach regulärem Ausdruck</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="60"/>
         <source>Replace &amp;&amp;
 find next</source>
-        <translation type="unfinished"></translation>
+        <translation>Ersetzen &amp;&amp; weitersuchen</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="78"/>
         <source>Replace with:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ersetzen mit:</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="91"/>
         <source>Replace all</source>
-        <translation type="unfinished"></translation>
+        <translation>Alles ersetzen</translation>
     </message>
     <message>
         <location filename="../dialogs/searchtextdialog.ui" line="98"/>
         <source>Find</source>
-        <translation type="unfinished"></translation>
+        <translation>Finden</translation>
     </message>
 </context>
 <context>
@@ -4695,34 +4699,34 @@ find next</source>
     <message>
         <location filename="../dialogs/sortdialog.ui" line="14"/>
         <source>Sort by columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Nach Spalten sortiert</translation>
     </message>
     <message>
         <location filename="../dialogs/sortdialog.ui" line="45"/>
         <location filename="../dialogs/sortdialog.cpp" line="48"/>
         <source>Column</source>
-        <translation type="unfinished"></translation>
+        <translation>Spalte</translation>
     </message>
     <message>
         <location filename="../dialogs/sortdialog.ui" line="50"/>
         <location filename="../dialogs/sortdialog.cpp" line="48"/>
         <source>Order</source>
-        <translation type="unfinished"></translation>
+        <translation>Sortierung</translation>
     </message>
     <message>
         <location filename="../dialogs/sortdialog.cpp" line="178"/>
         <source>Sort by: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Sortiert nach: %1</translation>
     </message>
     <message>
         <location filename="../dialogs/sortdialog.cpp" line="242"/>
         <source>Move column up</source>
-        <translation type="unfinished"></translation>
+        <translation>Spalte nach oben verschieben</translation>
     </message>
     <message>
         <location filename="../dialogs/sortdialog.cpp" line="243"/>
         <source>Move column down</source>
-        <translation type="unfinished"></translation>
+        <translation>Spalte nach unten verschieben</translation>
     </message>
 </context>
 <context>
@@ -4803,49 +4807,50 @@ find next</source>
         <location filename="../sqleditor.cpp" line="130"/>
         <source>Delete line</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Zeile löschen</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="131"/>
         <source>Move block down</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Block nach unten verschieben</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="132"/>
         <source>Move block up</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Block nach oben verschieben</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="133"/>
         <source>Copy block down</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Block nach unten kopieren</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="134"/>
         <source>Copy up down</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translatorcomment>&quot;up down&quot; ??? Muss geklärt werden!</translatorcomment>
+        <translation>Kopiere auf ab</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="135"/>
         <source>Find</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Finden</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="136"/>
         <source>Find next</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nächster Fund</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="137"/>
         <source>Find previous</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Vorheriger Fund</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="138"/>
@@ -4856,17 +4861,17 @@ find next</source>
     <message>
         <location filename="../sqleditor.cpp" line="252"/>
         <source>Saved SQL contents to file: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>SQL Inhalte in Datei speichern: %1</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="431"/>
         <source>Syntax completion can be used only when a valid database is set for the SQL editor.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Funktion Autovervollständigung kann nur genutzt werden, wenn eine gültige Datenbank für den SQL Editor gewählt wurde.</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="819"/>
         <source>Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Text im SQL Editor ist sehr groß, daher wurde die Syntaxkontrolle und die farbliche Hervorhebung von Objekten vorübergehend deaktiviert.</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="1054"/>
@@ -4876,12 +4881,12 @@ find next</source>
     <message>
         <location filename="../sqleditor.cpp" line="242"/>
         <source>Could not open file &apos;%1&apos; for writing: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Datei &apos;%1&apos; kann nicht für Schreibzugriffe geöffnet werden: %2</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="1066"/>
         <source>SQL scripts (*.sql);;All files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>SQL Skripte (*.sql);;Alle Dateien (*)</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="1067"/>
@@ -4891,7 +4896,7 @@ find next</source>
     <message>
         <location filename="../sqleditor.cpp" line="1076"/>
         <source>Could not open file &apos;%1&apos; for reading: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Datei &apos;%1&apos; kann nicht für Lesezugriffe geöffnet werden: %2</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="1285"/>
