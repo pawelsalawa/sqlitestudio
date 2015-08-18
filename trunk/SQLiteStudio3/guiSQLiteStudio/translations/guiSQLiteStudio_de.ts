@@ -4901,7 +4901,7 @@ find next</source>
     <message>
         <location filename="../sqleditor.cpp" line="1285"/>
         <source>Reached the end of document. Hit the find again to restart the search.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Dokumentenende wurde erreicht. Drücken Sie &apos;Nächster Fund&apos;, um die Suche am Dokumentenanfang fortzusetzen.</translation>
     </message>
 </context>
 <context>
@@ -4910,35 +4910,35 @@ find next</source>
         <location filename="../datagrid/sqlqueryitem.cpp" line="251"/>
         <source>Column:</source>
         <comment>data view tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Spalte:</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryitem.cpp" line="252"/>
         <source>Data type:</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Datentyp:</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryitem.cpp" line="255"/>
         <source>Table:</source>
         <comment>data view tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Tabelle:</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryitem.cpp" line="285"/>
         <source>Constraints:</source>
         <comment>data view tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Bedingungen:</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryitem.cpp" line="398"/>
         <source>This cell is not editable, because: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Diese Zelle kann nicht editiert werden, weil: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryitem.cpp" line="415"/>
         <source>Cannot load the data for a cell that refers to the already closed database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es können keine Daten für eine Zelle dargestellt werden, die eine bereits geschlossene Datenbank referenziert.</translation>
     </message>
 </context>
 <context>
@@ -4947,12 +4947,12 @@ find next</source>
         <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="41"/>
         <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="47"/>
         <source>Cannot edit this cell. Details: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Zelle kann nicht editiert. Details: %2</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="41"/>
         <source>The row is marked for deletion.</source>
-        <translation type="unfinished"></translation>
+        <translation>Diese Zeile ist zum Löschen markiert.</translation>
     </message>
 </context>
 <context>
@@ -4961,12 +4961,12 @@ find next</source>
         <location filename="../datagrid/sqlquerymodel.cpp" line="63"/>
         <location filename="../datagrid/sqlquerymodel.cpp" line="487"/>
         <source>Only one query can be executed simultaneously.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es kann nur eine Abfrage gleichzeitig ausgeführt werden.</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="95"/>
         <source>Uncommited data</source>
-        <translation type="unfinished"></translation>
+        <translation>Nicht gespeicherte Daten</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="96"/>
