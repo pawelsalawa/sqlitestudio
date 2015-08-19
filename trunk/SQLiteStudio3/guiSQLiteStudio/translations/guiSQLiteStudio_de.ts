@@ -4971,58 +4971,58 @@ find next</source>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="96"/>
         <source>There are uncommited data changes. Do you want to proceed anyway? All uncommited changes will be lost.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es gibt ungespeicherte Änderungen. Möchten Sie wirklich fortfahren? Alle Änderungen werden dann verloren gehen.</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="343"/>
         <source>Cannot commit the data for a cell that refers to the already closed database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es können keine Daten für eine Zelle gespeichert werden, die eine bereits geschlossene Datenbank referenziert.</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="374"/>
         <source>Could not begin transaction on the database. Details: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Es kann keine Transaktion auf der Datenbank gestartet werden. Details: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="420"/>
         <source>An error occurred while commiting the transaction: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Committen der Transaktion: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="445"/>
         <source>An error occurred while rolling back the transaction: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Rollback der Transaktion: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="573"/>
         <source>Tried to commit a cell which is not editable (yet modified and waiting for commit)! This is a bug. Please report it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es wurde versucht eine nicht editierbare Zelle zu committen (derzeit modifiziert und auf das Commit wartend)! Dies ist ein Fehler den Sie melden sollten.</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="599"/>
         <source>An error occurred while commiting the data: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Committen der Daten: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="1045"/>
         <location filename="../datagrid/sqlquerymodel.cpp" line="1100"/>
         <source>Error while executing SQL query on database &apos;%1&apos;: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Ausführen der SQL-Abfrage auf der Datenbank &apos;%1&apos;: %2</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="1097"/>
         <source>Error while loading query results: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Laden der Abfrageergebnisse: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="1438"/>
         <source>Insert multiple rows</source>
-        <translation type="unfinished"></translation>
+        <translation>Mehrere Zeilen einfügen</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="1438"/>
         <source>Number of rows to insert:</source>
-        <translation type="unfinished"></translation>
+        <translation>Anzahl an Zeilen zum Einfügen:</translation>
     </message>
 </context>
 <context>
