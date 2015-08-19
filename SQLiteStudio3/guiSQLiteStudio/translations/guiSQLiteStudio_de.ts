@@ -5030,92 +5030,92 @@ find next</source>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="72"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopieren</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="73"/>
         <source>Copy as...</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopieren als...</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="74"/>
         <source>Paste</source>
-        <translation type="unfinished"></translation>
+        <translation>Einfügen</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="75"/>
         <source>Paste as...</source>
-        <translation type="unfinished"></translation>
+        <translation>Einfügen als...</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="76"/>
         <source>Set NULL values</source>
-        <translation type="unfinished"></translation>
+        <translation>NULL Wert setzen</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="77"/>
         <source>Erase values</source>
-        <translation type="unfinished"></translation>
+        <translation>Werte löschen</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="78"/>
         <source>Edit value in editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Wert im Editor bearbeiten</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="79"/>
         <source>Commit</source>
-        <translation type="unfinished"></translation>
+        <translation>Commit</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="80"/>
         <source>Rollback</source>
-        <translation type="unfinished"></translation>
+        <translation>Rollback</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="81"/>
         <source>Commit selected cells</source>
-        <translation type="unfinished"></translation>
+        <translation>Gewählte Zellen speichern</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="82"/>
         <source>Rollback selected cells</source>
-        <translation type="unfinished"></translation>
+        <translation>Gewählte Zellen wiederherstellen</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="83"/>
         <source>Define columns to sort by</source>
-        <translation type="unfinished"></translation>
+        <translation>Sortierspalten definieren</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="84"/>
         <source>Remove custom sorting</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzerdefinierte Sortierung entfernen</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="85"/>
         <source>Insert row</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeile einfügen</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="86"/>
         <source>Insert multiple rows</source>
-        <translation type="unfinished"></translation>
+        <translation>Mehrere Zeilen einfügen</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="87"/>
         <source>Delete selected row</source>
-        <translation type="unfinished"></translation>
+        <translation>Gewählte Zeile löschen</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="256"/>
         <source>No items selected to paste clipboard contents to.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es sind keine Elemente selektiert in die der Inhalt der Zwischenablage eingefügt werden könnte.</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="510"/>
         <source>Edit value</source>
-        <translation type="unfinished"></translation>
+        <translation>Werte editieren</translation>
     </message>
 </context>
 <context>
@@ -5123,12 +5123,12 @@ find next</source>
     <message>
         <location filename="../datagrid/sqltablemodel.cpp" line="74"/>
         <source>Error while commiting new row: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Committen der neuen Zeile: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqltablemodel.cpp" line="132"/>
         <source>Error while deleting row from table %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Löschen der Zeile aus Tabelle %1: %2</translation>
     </message>
 </context>
 <context>
@@ -5141,12 +5141,12 @@ find next</source>
     <message>
         <location filename="../statusfield.cpp" line="164"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopieren</translation>
     </message>
     <message>
         <location filename="../statusfield.cpp" line="171"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Leeren</translation>
     </message>
 </context>
 <context>
