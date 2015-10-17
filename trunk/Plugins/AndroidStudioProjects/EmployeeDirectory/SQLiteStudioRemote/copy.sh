@@ -1,0 +1,1 @@
+cp /home/googie/projects/extraplugins/Extra/AndroidStudioProjects/SQLiteStudioRemoteProject/sqlitestudioremote/build/intermediates/bundles/release/classes.jar SQLiteStudioRemote.jar

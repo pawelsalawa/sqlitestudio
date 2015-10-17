@@ -1,0 +1,6 @@
+/home/googie/projects/extraplugins/Extra/AndroidStudioProjects/SQLiteStudioRemoteProject/app/build/intermediates/classes/release
+/home/googie/projects/extraplugins/Extra/AndroidStudioProjects/SQLiteStudioRemoteProject/app/build/intermediates/pre-dexed/release/support-annotations-21.0.3-7d53b1b5d59271c0f2b4c6f4b1af89b9e4551142.jar
+/home/googie/projects/extraplugins/Extra/AndroidStudioProjects/SQLiteStudioRemoteProject/app/build/intermediates/pre-dexed/release/classes-593c9ed7572e3c26f5d1e1d1d82d9509f3c0048c.jar
+/home/googie/projects/extraplugins/Extra/AndroidStudioProjects/SQLiteStudioRemoteProject/app/build/intermediates/pre-dexed/release/internal_impl-21.0.3-7d0aef6ed6724600febccd91cd58b31974927297.jar
+/home/googie/projects/extraplugins/Extra/AndroidStudioProjects/SQLiteStudioRemoteProject/app/build/intermediates/pre-dexed/release/classes-967b92051ce5100f40028583e9c7a4e0e2685948.jar
+/home/googie/projects/extraplugins/Extra/AndroidStudioProjects/SQLiteStudioRemoteProject/app/build/intermediates/pre-dexed/release/classes-47f81ae48c997b840dd7cbcc1a0b4a088dbbc78c.jar

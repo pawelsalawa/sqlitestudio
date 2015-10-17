@@ -1,0 +1,46 @@
+INPUT:
+------
+Message: <size><contents>
+size            - 4 bytes, little endian integer
+contents        - <size> bytes of json document
+
+JSON objects:
+{
+    cmd:"command"[,]
+    [arguments...]
+}
+
+command         - LIST, QUERY
+arguments:
+- for QUERY:
+-- db:"database name"
+-- query:"sql query"
+- for LIST: none
+
+
+OUTPUT:
+-------
+Size confirmation:
+{"size":"ok"}
+
+Errors:
+- {"generic_error":error_code}
+-- 0 = INVALID_FORMAT,
+-- 1 = NO_COMMAND_SPECIFIED,
+-- 2 = UNKNOWN_COMMAND,
+-- 3 = NO_DATABASE_SPECIFIED,
+-- 4 = ERROR_READING_FROM_CLIENT
+
+From LIST:
+- {list:["db1", "db2"]}
+
+From QUERY:
+- {columns:["col1", "col2"],data:[{col1:"data",col2:"data"},{col1:"data",col2:"data"}]}
+- {error_code:N,error_message:"error message"}
+
+
+
+
+
+-----------------------------------------------------------------
+./adb shell run-as pl.com.salsoft.employeedirectory sqlite3 -csv -separator , -batch -nullvalue _SQLITESTUDIO_NULL_ databases/employee_directory2 'select * from employee;'
