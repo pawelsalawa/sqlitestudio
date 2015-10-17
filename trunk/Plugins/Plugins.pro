@@ -16,4 +16,5 @@ SUBDIRS += \
     Printing \
     SqlEnterpriseFormatter \
     ConfigMigration \
-    ScriptingTcl
+    ScriptingTcl \
+    DbAndroid
