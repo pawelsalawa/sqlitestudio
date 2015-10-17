@@ -1,0 +1,30 @@
+<sql>
+<statement>
+CREATE TABLE IF NOT EXISTS employee (
+	_id INTEGER PRIMARY KEY AUTOINCREMENT, 
+	firstName VARCHAR(50), 
+	lastName VARCHAR(50), 
+	title VARCHAR(50), 
+	department VARCHAR(50), 
+	managerId INTEGER, 
+	city VARCHAR(50), 
+	officePhone VARCHAR(30), 
+	cellPhone VARCHAR(30), 
+	email VARCHAR(30), 
+	picture VARCHAR(200))
+</statement>
+<statement>INSERT INTO employee VALUES(1,'Ryan','Howard','Vice President, North East', 'Management', NULL, 'Scranton','570-999-8888','570-999-8887','ryan@dundermifflin.com','howard.jpg')</statement>
+<statement>INSERT INTO employee VALUES(2,'Michael','Scott','Regional Manager','Management',1,'Scranton','570-888-9999','570-222-3333','michael@dundermifflin.com','scott.jpg')</statement>
+<statement>INSERT INTO employee VALUES(3,'Dwight','Schrute','Assistant Regional Manager','Management',2,'Scranton','570-444-4444','570-333-3333','dwight@dundermifflin.com','schrute.jpg')</statement>
+<statement>INSERT INTO employee VALUES(4,'Jim','Halpert','Assistant Regional Manager','Manage',2,'Scranton','570-222-2121','570-999-1212','jim@dundermifflin.com','halpert.jpg')</statement>
+<statement>INSERT INTO employee VALUES(5,'Pamela','Beesly','Receptionist','',2,'Scranton','570-999-5555','570-999-7474','pam@dundermifflin.com','beesly.jpg')</statement>
+<statement>INSERT INTO employee VALUES(6,'Angela','Martin','Senior Accountant','Accounting',2,'Scranton','570-555-9696','570-999-3232','angela@dundermifflin.com','martin.jpg')</statement>
+<statement>INSERT INTO employee VALUES(7,'Kevin','Malone','Accountant','Accounting',6,'Scranton','570-777-9696','570-111-2525','kmalone@dundermifflin.com','malone.jpg')</statement>
+<statement>INSERT INTO employee VALUES(8,'Oscar','Martinez','Accountant','Accounting',6,'Scranton','570-321-9999','570-585-3333','oscar@dundermifflin.com','martinez.jpg')</statement>
+<statement>INSERT INTO employee VALUES(9,'Creed','Bratton','Quality Assurance','Customer Services',2,'Scranton','570-222-6666','333-8585','creed@dundermifflin.com','bratton.jpg')</statement>
+<statement>INSERT INTO employee VALUES(10,'Andy','Bernard','Sales Director','Sales',2,'Scranton','570-555-0000','570-546-9999','andy@dundermifflin.com','bernard.jpg')</statement>
+<statement>INSERT INTO employee VALUES(11,'Phyllis','Lapin','Sales Representative','Sales',10,'Scranton','570-141-3333','570-888-6666','phyllis@dundermifflin.com','lapin.jpg')</statement>
+<statement>INSERT INTO employee VALUES(12,'Stanley','Hudson','Sales Representative','Sales',10,'Scranton','570-700-6666','570-777-6666','shudson@dundermifflin.com','hudson.jpg')</statement>
+<statement>INSERT INTO employee VALUES(13,'Meredith','Palmer','Supplier Relations','Customer Services',2,'Scranton','570-555-8888','570-777-2222','meredith@dundermifflin.com','palmer.jpg')</statement>
+<statement>INSERT INTO employee VALUES(14,'Kelly','Kapoor','Customer Service Rep.','Customer Services',2,'Scranton','570-123-9654','570-125-3666','kelly@dundermifflin.com','kapoor.jpg')</statement>
+</sql>

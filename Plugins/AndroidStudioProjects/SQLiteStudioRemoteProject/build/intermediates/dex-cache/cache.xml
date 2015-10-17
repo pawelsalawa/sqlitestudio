@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/googie/projects/extraplugins/Extra/AndroidStudioProjects/SQLiteStudioRemoteProject/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/home/googie/projects/extraplugins/Extra/AndroidStudioProjects/SQLiteStudioRemoteProject/app/build/intermediates/pre-dexed/debug/classes-47f81ae48c997b840dd7cbcc1a0b4a088dbbc78c.jar" />
+    </item>
+    <item
+        jar="/home/googie/projects/extraplugins/Extra/AndroidStudioProjects/SQLiteStudioRemoteProject/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="/home/googie/projects/extraplugins/Extra/AndroidStudioProjects/SQLiteStudioRemoteProject/app/build/intermediates/pre-dexed/debug/classes-967b92051ce5100f40028583e9c7a4e0e2685948.jar" />
+    </item>
+    <item
+        jar="/home/googie/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="/home/googie/projects/extraplugins/Extra/AndroidStudioProjects/SQLiteStudioRemoteProject/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-7d53b1b5d59271c0f2b4c6f4b1af89b9e4551142.jar" />
+    </item>
+    <item
+        jar="/home/googie/projects/extraplugins/Extra/AndroidStudioProjects/SQLiteStudioRemoteProject/app/build/intermediates/exploded-aar/SQLiteStudioRemoteProject/sqlitestudioremote/unspecified/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d5aacee3e1b1c822524f70367cbe18b5f8dc4017">
+        <dex dex="/home/googie/projects/extraplugins/Extra/AndroidStudioProjects/SQLiteStudioRemoteProject/app/build/intermediates/pre-dexed/debug/classes-593c9ed7572e3c26f5d1e1d1d82d9509f3c0048c.jar" />
+    </item>
+    <item
+        jar="/home/googie/projects/extraplugins/Extra/AndroidStudioProjects/SQLiteStudioRemoteProject/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/home/googie/projects/extraplugins/Extra/AndroidStudioProjects/SQLiteStudioRemoteProject/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-7d0aef6ed6724600febccd91cd58b31974927297.jar" />
+    </item>
+
+</items>

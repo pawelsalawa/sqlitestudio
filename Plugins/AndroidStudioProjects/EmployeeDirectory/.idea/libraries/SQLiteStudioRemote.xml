@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="SQLiteStudioRemote">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/SQLiteStudioRemote/SQLiteStudioRemote.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

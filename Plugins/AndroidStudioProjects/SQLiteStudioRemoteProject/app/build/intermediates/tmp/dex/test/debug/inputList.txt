@@ -1,0 +1,1 @@
+/home/googie/projects/extraplugins/Extra/AndroidStudioProjects/SQLiteStudioRemoteProject/app/build/intermediates/classes/test/debug
