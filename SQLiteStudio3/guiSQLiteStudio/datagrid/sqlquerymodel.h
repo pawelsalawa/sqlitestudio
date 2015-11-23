@@ -122,6 +122,9 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         static QList<QList<SqlQueryItem*>> groupItemsByRows(const QList<SqlQueryItem*>& items);
         static QHash<AliasedTable, QList<SqlQueryItem*> > groupItemsByTable(const QList<SqlQueryItem*>& items);
 
+        bool getSimpleExecutionMode() const;
+        void setSimpleExecutionMode(bool value);
+
     protected:
         class CommitUpdateQueryBuilder : public RowIdConditionBuilder
         {
@@ -263,6 +266,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
 
         QString query;
         bool explain = false;
+        bool simpleExecutionMode = false;
 
         /**
          * @brief reloadAvailable

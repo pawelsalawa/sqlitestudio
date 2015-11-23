@@ -2,6 +2,7 @@
         * [ADDED]: #2875 Fixed font misconfiguration after Qt update.
         * [ADDED]: #2879 Fixed View updating after table modification, when view uses SELECT with table alias same as table name.
         * [ADDED]: #2885 Fixed tokens parsing, causing random problems, such as incorrect formatting performed by the simple formatter.
+        * [ADDED]: Fixed preventing of setting null or empty value on query results that don't come directly from table.
         * [ADDED]: Fixed duplicates while copying mupltiple lines from status field.
 
 [3.0.6]

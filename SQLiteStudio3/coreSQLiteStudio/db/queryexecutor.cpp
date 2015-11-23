@@ -201,6 +201,12 @@ void QueryExecutor::run()
 
 void QueryExecutor::execInternal()
 {
+    if (forceSimpleMode)
+    {
+        executeSimpleMethod();
+        return;
+    }
+
     simpleExecution = false;
     interrupted = false;
 
@@ -456,7 +462,8 @@ void QueryExecutor::simpleExecutionFinished(SqlQueryPtr results)
         context->resultsHandler = nullptr;
     }
 
-    notifyWarn(tr("SQLiteStudio was unable to extract metadata from the query. Results won't be editable."));
+    if (!forceSimpleMode)
+        notifyWarn(tr("SQLiteStudio was unable to extract metadata from the query. Results won't be editable."));
 
     emit executionFinished(results);
 }
@@ -551,6 +558,16 @@ bool QueryExecutor::handleRowCountingResults(quint32 asyncId, SqlQueryPtr result
 
     return true;
 }
+bool QueryExecutor::getForceSimpleMode() const
+{
+    return forceSimpleMode;
+}
+
+void QueryExecutor::setForceSimpleMode(bool value)
+{
+    forceSimpleMode = value;
+}
+
 
 const QStringList& QueryExecutor::getRequiredDbAttaches() const
 {
