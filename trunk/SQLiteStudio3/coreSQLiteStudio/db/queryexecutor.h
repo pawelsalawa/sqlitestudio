@@ -1029,6 +1029,9 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
 
         const QStringList& getRequiredDbAttaches() const;
 
+        bool getForceSimpleMode() const;
+        void setForceSimpleMode(bool value);
+
     private:
         /**
          * @brief Executes query.
@@ -1321,6 +1324,8 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          * with success. It's not called on failure.
          */
         Db::QueryResultsHandler resultsHandler = nullptr;
+
+        bool forceSimpleMode = false;
 
     signals:
         /**

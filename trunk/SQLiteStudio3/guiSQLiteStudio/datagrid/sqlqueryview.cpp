@@ -197,7 +197,8 @@ SqlQueryModel* SqlQueryView::getModel()
 void SqlQueryView::setModel(QAbstractItemModel* model)
 {
     QTableView::setModel(model);
-    connect(widgetCover, SIGNAL(cancelClicked()), getModel(), SLOT(interrupt()));
+    SqlQueryModel* m = getModel();
+    connect(widgetCover, SIGNAL(cancelClicked()), m, SLOT(interrupt()));
     connect(getModel(), &SqlQueryModel::commitStatusChanged, this, &SqlQueryView::updateCommitRollbackActions);
     connect(getModel(), &SqlQueryModel::sortingUpdated, this, &SqlQueryView::sortingUpdated);
 }
@@ -468,14 +469,22 @@ void SqlQueryView::pasteAs()
 
 void SqlQueryView::setNull()
 {
-    foreach (SqlQueryItem* selItem, getSelectedItems())
+    for (SqlQueryItem* selItem : getSelectedItems()) {
+        if (selItem->getColumn()->editionForbiddenReason.size() > 0)
+            continue;
+
         selItem->setValue(QVariant(QString::null), false, false);
+    }
 }
 
 void SqlQueryView::erase()
 {
-    foreach (SqlQueryItem* selItem, getSelectedItems())
+    for (SqlQueryItem* selItem : getSelectedItems()) {
+        if (selItem->getColumn()->editionForbiddenReason.size() > 0)
+            continue;
+
         selItem->setValue("", false, false);
+    }
 }
 
 void SqlQueryView::commit()

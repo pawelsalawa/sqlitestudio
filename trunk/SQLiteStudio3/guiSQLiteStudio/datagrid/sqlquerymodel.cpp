@@ -68,6 +68,7 @@ void SqlQueryModel::executeQuery()
     queryExecutor->setSkipRowCounting(false);
     queryExecutor->setSortOrder(sortOrder);
     queryExecutor->setPage(0);
+    queryExecutor->setForceSimpleMode(simpleExecutionMode);
     reloading = false;
 
     executeQueryInternal();
@@ -1437,6 +1438,16 @@ int SqlQueryModel::getInsertRowIndex()
         row++;
 
     return row;
+}
+
+bool SqlQueryModel::getSimpleExecutionMode() const
+{
+    return simpleExecutionMode;
+}
+
+void SqlQueryModel::setSimpleExecutionMode(bool value)
+{
+    simpleExecutionMode = value;
 }
 
 void SqlQueryModel::addNewRow()
