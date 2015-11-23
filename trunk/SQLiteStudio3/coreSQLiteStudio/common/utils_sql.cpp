@@ -159,6 +159,19 @@ QList<NameWrapper> getAllNameWrappers(Dialect dialect)
         return {NameWrapper::DOUBLE_QUOTE, NameWrapper::BRACKET, NameWrapper::QUOTE};
 }
 
+QString wrapValueIfNeeded(const QString& str)
+{
+    return wrapValueIfNeeded(QVariant::fromValue(str));
+}
+
+QString wrapValueIfNeeded(const QVariant& value)
+{
+    if (value.canConvert(QMetaType::LongLong) || value.canConvert(QMetaType::Double))
+        return value.toString();
+
+    return wrapString(value.toString());
+}
+
 QString wrapString(const QString& str)
 {
     QString result = str;

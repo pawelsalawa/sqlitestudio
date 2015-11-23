@@ -12,6 +12,9 @@
 #include "uiconfig.h"
 #include "dialogs/sortdialog.h"
 #include "services/notifymanager.h"
+#include "windows/editorwindow.h"
+#include "mainwindow.h"
+#include "common/utils_sql.h"
 #include <QHeaderView>
 #include <QPushButton>
 #include <QProgressBar>
@@ -47,6 +50,7 @@ void SqlQueryView::init()
 
     setContextMenuPolicy(Qt::CustomContextMenu);
     contextMenu = new QMenu(this);
+    referencedTablesMenu = new QMenu(tr("Go to referenced row in..."), contextMenu);
 
     connect(this, &QWidget::customContextMenuRequested, this, &SqlQueryView::customContextMenuRequested);
     connect(CFG_UI.Fonts.DataView, SIGNAL(changed(QVariant)), this, SLOT(updateFont()));
@@ -136,6 +140,9 @@ void SqlQueryView::setupActionsForMenu(SqlQueryItem* currentItem, const QList<Sq
         contextMenu->addAction(actionMap[OPEN_VALUE_EDITOR]);
         contextMenu->addSeparator();
     }
+
+    if (selectedItems.size() == 1 && selectedItems.first() == currentItem)
+        addFkActionsToContextMenu(currentItem);
 
     if (selCount > 0)
     {
@@ -300,6 +307,59 @@ void SqlQueryView::paste(const QList<QList<QVariant> >& data)
         rowIdx++;
         colIdx = topLeft->column();
     }
+}
+
+void SqlQueryView::addFkActionsToContextMenu(SqlQueryItem* currentItem)
+{
+    QList<SqlQueryModelColumn::ConstraintFk*> fkList = currentItem->getColumn()->getFkConstraints();
+    if (fkList.isEmpty())
+        return;
+
+    QAction* act;
+    if (fkList.size() == 1)
+    {
+        SqlQueryModelColumn::ConstraintFk* fk = fkList.first();
+        act = contextMenu->addAction(tr("Go to referenced row in table '%1'").arg(fk->foreignTable));
+        connect(act, &QAction::triggered, [this, fk, currentItem](bool) {
+            goToReferencedRow(fk->foreignTable, fk->foreignColumn, currentItem->getValue());
+        });
+        contextMenu->addSeparator();
+        return;
+    }
+
+    referencedTablesMenu->clear();
+    contextMenu->addMenu(referencedTablesMenu);
+    for (SqlQueryModelColumn::ConstraintFk* fk : fkList)
+    {
+        act = referencedTablesMenu->addAction(tr("table '%1'").arg(fk->foreignTable));
+        connect(act, &QAction::triggered, [this, fk, currentItem](bool) {
+            goToReferencedRow(fk->foreignTable, fk->foreignColumn, currentItem->getValue());
+        });
+    }
+    contextMenu->addSeparator();
+}
+
+void SqlQueryView::goToReferencedRow(const QString& table, const QString& column, const QVariant& value)
+{
+    Db* db = getModel()->getDb();
+    if (!db || !db->isValid())
+        return;
+
+    EditorWindow* win = MAINWINDOW->openSqlEditor();
+    if (!win->setCurrentDb(db))
+    {
+        qCritical() << "Created EditorWindow had not got requested database:" << db->getName();
+        win->close();
+        return;
+    }
+
+    static QString sql = QStringLiteral("SELECT * FROM %1 WHERE %2 = %3");
+
+    QString valueStr = wrapValueIfNeeded(value.toString());
+
+    win->getMdiWindow()->rename(tr("Referenced row (%1)").arg(table));
+    win->setContents(sql.arg(table, column, valueStr));
+    win->execute();
 }
 
 void SqlQueryView::updateCommitRollbackActions(bool enabled)
