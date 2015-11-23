@@ -81,12 +81,15 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void setupHeaderMenu();
         bool editInEditorIfNecessary(SqlQueryItem* item);
         void paste(const QList<QList<QVariant>>& data);
+        void addFkActionsToContextMenu(SqlQueryItem* currentItem);
+        void goToReferencedRow(const QString& table, const QString& column, const QVariant& value);
 
         constexpr static const char* mimeDataId = "application/x-sqlitestudio-data-view-data";
 
         SqlQueryItemDelegate* itemDelegate = nullptr;
         QMenu* contextMenu = nullptr;
         QMenu* headerContextMenu = nullptr;
+        QMenu* referencedTablesMenu = nullptr;
         WidgetCover* widgetCover = nullptr;
         QPushButton* cancelButton = nullptr;
         QProgressBar* busyBar = nullptr;

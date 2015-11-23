@@ -46,6 +46,7 @@
 #include <QPushButton>
 #include <QDebug>
 #include <QStyleFactory>
+#include <datagrid/sqlqueryitem.h>
 
 // TODO extend QTableView for columns and constraints, so they show full-row-width drop indicator,
 // instead of single column drop indicator.
