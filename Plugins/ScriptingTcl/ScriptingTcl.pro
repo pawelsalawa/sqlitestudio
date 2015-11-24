@@ -38,6 +38,10 @@ linux: {
     TCL_CONFIG = $$TCL_CONFIG_DIR/tclConfig.sh
     message("Looking for $$TCL_CONFIG")
     !exists($$TCL_CONFIG) {
+        TCL_CONFIG = $$TCL_CONFIG_DIR/../tclConfig.sh
+	message("Looking for $$TCL_CONFIG")
+    }
+    !exists($$TCL_CONFIG) {
 	# Debian case
         DEBIAN_ARCH_PATH=$$system(dpkg-architecture -qDEB_HOST_MULTIARCH)
         TCL_CONFIG = /usr/lib/$$DEBIAN_ARCH_PATH/tcl$$TCL_VERSION/tclConfig.sh
