@@ -299,7 +299,7 @@ bool AdbManager::execLongCommand(const QStringList& arguments, QProcess& proc, Q
     if (!tmpFile.open())
     {
         if (stdErr)
-            *stdErr = encode(QString("Could not create temporary file: %1").arg(tmpFile.fileName()));
+            *stdErr = encode(QString("Could not create temporary file: %1 (%2)").arg(tmpFile.fileName(), tmpFile.errorString()));
 
         return false;
     }
