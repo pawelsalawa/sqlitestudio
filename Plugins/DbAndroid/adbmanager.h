@@ -29,8 +29,8 @@ class AdbManager : public QObject
         QString findAdb();
         bool testCurrentAdb();
         bool testAdb(const QString& adbPath, bool quiet = false);
-        bool execBytes(const QStringList& arguments, QByteArray* stdOut = nullptr, QByteArray* stdErr = nullptr);
-        bool exec(const QStringList& arguments, QString* stdOut = nullptr, QString* stdErr = nullptr);
+        bool execBytes(const QStringList& arguments, QByteArray* stdOut = nullptr, QByteArray* stdErr = nullptr, bool forceSafe =  false);
+        bool exec(const QStringList& arguments, QString* stdOut = nullptr, QString* stdErr = nullptr, bool forceSafe =  false);
 
         static QByteArray encode(const QString& input);
         static QString decode(const QByteArray& input);

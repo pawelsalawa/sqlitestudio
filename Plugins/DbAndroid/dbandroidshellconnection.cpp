@@ -39,7 +39,7 @@ bool DbAndroidShellConnection::connectToAndroid(const DbAndroidUrl& url)
     }
 
     QString stdOut;
-    bool res = adbManager->exec(QStringList({"shell", "run-as", url.getApplication(), "echo", "1"}), &stdOut);
+    bool res = adbManager->exec(QStringList({"shell", "run-as", url.getApplication(), "ls"}), &stdOut);
     if (!res)
     {
         notifyWarn(tr("Cannot connect to device %1, because the application %2 doesn't seem to be installed on the device.").arg(url.getDevice(), url.getApplication()));
@@ -172,6 +172,7 @@ DbAndroidConnection::ExecutionResult DbAndroidShellConnection::executeQuery(cons
     QStringList args = stdArguments;
     args.replace(2, connectionUrl.getApplication());
     args << "databases/" + connectionUrl.getDbName();
+//    args << "/data/data/" + connectionUrl.getApplication() + "/sqlitestudio_remote.sql";
     args << AdbManager::encode(query);
 
     // In case of SELECT we want to union typeof() for all columns first, then original query
@@ -186,7 +187,7 @@ DbAndroidConnection::ExecutionResult DbAndroidShellConnection::executeQuery(cons
         {
             firstHalfForTypes = true;
             args.removeLast();
-            args << appendTypeQueryPart(query, columnNames);
+            args << AdbManager::encode(appendTypeQueryPart(query, columnNames));
         }
     }
 
@@ -194,7 +195,7 @@ DbAndroidConnection::ExecutionResult DbAndroidShellConnection::executeQuery(cons
     DbAndroidConnection::ExecutionResult results;
     QByteArray out;
     QByteArray err;
-    bool res = adbManager->execBytes(args, &out, &err);
+    bool res = adbManager->execBytes(args, &out, &err, true);
     if (!res)
     {
         results.wasError = true;
@@ -234,7 +235,7 @@ QStringList DbAndroidShellConnection::findColumns(const QStringList& originalArg
 
     QString out;
     QString err;
-    bool res = adbManager->exec(tmpArgs, &out, &err);
+    bool res = adbManager->exec(tmpArgs, &out, &err, true);
     if (!res)
     {
         qCritical() << "Error querying columns in DbAndroidShellConnection::findColumns(): " << out << "\n" << err;
@@ -331,7 +332,7 @@ QVariant DbAndroidShellConnection::valueFromString(const QByteArray& bytes, cons
 {
     static const QStringList types = QStringList({"null", "integer", "real", "text", "blob"});
 
-    DataType dataType = static_cast<DataType>(types.indexOf(AdbManager::decode(type)));
+    DataType dataType = static_cast<DataType>(types.indexOf(AdbManager::decode(type).trimmed()));
     QByteArray decodedBytes = QByteArray::fromHex(bytes);
     switch (dataType)
     {

@@ -175,13 +175,13 @@ bool AdbManager::testAdb(const QString& adbPath, bool quiet)
     return res;
 }
 
-bool AdbManager::execBytes(const QStringList& arguments, QByteArray* stdOut, QByteArray* stdErr)
+bool AdbManager::execBytes(const QStringList& arguments, QByteArray* stdOut, QByteArray* stdErr, bool forceSafe)
 {
     if (!ensureAdbRunning())
         return false;
 
     QProcess proc;
-    if (arguments.join(" ").size() > 800)
+    if (forceSafe || arguments.join(" ").size() > 800)
     {
         if (!execLongCommand(arguments, proc, stdErr))
             return false;
@@ -250,11 +250,11 @@ bool AdbManager::ensureAdbRunning()
     return true;
 }
 
-bool AdbManager::exec(const QStringList& arguments, QString* stdOut, QString* stdErr)
+bool AdbManager::exec(const QStringList& arguments, QString* stdOut, QString* stdErr, bool forceSafe)
 {
     QByteArray* out = stdOut ? new QByteArray() : nullptr;
     QByteArray* err = stdErr ? new QByteArray() : nullptr;
-    bool res = execBytes(arguments, out, err);
+    bool res = execBytes(arguments, out, err, forceSafe);
 
     if (stdOut)
     {
@@ -292,7 +292,7 @@ bool AdbManager::execLongCommand(const QStringList& arguments, QProcess& proc, Q
     args.removeFirst(); // remove the shell itself
 
     // Escape remaining arguments for the script
-    QString cmd = " '" + args.replaceInStrings("'", "'\''").join("' '") + "'";
+    QString cmd = " '" + args.replaceInStrings("'", "'\\''").join("' '") + "'";
 
     // Now, the temporary file for the script
     QTemporaryFile tmpFile("SQLiteStudio-XXXXXX.sh");
