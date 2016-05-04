@@ -140,6 +140,14 @@ class API_EXPORT PluginManagerImpl : public PluginManager
             bool builtIn = false;
 
             /**
+             * @brief Flag indicating that plugin should be loaded, unless user unloaded it manually.
+             *
+             * If this flag is set to false, then the plugin will not be loaded, even it was not manually unloaded.
+             * This flag can be defined in plugin's json file using property named 'loadByDefault'.
+             */
+            bool loadByDefault = true;
+
+            /**
              * @brief Names of plugnis that this plugin depends on.
              */
             QList<PluginDependency> dependencies;
