@@ -341,7 +341,7 @@ bool PluginManagerImpl::shouldAutoLoad(const QString& pluginName)
 {
     QStringList loadedPlugins = CFG_CORE.General.LoadedPlugins.get().split(",", QString::SkipEmptyParts);
     QStringList pair;
-    foreach (const QString& loadedPlugin, loadedPlugins)
+    for (const QString& loadedPlugin : loadedPlugins)
     {
         pair = loadedPlugin.split("=");
         if (pair.size() != 2)
@@ -354,7 +354,7 @@ bool PluginManagerImpl::shouldAutoLoad(const QString& pluginName)
             return (bool)pair[1].toInt();
     }
 
-    return true;
+    return pluginContainer[pluginName]->loadByDefault;
 }
 
 QStringList PluginManagerImpl::getAllPluginNames(PluginType* type) const
@@ -626,6 +626,7 @@ bool PluginManagerImpl::readMetaData(PluginManagerImpl::PluginContainer* contain
         container->author = metaData["author"].toString();
         container->description = metaData["description"].toString();
         container->title = metaData["title"].toString();
+        container->loadByDefault = metaData.contains("loadByDefault") ? metaData["loadByDefault"].toBool() : true;
     }
     else if (container->plugin)
     {
@@ -635,6 +636,7 @@ bool PluginManagerImpl::readMetaData(PluginManagerImpl::PluginContainer* contain
         container->author = container->plugin->getAuthor();
         container->description = container->plugin->getDescription();
         container->title = container->plugin->getTitle();
+        container->loadByDefault = true;
     }
     else
     {
@@ -706,12 +708,9 @@ QHash<QString, QVariant> PluginManagerImpl::readMetaData(const QJsonObject& meta
     results["name"] = metaData.value("className").toString();
 
     QJsonObject root = metaData.value("MetaData").toObject();
-    results["type"] = root.value("type").toString();
-    results["title"] = root.value("title").toString();
-    results["description"] = root.value("description").toString();
-    results["author"] = root.value("author").toString();
-    results["version"] = root.value("version").toInt();
-    results["ui"] = root.value("ui").toString();
+    for (const QString& k : root.keys()) {
+        results[k] = root.value(k).toVariant();
+    }
     return results;
 }
 
