@@ -1,3 +1,47 @@
+3034
+3056 / 3063
+3064
+3033 / 3037
+3026 / 3027 / 3043
+3015
+3000
+2991 / 2928 / 2929 / 2941 / 2960
+2920
+2922 / 2926 / 2925
+2927
+2931
+2937 / 2803
+2940
+2942
+2944 - chyba poprawione
+2945
+2954
+2962
+2963 - update do nowego sqlite
+2975
+3055
+3047
+3046
+3009 - db w emailu od goretux@gmail.com
+3022 - opcjonalnie
+3012 - nadal sie czasem wybiera domyslnie simple formatter - dlaczego?
+2998
+2999
+3008
+
+
+- usprawnic widok FK zeby nie bylo 3 kolumn z tym samym id
+- update do nowego qt (czy to naprawi 2956 ?)
+- sqlcipher
+
+feature requests:
+3070
+3068 / 3066
+3052
+3062
+3040
+3013
+
 Thread 5 Crashed:: Thread (pooled)
 0   libcoreSQLiteStudio.1.0.0.dylib	0x0000000101f24ba7 QHash<QString, QVariant>::value(QString const&) const + 23
 1   libcoreSQLiteStudio.1.0.0.dylib	0x0000000101f24ad4 QHash<QString, QVariant>::operator[](QString const&) const + 36

@@ -3,6 +3,132 @@
 
 // TODO write unit tests for CsvSerializer
 
+template <class C>
+bool isCsvColumnSeparator(QTextStream& data, const C& theChar, const CsvFormat& format)
+{
+    if (!format.strictColumnSeparator)
+        return format.columnSeparator.contains(theChar);
+
+    // Strict checking (characters in defined order make a separator)
+    qint64 origPos = data.pos();
+    data.seek(origPos - 1);
+    C nextChar;
+    for (const QChar& c : format.columnSeparator)
+    {
+        data >> nextChar;
+        if (c != nextChar)
+        {
+            data.seek(origPos);
+            return false;
+        }
+    }
+
+    return true;
+}
+
+template <class C>
+bool isCsvRowSeparator(QTextStream& data, const C& theChar, const CsvFormat& format)
+{
+    if (!format.strictRowSeparator)
+        return format.rowSeparator.contains(theChar);
+
+    // Strict checking (characters in defined order make a separator)
+    qint64 origPos = data.pos();
+    data.seek(origPos - 1);
+    C nextChar;
+    for (const QChar& c : format.rowSeparator)
+    {
+        data >> nextChar;
+        if (data.atEnd() || c != nextChar)
+        {
+            data.seek(origPos);
+            return false;
+        }
+    }
+
+    return true;
+}
+
+template <class T, class C>
+QList<QList<T>> typedDeserialize(QTextStream& data, const CsvFormat& format, bool oneEntry)
+{
+    QList<QList<T>> rows;
+    QList<T> cells;
+
+    bool quotes = false;
+    bool sepAsLast = false;
+    T field = "";
+    C c0;
+    C c1;
+
+    while (!data.atEnd())
+    {
+        data >> c0;
+        sepAsLast = false;
+        if (!quotes && c0 == '"' )
+        {
+            quotes = true;
+        }
+        else if (quotes && c0 == '"' )
+        {
+            if (!data.atEnd())
+            {
+                data >> c1;
+                if (c1 == '"' )
+                {
+                   field += c0;
+                }
+                else
+                {
+                   quotes = false;
+                   data.seek(data.pos() - 1);
+                }
+            }
+            else
+            {
+                if (field.length() == 0)
+                    cells << field;
+
+                quotes = false;
+            }
+        }
+        else if (!quotes)
+        {
+            if (isCsvColumnSeparator(data, c0, format))
+            {
+                cells << field;
+                field = "";
+                sepAsLast = true;
+            }
+            else if (isCsvRowSeparator(data, c0, format))
+            {
+                cells << field;
+                rows << cells;
+                cells.clear();
+                field = "";
+                if (oneEntry)
+                    break;
+            }
+            else
+            {
+                field += c0;
+            }
+        }
+        else
+        {
+            field += c0;
+        }
+    }
+
+    if (field.size() > 0 || sepAsLast)
+        cells << field;
+
+    if (cells.size() > 0)
+        rows << cells;
+
+    return rows;
+}
+
 QString CsvSerializer::serialize(const QList<QStringList>& data, const CsvFormat& format)
 {
     QStringList outputRows;
@@ -35,118 +161,29 @@ QString CsvSerializer::serialize(const QStringList& data, const CsvFormat& forma
     return outputCells.join(format.columnSeparator);
 }
 
-template <class T>
-bool isCsvColumnSeparator(const T& data, int pos, const CsvFormat& format)
+QStringList CsvSerializer::deserializeOneEntry(QTextStream& data, const CsvFormat& format)
 {
-    if (!format.strictColumnSeparator && format.columnSeparator.contains(data[pos]))
-        return true;
+    QList<QStringList> deserialized = CsvSerializer::deserialize(data, format, true);
+    if (deserialized.size() > 0)
+        return deserialized.first();
 
-    for (const QChar& c : format.columnSeparator)
-    {
-        if (c != data[pos++])
-            return false;
-    }
-
-    return true;
+    return QStringList();
 }
 
-template <class T>
-bool isCsvRowSeparator(const T& data, int& pos, const CsvFormat& format)
+QList<QStringList> CsvSerializer::deserialize(QTextStream& data, const CsvFormat& format)
 {
-    if (!format.strictRowSeparator && format.rowSeparator.contains(data[pos]))
-        return true;
-
-    int localPos = pos;
-    for (const QChar& c : format.rowSeparator)
-    {
-        if (localPos >= data.size() || c != data[localPos++])
-            return false;
-    }
-
-    pos = localPos - 1;
-    return true;
+    return CsvSerializer::deserialize(data, format, false);
 }
 
-template <class T>
-QList<QList<T>> typedDeserialize(const T& data, const CsvFormat& format)
+QList<QList<QByteArray>> CsvSerializer::deserialize(const QByteArray& data, const CsvFormat& format)
 {
-    QList<QList<T>> rows;
-    QList<T> cells;
-
-    int pos = 0;
-    int lgt = data.length();
-    bool quotes = false;
-    bool sepAsLast = false;
-    T field = "";
-    QChar c;
-
-    while (pos < lgt)
-    {
-        c = data[pos];
-        sepAsLast = false;
-        if (!quotes && c == '"' )
-        {
-            quotes = true;
-        }
-        else if (quotes && c == '"' )
-        {
-            if (pos + 1 < data.length())
-            {
-                if (data[pos+1] == '"' )
-                {
-                   field += c;
-                   pos++;
-                }
-                else
-                {
-                   quotes = false;
-                }
-            }
-            else
-            {
-                if (field.length() == 0)
-                    cells << field;
-
-                quotes = false;
-            }
-        }
-        else if (!quotes && isCsvColumnSeparator(data, pos, format))
-        {
-            cells << field;
-            field.clear();
-            sepAsLast = true;
-        }
-        else if (!quotes && isCsvRowSeparator(data, pos, format))
-        {
-            cells << field;
-            rows << cells;
-            cells.clear();
-            field.clear();
-        }
-        else
-        {
-            field += c;
-        }
-        pos++;
-    }
-
-    if (field.size() > 0 || sepAsLast)
-        cells << field;
-
-    if (cells.size() > 0)
-        rows << cells;
-
-    return rows;
+    QTextStream stream(data, QIODevice::ReadWrite);
+    return typedDeserialize<QByteArray,char>(stream, format, false);
 }
 
-QList<QList<QByteArray> > CsvSerializer::deserialize(const QByteArray& data, const CsvFormat& format)
+QList<QStringList> CsvSerializer::deserialize(QTextStream& data, const CsvFormat& format, bool oneEntry)
 {
-    return typedDeserialize<QByteArray>(data, format);
-}
-
-QList<QStringList> CsvSerializer::deserialize(const QString& data, const CsvFormat& format)
-{
-    QList<QList<QString>> deserialized = typedDeserialize<QString>(data, format);
+    QList<QList<QString>> deserialized = typedDeserialize<QString, QChar>(data, format, oneEntry);
 
     QList<QStringList> finalList;
     for (const QList<QString>& resPart : deserialized)
@@ -155,64 +192,10 @@ QList<QStringList> CsvSerializer::deserialize(const QString& data, const CsvForm
     return finalList;
 }
 
+QList<QStringList> CsvSerializer::deserialize(const QString& data, const CsvFormat& format)
+{
+    QString dataString = data;
+    QTextStream stream(&dataString, QIODevice::ReadWrite);
+    return deserialize(stream, format, false);
+}
 
-//QList<QStringList> CsvSerializer::deserialize(const QByteArray& data, const CsvFormat& format)
-//{
-//    QList<QStringList> rows;
-//    QStringList cells;
-
-//    int pos = 0;
-//    int lgt = data.length();
-//    bool quotes = false;
-//    bool sepAsLast = false;
-//    QString field = "";
-//    QChar c;
-
-//    while (pos < lgt)
-//    {
-//        c = data[pos];
-//        sepAsLast = false;
-//        if (!quotes && c == '"' )
-//        {
-//            quotes = true;
-//        }
-//        else if (quotes && c == '"' )
-//        {
-//            if (pos + 1 < data.length() && data[pos+1] == '"' )
-//            {
-//               field += c;
-//               pos++;
-//            }
-//            else
-//            {
-//               quotes = false;
-//            }
-//        }
-//        else if (!quotes && format.columnSeparator.contains(c))
-//        {
-//            cells << field;
-//            field.clear();
-//            sepAsLast = true;
-//        }
-//        else if (!quotes && format.rowSeparator.contains(c))
-//        {
-//            cells << field;
-//            rows << cells;
-//            cells.clear();
-//            field.clear();
-//        }
-//        else
-//        {
-//            field += c;
-//        }
-//        pos++;
-//    }
-
-//    if (field.size() > 0 || sepAsLast)
-//        cells << field;
-
-//    if (cells.size() > 0)
-//        rows << cells;
-
-//    return rows;
-//}
