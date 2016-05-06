@@ -4,6 +4,8 @@
 #include "coreSQLiteStudio_global.h"
 #include "csvformat.h"
 
+#include <QTextStream>
+
 class API_EXPORT CsvSerializer
 {
     public:
@@ -11,6 +13,11 @@ class API_EXPORT CsvSerializer
         static QString serialize(const QStringList& data, const CsvFormat& format);
         static QList<QStringList> deserialize(const QString& data, const CsvFormat& format);
         static QList<QList<QByteArray>> deserialize(const QByteArray& data, const CsvFormat& format);
+        static QList<QStringList> deserialize(QTextStream& data, const CsvFormat& format);
+        static QStringList deserializeOneEntry(QTextStream& data, const CsvFormat& format);
+
+    private:
+        static QList<QStringList> deserialize(QTextStream& data, const CsvFormat& format, bool oneEntry);
 };
 
 #endif // CSVSERIALIZER_H

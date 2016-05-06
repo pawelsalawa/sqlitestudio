@@ -147,6 +147,11 @@ bool ImportWorker::importData()
     QList<QVariant> row;
     while ((row = plugin->next()).size() > 0)
     {
+        // Fill up missing values in the line
+        for (int i = row.size(); i < colCount; i++)
+            row << QVariant(QVariant::String);
+
+        // Assign argument values
         query->setArgs(row.mid(0, colCount));
         if (!query->execute())
         {
