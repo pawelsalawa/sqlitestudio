@@ -3,6 +3,7 @@
 #include "lexer_low_lev.h"
 #include "sqlite2_parse.h"
 #include "sqlite3_parse.h"
+#include "common/utils_sql.h"
 #include <QString>
 #include <QMultiHash>
 #include <QDebug>
@@ -281,9 +282,39 @@ QString Lexer::detokenize(const TokenList& tokens)
 
     QString str;
     foreach (TokenPtr token, tokens)
-        str += token->value;
+        str += detokenize(token);
 
     return str;
+}
+
+QString Lexer::detokenize(const TokenPtr& token)
+{
+    switch (token->type) {
+        case Token::OTHER:
+        case Token::CTX_ALIAS:
+        case Token::CTX_COLLATION:
+        case Token::CTX_COLUMN:
+        case Token::CTX_COLUMN_NEW:
+        case Token::CTX_COLUMN_TYPE:
+        case Token::CTX_CONSTRAINT:
+        case Token::CTX_DATABASE:
+        case Token::CTX_INDEX:
+        case Token::CTX_INDEX_NEW:
+        case Token::CTX_TABLE:
+        case Token::CTX_TABLE_NEW:
+        case Token::CTX_TRANSACTION:
+        case Token::CTX_TRIGGER:
+        case Token::CTX_TRIGGER_NEW:
+        case Token::CTX_VIEW:
+        case Token::CTX_VIEW_NEW:
+            return token->value.isEmpty() ? wrapObjName(token->value, Dialect::Sqlite3, NameWrapper::DOUBLE_QUOTE) : token->value;
+        case Token::CTX_ERROR_MESSAGE:
+        case Token::STRING:
+            return token->value.isEmpty() ? wrapString(token->value) : token->value;
+        default:
+            break;
+    }
+    return token->value;
 }
 
 TokenList Lexer::tokenize(const QString& sql, Dialect dialect)
