@@ -1,4 +1,3 @@
-3034
 3056 / 3063
 3064
 3033 / 3037
@@ -30,9 +29,10 @@
 3008
 
 
-- usprawnic widok FK zeby nie bylo 3 kolumn z tym samym id
+- usprawnic widok FK w comboboxie zeby nie bylo 3 kolumn z tym samym id
 - update do nowego qt (czy to naprawi 2956 ?)
 - sqlcipher
+- poprawic tablemodifier i viewmodifier, zeby nie sprawialy tylu problemow
 
 feature requests:
 3070

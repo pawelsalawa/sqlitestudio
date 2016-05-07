@@ -129,6 +129,15 @@ class API_EXPORT Lexer
         static QString detokenize(const TokenList& tokens);
 
         /**
+         * @brief Translates token to string propert representation.
+         * @param token Token to translate.
+         * @return Translated string.
+         *
+         * This method applies wrappers where needed (for strings and ids).
+         */
+        static QString detokenize(const TokenPtr& token);
+
+        /**
          * @brief Tokenizes given SQL query with given dialect.
          * @param sql SQL query to tokenize.
          * @param dialect SQLite dialect to use when tokenizing.

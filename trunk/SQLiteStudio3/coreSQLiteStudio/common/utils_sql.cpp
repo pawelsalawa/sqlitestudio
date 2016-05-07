@@ -77,6 +77,16 @@ QString wrapObjIfNeeded(const QString& obj, Dialect dialect, NameWrapper favWrap
     return obj;
 }
 
+QString wrapObjIfNeeded(const QString& obj, Dialect dialect, bool useDoubleQuoteForEmptyValue, NameWrapper favWrapper)
+{
+    return wrapObjIfNeeded(obj, dialect, ((useDoubleQuoteForEmptyValue && obj.isEmpty()) ? NameWrapper::DOUBLE_QUOTE : favWrapper));
+}
+
+QString wrapObjName(const QString& obj, Dialect dialect, bool useDoubleQuoteForEmptyValue, NameWrapper favWrapper)
+{
+    return wrapObjName(obj, dialect, ((useDoubleQuoteForEmptyValue && obj.isEmpty()) ? NameWrapper::DOUBLE_QUOTE : favWrapper));
+}
+
 QString wrapObjName(const QString& obj, Dialect dialect, NameWrapper favWrapper)
 {
     QString result =  obj;

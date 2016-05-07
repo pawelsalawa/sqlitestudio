@@ -106,6 +106,7 @@ void ColumnDefaultPanel::constraintAvailable()
 
     readConstraint();
     updateVirtualSql();
+    validateOnly();
 }
 
 void ColumnDefaultPanel::storeConfiguration()
@@ -237,7 +238,7 @@ void ColumnDefaultPanel::readConstraint()
     }
     else if (!constr->id.isNull())
     {
-        ui->exprEdit->setPlainText(constr->id);
+        ui->exprEdit->setPlainText(wrapObjIfNeeded(constr->id, db->getDialect(), true));
         currentMode = Mode::LITERAL;
     }
     else if (!constr->ctime.isNull())
