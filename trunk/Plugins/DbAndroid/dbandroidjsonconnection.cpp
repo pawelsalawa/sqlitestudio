@@ -199,28 +199,12 @@ bool DbAndroidJsonConnection::connectToTcp(const QString& ip, int port)
 
     connectedState = true;
 
-    // Evaluate the connection and send the security token
-    static_qstring(pingCmd, "{ping:\"%1\"}");
-    QDate date = QDateTime::currentDateTime().date();
-    QString tokenString = "06fn43" + QString::number(date.dayOfYear()) + "3ig7ws" + QString::number(date.year()) + "53";
-    QByteArray md5 = QCryptographicHash::hash(tokenString.toUtf8(), QCryptographicHash::Md5);
-    QByteArray token = md5.toBase64();
-
-    QByteArray response = send(pingCmd.arg(QString::fromLatin1(token)).toUtf8());
-    if (response != PING_RESPONSE_OK)
-    {
-        qWarning() << "Connection to" << ip << ":" << port << "has failed, because response to PING was:" << response;
-        notifyWarn(tr("Cannot connect to SQLiteStudio service on Android device. The remote service is unavailable or invalid."));
-        handleConnectionFailed();
-        return false;
-    }
-
     // Authenticate
     QString pass = dbUrl.getPassword();
     if (!pass.isEmpty())
     {
         static_qstring(passPharse, "{auth:\"%1\"}");
-        response = send(passPharse.arg(pass.replace("\"", "\\\"")).toUtf8());
+        QByteArray response = send(passPharse.arg(pass.replace("\"", "\\\"")).toUtf8());
         if (response != PASS_RESPONSE_OK)
         {
             notifyWarn(tr("Cannot connect to %1:%2, because password is invalid.").arg(ip, QString::number(port)));

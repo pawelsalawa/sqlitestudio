@@ -1059,9 +1059,9 @@ bool FormatStatement::willStartWithNewLine(FormatStatement::FormatToken* token)
 void FormatStatement::formatId(const QString& value)
 {
     if (cfg->SqlEnterpriseFormatter.AlwaysUseNameWrapping.get())
-        line += wrapObjName(value, dialect, wrapper);
+        line += wrapObjName(value, dialect, true, wrapper);
     else
-        line += wrapObjIfNeeded(value, dialect, wrapper);
+        line += wrapObjIfNeeded(value, dialect, true, wrapper);
 }
 
 FormatStatement* FormatStatement::forQuery(SqliteStatement* query, Dialect dialect, NameWrapper wrapper, Cfg::SqlEnterpriseFormatterConfig* cfg)

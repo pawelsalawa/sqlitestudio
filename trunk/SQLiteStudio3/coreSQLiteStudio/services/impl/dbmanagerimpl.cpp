@@ -99,7 +99,7 @@ bool DbManagerImpl::updateDb(Db* db, const QString &name, const QString &path, c
     db->setPath(normalizedPath);
     db->setConnectionOptions(options);
 
-    bool result = false;
+    bool result = true;
     if (permanent)
     {
         if (CFG->isDbInConfig(oldName))

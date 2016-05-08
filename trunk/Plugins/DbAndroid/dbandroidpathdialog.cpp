@@ -104,6 +104,7 @@ void DbAndroidPathDialog::init()
     handleDbCreationUpdate(false);
     updateState();
     adjustSize();
+    scheduleDbListUpdate();
 }
 
 void DbAndroidPathDialog::updateUrl()

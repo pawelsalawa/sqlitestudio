@@ -87,6 +87,7 @@ void IconManager::rescanResources(const QString& pluginName)
     loadRecurently(":/icons", "", false);
 
     Icon::reloadAll();
+    emit rescannedFor(pluginName);
 }
 
 void IconManager::rescanResources(Plugin* plugin, PluginType* pluginType)

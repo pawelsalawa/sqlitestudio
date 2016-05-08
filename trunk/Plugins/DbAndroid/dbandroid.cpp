@@ -8,10 +8,12 @@
 #include "statusfield.h"
 #include "services/dbmanager.h"
 #include "dbandroidconnectionfactory.h"
+#include "iconmanager.h"
 #include <QUrl>
 #include <QDebug>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QDesktopServices>
 #include <QtConcurrent/QtConcurrent>
 
 DbAndroid::DbAndroid()
@@ -85,6 +87,8 @@ bool DbAndroid::init()
     connect(this, SIGNAL(invalidAdb()), this, SLOT(handleInvalidAdb()));
     connect(MAINWINDOW->getStatusField(), SIGNAL(linkActivated(QString)), this, SLOT(statusFieldLinkClicked(QString)));
 
+    connect(ICONMANAGER, SIGNAL(rescannedFor(QString)), this, SLOT(createJarAction(QString)));
+
     connectionFactory = new DbAndroidConnectionFactory(this);
 
     adbManager = new AdbManager(this);
@@ -95,6 +99,7 @@ bool DbAndroid::init()
         qDebug() << "Using ADB binary:" << cfg.DbAndroid.AdbPath.get();
         adbValid = true;
         adbManager->getDevices(true);
+        showJarMessage();
     }
     else
     {
@@ -105,6 +110,10 @@ bool DbAndroid::init()
 
 void DbAndroid::deinit()
 {
+    if (jarAction)
+        MAINWINDOW->getToolsMenu()->removeAction(jarAction);
+
+    safe_delete(jarAction);
     safe_delete(connectionFactory);
     safe_delete(adbManager);
     Q_CLEANUP_RESOURCE(dbandroid);
@@ -163,7 +172,18 @@ void DbAndroid::handleValidAdb(bool showMessage)
     if (showMessage)
         notifyInfo(tr("Using Android Debug Bridge: %1").arg(cfg.DbAndroid.AdbPath.get()));
 
+    showJarMessage();
     DBLIST->rescanInvalidDatabasesForPlugin(this);
+}
+
+void DbAndroid::showJarMessage()
+{
+    if (!cfg.DbAndroid.JarDownloadNotified.get())
+    {
+        notifyInfo(tr("You can grab Android connector JAR file from Tools menu. It's required for 2 of 3 connections supported by the Android plugin. "
+                      "For more details read plugin's documentation on <a href=\"%1\">SQLiteStudio's wiki page.</a>").arg(PLUGIN_MANUAL_URL));
+        cfg.DbAndroid.JarDownloadNotified.set(true);
+    }
 }
 
 void DbAndroid::handleInvalidAdb()
@@ -196,11 +216,40 @@ void DbAndroid::statusFieldLinkClicked(const QString& link)
             file = askForAdbPath();
         }
     }
+    else if (link == PLUGIN_MANUAL_URL)
+    {
+        QDesktopServices::openUrl(QUrl(PLUGIN_MANUAL_URL));
+    }
 }
 
 void DbAndroid::deviceListChanged()
 {
     DBLIST->rescanInvalidDatabasesForPlugin(this);
+}
+
+void DbAndroid::getJar()
+{
+    QString path = QFileDialog::getExistingDirectory(nullptr, tr("Save jar file"));
+    if (path.isEmpty())
+        return;
+
+    QString newPath = path + "/SQLiteStudioRemote.jar";
+    QFile jarFile(":/dbandroid/SQLiteStudioRemote.jar");
+    if (jarFile.copy(newPath)) {
+        notifyInfo("Android connector JAR file saved at " + newPath);
+    } else {
+        notifyError("Unable to save android connector JAR file at " + newPath);
+    }
+}
+
+void DbAndroid::createJarAction(const QString& pluginName)
+{
+    if (pluginName != "" && pluginName != getName())
+        return;
+
+    QIcon* i = ICONMANAGER->getIcon("android");
+    jarAction = MAINWINDOW->getToolsMenu()->addAction(*(i), tr("Get Android connector JAR file"));
+    connect(jarAction, SIGNAL(triggered()), this, SLOT(getJar()));
 }
 
 AdbManager* DbAndroid::getAdbManager() const
