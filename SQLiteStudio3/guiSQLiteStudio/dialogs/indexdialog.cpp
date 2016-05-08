@@ -40,6 +40,7 @@ IndexDialog::IndexDialog(Db* db, const QString& index, QWidget* parent) :
 
 IndexDialog::~IndexDialog()
 {
+    clearColumns();
     delete ui;
 }
 
@@ -67,14 +68,20 @@ void IndexDialog::init()
         return;
     }
 
+    ui->moveUpButton->setIcon(ICONS.MOVE_UP);
+    ui->moveDownButton->setIcon(ICONS.MOVE_DOWN);
+    connect(ui->moveUpButton, SIGNAL(clicked()), this, SLOT(moveColumnUp()));
+    connect(ui->moveDownButton, SIGNAL(clicked()), this, SLOT(moveColumnDown()));
+
     ui->columnsTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
+    connect(ui->columnsTable->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(updateUpDownButtons(QModelIndex)));
 
     ui->partialIndexEdit->setDb(db);
 
     connect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(tabChanged(int)));
 
     columnStateSignalMapping = new QSignalMapper(this);
-    connect(columnStateSignalMapping, SIGNAL(mapped(int)), this, SLOT(updateColumnState(int)));
+    connect(columnStateSignalMapping, SIGNAL(mapped(QString)), this, SLOT(updateColumnState(QString)));
 
     SchemaResolver resolver(db);
     ui->tableCombo->addItem(QString::null);
@@ -139,10 +146,8 @@ void IndexDialog::readIndex()
 void IndexDialog::buildColumns()
 {
     // Clean up
+    clearColumns();
     ui->columnsTable->setRowCount(0);
-    columnCheckBoxes.clear();
-    sortComboBoxes.clear();
-    collateComboBoxes.clear();
 
     totalColumns = tableColumns.size();
     ui->columnsTable->setRowCount(totalColumns);
@@ -150,6 +155,8 @@ void IndexDialog::buildColumns()
     int row = 0;
     foreach (const QString& column, tableColumns)
         buildColumn(column, row++);
+
+    updateUpDownButtons();
 }
 
 void IndexDialog::updateTable(const QString& value)
@@ -169,9 +176,9 @@ void IndexDialog::updateValidation()
 
     if (tableOk)
     {
-        foreach (QCheckBox* cb, columnCheckBoxes)
+        for (Column* col : columns.values())
         {
-            if (cb->isChecked())
+            if (col->getCheck()->isChecked())
             {
                 colSelected = true;
                 break;
@@ -207,9 +214,11 @@ void IndexDialog::readCollations()
 
 void IndexDialog::buildColumn(const QString& name, int row)
 {
-    int col = 0;
+    Column* column = new Column(name, ui->columnsTable);
+    columns[name] = column;
+    columnsByRow << column;
 
-    QWidget* checkParent = new QWidget();
+    column->setCheckParent(new QWidget());
     QHBoxLayout* layout = new QHBoxLayout();
     QMargins margins = layout->contentsMargins();
     margins.setTop(0);
@@ -217,51 +226,49 @@ void IndexDialog::buildColumn(const QString& name, int row)
     margins.setLeft(4);
     margins.setRight(4);
     layout->setContentsMargins(margins);
-    checkParent->setLayout(layout);
+    column->getCheckParent()->setLayout(layout);
 
-    QCheckBox* check = new QCheckBox(name);
-    checkParent->layout()->addWidget(check);
+    column->setCheck(new QCheckBox(name));
+    column->getCheckParent()->layout()->addWidget(column->getCheck());
 
-    ui->columnsTable->setCellWidget(row, col++, checkParent);
-    columnStateSignalMapping->setMapping(check, row);
-    connect(check, SIGNAL(toggled(bool)), columnStateSignalMapping, SLOT(map()));
-    connect(check, SIGNAL(toggled(bool)), this, SLOT(updateValidation()));
-    columnCheckBoxes << check;
+    columnStateSignalMapping->setMapping(column->getCheck(), name);
+    connect(column->getCheck(), SIGNAL(toggled(bool)), columnStateSignalMapping, SLOT(map()));
+    connect(column->getCheck(), SIGNAL(toggled(bool)), this, SLOT(updateValidation()));
+//    columnCheckBoxes << column->check;
 
-    QComboBox* collation = nullptr;
     if (db->getDialect() == Dialect::Sqlite3)
     {
-        collation = new QComboBox();
-        collation->setEditable(true);
-        collation->lineEdit()->setPlaceholderText(tr("default", "index dialog"));
-        collation->setModel(&collations);
-        ui->columnsTable->setCellWidget(row, col++, collation);
-        collateComboBoxes << collation;
-    }
-    else
-    {
-        col++;
+        column->setCollation(new QComboBox());
+        column->getCollation()->setEditable(true);
+        column->getCollation()->lineEdit()->setPlaceholderText(tr("default", "index dialog"));
+        column->getCollation()->setModel(&collations);
+//        collateComboBoxes << column->collation;
     }
 
-    QComboBox* sortOrder = new QComboBox();
-    sortOrder->setToolTip(tr("Sort order", "table constraints"));
-    ui->columnsTable->setCellWidget(row, col++, sortOrder);
-    sortComboBoxes << sortOrder;
+    column->setSort(new QComboBox());
+    column->getSort()->setToolTip(tr("Sort order", "table constraints"));
+//    sortComboBoxes << column->sort;
+
 
     QStringList sortList = {"", sqliteSortOrder(SqliteSortOrder::ASC), sqliteSortOrder(SqliteSortOrder::DESC)};
-    sortOrder->addItems(sortList);
+    column->getSort()->addItems(sortList);
+
+    column->prepareForNewRow();
+    column->assignToNewRow(row);
 
     totalColumns++;
 
-    updateColumnState(row);
+    updateColumnState(name);
 }
 
-void IndexDialog::updateColumnState(int row)
+void IndexDialog::updateColumnState(const QString& columnName)
 {
-    bool enabled = columnCheckBoxes[row]->isChecked();
-    sortComboBoxes[row]->setEnabled(enabled);
-    if (db->getDialect() == Dialect::Sqlite3)
-        collateComboBoxes[row]->setEnabled(enabled);
+    Column* col = columns[columnName];
+
+    bool enabled = col->getCheck()->isChecked();
+    col->getSort()->setEnabled(enabled);
+    if (col->hasCollation())
+        col->getCollation()->setEnabled(enabled);
 }
 
 void IndexDialog::updatePartialConditionState()
@@ -283,26 +290,91 @@ void IndexDialog::tabChanged(int tab)
         updateDdl();
 }
 
+void IndexDialog::moveColumnUp()
+{
+    QModelIndex idx = ui->columnsTable->selectionModel()->currentIndex();
+    if (!idx.isValid())
+        return;
+
+    int row = idx.row();
+    if (row <= 0)
+        return;
+
+    columnsByRow.move(row, row - 1);
+    rebuildColumnsByNewOrder();
+
+    idx = ui->columnsTable->model()->index(row - 1, 0);
+    ui->columnsTable->selectionModel()->setCurrentIndex(idx, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
+}
+
+void IndexDialog::moveColumnDown()
+{
+    QModelIndex idx = ui->columnsTable->selectionModel()->currentIndex();
+    if (!idx.isValid())
+        return;
+
+    int row = idx.row();
+    int cols = tableColumns.size();
+
+    if ((row + 1) >= cols)
+        return;
+
+    columnsByRow.move(row, row + 1);
+    rebuildColumnsByNewOrder();
+
+    idx = ui->columnsTable->model()->index(row + 1, 0);
+    ui->columnsTable->selectionModel()->setCurrentIndex(idx, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
+}
+
+void IndexDialog::updateUpDownButtons(const QModelIndex& idx)
+{
+    if (!idx.isValid())
+    {
+        ui->moveUpButton->setEnabled(false);
+        ui->moveDownButton->setEnabled(false);
+        return;
+    }
+
+    int row = idx.row();
+    int cols = tableColumns.size();
+    ui->moveUpButton->setEnabled(row > 0);
+    ui->moveDownButton->setEnabled((row + 1) < cols);
+}
+
 void IndexDialog::applyColumnValues()
 {
-    Dialect dialect = db->getDialect();
-    int row;
-    foreach (SqliteIndexedColumn* idxCol, createIndex->indexedColumns)
+    Column* column = nullptr;
+    int row = 0;
+    bool orderChanged = false;
+    for (SqliteIndexedColumn* idxCol : createIndex->indexedColumns)
     {
-        row = indexOf(tableColumns, idxCol->name, Qt::CaseInsensitive);
-        if (row == -1)
+        column = columns[idxCol->name];
+        if (!column)
         {
-            qCritical() << "Cannot find column from index in the table columns! Indexed column:" << idxCol->name
-                        << ", table columns:" << tableColumns << ", index name:" << index << ", table name:" << table;
+            qCritical() << "Cannot find column by name! Column name:" << idxCol->name
+                        << ", available columns:" << columns.keys() << ", index name:" << index;
             continue;
         }
 
-        columnCheckBoxes[row]->setChecked(true);
-        updateColumnState(row);
-        sortComboBoxes[row]->setCurrentText(sqliteSortOrder(idxCol->sortOrder));
-        if (dialect == Dialect::Sqlite3)
-            collateComboBoxes[row]->setCurrentText(idxCol->collate);
+        column->getCheck()->setChecked(true);
+        updateColumnState(idxCol->name);
+        column->getSort()->setCurrentText(sqliteSortOrder(idxCol->sortOrder));
+        if (column->hasCollation())
+            column->getCollation()->setCurrentText(idxCol->collate);
+
+        // Setting proper order
+        int currentRow = columnsByRow.indexOf(column);
+        if (currentRow != row)
+        {
+            columnsByRow.move(currentRow, row);
+            orderChanged = true;
+        }
+
+        row++;
     }
+
+    if (orderChanged)
+        rebuildColumnsByNewOrder();
 }
 
 void IndexDialog::applyIndex()
@@ -333,22 +405,18 @@ void IndexDialog::rebuildCreateIndex()
 
     createIndex->uniqueKw = ui->uniqueCheck->isChecked();
 
-    Dialect dialect = db->getDialect();
     SqliteIndexedColumn* idxCol = nullptr;
-    int i = -1;
-    for (const QString& column : tableColumns)
+    for (Column* column : columnsByRow)
     {
-        i++;
-
-        if (!columnCheckBoxes[i]->isChecked())
+        if (!column->getCheck()->isChecked())
             continue;
 
-        idxCol = addIndexedColumn(column);
-        if (dialect == Dialect::Sqlite3 && !collateComboBoxes[i]->currentText().isEmpty())
-            idxCol->collate = collateComboBoxes[i]->currentText();
+        idxCol = addIndexedColumn(column->getName());
+        if (column->hasCollation() && !column->getCollation()->currentText().isEmpty())
+            idxCol->collate = column->getCollation()->currentText();
 
-        if (sortComboBoxes[i]->currentIndex() > 0)
-            idxCol->sortOrder = sqliteSortOrder(sortComboBoxes[i]->currentText());
+        if (column->getSort()->currentIndex() > 0)
+            idxCol->sortOrder = sqliteSortOrder(column->getSort()->currentText());
     }
 
     if (ui->partialIndexCheck->isChecked())
@@ -388,10 +456,9 @@ void IndexDialog::queryDuplicates()
     QStringList countCols;
     QString wrappedCol;
     QString countColName;
-    int i = 0;
     for (const QString& column : tableColumns)
     {
-        if (!columnCheckBoxes[i++]->isChecked())
+        if (!columns[column]->getCheck()->isChecked())
             continue;
 
         wrappedCol = wrapObjIfNeeded(column, dialect);
@@ -411,6 +478,25 @@ void IndexDialog::queryDuplicates()
     QString sqlTable = wrapObjIfNeeded(ui->tableCombo->currentText(), dialect);
     editor->setContents(queryTpl.arg(sqlCols, sqlTable, sqlGrpCols, sqlCntCols));
     editor->execute();
+}
+
+void IndexDialog::clearColumns()
+{
+    for (Column* c : columns.values())
+        delete c;
+
+    columns.clear();
+    columnsByRow.clear();
+}
+
+void IndexDialog::rebuildColumnsByNewOrder()
+{
+    int row = 0;
+    for (Column* column : columnsByRow)
+    {
+        column->prepareForNewRow();
+        column->assignToNewRow(row++);
+    }
 }
 
 void IndexDialog::accept()
@@ -467,4 +553,91 @@ void IndexDialog::accept()
         QMessageBox::critical(this, tr("Error", "index dialog"), tr("An error occurred while executing SQL statements:\n%1")
                               .arg(executor.getErrorsMessages().join(",\n")), QMessageBox::Ok);
     }
+}
+
+IndexDialog::Column::Column(const QString& name, QTableWidget* table)
+{
+    this->name = name;
+    this->table = table;
+}
+
+void IndexDialog::Column::assignToNewRow(int row)
+{
+    table->setCellWidget(row, 0, column1Contrainer);
+    table->setCellWidget(row, 1, column2Contrainer);
+    table->setCellWidget(row, 2, column3Contrainer);
+}
+
+void IndexDialog::Column::prepareForNewRow()
+{
+    column1Contrainer = defineContainer(checkParent);
+    column2Contrainer = defineContainer(sort);
+    if (collation)
+        column3Contrainer = defineContainer(collation);
+}
+
+QCheckBox* IndexDialog::Column::getCheck()
+{
+    return check;
+}
+
+void IndexDialog::Column::setCheck(QCheckBox* cb)
+{
+    check = cb;
+}
+
+QWidget* IndexDialog::Column::getCheckParent()
+{
+    return checkParent;
+}
+
+void IndexDialog::Column::setCheckParent(QWidget* w)
+{
+    checkParent = w;
+}
+
+QComboBox* IndexDialog::Column::getSort()
+{
+    return sort;
+}
+
+void IndexDialog::Column::setSort(QComboBox* cb)
+{
+    sort = cb;
+}
+
+QComboBox* IndexDialog::Column::getCollation()
+{
+    return collation;
+}
+
+void IndexDialog::Column::setCollation(QComboBox* cb)
+{
+    collation = cb;
+}
+
+bool IndexDialog::Column::hasCollation() const
+{
+    return collation != nullptr;
+}
+
+QString IndexDialog::Column::getName() const
+{
+    return name;
+}
+
+QWidget* IndexDialog::Column::defineContainer(QWidget* w)
+{
+    QHBoxLayout* layout = new QHBoxLayout();
+    QMargins margins = layout->contentsMargins();
+    margins.setTop(0);
+    margins.setBottom(0);
+    margins.setLeft(0);
+    margins.setRight(0);
+    layout->setContentsMargins(margins);
+
+    QWidget* container = new QWidget();
+    container->setLayout(layout);
+    container->layout()->addWidget(w);
+    return container;
 }
