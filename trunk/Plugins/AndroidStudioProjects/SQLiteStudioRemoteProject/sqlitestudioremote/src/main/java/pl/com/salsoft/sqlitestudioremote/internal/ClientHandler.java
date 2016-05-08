@@ -52,7 +52,6 @@ public class ClientHandler implements Runnable {
     private static final int MAX_SIZE = 10 * 1024 * 1024;
     private static final String COMMAND_KEY = "cmd";
     private static final String AUTHORIZE_KEY = "auth";
-    private static final String PING_KEY = "ping";
     private static final String QUERY_KEY = "query";
     private static final String DBNAME_KEY = "db";
     private static final String GENERIC_ERROR_KEY = "generic_error";
@@ -83,7 +82,6 @@ public class ClientHandler implements Runnable {
     private AuthService authService;
     private boolean authorized = false;
     private boolean denyAccess = false;
-    private boolean initialized = false;
 
     public ClientHandler(Socket clientSocket, Context context, ClientJobContainer jobContainer,
                          AuthService authService) {
@@ -130,7 +128,7 @@ public class ClientHandler implements Runnable {
         }
 
         cleanUp();
-        Log.d(Utils.LOG_TAG, "Disconnected client "+clientSocket.getInetAddress().getHostAddress());
+        Log.d(Utils.LOG_TAG, "Disconnected client "+ip);
     }
 
     private void readClientChannel() {
@@ -208,11 +206,6 @@ public class ClientHandler implements Runnable {
 
         HashMap<String,Object> map = (HashMap<String,Object>)JsonConverter.fromJsonValue(json);
 
-        if (!initialized) {
-            initialize(map);
-            return;
-        }
-
         if (!authorized) {
             authorize(map);
             return;
@@ -242,32 +235,6 @@ public class ClientHandler implements Runnable {
                 deleteDbAndRespond(map.get(DBNAME_KEY));
                 break;
         }
-    }
-
-    private void initialize(HashMap<String, Object> map) {
-        if (!map.containsKey(PING_KEY)) {
-            Log.w(Utils.LOG_TAG, "Client initialization failed.");
-            denyAccess = true;
-            return;
-        }
-
-        Calendar calendar = Calendar.getInstance();
-        int day = calendar.get(Calendar.DAY_OF_YEAR);
-        int year = calendar.get(Calendar.YEAR);
-        String tokenValue = String.format(tokenTpl, day, year);
-        byte[] myTokenMd5 = Utils.md5(tokenValue);
-
-        String tokenB64FromClient = "" + map.get(PING_KEY);
-        byte[] tokenFromClient = Base64.decode(tokenB64FromClient, Base64.DEFAULT);
-        if (!Arrays.equals(myTokenMd5, tokenFromClient)) {
-            Log.w(Utils.LOG_TAG, "Client initialization failed - invalid token.");
-            denyAccess = true;
-            return;
-        }
-
-        initialized = true;
-        Log.w(Utils.LOG_TAG, "Client initialization successful.");
-        sendResult(PONG_VALUE);
     }
 
     private void authorize(HashMap<String, Object> map) {
