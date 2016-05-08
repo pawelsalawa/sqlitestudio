@@ -255,11 +255,11 @@ bool QueryExecutor::countResults()
     if (asyncMode)
     {
         // Start asynchronous results counting query
-        resultsCountingAsyncId = db->asyncExec(context->countingQuery, context->queryParameters);
+        resultsCountingAsyncId = db->asyncExec(context->countingQuery, context->queryParameters, Db::Flag::NO_LOCK);
     }
     else
     {
-        SqlQueryPtr results = db->exec(context->countingQuery, context->queryParameters);
+        SqlQueryPtr results = db->exec(context->countingQuery, context->queryParameters, Db::Flag::NO_LOCK);
         context->totalRowsReturned = results->getSingleCell().toLongLong();
         context->totalPages = (int)qCeil(((double)(context->totalRowsReturned)) / ((double)getResultsPerPage()));
 
