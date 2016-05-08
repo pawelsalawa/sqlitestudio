@@ -37,21 +37,10 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="nameLabel">
-         <property name="text">
-          <string>Index name:</string>
-         </property>
-        </widget>
+       <item row="1" column="1" colspan="3">
+        <widget class="QComboBox" name="tableCombo"/>
        </item>
-       <item row="4" column="0" colspan="2">
-        <widget class="QCheckBox" name="partialIndexCheck">
-         <property name="text">
-          <string>Partial index condition</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0" colspan="2">
+       <item row="5" column="0" colspan="4">
         <widget class="SqlEditor" name="partialIndexEdit">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -68,7 +57,21 @@
          </property>
         </widget>
        </item>
-       <item row="3" column="0" colspan="2">
+       <item row="0" column="0">
+        <widget class="QLabel" name="nameLabel">
+         <property name="text">
+          <string>Index name:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0" colspan="4">
+        <widget class="QCheckBox" name="partialIndexCheck">
+         <property name="text">
+          <string>Partial index condition</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0" colspan="4">
         <widget class="QTableWidget" name="columnsTable">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -76,8 +79,23 @@
            <verstretch>2</verstretch>
           </sizepolicy>
          </property>
+         <property name="dragEnabled">
+          <bool>false</bool>
+         </property>
+         <property name="dragDropOverwriteMode">
+          <bool>true</bool>
+         </property>
+         <property name="dragDropMode">
+          <enum>QAbstractItemView::NoDragDrop</enum>
+         </property>
+         <property name="defaultDropAction">
+          <enum>Qt::IgnoreAction</enum>
+         </property>
          <property name="selectionMode">
-          <enum>QAbstractItemView::NoSelection</enum>
+          <enum>QAbstractItemView::SingleSelection</enum>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectRows</enum>
          </property>
          <property name="verticalScrollMode">
           <enum>QAbstractItemView::ScrollPerPixel</enum>
@@ -102,11 +120,28 @@
          </column>
         </widget>
        </item>
-       <item row="0" column="1">
+       <item row="2" column="3">
+        <widget class="QToolButton" name="moveDownButton">
+         <property name="toolTip">
+          <string>Moves selected index column down in the order, making it less significant in the index.</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1" colspan="3">
         <widget class="QLineEdit" name="nameEdit"/>
        </item>
-       <item row="1" column="1">
-        <widget class="QComboBox" name="tableCombo"/>
+       <item row="2" column="2">
+        <widget class="QToolButton" name="moveUpButton">
+         <property name="toolTip">
+          <string>Moves selected index column up in the order, making it more significant in the index.</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>

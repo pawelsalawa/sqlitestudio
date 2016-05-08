@@ -4,6 +4,7 @@
 #include "db/db.h"
 #include "guiSQLiteStudio_global.h"
 #include "parser/ast/sqlitecreateindex.h"
+#include "common/strhash.h"
 #include <QDialog>
 #include <QStringListModel>
 
@@ -15,6 +16,7 @@ class QGridLayout;
 class QSignalMapper;
 class QCheckBox;
 class QComboBox;
+class QTableWidget;
 
 class GUI_API_EXPORT IndexDialog : public QDialog
 {
@@ -31,6 +33,39 @@ class GUI_API_EXPORT IndexDialog : public QDialog
         void changeEvent(QEvent *e);
 
     private:
+        class Column
+        {
+            public:
+                Column(const QString& name, QTableWidget* table);
+
+                void assignToNewRow(int row);
+                void prepareForNewRow();
+                QCheckBox* getCheck();
+                void setCheck(QCheckBox* cb);
+                QWidget* getCheckParent();
+                void setCheckParent(QWidget* w);
+                QComboBox* getSort();
+                void setSort(QComboBox* cb);
+                QComboBox* getCollation();
+                void setCollation(QComboBox* cb);
+                bool hasCollation() const;
+
+                QString getName() const;
+
+            private:
+                QWidget* defineContainer(QWidget* w);
+
+                QWidget* column1Contrainer = nullptr;
+                QWidget* column2Contrainer = nullptr;
+                QWidget* column3Contrainer = nullptr;
+                QWidget* checkParent = nullptr;
+                QCheckBox* check = nullptr;
+                QComboBox* sort = nullptr;
+                QComboBox* collation = nullptr;
+                QTableWidget* table = nullptr;
+                QString name;
+        };
+
         void init();
         void readIndex();
         void readCollations();
@@ -40,6 +75,8 @@ class GUI_API_EXPORT IndexDialog : public QDialog
         SqliteIndexedColumn* addIndexedColumn(const QString& name);
         void rebuildCreateIndex();
         void queryDuplicates();
+        void clearColumns();
+        void rebuildColumnsByNewOrder();
 
         bool existingIndex = false;
         Db* db = nullptr;
@@ -50,9 +87,8 @@ class GUI_API_EXPORT IndexDialog : public QDialog
         QStringList tableColumns;
         QSignalMapper* columnStateSignalMapping = nullptr;
         QStringListModel collations;
-        QList<QCheckBox*> columnCheckBoxes;
-        QList<QComboBox*> sortComboBoxes;
-        QList<QComboBox*> collateComboBoxes;
+        StrHash<Column*> columns;
+        QList<Column*> columnsByRow;
         int totalColumns = 0;
         Ui::IndexDialog *ui = nullptr;
 
@@ -60,10 +96,13 @@ class GUI_API_EXPORT IndexDialog : public QDialog
         void updateValidation();
         void buildColumns();
         void updateTable(const QString& value);
-        void updateColumnState(int row);
+        void updateColumnState(const QString& rowName);
         void updatePartialConditionState();
         void updateDdl();
         void tabChanged(int tab);
+        void moveColumnUp();
+        void moveColumnDown();
+        void updateUpDownButtons(const QModelIndex& idx = QModelIndex());
 
     public slots:
         void accept();
