@@ -6,6 +6,7 @@
         * [BUGFIX]: #2989 Fixed multiline value handling in CSV import plugin.
         * [BUGFIX]: #2921 Fixed empty values as NULL handling in CSV import plugin.
         * [BUGFIX]: #3034 Fixed handling empty string as value for DEFAULT constraint.
+        * [BUGFIX]: #3064 Fixed locking database executions when counting rows in huge tables.
 
 [3.0.7]
         * [ADDED]: #2951 Implemented dropdown value picking for foreign key columns in grid view.

@@ -1,1 +1,8 @@
-<RCC/>
+<RCC>
+    <qresource prefix="/dbandroid">
+        <file>SQLiteStudioRemote.jar</file>
+    </qresource>
+    <qresource prefix="/icons">
+        <file>android.png</file>
+    </qresource>
+</RCC>

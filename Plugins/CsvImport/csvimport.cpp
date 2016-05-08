@@ -53,26 +53,25 @@ void CsvImport::afterImport()
 
 bool CsvImport::extractColumns()
 {
-    QString line = stream->readLine();
-    while (line.trimmed().isEmpty() && !stream->atEnd())
-        line = stream->readLine();
+    QStringList deserializedEntry = CsvSerializer::deserializeOneEntry(*stream, csvFormat);
+    while (deserializedEntry.isEmpty() && !stream->atEnd())
+        deserializedEntry = CsvSerializer::deserializeOneEntry(*stream, csvFormat);
 
-    if (line.trimmed().isEmpty())
+    if (deserializedEntry.isEmpty())
     {
         notifyError(tr("Could not find any data in the file %1.").arg(file->fileName()));
         return false;
     }
 
-    QStringList deserialized = CsvSerializer::deserialize(line.trimmed(), csvFormat).first();
     if (cfg.CsvImport.FirstRowAsColumns.get())
     {
-        columnNames = deserialized;
+        columnNames = deserializedEntry;
     }
     else
     {
         static const QString colTmp = QStringLiteral("column%1");
         columnNames.clear();
-        for (int i = 1, total = deserialized.size(); i <= total; ++i)
+        for (int i = 1, total = deserializedEntry.size(); i <= total; ++i)
             columnNames << colTmp.arg(i);
 
         stream->seek(0);
@@ -117,30 +116,27 @@ QList<ImportPlugin::ColumnDefinition> CsvImport::getColumns() const
 
 QList<QVariant> CsvImport::next()
 {
-    QString line = stream->readLine();
-    if (line.isNull())
-        return QList<QVariant>();
+    QStringList deserializedEntry = CsvSerializer::deserializeOneEntry(*stream, csvFormat);
 
     QList<QVariant> values;
-    QList<QStringList> deserialized = CsvSerializer::deserialize(line, csvFormat);
-    if (deserialized.size() > 0)
+    if (deserializedEntry.isEmpty())
+        return values;
+
+    if (cfg.CsvImport.NullValues.get())
     {
-        if (cfg.CsvImport.NullValues.get())
+        QString nullVal = cfg.CsvImport.NullValueString.get();
+        for (const QString& val : deserializedEntry)
         {
-            QString nullVal = cfg.CsvImport.NullValueString.get();
-            for (const QString& val : deserialized.first())
-            {
-                if (val == nullVal)
-                    values << QVariant(QVariant::String);
-                else
-                    values << val;
-            }
-        }
-        else
-        {
-            for (const QString& val : deserialized.first())
+            if (val == nullVal)
+                values << QVariant(QVariant::String);
+            else
                 values << val;
         }
+    }
+    else
+    {
+        for (const QString& val : deserializedEntry)
+            values << val;
     }
 
     return values;
@@ -176,10 +172,6 @@ bool CsvImport::validateOptions()
     if (cfg.CsvImport.NullValues.get())
     {
         IMPORT_MANAGER->updateVisibilityAndEnabled(cfg.CsvImport.NullValueString, true, true);
-
-        bool valid = !cfg.CsvImport.NullValueString.get().isEmpty();
-        IMPORT_MANAGER->handleValidationFromPlugin(valid, cfg.CsvImport.NullValueString, tr("Enter the value that will be interpreted as a NULL."));
-        isValid &= valid;
     }
     else
     {

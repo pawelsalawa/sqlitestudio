@@ -274,6 +274,9 @@ class GUI_API_EXPORT IconManager : public QObject
 
     public slots:
         void rescanResources(const QString& pluginName = QString());
+
+    signals:
+        void rescannedFor(const QString& pluginName);
 };
 
 #define ICONMANAGER IconManager::getInstance()
