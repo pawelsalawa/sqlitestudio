@@ -9,6 +9,8 @@
         * [BUGFIX]: #3034 Fixed handling empty string as value for DEFAULT constraint.
         * [BUGFIX]: #3064 Fixed locking database executions when counting rows in huge tables.
         * [BUGFIX]: DbAndroid plugin has fix for null pointer in the JAR when client has disconnected
+        * [BUGFIX]: Error message details were missing in some cases (when smart execution method failed at parsing stage). This is fixed now.
+        * [BUGFIX]: #3026 #3027 #3043 Fixed RAISE() function formatting in enterprise formatter (used to produce invalid SQL).
 
 [3.0.7]
         * [ADDED]: #2951 Implemented dropdown value picking for foreign key columns in grid view.

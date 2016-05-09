@@ -20,6 +20,7 @@ class ParserTest : public QObject
         Parser* parser3 = nullptr;
 
     private Q_SLOTS:
+        void test();
         void testUniqConflict();
         void testGetTableTokens();
         void testGetTableTokens2();
@@ -44,6 +45,31 @@ class ParserTest : public QObject
 
 ParserTest::ParserTest()
 {
+}
+
+void ParserTest::test()
+{
+    QString sql = "CREATE TRIGGER param_insert_chk_enum "
+            "BEFORE INSERT "
+            "ON param "
+            "WHEN new.type = 'enum' AND "
+            "new.defval IS NOT NULL AND "
+            "new.defval != '' "
+            "BEGIN "
+            "SELECT RAISE(FAIL, 'param_insert_chk_enum failed') "
+            "WHERE NOT EXISTS ( "
+            "SELECT val "
+            "FROM valset "
+            "WHERE param_id = new.param_id AND "
+            "val = new.defval "
+            "); "
+            "END;";
+
+    parser3->parse(sql);
+    QVERIFY(parser3->getErrors().size() == 0);
+
+    SqliteQueryPtr query = parser3->getQueries()[0];
+    TokenList tokens = query->getContextTableTokens();
 }
 
 void ParserTest::testGetTableTokens()

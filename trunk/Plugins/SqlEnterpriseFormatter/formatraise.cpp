@@ -10,7 +10,7 @@ void FormatRaise::formatInternal()
 {
     withKeyword("RAISE").withParFuncLeft().withKeyword(SqliteRaise::raiseType(raise->type));
     if (raise->type != SqliteRaise::Type::IGNORE)
-        withCommaOper().withString(raise->message);
+        withCommaOper().withStringOrId(raise->message);
 
     withParFuncRight();
 }
