@@ -586,24 +586,29 @@ void QueryExecutor::setNoMetaColumns(bool value)
 
 void QueryExecutor::handleErrorsFromSmartAndSimpleMethods(SqlQueryPtr results)
 {
-    UNUSED(results);
     // It turns out that currently smart execution error has more sense to be displayed to user than the simple execution error,
     // so we're ignoring error from simple method, because it's usually misleading.
-    // The case when simple method error is more true than smart method error is very rare nowdays.
+    // The case when simple method error is more true than smart method error is very rare nowdays (but happens sometimes,
+    // therefore we need to check code from smart execution, before deciding which one to use).
     // Just rename attach names in the message.
-    QString msg = context->errorMessageFromSmartExecution;
+    bool useSmartError = context->errorCodeFromSmartExecution !=  0;
+    QString msg = useSmartError ? context->errorMessageFromSmartExecution : results->getErrorText();
+    int code = useSmartError ? context->errorCodeFromSmartExecution : results->getErrorCode();
     QString match;
     QString replaceName;
     Dialect dialect = db->getDialect();
-    for (const QString& attachName : context->dbNameToAttach.rightValues())
+    if (useSmartError)
     {
-        match = attachName + ".";
-        replaceName = wrapObjIfNeeded(context->dbNameToAttach.valueByRight(attachName), dialect) + ".";
-        while (msg.contains(match))
-            msg.replace(match, replaceName);
+        for (const QString& attachName : context->dbNameToAttach.rightValues())
+        {
+            match = attachName + ".";
+            replaceName = wrapObjIfNeeded(context->dbNameToAttach.valueByRight(attachName), dialect) + ".";
+            while (msg.contains(match))
+                msg.replace(match, replaceName);
+        }
     }
 
-    error(context->errorCodeFromSmartExecution, msg);
+    error(code, msg);
 }
 
 void QueryExecutor::releaseResultsAndCleanup()

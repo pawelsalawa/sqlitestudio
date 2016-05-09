@@ -1,12 +1,14 @@
 [3.0.8]
         * [ADDED]: Introduced "loadByDefault" property for plugin descriptor files.
         * [ADDED]: #3056 #3063 Implemented index column ordering in index dialog.
+        * [CHANGE]: DbAndroid plugin has now JAR file embedded and you can get it from Tools menu.
         * [BUGFIX]: Not loading Android plugin by default (needs manual load from configuration dialog), which stops the "ADB" error for people not using the plugin.
         * [BUGFIX]: Fixed importing from CSV with some of lines containing less fields than defined in header (or in first data row).
         * [BUGFIX]: #2989 Fixed multiline value handling in CSV import plugin.
         * [BUGFIX]: #2921 Fixed empty values as NULL handling in CSV import plugin.
         * [BUGFIX]: #3034 Fixed handling empty string as value for DEFAULT constraint.
         * [BUGFIX]: #3064 Fixed locking database executions when counting rows in huge tables.
+        * [BUGFIX]: DbAndroid plugin has fix for null pointer in the JAR when client has disconnected
 
 [3.0.7]
         * [ADDED]: #2951 Implemented dropdown value picking for foreign key columns in grid view.
