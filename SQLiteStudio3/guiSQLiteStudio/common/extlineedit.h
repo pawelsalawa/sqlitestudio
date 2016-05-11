@@ -37,6 +37,7 @@ class GUI_API_EXPORT ExtLineEdit : public QLineEdit
 
     private slots:
         void handleTextChanged();
+        void checkForValueErased();
 
     signals:
         void valueErased();

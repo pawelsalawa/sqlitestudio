@@ -55,10 +55,17 @@ void ExtLineEdit::setClearButtonEnabled(bool enable)
             qWarning() << "Could not find 'clear action' in QLineEdit, so 'valueErased()' signal won't be emitted from ExtLineEdit.";
             return;
         }
-        connect(clearAction, SIGNAL(triggered()), this, SIGNAL(valueErased()));
+        connect(clearAction, SIGNAL(triggered()), this, SLOT(checkForValueErased()));
     }
 }
 
+void ExtLineEdit::checkForValueErased()
+{
+    if (text().isEmpty())
+        return;
+
+    emit valueErased();
+}
 
 bool ExtLineEdit::getExpanding() const
 {
