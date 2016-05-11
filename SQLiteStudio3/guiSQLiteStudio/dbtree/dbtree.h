@@ -7,6 +7,7 @@
 #include "dbtree/dbtreeitem.h"
 #include "guiSQLiteStudio_global.h"
 #include <QDockWidget>
+#include <QSet>
 
 class WidgetCover;
 class QAction;
@@ -111,6 +112,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         QToolBar* getToolBar(int toolbar) const;
         Db* getSelectedDb();
         Db* getSelectedOpenDb();
+        QSet<Db*> getSelectedDatabases();
 
         static bool isItemDraggable(const DbTreeItem* item);
 
