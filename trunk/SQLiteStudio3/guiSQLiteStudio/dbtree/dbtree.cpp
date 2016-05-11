@@ -24,6 +24,8 @@
 #include "services/importmanager.h"
 #include "windows/editorwindow.h"
 #include "uiconfig.h"
+#include "themetuner.h"
+#include "dialogs/dbconverterdialog.h"
 #include <QApplication>
 #include <QClipboard>
 #include <QAction>
@@ -34,8 +36,6 @@
 #include <QDebug>
 #include <QKeyEvent>
 #include <QMimeData>
-#include <themetuner.h>
-#include <dialogs/dbconverterdialog.h>
 
 CFG_KEYS_DEFINE(DbTree)
 QHash<DbTreeItem::Type,QList<DbTreeItem::Type>> DbTree::allowedTypesInside;
@@ -706,6 +706,16 @@ Db* DbTree::getSelectedDb()
     return item->getDb();
 }
 
+QSet<Db*> DbTree::getSelectedDatabases()
+{
+    QList<DbTreeItem*> items = ui->treeView->selectionItems();
+    QSet<Db*> dbList;
+    for (DbTreeItem* item : items)
+        dbList << item->getDb();
+
+    return dbList;
+}
+
 Db* DbTree::getSelectedOpenDb()
 {
     Db* db = getSelectedDb();
@@ -1012,15 +1022,29 @@ void DbTree::editDb()
 
 void DbTree::removeDb()
 {
-    Db* db = getSelectedDb();
-    if (!db)
+    QList<Db*> dbList = getSelectedDatabases().toList();
+    if (dbList.isEmpty())
         return;
 
-    QMessageBox::StandardButton result = QMessageBox::question(this, tr("Delete database"), tr("Are you sure you want to delete database '%1'?").arg(db->getName().left(ITEM_TEXT_LIMIT)));
+    QString msg;
+    if (dbList.size() == 1)
+    {
+        msg = tr("Are you sure you want to remove database '%1' from the list?").arg(dbList.first()->getName().left(ITEM_TEXT_LIMIT));
+    }
+    else
+    {
+        QStringList dbNames;
+        for (Db* db : dbList)
+            dbNames << db->getName().left(ITEM_TEXT_LIMIT);
+
+        msg = tr("Are you sure you want to remove following databases from the list:\n%1").arg(dbNames.join(",\n"));
+    }
+    QMessageBox::StandardButton result = QMessageBox::question(this, tr("Remove database"), msg);
     if (result != QMessageBox::Yes)
         return;
 
-    DBLIST->removeDb(db);
+    for (Db* db : dbList)
+        DBLIST->removeDb(db);
 }
 
 void DbTree::connectToDb()
