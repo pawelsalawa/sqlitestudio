@@ -255,6 +255,7 @@ TokenList SqlEnterpriseFormatter::optimizeEndLineComments(const TokenList &input
 
 void SqlEnterpriseFormatter::indentMultiLineComments(const TokenList &inputTokens)
 {
+    UNUSED(inputTokens);
     // TODO
 }
 

@@ -1,4 +1,5 @@
 #include "cli_config.h"
+#include <QDataStream>
 
 CFG_DEFINE(Cli)
 

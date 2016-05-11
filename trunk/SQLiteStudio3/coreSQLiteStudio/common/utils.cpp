@@ -11,6 +11,8 @@
 #include <QDebug>
 #include <QRegularExpression>
 #include <QDir>
+#include <QByteArray>
+#include <QDataStream>
 
 #ifdef Q_OS_LINUX
 #include <sys/utsname.h>
