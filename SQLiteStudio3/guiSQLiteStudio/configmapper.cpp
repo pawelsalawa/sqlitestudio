@@ -639,6 +639,11 @@ void ConfigMapper::unbindFromConfig()
     realTimeUpdates = false;
 }
 
+void ConfigMapper::removeMainCfgEntry(CfgMain* cfgMain)
+{
+    cfgMainList.removeOne(cfgMain);
+}
+
 QWidget* ConfigMapper::getBindWidgetForConfig(CfgEntry* key) const
 {
     if (configEntryToWidgets.contains(key))
