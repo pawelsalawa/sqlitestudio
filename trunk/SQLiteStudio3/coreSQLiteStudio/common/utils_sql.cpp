@@ -583,6 +583,8 @@ QueryAccessMode getQueryAccessMode(const QString& query, Dialect dialect, bool* 
 
     TokenList tokens = Lexer::tokenize(query, dialect);
     int keywordIdx = tokens.indexOf(Token::KEYWORD);
+    if (keywordIdx < 0)
+        return QueryAccessMode::WRITE;
 
     int cmdIdx = readOnlyCommands.indexOf(tokens[keywordIdx]->value.toUpper());
     if (keywordIdx > -1 && cmdIdx > -1)
