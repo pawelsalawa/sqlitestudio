@@ -13,6 +13,8 @@
         * [BUGFIX]: #3026 #3027 #3043 Fixed RAISE() function formatting in enterprise formatter (used to produce invalid SQL).
         * [BUGFIX]: #3015 Fixed error with DEFAULT constraint containing datetime('now', 'localtime').
         * [BUGFIX]: #3000 Fixed compilation errors for Qt >= 5.5.
+        * [BUGFIX]: #2956 Fixed unexpected data refresh when clicking in the right side of value filter field in table window.
+        * [BUGFIX]: #2991 #2928 #2929 #2941 #2960 Fixed executing "garbage" query, causing application crash.
 
 [3.0.7]
         * [ADDED]: #2951 Implemented dropdown value picking for foreign key columns in grid view.
