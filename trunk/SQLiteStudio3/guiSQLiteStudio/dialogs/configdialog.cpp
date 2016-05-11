@@ -1326,6 +1326,9 @@ bool ConfigDialog::initPluginPage(Plugin* plugin, bool skipConfigLoading)
         pluginConfigMappers[cfgPlugin] = new ConfigMapper(mainConfig);
         pluginConfigMappers[cfgPlugin]->bindToConfig(widget);
         mainConfig->begin();
+
+        // Remove this config from global mapper (if present there), so it's handled per plugin mapper
+        configMapper->removeMainCfgEntry(mainConfig);
     }
     else if (!skipConfigLoading)
     {
@@ -1342,7 +1345,7 @@ void ConfigDialog::deinitPluginPage(Plugin* plugin)
     if (!nameToPage.contains(pluginName))
         return;
 
-    if (!dynamic_cast<UiConfiguredPlugin*>(plugin))
+    if (dynamic_cast<UiConfiguredPlugin*>(plugin))
     {
         UiConfiguredPlugin* cfgPlugin = dynamic_cast<UiConfiguredPlugin*>(plugin);
         CfgMain* mainCfg = cfgPlugin->getMainUiConfig();
@@ -1353,6 +1356,9 @@ void ConfigDialog::deinitPluginPage(Plugin* plugin)
 
         if (pluginConfigMappers.contains(cfgPlugin))
         {
+//            // Reset CfgEntry mappings, so they don't point to old addresses
+//            configMapper->resetCfgEntries();
+
             delete pluginConfigMappers[cfgPlugin];
             pluginConfigMappers.remove(cfgPlugin);
         }

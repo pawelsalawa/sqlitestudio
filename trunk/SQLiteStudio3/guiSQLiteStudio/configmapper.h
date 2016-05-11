@@ -22,6 +22,7 @@ class GUI_API_EXPORT ConfigMapper : public QObject
         void loadToWidget(CfgEntry* config, QWidget* widget);
         void saveFromWidget(QWidget* widget, bool noTransaction = false);
         void setInternalCustomConfigWidgets(const QList<CustomConfigWidgetPlugin*>& value);
+        bool isPersistant() const;
 
         /**
          * @brief Scans widget and binds widgets to proper config objects.
@@ -49,6 +50,7 @@ class GUI_API_EXPORT ConfigMapper : public QObject
          * This simply revokes what was done with bindToConfig().
          */
         void unbindFromConfig();
+        void removeMainCfgEntry(CfgMain* cfgMain);
 
         QWidget* getBindWidgetForConfig(CfgEntry* key) const;
         CfgEntry* getBindConfigForWidget(QWidget* widget) const;
@@ -90,7 +92,6 @@ class GUI_API_EXPORT ConfigMapper : public QObject
         CfgEntry* getEntryForProperty(QWidget* widget, const char* propertyName, const QHash<QString, CfgEntry*>& allConfigEntries);
         QHash<QString,CfgEntry*> getAllConfigEntries();
         QList<QWidget*> getAllConfigWidgets(QWidget* parent);
-        bool isPersistant() const;
 
         QList<CfgMain*> cfgMainList;
         QList<CustomConfigWidgetPlugin*> internalCustomConfigWidgets;
