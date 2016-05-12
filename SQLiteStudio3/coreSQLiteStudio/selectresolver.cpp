@@ -473,7 +473,7 @@ TokenList SelectResolver::getResColTokensWithoutAlias(SqliteSelect::Core::Result
             {
                 depth--;
             }
-            else if (token->type == Token::KEYWORD && token->value.compare("AS", Qt::CaseInsensitive) && depth <= 0)
+            else if (token->type == Token::KEYWORD && token->value.compare("AS", Qt::CaseInsensitive) == 0 && depth <= 0)
             {
                 idx = idxCandidate;
                 break;
@@ -534,6 +534,16 @@ QList<SelectResolver::Column> SelectResolver::resolveSingleSourceSubSelect(Sqlit
 {
     QList<Column> columnSources = resolveSubSelect(joinSrc->select);
     applySubSelectAlias(columnSources, joinSrc->alias);
+
+    QMutableListIterator<Column> it(columnSources);
+    while (it.hasNext())
+    {
+        if (it.next().alias.isEmpty())
+            continue;
+
+        it.value().aliasDefinedInSubQuery = true;
+    }
+
     return columnSources;
 }
 

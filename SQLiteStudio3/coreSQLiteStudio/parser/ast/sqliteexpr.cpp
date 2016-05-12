@@ -462,7 +462,11 @@ TokenList SqliteExpr::rebuildTokensFromContents()
             if (distinctKw)
                 builder.withKeyword("DISTINCT");
 
-            builder.withStatementList(exprList).withParRight();
+            if (star)
+                builder.withOperator("*").withParRight();
+            else
+                builder.withStatementList(exprList).withParRight();
+
             break;
         case SqliteExpr::Mode::SUB_EXPR:
             builder.withParLeft().withStatement(expr1).withParRight();
