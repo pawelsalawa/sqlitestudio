@@ -18,6 +18,7 @@
         * [BUGFIX]: #2920 Fixed removing several databases.
         * [BUGFIX]: #3068 #3066 Fixed database removal confirmation dialog so the message asks about removing it from the list, not deleting it.
         * [BUGFIX]: #3073 Fixed crash when unloading plugin with its own configuration subpage and saving config dialog.
+        * [BUGFIX]: #2931 Fixed incorrect results when executing 2-level queries with an expression and an alias combination as a result column definition.
 
 [3.0.7]
         * [ADDED]: #2951 Implemented dropdown value picking for foreign key columns in grid view.

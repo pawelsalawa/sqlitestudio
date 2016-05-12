@@ -71,12 +71,13 @@ bool QueryExecutorColumns::exec()
         i++;
     }
 
+    qDebug() << "before: " << context->processedQuery;
     // Update query
     select->rebuildTokens();
     wrapWithAliasedColumns(select.data());
     updateQueries();
 
-//    qDebug() << context->processedQuery;
+    qDebug() << "after:  " << context->processedQuery;
 
     return true;
 }
@@ -130,6 +131,9 @@ SqliteSelect::Core::ResultColumn* QueryExecutorColumns::getResultColumnForSelect
     SqliteSelect::Core::ResultColumn* selectResultColumn = new SqliteSelect::Core::ResultColumn();
 
     QString colString = resultColumn->column;
+    if (col.aliasDefinedInSubQuery) // #2931
+        colString = col.alias;
+
     if (!resultColumn->expression)
         colString = wrapObjIfNeeded(colString, dialect);
 
@@ -167,16 +171,11 @@ SqliteSelect::Core::ResultColumn* QueryExecutorColumns::getResultColumnForSelect
         }
     }
 
+    selectResultColumn->asKw = true;
     if (!col.alias.isNull())
-    {
-        selectResultColumn->asKw = true;
         selectResultColumn->alias = col.alias;
-    }
     else
-    {
-        selectResultColumn->asKw = true;
         selectResultColumn->alias = resultColumn->queryExecutorAlias;
-    }
 
     return selectResultColumn;
 }

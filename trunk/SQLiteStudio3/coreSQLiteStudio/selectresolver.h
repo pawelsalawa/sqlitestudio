@@ -109,6 +109,7 @@ class API_EXPORT SelectResolver
             QString alias;
             QString tableAlias;
             QString displayName;
+            bool aliasDefinedInSubQuery = false;
             int flags = 0;
             SqliteSelect::Core::ResultColumn* originalColumn = nullptr;
 

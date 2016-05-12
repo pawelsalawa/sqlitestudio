@@ -76,7 +76,11 @@ void FormatExpr::formatInternal()
             if (expr->distinctKw)
                 withKeyword("DISTINCT");
 
-            withStatementList(expr->exprList, "funcArgs", FormatStatement::ListSeparator::EXPR_COMMA).withParFuncRight();
+            if (expr->star)
+                withOperator("*").withParFuncRight();
+            else
+                withStatementList(expr->exprList, "funcArgs", FormatStatement::ListSeparator::EXPR_COMMA).withParFuncRight();
+
             break;
         }
         case SqliteExpr::Mode::SUB_EXPR:
