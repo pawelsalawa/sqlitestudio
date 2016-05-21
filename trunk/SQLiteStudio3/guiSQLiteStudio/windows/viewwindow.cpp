@@ -518,11 +518,17 @@ void ViewWindow::changesSuccessfullyCommited()
 
     //QString oldView = view; // uncomment when implementing notify manager call
     database = createView->database;
+    QString oldView = view;
     view = createView->view;
     existingView = true;
     initView();
     updateQueryToolbarStatus();
     updateWindowTitle();
+
+    if (oldView.compare(view, Qt::CaseInsensitive) == 0)
+        notifyInfo(tr("Commited changes for view '%1' successfly.").arg(view));
+    else
+        notifyInfo(tr("Commited changes for view '%1' (named before '%2') successfly.").arg(view, oldView));
 
     DBTREE->refreshSchema(db);
 }

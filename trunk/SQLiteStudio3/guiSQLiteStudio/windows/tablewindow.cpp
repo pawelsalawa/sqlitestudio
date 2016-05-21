@@ -804,6 +804,11 @@ void TableWindow::changesSuccessfullyCommited()
     updateNewTableState();
     updateWindowTitle();
 
+    if (oldTable.compare(table, Qt::CaseInsensitive) == 0)
+        notifyInfo(tr("Commited changes for table '%1' successfly.").arg(table));
+    else
+        notifyInfo(tr("Commited changes for table '%1' (named before '%2') successfly.").arg(table, oldTable));
+
     DBTREE->refreshSchema(db);
 
     if (tableModifier)
