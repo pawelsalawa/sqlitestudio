@@ -1,6 +1,4 @@
-2962
 2963 - update do nowego sqlite
-2975
 3055
 3047
 3046
