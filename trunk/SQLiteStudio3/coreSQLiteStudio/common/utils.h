@@ -103,6 +103,18 @@ bool contains(const QList<T>& list, std::function<bool(const T& value)> testFunc
     return false;
 }
 
+template <class T>
+QList<T> concat(const QList<QList<T>>& list)
+{
+    QList<T> result;
+    for (const QList<T>& item : list)
+        result.append(item);
+
+    return result;
+}
+
+API_EXPORT QStringList concat(const QList<QStringList>& list);
+
 /**
  * @brief Appends or prepends characters to the string to make it of specified length.
  * @param str Input string to work with.

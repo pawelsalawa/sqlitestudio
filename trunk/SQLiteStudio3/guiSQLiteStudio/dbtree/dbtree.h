@@ -122,6 +122,8 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void closeEvent(QCloseEvent* e);
 
     private:
+        typedef std::function<bool(DbTreeItem*)> ItemFilterFunc;
+
         void setActionEnabled(int action, bool enabled);
         TableWindow* openTable(DbTreeItem* item);
         TableWindow* openTable(Db* db, const QString& database, const QString& table);
@@ -135,6 +137,9 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void filterUndeletableItems(QList<DbTreeItem*>& items);
         void filterItemsWithParentInList(QList<DbTreeItem*>& items);
         void deleteItem(DbTreeItem* item);
+        void deleteSelected(DbTreeItem::Type itemType);
+        QHash<Db*, QList<DbTreeItem*>> groupByDb(const QList<DbTreeItem*> items);
+        QStringList itemsToNames(const QList<DbTreeItem*>& items);
         static bool areDbTreeItemsValidForItem(QList<DbTreeItem*> srcItems, const DbTreeItem* dstItem);
         static bool areUrlsValidForItem(const QList<QUrl>& srcUrls, const DbTreeItem* dstItem);
 
@@ -196,7 +201,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void editColumn(DbTreeItem* item);
         void delColumn(DbTreeItem* item);
         void currentChanged(const QModelIndex & current, const QModelIndex & previous);
-        void deleteSelected();
+        void deleteSelected(ItemFilterFunc filterFunc = nullptr);
         void deleteItems(const QList<DbTreeItem*>& itemsToDelete);
         void refreshSchema();
         void dbConnected(Db* db);

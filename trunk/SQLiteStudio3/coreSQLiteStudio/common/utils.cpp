@@ -889,3 +889,12 @@ QString decryptRsa(const QString& input, const QString& modulus, const QString& 
     std::string result = RSA::Decrypt(inputStdStr, key);
     return QString::fromStdString(result);
 }
+
+QStringList concat(const QList<QStringList>& list)
+{
+    QStringList result;
+    for (const QStringList& item : list)
+        result.append(item);
+
+    return result;
+}
