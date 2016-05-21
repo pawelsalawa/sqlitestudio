@@ -1040,7 +1040,10 @@ bool DbTreeModel::dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem*
                 return false;
 
             if (srcItem->getDb() == dstItem->getDb())
+            {
+                invokeStdDropAction = true;
                 return true;
+            }
 
             return dropDbObjectItem(srcItems, dstItem, defaultAction);
         }

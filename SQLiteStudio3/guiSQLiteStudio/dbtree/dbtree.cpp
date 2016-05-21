@@ -36,6 +36,7 @@
 #include <QDebug>
 #include <QKeyEvent>
 #include <QMimeData>
+#include <QDebug>
 
 CFG_KEYS_DEFINE(DbTree)
 QHash<DbTreeItem::Type,QList<DbTreeItem::Type>> DbTree::allowedTypesInside;
@@ -635,11 +636,13 @@ bool DbTree::areDbTreeItemsValidForItem(QList<DbTreeItem*> srcItems, const DbTre
 
     for (DbTreeItem* srcItem : srcItems)
     {
-        if (srcItem)
-            srcTypes << srcItem->getType();
-        else
+        if (!srcItem)
+        {
             srcTypes << DbTreeItem::Type::ITEM_PROTOTYPE;
+            continue;
+        }
 
+        srcTypes << srcItem->getType();
         if (srcItem->getDb())
             srcDbs << srcItem->getDb();
     }
@@ -653,6 +656,18 @@ bool DbTree::areDbTreeItemsValidForItem(QList<DbTreeItem*> srcItems, const DbTre
             return false;
     }
 
+    // Support for d&d reordering of db objects
+    static const QHash<DbTreeItem::Type, DbTreeItem::Type> reorderingTypeToParent = {
+        {DbTreeItem::Type::TABLE, DbTreeItem::Type::TABLES},
+        {DbTreeItem::Type::TRIGGER, DbTreeItem::Type::TRIGGERS},
+        {DbTreeItem::Type::VIEW, DbTreeItem::Type::VIEWS},
+        {DbTreeItem::Type::INDEX, DbTreeItem::Type::INDEXES}
+    };
+
+    if (srcTypes.toSet().size() == 1 && srcDbs.size() == 1 && *(srcDbs.begin()) == dstItem->getDb() && reorderingTypeToParent[srcTypes.first()] == dstType)
+        return true;
+
+    // No other d&d within same db
     if (dstItem && dstItem->getDb() && srcDbs.contains(dstItem->getDb()))
         return false;
 
