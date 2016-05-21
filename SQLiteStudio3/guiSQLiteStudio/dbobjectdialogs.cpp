@@ -227,6 +227,113 @@ bool DbObjectDialogs::dropObject(const QString& database, const QString& name)
     return true;
 }
 
+bool DbObjectDialogs::dropObjects(const QStringList& names)
+{
+    QHash<QString, QStringList> objects;
+    objects["main"] = names;
+    return dropObjects(objects);
+}
+
+QHash<QString, QHash<QString, QStringList>> DbObjectDialogs::groupObjects(const QHash<QString, QStringList>& objects)
+{
+    QHash<QString, QHash<QString, QStringList>> groupedObjects;
+    for (QHash<QString, QStringList>::const_iterator it = objects.begin(); it != objects.end(); ++it)
+    {
+        for (const QString& name : it.value())
+        {
+            QString typeForSql;
+            switch (getObjectType(it.key(), name))
+            {
+                case Type::TABLE:
+                    typeForSql = "TABLE";
+                    break;
+                case Type::INDEX:
+                    typeForSql = "INDEX";
+                    break;
+                case Type::TRIGGER:
+                    typeForSql = "TRIGGER";
+                    break;
+                case Type::VIEW:
+                    typeForSql = "VIEW";
+                    break;
+                default:
+                {
+                    qCritical() << "Unknown object type while trying to drop object. Object name:" << it.key() << "." << name;
+                    return QHash<QString, QHash<QString, QStringList>>();
+                }
+            }
+            groupedObjects[it.key()][typeForSql] << name;
+        }
+    }
+    return groupedObjects;
+}
+
+bool DbObjectDialogs::dropObjects(const QHash<QString, QStringList>& objects)
+{
+    static const QString dropSql2 = "DROP %1 IF EXISTS %2;";
+    static const QString dropSql3 = "DROP %1 IF EXISTS %2.%3;";
+
+    Dialect dialect = db->getDialect();
+    QStringList names = concat(objects.values());
+    QHash<QString, QHash<QString, QStringList>> groupedObjects = groupObjects(objects);
+
+    if (!noConfirmation)
+    {
+        QMessageBox::StandardButton resp = QMessageBox::question(parentWidget, tr("Delete objects"),
+                                                                 tr("Are you sure you want to delete following objects:\n%1").arg(names.join(", ")));
+        if (resp != QMessageBox::Yes)
+            return false;
+    }
+
+    if (!db->begin())
+    {
+        notifyError(tr("Cannot start transaction. Details: %1").arg(db->getErrorText()));
+        return false;
+    }
+
+    // Iterate through dbNames, then through db object types and finally through object names. Drop them.
+    SqlQueryPtr results;
+    QString finalSql;
+    QString dbName;
+    QHash<QString, QStringList> typeToNames;
+    for (QHash<QString, QHash<QString, QStringList>>::const_iterator dbIt = groupedObjects.begin(); dbIt != groupedObjects.end(); ++dbIt)
+    {
+        dbName = wrapObjIfNeeded(dbIt.key(), dialect);
+        typeToNames = dbIt.value();
+        for (QHash<QString, QStringList>::const_iterator typeIt = typeToNames.begin(); typeIt != typeToNames.end(); ++typeIt)
+        {
+            for (const QString& name : typeIt.value())
+            {
+                if (dialect == Dialect::Sqlite3)
+                    finalSql = dropSql3.arg(typeIt.key(), dbName, wrapObjIfNeeded(name, dialect));
+                else
+                    finalSql = dropSql2.arg(typeIt.key(), wrapObjIfNeeded(name, dialect));
+
+                results = db->exec(finalSql);
+                if (results->isError())
+                {
+                    notifyError(tr("Error while dropping %1: %2").arg(name).arg(results->getErrorText()));
+                    qCritical() << "Error while dropping object " << dbIt.key() << "." << name << ":" << results->getErrorText();
+                    return false;
+                }
+
+                CFG->addDdlHistory(finalSql, db->getName(), db->getPath());
+            }
+        }
+    }
+
+    if (!db->commit())
+    {
+        notifyError(tr("Cannot commit transaction. Details: %1").arg(db->getErrorText()));
+        return false;
+    }
+
+    if (!noSchemaRefreshing)
+        DBTREE->refreshSchema(db);
+
+    return true;
+}
+
 DbObjectDialogs::Type DbObjectDialogs::getObjectType(const QString& database, const QString& name)
 {
     static const QString typeSql = "SELECT type FROM %1.sqlite_master WHERE name = ?;";

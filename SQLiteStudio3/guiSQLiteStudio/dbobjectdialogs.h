@@ -39,6 +39,8 @@ class GUI_API_EXPORT DbObjectDialogs : public QObject
         void editObject(const QString& database, const QString& name);
         bool dropObject(const QString& name);
         bool dropObject(const QString& database, const QString& name);
+        bool dropObjects(const QStringList& names);
+        bool dropObjects(const QHash<QString, QStringList>& objects);
 
         bool getNoConfirmation() const;
         void setNoConfirmation(bool value);
@@ -57,6 +59,7 @@ class GUI_API_EXPORT DbObjectDialogs : public QObject
         };
 
         Type getObjectType(const QString& database, const QString& name);
+        QHash<QString, QHash<QString, QStringList> > groupObjects(const QHash<QString, QStringList>& objects);
 
         Db* db = nullptr;
         QWidget* parentWidget = nullptr;

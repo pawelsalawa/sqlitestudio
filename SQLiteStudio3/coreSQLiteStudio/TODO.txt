@@ -1,6 +1,3 @@
-2937 / 2803
-2940
-2942
 2944 - chyba poprawione
 2945
 2954
@@ -11,11 +8,13 @@
 3047
 3046
 3009 - db w emailu od goretux@gmail.com
+2927 - db w emailu
 3022 - opcjonalnie
 3012 - nadal sie czasem wybiera domyslnie simple formatter - dlaczego?
 2998
 2999
 3008
+http://forum.sqlitestudio.pl/viewtopic.php?f=11&t=1051
 
 
 - usprawnic widok FK w comboboxie zeby nie bylo 3 kolumn z tym samym id
@@ -24,7 +23,8 @@
 
 cannot reproduce:
 2922 / 2926 / 2925
-2927
+2937 / 2803
+2940
 
 feature requests:
 3070
@@ -32,6 +32,8 @@ feature requests:
 3062
 3040
 3013
+shortcut - toggle comment
+2 options to disable big tooltips and all tooltips
 
 Thread 5 Crashed:: Thread (pooled)
 0   libcoreSQLiteStudio.1.0.0.dylib	0x0000000101f24ba7 QHash<QString, QVariant>::value(QString const&) const + 23

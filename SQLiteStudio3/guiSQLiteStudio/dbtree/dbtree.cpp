@@ -882,6 +882,32 @@ void DbTree::deleteItem(DbTreeItem* item)
     }
 }
 
+void DbTree::deleteSelected(DbTreeItem::Type itemType)
+{
+    deleteSelected([itemType](DbTreeItem* item)
+    {
+        return item->getType() == itemType;
+    });
+}
+
+QHash<Db*, QList<DbTreeItem*>> DbTree::groupByDb(const QList<DbTreeItem*> items)
+{
+    QHash<Db*, QList<DbTreeItem*>> grouped;
+    for (DbTreeItem* item : items)
+        grouped[item->getDb()] << item;
+
+    return grouped;
+}
+
+QStringList DbTree::itemsToNames(const QList<DbTreeItem*>& items)
+{
+    QStringList names;
+    for (DbTreeItem* item : items)
+        names << item->text();
+
+    return names;
+}
+
 
 void DbTree::refreshSchema(Db* db)
 {
@@ -1134,20 +1160,7 @@ void DbTree::editTable()
 
 void DbTree::delTable()
 {
-    Db* db = getSelectedOpenDb();
-    if (!db || !db->isValid())
-        return;
-
-    DbTreeItem* item = ui->treeView->currentItem();
-    QString table = item->getTable();
-    if (table.isNull())
-    {
-        qWarning() << "Tried to drop table, while table wasn't selected in DbTree.";
-        return;
-    }
-
-    DbObjectDialogs dialogs(db);
-    dialogs.dropObject(table); // TODO add database prefix when supported
+    deleteSelected(DbTreeItem::Type::TABLE);
 }
 
 void DbTree::addIndex()
@@ -1178,7 +1191,7 @@ void DbTree::editIndex()
 
 void DbTree::delIndex()
 {
-    delSelectedObject();
+    deleteSelected(DbTreeItem::Type::INDEX);
 }
 
 void DbTree::addTrigger()
@@ -1210,7 +1223,7 @@ void DbTree::editTrigger()
 
 void DbTree::delTrigger()
 {
-    delSelectedObject();
+    deleteSelected(DbTreeItem::Type::TRIGGER);
 }
 
 void DbTree::addView()
@@ -1242,7 +1255,7 @@ void DbTree::editView()
 
 void DbTree::delView()
 {
-    delSelectedObject();
+    deleteSelected(DbTreeItem::Type::VIEW);
 }
 
 void DbTree::exportTable()
@@ -1517,12 +1530,19 @@ void DbTree::currentChanged(const QModelIndex &current, const QModelIndex &previ
     updateActionStates(treeModel->itemFromIndex(current));
 }
 
-void DbTree::deleteSelected()
+void DbTree::deleteSelected(ItemFilterFunc filterFunc)
 {
     QModelIndexList idxList = ui->treeView->getSelectedIndexes();
     QList<DbTreeItem*> items;
-    foreach (const QModelIndex& idx, idxList)
-        items << dynamic_cast<DbTreeItem*>(treeModel->itemFromIndex(idx));
+    DbTreeItem* item;
+    for (const QModelIndex& idx : idxList)
+    {
+        item = dynamic_cast<DbTreeItem*>(treeModel->itemFromIndex(idx));
+        if (filterFunc && !filterFunc(item))
+            continue;
+
+        items << item;
+    }
 
     deleteItems(items);
 }
