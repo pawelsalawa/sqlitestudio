@@ -71,13 +71,13 @@ bool QueryExecutorColumns::exec()
         i++;
     }
 
-    qDebug() << "before: " << context->processedQuery;
+//    qDebug() << "before: " << context->processedQuery;
     // Update query
     select->rebuildTokens();
     wrapWithAliasedColumns(select.data());
     updateQueries();
 
-    qDebug() << "after:  " << context->processedQuery;
+//    qDebug() << "after:  " << context->processedQuery;
 
     return true;
 }

@@ -41,11 +41,13 @@ bool QueryExecutorExecute::executeQueries()
     if (context->preloadResults)
         flags |= Db::Flag::PRELOAD;
 
+    QString queryStr;
     int queryCount = context->parsedQueries.size();
     for (const SqliteQueryPtr& query : context->parsedQueries)
     {
+        queryStr = query->detokenize();
         bindParamsForQuery = getBindParamsForQuery(query);
-        results = db->prepare(query->detokenize());
+        results = db->prepare(queryStr);
         results->setArgs(bindParamsForQuery);
         results->setFlags(flags);
 
@@ -56,6 +58,7 @@ bool QueryExecutorExecute::executeQueries()
         if (isBeginTransaction(query->queryType))
             rowsAffectedBeforeTransaction.push(context->rowsAffected);
 
+//        qDebug() << "Executing query:" << queryStr;
         results->execute();
 
         if (results->isError())
