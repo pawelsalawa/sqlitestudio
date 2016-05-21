@@ -250,8 +250,10 @@ SqliteCreateTablePtr SchemaResolver::virtualTableAsRegularTable(const QString &d
 
     // Create temp table to see columns.
     QString newTable = db->getUniqueNewObjectName(strippedName);
-    QString origTable = wrapObjName(strippedName, dialect);
-    db->exec(QString("CREATE TEMP TABLE %1 AS SELECT * FROM %2.%3 LIMIT 0;").arg(newTable, dbName, origTable), dbFlags);
+    QString origTable = wrapObjIfNeeded(strippedName, dialect);
+    SqlQueryPtr tempTableRes = db->exec(QString("CREATE TEMP TABLE %1 AS SELECT * FROM %2.%3 LIMIT 0;").arg(newTable, dbName, origTable), dbFlags);
+    if (tempTableRes->isError())
+        qWarning() << "Could not create temp table to identify virtual table columns of virtual table " << origTable << ". Error details:" << tempTableRes->getErrorText();
 
     // Get parsed DDL of the temp table.
     SqliteQueryPtr query = getParsedObject("temp", newTable, TABLE);
@@ -288,6 +290,11 @@ QString SchemaResolver::getObjectDdl(const QString &database, const QString &nam
     // Prepare db prefix.
     QString dbName = getPrefixDb(database, dialect);
 
+    // Standalone or temp table?
+    QString targetTable = "sqlite_master";
+    if (database.toLower() == "temp")
+        targetTable = "sqlite_temp_master";
+
     // Cache
     QString typeStr = objectTypeToString(type);
     bool useCache = usesCache();
@@ -297,29 +304,32 @@ QString SchemaResolver::getObjectDdl(const QString &database, const QString &nam
 
     // Get the DDL
     QVariant results;
+    SqlQueryPtr queryResults;
     if (type != ANY)
     {
-        results = db->exec(QString(
-                    "SELECT sql FROM %1.sqlite_master WHERE lower(name) = '%2' AND type = '%3';").arg(dbName, escapeString(lowerName), typeStr),
+        queryResults = db->exec(QString(
+                    "SELECT sql FROM %1.%4 WHERE lower(name) = '%2' AND type = '%3';").arg(dbName, escapeString(lowerName), typeStr, targetTable),
                     dbFlags
-                )->getSingleCell();
+                );
+
     }
     else
     {
-        results = db->exec(QString(
-                    "SELECT sql FROM %1.sqlite_master WHERE lower(name) = '%2';").arg(dbName, escapeString(lowerName)),
+        queryResults = db->exec(QString(
+                    "SELECT sql FROM %1.%3 WHERE lower(name) = '%2';").arg(dbName, escapeString(lowerName), targetTable),
                     dbFlags
-                )->getSingleCell();
+                );
     }
 
     // Validate query results
-    if (!results.isValid() || results.isNull())
+    if (queryResults->isError())
     {
-        qDebug() << "Could not get object's DDL:" << dbName << "." << name;
+        qDebug() << "Could not get object's DDL:" << dbName << "." << name << ", details:" << queryResults->getErrorText();
         return QString::null;
     }
 
     // The DDL string
+    results = queryResults->getSingleCell();
     QString resStr = results.toString();
 
     // If the DDL doesn't have semicolon at the end (usually the case), add it.

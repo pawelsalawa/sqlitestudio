@@ -1,5 +1,3 @@
-2944 - chyba poprawione
-2945
 2954
 2962
 2963 - update do nowego sqlite
