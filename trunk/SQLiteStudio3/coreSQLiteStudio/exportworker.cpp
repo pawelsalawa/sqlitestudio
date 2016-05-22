@@ -4,6 +4,7 @@
 #include "services/notifymanager.h"
 #include "common/utils_sql.h"
 #include "common/utils.h"
+#include "db/sqlresultsrow.h"
 #include <QMutexLocker>
 #include <QDebug>
 
@@ -638,7 +639,8 @@ void ExportWorker::queryTableDataToExport(Db* db, const QString& table, SqlQuery
             else
             {
                 QList<int> colWidths;
-                for (const QVariant& value : colLengthQuery->next()->valueList())
+                SqlResultsRowPtr row = colLengthQuery->next();
+                for (const QVariant& value : row->valueList())
                     colWidths << value.toInt();
 
                 providerData[ExportManager::DATA_LENGTHS] = QVariant::fromValue(colWidths);

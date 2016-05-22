@@ -23,6 +23,7 @@
         * [BUGFIX]: #2942 Fixed deleting multiple tables/indexes/... when selected them and picked "Delete table/index/..." from context menu.
         * [BUGFIX]: #2945 Fixed manual reordering of database objects with Drag&Drop.
         * [BUGFIX]: #2954 #2803 #2937 Fixed incorrect recreation of foreign keys chain.
+        * [BUGFIX]: #3055 Fixed crash when exporting on MacOS using plugin that requires column value length information (such as PDF export plugin).
 
 [3.0.7]
         * [ADDED]: #2951 Implemented dropdown value picking for foreign key columns in grid view.
