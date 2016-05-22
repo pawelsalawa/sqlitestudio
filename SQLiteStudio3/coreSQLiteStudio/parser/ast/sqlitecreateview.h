@@ -1,12 +1,13 @@
 #ifndef SQLITECREATEVIEW_H
 #define SQLITECREATEVIEW_H
 
+#include "sqliteddlwithdbcontext.h"
 #include "sqlitequery.h"
 #include <QString>
 
 class SqliteSelect;
 
-class API_EXPORT SqliteCreateView : public SqliteQuery
+class API_EXPORT SqliteCreateView : public SqliteQuery, public SqliteDdlWithDbContext
 {
     public:
         SqliteCreateView();
@@ -15,6 +16,8 @@ class API_EXPORT SqliteCreateView : public SqliteQuery
         ~SqliteCreateView();
 
         SqliteStatement* clone();
+        QString getTargetDatabase() const;
+        void setTargetDatabase(const QString& database);
 
         bool tempKw = false;
         bool temporaryKw = false;

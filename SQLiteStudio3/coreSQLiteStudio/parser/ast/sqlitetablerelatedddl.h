@@ -2,6 +2,7 @@
 #define SQLITETABLERELATEDDDL_H
 
 #include "coreSQLiteStudio_global.h"
+#include <QSharedPointer>
 
 class API_EXPORT SqliteTableRelatedDdl
 {

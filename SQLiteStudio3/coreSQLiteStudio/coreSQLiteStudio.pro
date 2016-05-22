@@ -413,7 +413,8 @@ HEADERS += sqlitestudio.h\
     common/blockingsocket.h \
     common/threadwitheventloop.h \
     common/private/blockingsocketprivate.h \
-    common/expiringcache.h
+    common/expiringcache.h \
+    parser/ast/sqliteddlwithdbcontext.h
 
 unix: {
     target.path = $$LIBDIR

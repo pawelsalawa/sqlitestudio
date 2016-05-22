@@ -118,3 +118,13 @@ TokenList SqliteCreateView::rebuildTokensFromContents()
 
     return builder.build();
 }
+
+QString SqliteCreateView::getTargetDatabase() const
+{
+    return database;
+}
+
+void SqliteCreateView::setTargetDatabase(const QString& database)
+{
+    this->database = database;
+}

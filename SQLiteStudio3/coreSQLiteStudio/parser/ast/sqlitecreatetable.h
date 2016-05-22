@@ -10,10 +10,11 @@
 #include "sqlitecolumntype.h"
 #include "sqlitesortorder.h"
 #include "sqlitedeferrable.h"
+#include "sqliteddlwithdbcontext.h"
 #include <QVariant>
 #include <QList>
 
-class API_EXPORT SqliteCreateTable : public SqliteQuery
+class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbContext
 {
     public:
         class API_EXPORT Column : public SqliteStatement
@@ -181,6 +182,8 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery
         QList<Column::Constraint*> getColumnForeignKeysByTable(const QString& foreignTable) const;
         QStringList getColumnNames() const;
         QHash<QString,QString> getModifiedColumnsMap(bool lowercaseKeys = false, Qt::CaseSensitivity cs = Qt::CaseInsensitive) const;
+        QString getTargetDatabase() const;
+        void setTargetDatabase(const QString& database);
 
         bool ifNotExistsKw = false;
         bool tempKw = false;
@@ -202,7 +205,6 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery
 
     private:
         void init(bool ifNotExistsKw, int temp, const QString& name1, const QString& name2);
-
 };
 
 typedef QSharedPointer<SqliteCreateTable> SqliteCreateTablePtr;

@@ -379,3 +379,13 @@ TokenList SqliteCreateTrigger::rebuildTokensFromContents()
 
     return builder.build();
 }
+
+QString SqliteCreateTrigger::getTargetDatabase() const
+{
+    return database;
+}
+
+void SqliteCreateTrigger::setTargetDatabase(const QString& database)
+{
+    this->database = database;
+}

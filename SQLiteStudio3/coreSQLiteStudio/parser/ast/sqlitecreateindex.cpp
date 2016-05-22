@@ -189,3 +189,13 @@ TokenList SqliteCreateIndex::rebuildTokensFromContents()
 
     return builder.build();
 }
+
+QString SqliteCreateIndex::getTargetDatabase() const
+{
+    return database;
+}
+
+void SqliteCreateIndex::setTargetDatabase(const QString& database)
+{
+    this->database = database;
+}

@@ -768,3 +768,13 @@ TokenList SqliteCreateTable::Column::Constraint::rebuildTokensFromContents()
 
     return builder.build();
 }
+
+QString SqliteCreateTable::getTargetDatabase() const
+{
+    return database;
+}
+
+void SqliteCreateTable::setTargetDatabase(const QString& database)
+{
+    this->database = database;
+}

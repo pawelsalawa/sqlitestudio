@@ -1,6 +1,4 @@
 2963 - update do nowego sqlite
-3055
-3047
 3046
 3009 - db w emailu od goretux@gmail.com
 2927 - db w emailu

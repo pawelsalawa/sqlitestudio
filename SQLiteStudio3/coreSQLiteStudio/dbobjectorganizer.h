@@ -109,6 +109,7 @@ class API_EXPORT DbObjectOrganizer : public QObject, public QRunnable, public In
         bool rollback();
         void emitFinished(bool success);
         bool execConfirmFunctionInMainThread(const QStringList& tables);
+        QString prefixSimpleObjectWithAttachName(const QString& objName, const QString& ddl);
 
         ReferencedTablesConfimFunction confirmFunction;
         NameConflictResolveFunction nameConflictResolveFunction;
