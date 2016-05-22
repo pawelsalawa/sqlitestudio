@@ -7,7 +7,7 @@
         <location filename="../db/abstractdb.cpp" line="306"/>
         <location filename="../db/abstractdb.cpp" line="323"/>
         <source>Cannot execute query on closed database.</source>
-        <translation>Impossible d&apos;exécuter la requête sur une base de données fermée.</translation>
+        <translation>Impossible d&rsquo;exécuter la requête sur une base de données fermée.</translation>
     </message>
     <message>
         <location filename="../db/abstractdb.cpp" line="603"/>
@@ -29,19 +29,19 @@
         <location filename="../db/chainexecutor.cpp" line="35"/>
         <source>The database for executing queries was not defined.</source>
         <comment>chain executor</comment>
-        <translation>La base de données pour exécuter des requêtes n&apos;était pas définie.</translation>
+        <translation>La base de données pour exécuter des requêtes n&rsquo;était pas définie.</translation>
     </message>
     <message>
         <location filename="../db/chainexecutor.cpp" line="41"/>
         <source>The database for executing queries was not open.</source>
         <comment>chain executor</comment>
-        <translation>La base de données pour exécuter des requêtes n&apos;est pas ouverte.</translation>
+        <translation>La base de données pour exécuter des requêtes n&rsquo;est pas ouverte.</translation>
     </message>
     <message>
         <location filename="../db/chainexecutor.cpp" line="47"/>
         <source>Could not start a database transaction. Details: %1</source>
         <comment>chain executor</comment>
-        <translation>Impossible d&apos;initialiser une transaction de la base de données:%1</translation>
+        <translation>Impossible d&rsquo;initialiser une transaction de la base de données:%1</translation>
     </message>
     <message>
         <location filename="../db/chainexecutor.cpp" line="74"/>
@@ -53,7 +53,7 @@
         <location filename="../db/chainexecutor.cpp" line="134"/>
         <source>Could not commit a database transaction. Details: %1</source>
         <comment>chain executor</comment>
-        <translation>Impossible d&apos;enregistrer la transaction de la base de données:%1</translation>
+        <translation>Impossible d&rsquo;enregistrer la transaction de la base de données:%1</translation>
     </message>
 </context>
 <context>
@@ -76,7 +76,7 @@
     <message>
         <location filename="../completionhelper.cpp" line="211"/>
         <source>New index name</source>
-        <translation>Nouveau nom d&apos;index</translation>
+        <translation>Nouveau nom d&rsquo;index</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="214"/>
@@ -116,7 +116,7 @@
     <message>
         <location filename="../completionhelper.cpp" line="245"/>
         <source>Error message</source>
-        <translation>Message d&apos;erreur</translation>
+        <translation>Message d&rsquo;erreur</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="289"/>
@@ -126,7 +126,7 @@
     <message>
         <location filename="../completionhelper.cpp" line="304"/>
         <source>Any word</source>
-        <translation>N&apos;importe quel mot</translation>
+        <translation>N&rsquo;importe quel mot</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="485"/>
@@ -144,18 +144,18 @@
     <message>
         <location filename="../services/impl/dbmanagerimpl.cpp" line="63"/>
         <source>Could not add database %1: %2</source>
-        <translation>Impossible d&apos;ajouter une base de données %1: %2</translation>
+        <translation>Impossible d&rsquo;ajouter une base de données %1: %2</translation>
     </message>
     <message>
         <location filename="../services/impl/dbmanagerimpl.cpp" line="138"/>
         <source>Database %1 could not be updated, because of an error: %2</source>
-        <translation>La base de données %1 ne peut ëtre mise à jour à cause de l&apos;erreur: %2</translation>
+        <translation>La base de données %1 ne peut ëtre mise à jour à cause de l&rsquo;erreur: %2</translation>
     </message>
     <message>
         <location filename="../services/impl/dbmanagerimpl.cpp" line="312"/>
         <location filename="../services/impl/dbmanagerimpl.cpp" line="341"/>
         <source>Database file doesn&apos;t exist.</source>
-        <translation>Le fichier de la base de données n&apos;existe pas.</translation>
+        <translation>Le fichier de la base de données n&rsquo;existe pas.</translation>
     </message>
     <message>
         <location filename="../services/impl/dbmanagerimpl.cpp" line="314"/>
@@ -186,7 +186,7 @@
     <message>
         <location filename="../dbobjectorganizer.cpp" line="380"/>
         <source>Could not parse table.</source>
-        <translation>Impossible d&apos;analyser la table.</translation>
+        <translation>Impossible d&rsquo;analyser la table.</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="426"/>
@@ -220,7 +220,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
         <location filename="../dbobjectorganizer.cpp" line="547"/>
         <source>Error while creating index in target database: %1</source>
-        <translation>Erreur lors de la création de l&apos;index de la base de données:%1</translation>
+        <translation>Erreur lors de la création de l&rsquo;index de la base de données:%1</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="552"/>
@@ -264,7 +264,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
         <location filename="../ddlhistorymodel.cpp" line="69"/>
         <source>Date of execution</source>
         <comment>ddl history header</comment>
-        <translation>Date d&apos;exécution</translation>
+        <translation>Date d&rsquo;exécution</translation>
     </message>
     <message>
         <location filename="../ddlhistorymodel.cpp" line="71"/>
@@ -278,22 +278,22 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
         <location filename="../services/exportmanager.cpp" line="72"/>
         <source>Export plugin %1 doesn&apos;t support exporing query results.</source>
-        <translation>Plugin d&apos;export %1 ne supporte pas l&apos;exportation de la requête.</translation>
+        <translation>Plugin d&rsquo;export %1 ne supporte pas l&rsquo;exportation de la requête.</translation>
     </message>
     <message>
         <location filename="../services/exportmanager.cpp" line="98"/>
         <source>Export plugin %1 doesn&apos;t support exporing tables.</source>
-        <translation>Plugin d&apos;export %1 ne supporte pas l&apos;exportation de la table.</translation>
+        <translation>Plugin d&rsquo;export %1 ne supporte pas l&rsquo;exportation de la table.</translation>
     </message>
     <message>
         <location filename="../services/exportmanager.cpp" line="122"/>
         <source>Export plugin %1 doesn&apos;t support exporing databases.</source>
-        <translation>Plugin d&apos;export %1 ne supporte pas l&apos;exportation de la base de données.</translation>
+        <translation>Plugin d&rsquo;export %1 ne supporte pas l&rsquo;exportation de la base de données.</translation>
     </message>
     <message>
         <location filename="../services/exportmanager.cpp" line="155"/>
         <source>Export format &apos;%1&apos; is not supported. Supported formats are: %2.</source>
-        <translation>Format d&apos;export %1 n&apos;est pas supporté. Les formats supportés sont: %2.</translation>
+        <translation>Format d&rsquo;export «&nbsp;%1&nbsp;» n&rsquo;est pas supporté. Les formats supportés sont: %2.</translation>
     </message>
     <message>
         <location filename="../services/exportmanager.cpp" line="218"/>
@@ -303,7 +303,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
         <location filename="../services/exportmanager.cpp" line="222"/>
         <source>Export to the file &apos;%1&apos; was successful.</source>
-        <translation>Export vers le fichier &apos;%1&apos; avec succès.</translation>
+        <translation>Export vers le fichier &rsquo;%1&rsquo; avec succès.</translation>
     </message>
     <message>
         <location filename="../services/exportmanager.cpp" line="224"/>
@@ -313,7 +313,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
         <location filename="../services/exportmanager.cpp" line="266"/>
         <source>Could not export to file %1. File cannot be open for writting.</source>
-        <translation>Impossible d&apos;exporter vers le fichier &apos;%1&apos;. Le fichier ne peut être ouvert en écriture.</translation>
+        <translation>Impossible d&rsquo;exporter vers le fichier %1. Le fichier ne peut être ouvert en écriture.</translation>
     </message>
 </context>
 <context>
@@ -321,7 +321,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
         <location filename="../exportworker.cpp" line="121"/>
         <source>Error while exporting query results: %1</source>
-        <translation>Erreur lors de l&apos;exportation des résultats de la requête:%1</translation>
+        <translation>Erreur lors de l&rsquo;exportation des résultats de la requête:%1</translation>
     </message>
     <message>
         <location filename="../exportworker.cpp" line="201"/>
@@ -332,7 +332,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
         <location filename="../exportworker.cpp" line="353"/>
         <location filename="../exportworker.cpp" line="411"/>
         <source>Could not parse %1 in order to export it. It will be excluded from the export output.</source>
-        <translation>Impossible d&apos;analyser %1 afin de l&apos;exporter. Celle-ci sera excluse de l&apos;exportation.</translation>
+        <translation>Impossible d&rsquo;analyser %1 afin de l&rsquo;exporter. Celle-ci sera excluse de l&rsquo;exportation.</translation>
     </message>
     <message>
         <location filename="../exportworker.cpp" line="612"/>
@@ -355,7 +355,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
         <location filename="../services/impl/functionmanagerimpl.cpp" line="232"/>
         <source>Invalid number of arguments to function &apos;%1&apos;. Expected %2, but got %3.</source>
-        <translation>Nombre de paramètres invalide de la fonction%1. Attendu %2, obtenu %3.</translation>
+        <translation>Nombre de paramètres invalide de la fonction %1. Attendu %2, obtenu %3.</translation>
     </message>
     <message>
         <location filename="../services/impl/functionmanagerimpl.cpp" line="341"/>
@@ -365,7 +365,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
         <location filename="../services/impl/functionmanagerimpl.cpp" line="347"/>
         <source>Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</source>
-        <translation>La fonction %1(%2) est référencée avec le langage %3, mais le plugin supportant ce langage n&apos;est actuellement pas chargé.</translation>
+        <translation>La fonction %1(%2) est référencée avec le langage %3, mais le plugin supportant ce langage n&rsquo;est actuellement pas chargé.</translation>
     </message>
     <message>
         <location filename="../services/impl/functionmanagerimpl.cpp" line="365"/>
@@ -376,17 +376,17 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
         <location filename="../services/impl/functionmanagerimpl.cpp" line="384"/>
         <location filename="../services/impl/functionmanagerimpl.cpp" line="417"/>
         <source>Could not open file %1 for reading: %2</source>
-        <translation>Impossible d&apos;ouvrir en lecture le ficher %1:%2</translation>
+        <translation>Impossible d&rsquo;ouvrir en lecture le ficher %1:%2</translation>
     </message>
     <message>
         <location filename="../services/impl/functionmanagerimpl.cpp" line="439"/>
         <source>Could not open file %1 for writting: %2</source>
-        <translation>Impossible d&apos;ouvrir en écriture le ficher %1:%2</translation>
+        <translation>Impossible d&rsquo;ouvrir en écriture le ficher %1:%2</translation>
     </message>
     <message>
         <location filename="../services/impl/functionmanagerimpl.cpp" line="459"/>
         <source>Error while writting to file %1: %2</source>
-        <translation>Erreur lors de l&apos;écriture du fichier %1:%2</translation>
+        <translation>Erreur lors de l&rsquo;écriture du fichier %1:%2</translation>
     </message>
     <message>
         <location filename="../services/impl/functionmanagerimpl.cpp" line="477"/>
@@ -399,7 +399,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
         <location filename="../plugins/genericexportplugin.cpp" line="20"/>
         <source>Could not initialize text codec for exporting. Using default codec: %1</source>
-        <translation>Impossible d&apos;initialiser le paramètre texte por l&apos;export. Utulisation du paramètre par défaut: %1</translation>
+        <translation>Impossible d&rsquo;initialiser le paramètre texte por l&rsquo;export. Utulisation du paramètre par défaut: %1</translation>
     </message>
 </context>
 <context>
@@ -407,7 +407,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
         <location filename="../services/importmanager.cpp" line="93"/>
         <source>Imported data to the table &apos;%1&apos; successfully.</source>
-        <translation>Importation des données de la table &apos;%1&apos; réussie.</translation>
+        <translation>Importation des données de la table «&nbsp;%1&nbsp;» réussie.</translation>
     </message>
 </context>
 <context>
@@ -415,39 +415,39 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
         <location filename="../importworker.cpp" line="24"/>
         <source>No columns provided by the import plugin.</source>
-        <translation>Aucune colonne fournie par le plugin d&apos;importation.</translation>
+        <translation>Aucune colonne fournie par le plugin d&rsquo;importation.</translation>
     </message>
     <message>
         <location filename="../importworker.cpp" line="30"/>
         <source>Could not start transaction in order to import a data: %1</source>
-        <translation>Impossible d&apos;initialiser la transaction d&apos;import de données: %1</translation>
+        <translation>Impossible d&rsquo;initialiser la transaction d&rsquo;import de données: %1</translation>
     </message>
     <message>
         <location filename="../importworker.cpp" line="48"/>
         <source>Could not commit transaction for imported data: %1</source>
-        <translation>Impossible d&apos;enregistrer la transaction d&apos;import de données: %1</translation>
+        <translation>Impossible d&rsquo;enregistrer la transaction d&rsquo;import de données: %1</translation>
     </message>
     <message>
         <location filename="../importworker.cpp" line="94"/>
         <source>Table &apos;%1&apos; has less columns than there are columns in the data to be imported. Excessive data columns will be ignored.</source>
-        <translation>La table %1 a moins de colonnes que de données à importer. Les colonnes supplèmentaires seront ignorées.</translation>
+        <translation>La table «&nbsp;%1&nbsp;» a moins de colonnes que de données à importer. Les colonnes supplèmentaires seront ignorées.</translation>
     </message>
     <message>
         <location filename="../importworker.cpp" line="99"/>
         <source>Table &apos;%1&apos; has more columns than there are columns in the data to be imported. Some columns in the table will be left empty.</source>
-        <translation>La table %1 a plus de colonnes que de colonnes de données à importer. Certaines colonnes de la table seront vides.</translation>
+        <translation>La table «&nbsp;%1&nbsp;» a plus de colonnes que de colonnes de données à importer. Certaines colonnes de la table seront vides.</translation>
     </message>
     <message>
         <location filename="../importworker.cpp" line="117"/>
         <source>Could not create table to import to: %1</source>
-        <translation>Impossible de créer la table d&apos;import: %1</translation>
+        <translation>Impossible de créer la table d&rsquo;import: %1</translation>
     </message>
     <message>
         <location filename="../importworker.cpp" line="126"/>
         <location filename="../importworker.cpp" line="163"/>
         <location filename="../importworker.cpp" line="170"/>
         <source>Error while importing data: %1</source>
-        <translation>Erreur lors de l&apos;import des données: %1</translation>
+        <translation>Erreur lors de l&rsquo;import des données: %1</translation>
     </message>
     <message>
         <location filename="../importworker.cpp" line="126"/>
@@ -472,12 +472,12 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
         <location filename="../services/impl/pluginmanagerimpl.cpp" line="554"/>
         <source>Cannot load plugin %1, because its dependency was not loaded: %2.</source>
-        <translation>Chargement impossible du plugin %1, les dépendances n&apos;ont pa été chargées: %2.</translation>
+        <translation>Chargement impossible du plugin %1, les dépendances n&rsquo;ont pa été chargées: %2.</translation>
     </message>
     <message>
         <location filename="../services/impl/pluginmanagerimpl.cpp" line="563"/>
         <source>Cannot load plugin %1. Error details: %2</source>
-        <translation>Chargement impossible du plugin %1, Détails de l&apos;erreur: %2</translation>
+        <translation>Chargement impossible du plugin %1, Détails de l&rsquo;erreur: %2</translation>
     </message>
     <message>
         <location filename="../services/impl/pluginmanagerimpl.cpp" line="579"/>
@@ -553,7 +553,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
         <location filename="../plugins/populatedictionary.ui" line="74"/>
         <source>Method of using words</source>
-        <translation>Méthode d&apos;utilisation des mots</translation>
+        <translation>Méthode d&rsquo;utilisation des mots</translation>
     </message>
     <message>
         <location filename="../plugins/populatedictionary.ui" line="80"/>
@@ -571,7 +571,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
         <location filename="../services/populatemanager.cpp" line="89"/>
         <source>Table &apos;%1&apos; populated successfully.</source>
-        <translation>Table &apos;%1&apos; remplie avec succès.</translation>
+        <translation>Table «&nbsp;%1&nbsp;» remplie avec succès.</translation>
     </message>
 </context>
 <context>
@@ -704,7 +704,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
         <location filename="../plugins/populatescript.ui" line="26"/>
         <source>Initialization code (optional)</source>
-        <translation>Code d&apos;initialisation (optionel)</translation>
+        <translation>Code d&rsquo;initialisation (optionel)</translation>
     </message>
     <message>
         <location filename="../plugins/populatescript.ui" line="45"/>
@@ -748,7 +748,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
         <location filename="../populateworker.cpp" line="23"/>
         <source>Could not start transaction in order to perform table populating. Error details: %1</source>
-        <translation>Impossible d&apos;initialiser la transaction pour remplir la table.Détails de l&apos;erreur %1</translation>
+        <translation>Impossible d&rsquo;initialiser la transaction pour remplir la table.Détails de l&rsquo;erreur %1</translation>
     </message>
     <message>
         <location filename="../populateworker.cpp" line="63"/>
@@ -758,7 +758,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
         <location filename="../populateworker.cpp" line="74"/>
         <source>Could not commit transaction after table populating. Error details: %1</source>
-        <translation>Impossible d&apos;enregistrer la transaction après le remplissage de la table. Erreur %1</translation>
+        <translation>Impossible d&rsquo;enregistrer la transaction après le remplissage de la table. Erreur %1</translation>
     </message>
 </context>
 <context>
@@ -767,7 +767,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
         <location filename="../db/abstractdb2.h" line="199"/>
         <location filename="../db/abstractdb3.h" line="356"/>
         <source>Could not open database: %1</source>
-        <translation>Impossible d&apos;ouvrir la base de données: %1</translation>
+        <translation>Impossible d&rsquo;ouvrir la base de données: %1</translation>
     </message>
     <message>
         <location filename="../db/abstractdb2.h" line="805"/>
@@ -789,18 +789,18 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
         <location filename="../dbversionconverter.cpp" line="253"/>
         <location filename="../dbversionconverter.cpp" line="331"/>
         <source>SQLite %1 does not support &apos;%2&apos; statement.</source>
-        <translation>SQLite %1 ne supporte pas l&apos;instruction &apos;%2&apos;.</translation>
+        <translation>SQLite %1 ne supporte pas l&rsquo;instruction «&nbsp;%2&nbsp;».</translation>
     </message>
     <message>
         <location filename="../dbversionconverter.cpp" line="201"/>
         <source>SQLite %1 does not support &apos;%2&apos; statement, but the regular table can be created instead if you proceed.</source>
-        <translation>SQLite %1 ne supporte pas l&apos;instruction &apos;%2&apos;, mais la table normale peut être créée à la place si vous confirmez.</translation>
+        <translation>SQLite %1 ne supporte pas l&rsquo;instruction «&nbsp;%2&nbsp;», mais la table normale peut être créée à la place si vous confirmez.</translation>
     </message>
     <message>
         <location filename="../dbversionconverter.cpp" line="424"/>
         <source>Could not parse statement: %1
 Error details: %2</source>
-        <translation>Impossible d&apos;analyser l&apos;instruction: %1
+        <translation>Impossible d&rsquo;analyser l&rsquo;instruction: %1
 Détails erreur: %2</translation>
     </message>
     <message>
@@ -809,29 +809,29 @@ Détails erreur: %2</translation>
         <location filename="../dbversionconverter.cpp" line="482"/>
         <location filename="../dbversionconverter.cpp" line="515"/>
         <source>SQLite %1 does not support the &apos;%2&apos; clause. Cannot convert &apos;%3&apos; statement with that clause.</source>
-        <translation>SQLite %1 ne supporte pas la clause &apos;%2&apos;. Impossible de convertir l&apos;instruction &apos;%3&apos; avec cette clause.</translation>
+        <translation>SQLite %1 ne supporte pas la clause «&nbsp;%2&nbsp;». Impossible de convertir l&rsquo;instruction «&nbsp;%3&nbsp;» avec cette clause.</translation>
     </message>
     <message>
         <location filename="../dbversionconverter.cpp" line="488"/>
         <source>SQLite %1 does not support the &apos;%2&apos; clause in the &apos;%3&apos; statement.</source>
-        <translation>SQLite %1 ne supporte pas la clause &apos;%2&apos; de l&apos;instruction &apos;%3&apos;.</translation>
+        <translation>SQLite %1 ne supporte pas la clause «&nbsp;%2&nbsp;» de l&rsquo;instruction «&nbsp;%3&nbsp;».</translation>
     </message>
     <message>
         <location filename="../dbversionconverter.cpp" line="756"/>
         <source>SQLite %1 does not support current date or time clauses in expressions.</source>
-        <translation>SQLite %1 ne supporte pas la clause date ou l&apos;heure actuelle dans l&apos;expression.</translation>
+        <translation>SQLite %1 ne supporte pas la clause date ou l&rsquo;heure actuelle dans l&rsquo;expression.</translation>
     </message>
     <message>
         <location filename="../dbversionconverter.cpp" line="767"/>
         <location filename="../dbversionconverter.cpp" line="770"/>
         <location filename="../dbversionconverter.cpp" line="781"/>
         <source>SQLite %1 does not support &apos;%2&apos; clause in expressions.</source>
-        <translation>SQLite %1 ne supporte pas la clause &apos;%2&apos; dans l&apos;expression.</translation>
+        <translation>SQLite %1 ne supporte pas la clause «&nbsp;%2&nbsp;» dans l&rsquo;expression.</translation>
     </message>
     <message>
         <location filename="../impl/dbattacherimpl.cpp" line="109"/>
         <source>Could not attach database %1: %2</source>
-        <translation>Impossible d&apos;attacher la base de données %1: %2</translation>
+        <translation>Impossible d&rsquo;attacher la base de données %1: %2</translation>
     </message>
     <message>
         <location filename="../parser/parsercontext.cpp" line="108"/>
@@ -849,12 +849,12 @@ Détails erreur: %2</translation>
         <location filename="../parser/sqlite2_parse.cpp" line="4465"/>
         <location filename="../parser/sqlite3_parse.cpp" line="5084"/>
         <source>Syntax error</source>
-        <translation>Erreur  de syntaxe </translation>
+        <translation>Erreur de syntaxe</translation>
     </message>
     <message>
         <location filename="../plugins/populatedictionary.cpp" line="30"/>
         <source>Could not open dictionary file %1 for reading.</source>
-        <translation>Impossible d&apos;ouvrir en lecture le fichier dictionnaire %1.</translation>
+        <translation>Impossible d&rsquo;ouvrir en lecture le fichier dictionnaire %1.</translation>
     </message>
     <message>
         <location filename="../plugins/populatedictionary.cpp" line="91"/>
@@ -884,22 +884,22 @@ Détails erreur: %2</translation>
     <message>
         <location filename="../plugins/populatescript.cpp" line="58"/>
         <source>Error while executing populating initial code: %1</source>
-        <translation>Erreur à l&apos;initialisation du code de remplissage: %1</translation>
+        <translation>Erreur à l&rsquo;initialisation du code de remplissage: %1</translation>
     </message>
     <message>
         <location filename="../plugins/populatescript.cpp" line="80"/>
         <source>Error while executing populating code: %1</source>
-        <translation>Erreur à l&apos;exécution du code de remplissage: %1</translation>
+        <translation>Erreur à l&rsquo;exécution du code de remplissage: %1</translation>
     </message>
     <message>
         <location filename="../plugins/populatescript.cpp" line="112"/>
         <source>Select implementation language.</source>
-        <translation>Sélectionnez l&apos;application langage.</translation>
+        <translation>Sélectionnez l&rsquo;application langage.</translation>
     </message>
     <message>
         <location filename="../plugins/populatescript.cpp" line="113"/>
         <source>Implementation code cannot be empty.</source>
-        <translation>L&apos;application de code ne peut être vide.</translation>
+        <translation>L&rsquo;application de code ne peut être vide.</translation>
     </message>
     <message>
         <location filename="../selectresolver.cpp" line="317"/>
@@ -909,7 +909,9 @@ Détails erreur: %2</translation>
     <message>
         <location filename="../services/impl/configimpl.cpp" line="612"/>
         <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Tried to initialize the file at following localizations: %1.</source>
-        <translation>Impossible d&apos;initialiser le fichier de configuration. Aucune modification et les requêtes seront perdues après redémarrage. Essayez d&apos;initialiser le fichier avec cette localisation: %1.</translation>
+        <translation>Impossible d&rsquo;initialiser le fichier de configuration.
+        Aucune modification et les requêtes seront perdues après redémarrage.
+        Essayez d&rsquo;initialiser le fichier avec cette localisation: %1.</translation>
     </message>
     <message>
         <location filename="../sqlitestudio.cpp" line="291"/>
@@ -956,12 +958,12 @@ Détails erreur: %2</translation>
     <message>
         <location filename="../tablemodifier.cpp" line="107"/>
         <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
-        <translation>La table %1 référence la table %2, mais la clé étrangère ne pourra être mise à jour pour la nouvelle table à cause de problèmes lors de l&apos;analyse DDL de la table %3.</translation>
+        <translation>La table %1 référence la table %2, mais la clé étrangère ne pourra être mise à jour pour la nouvelle table à cause de problèmes lors de l&rsquo;analyse DDL de la table %3.</translation>
     </message>
     <message>
         <location filename="../tablemodifier.cpp" line="379"/>
         <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
-        <translation>Toutes les colonnes indéxées par l&apos;indexe %1 sont faites. L&apos;indexe ne sera pas recréé après la modification de la table.</translation>
+        <translation>Toutes les colonnes indéxées par l&rsquo;indexe %1 sont faites. L&rsquo;indexe ne sera pas recréé après la modification de la table.</translation>
     </message>
     <message>
         <location filename="../tablemodifier.cpp" line="418"/>
@@ -994,22 +996,22 @@ La vue restera telque.</translation>
     </message>
     <message>
         <source>There is a problem with updating an %1 statement within %2 trigger. One of the SELECT substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
-        <translation type="obsolete">Il y a un problème à la mise à jour l&apos;instruction %1 avec le déclencheur %2. Une partie de l&apos;instruction SELECT référençant la table %3 ne ppermet pas sa modification. La mise à jour manuelle du déclencheur est nécessaire.</translation>
+        <translation type="obsolete">Il y a un problème à la mise à jour l&rsquo;instruction %1 avec le déclencheur %2. Une partie de l&rsquo;instruction SELECT référençant la table %3 ne ppermet pas sa modification. La mise à jour manuelle du déclencheur est nécessaire.</translation>
     </message>
     <message>
         <location filename="../viewmodifier.cpp" line="25"/>
         <source>Could not parse DDL of the view to be created. Details: %1</source>
-        <translation>Impossible d&apos;analyser le DDL de création de vue. Détails: %1</translation>
+        <translation>Impossible d&rsquo;analyser le DDL de création de vue. Détails: %1</translation>
     </message>
     <message>
         <location filename="../viewmodifier.cpp" line="34"/>
         <source>Parsed query is not CREATE VIEW. It&apos;s: %1</source>
-        <translation>L&apos;expression CREATE VIEW est fausse. C&apos;est: %1</translation>
+        <translation>L&rsquo;expression CREATE VIEW est fausse. C&rsquo;est: %1</translation>
     </message>
     <message>
         <location filename="../viewmodifier.cpp" line="82"/>
         <source>SQLiteStudio was unable to resolve columns returned by the new view, therefore it won&apos;t be able to tell which triggers might fail during the recreation process.</source>
-        <translation>SQLiteStudio ne peut résoudre les colonnes résultant de la nouvelle vue, d&apos;où le déclencheur en cause ne pourra être indiqué pendant le process.</translation>
+        <translation>SQLiteStudio ne peut résoudre les colonnes résultant de la nouvelle vue, d&rsquo;où le déclencheur en cause ne pourra être indiqué pendant le process.</translation>
     </message>
 </context>
 <context>
@@ -1022,7 +1024,7 @@ La vue restera telque.</translation>
     <message>
         <location filename="../db/queryexecutor.cpp" line="174"/>
         <source>Database is not open.</source>
-        <translation>La base de données n&apos;est ouverte.</translation>
+        <translation>La base de données n&rsquo;est ouverte.</translation>
     </message>
     <message>
         <location filename="../db/queryexecutor.cpp" line="182"/>
@@ -1033,12 +1035,12 @@ La vue restera telque.</translation>
         <location filename="../db/queryexecutor.cpp" line="264"/>
         <location filename="../db/queryexecutor.cpp" line="548"/>
         <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
-        <translation>Une erreur s&apos;est produite à l&apos;exécution de la requête count(*), la recherche des données est arrêtée. Erreur de la base de données:%1</translation>
+        <translation>Une erreur s&rsquo;est produite à l&rsquo;exécution de la requête count(*), la recherche des données est arrêtée. Erreur de la base de données:%1</translation>
     </message>
     <message>
         <location filename="../db/queryexecutor.cpp" line="459"/>
         <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
-        <translation>SQLiteStudio ne peut extraire des métadonnées d&apos;une requête. Les résultats ne peut être affichés.</translation>
+        <translation>SQLiteStudio ne peut extraire des métadonnées d&rsquo;une requête. Les résultats ne peut être affichés.</translation>
     </message>
 </context>
 <context>
@@ -1066,7 +1068,7 @@ La vue restera telque.</translation>
         <location filename="../sqlhistorymodel.cpp" line="32"/>
         <source>Execution date</source>
         <comment>sql history header</comment>
-        <translation>Date d&apos;exécution</translation>
+        <translation>Date d&rsquo;exécution</translation>
     </message>
     <message>
         <location filename="../sqlhistorymodel.cpp" line="34"/>
@@ -1098,7 +1100,7 @@ La vue restera telque.</translation>
     <message>
         <location filename="../services/updatemanager.cpp" line="144"/>
         <source>Could not check available updates, because server responded with invalid message format. It is safe to ignore this warning.</source>
-        <translation>Impossible de vérifier la mise à jour, car le serveur a répondu avec un message invalide. Il est possible d&apos;ignorer le warning.</translation>
+        <translation>Impossible de vérifier la mise à jour, car le serveur a répondu avec un message invalide. Il est possible d&rsquo;ignorer le warning.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="175"/>
@@ -1108,7 +1110,7 @@ La vue restera telque.</translation>
     <message>
         <location filename="../services/updatemanager.cpp" line="188"/>
         <source>Could not download updates, because server responded with invalid message format. You can try again later or download and install updates manually. See &lt;a href=&quot;%1&quot;&gt;User Manual&lt;/a&gt; for details.</source>
-        <translation>Impossibles de télécharger les mises à jour, car le serveur répond avec un format de message invalide. Vous pover essayer plus tard ou télécharger et mettre à jour manuellement. Voir  &lt;a href=&quot;%1&quot;&gt;User Manual&lt;/a&gt; for details.</translation>
+        <translation>Impossibles de télécharger les mises à jour, car le serveur répond avec un format de message invalide. Vous pover essayer plus tard ou télécharger et mettre à jour manuellement. Voir &lt;a href=&quot;%1&quot;&gt;User Manual&lt;/a&gt; for details.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="195"/>
@@ -1118,7 +1120,7 @@ La vue restera telque.</translation>
     <message>
         <location filename="../services/updatemanager.cpp" line="206"/>
         <source>There was no updates to download. Updating aborted.</source>
-        <translation>Il n&apos;y a aucune mise à jour à télécharger. Mise à jour abandonnée.</translation>
+        <translation>Il n&rsquo;y a aucune mise à jour à télécharger. Mise à jour abandonnée.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="241"/>
@@ -1133,7 +1135,7 @@ La vue restera telque.</translation>
     <message>
         <location filename="../services/updatemanager.cpp" line="255"/>
         <source>Failed to open file &apos;%1&apos; for writting: %2. Updating aborted.</source>
-        <translation>Erreur à l&apos;ouverture du fichier %1 pour l&apos;écriture: %2. Mise à jour abandonnée.</translation>
+        <translation>Erreur à l&rsquo;ouverture du fichier «&nbsp;%1&nbsp;» pour l&rsquo;écriture: %2. Mise à jour abandonnée.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="276"/>
@@ -1143,7 +1145,7 @@ La vue restera telque.</translation>
     <message>
         <location filename="../services/updatemanager.cpp" line="287"/>
         <source>Could not copy current application directory into %1 directory.</source>
-        <translation>Impossible de copier le répertoire de l&apos;application courante dans %1.</translation>
+        <translation>Impossible de copier le répertoire de l&rsquo;application courante dans %1.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="340"/>
@@ -1165,7 +1167,7 @@ Details: %3</source>
     <message>
         <location filename="../services/updatemanager.cpp" line="360"/>
         <source>Could not move directory %1 to %2 and also failed to restore original directory, so the original SQLiteStudio directory is now located at: %3</source>
-        <translation>Impossible de déplacer le répertoire %1 vers %2 d&apos;où l&apos;impossibilité de restaurer le répertoire original. SQLiteStudio est maintenant localisé: %3</translation>
+        <translation>Impossible de déplacer le répertoire %1 vers %2 d&rsquo;où l&rsquo;impossibilité de restaurer le répertoire original. SQLiteStudio est maintenant localisé: %3</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="365"/>
@@ -1175,12 +1177,12 @@ Details: %3</source>
     <message>
         <location filename="../services/updatemanager.cpp" line="444"/>
         <source>Could not unpack component %1 into %2 directory.</source>
-        <translation>Impossible d&apos;extraire le composant %1 dans le répertoire %2.</translation>
+        <translation>Impossible d&rsquo;extraire le composant %1 dans le répertoire %2.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="555"/>
         <source>Could not find permissions elevator application to run update as a root. Looked for: %1</source>
-        <translation>Impossible d&apos;élever les autorisations pour lancer la mise à jour en tantque root. Bloqué: %1</translation>
+        <translation>Impossible d&rsquo;élever les autorisations pour lancer la mise à jour en tantque root. Bloqué: %1</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="562"/>
@@ -1213,17 +1215,17 @@ Details: %3</source>
     <message>
         <location filename="../services/updatemanager.cpp" line="661"/>
         <source>Could not execute final updating steps as administrator.</source>
-        <translation>Impossible de finaliser la mis à jour en tant qu&apos;administrateur.</translation>
+        <translation>Impossible de finaliser la mis à jour en tant qu&rsquo;administrateur.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="673"/>
         <source>Could not execute final updating steps as administrator. Updater startup timed out.</source>
-        <translation>Impossible de finaliser la mis à jour en tant qu&apos;administrateur. Délai d&apos;attente de lancement dépassé.</translation>
+        <translation>Impossible de finaliser la mis à jour en tant qu&rsquo;administrateur. Délai d&rsquo;attente de lancement dépassé.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="679"/>
         <source>Could not execute final updating steps as administrator. Updater operation timed out.</source>
-        <translation>Impossible de finaliser la mis à jour en tant qu&apos;administrateur. Délai d&apos;attente d&apos;opération dépassé.</translation>
+        <translation>Impossible de finaliser la mis à jour en tant qu&rsquo;administrateur. Délai d&rsquo;attente d&rsquo;opération dépassé.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="696"/>
@@ -1238,7 +1240,7 @@ Details: %3</source>
     <message>
         <location filename="../services/updatemanager.cpp" line="817"/>
         <source>Package not in tar.gz format, cannot install: %1</source>
-        <translation>Installation impossible un paquet n&apos;est pas au format tar.zg: %1</translation>
+        <translation>Installation impossible un paquet n&rsquo;est pas au format tar.zg: %1</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="824"/>
@@ -1280,8 +1282,8 @@ Details: %3</source>
         <location filename="../services/updatemanager.cpp" line="961"/>
         <source>Error executing update command: %1
 Error message: %2</source>
-        <translation>Erreur d&apos;exécution de la commande de mise à jour: %1
-Message d&apos;erreur: %2</translation>
+        <translation>Erreur d&rsquo;exécution de la commande de mise à jour: %1
+Message d&rsquo;erreur: %2</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="1028"/>

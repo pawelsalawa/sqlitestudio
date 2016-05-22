@@ -26,7 +26,7 @@
     <message>
         <location filename="regexpimport.cpp" line="189"/>
         <source>Requested capture index %1 is out of range.</source>
-        <translation>Allocation d&apos;index %1 hors limites.</translation>
+        <translation>Allocation d&rsquo;index %1 hors limites.</translation>
     </message>
     <message>
         <location filename="regexpimport.cpp" line="196"/>
@@ -73,7 +73,7 @@
         <source>&lt;p&gt;Use Regular Expression groups to enclose parts of the expression that you want to import. If you want to use a group, that you don&apos;t want to import, then use &quot;import only following groups&quot; option below.
 
 You can use named groups and refer to them in group list below. To name a group use: &lt;pre&gt;(?&amp;lt;myGroupName&amp;gt;\s+\d+\s+)&lt;/pre&gt;&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Use Regular Expression groups to enclose parts of the expression that you want to import. If you want to use a group, that you don&apos;t want to import, then use &quot;import only following groups&quot; option below.
+        <translation>&lt;p&gt;Use Regular Expression groups to enclose parts of the expression that you want to import. If you want to use a group, that you don&rsquo;t want to import, then use &quot;import only following groups&quot; option below.
 
 You can use named groups and refer to them in group list below. To name a group use: &lt;pre&gt;(?&amp;lt;myGroupName&amp;gt;\s+\d+\s+)&lt;/pre&gt;&lt;/p&gt;</translation>
     </message>

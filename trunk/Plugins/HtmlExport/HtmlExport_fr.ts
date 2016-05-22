@@ -147,7 +147,7 @@
     <message>
         <location filename="htmlexport.ui" line="73"/>
         <source>Output format</source>
-        <translation>Format d&apos;affichage</translation>
+        <translation>Format d&rsquo;affichage</translation>
     </message>
     <message>
         <location filename="htmlexport.ui" line="79"/>
@@ -162,12 +162,12 @@
     <message>
         <location filename="htmlexport.ui" line="108"/>
         <source>&lt;p&gt;When enabled, HTML characters such as &amp;lt;, &amp;gt; and &amp;amp; are not escaped in exported values. This allows you for example to export hyper-link enabled documents, but it also may result in incorrect HTML document (unmatched pairs of &amp;lt; and &amp;gt; characters). Be warned.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Lorsqu&apos;il y a des caractères HTML telque &amp;lt;, &amp;gt; et &amp;amp;ils ne sont pas enlevés des valeurs exportées. This allows you for example to export hyper-link enabled documents, but it also may result in incorrect HTML document (unmatched pairs of &amp;lt; and &amp;gt; characters).Soyez attentif.&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;Lorsqu&rsquo;il y a des caractères HTML telque &amp;lt;, &amp;gt; et &amp;amp;ils ne sont pas enlevés des valeurs exportées. This allows you for example to export hyper-link enabled documents, but it also may result in incorrect HTML document (unmatched pairs of &amp;lt; and &amp;gt; characters).Soyez attentif.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="htmlexport.ui" line="111"/>
         <source>Don&apos;t escape HTML characters</source>
-        <translation>N&apos;enlevez pas les caractères HTML</translation>
+        <translation>N&rsquo;enlevez pas les caractères HTML</translation>
     </message>
 </context>
 </TS>

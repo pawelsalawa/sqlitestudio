@@ -101,7 +101,7 @@
     <message>
         <location filename="pdfexport.cpp" line="246"/>
         <source>Partial index condition</source>
-        <translation>Condition de l&apos;index partiel</translation>
+        <translation>Condition de l&rsquo;index partiel</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="260"/>
