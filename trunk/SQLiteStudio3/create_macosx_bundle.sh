@@ -15,7 +15,7 @@ if [ "$#" -eq 3 ] && [ "$3" != "dmg" ] && [ "$3" != "dist" ] && [ "$3" != "dist_
 fi
 
 qt_deploy_bin="${2/qmake/macdeployqt}"
-$qt_deploy_bin -v >/dev/null 2>&1
+ls $qt_deploy_bin >/dev/null 2>&1
 if [ "$?" -ne 0 ]; then
   echo "macdeployqt program missing!"
   exit 1
