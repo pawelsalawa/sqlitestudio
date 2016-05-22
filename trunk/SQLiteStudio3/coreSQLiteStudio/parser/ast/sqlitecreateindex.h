@@ -5,12 +5,13 @@
 #include "sqlitetablerelatedddl.h"
 #include "sqliteconflictalgo.h"
 #include "sqliteexpr.h"
+#include "sqliteddlwithdbcontext.h"
 #include <QString>
 #include <QList>
 
 class SqliteIndexedColumn;
 
-class API_EXPORT SqliteCreateIndex : public SqliteQuery, public SqliteTableRelatedDdl
+class API_EXPORT SqliteCreateIndex : public SqliteQuery, public SqliteTableRelatedDdl, public SqliteDdlWithDbContext
 {
     public:
         SqliteCreateIndex();
@@ -25,6 +26,8 @@ class API_EXPORT SqliteCreateIndex : public SqliteQuery, public SqliteTableRelat
         SqliteStatement* clone();
 
         QString getTargetTable() const;
+        QString getTargetDatabase() const;
+        void setTargetDatabase(const QString& database);
 
         bool uniqueKw = false;
         bool ifNotExistsKw = false;

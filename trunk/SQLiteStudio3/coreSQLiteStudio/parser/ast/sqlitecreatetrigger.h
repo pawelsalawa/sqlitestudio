@@ -1,6 +1,7 @@
 #ifndef SQLITECREATETRIGGER_H
 #define SQLITECREATETRIGGER_H
 
+#include "sqliteddlwithdbcontext.h"
 #include "sqlitequery.h"
 #include "sqlitetablerelatedddl.h"
 
@@ -9,7 +10,7 @@
 
 class SqliteExpr;
 
-class API_EXPORT SqliteCreateTrigger : public SqliteQuery, public SqliteTableRelatedDdl
+class API_EXPORT SqliteCreateTrigger : public SqliteQuery, public SqliteTableRelatedDdl, public SqliteDdlWithDbContext
 {
     public:
         enum class Time
@@ -63,6 +64,8 @@ class API_EXPORT SqliteCreateTrigger : public SqliteQuery, public SqliteTableRel
         SqliteStatement* clone();
 
         QString getTargetTable() const;
+        QString getTargetDatabase() const;
+        void setTargetDatabase(const QString& database);
 
         bool tempKw = false;
         bool temporaryKw = false;

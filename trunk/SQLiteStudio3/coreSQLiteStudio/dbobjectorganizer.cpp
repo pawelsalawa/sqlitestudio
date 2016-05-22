@@ -559,7 +559,21 @@ bool DbObjectOrganizer::copySimpleObjectToDb(const QString& name, const QString&
     if (convertedDdl.trimmed() == ";") // empty query, result of ignored errors in UI
         return true;
 
-    SqlQueryPtr result = dstDb->exec(convertedDdl);
+    SqlQueryPtr result;
+
+    if (!attachName.isNull())
+    {
+        convertedDdl = prefixSimpleObjectWithAttachName(name, convertedDdl);
+        if (convertedDdl.isNull())
+            return false;
+
+        result = srcDb->exec(convertedDdl);
+    }
+    else
+    {
+        result = dstDb->exec(convertedDdl);
+    }
+
     if (result->isError())
     {
         notifyError(errorMessage.arg(result->getErrorText()));
@@ -748,6 +762,37 @@ bool DbObjectOrganizer::execConfirmFunctionInMainThread(const QStringList& table
     }
 
     return res;
+}
+
+QString DbObjectOrganizer::prefixSimpleObjectWithAttachName(const QString& objName, const QString& ddl)
+{
+    Parser parser(srcDb->getDialect());
+    if (!parser.parse(ddl))
+    {
+        qDebug() << "Parsing error while copying or moving object:" << objName << ", details:" << parser.getErrorString();
+        notifyError(tr("Could not parse object '%1' in order to move or copy it.").arg(objName));
+        return QString();
+    }
+
+    if (parser.getQueries().isEmpty())
+    {
+        qDebug() << "Empty queries from parser while copying or moving object:" << objName;
+        notifyError(tr("Could not parse object '%1' in order to move or copy it.").arg(objName));
+        return QString();
+    }
+
+    SqliteQueryPtr query = parser.getQueries().first();
+    SqliteDdlWithDbContextPtr ddlWithDb = query.dynamicCast<SqliteDdlWithDbContext>();
+    if (!ddlWithDb)
+    {
+        qDebug() << "Not instance of SqliteDdlWithDbContext while copying or moving object:" << objName << ", it's type is:" << (int)query->queryType;
+        notifyError(tr("Could not parse object '%1' in order to move or copy it.").arg(objName));
+        return QString();
+    }
+
+    ddlWithDb->setTargetDatabase(attachName);
+    query->rebuildTokens();
+    return query->tokens.detokenize();
 }
 
 void DbObjectOrganizer::processPreparationFinished()
