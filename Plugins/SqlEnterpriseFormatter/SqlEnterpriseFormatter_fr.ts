@@ -41,12 +41,12 @@
     <message>
         <location filename="sqlenterpriseformatter.ui" line="160"/>
         <source>Before opening parenthesis in column definitions</source>
-        <translation>Avant l&apos;ouverture des parenthèses dans la définition de la colonne</translation>
+        <translation>Avant l&rsquo;ouverture des parenthèses dans la définition de la colonne</translation>
     </message>
     <message>
         <location filename="sqlenterpriseformatter.ui" line="170"/>
         <source>After opening parenthesis in column definitions</source>
-        <translation>Après l&apos;ouverture des parenthèses dans la définition de la colonne</translation>
+        <translation>Après l&rsquo;ouverture des parenthèses dans la définition de la colonne</translation>
     </message>
     <message>
         <location filename="sqlenterpriseformatter.ui" line="180"/>
@@ -61,22 +61,22 @@
     <message>
         <location filename="sqlenterpriseformatter.ui" line="200"/>
         <source>Before opening parenthesis in expressions</source>
-        <translation>Avant l&apos;ouverture des parenthèses dans l&apos;expression</translation>
+        <translation>Avant l&rsquo;ouverture des parenthèses dans l&rsquo;expression</translation>
     </message>
     <message>
         <location filename="sqlenterpriseformatter.ui" line="210"/>
         <source>After opening parenthesis in expressions</source>
-        <translation>Après l&apos;ouverture des parenthèses dans l&apos;expression</translation>
+        <translation>Après l&rsquo;ouverture des parenthèses dans l&rsquo;expression</translation>
     </message>
     <message>
         <location filename="sqlenterpriseformatter.ui" line="220"/>
         <source>Before closing parenthesis in expressions</source>
-        <translation>Avant la fermeture des parenthèses dans l&apos;expression</translation>
+        <translation>Avant la fermeture des parenthèses dans l&rsquo;expression</translation>
     </message>
     <message>
         <location filename="sqlenterpriseformatter.ui" line="230"/>
         <source>After closing parenthesis in expressions</source>
-        <translation>Après la fermeture des parenthèses dans l&apos;expression</translation>
+        <translation>Après la fermeture des parenthèses dans l&rsquo;expression</translation>
     </message>
     <message>
         <location filename="sqlenterpriseformatter.ui" line="240"/>
@@ -96,7 +96,7 @@
     <message>
         <location filename="sqlenterpriseformatter.ui" line="270"/>
         <source>After comma in expressions</source>
-        <translation>Après la virgule dans l&apos;exoression</translation>
+        <translation>Après la virgule dans l&rsquo;exoression</translation>
     </message>
     <message>
         <location filename="sqlenterpriseformatter.ui" line="280"/>
@@ -127,12 +127,12 @@
     <message>
         <location filename="sqlenterpriseformatter.ui" line="412"/>
         <source>Before opening parenthesis</source>
-        <translation>Avant l&apos;ouverture des parenthèses</translation>
+        <translation>Avant l&rsquo;ouverture des parenthèses</translation>
     </message>
     <message>
         <location filename="sqlenterpriseformatter.ui" line="422"/>
         <source>After opening parenthesis</source>
-        <translation>Après l&apos;ouverture des parenthèses</translation>
+        <translation>Après l&rsquo;ouverture des parenthèses</translation>
     </message>
     <message>
         <location filename="sqlenterpriseformatter.ui" line="432"/>
@@ -147,7 +147,7 @@
     <message>
         <location filename="sqlenterpriseformatter.ui" line="452"/>
         <source>No space between SQL function name and opening parenthesis</source>
-        <translation>aucun espance entre le nom de la fonction SQL et l&apos;ouverture des paranthèses</translation>
+        <translation>aucun espance entre le nom de la fonction SQL et l&rsquo;ouverture des paranthèses</translation>
     </message>
     <message>
         <location filename="sqlenterpriseformatter.ui" line="462"/>

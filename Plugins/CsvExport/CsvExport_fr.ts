@@ -31,7 +31,7 @@
     <message>
         <location filename="CsvExport.ui" line="56"/>
         <source>  (whitespace)</source>
-        <translation>(espace)</translation>
+        <translation>  (espace)</translation>
     </message>
     <message>
         <location filename="CsvExport.ui" line="61"/>
@@ -41,7 +41,7 @@
     <message>
         <location filename="CsvExport.ui" line="82"/>
         <source>Export NULL values as:</source>
-        <translation>Exporter la  valeur NULL comme:</translation>
+        <translation>Exporter la valeur NULL comme:</translation>
     </message>
     <message>
         <location filename="CsvExport.ui" line="89"/>

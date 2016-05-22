@@ -49,7 +49,7 @@
     <message>
         <location filename="CsvImportOptions.ui" line="39"/>
         <source>  (whitespace)</source>
-        <translation>(Espace)</translation>
+        <translation>  (Espace)</translation>
     </message>
     <message>
         <location filename="CsvImportOptions.ui" line="44"/>
@@ -78,7 +78,7 @@
     <message>
         <location filename="CsvImportOptions.ui" line="85"/>
         <source>NULL values:</source>
-        <translation>Valeurs  NULL:</translation>
+        <translation>Valeurs NULL:</translation>
     </message>
     <message>
         <location filename="CsvImportOptions.ui" line="95"/>

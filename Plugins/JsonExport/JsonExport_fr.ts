@@ -6,7 +6,7 @@
     <message>
         <location filename="jsonexport.ui" line="20"/>
         <source>Output format</source>
-        <translation>Format d&apos;affichage</translation>
+        <translation>Format d&rsquo;affichage</translation>
     </message>
     <message>
         <location filename="jsonexport.ui" line="26"/>

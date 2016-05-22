@@ -77,7 +77,7 @@
     <message>
         <location filename="SqlExportQuery.ui" line="37"/>
         <source>Generate &quot;CREATE TABLE&quot; statement at the begining</source>
-        <translation>Genre la déclaration   &quot;CREATE TABLE&quot; au debut</translation>
+        <translation>Genre la déclaration &quot;CREATE TABLE&quot; au debut</translation>
     </message>
     <message>
         <location filename="SqlExportQuery.ui" line="47"/>
