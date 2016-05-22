@@ -29,17 +29,6 @@ feature requests:
 shortcut - toggle comment
 2 options to disable big tooltips and all tooltips
 
-Thread 5 Crashed:: Thread (pooled)
-0   libcoreSQLiteStudio.1.0.0.dylib	0x0000000101f24ba7 QHash<QString, QVariant>::value(QString const&) const + 23
-1   libcoreSQLiteStudio.1.0.0.dylib	0x0000000101f24ad4 QHash<QString, QVariant>::operator[](QString const&) const + 36
-2   libcoreSQLiteStudio.1.0.0.dylib	0x0000000101f24936 SqlResultsRow::value(QString const&) const + 54
-3   libcoreSQLiteStudio.1.0.0.dylib	0x0000000101f06c1a SchemaResolver::getAllObjects(QString const&) + 1178
-4   libcoreSQLiteStudio.1.0.0.dylib	0x0000000101f06746 SchemaResolver::getAllObjects() + 70
-5   libguiSQLiteStudio.1.0.0.dylib	0x000000010252f428 SqlEditor::refreshValidObjects()::$_0::operator()() const + 456 (sqleditor.cpp:529)
-6   libguiSQLiteStudio.1.0.0.dylib	0x000000010252f1ec QtConcurrent::StoredFunctorCall0<void, SqlEditor::refreshValidObjects()::$_0>::runFunctor() + 28 (qtconcurrentstoredfunctioncall.h:72)
-7   libguiSQLiteStudio.1.0.0.dylib	0x0000000102534ca1 QtConcurrent::RunFunctionTask<void>::run() + 81 (qtconcurrentrunbase.h:132)
-8   libguiSQLiteStudio.1.0.0.dylib	0x0000000102534dbc non-virtual thunk to QtConcurrent::RunFunctionTask<void>::run() + 28 (qtconcurrentrśunbase.h:141)
-
 
 * Outstanding features for 3.1:
 - migrate updates engine to Qt Install Framework
@@ -82,6 +71,7 @@ Thread 5 Crashed:: Thread (pooled)
 - executing queries with bind parameters
 - completer: when suggesting table in FROM clause, look at columns after SELECT to give related tables first.
 - constraints tab in table window should have toolbar for adding/editing/deleting constraints
+- add menu mnemonics support (underlined shortcut letters)
 
 CLI:
 - plugin management commands
