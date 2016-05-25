@@ -59,6 +59,7 @@ class API_EXPORT TableModifier
         bool handleAllExprWithTrigTable(SqliteStatement* stmt, const QString& contextTable);
         bool handleExprListWithTrigTable(const QList<SqliteExpr*>& exprList);
         bool handleExprWithTrigTable(SqliteExpr* expr);
+        bool handleExpr(SqliteExpr* expr);
         void simpleHandleIndexes();
         void simpleHandleTriggers(const QString& view = QString::null);
         SqliteQueryPtr parseQuery(const QString& ddl);
@@ -74,10 +75,47 @@ class API_EXPORT TableModifier
 
         bool handleName(const QString& oldName, QString& valueToUpdate);
         static bool handleName(const QString& oldName, const QString& theNewName, QString& valueToUpdate);
-        bool handleIndexedColumns(QList<SqliteIndexedColumn*>& columnsToUpdate);
+        bool handleIndexedColumns(const QList<SqliteOrderBy*>& columnsToUpdate);
+        bool handleIndexedColumnsInitial(SqliteOrderBy* col, bool& modified);
+        bool handleIndexedColumnsInitial(SqliteIndexedColumn* col, bool& modified);
         bool handleColumnNames(QStringList& columnsToUpdate);
         bool handleColumnTokens(TokenList& columnsToUpdate);
         bool handleUpdateColumns(SqliteUpdate* update);
+
+
+        template <class T>
+        bool handleIndexedColumns(QList<T*>& columnsToUpdate)
+        {
+            bool modified = false;
+            QString lowerName;
+            QString colName;
+            QMutableListIterator<T*> it(columnsToUpdate);
+            while (it.hasNext())
+            {
+                T* idxCol = it.next();
+                if (handleIndexedColumnsInitial(idxCol, modified))
+                    continue;
+
+                colName = idxCol->getColumnName();
+
+                // If column was modified, assign new name
+                lowerName = colName.toLower();
+                if (tableColMap.contains(lowerName))
+                {
+                    idxCol->setColumnName(tableColMap[lowerName]);
+                    modified = true;
+                    continue;
+                }
+
+                // It wasn't modified, but it's not on existing columns list? Remove it.
+                if (indexOf(existingColumns, colName, Qt::CaseInsensitive) == -1)
+                {
+                    it.remove();
+                    modified = true;
+                }
+            }
+            return modified;
+        }
 
         Db* db = nullptr;
         Dialect dialect;
@@ -121,5 +159,6 @@ class API_EXPORT TableModifier
         QStringList modifiedViews;
         QStringList usedTempTableNames;
 };
+
 
 #endif // TABLEMODIFIER_H

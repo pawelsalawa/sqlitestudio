@@ -37,20 +37,26 @@ class GUI_API_EXPORT IndexDialog : public QDialog
         {
             public:
                 Column(const QString& name, QTableWidget* table);
+                Column(SqliteExpr* expr, QTableWidget* table);
+                ~Column();
 
                 void assignToNewRow(int row);
                 void prepareForNewRow();
-                QCheckBox* getCheck();
+                QCheckBox* getCheck() const;
                 void setCheck(QCheckBox* cb);
-                QWidget* getCheckParent();
+                QWidget* getCheckParent() const;
                 void setCheckParent(QWidget* w);
-                QComboBox* getSort();
+                QComboBox* getSort() const;
                 void setSort(QComboBox* cb);
-                QComboBox* getCollation();
+                QComboBox* getCollation() const;
                 void setCollation(QComboBox* cb);
                 bool hasCollation() const;
 
                 QString getName() const;
+                SqliteExpr* getExpr() const;
+                void setExpr(SqliteExpr* expr);
+                bool isExpr() const;
+                QString getKey() const;
 
             private:
                 QWidget* defineContainer(QWidget* w);
@@ -64,19 +70,28 @@ class GUI_API_EXPORT IndexDialog : public QDialog
                 QComboBox* collation = nullptr;
                 QTableWidget* table = nullptr;
                 QString name;
+                SqliteExpr* expr = nullptr;
         };
 
         void init();
         void readIndex();
         void readCollations();
         void buildColumn(const QString& name, int row);
+        Column* buildColumn(SqliteOrderBy* orderBy, int row);
+        Column* buildColumn(SqliteExpr* expr, int row);
+        void buildColumn(Column* column, int row);
         void applyColumnValues();
         void applyIndex();
-        SqliteIndexedColumn* addIndexedColumn(const QString& name);
+        SqliteOrderBy* addIndexedColumn(const QString& name);
+        SqliteOrderBy* addIndexedColumn(SqliteExpr* expr);
+        void addCollation(SqliteOrderBy* col, const QString& name);
         void rebuildCreateIndex();
         void queryDuplicates();
         void clearColumns();
         void rebuildColumnsByNewOrder();
+        QString getKey(SqliteOrderBy* col) const;
+        QStringList getExistingColumnExprs(const QString& exceptThis = QString()) const;
+        QStringList getTableColumns() const;
 
         bool existingIndex = false;
         Db* db = nullptr;
@@ -96,13 +111,16 @@ class GUI_API_EXPORT IndexDialog : public QDialog
         void updateValidation();
         void buildColumns();
         void updateTable(const QString& value);
-        void updateColumnState(const QString& rowName);
+        void updateColumnState(const QString& columnKey);
         void updatePartialConditionState();
         void updateDdl();
         void tabChanged(int tab);
         void moveColumnUp();
         void moveColumnDown();
-        void updateUpDownButtons(const QModelIndex& idx = QModelIndex());
+        void updateToolBarButtons(const QModelIndex& idx = QModelIndex());
+        void addExprColumn();
+        void editExprColumn(int row = -1);
+        void delExprColumn();
 
     public slots:
         void accept();

@@ -6,6 +6,7 @@
 #include "sqliteconflictalgo.h"
 #include "sqliteexpr.h"
 #include "sqliteddlwithdbcontext.h"
+#include "sqliteorderby.h"
 #include <QString>
 #include <QList>
 
@@ -20,7 +21,7 @@ class API_EXPORT SqliteCreateIndex : public SqliteQuery, public SqliteTableRelat
                           const QString& name3, const QList<SqliteIndexedColumn*>& columns,
                           SqliteConflictAlgo onConflict = SqliteConflictAlgo::null);
         SqliteCreateIndex(bool unique, bool ifNotExists, const QString& name1, const QString& name2,
-                          const QString& name3, const QList<SqliteIndexedColumn*>& columns,
+                          const QString& name3, const QList<SqliteOrderBy*>& columns,
                           SqliteExpr* where);
         ~SqliteCreateIndex();
         SqliteStatement* clone();
@@ -31,7 +32,7 @@ class API_EXPORT SqliteCreateIndex : public SqliteQuery, public SqliteTableRelat
 
         bool uniqueKw = false;
         bool ifNotExistsKw = false;
-        QList<SqliteIndexedColumn*> indexedColumns;
+        QList<SqliteOrderBy*> indexedColumns;
         // The database refers to index name in Sqlite3, but in Sqlite2 it refers to the table.
         QString database = QString::null;
         QString index = QString::null;
@@ -46,6 +47,9 @@ class API_EXPORT SqliteCreateIndex : public SqliteQuery, public SqliteTableRelat
         TokenList getDatabaseTokensInStatement();
         QList<FullObject> getFullObjectsInStatement();
         TokenList rebuildTokensFromContents();
+
+    private:
+        QList<SqliteOrderBy*> toOrderColumns(const QList<SqliteIndexedColumn*>& columns);
 };
 
 typedef QSharedPointer<SqliteCreateIndex> SqliteCreateIndexPtr;

@@ -3,10 +3,11 @@
 
 #include "sqlitestatement.h"
 #include "sqlitesortorder.h"
+#include "sqliteextendedindexedcolumn.h"
 
 class SqliteExpr;
 
-class API_EXPORT SqliteOrderBy : public SqliteStatement
+class API_EXPORT SqliteOrderBy : public SqliteStatement, public SqliteExtendedIndexedColumn
 {
     public:
         SqliteOrderBy();
@@ -15,9 +16,16 @@ class API_EXPORT SqliteOrderBy : public SqliteStatement
         ~SqliteOrderBy();
 
         SqliteStatement* clone();
+        bool isSimpleColumn() const;
+        QString getColumnName() const;
+        QString getCollation() const;
+        QString getColumnString() const;
+        void setColumnName(const QString& name);
+        void setCollation(const QString& name);
+        void clearCollation();
 
         SqliteExpr* expr = nullptr;
-        SqliteSortOrder order;
+        SqliteSortOrder order = SqliteSortOrder::null;
 
     protected:
         TokenList rebuildTokensFromContents();

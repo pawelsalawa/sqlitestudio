@@ -91,7 +91,7 @@ QString SqliteExpr::notNullOp(SqliteExpr::NotNull value)
     }
 }
 
-SqliteStatement*SqliteExpr::clone()
+SqliteStatement* SqliteExpr::clone()
 {
     return new SqliteExpr(*this);
 }

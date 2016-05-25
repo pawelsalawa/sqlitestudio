@@ -347,13 +347,16 @@ bool HtmlExport::exportIndex(const QString& database, const QString& name, const
     decrIndent();
     writeln("</tr>");
 
-    for (SqliteIndexedColumn* idxCol : createIndex->indexedColumns)
+    QString collate;
+    for (SqliteOrderBy* idxCol : createIndex->indexedColumns)
     {
+        collate = idxCol->getCollation();
+
         writeln("<tr>");
         incrIndent();
-        writeln(QString("<td>%1</td>").arg(escape(idxCol->name)));
-        writeln(QString("<td align=\"center\">%1</td>").arg(idxCol->collate.isNull() ? "&nbsp;" : escape(idxCol->collate)));
-        writeln(QString("<td align=\"center\">%1</td>").arg(idxCol->sortOrder == SqliteSortOrder::null ? "&nbsp;" : sqliteSortOrder(idxCol->sortOrder)));
+        writeln(QString("<td>%1</td>").arg(escape(idxCol->getColumnString())));
+        writeln(QString("<td align=\"center\">%1</td>").arg(collate.isNull() ? "&nbsp;" : escape(collate)));
+        writeln(QString("<td align=\"center\">%1</td>").arg(idxCol->order == SqliteSortOrder::null ? "&nbsp;" : sqliteSortOrder(idxCol->order)));
         decrIndent();
         writeln("</tr>");
     }

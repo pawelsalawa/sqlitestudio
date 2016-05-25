@@ -73,6 +73,20 @@ API_EXPORT QHash<QString,QVariant> bytesToHash(const QByteArray& bytes);
 API_EXPORT int indexOf(const QStringList& list, const QString& value, int from = 0, Qt::CaseSensitivity cs = Qt::CaseSensitive);
 API_EXPORT int indexOf(const QStringList& list, const QString& value, Qt::CaseSensitivity cs = Qt::CaseSensitive);
 
+template <class T>
+int indexOf(const QList<T>& list, std::function<bool(const T&)> predicate)
+{
+    int i = 0;
+    for (const T& item : list)
+    {
+        if (predicate(item))
+            return i;
+
+        ++i;
+    }
+    return -1;
+}
+
 /**
  * @brief Returns only those elements from the list, which passed the filter.
  * @tparam T type for which the filter will be applied for. It should match the type in the list and in the function argument.

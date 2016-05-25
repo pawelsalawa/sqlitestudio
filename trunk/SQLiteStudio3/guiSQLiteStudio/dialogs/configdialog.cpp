@@ -168,13 +168,7 @@ void ConfigDialog::init()
     ui->categoriesTree->setCurrentItem(ui->categoriesTree->topLevelItem(0));
 
     configMapper = new ConfigMapper(CfgMain::getPersistableInstances());
-    connect(configMapper, SIGNAL(modified()), this, SLOT(markModified()));
-    connect(configMapper, &ConfigMapper::notifyEnabledWidgetModified, [=](QWidget* widget, CfgEntry* key, const QVariant& value)
-    {
-        UNUSED(widget);
-        for (ConfigNotifiablePlugin* plugin : notifiablePlugins)
-            plugin->configModified(key, value);
-    });
+    connectMapperSignals(configMapper);
 
     ui->categoriesFilter->setClearButtonEnabled(true);
     UserInputFilter* filter = new UserInputFilter(ui->categoriesFilter, this, SLOT(applyFilter(QString)));
@@ -575,6 +569,12 @@ void ConfigDialog::commitPluginConfigs()
     }
 }
 
+void ConfigDialog::connectMapperSignals(ConfigMapper* mapper)
+{
+    connect(mapper, SIGNAL(modified()), this, SLOT(markModified()));
+    connect(mapper, SIGNAL(notifyEnabledWidgetModified(QWidget*, CfgEntry*, const QVariant&)), this, SLOT(notifyPluginsAboutModification(QWidget*, CfgEntry*, const QVariant&)));
+}
+
 void ConfigDialog::updateDataTypeListState()
 {
     bool listEditingEnabled = ui->dataEditorsTypesList->selectedItems().size() > 0 && ui->dataEditorsTypesList->currentItem()->flags().testFlag(Qt::ItemIsEditable);
@@ -952,6 +952,12 @@ void ConfigDialog::markRequiresSchemasRefresh()
     requiresSchemasRefresh = true;
 }
 
+void ConfigDialog::notifyPluginsAboutModification(QWidget*, CfgEntry* key, const QVariant& value)
+{
+    for (ConfigNotifiablePlugin* plugin : notifiablePlugins)
+        plugin->configModified(key, value);
+}
+
 void ConfigDialog::updatePluginCategoriesVisibility(QTreeWidgetItem* categoryItem)
 {
     categoryItem->setHidden(categoryItem->childCount() == 0);
@@ -1325,10 +1331,12 @@ bool ConfigDialog::initPluginPage(Plugin* plugin, bool skipConfigLoading)
     {
         pluginConfigMappers[cfgPlugin] = new ConfigMapper(mainConfig);
         pluginConfigMappers[cfgPlugin]->bindToConfig(widget);
+        connectMapperSignals(pluginConfigMappers[cfgPlugin]);
         mainConfig->begin();
 
         // Remove this config from global mapper (if present there), so it's handled per plugin mapper
         configMapper->removeMainCfgEntry(mainConfig);
+        configMapper->ignoreWidget(widget);
     }
     else if (!skipConfigLoading)
     {
@@ -1356,9 +1364,6 @@ void ConfigDialog::deinitPluginPage(Plugin* plugin)
 
         if (pluginConfigMappers.contains(cfgPlugin))
         {
-//            // Reset CfgEntry mappings, so they don't point to old addresses
-//            configMapper->resetCfgEntries();
-
             delete pluginConfigMappers[cfgPlugin];
             pluginConfigMappers.remove(cfgPlugin);
         }
@@ -1366,6 +1371,7 @@ void ConfigDialog::deinitPluginPage(Plugin* plugin)
 
     QWidget* widget = nameToPage[pluginName];
     nameToPage.remove(pluginName);
+    configMapper->removeIgnoredWidget(widget);
     ui->stackedWidget->removeWidget(widget);
     delete widget;
 }

@@ -14,11 +14,10 @@ SqliteCreateIndex::SqliteCreateIndex(const SqliteCreateIndex& other) :
     SqliteQuery(other), uniqueKw(other.uniqueKw), ifNotExistsKw(other.ifNotExistsKw), database(other.database), index(other.index),
     table(other.table)
 {
-    DEEP_COPY_COLLECTION(SqliteIndexedColumn, indexedColumns);
+    DEEP_COPY_COLLECTION(SqliteOrderBy, indexedColumns);
 }
 
-SqliteCreateIndex::SqliteCreateIndex(bool unique, bool ifNotExists, const QString &name1, const QString &name2, const QString &name3,
-                                     const QList<SqliteIndexedColumn *> &columns, SqliteConflictAlgo onConflict)
+SqliteCreateIndex::SqliteCreateIndex(bool unique, bool ifNotExists, const QString& name1, const QString& name2, const QString& name3, const QList<SqliteIndexedColumn*>& columns, SqliteConflictAlgo onConflict)
     : SqliteCreateIndex()
 {
     // Constructor for SQLite 2
@@ -36,14 +35,11 @@ SqliteCreateIndex::SqliteCreateIndex(bool unique, bool ifNotExists, const QStrin
         table = name2;
 
     this->onConflict = onConflict;
-    this->indexedColumns = columns;
-
-    foreach (SqliteIndexedColumn* idxCol, columns)
-        idxCol->setParent(this);
+    this->indexedColumns = toOrderColumns(columns);
 }
 
 SqliteCreateIndex::SqliteCreateIndex(bool unique, bool ifNotExists, const QString& name1, const QString& name2, const QString& name3,
-                                     const QList<SqliteIndexedColumn*>& columns, SqliteExpr* where)
+                                     const QList<SqliteOrderBy*>& columns, SqliteExpr* where)
     : SqliteCreateIndex()
 {
     // Constructor for SQLite 3
@@ -61,7 +57,7 @@ SqliteCreateIndex::SqliteCreateIndex(bool unique, bool ifNotExists, const QStrin
     table = name3;
     this->indexedColumns = columns;
 
-    foreach (SqliteIndexedColumn* idxCol, columns)
+    foreach (SqliteOrderBy* idxCol, columns)
         idxCol->setParent(this);
 
     this->where = where;
@@ -188,6 +184,37 @@ TokenList SqliteCreateIndex::rebuildTokensFromContents()
     builder.withOperator(";");
 
     return builder.build();
+}
+
+QList<SqliteOrderBy*> SqliteCreateIndex::toOrderColumns(const QList<SqliteIndexedColumn*>& columns)
+{
+    QList<SqliteOrderBy*> result;
+    SqliteOrderBy* orderBy = nullptr;
+    SqliteExpr* expr = nullptr;
+    for (SqliteIndexedColumn* idxCol : columns)
+    {
+        orderBy = new SqliteOrderBy();
+        orderBy->setParent(this);
+        orderBy->expr = new SqliteExpr();
+        orderBy->expr->setParent(orderBy);
+
+        if (!idxCol->collate.isNull())
+        {
+            expr = new SqliteExpr();
+            expr->initId(idxCol->name);
+            expr->setParent(orderBy->expr);
+
+            orderBy->expr->initCollate(expr, idxCol->collate);
+        }
+        else
+        {
+            orderBy->expr->initId(idxCol->name);
+        }
+
+        result << orderBy;
+        delete idxCol;
+    }
+    return result;
 }
 
 QString SqliteCreateIndex::getTargetDatabase() const

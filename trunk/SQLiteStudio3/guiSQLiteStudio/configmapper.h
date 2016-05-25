@@ -71,6 +71,8 @@ class GUI_API_EXPORT ConfigMapper : public QObject
         void addExtraWidget(QWidget* w);
         void addExtraWidgets(const QList<QWidget*>& list);
         void clearExtraWidgets();
+        void ignoreWidget(QWidget* w);
+        void removeIgnoredWidget(QWidget* w);
 
     private:
         void applyConfigToWidget(QWidget *widget, const QHash<QString, CfgEntry*>& allConfigEntries, const QHash<QString, QVariant> &config);
@@ -101,6 +103,7 @@ class GUI_API_EXPORT ConfigMapper : public QObject
         QHash<CfgEntry*,QWidget*> specialConfigEntryToWidgets;
         bool updatingEntry = false;
         QList<QWidget*> extraWidgets;
+        QList<QWidget*> widgetsToIgnore; // main mapper will ignore plugin's forms, they have their own mappers
         QHash<QString, CfgEntry*> allEntries;
 
         static constexpr const char* CFG_MODEL_PROPERTY = "cfg";

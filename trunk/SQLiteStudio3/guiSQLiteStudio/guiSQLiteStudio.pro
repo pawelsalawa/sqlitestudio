@@ -182,7 +182,8 @@ SOURCES +=\
     dialogs/languagedialog.cpp \
     common/ipvalidator.cpp \
     dialogs/cssdebugdialog.cpp \
-    themetuner.cpp
+    themetuner.cpp \
+    dialogs/indexexprcolumndialog.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -329,7 +330,8 @@ HEADERS  += mainwindow.h \
     dialogs/languagedialog.h \
     common/ipvalidator.h \
     dialogs/cssdebugdialog.h \
-    themetuner.h
+    themetuner.h \
+    dialogs/indexexprcolumndialog.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \
@@ -378,7 +380,8 @@ FORMS    += mainwindow.ui \
     dialogs/newversiondialog.ui \
     dialogs/quitconfirmdialog.ui \
     dialogs/languagedialog.ui \
-    dialogs/cssdebugdialog.ui
+    dialogs/cssdebugdialog.ui \
+    dialogs/indexexprcolumndialog.ui
 
 RESOURCES += \
     icons.qrc \

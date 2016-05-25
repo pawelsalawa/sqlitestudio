@@ -2,6 +2,7 @@
 #define DBVERSIONCONVERTER_H
 
 #include "parser/ast/sqlitequery.h"
+#include "parser/ast/sqliteorderby.h"
 #include <QList>
 #include <QStringList>
 #include <QPair>
@@ -85,8 +86,7 @@ class API_EXPORT DbVersionConverter : public QObject
         bool modifyAllExprsForVersion2(SqliteStatement* stmt);
         bool modifySingleExprForVersion2(SqliteExpr* expr);
         bool modifyAllIndexedColumnsForVersion2(SqliteStatement* stmt);
-        bool modifyAllIndexedColumnsForVersion2(const QList<SqliteIndexedColumn*> columns);
-        bool modifySingleIndexedColumnForVersion2(SqliteIndexedColumn* idxCol);
+        bool modifySingleIndexedColumnForVersion2(SqliteExtendedIndexedColumn* idxCol);
         bool modifyBeginTransForVersion3(SqliteBeginTrans* begin);
         bool modifyCreateTableForVersion3(SqliteCreateTable* createTable);
         QString getSqlForDiff(SqliteStatement* stmt);
@@ -98,6 +98,18 @@ class API_EXPORT DbVersionConverter : public QObject
         void setInterrupted(bool value);
         bool isInterrupted();
         void conversionInterrupted(Db* db, bool rollback);
+
+        template <class T>
+        bool modifyAllIndexedColumnsForVersion2(const QList<T*> columns)
+        {
+            for (T* idxCol : columns)
+            {
+                if (!modifySingleIndexedColumnForVersion2(idxCol))
+                    return false;
+            }
+            return true;
+        }
+
 
         template <class T>
         QSharedPointer<T> copyQuery(SqliteQueryPtr query)

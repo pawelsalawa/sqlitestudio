@@ -474,7 +474,7 @@ QList<QWidget*> ConfigMapper::getAllConfigWidgets(QWidget *parent)
     foreach (QObject* obj, parent->children())
     {
         widget = qobject_cast<QWidget*>(obj);
-        if (!widget)
+        if (!widget || widgetsToIgnore.contains(widget))
             continue;
 
         results += getAllConfigWidgets(widget);
@@ -518,6 +518,16 @@ void ConfigMapper::addExtraWidgets(const QList<QWidget *> &list)
 void ConfigMapper::clearExtraWidgets()
 {
     extraWidgets.clear();
+}
+
+void ConfigMapper::ignoreWidget(QWidget* w)
+{
+    widgetsToIgnore << w;
+}
+
+void ConfigMapper::removeIgnoredWidget(QWidget* w)
+{
+    widgetsToIgnore.removeOne(w);
 }
 
 void ConfigMapper::handleModified()

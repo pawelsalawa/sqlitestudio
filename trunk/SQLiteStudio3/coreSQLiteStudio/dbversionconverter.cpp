@@ -793,20 +793,10 @@ bool DbVersionConverter::modifyAllIndexedColumnsForVersion2(SqliteStatement* stm
 
 }
 
-bool DbVersionConverter::modifyAllIndexedColumnsForVersion2(const QList<SqliteIndexedColumn*> columns)
+bool DbVersionConverter::modifySingleIndexedColumnForVersion2(SqliteExtendedIndexedColumn* idxCol)
 {
-    for (SqliteIndexedColumn* idxCol : columns)
-    {
-        if (!modifySingleIndexedColumnForVersion2(idxCol))
-            return false;
-    }
-    return true;
-}
-
-bool DbVersionConverter::modifySingleIndexedColumnForVersion2(SqliteIndexedColumn* idxCol)
-{
-    if (!idxCol->collate.isNull())
-        idxCol->collate = QString::null;
+    if (!idxCol->getCollation().isNull())
+        idxCol->clearCollation();
 
     return true;
 }
