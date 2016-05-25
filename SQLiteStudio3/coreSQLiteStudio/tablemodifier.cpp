@@ -207,32 +207,24 @@ bool TableModifier::handleName(const QString& oldName, const QString& theNewName
     return false;
 }
 
-bool TableModifier::handleIndexedColumns(QList<SqliteIndexedColumn*>& columnsToUpdate)
+bool TableModifier::handleIndexedColumnsInitial(SqliteOrderBy* col, bool& modified)
 {
-    bool modified = false;
-    QString lowerName;
-    QMutableListIterator<SqliteIndexedColumn*> it(columnsToUpdate);
-    while (it.hasNext())
-    {
-        SqliteIndexedColumn* idxCol = it.next();
+    if (col->isSimpleColumn())
+        return false;
 
-        // If column was modified, assign new name
-        lowerName = idxCol->name.toLower();
-        if (tableColMap.contains(lowerName))
-        {
-            idxCol->name = tableColMap[lowerName];
-            modified = true;
-            continue;
-        }
+    QString oldExpr = col->expr->tokens.detokenize();
+    if (!handleExpr(col->expr))
+        qWarning() << "Handling column change in multi-level expression of CREATE INDEX column failed. The change will most probably be skipped in the final update DDL.";
 
-        // It wasn't modified, but it's not on existing columns list? Remove it.
-        if (indexOf(existingColumns, idxCol->name, Qt::CaseInsensitive) == -1)
-        {
-            it.remove();
-            modified = true;
-        }
-    }
-    return modified;
+    modified = (col->expr->tokens.detokenize() != oldExpr);
+    return true;
+}
+
+bool TableModifier::handleIndexedColumnsInitial(SqliteIndexedColumn* col, bool& modified)
+{
+    UNUSED(col);
+    UNUSED(modified);
+    return false;
 }
 
 bool TableModifier::handleColumnNames(QStringList& columnsToUpdate)
@@ -775,6 +767,51 @@ bool TableModifier::handleExprWithTrigTable(SqliteExpr* expr)
         return true;
 
     if (expr->table.compare("old", Qt::CaseInsensitive) != 0 && expr->table.compare("new", Qt::CaseInsensitive) != 0)
+        return true;
+
+    QStringList columns = QStringList({expr->column});
+    if (!handleColumnNames(columns))
+        return true;
+
+    if (columns.isEmpty())
+    {
+        qDebug() << "Column in the expression is no longer present in the table. Cannot update the expression automatically.";
+        return false;
+    }
+
+    expr->column = columns.first();
+    return true;
+}
+
+bool TableModifier::handleExpr(SqliteExpr* expr)
+{
+    // Handle subqueries
+    QList<SqliteExpr*> exprList;
+    exprList << expr->expr1;
+    exprList << expr->expr2;
+    exprList << expr->expr3;
+    exprList.append(expr->exprList);
+    exprList.removeAll(nullptr);
+    if (!exprList.isEmpty())
+    {
+        bool res = true;
+        for (SqliteExpr* e : exprList)
+        {
+            res &= handleExpr(e);
+            if (!res)
+                break;
+        }
+        return res;
+    }
+
+    // No need to handle subselect. Currently handleExpr() is used only in context of expr index column (in CREATE INDEX),
+    // which does not allow subselects. If the method comes to use with subselects supported, then this has to be implemented.
+
+    // Handle specific column
+    if (expr->mode != SqliteExpr::Mode::ID)
+        return true;
+
+    if (!expr->database.isNull())
         return true;
 
     QStringList columns = QStringList({expr->column});

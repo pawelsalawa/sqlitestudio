@@ -1,7 +1,6 @@
 #include "indexdialog.h"
 #include "ui_indexdialog.h"
 #include "schemaresolver.h"
-#include "parser/ast/sqliteindexedcolumn.h"
 #include "services/notifymanager.h"
 #include "common/utils_sql.h"
 #include "db/chainexecutor.h"
@@ -11,6 +10,7 @@
 #include "services/config.h"
 #include "uiutils.h"
 #include "sqlite3.h"
+#include "indexexprcolumndialog.h"
 #include "windows/editorwindow.h"
 #include "services/codeformatter.h"
 #include <QDebug>
@@ -70,11 +70,18 @@ void IndexDialog::init()
 
     ui->moveUpButton->setIcon(ICONS.MOVE_UP);
     ui->moveDownButton->setIcon(ICONS.MOVE_DOWN);
+    ui->addExprColumnButton->setIcon(ICONS.INDEX_EXPR_ADD);
+    ui->editExprColumnButton->setIcon(ICONS.INDEX_EXPR_EDIT);
+    ui->delExprColumnButton->setIcon(ICONS.INDEX_EXPR_DEL);
     connect(ui->moveUpButton, SIGNAL(clicked()), this, SLOT(moveColumnUp()));
     connect(ui->moveDownButton, SIGNAL(clicked()), this, SLOT(moveColumnDown()));
+    connect(ui->addExprColumnButton, SIGNAL(clicked()), this, SLOT(addExprColumn()));
+    connect(ui->editExprColumnButton, SIGNAL(clicked()), this, SLOT(editExprColumn()));
+    connect(ui->delExprColumnButton, SIGNAL(clicked()), this, SLOT(delExprColumn()));
+    connect(ui->columnsTable, SIGNAL(cellDoubleClicked(int,int)), this, SLOT(editExprColumn(int)));
 
     ui->columnsTable->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
-    connect(ui->columnsTable->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(updateUpDownButtons(QModelIndex)));
+    connect(ui->columnsTable->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)), this, SLOT(updateToolBarButtons(QModelIndex)));
 
     ui->partialIndexEdit->setDb(db);
 
@@ -88,6 +95,7 @@ void IndexDialog::init()
     ui->tableCombo->addItems(resolver.getTables());
     connect(ui->tableCombo, SIGNAL(currentTextChanged(QString)), this, SLOT(updateTable(QString)));
     connect(ui->tableCombo, SIGNAL(currentTextChanged(QString)), this, SLOT(updateValidation()));
+    connect(ui->uniqueCheck, SIGNAL(toggled(bool)), this, SLOT(updateValidation()));
     if (existingIndex)
         ui->tableCombo->setEnabled(false);
 
@@ -105,6 +113,9 @@ void IndexDialog::init()
         ui->partialIndexCheck->setVisible(false);
         ui->partialIndexEdit->setVisible(false);
         ui->columnsTable->setColumnHidden(1, true);
+        ui->addExprColumnButton->setVisible(false);
+        ui->editExprColumnButton->setVisible(false);
+        ui->delExprColumnButton->setVisible(false);
     }
 
     readCollations();
@@ -153,10 +164,10 @@ void IndexDialog::buildColumns()
     ui->columnsTable->setRowCount(totalColumns);
 
     int row = 0;
-    foreach (const QString& column, tableColumns)
+    for (const QString& column : tableColumns)
         buildColumn(column, row++);
 
-    updateUpDownButtons();
+    updateToolBarButtons();
 }
 
 void IndexDialog::updateTable(const QString& value)
@@ -173,6 +184,7 @@ void IndexDialog::updateValidation()
 {
     bool tableOk = ui->tableCombo->currentIndex() > 0;
     bool colSelected = false;
+    bool hasExprColumn = false;
 
     if (tableOk)
     {
@@ -181,7 +193,7 @@ void IndexDialog::updateValidation()
             if (col->getCheck()->isChecked())
             {
                 colSelected = true;
-                break;
+                hasExprColumn |= col->isExpr();
             }
         }
     }
@@ -189,11 +201,14 @@ void IndexDialog::updateValidation()
     bool partialConditionOk = (!ui->partialIndexCheck->isChecked() ||
                            (ui->partialIndexEdit->isSyntaxChecked() && !ui->partialIndexEdit->haveErrors()));
 
+    bool uniqueAndExprOk = !(ui->uniqueCheck->isChecked() && hasExprColumn);
+
+    setValidState(ui->uniqueCheck, uniqueAndExprOk, tr("Unique index cannot have indexed expressions. Either remove expressions from list below, or uncheck this option."));
     setValidState(ui->tableCombo, tableOk, tr("Pick the table for the index."));
     setValidState(ui->columnsTable, colSelected, tr("Select at least one column."));
     setValidState(ui->partialIndexCheck, partialConditionOk, tr("Enter a valid condition."));
 
-    ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(colSelected && partialConditionOk);
+    ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(colSelected && partialConditionOk && uniqueAndExprOk);
 }
 
 void IndexDialog::setTable(const QString& value)
@@ -215,7 +230,26 @@ void IndexDialog::readCollations()
 void IndexDialog::buildColumn(const QString& name, int row)
 {
     Column* column = new Column(name, ui->columnsTable);
-    columns[name] = column;
+    buildColumn(column, row);
+}
+
+IndexDialog::Column* IndexDialog::buildColumn(SqliteOrderBy* orderBy, int row)
+{
+    SqliteExpr* expr = dynamic_cast<SqliteExpr*>(orderBy->expr->clone());
+    return buildColumn(expr, row);
+}
+
+IndexDialog::Column* IndexDialog::buildColumn(SqliteExpr* expr, int row)
+{
+    Column* column = new Column(expr, ui->columnsTable);
+    buildColumn(column, row);
+    return column;
+}
+
+void IndexDialog::buildColumn(Column* column, int row)
+{
+    QString key = column->getKey();
+    columns[key] = column;
     columnsByRow << column;
 
     column->setCheckParent(new QWidget());
@@ -228,13 +262,12 @@ void IndexDialog::buildColumn(const QString& name, int row)
     layout->setContentsMargins(margins);
     column->getCheckParent()->setLayout(layout);
 
-    column->setCheck(new QCheckBox(name));
+    column->setCheck(new QCheckBox(key));
     column->getCheckParent()->layout()->addWidget(column->getCheck());
 
-    columnStateSignalMapping->setMapping(column->getCheck(), name);
+    columnStateSignalMapping->setMapping(column->getCheck(), key);
     connect(column->getCheck(), SIGNAL(toggled(bool)), columnStateSignalMapping, SLOT(map()));
     connect(column->getCheck(), SIGNAL(toggled(bool)), this, SLOT(updateValidation()));
-//    columnCheckBoxes << column->check;
 
     if (db->getDialect() == Dialect::Sqlite3)
     {
@@ -242,13 +275,10 @@ void IndexDialog::buildColumn(const QString& name, int row)
         column->getCollation()->setEditable(true);
         column->getCollation()->lineEdit()->setPlaceholderText(tr("default", "index dialog"));
         column->getCollation()->setModel(&collations);
-//        collateComboBoxes << column->collation;
     }
 
     column->setSort(new QComboBox());
     column->getSort()->setToolTip(tr("Sort order", "table constraints"));
-//    sortComboBoxes << column->sort;
-
 
     QStringList sortList = {"", sqliteSortOrder(SqliteSortOrder::ASC), sqliteSortOrder(SqliteSortOrder::DESC)};
     column->getSort()->addItems(sortList);
@@ -258,12 +288,12 @@ void IndexDialog::buildColumn(const QString& name, int row)
 
     totalColumns++;
 
-    updateColumnState(name);
+    updateColumnState(key);
 }
 
-void IndexDialog::updateColumnState(const QString& columnName)
+void IndexDialog::updateColumnState(const QString& columnKey)
 {
-    Column* col = columns[columnName];
+    Column* col = columns[columnKey];
 
     bool enabled = col->getCheck()->isChecked();
     col->getSort()->setEnabled(enabled);
@@ -326,10 +356,12 @@ void IndexDialog::moveColumnDown()
     ui->columnsTable->selectionModel()->setCurrentIndex(idx, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
 }
 
-void IndexDialog::updateUpDownButtons(const QModelIndex& idx)
+void IndexDialog::updateToolBarButtons(const QModelIndex& idx)
 {
     if (!idx.isValid())
     {
+        ui->editExprColumnButton->setEnabled(false);
+        ui->delExprColumnButton->setEnabled(false);
         ui->moveUpButton->setEnabled(false);
         ui->moveDownButton->setEnabled(false);
         return;
@@ -339,28 +371,139 @@ void IndexDialog::updateUpDownButtons(const QModelIndex& idx)
     int cols = tableColumns.size();
     ui->moveUpButton->setEnabled(row > 0);
     ui->moveDownButton->setEnabled((row + 1) < cols);
+
+    bool isExpr = columnsByRow[row]->isExpr();
+    ui->editExprColumnButton->setEnabled(isExpr);
+    ui->delExprColumnButton->setEnabled(isExpr);
+}
+
+void IndexDialog::addExprColumn()
+{
+    IndexExprColumnDialog dialog(db, this);
+    dialog.setExistingExprColumnKeys(getExistingColumnExprs());
+    dialog.setTableColumns(getTableColumns());
+    if (!dialog.exec())
+        return;
+
+    SqliteExpr* expr = dialog.getColumn();
+    if (!expr)
+    {
+        qCritical() << "Null expr in IndexDialog::addExprColumn(). Aborting.";
+        return;
+    }
+
+    int row = columnsByRow.size();
+    ui->columnsTable->insertRow(row);
+
+    Column* col = buildColumn(expr, row);
+    col->getCheck()->setChecked(true);
+    rebuildColumnsByNewOrder();
+
+    ui->columnsTable->scrollToBottom();
+    updateValidation();
+}
+
+void IndexDialog::editExprColumn(int row)
+{
+    if (row < 0)
+        row = ui->columnsTable->currentRow();
+
+    if (row < 0 || row >= columnsByRow.size())
+    {
+        qWarning() << "IndexDialog::editExprColumn() called for row out of bounds:" << row << "while there are" << columnsByRow.size() << "rows.";
+        return;
+    }
+
+    Column* col = columnsByRow[row];
+    if (!col->isExpr())
+    {
+        qWarning() << "IndexDialog::editExprColumn() called for non-expr index column.";
+        return;
+    }
+
+    IndexExprColumnDialog dialog(db, col->getExpr(), this);
+    dialog.setExistingExprColumnKeys(getExistingColumnExprs(col->getKey()));
+    dialog.setTableColumns(getTableColumns());
+    if (!dialog.exec())
+        return;
+
+    SqliteExpr* expr = dialog.getColumn();
+    if (!expr)
+    {
+        qCritical() << "Null expr in IndexDialog::editExprColumn(). Aborting.";
+        return;
+    }
+
+    QString oldKey = col->getKey();
+    col->setExpr(expr);
+    QString newKey = col->getKey();
+
+    columns.remove(oldKey);
+    columns[newKey] = col;
+
+    col->getCheck()->setText(newKey);
+    col->getCheck()->setChecked(true);
+    rebuildColumnsByNewOrder();
+    updateValidation();
+}
+
+void IndexDialog::delExprColumn()
+{
+    int row = ui->columnsTable->currentRow();
+
+    if (row < 0 || row >= columnsByRow.size())
+    {
+        qWarning() << "IndexDialog::delExprColumn() called for row out of bounds:" << row << "while there are" << columnsByRow.size() << "rows.";
+        return;
+    }
+
+    Column* col = columnsByRow[row];
+    if (!col->isExpr())
+    {
+        qWarning() << "IndexDialog::delExprColumn() called for non-expr index column.";
+        return;
+    }
+
+    // Removes all widgets in the row
+    ui->columnsTable->removeRow(row);
+
+    columnsByRow.removeOne(col);
+    columns.remove(col->getKey());
+    delete col;
+
+    rebuildColumnsByNewOrder();
+    updateValidation();
 }
 
 void IndexDialog::applyColumnValues()
 {
     Column* column = nullptr;
+    QString key;
     int row = 0;
+    int totalRows = tableColumns.size();
     bool orderChanged = false;
-    for (SqliteIndexedColumn* idxCol : createIndex->indexedColumns)
+    for (SqliteOrderBy* idxCol : createIndex->indexedColumns)
     {
-        column = columns[idxCol->name];
-        if (!column)
+        key = getKey(idxCol);
+
+        if (idxCol->isSimpleColumn())
         {
-            qCritical() << "Cannot find column by name! Column name:" << idxCol->name
-                        << ", available columns:" << columns.keys() << ", index name:" << index;
-            continue;
+            column = columns[key];
+            if (!column)
+            {
+                qCritical() << "Cannot find column by name or expression! Column name/expression:" << key
+                            << ", available columns:" << columns.keys() << ", index name:" << index;
+                continue;
+            }
         }
+        else
+            column = buildColumn(idxCol, totalRows++);
 
         column->getCheck()->setChecked(true);
-        updateColumnState(idxCol->name);
-        column->getSort()->setCurrentText(sqliteSortOrder(idxCol->sortOrder));
+        updateColumnState(key);
+        column->getSort()->setCurrentText(sqliteSortOrder(idxCol->order));
         if (column->hasCollation())
-            column->getCollation()->setCurrentText(idxCol->collate);
+            column->getCollation()->setCurrentText(idxCol->getCollation());
 
         // Setting proper order
         int currentRow = columnsByRow.indexOf(column);
@@ -387,13 +530,41 @@ void IndexDialog::applyIndex()
         ui->partialIndexEdit->setPlainText(createIndex->where->detokenize());
 }
 
-SqliteIndexedColumn* IndexDialog::addIndexedColumn(const QString& name)
+SqliteOrderBy* IndexDialog::addIndexedColumn(const QString& name)
 {
-    SqliteIndexedColumn* idxCol = new SqliteIndexedColumn();
-    idxCol->name = name;
+    SqliteOrderBy* idxCol = new SqliteOrderBy();
     idxCol->setParent(createIndex.data());
+
+    SqliteExpr* expr = new SqliteExpr();
+    expr->initId(name);
+    idxCol->expr = expr;
+    expr->setParent(idxCol);
+
     createIndex->indexedColumns << idxCol;
     return idxCol;
+}
+
+SqliteOrderBy* IndexDialog::addIndexedColumn(SqliteExpr* expr)
+{
+    SqliteOrderBy* idxCol = new SqliteOrderBy();
+    idxCol->setParent(createIndex.data());
+
+    SqliteExpr* clonedExpr = dynamic_cast<SqliteExpr*>(expr->clone());
+    idxCol->expr = clonedExpr;
+    clonedExpr->setParent(idxCol);
+
+    createIndex->indexedColumns << idxCol;
+    return idxCol;
+}
+
+void IndexDialog::addCollation(SqliteOrderBy* col, const QString& name)
+{
+    SqliteExpr* expr = new SqliteExpr();
+    col->expr->setParent(expr);
+    expr->initCollate(col->expr, name);
+    expr->setParent(col);
+
+    col->expr = expr;
 }
 
 void IndexDialog::rebuildCreateIndex()
@@ -405,18 +576,22 @@ void IndexDialog::rebuildCreateIndex()
 
     createIndex->uniqueKw = ui->uniqueCheck->isChecked();
 
-    SqliteIndexedColumn* idxCol = nullptr;
+    SqliteOrderBy* idxCol = nullptr;
     for (Column* column : columnsByRow)
     {
         if (!column->getCheck()->isChecked())
             continue;
 
-        idxCol = addIndexedColumn(column->getName());
+        if (column->isExpr())
+            idxCol = addIndexedColumn(column->getExpr());
+        else
+            idxCol = addIndexedColumn(column->getName());
+
         if (column->hasCollation() && !column->getCollation()->currentText().isEmpty())
-            idxCol->collate = column->getCollation()->currentText();
+            addCollation(idxCol, column->getCollation()->currentText());
 
         if (column->getSort()->currentIndex() > 0)
-            idxCol->sortOrder = sqliteSortOrder(column->getSort()->currentText());
+            idxCol->order = sqliteSortOrder(column->getSort()->currentText());
     }
 
     if (ui->partialIndexCheck->isChecked())
@@ -499,6 +674,43 @@ void IndexDialog::rebuildColumnsByNewOrder()
     }
 }
 
+QString IndexDialog::getKey(SqliteOrderBy* col) const
+{
+    if (col->isSimpleColumn())
+        return col->getColumnName();
+
+    return col->expr->tokens.filterWhiteSpaces(false).detokenize();
+}
+
+QStringList IndexDialog::getExistingColumnExprs(const QString& exceptThis) const
+{
+    QString key;
+    QStringList exprs;
+    for (Column* col : columnsByRow)
+    {
+        if (col->isExpr())
+        {
+            key = col->getKey();
+            if (!exceptThis.isNull() && key == exceptThis)
+                continue;
+
+            exprs << key;
+        }
+    }
+    return exprs;
+}
+
+QStringList IndexDialog::getTableColumns() const
+{
+    QStringList cols;
+    for (Column* col : columnsByRow)
+    {
+        if (!col->isExpr())
+            cols << col->getKey();
+    }
+    return cols;
+}
+
 void IndexDialog::accept()
 {
     rebuildCreateIndex();
@@ -561,6 +773,17 @@ IndexDialog::Column::Column(const QString& name, QTableWidget* table)
     this->table = table;
 }
 
+IndexDialog::Column::Column(SqliteExpr* expr, QTableWidget* table)
+{
+    this->expr = expr;
+    this->table = table;
+}
+
+IndexDialog::Column::~Column()
+{
+    safe_delete(expr);
+}
+
 void IndexDialog::Column::assignToNewRow(int row)
 {
     table->setCellWidget(row, 0, column1Contrainer);
@@ -576,7 +799,7 @@ void IndexDialog::Column::prepareForNewRow()
         column3Contrainer = defineContainer(collation);
 }
 
-QCheckBox* IndexDialog::Column::getCheck()
+QCheckBox* IndexDialog::Column::getCheck() const
 {
     return check;
 }
@@ -586,7 +809,7 @@ void IndexDialog::Column::setCheck(QCheckBox* cb)
     check = cb;
 }
 
-QWidget* IndexDialog::Column::getCheckParent()
+QWidget* IndexDialog::Column::getCheckParent() const
 {
     return checkParent;
 }
@@ -596,7 +819,7 @@ void IndexDialog::Column::setCheckParent(QWidget* w)
     checkParent = w;
 }
 
-QComboBox* IndexDialog::Column::getSort()
+QComboBox* IndexDialog::Column::getSort() const
 {
     return sort;
 }
@@ -606,7 +829,7 @@ void IndexDialog::Column::setSort(QComboBox* cb)
     sort = cb;
 }
 
-QComboBox* IndexDialog::Column::getCollation()
+QComboBox* IndexDialog::Column::getCollation() const
 {
     return collation;
 }
@@ -624,6 +847,30 @@ bool IndexDialog::Column::hasCollation() const
 QString IndexDialog::Column::getName() const
 {
     return name;
+}
+
+SqliteExpr* IndexDialog::Column::getExpr() const
+{
+    return expr;
+}
+
+void IndexDialog::Column::setExpr(SqliteExpr* expr)
+{
+    safe_delete(this->expr);
+    this->expr = expr;
+}
+
+bool IndexDialog::Column::isExpr() const
+{
+    return expr != nullptr;
+}
+
+QString IndexDialog::Column::getKey() const
+{
+    if (expr)
+        return expr->tokens.filterWhiteSpaces(false).detokenize();
+    else
+        return name;
 }
 
 QWidget* IndexDialog::Column::defineContainer(QWidget* w)

@@ -3,9 +3,10 @@
 
 #include "sqlitestatement.h"
 #include "sqlitesortorder.h"
+#include "sqliteextendedindexedcolumn.h"
 #include <QString>
 
-class API_EXPORT SqliteIndexedColumn : public SqliteStatement
+class API_EXPORT SqliteIndexedColumn : public SqliteStatement, public SqliteExtendedIndexedColumn
 {
     public:
         SqliteIndexedColumn();
@@ -14,6 +15,11 @@ class API_EXPORT SqliteIndexedColumn : public SqliteStatement
         explicit SqliteIndexedColumn(const QString& name);
 
         SqliteStatement* clone();
+        QString getColumnName() const;
+        void setColumnName(const QString& name);
+        void setCollation(const QString& name);
+        QString getCollation() const;
+        void clearCollation();
 
         QString name = QString::null;
         SqliteSortOrder sortOrder = SqliteSortOrder::null;

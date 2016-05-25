@@ -231,14 +231,14 @@ bool PdfExport::exportIndex(const QString& database, const QString& name, const 
     exportObjectColumnsHeader(indexColumns);
 
     QString sort;
-    for (SqliteIndexedColumn* idxCol : createIndex->indexedColumns)
+    for (SqliteOrderBy* idxCol : createIndex->indexedColumns)
     {
-        if (idxCol->sortOrder != SqliteSortOrder::null)
-            sort = sqliteSortOrder(idxCol->sortOrder);
+        if (idxCol->order != SqliteSortOrder::null)
+            sort = sqliteSortOrder(idxCol->order);
         else
             sort = "";
 
-        exportObjectRow({idxCol->name, idxCol->collate, sort});
+        exportObjectRow({idxCol->getColumnString(), idxCol->getCollation(), sort});
     }
 
     if (createIndex->where)

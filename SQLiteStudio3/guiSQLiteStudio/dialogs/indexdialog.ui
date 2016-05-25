@@ -30,48 +30,10 @@
        <string>Index</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_2">
-       <item row="1" column="0">
-        <widget class="QLabel" name="tableLabel">
-         <property name="text">
-          <string>On table:</string>
-         </property>
-        </widget>
+       <item row="0" column="1" colspan="6">
+        <widget class="QLineEdit" name="nameEdit"/>
        </item>
-       <item row="1" column="1" colspan="3">
-        <widget class="QComboBox" name="tableCombo"/>
-       </item>
-       <item row="5" column="0" colspan="4">
-        <widget class="SqlEditor" name="partialIndexEdit">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>1</verstretch>
-          </sizepolicy>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0" colspan="2">
-        <widget class="QCheckBox" name="uniqueCheck">
-         <property name="text">
-          <string>Unique index</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="nameLabel">
-         <property name="text">
-          <string>Index name:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0" colspan="4">
-        <widget class="QCheckBox" name="partialIndexCheck">
-         <property name="text">
-          <string>Partial index condition</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0" colspan="4">
+       <item row="3" column="0" colspan="7">
         <widget class="QTableWidget" name="columnsTable">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -120,7 +82,37 @@
          </column>
         </widget>
        </item>
-       <item row="2" column="3">
+       <item row="1" column="0">
+        <widget class="QLabel" name="tableLabel">
+         <property name="text">
+          <string>On table:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1" colspan="6">
+        <widget class="QComboBox" name="tableCombo"/>
+       </item>
+       <item row="2" column="4">
+        <widget class="QToolButton" name="delExprColumnButton">
+         <property name="toolTip">
+          <string>Delete selected indexed expression</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="5">
+        <widget class="QToolButton" name="moveUpButton">
+         <property name="toolTip">
+          <string>Moves selected index column up in the order, making it more significant in the index.</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="6">
         <widget class="QToolButton" name="moveDownButton">
          <property name="toolTip">
           <string>Moves selected index column down in the order, making it less significant in the index.</string>
@@ -130,13 +122,51 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="1" colspan="3">
-        <widget class="QLineEdit" name="nameEdit"/>
+       <item row="4" column="0" colspan="7">
+        <widget class="QCheckBox" name="partialIndexCheck">
+         <property name="text">
+          <string>Partial index condition</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <widget class="QCheckBox" name="uniqueCheck">
+         <property name="text">
+          <string>Unique index</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="nameLabel">
+         <property name="text">
+          <string>Index name:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="3">
+        <widget class="QToolButton" name="editExprColumnButton">
+         <property name="toolTip">
+          <string>Edit selected indexed expression</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0" colspan="7">
+        <widget class="SqlEditor" name="partialIndexEdit">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>1</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
        </item>
        <item row="2" column="2">
-        <widget class="QToolButton" name="moveUpButton">
+        <widget class="QToolButton" name="addExprColumnButton">
          <property name="toolTip">
-          <string>Moves selected index column up in the order, making it more significant in the index.</string>
+          <string>Add indexed expression</string>
          </property>
          <property name="text">
           <string/>

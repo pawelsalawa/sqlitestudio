@@ -84,6 +84,7 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         void addDataType(const QString& typeStr);
         void rollbackPluginConfigs();
         void commitPluginConfigs();
+        void connectMapperSignals(ConfigMapper* mapper);
 
         Ui::ConfigDialog *ui = nullptr;
         QStyle* previewStyle = nullptr;
@@ -136,6 +137,7 @@ class GUI_API_EXPORT ConfigDialog : public QDialog
         void updateBuiltInPluginsVisibility();
         void applyShortcutsFilter(const QString& filter);
         void markRequiresSchemasRefresh();
+        void notifyPluginsAboutModification(QWidget*, CfgEntry* key, const QVariant& value);
 
     public slots:
         void accept();

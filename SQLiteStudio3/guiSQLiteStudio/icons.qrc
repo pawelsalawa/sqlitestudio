@@ -195,5 +195,8 @@
         <file>img/delete.png</file>
         <file>img/dock_layout_horizontal.png</file>
         <file>img/dock_layout_vertical.png</file>
+        <file>img/tag_hash_add.png</file>
+        <file>img/tag_hash_del.png</file>
+        <file>img/tag_hash_edit.png</file>
     </qresource>
 </RCC>

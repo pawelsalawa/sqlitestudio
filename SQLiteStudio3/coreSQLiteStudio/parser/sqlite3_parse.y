@@ -1824,7 +1824,7 @@ nexprlist(X) ::= exprx(E).                  {
 
 cmd(X) ::= CREATE uniqueflag(U) INDEX
             ifnotexists(E) nm(N1) dbnm(N2)
-            ON nm(N3) LP idxlist(L) RP
+            ON nm(N3) LP sortlist(L) RP
             where_opt(W).                   {
                                                 X = new SqliteCreateIndex(
                                                         *(U),

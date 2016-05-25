@@ -24,9 +24,24 @@ SqliteIndexedColumn::SqliteIndexedColumn(const QString& name)
     this->name = name;
 }
 
-SqliteStatement*SqliteIndexedColumn::clone()
+SqliteStatement* SqliteIndexedColumn::clone()
 {
     return new SqliteIndexedColumn(*this);
+}
+
+QString SqliteIndexedColumn::getColumnName() const
+{
+    return name;
+}
+
+void SqliteIndexedColumn::setColumnName(const QString& name)
+{
+    this->name = name;
+}
+
+void SqliteIndexedColumn::setCollation(const QString& name)
+{
+    this->collate = name;
 }
 
 QStringList SqliteIndexedColumn::getColumnsInStatement()
@@ -49,4 +64,14 @@ TokenList SqliteIndexedColumn::rebuildTokensFromContents()
 
     builder.withSortOrder(sortOrder);
     return builder.build();
+}
+
+QString SqliteIndexedColumn::getCollation() const
+{
+    return collate;
+}
+
+void SqliteIndexedColumn::clearCollation()
+{
+    collate.clear();
 }

@@ -1016,8 +1016,8 @@ TokenList TableWindow::indexColumnTokens(SqliteCreateIndexPtr index)
     if (index->indexedColumns.size() == 0)
         return TokenList();
 
-    SqliteIndexedColumn* firstCol = index->indexedColumns.first();
-    SqliteIndexedColumn* lastCol = index->indexedColumns.last();
+    SqliteOrderBy* firstCol = index->indexedColumns.first();
+    SqliteOrderBy* lastCol = index->indexedColumns.last();
     if (firstCol->tokens.size() == 0)
         return TokenList();
 
