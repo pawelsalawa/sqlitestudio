@@ -30,6 +30,8 @@
         * [BUGFIX]: #2954 #2803 #2937 Fixed incorrect recreation of foreign keys chain.
         * [BUGFIX]: #3055 Fixed crash when exporting on MacOS using plugin that requires column value length information (such as PDF export plugin).
         * [BUGFIX]: #3047 Fixed copying/moving tables together with indexes or triggers with Drag&Drop across same SQLite version databases.
+        * [BUGFIX]: #3012 SQL simple formatter plugin does not load by default from now on. It is still available, but won't load until manually loaded.
+        * [BUGFIX]: Table window for new table (just created) will now properly close when that table gets deleted immediately by the user.
 
 [3.0.7]
         * [ADDED]: #2951 Implemented dropdown value picking for foreign key columns in grid view.

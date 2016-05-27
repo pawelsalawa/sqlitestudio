@@ -460,13 +460,11 @@ void TableWindow::setupDefShortcuts()
 
 void TableWindow::executionSuccessful()
 {
-    modifyingThisTable = false;
     dataLoaded = true;
 }
 
 void TableWindow::executionFailed(const QString& errorText)
 {
-    modifyingThisTable = false;
     notifyError(tr("Could not load data for table %1. Error details: %2").arg(table).arg(errorText));
 }
 
@@ -787,6 +785,8 @@ void TableWindow::commitStructure(bool skipWarning)
 
 void TableWindow::changesSuccessfullyCommited()
 {
+    modifyingThisTable = false;
+
     QStringList sqls = structureExecutor->getQueries();
     CFG->addDdlHistory(sqls.join("\n"), db->getName(), db->getPath());
 
@@ -806,7 +806,7 @@ void TableWindow::changesSuccessfullyCommited()
     updateNewTableState();
     updateWindowTitle();
 
-    if (oldTable.compare(table, Qt::CaseInsensitive) == 0)
+    if (oldTable.compare(table, Qt::CaseInsensitive) == 0 || oldTable.isEmpty())
         notifyInfo(tr("Commited changes for table '%1' successfly.").arg(table));
     else
         notifyInfo(tr("Commited changes for table '%1' (named before '%2') successfly.").arg(table, oldTable));
@@ -839,6 +839,7 @@ void TableWindow::changesFailedToCommit(int errorCode, const QString& errorText)
 {
     qDebug() << "TableWindow::changesFailedToCommit:" << errorCode << errorText;
 
+    modifyingThisTable = false;
     widgetCover->hide();
     notifyError(tr("Could not commit table structure. Error message: %1", "table window").arg(errorText));
 }

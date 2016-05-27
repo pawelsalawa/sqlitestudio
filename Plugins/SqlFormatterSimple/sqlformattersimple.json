@@ -3,5 +3,6 @@
     "title":       "SQL Simple",
     "description": "Basic formatter with very little options.",
     "version":     10001,
-    "author":      "SalSoft"
+    "author":      "SalSoft",
+    "loadByDefault": false
 }
