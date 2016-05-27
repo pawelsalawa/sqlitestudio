@@ -1,7 +1,3 @@
-2963 - update do nowego sqlite
-3046
-3009 - db w emailu od goretux@gmail.com
-2927 - db w emailu
 3022 - opcjonalnie
 3012 - nadal sie czasem wybiera domyslnie simple formatter - dlaczego?
 2998
@@ -13,12 +9,12 @@ http://forum.sqlitestudio.pl/viewtopic.php?f=11&t=1053
 - VACUUM - synchronicznie?! bez indykatora?
 - usprawnic widok FK w comboboxie zeby nie bylo 3 kolumn z tym samym id
 - sqlcipher
-- poprawic tablemodifier i viewmodifier, zeby nie sprawialy tylu problemow
 - constrainty w structure tab zrobic z pelnych nazw i zobaczyc jak to wyglada
 
 cannot reproduce:
 2922 / 2926 / 2925
 2940
+3009 - db w emailu od goretux@gmail.com
 
 feature requests:
 3070

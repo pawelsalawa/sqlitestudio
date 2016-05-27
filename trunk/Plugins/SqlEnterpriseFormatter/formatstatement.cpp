@@ -23,6 +23,7 @@
 #include "formatdelete.h"
 #include "formatupdate.h"
 #include "formatdropindex.h"
+#include "formatpragma.h"
 #include "formatdroptable.h"
 #include "formatdroptrigger.h"
 #include "formatdropview.h"
@@ -55,6 +56,7 @@
 #include "parser/ast/sqlitedroptrigger.h"
 #include "parser/ast/sqlitedropview.h"
 #include "parser/ast/sqliteorderby.h"
+#include "parser/ast/sqlitepragma.h"
 #include "sqlenterpriseformatter.h"
 #include "common/utils_sql.h"
 #include "common/global.h"
@@ -149,6 +151,7 @@ FormatStatement *FormatStatement::forQuery(SqliteStatement *query)
     FORMATTER_FACTORY_ENTRY(query, SqliteDropTrigger, FormatDropTrigger);
     FORMATTER_FACTORY_ENTRY(query, SqliteDropView, FormatDropView);
     FORMATTER_FACTORY_ENTRY(query, SqliteOrderBy, FormatOrderBy);
+    FORMATTER_FACTORY_ENTRY(query, SqlitePragma, FormatPragma);
 
     if (stmt)
         stmt->dialect = query->dialect;

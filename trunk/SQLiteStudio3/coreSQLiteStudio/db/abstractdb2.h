@@ -600,7 +600,7 @@ bool AbstractDb2<T>::Query::execInternal(const QList<QVariant>& args)
     }
 
     bool ok = (fetchFirst() == SQLITE_OK);
-    if (ok)
+    if (ok && !flags.testFlag(Db::Flag::SKIP_DROP_DETECTION))
         db->checkForDroppedObject(query);
 
     return ok;
@@ -643,7 +643,7 @@ bool AbstractDb2<T>::Query::execInternal(const QHash<QString, QVariant>& args)
     }
 
     bool ok = (fetchFirst() == SQLITE_OK);
-    if (ok)
+    if (ok && !flags.testFlag(Db::Flag::SKIP_DROP_DETECTION))
         db->checkForDroppedObject(query);
 
     return ok;

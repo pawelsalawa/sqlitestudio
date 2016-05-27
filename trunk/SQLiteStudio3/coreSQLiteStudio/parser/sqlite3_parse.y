@@ -737,11 +737,12 @@ ifexists(X) ::= .                           {X = new bool(false);}
 
 cmd(X) ::= CREATE temp(T) VIEW
             ifnotexists(E) fullname(N)
-            AS select(S).                   {
-                                                X = new SqliteCreateView(*(T), *(E), N->name1, N->name2, S);
+            idxlist_opt(C) AS select(S).    {
+                                                X = new SqliteCreateView(*(T), *(E), N->name1, N->name2, S, *(C));
                                                 delete T;
                                                 delete E;
                                                 delete N;
+                                                delete C;
                                                 objectForTokens = X;
                                             }
 

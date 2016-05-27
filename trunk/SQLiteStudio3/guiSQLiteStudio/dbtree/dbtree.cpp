@@ -664,7 +664,7 @@ bool DbTree::areDbTreeItemsValidForItem(QList<DbTreeItem*> srcItems, const DbTre
         {DbTreeItem::Type::INDEX, DbTreeItem::Type::INDEXES}
     };
 
-    if (srcTypes.toSet().size() == 1 && srcDbs.size() == 1 && *(srcDbs.begin()) == dstItem->getDb() && reorderingTypeToParent[srcTypes.first()] == dstType)
+    if (srcTypes.toSet().size() == 1 && srcDbs.size() == 1 && dstItem && *(srcDbs.begin()) == dstItem->getDb() && reorderingTypeToParent[srcTypes.first()] == dstType)
         return true;
 
     // No other d&d within same db

@@ -42,6 +42,16 @@ void ChainExecutor::exec()
         return;
     }
 
+    if (disableForeignKeys && db->getDialect() == Dialect::Sqlite3)
+    {
+        SqlQueryPtr result = db->exec("PRAGMA foreign_keys = 0;");
+        if (result->isError())
+        {
+            emit failure(db->getErrorCode(), tr("Could not disable foreign keys in the database. Details: %1", "chain executor").arg(db->getErrorText()));
+            return;
+        }
+    }
+
     if (transaction && !db->begin())
     {
         emit failure(db->getErrorCode(), tr("Could not start a database transaction. Details: %1", "chain executor").arg(db->getErrorText()));
@@ -75,7 +85,7 @@ void ChainExecutor::executeCurrentSql()
         return;
     }
 
-    asyncId = db->asyncExec(sqls[currentSqlIndex], queryParams);
+    asyncId = db->asyncExec(sqls[currentSqlIndex], queryParams, getExecFlags());
 }
 
 QList<bool> ChainExecutor::getMandatoryQueries() const
@@ -122,6 +132,7 @@ void ChainExecutor::executionFailure(int errorCode, const QString& errorText)
     if (transaction)
         db->rollback();
 
+    restoreFk();
     successfulExecution = false;
     executionErrors << ExecutionError(errorCode, errorText);
     emit failure(errorCode, errorText);
@@ -135,16 +146,18 @@ void ChainExecutor::executionSuccessful()
         return;
     }
 
+    restoreFk();
     successfulExecution = true;
     emit success();
 }
 
 void ChainExecutor::executeSync()
 {
+    Db::Flags flags = getExecFlags();
     SqlQueryPtr results;
-    foreach (const QString& sql, sqls)
+    for (const QString& sql : sqls)
     {
-        results = db->exec(sql, queryParams);
+        results = db->exec(sql, queryParams, flags);
         if (!handleResults(results))
             return;
 
@@ -165,6 +178,46 @@ bool ChainExecutor::handleResults(SqlQueryPtr results)
     }
     return true;
 }
+
+Db::Flags ChainExecutor::getExecFlags() const
+{
+    Db::Flags flags;
+    if (disableObjectDropsDetection)
+        flags |= Db::Flag::SKIP_DROP_DETECTION;
+
+    return flags;
+}
+
+void ChainExecutor::restoreFk()
+{
+    if (disableForeignKeys && db->getDialect() == Dialect::Sqlite3)
+    {
+        SqlQueryPtr result = db->exec("PRAGMA foreign_keys = 1;");
+        if (result->isError())
+            qCritical() << "Could not restore foreign keys in the database after chain execution. Details:" << db->getErrorText();
+    }
+}
+
+bool ChainExecutor::getDisableObjectDropsDetection() const
+{
+    return disableObjectDropsDetection;
+}
+
+void ChainExecutor::setDisableObjectDropsDetection(bool value)
+{
+    disableObjectDropsDetection = value;
+}
+
+bool ChainExecutor::getDisableForeignKeys() const
+{
+    return disableForeignKeys;
+}
+
+void ChainExecutor::setDisableForeignKeys(bool value)
+{
+    disableForeignKeys = value;
+}
+
 bool ChainExecutor::getSuccessfulExecution() const
 {
     return successfulExecution;

@@ -3,8 +3,12 @@
         * [ADDED]: #3056 #3063 Implemented index column ordering in index dialog.
         * [ADDED]: #2975 Information message after successful table/view change.
         * [ADDED]: #2963 Indexed expressions for CREATE INDEX statements (introduced in SQLite 3.9) are now supported and can be edited in Index Dialog.
+        * [ADDED]: View window now supports explicit column names for the view (introduced in SQLite 3.9).
         * [CHANGE]: DbAndroid plugin has now JAR file embedded and you can get it from Tools menu.
+        * [CHANGE]: SQLite version updated to 3.13.0.
+        * [CHANGE]: Qt version updated to 5.6.0. Should still compile with 5.3, but binary distributions on homepage will be made with 5.6.
         * [BUGFIX]: Not loading Android plugin by default (needs manual load from configuration dialog), which stops the "ADB" error for people not using the plugin.
+        * [BUGFIX]: #2927 Several critical bugs fixed and enhancements to table modification algorithm related to foreign keys.
         * [BUGFIX]: Fixed importing from CSV with some of lines containing less fields than defined in header (or in first data row).
         * [BUGFIX]: #2989 Fixed multiline value handling in CSV import plugin.
         * [BUGFIX]: #2921 Fixed empty values as NULL handling in CSV import plugin.

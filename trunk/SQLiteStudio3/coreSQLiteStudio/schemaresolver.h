@@ -141,6 +141,11 @@ class API_EXPORT SchemaResolver
         QString getObjectDdl(const QString& name, ObjectType type);
         QString getObjectDdl(const QString& database, const QString& name, ObjectType type);
 
+        QStringList getColumnsFromDdlUsingPragma(const QString& ddl);
+        QStringList getColumnsUsingPragma(const QString& tableOrView);
+        QStringList getColumnsUsingPragma(SqliteCreateTable* createTable);
+        QStringList getColumnsUsingPragma(SqliteCreateView* createView);
+
         /**
          * @brief Parses given object's DDL.
          * @param name Name of the object in the database.

@@ -41,6 +41,12 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
             REFRESH_QUERY,
             COMMIT_QUERY,
             ROLLBACK_QUERY,
+            ADD_COLUMN,
+            EDIT_COLUMN,
+            DEL_COLUMN,
+            MOVE_COLUMN_UP,
+            MOVE_COLUMN_DOWN,
+            GENERATE_OUTPUT_COLUMNS,
             // Triggers tab
             REFRESH_TRIGGERS,
             ADD_TRIGGER,
@@ -103,6 +109,9 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
         QString getCurrentTrigger() const;
         void applyInitialTab();
         QString getCurrentDdl() const;
+        QStringList indexedColumnsToNamesOnly(const QList<SqliteIndexedColumn*>& columns) const;
+        QStringList collectColumnNames() const;
+        void columnsFromViewToList();
 
         Db* db = nullptr;
         QString database;
@@ -120,6 +129,8 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
         ViewModifier* viewModifier = nullptr;
         Ui::ViewWindow *ui = nullptr;
         bool modifyingThisView = false;
+        QAction* outputColumnsCheck = nullptr;
+        QAction* outputColumnsSeparator = nullptr;
 
     private slots:
         void refreshView();
@@ -139,6 +150,15 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
         void prevTab();
         void dbClosedFinalCleanup();
         void checkIfViewDeleted(const QString& database, const QString& object, DbObjectType type);
+        void updateOutputColumnsVisibility();
+        void addColumn();
+        void editColumn();
+        void delColumn();
+        void moveColumnUp();
+        void moveColumnDown();
+        void updateColumnButtons();
+        void generateOutputColumns();
+        void updateDbRelatedUiElements();
 
     public slots:
         void refreshTriggers();

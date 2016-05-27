@@ -25,6 +25,7 @@
 #include <QProgressBar>
 #include <QDebug>
 #include <QMessageBox>
+#include <QCheckBox>
 
 CFG_KEYS_DEFINE(ViewWindow)
 
@@ -44,6 +45,7 @@ ViewWindow::ViewWindow(Db* db, QWidget* parent) :
     newView();
     init();
     applyInitialTab();
+    updateDbRelatedUiElements();
 }
 
 ViewWindow::ViewWindow(const ViewWindow& win) :
@@ -56,6 +58,7 @@ ViewWindow::ViewWindow(const ViewWindow& win) :
     init();
     initView();
     applyInitialTab();
+    updateDbRelatedUiElements();
 }
 
 ViewWindow::ViewWindow(QWidget* parent, Db* db, const QString& database, const QString& view) :
@@ -68,6 +71,7 @@ ViewWindow::ViewWindow(QWidget* parent, Db* db, const QString& database, const Q
     init();
     initView();
     applyInitialTab();
+    updateDbRelatedUiElements();
 }
 
 ViewWindow::~ViewWindow()
@@ -134,6 +138,7 @@ bool ViewWindow::restoreSession(const QVariant& sessionValue)
 
     initView();
     applyInitialTab();
+    updateDbRelatedUiElements();
     return true;
 }
 
@@ -225,6 +230,10 @@ void ViewWindow::init()
     connect(ui->queryEdit, SIGNAL(textChanged()), this, SLOT(updateQueryToolbarStatus()));
     connect(ui->queryEdit, SIGNAL(errorsChecked(bool)), this, SLOT(updateQueryToolbarStatus()));
     connect(ui->triggersList, SIGNAL(itemSelectionChanged()), this, SLOT(updateTriggersState()));
+    connect(ui->outputColumnsTable, SIGNAL(currentRowChanged(int)), this, SLOT(updateColumnButtons()));
+    connect(ui->outputColumnsTable->model(), SIGNAL(rowsMoved(const QModelIndex&, int, int, const QModelIndex&, int)), this, SLOT(updateColumnButtons()));
+    connect(ui->outputColumnsTable->model(), SIGNAL(rowsMoved(const QModelIndex&, int, int, const QModelIndex&, int)), this, SLOT(updateQueryToolbarStatus()));
+    connect(ui->outputColumnsTable, SIGNAL(itemChanged(QListWidgetItem*)), this, SLOT(updateQueryToolbarStatus()));
 
     structureExecutor = new ChainExecutor(this);
     connect(structureExecutor, SIGNAL(success()), this, SLOT(changesSuccessfullyCommited()));
@@ -234,9 +243,15 @@ void ViewWindow::init()
 
     initActions();
 
+    ui->splitter->setStretchFactor(0, 1);
+    ui->splitter->setStretchFactor(1, 3);
+
+    updateOutputColumnsVisibility();
+
     refreshTriggers();
     updateQueryToolbarStatus();
     updateTriggersState();
+    updateColumnButtons();
 }
 
 void ViewWindow::newView()
@@ -262,6 +277,13 @@ void ViewWindow::initView()
 
     ui->queryEdit->setDb(db);
     ui->queryEdit->setPlainText(createView->select->detokenize());
+
+    if (createView->columns.size() > 0)
+    {
+        columnsFromViewToList();
+        outputColumnsCheck->setChecked(true);
+    }
+
     updateDdlTab();
 
     ui->ddlEdit->setSqliteVersion(db->getVersion());
@@ -286,6 +308,19 @@ void ViewWindow::createQueryTabActions()
     createAction(ROLLBACK_QUERY, ICONS.ROLLBACK, tr("Rollback the view changes", "view window"), this, SLOT(rollbackView()), ui->queryToolbar);
     ui->queryToolbar->addSeparator();
     ui->queryToolbar->addAction(ui->queryEdit->getAction(SqlEditor::FORMAT_SQL));
+
+    outputColumnsCheck = new QAction(ICONS.COLUMNS, tr("Explicit column names"), this);
+    outputColumnsCheck->setCheckable(true);
+    connect(outputColumnsCheck, SIGNAL(toggled(bool)), this, SLOT(updateOutputColumnsVisibility()));
+
+    outputColumnsSeparator = ui->queryToolbar->addSeparator();
+    ui->queryToolbar->addAction(outputColumnsCheck);
+    createAction(GENERATE_OUTPUT_COLUMNS, ICONS.GENERATE_COLUMNS, tr("Generate output column names automatically basing on result columns of the view."), this, SLOT(generateOutputColumns()), ui->queryToolbar);
+    createAction(ADD_COLUMN, ICONS.TABLE_COLUMN_ADD, tr("Add column", "view window"), this, SLOT(addColumn()), ui->queryToolbar);
+    createAction(EDIT_COLUMN, ICONS.TABLE_COLUMN_EDIT, tr("Edit column", "view window"), this, SLOT(editColumn()), ui->queryToolbar);
+    createAction(DEL_COLUMN, ICONS.TABLE_COLUMN_DELETE, tr("Delete column", "view window"), this, SLOT(delColumn()), ui->queryToolbar);
+    createAction(MOVE_COLUMN_UP, ICONS.MOVE_UP, tr("Move column up", "view window"), this, SLOT(moveColumnUp()), ui->queryToolbar);
+    createAction(MOVE_COLUMN_DOWN, ICONS.MOVE_DOWN, tr("Move column down", "view window"), this, SLOT(moveColumnDown()), ui->queryToolbar);
 }
 
 void ViewWindow::createTriggersTabActions()
@@ -394,6 +429,7 @@ void ViewWindow::rollbackView()
     ui->nameEdit->setText(createView->view);
     ui->queryEdit->setPlainText(createView->select->detokenize());
 
+    columnsFromViewToList();
     updateQueryToolbarStatus();
     updateDdlTab();
 }
@@ -418,8 +454,48 @@ void ViewWindow::applyInitialTab()
 
 QString ViewWindow::getCurrentDdl() const
 {
-    static_qstring(ddlTpl, "CREATE VIEW %1 AS %2");
-    return ddlTpl.arg(wrapObjIfNeeded(ui->nameEdit->text(), db->getDialect())).arg(ui->queryEdit->toPlainText());
+    static_qstring(ddlTpl, "CREATE VIEW %1%2 AS %3");
+    QString columnsStr = "";
+    if (ui->outputColumnsTable->count() > 0)
+        columnsStr = "(" + collectColumnNames().join(", ") + ")";
+
+    return ddlTpl.arg(
+                    wrapObjIfNeeded(ui->nameEdit->text(), db->getDialect()),
+                    columnsStr,
+                    ui->queryEdit->toPlainText()
+                );
+}
+
+QStringList ViewWindow::indexedColumnsToNamesOnly(const QList<SqliteIndexedColumn*>& columns) const
+{
+    QStringList names;
+    for (SqliteIndexedColumn* col : columns)
+        names << col->name;
+
+    return names;
+}
+
+QStringList ViewWindow::collectColumnNames() const
+{
+    Dialect dialect = db ? db->getDialect() : Dialect::Sqlite3;
+    QStringList cols;
+    for (int row = 0; row < ui->outputColumnsTable->count(); row++)
+        cols << wrapObjIfNeeded(ui->outputColumnsTable->item(row)->text(), dialect);
+
+    return cols;
+}
+
+void ViewWindow::columnsFromViewToList()
+{
+    ui->outputColumnsTable->clear();
+    ui->outputColumnsTable->addItems(indexedColumnsToNamesOnly(createView->columns));
+
+    QListWidgetItem* item = nullptr;
+    for (int row = 0; row < ui->outputColumnsTable->count(); row++)
+    {
+        item = ui->outputColumnsTable->item(row);
+        item->setFlags(item->flags() | Qt::ItemIsEditable);
+    }
 }
 
 void ViewWindow::addTrigger()
@@ -605,6 +681,127 @@ void ViewWindow::checkIfViewDeleted(const QString& database, const QString& obje
     }
 }
 
+void ViewWindow::updateOutputColumnsVisibility()
+{
+    bool enabled = outputColumnsCheck->isChecked();
+
+    ui->outputColumnsContainer->setVisible(enabled);
+    actionMap[Action::GENERATE_OUTPUT_COLUMNS]->setVisible(enabled);
+    actionMap[Action::ADD_COLUMN]->setVisible(enabled);
+    actionMap[Action::EDIT_COLUMN]->setVisible(enabled);
+    actionMap[Action::DEL_COLUMN]->setVisible(enabled);
+    actionMap[Action::MOVE_COLUMN_UP]->setVisible(enabled);
+    actionMap[Action::MOVE_COLUMN_DOWN]->setVisible(enabled);
+
+    updateQueryToolbarStatus();
+}
+
+void ViewWindow::addColumn()
+{
+    QListWidgetItem* item = new QListWidgetItem();
+    item->setFlags(item->flags() | Qt::ItemIsEditable);
+    ui->outputColumnsTable->addItem(item);
+    ui->outputColumnsTable->editItem(item);
+    ui->outputColumnsTable->setCurrentItem(item);
+    updateColumnButtons();
+}
+
+void ViewWindow::editColumn()
+{
+    QListWidgetItem* item = ui->outputColumnsTable->currentItem();
+    ui->outputColumnsTable->editItem(item);
+    updateColumnButtons();
+}
+
+void ViewWindow::delColumn()
+{
+    QListWidgetItem* item = ui->outputColumnsTable->takeItem(ui->outputColumnsTable->currentRow());
+    delete item;
+    updateColumnButtons();
+}
+
+void ViewWindow::moveColumnUp()
+{
+    int row = ui->outputColumnsTable->currentRow();
+    if (row <= 0)
+        return;
+
+    QListWidgetItem* item = ui->outputColumnsTable->takeItem(row);
+    ui->outputColumnsTable->insertItem(--row, item);
+    ui->outputColumnsTable->setCurrentItem(item);
+}
+
+void ViewWindow::moveColumnDown()
+{
+    int row = ui->outputColumnsTable->currentRow();
+    if (row + 1 >= ui->outputColumnsTable->count())
+        return;
+
+    QListWidgetItem* item = ui->outputColumnsTable->takeItem(row);
+    ui->outputColumnsTable->insertItem(++row, item);
+    ui->outputColumnsTable->setCurrentItem(item);
+}
+
+void ViewWindow::updateColumnButtons()
+{
+    QListWidgetItem* item = ui->outputColumnsTable->currentItem();
+    int row = ui->outputColumnsTable->currentRow();
+
+    actionMap[MOVE_COLUMN_UP]->setEnabled(row > 0);
+    actionMap[MOVE_COLUMN_DOWN]->setEnabled(row + 1 < ui->outputColumnsTable->count());
+    actionMap[EDIT_COLUMN]->setEnabled(item != nullptr);
+    actionMap[DEL_COLUMN]->setEnabled(item != nullptr);
+}
+
+void ViewWindow::generateOutputColumns()
+{
+    if (ui->outputColumnsTable->count() > 0)
+    {
+        QMessageBox::StandardButton res = QMessageBox::question(this, tr("Override columns"), tr("Currently defined columns will be overriden. Do you want to continue?"));
+        if (res != QMessageBox::Yes)
+            return;
+    }
+
+    // Validate and generate fresh createView instance
+    bool validated = validate(true);
+    if (!validated)
+        return;
+
+    // Make copy of CREATE statement and remove columns
+    SqliteCreateView* stmt = dynamic_cast<SqliteCreateView*>(createView->clone());
+    for (SqliteIndexedColumn* col : stmt->columns)
+        delete col;
+
+    stmt->columns.clear();
+
+    // Indentify columns
+    SchemaResolver resolver(db);
+    QStringList columns = resolver.getColumnsUsingPragma(stmt);
+    delete stmt;
+    if (columns.isEmpty())
+    {
+        notifyWarn(tr("Could not determinate columns returned from the view. The query is problably incomplete or contains errors."));
+        return;
+    }
+
+    ui->outputColumnsTable->clear();
+    ui->outputColumnsTable->addItems(columns);
+
+    QListWidgetItem* item = nullptr;
+    for (int row = 0; row < columns.size(); row++)
+    {
+        item = ui->outputColumnsTable->item(row);
+        item->setFlags(item->flags() | Qt::ItemIsEditable);
+    }
+}
+
+void ViewWindow::updateDbRelatedUiElements()
+{
+    bool enabled = db->getDialect() == Dialect::Sqlite3;
+    outputColumnsCheck->setVisible(enabled);
+    outputColumnsSeparator->setVisible(enabled);
+}
+
 void ViewWindow::refreshTriggers()
 {
     if (!db || !db->isValid())
@@ -686,9 +883,21 @@ void ViewWindow::updateDdlTab()
 
 bool ViewWindow::isModified() const
 {
-    return (originalCreateView && originalCreateView->view != ui->nameEdit->text()) ||
-            ui->queryEdit->toPlainText() != originalQuery ||
-            !existingView;
+    // Quick checks first
+    bool modified = !existingView || (originalCreateView && originalCreateView->view != ui->nameEdit->text()) ||
+            ui->queryEdit->toPlainText() != originalQuery;
+
+    if (modified)
+        return modified;
+
+    // And now a bit slower check
+    QStringList origCols = createView ? indexedColumnsToNamesOnly(createView->columns) : QStringList();
+    QStringList currentCols;
+    if (outputColumnsCheck->isChecked())
+        currentCols = collectColumnNames();
+
+    bool colsModified = origCols != currentCols;
+    return colsModified;
 }
 
 bool ViewWindow::validate(bool skipWarnings)
@@ -703,12 +912,9 @@ bool ViewWindow::validate(bool skipWarnings)
     }
 
     // Rebuilding createView statement and validating it on the fly.
-    QString ddl = "CREATE VIEW %1 AS %2";
-    QString viewName = wrapObjIfNeeded(ui->nameEdit->text(), db->getDialect());
-    QString select = ui->queryEdit->toPlainText();
-
+    QString ddl = getCurrentDdl();
     Parser parser(db->getDialect());
-    if (!parser.parse(ddl.arg(viewName).arg(select)) || parser.getQueries().size() < 1)
+    if (!parser.parse(ddl) || parser.getQueries().size() < 1)
     {
         notifyError(tr("The SELECT statement could not be parsed. Please correct the query and retry.\nDetails: %1").arg(parser.getErrorString()));
         return false;

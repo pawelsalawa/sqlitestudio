@@ -888,7 +888,7 @@ bool AbstractDb3<T>::Query::execInternal(const QList<QVariant>& args)
     }
 
     bool ok = (fetchFirst() == T::OK);
-    if (ok)
+    if (ok && !flags.testFlag(Db::Flag::SKIP_DROP_DETECTION))
         db->checkForDroppedObject(query);
 
     return ok;
@@ -942,7 +942,7 @@ bool AbstractDb3<T>::Query::execInternal(const QHash<QString, QVariant>& args)
     }
 
     bool ok = (fetchFirst() == T::OK);
-    if (ok)
+    if (ok && !flags.testFlag(Db::Flag::SKIP_DROP_DETECTION))
         db->checkForDroppedObject(query);
 
     return ok;

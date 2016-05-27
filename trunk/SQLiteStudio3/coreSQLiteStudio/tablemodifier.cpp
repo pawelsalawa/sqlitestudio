@@ -36,6 +36,11 @@ void TableModifier::alterTable(SqliteCreateTablePtr newCreateTable)
     existingColumns = newCreateTable->getColumnNames();
     newName = newCreateTable->table;
 
+    if (db->getDialect() == Dialect::Sqlite3)
+        sqls << "PRAGMA foreign_keys = 0;";
+
+    handleFkConstrains(newCreateTable.data(), createTable->table, newName);
+
     QString tempTableName;
     if (table.compare(newName, Qt::CaseInsensitive) == 0)
         tempTableName = renameToTemp();
@@ -44,7 +49,7 @@ void TableModifier::alterTable(SqliteCreateTablePtr newCreateTable)
     sqls << newCreateTable->detokenize();
     copyDataTo(newCreateTable);
 
-    handleFks(tempTableName);
+    handleFks();
 
     // If temp table was created, it means that table name hasn't changed. In that case we need to cleanup temp table (drop it).
     // Otherwise, the table name has changed, therefor there still remains the old table which we copied data from - we need to drop it here.
@@ -53,6 +58,9 @@ void TableModifier::alterTable(SqliteCreateTablePtr newCreateTable)
     handleIndexes();
     handleTriggers();
     handleViews();
+
+    if (db->getDialect() == Dialect::Sqlite3)
+        sqls << "PRAGMA foreign_keys = 1;";
 }
 
 void TableModifier::renameTo(const QString& newName)
@@ -60,15 +68,10 @@ void TableModifier::renameTo(const QString& newName)
     if (!createTable)
         return;
 
-    if (dialect == Dialect::Sqlite3)
-    {
-        sqls << QString("ALTER TABLE %1 RENAME TO %2;").arg(wrapObjIfNeeded(table, dialect), wrapObjIfNeeded(newName, dialect));
-    }
-    else
-    {
-        sqls << QString("CREATE TABLE %1 AS SELECT * FROM %2;").arg(wrapObjIfNeeded(newName, dialect), wrapObjIfNeeded(table, dialect))
-             << QString("DROP TABLE %1;").arg(wrapObjIfNeeded(table, dialect));
-    }
+    // Using ALTER TABLE RENAME TO is not a good solution here, because it automatically renames all occurrences in REFERENCES,
+    // which we don't want, because we rename a lot to temporary tables and drop them.
+    sqls << QString("CREATE TABLE %1 AS SELECT * FROM %2;").arg(wrapObjIfNeeded(newName, dialect), wrapObjIfNeeded(table, dialect))
+         << QString("DROP TABLE %1;").arg(wrapObjIfNeeded(table, dialect));
 
     table = newName;
     createTable->table = newName;
@@ -93,14 +96,19 @@ void TableModifier::copyDataTo(const QString& targetTable)
     copyDataTo(targetTable, colsToCopy, colsToCopy);
 }
 
-void TableModifier::handleFks(const QString& tempTableName)
+void TableModifier::handleFks()
 {
+    tablesHandledForFk << originalTable;
+
     SchemaResolver resolver(db);
 
     QStringList fkTables = resolver.getFkReferencingTables(originalTable);
 
-    foreach (const QString& fkTable, fkTables)
+    for (const QString& fkTable : fkTables)
     {
+        if (tablesHandledForFk.contains(fkTable, Qt::CaseInsensitive))
+            continue; // Avoid recurrent FK handling
+
         TableModifier subModifier(db, fkTable);
         if (!subModifier.isValid())
         {
@@ -111,16 +119,20 @@ void TableModifier::handleFks(const QString& tempTableName)
 
         // Those were removed when fixing #2954. Seem to be useless for subHandleFks(). Unless there's some bug report for it,
         // they should be removed in near future:
-        //subModifier.tableColMap = tableColMap;
-        //subModifier.existingColumns = existingColumns;
 
         subModifier.usedTempTableNames = usedTempTableNames;
         subModifier.triggerNameToDdlMap = triggerNameToDdlMap;
+        subModifier.existingColumns = existingColumns; // for identifying removed columns
+        subModifier.tableColMap = tableColMap; // for identifying renamed columns
         subModifier.newName = fkTable;
-        subModifier.subHandleFks(originalTable, newName, tempTableName);
+        subModifier.tablesHandledForFk = tablesHandledForFk;
+        subModifier.handleFks(originalTable, newName);
         sqls += subModifier.generateSqls();
         modifiedTables << fkTable;
+
         triggerNameToDdlMap = subModifier.triggerNameToDdlMap;
+        tablesHandledForFk = subModifier.tablesHandledForFk;
+        usedTempTableNames = subModifier.usedTempTableNames;
 
         modifiedTables += subModifier.getModifiedTables();
         modifiedIndexes += subModifier.getModifiedIndexes();
@@ -132,22 +144,9 @@ void TableModifier::handleFks(const QString& tempTableName)
     }
 }
 
-void TableModifier::subHandleFks(const QString& oldName, const QString& theNewName, const QString& oldTempName)
+void TableModifier::handleFks(const QString& oldName, const QString& theNewName)
 {
-    bool modified = false;
-    foreach (SqliteCreateTable::Constraint* fk, createTable->getForeignKeysByTable(oldName))
-    {
-        if (subHandleFks(fk->foreignKey, oldName, theNewName, oldTempName))
-            modified = true;
-    }
-
-    foreach (SqliteCreateTable::Column::Constraint* fk, createTable->getColumnForeignKeysByTable(oldName))
-    {
-        if (subHandleFks(fk->foreignKey, oldName, theNewName, oldTempName))
-            modified = true;
-    }
-
-    if (!modified)
+    if (!handleFkConstrains(createTable.data(), oldName, theNewName))
         return;
 
     QString tempName = renameToTemp();
@@ -158,7 +157,7 @@ void TableModifier::subHandleFks(const QString& oldName, const QString& theNewNa
 
     copyDataTo(originalTable);
 
-    handleFks(tempName);
+    handleFks();
 
     sqls << QString("DROP TABLE %1;").arg(wrapObjIfNeeded(tempName, dialect));
 
@@ -166,7 +165,7 @@ void TableModifier::subHandleFks(const QString& oldName, const QString& theNewNa
     simpleHandleTriggers();
 }
 
-bool TableModifier::subHandleFks(SqliteForeignKey* fk, const QString& oldName, const QString& theNewName, const QString& oldTempName)
+bool TableModifier::handleFks(SqliteForeignKey* fk, const QString& oldName, const QString& theNewName)
 {
     // If table was not renamed (but uses temp table name), we will rename temp name into target name.
     // If table was renamed, we will rename old name to new name.
@@ -175,17 +174,28 @@ bool TableModifier::subHandleFks(SqliteForeignKey* fk, const QString& oldName, c
     // Table
     if (handleName(oldName, theNewName, fk->foreignTable))
         modified = true;
-    else if (!oldTempName.isNull() && fk->foreignTable.compare(oldName, Qt::CaseInsensitive) == 0)
-    {
-        // This is the case when main table was not renamed - we will stay with the original name, but we need to mark it as modified,
-        // so the table gets recreated (the temp table is changed to the original table name in this FK).
-        modified = true;
-    }
 
     // Columns
     if (handleIndexedColumns(fk->indexedColumns))
         modified = true;
 
+    return modified;
+}
+
+bool TableModifier::handleFkConstrains(SqliteCreateTable* stmt, const QString& oldName, const QString& theNewName)
+{
+    bool modified = false;
+    for (SqliteCreateTable::Constraint* fk : stmt->getForeignKeysByTable(oldName))
+    {
+        if (handleFks(fk->foreignKey, oldName, theNewName))
+            modified = true;
+    }
+
+    for (SqliteCreateTable::Column::Constraint* fk : stmt->getColumnForeignKeysByTable(oldName))
+    {
+        if (handleFks(fk->foreignKey, oldName, theNewName))
+            modified = true;
+    }
     return modified;
 }
 

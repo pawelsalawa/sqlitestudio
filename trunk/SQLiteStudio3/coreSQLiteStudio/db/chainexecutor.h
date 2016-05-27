@@ -198,6 +198,12 @@ class API_EXPORT ChainExecutor : public QObject
          */
         void setParam(const QString& paramName, const QVariant& value);
 
+        bool getDisableForeignKeys() const;
+        void setDisableForeignKeys(bool value);
+
+        bool getDisableObjectDropsDetection() const;
+        void setDisableObjectDropsDetection(bool value);
+
     private:
         /**
          * @brief Executes query defines as the current one.
@@ -240,6 +246,10 @@ class API_EXPORT ChainExecutor : public QObject
          * If there was an error while execution, then executionFailure() is also called.
          */
         bool handleResults(SqlQueryPtr results);
+
+        Db::Flags getExecFlags() const;
+
+        void restoreFk();
 
         /**
          * @brief Database for execution.
@@ -314,6 +324,9 @@ class API_EXPORT ChainExecutor : public QObject
          * parameters to executed queries.
          */
         QHash<QString,QVariant> queryParams;
+
+        bool disableForeignKeys = false;
+        bool disableObjectDropsDetection = false;
 
     public slots:
         /**
