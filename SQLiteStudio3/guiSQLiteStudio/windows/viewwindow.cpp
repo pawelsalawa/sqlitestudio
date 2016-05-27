@@ -456,7 +456,7 @@ QString ViewWindow::getCurrentDdl() const
 {
     static_qstring(ddlTpl, "CREATE VIEW %1%2 AS %3");
     QString columnsStr = "";
-    if (ui->outputColumnsTable->count() > 0)
+    if (outputColumnsCheck->isChecked() && ui->outputColumnsTable->count() > 0)
         columnsStr = "(" + collectColumnNames().join(", ") + ")";
 
     return ddlTpl.arg(
