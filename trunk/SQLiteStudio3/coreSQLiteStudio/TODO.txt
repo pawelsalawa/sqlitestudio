@@ -1,5 +1,3 @@
-3022 - opcjonalnie
-3012 - nadal sie czasem wybiera domyslnie simple formatter - dlaczego?
 2998
 2999
 3008
@@ -15,6 +13,7 @@ cannot reproduce:
 2922 / 2926 / 2925
 2940
 3009 - db w emailu od goretux@gmail.com
+3022 - view data sorting does not work
 
 feature requests:
 3070
