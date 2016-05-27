@@ -198,5 +198,6 @@
         <file>img/tag_hash_add.png</file>
         <file>img/tag_hash_del.png</file>
         <file>img/tag_hash_edit.png</file>
+        <file>img/wand.png</file>
     </qresource>
 </RCC>

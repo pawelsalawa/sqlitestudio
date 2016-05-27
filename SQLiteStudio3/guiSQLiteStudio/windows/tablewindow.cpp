@@ -352,6 +352,8 @@ void TableWindow::executeStructureChanges()
     modifyingThisTable = true;
     structureExecutor->setDb(db);
     structureExecutor->setQueries(sqls);
+    structureExecutor->setDisableForeignKeys(true);
+    structureExecutor->setDisableObjectDropsDetection(true);
     widgetCover->show();
     structureExecutor->exec();
 }

@@ -343,6 +343,95 @@ QString SchemaResolver::getObjectDdl(const QString &database, const QString &nam
     return resStr;
 }
 
+QStringList SchemaResolver::getColumnsFromDdlUsingPragma(const QString& ddl)
+{
+    Parser parser(db->getDialect());
+    if (!parser.parse(ddl) || parser.getQueries().isEmpty())
+    {
+        qWarning() << "Could not parse DDL for determinating columns using PRAGMA. The DDL was:\n" << ddl;
+        return QStringList();
+    }
+
+    SqliteQueryPtr query = parser.getQueries().first();
+    if (query->queryType == SqliteQueryType::CreateTable)
+        return getColumnsUsingPragma(query.dynamicCast<SqliteCreateTable>().data());
+
+    if (query->queryType == SqliteQueryType::CreateView)
+        return getColumnsUsingPragma(query.dynamicCast<SqliteCreateView>().data());
+
+    qWarning() << "Tried to get columns of DDL using pragma for statement other than table or view:" << sqliteQueryTypeToString(query->queryType) << "for DDL:\n" << ddl;
+    return QStringList();
+}
+
+QStringList SchemaResolver::getColumnsUsingPragma(const QString& tableOrView)
+{
+    static_qstring(query, "PRAGMA table_info(%1)");
+    SqlQueryPtr results = db->exec(query.arg(wrapObjIfNeeded(tableOrView, db->getDialect())));
+    if (results->isError())
+    {
+        qWarning() << "Could not get column list using PRAGMA for table or view:" << tableOrView << ", error was:" << results->getErrorText();
+        return QStringList();
+    }
+
+    QStringList cols;
+    for (const SqlResultsRowPtr& row : results->getAll())
+        cols << row->value("name").toString();
+
+    return cols;
+}
+
+QStringList SchemaResolver::getColumnsUsingPragma(SqliteCreateTable* createTable)
+{
+    QString name = getUniqueName();
+    SqliteCreateTable* stmt = dynamic_cast<SqliteCreateTable*>(createTable->clone());
+    stmt->tempKw = true;
+    stmt->table = name;
+    stmt->database = QString();
+    stmt->rebuildTokens();
+    QString ddl = stmt->tokens.detokenize();
+    delete stmt;
+
+    SqlQueryPtr result = db->exec(ddl);
+    if (result->isError())
+    {
+        qWarning() << "Could not create table for finding its columns using PRAGMA. Error was:" << result->getErrorText();
+        return QStringList();
+    }
+
+    QStringList columns = getColumnsUsingPragma(name);
+
+    static_qstring(dropSql, "DROP TABLE %1");
+    db->exec(dropSql.arg(wrapObjIfNeeded(name, db->getDialect())));
+
+    return columns;
+}
+
+QStringList SchemaResolver::getColumnsUsingPragma(SqliteCreateView* createView)
+{
+    QString name = getUniqueName();
+    SqliteCreateView* stmt = dynamic_cast<SqliteCreateView*>(createView->clone());
+    stmt->tempKw = true;
+    stmt->view = name;
+    stmt->database = QString();
+    stmt->rebuildTokens();
+    QString ddl = stmt->tokens.detokenize();
+    delete stmt;
+
+    SqlQueryPtr result = db->exec(ddl);
+    if (result->isError())
+    {
+        qWarning() << "Could not create view for finding its columns using PRAGMA. Error was:" << result->getErrorText();
+        return QStringList();
+    }
+
+    QStringList columns = getColumnsUsingPragma(name);
+
+    static_qstring(dropSql, "DROP VIEW %1");
+    db->exec(dropSql.arg(wrapObjIfNeeded(name, db->getDialect())));
+
+    return columns;
+}
+
 SqliteQueryPtr SchemaResolver::getParsedObject(const QString &name, ObjectType type)
 {
     return getParsedObject("main", name, type);
@@ -689,8 +778,11 @@ QList<SqliteCreateIndexPtr> SchemaResolver::getParsedIndexesForTable(const QStri
     QStringList indexes = getIndexes(database);
     SqliteQueryPtr query;
     SqliteCreateIndexPtr createIndex;
-    foreach (const QString& index, indexes)
+    for (const QString& index : indexes)
     {
+        if (index.startsWith("sqlite_", Qt::CaseInsensitive))
+            continue;
+
         query = getParsedObject(database, index, INDEX);
         if (!query)
             continue;

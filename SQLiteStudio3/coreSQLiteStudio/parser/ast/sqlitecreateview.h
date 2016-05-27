@@ -3,9 +3,11 @@
 
 #include "sqliteddlwithdbcontext.h"
 #include "sqlitequery.h"
+#include <QList>
 #include <QString>
 
 class SqliteSelect;
+class SqliteIndexedColumn;
 
 class API_EXPORT SqliteCreateView : public SqliteQuery, public SqliteDdlWithDbContext
 {
@@ -13,6 +15,7 @@ class API_EXPORT SqliteCreateView : public SqliteQuery, public SqliteDdlWithDbCo
         SqliteCreateView();
         SqliteCreateView(const SqliteCreateView& other);
         SqliteCreateView(int temp, bool ifNotExists, const QString& name1, const QString& name2, SqliteSelect* select);
+        SqliteCreateView(int temp, bool ifNotExists, const QString& name1, const QString& name2, SqliteSelect* select, const QList<SqliteIndexedColumn*>& columns);
         ~SqliteCreateView();
 
         SqliteStatement* clone();
@@ -25,6 +28,7 @@ class API_EXPORT SqliteCreateView : public SqliteQuery, public SqliteDdlWithDbCo
         QString database = QString::null;
         QString view = QString::null;
         SqliteSelect* select = nullptr;
+        QList<SqliteIndexedColumn*> columns;
 
     protected:
         QStringList getDatabasesInStatement();

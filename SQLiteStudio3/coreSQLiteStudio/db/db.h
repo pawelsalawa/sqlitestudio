@@ -140,7 +140,7 @@ class API_EXPORT Db : public QObject, public Interruptable
         {
             NONE                = 0x0, /**< No flags. This is default. */
             PRELOAD             = 0x1, /**< Preloads all execution results into the results object. Useful for asynchronous execution. */
-            NO_LOCK             = 0x2  /**<
+            NO_LOCK             = 0x2, /**<
                                         * Prevents SQLiteStudio from setting the lock for execution on this base (not the SQLite lock,
                                         * just a Db internal lock for multi-threading access to the Db::exec()). This should be used
                                         * only in justified circumstances. That is when the Db call has to be done from within the part
@@ -148,6 +148,7 @@ class API_EXPORT Db : public QObject, public Interruptable
                                         * threads. Justified situation is when you implement Db::initialDbSetup() in the derived class,
                                         * or when you implement SqlFunctionPlugin. Don't use it for the usual cases.
                                         */
+            SKIP_DROP_DETECTION = 0x4, /**< Query execution will not notify about any detected objects dropped by the query. */
         };
         Q_DECLARE_FLAGS(Flags, Flag)
 

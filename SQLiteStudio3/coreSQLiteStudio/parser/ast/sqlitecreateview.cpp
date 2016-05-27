@@ -3,6 +3,7 @@
 #include "sqlitequerytype.h"
 #include "parser/statementtokenbuilder.h"
 #include "common/global.h"
+#include "sqliteindexedcolumn.h"
 
 SqliteCreateView::SqliteCreateView()
 {
@@ -14,7 +15,7 @@ SqliteCreateView::SqliteCreateView(const SqliteCreateView& other) :
     database(other.database), view(other.view)
 {
     DEEP_COPY_FIELD(SqliteSelect, select);
-
+    DEEP_COPY_COLLECTION(SqliteIndexedColumn, columns);
 }
 
 SqliteCreateView::SqliteCreateView(int temp, bool ifNotExists, const QString &name1, const QString &name2, SqliteSelect *select) :
@@ -39,6 +40,15 @@ SqliteCreateView::SqliteCreateView(int temp, bool ifNotExists, const QString &na
 
     if (select)
         select->setParent(this);
+}
+
+SqliteCreateView::SqliteCreateView(int temp, bool ifNotExists, const QString& name1, const QString& name2, SqliteSelect* select, const QList<SqliteIndexedColumn*>& columns)
+    : SqliteCreateView(temp, ifNotExists, name1, name2, select)
+{
+    this->columns = columns;
+
+    for (SqliteIndexedColumn* col : columns)
+        col->setParent(this);
 }
 
 SqliteCreateView::~SqliteCreateView()
@@ -112,7 +122,12 @@ TokenList SqliteCreateView::rebuildTokensFromContents()
     if (dialect == Dialect::Sqlite3 && !database.isNull())
         builder.withOther(database, dialect).withOperator(".");
 
-    builder.withOther(view, dialect).withSpace().withKeyword("AS").withStatement(select);
+    builder.withOther(view, dialect).withSpace();
+
+    if (columns.size() > 0)
+        builder.withParLeft().withStatementList<SqliteIndexedColumn>(columns).withParRight().withSpace();
+
+    builder.withKeyword("AS").withStatement(select);
 
     builder.withOperator(";");
 
