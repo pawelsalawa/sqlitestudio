@@ -67,7 +67,7 @@
         <location filename="../dialogs/aboutdialog.cpp" line="39"/>
         <source>Portable distribution.</source>
         <translatorcomment>Sollte hier vermutlich &quot;Portable Version&quot; heißen?</translatorcomment>
-        <translation>Portable Version</translation>
+        <translation>Portable Version.</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.cpp" line="42"/>
@@ -215,12 +215,12 @@
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="118"/>
         <source>Reporting as an unregistered user, using e-mail address.</source>
-        <translation>Versenden als nicht registrierter Benutzer mittels E-mail Adresse</translation>
+        <translation>Versenden als nicht registrierter Benutzer mittels E-mail Adresse.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="127"/>
         <source>Reporting as a registered user.</source>
-        <translation>Versenden als registrierter Benutzer</translation>
+        <translation>Versenden als registrierter Benutzer.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="131"/>
@@ -286,7 +286,7 @@
     <message>
         <location filename="../windows/bugreporthistorywindow.cpp" line="90"/>
         <source>Invalid response from server.</source>
-        <translation>Ungültige Antwort vom Server</translation>
+        <translation>Ungültige Antwort vom Server.</translation>
     </message>
 </context>
 <context>
@@ -335,12 +335,12 @@
     <message>
         <location filename="../dialogs/bugreportlogindialog.cpp" line="65"/>
         <source>A login must be at least 2 characters long.</source>
-        <translation>Ein Login Kürzel muss mindestens 2 Zeichen lang sein</translation>
+        <translation>Ein Login Kürzel muss mindestens 2 Zeichen lang sein.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.cpp" line="66"/>
         <source>A password must be at least 5 characters long.</source>
-        <translation>Ein Passwort muss mindestens 5 Zeichen lang sein</translation>
+        <translation>Ein Passwort muss mindestens 5 Zeichen lang sein.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.cpp" line="91"/>
@@ -913,7 +913,8 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="128"/>
         <source>Look &amp; feel</source>
-        <translation>Aussehen</translation>
+        <translatorcomment>Kurz und knackig</translatorcomment>
+        <translation>Layout</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="139"/>
@@ -999,12 +1000,12 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="443"/>
         <source>DDL history size:</source>
-        <translation>DDL Verlaufsgröße</translation>
+        <translation>DDL Verlaufsgröße:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="450"/>
         <source>Don&apos;t show DDL preview dialog when commiting schema changes</source>
-        <translation>Zeige keine DDL Vorschau, wenn Schemaänderungen committed werden.</translation>
+        <translation>Zeige keine DDL Vorschau, wenn Schemaänderungen committed werden</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="463"/>
@@ -1020,7 +1021,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="491"/>
         <source>History size:</source>
-        <translation>Verlaufsgröße</translation>
+        <translation>Verlaufsgröße:</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="498"/>
@@ -1030,7 +1031,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="501"/>
         <source>Execute only the query under the cursor</source>
-        <translation>Führt nur die Abfrage unter dem Cursor aus.</translation>
+        <translation>Führt nur die Abfrage unter dem Cursor aus</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="514"/>
@@ -1837,7 +1838,7 @@ Das Aufrufen anderer Seiten ist erst nach Abschluss der Zählung möglich.</tran
     <message>
         <location filename="../dialogs/dbconverterdialog.cpp" line="135"/>
         <source>Enter a not empty, unique name (as in the list of databases on the left).</source>
-        <translation>Geben Sie einen eindeutigen Namen an (so wie links in der Datenbankliste)</translation>
+        <translation>Geben Sie einen eindeutigen Namen an (so wie links in der Datenbankliste).</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.cpp" line="140"/>
@@ -2129,7 +2130,7 @@ Das Aufrufen anderer Seiten ist erst nach Abschluss der Zählung möglich.</tran
     <message>
         <location filename="../dbtree/dbtree.cpp" line="119"/>
         <source>Edit the table</source>
-        <translation>Datenbank editieren</translation>
+        <translation>Tabelle editieren</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="120"/>
@@ -2272,7 +2273,7 @@ Das Aufrufen anderer Seiten ist erst nach Abschluss der Zählung möglich.</tran
     <message>
         <location filename="../dbtree/dbtree.cpp" line="940"/>
         <source>Entry with name %1 already exists in group %2.</source>
-        <translation>Der Eintrag mit Namen %1 existiert bereits in der Gruppe %2</translation>
+        <translation>Der Eintrag mit Namen %1 existiert bereits in der Gruppe %2.</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="958"/>
@@ -2294,7 +2295,8 @@ Alle Objekte in dieser Gruppe werden in die übergeordnete Gruppe verschoben.</t
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1019"/>
         <source>Are you sure you want to delete database &apos;%1&apos;?</source>
-        <translation>Sind Sie sicher, dass Sie die Datenbank &apos;%1&apos; löschen möchten?</translation>
+        <translatorcomment>http://bugs.sqlitestudio.pl/?id=3066 changed according to this</translatorcomment>
+        <translation>Sind Sie sicher, dass Sie die Datenbank &apos;%1&apos; entfernen möchten?</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1055"/>
@@ -2346,12 +2348,12 @@ Alle Objekte in dieser Gruppe werden in die übergeordnete Gruppe verschoben.</t
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1421"/>
         <source>Are you sure you want to delete all data from table &apos;%1&apos;?</source>
-        <translation>Sind Sie sicher, dass Sie alle Daten aus Tabelle &apos;%1&apos; löschen möchten?</translation>
+        <translation>Sind Sie sicher, dass Sie alle Daten der Tabelle &apos;%1&apos; löschen möchten?</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1429"/>
         <source>An error occurred while trying to delete data from table &apos;%1&apos;: %2</source>
-        <translation>Beim Löschen von Daten aus Tabelle &apos;%1&apos; ist folgender Fehelr aufgetreten: %2</translation>
+        <translation>Beim Löschen der Daten aus Tabelle &apos;%1&apos; ist folgender Fehler aufgetreten: %2</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1433"/>
@@ -2453,19 +2455,19 @@ Alle Objekte in dieser Gruppe werden in die übergeordnete Gruppe verschoben.</t
         <location filename="../dbtree/dbtreemodel.cpp" line="471"/>
         <source>Columns (%1):</source>
         <comment>dbtree tooltip</comment>
-        <translation>Spalten (%1)</translation>
+        <translation>Spalten (%1):</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="474"/>
         <source>Indexes (%1):</source>
         <comment>dbtree tooltip</comment>
-        <translation>Indizes (%1)</translation>
+        <translation>Indizes (%1):</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="477"/>
         <source>Triggers (%1):</source>
         <comment>dbtree tooltip</comment>
-        <translation>Trigger (%1)</translation>
+        <translation>Trigger (%1):</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1092"/>
@@ -2541,7 +2543,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../windows/ddlhistorywindow.ui" line="35"/>
         <source>Filter by database:</source>
-        <translation>Nach Datenbank filtern</translation>
+        <translation>Nach Datenbank filtern:</translation>
     </message>
     <message>
         <location filename="../windows/ddlhistorywindow.cpp" line="73"/>
@@ -2808,7 +2810,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../dialogs/exportdialog.ui" line="189"/>
         <source>Select database objects to export</source>
-        <translation>Wählen Sie die zu exportierenden Datebankobjekte aus.</translation>
+        <translation>Wählen Sie die zu exportierenden Datebankobjekte aus</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="202"/>
@@ -2876,7 +2878,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../dialogs/exportdialog.ui" line="382"/>
         <source>Exported text encoding:</source>
-        <translation>Exportierte Textkodierung</translation>
+        <translation>Exportierte Textkodierung:</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.ui" line="398"/>
@@ -2939,7 +2941,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="420"/>
         <source>Pick file to export to</source>
-        <translation>Wählen Sie eine Datei aus in die exportiert werden soll.</translation>
+        <translation>Wählen Sie eine Datei aus in die exportiert werden soll</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="709"/>
@@ -5155,7 +5157,7 @@ find next</source>
         <location filename="../windows/tableconstraintsmodel.cpp" line="75"/>
         <source>Type</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Typ</translation>
     </message>
     <message>
         <location filename="../windows/tableconstraintsmodel.cpp" line="77"/>
@@ -5167,7 +5169,7 @@ find next</source>
         <location filename="../windows/tableconstraintsmodel.cpp" line="79"/>
         <source>Name</source>
         <comment>table constraints</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Name</translation>
     </message>
 </context>
 <context>
@@ -5982,25 +5984,25 @@ Do you want to commit the structure, or do you want to go back to the structure 
         <location filename="../windows/viewwindow.cpp" line="293"/>
         <source>Refresh trigger list</source>
         <comment>view window</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Trigger Liste aktualisieren</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="295"/>
         <source>Create new trigger</source>
         <comment>view window</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Trigger erstellen</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="296"/>
         <source>Edit selected trigger</source>
         <comment>view window</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Trigger editieren</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="297"/>
         <source>Delete selected trigger</source>
         <comment>view window</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Trigger löschen</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="318"/>
