@@ -12,6 +12,7 @@ class DbAttacherMock : public DbAttacher
         void detachDatabases();
         BiStrHash getDbNameToAttach() const;
         QString getQuery() const;
+        bool getMainDbNameUsed() const;
 };
 
 class DbAttacherFactoryMock : public DbAttacherFactory

@@ -29,6 +29,11 @@ QString DbAttacherMock::getQuery() const
     return QString();
 }
 
+bool DbAttacherMock::getMainDbNameUsed() const
+{
+    return false;
+}
+
 DbAttacher* DbAttacherFactoryMock::create(Db*)
 {
     return new DbAttacherMock();

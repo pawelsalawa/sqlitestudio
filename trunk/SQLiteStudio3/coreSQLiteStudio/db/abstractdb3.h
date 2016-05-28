@@ -1162,12 +1162,16 @@ int AbstractDb3<T>::Query::Row::getValue(typename T::stmt* stmt, int col, QVaria
                         T::column_bytes(stmt, col)
                         );
             break;
-        case T::FLOAT:
-            value = T::column_double(stmt, col);
-            break;
         case T::NULL_TYPE:
             value = QVariant(QVariant::String);
             break;
+        case T::FLOAT:
+            // Looks like it's bettern when SQLite converts floats into string, so they are more accurate.
+            // SQLiteStudio tries to convert string to double if possible anyway at later stage.
+            // This way we don't get weird float values like 0.1000000001 instead of 0.1 when executing in simple mode (without SUBSTR()).
+            // If it appears to be a problem in future, the following code is left commented here. Just in case.
+//            value = T::column_double(stmt, col);
+//            break;
         default:
             value = QString(
                             reinterpret_cast<const QChar*>(T::column_text16(stmt, col)),

@@ -73,6 +73,17 @@ class API_EXPORT DbAttacher
          * @return Query string.
          */
         virtual QString getQuery() const = 0;
+
+        /**
+         * @brief Tells if "main" database name was used in the query and was ommited.
+         * @return true when "main" db token was in the query, or false otherwise.
+         *
+         * The "main" database will not be attached and this getter tells wheter such situation occured.
+         * This is to assert situation when user has database on the list which name is actually "main".
+         * Table window always uses "main." prefix when reading data and this caused attacher to step in,
+         * which then caused some execution error.
+         */
+        virtual bool getMainDbNameUsed() const = 0;
 };
 
 /**

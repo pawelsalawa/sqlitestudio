@@ -1,4 +1,3 @@
-2998
 2999
 3008
 http://forum.sqlitestudio.pl/viewtopic.php?f=11&t=1051
@@ -8,6 +7,7 @@ http://forum.sqlitestudio.pl/viewtopic.php?f=11&t=1053
 - usprawnic widok FK w comboboxie zeby nie bylo 3 kolumn z tym samym id
 - sqlcipher
 - constrainty w structure tab zrobic z pelnych nazw i zobaczyc jak to wyglada
+- kolumny w structure - constrainty czesciowo pelne nazwy
 
 cannot reproduce:
 2922 / 2926 / 2925
@@ -25,6 +25,7 @@ shortcut - toggle comment
 2 options to disable big tooltips and all tooltips
 sort windows list in menu
 option to not show status field automatically
+option to move data tab to be first
 
 
 * Outstanding features for 3.1:
