@@ -69,7 +69,7 @@ TokenList DbAttacherImpl::getDbTokens()
 
 void DbAttacherImpl::detachAttached()
 {
-    foreach (const QString& dbName, dbNameToAttach.leftValues())
+    for (const QString& dbName : dbNameToAttach.leftValues())
         db->detach(nameToDbMap[dbName]);
 
     dbNameToAttach.clear();
@@ -87,7 +87,7 @@ QHash<QString, TokenList> DbAttacherImpl::groupDbTokens(const TokenList& dbToken
     // Filter out tokens of unknown databases and group results by name
     QHash<QString,TokenList> groupedDbTokens;
     QString strippedName;
-    foreach (TokenPtr token, dbTokens)
+    for (TokenPtr token : dbTokens)
     {
         strippedName = stripObjName(token->value, dialect);
         if (!nameToDbMap.contains(strippedName, Qt::CaseInsensitive))
@@ -101,8 +101,14 @@ QHash<QString, TokenList> DbAttacherImpl::groupDbTokens(const TokenList& dbToken
 bool DbAttacherImpl::attachAllDbs(const QHash<QString, TokenList>& groupedDbTokens)
 {
     QString attachName;
-    foreach (const QString& dbName, groupedDbTokens.keys())
+    for (const QString& dbName : groupedDbTokens.keys())
     {
+        if (dbName.toLower() == "main")
+        {
+            mainDbNameUsed = true;
+            continue;
+        }
+
         attachName = db->attach(nameToDbMap[dbName]);
         if (attachName.isNull())
         {
@@ -121,7 +127,7 @@ QHash<TokenPtr, TokenPtr> DbAttacherImpl::getTokenMapping(const TokenList& dbTok
     QHash<TokenPtr, TokenPtr> tokenMapping;
     QString strippedName;
     TokenPtr dstToken;
-    foreach (TokenPtr srcToken, dbTokens)
+    for (TokenPtr srcToken : dbTokens)
     {
         strippedName = stripObjName(srcToken->value, dialect);
         if (strippedName.compare("main", Qt::CaseInsensitive) == 0 ||
@@ -156,6 +162,11 @@ void DbAttacherImpl::replaceTokensInQueries(const QHash<TokenPtr, TokenPtr>& tok
             query->tokens.replace(idx, it.value());
         }
     }
+}
+
+bool DbAttacherImpl::getMainDbNameUsed() const
+{
+    return mainDbNameUsed;
 }
 
 BiStrHash DbAttacherImpl::getDbNameToAttach() const

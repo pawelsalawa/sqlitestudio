@@ -18,6 +18,7 @@ class DbAttacherImpl : public DbAttacher
         void detachDatabases();
         BiStrHash getDbNameToAttach() const;
         QString getQuery() const;
+        bool getMainDbNameUsed() const;
 
     private:
         /**
@@ -83,6 +84,7 @@ class DbAttacherImpl : public DbAttacher
         Dialect dialect;
         BiStrHash dbNameToAttach;
         StrHash<Db*> nameToDbMap;
+        bool mainDbNameUsed = false;
 };
 
 class DbAttacherDefaultFactory : public DbAttacherFactory

@@ -32,6 +32,8 @@
         * [BUGFIX]: #3047 Fixed copying/moving tables together with indexes or triggers with Drag&Drop across same SQLite version databases.
         * [BUGFIX]: #3012 SQL simple formatter plugin does not load by default from now on. It is still available, but won't load until manually loaded.
         * [BUGFIX]: Table window for new table (just created) will now properly close when that table gets deleted immediately by the user.
+        * [BUGFIX]: #2998 Fixed reading decimal values from database when using simple execution method (a fallback in case of some problems).
+        * [BUGFIX]: #2999 Fixed working on objects from database that on the list is named "main".
 
 [3.0.7]
         * [ADDED]: #2951 Implemented dropdown value picking for foreign key columns in grid view.
