@@ -94,7 +94,7 @@ void QueryExecutor::executeChain()
     bool result;
     foreach (QueryExecutorStep* currentStep, executionChain)
     {
-        if (interrupted)
+        if (isInterrupted())
         {
             stepFailed(currentStep);
             return;
@@ -127,7 +127,7 @@ void QueryExecutor::stepFailed(QueryExecutorStep* currentStep)
 
     clearChain();
 
-    if (interrupted)
+    if (isInterrupted())
     {
         executionInProgress = false;
         emit executionFailed(SqlErrorCode::INTERRUPTED, tr("Execution interrupted."));
@@ -240,6 +240,7 @@ void QueryExecutor::interrupt()
         return;
     }
 
+    QMutexLocker lock(&interruptionMutex);
     interrupted = true;
     db->asyncInterrupt();
 }
@@ -568,6 +569,11 @@ void QueryExecutor::setForceSimpleMode(bool value)
     forceSimpleMode = value;
 }
 
+bool QueryExecutor::isInterrupted() const
+{
+    QMutexLocker lock(&interruptionMutex);
+    return interrupted;
+}
 
 const QStringList& QueryExecutor::getRequiredDbAttaches() const
 {

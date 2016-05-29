@@ -1032,6 +1032,8 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
         bool getForceSimpleMode() const;
         void setForceSimpleMode(bool value);
 
+        bool isInterrupted() const;
+
     private:
         /**
          * @brief Executes query.
@@ -1161,7 +1163,8 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          * The state of "execution in progress" is the only value synchronized between threads.
          * It makes sure that single QueryExecutor will execute only one query at the time.
          */
-        QMutex executionMutex;
+        mutable QMutex executionMutex;
+        mutable QMutex interruptionMutex;
 
         /**
          * @brief Query to execute as defined by the user.

@@ -19,6 +19,9 @@
 #include <QTime>
 #include <QtMath>
 #include <QMessageBox>
+#include <QThread>
+
+QSet<SqlQueryModel*> SqlQueryModel::existingModels;
 
 SqlQueryModel::SqlQueryModel(QObject *parent) :
     QStandardItemModel(parent)
@@ -29,10 +32,13 @@ SqlQueryModel::SqlQueryModel(QObject *parent) :
     connect(queryExecutor, SIGNAL(executionFailed(int,QString)), this, SLOT(handleExecFailed(int,QString)));
     connect(queryExecutor, SIGNAL(resultsCountingFinished(quint64,quint64,int)), this, SLOT(resultsCountingFinished(quint64,quint64,int)));
     setItemPrototype(new SqlQueryItem());
+    existingModels << this;
 }
 
 SqlQueryModel::~SqlQueryModel()
 {
+    existingModels.remove(this);
+
     delete queryExecutor;
     queryExecutor = nullptr;
 }
@@ -681,7 +687,7 @@ QList<SqlQueryModelColumnPtr> SqlQueryModel::getTableColumnModels(const QString&
     return getTableColumnModels("main", table);
 }
 
-void SqlQueryModel::loadData(SqlQueryPtr results)
+bool SqlQueryModel::loadData(SqlQueryPtr results)
 {
     if (rowCount() > 0)
         clear();
@@ -698,7 +704,6 @@ void SqlQueryModel::loadData(SqlQueryPtr results)
     rowNumBase = getCurrentPage() * rowsPerPage + 1;
 
     updateColumnHeaderLabels();
-    QList<QStandardItem*> itemList;
     QList<QList<QStandardItem*>> rowList;
     while (results->hasNext() && rowIdx < rowsPerPage)
     {
@@ -706,12 +711,14 @@ void SqlQueryModel::loadData(SqlQueryPtr results)
         if (!row)
             break;
 
-        itemList = loadRow(row);
-        //insertRow(rowIdx, itemList);
-        rowList << itemList;
+        rowList << loadRow(row);
 
         if ((rowIdx % 50) == 0)
+        {
             qApp->processEvents();
+            if (!existingModels.contains(this))
+                return false;
+        }
 
         rowIdx++;
     }
@@ -719,6 +726,8 @@ void SqlQueryModel::loadData(SqlQueryPtr results)
     rowIdx = 0;
     for (const QList<QStandardItem*>& row : rowList)
         insertRow(rowIdx++, row);
+
+    return true;
 }
 
 QList<QStandardItem*> SqlQueryModel::loadRow(SqlResultsRowPtr row)
@@ -1048,7 +1057,9 @@ void SqlQueryModel::handleExecFinished(SqlQueryPtr results)
     }
 
     storeStep1NumbersFromExecution();
-    loadData(results);
+    if (!loadData(results))
+        return;
+
     storeStep2NumbersFromExecution();
 
     requiredDbAttaches = queryExecutor->getRequiredDbAttaches();
