@@ -36,6 +36,7 @@
         * [BUGFIX]: #2998 Fixed reading decimal values from database when using simple execution method (a fallback in case of some problems).
         * [BUGFIX]: #2999 Fixed working on objects from database that on the list is named "main".
         * [BUGFIX]: #3008 Editing foreign key cell with more than 10 000 possible values will now use simple text editor, not dropdown. It also loads values asynchronously.
+        * [BUGFIX]: Fixed error detection when selecting column from incorrect table alias (http://forum.sqlitestudio.pl/viewtopic.php?f=11&t=1051).
 
 [3.0.7]
         * [ADDED]: #2951 Implemented dropdown value picking for foreign key columns in grid view.
