@@ -241,7 +241,13 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
             QList<SqliteCreateTable::ConstraintPtr> constraints;
         };
 
-        void loadData(SqlQueryPtr results);
+        /**
+         * @brief Loads data from queyr execution into UI cells.
+         * @param results Execution results from query executor.
+         * @return Whether to continue execution or not.
+         */
+        bool loadData(SqlQueryPtr results);
+
         QList<QStandardItem*> loadRow(SqlResultsRowPtr row);
         RowId getRowIdValue(SqlResultsRowPtr row, int columnIdx);
         void readColumns();
@@ -372,6 +378,15 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         QList<bool> columnEditionStatus;
 
         QList<int> rowsDeletedSuccessfullyInTheCommit;
+
+        /**
+         * @brief Set of existing model objects, updated for each construction and destruction.
+         *
+         * This is used by loadData() to determinathe whether processEvents() caused deletion of the model.
+         * We need to keep processEvents() call so the UI is responsive to Interrupt button,
+         * but this causes crash when model is deleted in the events processing (like when FK combobox is deleted faster than data is loaded).
+         */
+        static QSet<SqlQueryModel*> existingModels;
 
     private slots:
         void handleExecFinished(SqlQueryPtr results);
