@@ -379,8 +379,10 @@ void SelectResolver::resolveDbAndTable(SqliteSelect::Core::ResultColumn *resCol)
     }
     else if (!ignoreInvalidNames)
     {
-        qDebug() << "Source table for column '" << expr->detokenize()
+        QString colStr = expr->detokenize();
+        qDebug() << "Source table for column '" << colStr
                  << "' not matched while resolving select: " << query;
+        errors << QObject::tr("Could not resolve table for column '%1'.").arg(colStr);
     }
 
     currentCoreResults << col;
