@@ -1386,11 +1386,17 @@ void DbTree::vacuumDb()
     if (!db || !db->isValid())
         return;
 
-    SqlQueryPtr res = db->exec("VACUUM;");
-    if (res->isError())
-        notifyError(tr("Error while executing VACUUM on the database %1: %2").arg(db->getName(), res->getErrorText()));
-    else
-        notifyInfo(tr("VACUUM execution finished successfully."));
+    EditorWindow* win = MAINWINDOW->openSqlEditor();
+    if (!win->setCurrentDb(db))
+    {
+        qCritical() << "Created EditorWindow had not got requested database:" << db->getName();
+        win->close();
+        return;
+    }
+
+    win->getMdiWindow()->rename(tr("Vacuum (%1)").arg(db->getName()));
+    win->setContents("VACUUM;");
+    win->execute();
 }
 
 void DbTree::integrityCheck()
