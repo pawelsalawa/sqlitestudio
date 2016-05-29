@@ -109,7 +109,7 @@ void SqlQueryModel::executeQueryInternal()
     emit executionStarted();
 
     queryExecutor->setQuery(query);
-    queryExecutor->setResultsPerPage(CFG_UI.General.NumberOfRowsPerPage.get());
+    queryExecutor->setResultsPerPage(getRowsPerPage());
     queryExecutor->setExplainMode(explain);
     queryExecutor->setPreloadResults(true);
     queryExecutor->exec();
@@ -694,7 +694,7 @@ void SqlQueryModel::loadData(SqlQueryPtr results)
     // Load data
     SqlResultsRowPtr row;
     int rowIdx = 0;
-    int rowsPerPage = CFG_UI.General.NumberOfRowsPerPage.get();
+    int rowsPerPage = getRowsPerPage();
     rowNumBase = getCurrentPage() * rowsPerPage + 1;
 
     updateColumnHeaderLabels();
@@ -1061,7 +1061,7 @@ void SqlQueryModel::handleExecFinished(SqlQueryPtr results)
 
     reloading = false;
 
-    bool rowsCountedManually = queryExecutor->isRowCountingRequired() || rowCount() < CFG_UI.General.NumberOfRowsPerPage.get();
+    bool rowsCountedManually = queryExecutor->isRowCountingRequired() || rowCount() < getRowsPerPage();
     bool countRes = false;
     if (rowsCountedManually)
     {
@@ -1245,7 +1245,7 @@ void SqlQueryModel::storeStep2NumbersFromExecution()
 {
     if (!queryExecutor->getSkipRowCounting())
     {
-        if (queryExecutor->isRowCountingRequired() || rowCount() < CFG_UI.General.NumberOfRowsPerPage.get())
+        if (queryExecutor->isRowCountingRequired() || rowCount() < getRowsPerPage())
             totalRowsReturned = rowCount();
     }
 }
@@ -1413,7 +1413,7 @@ void SqlQueryModel::recalculateRowsAndPages(int rowsDelta)
 {
     totalRowsReturned += rowsDelta;
 
-    int rowsPerPage = CFG_UI.General.NumberOfRowsPerPage.get();
+    int rowsPerPage = getRowsPerPage();
     totalPages = (int)qCeil(((double)totalRowsReturned) / ((double)rowsPerPage));
     emit totalRowsAndPagesAvailable();
 
@@ -1438,6 +1438,30 @@ int SqlQueryModel::getInsertRowIndex()
         row++;
 
     return row;
+}
+
+void SqlQueryModel::notifyItemEditionEnded(const QModelIndex& idx)
+{
+    emit itemEditionEnded(itemFromIndex(idx));
+}
+
+int SqlQueryModel::getRowsPerPage() const
+{
+    int rowsPerPage = CFG_UI.General.NumberOfRowsPerPage.get();
+    if (hardRowLimit > -1)
+        rowsPerPage = hardRowLimit;
+
+    return rowsPerPage;
+}
+
+int SqlQueryModel::getHardRowLimit() const
+{
+    return hardRowLimit;
+}
+
+void SqlQueryModel::setHardRowLimit(int value)
+{
+    hardRowLimit = value;
 }
 
 bool SqlQueryModel::getSimpleExecutionMode() const

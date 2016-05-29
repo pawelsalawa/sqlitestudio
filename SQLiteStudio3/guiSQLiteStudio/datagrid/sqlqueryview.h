@@ -70,6 +70,8 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         QToolBar* getToolBar(int toolbar) const;
         void addAdditionalAction(QAction* action);
         QModelIndex getCurrentIndex() const;
+        bool getSimpleBrowserMode() const;
+        void setSimpleBrowserMode(bool value);
 
     private:
         void init();
@@ -94,6 +96,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         QPushButton* cancelButton = nullptr;
         QProgressBar* busyBar = nullptr;
         QList<QAction*> additionalActions;
+        bool simpleBrowserMode = false;
 
     private slots:
         void updateCommitRollbackActions(bool enabled);

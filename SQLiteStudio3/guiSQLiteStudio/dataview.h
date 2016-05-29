@@ -9,6 +9,7 @@
 class QToolBar;
 class SqlQueryView;
 class SqlQueryModel;
+class SqlQueryItem;
 class FormView;
 class ExtLineEdit;
 class QLabel;
@@ -203,6 +204,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         void coverForGridCommit(int total);
         void updateGridCommitCover(int value);
         void hideGridCommitCover();
+        void adjustColumnWidth(SqlQueryItem* item);
 };
 
 int qHash(DataView::ActionGroup action);

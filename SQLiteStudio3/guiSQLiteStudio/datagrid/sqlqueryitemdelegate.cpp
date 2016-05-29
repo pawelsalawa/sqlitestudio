@@ -6,12 +6,17 @@
 #include "sqlqueryview.h"
 #include "uiconfig.h"
 #include "common/utils_sql.h"
+#include "schemaresolver.h"
 #include <QHeaderView>
 #include <QPainter>
 #include <QEvent>
 #include <QLineEdit>
 #include <QDebug>
 #include <QComboBox>
+#include <QApplication>
+#include <QVBoxLayout>
+#include <QResizeEvent>
+#include <QScrollBar>
 
 SqlQueryItemDelegate::SqlQueryItemDelegate(QObject *parent) :
     QStyledItemDelegate(parent)
@@ -74,12 +79,11 @@ QString SqlQueryItemDelegate::displayText(const QVariant& value, const QLocale& 
 void SqlQueryItemDelegate::setEditorData(QWidget* editor, const QModelIndex& index) const
 {
     QComboBox* cb = dynamic_cast<QComboBox*>(editor);
-    if (!cb) {
+    if (cb) {
+        setEditorDataForFk(cb, index);
+    } else {
         QStyledItemDelegate::setEditorData(editor, index);
-        return;
     }
-
-    setEditorDataForFk(cb, index);
 }
 
 void SqlQueryItemDelegate::setEditorDataForFk(QComboBox* cb, const QModelIndex& index) const
@@ -103,20 +107,24 @@ void SqlQueryItemDelegate::setEditorDataForFk(QComboBox* cb, const QModelIndex& 
 void SqlQueryItemDelegate::setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const
 {
     QComboBox* cb = dynamic_cast<QComboBox*>(editor);
-    if (!cb) {
+    if (cb) {
+        setModelDataForFk(cb, model, index);
+    } else {
         QStyledItemDelegate::setModelData(editor, model, index);
-        return;
     }
 
-    setModelDataForFk(cb, model, index);
+    SqlQueryModel* queryModel = const_cast<SqlQueryModel*>(dynamic_cast<const SqlQueryModel*>(index.model()));
+    queryModel->notifyItemEditionEnded(index);
 }
 
 void SqlQueryItemDelegate::setModelDataForFk(QComboBox* cb, QAbstractItemModel* model, const QModelIndex& index) const
 {
-    QVariant comboData = cb->currentData();
-    if (cb->currentText() != cb->itemText(cb->currentIndex()))
-        comboData = cb->currentText();
+    SqlQueryModel* cbModel = dynamic_cast<SqlQueryModel*>(cb->model());
+    int idx = cb->currentIndex();
+    if (idx < 0)
+        return;
 
+    QVariant comboData = cbModel->getRow(idx)[0]->getValue();
     model->setData(index, comboData);
 }
 
@@ -137,16 +145,25 @@ QWidget* SqlQueryItemDelegate::getEditor(int type, QWidget* parent) const
 
 QString SqlQueryItemDelegate::getSqlForFkEditor(SqlQueryItem* item) const
 {
-    QString sql = QStringLiteral("SELECT %1 FROM %2%3");
-    QStringList selCols;
-    QStringList fkTables;
-    QStringList fkCols;
+    static_qstring(sql, "SELECT %1 FROM %2%3");
+    static_qstring(srcColTpl, "%1 AS %2");
+    static_qstring(dbColTpl, "%1.%2 AS %3");
+    static_qstring(conditionTpl, "%1.%2 = %3.%4");
+    static_qstring(conditionPrefixTpl, " WHERE %1");
+    static_qstring(cellLimitTpl, "substr(%2, 0, %1)");
+
+    QStringList selectedCols;
+    QStringList fkConfitionTables;
+    QStringList fkConditionCols;
+    QStringList srcCols;
     Db* db = item->getModel()->getDb();
     Dialect dialect = db->getDialect();
+    SchemaResolver resolver(db);
 
     QList<SqlQueryModelColumn::ConstraintFk*> fkList = item->getColumn()->getFkConstraints();
     int i = 0;
     QString src;
+    QString fullSrcCol;
     QString col;
     for (SqlQueryModelColumn::ConstraintFk* fk : fkList)
     {
@@ -154,100 +171,115 @@ QString SqlQueryItemDelegate::getSqlForFkEditor(SqlQueryItem* item) const
         src = wrapObjIfNeeded(fk->foreignTable, dialect);
         if (i == 0)
         {
-            selCols << QString("%1.%2 AS %3").arg(src, col,
+            selectedCols << dbColTpl.arg(src, col,
                 wrapObjIfNeeded(item->getColumn()->column, dialect));
         }
 
-        selCols << src + ".*";
-        fkCols << col;
-        fkTables << src;
+        srcCols = resolver.getTableColumns(src);
+        for (const QString& srcCol : srcCols)
+        {
+            if (fk->foreignColumn.compare(srcCol, Qt::CaseInsensitive) == 0)
+                continue; // Exclude matching column. We don't want the same column several times.
+
+            fullSrcCol = src + "." + srcCol;
+            selectedCols << srcColTpl.arg(cellLimitTpl.arg(CELL_LENGTH_LIMIT).arg(fullSrcCol), wrapObjName(fullSrcCol, dialect));
+        }
+
+        fkConditionCols << col;
+        fkConfitionTables << src;
 
         i++;
     }
 
     QStringList conditions;
-    QString firstSrc = wrapObjIfNeeded(fkTables.first(), dialect);
-    QString firstCol = wrapObjIfNeeded(fkCols.first(), dialect);
-    for (i = 1; i < fkTables.size(); i++)
+    QString firstSrc = wrapObjIfNeeded(fkConfitionTables.first(), dialect);
+    QString firstCol = wrapObjIfNeeded(fkConditionCols.first(), dialect);
+    for (i = 1; i < fkConfitionTables.size(); i++)
     {
-        src = wrapObjIfNeeded(fkTables[i], dialect);
-        col = wrapObjIfNeeded(fkCols[i], dialect);
-        conditions << QString("%1.%2 = %3.%4").arg(firstSrc, firstCol, src, col);
+        src = wrapObjIfNeeded(fkConfitionTables[i], dialect);
+        col = wrapObjIfNeeded(fkConditionCols[i], dialect);
+        conditions << conditionTpl.arg(firstSrc, firstCol, src, col);
     }
 
     QString conditionsStr;
     if (!conditions.isEmpty()) {
-        conditionsStr = " WHERE " + conditions.join(", ");
+        conditionsStr = conditionPrefixTpl.arg(conditions.join(", "));
     }
 
-    return sql.arg(selCols.join(", "), fkTables.join(", "), conditionsStr);
+    return sql.arg(selectedCols.join(", "), fkConfitionTables.join(", "), conditionsStr);
 }
 
-void SqlQueryItemDelegate::copyToModel(const SqlQueryPtr& results, QStandardItemModel* model) const
+qlonglong SqlQueryItemDelegate::getRowCountForFkEditor(Db* db, const QString& query) const
 {
-    QList<SqlResultsRowPtr> rows = results->getAll();
-    int colCount = results->columnCount();
-    int rowCount = rows.size() + 1;
+    static_qstring(tpl, "SELECT count(*) FROM (%1)");
 
-    model->setColumnCount(colCount);
-    model->setRowCount(rowCount);
-    int colIdx = 0;
-    int rowIdx = 0;
-    for (const QString& colName : results->getColumnNames())
-    {
-        model->setHeaderData(colIdx, Qt::Horizontal, colName);
+    QString sql = tpl.arg(query);
+    SqlQueryPtr result = db->exec(sql);
+    return result->getSingleCell().toLongLong();
+}
 
-        QStandardItem *item = new QStandardItem();
-        QFont font = item->font();
-        font.setItalic(true);
-        item->setFont(font);
-        item->setForeground(QBrush(CFG_UI.Colors.DataNullFg.get()));
-        item->setData(QVariant(QVariant::String), Qt::EditRole);
-        item->setData(QVariant(QVariant::String), Qt::UserRole);
-        model->setItem(0, colIdx, item);
-        colIdx++;
-    }
-    rowIdx++;
+void SqlQueryItemDelegate::fkDataReady()
+{
+    SqlQueryModel* model = dynamic_cast<SqlQueryModel*>(sender());
+    SqlQueryView* queryView = model->getView();
 
-    for (const SqlResultsRowPtr& row : rows)
-    {
-        colIdx = 0;
-        for (const QVariant& val : row->valueList())
-        {
-            QStandardItem *item = new QStandardItem();
-            item->setText(val.toString());
-            item->setData(val, Qt::UserRole);
-            model->setItem(rowIdx, colIdx, item);
-            colIdx++;
-        }
-        rowIdx++;
-    }
+    queryView->resizeColumnsToContents();
+    queryView->resizeRowsToContents();
+
+    int wd = queryView->horizontalHeader()->length();
+    if (model->rowCount() > 10) // 10 is default visible item count for combobox
+        wd += queryView->verticalScrollBar()->sizeHint().width();
+
+    queryView->setMinimumWidth(wd);
 }
 
 QWidget* SqlQueryItemDelegate::getFkEditor(SqlQueryItem* item, QWidget* parent) const
 {
     QString sql = getSqlForFkEditor(item);
 
+    Db* db = item->getModel()->getDb();
+    qlonglong rowCount = getRowCountForFkEditor(db, sql);
+    if (rowCount > MAX_ROWS_FOR_FK)
+    {
+        notifyWarn(tr("Foreign key for column %2 has more than %1 possible values. It's too much to display in drop down list. You need to edit value manually.")
+                   .arg(MAX_ROWS_FOR_FK).arg(item->getColumn()->column));
+
+        return getEditor(item->getValue().userType(), parent);
+    }
+
     QComboBox *cb = new QComboBox(parent);
     cb->setEditable(true);
-    QTableView* queryView = new QTableView();
-    QStandardItemModel* model = new QStandardItemModel(queryView);
 
-    Db* db = item->getModel()->getDb();
-    SqlQueryPtr results = db->exec(sql);
-    copyToModel(results, model);
+    SqlQueryView* queryView = new SqlQueryView();
+    queryView->setSimpleBrowserMode(true);
+    connect(queryView->horizontalHeader(), &QHeaderView::sectionResized, [queryView](int, int, int)
+    {
+        int wd = queryView->horizontalHeader()->length();
+        if (queryView->verticalScrollBar()->isVisible())
+            wd += queryView->verticalScrollBar()->width();
+
+        queryView->setMinimumWidth(wd);
+    });
+
+    SqlQueryModel* model = new SqlQueryModel(queryView);
+    model->setView(queryView);
+
+    connect(model, SIGNAL(executionSuccessful()), this, SLOT(fkDataReady()));
 
     cb->setModel(model);
     cb->setView(queryView);
     cb->setModelColumn(0);
 
+    model->setHardRowLimit(MAX_ROWS_FOR_FK);
+    model->setDb(db);
+    model->setQuery(sql);
+    model->executeQuery();
+
     queryView->verticalHeader()->setVisible(false);
     queryView->horizontalHeader()->setVisible(true);
     queryView->setSelectionMode(QAbstractItemView::SingleSelection);
     queryView->setSelectionBehavior(QAbstractItemView::SelectRows);
-    queryView->resizeColumnsToContents();
-    queryView->resizeRowsToContents();
-    queryView->setMinimumWidth(queryView->horizontalHeader()->length());
 
     return cb;
 }
+

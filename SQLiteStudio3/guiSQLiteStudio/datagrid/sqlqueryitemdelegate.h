@@ -4,6 +4,7 @@
 #include "guiSQLiteStudio_global.h"
 #include "db/sqlquery.h"
 #include <QStyledItemDelegate>
+#include <QSet>
 
 class SqlQueryItem;
 class QComboBox;
@@ -28,7 +29,14 @@ class GUI_API_EXPORT SqlQueryItemDelegate : public QStyledItemDelegate
         void setEditorDataForFk(QComboBox* cb, const QModelIndex& index) const;
         void setModelDataForFk(QComboBox* editor, QAbstractItemModel* model, const QModelIndex& index) const;
         QString getSqlForFkEditor(SqlQueryItem* item) const;
-        void copyToModel(const SqlQueryPtr& results, QStandardItemModel* model) const;
+        qlonglong getRowCountForFkEditor(Db* db, const QString& query) const;
+        QSet<QWidget*> editorsWithAsyncExecution;
+
+        static const qlonglong MAX_ROWS_FOR_FK = 10000L;
+        static const int CELL_LENGTH_LIMIT = 30;
+
+    private slots:
+        void fkDataReady();
 };
 
 #endif // SQLQUERYITEMDELEGATE_H

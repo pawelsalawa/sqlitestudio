@@ -75,6 +75,7 @@ void DataView::initSlots()
     connect(model, SIGNAL(totalRowsAndPagesAvailable()), this, SLOT(totalRowsAndPagesAvailable()));
     connect(gridView->horizontalHeader(), SIGNAL(sectionClicked(int)), this, SLOT(columnsHeaderClicked(int)));
     connect(this, SIGNAL(currentChanged(int)), this, SLOT(tabChanged(int)));
+    connect(model, SIGNAL(itemEditionEnded(SqlQueryItem*)), this, SLOT(adjustColumnWidth(SqlQueryItem*)));
 }
 
 void DataView::initFormView()
@@ -265,10 +266,15 @@ void DataView::resizeColumnsInitiallyToContents()
 {
     int cols = gridView->model()->columnCount();
     gridView->resizeColumnsToContents();
+    int wd;
     for (int i = 0; i < cols ; i++)
     {
-        if (gridView->columnWidth(i) > CFG_UI.General.MaxInitialColumnWith.get())
+        wd = gridView->columnWidth(i);
+        if (wd > CFG_UI.General.MaxInitialColumnWith.get())
             gridView->setColumnWidth(i, CFG_UI.General.MaxInitialColumnWith.get());
+        else if (wd < 60)
+            gridView->setColumnWidth(i, 60);
+
     }
 }
 
@@ -522,6 +528,17 @@ void DataView::hideGridCommitCover()
 
     widgetCover->hide();
     QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+}
+
+void DataView::adjustColumnWidth(SqlQueryItem* item)
+{
+    if (!item)
+        return;
+
+    int col = item->column();
+    gridView->resizeColumnToContents(col);
+    if (gridView->columnWidth(col) > CFG_UI.General.MaxInitialColumnWith.get())
+        gridView->setColumnWidth(col, CFG_UI.General.MaxInitialColumnWith.get());
 }
 
 void DataView::updateCommitRollbackActions(bool enabled)
