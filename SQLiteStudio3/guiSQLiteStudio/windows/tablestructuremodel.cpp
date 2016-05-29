@@ -128,14 +128,16 @@ QVariant TableStructureModel::data(const QModelIndex& index, int role) const
 
 QVariant TableStructureModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
-    if (role != Qt::DisplayRole)
-        return QAbstractTableModel::headerData(section, orientation, role);
+    if (role == Qt::DisplayRole)
+    {
+        if (orientation == Qt::Vertical)
+            return section + 1;
 
-    if (orientation == Qt::Vertical)
-        return section + 1;
+        // Now it's horizontal orientation with DisplayRole
+        return columnLabel(section);
+    }
 
-    // Now it's horizontal orientation with DisplayRole
-    return columnLabel(section);
+    return QAbstractTableModel::headerData(section, orientation, role);
 }
 
 TableStructureModel::Columns TableStructureModel::getHeaderColumn(int colIdx) const
@@ -300,17 +302,17 @@ QString TableStructureModel::columnLabel(int column) const
         case Columns::TYPE:
             return tr("Data type", "table structure columns");
         case Columns::PK:
-            return "P";
+            return tr("Primary\nKey", "table structure columns");
         case Columns::FK:
-            return "F";
+            return tr("Foreign\nKey", "table structure columns");
         case Columns::UNIQUE:
-            return "U";
+            return tr("Unique", "table structure columns");
         case Columns::CHECK:
-            return "H";
+            return tr("Check", "table structure columns");
         case Columns::NOTNULL:
-            return "N";
+            return tr("Not\nNULL", "table structure columns");
         case Columns::COLLATE:
-            return "C";
+            return tr("Collate", "table structure columns");
         case Columns::DEFAULT:
             return tr("Default value", "table structure columns");
     }

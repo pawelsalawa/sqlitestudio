@@ -33,9 +33,11 @@
 #include "services/importmanager.h"
 #include "dbobjectdialogs.h"
 #include "dialogs/exportdialog.h"
+#include "common/centerediconitemdelegate.h"
 #include "themetuner.h"
 #include "dialogs/importdialog.h"
 #include "dialogs/populatedialog.h"
+#include "datagrid/sqlqueryitem.h"
 #include <QMenu>
 #include <QToolButton>
 #include <QLabel>
@@ -46,7 +48,6 @@
 #include <QPushButton>
 #include <QDebug>
 #include <QStyleFactory>
-#include <datagrid/sqlqueryitem.h>
 
 // TODO extend QTableView for columns and constraints, so they show full-row-width drop indicator,
 // instead of single column drop indicator.
@@ -142,6 +143,9 @@ void TableWindow::init()
 {
     ui->setupUi(this);
     ui->structureSplitter->setStretchFactor(0, 2);
+    ui->structureView->horizontalHeader()->setSectionsClickable(false);
+    ui->structureView->verticalHeader()->setSectionsClickable(false);
+    constraintColumnsDelegate = new CenteredIconItemDelegate(this);
 
 #ifdef Q_OS_MACX
     QStyle *fusion = QStyleFactory::create("Fusion");
@@ -470,10 +474,16 @@ void TableWindow::executionFailed(const QString& errorText)
 
 void TableWindow::initDbAndTable()
 {
+    int totalConstrCols = 6;
     if (db->getVersion() == 2)
     {
         ui->withoutRowIdCheck->setVisible(false);
+        totalConstrCols -= 2;
     }
+
+    totalConstrCols += 2; // we start at 3rd column
+    for (int colIdx = 2; colIdx < totalConstrCols; colIdx++)
+        ui->structureView->setItemDelegateForColumn(colIdx, constraintColumnsDelegate);
 
     if (existingTable)
     {

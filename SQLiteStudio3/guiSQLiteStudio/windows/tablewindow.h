@@ -21,6 +21,7 @@ class TableConstraintsModel;
 class QProgressBar;
 class WidgetCover;
 class SqliteSyntaxHighlighter;
+class CenteredIconItemDelegate;
 class ConstraintTabModel;
 
 namespace Ui {
@@ -178,6 +179,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         ChainExecutor* structureExecutor = nullptr;
         TableModifier* tableModifier = nullptr;
         bool modifyingThisTable = false;
+        CenteredIconItemDelegate* constraintColumnsDelegate = nullptr;
 
     private slots:
         void executionSuccessful();
