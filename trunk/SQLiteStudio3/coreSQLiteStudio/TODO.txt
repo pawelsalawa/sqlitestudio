@@ -1,5 +1,3 @@
-- kolumny w structure - constrainty czesciowo pelne nazwy
-
 cannot reproduce:
 2922 / 2926 / 2925
 2940
@@ -14,10 +12,7 @@ feature requests:
 3040
 3013
 shortcut - toggle comment
-2 options to disable big tooltips and all tooltips
 sort windows list in menu
-option to not show status field automatically
-option to move data tab to be first
 
 
 * Outstanding features for 3.1:

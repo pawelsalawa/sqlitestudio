@@ -14,16 +14,6 @@
    <string>Configuration</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_5">
-   <item row="1" column="0">
-    <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-     </property>
-    </widget>
-   </item>
    <item row="0" column="0">
     <widget class="QWidget" name="mainWidget" native="true">
      <property name="contextMenuPolicy">
@@ -227,137 +217,239 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="dataBrowsingPage">
           <layout class="QVBoxLayout" name="verticalLayout_21">
            <item>
-            <widget class="QGroupBox" name="dataBrowsingGroup">
-             <property name="title">
-              <string>Data browsing and editing</string>
+            <widget class="QScrollArea" name="dataBrowsingScrollArea">
+             <property name="widgetResizable">
+              <bool>true</bool>
              </property>
-             <layout class="QGridLayout" name="gridLayout_2">
-              <item row="0" column="0">
-               <widget class="QLabel" name="rowsPerPageLabel">
-                <property name="text">
-                 <string>Number of data rows per page:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QSpinBox" name="rowsPerPageSpin">
-                <property name="maximumSize">
-                 <size>
-                  <width>150</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="minimum">
-                 <number>1</number>
-                </property>
-                <property name="maximum">
-                 <number>99999</number>
-                </property>
-                <property name="cfg" stdset="0">
-                 <string notr="true">General.NumberOfRowsPerPage</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="initColWidthLimitLabel">
-                <property name="toolTip">
-                 <string>&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit.&lt;/p&gt;</string>
-                </property>
-                <property name="text">
-                 <string>Limit initial data column width to (in pixels):</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QSpinBox" name="initColWidthLimitSpin">
-                <property name="toolTip">
-                 <string>&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit.&lt;/p&gt;</string>
-                </property>
-                <property name="minimum">
-                 <number>10</number>
-                </property>
-                <property name="maximum">
-                 <number>99999</number>
-                </property>
-                <property name="value">
-                 <number>600</number>
-                </property>
-                <property name="cfg" stdset="0">
-                 <string notr="true">General.MaxInitialColumnWith</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
+             <widget class="QWidget" name="dataBrowsingScrollAreaContents">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>564</width>
+                <height>504</height>
+               </rect>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_34">
+               <item>
+                <widget class="QGroupBox" name="dataBrowsingGroup">
+                 <property name="title">
+                  <string>Data browsing and editing</string>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_2">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="rowsPerPageLabel">
+                    <property name="text">
+                     <string>Number of data rows per page:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QSpinBox" name="rowsPerPageSpin">
+                    <property name="maximumSize">
+                     <size>
+                      <width>150</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="minimum">
+                     <number>1</number>
+                    </property>
+                    <property name="maximum">
+                     <number>99999</number>
+                    </property>
+                    <property name="cfg" stdset="0">
+                     <string notr="true">General.NumberOfRowsPerPage</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="initColWidthLimitLabel">
+                    <property name="toolTip">
+                     <string>&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit.&lt;/p&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>Limit initial data column width to (in pixels):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QSpinBox" name="initColWidthLimitSpin">
+                    <property name="toolTip">
+                     <string>&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit.&lt;/p&gt;</string>
+                    </property>
+                    <property name="minimum">
+                     <number>10</number>
+                    </property>
+                    <property name="maximum">
+                     <number>99999</number>
+                    </property>
+                    <property name="value">
+                     <number>600</number>
+                    </property>
+                    <property name="cfg" stdset="0">
+                     <string notr="true">General.MaxInitialColumnWith</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0" colspan="2">
+                   <widget class="QCheckBox" name="tolltipInDataViewCheck">
+                    <property name="toolTip">
+                     <string>&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>Show column and row details tooltip in data view</string>
+                    </property>
+                    <property name="cfg" stdset="0">
+                     <string notr="true">General.ShowDataViewTooltips</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="insertRowPlacementGroup">
+                 <property name="title">
+                  <string>Inserting new row in data grid</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_33">
+                  <item>
+                   <widget class="ConfigRadioButton" name="insertRowBeforeRadio">
+                    <property name="text">
+                     <string>Before currently selected row</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                    <property name="assignedValue" stdset="0">
+                     <number>0</number>
+                    </property>
+                    <property name="cfg" stdset="0">
+                     <string>General.InsertRowPlacement</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="ConfigRadioButton" name="insertRowAfterRadio">
+                    <property name="text">
+                     <string>After currently selected row</string>
+                    </property>
+                    <property name="assignedValue" stdset="0">
+                     <number>1</number>
+                    </property>
+                    <property name="cfg" stdset="0">
+                     <string>General.InsertRowPlacement</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="ConfigRadioButton" name="insertRowAtEndRadio">
+                    <property name="text">
+                     <string>At the end of data view</string>
+                    </property>
+                    <property name="assignedValue" stdset="0">
+                     <number>2</number>
+                    </property>
+                    <property name="cfg" stdset="0">
+                     <string>General.InsertRowPlacement</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="tableWinGroup">
+                 <property name="title">
+                  <string>Table windows</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_18">
+                  <item>
+                   <widget class="QCheckBox" name="openTablesOnDataCheck">
+                    <property name="toolTip">
+                     <string>&lt;p&gt;When enabled, Table Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>Open Table Windows with the data tab for start</string>
+                    </property>
+                    <property name="cfg" stdset="0">
+                     <string notr="true">General.OpenTablesOnData</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="dataTabInTableAsFirstCheck">
+                    <property name="toolTip">
+                     <string>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every Table Window, instead of being at second place.&lt;/p&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>Place data tab as first tab in a Table Window</string>
+                    </property>
+                    <property name="cfg" stdset="0">
+                     <string notr="true">General.DataTabAsFirstInTables</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="viewWinGroup">
+                 <property name="title">
+                  <string>View windows</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_19">
+                  <item>
+                   <widget class="QCheckBox" name="openViewsOnDataCheck">
+                    <property name="toolTip">
+                     <string>&lt;p&gt;When enabled, View Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>Open View Windows with the data tab for start</string>
+                    </property>
+                    <property name="cfg" stdset="0">
+                     <string notr="true">General.OpenViewsOnData</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="dataTabInViewAsFirstCheck">
+                    <property name="toolTip">
+                     <string>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every View Window, instead of being at second place.&lt;/p&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>Place data tab as first tab in a View Window</string>
+                    </property>
+                    <property name="cfg" stdset="0">
+                     <string notr="true">General.DataTabAsFirstInViews</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <spacer name="verticalSpacer_6">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </widget>
             </widget>
-           </item>
-           <item>
-            <widget class="QGroupBox" name="insertRowPlacementGroup">
-             <property name="title">
-              <string>Inserting new row in data grid</string>
-             </property>
-             <layout class="QVBoxLayout" name="verticalLayout_33">
-              <item>
-               <widget class="ConfigRadioButton" name="insertRowBeforeRadio">
-                <property name="text">
-                 <string>Before currently selected row</string>
-                </property>
-                <property name="checked">
-                 <bool>true</bool>
-                </property>
-                <property name="assignedValue" stdset="0">
-                 <number>0</number>
-                </property>
-                <property name="cfg" stdset="0">
-                 <string>General.InsertRowPlacement</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="ConfigRadioButton" name="insertRowAfterRadio">
-                <property name="text">
-                 <string>After currently selected row</string>
-                </property>
-                <property name="assignedValue" stdset="0">
-                 <number>1</number>
-                </property>
-                <property name="cfg" stdset="0">
-                 <string>General.InsertRowPlacement</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="ConfigRadioButton" name="insertRowAtEndRadio">
-                <property name="text">
-                 <string>At the end of data view</string>
-                </property>
-                <property name="assignedValue" stdset="0">
-                 <number>2</number>
-                </property>
-                <property name="cfg" stdset="0">
-                 <string>General.InsertRowPlacement</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item>
-            <spacer name="verticalSpacer_6">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>40</height>
-              </size>
-             </property>
-            </spacer>
            </item>
           </layout>
          </widget>
@@ -598,6 +690,28 @@
             </widget>
            </item>
            <item>
+            <widget class="QGroupBox" name="statusFieldGroup_2">
+             <property name="title">
+              <string>Status Field</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_35">
+              <item>
+               <widget class="QCheckBox" name="checkBox_2">
+                <property name="toolTip">
+                 <string>&lt;p&gt;When user manually closes the Status panel, this option makes sure that if any new message is printed in the Status panel it will be reopened. If it's disabled, then Status panel can only be open manually by the user from the &quot;View&quot; menu.&lt;/p&gt;</string>
+                </property>
+                <property name="text">
+                 <string>Always open Status panel when new message is printed</string>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string notr="true">General.AutoOpenStatusField</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
             <spacer name="verticalSpacer">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
@@ -711,8 +825,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>456</width>
-                <height>608</height>
+                <width>530</width>
+                <height>593</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_31">
@@ -870,50 +984,6 @@
                     </property>
                     <property name="cfg" stdset="0">
                      <string notr="true">General.ShowSystemObjects</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item>
-                <widget class="QGroupBox" name="tableWinGroup">
-                 <property name="title">
-                  <string>Table windows</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_18">
-                  <item>
-                   <widget class="QCheckBox" name="openTablesOnDataCheck">
-                    <property name="toolTip">
-                     <string>When enabled, Table Windows will show up with the data tab, instead of the structure tab.</string>
-                    </property>
-                    <property name="text">
-                     <string>Open Table Windows with the data tab for start</string>
-                    </property>
-                    <property name="cfg" stdset="0">
-                     <string notr="true">General.OpenTablesOnData</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item>
-                <widget class="QGroupBox" name="viewWinGroup">
-                 <property name="title">
-                  <string>View windows</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_19">
-                  <item>
-                   <widget class="QCheckBox" name="openViewsOnDataCheck">
-                    <property name="toolTip">
-                     <string>When enabled, View Windows will show up with the data tab, instead of the structure tab.</string>
-                    </property>
-                    <property name="text">
-                     <string>Open View Windows with the data tab for start</string>
-                    </property>
-                    <property name="cfg" stdset="0">
-                     <string notr="true">General.OpenViewsOnData</string>
                     </property>
                    </widget>
                   </item>
@@ -1275,7 +1345,7 @@
                         <string notr="true">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.Helvetica Neue DeskInterface'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt;&quot;&gt;Abcdefgh&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                        </property>
                       </widget>
@@ -1366,8 +1436,8 @@ p, li { white-space: pre-wrap; }
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>249</width>
-                <height>322</height>
+                <width>290</width>
+                <height>323</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -1488,8 +1558,8 @@ p, li { white-space: pre-wrap; }
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>329</width>
-                <height>813</height>
+                <width>352</width>
+                <height>806</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -2010,6 +2080,16 @@ p, li { white-space: pre-wrap; }
        </widget>
       </item>
      </layout>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
     </widget>
    </item>
   </layout>

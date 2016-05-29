@@ -112,6 +112,9 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
         QStringList indexedColumnsToNamesOnly(const QList<SqliteIndexedColumn*>& columns) const;
         QStringList collectColumnNames() const;
         void columnsFromViewToList();
+        int getDataTabIdx() const;
+        int getQueryTabIdx() const;
+        int getDdlTabIdx() const;
 
         Db* db = nullptr;
         QString database;
@@ -131,6 +134,7 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
         bool modifyingThisView = false;
         QAction* outputColumnsCheck = nullptr;
         QAction* outputColumnsSeparator = nullptr;
+        bool tabsMoving = false;
 
     private slots:
         void refreshView();
@@ -159,6 +163,7 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
         void updateColumnButtons();
         void generateOutputColumns();
         void updateDbRelatedUiElements();
+        void updateTabsOrder();
 
     public slots:
         void refreshTriggers();

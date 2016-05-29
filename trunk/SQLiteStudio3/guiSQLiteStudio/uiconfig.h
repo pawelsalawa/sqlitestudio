@@ -82,7 +82,10 @@ CFG_CATEGORIES(Ui,
         CFG_ENTRY(bool,                  RestoreSession,          true)
         CFG_ENTRY(bool,                  DontShowDdlPreview,      false)
         CFG_ENTRY(bool,                  OpenTablesOnData,        false)
+        CFG_ENTRY(bool,                  DataTabAsFirstInTables,  false)
         CFG_ENTRY(bool,                  OpenViewsOnData,         false)
+        CFG_ENTRY(bool,                  DataTabAsFirstInViews,   false)
+        CFG_ENTRY(bool,                  AutoOpenStatusField,     true)
         CFG_ENTRY(Cfg::DataEditorsOrder, DataEditorsOrder,        Cfg::DataEditorsOrder())
         CFG_ENTRY(QString,               FileDialogLastPath,      QString())
         CFG_ENTRY(int,                   MaxInitialColumnWith,    600)
@@ -92,6 +95,7 @@ CFG_CATEGORIES(Ui,
         CFG_ENTRY(QString,               CustomCss,               QString())
         CFG_ENTRY(bool,                  CompactLayout,           true)
         CFG_ENTRY(int,                   InsertRowPlacement,      Cfg::BEFORE_CURRENT)
+        CFG_ENTRY(bool,                  ShowDataViewTooltips,    true)
     )
 )
 

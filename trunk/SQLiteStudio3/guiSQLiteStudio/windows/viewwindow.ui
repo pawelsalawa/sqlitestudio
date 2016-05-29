@@ -29,7 +29,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>3</number>
      </property>
      <widget class="QWidget" name="queryTab">
       <attribute name="title">
@@ -193,7 +193,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="ddl">
+     <widget class="QWidget" name="ddlTab">
       <attribute name="title">
        <string>DDL</string>
       </attribute>
@@ -218,15 +218,15 @@
    <header>sqlview.h</header>
   </customwidget>
   <customwidget>
-   <class>SqlEditor</class>
-   <extends>QPlainTextEdit</extends>
-   <header>sqleditor.h</header>
-  </customwidget>
-  <customwidget>
    <class>DataView</class>
    <extends>QTabWidget</extends>
    <header>dataview.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>SqlEditor</class>
+   <extends>QPlainTextEdit</extends>
+   <header>sqleditor.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

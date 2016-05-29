@@ -383,7 +383,7 @@ QVariant SqlQueryItem::data(int role) const
         }
         case Qt::ToolTipRole:
         {
-            if (getModel()->getView()->getSimpleBrowserMode())
+            if (!CFG_UI.General.ShowDataViewTooltips.get() || getModel()->getView()->getSimpleBrowserMode())
                 return QVariant();
 
             return getToolTip();
