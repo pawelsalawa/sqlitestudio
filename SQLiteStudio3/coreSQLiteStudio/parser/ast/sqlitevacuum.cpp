@@ -32,6 +32,9 @@ QStringList SqliteVacuum::getDatabasesInStatement()
 
 TokenList SqliteVacuum::getDatabaseTokensInStatement()
 {
+    if (!tokensMap.contains("nm"))
+        return TokenList();
+
     return getTokenListFromNamedKey("nm");
 }
 
