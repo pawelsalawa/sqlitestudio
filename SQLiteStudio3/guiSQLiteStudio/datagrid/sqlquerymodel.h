@@ -131,6 +131,8 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         int getHardRowLimit() const;
         void setHardRowLimit(int value);
 
+        bool isAllDataLoaded() const;
+
     protected:
         class CommitUpdateQueryBuilder : public RowIdConditionBuilder
         {
@@ -378,6 +380,8 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         QList<bool> columnEditionStatus;
 
         QList<int> rowsDeletedSuccessfullyInTheCommit;
+
+        bool allDataLoaded = false;
 
         /**
          * @brief Set of existing model objects, updated for each construction and destruction.
