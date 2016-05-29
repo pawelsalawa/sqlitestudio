@@ -1,10 +1,7 @@
-2999
-3008
 http://forum.sqlitestudio.pl/viewtopic.php?f=11&t=1051
 http://forum.sqlitestudio.pl/viewtopic.php?f=11&t=1053
 
 - VACUUM - synchronicznie?! bez indykatora?
-- usprawnic widok FK w comboboxie zeby nie bylo 3 kolumn z tym samym id
 - sqlcipher
 - constrainty w structure tab zrobic z pelnych nazw i zobaczyc jak to wyglada
 - kolumny w structure - constrainty czesciowo pelne nazwy

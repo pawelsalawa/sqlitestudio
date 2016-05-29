@@ -8,9 +8,10 @@
 #include "parser/ast/sqlitecreatetable.h"
 #include "common/column.h"
 #include "guiSQLiteStudio_global.h"
+#include "sqlqueryitemdelegate.h"
+#include "common/strhash.h"
 #include <QStandardItemModel>
 #include <QItemSelection>
-#include <common/strhash.h>
 
 class SqlQueryItem;
 class FormView;
@@ -29,6 +30,8 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
             FILTERING = 0x04
         };
         Q_DECLARE_FLAGS(Features, Feature)
+
+        friend class SqlQueryItemDelegate;
 
         explicit SqlQueryModel(QObject *parent = 0);
         virtual ~SqlQueryModel();
@@ -124,6 +127,9 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
 
         bool getSimpleExecutionMode() const;
         void setSimpleExecutionMode(bool value);
+
+        int getHardRowLimit() const;
+        void setHardRowLimit(int value);
 
     protected:
         class CommitUpdateQueryBuilder : public RowIdConditionBuilder
@@ -263,6 +269,8 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         QString getDatabaseForCommit(const QString& database);
         void recalculateRowsAndPages(int rowsDelta);
         int getInsertRowIndex();
+        void notifyItemEditionEnded(const QModelIndex& idx);
+        int getRowsPerPage() const;
 
         QString query;
         bool explain = false;
@@ -336,6 +344,13 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         quint32 resultsCountingAsyncId = 0;
         QStringList requiredDbAttaches;
         StrHash<QString> dbNameToAttachNameMapForCommit;
+
+        /**
+         * @brief Sets row count limit, despite user configured limit.
+         *
+         * -1 to not apply hard limit (use user configured row limit), any other value is the limit.
+         */
+        int hardRowLimit = -1;
 
         /**
          * @brief rowIdColumns
@@ -457,6 +472,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         void aboutToCommit(int totalSteps);
         void commitingStepFinished(int step);
         void commitFinished();
+        void itemEditionEnded(SqlQueryItem* item);
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(SqlQueryModel::Features)

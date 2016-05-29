@@ -489,7 +489,6 @@ bool DbDialog::validate()
     Db* registeredDb = DBLIST->getByName(ui->nameEdit->text());
     if (registeredDb && (mode == Mode::ADD || registeredDb != db))
     {
-        qDebug() << ui->generateCheckBox->isChecked();
         setValidState(ui->nameEdit, false, tr("This name is already in use. Please enter unique name."));
         return false;
     }

@@ -3,6 +3,7 @@
 #include "sqlquerymodel.h"
 #include "iconmanager.h"
 #include "uiconfig.h"
+#include "sqlqueryview.h"
 #include <QDate>
 #include <QDebug>
 
@@ -382,6 +383,9 @@ QVariant SqlQueryItem::data(int role) const
         }
         case Qt::ToolTipRole:
         {
+            if (getModel()->getView()->getSimpleBrowserMode())
+                return QVariant();
+
             return getToolTip();
         }
     }

@@ -233,6 +233,9 @@ QModelIndex SqlQueryView::getCurrentIndex() const
 
 void SqlQueryView::itemActivated(const QModelIndex& index)
 {
+    if (simpleBrowserMode)
+        return;
+
     if (!index.isValid())
         return;
 
@@ -258,6 +261,9 @@ bool SqlQueryView::editInEditorIfNecessary(SqlQueryItem* item)
 
 void SqlQueryView::paste(const QList<QList<QVariant> >& data)
 {
+    if (simpleBrowserMode)
+        return;
+
     QList<SqlQueryItem*> selectedItems = getSelectedItems();
     if (selectedItems.isEmpty())
     {
@@ -362,6 +368,16 @@ void SqlQueryView::goToReferencedRow(const QString& table, const QString& column
     win->execute();
 }
 
+bool SqlQueryView::getSimpleBrowserMode() const
+{
+    return simpleBrowserMode;
+}
+
+void SqlQueryView::setSimpleBrowserMode(bool value)
+{
+    simpleBrowserMode = value;
+}
+
 void SqlQueryView::updateCommitRollbackActions(bool enabled)
 {
     actionMap[COMMIT]->setEnabled(enabled);
@@ -370,6 +386,9 @@ void SqlQueryView::updateCommitRollbackActions(bool enabled)
 
 void SqlQueryView::customContextMenuRequested(const QPoint& pos)
 {
+    if (simpleBrowserMode)
+        return;
+
     SqlQueryItem* currentItem = getCurrentItem();
     QList<SqlQueryItem*> selectedItems = getSelectedItems();
 
@@ -386,6 +405,9 @@ void SqlQueryView::customContextMenuRequested(const QPoint& pos)
 
 void SqlQueryView::headerContextMenuRequested(const QPoint& pos)
 {
+    if (simpleBrowserMode)
+        return;
+
     headerContextMenu->popup(horizontalHeader()->mapToGlobal(pos));
 }
 
@@ -438,6 +460,9 @@ void SqlQueryView::setCurrentRow(int row)
 
 void SqlQueryView::copy()
 {
+    if (simpleBrowserMode)
+        return;
+
     QList<SqlQueryItem*> selectedItems = getSelectedItems();
     QList<QList<SqlQueryItem*> > groupedItems = SqlQueryModel::groupItemsByRows(selectedItems);
 
@@ -483,6 +508,9 @@ void SqlQueryView::copy()
 
 void SqlQueryView::paste()
 {
+    if (simpleBrowserMode)
+        return;
+
     const QMimeData* mimeData = qApp->clipboard()->mimeData();
     if (mimeData->hasFormat(mimeDataId))
     {
@@ -529,6 +557,9 @@ void SqlQueryView::pasteAs()
 
 void SqlQueryView::setNull()
 {
+    if (simpleBrowserMode)
+        return;
+
     for (SqlQueryItem* selItem : getSelectedItems()) {
         if (selItem->getColumn()->editionForbiddenReason.size() > 0)
             continue;
@@ -539,6 +570,9 @@ void SqlQueryView::setNull()
 
 void SqlQueryView::erase()
 {
+    if (simpleBrowserMode)
+        return;
+
     for (SqlQueryItem* selItem : getSelectedItems()) {
         if (selItem->getColumn()->editionForbiddenReason.size() > 0)
             continue;
@@ -549,26 +583,41 @@ void SqlQueryView::erase()
 
 void SqlQueryView::commit()
 {
+    if (simpleBrowserMode)
+        return;
+
     getModel()->commit();
 }
 
 void SqlQueryView::rollback()
 {
+    if (simpleBrowserMode)
+        return;
+
     getModel()->rollback();
 }
 
 void SqlQueryView::selectiveCommit()
 {
+    if (simpleBrowserMode)
+        return;
+
     getModel()->commit(getSelectedItems());
 }
 
 void SqlQueryView::selectiveRollback()
 {
+    if (simpleBrowserMode)
+        return;
+
     getModel()->rollback(getSelectedItems());
 }
 
 void SqlQueryView::openValueEditor(SqlQueryItem* item)
 {
+    if (simpleBrowserMode)
+        return;
+
     if (!item)
     {
         qWarning() << "Tried to open value editor while there's no current item. It should not be called in that case.";
