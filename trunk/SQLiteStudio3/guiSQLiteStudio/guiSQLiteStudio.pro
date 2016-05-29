@@ -183,7 +183,8 @@ SOURCES +=\
     common/ipvalidator.cpp \
     dialogs/cssdebugdialog.cpp \
     themetuner.cpp \
-    dialogs/indexexprcolumndialog.cpp
+    dialogs/indexexprcolumndialog.cpp \
+    common/centerediconitemdelegate.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -331,7 +332,8 @@ HEADERS  += mainwindow.h \
     common/ipvalidator.h \
     dialogs/cssdebugdialog.h \
     themetuner.h \
-    dialogs/indexexprcolumndialog.h
+    dialogs/indexexprcolumndialog.h \
+    common/centerediconitemdelegate.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \
