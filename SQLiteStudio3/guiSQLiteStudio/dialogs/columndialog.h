@@ -67,6 +67,7 @@ class GUI_API_EXPORT ColumnDialog : public QDialog, public ExtActionContainer
         QCheckBox* getCheckBoxForConstraint(SqliteCreateTable::Column::Constraint* constraint);
         QToolButton* getToolButtonForConstraint(SqliteCreateTable::Column::Constraint* constraint);
         bool isUnofficialSqlite2Constraint(SqliteCreateTable::Column::Constraint* constraint);
+        void updateTypeValidations();
 
         Ui::ColumnDialog *ui = nullptr;
         SqliteCreateTable::ColumnPtr column;
@@ -105,7 +106,7 @@ class GUI_API_EXPORT ColumnDialog : public QDialog, public ExtActionContainer
         void notNullToggled(bool enabled);
         void defaultToggled(bool enabled);
         void switchMode(bool advanced);
-        void updateConstraints();
+        void updateValidations();
         void updateConstraint(SqliteCreateTable::Column::Constraint* constraint);
         void updateDataType();
 };
