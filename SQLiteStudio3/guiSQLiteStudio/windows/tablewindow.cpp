@@ -163,6 +163,7 @@ void TableWindow::init()
     ui->dataView->init(dataModel);
 
     initActions();
+    updateTabsOrder();
 
     connect(dataModel, SIGNAL(executionSuccessful()), this, SLOT(executionSuccessful()));
     connect(dataModel, SIGNAL(executionFailed(QString)), this, SLOT(executionFailed(QString)));
@@ -172,6 +173,7 @@ void TableWindow::init()
     connect(ui->tableNameEdit, SIGNAL(textChanged(QString)), this, SLOT(nameChanged()));
     connect(ui->indexList, SIGNAL(itemSelectionChanged()), this, SLOT(updateIndexesState()));
     connect(ui->triggerList, SIGNAL(itemSelectionChanged()), this, SLOT(updateTriggersState()));
+    connect(CFG_UI.General.DataTabAsFirstInTables, SIGNAL(changed(const QVariant&)), this, SLOT(updateTabsOrder()));
 
     structureExecutor = new ChainExecutor(this);
     connect(structureExecutor, SIGNAL(success()), this, SLOT(changesSuccessfullyCommited()));
@@ -1066,9 +1068,9 @@ QString TableWindow::getCurrentTrigger() const
 void TableWindow::applyInitialTab()
 {
     if (existingTable && !table.isNull() && CFG_UI.General.OpenTablesOnData.get())
-        ui->tabWidget->setCurrentIndex(1);
+        ui->tabWidget->setCurrentIndex(getDataTabIdx());
     else
-        ui->tabWidget->setCurrentIndex(0);
+        ui->tabWidget->setCurrentIndex(getStructureTabIdx());
 }
 
 void TableWindow::resizeStructureViewColumns()
@@ -1076,6 +1078,16 @@ void TableWindow::resizeStructureViewColumns()
     // Resize all except last one, to avoid shrinking the "extend to end" column.
     for (int c = 0, total = (ui->structureView->horizontalHeader()->count() - 1); c < total; ++c)
         ui->structureView->resizeColumnToContents(c);
+}
+
+int TableWindow::getDataTabIdx() const
+{
+    return ui->tabWidget->indexOf(ui->dataTab);
+}
+
+int TableWindow::getStructureTabIdx() const
+{
+    return ui->tabWidget->indexOf(ui->structureTab);
 }
 
 void TableWindow::updateDdlTab()
@@ -1235,30 +1247,28 @@ void TableWindow::createSimilarTable()
 
 void TableWindow::tabChanged(int newTab)
 {
-    switch (newTab)
+    if (tabsMoving)
+        return;
+
+    if (newTab == getDataTabIdx())
     {
-        case 1:
+        if (isModified())
         {
-            if (isModified())
-            {
-                int res = QMessageBox::question(this, tr("Uncommited changes"),
-                                                tr("There are uncommited structure modifications. You cannot browse or edit data until you have "
-                                                   "table structure settled.\n"
-                                                   "Do you want to commit the structure, or do you want to go back to the structure tab?"),
-                                                tr("Go back to structure tab"), tr("Commit modifications and browse data."));
+            int res = QMessageBox::question(this, tr("Uncommited changes"),
+                                            tr("There are uncommited structure modifications. You cannot browse or edit data until you have "
+                                               "table structure settled.\n"
+                                               "Do you want to commit the structure, or do you want to go back to the structure tab?"),
+                                            tr("Go back to structure tab"), tr("Commit modifications and browse data."));
 
-                ui->tabWidget->setCurrentIndex(0);
-                if (res == 1)
-                    commitStructure(true);
+            ui->tabWidget->setCurrentIndex(0);
+            if (res == 1)
+                commitStructure(true);
 
-                break;
-            }
-
-            if (!dataLoaded)
-                ui->dataView->refreshData();
-
-            break;
+            return;
         }
+
+        if (!dataLoaded)
+            ui->dataView->refreshData();
     }
 }
 
@@ -1504,6 +1514,18 @@ void TableWindow::delColumn(const QString& columnName)
         return;
 
     delColumn(colIdx);
+}
+
+void TableWindow::updateTabsOrder()
+{
+    tabsMoving = true;
+    ui->tabWidget->removeTab(getDataTabIdx());
+    int idx = 1;
+    if (CFG_UI.General.DataTabAsFirstInTables.get())
+        idx = 0;
+
+    ui->tabWidget->insertTab(idx, ui->dataTab, tr("Data"));
+    tabsMoving = false;
 }
 
 bool TableWindow::restoreSessionNextTime()

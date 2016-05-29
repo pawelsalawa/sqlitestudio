@@ -214,7 +214,7 @@ void ViewWindow::init()
                                       ui->queryTab,
                                       ui->dataTab,
                                       ui->triggersTab,
-                                      ui->ddl
+                                      ui->ddlTab
                                      });
 
     dataModel = new SqlQueryModel(this);
@@ -234,6 +234,7 @@ void ViewWindow::init()
     connect(ui->outputColumnsTable->model(), SIGNAL(rowsMoved(const QModelIndex&, int, int, const QModelIndex&, int)), this, SLOT(updateColumnButtons()));
     connect(ui->outputColumnsTable->model(), SIGNAL(rowsMoved(const QModelIndex&, int, int, const QModelIndex&, int)), this, SLOT(updateQueryToolbarStatus()));
     connect(ui->outputColumnsTable, SIGNAL(itemChanged(QListWidgetItem*)), this, SLOT(updateQueryToolbarStatus()));
+    connect(CFG_UI.General.DataTabAsFirstInViews, SIGNAL(changed(const QVariant&)), this, SLOT(updateTabsOrder()));
 
     structureExecutor = new ChainExecutor(this);
     connect(structureExecutor, SIGNAL(success()), this, SLOT(changesSuccessfullyCommited()));
@@ -247,6 +248,8 @@ void ViewWindow::init()
     ui->splitter->setStretchFactor(1, 3);
 
     updateOutputColumnsVisibility();
+
+    updateTabsOrder();
 
     refreshTriggers();
     updateQueryToolbarStatus();
@@ -447,9 +450,9 @@ QString ViewWindow::getCurrentTrigger() const
 void ViewWindow::applyInitialTab()
 {
     if (existingView && !view.isNull() && CFG_UI.General.OpenViewsOnData.get())
-        ui->tabWidget->setCurrentIndex(1);
+        ui->tabWidget->setCurrentIndex(getDataTabIdx());
     else
-        ui->tabWidget->setCurrentIndex(0);
+        ui->tabWidget->setCurrentIndex(getQueryTabIdx());
 }
 
 QString ViewWindow::getCurrentDdl() const
@@ -498,6 +501,21 @@ void ViewWindow::columnsFromViewToList()
     }
 }
 
+int ViewWindow::getDataTabIdx() const
+{
+    return ui->tabWidget->indexOf(ui->dataTab);
+}
+
+int ViewWindow::getQueryTabIdx() const
+{
+    return ui->tabWidget->indexOf(ui->queryTab);
+}
+
+int ViewWindow::getDdlTabIdx() const
+{
+    return ui->tabWidget->indexOf(ui->ddlTab);
+}
+
 void ViewWindow::addTrigger()
 {
     DbObjectDialogs dialogs(db, this);
@@ -541,10 +559,11 @@ void ViewWindow::executionFailed(const QString& errorMessage)
 
 void ViewWindow::tabChanged(int tabIdx)
 {
-    switch (tabIdx)
+    if (tabsMoving)
+        return;
+
+    if (tabIdx == getDataTabIdx())
     {
-        case 1:
-        {
             if (isModified())
             {
                 int res = QMessageBox::question(this, tr("Uncommited changes"),
@@ -557,19 +576,19 @@ void ViewWindow::tabChanged(int tabIdx)
                 if (res == 1)
                     commitView(true);
 
-                break;
+                return;
             }
 
             if (!dataLoaded)
                 ui->dataView->refreshData();
 
-            break;
-        }
-        case 3:
-        {
-            updateDdlTab();
-            break;
-        }
+            return;
+    }
+
+    if (tabIdx == getDdlTabIdx())
+    {
+        updateDdlTab();
+        return;
     }
 }
 
@@ -800,6 +819,18 @@ void ViewWindow::updateDbRelatedUiElements()
     bool enabled = db->getDialect() == Dialect::Sqlite3;
     outputColumnsCheck->setVisible(enabled);
     outputColumnsSeparator->setVisible(enabled);
+}
+
+void ViewWindow::updateTabsOrder()
+{
+    tabsMoving = true;
+    ui->tabWidget->removeTab(getDataTabIdx());
+    int idx = 1;
+    if (CFG_UI.General.DataTabAsFirstInViews.get())
+        idx = 0;
+
+    ui->tabWidget->insertTab(idx, ui->dataTab, tr("Data"));
+    tabsMoving = false;
 }
 
 void ViewWindow::refreshTriggers()

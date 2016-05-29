@@ -123,11 +123,11 @@ void StatusField::addEntry(const QIcon &icon, const QString &text, const QColor&
         item->setText(text);
     }
 
-    setVisible(true);
+    if (CFG_UI.General.AutoOpenStatusField.get())
+        setVisible(true);
 
     ui->tableWidget->scrollToBottom();
-
-    if (!noFlashing)
+    if (isVisible() && !noFlashing)
         flashItems(itemsCreated, color);
 }
 

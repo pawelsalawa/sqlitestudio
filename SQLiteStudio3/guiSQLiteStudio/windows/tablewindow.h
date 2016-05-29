@@ -160,6 +160,8 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         QString getCurrentTrigger() const;
         void applyInitialTab();
         void resizeStructureViewColumns();
+        int getDataTabIdx() const;
+        int getStructureTabIdx() const;
 
         int newTableWindowNum = 1;
 
@@ -180,6 +182,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         TableModifier* tableModifier = nullptr;
         bool modifyingThisTable = false;
         CenteredIconItemDelegate* constraintColumnsDelegate = nullptr;
+        bool tabsMoving = false;
 
     private slots:
         void executionSuccessful();
@@ -231,6 +234,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         void updateTriggersState();
         void nextTab();
         void prevTab();
+        void updateTabsOrder();
 
     public slots:
         void updateIndexes();
