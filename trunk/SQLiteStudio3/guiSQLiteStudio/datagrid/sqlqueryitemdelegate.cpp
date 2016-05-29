@@ -97,7 +97,7 @@ void SqlQueryItemDelegate::setEditorDataForFk(QComboBox* cb, const QModelIndex& 
         cb->addItem(modelData.toString(), modelData);
         idx = cb->count() - 1;
 
-        QTableView* view = dynamic_cast<QTableView*>(cb->view());
+        SqlQueryView* view = dynamic_cast<SqlQueryView*>(cb->view());
         view->resizeColumnsToContents();
         view->setMinimumWidth(view->horizontalHeader()->length());
     }
@@ -120,11 +120,20 @@ void SqlQueryItemDelegate::setModelData(QWidget* editor, QAbstractItemModel* mod
 void SqlQueryItemDelegate::setModelDataForFk(QComboBox* cb, QAbstractItemModel* model, const QModelIndex& index) const
 {
     SqlQueryModel* cbModel = dynamic_cast<SqlQueryModel*>(cb->model());
-    int idx = cb->currentIndex();
-    if (idx < 0)
+    if (cbModel->isExecutionInProgress() || !cbModel->isAllDataLoaded())
         return;
 
+    int idx = cb->currentIndex();
+    if (idx < 0 || idx >= cbModel->rowCount())
+    {
+        model->setData(index, cb->currentText());
+        return;
+    }
+
     QVariant comboData = cbModel->getRow(idx)[0]->getValue();
+    if (cb->currentText() != comboData.toString())
+        comboData = cb->currentText();
+
     model->setData(index, comboData);
 }
 
@@ -231,6 +240,17 @@ void SqlQueryItemDelegate::fkDataReady()
         wd += queryView->verticalScrollBar()->sizeHint().width();
 
     queryView->setMinimumWidth(wd);
+
+    // Set selected combo value to initial value from the cell
+    QComboBox* cb = modelToFkCombo[model];
+    QVariant value = modelToFkInitialValue[model];
+    QModelIndexList idxList = model->findIndexes(SqlQueryItem::DataRole::VALUE, value, 1);
+
+    int idx = 0;
+    if (idxList.size() > 0)
+        idx = idxList.first().row();
+
+    cb->setCurrentIndex(idx);
 }
 
 QWidget* SqlQueryItemDelegate::getFkEditor(SqlQueryItem* item, QWidget* parent) const
@@ -250,6 +270,7 @@ QWidget* SqlQueryItemDelegate::getFkEditor(SqlQueryItem* item, QWidget* parent) 
     QComboBox *cb = new QComboBox(parent);
     cb->setEditable(true);
 
+    // Prepare combo dropdown view.
     SqlQueryView* queryView = new SqlQueryView();
     queryView->setSimpleBrowserMode(true);
     connect(queryView->horizontalHeader(), &QHeaderView::sectionResized, [queryView](int, int, int)
@@ -264,8 +285,19 @@ QWidget* SqlQueryItemDelegate::getFkEditor(SqlQueryItem* item, QWidget* parent) 
     SqlQueryModel* model = new SqlQueryModel(queryView);
     model->setView(queryView);
 
+    // Mapping of model to cb, so we can update combo when data arrives.
+    modelToFkInitialValue[model] = item->getValue();
+    modelToFkCombo[model] = cb;
+    connect(cb, &QComboBox::destroyed, [this, model](QObject*)
+    {
+        modelToFkCombo.remove(model);
+        modelToFkInitialValue.remove(model);
+    });
+
+    // When execution is done, update combo.
     connect(model, SIGNAL(executionSuccessful()), this, SLOT(fkDataReady()));
 
+    // Setup combo, model, etc.
     cb->setModel(model);
     cb->setView(queryView);
     cb->setModelColumn(0);

@@ -692,6 +692,7 @@ bool SqlQueryModel::loadData(SqlQueryPtr results)
     if (rowCount() > 0)
         clear();
 
+    allDataLoaded = false;
     view->horizontalHeader()->show();
 
     // Read columns first. It will be needed later.
@@ -727,6 +728,7 @@ bool SqlQueryModel::loadData(SqlQueryPtr results)
     for (const QList<QStandardItem*>& row : rowList)
         insertRow(rowIdx++, row);
 
+    allDataLoaded = true;
     return true;
 }
 
@@ -1463,6 +1465,11 @@ int SqlQueryModel::getRowsPerPage() const
         rowsPerPage = hardRowLimit;
 
     return rowsPerPage;
+}
+
+bool SqlQueryModel::isAllDataLoaded() const
+{
+    return allDataLoaded;
 }
 
 int SqlQueryModel::getHardRowLimit() const

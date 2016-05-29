@@ -9,6 +9,7 @@
 class SqlQueryItem;
 class QComboBox;
 class QStandardItemModel;
+class SqlQueryModel;
 
 class GUI_API_EXPORT SqlQueryItemDelegate : public QStyledItemDelegate
 {
@@ -31,6 +32,8 @@ class GUI_API_EXPORT SqlQueryItemDelegate : public QStyledItemDelegate
         QString getSqlForFkEditor(SqlQueryItem* item) const;
         qlonglong getRowCountForFkEditor(Db* db, const QString& query) const;
         QSet<QWidget*> editorsWithAsyncExecution;
+        mutable QHash<SqlQueryModel*, QComboBox*> modelToFkCombo;
+        mutable QHash<SqlQueryModel*, QVariant> modelToFkInitialValue;
 
         static const qlonglong MAX_ROWS_FOR_FK = 10000L;
         static const int CELL_LENGTH_LIMIT = 30;
