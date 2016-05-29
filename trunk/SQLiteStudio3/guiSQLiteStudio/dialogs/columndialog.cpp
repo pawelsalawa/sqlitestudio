@@ -33,8 +33,8 @@ void ColumnDialog::init()
     limitDialogWidth(this);
     setWindowIcon(ICONS.COLUMN);
 
-    ui->scale->setStrict(true);
-    ui->precision->setStrict(true);
+    ui->scale->setStrict(true, true);
+    ui->precision->setStrict(true, true);
 
     ui->typeCombo->addItem("");
     foreach (DataType::Enum type, DataType::getAllTypes())
@@ -52,8 +52,11 @@ void ColumnDialog::init()
 
     connect(ui->constraintsView->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)), this, SLOT(updateConstraintsToolbarState()));
     connect(ui->constraintsView, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(editConstraint(QModelIndex)));
-    connect(constraintsModel, SIGNAL(constraintsChanged()), this, SLOT(updateConstraints()));
+    connect(constraintsModel, SIGNAL(constraintsChanged()), this, SLOT(updateValidations()));
     connect(constraintsModel, SIGNAL(constraintsChanged()), this, SLOT(updateState()));
+    connect(ui->typeCombo, SIGNAL(currentTextChanged(const QString&)), this, SLOT(updateValidations()));
+    connect(ui->scale, SIGNAL(modified()), this, SLOT(updateValidations()));
+    connect(ui->precision, SIGNAL(modified()), this, SLOT(updateValidations()));
 
     connect(ui->pkButton, SIGNAL(clicked()), this, SLOT(configurePk()));
     connect(ui->fkButton, SIGNAL(clicked()), this, SLOT(configureFk()));
@@ -214,7 +217,7 @@ void ColumnDialog::editConstraint(SqliteCreateTable::Column::Constraint* constra
 
     ui->constraintsView->resizeColumnToContents(0);
     ui->constraintsView->resizeColumnToContents(1);
-    updateConstraints();
+    updateValidations();
 }
 
 void ColumnDialog::delConstraint(const QModelIndex& idx)
@@ -377,6 +380,44 @@ bool ColumnDialog::isUnofficialSqlite2Constraint(SqliteCreateTable::Column::Cons
     return false;
 }
 
+void ColumnDialog::updateTypeValidations()
+{
+    QString scaleErrorMsg = tr("Scale is not allowed for INTEGER PRIMARY KEY columns.");
+    QString precisionErrorMsg = tr("Precision cannot be defined without the scale.");
+
+    QVariant scale = ui->scale->getValue();
+    QVariant precision = ui->precision->getValue();
+
+    bool scaleDefined = !scale.toString().isEmpty();
+    bool precisionDefined = !precision.toString().isEmpty();
+
+    bool precisionOk = !(precisionDefined && !scaleDefined);
+    bool scaleOk = true;
+
+    bool hasPk = column->getConstraint(SqliteCreateTable::Column::Constraint::PRIMARY_KEY) != nullptr;
+    bool isInteger = ui->typeCombo->currentText().toUpper() == "INTEGER";
+    if (hasPk && isInteger)
+    {
+        if (scaleDefined)
+            scaleOk = false;
+
+        if (precisionDefined)
+        {
+            precisionOk = false;
+            precisionErrorMsg = tr("Precision is not allowed for INTEGER PRIMARY KEY columns.");
+        }
+    }
+
+    setValidState(ui->scale, scaleOk, scaleErrorMsg);
+    setValidState(ui->precision, precisionOk, precisionErrorMsg);
+
+    if (!scaleOk || !precisionOk)
+    {
+        QPushButton* btn = ui->buttonBox->button(QDialogButtonBox::Ok);
+        btn->setEnabled(false);
+    }
+}
+
 void ColumnDialog::moveConstraintUp()
 {
     QModelIndex idx = ui->constraintsView->currentIndex();
@@ -505,7 +546,7 @@ void ColumnDialog::switchMode(bool advanced)
     ui->constraintModesWidget->setCurrentWidget(advanced ? ui->advancedPage : ui->simplePage);
 }
 
-void ColumnDialog::updateConstraints()
+void ColumnDialog::updateValidations()
 {
     QPushButton* btn = ui->buttonBox->button(QDialogButtonBox::Ok);
     btn->setEnabled(true);
@@ -536,8 +577,10 @@ void ColumnDialog::updateConstraints()
         setValidState(tb, true);
     }
 
-    foreach (SqliteCreateTable::Column::Constraint* constr, column->constraints)
+    for (SqliteCreateTable::Column::Constraint* constr : column->constraints)
         updateConstraint(constr);
+
+    updateTypeValidations();
 }
 
 void ColumnDialog::updateConstraint(SqliteCreateTable::Column::Constraint* constraint)
@@ -564,7 +607,7 @@ void ColumnDialog::setColumn(SqliteCreateTable::Column* value)
         ui->precision->setValue(value->type->precision, false);
     }
 
-    updateConstraints();
+    updateValidations();
 }
 
 SqliteCreateTable::Column* ColumnDialog::getModifiedColumn()
@@ -602,9 +645,13 @@ void ColumnDialog::updateDataType()
 
         if (!scaleTxt.isEmpty())
             column->type->scale = ui->scale->getValue();
+        else
+            column->type->scale = QVariant();
 
         if (!precisionTxt.isEmpty())
             column->type->precision = ui->precision->getValue();
+        else
+            column->type->precision = QVariant();
 
         column->type->rebuildTokens();
     }

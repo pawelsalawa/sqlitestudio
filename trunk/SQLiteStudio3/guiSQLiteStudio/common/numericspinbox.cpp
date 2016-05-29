@@ -112,6 +112,15 @@ QAbstractSpinBox::StepEnabled NumericSpinBox::stepEnabled() const
 
 QVariant NumericSpinBox::getFixedVariant(const QVariant& value)
 {
+    if (allowEmpty)
+    {
+        if (value.userType() == QVariant::String && value.toString().isEmpty() && !value.isNull())
+            return "";
+
+        if (value.isNull())
+            return QString();
+    }
+
     bool ok;
     qint64 longVal = value.toLongLong(&ok);
     if (ok)

@@ -669,11 +669,21 @@ bool SqliteCreateTable::Column::hasConstraint(SqliteCreateTable::Column::Constra
 
 SqliteCreateTable::Column::Constraint* SqliteCreateTable::Column::getConstraint(SqliteCreateTable::Column::Constraint::Type type) const
 {
-    foreach (Constraint* constr, constraints)
+    for (Constraint* constr : constraints)
         if (constr->type == type)
             return constr;
 
     return nullptr;
+}
+
+QList<SqliteCreateTable::Column::Constraint*> SqliteCreateTable::Column::getConstraints(SqliteCreateTable::Column::Constraint::Type type) const
+{
+    QList<Constraint*> list;
+    for (Constraint* constr : constraints)
+        if (constr->type == type)
+            list << constr;
+
+    return list;
 }
 
 QList<SqliteCreateTable::Column::Constraint*> SqliteCreateTable::Column::getForeignKeysByTable(const QString& foreignTable) const
