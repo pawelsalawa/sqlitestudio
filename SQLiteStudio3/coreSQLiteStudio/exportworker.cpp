@@ -591,6 +591,9 @@ QList<ExportManager::ExportObjectPtr> ExportWorker::collectDbObjects(QString* er
 
     qSort(objectsToExport.begin(), objectsToExport.end(), [](ExportManager::ExportObjectPtr obj1, ExportManager::ExportObjectPtr obj2) -> bool
     {
+        if (obj1->type == obj2->type)
+            return obj1->name.compare(obj2->name, Qt::CaseInsensitive) < 0;
+
         return (obj1->type < obj2->type);
     });
 

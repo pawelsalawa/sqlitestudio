@@ -9,7 +9,6 @@ cannot reproduce:
 
 feature requests:
 - sqlcipher
-3070
 3052
 3062
 3040
