@@ -131,7 +131,7 @@ class API_EXPORT DbManager : public QObject
          *
          * This method is fast, as it uses hash table lookup.
          */
-        virtual Db* getByName(const QString& name, Qt::CaseSensitivity cs = Qt::CaseSensitive) = 0;
+        virtual Db* getByName(const QString& name, Qt::CaseSensitivity cs = Qt::CaseInsensitive) = 0;
 
         /**
          * @brief Gives database object by its file path.
@@ -161,6 +161,10 @@ class API_EXPORT DbManager : public QObject
          * (there is a checkbox for that).
          */
         virtual bool isTemporary(Db* db) = 0;
+
+        virtual DbPlugin* getPluginForDbFile(const QString& filePath) = 0;
+        virtual QString generateUniqueDbName(const QString& filePath) = 0;
+        virtual QString generateUniqueDbName(DbPlugin* plugin, const QString& filePath) = 0;
 
         /**
          * @brief Generates database name.

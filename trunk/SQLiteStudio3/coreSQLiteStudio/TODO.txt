@@ -1,8 +1,11 @@
+3001
+http://forum.sqlitestudio.pl/viewtopic.php?f=11&t=1053
+i to co wyzej na forum: 3022 - view data sorting does not work
+
 cannot reproduce:
 2922 / 2926 / 2925
 2940
 3009 - db w emailu od goretux@gmail.com
-3022 - view data sorting does not work
 
 feature requests:
 - sqlcipher

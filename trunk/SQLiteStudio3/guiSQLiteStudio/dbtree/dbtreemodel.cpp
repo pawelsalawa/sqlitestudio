@@ -13,6 +13,7 @@
 #include "dialogs/errorsconfirmdialog.h"
 #include "dialogs/versionconvertsummarydialog.h"
 #include "db/invaliddb.h"
+#include "services/notifymanager.h"
 #include <QMimeData>
 #include <QDebug>
 #include <QFile>
@@ -1138,6 +1139,8 @@ QCheckBox* DbTreeModel::createCopyOrMoveMenuCheckBox(QMenu* menu, const QString&
 
 bool DbTreeModel::dropUrls(const QList<QUrl>& urls)
 {
+    QString filePath;
+    bool autoTest = false;
     for (const QUrl& url : urls)
     {
         if (!url.isLocalFile())
@@ -1146,11 +1149,39 @@ bool DbTreeModel::dropUrls(const QList<QUrl>& urls)
             continue;
         }
 
+        autoTest = false;
+        filePath = url.toLocalFile();
+        if (CFG_UI.General.BypassDbDialogWhenDropped.get())
+        {
+            if (quickAddDroppedDb(filePath))
+            {
+                continue;
+            }
+            else
+            {
+                notifyWarn(tr("Could not add dropped database file '%1' automatically. Manual setup is necessary.").arg(filePath));
+                autoTest = true;
+            }
+        }
+
         DbDialog dialog(DbDialog::ADD, MAINWINDOW);
-        dialog.setPath(url.toLocalFile());
+        dialog.setPath(filePath);
+        dialog.setDoAutoTest(autoTest);
         dialog.exec();
     }
     return false;
+}
+
+bool DbTreeModel::quickAddDroppedDb(const QString& filePath)
+{
+    DbPlugin* plugin = DBLIST->getPluginForDbFile(filePath);
+    if (!plugin)
+        return false;
+
+    QString name = DBLIST->generateUniqueDbName(plugin, filePath);
+    QHash<QString,QVariant> opts;
+    opts[DB_PLUGIN] = plugin->getName();
+    return DBLIST->addDb(name, filePath, opts, !CFG_UI.General.NewDbNotPermanentByDefault.get());
 }
 
 void DbTreeModel::moveOrCopyDbObjects(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, bool move, bool includeData, bool includeIndexes, bool includeTriggers)

@@ -21,6 +21,9 @@ class DbManagerMock : public DbManager
         Db*createInMemDb();
         bool isTemporary(Db*);
         QString quickAddDb(const QString &path, const QHash<QString, QVariant> &);
+        DbPlugin* getPluginForDbFile(const QString&);
+        QString generateUniqueDbName(const QString&);
+        QString generateUniqueDbName(DbPlugin*, const QString&);
 
     public slots:
         void notifyDatabasesAreLoaded();

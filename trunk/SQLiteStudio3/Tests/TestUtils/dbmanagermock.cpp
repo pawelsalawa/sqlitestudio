@@ -67,6 +67,21 @@ bool DbManagerMock::isTemporary(Db*)
     return false;
 }
 
+DbPlugin* DbManagerMock::getPluginForDbFile(const QString&)
+{
+    return nullptr;
+}
+
+QString DbManagerMock::generateUniqueDbName(const QString&)
+{
+    return QString();
+}
+
+QString DbManagerMock::generateUniqueDbName(DbPlugin*, const QString&)
+{
+    return QString();
+}
+
 QString DbManagerMock::quickAddDb(const QString &, const QHash<QString, QVariant> &)
 {
     return QString();

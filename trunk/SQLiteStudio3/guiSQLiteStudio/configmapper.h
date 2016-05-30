@@ -4,6 +4,7 @@
 #include "common/bihash.h"
 #include "guiSQLiteStudio_global.h"
 #include <QObject>
+#include <QSet>
 
 class CfgMain;
 class CfgEntry;
@@ -77,6 +78,7 @@ class GUI_API_EXPORT ConfigMapper : public QObject
     private:
         void applyConfigToWidget(QWidget *widget, const QHash<QString, CfgEntry*>& allConfigEntries, const QHash<QString, QVariant> &config);
         void applyConfigToWidget(QWidget *widget, CfgEntry* cfgEntry, const QVariant& configValue);
+        void applyConfigDefaultValueToWidget(QWidget *widget);
         void handleSpecialWidgets(QWidget *widget, const QHash<QString, CfgEntry*>& allConfigEntries);
         void handleConfigComboBox(QWidget *widget, const QHash<QString, CfgEntry*>& allConfigEntries);
         void connectCommonNotifierToWidget(QWidget *widget, CfgEntry* key);
@@ -90,11 +92,17 @@ class GUI_API_EXPORT ConfigMapper : public QObject
         QVariant getCommonConfigValueFromWidget(QWidget *widget, CfgEntry* key, bool& ok);
         QVariant getCustomConfigValueFromWidget(QWidget *widget, CfgEntry* key, bool& ok);
         QVariant getConfigValueFromWidget(QWidget *widget, CfgEntry* key);
+        QVariant getConfigValueFromWidget(QWidget *widget);
         CfgEntry* getConfigEntry(QWidget* widget, const QHash<QString, CfgEntry*>& allConfigEntries);
         CfgEntry* getEntryForProperty(QWidget* widget, const char* propertyName, const QHash<QString, CfgEntry*>& allConfigEntries);
         QHash<QString,CfgEntry*> getAllConfigEntries();
         QList<QWidget*> getAllConfigWidgets(QWidget* parent);
+        void handleDependencySettings(QWidget* widget);
+        void handleBoolDependencySettings(const QString& boolDependency, QWidget* widget);
+        void handleDependencyChange(QWidget* widget);
+        bool handleBoolDependencyChange(QWidget* widget);
 
+        QWidget* configDialogWidget = nullptr;
         QList<CfgMain*> cfgMainList;
         QList<CustomConfigWidgetPlugin*> internalCustomConfigWidgets;
         bool realTimeUpdates = false;
@@ -105,8 +113,10 @@ class GUI_API_EXPORT ConfigMapper : public QObject
         QList<QWidget*> extraWidgets;
         QList<QWidget*> widgetsToIgnore; // main mapper will ignore plugin's forms, they have their own mappers
         QHash<QString, CfgEntry*> allEntries;
+        QHash<QWidget*, QWidget*> boolDependencyToDependingWidget;
 
         static constexpr const char* CFG_MODEL_PROPERTY = "cfg";
+        static constexpr const char* CFG_BOOL_DEPENDENCY_PROPERTY = "boolDependency";
         static constexpr const char* CFG_NOTIFY_PROPERTY = "notify";
         static constexpr const char* CFG_PREVIEW_PROPERTY = "preview";
 

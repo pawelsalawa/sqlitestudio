@@ -39,6 +39,7 @@ class GUI_API_EXPORT DbDialog : public QDialog
         QString getName();
         QHash<QString,QVariant> collectOptions();
         bool isPermanent();
+        void setDoAutoTest(bool value);
 
     protected:
         void changeEvent(QEvent *e);
@@ -68,6 +69,7 @@ class GUI_API_EXPORT DbDialog : public QDialog
         QWidget* lastWidgetInTabOrder = nullptr;
         DbPluginOption::CustomBrowseHandler customBrowseHandler = nullptr;
         bool disableTypeAutodetection = false;
+        bool doAutoTest = false;
 
         static const constexpr int ADDITIONAL_ROWS_BEGIN_INDEX = 1;
 
