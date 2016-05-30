@@ -48,6 +48,7 @@
         * [BUGFIX]: Fixed error detection when selecting column from incorrect table alias (http://forum.sqlitestudio.pl/viewtopic.php?f=11&t=1051).
         * [BUGFIX]: #3046 Fixed scale & precision fields in column dialog so it's possible to delete their values from the column.
         * [BUGFIX]: Vacuum invoked from context menu on database list is now executed in SQL editor and is asynchronous.
+        * [BUGFIX]: #3001 Order of objects exported by Export Dialog is now alphabetical (in object type groups).
 
 [3.0.7]
         * [ADDED]: #2951 Implemented dropdown value picking for foreign key columns in grid view.
