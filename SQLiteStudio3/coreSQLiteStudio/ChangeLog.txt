@@ -49,6 +49,7 @@
         * [BUGFIX]: #3046 Fixed scale & precision fields in column dialog so it's possible to delete their values from the column.
         * [BUGFIX]: Vacuum invoked from context menu on database list is now executed in SQL editor and is asynchronous.
         * [BUGFIX]: #3001 Order of objects exported by Export Dialog is now alphabetical (in object type groups).
+        * [BUGFIX]: #3022 Fixed parsing of some expressions, resulting in this particular bug report in being unable to browse view results.
 
 [3.0.7]
         * [ADDED]: #2951 Implemented dropdown value picking for foreign key columns in grid view.
