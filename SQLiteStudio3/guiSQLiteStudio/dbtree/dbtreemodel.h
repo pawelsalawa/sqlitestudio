@@ -85,6 +85,7 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         bool dropDbObjectItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, Qt::DropAction defaultAction);
         QCheckBox* createCopyOrMoveMenuCheckBox(QMenu* menu, const QString& label);
         bool dropUrls(const QList<QUrl>& urls);
+        bool quickAddDroppedDb(const QString& filePath);
         void moveOrCopyDbObjects(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, bool move, bool includeData, bool includeIndexes, bool includeTriggers);
 
         static bool confirmReferencedTables(const QStringList& tables);

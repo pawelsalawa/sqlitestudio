@@ -284,6 +284,44 @@ QString DbManagerImpl::quickAddDb(const QString& path, const QHash<QString, QVar
     return newName;
 }
 
+DbPlugin* DbManagerImpl::getPluginForDbFile(const QString& filePath)
+{
+    QFileInfo file(filePath);
+    if (!file.exists() || file.isDir())
+        return nullptr;
+
+    QHash<QString,QVariant> options;
+    Db* probeDb = nullptr;
+    for (DbPlugin* plugin : dbPlugins)
+    {
+        probeDb = plugin->getInstance("", filePath, options);
+        if (probeDb)
+        {
+            delete probeDb;
+            probeDb = nullptr;
+            return plugin;
+        }
+    }
+
+    return nullptr;
+}
+
+QString DbManagerImpl::generateUniqueDbName(const QString& filePath)
+{
+    DbPlugin* plugin = getPluginForDbFile(filePath);
+    if (!plugin)
+        return QString();
+
+    return generateUniqueDbName(plugin, filePath);
+}
+
+QString DbManagerImpl::generateUniqueDbName(DbPlugin* plugin, const QString& filePath)
+{
+    QString name = plugin->generateDbName(filePath);
+    name = generateUniqueName(name, getDbNames(), Qt::CaseInsensitive);
+    return name;
+}
+
 void DbManagerImpl::setInMemDbCreatorPlugin(DbPlugin* plugin)
 {
     inMemDbCreatorPlugin = plugin;
@@ -543,6 +581,7 @@ void DbManagerImpl::aboutToUnload(Plugin* plugin, PluginType* type)
 
     InvalidDb* invalidDb = nullptr;
     DbPlugin* dbPlugin = dynamic_cast<DbPlugin*>(plugin);
+    dbPlugins.removeOne(dbPlugin);
     QList<Db*> toRemove;
     for (Db* db : dbList)
     {
@@ -577,5 +616,6 @@ void DbManagerImpl::loaded(Plugin* plugin, PluginType* type)
         return;
 
     DbPlugin* dbPlugin = dynamic_cast<DbPlugin*>(plugin);
+    dbPlugins << dbPlugin;
     rescanInvalidDatabasesForPlugin(dbPlugin);
 }

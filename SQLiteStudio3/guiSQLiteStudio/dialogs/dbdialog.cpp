@@ -102,6 +102,9 @@ void DbDialog::showEvent(QShowEvent *e)
     updateOptions();
     updateState();
 
+    if (doAutoTest)
+        testConnectionClicked();
+
     QDialog::showEvent(e);
 }
 
@@ -133,6 +136,9 @@ void DbDialog::init()
     generateNameSwitched(true);
 
     layout()->setSizeConstraint(QLayout::SetFixedSize);
+
+    if (mode == Mode::ADD && CFG_UI.General.NewDbNotPermanentByDefault.get())
+        ui->permamentCheckBox->setChecked(false);
 }
 
 void DbDialog::updateOptions()
@@ -396,32 +402,11 @@ void DbDialog::updateType()
     if (disableTypeAutodetection)
         return;
 
-    QFileInfo file(ui->fileEdit->text());
-    if (!file.exists() || file.isDir())
+    DbPlugin* validPlugin = SQLITESTUDIO->getDbManager()->getPluginForDbFile(ui->fileEdit->text());
+    if (!validPlugin || validPlugin->getLabel() == ui->typeCombo->currentText())
         return;
 
-    QString currentPluginLabel = ui->typeCombo->currentText();
-    QList<DbPlugin*> validPlugins;
-    QHash<QString,QVariant> options;
-    QString path = ui->fileEdit->text();
-    Db* probeDb = nullptr;
-    for (DbPlugin* plugin : dbPlugins)
-    {
-        probeDb = plugin->getInstance("", path, options);
-        if (probeDb)
-        {
-            delete probeDb;
-            probeDb = nullptr;
-
-            if (plugin->getLabel() == currentPluginLabel)
-                return; // current plugin is among valid plugins, no need to change anything
-
-            validPlugins << plugin;
-        }
-    }
-
-    if (validPlugins.size() > 0)
-        ui->typeCombo->setCurrentText(validPlugins.first()->getLabel());
+    ui->typeCombo->setCurrentText(validPlugin->getLabel());
 }
 
 QHash<QString, QVariant> DbDialog::collectOptions()
@@ -486,7 +471,7 @@ bool DbDialog::validate()
         }
     }
 
-    Db* registeredDb = DBLIST->getByName(ui->nameEdit->text());
+    Db* registeredDb = DBLIST->getByName(ui->nameEdit->text(), Qt::CaseInsensitive);
     if (registeredDb && (mode == Mode::ADD || registeredDb != db))
     {
         setValidState(ui->nameEdit, false, tr("This name is already in use. Please enter unique name."));
@@ -533,6 +518,11 @@ void DbDialog::updateState()
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(validate());
 }
 
+void DbDialog::setDoAutoTest(bool value)
+{
+    doAutoTest = value;
+}
+
 void DbDialog::propertyChanged()
 {
     ui->testConnIcon->setVisible(false);
@@ -542,7 +532,7 @@ void DbDialog::typeChanged(int index)
 {
     UNUSED(index);
     updateOptions();
-    updateState();
+    valueForNameGenerationChanged();
 }
 
 void DbDialog::valueForNameGenerationChanged()
@@ -551,13 +541,16 @@ void DbDialog::valueForNameGenerationChanged()
     if (!ui->generateCheckBox->isChecked())
         return;
 
+    QString generatedName;
     if (dbPlugins.count() > 0)
     {
         DbPlugin* plugin = dbPlugins[ui->typeCombo->currentText()];
-        QString generatedName = plugin->generateDbName(ui->fileEdit->text());
-        generatedName = generateUniqueName(generatedName, existingDatabaseNames);
-        ui->nameEdit->setText(generatedName);
+        generatedName = DBLIST->generateUniqueDbName(plugin, ui->fileEdit->text());
     }
+    else
+        generatedName = DBLIST->generateUniqueDbName(ui->fileEdit->text());
+
+    ui->nameEdit->setText(generatedName);
 }
 
 void DbDialog::browseForFile()

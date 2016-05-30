@@ -92,7 +92,6 @@ ConfigMapper::ConfigMapper(const QList<CfgMain*> cfgMain) :
 {
 }
 
-
 void ConfigMapper::applyCommonConfigToWidget(QWidget *widget, const QVariant &value, CfgEntry* cfgEntry)
 {
     APPLY_CFG(widget, value, QCheckBox, setChecked, bool);
@@ -221,6 +220,20 @@ QVariant ConfigMapper::getConfigValueFromWidget(QWidget* widget, CfgEntry* key)
     return value;
 }
 
+QVariant ConfigMapper::getConfigValueFromWidget(QWidget* widget)
+{
+    QString keyStr = widget->property(CFG_MODEL_PROPERTY).toString();
+    QHash<QString, CfgEntry*> allConfigEntries = getAllConfigEntries();
+    if (!allConfigEntries.contains(keyStr))
+    {
+        qWarning() << "Asked for config value from widget" << widget << "but it's config entry key was not found:" << keyStr;
+        return QVariant();
+    }
+
+    CfgEntry* key = allConfigEntries[keyStr];
+    return getConfigValueFromWidget(widget, key);
+}
+
 void ConfigMapper::loadToWidget(QWidget *topLevelWidget)
 {
     QHash<QString, CfgEntry *> allConfigEntries = getAllConfigEntries();
@@ -231,10 +244,13 @@ void ConfigMapper::loadToWidget(QWidget *topLevelWidget)
         config = CFG->getAll();
 
     updatingEntry = true;
-    foreach (QWidget* widget, allConfigWidgets)
+    for (QWidget* widget : allConfigWidgets)
         applyConfigToWidget(widget, allConfigEntries, config);
 
     updatingEntry = false;
+
+    for (QWidget* widget : allConfigWidgets)
+        handleDependencySettings(widget);
 }
 
 void ConfigMapper::loadToWidget(CfgEntry* config, QWidget* widget)
@@ -247,6 +263,8 @@ void ConfigMapper::loadToWidget(CfgEntry* config, QWidget* widget)
 
     applyCommonConfigToWidget(widget, configValue, config);
     updatingEntry = false;
+
+    handleDependencySettings(widget);
 }
 
 void ConfigMapper::saveFromWidget(QWidget *widget, bool noTransaction)
@@ -308,6 +326,20 @@ void ConfigMapper::applyConfigToWidget(QWidget* widget, CfgEntry* cfgEntry, cons
         return;
 
     applyCommonConfigToWidget(widget, configValue, cfgEntry);
+}
+
+void ConfigMapper::applyConfigDefaultValueToWidget(QWidget* widget)
+{
+    QString keyStr = widget->property(CFG_MODEL_PROPERTY).toString();
+    QHash<QString, CfgEntry*> allConfigEntries = getAllConfigEntries();
+    if (!allConfigEntries.contains(keyStr))
+    {
+        qWarning() << "Asked to apply config value to widget" << widget << "but it's config entry key was not found:" << keyStr;
+        return;
+    }
+
+    CfgEntry* key = allConfigEntries[keyStr];
+    applyConfigToWidget(widget, key, key->getDefultValue());
 }
 
 void ConfigMapper::handleSpecialWidgets(QWidget* widget, const QHash<QString, CfgEntry*>& allConfigEntries)
@@ -486,6 +518,60 @@ QList<QWidget*> ConfigMapper::getAllConfigWidgets(QWidget *parent)
     return results;
 }
 
+void ConfigMapper::handleDependencySettings(QWidget* widget)
+{
+    QString boolDependency = widget->property(CFG_BOOL_DEPENDENCY_PROPERTY).toString();
+    if (!boolDependency.isNull())
+    {
+        handleBoolDependencySettings(boolDependency, widget);
+        return;
+    }
+}
+
+void ConfigMapper::handleBoolDependencySettings(const QString& boolDependency, QWidget* widget)
+{
+    QHash<QString, CfgEntry*> allConfigEntries = getAllConfigEntries();
+    if (!allConfigEntries.contains(boolDependency))
+    {
+        qWarning() << "Config widget" << widget->objectName() << "has dependency defined for" << boolDependency << "but that dependency config entry cannot be found.";
+        return;
+    }
+
+    CfgEntry* cfg = allConfigEntries[boolDependency];
+    QVariant cfgValue = cfg->get();
+    if (cfgValue.userType() != QVariant::Bool)
+    {
+        qWarning() << "Config widget" << widget->objectName() << "has bool dependency defined for" << boolDependency << "but that dependency has different type:" << cfgValue.userType();
+        return;
+    }
+
+    bool value = cfgValue.toBool();
+    widget->setEnabled(value);
+
+    QWidget* dependWidget = configEntryToWidgets[cfg];
+    boolDependencyToDependingWidget[dependWidget] = widget;
+}
+
+void ConfigMapper::handleDependencyChange(QWidget* widget)
+{
+    if (handleBoolDependencyChange(widget))
+        return;
+}
+
+bool ConfigMapper::handleBoolDependencyChange(QWidget* widget)
+{
+    if (!boolDependencyToDependingWidget.contains(widget))
+        return false;
+
+    QWidget* depWid = boolDependencyToDependingWidget[widget];
+    bool value = getConfigValueFromWidget(widget).toBool();
+    depWid->setEnabled(value);
+    if (!value)
+        applyConfigDefaultValueToWidget(depWid);
+
+    return true;
+}
+
 bool ConfigMapper::isPersistant() const
 {
     for (CfgMain* cfgMain : cfgMainList)
@@ -532,9 +618,9 @@ void ConfigMapper::removeIgnoredWidget(QWidget* w)
 
 void ConfigMapper::handleModified()
 {
+    QWidget* widget = dynamic_cast<QWidget*>(sender());
     if (realTimeUpdates && !updatingEntry)
     {
-        QWidget* widget = dynamic_cast<QWidget*>(sender());
         if (widget && widgetToConfigEntry.contains(widget))
         {
             updatingEntry = true;
@@ -542,6 +628,9 @@ void ConfigMapper::handleModified()
             updatingEntry = false;
         }
     }
+
+    handleDependencyChange(widget);
+
     emit modified();
 }
 

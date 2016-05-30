@@ -216,12 +216,12 @@ qint64 Range::length() const
     return to - from + 1;
 }
 
-QString generateUniqueName(const QString &baseName, const QStringList &existingNames)
+QString generateUniqueName(const QString& baseName, const QStringList& existingNames, Qt::CaseSensitivity cs)
 {
     QString name = baseName;
     int i = 0;
-    while (existingNames.contains(name))
-        name = baseName+QString::number(i++);
+    while (existingNames.contains(name, cs))
+        name = baseName + QString::number(i++);
 
     return name;
 }

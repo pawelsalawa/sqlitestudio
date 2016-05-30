@@ -40,11 +40,14 @@ class API_EXPORT DbManagerImpl : public DbManager
         QList<Db*> getValidDbList();
         QList<Db*> getConnectedDbList();
         QStringList getDbNames();
-        Db* getByName(const QString& name, Qt::CaseSensitivity cs = Qt::CaseSensitive);
+        Db* getByName(const QString& name, Qt::CaseSensitivity cs = Qt::CaseInsensitive);
         Db* getByPath(const QString& path);
         Db* createInMemDb();
         bool isTemporary(Db* db);
         QString quickAddDb(const QString &path, const QHash<QString, QVariant> &options);
+        DbPlugin* getPluginForDbFile(const QString& filePath);
+        QString generateUniqueDbName(const QString& filePath);
+        QString generateUniqueDbName(DbPlugin* plugin, const QString& filePath);
 
         /**
          * @brief Defines database plugin used for creating in-memory databases.
@@ -137,6 +140,8 @@ class API_EXPORT DbManagerImpl : public DbManager
          * @brief Database plugin used to create in-memory databases.
          */
         DbPlugin* inMemDbCreatorPlugin = nullptr;
+
+        QList<DbPlugin*> dbPlugins;
 
     private slots:
         /**

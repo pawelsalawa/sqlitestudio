@@ -57,7 +57,7 @@ API_EXPORT QString randStr(int length, bool numChars = true, bool whiteSpaces = 
 API_EXPORT QString randStr(int length, const QString& charCollection);
 API_EXPORT QString randBinStr(int length);
 API_EXPORT QString randStrNotIn(int length, const QSet<QString> set, bool numChars = true, bool whiteSpaces = false);
-API_EXPORT QString generateUniqueName(const QString& prefix, const QStringList& existingNames);
+API_EXPORT QString generateUniqueName(const QString& prefix, const QStringList& existingNames, Qt::CaseSensitivity cs = Qt::CaseSensitive);
 API_EXPORT bool isNumeric(const QVariant& value);
 API_EXPORT QString rStrip(const QString& str);
 API_EXPORT QStringList tokenizeArgs(const QString& str);
