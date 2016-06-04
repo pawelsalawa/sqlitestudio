@@ -223,8 +223,7 @@ SOURCES += sqlitestudio.cpp \
     common/threadwitheventloop.cpp \
     common/private/blockingsocketprivate.cpp \
     querygenerator.cpp \
-    common/bistrhash.cpp \
-    db/queryexecutorsteps/queryexecutordatatype.cpp
+    common/bistrhash.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -419,8 +418,7 @@ HEADERS += sqlitestudio.h\
     common/expiringcache.h \
     parser/ast/sqliteddlwithdbcontext.h \
     parser/ast/sqliteextendedindexedcolumn.h \
-    querygenerator.h \
-    db/queryexecutorsteps/queryexecutordatatype.h
+    querygenerator.h
 
 unix: {
     target.path = $$LIBDIR
