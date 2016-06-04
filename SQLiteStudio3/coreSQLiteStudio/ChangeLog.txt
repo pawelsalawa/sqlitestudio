@@ -18,6 +18,7 @@
         * [CHANGE]: Structure tab in table window has now fully named headers in column list.
         * [CHANGE]: Table and View window options moved from Look & Feel configuration page to Data Browsing page.
         * [CHANGE]: All database list options moved to a separate Database List configuration page.
+        * [CHANGE]: Window list in main menu -> "View" -> "Window list" is not sorted alphabetically.
         * [BUGFIX]: Not loading Android plugin by default (needs manual load from configuration dialog), which stops the "ADB" error for people not using the plugin.
         * [BUGFIX]: #2927 Several critical bugs fixed and enhancements to table modification algorithm related to foreign keys.
         * [BUGFIX]: Fixed importing from CSV with some of lines containing less fields than defined in header (or in first data row).
