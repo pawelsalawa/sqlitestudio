@@ -605,8 +605,18 @@ void MainWindow::refreshMdiWindows()
 {
     mdiMenu->clear();
 
-    foreach (QAction* action, getMdiArea()->getTaskBar()->getTasks())
-        mdiMenu->addAction(action);
+    QStringList actionNames;
+    QHash<QString, QAction*> nameToAction;
+    for (QAction* action : getMdiArea()->getTaskBar()->getTasks())
+    {
+        actionNames << action->text();
+        nameToAction[action->text()] = action;
+    }
+
+    qSort(actionNames);
+
+    for (const QString& name : actionNames)
+        mdiMenu->addAction(nameToAction[name]);
 
     updateWindowActions();
 }
