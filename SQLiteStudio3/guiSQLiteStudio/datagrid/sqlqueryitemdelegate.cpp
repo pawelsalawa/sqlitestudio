@@ -71,7 +71,7 @@ QString SqlQueryItemDelegate::displayText(const QVariant& value, const QLocale& 
     UNUSED(locale);
 
     if (value.type() == QVariant::Double)
-        return value.toString();
+        return doubleToString(value.toDouble());
 
     return QStyledItemDelegate::displayText(value, locale);
 }
@@ -79,8 +79,11 @@ QString SqlQueryItemDelegate::displayText(const QVariant& value, const QLocale& 
 void SqlQueryItemDelegate::setEditorData(QWidget* editor, const QModelIndex& index) const
 {
     QComboBox* cb = dynamic_cast<QComboBox*>(editor);
+    QLineEdit* le = dynamic_cast<QLineEdit*>(editor);
     if (cb) {
         setEditorDataForFk(cb, index);
+    } else if (le) {
+        setEditorDataForLineEdit(le, index);
     } else {
         QStyledItemDelegate::setEditorData(editor, index);
     }
@@ -107,8 +110,11 @@ void SqlQueryItemDelegate::setEditorDataForFk(QComboBox* cb, const QModelIndex& 
 void SqlQueryItemDelegate::setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const
 {
     QComboBox* cb = dynamic_cast<QComboBox*>(editor);
+    QLineEdit* le = dynamic_cast<QLineEdit*>(editor);
     if (cb) {
         setModelDataForFk(cb, model, index);
+    } else if (le) {
+        setModelDataForLineEdit(le, model, index);
     } else {
         QStyledItemDelegate::setModelData(editor, model, index);
     }
@@ -135,6 +141,39 @@ void SqlQueryItemDelegate::setModelDataForFk(QComboBox* cb, QAbstractItemModel* 
         comboData = cb->currentText();
 
     model->setData(index, comboData);
+}
+
+void SqlQueryItemDelegate::setModelDataForLineEdit(QLineEdit* editor, QAbstractItemModel* model, const QModelIndex& index) const
+{
+    QString value = editor->text();
+    bool ok;
+    QVariant variant = value.toLongLong(&ok);
+    if (ok)
+    {
+        model->setData(index, variant, Qt::EditRole);
+        return;
+    }
+
+    variant = value.toDouble(&ok);
+    if (ok)
+    {
+        model->setData(index, variant, Qt::EditRole);
+        return;
+    }
+
+    model->setData(index, value, Qt::EditRole);
+}
+
+void SqlQueryItemDelegate::setEditorDataForLineEdit(QLineEdit* le, const QModelIndex& index) const
+{
+    QVariant value = index.data(Qt::EditRole);
+    if (value.userType() == QVariant::Double)
+    {
+        le->setText(doubleToString(value.toDouble()));
+        return;
+    }
+
+    le->setText(value.toString());
 }
 
 SqlQueryItem* SqlQueryItemDelegate::getItem(const QModelIndex &index) const

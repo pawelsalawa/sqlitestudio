@@ -11,12 +11,12 @@ class StrHash
 {
     public:
         StrHash() {}
-        StrHash(std::initializer_list<std::pair<QString,T>> list) : hash(QHash<QString,T>(list))
+        StrHash(std::initializer_list<std::pair<QString, T>> list) : hash(QHash<QString, T>(list))
         {
             initLower();
         }
 
-        StrHash(const QHash<QString,T>& other) : hash(QHash<QString,T>(other))
+        StrHash(const QHash<QString, T>& other) : hash(QHash<QString, T>(other))
         {
             initLower();
         }
@@ -87,9 +87,9 @@ class StrHash
             return *this;
         }
 
-        StrHash<T>& unite(const QHash<QString,T>& other)
+        StrHash<T>& unite(const QHash<QString, T>& other)
         {
-            QHashIterator<QString,T> it(other);
+            QHashIterator<QString, T> it(other);
             while (it.hasNext())
             {
                 it.next();
@@ -117,9 +117,9 @@ class StrHash
             return hash.keys();
         }
 
-        QHashIterator<QString,T> iterator() const
+        QHashIterator<QString, T> iterator() const
         {
-            return QHashIterator<QString,T>(hash);
+            return QHashIterator<QString, T>(hash);
         }
 
         void clear()
@@ -146,6 +146,11 @@ class StrHash
             return hash.isEmpty();
         }
 
+        QHash<QString, T> toQHash() const
+        {
+            return hash;
+        }
+
         T& operator[](const QString& key)
         {
             if (lowerCaseHash.contains(key.toLower()) && !hash.contains(key))
@@ -167,7 +172,7 @@ class StrHash
     private:
         void initLower()
         {
-            QHashIterator<QString,T> it(hash);
+            QHashIterator<QString, T> it(hash);
             while (it.hasNext())
             {
                 it.next();
@@ -175,8 +180,8 @@ class StrHash
             }
         }
 
-        QHash<QString,QString> lowerCaseHash;
-        QHash<QString,T> hash;
+        QHash<QString, QString> lowerCaseHash;
+        QHash<QString, T> hash;
 };
 
 #endif // STRHASH_H

@@ -19,6 +19,7 @@ class GUI_API_EXPORT SqlTableModel : public SqlQueryModel
         void applyStringFilter(const QString& value);
         void applyRegExpFilter(const QString& value);
         void resetFilter();
+        QString generateSelectQueryForItems(const QList<SqlQueryItem*>& items);
 
     protected:
         bool commitAddedRow(const QList<SqlQueryItem*>& itemsInRow);

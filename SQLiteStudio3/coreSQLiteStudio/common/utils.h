@@ -231,6 +231,7 @@ API_EXPORT bool renameBetweenPartitions(const QString& src, const QString& dst);
 API_EXPORT bool isWritableRecursively(const QString& dir);
 API_EXPORT QString encryptRsa(const QString& input, const QString& modulus, const QString& exponent);
 API_EXPORT QString decryptRsa(const QString& input, const QString& modulus, const QString& exponent);
+API_EXPORT QString doubleToString(double val);
 
 enum class DistributionType
 {

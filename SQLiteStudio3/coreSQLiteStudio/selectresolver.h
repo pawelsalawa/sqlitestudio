@@ -121,6 +121,9 @@ class API_EXPORT SelectResolver
         SelectResolver(Db* db, const QString &originalQuery, const BiStrHash& dbNameToAttach);
         ~SelectResolver();
 
+        QList<Column> resolveColumnsFromFirstCore();
+        QList<QList<Column> > resolveColumns();
+
         QList<Column> resolve(SqliteSelect::Core* selectCore);
         QList<QList<Column> > resolve(SqliteSelect* select);
 
@@ -213,6 +216,7 @@ class API_EXPORT SelectResolver
         QStringList getTableColumns(const QString& database, const QString& table, const QString &alias);
         void applySubSelectAlias(QList<Column>& columns, const QString& alias);
         QString resolveDatabase(const QString& database);
+        bool parseOriginalQuery();
 
         void markDistinctColumns();
         void markCompoundColumns();
@@ -225,6 +229,7 @@ class API_EXPORT SelectResolver
 
         Db* db = nullptr;
         QString query;
+        SqliteSelectPtr originalQueryParsed;
 
         /**
          * @brief Database name to attach name map.

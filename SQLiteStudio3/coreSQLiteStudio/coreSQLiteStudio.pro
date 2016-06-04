@@ -221,7 +221,10 @@ SOURCES += sqlitestudio.cpp \
     common/signalwait.cpp \
     common/blockingsocket.cpp \
     common/threadwitheventloop.cpp \
-    common/private/blockingsocketprivate.cpp
+    common/private/blockingsocketprivate.cpp \
+    querygenerator.cpp \
+    common/bistrhash.cpp \
+    db/queryexecutorsteps/queryexecutordatatype.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -415,7 +418,9 @@ HEADERS += sqlitestudio.h\
     common/private/blockingsocketprivate.h \
     common/expiringcache.h \
     parser/ast/sqliteddlwithdbcontext.h \
-    parser/ast/sqliteextendedindexedcolumn.h
+    parser/ast/sqliteextendedindexedcolumn.h \
+    querygenerator.h \
+    db/queryexecutorsteps/queryexecutordatatype.h
 
 unix: {
     target.path = $$LIBDIR

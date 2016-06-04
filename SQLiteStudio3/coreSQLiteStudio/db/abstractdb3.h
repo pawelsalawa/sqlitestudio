@@ -68,10 +68,10 @@ class AbstractDb3 : public AbstractDb
                 class Row : public SqlResultsRow
                 {
                     public:
-                        int init(const QStringList& columns, typename T::stmt* stmt);
+                        int init(const QStringList& columns, typename T::stmt* stmt, Db::Flags flags);
 
                     private:
-                        int getValue(typename T::stmt* stmt, int col, QVariant& value);
+                        int getValue(typename T::stmt* stmt, int col, QVariant& value, Db::Flags flags);
                 };
 
                 Query(AbstractDb3<T>* db, const QString& query);
@@ -1044,7 +1044,7 @@ template <class T>
 SqlResultsRowPtr AbstractDb3<T>::Query::nextInternal()
 {
     Row* row = new Row;
-    int res = row->init(colNames, stmt);
+    int res = row->init(colNames, stmt, flags);
     if (res != T::OK)
     {
         delete row;
@@ -1131,13 +1131,13 @@ int AbstractDb3<T>::Query::fetchNext()
 //------------------------------------------------------------------------------------
 
 template <class T>
-int AbstractDb3<T>::Query::Row::init(const QStringList& columns, typename T::stmt* stmt)
+int AbstractDb3<T>::Query::Row::init(const QStringList& columns, typename T::stmt* stmt, Db::Flags flags)
 {
     int res = T::OK;
     QVariant value;
     for (int i = 0; i < columns.size(); i++)
     {
-        res = getValue(stmt, i, value);
+        res = getValue(stmt, i, value, flags);
         if (res != T::OK)
             return res;
 
@@ -1148,8 +1148,9 @@ int AbstractDb3<T>::Query::Row::init(const QStringList& columns, typename T::stm
 }
 
 template <class T>
-int AbstractDb3<T>::Query::Row::getValue(typename T::stmt* stmt, int col, QVariant& value)
+int AbstractDb3<T>::Query::Row::getValue(typename T::stmt* stmt, int col, QVariant& value, Db::Flags flags)
 {
+    UNUSED(flags);
     int dataType = T::column_type(stmt, col);
     switch (dataType)
     {
@@ -1166,12 +1167,8 @@ int AbstractDb3<T>::Query::Row::getValue(typename T::stmt* stmt, int col, QVaria
             value = QVariant(QVariant::String);
             break;
         case T::FLOAT:
-            // Looks like it's bettern when SQLite converts floats into string, so they are more accurate.
-            // SQLiteStudio tries to convert string to double if possible anyway at later stage.
-            // This way we don't get weird float values like 0.1000000001 instead of 0.1 when executing in simple mode (without SUBSTR()).
-            // If it appears to be a problem in future, the following code is left commented here. Just in case.
-//            value = T::column_double(stmt, col);
-//            break;
+            value = T::column_double(stmt, col);
+            break;
         default:
             value = QString(
                             reinterpret_cast<const QChar*>(T::column_text16(stmt, col)),

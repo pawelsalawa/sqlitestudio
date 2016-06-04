@@ -21,6 +21,7 @@
 #include "services/config.h"
 #include "services/codeformatter.h"
 #include "themetuner.h"
+#include "datagrid/sqlviewmodel.h"
 #include <QPushButton>
 #include <QProgressBar>
 #include <QDebug>
@@ -217,7 +218,7 @@ void ViewWindow::init()
                                       ui->ddlTab
                                      });
 
-    dataModel = new SqlQueryModel(this);
+    dataModel = new SqlViewModel(this);
     ui->dataView->init(dataModel);
 
     ui->queryEdit->setVirtualSqlExpression("CREATE VIEW name AS %1");
@@ -276,6 +277,7 @@ void ViewWindow::initView()
     {
         dataModel->setDb(db);
         dataModel->setQuery(originalCreateView->select->detokenize());
+        dataModel->setView(view);
     }
 
     ui->queryEdit->setDb(db);

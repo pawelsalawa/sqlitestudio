@@ -11,6 +11,7 @@
 #include "datagrid/sqlqueryview.h"
 #include "datagrid/sqlqueryrownummodel.h"
 #include "services/dbmanager.h"
+#include "querygenerator.h"
 #include <QHeaderView>
 #include <QDebug>
 #include <QApplication>
@@ -351,30 +352,7 @@ void SqlQueryModel::commitInternal(const QList<SqlQueryItem*>& items)
         return;
     }
 
-    dbNameToAttachNameMapForCommit.clear();
-    QList<Db*> dbListToDetach;
-    QString attachName;
-    for (const QString& reqAttach : queryExecutor->getRequiredDbAttaches())
-    {
-        Db* attachDb = DBLIST->getByName(reqAttach, Qt::CaseInsensitive);
-        if (!attachDb)
-        {
-            qCritical() << "Could not resolve database" << reqAttach << ", while it's a required attach name for SqlQueryModel to commit edited data!"
-                        << "This may result in errors when commiting some data modifications.";
-            continue;
-        }
-
-        attachName = db->attach(attachDb);
-        if (attachName.isNull())
-        {
-            qCritical() << "Could not attach database" << reqAttach << ", while it's a required attach name for SqlQueryModel to commit edited data!"
-                        << "This may result in errors when commiting some data modifications.";
-            continue;
-        }
-
-        dbNameToAttachNameMapForCommit[reqAttach] = attachName;
-        dbListToDetach << attachDb;
-    }
+    attachDependencyTables();
 
     if (!db->begin())
     {
@@ -454,10 +432,7 @@ void SqlQueryModel::commitInternal(const QList<SqlQueryItem*>& items)
         }
     }
 
-    dbNameToAttachNameMapForCommit.clear();
-    for (Db* dbToDetach : dbListToDetach)
-        db->detach(dbToDetach);
-
+    detachDependencyTables();
 
     // Updating added/deleted counts, to honor rows not deleted because of some errors
     numberOfItemsAdded -= groupItemsByRows(findItems(SqlQueryItem::DataRole::NEW_ROW, true)).size();
@@ -496,6 +471,58 @@ void SqlQueryModel::reloadInternal()
     }
     reloading = true;
     executeQueryInternal();
+}
+
+StrHash<QString> SqlQueryModel::attachDependencyTables()
+{
+    dbNameToAttachNameMapForCommit.clear();
+    dbListToDetach.clear();
+
+    QString attachName;
+    for (const QString& reqAttach : queryExecutor->getRequiredDbAttaches())
+    {
+        Db* attachDb = DBLIST->getByName(reqAttach, Qt::CaseInsensitive);
+        if (!attachDb)
+        {
+            qCritical() << "Could not resolve database" << reqAttach << ", while it's a required attach name for SqlQueryModel to commit edited data!"
+                        << "This may result in errors when commiting some data modifications.";
+            continue;
+        }
+
+        attachName = db->attach(attachDb);
+        if (attachName.isNull())
+        {
+            qCritical() << "Could not attach database" << reqAttach << ", while it's a required attach name for SqlQueryModel to commit edited data!"
+                        << "This may result in errors when commiting some data modifications.";
+            continue;
+        }
+
+        dbNameToAttachNameMapForCommit[reqAttach] = attachName;
+        dbListToDetach << attachDb;
+    }
+
+    return dbNameToAttachNameMapForCommit;
+}
+
+void SqlQueryModel::detachDependencyTables()
+{
+    for (Db* dbToDetach : dbListToDetach)
+        db->detach(dbToDetach);
+
+    dbNameToAttachNameMapForCommit.clear();
+    dbListToDetach.clear();
+}
+
+QString SqlQueryModel::generateSelectQueryForItems(const QList<SqlQueryItem*>& items)
+{
+    QHash<QString, QVariantList> values = toValuesGroupedByColumns(items);
+
+    QueryGenerator generator;
+    BiStrHash attachMap = BiStrHash(attachDependencyTables().toQHash());
+    QString sql = generator.generateSelectFromSelect(db, getQuery(), values, attachMap);
+    detachDependencyTables();
+
+    return sql;
 }
 
 SqlQueryView* SqlQueryModel::getView() const
@@ -855,6 +882,15 @@ void SqlQueryModel::updateRowIdForAllItems(const AliasedTable& table, const RowI
             item->setRowId(newRowId);
         }
     }
+}
+
+QHash<QString, QVariantList> SqlQueryModel::toValuesGroupedByColumns(const QList<SqlQueryItem*>& items)
+{
+    QHash<QString, QVariantList> values;
+    for (SqlQueryItem* item : items)
+        values[item->getColumn()->displayName] << item->getFullValue();
+
+    return values;
 }
 
 void SqlQueryModel::readColumns()

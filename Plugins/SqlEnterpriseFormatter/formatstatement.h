@@ -16,103 +16,6 @@
 class FormatStatement
 {
     public:
-        enum class ListSeparator
-        {
-            NONE,
-            COMMA,
-            EXPR_COMMA,
-            NEW_LINE,
-            SEMICOLON
-        };
-
-        typedef std::function<void(FormatStatement*)> FormatStatementEnricher;
-
-        FormatStatement();
-        virtual ~FormatStatement();
-
-        QString format();
-        void setSelectedWrapper(NameWrapper wrapper);
-        void setConfig(Cfg::SqlEnterpriseFormatterConfig* cfg);
-
-        static FormatStatement* forQuery(SqliteStatement *query);
-
-        FormatStatement& withKeyword(const QString& kw);
-        FormatStatement& withLinedUpKeyword(const QString& kw, const QString& lineUpName = QString());
-        FormatStatement& withId(const QString& id);
-        FormatStatement& withIdList(const QStringList& names, const QString& indentName = QString(), ListSeparator sep = ListSeparator::COMMA);
-        FormatStatement& withOperator(const QString& oper);
-        FormatStatement& withStringOrId(const QString& id);
-        FormatStatement& withIdDot();
-        FormatStatement& withStar();
-        FormatStatement& withFloat(double value);
-        FormatStatement& withInteger(qint64 value);
-        FormatStatement& withString(const QString& value);
-        FormatStatement& withBlob(const QString& value);
-        FormatStatement& withBindParam(const QString& name);
-        FormatStatement& withParDefLeft();
-        FormatStatement& withParDefRight();
-        FormatStatement& withParExprLeft();
-        FormatStatement& withParExprRight();
-        FormatStatement& withParFuncLeft();
-        FormatStatement& withParFuncRight();
-        FormatStatement& withSemicolon();
-        FormatStatement& withListComma();
-        FormatStatement& withCommaOper();
-        FormatStatement& withSortOrder(SqliteSortOrder sortOrder);
-        FormatStatement& withConflict(SqliteConflictAlgo onConflict);
-        FormatStatement& withFuncId(const QString& func);
-        FormatStatement& withDataType(const QString& dataType);
-        FormatStatement& withNewLine();
-        FormatStatement& withLiteral(const QVariant& value);
-        FormatStatement& withStatement(SqliteStatement* stmt, const QString& indentName = QString(), FormatStatementEnricher enricher = nullptr);
-        FormatStatement& markIndent(const QString& name);
-        FormatStatement& markAndKeepIndent(const QString& name);
-        FormatStatement& withIncrIndent(int newIndent);
-        FormatStatement& withIncrIndent(const QString& name = QString());
-        FormatStatement& withDecrIndent();
-        FormatStatement& markKeywordLineUp(const QString& keyword, const QString& lineUpName = QString());
-        FormatStatement& withSeparator(ListSeparator sep);
-
-        template <class T>
-        FormatStatement& withStatementList(QList<T*> stmtList, const QString& indentName = QString(), ListSeparator sep = ListSeparator::COMMA,
-                                           FormatStatementEnricher enricher = nullptr)
-        {
-            if (!indentName.isNull())
-                markAndKeepIndent(indentName);
-
-            bool first = true;
-            foreach (T* stmt, stmtList)
-            {
-                if (!first)
-                    withSeparator(sep);
-
-                withStatement(stmt, QString(), enricher);
-                first = false;
-            }
-
-            if (!indentName.isNull())
-                withDecrIndent();
-
-            return *this;
-        }
-
-        template <class T>
-        T* getFormatStatement(SqliteStatement* stmt)
-        {
-            return dynamic_cast<T*>(forQuery(stmt, dialect, wrapper, cfg));
-        }
-
-    protected:
-        void handleExplainQuery(SqliteQuery* query);
-
-        virtual void formatInternal() = 0;
-        virtual void resetInternal();
-
-        Dialect dialect = Dialect::Sqlite3;
-        NameWrapper wrapper = NameWrapper::BRACKET;
-        Cfg::SqlEnterpriseFormatterConfig* cfg = nullptr;
-
-    private:
         struct FormatToken
         {
             enum Type
@@ -148,12 +51,128 @@ class FormatStatement
                 MARK_KEYWORD_LINEUP
             };
 
+            enum Flag
+            {
+                NO_FLAG = 0x00,
+                NO_SPACE_BEFORE = 0x01,
+                NO_SPACE_AFTER = 0x02,
+                NO_NEWLINE_BEFORE = 0x04,
+                NO_NEWLINE_AFTER = 0x08
+            };
+
+            Q_DECLARE_FLAGS(Flags, Flag)
+
             Type type;
             QVariant value;
             QVariant additionalValue;
+            Flags flags;
         };
 
-        void withToken(FormatToken::Type type, const QVariant& value, const QVariant& additionalValue = QVariant());
+        enum class ListSeparator
+        {
+            NONE,
+            COMMA,
+            EXPR_COMMA,
+            NEW_LINE,
+            SEMICOLON
+        };
+
+        typedef std::function<void(FormatStatement*)> FormatStatementEnricher;
+
+        FormatStatement();
+        virtual ~FormatStatement();
+
+        QString format();
+        void setSelectedWrapper(NameWrapper wrapper);
+        void setConfig(Cfg::SqlEnterpriseFormatterConfig* cfg);
+
+        static FormatStatement* forQuery(SqliteStatement *query);
+
+        FormatStatement& withKeyword(const QString& kw);
+        FormatStatement& withLinedUpKeyword(const QString& kw, const QString& lineUpName = QString());
+        FormatStatement& withId(const QString& id);
+        FormatStatement& withIdList(const QStringList& names, const QString& indentName = QString(), ListSeparator sep = ListSeparator::COMMA);
+        FormatStatement& withOperator(const QString& oper, FormatToken::Flags flags = FormatToken::Flag::NO_FLAG);
+        FormatStatement& withStringOrId(const QString& id);
+        FormatStatement& withIdDot(FormatToken::Flags flags = FormatToken::Flag::NO_FLAG);
+        FormatStatement& withStar(FormatToken::Flags flags = FormatToken::Flag::NO_FLAG);
+        FormatStatement& withFloat(double value);
+        FormatStatement& withInteger(qint64 value);
+        FormatStatement& withString(const QString& value);
+        FormatStatement& withBlob(const QString& value);
+        FormatStatement& withBindParam(const QString& name);
+        FormatStatement& withParDefLeft(FormatToken::Flags flags = FormatToken::Flag::NO_FLAG);
+        FormatStatement& withParDefRight(FormatToken::Flags flags = FormatToken::Flag::NO_FLAG);
+        FormatStatement& withParExprLeft(FormatToken::Flags flags = FormatToken::Flag::NO_FLAG);
+        FormatStatement& withParExprRight(FormatToken::Flags flags = FormatToken::Flag::NO_FLAG);
+        FormatStatement& withParFuncLeft(FormatToken::Flags flags = FormatToken::Flag::NO_FLAG);
+        FormatStatement& withParFuncRight(FormatToken::Flags flags = FormatToken::Flag::NO_FLAG);
+        FormatStatement& withSemicolon(FormatToken::Flags flags = FormatToken::Flag::NO_FLAG);
+        FormatStatement& withListComma(FormatToken::Flags flags = FormatToken::Flag::NO_FLAG);
+        FormatStatement& withCommaOper(FormatToken::Flags flags = FormatToken::Flag::NO_FLAG);
+        FormatStatement& withSortOrder(SqliteSortOrder sortOrder);
+        FormatStatement& withConflict(SqliteConflictAlgo onConflict);
+        FormatStatement& withFuncId(const QString& func);
+        FormatStatement& withDataType(const QString& dataType);
+        FormatStatement& withNewLine();
+        FormatStatement& withLiteral(const QVariant& value);
+        FormatStatement& withStatement(SqliteStatement* stmt, const QString& indentName = QString(), FormatStatementEnricher enricher = nullptr);
+        FormatStatement& markIndent(const QString& name);
+        FormatStatement& markAndKeepIndent(const QString& name);
+        FormatStatement& withIncrIndent(int newIndent);
+        FormatStatement& withIncrIndent(const QString& name = QString());
+        FormatStatement& withDecrIndent();
+        FormatStatement& markKeywordLineUp(const QString& keyword, const QString& lineUpName = QString());
+        FormatStatement& withSeparator(ListSeparator sep, FormatToken::Flags flags = FormatToken::Flag::NO_FLAG);
+
+        template <class T>
+        FormatStatement& withStatementList(QList<T*> stmtList, FormatToken::Flags flags)
+        {
+            return withStatementList(stmtList, QString(), ListSeparator::COMMA, nullptr, flags);
+        }
+
+        template <class T>
+        FormatStatement& withStatementList(QList<T*> stmtList, const QString& indentName = QString(), ListSeparator sep = ListSeparator::COMMA,
+                                           FormatStatementEnricher enricher = nullptr, FormatToken::Flags flags = FormatToken::Flag::NO_FLAG)
+        {
+            if (!indentName.isNull())
+                markAndKeepIndent(indentName);
+
+            bool first = true;
+            foreach (T* stmt, stmtList)
+            {
+                if (!first)
+                    withSeparator(sep, flags);
+
+                withStatement(stmt, QString(), enricher);
+                first = false;
+            }
+
+            if (!indentName.isNull())
+                withDecrIndent();
+
+            return *this;
+        }
+
+        template <class T>
+        T* getFormatStatement(SqliteStatement* stmt)
+        {
+            return dynamic_cast<T*>(forQuery(stmt, dialect, wrapper, cfg));
+        }
+
+    protected:
+        void handleExplainQuery(SqliteQuery* query);
+
+        virtual void formatInternal() = 0;
+        virtual void resetInternal();
+
+        Dialect dialect = Dialect::Sqlite3;
+        NameWrapper wrapper = NameWrapper::BRACKET;
+        Cfg::SqlEnterpriseFormatterConfig* cfg = nullptr;
+
+    private:
+        FormatToken* withToken(FormatToken::Type type, const QVariant& value, const QVariant& additionalValue = QVariant(), FormatToken::Flags flags = FormatToken::Flag::NO_FLAG);
+        FormatToken* withToken(FormatToken::Type type, const QVariant& value, FormatToken::Flags flags);
         void cleanup();
         void buildTokens();
         bool applyIndent();
@@ -166,6 +185,7 @@ class FormatStatement
         void setIndent(int newIndent);
         bool endsWithSpace();
         FormatToken* getLastRealToken(bool skipNewLines = false);
+        FormatToken* getLastToken();
         QString detokenize();
         void detokenizeLeftPar(FormatToken* token, bool spaceBefore, bool spaceAfter, bool nlBefore, bool nlAfter);
         void detokenizeRightPar(FormatToken* token, bool spaceBefore, bool spaceAfter, bool nlBefore, bool nlAfter);
@@ -196,5 +216,7 @@ class FormatStatement
         static const QString SPACE;
         static const QString NEWLINE;
 };
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(FormatStatement::FormatToken::Flags)
 
 #endif // FORMATSTATEMENT_H

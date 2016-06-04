@@ -27,10 +27,13 @@ class GUI_API_EXPORT SqlQueryItemDelegate : public QStyledItemDelegate
         SqlQueryItem* getItem(const QModelIndex &index) const;
         QWidget* getEditor(int type, QWidget* parent) const;
         QWidget* getFkEditor(SqlQueryItem* item, QWidget* parent) const;
+        void setEditorDataForLineEdit(QLineEdit* le, const QModelIndex& index) const;
         void setEditorDataForFk(QComboBox* cb, const QModelIndex& index) const;
         void setModelDataForFk(QComboBox* editor, QAbstractItemModel* model, const QModelIndex& index) const;
+        void setModelDataForLineEdit(QLineEdit* editor, QAbstractItemModel* model, const QModelIndex& index) const;
         QString getSqlForFkEditor(SqlQueryItem* item) const;
         qlonglong getRowCountForFkEditor(Db* db, const QString& query) const;
+
         QSet<QWidget*> editorsWithAsyncExecution;
         mutable QHash<SqlQueryModel*, QComboBox*> modelToFkCombo;
         mutable QHash<SqlQueryModel*, QVariant> modelToFkInitialValue;

@@ -74,7 +74,7 @@ StatementTokenBuilder& StatementTokenBuilder::withComment(const QString& value)
 
 StatementTokenBuilder& StatementTokenBuilder::withFloat(double value)
 {
-    return with(Token::FLOAT, QString::number(value));
+    return with(Token::FLOAT, doubleToString(value));
 }
 
 StatementTokenBuilder& StatementTokenBuilder::withInteger(qint64 value)

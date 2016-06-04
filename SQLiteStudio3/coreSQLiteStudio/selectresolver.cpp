@@ -28,13 +28,29 @@ SelectResolver::~SelectResolver()
     safe_delete(schemaResolver);
 }
 
+QList<SelectResolver::Column> SelectResolver::resolveColumnsFromFirstCore()
+{
+    if (!parseOriginalQuery())
+        return QList<SelectResolver::Column>();
+
+    return resolve(originalQueryParsed->coreSelects.first());
+}
+
+QList<QList<SelectResolver::Column>> SelectResolver::resolveColumns()
+{
+    if (!parseOriginalQuery())
+        return QList<QList<SelectResolver::Column>>();
+
+    return resolve(originalQueryParsed.data());
+}
+
 QList<SelectResolver::Column> SelectResolver::resolve(SqliteSelect::Core *selectCore)
 {
     errors.clear();
     return resolveCore(selectCore);
 }
 
-QList<QList<SelectResolver::Column> > SelectResolver::resolve(SqliteSelect *select)
+QList<QList<SelectResolver::Column>> SelectResolver::resolve(SqliteSelect *select)
 {
     errors.clear();
     QList<QList<SelectResolver::Column> > results;
@@ -377,6 +393,10 @@ void SelectResolver::resolveDbAndTable(SqliteSelect::Core::ResultColumn *resCol)
         col.tableAlias = matched.tableAlias;
         col.flags = matched.flags;
     }
+    else if (matched.type == Column::OTHER)
+    {
+        col.type = Column::OTHER;
+    }
     else if (!ignoreInvalidNames)
     {
         QString colStr = expr->detokenize();
@@ -650,6 +670,29 @@ QString SelectResolver::resolveDatabase(const QString& database)
         return dbNameToAttach.valueByRight(database, Qt::CaseInsensitive);
 
     return database;
+}
+
+bool SelectResolver::parseOriginalQuery()
+{
+    if (originalQueryParsed)
+        return true;
+
+    Parser parser(db->getDialect());
+    if (!parser.parse(query) || parser.getQueries().isEmpty())
+    {
+        qWarning() << "Could not parse query in SelectResolver:" << query;
+        return false;
+    }
+
+    SqliteQueryPtr theQuery = parser.getQueries().first();
+    if (theQuery.dynamicCast<SqliteSelect>().isNull())
+    {
+        qWarning() << "Parsed query is not SELECT as expected in SelectResolver::parseOriginalQuery():" << query;
+        return false;
+    }
+
+    originalQueryParsed = theQuery.dynamicCast<SqliteSelect>();
+    return true;
 }
 
 int SelectResolver::Table::operator ==(const SelectResolver::Table &other)

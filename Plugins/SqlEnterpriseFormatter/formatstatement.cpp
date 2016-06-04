@@ -185,9 +185,9 @@ FormatStatement& FormatStatement::withId(const QString& id)
     return *this;
 }
 
-FormatStatement& FormatStatement::withOperator(const QString& oper)
+FormatStatement& FormatStatement::withOperator(const QString& oper, FormatToken::Flags flags)
 {
-    withToken(FormatToken::OPERATOR, oper);
+    withToken(FormatToken::OPERATOR, oper, flags);
     return *this;
 }
 
@@ -197,15 +197,15 @@ FormatStatement&FormatStatement::withStringOrId(const QString& id)
     return *this;
 }
 
-FormatStatement& FormatStatement::withIdDot()
+FormatStatement& FormatStatement::withIdDot(FormatToken::Flags flags)
 {
-    withToken(FormatToken::ID_DOT, ".");
+    withToken(FormatToken::ID_DOT, ".", flags);
     return *this;
 }
 
-FormatStatement& FormatStatement::withStar()
+FormatStatement& FormatStatement::withStar(FormatToken::Flags flags)
 {
-    withToken(FormatToken::STAR, "*");
+    withToken(FormatToken::STAR, "*", flags);
     return *this;
 }
 
@@ -239,60 +239,60 @@ FormatStatement& FormatStatement::withBindParam(const QString& name)
     return *this;
 }
 
-FormatStatement& FormatStatement::withParDefLeft()
+FormatStatement& FormatStatement::withParDefLeft(FormatToken::Flags flags)
 {
-    withToken(FormatToken::PAR_DEF_LEFT, "(");
+    withToken(FormatToken::PAR_DEF_LEFT, "(", flags);
     return *this;
 }
 
-FormatStatement& FormatStatement::withParDefRight()
+FormatStatement& FormatStatement::withParDefRight(FormatToken::Flags flags)
 {
-    withToken(FormatToken::PAR_DEF_RIGHT, ")");
+    withToken(FormatToken::PAR_DEF_RIGHT, ")", flags);
     return *this;
 }
 
-FormatStatement& FormatStatement::withParExprLeft()
+FormatStatement& FormatStatement::withParExprLeft(FormatToken::Flags flags)
 {
-    withToken(FormatToken::PAR_EXPR_LEFT, "(");
+    withToken(FormatToken::PAR_EXPR_LEFT, "(", flags);
     return *this;
 }
 
-FormatStatement& FormatStatement::withParExprRight()
+FormatStatement& FormatStatement::withParExprRight(FormatToken::Flags flags)
 {
-    withToken(FormatToken::PAR_EXPR_RIGHT, ")");
+    withToken(FormatToken::PAR_EXPR_RIGHT, ")", flags);
     return *this;
 }
 
-FormatStatement& FormatStatement::withParFuncLeft()
+FormatStatement& FormatStatement::withParFuncLeft(FormatToken::Flags flags)
 {
-    withToken(FormatToken::PAR_FUNC_LEFT, "(");
+    withToken(FormatToken::PAR_FUNC_LEFT, "(", flags);
     return *this;
 }
 
-FormatStatement& FormatStatement::withParFuncRight()
+FormatStatement& FormatStatement::withParFuncRight(FormatToken::Flags flags)
 {
-    withToken(FormatToken::PAR_FUNC_RIGHT, ")");
+    withToken(FormatToken::PAR_FUNC_RIGHT, ")", flags);
     return *this;
 }
 
-FormatStatement& FormatStatement::withSemicolon()
+FormatStatement& FormatStatement::withSemicolon(FormatToken::Flags flags)
 {
     FormatToken* lastRealToken = getLastRealToken();
     if ((lastRealToken && lastRealToken->type != FormatToken::SEMICOLON) || tokens.size() == 0)
-        withToken(FormatToken::SEMICOLON, ";");
+        withToken(FormatToken::SEMICOLON, ";", flags);
 
     return *this;
 }
 
-FormatStatement& FormatStatement::withListComma()
+FormatStatement& FormatStatement::withListComma(FormatToken::Flags flags)
 {
-    withToken(FormatToken::COMMA_LIST, ",");
+    withToken(FormatToken::COMMA_LIST, ",", flags);
     return *this;
 }
 
-FormatStatement& FormatStatement::withCommaOper()
+FormatStatement& FormatStatement::withCommaOper(FormatToken::Flags flags)
 {
-    withToken(FormatToken::COMMA_OPER, ",");
+    withToken(FormatToken::COMMA_OPER, ",", flags);
     return *this;
 }
 
@@ -434,21 +434,21 @@ FormatStatement&FormatStatement::markKeywordLineUp(const QString& keyword, const
     return *this;
 }
 
-FormatStatement&FormatStatement::withSeparator(FormatStatement::ListSeparator sep)
+FormatStatement&FormatStatement::withSeparator(FormatStatement::ListSeparator sep, FormatToken::Flags flags)
 {
     switch (sep)
     {
         case ListSeparator::COMMA:
-            withListComma();
+            withListComma(flags);
             break;
         case ListSeparator::EXPR_COMMA:
-            withCommaOper();
+            withCommaOper(flags);
             break;
         case ListSeparator::NEW_LINE:
             withNewLine();
             break;
         case ListSeparator::SEMICOLON:
-            withSemicolon();
+            withSemicolon(flags);
             break;
         case ListSeparator::NONE:
             break;
@@ -487,13 +487,20 @@ FormatStatement& FormatStatement::withIdList(const QStringList& names, const QSt
     return *this;
 }
 
-void FormatStatement::withToken(FormatStatement::FormatToken::Type type, const QVariant& value, const QVariant& additionalValue)
+FormatStatement::FormatToken* FormatStatement::withToken(FormatStatement::FormatToken::Type type, const QVariant& value, const QVariant& additionalValue, FormatToken::Flags flags)
 {
     FormatToken* token = new FormatToken;
     token->type = type;
     token->value = value;
     token->additionalValue = additionalValue;
+    token->flags = flags;
     tokens << token;
+    return token;
+}
+
+FormatStatement::FormatToken* FormatStatement::withToken(FormatStatement::FormatToken::Type type, const QVariant& value, FormatToken::Flags flags)
+{
+    return withToken(type, value, QVariant(), flags);
 }
 
 void FormatStatement::cleanup()
@@ -581,7 +588,6 @@ QString FormatStatement::detokenize()
                 break;
             }
             case FormatToken::STAR:
-            case FormatToken::FLOAT:
             case FormatToken::INTEGER:
             case FormatToken::BLOB:
             case FormatToken::BIND_PARAM:
@@ -591,14 +597,20 @@ QString FormatStatement::detokenize()
                 line += token->value.toString();
                 break;
             }
+            case FormatToken::FLOAT:
+            {
+                applyIndent();
+                line += doubleToString(token->value.toDouble());
+                break;
+            }
             case FormatToken::OPERATOR:
             {
                 bool spaceAdded = endsWithSpace() || applyIndent();
-                if (cfg->SqlEnterpriseFormatter.SpaceBeforeMathOp.get() && !spaceAdded)
+                if (cfg->SqlEnterpriseFormatter.SpaceBeforeMathOp.get() && !spaceAdded && !token->flags.testFlag(FormatToken::Flag::NO_SPACE_BEFORE))
                     line += SPACE;
 
                 line += token->value.toString();
-                if (cfg->SqlEnterpriseFormatter.SpaceAfterMathOp.get())
+                if (cfg->SqlEnterpriseFormatter.SpaceAfterMathOp.get() && !token->flags.testFlag(FormatToken::Flag::NO_SPACE_AFTER))
                     line += SPACE;
 
                 break;
@@ -606,66 +618,66 @@ QString FormatStatement::detokenize()
             case FormatToken::ID_DOT:
             {
                 bool spaceAdded = endsWithSpace() || applyIndent();
-                if (cfg->SqlEnterpriseFormatter.SpaceBeforeDot.get() && !spaceAdded)
+                if (cfg->SqlEnterpriseFormatter.SpaceBeforeDot.get() && !spaceAdded && !token->flags.testFlag(FormatToken::Flag::NO_SPACE_BEFORE))
                     line += SPACE;
 
                 line += token->value.toString();
-                if (cfg->SqlEnterpriseFormatter.SpaceAfterDot.get())
+                if (cfg->SqlEnterpriseFormatter.SpaceAfterDot.get() && !token->flags.testFlag(FormatToken::Flag::NO_SPACE_AFTER))
                     line += SPACE;
 
                 break;
             }
             case FormatToken::PAR_DEF_LEFT:
             {
-                bool spaceBefore = cfg->SqlEnterpriseFormatter.SpaceBeforeOpenPar.get();
-                bool spaceAfter = cfg->SqlEnterpriseFormatter.SpaceAfterOpenPar.get();
-                bool nlBefore = cfg->SqlEnterpriseFormatter.NlBeforeOpenParDef.get();
-                bool nlAfter = cfg->SqlEnterpriseFormatter.NlAfterOpenParDef.get();
+                bool spaceBefore = cfg->SqlEnterpriseFormatter.SpaceBeforeOpenPar.get() && !token->flags.testFlag(FormatToken::Flag::NO_SPACE_BEFORE);
+                bool spaceAfter = cfg->SqlEnterpriseFormatter.SpaceAfterOpenPar.get() && !token->flags.testFlag(FormatToken::Flag::NO_SPACE_AFTER);
+                bool nlBefore = cfg->SqlEnterpriseFormatter.NlBeforeOpenParDef.get() && !token->flags.testFlag(FormatToken::Flag::NO_NEWLINE_BEFORE);
+                bool nlAfter = cfg->SqlEnterpriseFormatter.NlAfterOpenParDef.get() && !token->flags.testFlag(FormatToken::Flag::NO_NEWLINE_AFTER);
                 detokenizeLeftPar(token, spaceBefore, spaceAfter, nlBefore, nlAfter);
                 break;
             }
             case FormatToken::PAR_DEF_RIGHT:
             {
-                bool spaceBefore = cfg->SqlEnterpriseFormatter.SpaceBeforeClosePar.get();
-                bool spaceAfter = cfg->SqlEnterpriseFormatter.SpaceAfterClosePar.get();
-                bool nlBefore = cfg->SqlEnterpriseFormatter.NlBeforeCloseParDef.get();
-                bool nlAfter = cfg->SqlEnterpriseFormatter.NlAfterCloseParDef.get();
+                bool spaceBefore = cfg->SqlEnterpriseFormatter.SpaceBeforeClosePar.get() && !token->flags.testFlag(FormatToken::Flag::NO_SPACE_BEFORE);
+                bool spaceAfter = cfg->SqlEnterpriseFormatter.SpaceAfterClosePar.get() && !token->flags.testFlag(FormatToken::Flag::NO_SPACE_AFTER);
+                bool nlBefore = cfg->SqlEnterpriseFormatter.NlBeforeCloseParDef.get() && !token->flags.testFlag(FormatToken::Flag::NO_NEWLINE_BEFORE);
+                bool nlAfter = cfg->SqlEnterpriseFormatter.NlAfterCloseParDef.get() && !token->flags.testFlag(FormatToken::Flag::NO_NEWLINE_AFTER);
                 detokenizeRightPar(token, spaceBefore, spaceAfter, nlBefore, nlAfter);
                 break;
             }
             case FormatToken::PAR_EXPR_LEFT:
             {
-                bool spaceBefore = cfg->SqlEnterpriseFormatter.SpaceBeforeOpenPar.get();
-                bool spaceAfter = cfg->SqlEnterpriseFormatter.SpaceAfterOpenPar.get();
-                bool nlBefore = cfg->SqlEnterpriseFormatter.NlBeforeOpenParExpr.get();
-                bool nlAfter = cfg->SqlEnterpriseFormatter.NlAfterOpenParExpr.get();
+                bool spaceBefore = cfg->SqlEnterpriseFormatter.SpaceBeforeOpenPar.get() && !token->flags.testFlag(FormatToken::Flag::NO_SPACE_BEFORE);
+                bool spaceAfter = cfg->SqlEnterpriseFormatter.SpaceAfterOpenPar.get() && !token->flags.testFlag(FormatToken::Flag::NO_SPACE_AFTER);
+                bool nlBefore = cfg->SqlEnterpriseFormatter.NlBeforeOpenParExpr.get() && !token->flags.testFlag(FormatToken::Flag::NO_NEWLINE_BEFORE);
+                bool nlAfter = cfg->SqlEnterpriseFormatter.NlAfterOpenParExpr.get() && !token->flags.testFlag(FormatToken::Flag::NO_NEWLINE_AFTER);
                 detokenizeLeftPar(token, spaceBefore, spaceAfter, nlBefore, nlAfter);
                 break;
             }
             case FormatToken::PAR_EXPR_RIGHT:
             {
-                bool spaceBefore = cfg->SqlEnterpriseFormatter.SpaceBeforeClosePar.get();
-                bool spaceAfter = cfg->SqlEnterpriseFormatter.SpaceAfterClosePar.get();
-                bool nlBefore = cfg->SqlEnterpriseFormatter.NlBeforeCloseParExpr.get();
-                bool nlAfter = cfg->SqlEnterpriseFormatter.NlAfterCloseParExpr.get();
+                bool spaceBefore = cfg->SqlEnterpriseFormatter.SpaceBeforeClosePar.get() && !token->flags.testFlag(FormatToken::Flag::NO_SPACE_BEFORE);
+                bool spaceAfter = cfg->SqlEnterpriseFormatter.SpaceAfterClosePar.get() && !token->flags.testFlag(FormatToken::Flag::NO_SPACE_AFTER);
+                bool nlBefore = cfg->SqlEnterpriseFormatter.NlBeforeCloseParExpr.get() && !token->flags.testFlag(FormatToken::Flag::NO_NEWLINE_BEFORE);
+                bool nlAfter = cfg->SqlEnterpriseFormatter.NlAfterCloseParExpr.get() && !token->flags.testFlag(FormatToken::Flag::NO_NEWLINE_AFTER);
                 detokenizeRightPar(token, spaceBefore, spaceAfter, nlBefore, nlAfter);
                 break;
             }
             case FormatToken::PAR_FUNC_LEFT:
             {
-                bool spaceBefore = cfg->SqlEnterpriseFormatter.SpaceBeforeOpenPar.get() && !cfg->SqlEnterpriseFormatter.NoSpaceAfterFunctionName.get();
-                bool spaceAfter = cfg->SqlEnterpriseFormatter.SpaceAfterOpenPar.get();
-                bool nlBefore = cfg->SqlEnterpriseFormatter.NlBeforeOpenParExpr.get();
-                bool nlAfter = cfg->SqlEnterpriseFormatter.NlAfterOpenParExpr.get();
+                bool spaceBefore = cfg->SqlEnterpriseFormatter.SpaceBeforeOpenPar.get() && !token->flags.testFlag(FormatToken::Flag::NO_SPACE_BEFORE) && !cfg->SqlEnterpriseFormatter.NoSpaceAfterFunctionName.get();
+                bool spaceAfter = cfg->SqlEnterpriseFormatter.SpaceAfterOpenPar.get() && !token->flags.testFlag(FormatToken::Flag::NO_SPACE_AFTER);
+                bool nlBefore = cfg->SqlEnterpriseFormatter.NlBeforeOpenParExpr.get() && !token->flags.testFlag(FormatToken::Flag::NO_NEWLINE_BEFORE);
+                bool nlAfter = cfg->SqlEnterpriseFormatter.NlAfterOpenParExpr.get() && !token->flags.testFlag(FormatToken::Flag::NO_NEWLINE_AFTER);
                 detokenizeLeftPar(token, spaceBefore, spaceAfter, nlBefore, nlAfter);
                 break;
             }
             case FormatToken::PAR_FUNC_RIGHT:
             {
-                bool spaceBefore = cfg->SqlEnterpriseFormatter.SpaceBeforeClosePar.get();
-                bool spaceAfter = cfg->SqlEnterpriseFormatter.SpaceAfterClosePar.get();
-                bool nlBefore = cfg->SqlEnterpriseFormatter.NlBeforeCloseParExpr.get();
-                bool nlAfter = cfg->SqlEnterpriseFormatter.NlAfterCloseParExpr.get();
+                bool spaceBefore = cfg->SqlEnterpriseFormatter.SpaceBeforeClosePar.get() && !token->flags.testFlag(FormatToken::Flag::NO_SPACE_BEFORE);
+                bool spaceAfter = cfg->SqlEnterpriseFormatter.SpaceAfterClosePar.get() && !token->flags.testFlag(FormatToken::Flag::NO_SPACE_AFTER);
+                bool nlBefore = cfg->SqlEnterpriseFormatter.NlBeforeCloseParExpr.get() && !token->flags.testFlag(FormatToken::Flag::NO_NEWLINE_BEFORE);
+                bool nlAfter = cfg->SqlEnterpriseFormatter.NlAfterCloseParExpr.get() && !token->flags.testFlag(FormatToken::Flag::NO_NEWLINE_AFTER);
                 detokenizeRightPar(token, spaceBefore, spaceAfter, nlBefore, nlAfter);
                 break;
             }
@@ -704,7 +716,7 @@ QString FormatStatement::detokenize()
                 }
 
                 line += token->value.toString();
-                if (cfg->SqlEnterpriseFormatter.NlAfterComma.get())
+                if (cfg->SqlEnterpriseFormatter.NlAfterComma.get() && !token->flags.testFlag(FormatToken::Flag::NO_NEWLINE_AFTER))
                     newLine();
                 else if (cfg->SqlEnterpriseFormatter.SpaceAfterCommaInList.get())
                     line += SPACE;
@@ -725,7 +737,7 @@ QString FormatStatement::detokenize()
                 }
 
                 line += token->value.toString();
-                if (cfg->SqlEnterpriseFormatter.NlAfterCommaInExpr.get())
+                if (cfg->SqlEnterpriseFormatter.NlAfterCommaInExpr.get() && !token->flags.testFlag(FormatToken::Flag::NO_NEWLINE_AFTER))
                     newLine();
                 else if (cfg->SqlEnterpriseFormatter.SpaceAfterCommaInList.get())
                     line += SPACE;
@@ -925,6 +937,11 @@ FormatStatement::FormatToken* FormatStatement::getLastRealToken(bool skipNewLine
             return tk;
     }
     return nullptr;
+}
+
+FormatStatement::FormatToken* FormatStatement::getLastToken()
+{
+    return tokens.last();
 }
 
 void FormatStatement::detokenizeLeftPar(FormatToken* token, bool spaceBefore, bool spaceAfter, bool nlBefore, bool nlAfter)
