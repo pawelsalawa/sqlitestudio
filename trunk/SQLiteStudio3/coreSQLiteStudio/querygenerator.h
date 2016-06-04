@@ -1,0 +1,65 @@
+#ifndef QUERYGENERATOR_H
+#define QUERYGENERATOR_H
+
+#include "common/column.h"
+#include "dialect.h"
+#include "common/bistrhash.h"
+#include "schemaresolver.h"
+#include <QHash>
+#include <QString>
+#include <QVariant>
+
+class Db;
+
+class QueryGenerator
+{
+    public:
+        QueryGenerator();
+
+        /**
+         * @brief Generates select of all column from the \p table having given column values matched.
+         * @overload
+         */
+        QString generateSelectFromTable(Db* db, const QString& table, const QHash<QString, QVariantList> values);
+
+        /**
+         * @brief Generates SELECT of all column from the \p table having given column values matched.
+         * @param db Database where the \p table exists.
+         * @param database Attach name of the database (such as "main" or "temp", or any other used for ATTACH).
+         * @param table Table to generate select for.
+         * @param values Values to comply with.
+         * @return SELECT statement string.
+         *
+         * Generates SELECT for given table, listing all result columns explicitly and adding WHERE clause (if \p values is not empty) with columns included in \p values
+         * having any of values specified for those columns in that parameter.
+         *
+         * If \p values is ommited, then no WHERE clause is added.
+         */
+        QString generateSelectFromTable(Db* db, const QString& database, const QString& table, const QHash<QString, QVariantList> values = QHash<QString, QVariantList>());
+
+        QString generateSelectFromView(Db* db, const QString& view, const QHash<QString, QVariantList> values);
+        QString generateSelectFromView(Db* db, const QString& database, const QString& view, const QHash<QString, QVariantList> values = QHash<QString, QVariantList>());
+
+        /**
+         * @brief Generates SELECT for all columns from the \p initialSelect having values matched.
+         * @param db Database that will be used to resolve tables used in the \p initialSelect
+         * @param initialSelect The SELECT statement that will be used as a base for generating new query.
+         * @param values Map of column names and values for them, so the WHERE clause is generated for them.
+         * @param dbNameToAttach If the \p initialSelect uses attached databases, they should be provided in this parameter, so their symbolic names can be resolved to real attach name.
+         * @return Generated SELECT statement string.
+         *
+         * Generates SELECT using \p initialSelect as a base. Lists all columns from \p initialSelect result columns explicitly (no star operator).
+         * If there are \p values given, then the WHERE clause is added for them to match columns.
+         */
+        QString generateSelectFromSelect(Db* db, const QString& initialSelect, const QHash<QString, QVariantList> values = QHash<QString, QVariantList>(), const BiStrHash& dbNameToAttach = BiStrHash());
+
+    private:
+        QString generateSelectFromTableOrView(Db* db, const QString& database, const QString& tableOrView, const QStringList& columns, const QHash<QString, QVariantList> values = QHash<QString, QVariantList>());
+        QString getAlias(const QString& name, QSet<QString>& usedAliases);
+        QStringList toValueList(const QList<QVariant>& values);
+        QStringList valuesToConditionList(const QHash<QString, QVariantList>& values, Dialect dialect);
+        QString valuesToConditionStr(const QHash<QString, QVariantList>& values, Dialect dialect);
+        QString toResultColumnString(const SelectResolver::Column& column, Dialect dialect);
+};
+
+#endif // QUERYGENERATOR_H

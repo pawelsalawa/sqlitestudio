@@ -265,43 +265,7 @@ QString SqlExport::getNameForObject(const QString& database, const QString& name
 
 QStringList SqlExport::rowToArgList(SqlResultsRowPtr row)
 {
-    QStringList argList;
-    for (const QVariant& value : row->valueList())
-    {
-        if (!value.isValid() || value.isNull())
-        {
-            argList << "NULL";
-            continue;
-        }
-
-        switch (value.userType())
-        {
-            case QVariant::Int:
-            case QVariant::UInt:
-            case QVariant::LongLong:
-            case QVariant::ULongLong:
-                argList << value.toString();
-                break;
-            case QVariant::Double:
-                argList << QString::number(value.toDouble());
-                break;
-            case QVariant::Bool:
-                argList << QString::number(value.toInt());
-                break;
-            case QVariant::ByteArray:
-            {
-                if (db->getVersion() >= 3) // version 2 will go to the regular string processing
-                {
-                    argList << "X'" + value.toByteArray().toHex().toUpper() + "'";
-                    break;
-                }
-            }
-            default:
-                argList << wrapString(escapeString(value.toString()));
-                break;
-        }
-    }
-    return argList;
+    return valueListToSqlList(row->valueList(), db->getDialect());
 }
 
 void SqlExport::validateOptions()

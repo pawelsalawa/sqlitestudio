@@ -13,12 +13,12 @@ namespace Ui {
 }
 
 class SqliteSyntaxHighlighter;
-class SqlQueryModel;
 class WidgetCover;
 class QPushButton;
 class QProgressBar;
 class ChainExecutor;
 class ViewModifier;
+class SqlViewModel;
 
 CFG_KEY_LIST(ViewWindow, QObject::tr("A view window"),
      CFG_KEY_ENTRY(REFRESH_TRIGGERS, Qt::Key_F5,                QObject::tr("Refresh view trigger list"))
@@ -125,7 +125,7 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
         bool modified = false;
         SqliteCreateViewPtr originalCreateView;
         SqliteCreateViewPtr createView;
-        SqlQueryModel* dataModel = nullptr;
+        SqlViewModel* dataModel = nullptr;
         QString originalQuery;
         WidgetCover* widgetCover = nullptr;
         ChainExecutor* structureExecutor = nullptr;

@@ -5,6 +5,7 @@
 #include "common/extactioncontainer.h"
 #include "db/queryexecutor.h"
 #include "guiSQLiteStudio_global.h"
+#include "common/table.h"
 #include <QTableView>
 
 class SqlQueryItemDelegate;
@@ -53,7 +54,8 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
             SELECTIVE_ROLLBACK,
             OPEN_VALUE_EDITOR,
             SORT_DIALOG,
-            RESET_SORTING
+            RESET_SORTING,
+            GENERATE_SELECT
         };
 
         enum ToolBar
@@ -107,6 +109,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void sortingUpdated(const QueryExecutor::SortList& sortOrder);
         void updateFont();
         void itemActivated(const QModelIndex& index);
+        void generateSelect();
 
     public slots:
         void executionStarted();

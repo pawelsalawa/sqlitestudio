@@ -51,7 +51,8 @@ void FormatExpr::formatInternal()
         {
             // Operator can be a keyword
             QString opStr = cfg->SqlEnterpriseFormatter.UppercaseKeywords.get() ? expr->unaryOp.toUpper() : expr->unaryOp.toLower();
-            withOperator(opStr).withStatement(expr->expr1, "unaryOp");
+            withOperator(opStr, FormatToken::Flag::NO_SPACE_BEFORE|FormatToken::Flag::NO_SPACE_AFTER);
+            withStatement(expr->expr1, "unaryOp");
             break;
         }
         case SqliteExpr::Mode::BINARY_OP:
@@ -161,7 +162,7 @@ void FormatExpr::formatInternal()
             }
             else if (expr->exprList.size() > 0)
             {
-                withParExprLeft().withStatementList(expr->exprList).withParExprRight();
+                withParExprLeft().withStatementList(expr->exprList, FormatToken::Flag::NO_NEWLINE_AFTER).withParExprRight();
             }
             else
             {

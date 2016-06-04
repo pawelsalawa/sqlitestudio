@@ -2,18 +2,18 @@ cannot reproduce:
 2922 / 2926 / 2925
 2940
 3009 - db w emailu od goretux@gmail.com
+3052
+3062
 
 feature requests:
 - sqlcipher
-3052
-3062
-3040
-3013
+3013 - dbl click on table window free space to add column
 shortcut - toggle comment
 sort windows list in menu
+generate SELECT/UPDATE/INSERT/DELETE query on table in dbtree
 
 
-* Outstanding features for 3.1:
+* Outstanding features for 3.2:
 - migrate updates engine to Qt Install Framework
 - loadable extensions full support
 - BLOB preview engine based on plugins

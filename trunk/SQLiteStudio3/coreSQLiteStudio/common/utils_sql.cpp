@@ -644,3 +644,44 @@ QueryAccessMode getQueryAccessMode(const QString& query, Dialect dialect, bool* 
 
     return QueryAccessMode::WRITE;
 }
+
+QStringList valueListToSqlList(const QVariantList& values, Dialect dialect)
+{
+    QStringList argList;
+    for (const QVariant& value : values)
+    {
+        if (!value.isValid() || value.isNull())
+        {
+            argList << "NULL";
+            continue;
+        }
+
+        switch (value.userType())
+        {
+            case QVariant::Int:
+            case QVariant::UInt:
+            case QVariant::LongLong:
+            case QVariant::ULongLong:
+                argList << value.toString();
+                break;
+            case QVariant::Double:
+                argList << doubleToString(value.toDouble());
+                break;
+            case QVariant::Bool:
+                argList << QString::number(value.toInt());
+                break;
+            case QVariant::ByteArray:
+            {
+                if (dialect == Dialect::Sqlite3) // version 2 will go to the regular string processing
+                {
+                    argList << "X'" + value.toByteArray().toHex().toUpper() + "'";
+                    break;
+                }
+            }
+            default:
+                argList << wrapString(escapeString(value.toString()));
+                break;
+        }
+    }
+    return argList;
+}

@@ -15,6 +15,8 @@
 #include "windows/editorwindow.h"
 #include "mainwindow.h"
 #include "common/utils_sql.h"
+#include "querygenerator.h"
+#include "services/codeformatter.h"
 #include <QHeaderView>
 #include <QPushButton>
 #include <QProgressBar>
@@ -84,6 +86,7 @@ void SqlQueryView::createActions()
     createAction(ROLLBACK, ICONS.ROLLBACK, tr("Rollback"), this, SLOT(rollback()), this);
     createAction(SELECTIVE_COMMIT, ICONS.COMMIT, tr("Commit selected cells"), this, SLOT(selectiveCommit()), this);
     createAction(SELECTIVE_ROLLBACK, ICONS.ROLLBACK, tr("Rollback selected cells"), this, SLOT(selectiveRollback()), this);
+    createAction(GENERATE_SELECT, ICONS.GENERATE_SELECT, tr("Generate SELECT from selected cells", "data grid context menu"), this, SLOT(generateSelect()), this);
     createAction(SORT_DIALOG, ICONS.SORT_COLUMNS, tr("Define columns to sort by"), this, SLOT(openSortDialog()), this);
     createAction(RESET_SORTING, ICONS.SORT_RESET, tr("Remove custom sorting"), this, SLOT(resetSorting()), this);
     createAction(INSERT_ROW, ICONS.INSERT_ROW, tr("Insert row"), this, SIGNAL(requestForRowInsert()), this);
@@ -141,11 +144,13 @@ void SqlQueryView::setupActionsForMenu(SqlQueryItem* currentItem, const QList<Sq
         contextMenu->addSeparator();
     }
 
-    if (selectedItems.size() == 1 && selectedItems.first() == currentItem)
+    if (selCount == 1 && selectedItems.first() == currentItem)
         addFkActionsToContextMenu(currentItem);
 
     if (selCount > 0)
     {
+        contextMenu->addAction(actionMap[GENERATE_SELECT]);
+        contextMenu->addSeparator();
         contextMenu->addAction(actionMap[COPY]);
         //contextMenu->addAction(actionMap[COPY_AS]); // TODO uncomment when implemented
         contextMenu->addAction(actionMap[PASTE]);
@@ -247,6 +252,21 @@ void SqlQueryView::itemActivated(const QModelIndex& index)
         return;
 
     edit(getCurrentIndex());
+}
+
+void SqlQueryView::generateSelect()
+{
+    QString sql = getModel()->generateSelectQueryForItems(getSelectedItems());
+
+    EditorWindow* win = MAINWINDOW->openSqlEditor();
+    if (!win->setCurrentDb(getModel()->getDb()))
+    {
+        qCritical() << "Created EditorWindow had not got requested database:" << getModel()->getDb()->getName();
+        win->close();
+        return;
+    }
+
+    win->setContents(FORMATTER->format("sql", sql, getModel()->getDb()));
 }
 
 bool SqlQueryView::editInEditorIfNecessary(SqlQueryItem* item)
@@ -479,7 +499,11 @@ void SqlQueryView::copy()
         foreach (SqlQueryItem* item, itemsInRows)
         {
             itemValue = item->getFullValue();
-            cells << itemValue.toString();
+            if (itemValue.userType() == QVariant::Double)
+                cells << doubleToString(itemValue.toDouble());
+            else
+                cells << itemValue.toString();
+
             theDataRow << itemValue;
         }
 

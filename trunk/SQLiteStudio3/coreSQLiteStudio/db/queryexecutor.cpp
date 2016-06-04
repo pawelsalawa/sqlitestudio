@@ -20,6 +20,7 @@
 #include "queryexecutorsteps/queryexecutordetectschemaalter.h"
 #include "queryexecutorsteps/queryexecutorvaluesmode.h"
 #include "common/unused.h"
+#include "log.h"
 #include <QMutexLocker>
 #include <QDateTime>
 #include <QThreadPool>
@@ -100,7 +101,10 @@ void QueryExecutor::executeChain()
             return;
         }
 
+        logExecutorStep(currentStep);
         result = currentStep->exec();
+        logExecutorAfterStep(context->processedQuery);
+
         if (!result)
         {
             stepFailed(currentStep);

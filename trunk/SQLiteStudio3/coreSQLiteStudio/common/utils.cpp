@@ -898,3 +898,8 @@ QStringList concat(const QList<QStringList>& list)
 
     return result;
 }
+
+QString doubleToString(double val)
+{
+    return QString::number(val, 'g', 16);
+}

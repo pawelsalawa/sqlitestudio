@@ -61,6 +61,9 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         QVariant headerData(int section, Qt::Orientation orientation, int role) const;
         bool isExecutionInProgress() const;
         void loadFullDataForEntireRow(int row);
+        StrHash<QString> attachDependencyTables();
+        void detachDependencyTables();
+        virtual QString generateSelectQueryForItems(const QList<SqlQueryItem*>& items);
 
         virtual Features features() const;
 
@@ -217,6 +220,8 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         RowId getNewRowId(const RowId& currentRowId, const QList<SqlQueryItem*> items);
         void updateRowIdForAllItems(const AliasedTable& table, const RowId& rowId, const RowId& newRowId);
 
+        QHash<QString, QVariantList> toValuesGroupedByColumns(const QList<SqlQueryItem*>& items);
+
         QueryExecutor* queryExecutor = nullptr;
         Db* db = nullptr;
         QList<SqlQueryModelColumnPtr> columns;
@@ -352,6 +357,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         quint32 resultsCountingAsyncId = 0;
         QStringList requiredDbAttaches;
         StrHash<QString> dbNameToAttachNameMapForCommit;
+        QList<Db*> dbListToDetach;
 
         /**
          * @brief Sets row count limit, despite user configured limit.

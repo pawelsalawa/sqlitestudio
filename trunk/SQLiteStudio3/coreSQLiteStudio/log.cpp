@@ -1,9 +1,11 @@
 #include "log.h"
+#include "db/queryexecutorsteps/queryexecutorstep.h"
 #include <QTime>
 #include <QDebug>
 
-bool SQL_DEBUG = false;
-QString SQL_DEBUG_FILTER = "";
+static bool SQL_DEBUG = false;
+static bool EXECUTOR_DEBUG = false;
+static QString SQL_DEBUG_FILTER = "";
 
 void setSqlLoggingEnabled(bool enabled)
 {
@@ -44,4 +46,26 @@ void logSql(Db* db, const QString& str, const QList<QVariant>& args, Db::Flags f
     int i = 0;
     foreach (const QVariant& arg, args)
         qDebug() << "    SQL arg>" << i++ << "=" << arg;
+}
+
+void setExecutorLoggingEnabled(bool enabled)
+{
+    EXECUTOR_DEBUG = enabled;
+}
+
+void logExecutorStep(QueryExecutorStep* step)
+{
+    if (!EXECUTOR_DEBUG)
+        return;
+
+    qDebug() << "Executing step:" << step->metaObject()->className() << step->objectName();
+}
+
+
+void logExecutorAfterStep(const QString& str)
+{
+    if (!EXECUTOR_DEBUG)
+        return;
+
+    qDebug() << str;
 }

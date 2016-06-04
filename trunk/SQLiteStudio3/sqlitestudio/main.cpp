@@ -36,7 +36,7 @@
 #include <QMessageBox>
 #include <QProcess>
 
-bool listPlugins = false;
+static bool listPlugins = false;
 
 QString uiHandleCmdLineArgs()
 {
@@ -51,6 +51,7 @@ QString uiHandleCmdLineArgs()
     QCommandLineOption lemonDebugOption("debug-lemon", QObject::tr("Enables Lemon parser debug messages for SQL code assistant."));
     QCommandLineOption sqlDebugOption("debug-sql", QObject::tr("Enables debugging of every single SQL query being sent to any database."));
     QCommandLineOption sqlDebugDbNameOption("debug-sql-db", QObject::tr("Limits SQL query messages to only the given <database>."), QObject::tr("database"));
+    QCommandLineOption executorDebugOption("debug-query-executor", QObject::tr("Enables debugging of SQLiteStudio's query executor."));
     QCommandLineOption listPluginsOption("list-plugins", QObject::tr("Lists plugins installed in the SQLiteStudio and quits."));
     parser.addOption(debugOption);
     parser.addOption(debugStdOutOption);
@@ -58,6 +59,7 @@ QString uiHandleCmdLineArgs()
     parser.addOption(lemonDebugOption);
     parser.addOption(sqlDebugOption);
     parser.addOption(sqlDebugDbNameOption);
+    parser.addOption(executorDebugOption);
     parser.addOption(listPluginsOption);
 
     parser.addPositionalArgument(QObject::tr("file"), QObject::tr("Database file to open"));
@@ -68,6 +70,7 @@ QString uiHandleCmdLineArgs()
     setUiDebug(enableDebug, !parser.isSet(debugStdOutOption), parser.value(debugFileOption));
     CompletionHelper::enableLemonDebug = parser.isSet(lemonDebugOption);
     setSqlLoggingEnabled(parser.isSet(sqlDebugOption));
+    setExecutorLoggingEnabled(parser.isSet(executorDebugOption));
     if (parser.isSet(sqlDebugDbNameOption))
         setSqlLoggingFilter(parser.value(sqlDebugDbNameOption));
 

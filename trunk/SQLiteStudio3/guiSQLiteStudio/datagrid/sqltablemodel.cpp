@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QApplication>
 #include <schemaresolver.h>
+#include <querygenerator.h>
 
 SqlTableModel::SqlTableModel(QObject *parent) :
     SqlQueryModel(parent)
@@ -190,6 +191,14 @@ void SqlTableModel::resetFilter()
     setQuery("SELECT * FROM "+getDataSource());
     //reload();
     executeQuery();
+}
+
+QString SqlTableModel::generateSelectQueryForItems(const QList<SqlQueryItem*>& items)
+{
+    QHash<QString, QVariantList> values = toValuesGroupedByColumns(items);
+
+    QueryGenerator generator;
+    return generator.generateSelectFromTable(db, database, table, values);
 }
 
 void SqlTableModel::updateRowAfterInsert(const QList<SqlQueryItem*>& itemsInRow, const QList<SqlQueryModelColumnPtr>& modelColumns, RowId rowId)
