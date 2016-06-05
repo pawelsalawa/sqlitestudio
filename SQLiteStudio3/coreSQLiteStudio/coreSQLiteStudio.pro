@@ -418,7 +418,8 @@ HEADERS += sqlitestudio.h\
     common/expiringcache.h \
     parser/ast/sqliteddlwithdbcontext.h \
     parser/ast/sqliteextendedindexedcolumn.h \
-    querygenerator.h
+    querygenerator.h \
+    common/sortedset.h
 
 unix: {
     target.path = $$LIBDIR

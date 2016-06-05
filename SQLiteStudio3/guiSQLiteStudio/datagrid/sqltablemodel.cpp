@@ -140,6 +140,11 @@ bool SqlTableModel::commitDeletedRow(const QList<SqlQueryItem*>& itemsInRow)
     return true;
 }
 
+bool SqlTableModel::supportsModifyingQueriesInMenu() const
+{
+    return true;
+}
+
 void SqlTableModel::applySqlFilter(const QString& value)
 {
     if (value.isEmpty())
@@ -199,6 +204,30 @@ QString SqlTableModel::generateSelectQueryForItems(const QList<SqlQueryItem*>& i
 
     QueryGenerator generator;
     return generator.generateSelectFromTable(db, database, table, values);
+}
+
+QString SqlTableModel::generateInsertQueryForItems(const QList<SqlQueryItem*>& items)
+{
+    QHash<QString, QVariantList> values = toValuesGroupedByColumns(items);
+
+    QueryGenerator generator;
+    return generator.generateInsertToTable(db, database, table, values);
+}
+
+QString SqlTableModel::generateUpdateQueryForItems(const QList<SqlQueryItem*>& items)
+{
+    QHash<QString, QVariantList> values = toValuesGroupedByColumns(items);
+
+    QueryGenerator generator;
+    return generator.generateUpdateOfTable(db, database, table, values);
+}
+
+QString SqlTableModel::generateDeleteQueryForItems(const QList<SqlQueryItem*>& items)
+{
+    QHash<QString, QVariantList> values = toValuesGroupedByColumns(items);
+
+    QueryGenerator generator;
+    return generator.generateDeleteFromTable(db, database, table, values);
 }
 
 void SqlTableModel::updateRowAfterInsert(const QList<SqlQueryItem*>& itemsInRow, const QList<SqlQueryModelColumnPtr>& modelColumns, RowId rowId)

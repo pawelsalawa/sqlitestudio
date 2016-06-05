@@ -47,6 +47,7 @@ API_EXPORT bool isObjWrapped(const QString& str, Dialect dialect);
 API_EXPORT NameWrapper getObjWrapper(const QString& str, Dialect dialect);
 API_EXPORT bool isWrapperChar(const QChar& c, Dialect dialect);
 API_EXPORT QString wrapString(const QString& str);
+API_EXPORT QStringList wrapStrings(const QStringList& strList);
 API_EXPORT QString wrapStringIfNeeded(const QString& str);
 API_EXPORT QString escapeString(QString &str);
 API_EXPORT QString escapeString(const QString& str);

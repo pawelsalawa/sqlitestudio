@@ -55,7 +55,10 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
             OPEN_VALUE_EDITOR,
             SORT_DIALOG,
             RESET_SORTING,
-            GENERATE_SELECT
+            GENERATE_SELECT,
+            GENERATE_INSERT,
+            GENERATE_UPDATE,
+            GENERATE_DELETE
         };
 
         enum ToolBar
@@ -110,6 +113,9 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void updateFont();
         void itemActivated(const QModelIndex& index);
         void generateSelect();
+        void generateInsert();
+        void generateUpdate();
+        void generateDelete();
 
     public slots:
         void executionStarted();

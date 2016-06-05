@@ -525,6 +525,24 @@ QString SqlQueryModel::generateSelectQueryForItems(const QList<SqlQueryItem*>& i
     return sql;
 }
 
+QString SqlQueryModel::generateInsertQueryForItems(const QList<SqlQueryItem*>& items)
+{
+    UNUSED(items);
+    return QString();
+}
+
+QString SqlQueryModel::generateUpdateQueryForItems(const QList<SqlQueryItem*>& items)
+{
+    UNUSED(items);
+    return QString();
+}
+
+QString SqlQueryModel::generateDeleteQueryForItems(const QList<SqlQueryItem*>& items)
+{
+    UNUSED(items);
+    return QString();
+}
+
 SqlQueryView* SqlQueryModel::getView() const
 {
     return view;
@@ -891,6 +909,11 @@ QHash<QString, QVariantList> SqlQueryModel::toValuesGroupedByColumns(const QList
         values[item->getColumn()->displayName] << item->getFullValue();
 
     return values;
+}
+
+bool SqlQueryModel::supportsModifyingQueriesInMenu() const
+{
+    return false;
 }
 
 void SqlQueryModel::readColumns()

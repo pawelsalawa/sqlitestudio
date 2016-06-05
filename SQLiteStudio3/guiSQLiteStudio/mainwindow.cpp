@@ -39,6 +39,7 @@
 #include "common/widgetcover.h"
 #include "dialogs/cssdebugdialog.h"
 #include "themetuner.h"
+#include "services/codeformatter.h"
 #include <QMdiSubWindow>
 #include <QDebug>
 #include <QStyleFactory>
@@ -578,6 +579,20 @@ void MainWindow::setStyle(const QString& styleName)
 QString MainWindow::currentStyle() const
 {
     return QApplication::style()->objectName();
+}
+
+EditorWindow* MainWindow::openSqlEditor(Db* dbToSet, const QString& sql)
+{
+    EditorWindow* win = openSqlEditor();
+    if (!win->setCurrentDb(dbToSet))
+    {
+        qCritical() << "Created EditorWindow had not got requested database:" << dbToSet->getName();
+        win->close();
+        return nullptr;
+    }
+
+    win->setContents(FORMATTER->format("sql", sql, dbToSet));
+    return win;
 }
 
 void MainWindow::closeNonSessionWindows()

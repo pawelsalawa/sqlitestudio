@@ -685,3 +685,12 @@ QStringList valueListToSqlList(const QVariantList& values, Dialect dialect)
     }
     return argList;
 }
+
+QStringList wrapStrings(const QStringList& strList)
+{
+    QStringList list;
+    for (const QString& str : strList)
+        list << wrapString(str);
+
+    return list;
+}

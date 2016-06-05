@@ -31,6 +31,8 @@ void FormatUpdate::formatInternal()
 
     withNewLine().withLinedUpKeyword("SET");
 
+    markAndKeepIndent("updateColumns");
+
     bool first = true;
     foreach (const SqliteUpdate::ColumnAndValue& keyVal, upd->keyValueMap)
     {
@@ -40,6 +42,8 @@ void FormatUpdate::formatInternal()
         withId(keyVal.first).withOperator("=").withStatement(keyVal.second);
         first = false;
     }
+
+    withDecrIndent();
 
     if (upd->where)
         withNewLine().withLinedUpKeyword("WHERE").withStatement(upd->where);
