@@ -2,6 +2,7 @@
 #define BISTRHASH_H
 
 #include "bihash.h"
+#include "coreSQLiteStudio_global.h"
 #include <QHash>
 #include <QString>
 
