@@ -1,0 +1,8 @@
+{
+    "type":          "DbPlugin",
+    "title":         "SQLCipher",
+    "description":   "Provides support for databases encrypted with SQLCipher (https://www.zetetic.net/sqlcipher/). See 'About' dialog for SQLCipher license.",
+    "minAppVersion": 30100,
+    "version":       10100,
+    "author":        "SalSoft"
+}

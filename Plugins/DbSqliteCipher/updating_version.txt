@@ -1,0 +1,2 @@
+To update SQLCipher version clone its GIT repository, run ./configure and copy sqlite3.c and sqlite3.h from it's main directory, rename it to sqlcipher.c and sqlcipher.h respectively.
+Then run add_prefix.sh to add "sqlcipher_" prefix to all symbolx, to avoid conflicts in binaries.

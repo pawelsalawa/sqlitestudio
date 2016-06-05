@@ -17,4 +17,5 @@ SUBDIRS += \
     SqlEnterpriseFormatter \
     ConfigMigration \
     ScriptingTcl \
-    DbAndroid
+    DbAndroid \
+    DbSqliteCipher

@@ -40,6 +40,7 @@ CFG_KEY_LIST(SqlEditor, QObject::tr("SQL editor input field"),
     CFG_KEY_ENTRY(MOVE_BLOCK_UP,   Qt::ALT + Qt::Key_Up,              QObject::tr("Move selected block of text one line up"))
     CFG_KEY_ENTRY(COPY_BLOCK_DOWN, Qt::ALT + Qt::CTRL + Qt::Key_Down, QObject::tr("Copy selected block of text and paste it a line below"))
     CFG_KEY_ENTRY(COPY_BLOCK_UP,   Qt::ALT + Qt::CTRL + Qt::Key_Up,   QObject::tr("Copy selected block of text and paste it a line above"))
+    CFG_KEY_ENTRY(TOGGLE_COMMENT,  Qt::CTRL + Qt::Key_Slash,          QObject::tr("Toggle comment"))
 )
 
 class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContainer
@@ -70,7 +71,8 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
             FIND,
             FIND_NEXT,
             FIND_PREV,
-            REPLACE
+            REPLACE,
+            TOGGLE_COMMENT
         };
 
         enum ToolBar
@@ -190,6 +192,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void handleValidObjectCursor(const QPoint& point);
         bool handleValidObjectContextMenu(const QPoint& pos);
         void saveToFile(const QString& fileName);
+        void toggleLineCommentForLine(const QTextBlock& block);
 
         SqliteSyntaxHighlighter* highlighter = nullptr;
         QMenu* contextMenu = nullptr;
@@ -280,6 +283,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void reachedEnd();
         void changeFont(const QVariant& font);
         void configModified();
+        void toggleComment();
 
     signals:
         void errorsChecked(bool haveErrors);

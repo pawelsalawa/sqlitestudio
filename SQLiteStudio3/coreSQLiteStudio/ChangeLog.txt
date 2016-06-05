@@ -1,7 +1,11 @@
 [3.1.0]
+        * [ADDED]: SQLCipher plugin is now free, open source and distributed together with other standard plugins.
         * [ADDED]: #2963 Indexed expressions for CREATE INDEX statements (introduced in SQLite 3.9) are now supported and can be edited in Index Dialog.
         * [ADDED]: View window now supports explicit column names for the view (introduced in SQLite 3.9).
         * [ADDED]: #3056 #3063 Implemented index column ordering in index dialog.
+        * [ADDED]: Added shortcut (Ctrl+/ by default) to toggle comment of current line or selected block of code (if any) in SQL editor.
+        * [ADDED]: #3040 Added new entry in context menu of data grid to generate SELECT/INSERT/UPDATE/DELETE statement together with WHERE clause containing IN conditions for selected cells.
+        * [ADDED]: Added new entry in context menu of database list to generate queries like in #3040 for selected table.
         * [ADDED]: #2975 Information message after successful table/view change.
         * [ADDED]: Introduced "loadByDefault" property for plugin descriptor files.
         * [ADDED]: Added options to have "Data" tab placed as a first tab for Table windows and for View windows. By default option is disabled, so by default nothing changes.
@@ -9,8 +13,6 @@
         * [ADDED]: Added option in configuration dialog to prevent displaying tooltips over data view when user holds mouse over it.
         * [ADDED]: #3070 Added option in configuration dialog to have new databases marked as not permanent by default.
         * [ADDED]: #3070 Added option in configuration dialog to bypass database dialog completely when dropping file from file manager onto database list.
-        * [ADDED]: #3040 Added new entry in context menu of data grid to generate SELECT/INSERT/UPDATE/DELETE statement together with WHERE clause containing IN conditions for selected cells.
-        * [ADDED]: Added new entry in context menu of database list to generate queries like in #3040 for selected table.
         * [ADDED]: #3013 When double clicking on empty space in list of indexes or tables (in table or view window) the action is not ignored, but a dialog opens for adding new item.
         * [CHANGE]: DbAndroid plugin has now JAR file embedded and you can get it from Tools menu.
         * [CHANGE]: SQLite version updated to 3.13.0.
@@ -23,6 +25,8 @@
         * [CHANGE]: Window list in main menu -> "View" -> "Window list" is not sorted alphabetically.
         * [BUGFIX]: Not loading Android plugin by default (needs manual load from configuration dialog), which stops the "ADB" error for people not using the plugin.
         * [BUGFIX]: #2927 Several critical bugs fixed and enhancements to table modification algorithm related to foreign keys.
+        * [BUGFIX]: #2954 #2803 #2937 Fixed incorrect recreation of foreign keys chain.
+        * [BUGFIX]: #3008 Editing foreign key cell with more than 10 000 possible values will now use simple text editor, not dropdown. It also loads values asynchronously.
         * [BUGFIX]: Fixed importing from CSV with some of lines containing less fields than defined in header (or in first data row).
         * [BUGFIX]: #2989 Fixed multiline value handling in CSV import plugin.
         * [BUGFIX]: #2921 Fixed empty values as NULL handling in CSV import plugin.
@@ -41,14 +45,12 @@
         * [BUGFIX]: #2931 #2962 Fixed incorrect results when executing 2-level queries with an expression and an alias combination as a result column definition.
         * [BUGFIX]: #2942 Fixed deleting multiple tables/indexes/... when selected them and picked "Delete table/index/..." from context menu.
         * [BUGFIX]: #2945 Fixed manual reordering of database objects with Drag&Drop.
-        * [BUGFIX]: #2954 #2803 #2937 Fixed incorrect recreation of foreign keys chain.
         * [BUGFIX]: #3055 Fixed crash when exporting on MacOS using plugin that requires column value length information (such as PDF export plugin).
         * [BUGFIX]: #3047 Fixed copying/moving tables together with indexes or triggers with Drag&Drop across same SQLite version databases.
         * [BUGFIX]: #3012 SQL simple formatter plugin does not load by default from now on. It is still available, but won't load until manually loaded.
         * [BUGFIX]: Table window for new table (just created) will now properly close when that table gets deleted immediately by the user.
         * [BUGFIX]: #2998 Fixed reading decimal values from database when using simple execution method (a fallback in case of some problems).
         * [BUGFIX]: #2999 Fixed working on objects from database that on the list is named "main".
-        * [BUGFIX]: #3008 Editing foreign key cell with more than 10 000 possible values will now use simple text editor, not dropdown. It also loads values asynchronously.
         * [BUGFIX]: Fixed error detection when selecting column from incorrect table alias (http://forum.sqlitestudio.pl/viewtopic.php?f=11&t=1051).
         * [BUGFIX]: #3046 Fixed scale & precision fields in column dialog so it's possible to delete their values from the column.
         * [BUGFIX]: Vacuum invoked from context menu on database list is now executed in SQL editor and is asynchronous.

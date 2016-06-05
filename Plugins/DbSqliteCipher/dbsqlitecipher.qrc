@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/license">
+        <file>sqlcipher.txt</file>
+    </qresource>
+</RCC>
