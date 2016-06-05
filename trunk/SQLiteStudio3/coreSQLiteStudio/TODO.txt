@@ -5,12 +5,6 @@ cannot reproduce:
 3052
 3062
 
-feature requests:
-- sqlcipher
-shortcut - toggle comment
-generate SELECT/UPDATE/INSERT/DELETE query on table in dbtree
-
-
 * Outstanding features for 3.2:
 - migrate updates engine to Qt Install Framework
 - loadable extensions full support

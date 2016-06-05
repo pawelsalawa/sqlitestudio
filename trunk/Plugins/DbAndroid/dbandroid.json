@@ -4,7 +4,7 @@
     "description":   "Provides support for remote SQLite databases on Android devices.",
     "version":       10200,
     "author":        "SalSoft",
-    "minAppVersion": 30008,
+    "minAppVersion": 30100,
     "gui":           true,
     "loadByDefault": false
 }

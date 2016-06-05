@@ -139,6 +139,7 @@ void SqlEditor::createActions()
     createAction(FIND_NEXT, tr("Find next", "sql editor"), this, SLOT(findNext()), this);
     createAction(FIND_PREV, tr("Find previous", "sql editor"), this, SLOT(findPrevious()), this);
     createAction(REPLACE, tr("Replace", "sql editor"), this, SLOT(replace()), this);
+    createAction(TOGGLE_COMMENT, tr("Toggle comment", "sql editor"), this, SLOT(toggleComment()), this);
 
     actionMap[CUT]->setEnabled(false);
     actionMap[COPY]->setEnabled(false);
@@ -253,6 +254,21 @@ void SqlEditor::saveToFile(const QString &fileName)
     file.close();
 
     notifyInfo(tr("Saved SQL contents to file: %1").arg(fileName));
+}
+
+void SqlEditor::toggleLineCommentForLine(const QTextBlock& block)
+{
+    QTextCursor cur = textCursor();
+    QString line = block.text();
+    cur.setPosition(block.position());
+    if (line.startsWith("--"))
+    {
+        cur.deleteChar();
+        cur.deleteChar();
+    }
+    else
+        cur.insertText("--");
+
 }
 
 void SqlEditor::updateUndoAction(bool enabled)
@@ -1296,6 +1312,91 @@ void SqlEditor::changeFont(const QVariant& font)
 void SqlEditor::configModified()
 {
     highlighter->rehighlight();
+}
+
+void SqlEditor::toggleComment()
+{
+    // Handle no selection - toggle single line
+    QTextCursor cur = textCursor();
+    int start = cur.selectionStart();
+    int end = cur.selectionEnd();
+
+    if (start == end)
+    {
+        toggleLineCommentForLine(cur.block());
+        return;
+    }
+
+    // Handle multiline selection - from begin of the line to begin of the line
+    QTextDocument* doc = document();
+
+    QTextBlock startBlock = doc->findBlock(start);
+    bool startAtLineBegining = startBlock.position() == start;
+
+    QTextBlock endBlock = doc->findBlock(end);
+    bool endAtLineBegining = endBlock.position() == end;
+
+    if (startAtLineBegining && endAtLineBegining)
+    {
+        // Check if all lines where commented previously
+        bool allCommented = true;
+        for (QTextBlock theBlock = startBlock; theBlock != endBlock; theBlock = theBlock.next())
+        {
+            if (!theBlock.text().startsWith("--"))
+            {
+                allCommented = false;
+                break;
+            }
+        }
+
+        // Apply comment toggle
+        cur.beginEditBlock();
+        for (QTextBlock theBlock = startBlock; theBlock != endBlock; theBlock = theBlock.next())
+        {
+            cur.setPosition(theBlock.position());
+            if (allCommented)
+            {
+                cur.deleteChar();
+                cur.deleteChar();
+            }
+            else
+                cur.insertText("--");
+        }
+
+        cur.setPosition(start);
+        cur.setPosition(endBlock.position(), QTextCursor::KeepAnchor);
+        cur.endEditBlock();
+        setTextCursor(cur);
+        return;
+    }
+
+    // Handle custom selection
+    QString txt = cur.selectedText().trimmed();
+    cur.beginEditBlock();
+    if (txt.startsWith("/*") && txt.endsWith("*/"))
+    {
+        cur.setPosition(end);
+        cur.deletePreviousChar();
+        cur.deletePreviousChar();
+        cur.setPosition(start);
+        cur.deleteChar();
+        cur.deleteChar();
+
+        cur.setPosition(start);
+        cur.setPosition(end - 4, QTextCursor::KeepAnchor);
+    }
+    else
+    {
+        cur.setPosition(end);
+        cur.insertText("*/");
+        cur.setPosition(start);
+        cur.insertText("/*");
+
+        cur.setPosition(start);
+        cur.setPosition(end + 4, QTextCursor::KeepAnchor);
+    }
+    cur.endEditBlock();
+    setTextCursor(cur);
 }
 
 void SqlEditor::keyPressEvent(QKeyEvent* e)
