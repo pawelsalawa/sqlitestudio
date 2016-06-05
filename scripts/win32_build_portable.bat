@@ -1,5 +1,5 @@
-set QMAKE="C:\Qt\5.4\mingw491_32\bin\qmake.exe"
-set MAKE="C:\Qt\Tools\mingw491_32\bin\mingw32-make.exe"
+set QMAKE="C:\Qt\5.6\mingw49_32\bin\qmake.exe"
+set MAKE="C:\Qt\Tools\mingw492_32\bin\mingw32-make.exe"
 set cpu_cores=3
 
 set cdir=%CD%
