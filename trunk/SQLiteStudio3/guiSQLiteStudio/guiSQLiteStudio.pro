@@ -185,7 +185,9 @@ SOURCES +=\
     themetuner.cpp \
     dialogs/indexexprcolumndialog.cpp \
     common/centerediconitemdelegate.cpp \
-    datagrid/sqlviewmodel.cpp
+    datagrid/sqlviewmodel.cpp \
+    common/exttableview.cpp \
+    common/exttablewidget.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -335,7 +337,9 @@ HEADERS  += mainwindow.h \
     themetuner.h \
     dialogs/indexexprcolumndialog.h \
     common/centerediconitemdelegate.h \
-    datagrid/sqlviewmodel.h
+    datagrid/sqlviewmodel.h \
+    common/exttableview.h \
+    common/exttablewidget.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \

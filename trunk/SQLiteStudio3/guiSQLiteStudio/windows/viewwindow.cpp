@@ -231,6 +231,7 @@ void ViewWindow::init()
     connect(ui->queryEdit, SIGNAL(textChanged()), this, SLOT(updateQueryToolbarStatus()));
     connect(ui->queryEdit, SIGNAL(errorsChecked(bool)), this, SLOT(updateQueryToolbarStatus()));
     connect(ui->triggersList, SIGNAL(itemSelectionChanged()), this, SLOT(updateTriggersState()));
+    connect(ui->triggersList, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(triggerViewDoubleClicked(QModelIndex)));
     connect(ui->outputColumnsTable, SIGNAL(currentRowChanged(int)), this, SLOT(updateColumnButtons()));
     connect(ui->outputColumnsTable->model(), SIGNAL(rowsMoved(const QModelIndex&, int, int, const QModelIndex&, int)), this, SLOT(updateColumnButtons()));
     connect(ui->outputColumnsTable->model(), SIGNAL(rowsMoved(const QModelIndex&, int, int, const QModelIndex&, int)), this, SLOT(updateQueryToolbarStatus()));
@@ -833,6 +834,21 @@ void ViewWindow::updateTabsOrder()
 
     ui->tabWidget->insertTab(idx, ui->dataTab, tr("Data"));
     tabsMoving = false;
+}
+
+void ViewWindow::triggerViewDoubleClicked(const QModelIndex& idx)
+{
+    if (!idx.isValid())
+    {
+        addTrigger();
+        return;
+    }
+
+    QString trigger = ui->triggersList->item(idx.row(), 0)->text();
+
+    DbObjectDialogs dialogs(db, this);
+    dialogs.editTrigger(trigger);
+    refreshTriggers();
 }
 
 void ViewWindow::refreshTriggers()

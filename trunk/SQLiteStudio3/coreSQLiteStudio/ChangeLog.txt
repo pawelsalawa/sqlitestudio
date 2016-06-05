@@ -10,6 +10,7 @@
         * [ADDED]: #3070 Added option in configuration dialog to have new databases marked as not permanent by default.
         * [ADDED]: #3070 Added option in configuration dialog to bypass database dialog completely when dropping file from file manager onto database list.
         * [ADDED]: #3040 Added new entry in context menu of data grid to generate SELECT statement together with WHERE clause containing IN conditions for selected cells.
+        * [ADDED]: #3013 When double clicking on empty space in list of indexes or tables (in table or view window) the action is not ignored, but a dialog opens for adding new item.
         * [CHANGE]: DbAndroid plugin has now JAR file embedded and you can get it from Tools menu.
         * [CHANGE]: SQLite version updated to 3.13.0.
         * [CHANGE]: Qt version updated to 5.6.0. Should still compile with 5.3, but binary distributions on homepage will be made with 5.6.

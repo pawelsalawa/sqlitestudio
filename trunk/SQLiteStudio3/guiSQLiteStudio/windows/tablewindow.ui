@@ -105,7 +105,7 @@
          <property name="childrenCollapsible">
           <bool>false</bool>
          </property>
-         <widget class="QTableView" name="structureView">
+         <widget class="ExtTableView" name="structureView">
           <property name="dragEnabled">
            <bool>true</bool>
           </property>
@@ -152,7 +152,7 @@
             <widget class="QToolBar" name="tableConstraintsToolbar"/>
            </item>
            <item>
-            <widget class="QTableView" name="tableConstraintsView">
+            <widget class="ExtTableView" name="tableConstraintsView">
              <property name="dragEnabled">
               <bool>true</bool>
              </property>
@@ -225,7 +225,7 @@
         <widget class="QToolBar" name="indexToolBar"/>
        </item>
        <item>
-        <widget class="QTableWidget" name="indexList">
+        <widget class="ExtTableWidget" name="indexList">
          <property name="editTriggers">
           <set>QAbstractItemView::NoEditTriggers</set>
          </property>
@@ -254,7 +254,7 @@
         <widget class="QToolBar" name="triggerToolBar"/>
        </item>
        <item>
-        <widget class="QTableWidget" name="triggerList">
+        <widget class="ExtTableWidget" name="triggerList">
          <property name="editTriggers">
           <set>QAbstractItemView::NoEditTriggers</set>
          </property>
@@ -306,6 +306,16 @@
    <extends>QTabWidget</extends>
    <header>dataview.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ExtTableView</class>
+   <extends>QTableView</extends>
+   <header>common/exttableview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ExtTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>common/exttablewidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
