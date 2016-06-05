@@ -14,7 +14,7 @@
  *
  * Just like BiHash, the BiStrHash doesn't provide operator[]. For more details see BiHash.
  */
-class BiStrHash
+class API_EXPORT BiStrHash
 {
     public:
         /**
