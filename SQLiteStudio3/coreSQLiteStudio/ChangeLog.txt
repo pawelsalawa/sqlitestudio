@@ -1,4 +1,4 @@
-[3.0.8]
+[3.1.0]
         * [ADDED]: #2963 Indexed expressions for CREATE INDEX statements (introduced in SQLite 3.9) are now supported and can be edited in Index Dialog.
         * [ADDED]: View window now supports explicit column names for the view (introduced in SQLite 3.9).
         * [ADDED]: #3056 #3063 Implemented index column ordering in index dialog.
