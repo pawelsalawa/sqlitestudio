@@ -5,7 +5,7 @@
 #include "dialect.h"
 #include "common/bistrhash.h"
 #include "schemaresolver.h"
-#include <QHash>
+#include "common/strhash.h"
 #include <QString>
 #include <QVariant>
 
@@ -20,7 +20,7 @@ class QueryGenerator
          * @brief Generates select of all column from the \p table having given column values matched.
          * @overload
          */
-        QString generateSelectFromTable(Db* db, const QString& table, const QHash<QString, QVariantList> values);
+        QString generateSelectFromTable(Db* db, const QString& table, const StrHash<QVariantList> values = StrHash<QVariantList>());
 
         /**
          * @brief Generates SELECT of all column from the \p table having given column values matched.
@@ -35,10 +35,19 @@ class QueryGenerator
          *
          * If \p values is ommited, then no WHERE clause is added.
          */
-        QString generateSelectFromTable(Db* db, const QString& database, const QString& table, const QHash<QString, QVariantList> values = QHash<QString, QVariantList>());
+        QString generateSelectFromTable(Db* db, const QString& database, const QString& table, const StrHash<QVariantList> values = StrHash<QVariantList>());
 
-        QString generateSelectFromView(Db* db, const QString& view, const QHash<QString, QVariantList> values);
-        QString generateSelectFromView(Db* db, const QString& database, const QString& view, const QHash<QString, QVariantList> values = QHash<QString, QVariantList>());
+        QString generateInsertToTable(Db* db, const QString& table, const StrHash<QVariantList> values = StrHash<QVariantList>());
+        QString generateInsertToTable(Db* db, const QString& database, const QString& table, StrHash<QVariantList> values = StrHash<QVariantList>());
+
+        QString generateUpdateOfTable(Db* db, const QString& table, const StrHash<QVariantList> values = StrHash<QVariantList>());
+        QString generateUpdateOfTable(Db* db, const QString& database, const QString& table, StrHash<QVariantList> values = StrHash<QVariantList>());
+
+        QString generateDeleteFromTable(Db* db, const QString& table, const StrHash<QVariantList> values = StrHash<QVariantList>());
+        QString generateDeleteFromTable(Db* db, const QString& database, const QString& table, StrHash<QVariantList> values = StrHash<QVariantList>());
+
+        QString generateSelectFromView(Db* db, const QString& view, const StrHash<QVariantList> values = StrHash<QVariantList>());
+        QString generateSelectFromView(Db* db, const QString& database, const QString& view, const StrHash<QVariantList> values = StrHash<QVariantList>());
 
         /**
          * @brief Generates SELECT for all columns from the \p initialSelect having values matched.
@@ -51,15 +60,16 @@ class QueryGenerator
          * Generates SELECT using \p initialSelect as a base. Lists all columns from \p initialSelect result columns explicitly (no star operator).
          * If there are \p values given, then the WHERE clause is added for them to match columns.
          */
-        QString generateSelectFromSelect(Db* db, const QString& initialSelect, const QHash<QString, QVariantList> values = QHash<QString, QVariantList>(), const BiStrHash& dbNameToAttach = BiStrHash());
+        QString generateSelectFromSelect(Db* db, const QString& initialSelect, const StrHash<QVariantList> values = StrHash<QVariantList>(), const BiStrHash& dbNameToAttach = BiStrHash());
 
     private:
-        QString generateSelectFromTableOrView(Db* db, const QString& database, const QString& tableOrView, const QStringList& columns, const QHash<QString, QVariantList> values = QHash<QString, QVariantList>());
+        QString generateSelectFromTableOrView(Db* db, const QString& database, const QString& tableOrView, const QStringList& columns, const StrHash<QVariantList> values = StrHash<QVariantList>());
         QString getAlias(const QString& name, QSet<QString>& usedAliases);
-        QStringList toValueList(const QList<QVariant>& values);
-        QStringList valuesToConditionList(const QHash<QString, QVariantList>& values, Dialect dialect);
-        QString valuesToConditionStr(const QHash<QString, QVariantList>& values, Dialect dialect);
+        QStringList valuesToConditionList(const StrHash<QVariantList>& values, Dialect dialect);
+        QString valuesToConditionStr(const StrHash<QVariantList>& values, Dialect dialect);
         QString toResultColumnString(const SelectResolver::Column& column, Dialect dialect);
+        QString toFullObjectName(const QString& database, const QString& object, Dialect dialect);
+        QStringList toValueSets(const QStringList& columns, const StrHash<QVariantList> values, Dialect dialect);
 };
 
 #endif // QUERYGENERATOR_H

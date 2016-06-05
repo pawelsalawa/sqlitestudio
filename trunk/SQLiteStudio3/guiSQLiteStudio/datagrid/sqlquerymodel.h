@@ -64,6 +64,9 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         StrHash<QString> attachDependencyTables();
         void detachDependencyTables();
         virtual QString generateSelectQueryForItems(const QList<SqlQueryItem*>& items);
+        virtual QString generateInsertQueryForItems(const QList<SqlQueryItem*>& items);
+        virtual QString generateUpdateQueryForItems(const QList<SqlQueryItem*>& items);
+        virtual QString generateDeleteQueryForItems(const QList<SqlQueryItem*>& items);
 
         virtual Features features() const;
 
@@ -111,6 +114,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         int getCurrentPage(bool includeOneBeingLoaded = false) const;
         void gotoPage(int newPage);
         bool canReload();
+        virtual bool supportsModifyingQueriesInMenu() const;
 
         QueryExecutor::SortList getSortOrder() const;
         void setSortOrder(const QueryExecutor::SortList& newSortOrder);
@@ -219,7 +223,6 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         void updateItem(SqlQueryItem* item, const QVariant& value, int columnIndex, const RowId& rowId);
         RowId getNewRowId(const RowId& currentRowId, const QList<SqlQueryItem*> items);
         void updateRowIdForAllItems(const AliasedTable& table, const RowId& rowId, const RowId& newRowId);
-
         QHash<QString, QVariantList> toValuesGroupedByColumns(const QList<SqlQueryItem*>& items);
 
         QueryExecutor* queryExecutor = nullptr;

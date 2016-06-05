@@ -903,3 +903,24 @@ QString doubleToString(double val)
 {
     return QString::number(val, 'g', 16);
 }
+
+void sortWithReferenceList(QList<QString>& listToSort, const QList<QString>& referenceList, Qt::CaseSensitivity cs)
+{
+    qSort(listToSort.begin(), listToSort.end(), [referenceList, cs](const QString& s1, const QString& s2) -> bool
+    {
+        int idx1 = indexOf(referenceList, s1, cs);
+        int idx2 = indexOf(referenceList, s2, cs);
+        if (idx1 == -1 || idx2 == -1)
+        {
+            if (idx1 == -1 && idx2 == -1)
+                return false;
+
+            return (idx1 == -1);
+        }
+
+        if (idx1 == idx2)
+            return false;
+
+        return (idx1 > idx2);
+    });
+}

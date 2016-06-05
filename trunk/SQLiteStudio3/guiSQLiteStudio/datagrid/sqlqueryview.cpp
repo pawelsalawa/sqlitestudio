@@ -86,7 +86,10 @@ void SqlQueryView::createActions()
     createAction(ROLLBACK, ICONS.ROLLBACK, tr("Rollback"), this, SLOT(rollback()), this);
     createAction(SELECTIVE_COMMIT, ICONS.COMMIT, tr("Commit selected cells"), this, SLOT(selectiveCommit()), this);
     createAction(SELECTIVE_ROLLBACK, ICONS.ROLLBACK, tr("Rollback selected cells"), this, SLOT(selectiveRollback()), this);
-    createAction(GENERATE_SELECT, ICONS.GENERATE_SELECT, tr("Generate SELECT from selected cells", "data grid context menu"), this, SLOT(generateSelect()), this);
+    createAction(GENERATE_SELECT, "SELECT", this, SLOT(generateSelect()), this);
+    createAction(GENERATE_INSERT, "INSERT", this, SLOT(generateInsert()), this);
+    createAction(GENERATE_UPDATE, "UPDATE", this, SLOT(generateUpdate()), this);
+    createAction(GENERATE_DELETE, "DELETE", this, SLOT(generateDelete()), this);
     createAction(SORT_DIALOG, ICONS.SORT_COLUMNS, tr("Define columns to sort by"), this, SLOT(openSortDialog()), this);
     createAction(RESET_SORTING, ICONS.SORT_RESET, tr("Remove custom sorting"), this, SLOT(resetSorting()), this);
     createAction(INSERT_ROW, ICONS.INSERT_ROW, tr("Insert row"), this, SIGNAL(requestForRowInsert()), this);
@@ -149,7 +152,16 @@ void SqlQueryView::setupActionsForMenu(SqlQueryItem* currentItem, const QList<Sq
 
     if (selCount > 0)
     {
-        contextMenu->addAction(actionMap[GENERATE_SELECT]);
+        QMenu* generateQueryMenu = contextMenu->addMenu(ICONS.GENERATE_QUERY, tr("Generate query for selected cells"));
+        generateQueryMenu->addAction(actionMap[GENERATE_SELECT]);
+        if (getModel()->supportsModifyingQueriesInMenu())
+        {
+            generateQueryMenu->addAction(actionMap[GENERATE_INSERT]);
+            generateQueryMenu->addAction(actionMap[GENERATE_UPDATE]);
+            generateQueryMenu->addAction(actionMap[GENERATE_DELETE]);
+        }
+
+
         contextMenu->addSeparator();
         contextMenu->addAction(actionMap[COPY]);
         //contextMenu->addAction(actionMap[COPY_AS]); // TODO uncomment when implemented
@@ -257,16 +269,26 @@ void SqlQueryView::itemActivated(const QModelIndex& index)
 void SqlQueryView::generateSelect()
 {
     QString sql = getModel()->generateSelectQueryForItems(getSelectedItems());
+    MAINWINDOW->openSqlEditor(getModel()->getDb(), sql);
 
-    EditorWindow* win = MAINWINDOW->openSqlEditor();
-    if (!win->setCurrentDb(getModel()->getDb()))
-    {
-        qCritical() << "Created EditorWindow had not got requested database:" << getModel()->getDb()->getName();
-        win->close();
-        return;
-    }
+}
 
-    win->setContents(FORMATTER->format("sql", sql, getModel()->getDb()));
+void SqlQueryView::generateInsert()
+{
+    QString sql = getModel()->generateInsertQueryForItems(getSelectedItems());
+    MAINWINDOW->openSqlEditor(getModel()->getDb(), sql);
+}
+
+void SqlQueryView::generateUpdate()
+{
+    QString sql = getModel()->generateUpdateQueryForItems(getSelectedItems());
+    MAINWINDOW->openSqlEditor(getModel()->getDb(), sql);
+}
+
+void SqlQueryView::generateDelete()
+{
+    QString sql = getModel()->generateDeleteQueryForItems(getSelectedItems());
+    MAINWINDOW->openSqlEditor(getModel()->getDb(), sql);
 }
 
 bool SqlQueryView::editInEditorIfNecessary(SqlQueryItem* item)
@@ -371,20 +393,14 @@ void SqlQueryView::goToReferencedRow(const QString& table, const QString& column
     if (!db || !db->isValid())
         return;
 
-    EditorWindow* win = MAINWINDOW->openSqlEditor();
-    if (!win->setCurrentDb(db))
-    {
-        qCritical() << "Created EditorWindow had not got requested database:" << db->getName();
-        win->close();
-        return;
-    }
-
-    static QString sql = QStringLiteral("SELECT * FROM %1 WHERE %2 = %3");
+    static_qstring(sqlTpl, "SELECT * FROM %1 WHERE %2 = %3");
 
     QString valueStr = wrapValueIfNeeded(value.toString());
+    EditorWindow* win = MAINWINDOW->openSqlEditor(db, sqlTpl.arg(table, column, valueStr));
+    if (!win)
+        return;
 
     win->getMdiWindow()->rename(tr("Referenced row (%1)").arg(table));
-    win->setContents(sql.arg(table, column, valueStr));
     win->execute();
 }
 

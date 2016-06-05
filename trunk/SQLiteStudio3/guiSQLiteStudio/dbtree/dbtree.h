@@ -86,6 +86,10 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
             CREATE_SIMILAR_TABLE,
             RESET_AUTOINCREMENT,
             ERASE_TABLE_DATA,
+            GENERATE_SELECT,
+            GENERATE_UPDATE,
+            GENERATE_INSERT,
+            GENERATE_DELETE,
             _separator // Never use it directly, it's just for menu setup
         };
 
@@ -140,9 +144,13 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void deleteSelected(DbTreeItem::Type itemType);
         QHash<Db*, QList<DbTreeItem*>> groupByDb(const QList<DbTreeItem*> items);
         QStringList itemsToNames(const QList<DbTreeItem*>& items);
+        QString getSelectedTableName() const;
+        QString getSelectedIndexName() const;
+        QString getSelectedTriggerName() const;
+        QString getSelectedViewName() const;
+
         static bool areDbTreeItemsValidForItem(QList<DbTreeItem*> srcItems, const DbTreeItem* dstItem);
         static bool areUrlsValidForItem(const QList<QUrl>& srcUrls, const DbTreeItem* dstItem);
-
         static void initDndTypes();
 
         Ui::DbTree *ui = nullptr;
@@ -208,6 +216,10 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void dbDisconnected(Db* db);
         void updateDbIcon(Db* db);
         void refreshFont();
+        void generateSelectForTable();
+        void generateInsertForTable();
+        void generateUpdateForTable();
+        void generateDeleteForTable();
 };
 
 int qHash(DbTree::Action action);

@@ -26,6 +26,7 @@
 #include "uiconfig.h"
 #include "themetuner.h"
 #include "dialogs/dbconverterdialog.h"
+#include "querygenerator.h"
 #include <QApplication>
 #include <QClipboard>
 #include <QAction>
@@ -141,6 +142,10 @@ void DbTree::createActions()
     createAction(REFRESH_SCHEMAS, ICONS.DATABASE_RELOAD, tr("Refresh all database schemas"), this, SLOT(refreshSchemas()), this);
     createAction(REFRESH_SCHEMA, ICONS.DATABASE_RELOAD, tr("Refresh selected database schema"), this, SLOT(refreshSchema()), this);
     createAction(ERASE_TABLE_DATA, ICONS.ERASE_TABLE_DATA, tr("Erase table data"), this, SLOT(eraseTableData()), this);
+    createAction(GENERATE_SELECT, "SELECT", this, SLOT(generateSelectForTable()), this);
+    createAction(GENERATE_INSERT, "INSERT", this, SLOT(generateInsertForTable()), this);
+    createAction(GENERATE_UPDATE, "UPDATE", this, SLOT(generateUpdateForTable()), this);
+    createAction(GENERATE_DELETE, "DELETE", this, SLOT(generateDeleteForTable()), this);
 }
 
 void DbTree::updateActionStates(const QStandardItem *item)
@@ -195,6 +200,7 @@ void DbTree::updateActionStates(const QStandardItem *item)
                 case DbTreeItem::Type::TABLE:
                     enabled << EDIT_TABLE << DEL_TABLE << EXPORT_TABLE << IMPORT_TABLE << POPULATE_TABLE << ADD_COLUMN << CREATE_SIMILAR_TABLE;
                     enabled << RESET_AUTOINCREMENT << ADD_INDEX << ADD_TRIGGER << ERASE_TABLE_DATA;
+                    enabled << GENERATE_SELECT << GENERATE_INSERT << GENERATE_UPDATE << GENERATE_DELETE;
                     break;
                 case DbTreeItem::Type::VIRTUAL_TABLE:
                     // TODO change below when virtual tables can be edited
@@ -330,6 +336,12 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
     groupEntry += RENAME_GROUP;
     groupEntry += DELETE_GROUP;
 
+    ActionEntry genQueryEntry(ICONS.GENERATE_QUERY, tr("Generate query for table"));
+    genQueryEntry += GENERATE_SELECT;
+    genQueryEntry += GENERATE_INSERT;
+    genQueryEntry += GENERATE_UPDATE;
+    genQueryEntry += GENERATE_DELETE;
+
     if (currItem)
     {
         DbTreeItem* parentItem = currItem->parentDbTreeItem();
@@ -393,6 +405,7 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
                 actions += ActionEntry(ADD_INDEX);
                 actions += ActionEntry(ADD_TRIGGER);
                 actions += ActionEntry(_separator);
+                actions += genQueryEntry;
                 actions += ActionEntry(IMPORT_TABLE);
                 actions += ActionEntry(EXPORT_TABLE);
                 actions += ActionEntry(POPULATE_TABLE);
@@ -923,6 +936,46 @@ QStringList DbTree::itemsToNames(const QList<DbTreeItem*>& items)
     return names;
 }
 
+QString DbTree::getSelectedTableName() const
+{
+    DbTreeItem* item = ui->treeView->currentItem();
+    QString table = item->getTable();
+    if (table.isNull())
+        return QString();
+
+    return table;
+}
+
+QString DbTree::getSelectedIndexName() const
+{
+    DbTreeItem* item = ui->treeView->currentItem();
+    QString idx = item->getIndex();
+    if (idx.isNull())
+        return QString();
+
+    return idx;
+}
+
+QString DbTree::getSelectedTriggerName() const
+{
+    DbTreeItem* item = ui->treeView->currentItem();
+    QString trig = item->getTrigger();
+    if (trig.isNull())
+        return QString();
+
+    return trig;
+}
+
+QString DbTree::getSelectedViewName() const
+{
+    DbTreeItem* item = ui->treeView->currentItem();
+    QString view= item->getView();
+    if (view.isNull())
+        return QString();
+
+    return view;
+}
+
 
 void DbTree::refreshSchema(Db* db)
 {
@@ -1162,8 +1215,7 @@ void DbTree::editTable()
     if (!db || !db->isValid())
         return;
 
-    DbTreeItem* item = ui->treeView->currentItem();
-    QString table = item->getTable();
+    QString table = getSelectedTableName();
     if (table.isNull())
     {
         qWarning() << "Tried to edit table, while table wasn't selected in DbTree.";
@@ -1197,8 +1249,7 @@ void DbTree::editIndex()
     if (!db || !db->isValid())
         return;
 
-    DbTreeItem* item = ui->treeView->currentItem();
-    QString index = item->getIndex();
+    QString index = getSelectedIndexName();
 
     DbObjectDialogs dialogs(db);
     dialogs.editIndex(index);
@@ -1229,8 +1280,7 @@ void DbTree::editTrigger()
     if (!db || !db->isValid())
         return;
 
-    DbTreeItem* item = ui->treeView->currentItem();
-    QString trigger = item->getTrigger();
+    QString trigger = getSelectedTriggerName();
 
     DbObjectDialogs dialogs(db);
     dialogs.editTrigger(trigger);
@@ -1257,8 +1307,7 @@ void DbTree::editView()
     if (!db || !db->isValid())
         return;
 
-    DbTreeItem* item = ui->treeView->currentItem();
-    QString view = item->getView();
+    QString view = getSelectedViewName();
     if (view.isNull())
     {
         qWarning() << "Tried to edit view, while view wasn't selected in DbTree.";
@@ -1386,16 +1435,11 @@ void DbTree::vacuumDb()
     if (!db || !db->isValid())
         return;
 
-    EditorWindow* win = MAINWINDOW->openSqlEditor();
-    if (!win->setCurrentDb(db))
-    {
-        qCritical() << "Created EditorWindow had not got requested database:" << db->getName();
-        win->close();
+    EditorWindow* win = MAINWINDOW->openSqlEditor(db, "VACUUM;");
+    if (!win)
         return;
-    }
 
     win->getMdiWindow()->rename(tr("Vacuum (%1)").arg(db->getName()));
-    win->setContents("VACUUM;");
     win->execute();
 }
 
@@ -1405,16 +1449,11 @@ void DbTree::integrityCheck()
     if (!db || !db->isValid())
         return;
 
-    EditorWindow* win = MAINWINDOW->openSqlEditor();
-    if (!win->setCurrentDb(db))
-    {
-        qCritical() << "Created EditorWindow had not got requested database:" << db->getName();
-        win->close();
+    EditorWindow* win = MAINWINDOW->openSqlEditor(db, "PRAGMA integrity_check;");
+    if (!win)
         return;
-    }
 
     win->getMdiWindow()->rename(tr("Integrity check (%1)").arg(db->getName()));
-    win->setContents("PRAGMA integrity_check;");
     win->execute();
 }
 
@@ -1678,6 +1717,36 @@ void DbTree::updateDbIcon(Db* db)
 void DbTree::refreshFont()
 {
     ui->treeView->doItemsLayout();
+}
+
+void DbTree::generateSelectForTable()
+{
+    Db* db = getSelectedDb();
+    QString table = getSelectedTableName();
+
+    QueryGenerator generator;
+    QString sql = generator.generateSelectFromTable(db, table);
+    MAINWINDOW->openSqlEditor(db, sql);
+}
+
+void DbTree::generateInsertForTable()
+{
+    Db* db = getSelectedDb();
+    QString table = getSelectedTableName();
+
+    QueryGenerator generator;
+    QString sql = generator.generateInsertToTable(db, table);
+    MAINWINDOW->openSqlEditor(db, sql);
+}
+
+void DbTree::generateUpdateForTable()
+{
+
+}
+
+void DbTree::generateDeleteForTable()
+{
+
 }
 
 void DbTree::setupDefShortcuts()

@@ -20,6 +20,10 @@ class GUI_API_EXPORT SqlTableModel : public SqlQueryModel
         void applyRegExpFilter(const QString& value);
         void resetFilter();
         QString generateSelectQueryForItems(const QList<SqlQueryItem*>& items);
+        QString generateInsertQueryForItems(const QList<SqlQueryItem*>& items);
+        QString generateUpdateQueryForItems(const QList<SqlQueryItem*>& items);
+        QString generateDeleteQueryForItems(const QList<SqlQueryItem*>& items);
+        bool supportsModifyingQueriesInMenu() const;
 
     protected:
         bool commitAddedRow(const QList<SqlQueryItem*>& itemsInRow);

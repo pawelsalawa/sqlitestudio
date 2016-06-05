@@ -119,7 +119,7 @@ class GUI_API_EXPORT IconManager : public QObject
             DEF_ICON(GET_UPDATE,                        "get_update")
             DEF_ICON(GO_BACK,                           "go_back")
             DEF_ICON(GENERATE_COLUMNS,                  "wand")
-            DEF_ICO3(GENERATE_SELECT,                   GENERATE_COLUMNS)
+            DEF_ICO3(GENERATE_QUERY,                    GENERATE_COLUMNS)
             DEF_ICON(HELP,                              "help")
             DEF_ICON(HOMEPAGE,                          "homepage")
             DEF_ICON(IMPORT,                            "import")

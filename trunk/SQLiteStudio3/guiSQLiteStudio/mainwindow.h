@@ -120,6 +120,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         QMenu* getSQLiteStudioMenu() const;
         QString currentStyle() const;
         ThemeTuner* getThemeTuner() const;
+        EditorWindow* openSqlEditor(Db* dbToSet, const QString& sql);
 
     protected:
         void closeEvent(QCloseEvent *event);

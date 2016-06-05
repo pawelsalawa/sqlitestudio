@@ -233,6 +233,17 @@ API_EXPORT QString encryptRsa(const QString& input, const QString& modulus, cons
 API_EXPORT QString decryptRsa(const QString& input, const QString& modulus, const QString& exponent);
 API_EXPORT QString doubleToString(double val);
 
+/**
+ * @brief Sorts string list using reference list for ordering.
+ * @param listToSort This list will be sorted.
+ * @param referenceList Should contain all elements from list to sort - it tells the order.
+ * @param cs Case sensitivity of the string comparision.
+ *
+ * Sorts \p listToSort using \p referenceList as a reference of what is the order.
+ * If any element from \p listToSort is not on the list of \p referenceList, then the element will be placed at the end.
+ */
+API_EXPORT void sortWithReferenceList(QList<QString>& listToSort, const QList<QString>& referenceList, Qt::CaseSensitivity cs = Qt::CaseSensitive);
+
 enum class DistributionType
 {
     PORTABLE,

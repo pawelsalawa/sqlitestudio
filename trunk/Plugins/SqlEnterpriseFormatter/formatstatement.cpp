@@ -704,7 +704,7 @@ QString FormatStatement::detokenize()
             }
             case FormatToken::COMMA_LIST:
             {
-                if (cfg->SqlEnterpriseFormatter.SpaceNeverBeforeComma.get())
+                if (cfg->SqlEnterpriseFormatter.SpaceNeverBeforeComma.get() || token->flags.testFlag(FormatToken::Flag::NO_NEWLINE_BEFORE))
                 {
                     removeAllSpaces();
                 }
