@@ -11,7 +11,7 @@
 
 class Db;
 
-class QueryGenerator
+class API_EXPORT QueryGenerator
 {
     public:
         QueryGenerator();
