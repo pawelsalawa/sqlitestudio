@@ -174,6 +174,8 @@ void TableWindow::init()
     connect(ui->indexList, SIGNAL(itemSelectionChanged()), this, SLOT(updateIndexesState()));
     connect(ui->triggerList, SIGNAL(itemSelectionChanged()), this, SLOT(updateTriggersState()));
     connect(CFG_UI.General.DataTabAsFirstInTables, SIGNAL(changed(const QVariant&)), this, SLOT(updateTabsOrder()));
+    connect(ui->structureView, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(structureViewDoubleClicked(const QModelIndex&)));
+    connect(ui->tableConstraintsView, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(constraintsViewDoubleClicked(const QModelIndex&)));
 
     structureExecutor = new ChainExecutor(this);
     connect(structureExecutor, SIGNAL(success()), this, SLOT(changesSuccessfullyCommited()));
@@ -259,9 +261,9 @@ void TableWindow::createIndexActions()
     createAction(REFRESH_INDEXES, ICONS.RELOAD, tr("Refresh index list", "table window"), this, SLOT(updateIndexes()), ui->indexToolBar, ui->indexList);
     ui->indexToolBar->addSeparator();
     createAction(ADD_INDEX, ICONS.INDEX_ADD, tr("Create index", "table window"), this, SLOT(addIndex()), ui->indexToolBar, ui->indexList);
-    createAction(EDIT_INDEX, ICONS.INDEX_EDIT, tr("Edit index", "table window"), this, SLOT(editIndex()), ui->indexToolBar, ui->indexList);
+    createAction(EDIT_INDEX, ICONS.INDEX_EDIT, tr("Edit index", "table window"), this, SLOT(editCurrentIndex()), ui->indexToolBar, ui->indexList);
     createAction(DEL_INDEX, ICONS.INDEX_DEL, tr("Delete index", "table window"), this, SLOT(delIndex()), ui->indexToolBar, ui->indexList);
-    connect(ui->indexList, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(editIndex()));
+    connect(ui->indexList, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(indexViewDoubleClicked(QModelIndex)));
 }
 
 void TableWindow::createTriggerActions()
@@ -271,14 +273,14 @@ void TableWindow::createTriggerActions()
     createAction(ADD_TRIGGER, ICONS.TRIGGER_ADD, tr("Create trigger", "table window"), this, SLOT(addTrigger()), ui->triggerToolBar, ui->triggerList);
     createAction(EDIT_TRIGGER, ICONS.TRIGGER_EDIT, tr("Edit trigger", "table window"), this, SLOT(editTrigger()), ui->triggerToolBar, ui->triggerList);
     createAction(DEL_TRIGGER, ICONS.TRIGGER_DEL, tr("Delete trigger", "table window"), this, SLOT(delTrigger()), ui->triggerToolBar, ui->triggerList);
-    connect(ui->triggerList, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(editTrigger()));
+    connect(ui->triggerList, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(triggerViewDoubleClicked(QModelIndex)));
 }
 
 void TableWindow::editColumn(const QModelIndex& idx)
 {
     if (!idx.isValid())
     {
-        qWarning() << "Called TableWindow::editColumn() with invalid index.";
+        addColumn();
         return;
     }
 
@@ -1133,7 +1135,10 @@ void TableWindow::delConstraint()
 void TableWindow::editConstraint(const QModelIndex& idx)
 {
     if (!idx.isValid())
+    {
+        addConstraint();
         return;
+    }
 
     SqliteCreateTable::Constraint* constr = structureConstraintsModel->getConstraint(idx.row());
     ConstraintDialog dialog(ConstraintDialog::EDIT, constr, createTable.data(), db, this);
@@ -1272,12 +1277,12 @@ void TableWindow::tabChanged(int newTab)
     }
 }
 
-void TableWindow::on_structureView_doubleClicked(const QModelIndex &index)
+void TableWindow::structureViewDoubleClicked(const QModelIndex &index)
 {
     editColumn(index);
 }
 
-void TableWindow::on_tableConstraintsView_doubleClicked(const QModelIndex &index)
+void TableWindow::constraintsViewDoubleClicked(const QModelIndex &index)
 {
     editConstraint(index);
 }
@@ -1308,7 +1313,7 @@ void TableWindow::addIndex()
     updateIndexes();
 }
 
-void TableWindow::editIndex()
+void TableWindow::editCurrentIndex()
 {
     QString index = getCurrentIndex();
     if (index.isNull())
@@ -1318,6 +1323,22 @@ void TableWindow::editIndex()
     dialogs.editIndex(index);
     updateIndexes();
 }
+
+void TableWindow::indexViewDoubleClicked(const QModelIndex& idx)
+{
+    if (!idx.isValid())
+    {
+        addIndex();
+        return;
+    }
+
+    QString index = ui->indexList->item(idx.row(), 0)->text();
+
+    DbObjectDialogs dialogs(db, this);
+    dialogs.editIndex(index);
+    updateIndexes();
+}
+
 
 void TableWindow::delIndex()
 {
@@ -1341,7 +1362,25 @@ void TableWindow::editTrigger()
 {
     QString trigger = getCurrentTrigger();
     if (trigger.isNull())
+    {
+        addTrigger();
         return;
+    }
+
+    DbObjectDialogs dialogs(db, this);
+    dialogs.editTrigger(trigger);
+    updateTriggers();
+}
+
+void TableWindow::triggerViewDoubleClicked(const QModelIndex& idx)
+{
+    if (!idx.isValid())
+    {
+        addTrigger();
+        return;
+    }
+
+    QString trigger = ui->triggerList->item(idx.row(), 0)->text();
 
     DbObjectDialogs dialogs(db, this);
     dialogs.editTrigger(trigger);

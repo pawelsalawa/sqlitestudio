@@ -29,7 +29,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>3</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="queryTab">
       <attribute name="title">
@@ -170,7 +170,7 @@
         <widget class="QToolBar" name="triggersToolbar"/>
        </item>
        <item>
-        <widget class="QTableWidget" name="triggersList">
+        <widget class="ExtTableWidget" name="triggersList">
          <property name="editTriggers">
           <set>QAbstractItemView::NoEditTriggers</set>
          </property>
@@ -227,6 +227,11 @@
    <class>SqlEditor</class>
    <extends>QPlainTextEdit</extends>
    <header>sqleditor.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ExtTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>common/exttablewidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

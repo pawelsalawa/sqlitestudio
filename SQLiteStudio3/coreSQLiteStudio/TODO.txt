@@ -7,7 +7,6 @@ cannot reproduce:
 
 feature requests:
 - sqlcipher
-3013 - dbl click on table window free space to add column
 shortcut - toggle comment
 generate SELECT/UPDATE/INSERT/DELETE query on table in dbtree
 

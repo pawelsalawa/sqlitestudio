@@ -164,6 +164,7 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
         void generateOutputColumns();
         void updateDbRelatedUiElements();
         void updateTabsOrder();
+        void triggerViewDoubleClicked(const QModelIndex& idx);
 
     public slots:
         void refreshTriggers();

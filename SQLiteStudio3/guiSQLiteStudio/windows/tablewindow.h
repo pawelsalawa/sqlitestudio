@@ -220,12 +220,14 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         void updateTableConstraintsToolbarState();
         void updateDdlTab();
         void updateNewTableState();
-        void on_structureView_doubleClicked(const QModelIndex &index);
-        void on_tableConstraintsView_doubleClicked(const QModelIndex &index);
+        void structureViewDoubleClicked(const QModelIndex &index);
+        void constraintsViewDoubleClicked(const QModelIndex &index);
         void nameChanged();
         void withOutRowIdChanged();
         void addIndex();
-        void editIndex();
+        void editCurrentIndex();
+        void indexViewDoubleClicked(const QModelIndex& idx);
+        void triggerViewDoubleClicked(const QModelIndex& idx);
         void delIndex();
         void addTrigger();
         void editTrigger();
