@@ -34,6 +34,7 @@ class DBSQLITECIPHERSHARED_EXPORT DbSqliteCipher : public GenericPlugin, public 
         bool initValid = false;
 
         static_char* LICENSE_TITLE = "SQLCipher (BSD) in DbSqliteCipher plugin";
+        static_char* OPENSSL_TITLE = "OpenSSL (used by DbSqliteCipher plugin) license";
 };
 
 #endif // DBSQLITECIPHER_H

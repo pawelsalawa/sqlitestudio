@@ -124,6 +124,12 @@ bool DbSqliteCipher::init()
         return false;
     }
 
+    if (!SQLITESTUDIO->getExtraLicenseManager()->addLicense(OPENSSL_TITLE, ":/license/openssl_lic.txt"))
+    {
+        qCritical() << "Could not register OpenSSL license.";
+        return false;
+    }
+
     initValid = true;
     return true;
 }
