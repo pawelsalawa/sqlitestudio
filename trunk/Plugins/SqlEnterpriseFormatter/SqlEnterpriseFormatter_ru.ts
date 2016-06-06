@@ -210,9 +210,8 @@
         <translation>Предпочитаемый символ комментирования (где применимо):</translation>
     </message>
     <message>
-        <location filename="sqlenterpriseformatter.ui" line="647"/>
         <source>SqlEnterpriseFormatter.CommentMarkers</source>
-        <translation>SqlEnterpriseFormatter.CommentMarkers</translation>
+        <translation type="obsolete">SqlEnterpriseFormatter.CommentMarkers</translation>
     </message>
     <message>
         <location filename="sqlenterpriseformatter.ui" line="654"/>

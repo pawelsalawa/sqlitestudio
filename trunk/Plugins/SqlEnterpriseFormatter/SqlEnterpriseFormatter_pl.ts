@@ -203,27 +203,22 @@
     <message>
         <location filename="sqlenterpriseformatter.ui" line="631"/>
         <source>Comments</source>
-        <translation type="unfinished"></translation>
+        <translation>Komentarze</translation>
     </message>
     <message>
         <location filename="sqlenterpriseformatter.ui" line="637"/>
         <source>Preferred comment marker (where possible):</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="sqlenterpriseformatter.ui" line="647"/>
-        <source>SqlEnterpriseFormatter.CommentMarkers</source>
-        <translation type="unfinished"></translation>
+        <translation>Preferowany znacznik komentarzy (gdzie możliwy):</translation>
     </message>
     <message>
         <location filename="sqlenterpriseformatter.ui" line="654"/>
         <source>Move all comments to the line end</source>
-        <translation type="unfinished"></translation>
+        <translation>Przenieś wszystkie komentarze na koniec linii</translation>
     </message>
     <message>
         <location filename="sqlenterpriseformatter.ui" line="664"/>
         <source>Line up comments at the line end</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyrównaj komentarze na końcu linii</translation>
     </message>
     <message>
         <location filename="sqlenterpriseformatter.ui" line="695"/>

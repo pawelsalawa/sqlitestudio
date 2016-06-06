@@ -39,7 +39,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="indentTab">
        <attribute name="title">
@@ -134,8 +134,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>390</width>
-             <height>299</height>
+             <width>576</width>
+             <height>420</height>
             </rect>
            </property>
            <property name="styleSheet">
@@ -366,8 +366,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>418</width>
-             <height>278</height>
+             <width>576</width>
+             <height>390</height>
             </rect>
            </property>
            <property name="styleSheet">
@@ -644,7 +644,7 @@
            <string notr="true">SqlEnterpriseFormatter.PreferredCommentMarker</string>
           </property>
           <property name="modelName" stdset="0">
-           <string>SqlEnterpriseFormatter.CommentMarkers</string>
+           <string notr="true">SqlEnterpriseFormatter.CommentMarkers</string>
           </property>
          </widget>
         </item>
@@ -713,14 +713,14 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>ConfigComboBox</class>
-   <extends>QComboBox</extends>
-   <header>common/configcombobox.h</header>
-  </customwidget>
-  <customwidget>
    <class>SqlView</class>
    <extends>QPlainTextEdit</extends>
    <header>sqlview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>ConfigComboBox</class>
+   <extends>QComboBox</extends>
+   <header>common/configcombobox.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
