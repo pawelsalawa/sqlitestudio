@@ -81,19 +81,27 @@ linux: {
 
 macx: {
     # Find tclsh
-    TCLSH = $$system(echo "puts 1" | tclsh)
-    !contains(TCLSH, 1): {
-        error("Could not find tclsh executable. ScriptingTcl plugin requires it to find out all Tcl libraries and headers. Make tclsh available in PATH.")
-    }
-    TCLSH = $$system(which tclsh)
+    #TCLSH = $$system(echo "puts 1" | tclsh)
+    #!contains(TCLSH, 1): {
+    #    error("Could not find tclsh executable. ScriptingTcl plugin requires it to find out all Tcl libraries and headers. Make tclsh available in PATH.")
+    #}
+    #TCLSH = $$system(which tclsh)
 
     # Find its version
-    TCL_VERSION = $$system(echo "puts [info tclversion]" | tclsh)
+    #TCL_VERSION = $$system(echo "puts [info tclversion]" | tclsh)
     #message("Found tclsh: $$TCLSH (version: $$TCL_VERSION)")
 
     # Find tclConfig.sh
-    TCL_CONFIG_DIR = $$system(echo "puts [info library]" | tclsh)
-    TCL_CONFIG = $$TCL_CONFIG_DIR/../../tclConfig.sh
+    #TCL_CONFIG_DIR = $$system(echo "puts [info library]" | tclsh)
+    #TCL_CONFIG = $$TCL_CONFIG_DIR/../../tclConfig.sh
+
+    XCRUN = $$system(xcrun --version)
+    !contains(XCRUN, xcrun): {
+        error("Could not find xcrun executable. ScriptingTcl plugin requires it to find out all Tcl libraries and headers.")
+    }
+
+    SDK_PATH = $$system(xcrun --show-sdk-path)
+    TCL_CONFIG = $$SDK_PATH/System/Library/Frameworks/Tcl.framework/Versions/Current/tclConfig.sh
 
     # Define other libs required when linking with Tcl
     eval($$system(cat $$TCL_CONFIG | grep TCL_LIBS))
