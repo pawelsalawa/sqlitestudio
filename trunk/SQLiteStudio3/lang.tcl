@@ -2,6 +2,7 @@
 
 proc usage {} {
     puts "$::argv0 (add|remove) <lang_name>"
+    puts "$::argv0 add_plugin <plugin name>"
     puts "$::argv0 (update|release|status)"
 }
 
@@ -110,6 +111,36 @@ switch -- $op {
 	    set lang [string tolower $lang]
 	    puts "$k - ${perc}% ($tr / $all)"
 	}
+    }
+    "add_plugin" {
+	if {$argc != 2} {
+	    usage
+	    exit 1
+	}
+	
+	set plug [lindex $argv 1]
+	set plugPro ../Plugins/$plug/$plug.pro
+	if {![file exists $plugPro]} {
+	    puts "$plugPro does not exist."
+	    exit 1
+	}
+	
+	set fd [open ../Plugins/CsvImport/CsvImport.pro r]
+	set data [read $fd]
+	close $fd
+	
+	set langs [list]
+	set trData "\nTRANSLATIONS += "
+	foreach {all lang} [regexp -inline -all -- {CsvImport_(\w+)\.ts} $data] {
+	    append trData "\\\n\t\t${plug}_$lang.ts"
+	    lappend langs $lang
+	}
+	append trData "\n"
+	
+	set fd [open $plugPro a+]
+	puts $fd $trData
+	close $fd
+	puts "Added translation languages for plugin $plug:\n[join $langs \n]"
     }
     "add" - "remove" {
 	if {$argc != 2} {
