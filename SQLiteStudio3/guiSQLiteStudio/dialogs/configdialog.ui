@@ -229,7 +229,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>5</number>
          </property>
          <widget class="QWidget" name="databaseListPage">
           <layout class="QVBoxLayout" name="verticalLayout_36">
@@ -1001,8 +1001,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>490</width>
-                <height>299</height>
+                <width>596</width>
+                <height>487</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_31">
@@ -1047,7 +1047,7 @@
                      <bool>true</bool>
                     </property>
                     <property name="cfg" stdset="0">
-                     <string>General.CompactLayout</string>
+                     <string notr="true">General.CompactLayout</string>
                     </property>
                    </widget>
                   </item>

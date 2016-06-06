@@ -1110,22 +1110,17 @@ ale można go używać.</translation>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1035"/>
         <source>Compact layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Układ kompaktowy</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1041"/>
         <source>&lt;p&gt;Compact layout reduces all margins and spacing on the UI to minimum, making space for displaying more data. It makes the interface a little bit less aesthetic, but allows to display more data at once.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Układ kompaktowy zmniejsza wszystkie marginesy i odstępy na interfejsie do minimum, robiąc więcej miejsca na wyświetlanie danych. Powoduje to, że interfejs jest nieco mniej estetyczny, ale pozwala to na prezentację większej ilości danych naraz.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1044"/>
         <source>Use compact layout</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../dialogs/configdialog.ui" line="1050"/>
-        <source>General.CompactLayout</source>
-        <translation type="unfinished"></translation>
+        <translation>Użyj układu kompaktowego</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="166"/>
