@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="pl_PL">
+<TS version="2.0" language="pl_PL">
 <context>
     <name>SqlExport</name>
     <message>
@@ -39,7 +39,7 @@
         <translation>-- Użyte kodowanie tekstu: %1</translation>
     </message>
     <message>
-        <location filename="sqlexport.cpp" line="312"/>
+        <location filename="sqlexport.cpp" line="276"/>
         <source>Table name for INSERT statements is mandatory.</source>
         <translation>Nazwa tabeli dla zapytania INSERT jest obowiązkowa.</translation>
     </message>

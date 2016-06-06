@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="sk_SK">
+<TS version="2.0" language="sk_SK">
 <context>
     <name>CsvImport</name>
     <message>
@@ -14,17 +14,16 @@
         <translation>Nemôžem nájsť dáta v súbore %1.</translation>
     </message>
     <message>
-        <location filename="csvimport.cpp" line="167"/>
+        <location filename="csvimport.cpp" line="163"/>
         <source>Enter the custom separator character.</source>
         <translation>Zadajte vlastný oddeľovač.</translation>
     </message>
     <message>
-        <location filename="csvimport.cpp" line="181"/>
         <source>Enter the value that will be interpreted as a NULL.</source>
-        <translation>Zadajte hodnotu, ktorá bude interpretovaná ako NULL.</translation>
+        <translation type="obsolete">Zadajte hodnotu, ktorá bude interpretovaná ako NULL.</translation>
     </message>
     <message>
-        <location filename="csvimport.cpp" line="194"/>
+        <location filename="csvimport.cpp" line="186"/>
         <source>CSV files (*.csv);;Text files (*.txt);;All files (*)</source>
         <translation>CSV súbory (*.csv);;Textové súbory (*.txt);;Všetky súbory (*)</translation>
     </message>
@@ -73,11 +72,16 @@
     </message>
     <message>
         <location filename="CsvImportOptions.ui" line="85"/>
+        <source>If enabled, then text value provided on the right will be interpreted as NULL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="CsvImportOptions.ui" line="88"/>
         <source>NULL values:</source>
         <translation>NULL hodnoty:</translation>
     </message>
     <message>
-        <location filename="CsvImportOptions.ui" line="95"/>
+        <location filename="CsvImportOptions.ui" line="98"/>
         <source>If your CSV data contains null values, define how are they represented in the CSV.</source>
         <translation>Ak váš CSV súbor obsahuje null hodnoty, zadajte ako sú reprezentované v CSV.</translation>
     </message>

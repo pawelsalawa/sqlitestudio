@@ -229,7 +229,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="databaseListPage">
           <layout class="QVBoxLayout" name="verticalLayout_36">
@@ -407,7 +407,7 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>449</width>
+                <width>564</width>
                 <height>504</height>
                </rect>
               </property>
@@ -507,7 +507,7 @@
                      <number>0</number>
                     </property>
                     <property name="cfg" stdset="0">
-                     <string>General.InsertRowPlacement</string>
+                     <string notr="true">General.InsertRowPlacement</string>
                     </property>
                    </widget>
                   </item>
@@ -520,7 +520,7 @@
                      <number>1</number>
                     </property>
                     <property name="cfg" stdset="0">
-                     <string>General.InsertRowPlacement</string>
+                     <string notr="true">General.InsertRowPlacement</string>
                     </property>
                    </widget>
                   </item>
@@ -533,7 +533,7 @@
                      <number>2</number>
                     </property>
                     <property name="cfg" stdset="0">
-                     <string>General.InsertRowPlacement</string>
+                     <string notr="true">General.InsertRowPlacement</string>
                     </property>
                    </widget>
                   </item>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ru_RU">
+<TS version="2.0" language="ru_RU">
 <context>
     <name>AbstractDb</name>
     <message>
@@ -38,19 +38,25 @@
         <translation>Не открыта база данных для выполнения запросов.</translation>
     </message>
     <message>
-        <location filename="../db/chainexecutor.cpp" line="47"/>
+        <location filename="../db/chainexecutor.cpp" line="50"/>
+        <source>Could not disable foreign keys in the database. Details: %1</source>
+        <comment>chain executor</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../db/chainexecutor.cpp" line="57"/>
         <source>Could not start a database transaction. Details: %1</source>
         <comment>chain executor</comment>
         <translation>Невозможно начать транзакцию. Подробности: %1</translation>
     </message>
     <message>
-        <location filename="../db/chainexecutor.cpp" line="74"/>
+        <location filename="../db/chainexecutor.cpp" line="84"/>
         <source>Interrupted</source>
         <comment>chain executor</comment>
         <translation>Прервано</translation>
     </message>
     <message>
-        <location filename="../db/chainexecutor.cpp" line="134"/>
+        <location filename="../db/chainexecutor.cpp" line="145"/>
         <source>Could not commit a database transaction. Details: %1</source>
         <comment>chain executor</comment>
         <translation>Невозможно завершить транзакцию. Подробности: %1</translation>
@@ -152,26 +158,26 @@
         <translation>Невозможно обновить базу данных %1 из-за ошибки: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="312"/>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="341"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="350"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="379"/>
         <source>Database file doesn&apos;t exist.</source>
         <translation>Файл базы данных не существует.</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="314"/>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="343"/>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="565"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="352"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="381"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="604"/>
         <source>No supporting plugin loaded.</source>
         <translatorcomment>Unclear error string. Checking the source didn&apos;t help.</translatorcomment>
         <translation>Модуль поддержки не загружен.</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="484"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="522"/>
         <source>Database could not be initialized.</source>
         <translation>Невозможно инициализировать базу данных.</translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="494"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="532"/>
         <source>No suitable database driver plugin found.</source>
         <translation>Не найден подходящий драйвер базы данных.</translation>
     </message>
@@ -228,21 +234,28 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
         <source>Error while creating trigger in target database: %1</source>
         <translation>Ошибка при создании триггера в целевой базе данных: %1</translation>
     </message>
+    <message>
+        <location filename="../dbobjectorganizer.cpp" line="773"/>
+        <location filename="../dbobjectorganizer.cpp" line="780"/>
+        <location filename="../dbobjectorganizer.cpp" line="789"/>
+        <source>Could not parse object &apos;%1&apos; in order to move or copy it.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DbVersionConverter</name>
     <message>
-        <location filename="../dbversionconverter.cpp" line="923"/>
+        <location filename="../dbversionconverter.cpp" line="913"/>
         <source>Target file exists, but could not be overwritten.</source>
         <translation>Целевой файл существует, но не может быть перезаписан.</translation>
     </message>
     <message>
-        <location filename="../dbversionconverter.cpp" line="942"/>
+        <location filename="../dbversionconverter.cpp" line="932"/>
         <source>Could not find proper database plugin to create target database.</source>
         <translation>Невозможно найти подходящий модуль для создания целевой базы данных.</translation>
     </message>
     <message>
-        <location filename="../dbversionconverter.cpp" line="1176"/>
+        <location filename="../dbversionconverter.cpp" line="1166"/>
         <source>Error while converting database: %1</source>
         <translation>Ошибка при конвертации базы данных: %1</translation>
     </message>
@@ -320,33 +333,33 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
 <context>
     <name>ExportWorker</name>
     <message>
-        <location filename="../exportworker.cpp" line="121"/>
+        <location filename="../exportworker.cpp" line="122"/>
         <source>Error while exporting query results: %1</source>
         <translation>Ошибка при экспорте результатов запроса: %1</translation>
     </message>
     <message>
-        <location filename="../exportworker.cpp" line="201"/>
+        <location filename="../exportworker.cpp" line="202"/>
         <source>Error while counting data column width to export from query results: %1</source>
         <translation>Ошибка при подсчёте ширины столбца данных для экспорта результатов запроса: %1</translation>
     </message>
     <message>
-        <location filename="../exportworker.cpp" line="353"/>
-        <location filename="../exportworker.cpp" line="411"/>
+        <location filename="../exportworker.cpp" line="354"/>
+        <location filename="../exportworker.cpp" line="412"/>
         <source>Could not parse %1 in order to export it. It will be excluded from the export output.</source>
         <translation>Невозможно проанализировать структуру %1. Данный объект будет исключён при выполнении экспорта.</translation>
     </message>
     <message>
-        <location filename="../exportworker.cpp" line="612"/>
+        <location filename="../exportworker.cpp" line="616"/>
         <source>Error while reading data to export from table %1: %2</source>
         <translation>Ошибка при считывании данных для экспорта из таблицы %1: %2</translation>
     </message>
     <message>
-        <location filename="../exportworker.cpp" line="620"/>
+        <location filename="../exportworker.cpp" line="624"/>
         <source>Error while counting data to export from table %1: %2</source>
         <translation>Ошибка при подсчёте количества данных для экспорта из таблицы %1: %2</translation>
     </message>
     <message>
-        <location filename="../exportworker.cpp" line="636"/>
+        <location filename="../exportworker.cpp" line="640"/>
         <source>Error while counting data column width to export from table %1: %2</source>
         <translation>Ошибка при подсчёте ширины столбца данных для экспорта из таблицы %1: %2</translation>
     </message>
@@ -445,20 +458,20 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     </message>
     <message>
         <location filename="../importworker.cpp" line="126"/>
-        <location filename="../importworker.cpp" line="163"/>
-        <location filename="../importworker.cpp" line="170"/>
+        <location filename="../importworker.cpp" line="168"/>
+        <location filename="../importworker.cpp" line="175"/>
         <source>Error while importing data: %1</source>
         <translation>Ошибка при импорте данных: %1</translation>
     </message>
     <message>
         <location filename="../importworker.cpp" line="126"/>
-        <location filename="../importworker.cpp" line="170"/>
+        <location filename="../importworker.cpp" line="175"/>
         <source>Interrupted.</source>
         <comment>import process status update</comment>
         <translation>Прервано.</translation>
     </message>
     <message>
-        <location filename="../importworker.cpp" line="158"/>
+        <location filename="../importworker.cpp" line="163"/>
         <source>Could not import data row number %1. The row was ignored. Problem details: %2</source>
         <translation>Невозможно импортировать строку данных № %1. Строка пропущена. Подробности проблемы: %2</translation>
     </message>
@@ -486,13 +499,13 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
         <translation>Невозможно загрузить модуль %1 (ошибка при инициализации модуля).</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="732"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="731"/>
         <source>min: %1</source>
         <comment>plugin dependency version</comment>
         <translation>минимальная: %1</translation>
     </message>
     <message>
-        <location filename="../services/impl/pluginmanagerimpl.cpp" line="733"/>
+        <location filename="../services/impl/pluginmanagerimpl.cpp" line="732"/>
         <source>max: %1</source>
         <comment>plugin dependency version</comment>
         <translation>максимальная: %1</translation>
@@ -829,7 +842,7 @@ Error details: %2</source>
         <translation>SQLite %1 не поддерживает оператор &apos;%2&apos; в выражениях.</translation>
     </message>
     <message>
-        <location filename="../impl/dbattacherimpl.cpp" line="109"/>
+        <location filename="../impl/dbattacherimpl.cpp" line="115"/>
         <source>Could not attach database %1: %2</source>
         <translation>Не удалось присоединить базу данных %1: %2</translation>
     </message>
@@ -841,13 +854,13 @@ Error details: %2</source>
     </message>
     <message>
         <location filename="../parser/sqlite2_parse.cpp" line="1904"/>
-        <location filename="../parser/sqlite3_parse.cpp" line="2167"/>
+        <location filename="../parser/sqlite3_parse.cpp" line="2171"/>
         <source>Parser stack overflow</source>
         <translation>Переполнение стека анализатора</translation>
     </message>
     <message>
         <location filename="../parser/sqlite2_parse.cpp" line="4465"/>
-        <location filename="../parser/sqlite3_parse.cpp" line="5084"/>
+        <location filename="../parser/sqlite3_parse.cpp" line="5089"/>
         <source>Syntax error</source>
         <translation>Синтаксическая ошибка</translation>
     </message>
@@ -902,9 +915,14 @@ Error details: %2</source>
         <translation>Заполняющий код не может быть пустым.</translation>
     </message>
     <message>
-        <location filename="../selectresolver.cpp" line="317"/>
+        <location filename="../selectresolver.cpp" line="333"/>
         <source>Could not resolve data source for column: %1</source>
         <translation>Невозможно определить источник данных для столбца: %1</translation>
+    </message>
+    <message>
+        <location filename="../selectresolver.cpp" line="405"/>
+        <source>Could not resolve table for column &apos;%1&apos;.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../services/impl/configimpl.cpp" line="612"/>
@@ -954,39 +972,39 @@ Error details: %2</source>
         <translation>Заполнение таблиц</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="107"/>
+        <location filename="../tablemodifier.cpp" line="115"/>
         <source>Table %1 is referencing table %2, but the foreign key definition will not be updated for new table definition due to problems while parsing DDL of the table %3.</source>
         <translation>Таблица %1 ссылается на таблицу %2, но описание внешнего ключа не будет обновлено для описания новой таблицы из-за проблем с анализом DDL таблицы %3.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="379"/>
+        <location filename="../tablemodifier.cpp" line="389"/>
         <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
         <translation>Все столбцы, проиндексированные индексом %1, удалены. Индекс не будет воссоздан после модификации таблицы.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="418"/>
+        <location filename="../tablemodifier.cpp" line="428"/>
         <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
         <translation>Возникла проблема при обработке триггера %1. Впоследствии он не будет полностью обновлён и потребует вашего внимания.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="465"/>
+        <location filename="../tablemodifier.cpp" line="475"/>
         <source>Cannot not update trigger %1 according to table %2 modification.</source>
         <translation>Невозможно обновить триггер %1 в соответствии с модификацией таблицы %2.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="645"/>
-        <location filename="../tablemodifier.cpp" line="669"/>
-        <location filename="../tablemodifier.cpp" line="688"/>
+        <location filename="../tablemodifier.cpp" line="655"/>
+        <location filename="../tablemodifier.cpp" line="679"/>
+        <location filename="../tablemodifier.cpp" line="698"/>
         <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
         <translation>Возникла проблема при обновлении конструкции %1 внутри триггера %2. Одна из вложенных конструкций %1, которая возможно ссылается на таблицу %3, не может быть корректно модифицирована. Возможно необходима ручная правка триггера.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="433"/>
+        <location filename="../tablemodifier.cpp" line="443"/>
         <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
         <translation>Все столбцы, затронутые в триггере %1, удалены. Триггер не будет воссоздан после модификации таблицы.</translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="483"/>
+        <location filename="../tablemodifier.cpp" line="493"/>
         <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
         <translation>Невозможно обновить представление %1 в соответствии с модификациями таблицы %2.
@@ -1015,28 +1033,28 @@ The view will remain as it is.</source>
 <context>
     <name>QueryExecutor</name>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="133"/>
+        <location filename="../db/queryexecutor.cpp" line="137"/>
         <source>Execution interrupted.</source>
         <translation>Выполнение прервано.</translation>
     </message>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="174"/>
+        <location filename="../db/queryexecutor.cpp" line="178"/>
         <source>Database is not open.</source>
         <translation>База данных не открыта.</translation>
     </message>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="182"/>
+        <location filename="../db/queryexecutor.cpp" line="186"/>
         <source>Only one query can be executed simultaneously.</source>
         <translation>Одновременно может быть выполнен только один запрос.</translation>
     </message>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="264"/>
-        <location filename="../db/queryexecutor.cpp" line="548"/>
+        <location filename="../db/queryexecutor.cpp" line="275"/>
+        <location filename="../db/queryexecutor.cpp" line="560"/>
         <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
         <translation>Возникла ошибка при выполнении запроса count(*), поэтому разбивка данных по страницам отключена. Детали ошибки из базы данных: %1</translation>
     </message>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="459"/>
+        <location filename="../db/queryexecutor.cpp" line="471"/>
         <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
         <translation>SQLiteStudio не удалось извлечь метаданные из запроса. Результаты нельзя будет редактировать.</translation>
     </message>
