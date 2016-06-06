@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="zh_CN">
+<TS version="2.0" language="zh_CN">
 <context>
     <name>QObject</name>
     <message>
@@ -50,22 +50,27 @@
     </message>
     <message>
         <location filename="../main.cpp" line="54"/>
+        <source>Enables debugging of SQLiteStudio&apos;s query executor.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="55"/>
         <source>Lists plugins installed in the SQLiteStudio and quits.</source>
         <translation>列出已安装的插件并退出。</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="63"/>
+        <location filename="../main.cpp" line="65"/>
         <source>file</source>
         <translation>文件</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="63"/>
+        <location filename="../main.cpp" line="65"/>
         <source>Database file to open</source>
         <translation>要打开的数据库文件</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="86"/>
-        <location filename="../main.cpp" line="102"/>
+        <location filename="../main.cpp" line="89"/>
+        <location filename="../main.cpp" line="105"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>

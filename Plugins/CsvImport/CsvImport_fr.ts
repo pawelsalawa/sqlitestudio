@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="fr_FR">
+<TS version="2.0" language="fr_FR">
 <context>
     <name>CsvImport</name>
     <message>
@@ -14,17 +14,16 @@
         <translation>Impossible de trouver des données dans le fichier %1.</translation>
     </message>
     <message>
-        <location filename="csvimport.cpp" line="167"/>
+        <location filename="csvimport.cpp" line="163"/>
         <source>Enter the custom separator character.</source>
         <translation>Saisir le caractère séparateur.</translation>
     </message>
     <message>
-        <location filename="csvimport.cpp" line="181"/>
         <source>Enter the value that will be interpreted as a NULL.</source>
-        <translation>Saisir la valeur qui sera interprétée comme NULL.</translation>
+        <translation type="obsolete">Saisir la valeur qui sera interprétée comme NULL.</translation>
     </message>
     <message>
-        <location filename="csvimport.cpp" line="194"/>
+        <location filename="csvimport.cpp" line="186"/>
         <source>CSV files (*.csv);;Text files (*.txt);;All files (*)</source>
         <translation>Fichiers CSV (*.csv);;Fichiers texte (*.txt);;Tous les fichiers (*)</translation>
     </message>
@@ -77,11 +76,16 @@
     </message>
     <message>
         <location filename="CsvImportOptions.ui" line="85"/>
+        <source>If enabled, then text value provided on the right will be interpreted as NULL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="CsvImportOptions.ui" line="88"/>
         <source>NULL values:</source>
         <translation>Valeurs NULL:</translation>
     </message>
     <message>
-        <location filename="CsvImportOptions.ui" line="95"/>
+        <location filename="CsvImportOptions.ui" line="98"/>
         <source>If your CSV data contains null values, define how are they represented in the CSV.</source>
         <translation>Si votre CSV de données contient des valeurs nulles, définissez leur représentation dans le CSV.</translation>
     </message>

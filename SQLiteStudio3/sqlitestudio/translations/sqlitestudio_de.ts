@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="de_DE">
+<TS version="2.0" language="de_DE">
 <context>
     <name>QObject</name>
     <message>
@@ -51,23 +51,28 @@
     </message>
     <message>
         <location filename="../main.cpp" line="54"/>
+        <source>Enables debugging of SQLiteStudio&apos;s query executor.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="55"/>
         <source>Lists plugins installed in the SQLiteStudio and quits.</source>
         <translatorcomment>Was wird hier beendet?</translatorcomment>
         <translation>Listet die in SQLiteStudio installierten Plugins auf und beendet.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="63"/>
+        <location filename="../main.cpp" line="65"/>
         <source>file</source>
         <translation>Datei</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="63"/>
+        <location filename="../main.cpp" line="65"/>
         <source>Database file to open</source>
         <translation>Zu öffnende Datenbankdatei</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="86"/>
-        <location filename="../main.cpp" line="102"/>
+        <location filename="../main.cpp" line="89"/>
+        <location filename="../main.cpp" line="105"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>

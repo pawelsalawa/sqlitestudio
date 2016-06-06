@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="pl_PL">
+<TS version="2.0" language="pl_PL">
 <context>
     <name>QObject</name>
     <message>
@@ -54,6 +54,10 @@
     <message>
         <source>log file</source>
         <translation>plik logów</translation>
+    </message>
+    <message>
+        <source>Enables debugging of SQLiteStudio&apos;s query executor.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
