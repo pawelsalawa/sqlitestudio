@@ -1212,9 +1212,8 @@ but it&apos;s okay to use it.</source>
         <translation>Включить компактный режим</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1050"/>
         <source>General.CompactLayout</source>
-        <translation>General.CompactLayout</translation>
+        <translation type="obsolete">General.CompactLayout</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="166"/>

@@ -1206,11 +1206,6 @@ but it&apos;s okay to use it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1050"/>
-        <source>General.CompactLayout</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../dialogs/configdialog.ui" line="166"/>
         <location filename="../dialogs/configdialog.ui" line="239"/>
         <source>Database list</source>

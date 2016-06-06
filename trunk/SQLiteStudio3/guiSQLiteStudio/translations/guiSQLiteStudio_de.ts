@@ -1210,9 +1210,8 @@ but it&apos;s okay to use it.</source>
         <translation>Benutze kompaktes Layout</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.ui" line="1050"/>
         <source>General.CompactLayout</source>
-        <translation>Standard.KompaktesLayout</translation>
+        <translation type="obsolete">Standard.KompaktesLayout</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="166"/>
