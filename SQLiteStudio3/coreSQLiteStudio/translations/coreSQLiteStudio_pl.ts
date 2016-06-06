@@ -41,7 +41,7 @@
         <location filename="../db/chainexecutor.cpp" line="50"/>
         <source>Could not disable foreign keys in the database. Details: %1</source>
         <comment>chain executor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Nie udało się wyłączyć kluczy obcych w bazie. Szczegóły: %1</translation>
     </message>
     <message>
         <location filename="../db/chainexecutor.cpp" line="57"/>
@@ -238,7 +238,7 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
         <location filename="../dbobjectorganizer.cpp" line="780"/>
         <location filename="../dbobjectorganizer.cpp" line="789"/>
         <source>Could not parse object &apos;%1&apos; in order to move or copy it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można zanalizować obiektu &apos;%1&apos; w celu przeniesienia lub skopiowania go.</translation>
     </message>
 </context>
 <context>
@@ -917,7 +917,7 @@ Szczegóły błędu: %2</translation>
     <message>
         <location filename="../selectresolver.cpp" line="405"/>
         <source>Could not resolve table for column &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można ustalić tabeli lub kolumny &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../services/impl/configimpl.cpp" line="612"/>

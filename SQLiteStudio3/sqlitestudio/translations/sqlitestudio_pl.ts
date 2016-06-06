@@ -57,7 +57,7 @@
     </message>
     <message>
         <source>Enables debugging of SQLiteStudio&apos;s query executor.</source>
-        <translation type="unfinished"></translation>
+        <translation>Włącza debugowanie wykonawcy zapytań w SQLiteStudio.</translation>
     </message>
 </context>
 </TS>
