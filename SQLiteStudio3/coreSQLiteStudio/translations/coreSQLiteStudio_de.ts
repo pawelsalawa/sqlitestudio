@@ -41,7 +41,7 @@
         <location filename="../db/chainexecutor.cpp" line="50"/>
         <source>Could not disable foreign keys in the database. Details: %1</source>
         <comment>chain executor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Fremdschlüssel konnten nicht deaktiviert werden für die Datenbank. Details: %1</translation>
     </message>
     <message>
         <location filename="../db/chainexecutor.cpp" line="57"/>
@@ -239,7 +239,7 @@ Tabellen, Indizes, Trigger und Views die in Datenbank %3 kopiert wurden, werden 
         <location filename="../dbobjectorganizer.cpp" line="780"/>
         <location filename="../dbobjectorganizer.cpp" line="789"/>
         <source>Could not parse object &apos;%1&apos; in order to move or copy it.</source>
-        <translation type="unfinished"></translation>
+        <translation>Objekt &apos;%1&apos; konnte analysieren, um es zu verschieben oder kopieren zu können.</translation>
     </message>
 </context>
 <context>
@@ -1112,7 +1112,7 @@ The view will remain as it is.</source>
     <message>
         <location filename="../services/updatemanager.cpp" line="131"/>
         <source>An error occurred while checking for updates: %1.</source>
-        <translation>Beim Prüfen auf Updates trat folgender Fehler auf: %1</translation>
+        <translation>Beim Prüfen auf Updates trat folgender Fehler auf: %1.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="144"/>

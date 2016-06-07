@@ -11,17 +11,17 @@
     <message>
         <location filename="../main.cpp" line="48"/>
         <source>Enables debug messages in console (accessible with F12).</source>
-        <translation>Aktiviert Debug-Meldungen in der Konsole (erreichbar über F12)</translation>
+        <translation>Aktiviert Debug-Meldungen in der Konsole (erreichbar über F12).</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="49"/>
         <source>Redirects debug messages into standard output (forces debug mode).</source>
-        <translation>Leitet Debug-Meldungen in den Standardausgabekanal um (erzwingt den Debugmodus)</translation>
+        <translation>Leitet Debug-Meldungen in den Standardausgabekanal um (erzwingt den Debugmodus).</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="50"/>
         <source>Redirects debug messages into given file (forces debug mode).</source>
-        <translation>Leitet Debug-Meldungen in die angegebene Datei um (erzwingt den Debugmodus)</translation>
+        <translation>Leitet Debug-Meldungen in die angegebene Datei um (erzwingt den Debugmodus).</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="50"/>

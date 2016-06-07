@@ -11,22 +11,22 @@
     <message>
         <location filename="configmigration.cpp" line="136"/>
         <source>Bug reports history (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehlerprotokollverlauf (%1)</translation>
     </message>
     <message>
         <location filename="configmigration.cpp" line="145"/>
         <source>Database list (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbankliste (%1)</translation>
     </message>
     <message>
         <location filename="configmigration.cpp" line="154"/>
         <source>Custom SQL functions (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Eigene SQL Funktionen (%1)</translation>
     </message>
     <message>
         <location filename="configmigration.cpp" line="163"/>
         <source>SQL queries history (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>SQL-Abfragen Verlauf (%1)</translation>
     </message>
 </context>
 <context>

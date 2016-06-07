@@ -73,7 +73,7 @@
         <location filename="../dialogs/aboutdialog.cpp" line="42"/>
         <source>MacOS X application boundle distribution.</source>
         <translatorcomment>Das müsste mal genauer übersetzt werden.</translatorcomment>
-        <translation>MacOS X Programmbundle-Version</translation>
+        <translation>MacOS X Programmbundle-Version.</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.cpp" line="45"/>
@@ -363,7 +363,7 @@
     <message>
         <location filename="../windows/collationseditor.ui" line="204"/>
         <source>Implementation language:</source>
-        <translation>Sprache</translation>
+        <translation type="unfinished">Sprache:</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.ui" line="132"/>
@@ -378,12 +378,12 @@
     <message>
         <location filename="../windows/collationseditor.ui" line="145"/>
         <source>Register in following databases:</source>
-        <translation>In den folgenden Datenbanken registrieren</translation>
+        <translation>In den folgenden Datenbanken registrieren:</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.ui" line="166"/>
         <source>Implementation code:</source>
-        <translation>Anweisungen</translation>
+        <translation type="unfinished">Anweisungen:</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="52"/>
@@ -441,7 +441,7 @@
     <message>
         <location filename="../common/colorbutton.cpp" line="29"/>
         <source>Pick a color</source>
-        <translation>Wählen Sie eine Farbe aus.</translation>
+        <translation>Wählen Sie eine Farbe aus</translation>
     </message>
 </context>
 <context>
@@ -482,12 +482,12 @@
     <message>
         <location filename="../constraints/columndefaultpanel.cpp" line="39"/>
         <source>Enter a default value expression.</source>
-        <translation>Geben Sie einen Standardwert für den Ausdruck an</translation>
+        <translation type="unfinished">Geben Sie einen Standardwert an.</translation>
     </message>
     <message>
         <location filename="../constraints/columndefaultpanel.cpp" line="78"/>
         <source>Invalid default value expression: %1</source>
-        <translation>Ungültiger Standardwert für Ausdruck: %1</translation>
+        <translation type="unfinished">Ungültiger Standardwert für Ausdruck: %1</translation>
     </message>
     <message>
         <location filename="../constraints/columndefaultpanel.cpp" line="90"/>
@@ -681,17 +681,17 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="385"/>
         <source>Scale is not allowed for INTEGER PRIMARY KEY columns.</source>
-        <translation type="unfinished"></translation>
+        <translation>Für INTEGER PRIMARY KEY ist eine Skalierung nicht erlaubt.</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="386"/>
         <source>Precision cannot be defined without the scale.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Präzision kann ohne Skalierung nicht definiert werden.</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="407"/>
         <source>Precision is not allowed for INTEGER PRIMARY KEY columns.</source>
-        <translation type="unfinished"></translation>
+        <translation>Für INTEGER PRIMARY KEY ist eine Präzision nicht erlaubt.</translation>
     </message>
 </context>
 <context>
@@ -969,7 +969,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="351"/>
         <source>Database dialog window</source>
-        <translation type="unfinished"></translation>
+        <translation>Dialogfenster der Datenbank</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="357"/>
@@ -1025,37 +1025,37 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="495"/>
         <source>Inserting new row in data grid</source>
-        <translation type="unfinished"></translation>
+        <translation>Neue Zeile im Gitternetz des Datenfensters hinzufügen</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="501"/>
         <source>Before currently selected row</source>
-        <translation type="unfinished"></translation>
+        <translation>Vor der derzeitig ausgewählten Zeile</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="517"/>
         <source>After currently selected row</source>
-        <translation type="unfinished"></translation>
+        <translation>Nach der derzeitig ausgewählten Zeile</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="530"/>
         <source>At the end of data view</source>
-        <translation type="unfinished"></translation>
+        <translation>Am Ende der Datenfensters</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="552"/>
         <source>&lt;p&gt;When enabled, Table Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Wenn aktiviert, wird der Reiter &quot;Daten&quot; anstelle des Reiters &quot;Struktur&quot; angezeigt beim öffnen eines Tabellenfensters angezeigt.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="565"/>
         <source>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every Table Window, instead of being at second place.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Wenn aktiviert, wird der Reiter &quot;Daten&quot; als erster Reiter angezeigt für jedes Tabellenfenster, anstelle an zweiter Stelle.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="568"/>
         <source>Place data tab as first tab in a Table Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Den Reiter Daten als ersten Reiter im Tabellenfenster anzeigen</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="587"/>
@@ -1070,7 +1070,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="603"/>
         <source>Place data tab as first tab in a View Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Den Reiter Daten als ersten Reiter im View-Fenster anzeigen</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="647"/>
@@ -1156,7 +1156,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="871"/>
         <source>Status Field</source>
-        <translation type="unfinished"></translation>
+        <translation>Statusfeld</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="877"/>
@@ -1166,7 +1166,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="880"/>
         <source>Always open Status panel when new message is printed</source>
-        <translation type="unfinished"></translation>
+        <translation>Den Panel Status immer öffnen, wenn eine neue Meldung ausgegeben wird</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="922"/>
@@ -1877,19 +1877,19 @@ but it&apos;s okay to use it.</source>
         <location filename="../dataview.cpp" line="343"/>
         <source>Place new rows above selected row</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Neue Zeilen über der ausgewählten Zeile einfügen</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="344"/>
         <source>Place new rows below selected row</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Neue Zeilen nach der ausgewählten Zeile einfügen</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="345"/>
         <source>Place new rows at the end of the data view</source>
         <comment>data view</comment>
-        <translation type="unfinished"></translation>
+        <translation>Neue Zeilen am Ende des Datenfensters einfügen</translation>
     </message>
     <message>
         <location filename="../dataview.cpp" line="613"/>
@@ -2163,23 +2163,24 @@ Das Aufrufen anderer Seiten ist erst nach Abschluss der Zählung möglich.</tran
     <message>
         <location filename="../dbobjectdialogs.cpp" line="282"/>
         <source>Delete objects</source>
-        <translation type="unfinished">Objekte löschen</translation>
+        <translation>Objekte löschen</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="283"/>
         <source>Are you sure you want to delete following objects:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Sind Sie sicher, dass Sie die folgenden Objekte löschen möchten:
+%1</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="290"/>
         <source>Cannot start transaction. Details: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Kann Transaktion nicht starten. Details: %1</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="327"/>
         <source>Cannot commit transaction. Details: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Kann Transaktion nicht ausführen. Details: %1</translation>
     </message>
 </context>
 <context>
@@ -2415,7 +2416,7 @@ Das Aufrufen anderer Seiten ist erst nach Abschluss der Zählung möglich.</tran
     <message>
         <location filename="../dbtree/dbtree.cpp" line="339"/>
         <source>Generate query for table</source>
-        <translation type="unfinished"></translation>
+        <translation>Abfrage für Tabelle generieren</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1041"/>
@@ -2448,23 +2449,24 @@ Alle Objekte in dieser Gruppe werden in die übergeordnete Gruppe verschoben.</t
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1126"/>
         <source>Are you sure you want to remove database &apos;%1&apos; from the list?</source>
-        <translation type="unfinished"></translation>
+        <translation>Sind Sie sicher, dass Sie die Datenbank &apos;%1&apos; aus der Liste entfernen möchten?</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1134"/>
         <source>Are you sure you want to remove following databases from the list:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Sind Sie sicher, dass Sie folgende Datenbanken aus der Liste entfernen möchten:
+%1</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1136"/>
         <source>Remove database</source>
-        <translation type="unfinished"></translation>
+        <translation>Datenbank entfernen</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1442"/>
         <source>Vacuum (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Vacuum (%1)</translation>
     </message>
     <message>
         <source>Delete database</source>
@@ -3258,7 +3260,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../windows/functionseditor.ui" line="325"/>
         <source>Final step implementation code:</source>
-        <translation>Abschlussanweisungen</translation>
+        <translation>Abschlussanweisungen:</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="54"/>
@@ -3338,8 +3340,8 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../windows/functionseditor.cpp" line="426"/>
         <source>Per step code:</source>
-        <translatorcomment>evtl. Einzelschrittanweisung???</translatorcomment>
-        <translation>Pro Schritt Anweisung</translation>
+        <translatorcomment>evtl. Einzelschrittanweisung???  (Artur: hört sich gut an)</translatorcomment>
+        <translation>Einzelschrittanweisung:</translation>
     </message>
     <message>
         <location filename="../windows/functionseditor.cpp" line="432"/>
@@ -3923,7 +3925,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../mainwindow.cpp" line="718"/>
         <source>Enter new name for the window:</source>
-        <translation>Geben Sie einen neuen Namen für das Fenster ein.</translation>
+        <translation>Neuen Namen für das Fenster eingeben:</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="804"/>
@@ -4264,12 +4266,12 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="290"/>
         <source>Select database with table to populate</source>
-        <translation>Wählen Sie die Datebank und Tabelle zum Auffüllen aus.</translation>
+        <translation>Wählen Sie die Datebank und Tabelle zum Auffüllen aus</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="291"/>
         <source>Select table to populate</source>
-        <translation>Wählen Sie die Tabelle zum Auffüllen aus.</translation>
+        <translation>Wählen Sie die Tabelle zum Auffüllen aus</translation>
     </message>
     <message>
         <location filename="../dialogs/populatedialog.cpp" line="292"/>
@@ -4696,7 +4698,7 @@ Bitte geben Sie einen neuen, eindeutigen Namen an oder drücken Sie %1, um den V
     <message>
         <location filename="../sqleditor.h" line="43"/>
         <source>Toggle comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Kommentar umschalten</translation>
     </message>
     <message>
         <location filename="../uiutils.cpp" line="32"/>
@@ -5122,7 +5124,7 @@ find next</source>
         <location filename="../sqleditor.cpp" line="142"/>
         <source>Toggle comment</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Kommentar umschalten</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="256"/>
