@@ -35,20 +35,37 @@ mv SQLiteStudio.app/Contents/plugins SQLiteStudio.app/Contents/PlugIns
 
 cp -RP lib*SQLiteStudio*.dylib SQLiteStudio.app/Contents/Frameworks
 
+# CLI paths
 qtcore_path=`otool -L sqlitestudiocli | grep QtCore | awk '{print $1;}'`
-new_qtcore_path="@loader_path/../Frameworks/QtCore.framework/Versions/5/QtCore"
+new_qtcore_path="@rpath/QtCore.framework/Versions/5/QtCore"
 
 cp -P sqlitestudiocli SQLiteStudio.app/Contents/MacOS
-install_name_tool -change libcoreSQLiteStudio.1.dylib "@loader_path/../Frameworks/libcoreSQLiteStudio.1.dylib" SQLiteStudio.app/Contents/MacOS/sqlitestudiocli
+install_name_tool -change libcoreSQLiteStudio.1.dylib "@rpath/libcoreSQLiteStudio.1.dylib" SQLiteStudio.app/Contents/MacOS/sqlitestudiocli
 install_name_tool -change $qtcore_path $new_qtcore_path SQLiteStudio.app/Contents/MacOS/sqlitestudiocli
 
+# SQLiteStudio binary paths
+install_name_tool -change libcoreSQLiteStudio.1.dylib "@rpath/libcoreSQLiteStudio.1.dylib" SQLiteStudio.app/Contents/MacOS/SQLiteStudio
+install_name_tool -change libguiSQLiteStudio.1.dylib "@rpath/libguiSQLiteStudio.1.dylib" SQLiteStudio.app/Contents/MacOS/SQLiteStudio
+
+# Lib paths
+install_name_tool -change libcoreSQLiteStudio.1.dylib "@rpath/libcoreSQLiteStudio.1.dylib" SQLiteStudio.app/Contents/Frameworks/libguiSQLiteStudio.1.dylib
+
 cp -RP ../../../lib/*.dylib SQLiteStudio.app/Contents/Frameworks
+
+# Plugin paths
+for f in `ls SQLiteStudio.app/Contents/PlugIns`
+do
+    PLUGIN_FILE=SQLiteStudio.app/Contents/PlugIns/$f
+    install_name_tool -change libcoreSQLiteStudio.1.dylib "@rpath/libcoreSQLiteStudio.1.dylib" $PLUGIN_FILE
+    install_name_tool -change libguiSQLiteStudio.1.dylib "@rpath/libguiSQLiteStudio.1.dylib" $PLUGIN_FILE
+done
+
 
 if [ "$3" == "dmg" ]; then
     $qt_deploy_bin SQLiteStudio.app -dmg
 elif [ "$3" == "dist" ] || [ "$3" == "dist_plugins" ] || [ "$3" == "dist_full" ]; then
     if [ "$3" == "dist" ] || [ "$3" == "dist_full" ]; then
-        $qt_deploy_bin SQLiteStudio.app -dmg
+        $qt_deploy_bin SQLiteStudio.app -dmg -executable=SQLiteStudio.app/Contents/MacOS/SQLiteStudio -always-overwrite -verbose=3 2> /tmp/log.txt
 
         cd $1/SQLiteStudio
         VERSION=`SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}'`
@@ -75,11 +92,12 @@ elif [ "$3" == "dist" ] || [ "$3" == "dist_plugins" ] || [ "$3" == "dist_full" ]
 
     # Plugins
     mkdir Contents Contents/PlugIns
-    SQLiteStudio.app/Contents/MacOS/sqlitestudio --list-plugins | while read line
+    SQLiteStudio.app/Contents/MacOS/SQLiteStudio --list-plugins | while read line
     do
     PLUGIN=`echo $line | awk '{print $1}'`
     PLUGIN_VER=`echo $line | awk '{print $2}'`
-    if [ -f SQLiteStudio.app/Contents/PlugIns/lib$PLUGIN.dylib ]; then
+    PLUGIN_FILE=SQLiteStudio.app/Contents/PlugIns/lib$PLUGIN.dylib
+    if [ -f $PLUGIN_FILE ]; then
         echo "Building plugin package: $PLUGIN-$PLUGIN_VER.tar.gz"
         cp SQLiteStudio.app/Contents/PlugIns/lib$PLUGIN.dylib Contents/PlugIns
         zip -r $PLUGIN\-$PLUGIN_VER.zip Contents
@@ -91,3 +109,4 @@ elif [ "$3" == "dist" ] || [ "$3" == "dist_plugins" ] || [ "$3" == "dist_full" ]
 else
     $qt_deploy_bin SQLiteStudio.app
 fi
+
