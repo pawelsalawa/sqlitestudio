@@ -6,7 +6,7 @@
     <message>
         <location filename="xmlexport.cpp" line="38"/>
         <source>Enter the namespace to use (for example: http://my.namespace.org)</source>
-        <translation>Saississez l&rsquo;espace nom (par exemple: http://my.namespace.org)</translation>
+        <translation>Saississez l’espace nom (par exemple : http://my.namespace.org)</translation>
     </message>
 </context>
 <context>
@@ -19,7 +19,7 @@
     <message>
         <location filename="XmlExport.ui" line="26"/>
         <source>Format document (new lines, indentation)</source>
-        <translation>Format document( nouvelle lignes, indentation)</translation>
+        <translation>Format document ( nouvelle lignes, indentation)</translation>
     </message>
     <message>
         <location filename="XmlExport.ui" line="42"/>
@@ -29,22 +29,22 @@
     <message>
         <location filename="XmlExport.ui" line="58"/>
         <source>Special characters escaping</source>
-        <translation>Caractères spécial d&rsquo;échappement</translation>
+        <translation>Caractères spécial d’échappement</translation>
     </message>
     <message>
         <location filename="XmlExport.ui" line="64"/>
         <source>&lt;p&gt;Ampersands will be used for shorter values and CDATA will be used for larger values. This applies only to values that require character escaping. Other values will be exported as they are.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Esperluette sera utilisée pourpour les valeurs les plus courtes et CDATA pour les plus longues. Ceci appliqué seulement aux valeurs qui requirent un caractère d&rsquo;échapement. Les autres valeurs seront exportées telque.&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;Esperluette sera utilisée pourpour les valeurs les plus courtes et CDATA pour les plus longues. Ceci appliqué seulement aux valeurs qui requirent un caractère d’échapement. Les autres valeurs seront exportées telque.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="XmlExport.ui" line="67"/>
         <source>Use CDATA and ampersands</source>
-        <translation>Utiliser esperluettes et CDATA</translation>
+        <translation>Utiliser les esperluettes et CDATA</translation>
     </message>
     <message>
         <location filename="XmlExport.ui" line="83"/>
         <source>&lt;p&gt;Every value requiring character escepe will be enclosed in CDATA block.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Toute valeur requierant un carctère d&rsquo;échappement sera incluse dans le block CDATA.&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;Toute valeur requierant un carctère d’échappement sera incluse dans le block CDATA.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="XmlExport.ui" line="86"/>
@@ -54,7 +54,7 @@
     <message>
         <location filename="XmlExport.ui" line="99"/>
         <source>&lt;p&gt;Every character that require esceping will be replaced with its ampersand escape sequence. No CDATA blocks will be used.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Chaque caractère requirant un échappement sera encadré avec une séquence esperluette.Aucun block CDATA ne sera utilisé&lt;/p&gt;</translation>
+        <translation>&lt;p&gt; Chaque caractère requirant un échappement sera encadré avec une séquence esperluette.Aucun block CDATA ne sera utilisé &lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="XmlExport.ui" line="102"/>

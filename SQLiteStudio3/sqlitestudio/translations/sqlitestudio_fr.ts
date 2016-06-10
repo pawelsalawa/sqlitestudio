@@ -32,7 +32,7 @@
     <message>
         <location filename="../main.cpp" line="51"/>
         <source>Enables Lemon parser debug messages for SQL code assistant.</source>
-        <translation>Message de déboguage avec l&rsquo;analyseur Lemon pour un assistant code SQL.</translation>
+        <translation>Message de déboguage avec l’analyseur Lemon pour un assistant code SQL.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="52"/>

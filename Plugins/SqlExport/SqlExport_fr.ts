@@ -6,27 +6,27 @@
     <message>
         <location filename="sqlexport.cpp" line="57"/>
         <source>-- Results of query:</source>
-        <translation>-- Résultats de la requête:</translation>
+        <translation>-- Résultats de la requête :</translation>
     </message>
     <message>
         <location filename="sqlexport.cpp" line="122"/>
         <source>-- Table: %1</source>
-        <translation>-- Table: %1</translation>
+        <translation>-- Table : %1</translation>
     </message>
     <message>
         <location filename="sqlexport.cpp" line="168"/>
         <source>-- Index: %1</source>
-        <translation>-- Indéxe: %1</translation>
+        <translation>-- Index : %1</translation>
     </message>
     <message>
         <location filename="sqlexport.cpp" line="185"/>
         <source>-- Trigger: %1</source>
-        <translation>-- Déclencheur: %1</translation>
+        <translation>-- Déclencheur : %1</translation>
     </message>
     <message>
         <location filename="sqlexport.cpp" line="202"/>
         <source>-- View: %1</source>
-        <translation>-- Vue: %1</translation>
+        <translation>-- Vue : %1</translation>
     </message>
     <message>
         <location filename="sqlexport.cpp" line="216"/>
@@ -36,7 +36,7 @@
     <message>
         <location filename="sqlexport.cpp" line="220"/>
         <source>-- Text encoding used: %1</source>
-        <translation>-- Encodage texte utilisé: %1</translation>
+        <translation>-- Encodage texte utilisé : %1</translation>
     </message>
     <message>
         <location filename="sqlexport.cpp" line="276"/>
@@ -72,7 +72,7 @@
     <message>
         <location filename="SqlExportQuery.ui" line="30"/>
         <source>Table name to use for INSERT statements:</source>
-        <translation>Nom de table pour utiliser la déclaration INSERT:</translation>
+        <translation>Nom de table pour utiliser la déclaration INSERT :</translation>
     </message>
     <message>
         <location filename="SqlExportQuery.ui" line="37"/>

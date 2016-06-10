@@ -18,13 +18,13 @@
         <location filename="htmlexport.cpp" line="115"/>
         <location filename="htmlexport.cpp" line="243"/>
         <source>Exported table: %1</source>
-        <translation>Table exportée: %1</translation>
+        <translation>Table exportée : %1</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="127"/>
         <location filename="htmlexport.cpp" line="255"/>
         <source>Table: %1</source>
-        <translation>Table: %1</translation>
+        <translation>Table : %1</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="255"/>
@@ -34,22 +34,22 @@
     <message>
         <location filename="htmlexport.cpp" line="308"/>
         <source>Exported database: %1</source>
-        <translation>Base de données exportée: %1</translation>
+        <translation>Base de données exportée : %1</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="324"/>
         <source>Index: %1</source>
-        <translation>Index: %1</translation>
+        <translation>Index : %1</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="330"/>
         <source>For table:</source>
-        <translation>Pour la table: </translation>
+        <translation>Pour la table : </translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="337"/>
         <source>Unique:</source>
-        <translation>Unique:</translation>
+        <translation>Unique :</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="338"/>
@@ -79,42 +79,42 @@
     <message>
         <location filename="htmlexport.cpp" line="377"/>
         <source>Trigger: %1</source>
-        <translation>Déclencheur: %1</translation>
+        <translation>Déclencheur : %1</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="383"/>
         <source>Activated:</source>
-        <translation>Activé:</translation>
+        <translation>Activé :</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="391"/>
         <source>Action:</source>
-        <translation>Action:</translation>
+        <translation>Action :</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="398"/>
         <source>On view:</source>
-        <translation>Sur la vue:</translation>
+        <translation>Sur la vue :</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="400"/>
         <source>On table:</source>
-        <translation>Sur la table:</translation>
+        <translation>Sur la table :</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="411"/>
         <source>Activate condition:</source>
-        <translation>Activé la condition:</translation>
+        <translation>Activé la condition :</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="418"/>
         <source>Code executed:</source>
-        <translation>Exécuter le code:</translation>
+        <translation>Exécuter le code :</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="452"/>
         <source>View: %1</source>
-        <translation>Vue: %1</translation>
+        <translation>Vue : %1</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="477"/>
@@ -127,7 +127,7 @@
     <message>
         <location filename="htmlexport.ui" line="36"/>
         <source>Maximum number of characters per cell:</source>
-        <translation>Nombre de caractères maximum par cellule:</translation>
+        <translation>Nombre de caractères maximum par cellule :</translation>
     </message>
     <message>
         <location filename="htmlexport.ui" line="43"/>
@@ -147,7 +147,7 @@
     <message>
         <location filename="htmlexport.ui" line="73"/>
         <source>Output format</source>
-        <translation>Format d&rsquo;affichage</translation>
+        <translation>Format d’affichage</translation>
     </message>
     <message>
         <location filename="htmlexport.ui" line="79"/>
@@ -162,12 +162,12 @@
     <message>
         <location filename="htmlexport.ui" line="108"/>
         <source>&lt;p&gt;When enabled, HTML characters such as &amp;lt;, &amp;gt; and &amp;amp; are not escaped in exported values. This allows you for example to export hyper-link enabled documents, but it also may result in incorrect HTML document (unmatched pairs of &amp;lt; and &amp;gt; characters). Be warned.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Lorsqu&rsquo;il y a des caractères HTML telque &amp;lt;, &amp;gt; et &amp;amp;ils ne sont pas enlevés des valeurs exportées. This allows you for example to export hyper-link enabled documents, but it also may result in incorrect HTML document (unmatched pairs of &amp;lt; and &amp;gt; characters).Soyez attentif.&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;Lorsqu’il y a des caractères HTML tel que &lt;, &gt; et &amp; ils ne sont pas enlevés des valeurs exportées. This allows you for example to export hyper-link enabled documents, but it also may result in incorrect HTML document (unmatched pairs of &lt; and &gt; characters).Soyez attentif.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="htmlexport.ui" line="111"/>
         <source>Don&apos;t escape HTML characters</source>
-        <translation>N&rsquo;enlevez pas les caractères HTML</translation>
+        <translation>N’enlevez pas les caractères HTML</translation>
     </message>
 </context>
 </TS>

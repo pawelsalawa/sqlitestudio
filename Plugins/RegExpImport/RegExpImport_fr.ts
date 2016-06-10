@@ -11,7 +11,7 @@
     <message>
         <location filename="regexpimport.cpp" line="53"/>
         <source>Cannot read file %1</source>
-        <translation>Impossible de lire le fichier: %1</translation>
+        <translation>Impossible de lire le fichier : %1</translation>
     </message>
     <message>
         <location filename="regexpimport.cpp" line="161"/>
@@ -21,12 +21,12 @@
     <message>
         <location filename="regexpimport.cpp" line="169"/>
         <source>Invalid pattern: %1</source>
-        <translation>Expression invalide: %1</translation>
+        <translation>Expression invalide : %1</translation>
     </message>
     <message>
         <location filename="regexpimport.cpp" line="189"/>
         <source>Requested capture index %1 is out of range.</source>
-        <translation>Allocation d&rsquo;index %1 hors limites.</translation>
+        <translation>Allocation d’index %1 hors limites.</translation>
     </message>
     <message>
         <location filename="regexpimport.cpp" line="196"/>
@@ -66,21 +66,21 @@
     <message>
         <location filename="regexpimport.ui" line="69"/>
         <source>Pattern:</source>
-        <translation>Modéle:</translation>
+        <translation>Modèle :</translation>
     </message>
     <message>
         <location filename="regexpimport.ui" line="76"/>
         <source>&lt;p&gt;Use Regular Expression groups to enclose parts of the expression that you want to import. If you want to use a group, that you don&apos;t want to import, then use &quot;import only following groups&quot; option below.
 
 You can use named groups and refer to them in group list below. To name a group use: &lt;pre&gt;(?&amp;lt;myGroupName&amp;gt;\s+\d+\s+)&lt;/pre&gt;&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Use Regular Expression groups to enclose parts of the expression that you want to import. If you want to use a group, that you don&rsquo;t want to import, then use &quot;import only following groups&quot; option below.
+        <translation>&lt;p&gt;Use Regular Expression groups to enclose parts of the expression that you want to import. If you want to use a group, that you don’t want to import, then use &quot;import only following groups&quot; option below.
 
 You can use named groups and refer to them in group list below. To name a group use: &lt;pre&gt;(?&amp;lt;myGroupName&amp;gt;\s+\d+\s+)&lt;/pre&gt;&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="regexpimport.ui" line="81"/>
         <source>Example: (\d+)\s+((\d+)\w+)\s+(\w+)</source>
-        <translation>Exemple: (\d+)\s+((\d+)\w+)\s+(\w+)</translation>
+        <translation>Exemple : (\d+)\s+((\d+)\w+)\s+(\w+)</translation>
     </message>
 </context>
 </TS>
