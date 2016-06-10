@@ -43,7 +43,7 @@
     <message>
         <location filename="CsvImportOptions.ui" line="34"/>
         <source>\t (tab)</source>
-        <translation>\t (tab)</translation>
+        <translation>\t (tabulation)</translation>
     </message>
     <message>
         <location filename="CsvImportOptions.ui" line="39"/>
@@ -53,7 +53,7 @@
     <message>
         <location filename="CsvImportOptions.ui" line="44"/>
         <source>Custom:</source>
-        <translation>Personalisé:</translation>
+        <translation>Personalisé :</translation>
     </message>
     <message>
         <location filename="CsvImportOptions.ui" line="52"/>
@@ -72,7 +72,7 @@
     <message>
         <location filename="CsvImportOptions.ui" line="65"/>
         <source>Field separator:</source>
-        <translation>Champ séparateur:</translation>
+        <translation>Champ séparateur :</translation>
     </message>
     <message>
         <location filename="CsvImportOptions.ui" line="85"/>
@@ -82,7 +82,7 @@
     <message>
         <location filename="CsvImportOptions.ui" line="88"/>
         <source>NULL values:</source>
-        <translation>Valeurs NULL:</translation>
+        <translation>Valeurs NULL :</translation>
     </message>
     <message>
         <location filename="CsvImportOptions.ui" line="98"/>

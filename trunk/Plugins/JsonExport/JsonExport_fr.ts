@@ -6,7 +6,7 @@
     <message>
         <location filename="jsonexport.ui" line="20"/>
         <source>Output format</source>
-        <translation>Format d&rsquo;affichage</translation>
+        <translation>Format d’affichage</translation>
     </message>
     <message>
         <location filename="jsonexport.ui" line="26"/>
@@ -16,7 +16,7 @@
     <message>
         <location filename="jsonexport.ui" line="42"/>
         <source>Compress (everything in one line)</source>
-        <translation>Condensé(tout sur une ligne)</translation>
+        <translation>Condensé (tout sur une ligne)</translation>
     </message>
 </context>
 </TS>

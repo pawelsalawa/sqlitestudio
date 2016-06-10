@@ -17,13 +17,13 @@
         <location filename="pdfexport.cpp" line="89"/>
         <location filename="pdfexport.cpp" line="143"/>
         <source>Exported table: %1</source>
-        <translation>Table exportée: %1</translation>
+        <translation>Table exportée : %1</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="92"/>
         <location filename="pdfexport.cpp" line="158"/>
         <source>Table: %1</source>
-        <translation>Table: %1</translation>
+        <translation>Table : %1</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="94"/>
@@ -49,12 +49,12 @@
     <message>
         <location filename="pdfexport.cpp" line="214"/>
         <source>Exported database: %1</source>
-        <translation>Base de données exportée: %1</translation>
+        <translation>Base de données exportée : %1</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="222"/>
         <source>Index: %1</source>
-        <translation>Index: %1</translation>
+        <translation>Index : %1</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="224"/>
@@ -101,12 +101,12 @@
     <message>
         <location filename="pdfexport.cpp" line="246"/>
         <source>Partial index condition</source>
-        <translation>Condition de l&rsquo;index partiel</translation>
+        <translation>Condition de l’index partiel</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="260"/>
         <source>Trigger: %1</source>
-        <translation>Déchencheur: %1</translation>
+        <translation>Déchencheur : %1</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="262"/>
@@ -153,12 +153,12 @@
     <message>
         <location filename="pdfexport.cpp" line="296"/>
         <source>View: %1</source>
-        <translation>Vue: %1</translation>
+        <translation>Vue : %1</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="297"/>
         <source>Query:</source>
-        <translation>Requête:</translation>
+        <translation>Requête :</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="649"/>
@@ -176,27 +176,27 @@
     <message>
         <location filename="pdfexport.ui" line="36"/>
         <source>Page size:</source>
-        <translation>Dimension page:</translation>
+        <translation>Dimension page :</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="63"/>
         <source>Right margin:</source>
-        <translation>Marge droite:</translation>
+        <translation>Marge droite :</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="70"/>
         <source>Left margin:</source>
-        <translation>Marge gauche:</translation>
+        <translation>Marge gauche :</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="77"/>
         <source>Cell padding:</source>
-        <translation>Remplissage cellule:</translation>
+        <translation>Remplissage cellule :</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="84"/>
         <source>Limit characters in single cell:</source>
-        <translation>Limite de caractères dans une cellule unique:</translation>
+        <translation>Limite de caractères dans une cellule unique :</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="91"/>
@@ -210,12 +210,12 @@
     <message>
         <location filename="pdfexport.ui" line="139"/>
         <source>Bottom margin:</source>
-        <translation>Marge inférieure:</translation>
+        <translation>Marge inférieure :</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="163"/>
         <source>Top margin:</source>
-        <translation>Marge supérieure:</translation>
+        <translation>Marge supérieure :</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="183"/>
@@ -230,12 +230,12 @@
     <message>
         <location filename="pdfexport.ui" line="212"/>
         <source>Headers background:</source>
-        <translation>Arrière plan des en-têtes:</translation>
+        <translation>Arrière plan des en-têtes :</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="235"/>
         <source>NULL value color:</source>
-        <translation>Couleur pour valeur NULL:</translation>
+        <translation>Couleur pour valeur NULL :</translation>
     </message>
     <message>
         <location filename="pdfexport.ui" line="261"/>

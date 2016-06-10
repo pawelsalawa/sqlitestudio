@@ -11,7 +11,7 @@
     <message>
         <location filename="CsvExport.ui" line="30"/>
         <source>Column separator:</source>
-        <translation>Séparateur de colonnes:</translation>
+        <translation>Séparateur de colonnes :</translation>
     </message>
     <message>
         <location filename="CsvExport.ui" line="41"/>
@@ -26,7 +26,7 @@
     <message>
         <location filename="CsvExport.ui" line="51"/>
         <source>\t (tab)</source>
-        <translation>\t (tab)</translation>
+        <translation>\t (tabulation)</translation>
     </message>
     <message>
         <location filename="CsvExport.ui" line="56"/>
@@ -36,12 +36,12 @@
     <message>
         <location filename="CsvExport.ui" line="61"/>
         <source>Custom:</source>
-        <translation>personnalisation:</translation>
+        <translation>personnalisation :</translation>
     </message>
     <message>
         <location filename="CsvExport.ui" line="82"/>
         <source>Export NULL values as:</source>
-        <translation>Exporter la valeur NULL comme:</translation>
+        <translation>Exporter la valeur NULL comme :</translation>
     </message>
     <message>
         <location filename="CsvExport.ui" line="89"/>
