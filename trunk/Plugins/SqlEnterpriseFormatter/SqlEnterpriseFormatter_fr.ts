@@ -21,12 +21,12 @@
     <message>
         <location filename="sqlenterpriseformatter.ui" line="58"/>
         <source>Line up keywords in multi-line queries</source>
-        <translation>Ligne de most clef en majuscule dans une requête multiligne</translation>
+        <translation>Ligne de mots-clefs en majuscule dans une requête multiligne</translation>
     </message>
     <message>
         <location filename="sqlenterpriseformatter.ui" line="68"/>
         <source>Indent contents of parenthesis block</source>
-        <translation>Indenté le contenu du block entre parenthèses</translation>
+        <translation>Indenté le contenu du bloc entre parenthèses</translation>
     </message>
     <message>
         <location filename="sqlenterpriseformatter.ui" line="91"/>
@@ -81,7 +81,7 @@
     <message>
         <location filename="sqlenterpriseformatter.ui" line="240"/>
         <source>After JOIN keywords in FROM clause</source>
-        <translation>Après le mot clef JOIN dans la clause FROM</translation>
+        <translation>Après le mot-clef JOIN dans la clause FROM</translation>
     </message>
     <message>
         <location filename="sqlenterpriseformatter.ui" line="250"/>
@@ -182,12 +182,12 @@
     <message>
         <location filename="sqlenterpriseformatter.ui" line="583"/>
         <source>Preferred name wrapper</source>
-        <translation>Preferred name wrapper</translation>
+        <translation>Échappement préféré</translation>
     </message>
     <message>
         <location filename="sqlenterpriseformatter.ui" line="600"/>
         <source>Always use name wrapping</source>
-        <translation>Always use name wrapping</translation>
+        <translation>Toujours échapper les identifiants</translation>
     </message>
     <message>
         <location filename="sqlenterpriseformatter.ui" line="610"/>
@@ -197,12 +197,12 @@
     <message>
         <location filename="sqlenterpriseformatter.ui" line="620"/>
         <source>Uppercase keywords</source>
-        <translation>Mots clef en majuscule</translation>
+        <translation>Mots-clefs en majuscule</translation>
     </message>
     <message>
         <location filename="sqlenterpriseformatter.ui" line="631"/>
         <source>Comments</source>
-        <translation type="unfinished"></translation>
+        <translation>Commentaires</translation>
     </message>
     <message>
         <location filename="sqlenterpriseformatter.ui" line="637"/>
@@ -217,12 +217,12 @@
     <message>
         <location filename="sqlenterpriseformatter.ui" line="654"/>
         <source>Move all comments to the line end</source>
-        <translation type="unfinished"></translation>
+        <translation>Déplacer tous les commentaires en fin de ligne</translation>
     </message>
     <message>
         <location filename="sqlenterpriseformatter.ui" line="664"/>
         <source>Line up comments at the line end</source>
-        <translation type="unfinished"></translation>
+        <translation>Alignez les commentaires en fin de ligne</translation>
     </message>
     <message>
         <location filename="sqlenterpriseformatter.ui" line="695"/>
