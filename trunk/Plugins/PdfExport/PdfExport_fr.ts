@@ -71,7 +71,7 @@
     <message>
         <location filename="pdfexport.cpp" line="227"/>
         <source>Indexed table</source>
-        <translation>Table indexées</translation>
+        <translation>Table indexée</translation>
     </message>
     <message>
         <location filename="pdfexport.cpp" line="228"/>

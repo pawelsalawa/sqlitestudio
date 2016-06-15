@@ -303,7 +303,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
         <location filename="../services/exportmanager.cpp" line="222"/>
         <source>Export to the file &apos;%1&apos; was successful.</source>
-        <translation>Export vers le fichier ’%1’ avec succès.</translation>
+        <translation>Export vers le fichier «&nbsp;%1&nbsp;» avec succès.</translation>
     </message>
     <message>
         <location filename="../services/exportmanager.cpp" line="224"/>
@@ -355,7 +355,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
         <location filename="../services/impl/functionmanagerimpl.cpp" line="232"/>
         <source>Invalid number of arguments to function &apos;%1&apos;. Expected %2, but got %3.</source>
-        <translation>Nombre de paramètres invalide de la fonction %1. Attendu %2, obtenu %3.</translation>
+        <translation>Nombre de paramètres invalide de la fonction «&nbsp;%1&nbsp;». Attendu %2, obtenu %3.</translation>
     </message>
     <message>
         <location filename="../services/impl/functionmanagerimpl.cpp" line="341"/>
@@ -668,7 +668,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
         <location filename="../plugins/populaterandomtext.ui" line="103"/>
         <source>Includes all above and all others.</source>
-        <translation>Inclus ci dessus et tous les autres.</translation>
+        <translation>Inclus ci-dessus et tous les autres.</translation>
     </message>
     <message>
         <location filename="../plugins/populaterandomtext.ui" line="106"/>
@@ -963,7 +963,7 @@ Détails erreur: %2</translation>
     <message>
         <location filename="../tablemodifier.cpp" line="379"/>
         <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
-        <translation>Toutes les colonnes indéxées par l’indexe %1 sont faites. L’indexe ne sera pas recréé après la modification de la table.</translation>
+        <translation>Toutes les colonnes indéxées par l’index %1 sont traitées. L’index ne sera pas recréé après la modification de la table.</translation>
     </message>
     <message>
         <location filename="../tablemodifier.cpp" line="418"/>
@@ -973,7 +973,7 @@ Détails erreur: %2</translation>
     <message>
         <location filename="../tablemodifier.cpp" line="465"/>
         <source>Cannot not update trigger %1 according to table %2 modification.</source>
-        <translation>Impossible de mettre à jour le déclencheur%1 selon la modification de la table %2.</translation>
+        <translation>Impossible de mettre à jour le déclencheur %1 selon la modification de la table %2.</translation>
     </message>
     <message>
         <location filename="../tablemodifier.cpp" line="645"/>

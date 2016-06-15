@@ -1317,7 +1317,7 @@ mais c’est OK pour l’utiliser.</translation>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1618"/>
         <source>&lt;p&gt;Bind parameters are placeholders for values yet to be provided by the user. They have one of the forms:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;:param_name&lt;/li&gt;&lt;li&gt;$param_name&lt;/li&gt;&lt;li&gt;@param_name&lt;/li&gt;&lt;li&gt;?&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation>&lt;p&gt;Les paramètres fournis par l’utilisateur sont passés par valeur. Ils ont l’une de ces formes:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;:param_name&lt;/li&gt;&lt;li&gt;$param_name&lt;/li&gt;&lt;li&gt;@param_name&lt;/li&gt;&lt;li&gt;?&lt;/li&gt;&lt;/ul&gt;</translation>
+        <translation>&lt;p&gt;Les paramètres fournis par l’utilisateur sont passés par valeur. Ils ont l’une de ces formes : &lt;/p&gt;&lt;ul&gt;&lt;li&gt;:param_name&lt;/li&gt;&lt;li&gt;$param_name&lt;/li&gt;&lt;li&gt;@param_name&lt;/li&gt;&lt;li&gt;?&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1621"/>
@@ -1332,7 +1332,7 @@ mais c’est OK pour l’utiliser.</translation>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1651"/>
         <source>&lt;p&gt;BLOB values are binary values represented as hexadecimal numbers, like:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;X&apos;12B4&apos;&lt;/li&gt;&lt;li&gt;x&apos;46A2F4&apos;&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation>&lt;p&gt;les valeurs BLOB sont binaire représentés comme nombres hexadécimaux, comme:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;X&apos;12B4&apos;&lt;/li&gt;&lt;li&gt;x&apos;46A2F4&apos;&lt;/li&gt;&lt;/ul&gt;</translation>
+        <translation>&lt;p&gt;les valeurs BLOB sont binaire représentés comme nombres hexadécimaux, comme : &lt;/p&gt;&lt;ul&gt;&lt;li&gt;X&apos;12B4&apos;&lt;/li&gt;&lt;li&gt;x&apos;46A2F4&apos;&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1654"/>
@@ -1382,7 +1382,7 @@ mais c’est OK pour l’utiliser.</translation>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1779"/>
         <source>&lt;p&gt;Any data changes will be outlined with this color, until they&apos;re commited to the database.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Touts les modifications de données seront écrits avec cette couleur,à l’enregistrement de la base de données.&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;Toutes les modifications de données seront écrits avec cette couleur,à l’enregistrement de la base de données.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1782"/>
@@ -1642,7 +1642,7 @@ mais c’est OK pour l’utiliser.</translation>
         <location filename="../windows/constrainttabmodel.cpp" line="109"/>
         <source>Column (%1)</source>
         <comment>table constraints</comment>
-        <translation>Colonne(%1)</translation>
+        <translation>Colonne (%1)</translation>
     </message>
     <message>
         <location filename="../windows/constrainttabmodel.cpp" line="153"/>
@@ -1905,7 +1905,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dialogs/dbconverterdialog.cpp" line="214"/>
         <source>Following error occurred while converting SQL statements to the target SQLite version:</source>
-        <translation>L’erreur suivante est survenue lors de la conversion des déclarations SQL dans cible version SQLite:</translation>
+        <translation>L’erreur suivante est survenue lors de la conversion des déclarations SQL dans cible version SQLite :</translation>
     </message>
     <message>
         <location filename="../dialogs/dbconverterdialog.cpp" line="215"/>
@@ -2067,7 +2067,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="180"/>
         <source>Are you sure you want to delete index %1?</source>
-        <translation>Confirmez la suppression de l’indexe %1 ?</translation>
+        <translation>Confirmez la suppression de l’index %1 ?</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="184"/>
@@ -2506,13 +2506,13 @@ Tous les objets de ce groupe seront déplacés dans le groupe parent.</translati
     <message>
         <source>Error details:</source>
         <comment>dbtree tooltip</comment>
-        <translation type="vanished">Détails erreur :</translation>
+        <translation>Détails de l’erreur :</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="438"/>
         <source>Error:</source>
         <comment>dbtree tooltip</comment>
-        <translation type="unfinished"></translation>
+        <translation>Erreur :</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="448"/>
@@ -2524,13 +2524,13 @@ Tous les objets de ce groupe seront déplacés dans le groupe parent.</translati
         <location filename="../dbtree/dbtreemodel.cpp" line="471"/>
         <source>Columns (%1):</source>
         <comment>dbtree tooltip</comment>
-        <translation>Colonnes :(%1):</translation>
+        <translation>Colonnes (%1):</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="474"/>
         <source>Indexes (%1):</source>
         <comment>dbtree tooltip</comment>
-        <translation>Index (%1) :</translation>
+        <translation>Indexs (%1) :</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="477"/>
@@ -2620,7 +2620,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez «&nbsp;%1&nbsp;» pour d’interr
         <source>-- Queries executed on database %1 (%2)
 -- Date and time of execution: %3
 %4</source>
-        <translation>-- Requête éxécutée sur la base de données %1(%2)
+        <translation>-- Requête éxécutée sur la base de données %1 (%2)
 -- Date et heure d’exécution : %3
 %4</translation>
     </message>
@@ -3003,7 +3003,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez «&nbsp;%1&nbsp;» pour d’interr
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="417"/>
         <source>All files (*)</source>
-        <translation>tous les fichiers(*)</translation>
+        <translation>Tous les fichiers(*)</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="420"/>
@@ -4271,7 +4271,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez «&nbsp;%1&nbsp;» pour d’interr
     <message>
         <location filename="../dbtree/dbtree.h" line="32"/>
         <source>Select all items</source>
-        <translation>Séléctionner tous les items</translation>
+        <translation>Séléctionner tous les éléments</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.h" line="33"/>
@@ -4948,7 +4948,7 @@ recherche suivant</translation>
     <message>
         <location filename="../sqleditor.cpp" line="1069"/>
         <source>SQL scripts (*.sql);;All files (*)</source>
-        <translation>Scripts SQL (*.sql);;tous fichiers (*)</translation>
+        <translation>Scripts SQL (*.sql);;Tous les fichiers (*)</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="1070"/>
@@ -5726,12 +5726,12 @@ Are you sure you want to create a table with blank name?</source>
     <message>
         <location filename="../windows/tablewindow.cpp" line="981"/>
         <source>Cannot create table %1, if it has no primary key defined. Either uncheck the %2, or define a primary key.</source>
-        <translation>Impossible de créer la table %1, s’il n’y a pas de clef primaire de définie. Toute fois ne pas contrôler %2 ou définir une clef primaire.</translation>
+        <translation>Impossible de créer la table %1, s’il n’y a pas de clef primaire de définie. Toutefois ne pas contrôler %2 ou définir une clef primaire.</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="988"/>
         <source>Cannot use autoincrement for primary key when %1 clause is used. Either uncheck the %2, or the autoincrement in a primary key.</source>
-        <translation>Impossible d’utiliser l’autoincrémentation pour une clef primaire quand la clause %1 est utilisée. Toute fois ne pas contrôler %2, ou utiliser l’autoincrémentation sur une clef primaire.</translation>
+        <translation>Impossible d’utiliser l’autoincrémentation pour une clef primaire quand la clause %1 est utilisée. Toutefois ne pas contrôler %2, ou utiliser l’autoincrémentation sur une clef primaire.</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1125"/>

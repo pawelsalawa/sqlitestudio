@@ -31,7 +31,7 @@
     <message>
         <location filename="regexpimport.cpp" line="196"/>
         <source>&lt;p&gt;Requested capture group name &apos;%1&apos;, but it&apos;s not defined in the pattern: &lt;pre&gt;%2&lt;/pre&gt;&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Requested capture group name &apos;%1&apos;, but it&apos;s not defined in the pattern: &lt;pre&gt;%2&lt;/pre&gt;&lt;/p&gt;</translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -49,19 +49,18 @@
     <message>
         <location filename="regexpimport.ui" line="39"/>
         <source>Import only following groups:</source>
-        <translation>Importer seulement les groupes suivant:</translation>
+        <translation>Importer seulement les groupes suivant :</translation>
     </message>
     <message>
         <location filename="regexpimport.ui" line="52"/>
         <source>&lt;p&gt;Enter comma separated list of capture group indexes. The 0 index refers to the entire matched string.&lt;/p&gt;
 &lt;p&gt;If you used named groups in the pattern, you can use names instead of indexes. You can mix indexes and names in this list.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Enter comma separated list of capture group indexes. The 0 index refers to the entire matched string.&lt;/p&gt;
-&lt;p&gt;If you used named groups in the pattern, you can use names instead of indexes. You can mix indexes and names in this list.&lt;/p&gt;</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="regexpimport.ui" line="56"/>
         <source>Example: 1, 3, 4</source>
-        <translation>Exemple: 1, 3, 4</translation>
+        <translation>Exemple : 1, 3, 4</translation>
     </message>
     <message>
         <location filename="regexpimport.ui" line="69"/>
@@ -73,9 +72,7 @@
         <source>&lt;p&gt;Use Regular Expression groups to enclose parts of the expression that you want to import. If you want to use a group, that you don&apos;t want to import, then use &quot;import only following groups&quot; option below.
 
 You can use named groups and refer to them in group list below. To name a group use: &lt;pre&gt;(?&amp;lt;myGroupName&amp;gt;\s+\d+\s+)&lt;/pre&gt;&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Use Regular Expression groups to enclose parts of the expression that you want to import. If you want to use a group, that you don’t want to import, then use &quot;import only following groups&quot; option below.
-
-You can use named groups and refer to them in group list below. To name a group use: &lt;pre&gt;(?&amp;lt;myGroupName&amp;gt;\s+\d+\s+)&lt;/pre&gt;&lt;/p&gt;</translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="regexpimport.ui" line="81"/>
