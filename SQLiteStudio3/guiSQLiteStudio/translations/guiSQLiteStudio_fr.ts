@@ -4508,7 +4508,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez «&nbsp;%1&nbsp;» pour d’interr
     <message>
         <location filename="../uiutils.cpp" line="32"/>
         <source>All SQLite databases</source>
-        <translation>Tius les bases de données SQLite</translation>
+        <translation>Toutes les bases de données SQLite</translation>
     </message>
     <message>
         <location filename="../uiutils.cpp" line="35"/>
