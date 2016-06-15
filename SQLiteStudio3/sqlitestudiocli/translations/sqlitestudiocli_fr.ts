@@ -62,7 +62,7 @@
     <message>
         <location filename="../commands/clicommandadd.cpp" line="24"/>
         <source>Adds given database pointed by &lt;path&gt; with given &lt;name&gt; to list the databases list. The &lt;name&gt; is just a symbolic name that you can later refer to. Just pick any unique name. For list of databases already on the list use %1 command.</source>
-        <translation>Ajoutez la base de données pointée par &lt;path&gt;nommée &lt;name&gt;à la liste des baszs de données. Le nom&lt;name&gt;est seulement un nom symbilique que vous pourrez y référer. Choississez un nom unique. Pour une base de données figuant dans la liste utilisez la commande %1.</translation>
+        <translation>Ajoutez la base de données pointée par &lt;chemin&gt; nommée &lt;nom&gt; à la liste des baszs de données. Le &lt;nom&gt;est seulement un nom symbolique que vous pourrez y référer. Choississez un nom unique. Pour une base de données figuant dans la liste utilisez la commande %1.</translation>
     </message>
     <message>
         <location filename="../commands/clicommandadd.cpp" line="34"/>
@@ -583,7 +583,7 @@ Appelez %2 pour voir la liste de toutes les bases de données.</translation>
     <message>
         <location filename="../commands/clicommandsql.cpp" line="69"/>
         <source>This command is executed every time you enter SQL query in command prompt. It executes the query on the current working database (see help for %1 for details). There&apos;s no sense in executing this command explicitly. Instead just type the SQL query in the command prompt, without any command prefixed.</source>
-        <translation>Cette commande est exécutée chaque fois vous saississez une requête SQL au prompt de commande. Il exécute la requête sur la base de données actuelle (voir l’aide %1 pour des détails). Il n’y a aucun sens dans l’exécution de cette commande explicitement. Instead just type the SQL query in the command prompt, without any command prefixed.</translation>
+        <translation>Cette commande est exécutée chaque fois vous saississez une requête SQL au prompt de commande. Il exécute la requête sur la base de données actuelle (voir l’aide %1 pour les détails). Il n’y a aucun sens dans l’exécution de cette commande explicitement. Instead just type the SQL query in the command prompt, without any command prefixed.</translation>
     </message>
     <message>
         <location filename="../commands/clicommandsql.cpp" line="85"/>
@@ -645,7 +645,7 @@ Appelez %2 pour voir la liste de toutes les bases de données.</translation>
         <location filename="../commands/clicommandtables.cpp" line="66"/>
         <source>Prints list of tables in given &lt;database&gt; or in the current working database. Note, that the &lt;database&gt; should be the name of the registered database (see %1). The output list includes all tables from any other databases attached to the queried database.
 When the -s option is given, then system tables are also listed.</source>
-        <translation>Imprime la liste des tables d’une &lt;database&gt; donnée ou la base de données actuelle. Notez que la &lt;database&gt; devrait être le nom enregistré de la base de données (voir %1). L’affichage de la liste inclus toutes les tables d’autres bases de données attachées à celle-ci.
+        <translation>Imprime la liste des tables de la &lt;base de données&gt; sélectionnée ou de la base de données actuelle. Notez que la &lt;base de données&gt; devrait être le nom enregistré de la base de données (voir %1). L’affichage de la liste inclus toutes les tables d’autres bases de données attachées à celle-ci.
 Lorsque l’option «&nbsp;-s&nbsp;» est ajouté, les tables système sont aussi listées.</translation>
     </message>
     <message>
@@ -701,8 +701,8 @@ When -s option is given, then also system objects will be printed (sqlite_* tabl
 The database argument is optional and if provided, then only given database will be printed. This is not a registered database name, but instead it&apos;s an internal SQLite database name, like &apos;main&apos;, &apos;temp&apos;, or any attached database name. To print tree for other registered database, call %1 first to switch the working database, and then use %2 command.</source>
         <translation>Imprime tous les objets (tables, index, déclencheurs et vues) qui sont dans la base de données comme un arbre. L’arbre est très semblable à celui que vous pouvez voir dans lGUI client de SQLiteStudio.
 Quand on ajoute l’option-c, alors aussi les colonnes seront inscrites sous chaque table.
-Quand on ajoute l’option-s, alors aussi les objets de système seront imprimés (sqlite_* tables, des index d’autoincrément, etc).
-L’argument de base de données est facultatif et si fourni, alors seulement la base de données donnée sera imprimée. Ceci n’est pas un nom de base de données enregistré, mais au lieu de cela c’est un nom de base de données SQLite interne, comme «&nbsp;principal&nbsp;», «&nbsp;temporaire&nbsp;», ou n’importe quel nom de base de données attaché. Pour imprimer l’arbre pour d’autre base de données enregistrée, appelez %1 d’abord pour changer la base de données actuelleet utiliser la commande %2.</translation>
+Quand on ajoute l’option-s, alors aussi les objets de système seront imprimés (sqlite_* tables, des index d’auto-incrément, etc).
+L’argument de base de données est facultatif et si fourni, alors seulement la base de données indiquée sera imprimée. Ceci n’est pas un nom de base de données enregistré, mais au lieu de cela c’est un nom de base de données SQLite interne, comme «&nbsp;principal&nbsp;», «&nbsp;temporaire&nbsp;», ou n’importe quel nom de base de données attaché. Pour imprimer l’arbre pour d’autre base de données enregistrée, appelez %1 d’abord pour changer la base de données actuelleet utiliser la commande %2.</translation>
     </message>
 </context>
 <context>
@@ -747,7 +747,7 @@ Quel est la base de données actuelle ?
 Quand vous saississez une requête SQL à exécuter, celle-ci est exécutée sur la base de données par défaut, que l’on connaît aussi comme la base de données actuelle. La plupart de commandes concernant la base de données utilise la base de données de défaut d’utilisation, si on n’a fourni aucune base de données dans leurs arguments. La base de données actuelle est toujours identifiée par la ligne de commande. La base de données par défaut est toujours définie (à moins qu’il n’y ait aucune base de données dans la liste).
 
 La base de données par défaut peut être choisie de diverses manières :
-- Utilisation de la commande%1,
+- Utilisation de la commande %1,
 - En passant nom de fichier de base de données aux paramètres de démarrage d’application,
 - En passantle nom la base de données enregistrée aux paramètres de démarrage d’application,
 - En restaurant la base de données par défaut précédemment choisie dans la configuration sauvée,
@@ -794,7 +794,7 @@ Expected one of: %2</source>
         <location filename="../commands/clicommandnullvalue.cpp" line="31"/>
         <source>string</source>
         <comment>CLI command syntax</comment>
-        <translation>Chaine</translation>
+        <translation>Chaîne</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="22"/>
@@ -809,7 +809,7 @@ Expected one of: %2</source>
     <message>
         <location filename="../main.cpp" line="27"/>
         <source>Enables Lemon parser debug messages for SQL code assistant.</source>
-        <translation>Permet le débogage avec l’analyseur syntaxique de Lemo pour l’assistant SQL.</translation>
+        <translation>Permet le débogage avec l’analyseur syntaxique de Lemon pour l’assistant SQL.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="28"/>
