@@ -16,12 +16,12 @@
     <message>
         <location filename="configmigration.cpp" line="145"/>
         <source>Database list (%1)</source>
-        <translation>Liste des bases de données(%1)</translation>
+        <translation>Liste des bases de données (%1)</translation>
     </message>
     <message>
         <location filename="configmigration.cpp" line="154"/>
         <source>Custom SQL functions (%1)</source>
-        <translation>Personnalisation des fonctions SQL(%1)</translation>
+        <translation>Personnalisation des fonctions SQL (%1)</translation>
     </message>
     <message>
         <location filename="configmigration.cpp" line="163"/>

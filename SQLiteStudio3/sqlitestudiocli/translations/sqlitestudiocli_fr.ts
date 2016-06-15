@@ -776,7 +776,7 @@ La base de données par défaut peut être choisie de diverses manières :
         <location filename="../clicommandsyntax.cpp" line="347"/>
         <source>Invalid argument value: %1.
 Expected one of: %2</source>
-        <translation>Valeur invalide de l’arguement %1. Exepté l’un d’eux : %2</translation>
+        <translation>Valeur invalide de l’arguement %1. Excepté l’un d’eux : %2</translation>
     </message>
     <message>
         <location filename="../clicommandsyntax.cpp" line="383"/>

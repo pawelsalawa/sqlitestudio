@@ -31,7 +31,7 @@
     <message>
         <location filename="sqlexport.cpp" line="216"/>
         <source>-- File generated with SQLiteStudio v%1 on %2</source>
-        <translation>-- Fichier généré par SQLiteStudio v%1sur %2</translation>
+        <translation>-- Fichier généré par SQLiteStudio v%1 sur %2</translation>
     </message>
     <message>
         <location filename="sqlexport.cpp" line="220"/>
