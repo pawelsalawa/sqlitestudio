@@ -7,12 +7,12 @@
         <location filename="../db/abstractdb.cpp" line="306"/>
         <location filename="../db/abstractdb.cpp" line="323"/>
         <source>Cannot execute query on closed database.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Não é possível executar query em banco de dados fechado.</translation>
     </message>
     <message>
         <location filename="../db/abstractdb.cpp" line="603"/>
         <source>Error attaching database %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"> </translation>
     </message>
 </context>
 <context>
@@ -20,7 +20,7 @@
     <message>
         <location filename="../services/bugreporter.cpp" line="46"/>
         <source>Invalid login or password</source>
-        <translation type="unfinished"></translation>
+        <translation>login ou senha inválido</translation>
     </message>
 </context>
 <context>
@@ -29,37 +29,37 @@
         <location filename="../db/chainexecutor.cpp" line="35"/>
         <source>The database for executing queries was not defined.</source>
         <comment>chain executor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Não foi especificado banco de dados para execução das consultas. </translation>
     </message>
     <message>
         <location filename="../db/chainexecutor.cpp" line="41"/>
         <source>The database for executing queries was not open.</source>
         <comment>chain executor</comment>
-        <translation type="unfinished"></translation>
+        <translation>O banco de dados para execução das consultas não foi aberto.</translation>
     </message>
     <message>
         <location filename="../db/chainexecutor.cpp" line="50"/>
         <source>Could not disable foreign keys in the database. Details: %1</source>
         <comment>chain executor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível desativar as chaves estrangeiras do banco de dados. Detalhes: %1</translation>
     </message>
     <message>
         <location filename="../db/chainexecutor.cpp" line="57"/>
         <source>Could not start a database transaction. Details: %1</source>
         <comment>chain executor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível iniciar a transação do banco de dados. Detalhes: %1</translation>
     </message>
     <message>
         <location filename="../db/chainexecutor.cpp" line="84"/>
         <source>Interrupted</source>
         <comment>chain executor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Interrompido</translation>
     </message>
     <message>
         <location filename="../db/chainexecutor.cpp" line="145"/>
         <source>Could not commit a database transaction. Details: %1</source>
         <comment>chain executor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível efetuar commit no banco de dados. Detalhes: %1</translation>
     </message>
 </context>
 <context>
@@ -187,29 +187,29 @@
         <location filename="../dbobjectorganizer.cpp" line="380"/>
         <location filename="../dbobjectorganizer.cpp" line="412"/>
         <source>Error while creating table in target database: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro ao criar tabela no banco de dados: %1</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="380"/>
         <source>Could not parse table.</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível analisar a tabela.</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="426"/>
         <source>Database %1 could not be attached to database %2, so the data of table %3 will be copied with SQLiteStudio as a mediator. This method can be slow for huge tables, so please be patient.</source>
-        <translation type="unfinished"></translation>
+        <translation>Banco de dados %1 não pôde ser ligado ao banco de dados %2, de modo que os dados da tabela %3 vão ser copiados com o SQLiteStudio como um mediador. Este metodo pode ser lento para grande tabelas, por favor seja paciente. </translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="447"/>
         <source>Error while copying data for table %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro ao copiar data para tabela %1:%2</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="466"/>
         <location filename="../dbobjectorganizer.cpp" line="473"/>
         <location filename="../dbobjectorganizer.cpp" line="496"/>
         <source>Error while copying data to table %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro ao copiar data para tabela %1:%2</translation>
     </message>
     <message>
         <location filename="../dbobjectorganizer.cpp" line="535"/>
