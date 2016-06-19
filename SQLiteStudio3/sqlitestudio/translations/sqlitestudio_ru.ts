@@ -51,7 +51,7 @@
     <message>
         <location filename="../main.cpp" line="54"/>
         <source>Enables debugging of SQLiteStudio&apos;s query executor.</source>
-        <translation type="unfinished"></translation>
+        <translation>Включает отладку обработчика запросов SQLiteStudio.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="55"/>

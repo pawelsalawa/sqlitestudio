@@ -680,17 +680,17 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="385"/>
         <source>Scale is not allowed for INTEGER PRIMARY KEY columns.</source>
-        <translation type="unfinished"></translation>
+        <translation>Указание размера данных недопустимо для столбцов с типом INTEGER PRIMARY KEY.</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="386"/>
         <source>Precision cannot be defined without the scale.</source>
-        <translation type="unfinished"></translation>
+        <translation>Точность не может быть задана без указания размера данных.</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="407"/>
         <source>Precision is not allowed for INTEGER PRIMARY KEY columns.</source>
-        <translation type="unfinished"></translation>
+        <translation>Указание точности недопустимо для столбцов с типом INTEGER PRIMARY KEY.</translation>
     </message>
 </context>
 <context>
@@ -967,27 +967,27 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="351"/>
         <source>Database dialog window</source>
-        <translation type="unfinished"></translation>
+        <translation>Диалоговое окно добавления базы данных</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="357"/>
         <source>&lt;p&gt;When adding new database it is marked to be &quot;permanent&quot; (stored in configuration) by default. Checking this option makes every new database to NOT be &quot;permanent&quot; by default.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;По умолчанию при добавлении базы данных она отмечается как &quot;постоянная&quot; (т.е. сохраняется в конфигурацию). При установке данной опции все добавляемые базы данных по умолчанию НЕ будут отмечены как &quot;постоянные&quot;.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="360"/>
         <source>Do not mark database to be &quot;permanent&quot; by default</source>
-        <translation type="unfinished"></translation>
+        <translation>Не отмечать базу данных как &quot;постоянную&quot; по умолчанию</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="370"/>
         <source>&lt;p&gt;When this option is enabled, then files dropped from file manager onto database list will be automatically added to the list, bypassing standard database dialog. If for various reasons automatic process fails, then standard dialog will be presented to the user.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;При выборе данной опции все файлы, перетянутые в список баз данных из файлового менеджера, будут автоматически добавлены в список без отображения диалога добавления базы данных. Если по каким-либо причинам автоматическое добавление не получится, пользователю будет показан стандартный диалог добавления базы данных.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="373"/>
         <source>Try to bypass dialog completly when dropping database file onto the list</source>
-        <translation type="unfinished"></translation>
+        <translation>Не показывать диалог при перетягивании файла базы данных в список</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="418"/>
@@ -1013,12 +1013,12 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="479"/>
         <source>&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Если данная опция активирована и пользователь наводит указатель мыши на ячейку в любом режиме просмотра данных (результаты запроса, данные таблицы, данные представления), то будет отображена всплывающая подсказка с информацией о ячейке, в том числе информация о типе данных столбца, ограничениях, значение ROWID и прочее.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="482"/>
         <source>Show column and row details tooltip in data view</source>
-        <translation type="unfinished"></translation>
+        <translation>Показывать всплывающую подсказку с информацией о столбце и строке при просмотре данных</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="495"/>
@@ -1047,32 +1047,32 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="552"/>
         <source>&lt;p&gt;When enabled, Table Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Если опция активирована, окна таблиц будут открываться на вкладке данных вместо вкладки со структурой.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="565"/>
         <source>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every Table Window, instead of being at second place.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Если опция активирована, вкладка &quot;Данные&quot; в окнах таблиц будет первой, а не второй по порядку.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="568"/>
         <source>Place data tab as first tab in a Table Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Помещать вкладку данных в окнах таблиц первой</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="587"/>
         <source>&lt;p&gt;When enabled, View Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Если опция активирована, окна представлений будут открываться на вкладке данных вместо вкладки со структурой.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="600"/>
         <source>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every View Window, instead of being at second place.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Если опция активирована, вкладка &quot;Данные&quot; в окнах представлений будет первой, а не второй по порядку.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="603"/>
         <source>Place data tab as first tab in a View Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Помещать вкладку данных в окнах представлений первой</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="647"/>
@@ -1158,17 +1158,17 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="871"/>
         <source>Status Field</source>
-        <translation type="unfinished"></translation>
+        <translation>Окно статуса</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="877"/>
         <source>&lt;p&gt;When user manually closes the Status panel, this option makes sure that if any new message is printed in the Status panel it will be reopened. If it&apos;s disabled, then Status panel can only be open manually by the user from the &quot;View&quot; menu.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Если пользователь вручную закрыл окно статуса, включение данной опции гарантирует, что при появлении новых сообщений окно статуса будет автоматически открыто. Если опция отключена, окно статуса может быть заново открыто только пользователем вручную через меню &quot;Вид&quot;.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="880"/>
         <source>Always open Status panel when new message is printed</source>
-        <translation type="unfinished"></translation>
+        <translation>Всегда открывать окно статуса при появлении нового сообщения</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="922"/>
@@ -2189,23 +2189,24 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="282"/>
         <source>Delete objects</source>
-        <translation type="unfinished">Удалить объекты</translation>
+        <translation>Удалить объекты</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="283"/>
         <source>Are you sure you want to delete following objects:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы действительно хотите удалить следующие объекты:
+%1</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="290"/>
         <source>Cannot start transaction. Details: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно начать транзакцию. Подробности: %1</translation>
     </message>
     <message>
         <location filename="../dbobjectdialogs.cpp" line="327"/>
         <source>Cannot commit transaction. Details: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно подтвердить транзакцию. Подробности: %1</translation>
     </message>
 </context>
 <context>
@@ -2440,7 +2441,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="339"/>
         <source>Generate query for table</source>
-        <translation type="unfinished"></translation>
+        <translation>Сгенерировать запрос для этой таблицы</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1041"/>
@@ -2472,23 +2473,23 @@ All objects from this group will be moved to parent group.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1126"/>
         <source>Are you sure you want to remove database &apos;%1&apos; from the list?</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы действительно хотите удалить базу данных &apos;%1&apos; из списка?</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1134"/>
         <source>Are you sure you want to remove following databases from the list:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы действительно хотите удалить следующие базы данных из списка: %1</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1136"/>
         <source>Remove database</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить базу данных</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1442"/>
         <source>Vacuum (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Операция VACUUM (%1)</translation>
     </message>
     <message>
         <source>Delete database</source>
@@ -2705,7 +2706,7 @@ All objects from this group will be moved to parent group.</source>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1162"/>
         <source>Could not add dropped database file &apos;%1&apos; automatically. Manual setup is necessary.</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно автоматически добавить перетянутый файл базы данных &apos;%1&apos;. Необходима ручная настройка.</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1209"/>
@@ -3532,27 +3533,27 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/indexdialog.ui" line="98"/>
         <source>Delete selected indexed expression</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить выбранное индексируемое выражение</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="108"/>
         <source>Moves selected index column up in the order, making it more significant in the index.</source>
-        <translation type="unfinished"></translation>
+        <translation>Переместить индексируемый столбец выше по списку, увеличивая его значимость в индексе.</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="118"/>
         <source>Moves selected index column down in the order, making it less significant in the index.</source>
-        <translation type="unfinished"></translation>
+        <translation>Переместить индексируемый столбец ниже по списку, снижая его значимость в индексе.</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="149"/>
         <source>Edit selected indexed expression</source>
-        <translation type="unfinished"></translation>
+        <translation>Редактировать выбранное индексируемое выражение</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="169"/>
         <source>Add indexed expression</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить индексируемое выражение</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.ui" line="180"/>
@@ -3572,7 +3573,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="206"/>
         <source>Unique index cannot have indexed expressions. Either remove expressions from list below, or uncheck this option.</source>
-        <translation type="unfinished"></translation>
+        <translation>Уникальный индекс не может содержать индексируемые выражения. Либо удалите выражения из списка ниже, либо отключите эту опцию.</translation>
     </message>
     <message>
         <location filename="../dialogs/indexdialog.cpp" line="207"/>
@@ -3626,42 +3627,42 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../dialogs/indexexprcolumndialog.ui" line="14"/>
         <source>Indexed expression</source>
-        <translation type="unfinished"></translation>
+        <translation>Индексируемое выражение</translation>
     </message>
     <message>
         <location filename="../dialogs/indexexprcolumndialog.ui" line="20"/>
         <source>Expression to index</source>
-        <translation type="unfinished"></translation>
+        <translation>Выражение для добавления в индекс</translation>
     </message>
     <message>
         <location filename="../dialogs/indexexprcolumndialog.cpp" line="60"/>
         <source>This expression is already indexed by the index.</source>
-        <translation type="unfinished"></translation>
+        <translation>Такое выражение уже присутствует в индексе.</translation>
     </message>
     <message>
         <location filename="../dialogs/indexexprcolumndialog.cpp" line="66"/>
         <source>Column should be indexed directly, not by expression. Either extend this expression to contain something more than just column name, or abort and select this column in index dialog directly.</source>
-        <translation type="unfinished"></translation>
+        <translation>Столбец необходимо индексировать напрямую, а не выражением. Либо добавьте в выражение что-либо кроме имени столбца, либо отмените изменения и отметьте столбец непосредственно в окне индекса.</translation>
     </message>
     <message>
         <location filename="../dialogs/indexexprcolumndialog.cpp" line="76"/>
         <source>Column &apos;%1&apos; does not belong to the table covered by this index. Indexed expressions can refer only to columns from the indexed table.</source>
-        <translation type="unfinished"></translation>
+        <translation>Столбец &apos;%1&apos; не принадлежит к индексируемой таблице. Индексируемые выражения могут ссылаться только на столбцы индексируемой таблицы.</translation>
     </message>
     <message>
         <location filename="../dialogs/indexexprcolumndialog.cpp" line="84"/>
         <source>It&apos;s forbidden to use &apos;SELECT&apos; statements in indexed expressions.</source>
-        <translation type="unfinished"></translation>
+        <translation>Запрещено использовать конструкции SELECT в индексируемых выражениях.</translation>
     </message>
     <message>
         <location filename="../dialogs/indexexprcolumndialog.cpp" line="105"/>
         <source>Enter an indexed expression.</source>
-        <translation type="unfinished"></translation>
+        <translation>Введите индексируемое выражение.</translation>
     </message>
     <message>
         <location filename="../dialogs/indexexprcolumndialog.cpp" line="119"/>
         <source>Invalid expression.</source>
-        <translation type="unfinished"></translation>
+        <translation>Некорректное выражение.</translation>
     </message>
 </context>
 <context>
@@ -4720,7 +4721,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../sqleditor.h" line="43"/>
         <source>Toggle comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Комментировать/раскомментировать</translation>
     </message>
     <message>
         <location filename="../uiutils.cpp" line="32"/>
@@ -5142,7 +5143,7 @@ find next</source>
         <location filename="../sqleditor.cpp" line="142"/>
         <source>Toggle comment</source>
         <comment>sql editor</comment>
-        <translation type="unfinished"></translation>
+        <translation>Комментировать/раскомментировать</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="256"/>
@@ -5243,7 +5244,7 @@ find next</source>
     <message>
         <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="303"/>
         <source>Foreign key for column %2 has more than %1 possible values. It&apos;s too much to display in drop down list. You need to edit value manually.</source>
-        <translation type="unfinished"></translation>
+        <translation>Внешний ключ для столбца %2 имеет более чем %1 возможных значений. Это слишком много для отображения в выпадающем списке. Вам необходимо ввести значение вручную.</translation>
     </message>
 </context>
 <context>
@@ -5321,7 +5322,7 @@ find next</source>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="55"/>
         <source>Go to referenced row in...</source>
-        <translation type="unfinished"></translation>
+        <translation>Перейти к связанной строке в...</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="78"/>
@@ -5406,7 +5407,7 @@ find next</source>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="155"/>
         <source>Generate query for selected cells</source>
-        <translation type="unfinished"></translation>
+        <translation>Сгенерировать запрос для выбранных ячеек</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="312"/>
@@ -5416,17 +5417,17 @@ find next</source>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="370"/>
         <source>Go to referenced row in table &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Перейти к связанной строке в таблице &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="382"/>
         <source>table &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>таблица &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="403"/>
         <source>Referenced row (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Связанная строка (%1)</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryview.cpp" line="668"/>
@@ -5651,39 +5652,42 @@ but it&apos;s okay to use them anyway.</source>
         <source>Primary
 Key</source>
         <comment>table structure columns</comment>
-        <translation type="unfinished"></translation>
+        <translation>Первичный
+ключ</translation>
     </message>
     <message>
         <location filename="../windows/tablestructuremodel.cpp" line="307"/>
         <source>Foreign
 Key</source>
         <comment>table structure columns</comment>
-        <translation type="unfinished"></translation>
+        <translation>Внешний
+ключ</translation>
     </message>
     <message>
         <location filename="../windows/tablestructuremodel.cpp" line="309"/>
         <source>Unique</source>
         <comment>table structure columns</comment>
-        <translation type="unfinished">Уникальность</translation>
+        <translation>Уникальность</translation>
     </message>
     <message>
         <location filename="../windows/tablestructuremodel.cpp" line="311"/>
         <source>Check</source>
         <comment>table structure columns</comment>
-        <translation type="unfinished">Проверка</translation>
+        <translation>Проверка</translation>
     </message>
     <message>
         <location filename="../windows/tablestructuremodel.cpp" line="313"/>
         <source>Not
 NULL</source>
         <comment>table structure columns</comment>
-        <translation type="unfinished"></translation>
+        <translation>Не
+NULL</translation>
     </message>
     <message>
         <location filename="../windows/tablestructuremodel.cpp" line="315"/>
         <source>Collate</source>
         <comment>table structure columns</comment>
-        <translation type="unfinished">Сравнение</translation>
+        <translation>Сравнение</translation>
     </message>
     <message>
         <location filename="../windows/tablestructuremodel.cpp" line="317"/>
@@ -5978,12 +5982,12 @@ Would you like to proceed?</source>
     <message>
         <location filename="../windows/tablewindow.cpp" line="824"/>
         <source>Commited changes for table &apos;%1&apos; successfly.</source>
-        <translation type="unfinished"></translation>
+        <translation>Изменения в таблицу &apos;%1&apos; внесены успешно.</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="826"/>
         <source>Commited changes for table &apos;%1&apos; (named before &apos;%2&apos;) successfly.</source>
-        <translation type="unfinished"></translation>
+        <translation>Изменения в таблицу &apos;%1&apos; (предыдущее название &apos;%2&apos;) внесены успешно.</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="858"/>
@@ -6300,7 +6304,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
         <location filename="../windows/viewwindow.ui" line="113"/>
         <source>Output column names</source>
-        <translation type="unfinished"></translation>
+        <translation>Отображаемые имена столбцов</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.ui" line="156"/>
@@ -6378,42 +6382,42 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
         <location filename="../windows/viewwindow.cpp" line="318"/>
         <source>Explicit column names</source>
-        <translation type="unfinished"></translation>
+        <translation>Явные имена столбцов</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="324"/>
         <source>Generate output column names automatically basing on result columns of the view.</source>
-        <translation type="unfinished"></translation>
+        <translation>Сгенерировать отображаемые имена столбцов на основе результирующих столбцов представления.</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="325"/>
         <source>Add column</source>
         <comment>view window</comment>
-        <translation type="unfinished">Добавить столбец</translation>
+        <translation>Добавить столбец</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="326"/>
         <source>Edit column</source>
         <comment>view window</comment>
-        <translation type="unfinished">Редактировать столбец</translation>
+        <translation>Редактировать столбец</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="327"/>
         <source>Delete column</source>
         <comment>view window</comment>
-        <translation type="unfinished">Удалить столбец</translation>
+        <translation>Удалить столбец</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="328"/>
         <source>Move column up</source>
         <comment>view window</comment>
-        <translation type="unfinished">Переместить столбец вверх</translation>
+        <translation>Переместить столбец вверх</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="329"/>
         <source>Move column down</source>
         <comment>view window</comment>
-        <translation type="unfinished">Переместить столбец вниз</translation>
+        <translation>Переместить столбец вниз</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="334"/>
@@ -6484,12 +6488,12 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
         <location filename="../windows/viewwindow.cpp" line="627"/>
         <source>Commited changes for view &apos;%1&apos; successfly.</source>
-        <translation type="unfinished"></translation>
+        <translation>Изменения в представление &apos;%1&apos; внесены успешно.</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="629"/>
         <source>Commited changes for view &apos;%1&apos; (named before &apos;%2&apos;) successfly.</source>
-        <translation type="unfinished"></translation>
+        <translation>Изменения в представление &apos;%1&apos; (предыдущее название &apos;%2&apos;) внесены успешно.</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="640"/>
@@ -6500,17 +6504,17 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
         <location filename="../windows/viewwindow.cpp" line="782"/>
         <source>Override columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Перезапись столбцов</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="782"/>
         <source>Currently defined columns will be overriden. Do you want to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>Заданные столбцы будут перезаписаны. Вы хотите продолжить?</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="805"/>
         <source>Could not determinate columns returned from the view. The query is problably incomplete or contains errors.</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно определить столбцы, возвращаемые представлением. Вероятно запрос неполон или содержит ошибки.</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="866"/>
