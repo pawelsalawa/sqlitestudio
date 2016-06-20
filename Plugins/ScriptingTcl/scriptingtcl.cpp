@@ -435,6 +435,28 @@ int ScriptingTcl::dbCommand(ClientData clientData, Tcl_Interp* interp, int objc,
     return TCL_ERROR;
 }
 
+int ScriptingTcl::initTclCommand(ClientData clientData, Tcl_Interp* interp, int objc, Tcl_Obj* const objv[])
+{
+    UNUSED(clientData);
+    UNUSED(objv);
+
+    if (objc > 1)
+    {
+        Tcl_Obj* result = Tcl_NewStringObj(tr("Error from Tcl's' '%1' command: %2").arg("tcl_init", "invalid # args: tcl_init").toUtf8().constData(), -1);
+        Tcl_SetObjResult(interp, result);
+        return TCL_ERROR;
+    }
+
+    int res = Tcl_Init(interp);
+    if (res != TCL_OK)
+    {
+        ScriptObject codeObj("set tcl_library $tcl_pkgPath");
+        Tcl_EvalObjEx(interp, codeObj.getTclObj(), TCL_EVAL_GLOBAL);
+        res = Tcl_Init(interp);
+    }
+    return res;
+}
+
 int ScriptingTcl::dbEval(ContextTcl* ctx, Tcl_Interp* interp, Tcl_Obj* const objv[])
 {
     SqlQueryPtr execResults = dbCommonEval(ctx, interp, objv);
@@ -653,4 +675,5 @@ void ScriptingTcl::ContextTcl::reset()
 void ScriptingTcl::ContextTcl::init()
 {
     Tcl_CreateObjCommand(interp, "db", ScriptingTcl::dbCommand, reinterpret_cast<ClientData>(this), nullptr);
+    Tcl_CreateObjCommand(interp, "tcl_init", ScriptingTcl::initTclCommand, reinterpret_cast<ClientData>(this), nullptr);
 }
