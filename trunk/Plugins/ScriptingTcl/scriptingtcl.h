@@ -92,6 +92,7 @@ class SCRIPTINGTCLSHARED_EXPORT ScriptingTcl : public GenericPlugin, public DbAw
         static Tcl_Obj* variantToTclObj(const QVariant& value);
         static Tcl_Obj* stringToTclObj(const QString& value);
         static int dbCommand(ClientData clientData, Tcl_Interp* interp, int objc, Tcl_Obj* const objv[]);
+        static int initTclCommand(ClientData clientData, Tcl_Interp* interp, int objc, Tcl_Obj* const objv[]);
         static int dbEval(ContextTcl* ctx, Tcl_Interp* interp, Tcl_Obj* const objv[]);
         static int dbEvalRowByRow(ContextTcl* ctx, Tcl_Interp* interp, Tcl_Obj* const objv[]);
         static int dbEvalDeepResults(ContextTcl* ctx, Tcl_Interp* interp, Tcl_Obj* const objv[]);
