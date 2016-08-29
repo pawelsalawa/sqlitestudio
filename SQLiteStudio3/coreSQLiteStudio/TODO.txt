@@ -48,6 +48,7 @@ cannot reproduce:
 - constraints tab in table window should have toolbar for adding/editing/deleting constraints
 - add menu mnemonics support (underlined shortcut letters)
 - per column filtering field when clicked on column header(?)
+- option to show current window's DB path in top window title
 
 CLI:
 - plugin management commands

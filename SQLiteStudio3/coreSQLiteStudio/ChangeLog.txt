@@ -1,5 +1,7 @@
 [3.1.1]
-        * [ADDED]: ScriptingTcl has now "tcl_init" command to invoke full interpreter initialization, which creates [clock] commands and some others. It's not invoked automatically to avoid performane issues.
+        * [ADDED]: #3106 ScriptingTcl has now "tcl_init" command to invoke full interpreter initialization, which creates [clock] commands and some others. It's not invoked automatically to avoid performane issues.
+        * [BUGFIX]: DbAndroid plugin: Fixed 'adb' automatic detection under Linux.
+        * [BUGFIX]: Compilation fixes.
 
 [3.1.0]
         * [ADDED]: SQLCipher plugin is now free, open source and distributed together with other standard plugins.
