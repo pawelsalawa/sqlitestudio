@@ -1,6 +1,7 @@
 [3.1.1]
         * [ADDED]: #3106 ScriptingTcl has now "tcl_init" command to invoke full interpreter initialization, which creates [clock] commands and some others. It's not invoked automatically to avoid performane issues.
         * [BUGFIX]: DbAndroid plugin: Fixed 'adb' automatic detection under Linux.
+        * [BUGFIX]: #3126 Fixed problem with database versions in Android plugin.
         * [BUGFIX]: Compilation fixes.
 
 [3.1.0]
