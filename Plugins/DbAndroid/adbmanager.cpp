@@ -135,6 +135,14 @@ QString AdbManager::findAdb()
     }
 #endif
 
+    QString fullPath;
+    for (const QString& path : candidates)
+    {
+        fullPath = QDir::cleanPath(path);
+        if (testAdb(fullPath, true))
+            return fullPath;
+    }
+
 #ifdef Q_OS_WIN32
     if (testAdb("adb.exe", true))
         return "adb.exe";

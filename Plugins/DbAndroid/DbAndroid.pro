@@ -6,7 +6,7 @@
 
 QT += widgets network
 
-include($$PWD/../../../sqlitestudio/SQLiteStudio3/plugins.pri)
+include($$PWD/../../SQLiteStudio3/plugins.pri)
 
 TARGET = DbAndroid
 TEMPLATE = lib
