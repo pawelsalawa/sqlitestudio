@@ -6,7 +6,7 @@
 
 QT       -= gui
 
-include($$PWD/../../../sqlitestudio/SQLiteStudio3/plugins.pri)
+include($$PWD/../../SQLiteStudio3/plugins.pri)
 
 TARGET = DbSqliteCipher
 TEMPLATE = lib
