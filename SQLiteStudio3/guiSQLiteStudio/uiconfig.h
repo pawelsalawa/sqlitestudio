@@ -101,6 +101,7 @@ CFG_CATEGORIES(Ui,
         CFG_ENTRY(bool,                  CompactLayout,              true)
         CFG_ENTRY(int,                   InsertRowPlacement,         Cfg::BEFORE_CURRENT)
         CFG_ENTRY(bool,                  ShowDataViewTooltips,       true)
+        CFG_ENTRY(bool,                  KeepNullWhenEmptyValue,     true)
     )
 )
 

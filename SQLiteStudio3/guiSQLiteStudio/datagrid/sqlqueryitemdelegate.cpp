@@ -129,10 +129,14 @@ void SqlQueryItemDelegate::setModelDataForFk(QComboBox* cb, QAbstractItemModel* 
     if (cbModel->isExecutionInProgress() || !cbModel->isAllDataLoaded())
         return;
 
+    QString cbText = cb->currentText();
+    if (CFG_UI.General.KeepNullWhenEmptyValue.get() && model->data(index, Qt::EditRole).isNull() && cbText.isEmpty())
+        return;
+
     int idx = cb->currentIndex();
     if (idx < 0 || idx >= cbModel->rowCount())
     {
-        model->setData(index, cb->currentText());
+        model->setData(index, cbText, Qt::EditRole);
         return;
     }
 
@@ -141,20 +145,24 @@ void SqlQueryItemDelegate::setModelDataForFk(QComboBox* cb, QAbstractItemModel* 
     {
         // This happens when inexisting value is confirmed with "Enter" key,
         // cause rowCount() is apparently incremented, but items not yet.
-        model->setData(index, cb->currentText());
+        model->setData(index, cbText, Qt::EditRole);
         return;
     }
 
     QVariant comboData = row[0]->getValue();
-    if (cb->currentText() != comboData.toString())
-        comboData = cb->currentText();
+    if (cbText != comboData.toString())
+        comboData = cbText;
 
-    model->setData(index, comboData);
+    model->setData(index, comboData, Qt::EditRole);
 }
 
 void SqlQueryItemDelegate::setModelDataForLineEdit(QLineEdit* editor, QAbstractItemModel* model, const QModelIndex& index) const
 {
     QString value = editor->text();
+
+    if (CFG_UI.General.KeepNullWhenEmptyValue.get() && model->data(index, Qt::EditRole).isNull() && value.isEmpty())
+        return;
+
     bool ok;
     QVariant variant = value.toLongLong(&ok);
     if (ok)
@@ -292,13 +300,21 @@ void SqlQueryItemDelegate::fkDataReady()
     // Set selected combo value to initial value from the cell
     QComboBox* cb = modelToFkCombo[model];
     QVariant value = modelToFkInitialValue[model];
-    QModelIndexList idxList = model->findIndexes(SqlQueryItem::DataRole::VALUE, value, 1);
+    if (model->rowCount() > 0)
+    {
+        QModelIndex startIdx = model->index(0, 0);
+        QModelIndex endIdx = model->index(model->rowCount() - 1, 0);
+        QModelIndexList idxList = model->findIndexes(startIdx, endIdx, SqlQueryItem::DataRole::VALUE, value, 1);
 
-    int idx = 0;
-    if (idxList.size() > 0)
-        idx = idxList.first().row();
-
-    cb->setCurrentIndex(idx);
+        if (idxList.size() > 0)
+            cb->setCurrentIndex(idxList.first().row());
+        else
+            cb->setCurrentText(value.toString());
+    }
+    else
+    {
+        cb->setCurrentText(value.toString());
+    }
 }
 
 QWidget* SqlQueryItemDelegate::getFkEditor(SqlQueryItem* item, QWidget* parent) const
