@@ -136,7 +136,16 @@ void SqlQueryItemDelegate::setModelDataForFk(QComboBox* cb, QAbstractItemModel* 
         return;
     }
 
-    QVariant comboData = cbModel->getRow(idx)[0]->getValue();
+    QList<SqlQueryItem *> row = cbModel->getRow(idx);
+    if (!row[0])
+    {
+        // This happens when inexisting value is confirmed with "Enter" key,
+        // cause rowCount() is apparently incremented, but items not yet.
+        model->setData(index, cb->currentText());
+        return;
+    }
+
+    QVariant comboData = row[0]->getValue();
     if (cb->currentText() != comboData.toString())
         comboData = cb->currentText();
 
