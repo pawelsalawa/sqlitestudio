@@ -901,7 +901,7 @@ QStringList concat(const QList<QStringList>& list)
 
 QString doubleToString(double val)
 {
-    return QString::number(val, 'g', 16);
+    return QString::number(val, 'g', -1);
 }
 
 void sortWithReferenceList(QList<QString>& listToSort, const QList<QString>& referenceList, Qt::CaseSensitivity cs)
