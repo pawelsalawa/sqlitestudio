@@ -375,6 +375,9 @@ void EditorWindow::createActions()
     attachActionInMenu(ui->sqlEdit->getAction(SqlEditor::SAVE_SQL_FILE), ui->sqlEdit->getAction(SqlEditor::SAVE_AS_SQL_FILE), ui->toolBar);
     ui->toolBar->addAction(ui->sqlEdit->getAction(SqlEditor::OPEN_SQL_FILE));
     ui->toolBar->addSeparator();
+    ui->toolBar->addAction(ui->sqlEdit->getAction(SqlEditor::FIND));
+    ui->toolBar->addAction(ui->sqlEdit->getAction(SqlEditor::REPLACE));
+    ui->toolBar->addSeparator();
     actionMap[CURRENT_DB] = ui->toolBar->addWidget(dbCombo);
     ui->toolBar->addSeparator();
     ui->toolBar->addAction(staticActions[RESULTS_IN_TAB]);

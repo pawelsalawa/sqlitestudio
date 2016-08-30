@@ -49,6 +49,7 @@ class GUI_API_EXPORT SearchTextLocator : public QObject
         int lastMatchStart = -1;
         int lastMatchEnd = -1;
         bool afterDocPositionSwitch = false;
+        bool ignoreCursorMovements = false;
 
         // Config parameters
         QString lookupString;
