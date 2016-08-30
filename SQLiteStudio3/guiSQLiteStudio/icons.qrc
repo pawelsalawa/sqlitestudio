@@ -199,5 +199,7 @@
         <file>img/tag_hash_del.png</file>
         <file>img/tag_hash_edit.png</file>
         <file>img/wand.png</file>
+        <file>img/search_and_replace.png</file>
+        <file>img/search.png</file>
     </qresource>
 </RCC>

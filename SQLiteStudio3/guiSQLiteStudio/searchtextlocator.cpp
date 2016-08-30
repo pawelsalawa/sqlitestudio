@@ -69,6 +69,9 @@ int SearchTextLocator::getStartPosition() const
 
 void SearchTextLocator::setStartPosition(int value)
 {
+    if (ignoreCursorMovements)
+        return;
+
     startPosition = value;
     initialStartPosition = value;
     afterDocPositionSwitch = false;
@@ -148,11 +151,18 @@ void SearchTextLocator::replaceCurrent()
     if (lastMatchStart == -1 || lastMatchEnd == -1)
         return;
 
+    ignoreCursorMovements = true;
+
     QTextCursor cursor(document);
     cursor.setPosition(lastMatchStart);
     cursor.setPosition(lastMatchEnd, QTextCursor::KeepAnchor);
     cursor.removeSelectedText();
     cursor.insertText(replaceString);
+
+    ignoreCursorMovements = false;
+
+    // Adjust further lookups according to replaced lenght change.
+    startPosition += replaceString.length() - lookupString.length();
 }
 
 bool SearchTextLocator::find(QTextDocument::FindFlags flags)
