@@ -87,7 +87,10 @@ QString QueryGenerator::generateUpdateOfTable(Db* db, const QString& database, c
 
     // If no values were given, we simply use column names as values everywhere
     if (values.isEmpty())
-        return tplWithWhere.arg(target, commonColumnStr, commonColumnStr);
+    {
+        QString conditionStr = commonUpdateCols.join(" AND ");
+        return tplWithWhere.arg(target, commonColumnStr, conditionStr);
+    }
 
     // If values were given, then they will be used in WHERE clause
     QStringList valueCols = values.keys();
@@ -126,7 +129,7 @@ QString QueryGenerator::generateDeleteFromTable(Db* db, const QString& database,
             conditionCols << conditionColTpl.arg(wrapObjIfNeeded(col, dialect), wrapString(col));
 
         // Put it to comma spearated string
-        QString conditionStr = conditionCols.join(", ");
+        QString conditionStr = conditionCols.join(" AND ");
 
         return tplWithWhere.arg(target, conditionStr);
     }

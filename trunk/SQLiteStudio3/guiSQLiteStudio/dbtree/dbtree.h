@@ -123,7 +123,6 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
     protected:
         void createActions();
         void setupDefShortcuts();
-        void closeEvent(QCloseEvent* e);
 
     private:
         typedef std::function<bool(DbTreeItem*)> ItemFilterFunc;

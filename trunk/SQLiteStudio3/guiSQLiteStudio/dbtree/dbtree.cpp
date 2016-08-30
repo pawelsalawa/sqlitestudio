@@ -1741,12 +1741,22 @@ void DbTree::generateInsertForTable()
 
 void DbTree::generateUpdateForTable()
 {
+    Db* db = getSelectedDb();
+    QString table = getSelectedTableName();
 
+    QueryGenerator generator;
+    QString sql = generator.generateUpdateOfTable(db, table);
+    MAINWINDOW->openSqlEditor(db, sql);
 }
 
 void DbTree::generateDeleteForTable()
 {
+    Db* db = getSelectedDb();
+    QString table = getSelectedTableName();
 
+    QueryGenerator generator;
+    QString sql = generator.generateDeleteFromTable(db, table);
+    MAINWINDOW->openSqlEditor(db, sql);
 }
 
 void DbTree::setupDefShortcuts()
@@ -1757,11 +1767,6 @@ void DbTree::setupDefShortcuts()
                        }, Qt::WidgetWithChildrenShortcut);
 
     BIND_SHORTCUTS(DbTree, Action);
-}
-
-void DbTree::closeEvent(QCloseEvent *e)
-{
-    e->ignore();
 }
 
 int qHash(DbTree::Action action)
