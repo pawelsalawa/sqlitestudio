@@ -213,7 +213,8 @@ bool SqlEditor::handleValidObjectContextMenu(const QPoint& pos)
     if (!obj)
         return false;
 
-    QString objName = toPlainText().mid(obj->from, (obj->to - obj->from + 1));
+    Dialect dialect = getDialect();
+    QString objName = stripObjName(toPlainText().mid(obj->from, (obj->to - obj->from + 1)), dialect);
 
     validObjContextMenu->clear();
 
@@ -1494,7 +1495,7 @@ void SqlEditor::mousePressEvent(QMouseEvent* e)
         if (obj && e->button() == Qt::LeftButton)
         {
             QString objName = toPlainText().mid(obj->from, (obj->to - obj->from + 1));
-            openObject(obj->dbName, objName);
+            openObject(obj->dbName, stripObjName(objName, getDialect()));
         }
     }
 
