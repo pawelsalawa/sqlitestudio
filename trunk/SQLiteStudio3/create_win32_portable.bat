@@ -1,36 +1,46 @@
 @echo off
 
-set QT_DIR=C:\Qt\5.6\mingw49_32\bin
-set ZIP="c:\Program Files\7-Zip\7z.exe"
+for /f "delims=" %%a in ('where 7z') do @set ZIP=%%a
+for /f "delims=" %%a in ('where qmake') do @set QMAKE=%%a
+for %%F in (%QMAKE%) do set QT_DIR=%%~dpF
 
-set QMAKE=%QT_DIR%\qmake.exe
+rem set ZIP="c:\Program Files\7-Zip\7z.exe"
+
+rem set QT_DIR=C:\Qt\5.6\mingw49_32\bin
+rem set QMAKE=%QT_DIR%\qmake.exe
 set OLDDIR=%CD%
 
 rem Find Qt
 if exist %QMAKE% (
-	echo Qt found at %QT_DIR%
+	echo INFO: Qt found at %QT_DIR%
 ) else (
-	echo Cannot find Qt
+	echo ERROR: Cannot find Qt
 	GOTO:EOF
 )
 
 rem Find 7zip
+set USE_ZIP=0
+IF [%ZIP%] == [] (
+	echo INFO: No 7z.exe. *.zip packages will not be created, only a runnable distribution.
+	GOTO AfterZip
+)
 if exist %ZIP% (
-	echo 7zip found at %ZIP%
+	echo INFO: 7zip found at %ZIP%
+	set USE_ZIP=1
 ) else (
-	echo Cannot find 7zip
 	GOTO:EOF
 )
+:AfterZip
 
 cd %OLDDIR%
 
 rem Clean up
-echo Cleaning up...
+echo INFO: Cleaning up...
 cd ..\output
 rmdir /s /q portable
 
 rem Create a copy
-echo Creating a portable distribution
+echo INFO: Creating a portable distribution
 mkdir portable\SQLiteStudio
 xcopy SQLiteStudio portable\SQLiteStudio /s /e /q > nul
 
@@ -66,42 +76,44 @@ copy *.dll %PORTABLE% > nul
 
 call:getAppVersion
 cd %PORTABLE%\..
-%ZIP% a -r sqlitestudio-%APP_VERSION%.zip SQLiteStudio > nul
+if "%USE_ZIP%" == "1" %ZIP% a -r sqlitestudio-%APP_VERSION%.zip SQLiteStudio > nul
 
 rem Incremental package
-echo Creating incremental update package
+echo INFO: Creating incremental update package
 cd %PORTABLE%\..
 mkdir incremental\SQLiteStudio
 xcopy SQLiteStudio incremental\SQLiteStudio /s /e /q > nul
 cd incremental\SQLiteStudio
 del /q Qt5*.dll
-del /q icu*.dll
+rem del /q icu*.dll > nul
 del /q libgcc* libstdc* libwinpthread*
 rmdir /s /q iconengines imageformats platforms printsupport plugins
 
 cd %PORTABLE%\..\incremental
-%ZIP% a -r sqlitestudio-%APP_VERSION%.zip SQLiteStudio > nul
+if "%USE_ZIP%" == "1" %ZIP% a -r sqlitestudio-%APP_VERSION%.zip SQLiteStudio > nul
 
 rem Plugin packages
-echo Creating plugin updates
+echo INFO: Creating plugin updates
 cd %PORTABLE%\..
 for /f "delims=" %%p in ('SQLiteStudio\SQLiteStudio.exe --list-plugins') do (
 	call:preparePlugin %%p
 )
 
 cd %OLDDIR%
+
+echo INFO: Portable distribution created at %PORTABLE%
 GOTO:EOF
 
 :preparePlugin
 	set plugin=%~1
 	set plugin_ver=%~2
 	if exist SQLiteStudio\plugins\%plugin%.dll (
-		echo Creating plugin update: %plugin%
+		echo INFO: Creating plugin update: %plugin%
 		mkdir plugins\%plugin%\SQLiteStudio\plugins
 		copy SQLiteStudio\plugins\%plugin%.dll plugins\%plugin%\SQLiteStudio\plugins > nul
 
 		cd plugins\%plugin%
-		%ZIP% a -r ..\%plugin%-%plugin_ver%.zip SQLiteStudio > nul
+		if "%USE_ZIP%" == "1" %ZIP% a -r ..\%plugin%-%plugin_ver%.zip SQLiteStudio > nul
 		cd ..\..
 	)
 GOTO:EOF
