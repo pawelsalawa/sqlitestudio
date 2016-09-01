@@ -11,8 +11,6 @@ cannot reproduce:
 - BLOB preview engine based on plugins
 - ERD plugin
 - DB compare plugin
-- Foreign Key value suggestions in GridView
-- Foreign Key previews in subframes
 - executing query with bind params
 - comments support in formatter
 
