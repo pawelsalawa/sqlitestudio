@@ -19,6 +19,7 @@ cdir=`pwd`
 cpu_cores=`grep -c ^processor /proc/cpuinfo`
 absolute_path=`realpath $0`
 this_dir=`dirname $absolute_path`
+this_dir=`dirname $this_dir`
 parent_dir=`dirname $this_dir`
 
 read -p "Number of CPU cores to use for compiling (hit enter to use $cpu_cores): " new_cpu_cores
