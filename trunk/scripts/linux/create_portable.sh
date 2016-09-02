@@ -1,17 +1,20 @@
-#!/bin/sh
+#!/bin/bash
 
-printUsage() {
-  echo "$0 <sqlitestudio build output directory> <qmake path> [tgz|dist|dist_full]"
-}
+#  echo "$0 <sqlitestudio build output directory> <qmake path> [tgz|dist|dist_full]"
 
-if [ "$#" -lt 2 ] || [ "$#" -gt 3 ]; then
-  printUsage
-  exit 1
-fi
-
-if [ "$#" -eq 3 ] && [ "$3" != "tgz" ] && [ "$3" != "dist" ] && [ "$3" != "dist_plugins" ] && [ "$3" != "dist_full" ]; then
-  printUsage
-  exit 1
+if [ "$1" == "" ]; then
+    QMAKE=`which qmake`
+    if [ $QMAKE == "" ]; then
+	echo "Cannot find qmake"
+    else
+	read -p "Is this correct qmake (y/N) $QMAKE : " yn
+	case $yn in
+	    [Yy]* ) ;;
+	    * ) echo "Please pass path to correct qmake as argument to this script."; exit;;
+	esac
+    fi
+else
+    QMAKE=$1
 fi
 
 which chrpath >/dev/null
@@ -20,19 +23,22 @@ if [ "$?" -ne 0 ]; then
   exit 1
 fi
 
-qt_paths_bin="${2/qmake/qtpaths}"
+qt_paths_bin="${QMAKE/qmake/qtpaths}"
 $qt_paths_bin -v >/dev/null 2>&1
 if [ "$?" -ne 0 ]; then
   echo "qtpaths program missing!"
   exit 1
 fi
 
-cd $1
+OUTPUT=`pwd`/../../output
+
+cd $OUTPUT
 
 required_modules="libQt5Core.so libQt5Concurrent.so libQt5DBus.so libQt5Gui.so libQt5Network.so libQt5PrintSupport.so libQt5Script.so libQt5Widgets.so libQt5Xml.so \
   libQt5Svg.so"
 required_plugins="platforms/libqxcb.so imageformats/libqgif.so imageformats/libqicns.so imageformats/libqico.so imageformats/libqjpeg.so \
-  imageformats/libqsvg.so imageformats/libqtga.so imageformats/libqtiff.so iconengines/libqsvgicon.so printsupport/libcupsprintersupport.so platformthemes/libqgtk2.so"
+  imageformats/libqsvg.so imageformats/libqtga.so imageformats/libqtiff.so iconengines/libqsvgicon.so printsupport/libcupsprintersupport.so"
+optional_plugins="platformthemes/libqgtk2.so"
 
 qt_lib_dir=`ldd SQLiteStudio/sqlitestudio | grep libQt5Core | awk '{print $3;}'`
 qt_lib_dir=`dirname $qt_lib_dir`
@@ -45,14 +51,14 @@ cd portable
 portable=`pwd`
 
 # Copy all output from compilation here
-cp -R $1/SQLiteStudio .
+cp -R $OUTPUT/SQLiteStudio .
 
 # Make lib directory to move all *.so files (sqlitestudio files and Qt files and dependencies)
 cd SQLiteStudio
 
 # Copy SQLite libs
 cd $portable/SQLiteStudio
-sqlite3_lib=`ldd $1/SQLiteStudio/lib/libcoreSQLiteStudio.so | grep libsqlite | awk '{print $3;}'`
+sqlite3_lib=`ldd $OUTPUT/SQLiteStudio/lib/libcoreSQLiteStudio.so | grep libsqlite | awk '{print $3;}'`
 sqlite2_lib=`ldd plugins/libDbSqlite2.so | grep libsqlite | awk '{print $3;}'`
 cp $sqlite3_lib lib
 cp $sqlite2_lib lib
@@ -73,7 +79,7 @@ for module in $required_modules; do
 done
 
 for lib in `ls *.so`; do
-  chrpath -r \$ORIGIN/lib $lib >/dev/null
+  chrpath -r \$ORIGIN/lib $lib 2>&1 >/dev/null
 done
 
 # Now copy Qt plugins
@@ -91,55 +97,66 @@ for plugin in $required_plugins; do
   # Update rpath in Qt plugins
   cd ${parts[0]}
   for lib in `ls *.so`; do
-    chrpath -r \$ORIGIN/../lib $lib >/dev/null
+    chrpath -r \$ORIGIN/../lib $lib 2>&1 >/dev/null
+  done
+  cd ..
+done
+
+for plugin in $optional_plugins; do
+  if [ ! -f $qt_plugins_dir/$plugin ]; then
+    continue
+  fi
+  parts=(${plugin/\// })
+  mkdir ${parts[0]} 2>/dev/null
+  cp -P $qt_plugins_dir/$plugin ${parts[0]}
+  
+  # Update rpath in Qt plugins
+  cd ${parts[0]}
+  for lib in `ls *.so`; do
+    chrpath -r \$ORIGIN/../lib $lib 2>&1 >/dev/null
   done
   cd ..
 done
 
 cd $portable/SQLiteStudio
-chrpath -r \$ORIGIN/lib sqlitestudio >/dev/null
-chrpath -r \$ORIGIN/lib sqlitestudiocli >/dev/null
+chrpath -r \$ORIGIN/lib sqlitestudio 2>&1 >/dev/null
+chrpath -r \$ORIGIN/lib sqlitestudiocli 2>&1 >/dev/null
 
 cd $portable
 VERSION=`SQLiteStudio/sqlitestudiocli -v | awk '{print $2}'`
 
-if [ "$3" == "tgz" ]; then
-  tar cf sqlitestudio-$VERSION.tar SQLiteStudio
-  xz -z sqlitestudio-$VERSION.tar
-elif [ "$3" == "dist" ] || [ "$3" == "dist_plugins" ] || [ "$3" == "dist_full" ]; then
-  if [ "$3" == "dist" ] || [ "$3" == "dist_full" ]; then
-    # Complete
-    echo "Building complete package: sqlitestudio-$VERSION.tar.xz"
-    tar cf sqlitestudio-$VERSION.tar SQLiteStudio
-    xz -z sqlitestudio-$VERSION.tar
+# Complete
+echo "Building complete package: sqlitestudio-$VERSION.tar.xz"
+tar cf sqlitestudio-$VERSION.tar SQLiteStudio
+xz -z sqlitestudio-$VERSION.tar
   
-    # App
-    echo "Building incremental update package: sqlitestudio-$VERSION.tar.gz"
-    cp -R SQLiteStudio app
-    cd app
-    if [ "$3" == "dist" ]; then
-        rm -rf plugins
-        rm -f lib/libQ*
-        rm -rf iconengines
-        rm -rf imageformats
-        rm -rf platforms
-        rm -rf platformthemes
-        rm -rf printsupport
-        find . -type l -exec rm -f {} \;
-    fi
-    rm -f lib/libicu*
-    rm -f lib/libsqlite.so.0 ;# this is for SQLite 2
-    tar cf sqlitestudio-$VERSION.tar *
-    gzip -9 sqlitestudio-$VERSION.tar
-    mv sqlitestudio-$VERSION.tar.gz ..
-    cd ..
-    rm -rf app
-  fi
+# App
+echo "Building incremental update package: sqlitestudio-$VERSION.tar.gz"
+cp -R SQLiteStudio app
+cd app
+#if [ "$3" == "dist" ]; then
+#        rm -rf plugins
+#        rm -f lib/libQ*
+#        rm -rf iconengines
+#        rm -rf imageformats
+#        rm -rf platforms
+#        rm -rf platformthemes
+#        rm -rf printsupport
+#        find . -type l -exec rm -f {} \;
+#fi
+rm -f lib/libicu*
+rm -f lib/libsqlite.so.0 ;# this is for SQLite 2
+tar cf sqlitestudio-$VERSION.tar *
+gzip -9 sqlitestudio-$VERSION.tar
+mv sqlitestudio-$VERSION.tar.gz ..
+cd ..
+rm -rf app
 
-  # Plugins
-  mkdir plugins
-  SQLiteStudio/sqlitestudio --list-plugins | while read line
-  do
+
+# Plugins
+mkdir plugins
+SQLiteStudio/sqlitestudio --list-plugins | while read line
+do
     PLUGIN=`echo $line | awk '{print $1}'`
     PLUGIN_VER=`echo $line | awk '{print $2}'`
     if [ -f SQLiteStudio/plugins/lib$PLUGIN.so ]; then
@@ -149,8 +166,9 @@ elif [ "$3" == "dist" ] || [ "$3" == "dist_plugins" ] || [ "$3" == "dist_full" ]
       gzip -9 $PLUGIN\-$PLUGIN_VER.tar
     fi
     rm -f plugins/*
-  done
-  rm -rf plugins
-  
-  echo "Done."
-fi
+done
+rm -rf plugins
+
+echo "Done."
+
+echo "Portable distribution created at: $portable/SQLiteStudio"

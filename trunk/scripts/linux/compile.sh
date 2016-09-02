@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ "$1" == "" ]; then
     QMAKE=`which qmake`
@@ -7,7 +7,7 @@ if [ "$1" == "" ]; then
     else
 	read -p "Is this correct qmake (y/N) $QMAKE : " yn
 	case $yn in
-	    [Yy]* ) break;;
+	    [Yy]* ) ;;
 	    * ) echo "Please pass path to correct qmake as argument to this script."; exit;;
 	esac
     fi
@@ -24,7 +24,7 @@ parent_dir=`dirname $this_dir`
 
 read -p "Number of CPU cores to use for compiling (hit enter to use $cpu_cores): " new_cpu_cores
 case $new_cpu_cores in
-    "" ) break;;
+    "" ) ;;
     * ) cpu_cores=$new_cpu_cores; break;;
 esac
 
