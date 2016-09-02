@@ -1,17 +1,12 @@
 @echo off
 
-for /f "delims=" %%a in ('where 7z') do @set ZIP=%%a
-for /f "delims=" %%a in ('where qmake') do @set QMAKE=%%a
-for %%F in (%QMAKE%) do set QT_DIR=%%~dpF
-
-rem set ZIP="c:\Program Files\7-Zip\7z.exe"
-
-rem set QT_DIR=C:\Qt\5.6\mingw49_32\bin
-rem set QMAKE=%QT_DIR%\qmake.exe
 set OLDDIR=%CD%
 
 rem Find Qt
-if exist %QMAKE% (
+where /q qmake
+IF "%errorlevel%" == "0" (
+	for /f "delims=" %%a in ('where qmake') do @set QMAKE=%%a
+	for %%F in (%QMAKE%) do set QT_DIR=%%~dpF
 	echo INFO: Qt found at %QT_DIR%
 ) else (
 	echo ERROR: Cannot find Qt
@@ -20,10 +15,12 @@ if exist %QMAKE% (
 
 rem Find 7zip
 set USE_ZIP=0
-IF [%ZIP%] == [] (
+where /q 7z
+IF "%errorlevel%" == "1" (
 	echo INFO: No 7z.exe. *.zip packages will not be created, only a runnable distribution.
 	GOTO AfterZip
 )
+for /f "delims=" %%a in ('where 7z') do @set ZIP=%%a
 if exist %ZIP% (
 	echo INFO: 7zip found at %ZIP%
 	set USE_ZIP=1
@@ -33,10 +30,12 @@ if exist %ZIP% (
 :AfterZip
 
 cd %OLDDIR%
+cd ..\..
+set parent_dir="%CD%"
 
 rem Clean up
 echo INFO: Cleaning up...
-cd ..\output
+cd %parent_dir%\output
 rmdir /s /q portable
 
 rem Create a copy
@@ -71,7 +70,7 @@ for %%i in (qdds qgif qicns qico qjpeg qsvg qtga qtiff qwbmp) do (
 )
 
 rem Copy app-specific deps
-cd %OLDDIR%\..\..\lib
+cd %parent_dir%\..\lib
 copy *.dll %PORTABLE% > nul
 
 call:getAppVersion
