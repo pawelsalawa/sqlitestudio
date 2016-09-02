@@ -12,6 +12,7 @@
         * [BUGFIX]: Fixed query generation for "UPDATE" and "DELETE" when invoking it from Database List context menu for the table.
         * [BUGFIX]: Fixed Ctrl+click (Cmd+click on MacOSX) handling of object names that require name wrapping (such as names with spaces in it).
         * [BUGFIX]: #3133 Fixed resolving tables with unusual (like cyrillic) characters in their names.
+        * [BUGFIX]: #3096 Restored data editing by Return key hit, that got broken in 3.1.0 for MacOSX.
         * [BUGFIX]: Compilation fixes.
 
 [3.1.0]

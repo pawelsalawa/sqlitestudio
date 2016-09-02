@@ -742,6 +742,12 @@ QString getOsString()
         case QSysInfo::MV_10_9:
             os += " 10.9 Mavericks";
             break;
+        case QSysInfo::MV_10_10:
+            os += " 10.10 Yosemite";
+            break;
+        case QSysInfo::MV_10_11:
+            os += " 10.11 El Capitan";
+            break;
         case QSysInfo::MV_9:
         case QSysInfo::MV_10_0:
         case QSysInfo::MV_10_1:
@@ -755,6 +761,13 @@ QString getOsString()
         case QSysInfo::MV_IOS_6_1:
         case QSysInfo::MV_IOS_7_0:
         case QSysInfo::MV_IOS_7_1:
+        case QSysInfo::MV_IOS_8_0:
+        case QSysInfo::MV_IOS_8_1:
+        case QSysInfo::MV_IOS_8_2:
+        case QSysInfo::MV_IOS_8_3:
+        case QSysInfo::MV_IOS_8_4:
+        case QSysInfo::MV_IOS_9_0:
+        case QSysInfo::MV_None:
         case QSysInfo::MV_Unknown:
             break;
     }

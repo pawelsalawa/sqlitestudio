@@ -1,3 +1,5 @@
+* no german language to choose from
+
 cannot reproduce:
 2922 / 2926 / 2925
 2940
