@@ -200,6 +200,8 @@ class API_EXPORT SchemaResolver
         bool isFilteredOut(const QString& value, const QString& type);
         void filterSystemIndexes(QStringList& indexes);
         QList<SqliteCreateTriggerPtr> getParsedTriggersForTableOrView(const QString& database, const QString& tableOrView, bool includeContentReferences, bool table);
+        QString getObjectDdlWithDifficultName(const QString& dbName, const QString& lowerName, QString targetTable, ObjectType type);
+        QString getObjectDdlWithSimpleName(const QString& dbName, const QString& lowerName, QString targetTable, ObjectType type);
 
         template <class T>
         StrHash<QSharedPointer<T>> getAllParsedObjectsForType(const QString& database, const QString& type);

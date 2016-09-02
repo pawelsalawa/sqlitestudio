@@ -1,5 +1,6 @@
 #include "schemaresolver.h"
 #include "db/db.h"
+#include "db/sqlresultsrow.h"
 #include "parser/parsererror.h"
 #include "parser/ast/sqlitecreatetable.h"
 #include "parser/ast/sqlitecreateindex.h"
@@ -303,6 +304,67 @@ QString SchemaResolver::getObjectDdl(const QString &database, const QString &nam
         return cache.object(key, true)->toString();
 
     // Get the DDL
+    QString resStr = getObjectDdlWithSimpleName(dbName, lowerName, targetTable, type);
+    if (resStr.isNull())
+        resStr = getObjectDdlWithDifficultName(dbName, lowerName, targetTable, type);
+
+    // If the DDL doesn't have semicolon at the end (usually the case), add it.
+    if (!resStr.trimmed().endsWith(";"))
+        resStr += ";";
+
+    if (useCache)
+        cache.insert(key, new QVariant(resStr));
+
+    // Return the DDL
+    return resStr;
+}
+
+QString SchemaResolver::getObjectDdlWithDifficultName(const QString &dbName, const QString &lowerName, QString targetTable, SchemaResolver::ObjectType type)
+{
+    //
+    // Slower, but works with Russian names, etc, because "string lower" is done only at Qt level, not at SQLite level.
+    //
+    QString typeStr = objectTypeToString(type);
+    SqlQueryPtr queryResults;
+    if (type != ANY)
+    {
+        queryResults = db->exec(QString(
+                    "SELECT name, sql FROM %1.%4 WHERE type = '%3';").arg(dbName, typeStr, targetTable),
+                    dbFlags
+                );
+
+    }
+    else
+    {
+        queryResults = db->exec(QString(
+                    "SELECT name, sql FROM %1.%3;").arg(dbName, targetTable),
+                    dbFlags
+                );
+    }
+
+    // Validate query results
+    if (queryResults->isError())
+    {
+        qDebug() << "Could not get object's DDL:" << dbName << "." << lowerName << ", details:" << queryResults->getErrorText();
+        return QString::null;
+    }
+
+    // The DDL string
+    SqlResultsRowPtr row;
+    while (queryResults->hasNext())
+    {
+        row = queryResults->next();
+        if (row->value("name").toString().toLower() != lowerName)
+            continue;
+
+        return row->value("sql").toString();
+    }
+    return QString();
+}
+
+QString SchemaResolver::getObjectDdlWithSimpleName(const QString &dbName, const QString &lowerName, QString targetTable, SchemaResolver::ObjectType type)
+{
+    QString typeStr = objectTypeToString(type);
     QVariant results;
     SqlQueryPtr queryResults;
     if (type != ANY)
@@ -324,23 +386,13 @@ QString SchemaResolver::getObjectDdl(const QString &database, const QString &nam
     // Validate query results
     if (queryResults->isError())
     {
-        qDebug() << "Could not get object's DDL:" << dbName << "." << name << ", details:" << queryResults->getErrorText();
+        qDebug() << "Could not get object's DDL:" << dbName << "." << lowerName << ", details:" << queryResults->getErrorText();
         return QString::null;
     }
 
     // The DDL string
     results = queryResults->getSingleCell();
-    QString resStr = results.toString();
-
-    // If the DDL doesn't have semicolon at the end (usually the case), add it.
-    if (!resStr.trimmed().endsWith(";"))
-        resStr += ";";
-
-    if (useCache)
-        cache.insert(key, new QVariant(resStr));
-
-    // Return the DDL
-    return resStr;
+    return results.toString();
 }
 
 QStringList SchemaResolver::getColumnsFromDdlUsingPragma(const QString& ddl)
