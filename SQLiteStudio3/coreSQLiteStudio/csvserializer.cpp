@@ -102,6 +102,9 @@ QList<QList<T>> typedDeserialize(QTextStream& data, const CsvFormat& format, boo
             }
             else if (isCsvRowSeparator(data, c0, format))
             {
+                if (field.endsWith('\r')) // Windows end-line
+                    field.chop(1);
+
                 cells << field;
                 rows << cells;
                 cells.clear();
