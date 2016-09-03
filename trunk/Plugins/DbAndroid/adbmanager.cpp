@@ -294,6 +294,7 @@ bool AdbManager::execLongCommand(const QStringList& arguments, QProcess& proc, Q
     // Take off initial arguments from ADB, store it to use with "push".
     QStringList primaryArguments;
     QStringList args = arguments;
+
     while (args.first() != "shell")
         primaryArguments << args.takeFirst();
 

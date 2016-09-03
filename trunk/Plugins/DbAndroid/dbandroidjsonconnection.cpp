@@ -295,6 +295,12 @@ bool DbAndroidJsonConnection::deleteDatabase(const QString& dbName)
 DbAndroidConnection::ExecutionResult DbAndroidJsonConnection::executeQuery(const QString& query)
 {
     DbAndroidConnection::ExecutionResult executionResults;
+    if (!isConnected())
+    {
+        executionResults.wasError = true;
+        executionResults.errorMsg = tr("Unable to execute query on Android device (connection was closed): %1").arg(query);
+        return executionResults;
+    }
 
     QJsonDocument json = wrapQueryInJson(query);
     QByteArray responseBytes = send(json.toJson(QJsonDocument::Compact));

@@ -17,7 +17,7 @@ DbAndroidConnection* DbAndroidConnectionFactory::create(const DbAndroidUrl& url,
     switch (url.getMode())
     {
         case DbAndroidMode::SHELL:
-            return new DbAndroidShellConnection(plugin, parent);
+            return new DbAndroidShellConnection(plugin, url.getDevice(), parent);
         case DbAndroidMode::NETWORK:
         case DbAndroidMode::USB:
             return new DbAndroidJsonConnection(plugin, parent);

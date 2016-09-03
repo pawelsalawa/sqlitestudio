@@ -14,7 +14,7 @@ class DbAndroidShellConnection : public DbAndroidConnection
         Q_OBJECT
 
     public:
-        DbAndroidShellConnection(DbAndroid* plugin, QObject *parent = 0);
+        DbAndroidShellConnection(DbAndroid* plugin, const QString &deviceName, QObject *parent = 0);
         ~DbAndroidShellConnection();
 
         bool connectToAndroid(const DbAndroidUrl& url);
@@ -49,6 +49,7 @@ class DbAndroidShellConnection : public DbAndroidConnection
         DbAndroidUrl connectionUrl;
         bool appOkay = false;
         mutable QMutex appOkMutex;
+        QString creationDeviceName;
 
         static const CsvFormat CSV_FORMAT;
 
