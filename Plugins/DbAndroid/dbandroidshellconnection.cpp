@@ -8,10 +8,11 @@
 
 const CsvFormat DbAndroidShellConnection::CSV_FORMAT = CsvFormat(",", "\r\n", true, true);
 
-DbAndroidShellConnection::DbAndroidShellConnection(DbAndroid* plugin, QObject* parent) :
+DbAndroidShellConnection::DbAndroidShellConnection(DbAndroid* plugin, const QString& deviceName, QObject* parent) :
     DbAndroidConnection(parent), plugin(plugin)
 {
     this->adbManager = plugin->getAdbManager();
+    this->creationDeviceName = deviceName;
     connect(adbManager, SIGNAL(deviceListChanged(QStringList)), this, SLOT(checkForDisconnection(QStringList)));
 }
 
@@ -39,7 +40,7 @@ bool DbAndroidShellConnection::connectToAndroid(const DbAndroidUrl& url)
     }
 
     QString stdOut;
-    bool res = adbManager->exec(QStringList({"shell", "run-as", url.getApplication(), "ls"}), &stdOut);
+    bool res = adbManager->exec(QStringList({"-s", url.getDevice(), "shell", "run-as", url.getApplication(), "ls"}), &stdOut);
     if (!res)
     {
         notifyWarn(tr("Cannot connect to device %1, because the application %2 doesn't seem to be installed on the device.").arg(url.getDevice(), url.getApplication()));
@@ -58,19 +59,19 @@ bool DbAndroidShellConnection::connectToAndroid(const DbAndroidUrl& url)
     }
 
     // Check if sqlite3 is available
-    res = adbManager->exec(QStringList({"shell", "run-as", url.getApplication(), "sqlite3", "--version"}));
-    if (!res)
+    res = adbManager->exec(QStringList({"-s", url.getDevice(), "shell", "sqlite3", "--version"}), &stdOut);
+    if (!res || !stdOut.startsWith("3."))
     {
         notifyWarn(tr("Cannot connect to device %1, because '%2' command doesn't seem to be available on the device.").arg(url.getDevice(), "sqlite3"));
         return false;
     }
 
     // Check if databases directory exists
-    res = adbManager->exec(QStringList({"shell", "run-as", url.getApplication(), "ls", "databases"}));
+    res = adbManager->exec(QStringList({"-s", url.getDevice(), "shell", "run-as", url.getApplication(), "ls", "databases"}));
     if (!res)
     {
         // Doesn't exist. Create if possible.
-        res = adbManager->exec(QStringList({"shell", "run-as", url.getApplication(), "mkdir", "databases"}));
+        res = adbManager->exec(QStringList({"-s", url.getDevice(), "shell", "run-as", url.getApplication(), "mkdir", "databases"}));
         if (!res)
         {
             notifyWarn(tr("Cannot connect to device %1, because '%2' database cannot be accessed on the device.").arg(url.getDevice(), "sqlite3"));
@@ -115,7 +116,7 @@ QStringList DbAndroidShellConnection::getDbList()
     QMutexLocker lock(&appOkMutex);
     appOkay = true;
     QString out;
-    bool res = adbManager->exec(QStringList({"shell", "run-as", connectionUrl.getApplication(), "ls", "databases"}), &out);
+    bool res = adbManager->exec(QStringList({"-s", connectionUrl.getDevice(), "shell", "run-as", connectionUrl.getApplication(), "ls", "databases"}), &out);
     if (!res)
         return QStringList();
 
@@ -142,13 +143,18 @@ QStringList DbAndroidShellConnection::getDbList()
 QStringList DbAndroidShellConnection::getAppList()
 {
     QString out;
-    bool res = adbManager->exec(QStringList({"shell", "pm list packages -3"}), &out);
+    bool res = adbManager->exec(QStringList({"-s", creationDeviceName, "shell", "pm list packages -3"}), &out);
     if (!res)
         return QStringList();
 
     QStringList appList;
     for (const QString& line : out.trimmed().split("\n", QString::SkipEmptyParts))
+    {
+        if (!line.startsWith("package:"))
+            continue; // some other message
+
         appList << line.mid(8).trimmed(); // skip "package:" prefix
+    }
 
     return appList;
 }
@@ -161,18 +167,17 @@ bool DbAndroidShellConnection::isAppOkay() const
 
 bool DbAndroidShellConnection::deleteDatabase(const QString& dbName)
 {
-    return adbManager->exec(QStringList({"shell", "run-as", connectionUrl.getApplication(), "rm", "-f", "databases/" + dbName, "databases/" + dbName + "-journal"}));
+    return adbManager->exec(QStringList({"-s", connectionUrl.getDevice(), "shell", "run-as", connectionUrl.getApplication(), "rm", "-f", "databases/" + dbName, "databases/" + dbName + "-journal"}));
 }
 
 DbAndroidConnection::ExecutionResult DbAndroidShellConnection::executeQuery(const QString& query)
 {
-    const static QStringList stdArguments = QStringList({"shell", "run-as", "", "sqlite3", "-csv", "-separator", ",", "-batch", "-header"});
+    const static QStringList stdArguments = QStringList({"-s", connectionUrl.getDevice(), "shell", "run-as", "", "sqlite3", "-csv", "-separator", ",", "-batch", "-header"});
 
     // Prepare usual arguments
     QStringList args = stdArguments;
-    args.replace(2, connectionUrl.getApplication());
+    args.replace(4, connectionUrl.getApplication());
     args << "databases/" + connectionUrl.getDbName();
-//    args << "/data/data/" + connectionUrl.getApplication() + "/sqlitestudio_remote.sql";
     args << AdbManager::encode(query);
 
     // In case of SELECT we want to union typeof() for all columns first, then original query
