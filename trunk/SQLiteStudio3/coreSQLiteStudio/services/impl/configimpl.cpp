@@ -28,6 +28,7 @@ void ConfigImpl::init()
 {
     initDbFile();
     initTables();
+    mergeMasterConfig();
 
     sqlite3Version = db->exec("SELECT sqlite_version()")->getSingleCell().toString();
 
@@ -789,6 +790,47 @@ void ConfigImpl::asyncClearReportHistory()
     static_qstring(sql, "DELETE FROM reports_history");
     db->exec(sql);
     emit reportsHistoryRefreshNeeded();
+}
+
+void ConfigImpl::mergeMasterConfig()
+{
+    QString masterConfigFile = Config::getMasterConfigFile();
+    if (masterConfigFile.isEmpty())
+        return;
+
+    qInfo() << "Updating settings from master configuration file: " << masterConfigFile;
+
+    Db* masterDb = new DbSqlite3("SQLiteStudio master settings", masterConfigFile, {{DB_PURE_INIT, true}});
+    if (!masterDb->open())
+    {
+        safe_delete(masterDb);
+        qWarning() << "Could not open master config database:" << masterConfigFile;
+        return;
+    }
+
+    SqlQueryPtr results = masterDb->exec("SELECT [group], key, value FROM settings");
+    if (results->isError())
+    {
+        qWarning() << "Could not query master config database:" << masterConfigFile << ", error details:" << results->getErrorText();
+        safe_delete(masterDb);
+        return;
+    }
+
+    static_qstring(insertSql, "INSERT OR IGNORE INTO settings ([group], key, value) VALUES (?, ?, ?)");
+    db->begin();
+    SqlResultsRowPtr row;
+    while (results->hasNext())
+    {
+        row = results->next();
+        if (row->value("group") == "General" && row->value("key") == "Session")
+            continue; // Don't copy session
+
+        db->exec(insertSql, row->valueList());
+    }
+    db->commit();
+
+    masterDb->close();
+    safe_delete(masterDb);
 }
 
 void ConfigImpl::refreshSqlHistory()

@@ -43,7 +43,7 @@ void uiMessageHandler(QtMsgType type, const QMessageLogContext &context, const Q
 #if QT_VERSION >= 0x050300
         case QtInfoMsg:
             msgHandlerThreadProxy->fatal(fatMsg.arg(time, msg));
-            abort();
+            break;
 #endif
     }
 }
