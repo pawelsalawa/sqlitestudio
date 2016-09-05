@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>455</width>
-    <height>365</height>
+    <height>366</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -80,24 +80,7 @@
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_6">
       <item>
-       <widget class="QLineEdit" name="nameEdit">
-        <property name="readOnly">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="generateCheckBox">
-        <property name="toolTip">
-         <string>Generate name basing on file path</string>
-        </property>
-        <property name="text">
-         <string>Generate automatically</string>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-       </widget>
+       <widget class="QLineEdit" name="nameEdit"/>
       </item>
      </layout>
     </widget>

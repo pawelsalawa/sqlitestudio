@@ -111,7 +111,7 @@ QList<DbPluginOption> DbSqliteCipher::getOptionsList() const
 QString DbSqliteCipher::generateDbName(const QVariant& baseValue)
 {
     QFileInfo file(baseValue.toString());
-    return file.baseName();
+    return file.completeBaseName();
 }
 
 bool DbSqliteCipher::init()

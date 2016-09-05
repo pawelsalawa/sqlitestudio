@@ -38,7 +38,7 @@ QList<DbPluginOption> DbPluginSqlite3::getOptionsList() const
 QString DbPluginSqlite3::generateDbName(const QVariant& baseValue)
 {
     QFileInfo file(baseValue.toString());
-    return file.baseName();
+    return file.completeBaseName();
 }
 
 bool DbPluginSqlite3::checkIfDbServedByPlugin(Db* db) const

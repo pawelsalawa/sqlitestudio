@@ -81,7 +81,6 @@ void DbDialog::showEvent(QShowEvent *e)
         int idx = ui->typeCombo->findText(db->getTypeLabel());
         ui->typeCombo->setCurrentIndex(idx);
 
-        ui->generateCheckBox->setChecked(false);
         ui->fileEdit->setText(db->getPath());
         ui->nameEdit->setText(db->getName());
         disableTypeAutodetection = false;
@@ -126,19 +125,18 @@ void DbDialog::init()
     ui->testConnIcon->setVisible(false);
 
     connect(ui->fileEdit, SIGNAL(textChanged(QString)), this, SLOT(fileChanged(QString)));
-    connect(ui->nameEdit, SIGNAL(textChanged(QString)), this, SLOT(nameModified(QString)));
-    connect(ui->generateCheckBox, SIGNAL(toggled(bool)), this, SLOT(generateNameSwitched(bool)));
+    connect(ui->nameEdit, SIGNAL(textEdited(QString)), this, SLOT(nameModified(QString)));
     connect(ui->browseCreateButton, SIGNAL(clicked()), this, SLOT(browseClicked()));
     connect(ui->browseOpenButton, SIGNAL(clicked()), this, SLOT(browseClicked()));
     connect(ui->testConnButton, SIGNAL(clicked()), this, SLOT(testConnectionClicked()));
     connect(ui->typeCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(dbTypeChanged(int)));
 
-    generateNameSwitched(true);
-
     layout()->setSizeConstraint(QLayout::SetFixedSize);
 
     if (mode == Mode::ADD && CFG_UI.General.NewDbNotPermanentByDefault.get())
         ui->permamentCheckBox->setChecked(false);
+
+    validate();
 }
 
 void DbDialog::updateOptions()
@@ -462,55 +460,76 @@ bool DbDialog::testDatabase()
 bool DbDialog::validate()
 {
     // Name
-    if (!ui->generateCheckBox->isChecked())
+    bool nameState = true;
+    if (ui->nameEdit->text().isEmpty())
     {
-        if (ui->nameEdit->text().isEmpty())
+        nameState = false;
+        setValidState(ui->nameEdit, false, tr("Enter an unique database name."));
+    }
+
+    Db* registeredDb = nullptr;
+    if (nameState)
+    {
+        registeredDb = DBLIST->getByName(ui->nameEdit->text(), Qt::CaseInsensitive);
+        if (registeredDb && (mode == Mode::ADD || registeredDb != db))
         {
-            setValidState(ui->nameEdit, false, tr("Enter an unique database name."));
-            return false;
+            nameState = false;
+            setValidState(ui->nameEdit, false, tr("This name is already in use. Please enter unique name."));
         }
     }
 
-    Db* registeredDb = DBLIST->getByName(ui->nameEdit->text(), Qt::CaseInsensitive);
-    if (registeredDb && (mode == Mode::ADD || registeredDb != db))
+    if (nameState)
     {
-        setValidState(ui->nameEdit, false, tr("This name is already in use. Please enter unique name."));
-        return false;
+        if (nameManuallyEdited)
+            setValidStateInfo(ui->nameEdit, tr("<p>Automatic name generation was disabled, becuase the name was edited manually. To restore automatic generation please erase contents of the name field.</p>"));
+        else
+            setValidState(ui->nameEdit, true);
     }
-    setValidState(ui->nameEdit, true);
 
     // File
+    bool fileState = true;
     if (ui->fileEdit->text().isEmpty())
     {
         setValidState(ui->fileEdit, false, tr("Enter a database file path."));
-        return false;
+        fileState = false;
     }
 
-    registeredDb = DBLIST->getByPath(ui->fileEdit->text());
-    if (registeredDb && (mode == Mode::ADD || registeredDb != db))
+    if (fileState)
     {
-        setValidState(ui->fileEdit, false, tr("This database is already on the list under name: %1").arg(registeredDb->getName()));
-        return false;
+        registeredDb = DBLIST->getByPath(ui->fileEdit->text());
+        if (registeredDb && (mode == Mode::ADD || registeredDb != db))
+        {
+            setValidState(ui->fileEdit, false, tr("This database is already on the list under name: %1").arg(registeredDb->getName()));
+            fileState = false;
+        }
     }
-    setValidState(ui->fileEdit, true);
+
+    if (fileState)
+        setValidState(ui->fileEdit, true);
 
     // Type
+    bool typeState = true;
     if (ui->typeCombo->count() == 0)
     {
         // No need to set validation message here. SQLite3 plugin is built in,
         // so if this happens, something is really, really wrong.
         qCritical() << "No db plugins loaded in db dialog!";
-        return false;
+        typeState = false;
     }
 
-    if (ui->typeCombo->currentIndex() < 0)
+    if (typeState)
     {
-        setValidState(ui->typeCombo, false, tr("Select a database type."));
-        return false;
+        if (ui->typeCombo->currentIndex() < 0)
+        {
+            setValidState(ui->typeCombo, false, tr("Select a database type."));
+            typeState = false;
+        }
     }
-    setValidState(ui->typeCombo, true);
 
-    return true;
+    if (typeState)
+        setValidState(ui->typeCombo, true);
+
+    return nameState && fileState && typeState;
 }
 
 void DbDialog::updateState()
@@ -532,13 +551,12 @@ void DbDialog::typeChanged(int index)
 {
     UNUSED(index);
     updateOptions();
-    valueForNameGenerationChanged();
 }
 
 void DbDialog::valueForNameGenerationChanged()
 {
     updateState();
-    if (!ui->generateCheckBox->isChecked())
+    if (nameManuallyEdited)
         return;
 
     QString generatedName;
@@ -564,21 +582,6 @@ void DbDialog::browseForFile()
     setValueFor(optionKeyToType[key], optionKeyToWidget[key], path);
 
     setFileDialogInitPathByFile(path);
-}
-
-void DbDialog::generateNameSwitched(bool checked)
-{
-    if (checked)
-    {
-        ui->nameEdit->setPlaceholderText(tr("Auto-generated"));
-        valueForNameGenerationChanged();
-    }
-    else
-    {
-        ui->nameEdit->setPlaceholderText(tr("Type the name"));
-    }
-
-    ui->nameEdit->setReadOnly(checked);
 }
 
 void DbDialog::fileChanged(const QString &arg1)
@@ -637,9 +640,9 @@ void DbDialog::dbTypeChanged(int index)
     propertyChanged();
 }
 
-void DbDialog::nameModified(const QString &arg1)
+void DbDialog::nameModified(const QString &value)
 {
-    UNUSED(arg1);
+    nameManuallyEdited = !value.isEmpty();
     updateState();
 }
 

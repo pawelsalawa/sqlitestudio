@@ -70,6 +70,7 @@ class GUI_API_EXPORT DbDialog : public QDialog
         DbPluginOption::CustomBrowseHandler customBrowseHandler = nullptr;
         bool disableTypeAutodetection = false;
         bool doAutoTest = false;
+        bool nameManuallyEdited = false;
 
         static const constexpr int ADDITIONAL_ROWS_BEGIN_INDEX = 1;
 
@@ -77,13 +78,12 @@ class GUI_API_EXPORT DbDialog : public QDialog
         void typeChanged(int index);
         void valueForNameGenerationChanged();
         void browseForFile();
-        void generateNameSwitched(bool checked);
         void fileChanged(const QString &arg1);
         void browseClicked();
         void testConnectionClicked();
         void propertyChanged();
         void dbTypeChanged(int index);
-        void nameModified(const QString &arg1);
+        void nameModified(const QString &value);
 
     public slots:
         void accept();
