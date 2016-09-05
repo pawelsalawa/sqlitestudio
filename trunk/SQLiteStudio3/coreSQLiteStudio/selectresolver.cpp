@@ -250,17 +250,36 @@ void SelectResolver::markGroupedColumns()
 void SelectResolver::fixColumnNames()
 {
     QSet<QString> existingDisplayNames;
+    QSet<QString> existingAliasNames;
     QString originalName;
+    QString originalAlias;
+    QString alias;
     int i;
 
     QMutableListIterator<Column> it(currentCoreResults);
     while (it.hasNext())
     {
+        // Display name
         originalName = it.next().displayName;
         for (i = 1; existingDisplayNames.contains(it.value().displayName); i++)
             it.value().displayName = originalName + ":" + QString::number(i);
 
         existingDisplayNames << it.value().displayName;
+
+        // Alias
+        // Handled both alias duplicates and name duplicates.
+        // If name is duplicated, also create alias for it.
+        // This is important, because in case of duplicated name/alias, the result column is actually
+        // made unique with sequenced number - not only for display, but also for data origin.
+        alias = it.value().alias.isNull() ? it.value().column : it.value().alias;
+        originalAlias = alias;
+        for (i = 1; existingAliasNames.contains(alias); i++)
+            alias = originalAlias + ":" + QString::number(i);
+
+        if (alias != originalAlias)
+            it.value().alias = alias;
+
+        existingAliasNames << alias;
     }
 }
 
