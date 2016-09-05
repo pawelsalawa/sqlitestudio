@@ -111,6 +111,8 @@ class API_EXPORT ConfigImpl : public Config
         void asyncDeleteReport(int id);
         void asyncClearReportHistory();
 
+        void mergeMasterConfig();
+
         static Config* instance;
         static qint64 sqlHistoryId;
 

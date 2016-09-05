@@ -104,6 +104,9 @@ class API_EXPORT Config : public QObject
 
         typedef QSharedPointer<ReportHistoryEntry> ReportHistoryEntryPtr;
 
+        static void setMasterConfigFile(const QString& path);
+        static QString getMasterConfigFile();
+
         virtual void init() = 0;
         virtual void cleanUp() = 0;
         virtual const QString& getConfigDir() const = 0;

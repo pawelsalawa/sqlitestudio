@@ -53,6 +53,7 @@ QString uiHandleCmdLineArgs()
     QCommandLineOption sqlDebugDbNameOption("debug-sql-db", QObject::tr("Limits SQL query messages to only the given <database>."), QObject::tr("database"));
     QCommandLineOption executorDebugOption("debug-query-executor", QObject::tr("Enables debugging of SQLiteStudio's query executor."));
     QCommandLineOption listPluginsOption("list-plugins", QObject::tr("Lists plugins installed in the SQLiteStudio and quits."));
+    QCommandLineOption masterConfigOption("master-config", QObject::tr("Points to the master configuration file. Read manual at wiki page for more details."), QObject::tr("SQLiteStudio settings file"));
     parser.addOption(debugOption);
     parser.addOption(debugStdOutOption);
     parser.addOption(debugFileOption);
@@ -60,6 +61,7 @@ QString uiHandleCmdLineArgs()
     parser.addOption(sqlDebugOption);
     parser.addOption(sqlDebugDbNameOption);
     parser.addOption(executorDebugOption);
+    parser.addOption(masterConfigOption);
     parser.addOption(listPluginsOption);
 
     parser.addPositionalArgument(QObject::tr("file"), QObject::tr("Database file to open"));
@@ -76,6 +78,9 @@ QString uiHandleCmdLineArgs()
 
     if (parser.isSet(listPluginsOption))
         listPlugins = true;
+
+    if (parser.isSet(masterConfigOption))
+        Config::setMasterConfigFile(parser.value(masterConfigOption));
 
     QStringList args = parser.positionalArguments();
     if (args.size() > 0)
