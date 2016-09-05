@@ -50,7 +50,7 @@ class QueryExecutorColumns : public QueryExecutorStep
          * @param rowIdColumn Indicates if this is a call for ROWID column added by QueryExecutorRowId step.
          * @return Result column object ready for rebuilding tokens and detokenizing.
          */
-        SqliteSelect::Core::ResultColumn* getResultColumnForSelect(const QueryExecutor::ResultColumnPtr& resultColumn, const SelectResolver::Column& col);
+        SqliteSelect::Core::ResultColumn* getResultColumnForSelect(const QueryExecutor::ResultColumnPtr& resultColumn, const SelectResolver::Column& col, QSet<QString>& usedAliases);
 
         /**
          * @brief Translates attach name into database name.

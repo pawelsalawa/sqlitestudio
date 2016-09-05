@@ -48,6 +48,7 @@ bool QueryExecutorColumns::exec()
     SqliteSelect::Core::ResultColumn* resultColumnForSelect = nullptr;
     bool rowIdColumn = false;
     int i = 0;
+    QSet<QString> usedAliases;
     for (const SelectResolver::Column& col : columns)
     {
         // Convert column to QueryExecutor result column
@@ -58,7 +59,7 @@ bool QueryExecutorColumns::exec()
         if (rowIdColumn && col.alias.contains(":"))
             continue; // duplicate ROWID column provided by SelectResolver. See isRowIdColumn() for details.
 
-        resultColumnForSelect = getResultColumnForSelect(resultColumn, col);
+        resultColumnForSelect = getResultColumnForSelect(resultColumn, col, usedAliases);
         if (!resultColumnForSelect)
             return false;
 
@@ -126,7 +127,7 @@ QueryExecutor::ResultColumnPtr QueryExecutorColumns::getResultColumn(const Selec
     return resultColumn;
 }
 
-SqliteSelect::Core::ResultColumn* QueryExecutorColumns::getResultColumnForSelect(const QueryExecutor::ResultColumnPtr& resultColumn, const SelectResolver::Column& col)
+SqliteSelect::Core::ResultColumn* QueryExecutorColumns::getResultColumnForSelect(const QueryExecutor::ResultColumnPtr& resultColumn, const SelectResolver::Column& col, QSet<QString> &usedAliases)
 {
     SqliteSelect::Core::ResultColumn* selectResultColumn = new SqliteSelect::Core::ResultColumn();
 
@@ -176,6 +177,15 @@ SqliteSelect::Core::ResultColumn* QueryExecutorColumns::getResultColumnForSelect
         selectResultColumn->alias = col.alias;
     else
         selectResultColumn->alias = resultColumn->queryExecutorAlias;
+
+    // If this alias was already used we need to use sequential alias
+    static_qstring(aliasTpl, "%1:%2");
+    int nextAliasCounter = 1;
+    QString aliasBase = selectResultColumn->alias;
+    while (usedAliases.contains(selectResultColumn->alias))
+        selectResultColumn->alias = aliasTpl.arg(aliasBase, QString::number(nextAliasCounter++));
+
+    usedAliases += selectResultColumn->alias;
 
     return selectResultColumn;
 }
