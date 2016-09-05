@@ -37,7 +37,7 @@ QList<DbPluginOption> DbSqlite2::getOptionsList() const
 QString DbSqlite2::generateDbName(const QVariant& baseValue)
 {
     QFileInfo file(baseValue.toString());
-    return file.baseName();
+    return file.completeBaseName();
 }
 
 QString DbSqlite2::getLabel() const
