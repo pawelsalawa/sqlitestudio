@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="fr_FR">
+<TS version="2.1" language="fr_FR">
 <context>
     <name>DbAndroid</name>
     <message>
@@ -101,23 +101,28 @@ Would you like to select another one, or leave it unconfigured?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dbandroidjsonconnection.cpp" line="307"/>
+        <location filename="dbandroidjsonconnection.cpp" line="301"/>
+        <source>Unable to execute query on Android device (connection was closed): %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="dbandroidjsonconnection.cpp" line="313"/>
         <source>Error while parsing response from Android: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dbandroidjsonconnection.cpp" line="315"/>
+        <location filename="dbandroidjsonconnection.cpp" line="321"/>
         <source>Generic error from Android: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dbandroidjsonconnection.cpp" line="329"/>
-        <location filename="dbandroidjsonconnection.cpp" line="336"/>
+        <location filename="dbandroidjsonconnection.cpp" line="335"/>
+        <location filename="dbandroidjsonconnection.cpp" line="342"/>
         <source>Missing &apos;columns&apos; in response from Android.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dbandroidjsonconnection.cpp" line="357"/>
+        <location filename="dbandroidjsonconnection.cpp" line="363"/>
         <source>Response from Android has missing data for column &apos;%1&apos; in row %2.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -285,43 +290,43 @@ Android device refused deletion, or it was impossible.</source>
 <context>
     <name>DbAndroidShellConnection</name>
     <message>
-        <location filename="dbandroidshellconnection.cpp" line="30"/>
+        <location filename="dbandroidshellconnection.cpp" line="31"/>
         <source>Cannot connect to device %1, because it&apos;s not visible to your computer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dbandroidshellconnection.cpp" line="45"/>
+        <location filename="dbandroidshellconnection.cpp" line="46"/>
         <source>Cannot connect to device %1, because the application %2 doesn&apos;t seem to be installed on the device.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dbandroidshellconnection.cpp" line="55"/>
+        <location filename="dbandroidshellconnection.cpp" line="56"/>
         <source>Cannot connect to device %1, because the application %2 is not debuggable.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dbandroidshellconnection.cpp" line="64"/>
+        <location filename="dbandroidshellconnection.cpp" line="65"/>
         <source>Cannot connect to device %1, because &apos;%2&apos; command doesn&apos;t seem to be available on the device.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dbandroidshellconnection.cpp" line="76"/>
+        <location filename="dbandroidshellconnection.cpp" line="77"/>
         <source>Cannot connect to device %1, because &apos;%2&apos; database cannot be accessed on the device.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dbandroidshellconnection.cpp" line="89"/>
+        <location filename="dbandroidshellconnection.cpp" line="90"/>
         <source>Cannot connect to device %1, because &apos;%2&apos; database cannot be accessed on the device. Details: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dbandroidshellconnection.cpp" line="125"/>
+        <location filename="dbandroidshellconnection.cpp" line="126"/>
         <source>Cannot get list of databases for application %1. Details: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dbandroidshellconnection.cpp" line="202"/>
-        <location filename="dbandroidshellconnection.cpp" line="209"/>
+        <location filename="dbandroidshellconnection.cpp" line="207"/>
+        <location filename="dbandroidshellconnection.cpp" line="214"/>
         <source>Could not execute query on database &apos;%1&apos;: %2</source>
         <translation type="unfinished"></translation>
     </message>

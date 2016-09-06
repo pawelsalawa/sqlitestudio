@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="sk_SK">
+<TS version="2.1" language="sk_SK">
 <context>
     <name>QObject</name>
     <message>
@@ -59,18 +59,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="65"/>
+        <location filename="../main.cpp" line="56"/>
+        <source>Points to the master configuration file. Read manual at wiki page for more details.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="56"/>
+        <source>SQLiteStudio settings file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="67"/>
         <source>file</source>
         <translation>Súbor</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="65"/>
+        <location filename="../main.cpp" line="67"/>
         <source>Database file to open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="89"/>
-        <location filename="../main.cpp" line="105"/>
+        <location filename="../main.cpp" line="94"/>
+        <location filename="../main.cpp" line="110"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="pl_PL">
+<TS version="2.1" language="pl_PL">
 <context>
     <name>QObject</name>
     <message>
@@ -58,6 +58,14 @@
     <message>
         <source>Enables debugging of SQLiteStudio&apos;s query executor.</source>
         <translation>Włącza debugowanie wykonawcy zapytań w SQLiteStudio.</translation>
+    </message>
+    <message>
+        <source>Points to the master configuration file. Read manual at wiki page for more details.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SQLiteStudio settings file</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

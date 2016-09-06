@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="ru_RU">
+<TS version="2.1" language="ru_RU">
 <context>
     <name>AbstractDb</name>
     <message>
@@ -915,17 +915,17 @@ Error details: %2</source>
         <translation>Заполняющий код не может быть пустым.</translation>
     </message>
     <message>
-        <location filename="../selectresolver.cpp" line="333"/>
+        <location filename="../selectresolver.cpp" line="352"/>
         <source>Could not resolve data source for column: %1</source>
         <translation>Невозможно определить источник данных для столбца: %1</translation>
     </message>
     <message>
-        <location filename="../selectresolver.cpp" line="405"/>
+        <location filename="../selectresolver.cpp" line="424"/>
         <source>Could not resolve table for column &apos;%1&apos;.</source>
         <translation>Невозможно определить таблицу для столбца &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="612"/>
+        <location filename="../services/impl/configimpl.cpp" line="613"/>
         <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Tried to initialize the file at following localizations: %1.</source>
         <translation>Невозможно инициализировать файл конфигурации. Любые изменения конфигурации и история запросов будут утеряны после перезапуска приложения. Попытки инициализации файла предпринимались в следующих местах: %1.</translation>
     </message>

@@ -150,7 +150,7 @@
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="66"/>
         <source>You can see all your reported bugs and ideas by selecting menu &apos;%1&apos; and then &apos;%2&apos;.</source>
-        <translation>Vous pouvez voir tous bugs et idées que vous avez rapportées en sélectionnant le menu «&nbsp;%1&nbsp;» puis «&nbsp;%2&nbsp;».</translation>
+        <translation>Vous pouvez voir tous bugs et idées que vous avez rapportées en sélectionnant le menu « %1 » puis « %2 ».</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="74"/>
@@ -229,7 +229,7 @@
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="144"/>
         <source>Providing true email address will make it possible to contact you regarding your report. To learn more, press &apos;help&apos; button on the right side.</source>
-        <translation>En fournissant un mail existant il sera possible de vous contacterau sujet du rapport. Pour en savoir plus, clic sur le bouton «&nbsp;help&nbsp;» sur le coté droit.</translation>
+        <translation>En fournissant un mail existant il sera possible de vous contacterau sujet du rapport. Pour en savoir plus, clic sur le bouton « help » sur le coté droit.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="146"/>
@@ -663,7 +663,7 @@
         <location filename="../dialogs/columndialog.cpp" line="228"/>
         <source>Are you sure you want to delete constraint &apos;%1&apos;?</source>
         <comment>column dialog</comment>
-        <translation>Êtes-vous sûr de vouloir supprimer la contrainte «&nbsp;%1&nbsp;» ?</translation>
+        <translation>Êtes-vous sûr de vouloir supprimer la contrainte « %1 » ?</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="290"/>
@@ -1167,7 +1167,7 @@ mais c’est OK pour l’utiliser.</translation>
     <message>
         <location filename="../dialogs/configdialog.ui" line="830"/>
         <source>Virtual tables will be marked with a &apos;virtual&apos; label.</source>
-        <translation>Les tables vituelles seront marquées avec un label «&nbsp;virtuel&nbsp;».</translation>
+        <translation>Les tables vituelles seront marquées avec un label « virtuel ».</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="833"/>
@@ -2360,7 +2360,7 @@ Tous les objets de ce groupe seront déplacés dans le groupe parent.</translati
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1019"/>
         <source>Are you sure you want to delete database &apos;%1&apos;?</source>
-        <translation>Êtes-vous certain de vouloir supprimer la base de données : «&nbsp;%1&nbsp;» ?</translation>
+        <translation>Êtes-vous certain de vouloir supprimer la base de données : « %1 » ?</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1055"/>
@@ -2397,12 +2397,12 @@ Tous les objets de ce groupe seront déplacés dans le groupe parent.</translati
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1395"/>
         <source>Are you sure you want to reset autoincrement value for table &apos;%1&apos;?</source>
-        <translation>Êtes-vous certain de vouloir réinitialiser l’auto-incrémentation de la table «&nbsp;%1&nbsp;» ?</translation>
+        <translation>Êtes-vous certain de vouloir réinitialiser l’auto-incrémentation de la table « %1 » ?</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1402"/>
         <source>An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</source>
-        <translation>Une erreur est survenue pendant la réinitialisation de la valeur de l’auto-incrémentation de la table «&nbsp;%1&nbsp;» : %2</translation>
+        <translation>Une erreur est survenue pendant la réinitialisation de la valeur de l’auto-incrémentation de la table « %1 » : %2</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1404"/>
@@ -2411,7 +2411,7 @@ Tous les objets de ce groupe seront déplacés dans le groupe parent.</translati
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1421"/>
-        <source>Are you sure you want to delete all data from table «&nbsp;%1&nbsp;» ?</source>
+        <source>Are you sure you want to delete all data from table « %1 » ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2590,7 +2590,7 @@ Tous les objets de ce groupe seront déplacés dans le groupe parent.</translati
         <source>Following object already exists in the target database.
 Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</source>
         <translation>L’objet suivant existe déjà dans la base de données cible.
-Entrez SVP un nouveau nom, unique, ou cliquez «&nbsp;%1&nbsp;» pour d’interrompre l’opération :</translation>
+Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’opération :</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="1199"/>
@@ -2993,12 +2993,12 @@ Entrez SVP un nouveau nom, unique, ou cliquez «&nbsp;%1&nbsp;» pour d’interr
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="234"/>
         <source>The directory &apos;%1&apos; does not exist.</source>
-        <translation>Le répertoire «&nbsp;%1&nbsp;» n’existe pas.</translation>
+        <translation>Le répertoire « %1 » n’existe pas.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="240"/>
         <source>The file &apos;%1&apos; exists and will be overwritten.</source>
-        <translation>Le fichier «&nbsp;%1&nbsp;» existe et sera écrasé.</translation>
+        <translation>Le fichier « %1 » existe et sera écrasé.</translation>
     </message>
     <message>
         <location filename="../dialogs/exportdialog.cpp" line="417"/>
@@ -3334,7 +3334,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez «&nbsp;%1&nbsp;» pour d’interr
     <message>
         <location filename="../dialogs/importdialog.cpp" line="137"/>
         <source>The file &apos;%1&apos; does not exist.</source>
-        <translation>Le fichier «&nbsp;%1&nbsp;» n’existe pas.</translation>
+        <translation>Le fichier « %1 » n’existe pas.</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.cpp" line="143"/>
@@ -3510,7 +3510,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez «&nbsp;%1&nbsp;» pour d’interr
     <message>
         <location filename="../mainwindow.cpp" line="121"/>
         <source>Running in debug mode. Press %1 or use &apos;Help / Open debug console&apos; menu entry to open the debug console.</source>
-        <translation>Passage en mode débogue. Cliquez %1 ou utilisez l’entrée du menu «&nbsp;l’Aide / Ouvrir la console de débogage&nbsp;».</translation>
+        <translation>Passage en mode débogue. Cliquez %1 ou utilisez l’entrée du menu « l’Aide / Ouvrir la console de débogage ».</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="123"/>
@@ -3798,7 +3798,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez «&nbsp;%1&nbsp;» pour d’interr
     <message>
         <location filename="../multieditor/multieditor.cpp" line="287"/>
         <source>Data editor plugin &apos;%1&apos; not loaded, while it is defined for editing &apos;%1&apos; data type.</source>
-        <translation>Plugin d&quot;éditeur de données «&nbsp;%1&nbsp;» non chargé, ausii il n’ai pas défini pour le type de données «&nbsp;%1&nbsp;».</translation>
+        <translation>Plugin d&quot;éditeur de données « %1 » non chargé, ausii il n’ai pas défini pour le type de données « %1 ».</translation>
     </message>
     <message>
         <location filename="../multieditor/multieditor.cpp" line="372"/>
@@ -4943,7 +4943,7 @@ recherche suivant</translation>
     <message>
         <location filename="../sqleditor.cpp" line="245"/>
         <source>Could not open file &apos;%1&apos; for writing: %2</source>
-        <translation>Impossible d’ouvrir en écriture le fichier «&nbsp;%1&nbsp;» : %2</translation>
+        <translation>Impossible d’ouvrir en écriture le fichier « %1 » : %2</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="1069"/>
@@ -4958,7 +4958,7 @@ recherche suivant</translation>
     <message>
         <location filename="../sqleditor.cpp" line="1079"/>
         <source>Could not open file &apos;%1&apos; for reading: %2</source>
-        <translation>Impossible d’ouvrir en lecture le fichier «&nbsp;%1&nbsp;» : %2</translation>
+        <translation>Impossible d’ouvrir en lecture le fichier « %1 » : %2</translation>
     </message>
     <message>
         <location filename="../sqleditor.cpp" line="1288"/>
@@ -5069,7 +5069,7 @@ recherche suivant</translation>
         <location filename="../datagrid/sqlquerymodel.cpp" line="1045"/>
         <location filename="../datagrid/sqlquerymodel.cpp" line="1100"/>
         <source>Error while executing SQL query on database &apos;%1&apos;: %2</source>
-        <translation>Erreur pendant l’exécution de la requête sur la base de données «&nbsp;%1&nbsp;» : %2</translation>
+        <translation>Erreur pendant l’exécution de la requête sur la base de données « %1 » : %2</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="1097"/>
@@ -5620,7 +5620,7 @@ but it&apos;s okay to use them anyway.</source>
         <location filename="../windows/tablewindow.cpp" line="299"/>
         <source>Are you sure you want to delete column &apos;%1&apos;?</source>
         <comment>table window</comment>
-        <translation>Êtes-vous certain de vouloir supprimer la colonne : «&nbsp;%1&nbsp;» ?</translation>
+        <translation>Êtes-vous certain de vouloir supprimer la colonne : « %1 » ?</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="327"/>
@@ -5699,7 +5699,7 @@ Voudriez-vous procéder ?</translation>
     <message>
         <location filename="../windows/tablewindow.cpp" line="864"/>
         <source>An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</source>
-        <translation>Une erreur est survenue pendant la réinitialisation de la valeur de l’auto-incrémentation de la table «&nbsp;%1&nbsp;» : %2</translation>
+        <translation>Une erreur est survenue pendant la réinitialisation de la valeur de l’auto-incrémentation de la table « %1 » : %2</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="866"/>
@@ -5737,7 +5737,7 @@ Are you sure you want to create a table with blank name?</source>
         <location filename="../windows/tablewindow.cpp" line="1125"/>
         <source>Are you sure you want to delete table constraint &apos;%1&apos;?</source>
         <comment>table window</comment>
-        <translation>Êtes-vous sûr de vouloir supprimer la contrainte «&nbsp;%1&nbsp;» ?</translation>
+        <translation>Êtes-vous sûr de vouloir supprimer la contrainte « %1 » ?</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1126"/>
