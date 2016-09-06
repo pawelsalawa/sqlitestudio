@@ -24,5 +24,9 @@
         <file>translations/coreSQLiteStudio_fr.qm</file>
         <file>translations/coreSQLiteStudio_sk.qm</file>
         <file>translations/coreSQLiteStudio_zh_CN.qm</file>
+        <file>translations/coreSQLiteStudio_de.qm</file>
     </qresource>
 </RCC>
+
+
+

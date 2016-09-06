@@ -31,10 +31,10 @@ QMAKE_CXXFLAGS += -pedantic
 
 DEFINES += GUISQLITESTUDIO_LIBRARY
 
-TRANSLATIONS += translations/guiSQLiteStudio_it.ts \
+TRANSLATIONS += translations/guiSQLiteStudio_de.ts \
+		translations/guiSQLiteStudio_it.ts \
 		translations/guiSQLiteStudio_zh_CN.ts \
 		translations/guiSQLiteStudio_sk.ts \
-		translations/guiSQLiteStudio_de.ts \
 		translations/guiSQLiteStudio_ru.ts \
 		translations/guiSQLiteStudio_pt_BR.ts \
 		translations/guiSQLiteStudio_fr.ts \
@@ -406,6 +406,8 @@ LIBS += -lcoreSQLiteStudio
 
 DISTFILES += \
     general.css
+
+
 
 
 

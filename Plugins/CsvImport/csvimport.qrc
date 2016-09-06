@@ -3,6 +3,8 @@
         <file>CsvImportOptions.ui</file>
     </qresource>
     <qresource prefix="/msg">
+
+        <file>CsvImport_de.qm</file>
         <file>CsvImport_pl.qm</file>
         <file>CsvImport_ru.qm</file>
         <file>CsvImport_fr.qm</file>
@@ -10,3 +12,5 @@
         <file>CsvImport_zh_CN.qm</file>
     </qresource>
 </RCC>
+
+

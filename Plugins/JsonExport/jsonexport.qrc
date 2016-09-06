@@ -3,6 +3,9 @@
         <file>jsonexport.ui</file>
     </qresource>
     <qresource prefix="/msg">
+        <file>JsonExport_de.qm</file>
+
+
         <file>JsonExport_pl.qm</file>
         <file>JsonExport_ru.qm</file>
         <file>JsonExport_fr.qm</file>
@@ -10,3 +13,6 @@
         <file>JsonExport_zh_CN.qm</file>
     </qresource>
 </RCC>
+
+
+

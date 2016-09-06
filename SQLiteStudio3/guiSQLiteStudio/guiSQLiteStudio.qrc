@@ -5,8 +5,12 @@
         <file>translations/guiSQLiteStudio_fr.qm</file>
         <file>translations/guiSQLiteStudio_sk.qm</file>
         <file>translations/guiSQLiteStudio_zh_CN.qm</file>
+        <file>translations/guiSQLiteStudio_de.qm</file>
     </qresource>
     <qresource prefix="/css">
         <file>general.css</file>
     </qresource>
 </RCC>
+
+
+

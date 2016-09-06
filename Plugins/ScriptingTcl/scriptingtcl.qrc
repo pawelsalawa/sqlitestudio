@@ -3,6 +3,9 @@
         <file>scriptingtcl.png</file>
     </qresource>
     <qresource prefix="/msg">
+        <file>ScriptingTcl_de.qm</file>
+
+
         <file>ScriptingTcl_pl.qm</file>
         <file>ScriptingTcl_ru.qm</file>
         <file>ScriptingTcl_fr.qm</file>
@@ -10,3 +13,6 @@
         <file>ScriptingTcl_zh_CN.qm</file>
     </qresource>
 </RCC>
+
+
+
