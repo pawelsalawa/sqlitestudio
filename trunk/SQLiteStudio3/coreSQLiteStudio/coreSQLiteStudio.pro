@@ -51,10 +51,10 @@ portable {
 CONFIG   += c++11
 QMAKE_CXXFLAGS += -pedantic
 
-TRANSLATIONS += translations/coreSQLiteStudio_it.ts \
+TRANSLATIONS += translations/coreSQLiteStudio_de.ts \
+		translations/coreSQLiteStudio_it.ts \
 		translations/coreSQLiteStudio_zh_CN.ts \
 		translations/coreSQLiteStudio_sk.ts \
-		translations/coreSQLiteStudio_de.ts \
 		translations/coreSQLiteStudio_ru.ts \
 		translations/coreSQLiteStudio_pt_BR.ts \
 		translations/coreSQLiteStudio_fr.ts \
@@ -450,7 +450,9 @@ FORMS += \
     plugins/populatescript.ui
 
 RESOURCES += \
-    coresqlitestudio.qrc
+    coreSQLiteStudio.qrc
+
+
 
 
 
