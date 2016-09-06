@@ -71,7 +71,8 @@ switch -- $op {
 		if {$op == "update"} {
 		    exec lupdate $f
 		} else {
-		    exec lrelease $f $::ERR_NULL
+		    #exec lrelease $f $::ERR_NULL
+		    exec lrelease $f
 		}
 	    } res
 	    if {$op == "release"} {

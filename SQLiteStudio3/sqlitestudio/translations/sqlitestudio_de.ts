@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="de_DE">
+<TS version="2.1" language="de_DE">
 <context>
     <name>QObject</name>
     <message>
@@ -61,18 +61,28 @@
         <translation>Listet die in SQLiteStudio installierten Plugins auf und beendet.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="65"/>
+        <location filename="../main.cpp" line="56"/>
+        <source>Points to the master configuration file. Read manual at wiki page for more details.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="56"/>
+        <source>SQLiteStudio settings file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="67"/>
         <source>file</source>
         <translation>Datei</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="65"/>
+        <location filename="../main.cpp" line="67"/>
         <source>Database file to open</source>
         <translation>Zu öffnende Datenbankdatei</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="89"/>
-        <location filename="../main.cpp" line="105"/>
+        <location filename="../main.cpp" line="94"/>
+        <location filename="../main.cpp" line="110"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>

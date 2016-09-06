@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="zh_CN">
+<TS version="2.1" language="zh_CN">
 <context>
     <name>QObject</name>
     <message>
@@ -59,18 +59,28 @@
         <translation>列出已安装的插件并退出。</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="65"/>
+        <location filename="../main.cpp" line="56"/>
+        <source>Points to the master configuration file. Read manual at wiki page for more details.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="56"/>
+        <source>SQLiteStudio settings file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="67"/>
         <source>file</source>
         <translation>文件</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="65"/>
+        <location filename="../main.cpp" line="67"/>
         <source>Database file to open</source>
         <translation>要打开的数据库文件</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="89"/>
-        <location filename="../main.cpp" line="105"/>
+        <location filename="../main.cpp" line="94"/>
+        <location filename="../main.cpp" line="110"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>

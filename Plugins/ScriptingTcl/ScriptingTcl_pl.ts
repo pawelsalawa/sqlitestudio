@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="pl_PL">
+<TS version="2.1" language="pl_PL">
 <context>
     <name>ScriptingTcl</name>
     <message>
@@ -16,7 +16,8 @@
         <translation>Niepoprawna składnia polecenia &apos;%1&apos;. Powinno być: %2</translation>
     </message>
     <message>
-        <location filename="scriptingtcl.cpp" line="554"/>
+        <location filename="scriptingtcl.cpp" line="445"/>
+        <location filename="scriptingtcl.cpp" line="576"/>
         <source>Error from Tcl&apos;s&apos; &apos;%1&apos; command: %2</source>
         <oldsource>Error from Tcl&apos;s&apos; &apos;db&apos; command: %1</oldsource>
         <translation>Wystąpił błąd w poleceniu Tcl &apos;%1&apos;: %2</translation>

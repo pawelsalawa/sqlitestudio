@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="ru_RU">
+<TS version="2.1" language="ru_RU">
 <context>
     <name>CsvImport</name>
     <message>
@@ -14,7 +14,7 @@
         <translation>Невозможно найти данные в файле %1.</translation>
     </message>
     <message>
-        <location filename="csvimport.cpp" line="163"/>
+        <location filename="csvimport.cpp" line="165"/>
         <source>Enter the custom separator character.</source>
         <translation>Введите произвольный символ разделителя.</translation>
     </message>
@@ -23,7 +23,7 @@
         <translation type="obsolete">Введите значение, которое будет интерпретировано как NULL.</translation>
     </message>
     <message>
-        <location filename="csvimport.cpp" line="186"/>
+        <location filename="csvimport.cpp" line="188"/>
         <source>CSV files (*.csv);;Text files (*.txt);;All files (*)</source>
         <translation>Файлы CSV (*.csv);;Текстовые файлы (*.txt);;Все файлы (*)</translation>
     </message>

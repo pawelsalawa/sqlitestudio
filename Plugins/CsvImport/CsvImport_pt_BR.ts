@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="pt_BR">
+<TS version="2.1" language="pt_BR">
 <context>
     <name>CsvImport</name>
     <message>
@@ -14,12 +14,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="csvimport.cpp" line="163"/>
+        <location filename="csvimport.cpp" line="165"/>
         <source>Enter the custom separator character.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="csvimport.cpp" line="186"/>
+        <location filename="csvimport.cpp" line="188"/>
         <source>CSV files (*.csv);;Text files (*.txt);;All files (*)</source>
         <translation type="unfinished"></translation>
     </message>

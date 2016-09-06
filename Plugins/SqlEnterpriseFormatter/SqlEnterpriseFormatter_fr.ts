@@ -210,11 +210,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="sqlenterpriseformatter.ui" line="647"/>
-        <source>SqlEnterpriseFormatter.CommentMarkers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="sqlenterpriseformatter.ui" line="654"/>
         <source>Move all comments to the line end</source>
         <translation>Déplacer tous les commentaires en fin de ligne</translation>

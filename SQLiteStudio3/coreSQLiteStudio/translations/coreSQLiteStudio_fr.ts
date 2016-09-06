@@ -293,7 +293,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
         <location filename="../services/exportmanager.cpp" line="155"/>
         <source>Export format &apos;%1&apos; is not supported. Supported formats are: %2.</source>
-        <translation>Format d’export «&nbsp;%1&nbsp;» n’est pas supporté. Les formats supportés sont : %2.</translation>
+        <translation>Format d’export « %1 » n’est pas supporté. Les formats supportés sont : %2.</translation>
     </message>
     <message>
         <location filename="../services/exportmanager.cpp" line="218"/>
@@ -303,7 +303,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
         <location filename="../services/exportmanager.cpp" line="222"/>
         <source>Export to the file &apos;%1&apos; was successful.</source>
-        <translation>Export vers le fichier «&nbsp;%1&nbsp;» avec succès.</translation>
+        <translation>Export vers le fichier « %1 » avec succès.</translation>
     </message>
     <message>
         <location filename="../services/exportmanager.cpp" line="224"/>
@@ -355,7 +355,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
         <location filename="../services/impl/functionmanagerimpl.cpp" line="232"/>
         <source>Invalid number of arguments to function &apos;%1&apos;. Expected %2, but got %3.</source>
-        <translation>Nombre de paramètres invalide de la fonction «&nbsp;%1&nbsp;». Attendu %2, obtenu %3.</translation>
+        <translation>Nombre de paramètres invalide de la fonction « %1 ». Attendu %2, obtenu %3.</translation>
     </message>
     <message>
         <location filename="../services/impl/functionmanagerimpl.cpp" line="341"/>
@@ -407,7 +407,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
         <location filename="../services/importmanager.cpp" line="93"/>
         <source>Imported data to the table &apos;%1&apos; successfully.</source>
-        <translation>Importation des données de la table «&nbsp;%1&nbsp;» réussie.</translation>
+        <translation>Importation des données de la table « %1 » réussie.</translation>
     </message>
 </context>
 <context>
@@ -430,12 +430,12 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
         <location filename="../importworker.cpp" line="94"/>
         <source>Table &apos;%1&apos; has less columns than there are columns in the data to be imported. Excessive data columns will be ignored.</source>
-        <translation>La table «&nbsp;%1&nbsp;» a moins de colonnes que de données à importer. Les colonnes supplèmentaires seront ignorées.</translation>
+        <translation>La table « %1 » a moins de colonnes que de données à importer. Les colonnes supplèmentaires seront ignorées.</translation>
     </message>
     <message>
         <location filename="../importworker.cpp" line="99"/>
         <source>Table &apos;%1&apos; has more columns than there are columns in the data to be imported. Some columns in the table will be left empty.</source>
-        <translation>La table «&nbsp;%1&nbsp;» a plus de colonnes que de colonnes de données à importer. Certaines colonnes de la table seront vides.</translation>
+        <translation>La table « %1 » a plus de colonnes que de colonnes de données à importer. Certaines colonnes de la table seront vides.</translation>
     </message>
     <message>
         <location filename="../importworker.cpp" line="117"/>
@@ -571,7 +571,7 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
     <message>
         <location filename="../services/populatemanager.cpp" line="89"/>
         <source>Table &apos;%1&apos; populated successfully.</source>
-        <translation>Table «&nbsp;%1&nbsp;» remplie avec succès.</translation>
+        <translation>Table « %1 » remplie avec succès.</translation>
     </message>
 </context>
 <context>
@@ -789,12 +789,12 @@ Tables, index, déclencheurs et vues copiés de la base de données %3 seront ma
         <location filename="../dbversionconverter.cpp" line="253"/>
         <location filename="../dbversionconverter.cpp" line="331"/>
         <source>SQLite %1 does not support &apos;%2&apos; statement.</source>
-        <translation>SQLite %1 ne supporte pas l’instruction «&nbsp;%2&nbsp;».</translation>
+        <translation>SQLite %1 ne supporte pas l’instruction « %2 ».</translation>
     </message>
     <message>
         <location filename="../dbversionconverter.cpp" line="201"/>
         <source>SQLite %1 does not support &apos;%2&apos; statement, but the regular table can be created instead if you proceed.</source>
-        <translation>SQLite %1 ne supporte pas l’instruction «&nbsp;%2&nbsp;», mais la table normale peut être créée à la place si vous confirmez.</translation>
+        <translation>SQLite %1 ne supporte pas l’instruction « %2 », mais la table normale peut être créée à la place si vous confirmez.</translation>
     </message>
     <message>
         <location filename="../dbversionconverter.cpp" line="424"/>
@@ -809,12 +809,12 @@ Détails erreur: %2</translation>
         <location filename="../dbversionconverter.cpp" line="482"/>
         <location filename="../dbversionconverter.cpp" line="515"/>
         <source>SQLite %1 does not support the &apos;%2&apos; clause. Cannot convert &apos;%3&apos; statement with that clause.</source>
-        <translation>SQLite %1 ne supporte pas la clause «&nbsp;%2&nbsp;». Impossible de convertir l’instruction «&nbsp;%3&nbsp;» avec cette clause.</translation>
+        <translation>SQLite %1 ne supporte pas la clause « %2 ». Impossible de convertir l’instruction « %3 » avec cette clause.</translation>
     </message>
     <message>
         <location filename="../dbversionconverter.cpp" line="488"/>
         <source>SQLite %1 does not support the &apos;%2&apos; clause in the &apos;%3&apos; statement.</source>
-        <translation>SQLite %1 ne supporte pas la clause «&nbsp;%2&nbsp;» de l’instruction «&nbsp;%3&nbsp;».</translation>
+        <translation>SQLite %1 ne supporte pas la clause « %2 » de l’instruction « %3 ».</translation>
     </message>
     <message>
         <location filename="../dbversionconverter.cpp" line="756"/>
@@ -826,7 +826,7 @@ Détails erreur: %2</translation>
         <location filename="../dbversionconverter.cpp" line="770"/>
         <location filename="../dbversionconverter.cpp" line="781"/>
         <source>SQLite %1 does not support &apos;%2&apos; clause in expressions.</source>
-        <translation>SQLite %1 ne supporte pas la clause «&nbsp;%2&nbsp;» dans l’expression.</translation>
+        <translation>SQLite %1 ne supporte pas la clause « %2 » dans l’expression.</translation>
     </message>
     <message>
         <location filename="../impl/dbattacherimpl.cpp" line="109"/>
@@ -1135,7 +1135,7 @@ La vue restera telque.</translation>
     <message>
         <location filename="../services/updatemanager.cpp" line="255"/>
         <source>Failed to open file &apos;%1&apos; for writting: %2. Updating aborted.</source>
-        <translation>Erreur à l’ouverture du fichier «&nbsp;%1&nbsp;» pour l’écriture : %2. Mise à jour abandonnée.</translation>
+        <translation>Erreur à l’ouverture du fichier « %1 » pour l’écriture : %2. Mise à jour abandonnée.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="276"/>

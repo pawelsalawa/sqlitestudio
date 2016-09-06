@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="pl_PL">
+<TS version="2.1" language="pl_PL">
 <context>
     <name>AbstractDb</name>
     <message>
@@ -910,17 +910,17 @@ Szczegóły błędu: %2</translation>
         <translation>Kod implementacji nie może być pusty.</translation>
     </message>
     <message>
-        <location filename="../selectresolver.cpp" line="333"/>
+        <location filename="../selectresolver.cpp" line="352"/>
         <source>Could not resolve data source for column: %1</source>
         <translation>Nie znaleziono źródła danych dla kolumny: %1</translation>
     </message>
     <message>
-        <location filename="../selectresolver.cpp" line="405"/>
+        <location filename="../selectresolver.cpp" line="424"/>
         <source>Could not resolve table for column &apos;%1&apos;.</source>
         <translation>Nie można ustalić tabeli lub kolumny &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="612"/>
+        <location filename="../services/impl/configimpl.cpp" line="613"/>
         <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Tried to initialize the file at following localizations: %1.</source>
         <translation>Nie udało się zainicjalizować pliku konfiguracyjnego. Jakiekolwiek zmiany w konfiguracji i historia zapytań będą utracone po zrestartowaniu aplikacji. Próbowano zainicjalizować plik konfiguracyjny w następujących lokalizacjach: %1.</translation>
     </message>

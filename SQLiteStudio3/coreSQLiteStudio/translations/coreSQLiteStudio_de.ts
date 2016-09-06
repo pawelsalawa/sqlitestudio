@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="de_DE">
+<TS version="2.1" language="de_DE">
 <context>
     <name>AbstractDb</name>
     <message>
@@ -920,17 +920,17 @@ Problembeschreibung: %2</translation>
         <translation>Der Implementationscode darf nicht leer sein.</translation>
     </message>
     <message>
-        <location filename="../selectresolver.cpp" line="333"/>
+        <location filename="../selectresolver.cpp" line="352"/>
         <source>Could not resolve data source for column: %1</source>
         <translation>Die Datenquelle für Spalte %1 kann nicht aufgelöst werden.</translation>
     </message>
     <message>
-        <location filename="../selectresolver.cpp" line="405"/>
+        <location filename="../selectresolver.cpp" line="424"/>
         <source>Could not resolve table for column &apos;%1&apos;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="612"/>
+        <location filename="../services/impl/configimpl.cpp" line="613"/>
         <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Tried to initialize the file at following localizations: %1.</source>
         <translatorcomment>Ich hoffe, dass ich &quot;to initialize&quot; hier richtig mit &quot;erstellt&quot; übersetzt habe.</translatorcomment>
         <translation>Die Konfigurationsdatei kann nicht erstellt werden. Alle Änderungen an der Konfiguration sowie die Abfragehistorie sind nach einem Programmneustart verloren. Es wurde versucht die Konfigurationsdatei in folgendem Verzeichnis zu erstellen: %1</translation>

@@ -97,7 +97,7 @@
     <message>
         <location filename="../commands/clicommandcd.cpp" line="22"/>
         <source>Very similar command to &apos;cd&apos; known from Unix systems and Windows. It requires a &lt;path&gt; argument to be passed, therefore calling %1 will always cause a change of the directory. To learn what&apos;s the current working directory use %2 command and to list contents of the current working directory use %3 command.</source>
-        <translation>La commande «&nbsp;cd&nbsp;» est connu du système UNIX et Windows. Elle nécessite le paramètre &lt;chemin&gt; passé avant l’appel %1 qui occasionnera une modification du répertoire. Pour connaitre qu’elle est le répertoire courant utiliser la commande %2 et pour lister le contenu de celui-ci utilisez la commande %3.</translation>
+        <translation>La commande « cd » est connu du système UNIX et Windows. Elle nécessite le paramètre &lt;chemin&gt; passé avant l’appel %1 qui occasionnera une modification du répertoire. Pour connaitre qu’elle est le répertoire courant utiliser la commande %2 et pour lister le contenu de celui-ci utilisez la commande %3.</translation>
     </message>
     <message>
         <location filename="../commands/clicommandcd.cpp" line="33"/>
@@ -195,7 +195,7 @@
     <message>
         <location filename="../commands/clicommanddblist.cpp" line="75"/>
         <source>Prints list of databases registered in the SQLiteStudio. Each database on the list can be in open or closed state and %1 tells you that. The current working database (aka default database) is also marked on the list with &apos;*&apos; at the start of its name. See help for %2 command to learn about the default database.</source>
-        <translation>Imprimez la liste des bases de données enregistrées sous SQLiteStudio. Chaque base se données de la liste peut être ouverte ou close et %1 vous indique lesquellest.La base de données actuelle est aussi marquée dans la liste par «&nbsp;*&nbsp;» en début de nom. Voir l’aide la commande %2 pour en savoir plus sur la base de données actuelle.</translation>
+        <translation>Imprimez la liste des bases de données enregistrées sous SQLiteStudio. Chaque base se données de la liste peut être ouverte ou close et %1 vous indique lesquellest.La base de données actuelle est aussi marquée dans la liste par « * » en début de nom. Voir l’aide la commande %2 pour en savoir plus sur la base de données actuelle.</translation>
     </message>
 </context>
 <context>
@@ -277,7 +277,7 @@ Appelez %2 pour voir la liste de toutes les bases de données.</translation>
         <source>This is very similar to &apos;dir&apos; command known from Windows and &apos;ls&apos; command from Unix systems.
 
 You can pass &lt;pattern&gt; with wildcard characters to filter output.</source>
-        <translation>Ceci est très semblable à la commande «&nbsp;dir&nbsp;» de Windows et à la commande de «&nbsp;ls&nbsp;» de systèmes Unix.
+        <translation>Ceci est très semblable à la commande « dir » de Windows et à la commande de « ls » de systèmes Unix.
 
 You pouvez utiliser les caractères de remplacement &lt;pattern&gt; npour filtrer la sortie.</translation>
     </message>
@@ -318,9 +318,9 @@ You can always execute any command with exactly single &apos;--help&apos; option
         <translation>Utilisez %1 pour connaitre certaines commandes supportées par la ligne de commande (CLI) de SQLiteStudio.
 Pour voir les commandes supportées, saississez %2 sana arguments.
 
-En utilisant le nom de &lt;command&gt;, vous ajouter le caractère spécial(«&nbsp;%3&nbsp;»).
+En utilisant le nom de &lt;command&gt;, vous ajouter le caractère spécial(« %3 »).
 
-Vous pouvez exécuter n’importe quelle commande avec l’option «&nbsp;--help&nbsp;» pour voir l’aide pour cette commande. C’est une alternative à : %1 &lt;commande&gt;.</translation>
+Vous pouvez exécuter n’importe quelle commande avec l’option « --help » pour voir l’aide pour cette commande. C’est une alternative à : %1 &lt;commande&gt;.</translation>
     </message>
     <message>
         <location filename="../commands/clicommandhelp.cpp" line="33"/>
@@ -336,7 +336,7 @@ Vous pouvez exécuter n’importe quelle commande avec l’option «&nbsp;--help
     <message>
         <location filename="../commands/clicommandhelp.cpp" line="43"/>
         <source>Type &apos;%1&apos; for list of available commands.</source>
-        <translation>Saisissez «&nbsp;%1&nbsp;» pour la liste des commandes valides.</translation>
+        <translation>Saisissez « %1 » pour la liste des commandes valides.</translation>
     </message>
     <message>
         <location filename="../commands/clicommandhelp.cpp" line="52"/>
@@ -522,7 +522,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
         <location filename="../commands/clicommandpwd.cpp" line="18"/>
         <source>This is the same as &apos;pwd&apos; command on Unix systems and &apos;cd&apos; command without arguments on Windows. It prints current working directory. You can change the current working directory with %1 command and you can also list contents of the current working directory with %2 command.</source>
-        <translation>C’est la même commande d’un système Unix «&nbsp;pwd&nbsp;» ou «&nbsp;cd&nbsp;» sans arguments de Windows. Ceci imprimele répertoire de travail courant. Vous pouvez changer le répertoire avec le commande %1 et avoir la liste des répertoire de travail avec la commande %2.</translation>
+        <translation>C’est la même commande d’un système Unix « pwd » ou « cd » sans arguments de Windows. Ceci imprimele répertoire de travail courant. Vous pouvez changer le répertoire avec le commande %1 et avoir la liste des répertoire de travail avec la commande %2.</translation>
     </message>
 </context>
 <context>
@@ -646,7 +646,7 @@ Appelez %2 pour voir la liste de toutes les bases de données.</translation>
         <source>Prints list of tables in given &lt;database&gt; or in the current working database. Note, that the &lt;database&gt; should be the name of the registered database (see %1). The output list includes all tables from any other databases attached to the queried database.
 When the -s option is given, then system tables are also listed.</source>
         <translation>Imprime la liste des tables de la &lt;base de données&gt; sélectionnée ou de la base de données actuelle. Notez que la &lt;base de données&gt; devrait être le nom enregistré de la base de données (voir %1). L’affichage de la liste inclus toutes les tables d’autres bases de données attachées à celle-ci.
-Lorsque l’option «&nbsp;-s&nbsp;» est ajouté, les tables système sont aussi listées.</translation>
+Lorsque l’option « -s » est ajouté, les tables système sont aussi listées.</translation>
     </message>
     <message>
         <location filename="../commands/clicommandtables.cpp" line="77"/>
@@ -702,7 +702,7 @@ The database argument is optional and if provided, then only given database will
         <translation>Imprime tous les objets (tables, index, déclencheurs et vues) qui sont dans la base de données comme un arbre. L’arbre est très semblable à celui que vous pouvez voir dans lGUI client de SQLiteStudio.
 Quand on ajoute l’option-c, alors aussi les colonnes seront inscrites sous chaque table.
 Quand on ajoute l’option-s, alors aussi les objets de système seront imprimés (sqlite_* tables, des index d’auto-incrément, etc).
-L’argument de base de données est facultatif et si fourni, alors seulement la base de données indiquée sera imprimée. Ceci n’est pas un nom de base de données enregistré, mais au lieu de cela c’est un nom de base de données SQLite interne, comme «&nbsp;principal&nbsp;», «&nbsp;temporaire&nbsp;», ou n’importe quel nom de base de données attaché. Pour imprimer l’arbre pour d’autre base de données enregistrée, appelez %1 d’abord pour changer la base de données actuelleet utiliser la commande %2.</translation>
+L’argument de base de données est facultatif et si fourni, alors seulement la base de données indiquée sera imprimée. Ceci n’est pas un nom de base de données enregistré, mais au lieu de cela c’est un nom de base de données SQLite interne, comme « principal », « temporaire », ou n’importe quel nom de base de données attaché. Pour imprimer l’arbre pour d’autre base de données enregistrée, appelez %1 d’abord pour changer la base de données actuelleet utiliser la commande %2.</translation>
     </message>
 </context>
 <context>

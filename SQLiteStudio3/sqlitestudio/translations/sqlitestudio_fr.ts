@@ -51,22 +51,37 @@
     </message>
     <message>
         <location filename="../main.cpp" line="54"/>
+        <source>Enables debugging of SQLiteStudio&apos;s query executor.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="55"/>
         <source>Lists plugins installed in the SQLiteStudio and quits.</source>
         <translation>Listes des plugins installés dans SQLiteStudio et quitter.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="63"/>
+        <location filename="../main.cpp" line="56"/>
+        <source>Points to the master configuration file. Read manual at wiki page for more details.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="56"/>
+        <source>SQLiteStudio settings file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="67"/>
         <source>file</source>
         <translation>Fichier</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="63"/>
+        <location filename="../main.cpp" line="67"/>
         <source>Database file to open</source>
         <translation>Fichier de la base de données à ouvrir</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="86"/>
-        <location filename="../main.cpp" line="102"/>
+        <location filename="../main.cpp" line="94"/>
+        <location filename="../main.cpp" line="110"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
