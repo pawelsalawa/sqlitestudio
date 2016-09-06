@@ -19,7 +19,7 @@
         * [BUGFIX]: #3122 Several tweaks to Android shell mode connection.
         * [BUGFIX]: #3093 Fixed memory leak in Android plugin.
         * [BUGFIX]: #3132 Fixed column resolving in a View that uses same alias for two different columns.
-        * [BUGFIX]: Fixed importing Windows end-line format CSV files (handling \r\n properly).
+        * [BUGFIX]: Fixed importing Windows and Macintosh end-line format CSV files (handling \r\n and \r properly).
         * [BUGFIX]: Compilation fixes.
 
 [3.1.0]

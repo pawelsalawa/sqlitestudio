@@ -83,7 +83,9 @@ bool CsvImport::extractColumns()
 void CsvImport::defineCsvFormat()
 {
     csvFormat = CsvFormat();
-    csvFormat.rowSeparator = '\n';
+    csvFormat.rowSeparators = QStringList({"\r\n", "\n", "\r"});
+    csvFormat.multipleRowSeparators = true;
+    csvFormat.strictRowSeparator = true;
 
     switch (cfg.CsvImport.Separator.get())
     {
