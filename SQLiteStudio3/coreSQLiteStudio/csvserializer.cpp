@@ -10,20 +10,32 @@ bool isCsvColumnSeparator(QTextStream& data, const C& theChar, const CsvFormat& 
         return format.columnSeparator.contains(theChar);
 
     // Strict checking (characters in defined order make a separator)
+    QStringList separators;
+    if (format.multipleColumnSeparators)
+        separators = format.columnSeparators;
+    else
+        separators << format.columnSeparator;
+
     qint64 origPos = data.pos();
-    data.seek(origPos - 1);
-    C nextChar;
-    for (const QChar& c : format.columnSeparator)
+    bool match = true;
+    for (const QString sep : separators)
     {
-        data >> nextChar;
-        if (c != nextChar)
+        match = true;
+        data.seek(origPos - 1);
+        C nextChar;
+        for (const QChar& c : sep)
         {
-            data.seek(origPos);
-            return false;
+            data >> nextChar;
+            if (c != nextChar)
+            {
+                data.seek(origPos);
+                match = false;
+                break;
+            }
         }
     }
 
-    return true;
+    return match;
 }
 
 template <class C>
@@ -33,20 +45,32 @@ bool isCsvRowSeparator(QTextStream& data, const C& theChar, const CsvFormat& for
         return format.rowSeparator.contains(theChar);
 
     // Strict checking (characters in defined order make a separator)
+    QStringList separators;
+    if (format.multipleRowSeparators)
+        separators = format.rowSeparators;
+    else
+        separators << format.rowSeparator;
+
     qint64 origPos = data.pos();
-    data.seek(origPos - 1);
-    C nextChar;
-    for (const QChar& c : format.rowSeparator)
+    bool match = true;
+    for (const QString sep : separators)
     {
-        data >> nextChar;
-        if (data.atEnd() || c != nextChar)
+        match = true;
+        data.seek(origPos - 1);
+        C nextChar;
+        for (const QChar& c : sep)
         {
-            data.seek(origPos);
-            return false;
+            data >> nextChar;
+            if (data.atEnd() || c != nextChar)
+            {
+                data.seek(origPos);
+                match = false;
+                break;
+            }
         }
     }
 
-    return true;
+    return match;
 }
 
 template <class T, class C>
@@ -102,9 +126,6 @@ QList<QList<T>> typedDeserialize(QTextStream& data, const CsvFormat& format, boo
             }
             else if (isCsvRowSeparator(data, c0, format))
             {
-                if (field.endsWith('\r')) // Windows end-line
-                    field.chop(1);
-
                 cells << field;
                 rows << cells;
                 cells.clear();
