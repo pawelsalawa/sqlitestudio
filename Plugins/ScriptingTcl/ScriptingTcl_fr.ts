@@ -14,8 +14,7 @@
         <translation>Syntaxe de commande invalide « %1 ». Devrait être : %2</translation>
     </message>
     <message>
-        <location filename="scriptingtcl.cpp" line="445"/>
-        <location filename="scriptingtcl.cpp" line="576"/>
+        <location filename="scriptingtcl.cpp" line="554"/>
         <source>Error from Tcl&apos;s&apos; &apos;%1&apos; command: %2</source>
         <translation>Erreur de la commande Tcl « %1 » : %2</translation>
     </message>
