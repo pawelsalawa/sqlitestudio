@@ -20,7 +20,7 @@
     </message>
     <message>
         <location filename="../cli.cpp" line="257"/>
-        <source>Database passed in command line parameters (%1) was already on the list under name : %2</source>
+        <source>Database passed in command line parameters (%1) was already on the list under name: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
