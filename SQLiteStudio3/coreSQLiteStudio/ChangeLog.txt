@@ -20,6 +20,7 @@
         * [BUGFIX]: #3093 Fixed memory leak in Android plugin.
         * [BUGFIX]: #3132 Fixed column resolving in a View that uses same alias for two different columns.
         * [BUGFIX]: Fixed importing Windows and Macintosh end-line format CSV files (handling \r\n and \r properly).
+        * [BUGFIX]: #3134 Fixed recognizing CREATE TRIGGER statements properly when CASE-WHEN-END is used inside.
         * [BUGFIX]: Compilation fixes.
 
 [3.1.0]
