@@ -368,11 +368,23 @@ QString removeComments(const QString& value)
     return tokens.detokenize();
 }
 
+void splitQueriesUpdateCaseWhenDepth(Token::Type type, const QString& value, int& caseWhenDepth)
+{
+    if (type != Token::KEYWORD)
+        return;
+
+    if (value == "CASE")
+        caseWhenDepth++;
+    else if (value == "END" && caseWhenDepth > 0)
+        caseWhenDepth--;
+}
+
 QList<TokenList> splitQueries(const TokenList& tokenizedQuery, bool* complete)
 {
     QList<TokenList> queries;
     TokenList currentQueryTokens;
     QString value;
+    int caseWhenDepth = 0;
     int createTriggerMeter = 0;
     bool insideTrigger = false;
     bool completeQuery = false;
@@ -384,15 +396,18 @@ QList<TokenList> splitQueries(const TokenList& tokenizedQuery, bool* complete)
 
         if (insideTrigger)
         {
-            if (token->type == Token::KEYWORD && value == "END")
+            if (token->type == Token::KEYWORD && value == "END" && caseWhenDepth <= 0 && caseWhenDepth == 0)
             {
                 insideTrigger = false;
                 completeQuery = true;
             }
 
             currentQueryTokens << token;
+            splitQueriesUpdateCaseWhenDepth(token->type, value, caseWhenDepth);
             continue;
         }
+
+        splitQueriesUpdateCaseWhenDepth(token->type, value, caseWhenDepth);
 
         if (token->type == Token::KEYWORD)
         {
@@ -407,6 +422,7 @@ QList<TokenList> splitQueries(const TokenList& tokenizedQuery, bool* complete)
         else if (token->type == Token::OPERATOR && value == ";")
         {
             createTriggerMeter = 0;
+            caseWhenDepth = 0;
             currentQueryTokens << token;
             queries << currentQueryTokens;
             currentQueryTokens.clear();

@@ -694,6 +694,9 @@ QString getOsString()
         case QSysInfo::WV_WINDOWS8_1:
             os += " 8.1";
             break;
+        case QSysInfo::WV_WINDOWS10:
+            os += " 10";
+        break;
         case QSysInfo::WV_32s:
         case QSysInfo::WV_95:
         case QSysInfo::WV_98:
@@ -707,6 +710,7 @@ QString getOsString()
         case QSysInfo::WV_CE_5:
         case QSysInfo::WV_CE_6:
         case QSysInfo::WV_CE_based:
+        case QSysInfo::WV_None:
             break;
     }
 #elif defined(Q_OS_LINUX)
