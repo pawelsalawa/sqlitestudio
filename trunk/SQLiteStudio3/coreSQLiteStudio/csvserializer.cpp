@@ -33,6 +33,8 @@ bool isCsvColumnSeparator(QTextStream& data, const C& theChar, const CsvFormat& 
                 break;
             }
         }
+        if (match)
+            break;
     }
 
     return match;
@@ -68,6 +70,8 @@ bool isCsvRowSeparator(QTextStream& data, const C& theChar, const CsvFormat& for
                 break;
             }
         }
+        if (match)
+            break;
     }
 
     return match;
