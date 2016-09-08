@@ -199,7 +199,7 @@ void ConfigDialog::init()
             << CFG_UI.General.ShowVirtualTableLabels;
 
     for (CfgEntry* cfg : entries)
-        connect(cfg, &CfgEntry::changed, this, &ConfigDialog::markRequiresSchemasRefresh);
+        connect(cfg, SIGNAL(changed(QVariant)), this, SLOT(markRequiresSchemasRefresh()));
 
     ui->activeStyleCombo->addItems(QStyleFactory::keys());
 
