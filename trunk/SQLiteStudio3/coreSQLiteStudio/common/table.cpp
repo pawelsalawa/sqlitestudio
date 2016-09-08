@@ -90,3 +90,33 @@ int qHash(AliasedTable table)
 {
     return qHash(table.getDatabase() + "." + table.getTable() + " " + table.getTableAlias());
 }
+
+DbAndTable::DbAndTable() :
+    Table()
+{
+}
+
+DbAndTable::DbAndTable(Db *db, const QString &database, const QString &table) :
+    Table(database, table), db(db)
+{
+}
+
+DbAndTable::DbAndTable(const DbAndTable &other) :
+    Table(other), db(other.db)
+{
+}
+
+int DbAndTable::operator ==(const DbAndTable &other) const
+{
+    return other.database == this->database && other.table == this->table && other.db == this->db;
+}
+
+Db *DbAndTable::getDb() const
+{
+    return db;
+}
+
+void DbAndTable::setDb(Db *value)
+{
+    db = value;
+}

@@ -32,6 +32,11 @@ SqlQueryModel::SqlQueryModel(QObject *parent) :
     connect(queryExecutor, SIGNAL(executionFinished(SqlQueryPtr)), this, SLOT(handleExecFinished(SqlQueryPtr)));
     connect(queryExecutor, SIGNAL(executionFailed(int,QString)), this, SLOT(handleExecFailed(int,QString)));
     connect(queryExecutor, SIGNAL(resultsCountingFinished(quint64,quint64,int)), this, SLOT(resultsCountingFinished(quint64,quint64,int)));
+
+    NotifyManager* notifyManager = NotifyManager::getInstance();
+    connect(notifyManager, SIGNAL(objectModified(Db*,QString,QString)), this, SLOT(handlePossibleTableModification(Db*,QString,QString)));
+    connect(notifyManager, SIGNAL(objectRenamed(Db*,QString,QString,QString)), this, SLOT(handlePossibleTableRename(Db*,QString,QString,QString)));
+
     setItemPrototype(new SqlQueryItem());
     existingModels << this;
 }
@@ -920,16 +925,27 @@ void SqlQueryModel::readColumns()
 {
     columns.clear();
     tableToRowIdColumn.clear();
+    tablesInUse.clear();
 
     // Reading column mapping for ROWID columns
     int totalRowIdCols = 0;
-    AliasedTable table;
+    AliasedTable aliasedTable;
+    DbAndTable dbAndTable;
     foreach (const QueryExecutor::ResultRowIdColumnPtr& resCol, queryExecutor->getRowIdResultColumns())
     {
-        table.setDatabase(resCol->dbName);
-        table.setTable(resCol->table);
-        table.setTableAlias(resCol->tableAlias);
-        tableToRowIdColumn[table] = resCol->queryExecutorAliasToColumn;
+        if (resCol->dbName.isEmpty() || resCol->dbName.toLower() == "main" || resCol->dbName.toLower() == "temp")
+            dbAndTable.setDb(db);
+        else if (!resCol->dbName.isEmpty())
+            dbAndTable.setDb(DBLIST->getByName(resCol->dbName));
+
+        dbAndTable.setDatabase(resCol->database);
+        dbAndTable.setTable(resCol->table);
+        tablesInUse << dbAndTable;
+
+        aliasedTable.setDatabase(resCol->dbName);
+        aliasedTable.setTable(resCol->table);
+        aliasedTable.setTableAlias(resCol->tableAlias);
+        tableToRowIdColumn[aliasedTable] = resCol->queryExecutorAliasToColumn;
         totalRowIdCols += resCol->queryExecutorAliasToColumn.size();
     }
 
@@ -940,6 +956,9 @@ void SqlQueryModel::readColumns()
     rowIdColumns = totalRowIdCols;
     tablesForColumns = getTablesForColumns();
     columnEditionStatus = getColumnEditionEnabledList();
+
+    // We have fresh info about columns
+    structureOutOfDate = false;
 }
 
 void SqlQueryModel::readColumnDetails()
@@ -1526,6 +1545,11 @@ int SqlQueryModel::getRowsPerPage() const
     return rowsPerPage;
 }
 
+bool SqlQueryModel::isStructureOutOfDate() const
+{
+    return structureOutOfDate;
+}
+
 bool SqlQueryModel::isAllDataLoaded() const
 {
     return allDataLoaded;
@@ -1604,6 +1628,23 @@ void SqlQueryModel::deleteSelectedRows()
         removeRow(item->index().row());
 
     emit commitStatusChanged(getUncommitedItems().size() > 0);
+}
+
+void SqlQueryModel::handlePossibleTableModification(Db *modDb, const QString &database, const QString &objName)
+{
+    QString dbName = database.toLower() == "main" ? QString() : database;
+    DbAndTable dbAndTable(modDb, dbName, objName);
+    if (tablesInUse.contains(dbAndTable))
+        structureOutOfDate = true;
+}
+
+void SqlQueryModel::handlePossibleTableRename(Db *modDb, const QString &database, const QString &oldName, const QString &newName)
+{
+    UNUSED(newName);
+    QString dbName = database.toLower() == "main" ? QString() : database;
+    DbAndTable dbAndTable(modDb, dbName, oldName);
+    if (tablesInUse.contains(dbAndTable))
+        structureOutOfDate = true;
 }
 
 void SqlQueryModel::applySqlFilter(const QString& value)

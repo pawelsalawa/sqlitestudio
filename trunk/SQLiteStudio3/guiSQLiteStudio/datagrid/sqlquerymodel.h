@@ -140,7 +140,9 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
 
         bool isAllDataLoaded() const;
 
-    protected:
+        bool isStructureOutOfDate() const;
+
+protected:
         class CommitUpdateQueryBuilder : public RowIdConditionBuilder
         {
             public:
@@ -228,6 +230,14 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         QueryExecutor* queryExecutor = nullptr;
         Db* db = nullptr;
         QList<SqlQueryModelColumnPtr> columns;
+
+        /**
+         * @brief tablesInUse
+         * List of tables that are used in currently presented data set.
+         * Database in those tables (if not empty) is a symbolic name, as listed on database list.
+         * If database is empty, then it was not explicitly typed in the query, so it's the local main db.
+         */
+        QList<DbAndTable> tablesInUse;
 
         /**
          * @brief Limit of data length in loaded cells.
@@ -392,6 +402,8 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
 
         bool allDataLoaded = false;
 
+        bool structureOutOfDate = false;
+
         /**
          * @brief Set of existing model objects, updated for each construction and destruction.
          *
@@ -425,6 +437,8 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         void addNewRow();
         void addMultipleRows();
         void deleteSelectedRows();
+        void handlePossibleTableModification(Db* modDb, const QString& database, const QString& objName);
+        void handlePossibleTableRename(Db* modDb, const QString& database, const QString& oldName, const QString& newName);
 
     signals:
         /**

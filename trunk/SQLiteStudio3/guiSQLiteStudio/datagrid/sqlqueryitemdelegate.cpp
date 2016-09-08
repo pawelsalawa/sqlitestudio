@@ -47,21 +47,24 @@ QWidget* SqlQueryItemDelegate::createEditor(QWidget* parent, const QStyleOptionV
 
     if (item->isDeletedRow())
     {
-        notifyWarn(tr("Cannot edit this cell. Details: %2").arg(tr("The row is marked for deletion.")));
+        notifyWarn(tr("Cannot edit this cell. Details: %1").arg(tr("The row is marked for deletion.")));
         return nullptr;
     }
 
     if (!item->getColumn()->canEdit())
     {
-        notifyWarn(tr("Cannot edit this cell. Details: %2").arg(item->getColumn()->getEditionForbiddenReason()));
+        notifyWarn(tr("Cannot edit this cell. Details: %1").arg(item->getColumn()->getEditionForbiddenReason()));
         return nullptr;
     }
 
-    if (item->isLimitedValue())
-        item->loadFullData();
+    if (item->isLimitedValue() &&!item->loadFullData().isNull() && model->isStructureOutOfDate())
+    {
+        notifyWarn(tr("Cannot edit this cell. Details: %1").arg(tr("Structure of this table has changed since last data was loaded. Reload the data to proceed.")));
+        return nullptr;
+    }
 
     if (!item->getColumn()->getFkConstraints().isEmpty())
-        return getFkEditor(item, parent);
+        return getFkEditor(item, parent, model);
 
     return getEditor(item->getValue().userType(), parent);
 }
@@ -274,12 +277,15 @@ QString SqlQueryItemDelegate::getSqlForFkEditor(SqlQueryItem* item) const
     return sql.arg(selectedCols.join(", "), fkConfitionTables.join(", "), conditionsStr);
 }
 
-qlonglong SqlQueryItemDelegate::getRowCountForFkEditor(Db* db, const QString& query) const
+qlonglong SqlQueryItemDelegate::getRowCountForFkEditor(Db* db, const QString& query, bool* isError) const
 {
     static_qstring(tpl, "SELECT count(*) FROM (%1)");
 
     QString sql = tpl.arg(query);
     SqlQueryPtr result = db->exec(sql);
+    if (isError)
+        *isError = result->isError();
+
     return result->getSingleCell().toLongLong();
 }
 
@@ -317,18 +323,30 @@ void SqlQueryItemDelegate::fkDataReady()
     }
 }
 
-QWidget* SqlQueryItemDelegate::getFkEditor(SqlQueryItem* item, QWidget* parent) const
+void SqlQueryItemDelegate::fkDataFailed(const QString &errorText)
+{
+    notifyWarn(tr("Cannot edit this cell. Details: %1").arg(errorText));
+}
+
+QWidget* SqlQueryItemDelegate::getFkEditor(SqlQueryItem* item, QWidget* parent, const SqlQueryModel* model) const
 {
     QString sql = getSqlForFkEditor(item);
 
-    Db* db = item->getModel()->getDb();
-    qlonglong rowCount = getRowCountForFkEditor(db, sql);
+    Db* db = model->getDb();
+    bool countingError = false;
+    qlonglong rowCount = getRowCountForFkEditor(db, sql, &countingError);
     if (rowCount > MAX_ROWS_FOR_FK)
     {
         notifyWarn(tr("Foreign key for column %2 has more than %1 possible values. It's too much to display in drop down list. You need to edit value manually.")
                    .arg(MAX_ROWS_FOR_FK).arg(item->getColumn()->column));
 
         return getEditor(item->getValue().userType(), parent);
+    }
+
+    if (rowCount == 0 && countingError && model->isStructureOutOfDate())
+    {
+        notifyWarn(tr("Cannot edit this cell. Details: %1").arg(tr("Structure of this table has changed since last data was loaded. Reload the data to proceed.")));
+        return nullptr;
     }
 
     QComboBox *cb = new QComboBox(parent);
@@ -346,30 +364,31 @@ QWidget* SqlQueryItemDelegate::getFkEditor(SqlQueryItem* item, QWidget* parent) 
         queryView->setMinimumWidth(wd);
     });
 
-    SqlQueryModel* model = new SqlQueryModel(queryView);
-    model->setView(queryView);
+    SqlQueryModel* queryModel = new SqlQueryModel(queryView);
+    queryModel->setView(queryView);
 
     // Mapping of model to cb, so we can update combo when data arrives.
-    modelToFkInitialValue[model] = item->getValue();
-    modelToFkCombo[model] = cb;
-    connect(cb, &QComboBox::destroyed, [this, model](QObject*)
+    modelToFkInitialValue[queryModel] = item->getValue();
+    modelToFkCombo[queryModel] = cb;
+    connect(cb, &QComboBox::destroyed, [this, queryModel](QObject*)
     {
-        modelToFkCombo.remove(model);
-        modelToFkInitialValue.remove(model);
+        modelToFkCombo.remove(queryModel);
+        modelToFkInitialValue.remove(queryModel);
     });
 
     // When execution is done, update combo.
-    connect(model, SIGNAL(executionSuccessful()), this, SLOT(fkDataReady()));
+    connect(queryModel, SIGNAL(executionSuccessful()), this, SLOT(fkDataReady()));
+    connect(queryModel, SIGNAL(executionFailed(QString)), this, SLOT(fkDataFailed(QString)));
 
     // Setup combo, model, etc.
-    cb->setModel(model);
+    cb->setModel(queryModel);
     cb->setView(queryView);
     cb->setModelColumn(0);
 
-    model->setHardRowLimit(MAX_ROWS_FOR_FK);
-    model->setDb(db);
-    model->setQuery(sql);
-    model->executeQuery();
+    queryModel->setHardRowLimit(MAX_ROWS_FOR_FK);
+    queryModel->setDb(db);
+    queryModel->setQuery(sql);
+    queryModel->executeQuery();
 
     queryView->verticalHeader()->setVisible(false);
     queryView->horizontalHeader()->setVisible(true);

@@ -28,6 +28,13 @@ void SqlTableModel::setDatabaseAndTable(const QString& database, const QString& 
     this->table = table;
     setQuery("SELECT * FROM "+getDataSource());
 
+    QString dbName = database;
+    if (database.toLower() == "main" || database.isEmpty())
+        dbName = QString();
+
+    tablesInUse.clear();
+    tablesInUse << DbAndTable(db, dbName, table);
+
     SchemaResolver resolver(db);
     isWithOutRowIdTable = resolver.isWithoutRowIdTable(database, table);
 }
