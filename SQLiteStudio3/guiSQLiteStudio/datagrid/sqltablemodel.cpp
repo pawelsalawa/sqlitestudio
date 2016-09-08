@@ -2,6 +2,7 @@
 #include "common/utils_sql.h"
 #include "sqlqueryitem.h"
 #include "services/notifymanager.h"
+#include "uiconfig.h"
 #include <QDebug>
 #include <QApplication>
 #include <schemaresolver.h>
@@ -43,7 +44,6 @@ SqlQueryModel::Features SqlTableModel::features() const
 {
     return INSERT_ROW|DELETE_ROW|FILTERING;
 }
-
 
 bool SqlTableModel::commitAddedRow(const QList<SqlQueryItem*>& itemsInRow)
 {
@@ -399,7 +399,10 @@ void SqlTableModel::updateColumnsAndValues(const QList<SqlQueryItem*>& itemsInRo
         item = itemsInRow[i++];
         if (item->getValue().isNull())
         {
-            if (modelColumn->isDefault())
+            if (CFG_UI.General.UseDefaultValueForNull.get() && modelColumn->isDefault())
+                continue;
+
+            if (modelColumn->isNotNull()) // value is null, but it's NOT NULL, try using DEFAULT, or fail.
                 continue;
 
             if (modelColumn->isPk() && modelColumn->isAutoIncr())

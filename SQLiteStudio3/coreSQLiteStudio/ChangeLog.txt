@@ -22,6 +22,7 @@
         * [BUGFIX]: Fixed importing Windows and Macintosh end-line format CSV files (handling \r\n and \r properly).
         * [BUGFIX]: #3134 Fixed recognizing CREATE TRIGGER statements properly when CASE-WHEN-END is used inside.
         * [BUGFIX]: #3112 Fixed Foreign Key editing when the foreign table was modified (for example renamed) and the local column was already presented in the data view.
+        * [BUGFIX]: #3113 DEFAULT value is now automatically inserted only when commiting NULL for NOT NULL column. Also new option is introduced to use DEFAULT always for NULL values, regardles of NOT NULL constraint.
         * [BUGFIX]: Compilation fixes.
 
 [3.1.0]

@@ -407,8 +407,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>564</width>
-                <height>549</height>
+                <width>577</width>
+                <height>472</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_34">
@@ -418,10 +418,13 @@
                   <string>Data browsing and editing</string>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_2">
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="rowsPerPageLabel">
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="initColWidthLimitLabel">
+                    <property name="toolTip">
+                     <string>&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit.&lt;/p&gt;</string>
+                    </property>
                     <property name="text">
-                     <string>Number of data rows per page:</string>
+                     <string>Limit initial data column width to (in pixels):</string>
                     </property>
                    </widget>
                   </item>
@@ -444,16 +447,6 @@
                     </property>
                    </widget>
                   </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="initColWidthLimitLabel">
-                    <property name="toolTip">
-                     <string>&lt;p&gt;When the data is read into grid view columns width is automatically adjusted. This value limits the initial width for the adjustment, but user can still resize the column manually over this limit.&lt;/p&gt;</string>
-                    </property>
-                    <property name="text">
-                     <string>Limit initial data column width to (in pixels):</string>
-                    </property>
-                   </widget>
-                  </item>
                   <item row="1" column="1">
                    <widget class="QSpinBox" name="initColWidthLimitSpin">
                     <property name="toolTip">
@@ -473,7 +466,27 @@
                     </property>
                    </widget>
                   </item>
-                  <item row="3" column="0" colspan="2">
+                  <item row="2" column="0">
+                   <widget class="QCheckBox" name="tolltipInDataViewCheck">
+                    <property name="toolTip">
+                     <string>&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</string>
+                    </property>
+                    <property name="text">
+                     <string>Show column and row details tooltip in data view</string>
+                    </property>
+                    <property name="cfg" stdset="0">
+                     <string notr="true">General.ShowDataViewTooltips</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="rowsPerPageLabel">
+                    <property name="text">
+                     <string>Number of data rows per page:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="0">
                    <widget class="QCheckBox" name="keepNullWhenEmptyCheck">
                     <property name="toolTip">
                      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&amp;lt;p&amp;gt;When editing a cell which used to have NULL value and entering empty string as new value, then this option determinates whether the new value should remain NULL (have this option enabled), or should it be overwritten with empty string value (have this option disabled).&amp;lt;/p&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -486,16 +499,16 @@
                     </property>
                    </widget>
                   </item>
-                  <item row="2" column="0" colspan="2">
-                   <widget class="QCheckBox" name="tolltipInDataViewCheck">
+                  <item row="4" column="0" colspan="2">
+                   <widget class="QCheckBox" name="useDefaultForNullCheck">
                     <property name="toolTip">
-                     <string>&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</string>
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when commiting a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is commited for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                     </property>
                     <property name="text">
-                     <string>Show column and row details tooltip in data view</string>
+                     <string>Use DEFAULT value (if defined), when commiting NULL value</string>
                     </property>
                     <property name="cfg" stdset="0">
-                     <string notr="true">General.ShowDataViewTooltips</string>
+                     <string notr="true">General.UseDefaultValueForNull</string>
                     </property>
                    </widget>
                   </item>
@@ -1014,8 +1027,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>596</width>
-                <height>486</height>
+                <width>335</width>
+                <height>237</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_31">
@@ -1435,8 +1448,8 @@
                         <string notr="true">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt;&quot;&gt;Abcdefgh&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Abcdefgh&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                        </property>
                       </widget>
                      </item>
@@ -1526,8 +1539,8 @@ p, li { white-space: pre-wrap; }
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>268</width>
-                <height>328</height>
+                <width>196</width>
+                <height>263</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -1648,8 +1661,8 @@ p, li { white-space: pre-wrap; }
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>331</width>
-                <height>829</height>
+                <width>247</width>
+                <height>701</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_12">
