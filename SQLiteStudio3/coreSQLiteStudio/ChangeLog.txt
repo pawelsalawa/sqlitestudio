@@ -21,6 +21,7 @@
         * [BUGFIX]: #3132 Fixed column resolving in a View that uses same alias for two different columns.
         * [BUGFIX]: Fixed importing Windows and Macintosh end-line format CSV files (handling \r\n and \r properly).
         * [BUGFIX]: #3134 Fixed recognizing CREATE TRIGGER statements properly when CASE-WHEN-END is used inside.
+        * [BUGFIX]: #3112 Fixed Foreign Key editing when the foreign table was modified (for example renamed) and the local column was already presented in the data view.
         * [BUGFIX]: Compilation fixes.
 
 [3.1.0]

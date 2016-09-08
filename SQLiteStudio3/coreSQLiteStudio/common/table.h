@@ -4,6 +4,8 @@
 #include "coreSQLiteStudio_global.h"
 #include <QString>
 
+class Db;
+
 class API_EXPORT Table
 {
     public:
@@ -23,6 +25,22 @@ class API_EXPORT Table
     protected:
         QString database;
         QString table;
+};
+
+class API_EXPORT DbAndTable : public Table
+{
+public:
+    DbAndTable();
+    DbAndTable(Db* db, const QString& database, const QString& table);
+    DbAndTable(const DbAndTable& other);
+
+    int operator ==(const DbAndTable& other) const;
+
+    Db *getDb() const;
+    void setDb(Db *value);
+
+protected:
+    Db* db = nullptr;
 };
 
 class API_EXPORT AliasedTable : public Table

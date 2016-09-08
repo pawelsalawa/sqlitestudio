@@ -820,10 +820,17 @@ void TableWindow::changesSuccessfullyCommited()
     updateNewTableState();
     updateWindowTitle();
 
+    NotifyManager* notifyManager = NotifyManager::getInstance();
     if (oldTable.compare(table, Qt::CaseInsensitive) == 0 || oldTable.isEmpty())
+    {
         notifyInfo(tr("Commited changes for table '%1' successfly.").arg(table));
+    }
     else
+    {
         notifyInfo(tr("Commited changes for table '%1' (named before '%2') successfly.").arg(table, oldTable));
+        notifyManager->renamed(db, database, oldTable, table);
+    }
+    notifyManager->modified(db, database, table);
 
     DBTREE->refreshSchema(db);
 
@@ -835,7 +842,6 @@ void TableWindow::changesSuccessfullyCommited()
             tableModifier->getModifiedTriggers(),
             tableModifier->getModifiedViews()
         };
-        NotifyManager* notifyManager = NotifyManager::getInstance();
         foreach (const QStringList& objList, modifiedObjects)
         {
             foreach (const QString& obj, objList)
