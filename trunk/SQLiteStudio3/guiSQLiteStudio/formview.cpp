@@ -250,7 +250,7 @@ void FormView::createActions()
 
 void FormView::setupDefShortcuts()
 {
-    setShortcutContext({ROLLBACK, COMMIT, NEXT_ROW, PREV_ROW, FIRST_ROW, LAST_ROW, INSERT_ROW, DELETE_ROW}, Qt::WidgetWithChildrenShortcut);
+    setShortcutContext({ROLLBACK, COMMIT, NEXT_ROW, PREV_ROW, FIRST_ROW, LAST_ROW, INSERT_ROW, DELETE_ROW}, Qt::ApplicationShortcut);
 
     BIND_SHORTCUTS(FormView, Action);
 }
