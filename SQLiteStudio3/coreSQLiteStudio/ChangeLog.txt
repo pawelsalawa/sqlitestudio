@@ -24,6 +24,7 @@
         * [BUGFIX]: #3112 Fixed Foreign Key editing when the foreign table was modified (for example renamed) and the local column was already presented in the data view.
         * [BUGFIX]: #3113 DEFAULT value is now automatically inserted only when commiting NULL for NOT NULL column. Also new option is introduced to use DEFAULT always for NULL values, regardles of NOT NULL constraint.
         * [BUGFIX]: Fixed refreshing database list view when changing labels display settings in configuration dialog.
+        * [BUGFIX]: Fixed FormView row navigation shortcuts.
         * [BUGFIX]: Compilation fixes.
 
 [3.1.0]
