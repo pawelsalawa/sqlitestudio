@@ -26,6 +26,7 @@
         * [BUGFIX]: Fixed refreshing database list view when changing labels display settings in configuration dialog.
         * [BUGFIX]: Fixed FormView row navigation shortcuts.
         * [BUGFIX]: #3097 Fixed alphabetical ordering when exporting entire database.
+        * [BUGFIX]: Fixed "UPDATE OF" column list formatting (indentation) in Enterprise Formater plugin.
         * [BUGFIX]: Compilation fixes.
 
 [3.1.0]

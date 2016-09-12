@@ -107,7 +107,7 @@ void FormatCreateTriggerEvent::formatInternal()
             withLinedUpKeyword("DELETE", TRIGGER_MARK);
             break;
         case SqliteCreateTrigger::Event::UPDATE_OF:
-            withLinedUpKeyword("UPDATE OF", TRIGGER_MARK).withIdList(ev->columnNames);
+            withLinedUpKeyword("UPDATE OF", TRIGGER_MARK).withIdList(ev->columnNames, "updateOfCols");
             break;
         case SqliteCreateTrigger::Event::null:
             break;
