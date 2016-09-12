@@ -165,6 +165,7 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
         void updateDbRelatedUiElements();
         void updateTabsOrder();
         void triggerViewDoubleClicked(const QModelIndex& idx);
+        void updateFont();
 
     public slots:
         void refreshTriggers();

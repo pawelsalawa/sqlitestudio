@@ -237,6 +237,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         void nextTab();
         void prevTab();
         void updateTabsOrder();
+        void updateFont();
 
     public slots:
         void updateIndexes();
