@@ -237,6 +237,7 @@ void ViewWindow::init()
     connect(ui->outputColumnsTable->model(), SIGNAL(rowsMoved(const QModelIndex&, int, int, const QModelIndex&, int)), this, SLOT(updateQueryToolbarStatus()));
     connect(ui->outputColumnsTable, SIGNAL(itemChanged(QListWidgetItem*)), this, SLOT(updateQueryToolbarStatus()));
     connect(CFG_UI.General.DataTabAsFirstInViews, SIGNAL(changed(const QVariant&)), this, SLOT(updateTabsOrder()));
+    connect(CFG_UI.Fonts.DataView, SIGNAL(changed(QVariant)), this, SLOT(updateFont()));
 
     structureExecutor = new ChainExecutor(this);
     connect(structureExecutor, SIGNAL(success()), this, SLOT(changesSuccessfullyCommited()));
@@ -253,6 +254,7 @@ void ViewWindow::init()
 
     updateTabsOrder();
 
+    updateFont();
     refreshTriggers();
     updateQueryToolbarStatus();
     updateTriggersState();
@@ -1043,4 +1045,19 @@ void ViewWindow::executeStructureChanges()
     structureExecutor->setMandatoryQueries(sqlMandatoryFlags);
     structureExecutor->exec();
     widgetCover->show();
+}
+
+void ViewWindow::updateFont()
+{
+    QFont f = CFG_UI.Fonts.DataView.get();
+    QFontMetrics fm(f);
+
+    QTableView* views[] = {ui->triggersList};
+    for (QTableView* view : views)
+    {
+        view->setFont(f);
+        view->horizontalHeader()->setFont(f);
+        view->verticalHeader()->setFont(f);
+        view->verticalHeader()->setDefaultSectionSize(fm.height() + 4);
+    }
 }

@@ -27,6 +27,7 @@
         * [BUGFIX]: Fixed FormView row navigation shortcuts.
         * [BUGFIX]: #3097 Fixed alphabetical ordering when exporting entire database.
         * [BUGFIX]: Fixed "UPDATE OF" column list formatting (indentation) in Enterprise Formater plugin.
+        * [BUGFIX]: Data view fonts now apply to other tabs in the table window and view window.
         * [BUGFIX]: Compilation fixes.
 
 [3.1.0]

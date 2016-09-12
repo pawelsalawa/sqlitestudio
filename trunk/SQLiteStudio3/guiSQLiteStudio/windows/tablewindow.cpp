@@ -176,6 +176,7 @@ void TableWindow::init()
     connect(CFG_UI.General.DataTabAsFirstInTables, SIGNAL(changed(const QVariant&)), this, SLOT(updateTabsOrder()));
     connect(ui->structureView, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(structureViewDoubleClicked(const QModelIndex&)));
     connect(ui->tableConstraintsView, SIGNAL(doubleClicked(const QModelIndex&)), this, SLOT(constraintsViewDoubleClicked(const QModelIndex&)));
+    connect(CFG_UI.Fonts.DataView, SIGNAL(changed(QVariant)), this, SLOT(updateFont()));
 
     structureExecutor = new ChainExecutor(this);
     connect(structureExecutor, SIGNAL(success()), this, SLOT(changesSuccessfullyCommited()));
@@ -191,6 +192,7 @@ void TableWindow::init()
                                          ui->ddlTab
                                      });
 
+    updateFont();
     setupCoverWidget();
     updateAfterInit();
 }
@@ -1635,4 +1637,19 @@ void TableWindow::useCurrentTableAsBaseForNew()
 Db* TableWindow::getAssociatedDb() const
 {
     return db;
+}
+
+void TableWindow::updateFont()
+{
+    QFont f = CFG_UI.Fonts.DataView.get();
+    QFontMetrics fm(f);
+
+    QTableView* views[] = {ui->structureView, ui->tableConstraintsView, ui->indexList, ui->triggerList};
+    for (QTableView* view : views)
+    {
+        view->setFont(f);
+        view->horizontalHeader()->setFont(f);
+        view->verticalHeader()->setFont(f);
+        view->verticalHeader()->setDefaultSectionSize(fm.height() + 4);
+    }
 }
