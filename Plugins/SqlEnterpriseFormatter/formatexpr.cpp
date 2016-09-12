@@ -183,22 +183,34 @@ void FormatExpr::formatInternal()
                 withStatement(expr->expr1, "case");
 
             bool then = false;
-            foreach (SqliteExpr* expr, expr->exprList)
+            for (SqliteExpr* innerExpr : expr->exprList)
             {
                 if (then)
                     withKeyword("THEN");
                 else
                     withKeyword("WHEN");
 
-                withIncrIndent("case");
-                withStatement(expr);
+                if (expr->expr1)
+                    withIncrIndent("case");
+                else
+                    withIncrIndent();
+
+                withStatement(innerExpr);
                 withDecrIndent();
 
                 then = !then;
             }
 
             if (expr->expr2)
-                withKeyword("ELSE").withIncrIndent("case").withStatement(expr->expr2).withDecrIndent();
+            {
+                withKeyword("ELSE");
+                if (expr->expr1)
+                    withIncrIndent("case");
+                else
+                    withIncrIndent();
+
+                withStatement(expr->expr2).withDecrIndent();
+            }
 
             withKeyword("END");
             break;
