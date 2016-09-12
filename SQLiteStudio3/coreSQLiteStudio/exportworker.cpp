@@ -242,15 +242,6 @@ bool ExportWorker::exportDatabase()
         return false;
     }
 
-    QList<ExportManager::ExportObject::Type> order = {
-        ExportManager::ExportObject::TABLE, ExportManager::ExportObject::INDEX, ExportManager::ExportObject::TRIGGER, ExportManager::ExportObject::VIEW
-    };
-
-    qSort(dbObjects.begin(), dbObjects.end(), [=](const ExportManager::ExportObjectPtr& dbObj1, const ExportManager::ExportObjectPtr& dbObj2) -> bool
-    {
-        return order.indexOf(dbObj1->type) < order.indexOf(dbObj2->type);
-    });
-
     if (!plugin->beforeExportTables())
     {
         logExportFail("beforeExportTables()");
