@@ -7,6 +7,7 @@ SqlFormatterSimplePlugin::SqlFormatterSimplePlugin()
 QString SqlFormatterSimplePlugin::format(SqliteQueryPtr query)
 {
     TokenList tokens = query->tokens;
+    tokens.trimRight();
     foreach (TokenPtr token, tokens)
     {
         if (token->type == Token::KEYWORD && cfg.SqlFormatterSimple.UpperCaseKeywords.get())
@@ -15,6 +16,13 @@ QString SqlFormatterSimplePlugin::format(SqliteQueryPtr query)
         if (token->type == Token::SPACE && cfg.SqlFormatterSimple.TrimLongSpaces.get() &&
                 token->value.length() > 1)
             token->value = " ";
+    }
+
+    if (!tokens.isEmpty())
+    {
+        TokenPtr last = tokens.last();
+        if (last->type != Token::Type::OPERATOR || last->value != ";")
+            tokens << TokenPtr::create(Token::Type::OPERATOR, ";");
     }
 
     return tokens.detokenize();
