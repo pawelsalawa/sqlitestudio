@@ -17,6 +17,9 @@
 #include <QVBoxLayout>
 #include <QResizeEvent>
 #include <QScrollBar>
+#include <limits>
+
+bool SqlQueryItemDelegate::warnedAboutHugeContents = false;
 
 SqlQueryItemDelegate::SqlQueryItemDelegate(QObject *parent) :
     QStyledItemDelegate(parent)
@@ -57,7 +60,7 @@ QWidget* SqlQueryItemDelegate::createEditor(QWidget* parent, const QStyleOptionV
         return nullptr;
     }
 
-    if (item->isLimitedValue() &&!item->loadFullData().isNull() && model->isStructureOutOfDate())
+    if (item->isLimitedValue() && !item->loadFullData().isNull() && model->isStructureOutOfDate())
     {
         notifyWarn(tr("Cannot edit this cell. Details: %1").arg(tr("Structure of this table has changed since last data was loaded. Reload the data to proceed.")));
         return nullptr;
@@ -81,6 +84,8 @@ QString SqlQueryItemDelegate::displayText(const QVariant& value, const QLocale& 
 
 void SqlQueryItemDelegate::setEditorData(QWidget* editor, const QModelIndex& index) const
 {
+    // No need to check or load full data, it is already preloaded if necessary in createEditor().
+
     QComboBox* cb = dynamic_cast<QComboBox*>(editor);
     QLineEdit* le = dynamic_cast<QLineEdit*>(editor);
     if (cb) {
@@ -193,7 +198,14 @@ void SqlQueryItemDelegate::setEditorDataForLineEdit(QLineEdit* le, const QModelI
         return;
     }
 
-    le->setText(value.toString());
+    QString str = value.toString();
+    if (str.size() > HUGE_CONTENTS_WARNING_LIMIT && !warnedAboutHugeContents)
+    {
+        NOTIFY_MANAGER->warn(tr("Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It's better to edit such big contents in a Form View, or in popup editor (available under rick-click menu)."));
+        warnedAboutHugeContents = true;
+    }
+
+    le->setText(str);
 }
 
 SqlQueryItem* SqlQueryItemDelegate::getItem(const QModelIndex &index) const
@@ -206,6 +218,7 @@ QWidget* SqlQueryItemDelegate::getEditor(int type, QWidget* parent) const
 {
     UNUSED(type);
     QLineEdit *editor = new QLineEdit(parent);
+    editor->setMaxLength(std::numeric_limits<int>::max());
     editor->setFrame(editor->style()->styleHint(QStyle::SH_ItemView_DrawDelegateFrame, 0, editor));
     return editor;
 

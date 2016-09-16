@@ -29,6 +29,7 @@
         * [BUGFIX]: Fixed "UPDATE OF" column list formatting (indentation) in Enterprise Formater plugin.
         * [BUGFIX]: Fixed SqlSimpleFormatter plugin to add ";" at the end of CREATE TABLE statements while exporting database schema to SQL format.
         * [BUGFIX]: Data view fonts now apply to other tabs in the table window and view window.
+        * [BUGFIX]: #3005 Fixed performance issue with lots of big values loaded into the grid. Also fixed editing those values using the inline cell editor.
         * [BUGFIX]: Compilation fixes.
 
 [3.1.0]

@@ -137,7 +137,7 @@ void SqlQueryItem::setValue(const QVariant &value, bool limited, bool loadedFrom
     setUncommited(modified);
 
     // Value for display (in a cell) will always be limited, for performance reasons
-    QStandardItem::setData("x", DataRole::VALUE_FOR_DISPLAY); // the same trick as with the DataRole::VALUE
+    setValueForDisplay("x"); // the same trick as with the DataRole::VALUE
     if (!limited)
     {
         int theLimit = SqlQueryModel::getCellDataLengthLimit();
