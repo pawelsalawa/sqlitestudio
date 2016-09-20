@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="sk_SK">
+<TS version="2.0" language="sk_SK">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -967,17 +967,17 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="351"/>
         <source>Database dialog window</source>
-        <translation type="unfinished"></translation>
+        <translation>Databázové dialógové okno</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="357"/>
         <source>&lt;p&gt;When adding new database it is marked to be &quot;permanent&quot; (stored in configuration) by default. Checking this option makes every new database to NOT be &quot;permanent&quot; by default.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Označením tejto možnosti sa vypne voľba &quot;Zapamätať si databázu&quot; v okne pridávania novej databázy&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="360"/>
         <source>Do not mark database to be &quot;permanent&quot; by default</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepamätať si databázu</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="370"/>
@@ -2030,7 +2030,7 @@ Prezeranie ďalších strán bude možné až po dokončení spočítavania.</tr
     </message>
     <message>
         <source>Generate automatically</source>
-        <translation type="vanished">Generovať automaticky</translation>
+        <translation>Generovať automaticky</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="91"/>
@@ -2077,7 +2077,7 @@ Prezeranie ďalších strán bude možné až po dokončení spočítavania.</tr
     </message>
     <message>
         <source>Generate name basing on file path</source>
-        <translation type="vanished">Generovať názov na základe cesty k súboru</translation>
+        <translation>Generovať názov na základe cesty k súboru</translation>
     </message>
     <message>
         <source>Permanent</source>
@@ -2135,7 +2135,7 @@ Prezeranie ďalších strán bude možné až po dokončení spočítavania.</tr
     </message>
     <message>
         <source>Auto-generated</source>
-        <translation type="vanished">Automaticky vygenerovaný</translation>
+        <translation>Automaticky vygenerovaný</translation>
     </message>
     <message>
         <source>The name will be auto-generated</source>
@@ -2143,7 +2143,7 @@ Prezeranie ďalších strán bude možné až po dokončení spočítavania.</tr
     </message>
     <message>
         <source>Type the name</source>
-        <translation type="vanished">Zadajte meno</translation>
+        <translation>Zadajte meno</translation>
     </message>
 </context>
 <context>
