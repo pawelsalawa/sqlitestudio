@@ -620,10 +620,10 @@ bool TableModifier::isTableAliasUsedForColumn(const TokenPtr &token, const StrHa
     }
 
     SelectResolver::Table table = resolvedTables.value(token->value, Qt::CaseInsensitive);
-    if (table.alias.isNull())
+    if (table.tableAlias.isNull())
         return false;
 
-    if (table.alias.compare(token->value), Qt::CaseInsensitive != 0)
+    if (table.tableAlias.compare(token->value), Qt::CaseInsensitive != 0)
         return false;
 
     // If the table token is mentioned in FROM clause, it's not a subject for aliased usage, cuase it defines alias, not uses it.

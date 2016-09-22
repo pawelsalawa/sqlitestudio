@@ -30,6 +30,7 @@
         * [BUGFIX]: Fixed SqlSimpleFormatter plugin to add ";" at the end of CREATE TABLE statements while exporting database schema to SQL format.
         * [BUGFIX]: Data view fonts now apply to other tabs in the table window and view window.
         * [BUGFIX]: #3005 Fixed performance issue with lots of big values loaded into the grid. Also fixed editing those values using the inline cell editor.
+        * [BUGFIX]: #2938 Fixed query executor to idenfity properly tables in named subselects, to the ROWID is handled correctly.
         * [BUGFIX]: Compilation fixes.
 
 [3.1.0]

@@ -649,7 +649,7 @@ QStringList SelectResolver::getTableColumns(const QString &database, const QStri
     Table dbTable;
     dbTable.database = database;
     dbTable.table = table;
-    dbTable.alias = alias;
+    dbTable.tableAlias = alias;
 
     if (tableColumnsCache.contains(dbTable))
         return tableColumnsCache.value(dbTable);
@@ -669,7 +669,8 @@ void SelectResolver::applySubSelectAlias(QList<SelectResolver::Column>& columns,
     {
         while (it.hasNext())
         {
-            it.next().tableAlias = alias;
+            it.next().pushTableAlias();
+            it.value().tableAlias = alias;
             it.value().flags &= ~FROM_ANONYMOUS_SELECT; // remove anonymous flag
         }
     }
@@ -714,44 +715,64 @@ bool SelectResolver::parseOriginalQuery()
     return true;
 }
 
+SelectResolver::Table::Table()
+{
+}
+
+SelectResolver::Table::Table(const SelectResolver::Table &other) :
+    database(other.database), originalDatabase(other.originalDatabase), table(other.table),
+    tableAlias(other.tableAlias), oldTableAliases(other.oldTableAliases), flags(other.flags)
+{
+}
+
 int SelectResolver::Table::operator ==(const SelectResolver::Table &other)
 {
-    return table == other.table && database == other.database && alias == other.alias;
+    return ::operator==(*this, other);
+}
+
+void SelectResolver::Table::pushTableAlias()
+{
+    if (!tableAlias.isNull())
+        oldTableAliases += tableAlias;
 }
 
 int operator==(const SelectResolver::Table& t1, const SelectResolver::Table& t2)
 {
-    return t1.table == t2.table && t1.database == t2.database && t1.alias == t2.alias;
+    return t1.table.compare(t2.table, Qt::CaseInsensitive) == 0 &&
+           t1.database.compare(t2.database, Qt::CaseInsensitive) == 0 &&
+           t1.tableAlias.compare(t2.tableAlias, Qt::CaseInsensitive) == 0 &&
+           t1.oldTableAliases.size() == t2.oldTableAliases.size() &&
+           t1.oldTableAliases.join(",").compare(t2.oldTableAliases.join(","), Qt::CaseInsensitive) == 0;
 }
 
 uint qHash(const SelectResolver::Table& table)
 {
-    return qHash(table.database + "." + table.table + "." + table.alias);
+    return qHash(table.database.toLower() + "." + table.table.toLower() + "/" + table.tableAlias.toLower() + "/" +
+                 table.oldTableAliases.join(","));
 }
 
 int SelectResolver::Column::operator ==(const SelectResolver::Column &other)
 {
-    return table == other.table && database == other.database && column == other.column && tableAlias == other.tableAlias;
+    return ::operator==(*this, other);
 }
 
 SelectResolver::Table SelectResolver::Column::getTable() const
 {
-    Table resTable;
-    resTable.table = table;
-    resTable.database = database;
-    resTable.originalDatabase = originalDatabase;
-    resTable.alias = tableAlias;
-    resTable.flags = flags;
-    return resTable;
+    return Table(*this);
 }
 
 int operator ==(const SelectResolver::Column &c1, const SelectResolver::Column &c2)
 {
-    return c1.table == c2.table && c1.database == c2.database && c1.column == c2.column && c1.tableAlias == c2.tableAlias;
+    return c1.column.compare(c2.column, Qt::CaseInsensitive) == 0 &&
+           c1.table.compare(c2.table, Qt::CaseInsensitive) == 0 &&
+           c1.database.compare(c2.database, Qt::CaseInsensitive) == 0 &&
+           c1.tableAlias.compare(c2.tableAlias, Qt::CaseInsensitive) == 0 &&
+           c1.oldTableAliases.size() == c2.oldTableAliases.size() &&
+           c1.oldTableAliases.join(",").compare(c2.oldTableAliases.join(","), Qt::CaseInsensitive) == 0;
 }
-
 
 uint qHash(const SelectResolver::Column &column)
 {
-    return qHash(column.database + "." + column.table + "." + column.column + "/" + column.tableAlias);
+    return qHash(column.database.toLower() + "." + column.table.toLower() + "." + column.column.toLower() + "/" +
+                 column.tableAlias.toLower() + "/" + column.oldTableAliases.join(","));
 }
