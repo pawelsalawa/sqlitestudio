@@ -31,8 +31,10 @@ bool QueryExecutorAddRowIds::exec()
     }
 
     // ...and putting it into parsed query, then update processed query
+    qDebug() << "before addrowid: " << context->processedQuery;
     select->rebuildTokens();
     updateQueries();
+    qDebug() << "after addrowid: " << context->processedQuery;
 
     return true;
 }
@@ -148,17 +150,30 @@ QHash<QString,QString> QueryExecutorAddRowIds::getNextColNames(const SelectResol
 bool QueryExecutorAddRowIds::addResultColumns(SqliteSelect::Core* core, const SelectResolver::Table& table,
                                         QHash<SelectResolver::Table,QHash<QString,QString>>& rowIdColsMap, bool isTopSelect)
 {
+    SelectResolver::Table keyTable = table;
+    if (!rowIdColsMap.contains(table))
+    {
+        for (const SelectResolver::Table& rowIdColsMapTable : rowIdColsMap.keys())
+        {
+            if (!table.oldTableAliases.contains(rowIdColsMapTable.tableAlias, Qt::CaseInsensitive))
+                continue;
+
+            keyTable = rowIdColsMapTable;
+        }
+    }
+
+    // Find ROWID column from inner SELECT, or create new column for the table.
     QHash<QString, QString> executorToRealColumns;
     bool aliasOnlyAsSelectColumn = false;
-    if (rowIdColsMap.contains(table))
+    if (rowIdColsMap.contains(keyTable))
     {
-        executorToRealColumns = rowIdColsMap[table]; // we already have resCol names from subselect
+        executorToRealColumns = rowIdColsMap[keyTable]; // we already have resCol names from subselect
         aliasOnlyAsSelectColumn = true;
     }
     else
     {
-        executorToRealColumns = getNextColNames(table);
-        rowIdColsMap[table] = executorToRealColumns;
+        executorToRealColumns = getNextColNames(keyTable);
+        rowIdColsMap[keyTable] = executorToRealColumns;
     }
 
     if (executorToRealColumns.size() == 0)
@@ -182,7 +197,7 @@ bool QueryExecutorAddRowIds::addResultColumns(SqliteSelect::Core* core, const Se
         queryExecutorResCol->dbName = table.originalDatabase;
         queryExecutorResCol->database = table.database;
         queryExecutorResCol->table = table.table;
-        queryExecutorResCol->tableAlias = table.alias;
+        queryExecutorResCol->tableAlias = table.tableAlias;
         queryExecutorResCol->queryExecutorAliasToColumn = executorToRealColumns;
         context->rowIdColumns << queryExecutorResCol;
     }
@@ -207,9 +222,9 @@ bool QueryExecutorAddRowIds::addResultColumns(SqliteSelect::Core* core, const Se
     else
     {
         resCol->expr->initId(realColumn);
-        if (!table.alias.isNull())
+        if (!table.tableAlias.isNull())
         {
-            resCol->expr->table = table.alias;
+            resCol->expr->table = table.tableAlias;
         }
         else
         {

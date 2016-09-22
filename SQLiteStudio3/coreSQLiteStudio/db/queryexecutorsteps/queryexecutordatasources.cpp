@@ -24,7 +24,7 @@ bool QueryExecutorDataSources::exec()
         QueryExecutor::SourceTablePtr table = QueryExecutor::SourceTablePtr::create();
         table->database = resolvedTable.database;
         table->table = resolvedTable.table;
-        table->alias = resolvedTable.alias;
+        table->alias = resolvedTable.tableAlias;
         context->sourceTables << table;
     }
 

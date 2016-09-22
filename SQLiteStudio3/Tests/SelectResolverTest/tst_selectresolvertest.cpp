@@ -29,6 +29,7 @@ class SelectResolverTest : public QObject
         void testWithCommonTableExpression();
         void testStarWithJoinAndError();
         void test1();
+        void testSubselectWithAlias();
 };
 
 SelectResolverTest::SelectResolverTest()
@@ -42,28 +43,28 @@ void SelectResolverTest::testTableHash()
     SelectResolver::Table t1;
     t1.database = "d1";
     t1.table = "t1";
-    t1.alias = "a1";
+    t1.tableAlias = "a1";
     tables << t1;
 
     // different alias and database
     SelectResolver::Table t2;
     t2.database = "d2";
     t2.table = "t1";
-    t2.alias = QString::null;
+    t2.tableAlias = QString::null;
     tables << t2;
 
     // different database
     SelectResolver::Table t3;
     t3.database = "d2";
     t3.table = "t1";
-    t3.alias = "a1";
+    t3.tableAlias = "a1";
     tables << t3;
 
     // same as t3
     SelectResolver::Table t4;
     t4.database = "d2";
     t4.table = "t1";
-    t4.alias = "a1";
+    t4.tableAlias = "a1";
     tables << t4;
 
     // all null
@@ -78,21 +79,21 @@ void SelectResolverTest::testTableHash()
     SelectResolver::Table t7;
     t7.database = "x";
     t7.table = "t1";
-    t7.alias = "a1";
+    t7.tableAlias = "a1";
     tables << t7;
 
     // similar to t1, but different table
     SelectResolver::Table t8;
     t8.database = "d1";
     t8.table = "x";
-    t8.alias = "a1";
+    t8.tableAlias = "a1";
     tables << t8;
 
     // similar to t1, but different alias
     SelectResolver::Table t9;
     t9.database = "d1";
     t9.table = "t1";
-    t9.alias = "x";
+    t9.tableAlias = "x";
     tables << t9;
 
     QVERIFY(tables.size() == 7);
@@ -220,6 +221,26 @@ void SelectResolverTest::test1()
     QVERIFY(coreColumns[1].type == SelectResolver::Column::COLUMN);
     QVERIFY(coreColumns[1].table == "test");
     QVERIFY(coreColumns[1].column == "col2");
+}
+
+void SelectResolverTest::testSubselectWithAlias()
+{
+    QString sql = "SELECT * FROM (SELECT m.col1, m.col2, secm.col3 FROM test AS m LEFT OUTER JOIN test AS secm ON secm.col1 = m.col2) alias3;";
+    SelectResolver resolver(db, sql);
+    Parser parser(db->getDialect());
+    QVERIFY(parser.parse(sql));
+
+    QList<QList<SelectResolver::Column> > columns = resolver.resolve(parser.getQueries().first().dynamicCast<SqliteSelect>().data());
+    QList<SelectResolver::Column> coreColumns = columns.first();
+    QVERIFY(coreColumns[0].tableAlias == "alias3");
+    QVERIFY(coreColumns[1].tableAlias == "alias3");
+    QVERIFY(coreColumns[2].tableAlias == "alias3");
+    QVERIFY(coreColumns[0].oldTableAliases.size() == 1);
+    QVERIFY(coreColumns[1].oldTableAliases.size() == 1);
+    QVERIFY(coreColumns[2].oldTableAliases.size() == 1);
+    QVERIFY(coreColumns[0].oldTableAliases.first() == "m");
+    QVERIFY(coreColumns[1].oldTableAliases.first() == "m");
+    QVERIFY(coreColumns[2].oldTableAliases.first() == "secm");
 }
 
 void SelectResolverTest::initTestCase()

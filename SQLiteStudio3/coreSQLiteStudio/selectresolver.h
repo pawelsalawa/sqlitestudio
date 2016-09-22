@@ -8,6 +8,7 @@
 #include <QString>
 #include <QHash>
 #include <QStringList>
+#include <QStack>
 
 class Db;
 class SchemaResolver;
@@ -64,6 +65,9 @@ class API_EXPORT SelectResolver
          */
         struct API_EXPORT Table
         {
+            Table();
+            Table(const Table& other);
+
             /**
              * @brief Database name.
              *
@@ -72,16 +76,18 @@ class API_EXPORT SelectResolver
             QString database;
             QString originalDatabase;
             QString table;
-            QString alias;
+            QString tableAlias;
+            QStringList oldTableAliases;
             int flags = 0;
 
             int operator==(const Table& other);
+            void pushTableAlias();
         };
 
         /**
          * @brief Result column resolved by the resolver.
          */
-        struct API_EXPORT Column
+        struct API_EXPORT Column : public Table
         {
             enum Type
             {
@@ -92,22 +98,12 @@ class API_EXPORT SelectResolver
             Type type;
 
             /**
-             * @brief Database name.
-             *
-             * Either sqlite name, like "main", or "temp", or an attach name.
-             */
-            QString database;
-            QString originalDatabase;
-            QString table;
-
-            /**
              * @brief Column name or expression.
              *
              * If a column is of OTHER type, then column member contains detokenized column expression.
              */
             QString column;
             QString alias;
-            QString tableAlias;
             QString displayName;
             bool aliasDefinedInSubQuery = false;
             int flags = 0;
