@@ -31,10 +31,10 @@ bool QueryExecutorAddRowIds::exec()
     }
 
     // ...and putting it into parsed query, then update processed query
-    qDebug() << "before addrowid: " << context->processedQuery;
+//    qDebug() << "before addrowid: " << context->processedQuery;
     select->rebuildTokens();
     updateQueries();
-    qDebug() << "after addrowid: " << context->processedQuery;
+//    qDebug() << "after addrowid: " << context->processedQuery;
 
     return true;
 }
