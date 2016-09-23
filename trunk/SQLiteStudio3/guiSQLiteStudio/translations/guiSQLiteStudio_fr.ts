@@ -1620,7 +1620,7 @@ mais c’est OK pour l’utiliser.</translation>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="1399"/>
         <source>Add new data type</source>
-        <translation>Ajoutez un nouveau type de données</translation>
+        <translation>Ajouter un nouveau type de données</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="1403"/>
@@ -2279,7 +2279,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="113"/>
         <source>Connect to the database</source>
-        <translation>Connecter la base de données</translation>
+        <translation>Connecter une base de données</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="114"/>
@@ -4818,7 +4818,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
         <location filename="../windows/tablewindow.h" line="33"/>
         <source>Add new column</source>
-        <translation>Ajout une nouvelle colonne</translation>
+        <translation>Ajouter une nouvelle colonne</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.h" line="34"/>
