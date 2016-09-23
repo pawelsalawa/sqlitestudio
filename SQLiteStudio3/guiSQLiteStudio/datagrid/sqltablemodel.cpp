@@ -175,7 +175,7 @@ void SqlTableModel::applyStringFilter(const QString& value)
     Dialect dialect = db->getDialect();
     QStringList conditions;
     foreach (SqlQueryModelColumnPtr column, columns)
-        conditions << wrapObjIfNeeded(column->column, dialect)+" LIKE '%"+value+"%'";
+        conditions << wrapObjIfNeeded(column->column, dialect)+" LIKE '%"+escapeString(value)+"%'";
 
     setQuery("SELECT * FROM "+getDataSource()+" WHERE "+conditions.join(" OR "));
     executeQuery();
@@ -192,7 +192,7 @@ void SqlTableModel::applyRegExpFilter(const QString& value)
     Dialect dialect = db->getDialect();
     QStringList conditions;
     foreach (SqlQueryModelColumnPtr column, columns)
-        conditions << wrapObjIfNeeded(column->column, dialect)+" REGEXP '"+value+"'";
+        conditions << wrapObjIfNeeded(column->column, dialect)+" REGEXP '"+escapeString(value)+"'";
 
     setQuery("SELECT * FROM "+getDataSource()+" WHERE "+conditions.join(" OR "));
     executeQuery();
