@@ -6554,7 +6554,7 @@ Voulez-vous enregistrer la structure, ou voulez-vous retourner à l’onglet de 
     <message>
         <location filename="../windows/viewwindow.cpp" line="956"/>
         <source>Empty name</source>
-        <translation>Nom vode</translation>
+        <translation>Nom absent</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="956"/>
@@ -6567,7 +6567,7 @@ Are you sure you want to create a view with blank name?</source>
         <location filename="../windows/viewwindow.cpp" line="968"/>
         <source>The SELECT statement could not be parsed. Please correct the query and retry.
 Details: %1</source>
-        <translation>La déclaration SELECT ne peut être analysé. SVP corrigez la requête et réessayez.
+        <translation>La déclaration SELECT ne peut être analysé. Veuillez corriger la requête et réessayer.
 Details : %1</translation>
     </message>
     <message>
@@ -6582,7 +6582,7 @@ Details : %1</translation>
     </message>
     <message>
         <source>The view code could not be parsed properly for execution. This is a SQLiteStudio’s bug. Please report it.</source>
-        <translation type="vanished">La vue ne être correctement analysée avant exécution.Cest un bug SQLiteStudion. SVP reporter le.</translation>
+        <translation type="vanished">La vue ne peut être correctement analysée avant exécution. Cest un bug SQLiteStudio. Veuillez le signaler.</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="1015"/>
@@ -6590,7 +6590,7 @@ Details : %1</translation>
 Would you like to proceed?</source>
         <comment>view window</comment>
         <translation>Des problèmes suivants auront lieu en modifiant la vue.
-Voudriez-vous procéder ?</translation>
+Veulez-vous continuer ?</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="1017"/>
