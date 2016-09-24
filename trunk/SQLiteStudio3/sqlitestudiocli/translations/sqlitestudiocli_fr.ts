@@ -700,8 +700,8 @@ When -c option is given, then also columns will be listed under each table.
 When -s option is given, then also system objects will be printed (sqlite_* tables, autoincrement indexes, etc).
 The database argument is optional and if provided, then only given database will be printed. This is not a registered database name, but instead it&apos;s an internal SQLite database name, like &apos;main&apos;, &apos;temp&apos;, or any attached database name. To print tree for other registered database, call %1 first to switch the working database, and then use %2 command.</source>
         <translation>Imprime tous les objets (tables, index, déclencheurs et vues) qui sont dans la base de données comme un arbre. L’arbre est très semblable à celui que vous pouvez voir dans lGUI client de SQLiteStudio.
-Quand on ajoute l’option-c, alors aussi les colonnes seront inscrites sous chaque table.
-Quand on ajoute l’option-s, alors aussi les objets de système seront imprimés (sqlite_* tables, des index d’auto-incrément, etc).
+Quand on ajoute l’option -c, alors les colonnes seront aussi inscrites sous chaque table.
+Quand on ajoute l’option -s, alors les objets de système seront aussi imprimés (sqlite_* tables, des index d’auto-incrément, etc).
 L’argument de base de données est facultatif et si fourni, alors seulement la base de données indiquée sera imprimée. Ceci n’est pas un nom de base de données enregistré, mais au lieu de cela c’est un nom de base de données SQLite interne, comme « principal », « temporaire », ou n’importe quel nom de base de données attaché. Pour imprimer l’arbre pour d’autre base de données enregistrée, appelez %1 d’abord pour changer la base de données actuelleet utiliser la commande %2.</translation>
     </message>
 </context>

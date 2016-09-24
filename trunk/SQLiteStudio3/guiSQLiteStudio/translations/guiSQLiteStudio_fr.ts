@@ -6090,7 +6090,7 @@ Voulez-vous enregistrer la structure, ou voulez-vous retourner à l’onglet de 
     <message>
         <location filename="../windows/tablewindow.cpp" line="1266"/>
         <source>Commit modifications and browse data.</source>
-        <translation>Enregistrer les modifications et naviger dans les données.</translation>
+        <translation>Enregistrer les modifications et continuer</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1447"/>
@@ -6478,7 +6478,7 @@ Voulez-vous enregistrer la structure, ou voulez-vous retourner à l’onglet de 
         <source>There are uncommited structure modifications. You cannot browse or edit data until you have the view structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
         <translation>Des modifications de structure n’ont pa été enregistrées.
-        Vous ne pouvez pas naviger ou éditer des données jusqu’à ce que vous installliez la structure de vue.
+        Vous ne pouvez pas naviguer ou éditer des données jusqu’à ce que vous installliez la structure de vue.
 Voulez-vous enregistrer la structure, ou voulez-vous retourner à l’onglet de structure ?</translation>
     </message>
     <message>
