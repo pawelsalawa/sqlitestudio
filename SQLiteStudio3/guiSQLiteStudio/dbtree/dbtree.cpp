@@ -976,6 +976,13 @@ QString DbTree::getSelectedViewName() const
     return view;
 }
 
+QList<DbTreeItem *> DbTree::getSelectedItems(DbTreeItem::Type itemType)
+{
+    return getSelectedItems([itemType](DbTreeItem* item)
+    {
+        return item->getType() == itemType;
+    });
+}
 
 void DbTree::refreshSchema(Db* db)
 {
@@ -1507,27 +1514,36 @@ void DbTree::eraseTableData()
     if (!db || !db->isValid())
         return;
 
-    DbTreeItem* item = ui->treeView->currentItem();
-    QString table = item->getTable();
-    if (table.isNull())
+    QList<DbTreeItem *> items = getSelectedItems(DbTreeItem::Type::TABLE);
+    if (items.isEmpty())
     {
         qWarning() << "Tried to erase table data, while table wasn't selected in DbTree.";
         return;
     }
 
-    QMessageBox::StandardButton btn = QMessageBox::question(this, tr("Erase table data"), tr("Are you sure you want to delete all data from table '%1'?")
-                                                            .arg(table));
+    QStringList tables;
+    for (DbTreeItem* item : items)
+        tables << item->getTable();
+
+    QMessageBox::StandardButton btn = QMessageBox::question(this, tr("Erase table data"), tr("Are you sure you want to delete all data from table(s): %1?")
+                                                            .arg(tables.join(", ")));
     if (btn != QMessageBox::Yes)
         return;
 
-    SqlQueryPtr res = db->exec(QString("DELETE FROM %1;").arg(wrapObjIfNeeded(table, db->getDialect())));
-    if (res->isError())
+    static_qstring(DELETE_SQL, "DELETE FROM %1;");
+    Dialect dialect = db->getDialect();
+    SqlQueryPtr res;
+    for (const QString& table : tables)
     {
-        notifyError(tr("An error occurred while trying to delete data from table '%1': %2").arg(table, res->getErrorText()));
-        return;
-    }
+        res = db->exec(DELETE_SQL.arg(wrapObjIfNeeded(table, dialect)));
+        if (res->isError())
+        {
+            notifyError(tr("An error occurred while trying to delete data from table '%1': %2").arg(table, res->getErrorText()));
+            return;
+        }
 
-    notifyInfo(tr("All data has been deleted for table '%1'.").arg(table));
+        notifyInfo(tr("All data has been deleted for table '%1'.").arg(table));
+    }
 }
 
 void DbTree::addColumn(DbTreeItem* item)
@@ -1592,6 +1608,11 @@ void DbTree::currentChanged(const QModelIndex &current, const QModelIndex &previ
 
 void DbTree::deleteSelected(ItemFilterFunc filterFunc)
 {
+    deleteItems(getSelectedItems(filterFunc));
+}
+
+QList<DbTreeItem*> DbTree::getSelectedItems(DbTree::ItemFilterFunc filterFunc)
+{
     QModelIndexList idxList = ui->treeView->getSelectedIndexes();
     QList<DbTreeItem*> items;
     DbTreeItem* item;
@@ -1603,9 +1624,9 @@ void DbTree::deleteSelected(ItemFilterFunc filterFunc)
 
         items << item;
     }
-
-    deleteItems(items);
+    return items;
 }
+
 
 void DbTree::deleteItems(const QList<DbTreeItem*>& itemsToDelete)
 {
