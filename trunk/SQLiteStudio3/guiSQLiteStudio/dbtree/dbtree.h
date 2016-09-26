@@ -147,6 +147,8 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         QString getSelectedIndexName() const;
         QString getSelectedTriggerName() const;
         QString getSelectedViewName() const;
+        QList<DbTreeItem*> getSelectedItems(DbTreeItem::Type itemType);
+        QList<DbTreeItem*> getSelectedItems(ItemFilterFunc filterFunc = nullptr);
 
         static bool areDbTreeItemsValidForItem(QList<DbTreeItem*> srcItems, const DbTreeItem* dstItem);
         static bool areUrlsValidForItem(const QList<QUrl>& srcUrls, const DbTreeItem* dstItem);
