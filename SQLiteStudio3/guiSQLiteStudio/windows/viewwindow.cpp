@@ -240,7 +240,7 @@ void ViewWindow::init()
     connect(CFG_UI.Fonts.DataView, SIGNAL(changed(QVariant)), this, SLOT(updateFont()));
 
     structureExecutor = new ChainExecutor(this);
-    connect(structureExecutor, SIGNAL(success()), this, SLOT(changesSuccessfullyCommited()));
+    connect(structureExecutor, SIGNAL(success(SqlQueryPtr)), this, SLOT(changesSuccessfullyCommited()));
     connect(structureExecutor, SIGNAL(failure(int,QString)), this, SLOT(changesFailedToCommit(int,QString)));
 
     setupCoverWidget();
