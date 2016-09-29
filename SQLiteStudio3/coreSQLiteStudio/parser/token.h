@@ -626,6 +626,7 @@ class API_EXPORT TokenList : public QList<TokenPtr>
          * @return List of tokens from this list matching given \p type.
          */
         TokenList filter(Token::Type type) const;
+        TokenList filterOut(Token::Type type) const;
 
         /**
          * @brief Creates list of tokens from this list, letting through only tokens that are not a whitespace.

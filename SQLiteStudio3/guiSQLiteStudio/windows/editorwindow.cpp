@@ -473,6 +473,7 @@ void EditorWindow::execQuery(bool explain)
     resultsModel->setDb(getCurrentDb());
     resultsModel->setExplainMode(explain);
     resultsModel->setQuery(sql);
+    resultsModel->setQueryCountLimitForSmartMode(queryLimitForSmartExecution);
     ui->dataView->refreshData();
     updateState();
 
@@ -626,7 +627,7 @@ void EditorWindow::exportResults()
     }
 
     QString query = lastSuccessfulQuery.isEmpty() ?  getQueryToExecute() : lastSuccessfulQuery;
-    QStringList queries = splitQueries(query, getCurrentDb()->getDialect(), false);
+    QStringList queries = splitQueries(query, getCurrentDb()->getDialect(), false, true);
     if (queries.size() == 0)
     {
         qWarning() << "No queries after split in EditorWindow::exportResults()";

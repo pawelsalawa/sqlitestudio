@@ -443,9 +443,12 @@ QList<TokenList> splitQueries(const TokenList& tokenizedQuery, bool* complete)
     return queries;
 }
 
-QStringList splitQueries(const QString& sql, Dialect dialect, bool keepEmptyQueries, bool* complete)
+QStringList splitQueries(const QString& sql, Dialect dialect, bool keepEmptyQueries, bool removeComments, bool* complete)
 {
     TokenList tokens = Lexer::tokenize(sql, dialect);
+    if (removeComments)
+        tokens = tokens.filterOut(Token::COMMENT);
+
     QList<TokenList> tokenizedQueries = splitQueries(tokens, complete);
 
     QString query;

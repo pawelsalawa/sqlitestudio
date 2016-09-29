@@ -18,6 +18,7 @@ class Parser;
 class SqliteQuery;
 class QueryExecutorStep;
 class DbPlugin;
+class ChainExecutor;
 
 /**
  * @brief Advanced SQL query execution handler.
@@ -1034,6 +1035,9 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
 
         bool isInterrupted() const;
 
+        int getQueryCountLimitForSmartMode() const;
+        void setQueryCountLimitForSmartMode(int value);
+
     private:
         /**
          * @brief Executes query.
@@ -1086,17 +1090,6 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          * therefore results of that execution won't editable.
          */
         void executeSimpleMethod();
-
-        /**
-         * @brief Handles results of simple execution.
-         * @param results Results object returned from Db.
-         *
-         * Checks results for errors and extracts basic meta information,
-         * such as rows affected, total result rows and time of execution.
-         *
-         * In case of success emits executionFinished(), in case of error emits executionFailed().
-         */
-        void simpleExecutionFinished(SqlQueryPtr results);
 
         /**
          * @brief Tests whether the original query is a SELECT statement.
@@ -1173,6 +1166,8 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          */
         QString originalQuery;
 
+        QStringList queriesForSimpleExecution;
+
         /**
          * @brief Predefined number of results per page.
          *
@@ -1245,18 +1240,20 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
         int dataLengthLimit = -1;
 
         /**
+         * @brief Limit of queries, after which simple mode is used.
+         *
+         * Up to the defined limit the smart execution will be used (unless #forceSimpleMode was set).
+         * After exceeding this limit, the simple mode will be used.
+         * Set to negative number to disable this limit.
+         */
+        int queryCountLimitForSmartMode = -1;
+
+        /**
          * @brief Exact moment when query execution started.
          *
          * Expressed in number of milliseconds since 1970-01-01 00:00:00.
          */
         qint64 simpleExecutionStartTime;
-
-        /**
-         * @brief Asynchronous ID of query execution.
-         *
-         * Asynchronous ID returned from Db::asyncExec() for the query execution.
-         */
-        quint32 asyncId = 0;
 
         /**
          * @brief Asynchronous ID of counting query execution.
@@ -1329,6 +1326,7 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
         Db::QueryResultsHandler resultsHandler = nullptr;
 
         bool forceSimpleMode = false;
+        ChainExecutor* simpleExecutor = nullptr;
 
     signals:
         /**
@@ -1381,17 +1379,6 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
 
     private slots:
         /**
-         * @brief Handles asynchronous database execution results.
-         * @param asyncId Asynchronous ID of the execution.
-         * @param results Results from the execution.
-         *
-         * QueryExecutor checks whether the \p asyncId belongs to the counting query execution,
-         * or the simple execution.
-         * Dispatches query results to a proper handler method.
-         */
-        void dbAsyncExecFinished(quint32 asyncId, SqlQueryPtr results);
-
-        /**
          * @brief Calledn when an executor step has failed with its job.
          *
          * An executor step reported an error. "Smart execution" failed and now the executor will try
@@ -1416,6 +1403,17 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          * be unloaded soon and we won't be able to call results destructor.
          */
         void cleanupBeforeDbDestroy(Db* dbToBeUnloaded);
+
+        /**
+         * @brief Handles results of simple execution.
+         * @param results Results object returned from Db.
+         *
+         * Checks results for errors and extracts basic meta information,
+         * such as rows affected, total result rows and time of execution.
+         *
+         * In case of success emits executionFinished(), in case of error emits executionFailed().
+         */
+        void simpleExecutionFinished(SqlQueryPtr results);
 };
 
 int qHash(QueryExecutor::EditionForbiddenReason reason);

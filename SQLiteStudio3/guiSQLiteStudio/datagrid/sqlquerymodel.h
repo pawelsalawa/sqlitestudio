@@ -142,10 +142,13 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
 
         bool isStructureOutOfDate() const;
 
-protected:
+        int getQueryCountLimitForSmartMode() const;
+        void setQueryCountLimitForSmartMode(int value);
+
+    protected:
         class CommitUpdateQueryBuilder : public RowIdConditionBuilder
         {
-            public:
+        public:
                 void clear();
 
                 void setDatabase(const QString& database);

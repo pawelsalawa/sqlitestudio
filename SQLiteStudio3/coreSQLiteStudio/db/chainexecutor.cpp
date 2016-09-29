@@ -2,6 +2,7 @@
 #include "sqlerrorcodes.h"
 #include "db/sqlquery.h"
 #include <QDebug>
+#include <QDateTime>
 
 ChainExecutor::ChainExecutor(QObject *parent) :
     QObject(parent)
@@ -32,12 +33,14 @@ void ChainExecutor::exec()
 {
     if (!db)
     {
+        emit finished(SqlQueryPtr());
         emit failure(SqlErrorCode::DB_NOT_DEFINED, tr("The database for executing queries was not defined.", "chain executor"));
         return;
     }
 
     if (!db->isOpen())
     {
+        emit finished(SqlQueryPtr());
         emit failure(SqlErrorCode::DB_NOT_OPEN, tr("The database for executing queries was not open.", "chain executor"));
         return;
     }
@@ -47,6 +50,7 @@ void ChainExecutor::exec()
         SqlQueryPtr result = db->exec("PRAGMA foreign_keys = 0;");
         if (result->isError())
         {
+            emit finished(SqlQueryPtr());
             emit failure(db->getErrorCode(), tr("Could not disable foreign keys in the database. Details: %1", "chain executor").arg(db->getErrorText()));
             return;
         }
@@ -54,6 +58,7 @@ void ChainExecutor::exec()
 
     if (transaction && !db->begin())
     {
+        emit finished(SqlQueryPtr());
         emit failure(db->getErrorCode(), tr("Could not start a database transaction. Details: %1", "chain executor").arg(db->getErrorText()));
         return;
     }
@@ -75,7 +80,7 @@ void ChainExecutor::executeCurrentSql()
 {
     if (currentSqlIndex >= sqls.size())
     {
-        executionSuccessful();
+        executionSuccessful(lastExecutionResults);
         return;
     }
 
@@ -135,10 +140,11 @@ void ChainExecutor::executionFailure(int errorCode, const QString& errorText)
     restoreFk();
     successfulExecution = false;
     executionErrors << ExecutionError(errorCode, errorText);
+    emit finished(lastExecutionResults);
     emit failure(errorCode, errorText);
 }
 
-void ChainExecutor::executionSuccessful()
+void ChainExecutor::executionSuccessful(SqlQueryPtr results)
 {
     if (transaction && !db->commit())
     {
@@ -148,7 +154,8 @@ void ChainExecutor::executionSuccessful()
 
     restoreFk();
     successfulExecution = true;
-    emit success();
+    emit finished(results);
+    emit success(results);
 }
 
 void ChainExecutor::executeSync()
@@ -163,11 +170,12 @@ void ChainExecutor::executeSync()
 
         currentSqlIndex++;
     }
-    executionSuccessful();
+    executionSuccessful(results);
 }
 
 bool ChainExecutor::handleResults(SqlQueryPtr results)
 {
+    lastExecutionResults = results;
     if (results->isError())
     {
         if (interrupted || currentSqlIndex >= mandatoryQueries.size() || mandatoryQueries[currentSqlIndex])
