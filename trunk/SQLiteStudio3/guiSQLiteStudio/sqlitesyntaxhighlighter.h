@@ -74,6 +74,9 @@ class GUI_API_EXPORT SqliteSyntaxHighlighter : public QSyntaxHighlighter
         bool getCreateTriggerContext() const;
         void setCreateTriggerContext(bool value);
 
+        void setEnabled(bool enabled);
+        bool getEnabled() const;
+
     protected:
         void highlightBlock(const QString &text);
 
@@ -161,6 +164,7 @@ class GUI_API_EXPORT SqliteSyntaxHighlighter : public QSyntaxHighlighter
         QList<DbObject> dbObjects;
         bool objectLinksEnabled = false;
         bool createTriggerContext = false;
+        bool enabled = true;
 
     private slots:
         void setupFormats();

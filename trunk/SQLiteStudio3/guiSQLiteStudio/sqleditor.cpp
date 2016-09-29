@@ -845,6 +845,7 @@ void SqlEditor::parseContents()
     {
         richFeaturesEnabled = true;
     }
+    highlighter->setEnabled(richFeaturesEnabled);
 
     // Updating dialect according to current database (if any)
     Dialect dialect = Dialect::Sqlite3;
@@ -861,11 +862,14 @@ void SqlEditor::parseContents()
     }
 
     queryParser->setDialect(dialect);
-    queryParser->parse(sql);
+    if (richFeaturesEnabled)
+    {
+        queryParser->parse(sql);
+        checkForValidObjects();
+        checkForSyntaxErrors();
+        highlighter->rehighlight();
+    }
 
-    checkForValidObjects();
-    checkForSyntaxErrors();
-    highlighter->rehighlight();
 }
 
 void SqlEditor::checkForSyntaxErrors()

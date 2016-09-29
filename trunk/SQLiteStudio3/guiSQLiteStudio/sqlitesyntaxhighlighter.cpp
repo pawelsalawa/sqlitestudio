@@ -125,7 +125,7 @@ QString SqliteSyntaxHighlighter::getPreviousStatePrefix(TextBlockState textBlock
 
 void SqliteSyntaxHighlighter::highlightBlock(const QString &text)
 {
-    if (text.length() <= 0)
+    if (!enabled || text.length() <= 0)
         return;
 
     // Reset to default
@@ -263,6 +263,16 @@ bool SqliteSyntaxHighlighter::getCreateTriggerContext() const
 void SqliteSyntaxHighlighter::setCreateTriggerContext(bool value)
 {
     createTriggerContext = value;
+}
+
+void SqliteSyntaxHighlighter::setEnabled(bool enabled)
+{
+    this->enabled = enabled;
+}
+
+bool SqliteSyntaxHighlighter::getEnabled() const
+{
+    return enabled;
 }
 
 
