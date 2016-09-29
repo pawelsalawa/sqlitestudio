@@ -1545,6 +1545,16 @@ int SqlQueryModel::getRowsPerPage() const
     return rowsPerPage;
 }
 
+int SqlQueryModel::getQueryCountLimitForSmartMode() const
+{
+    return queryExecutor->getQueryCountLimitForSmartMode();
+}
+
+void SqlQueryModel::setQueryCountLimitForSmartMode(int value)
+{
+    queryExecutor->setQueryCountLimitForSmartMode(value);
+}
+
 bool SqlQueryModel::isStructureOutOfDate() const
 {
     return structureOutOfDate;

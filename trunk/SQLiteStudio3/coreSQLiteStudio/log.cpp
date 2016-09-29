@@ -1,6 +1,7 @@
 #include "log.h"
 #include "db/queryexecutorsteps/queryexecutorstep.h"
 #include <QTime>
+#include <QDateTime>
 #include <QDebug>
 
 static bool SQL_DEBUG = false;
@@ -15,6 +16,11 @@ void setSqlLoggingEnabled(bool enabled)
 void setSqlLoggingFilter(const QString& filter)
 {
     SQL_DEBUG_FILTER = filter;
+}
+
+QString getLogDateTime()
+{
+    return QDateTime::currentDateTime().toString("[HH:mm:ss.zzz]");
 }
 
 void logSql(Db* db, const QString& str, const QHash<QString,QVariant>& args, Db::Flags flags)
@@ -44,7 +50,7 @@ void logSql(Db* db, const QString& str, const QList<QVariant>& args, Db::Flags f
 
     qDebug() << QString("SQL %1> %2").arg(db->getName()).arg(str) << "(flags:" << Db::flagsToString(flags) << ")";
     int i = 0;
-    foreach (const QVariant& arg, args)
+    for (const QVariant& arg : args)
         qDebug() << "    SQL arg>" << i++ << "=" << arg;
 }
 
@@ -58,7 +64,7 @@ void logExecutorStep(QueryExecutorStep* step)
     if (!EXECUTOR_DEBUG)
         return;
 
-    qDebug() << "Executing step:" << step->metaObject()->className() << step->objectName();
+    qDebug() << getLogDateTime() << "Executing step:" << step->metaObject()->className() << step->objectName();
 }
 
 
@@ -67,5 +73,5 @@ void logExecutorAfterStep(const QString& str)
     if (!EXECUTOR_DEBUG)
         return;
 
-    qDebug() << str;
+    qDebug() << getLogDateTime() << str;
 }

@@ -115,6 +115,8 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
         void selectCurrentQuery(bool fallBackToPreviousIfNecessary = false);
         void updateShortcutTips();
 
+        static const int queryLimitForSmartExecution = 100;
+
         static ResultsDisplayMode resultsDisplayMode;
         static QHash<Action,QAction*> staticActions;
         static QHash<ActionGroup,QActionGroup*> staticActionGroups;

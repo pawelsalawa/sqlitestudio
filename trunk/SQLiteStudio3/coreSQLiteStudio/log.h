@@ -10,6 +10,7 @@
 
 class QueryExecutorStep;
 
+API_EXPORT QString getLogDateTime();
 API_EXPORT void logSql(Db* db, const QString& str, const QHash<QString,QVariant>& args, Db::Flags flags);
 API_EXPORT void logSql(Db* db, const QString& str, const QList<QVariant>& args, Db::Flags flags);
 API_EXPORT void logExecutorStep(QueryExecutorStep* step);

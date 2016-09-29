@@ -20,6 +20,7 @@
 #include "queryexecutorsteps/queryexecutordetectschemaalter.h"
 #include "queryexecutorsteps/queryexecutorvaluesmode.h"
 #include "common/unused.h"
+#include "chainexecutor.h"
 #include "log.h"
 #include <QMutexLocker>
 #include <QDateTime>
@@ -36,6 +37,8 @@ QueryExecutor::QueryExecutor(Db* db, const QString& query, QObject *parent) :
     QObject(parent)
 {
     context = new Context();
+    simpleExecutor = new ChainExecutor(this);
+    simpleExecutor->setTransaction(false);
     originalQuery = query;
     setDb(db);
     setAutoDelete(false);
@@ -43,6 +46,8 @@ QueryExecutor::QueryExecutor(Db* db, const QString& query, QObject *parent) :
     connect(this, SIGNAL(executionFailed(int,QString)), this, SLOT(cleanupAfterExecFailed(int,QString)));
     connect(DBLIST, SIGNAL(dbAboutToBeUnloaded(Db*, DbPlugin*)), this, SLOT(cleanupBeforeDbDestroy(Db*)));
     connect(DBLIST, SIGNAL(dbRemoved(Db*)), this, SLOT(cleanupBeforeDbDestroy(Db*)));
+    connect(simpleExecutor, SIGNAL(finished(SqlQueryPtr)), this, SLOT(simpleExecutionFinished(SqlQueryPtr)));
+
 }
 
 QueryExecutor::~QueryExecutor()
@@ -205,10 +210,24 @@ void QueryExecutor::run()
 
 void QueryExecutor::execInternal()
 {
+    queriesForSimpleExecution.clear();
     if (forceSimpleMode)
     {
         executeSimpleMethod();
         return;
+    }
+
+    if (queryCountLimitForSmartMode > -1)
+    {
+        queriesForSimpleExecution = splitQueries(originalQuery, db->getDialect(), false, true);
+        int queryCount = queriesForSimpleExecution.size();
+        if (queryCount > queryCountLimitForSmartMode)
+        {
+            qDebug() << "Number of queries" << queryCount << "exceeds maximum number allowed for smart execution method" <<
+                        queryCountLimitForSmartMode << ". Simple method will be used to retain efficiency.";
+            executeSimpleMethod();
+            return;
+        }
     }
 
     simpleExecution = false;
@@ -391,45 +410,24 @@ void QueryExecutor::exec(const QString& query)
     exec();
 }
 
-void QueryExecutor::dbAsyncExecFinished(quint32 asyncId, SqlQueryPtr results)
-{
-    if (handleRowCountingResults(asyncId, results))
-        return;
-
-    if (!simpleExecution)
-        return;
-
-    if (this->asyncId == 0)
-        return;
-
-    if (this->asyncId != asyncId)
-        return;
-
-    this->asyncId = 0;
-
-    simpleExecutionFinished(results);
-}
-
 void QueryExecutor::executeSimpleMethod()
 {
     simpleExecution = true;
     context->editionForbiddenReasons << EditionForbiddenReason::SMART_EXECUTION_FAILED;
-    simpleExecutionStartTime = QDateTime::currentMSecsSinceEpoch();
+    if (queriesForSimpleExecution.isEmpty())
+        queriesForSimpleExecution = splitQueries(originalQuery, db->getDialect(), false, true);
 
-    if (asyncMode)
-    {
-        asyncId = db->asyncExec(originalQuery, context->queryParameters, Db::Flag::PRELOAD);
-    }
-    else
-    {
-        SqlQueryPtr results = db->exec(originalQuery, context->queryParameters, Db::Flag::PRELOAD);
-        simpleExecutionFinished(results);
-    }
+    simpleExecutor->setQueries(queriesForSimpleExecution);
+    simpleExecutor->setDb(db);
+    simpleExecutor->setAsync(false); // this is already in a thread
+
+    simpleExecutionStartTime = QDateTime::currentMSecsSinceEpoch();
+    simpleExecutor->exec();
 }
 
 void QueryExecutor::simpleExecutionFinished(SqlQueryPtr results)
 {
-    if (results->isError())
+    if (results.isNull() || results->isError() || !simpleExecutor->getSuccessfulExecution())
     {
         executionMutex.lock();
         executionInProgress = false;
@@ -437,9 +435,10 @@ void QueryExecutor::simpleExecutionFinished(SqlQueryPtr results)
         handleErrorsFromSmartAndSimpleMethods(results);
         return;
     }
+    context->executionTime = QDateTime::currentMSecsSinceEpoch() - simpleExecutionStartTime;
 
     if (simpleExecIsSelect())
-        context->countingQuery = "SELECT count(*) AS cnt FROM ("+originalQuery+");";
+        context->countingQuery = "SELECT count(*) AS cnt FROM ("+queriesForSimpleExecution.last()+");";
     else
         context->rowsCountingRequired = true;
 
@@ -452,7 +451,6 @@ void QueryExecutor::simpleExecutionFinished(SqlQueryPtr results)
         context->resultColumns << resCol;
     }
 
-    context->executionTime = QDateTime::currentMSecsSinceEpoch() - simpleExecutionStartTime;
     context->rowsAffected = results->rowsAffected();
     context->totalRowsReturned = 0;
     context->executionResults = results;
@@ -467,7 +465,7 @@ void QueryExecutor::simpleExecutionFinished(SqlQueryPtr results)
         context->resultsHandler = nullptr;
     }
 
-    if (!forceSimpleMode)
+    if (!forceSimpleMode && queriesForSimpleExecution.size() <= queryCountLimitForSmartMode)
         notifyWarn(tr("SQLiteStudio was unable to extract metadata from the query. Results won't be editable."));
 
     emit executionFinished(results);
@@ -475,7 +473,7 @@ void QueryExecutor::simpleExecutionFinished(SqlQueryPtr results)
 
 bool QueryExecutor::simpleExecIsSelect()
 {
-    TokenList tokens = Lexer::tokenize(originalQuery, db->getDialect());
+    TokenList tokens = Lexer::tokenize(queriesForSimpleExecution.last(), db->getDialect());
     tokens.trim();
 
     // First check if it's explicit "SELECT" or "VALUES" (the latter one added in SQLite 3.8.4).
@@ -563,6 +561,17 @@ bool QueryExecutor::handleRowCountingResults(quint32 asyncId, SqlQueryPtr result
 
     return true;
 }
+
+int QueryExecutor::getQueryCountLimitForSmartMode() const
+{
+    return queryCountLimitForSmartMode;
+}
+
+void QueryExecutor::setQueryCountLimitForSmartMode(int value)
+{
+    queryCountLimitForSmartMode = value;
+}
+
 bool QueryExecutor::getForceSimpleMode() const
 {
     return forceSimpleMode;
@@ -602,13 +611,25 @@ void QueryExecutor::handleErrorsFromSmartAndSimpleMethods(SqlQueryPtr results)
     // therefore we need to check code from smart execution, before deciding which one to use).
     // Just rename attach names in the message.
     bool useSmartError = context->errorCodeFromSmartExecution !=  0;
-    QString msg = useSmartError ? context->errorMessageFromSmartExecution : results->getErrorText();
-    int code = useSmartError ? context->errorCodeFromSmartExecution : results->getErrorCode();
-    QString match;
-    QString replaceName;
-    Dialect dialect = db->getDialect();
+    QString msg;
+    int code;
+
+    if (!useSmartError && (results.isNull() || !results->isError()) && !simpleExecutor->getErrors().isEmpty())
+    {
+        code = simpleExecutor->getErrors().first().first;
+        msg = simpleExecutor->getErrors().first().second;
+    }
+    else
+    {
+        msg = useSmartError ? context->errorMessageFromSmartExecution : results->getErrorText();
+        code = useSmartError ? context->errorCodeFromSmartExecution : results->getErrorCode();
+    }
+
     if (useSmartError)
     {
+        QString match;
+        QString replaceName;
+        Dialect dialect = db->getDialect();
         for (const QString& attachName : context->dbNameToAttach.rightValues())
         {
             match = attachName + ".";
@@ -728,13 +749,7 @@ Db* QueryExecutor::getDb() const
 
 void QueryExecutor::setDb(Db* value)
 {
-    if (db)
-        disconnect(db, SIGNAL(asyncExecFinished(quint32,SqlQueryPtr)), this, SLOT(dbAsyncExecFinished(quint32,SqlQueryPtr)));
-
     db = value;
-
-    if (db)
-        connect(db, SIGNAL(asyncExecFinished(quint32,SqlQueryPtr)), this, SLOT(dbAsyncExecFinished(quint32,SqlQueryPtr)));
 }
 
 bool QueryExecutor::getSkipRowCounting() const

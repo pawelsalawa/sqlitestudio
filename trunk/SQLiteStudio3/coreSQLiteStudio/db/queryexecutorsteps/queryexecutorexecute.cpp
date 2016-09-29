@@ -3,13 +3,14 @@
 #include "db/queryexecutor.h"
 #include "parser/ast/sqlitequery.h"
 #include "parser/lexer.h"
+#include "log.h"
 #include "parser/ast/sqlitecreatetable.h"
 #include "datatype.h"
+#include "schemaresolver.h"
+#include "common/table.h"
 #include <QDateTime>
 #include <QDebug>
 #include <QStack>
-#include <schemaresolver.h>
-#include <common/table.h>
 
 bool QueryExecutorExecute::exec()
 {
@@ -58,8 +59,9 @@ bool QueryExecutorExecute::executeQueries()
         if (isBeginTransaction(query->queryType))
             rowsAffectedBeforeTransaction.push(context->rowsAffected);
 
-//        qDebug() << "Executing query:" << queryStr;
+        //qDebug() << getLogDateTime() << "Executing query:" << queryStr;
         results->execute();
+        //qDebug() << getLogDateTime() << "Done.";
 
         if (results->isError())
         {

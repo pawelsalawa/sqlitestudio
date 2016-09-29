@@ -229,7 +229,7 @@ class API_EXPORT ChainExecutor : public QObject
          *
          * Commits transaction (in case of transactional execution) and emits success().
          */
-        void executionSuccessful();
+        void executionSuccessful(SqlQueryPtr results);
 
         /**
          * @brief Executes all queries synchronously.
@@ -328,6 +328,8 @@ class API_EXPORT ChainExecutor : public QObject
         bool disableForeignKeys = false;
         bool disableObjectDropsDetection = false;
 
+        SqlQueryPtr lastExecutionResults;
+
     public slots:
         /**
          * @brief Interrupts query execution.
@@ -353,10 +355,23 @@ class API_EXPORT ChainExecutor : public QObject
     signals:
         /**
          * @brief Emitted when all mandatory queries were successfully executed.
+         * @param results Execution results from last query execution.
          *
          * See setMandatoryQueries() for details on mandatory queries.
          */
-        void success();
+        void success(SqlQueryPtr results);
+
+        /**
+         * @brief Emitted when chain execution is finished, regardless of result.
+         * @param results Execution results from last query execution (may be null).
+         *
+         * In slot for this signal always check getSuccessfulExecution(),
+         * because execution could failed, despite results providing no error.
+         * It may happen for example if execution was interrupted,
+         * or executor could not pass through execution preparation phase
+         * (in which case results will be null).
+         */
+        void finished(SqlQueryPtr results);
 
         /**
          * @brief Emitted when major error occurred while executing a query.

@@ -33,6 +33,7 @@
         * [BUGFIX]: #2938 Fixed query executor to idenfity properly tables in named subselects, to the ROWID is handled correctly.
         * [BUGFIX]: #3168 Fixed data filter field in data view, so it handles the single quote character.
         * [BUGFIX]: #2942 Erasing table data context menu option now honors multiple table selection.
+        * [BUGFIX]: #2900 Optimized execution of thousands of queries at once in SQL editor window.
         * [BUGFIX]: Compilation fixes.
 
 [3.1.0]

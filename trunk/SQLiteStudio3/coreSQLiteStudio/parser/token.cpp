@@ -490,6 +490,16 @@ TokenList TokenList::filter(Token::Type type) const
     return filtered;
 }
 
+TokenList TokenList::filterOut(Token::Type type) const
+{
+    TokenList filtered;
+    foreach (TokenPtr token, *this)
+        if (token->type != type)
+            filtered << token;
+
+    return filtered;
+}
+
 TokenList TokenList::filterWhiteSpaces(bool includeComments) const
 {
     TokenList filtered;
