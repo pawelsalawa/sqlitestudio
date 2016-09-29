@@ -1,5 +1,6 @@
 #include "lexer.h"
 #include "keywords.h"
+#include "log.h"
 #include "lexer_low_lev.h"
 #include "sqlite2_parse.h"
 #include "sqlite3_parse.h"

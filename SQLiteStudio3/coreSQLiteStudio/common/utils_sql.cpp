@@ -4,6 +4,7 @@
 #include "parser/token.h"
 #include "parser/lexer.h"
 #include "parser/keywords.h"
+#include "log.h"
 #include <QHash>
 #include <QPair>
 #include <QString>
