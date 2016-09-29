@@ -393,9 +393,6 @@ void TableForeignKeyPanel::readTables()
     resolver.setIgnoreSystemObjects(true);
     QStringList tables = resolver.getTables(); // TODO named db attach not supported
 
-    SqliteCreateTable* createTable = dynamic_cast<SqliteCreateTable*>(constraint->parentStatement());
-    tables.removeOne(createTable->table);
-
     tables.sort(Qt::CaseInsensitive);
 
     ui->fkTableCombo->addItems(tables);
