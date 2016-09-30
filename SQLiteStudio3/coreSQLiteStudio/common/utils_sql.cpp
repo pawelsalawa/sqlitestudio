@@ -444,6 +444,56 @@ QList<TokenList> splitQueries(const TokenList& tokenizedQuery, bool* complete)
     return queries;
 }
 
+QStringList quickSplitQueries(const QString& sql, bool keepEmptyQueries)
+{
+    QChar c;
+    bool inString = false;
+    QStringList queries;
+    QString query;
+    for (int i = 0, total = sql.size(); i < total; ++i)
+    {
+        c = sql[i];
+        if (c == '\'')
+        {
+            if ((i + 1) < total)
+            {
+                if (sql[i+1] == '\'')
+                {
+                    query += '\'';
+                    i++;
+                }
+                else
+                {
+                    inString = !inString;
+                }
+            }
+            else
+                query += c; // and then leave loop, as this was last character
+        }
+        else if (c == ';')
+        {
+            if (!inString)
+            {
+                if (keepEmptyQueries || !query.trimmed().isEmpty())
+                    queries << query;
+
+                query.clear();
+            }
+            else
+                query += c;
+        }
+        else
+        {
+            query += c;
+        }
+    }
+
+    if (!query.isNull() && (keepEmptyQueries || !query.trimmed().isEmpty()))
+        queries << query;
+
+    return queries;
+}
+
 QStringList splitQueries(const QString& sql, Dialect dialect, bool keepEmptyQueries, bool removeComments, bool* complete)
 {
     TokenList tokens = Lexer::tokenize(sql, dialect);

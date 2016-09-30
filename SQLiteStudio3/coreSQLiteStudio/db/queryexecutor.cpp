@@ -219,7 +219,8 @@ void QueryExecutor::execInternal()
 
     if (queryCountLimitForSmartMode > -1)
     {
-        queriesForSimpleExecution = splitQueries(originalQuery, db->getDialect(), false, true);
+        queriesForSimpleExecution = quickSplitQueries(originalQuery, false);
+//        queriesForSimpleExecution = splitQueries(originalQuery, db->getDialect(), false, true);
         int queryCount = queriesForSimpleExecution.size();
         if (queryCount > queryCountLimitForSmartMode)
         {
@@ -415,7 +416,8 @@ void QueryExecutor::executeSimpleMethod()
     simpleExecution = true;
     context->editionForbiddenReasons << EditionForbiddenReason::SMART_EXECUTION_FAILED;
     if (queriesForSimpleExecution.isEmpty())
-        queriesForSimpleExecution = splitQueries(originalQuery, db->getDialect(), false, true);
+        queriesForSimpleExecution = quickSplitQueries(originalQuery, false);
+//    queriesForSimpleExecution = splitQueries(originalQuery, db->getDialect(), false, true);
 
     simpleExecutor->setQueries(queriesForSimpleExecution);
     simpleExecutor->setDb(db);

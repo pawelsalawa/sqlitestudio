@@ -1,4 +1,5 @@
 #include "sqleditor.h"
+#include "log.h"
 #include "uiconfig.h"
 #include "uiutils.h"
 #include "services/config.h"
@@ -833,7 +834,7 @@ void SqlEditor::completerRightPressed()
 
 void SqlEditor::parseContents()
 {
-    if (document()->characterCount() > 100000)
+    if (document()->characterCount() > SqliteSyntaxHighlighter::MAX_QUERY_LENGTH_FOR_ADVANCED_FEATURES)
     {
         if (richFeaturesEnabled)
             notifyWarn(tr("Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled."));
@@ -845,7 +846,6 @@ void SqlEditor::parseContents()
     {
         richFeaturesEnabled = true;
     }
-    highlighter->setEnabled(richFeaturesEnabled);
 
     // Updating dialect according to current database (if any)
     Dialect dialect = Dialect::Sqlite3;
