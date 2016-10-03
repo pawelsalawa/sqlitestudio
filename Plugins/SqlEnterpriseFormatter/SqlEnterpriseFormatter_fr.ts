@@ -26,7 +26,7 @@
     <message>
         <location filename="sqlenterpriseformatter.ui" line="68"/>
         <source>Indent contents of parenthesis block</source>
-        <translation>Indenté le contenu du bloc entre parenthèses</translation>
+        <translation>Indenter le contenu du bloc entre parenthèses</translation>
     </message>
     <message>
         <location filename="sqlenterpriseformatter.ui" line="91"/>
