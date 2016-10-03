@@ -1522,7 +1522,7 @@ mais c’est OK pour l’utiliser.</translation>
     <message>
         <location filename="../dialogs/configdialog.ui" line="2046"/>
         <source>&lt;p&gt;Additional labels are those which tell you SQLite version, number of objects deeper in the tree, etc.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Des labels supplémentaires indique la version SQLITE, le nombre d’objets au nieau inférieur, etc.&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;Des labels supplémentaires indique la version SQLITE, le nombre d’objets au nievau inférieur, etc.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="2049"/>
