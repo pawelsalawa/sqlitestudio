@@ -1,7 +1,9 @@
 #ifndef FORMATEXPR_H
 #define FORMATEXPR_H
 
+#include <QRegularExpression>
 #include "formatstatement.h"
+
 
 class SqliteExpr;
 
@@ -14,6 +16,8 @@ class FormatExpr : public FormatStatement
         void formatInternal();
 
     private:
+        static QRegularExpression WORD_ONLY_RE;
+
         SqliteExpr* expr = nullptr;
 };
 
