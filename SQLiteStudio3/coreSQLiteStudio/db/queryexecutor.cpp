@@ -299,6 +299,14 @@ bool QueryExecutor::countResults()
     return true;
 }
 
+void QueryExecutor::dbAsyncExecFinished(quint32 asyncId, SqlQueryPtr results)
+{
+    if (handleRowCountingResults(asyncId, results))
+        return;
+
+    // If this was raised by any other asyncExec, handle it here.
+}
+
 qint64 QueryExecutor::getLastExecutionTime() const
 {
     return context->executionTime;
@@ -749,7 +757,13 @@ Db* QueryExecutor::getDb() const
 
 void QueryExecutor::setDb(Db* value)
 {
+    if (db)
+        disconnect(db, SIGNAL(asyncExecFinished(quint32,SqlQueryPtr)), this, SLOT(dbAsyncExecFinished(quint32,SqlQueryPtr)));
+
     db = value;
+
+    if (db)
+        connect(db, SIGNAL(asyncExecFinished(quint32,SqlQueryPtr)), this, SLOT(dbAsyncExecFinished(quint32,SqlQueryPtr)));
 }
 
 bool QueryExecutor::getSkipRowCounting() const
