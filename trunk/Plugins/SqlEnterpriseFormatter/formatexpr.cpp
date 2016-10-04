@@ -53,10 +53,10 @@ void FormatExpr::formatInternal()
         {
             // Operator can be a keyword
             QString opStr = cfg->SqlEnterpriseFormatter.UppercaseKeywords.get() ? expr->unaryOp.toUpper() : expr->unaryOp.toLower();
-            if (WORD_ONLY_RE.match(opStr).isValid())
+            if (WORD_ONLY_RE.match(opStr).hasMatch())
                 withKeyword(opStr);
             else
-                withOperator(opStr, FormatToken::Flag::NO_SPACE_BEFORE|FormatToken::Flag::NO_SPACE_AFTER);
+                withOperator(opStr, FormatToken::Flag::NO_SPACE_AFTER);
 
             withStatement(expr->expr1, "unaryOp");
             break;
