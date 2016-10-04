@@ -444,43 +444,95 @@ QList<TokenList> splitQueries(const TokenList& tokenizedQuery, bool* complete)
     return queries;
 }
 
-QStringList quickSplitQueries(const QString& sql, bool keepEmptyQueries)
+QStringList quickSplitQueries(const QString& sql, bool keepEmptyQueries, bool removeComments)
 {
     QChar c;
     bool inString = false;
+    bool inMultiLineComment = false;
+    bool inSingleLineComment = false;
     QStringList queries;
     QString query;
+    QString trimmed;
     for (int i = 0, total = sql.size(); i < total; ++i)
     {
         c = sql[i];
+
+        // String
+        if (inString)
+        {
+            query += c;
+            if (c == '\'')
+            {
+                inString = false;
+            }
+            continue;
+        }
+
+        // One-line comment
+        if (inSingleLineComment)
+        {
+            if (!removeComments)
+                query += c;
+
+            if (c == '\r' && (i + 1) < total && sql[i+1] == '\n')
+            {
+                if (!removeComments)
+                    query += '\n';
+
+                i++;
+                inSingleLineComment = false;
+            }
+            else if (c == '\n' || c == '\r')
+                inSingleLineComment = false;
+
+            continue;
+        }
+
+        // Multi-line comment
+        if (inMultiLineComment)
+        {
+            if (!removeComments)
+                query += c;
+
+            if (c == '*' && (i + 1) < total && sql[i+1] == '/')
+            {
+                if (!removeComments)
+                    query += '/';
+
+                i++;
+                inMultiLineComment = false;
+            }
+
+            continue;
+        }
+
+        // Everything rest
         if (c == '\'')
         {
-            if ((i + 1) < total)
-            {
-                if (sql[i+1] == '\'')
-                {
-                    query += '\'';
-                    i++;
-                }
-                else
-                {
-                    inString = !inString;
-                }
-            }
-            else
-                query += c; // and then leave loop, as this was last character
+            query += c;
+            inString = true;
+        }
+        else if (c == '-' && (i + 1) < total && sql[i+1] == '-')
+        {
+            inSingleLineComment = true;
+            i++;
+            if (!removeComments)
+                query += "--";
+        }
+        else if (c == '/' && (i + 1) < total && sql[i+1] == '*')
+        {
+            inMultiLineComment = true;
+            i++;
+            if (!removeComments)
+                query += "/*";
         }
         else if (c == ';')
         {
-            if (!inString)
-            {
-                if (keepEmptyQueries || !query.trimmed().isEmpty())
-                    queries << query;
+            query += c;
+            if (keepEmptyQueries || (!(trimmed = query.trimmed()).isEmpty() && trimmed != ";"))
+                queries << query;
 
-                query.clear();
-            }
-            else
-                query += c;
+            query.clear();
         }
         else
         {
@@ -488,7 +540,7 @@ QStringList quickSplitQueries(const QString& sql, bool keepEmptyQueries)
         }
     }
 
-    if (!query.isNull() && (keepEmptyQueries || !query.trimmed().isEmpty()))
+    if (!query.isNull() && (!(trimmed = query.trimmed()).isEmpty() && trimmed != ";"))
         queries << query;
 
     return queries;
@@ -507,7 +559,7 @@ QStringList splitQueries(const QString& sql, Dialect dialect, bool keepEmptyQuer
     foreach (const TokenList& queryTokens, tokenizedQueries)
     {
         query = queryTokens.detokenize();
-        if (keepEmptyQueries || !query.trimmed().isEmpty())
+        if (keepEmptyQueries || (!query.trimmed().isEmpty() && query.trimmed() != ";"))
             queries << query;
     }
 
@@ -522,7 +574,7 @@ QString getQueryWithPosition(const QStringList& queries, int position, int* star
     if (startPos)
         *startPos = 0;
 
-    foreach (const QString& query, queries)
+    for (const QString& query : queries)
     {
         length = query.length();
         if (position >= currentPos && position < currentPos+length)
@@ -549,9 +601,9 @@ QString getQueryWithPosition(const QStringList& queries, int position, int* star
     return QString::null;
 }
 
-QString getQueryWithPosition(const QString& queries, int position, Dialect dialect, int* startPos)
+QString getQueryWithPosition(const QString& queries, int position, int* startPos)
 {
-    QStringList queryList = splitQueries(queries, dialect);
+    QStringList queryList = quickSplitQueries(queries);
     return getQueryWithPosition(queryList, position, startPos);
 }
 

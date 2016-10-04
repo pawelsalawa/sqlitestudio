@@ -834,7 +834,7 @@ void SqlEditor::completerRightPressed()
 
 void SqlEditor::parseContents()
 {
-    if (document()->characterCount() > SqliteSyntaxHighlighter::MAX_QUERY_LENGTH_FOR_ADVANCED_FEATURES)
+    if (document()->characterCount() > SqliteSyntaxHighlighter::MAX_QUERY_LENGTH)
     {
         if (richFeaturesEnabled)
             notifyWarn(tr("Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled."));
