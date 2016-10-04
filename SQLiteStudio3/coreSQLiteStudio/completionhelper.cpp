@@ -1032,7 +1032,7 @@ void CompletionHelper::parseFullSql()
     QString sql = fullSql;
 
     // Selecting query at cursor position
-    QString query = getQueryWithPosition(sql, cursorPosition, dialect);
+    QString query = getQueryWithPosition(sql, cursorPosition);
 
     // Token list of the query. Also useful, not only parsed query.
     queryTokens = Lexer::tokenize(query, dialect);
@@ -1051,7 +1051,7 @@ void CompletionHelper::parseFullSql()
     // Second try - handling open parenthesis for expr (which could not be handled by the grammar, because of bug #2755)
     parser.setLemonDebug(false); // avoid spamming with lemon debug
     QString truncatedSql = sql.left(cursorPosition);
-    query = getQueryWithPosition(truncatedSql, cursorPosition, dialect);
+    query = getQueryWithPosition(truncatedSql, cursorPosition);
     query += ");";
 
     if (tryToParse(&parser, query))

@@ -35,6 +35,7 @@
         * [BUGFIX]: #2942 Erasing table data context menu option now honors multiple table selection.
         * [BUGFIX]: #2900 Optimized execution of thousands of queries at once in SQL editor window.
         * [BUGFIX]: #2934 Table foreign key dialog can now refer to the same table. So far only column dialog constraint for FK could do it.
+        * [BUGFIX]: #3120 Performance of SQL editor window greatly increased when working with huge sets if queries (like thousands).
         * [BUGFIX]: Compilation fixes.
 
 [3.1.0]

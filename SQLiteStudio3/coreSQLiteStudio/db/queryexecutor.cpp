@@ -219,8 +219,7 @@ void QueryExecutor::execInternal()
 
     if (queryCountLimitForSmartMode > -1)
     {
-        queriesForSimpleExecution = quickSplitQueries(originalQuery, false);
-//        queriesForSimpleExecution = splitQueries(originalQuery, db->getDialect(), false, true);
+        queriesForSimpleExecution = quickSplitQueries(originalQuery, false, true);
         int queryCount = queriesForSimpleExecution.size();
         if (queryCount > queryCountLimitForSmartMode)
         {

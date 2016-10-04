@@ -31,4 +31,5 @@ SUBDIRS += \
     table_modifier \
     hash_tables \
     db_ver_conv \
-    dsv
+    dsv \
+    UtilsTest

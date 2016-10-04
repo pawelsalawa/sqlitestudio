@@ -125,7 +125,7 @@ QString SqliteSyntaxHighlighter::getPreviousStatePrefix(TextBlockState textBlock
 
 void SqliteSyntaxHighlighter::highlightBlock(const QString &text)
 {
-    if (text.length() <= 0 || document()->characterCount() > MAX_QUERY_LENGTH_FOR_ADVANCED_FEATURES)
+    if (text.length() <= 0 || document()->characterCount() > MAX_QUERY_LENGTH)
         return;
 
     // Reset to default

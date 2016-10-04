@@ -74,7 +74,7 @@ class GUI_API_EXPORT SqliteSyntaxHighlighter : public QSyntaxHighlighter
         bool getCreateTriggerContext() const;
         void setCreateTriggerContext(bool value);
 
-        static constexpr int MAX_QUERY_LENGTH_FOR_ADVANCED_FEATURES = 100000;
+        static constexpr int MAX_QUERY_LENGTH = 100000;
 
     protected:
         void highlightBlock(const QString &text);

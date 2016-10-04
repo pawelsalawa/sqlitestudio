@@ -427,7 +427,7 @@ void EditorWindow::selectCurrentQuery(bool fallBackToPreviousIfNecessary)
     int pos = cursor.position();
     int queryStartPos;
     QString contents = ui->sqlEdit->toPlainText();
-    QString query = getQueryWithPosition(contents, pos, dialect, &queryStartPos);
+    QString query = getQueryWithPosition(contents, pos, &queryStartPos);
     TokenList tokens = Lexer::tokenize(query, dialect);
     tokens.trim();
     tokens.trimRight(Token::OPERATOR, ";");
@@ -438,7 +438,7 @@ void EditorWindow::selectCurrentQuery(bool fallBackToPreviousIfNecessary)
         pos = contents.lastIndexOf(";", pos - 1);
         if (pos > -1)
         {
-            query = getQueryWithPosition(contents, pos, dialect, &queryStartPos);
+            query = getQueryWithPosition(contents, pos, &queryStartPos);
             tokens = Lexer::tokenize(query, dialect);
             tokens.trim();
             tokens.trimRight(Token::OPERATOR, ";");
