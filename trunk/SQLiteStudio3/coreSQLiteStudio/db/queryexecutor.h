@@ -1414,6 +1414,17 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          * In case of success emits executionFinished(), in case of error emits executionFailed().
          */
         void simpleExecutionFinished(SqlQueryPtr results);
+
+        /**
+         * @brief Handles asynchronous database execution results.
+         * @param asyncId Asynchronous ID of the execution.
+         * @param results Results from the execution.
+         *
+         * QueryExecutor checks whether the \p asyncId belongs to the counting query execution,
+         * or the simple execution.
+         * Dispatches query results to a proper handler method.
+         */
+        void dbAsyncExecFinished(quint32 asyncId, SqlQueryPtr results);
 };
 
 int qHash(QueryExecutor::EditionForbiddenReason reason);
