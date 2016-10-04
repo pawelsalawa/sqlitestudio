@@ -415,8 +415,7 @@ void QueryExecutor::executeSimpleMethod()
     simpleExecution = true;
     context->editionForbiddenReasons << EditionForbiddenReason::SMART_EXECUTION_FAILED;
     if (queriesForSimpleExecution.isEmpty())
-        queriesForSimpleExecution = quickSplitQueries(originalQuery, false);
-//    queriesForSimpleExecution = splitQueries(originalQuery, db->getDialect(), false, true);
+        queriesForSimpleExecution = quickSplitQueries(originalQuery, false, true);
 
     simpleExecutor->setQueries(queriesForSimpleExecution);
     simpleExecutor->setDb(db);
