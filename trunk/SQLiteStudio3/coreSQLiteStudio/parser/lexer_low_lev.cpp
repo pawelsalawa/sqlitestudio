@@ -315,7 +315,7 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
                )
             {
                 i += 2;
-                while ( charAt(z, i+2).isDigit() )
+                while ( charAt(z, i).isDigit() )
                     i++;
 
                 token->lemonType = v3 ? TK3_FLOAT : TK2_FLOAT;
