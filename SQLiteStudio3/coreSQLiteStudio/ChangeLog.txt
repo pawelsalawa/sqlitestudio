@@ -38,6 +38,7 @@
         * [BUGFIX]: #3120 Performance of SQL editor window greatly increased when working with huge sets if queries (like thousands).
         * [BUGFIX]: #3028 Fixed formatter for "NOT EXISTS" expression.
         * [BUGFIX]: #2990 Fixed handling scientific numbers notation.
+        * [BUGFIX]: #2987 Fixed "go to referenced row" function when using multi word object names.
         * [BUGFIX]: Compilation fixes.
 
 [3.1.0]
