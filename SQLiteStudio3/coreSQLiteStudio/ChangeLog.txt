@@ -37,6 +37,7 @@
         * [BUGFIX]: #2934 Table foreign key dialog can now refer to the same table. So far only column dialog constraint for FK could do it.
         * [BUGFIX]: #3120 Performance of SQL editor window greatly increased when working with huge sets if queries (like thousands).
         * [BUGFIX]: #3028 Fixed formatter for "NOT EXISTS" expression.
+        * [BUGFIX]: #2990 Fixed handling scientific numbers notation.
         * [BUGFIX]: Compilation fixes.
 
 [3.1.0]

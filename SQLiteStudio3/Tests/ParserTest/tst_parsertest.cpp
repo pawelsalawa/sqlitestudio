@@ -21,6 +21,7 @@ class ParserTest : public QObject
 
     private Q_SLOTS:
         void test();
+        void testScientificNumber();
         void testUniqConflict();
         void testGetTableTokens();
         void testGetTableTokens2();
@@ -70,6 +71,15 @@ void ParserTest::test()
 
     SqliteQueryPtr query = parser3->getQueries()[0];
     TokenList tokens = query->getContextTableTokens();
+}
+
+void ParserTest::testScientificNumber()
+{
+    QString sql = "SELECT 1e100;";
+    TokenList tokens = Lexer::tokenize(sql, Dialect::Sqlite3);
+
+    QVERIFY(tokens.size() == 4);
+    QVERIFY(tokens[2]->type == Token::Type::FLOAT);
 }
 
 void ParserTest::testGetTableTokens()
