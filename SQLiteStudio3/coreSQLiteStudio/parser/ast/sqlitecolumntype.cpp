@@ -60,7 +60,7 @@ TokenList SqliteColumnType::rebuildTokensFromContents()
         else if (scale.userType() == QVariant::LongLong)
             builder.withInteger(scale.toLongLong());
         else if (scale.userType() == QVariant::Double)
-            builder.withFloat(scale.toDouble());
+            builder.withFloat(scale);
         else
             builder.withOther(scale.toString());
 
@@ -72,7 +72,7 @@ TokenList SqliteColumnType::rebuildTokensFromContents()
             else if (precision.userType() == QVariant::LongLong)
                 builder.withInteger(precision.toLongLong());
             else if (precision.userType() == QVariant::Double)
-                builder.withFloat(precision.toDouble());
+                builder.withFloat(precision);
             else
                 builder.withOther(precision.toString());
         }

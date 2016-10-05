@@ -600,7 +600,7 @@ QString FormatStatement::detokenize()
             case FormatToken::FLOAT:
             {
                 applyIndent();
-                line += doubleToString(token->value.toDouble());
+                line += doubleToString(token->value);
                 break;
             }
             case FormatToken::OPERATOR:
