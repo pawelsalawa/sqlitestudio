@@ -520,7 +520,7 @@ void SqlQueryView::copy()
         {
             itemValue = item->getFullValue();
             if (itemValue.userType() == QVariant::Double)
-                cells << doubleToString(itemValue.toDouble());
+                cells << doubleToString(itemValue);
             else
                 cells << itemValue.toString();
 

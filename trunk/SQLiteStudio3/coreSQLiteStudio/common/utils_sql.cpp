@@ -787,7 +787,7 @@ QStringList valueListToSqlList(const QVariantList& values, Dialect dialect)
                 argList << value.toString();
                 break;
             case QVariant::Double:
-                argList << doubleToString(value.toDouble());
+                argList << doubleToString(value);
                 break;
             case QVariant::Bool:
                 argList << QString::number(value.toInt());

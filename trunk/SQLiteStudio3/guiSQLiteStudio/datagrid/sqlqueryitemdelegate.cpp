@@ -77,7 +77,7 @@ QString SqlQueryItemDelegate::displayText(const QVariant& value, const QLocale& 
     UNUSED(locale);
 
     if (value.type() == QVariant::Double)
-        return doubleToString(value.toDouble());
+        return doubleToString(value);
 
     return QStyledItemDelegate::displayText(value, locale);
 }
@@ -194,7 +194,7 @@ void SqlQueryItemDelegate::setEditorDataForLineEdit(QLineEdit* le, const QModelI
     QVariant value = index.data(Qt::EditRole);
     if (value.userType() == QVariant::Double)
     {
-        le->setText(doubleToString(value.toDouble()));
+        le->setText(doubleToString(value));
         return;
     }
 

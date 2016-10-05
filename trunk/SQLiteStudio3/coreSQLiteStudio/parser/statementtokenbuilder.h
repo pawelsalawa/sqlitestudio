@@ -131,7 +131,7 @@ class StatementTokenBuilder
          * @param value Value for the token.
          * @return Reference to the builder for the further building.
          */
-        StatementTokenBuilder& withFloat(double value);
+        StatementTokenBuilder& withFloat(const QVariant &value);
 
         /**
          * @brief Add integer numer token.

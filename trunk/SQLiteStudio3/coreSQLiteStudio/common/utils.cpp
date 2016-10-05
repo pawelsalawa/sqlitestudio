@@ -916,9 +916,9 @@ QStringList concat(const QList<QStringList>& list)
     return result;
 }
 
-QString doubleToString(double val)
+QString doubleToString(const QVariant& val)
 {
-    return QString::number(val, 'g', -1);
+    return val.toString();
 }
 
 void sortWithReferenceList(QList<QString>& listToSort, const QList<QString>& referenceList, Qt::CaseSensitivity cs)

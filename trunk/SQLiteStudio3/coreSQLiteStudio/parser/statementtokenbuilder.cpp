@@ -72,7 +72,7 @@ StatementTokenBuilder& StatementTokenBuilder::withComment(const QString& value)
     return with(Token::COMMENT, value);
 }
 
-StatementTokenBuilder& StatementTokenBuilder::withFloat(double value)
+StatementTokenBuilder& StatementTokenBuilder::withFloat(const QVariant& value)
 {
     return with(Token::FLOAT, doubleToString(value));
 }
@@ -163,7 +163,7 @@ StatementTokenBuilder& StatementTokenBuilder::withLiteralValue(const QVariant& v
         value.toDouble(&ok);
         if (ok)
         {
-            withFloat(value.toDouble());
+            withFloat(value);
             return *this;
         }
     }

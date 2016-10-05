@@ -6,7 +6,7 @@
         * [CHANGE]: #3135 Re-enabled possibility to close database list panel (and reopen it from the View menu entry).
         * [CHANGE]: #2901 Automatically generated database name includes full file name, except for the file extension only (unlike before, when it took only a file name up to the first dot).
         * [CHANGE]: #3140 The "generate name automatically" checkbox has been removed. Now the name is generated automatically by default, unless user starts to edit the name manually.
-        * [BUGFIX]: #3118 #3124 Fixed double precision numbers formatting.
+        * [BUGFIX]: #3118 #3124 #2943 Fixed double precision numbers formatting.
         * [BUGFIX]: DbAndroid plugin: Fixed 'adb' automatic detection under Linux.
         * [BUGFIX]: #3126 #3092 Fixed problem with database versions in Android plugin.
         * [BUGFIX]: #3155 Fixed crash when confiriming custom FK value with Enter key.
