@@ -396,8 +396,11 @@ void SqlQueryView::goToReferencedRow(const QString& table, const QString& column
 
     static_qstring(sqlTpl, "SELECT * FROM %1 WHERE %2 = %3");
 
+    Dialect dialect = db->getDialect();
+    QString wrappedTable = wrapObjIfNeeded(table, dialect);
+    QString wrappedColumn = wrapObjIfNeeded(column, dialect);
     QString valueStr = wrapValueIfNeeded(value.toString());
-    EditorWindow* win = MAINWINDOW->openSqlEditor(db, sqlTpl.arg(table, column, valueStr));
+    EditorWindow* win = MAINWINDOW->openSqlEditor(db, sqlTpl.arg(wrappedTable, wrappedColumn, valueStr));
     if (!win)
         return;
 
