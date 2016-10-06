@@ -27,15 +27,15 @@ bool Committable::canQuit()
         return true;
     }
 
-    QList<Committable*> uncommitedInstances;
+    QList<Committable*> uncommittedInstances;
     for (Committable* c : instances)
     {
-        if (c->isUncommited())
-            uncommitedInstances << c;
+        if (c->isUncommitted())
+            uncommittedInstances << c;
     }
 
-    if (uncommitedInstances.size() == 0)
+    if (uncommittedInstances.size() == 0)
         return true;
 
-    return confirmFunc(uncommitedInstances);
+    return confirmFunc(uncommittedInstances);
 }

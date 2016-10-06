@@ -102,12 +102,12 @@ void SqlQueryModel::executeQueryInternal()
         return;
     }
 
-    QList<SqlQueryItem*> uncommitedItems = getUncommitedItems();
-    if (uncommitedItems.size() > 0)
+    QList<SqlQueryItem*> uncommittedItems = getUncommittedItems();
+    if (uncommittedItems.size() > 0)
     {
-        QMessageBox::StandardButton result = QMessageBox::question(nullptr, tr("Uncommited data"),
-                                                                   tr("There are uncommited data changes. Do you want to proceed anyway? "
-                                                                      "All uncommited changes will be lost."));
+        QMessageBox::StandardButton result = QMessageBox::question(nullptr, tr("Uncommitted data"),
+                                                                   tr("There are uncommitted data changes. Do you want to proceed anyway? "
+                                                                      "All uncommitted changes will be lost."));
 
         if (result != QMessageBox::Yes)
         {
@@ -115,7 +115,7 @@ void SqlQueryModel::executeQueryInternal()
             return;
         }
 
-        rollback(uncommitedItems);
+        rollback(uncommittedItems);
     }
 
     emit executionStarted();
@@ -224,9 +224,9 @@ QList<SqlQueryItem*> SqlQueryModel::findItems(const QModelIndex& start, const QM
     return toItemList(findIndexes(start, end, role, value, hits));
 }
 
-QList<SqlQueryItem*> SqlQueryModel::getUncommitedItems() const
+QList<SqlQueryItem*> SqlQueryModel::getUncommittedItems() const
 {
-    return findItems(SqlQueryItem::DataRole::UNCOMMITED, true);
+    return findItems(SqlQueryItem::DataRole::UNCOMMITTED, true);
 }
 
 QList<QList<SqlQueryItem*> > SqlQueryModel::groupItemsByRows(const QList<SqlQueryItem*>& items)
@@ -258,14 +258,14 @@ QHash<AliasedTable, QList<SqlQueryItem*> > SqlQueryModel::groupItemsByTable(cons
     return itemsByTable;
 }
 
-QList<SqlQueryItem*> SqlQueryModel::filterOutCommitedItems(const QList<SqlQueryItem*>& items)
+QList<SqlQueryItem*> SqlQueryModel::filterOutCommittedItems(const QList<SqlQueryItem*>& items)
 {
     // This method doesn't make use of QMutableListIterator to remove items from passed list,
     // because it would require list in argument to drop 'const' keyword and it's already
     // there in calling methods, so it's easier to copy list and filter on the fly.
     QList<SqlQueryItem*> newList;
     foreach (SqlQueryItem* item, items)
-        if (item->isUncommited())
+        if (item->isUncommitted())
             newList << item;
 
     return newList;
@@ -296,13 +296,13 @@ QList<SqlQueryItem*> SqlQueryModel::toItemList(const QModelIndexList& indexes) c
 
 void SqlQueryModel::commit()
 {
-    QList<SqlQueryItem*> items = findItems(SqlQueryItem::DataRole::UNCOMMITED, true);
+    QList<SqlQueryItem*> items = findItems(SqlQueryItem::DataRole::UNCOMMITTED, true);
     commitInternal(items);
 }
 
 void SqlQueryModel::commit(const QList<SqlQueryItem*>& items)
 {
-    commitInternal(filterOutCommitedItems(items));
+    commitInternal(filterOutCommittedItems(items));
 }
 
 bool SqlQueryModel::commitRow(const QList<SqlQueryItem*>& itemsInRow)
@@ -339,13 +339,13 @@ void SqlQueryModel::rollbackRow(const QList<SqlQueryItem*>& itemsInRow)
 
 void SqlQueryModel::rollback()
 {
-    QList<SqlQueryItem*> items = findItems(SqlQueryItem::DataRole::UNCOMMITED, true);
+    QList<SqlQueryItem*> items = findItems(SqlQueryItem::DataRole::UNCOMMITTED, true);
     rollbackInternal(items);
 }
 
 void SqlQueryModel::rollback(const QList<SqlQueryItem*>& items)
 {
-    rollbackInternal(filterOutCommitedItems(items));
+    rollbackInternal(filterOutCommittedItems(items));
 }
 
 void SqlQueryModel::commitInternal(const QList<SqlQueryItem*>& items)
@@ -369,11 +369,11 @@ void SqlQueryModel::commitInternal(const QList<SqlQueryItem*>& items)
     int numberOfItemsAdded = groupItemsByRows(findItems(SqlQueryItem::DataRole::NEW_ROW, true)).size();
     int numberOfItemsDeleted = groupItemsByRows(findItems(SqlQueryItem::DataRole::DELETED, true)).size();
 
-    // Removing "commit error" mark from items that are going to be commited now
+    // Removing "commit error" mark from items that are going to be committed now
     for (SqlQueryItem* item : items)
-        item->setCommitingError(false);
+        item->setCommittingError(false);
 
-    // Grouping by row and commiting
+    // Grouping by row and committing
     QList<QList<SqlQueryItem*>> groupedItems = groupItemsByRows(items);
     emit aboutToCommit(groupedItems.size());
 
@@ -387,11 +387,11 @@ void SqlQueryModel::commitInternal(const QList<SqlQueryItem*>& items)
             ok = false;
             break;
         }
-        emit commitingStepFinished(step++);
+        emit committingStepFinished(step++);
     }
 
-    // Getting current uncommited list (after rows deletion it may be different)
-    QList<SqlQueryItem*> itemsLeft = findItems(SqlQueryItem::DataRole::UNCOMMITED, true);
+    // Getting current uncommitted list (after rows deletion it may be different)
+    QList<SqlQueryItem*> itemsLeft = findItems(SqlQueryItem::DataRole::UNCOMMITTED, true);
 
     // Getting common elements of initial and current item list, because of a possibility of the selective commit
     QMutableListIterator<SqlQueryItem*> it(itemsLeft);
@@ -401,20 +401,20 @@ void SqlQueryModel::commitInternal(const QList<SqlQueryItem*>& items)
             it.remove();
     }
 
-    // Commiting to the database
+    // Committing to the database
     if (ok)
     {
         if (!db->commit())
         {
             ok = false;
-            notifyError(tr("An error occurred while commiting the transaction: %1").arg(db->getErrorText()));
+            notifyError(tr("An error occurred while committing the transaction: %1").arg(db->getErrorText()));
         }
         else
         {
-            // Commited successfully
+            // Committed successfully
             for (SqlQueryItem* item : itemsLeft)
             {
-                item->setUncommited(false);
+                item->setUncommitted(false);
                 item->setNewRow(false);
             }
 
@@ -423,7 +423,7 @@ void SqlQueryModel::commitInternal(const QList<SqlQueryItem*>& items)
             for (int row : rowsDeletedSuccessfullyInTheCommit)
                 removeRow(row - removeOffset++); // deleting row decrements all rows below
 
-            emit commitStatusChanged(getUncommitedItems().size() > 0);
+            emit commitStatusChanged(getUncommittedItems().size() > 0);
         }
     }
     rowsDeletedSuccessfullyInTheCommit.clear();
@@ -455,7 +455,7 @@ void SqlQueryModel::rollbackInternal(const QList<SqlQueryItem*>& items)
     foreach (const QList<SqlQueryItem*>& itemsInRow, groupedItems)
         rollbackRow(itemsInRow);
 
-    emit commitStatusChanged(getUncommitedItems().size() > 0);
+    emit commitStatusChanged(getUncommittedItems().size() > 0);
 }
 
 void SqlQueryModel::reload()
@@ -490,7 +490,7 @@ StrHash<QString> SqlQueryModel::attachDependencyTables()
         if (!attachDb)
         {
             qCritical() << "Could not resolve database" << reqAttach << ", while it's a required attach name for SqlQueryModel to commit edited data!"
-                        << "This may result in errors when commiting some data modifications.";
+                        << "This may result in errors when committing some data modifications.";
             continue;
         }
 
@@ -498,7 +498,7 @@ StrHash<QString> SqlQueryModel::attachDependencyTables()
         if (attachName.isNull())
         {
             qCritical() << "Could not attach database" << reqAttach << ", while it's a required attach name for SqlQueryModel to commit edited data!"
-                        << "This may result in errors when commiting some data modifications.";
+                        << "This may result in errors when committing some data modifications.";
             continue;
         }
 
@@ -651,9 +651,9 @@ bool SqlQueryModel::commitEditedRow(const QList<SqlQueryItem*>& itemsInRow)
         if (results->isError())
         {
             for (SqlQueryItem* item : items)
-                item->setCommitingError(true);
+                item->setCommittingError(true);
 
-            notifyError(tr("An error occurred while commiting the data: %1").arg(results->getErrorText()));
+            notifyError(tr("An error occurred while committing the data: %1").arg(results->getErrorText()));
             return false;
         }
 
@@ -1210,7 +1210,7 @@ void SqlQueryModel::resultsCountingFinished(quint64 rowsAffected, quint64 rowsRe
 void SqlQueryModel::itemValueEdited(SqlQueryItem* item)
 {
     UNUSED(item);
-    emit commitStatusChanged(getUncommitedItems().size() > 0);
+    emit commitStatusChanged(getUncommittedItems().size() > 0);
 }
 
 void SqlQueryModel::changeSorting(int logicalIndex, Qt::SortOrder order)
@@ -1401,7 +1401,7 @@ void SqlQueryModel::updateSelectiveCommitRollbackActions(const QItemSelection& s
     {
         foreach (SqlQueryItem* item, selectedItems)
         {
-            if (item->isUncommited())
+            if (item->isUncommitted())
             {
                 result = true;
                 break;
@@ -1424,7 +1424,7 @@ void SqlQueryModel::addNewRowInternal(int rowIdx)
 
         item = new SqlQueryItem();
         item->setNewRow(true);
-        item->setUncommited(true);
+        item->setUncommitted(true);
         item->setColumn(columnModel);
 
         items << item;
@@ -1630,14 +1630,14 @@ void SqlQueryModel::deleteSelectedRows()
             }
 
             item->setDeletedRow(true);
-            item->setUncommited(true);
+            item->setUncommitted(true);
         }
     }
 
     foreach (SqlQueryItem* item, newItemsToDelete)
         removeRow(item->index().row());
 
-    emit commitStatusChanged(getUncommitedItems().size() > 0);
+    emit commitStatusChanged(getUncommittedItems().size() > 0);
 }
 
 void SqlQueryModel::handlePossibleTableModification(Db *modDb, const QString &database, const QString &objName)

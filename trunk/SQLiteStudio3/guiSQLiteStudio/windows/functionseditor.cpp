@@ -621,12 +621,12 @@ QVariant FunctionsEditor::saveSession()
 }
 
 
-bool FunctionsEditor::isUncommited() const
+bool FunctionsEditor::isUncommitted() const
 {
     return model->isModified();
 }
 
-QString FunctionsEditor::getQuitUncommitedConfirmMessage() const
+QString FunctionsEditor::getQuitUncommittedConfirmMessage() const
 {
-    return tr("Functions editor window has uncommited modifications.");
+    return tr("Functions editor window has uncommitted modifications.");
 }

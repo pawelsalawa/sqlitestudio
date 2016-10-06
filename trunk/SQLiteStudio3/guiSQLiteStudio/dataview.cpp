@@ -153,7 +153,7 @@ void DataView::initWidgetCover()
     widgetCover = new WidgetCover(this);
     widgetCover->initWithProgressBarOnly("%v / %m");
     connect(model, SIGNAL(aboutToCommit(int)), this, SLOT(coverForGridCommit(int)));
-    connect(model, SIGNAL(commitingStepFinished(int)), this, SLOT(updateGridCommitCover(int)));
+    connect(model, SIGNAL(committingStepFinished(int)), this, SLOT(updateGridCommitCover(int)));
     connect(model, SIGNAL(commitFinished()), this, SLOT(hideGridCommitCover()));
 }
 
@@ -650,7 +650,7 @@ void DataView::updateFilterIcon()
     }
 }
 
-bool DataView::isUncommited() const
+bool DataView::isUncommitted() const
 {
     return uncommittedGrid || uncommittedForm;
 }

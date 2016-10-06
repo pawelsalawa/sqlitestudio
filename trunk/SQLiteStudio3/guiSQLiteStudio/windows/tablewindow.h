@@ -118,8 +118,8 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         QString getTable() const;
         Db* getDb() const;
         bool handleInitialFocus();
-        bool isUncommited() const;
-        QString getQuitUncommitedConfirmMessage() const;
+        bool isUncommitted() const;
+        QString getQuitUncommittedConfirmMessage() const;
         void useCurrentTableAsBaseForNew();
         Db* getAssociatedDb() const;
 
@@ -193,7 +193,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         void checkIfTriggerDeleted(const QString& object);
         void refreshStructure();
         void commitStructure(bool skipWarning = false);
-        void changesSuccessfullyCommited();
+        void changesSuccessfullyCommitted();
         void changesFailedToCommit(int errorCode, const QString& errorText);
         void rollbackStructure();
         void resetAutoincrement();

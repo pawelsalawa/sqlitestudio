@@ -40,8 +40,8 @@ class GUI_API_EXPORT CollationsEditor : public MdiChild
         ~CollationsEditor();
 
         bool restoreSessionNextTime();
-        bool isUncommited() const;
-        QString getQuitUncommitedConfirmMessage() const;
+        bool isUncommitted() const;
+        QString getQuitUncommittedConfirmMessage() const;
 
     protected:
         QVariant saveSession();

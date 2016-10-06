@@ -115,29 +115,29 @@ void SqlQueryView::setupActionsForMenu(SqlQueryItem* currentItem, const QList<Sq
     // Selected items count
     int selCount = selectedItems.size();
 
-    // Uncommited items count
-    QList<SqlQueryItem*> uncommitedItems = getModel()->getUncommitedItems();
-    int uncommitedCount = uncommitedItems.size();
+    // Uncommitted items count
+    QList<SqlQueryItem*> uncommittedItems = getModel()->getUncommittedItems();
+    int uncommittedCount = uncommittedItems.size();
 
-    // Uncommited & selected items count
-    int uncommitedSelCount = 0;
-    foreach (SqlQueryItem* item, uncommitedItems)
+    // Uncommitted & selected items count
+    int uncommittedSelCount = 0;
+    foreach (SqlQueryItem* item, uncommittedItems)
         if (selectedItems.contains(item))
-            uncommitedSelCount++;
+            uncommittedSelCount++;
 
-    if (uncommitedCount > 0)
+    if (uncommittedCount > 0)
         contextMenu->addAction(actionMap[COMMIT]);
 
-    if (uncommitedSelCount > 0)
+    if (uncommittedSelCount > 0)
         contextMenu->addAction(actionMap[SELECTIVE_COMMIT]);
 
-    if (uncommitedCount > 0)
+    if (uncommittedCount > 0)
         contextMenu->addAction(actionMap[ROLLBACK]);
 
-    if (uncommitedSelCount > 0)
+    if (uncommittedSelCount > 0)
         contextMenu->addAction(actionMap[SELECTIVE_ROLLBACK]);
 
-    if (uncommitedCount > 0 && selCount > 0)
+    if (uncommittedCount > 0 && selCount > 0)
         contextMenu->addSeparator();
 
     if (selCount > 0)

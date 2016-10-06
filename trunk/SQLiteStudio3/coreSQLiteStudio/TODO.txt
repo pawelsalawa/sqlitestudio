@@ -1,5 +1,3 @@
-* no german language to choose from
-
 cannot reproduce:
 2922 / 2926 / 2925
 2940
@@ -20,7 +18,7 @@ cannot reproduce:
 - object names (columns, tables, etc) in dialogs should be validated against suffix/prefix whitespaces and if they appear, user should be asked for confirmation
 - small useful features: generating template queries from context menu for table/view, from data view.
 - code templates
-- commiting DataView should be async
+- committing DataView should be async
 - syntax checkers as services - per language
 - code assistants as services - per language
 - specialized validation of expressions for DEFAULT constraint.

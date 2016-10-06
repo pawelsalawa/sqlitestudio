@@ -10,8 +10,8 @@
 SqlQueryItem::SqlQueryItem(QObject *parent) :
     QObject(parent)
 {
-    setUncommited(false);
-    setCommitingError(false);
+    setUncommitted(false);
+    setCommittingError(false);
     setRowId(RowId());
     setColumn(nullptr);
 }
@@ -36,36 +36,36 @@ void SqlQueryItem::setRowId(const RowId& rowId)
     QStandardItem::setData(rowId, DataRole::ROWID);
 }
 
-bool SqlQueryItem::isUncommited() const
+bool SqlQueryItem::isUncommitted() const
 {
-    return QStandardItem::data(DataRole::UNCOMMITED).toBool();
+    return QStandardItem::data(DataRole::UNCOMMITTED).toBool();
 }
 
-void SqlQueryItem::setUncommited(bool uncommited)
+void SqlQueryItem::setUncommitted(bool uncommitted)
 {
-    QStandardItem::setData(QVariant(uncommited), DataRole::UNCOMMITED);
-    if (!uncommited)
+    QStandardItem::setData(QVariant(uncommitted), DataRole::UNCOMMITTED);
+    if (!uncommitted)
     {
         setOldValue(QVariant());
-        setCommitingError(false);
+        setCommittingError(false);
     }
 }
 
 void SqlQueryItem::rollback()
 {
     setValue(getOldValue(), true, true);
-    setUncommited(false);
+    setUncommitted(false);
     setDeletedRow(false);
 }
 
-bool SqlQueryItem::isCommitingError() const
+bool SqlQueryItem::isCommittingError() const
 {
-    return QStandardItem::data(DataRole::COMMITING_ERROR).toBool();
+    return QStandardItem::data(DataRole::COMMITTING_ERROR).toBool();
 }
 
-void SqlQueryItem::setCommitingError(bool isError)
+void SqlQueryItem::setCommittingError(bool isError)
 {
-    QStandardItem::setData(QVariant(isError), DataRole::COMMITING_ERROR);
+    QStandardItem::setData(QVariant(isError), DataRole::COMMITTING_ERROR);
 }
 
 bool SqlQueryItem::isNewRow() const
@@ -113,7 +113,7 @@ void SqlQueryItem::setValue(const QVariant &value, bool limited, bool loadedFrom
 
     // It's modified when:
     // - original and new value is different (value or NULL status), while it's not loading from DB
-    // - this item was already marked as uncommited
+    // - this item was already marked as uncommitted
     bool modified = (
                         (
                                 newValue != origValue ||
@@ -121,7 +121,7 @@ void SqlQueryItem::setValue(const QVariant &value, bool limited, bool loadedFrom
                         ) &&
                         !loadedFromDb
                     ) ||
-                    isUncommited();
+                    isUncommitted();
 
     if (modified && !getOldValue().isValid())
         setOldValue(origValue);
@@ -134,7 +134,7 @@ void SqlQueryItem::setValue(const QVariant &value, bool limited, bool loadedFrom
 
     QStandardItem::setData(newValue, DataRole::VALUE);
     setLimitedValue(limited);
-    setUncommited(modified);
+    setUncommitted(modified);
 
     // Value for display (in a cell) will always be limited, for performance reasons
     setValueForDisplay("x"); // the same trick as with the DataRole::VALUE
@@ -453,6 +453,6 @@ QVariant SqlQueryItem::getFullValue()
     QVariant originalValue = getValue();
     loadFullData();
     QVariant result = getValue();
-    setValue(originalValue, true, !isUncommited());
+    setValue(originalValue, true, !isUncommitted());
     return result;
 }

@@ -24,8 +24,8 @@ class GUI_API_EXPORT DdlHistoryWindow : public MdiChild
         ~DdlHistoryWindow();
 
         bool restoreSessionNextTime();
-        bool isUncommited() const;
-        QString getQuitUncommitedConfirmMessage() const;
+        bool isUncommitted() const;
+        QString getQuitUncommittedConfirmMessage() const;
 
     protected:
         void changeEvent(QEvent *e);

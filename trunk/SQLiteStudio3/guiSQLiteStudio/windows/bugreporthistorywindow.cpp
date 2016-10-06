@@ -144,12 +144,12 @@ void BugReportHistoryWindow::deleteSelected()
     CFG->deleteReport(id);
 }
 
-bool BugReportHistoryWindow::isUncommited() const
+bool BugReportHistoryWindow::isUncommitted() const
 {
     return false;
 }
 
-QString BugReportHistoryWindow::getQuitUncommitedConfirmMessage() const
+QString BugReportHistoryWindow::getQuitUncommittedConfirmMessage() const
 {
     return QString();
 }

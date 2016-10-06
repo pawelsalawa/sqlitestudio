@@ -143,7 +143,7 @@ bool FormView::isCurrentRowModifiedInGrid()
 
     QModelIndex startIdx = model->index(gridView->getCurrentIndex().row(), 0);
     QModelIndex endIdx = model->index(gridView->getCurrentIndex().row(), model->columnCount() - 1);
-    return model->findIndexes(startIdx, endIdx, SqlQueryItem::DataRole::UNCOMMITED, true, 1).size() > 0;
+    return model->findIndexes(startIdx, endIdx, SqlQueryItem::DataRole::UNCOMMITTED, true, 1).size() > 0;
 }
 
 void FormView::updateDeletedState()

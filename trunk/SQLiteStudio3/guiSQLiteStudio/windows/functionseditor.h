@@ -48,8 +48,8 @@ class GUI_API_EXPORT FunctionsEditor : public MdiChild
         ~FunctionsEditor();
 
         bool restoreSessionNextTime();
-        bool isUncommited() const;
-        QString getQuitUncommitedConfirmMessage() const;
+        bool isUncommitted() const;
+        QString getQuitUncommittedConfirmMessage() const;
 
     protected:
         QVariant saveSession();

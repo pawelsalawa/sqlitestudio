@@ -240,7 +240,7 @@ void ViewWindow::init()
     connect(CFG_UI.Fonts.DataView, SIGNAL(changed(QVariant)), this, SLOT(updateFont()));
 
     structureExecutor = new ChainExecutor(this);
-    connect(structureExecutor, SIGNAL(success(SqlQueryPtr)), this, SLOT(changesSuccessfullyCommited()));
+    connect(structureExecutor, SIGNAL(success(SqlQueryPtr)), this, SLOT(changesSuccessfullyCommitted()));
     connect(structureExecutor, SIGNAL(failure(int,QString)), this, SLOT(changesFailedToCommit(int,QString)));
 
     setupCoverWidget();
@@ -349,23 +349,23 @@ void ViewWindow::setSelect(const QString &selectSql)
     ui->queryEdit->setPlainText(selectSql);
 }
 
-bool ViewWindow::isUncommited() const
+bool ViewWindow::isUncommitted() const
 {
-    return ui->dataView->isUncommited() || isModified();
+    return ui->dataView->isUncommitted() || isModified();
 }
 
-QString ViewWindow::getQuitUncommitedConfirmMessage() const
+QString ViewWindow::getQuitUncommittedConfirmMessage() const
 {
     QString title = getMdiWindow()->windowTitle();
-    if (ui->dataView->isUncommited() && isModified())
-        return tr("View window \"%1\" has uncommited structure modifications and data.").arg(title);
-    else if (ui->dataView->isUncommited())
-        return tr("View window \"%1\" has uncommited data.").arg(title);
+    if (ui->dataView->isUncommitted() && isModified())
+        return tr("View window \"%1\" has uncommitted structure modifications and data.").arg(title);
+    else if (ui->dataView->isUncommitted())
+        return tr("View window \"%1\" has uncommitted data.").arg(title);
     else if (isModified())
-        return tr("View window \"%1\" has uncommited structure modifications.").arg(title);
+        return tr("View window \"%1\" has uncommitted structure modifications.").arg(title);
     else
     {
-        qCritical() << "Unhandled message case in ViewWindow::getQuitUncommitedConfirmMessage().";
+        qCritical() << "Unhandled message case in ViewWindow::getQuitUncommittedConfirmMessage().";
         return QString();
     }
 }
@@ -571,8 +571,8 @@ void ViewWindow::tabChanged(int tabIdx)
     {
             if (isModified())
             {
-                int res = QMessageBox::question(this, tr("Uncommited changes"),
-                                                tr("There are uncommited structure modifications. You cannot browse or edit data until you have "
+                int res = QMessageBox::question(this, tr("Uncommitted changes"),
+                                                tr("There are uncommitted structure modifications. You cannot browse or edit data until you have "
                                                    "the view structure settled.\n"
                                                    "Do you want to commit the structure, or do you want to go back to the structure tab?"),
                                                 tr("Go back to structure tab"), tr("Commit modifications and browse data."));
@@ -606,7 +606,7 @@ void ViewWindow::updateQueryToolbarStatus()
     actionMap[REFRESH_QUERY]->setEnabled(existingView);
 }
 
-void ViewWindow::changesSuccessfullyCommited()
+void ViewWindow::changesSuccessfullyCommitted()
 {
     QStringList sqls = structureExecutor->getQueries();
     CFG->addDdlHistory(sqls.join("\n"), db->getName(), db->getPath());
@@ -626,9 +626,9 @@ void ViewWindow::changesSuccessfullyCommited()
     updateWindowTitle();
 
     if (oldView.compare(view, Qt::CaseInsensitive) == 0)
-        notifyInfo(tr("Commited changes for view '%1' successfly.").arg(view));
+        notifyInfo(tr("Committed changes for view '%1' successfully.").arg(view));
     else
-        notifyInfo(tr("Commited changes for view '%1' (named before '%2') successfly.").arg(view, oldView));
+        notifyInfo(tr("Committed changes for view '%1' (named before '%2') successfully.").arg(view, oldView));
 
     DBTREE->refreshSchema(db);
 }

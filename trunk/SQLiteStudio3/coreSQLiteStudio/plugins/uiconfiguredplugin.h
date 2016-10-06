@@ -39,7 +39,7 @@ class API_EXPORT UiConfiguredPlugin
          *
          * This is called just after the config dialog was open and all its contents are already initialized.
          * This is a good moment to connect to plugin's CfgMain configuration object to listen for changes,
-         * so all uncommited (yet) configuration changes can be reflected by this plugin.
+         * so all uncommitted (yet) configuration changes can be reflected by this plugin.
          */
         virtual void configDialogOpen() = 0;
 

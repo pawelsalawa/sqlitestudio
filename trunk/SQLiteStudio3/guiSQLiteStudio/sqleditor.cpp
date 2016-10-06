@@ -94,7 +94,7 @@ void SqlEditor::init()
 
     connect(this, &QWidget::customContextMenuRequested, this, &SqlEditor::customContextMenuRequested);
     connect(CFG_UI.Fonts.SqlEditor, SIGNAL(changed(QVariant)), this, SLOT(changeFont(QVariant)));
-    connect(CFG, SIGNAL(massSaveCommited()), this, SLOT(configModified()));
+    connect(CFG, SIGNAL(massSaveCommitted()), this, SLOT(configModified()));
 }
 
 void SqlEditor::removeErrorMarkers()

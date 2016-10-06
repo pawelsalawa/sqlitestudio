@@ -761,7 +761,7 @@ bool AbstractDb::commit()
     SqlQueryPtr results = exec("COMMIT;", Flag::NO_LOCK);
     if (results->isError())
     {
-        qCritical() << "Error while commiting a transaction: " << results->getErrorCode() << results->getErrorText();
+        qCritical() << "Error while committing a transaction: " << results->getErrorCode() << results->getErrorText();
         return false;
     }
 
