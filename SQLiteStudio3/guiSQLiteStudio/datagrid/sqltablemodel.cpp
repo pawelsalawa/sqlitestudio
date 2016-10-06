@@ -77,9 +77,9 @@ bool SqlTableModel::commitAddedRow(const QList<SqlQueryItem*>& itemsInRow)
     if (result->isError())
     {
         foreach (SqlQueryItem* item, itemsInRow)
-            item->setCommitingError(true);
+            item->setCommittingError(true);
 
-        notifyError(tr("Error while commiting new row: %1").arg(result->getErrorText()));
+        notifyError(tr("Error while committing new row: %1").arg(result->getErrorText()));
         return false;
     }
 
@@ -142,7 +142,7 @@ bool SqlTableModel::commitDeletedRow(const QList<SqlQueryItem*>& itemsInRow)
     }
 
     if (!SqlQueryModel::commitDeletedRow(itemsInRow))
-        qCritical() << "Could not delete row from SqlQueryView while commiting row deletion.";
+        qCritical() << "Could not delete row from SqlQueryView while committing row deletion.";
 
     return true;
 }

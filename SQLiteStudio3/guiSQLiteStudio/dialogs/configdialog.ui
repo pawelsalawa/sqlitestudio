@@ -229,7 +229,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="databaseListPage">
           <layout class="QVBoxLayout" name="verticalLayout_36">
@@ -502,10 +502,10 @@
                   <item row="4" column="0" colspan="2">
                    <widget class="QCheckBox" name="useDefaultForNullCheck">
                     <property name="toolTip">
-                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when commiting a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is commited for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when committing a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is committed for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                     </property>
                     <property name="text">
-                     <string>Use DEFAULT value (if defined), when commiting NULL value</string>
+                     <string>Use DEFAULT value (if defined), when committing NULL value</string>
                     </property>
                     <property name="cfg" stdset="0">
                      <string notr="true">General.UseDefaultValueForNull</string>
@@ -792,7 +792,7 @@
               <item row="0" column="0" colspan="2">
                <widget class="QCheckBox" name="dontShowDdlPreview">
                 <property name="text">
-                 <string>Don't show DDL preview dialog when commiting schema changes</string>
+                 <string>Don't show DDL preview dialog when committing schema changes</string>
                 </property>
                 <property name="cfg" stdset="0">
                  <string notr="true">General.DontShowDdlPreview</string>
@@ -1947,17 +1947,17 @@ p, li { white-space: pre-wrap; }
                  </property>
                  <layout class="QGridLayout" name="gridLayout_6">
                   <item row="0" column="0">
-                   <widget class="QLabel" name="dataViewUncommitedLabel">
+                   <widget class="QLabel" name="dataViewUncommittedLabel">
                     <property name="toolTip">
-                     <string>&lt;p&gt;Any data changes will be outlined with this color, until they're commited to the database.&lt;/p&gt;</string>
+                     <string>&lt;p&gt;Any data changes will be outlined with this color, until they're committed to the database.&lt;/p&gt;</string>
                     </property>
                     <property name="text">
-                     <string>Uncommited data outline color</string>
+                     <string>Uncommitted data outline color</string>
                     </property>
                    </widget>
                   </item>
                   <item row="0" column="1">
-                   <widget class="ColorButton" name="dataViewUncommitedButton">
+                   <widget class="ColorButton" name="dataViewUncommittedButton">
                     <property name="maximumSize">
                      <size>
                       <width>50</width>
@@ -1968,14 +1968,14 @@ p, li { white-space: pre-wrap; }
                      <string/>
                     </property>
                     <property name="cfg" stdset="0">
-                     <string notr="true">Colors.DataUncommited</string>
+                     <string notr="true">Colors.DataUncommitted</string>
                     </property>
                    </widget>
                   </item>
                   <item row="1" column="0">
                    <widget class="QLabel" name="dataViewErrorLabel">
                     <property name="toolTip">
-                     <string>&lt;p&gt;In case of error while commiting data changes, the problematic cell will be outlined with this color.&lt;/p&gt;</string>
+                     <string>&lt;p&gt;In case of error while committing data changes, the problematic cell will be outlined with this color.&lt;/p&gt;</string>
                     </property>
                     <property name="text">
                      <string>Commit error outline color</string>
@@ -1994,7 +1994,7 @@ p, li { white-space: pre-wrap; }
                      <string/>
                     </property>
                     <property name="cfg" stdset="0">
-                     <string notr="true">Colors.DataUncommitedError</string>
+                     <string notr="true">Colors.DataUncommittedError</string>
                     </property>
                    </widget>
                   </item>
@@ -2264,7 +2264,7 @@ p, li { white-space: pre-wrap; }
   <tabstop>sqlEditorNumberFgButton</tabstop>
   <tabstop>sqlEditorBindParamFgButton</tabstop>
   <tabstop>sqlEditorValidObjectsButton</tabstop>
-  <tabstop>dataViewUncommitedButton</tabstop>
+  <tabstop>dataViewUncommittedButton</tabstop>
   <tabstop>dataViewErrorButton</tabstop>
   <tabstop>dataViewNullFgButton</tabstop>
   <tabstop>dataViewDeletedRowBgButton</tabstop>

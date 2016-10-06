@@ -179,7 +179,7 @@ void TableWindow::init()
     connect(CFG_UI.Fonts.DataView, SIGNAL(changed(QVariant)), this, SLOT(updateFont()));
 
     structureExecutor = new ChainExecutor(this);
-    connect(structureExecutor, SIGNAL(success(SqlQueryPtr)), this, SLOT(changesSuccessfullyCommited()));
+    connect(structureExecutor, SIGNAL(success(SqlQueryPtr)), this, SLOT(changesSuccessfullyCommitted()));
     connect(structureExecutor, SIGNAL(failure(int,QString)), this, SLOT(changesFailedToCommit(int,QString)));
 
     THEME_TUNER->manageCompactLayout({
@@ -799,7 +799,7 @@ void TableWindow::commitStructure(bool skipWarning)
     executeStructureChanges();
 }
 
-void TableWindow::changesSuccessfullyCommited()
+void TableWindow::changesSuccessfullyCommitted()
 {
     modifyingThisTable = false;
 
@@ -825,11 +825,11 @@ void TableWindow::changesSuccessfullyCommited()
     NotifyManager* notifyManager = NotifyManager::getInstance();
     if (oldTable.compare(table, Qt::CaseInsensitive) == 0 || oldTable.isEmpty())
     {
-        notifyInfo(tr("Commited changes for table '%1' successfly.").arg(table));
+        notifyInfo(tr("Committed changes for table '%1' successfully.").arg(table));
     }
     else
     {
-        notifyInfo(tr("Commited changes for table '%1' (named before '%2') successfly.").arg(table, oldTable));
+        notifyInfo(tr("Committed changes for table '%1' (named before '%2') successfully.").arg(table, oldTable));
         notifyManager->renamed(db, database, oldTable, table);
     }
     notifyManager->modified(db, database, table);
@@ -894,7 +894,7 @@ void TableWindow::resetAutoincrement()
     if (res->isError())
         notifyError(tr("An error occurred while trying to reset autoincrement value for table '%1': %2").arg(table, res->getErrorText()));
     else
-        notifyInfo(tr("Autoincrement value for table '%1' has been reset successfly.").arg(table));
+        notifyInfo(tr("Autoincrement value for table '%1' has been reset successfully.").arg(table));
 }
 
 void TableWindow::addColumn()
@@ -1267,8 +1267,8 @@ void TableWindow::tabChanged(int newTab)
     {
         if (isModified())
         {
-            int res = QMessageBox::question(this, tr("Uncommited changes"),
-                                            tr("There are uncommited structure modifications. You cannot browse or edit data until you have "
+            int res = QMessageBox::question(this, tr("Uncommitted changes"),
+                                            tr("There are uncommitted structure modifications. You cannot browse or edit data until you have "
                                                "table structure settled.\n"
                                                "Do you want to commit the structure, or do you want to go back to the structure tab?"),
                                             tr("Go back to structure tab"), tr("Commit modifications and browse data."));
@@ -1604,23 +1604,23 @@ bool TableWindow::handleInitialFocus()
     return false;
 }
 
-bool TableWindow::isUncommited() const
+bool TableWindow::isUncommitted() const
 {
-    return ui->dataView->isUncommited() || isModified();
+    return ui->dataView->isUncommitted() || isModified();
 }
 
-QString TableWindow::getQuitUncommitedConfirmMessage() const
+QString TableWindow::getQuitUncommittedConfirmMessage() const
 {
     QString title = getMdiWindow()->windowTitle();
-    if (ui->dataView->isUncommited() && isModified())
-        return tr("Table window \"%1\" has uncommited structure modifications and data.").arg(title);
-    else if (ui->dataView->isUncommited())
-        return tr("Table window \"%1\" has uncommited data.").arg(title);
+    if (ui->dataView->isUncommitted() && isModified())
+        return tr("Table window \"%1\" has uncommitted structure modifications and data.").arg(title);
+    else if (ui->dataView->isUncommitted())
+        return tr("Table window \"%1\" has uncommitted data.").arg(title);
     else if (isModified())
-        return tr("Table window \"%1\" has uncommited structure modifications.").arg(title);
+        return tr("Table window \"%1\" has uncommitted structure modifications.").arg(title);
     else
     {
-        qCritical() << "Unhandled message case in TableWindow::getQuitUncommitedConfirmMessage().";
+        qCritical() << "Unhandled message case in TableWindow::getQuitUncommittedConfirmMessage().";
         return QString();
     }
 }

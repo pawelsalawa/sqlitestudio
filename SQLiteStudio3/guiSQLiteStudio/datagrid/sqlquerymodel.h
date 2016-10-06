@@ -55,7 +55,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         QModelIndexList findIndexes(const QModelIndex &start, const QModelIndex& end, int role, const QVariant &value, int hits = -1) const;
         QList<SqlQueryItem*> findItems(int role, const QVariant &value, int hits = -1) const;
         QList<SqlQueryItem*> findItems(const QModelIndex &start, const QModelIndex& end, int role, const QVariant &value, int hits = -1) const;
-        QList<SqlQueryItem*> getUncommitedItems() const;
+        QList<SqlQueryItem*> getUncommittedItems() const;
         QList<SqlQueryItem*> getRow(int row);
         int columnCount(const QModelIndex& parent = QModelIndex()) const;
         QVariant headerData(int section, Qt::Orientation orientation, int role) const;
@@ -288,7 +288,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         void storeStep1NumbersFromExecution();
         void storeStep2NumbersFromExecution();
         void restoreNumbersToQueryExecutor();
-        QList<SqlQueryItem*> filterOutCommitedItems(const QList<SqlQueryItem*>& items);
+        QList<SqlQueryItem*> filterOutCommittedItems(const QList<SqlQueryItem*>& items);
         void commitInternal(const QList<SqlQueryItem*>& items);
         void rollbackInternal(const QList<SqlQueryItem*>& items);
         void reloadInternal();
@@ -492,7 +492,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
          * @brief commitStatusChanged
          * @param commitAvailable Tells if there's anything to commit/rollback or not.
          *
-         * Emitted after any results cell has been modified and can now be commited or rolled back.
+         * Emitted after any results cell has been modified and can now be committed or rolled back.
          * Also emitted after commit and rollback.
          */
         void commitStatusChanged(bool commitAvailable);
@@ -501,8 +501,8 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
          * @brief selectiveCommitStatusChanged
          * @param commitAvailable Tells if there's anything to commit/rollback or not.
          *
-         * Emitted when user changes selection in the view, so if the selection includes any uncommited cells,
-         * then this signal will be emitted with parameter true, or if there is no uncommited cells,
+         * Emitted when user changes selection in the view, so if the selection includes any uncommitted cells,
+         * then this signal will be emitted with parameter true, or if there is no uncommitted cells,
          * then it will be emitted with parameter false.
          */
         void selectiveCommitStatusChanged(bool commitAvailable);
@@ -515,7 +515,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         void sortingUpdated(const QueryExecutor::SortList& sortOrder);
 
         void aboutToCommit(int totalSteps);
-        void commitingStepFinished(int step);
+        void committingStepFinished(int step);
         void commitFinished();
         void itemEditionEnded(SqlQueryItem* item);
 };

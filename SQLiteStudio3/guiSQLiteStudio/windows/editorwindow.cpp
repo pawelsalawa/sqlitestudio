@@ -666,12 +666,12 @@ int qHash(EditorWindow::ActionGroup actionGroup)
 }
 
 
-bool EditorWindow::isUncommited() const
+bool EditorWindow::isUncommitted() const
 {
-    return ui->dataView->isUncommited();
+    return ui->dataView->isUncommitted();
 }
 
-QString EditorWindow::getQuitUncommitedConfirmMessage() const
+QString EditorWindow::getQuitUncommittedConfirmMessage() const
 {
-    return tr("Editor window \"%1\" has uncommited data.").arg(getMdiWindow()->windowTitle());
+    return tr("Editor window \"%1\" has uncommitted data.").arg(getMdiWindow()->windowTitle());
 }

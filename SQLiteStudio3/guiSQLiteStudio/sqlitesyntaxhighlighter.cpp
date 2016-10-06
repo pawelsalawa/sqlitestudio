@@ -12,7 +12,7 @@ SqliteSyntaxHighlighter::SqliteSyntaxHighlighter(QTextDocument *parent) :
     setupFormats();
     setupMapping();
     setCurrentBlockState(regulartTextBlockState);
-    connect(CFG, SIGNAL(massSaveCommited()), this, SLOT(setupFormats()));
+    connect(CFG, SIGNAL(massSaveCommitted()), this, SLOT(setupFormats()));
 }
 
 void SqliteSyntaxHighlighter::setSqliteVersion(int version)

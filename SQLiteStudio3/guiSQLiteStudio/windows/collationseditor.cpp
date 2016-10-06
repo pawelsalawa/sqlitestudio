@@ -378,12 +378,12 @@ void CollationsEditor::changeFont(const QVariant& font)
 }
 
 
-bool CollationsEditor::isUncommited() const
+bool CollationsEditor::isUncommitted() const
 {
     return model->isModified();
 }
 
-QString CollationsEditor::getQuitUncommitedConfirmMessage() const
+QString CollationsEditor::getQuitUncommittedConfirmMessage() const
 {
-    return tr("Collations editor window has uncommited modifications.");
+    return tr("Collations editor window has uncommitted modifications.");
 }

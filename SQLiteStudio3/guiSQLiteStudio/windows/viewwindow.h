@@ -73,8 +73,8 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
         QString getDatabase() const;
         QString getView() const;
         void setSelect(const QString& selectSql);
-        bool isUncommited() const;
-        QString getQuitUncommitedConfirmMessage() const;
+        bool isUncommitted() const;
+        QString getQuitUncommittedConfirmMessage() const;
         Db* getAssociatedDb() const;
 
         static void staticInit();
@@ -147,7 +147,7 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
         void executionFailed(const QString& errorMessage);
         void tabChanged(int tabIdx);
         void updateQueryToolbarStatus();
-        void changesSuccessfullyCommited();
+        void changesSuccessfullyCommitted();
         void changesFailedToCommit(int errorCode, const QString& errorText);
         void updateTriggersState();
         void nextTab();

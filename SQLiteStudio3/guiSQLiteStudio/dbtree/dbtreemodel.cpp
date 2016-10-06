@@ -35,7 +35,7 @@ DbTreeModel::DbTreeModel()
     connectDbManagerSignals();
 
     connect(CFG, SIGNAL(massSaveBegins()), this, SLOT(massSaveBegins()));
-    connect(CFG, SIGNAL(massSaveCommited()), this, SLOT(massSaveCommited()));
+    connect(CFG, SIGNAL(massSaveCommitted()), this, SLOT(massSaveCommitted()));
     connect(CFG_UI.General.ShowSystemObjects, SIGNAL(changed(QVariant)), this, SLOT(markSchemaReloadingRequired()));
 
     dbOrganizer = new DbObjectOrganizer(confirmReferencedTables, resolveNameConflict, confirmConversion, confirmConversionErrors);
@@ -743,7 +743,7 @@ void DbTreeModel::massSaveBegins()
     requireSchemaReloading = false;
 }
 
-void DbTreeModel::massSaveCommited()
+void DbTreeModel::massSaveCommitted()
 {
     if (requireSchemaReloading)
     {

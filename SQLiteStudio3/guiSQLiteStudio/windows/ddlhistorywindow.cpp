@@ -139,12 +139,12 @@ QToolBar* DdlHistoryWindow::getToolBar(int toolbar) const
 }
 
 
-bool DdlHistoryWindow::isUncommited() const
+bool DdlHistoryWindow::isUncommitted() const
 {
     return false;
 }
 
-QString DdlHistoryWindow::getQuitUncommitedConfirmMessage() const
+QString DdlHistoryWindow::getQuitUncommittedConfirmMessage() const
 {
     return QString();
 }

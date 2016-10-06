@@ -116,7 +116,7 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         void dbUnloaded(Db* db);
         void dbLoaded(Db* db);
         void massSaveBegins();
-        void massSaveCommited();
+        void massSaveCommitted();
         void markSchemaReloadingRequired();
         void dbObjectsMoveFinished(bool success, Db* srcDb, Db* dstDb);
         void dbObjectsCopyFinished(bool success, Db* srcDb, Db* dstDb);

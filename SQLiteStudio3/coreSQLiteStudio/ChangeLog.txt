@@ -22,7 +22,7 @@
         * [BUGFIX]: Fixed importing Windows and Macintosh end-line format CSV files (handling \r\n and \r properly).
         * [BUGFIX]: #3134 Fixed recognizing CREATE TRIGGER statements properly when CASE-WHEN-END is used inside.
         * [BUGFIX]: #3112 Fixed Foreign Key editing when the foreign table was modified (for example renamed) and the local column was already presented in the data view.
-        * [BUGFIX]: #3113 DEFAULT value is now automatically inserted only when commiting NULL for NOT NULL column. Also new option is introduced to use DEFAULT always for NULL values, regardles of NOT NULL constraint.
+        * [BUGFIX]: #3113 DEFAULT value is now automatically inserted only when committing NULL for NOT NULL column. Also new option is introduced to use DEFAULT always for NULL values, regardles of NOT NULL constraint.
         * [BUGFIX]: Fixed refreshing database list view when changing labels display settings in configuration dialog.
         * [BUGFIX]: Fixed FormView row navigation shortcuts.
         * [BUGFIX]: #3097 Fixed alphabetical ordering when exporting entire database.
@@ -40,6 +40,7 @@
         * [BUGFIX]: #2990 Fixed handling scientific numbers notation.
         * [BUGFIX]: #2987 Fixed "go to referenced row" function when using multi word object names.
         * [BUGFIX]: Compilation fixes.
+        * [BUGFIX]: #3173 Fixed numerous typos in messages and names.
 
 [3.1.0]
         * [ADDED]: SQLCipher plugin is now free, open source and distributed together with other standard plugins.
@@ -141,7 +142,7 @@
 
 [3.0.5]
         * [ADDED]: #2831 Ported 'Erase table data' feature (in table's context menu) from version 2.1.5.
-        * [CHANGE]: Data view has now a 'cover' with progress bar when commiting more changes at once. This eliminates weird GUI freeze when commiting lots of new/deleted rows.
+        * [CHANGE]: Data view has now a 'cover' with progress bar when committing more changes at once. This eliminates weird GUI freeze when committing lots of new/deleted rows.
         * [CHANGE]: Populate dialog has now progress bar when working.
         * [CHANGE]: Enhanced SQL formatter to format CREATE TRIGGER statements in a bit more readable way.
         * [BUGFIX]: #2838 Fixed outstanding bug causing database file to be deleted if a user tried "Test connection" on the database under Windows.
@@ -224,7 +225,7 @@
         * [BUGFIX]: #2703 Fixed compilation errors on GCC 4.9.
         * [BUGFIX]: #2707 Fixed crash when importing CSV file with empty value for last column.
         * [BUGFIX]: Valid objects in SQL editor are now highlighted and are Ctrl+clickable (the feature was there, but was broken and it didn't work).
-        * [BUGFIX]: Fixed invalid 'modified' status when focusing out NumberMultiEditor in FormView, resulting in uncommited change on FormView, even there was no change.
+        * [BUGFIX]: Fixed invalid 'modified' status when focusing out NumberMultiEditor in FormView, resulting in uncommitted change on FormView, even there was no change.
         * [BUGFIX]: #2698 Fixed double precision numbers displaying in the Grid View.
         * [BUGFIX]: #2696 Fixed handling foreign keys when the main table was not renamed, just columns changed.
         * [BUGFIX]: #2713 Fixed foreign key actions in Foreign Key dialog, so they are no longer the same for ON UPDATE and ON DELETE, even they were configured differently.
@@ -264,7 +265,7 @@
         * [ADDED]: Scripting languages are now provided by plugins. With this version there is support for QtScript (built in), SQL (built in) and Tcl (as a plugin).
         * [ADDED]: Support for sorting data by multiple columns by right-clicking on the data grid header.
         * [ADDED]: Support for "WITHOUT ROWID" tables and "WITH" clause in queries.
-        * [ADDED]: If there are any uncommited changes (in data or schema), user will be asked for confirmation before closing application or MDI window.
+        * [ADDED]: If there are any uncommitted changes (in data or schema), user will be asked for confirmation before closing application or MDI window.
         * [ADDED]: Printing (for data, schema and query) support.
         * [ADDED]: Much, much more, it's just hard to put every single detail in the changelog. After all, the entire application was written from the very beginning.
         * [CHANGE]: Table is now edited in the table window directly, not in any special dialog.
@@ -325,7 +326,7 @@
         * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1743
         * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1700
         * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=1763
-        * [BUGFIX]: When editing a cell from query results and commiting changes, then all cells representing the same database cell will be updated with new value as well.
+        * [BUGFIX]: When editing a cell from query results and committing changes, then all cells representing the same database cell will be updated with new value as well.
         * [BUGFIX]: Fonts initialization optimized. SQL editor widgets should open slightly faster, especially under Windows.
         * [BUGFIX]: Transparent attach/detach mechanism fixed to avoid multiple attaches of the same database.
         * [BUGFIX]: Fixed column edition dialog to not hide under Windows after being open with "double click".
@@ -623,7 +624,7 @@
         * [CHANGE]: Datatypes in column edition dialog are now autocompleted while typing, so it's enough to type "t" to get "TEXT" type.
         * [CHANGE]: Datatype list in column edition can now be fast navigated using keys, so if you drop down the list, you can press "i" to select "INT" type fast. (http://bugs.sqlitestudio.pl/?id=190)
         * [BUGFIX]: Fixed bug related to "_toCommit".
-        * [BUGFIX]: Fixed bug, when user was able to edit deleted but uncommited row (even the edition was ignored).
+        * [BUGFIX]: Fixed bug, when user was able to edit deleted but uncommitted row (even the edition was ignored).
         * [BUGFIX]: Fixed insertion of numeric values in data view - they're now treated as numeric if column type says so (they used to be treated as string and CHECK constraint was not satisfied very often).
         * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=168
         * [BUGFIX]: Fixed http://bugs.sqlitestudio.pl/?id=172
@@ -703,7 +704,7 @@
 
 [2.0.6]
         * [ADDED]: Context menu (with copy/cut/paste) in text fields.
-        * [CHANGE]: Removed "autoCommit". Now all changes have to be commited.
+        * [CHANGE]: Removed "autoCommit". Now all changes have to be committed.
         * [CHANGE]: Database add/edit dialog modified for Mac OS X. Now it uses two dialogs to pick file - native OSX dialogs!
         * [BUGFIX]: Commit/Rollback buttons activates when editing starts by typing value.
         * [BUGFIX]: Fixed: http://forum.sqlitestudio.pl/viewtopic.php?f=4&t=3972
@@ -987,11 +988,11 @@
         * [BUGFIX]: Result grid editing for table name with whitespace fixed.
         * [BUGFIX]: Fixed control-a shortcut for some edit fields.
         * [BUGFIX]: Keyboard/mouse input focus grabbing for some of modal dialogs fixed.
-        * [BUGFIX]: Handling of uncommited grid editions while closing MDI window.
+        * [BUGFIX]: Handling of uncommitted grid editions while closing MDI window.
         * [BUGFIX]: Handling of NOT NULL constraint used and no DEFAULT specified in table column editing dialog in case when table already contains some data filled in.
         * [BUGFIX]: Small grammar fixes in tips dialog.
         * [BUGFIX]: Font handling rewritten. Should not cause problems anymore, but if it does, then fixing will be now much easier.
-        * [BUGFIX]: Fixed 100% CPU usage for sequence: open 2 table windows, edit data cell in one window, then focus the other one window without commiting edition before.
+        * [BUGFIX]: Fixed 100% CPU usage for sequence: open 2 table windows, edit data cell in one window, then focus the other one window without committing edition before.
         * [BUGFIX]: Fixed MDI window placement, so they won't appear at exactly same position while creating anymore.
         * [BUGFIX]: Added DATETIME data type support.
         * [BUGFIX]: DEFAULT values handled properly. Now you can use functions and other expressions, as well as literal values.
@@ -1095,7 +1096,7 @@
         * [CHANGE]: There is a known bug that is not 100%-repeatable. It occurs sometimes when switching to FormView of table data. This change has added some additional logs to debug the bug.
         * [BUGFIX]: A very obvious bug included in beta5 - adding database dialog didn't disappear when database is added correctly.
         * [BUGFIX]: Fixed error while switching from standard BLOB editor to hexadecimal editor.
-        * [BUGFIX]: Fixed commiting new rows from FormView of table data.
+        * [BUGFIX]: Fixed committing new rows from FormView of table data.
 
 [1.0.0-beta5]
         * [ADDED]: Databases tree refresh button on toolbar and in View menu.
@@ -1165,7 +1166,7 @@
         * [BUGFIX]: ColorPicker handles incorrect colors passed to it and in that case it uses white color as default.
         * [BUGFIX]: ColorPicker handles HTML color editing much better then before. Now it might be impossible to break it.
         * [BUGFIX]: Better detection of operating system (fixed problems with Windows Vista and Windows 2000).
-        * [BUGFIX]: Fixed adding new row to table data grid when there was an error while commiting previous row.
+        * [BUGFIX]: Fixed adding new row to table data grid when there was an error while committing previous row.
         * [BUGFIX]: Shortcuts Ctrl+Left, Ctrl+Right, Ctrl+Shift+Left and Ctrl+Shift+Right are back!
         * [BUGFIX]: Detection of 'language changed' in configuration dialog fixed (it used to detect change even there was no change).
         * [BUGFIX]: Fixed active task changing while setting MDI windows in cascade layout, then pushing maximize button on some window other than the currently active.

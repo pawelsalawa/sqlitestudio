@@ -31,9 +31,9 @@ void SqlQueryItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
     QStyledItemDelegate::paint(painter, option, index);
     SqlQueryItem* item = getItem(index);
 
-    if (item->isUncommited())
+    if (item->isUncommitted())
     {
-        painter->setPen(item->isCommitingError() ? CFG_UI.Colors.DataUncommitedError.get() : CFG_UI.Colors.DataUncommited.get());
+        painter->setPen(item->isCommittingError() ? CFG_UI.Colors.DataUncommittedError.get() : CFG_UI.Colors.DataUncommitted.get());
         painter->setBrush(Qt::NoBrush);
         painter->drawRect(option.rect.x(), option.rect.y(), option.rect.width()-1, option.rect.height()-1);
     }

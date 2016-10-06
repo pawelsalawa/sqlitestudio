@@ -887,8 +887,8 @@ bool MainWindow::confirmQuit(const QList<Committable*>& instances)
 
     for (Committable* c : instances)
     {
-        if (c->isUncommited())
-            dialog.addMessage(c->getQuitUncommitedConfirmMessage());
+        if (c->isUncommitted())
+            dialog.addMessage(c->getQuitUncommittedConfirmMessage());
     }
 
     if (dialog.getMessageCount() == 0)

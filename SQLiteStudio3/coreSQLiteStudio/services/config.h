@@ -14,7 +14,7 @@
 #include <QSharedPointer>
 #include <QDateTime>
 
-const int SQLITESTUDIO_CONFIG_VERSION = 1;
+const int SQLITESTUDIO_CONFIG_VERSION = 2;
 
 CFG_CATEGORIES(Core,
     CFG_CATEGORY(General,
@@ -169,7 +169,7 @@ class API_EXPORT Config : public QObject
 
     signals:
         void massSaveBegins();
-        void massSaveCommited();
+        void massSaveCommitted();
         void sqlHistoryRefreshNeeded();
         void ddlHistoryRefreshNeeded();
         void reportsHistoryRefreshNeeded();

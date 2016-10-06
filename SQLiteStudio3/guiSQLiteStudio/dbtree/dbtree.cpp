@@ -1505,7 +1505,7 @@ void DbTree::resetAutoincrement()
     if (res->isError())
         notifyError(tr("An error occurred while trying to reset autoincrement value for table '%1': %2").arg(table, res->getErrorText()));
     else
-        notifyInfo(tr("Autoincrement value for table '%1' has been reset successfly.").arg(table));
+        notifyInfo(tr("Autoincrement value for table '%1' has been reset successfully.").arg(table));
 }
 
 void DbTree::eraseTableData()

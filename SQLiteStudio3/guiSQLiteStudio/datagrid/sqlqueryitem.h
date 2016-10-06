@@ -21,8 +21,8 @@ class GUI_API_EXPORT SqlQueryItem : public QObject, public QStandardItem
                 VALUE = 1002,
                 LIMITED_VALUE = 1003,
                 COLUMN = 1004,
-                UNCOMMITED = 1005,
-                COMMITING_ERROR = 1006,
+                UNCOMMITTED = 1005,
+                COMMITTING_ERROR = 1006,
                 NEW_ROW = 1007,
                 DELETED = 1008,
                 OLD_VALUE = 1009,
@@ -39,12 +39,12 @@ class GUI_API_EXPORT SqlQueryItem : public QObject, public QStandardItem
         RowId getRowId() const;
         void setRowId(const RowId& rowId);
 
-        bool isUncommited() const;
-        void setUncommited(bool uncommited);
+        bool isUncommitted() const;
+        void setUncommitted(bool uncommitted);
         void rollback();
 
-        bool isCommitingError() const;
-        void setCommitingError(bool isError);
+        bool isCommittingError() const;
+        void setCommittingError(bool isError);
 
         bool isNewRow() const;
         void setNewRow(bool isNew);

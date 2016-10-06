@@ -13,8 +13,8 @@ class API_EXPORT Committable
         Committable();
         virtual ~Committable();
 
-        virtual bool isUncommited() const = 0;
-        virtual QString getQuitUncommitedConfirmMessage() const = 0;
+        virtual bool isUncommitted() const = 0;
+        virtual QString getQuitUncommittedConfirmMessage() const = 0;
 
         static void init(ConfirmFunction confirmFunc);
         static bool canQuit();

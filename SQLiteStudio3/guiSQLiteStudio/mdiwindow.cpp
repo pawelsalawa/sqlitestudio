@@ -156,7 +156,7 @@ void MdiWindow::changeEvent(QEvent* event)
 
 void MdiWindow::closeEvent(QCloseEvent* e)
 {
-    if (dbBeingClosed || MAINWINDOW->isClosingApp() || !getMdiChild()->isUncommited())
+    if (dbBeingClosed || MAINWINDOW->isClosingApp() || !getMdiChild()->isUncommitted())
     {
         QMdiSubWindow::closeEvent(e);
         return;
@@ -176,7 +176,7 @@ void MdiWindow::dbAboutToBeDisconnected(Db* db, bool& deny)
     if (MAINWINDOW->isClosingApp())
         return;
 
-    if (getMdiChild()->isUncommited() && !confirmClose())
+    if (getMdiChild()->isUncommitted() && !confirmClose())
         deny = true;
     else
         dbBeingClosed = true;
@@ -196,7 +196,7 @@ void MdiWindow::dbDisconnected(Db* db)
 
 bool MdiWindow::confirmClose()
 {
-    QMessageBox msgBox(QMessageBox::Question, tr("Uncommited changes"), getMdiChild()->getQuitUncommitedConfirmMessage(), QMessageBox::Yes|QMessageBox::No, this);
+    QMessageBox msgBox(QMessageBox::Question, tr("Uncommitted changes"), getMdiChild()->getQuitUncommittedConfirmMessage(), QMessageBox::Yes|QMessageBox::No, this);
     msgBox.setDefaultButton(QMessageBox::No);
 
     QAbstractButton* closeBtn = msgBox.button(QMessageBox::Yes);

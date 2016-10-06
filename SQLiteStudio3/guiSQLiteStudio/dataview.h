@@ -78,7 +78,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         SqlQueryView* getGridView() const;
         SqlQueryModel* getModel() const;
         QToolBar* getToolBar(int toolbar) const;
-        bool isUncommited() const;
+        bool isUncommitted() const;
 
         static void staticInit();
         static void insertAction(ExtActionPrototype* action, ToolBar toolbar = TOOLBAR_GRID);

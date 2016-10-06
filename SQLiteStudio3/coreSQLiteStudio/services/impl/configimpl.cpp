@@ -28,6 +28,7 @@ void ConfigImpl::init()
 {
     initDbFile();
     initTables();
+    updateConfigDb();
     mergeMasterConfig();
 
     sqlite3Version = db->exec("SELECT sqlite_version()")->getSingleCell().toString();
@@ -73,7 +74,7 @@ void ConfigImpl::commitMassSave()
         return;
 
     db->exec("COMMIT;");
-    emit massSaveCommited();
+    emit massSaveCommitted();
     massSaving = false;
 }
 
@@ -831,6 +832,32 @@ void ConfigImpl::mergeMasterConfig()
 
     masterDb->close();
     safe_delete(masterDb);
+}
+
+void ConfigImpl::updateConfigDb()
+{
+    SqlQueryPtr result = db->exec("SELECT version FROM version LIMIT 1");
+    int dbVersion = result->getSingleCell().toInt();
+    if (dbVersion >= SQLITESTUDIO_CONFIG_VERSION)
+        return;
+
+    db->begin();
+    switch (dbVersion)
+    {
+        case 1:
+        {
+            // 1->2
+            db->exec("UPDATE settings SET [key] = 'DataUncommittedError' WHERE [key] = 'DataUncommitedError'");
+            db->exec("UPDATE settings SET [key] = 'DataUncommitted' WHERE [key] = 'DataUncommited'");
+        }
+        // Add cases here for next versions,
+        // without a "break" instruction,
+        // in order to update from certain
+        // version to latest at once.
+    }
+
+    db->exec("UPDATE version SET version = ?", {SQLITESTUDIO_CONFIG_VERSION});
+    db->commit();
 }
 
 void ConfigImpl::refreshSqlHistory()
