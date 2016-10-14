@@ -382,12 +382,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
          */
         int hardRowLimit = -1;
 
-        /**
-         * @brief rowIdColumns
-         * We skip first this number of columns from the results of the SQL query, because those are ROWID columns.
-         * The query returns ROWID columns, because this is how QueryExecutor provides this information.
-         */
-        int rowIdColumns = 0;
+        int resultColumnCount = 0;
 
         /**
          * @brief tablesForColumns

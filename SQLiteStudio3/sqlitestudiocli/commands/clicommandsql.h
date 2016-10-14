@@ -55,7 +55,7 @@ class CliCommandSql : public CliCommand
         void printResultsRowByRow(QueryExecutor *executor, SqlQueryPtr results);
         void shrinkColumns(QList<SortedColumnWidth*>& columnWidths, int termCols, int resultColumnsCount, int totalWidth);
         void printColumnHeader(const QList<int>& widths, const QStringList& columns);
-        void printColumnDataRow(const QList<int>& widths, const SqlResultsRowPtr& row, int rowIdOffset);
+        void printColumnDataRow(const QList<int>& widths, const SqlResultsRowPtr& row, int rowIdCount);
 
         QString getValueString(const QVariant& value);
 
