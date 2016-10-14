@@ -88,7 +88,6 @@ void CliCommandSql::defineSyntax()
 
 void CliCommandSql::printResultsClassic(QueryExecutor* executor, SqlQueryPtr results)
 {
-    int metaColumns = executor->getMetaColumnCount();
     int resultColumnCount = executor->getResultColumns().size();
 
     // Columns
@@ -105,7 +104,7 @@ void CliCommandSql::printResultsClassic(QueryExecutor* executor, SqlQueryPtr res
     {
         row = results->next();
         i = 0;
-        values = row->valueList().mid(metaColumns);
+        values = row->valueList().mid(0, resultColumnCount);
         foreach (QVariant value, values)
         {
             qOut << getValueString(value);
@@ -124,7 +123,6 @@ void CliCommandSql::printResultsFixed(QueryExecutor* executor, SqlQueryPtr resul
 {
     QList<QueryExecutor::ResultColumnPtr> resultColumns = executor->getResultColumns();
     int resultColumnsCount = resultColumns.size();
-    int metaColumns = executor->getMetaColumnCount();
     int termCols = getCliColumns();
     int baseColWidth = termCols / resultColumns.size() - 1;
 
@@ -157,7 +155,7 @@ void CliCommandSql::printResultsFixed(QueryExecutor* executor, SqlQueryPtr resul
 
     // Data
     while (results->hasNext())
-        printColumnDataRow(widths, results->next(), metaColumns);
+        printColumnDataRow(widths, results->next(), resultColumnsCount);
 
     qOut.flush();
 }
@@ -181,7 +179,6 @@ void CliCommandSql::printResultsColumns(QueryExecutor* executor, SqlQueryPtr res
 
     // Preload data (we will calculate column widths basing on real values)
     QList<SqlResultsRowPtr> allRows = results->getAll();
-    int metaColumns = executor->getMetaColumnCount();
 
     // Get widths of each column in every data row, remember the longest ones
     QList<SortedColumnWidth*> columnWidths;
@@ -199,7 +196,7 @@ void CliCommandSql::printResultsColumns(QueryExecutor* executor, SqlQueryPtr res
     {
         for (int i = 0; i < resultColumnsCount; i++)
         {
-            dataLength = row->value(metaColumns + i).toString().length();
+            dataLength = row->value(i).toString().length();
             columnWidths[i]->setMinDataWidth(dataLength);
         }
     }
@@ -232,7 +229,7 @@ void CliCommandSql::printResultsColumns(QueryExecutor* executor, SqlQueryPtr res
     printColumnHeader(finalWidths, headerNames);
 
     foreach (SqlResultsRowPtr row, allRows)
-        printColumnDataRow(finalWidths, row, metaColumns);
+        printColumnDataRow(finalWidths, row, resultColumnsCount);
 
     qOut.flush();
 }
@@ -240,7 +237,7 @@ void CliCommandSql::printResultsColumns(QueryExecutor* executor, SqlQueryPtr res
 void CliCommandSql::printResultsRowByRow(QueryExecutor* executor, SqlQueryPtr results)
 {
     // Columns
-    int metaColumns = executor->getMetaColumnCount();
+    int resultColumnCount = executor->getResultColumns().size();
     int colWidth = 0;
     foreach (const QueryExecutor::ResultColumnPtr& resCol, executor->getResultColumns())
     {
@@ -265,7 +262,7 @@ void CliCommandSql::printResultsRowByRow(QueryExecutor* executor, SqlQueryPtr re
         i = 0;
         rowCntString = " " + rowCntTemplate.arg(rowCnt) + " ";
         qOut << center(rowCntString, termWidth - 1, '-') << "\n";
-        foreach (QVariant value, row->valueList().mid(metaColumns))
+        foreach (QVariant value, row->valueList().mid(0, resultColumnCount))
         {
             qOut << columns[i] + ": " + getValueString(value) << "\n";
             i++;
@@ -379,11 +376,11 @@ void CliCommandSql::printColumnHeader(const QList<int>& widths, const QStringLis
     qOut << line.join("+");
 }
 
-void CliCommandSql::printColumnDataRow(const QList<int>& widths, const SqlResultsRowPtr& row, int rowIdOffset)
+void CliCommandSql::printColumnDataRow(const QList<int>& widths, const SqlResultsRowPtr& row, int resultColumnCount)
 {
     int i = 0;
     QStringList line;
-    foreach (const QVariant& value, row->valueList().mid(rowIdOffset))
+    foreach (const QVariant& value, row->valueList().mid(0, resultColumnCount))
     {
         line << pad(getValueString(value).left(widths[i]), widths[i], ' ');
         i++;

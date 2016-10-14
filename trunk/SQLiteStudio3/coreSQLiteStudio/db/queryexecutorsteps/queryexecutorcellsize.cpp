@@ -31,21 +31,21 @@ bool QueryExecutorCellSize::applyDataLimit(SqliteSelect* select, SqliteSelect::C
     bool first = true;
     TokenList tokens;
 
-    foreach (const QueryExecutor::ResultRowIdColumnPtr& col, context->rowIdColumns)
-    {
-        if (!first)
-            tokens += getSeparatorTokens();
-
-        tokens += getNoLimitTokens(col);
-        first = false;
-    }
-
     foreach (const QueryExecutor::ResultColumnPtr& col, context->resultColumns)
     {
         if (!first)
             tokens += getSeparatorTokens();
 
         tokens += getLimitTokens(col);
+        first = false;
+    }
+
+    foreach (const QueryExecutor::ResultRowIdColumnPtr& col, context->rowIdColumns)
+    {
+        if (!first)
+            tokens += getSeparatorTokens();
+
+        tokens += getNoLimitTokens(col);
         first = false;
     }
 

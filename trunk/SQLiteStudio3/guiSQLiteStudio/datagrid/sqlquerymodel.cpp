@@ -788,7 +788,7 @@ QList<QStandardItem*> SqlQueryModel::loadRow(SqlResultsRowPtr row)
     SqlQueryItem* item = nullptr;
     RowId rowId;
     int colIdx = 0;
-    foreach (const QVariant& value, row->valueList().mid(rowIdColumns))
+    foreach (const QVariant& value, row->valueList().mid(0, resultColumnCount))
     {
         item = new SqlQueryItem();
         rowId = getRowIdValue(row, colIdx);
@@ -953,7 +953,7 @@ void SqlQueryModel::readColumns()
     readColumnDetails();
 
     // Preparing other usful information about columns
-    rowIdColumns = totalRowIdCols;
+    resultColumnCount = queryExecutor->getResultColumns().size();
     tablesForColumns = getTablesForColumns();
     columnEditionStatus = getColumnEditionEnabledList();
 

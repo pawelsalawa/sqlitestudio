@@ -216,18 +216,6 @@ void QueryExecutorColumns::wrapWithAliasedColumns(SqliteSelect* select)
 
     bool first = true;
     TokenList outerColumns;
-    for (const QueryExecutor::ResultRowIdColumnPtr& rowIdColumn : context->rowIdColumns)
-    {
-        for (const QString& alias : rowIdColumn->queryExecutorAliasToColumn.keys())
-        {
-            if (!first)
-                outerColumns += sepTokens;
-
-            outerColumns << TokenPtr::create(Token::OTHER, alias);
-            first = false;
-        }
-    }
-
     QStringList columnNamesUsed;
     QString baseColName;
     QString colName;
@@ -259,6 +247,18 @@ void QueryExecutorColumns::wrapWithAliasedColumns(SqliteSelect* select)
         }
         outerColumns << TokenPtr::create(Token::OTHER, resCol->queryExecutorAlias);
         first = false;
+    }
+
+    for (const QueryExecutor::ResultRowIdColumnPtr& rowIdColumn : context->rowIdColumns)
+    {
+        for (const QString& alias : rowIdColumn->queryExecutorAliasToColumn.keys())
+        {
+            if (!first)
+                outerColumns += sepTokens;
+
+            outerColumns << TokenPtr::create(Token::OTHER, alias);
+            first = false;
+        }
     }
 
     //QString t = outerColumns.detokenize(); // keeping it for debug purposes

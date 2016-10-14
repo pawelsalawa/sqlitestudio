@@ -237,6 +237,6 @@ bool QueryExecutorAddRowIds::addResultColumns(SqliteSelect::Core* core, const Se
     resCol->asKw = true;
     resCol->alias = queryExecutorColumn;
 
-    core->resultColumns.insert(0, resCol);
+    core->resultColumns << resCol;
     return true;
 }
