@@ -80,6 +80,7 @@ API_EXPORT QString commentAllSqlLines(const QString& sql);
 API_EXPORT QString getBindTokenName(const TokenPtr& token);
 API_EXPORT QueryAccessMode getQueryAccessMode(const QString& query, Dialect dialect, bool* isSelect = nullptr);
 API_EXPORT QStringList valueListToSqlList(const QList<QVariant>& values, Dialect dialect);
+API_EXPORT QString trimQueryEnd(const QString& query);
 
 
 #endif // UTILS_SQL_H

@@ -41,6 +41,7 @@
         * [BUGFIX]: #2987 Fixed "go to referenced row" function when using multi word object names.
         * [BUGFIX]: Compilation fixes.
         * [BUGFIX]: #3173 Fixed numerous typos in messages and names.
+        * [BUGFIX]: #3178 Fixed pagination for query simple execution method.
 
 [3.1.0]
         * [ADDED]: SQLCipher plugin is now free, open source and distributed together with other standard plugins.

@@ -425,7 +425,9 @@ void QueryExecutor::executeSimpleMethod()
     if (queriesForSimpleExecution.isEmpty())
         queriesForSimpleExecution = quickSplitQueries(originalQuery, false, true);
 
-    simpleExecutor->setQueries(queriesForSimpleExecution);
+    QStringList queriesWithPagination = applyLimitForSimpleMethod(queriesForSimpleExecution);
+
+    simpleExecutor->setQueries(queriesWithPagination);
     simpleExecutor->setDb(db);
     simpleExecutor->setAsync(false); // this is already in a thread
 
@@ -446,7 +448,7 @@ void QueryExecutor::simpleExecutionFinished(SqlQueryPtr results)
     context->executionTime = QDateTime::currentMSecsSinceEpoch() - simpleExecutionStartTime;
 
     if (simpleExecIsSelect())
-        context->countingQuery = "SELECT count(*) AS cnt FROM ("+queriesForSimpleExecution.last()+");";
+        context->countingQuery = "SELECT count(*) AS cnt FROM ("+trimQueryEnd(queriesForSimpleExecution.last())+");";
     else
         context->rowsCountingRequired = true;
 
@@ -568,6 +570,23 @@ bool QueryExecutor::handleRowCountingResults(quint32 asyncId, SqlQueryPtr result
     }
 
     return true;
+}
+
+QStringList QueryExecutor::applyLimitForSimpleMethod(const QStringList &queries)
+{
+    static_qstring(tpl, "SELECT * FROM (%1) LIMIT %2 OFFSET %3");
+    QStringList result = queries;
+
+    QString lastQuery = queries.last();
+
+    bool isSelect = false;
+    getQueryAccessMode(lastQuery, db->getDialect(), &isSelect);
+    if (isSelect)
+    {
+        result.removeLast();
+        result << tpl.arg(trimQueryEnd(lastQuery), QString::number(resultsPerPage), QString::number(page * resultsPerPage));
+    }
+    return result;
 }
 
 int QueryExecutor::getQueryCountLimitForSmartMode() const
