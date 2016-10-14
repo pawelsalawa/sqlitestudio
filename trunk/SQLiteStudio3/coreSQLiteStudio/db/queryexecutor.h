@@ -1123,6 +1123,8 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          */
         bool handleRowCountingResults(quint32 asyncId, SqlQueryPtr results);
 
+        QStringList applyLimitForSimpleMethod(const QStringList &queries);
+
         /**
          * @brief Query executor context object.
          *

@@ -816,3 +816,14 @@ QStringList wrapStrings(const QStringList& strList)
 
     return list;
 }
+
+QString trimQueryEnd(const QString &query)
+{
+    QString q = query.trimmed();
+    while (q.endsWith(";"))
+    {
+        q.chop(1);
+        q = q.trimmed();
+    }
+    return q;
+}
