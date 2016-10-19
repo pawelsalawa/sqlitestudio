@@ -25,7 +25,7 @@ void ImportWorker::run()
         return;
     }
 
-    if (!db->begin())
+    if (!config->skipTransaction && !db->begin())
     {
         error(tr("Could not start transaction in order to import a data: %1").arg(db->getErrorText()));
         return;
@@ -33,20 +33,26 @@ void ImportWorker::run()
 
     if (!prepareTable())
     {
-        db->rollback();
+        if (!config->skipTransaction)
+            db->rollback();
+
         return;
     }
 
     if (!importData())
     {
-        db->rollback();
+        if (!config->skipTransaction)
+            db->rollback();
+
         return;
     }
 
-    if (!db->commit())
+    if (!config->skipTransaction && !db->commit())
     {
         error(tr("Could not commit transaction for imported data: %1").arg(db->getErrorText()));
-        db->rollback();
+        if (!config->skipTransaction)
+            db->rollback();
+
         return;
     }
 
@@ -111,7 +117,8 @@ bool ImportWorker::prepareTable()
             colDefs << (wrapObjIfNeeded(columnsFromPlugin[i], dialect) + " " + columnTypesFromPlugin[i]).trimmed();
 
         static const QString ddl = QStringLiteral("CREATE TABLE %1 (%2)");
-        SqlQueryPtr result = db->exec(ddl.arg(wrapObjIfNeeded(table, dialect), colDefs.join(", ")));
+        Db::Flags flags = config->skipTransaction ? Db::Flag::NO_LOCK : Db::Flag::NONE;
+        SqlQueryPtr result = db->exec(ddl.arg(wrapObjIfNeeded(table, dialect), colDefs.join(", ")), flags);
         if (result->isError())
         {
             error(tr("Could not create table to import to: %1").arg(result->getErrorText()));
@@ -153,6 +160,11 @@ bool ImportWorker::importData()
 
         // Assign argument values
         query->setArgs(row.mid(0, colCount));
+
+        // No transactions = already in transaction, skip locking
+        if (config->skipTransaction)
+            query->setFlags(Db::Flag::NO_LOCK);
+
         if (!query->execute())
         {
             if (config->ignoreErrors)

@@ -24,6 +24,11 @@ CfgCategory::CfgCategory(const QString &name, const QString &title) :
     lastCreatedCfgMain->childs[name] = this;
 }
 
+CfgEntry *CfgCategory::getEntryByName(const QString& name)
+{
+    return childs[name];
+}
+
 QString CfgCategory::toString() const
 {
     return name;

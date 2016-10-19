@@ -38,6 +38,7 @@ class API_EXPORT ImportManager : public PluginServiceBase
             QString inputFileName;
 
             bool ignoreErrors = false;
+            bool skipTransaction = false;
         };
 
         enum StandardConfigFlag
@@ -54,7 +55,7 @@ class API_EXPORT ImportManager : public PluginServiceBase
         ImportPlugin* getPluginForDataSourceType(const QString& dataSourceType) const;
 
         void configure(const QString& dataSourceType, const StandardImportConfig& config);
-        void importToTable(Db* db, const QString& table);
+        void importToTable(Db* db, const QString& table, bool async = true);
 
         static bool isAnyPluginAvailable();
 

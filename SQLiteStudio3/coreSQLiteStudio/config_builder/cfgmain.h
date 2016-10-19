@@ -8,6 +8,7 @@
 #include <QString>
 
 class CfgCategory;
+class CfgEntry;
 
 class API_EXPORT CfgMain
 {
@@ -20,6 +21,9 @@ class API_EXPORT CfgMain
         static void staticInit();
         static QList<CfgMain*> getInstances();
         static QList<CfgMain*> getPersistableInstances();
+        static CfgCategory* getCategoryByName(const QString& name);
+        static CfgEntry* getEntryByName(const QString& categoryName, const QString& name);
+        static CfgEntry* getEntryByPath(const QString& path);
 
         QHash<QString,CfgCategory*>& getCategories();
         void translateTitle();
@@ -30,6 +34,8 @@ class API_EXPORT CfgMain
         void begin();
         void commit();
         void rollback();
+        QStringList getPaths() const;
+        QList<CfgEntry*> getEntries() const;
 
         bool isPersistable() const;
         QString getName() const;

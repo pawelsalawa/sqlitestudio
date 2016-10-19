@@ -9,12 +9,14 @@
 #include "services/dbmanager.h"
 #include "db/queryexecutor.h"
 #include "db/sqlquery.h"
+#include "services/importmanager.h"
 #include <QVariantList>
 #include <QHash>
 #include <QDebug>
 #include <QRegularExpression>
 #include <QFile>
 #include <QUrl>
+#include <plugins/importplugin.h>
 
 FunctionManagerImpl::FunctionManagerImpl()
 {
@@ -269,6 +271,10 @@ void FunctionManagerImpl::initNativeFunctions()
     registerNativeFunction("sha3_256", {"data"}, FunctionManagerImpl::nativeSha3_256);
     registerNativeFunction("sha3_384", {"data"}, FunctionManagerImpl::nativeSha3_384);
     registerNativeFunction("sha3_512", {"data"}, FunctionManagerImpl::nativeSha3_512);
+    registerNativeFunction("import", {"file", "format", "table", "charset", "options"}, FunctionManagerImpl::nativeImport);
+    registerNativeFunction("import_formats", {}, FunctionManagerImpl::nativeImportFormats);
+    registerNativeFunction("import_options", {"format"}, FunctionManagerImpl::nativeImportOptions);
+    registerNativeFunction("charsets", {}, FunctionManagerImpl::nativeCharsets);
 }
 
 void FunctionManagerImpl::refreshFunctionsByKey()
@@ -652,6 +658,107 @@ QVariant FunctionManagerImpl::nativeSha3_384(const QList<QVariant>& args, Db* db
 QVariant FunctionManagerImpl::nativeSha3_512(const QList<QVariant>& args, Db* db, bool& ok)
 {
     return nativeCryptographicFunction(args, db, ok, QCryptographicHash::Sha3_512);
+}
+
+QVariant FunctionManagerImpl::nativeImport(const QList<QVariant> &args, Db *db, bool &ok)
+{
+    if (args.size() < 3)
+    {
+        ok = false;
+        return 0;
+    }
+
+    ImportManager::StandardImportConfig stdConfig;
+    stdConfig.inputFileName = args[0].toString();
+    stdConfig.ignoreErrors = true;
+    stdConfig.skipTransaction = true;
+    if (args.size() > 3)
+        stdConfig.codec = args[3].toString();
+
+    if (args.size() > 4)
+    {
+        // Parsing plugin options
+        int idx;
+        QString option;
+        QString value;
+        CfgEntry* cfg;
+        QStringList lines = args[4].toString().split(QRegExp("[\r\n]+"));
+        for (const QString& line : lines)
+        {
+            idx = line.indexOf("=");
+            if (idx == -1)
+            {
+                qDebug() << "Invalid options entry for import() function call:" << line;
+                continue;
+            }
+            option = line.left(idx).trimmed();
+            cfg = CfgMain::getEntryByPath(option);
+            if (!cfg)
+            {
+                qDebug() << "Invalid option name for import() function call:" << option;
+                continue;
+            }
+            value = line.mid(idx + 1);
+            cfg->set(value);
+        }
+    }
+
+    QString format = args[1].toString();
+    QString table = args[2].toString();
+
+    IMPORT_MANAGER->configure(format, stdConfig);
+    IMPORT_MANAGER->importToTable(db, table, false);
+    return 1;
+}
+
+QVariant FunctionManagerImpl::nativeImportFormats(const QList<QVariant> &args, Db *db, bool &ok)
+{
+    UNUSED(args);
+    UNUSED(db);
+    UNUSED(ok);
+    QStringList formats;
+    QList<ImportPlugin*> importPlugins = PLUGINS->getLoadedPlugins<ImportPlugin>();
+    for (ImportPlugin* plugin : importPlugins)
+        formats << plugin->getDataSourceTypeName();
+
+    return formats.join(" ");
+}
+
+QVariant FunctionManagerImpl::nativeImportOptions(const QList<QVariant> &args, Db *db, bool &ok)
+{
+    UNUSED(db);
+    if (args.size() != 1)
+    {
+        qDebug() << "Missing 'type' parameter to import_options() function call.";
+        ok = false;
+        return QVariant();
+    }
+
+    QString type = args[0].toString();
+
+    QList<ImportPlugin*> importPlugins = PLUGINS->getLoadedPlugins<ImportPlugin>();
+    ImportPlugin* thePlugin = findFirst<ImportPlugin>(importPlugins, [type](ImportPlugin* plugin) -> bool {return plugin->getDataSourceTypeName() == type;});
+    if (!thePlugin)
+    {
+        ok = false;
+        qDebug() << "No import plugin handling format (in call to import_options()):" << type;
+        return QVariant();
+    }
+
+    static_qstring(tpl, "%1=%2");
+    QStringList opts;
+    for (CfgEntry* entry : thePlugin->getConfig()->getEntries())
+        opts << tpl.arg(entry->getFullKey(), entry->get().toString());
+
+    return opts.join("\n");
+}
+
+QVariant FunctionManagerImpl::nativeCharsets(const QList<QVariant> &args, Db *db, bool &ok)
+{
+    UNUSED(args);
+    UNUSED(db);
+    UNUSED(ok);
+    return textCodecNames().join(" ");
 }
 
 QStringList FunctionManagerImpl::getArgMarkers(int argCount)

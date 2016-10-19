@@ -20,6 +20,7 @@ class API_EXPORT CfgCategory : public QObject
         CfgCategory(const CfgCategory& other);
         CfgCategory(const QString& name, const QString& title);
 
+        CfgEntry* getEntryByName(const QString &name);
         QString toString() const;
         operator QString() const;
         QHash<QString,CfgEntry*>& getEntries();
