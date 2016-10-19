@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ru_RU">
+<TS version="2.0" language="ru_RU">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -1013,17 +1013,17 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="479"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&amp;lt;p&amp;gt;When editing a cell which used to have NULL value and entering empty string as new value, then this option determinates whether the new value should remain NULL (have this option enabled), or should it be overwritten with empty string value (have this option disabled).&amp;lt;/p&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&amp;lt;p&amp;gt;Если редактируется ячейка, содержащая NULL, и вводится пустая строка в качестве значения, то эта опция определяет, останется ли в качестве значения ячейки NULL (если опция активирована), или значение будет заменено на пустую строку (если эта опция деактивирована).&amp;lt;/p&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="482"/>
         <source>Keep NULL value when entering empty value</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранять значение NULL при вводе пустой тсроки</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="485"/>
         <source>General.KeepNullWhenEmptyValue</source>
-        <translation type="unfinished"></translation>
+        <translation>General.KeepNullWhenEmptyValue</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="492"/>
@@ -2038,7 +2038,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     </message>
     <message>
         <source>Generate automatically</source>
-        <translation type="vanished">Сгенерировать автоматически</translation>
+        <translation>Сгенерировать автоматически</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="91"/>
@@ -2085,7 +2085,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     </message>
     <message>
         <source>Generate name basing on file path</source>
-        <translation type="vanished">Генерировать имя на основе пути к файлу</translation>
+        <translation>Генерировать имя на основе пути к файлу</translation>
     </message>
     <message>
         <source>Permanent</source>
@@ -2124,7 +2124,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="484"/>
         <source>&lt;p&gt;Automatic name generation was disabled, becuase the name was edited manually. To restore automatic generation please erase contents of the name field.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Автоматическая генерация имени отключена, так как имя было задано вручную. Для автоматической генерации необходимо удалить содержимое из поля имени.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="493"/>
@@ -2143,7 +2143,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     </message>
     <message>
         <source>Auto-generated</source>
-        <translation type="vanished">Автоматически сгенерировано</translation>
+        <translation>Автоматически сгенерировано</translation>
     </message>
     <message>
         <source>The name will be auto-generated</source>
@@ -2151,7 +2151,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     </message>
     <message>
         <source>Type the name</source>
-        <translation type="vanished">Введите имя</translation>
+        <translation>Введите имя</translation>
     </message>
 </context>
 <context>

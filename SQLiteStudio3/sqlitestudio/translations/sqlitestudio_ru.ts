@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ru_RU">
+<TS version="2.0" language="ru_RU">
 <context>
     <name>QObject</name>
     <message>
@@ -61,12 +61,12 @@
     <message>
         <location filename="../main.cpp" line="56"/>
         <source>Points to the master configuration file. Read manual at wiki page for more details.</source>
-        <translation type="unfinished"></translation>
+        <translation>Указывает основной файл конфигурации. Детальная информация содержится в инструкции на wiki-странице.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="56"/>
         <source>SQLiteStudio settings file</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл настроек SQLiteStudio</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="67"/>
