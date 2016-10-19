@@ -38,7 +38,7 @@ void ImportManager::configure(const QString& dataSourceType, const ImportManager
     importConfig = config;
 }
 
-void ImportManager::importToTable(Db* db, const QString& table)
+void ImportManager::importToTable(Db* db, const QString& table, bool async)
 {
     this->db = db;
     this->table = table;
@@ -71,7 +71,10 @@ void ImportManager::importToTable(Db* db, const QString& table)
     connect(worker, SIGNAL(createdTable(Db*,QString)), this, SLOT(handleTableCreated(Db*,QString)));
     connect(this, SIGNAL(orderWorkerToInterrupt()), worker, SLOT(interrupt()));
 
-    QThreadPool::globalInstance()->start(worker);
+    if (async)
+        QThreadPool::globalInstance()->start(worker);
+    else
+        worker->run();
 }
 
 void ImportManager::interrupt()

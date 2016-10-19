@@ -1,6 +1,7 @@
 [3.1.1]
         * [ADDED]: New option in configuration dialog to decide whether you want to keep NULL values when entering empty strings in cells (new, more intuitive behavior), or overwrite NULLs with empty string values (as it used to be so far).
         * [ADDED]: Editor window has now "Find" and "Replace" toolbar buttons for those functions (which were already there, available under shortcuts).
+        * [ADDED]: New built-in functions: import(), import_formats(), import_options() and charset(). All described on SQLiteStudio's wiki (at User Manual page).
         * [ADDED]: #3106 ScriptingTcl has now "tcl_init" command to invoke full interpreter initialization, which creates [clock] commands and some others. It's not invoked automatically to avoid performane issues.
         * [ADDED]: #3136 Added "--master-config" command line option to have a settings file (regular SQLiteStudio config file) that all running SQLiteStudio instances import settings from. More details in manual on wiki page.
         * [CHANGE]: #3135 Re-enabled possibility to close database list panel (and reopen it from the View menu entry).
@@ -42,6 +43,7 @@
         * [BUGFIX]: #3173 Fixed numerous typos in messages and names.
         * [BUGFIX]: #3178 Fixed pagination for query simple execution method.
         * [BUGFIX]: #3177 Fixed ORDER BY with column numbers, instead of names.
+        * [BUGFIX]: Fixed reading long values of not-editable result columns (like expressions or functions that return long values). They used to be truncated.
         * [BUGFIX]: Compilation fixes.
 
 [3.1.0]

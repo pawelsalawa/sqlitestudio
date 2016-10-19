@@ -87,6 +87,17 @@ int indexOf(const QList<T>& list, std::function<bool(const T&)> predicate)
     return -1;
 }
 
+template <class T>
+T* findFirst(const QList<T*>& list, std::function<bool(T*)> predicate)
+{
+    for (T* item : list)
+    {
+        if (predicate(item))
+            return item;
+    }
+    return nullptr;
+}
+
 /**
  * @brief Returns only those elements from the list, which passed the filter.
  * @tparam T type for which the filter will be applied for. It should match the type in the list and in the function argument.

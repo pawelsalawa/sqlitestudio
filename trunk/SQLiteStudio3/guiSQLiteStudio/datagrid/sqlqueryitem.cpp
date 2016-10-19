@@ -396,11 +396,15 @@ QVariant SqlQueryItem::data(int role) const
 QString SqlQueryItem::loadFullData()
 {
     SqlQueryModelColumn* col = getColumn();
-    if (col->editionForbiddenReason.size() > 0)
-    {
-        qWarning() << "Tried to load full cell which is not editable. This should be already handled in Editor class when invoking edition action.";
-        return tr("This cell is not editable, because: %1").arg(SqlQueryModelColumn::resolveMessage(col->editionForbiddenReason.values().first()));
-    }
+
+    // Yes, this function won't be called in case of trying to edit the cell - it's handled in the Editor.
+    // However this function can be called from the FormView, to display full contents of the read-only property.
+    // I'll keep it for some time just in case. To be removed in future.
+//    if (col->editionForbiddenReason.size() > 0)
+//    {
+//        qWarning() << "Tried to load full cell which is not editable. This should be already handled in Editor class when invoking edition action.";
+//        return tr("This cell is not editable, because: %1").arg(SqlQueryModelColumn::resolveMessage(col->editionForbiddenReason.values().first()));
+//    }
 
     // This should not happen anymore (since WITHOUT ROWID tables should be handled properly now,
     // but we will keep this here for a while, just in case.
@@ -422,22 +426,37 @@ QString SqlQueryItem::loadFullData()
     Dialect dialect = db->getDialect();
 
     // Query
-    RowIdConditionBuilder rowIdBuilder;
-    rowIdBuilder.setRowId(getRowId());
-    QString query = "SELECT %1 FROM %2 WHERE " + rowIdBuilder.build();
+    QString query;
+    QHash<QString,QVariant> queryArgs;
+    QString column = wrapObjIfNeeded(col->column, dialect);
+    if (col->editionForbiddenReason.size() > 0)
+    {
+        static_qstring(tpl, "SELECT %1 FROM (%2) LIMIT 1 OFFSET %3");
 
-    // Column
-    query = query.arg(wrapObjIfNeeded(col->column, dialect));
+        // The query
+        query = tpl.arg(column, model->getQuery(), QString::number(index().row()));
+    }
+    else
+    {
+        static_qstring(tpl, "SELECT %1 FROM %2 WHERE %3");
 
-    // Database and table
-    QString source = wrapObjIfNeeded(col->table, dialect);
-    if (!col->database.isNull())
-        source.prepend(wrapObjIfNeeded(col->database, dialect)+".");
+        // Db and table
+        QString source = wrapObjIfNeeded(col->table, dialect);
+        if (!col->database.isNull())
+            source.prepend(wrapObjIfNeeded(col->database, dialect)+".");
 
-    query = query.arg(source);
+        // ROWID
+        RowIdConditionBuilder rowIdBuilder;
+        rowIdBuilder.setRowId(getRowId());
+        QString rowId = rowIdBuilder.build();
+        queryArgs = rowIdBuilder.getQueryArgs();
+
+        // The query
+        query = tpl.arg(column, source, rowId);
+    }
 
     // Get the data
-    SqlQueryPtr results = db->exec(query, rowIdBuilder.getQueryArgs());
+    SqlQueryPtr results = db->exec(query, queryArgs);
     if (results->isError())
         return results->getErrorText();
 

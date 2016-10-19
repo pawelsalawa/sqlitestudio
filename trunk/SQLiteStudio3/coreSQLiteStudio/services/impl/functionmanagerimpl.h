@@ -83,6 +83,10 @@ class API_EXPORT FunctionManagerImpl : public FunctionManager
         static QVariant nativeSha3_256(const QList<QVariant>& args, Db* db, bool& ok);
         static QVariant nativeSha3_384(const QList<QVariant>& args, Db* db, bool& ok);
         static QVariant nativeSha3_512(const QList<QVariant>& args, Db* db, bool& ok);
+        static QVariant nativeImport(const QList<QVariant>& args, Db* db, bool& ok);
+        static QVariant nativeImportFormats(const QList<QVariant>& args, Db* db, bool& ok);
+        static QVariant nativeImportOptions(const QList<QVariant>& args, Db* db, bool& ok);
+        static QVariant nativeCharsets(const QList<QVariant>& args, Db* db, bool& ok);
 
         QList<ScriptFunction*> functions;
         QHash<Key,ScriptFunction*> functionsByKey;

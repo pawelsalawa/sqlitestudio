@@ -1,6 +1,7 @@
 #include "cfgmain.h"
 #include "config_builder/cfgcategory.h"
 #include "config_builder/cfgentry.h"
+#include "common/global.h"
 
 CfgMain* lastCreatedCfgMain = nullptr;
 QList<CfgMain*>* CfgMain::instances = nullptr;
@@ -48,6 +49,36 @@ QList<CfgMain*> CfgMain::getPersistableInstances()
             list << main;
     }
     return list;
+}
+
+CfgCategory* CfgMain::getCategoryByName(const QString &name)
+{
+    for (CfgMain* cfg : getInstances())
+    {
+        if (!cfg->childs.contains(name))
+            continue;
+
+        return cfg->childs[name];
+    }
+    return nullptr;
+}
+
+CfgEntry *CfgMain::getEntryByName(const QString &categoryName, const QString &name)
+{
+    CfgCategory* cat = getCategoryByName(categoryName);
+    if (!cat)
+        return nullptr;
+
+    return cat->getEntryByName(name);
+}
+
+CfgEntry *CfgMain::getEntryByPath(const QString &path)
+{
+    QStringList sp = path.split(".");
+    if (sp.size() != 2)
+        return nullptr;
+
+    return getEntryByName(sp[0], sp[1]);
 }
 
 QHash<QString, CfgCategory *> &CfgMain::getCategories()
@@ -99,6 +130,27 @@ void CfgMain::commit()
 void CfgMain::rollback()
 {
     restore();
+}
+
+QStringList CfgMain::getPaths() const
+{
+    static_qstring(tpl, "%1.%2");
+    QStringList paths;
+    for (CfgCategory* cat : childs.values())
+    {
+        for (const QString& entry : cat->getEntries().keys())
+            paths << tpl.arg(cat->toString(), entry);
+    }
+    return paths;
+}
+
+QList<CfgEntry *> CfgMain::getEntries() const
+{
+    QList<CfgEntry*> entries;
+    for (CfgCategory* cat : childs.values())
+        entries += cat->getEntries().values();
+
+    return entries;
 }
 
 bool CfgMain::isPersistable() const
