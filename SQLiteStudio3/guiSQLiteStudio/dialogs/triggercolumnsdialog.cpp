@@ -1,10 +1,12 @@
 #include "triggercolumnsdialog.h"
 #include "ui_triggercolumnsdialog.h"
-
+#include "uiutils.h"
 #include <QCheckBox>
 
-TriggerColumnsDialog::TriggerColumnsDialog(QWidget *parent) :
+TriggerColumnsDialog::TriggerColumnsDialog(QWidget *parent, int globalX, int globalY) :
     QDialog(parent, Qt::Popup),
+    globalX(globalX),
+    globalY(globalY),
     ui(new Ui::TriggerColumnsDialog)
 {
     ui->setupUi(this);
@@ -49,4 +51,5 @@ void TriggerColumnsDialog::changeEvent(QEvent *e)
 void TriggerColumnsDialog::showEvent(QShowEvent*)
 {
     adjustSize();
+    move(globalX, globalY);
 }

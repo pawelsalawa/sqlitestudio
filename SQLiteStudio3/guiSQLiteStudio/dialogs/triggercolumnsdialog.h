@@ -15,7 +15,7 @@ class GUI_API_EXPORT TriggerColumnsDialog : public QDialog
         Q_OBJECT
 
     public:
-        explicit TriggerColumnsDialog(QWidget *parent = 0);
+        explicit TriggerColumnsDialog(QWidget *parent, int globalX, int globalY);
         ~TriggerColumnsDialog();
 
         void addColumn(const QString& name, bool checked);
@@ -27,6 +27,8 @@ class GUI_API_EXPORT TriggerColumnsDialog : public QDialog
 
     private:
         QList<QCheckBox*> checkBoxList;
+        int globalX;
+        int globalY;
         Ui::TriggerColumnsDialog *ui = nullptr;
 };
 
