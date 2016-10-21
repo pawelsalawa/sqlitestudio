@@ -360,7 +360,9 @@ void TriggerDialog::updateValidation()
 
 void TriggerDialog::showColumnsDialog()
 {
-    TriggerColumnsDialog dialog(this);
+    QPoint topRight = ui->actionColumns->mapToGlobal(ui->actionColumns->rect().topRight());
+
+    TriggerColumnsDialog dialog(this, topRight.x(), topRight.y());
     foreach (const QString& colName, targetColumns)
         dialog.addColumn(colName, selectedColumns.contains(colName, Qt::CaseInsensitive));
 

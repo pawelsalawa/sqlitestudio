@@ -43,6 +43,7 @@
         * [BUGFIX]: #3173 Fixed numerous typos in messages and names.
         * [BUGFIX]: #3178 Fixed pagination for query simple execution method.
         * [BUGFIX]: #3177 Fixed ORDER BY with column numbers, instead of names.
+        * [BUGFIX]: #3125 Fixed trigger UPDATE OF columns popup dialog positioning.
         * [BUGFIX]: Fixed reading long values of not-editable result columns (like expressions or functions that return long values). They used to be truncated.
         * [BUGFIX]: Compilation fixes.
 
