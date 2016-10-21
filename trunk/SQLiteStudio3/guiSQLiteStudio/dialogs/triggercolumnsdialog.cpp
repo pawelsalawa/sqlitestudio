@@ -10,6 +10,9 @@ TriggerColumnsDialog::TriggerColumnsDialog(QWidget *parent, int globalX, int glo
     ui(new Ui::TriggerColumnsDialog)
 {
     ui->setupUi(this);
+
+    connect(ui->selectAllBtn, SIGNAL(clicked(bool)), this, SLOT(selectAll()));
+    connect(ui->deselectAllBtn, SIGNAL(clicked(bool)), this, SLOT(deselectAll()));
 }
 
 TriggerColumnsDialog::~TriggerColumnsDialog()
@@ -28,7 +31,7 @@ void TriggerColumnsDialog::addColumn(const QString& name, bool checked)
 QStringList TriggerColumnsDialog::getCheckedColumns() const
 {
     QStringList columns;
-    foreach (QCheckBox* cb, checkBoxList)
+    for (QCheckBox* cb : checkBoxList)
     {
         if (cb->isChecked())
             columns << cb->text();
@@ -52,4 +55,16 @@ void TriggerColumnsDialog::showEvent(QShowEvent*)
 {
     adjustSize();
     move(globalX, globalY);
+}
+
+void TriggerColumnsDialog::selectAll()
+{
+    for (QCheckBox* cb : checkBoxList)
+        cb->setChecked(true);
+}
+
+void TriggerColumnsDialog::deselectAll()
+{
+    for (QCheckBox* cb : checkBoxList)
+        cb->setChecked(false);
 }

@@ -30,6 +30,10 @@ class GUI_API_EXPORT TriggerColumnsDialog : public QDialog
         int globalX;
         int globalY;
         Ui::TriggerColumnsDialog *ui = nullptr;
+
+    private slots:
+        void selectAll();
+        void deselectAll();
 };
 
 #endif // TRIGGERCOLUMNSDIALOG_H

@@ -4,6 +4,7 @@
         * [ADDED]: New built-in functions: import(), import_formats(), import_options() and charset(). All described on SQLiteStudio's wiki (at User Manual page).
         * [ADDED]: #3106 ScriptingTcl has now "tcl_init" command to invoke full interpreter initialization, which creates [clock] commands and some others. It's not invoked automatically to avoid performane issues.
         * [ADDED]: #3136 Added "--master-config" command line option to have a settings file (regular SQLiteStudio config file) that all running SQLiteStudio instances import settings from. More details in manual on wiki page.
+        * [ADDED]: #3127 Added 'select all' and 'deselect all' buttons in tigger's UPDATE OF columns dialog.
         * [CHANGE]: #3135 Re-enabled possibility to close database list panel (and reopen it from the View menu entry).
         * [CHANGE]: #2901 Automatically generated database name includes full file name, except for the file extension only (unlike before, when it took only a file name up to the first dot).
         * [CHANGE]: #3140 The "generate name automatically" checkbox has been removed. Now the name is generated automatically by default, unless user starts to edit the name manually.
