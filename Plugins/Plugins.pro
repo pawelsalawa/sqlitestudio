@@ -18,4 +18,5 @@ SUBDIRS += \
     ConfigMigration \
     ScriptingTcl \
     DbAndroid \
-    DbSqliteCipher
+    DbSqliteCipher \
+    DbSqliteWx

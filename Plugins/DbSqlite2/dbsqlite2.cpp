@@ -7,37 +7,14 @@ DbSqlite2::DbSqlite2()
 {
 }
 
-Db* DbSqlite2::getInstance(const QString& name, const QString& path, const QHash<QString, QVariant>& options, QString* errorMessage)
-{
-    UNUSED(errorMessage);
-    Db* db = new DbSqlite2Instance(name, path, options);
-
-    if (!db->openForProbing())
-    {
-        delete db;
-        return nullptr;
-    }
-
-    SqlQueryPtr results = db->exec("SELECT * FROM sqlite_master");
-    if (results->isError())
-    {
-        delete db;
-        return nullptr;
-    }
-
-    db->closeQuiet();
-    return db;
-}
-
 QList<DbPluginOption> DbSqlite2::getOptionsList() const
 {
     return QList<DbPluginOption>();
 }
 
-QString DbSqlite2::generateDbName(const QVariant& baseValue)
+Db *DbSqlite2::newInstance(const QString &name, const QString &path, const QHash<QString, QVariant> &options)
 {
-    QFileInfo file(baseValue.toString());
-    return file.completeBaseName();
+    return new DbSqlite2Instance(name, path, options);
 }
 
 QString DbSqlite2::getLabel() const
