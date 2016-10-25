@@ -4116,7 +4116,7 @@ static void yy_reduce(
                                                 yygotominor.yy490->initId(*(yymsp[-1].minor.yy211), QString::null, QString::null);
                                                 delete yymsp[-1].minor.yy211;
                                                 objectForTokens = yygotominor.yy490;
-                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                parserContext->minorErrorBeforeNextToken("Syntax error <exprx: nm.>");
                                             }
         break;
       case 252: /* exprx ::= nm DOT nm DOT */
@@ -4126,7 +4126,7 @@ static void yy_reduce(
                                                 delete yymsp[-3].minor.yy211;
                                                 delete yymsp[-1].minor.yy211;
                                                 objectForTokens = yygotominor.yy490;
-                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                parserContext->minorErrorBeforeNextToken("Syntax error <exprx: nm.nm.>");
                                             }
         break;
       case 253: /* exprx ::= expr not_opt BETWEEN expr AND */
@@ -4136,7 +4136,7 @@ static void yy_reduce(
                                                 delete yymsp[-4].minor.yy490;
                                                 delete yymsp[-1].minor.yy490;
                                                 objectForTokens = yygotominor.yy490;
-                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                parserContext->minorErrorBeforeNextToken("Syntax error <exprx: expr not_opt BETWEEN expr AND>");
                                             }
         break;
       case 254: /* exprx ::= CASE case_operand case_exprlist case_else */
@@ -4146,7 +4146,7 @@ static void yy_reduce(
                                                 delete yymsp[-2].minor.yy490;
                                                 delete yymsp[0].minor.yy490;
                                                 objectForTokens = yygotominor.yy490;
-                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                parserContext->minorErrorBeforeNextToken("Syntax error <exprx: CASE operand exprlist else>");
                                             }
         break;
       case 255: /* exprx ::= expr not_opt IN LP exprlist */
@@ -4156,7 +4156,7 @@ static void yy_reduce(
                                                 delete yymsp[0].minor.yy13;
                                                 delete yymsp[-4].minor.yy490;
                                                 objectForTokens = yygotominor.yy490;
-                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                parserContext->minorErrorBeforeNextToken("Syntax error <exprx: expr not_opt IN LP exprlist>");
                                             }
         break;
       case 256: /* exprx ::= expr not_opt IN ID_DB */
@@ -4441,7 +4441,7 @@ static void yy_reduce(
 {
                                                 yygotominor.yy490 = new SqliteExpr();
                                                 objectForTokens = yygotominor.yy490;
-                                                parserContext->minorErrorAfterLastToken("Syntax error");
+                                                parserContext->minorErrorAfterLastToken("Syntax error <expr>");
                                             }
         break;
       case 306: /* likeop ::= LIKE_KW|MATCH */
