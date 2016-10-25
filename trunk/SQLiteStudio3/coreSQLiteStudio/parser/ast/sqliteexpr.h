@@ -24,6 +24,7 @@ class API_EXPORT SqliteExpr : public SqliteStatement
             BINARY_OP,
             FUNCTION,
             SUB_EXPR,
+            ROW_VALUE,
             CAST,
             COLLATE, // in Sqlite2 exists only in expr of sortlist
             LIKE,
@@ -69,6 +70,7 @@ class API_EXPORT SqliteExpr : public SqliteStatement
         void initNull();
         void initCTime(const QString& name);
         void initSubExpr(SqliteExpr* expr);
+        void initRowValue(const QList<SqliteExpr*>& exprList, SqliteExpr* expr);
         void initId(const QString& db, const QString& table, const QString& column);
         void initId(const QString& table, const QString& column);
         void initId(const QString& column);
