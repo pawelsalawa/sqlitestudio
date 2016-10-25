@@ -20,32 +20,6 @@ bool DbSqliteCipher::checkIfDbServedByPlugin(Db* db) const
     return (db && dynamic_cast<DbSqliteCipherInstance*>(db));
 }
 
-Db* DbSqliteCipher::getInstance(const QString& name, const QString& path, const QHash<QString, QVariant>& options, QString* errorMessage)
-{
-    UNUSED(errorMessage);
-
-    if (!initValid)
-        return nullptr;
-
-    Db* db = new DbSqliteCipherInstance(name, path, options);
-
-    if (!db->openForProbing())
-    {
-        delete db;
-        return nullptr;
-    }
-
-    SqlQueryPtr results = db->exec("SELECT * FROM sqlite_master");
-    if (results->isError())
-    {
-        delete db;
-        return nullptr;
-    }
-
-    db->closeQuiet();
-    return db;
-}
-
 QList<DbPluginOption> DbSqliteCipher::getOptionsList() const
 {
     static const QStringList ciphers = {"aes-128-cbc", "aes-128-cfb", "aes-128-cfb1", "aes-128-cfb8", "aes-128-ctr", "aes-128-ecb", "aes-128-gcm", "aes-128-ofb",
@@ -108,12 +82,6 @@ QList<DbPluginOption> DbSqliteCipher::getOptionsList() const
     return opts;
 }
 
-QString DbSqliteCipher::generateDbName(const QVariant& baseValue)
-{
-    QFileInfo file(baseValue.toString());
-    return file.completeBaseName();
-}
-
 bool DbSqliteCipher::init()
 {
     Q_INIT_RESOURCE(dbsqlitecipher);
@@ -138,4 +106,9 @@ void DbSqliteCipher::deinit()
 {
     SQLITESTUDIO->getExtraLicenseManager()->removeLicense(LICENSE_TITLE);
     Q_CLEANUP_RESOURCE(dbsqlitecipher);
+}
+
+Db *DbSqliteCipher::newInstance(const QString &name, const QString &path, const QHash<QString, QVariant> &options)
+{
+    return new DbSqliteCipherInstance(name, path, options);
 }

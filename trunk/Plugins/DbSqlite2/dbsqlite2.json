@@ -1,7 +1,8 @@
 {
-    "type":        "DbPlugin",
-    "title":       "SQLite 2",
-    "description": "Provides support for SQLite 2.* databases",
-    "version":     10005,
-    "author":      "SalSoft"
+    "type":          "DbPlugin",
+    "title":         "SQLite 2",
+    "description":   "Provides support for SQLite 2.* databases",
+    "minAppVersion": 30101,
+    "version":       10006,
+    "author":        "SalSoft"
 }
