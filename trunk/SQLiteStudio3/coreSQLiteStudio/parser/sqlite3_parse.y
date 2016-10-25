@@ -1456,6 +1456,7 @@ inscollist ::= ID_COL.                      {}
 %type exprx {SqliteExpr*}
 %destructor exprx {delete $$;}
 
+/*
 exprx(X) ::= nm(N1) DOT.                    {
                                                 X = new SqliteExpr();
                                                 X->initId(*(N1), QString::null, QString::null);
@@ -1499,7 +1500,6 @@ exprx(X) ::= expr(E) not_opt(N) IN LP
                                                 objectForTokens = X;
                                                 parserContext->minorErrorBeforeNextToken("Syntax error");
                                             }
-/*
 This introduces premature reduce for LP-expr and causes bug #2755
 exprx(X) ::= LP expr(E).                    {
                                                 X = new SqliteExpr();
@@ -1507,7 +1507,6 @@ exprx(X) ::= LP expr(E).                    {
                                                 objectForTokens = X;
                                                 parserContext->minorErrorBeforeNextToken("Syntax error");
                                             }
-*/
 
 exprx ::= expr not_opt IN ID_DB. [IN]       {}
 exprx ::= expr not_opt IN nm DOT
@@ -1518,6 +1517,7 @@ exprx ::= nm DOT nm DOT ID_COL.             {}
 exprx ::= expr COLLATE ID_COLLATE.          {}
 exprx ::= RAISE LP raisetype COMMA
             ID_ERR_MSG RP.                  {}
+*/
 
 
 exprx(X) ::= term(T).                       {
