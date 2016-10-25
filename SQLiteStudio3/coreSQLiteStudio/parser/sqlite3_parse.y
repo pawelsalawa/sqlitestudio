@@ -1530,6 +1530,14 @@ exprx(X) ::= CTIME_KW(K).                   {
                                                 X->initCTime(K->value);
                                                 objectForTokens = X;
                                             }
+exprx(X) ::= LP nexprlist(L) RP.            {
+                                                X = new SqliteExpr();
+                                                X->initRowValue(*(L));
+                                                delete L;
+                                                objectForTokens = X;
+                                            }
+/*
+*/
 exprx(X) ::= LP expr(E) RP.                 {
                                                 X = new SqliteExpr();
                                                 X->initSubExpr(E);
@@ -1761,14 +1769,6 @@ exprx(X) ::= RAISE LP raisetype(R) COMMA
                                                 delete N;
                                                 objectForTokens = X;
                                             }
-exprx(X) ::= LP nexprlist(L) RP.            {
-                                                X = new SqliteExpr();
-                                                X->initRowValue(*(L));
-                                                delete L;
-                                                objectForTokens = X;
-                                            }
-/*
-*/
 
 %type expr {SqliteExpr*}
 %destructor expr {delete $$;}
