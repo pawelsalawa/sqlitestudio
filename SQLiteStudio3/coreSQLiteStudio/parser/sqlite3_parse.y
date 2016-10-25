@@ -1477,6 +1477,12 @@ exprx(X) ::= id(N).                         {
                                                 delete N;
                                                 objectForTokens = X;
                                             }
+exprx(X) ::= LP nexprlist(L) COMMA
+             expr(E) RP.                    {
+                                                X = new SqliteExpr();
+                                                X->initRowValue(L, E);
+                                                objectForTokens = X;
+                                            }
 exprx(X) ::= JOIN_KW(N).                    {
                                                 X = new SqliteExpr();
                                                 X->initId(N->value);
