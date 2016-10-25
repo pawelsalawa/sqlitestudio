@@ -1519,7 +1519,7 @@ exprx ::= RAISE LP raisetype COMMA
             ID_ERR_MSG RP.                  {}
 
 
-exprx(X) ::= LP nexprlist(L) RP.            {
+exprx(X) ::= LP nexprlist(L) RP. [RP]       {
                                                 X = new SqliteExpr();
                                                 X->initRowValue(*(L));
                                                 delete L;
