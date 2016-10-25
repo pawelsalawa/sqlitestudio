@@ -1511,13 +1511,13 @@ exprx(X) ::= LP expr(E).                    {
 exprx ::= expr not_opt IN ID_DB. [IN]       {}
 exprx ::= expr not_opt IN nm DOT
             ID_TAB. [IN]                    {}
-exprx ::= ID_DB|ID_TAB|ID_COL|ID_FN.        {}
 exprx ::= nm DOT ID_TAB|ID_COL.             {}
 exprx ::= nm DOT nm DOT ID_COL.             {}
 exprx ::= expr COLLATE ID_COLLATE.          {}
+*/
+exprx ::= ID_DB|ID_TAB|ID_COL|ID_FN.        {}
 exprx ::= RAISE LP raisetype COMMA
             ID_ERR_MSG RP.                  {}
-*/
 
 
 exprx(X) ::= term(T).                       {
