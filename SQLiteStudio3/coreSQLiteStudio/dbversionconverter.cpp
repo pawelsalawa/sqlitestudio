@@ -755,6 +755,9 @@ bool DbVersionConverter::modifySingleExprForVersion2(SqliteExpr* expr)
         case SqliteExpr::Mode::CTIME:
             errors << QObject::tr("SQLite %1 does not support current date or time clauses in expressions.").arg("2");
             return false;
+        case SqliteExpr::Mode::ROW_VALUE:
+            errors << QObject::tr("SQLite %1 does not support row value clauses in expressions.").arg("2");
+            return false;
         case SqliteExpr::Mode::IN:
         case SqliteExpr::Mode::SUB_SELECT:
         {

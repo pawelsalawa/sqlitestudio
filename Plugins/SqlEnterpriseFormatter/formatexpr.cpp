@@ -154,6 +154,11 @@ void FormatExpr::formatInternal()
             withKeyword("BETWEEN").withStatement(expr->expr2, "between1").withKeyword("AND").withStatement(expr->expr3, "between2");
             break;
         }
+        case SqliteExpr::Mode::ROW_VALUE:
+        {
+            withParExprLeft().withStatementList(expr->exprList, FormatToken::Flag::NO_NEWLINE_AFTER).withCommaOper().withStatement(expr->expr1).withParExprRight();
+            break;
+        }
         case SqliteExpr::Mode::IN:
         {
             withStatement(expr->expr1);

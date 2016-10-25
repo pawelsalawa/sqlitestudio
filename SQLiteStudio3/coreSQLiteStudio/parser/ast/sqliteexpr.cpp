@@ -124,6 +124,19 @@ void SqliteExpr::initSubExpr(SqliteExpr *expr)
         expr->setParent(this);
 }
 
+void SqliteExpr::initRowValue(const QList<SqliteExpr*> &exprList, SqliteExpr *expr)
+{
+    mode = SqliteExpr::Mode::ROW_VALUE;
+    expr1 = expr;
+    this->exprList = exprList;
+
+    if (expr)
+        expr->setParent(this);
+
+    for (SqliteExpr* expr : exprList)
+        expr->setParent(this);
+}
+
 void SqliteExpr::initBindParam(const QString& value)
 {
     mode = SqliteExpr::Mode::BIND_PARAM;
@@ -158,7 +171,7 @@ void SqliteExpr::initFunction(const QString& fnName, int distinct, const QList<S
     else if (distinct == 2)
         allKw = true;
 
-    foreach (SqliteExpr* expr, exprList)
+    for (SqliteExpr* expr : exprList)
         expr->setParent(this);
 }
 
@@ -495,6 +508,9 @@ TokenList SqliteExpr::rebuildTokensFromContents()
             break;
         case SqliteExpr::Mode::IN:
             builder.withTokens(rebuildIn());
+            break;
+        case SqliteExpr::Mode::ROW_VALUE:
+            builder.withParLeft().withStatementList(exprList).withOperator(",").withStatement(expr1).withParRight();
             break;
         case SqliteExpr::Mode::EXISTS:
             builder.withKeyword("EXISTS").withParLeft().withStatement(select).withParRight();
