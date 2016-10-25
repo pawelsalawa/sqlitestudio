@@ -1456,7 +1456,6 @@ inscollist ::= ID_COL.                      {}
 %type exprx {SqliteExpr*}
 %destructor exprx {delete $$;}
 
-/*
 exprx(X) ::= nm(N1) DOT.                    {
                                                 X = new SqliteExpr();
                                                 X->initId(*(N1), QString::null, QString::null);
@@ -1500,6 +1499,7 @@ exprx(X) ::= expr(E) not_opt(N) IN LP
                                                 objectForTokens = X;
                                                 parserContext->minorErrorBeforeNextToken("Syntax error");
                                             }
+/*
 This introduces premature reduce for LP-expr and causes bug #2755
 exprx(X) ::= LP expr(E).                    {
                                                 X = new SqliteExpr();
@@ -1507,15 +1507,14 @@ exprx(X) ::= LP expr(E).                    {
                                                 objectForTokens = X;
                                                 parserContext->minorErrorBeforeNextToken("Syntax error");
                                             }
-
+*/
 exprx ::= expr not_opt IN ID_DB. [IN]       {}
 exprx ::= expr not_opt IN nm DOT
             ID_TAB. [IN]                    {}
+exprx ::= ID_DB|ID_TAB|ID_COL|ID_FN.        {}
 exprx ::= nm DOT ID_TAB|ID_COL.             {}
 exprx ::= nm DOT nm DOT ID_COL.             {}
 exprx ::= expr COLLATE ID_COLLATE.          {}
-*/
-exprx ::= ID_DB|ID_TAB|ID_COL|ID_FN.        {}
 exprx ::= RAISE LP raisetype COMMA
             ID_ERR_MSG RP.                  {}
 
@@ -1592,6 +1591,7 @@ exprx(X) ::= ID(I) LP STAR RP.              {
                                                 X->initFunction(I->value, true);
                                                 objectForTokens = X;
                                             }
+/*
 exprx(X) ::= LP nexprlist(L) COMMA
              expr(E) RP.                    {
                                                 X = new SqliteExpr();
@@ -1599,6 +1599,7 @@ exprx(X) ::= LP nexprlist(L) COMMA
                                                 delete L;
                                                 objectForTokens = X;
                                             }
+*/
 exprx(X) ::= expr(E1) AND(O) expr(E2).      {
                                                 X = new SqliteExpr();
                                                 X->initBinOp(E1, O->value, E2);
