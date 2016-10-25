@@ -1519,14 +1519,6 @@ exprx ::= RAISE LP raisetype COMMA
             ID_ERR_MSG RP.                  {}
 
 
-exprx(X) ::= LP nexprlist(L) RP. [RP]       {
-                                                X = new SqliteExpr();
-                                                X->initRowValue(*(L));
-                                                delete L;
-                                                objectForTokens = X;
-                                            }
-/*
-*/
 exprx(X) ::= term(T).                       {
                                                 X = new SqliteExpr();
                                                 X->initLiteral(*(T));
@@ -1769,6 +1761,14 @@ exprx(X) ::= RAISE LP raisetype(R) COMMA
                                                 delete N;
                                                 objectForTokens = X;
                                             }
+exprx(X) ::= LP nexprlist(L) RP.            {
+                                                X = new SqliteExpr();
+                                                X->initRowValue(*(L));
+                                                delete L;
+                                                objectForTokens = X;
+                                            }
+/*
+*/
 
 %type expr {SqliteExpr*}
 %destructor expr {delete $$;}
