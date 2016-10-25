@@ -509,12 +509,12 @@
     <message>
         <location filename="../dialogs/columndialog.ui" line="35"/>
         <source>Scale</source>
-        <translation type="unfinished"></translation>
+        <translation>Rozsah</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="55"/>
         <source>Precision</source>
-        <translation type="unfinished"></translation>
+        <translation>Presnosť</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="62"/>
