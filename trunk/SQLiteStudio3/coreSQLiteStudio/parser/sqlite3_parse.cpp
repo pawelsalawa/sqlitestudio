@@ -722,7 +722,7 @@ static const short yy_shift_ofst[] = {
  /*    20 */  1345, 1758, 1758, 1758, 1758, 1758, 1758, 1758, 1758, 1758,
  /*    30 */  1758, 1758, 1758, 1758, 1758, 1758, 1758, 1758, 1758, 1758,
  /*    40 */  1758, 1758, 1758, 1758, 1758, 1758, 1758, 1758, 1758, 1758,
- /*    50 */  1758, 1758, 1758, 1758, 1758, 1758, 1758, 1676, 1676, 1840,
+ /*    50 */  1758, 1758, 1758, 1758, 1758, 1758, 1758, 1758, 1676, 1840,
  /*    60 */   370,  801,  181,  370, 2110, 2110, 2110, 2110, 1080, 1080,
  /*    70 */   744,  277,    4, 1540, 1258, 1536, 1194, 1532, 1503, 1370,
  /*    80 */   669,  967,  448,  927, 2130, 2130, 2133,  439, 2130, 2125,
@@ -4153,7 +4153,8 @@ static void yy_reduce(
       case 255: /* exprx ::= LP nexprlist COMMA expr RP */
 {
                                                 yygotominor.yy490 = new SqliteExpr();
-                                                yygotominor.yy490->initRowValue(yymsp[-3].minor.yy13, yymsp[-1].minor.yy490);
+                                                yygotominor.yy490->initRowValue(*(yymsp[-3].minor.yy13), yymsp[-1].minor.yy490);
+                                                delete yymsp[-3].minor.yy13;
                                                 objectForTokens = yygotominor.yy490;
                                             }
         break;
