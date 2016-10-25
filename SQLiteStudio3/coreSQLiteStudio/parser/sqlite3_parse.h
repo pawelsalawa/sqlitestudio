@@ -151,10 +151,10 @@
 #define TK3_WHERE                          151
 #define TK3_ID_COL                         152
 #define TK3_INTO                           153
-#define TK3_ID_FN                          154
-#define TK3_ID_ERR_MSG                     155
-#define TK3_VARIABLE                       156
-#define TK3_CASE                           157
+#define TK3_CASE                           154
+#define TK3_ID_FN                          155
+#define TK3_ID_ERR_MSG                     156
+#define TK3_VARIABLE                       157
 #define TK3_WHEN                           158
 #define TK3_THEN                           159
 #define TK3_ELSE                           160
