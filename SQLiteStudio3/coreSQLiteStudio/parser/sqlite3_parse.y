@@ -1461,7 +1461,7 @@ exprx(X) ::= nm(N1) DOT.                    {
                                                 X->initId(*(N1), QString::null, QString::null);
                                                 delete N1;
                                                 objectForTokens = X;
-                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                parserContext->minorErrorBeforeNextToken("Syntax error <exprx: nm.>");
                                             }
 exprx(X) ::= nm(N1) DOT nm(N2) DOT.         {
                                                 X = new SqliteExpr();
@@ -1469,7 +1469,7 @@ exprx(X) ::= nm(N1) DOT nm(N2) DOT.         {
                                                 delete N1;
                                                 delete N2;
                                                 objectForTokens = X;
-                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                parserContext->minorErrorBeforeNextToken("Syntax error <exprx: nm.nm.>");
                                             }
 exprx(X) ::= expr(E1) not_opt(N) BETWEEN
                 expr(E2) AND.               {
@@ -1478,7 +1478,7 @@ exprx(X) ::= expr(E1) not_opt(N) BETWEEN
                                                 delete E1;
                                                 delete E2;
                                                 objectForTokens = X;
-                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                parserContext->minorErrorBeforeNextToken("Syntax error <exprx: expr not_opt BETWEEN expr AND>");
                                             }
 exprx(X) ::= CASE case_operand(O)
                 case_exprlist(L)
@@ -1488,7 +1488,7 @@ exprx(X) ::= CASE case_operand(O)
                                                 delete O;
                                                 delete E;
                                                 objectForTokens = X;
-                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                parserContext->minorErrorBeforeNextToken("Syntax error <exprx: CASE operand exprlist else>");
                                             }
 exprx(X) ::= expr(E) not_opt(N) IN LP
                 exprlist(L). [IN]           {
@@ -1497,7 +1497,7 @@ exprx(X) ::= expr(E) not_opt(N) IN LP
                                                 delete L;
                                                 delete E;
                                                 objectForTokens = X;
-                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                parserContext->minorErrorBeforeNextToken("Syntax error <exprx: expr not_opt IN LP exprlist>");
                                             }
 /*
 This introduces premature reduce for LP-expr and causes bug #2755
@@ -1505,7 +1505,7 @@ exprx(X) ::= LP expr(E).                    {
                                                 X = new SqliteExpr();
                                                 X->initSubExpr(E);
                                                 objectForTokens = X;
-                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                parserContext->minorErrorBeforeNextToken("Syntax error <exprx: LP expr>");
                                             }
 */
 exprx ::= expr not_opt IN ID_DB. [IN]       {}
@@ -1775,7 +1775,7 @@ exprx(X) ::= LP nexprlist(L) RP.            {
 expr(X) ::= .                               {
                                                 X = new SqliteExpr();
                                                 objectForTokens = X;
-                                                parserContext->minorErrorAfterLastToken("Syntax error");
+                                                parserContext->minorErrorAfterLastToken("Syntax error <expr>");
                                             }
 expr(X) ::= exprx(E).                       {X = E;}
 
