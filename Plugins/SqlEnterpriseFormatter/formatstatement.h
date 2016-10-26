@@ -139,7 +139,7 @@ class FormatStatement
                 markAndKeepIndent(indentName);
 
             bool first = true;
-            foreach (T* stmt, stmtList)
+            for (T* stmt : stmtList)
             {
                 if (!first)
                     withSeparator(sep, flags);

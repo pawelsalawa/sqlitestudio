@@ -1,5 +1,6 @@
 [3.1.1]
         * [ADDED]: WxSQLite3 plugin (with encryption support).
+        * [ADDED]: Support for "Row Value" introduced in SQLite 3.15.0.
         * [ADDED]: New option in configuration dialog to decide whether you want to keep NULL values when entering empty strings in cells (new, more intuitive behavior), or overwrite NULLs with empty string values (as it used to be so far).
         * [ADDED]: Editor window has now "Find" and "Replace" toolbar buttons for those functions (which were already there, available under shortcuts).
         * [ADDED]: New built-in functions: import(), import_formats(), import_options() and charset(). All described on SQLiteStudio's wiki (at User Manual page).
