@@ -1537,12 +1537,12 @@ exprx(X) ::= LP nexprlist(L) RP.            {
                                                 objectForTokens = X;
                                             }
 /*
-*/
 exprx(X) ::= LP expr(E) RP.                 {
                                                 X = new SqliteExpr();
                                                 X->initSubExpr(E);
                                                 objectForTokens = X;
                                             }
+*/
 exprx(X) ::= id(N).                         {
                                                 X = new SqliteExpr();
                                                 X->initId(*(N));
