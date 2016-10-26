@@ -1,0 +1,8 @@
+{
+    "type":          "DbPlugin",
+    "title":         "System.Data.SQLite",
+    "description":   "Provides support for System.Data.SQLite (ADO.NET) databases, including encryption.",
+    "minAppVersion": 30101,
+    "version":       10000,
+    "author":        "SalSoft"
+}
