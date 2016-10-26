@@ -156,7 +156,7 @@ void FormatExpr::formatInternal()
         }
         case SqliteExpr::Mode::ROW_VALUE:
         {
-            withParExprLeft().withStatementList(expr->exprList, FormatToken::Flag::NO_NEWLINE_AFTER).withCommaOper().withStatement(expr->expr1).withParExprRight();
+            withParExprLeft().withStatementList(expr->exprList, FormatToken::Flag::NO_NEWLINE_AFTER).withParExprRight();
             break;
         }
         case SqliteExpr::Mode::IN:
