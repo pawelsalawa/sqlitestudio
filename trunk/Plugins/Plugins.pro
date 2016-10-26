@@ -19,4 +19,5 @@ SUBDIRS += \
     ScriptingTcl \
     DbAndroid \
     DbSqliteCipher \
-    DbSqliteWx
+    DbSqliteWx \
+    DbSqliteSystemData
