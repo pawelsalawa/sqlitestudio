@@ -21,11 +21,12 @@ void PdfExport::deinit()
     safe_delete(textOption);
 }
 
-QPagedPaintDevice* PdfExport::createPaintDevice(const QString& documentTitle)
+QPagedPaintDevice* PdfExport::createPaintDevice(const QString& documentTitle, bool &takeOwnership)
 {
     QPdfWriter* pdfWriter = new QPdfWriter(output);
     pdfWriter->setTitle(documentTitle);
     pdfWriter->setCreator(tr("SQLiteStudio v%1").arg(SQLITESTUDIO->getVersionString()));
+    takeOwnership = true;
     return pdfWriter;
 }
 
@@ -309,8 +310,11 @@ bool PdfExport::isBinaryData() const
 bool PdfExport::beginDoc(const QString& title)
 {
     safe_delete(painter);
-    safe_delete(pagedWriter);
-    pagedWriter = createPaintDevice(title);
+
+    if (takeDeviceOwnership)
+        safe_delete(pagedWriter);
+
+    pagedWriter = createPaintDevice(title, takeDeviceOwnership);
     if (!pagedWriter)
         return false;
 
@@ -330,7 +334,8 @@ void PdfExport::endDoc()
 void PdfExport::cleanupAfterExport()
 {
     safe_delete(painter);
-    safe_delete(pagedWriter);
+    if (takeDeviceOwnership)
+        safe_delete(pagedWriter);
 }
 
 void PdfExport::setupConfig()

@@ -3,14 +3,10 @@
 #include "mainwindow.h"
 #include "services/notifymanager.h"
 
-QPagedPaintDevice* PrintingExport::createPaintDevice(const QString& documentTitle)
+QPagedPaintDevice* PrintingExport::createPaintDevice(const QString& documentTitle, bool& takeOwnership)
 {
     UNUSED(documentTitle);
-    return paintDevice;
-}
-
-QPagedPaintDevice* PrintingExport::getPaintDevice() const
-{
+    takeOwnership = false;
     return paintDevice;
 }
 

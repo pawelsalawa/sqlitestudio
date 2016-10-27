@@ -2,7 +2,7 @@
     "type":         "GeneralPurposePlugin",
     "title":        "Printing",
     "description":  "Provides printing support.",
-    "version":      10002,
+    "version":      10003,
     "author":       "SalSoft",
     "gui":          true,
     "dependencies": "PdfExport"
