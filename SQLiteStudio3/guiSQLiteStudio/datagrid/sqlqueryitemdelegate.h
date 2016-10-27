@@ -41,7 +41,7 @@ class GUI_API_EXPORT SqlQueryItemDelegate : public QStyledItemDelegate
         static bool warnedAboutHugeContents;
         static const qlonglong MAX_ROWS_FOR_FK = 10000L;
         static const int CELL_LENGTH_LIMIT = 30;
-        static const int HUGE_CONTENTS_WARNING_LIMIT = pow(2, 16) / 2 - 1;
+        static const int HUGE_CONTENTS_WARNING_LIMIT = 32767; // pow(2, 16) / 2 - 1
 
     private slots:
         void fkDataReady();
