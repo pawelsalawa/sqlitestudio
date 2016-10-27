@@ -204,7 +204,8 @@ QHash<ExportManager::ExportProviderFlag, QVariant> ExportWorker::getProviderData
         else
         {
             QList<int> colWidths;
-            for (const QVariant& value : results->next()->valueList())
+            SqlResultsRowPtr row = results->next();
+            for (const QVariant& value : row->valueList())
                 colWidths << value.toInt();
 
             providerData[ExportManager::DATA_LENGTHS] = QVariant::fromValue(colWidths);
