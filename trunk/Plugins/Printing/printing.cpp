@@ -57,7 +57,6 @@ void Printing::deinit()
     safe_delete(printDataAction);
     safe_delete(separatorAction);
     safe_delete(printQueryAction);
-    safe_delete(printDialog);
     Q_CLEANUP_RESOURCE(printing);
 }
 
@@ -76,8 +75,7 @@ void Printing::dataPrintRequested(ExtActionContainer* actionContainer)
         return;
     }
 
-    safe_delete(printDialog);
-    printDialog = new QPrintDialog(MAINWINDOW);
+    QPrintDialog* printDialog = new QPrintDialog(MAINWINDOW);
     if (printDialog->exec() != QDialog::Accepted)
         return;
 
@@ -90,6 +88,7 @@ void Printing::dataPrintRequested(ExtActionContainer* actionContainer)
 
     ExportWorker* worker = new ExportWorker(printingExport, printingConfig, nullptr);
     worker->prepareExportQueryResults(db, query);
+    connect(worker, SIGNAL(finished(bool,QIODevice*)), printDialog, SLOT(deleteLater()));
     QThreadPool::globalInstance()->start(worker);
 }
 
@@ -102,8 +101,7 @@ void Printing::queryPrintRequested(ExtActionContainer* actionContainer)
         return;
     }
 
-    safe_delete(printDialog);
-    printDialog = new QPrintDialog(MAINWINDOW);
+    QPrintDialog* printDialog = new QPrintDialog(MAINWINDOW);
     if (printDialog->exec() != QDialog::Accepted)
         return;
 
@@ -111,4 +109,5 @@ void Printing::queryPrintRequested(ExtActionContainer* actionContainer)
 
     QTextDocument* doc = editor->getEditor()->document();
     doc->print(printDialog->printer());
+    printDialog->deleteLater();
 }

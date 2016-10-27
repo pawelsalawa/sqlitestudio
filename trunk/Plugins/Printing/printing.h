@@ -26,7 +26,6 @@ class PRINTINGSHARED_EXPORT Printing : public GenericPlugin, public GeneralPurpo
         ExtActionPrototype* printQueryAction = nullptr;
         PrintingExport* printingExport = nullptr;
         ExportManager::StandardExportConfig* printingConfig = nullptr;
-        QPrintDialog* printDialog = nullptr;
 
     private slots:
         void dataPrintRequested(ExtActionContainer* actionContainer);
