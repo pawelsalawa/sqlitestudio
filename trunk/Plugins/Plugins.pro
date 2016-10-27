@@ -19,5 +19,9 @@ SUBDIRS += \
     ScriptingTcl \
     DbAndroid \
     DbSqliteCipher \
-    DbSqliteWx \
+    DbSqliteWx
+
+win32: {
+SUBDIRS += \
     DbSqliteSystemData
+}
