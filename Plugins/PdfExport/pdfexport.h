@@ -72,7 +72,7 @@ class PDFEXPORTSHARED_EXPORT PdfExport : public GenericExportPlugin
         void deinit();
 
     protected:
-        virtual QPagedPaintDevice* createPaintDevice(const QString& documentTitle);
+        virtual QPagedPaintDevice* createPaintDevice(const QString& documentTitle, bool& takeOwnership);
 
         int lineWidth = 15;
 
@@ -182,6 +182,7 @@ class PDFEXPORTSHARED_EXPORT PdfExport : public GenericExportPlugin
 
         CFG_LOCAL(PdfExportConfig, cfg)
         QPagedPaintDevice* pagedWriter = nullptr;
+        bool takeDeviceOwnership = true;
         QPainter* painter = nullptr;
         QTextOption* textOption = nullptr;
         QFont stdFont;

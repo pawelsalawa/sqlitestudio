@@ -1,5 +1,6 @@
 [3.1.1]
         * [ADDED]: WxSQLite3 plugin (with encryption support).
+        * [ADDED]: System.Data.SQLite plugin (ADO.NET, includes encryption support).
         * [ADDED]: Support for "Row Value" introduced in SQLite 3.15.0.
         * [ADDED]: New option in configuration dialog to decide whether you want to keep NULL values when entering empty strings in cells (new, more intuitive behavior), or overwrite NULLs with empty string values (as it used to be so far).
         * [ADDED]: Editor window has now "Find" and "Replace" toolbar buttons for those functions (which were already there, available under shortcuts).
@@ -47,6 +48,7 @@
         * [BUGFIX]: #3178 Fixed pagination for query simple execution method.
         * [BUGFIX]: #3177 Fixed ORDER BY with column numbers, instead of names.
         * [BUGFIX]: #3125 Fixed trigger UPDATE OF columns popup dialog positioning.
+        * [BUGFIX]: #3166 Fixed crash when trying to print data.
         * [BUGFIX]: Fixed reading long values of not-editable result columns (like expressions or functions that return long values). They used to be truncated.
         * [BUGFIX]: Compilation fixes.
 
