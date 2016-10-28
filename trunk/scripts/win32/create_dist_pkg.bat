@@ -6,7 +6,7 @@ rem Find Qt
 where /q qmake
 IF "%errorlevel%" == "0" (
 	for /f "delims=" %%a in ('where qmake') do @set QMAKE=%%a
-	for %%F in (%QMAKE%) do set QT_DIR=%%~dpF
+	for %%F in ("%QMAKE%") do set QT_DIR="%%~dpF"
 	echo INFO: Qt found at %QT_DIR%
 ) else (
 	echo ERROR: Cannot find Qt
@@ -24,8 +24,6 @@ for /f "delims=" %%a in ('where 7z') do @set ZIP=%%a
 if exist %ZIP% (
 	echo INFO: 7zip found at %ZIP%
 	set USE_ZIP=1
-) else (
-	GOTO:EOF
 )
 :AfterZip
 
@@ -75,7 +73,7 @@ copy *.dll %PORTABLE% > nul
 
 call:getAppVersion
 cd %PORTABLE%\..
-if "%USE_ZIP%" == "1" %ZIP% a -r sqlitestudio-%APP_VERSION%.zip SQLiteStudio > nul
+if "%USE_ZIP%" == "1" "%ZIP%" a -r sqlitestudio-%APP_VERSION%.zip SQLiteStudio > nul
 
 rem Incremental package
 echo INFO: Creating incremental update package
@@ -89,7 +87,7 @@ del /q libgcc* libstdc* libwinpthread*
 rmdir /s /q iconengines imageformats platforms printsupport plugins
 
 cd %PORTABLE%\..\incremental
-if "%USE_ZIP%" == "1" %ZIP% a -r sqlitestudio-%APP_VERSION%.zip SQLiteStudio > nul
+if "%USE_ZIP%" == "1" "%ZIP%" a -r sqlitestudio-%APP_VERSION%.zip SQLiteStudio > nul
 
 rem Plugin packages
 echo INFO: Creating plugin updates
@@ -112,7 +110,7 @@ GOTO:EOF
 		copy SQLiteStudio\plugins\%plugin%.dll plugins\%plugin%\SQLiteStudio\plugins > nul
 
 		cd plugins\%plugin%
-		if "%USE_ZIP%" == "1" %ZIP% a -r ..\%plugin%-%plugin_ver%.zip SQLiteStudio > nul
+		if "%USE_ZIP%" == "1" "%ZIP%" a -r ..\%plugin%-%plugin_ver%.zip SQLiteStudio > nul
 		cd ..\..
 	)
 GOTO:EOF
