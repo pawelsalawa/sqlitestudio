@@ -3,8 +3,7 @@
 where /q qmake
 if "%errorlevel%" == "0" (
 	for /f "delims=" %%a in ('where qmake') do @set QMAKE=%%a
-	for %%F in (%QMAKE%) do set QT_DIR=%%~dpF
-	echo INFO: Qt found at %QT_DIR%
+	echo INFO: Qt's qmake found at %QMAKE%
 ) else (
 	echo ERROR: Cannot find Qt
 	GOTO:EOF
@@ -13,8 +12,7 @@ if "%errorlevel%" == "0" (
 where /q mingw32-make
 if "%errorlevel%" == "0" (
 	for /f "delims=" %%a in ('where mingw32-make') do @set MAKE=%%a
-	for %%F in (%MAKE%) do set MINGW_DIR=%%~dpF
-	echo INFO: MinGW32 found in %MINGW_DIR%
+	echo INFO: MinGW32's make found in %MAKE%
 ) else (
 	echo ERROR: Cannot find MinGW32 [mingw32-make.exe].
 	GOTO:EOF
@@ -24,6 +22,7 @@ set cdir="%CD%"
 cd ..\..
 set parent_dir="%CD%"
 cd %cdir%
+echo %CD%
 
 set /p new_cpu_cores=Number of CPU cores to use for compiling (hit enter to use %NUMBER_OF_PROCESSORS%): 
 if [%new_cpu_cores%] == [] (
