@@ -590,18 +590,18 @@ Call %2 to see list of all databases.</source>
         <translation>sql</translation>
     </message>
     <message>
-        <location filename="../commands/clicommandsql.cpp" line="136"/>
-        <location filename="../commands/clicommandsql.cpp" line="178"/>
+        <location filename="../commands/clicommandsql.cpp" line="134"/>
+        <location filename="../commands/clicommandsql.cpp" line="176"/>
         <source>Too many columns to display in %1 mode.</source>
         <translation>Слишком много столбцов для отображения в режиме %1.</translation>
     </message>
     <message>
-        <location filename="../commands/clicommandsql.cpp" line="256"/>
+        <location filename="../commands/clicommandsql.cpp" line="253"/>
         <source>Row %1</source>
         <translation>Строка %1</translation>
     </message>
     <message>
-        <location filename="../commands/clicommandsql.cpp" line="406"/>
+        <location filename="../commands/clicommandsql.cpp" line="403"/>
         <source>Query execution error: %1</source>
         <translation>Ошибка выполнения запроса: %1</translation>
     </message>

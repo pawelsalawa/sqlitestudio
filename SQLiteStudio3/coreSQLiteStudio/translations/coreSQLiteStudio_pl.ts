@@ -26,37 +26,37 @@
 <context>
     <name>ChainExecutor</name>
     <message>
-        <location filename="../db/chainexecutor.cpp" line="35"/>
+        <location filename="../db/chainexecutor.cpp" line="37"/>
         <source>The database for executing queries was not defined.</source>
         <comment>chain executor</comment>
         <translation>Nie zdefiniowano bazy danych do wykonywania zapytań.</translation>
     </message>
     <message>
-        <location filename="../db/chainexecutor.cpp" line="41"/>
+        <location filename="../db/chainexecutor.cpp" line="44"/>
         <source>The database for executing queries was not open.</source>
         <comment>chain executor</comment>
         <translation>Baza danych do wykonywania zapytań nie jest otwarta.</translation>
     </message>
     <message>
-        <location filename="../db/chainexecutor.cpp" line="50"/>
+        <location filename="../db/chainexecutor.cpp" line="54"/>
         <source>Could not disable foreign keys in the database. Details: %1</source>
         <comment>chain executor</comment>
         <translation>Nie udało się wyłączyć kluczy obcych w bazie. Szczegóły: %1</translation>
     </message>
     <message>
-        <location filename="../db/chainexecutor.cpp" line="57"/>
+        <location filename="../db/chainexecutor.cpp" line="62"/>
         <source>Could not start a database transaction. Details: %1</source>
         <comment>chain executor</comment>
         <translation>Nie udało się rozpocząć transakcji bazy danych. Szczegóły: %1</translation>
     </message>
     <message>
-        <location filename="../db/chainexecutor.cpp" line="84"/>
+        <location filename="../db/chainexecutor.cpp" line="89"/>
         <source>Interrupted</source>
         <comment>chain executor</comment>
         <translation>Przerwane</translation>
     </message>
     <message>
-        <location filename="../db/chainexecutor.cpp" line="145"/>
+        <location filename="../db/chainexecutor.cpp" line="151"/>
         <source>Could not commit a database transaction. Details: %1</source>
         <comment>chain executor</comment>
         <translation>Nie udało się zatwierdzić transakcji bazy danych. Szczegóły: %1</translation>
@@ -244,17 +244,17 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
 <context>
     <name>DbVersionConverter</name>
     <message>
-        <location filename="../dbversionconverter.cpp" line="913"/>
+        <location filename="../dbversionconverter.cpp" line="916"/>
         <source>Target file exists, but could not be overwritten.</source>
         <translation>Plik docelowy istnieje, ale nie może być nadpisany.</translation>
     </message>
     <message>
-        <location filename="../dbversionconverter.cpp" line="932"/>
+        <location filename="../dbversionconverter.cpp" line="935"/>
         <source>Could not find proper database plugin to create target database.</source>
         <translation>Nie znaleziono odpowiedniej wtyczki bazy danych, aby utworzyć docelową bazę danych.</translation>
     </message>
     <message>
-        <location filename="../dbversionconverter.cpp" line="1166"/>
+        <location filename="../dbversionconverter.cpp" line="1169"/>
         <source>Error while converting database: %1</source>
         <translation>Błąd podczas konwersji bazy danych: %1</translation>
     </message>
@@ -350,23 +350,23 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
         <translation>Błąd podczas liczenia szerokości kolumn danych do eksportu wyników zapytania: %1</translation>
     </message>
     <message>
-        <location filename="../exportworker.cpp" line="354"/>
-        <location filename="../exportworker.cpp" line="412"/>
+        <location filename="../exportworker.cpp" line="346"/>
+        <location filename="../exportworker.cpp" line="404"/>
         <source>Could not parse %1 in order to export it. It will be excluded from the export output.</source>
         <translation>Nie udało się przeanalizować %1 w celu wyeksportowania. Element ten zostanie pominięty w wynikach eksportu.</translation>
     </message>
     <message>
-        <location filename="../exportworker.cpp" line="616"/>
+        <location filename="../exportworker.cpp" line="608"/>
         <source>Error while reading data to export from table %1: %2</source>
         <translation>Błąd podczas odczytu danych do eksportu z tabeli %1: %2</translation>
     </message>
     <message>
-        <location filename="../exportworker.cpp" line="624"/>
+        <location filename="../exportworker.cpp" line="616"/>
         <source>Error while counting data to export from table %1: %2</source>
         <translation>Błąd podczas liczenia danych do eksportu z tabeli %1: %2</translation>
     </message>
     <message>
-        <location filename="../exportworker.cpp" line="640"/>
+        <location filename="../exportworker.cpp" line="632"/>
         <source>Error while counting data column width to export from table %1: %2</source>
         <translation>Błąd podczas obliczania szerokości kolumn danych do eksportu z tabeli %1: %2</translation>
     </message>
@@ -374,43 +374,43 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
 <context>
     <name>FunctionManagerImpl</name>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="232"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="234"/>
         <source>Invalid number of arguments to function &apos;%1&apos;. Expected %2, but got %3.</source>
         <translation>Niepoprawna liczba argumentów do funkcji &apos;%1&apos;. Oczekiwano %2, a jest %3.</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="341"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="347"/>
         <source>No such function registered in SQLiteStudio: %1(%2)</source>
         <translation>Nie znaleziono funkcji zarejestrowanej w SQLiteStudio: %1 (%2)</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="347"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="353"/>
         <source>Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</source>
         <translation>Funkcja %1 (%2) została zarejestrowana dla języka %3, ale wtyczka obsługująca ten język nie jest aktualnie załadowana.</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="365"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="371"/>
         <source>Invalid regular expression pattern: %1</source>
         <translation>Niepoprawne wyrażenie regularne: %1</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="384"/>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="417"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="390"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="423"/>
         <source>Could not open file %1 for reading: %2</source>
         <translation>Nie udało się otworzyć pliku %1 do odczytu: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="439"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="445"/>
         <source>Could not open file %1 for writting: %2</source>
         <translation>Nie udało się otworzyć pliku %2 do zapisu: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="459"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="465"/>
         <source>Error while writting to file %1: %2</source>
         <translation>Błąd podczas zapisu do pliku %1: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="477"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="483"/>
         <source>Unsupported scripting language: %1</source>
         <translation>Nieobsługiwany język skryptowy: %1</translation>
     </message>
@@ -426,7 +426,7 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
 <context>
     <name>ImportManager</name>
     <message>
-        <location filename="../services/importmanager.cpp" line="93"/>
+        <location filename="../services/importmanager.cpp" line="96"/>
         <source>Imported data to the table &apos;%1&apos; successfully.</source>
         <translation>Pomyślnie zaimportowano dane do tabeli &apos;%1&apos;.</translation>
     </message>
@@ -444,41 +444,41 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
         <translation>Nie udało się wystartować transakcji w celu zaimportowania danych: %1</translation>
     </message>
     <message>
-        <location filename="../importworker.cpp" line="48"/>
+        <location filename="../importworker.cpp" line="52"/>
         <source>Could not commit transaction for imported data: %1</source>
         <translation>Nie udało się zatwierdzić transakcji w celu zaimportowania danych: %1</translation>
     </message>
     <message>
-        <location filename="../importworker.cpp" line="94"/>
+        <location filename="../importworker.cpp" line="100"/>
         <source>Table &apos;%1&apos; has less columns than there are columns in the data to be imported. Excessive data columns will be ignored.</source>
         <translation>Tabela &apos;%1&apos; ma mniej kolumn, niż jest kolumn w danych do importu. Nadmiarowe kolumny zostaną zignorowane.</translation>
     </message>
     <message>
-        <location filename="../importworker.cpp" line="99"/>
+        <location filename="../importworker.cpp" line="105"/>
         <source>Table &apos;%1&apos; has more columns than there are columns in the data to be imported. Some columns in the table will be left empty.</source>
         <translation>Tabela &apos;%1&apos; ma więcej kolumn, niż jest kolumn w danych do importu. Część kolumn w tabeli będzie pozostawiona pusta.</translation>
     </message>
     <message>
-        <location filename="../importworker.cpp" line="117"/>
+        <location filename="../importworker.cpp" line="124"/>
         <source>Could not create table to import to: %1</source>
         <translation>Nie udało się stworzyć tabeli do zaimportowania: %1</translation>
     </message>
     <message>
-        <location filename="../importworker.cpp" line="126"/>
-        <location filename="../importworker.cpp" line="168"/>
-        <location filename="../importworker.cpp" line="175"/>
+        <location filename="../importworker.cpp" line="133"/>
+        <location filename="../importworker.cpp" line="180"/>
+        <location filename="../importworker.cpp" line="187"/>
         <source>Error while importing data: %1</source>
         <translation>Błąd podczas importowania danych: %1</translation>
     </message>
     <message>
-        <location filename="../importworker.cpp" line="126"/>
-        <location filename="../importworker.cpp" line="175"/>
+        <location filename="../importworker.cpp" line="133"/>
+        <location filename="../importworker.cpp" line="187"/>
         <source>Interrupted.</source>
         <comment>import process status update</comment>
         <translation>Przerwano.</translation>
     </message>
     <message>
-        <location filename="../importworker.cpp" line="163"/>
+        <location filename="../importworker.cpp" line="175"/>
         <source>Could not import data row number %1. The row was ignored. Problem details: %2</source>
         <translation>Nie udało się zaimportować wiersza danych numer %1. Wiersz ten został zignorowany. Szczegóły problemu: %2</translation>
     </message>
@@ -830,9 +830,14 @@ Szczegóły błędu: %2</translation>
         <translation>SQLite %1 nie obsługuje aktualnej daty lub klauzul czasowu w wyrażeniach.</translation>
     </message>
     <message>
-        <location filename="../dbversionconverter.cpp" line="767"/>
+        <location filename="../dbversionconverter.cpp" line="759"/>
+        <source>SQLite %1 does not support row value clauses in expressions.</source>
+        <translation>SQLite %1 nie obsługuje klauzuli wartości wierszowej w wyrażeniach.</translation>
+    </message>
+    <message>
         <location filename="../dbversionconverter.cpp" line="770"/>
-        <location filename="../dbversionconverter.cpp" line="781"/>
+        <location filename="../dbversionconverter.cpp" line="773"/>
+        <location filename="../dbversionconverter.cpp" line="784"/>
         <source>SQLite %1 does not support &apos;%2&apos; clause in expressions.</source>
         <translation>SQLite %1 nie obsługuje klauzuli &apos;%2&apos; w wyrażeniach.</translation>
     </message>
@@ -849,13 +854,13 @@ Szczegóły błędu: %2</translation>
     </message>
     <message>
         <location filename="../parser/sqlite2_parse.cpp" line="1904"/>
-        <location filename="../parser/sqlite3_parse.cpp" line="2171"/>
+        <location filename="../parser/sqlite3_parse.cpp" line="2169"/>
         <source>Parser stack overflow</source>
         <translation>Przeciążenie stosu analizatora.</translation>
     </message>
     <message>
         <location filename="../parser/sqlite2_parse.cpp" line="4465"/>
-        <location filename="../parser/sqlite3_parse.cpp" line="5089"/>
+        <location filename="../parser/sqlite3_parse.cpp" line="5088"/>
         <source>Syntax error</source>
         <translation>Błąd składni</translation>
     </message>
@@ -920,7 +925,7 @@ Szczegóły błędu: %2</translation>
         <translation>Nie można ustalić tabeli lub kolumny &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="613"/>
+        <location filename="../services/impl/configimpl.cpp" line="614"/>
         <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Tried to initialize the file at following localizations: %1.</source>
         <translation>Nie udało się zainicjalizować pliku konfiguracyjnego. Jakiekolwiek zmiany w konfiguracji i historia zapytań będą utracone po zrestartowaniu aplikacji. Próbowano zainicjalizować plik konfiguracyjny w następujących lokalizacjach: %1.</translation>
     </message>
@@ -1052,28 +1057,28 @@ Widok pozostanie nienaruszony.</translation>
 <context>
     <name>QueryExecutor</name>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="137"/>
+        <location filename="../db/queryexecutor.cpp" line="142"/>
         <source>Execution interrupted.</source>
         <translation>Wykonywanie przerwane.</translation>
     </message>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="178"/>
+        <location filename="../db/queryexecutor.cpp" line="183"/>
         <source>Database is not open.</source>
         <translation>Baza danych nie jest otwarta.</translation>
     </message>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="186"/>
+        <location filename="../db/queryexecutor.cpp" line="191"/>
         <source>Only one query can be executed simultaneously.</source>
         <translation>Tylko jedno zapytanie może być wykonywane w danym momencie.</translation>
     </message>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="275"/>
-        <location filename="../db/queryexecutor.cpp" line="560"/>
+        <location filename="../db/queryexecutor.cpp" line="294"/>
+        <location filename="../db/queryexecutor.cpp" line="568"/>
         <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
         <translation>Wystąpił błąd podczas wykonywania zapytania count(*), przez co stronicowanie danych będzie wyłączone. Szczegóły błędy z bazy danych: %1</translation>
     </message>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="471"/>
+        <location filename="../db/queryexecutor.cpp" line="479"/>
         <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
         <translation>SQLiteStudio nie mogło uzyskać metadanych z zapytania. Nie będzie można edytować wyników zapytania.</translation>
     </message>
