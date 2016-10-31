@@ -71,7 +71,6 @@ function replaceInfo() {
     echo "New plist:"
     cat Info.plist.new
     mv Info.plist.new Info.plist
-    echo Donet
 }
 
 
