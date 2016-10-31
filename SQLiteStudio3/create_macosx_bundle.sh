@@ -60,12 +60,28 @@ do
     install_name_tool -change libguiSQLiteStudio.1.dylib "@rpath/libguiSQLiteStudio.1.dylib" $PLUGIN_FILE
 done
 
+function replaceInfo() {
+    echo Replacing Info.plist
+    cd $1/SQLiteStudio
+    VERSION=`SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}'`
+    YEAR=`date '+%Y'`
+
+    cd SQLiteStudio.app/Contents
+    sed "s/%VERSION%/$VERSION/g" Info.plist | sed "s/%YEAR%/$YEAR/g" > Info.plist.new
+    echo "New plist:"
+    cat Info.plist.new
+    mv Info.plist.new Info.plist
+    echo Donet
+}
+
 
 if [ "$3" == "dmg" ]; then
     $qt_deploy_bin SQLiteStudio.app -dmg
+    replaceInfo $1
 elif [ "$3" == "dist" ] || [ "$3" == "dist_plugins" ] || [ "$3" == "dist_full" ]; then
     if [ "$3" == "dist" ] || [ "$3" == "dist_full" ]; then
         $qt_deploy_bin SQLiteStudio.app -dmg -executable=SQLiteStudio.app/Contents/MacOS/SQLiteStudio -always-overwrite -verbose=3 2> /tmp/log.txt
+	replaceInfo $1
 
         cd $1/SQLiteStudio
         VERSION=`SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}'`
@@ -88,6 +104,7 @@ elif [ "$3" == "dist" ] || [ "$3" == "dist_plugins" ] || [ "$3" == "dist_full" ]
         rm -rf app
     else
         $qt_deploy_bin SQLiteStudio.app
+	replaceInfo $1
     fi
 
     # Plugins
@@ -108,5 +125,5 @@ elif [ "$3" == "dist" ] || [ "$3" == "dist_plugins" ] || [ "$3" == "dist_full" ]
     echo "Done."
 else
     $qt_deploy_bin SQLiteStudio.app
+    replaceInfo $1
 fi
-
