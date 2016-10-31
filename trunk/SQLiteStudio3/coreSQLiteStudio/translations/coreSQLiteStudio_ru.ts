@@ -26,37 +26,37 @@
 <context>
     <name>ChainExecutor</name>
     <message>
-        <location filename="../db/chainexecutor.cpp" line="35"/>
+        <location filename="../db/chainexecutor.cpp" line="37"/>
         <source>The database for executing queries was not defined.</source>
         <comment>chain executor</comment>
         <translation>Не указана база данных для выполнения запросов.</translation>
     </message>
     <message>
-        <location filename="../db/chainexecutor.cpp" line="41"/>
+        <location filename="../db/chainexecutor.cpp" line="44"/>
         <source>The database for executing queries was not open.</source>
         <comment>chain executor</comment>
         <translation>Не открыта база данных для выполнения запросов.</translation>
     </message>
     <message>
-        <location filename="../db/chainexecutor.cpp" line="50"/>
+        <location filename="../db/chainexecutor.cpp" line="54"/>
         <source>Could not disable foreign keys in the database. Details: %1</source>
         <comment>chain executor</comment>
         <translation>Невозможно отключить внешние ключи в базе данных. Подробности: %1</translation>
     </message>
     <message>
-        <location filename="../db/chainexecutor.cpp" line="57"/>
+        <location filename="../db/chainexecutor.cpp" line="62"/>
         <source>Could not start a database transaction. Details: %1</source>
         <comment>chain executor</comment>
         <translation>Невозможно начать транзакцию. Подробности: %1</translation>
     </message>
     <message>
-        <location filename="../db/chainexecutor.cpp" line="84"/>
+        <location filename="../db/chainexecutor.cpp" line="89"/>
         <source>Interrupted</source>
         <comment>chain executor</comment>
         <translation>Прервано</translation>
     </message>
     <message>
-        <location filename="../db/chainexecutor.cpp" line="145"/>
+        <location filename="../db/chainexecutor.cpp" line="151"/>
         <source>Could not commit a database transaction. Details: %1</source>
         <comment>chain executor</comment>
         <translation>Невозможно завершить транзакцию. Подробности: %1</translation>
@@ -245,17 +245,17 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
 <context>
     <name>DbVersionConverter</name>
     <message>
-        <location filename="../dbversionconverter.cpp" line="913"/>
+        <location filename="../dbversionconverter.cpp" line="916"/>
         <source>Target file exists, but could not be overwritten.</source>
         <translation>Целевой файл существует, но не может быть перезаписан.</translation>
     </message>
     <message>
-        <location filename="../dbversionconverter.cpp" line="932"/>
+        <location filename="../dbversionconverter.cpp" line="935"/>
         <source>Could not find proper database plugin to create target database.</source>
         <translation>Невозможно найти подходящий модуль для создания целевой базы данных.</translation>
     </message>
     <message>
-        <location filename="../dbversionconverter.cpp" line="1166"/>
+        <location filename="../dbversionconverter.cpp" line="1169"/>
         <source>Error while converting database: %1</source>
         <translation>Ошибка при конвертации базы данных: %1</translation>
     </message>
@@ -343,23 +343,23 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
         <translation>Ошибка при подсчёте ширины столбца данных для экспорта результатов запроса: %1</translation>
     </message>
     <message>
-        <location filename="../exportworker.cpp" line="354"/>
-        <location filename="../exportworker.cpp" line="412"/>
+        <location filename="../exportworker.cpp" line="346"/>
+        <location filename="../exportworker.cpp" line="404"/>
         <source>Could not parse %1 in order to export it. It will be excluded from the export output.</source>
         <translation>Невозможно проанализировать структуру %1. Данный объект будет исключён при выполнении экспорта.</translation>
     </message>
     <message>
-        <location filename="../exportworker.cpp" line="616"/>
+        <location filename="../exportworker.cpp" line="608"/>
         <source>Error while reading data to export from table %1: %2</source>
         <translation>Ошибка при считывании данных для экспорта из таблицы %1: %2</translation>
     </message>
     <message>
-        <location filename="../exportworker.cpp" line="624"/>
+        <location filename="../exportworker.cpp" line="616"/>
         <source>Error while counting data to export from table %1: %2</source>
         <translation>Ошибка при подсчёте количества данных для экспорта из таблицы %1: %2</translation>
     </message>
     <message>
-        <location filename="../exportworker.cpp" line="640"/>
+        <location filename="../exportworker.cpp" line="632"/>
         <source>Error while counting data column width to export from table %1: %2</source>
         <translation>Ошибка при подсчёте ширины столбца данных для экспорта из таблицы %1: %2</translation>
     </message>
@@ -367,43 +367,43 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
 <context>
     <name>FunctionManagerImpl</name>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="232"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="234"/>
         <source>Invalid number of arguments to function &apos;%1&apos;. Expected %2, but got %3.</source>
         <translation>Неверное количество аргументов для функции &apos;%1&apos;. Ожидаемое количество: %2, передано: %3.</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="341"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="347"/>
         <source>No such function registered in SQLiteStudio: %1(%2)</source>
         <translation>Функция не зарегистрирована в SQLiteStudio: %1(%2)</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="347"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="353"/>
         <source>Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</source>
         <translation>Функция %1(%2) зарегистрирована для языка %3, однако модуль поддержки этого языка на данный момент не загружен.</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="365"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="371"/>
         <source>Invalid regular expression pattern: %1</source>
         <translation>Неверный шаблон регулярного выражения: %1</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="384"/>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="417"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="390"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="423"/>
         <source>Could not open file %1 for reading: %2</source>
         <translation>Невозможно открыть файл %1 для чтения: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="439"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="445"/>
         <source>Could not open file %1 for writting: %2</source>
         <translation>Невозможно открыть файл %1 для записи: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="459"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="465"/>
         <source>Error while writting to file %1: %2</source>
         <translation>Ошибка при записи в файл %1: %2</translation>
     </message>
     <message>
-        <location filename="../services/impl/functionmanagerimpl.cpp" line="477"/>
+        <location filename="../services/impl/functionmanagerimpl.cpp" line="483"/>
         <source>Unsupported scripting language: %1</source>
         <translation>Неподдерживаемый скриптовый язык: %1</translation>
     </message>
@@ -419,7 +419,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
 <context>
     <name>ImportManager</name>
     <message>
-        <location filename="../services/importmanager.cpp" line="93"/>
+        <location filename="../services/importmanager.cpp" line="96"/>
         <source>Imported data to the table &apos;%1&apos; successfully.</source>
         <translation>Импорт данных в таблицу &apos;%1&apos; выполнен успешно.</translation>
     </message>
@@ -437,41 +437,41 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
         <translation>Невозможно начать транзакцию для импорта данных: %1</translation>
     </message>
     <message>
-        <location filename="../importworker.cpp" line="48"/>
+        <location filename="../importworker.cpp" line="52"/>
         <source>Could not commit transaction for imported data: %1</source>
         <translation>Невозможно завершить транзакцию для импортированных данных: %1</translation>
     </message>
     <message>
-        <location filename="../importworker.cpp" line="94"/>
+        <location filename="../importworker.cpp" line="100"/>
         <source>Table &apos;%1&apos; has less columns than there are columns in the data to be imported. Excessive data columns will be ignored.</source>
         <translation>В таблице &apos;%1&apos; столбцов меньше, чем в импортируемых данных. Лишние столбцы будут проигнорированы.</translation>
     </message>
     <message>
-        <location filename="../importworker.cpp" line="99"/>
+        <location filename="../importworker.cpp" line="105"/>
         <source>Table &apos;%1&apos; has more columns than there are columns in the data to be imported. Some columns in the table will be left empty.</source>
         <translation>В таблице &apos;%1&apos; столбцов больше, чем в импортируемых данных. Недостающие столбцы будут оставлены пустыми.</translation>
     </message>
     <message>
-        <location filename="../importworker.cpp" line="117"/>
+        <location filename="../importworker.cpp" line="124"/>
         <source>Could not create table to import to: %1</source>
         <translation>Невозможно создать таблицу для импорта: %1</translation>
     </message>
     <message>
-        <location filename="../importworker.cpp" line="126"/>
-        <location filename="../importworker.cpp" line="168"/>
-        <location filename="../importworker.cpp" line="175"/>
+        <location filename="../importworker.cpp" line="133"/>
+        <location filename="../importworker.cpp" line="180"/>
+        <location filename="../importworker.cpp" line="187"/>
         <source>Error while importing data: %1</source>
         <translation>Ошибка при импорте данных: %1</translation>
     </message>
     <message>
-        <location filename="../importworker.cpp" line="126"/>
-        <location filename="../importworker.cpp" line="175"/>
+        <location filename="../importworker.cpp" line="133"/>
+        <location filename="../importworker.cpp" line="187"/>
         <source>Interrupted.</source>
         <comment>import process status update</comment>
         <translation>Прервано.</translation>
     </message>
     <message>
-        <location filename="../importworker.cpp" line="163"/>
+        <location filename="../importworker.cpp" line="175"/>
         <source>Could not import data row number %1. The row was ignored. Problem details: %2</source>
         <translation>Невозможно импортировать строку данных № %1. Строка пропущена. Подробности проблемы: %2</translation>
     </message>
@@ -835,9 +835,14 @@ Error details: %2</source>
         <translation>SQLite %1 не поддерживает операторы текущей даты и текущего времени в выражениях.</translation>
     </message>
     <message>
-        <location filename="../dbversionconverter.cpp" line="767"/>
+        <location filename="../dbversionconverter.cpp" line="759"/>
+        <source>SQLite %1 does not support row value clauses in expressions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../dbversionconverter.cpp" line="770"/>
-        <location filename="../dbversionconverter.cpp" line="781"/>
+        <location filename="../dbversionconverter.cpp" line="773"/>
+        <location filename="../dbversionconverter.cpp" line="784"/>
         <source>SQLite %1 does not support &apos;%2&apos; clause in expressions.</source>
         <translation>SQLite %1 не поддерживает оператор &apos;%2&apos; в выражениях.</translation>
     </message>
@@ -854,13 +859,13 @@ Error details: %2</source>
     </message>
     <message>
         <location filename="../parser/sqlite2_parse.cpp" line="1904"/>
-        <location filename="../parser/sqlite3_parse.cpp" line="2171"/>
+        <location filename="../parser/sqlite3_parse.cpp" line="2169"/>
         <source>Parser stack overflow</source>
         <translation>Переполнение стека анализатора</translation>
     </message>
     <message>
         <location filename="../parser/sqlite2_parse.cpp" line="4465"/>
-        <location filename="../parser/sqlite3_parse.cpp" line="5089"/>
+        <location filename="../parser/sqlite3_parse.cpp" line="5088"/>
         <source>Syntax error</source>
         <translation>Синтаксическая ошибка</translation>
     </message>
@@ -925,7 +930,7 @@ Error details: %2</source>
         <translation>Невозможно определить таблицу для столбца &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="613"/>
+        <location filename="../services/impl/configimpl.cpp" line="614"/>
         <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Tried to initialize the file at following localizations: %1.</source>
         <translation>Невозможно инициализировать файл конфигурации. Любые изменения конфигурации и история запросов будут утеряны после перезапуска приложения. Попытки инициализации файла предпринимались в следующих местах: %1.</translation>
     </message>
@@ -1033,28 +1038,28 @@ The view will remain as it is.</source>
 <context>
     <name>QueryExecutor</name>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="137"/>
+        <location filename="../db/queryexecutor.cpp" line="142"/>
         <source>Execution interrupted.</source>
         <translation>Выполнение прервано.</translation>
     </message>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="178"/>
+        <location filename="../db/queryexecutor.cpp" line="183"/>
         <source>Database is not open.</source>
         <translation>База данных не открыта.</translation>
     </message>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="186"/>
+        <location filename="../db/queryexecutor.cpp" line="191"/>
         <source>Only one query can be executed simultaneously.</source>
         <translation>Одновременно может быть выполнен только один запрос.</translation>
     </message>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="275"/>
-        <location filename="../db/queryexecutor.cpp" line="560"/>
+        <location filename="../db/queryexecutor.cpp" line="294"/>
+        <location filename="../db/queryexecutor.cpp" line="568"/>
         <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
         <translation>Возникла ошибка при выполнении запроса count(*), поэтому разбивка данных по страницам отключена. Детали ошибки из базы данных: %1</translation>
     </message>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="471"/>
+        <location filename="../db/queryexecutor.cpp" line="479"/>
         <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
         <translation>SQLiteStudio не удалось извлечь метаданные из запроса. Результаты нельзя будет редактировать.</translation>
     </message>
