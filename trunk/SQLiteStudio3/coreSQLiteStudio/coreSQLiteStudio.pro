@@ -38,6 +38,8 @@ linux: {
 macx: {
     out_file = $$DESTDIR/lib $$TARGET .dylib
     QMAKE_POST_LINK += install_name_tool -change libsqlite3.dylib @loader_path/../Frameworks/libsqlite3.dylib $$join(out_file)
+    QMAKE_POST_LINK += ; $$QMAKE_MKDIR $$DESTDIR/SQLiteStudio.app
+    QMAKE_POST_LINK += ; $$QMAKE_MKDIR $$DESTDIR/SQLiteStudio.app/Contents
     QMAKE_POST_LINK += ; $$QMAKE_COPY $$PWD/Info.plist $$DESTDIR/SQLiteStudio.app/Contents
 }
 
