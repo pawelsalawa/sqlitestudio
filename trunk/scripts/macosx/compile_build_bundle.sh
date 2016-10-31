@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 if [ "$1" == "" ]; then
     QMAKE=`which qmake`
@@ -8,7 +8,7 @@ if [ "$1" == "" ]; then
     else
 	read -p "Is this correct qmake (y/N) $QMAKE : " yn
 	case $yn in
-	    [Yy]* ) ;;
+	    [Yy]* ) break;;
 	    * ) echo "Please pass path to correct qmake as argument to this script."; exit;;
 	esac
     fi
@@ -16,16 +16,20 @@ else
     QMAKE=$1
 fi
 
+realpath() {
+    [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
+}
+
 cdir=`pwd`
-cpu_cores=`grep -c ^processor /proc/cpuinfo`
+cpu_cores=`sysctl -n hw.logicalcpu`
 absolute_path=`realpath $0`
 this_dir=`dirname $absolute_path`
-this_dir=`dirname $this_dir`
 parent_dir=`dirname $this_dir`
+parent_dir=`dirname $parent_dir`
 
 read -p "Number of CPU cores to use for compiling (hit enter to use $cpu_cores): " new_cpu_cores
 case $new_cpu_cores in
-    "" ) ;;
+    "" ) break;;
     * ) cpu_cores=$new_cpu_cores; break;;
 esac
 
@@ -47,5 +51,8 @@ make -j $cpu_cores
 cd Plugins
 $QMAKE CONFIG+=portable ../../../Plugins
 make -j $cpu_cores
+
+cd ..
+make bundle
 
 cd $cdir
