@@ -26,7 +26,8 @@ RESOURCES += \
     pdfexport.qrc
 
 
-TRANSLATIONS += PdfExport_de.ts \
+TRANSLATIONS += PdfExport_ro_RO.ts \
+		PdfExport_de.ts \
 		PdfExport_it.ts \
 		PdfExport_zh_CN.ts \
 		PdfExport_sk.ts \
@@ -35,6 +36,7 @@ TRANSLATIONS += PdfExport_de.ts \
 		PdfExport_fr.ts \
 		PdfExport_es.ts \
 		PdfExport_pl.ts
+
 
 
 

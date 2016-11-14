@@ -6,6 +6,7 @@
         <file>htmlexport.ui</file>
     </qresource>
     <qresource prefix="/msg">
+        <file>HtmlExport_ro_RO.qm</file>
         <file>HtmlExport_de.qm</file>
 
 
@@ -16,6 +17,7 @@
         <file>HtmlExport_zh_CN.qm</file>
     </qresource>
 </RCC>
+
 
 
 

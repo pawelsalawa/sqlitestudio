@@ -3,6 +3,7 @@
         <file>pdfexport.ui</file>
     </qresource>
     <qresource prefix="/msg">
+        <file>PdfExport_ro_RO.qm</file>
         <file>PdfExport_de.qm</file>
 
 
@@ -13,6 +14,7 @@
         <file>PdfExport_zh_CN.qm</file>
     </qresource>
 </RCC>
+
 
 
 

@@ -4,6 +4,7 @@
         <file>SqlExportCommon.ui</file>
     </qresource>
     <qresource prefix="/msg">
+        <file>SqlExport_ro_RO.qm</file>
         <file>SqlExport_de.qm</file>
 
 
@@ -14,6 +15,7 @@
         <file>SqlExport_zh_CN.qm</file>
     </qresource>
 </RCC>
+
 
 
 

@@ -29,7 +29,8 @@ RESOURCES += \
 
 
 
-TRANSLATIONS += CsvExport_de.ts \
+TRANSLATIONS += CsvExport_ro_RO.ts \
+		CsvExport_de.ts \
 		CsvExport_it.ts \
 		CsvExport_zh_CN.ts \
 		CsvExport_sk.ts \
@@ -38,6 +39,7 @@ TRANSLATIONS += CsvExport_de.ts \
 		CsvExport_fr.ts \
 		CsvExport_es.ts \
 		CsvExport_pl.ts
+
 
 
 

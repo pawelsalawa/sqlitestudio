@@ -3,6 +3,7 @@
         <file>config_migration.png</file>
     </qresource>
     <qresource prefix="/msg">
+        <file>ConfigMigration_ro_RO.qm</file>
         <file>ConfigMigration_de.qm</file>
 
 
@@ -13,6 +14,7 @@
         <file>ConfigMigration_zh_CN.qm</file>
     </qresource>
 </RCC>
+
 
 
 

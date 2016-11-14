@@ -3,6 +3,7 @@
         <file>SqlFormatterSimple.ui</file>
     </qresource>
     <qresource prefix="/msg">
+        <file>SqlFormatterSimple_ro_RO.qm</file>
         <file>SqlFormatterSimple_de.qm</file>
 
 
@@ -13,6 +14,7 @@
         <file>SqlFormatterSimple_zh_CN.qm</file>
     </qresource>
 </RCC>
+
 
 
 

@@ -19,6 +19,7 @@
         <file>licenses/gpl.txt</file>
     </qresource>
     <qresource prefix="/msg">
+        <file>translations/coreSQLiteStudio_ro_RO.qm</file>
         <file>translations/coreSQLiteStudio_pl.qm</file>
         <file>translations/coreSQLiteStudio_ru.qm</file>
         <file>translations/coreSQLiteStudio_fr.qm</file>
@@ -27,6 +28,7 @@
         <file>translations/coreSQLiteStudio_de.qm</file>
     </qresource>
 </RCC>
+
 
 
 

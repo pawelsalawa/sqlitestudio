@@ -14,17 +14,17 @@
         <translation>Abfrage drucken</translation>
     </message>
     <message>
-        <location filename="printing.cpp" line="75"/>
+        <location filename="printing.cpp" line="74"/>
         <source>No data to print.</source>
         <translation>Keine Daten, die gedruckt werden müssen.</translation>
     </message>
     <message>
-        <location filename="printing.cpp" line="84"/>
+        <location filename="printing.cpp" line="82"/>
         <source>Printing data.</source>
         <translation>Drucke Daten.</translation>
     </message>
     <message>
-        <location filename="printing.cpp" line="110"/>
+        <location filename="printing.cpp" line="108"/>
         <source>Printing query.</source>
         <translation>Drucke Abfrage.</translation>
     </message>
@@ -32,7 +32,7 @@
 <context>
     <name>PrintingExport</name>
     <message>
-        <location filename="printingexport.cpp" line="34"/>
+        <location filename="printingexport.cpp" line="30"/>
         <source>Printing</source>
         <translation>Drucken</translation>
     </message>

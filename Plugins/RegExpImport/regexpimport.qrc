@@ -3,6 +3,7 @@
         <file>regexpimport.ui</file>
     </qresource>
     <qresource prefix="/msg">
+        <file>RegExpImport_ro_RO.qm</file>
         <file>RegExpImport_de.qm</file>
 
 
@@ -13,6 +14,7 @@
         <file>RegExpImport_zh_CN.qm</file>
     </qresource>
 </RCC>
+
 
 
 
