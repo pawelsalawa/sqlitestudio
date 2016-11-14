@@ -3,6 +3,7 @@
         <file>XmlExport.ui</file>
     </qresource>
     <qresource prefix="/msg">
+        <file>XmlExport_ro_RO.qm</file>
         <file>XmlExport_de.qm</file>
 
 
@@ -13,6 +14,7 @@
         <file>XmlExport_zh_CN.qm</file>
     </qresource>
 </RCC>
+
 
 
 

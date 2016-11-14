@@ -150,7 +150,8 @@ RESOURCES += \
     scriptingtcl.qrc
 
 
-TRANSLATIONS += ScriptingTcl_de.ts \
+TRANSLATIONS += ScriptingTcl_ro_RO.ts \
+		ScriptingTcl_de.ts \
 		ScriptingTcl_it.ts \
 		ScriptingTcl_zh_CN.ts \
 		ScriptingTcl_sk.ts \
@@ -159,6 +160,7 @@ TRANSLATIONS += ScriptingTcl_de.ts \
 		ScriptingTcl_fr.ts \
 		ScriptingTcl_es.ts \
 		ScriptingTcl_pl.ts
+
 
 
 

@@ -9,159 +9,159 @@
         <translation>SQLiteStudio v%1</translation>
     </message>
     <message>
-        <location filename="pdfexport.cpp" line="60"/>
+        <location filename="pdfexport.cpp" line="61"/>
         <source>SQL query results</source>
         <translation>Résultats de la requête SQL</translation>
     </message>
     <message>
-        <location filename="pdfexport.cpp" line="89"/>
-        <location filename="pdfexport.cpp" line="143"/>
+        <location filename="pdfexport.cpp" line="90"/>
+        <location filename="pdfexport.cpp" line="144"/>
         <source>Exported table: %1</source>
         <translation>Table exportée : %1</translation>
     </message>
     <message>
-        <location filename="pdfexport.cpp" line="92"/>
-        <location filename="pdfexport.cpp" line="158"/>
+        <location filename="pdfexport.cpp" line="93"/>
+        <location filename="pdfexport.cpp" line="159"/>
         <source>Table: %1</source>
         <translation>Table : %1</translation>
     </message>
     <message>
-        <location filename="pdfexport.cpp" line="94"/>
-        <location filename="pdfexport.cpp" line="230"/>
+        <location filename="pdfexport.cpp" line="95"/>
+        <location filename="pdfexport.cpp" line="231"/>
         <source>Column</source>
         <translation>Colonne</translation>
     </message>
     <message>
-        <location filename="pdfexport.cpp" line="94"/>
+        <location filename="pdfexport.cpp" line="95"/>
         <source>Data type</source>
         <translation>Type de données</translation>
     </message>
     <message>
-        <location filename="pdfexport.cpp" line="94"/>
+        <location filename="pdfexport.cpp" line="95"/>
         <source>Constraints</source>
         <translation>Contraintes</translation>
     </message>
     <message>
-        <location filename="pdfexport.cpp" line="125"/>
+        <location filename="pdfexport.cpp" line="126"/>
         <source>Global table constraints</source>
         <translation>Contraintes globales de la table</translation>
     </message>
     <message>
-        <location filename="pdfexport.cpp" line="214"/>
+        <location filename="pdfexport.cpp" line="215"/>
         <source>Exported database: %1</source>
         <translation>Base de données exportée : %1</translation>
     </message>
     <message>
-        <location filename="pdfexport.cpp" line="222"/>
+        <location filename="pdfexport.cpp" line="223"/>
         <source>Index: %1</source>
         <translation>Index : %1</translation>
     </message>
     <message>
-        <location filename="pdfexport.cpp" line="224"/>
+        <location filename="pdfexport.cpp" line="225"/>
         <source>Property</source>
         <comment>index header</comment>
         <translation>Proprièté</translation>
     </message>
     <message>
-        <location filename="pdfexport.cpp" line="224"/>
+        <location filename="pdfexport.cpp" line="225"/>
         <source>Value</source>
         <comment>index header</comment>
         <translation>Valeur</translation>
     </message>
     <message>
-        <location filename="pdfexport.cpp" line="227"/>
+        <location filename="pdfexport.cpp" line="228"/>
         <source>Indexed table</source>
         <translation>Table indexée</translation>
     </message>
     <message>
-        <location filename="pdfexport.cpp" line="228"/>
+        <location filename="pdfexport.cpp" line="229"/>
         <source>Unique index</source>
         <translation>Index unique</translation>
     </message>
     <message>
-        <location filename="pdfexport.cpp" line="228"/>
+        <location filename="pdfexport.cpp" line="229"/>
         <source>Yes</source>
         <translation>Oui</translation>
     </message>
     <message>
-        <location filename="pdfexport.cpp" line="228"/>
+        <location filename="pdfexport.cpp" line="229"/>
         <source>No</source>
         <translation>Non</translation>
     </message>
     <message>
-        <location filename="pdfexport.cpp" line="230"/>
+        <location filename="pdfexport.cpp" line="231"/>
         <source>Collation</source>
         <translation>Collation</translation>
     </message>
     <message>
-        <location filename="pdfexport.cpp" line="230"/>
+        <location filename="pdfexport.cpp" line="231"/>
         <source>Sort order</source>
         <translation>Ordre de tri</translation>
     </message>
     <message>
-        <location filename="pdfexport.cpp" line="246"/>
+        <location filename="pdfexport.cpp" line="247"/>
         <source>Partial index condition</source>
         <translation>Condition de l’index partiel</translation>
     </message>
     <message>
-        <location filename="pdfexport.cpp" line="260"/>
+        <location filename="pdfexport.cpp" line="261"/>
         <source>Trigger: %1</source>
         <translation>Déchencheur : %1</translation>
     </message>
     <message>
-        <location filename="pdfexport.cpp" line="262"/>
+        <location filename="pdfexport.cpp" line="263"/>
         <source>Property</source>
         <comment>trigger header</comment>
         <translation>Proprièté</translation>
     </message>
     <message>
-        <location filename="pdfexport.cpp" line="262"/>
+        <location filename="pdfexport.cpp" line="263"/>
         <source>Value</source>
         <comment>trigger header</comment>
         <translation>Valeur</translation>
     </message>
     <message>
-        <location filename="pdfexport.cpp" line="264"/>
+        <location filename="pdfexport.cpp" line="265"/>
         <source>Activation time</source>
         <translation>Activation temps</translation>
     </message>
     <message>
-        <location filename="pdfexport.cpp" line="267"/>
+        <location filename="pdfexport.cpp" line="268"/>
         <source>For action</source>
         <translation>Pour action</translation>
     </message>
     <message>
-        <location filename="pdfexport.cpp" line="271"/>
+        <location filename="pdfexport.cpp" line="272"/>
         <source>On view</source>
         <translation>De la vue</translation>
     </message>
     <message>
-        <location filename="pdfexport.cpp" line="273"/>
+        <location filename="pdfexport.cpp" line="274"/>
         <source>On table</source>
         <translation>De la vue</translation>
     </message>
     <message>
-        <location filename="pdfexport.cpp" line="278"/>
+        <location filename="pdfexport.cpp" line="279"/>
         <source>Activation condition</source>
         <translation>Activation de la condition</translation>
     </message>
     <message>
-        <location filename="pdfexport.cpp" line="284"/>
+        <location filename="pdfexport.cpp" line="285"/>
         <source>Code executed</source>
         <translation>Code exécuté</translation>
     </message>
     <message>
-        <location filename="pdfexport.cpp" line="296"/>
+        <location filename="pdfexport.cpp" line="297"/>
         <source>View: %1</source>
         <translation>Vue : %1</translation>
     </message>
     <message>
-        <location filename="pdfexport.cpp" line="297"/>
+        <location filename="pdfexport.cpp" line="298"/>
         <source>Query:</source>
         <translation>Requête :</translation>
     </message>
     <message>
-        <location filename="pdfexport.cpp" line="649"/>
+        <location filename="pdfexport.cpp" line="654"/>
         <source>Document generated with SQLiteStudio v%1</source>
         <translation>Documentation générée avec SQLiteStudio v%1</translation>
     </message>

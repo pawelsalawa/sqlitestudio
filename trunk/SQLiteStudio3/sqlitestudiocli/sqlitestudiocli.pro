@@ -27,7 +27,8 @@ linux {
     }
 }
 
-TRANSLATIONS += translations/sqlitestudiocli_de.ts \
+TRANSLATIONS += translations/sqlitestudiocli_ro_RO.ts \
+		translations/sqlitestudiocli_de.ts \
 		translations/sqlitestudiocli_it.ts \
 		translations/sqlitestudiocli_zh_CN.ts \
 		translations/sqlitestudiocli_sk.ts \
@@ -113,6 +114,7 @@ unix: {
 
 RESOURCES += \
     sqlitestudiocli.qrc
+
 
 
 

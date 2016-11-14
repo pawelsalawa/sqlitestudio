@@ -33,7 +33,8 @@ LIBS += -lcoreSQLiteStudio -lguiSQLiteStudio
 
 SOURCES += main.cpp
 
-TRANSLATIONS += translations/sqlitestudio_de.ts \
+TRANSLATIONS += translations/sqlitestudio_ro_RO.ts \
+		translations/sqlitestudio_de.ts \
 		translations/sqlitestudio_it.ts \
 		translations/sqlitestudio_zh_CN.ts \
 		translations/sqlitestudio_sk.ts \
@@ -62,6 +63,7 @@ unix: {
 
 RESOURCES += \
     sqlitestudio.qrc
+
 
 
 

@@ -35,7 +35,8 @@ RESOURCES += \
     printing.qrc
 
 
-TRANSLATIONS += Printing_de.ts \
+TRANSLATIONS += Printing_ro_RO.ts \
+		Printing_de.ts \
 		Printing_it.ts \
 		Printing_zh_CN.ts \
 		Printing_sk.ts \
@@ -44,6 +45,7 @@ TRANSLATIONS += Printing_de.ts \
 		Printing_fr.ts \
 		Printing_es.ts \
 		Printing_pl.ts
+
 
 
 

@@ -3,6 +3,7 @@
         <file>printer.png</file>
     </qresource>
     <qresource prefix="/msg">
+        <file>Printing_ro_RO.qm</file>
         <file>Printing_de.qm</file>
 
 
@@ -13,6 +14,7 @@
         <file>Printing_zh_CN.qm</file>
     </qresource>
 </RCC>
+
 
 
 

@@ -54,7 +54,8 @@ portable {
 CONFIG   += c++11
 QMAKE_CXXFLAGS += -pedantic
 
-TRANSLATIONS += translations/coreSQLiteStudio_de.ts \
+TRANSLATIONS += translations/coreSQLiteStudio_ro_RO.ts \
+		translations/coreSQLiteStudio_de.ts \
 		translations/coreSQLiteStudio_it.ts \
 		translations/coreSQLiteStudio_zh_CN.ts \
 		translations/coreSQLiteStudio_sk.ts \
@@ -444,7 +445,8 @@ OTHER_FILES += \
     licenses/diff_match.txt \
     licenses/gpl.txt \
     ChangeLog.txt \
-    qt.conf \
+    qt.conf
+ \
     Info.plist
 
 FORMS += \
@@ -457,6 +459,7 @@ FORMS += \
 
 RESOURCES += \
     coreSQLiteStudio.qrc
+
 
 
 
