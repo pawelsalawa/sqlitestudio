@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ru_RU">
+<TS version="2.0" language="ru_RU">
 <context>
     <name>AbstractDb</name>
     <message>
@@ -837,7 +837,7 @@ Error details: %2</source>
     <message>
         <location filename="../dbversionconverter.cpp" line="759"/>
         <source>SQLite %1 does not support row value clauses in expressions.</source>
-        <translation type="unfinished"></translation>
+        <translation>SQLite %1 не поддерживает операции со значениями строк в выражениях.</translation>
     </message>
     <message>
         <location filename="../dbversionconverter.cpp" line="770"/>

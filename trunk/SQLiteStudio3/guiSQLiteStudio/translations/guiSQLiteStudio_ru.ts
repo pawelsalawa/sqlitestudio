@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ru_RU">
+<TS version="2.0" language="ru_RU">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -432,11 +432,11 @@
     <message>
         <location filename="../windows/collationseditor.cpp" line="388"/>
         <source>Collations editor window has uncommitted modifications.</source>
-        <translation type="unfinished"></translation>
+        <translation>В редакторе сравнений имеются неподтверждённые изменения.</translation>
     </message>
     <message>
         <source>Collations editor window has uncommited modifications.</source>
-        <translation type="vanished">В редакторе сравнений имеются неподтверждённые изменения.</translation>
+        <translation>В редакторе сравнений имеются неподтверждённые изменения.</translation>
     </message>
 </context>
 <context>
@@ -1016,7 +1016,7 @@ but it&apos;s okay to use it.</source>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&amp;lt;p&amp;gt;When editing a cell which used to have NULL value and entering empty string as new value, then this option determinates whether the new value should remain NULL (have this option enabled), or should it be overwritten with empty string value (have this option disabled).&amp;lt;/p&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&amp;lt;p&amp;gt;Если редактируется ячейка, содержащая NULL, и вводится пустая строка в качестве значения, то эта опция определяет, останется ли в качестве значения ячейки NULL (если опция активирована), или значение будет заменено на пустую строку (если эта опция деактивирована).&amp;lt;/p&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&amp;lt;p&amp;gt;Если редактируется ячейка, содержащая NULL, и вводится пустая строка в качестве значения, то эта опция определяет, останется ли в качестве значения ячейки NULL (если опция активирована), или значение будет заменено на пустую строку (если эта опция деактивирована).&amp;lt;/p&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="495"/>
@@ -1025,7 +1025,7 @@ but it&apos;s okay to use it.</source>
     </message>
     <message>
         <source>General.KeepNullWhenEmptyValue</source>
-        <translation type="vanished">General.KeepNullWhenEmptyValue</translation>
+        <translation>General.KeepNullWhenEmptyValue</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="472"/>
@@ -1123,7 +1123,7 @@ but it&apos;s okay to use it.</source>
     </message>
     <message>
         <source>Don&apos;t show DDL preview dialog when commiting schema changes</source>
-        <translation type="vanished">Не показывать диалог предпросмотра DDL при подтверждении изменений схемы</translation>
+        <translation>Не показывать диалог предпросмотра DDL при подтверждении изменений схемы</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="808"/>
@@ -1305,17 +1305,17 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="492"/>
         <source>&lt;p&gt;When editing a cell which used to have NULL value and entering empty string as new value, then this option determinates whether the new value should remain NULL (have this option enabled), or should it be overwritten with empty string value (have this option disabled).&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Если редактируется ячейка, содержащая NULL, и вводится пустая строка в качестве значения, то эта опция определяет, останется ли в качестве значения ячейки NULL (если опция активирована), или значение будет заменено на пустую строку (если эта опция деактивирована).&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="505"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when committing a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is committed for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Активируйте эту опцию, чтобы всегда подставлять значение DEFAULT (значение по умолчанию) при записи NULL в столбец, у которого определено значение DEFAULT, даже если столбец может содержать NULL.&lt;/p&gt;&lt;p&gt;Отключите эту опцию для подстановки значения DEFAULT только в случае записи NULL в столбец с ограничением NOT NULL.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="508"/>
         <source>Use DEFAULT value (if defined), when committing NULL value</source>
-        <translation type="unfinished"></translation>
+        <translation>Использовать значение DEFAULT (если оно определено) при записи NULL</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="572"/>
@@ -1348,7 +1348,7 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="795"/>
         <source>Don&apos;t show DDL preview dialog when committing schema changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Не показывать диалог предпросмотра DDL при подтверждении изменений схемы</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1086"/>
@@ -1508,29 +1508,29 @@ but it&apos;s okay to use it.</source>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1952"/>
         <source>&lt;p&gt;Any data changes will be outlined with this color, until they&apos;re committed to the database.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Все изменения данных будут обрамлены этим цветом, пока не будут записаны в базу данных.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1955"/>
         <source>Uncommitted data outline color</source>
-        <translation type="unfinished"></translation>
+        <translation>Цвет обрамления неподтверждённых изменений</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1978"/>
         <source>&lt;p&gt;In case of error while committing data changes, the problematic cell will be outlined with this color.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;В случае ошибки при подтверждении изменений данных, этим цветом будут обрамлены проблемные ячейки.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>&lt;p&gt;Any data changes will be outlined with this color, until they&apos;re commited to the database.&lt;/p&gt;</source>
-        <translation type="vanished">&lt;p&gt;Все изменения данных будут обрамлены этим цветом, пока не будут записаны в базу данных.&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;Все изменения данных будут обрамлены этим цветом, пока не будут записаны в базу данных.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Uncommited data outline color</source>
-        <translation type="vanished">Цвет обрамления неподтверждённых изменений</translation>
+        <translation>Цвет обрамления неподтверждённых изменений</translation>
     </message>
     <message>
         <source>&lt;p&gt;In case of error while commiting data changes, the problematic cell will be outlined with this color.&lt;/p&gt;</source>
-        <translation type="vanished">&lt;p&gt;В случае ошибки при подтверждении изменений данных, этим цветом будут обрамлены проблемные ячейки.&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;В случае ошибки при подтверждении изменений данных, этим цветом будут обрамлены проблемные ячейки.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1981"/>
@@ -2071,7 +2071,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     </message>
     <message>
         <source>Generate automatically</source>
-        <translation type="vanished">Сгенерировать автоматически</translation>
+        <translation>Сгенерировать автоматически</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.ui" line="91"/>
@@ -2118,7 +2118,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     </message>
     <message>
         <source>Generate name basing on file path</source>
-        <translation type="vanished">Генерировать имя на основе пути к файлу</translation>
+        <translation>Генерировать имя на основе пути к файлу</translation>
     </message>
     <message>
         <source>Permanent</source>
@@ -2176,7 +2176,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     </message>
     <message>
         <source>Auto-generated</source>
-        <translation type="vanished">Автоматически сгенерировано</translation>
+        <translation>Автоматически сгенерировано</translation>
     </message>
     <message>
         <source>The name will be auto-generated</source>
@@ -2184,7 +2184,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     </message>
     <message>
         <source>Type the name</source>
-        <translation type="vanished">Введите имя</translation>
+        <translation>Введите имя</translation>
     </message>
 </context>
 <context>
@@ -2543,12 +2543,12 @@ All objects from this group will be moved to parent group.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1508"/>
         <source>Autoincrement value for table &apos;%1&apos; has been reset successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Сброс счётчика автоинкремента у таблицы &apos;%1&apos; успешно выполнен.</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1528"/>
         <source>Are you sure you want to delete all data from table(s): %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы действительно хотите удалить все данные из таблицы (таблиц): &apos;%1&apos;?</translation>
     </message>
     <message>
         <source>Delete database</source>
@@ -2600,11 +2600,11 @@ All objects from this group will be moved to parent group.</source>
     </message>
     <message>
         <source>Autoincrement value for table &apos;%1&apos; has been reset successfly.</source>
-        <translation type="vanished">Сброс счётчика автоинкремента у таблицы &apos;%1&apos; успешно выполнен.</translation>
+        <translation>Сброс счётчика автоинкремента у таблицы &apos;%1&apos; успешно выполнен.</translation>
     </message>
     <message>
         <source>Are you sure you want to delete all data from table &apos;%1&apos;?</source>
-        <translation type="vanished">Вы действительно хотите удалить все данные из таблицы &apos;%1&apos;?</translation>
+        <translation>Вы действительно хотите удалить все данные из таблицы &apos;%1&apos;?</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1541"/>
@@ -2981,11 +2981,11 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/editorwindow.cpp" line="676"/>
         <source>Editor window &quot;%1&quot; has uncommitted data.</source>
-        <translation type="unfinished"></translation>
+        <translation>В окне редактора &quot;%1&quot; имеются неподтверждённые данные.</translation>
     </message>
     <message>
         <source>Editor window &quot;%1&quot; has uncommited data.</source>
-        <translation type="vanished">В окне редактора &quot;%1&quot; имеются неподтверждённые данные.</translation>
+        <translation>В окне редактора &quot;%1&quot; имеются неподтверждённые данные.</translation>
     </message>
 </context>
 <context>
@@ -3442,11 +3442,11 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
         <location filename="../windows/functionseditor.cpp" line="631"/>
         <source>Functions editor window has uncommitted modifications.</source>
-        <translation type="unfinished"></translation>
+        <translation>В окне редактора функций имеются неподтверждённые изменения.</translation>
     </message>
     <message>
         <source>Functions editor window has uncommited modifications.</source>
-        <translation type="vanished">В окне редактора функций имеются неподтверждённые изменения.</translation>
+        <translation>В окне редактора функций имеются неподтверждённые изменения.</translation>
     </message>
 </context>
 <context>
@@ -4046,12 +4046,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <name>MdiWindow</name>
     <message>
         <source>Uncommited changes</source>
-        <translation type="vanished">Неподтверждённые изменения</translation>
+        <translation>Неподтверждённые изменения</translation>
     </message>
     <message>
         <location filename="../mdiwindow.cpp" line="199"/>
         <source>Uncommitted changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Неподтверждённые изменения</translation>
     </message>
     <message>
         <location filename="../mdiwindow.cpp" line="204"/>
@@ -4983,12 +4983,12 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <name>QuitConfirmDialog</name>
     <message>
         <source>Uncommited changes</source>
-        <translation type="vanished">Неподтверждённые изменения</translation>
+        <translation>Неподтверждённые изменения</translation>
     </message>
     <message>
         <location filename="../dialogs/quitconfirmdialog.ui" line="14"/>
         <source>Uncommitted changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Неподтверждённые изменения</translation>
     </message>
     <message>
         <location filename="../dialogs/quitconfirmdialog.ui" line="20"/>
@@ -5292,7 +5292,7 @@ find next</source>
     </message>
     <message>
         <source>This cell is not editable, because: %1</source>
-        <translation type="vanished">Эта ячейка нередактируема, причина: %1</translation>
+        <translation>Эта ячейка нередактируема, причина: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryitem.cpp" line="423"/>
@@ -5304,7 +5304,7 @@ find next</source>
     <name>SqlQueryItemDelegate</name>
     <message>
         <source>Cannot edit this cell. Details: %2</source>
-        <translation type="vanished">Невозможно редактировать данную ячейку. Подробности: %2</translation>
+        <translation>Невозможно редактировать данную ячейку. Подробности: %2</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="53"/>
@@ -5318,18 +5318,18 @@ find next</source>
         <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="341"/>
         <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="361"/>
         <source>Cannot edit this cell. Details: %1</source>
-        <translation type="unfinished">Невозможно редактировать данную ячейку. Подробности: %1</translation>
+        <translation>Невозможно редактировать данную ячейку. Подробности: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="65"/>
         <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="361"/>
         <source>Structure of this table has changed since last data was loaded. Reload the data to proceed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Структура этой таблицы изменилась с момента последней загрузки данных. Перезагрузите данные для продолжения.</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="204"/>
         <source>Editing a huge contents in an inline cell editor is not a good idea. It can become slow and inconvenient. It&apos;s better to edit such big contents in a Form View, or in popup editor (available under rick-click menu).</source>
-        <translation type="unfinished"></translation>
+        <translation>Редактирование значений большой длины непосредственно в табличном режиме не рекомендуется. Возможны проблемы с производительностью и удобством работы. Для работы с такими большими значениями рекомендуется использовать режим формы либо отдельное окно редактирования значения (доступно в контекстном меню по щелчку правой кнопкой мыши).</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="353"/>
@@ -5347,11 +5347,11 @@ find next</source>
     </message>
     <message>
         <source>Uncommited data</source>
-        <translation type="vanished">Неподтверждённые данные</translation>
+        <translation>Неподтверждённые данные</translation>
     </message>
     <message>
         <source>There are uncommited data changes. Do you want to proceed anyway? All uncommited changes will be lost.</source>
-        <translation type="vanished">Имеются неподтверждённые изменения данных. Вы действительно хотите продолжить? Все неподтверждённые изменения будут утеряны.</translation>
+        <translation>Имеются неподтверждённые изменения данных. Вы действительно хотите продолжить? Все неподтверждённые изменения будут утеряны.</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="356"/>
@@ -5365,7 +5365,7 @@ find next</source>
     </message>
     <message>
         <source>An error occurred while commiting the transaction: %1</source>
-        <translation type="vanished">При завершении транзакции возникла ошибка: %1</translation>
+        <translation>При завершении транзакции возникла ошибка: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="435"/>
@@ -5379,27 +5379,27 @@ find next</source>
     </message>
     <message>
         <source>An error occurred while commiting the data: %1</source>
-        <translation type="vanished">При подтверждении данных произошла ошибка: %1</translation>
+        <translation>При подтверждении данных произошла ошибка: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="108"/>
         <source>Uncommitted data</source>
-        <translation type="unfinished"></translation>
+        <translation>Неподтверждённые данные</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="109"/>
         <source>There are uncommitted data changes. Do you want to proceed anyway? All uncommitted changes will be lost.</source>
-        <translation type="unfinished"></translation>
+        <translation>Имеются неподтверждённые изменения данных. Вы действительно хотите продолжить? Все неподтверждённые изменения будут утеряны.</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="410"/>
         <source>An error occurred while committing the transaction: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>При завершении транзакции возникла ошибка: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="656"/>
         <source>An error occurred while committing the data: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>При подтверждении данных произошла ошибка: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="1135"/>
@@ -5545,12 +5545,12 @@ find next</source>
     <name>SqlTableModel</name>
     <message>
         <source>Error while commiting new row: %1</source>
-        <translation type="vanished">Ошибка при подтверждении новой строки: %1</translation>
+        <translation>Ошибка при подтверждении новой строки: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqltablemodel.cpp" line="82"/>
         <source>Error while committing new row: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка при подтверждении новой строки: %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqltablemodel.cpp" line="140"/>
@@ -6078,43 +6078,44 @@ Would you like to proceed?</source>
     <message>
         <location filename="../windows/tablewindow.cpp" line="828"/>
         <source>Committed changes for table &apos;%1&apos; successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Изменения в таблицу &apos;%1&apos; внесены успешно.</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="832"/>
         <source>Committed changes for table &apos;%1&apos; (named before &apos;%2&apos;) successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Изменения в таблицу &apos;%1&apos; (предыдущее название &apos;%2&apos;) внесены успешно.</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="897"/>
         <source>Autoincrement value for table &apos;%1&apos; has been reset successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Сброс счётчика автоинкремента у таблицы &apos;%1&apos; успешно выполнен.</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1270"/>
         <source>Uncommitted changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Неподтверждённые изменения</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1271"/>
         <source>There are uncommitted structure modifications. You cannot browse or edit data until you have table structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-        <translation type="unfinished"></translation>
+        <translation>Имеются неподтверждённые изменения структуры. Невозможно просматривать или редактировать данные, пока структура таблицы не подтверждена.
+Подтвердить структуру таблицы или вернуться на вкладку структуры?</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1616"/>
         <source>Table window &quot;%1&quot; has uncommitted structure modifications and data.</source>
-        <translation type="unfinished"></translation>
+        <translation>В окне таблицы &quot;%1&quot; имеются неподтверждённые изменения структуры и данных.</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1618"/>
         <source>Table window &quot;%1&quot; has uncommitted data.</source>
-        <translation type="unfinished"></translation>
+        <translation>В окне таблицы &quot;%1&quot; имеются неподтверждённые изменения данных.</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1620"/>
         <source>Table window &quot;%1&quot; has uncommitted structure modifications.</source>
-        <translation type="unfinished"></translation>
+        <translation>В окне таблицы &quot;%1&quot; имеются неподтверждённые изменения структуры.</translation>
     </message>
     <message>
         <source>Could not restore window, because database %1 could not be resolved.</source>
@@ -6132,11 +6133,11 @@ Do you want to commit the structure, or do you want to go back to the structure 
     </message>
     <message>
         <source>Commited changes for table &apos;%1&apos; successfly.</source>
-        <translation type="vanished">Изменения в таблицу &apos;%1&apos; внесены успешно.</translation>
+        <translation>Изменения в таблицу &apos;%1&apos; внесены успешно.</translation>
     </message>
     <message>
         <source>Commited changes for table &apos;%1&apos; (named before &apos;%2&apos;) successfly.</source>
-        <translation type="vanished">Изменения в таблицу &apos;%1&apos; (предыдущее название &apos;%2&apos;) внесены успешно.</translation>
+        <translation>Изменения в таблицу &apos;%1&apos; (предыдущее название &apos;%2&apos;) внесены успешно.</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="866"/>
@@ -6161,7 +6162,7 @@ Do you want to commit the structure, or do you want to go back to the structure 
     </message>
     <message>
         <source>Autoincrement value for table &apos;%1&apos; has been reset successfly.</source>
-        <translation type="vanished">Сброс счётчика автоинкремента у таблицы &apos;%1&apos; успешно выполнен.</translation>
+        <translation>Сброс счётчика автоинкремента у таблицы &apos;%1&apos; успешно выполнен.</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="977"/>
@@ -6214,12 +6215,12 @@ Are you sure you want to create a table with blank name?</source>
     </message>
     <message>
         <source>Uncommited changes</source>
-        <translation type="vanished">Неподтверждённые изменения</translation>
+        <translation>Неподтверждённые изменения</translation>
     </message>
     <message>
         <source>There are uncommited structure modifications. You cannot browse or edit data until you have table structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-        <translation type="vanished">Имеются неподтверждённые изменения структуры. Невозможно просматривать или редактировать данные, пока структура таблицы не подтверждена.
+        <translation>Имеются неподтверждённые изменения структуры. Невозможно просматривать или редактировать данные, пока структура таблицы не подтверждена.
 Подтвердить структуру таблицы или вернуться на вкладку структуры?</translation>
     </message>
     <message>
@@ -6282,15 +6283,15 @@ Do you want to commit the structure, or do you want to go back to the structure 
     </message>
     <message>
         <source>Table window &quot;%1&quot; has uncommited structure modifications and data.</source>
-        <translation type="vanished">В окне таблицы &quot;%1&quot; имеются неподтверждённые изменения структуры и данных.</translation>
+        <translation>В окне таблицы &quot;%1&quot; имеются неподтверждённые изменения структуры и данных.</translation>
     </message>
     <message>
         <source>Table window &quot;%1&quot; has uncommited data.</source>
-        <translation type="vanished">В окне таблицы &quot;%1&quot; имеются неподтверждённые изменения данных.</translation>
+        <translation>В окне таблицы &quot;%1&quot; имеются неподтверждённые изменения данных.</translation>
     </message>
     <message>
         <source>Table window &quot;%1&quot; has uncommited structure modifications.</source>
-        <translation type="vanished">В окне таблицы &quot;%1&quot; имеются неподтверждённые изменения структуры.</translation>
+        <translation>В окне таблицы &quot;%1&quot; имеются неподтверждённые изменения структуры.</translation>
     </message>
 </context>
 <context>
@@ -6308,12 +6309,12 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
         <location filename="../dialogs/triggercolumnsdialog.ui" line="115"/>
         <source>Select all</source>
-        <translation type="unfinished"></translation>
+        <translation>Выделить всё</translation>
     </message>
     <message>
         <location filename="../dialogs/triggercolumnsdialog.ui" line="128"/>
         <source>Deselect all</source>
-        <translation type="unfinished">Снять выделение</translation>
+        <translation>Снять выделение</translation>
     </message>
 </context>
 <context>
@@ -6599,50 +6600,51 @@ Do you want to commit the structure, or do you want to go back to the structure 
     <message>
         <location filename="../windows/viewwindow.cpp" line="361"/>
         <source>View window &quot;%1&quot; has uncommitted structure modifications and data.</source>
-        <translation type="unfinished"></translation>
+        <translation>В окне представления &quot;%1&quot; имеются неподтверждённые изменения структуры и данных.</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="363"/>
         <source>View window &quot;%1&quot; has uncommitted data.</source>
-        <translation type="unfinished"></translation>
+        <translation>В окне представления &quot;%1&quot; имеются неподтверждённые изменения данных.</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="365"/>
         <source>View window &quot;%1&quot; has uncommitted structure modifications.</source>
-        <translation type="unfinished"></translation>
+        <translation>В окне представления &quot;%1&quot; имеются неподтверждённые изменения структуры.</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="574"/>
         <source>Uncommitted changes</source>
-        <translation type="unfinished"></translation>
+        <translation>Неподтверждённые изменения</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="575"/>
         <source>There are uncommitted structure modifications. You cannot browse or edit data until you have the view structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-        <translation type="unfinished"></translation>
+        <translation>Имеются неподтверждённые изменения структуры. Невозможно просматривать или редактировать данные, пока структура представления не подтверждена.
+Подтвердить структуру представления или вернуться на вкладку структуры?</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="629"/>
         <source>Committed changes for view &apos;%1&apos; successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Изменения в представление &apos;%1&apos; внесены успешно.</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="631"/>
         <source>Committed changes for view &apos;%1&apos; (named before &apos;%2&apos;) successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Изменения в таблицу &apos;%1&apos; (предыдущее название &apos;%2&apos;) внесены успешно.</translation>
     </message>
     <message>
         <source>View window &quot;%1&quot; has uncommited structure modifications and data.</source>
-        <translation type="vanished">В окне представления &quot;%1&quot; имеются неподтверждённые изменения структуры и данных.</translation>
+        <translation>В окне представления &quot;%1&quot; имеются неподтверждённые изменения структуры и данных.</translation>
     </message>
     <message>
         <source>View window &quot;%1&quot; has uncommited data.</source>
-        <translation type="vanished">В окне представления &quot;%1&quot; имеются неподтверждённые изменения данных.</translation>
+        <translation>В окне представления &quot;%1&quot; имеются неподтверждённые изменения данных.</translation>
     </message>
     <message>
         <source>View window &quot;%1&quot; has uncommited structure modifications.</source>
-        <translation type="vanished">В окне представления &quot;%1&quot; имеются неподтверждённые изменения структуры.</translation>
+        <translation>В окне представления &quot;%1&quot; имеются неподтверждённые изменения структуры.</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="562"/>
@@ -6651,12 +6653,12 @@ Do you want to commit the structure, or do you want to go back to the structure 
     </message>
     <message>
         <source>Uncommited changes</source>
-        <translation type="vanished">Неподтверждённые изменения</translation>
+        <translation>Неподтверждённые изменения</translation>
     </message>
     <message>
         <source>There are uncommited structure modifications. You cannot browse or edit data until you have the view structure settled.
 Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-        <translation type="vanished">Имеются неподтверждённые изменения структуры. Невозможно просматривать или редактировать данные, пока структура представления не подтверждена.
+        <translation>Имеются неподтверждённые изменения структуры. Невозможно просматривать или редактировать данные, пока структура представления не подтверждена.
 Подтвердить структуру представления или вернуться на вкладку структуры?</translation>
     </message>
     <message>
@@ -6671,11 +6673,11 @@ Do you want to commit the structure, or do you want to go back to the structure 
     </message>
     <message>
         <source>Commited changes for view &apos;%1&apos; successfly.</source>
-        <translation type="vanished">Изменения в представление &apos;%1&apos; внесены успешно.</translation>
+        <translation>Изменения в представление &apos;%1&apos; внесены успешно.</translation>
     </message>
     <message>
         <source>Commited changes for view &apos;%1&apos; (named before &apos;%2&apos;) successfly.</source>
-        <translation type="vanished">Изменения в представление &apos;%1&apos; (предыдущее название &apos;%2&apos;) внесены успешно.</translation>
+        <translation>Изменения в представление &apos;%1&apos; (предыдущее название &apos;%2&apos;) внесены успешно.</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="642"/>

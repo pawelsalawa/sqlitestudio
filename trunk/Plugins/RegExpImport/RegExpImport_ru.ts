@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ru_RU">
+<TS version="2.0" language="ru_RU">
 <context>
     <name>RegExpImport</name>
     <message>
@@ -26,7 +26,7 @@
     <message>
         <location filename="regexpimport.cpp" line="189"/>
         <source>Requested capture index %1 is out of range.</source>
-        <translation>Запрошенный индекс группы вне досягаемости.</translation>
+        <translation>Запрошенный индекс группы %1 вне досягаемости.</translation>
     </message>
     <message>
         <location filename="regexpimport.cpp" line="196"/>
