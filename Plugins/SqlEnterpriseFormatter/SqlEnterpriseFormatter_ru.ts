@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ru_RU">
+<TS version="2.0" language="ru_RU">
 <context>
     <name>QObject</name>
     <message>
@@ -147,7 +147,7 @@
     <message>
         <location filename="sqlenterpriseformatter.ui" line="452"/>
         <source>No space between SQL function name and opening parenthesis</source>
-        <translation>Не ставить пробел между именем функции SQL и открывающкй скобкой</translation>
+        <translation>Не ставить пробел между именем функции SQL и открывающей скобкой</translation>
     </message>
     <message>
         <location filename="sqlenterpriseformatter.ui" line="462"/>
