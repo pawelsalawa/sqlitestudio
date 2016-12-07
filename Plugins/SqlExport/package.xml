@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Package>
+    <DisplayName>SQL export plugin</DisplayName>
+    <Description>Plugin for exporting schema and data into SQL/DDL format.</Description>
+    <Version>%VERSION%</Version>
+    <ReleaseDate>%DATE%</ReleaseDate>
+    <Name>pl.com.salsoft.sqlitestudio.plugins.sqlexport</Name>
+    <Dependencies>pl.com.salsoft.sqlitestudio.plugins</Dependencies>
+    <Default>true</Default>
+</Package>

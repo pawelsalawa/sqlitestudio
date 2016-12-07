@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Package>
+    <DisplayName>Printing plugin</DisplayName>
+    <Description>Plugin for printing schema, data and queries out of SQLiteStudio.</Description>
+    <Version>%VERSION%</Version>
+    <ReleaseDate>%DATE%</ReleaseDate>
+    <Name>pl.com.salsoft.sqlitestudio.plugins.printing</Name>
+    <Dependencies>pl.com.salsoft.sqlitestudio.plugins,pl.com.salsoft.sqlitestudio.plugins.pdfexport</Dependencies>
+    <Default>true</Default>
+</Package>

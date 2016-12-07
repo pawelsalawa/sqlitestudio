@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Package>
+    <DisplayName>SQL simple formatter plugin</DisplayName>
+    <Description>Plugin for limited SQL formatting - only keywords and some of whitespaces. For better experience the enterprise SQL formatter plugin is recommended.</Description>
+    <Version>%VERSION%</Version>
+    <ReleaseDate>%DATE%</ReleaseDate>
+    <Name>pl.com.salsoft.sqlitestudio.plugins.sqlformattersimple</Name>
+    <Dependencies>pl.com.salsoft.sqlitestudio.plugins</Dependencies>
+    <Default>true</Default>
+</Package>
