@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Package>
+    <DisplayName>SQL enterprise formatter plugin</DisplayName>
+    <Description>Plugin for advanced, highly customizable SQL formatting.</Description>
+    <Version>%VERSION%</Version>
+    <ReleaseDate>%DATE%</ReleaseDate>
+    <Name>pl.com.salsoft.sqlitestudio.plugins.sqlenterpriseformatter</Name>
+    <Dependencies>pl.com.salsoft.sqlitestudio.plugins</Dependencies>
+    <Default>true</Default>
+</Package>

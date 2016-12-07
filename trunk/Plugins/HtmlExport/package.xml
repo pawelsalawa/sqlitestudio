@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Package>
+    <DisplayName>HTML Export plugin</DisplayName>
+    <Description>Plugin for exporting into HTML format.</Description>
+    <Version>%VERSION%</Version>
+    <ReleaseDate>%DATE%</ReleaseDate>
+    <Name>pl.com.salsoft.sqlitestudio.plugins.htmlexport</Name>
+    <Dependencies>pl.com.salsoft.sqlitestudio.plugins</Dependencies>
+    <Default>true</Default>
+</Package>

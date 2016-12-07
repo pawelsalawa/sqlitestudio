@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<Package>
+    <DisplayName>SQLiteStudio</DisplayName>
+    <Description>SQLiteStudio core application</Description>
+    <Version>%VERSION%</Version>
+    <ReleaseDate>%DATE%</ReleaseDate>
+    <Name>pl.com.salsoft.sqlitestudio</Name>
+    <Dependencies>io.qt</Dependencies>
+    <Licenses>
+    </Licenses>
+    <Default>true</Default>
+    <ForcedInstallation>true</ForcedInstallation>
+</Package>

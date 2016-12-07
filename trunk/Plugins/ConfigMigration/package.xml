@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Package>
+    <DisplayName>Configuration migration plugin</DisplayName>
+    <Description>Plugin for migrating old SQLiteStudio 2.x.x configuration to current version.</Description>
+    <Version>%VERSION%</Version>
+    <ReleaseDate>%DATE%</ReleaseDate>
+    <Name>pl.com.salsoft.sqlitestudio.plugins.configmigration</Name>
+    <Dependencies>pl.com.salsoft.sqlitestudio.plugins</Dependencies>
+    <Default>true</Default>
+</Package>

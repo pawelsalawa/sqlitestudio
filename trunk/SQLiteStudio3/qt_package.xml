@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Package>
+    <DisplayName>Qt</DisplayName>
+    <Description>Qt framework</Description>
+    <Version>%VERSION%</Version>
+    <ReleaseDate>%DATE%</ReleaseDate>
+    <Name>io.qt</Name>
+    <Virtual>true</Virtual>
+    <ForcedInstallation>true</ForcedInstallation>
+</Package>
