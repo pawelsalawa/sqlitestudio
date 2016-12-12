@@ -345,6 +345,7 @@ void SQLiteStudio::initPlugins()
 
 void SQLiteStudio::cleanUp()
 {
+    emit aboutToQuit();
     disconnect(pluginManager, SIGNAL(aboutToUnload(Plugin*,PluginType*)), this, SLOT(pluginToBeUnloaded(Plugin*,PluginType*)));
     disconnect(pluginManager, SIGNAL(unloaded(QString,PluginType*)), this, SLOT(pluginUnloaded(QString,PluginType*)));
     if (!immediateQuit)

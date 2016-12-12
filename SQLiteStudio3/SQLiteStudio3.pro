@@ -14,9 +14,6 @@ cli.depends = core
 gui_app.subdir = sqlitestudio
 gui_app.depends = gui
 
-update_app.subdir = UpdateSQLiteStudio
-update_app.depends = core
-
 SUBDIRS += \
     core \
     gui \
@@ -28,11 +25,6 @@ if(contains(DEFINES,tests)) {
 }
 
 OUTPUT_DIR_NAME = output
-
-win32: {
-    SUBDIRS += update_app
-}
-
 
 macx: {
     bundle.commands = sh $$PWD/create_macosx_bundle.sh $$PWD/../$$OUTPUT_DIR_NAME $$QMAKE_QMAKE

@@ -228,7 +228,8 @@ SOURCES += sqlitestudio.cpp \
     common/private/blockingsocketprivate.cpp \
     querygenerator.cpp \
     common/bistrhash.cpp \
-    plugins/dbpluginstdfilebase.cpp
+    plugins/dbpluginstdfilebase.cpp \
+    common/xmldeserializer.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -425,7 +426,8 @@ HEADERS += sqlitestudio.h\
     parser/ast/sqliteextendedindexedcolumn.h \
     querygenerator.h \
     common/sortedset.h \
-    plugins/dbpluginstdfilebase.h
+    plugins/dbpluginstdfilebase.h \
+    common/xmldeserializer.h
 
 unix: {
     target.path = $$LIBDIR

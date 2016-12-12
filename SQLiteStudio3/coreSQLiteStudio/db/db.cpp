@@ -5,10 +5,12 @@
 
 Db::Db()
 {
+//    qDebug() << "Db::Db()" << this;
 }
 
 Db::~Db()
 {
+//    qDebug() << "Db::~Db()" << this;
 }
 
 void Db::metaInit()

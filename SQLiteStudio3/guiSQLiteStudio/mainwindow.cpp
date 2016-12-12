@@ -65,7 +65,7 @@ MainWindow::~MainWindow()
 void MainWindow::init()
 {
     ui->setupUi(this);
-    connect(qApp, SIGNAL(aboutToQuit()), this, SLOT(cleanUp()));
+    connect(SQLITESTUDIO, SIGNAL(aboutToQuit()), this, SLOT(cleanUp()));
 
 #ifdef Q_OS_WIN
     setWindowIcon(ICONS.SQLITESTUDIO_APP.toQIcon().pixmap(256, 256));
@@ -130,32 +130,6 @@ void MainWindow::init()
 #endif
     connect(statusField, SIGNAL(linkActivated(QString)), this, SLOT(statusFieldLinkClicked(QString)));
 
-    // Widget cover
-    widgetCover = new WidgetCover(this);
-    widgetCover->setVisible(false);
-
-    updatingBusyBar = new QProgressBar();
-    updatingBusyBar->setRange(0, 100);
-    updatingBusyBar->setTextVisible(true);
-    updatingBusyBar->setValue(0);
-    updatingBusyBar->setFixedWidth(300);
-
-    updatingSubBar = new QProgressBar();
-    updatingSubBar->setRange(0, 100);
-    updatingSubBar->setTextVisible(true);
-    updatingSubBar->setValue(0);
-    updatingSubBar->setFixedWidth(300);
-
-    updatingLabel = new QLabel();
-
-    widgetCover->getContainerLayout()->addWidget(updatingLabel, 0, 0);
-    widgetCover->getContainerLayout()->addWidget(updatingBusyBar, 1, 0);
-    widgetCover->getContainerLayout()->addWidget(updatingSubBar, 2, 0);
-#ifdef PORTABLE_CONFIG
-    connect(UPDATES, SIGNAL(updatingProgress(QString,int,int)), this, SLOT(handleUpdatingProgress(QString,int,int)));
-    connect(UPDATES, SIGNAL(updatingError(QString)), this, SLOT(handleUpdatingError()));
-#endif
-
     connect(CFG_CORE.General.Language, SIGNAL(changed(QVariant)), this, SLOT(notifyAboutLanguageChange()));
 
     fixFonts();
@@ -166,6 +140,7 @@ void MainWindow::cleanUp()
     if (SQLITESTUDIO->getImmediateQuit())
         return;
 
+//    qDebug() << "MainWindow::cleanUp()";
     for (MdiWindow* win : getMdiArea()->getWindows())
         delete win;
 
@@ -816,23 +791,9 @@ void MainWindow::noUpdatesAvailable()
 void MainWindow::checkForUpdates()
 {
     manualUpdatesChecking = true;
-    UPDATES->checkForUpdates(true);
+    UPDATES->checkForUpdates();
 }
 
-void MainWindow::handleUpdatingProgress(const QString& jobTitle, int jobPercent, int totalPercent)
-{
-    if (!widgetCover->isVisible())
-        widgetCover->show();
-
-    updatingLabel->setText(jobTitle);
-    updatingBusyBar->setValue(totalPercent);
-    updatingSubBar->setValue(jobPercent);
-}
-
-void MainWindow::handleUpdatingError()
-{
-    widgetCover->hide();
-}
 #endif
 
 void MainWindow::updateCornerDocking()
