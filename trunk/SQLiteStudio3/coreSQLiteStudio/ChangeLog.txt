@@ -1,3 +1,6 @@
+[3.2.0]
+        * [BUGFIX]: Fixed random crashes at application close (when saving session). Most frequend on Windows platform.
+
 [3.1.1]
         * [ADDED]: WxSQLite3 plugin (with encryption support).
         * [ADDED]: System.Data.SQLite plugin (ADO.NET, includes encryption support).

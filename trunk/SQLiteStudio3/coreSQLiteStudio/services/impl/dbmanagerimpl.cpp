@@ -23,6 +23,7 @@ DbManagerImpl::DbManagerImpl(QObject *parent) :
 
 DbManagerImpl::~DbManagerImpl()
 {
+//    qDebug() << "DbManagerImpl::~DbManagerImpl()";
     foreach (Db* db, dbList)
     {
         disconnect(db, SIGNAL(disconnected()), this, SLOT(dbDisconnectedSlot()));

@@ -29,6 +29,10 @@ linux|portable {
     QMAKE_LFLAGS += -Wl,-rpath,./lib
 }
 
+portable {
+    DEFINES += PORTABLE_CONFIG
+}
+
 LIBS += -lcoreSQLiteStudio -lguiSQLiteStudio
 
 SOURCES += main.cpp

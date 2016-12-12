@@ -81,18 +81,24 @@ proc defineGlobalVars {} {
 			set ::wizardStyle "Mac"
 			set ::initialTargetDir "/Applications/SQLiteStudio.app"
 			set ::libExt "dylib"
+			set ::updateArch "macosx"
+			set ::startApp "SQLiteStudio.app"
 		}
 		"win32" {
 			set ::finalExecutable "SQLiteStudio.exe"
 			set ::wizardStyle "Modern"
 			set ::initialTargetDir "C:\\Program Files\\SQLiteStudio"
 			set ::libExt "dll"
+			set ::updateArch "windows"
+			set ::startApp "SQLiteStudio.exe"
 			set qtCoreFile "$::portableDir/SQLiteStudio/Qt5Core.dll"
 		}
 		default {
 			set ::finalExecutable "sqlitestudio"
 			set ::wizardStyle "Modern"
 			set ::initialTargetDir "/opt/SQLiteStudio"
+			set ::updateArch "linux"
+			set ::startApp "SQLiteStudio"
 			set ::libExt "so"
 		}
 	}
@@ -101,6 +107,8 @@ proc defineGlobalVars {} {
 	set verFile "../../SQLiteStudio3/coreSQLiteStudio/sqlitestudio.cpp"
 	set fd [open $verFile r]
 	set ver [lindex [regexp -inline {int\s+sqlitestudioVersion\s*\=\s*(\d+)} [read $fd]] 1]
+	######################################################################################### VER +1
+	#incr ver
 	set ::sqliteStudioVersion [toVersion $ver]
 	set data [read $fd]
 	close $fd
@@ -111,9 +119,14 @@ proc defineGlobalVars {} {
 	set data [read $fd]
 	close $fd
 	set ::qtVer [lindex [regexp -inline -- {Qt\s+(\d\.\d{1,2}\.\d{1,2})} $data] 1]
+	######################################################################################### VER +1
+	#set ::qtVer 6.0.0
 
 	# Output binary
-	set ::output [file normalize $::targetDir/../InstallSQLiteStudio-${::sqliteStudioVersion}.exe]
+	set ::output [file normalize $::targetDir/InstallSQLiteStudio-${::sqliteStudioVersion}.exe]
+
+	# Repository
+	set ::repoDir [file normalize $::targetDir/REPO]
 }
 
 proc toVersion {ver} {
@@ -133,8 +146,7 @@ proc mapFile {f props} {
 }
 
 proc initDirs {targetDir} {
-	file delete -force $::output
-	file delete -force $targetDir
+	file delete -force $::output $::repoDir $targetDir
 	file mkdir $targetDir $targetDir/config $targetDir/packages
 }
 
@@ -184,12 +196,18 @@ proc copyConfig {targetDir} {
 		file copy config/$f $targetDir/config/
 	}
 
-	mapFile $targetDir/config/config.xml [list %SQLITESTUDIO_VERSION% $::sqliteStudioVersion %FINAL_EXECUTABLE% $::finalExecutable %WIZARD_STYLE% $::wizardStyle %TARGET_DIR% $::initialTargetDir]
+	mapFile $targetDir/config/config.xml [list %SQLITESTUDIO_VERSION% $::sqliteStudioVersion %FINAL_EXECUTABLE% $::finalExecutable \
+		%WIZARD_STYLE% $::wizardStyle %TARGET_DIR% $::initialTargetDir %UPDATE_ARCH% $::updateArch]
 }
 
 proc createOutputBinary {targetDir} {
 	puts "Creating installer binary: $::output"
 	exec binarycreator -f -p $targetDir/packages -c $targetDir/config/config.xml $::output
+}
+
+proc createOutputRepo {targetDir} {
+	puts "Creating update repository: $::repoDir"
+	exec repogen -p $targetDir/packages $::repoDir
 }
 
 proc readPluginVersion {path} {
@@ -208,6 +226,8 @@ proc collectPlugins {} {
 	foreach f $files {
 		set plugin [string range $f 0 end-$toRemove]
 		set ver [readPluginVersion ../../Plugins/$plugin/${plugin}.json]
+		######################################################################################### VER +1
+		#set ver 9.9.9
 		lappend ::plugins [dict create name $plugin version $ver]
 	}
 }
@@ -260,8 +280,8 @@ proc copyPluginPkgs {targetDir} {
 	}
 }
 
-if {$argc < 1} {
-	puts stderr "Specify target dir."
+if {$argc < 1 || $argc > 2} {
+	puts stderr "Usage: $argv0 <installer output dir> \[--repo]"
 	exit 1
 }
 
@@ -283,3 +303,7 @@ copyMainPkg $targetDir
 copyQtPkg $targetDir
 copyPluginPkgs $targetDir
 createOutputBinary $targetDir
+
+if {$argc >= 2 && [lindex $argv 1] == "--repo"} {
+	createOutputRepo $targetDir
+}

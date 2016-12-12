@@ -27,6 +27,10 @@ linux {
     }
 }
 
+portable {
+    DEFINES += PORTABLE_CONFIG
+}
+
 TRANSLATIONS += translations/sqlitestudiocli_ro_RO.ts \
 		translations/sqlitestudiocli_de.ts \
 		translations/sqlitestudiocli_it.ts \

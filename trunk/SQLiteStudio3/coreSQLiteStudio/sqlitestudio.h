@@ -238,6 +238,9 @@ class API_EXPORT SQLiteStudio : public QObject
          * Doesn't change list of available formatters, but reads new selected formatters from config.
          */
         void updateCurrentCodeFormatter();
+
+    signals:
+        void aboutToQuit();
 };
 
 /**

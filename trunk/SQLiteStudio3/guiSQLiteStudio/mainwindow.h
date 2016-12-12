@@ -168,9 +168,6 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         QPointer<NewVersionDialog> newVersionDialog;
 #endif
         WidgetCover* widgetCover = nullptr;
-        QLabel* updatingLabel = nullptr;
-        QProgressBar* updatingBusyBar = nullptr;
-        QProgressBar* updatingSubBar = nullptr;
         bool manualUpdatesChecking = false;
 
     public slots:
@@ -210,8 +207,6 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void updatesAvailable(const QList<UpdateManager::UpdateEntry>& updates);
         void noUpdatesAvailable();
         void checkForUpdates();
-        void handleUpdatingProgress(const QString& jobTitle, int jobPercent, int totalPercent);
-        void handleUpdatingError();
 #endif
         void statusFieldLinkClicked(const QString& link);
 };

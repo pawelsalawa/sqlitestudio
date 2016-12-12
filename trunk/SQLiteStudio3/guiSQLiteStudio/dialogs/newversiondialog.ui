@@ -72,11 +72,6 @@
      </column>
      <column>
       <property name="text">
-       <string>Current version</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
        <string>Update version</string>
       </property>
      </column>
