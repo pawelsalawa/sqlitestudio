@@ -435,11 +435,7 @@
     <message>
         <location filename="../windows/collationseditor.cpp" line="388"/>
         <source>Collations editor window has uncommitted modifications.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Collations editor window has uncommited modifications.</source>
-        <translation type="vanished">L’éditeur de regroupement n’as pas enregistré les modifications.</translation>
+        <translation type="unfinished">L’éditeur de regroupement n’as pas enregistré les modifications.</translation>
     </message>
 </context>
 <context>
@@ -1079,10 +1075,6 @@ mais c’est OK pour l’utiliser.</translation>
         <translation>Dimension de l’historique DDL :</translation>
     </message>
     <message>
-        <source>Don&apos;t show DDL preview dialog when commiting schema changes</source>
-        <translation type="vanished">Ne pas montrer la présualisation DDL pendant l’enregistrement du schéma modifié</translation>
-    </message>
-    <message>
         <location filename="../dialogs/configdialog.ui" line="808"/>
         <source>SQL queries</source>
         <translation>Requêtes SQL</translation>
@@ -1170,10 +1162,6 @@ mais c’est OK pour l’utiliser.</translation>
         <translation>Utiliser la présentation compacte</translation>
     </message>
     <message>
-        <source>General.CompactLayout</source>
-        <translation type="vanished">Général.PrésentationCompacte</translation>
-    </message>
-    <message>
         <location filename="../dialogs/configdialog.ui" line="166"/>
         <location filename="../dialogs/configdialog.ui" line="239"/>
         <source>Database list</source>
@@ -1232,7 +1220,7 @@ mais c’est OK pour l’utiliser.</translation>
     <message>
         <location filename="../dialogs/configdialog.ui" line="325"/>
         <source>If this option is switched off, then objects will be sorted in order they appear in sqlite_master table (which is in order they were created)</source>
-        <translation>Si cette option est déactivée, les objets seront triés pour qu’ ils apparaissent dans la table sqlite_master (dans l’ordre de création)</translation>
+        <translation>Si cette option est désactivée, les objets seront triés pour qu’ ils apparaissent dans la table sqlite_master (dans l’ordre de création)</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="328"/>
@@ -1290,10 +1278,6 @@ mais c’est OK pour l’utiliser.</translation>
         <translation>Fenêtre de ta table</translation>
     </message>
     <message>
-        <source>When enabled, Table Windows will show up with the data tab, instead of the structure tab.</source>
-        <translation type="vanished">Lorsque c’est permis, la fenêtre des tables sera affichée avec l’onglet des données, à la place de l’onglet structure.</translation>
-    </message>
-    <message>
         <location filename="../dialogs/configdialog.ui" line="581"/>
         <source>Open Table Windows with the data tab for start</source>
         <translation>Ourerture la fenêtre de table avec l’onglet des données au départ</translation>
@@ -1302,10 +1286,6 @@ mais c’est OK pour l’utiliser.</translation>
         <location filename="../dialogs/configdialog.ui" line="607"/>
         <source>View windows</source>
         <translation>Fenêtre de vue</translation>
-    </message>
-    <message>
-        <source>When enabled, View Windows will show up with the data tab, instead of the structure tab.</source>
-        <translation type="vanished">Lorsque c’est permis, la fenêtre des vues sera affichée avec l’onglet des données, à la place de l’onglet structure.</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="616"/>
@@ -1511,18 +1491,6 @@ mais c’est OK pour l’utiliser.</translation>
         <location filename="../dialogs/configdialog.ui" line="1978"/>
         <source>&lt;p&gt;In case of error while committing data changes, the problematic cell will be outlined with this color.&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;p&gt;Any data changes will be outlined with this color, until they&apos;re commited to the database.&lt;/p&gt;</source>
-        <translation type="vanished">&lt;p&gt;Toutes les modifications de données seront écrits avec cette couleur, à l’enregistrement de la base de données.&lt;/p&gt;</translation>
-    </message>
-    <message>
-        <source>Uncommited data outline color</source>
-        <translation type="vanished">Annulation de la couleur des données</translation>
-    </message>
-    <message>
-        <source>&lt;p&gt;In case of error while commiting data changes, the problematic cell will be outlined with this color.&lt;/p&gt;</source>
-        <translation type="vanished">&lt;p&gt;En cas de l’erreur à l’enregistrement des modifications de données, la cellule problématique sera indiquée avec cette couleur.&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1981"/>
@@ -2061,10 +2029,6 @@ Browsing other pages will be possible after the row counting is done.</source>
         <translation>Pilote de base de données</translation>
     </message>
     <message>
-        <source>Generate automatically</source>
-        <translation type="vanished">Générer automatiquement</translation>
-    </message>
-    <message>
         <location filename="../dialogs/dbdialog.ui" line="91"/>
         <source>Options</source>
         <translation type="unfinished">Options</translation>
@@ -2078,14 +2042,6 @@ Browsing other pages will be possible after the row counting is done.</source>
         <location filename="../dialogs/dbdialog.ui" line="144"/>
         <source>Test connection</source>
         <translation>Tester la connexion</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Nom</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation type="vanished">Type</translation>
     </message>
     <message>
         <source>Browse for database file on local computer</source>
@@ -2108,22 +2064,10 @@ Browsing other pages will be possible after the row counting is done.</source>
         <translation>Nom (dans la liste)</translation>
     </message>
     <message>
-        <source>Generate name basing on file path</source>
-        <translation type="vanished">Génération du nom basé sur le chemin du fichier</translation>
-    </message>
-    <message>
-        <source>Permanent</source>
-        <translation type="vanished">Permanent</translation>
-    </message>
-    <message>
         <location filename="../dialogs/dbdialog.ui" line="97"/>
         <source>&lt;p&gt;Enable this if you want the database to be stored in configuration file and restored every time SQLiteStudio is started.&lt;/p&gt;</source>
         <extracomment>aasfd</extracomment>
         <translation>&lt;p&gt;Autorisez-ceci si vous voulez que la base de données soit stockée dans le fichier de configuration et restauré chaque fois SQLiteStudio est lancé.&lt;/p&gt;</translation>
-    </message>
-    <message>
-        <source>Test database connection</source>
-        <translation type="vanished">Test de connexion</translation>
     </message>
     <message>
         <location filename="../dialogs/dbdialog.cpp" line="155"/>
@@ -2164,14 +2108,6 @@ Browsing other pages will be possible after the row counting is done.</source>
         <location filename="../dialogs/dbdialog.cpp" line="524"/>
         <source>Select a database type.</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The name will be auto-generated</source>
-        <translation type="vanished">Le non sera généré automatiquement</translation>
-    </message>
-    <message>
-        <source>Type the name</source>
-        <translation type="vanished">Saississez le nom</translation>
     </message>
 </context>
 <context>
@@ -2324,7 +2260,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="117"/>
         <source>Convert database type</source>
-        <translation>Type de base de données à convertir</translation>
+        <translation>Convertir le format de base de données</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="118"/>
@@ -2334,7 +2270,7 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="119"/>
         <source>Integrity check</source>
-        <translation>Contrôle d’intégrité</translation>
+        <translation>Contrôler l’intégrité</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="120"/>
@@ -2449,12 +2385,12 @@ Browsing other pages will be possible after the row counting is done.</source>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="142"/>
         <source>Refresh all database schemas</source>
-        <translation>Actualiser tous les schémas de la base de données</translation>
+        <translation>Actualiser tous les schémas de base de données</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="143"/>
         <source>Refresh selected database schema</source>
-        <translation>Actualiser les schémas sélectionné de la base de données</translation>
+        <translation>Actualiser le schéma de base de données sélectionné</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="144"/>
@@ -2538,14 +2474,6 @@ Tous les objets de ce groupe seront déplacés dans le groupe parent.</translati
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delete database</source>
-        <translation type="vanished">Suppression de la base de données</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete database &apos;%1&apos;?</source>
-        <translation type="vanished">Êtes-vous certain de vouloir supprimer la base de données : « %1 » ?</translation>
-    </message>
-    <message>
         <location filename="../dbtree/dbtree.cpp" line="1180"/>
         <location filename="../dbtree/dbtree.cpp" line="1373"/>
         <source>Cannot import, because no import plugin is loaded.</source>
@@ -2556,14 +2484,6 @@ Tous les objets de ce groupe seront déplacés dans le groupe parent.</translati
         <location filename="../dbtree/dbtree.cpp" line="1348"/>
         <source>Cannot export, because no export plugin is loaded.</source>
         <translation>Export impossible, car aucun plugin d’import n’est chargé.</translation>
-    </message>
-    <message>
-        <source>Error while executing VACUUM on the database %1: %2</source>
-        <translation type="vanished">Erreur pendant l’exécution de VACCUM sur la base de données %1 : %2</translation>
-    </message>
-    <message>
-        <source>VACUUM execution finished successfully.</source>
-        <translation type="vanished">Exécution de VACCUM terminé avec succès.</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1463"/>
@@ -2584,10 +2504,6 @@ Tous les objets de ce groupe seront déplacés dans le groupe parent.</translati
         <location filename="../dbtree/dbtree.cpp" line="1506"/>
         <source>An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</source>
         <translation>Une erreur est survenue pendant la réinitialisation de la valeur de l’auto-incrémentation de la table « %1 » : %2</translation>
-    </message>
-    <message>
-        <source>Autoincrement value for table &apos;%1&apos; has been reset successfly.</source>
-        <translation type="vanished">La valeur de l’auto-incrémentation de la table %1 a été réinitialisé avec succès.</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="1541"/>
@@ -2677,11 +2593,6 @@ Tous les objets de ce groupe seront déplacés dans le groupe parent.</translati
         <source>Encoding:</source>
         <comment>dbtree tooltip</comment>
         <translation>Codage :</translation>
-    </message>
-    <message>
-        <source>Error details:</source>
-        <comment>dbtree tooltip</comment>
-        <translation type="vanished">Détails de l’erreur :</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtreemodel.cpp" line="439"/>
@@ -2965,10 +2876,6 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
         <location filename="../windows/editorwindow.cpp" line="676"/>
         <source>Editor window &quot;%1&quot; has uncommitted data.</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Editor window &quot;%1&quot; has uncommited data.</source>
-        <translation type="vanished">Fenêtre d’éditeur &quot;%1&quot; n’a pas enregistrer les données.</translation>
     </message>
 </context>
 <context>
@@ -3426,10 +3333,6 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
         <location filename="../windows/functionseditor.cpp" line="631"/>
         <source>Functions editor window has uncommitted modifications.</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Functions editor window has uncommited modifications.</source>
-        <translation type="vanished">L’éditeur de fonction n’a pas enregistré les modifications.</translation>
     </message>
 </context>
 <context>
@@ -3911,7 +3814,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
         <location filename="../mainwindow.cpp" line="286"/>
         <source>Open home page</source>
-        <translation>Page d’accueil web</translation>
+        <translation>Site web de l’application</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="287"/>
@@ -3921,7 +3824,7 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
     <message>
         <location filename="../mainwindow.cpp" line="288"/>
         <source>User Manual</source>
-        <translation>Manuel utilisateurs en ligne</translation>
+        <translation>Manuel utilisateur en ligne</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="289"/>
@@ -4027,10 +3930,6 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
 </context>
 <context>
     <name>MdiWindow</name>
-    <message>
-        <source>Uncommited changes</source>
-        <translation type="vanished">Modification non enregistrées</translation>
-    </message>
     <message>
         <location filename="../mdiwindow.cpp" line="199"/>
         <source>Uncommitted changes</source>
@@ -4965,10 +4864,6 @@ Entrez SVP un nouveau nom, unique, ou cliquez « %1 » pour d’interrompre l’
 <context>
     <name>QuitConfirmDialog</name>
     <message>
-        <source>Uncommited changes</source>
-        <translation type="vanished">modifications non enregistrées</translation>
-    </message>
-    <message>
         <location filename="../dialogs/quitconfirmdialog.ui" line="14"/>
         <source>Uncommitted changes</source>
         <translation type="unfinished"></translation>
@@ -5273,10 +5168,6 @@ recherche suivant</translation>
         <translation>Contrainte :</translation>
     </message>
     <message>
-        <source>This cell is not editable, because: %1</source>
-        <translation type="vanished">Cette cellule n’est pas modifiable : %1</translation>
-    </message>
-    <message>
         <location filename="../datagrid/sqlqueryitem.cpp" line="423"/>
         <source>Cannot load the data for a cell that refers to the already closed database.</source>
         <translation>Impossible de charger les données pour une cellule référant à une base de données fermée.</translation>
@@ -5284,10 +5175,6 @@ recherche suivant</translation>
 </context>
 <context>
     <name>SqlQueryItemDelegate</name>
-    <message>
-        <source>Cannot edit this cell. Details: %2</source>
-        <translation type="vanished">Impossible de modifier cette cellule. Détails : %2</translation>
-    </message>
     <message>
         <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="53"/>
         <source>The row is marked for deletion.</source>
@@ -5328,10 +5215,6 @@ recherche suivant</translation>
         <translation>Uniquement une seule requête peut être exécutée à la fois.</translation>
     </message>
     <message>
-        <source>Uncommited data</source>
-        <translation type="vanished">Données non enregistrées</translation>
-    </message>
-    <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="356"/>
         <source>Cannot commit the data for a cell that refers to the already closed database.</source>
         <translation>Impossible d’enregistrer les données pour la celle qui référe à une base de données déjà fermée.</translation>
@@ -5342,10 +5225,6 @@ recherche suivant</translation>
         <translation>Impossible de lancer la transaction sur la base de données. Détails : %1</translation>
     </message>
     <message>
-        <source>An error occurred while commiting the transaction: %1</source>
-        <translation type="vanished">Une erreur est survenuelors de l’enregistrement de la transaction : %1</translation>
-    </message>
-    <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="435"/>
         <source>An error occurred while rolling back the transaction: %1</source>
         <translation>Une erreur est survenuelors de l’annulation de la transaction : %1</translation>
@@ -5354,10 +5233,6 @@ recherche suivant</translation>
         <location filename="../datagrid/sqlquerymodel.cpp" line="630"/>
         <source>Tried to commit a cell which is not editable (yet modified and waiting for commit)! This is a bug. Please report it.</source>
         <translation>Tentative d’enregistrement d’une une cellule qui n’est pas modifiable ! Ceci est un bogue. Rapportez-le SVP.</translation>
-    </message>
-    <message>
-        <source>An error occurred while commiting the data: %1</source>
-        <translation type="vanished">Une erreur est survenuelors de l’enregistrement des données : %1</translation>
     </message>
     <message>
         <location filename="../datagrid/sqlquerymodel.cpp" line="108"/>
@@ -5521,10 +5396,6 @@ recherche suivant</translation>
 </context>
 <context>
     <name>SqlTableModel</name>
-    <message>
-        <source>Error while commiting new row: %1</source>
-        <translation type="vanished">Erreur à l’enregistrement d’une nouvelle ligne : %1</translation>
-    </message>
     <message>
         <location filename="../datagrid/sqltablemodel.cpp" line="82"/>
         <source>Error while committing new row: %1</source>
@@ -6091,14 +5962,6 @@ Do you want to commit the structure, or do you want to go back to the structure 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Could not restore window, because database %1 could not be resolved.</source>
-        <translation type="vanished">Impossible de restaurer la fenêtre, car la base de données %1 ne peut ëtre résolue.</translation>
-    </message>
-    <message>
-        <source>Could not restore window, because the table %1 doesn&apos;t exist in the database %2.</source>
-        <translation type="vanished">Impossible de restaurer la fenêtre, car la vue %1 n’existe pas dans la base de données %2..</translation>
-    </message>
-    <message>
         <location filename="../windows/tablewindow.cpp" line="699"/>
         <location filename="../windows/tablewindow.cpp" line="701"/>
         <source>New table %1</source>
@@ -6124,10 +5987,6 @@ Do you want to commit the structure, or do you want to go back to the structure 
         <location filename="../windows/tablewindow.cpp" line="895"/>
         <source>An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</source>
         <translation>Une erreur est survenue pendant la réinitialisation de la valeur de l’auto-incrémentation de la table « %1 » : %2</translation>
-    </message>
-    <message>
-        <source>Autoincrement value for table &apos;%1&apos; has been reset successfly.</source>
-        <translation type="vanished">La valeur de l’auto-incrémentaion de la table %1 a été réinitialisé avec succès.</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="977"/>
@@ -6177,16 +6036,6 @@ Are you sure you want to create a table with blank name?</source>
         <location filename="../windows/tablewindow.cpp" line="1237"/>
         <source>Cannot import, because no import plugin is loaded.</source>
         <translation>Import impossible, car aucun plugin d’import n’est chargé.</translation>
-    </message>
-    <message>
-        <source>Uncommited changes</source>
-        <translation type="vanished">Modification non enregistrées</translation>
-    </message>
-    <message>
-        <source>There are uncommited structure modifications. You cannot browse or edit data until you have table structure settled.
-Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-        <translation type="vanished">Il ya des modifications de structure non enregistrées. Vous ne pouvez pas naviguer ou modifier des données jusqu’à ce que vous ailliez installer la structure de table.
-Voulez-vous enregistrer la structure, ou voulez-vous retourner à l’onglet de structure ?</translation>
     </message>
     <message>
         <location filename="../windows/tablewindow.cpp" line="1274"/>
@@ -6245,18 +6094,6 @@ Voulez-vous enregistrer la structure, ou voulez-vous retourner à l’onglet de 
         <source>Details</source>
         <comment>table window triggers</comment>
         <translation>Details</translation>
-    </message>
-    <message>
-        <source>Table window &quot;%1&quot; has uncommited structure modifications and data.</source>
-        <translation type="vanished">La fenêtre de table &quot;%1&quot; n’a pas enregistré les modifications de structure et de données.</translation>
-    </message>
-    <message>
-        <source>Table window &quot;%1&quot; has uncommited data.</source>
-        <translation type="vanished">La fenêtre de table &quot;%1&quot; n’a pas enregistrer les données.</translation>
-    </message>
-    <message>
-        <source>Table window &quot;%1&quot; has uncommited structure modifications.</source>
-        <translation type="vanished">La fenêtre de table &quot;%1&quot; n’a pas enregistré les modifications de structure.</translation>
     </message>
 </context>
 <context>
@@ -6441,18 +6278,6 @@ Voulez-vous enregistrer la structure, ou voulez-vous retourner à l’onglet de 
         <translation>DDL</translation>
     </message>
     <message>
-        <source>Could not restore window, because database %1 could not be resolved.</source>
-        <translation type="vanished">Impossible de restaurer la fenêtre, car la base de données %1 ne peut ëtre résolue.</translation>
-    </message>
-    <message>
-        <source>Could not restore window, because database %1 could not be open.</source>
-        <translation type="vanished">Impossible de restaurer la fenêtre, car la base de données %1 ne peut ëtre ouverte.</translation>
-    </message>
-    <message>
-        <source>Could not restore window, because the view %1 doesn&apos;t exist in the database %2.</source>
-        <translation type="vanished">Impossible de restaurer la fenêtre, car la vue %1 n’existe pas dans la base de données %2..</translation>
-    </message>
-    <message>
         <location filename="../windows/viewwindow.cpp" line="108"/>
         <location filename="../windows/viewwindow.cpp" line="114"/>
         <source>Could not restore window &apos;%1&apos;, because no database or view was stored in session for this window.</source>
@@ -6598,32 +6423,9 @@ Do you want to commit the structure, or do you want to go back to the structure 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>View window &quot;%1&quot; has uncommited structure modifications and data.</source>
-        <translation type="vanished">La fenêtre de la vue &quot;%1&quot; n’a pas enregistré les modifications de structure et de données.</translation>
-    </message>
-    <message>
-        <source>View window &quot;%1&quot; has uncommited data.</source>
-        <translation type="vanished">La fenêtre de la vue &quot;%1&quot; n’a pas enregistré les modifications de données.</translation>
-    </message>
-    <message>
-        <source>View window &quot;%1&quot; has uncommited structure modifications.</source>
-        <translation type="vanished">La fenêtre de la vue &quot;%1&quot; n’a pas enregistré les modifications de structure.</translation>
-    </message>
-    <message>
         <location filename="../windows/viewwindow.cpp" line="562"/>
         <source>Could not load data for view %1. Error details: %2</source>
         <translation>Impossible de charher les données de vue %1. Détails d’ erreur : %2</translation>
-    </message>
-    <message>
-        <source>Uncommited changes</source>
-        <translation type="vanished">Modifications non enregistrées</translation>
-    </message>
-    <message>
-        <source>There are uncommited structure modifications. You cannot browse or edit data until you have the view structure settled.
-Do you want to commit the structure, or do you want to go back to the structure tab?</source>
-        <translation type="vanished">Des modifications de structure n’ont pa été enregistrées.
-        Vous ne pouvez pas naviguer ou éditer des données jusqu’à ce que vous installliez la structure de vue.
-Voulez-vous enregistrer la structure, ou voulez-vous retourner à l’onglet de structure ?</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="578"/>
@@ -6713,10 +6515,6 @@ Details : %1</translation>
         <location filename="../windows/viewwindow.cpp" line="1004"/>
         <source>The view code could not be parsed properly for execution. This is a SQLiteStudio&apos;s bug. Please report it.</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The view code could not be parsed properly for execution. This is a SQLiteStudio’s bug. Please report it.</source>
-        <translation type="vanished">La vue ne peut être correctement analysée avant exécution. Cest un bug SQLiteStudio. Veuillez le signaler.</translation>
     </message>
     <message>
         <location filename="../windows/viewwindow.cpp" line="1017"/>
