@@ -26,13 +26,13 @@ parent_dir=`dirname $this_dir`
 read -p "Number of CPU cores to use for compiling (hit enter to use $cpu_cores): " new_cpu_cores
 case $new_cpu_cores in
     "" ) ;;
-    * ) cpu_cores=$new_cpu_cores; break;;
+    * ) cpu_cores=$new_cpu_cores ;;
 esac
 
 if [ -d $parent_dir/output ]; then
 	read -p "Directory $parent_dir/output already exists. The script will delete and recreate it. Is that okay? (y/N) : " yn
 	case $yn in
-	    [Yy]* ) rm -rf $parent_dir/output; break;;
+	    [Yy]* ) rm -rf $parent_dir/output ;;
 	    * ) echo "Aborted."; exit;;
 	esac
 fi
