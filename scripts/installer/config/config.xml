@@ -12,7 +12,7 @@
     <RunProgram>@TargetDir@/%FINAL_EXECUTABLE%</RunProgram>
     <RunProgramArguments>
     </RunProgramArguments>
-    <RunProgramDescription>SQLiteStudio</RunProgramDescription>
+    <RunProgramDescription>Run SQLiteStudio</RunProgramDescription>
     <StartMenuDir>SQLiteStudio</StartMenuDir>
     <MaintenanceToolName>UpdateSQLiteStudio</MaintenanceToolName>
     <AllowNonAsciiCharacters>true</AllowNonAsciiCharacters>
