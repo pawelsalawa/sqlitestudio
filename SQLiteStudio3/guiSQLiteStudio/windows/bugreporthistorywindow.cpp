@@ -105,8 +105,9 @@ void BugReportHistoryWindow::reload()
         item = new QTableWidgetItem(QDateTime::fromTime_t(entry->timestamp).toString("yyyy-MM-dd HH:mm:ss"));
         ui->reportsList->setItem(row, 1, item);
 
-        if (entry->url.startsWith("http://"))
-            urlLabel = new QLabel(urlTpl.arg(entry->url, entry->url));
+        QString url = entry->url.trimmed();
+        if (url.startsWith("https://"))
+            urlLabel = new QLabel(urlTpl.arg(url, url));
         else
             urlLabel = new QLabel(invalidUrlTpl);
 
