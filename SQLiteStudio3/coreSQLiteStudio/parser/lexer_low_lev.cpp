@@ -113,7 +113,11 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
             if (tolerant && (c != '*' || charAt(z, i) != '/'))
                 token.dynamicCast<TolerantToken>()->invalid = true;
 
+#if QT_VERSION >= 0x050800
+            if ( c.unicode() > 0 )
+#else
             if ( c > 0 )
+#endif
                 i++;
             token->lemonType = v3 ? TK3_COMMENT : TK2_COMMENT;
             token->type = Token::COMMENT;
@@ -428,10 +432,18 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
                         token->lemonType = TK3_ILLEGAL;
                         token->type = Token::INVALID;
                     }
+#if QT_VERSION >= 0x050800
+                    while (charAt(z, i).unicode() > 0 && charAt(z, i).unicode() != '\'')
+#else
                     while (charAt(z, i) > 0 && charAt(z, i) != '\'')
+#endif
                         i++;
                 }
+#if QT_VERSION >= 0x050800
+                if ( charAt(z, i).unicode() > 0 )
+#else
                 if ( charAt(z, i) > 0 )
+#endif
                     i++;
 
                 return i;
