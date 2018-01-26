@@ -560,13 +560,12 @@ void DbDialog::valueForNameGenerationChanged()
         return;
 
     QString generatedName;
-    if (dbPlugins.count() > 0)
-    {
-        DbPlugin* plugin = dbPlugins[ui->typeCombo->currentText()];
+    DbPlugin* plugin = dbPlugins.count() > 0 ? dbPlugins[ui->typeCombo->currentText()] : nullptr;
+    if (plugin)
         generatedName = DBLIST->generateUniqueDbName(plugin, ui->fileEdit->text());
-    }
     else
         generatedName = DBLIST->generateUniqueDbName(ui->fileEdit->text());
+
 
     ui->nameEdit->setText(generatedName);
 }
