@@ -1,6 +1,7 @@
 #ifndef DB_H
 #define DB_H
 
+#include <QVariant>
 #include "returncode.h"
 #include "dialect.h"
 #include "services/functionmanager.h"
@@ -10,13 +11,13 @@
 #include "interruptable.h"
 #include "dbobjecttype.h"
 #include <QObject>
-#include <QVariant>
 #include <QList>
 #include <QHash>
 #include <QReadWriteLock>
 #include <QRunnable>
 #include <QStringList>
 #include <QSet>
+#include <QDataStream>
 
 /** @file */
 
