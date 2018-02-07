@@ -37,6 +37,7 @@ switch $::OS {
 			imageformats
 			platforms
 			printsupport
+			styles
 			libeay32.dll
 			libgcc_s_dw2-1.dll
 			libstdc++-6.dll

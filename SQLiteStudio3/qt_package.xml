@@ -5,6 +5,6 @@
     <Version>%VERSION%</Version>
     <ReleaseDate>%DATE%</ReleaseDate>
     <Name>io.qt</Name>
-    <Virtual>true</Virtual>
+    <Virtual>false</Virtual>
     <ForcedInstallation>true</ForcedInstallation>
 </Package>

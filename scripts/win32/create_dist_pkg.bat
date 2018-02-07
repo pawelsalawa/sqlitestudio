@@ -57,11 +57,12 @@ for %%i in (%QT_LIB_LIST%) do (
 )
 copy qt.conf %PORTABLE% > nul
 
-mkdir %PORTABLE%\iconengines %PORTABLE%\imageformats %PORTABLE%\platforms %PORTABLE%\printsupport
+mkdir %PORTABLE%\iconengines %PORTABLE%\imageformats %PORTABLE%\platforms %PORTABLE%\printsupport %PORTABLE%\styles
 cd %QT_DIR%\..\plugins
 
 copy iconengines\qsvgicon.dll %PORTABLE%\iconengines > nul
 copy platforms\qwindows.dll %PORTABLE%\platforms > nul
+copy styles\qwindowsvistastyle.dll %PORTABLE%\styles > nul
 copy printsupport\windowsprintersupport.dll %PORTABLE%\printsupport > nul
 for %%i in (qdds qgif qicns qico qjpeg qsvg qtga qtiff qwbmp) do (
 	copy imageformats\%%i.dll %PORTABLE%\imageformats > nul
