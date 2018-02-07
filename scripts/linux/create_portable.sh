@@ -38,7 +38,7 @@ required_modules="libQt5Core.so libQt5Concurrent.so libQt5DBus.so libQt5Gui.so l
   libQt5Svg.so"
 required_plugins="platforms/libqxcb.so imageformats/libqgif.so imageformats/libqicns.so imageformats/libqico.so imageformats/libqjpeg.so \
   imageformats/libqsvg.so imageformats/libqtga.so imageformats/libqtiff.so iconengines/libqsvgicon.so printsupport/libcupsprintersupport.so"
-optional_plugins="platformthemes/libqgtk2.so"
+optional_plugins="platformthemes/libqgtk3.so"
 
 qt_lib_dir=`ldd SQLiteStudio/sqlitestudio | grep libQt5Core | awk '{print $3;}'`
 qt_lib_dir=`dirname $qt_lib_dir`
