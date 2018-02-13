@@ -2,6 +2,9 @@ SQLiteStudio
 ------------
 A free, open source, multi-platform SQLite database manager written in C++, with use of Qt framework.
 
+Want to contribute?
+-------------------
+https://github.com/pawelsalawa/sqlitestudio/wiki/How_can_I_contribute?
 
 Home page
 ---------
