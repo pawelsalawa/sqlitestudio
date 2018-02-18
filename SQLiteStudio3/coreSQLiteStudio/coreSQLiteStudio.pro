@@ -41,6 +41,7 @@ macx: {
     QMAKE_POST_LINK += ; $$QMAKE_MKDIR $$DESTDIR/SQLiteStudio.app
     QMAKE_POST_LINK += ; $$QMAKE_MKDIR $$DESTDIR/SQLiteStudio.app/Contents
     QMAKE_POST_LINK += ; $$QMAKE_COPY $$PWD/Info.plist $$DESTDIR/SQLiteStudio.app/Contents
+    LIBS += -L/usr/local/lib
 }
 
 LIBS += -lsqlite3

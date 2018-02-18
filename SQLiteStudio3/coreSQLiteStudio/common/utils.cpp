@@ -752,6 +752,9 @@ QString getOsString()
         case QSysInfo::MV_10_11:
             os += " 10.11 El Capitan";
             break;
+        case QSysInfo::MV_10_12:
+            os += " 10.12 Sierra";
+            break;
         case QSysInfo::MV_9:
         case QSysInfo::MV_10_0:
         case QSysInfo::MV_10_1:
