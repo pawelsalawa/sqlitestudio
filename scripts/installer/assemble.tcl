@@ -18,8 +18,30 @@ set cfgFiles {
 switch $::OS {
 	"macosx" {
 		set mainPkgFiles {
+			SQLiteStudio.app/Contents/Frameworks/libcoreSQLiteStudio.1.0.0.dylib
+			SQLiteStudio.app/Contents/Frameworks/libguiSQLiteStudio.1.0.0.dylib
+			SQLiteStudio.app/Contents/Frameworks/libsqlite3.0.dylib
+			SQLiteStudio.app/Contents/MacOS/SQLiteStudio
+			SQLiteStudio.app/Contents/MacOS/sqlitestudiocli
+			SQLiteStudio.app/Contents/Resources
+			SQLiteStudio.app/Contents/Info.plist
+			SQLiteStudio.app/Contents/PkgInfo
 		}
 		set qtPkgFiles {
+			SQLiteStudio.app/Contents/Frameworks/QtCore.framework
+			SQLiteStudio.app/Contents/Frameworks/QtGui.framework
+			SQLiteStudio.app/Contents/Frameworks/QtNetwork.framework
+			SQLiteStudio.app/Contents/Frameworks/QtPrintSupport.framework
+			SQLiteStudio.app/Contents/Frameworks/QtScript.framework
+			SQLiteStudio.app/Contents/Frameworks/QtSvg.framework
+			SQLiteStudio.app/Contents/Frameworks/QtWidgets.framework
+			SQLiteStudio.app/Contents/Frameworks/QtXml.framework
+			SQLiteStudio.app/Contents/PlugIns/bearer
+			SQLiteStudio.app/Contents/PlugIns/iconengines
+			SQLiteStudio.app/Contents/PlugIns/imageformats
+			SQLiteStudio.app/Contents/PlugIns/platforms
+			SQLiteStudio.app/Contents/PlugIns/printsupport
+			SQLiteStudio.app/Contents/PlugIns/styles
 		}
 		array set pluginDeps {
 		}
@@ -104,7 +126,6 @@ switch $::OS {
 
 proc defineGlobalVars {} {
 	lassign $::argv ::targetDir
-	set ::portableDir [file normalize ../../output/portable]
 	set ::releaseDate [clock format [clock seconds] -format "%Y-%m-%d"]
 	
 	# Version
@@ -119,31 +140,41 @@ proc defineGlobalVars {} {
 
 	switch $::OS {
 		"macosx" {
-			set ::finalExecutable "SQLiteStudio.app"
+			set ::portableDir [file normalize ../../output]
+			set ::finalExecutable "Contents/MacOS/SQLiteStudio"
 			set ::wizardStyle "Mac"
 			set ::initialTargetDir "/Applications/SQLiteStudio.app"
 			set ::libExt "dylib"
 			set ::updateArch "macosx"
-			set ::libPref ""
+			set ::pluginsDir "SQLiteStudio.app/Contents/PlugIns"
+			set ::libPref "lib"
+			set ::dirsToSkipInPathBeginning 1
+			set qtCoreFile "$::portableDir/SQLiteStudio/SQLiteStudio.app/Contents/Frameworks/QtCore.framework/QtCore"
 			set ::output [file normalize $::targetDir/InstallSQLiteStudio-${::sqliteStudioVersion}]
 		}
 		"win32" {
+			set ::portableDir [file normalize ../../output/portable]
 			set ::finalExecutable "SQLiteStudio.exe"
 			set ::wizardStyle "Modern"
 			set ::initialTargetDir "C:\\Program Files\\SQLiteStudio"
 			set ::libExt "dll"
 			set ::updateArch "windows"
+			set ::pluginsDir "plugins"
 			set ::libPref ""
+			set ::dirsToSkipInPathBeginning 0
 			set qtCoreFile "$::portableDir/SQLiteStudio/Qt5Core.dll"
 			set ::output [file normalize $::targetDir/InstallSQLiteStudio-${::sqliteStudioVersion}.exe]
 		}
 		default {
+			set ::portableDir [file normalize ../../output/portable]
 			set ::finalExecutable "sqlitestudio"
 			set ::wizardStyle "Modern"
 			set ::initialTargetDir "/opt/SQLiteStudio"
 			set ::updateArch "linux"
+			set ::pluginsDir "plugins"
 			set ::libExt "so"
 			set ::libPref "lib"
+			set ::dirsToSkipInPathBeginning 0
 			set qtCoreFile "$::portableDir/SQLiteStudio/lib/libQt5Core.so"
 			set ::output [file normalize $::targetDir/InstallSQLiteStudio-${::sqliteStudioVersion}]
 		}
@@ -195,17 +226,25 @@ proc archiveContentsOf {dir intoFile} {
 }
 
 proc copyFileWithLinks {fromDir toDir file} {
-	file mkdir [file dirname $toDir/$file]
+	set targetFile [file join {*}[lrange [file split $file] $::dirsToSkipInPathBeginning end]]
+	file mkdir [file dirname $toDir/$targetFile]
 	switch -- $::OS {
 		"macosx" {
-			file copy -force $fromDir/$file $toDir/$file
+			file copy -force $fromDir/$file $toDir/$targetFile
+			set fd [file dirname $fromDir/$file]
+			set td [file dirname $toDir/$targetFile]
+			set fileOnly [lindex [file split $file] end]
+			set filePrefix [lindex [split $fileOnly .] 0]
+			foreach f [glob -nocomplain -tails -directory $fd "${filePrefix}.*.$::libExt"] {
+				file copy -force $fd/$f $td/$f
+			}
 		}
 		"win32" {
-			file copy -force $fromDir/$file $toDir/$file
+			file copy -force $fromDir/$file $toDir/$targetFile
 		}
 		default {
 			set fd [file dirname $fromDir/$file]
-			set td [file dirname $toDir/$file]
+			set td [file dirname $toDir/$targetFile]
 			set fileOnly [lindex [file split $file] end]
 			foreach f [glob -nocomplain -tails -directory $fd "${fileOnly}*"] {
 				file copy -force $fd/$f $td/$f
@@ -277,7 +316,7 @@ proc collectPlugins {} {
 	set toRemove [expr {[string length $mask] - 1}]
 	set prefToRemove [string length $::libPref]
 
-	set files [glob -tails -directory ../../output/portable/SQLiteStudio/plugins $mask]
+	set files [glob -tails -directory $::portableDir/SQLiteStudio/$::pluginsDir $mask]
 	set ::plugins [list]
 	foreach f $files {
 		set plugin [string range $f $prefToRemove end-$toRemove]
@@ -307,10 +346,12 @@ proc copyPluginPkg {pluginDict targetDir} {
 	
 	set pkgName [readPluginPkgName $packageXml]
 	set pkgDir $targetDir/packages/$pkgName
-	
+
+	set targetPluginsDir [file join {*}[lrange [file split $::pluginsDir] $::dirsToSkipInPathBeginning end]]
+
 	puts "Copying plugin: $name ($ver)"
-	file mkdir $pkgDir $pkgDir/meta $pkgDir/data $pkgDir/data/plugins
-	file copy -force $::portableDir/SQLiteStudio/plugins/$::libPref${name}.$::libExt $pkgDir/data/plugins/
+	file mkdir $pkgDir $pkgDir/meta $pkgDir/data $pkgDir/data/$targetPluginsDir
+	file copy -force $::portableDir/SQLiteStudio/$::pluginsDir/$::libPref${name}.$::libExt $pkgDir/data/$targetPluginsDir/
 	if {[info exists ::pluginDeps($name)]} {
 		foreach f $::pluginDeps($name) {
 			copyFileWithLinks $::portableDir/SQLiteStudio $pkgDir/data $f
@@ -341,17 +382,18 @@ if {$argc < 1 || $argc > 2} {
 	exit 1
 }
 
-if {![file exists ../../output/portable]} {
-	puts stderr "[file normalize ../../output/portable] does not exist"
-	exit 1
-}
-
 if {[catch {exec archivegen --help} res] && [string first "Usage: archivegen" $res] == -1} {
-	puts stderr "archivegen (QtIFW) missing in PATH."
-	exit 1
+    puts stderr "archivegen (QtIFW) missing in PATH."
+    exit 1
 }
 
 defineGlobalVars
+
+if {![file exists $::portableDir]} {
+	puts stderr "[file normalize $::portableDir] does not exist"
+	exit 1
+}
+
 collectPlugins
 initDirs $targetDir
 copyConfig $targetDir
