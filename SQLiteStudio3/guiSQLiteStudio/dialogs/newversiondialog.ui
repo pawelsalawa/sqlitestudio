@@ -106,7 +106,7 @@
       </size>
      </property>
      <property name="description">
-      <string>The update will be automatically downloaded and installed. This will also restart application at the end.</string>
+      <string>This application will be closed and the update installer will start to download and install all the updates.</string>
      </property>
     </widget>
    </item>

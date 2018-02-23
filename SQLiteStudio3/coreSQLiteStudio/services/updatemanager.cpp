@@ -6,11 +6,27 @@
 #include <QDebug>
 #include <QRegularExpression>
 #include <QCoreApplication>
+#include <QFileInfo>
 
 UpdateManager::UpdateManager(QObject *parent) :
     QObject(parent)
 {
     connect(this, SIGNAL(updatingError(QString)), NOTIFY_MANAGER, SLOT(error(QString)));
+
+    QString updateBinary =
+#if defined(Q_OS_WIN)
+        "UpdateSQLiteStudio.exe";
+#elif defined(Q_OS_LINUX)
+        "UpdateSQLiteStudio";
+#elif defined(Q_OS_OSX)
+        "../../UpdateSQLiteStudio.app/Contents/MacOS/UpdateSQLiteStudio";
+#else
+        "";
+#endif
+
+    if (!updateBinary.isEmpty()) {
+        updateBinaryAbsolutePath = QFileInfo(QCoreApplication::applicationDirPath() + "/" + updateBinary).absoluteFilePath();
+    }
 }
 
 UpdateManager::~UpdateManager()
@@ -23,8 +39,13 @@ void UpdateManager::checkForUpdates()
     if (!CFG_CORE.General.CheckUpdatesOnStartup.get())
         return;
 
+    if (updateBinaryAbsolutePath.isEmpty()) {
+        qDebug() << "Updater binary not defined. Skipping updates checking.";
+        return;
+    }
+
     QProcess proc;
-    proc.start("UpdateSQLiteStudio", {"--checkupdates"});
+    proc.start(updateBinaryAbsolutePath, {"--checkupdates"});
     if (!waitForProcess(proc))
     {
         QString errorDetails = QString::fromLocal8Bit(proc.readAllStandardError());
@@ -59,10 +80,10 @@ void UpdateManager::checkForUpdates()
 
 void UpdateManager::update()
 {
-    bool success = QProcess::startDetached("UpdateSQLiteStudio", {"--updater"});
+    bool success = QProcess::startDetached(updateBinaryAbsolutePath, {"--updater"});
     if (!success)
     {
-        emit updatingError(tr("Unable to run updater application (%1). Please report this.").arg("UpdateSQLiteStudio"));
+        emit updatingError(tr("Unable to run updater application (%1). Please report this.").arg(updateBinaryAbsolutePath));
         return;
     }
     qApp->exit(0);

@@ -32,6 +32,8 @@ class API_EXPORT UpdateManager : public QObject
         bool isPlatformEligibleForUpdate() const;
 
     private:
+        QString updateBinaryAbsolutePath;
+
         bool waitForProcess(QProcess& proc);
 
     signals:
