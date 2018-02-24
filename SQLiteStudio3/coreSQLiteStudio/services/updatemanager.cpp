@@ -49,33 +49,21 @@ void UpdateManager::checkForUpdates()
     if (!waitForProcess(proc))
     {
         QString errorDetails = QString::fromLocal8Bit(proc.readAllStandardError());
+
+        if (errorDetails.toLower().contains("no updates")) {
+            emit noUpdatesAvailable();
+            return;
+        }
+
         if (errorDetails.isEmpty())
             errorDetails = tr("details are unknown");
 
-        emit updatingError(tr("Unable to check for updates (%1)").arg(errorDetails));
+        emit updatingError(tr("Unable to check for updates (%1)").arg(errorDetails.trimmed()));
         qWarning() << "Error while checking for updates: " << errorDetails;
         return;
     }
 
-    QByteArray xml = proc.readAllStandardOutput();
-
-    QRegularExpression re(R"(\<update\s+([^\>]+)\>)");
-    QRegularExpression versionRe(R"(version\=\"([\d\.]+)\")");
-    QRegularExpression nameRe(R"(name\=\"([^\"]+)\")");
-
-    QRegularExpressionMatchIterator reIter = re.globalMatch(xml);
-    QString updateNode;
-    UpdateEntry theUpdate;
-    QList<UpdateEntry> updates;
-    while (reIter.hasNext())
-    {
-        updateNode = reIter.next().captured(1);
-        theUpdate.version = versionRe.match(updateNode).captured(1);
-        theUpdate.compontent = nameRe.match(updateNode).captured(1);
-        updates << theUpdate;
-    }
-    if (!updates.isEmpty())
-        emit updatesAvailable(updates);
+    processCheckResults(proc.readAllStandardOutput());
 }
 
 void UpdateManager::update()
@@ -115,6 +103,35 @@ bool UpdateManager::waitForProcess(QProcess& proc)
     }
 
     return true;
+}
+
+void UpdateManager::processCheckResults(const QByteArray &results)
+{
+    if (results.trimmed().isEmpty()) {
+        emit noUpdatesAvailable();
+        return;
+    }
+
+    QRegularExpression re(R"(\<update\s+([^\>]+)\>)");
+    QRegularExpression versionRe(R"(version\=\"([\d\.]+)\")");
+    QRegularExpression nameRe(R"(name\=\"([^\"]+)\")");
+
+    QRegularExpressionMatchIterator reIter = re.globalMatch(results);
+    QString updateNode;
+    UpdateEntry theUpdate;
+    QList<UpdateEntry> updates;
+    while (reIter.hasNext())
+    {
+        updateNode = reIter.next().captured(1);
+        theUpdate.version = versionRe.match(updateNode).captured(1);
+        theUpdate.compontent = nameRe.match(updateNode).captured(1);
+        updates << theUpdate;
+    }
+
+    if (updates.isEmpty())
+        emit noUpdatesAvailable();
+    else
+        emit updatesAvailable(updates);
 }
 
 #endif // PORTABLE_CONFIG
