@@ -10,4 +10,8 @@
     </Licenses>
     <Default>true</Default>
     <ForcedInstallation>true</ForcedInstallation>
+	<Script>installscript.qs</Script>
+    <UserInterfaces>
+        <UserInterface>register_file_types.ui</UserInterface>
+    </UserInterfaces>
 </Package>

@@ -12,7 +12,6 @@ set cfgFiles {
 	sqlitestudio.icns
 	sqlitestudio.ico
 	watermark.png
-	controller.qs
 }
 
 switch $::OS {
@@ -77,6 +76,7 @@ switch $::OS {
 		array set pluginDeps {
 			ScriptingTcl {
 				tcl86.dll
+				zlib1.dll
 			}
 			DbSqlite2 {
 				sqlite.dll
@@ -261,7 +261,13 @@ proc copyMainPkg {targetDir} {
 	foreach f $::mainPkgFiles {
 		copyFileWithLinks $::portableDir/SQLiteStudio $pkgDir/data $f
 	}
-	file copy ../../SQLiteStudio3/sqlitestudio/package.xml $pkgDir/meta/
+	file copy ../../SQLiteStudio3/sqlitestudio/package.xml ../../SQLiteStudio3/sqlitestudio/register_file_types.ui ../../SQLiteStudio3/sqlitestudio/installscript.qs $pkgDir/meta/
+	
+	file mkdir $pkgDir/data/app_icon
+	file copy ../../SQLiteStudio3/guiSQLiteStudio/img/sqlitestudio.ico $pkgDir/data/app_icon
+	file copy ../../SQLiteStudio3/guiSQLiteStudio/img/sqlitestudio.icns $pkgDir/data/app_icon
+	file copy ../../SQLiteStudio3/guiSQLiteStudio/img/sqlitestudio.svg $pkgDir/data/app_icon
+	file copy ../../SQLiteStudio3/guiSQLiteStudio/img/sqlitestudio_logo.png $pkgDir/data/app_icon/sqlitestudio.png
 
 	mapFile $pkgDir/meta/package.xml [list %VERSION% $::sqliteStudioVersion %DATE% $::releaseDate]
 	
