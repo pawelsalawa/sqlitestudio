@@ -44,6 +44,13 @@ void UpdateManager::checkForUpdates()
         return;
     }
 
+    if (!QFileInfo(updateBinaryAbsolutePath).exists()) {
+        QString errorDetails = tr("Updates installer executable is missing.");
+        emit updatingError(tr("Unable to check for updates (%1)").arg(errorDetails.trimmed()));
+        qWarning() << "Error while checking for updates: " << errorDetails;
+        return;
+    }
+
     QProcess proc;
     proc.start(updateBinaryAbsolutePath, {"--checkupdates"});
     if (!waitForProcess(proc))
