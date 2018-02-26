@@ -17,6 +17,7 @@ void wx_sqlite3CodecFree(void *pCodecArg)
   {
     CodecTerm(pCodecArg);
     wx_sqlite3_free(pCodecArg);
+    pCodecArg = NULL;
   }
 }
 
@@ -132,8 +133,13 @@ int wx_sqlite3CodecAttach(wx_sqlite3* db, int nDb, const void* zKey, int nKey)
       else
       {
         CodecSetIsEncrypted(codec, 0);
-        wx_sqlite3_free(codec);
+        wx_sqlite3CodecFree(codec);
       }
+    }
+    else
+    {
+      CodecSetIsEncrypted(codec, 0);
+      wx_sqlite3CodecFree(codec);
     }
   }
   else
@@ -410,4 +416,5 @@ int wx_sqlite3_rekey(wx_sqlite3 *db, const void *zKey, int nKey)
 #endif /* SQLITE_HAS_CODEC */
 
 #endif /* SQLITE_OMIT_DISKIO */
+
 

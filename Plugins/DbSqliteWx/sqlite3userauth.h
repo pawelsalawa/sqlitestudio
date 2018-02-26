@@ -21,6 +21,10 @@
 */
 #ifdef SQLITE_USER_AUTHENTICATION
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /*
 ** If a database contains the SQLITE_USER table, then the
 ** wx_sqlite3_user_authenticate() interface must be invoked with an
@@ -85,5 +89,10 @@ int wx_sqlite3_user_delete(
   const char *zUsername  /* Username to remove */
 );
 
+#ifdef __cplusplus
+}  /* end of the 'extern "C"' block */
+#endif
+
 #endif /* SQLITE_USER_AUTHENTICATION */
+
 

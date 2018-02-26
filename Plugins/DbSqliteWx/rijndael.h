@@ -192,3 +192,4 @@ void RijndaelDecrypt(Rijndael* rijndael, UINT8 a[16], UINT8 b[16]);
 	
 #endif /* _RIJNDAEL_H_ */
 
+

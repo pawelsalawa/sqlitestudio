@@ -17,7 +17,7 @@
 */
 #ifndef SQLITE3EXT_H
 #define SQLITE3EXT_H
-#include "wxwx_sqlite3.h"
+#include "wx_sqlite3.h"
 
 /*
 ** The following structure holds pointers to all of the SQLite API
@@ -134,7 +134,7 @@ struct wx_sqlite3_api_routines {
   int  (*set_authorizer)(wx_sqlite3*,int(*)(void*,int,const char*,const char*,
                          const char*,const char*),void*);
   void  (*set_auxdata)(wx_sqlite3_context*,int,void*,void (*)(void*));
-  char * (*snprintf)(int,char*,const char*,...);
+  char * (*xsnprintf)(int,char*,const char*,...);
   int  (*step)(wx_sqlite3_stmt*);
   int  (*table_column_metadata)(wx_sqlite3*,const char*,const char*,const char*,
                                 char const**,char const**,int*,int*,int*);
@@ -246,7 +246,7 @@ struct wx_sqlite3_api_routines {
   int (*uri_boolean)(const char*,const char*,int);
   wx_sqlite3_int64 (*uri_int64)(const char*,const char*,wx_sqlite3_int64);
   const char *(*uri_parameter)(const char*,const char*);
-  char *(*vsnprintf)(int,char*,const char*,va_list);
+  char *(*xvsnprintf)(int,char*,const char*,va_list);
   int (*wal_checkpoint_v2)(wx_sqlite3*,const char*,int,int*,int*);
   /* Version 3.8.7 and later */
   int (*auto_extension)(void(*)(void));
@@ -282,6 +282,19 @@ struct wx_sqlite3_api_routines {
   /* Version 3.14.0 and later */
   int (*trace_v2)(wx_sqlite3*,unsigned,int(*)(unsigned,void*,void*,void*),void*);
   char *(*expanded_sql)(wx_sqlite3_stmt*);
+  /* Version 3.18.0 and later */
+  void (*set_last_insert_rowid)(wx_sqlite3*,wx_sqlite3_int64);
+  /* Version 3.20.0 and later */
+  int (*prepare_v3)(wx_sqlite3*,const char*,int,unsigned int,
+                    wx_sqlite3_stmt**,const char**);
+  int (*prepare16_v3)(wx_sqlite3*,const void*,int,unsigned int,
+                      wx_sqlite3_stmt**,const void**);
+  int (*bind_pointer)(wx_sqlite3_stmt*,int,void*,const char*,void(*)(void*));
+  void (*result_pointer)(wx_sqlite3_context*,void*,const char*,void(*)(void*));
+  void *(*value_pointer)(wx_sqlite3_value*,const char*);
+  int (*vtab_nochange)(wx_sqlite3_context*);
+  int (*value_nochange)(wx_sqlite3_value*);
+  const char *(*vtab_collation)(wx_sqlite3_index_info*,int);
 };
 
 /*
@@ -408,7 +421,7 @@ typedef int (*wx_sqlite3_loadext_entry)(
 #define wx_sqlite3_rollback_hook          wx_sqlite3_api->rollback_hook
 #define wx_sqlite3_set_authorizer         wx_sqlite3_api->set_authorizer
 #define wx_sqlite3_set_auxdata            wx_sqlite3_api->set_auxdata
-#define wx_sqlite3_snprintf               wx_sqlite3_api->snprintf
+#define wx_sqlite3_snprintf               wx_sqlite3_api->xsnprintf
 #define wx_sqlite3_step                   wx_sqlite3_api->step
 #define wx_sqlite3_table_column_metadata  wx_sqlite3_api->table_column_metadata
 #define wx_sqlite3_thread_cleanup         wx_sqlite3_api->thread_cleanup
@@ -432,7 +445,7 @@ typedef int (*wx_sqlite3_loadext_entry)(
 #define wx_sqlite3_value_text16le         wx_sqlite3_api->value_text16le
 #define wx_sqlite3_value_type             wx_sqlite3_api->value_type
 #define wx_sqlite3_vmprintf               wx_sqlite3_api->vmprintf
-#define wx_sqlite3_vsnprintf              wx_sqlite3_api->vsnprintf
+#define wx_sqlite3_vsnprintf              wx_sqlite3_api->xvsnprintf
 #define wx_sqlite3_overload_function      wx_sqlite3_api->overload_function
 #define wx_sqlite3_prepare_v2             wx_sqlite3_api->prepare_v2
 #define wx_sqlite3_prepare16_v2           wx_sqlite3_api->prepare16_v2
@@ -508,7 +521,7 @@ typedef int (*wx_sqlite3_loadext_entry)(
 #define wx_sqlite3_uri_boolean            wx_sqlite3_api->uri_boolean
 #define wx_sqlite3_uri_int64              wx_sqlite3_api->uri_int64
 #define wx_sqlite3_uri_parameter          wx_sqlite3_api->uri_parameter
-#define wx_sqlite3_uri_vsnprintf          wx_sqlite3_api->vsnprintf
+#define wx_sqlite3_uri_vsnprintf          wx_sqlite3_api->xvsnprintf
 #define wx_sqlite3_wal_checkpoint_v2      wx_sqlite3_api->wal_checkpoint_v2
 /* Version 3.8.7 and later */
 #define wx_sqlite3_auto_extension         wx_sqlite3_api->auto_extension
@@ -540,6 +553,18 @@ typedef int (*wx_sqlite3_loadext_entry)(
 /* Version 3.14.0 and later */
 #define wx_sqlite3_trace_v2               wx_sqlite3_api->trace_v2
 #define wx_sqlite3_expanded_sql           wx_sqlite3_api->expanded_sql
+/* Version 3.18.0 and later */
+#define wx_sqlite3_set_last_insert_rowid  wx_sqlite3_api->set_last_insert_rowid
+/* Version 3.20.0 and later */
+#define wx_sqlite3_prepare_v3             wx_sqlite3_api->prepare_v3
+#define wx_sqlite3_prepare16_v3           wx_sqlite3_api->prepare16_v3
+#define wx_sqlite3_bind_pointer           wx_sqlite3_api->bind_pointer
+#define wx_sqlite3_result_pointer         wx_sqlite3_api->result_pointer
+#define wx_sqlite3_value_pointer          wx_sqlite3_api->value_pointer
+/* Version 3.22.0 and later */
+#define wx_sqlite3_vtab_nochange          wx_sqlite3_api->vtab_nochange
+#define wx_sqlite3_value_nochange         sqltie3_api->value_nochange
+#define wx_sqlite3_vtab_collation         sqltie3_api->vtab_collation
 #endif /* !defined(SQLITE_CORE) && !defined(SQLITE_OMIT_LOAD_EXTENSION) */
 
 #if !defined(SQLITE_CORE) && !defined(SQLITE_OMIT_LOAD_EXTENSION)
@@ -558,4 +583,5 @@ typedef int (*wx_sqlite3_loadext_entry)(
 #endif
 
 #endif /* SQLITE3EXT_H */
+
 

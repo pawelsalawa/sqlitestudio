@@ -358,3 +358,4 @@ int wx_sqlite3_user_delete(
 
 #endif /* SQLITE_USER_AUTHENTICATION */
 
+

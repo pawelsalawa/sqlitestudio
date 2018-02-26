@@ -184,7 +184,7 @@ static void MD5Final(unsigned char digest[16], MD5_CTX *ctx)
   MD5Transform(ctx->buf, (unsigned int *) ctx->in);
   byteReverse((unsigned char *) ctx->buf, 4);
   memcpy(digest, ctx->buf, 16);
-  memset((char *) ctx, 0, sizeof(ctx));       /* In case it's sensitive */
+  memset((char *) ctx, 0, sizeof(MD5_CTX));       /* In case it's sensitive */
 }
 
 static void MD5Init(MD5_CTX *ctx)
@@ -767,5 +767,6 @@ CodecDecrypt(Codec* codec, int page, unsigned char* data, int len)
   }
 #endif
 }
+
 
 

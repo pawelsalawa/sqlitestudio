@@ -14,6 +14,7 @@ TARGET = DbSqliteWx
 TEMPLATE = lib
 
 SOURCES += dbsqlitewx.cpp \
+    carray.c \
     codec.c \
     codecext.c \
     csv.c \
@@ -22,8 +23,7 @@ SOURCES += dbsqlitewx.cpp \
     sha2.c \
     sqlite3secure.c \
     userauth.c \
-    dbsqlitewxinstance.cpp \
-    wxsqlite3.c
+    dbsqlitewxinstance.cpp
 
 HEADERS += dbsqlitewx.h \
     codec.h \
@@ -32,8 +32,8 @@ HEADERS += dbsqlitewx.h \
     sqlite3ext.h \
     sqlite3userauth.h \
     dbsqlitewx_global.h \
-    dbsqlitewxinstance.h \
-    wxsqlite3.h
+    dbsqlitewxinstance.h
+
 DISTFILES += DbSqliteWx.json
 
 !macx: {
