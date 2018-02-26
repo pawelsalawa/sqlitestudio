@@ -2,10 +2,20 @@
 #define DBSQLITECIPHERINSTANCE_H
 
 #include "db/abstractdb3.h"
-#include "sqlcipher.h"
+
+#ifdef SQLCIPHER_SYSTEM_LIB
+#  include "sqlcipher_unmodified.h"
+#else
+#  include "sqlcipher.h"
+#endif
+
 #include "db/stdsqlite3driver.h"
 
+#ifdef SQLCIPHER_SYSTEM_LIB
+STD_SQLITE3_DRIVER(SqlCipher, "SQLCipher",,)
+#else
 STD_SQLITE3_DRIVER(SqlCipher, "SQLCipher", sqlcipher_,)
+#endif
 
 class DbSqliteCipherInstance : public AbstractDb3<SqlCipher>
 {

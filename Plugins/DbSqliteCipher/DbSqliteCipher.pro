@@ -14,12 +14,15 @@ TEMPLATE = lib
 DEFINES += DBSQLITECIPHER_LIBRARY
 
 SOURCES += dbsqlitecipher.cpp \
-    dbsqlitecipherinstance.cpp \
-    sqlcipher.c
+    dbsqlitecipherinstance.cpp
+
+!unix|isEmpty(SQLCIPHER_LIB): {
+    SOURCES += sqlcipher.c
+}
 
 HEADERS += dbsqlitecipher.h \
     dbsqlitecipher_global.h \
-    dbsqlitecipherinstance.h \
+    dbsqlitecipherinstance.h
     sqlcipher.h
 
 !macx: {
@@ -31,12 +34,16 @@ win32: {
     LIBS += -leay32 -lcoreSQLiteStudio
 }
 
-!win32: {
+!win32:isEmpty(SQLCIPHER_LIB) {
     LIBS += -lcrypto
 }
 
 unix: {
     DEFINES += SQLITE_OS_UNIX=1
+    !isEmpty(SQLCIPHER_LIB): {
+	LIBS += $$SQLCIPHER_LIB
+	DEFINES += SQLCIPHER_SYSTEM_LIB
+    }
 }
 win32: {
     DEFINES += SQLITE_OS_WIN=1
@@ -57,17 +64,14 @@ DISTFILES += \
     openssl_lic.txt
 
 TRANSLATIONS += DbSqliteCipher_ro_RO.ts \
-		DbSqliteCipher_de.ts \
-		\
-		DbSqliteCipher_it.ts\
-		DbSqliteCipher_zh_CN.ts\
-		DbSqliteCipher_sk.ts\
-		DbSqliteCipher_ru.ts\
-		DbSqliteCipher_pt_BR.ts\
-		DbSqliteCipher_fr.ts\
-		DbSqliteCipher_es.ts\
-		DbSqliteCipher_pl.ts
-
-
-
+	DbSqliteCipher_de.ts \
+	\
+	DbSqliteCipher_it.ts\
+	DbSqliteCipher_zh_CN.ts\
+	DbSqliteCipher_sk.ts\
+	DbSqliteCipher_ru.ts\
+	DbSqliteCipher_pt_BR.ts\
+	DbSqliteCipher_fr.ts\
+	DbSqliteCipher_es.ts\
+	DbSqliteCipher_pl.ts
 
