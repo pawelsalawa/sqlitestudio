@@ -58,9 +58,19 @@ cd SQLiteStudio
 
 # Copy SQLite libs
 cd $portable/SQLiteStudio
-sqlite3_lib=`ldd $OUTPUT/SQLiteStudio/lib/libcoreSQLiteStudio.so | grep libsqlite | awk '{print $3;}'`
+if [ -f /usr/local/lib/libsqlite3.so.0.8.6 ]; then
+    echo "SQLite3 library exists in /usr/local/lib/. Since this is usually a custom build of SQLite, it's preferred and will be used now."
+    sqlite3_lib=/usr/local/lib/libsqlite3.so.0.8.6
+    sqlite3_lib_target=`ldd $OUTPUT/SQLiteStudio/lib/libcoreSQLiteStudio.so | grep libsqlite | awk '{print $3;}'`
+    cp $sqlite3_lib lib/`basename $sqlite3_lib_target`
+else
+    sqlite3_lib=`ldd $OUTPUT/SQLiteStudio/lib/libcoreSQLiteStudio.so | grep libsqlite | awk '{print $3;}'`
+    cp $sqlite3_lib lib
+fi
+echo "Using SQLite3 library: $sqlite3_lib"
+
 sqlite2_lib=`ldd plugins/libDbSqlite2.so | grep libsqlite | awk '{print $3;}'`
-cp $sqlite3_lib lib
+echo "Using SQLite2 library: $sqlite2_lib"
 cp $sqlite2_lib lib
 strip lib/*libsqlite*
 
