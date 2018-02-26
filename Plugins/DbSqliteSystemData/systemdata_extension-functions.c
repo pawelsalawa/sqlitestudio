@@ -114,10 +114,10 @@ Original code 2006 June 05 by relicoder.
 #define HAVE_TRIM		1
 
 #ifdef COMPILE_SQLITE_EXTENSIONS_AS_LOADABLE_MODULE
-#include "../core/systemdata_sqlite3ext.h"
+#include "systemdata_sqlite3ext.h"
 SQLITE_EXTENSION_INIT1
 #else
-#include "../core/systemdata_sqlite3.h"
+#include "systemdata_sqlite3.h"
 #endif
 
 #include <ctype.h>
@@ -1963,11 +1963,4 @@ int double_cmp(const void *a, const void *b){
   else
     return 1;
 }
-
-
-
-
-
-
-
 

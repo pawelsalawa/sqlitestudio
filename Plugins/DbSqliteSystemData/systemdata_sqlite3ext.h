@@ -134,7 +134,7 @@ struct systemdata_sqlite3_api_routines {
   int  (*set_authorizer)(systemdata_sqlite3*,int(*)(void*,int,const char*,const char*,
                          const char*,const char*),void*);
   void  (*set_auxdata)(systemdata_sqlite3_context*,int,void*,void (*)(void*));
-  char * (*snprintf)(int,char*,const char*,...);
+  char * (*xsnprintf)(int,char*,const char*,...);
   int  (*step)(systemdata_sqlite3_stmt*);
   int  (*table_column_metadata)(systemdata_sqlite3*,const char*,const char*,const char*,
                                 char const**,char const**,int*,int*,int*);
@@ -246,7 +246,7 @@ struct systemdata_sqlite3_api_routines {
   int (*uri_boolean)(const char*,const char*,int);
   systemdata_sqlite3_int64 (*uri_int64)(const char*,const char*,systemdata_sqlite3_int64);
   const char *(*uri_parameter)(const char*,const char*);
-  char *(*vsnprintf)(int,char*,const char*,va_list);
+  char *(*xvsnprintf)(int,char*,const char*,va_list);
   int (*wal_checkpoint_v2)(systemdata_sqlite3*,const char*,int,int*,int*);
   /* Version 3.8.7 and later */
   int (*auto_extension)(void(*)(void));
@@ -282,6 +282,19 @@ struct systemdata_sqlite3_api_routines {
   /* Version 3.14.0 and later */
   int (*trace_v2)(systemdata_sqlite3*,unsigned,int(*)(unsigned,void*,void*,void*),void*);
   char *(*expanded_sql)(systemdata_sqlite3_stmt*);
+  /* Version 3.18.0 and later */
+  void (*set_last_insert_rowid)(systemdata_sqlite3*,systemdata_sqlite3_int64);
+  /* Version 3.20.0 and later */
+  int (*prepare_v3)(systemdata_sqlite3*,const char*,int,unsigned int,
+                    systemdata_sqlite3_stmt**,const char**);
+  int (*prepare16_v3)(systemdata_sqlite3*,const void*,int,unsigned int,
+                      systemdata_sqlite3_stmt**,const void**);
+  int (*bind_pointer)(systemdata_sqlite3_stmt*,int,void*,const char*,void(*)(void*));
+  void (*result_pointer)(systemdata_sqlite3_context*,void*,const char*,void(*)(void*));
+  void *(*value_pointer)(systemdata_sqlite3_value*,const char*);
+  int (*vtab_nochange)(systemdata_sqlite3_context*);
+  int (*value_nochange)(systemdata_sqlite3_value*);
+  const char *(*vtab_collation)(systemdata_sqlite3_index_info*,int);
 };
 
 /*
@@ -408,7 +421,7 @@ typedef int (*systemdata_sqlite3_loadext_entry)(
 #define systemdata_sqlite3_rollback_hook          systemdata_sqlite3_api->rollback_hook
 #define systemdata_sqlite3_set_authorizer         systemdata_sqlite3_api->set_authorizer
 #define systemdata_sqlite3_set_auxdata            systemdata_sqlite3_api->set_auxdata
-#define systemdata_sqlite3_snprintf               systemdata_sqlite3_api->snprintf
+#define systemdata_sqlite3_snprintf               systemdata_sqlite3_api->xsnprintf
 #define systemdata_sqlite3_step                   systemdata_sqlite3_api->step
 #define systemdata_sqlite3_table_column_metadata  systemdata_sqlite3_api->table_column_metadata
 #define systemdata_sqlite3_thread_cleanup         systemdata_sqlite3_api->thread_cleanup
@@ -432,7 +445,7 @@ typedef int (*systemdata_sqlite3_loadext_entry)(
 #define systemdata_sqlite3_value_text16le         systemdata_sqlite3_api->value_text16le
 #define systemdata_sqlite3_value_type             systemdata_sqlite3_api->value_type
 #define systemdata_sqlite3_vmprintf               systemdata_sqlite3_api->vmprintf
-#define systemdata_sqlite3_vsnprintf              systemdata_sqlite3_api->vsnprintf
+#define systemdata_sqlite3_vsnprintf              systemdata_sqlite3_api->xvsnprintf
 #define systemdata_sqlite3_overload_function      systemdata_sqlite3_api->overload_function
 #define systemdata_sqlite3_prepare_v2             systemdata_sqlite3_api->prepare_v2
 #define systemdata_sqlite3_prepare16_v2           systemdata_sqlite3_api->prepare16_v2
@@ -508,7 +521,7 @@ typedef int (*systemdata_sqlite3_loadext_entry)(
 #define systemdata_sqlite3_uri_boolean            systemdata_sqlite3_api->uri_boolean
 #define systemdata_sqlite3_uri_int64              systemdata_sqlite3_api->uri_int64
 #define systemdata_sqlite3_uri_parameter          systemdata_sqlite3_api->uri_parameter
-#define systemdata_sqlite3_uri_vsnprintf          systemdata_sqlite3_api->vsnprintf
+#define systemdata_sqlite3_uri_vsnprintf          systemdata_sqlite3_api->xvsnprintf
 #define systemdata_sqlite3_wal_checkpoint_v2      systemdata_sqlite3_api->wal_checkpoint_v2
 /* Version 3.8.7 and later */
 #define systemdata_sqlite3_auto_extension         systemdata_sqlite3_api->auto_extension
@@ -540,6 +553,18 @@ typedef int (*systemdata_sqlite3_loadext_entry)(
 /* Version 3.14.0 and later */
 #define systemdata_sqlite3_trace_v2               systemdata_sqlite3_api->trace_v2
 #define systemdata_sqlite3_expanded_sql           systemdata_sqlite3_api->expanded_sql
+/* Version 3.18.0 and later */
+#define systemdata_sqlite3_set_last_insert_rowid  systemdata_sqlite3_api->set_last_insert_rowid
+/* Version 3.20.0 and later */
+#define systemdata_sqlite3_prepare_v3             systemdata_sqlite3_api->prepare_v3
+#define systemdata_sqlite3_prepare16_v3           systemdata_sqlite3_api->prepare16_v3
+#define systemdata_sqlite3_bind_pointer           systemdata_sqlite3_api->bind_pointer
+#define systemdata_sqlite3_result_pointer         systemdata_sqlite3_api->result_pointer
+#define systemdata_sqlite3_value_pointer          systemdata_sqlite3_api->value_pointer
+/* Version 3.22.0 and later */
+#define systemdata_sqlite3_vtab_nochange          systemdata_sqlite3_api->vtab_nochange
+#define systemdata_sqlite3_value_nochange         sqltie3_api->value_nochange
+#define systemdata_sqlite3_vtab_collation         sqltie3_api->vtab_collation
 #endif /* !defined(SQLITE_CORE) && !defined(SQLITE_OMIT_LOAD_EXTENSION) */
 
 #if !defined(SQLITE_CORE) && !defined(SQLITE_OMIT_LOAD_EXTENSION)
@@ -558,11 +583,4 @@ typedef int (*systemdata_sqlite3_loadext_entry)(
 #endif
 
 #endif /* SQLITE3EXT_H */
-
-
-
-
-
-
-
 

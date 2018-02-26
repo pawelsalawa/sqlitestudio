@@ -10,7 +10,6 @@
 
 #include <windows.h>
 #include <wincrypt.h>
-#include "systemdata_sqlite3.h"
 
 /* Extra padding before and after the cryptographic buffer */
 #define CRYPT_OFFSET 8
@@ -33,10 +32,6 @@ HCRYPTPROV g_hProvider = 0; /* Global instance of the cryptographic provider */
 static void * systemdata_sqlite3pager_get_codecarg(Pager *pPager)
 {
   return (pPager->xCodec) ? pPager->pCodec: NULL;
-}
-
-void systemdata_sqlite3_activate_see(const char *info)
-{
 }
 
 /* Create a cryptographic context.  Use the enhanced provider because it is available on
@@ -153,7 +148,7 @@ void systemdata_sqlite3CodecSizeChange(void *pArg, int pageSize, int reservedSiz
 }
 
 /* Encrypt/Decrypt functionality, called by pager.c */
-void * systemdata_sqlite3Codec(void *pArg, void *data, Pgno nPageNum, int nMode)
+static void *systemdata_sqlite3Codec(void *pArg, void *data, Pgno nPageNum, int nMode)
 {
   LPCRYPTBLOCK pBlock = (LPCRYPTBLOCK)pArg;
   DWORD dwPageSize;
@@ -327,6 +322,10 @@ void systemdata_sqlite3CodecGetKey(systemdata_sqlite3 *db, int nDb, void **ppKey
   if (pnKeyLen) *pnKeyLen = pBlock ? 1: 0;
 }
 
+SQLITE_API void systemdata_sqlite3_activate_see(const char *info)
+{
+}
+
 /* We do not attach this key to the temp store, only the main database. */
 SQLITE_API int systemdata_sqlite3_key_v2(systemdata_sqlite3 *db, const char *zDbName, const void *pKey, int nKey)
 {
@@ -336,6 +335,11 @@ SQLITE_API int systemdata_sqlite3_key_v2(systemdata_sqlite3 *db, const char *zDb
 SQLITE_API int systemdata_sqlite3_key(systemdata_sqlite3 *db, const void *pKey, int nKey)
 {
   return systemdata_sqlite3_key_v2(db, 0, pKey, nKey);
+}
+
+SQLITE_API int systemdata_sqlite3_rekey(systemdata_sqlite3 *db, const void *pKey, int nKey)
+{
+  return systemdata_sqlite3_rekey_v2(db, 0, pKey, nKey);
 }
 
 /* Changes the encryption key for an existing database. */
@@ -457,18 +461,6 @@ SQLITE_API int systemdata_sqlite3_rekey_v2(systemdata_sqlite3 *db, const char *z
   return rc;
 }
 
-SQLITE_API int systemdata_sqlite3_rekey(systemdata_sqlite3 *db, const void *pKey, int nKey)
-{
-  return systemdata_sqlite3_rekey_v2(db, 0, pKey, nKey);
-}
-
 #endif /* SQLITE_HAS_CODEC */
 #endif /* SQLITE_OMIT_DISKIO */
-
-
-
-
-
-
-
 
