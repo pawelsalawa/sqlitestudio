@@ -14,12 +14,15 @@ TEMPLATE = lib
 DEFINES += DBSQLITECIPHER_LIBRARY
 
 SOURCES += dbsqlitecipher.cpp \
-    dbsqlitecipherinstance.cpp \
-    sqlcipher.c
+    dbsqlitecipherinstance.cpp
+
+!unix || !$$SQLCIPHER_LIB: {
+    SOURCES += sqlcipher.c
+}
 
 HEADERS += dbsqlitecipher.h \
     dbsqlitecipher_global.h \
-    dbsqlitecipherinstance.h \
+    dbsqlitecipherinstance.h
     sqlcipher.h
 
 !macx: {
