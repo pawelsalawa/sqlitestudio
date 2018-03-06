@@ -14,16 +14,19 @@ TARGET = DbSqliteWx
 TEMPLATE = lib
 
 SOURCES += dbsqlitewx.cpp \
-    carray.c \
-    codec.c \
-    codecext.c \
-    csv.c \
-    extensionfunctions.c \
-    rijndael.c \
-    sha2.c \
-    sqlite3secure.c \
-    userauth.c \
     dbsqlitewxinstance.cpp
+
+!unix|isEmpty(WXSQLITE_LIB) {
+    SOURCES += carray.c \
+	codec.c \
+	codecext.c \
+	csv.c \
+	extensionfunctions.c \
+	rijndael.c \
+	sha2.c \
+	sqlite3secure.c \
+	userauth.c
+}
 
 HEADERS += dbsqlitewx.h \
     codec.h \
@@ -47,6 +50,10 @@ win32: {
 
 unix: {
     DEFINES += SQLITE_OS_UNIX=1
+    !isEmpty(WXSQLITE_LIB): {
+	LIBS += $$WXSQLITE_LIB
+	DEFINES += WXSQLITE_SYSTEM_LIB
+    }
 }
 win32: {
     DEFINES += SQLITE_OS_WIN=1
