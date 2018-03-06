@@ -37,7 +37,7 @@
  *
  * To access database object, that the query is executed on, use QueryExecutor::getDb().
  */
-class QueryExecutorStep : public QObject
+class API_EXPORT QueryExecutorStep : public QObject
 {
         Q_OBJECT
 

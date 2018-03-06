@@ -647,6 +647,53 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
         };
 
         /**
+         * @brief Position for custom executor steps.
+         *
+         * These position define where in query executor chain of steps the new, registered step will be placed.
+         * It's used in arguments of registerStep() method.
+         *
+         * If multiple steps are registered at same position, they will be executed in order they were registered.
+         *
+         * Values of positions determin what actions have been already taken by the executor, so for example
+         * AFTER_ATTACHES means, that executor already attached referenced databases and replaced occurrences of objects
+         * from that databases.
+         *
+         * Enumerations are in order as the steps are executed.
+         *
+         * If you need more detailed description about certain steps performed by query executor, see documentation
+         * of their classes - all these classes name start with QueryExecutor prefix.
+         */
+        enum StepPosition {
+            FIRST,                      /**< As first step */
+            AFTER_ATTACHES,             /**< After transparent attaching is applied (detected tables are defined to be attached first). */
+            AFTER_REPLACED_VIEWS,       /**< After referenced views have been replaced with subqueries */
+            AFTER_ROW_IDS,              /**< After ROWID columns have been added to result columns */
+            AFTER_REPLACED_COLUMNS,     /**< After all columns have been explicitly listed in result list, together with unique alias names */
+            AFTER_ORDER,                /**< After order clause was applied/modified */
+            AFTER_DISTINCT_WRAP,        /**< After wrapping SELECT was added in case of DISTINCT or GROUP BY clauses were used */
+            AFTER_CELL_SIZE_LIMIT,      /**< After cell result size was limited to save memory usage */
+            AFTER_ROW_LIMIT_AND_OFFSET, /**< After LIMIT and ORDER clauses were added/modified. This is the last possible moment, directly ahead of final query execution */
+            JUST_BEFORE_EXECUTION,      /**< Same as AFTER_ROW_LIMIT_AND_OFFSET */
+            LAST                        /**< Same as AFTER_ROW_LIMIT_AND_OFFSET */
+        };
+
+        /**
+         * @brief Interface for producing query executor steps.
+         *
+         * It can be used for overloaded version of registerStep() method,
+         * in case a step is stateful and needs to be created/deleted for every query executor processing.
+         *
+         * If step is stateless, it can be registered directly as an instance, using the other version of registerStep() method.
+         *
+         * This is an abstract class and not pointer to function, because it has to be comparable (and std::function is not),
+         * so it's possible to deregister the factory later on.
+         */
+        class StepFactory {
+            public:
+                virtual QueryExecutorStep* produceQueryExecutorStep() = 0;
+        };
+
+        /**
          * @brief Creates query executor, initializes internal context object.
          * @param db Optional database. If not provided, it has to be defined later with setDb().
          * @param query Optional query to execute. If not provided, it has to be defined later with setQuery().
@@ -1038,6 +1085,49 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
         int getQueryCountLimitForSmartMode() const;
         void setQueryCountLimitForSmartMode(int value);
 
+        /**
+         * @brief Adds new step to the chain of execution
+         * @param position Where in chain should the step be placed.
+         * @param step Step implementation instance.
+         *
+         * If multiple steps are registered for the same position, they will be executed in the order they were registered.
+         *
+         * If step is registered with a plugin, remember to deregister the step upon plugin unload.
+         * Best place for that is in Plugin::deinit().
+         */
+        static void registerStep(StepPosition position, QueryExecutorStep* step);
+
+        /**
+         * @brief Adds new step to chain of execution
+         * @param position Where in chain should the step be placed.
+         * @param stepFactory Factory for creating instance of the step.
+         *
+         * This is overloaded method for cases when the step is stateful and needs to be recreated for every invokation of query executor.
+         */
+        static void registerStep(StepPosition position, StepFactory* stepFactory);
+
+        /**
+         * @brief Removes extra step from the execution chain.
+         * @param position Position from which the step should be removed.
+         * @param step Step implementation instance.
+         *
+         * Removes step from list of additional steps to be performed. If such step was not on the list, this method does nothing.
+         *
+         * There is a position parameter to this method, becuase a step could be added to multiple different positions
+         * and you decide from which you want to deregister it.
+         */
+        static void deregisterStep(StepPosition position, QueryExecutorStep* step);
+
+        /**
+         * @brief Removes extra step from the execution chain.
+         * @param position Position from which the step should be removed.
+         * @param stepFactory Factory to deregister.
+         *
+         * This is overloaded method to remove factory instead of instance of a step. To be used together with registerStep()
+         * that also takes factory in parameters.
+         */
+        static void deregisterStep(StepPosition position, StepFactory* stepFactory);
+
     private:
         /**
          * @brief Executes query.
@@ -1124,6 +1214,13 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
         bool handleRowCountingResults(quint32 asyncId, SqlQueryPtr results);
 
         QStringList applyLimitForSimpleMethod(const QStringList &queries);
+
+        /**
+         * @brief Creates instances of steps for all registered factories for given position.
+         * @param position Position for which factories will be used.
+         * @return List of instances of steps from given factories.
+         */
+        QList<QueryExecutorStep*> createSteps(StepPosition position);
 
         /**
          * @brief Query executor context object.
@@ -1315,6 +1412,37 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          * execution stops and error from QueryExecutor is raised (with executionFailed() signal).
          */
         QList<QueryExecutorStep*> executionChain;
+
+        /**
+         * @brief List of registered additional steps to be performed
+         *
+         * It's a map, where keys describe where in chain should the steps be placed
+         * and values are list of steps to be inserted at that position.
+         *
+         * They are added/removed by methods: registerStep() and deregisterStep().
+         */
+        static QHash<StepPosition, QList<QueryExecutorStep*>> additionalStatelessSteps;
+
+        /**
+         * @brief List of all registered additional steps
+         *
+         * This is a list of all registered additional steps (registered instances of steps), regardless of their position.
+         * This is used to identify registered stateless steps, so they are not deleted on query executor cleanup.
+         *
+         * Only steps created with a factory are deleted upon executor cleanup (and of course all internal steps created by the executor itself).
+         */
+        static QList<QueryExecutorStep*> allAdditionalStatelsssSteps;
+
+        /**
+         * @brief List of registered factories that create additional steps to be performed
+         *
+         * This is similar to additionalSteps, except it holds factories, instead of step instances.
+         *
+         * Steps created with a factory are appended after stateless steps registered as direct
+         * instances (held by additionalSteps) - that is for case when both instance and factory
+         * are registered for the same step position.
+         */
+        static QHash<StepPosition, QList<StepFactory*>> additionalStatefulStepFactories;
 
         /**
          * @brief Execution results handler.

@@ -33,6 +33,10 @@
 
 // TODO modify all executor steps to use rebuildTokensFromContents() method, instead of replacing tokens manually.
 
+QHash<QueryExecutor::StepPosition, QList<QueryExecutorStep*>> QueryExecutor::additionalStatelessSteps;
+QList<QueryExecutorStep*> QueryExecutor::allAdditionalStatelsssSteps;
+QHash<QueryExecutor::StepPosition, QList<QueryExecutor::StepFactory*>> QueryExecutor::additionalStatefulStepFactories;
+
 QueryExecutor::QueryExecutor(Db* db, const QString& query, QObject *parent) :
     QObject(parent)
 {
@@ -58,29 +62,67 @@ QueryExecutor::~QueryExecutor()
 
 void QueryExecutor::setupExecutionChain()
 {
+    executionChain.append(additionalStatelessSteps[FIRST]);
+    executionChain.append(createSteps(FIRST));
+
     executionChain << new QueryExecutorParseQuery("initial")
                    << new QueryExecutorDetectSchemaAlter()
                    << new QueryExecutorExplainMode()
                    << new QueryExecutorValuesMode()
                    << new QueryExecutorAttaches() // needs to be at the begining, because columns needs to know real databases
-                   << new QueryExecutorParseQuery("after Attaches")
-                   << new QueryExecutorDataSources()
+                   << new QueryExecutorParseQuery("after Attaches");
+
+    executionChain.append(additionalStatelessSteps[AFTER_ATTACHES]);
+    executionChain.append(createSteps(AFTER_ATTACHES));
+
+    executionChain << new QueryExecutorDataSources()
                    << new QueryExecutorReplaceViews()
-                   << new QueryExecutorParseQuery("after ReplaceViews")
-                   << new QueryExecutorAddRowIds()
-                   << new QueryExecutorParseQuery("after AddRowIds")
-                   << new QueryExecutorColumns()
-                   << new QueryExecutorParseQuery("after Columns")
-                   //<< new QueryExecutorColumnAliases()
-                   << new QueryExecutorOrder()
-                   << new QueryExecutorWrapDistinctResults()
-                   << new QueryExecutorParseQuery("after WrapDistinctResults")
-                   << new QueryExecutorCellSize()
+                   << new QueryExecutorParseQuery("after ReplaceViews");
+
+    executionChain.append(additionalStatelessSteps[AFTER_REPLACED_VIEWS]);
+    executionChain.append(createSteps(AFTER_REPLACED_VIEWS));
+
+    executionChain << new QueryExecutorAddRowIds()
+                   << new QueryExecutorParseQuery("after AddRowIds");
+
+    executionChain.append(additionalStatelessSteps[AFTER_ROW_IDS]);
+    executionChain.append(createSteps(AFTER_ROW_IDS));
+
+    executionChain << new QueryExecutorColumns()
+                   << new QueryExecutorParseQuery("after Columns");
+
+    executionChain.append(additionalStatelessSteps[AFTER_REPLACED_COLUMNS]);
+    executionChain.append(createSteps(AFTER_REPLACED_COLUMNS));
+
+    executionChain << new QueryExecutorOrder();
+
+    executionChain.append(additionalStatelessSteps[AFTER_ORDER]);
+    executionChain.append(createSteps(AFTER_ORDER));
+
+    executionChain << new QueryExecutorWrapDistinctResults()
+                   << new QueryExecutorParseQuery("after WrapDistinctResults");
+
+    executionChain.append(additionalStatelessSteps[AFTER_DISTINCT_WRAP]);
+    executionChain.append(createSteps(AFTER_DISTINCT_WRAP));
+
+    executionChain << new QueryExecutorCellSize()
                    << new QueryExecutorCountResults()
-                   << new QueryExecutorParseQuery("after Order")
-                   << new QueryExecutorLimit()
-                   << new QueryExecutorParseQuery("after Limit")
-                   << new QueryExecutorExecute();
+                   << new QueryExecutorParseQuery("after CellSize");
+
+    executionChain.append(additionalStatelessSteps[AFTER_CELL_SIZE_LIMIT]);
+    executionChain.append(createSteps(AFTER_CELL_SIZE_LIMIT));
+
+    executionChain << new QueryExecutorLimit()
+                   << new QueryExecutorParseQuery("after Limit");
+
+    executionChain.append(additionalStatelessSteps[AFTER_ROW_LIMIT_AND_OFFSET]);
+    executionChain.append(createSteps(AFTER_ROW_LIMIT_AND_OFFSET));
+    executionChain.append(additionalStatelessSteps[JUST_BEFORE_EXECUTION]);
+    executionChain.append(createSteps(JUST_BEFORE_EXECUTION));
+    executionChain.append(additionalStatelessSteps[LAST]);
+    executionChain.append(createSteps(LAST));
+
+    executionChain << new QueryExecutorExecute();
 
     foreach (QueryExecutorStep* step, executionChain)
         step->init(this, context);
@@ -89,7 +131,10 @@ void QueryExecutor::setupExecutionChain()
 void QueryExecutor::clearChain()
 {
     foreach (QueryExecutorStep* step, executionChain)
-        delete step;
+    {
+        if (!allAdditionalStatelsssSteps.contains(step))
+            delete step;
+    }
 
     executionChain.clear();
 }
@@ -589,6 +634,15 @@ QStringList QueryExecutor::applyLimitForSimpleMethod(const QStringList &queries)
     return result;
 }
 
+QList<QueryExecutorStep*> QueryExecutor::createSteps(QueryExecutor::StepPosition position)
+{
+    QList<QueryExecutorStep*> steps;
+    foreach (StepFactory* factory, additionalStatefulStepFactories[position])
+        steps << factory->produceQueryExecutorStep();
+
+    return steps;
+}
+
 int QueryExecutor::getQueryCountLimitForSmartMode() const
 {
     return queryCountLimitForSmartMode;
@@ -597,6 +651,28 @@ int QueryExecutor::getQueryCountLimitForSmartMode() const
 void QueryExecutor::setQueryCountLimitForSmartMode(int value)
 {
     queryCountLimitForSmartMode = value;
+}
+
+void QueryExecutor::registerStep(StepPosition position, QueryExecutorStep *step)
+{
+    additionalStatelessSteps[position] += step;
+    allAdditionalStatelsssSteps += step;
+}
+
+void QueryExecutor::registerStep(QueryExecutor::StepPosition position, QueryExecutor::StepFactory* stepFactory)
+{
+    additionalStatefulStepFactories[position] += stepFactory;
+}
+
+void QueryExecutor::deregisterStep(StepPosition position, QueryExecutorStep *step)
+{
+    additionalStatelessSteps[position].removeOne(step);
+    allAdditionalStatelsssSteps.removeOne(step);
+}
+
+void QueryExecutor::deregisterStep(QueryExecutor::StepPosition position, QueryExecutor::StepFactory* stepFactory)
+{
+    additionalStatefulStepFactories[position].removeOne(stepFactory);
 }
 
 bool QueryExecutor::getForceSimpleMode() const

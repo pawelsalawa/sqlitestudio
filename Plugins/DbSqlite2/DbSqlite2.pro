@@ -14,11 +14,13 @@ TEMPLATE = lib
 DEFINES += DBSQLITE2_LIBRARY
 
 SOURCES += dbsqlite2.cpp \
-    dbsqlite2instance.cpp
+    dbsqlite2instance.cpp \
+    queryexecutorsqlite2delete.cpp
 
 HEADERS += dbsqlite2.h\
         dbsqlite2_global.h \
-    dbsqlite2instance.h
+    dbsqlite2instance.h \
+    queryexecutorsqlite2delete.h
 
 LIBS += -lsqlite
 

@@ -749,17 +749,11 @@ int AbstractDb2<T>::Query::fetchFirst()
 {
     rowAvailable = true;
     int res = fetchNext();
+    affected = 0;
     if (res == SQLITE_OK)
     {
-        if (colCount == 0)
-        {
-            affected = 0;
-        }
-        else
-        {
-            affected = sqlite_changes(db->dbHandle);
-            insertRowId["ROWID"] = sqlite_last_insert_rowid(db->dbHandle);
-        }
+        affected = sqlite_changes(db->dbHandle);
+        insertRowId["ROWID"] = sqlite_last_insert_rowid(db->dbHandle);
     }
     return res;
 }
