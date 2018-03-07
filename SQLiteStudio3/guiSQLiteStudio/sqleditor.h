@@ -266,6 +266,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void highlightCurrentLine();
         void updateLineNumberArea(const QRect&rect, int dy);
         void cursorMoved();
+        void checkContentSize();
         void formatSql();
         void saveToFile();
         void saveAsToFile();

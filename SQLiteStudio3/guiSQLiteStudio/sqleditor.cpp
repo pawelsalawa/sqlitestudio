@@ -66,8 +66,9 @@ void SqlEditor::init()
 
     connect(this, SIGNAL(blockCountChanged(int)), this, SLOT(updateLineNumberAreaWidth()));
     connect(this, SIGNAL(updateRequest(QRect,int)), this, SLOT(updateLineNumberArea(QRect,int)));
-    connect(this, SIGNAL(cursorPositionChanged()), this, SLOT(highlightCurrentLine()));
+    connect(this, SIGNAL(textChanged()), this, SLOT(checkContentSize()));
     connect(this, SIGNAL(cursorPositionChanged()), this, SLOT(cursorMoved()));
+    connect(this, SIGNAL(cursorPositionChanged()), this, SLOT(highlightCurrentLine()));
 
     updateLineNumberAreaWidth();
     highlightCurrentLine();
@@ -512,7 +513,7 @@ void SqlEditor::scheduleAutoCompletion()
 
 void SqlEditor::checkForAutoCompletion()
 {
-    if (!db || !autoCompletion || deletionKeyPressed)
+    if (!db || !autoCompletion || deletionKeyPressed || !richFeaturesEnabled)
         return;
 
     Lexer lexer(getDialect());
@@ -623,6 +624,9 @@ int SqlEditor::lineNumberAreaWidth()
 
 void SqlEditor::highlightParenthesis()
 {
+    if (!richFeaturesEnabled)
+        return;
+
     // Clear extra selections
     QList<QTextEdit::ExtraSelection> selections = extraSelections();
 
@@ -834,18 +838,8 @@ void SqlEditor::completerRightPressed()
 
 void SqlEditor::parseContents()
 {
-    if (document()->characterCount() > SqliteSyntaxHighlighter::MAX_QUERY_LENGTH)
-    {
-        if (richFeaturesEnabled)
-            notifyWarn(tr("Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled."));
-
-        richFeaturesEnabled = false;
+    if (!richFeaturesEnabled)
         return;
-    }
-    else if (!richFeaturesEnabled)
-    {
-        richFeaturesEnabled = true;
-    }
 
     // Updating dialect according to current database (if any)
     Dialect dialect = Dialect::Sqlite3;
@@ -1050,6 +1044,21 @@ void SqlEditor::cursorMoved()
     {
         textLocator->setStartPosition(textCursor().position());
         textLocator->cursorMoved();
+    }
+}
+
+void SqlEditor::checkContentSize()
+{
+    if (document()->characterCount() > SqliteSyntaxHighlighter::MAX_QUERY_LENGTH)
+    {
+        if (richFeaturesEnabled)
+            notifyWarn(tr("Contents of the SQL editor are huge, so errors detecting and existing objects highlighting are temporarily disabled."));
+
+        richFeaturesEnabled = false;
+    }
+    else if (!richFeaturesEnabled)
+    {
+        richFeaturesEnabled = true;
     }
 }
 
