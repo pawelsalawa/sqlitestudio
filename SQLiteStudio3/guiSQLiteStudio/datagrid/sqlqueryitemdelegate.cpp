@@ -85,7 +85,6 @@ QString SqlQueryItemDelegate::displayText(const QVariant& value, const QLocale& 
 void SqlQueryItemDelegate::setEditorData(QWidget* editor, const QModelIndex& index) const
 {
     // No need to check or load full data, it is already preloaded if necessary in createEditor().
-
     QComboBox* cb = dynamic_cast<QComboBox*>(editor);
     QLineEdit* le = dynamic_cast<QLineEdit*>(editor);
     if (cb) {
@@ -102,17 +101,29 @@ void SqlQueryItemDelegate::setEditorDataForFk(QComboBox* cb, const QModelIndex& 
     const SqlQueryModel* queryModel = dynamic_cast<const SqlQueryModel*>(index.model());
     SqlQueryItem* item = queryModel->itemFromIndex(index);
     QVariant modelData = item->getValue();
-    int idx = cb->findData(modelData, Qt::UserRole);
-    if (idx == -1 )
+
+    SqlQueryModel* cbModel = dynamic_cast<SqlQueryModel*>(cb->model());
+    SqlQueryItem* foundItem = cbModel->findAnyInColumn(0, SqlQueryItem::DataRole::VALUE, modelData);
+    int idx = -1;
+    if (foundItem)
+        idx = foundItem->index().row();
+
+    if (idx == -1 && modelData.isValid())
     {
-        cb->addItem(modelData.toString(), modelData);
-        idx = cb->count() - 1;
+        idx = 0;
+        QList<QVariant> values;
+        values << modelData;
+        for (int i = 1; i < cbModel->columnCount(); i++)
+            values << QVariant();
+
+        cbModel->insertCustomRow(values, idx);
 
         SqlQueryView* view = dynamic_cast<SqlQueryView*>(cb->view());
         view->resizeColumnsToContents();
         view->setMinimumWidth(view->horizontalHeader()->length());
     }
     cb->setCurrentIndex(idx);
+    cb->lineEdit()->selectAll();
 }
 
 void SqlQueryItemDelegate::setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const
@@ -318,22 +329,21 @@ void SqlQueryItemDelegate::fkDataReady()
 
     // Set selected combo value to initial value from the cell
     QComboBox* cb = modelToFkCombo[model];
-    QVariant value = modelToFkInitialValue[model];
+    QVariant valueFromQueryModel = modelToFkInitialValue[model];
+
     if (model->rowCount() > 0)
     {
         QModelIndex startIdx = model->index(0, 0);
         QModelIndex endIdx = model->index(model->rowCount() - 1, 0);
-        QModelIndexList idxList = model->findIndexes(startIdx, endIdx, SqlQueryItem::DataRole::VALUE, value, 1);
+        QModelIndexList idxList = model->findIndexes(startIdx, endIdx, SqlQueryItem::DataRole::VALUE, valueFromQueryModel, 1);
 
         if (idxList.size() > 0)
             cb->setCurrentIndex(idxList.first().row());
         else
-            cb->setCurrentText(value.toString());
+            cb->setCurrentText(valueFromQueryModel.toString());
     }
     else
-    {
-        cb->setCurrentText(value.toString());
-    }
+        cb->setCurrentText(valueFromQueryModel.toString());
 }
 
 void SqlQueryItemDelegate::fkDataFailed(const QString &errorText)
@@ -401,6 +411,7 @@ QWidget* SqlQueryItemDelegate::getFkEditor(SqlQueryItem* item, QWidget* parent, 
     queryModel->setHardRowLimit(MAX_ROWS_FOR_FK);
     queryModel->setDb(db);
     queryModel->setQuery(sql);
+    queryModel->setAsyncMode(false);
     queryModel->executeQuery();
 
     queryView->verticalHeader()->setVisible(false);

@@ -55,6 +55,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         QModelIndexList findIndexes(const QModelIndex &start, const QModelIndex& end, int role, const QVariant &value, int hits = -1) const;
         QList<SqlQueryItem*> findItems(int role, const QVariant &value, int hits = -1) const;
         QList<SqlQueryItem*> findItems(const QModelIndex &start, const QModelIndex& end, int role, const QVariant &value, int hits = -1) const;
+        SqlQueryItem* findAnyInColumn(int column, int role, const QVariant &value) const;
         QList<SqlQueryItem*> getUncommittedItems() const;
         QList<SqlQueryItem*> getRow(int row);
         int columnCount(const QModelIndex& parent = QModelIndex()) const;
@@ -63,6 +64,16 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         void loadFullDataForEntireRow(int row);
         StrHash<QString> attachDependencyTables();
         void detachDependencyTables();
+
+        /**
+         * @brief Disables or re-enables async query execution
+         * @param enabled True to set async mode enabled, false to set synchronous mode.
+         *
+         * This option is forwarded directly to the query executor.
+         *
+         * By default mode is asynchronous, but in some cases synchronous mode may be useful (like in FK combobox).
+         */
+        void setAsyncMode(bool enabled);
         virtual QString generateSelectQueryForItems(const QList<SqlQueryItem*>& items);
         virtual QString generateInsertQueryForItems(const QList<SqlQueryItem*>& items);
         virtual QString generateUpdateQueryForItems(const QList<SqlQueryItem*>& items);
@@ -144,6 +155,8 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
 
         int getQueryCountLimitForSmartMode() const;
         void setQueryCountLimitForSmartMode(int value);
+
+        void insertCustomRow(const QList<QVariant>& values, int insertionIndex);
 
     protected:
         class CommitUpdateQueryBuilder : public RowIdConditionBuilder

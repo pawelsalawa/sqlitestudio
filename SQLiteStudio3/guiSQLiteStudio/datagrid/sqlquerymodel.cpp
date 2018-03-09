@@ -68,6 +68,11 @@ void SqlQueryModel::setExplainMode(bool explain)
     this->explain = explain;
 }
 
+void SqlQueryModel::setAsyncMode(bool enabled)
+{
+    queryExecutor->setAsyncMode(enabled);
+}
+
 void SqlQueryModel::executeQuery()
 {
     if (queryExecutor->isExecutionInProgress())
@@ -222,6 +227,15 @@ QList<SqlQueryItem*> SqlQueryModel::findItems(int role, const QVariant& value, i
 QList<SqlQueryItem*> SqlQueryModel::findItems(const QModelIndex& start, const QModelIndex& end, int role, const QVariant& value, int hits) const
 {
     return toItemList(findIndexes(start, end, role, value, hits));
+}
+
+SqlQueryItem* SqlQueryModel::findAnyInColumn(int column, int role, const QVariant &value) const
+{
+    QList<SqlQueryItem *> itemList = toItemList(findIndexes(index(0, column), index(rowCount() - 1, column), role, value, 1));
+    if (itemList.isEmpty())
+        return nullptr;
+
+    return itemList[0];
 }
 
 QList<SqlQueryItem*> SqlQueryModel::getUncommittedItems() const
@@ -1553,6 +1567,20 @@ int SqlQueryModel::getQueryCountLimitForSmartMode() const
 void SqlQueryModel::setQueryCountLimitForSmartMode(int value)
 {
     queryExecutor->setQueryCountLimitForSmartMode(value);
+}
+
+void SqlQueryModel::insertCustomRow(const QList<QVariant> &values, int insertionIndex)
+{
+    SqlQueryItem* cellItem = nullptr;
+    int colIdx = 0;
+    QList<QStandardItem*> row;
+    foreach (const QVariant& value, values)
+    {
+        cellItem = new SqlQueryItem();
+        updateItem(cellItem, value, colIdx++, RowId());
+        row << cellItem;
+    }
+    insertRow(insertionIndex, row);
 }
 
 bool SqlQueryModel::isStructureOutOfDate() const
