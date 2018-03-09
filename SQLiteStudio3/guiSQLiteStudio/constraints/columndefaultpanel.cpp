@@ -61,9 +61,9 @@ bool ColumnDefaultPanel::validate()
     if (exprOk)
     {
         // Everything looks fine, so lets do the final check - if the value is considered constant by SQLite.
-        static QString tempDdlLiteralTpl = QStringLiteral("CREATE TABLE temp.%1 (col DEFAULT %2);");
-        static QString tempDdlExprTpl = QStringLiteral("CREATE TABLE temp.%1 (col DEFAULT (%2));");
-        static QString dropTempDdl = QStringLiteral("DROP TABLE IF EXISTS temp.%1;");
+        static QString tempDdlLiteralTpl = QStringLiteral("CREATE TEMP TABLE %1 (col DEFAULT %2);");
+        static QString tempDdlExprTpl = QStringLiteral("CREATE TEMP TABLE %1 (col DEFAULT (%2));");
+        static QString dropTempDdl = QStringLiteral("DROP TABLE %1;");
 
         QString tableName = getTempTable();
         QString tempDdl = tempDdlExprTpl.arg(tableName, ui->exprEdit->toPlainText());
@@ -75,7 +75,8 @@ bool ColumnDefaultPanel::validate()
             if (res->isError())
             {
                 exprOk = false;
-                exprError = tr("Invalid default value expression: %1").arg(res->getErrorText());
+                exprError = tr("Invalid default value expression: %1. If you want to use simple string as value, remember to surround it with quote characters.")
+                        .arg(res->getErrorText());
             }
             else
                 currentMode = Mode::LITERAL;
@@ -84,7 +85,8 @@ bool ColumnDefaultPanel::validate()
                 currentMode = Mode::EXPR;
 
         db->exec(dropTempDdl.arg(tableName));
-    }
+    } else
+        exprError = tr("Invalid default value expression. If you want to use simple string as value, remember to surround it with quote characters.");
 
     setValidState(ui->exprEdit, exprOk, exprError);
     setValidState(ui->namedEdit, nameOk, tr("Enter a name of the constraint."));
@@ -269,7 +271,7 @@ void ColumnDefaultPanel::updateVirtualSql()
 QString ColumnDefaultPanel::getTempTable()
 {
     SchemaResolver resolver(db);
-    return resolver.getUniqueName("temp", "sqlitestudio_temp_table");
+    return resolver.getUniqueName("sqlitestudio_temp_table");
 }
 
 void ColumnDefaultPanel::updateState()
