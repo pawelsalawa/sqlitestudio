@@ -748,7 +748,7 @@ TokenList SqliteCreateTable::Column::Constraint::rebuildTokensFromContents()
         {
             builder.withKeyword("DEFAULT").withSpace();
             if (!id.isNull())
-                builder.withOther(id);
+                builder.withOther(id, dialect);
             else if (!ctime.isNull())
                 builder.withKeyword(ctime.toUpper());
             else if (expr)
