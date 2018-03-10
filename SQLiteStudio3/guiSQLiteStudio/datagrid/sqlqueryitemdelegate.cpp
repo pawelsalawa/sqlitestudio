@@ -182,21 +182,26 @@ void SqlQueryItemDelegate::setModelDataForLineEdit(QLineEdit* editor, QAbstractI
     if (CFG_UI.General.KeepNullWhenEmptyValue.get() && model->data(index, Qt::EditRole).isNull() && value.isEmpty())
         return;
 
-    bool ok;
-    QVariant variant = value.toLongLong(&ok);
-    if (ok)
-    {
-        model->setData(index, variant, Qt::EditRole);
-        return;
-    }
+    const SqlQueryModel* queryModel = dynamic_cast<const SqlQueryModel*>(model);
+    SqlQueryItem* item = queryModel->itemFromIndex(index);
 
-    variant = value.toDouble(&ok);
-    if (ok)
+    if (item->getColumn()->dataType.isNumeric())
     {
-        model->setData(index, variant, Qt::EditRole);
-        return;
-    }
+        bool ok;
+        QVariant variant = value.toLongLong(&ok);
+        if (ok)
+        {
+            model->setData(index, variant, Qt::EditRole);
+            return;
+        }
 
+        variant = value.toDouble(&ok);
+        if (ok)
+        {
+            model->setData(index, variant, Qt::EditRole);
+            return;
+        }
+    }
     model->setData(index, value, Qt::EditRole);
 }
 
