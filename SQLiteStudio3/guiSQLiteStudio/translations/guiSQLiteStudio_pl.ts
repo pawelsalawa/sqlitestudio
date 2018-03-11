@@ -3864,7 +3864,7 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
     <message>
         <location filename="../mainwindow.cpp" line="269"/>
         <source>Cascade windows</source>
-        <translation>Ustaw okna caskadowo</translation>
+        <translation type="unfinished">Ustaw okna kaskadowo</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="270"/>
