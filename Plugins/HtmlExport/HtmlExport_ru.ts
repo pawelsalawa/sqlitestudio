@@ -6,7 +6,7 @@
     <message>
         <location filename="htmlexport.cpp" line="46"/>
         <source>SQL query results</source>
-        <translation>Реузльтаты запроса SQL</translation>
+        <translation type="unfinished">Результаты запроса SQL</translation>
     </message>
     <message>
         <location filename="htmlexport.cpp" line="78"/>
