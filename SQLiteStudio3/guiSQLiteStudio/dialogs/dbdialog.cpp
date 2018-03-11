@@ -481,7 +481,7 @@ bool DbDialog::validate()
     if (nameState)
     {
         if (nameManuallyEdited)
-            setValidStateInfo(ui->nameEdit, tr("<p>Automatic name generation was disabled, becuase the name was edited manually. To restore automatic generation please erase contents of the name field.</p>"));
+            setValidStateInfo(ui->nameEdit, tr("<p>Automatic name generation was disabled, because the name was edited manually. To restore automatic generation please erase contents of the name field.</p>"));
         else
             setValidState(ui->nameEdit, true);
     }
