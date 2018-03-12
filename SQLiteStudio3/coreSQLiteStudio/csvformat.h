@@ -12,6 +12,8 @@ struct API_EXPORT CsvFormat
     CsvFormat(const QStringList& columnSeparators, const QStringList& rowSeparators);
     CsvFormat(const QString& columnSeparator, const QString& rowSeparator, bool strictRowSeparator, bool strictColumnSeparator);
 
+    void calculateSeparatorMaxLengths();
+
     QString columnSeparator;
     QString rowSeparator;
     QStringList columnSeparators;
@@ -20,6 +22,8 @@ struct API_EXPORT CsvFormat
     bool strictRowSeparator = false;
     bool multipleRowSeparators = false;
     bool multipleColumnSeparators = false;
+    int maxColumnSeparatorLength = 0;
+    int maxRowSeparatorLength = 0;
 
     static const CsvFormat DEFAULT;
 };

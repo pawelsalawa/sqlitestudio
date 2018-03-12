@@ -105,6 +105,8 @@ void CsvImport::defineCsvFormat()
             csvFormat.columnSeparator = cfg.CsvImport.CustomSeparator.get();
             break;
     }
+
+    csvFormat.calculateSeparatorMaxLengths();
 }
 
 QList<ImportPlugin::ColumnDefinition> CsvImport::getColumns() const

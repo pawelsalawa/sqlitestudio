@@ -181,6 +181,8 @@ void CsvExport::defineCsvFormat()
             format.columnSeparator = cfg.CsvExport.CustomSeparator.get();
             break;
     }
+
+    format.calculateSeparatorMaxLengths();
 }
 
 

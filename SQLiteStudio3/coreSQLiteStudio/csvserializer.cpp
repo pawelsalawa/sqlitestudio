@@ -1,10 +1,55 @@
 #include "csvserializer.h"
 #include <QStringList>
-
-// TODO write unit tests for CsvSerializer
+#include <QLinkedList>
+#include <QDebug>
+#include <QTime>
 
 template <class C>
-bool isCsvColumnSeparator(QTextStream& data, const C& theChar, const CsvFormat& format)
+bool isCsvSeparator(QLinkedList<C>& ahead, const C& theChar, const QStringList& separators)
+{
+    bool match = false;
+    for (const QString sep : separators)
+    {
+        if (isCsvSeparator(ahead, theChar, sep))
+        {
+            match = true;
+            for (int i = 1, total = sep.size(); i < total; ++i)
+                ahead.removeFirst();
+
+            break;
+        }
+    }
+
+    return match;
+}
+
+template <class C>
+bool isCsvSeparator(QLinkedList<C>& ahead, const C& theChar, const QString& singleSeparator)
+{
+    QChar c = singleSeparator[0];
+    if (c != theChar)
+        return false;
+
+    typename QLinkedList<C>::const_iterator aheadIter = ahead.begin();
+    int sepCharIdx = 1;
+    int separatorSize = singleSeparator.length();
+    while (aheadIter != ahead.end() && sepCharIdx < separatorSize)
+    {
+        if (singleSeparator[sepCharIdx] != *aheadIter)
+            return false;
+
+        aheadIter++;
+        sepCharIdx++;
+    }
+
+    if (sepCharIdx < separatorSize)
+        return false;
+
+    return true;
+}
+
+template <class C>
+bool isCsvColumnSeparator(QLinkedList<C>& ahead, const C& theChar, const CsvFormat& format)
 {
     if (!format.strictColumnSeparator)
         return format.columnSeparator.contains(theChar);
@@ -16,32 +61,11 @@ bool isCsvColumnSeparator(QTextStream& data, const C& theChar, const CsvFormat& 
     else
         separators << format.columnSeparator;
 
-    qint64 origPos = data.pos();
-    bool match = true;
-    for (const QString sep : separators)
-    {
-        match = true;
-        data.seek(origPos - 1);
-        C nextChar;
-        for (const QChar& c : sep)
-        {
-            data >> nextChar;
-            if (c != nextChar)
-            {
-                data.seek(origPos);
-                match = false;
-                break;
-            }
-        }
-        if (match)
-            break;
-    }
-
-    return match;
+    return isCsvSeparator(ahead, theChar, separators);
 }
 
 template <class C>
-bool isCsvRowSeparator(QTextStream& data, const C& theChar, const CsvFormat& format)
+bool isCsvRowSeparator(QLinkedList<C>& ahead, const C& theChar, const CsvFormat& format)
 {
     if (!format.strictRowSeparator)
         return format.rowSeparator.contains(theChar);
@@ -53,28 +77,18 @@ bool isCsvRowSeparator(QTextStream& data, const C& theChar, const CsvFormat& for
     else
         separators << format.rowSeparator;
 
-    qint64 origPos = data.pos();
-    bool match = true;
-    for (const QString sep : separators)
-    {
-        match = true;
-        data.seek(origPos - 1);
-        C nextChar;
-        for (const QChar& c : sep)
-        {
-            data >> nextChar;
-            if (data.atEnd() || c != nextChar)
-            {
-                data.seek(origPos);
-                match = false;
-                break;
-            }
-        }
-        if (match)
-            break;
-    }
+    return isCsvSeparator(ahead, theChar, separators);
+}
 
-    return match;
+template <class C>
+void readAhead(QTextStream& data, QLinkedList<C>& ahead, int desiredSize)
+{
+    C singleValue;
+    while (!data.atEnd() && ahead.size() < desiredSize)
+    {
+        data >> singleValue;
+        ahead << singleValue;
+    }
 }
 
 template <class T, class C>
@@ -86,30 +100,38 @@ QList<QList<T>> typedDeserialize(QTextStream& data, const CsvFormat& format, boo
     bool quotes = false;
     bool sepAsLast = false;
     T field = "";
-    C c0;
-    C c1;
+    C theChar;
+    QLinkedList<C> ahead;
 
     while (!data.atEnd())
     {
-        data >> c0;
+        if (!ahead.isEmpty())
+            theChar = ahead.takeFirst();
+        else
+            data >> theChar;
+
         sepAsLast = false;
-        if (!quotes && c0 == '"' )
+        if (!quotes && theChar == '"' )
         {
             quotes = true;
         }
-        else if (quotes && c0 == '"' )
+        else if (quotes && theChar == '"' )
         {
             if (!data.atEnd())
             {
-                data >> c1;
-                if (c1 == '"' )
+                readAhead(data, ahead, 1);
+                if (ahead.isEmpty())
                 {
-                   field += c0;
+                    field += theChar;
+                }
+                else if (ahead.first() == '"' )
+                {
+                   field += theChar;
+                   ahead.removeFirst();
                 }
                 else
                 {
                    quotes = false;
-                   data.seek(data.pos() - 1);
                 }
             }
             else
@@ -122,13 +144,14 @@ QList<QList<T>> typedDeserialize(QTextStream& data, const CsvFormat& format, boo
         }
         else if (!quotes)
         {
-            if (isCsvColumnSeparator(data, c0, format))
+            readAhead(data, ahead, qMax(format.maxColumnSeparatorLength, format.maxRowSeparatorLength) - 1);
+            if (isCsvColumnSeparator(ahead, theChar, format))
             {
                 cells << field;
                 field = "";
                 sepAsLast = true;
             }
-            else if (isCsvRowSeparator(data, c0, format))
+            else if (isCsvRowSeparator(ahead, theChar, format))
             {
                 cells << field;
                 rows << cells;
@@ -139,12 +162,12 @@ QList<QList<T>> typedDeserialize(QTextStream& data, const CsvFormat& format, boo
             }
             else
             {
-                field += c0;
+                field += theChar;
             }
         }
         else
         {
-            field += c0;
+            field += theChar;
         }
     }
 

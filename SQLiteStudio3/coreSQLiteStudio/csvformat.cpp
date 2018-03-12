@@ -10,6 +10,7 @@ CsvFormat::CsvFormat()
 CsvFormat::CsvFormat(const QString& columnSeparator, const QString& rowSeparator) :
     columnSeparator(columnSeparator), rowSeparator(rowSeparator)
 {
+    calculateSeparatorMaxLengths();
 }
 
 CsvFormat::CsvFormat(const QStringList &columnSeparators, const QStringList &rowSeparators)
@@ -31,9 +32,23 @@ CsvFormat::CsvFormat(const QStringList &columnSeparators, const QStringList &row
     }
     else if (columnSeparators.size() > 0)
         this->columnSeparator = columnSeparators.first();
+
+    calculateSeparatorMaxLengths();
 }
 
 CsvFormat::CsvFormat(const QString& columnSeparator, const QString& rowSeparator, bool strictRowSeparator, bool strictColumnSeparator) :
     columnSeparator(columnSeparator), rowSeparator(rowSeparator), strictColumnSeparator(strictColumnSeparator), strictRowSeparator(strictRowSeparator)
 {
+    calculateSeparatorMaxLengths();
+}
+
+void CsvFormat::calculateSeparatorMaxLengths()
+{
+    maxColumnSeparatorLength = columnSeparator.length();
+    for (const QString& sep : columnSeparators)
+        maxColumnSeparatorLength = qMax(sep.length(), maxColumnSeparatorLength);
+
+    maxRowSeparatorLength = rowSeparator.length();
+    for (const QString& sep : rowSeparators)
+        maxRowSeparatorLength = qMax(sep.length(), maxRowSeparatorLength);
 }

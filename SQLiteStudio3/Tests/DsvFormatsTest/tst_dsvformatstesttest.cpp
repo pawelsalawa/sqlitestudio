@@ -14,7 +14,7 @@ class DsvFormatsTestTest : public QObject
     public:
         DsvFormatsTestTest();
 
-    private:
+private:
         QString toString(const QList<QStringList>& input);
 
         QList<QStringList> sampleData;
@@ -27,6 +27,7 @@ class DsvFormatsTestTest : public QObject
         void testTsv1();
         void testTsv2();
         void testCsv1();
+        void testCsvPerformance();
 };
 
 DsvFormatsTestTest::DsvFormatsTestTest()
@@ -103,6 +104,30 @@ void DsvFormatsTestTest::testCsv1()
 
     QVERIFY(result.size() == 1);
     QVERIFY(result.first().size() == 2);
+}
+
+void DsvFormatsTestTest::testCsvPerformance()
+{
+    QString input;
+    for (int i = 0; i < 10000; i++)
+        input += "abc,def,ghi,jkl,mno\n";
+
+    QTemporaryFile theFile;
+    theFile.open();
+    theFile.write(input.toLatin1());
+    theFile.seek(0);
+    QTextStream stream(&theFile);
+
+    QTime timer;
+    timer.start();
+    QList<QStringList> result = CsvSerializer::deserialize(stream, CsvFormat::DEFAULT);
+    int time = timer.elapsed();
+
+    QVERIFY(result.size() == 10000);
+    QVERIFY(result.first().size() == 5);
+    QVERIFY(result.last().size() == 5);
+
+    qDebug() << "Deserialization time:" << time;
 }
 
 QTEST_APPLESS_MAIN(DsvFormatsTestTest)

@@ -152,6 +152,8 @@ bool ImportWorker::importData()
 
     int rowCnt = 0;
     QList<QVariant> row;
+    QTime timer;
+    timer.start();
     while ((row = plugin->next()).size() > 0)
     {
         // Fill up missing values in the line
