@@ -149,6 +149,7 @@ bool ImportWorker::importData()
 
     QString theInsert = insertTemplate.arg(wrapObjIfNeeded(table, db->getDialect()), valList.join(", "));
     SqlQueryPtr query = db->prepare(theInsert);
+    query->setFlags(Db::Flag::SKIP_DROP_DETECTION|Db::Flag::SKIP_PARAM_COUNTING|Db::Flag::NO_LOCK);
 
     int rowCnt = 0;
     QList<QVariant> row;
@@ -162,10 +163,6 @@ bool ImportWorker::importData()
 
         // Assign argument values
         query->setArgs(row.mid(0, colCount));
-
-        // No transactions = already in transaction, skip locking
-        if (config->skipTransaction)
-            query->setFlags(Db::Flag::NO_LOCK);
 
         if (!query->execute())
         {
@@ -190,6 +187,11 @@ bool ImportWorker::importData()
             return false;
         }
         rowCnt++;
+        if (rowCnt % 1000 == 0)
+        {
+            qDebug() << rowCnt << "iterations:" << timer.elapsed();
+            timer.restart();
+        }
     }
 
     return true;

@@ -149,7 +149,10 @@ class API_EXPORT Db : public QObject, public Interruptable
                                         * threads. Justified situation is when you implement Db::initialDbSetup() in the derived class,
                                         * or when you implement SqlFunctionPlugin. Don't use it for the usual cases.
                                         */
-            SKIP_DROP_DETECTION = 0x4, /**< Query execution will not notify about any detected objects dropped by the query. */
+            SKIP_DROP_DETECTION = 0x4, /**< Query execution will not notify about any detected objects dropped by the query.
+                                        *   Benefit is that it speeds up execution. */
+            SKIP_PARAM_COUNTING = 0x8, /**< During execution with arguments as list the number of bind parameters will not be verified.
+                                        *   This speeds up execution at cost of possible error if bind params in query don't match number of args. */
         };
         Q_DECLARE_FLAGS(Flags, Flag)
 

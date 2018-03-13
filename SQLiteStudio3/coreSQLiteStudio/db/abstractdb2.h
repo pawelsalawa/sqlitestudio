@@ -580,19 +580,23 @@ bool AbstractDb2<T>::Query::execInternal(const QList<QVariant>& args)
 
     logSql(db.data(), query, args, flags);
 
-    QueryWithParamCount queryWithParams = getQueryWithParamCount(query, Dialect::Sqlite2);
-    QString singleStr = replaceNamedParams(queryWithParams.first);
-
     int res;
     if (stmt)
         res = resetStmt();
     else
-        res = prepareStmt(singleStr);
+        res = prepareStmt(query);
 
     if (res != SQLITE_OK)
         return false;
 
-    for (int paramIdx = 1; paramIdx <= queryWithParams.second; paramIdx++)
+    int maxParamIdx = args.size();
+    if (!flags.testFlag(Db::Flag::SKIP_PARAM_COUNTING))
+    {
+        QueryWithParamCount queryWithParams = getQueryWithParamCount(query, Dialect::Sqlite2);
+        maxParamIdx = qMin(maxParamIdx, queryWithParams.second);
+    }
+
+    for (int paramIdx = 1; paramIdx <= maxParamIdx; paramIdx++)
     {
         res = bindParam(paramIdx, args[paramIdx-1]);
         if (res != SQLITE_OK)

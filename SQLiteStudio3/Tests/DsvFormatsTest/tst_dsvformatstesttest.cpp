@@ -110,7 +110,7 @@ void DsvFormatsTestTest::testCsvPerformance()
 {
     QString input;
     for (int i = 0; i < 10000; i++)
-        input += "abc,def,ghi,jkl,mno\n";
+        input += "abc,d,g,\"jkl\nh\",mno\n";
 
     QTemporaryFile theFile;
     theFile.open();
