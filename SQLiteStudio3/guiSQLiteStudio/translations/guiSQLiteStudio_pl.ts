@@ -3495,7 +3495,7 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
     <message>
         <location filename="../dialogs/importdialog.ui" line="141"/>
         <source>Options</source>
-        <translation>OOpcje</translation>
+        <translation>Opcje</translation>
     </message>
     <message>
         <location filename="../dialogs/importdialog.ui" line="182"/>
@@ -3864,7 +3864,7 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
     <message>
         <location filename="../mainwindow.cpp" line="269"/>
         <source>Cascade windows</source>
-        <translation type="unfinished">Ustaw okna kaskadowo</translation>
+        <translation>Ustaw okna kaskadowo</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="270"/>

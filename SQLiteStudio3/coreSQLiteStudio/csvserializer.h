@@ -15,9 +15,6 @@ class API_EXPORT CsvSerializer
         static QList<QList<QByteArray>> deserialize(const QByteArray& data, const CsvFormat& format);
         static QList<QStringList> deserialize(QTextStream& data, const CsvFormat& format);
         static QStringList deserializeOneEntry(QTextStream& data, const CsvFormat& format);
-
-    private:
-        static QList<QStringList> deserialize(QTextStream& data, const CsvFormat& format, bool oneEntry);
 };
 
 #endif // CSVSERIALIZER_H
