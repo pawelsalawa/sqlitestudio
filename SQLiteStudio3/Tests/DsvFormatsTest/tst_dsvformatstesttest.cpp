@@ -80,7 +80,7 @@ void DsvFormatsTestTest::testTsv1()
     QString result = TsvSerializer::serialize(sampleData);
 
     QString common = "";
-    int i;
+    int i = 0;
     if (result != sampleTsv)
     {
         int lgt = qMax(result.length(), sampleTsv.length());
@@ -110,7 +110,7 @@ void DsvFormatsTestTest::testCsvPerformance()
 {
     QString input;
     for (int i = 0; i < 10000; i++)
-        input += "abc,d,g,\"jkl\nh\",mno\n";
+        input += "abc,d,g,\"jkl\nh\",mno\r\n";
 
     QTemporaryFile theFile;
     theFile.open();

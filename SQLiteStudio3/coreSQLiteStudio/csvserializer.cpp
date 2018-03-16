@@ -1,84 +1,71 @@
 #include "csvserializer.h"
 #include <QStringList>
-#include <QLinkedList>
+#include <QList>
 #include <QDebug>
 #include <QTime>
 
 template <class C>
-bool isCsvSeparator(QLinkedList<C>& ahead, const C& theChar, const QStringList& separators)
+bool isCsvSeparator(QList<C>& ahead, const C& theChar, const QStringList& separators)
 {
     for (const QString& sep : separators)
-    {
         if (isCsvSeparator(ahead, theChar, sep))
-        {
-            for (int i = 1, total = sep.size(); i < total; ++i)
-                ahead.removeFirst();
-
             return true;
-        }
-    }
 
     return false;
 }
 
 template <class C>
-bool isCsvSeparator(QLinkedList<C>& ahead, const C& theChar, const QString& singleSeparator)
+bool isCsvSeparator(QList<C>& ahead, const C& theChar, const QString& singleSeparator)
 {
     if (singleSeparator[0] != theChar)
         return false;
 
-    typename QLinkedList<C>::const_iterator aheadIter = ahead.begin();
-    int sepCharIdx = 1;
-    int separatorSize = singleSeparator.length();
-    while (aheadIter != ahead.end() && sepCharIdx < separatorSize)
+    typename QList<C>::const_iterator aheadIter = ahead.begin();
+    int singleSeparatorSize = singleSeparator.size();
+    int i = 1;
+    while (aheadIter != ahead.end() && i < singleSeparatorSize)
     {
-        if (singleSeparator[sepCharIdx] != *aheadIter)
+        if (singleSeparator[i++] != *aheadIter++)
             return false;
-
-        aheadIter++;
-        sepCharIdx++;
     }
 
-    if (sepCharIdx < separatorSize)
+    if (i < singleSeparatorSize)
         return false;
+
+    for (int i = 1, total = singleSeparator.size(); i < total; ++i)
+        ahead.removeFirst();
 
     return true;
 }
 
 template <class C>
-bool isCsvColumnSeparator(QLinkedList<C>& ahead, const C& theChar, const CsvFormat& format)
+bool isCsvColumnSeparator(QList<C>& ahead, const C& theChar, const CsvFormat& format)
 {
     if (!format.strictColumnSeparator)
         return format.columnSeparator.contains(theChar);
 
     // Strict checking (characters in defined order make a separator)
-    QStringList separators;
     if (format.multipleColumnSeparators)
-        separators = format.columnSeparators;
-    else
-        separators << format.columnSeparator;
+        return isCsvSeparator(ahead, theChar, format.columnSeparators);
 
-    return isCsvSeparator(ahead, theChar, separators);
+    return isCsvSeparator(ahead, theChar, format.columnSeparator);
 }
 
 template <class C>
-bool isCsvRowSeparator(QLinkedList<C>& ahead, const C& theChar, const CsvFormat& format)
+bool isCsvRowSeparator(QList<C>& ahead, const C& theChar, const CsvFormat& format)
 {
     if (!format.strictRowSeparator)
         return format.rowSeparator.contains(theChar);
 
     // Strict checking (characters in defined order make a separator)
-    QStringList separators;
     if (format.multipleRowSeparators)
-        separators = format.rowSeparators;
-    else
-        separators << format.rowSeparator;
+        return isCsvSeparator(ahead, theChar, format.rowSeparators);
 
-    return isCsvSeparator(ahead, theChar, separators);
+    return isCsvSeparator(ahead, theChar, format.rowSeparator);
 }
 
 template <class C>
-void readAhead(QTextStream& data, QLinkedList<C>& ahead, int desiredSize)
+void readAhead(QTextStream& data, QList<C>& ahead, int desiredSize)
 {
     C singleValue;
     while (!data.atEnd() && ahead.size() < desiredSize)
@@ -87,98 +74,6 @@ void readAhead(QTextStream& data, QLinkedList<C>& ahead, int desiredSize)
         ahead << singleValue;
     }
 }
-
-/*
-template <class T, class C>
-QList<QList<T>> typedDeserialize(QTextStream& data, const CsvFormat& format, bool oneEntry)
-{
-    QList<QList<T>> rows;
-    QList<T> cells;
-
-    bool quotes = false;
-    bool sepAsLast = false;
-    int separatorMaxAhead = qMax(format.maxColumnSeparatorLength, format.maxRowSeparatorLength) - 1;
-    T field = "";
-    field.reserve(3);
-    C theChar;
-    QLinkedList<C> ahead;
-
-    while (!data.atEnd())
-    {
-        if (!ahead.isEmpty())
-            theChar = ahead.takeFirst();
-        else
-            data >> theChar;
-
-        sepAsLast = false;
-        if (!quotes && theChar == '"' )
-        {
-            quotes = true;
-        }
-        else if (quotes && theChar == '"' )
-        {
-            if (!data.atEnd())
-            {
-                readAhead(data, ahead, 1);
-                if (ahead.isEmpty())
-                {
-                    field += theChar;
-                }
-                else if (ahead.first() == '"' )
-                {
-                   field += theChar;
-                   ahead.removeFirst();
-                }
-                else
-                {
-                   quotes = false;
-                }
-            }
-            else
-            {
-                if (field.length() == 0)
-                    cells << field;
-
-                quotes = false;
-            }
-        }
-        else if (!quotes)
-        {
-            readAhead(data, ahead, separatorMaxAhead);
-            if (isCsvColumnSeparator(ahead, theChar, format))
-            {
-                cells << field;
-                field = "";
-                sepAsLast = true;
-            }
-            else if (isCsvRowSeparator(ahead, theChar, format))
-            {
-                cells << field;
-                rows << cells;
-                cells.clear();
-                field.truncate(0);
-                if (oneEntry)
-                    break;
-            }
-            else
-            {
-                field += theChar;
-            }
-        }
-        else
-        {
-            field += theChar;
-        }
-    }
-
-    if (field.size() > 0 || sepAsLast)
-        cells << field;
-
-    if (cells.size() > 0)
-        rows << cells;
-
-    return rows;
-}*/
 
 template <class T, class C>
 void typedDeserializeInternal(QTextStream& data, const CsvFormat& format, QList<T>* cells, QList<QList<T>>* rows)
@@ -189,7 +84,7 @@ void typedDeserializeInternal(QTextStream& data, const CsvFormat& format, QList<
     T field = "";
     field.reserve(3);
     C theChar;
-    QLinkedList<C> ahead;
+    QList<C> ahead;
 
     while (!data.atEnd() || !ahead.isEmpty())
     {
