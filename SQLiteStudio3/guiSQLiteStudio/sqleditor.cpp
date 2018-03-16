@@ -707,6 +707,14 @@ void SqlEditor::indentSelected(bool shiftPressed)
     QTextDocument* doc = document();
     QTextBlock startBlock = doc->findBlock(cursor.selectionStart());
     QTextBlock endBlock = doc->findBlock(cursor.selectionEnd());
+
+    if (cursor.selectionEnd() > endBlock.position())
+    {
+        QTextBlock afterEndBlock = endBlock.next();
+        if (afterEndBlock.isValid())
+            endBlock = afterEndBlock;
+    }
+
     for (QTextBlock it = startBlock; it != endBlock; it = it.next())
     {
         if (shiftPressed)
