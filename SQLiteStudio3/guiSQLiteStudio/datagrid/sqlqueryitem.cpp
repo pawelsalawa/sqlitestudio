@@ -447,7 +447,7 @@ QString SqlQueryItem::loadFullData()
 
         // ROWID
         RowIdConditionBuilder rowIdBuilder;
-        rowIdBuilder.setRowId(getRowId());
+        rowIdBuilder.setRowId(getRowId(), dialect);
         QString rowId = rowIdBuilder.build();
         queryArgs = rowIdBuilder.getQueryArgs();
 

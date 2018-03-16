@@ -129,7 +129,7 @@ bool SqlTableModel::commitDeletedRow(const QList<SqlQueryItem*>& itemsInRow)
 
     CommitDeleteQueryBuilder queryBuilder;
     queryBuilder.setTable(wrapObjIfNeeded(table, dialect));
-    queryBuilder.setRowId(rowId);
+    queryBuilder.setRowId(rowId, dialect);
 
     QString sql = queryBuilder.build();
     QHash<QString, QVariant> args = queryBuilder.getQueryArgs();
@@ -296,7 +296,7 @@ void SqlTableModel::updateRowAfterInsert(const QList<SqlQueryItem*>& itemsInRow,
         static_qstring(limitedColTpl, "substr(%1, 1, %2)");
         SelectColumnsQueryBuilder queryBuilder;
         queryBuilder.setTable(wrapObjIfNeeded(table, dialect));
-        queryBuilder.setRowId(rowId);
+        queryBuilder.setRowId(rowId, dialect);
         QList<SqlQueryModelColumnPtr> columnKeys = columnsToReadFromDb.keys();
         for (const SqlQueryModelColumnPtr& modelColumn : columnKeys)
             queryBuilder.addColumn(limitedColTpl.arg(wrapObjIfNeeded(modelColumn->column, dialect), QString::number(cellDataLengthLimit)));

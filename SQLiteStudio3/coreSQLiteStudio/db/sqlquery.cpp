@@ -1,5 +1,6 @@
 #include "sqlquery.h"
 #include "db/sqlerrorcodes.h"
+#include "common/utils_sql.h"
 
 SqlQuery::~SqlQuery()
 {
@@ -115,7 +116,7 @@ void SqlQuery::setArgs(const QHash<QString, QVariant>& args)
 }
 
 
-void RowIdConditionBuilder::setRowId(const RowId& rowId)
+void RowIdConditionBuilder::setRowId(const RowId& rowId, Dialect dialect)
 {
     static const QString argTempalate = QStringLiteral(":rowIdArg%1");
 
@@ -127,7 +128,7 @@ void RowIdConditionBuilder::setRowId(const RowId& rowId)
         it.next();
         arg = argTempalate.arg(i++);
         queryArgs[arg] = it.value();
-        conditions << it.key() + " = " + arg;
+        conditions << wrapObjIfNeeded(it.key(), dialect) + " = " + arg;
     }
 }
 

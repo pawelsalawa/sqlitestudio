@@ -625,7 +625,7 @@ bool SqlQueryModel::commitEditedRow(const QList<SqlQueryItem*>& itemsInRow)
         // RowId
         queryBuilder.clear();
         rowId = items.first()->getRowId();
-        queryBuilder.setRowId(rowId);
+        queryBuilder.setRowId(rowId, dialect);
         newRowId = getNewRowId(rowId, items); // if any of item updates any of rowid columns, then this will be different than initial rowid
 
         // Database and table
