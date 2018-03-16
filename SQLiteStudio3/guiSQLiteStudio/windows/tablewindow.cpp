@@ -1112,8 +1112,8 @@ void TableWindow::updateDdlTab()
 
 void TableWindow::updateNewTableState()
 {
-    for (int i = 1; i < 5; i++)
-        ui->tabWidget->setTabEnabled(i, existingTable);
+    for (QWidget* tab : {ui->dataTab, ui->constraintsTab, ui->indexesTab, ui->triggersTab})
+        ui->tabWidget->setTabEnabled(ui->tabWidget->indexOf(tab), existingTable);
 
     actionMap[EXPORT]->setEnabled(existingTable);
     actionMap[IMPORT]->setEnabled(existingTable);

@@ -96,6 +96,7 @@ class GUI_API_EXPORT ViewWindow : public MdiChild
 
     private:
         void init();
+        void updateAfterInit();
         void newView();
         void initView();
         void setupCoverWidget();

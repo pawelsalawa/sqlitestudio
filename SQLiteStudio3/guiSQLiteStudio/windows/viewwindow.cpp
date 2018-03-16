@@ -259,6 +259,13 @@ void ViewWindow::init()
     updateQueryToolbarStatus();
     updateTriggersState();
     updateColumnButtons();
+    updateAfterInit();
+}
+
+void ViewWindow::updateAfterInit()
+{
+    for (QWidget* tab : {ui->dataTab, ui->triggersTab})
+        ui->tabWidget->setTabEnabled(ui->tabWidget->indexOf(tab), existingView);
 }
 
 void ViewWindow::newView()
@@ -624,6 +631,7 @@ void ViewWindow::changesSuccessfullyCommitted()
     initView();
     updateQueryToolbarStatus();
     updateWindowTitle();
+    updateAfterInit();
 
     if (oldView.compare(view, Qt::CaseInsensitive) == 0)
         notifyInfo(tr("Committed changes for view '%1' successfully.").arg(view));
