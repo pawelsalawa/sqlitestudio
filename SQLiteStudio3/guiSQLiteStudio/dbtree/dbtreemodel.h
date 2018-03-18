@@ -81,7 +81,7 @@ class GUI_API_EXPORT DbTreeModel : public QStandardItemModel
         QString getDbToolTip(DbTreeItem *item) const;
         QString getTableToolTip(DbTreeItem *item) const;
         QList<DbTreeItem*> getChildsAsFlatList(QStandardItem* item) const;
-        bool dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, Qt::DropAction defaultAction, bool &invokeStdDropAction);
+        bool dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, Qt::DropAction defaultAction, bool* invokeStdDropAction);
         bool dropDbObjectItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, Qt::DropAction defaultAction);
         QCheckBox* createCopyOrMoveMenuCheckBox(QMenu* menu, const QString& label);
         bool dropUrls(const QList<QUrl>& urls);

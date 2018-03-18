@@ -161,7 +161,7 @@ void DbTree::updateActionStates(const QStandardItem *item)
         // Add database should always be available, as well as a copy of an item
         enabled << ADD_DB << COPY;
 
-        if (isMimeDataValidForItem(QApplication::clipboard()->mimeData(), dbTreeItem))
+        if (isMimeDataValidForItem(QApplication::clipboard()->mimeData(), dbTreeItem, true))
             enabled << PASTE;
 
         enabled << CLEAR_FILTER;
@@ -624,10 +624,10 @@ DbTreeView*DbTree::getView() const
     return ui->treeView;
 }
 
-bool DbTree::isMimeDataValidForItem(const QMimeData* mimeData, const DbTreeItem* item)
+bool DbTree::isMimeDataValidForItem(const QMimeData* mimeData, const DbTreeItem* item, bool forPasting)
 {
     if (mimeData->formats().contains(DbTreeModel::MIMETYPE))
-        return areDbTreeItemsValidForItem(getModel()->getDragItems(mimeData), item);
+        return areDbTreeItemsValidForItem(getModel()->getDragItems(mimeData), item, forPasting);
     else if (mimeData->hasUrls())
         return areUrlsValidForItem(mimeData->urls(), item);
 
@@ -639,13 +639,16 @@ bool DbTree::isItemDraggable(const DbTreeItem* item)
     return item && draggableTypes.contains(item->getType());
 }
 
-bool DbTree::areDbTreeItemsValidForItem(QList<DbTreeItem*> srcItems, const DbTreeItem* dstItem)
+bool DbTree::areDbTreeItemsValidForItem(QList<DbTreeItem*> srcItems, const DbTreeItem* dstItem, bool forPasting)
 {
     QSet<Db*> srcDbs;
     QList<DbTreeItem::Type> srcTypes;
     DbTreeItem::Type dstType = DbTreeItem::Type::DIR; // the empty space is treated as group
     if (dstItem)
         dstType = dstItem->getType();
+
+    if (dstType == DbTreeItem::Type::DB && !dstItem->getDb()->isOpen())
+        return false;
 
     for (DbTreeItem* srcItem : srcItems)
     {
@@ -664,9 +667,6 @@ bool DbTree::areDbTreeItemsValidForItem(QList<DbTreeItem*> srcItems, const DbTre
     {
         if (!allowedTypesInside[dstType].contains(srcType))
             return false;
-
-        if (dstType == DbTreeItem::Type::DB && !dstItem->getDb()->isOpen())
-            return false;
     }
 
     // Support for d&d reordering of db objects
@@ -677,7 +677,8 @@ bool DbTree::areDbTreeItemsValidForItem(QList<DbTreeItem*> srcItems, const DbTre
         {DbTreeItem::Type::INDEX, DbTreeItem::Type::INDEXES}
     };
 
-    if (srcTypes.toSet().size() == 1 && srcDbs.size() == 1 && dstItem && *(srcDbs.begin()) == dstItem->getDb() && reorderingTypeToParent[srcTypes.first()] == dstType)
+    if (!forPasting && srcTypes.toSet().size() == 1 && srcDbs.size() == 1 && dstItem &&
+            *(srcDbs.begin()) == dstItem->getDb() && reorderingTypeToParent[srcTypes.first()] == dstType)
         return true;
 
     // No other d&d within same db

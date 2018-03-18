@@ -112,7 +112,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void showWidgetCover();
         void hideWidgetCover();
         void setSelectedItem(DbTreeItem* item);
-        bool isMimeDataValidForItem(const QMimeData* mimeData, const DbTreeItem* item);
+        bool isMimeDataValidForItem(const QMimeData* mimeData, const DbTreeItem* item, bool forPasting = false);
         QToolBar* getToolBar(int toolbar) const;
         Db* getSelectedDb();
         Db* getSelectedOpenDb();
@@ -150,7 +150,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         QList<DbTreeItem*> getSelectedItems(DbTreeItem::Type itemType);
         QList<DbTreeItem*> getSelectedItems(ItemFilterFunc filterFunc = nullptr);
 
-        static bool areDbTreeItemsValidForItem(QList<DbTreeItem*> srcItems, const DbTreeItem* dstItem);
+        static bool areDbTreeItemsValidForItem(QList<DbTreeItem*> srcItems, const DbTreeItem* dstItem, bool forPasting = false);
         static bool areUrlsValidForItem(const QList<QUrl>& srcUrls, const DbTreeItem* dstItem);
         static void initDndTypes();
 
