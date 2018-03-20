@@ -47,12 +47,14 @@ QList<QList<SelectResolver::Column>> SelectResolver::resolveColumns()
 QList<SelectResolver::Column> SelectResolver::resolve(SqliteSelect::Core *selectCore)
 {
     errors.clear();
+    extractCte(selectCore);
     return resolveCore(selectCore);
 }
 
 QList<QList<SelectResolver::Column>> SelectResolver::resolve(SqliteSelect *select)
 {
     errors.clear();
+    extractCte(select);
     QList<QList<SelectResolver::Column> > results;
     for (SqliteSelect::Core* core : select->coreSelects)
     {
@@ -66,12 +68,14 @@ QList<QList<SelectResolver::Column>> SelectResolver::resolve(SqliteSelect *selec
 QList<SelectResolver::Column> SelectResolver::resolveAvailableColumns(SqliteSelect::Core *selectCore)
 {
     errors.clear();
+    extractCte(selectCore);
     return resolveAvailableCoreColumns(selectCore);
 }
 
 QList<QList<SelectResolver::Column> > SelectResolver::resolveAvailableColumns(SqliteSelect *select)
 {
     errors.clear();
+    extractCte(select);
     QList<QList<SelectResolver::Column> > results;
     for (SqliteSelect::Core* core : select->coreSelects)
         results << resolveAvailableCoreColumns(core);
@@ -82,6 +86,7 @@ QList<QList<SelectResolver::Column> > SelectResolver::resolveAvailableColumns(Sq
 QSet<SelectResolver::Table> SelectResolver::resolveTables(SqliteSelect::Core *selectCore)
 {
     QSet<Table> tables;
+    extractCte(selectCore);
     QList<Column> columns = resolveAvailableColumns(selectCore);
     for (const Column& col : columns)
     {
@@ -97,6 +102,7 @@ QSet<SelectResolver::Table> SelectResolver::resolveTables(SqliteSelect::Core *se
 QList<QSet<SelectResolver::Table> > SelectResolver::resolveTables(SqliteSelect *select)
 {
     QList<QSet<Table> > results;
+    extractCte(select);
     QList<QList<Column> > columnLists = resolveAvailableColumns(select);
     for (const QList<Column>& columns : columnLists)
     {
@@ -118,6 +124,7 @@ QList<QSet<SelectResolver::Table> > SelectResolver::resolveTables(SqliteSelect *
 QList<SelectResolver::Column> SelectResolver::translateToColumns(SqliteSelect* select, const TokenList& columnTokens)
 {
     errors.clear();
+    extractCte(select);
     QList<SelectResolver::Column> results;
     for (const TokenPtr& token : columnTokens)
         results << translateTokenToColumn(select, token);
@@ -528,6 +535,24 @@ TokenList SelectResolver::getResColTokensWithoutAlias(SqliteSelect::Core::Result
     return allTokens;
 }
 
+void SelectResolver::extractCte(SqliteSelect *select)
+{
+    cteList.clear();
+    if (!select->with)
+        return;
+
+    for (SqliteWith::CommonTableExpression* cte : select->with->cteList)
+        cteList[cte->table] = cte;
+}
+
+void SelectResolver::extractCte(SqliteSelect::Core *core)
+{
+    if (!core->parentStatement())
+        return;
+
+    extractCte(dynamic_cast<SqliteSelect*>(core->parentStatement()));
+}
+
 QList<SelectResolver::Column> SelectResolver::resolveJoinSource(SqliteSelect::Core::JoinSource *joinSrc)
 {
     QList<SelectResolver::Column> columnSources;
@@ -652,7 +677,17 @@ QStringList SelectResolver::getTableColumns(const QString &database, const QStri
     dbTable.tableAlias = alias;
 
     if (tableColumnsCache.contains(dbTable))
+    {
         return tableColumnsCache.value(dbTable);
+    }
+    else if (database.isNull() && cteList.contains(table))
+    {
+        QStringList columns;
+        for (SqliteIndexedColumn* idxCol : cteList[table]->indexedColumns)
+            columns << idxCol->name;
+
+        return columns;
+    }
     else
     {
         QStringList columns = schemaResolver->getTableColumns(database, table);

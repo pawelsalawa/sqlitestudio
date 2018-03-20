@@ -436,6 +436,7 @@ unix: {
 
 OTHER_FILES += \
     parser/lempar.c \
+    parser/lemon.c \
     parser/sqlite3_parse.y \
     parser/sqlite2_parse.y \
     parser/run_lemon.sh \

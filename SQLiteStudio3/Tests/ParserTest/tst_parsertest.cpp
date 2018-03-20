@@ -1,12 +1,13 @@
 #include "parser/parser.h"
 #include "parser/ast/sqliteselect.h"
 #include "parser/ast/sqlitecreatetable.h"
+#include "parser/ast/sqliteinsert.h"
+#include "parser/ast/sqlitewith.h"
 #include "parser/keywords.h"
 #include "parser/lexer.h"
 #include "parser/parsererror.h"
 #include <QString>
 #include <QtTest>
-#include <parser/ast/sqliteinsert.h>
 
 class ParserTest : public QObject
 {
@@ -40,6 +41,7 @@ class ParserTest : public QObject
         void testCommentBeginMultiline();
         void testBetween();
         void testBigNum();
+        void testSelectWith();
         void initTestCase();
         void cleanupTestCase();
 };
@@ -399,6 +401,19 @@ void ParserTest::testUniqConflict()
     SqliteQueryPtr q = parser3->getQueries().first();
     TokenList tokens = q->tokens;
     QVERIFY(tokens[16]->type == Token::Type::PAR_RIGHT);
+}
+
+void ParserTest::testSelectWith()
+{
+    QString sql = "WITH m (c1, c2) AS (VALUES (1, 'a'), (2, 'b')) SELECT * FROM m;";
+    bool res = parser3->parse(sql);
+    QVERIFY(res);
+    QVERIFY(parser3->getErrors().isEmpty());
+
+    const SqliteQueryPtr query = parser3->getQueries().first();
+    query->rebuildTokens();
+    QString detokenized = query->detokenize().replace(" ", "");
+    QVERIFY(sql.replace(" ", "") == detokenized);
 }
 
 void ParserTest::initTestCase()

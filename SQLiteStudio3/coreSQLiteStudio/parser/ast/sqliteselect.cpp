@@ -50,7 +50,7 @@ SqliteSelect* SqliteSelect::append(SqliteSelect* select, SqliteSelect::CompoundO
 
     Core::ResultColumn* resCol = nullptr;
     QList<Core::ResultColumn*> resColList;
-    foreach (const QList<SqliteExpr*>& singleValues, values)
+    for (const QList<SqliteExpr*>& singleValues : values)
     {
         Core* core = new Core();
         core->setParent(select);
@@ -64,7 +64,7 @@ SqliteSelect* SqliteSelect::append(SqliteSelect* select, SqliteSelect::CompoundO
         select->coreSelects << core;
 
         resColList.clear();
-        foreach (SqliteExpr* value, singleValues)
+        for (SqliteExpr* value : singleValues)
         {
             resCol = new Core::ResultColumn(value, false, QString::null);
             resCol->rebuildTokens();
@@ -723,7 +723,11 @@ TokenList SqliteSelect::Core::rebuildTokensFromContents()
     StatementTokenBuilder builder;
     if (valuesMode)
     {
-        builder.withKeyword("VALUES").withSpace().withParLeft().withStatementList(resultColumns).withParRight();
+        SqliteSelect* select = dynamic_cast<SqliteSelect*>(parentStatement());
+        if (select->coreSelects.indexOf(this) == 0) // this is first core in series of cores of values mode of the SELECT
+            builder.withKeyword("VALUES").withSpace();
+
+        builder.withParLeft().withStatementList(resultColumns).withParRight();
         return builder.build();
     }
 

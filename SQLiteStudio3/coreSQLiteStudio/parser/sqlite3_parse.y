@@ -810,14 +810,6 @@ selectnowith(X) ::= selectnowith(S1)
                                                 delete V;
                                                 objectForTokens = X;
                                             }
-
-%type multiselect_op {SqliteSelect::CompoundOperator*}
-%destructor multiselect_op {delete $$;}
-multiselect_op(X) ::= UNION.                {X = new SqliteSelect::CompoundOperator(SqliteSelect::CompoundOperator::UNION);}
-multiselect_op(X) ::= UNION ALL.            {X = new SqliteSelect::CompoundOperator(SqliteSelect::CompoundOperator::UNION_ALL);}
-multiselect_op(X) ::= EXCEPT.               {X = new SqliteSelect::CompoundOperator(SqliteSelect::CompoundOperator::EXCEPT);}
-multiselect_op(X) ::= INTERSECT.            {X = new SqliteSelect::CompoundOperator(SqliteSelect::CompoundOperator::INTERSECT);}
-
 %type oneselect {SqliteSelect::Core*}
 %destructor oneselect {delete $$;}
 oneselect(X) ::= SELECT distinct(D)
@@ -856,6 +848,13 @@ values(X) ::= values(L) COMMA LP
                                                 delete E;
                                                 DONT_INHERIT_TOKENS("values");
                                             }
+
+%type multiselect_op {SqliteSelect::CompoundOperator*}
+%destructor multiselect_op {delete $$;}
+multiselect_op(X) ::= UNION.                {X = new SqliteSelect::CompoundOperator(SqliteSelect::CompoundOperator::UNION);}
+multiselect_op(X) ::= UNION ALL.            {X = new SqliteSelect::CompoundOperator(SqliteSelect::CompoundOperator::UNION_ALL);}
+multiselect_op(X) ::= EXCEPT.               {X = new SqliteSelect::CompoundOperator(SqliteSelect::CompoundOperator::EXCEPT);}
+multiselect_op(X) ::= INTERSECT.            {X = new SqliteSelect::CompoundOperator(SqliteSelect::CompoundOperator::INTERSECT);}
 
 %type distinct {int*}
 %destructor distinct {delete $$;}

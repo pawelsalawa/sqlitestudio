@@ -148,6 +148,8 @@ class API_EXPORT Db : public QObject, public Interruptable
                                         * of code, where the lock on Db was already set. Never (!) use this to ommit lock from different
                                         * threads. Justified situation is when you implement Db::initialDbSetup() in the derived class,
                                         * or when you implement SqlFunctionPlugin. Don't use it for the usual cases.
+                                        * This flag is ignored by SQLite2 plugin, because SQLite2 is not prepared for multithreaded
+                                        * processing, therefore all operations must be synchronized.
                                         */
             SKIP_DROP_DETECTION = 0x4, /**< Query execution will not notify about any detected objects dropped by the query.
                                         *   Benefit is that it speeds up execution. */

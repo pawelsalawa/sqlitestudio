@@ -50,8 +50,7 @@ QueryExecutor::QueryExecutor(Db* db, const QString& query, QObject *parent) :
     connect(this, SIGNAL(executionFailed(int,QString)), this, SLOT(cleanupAfterExecFailed(int,QString)));
     connect(DBLIST, SIGNAL(dbAboutToBeUnloaded(Db*, DbPlugin*)), this, SLOT(cleanupBeforeDbDestroy(Db*)));
     connect(DBLIST, SIGNAL(dbRemoved(Db*)), this, SLOT(cleanupBeforeDbDestroy(Db*)));
-    connect(simpleExecutor, SIGNAL(finished(SqlQueryPtr)), this, SLOT(simpleExecutionFinished(SqlQueryPtr)));
-
+    connect(simpleExecutor, &ChainExecutor::finished, this, &QueryExecutor::simpleExecutionFinished, Qt::DirectConnection);
 }
 
 QueryExecutor::~QueryExecutor()
@@ -620,8 +619,10 @@ bool QueryExecutor::handleRowCountingResults(quint32 asyncId, SqlQueryPtr result
 QStringList QueryExecutor::applyLimitForSimpleMethod(const QStringList &queries)
 {
     static_qstring(tpl, "SELECT * FROM (%1) LIMIT %2 OFFSET %3");
-    QStringList result = queries;
+    if (page < 0)
+        return queries; // no paging requested
 
+    QStringList result = queries;
     QString lastQuery = queries.last();
 
     bool isSelect = false;

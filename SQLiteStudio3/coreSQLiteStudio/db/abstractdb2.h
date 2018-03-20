@@ -12,6 +12,8 @@
 #include <QThread>
 #include <QPointer>
 #include <QDebug>
+#include <QMutexLocker>
+#include <QMutex>
 
 /**
  * @brief Complete implementation of SQLite 2 driver for SQLiteStudio.
@@ -131,6 +133,7 @@ class AbstractDb2 : public AbstractDb
         int dbErrorCode = SQLITE_OK;
         QList<FunctionUserData*> userDataList;
         QList<Query*> queries;
+        QMutex* dbOperMutex = nullptr;
 };
 
 //------------------------------------------------------------------------------------
@@ -141,11 +144,13 @@ template <class T>
 AbstractDb2<T>::AbstractDb2(const QString& name, const QString& path, const QHash<QString, QVariant>& connOptions) :
     AbstractDb(name, path, connOptions)
 {
+    dbOperMutex = new QMutex(QMutex::Recursive);
 }
 
 template <class T>
 AbstractDb2<T>::~AbstractDb2()
 {
+    safe_delete(dbOperMutex);
     if (isOpenInternal())
         closeInternal();
 }
@@ -168,6 +173,7 @@ void AbstractDb2<T>::interruptExecution()
     if (!isOpenInternal())
         return;
 
+    QMutexLocker mutexLocker(dbOperMutex);
     sqlite_interrupt(dbHandle);
 }
 
@@ -189,6 +195,7 @@ bool AbstractDb2<T>::openInternal()
     resetError();
     sqlite* handle = nullptr;
     char* errMsg = nullptr;
+    QMutexLocker mutexLocker(dbOperMutex);
     handle = sqlite_open(path.toUtf8().constData(), 0, &errMsg);
     if (!handle)
     {
@@ -214,6 +221,7 @@ bool AbstractDb2<T>::closeInternal()
 
     cleanUp();
 
+    QMutexLocker mutexLocker(dbOperMutex);
     sqlite_close(dbHandle);
     dbHandle = nullptr;
     return true;
@@ -243,6 +251,7 @@ bool AbstractDb2<T>::deregisterFunction(const QString& name, int argCount)
     if (!dbHandle)
         return false;
 
+    QMutexLocker mutexLocker(dbOperMutex);
     sqlite_create_function(dbHandle, name.toLatin1().data(), argCount, nullptr, nullptr);
     sqlite_create_aggregate(dbHandle, name.toLatin1().data(), argCount, nullptr, nullptr, nullptr);
 
@@ -273,6 +282,7 @@ bool AbstractDb2<T>::registerScalarFunction(const QString& name, int argCount)
     userData->argCount = argCount;
     userDataList << userData;
 
+    QMutexLocker mutexLocker(dbOperMutex);
     int res = sqlite_create_function(dbHandle, name.toUtf8().constData(), argCount,
                                      &AbstractDb2<T>::evaluateScalar, userData);
 
@@ -291,6 +301,7 @@ bool AbstractDb2<T>::registerAggregateFunction(const QString& name, int argCount
     userData->argCount = argCount;
     userDataList << userData;
 
+    QMutexLocker mutexLocker(dbOperMutex);
     int res = sqlite_create_aggregate(dbHandle, name.toUtf8().constData(), argCount,
                                       &AbstractDb2<T>::evaluateAggregateStep,
                                       &AbstractDb2<T>::evaluateAggregateFinal,
@@ -527,6 +538,7 @@ int AbstractDb2<T>::Query::prepareStmt(const QString& processedQuery)
     char* errMsg = nullptr;
     const char* tail;
     QByteArray queryBytes = processedQuery.toUtf8();
+    QMutexLocker mutexLocker(db->dbOperMutex);
     int res = sqlite_compile(db->dbHandle, queryBytes.constData(), &tail, &stmt, &errMsg);
     if (res != SQLITE_OK)
     {
@@ -556,6 +568,7 @@ int AbstractDb2<T>::Query::resetStmt()
     nextRowValues.clear();
 
     char* errMsg = nullptr;
+    QMutexLocker mutexLocker(db->dbOperMutex);
     int res = sqlite_reset(stmt, &errMsg);
     if (res != SQLITE_OK)
     {
@@ -576,7 +589,7 @@ bool AbstractDb2<T>::Query::execInternal(const QList<QVariant>& args)
     if (!checkDbState())
         return false;
 
-    ReadWriteLocker locker(&(db->dbOperLock), query, Dialect::Sqlite2, flags.testFlag(Db::Flag::NO_LOCK));
+    QMutexLocker mutexLocker(db->dbOperMutex);
 
     logSql(db.data(), query, args, flags);
 
@@ -616,7 +629,7 @@ bool AbstractDb2<T>::Query::execInternal(const QHash<QString, QVariant>& args)
     if (!checkDbState())
         return false;
 
-    ReadWriteLocker locker(&(db->dbOperLock), query, Dialect::Sqlite2, flags.testFlag(Db::Flag::NO_LOCK));
+    QMutexLocker mutexLocker(db->dbOperMutex);
 
     logSql(db.data(), query, args, flags);
 
@@ -669,9 +682,7 @@ template <class T>
 int AbstractDb2<T>::Query::bindParam(int paramIdx, const QVariant& value)
 {
     if (value.isNull())
-    {
         return sqlite_bind(stmt, paramIdx, nullptr, 0, 0);
-    }
 
     switch (value.type())
     {
@@ -690,6 +701,7 @@ int AbstractDb2<T>::Query::bindParam(int paramIdx, const QVariant& value)
         }
     }
 
+    qWarning() << "sqlite_bind() MISUSE";
     return SQLITE_MISUSE; // not going to happen
 }
 template <class T>
@@ -751,6 +763,7 @@ bool AbstractDb2<T>::Query::hasNextInternal()
 template <class T>
 int AbstractDb2<T>::Query::fetchFirst()
 {
+    QMutexLocker mutexLocker(db->dbOperMutex);
     rowAvailable = true;
     int res = fetchNext();
     affected = 0;
@@ -781,6 +794,7 @@ QString AbstractDb2<T>::Query::finalize()
     if (stmt)
     {
         char* errMsg = nullptr;
+        QMutexLocker mutexLocker(db->dbOperMutex);
         sqlite_finalize(stmt, &errMsg);
         stmt = nullptr;
         if (errMsg)
@@ -812,6 +826,7 @@ int AbstractDb2<T>::Query::fetchNext()
 
     int res;
     int secondsSpent = 0;
+    QMutexLocker mutexLocker(db->dbOperMutex);
     while ((res = sqlite_step(stmt, &columnsCount, &values, &columns)) == SQLITE_BUSY && secondsSpent < db->getTimeout())
     {
         QThread::sleep(1);

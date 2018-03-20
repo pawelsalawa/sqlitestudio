@@ -5,6 +5,7 @@
 #include "common/bistrhash.h"
 #include "dialect.h"
 #include "expectedtoken.h"
+#include "parser/ast/sqlitewith.h"
 #include <QString>
 #include <QHash>
 #include <QStringList>
@@ -222,10 +223,13 @@ class API_EXPORT SelectResolver
         void markCurrentColumnsWithFlag(Flag flag);
         bool matchTable(const Column& sourceColumn, const QString& table);
         TokenList getResColTokensWithoutAlias(SqliteSelect::Core::ResultColumn *resCol);
+        void extractCte(SqliteSelect* select);
+        void extractCte(SqliteSelect::Core* core);
 
         Db* db = nullptr;
         QString query;
         SqliteSelectPtr originalQueryParsed;
+        QHash<QString, SqliteWith::CommonTableExpression*> cteList;
 
         /**
          * @brief Database name to attach name map.

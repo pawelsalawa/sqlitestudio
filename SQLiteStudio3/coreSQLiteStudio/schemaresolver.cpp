@@ -136,7 +136,7 @@ QStringList SchemaResolver::getTableColumns(const QString &database, const QStri
     if (!createTable && !createVirtualTable)
     {
         qDebug() << "Parsed DDL is neither a CREATE TABLE or CREATE VIRTUAL TABLE statement. It's: "
-                 << sqliteQueryTypeToString(query->queryType);
+                 << sqliteQueryTypeToString(query->queryType) << "when trying to parse DDL of" << database << table;
 
         return columns;
     }

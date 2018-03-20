@@ -27,6 +27,7 @@ class SelectResolverTest : public QObject
         void testTableHash();
         void testColumnHash();
         void testWithCommonTableExpression();
+        void testWithCte2();
         void testStarWithJoinAndError();
         void test1();
         void testSubselectWithAlias();
@@ -194,6 +195,26 @@ void SelectResolverTest::testWithCommonTableExpression()
     QVERIFY(coreColumns.size() == 1);
     QVERIFY(coreColumns[0].type == SelectResolver::Column::OTHER);
     QVERIFY(coreColumns[0].flags & SelectResolver::Flag::FROM_CTE_SELECT);
+}
+
+void SelectResolverTest::testWithCte2()
+{
+    QString sql = "with m(c1, c2) as ("
+                  "     values (1, 'a'), (2, 'b'), (3, 'c')"
+                  ")"
+                  "select * from m";
+
+    SelectResolver resolver(db, sql);
+    Parser parser(db->getDialect());
+    QVERIFY(parser.parse(sql));
+
+    QList<QList<SelectResolver::Column>> columns = resolver.resolve(parser.getQueries().first().dynamicCast<SqliteSelect>().data());
+    QList<SelectResolver::Column> coreColumns = columns.first();
+    QVERIFY(coreColumns.size() == 2);
+    QVERIFY(coreColumns[0].type == SelectResolver::Column::COLUMN);
+    QVERIFY(coreColumns[0].flags & SelectResolver::Flag::FROM_CTE_SELECT);
+    QVERIFY(coreColumns[1].type == SelectResolver::Column::COLUMN);
+    QVERIFY(coreColumns[1].flags & SelectResolver::Flag::FROM_CTE_SELECT);
 }
 
 void SelectResolverTest::testStarWithJoinAndError()
