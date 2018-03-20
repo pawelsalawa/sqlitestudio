@@ -1,2 +1,3 @@
 /output*
 *.user
+.DS_Store

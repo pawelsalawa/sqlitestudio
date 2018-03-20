@@ -965,7 +965,7 @@ bool DbTreeModel::pasteData(const QMimeData* data, int row, int column, const QM
     }
 
     if (data->formats().contains(MIMETYPE))
-        return dropDbTreeItem(getDragItems(data), dstItem, defaultAction, *invokeStdAction);
+        return dropDbTreeItem(getDragItems(data), dstItem, defaultAction, invokeStdAction);
     else if (data->hasUrls())
         return dropUrls(data->urls());
     else
@@ -1025,7 +1025,7 @@ void DbTreeModel::staticInit()
 {
 }
 
-bool DbTreeModel::dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, Qt::DropAction defaultAction, bool& invokeStdDropAction)
+bool DbTreeModel::dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem* dstItem, Qt::DropAction defaultAction, bool *invokeStdDropAction)
 {
     // The result means: do we want the old item to be removed from the tree?
     if (srcItems.size() == 0)
@@ -1040,9 +1040,9 @@ bool DbTreeModel::dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem*
             if (!dstItem)
                 return false;
 
-            if (srcItem->getDb() == dstItem->getDb())
+            if (srcItem->getDb() == dstItem->getDb() && invokeStdDropAction)
             {
-                invokeStdDropAction = true;
+                *invokeStdDropAction = true;
                 return true;
             }
 
@@ -1050,8 +1050,12 @@ bool DbTreeModel::dropDbTreeItem(const QList<DbTreeItem*>& srcItems, DbTreeItem*
         }
         case DbTreeItem::Type::DB:
         case DbTreeItem::Type::DIR:
-            invokeStdDropAction = true;
+        {
+            if (invokeStdDropAction)
+                *invokeStdDropAction = true;
+
             break;
+        }
         case DbTreeItem::Type::COLUMN:
         case DbTreeItem::Type::TABLES:
         case DbTreeItem::Type::INDEXES:
