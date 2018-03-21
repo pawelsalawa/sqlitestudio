@@ -29,6 +29,7 @@ class SelectResolverTest : public QObject
         void testWithCommonTableExpression();
         void testWithCte2();
         void testStarWithJoinAndError();
+        void testTableFunction();
         void test1();
         void testSubselectWithAlias();
 };
@@ -227,6 +228,20 @@ void SelectResolverTest::testStarWithJoinAndError()
     QList<QList<SelectResolver::Column> > columns = resolver.resolve(parser.getQueries().first().dynamicCast<SqliteSelect>().data());
     QVERIFY(columns.first().size() == 3);
     QVERIFY(resolver.hasErrors());
+}
+
+void SelectResolverTest::testTableFunction()
+{
+    QString sql = "select * from json_tree(json_array(1, 2, 3))";
+    SelectResolver resolver(db, sql);
+    Parser parser(db->getDialect());
+    QVERIFY(parser.parse(sql));
+
+    SqliteSelectPtr select = parser.getQueries().first().dynamicCast<SqliteSelect>();
+    QList<QList<SelectResolver::Column> > columns = resolver.resolve(select.data());
+    QVERIFY(!resolver.hasErrors());
+    QVERIFY(columns.first().size() == 8);
+    QVERIFY(columns.first().first().type == SelectResolver::Column::OTHER);
 }
 
 void SelectResolverTest::test1()

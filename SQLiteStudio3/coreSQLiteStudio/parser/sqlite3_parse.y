@@ -1004,6 +1004,23 @@ singlesrc(X) ::= LP joinsrc(J) RP as(A).    {
                                                 delete A;
                                                 objectForTokens = X;
                                             }
+singlesrc(X) ::= nm(N1) dbnm(N2)
+                 LP exprlist(E) RP as(A).   {
+                                                X = new SqliteSelect::Core::SingleSource(
+                                                        *(N1),
+                                                        *(N2),
+                                                        A ? A->asKw : false,
+                                                        A ? A->name : QString::null,
+                                                        *(E)
+                                                    );
+                                                delete N1;
+                                                delete N2;
+                                                delete A;
+                                                if (E)
+                                                    delete E;
+
+                                                objectForTokens = X;
+                                            }
 singlesrc(X) ::= .                          {
                                                 parserContext->minorErrorBeforeNextToken("Syntax error");
                                                 X = new SqliteSelect::Core::SingleSource();

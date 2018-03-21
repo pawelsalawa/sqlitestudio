@@ -63,6 +63,8 @@ class API_EXPORT SqliteSelect : public SqliteQuery
                         SingleSource(const SingleSource& other);
                         SingleSource(const QString& name1, const QString& name2,
                                      bool asKw, const QString& alias, bool notIndexedKw, const QString& indexedBy);
+                        SingleSource(const QString& name1, const QString& name2,
+                                     bool asKw, const QString& alias, const QList<SqliteExpr*>& exprList);
                         SingleSource(SqliteSelect* select, bool asKw, const QString& alias);
                         SingleSource(JoinSource* src, bool asKw, const QString& alias);
 
@@ -71,6 +73,8 @@ class API_EXPORT SqliteSelect : public SqliteQuery
                         QString database = QString::null;
                         QString table = QString::null;
                         QString alias = QString::null;
+                        QString funcName = QString::null;
+                        QList<SqliteExpr*> funcParams;
                         bool asKw = false;
                         bool indexedByKw = false;
                         bool notIndexedKw = false;

@@ -574,25 +574,50 @@ QList<SelectResolver::Column> SelectResolver::resolveSingleSource(SqliteSelect::
     if (joinSrc->joinSource)
         return resolveJoinSource(joinSrc->joinSource);
 
+    if (!joinSrc->funcName.isNull())
+        return resolveTableFunctionColumns(joinSrc);
+
     if (isView(joinSrc->database, joinSrc->table))
         return resolveView(joinSrc->database, joinSrc->table, joinSrc->alias);
 
     QList<Column> columnSources;
     QStringList columns = getTableColumns(joinSrc->database, joinSrc->table, joinSrc->alias);
     Column column;
+    column.type = Column::COLUMN;
+    column.table = joinSrc->table;;
+    column.database = joinSrc->database;
+    column.originalDatabase = resolveDatabase(joinSrc->database);
+    if (!joinSrc->alias.isNull())
+        column.tableAlias = joinSrc->alias;
+
     for (const QString& columnName : columns)
     {
-        column.type = Column::COLUMN;
         column.column = columnName;
-        column.table = joinSrc->table;;
-        column.database = joinSrc->database;
-        column.originalDatabase = resolveDatabase(joinSrc->database);
-        if (!joinSrc->alias.isNull())
-            column.tableAlias = joinSrc->alias;
-
         columnSources << column;
     }
 
+    return columnSources;
+}
+
+QList<SelectResolver::Column> SelectResolver::resolveTableFunctionColumns(SqliteSelect::Core::SingleSource *joinSrc)
+{
+    static_qstring(columnSqlTpl, "SELECT * FROM %1 LIMIT 0");
+    SqlQueryPtr result = db->exec(columnSqlTpl.arg(joinSrc->detokenize()));
+    QStringList columnNames = result->getColumnNames();
+
+    QList<Column> columnSources;
+    Column column;
+    column.type = Column::OTHER;
+    column.database = joinSrc->database;
+    column.originalDatabase = resolveDatabase(joinSrc->database);
+    if (!joinSrc->alias.isNull())
+        column.tableAlias = joinSrc->alias;
+
+    for (const QString& columnName : columnNames)
+    {
+        column.column = columnName;
+        columnSources << column;
+    }
     return columnSources;
 }
 

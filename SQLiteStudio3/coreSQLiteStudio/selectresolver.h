@@ -205,6 +205,7 @@ class API_EXPORT SelectResolver
 
         QList<Column> resolveJoinSource(SqliteSelect::Core::JoinSource* joinSrc);
         QList<Column> resolveSingleSource(SqliteSelect::Core::SingleSource* joinSrc);
+        QList<Column> resolveTableFunctionColumns(SqliteSelect::Core::SingleSource* joinSrc);
         QList<Column> resolveSingleSourceSubSelect(SqliteSelect::Core::SingleSource* joinSrc);
         QList<Column> resolveOtherSource(SqliteSelect::Core::JoinSourceOther *otherSrc);
         QList<Column> resolveSubSelect(SqliteSelect* select);

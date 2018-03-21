@@ -293,6 +293,24 @@ SqliteSelect::Core::SingleSource::SingleSource(const QString& name1, const QStri
     this->notIndexedKw = notIndexedKw;
 }
 
+SqliteSelect::Core::SingleSource::SingleSource(const QString &name1, const QString &name2, bool asKw, const QString &alias, const QList<SqliteExpr*> &exprList)
+{
+    if (!name2.isNull())
+    {
+        database = name1;
+        funcName = name2;
+    }
+    else
+        funcName = name1;
+
+    funcParams.append(exprList);
+    for (SqliteExpr* expr : exprList)
+        expr->setParent(this);
+
+    this->asKw = asKw;
+    this->alias = alias;
+}
+
 SqliteSelect::Core::SingleSource::SingleSource(SqliteSelect *select, bool asKw, const QString &alias)
 {
     this->select = select;
@@ -590,12 +608,27 @@ TokenList SqliteSelect::Core::SingleSource::rebuildTokensFromContents()
                 builder.withSpace().withKeyword("AS");
 
             builder.withSpace().withOther(alias, dialect);
-
-            if (indexedByKw)
-                builder.withSpace().withKeyword("INDEXED").withSpace().withKeyword("BY").withSpace().withOther(indexedBy, dialect);
-            else if (notIndexedKw)
-                builder.withSpace().withKeyword("NOT").withSpace().withKeyword("INDEXED");
         }
+    }
+    else if (!funcName.isNull())
+    {
+        if (!database.isNull())
+            builder.withOther(database, dialect).withOperator(".");
+
+        builder.withOther(funcName, dialect).withParLeft().withStatementList(funcParams).withParRight();
+
+        if (!alias.isNull())
+        {
+            if (asKw)
+                builder.withSpace().withKeyword("AS");
+
+            builder.withSpace().withOther(alias, dialect);
+        }
+
+        if (indexedByKw)
+            builder.withSpace().withKeyword("INDEXED").withSpace().withKeyword("BY").withSpace().withOther(indexedBy, dialect);
+        else if (notIndexedKw)
+            builder.withSpace().withKeyword("NOT").withSpace().withKeyword("INDEXED");
     }
     else if (select)
     {

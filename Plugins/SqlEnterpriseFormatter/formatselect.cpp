@@ -142,11 +142,27 @@ void FormatSelectCoreSingleSource::formatInternal()
                 withKeyword("AS");
 
             withId(singleSource->alias);
+        }
 
-            if (singleSource->indexedByKw)
-                withKeyword("INDEXED").withKeyword("BY").withId(singleSource->indexedBy);
-            else if (singleSource->notIndexedKw)
-                withKeyword("NOT").withKeyword("INDEXED");
+        if (singleSource->indexedByKw)
+            withKeyword("INDEXED").withKeyword("BY").withId(singleSource->indexedBy);
+        else if (singleSource->notIndexedKw)
+            withKeyword("NOT").withKeyword("INDEXED");
+    }
+    else if (!singleSource->funcName.isNull())
+    {
+        if (!singleSource->database.isNull())
+            withId(singleSource->database).withIdDot();
+
+        withId(singleSource->funcName).withParFuncLeft()
+                .withStatementList(singleSource->funcParams, "funcArgs", FormatStatement::ListSeparator::EXPR_COMMA).withParFuncRight();
+
+        if (!singleSource->alias.isNull())
+        {
+            if (singleSource->asKw)
+                withKeyword("AS");
+
+            withId(singleSource->alias);
         }
     }
     else if (singleSource->select)
