@@ -106,13 +106,13 @@ void IndexDialog::init()
         connect(ui->partialIndexEdit, SIGNAL(textChanged()), this, SLOT(updateValidation()));
         ui->partialIndexEdit->setVirtualSqlExpression("SELECT %1");
         updatePartialConditionState();
-        ui->columnsTable->setColumnHidden(1, false);
+        ui->columnsTable->setColumnHidden(2, false);
     }
     else
     {
         ui->partialIndexCheck->setVisible(false);
         ui->partialIndexEdit->setVisible(false);
-        ui->columnsTable->setColumnHidden(1, true);
+        ui->columnsTable->setColumnHidden(2, true);
         ui->addExprColumnButton->setVisible(false);
         ui->editExprColumnButton->setVisible(false);
         ui->delExprColumnButton->setVisible(false);

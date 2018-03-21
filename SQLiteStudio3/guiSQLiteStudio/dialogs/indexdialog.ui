@@ -72,12 +72,12 @@
          </column>
          <column>
           <property name="text">
-           <string>Collation</string>
+           <string>Sort</string>
           </property>
          </column>
          <column>
           <property name="text">
-           <string>Sort</string>
+           <string>Collation</string>
           </property>
          </column>
         </widget>
