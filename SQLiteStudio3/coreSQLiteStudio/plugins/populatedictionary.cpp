@@ -35,7 +35,7 @@ bool PopulateDictionaryEngine::beforePopulating(Db* db, const QString& table)
     file.close();
 
     if (cfg.PopulateDictionary.Lines.get())
-        dictionary = dataStr.split("\n");
+        dictionary = dataStr.split(QRegExp("(\r\n|\n|\r)"));
     else
         dictionary = dataStr.split(QRegExp("\\s+"));
 
