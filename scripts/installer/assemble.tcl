@@ -12,6 +12,7 @@ set cfgFiles {
 	sqlitestudio.icns
 	sqlitestudio.ico
 	watermark.png
+	controller.qs
 }
 
 switch $::OS {

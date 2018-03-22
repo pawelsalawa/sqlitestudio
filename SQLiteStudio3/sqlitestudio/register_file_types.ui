@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>RegisterFileCheckBoxForm</class>
- <widget class="QWidget" name="RegisterFileCheckBoxForm">
+ <class>OptionsCheckBoxForm</class>
+ <widget class="QWidget" name="OptionsCheckBoxForm">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -19,6 +19,16 @@
      <property name="text">
       <string>Register following file extensions with SQLiteStudio:
 </string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="CreateStartMenuEntryCheckBox">
+     <property name="text">
+      <string>Create Start menu entry</string>
      </property>
      <property name="checked">
       <bool>true</bool>
