@@ -6,6 +6,7 @@
 #include "parser/keywords.h"
 #include "parser/lexer.h"
 #include "parser/parsererror.h"
+#include "common/utils_sql.h"
 #include <QString>
 #include <QtTest>
 
@@ -42,6 +43,7 @@ class ParserTest : public QObject
         void testBetween();
         void testBigNum();
         void testSelectWith();
+        void testInsertWithDoubleQuoteValues();
         void initTestCase();
         void cleanupTestCase();
 };
@@ -416,10 +418,24 @@ void ParserTest::testSelectWith()
     QVERIFY(sql.replace(" ", "") == detokenized);
 }
 
+void ParserTest::testInsertWithDoubleQuoteValues()
+{
+    QString sql = "REPLACE INTO _Variables (Name, TextValue) VALUES (\"varNowTime\", strftime(\"%Y-%m-%dT%H:%M:%S\", \"now\", \"localtime\"));";
+    bool res = parser3->parse(sql);
+    QVERIFY(res);
+    QVERIFY(parser3->getErrors().isEmpty());
+
+    const SqliteInsertPtr insert = parser3->getQueries().first().dynamicCast<SqliteInsert>();
+    insert->rebuildTokens();
+    QString detokenized = insert->detokenize().replace(" ", "");
+    QVERIFY(sql.replace(" ", "") == detokenized);
+}
+
 void ParserTest::initTestCase()
 {
     initKeywords();
     Lexer::staticInit();
+    initUtilsSql();
     parser2 = new Parser(Dialect::Sqlite2);
     parser3 = new Parser(Dialect::Sqlite3);
 }

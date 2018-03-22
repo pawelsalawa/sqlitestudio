@@ -67,6 +67,7 @@ SqliteSelect* SqliteSelect::append(SqliteSelect* select, SqliteSelect::CompoundO
         for (SqliteExpr* value : singleValues)
         {
             resCol = new Core::ResultColumn(value, false, QString::null);
+            value->detectDoubleQuotes(); // invoke explicitly before rebuilding tokens not to lose this information
             resCol->rebuildTokens();
             resCol->setParent(core);
             core->resultColumns << resCol;

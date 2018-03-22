@@ -92,6 +92,7 @@ class API_EXPORT SqliteExpr : public SqliteStatement
         void initSubSelect(SqliteSelect* select);
         void initCase(SqliteExpr* expr1, const QList<SqliteExpr*>& exprList, SqliteExpr* expr2);
         void initRaise(const QString& type, const QString& text = QString::null);
+        void detectDoubleQuotes(bool recursively = true);
 
         Mode mode = Mode::null;
         QVariant literalValue = QVariant();
@@ -132,6 +133,7 @@ class API_EXPORT SqliteExpr : public SqliteStatement
         void evaluatePostParsing();
 
     private:
+        bool doubleQuotesChecked = false;
         TokenList rebuildId();
         TokenList rebuildLike();
         TokenList rebuildNotNull();

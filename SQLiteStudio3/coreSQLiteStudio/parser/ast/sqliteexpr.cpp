@@ -341,6 +341,28 @@ void SqliteExpr::initRaise(const QString& type, const QString& text)
     raiseFunction = new SqliteRaise(type, text);
 }
 
+void SqliteExpr::detectDoubleQuotes(bool recursively)
+{
+    if (doubleQuotesChecked)
+        return;
+
+    doubleQuotesChecked = true;
+
+    if (tokens.size() > 0)
+    {
+        QString val = tokens.first()->value;
+        if (val[0] == '"' && val[0] == val[val.length() - 1])
+            possibleDoubleQuotedString = true;
+    }
+
+    for (SqliteStatement* stmt : childStatements())
+    {
+        SqliteExpr* subExpr = dynamic_cast<SqliteExpr*>(stmt);
+        if (subExpr)
+            subExpr->detectDoubleQuotes(recursively);
+    }
+}
+
 QStringList SqliteExpr::getColumnsInStatement()
 {
     return getStrListFromValue(column);
@@ -533,12 +555,7 @@ TokenList SqliteExpr::rebuildTokensFromContents()
 
 void SqliteExpr::evaluatePostParsing()
 {
-    if (tokens.size() > 0)
-    {
-        QString val = tokens.first()->value;
-        if (val[0] == '"' && val[0] == val[val.length() - 1])
-            possibleDoubleQuotedString = true;
-    }
+    detectDoubleQuotes(false); // not recursively, as SqliteStatement will take care of recursiveness
 }
 
 TokenList SqliteExpr::rebuildId()
@@ -550,7 +567,7 @@ TokenList SqliteExpr::rebuildId()
     if (!table.isNull())
         builder.withOther(table, dialect).withOperator(".");
 
-    if (possibleDoubleQuotedString)
+    if (table.isNull() && possibleDoubleQuotedString)
         builder.withStringPossiblyOther(column, dialect);
     else
         builder.withOther(column, dialect);
