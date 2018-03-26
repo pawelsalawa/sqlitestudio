@@ -77,6 +77,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         QModelIndex getCurrentIndex() const;
         bool getSimpleBrowserMode() const;
         void setSimpleBrowserMode(bool value);
+        void setIgnoreColumnWidthChanges(bool ignore);
 
     private:
         void init();
@@ -102,6 +103,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         QProgressBar* busyBar = nullptr;
         QList<QAction*> additionalActions;
         bool simpleBrowserMode = false;
+        bool ignoreColumnWidthChanges = false;
 
     private slots:
         void updateCommitRollbackActions(bool enabled);

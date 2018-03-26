@@ -158,6 +158,9 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
 
         void insertCustomRow(const QList<QVariant>& values, int insertionIndex);
 
+        void setDesiredColumnWidth(int colIdx, int width);
+        int getDesiredColumnWidth(int colIdx);
+
     protected:
         class CommitUpdateQueryBuilder : public RowIdConditionBuilder
         {
@@ -379,6 +382,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         QueryExecutor::SortList sortOrder;
 
         QHash<Column,SqlQueryModelColumnPtr> columnMap;
+        QHash<Column,int> columnWidths;
         QHash<AliasedTable,QHash<QString,QString>> tableToRowIdColumn;
         QStringList headerColumns;
         int rowNumBase = 0;

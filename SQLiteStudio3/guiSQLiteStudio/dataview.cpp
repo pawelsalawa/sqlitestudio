@@ -264,18 +264,29 @@ void DataView::setupDefShortcuts()
 
 void DataView::resizeColumnsInitiallyToContents()
 {
-    int cols = gridView->model()->columnCount();
+    SqlQueryModel *model = gridView->getModel();
+    int cols = model->columnCount();
+    gridView->setIgnoreColumnWidthChanges(true);
     gridView->resizeColumnsToContents();
     int wd;
+    int desiredWidth = -1;
     for (int i = 0; i < cols ; i++)
     {
+        desiredWidth = model->getDesiredColumnWidth(i);
         wd = gridView->columnWidth(i);
+
+        if (desiredWidth > -1 && wd != desiredWidth)
+        {
+            gridView->setColumnWidth(i, desiredWidth);
+            continue;
+        }
+
         if (wd > CFG_UI.General.MaxInitialColumnWith.get())
             gridView->setColumnWidth(i, CFG_UI.General.MaxInitialColumnWith.get());
         else if (wd < 60)
             gridView->setColumnWidth(i, 60);
-
     }
+    gridView->setIgnoreColumnWidthChanges(false);
 }
 
 void DataView::createStaticActions()

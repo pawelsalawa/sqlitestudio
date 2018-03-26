@@ -58,6 +58,13 @@ void SqlQueryView::init()
     connect(this, &QWidget::customContextMenuRequested, this, &SqlQueryView::customContextMenuRequested);
     connect(CFG_UI.Fonts.DataView, SIGNAL(changed(QVariant)), this, SLOT(updateFont()));
     connect(this, SIGNAL(activated(QModelIndex)), this, SLOT(itemActivated(QModelIndex)));
+    connect(this->horizontalHeader(), &QHeaderView::sectionResized, [this](int section, int, int newSize)
+    {
+        if (ignoreColumnWidthChanges)
+            return;
+
+        getModel()->setDesiredColumnWidth(section, newSize);
+    });
 
     horizontalHeader()->setSortIndicatorShown(false);
     horizontalHeader()->setSectionsClickable(true);
@@ -416,6 +423,11 @@ bool SqlQueryView::getSimpleBrowserMode() const
 void SqlQueryView::setSimpleBrowserMode(bool value)
 {
     simpleBrowserMode = value;
+}
+
+void SqlQueryView::setIgnoreColumnWidthChanges(bool ignore)
+{
+    ignoreColumnWidthChanges = ignore;
 }
 
 void SqlQueryView::updateCommitRollbackActions(bool enabled)

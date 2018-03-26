@@ -945,7 +945,7 @@ void SqlQueryModel::readColumns()
     int totalRowIdCols = 0;
     AliasedTable aliasedTable;
     DbAndTable dbAndTable;
-    foreach (const QueryExecutor::ResultRowIdColumnPtr& resCol, queryExecutor->getRowIdResultColumns())
+    for (const QueryExecutor::ResultRowIdColumnPtr& resCol : queryExecutor->getRowIdResultColumns())
     {
         if (resCol->dbName.isEmpty() || resCol->dbName.toLower() == "main" || resCol->dbName.toLower() == "temp")
             dbAndTable.setDb(db);
@@ -1581,6 +1581,32 @@ void SqlQueryModel::insertCustomRow(const QList<QVariant> &values, int insertion
         row << cellItem;
     }
     insertRow(insertionIndex, row);
+}
+
+void SqlQueryModel::setDesiredColumnWidth(int colIdx, int width)
+{
+    SqlQueryModelColumnPtr columnModel = columns[colIdx];
+    if (!columnModel)
+    {
+        qWarning() << "Missing column model for column with index" << colIdx << "while resizing column.";
+        return;
+    }
+
+    Column column(columnModel->database, columnModel->table, columnModel->column);
+    columnWidths[column] = width;
+}
+
+int SqlQueryModel::getDesiredColumnWidth(int colIdx)
+{
+    SqlQueryModelColumnPtr columnModel = columns[colIdx];
+    if (!columnModel)
+        return -1;
+
+    Column column(columnModel->database, columnModel->table, columnModel->column);
+    if (!columnWidths.contains(column))
+        return -1;
+
+    return columnWidths[column];
 }
 
 bool SqlQueryModel::isStructureOutOfDate() const
