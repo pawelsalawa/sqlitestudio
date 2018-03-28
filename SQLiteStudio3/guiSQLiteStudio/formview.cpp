@@ -150,12 +150,18 @@ void FormView::updateDeletedState()
 {
     SqlQueryItem* item = model->itemFromIndex(dataMapper->getCurrentIndex(), 0);
     if (!item)
+    {
+        for (MultiEditor* editor : editors)
+            editor->setEnabled(false);
+
         return;
+    }
 
     bool deleted = item->isDeletedRow();
     int i = 0;
-    foreach (MultiEditor* editor, editors)
+    for (MultiEditor* editor : editors)
     {
+        editor->setEnabled(true);
         editor->setDeletedRow(deleted);
         editor->setReadOnly(readOnly[i++] || deleted);
     }

@@ -865,7 +865,12 @@ void DataView::initFormViewForNewRow()
 
     int row = gridView->getCurrentIndex().row();
     for (SqlQueryItem* item : getModel()->getRow(row))
+    {
+        if (item->getColumn()->isAutoIncr())
+            continue;
+
         item->setValue("");
+    }
 }
 
 void DataView::formViewFocusFirstEditor()

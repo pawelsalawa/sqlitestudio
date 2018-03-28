@@ -397,6 +397,7 @@ void SqlTableModel::updateColumnsAndValues(const QList<SqlQueryItem*>& itemsInRo
     foreach (SqlQueryModelColumnPtr modelColumn, modelColumns)
     {
         item = itemsInRow[i++];
+        qDebug() << "commit cell:" << item->getValue();
         if (item->getValue().isNull())
         {
             if (CFG_UI.General.UseDefaultValueForNull.get() && modelColumn->isDefault())

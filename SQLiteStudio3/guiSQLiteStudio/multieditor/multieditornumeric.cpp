@@ -18,7 +18,7 @@ MultiEditorNumeric::MultiEditorNumeric(QWidget* parent)
 
 void MultiEditorNumeric::setValue(const QVariant& value)
 {
-    spinBox->setValue(value);
+    spinBox->setValue(value, false);
 }
 
 QVariant MultiEditorNumeric::getValue()
