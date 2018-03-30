@@ -11,12 +11,13 @@ addOptionsCheckBoxForm = function()
     // don't show when updating or uninstalling
     if (installer.isInstaller()) {
         installer.addWizardPageItem(component, "OptionsCheckBoxForm", QInstaller.TargetDirectory);
-		var assocCheckBox = component.userInterface("OptionsCheckBoxForm").RegisterFileCheckBox;
+		var form = component.userInterface("OptionsCheckBoxForm");
+		
+		var assocCheckBox = form.RegisterFileCheckBox;
         assocCheckBox.text = assocCheckBox.text + component.fileTypes.join(', ');
 
-		var startMenuCheckbox = component.userInterface("OptionsCheckBoxForm").CreateStartMenuEntryCheckBox;
+		var startMenuCheckbox = form.CreateStartMenuEntry;
 		startMenuCheckbox.stateChanged.connect(this, function() {
-			console.log("Start menu CB state changed: " +  startMenuCheckbox.checked);
 			installer.setDefaultPageVisible(QInstaller.StartMenuSelection, startMenuCheckbox.checked);
 		});
 	}
@@ -27,14 +28,21 @@ Component.prototype.createOperations = function()
     // call default implementation to actually install the app
     component.createOperations();
 
-	var theForm = component.userInterface("OptionsCheckBoxForm");
-    var isRegisterFileChecked = theForm.RegisterFileCheckBox.checked;
-	var isStartMenuEntryChecked = theForm.CreateStartMenuEntryCheckBox.checked;
     if (installer.value("os") === "win") {
+		var form = component.userInterface("OptionsCheckBoxForm");
+		var isRegisterFileChecked = form.RegisterFileCheckBox.checked;
+		var isStartMenuEntryChecked = form.CreateStartMenuEntry.checked;
+		var forAllUsersChecked = form.CreateStartMenuEntry.ForAllUsers.checked;
+	
         var executable = "@TargetDir@/SQLiteStudio.exe";
+		
+		var linkPrefix = "@UserStartMenuProgramsPath@";
+		if (forAllUsersChecked) {
+			linkPrefix = "@AllUsersStartMenuProgramsPath@";
+		}
 
 		if (isRegisterFileChecked) {
-			component.addOperation("CreateShortcut", executable, "@StartMenuDir@/SQLiteStudio.lnk",
+			component.addOperation("CreateShortcut", executable, linkPrefix + "/@StartMenuDir@/SQLiteStudio.lnk",
 				"workingDirectory=@TargetDir@", "iconPath=@TargetDir@/SQLiteStudio.exe",
 				"iconId=0", "description=SQLiteStudio");
 		}
