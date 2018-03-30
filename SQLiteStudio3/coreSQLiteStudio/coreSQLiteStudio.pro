@@ -427,7 +427,8 @@ HEADERS += sqlitestudio.h\
     querygenerator.h \
     common/sortedset.h \
     plugins/dbpluginstdfilebase.h \
-    common/xmldeserializer.h
+    common/xmldeserializer.h \
+    common/valuelocker.h
 
 unix: {
     target.path = $$LIBDIR

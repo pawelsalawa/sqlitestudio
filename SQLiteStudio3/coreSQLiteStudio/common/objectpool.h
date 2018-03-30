@@ -24,7 +24,7 @@ class ObjectPool
 };
 
 template <class T>
-ObjectPool::ObjectPool(quint32 min, quint32 max)
+ObjectPool<T>::ObjectPool(quint32 min, quint32 max)
     : min(min), max(max)
 {
     Q_ASSERT(min > 0);
@@ -36,7 +36,8 @@ ObjectPool::ObjectPool(quint32 min, quint32 max)
     }
 }
 
-T* ObjectPool::reserve()
+template <class T>
+T* ObjectPool<T>::reserve()
 {
     mutex.lock();
 
@@ -73,7 +74,7 @@ T* ObjectPool::reserve()
 }
 
 template <class T>
-void ObjectPool::release(T* obj)
+void ObjectPool<T>::release(T* obj)
 {
     mutex.lock();
     pool[obj] = false;

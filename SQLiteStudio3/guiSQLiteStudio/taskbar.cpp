@@ -158,7 +158,7 @@ QAction* TaskBar::getNextClosestAction(const QPoint& position)
     QToolButton* btn = nullptr;
     if (orientation() == Qt::Horizontal)
     {
-        foreach (QAction* action, tasks)
+        for (QAction* action : tasks)
         {
             btn = getToolButton(action);
             if (btn && btn->x() >= position.x())
@@ -167,7 +167,7 @@ QAction* TaskBar::getNextClosestAction(const QPoint& position)
     }
     else
     {
-        foreach (QAction* action, tasks)
+        for (QAction* action : tasks)
         {
             btn = getToolButton(action);
             if (btn && btn->y() >= position.y())
@@ -260,15 +260,33 @@ void TaskBar::dragTaskTo(QAction* task, int positionIndex)
     if (positionIndex < 0)
         return;
 
+    dragCurrentIndex = positionIndex;
+
     removeAction(task);
 
     if (positionIndex >= tasks.size())
+    {
         addAction(task);
+        tasks.removeOne(task);
+        tasks << task;
+    }
     else
+    {
+        int oldIdx = tasks.indexOf(task);
+
+        // If we move from left to right, the positionIndex actually points to 1 position after,
+        // so insertAction() can expect its "before action" first argument.
+        // Although at this step we want precise position index to move the task on the list,
+        // so if this is movement from left to right, we deduct 1 from the index.
+        int newTaskIdx = (positionIndex > oldIdx) ? (positionIndex - 1) : positionIndex;
+        if (oldIdx == newTaskIdx)
+            return;
+
         insertAction(tasks.at(positionIndex), task);
+        tasks.move(oldIdx, newTaskIdx);
+    }
 
     connect(getToolButton(task), SIGNAL(pressed()), this, SLOT(mousePressed()));
-    dragCurrentIndex = positionIndex;
 }
 
 QMimeData* TaskBar::generateMimeData()
