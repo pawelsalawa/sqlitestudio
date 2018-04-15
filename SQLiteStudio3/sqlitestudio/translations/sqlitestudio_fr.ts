@@ -6,28 +6,27 @@
     <message>
         <location filename="../main.cpp" line="44"/>
         <source>GUI interface to SQLiteStudio, a SQLite manager.</source>
-        <translatorcomment>Interface GUI de SQLiteStudio un outil pour SQLite</translatorcomment>
-        <translation></translation>
+        <translation>Interface GUI de SQLiteStudio, un outil pour SQLite.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="48"/>
         <source>Enables debug messages in console (accessible with F12).</source>
-        <translation>Messages de déboguage avec la console(accessible avec F12).</translation>
+        <translation>Messages de déboguage dans la console (accessible avec F12).</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="49"/>
         <source>Redirects debug messages into standard output (forces debug mode).</source>
-        <translation>Messages de déboguage redirigés vers sortie standard(mode déboguage forcé).</translation>
+        <translation>Messages de déboguage redirigés vers sortie standard (mode déboguage forcé).</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="50"/>
         <source>Redirects debug messages into given file (forces debug mode).</source>
-        <translation type="unfinished"></translation>
+        <translation>Messages de déboguage redirigés vers un fichier (mode déboguage forcé).</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="50"/>
         <source>log file</source>
-        <translation type="unfinished"></translation>
+        <translation>fichier log</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="51"/>
@@ -37,12 +36,12 @@
     <message>
         <location filename="../main.cpp" line="52"/>
         <source>Enables debugging of every single SQL query being sent to any database.</source>
-        <translation>Déboguage pour toutes requêtes SQL simple utilisé pour la plupart des bases de données.</translation>
+        <translation>Déboguage pour chaque requête SQL envoyée à toute base de données.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="53"/>
         <source>Limits SQL query messages to only the given &lt;database&gt;.</source>
-        <translation>Limites des meesages de la requête SQL pour la &lt;database&gt;.</translation>
+        <translation>Limite les messages de la requête SQL à la &lt;database&gt;.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="53"/>
@@ -52,12 +51,12 @@
     <message>
         <location filename="../main.cpp" line="54"/>
         <source>Enables debugging of SQLiteStudio&apos;s query executor.</source>
-        <translation type="unfinished"></translation>
+        <translation>Déboguage de l'exécuteur de requêtes de SQLiteStudio.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="55"/>
         <source>Lists plugins installed in the SQLiteStudio and quits.</source>
-        <translation>Listes des plugins installés dans SQLiteStudio et quitter.</translation>
+        <translation>Liste les plugins installés dans SQLiteStudio et quitte.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="56"/>
