@@ -6,7 +6,7 @@
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="14"/>
         <source>About SQLiteStudio and licenses</source>
-        <translation>À propos de SQLiteStudio et ses licences</translation>
+        <translation>À propos de SQLiteStudio et des licences</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="24"/>
@@ -51,7 +51,7 @@
     <message>
         <location filename="../dialogs/aboutdialog.ui" line="172"/>
         <source>SQLite 3 version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Version de SQLite 3 :</translation>
     </message>
     <message>
         <source>SQLite 3 version :</source>
@@ -70,7 +70,7 @@
     <message>
         <location filename="../dialogs/aboutdialog.cpp" line="39"/>
         <source>Portable distribution.</source>
-        <translation>Version portable</translation>
+        <translation>Version portable.</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.cpp" line="42"/>
@@ -80,7 +80,7 @@
     <message>
         <location filename="../dialogs/aboutdialog.cpp" line="45"/>
         <source>Operating system managed distribution.</source>
-        <translation>Operating system managed distribution</translation>
+        <translation>Distribution gérée par le système d'exploitation.</translation>
     </message>
     <message>
         <location filename="../dialogs/aboutdialog.cpp" line="89"/>
@@ -134,7 +134,7 @@
     <message>
         <location filename="../dialogs/bugdialog.ui" line="119"/>
         <source>SQLiteStudio version</source>
-        <translation>Version SQLiteStudio</translation>
+        <translation>Version de SQLiteStudio</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.ui" line="131"/>
@@ -149,7 +149,7 @@
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="39"/>
         <source>Send</source>
-        <translation>Envoyez</translation>
+        <translation>Envoyer</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="66"/>
@@ -172,7 +172,7 @@
         <location filename="../dialogs/bugdialog.cpp" line="80"/>
         <location filename="../dialogs/bugdialog.cpp" line="94"/>
         <source>You can retry sending. The contents will be restored when you open a report dialog after an error like this.</source>
-        <translation>Vous pouvez réexpédier. Le contenu sera restoré lorsque vous ouvrirez le dialogue du rapport après une telle erreur.</translation>
+        <translation>Vous pouvez essayer à nouveau. Le contenu sera restauré lorsque vous ouvrirez le dialogue du rapport après une telle erreur.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="88"/>
@@ -198,7 +198,7 @@
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="107"/>
         <source>Describe problem and how to reproduce it</source>
-        <translation>Décriver le problem et comment le reproduire</translation>
+        <translation>Décrivez le problème et comment le reproduire</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="111"/>
@@ -218,12 +218,12 @@
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="118"/>
         <source>Reporting as an unregistered user, using e-mail address.</source>
-        <translation>Rapport comme nouvel utilisateur, avec une adresse mail.</translation>
+        <translation>Envoyer le rapport comme nouvel utilisateur, avec une adresse mail.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="127"/>
         <source>Reporting as a registered user.</source>
-        <translation>Rapport comme utilisateur enregistré.</translation>
+        <translation>Envoyer le rapport comme utilisateur enregistré.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="131"/>
@@ -233,7 +233,7 @@
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="144"/>
         <source>Providing true email address will make it possible to contact you regarding your report. To learn more, press &apos;help&apos; button on the right side.</source>
-        <translation>En fournissant un mail existant il sera possible de vous contacterau sujet du rapport. Pour en savoir plus, clic sur le bouton « help » sur le coté droit.</translation>
+        <translation>En fournissant un mail existant il sera possible de vous contacter au sujet du rapport. Pour en savoir plus, clic sur le bouton « help » sur le coté droit.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="146"/>
@@ -248,7 +248,7 @@
     <message>
         <location filename="../dialogs/bugdialog.cpp" line="151"/>
         <source>Long description requires at least 30 characters.</source>
-        <translation>Une descption longue require au moins 30 caractères.</translation>
+        <translation>Une descption longue requiert au moins 30 caractères.</translation>
     </message>
 </context>
 <context>
@@ -263,7 +263,7 @@
         <location filename="../windows/bugreporthistorywindow.ui" line="41"/>
         <location filename="../windows/bugreporthistorywindow.cpp" line="119"/>
         <source>Reported at</source>
-        <translation>Reporté à</translation>
+        <translation>Rapport envoyé à</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.ui" line="46"/>
@@ -279,7 +279,7 @@
     <message>
         <location filename="../windows/bugreporthistorywindow.cpp" line="50"/>
         <source>Clear reports history</source>
-        <translation>Vider l’historique de rapports</translation>
+        <translation>Vider l’historique des rapports</translation>
     </message>
     <message>
         <location filename="../windows/bugreporthistorywindow.cpp" line="51"/>
@@ -302,7 +302,7 @@
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="20"/>
         <source>Credentials</source>
-        <translation>Certifications</translation>
+        <translation>Identités</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.ui" line="26"/>
@@ -337,7 +337,7 @@
     <message>
         <location filename="../dialogs/bugreportlogindialog.cpp" line="65"/>
         <source>A login must be at least 2 characters long.</source>
-        <translation>Un identifiant dois avoir au moins 2 caractères.</translation>
+        <translation>Un identifiant doit avoir au moins 2 caractères.</translation>
     </message>
     <message>
         <location filename="../dialogs/bugreportlogindialog.cpp" line="66"/>
@@ -355,12 +355,12 @@
     <message>
         <location filename="../windows/collationseditor.ui" line="75"/>
         <source>Filter collations</source>
-        <translation>Filtre de regroupements</translation>
+        <translation>Filtre de collation</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.ui" line="194"/>
         <source>Collation name:</source>
-        <translation>Nom de regroupements :</translation>
+        <translation>Nom de collation :</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.ui" line="204"/>
@@ -375,7 +375,7 @@
     <message>
         <location filename="../windows/collationseditor.ui" line="138"/>
         <source>Register in all databases</source>
-        <translation>Inscrire daans toutes les bases de données</translation>
+        <translation>Inscrire dans toutes les bases de données</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.ui" line="145"/>
@@ -385,37 +385,37 @@
     <message>
         <location filename="../windows/collationseditor.ui" line="166"/>
         <source>Implementation code:</source>
-        <translation>Code d’inplémentation :</translation>
+        <translation>Code d’implémentation :</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="52"/>
         <source>Collations editor</source>
-        <translation>Éditeur de regroupement</translation>
+        <translation>Éditeur de collation</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="57"/>
         <source>Commit all collation changes</source>
-        <translation>Enregistrer les motifications de regroupement</translation>
+        <translation>Enregistrer les motifications de collation</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="58"/>
         <source>Rollback all collation changes</source>
-        <translation>Annuler toutes les modifications de regroupement</translation>
+        <translation>Annuler toutes les modifications de collation</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="60"/>
         <source>Create new collation</source>
-        <translation>Création de regroupement</translation>
+        <translation>Création de collation</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="61"/>
         <source>Delete selected collation</source>
-        <translation>Supprimer le regroupement sélectionné</translation>
+        <translation>Supprimer la collation sélectionnée</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="63"/>
         <source>Editing collations manual</source>
-        <translation>Modification manuelle de regroupement</translation>
+        <translation>Manuel pour l'édition de collations</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="283"/>
@@ -425,17 +425,17 @@
     <message>
         <location filename="../windows/collationseditor.cpp" line="291"/>
         <source>Pick the implementation language.</source>
-        <translation>Prendre le language d’inplémentation.</translation>
+        <translation>Choisir le language d’implémentation.</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="294"/>
         <source>Enter a non-empty implementation code.</source>
-        <translation>Saississez un nom, non vide, de language d’implémentation.</translation>
+        <translation>Saissir un nom, non vide, de language d’implémentation.</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="388"/>
         <source>Collations editor window has uncommitted modifications.</source>
-        <translation type="unfinished">L’éditeur de regroupement n’as pas enregistré les modifications.</translation>
+        <translation type="unfinished">L’éditeur de collations a des modifications non enregistrées.</translation>
     </message>
 </context>
 <context>
@@ -443,7 +443,7 @@
     <message>
         <location filename="../common/colorbutton.cpp" line="29"/>
         <source>Pick a color</source>
-        <translation>Coisir une couleur</translation>
+        <translation>Choisir une couleur</translation>
     </message>
 </context>
 <context>
@@ -451,12 +451,12 @@
     <message>
         <location filename="../constraints/columncollatepanel.ui" line="41"/>
         <source>Collation name:</source>
-        <translation>Nom de la jointure :</translation>
+        <translation>Nom de la collation :</translation>
     </message>
     <message>
         <location filename="../constraints/columncollatepanel.ui" line="73"/>
         <source>Named constraint:</source>
-        <translation>Constante nommée :</translation>
+        <translation>Contrainte nommée :</translation>
     </message>
     <message>
         <location filename="../constraints/columncollatepanel.cpp" line="80"/>
@@ -466,7 +466,7 @@
     <message>
         <location filename="../constraints/columncollatepanel.cpp" line="81"/>
         <source>Enter a collation name.</source>
-        <translation>Saisir le nom de la jointure.</translation>
+        <translation>Saisir le nom de la collation.</translation>
     </message>
 </context>
 <context>
@@ -484,17 +484,17 @@
     <message>
         <location filename="../constraints/columndefaultpanel.cpp" line="39"/>
         <source>Enter a default value expression.</source>
-        <translation>Saississez l’expression d’une valeur par défaut.</translation>
+        <translation>Saisissez l’expression d’une valeur par défaut.</translation>
     </message>
     <message>
         <location filename="../constraints/columndefaultpanel.cpp" line="78"/>
         <source>Invalid default value expression: %1</source>
-        <translation>Invalide expression d’une valeur par défaut : %1</translation>
+        <translation>Expression invalide pour une valeur par défaut : %1</translation>
     </message>
     <message>
         <location filename="../constraints/columndefaultpanel.cpp" line="90"/>
         <source>Enter a name of the constraint.</source>
-        <translation>Saississez un nom de contrainte.</translation>
+        <translation>Saisir un nom de contrainte.</translation>
     </message>
 </context>
 <context>
@@ -563,7 +563,7 @@
     <message>
         <location filename="../dialogs/columndialog.ui" line="143"/>
         <source>Collate</source>
-        <translation>Jointure</translation>
+        <translation>Collation</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="150"/>
@@ -573,7 +573,7 @@
     <message>
         <location filename="../dialogs/columndialog.ui" line="157"/>
         <source>Check condition</source>
-        <translation>Vérifiez la contition</translation>
+        <translation>Vérifier la contition</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="164"/>
@@ -637,13 +637,13 @@
         <location filename="../dialogs/columndialog.cpp" line="94"/>
         <source>Add an unique constraint</source>
         <comment>column dialog</comment>
-        <translation>Ajouter une contrainte unique</translation>
+        <translation>Ajouter une contrainte d'unicité</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="95"/>
         <source>Add a check constraint</source>
         <comment>column dialog</comment>
-        <translation>Ajouter un contrôle de la contrainte</translation>
+        <translation>Ajouter une contrainte de contrôle</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.cpp" line="96"/>
@@ -715,7 +715,7 @@ mais c’est OK pour l’utiliser.</translation>
         <location filename="../dialogs/columndialogconstraintsmodel.cpp" line="332"/>
         <source>Details</source>
         <comment>column dialog constraints</comment>
-        <translation>Details</translation>
+        <translation>Détails</translation>
     </message>
 </context>
 <context>
@@ -753,17 +753,17 @@ mais c’est OK pour l’utiliser.</translation>
     <message>
         <location filename="../constraints/columnforeignkeypanel.cpp" line="40"/>
         <source>Pick the foreign table.</source>
-        <translation>Sélectionner une table étrangère.</translation>
+        <translation>Sélectionner la table étrangère.</translation>
     </message>
     <message>
         <location filename="../constraints/columnforeignkeypanel.cpp" line="41"/>
         <source>Pick the foreign column.</source>
-        <translation>Séléctionner une colonne étrangère.</translation>
+        <translation>Sélectionner la colonne étrangère.</translation>
     </message>
     <message>
         <location filename="../constraints/columnforeignkeypanel.cpp" line="42"/>
         <source>Enter a name of the constraint.</source>
-        <translation>Saississez un nom de contraite.</translation>
+        <translation>Saisir un nom de contraite.</translation>
     </message>
 </context>
 <context>
@@ -786,12 +786,12 @@ mais c’est OK pour l’utiliser.</translation>
     <message>
         <location filename="../constraints/columnprimarykeypanel.ui" line="111"/>
         <source>On conflict:</source>
-        <translation>Sur conflit :</translation>
+        <translation>En cas de conflit :</translation>
     </message>
     <message>
         <location filename="../constraints/columnprimarykeypanel.cpp" line="87"/>
         <source>Enter a name of the constraint.</source>
-        <translation>Saississez le nom d’une contrainte.</translation>
+        <translation>Saisissez le nom d’une contrainte.</translation>
     </message>
     <message>
         <location filename="../constraints/columnprimarykeypanel.cpp" line="103"/>
@@ -810,12 +810,12 @@ mais c’est OK pour l’utiliser.</translation>
     <message>
         <location filename="../constraints/columnuniqueandnotnullpanel.ui" line="69"/>
         <source>On conflict:</source>
-        <translation>Sur conflit :</translation>
+        <translation>En cas de conflit :</translation>
     </message>
     <message>
         <location filename="../constraints/columnuniqueandnotnullpanel.cpp" line="73"/>
         <source>Enter a name of the constraint.</source>
-        <translation>Saississez un nom de contrainte.</translation>
+        <translation>Saisissez un nom de contrainte.</translation>
     </message>
 </context>
 <context>
@@ -848,7 +848,7 @@ mais c’est OK pour l’utiliser.</translation>
         <location filename="../completer/completerwindow.cpp" line="167"/>
         <source>View: %1</source>
         <comment>completer statusbar</comment>
-        <translation>Vue %1</translation>
+        <translation>Vue : %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="169"/>
@@ -890,13 +890,13 @@ mais c’est OK pour l’utiliser.</translation>
         <location filename="../completer/completerwindow.cpp" line="191"/>
         <source>Binary data</source>
         <comment>completer statusbar</comment>
-        <translation>Données binaire</translation>
+        <translation>Données binaires</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="193"/>
         <source>Collation: %1</source>
         <comment>completer statusbar</comment>
-        <translation>Regroupement : %1</translation>
+        <translation>Collation : %1</translation>
     </message>
     <message>
         <location filename="../completer/completerwindow.cpp" line="195"/>
@@ -931,7 +931,7 @@ mais c’est OK pour l’utiliser.</translation>
     <message>
         <location filename="../dialogs/configdialog.ui" line="118"/>
         <source>Look &amp; feel</source>
-        <translation>Aspet</translation>
+        <translation>Apparence</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="129"/>
@@ -956,17 +956,17 @@ mais c’est OK pour l’utiliser.</translation>
     <message>
         <location filename="../dialogs/configdialog.ui" line="213"/>
         <source>Code formatters</source>
-        <translation>Formatage code</translation>
+        <translation>Formateurs de code</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="178"/>
         <source>Data browsing</source>
-        <translation>Navigation données</translation>
+        <translation>Navigation de données</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="189"/>
         <source>Data editors</source>
-        <translation>Éditeur de données</translation>
+        <translation>Éditeurs de données</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="418"/>
@@ -1007,22 +1007,22 @@ mais c’est OK pour l’utiliser.</translation>
     <message>
         <location filename="../dialogs/configdialog.ui" line="521"/>
         <source>Inserting new row in data grid</source>
-        <translation type="unfinished"></translation>
+        <translation>Insertion d'une nouvelle ligne dans la grille de données</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="527"/>
         <source>Before currently selected row</source>
-        <translation type="unfinished"></translation>
+        <translation>Avant la ligne courante</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="543"/>
         <source>After currently selected row</source>
-        <translation type="unfinished"></translation>
+        <translation>Après la ligne courante</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="556"/>
         <source>At the end of data view</source>
-        <translation type="unfinished"></translation>
+        <translation>À la fin de la vue de données</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="578"/>
@@ -1037,7 +1037,7 @@ mais c’est OK pour l’utiliser.</translation>
     <message>
         <location filename="../dialogs/configdialog.ui" line="594"/>
         <source>Place data tab as first tab in a Table Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Placer l'onglet Données en premier dans les fenêtres de tables</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="613"/>
@@ -1144,7 +1144,7 @@ mais c’est OK pour l’utiliser.</translation>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1044"/>
         <source>Changing language requires application restart to take effect.</source>
-        <translation>Le changement de langage requiére le redemarrage de l’application pour prendre effet.</translation>
+        <translation>Le changement de langage requiert le redémarrage de l’application pour prendre effet.</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1061"/>
@@ -1180,7 +1180,7 @@ mais c’est OK pour l’utiliser.</translation>
     <message>
         <location filename="../dialogs/configdialog.ui" line="258"/>
         <source>Expand tables node when connected to a database</source>
-        <translation>Déployez le noeud des tables lors de la connexion de la base de données</translation>
+        <translation>Développer le nœud des tables lors de la connexion de la base de données</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="268"/>
@@ -1190,7 +1190,7 @@ mais c’est OK pour l’utiliser.</translation>
     <message>
         <location filename="../dialogs/configdialog.ui" line="271"/>
         <source>Display additional labels on the list</source>
-        <translation>Afficher des labels supplémentaires à la liste </translation>
+        <translation>Afficher des labels supplémentaires dans la liste </translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="286"/>
@@ -1215,7 +1215,7 @@ mais c’est OK pour l’utiliser.</translation>
     <message>
         <location filename="../dialogs/configdialog.ui" line="315"/>
         <source>Expand views node when connected to a database</source>
-        <translation>Etendre le noeud des vues lorsque la base de données est connectée</translation>
+        <translation>Développer le nœud des vues lorsque la base de données est connectée</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="325"/>
@@ -1275,12 +1275,12 @@ mais c’est OK pour l’utiliser.</translation>
     <message>
         <location filename="../dialogs/configdialog.ui" line="572"/>
         <source>Table windows</source>
-        <translation>Fenêtre de ta table</translation>
+        <translation>Fenêtres de tables</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="581"/>
         <source>Open Table Windows with the data tab for start</source>
-        <translation>Ourerture la fenêtre de table avec l’onglet des données au départ</translation>
+        <translation>Sélectionner l'onglet de données lors de l'ouverture d'une fenêtre de table</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="607"/>
@@ -1290,7 +1290,7 @@ mais c’est OK pour l’utiliser.</translation>
     <message>
         <location filename="../dialogs/configdialog.ui" line="616"/>
         <source>Open View Windows with the data tab for start</source>
-        <translation>Ourerture la fenêtre de vue avec l’onglet des données au départ</translation>
+        <translation>Sélectionner l'onglet de données lors de l'ouverture d'une fenêtre de vue</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="626"/>
@@ -1400,7 +1400,7 @@ mais c’est OK pour l’utiliser.</translation>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1678"/>
         <source>Current line background</source>
-        <translation>Fond actuel de la ligne</translation>
+        <translation>Arrière plan pour la ligne courante</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1685"/>
@@ -1420,7 +1420,7 @@ mais c’est OK pour l’utiliser.</translation>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1794"/>
         <source>Bind parameter foreground</source>
-        <translation>Premier plan de paramètre de lien</translation>
+        <translation>Premier plan pour les paramètres de lien</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1817"/>
@@ -1435,32 +1435,32 @@ mais c’est OK pour l’utiliser.</translation>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1827"/>
         <source>BLOB value foreground</source>
-        <translation>Premier plan de valeur BLOB</translation>
+        <translation>Premier plan pour les valeurs BLOB</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1834"/>
         <source>Regular foreground</source>
-        <translation>Avant plan courant</translation>
+        <translation>Avant plan par défaut</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1841"/>
         <source>Line numbers area background</source>
-        <translation>Zone des numéros de ligne en arrière plan</translation>
+        <translation>Arrière plan pour la zone des numéros de ligne</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1864"/>
         <source>Keyword foreground</source>
-        <translation>Mot-clef en avant plan</translation>
+        <translation>Premier plan pour les mots-cléfs</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1871"/>
         <source>Number foreground</source>
-        <translation>Nombre en avant plan</translation>
+        <translation>Premier plan pour les nombres</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1878"/>
         <source>Comment foreground</source>
-        <translation>Commentaire en avant plan</translation>
+        <translation>Premier plan pour les commentaires</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1917"/>
@@ -1470,7 +1470,7 @@ mais c’est OK pour l’utiliser.</translation>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1920"/>
         <source>Valid objects foreground</source>
-        <translation>Objets valides en avant plan</translation>
+        <translation>Premier plan pour les objets valides</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1946"/>
@@ -1495,22 +1495,22 @@ mais c’est OK pour l’utiliser.</translation>
     <message>
         <location filename="../dialogs/configdialog.ui" line="1981"/>
         <source>Commit error outline color</source>
-        <translation>Erreur d’enregistrement du surlignage</translation>
+        <translation>Surlignage pour les erreurs de commit</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="2004"/>
         <source>NULL value foreground</source>
-        <translation>Valeur NULL au premier plan</translation>
+        <translation>Premier plan pour la valeur NULL</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="2027"/>
         <source>Deleted row background</source>
-        <translation>Ligne supprimée en arrier plan</translation>
+        <translation>Arrière-plan pour une ligne supprimée</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="2053"/>
         <source>Database list colors</source>
-        <translation>Liste de couleurs des bases de données</translation>
+        <translation>Couleurs pour la liste des bases de données</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="2059"/>
@@ -1520,7 +1520,7 @@ mais c’est OK pour l’utiliser.</translation>
     <message>
         <location filename="../dialogs/configdialog.ui" line="2062"/>
         <source>Additional labels foreground</source>
-        <translation>Labels additionels en avant plan</translation>
+        <translation>Premier plan pour les labels additionnels</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="2088"/>
@@ -1530,17 +1530,17 @@ mais c’est OK pour l’utiliser.</translation>
     <message>
         <location filename="../dialogs/configdialog.ui" line="2094"/>
         <source>Information message foreground</source>
-        <translation>Message d’information devant</translation>
+        <translation>Premier plan pour les messages d’information</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="2117"/>
         <source>Warning message foreground</source>
-        <translation>Warning devant</translation>
+        <translation>Premier plan pour les avertissements</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.ui" line="2140"/>
         <source>Error message foreground</source>
-        <translation>Message d’erreur devant</translation>
+        <translation>Premier plan pour les erreurs</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="785"/>
@@ -1552,7 +1552,7 @@ mais c’est OK pour l’utiliser.</translation>
         <location filename="../dialogs/configdialog.cpp" line="786"/>
         <source>Category:</source>
         <comment>plugin details</comment>
-        <translation>Catégories :</translation>
+        <translation>Catégorie :</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="787"/>
@@ -1582,12 +1582,12 @@ mais c’est OK pour l’utiliser.</translation>
         <location filename="../dialogs/configdialog.cpp" line="792"/>
         <source>Conflicts:</source>
         <comment>plugin details</comment>
-        <translation>Conflicts :</translation>
+        <translation>Conflits :</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="796"/>
         <source>Plugin details</source>
-        <translation>Détails plugins</translation>
+        <translation>Détails du plugin</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="1208"/>
@@ -1623,7 +1623,7 @@ mais c’est OK pour l’utiliser.</translation>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="1407"/>
         <source>Delete selected data type</source>
-        <translation>Supprimez le type de données sélectionnées</translation>
+        <translation>Supprimer le type de données sélectionnées</translation>
     </message>
     <message>
         <location filename="../dialogs/configdialog.cpp" line="1411"/>
