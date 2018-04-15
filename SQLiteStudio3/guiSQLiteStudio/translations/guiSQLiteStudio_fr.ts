@@ -573,7 +573,7 @@
     <message>
         <location filename="../dialogs/columndialog.ui" line="157"/>
         <source>Check condition</source>
-        <translation>Vérifier la contition</translation>
+        <translation>Vérifier la condition</translation>
     </message>
     <message>
         <location filename="../dialogs/columndialog.ui" line="164"/>
