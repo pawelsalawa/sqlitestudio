@@ -420,7 +420,7 @@
     <message>
         <location filename="../windows/collationseditor.cpp" line="283"/>
         <source>Enter a non-empty, unique name of the collation.</source>
-        <translation>Saississez un nom unique, non vide, de regroupement.</translation>
+        <translation>Saisissez un nom unique, non vide, de regroupement.</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="291"/>
@@ -430,7 +430,7 @@
     <message>
         <location filename="../windows/collationseditor.cpp" line="294"/>
         <source>Enter a non-empty implementation code.</source>
-        <translation>Saissir un nom, non vide, de language d’implémentation.</translation>
+        <translation>Saisissez un nom, non vide, de language d’implémentation.</translation>
     </message>
     <message>
         <location filename="../windows/collationseditor.cpp" line="388"/>
