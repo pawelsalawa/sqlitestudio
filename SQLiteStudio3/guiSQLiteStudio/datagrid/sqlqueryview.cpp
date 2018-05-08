@@ -29,6 +29,7 @@
 #include <QMenu>
 #include <QMimeData>
 #include <QCryptographicHash>
+#include <QMessageBox>
 
 CFG_KEYS_DEFINE(SqlQueryView)
 
@@ -586,13 +587,26 @@ void SqlQueryView::paste()
     }
 
     QList<QStringList> deserializedRows = TsvSerializer::deserialize(mimeData->text());
+    bool trimOnPaste = false;
+    bool trimOnPasteAsked = false;
 
     QList<QVariant> dataRow;
     QList<QList<QVariant>> dataToPaste;
     for (const QStringList& cells : deserializedRows)
     {
         for (const QString& cell : cells)
-            dataRow << cell;
+        {
+            if ((cell.front().isSpace() || cell.back().isSpace()) && !trimOnPasteAsked)
+            {
+                QMessageBox::StandardButton choice;
+                choice = QMessageBox::question(this, tr("Trim pasted text?"),
+                                               tr("The pasted text contains leading or trailing white space. Trim it automatically?"));
+                trimOnPasteAsked = true;
+                trimOnPaste = (choice == QMessageBox::Yes);
+            }
+
+            dataRow << (trimOnPaste ? cell.trimmed() : cell);
+        }
 
         dataToPaste << dataRow;
         dataRow.clear();
