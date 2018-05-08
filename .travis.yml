@@ -1,0 +1,17 @@
+language: cpp
+
+compiler: gcc
+
+before_install:
+ - sudo apt-get update -qq
+ - sudo apt-get install -qq qt5-dev-tools tcl
+
+before_script:
+  - mkdir ../output/build/Plugins
+  - cd ../output/build
+  - qmake ../../SQLiteStudio3
+  - cd Plugins
+  - qmake ../../../Plugins
+  - cd ..
+  
+script: make && cd Plugins && make
