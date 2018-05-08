@@ -3,15 +3,16 @@ language: cpp
 compiler: gcc
 
 before_install:
+ - sudo add-apt-repository ppa:beineri/opt-qt-5.10.1-trusty
  - sudo apt-get update -qq
- - sudo apt-get install -qq qt5-dev-tools tcl
+ - sudo apt-get install -qq qt510base qt510imageformats qt510script qt510svg qt510tools 
 
 before_script:
   - mkdir ../output/build/Plugins
   - cd ../output/build
-  - qmake ../../SQLiteStudio3
+  - . /opt/qt510/bin/qt510-env.sh && qmake ../../SQLiteStudio3
   - cd Plugins
-  - qmake ../../../Plugins
+  - . /opt/qt510/bin/qt510-env.sh && qmake ../../../Plugins
   - cd ..
   
 script: make && cd Plugins && make
