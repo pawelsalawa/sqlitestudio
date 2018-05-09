@@ -33,7 +33,7 @@ script:
   - cd ../output/build
   - qmake DEFINES+=tests ../../SQLiteStudio3
   - make -j 2
-  - cd ../Plugins
+  - cd Plugins
   - qmake ../../../Plugins
   - make -j 2
   - cd ../../SQLiteStudio
