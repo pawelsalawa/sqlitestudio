@@ -30,13 +30,13 @@ before_script:
   - qmake --version
   
 script:
-  cd ../output/build
-  qmake DEFINES+=tests ../../SQLiteStudio3
-  make -j 2
-  cd ../Plugins
-  qmake ../../../Plugins
-  make -j 2
-  cd ../../SQLiteStudio
-  ls -l
-  for f in tst_*; do ./$f; done
+  - cd ../output/build
+  - qmake DEFINES+=tests ../../SQLiteStudio3
+  - make -j 2
+  - cd ../Plugins
+  - qmake ../../../Plugins
+  - make -j 2
+  - cd ../../SQLiteStudio
+  - ls -l
+  - for f in tst_*; do ./$f; done
 
