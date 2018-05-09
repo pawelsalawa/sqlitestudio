@@ -38,5 +38,5 @@ script:
   - make -j 2
   - cd ../../SQLiteStudio
   - ls -l
-  - for f in tst_*; do ./$f; done
+  - for f in tst_*; do ./$f || break 0; done
 
