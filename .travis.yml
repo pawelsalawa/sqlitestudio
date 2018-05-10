@@ -18,7 +18,7 @@ before_install:
  - wget http://sqlite.org/2018/sqlite-autoconf-3230100.tar.gz
  - tar xzf sqlite-autoconf-3230100.tar.gz
  - cd sqlite-autoconf-3230100
- - ./configure
+ - ./configure --enable-fts5 --enable-json1 --enable-session
  - make
  - sudo make install
  - cd ..
