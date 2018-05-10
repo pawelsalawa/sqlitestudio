@@ -239,6 +239,10 @@ void SelectResolverTest::testTableFunction()
 
     SqliteSelectPtr select = parser.getQueries().first().dynamicCast<SqliteSelect>();
     QList<QList<SelectResolver::Column> > columns = resolver.resolve(select.data());
+    if (resolver.hasErrors()) {
+        for (const QString& err : resolver.getErrors())
+            qWarning() << err;
+    }
     QVERIFY(!resolver.hasErrors());
     QVERIFY(columns.first().size() == 8);
     QVERIFY(columns.first().first().type == SelectResolver::Column::OTHER);
