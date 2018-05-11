@@ -16,7 +16,7 @@ before_install:
  - ./configure
  - make
  - sudo make install
- - sqlite -version
+ - sqlite -version || true
  - cd ..
  - wget http://sqlite.org/2018/sqlite-autoconf-3230100.tar.gz
  - tar xzf sqlite-autoconf-3230100.tar.gz
