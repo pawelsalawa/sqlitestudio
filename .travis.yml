@@ -6,6 +6,8 @@ before_install:
  - sudo add-apt-repository -y ppa:beineri/opt-qt-5.10.1-trusty
  - sudo apt-get update -qq
  - sudo apt-get install -qq qt510base qt510imageformats qt510script qt510svg qt510tools 
+ - sudo apt-get remove sqlite3
+ - sudo apt-get purge sqlite3
  - mkdir deps
  - cd deps
  - wget http://sqlitestudio.pl/files/depends/sqlite-2.8.17.tar.gz
@@ -14,6 +16,7 @@ before_install:
  - ./configure
  - make
  - sudo make install
+ - sqlite -version
  - cd ..
  - wget http://sqlite.org/2018/sqlite-autoconf-3230100.tar.gz
  - tar xzf sqlite-autoconf-3230100.tar.gz
@@ -21,6 +24,7 @@ before_install:
  - ./configure --enable-fts5 --enable-json1 --enable-session
  - make
  - sudo make install
+ - sqlite3 --version
  - cd ..
  - sudo apt-get install -qq libtcl8.6 tcl8.6-dev
 
