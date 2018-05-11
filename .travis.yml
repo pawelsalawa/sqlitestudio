@@ -42,5 +42,7 @@ script:
   - make -j 2
   - cd ../../SQLiteStudio
   - ls -l
+  - export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
+  - ldconfig
   - for f in tst_*; do ./$f || break 0; done
 
