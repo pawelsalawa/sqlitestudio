@@ -603,6 +603,9 @@ QList<SelectResolver::Column> SelectResolver::resolveTableFunctionColumns(Sqlite
 {
     static_qstring(columnSqlTpl, "SELECT * FROM %1 LIMIT 0");
     SqlQueryPtr result = db->exec(columnSqlTpl.arg(joinSrc->detokenize()));
+    if (result->isError())
+        errors << result->getErrorText();
+
     QStringList columnNames = result->getColumnNames();
 
     QList<Column> columnSources;
