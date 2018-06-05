@@ -5,7 +5,7 @@
 SqlHistoryModel::SqlHistoryModel(Db* db, QObject *parent) :
     QueryModel(db, parent)
 {
-    static_char* query = "SELECT dbname, datetime(date, 'unixepoch'), (time_spent / 1000.0)||'s', rows, sql "
+    static_char* query = "SELECT dbname, datetime(date, 'unixepoch', 'localtime'), (time_spent / 1000.0)||'s', rows, sql "
                          "FROM sqleditor_history ORDER BY date DESC";
 
     setQuery(query);
@@ -15,6 +15,8 @@ QVariant SqlHistoryModel::data(const QModelIndex& index, int role) const
 {
     if (role == Qt::TextAlignmentRole && (index.column() == 2 || index.column() == 3))
         return (int)(Qt::AlignRight|Qt::AlignVCenter);
+
+     QVariant d = QueryModel::data(index, role);
 
     return QueryModel::data(index, role);
 }
