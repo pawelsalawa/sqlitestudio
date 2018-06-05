@@ -90,7 +90,7 @@ void SqlQueryView::createActions()
     createAction(PASTE_AS, ICONS.ACT_PASTE, tr("Paste as..."), this, SLOT(pasteAs()), this);
     createAction(SET_NULL, ICONS.SET_NULL, tr("Set NULL values"), this, SLOT(setNull()), this);
     createAction(ERASE, ICONS.ERASE, tr("Erase values"), this, SLOT(erase()), this);
-    createAction(OPEN_VALUE_EDITOR, ICONS.OPEN_VALUE_EDITOR, tr("Edit value in editor"), this, SLOT(openValueEditor()), this);
+    createAction(OPEN_VALUE_EDITOR, ICONS.OPEN_VALUE_EDITOR, "", this, SLOT(openValueEditor()), this); // actual label is set dynamically in setupActionsForMenu()
     createAction(COMMIT, ICONS.COMMIT, tr("Commit"), this, SLOT(commit()), this);
     createAction(ROLLBACK, ICONS.ROLLBACK, tr("Rollback"), this, SLOT(rollback()), this);
     createAction(SELECTIVE_COMMIT, ICONS.COMMIT, tr("Commit selected cells"), this, SLOT(selectiveCommit()), this);
@@ -127,6 +127,14 @@ void SqlQueryView::setupActionsForMenu(SqlQueryItem* currentItem, const QList<Sq
     QList<SqlQueryItem*> uncommittedItems = getModel()->getUncommittedItems();
     int uncommittedCount = uncommittedItems.size();
 
+    // How many of selected items is editable
+    int editableSelCount = selCount;
+    for (SqlQueryItem* selItem : getSelectedItems())
+        if (selItem->getColumn()->editionForbiddenReason.size() > 0)
+            editableSelCount--;
+
+    bool currentItemEditable = (getCurrentItem()->getColumn()->editionForbiddenReason.size() == 0);
+
     // Uncommitted & selected items count
     int uncommittedSelCount = 0;
     foreach (SqlQueryItem* item, uncommittedItems)
@@ -148,10 +156,16 @@ void SqlQueryView::setupActionsForMenu(SqlQueryItem* currentItem, const QList<Sq
     if (uncommittedCount > 0 && selCount > 0)
         contextMenu->addSeparator();
 
+    // Edit/show label for "open in editor" action
+    actionMap[OPEN_VALUE_EDITOR]->setText(currentItemEditable ? tr("Edit value in editor") : tr("Show value in a viewer"));
+
     if (selCount > 0)
     {
-        contextMenu->addAction(actionMap[ERASE]);
-        contextMenu->addAction(actionMap[SET_NULL]);
+        if (editableSelCount > 0)
+        {
+            contextMenu->addAction(actionMap[ERASE]);
+            contextMenu->addAction(actionMap[SET_NULL]);
+        }
         contextMenu->addAction(actionMap[OPEN_VALUE_EDITOR]);
         contextMenu->addSeparator();
     }
