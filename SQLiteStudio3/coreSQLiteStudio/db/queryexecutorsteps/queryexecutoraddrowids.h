@@ -76,6 +76,8 @@ class QueryExecutorAddRowIds : public QueryExecutorStep
          * @return Map of query executor alias to real database column name.
          */
         QHash<QString, QString> getNextColNames(const SelectResolver::Table& table);
+
+        bool checkInWithClause(const SelectResolver::Table& table, SqliteWith *with);
 };
 
 #endif // QUERYEXECUTORADDROWIDS_H

@@ -107,7 +107,6 @@ class API_EXPORT SelectResolver
             QString alias;
             QString displayName;
             bool aliasDefinedInSubQuery = false;
-            int flags = 0;
             SqliteSelect::Core::ResultColumn* originalColumn = nullptr;
 
             int operator==(const Column& other);
@@ -218,10 +217,10 @@ class API_EXPORT SelectResolver
 
         void markDistinctColumns();
         void markCompoundColumns();
-        void markCteColumns();
+        void markCteColumns(QList<Column>* columnList = nullptr);
         void markGroupedColumns();
         void fixColumnNames();
-        void markCurrentColumnsWithFlag(Flag flag);
+        void markCurrentColumnsWithFlag(Flag flag, QList<Column>* columnList = nullptr);
         bool matchTable(const Column& sourceColumn, const QString& table);
         TokenList getResColTokensWithoutAlias(SqliteSelect::Core::ResultColumn *resCol);
         void extractCte(SqliteSelect* select);

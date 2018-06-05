@@ -66,10 +66,13 @@ QHash<SelectResolver::Table,QHash<QString,QString>> QueryExecutorAddRowIds::addR
     resolver.resolveMultiCore = false; // multicore subselects result in not editable columns, skip them
 
     QSet<SelectResolver::Table> tables = resolver.resolveTables(core);
-    foreach (const SelectResolver::Table& table, tables)
+    for (const SelectResolver::Table& table : tables)
     {
         if (table.flags & (SelectResolver::FROM_COMPOUND_SELECT | SelectResolver::FROM_DISTINCT_SELECT | SelectResolver::FROM_GROUPED_SELECT))
             continue; // we don't get ROWID from compound, distinct or aggregated subselects
+
+        if (checkInWithClause(table, select->with))
+            continue; // we don't get ROWID from WITH clause, as it's likely to be recurrent and difficult. TODO: support columns from WITH clause
 
         if (!addResultColumns(core, table, rowIdColsMap, isTopSelect))
         {
@@ -201,6 +204,27 @@ bool QueryExecutorAddRowIds::addResultColumns(SqliteSelect::Core* core, const Se
         queryExecutorResCol->queryExecutorAliasToColumn = executorToRealColumns;
         context->rowIdColumns << queryExecutorResCol;
     }
+
+    return true;
+}
+
+bool QueryExecutorAddRowIds::checkInWithClause(const SelectResolver::Table &table, SqliteWith *with)
+{
+    if (!table.database.isNull() || !with)
+        return false;
+
+    SqliteWith::CommonTableExpression* cte = nullptr;
+    QString nameToCompareWith = table.tableAlias.isNull() ? table.table : table.tableAlias;
+    for (SqliteWith::CommonTableExpression* cteItem : with->cteList)
+    {
+        if (cteItem->table == nameToCompareWith)
+        {
+            cte = cteItem;
+            break;
+        }
+    }
+    if (!cte)
+        return false;
 
     return true;
 }
