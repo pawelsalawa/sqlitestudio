@@ -35,15 +35,15 @@ before_script:
   
 script:
   - cd ../output/build
-  - test $TRAVIS_BRANCH = "master" && qmake DEFINES+=tests CONFIG+=debug ../../SQLiteStudio3
-  - test $TRAVIS_BRANCH != "master" && qmake CONFIG+=portable ../../SQLiteStudio3
+  - test $TRAVIS_BRANCH = "master" && qmake DEFINES+=tests CONFIG+=debug ../../SQLiteStudio3 || true
+  - test $TRAVIS_BRANCH != "master" && qmake CONFIG+=portable ../../SQLiteStudio3 || true
   - make -j 2
   - cd Plugins
-  - test $TRAVIS_BRANCH = "master" && qmake CONFIG+=debug ../../../Plugins
-  - test $TRAVIS_BRANCH != "master" && qmake CONFIG+=portable ../../../Plugins
+  - test $TRAVIS_BRANCH = "master" && qmake CONFIG+=debug ../../../Plugins || true
+  - test $TRAVIS_BRANCH != "master" && qmake CONFIG+=portable ../../../Plugins || true
   - make -j 2
-  - test $TRAVIS_BRANCH = "master" && cd ../../SQLiteStudio
-  - test $TRAVIS_BRANCH = "master" && ls -l
-  - test $TRAVIS_BRANCH = "master" && export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
-  - test $TRAVIS_BRANCH = "master" && for f in tst_*; do ./$f || break 0; done
+  - test $TRAVIS_BRANCH = "master" && cd ../../SQLiteStudio || true
+  - test $TRAVIS_BRANCH = "master" && ls -l || true
+  - test $TRAVIS_BRANCH = "master" && export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH" || true
+  - test $TRAVIS_BRANCH = "master" && for f in tst_*; do ./$f || break 0; done || true
 
