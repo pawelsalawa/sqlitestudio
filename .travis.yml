@@ -7,7 +7,7 @@ before_install:
  - sudo apt-get update -qq
  - sudo apt-get remove sqlite3 libsqlite3-0
  - sudo apt-get purge sqlite3 libsqlite3-0
- - sudo apt-get install -qq qt510base qt510imageformats qt510script qt510svg qt510tools 
+ - sudo apt-get install -qq qt510base qt510imageformats qt510script qt510svg qt510tools qt510meta-dbg-full
  - mkdir deps
  - cd deps
  - wget http://sqlitestudio.pl/files/depends/sqlite-2.8.17.tar.gz
@@ -35,10 +35,10 @@ before_script:
   
 script:
   - cd ../output/build
-  - qmake DEFINES+=tests ../../SQLiteStudio3
+  - qmake DEFINES+=tests CONFIG+=debug ../../SQLiteStudio3
   - make -j 2
   - cd Plugins
-  - qmake ../../../Plugins
+  - qmake CONFIG+=debug ../../../Plugins
   - make -j 2
   - cd ../../SQLiteStudio
   - ls -l
