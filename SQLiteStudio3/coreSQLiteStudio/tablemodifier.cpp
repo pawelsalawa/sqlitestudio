@@ -402,8 +402,12 @@ void TableModifier::handleTriggers()
 
 void TableModifier::handleTrigger(SqliteCreateTriggerPtr trigger)
 {
-    trigger->rebuildTokens();
-    QString originalQueryString = trigger->detokenize();
+    // Cloning trigger (to avoid overwritting tokensMap when rebuilding tokens)
+    // and determining query string before it's modified by this method.
+    SqliteCreateTrigger* triggerClone = dynamic_cast<SqliteCreateTrigger*>(trigger->clone());
+    triggerClone->rebuildTokens();
+    QString originalQueryString = triggerClone->detokenize();
+    delete triggerClone;
 
     bool forThisTable = (originalTable.compare(trigger->table, Qt::CaseInsensitive) == 0);
     bool alreadyProcessedOnce = modifiedTriggers.contains(trigger->trigger, Qt::CaseInsensitive);
@@ -623,7 +627,7 @@ bool TableModifier::isTableAliasUsedForColumn(const TokenPtr &token, const StrHa
     if (table.tableAlias.isNull())
         return false;
 
-    if (table.tableAlias.compare(token->value), Qt::CaseInsensitive != 0)
+    if (table.tableAlias.compare(token->value, Qt::CaseInsensitive) != 0)
         return false;
 
     // If the table token is mentioned in FROM clause, it's not a subject for aliased usage, cuase it defines alias, not uses it.

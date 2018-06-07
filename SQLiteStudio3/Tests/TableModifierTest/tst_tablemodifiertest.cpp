@@ -55,23 +55,29 @@ void TableModifierTest::testCase1()
     QStringList sqls = mod.generateSqls();
 
     /*
+     * 1. Disable FK.
      * 1. Create new (with new name)
      * 2. Copy data to new
-     * 3. Drop old table.
-     * 4. Rename referencing table to temp name.
-     * 5. Create new referencing table.
-     * 6. Copy data to new referencing table.
-     * 7. Drop temp table.
+     * 4. Rename referencing table to temp name in 2 steps.
+     * 5. Second step of renaming - drop old table.
+     * 6. Create new referencing table.
+     * 7. Copy data to new referencing table.
+     * 8. Drop temp table.
+     * 9. Drop old table.
+     * 10. Re-enable FK.
      */
-    QVERIFY(sqls.size() == 7);
+    QVERIFY(sqls.size() == 10);
     int i = 0;
+    verifyRe("PRAGMA foreign_keys = 0;", sqls[i++]);
     verifyRe("CREATE TABLE test2 .*", sqls[i++]);
     verifyRe("INSERT INTO test2.*SELECT.*FROM test;", sqls[i++]);
-    verifyRe("DROP TABLE test;", sqls[i++]);
-    verifyRe("ALTER TABLE abc RENAME TO sqlitestudio_temp_table.*", sqls[i++]);
+    verifyRe("CREATE TABLE sqlitestudio_temp_table.*AS SELECT.*FROM abc.*", sqls[i++]);
+    verifyRe("DROP TABLE abc;", sqls[i++]);
     verifyRe("CREATE TABLE abc .*", sqls[i++]);
     verifyRe("INSERT INTO abc.*SELECT.*FROM sqlitestudio_temp_table.*", sqls[i++]);
     verifyRe("DROP TABLE sqlitestudio_temp_table.*", sqls[i++]);
+    verifyRe("DROP TABLE test;", sqls[i++]);
+    verifyRe("PRAGMA foreign_keys = 1;", sqls[i++]);
 }
 
 void TableModifierTest::testCase2()
@@ -84,25 +90,33 @@ void TableModifierTest::testCase2()
     QStringList sqls = mod.generateSqls();
 
     /*
-     * 1. Rename to temp.
-     * 2. Create new.
-     * 3. Copy data from temp to new one.
-     * 4. Drop temp table.
-     * 5. Rename referencing table to temp name.
-     * 6. Create new referencing table.
-     * 7. Copy data to new referencing table.
-     * 8. Drop temp table.
+     * 1. Disable FK.
+     * 2. Rename to temp in 2 steps.
+     * 3. Second step of renaming (drop).
+     * 4. Create new.
+     * 5. Copy data from temp to new one.
+     * 6. Rename referencing table to temp name in 2 steps.
+     * 7. Second step of renaming (drop).
+     * 8. Create new referencing table.
+     * 9. Copy data to new referencing table.
+     * 10. Drop first temp table.
+     * 11. Drop second temp table.
+     * 12. Enable FK.
      */
-    QVERIFY(sqls.size() == 8);
+    QVERIFY(sqls.size() == 12);
     int i = 0;
-    verifyRe("ALTER TABLE test RENAME TO sqlitestudio_temp_table.*", sqls[i++]);
+    verifyRe("PRAGMA foreign_keys = 0;", sqls[i++]);
+    verifyRe("CREATE TABLE sqlitestudio_temp_table.*AS SELECT.*FROM test.*", sqls[i++]);
+    verifyRe("DROP TABLE test;", sqls[i++]);
     verifyRe("CREATE TABLE test .*newCol.*", sqls[i++]);
     verifyRe("INSERT INTO test.*SELECT.*FROM sqlitestudio_temp_table.*", sqls[i++]);
-    verifyRe("DROP TABLE sqlitestudio_temp_table.*", sqls[i++]);
-    verifyRe("ALTER TABLE abc RENAME TO sqlitestudio_temp_table.*", sqls[i++]);
+    verifyRe("CREATE TABLE sqlitestudio_temp_table.*AS SELECT.*FROM abc.*", sqls[i++]);
+    verifyRe("DROP TABLE abc;", sqls[i++]);
     verifyRe("CREATE TABLE abc .*xyz text REFERENCES test \\(newCol\\).*", sqls[i++]);
     verifyRe("INSERT INTO abc.*SELECT.*FROM sqlitestudio_temp_table.*", sqls[i++]);
     verifyRe("DROP TABLE sqlitestudio_temp_table.*", sqls[i++]);
+    verifyRe("DROP TABLE sqlitestudio_temp_table.*", sqls[i++]);
+    verifyRe("PRAGMA foreign_keys = 1;", sqls[i++]);
 }
 
 void TableModifierTest::testCase3()
@@ -118,27 +132,33 @@ void TableModifierTest::testCase3()
     QStringList sqls = mod.generateSqls();
 
     /*
-     * 1. Create new (with new name)
-     * 2. Copy data to new
-     * 3. Drop old table.
-     * 4. Rename referencing table to temp name.
-     * 5. Create new referencing table.
-     * 6. Copy data to new referencing table.
-     * 7. Drop temp table.
-     * 8. Re-create index i2.
-     * 9. Re-create index i1 with new table name and column name.
+     * 1. Disable FK.
+     * 2. Create new (with new name)
+     * 3. Copy data to new
+     * 4. Drop old table.
+     * 5. Rename referencing table to temp name in two steps.
+     * 6. Second step of renaming (drop).
+     * 7. Create new referencing table.
+     * 8. Copy data to new referencing table.
+     * 9. Drop temp table.
+     * 10. Re-create index i2.
+     * 11. Re-create index i1 with new table name and column name.
+     * 12. Disable FK.
      */
-    QVERIFY(sqls.size() == 9);
+    QVERIFY(sqls.size() == 12);
     int i = 0;
+    verifyRe("PRAGMA foreign_keys = 0;", sqls[i++]);
     verifyRe("CREATE TABLE newTable .*", sqls[i++]);
     verifyRe("INSERT INTO newTable.*SELECT.*FROM test;", sqls[i++]);
-    verifyRe("DROP TABLE test;", sqls[i++]);
-    verifyRe("ALTER TABLE abc RENAME TO sqlitestudio_temp_table.*", sqls[i++]);
+    verifyRe("CREATE TABLE sqlitestudio_temp_table.*AS SELECT.*FROM abc.*", sqls[i++]);
+    verifyRe("DROP TABLE abc;", sqls[i++]);
     verifyRe("CREATE TABLE abc .*xyz text REFERENCES newTable \\(newCol\\).*", sqls[i++]);
     verifyRe("INSERT INTO abc.*SELECT.*FROM sqlitestudio_temp_table.*", sqls[i++]);
     verifyRe("DROP TABLE sqlitestudio_temp_table.*", sqls[i++]);
     verifyRe("CREATE INDEX i2 ON abc \\(id\\);", sqls[i++]);
+    verifyRe("DROP TABLE test;", sqls[i++]);
     verifyRe("CREATE INDEX i1 ON newTable \\(newCol\\);", sqls[i++]);
+    verifyRe("PRAGMA foreign_keys = 1;", sqls[i++]);
 }
 
 void TableModifierTest::testCase4()
@@ -156,13 +176,16 @@ void TableModifierTest::testCase4()
     QStringList sqls = mod.generateSqls();
 
     /*
-     * 1. Create new (with new name)
-     * 2. Copy data to new
-     * 3. Drop old table.
-     * 4. Recreate trigger with all subqueries updated.
+     * 1. Disable FK.
+     * 2. Create new (with new name)
+     * 3. Copy data to new
+     * 4. Drop old table.
+     * 5. Recreate trigger with all subqueries updated.
+     * 6. Enable FK.
      */
-    QVERIFY(sqls.size() == 4);
+    QVERIFY(sqls.size() == 6);
     int i = 0;
+    verifyRe("PRAGMA foreign_keys = 0;", sqls[i++]);
     verifyRe("CREATE TABLE newTable .*", sqls[i++]);
     verifyRe("INSERT INTO newTable.*SELECT.*FROM test;", sqls[i++]);
     verifyRe("DROP TABLE test;", sqls[i++]);
@@ -172,6 +195,7 @@ void TableModifierTest::testCase4()
              "UPDATE newTable SET newCol = (SELECT newCol FROM newTable) WHERE x = (SELECT newCol FROM newTable); "
              "INSERT INTO newTable (newCol) VALUES (1); "
              "END;" == sqls[i++], "Trigger DDL incorrect.");
+    verifyRe("PRAGMA foreign_keys = 1;", sqls[i++]);
 }
 
 void TableModifierTest::testCase5()
@@ -188,21 +212,25 @@ void TableModifierTest::testCase5()
     QStringList sqls = mod.generateSqls();
 
     /*
-     * 1. Create new (with new name)
-     * 2. Copy data to new
-     * 3. Drop old table.
-     * 4. Drop old view.
-     * 5. Recreate view with new column and table.
-     * 6. Recreate trigger with all subqueries updated.
+     * 1. Disable FK.
+     * 2. Create new (with new name)
+     * 3. Copy data to new
+     * 4. Drop old table.
+     * 5. Drop old view.
+     * 6. Recreate view with new column and table.
+     * 7. Recreate trigger with all subqueries updated.
+     * 8. Enable FK.
      */
-    QVERIFY(sqls.size() == 6);
+    QVERIFY(sqls.size() == 8);
     int i = 0;
+    verifyRe("PRAGMA foreign_keys = 0;", sqls[i++]);
     verifyRe("CREATE TABLE newTable .*", sqls[i++]);
     verifyRe("INSERT INTO newTable.*SELECT.*FROM test;", sqls[i++]);
     verifyRe("DROP TABLE test;", sqls[i++]);
     verifyRe("DROP VIEW v1;", sqls[i++]);
     verifyRe("CREATE VIEW v1 AS SELECT \\* FROM \\(SELECT newCol FROM newTable\\);", sqls[i++]);
     verifyRe("CREATE TRIGGER t1 INSTEAD OF INSERT ON v1 BEGIN SELECT 1; END;", sqls[i++]);
+    verifyRe("PRAGMA foreign_keys = 1;", sqls[i++]);
 }
 
 void TableModifierTest::testCase6()
@@ -217,19 +245,25 @@ void TableModifierTest::testCase6()
     QStringList sqls = mod.generateSqls();
 
     /*
-     * 1. Create new (with new name)
-     * 2. Copy data to new
-     * 3. Drop old table.
-     * 4. Recreate trigger with all subqueries updated.
+     * 1. Disable FK.
+     * 2. Create new (with new name)
+     * 3. Copy data to new
+     * 4. Drop old table.
+     * 5. Recreate trigger with all subqueries updated.
+     * 6. Drop view.
+     * 7. Recreate view with new table referenced.
+     * 8. Enable FK.
      */
-    QVERIFY(sqls.size() == 6);
+    QVERIFY(sqls.size() == 8);
     int i = 0;
+    verifyRe("PRAGMA foreign_keys = 0;", sqls[i++]);
     verifyRe("CREATE TABLE newTable \\(id int, val2 text\\);", sqls[i++]);
     verifyRe("INSERT INTO newTable \\(id, val2\\) SELECT id, val2 FROM test;", sqls[i++]);
     verifyRe("DROP TABLE test;", sqls[i++]);
     verifyRe("CREATE TRIGGER t2 AFTER UPDATE OF Id ON newTable BEGIN SELECT NULL, Val2 FROM newTable; END;", sqls[i++]);
     verifyRe("DROP VIEW v1;", sqls[i++]);
     verifyRe("CREATE VIEW v1 AS SELECT \\* FROM \\(SELECT Id, NULL FROM newTable\\);", sqls[i++]);
+    verifyRe("PRAGMA foreign_keys = 1;", sqls[i++]);
 }
 
 void TableModifierTest::initTestCase()
