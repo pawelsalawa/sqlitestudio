@@ -36,10 +36,10 @@ before_script:
   
 script:
   - cd ../output/build
-  - qmake DEFINES+=tests ../../SQLiteStudio3
+  - qmake DEFINES+=tests CONFIG+=debug ../../SQLiteStudio3
   - make -j 2
   - cd Plugins
-  - qmake ../../../Plugins
+  - qmake CONFIG+=debug ../../../Plugins
   - make -j 2
   - cd ../../SQLiteStudio
   - ls -l
