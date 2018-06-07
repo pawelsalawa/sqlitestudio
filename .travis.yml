@@ -36,14 +36,13 @@ before_script:
   
 script:
   - cd ../output/build
-  - qmake DEFINES+=tests CONFIG+=debug ../../SQLiteStudio3
+  - qmake DEFINES+=tests ../../SQLiteStudio3
   - make -j 2
   - cd Plugins
-  - qmake CONFIG+=debug ../../../Plugins
+  - qmake ../../../Plugins
   - make -j 2
   - cd ../../SQLiteStudio
   - ls -l
   - export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
-  - ldconfig
   - for f in tst_*; do ./$f || break 0; done
 
