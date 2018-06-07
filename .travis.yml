@@ -2,9 +2,6 @@ language: cpp
 
 compiler: gcc
 
-cache:
- - ccache
-
 before_install:
  - sudo add-apt-repository -y ppa:beineri/opt-qt-5.10.1-trusty
  - sudo apt-get update -qq
@@ -38,13 +35,15 @@ before_script:
   
 script:
   - cd ../output/build
-  - qmake DEFINES+=tests CONFIG+=debug ../../SQLiteStudio3
+  - test $TRAVIS_BRANCH = "master" && qmake DEFINES+=tests CONFIG+=debug ../../SQLiteStudio3
+  - test $TRAVIS_BRANCH != "master" && qmake CONFIG+=portable ../../SQLiteStudio3
   - make -j 2
   - cd Plugins
-  - qmake CONFIG+=debug ../../../Plugins
+  - test $TRAVIS_BRANCH = "master" && qmake CONFIG+=debug ../../../Plugins
+  - test $TRAVIS_BRANCH != "master" && qmake CONFIG+=portable ../../../Plugins
   - make -j 2
-  - cd ../../SQLiteStudio
-  - ls -l
-  - export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
-  - for f in tst_*; do ./$f || break 0; done
+  - test $TRAVIS_BRANCH = "master" && cd ../../SQLiteStudio
+  - test $TRAVIS_BRANCH = "master" && ls -l
+  - test $TRAVIS_BRANCH = "master" && export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
+  - test $TRAVIS_BRANCH = "master" && for f in tst_*; do ./$f || break 0; done
 
