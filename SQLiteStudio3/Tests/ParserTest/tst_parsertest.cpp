@@ -44,6 +44,7 @@ class ParserTest : public QObject
         void testBigNum();
         void testSelectWith();
         void testInsertWithDoubleQuoteValues();
+        void testParseAndRebuildAlias();
         void initTestCase();
         void cleanupTestCase();
 };
@@ -429,6 +430,19 @@ void ParserTest::testInsertWithDoubleQuoteValues()
     insert->rebuildTokens();
     QString detokenized = insert->detokenize().replace(" ", "");
     QVERIFY(sql.replace(" ", "") == detokenized);
+}
+
+void ParserTest::testParseAndRebuildAlias()
+{
+    QString sql = "SELECT x AS [\"abc\".\"def\"];";
+    bool res = parser3->parse(sql);
+    QVERIFY(res);
+    QVERIFY(parser3->getErrors().isEmpty());
+
+    SqliteQueryPtr query = parser3->getQueries().first();
+    query->rebuildTokens();
+    QString newSql = query->detokenize();
+    QVERIFY(sql == newSql);
 }
 
 void ParserTest::initTestCase()

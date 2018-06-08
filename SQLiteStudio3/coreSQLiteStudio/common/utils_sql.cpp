@@ -12,7 +12,8 @@
 #include <QMetaType>
 
 QString invalidIdCharacters = "[]()\"'@*.,+-=/%&|:; \t\n<>";
-QHash<NameWrapper,QPair<QChar,QChar> > wrapperChars;
+QHash<NameWrapper,QPair<QChar,QChar>> wrapperChars;
+QHash<NameWrapper,QPair<QChar,bool>> wrapperEscapedEnding;
 QList<NameWrapper> sqlite3Wrappers;
 QList<NameWrapper> sqlite2Wrappers;
 
@@ -22,6 +23,11 @@ void initUtilsSql()
     wrapperChars[NameWrapper::QUOTE] = QPair<QChar,QChar>('\'', '\'');
     wrapperChars[NameWrapper::BACK_QUOTE] = QPair<QChar,QChar>('`', '`');
     wrapperChars[NameWrapper::DOUBLE_QUOTE] = QPair<QChar,QChar>('"', '"');
+
+    wrapperEscapedEnding[NameWrapper::BRACKET] = QPair<QChar,bool>(']', false);
+    wrapperEscapedEnding[NameWrapper::QUOTE] = QPair<QChar,bool>('\'', true);
+    wrapperEscapedEnding[NameWrapper::BACK_QUOTE] = QPair<QChar,bool>('`', true);
+    wrapperEscapedEnding[NameWrapper::DOUBLE_QUOTE] = QPair<QChar,bool>('"', true);
 
     sqlite3Wrappers << NameWrapper::DOUBLE_QUOTE
                     << NameWrapper::BRACKET
@@ -277,6 +283,23 @@ bool isObjWrapped(const QString& str, Dialect dialect)
     return getObjWrapper(str, dialect) != NameWrapper::null;
 }
 
+bool doesNotContainEndingWrapperChar(const QString& str, NameWrapper wrapper)
+{
+    QString innerPart = str.mid(1, str.length() - 2);
+    const QChar& endingChar = wrapperEscapedEnding[wrapper].first;
+    bool escapingAllowed = wrapperEscapedEnding[wrapper].second;
+    int idx = -1;
+    int lastIdx = innerPart.length() - 1;
+    while ((idx = innerPart.indexOf(endingChar, idx + 1)) > -1)
+    {
+        if (idx == lastIdx || !escapingAllowed || innerPart[idx + 1] != endingChar)
+            return false;
+
+        idx++; // we had occurrence, but it was escaped, so we need to skip the second (escape) char
+    }
+    return true;
+}
+
 NameWrapper getObjWrapper(const QString& str, Dialect dialect)
 {
     if (str.isEmpty())
@@ -289,10 +312,10 @@ NameWrapper getObjWrapper(const QString& str, Dialect dialect)
     else
         wrappers = sqlite3Wrappers;
 
-    foreach (NameWrapper wrapper, wrappers)
+    for (NameWrapper wrapper : wrappers)
     {
         QPair<QChar,QChar> chars = wrapperChars[wrapper];
-        if (str[0] == chars.first && str[str.length()-1] == chars.second)
+        if (str[0] == chars.first && str[str.length()-1] == chars.second && doesNotContainEndingWrapperChar(str, wrapper))
             return wrapper;
     }
     return NameWrapper::null;

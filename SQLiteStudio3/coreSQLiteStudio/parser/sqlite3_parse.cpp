@@ -5106,7 +5106,7 @@ static void yy_syntax_error(
 
     UNUSED_PARAMETER(yymajor);
     parserContext->error(TOKEN, QObject::tr("Syntax error"));
-    //qDebug() << "near " << TOKEN->toString() << ": syntax error";
+//    qDebug() << "near " << TOKEN->toString() << ": syntax error";
   sqlite3_parseARG_STORE; /* Suppress warning about unused %extra_argument variable */
 }
 

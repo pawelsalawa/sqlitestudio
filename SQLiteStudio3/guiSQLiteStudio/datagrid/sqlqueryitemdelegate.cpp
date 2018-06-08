@@ -278,7 +278,7 @@ QString SqlQueryItemDelegate::getSqlForFkEditor(SqlQueryItem* item) const
             if (fk->foreignColumn.compare(srcCol, Qt::CaseInsensitive) == 0)
                 continue; // Exclude matching column. We don't want the same column several times.
 
-            fullSrcCol = src + "." + srcCol;
+            fullSrcCol = src + "." + wrapObjIfNeeded(srcCol, dialect);
             selectedCols << srcColTpl.arg(cellLimitTpl.arg(CELL_LENGTH_LIMIT).arg(fullSrcCol), wrapObjName(fullSrcCol, dialect));
         }
 
