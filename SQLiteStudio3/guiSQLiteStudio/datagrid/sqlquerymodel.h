@@ -399,6 +399,16 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
          */
         int hardRowLimit = -1;
 
+        /**
+         * @brief Limit for rows in case there is many columns.
+         *
+         * -1 to not apply the limit. This is set during reading columns. If there is many columns,
+         * we need to keep maximum limit of rows at pace, so we don't overuse the RAM.
+         * This limit is soft, meaning it applies only if it's smaller than configured limit or hardRowLimit.
+         * If any of two limits mentioned above are smaller, this limit will not come to the play.
+         */
+        int columnRatioBasedRowLimit = -1;
+
         int resultColumnCount = 0;
 
         /**

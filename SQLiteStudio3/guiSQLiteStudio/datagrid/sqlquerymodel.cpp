@@ -804,6 +804,11 @@ QList<QStandardItem*> SqlQueryModel::loadRow(SqlResultsRowPtr row)
     int colIdx = 0;
     foreach (const QVariant& value, row->valueList().mid(0, resultColumnCount))
     {
+        QString s = value.toString();
+        QByteArray bytes = s.toUtf8();
+        int length = bytes.size();
+        qDebug() << length;
+
         item = new SqlQueryItem();
         rowId = getRowIdValue(row, colIdx);
         updateItem(item, value, colIdx, rowId);
@@ -970,6 +975,14 @@ void SqlQueryModel::readColumns()
     resultColumnCount = queryExecutor->getResultColumns().size();
     tablesForColumns = getTablesForColumns();
     columnEditionStatus = getColumnEditionEnabledList();
+
+    // Rows limit to avoid out of memory problems
+    columnRatioBasedRowLimit = -1;
+    int rowsPerPage = getRowsPerPage();
+    columnRatioBasedRowLimit = 150000 / columns.size();
+    if (columnRatioBasedRowLimit < rowsPerPage)
+        NOTIFY_MANAGER->info(tr("Number of rows per page was decreased to %1 due to number of columns (%2) in the data view.")
+                             .arg(columnRatioBasedRowLimit).arg(columns.size()));
 
     // We have fresh info about columns
     structureOutOfDate = false;
@@ -1555,6 +1568,9 @@ int SqlQueryModel::getRowsPerPage() const
     int rowsPerPage = CFG_UI.General.NumberOfRowsPerPage.get();
     if (hardRowLimit > -1)
         rowsPerPage = hardRowLimit;
+
+    if (columnRatioBasedRowLimit > -1 && columnRatioBasedRowLimit < rowsPerPage)
+        rowsPerPage = columnRatioBasedRowLimit;
 
     return rowsPerPage;
 }
