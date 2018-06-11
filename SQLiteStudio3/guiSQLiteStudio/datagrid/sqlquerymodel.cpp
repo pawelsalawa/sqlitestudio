@@ -979,8 +979,10 @@ void SqlQueryModel::readColumns()
     // Rows limit to avoid out of memory problems
     columnRatioBasedRowLimit = -1;
     int rowsPerPage = getRowsPerPage();
-    columnRatioBasedRowLimit = 150000 / columns.size();
-    if (columnRatioBasedRowLimit < rowsPerPage)
+    if (!columns.isEmpty())
+        columnRatioBasedRowLimit = 150000 / columns.size();
+
+    if (columnRatioBasedRowLimit > -1 && columnRatioBasedRowLimit < rowsPerPage)
         NOTIFY_MANAGER->info(tr("Number of rows per page was decreased to %1 due to number of columns (%2) in the data view.")
                              .arg(columnRatioBasedRowLimit).arg(columns.size()));
 
