@@ -57,6 +57,13 @@ void PopulateWorker::run()
         for (PopulateEngine* engine : engines)
             args << engine->nextValue(nextValueError);
 
+        if (nextValueError)
+        {
+            db->rollback();
+            emit finished(false);
+            return;
+        }
+
         query->setArgs(args);
         if (!query->execute())
         {
