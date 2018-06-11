@@ -919,9 +919,18 @@ QStringList concat(const QList<QStringList>& list)
     return result;
 }
 
+
 QString doubleToString(const QVariant& val)
 {
-    return val.toString();
+    QString str = val.toString();
+    if (str.contains("e"))
+        str = QString::number(val.toDouble(), 'f', 14).remove(QRegExp("0*$"));
+    else if (!str.contains('.'))
+        str += ".0";
+    else if (str.mid(str.indexOf('.') + 1).length() > 14)
+        str = QString::number(val.toDouble(), 'f', 14).remove(QRegExp("0*$"));
+
+    return str;
 }
 
 void sortWithReferenceList(QList<QString>& listToSort, const QList<QString>& referenceList, Qt::CaseSensitivity cs)

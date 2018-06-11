@@ -14,6 +14,7 @@ private Q_SLOTS:
     void testRemoveEmpties();
     void testRemoveComments();
     void testRemoveCommentsAndEmpties();
+    void testDoubleToString();
 };
 
 UtilsSqlTest::UtilsSqlTest()
@@ -68,6 +69,16 @@ void UtilsSqlTest::testRemoveCommentsAndEmpties()
 
     QVERIFY2(sp.size() == 1, failure.arg(sp.size()).toLatin1().data());
     QVERIFY2(sp[0] == "select 'dfgh ;sdg /*''*/ dfga' from aa;", failure.arg(sp[0]).toLatin1().data());
+}
+
+void UtilsSqlTest::testDoubleToString()
+{
+    QVERIFY(doubleToString(QVariant(5.001)) == "5.001");
+    QVERIFY(doubleToString(QVariant(5.0000001)) == "5.0000001");
+    QVERIFY(doubleToString(QVariant(5.000000000000000000000000001)) == "5.0"); // too big, considered as round 5
+    QVERIFY(doubleToString(QVariant(0.0000001)) == "0.0000001");
+    QVERIFY(doubleToString(QVariant(9.99999999999998)) == "9.99999999999998");
+    QVERIFY(doubleToString(QVariant(0.1 + 0.1 + 0.1)) == "0.3");
 }
 
 QTEST_APPLESS_MAIN(UtilsSqlTest)
