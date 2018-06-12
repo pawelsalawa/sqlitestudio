@@ -799,7 +799,12 @@ void ConfigImpl::mergeMasterConfig()
     if (masterConfigFile.isEmpty())
         return;
 
-    qInfo() << "Updating settings from master configuration file: " << masterConfigFile;
+#if QT_VERSION >= 0x050500
+    qInfo()
+#else
+    qDebug()
+#endif
+        << "Updating settings from master configuration file: " << masterConfigFile;
 
     Db* masterDb = new DbSqlite3("SQLiteStudio master settings", masterConfigFile, {{DB_PURE_INIT, true}});
     if (!masterDb->open())

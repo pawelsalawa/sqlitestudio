@@ -148,7 +148,13 @@ QString AdbManager::findAdb()
         return "adb.exe";
 
     static_qstring(winAdbPath, "/../Android/sdk/platform-tools/adb.exe");
-    for (const QString& path : QStandardPaths::standardLocations(QStandardPaths::AppLocalDataLocation))
+    for (const QString& path : QStandardPaths::standardLocations(
+#if QT_VERSION >= 0x050400
+             QStandardPaths::AppLocalDataLocation
+#else
+             QStandardPaths::GenericDataLocation
+#endif
+             ))
     {
         fullPath = QDir::cleanPath(path + winAdbPath);
         if (testAdb(fullPath, true))

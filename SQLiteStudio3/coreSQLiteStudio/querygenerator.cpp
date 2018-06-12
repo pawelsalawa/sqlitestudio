@@ -41,7 +41,7 @@ QString QueryGenerator::generateInsertToTable(Db* db, const QString& database, c
     if (values.isEmpty())
     {
         QStringList valueList = wrapStrings(tableCols);
-        QList<QString> wrappedCols = wrapObjNamesIfNeeded(tableCols, dialect);
+        QStringList wrappedCols = wrapObjNamesIfNeeded(tableCols, dialect);
         return tpl.arg(target, wrappedCols.join(", "), rowTpl.arg(valueList.join(", ")));
     }
 
@@ -54,7 +54,7 @@ QString QueryGenerator::generateInsertToTable(Db* db, const QString& database, c
     QString valueStr = rowTpl.arg(valueSets.join("), ("));
 
     // Wrap given column names
-    QList<QString> wrappedCols = wrapObjNamesIfNeeded(valueCols, dialect);
+    QStringList wrappedCols = wrapObjNamesIfNeeded(valueCols, dialect);
 
     return tpl.arg(target, wrappedCols.join(", "), valueStr);
 }

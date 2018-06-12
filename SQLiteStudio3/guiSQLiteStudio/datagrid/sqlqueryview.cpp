@@ -610,7 +610,11 @@ void SqlQueryView::paste()
     {
         for (const QString& cell : cells)
         {
+#if QT_VERSION >= 0x050A00
             if ((cell.front().isSpace() || cell.back().isSpace()) && !trimOnPasteAsked)
+#else
+            if ((cell.at(0).isSpace() || cell.at(cell.size() - 1).isSpace()) && !trimOnPasteAsked)
+#endif
             {
                 QMessageBox::StandardButton choice;
                 choice = QMessageBox::question(this, tr("Trim pasted text?"),

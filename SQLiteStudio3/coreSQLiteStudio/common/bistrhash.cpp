@@ -1,4 +1,5 @@
 #include "bistrhash.h"
+#include <QStringList>
 
 BiStrHash::BiStrHash(std::initializer_list<std::pair<QString, QString> > list)
 {
