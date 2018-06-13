@@ -144,6 +144,7 @@ class API_EXPORT Config : public QObject
         virtual qint64 addSqlHistory(const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected) = 0;
         virtual void updateSqlHistory(qint64 id, const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected) = 0;
         virtual void clearSqlHistory() = 0;
+        virtual void deleteSqlHistory(const QList<qint64>& ids) = 0;
         virtual QAbstractItemModel* getSqlHistoryModel() = 0;
 
         virtual void addCliHistory(const QString& text) = 0;

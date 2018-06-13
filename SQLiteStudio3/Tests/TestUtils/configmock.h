@@ -30,6 +30,7 @@ class ConfigMock : public Config
         qint64 addSqlHistory(const QString&, const QString&, int, int);
         void updateSqlHistory(qint64, const QString&, const QString&, int, int);
         void clearSqlHistory();
+        void deleteSqlHistory(const QList<qint64>&);
         QAbstractItemModel*getSqlHistoryModel();
         void addCliHistory(const QString&);
         void applyCliHistoryLimit();

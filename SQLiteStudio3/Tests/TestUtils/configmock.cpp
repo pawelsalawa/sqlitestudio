@@ -102,6 +102,10 @@ void ConfigMock::clearSqlHistory()
 {
 }
 
+void ConfigMock::deleteSqlHistory(const QList<qint64>&)
+{
+}
+
 QAbstractItemModel* ConfigMock::getSqlHistoryModel()
 {
     return nullptr;

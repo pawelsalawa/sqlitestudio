@@ -100,6 +100,7 @@ void EditorWindow::init()
     createDbCombo();
     initActions();
     updateShortcutTips();
+    setupSqlHistoryMenu();
 
     Db* treeSelectedDb = DBTREE->getSelectedOpenDb();
     if (treeSelectedDb)
@@ -115,10 +116,12 @@ void EditorWindow::init()
 
     // SQL history list
     ui->historyList->setModel(CFG->getSqlHistoryModel());
+    ui->historyList->hideColumn(0);
     ui->historyList->resizeColumnToContents(1);
     connect(ui->historyList->selectionModel(), SIGNAL(currentRowChanged(QModelIndex,QModelIndex)),
             this, SLOT(historyEntrySelected(QModelIndex,QModelIndex)));
     connect(ui->historyList, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(historyEntryActivated(QModelIndex)));
+    connect(ui->historyList, &QWidget::customContextMenuRequested, this, &EditorWindow::sqlHistoryContextMenuRequested);
 
     updateState();
 }
@@ -390,6 +393,7 @@ void EditorWindow::createActions()
     createAction(SHOW_PREV_TAB, tr("Show previous tab", "sql editor"), this, SLOT(showPrevTab()), this);
     createAction(FOCUS_RESULTS_BELOW, tr("Focus results below", "sql editor"), this, SLOT(focusResultsBelow()), this);
     createAction(FOCUS_EDITOR_ABOVE, tr("Focus SQL editor above", "sql editor"), this, SLOT(focusEditorAbove()), this);
+    createAction(DELETE_SINGLE_HISTORY_SQL, tr("Delete selected SQL history entries", "sql editor"), this, SLOT(deleteSelectedSqlHistory()), ui->historyList);
 
     // Static action triggers
     connect(staticActions[RESULTS_IN_TAB], SIGNAL(triggered()), this, SLOT(updateResultsDisplayMode()));
@@ -597,15 +601,27 @@ void EditorWindow::focusEditorAbove()
 void EditorWindow::historyEntrySelected(const QModelIndex& current, const QModelIndex& previous)
 {
     UNUSED(previous);
-    QString sql = ui->historyList->model()->index(current.row(), 4).data().toString();
+    QString sql = ui->historyList->model()->index(current.row(), 5).data().toString();
     ui->historyContents->setPlainText(sql);
 }
 
 void EditorWindow::historyEntryActivated(const QModelIndex& current)
 {
-    QString sql = ui->historyList->model()->index(current.row(), 4).data().toString();
+    QString sql = ui->historyList->model()->index(current.row(), 5).data().toString();
     ui->sqlEdit->setPlainText(sql);
     ui->tabWidget->setCurrentIndex(0);
+}
+
+void EditorWindow::deleteSelectedSqlHistory()
+{
+    if (ui->historyList->selectionModel()->selectedIndexes().isEmpty())
+        return;
+
+    QList<qint64> ids;
+    for (const QModelIndex& idx : ui->historyList->selectionModel()->selectedRows(0))
+        ids += idx.data().toLongLong();
+
+    CFG->deleteSqlHistory(ids);
 }
 
 void EditorWindow::clearHistory()
@@ -616,6 +632,19 @@ void EditorWindow::clearHistory()
         return;
 
     CFG->clearSqlHistory();
+}
+
+void EditorWindow::sqlHistoryContextMenuRequested(const QPoint &pos)
+{
+    actionMap[DELETE_SINGLE_HISTORY_SQL]->setEnabled(!ui->historyList->selectionModel()->selectedIndexes().isEmpty());
+
+    sqlHistoryMenu->popup(ui->historyList->mapToGlobal(pos));
+}
+
+void EditorWindow::setupSqlHistoryMenu()
+{
+    sqlHistoryMenu = new QMenu(this);
+    sqlHistoryMenu->addAction(actionMap[DELETE_SINGLE_HISTORY_SQL]);
 }
 
 void EditorWindow::exportResults()

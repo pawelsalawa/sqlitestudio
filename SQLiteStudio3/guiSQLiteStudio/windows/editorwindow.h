@@ -24,14 +24,15 @@ class SqlQueryItem;
 class SqlEditor;
 
 CFG_KEY_LIST(EditorWindow, QObject::tr("SQL editor window"),
-     CFG_KEY_ENTRY(EXEC_QUERY,          Qt::Key_F9,                 QObject::tr("Execute query"))
-     CFG_KEY_ENTRY(EXPLAIN_QUERY,       Qt::Key_F8,                 QObject::tr("Execute \"%1\" query").arg("EXPLAIN"))
-     CFG_KEY_ENTRY(PREV_DB,             Qt::CTRL + Qt::Key_Up,      QObject::tr("Switch current working database to previous on the list"))
-     CFG_KEY_ENTRY(NEXT_DB,             Qt::CTRL + Qt::Key_Down,    QObject::tr("Switch current working database to next on the list"))
-     CFG_KEY_ENTRY(SHOW_NEXT_TAB,       Qt::ALT + Qt::Key_Right,    QObject::tr("Go to next editor tab"))
-     CFG_KEY_ENTRY(SHOW_PREV_TAB,       Qt::ALT + Qt::Key_Left,     QObject::tr("Go to previous editor tab"))
-     CFG_KEY_ENTRY(FOCUS_RESULTS_BELOW, Qt::ALT + Qt::Key_PageDown, QObject::tr("Move keyboard input focus to the results view below"))
-     CFG_KEY_ENTRY(FOCUS_EDITOR_ABOVE,  Qt::ALT + Qt::Key_PageUp,   QObject::tr("Move keyboard input focus to the SQL editor above"))
+     CFG_KEY_ENTRY(EXEC_QUERY,                Qt::Key_F9,                 QObject::tr("Execute query"))
+     CFG_KEY_ENTRY(EXPLAIN_QUERY,             Qt::Key_F8,                 QObject::tr("Execute \"%1\" query").arg("EXPLAIN"))
+     CFG_KEY_ENTRY(PREV_DB,                   Qt::CTRL + Qt::Key_Up,      QObject::tr("Switch current working database to previous on the list"))
+     CFG_KEY_ENTRY(NEXT_DB,                   Qt::CTRL + Qt::Key_Down,    QObject::tr("Switch current working database to next on the list"))
+     CFG_KEY_ENTRY(SHOW_NEXT_TAB,             Qt::ALT + Qt::Key_Right,    QObject::tr("Go to next editor tab"))
+     CFG_KEY_ENTRY(SHOW_PREV_TAB,             Qt::ALT + Qt::Key_Left,     QObject::tr("Go to previous editor tab"))
+     CFG_KEY_ENTRY(FOCUS_RESULTS_BELOW,       Qt::ALT + Qt::Key_PageDown, QObject::tr("Move keyboard input focus to the results view below"))
+     CFG_KEY_ENTRY(FOCUS_EDITOR_ABOVE,        Qt::ALT + Qt::Key_PageUp,   QObject::tr("Move keyboard input focus to the SQL editor above"))
+     CFG_KEY_ENTRY(DELETE_SINGLE_HISTORY_SQL, QKeySequence::Delete,       QObject::tr("Delete selected SQL history entries"))
 )
 
 class GUI_API_EXPORT EditorWindow : public MdiChild
@@ -61,7 +62,8 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
             FOCUS_EDITOR_ABOVE,
             CLEAR_HISTORY,
             EXPORT_RESULTS,
-            CREATE_VIEW_FROM_QUERY
+            CREATE_VIEW_FROM_QUERY,
+            DELETE_SINGLE_HISTORY_SQL
         };
 
         enum ToolBar
@@ -114,6 +116,7 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
         void setupDefShortcuts();
         void selectCurrentQuery(bool fallBackToPreviousIfNecessary = false);
         void updateShortcutTips();
+        void setupSqlHistoryMenu();
 
         static const int queryLimitForSmartExecution = 100;
 
@@ -129,6 +132,7 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
         int sqlEditorNum = 1;
         qint64 lastQueryHistoryId = 0;
         QString lastSuccessfulQuery;
+        QMenu* sqlHistoryMenu = nullptr;
 
     private slots:
         void execQuery(bool explain = false);
@@ -146,7 +150,9 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
         void focusEditorAbove();
         void historyEntrySelected(const QModelIndex& current, const QModelIndex& previous);
         void historyEntryActivated(const QModelIndex& current);
+        void deleteSelectedSqlHistory();
         void clearHistory();
+        void sqlHistoryContextMenuRequested(const QPoint &pos);
         void exportResults();
         void createViewFromQuery();
         void updateState();

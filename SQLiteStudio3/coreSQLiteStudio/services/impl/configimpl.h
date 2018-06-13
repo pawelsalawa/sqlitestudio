@@ -56,6 +56,7 @@ class API_EXPORT ConfigImpl : public Config
         qint64 addSqlHistory(const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected);
         void updateSqlHistory(qint64 id, const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected);
         void clearSqlHistory();
+        void deleteSqlHistory(const QList<qint64>& ids);
         QAbstractItemModel* getSqlHistoryModel();
 
         void addCliHistory(const QString& text);
@@ -99,6 +100,7 @@ class API_EXPORT ConfigImpl : public Config
         void asyncAddSqlHistory(qint64 id, const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected);
         void asyncUpdateSqlHistory(qint64 id, const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected);
         void asyncClearSqlHistory();
+        void asyncDeleteSqlHistory(const QList<qint64> &ids);
 
         void asyncAddCliHistory(const QString& text);
         void asyncApplyCliHistoryLimit();

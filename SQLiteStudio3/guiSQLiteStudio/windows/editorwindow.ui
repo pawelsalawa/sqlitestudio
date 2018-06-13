@@ -118,11 +118,14 @@
           <enum>Qt::Vertical</enum>
          </property>
          <widget class="QTableView" name="historyList">
+          <property name="contextMenuPolicy">
+           <enum>Qt::CustomContextMenu</enum>
+          </property>
           <property name="alternatingRowColors">
            <bool>true</bool>
           </property>
           <property name="selectionMode">
-           <enum>QAbstractItemView::SingleSelection</enum>
+           <enum>QAbstractItemView::ExtendedSelection</enum>
           </property>
           <property name="selectionBehavior">
            <enum>QAbstractItemView::SelectRows</enum>

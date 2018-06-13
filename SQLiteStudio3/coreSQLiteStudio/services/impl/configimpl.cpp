@@ -304,6 +304,11 @@ void ConfigImpl::clearSqlHistory()
     QtConcurrent::run(this, &ConfigImpl::asyncClearSqlHistory);
 }
 
+void ConfigImpl::deleteSqlHistory(const QList<qint64>& ids)
+{
+    QtConcurrent::run(this, &ConfigImpl::asyncDeleteSqlHistory, ids);
+}
+
 QAbstractItemModel* ConfigImpl::getSqlHistoryModel()
 {
     if (!sqlHistoryModel)
@@ -706,6 +711,23 @@ void ConfigImpl::asyncUpdateSqlHistory(qint64 id, const QString& sql, const QStr
 void ConfigImpl::asyncClearSqlHistory()
 {
     db->exec("DELETE FROM sqleditor_history");
+    emit sqlHistoryRefreshNeeded();
+}
+
+void ConfigImpl::asyncDeleteSqlHistory(const QList<qint64>& ids)
+{
+    if (!db->begin()) {
+        NOTIFY_MANAGER->warn(tr("Could not start database transaction for deleting SQL history, therefore it's not deleted."));
+        return;
+    }
+    for (const qint64& id : ids)
+        db->exec("DELETE FROM sqleditor_history WHERE id = ?", id);
+
+    if (!db->commit()) {
+        NOTIFY_MANAGER->warn(tr("Could not commit database transaction for deleting SQL history, therefore it's not deleted."));
+        db->rollback();
+        return;
+    }
     emit sqlHistoryRefreshNeeded();
 }
 
