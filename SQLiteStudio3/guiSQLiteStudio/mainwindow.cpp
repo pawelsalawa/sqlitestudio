@@ -47,6 +47,7 @@
 #include <QInputDialog>
 #include <QProgressBar>
 #include <QLabel>
+#include <QStyle>
 
 CFG_KEYS_DEFINE(MainWindow)
 MainWindow* MainWindow::instance = nullptr;
