@@ -58,7 +58,7 @@ class XMLEXPORTSHARED_EXPORT XmlExport : public GenericExportPlugin
 
         static QString toString(bool value);
 
-        CFG_LOCAL(XmlExportConfig, cfg)
+        CFG_LOCAL_PERSISTABLE(XmlExportConfig, cfg)
         bool indent = false;
         int indentDepth = 0;
         QString indentStr;

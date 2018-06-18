@@ -23,6 +23,15 @@
 #include <QUiLoader>
 #include <QMimeData>
 
+static const QString EXPORT_DIALOG_CFG_GROUP = "ExportDialog";
+static const QString EXPORT_DIALOG_CFG_CODEC = "codec";
+static const QString EXPORT_DIALOG_CFG_FILE = "outputFileName";
+static const QString EXPORT_DIALOG_CFG_CLIP = "intoClipboard";
+static const QString EXPORT_DIALOG_CFG_DATA = "exportData";
+static const QString EXPORT_DIALOG_CFG_IDX = "exportTableIndexes";
+static const QString EXPORT_DIALOG_CFG_TRIG = "exportTableTriggers";
+static const QString EXPORT_DIALOG_CFG_FORMAT = "format";
+
 ExportDialog::ExportDialog(QWidget *parent) :
     QWizard(parent),
     ui(new Ui::ExportDialog)
@@ -362,6 +371,7 @@ void ExportDialog::formatPageDisplayed()
 
         formatPageVisited = true;
     }
+    readStdConfig();
     pluginSelected();
 }
 
@@ -443,9 +453,6 @@ void ExportDialog::pluginSelected()
 
     updateExportOutputOptions();
     updateOptions();
-
-    if (currentPlugin->getConfig() && !currentPlugin->getConfig()->isPersistable())
-        currentPlugin->getConfig()->reset();
 }
 
 void ExportDialog::updateExportOutputOptions()
@@ -470,8 +477,18 @@ void ExportDialog::updateExportOutputOptions()
     ui->encodingLabel->setVisible(displayCodec);
     if (displayCodec)
     {
-        QString codec = currentPlugin->getDefaultEncoding();
+        QString codec = CFG->get(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_CODEC).toString();
+        QString defaultCodec = currentPlugin->getDefaultEncoding();
+        if (codec.isNull())
+            codec = defaultCodec;
+
         int idx = ui->encodingCombo->findText(codec);
+        if (idx == -1 && codec != defaultCodec)
+        {
+            codec = defaultCodec;
+            idx = ui->encodingCombo->findText(codec);
+        }
+
         if (idx > -1)
             ui->encodingCombo->setCurrentIndex(idx);
     }
@@ -596,6 +613,43 @@ void ExportDialog::updatePluginOptions(ExportPlugin* plugin, int& optionsRow)
     plugin->validateOptions();
 }
 
+void ExportDialog::storeStdConfig(const ExportManager::StandardExportConfig &stdConfig)
+{
+    CFG->begin();
+    CFG->set(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_CODEC, stdConfig.codec);
+    CFG->set(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_FILE, stdConfig.outputFileName);
+    CFG->set(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_CLIP, stdConfig.intoClipboard);
+    CFG->set(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_DATA, stdConfig.exportData);
+    CFG->set(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_IDX, stdConfig.exportTableIndexes);
+    CFG->set(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_TRIG, stdConfig.exportTableTriggers);
+    CFG->set(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_FORMAT, currentPlugin->getFormatName());
+    CFG->commit();
+}
+
+void ExportDialog::readStdConfig()
+{
+    QString format = CFG->get(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_FORMAT).toString();
+    int idx = ui->formatCombo->findText(format);
+    if (idx > -1)
+        ui->formatCombo->setCurrentIndex(idx);
+
+    bool useClipboard = CFG->get(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_CLIP, false).toBool();
+    ui->exportFileRadio->setChecked(!useClipboard);
+    ui->exportClipboardRadio->setChecked(useClipboard);
+    ui->exportFileEdit->setText(CFG->get(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_FILE, QString()).toString());
+
+    bool exportData = CFG->get(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_DATA, true).toBool();
+    if (exportMode == ExportManager::DATABASE)
+        ui->exportDbDataCheck->setChecked(exportData);
+    else if (exportMode == ExportManager::TABLE)
+        ui->exportTableDataCheck->setChecked(exportData);
+
+    ui->exportTableIndexesCheck->setChecked(CFG->get(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_IDX, true).toBool());
+    ui->exportTableTriggersCheck->setChecked(CFG->get(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_TRIG, true).toBool());
+
+    // Codec is read within updateExportOutputOptions()
+}
+
 void ExportDialog::updateValidation()
 {
     if (!currentPlugin)
@@ -610,6 +664,9 @@ void ExportDialog::doExport()
     widgetCover->show();
 
     ExportManager::StandardExportConfig stdConfig = getExportConfig();
+    storeStdConfig(stdConfig);
+    configMapper->saveFromWidget(pluginOptionsWidget);
+
     QString format = ui->formatCombo->currentText();
     switch (exportMode)
     {
@@ -683,6 +740,9 @@ ExportManager::StandardExportConfig ExportDialog::getExportConfig() const
         stdConfig.exportData = ui->exportTableDataCheck->isChecked();
     else
         stdConfig.exportData = false;
+
+    stdConfig.exportTableIndexes = ui->exportTableIndexesCheck->isChecked();
+    stdConfig.exportTableTriggers = ui->exportTableTriggersCheck->isChecked();
 
     if (ui->encodingCombo->isVisible() && ui->encodingCombo->currentIndex() > -1)
         stdConfig.codec = ui->encodingCombo->currentText();

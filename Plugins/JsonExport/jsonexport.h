@@ -66,7 +66,7 @@ class JSONEXPORTSHARED_EXPORT JsonExport : public GenericExportPlugin
         void writePrefixBeforeEnd();
         void writePrefixBeforeNextElement();
 
-        CFG_LOCAL(JsonExportConfig, cfg)
+        CFG_LOCAL_PERSISTABLE(JsonExportConfig, cfg)
         QStack<int> elementCounter;
         bool indent = false;
         int indentDepth = 0;

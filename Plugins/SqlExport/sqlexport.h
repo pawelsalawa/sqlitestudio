@@ -60,7 +60,7 @@ class SQLEXPORTSHARED_EXPORT SqlExport : public GenericExportPlugin
 
         QString theTable;
         QString columns;
-        CFG_LOCAL(SqlExportConfig, cfg)
+        CFG_LOCAL_PERSISTABLE(SqlExportConfig, cfg)
 };
 
 #endif // SQLEXPORT_H

@@ -45,6 +45,8 @@ class GUI_API_EXPORT ExportDialog : public QWizard
         void formatPageDisplayed();
         ExportPlugin* getSelectedPlugin() const;
         void updatePluginOptions(ExportPlugin* plugin, int& optionsRow);
+        void storeStdConfig(const ExportManager::StandardExportConfig& stdConfig);
+        void readStdConfig();
         void doExport();
         void exportDatabase(const ExportManager::StandardExportConfig& stdConfig, const QString& format);
         void exportTable(const ExportManager::StandardExportConfig& stdConfig, const QString& format);

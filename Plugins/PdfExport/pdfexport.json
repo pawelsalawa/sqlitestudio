@@ -2,7 +2,7 @@
     "type":         "ExportPlugin",
     "title":        "PDF export",
     "description":  "Provides PDF format for exporting.",
-    "version":      10002,
+    "version":      10003,
     "author":       "SalSoft",
     "gui":          true
 }

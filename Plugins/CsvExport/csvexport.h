@@ -49,7 +49,7 @@ class CSVEXPORTSHARED_EXPORT CsvExport : public GenericExportPlugin
         bool exportTable(const QStringList& columnNames);
         void defineCsvFormat();
 
-        CFG_LOCAL(CsvExportConfig, cfg)
+        CFG_LOCAL_PERSISTABLE(CsvExportConfig, cfg)
         CsvFormat format;
 };
 

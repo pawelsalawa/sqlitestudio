@@ -107,6 +107,15 @@ QVariant ConfigImpl::get(const QString &group, const QString &key)
     return deserializeValue(results->getSingleCell());
 }
 
+QVariant ConfigImpl::get(const QString &group, const QString &key, const QVariant &defaultValue)
+{
+    QVariant value = get(group, key);
+    if (!value.isValid() || value.isNull())
+        return defaultValue;
+
+    return value;
+}
+
 QHash<QString,QVariant> ConfigImpl::getAll()
 {
     SqlQueryPtr results = db->exec("SELECT [group], [key], value FROM settings");

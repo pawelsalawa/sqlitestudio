@@ -57,7 +57,7 @@ class HTMLEXPORTSHARED_EXPORT HtmlExport : public GenericExportPlugin
 
         static QString compressCss(QString css);
 
-        CFG_LOCAL(HtmlExportConfig, cfg)
+        CFG_LOCAL_PERSISTABLE(HtmlExportConfig, cfg)
         bool indent = false;
         int indentDepth = 0;
         QString indentStr;

@@ -35,6 +35,11 @@ QVariant ConfigMock::get(const QString&, const QString&)
     return QVariant();
 }
 
+QVariant ConfigMock::get(const QString &, const QString &, const QVariant &)
+{
+    return QVariant();
+}
+
 QHash<QString, QVariant> ConfigMock::getAll()
 {
     return QHash<QString, QVariant>();

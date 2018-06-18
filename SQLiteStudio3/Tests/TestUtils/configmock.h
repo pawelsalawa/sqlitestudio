@@ -16,6 +16,7 @@ class ConfigMock : public Config
         void rollbackMassSave();
         void set(const QString&, const QString&, const QVariant&);
         QVariant get(const QString&, const QString&);
+        QVariant get(const QString&, const QString&, const QVariant&);
         QHash<QString, QVariant> getAll();
         bool addDb(const QString&, const QString&, const QHash<QString, QVariant>&);
         bool updateDb(const QString&, const QString&, const QString&, const QHash<QString, QVariant>&);

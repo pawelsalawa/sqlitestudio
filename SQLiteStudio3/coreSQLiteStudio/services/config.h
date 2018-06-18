@@ -118,6 +118,7 @@ class API_EXPORT Config : public QObject
         virtual bool isMassSaving() const = 0;
         virtual void set(const QString& group, const QString& key, const QVariant& value) = 0;
         virtual QVariant get(const QString& group, const QString& key) = 0;
+        virtual QVariant get(const QString& group, const QString& key, const QVariant& defaultValue) = 0;
         virtual QHash<QString,QVariant> getAll() = 0;
 
         virtual bool addDb(const QString& name, const QString& path, const QHash<QString, QVariant> &options) = 0;

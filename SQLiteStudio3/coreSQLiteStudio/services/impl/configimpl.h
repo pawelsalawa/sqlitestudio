@@ -29,6 +29,7 @@ class API_EXPORT ConfigImpl : public Config
         bool isMassSaving() const;
         void set(const QString& group, const QString& key, const QVariant& value);
         QVariant get(const QString& group, const QString& key);
+        QVariant get(const QString& group, const QString& key, const QVariant& defaultValue);
         QHash<QString,QVariant> getAll();
 
         bool addDb(const QString& name, const QString& path, const QHash<QString, QVariant> &options);

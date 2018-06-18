@@ -503,7 +503,7 @@ QList<QWidget*> ConfigMapper::getAllConfigWidgets(QWidget *parent)
 {
     QList<QWidget*> results;
     QWidget* widget = nullptr;
-    foreach (QObject* obj, parent->children())
+    for (QObject* obj : parent->children())
     {
         widget = qobject_cast<QWidget*>(obj);
         if (!widget || widgetsToIgnore.contains(widget))
