@@ -2,6 +2,7 @@
 #define IMPORTDIALOG_H
 
 #include "guiSQLiteStudio_global.h"
+#include "services/importmanager.h"
 #include <QWizard>
 
 namespace Ui {
@@ -39,6 +40,8 @@ class GUI_API_EXPORT ImportDialog : public QWizard
         void updateStandardOptions();
         void updatePluginOptions(int& rows);
         bool isPluginConfigValid() const;
+        void storeStdConfig(ImportManager::StandardImportConfig& stdConfig);
+        void readStdConfig();
 
         Ui::ImportDialog *ui = nullptr;
         DbListModel* dbListModel = nullptr;

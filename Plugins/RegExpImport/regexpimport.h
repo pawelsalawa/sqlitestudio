@@ -40,7 +40,7 @@ class REGEXPIMPORTSHARED_EXPORT RegExpImport : public GenericPlugin, public Impo
         bool validateOptions();
 
     private:
-        CFG_LOCAL(RegExpImportConfig, cfg)
+        CFG_LOCAL_PERSISTABLE(RegExpImportConfig, cfg)
         QRegularExpression* re = nullptr;
         QList<QVariant> groups;
         QStringList columns;

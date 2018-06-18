@@ -6,7 +6,6 @@
 #include "common/widgetcover.h"
 #include "services/dbmanager.h"
 #include "services/pluginmanager.h"
-#include "services/importmanager.h"
 #include "sqlitestudio.h"
 #include "plugins/importplugin.h"
 #include "ui_importdialog.h"
@@ -18,6 +17,12 @@
 #include <QDebug>
 #include <QFileDialog>
 #include <QKeyEvent>
+
+static const QString IMPORT_DIALOG_CFG_GROUP = "ImportDialog";
+static const QString IMPORT_DIALOG_CFG_CODEC = "codec";
+static const QString IMPORT_DIALOG_CFG_FILE = "inputFileName";
+static const QString IMPORT_DIALOG_CFG_IGNORE_ERR = "ignoreErrors";
+static const QString IMPORT_DIALOG_CFG_FORMAT = "format";
 
 ImportDialog::ImportDialog(QWidget *parent) :
     QWizard(parent),
@@ -53,6 +58,43 @@ void ImportDialog::setDb(Db* db)
 bool ImportDialog::isPluginConfigValid() const
 {
     return pluginConfigOk.size() == 0;
+}
+
+void ImportDialog::storeStdConfig(ImportManager::StandardImportConfig &stdConfig)
+{
+    CFG->begin();
+    CFG->set(IMPORT_DIALOG_CFG_GROUP, IMPORT_DIALOG_CFG_CODEC, stdConfig.codec);
+    CFG->set(IMPORT_DIALOG_CFG_GROUP, IMPORT_DIALOG_CFG_FILE, stdConfig.inputFileName);
+    CFG->set(IMPORT_DIALOG_CFG_GROUP, IMPORT_DIALOG_CFG_IGNORE_ERR, stdConfig.ignoreErrors);
+    CFG->set(IMPORT_DIALOG_CFG_GROUP, IMPORT_DIALOG_CFG_FORMAT, currentPlugin->getDataSourceTypeName());
+    CFG->commit();
+}
+
+void ImportDialog::readStdConfig()
+{
+    QString format = CFG->get(IMPORT_DIALOG_CFG_GROUP, IMPORT_DIALOG_CFG_FORMAT).toString();
+    int idx = ui->dsTypeCombo->findText(format);
+    if (idx > -1)
+        ui->dsTypeCombo->setCurrentIndex(idx);
+
+    ui->inputFileEdit->setText(CFG->get(IMPORT_DIALOG_CFG_GROUP, IMPORT_DIALOG_CFG_FILE, QString()).toString());
+    ui->ignoreErrorsCheck->setChecked(CFG->get(IMPORT_DIALOG_CFG_GROUP, IMPORT_DIALOG_CFG_IGNORE_ERR, false).toBool());
+
+    // Encoding
+    QString codec = CFG->get(IMPORT_DIALOG_CFG_GROUP, IMPORT_DIALOG_CFG_CODEC).toString();
+    QString defaultCodec = defaultCodecName();
+    if (codec.isNull())
+        codec = defaultCodec;
+
+    int codecIdx = ui->codecCombo->findText(codec);
+    if (codecIdx == -1 && codec != defaultCodec)
+    {
+        codec = defaultCodec;
+        codecIdx = ui->codecCombo->findText(codec);
+    }
+
+    if (codecIdx > -1)
+        ui->codecCombo->setCurrentIndex(codecIdx);
 }
 
 void ImportDialog::init()
@@ -303,7 +345,10 @@ void ImportDialog::updateValidation()
 void ImportDialog::pageChanged()
 {
     if (currentPage() == ui->dsPage)
+    {
+        readStdConfig();
         updateValidation();
+    }
 }
 
 void ImportDialog::browseForInputFile()
@@ -350,6 +395,9 @@ void ImportDialog::accept()
         stdConfig.codec = ui->codecCombo->currentText();
 
     stdConfig.ignoreErrors = ui->ignoreErrorsCheck->isChecked();
+
+    storeStdConfig(stdConfig);
+    configMapper->saveFromWidget(pluginOptionsWidget);
 
     Db* db = DBLIST->getByName(ui->dbNameCombo->currentText());;
     if (!db)

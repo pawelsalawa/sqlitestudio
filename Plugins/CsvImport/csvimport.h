@@ -49,7 +49,7 @@ class CSVIMPORTSHARED_EXPORT CsvImport : public GenericPlugin, public ImportPlug
         QTextStream* stream = nullptr;
         QStringList columnNames;
         CsvFormat csvFormat;
-        CFG_LOCAL(CsvImportConfig, cfg)
+        CFG_LOCAL_PERSISTABLE(CsvImportConfig, cfg)
 };
 
 #endif // CSVIMPORT_H
