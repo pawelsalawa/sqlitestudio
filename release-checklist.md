@@ -1,3 +1,4 @@
+- [x] Verify final release version
 - [x] Update ChangeLog
 - [x] Update managed languages per component/plugin
 - [x] Update messages
