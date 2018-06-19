@@ -10,6 +10,7 @@
 
 class QLabel;
 class QScrollArea;
+class QScrollBar;
 
 class MultiEditorImage : public MultiEditorWidget
 {
@@ -27,11 +28,16 @@ class MultiEditorImage : public MultiEditorWidget
         void notifyAboutUnload();
 
     private:
+        void scale(double factor);
+
         QByteArray imgData;
         QByteArray imgFormat;
         QScrollArea* scrollArea = nullptr;
         QLabel* imgLabel = nullptr;
         QAction* loadAction = nullptr;
+        QAction* zoomInAct = nullptr;
+        QAction* zoomOutAct = nullptr;
+        double currentZoom = 1.0;
 
     private slots:
         void openFile();

@@ -11,6 +11,7 @@
 #include <QToolButton>
 #include <QToolBar>
 #include <QFileDialog>
+#include <QScrollBar>
 
 MultiEditorImage::MultiEditorImage()
 {
@@ -23,14 +24,15 @@ MultiEditorImage::MultiEditorImage()
     tb->setOrientation(Qt::Vertical);
     loadAction = tb->addAction(ICONS.OPEN_FILE, tr("Load from file"), this, SLOT(openFile()));
     tb->addAction(ICONS.SAVE_FILE, tr("Store in a file"), this, SLOT(saveFile()));
-    tb->addAction(ICONS.ZOOM_IN, tr("Zoom in by 25%"), this, SLOT(zoomIn()));
-    tb->addAction(ICONS.ZOOM_OUT, tr("Zoom out by 25%"), this, SLOT(zoomOut()));
+    zoomInAct = tb->addAction(ICONS.ZOOM_IN, tr("Zoom in by 25%"), this, SLOT(zoomIn()));
+    zoomOutAct = tb->addAction(ICONS.ZOOM_OUT, tr("Zoom out by 25%"), this, SLOT(zoomOut()));
     tb->addAction(ICONS.ZOOM_RESET, tr("Reset zoom"), this, SLOT(resetZoom()));
     layout()->addWidget(tb);
 
     imgLabel = new QLabel();
     imgLabel->setBackgroundRole(QPalette::Base);
     imgLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
+    imgLabel->setScaledContents(true);
     scrollArea->setWidget(imgLabel);
     imgLabel->show();
 }
@@ -38,6 +40,7 @@ MultiEditorImage::MultiEditorImage()
 void MultiEditorImage::setValue(const QVariant &value)
 {
     this->imgData = value.toByteArray();
+
     QPixmap imgPixmap;
     if (imgPixmap.loadFromData(this->imgData))
     {
@@ -85,6 +88,14 @@ void MultiEditorImage::focusThisWidget()
 void MultiEditorImage::notifyAboutUnload()
 {
     emit aboutToBeDeleted();
+}
+
+void MultiEditorImage::scale(double factor)
+{
+    currentZoom *= factor;
+    imgLabel->resize(currentZoom * imgLabel->pixmap()->size());
+    zoomInAct->setEnabled(currentZoom < 10.0);
+    zoomOutAct->setEnabled(currentZoom > 0.1);
 }
 
 void MultiEditorImage::openFile()
@@ -156,17 +167,18 @@ void MultiEditorImage::saveFile()
 
 void MultiEditorImage::zoomIn()
 {
-
+    scale(1.25);
 }
 
 void MultiEditorImage::zoomOut()
 {
-
+    scale(0.8);
 }
 
 void MultiEditorImage::resetZoom()
 {
-
+    imgLabel->adjustSize();
+    currentZoom = 1.0;
 }
 
 MultiEditorWidget* MultiEditorImagePlugin::getInstance()
