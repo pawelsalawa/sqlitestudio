@@ -167,6 +167,13 @@ void MultiEditor::addEditor(MultiEditorWidget* editorWidget)
     tabs->addTab(editorWidget, editorWidget->getTabLabel().replace("&", "&&"));
     THEME_TUNER->manageCompactLayout(editorWidget);
     editorWidget->installEventFilter(this);
+
+    connect(editorWidget, &MultiEditorWidget::aboutToBeDeleted, [this, editorWidget]()
+    {
+        int idx = tabs->indexOf(editorWidget);
+        tabs->removeTab(idx);
+    });
+
 }
 
 void MultiEditor::showTab(int idx)

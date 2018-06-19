@@ -51,7 +51,7 @@
     <message>
         <location filename="../main.cpp" line="54"/>
         <source>Enables debugging of SQLiteStudio&apos;s query executor.</source>
-        <translation>Déboguage de l'exécuteur de requêtes de SQLiteStudio.</translation>
+        <translation>Déboguage de l&apos;exécuteur de requêtes de SQLiteStudio.</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="55"/>
@@ -79,10 +79,8 @@
         <translation>Fichier de la base de données à ouvrir</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="94"/>
-        <location filename="../main.cpp" line="110"/>
         <source>Error</source>
-        <translation>Erreur</translation>
+        <translation type="vanished">Erreur</translation>
     </message>
 </context>
 </TS>

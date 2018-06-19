@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/forms"/>
+    <qresource prefix="/msg">
+        <file>MultiEditorImage_de.qm</file>
+        <file>MultiEditorImage_es.qm</file>
+        <file>MultiEditorImage_fr.qm</file>
+        <file>MultiEditorImage_it.qm</file>
+        <file>MultiEditorImage_pl.qm</file>
+        <file>MultiEditorImage_pt_BR.qm</file>
+        <file>MultiEditorImage_ro_RO.qm</file>
+        <file>MultiEditorImage_ru.qm</file>
+        <file>MultiEditorImage_sk.qm</file>
+        <file>MultiEditorImage_zh_CN.qm</file>
+    </qresource>
+</RCC>

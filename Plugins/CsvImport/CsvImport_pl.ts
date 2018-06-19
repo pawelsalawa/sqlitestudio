@@ -14,7 +14,7 @@
         <translation>Nie znaleziono danych w pliku %1.</translation>
     </message>
     <message>
-        <location filename="csvimport.cpp" line="165"/>
+        <location filename="csvimport.cpp" line="167"/>
         <source>Enter the custom separator character.</source>
         <translation>Wprowadź własny znak separatora.</translation>
     </message>
@@ -23,7 +23,7 @@
         <translation type="obsolete">Wprowadź wartość, która będzie interpretowana jako NULL.</translation>
     </message>
     <message>
-        <location filename="csvimport.cpp" line="188"/>
+        <location filename="csvimport.cpp" line="190"/>
         <source>CSV files (*.csv);;Text files (*.txt);;All files (*)</source>
         <translation>Pliki CSV (*.csv);;Pliki tekstowe (*.txt);;Wszystkie pliki (*)</translation>
     </message>

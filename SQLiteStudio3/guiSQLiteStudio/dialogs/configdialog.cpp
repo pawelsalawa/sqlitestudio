@@ -487,6 +487,12 @@ void ConfigDialog::addDataTypeEditor(MultiEditorWidgetPlugin* plugin)
 {
     MultiEditorWidget* editor = plugin->getInstance();
     ui->dataEditorsSelectedTabs->addTab(editor, editor->getTabLabel().replace("&", "&&"));
+
+    connect(editor, &MultiEditorWidget::aboutToBeDeleted, [this, editor]()
+    {
+        int idx = ui->dataEditorsSelectedTabs->indexOf(editor);
+        ui->dataEditorsSelectedTabs->removeTab(idx);
+    });
 }
 
 void ConfigDialog::removeDataTypeEditor(QListWidgetItem* item, const QString& pluginName)

@@ -167,6 +167,7 @@ class GUI_API_EXPORT IconManager : public QObject
             DEF_ICON(RESULTS_BELOW,                     "results_below")
             DEF_ICON(RESULTS_IN_TAB,                    "results_in_tab")
             DEF_ICON(ROLLBACK,                          "rollback")
+            DEF_ICON(SAVE_FILE,                         "save_file")
             DEF_ICON(SAVE_SQL_FILE,                     "save_sql_file")
             DEF_ICON(SEARCH,                            "search")
             DEF_ICON(SEARCH_AND_REPLACE,                "search_and_replace")
@@ -248,6 +249,9 @@ class GUI_API_EXPORT IconManager : public QObject
             DEF_ICON(WIN_CLOSE_OTHER,                   "window_close_other")
             DEF_ICON(WIN_RESTORE,                       "window_restore")
             DEF_ICON(WIN_RENAME,                        "window_rename")
+            DEF_ICON(ZOOM_RESET,                        "zoom")
+            DEF_ICON(ZOOM_IN,                           "zoom_in")
+            DEF_ICON(ZOOM_OUT,                          "zoom_out")
         )
 
         static IconManager* getInstance();

@@ -14,7 +14,7 @@
         <translation>Nemôžem nájsť dáta v súbore %1.</translation>
     </message>
     <message>
-        <location filename="csvimport.cpp" line="165"/>
+        <location filename="csvimport.cpp" line="167"/>
         <source>Enter the custom separator character.</source>
         <translation>Zadajte vlastný oddeľovač.</translation>
     </message>
@@ -23,7 +23,7 @@
         <translation type="obsolete">Zadajte hodnotu, ktorá bude interpretovaná ako NULL.</translation>
     </message>
     <message>
-        <location filename="csvimport.cpp" line="188"/>
+        <location filename="csvimport.cpp" line="190"/>
         <source>CSV files (*.csv);;Text files (*.txt);;All files (*)</source>
         <translation>CSV súbory (*.csv);;Textové súbory (*.txt);;Všetky súbory (*)</translation>
     </message>

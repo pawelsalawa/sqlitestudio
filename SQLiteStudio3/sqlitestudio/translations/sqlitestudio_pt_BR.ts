@@ -78,11 +78,5 @@
         <source>Database file to open</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../main.cpp" line="94"/>
-        <location filename="../main.cpp" line="110"/>
-        <source>Error</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 </TS>

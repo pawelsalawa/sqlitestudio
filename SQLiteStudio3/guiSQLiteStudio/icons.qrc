@@ -201,5 +201,9 @@
         <file>img/wand.png</file>
         <file>img/search_and_replace.png</file>
         <file>img/search.png</file>
+        <file>img/zoom.png</file>
+        <file>img/zoom_in.png</file>
+        <file>img/zoom_out.png</file>
+        <file>img/save_file.png</file>
     </qresource>
 </RCC>

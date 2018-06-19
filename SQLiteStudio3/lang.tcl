@@ -14,6 +14,21 @@ if {$::tcl_platform(platform) == "windows"} {
     set ERR_NULL "2>/dev/null"
 }
 
+proc find {dir mask} {
+	set results [list]
+	foreach f [glob -nocomplain -directory $dir *] {
+		if {[file isdirectory $f]} {
+			lappend results {*}[find $f $mask]
+			continue;
+		}
+		
+		if {[string match $mask [lindex [file split $f] end]]} {
+			lappend results $f
+		}
+	}
+	return $results
+}
+
 proc countstrings {data search} {
     set l [string length $search]
     set count 0
@@ -27,7 +42,7 @@ proc countstrings {data search} {
 
 proc scanLangs {} {
     set langs [dict create]
-    foreach f [exec find .. -name "*.ts"] {
+    foreach f [find .. "*.ts"] {
         set lang [lindex [regexp -inline {[^_]*_(\w+(\w+)?).ts$} $f] 1]
         if {[dict exists $langs $lang]} {
             set langDict [dict get $langs $lang]

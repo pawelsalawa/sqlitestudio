@@ -81,10 +81,8 @@
         <translation>Zu öffnende Datenbankdatei</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="94"/>
-        <location filename="../main.cpp" line="110"/>
         <source>Error</source>
-        <translation>Fehler</translation>
+        <translation type="vanished">Fehler</translation>
     </message>
 </context>
 </TS>

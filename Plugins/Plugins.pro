@@ -19,7 +19,8 @@ SUBDIRS += \
     ScriptingTcl \
     DbAndroid \
     DbSqliteCipher \
-    DbSqliteWx
+    DbSqliteWx \
+    MultiEditorImage
 
 win32: {
 SUBDIRS += \

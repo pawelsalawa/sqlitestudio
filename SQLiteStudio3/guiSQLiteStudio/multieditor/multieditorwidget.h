@@ -28,6 +28,7 @@ class GUI_API_EXPORT MultiEditorWidget : public QWidget
 
     signals:
         void valueModified();
+        void aboutToBeDeleted();
 };
 
 #endif // MULTIEDITORWIDGET_H

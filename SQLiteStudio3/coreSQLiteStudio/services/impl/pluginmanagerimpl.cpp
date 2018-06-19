@@ -169,7 +169,7 @@ bool PluginManagerImpl::initPlugin(QPluginLoader* loader, const QString& fileNam
 
     if (!pluginType)
     {
-        qWarning() << "Could not load plugin" + fileName + "because its type was not recognized:" << pluginTypeName;
+        qWarning() << "Could not load plugin" << fileName << "because its type was not recognized:" << pluginTypeName;
         return false;
     }
 
@@ -316,7 +316,7 @@ bool PluginManagerImpl::initPlugin(Plugin* plugin)
 
     if (!pluginType)
     {
-        qWarning() << "Could not load built-in plugin" + pluginName + "because its type was not recognized.";
+        qWarning() << "Could not load built-in plugin" << pluginName << "because its type was not recognized.";
         return false;
     }
 

@@ -1,0 +1,7 @@
+{
+    "type":         "MultiEditorWidgetPlugin",
+    "title":        "Image editor/viewer",
+    "description":  "Introduces image editor/viewer tab for cell editor and form view.",
+    "version":      10000,
+    "author":       "SalSoft"
+}

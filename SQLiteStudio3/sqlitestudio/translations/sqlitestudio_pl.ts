@@ -41,7 +41,7 @@
     </message>
     <message>
         <source>Error</source>
-        <translation>Błąd</translation>
+        <translation type="vanished">Błąd</translation>
     </message>
     <message>
         <source>Lists plugins installed in the SQLiteStudio and quits.</source>
