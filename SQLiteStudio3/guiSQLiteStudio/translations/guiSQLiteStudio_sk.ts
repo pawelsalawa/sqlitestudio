@@ -1572,90 +1572,90 @@ but it&apos;s okay to use it.</source>
         <translation>Farba chybovej správy</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="785"/>
+        <location filename="../dialogs/configdialog.cpp" line="791"/>
         <source>Description:</source>
         <comment>plugin details</comment>
         <translation>Popis:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="786"/>
+        <location filename="../dialogs/configdialog.cpp" line="792"/>
         <source>Category:</source>
         <comment>plugin details</comment>
         <translation>Kategória:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="787"/>
+        <location filename="../dialogs/configdialog.cpp" line="793"/>
         <source>Version:</source>
         <comment>plugin details</comment>
         <translation>Verzia:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="788"/>
+        <location filename="../dialogs/configdialog.cpp" line="794"/>
         <source>Author:</source>
         <comment>plugin details</comment>
         <translation>Autor:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="790"/>
+        <location filename="../dialogs/configdialog.cpp" line="796"/>
         <source>Internal name:</source>
         <comment>plugin details</comment>
         <translation>Interný názov:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="791"/>
+        <location filename="../dialogs/configdialog.cpp" line="797"/>
         <source>Dependencies:</source>
         <comment>plugin details</comment>
         <translation>Závislosti:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="792"/>
+        <location filename="../dialogs/configdialog.cpp" line="798"/>
         <source>Conflicts:</source>
         <comment>plugin details</comment>
         <translation>Konflikty:</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="796"/>
+        <location filename="../dialogs/configdialog.cpp" line="802"/>
         <source>Plugin details</source>
         <translation>Detaily pluginu</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1208"/>
+        <location filename="../dialogs/configdialog.cpp" line="1214"/>
         <source>Plugins are loaded/unloaded immediately when checked/unchecked, but modified list of plugins to load at startup is not saved until you commit the whole configuration dialog.</source>
         <translation>Pluginy sú načítané/uvoľnené okamžite pri zaškrtnutí/odškrtnutí ale midifikovaný zoznam pluginov načítaných pri štarte nieje uložený až kým nepotvrdíte celý konfiguračný dialóg.</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1272"/>
+        <location filename="../dialogs/configdialog.cpp" line="1278"/>
         <source>%1 (built-in)</source>
         <comment>plugins manager in configuration dialog</comment>
         <translation>%1 (interný)</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1285"/>
+        <location filename="../dialogs/configdialog.cpp" line="1291"/>
         <source>Details</source>
         <translation>Detaily</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1297"/>
+        <location filename="../dialogs/configdialog.cpp" line="1303"/>
         <source>No plugins in this category.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1399"/>
+        <location filename="../dialogs/configdialog.cpp" line="1405"/>
         <source>Add new data type</source>
         <translation>Pridať nový datový typ</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1403"/>
+        <location filename="../dialogs/configdialog.cpp" line="1409"/>
         <source>Rename selected data type</source>
         <translation>Premenovať vybraný datový typ</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1407"/>
+        <location filename="../dialogs/configdialog.cpp" line="1413"/>
         <source>Delete selected data type</source>
         <translation>Vymazať vybraný datový typ</translation>
     </message>
     <message>
-        <location filename="../dialogs/configdialog.cpp" line="1411"/>
+        <location filename="../dialogs/configdialog.cpp" line="1417"/>
         <source>Help for configuring data type editors</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2290,29 +2290,24 @@ Prezeranie ďalších strán bude možné až po dokončení spočítavania.</tr
         <translation>Premenovať skupinu</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="110"/>
         <source>Add a database</source>
-        <translation>Pridať databázu</translation>
+        <translation type="vanished">Pridať databázu</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="111"/>
         <source>Edit the database</source>
-        <translation>Upraviť databázu</translation>
+        <translation type="vanished">Upraviť databázu</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="112"/>
         <source>Remove the database</source>
-        <translation>Odstrániť databázu</translation>
+        <translation type="vanished">Odstrániť databázu</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="113"/>
         <source>Connect to the database</source>
-        <translation>Pripojiť sa k databáze</translation>
+        <translation type="vanished">Pripojiť sa k databáze</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="114"/>
         <source>Disconnect from the database</source>
-        <translation>Odpojiť sa od databázy</translation>
+        <translation type="vanished">Odpojiť sa od databázy</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="115"/>
@@ -2320,39 +2315,32 @@ Prezeranie ďalších strán bude možné až po dokončení spočítavania.</tr
         <translation>Importovať</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="116"/>
         <source>Export the database</source>
-        <translation>Exportovať databázu</translation>
+        <translation type="vanished">Exportovať databázu</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="117"/>
         <source>Convert database type</source>
-        <translation>Konvertovať databázu</translation>
+        <translation type="vanished">Konvertovať databázu</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="118"/>
         <source>Vacuum</source>
-        <translation>Vacuum</translation>
+        <translation type="vanished">Vacuum</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="119"/>
         <source>Integrity check</source>
-        <translation>Kontrola integrity</translation>
+        <translation type="vanished">Kontrola integrity</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="120"/>
         <source>Create a table</source>
-        <translation>Vytvoriť tabuľku</translation>
+        <translation type="vanished">Vytvoriť tabuľku</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="121"/>
         <source>Edit the table</source>
-        <translation>Upraviť tabuľku</translation>
+        <translation type="vanished">Upraviť tabuľku</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="122"/>
         <source>Delete the table</source>
-        <translation>Vymazať tabuľku</translation>
+        <translation type="vanished">Vymazať tabuľku</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="123"/>
@@ -2380,49 +2368,40 @@ Prezeranie ďalších strán bude možné až po dokončení spočítavania.</tr
         <translation>Resetovať sekvenciu autoinkrementu</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="128"/>
         <source>Create an index</source>
-        <translation>Vytvoriť index</translation>
+        <translation type="vanished">Vytvoriť index</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="129"/>
         <source>Edit the index</source>
-        <translation>Upraviť index</translation>
+        <translation type="vanished">Upraviť index</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="130"/>
         <source>Delete the index</source>
-        <translation>Vymazať index</translation>
+        <translation type="vanished">Vymazať index</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="131"/>
         <source>Create a trigger</source>
-        <translation>Vytvoriť spúšťač</translation>
+        <translation type="vanished">Vytvoriť spúšťač</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="132"/>
         <source>Edit the trigger</source>
-        <translation>Upraviť spúšťač</translation>
+        <translation type="vanished">Upraviť spúšťač</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="133"/>
         <source>Delete the trigger</source>
-        <translation>Vymazať spúšťač</translation>
+        <translation type="vanished">Vymazať spúšťač</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="134"/>
         <source>Create a view</source>
-        <translation>Vytvoriť pohľad</translation>
+        <translation type="vanished">Vytvoriť pohľad</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="135"/>
         <source>Edit the view</source>
-        <translation>Upraviť pohľad</translation>
+        <translation type="vanished">Upraviť pohľad</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="136"/>
         <source>Delete the view</source>
-        <translation>Vymazať pohľad</translation>
+        <translation type="vanished">Vymazať pohľad</translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="137"/>
@@ -2450,14 +2429,127 @@ Prezeranie ďalších strán bude možné až po dokončení spočítavania.</tr
         <translation>Zrušiť filter</translation>
     </message>
     <message>
-        <location filename="../dbtree/dbtree.cpp" line="142"/>
         <source>Refresh all database schemas</source>
-        <translation>Obnoviť všetky databázové schémy</translation>
+        <translation type="vanished">Obnoviť všetky databázové schémy</translation>
+    </message>
+    <message>
+        <source>Refresh selected database schema</source>
+        <translation type="vanished">Obnoviť vybranú databázovú schému</translation>
+    </message>
+    <message>
+        <location filename="../dbtree/dbtree.cpp" line="110"/>
+        <source>&amp;Add a database</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbtree/dbtree.cpp" line="111"/>
+        <source>&amp;Edit the database</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbtree/dbtree.cpp" line="112"/>
+        <source>&amp;Remove the database</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbtree/dbtree.cpp" line="113"/>
+        <source>&amp;Connect to the database</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbtree/dbtree.cpp" line="114"/>
+        <source>&amp;Disconnect from the database</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbtree/dbtree.cpp" line="116"/>
+        <source>&amp;Export the database</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbtree/dbtree.cpp" line="117"/>
+        <source>Con&amp;vert database type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbtree/dbtree.cpp" line="118"/>
+        <source>Vac&amp;uum</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbtree/dbtree.cpp" line="119"/>
+        <source>&amp;Integrity check</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbtree/dbtree.cpp" line="120"/>
+        <source>Create a &amp;table</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbtree/dbtree.cpp" line="121"/>
+        <source>Edit the t&amp;able</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbtree/dbtree.cpp" line="122"/>
+        <source>Delete the ta&amp;ble</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbtree/dbtree.cpp" line="128"/>
+        <source>Create an &amp;index</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbtree/dbtree.cpp" line="129"/>
+        <source>Edit the i&amp;ndex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbtree/dbtree.cpp" line="130"/>
+        <source>Delete the in&amp;dex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbtree/dbtree.cpp" line="131"/>
+        <source>Create a trig&amp;ger</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbtree/dbtree.cpp" line="132"/>
+        <source>Edit the trigg&amp;er</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbtree/dbtree.cpp" line="133"/>
+        <source>Delete the trigge&amp;r</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbtree/dbtree.cpp" line="134"/>
+        <source>Create a &amp;view</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbtree/dbtree.cpp" line="135"/>
+        <source>Edit the v&amp;iew</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbtree/dbtree.cpp" line="136"/>
+        <source>Delete the vi&amp;ew</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../dbtree/dbtree.cpp" line="142"/>
+        <source>&amp;Refresh all database schemas</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="143"/>
-        <source>Refresh selected database schema</source>
-        <translation>Obnoviť vybranú databázovú schému</translation>
+        <source>Re&amp;fresh selected database schema</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../dbtree/dbtree.cpp" line="144"/>
@@ -3784,59 +3876,48 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>Je potrebné reštartovať aplikáciu aby sa zmena jazyka prejavila.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="233"/>
         <source>Open SQL editor</source>
-        <translation>Otvoriť SQL editor</translation>
+        <translation type="vanished">Otvoriť SQL editor</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="234"/>
         <source>Open DDL history</source>
-        <translation>Otvoriť DDL históriu</translation>
+        <translation type="vanished">Otvoriť DDL históriu</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="235"/>
         <source>Open SQL functions editor</source>
-        <translation>Otvoriť editor SQL funkcií</translation>
+        <translation type="vanished">Otvoriť editor SQL funkcií</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="236"/>
         <source>Open collations editor</source>
-        <translation>Otvoriť editor porovnávaní</translation>
+        <translation type="vanished">Otvoriť editor porovnávaní</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="237"/>
         <source>Import</source>
-        <translation>Import</translation>
+        <translation type="vanished">Import</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="238"/>
         <source>Export</source>
-        <translation>Export</translation>
+        <translation type="vanished">Export</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="240"/>
         <source>Open configuration dialog</source>
-        <translation>Konfigurácia</translation>
+        <translation type="vanished">Konfigurácia</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="242"/>
         <source>Tile windows</source>
-        <translation>Oddeliť okná</translation>
+        <translation type="vanished">Oddeliť okná</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="243"/>
         <source>Tile windows horizontally</source>
-        <translation>Oddeliť okná horizontálne</translation>
+        <translation type="vanished">Oddeliť okná horizontálne</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="244"/>
         <source>Tile windows vertically</source>
-        <translation>Oddeliť okná vertikálne</translation>
+        <translation type="vanished">Oddeliť okná vertikálne</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="245"/>
         <source>Cascade windows</source>
-        <translation>Okná kaskádovito</translation>
+        <translation type="vanished">Okná kaskádovito</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="246"/>
@@ -3854,29 +3935,24 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="250"/>
         <source>Close selected window</source>
-        <translation>Zatvoriť vybrané okno</translation>
+        <translation type="vanished">Zatvoriť vybrané okno</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="251"/>
         <source>Close all windows but selected</source>
-        <translation>Zatvoriť všetky okná okrem vybraného</translation>
+        <translation type="vanished">Zatvoriť všetky okná okrem vybraného</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="252"/>
         <source>Close all windows</source>
-        <translation>Zatvoriť všetky okná</translation>
+        <translation type="vanished">Zatvoriť všetky okná</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="253"/>
         <source>Restore recently closed window</source>
-        <translation>Obnoviť posledné zatvorené okno</translation>
+        <translation type="vanished">Obnoviť posledné zatvorené okno</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="254"/>
         <source>Rename selected window</source>
-        <translation>Premenovať vybrané okno</translation>
+        <translation type="vanished">Premenovať vybrané okno</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="256"/>
@@ -3889,72 +3965,59 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>Otvoriť CSS konzolu</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="258"/>
         <source>Report a bug</source>
-        <translation>Nahlásiť chybu</translation>
+        <translation type="vanished">Nahlásiť chybu</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="259"/>
         <source>Propose a new feature</source>
-        <translation>Navrhnúť novú funkciu</translation>
+        <translation type="vanished">Navrhnúť novú funkciu</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="260"/>
         <source>About</source>
-        <translation>O programe</translation>
+        <translation type="vanished">O programe</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="261"/>
         <source>Licenses</source>
-        <translation>Licencie</translation>
+        <translation type="vanished">Licencie</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="262"/>
         <source>Open home page</source>
-        <translation>Otvoriť domovskú stránku</translation>
+        <translation type="vanished">Otvoriť domovskú stránku</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="263"/>
         <source>Open forum page</source>
-        <translation>Otvoriť fórum</translation>
+        <translation type="vanished">Otvoriť fórum</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="264"/>
         <source>User Manual</source>
-        <translation>Používateľský manuál</translation>
+        <translation type="vanished">Používateľský manuál</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="265"/>
         <source>SQLite documentation</source>
-        <translation>Dokumentácia SQLite</translation>
+        <translation type="vanished">Dokumentácia SQLite</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="266"/>
         <source>Report history</source>
-        <translation>História hlásení</translation>
+        <translation type="vanished">História hlásení</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="268"/>
         <source>Check for updates</source>
-        <translation>Skontrolovať akutalizácie</translation>
+        <translation type="vanished">Skontrolovať akutalizácie</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="306"/>
         <source>Database</source>
         <comment>menubar</comment>
-        <translation>Databázy</translation>
+        <translation type="vanished">Databázy</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="326"/>
         <source>Structure</source>
         <comment>menubar</comment>
-        <translation>Štruktúry</translation>
+        <translation type="vanished">Štruktúry</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="347"/>
         <source>View</source>
         <comment>menubar</comment>
-        <translation>Zobrazenie</translation>
+        <translation type="vanished">Zobrazenie</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="351"/>
@@ -3963,15 +4026,172 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation>Lišta okien</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="372"/>
         <source>Tools</source>
         <comment>menubar</comment>
-        <translation>Nástroje</translation>
+        <translation type="vanished">Nástroje</translation>
+    </message>
+    <message>
+        <source>Help</source>
+        <translation type="vanished">Pomoc</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="233"/>
+        <source>Open SQL &amp;editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="234"/>
+        <source>Open DDL &amp;history</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="235"/>
+        <source>Open SQL &amp;functions editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="236"/>
+        <source>Open &amp;collations editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="237"/>
+        <source>&amp;Import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="238"/>
+        <source>E&amp;xport</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="240"/>
+        <source>Open confi&amp;guration dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="242"/>
+        <source>&amp;Tile windows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="243"/>
+        <source>Tile windows &amp;horizontally</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="244"/>
+        <source>Tile windows &amp;vertically</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="245"/>
+        <source>&amp;Cascade windows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="250"/>
+        <source>Close selected &amp;window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="251"/>
+        <source>Close all windows &amp;but selected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="252"/>
+        <source>Close &amp;all windows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="253"/>
+        <source>Re&amp;store recently closed window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="254"/>
+        <source>&amp;Rename selected window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="258"/>
+        <source>Report a &amp;bug</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="259"/>
+        <source>Propose a new &amp;feature</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="260"/>
+        <source>&amp;About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="261"/>
+        <source>&amp;Licenses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="262"/>
+        <source>Open home &amp;page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="263"/>
+        <source>Open fo&amp;rum page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="264"/>
+        <source>User &amp;Manual</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="265"/>
+        <source>SQLite &amp;documentation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="266"/>
+        <source>Report &amp;history</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="268"/>
+        <source>Check for &amp;updates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="306"/>
+        <source>&amp;Database</source>
+        <comment>menubar</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="326"/>
+        <source>&amp;Structure</source>
+        <comment>menubar</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="347"/>
+        <source>&amp;View</source>
+        <comment>menubar</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="372"/>
+        <source>&amp;Tools</source>
+        <comment>menubar</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="386"/>
-        <source>Help</source>
-        <translation>Pomoc</translation>
+        <source>&amp;Help</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="548"/>
@@ -4061,18 +4281,18 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../multieditor/multieditor.cpp" line="287"/>
+        <location filename="../multieditor/multieditor.cpp" line="294"/>
         <source>Data editor plugin &apos;%1&apos; not loaded, while it is defined for editing &apos;%1&apos; data type.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../multieditor/multieditor.cpp" line="372"/>
+        <location filename="../multieditor/multieditor.cpp" line="379"/>
         <source>Deleted</source>
         <comment>multieditor</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../multieditor/multieditor.cpp" line="374"/>
+        <location filename="../multieditor/multieditor.cpp" line="381"/>
         <source>Read only</source>
         <comment>multieditor</comment>
         <translation>Iba na čítanie</translation>
