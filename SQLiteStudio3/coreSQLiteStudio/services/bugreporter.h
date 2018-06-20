@@ -39,8 +39,8 @@ class API_EXPORT BugReporter : public QObject
         QNetworkReply* credentialsValidationInProgress = nullptr;
 
         static_char* bugReportServiceUrl = "http://sqlitestudio.pl/report_bug3.rvt";
-        static_char* reporterEmailHelpUrl = "http://wiki.sqlitestudio.pl/index.php/User_Manual#Reporter_email_address";
-        static_char* reporterUserPassHelpUrl = "http://wiki.sqlitestudio.pl/index.php/User_Manual#Reporter_user_and_password";
+        static_char* reporterEmailHelpUrl = "https://github.com/pawelsalawa/sqlitestudio/wiki/User_Manual#reporter-email-address";
+        static_char* reporterUserPassHelpUrl = "https://github.com/pawelsalawa/sqlitestudio/wiki/User_Manual#reporter-user-and-password";
 
     signals:
         void credentialsValidationResult(bool success, const QString& errorMessage);

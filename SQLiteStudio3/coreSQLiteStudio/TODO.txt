@@ -1,17 +1,6 @@
-cannot reproduce:
-2922 / 2926 / 2925
-2940
-3009 - db w emailu od goretux@gmail.com
-3052
-3062
-
-* Outstanding features for 3.2:
-- migrate updates engine to Qt Install Framework
-- loadable extensions full support
-- BLOB preview engine based on plugins
+* Outstanding features pending:
 - ERD plugin
 - DB compare plugin
-- executing query with bind params
 - comments support in formatter
 
 * Next versions:

@@ -1,7 +1,7 @@
 [3.2.0]
         * [BUGFIX]: Fixed random crashes at application close (when saving session). Most frequend on Windows platform.
-		* [BUGFIX]: #3235 Crash when opening DB dialog, but file was moved.
-		* [BUGFIX]: #3116 Fixed compliation errors for Qt 5.8.
+        * [BUGFIX]: #3235 Crash when opening DB dialog, but file was moved.
+        * [BUGFIX]: #3116 Fixed compliation errors for Qt 5.8.
 
 [3.1.1]
         * [ADDED]: WxSQLite3 plugin (with encryption support).

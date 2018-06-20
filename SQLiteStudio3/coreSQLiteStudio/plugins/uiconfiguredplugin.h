@@ -15,7 +15,7 @@ class API_EXPORT UiConfiguredPlugin
          *
          * This method should return the object name of the top-most widget found in the provided *.ui file.
          *
-         * For more details see: http://wiki.sqlitestudio.pl/index.php/Plugin_UI_forms
+         * For more details see: https://github.com/pawelsalawa/sqlitestudio/wiki/Plugin_UI_forms
          */
         virtual QString getConfigUiForm() const = 0;
 

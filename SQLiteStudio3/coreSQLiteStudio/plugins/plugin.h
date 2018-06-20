@@ -34,7 +34,7 @@ class CfgMain;
  * };
  * @endcode
  *
- * Full tutorial for writting plugins is at: http://wiki.sqlitestudio.pl/index.php/Writting_plugins
+ * Full tutorial for writting plugins is at: https://github.com/pawelsalawa/sqlitestudio/wiki/Writting_plugins
  *
  * SQLiteStudio looks for plugins in following directories:
  * <ul>

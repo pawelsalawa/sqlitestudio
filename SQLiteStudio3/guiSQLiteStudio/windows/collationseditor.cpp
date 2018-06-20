@@ -190,7 +190,7 @@ void CollationsEditor::setFont(const QFont& font)
 
 void CollationsEditor::help()
 {
-    static const QString url = QStringLiteral("http://wiki.sqlitestudio.pl/index.php/User_Manual#Custom_collations");
+    static const QString url = QStringLiteral("https://github.com/pawelsalawa/sqlitestudio/wiki/User_Manual#custom-collations");
     QDesktopServices::openUrl(QUrl(url, QUrl::StrictMode));
 }
 

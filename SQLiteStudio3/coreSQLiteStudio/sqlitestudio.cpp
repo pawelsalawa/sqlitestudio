@@ -143,7 +143,7 @@ QString SQLiteStudio::getForumPage() const
 
 QString SQLiteStudio::getUserManualPage() const
 {
-    static const QString url = QStringLiteral("http://wiki.sqlitestudio.pl/index.php/User_Manual");
+    static const QString url = QStringLiteral("https://github.com/pawelsalawa/sqlitestudio/wiki/User_Manual");
     return url;
 }
 
