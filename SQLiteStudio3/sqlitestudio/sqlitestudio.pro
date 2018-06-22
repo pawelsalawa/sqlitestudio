@@ -4,9 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT       += core gui widgets
 
 include($$PWD/../dirs.pri)
 include($$PWD/../utils.pri)
@@ -15,22 +13,21 @@ OBJECTS_DIR = $$OBJECTS_DIR/sqlitestudio
 MOC_DIR = $$MOC_DIR/sqlitestudio
 UI_DIR = $$UI_DIR/sqlitestudio
 
-linux: {
+linux {
     TARGET = sqlitestudio
-}
-!linux: {
+} else {
     TARGET = SQLiteStudio
 }
 TEMPLATE = app
 
 CONFIG   += c++11
 QMAKE_CXXFLAGS += -pedantic
-linux|portable {
-    QMAKE_LFLAGS += -Wl,-rpath,./lib
-}
 
 portable {
     DEFINES += PORTABLE_CONFIG
+    linux {
+        QMAKE_LFLAGS += -Wl,-rpath,./lib
+    }
 }
 
 LIBS += -lcoreSQLiteStudio -lguiSQLiteStudio
@@ -48,11 +45,11 @@ TRANSLATIONS += translations/sqlitestudio_ro_RO.ts \
 		translations/sqlitestudio_es.ts \
 		translations/sqlitestudio_pl.ts
 
-win32: {
+win32 {
     RC_FILE = windows.rc
 }
 
-macx: {
+macx {
     ICON = ../guiSQLiteStudio/img/sqlitestudio.icns
 }
 
@@ -60,7 +57,7 @@ OTHER_FILES += \
     windows.rc \
     SQLiteStudio.exe.manifest
 
-unix: {
+unix {
     target.path = $$BINDIR
     INSTALLS += target
 }
