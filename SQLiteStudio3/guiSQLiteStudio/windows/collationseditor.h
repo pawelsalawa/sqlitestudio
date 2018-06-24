@@ -36,7 +36,7 @@ class GUI_API_EXPORT CollationsEditor : public MdiChild
             TOOLBAR
         };
 
-        explicit CollationsEditor(QWidget *parent = 0);
+        explicit CollationsEditor(QWidget *parent = nullptr);
         ~CollationsEditor();
 
         bool restoreSessionNextTime();

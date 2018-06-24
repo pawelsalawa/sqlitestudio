@@ -65,6 +65,15 @@ bool DbAndroidInstance::initAfterCreated()
     return AbstractDb::initAfterCreated();
 }
 
+bool DbAndroidInstance::loadExtension(const QString& filePath, const QString& initFunc)
+{
+    UNUSED(filePath);
+    UNUSED(initFunc);
+    errorCode = 1;
+    errorText = tr("Android SQLite driver does not support loadable extensions.");
+    return false;
+}
+
 bool DbAndroidInstance::isOpenInternal()
 {
     return (connection && connection->isConnected());

@@ -59,6 +59,7 @@ class API_EXPORT InvalidDb : public Db
         bool isValid() const;
         QString getError() const;
         void setError(const QString& value);
+        bool loadExtension(const QString& filePath, const QString& initFunc);
 
     public slots:
         bool open();

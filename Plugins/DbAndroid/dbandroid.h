@@ -49,7 +49,7 @@ class DBANDROIDSHARED_EXPORT DbAndroid : public GenericPlugin, public DbPlugin
         bool adbValid = false;
         QAction* jarAction = nullptr;
 
-        static_char* PLUGIN_MANUAL_URL = "http://wiki.sqlitestudio.pl/index.php/DbAndroid";
+        static_char* PLUGIN_MANUAL_URL = "https://github.com/pawelsalawa/sqlitestudio/wiki/DbAndroid";
         static_char* SELECT_ADB_URL = "select_adb://";
 
         CFG_LOCAL_PERSISTABLE(DbAndroidConfig, cfg)

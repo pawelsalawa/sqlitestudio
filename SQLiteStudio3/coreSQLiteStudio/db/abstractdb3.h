@@ -44,6 +44,8 @@ class AbstractDb3 : public AbstractDb
         AbstractDb3(const QString& name, const QString& path, const QHash<QString, QVariant>& connOptions);
         ~AbstractDb3();
 
+        bool loadExtension(const QString& filePath, const QString& initFunc = QString());
+
     protected:
         bool isOpenInternal();
         void interruptExecution();
@@ -315,6 +317,25 @@ AbstractDb3<T>::~AbstractDb3()
         closeInternal();
 }
 
+template<class T>
+bool AbstractDb3<T>::loadExtension(const QString& filePath, const QString& initFunc)
+{
+    char* errMsg = nullptr;
+    int res = T::load_extension(dbHandle, filePath.toUtf8().constData(), initFunc.isEmpty() ? nullptr : initFunc.toUtf8().constData(), &errMsg);
+    if (res != T::OK)
+    {
+        dbErrorMessage = QObject::tr("Could not load extension %1: %2").arg(filePath, extractLastError());
+        dbErrorCode = res;
+        if (errMsg)
+        {
+            dbErrorMessage = QObject::tr("Could not load extension %1: %2").arg(filePath, QString::fromUtf8(errMsg));
+            T::free(errMsg);
+        }
+        return false;
+    }
+    return true;
+}
+
 template <class T>
 bool AbstractDb3<T>::isOpenInternal()
 {
@@ -358,6 +379,7 @@ bool AbstractDb3<T>::openInternal()
         return false;
     }
     dbHandle = handle;
+    T::enable_load_extension(dbHandle, 1);
     return true;
 }
 
@@ -392,7 +414,6 @@ bool AbstractDb3<T>::initAfterCreated()
 template <class T>
 void AbstractDb3<T>::initAfterOpen()
 {
-    T::enable_load_extension(dbHandle, true);
     registerDefaultCollationRequestHandler();;
     exec("PRAGMA foreign_keys = 1;", Flag::NO_LOCK);
     exec("PRAGMA recursive_triggers = 1;", Flag::NO_LOCK);

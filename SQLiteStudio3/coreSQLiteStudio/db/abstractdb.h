@@ -86,6 +86,7 @@ class API_EXPORT AbstractDb : public Db
         void setTimeout(int secs);
         int getTimeout() const;
         bool isValid() const;
+        void loadExtensions();
 
     protected:
         struct FunctionUserData
@@ -445,6 +446,8 @@ class API_EXPORT AbstractDb : public Db
          */
         QStringList registeredCollations;
 
+        int loadedExtensionCount = 0;
+
     private slots:
         /**
          * @brief Handles asynchronous execution results.
@@ -464,6 +467,7 @@ class API_EXPORT AbstractDb : public Db
         bool openForProbing();
         void registerAllFunctions();
         void registerAllCollations();
+        void reloadExtensions();
 };
 
 /**

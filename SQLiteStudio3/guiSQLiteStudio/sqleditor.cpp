@@ -20,6 +20,7 @@
 #include "dbtree/dbtreeitem.h"
 #include "dbtree/dbtree.h"
 #include "dbtree/dbtreemodel.h"
+#include "common/lazytrigger.h"
 #include <QAction>
 #include <QMenu>
 #include <QTimer>
@@ -80,15 +81,14 @@ void SqlEditor::init()
     connect(completer, SIGNAL(leftPressed()), this, SLOT(completerLeftPressed()));
     connect(completer, SIGNAL(rightPressed()), this, SLOT(completerRightPressed()));
 
-    autoCompleteTimer = new QTimer(this);
-    autoCompleteTimer->setSingleShot(true);
-    autoCompleteTimer->setInterval(autoCompleterDelay);
-    connect(autoCompleteTimer, SIGNAL(timeout()), this, SLOT(checkForAutoCompletion()));
+    autoCompleteTrigger = new LazyTrigger(autoCompleterDelay,
+                                          [this]() -> bool {return autoCompletion && !deletionKeyPressed;},
+                                          this);
+    connect(autoCompleteTrigger, SIGNAL(triggered()), this, SLOT(checkForAutoCompletion()));
 
-    queryParserTimer = new QTimer(this);
-    queryParserTimer->setSingleShot(true);
-    queryParserTimer->setInterval(queryParserDelay);
-    connect(queryParserTimer, SIGNAL(timeout()), this, SLOT(parseContents()));
+    queryParserTrigger = new LazyTrigger(queryParserDelay, this);
+    connect(autoCompleteTrigger, SIGNAL(triggered()), this, SLOT(parseContents()));
+
     connect(this, SIGNAL(textChanged()), this, SLOT(scheduleQueryParser()));
 
     queryParser = new Parser(Dialect::Sqlite3);
@@ -501,14 +501,6 @@ void SqlEditor::completeSelected()
     }
 
     insertPlainText(value);
-}
-
-void SqlEditor::scheduleAutoCompletion()
-{
-    autoCompleteTimer->stop();
-
-    if (autoCompletion && !deletionKeyPressed)
-        autoCompleteTimer->start();
 }
 
 void SqlEditor::checkForAutoCompletion()
@@ -947,10 +939,8 @@ void SqlEditor::scheduleQueryParser(bool force)
     syntaxValidated = false;
 
     document()->setModified(false);
-    queryParserTimer->stop();
-    queryParserTimer->start();
-
-    scheduleAutoCompletion();
+    queryParserTrigger->schedule();
+    autoCompleteTrigger->schedule();
 }
 
 int SqlEditor::sqlIndex(int idx)
@@ -1573,7 +1563,7 @@ void SqlEditor::setShowLineNumbers(bool value)
 
 void SqlEditor::checkSyntaxNow()
 {
-    queryParserTimer->stop();
+    queryParserTrigger->cancel();
     parseContents();
 }
 

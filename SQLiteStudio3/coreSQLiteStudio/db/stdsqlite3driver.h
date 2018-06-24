@@ -69,7 +69,9 @@
         static int step(stmt* arg) {return Prefix##sqlite3_step(arg);} \
         static int reset(stmt* arg) {return Prefix##sqlite3_reset(arg);} \
         static int close(handle* arg) {return Prefix##sqlite3_close(arg);} \
+        static void free(void* arg) {return Prefix##sqlite3_free(arg);} \
         static int enable_load_extension(handle* arg1, int arg2) {return Prefix##sqlite3_enable_load_extension(arg1, arg2);} \
+        static int load_extension(handle *arg1, const char *arg2, const char *arg3, char **arg4) {return Prefix##sqlite3_load_extension(arg1, arg2, arg3, arg4);} \
         static void* user_data(context* arg) {return Prefix##sqlite3_user_data(arg);} \
         static void* aggregate_context(context* arg1, int arg2) {return Prefix##sqlite3_aggregate_context(arg1, arg2);} \
         static int collation_needed(handle* a1, void* a2, void(*a3)(void*,handle*,int eTextRep,const char*)) {return Prefix##sqlite3_collation_needed(a1, a2, a3);} \

@@ -16,9 +16,9 @@ class DbManagerMock : public DbManager
         QList<Db*> getValidDbList();
         QList<Db*> getConnectedDbList();
         QStringList getDbNames();
-        Db*getByName(const QString&, Qt::CaseSensitivity);
-        Db*getByPath(const QString&);
-        Db*createInMemDb();
+        Db* getByName(const QString&, Qt::CaseSensitivity);
+        Db* getByPath(const QString&);
+        Db* createInMemDb(bool = false);
         bool isTemporary(Db*);
         QString quickAddDb(const QString &path, const QHash<QString, QVariant> &);
         DbPlugin* getPluginForDbFile(const QString&);

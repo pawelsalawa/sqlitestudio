@@ -31,6 +31,7 @@ class WidgetCover;
 class QProgressBar;
 class QLabel;
 class ThemeTuner;
+class SqliteExtensionEditor;
 
 #ifdef Q_OS_MACX
 #define PREV_TASK_KEY_SEQ Qt::CTRL + Qt::ALT + Qt::Key_Left
@@ -70,6 +71,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
             OPEN_DDL_HISTORY,
             OPEN_FUNCTION_EDITOR,
             OPEN_COLLATION_EDITOR,
+            OPEN_EXTENSION_MANAGER,
             EXPORT,
             IMPORT,
             CLOSE_WINDOW,
@@ -140,6 +142,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         DdlHistoryWindow* openDdlHistory();
         FunctionsEditor* openFunctionEditor();
         CollationsEditor* openCollationEditor();
+        SqliteExtensionEditor* openExtensionManager();
         BugReportHistoryWindow* openReportHistory();
         void fixFonts();
 
@@ -185,6 +188,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void openDdlHistorySlot();
         void openFunctionEditorSlot();
         void openCollationEditorSlot();
+        void openExtensionManagerSlot();
         void exportAnything();
         void importAnything();
         void closeAllWindows();

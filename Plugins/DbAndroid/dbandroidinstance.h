@@ -25,6 +25,7 @@ class DbAndroidInstance : public AbstractDb
         bool registerScalarFunction(const QString& name, int argCount);
         bool registerAggregateFunction(const QString& name, int argCount);
         bool initAfterCreated();
+        bool loadExtension(const QString& filePath, const QString& initFunc);
 
     protected:
         bool isOpenInternal();

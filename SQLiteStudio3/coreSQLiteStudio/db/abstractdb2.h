@@ -44,8 +44,9 @@ class AbstractDb2 : public AbstractDb
          * All values from this constructor are just passed to AbstractDb constructor.
          */
         AbstractDb2(const QString& name, const QString& path, const QHash<QString, QVariant>& connOptions);
-
         ~AbstractDb2();
+
+        bool loadExtension(const QString& filePath, const QString& initFunc = QString());
 
     protected:
         bool isOpenInternal();
@@ -153,6 +154,14 @@ AbstractDb2<T>::~AbstractDb2()
     safe_delete(dbOperMutex);
     if (isOpenInternal())
         closeInternal();
+}
+
+template <class T>
+bool AbstractDb2<T>::loadExtension(const QString& filePath, const QString& initFunc)
+{
+    UNUSED(filePath);
+    UNUSED(initFunc);
+    return false;
 }
 
 template <class T>

@@ -22,6 +22,7 @@
 #include "services/impl/functionmanagerimpl.h"
 #include "services/impl/collationmanagerimpl.h"
 #include "services/impl/pluginmanagerimpl.h"
+#include "services/impl/sqliteextensionmanagerimpl.h"
 #include "services/updatemanager.h"
 #include "impl/dbattacherimpl.h"
 #include "services/exportmanager.h"
@@ -32,6 +33,7 @@
 #include "plugins/populateplugin.h"
 #include "services/bugreporter.h"
 #include "services/extralicensemanager.h"
+#include "services/sqliteextensionmanager.h"
 #include "translations.h"
 #include <QProcessEnvironment>
 #include <QThreadPool>
@@ -198,6 +200,17 @@ void SQLiteStudio::setCollationManager(CollationManager* value)
     collationManager = value;
 }
 
+SqliteExtensionManager* SQLiteStudio::getSqliteExtensionManager() const
+{
+    return extensionManager;
+}
+
+void SQLiteStudio::setSqliteExtensionManager(SqliteExtensionManager* value)
+{
+    safe_delete(extensionManager);
+    extensionManager = value;
+}
+
 DbAttacherFactory* SQLiteStudio::getDbAttacherFactory() const
 {
     return dbAttacherFactory;
@@ -305,6 +318,7 @@ void SQLiteStudio::init(const QStringList& cmdListArguments, bool guiAvailable)
     functionManager = new FunctionManagerImpl();
 
     collationManager = new CollationManagerImpl();
+    extensionManager = new SqliteExtensionManagerImpl();
 
     cmdLineArgs = cmdListArguments;
 

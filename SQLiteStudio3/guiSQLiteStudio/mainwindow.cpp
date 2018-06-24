@@ -9,6 +9,7 @@
 #include "windows/functionseditor.h"
 #include "windows/collationseditor.h"
 #include "windows/ddlhistorywindow.h"
+#include "windows/sqliteextensioneditor.h"
 #include "mdiarea.h"
 #include "statusfield.h"
 #include "uiconfig.h"
@@ -234,6 +235,7 @@ void MainWindow::createActions()
     createAction(OPEN_DDL_HISTORY, ICONS.DDL_HISTORY, tr("Open DDL &history"), this, SLOT(openDdlHistorySlot()), ui->mainToolBar);
     createAction(OPEN_FUNCTION_EDITOR, ICONS.FUNCTION, tr("Open SQL &functions editor"), this, SLOT(openFunctionEditorSlot()), ui->mainToolBar);
     createAction(OPEN_COLLATION_EDITOR, ICONS.CONSTRAINT_COLLATION, tr("Open &collations editor"), this, SLOT(openCollationEditorSlot()), ui->mainToolBar);
+    createAction(OPEN_EXTENSION_MANAGER, ICONS.EXTENSION, tr("Open ex&tension manager"), this, SLOT(openExtensionManagerSlot()), ui->mainToolBar);
     createAction(IMPORT, ICONS.IMPORT, tr("&Import"), this, SLOT(importAnything()), ui->mainToolBar);
     createAction(EXPORT, ICONS.EXPORT, tr("E&xport"), this, SLOT(exportAnything()), ui->mainToolBar);
     ui->mainToolBar->addSeparator();
@@ -376,6 +378,7 @@ void MainWindow::initMenuBar()
     toolsMenu->addAction(actionMap[OPEN_DDL_HISTORY]);
     toolsMenu->addAction(actionMap[OPEN_FUNCTION_EDITOR]);
     toolsMenu->addAction(actionMap[OPEN_COLLATION_EDITOR]);
+    toolsMenu->addAction(actionMap[OPEN_EXTENSION_MANAGER]);
     toolsMenu->addAction(actionMap[IMPORT]);
     toolsMenu->addAction(actionMap[EXPORT]);
     toolsMenu->addSeparator();
@@ -638,6 +641,11 @@ void MainWindow::openCollationEditorSlot()
     openCollationEditor();
 }
 
+void MainWindow::openExtensionManagerSlot()
+{
+    openExtensionManager();
+}
+
 void MainWindow::exportAnything()
 {
     if (!ExportManager::isAnyPluginAvailable())
@@ -825,6 +833,11 @@ FunctionsEditor* MainWindow::openFunctionEditor()
 CollationsEditor* MainWindow::openCollationEditor()
 {
     return openMdiWindow<CollationsEditor>();
+}
+
+SqliteExtensionEditor* MainWindow::openExtensionManager()
+{
+    return openMdiWindow<SqliteExtensionEditor>();
 }
 
 BugReportHistoryWindow* MainWindow::openReportHistory()

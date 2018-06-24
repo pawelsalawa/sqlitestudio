@@ -144,12 +144,13 @@ class API_EXPORT DbManager : public QObject
 
         /**
          * @brief Creates in-memory SQLite3 database.
+         * @param pureInit If true, avoids registering collations/functions/extensions in a database. Skips rich initialization and gives pure database connection.
          * @return Created database.
          *
          * Created database can be used for any purpose. Note that DbManager doesn't own created
          * database and it's up to the caller to delete the database when it's no longer needed.
          */
-        virtual Db* createInMemDb() = 0;
+        virtual Db* createInMemDb(bool pureInit = false) = 0;
 
         /**
          * @brief Tells if given database is temporary.

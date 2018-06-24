@@ -4,8 +4,8 @@
 #include "guiSQLiteStudio_global.h"
 #include <QObject>
 
-class QTimer;
 class QLineEdit;
+class LazyTrigger;
 
 class GUI_API_EXPORT UserInputFilter : public QObject
 {
@@ -17,11 +17,11 @@ class GUI_API_EXPORT UserInputFilter : public QObject
         void setDelay(int msecs);
 
     private:
-        QTimer* timer = nullptr;
+        LazyTrigger* trigger = nullptr;
         QLineEdit* lineEdit = nullptr;
 
     private slots:
-        void filterModified(const QString& newValue);
+        void filterModified();
         void applyFilter();
 
     signals:

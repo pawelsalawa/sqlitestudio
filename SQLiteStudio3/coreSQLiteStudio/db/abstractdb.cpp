@@ -8,6 +8,7 @@
 #include "sqlerrorresults.h"
 #include "sqlerrorcodes.h"
 #include "services/notifymanager.h"
+#include "services/sqliteextensionmanager.h"
 #include "log.h"
 #include "parser/lexer.h"
 #include <QDebug>
@@ -133,6 +134,42 @@ void AbstractDb::registerAllCollations()
 
     disconnect(COLLATIONS, SIGNAL(collationListChanged()), this, SLOT(registerAllCollations()));
     connect(COLLATIONS, SIGNAL(collationListChanged()), this, SLOT(registerAllCollations()));
+}
+
+void AbstractDb::loadExtensions()
+{
+    for (const SqliteExtensionManager::ExtensionPtr& extPtr : SQLITE_EXTENSIONS->getExtensionForDatabase(getName()))
+        loadedExtensionCount += loadExtension(extPtr->filePath, extPtr->initFunc) ? 1 : 0;
+
+    connect(SQLITE_EXTENSIONS, SIGNAL(extensionListChanged()), this, SLOT(reloadExtensions()));
+}
+
+void AbstractDb::reloadExtensions()
+{
+    if (!isOpen())
+        return;
+
+    bool doOpen = false;
+    if (loadedExtensionCount > 0)
+    {
+        if (!closeQuiet())
+        {
+            qWarning() << "Failed to close database for extension reloading.";
+            return;
+        }
+
+        doOpen = true;
+        loadedExtensionCount = 0;
+        disconnect(SQLITE_EXTENSIONS, SIGNAL(extensionListChanged()), this, SLOT(reloadExtensions()));
+    }
+
+    if (doOpen && !openQuiet())
+    {
+        qCritical() << "Failed to re-open database for extension reloading.";
+        return;
+    }
+
+    loadExtensions();
 }
 
 bool AbstractDb::isOpen()
@@ -346,6 +383,9 @@ bool AbstractDb::openAndSetup()
 
     // Implementation specific initialization
     initAfterOpen();
+
+    // Load extension
+    loadExtensions();
 
     // Custom SQL functions
     registerAllFunctions();

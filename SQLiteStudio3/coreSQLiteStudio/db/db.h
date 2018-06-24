@@ -684,6 +684,19 @@ class API_EXPORT Db : public QObject, public Interruptable
          */
         virtual bool deregisterCollation(const QString& name) = 0;
 
+        /**
+         * @brief Loads a SQLite extension.
+         * @param filePath Absolute path to the extension file (dll/so/dylib).
+         * @param initFunc Optional entry point function. If empty, SQLite's default will be used.
+         * @return true on success, or false on failure.
+         *
+         * This function works only on SQLite 3 drivers, as SQLite 2 does not support extensions.
+         * More details can be found at https://sqlite.org/c3ref/load_extension.html
+         *
+         * If function returns false, use getErrorText() to discover details.
+         */
+        virtual bool loadExtension(const QString& filePath, const QString& initFunc = QString()) = 0;
+
     signals:
         /**
          * @brief Emitted when the connection to the database was established.

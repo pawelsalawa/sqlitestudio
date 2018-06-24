@@ -13,7 +13,7 @@ class GUI_API_EXPORT CollationsEditorModel : public QAbstractListModel
     public:
         using QAbstractItemModel::setData;
 
-        explicit CollationsEditorModel(QObject *parent = 0);
+        explicit CollationsEditorModel(QObject *parent = nullptr);
 
         void clearModified();
         bool isModified() const;

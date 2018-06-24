@@ -13,11 +13,11 @@
 #include <QFuture>
 
 class CompleterWindow;
-class QTimer;
 class Parser;
 class SqlEditor;
 class SearchTextDialog;
 class SearchTextLocator;
+class LazyTrigger;
 
 #ifdef Q_OS_OSX
 #  define COMPLETE_REQ_KEY Qt::META
@@ -205,10 +205,10 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         QMenu* validObjContextMenu = nullptr;
         Db* db = nullptr;
         CompleterWindow* completer = nullptr;
-        QTimer* autoCompleteTimer = nullptr;
+        LazyTrigger* autoCompleteTrigger = nullptr;
         bool autoCompletion = true;
         bool deletionKeyPressed = false;
-        QTimer* queryParserTimer = nullptr;
+        LazyTrigger* queryParserTrigger = nullptr;
         Parser* queryParser = nullptr;
         QHash<QString,QStringList> objectsInNamedDb;
         QMutex objectsInNamedDbMutex;
@@ -260,7 +260,7 @@ class GUI_API_EXPORT SqlEditor : public QPlainTextEdit, public ExtActionContaine
         void backspacePressed();
         void complete();
         void completeSelected();
-        void scheduleAutoCompletion();
+//        void scheduleAutoCompletion();
         void checkForAutoCompletion();
         void completerTypedText(const QString& text);
         void completerBackspacePressed();

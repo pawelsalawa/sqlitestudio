@@ -156,7 +156,7 @@ void CollationsEditor::collationSelected(int row)
         ui->selectedDatabasesRadio->setChecked(true);
 
     updatesForSelection = false;
-    currentModified = false;
+    currentModified = model->isModified(row);
 
     updateCurrentCollationState();
 }

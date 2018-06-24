@@ -27,7 +27,7 @@ CollationsEditorModel::CollationsEditorModel(QObject *parent) :
 void CollationsEditorModel::clearModified()
 {
     beginResetModel();
-    foreach (Collation* coll, collationList)
+    for (Collation* coll : collationList)
         coll->modified = false;
 
     listModified = false;
@@ -41,7 +41,7 @@ bool CollationsEditorModel::isModified() const
     if (collationList != originalCollationList)
         return true;
 
-    foreach (Collation* coll, collationList)
+    for (Collation* coll : collationList)
     {
         if (coll->modified)
             return true;
@@ -121,7 +121,7 @@ void CollationsEditorModel::setValid(int row, bool valid)
 
 bool CollationsEditorModel::isValid() const
 {
-    foreach (Collation* coll, collationList)
+    for (Collation* coll : collationList)
     {
         if (!coll->valid)
             return false;
@@ -133,13 +133,12 @@ void CollationsEditorModel::setData(const QList<CollationManager::CollationPtr>&
 {
     beginResetModel();
 
-    Collation* collationPtr = nullptr;
-    foreach (collationPtr, collationList)
+    for (Collation* collationPtr : collationList)
         delete collationPtr;
 
     collationList.clear();
 
-    foreach (const CollationManager::CollationPtr& coll, collations)
+    for (const CollationManager::CollationPtr& coll : collations)
         collationList << new Collation(coll);
 
     listModified = false;
@@ -178,8 +177,7 @@ void CollationsEditorModel::deleteCollation(int row)
 QList<CollationManager::CollationPtr> CollationsEditorModel::getCollations() const
 {
     QList<CollationManager::CollationPtr> results;
-
-    foreach (Collation* coll, collationList)
+    for (Collation* coll : collationList)
         results << coll->data;
 
     return results;
@@ -188,7 +186,7 @@ QList<CollationManager::CollationPtr> CollationsEditorModel::getCollations() con
 QStringList CollationsEditorModel::getCollationNames() const
 {
     QStringList names;
-    foreach (Collation* coll, collationList)
+    for (Collation* coll : collationList)
         names << coll->data->name;
 
     return names;
@@ -199,7 +197,7 @@ void CollationsEditorModel::validateNames()
     StrHash<QList<int>> counter;
 
     int row = 0;
-    foreach (Collation* coll, collationList)
+    for (Collation* coll : collationList)
     {
         coll->valid &= true;
         counter[coll->data->name] << row++;
@@ -211,7 +209,7 @@ void CollationsEditorModel::validateNames()
         cntIt.next();
         if (cntIt.value().size() > 1)
         {
-            foreach (int cntRow, cntIt.value())
+            for (int cntRow : cntIt.value())
                 setValid(cntRow, false);
         }
     }
@@ -265,7 +263,7 @@ QVariant CollationsEditorModel::data(const QModelIndex& index, int role) const
 
 void CollationsEditorModel::init()
 {
-    foreach (ScriptingPlugin* plugin, PLUGINS->getLoadedPlugins<ScriptingPlugin>())
+    for (ScriptingPlugin* plugin : PLUGINS->getLoadedPlugins<ScriptingPlugin>())
         langToIcon[plugin->getLanguage()] = QIcon(plugin->getIconPath());
 }
 

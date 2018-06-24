@@ -11,7 +11,7 @@ class DbTreeItem;
 class GUI_API_EXPORT SelectableDbModel : public QSortFilterProxyModel
 {
     public:
-        explicit SelectableDbModel(QObject *parent = 0);
+        explicit SelectableDbModel(QObject *parent = nullptr);
 
         QVariant data(const QModelIndex& index, int role) const;
         bool setData(const QModelIndex& index, const QVariant& value, int role);

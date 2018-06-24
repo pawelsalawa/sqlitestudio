@@ -232,7 +232,7 @@ void FunctionsEditor::functionSelected(int row)
     }
 
     updatesForSelection = false;
-    currentModified = false;
+    currentModified = model->isModified(row);
 
     updateCurrentFunctionState();
 }

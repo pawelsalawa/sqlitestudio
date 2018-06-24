@@ -29,6 +29,7 @@ class BugReporter;
 class UpdateManager;
 #endif
 class ExtraLicenseManager;
+class SqliteExtensionManager;
 
 /** @file */
 
@@ -117,6 +118,9 @@ class API_EXPORT SQLiteStudio : public QObject
         CollationManager* getCollationManager() const;
         void setCollationManager(CollationManager* value);
 
+        SqliteExtensionManager* getSqliteExtensionManager() const;
+        void setSqliteExtensionManager(SqliteExtensionManager* value);
+
         ExportManager* getExportManager() const;
         void setExportManager(ExportManager* value);
 
@@ -200,6 +204,7 @@ class API_EXPORT SQLiteStudio : public QObject
         PluginManager* pluginManager = nullptr;
         DbAttacherFactory* dbAttacherFactory = nullptr;
         CollationManager* collationManager = nullptr;
+        SqliteExtensionManager* extensionManager = nullptr;
         ExportManager* exportManager = nullptr;
         ImportManager* importManager = nullptr;
         PopulateManager* populateManager = nullptr;

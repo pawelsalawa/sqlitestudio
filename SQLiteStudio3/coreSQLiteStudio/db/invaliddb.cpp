@@ -325,6 +325,13 @@ void InvalidDb::setError(const QString& value)
     error = value;
 }
 
+bool InvalidDb::loadExtension(const QString& filePath, const QString& initFunc)
+{
+    UNUSED(filePath);
+    UNUSED(initFunc);
+    return false;
+}
+
 
 void InvalidDb::interrupt()
 {

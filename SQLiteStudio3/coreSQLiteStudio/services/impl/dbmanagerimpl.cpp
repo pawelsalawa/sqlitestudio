@@ -262,12 +262,16 @@ Db* DbManagerImpl::getByPath(const QString &path)
     return pathToDb.value(pathDir.absolutePath());
 }
 
-Db* DbManagerImpl::createInMemDb()
+Db* DbManagerImpl::createInMemDb(bool pureInit)
 {
     if (!inMemDbCreatorPlugin)
         return nullptr;
 
-    return inMemDbCreatorPlugin->getInstance("", ":memory:", {});
+    QHash<QString, QVariant> opts;
+    if (pureInit)
+        opts[DB_PURE_INIT] = true;
+
+    return inMemDbCreatorPlugin->getInstance("", ":memory:", opts);
 }
 
 bool DbManagerImpl::isTemporary(Db* db)

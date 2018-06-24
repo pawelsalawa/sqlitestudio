@@ -188,7 +188,9 @@ SOURCES +=\
     common/centerediconitemdelegate.cpp \
     datagrid/sqlviewmodel.cpp \
     common/exttableview.cpp \
-    common/exttablewidget.cpp
+    common/exttablewidget.cpp \
+    windows/sqliteextensioneditor.cpp \
+    windows/sqliteextensioneditormodel.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -340,7 +342,9 @@ HEADERS  += mainwindow.h \
     common/centerediconitemdelegate.h \
     datagrid/sqlviewmodel.h \
     common/exttableview.h \
-    common/exttablewidget.h
+    common/exttablewidget.h \
+    windows/sqliteextensioneditor.h \
+    windows/sqliteextensioneditormodel.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \
@@ -390,7 +394,8 @@ FORMS    += mainwindow.ui \
     dialogs/quitconfirmdialog.ui \
     dialogs/languagedialog.ui \
     dialogs/cssdebugdialog.ui \
-    dialogs/indexexprcolumndialog.ui
+    dialogs/indexexprcolumndialog.ui \
+    windows/sqliteextensioneditor.ui
 
 RESOURCES += \
     icons.qrc \

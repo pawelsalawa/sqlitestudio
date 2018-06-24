@@ -8,13 +8,13 @@
 #include "iconmanager.h"
 #include "dbandroidconnection.h"
 #include "dbandroidconnectionfactory.h"
+#include "common/lazytrigger.h"
+#include "common/userinputfilter.h"
 #include <QDebug>
-#include <QTimer>
 #include <QPushButton>
 #include <QInputDialog>
 #include <QMessageBox>
 #include <QtConcurrent/QtConcurrent>
-#include <common/userinputfilter.h>
 
 DbAndroidPathDialog::DbAndroidPathDialog(const DbAndroid* plugin, QWidget *parent) :
     QDialog(parent),
@@ -57,15 +57,9 @@ void DbAndroidPathDialog::init()
     ui->createDatabaseButton->setIcon(ICONS.PLUS);
     ui->deleteDatabaseButton->setIcon(ICONS.DELETE);
 
-    dbListUpdateTimer = new QTimer(this);
-    dbListUpdateTimer->setSingleShot(true);
-    dbListUpdateTimer->setInterval(500);
-    connect(dbListUpdateTimer, SIGNAL(timeout()), this, SLOT(refreshDbList()));
 
-    appListUpdateTimer = new QTimer(this);
-    appListUpdateTimer->setSingleShot(true);
-    appListUpdateTimer->setInterval(500);
-    connect(appListUpdateTimer, SIGNAL(timeout()), this, SLOT(refreshAppList()));
+    dbListUpdateTrigger = new LazyTrigger(500, this, SLOT(refreshDbList()));
+    appListUpdateTrigger = new LazyTrigger(500, this, SLOT(refreshAppList()));
 
     connect(ui->deviceCombo, SIGNAL(currentTextChanged(QString)), this, SLOT(scheduleAppListUpdate()));
     connect(ui->databaseCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(updateState()));
@@ -185,15 +179,8 @@ void DbAndroidPathDialog::scheduleDbListUpdate()
     if (suspendDbListUpdates)
         return;
 
-    bool startCover = true;
-    if (dbListUpdateTimer->isActive())
-    {
-        dbListUpdateTimer->stop();
-        startCover = false;
-    }
-
-    dbListUpdateTimer->start();
-    if (startCover)
+    dbListUpdateTrigger->schedule();
+    if (!dbListCover->isVisible())
         dbListCover->show();
 
     handleDbCreationUpdate(false);
@@ -208,15 +195,8 @@ void DbAndroidPathDialog::scheduleAppListUpdate()
     if (suspendAppListUpdates)
         return;
 
-    bool startCover = true;
-    if (appListUpdateTimer->isActive())
-    {
-        appListUpdateTimer->stop();
-        startCover = false;
-    }
-
-    appListUpdateTimer->start();
-    if (startCover)
+    appListUpdateTrigger->schedule();
+    if (!appListCover->isVisible())
         appListCover->show();
 
     updateValidations();
@@ -373,7 +353,7 @@ void DbAndroidPathDialog::updateDeviceList()
 
 void DbAndroidPathDialog::updateValidations()
 {
-    bool isUpdating = dbListUpdateTimer->isActive();
+    bool isUpdating = dbListCover->isVisible();
     bool ipOk = true;
     bool deviceOk = true;
     if (ui->ipRadio->isChecked())

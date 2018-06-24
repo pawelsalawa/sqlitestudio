@@ -31,6 +31,7 @@ CFG_CATEGORIES(Core,
     CFG_CATEGORY(Internal,
         CFG_ENTRY(QVariantList, Functions,               QVariantList())
         CFG_ENTRY(QVariantList, Collations,              QVariantList())
+        CFG_ENTRY(QVariantList, Extensions,              QVariantList())
         CFG_ENTRY(QString,      BugReportUser,           QString())
         CFG_ENTRY(QString,      BugReportPassword,       QString())
         CFG_ENTRY(QString,      BugReportRecentTitle,    QString())

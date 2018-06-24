@@ -229,7 +229,9 @@ SOURCES += sqlitestudio.cpp \
     querygenerator.cpp \
     common/bistrhash.cpp \
     plugins/dbpluginstdfilebase.cpp \
-    common/xmldeserializer.cpp
+    common/xmldeserializer.cpp \
+    services/impl/sqliteextensionmanagerimpl.cpp \
+    common/lazytrigger.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -428,7 +430,10 @@ HEADERS += sqlitestudio.h\
     common/sortedset.h \
     plugins/dbpluginstdfilebase.h \
     common/xmldeserializer.h \
-    common/valuelocker.h
+    common/valuelocker.h \
+    services/sqliteextensionmanager.h \
+    services/impl/sqliteextensionmanagerimpl.h \
+    common/lazytrigger.h
 
 unix: {
     target.path = $$LIBDIR

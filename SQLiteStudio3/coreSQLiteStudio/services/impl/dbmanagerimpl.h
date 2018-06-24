@@ -42,7 +42,7 @@ class API_EXPORT DbManagerImpl : public DbManager
         QStringList getDbNames();
         Db* getByName(const QString& name, Qt::CaseSensitivity cs = Qt::CaseInsensitive);
         Db* getByPath(const QString& path);
-        Db* createInMemDb();
+        Db* createInMemDb(bool pureInit = false);
         bool isTemporary(Db* db);
         QString quickAddDb(const QString &path, const QHash<QString, QVariant> &options);
         DbPlugin* getPluginForDbFile(const QString& filePath);

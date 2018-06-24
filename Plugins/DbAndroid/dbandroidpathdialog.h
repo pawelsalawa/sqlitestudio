@@ -9,7 +9,7 @@ namespace Ui {
 }
 
 class DbAndroid;
-class QTimer;
+class LazyTrigger;
 class WidgetCover;
 class DbAndroidInstance;
 
@@ -37,8 +37,8 @@ class DbAndroidPathDialog : public QDialog
         const DbAndroid* plugin = nullptr;
         DbAndroidUrl dbUrl;
         Ui::DbAndroidPathDialog *ui;
-        QTimer* dbListUpdateTimer = nullptr;
-        QTimer* appListUpdateTimer = nullptr;
+        LazyTrigger* dbListUpdateTrigger = nullptr;
+        LazyTrigger* appListUpdateTrigger = nullptr;
         WidgetCover* dbListCover = nullptr;
         WidgetCover* appListCover = nullptr;
         bool updatingDbList = false;

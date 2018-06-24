@@ -57,7 +57,7 @@ Db* DbManagerMock::getByPath(const QString&)
     return nullptr;
 }
 
-Db*DbManagerMock::createInMemDb()
+Db*DbManagerMock::createInMemDb(bool)
 {
     return nullptr;
 }

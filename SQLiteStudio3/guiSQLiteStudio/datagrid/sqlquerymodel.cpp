@@ -802,13 +802,8 @@ QList<QStandardItem*> SqlQueryModel::loadRow(SqlResultsRowPtr row)
     SqlQueryItem* item = nullptr;
     RowId rowId;
     int colIdx = 0;
-    foreach (const QVariant& value, row->valueList().mid(0, resultColumnCount))
+    for (const QVariant& value : row->valueList().mid(0, resultColumnCount))
     {
-        QString s = value.toString();
-        QByteArray bytes = s.toUtf8();
-        int length = bytes.size();
-        qDebug() << length;
-
         item = new SqlQueryItem();
         rowId = getRowIdValue(row, colIdx);
         updateItem(item, value, colIdx, rowId);

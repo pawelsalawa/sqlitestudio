@@ -205,5 +205,10 @@
         <file>img/zoom_in.png</file>
         <file>img/zoom_out.png</file>
         <file>img/save_file.png</file>
+        <file>img/brick.png</file>
+        <file>img/brick_add.png</file>
+        <file>img/brick_delete.png</file>
+        <file>img/brick_error.png</file>
+        <file>img/brick_folder.png</file>
     </qresource>
 </RCC>
