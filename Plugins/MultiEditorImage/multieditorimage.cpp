@@ -12,6 +12,7 @@
 #include <QToolBar>
 #include <QFileDialog>
 #include <QScrollBar>
+#include <QAction>
 
 MultiEditorImage::MultiEditorImage()
 {
