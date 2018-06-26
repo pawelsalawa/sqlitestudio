@@ -1,3 +1,4 @@
+- [x] Check if app compiles for different Qt versions
 - [x] Verify final release version
 - [x] Update ChangeLog
 - [x] Update managed languages per component/plugin
