@@ -11,8 +11,6 @@ class GUI_API_EXPORT MultiEditorTime : public MultiEditorDateTime
     public:
         explicit MultiEditorTime(QWidget *parent = 0);
 
-        QString getTabLabel();
-
         static void staticInit();
 
     protected:
@@ -35,6 +33,7 @@ class GUI_API_EXPORT MultiEditorTimePlugin : public BuiltInPlugin, public MultiE
         MultiEditorWidget* getInstance();
         bool validFor(const DataType& dataType);
         int getPriority(const DataType& dataType);
+        QString getTabLabel();
 };
 
 #endif // MULTIEDITORTIME_H

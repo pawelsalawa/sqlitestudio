@@ -9,22 +9,24 @@ class GUI_API_EXPORT MultiEditorWidget : public QWidget
     Q_OBJECT
 
     public:
-        explicit MultiEditorWidget(QWidget *parent = 0);
+        explicit MultiEditorWidget(QWidget *parent = nullptr);
 
         virtual void setValue(const QVariant& value) = 0;
         virtual QVariant getValue() = 0;
         virtual void setReadOnly(bool value) = 0;
         virtual QList<QWidget*> getNoScrollWidgets() = 0;
-        virtual QString getTabLabel() = 0;
         virtual void focusThisWidget() = 0;
 
         void installEventFilter(QObject* filterObj);
 
+        void setTabLabel(const QString& value);
+        QString getTabLabel();
         bool isUpToDate() const;
         void setUpToDate(bool value);
 
     private:
         bool upToDate = true;
+        QString tabLabel;
 
     signals:
         void valueModified();

@@ -40,11 +40,6 @@ void MultiEditorText::setReadOnly(bool value)
     textEdit->setReadOnly(value);
 }
 
-QString MultiEditorText::getTabLabel()
-{
-    return tr("Text");
-}
-
 QToolBar* MultiEditorText::getToolBar(int toolbar) const
 {
     UNUSED(toolbar);
@@ -181,4 +176,9 @@ int MultiEditorTextPlugin::getPriority(const DataType& dataType)
             break;
     }
     return 1;
+}
+
+QString MultiEditorTextPlugin::getTabLabel()
+{
+    return tr("Text");
 }

@@ -23,7 +23,6 @@ class MultiEditorImage : public MultiEditorWidget
         QVariant getValue();
         void setReadOnly(bool boolValue);
         QList<QWidget*> getNoScrollWidgets();
-        QString getTabLabel();
         void focusThisWidget();
         void notifyAboutUnload();
 
@@ -57,7 +56,7 @@ class MULTIEDITORIMAGE_EXPORT MultiEditorImagePlugin : public GenericPlugin, pub
         MultiEditorWidget* getInstance();
         bool validFor(const DataType& dataType);
         int getPriority(const DataType& dataType);
-
+        QString getTabLabel();
         bool init();
         void deinit();
 

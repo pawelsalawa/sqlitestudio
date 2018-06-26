@@ -44,9 +44,7 @@ DataType::DataType()
 DataType::DataType(const QString& fullTypeString)
 {
     static const QRegularExpression
-            re(R"("
-            "^(?<type>[^\)]*)\s*(\((?<scale>[\d\.]+)\s*(,\s*(?<precision>[\d\.])+\s*)?\))?$"
-            ")");
+            re(R"(^(?<type>[^\)]*)\s*(\((?<scale>[\d\.]+)\s*(,\s*(?<precision>[\d\.])+\s*)?\))?$)");
 
     QRegularExpressionMatch match = re.match(fullTypeString);
     if (!match.hasMatch())

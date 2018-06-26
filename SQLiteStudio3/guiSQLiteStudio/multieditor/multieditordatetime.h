@@ -27,7 +27,6 @@ class GUI_API_EXPORT MultiEditorDateTime : public MultiEditorWidget
 
         bool getReadOnly() const;
         void setReadOnly(bool value);
-        QString getTabLabel();
         void focusThisWidget();
 
     protected:
@@ -79,6 +78,7 @@ class GUI_API_EXPORT MultiEditorDateTimePlugin : public BuiltInPlugin, public Mu
         MultiEditorWidget* getInstance();
         bool validFor(const DataType& dataType);
         int getPriority(const DataType& dataType);
+        QString getTabLabel();
 };
 
 #endif // MULTIEDITORDATETIME_H

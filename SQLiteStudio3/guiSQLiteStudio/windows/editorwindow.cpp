@@ -19,12 +19,14 @@
 #include "parser/parser.h"
 #include "dbobjectdialogs.h"
 #include "dialogs/exportdialog.h"
+#include "themetuner.h"
+#include "dialogs/bindparamsdialog.h"
+#include "common/bindparam.h"
 #include <QComboBox>
 #include <QDebug>
 #include <QStringListModel>
 #include <QActionGroup>
 #include <QMessageBox>
-#include <themetuner.h>
 
 CFG_KEYS_DEFINE(EditorWindow)
 EditorWindow::ResultsDisplayMode EditorWindow::resultsDisplayMode;
@@ -474,9 +476,15 @@ void EditorWindow::updateShortcutTips()
 void EditorWindow::execQuery(bool explain)
 {
     QString sql = getQueryToExecute(true);
+    QHash<QString, QVariant> bindParams;
+    bool proceed = processBindParams(sql, bindParams);
+    if (!proceed)
+        return;
+
     resultsModel->setDb(getCurrentDb());
     resultsModel->setExplainMode(explain);
     resultsModel->setQuery(sql);
+    resultsModel->setParams(bindParams);
     resultsModel->setQueryCountLimitForSmartMode(queryLimitForSmartExecution);
     ui->dataView->refreshData();
     updateState();
@@ -492,6 +500,61 @@ void EditorWindow::execQuery(bool explain)
 void EditorWindow::explainQuery()
 {
     execQuery(true);
+}
+
+bool EditorWindow::processBindParams(QString& sql, QHash<QString, QVariant>& queryParams)
+{
+    // Determin dialect
+    Dialect dialect = Dialect::Sqlite3;
+    Db* db = getCurrentDb();
+    if (db && db->isValid())
+        dialect = db->getDialect();
+
+    // Get all bind parameters from the query
+    TokenList tokens = Lexer::tokenize(sql, dialect);
+    TokenList bindTokens = tokens.filter(Token::BIND_PARAM);
+
+    // No bind tokens? Return fast.
+    if (bindTokens.isEmpty())
+        return true;
+
+    // Process bind tokens, prepare list for a dialog.
+    static_qstring(paramTpl, ":arg%1");
+    QString arg;
+    QVector<BindParam*> bindParams;
+    BindParam* bindParam = nullptr;
+    int i = 0;
+    for (const TokenPtr& token : bindTokens)
+    {
+        bindParam = new BindParam();
+        bindParam->position = i;
+        bindParam->originalName = token->value;
+        bindParam->newName = paramTpl.arg(i);
+        bindParams << bindParam;
+        i++;
+
+        token->value = bindParam->newName;
+    }
+
+    // Show dialog to query user for values
+    BindParamsDialog dialog(MAINWINDOW);
+    dialog.setBindParams(bindParams);
+    bool accepted = (dialog.exec() == QDialog::Accepted);
+
+    // Transfer values from dialog to arguments for query
+    if (accepted)
+    {
+        for (BindParam* bindParam : bindParams)
+            queryParams[bindParam->newName] = bindParam->value;
+
+        sql = tokens.detokenize();
+    }
+
+    // Cleanup
+    for (BindParam* bindParam : bindParams)
+        delete bindParam;
+
+    return accepted;
 }
 
 void EditorWindow::dbChanged()

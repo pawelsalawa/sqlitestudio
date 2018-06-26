@@ -293,6 +293,7 @@ void QueryExecutor::execInternal()
     context->noMetaColumns = noMetaColumns;
     context->resultsHandler = resultsHandler;
     context->preloadResults = preloadResults;
+    context->queryParameters = queryParameters;
 
     // Start the execution
     setupExecutionChain();
@@ -416,7 +417,12 @@ QSet<QueryExecutor::EditionForbiddenReason> QueryExecutor::getEditionForbiddenGl
 
 void QueryExecutor::setParam(const QString& name, const QVariant& value)
 {
-    context->queryParameters[name] = value;
+    queryParameters[name] = value;
+}
+
+void QueryExecutor::setParams(const QHash<QString, QVariant>& params)
+{
+    queryParameters = params;
 }
 
 void QueryExecutor::arg(const QVariant& value)

@@ -856,6 +856,15 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
         void setParam(const QString& name, const QVariant& value);
 
         /**
+         * @brief Assigns all query parameters at once.
+         * @param params All bind parameters for the query.
+         *
+         * This is same as setParam(), except it overrides all current params with given ones.
+         * It allows for setting all params at once.
+         */
+        void setParams(const QHash<QString, QVariant>& params);
+
+        /**
          * @brief Replaces placeholder in the query.
          * @param value Value to replace placeholder with.
          *
@@ -1454,6 +1463,13 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          * with success. It's not called on failure.
          */
         Db::QueryResultsHandler resultsHandler = nullptr;
+
+        /**
+         * @brief Parameters for query execution.
+         *
+         * It's defined by setParam().
+         */
+        QHash<QString,QVariant> queryParameters;
 
         bool forceSimpleMode = false;
         ChainExecutor* simpleExecutor = nullptr;

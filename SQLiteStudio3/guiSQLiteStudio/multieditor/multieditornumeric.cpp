@@ -31,11 +31,6 @@ void MultiEditorNumeric::setReadOnly(bool value)
     spinBox->setReadOnly(value);
 }
 
-QString MultiEditorNumeric::getTabLabel()
-{
-    return tr("Number", "numeric multi editor tab name");
-}
-
 void MultiEditorNumeric::focusThisWidget()
 {
     spinBox->setFocus();
@@ -107,4 +102,9 @@ int MultiEditorNumericPlugin::getPriority(const DataType& dataType)
             break;
     }
     return 10;
+}
+
+QString MultiEditorNumericPlugin::getTabLabel()
+{
+    return tr("Number", "numeric multi editor tab name");
 }

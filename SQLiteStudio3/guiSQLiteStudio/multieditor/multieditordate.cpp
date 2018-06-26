@@ -9,11 +9,6 @@ MultiEditorDate::MultiEditorDate(QWidget* parent)
     setDisplayFormat(formats.first());
 }
 
-QString MultiEditorDate::getTabLabel()
-{
-    return tr("Date");
-}
-
 void MultiEditorDate::staticInit()
 {
     formats << "yyyy-MM-dd";
@@ -84,4 +79,9 @@ int MultiEditorDatePlugin::getPriority(const DataType& dataType)
             return 1;
     }
     return 10;
+}
+
+QString MultiEditorDatePlugin::getTabLabel()
+{
+    return tr("Date");
 }

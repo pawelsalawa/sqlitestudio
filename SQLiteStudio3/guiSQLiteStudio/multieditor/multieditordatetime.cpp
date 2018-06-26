@@ -176,11 +176,6 @@ void MultiEditorDateTime::setReadOnly(bool value)
     updateReadOnlyDisplay();
 }
 
-QString MultiEditorDateTime::getTabLabel()
-{
-    return tr("Date & time");
-}
-
 void MultiEditorDateTime::focusThisWidget()
 {
     dateTimeEdit->setFocus();
@@ -272,4 +267,9 @@ int MultiEditorDateTimePlugin::getPriority(const DataType& dataType)
             return 1;
     }
     return 10;
+}
+
+QString MultiEditorDateTimePlugin::getTabLabel()
+{
+    return tr("Date & time");
 }

@@ -44,7 +44,6 @@ class GUI_API_EXPORT MultiEditorText : public MultiEditorWidget, public ExtActio
         void setValue(const QVariant& value);
         QVariant getValue();
         void setReadOnly(bool value);
-        QString getTabLabel();
         QToolBar* getToolBar(int toolbar) const;
         void focusThisWidget();
         QList<QWidget*> getNoScrollWidgets();
@@ -82,6 +81,7 @@ class GUI_API_EXPORT MultiEditorTextPlugin : public BuiltInPlugin, public MultiE
         MultiEditorWidget* getInstance();
         bool validFor(const DataType& dataType);
         int getPriority(const DataType& dataType);
+        QString getTabLabel();
 };
 
 #endif // MULTIEDITORTEXT_H

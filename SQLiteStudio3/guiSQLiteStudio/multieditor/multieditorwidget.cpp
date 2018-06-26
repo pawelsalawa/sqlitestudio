@@ -12,6 +12,16 @@ void MultiEditorWidget::installEventFilter(QObject* filterObj)
         w->installEventFilter(filterObj);
 }
 
+void MultiEditorWidget::setTabLabel(const QString& value)
+{
+    tabLabel = value;
+}
+
+QString MultiEditorWidget::getTabLabel()
+{
+    return tabLabel;
+}
+
 bool MultiEditorWidget::isUpToDate() const
 {
     return upToDate;

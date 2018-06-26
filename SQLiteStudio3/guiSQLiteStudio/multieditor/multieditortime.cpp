@@ -11,11 +11,6 @@ MultiEditorTime::MultiEditorTime(QWidget *parent)
     setDisplayFormat(formats.first());
 }
 
-QString MultiEditorTime::getTabLabel()
-{
-    return tr("Time");
-}
-
 void MultiEditorTime::staticInit()
 {
     formats << "hh:mm:ss"
@@ -87,4 +82,9 @@ int MultiEditorTimePlugin::getPriority(const DataType& dataType)
             return 1;
     }
     return 10;
+}
+
+QString MultiEditorTimePlugin::getTabLabel()
+{
+    return tr("Time");
 }

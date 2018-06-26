@@ -42,6 +42,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         QString getQuery() const;
         void setQuery(const QString &value);
         void setExplainMode(bool explain);
+        void setParams(const QHash<QString, QVariant>& params);
         Db* getDb() const;
         void setDb(Db* value);
         qint64 getExecutionTime();
@@ -318,6 +319,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         int getRowsPerPage() const;
 
         QString query;
+        QHash<QString, QVariant> queryParams;
         bool explain = false;
         bool simpleExecutionMode = false;
 

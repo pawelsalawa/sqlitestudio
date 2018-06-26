@@ -9,8 +9,6 @@ MultiEditorHex::MultiEditorHex()
     hexEdit = new QHexEdit();
     layout()->addWidget(hexEdit);
 
-    //hexEdit->setTabChangesFocus(true);
-
     connect(hexEdit, SIGNAL(dataChanged()), this, SLOT(modificationChanged()));
     setFocusProxy(hexEdit);
 }
@@ -32,11 +30,6 @@ QVariant MultiEditorHex::getValue()
 void MultiEditorHex::setReadOnly(bool value)
 {
     hexEdit->setReadOnly(value);
-}
-
-QString MultiEditorHex::getTabLabel()
-{
-    return tr("Hex");
 }
 
 void MultiEditorHex::focusThisWidget()
@@ -91,4 +84,9 @@ int MultiEditorHexPlugin::getPriority(const DataType& dataType)
             break;
     }
     return 100;
+}
+
+QString MultiEditorHexPlugin::getTabLabel()
+{
+    return tr("Hex");
 }

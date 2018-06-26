@@ -486,6 +486,7 @@ void ConfigDialog::addDataTypeEditor(const QString& pluginName)
 void ConfigDialog::addDataTypeEditor(MultiEditorWidgetPlugin* plugin)
 {
     MultiEditorWidget* editor = plugin->getInstance();
+    editor->setTabLabel(plugin->getTabLabel());
     ui->dataEditorsSelectedTabs->addTab(editor, editor->getTabLabel().replace("&", "&&"));
 
     connect(editor, &MultiEditorWidget::aboutToBeDeleted, [this, editor]()

@@ -124,7 +124,7 @@ void QueryExecutorExecute::handleFailResult(SqlQueryPtr results)
 QHash<QString, QVariant> QueryExecutorExecute::getBindParamsForQuery(SqliteQueryPtr query)
 {
     QHash<QString, QVariant> queryParams;
-    QStringList bindParams = query->tokens.filter(Token::BIND_PARAM).toStringList();
+    QStringList bindParams = query->tokens.filter(Token::BIND_PARAM).toValueList();
     foreach (const QString& bindParam, bindParams)
     {
         if (context->queryParameters.contains(bindParam))

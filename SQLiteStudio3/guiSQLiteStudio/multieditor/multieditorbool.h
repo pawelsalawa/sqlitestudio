@@ -22,7 +22,6 @@ class GUI_API_EXPORT MultiEditorBool : public MultiEditorWidget
         QVariant getValue();
         void setReadOnly(bool boolValue);
         QList<QWidget*> getNoScrollWidgets();
-        QString getTabLabel();
         void focusThisWidget();
 
     private:
@@ -63,6 +62,7 @@ class GUI_API_EXPORT MultiEditorBoolPlugin : public BuiltInPlugin, public MultiE
         MultiEditorWidget* getInstance();
         bool validFor(const DataType& dataType);
         int getPriority(const DataType& dataType);
+        QString getTabLabel();
 };
 
 #endif // MULTIEDITORBOOL_H

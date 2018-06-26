@@ -12,6 +12,7 @@ class MultiEditorWidget;
 class QLabel;
 class MultiEditorWidgetPlugin;
 class QToolButton;
+class QMenu;
 
 class GUI_API_EXPORT MultiEditor : public QWidget
 {
@@ -31,7 +32,13 @@ class GUI_API_EXPORT MultiEditor : public QWidget
             HEX
         };
 
-        explicit MultiEditor(QWidget *parent = 0);
+        enum TabsMode {
+            CONFIGURABLE,       /**< Tabs are loaded from datatype and also have configure button visible. */
+            PRECONFIGURED,      /**< Tabs are loaded from datatype. No config button is present. */
+            DYNAMIC             /**< No tabs are loaded, but user has button to add new tabs, can close them and reorder them. */
+        };
+
+        explicit MultiEditor(QWidget *parent = nullptr, TabsMode tabsMode = CONFIGURABLE);
 
         void addEditor(MultiEditorWidget* editorWidget);
         void showTab(int idx);
@@ -50,12 +57,15 @@ class GUI_API_EXPORT MultiEditor : public QWidget
         static void loadBuiltInEditors();
 
     private:
-        void init();
+        void init(TabsMode tabsMode);
         void updateVisibility();
         void updateNullEffect();
         void updateValue(const QVariant& newValue);
         void updateLabel();
         QVariant getValueOmmitNull() const;
+        void initAddTabMenu();
+        void addPluginToMenu(MultiEditorWidgetPlugin* plugin);
+        void sortAddTabMenu();
 
         static QList<MultiEditorWidget*> getEditorTypes(const DataType& dataType);
 
@@ -74,6 +84,8 @@ class GUI_API_EXPORT MultiEditor : public QWidget
         bool valueModified = false;
         QVariant valueBeforeNull;
         QToolButton* configBtn = nullptr;
+        QToolButton* addTabBtn = nullptr;
+        QMenu* addTabMenu = nullptr;
         DataType dataType;
 
         /**
@@ -90,6 +102,7 @@ class GUI_API_EXPORT MultiEditor : public QWidget
         void nullStateChanged(int state);
         void invalidateValue();
         void setModified();
+        void removeTab(int idx);
 
     signals:
         void modified();

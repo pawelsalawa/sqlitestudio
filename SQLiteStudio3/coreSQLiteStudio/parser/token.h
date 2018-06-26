@@ -335,6 +335,12 @@ class API_EXPORT TokenList : public QList<TokenPtr>
         QStringList toStringList() const;
 
         /**
+         * @brief Converts list of tokens into list of their values.
+         * @return List of tokens values.
+         */
+        QStringList toValueList() const;
+
+        /**
          * @brief Provides index of first occurrence of the token in the list.
          * @param token Token to look for.
          * @return Index of the token, or -1 if token was not found.

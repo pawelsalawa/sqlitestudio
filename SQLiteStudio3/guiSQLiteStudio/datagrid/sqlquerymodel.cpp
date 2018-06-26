@@ -68,6 +68,11 @@ void SqlQueryModel::setExplainMode(bool explain)
     this->explain = explain;
 }
 
+void SqlQueryModel::setParams(const QHash<QString, QVariant>& params)
+{
+    queryParams = params;
+}
+
 void SqlQueryModel::setAsyncMode(bool enabled)
 {
     queryExecutor->setAsyncMode(enabled);
@@ -126,6 +131,7 @@ void SqlQueryModel::executeQueryInternal()
     emit executionStarted();
 
     queryExecutor->setQuery(query);
+    queryExecutor->setParams(queryParams);
     queryExecutor->setResultsPerPage(getRowsPerPage());
     queryExecutor->setExplainMode(explain);
     queryExecutor->setPreloadResults(true);

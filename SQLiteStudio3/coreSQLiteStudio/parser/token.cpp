@@ -210,9 +210,17 @@ QString TokenList::toString() const
 QStringList TokenList::toStringList() const
 {
     QStringList strList;
-    TokenPtr t;
-    foreach (t, *this)
+    for (const TokenPtr& t : *this)
         strList << t->toString();
+
+    return strList;
+}
+
+QStringList TokenList::toValueList() const
+{
+    QStringList strList;
+    for (const TokenPtr& t : *this)
+        strList << t->value;
 
     return strList;
 }

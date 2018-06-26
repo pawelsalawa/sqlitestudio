@@ -76,11 +76,6 @@ QList<QWidget*> MultiEditorImage::getNoScrollWidgets()
     return list;
 }
 
-QString MultiEditorImage::getTabLabel()
-{
-    return tr("Image");
-}
-
 void MultiEditorImage::focusThisWidget()
 {
 }
@@ -247,6 +242,11 @@ int MultiEditorImagePlugin::getPriority(const DataType& dataType)
             break;
     }
     return 100;
+}
+
+QString MultiEditorImagePlugin::getTabLabel()
+{
+    return tr("Image");
 }
 
 bool MultiEditorImagePlugin::init()

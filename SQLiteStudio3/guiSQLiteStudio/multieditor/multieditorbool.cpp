@@ -125,11 +125,6 @@ QList<QWidget*> MultiEditorBool::getNoScrollWidgets()
     return list;
 }
 
-QString MultiEditorBool::getTabLabel()
-{
-    return tr("Boolean");
-}
-
 void MultiEditorBool::focusThisWidget()
 {
     checkBox->setFocus();
@@ -212,4 +207,9 @@ int MultiEditorBoolPlugin::getPriority(const DataType& dataType)
             break;
     }
     return 100;
+}
+
+QString MultiEditorBoolPlugin::getTabLabel()
+{
+    return tr("Boolean");
 }

@@ -30,13 +30,13 @@
 
 static QHash<QString,bool> missingEditorPluginsAlreadyWarned;
 
-MultiEditor::MultiEditor(QWidget *parent) :
+MultiEditor::MultiEditor(QWidget *parent, TabsMode tabsMode) :
     QWidget(parent)
 {
-    init();
+    init(tabsMode);
 }
 
-void MultiEditor::init()
+void MultiEditor::init(TabsMode tabsMode)
 {
     QVBoxLayout* vbox = new QVBoxLayout();
     vbox->setMargin(margins);
@@ -73,14 +73,39 @@ void MultiEditor::init()
     layout()->addWidget(tabs);
     tabs->tabBar()->installEventFilter(this);
 
-    configBtn = new QToolButton();
-    configBtn->setToolTip(tr("Configure editors for this data type"));
-    configBtn->setIcon(ICONS.CONFIGURE);
-    configBtn->setFocusPolicy(Qt::NoFocus);
-    configBtn->setAutoRaise(true);
-    configBtn->setEnabled(false);
-    connect(configBtn, SIGNAL(clicked()), this, SLOT(configClicked()));
-    tabs->setCornerWidget(configBtn);
+    switch (tabsMode)
+    {
+        case CONFIGURABLE:
+        {
+            configBtn = new QToolButton();
+            configBtn->setToolTip(tr("Configure editors for this data type"));
+            configBtn->setIcon(ICONS.CONFIGURE);
+            configBtn->setFocusPolicy(Qt::NoFocus);
+            configBtn->setAutoRaise(true);
+            configBtn->setEnabled(false);
+            connect(configBtn, SIGNAL(clicked()), this, SLOT(configClicked()));
+            tabs->setCornerWidget(configBtn);
+            break;
+        }
+        case DYNAMIC:
+        {
+            initAddTabMenu();
+            addTabBtn = new QToolButton();
+            addTabBtn->setToolTip(tr("Open another tab"));
+            addTabBtn->setIcon(ICONS.PLUS);
+            addTabBtn->setFocusPolicy(Qt::NoFocus);
+            addTabBtn->setAutoRaise(true);
+            addTabBtn->setEnabled(true);
+            addTabBtn->setPopupMode(QToolButton::InstantPopup);
+            addTabBtn->setMenu(addTabMenu);
+            tabs->setCornerWidget(addTabBtn);
+            tabs->setTabsClosable(true);
+            connect(tabs, &QTabWidget::tabCloseRequested, this, &MultiEditor::removeTab);
+            break;
+        }
+        case PRECONFIGURED:
+            break;
+    }
 
     QGraphicsColorizeEffect* effect = new QGraphicsColorizeEffect();
     effect->setColor(Qt::black);
@@ -174,6 +199,18 @@ void MultiEditor::addEditor(MultiEditorWidget* editorWidget)
         tabs->removeTab(idx);
     });
 
+    if (addTabMenu)
+    {
+        QAction* addTabAction = findFirst<QAction>(addTabMenu->actions(), [editorWidget](QAction* a)
+        {
+            return a->data().toString() == editorWidget->getTabLabel();
+        });
+
+        if (addTabAction)
+            addTabMenu->removeAction(addTabAction);
+        else
+            qWarning() << "Could not find action associated with added MultiEditorWidget:" << editorWidget->getTabLabel();
+    }
 }
 
 void MultiEditor::showTab(int idx)
@@ -242,11 +279,12 @@ void MultiEditor::setDataType(const DataType& dataType)
 {
     this->dataType = dataType;
 
-    foreach (MultiEditorWidget* editorWidget, getEditorTypes(dataType))
+    for (MultiEditorWidget* editorWidget : getEditorTypes(dataType))
         addEditor(editorWidget);
 
     showTab(0);
-    configBtn->setEnabled(true);
+    if (configBtn)
+        configBtn->setEnabled(true);
 }
 
 void MultiEditor::focusThisEditor()
@@ -278,6 +316,7 @@ void MultiEditor::loadBuiltInEditors()
 QList<MultiEditorWidget*> MultiEditor::getEditorTypes(const DataType& dataType)
 {
     QList<MultiEditorWidget*> editors;
+    MultiEditorWidget* editor = nullptr;
 
     QString typeStr = dataType.toString().trimmed().toUpper();
     QHash<QString,QVariant> editorsOrder = CFG_UI.General.DataEditorsOrder.get();
@@ -297,7 +336,9 @@ QList<MultiEditorWidget*> MultiEditor::getEditorTypes(const DataType& dataType)
                 continue;
             }
 
-            editors << plugin->getInstance();
+            editor = plugin->getInstance();
+            editor->setTabLabel(plugin->getTabLabel());
+            editors << editor;
         }
     }
 
@@ -320,6 +361,7 @@ QList<MultiEditorWidget*> MultiEditor::getEditorTypes(const DataType& dataType)
 
         editorWithPrio.first = plugin->getPriority(dataType);
         editorWithPrio.second = plugin->getInstance();
+        editorWithPrio.second->setTabLabel(plugin->getTabLabel());
         sortedEditors << editorWithPrio;
     }
 
@@ -386,4 +428,61 @@ void MultiEditor::updateLabel()
 QVariant MultiEditor::getValueOmmitNull() const
 {
     return dynamic_cast<MultiEditorWidget*>(tabs->currentWidget())->getValue();
+}
+
+void MultiEditor::initAddTabMenu()
+{
+    addTabMenu = new QMenu(addTabBtn);
+    for (MultiEditorWidgetPlugin* plugin : PLUGINS->getLoadedPlugins<MultiEditorWidgetPlugin>())
+        addPluginToMenu(plugin);
+
+    sortAddTabMenu();
+}
+
+void MultiEditor::addPluginToMenu(MultiEditorWidgetPlugin* plugin)
+{
+    QAction* addTabAction = addTabMenu->addAction(plugin->getTabLabel());
+    addTabAction->setData(plugin->getTabLabel()); // for display-independent identification of action to avoid ampersand issue
+    connect(addTabAction, &QAction::triggered, [plugin, this]()
+    {
+        MultiEditorWidget* editor = plugin->getInstance();
+        editor->setTabLabel(plugin->getTabLabel());
+        addEditor(editor);
+    });
+}
+
+void MultiEditor::sortAddTabMenu()
+{
+    QList<QAction*> editorActions = addTabMenu->actions();
+    std::sort(editorActions.begin(), editorActions.end(), [](QAction* a1, QAction* a2)
+    {
+        return a1->data().toString().compare(a2->data().toString(), Qt::CaseInsensitive) < 0;
+    });
+
+    for (QAction* action : editorActions)
+        addTabMenu->removeAction(action);
+
+    addTabMenu->insertActions(nullptr, editorActions);
+}
+
+void MultiEditor::removeTab(int idx)
+{
+    MultiEditorWidget* editor = dynamic_cast<MultiEditorWidget*>(tabs->widget(idx));
+    QString label = editor->getTabLabel();
+    tabs->removeTab(idx);
+
+    // Re-add it to menu
+    MultiEditorWidgetPlugin* plugin = findFirst<MultiEditorWidgetPlugin>(
+                PLUGINS->getLoadedPlugins<MultiEditorWidgetPlugin>(),
+                [label](MultiEditorWidgetPlugin* p) {return p->getTabLabel() == label;}
+            );
+
+    if (!plugin)
+    {
+        qWarning() << "Missing MultiEditorWidgetPlugin after removing its tab for label:" << label;
+        return;
+    }
+
+    addPluginToMenu(plugin);
+    sortAddTabMenu();
 }

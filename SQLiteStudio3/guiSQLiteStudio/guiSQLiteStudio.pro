@@ -190,7 +190,8 @@ SOURCES +=\
     common/exttableview.cpp \
     common/exttablewidget.cpp \
     windows/sqliteextensioneditor.cpp \
-    windows/sqliteextensioneditormodel.cpp
+    windows/sqliteextensioneditormodel.cpp \
+    dialogs/bindparamsdialog.cpp
 
 HEADERS  += mainwindow.h \
     iconmanager.h \
@@ -344,7 +345,9 @@ HEADERS  += mainwindow.h \
     common/exttableview.h \
     common/exttablewidget.h \
     windows/sqliteextensioneditor.h \
-    windows/sqliteextensioneditormodel.h
+    windows/sqliteextensioneditormodel.h \
+    dialogs/bindparamsdialog.h \
+    common/bindparam.h
 
 FORMS    += mainwindow.ui \
     dbtree/dbtree.ui \
@@ -395,7 +398,8 @@ FORMS    += mainwindow.ui \
     dialogs/languagedialog.ui \
     dialogs/cssdebugdialog.ui \
     dialogs/indexexprcolumndialog.ui \
-    windows/sqliteextensioneditor.ui
+    windows/sqliteextensioneditor.ui \
+    dialogs/bindparamsdialog.ui
 
 RESOURCES += \
     icons.qrc \

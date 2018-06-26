@@ -117,6 +117,7 @@ class GUI_API_EXPORT EditorWindow : public MdiChild
         void selectCurrentQuery(bool fallBackToPreviousIfNecessary = false);
         void updateShortcutTips();
         void setupSqlHistoryMenu();
+        bool processBindParams(QString& sql, QHash<QString, QVariant>& queryParams);
 
         static const int queryLimitForSmartExecution = 100;
 

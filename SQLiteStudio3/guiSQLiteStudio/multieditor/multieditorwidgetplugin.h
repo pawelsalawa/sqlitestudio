@@ -12,6 +12,7 @@ class GUI_API_EXPORT MultiEditorWidgetPlugin : public virtual Plugin
         virtual MultiEditorWidget* getInstance() = 0;
         virtual bool validFor(const DataType& dataType) = 0;
         virtual int getPriority(const DataType& dataType) = 0;
+        virtual QString getTabLabel() = 0;
 };
 
 #endif // MULTIEDITORWIDGETPLUGIN_H

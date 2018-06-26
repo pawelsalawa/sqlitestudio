@@ -17,7 +17,6 @@ class GUI_API_EXPORT MultiEditorNumeric : public MultiEditorWidget
         void setValue(const QVariant& value);
         QVariant getValue();
         void setReadOnly(bool value);
-        QString getTabLabel();
         void focusThisWidget();
 
         QList<QWidget*> getNoScrollWidgets();
@@ -39,6 +38,7 @@ class GUI_API_EXPORT MultiEditorNumericPlugin : public BuiltInPlugin, public Mul
         MultiEditorWidget* getInstance();
         bool validFor(const DataType& dataType);
         int getPriority(const DataType& dataType);
+        QString getTabLabel();
 };
 
 #endif // MULTIEDITORNUMERIC_H

@@ -20,7 +20,6 @@ class GUI_API_EXPORT MultiEditorHex : public MultiEditorWidget
         void setValue(const QVariant& value);
         QVariant getValue();
         void setReadOnly(bool value);
-        QString getTabLabel();
         void focusThisWidget();
 
         QList<QWidget*> getNoScrollWidgets();
@@ -45,6 +44,7 @@ class GUI_API_EXPORT MultiEditorHexPlugin : public BuiltInPlugin, public MultiEd
         MultiEditorWidget* getInstance();
         bool validFor(const DataType& dataType);
         int getPriority(const DataType& dataType);
+        QString getTabLabel();
 };
 
 #endif // MULTIEDITORHEX_H
