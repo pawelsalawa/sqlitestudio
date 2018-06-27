@@ -133,6 +133,21 @@ QStringList ConfigMock::getCliHistory() const
     return QStringList();
 }
 
+void ConfigMock::addBindParamHistory(const QList<QPair<QString, QVariant> >&)
+{
+
+}
+
+void ConfigMock::applyBindParamHistoryLimit()
+{
+
+}
+
+QList<QPair<QString, QVariant>> ConfigMock::getBindParamHistory(const QStringList&) const
+{
+    return QList<QPair<QString, QVariant>>();
+}
+
 void ConfigMock::addDdlHistory(const QString&, const QString&, const QString&)
 {
 }

@@ -37,6 +37,9 @@ class ConfigMock : public Config
         void applyCliHistoryLimit();
         void clearCliHistory();
         QStringList getCliHistory() const;
+        void addBindParamHistory(const QList<QPair<QString, QVariant>>&);
+        void applyBindParamHistoryLimit();
+        QList<QPair<QString, QVariant>> getBindParamHistory(const QStringList&) const;
         void addDdlHistory(const QString&, const QString&, const QString&);
         QList<DdlHistoryEntryPtr> getDdlHistoryFor(const QString&, const QString&, const QDate&);
         DdlHistoryModel* getDdlHistoryModel();
