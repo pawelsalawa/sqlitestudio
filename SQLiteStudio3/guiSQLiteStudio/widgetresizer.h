@@ -24,6 +24,7 @@ class GUI_API_EXPORT WidgetResizer : public QWidget
         QSize getWidgetMinimumSize() const;
         void setWidgetMinimumSize(const QSize& value);
         void setWidgetMinimumSize(int width, int height);
+        void minimizeHeight();
 
     protected:
         void mouseMoveEvent(QMouseEvent* event);

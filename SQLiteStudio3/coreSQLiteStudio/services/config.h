@@ -155,9 +155,9 @@ class API_EXPORT Config : public QObject
         virtual void clearCliHistory() = 0;
         virtual QStringList getCliHistory() const = 0;
 
-        virtual void addBindParamHistory(const QList<QPair<QString, QVariant>>& params) = 0;
+        virtual void addBindParamHistory(const QVector<QPair<QString, QVariant>>& params) = 0;
         virtual void applyBindParamHistoryLimit() = 0;
-        virtual QList<QPair<QString, QVariant>> getBindParamHistory(const QStringList& paramNames) const = 0;
+        virtual QVector<QPair<QString, QVariant>> getBindParamHistory(const QStringList& paramNames) const = 0;
 
         virtual void addDdlHistory(const QString& queries, const QString& dbName, const QString& dbFile) = 0;
         virtual QList<DdlHistoryEntryPtr> getDdlHistoryFor(const QString& dbName, const QString& dbFile, const QDate& date) = 0;

@@ -61,6 +61,7 @@ class GUI_API_EXPORT MultiEditor : public QWidget
         void updateVisibility();
         void updateNullEffect();
         void updateValue(const QVariant& newValue);
+        void setValueToWidget(MultiEditorWidget* editorWidget, const QVariant& newValue);
         void updateLabel();
         QVariant getValueOmmitNull() const;
         void initAddTabMenu();

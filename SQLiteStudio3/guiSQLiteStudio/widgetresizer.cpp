@@ -135,3 +135,8 @@ void WidgetResizer::setWidgetMinimumSize(int width, int height)
 {
     widgetMinimumSize = QSize(width, height);
 }
+
+void WidgetResizer::minimizeHeight()
+{
+    widget->setFixedHeight(widgetMinimumSize.height());
+}

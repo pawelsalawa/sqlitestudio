@@ -5,6 +5,7 @@
 #include <QVBoxLayout>
 #include <QAction>
 #include <QMenu>
+#include <QDebug>
 
 CFG_KEYS_DEFINE(MultiEditorText)
 

@@ -65,9 +65,9 @@ class API_EXPORT ConfigImpl : public Config
         void clearCliHistory();
         QStringList getCliHistory() const;
 
-        void addBindParamHistory(const QList<QPair<QString, QVariant>>& params);
+        void addBindParamHistory(const QVector<QPair<QString, QVariant>>& params);
         void applyBindParamHistoryLimit();
-        QList<QPair<QString, QVariant>> getBindParamHistory(const QStringList& paramNames) const;
+        QVector<QPair<QString, QVariant>> getBindParamHistory(const QStringList& paramNames) const;
 
         void addDdlHistory(const QString& queries, const QString& dbName, const QString& dbFile);
         QList<DdlHistoryEntryPtr> getDdlHistoryFor(const QString& dbName, const QString& dbFile, const QDate& date);
@@ -111,7 +111,7 @@ class API_EXPORT ConfigImpl : public Config
         void asyncApplyCliHistoryLimit();
         void asyncClearCliHistory();
 
-        void asyncAddBindParamHistory(const QList<QPair<QString, QVariant>>& params);
+        void asyncAddBindParamHistory(const QVector<QPair<QString, QVariant>>& params);
         void asyncApplyBindParamHistoryLimit();
 
         void asyncAddDdlHistory(const QString& queries, const QString& dbName, const QString& dbFile);

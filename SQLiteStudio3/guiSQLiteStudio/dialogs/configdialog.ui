@@ -229,7 +229,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="databaseListPage">
           <layout class="QVBoxLayout" name="verticalLayout_36">
@@ -407,8 +407,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>564</width>
-                <height>580</height>
+                <width>577</width>
+                <height>472</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_34">
@@ -837,8 +837,8 @@
                 </property>
                </widget>
               </item>
-              <item row="2" column="0">
-               <widget class="QCheckBox" name="checkBox">
+              <item row="3" column="0">
+               <widget class="QCheckBox" name="execQueryUnderCursorCheck">
                 <property name="toolTip">
                  <string>&lt;p&gt;If there is more than one query in the SQL editor window, then (if this option is enabled) only a single query will be executed - the one under the keyboard insertion cursor. Otherwise all queries will be executed. You can always limit queries to be executed by selecting those queries before calling to execute.&lt;/p&gt;</string>
                 </property>
@@ -847,6 +847,29 @@
                 </property>
                 <property name="cfg" stdset="0">
                  <string notr="true">General.ExecuteCurrentQueryOnly</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QSpinBox" name="bindParamLimitSpin">
+                <property name="toolTip">
+                 <string>&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</string>
+                </property>
+                <property name="maximum">
+                 <number>999999</number>
+                </property>
+                <property name="cfg" stdset="0">
+                 <string>General.BindParamsCacheSize</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="bindParamLimitLabel">
+                <property name="toolTip">
+                 <string>&lt;p&gt;Maximum number of query parameters (:param, @param, $param, ?) stored in history. When you re-use parameter with the same name/position, SQLiteStudio will pre-initialize it with most recent memorized value (you will still be able to change it). Value of 1000 should be sufficient.&lt;/p&gt;</string>
+                </property>
+                <property name="text">
+                 <string>Number of memorized query parameters</string>
                 </property>
                </widget>
               </item>
@@ -1027,8 +1050,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>447</width>
-                <height>307</height>
+                <width>335</width>
+                <height>237</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_31">
@@ -1448,8 +1471,8 @@
                         <string notr="true">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:8pt;&quot;&gt;Abcdefgh&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Abcdefgh&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                        </property>
                       </widget>
                      </item>
@@ -1539,8 +1562,8 @@ p, li { white-space: pre-wrap; }
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>268</width>
-                <height>328</height>
+                <width>196</width>
+                <height>263</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -1661,8 +1684,8 @@ p, li { white-space: pre-wrap; }
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>331</width>
-                <height>829</height>
+                <width>247</width>
+                <height>701</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -2237,7 +2260,7 @@ p, li { white-space: pre-wrap; }
   <tabstop>ddlHistorySizeSpin</tabstop>
   <tabstop>dontShowDdlPreview</tabstop>
   <tabstop>queryHistorySizeSpin</tabstop>
-  <tabstop>checkBox</tabstop>
+  <tabstop>execQueryUnderCursorCheck</tabstop>
   <tabstop>expandTablesCheck</tabstop>
   <tabstop>activeStyleCombo</tabstop>
   <tabstop>previewTabs</tabstop>

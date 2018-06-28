@@ -352,7 +352,7 @@ QStringList ConfigImpl::getCliHistory() const
     return results->columnAsList<QString>("text");
 }
 
-void ConfigImpl::addBindParamHistory(const QList<QPair<QString, QVariant> >& params)
+void ConfigImpl::addBindParamHistory(const QVector<QPair<QString, QVariant> >& params)
 {
     QtConcurrent::run(this, &ConfigImpl::asyncAddBindParamHistory, params);
 }
@@ -362,15 +362,16 @@ void ConfigImpl::applyBindParamHistoryLimit()
     QtConcurrent::run(this, &ConfigImpl::asyncApplyBindParamHistoryLimit);
 }
 
-QList<QPair<QString, QVariant>> ConfigImpl::getBindParamHistory(const QStringList& paramNames) const
+QVector<QPair<QString, QVariant>> ConfigImpl::getBindParamHistory(const QStringList& paramNames) const
 {
-    static_qstring(directQuery, "SELECT id FROM bind_params WHERE pattern = ?");
+    static_qstring(directQuery, "SELECT id FROM bind_params WHERE pattern = ? ORDER BY id DESC");
     static_qstring(paramsByIdQuery, "SELECT name, value FROM bind_param_values WHERE bind_params_id = ? ORDER BY position");
     static_qstring(singleParamQuery, "SELECT value FROM bind_param_values WHERE %1 = ? ORDER BY id DESC LIMIT 1;");
     static_qstring(singleParamName, "name");
     static_qstring(singleParamPosition, "position");
 
-    QList<QPair<QString, QVariant>> bindParams;
+    QVector<QPair<QString, QVariant>> bindParams;
+    bindParams.reserve(paramNames.size());
 
     SqlQueryPtr results = db->exec(directQuery, {paramNames.join(",")});
     if (results->isError())
@@ -844,14 +845,14 @@ void ConfigImpl::asyncClearCliHistory()
         qWarning() << "Error while clearing CLI history:" << db->getErrorText();
 }
 
-void ConfigImpl::asyncAddBindParamHistory(const QList<QPair<QString, QVariant> >& params)
+void ConfigImpl::asyncAddBindParamHistory(const QVector<QPair<QString, QVariant> >& params)
 {
     static_qstring(insertParamsQuery, "INSERT INTO bind_params (pattern) VALUES (?)");
     static_qstring(insertValuesQuery, "INSERT INTO bind_param_values (bind_params_id, position, name, value) VALUES (?, ?, ?, ?)");
 
-    if (db->begin())
+    if (!db->begin())
     {
-        qWarning() << "Failed to store BindParam cache, because could not begin SQL transaction. Details:" << db->getErrorCode();
+        qWarning() << "Failed to store BindParam cache, because could not begin SQL transaction. Details:" << db->getErrorText();
         return;
     }
 
@@ -877,15 +878,17 @@ void ConfigImpl::asyncAddBindParamHistory(const QList<QPair<QString, QVariant> >
 
     if (!db->commit())
     {
-        qWarning() << "Failed to store BindParam cache, because could not commit SQL transaction. Details:" << db->getErrorCode();
+        qWarning() << "Failed to store BindParam cache, because could not commit SQL transaction. Details:" << db->getErrorText();
         db->rollback();
     }
+
+    asyncApplyBindParamHistoryLimit();
 }
 
 void ConfigImpl::asyncApplyBindParamHistoryLimit()
 {
-    static_qstring(findBindParamIdQuery, "SELECT bind_param_id FROM bind_param_values ORDER BY id DESC LIMIT 1 OFFSET %1");
-    static_qstring(limitBindParamsQuery, "DELETE FROM bind_param WHERE id <= ?"); // will cascade with FK to bind_param_values
+    static_qstring(findBindParamIdQuery, "SELECT bind_params_id FROM bind_param_values ORDER BY id DESC LIMIT 1 OFFSET %1");
+    static_qstring(limitBindParamsQuery, "DELETE FROM bind_params WHERE id <= ?"); // will cascade with FK to bind_param_values
 
     SqlQueryPtr results = db->exec(findBindParamIdQuery.arg(CFG_CORE.General.BindParamsCacheSize.get()));
     if (results->isError())

@@ -23,11 +23,11 @@ class BindParamsDialog : public QDialog
     private:
         void init();
         void initEditors();
-        void initEditor(BindParam* param);
+        MultiEditor* initEditor(BindParam* param, const QVariant& cachedValue);
 
         static const int margins = 2;
         static const int spacing = 2;
-        static const int minimumFieldHeight = 30;
+        static const int minimumFieldHeight = 80;
 
         Ui::BindParamsDialog *ui;
         QVector<BindParam*> bindParams;

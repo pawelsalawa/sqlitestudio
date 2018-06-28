@@ -409,10 +409,15 @@ void MultiEditor::updateValue(const QVariant& newValue)
     for (int i = 0; i < tabs->count(); i++)
     {
         editorWidget = dynamic_cast<MultiEditorWidget*>(tabs->widget(i));
-        editorWidget->setValue(newValue);
-        editorWidget->setUpToDate(true);
+        setValueToWidget(editorWidget, newValue);
     }
     invalidatingDisabled = false;
+}
+
+void MultiEditor::setValueToWidget(MultiEditorWidget* editorWidget, const QVariant& newValue)
+{
+    editorWidget->setValue(newValue);
+    editorWidget->setUpToDate(true);
 }
 
 void MultiEditor::updateLabel()
@@ -448,6 +453,8 @@ void MultiEditor::addPluginToMenu(MultiEditorWidgetPlugin* plugin)
         MultiEditorWidget* editor = plugin->getInstance();
         editor->setTabLabel(plugin->getTabLabel());
         addEditor(editor);
+        setValueToWidget(editor, valueBeforeNull);
+        showTab(tabs->count() - 1);
     });
 }
 
