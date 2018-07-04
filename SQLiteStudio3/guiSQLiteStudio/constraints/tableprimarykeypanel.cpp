@@ -1,5 +1,6 @@
 #include "tableprimarykeypanel.h"
 #include "ui_tablepkanduniquepanel.h"
+#include "uiutils.h"
 #include <QDebug>
 
 TablePrimaryKeyPanel::TablePrimaryKeyPanel(QWidget *parent) :
@@ -50,7 +51,7 @@ void TablePrimaryKeyPanel::updateState()
         item = columnsLayout->itemAtPosition(i, 0)->widget();
         cb = qobject_cast<QCheckBox*>(item);
         if (cb->isChecked())
-            columns << cb->text();
+            columns << cb->property(UI_PROP_COLUMN).toString();
     }
 
     if (columns.size() != 1)

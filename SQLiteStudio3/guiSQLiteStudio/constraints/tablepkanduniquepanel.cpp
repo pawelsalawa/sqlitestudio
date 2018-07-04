@@ -71,6 +71,7 @@ void TablePrimaryKeyAndUniquePanel::buildColumn(SqliteCreateTable::Column* colum
     int col = 0;
 
     QCheckBox* check = new QCheckBox(column->name);
+    check->setProperty(UI_PROP_COLUMN, column->name);
     columnsLayout->addWidget(check, row, col++);
     columnSignalMapping->setMapping(check, row);
     connect(check, SIGNAL(toggled(bool)), columnSignalMapping, SLOT(map()));
@@ -109,7 +110,7 @@ int TablePrimaryKeyAndUniquePanel::getColumnIndex(const QString& colName)
     {
         item = columnsLayout->itemAtPosition(i, 0)->widget();
         cb = qobject_cast<QCheckBox*>(item);
-        if (cb->text().compare(colName, Qt::CaseInsensitive) == 0)
+        if (cb->property(UI_PROP_COLUMN).toString().compare(colName, Qt::CaseInsensitive) == 0)
             return i;
     }
     return -1;
@@ -207,7 +208,7 @@ void TablePrimaryKeyAndUniquePanel::storeConfiguration()
         if (!check->isChecked())
             continue;
 
-        name = check->text();
+        name = check->property(UI_PROP_COLUMN).toString();
 
         if (constr->dialect == Dialect::Sqlite3)
         {

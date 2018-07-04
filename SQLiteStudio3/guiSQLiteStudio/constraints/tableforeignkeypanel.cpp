@@ -156,7 +156,7 @@ void TableForeignKeyPanel::updateColumnState(int rowIdx, bool tableSelected)
     if (!wasEnabled && check->isEnabled())
     {
         // Automatically set matching column
-        int idx = fkColumnsModel.stringList().indexOf(check->text());
+        int idx = fkColumnsModel.stringList().indexOf(check->property(UI_PROP_COLUMN).toString());
         if (idx > -1)
             combo->setCurrentIndex(idx);
     }
@@ -200,6 +200,7 @@ void TableForeignKeyPanel::buildColumn(SqliteCreateTable::Column* column, int ro
     int col = 0;
 
     QCheckBox* check = new QCheckBox(column->name);
+    check->setProperty(UI_PROP_COLUMN, column->name);
     columnsLayout->addWidget(check, row, col++);
     columnSignalMapping->setMapping(check, row);
     connect(check, SIGNAL(toggled(bool)), columnSignalMapping, SLOT(map()));
@@ -334,7 +335,7 @@ void TableForeignKeyPanel::storeConfiguration()
         if (!check->isChecked())
             continue;
 
-        idxCol = new SqliteIndexedColumn(check->text());
+        idxCol = new SqliteIndexedColumn(check->property(UI_PROP_COLUMN).toString());
         idxCol->setParent(constr);
         constr->indexedColumns << idxCol;
 
@@ -407,7 +408,7 @@ int TableForeignKeyPanel::getColumnIndex(const QString& colName)
     {
         item = columnsLayout->itemAtPosition(i, 0)->widget();
         cb = qobject_cast<QCheckBox*>(item);
-        if (cb->text().compare(colName, Qt::CaseInsensitive) == 0)
+        if (cb->property(UI_PROP_COLUMN).toString().compare(colName, Qt::CaseInsensitive) == 0)
             return i;
     }
     return -1;

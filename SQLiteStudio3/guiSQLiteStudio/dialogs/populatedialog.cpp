@@ -150,6 +150,7 @@ void PopulateDialog::refreshColumns()
     for (const QString& column : columns)
     {
         check = new QCheckBox(column);
+        check->setProperty(UI_PROP_COLUMN, column);
         connect(check, SIGNAL(toggled(bool)), checkMapper, SLOT(map()));
         checkMapper->setMapping(check, row);
 
@@ -230,7 +231,8 @@ void PopulateDialog::configurePlugin(int index)
 
     engine->getConfig()->savepoint();
 
-    PopulateConfigDialog dialog(engine, columnEntries[index].check->text(), columnEntries[index].combo->currentText(), this);
+    QString colName = columnEntries[index].check->property(UI_PROP_COLUMN).toString();
+    PopulateConfigDialog dialog(engine, colName, columnEntries[index].combo->currentText(), this);
     if (dialog.exec() != QDialog::Accepted)
         engine->getConfig()->restore();
 
@@ -313,8 +315,8 @@ void PopulateDialog::accept()
         if (!entry.engine)
             return;
 
-        engines[entry.check->text()] = entry.engine;
-//        entry.engine = nullptr; // to avoid deleting it in the entry's destructor - worker will delete it after it's done
+        engines[entry.check->property(UI_PROP_COLUMN).toString()] = entry.engine;
+        // entry.engine = nullptr; // to avoid deleting it in the entry's destructor - worker will delete it after it's done
     }
 
     QString table = ui->tableCombo->currentText();

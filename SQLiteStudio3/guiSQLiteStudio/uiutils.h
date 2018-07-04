@@ -20,4 +20,6 @@ GUI_API_EXPORT QPixmap addOpacity(const QPixmap& input, float opacity);
 GUI_API_EXPORT void limitDialogWidth(QDialog* dialog);
 GUI_API_EXPORT void fixTextCursorSelectedText(QString& text);
 
+#define UI_PROP_COLUMN "column_name"
+
 #endif // UIUTILS_H
