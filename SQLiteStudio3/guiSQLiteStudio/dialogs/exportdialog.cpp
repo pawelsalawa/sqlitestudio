@@ -373,6 +373,8 @@ void ExportDialog::formatPageDisplayed()
     }
     readStdConfig();
     pluginSelected();
+
+    emit formatPageCompleteChanged();
 }
 
 ExportPlugin* ExportDialog::getSelectedPlugin() const
