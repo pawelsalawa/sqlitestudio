@@ -324,8 +324,8 @@ QString JsonExport::escapeString(const QString& str)
 {
     QString copy = str;
     return "\"" +
-            copy.replace("\"", "\\\"")
-                .replace("\\", "\\\\")
+            copy.replace("\\", "\\\\")
+                .replace("\"", "\\\"")
                 .replace("/", "\\/")
                 .replace("\b", "\\b")
                 .replace("\f", "\\f")

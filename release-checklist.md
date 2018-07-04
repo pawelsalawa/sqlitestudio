@@ -1,3 +1,4 @@
+- [x] Upgrade SQLCipher and WxSqlite versions.
 - [x] Check if app compiles for different Qt versions
 - [x] Verify final release version
 - [x] Update ChangeLog
@@ -12,5 +13,3 @@
 - [x] Regenerate ChangeLog on website
 - [x] Update News on homepage
 - [x] Post news on FB
-
-
