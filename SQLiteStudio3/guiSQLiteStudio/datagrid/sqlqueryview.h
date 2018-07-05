@@ -7,6 +7,7 @@
 #include "guiSQLiteStudio_global.h"
 #include "common/table.h"
 #include <QTableView>
+#include <QHeaderView>
 
 class SqlQueryItemDelegate;
 class SqlQueryItem;
@@ -82,6 +83,14 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void setIgnoreColumnWidthChanges(bool ignore);
 
     private:
+        class Header : public QHeaderView
+        {
+            public:
+                explicit Header(SqlQueryView* parent);
+
+                QSize sectionSizeFromContents(int section) const;
+        };
+
         void init();
         void setupWidgetCover();
         void createActions();
@@ -96,6 +105,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void copy(bool withHeaders);
 
         constexpr static const char* mimeDataId = "application/x-sqlitestudio-data-view-data";
+        constexpr static const int minHeaderWidth = 15;
 
         SqlQueryItemDelegate* itemDelegate = nullptr;
         QMenu* contextMenu = nullptr;

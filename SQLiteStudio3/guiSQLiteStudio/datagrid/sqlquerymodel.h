@@ -165,7 +165,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
     protected:
         class CommitUpdateQueryBuilder : public RowIdConditionBuilder
         {
-        public:
+            public:
                 void clear();
 
                 void setDatabase(const QString& database);

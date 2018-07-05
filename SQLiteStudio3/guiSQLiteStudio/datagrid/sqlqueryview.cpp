@@ -17,7 +17,6 @@
 #include "common/utils_sql.h"
 #include "querygenerator.h"
 #include "services/codeformatter.h"
-#include <QHeaderView>
 #include <QPushButton>
 #include <QProgressBar>
 #include <QGridLayout>
@@ -57,10 +56,12 @@ void SqlQueryView::init()
     contextMenu = new QMenu(this);
     referencedTablesMenu = new QMenu(tr("Go to referenced row in..."), contextMenu);
 
+    setHorizontalHeader(new Header(this));
+
     connect(this, &QWidget::customContextMenuRequested, this, &SqlQueryView::customContextMenuRequested);
     connect(CFG_UI.Fonts.DataView, SIGNAL(changed(QVariant)), this, SLOT(updateFont()));
     connect(this, SIGNAL(activated(QModelIndex)), this, SLOT(itemActivated(QModelIndex)));
-    connect(this->horizontalHeader(), &QHeaderView::sectionResized, [this](int section, int, int newSize)
+    connect(horizontalHeader(), &QHeaderView::sectionResized, [this](int section, int, int newSize)
     {
         if (ignoreColumnWidthChanges)
             return;
@@ -769,4 +770,21 @@ void SqlQueryView::openValueEditor()
 int qHash(SqlQueryView::Action action)
 {
     return static_cast<int>(action);
+}
+
+SqlQueryView::Header::Header(SqlQueryView* parent) :
+    QHeaderView(Qt::Horizontal, parent)
+{
+}
+
+QSize SqlQueryView::Header::sectionSizeFromContents(int section) const
+{
+    QSize originalSize = QHeaderView::sectionSizeFromContents(section);
+    int colCount = dynamic_cast<SqlQueryView*>(parent())->getModel()->columnCount();
+    if (colCount <= 5)
+        return originalSize;
+
+    int wd = minHeaderWidth;
+    wd = qMin((wd + wd * 20 / colCount), originalSize.width());
+    return QSize(wd, originalSize.height());
 }
