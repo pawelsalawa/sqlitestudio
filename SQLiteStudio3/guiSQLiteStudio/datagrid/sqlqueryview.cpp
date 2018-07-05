@@ -86,6 +86,7 @@ void SqlQueryView::setupWidgetCover()
 void SqlQueryView::createActions()
 {
     createAction(COPY, ICONS.ACT_COPY, tr("Copy"), this, SLOT(copy()), this);
+    createAction(COPY_WITH_HEADER, ICONS.ACT_COPY, tr("Copy with headers"), this, SLOT(copyWithHeader()), this);
     createAction(COPY_AS, ICONS.ACT_COPY, tr("Copy as..."), this, SLOT(copyAs()), this);
     createAction(PASTE, ICONS.ACT_PASTE, tr("Paste"), this, SLOT(paste()), this);
     createAction(PASTE_AS, ICONS.ACT_PASTE, tr("Paste as..."), this, SLOT(pasteAs()), this);
@@ -188,6 +189,7 @@ void SqlQueryView::setupActionsForMenu(SqlQueryItem* currentItem, const QList<Sq
 
         contextMenu->addSeparator();
         contextMenu->addAction(actionMap[COPY]);
+        contextMenu->addAction(actionMap[COPY_WITH_HEADER]);
         //contextMenu->addAction(actionMap[COPY_AS]); // TODO uncomment when implemented
         contextMenu->addAction(actionMap[PASTE]);
         //contextMenu->addAction(actionMap[PASTE_AS]); // TODO uncomment when implemented
@@ -431,6 +433,78 @@ void SqlQueryView::goToReferencedRow(const QString& table, const QString& column
     win->execute();
 }
 
+void SqlQueryView::copy(bool withHeader)
+{
+    if (simpleBrowserMode)
+        return;
+
+    QList<SqlQueryItem*> selectedItems = getSelectedItems();
+    QList<QList<SqlQueryItem*> > groupedItems = SqlQueryModel::groupItemsByRows(selectedItems);
+
+    if (selectedItems.isEmpty())
+        return;
+
+    QVariant itemValue;
+    QStringList cells;
+    QList<QStringList> rows;
+
+    QPair<QString,QList<QList<QVariant>>> theDataPair;
+    QList<QList<QVariant>> theData;
+    QList<QVariant> theDataRow;
+
+    // Header
+    if (withHeader)
+    {
+        for (SqlQueryModelColumnPtr col : getModel()->getColumns().mid(0, groupedItems.first().size()))
+        {
+            theDataRow << col->displayName;
+            cells << col->displayName;
+        }
+
+        rows << cells;
+        cells.clear();
+
+        theData << theDataRow;
+        theDataRow.clear();
+    }
+
+    // Data
+    for (const QList<SqlQueryItem*>& itemsInRows : groupedItems)
+    {
+        for (SqlQueryItem* item : itemsInRows)
+        {
+            itemValue = item->getFullValue();
+            if (itemValue.userType() == QVariant::Double)
+                cells << doubleToString(itemValue);
+            else
+                cells << itemValue.toString();
+
+            theDataRow << itemValue;
+        }
+
+        rows << cells;
+        cells.clear();
+
+        theData << theDataRow;
+        theDataRow.clear();
+    }
+
+    QMimeData* mimeData = new QMimeData();
+    QString tsv = TsvSerializer::serialize(rows);
+    mimeData->setText(tsv);
+
+    QString md5 = QCryptographicHash::hash(tsv.toUtf8(), QCryptographicHash::Md5);
+    theDataPair.first = md5;
+    theDataPair.second = theData;
+
+    QByteArray serializedData;
+    QDataStream stream(&serializedData, QIODevice::WriteOnly);
+    stream << theDataPair;
+    mimeData->setData(mimeDataId, serializedData);
+
+    qApp->clipboard()->setMimeData(mimeData);
+}
+
 bool SqlQueryView::getSimpleBrowserMode() const
 {
     return simpleBrowserMode;
@@ -532,54 +606,12 @@ void SqlQueryView::setCurrentRow(int row)
 
 void SqlQueryView::copy()
 {
-    if (simpleBrowserMode)
-        return;
+    copy(false);
+}
 
-    QList<SqlQueryItem*> selectedItems = getSelectedItems();
-    QList<QList<SqlQueryItem*> > groupedItems = SqlQueryModel::groupItemsByRows(selectedItems);
-
-    QVariant itemValue;
-    QStringList cells;
-    QList<QStringList> rows;
-
-    QPair<QString,QList<QList<QVariant>>> theDataPair;
-    QList<QList<QVariant>> theData;
-    QList<QVariant> theDataRow;
-
-    foreach (const QList<SqlQueryItem*>& itemsInRows, groupedItems)
-    {
-        foreach (SqlQueryItem* item, itemsInRows)
-        {
-            itemValue = item->getFullValue();
-            if (itemValue.userType() == QVariant::Double)
-                cells << doubleToString(itemValue);
-            else
-                cells << itemValue.toString();
-
-            theDataRow << itemValue;
-        }
-
-        rows << cells;
-        cells.clear();
-
-        theData << theDataRow;
-        theDataRow.clear();
-    }
-
-    QMimeData* mimeData = new QMimeData();
-    QString tsv = TsvSerializer::serialize(rows);
-    mimeData->setText(tsv);
-
-    QString md5 = QCryptographicHash::hash(tsv.toUtf8(), QCryptographicHash::Md5);
-    theDataPair.first = md5;
-    theDataPair.second = theData;
-
-    QByteArray serializedData;
-    QDataStream stream(&serializedData, QIODevice::WriteOnly);
-    stream << theDataPair;
-    mimeData->setData(mimeDataId, serializedData);
-
-    qApp->clipboard()->setMimeData(mimeData);
+void SqlQueryView::copyWithHeader()
+{
+    copy(true);
 }
 
 void SqlQueryView::paste()
