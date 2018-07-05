@@ -48,7 +48,10 @@ void PopulateDialog::init()
     });
 
     for (PopulatePlugin* plugin : plugins)
+    {
+        pluginByName[plugin->getName()] = plugin;
         pluginTitles << plugin->getTitle();
+    }
 
     widgetCover = new WidgetCover(this);
     widgetCover->initWithInterruptContainer(tr("Abort"));
@@ -94,12 +97,29 @@ void PopulateDialog::deleteEngines(const QList<PopulateEngine*>& engines)
         delete engine;
 }
 
-void PopulateDialog::rebuildEngines()
+void PopulateDialog::rebuildEngines(const QHash<QString, QPair<QString, QVariant>>& columnConfig)
 {
     int row = 0;
+    QVariant config;
+    QString pluginName;
     for (const ColumnEntry& entry : columnEntries)
     {
-        pluginSelected(entry.combo, entry.combo->currentIndex());
+        pluginName.clear();
+        if (columnConfig.contains(entry.column))
+            pluginName = columnConfig[entry.column].first;
+
+        if (pluginName.isNull())
+        {
+            pluginName = plugins[entry.combo->currentIndex()]->getName();
+            config = CFG->getPopulateHistory(pluginName);
+        }
+        else
+        {
+            entry.combo->setCurrentIndex(plugins.indexOf(pluginByName[pluginName]));
+            config = columnConfig[entry.column].second;
+        }
+
+        pluginSelected(entry.combo, entry.combo->currentIndex(), config);
         updateColumnState(row++, false);
     }
 }
@@ -135,6 +155,8 @@ void PopulateDialog::refreshColumns()
         return;
     }
 
+    QString table = ui->tableCombo->currentText();
+
     buttonMapper = new QSignalMapper(this);
     connect(buttonMapper, SIGNAL(mapped(int)), this, SLOT(configurePlugin(int)));
 
@@ -142,17 +164,25 @@ void PopulateDialog::refreshColumns()
     connect(checkMapper, SIGNAL(mapped(int)), this, SLOT(updateColumnState(int)));
 
     SchemaResolver resolver(db);
-    QStringList columns = resolver.getTableColumns(ui->tableCombo->currentText());
+    QStringList columns = resolver.getTableColumns(table);
     QCheckBox* check = nullptr;
     QComboBox* combo = nullptr;
     QToolButton* btn = nullptr;
+
+    int rows = -1;
+    QHash<QString, QPair<QString, QVariant>> columnConfig = CFG->getPopulateHistory(db->getName(), table, rows);
+    if (rows > -1)
+        ui->rowsSpin->setValue(rows);
+
     int row = 0;
     for (const QString& column : columns)
     {
         check = new QCheckBox(column);
-        check->setProperty(UI_PROP_COLUMN, column);
         connect(check, SIGNAL(toggled(bool)), checkMapper, SLOT(map()));
         checkMapper->setMapping(check, row);
+
+        if (columnConfig.contains(column))
+            check->setChecked(true);
 
         combo = new QComboBox();
         combo->addItems(pluginTitles);
@@ -166,11 +196,11 @@ void PopulateDialog::refreshColumns()
         ui->columnsLayout->addWidget(check, row, 0);
         ui->columnsLayout->addWidget(combo, row, 1);
         ui->columnsLayout->addWidget(btn, row, 2);
-        columnEntries << ColumnEntry(check, combo, btn);
+        columnEntries << ColumnEntry(column, check, combo, btn);
         row++;
     }
 
-    rebuildEngines();
+    rebuildEngines(columnConfig);
 
     QSpacerItem* spacer = new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::MinimumExpanding);
     ui->columnsLayout->addItem(spacer, row, 0, 1, 3);
@@ -180,11 +210,15 @@ void PopulateDialog::refreshColumns()
 
 void PopulateDialog::pluginSelected(int index)
 {
+    QVariant config;
+    if (index >= 0 && index < plugins.size())
+        config = CFG->getPopulateHistory(plugins[index]->getName());
+
     QComboBox* cb = dynamic_cast<QComboBox*>(sender());
-    pluginSelected(cb, index);
+    pluginSelected(cb, index, config);
 }
 
-void PopulateDialog::pluginSelected(QComboBox* combo, int index)
+void PopulateDialog::pluginSelected(QComboBox* combo, int index, const QVariant& config)
 {
     if (!combo)
         return;
@@ -210,7 +244,11 @@ void PopulateDialog::pluginSelected(QComboBox* combo, int index)
     if (index < 0 || index >= plugins.size())
         return;
 
-    entry->engine = plugins[index]->createEngine();
+    entry->plugin = plugins[index];
+    entry->engine = entry->plugin->createEngine();
+    if (config.isValid())
+        entry->engine->getConfig()->setValuesFromQVariant(config);
+
     updateColumnState(columnIndex);
 }
 
@@ -231,7 +269,7 @@ void PopulateDialog::configurePlugin(int index)
 
     engine->getConfig()->savepoint();
 
-    QString colName = columnEntries[index].check->property(UI_PROP_COLUMN).toString();
+    QString colName = columnEntries[index].column;
     PopulateConfigDialog dialog(engine, colName, columnEntries[index].combo->currentText(), this);
     if (dialog.exec() != QDialog::Accepted)
         engine->getConfig()->restore();
@@ -306,6 +344,7 @@ void PopulateDialog::accept()
     if (!db)
         return;
 
+    QHash<QString, QPair<QString, QVariant>> configForHistory;
     QHash<QString,PopulateEngine*> engines;
     for (ColumnEntry& entry : columnEntries)
     {
@@ -315,16 +354,19 @@ void PopulateDialog::accept()
         if (!entry.engine)
             return;
 
-        engines[entry.check->property(UI_PROP_COLUMN).toString()] = entry.engine;
+        engines[entry.column] = entry.engine;
         // entry.engine = nullptr; // to avoid deleting it in the entry's destructor - worker will delete it after it's done
+
+        configForHistory[entry.column] = QPair<QString, QVariant>(entry.plugin->getName(), entry.engine->getConfig()->toQVariant());
     }
 
     QString table = ui->tableCombo->currentText();
-    qint64 rows = ui->rowsSpin->value();
+    int rows = ui->rowsSpin->value();
 
     started = true;
     widgetCover->displayProgress(rows, "%v / %m");
     widgetCover->show();
+    CFG->addPopulateHistory(db->getName(), table, rows, configForHistory);
     POPULATE_MANAGER->populate(db, table, engines, rows);
 }
 
@@ -336,8 +378,8 @@ void PopulateDialog::reject()
     QDialog::reject();
 }
 
-PopulateDialog::ColumnEntry::ColumnEntry(QCheckBox* check, QComboBox* combo, QToolButton* button) :
-    check(check), combo(combo), button(button)
+PopulateDialog::ColumnEntry::ColumnEntry(const QString& column, QCheckBox* check, QComboBox* combo, QToolButton* button) :
+    column(column), check(check), combo(combo), button(button)
 {
 }
 

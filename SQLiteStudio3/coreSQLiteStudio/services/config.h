@@ -21,6 +21,7 @@ CFG_CATEGORIES(Core,
         CFG_ENTRY(int,          SqlHistorySize,          10000)
         CFG_ENTRY(int,          DdlHistorySize,          1000)
         CFG_ENTRY(int,          BindParamsCacheSize,     1000)
+        CFG_ENTRY(int,          PopulateHistorySize,     100)
         CFG_ENTRY(QString,      LoadedPlugins,           "")
         CFG_ENTRY(QVariantHash, ActiveCodeFormatter,     QVariantHash())
         CFG_ENTRY(bool,         CheckUpdatesOnStartup,   true)
@@ -158,6 +159,11 @@ class API_EXPORT Config : public QObject
         virtual void addBindParamHistory(const QVector<QPair<QString, QVariant>>& params) = 0;
         virtual void applyBindParamHistoryLimit() = 0;
         virtual QVector<QPair<QString, QVariant>> getBindParamHistory(const QStringList& paramNames) const = 0;
+
+        virtual void addPopulateHistory(const QString& database, const QString& table, int rows, const QHash<QString, QPair<QString, QVariant>>& columnsPluginsConfig) = 0;
+        virtual void applyPopulateHistoryLimit() = 0;
+        virtual QHash<QString, QPair<QString, QVariant>> getPopulateHistory(const QString& database, const QString& table, int& rows) const = 0;
+        virtual QVariant getPopulateHistory(const QString& pluginName) const = 0;
 
         virtual void addDdlHistory(const QString& queries, const QString& dbName, const QString& dbFile) = 0;
         virtual QList<DdlHistoryEntryPtr> getDdlHistoryFor(const QString& dbName, const QString& dbFile, const QDate& date) = 0;

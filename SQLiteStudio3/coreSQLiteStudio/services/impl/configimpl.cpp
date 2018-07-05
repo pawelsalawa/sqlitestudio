@@ -94,11 +94,7 @@ bool ConfigImpl::isMassSaving() const
 
 void ConfigImpl::set(const QString &group, const QString &key, const QVariant &value)
 {
-    QByteArray bytes;
-    QDataStream stream(&bytes, QIODevice::WriteOnly);
-    stream << value;
-
-    db->exec("INSERT OR REPLACE INTO settings VALUES (?, ?, ?)", {group, key, bytes});
+    db->exec("INSERT OR REPLACE INTO settings VALUES (?, ?, ?)", {group, key, serializeValue(value)});
 }
 
 QVariant ConfigImpl::get(const QString &group, const QString &key)
@@ -412,6 +408,62 @@ QVector<QPair<QString, QVariant>> ConfigImpl::getBindParamHistory(const QStringL
     return bindParams;
 }
 
+void ConfigImpl::addPopulateHistory(const QString& database, const QString& table, int rows, const QHash<QString, QPair<QString, QVariant> >& columnsPluginsConfig)
+{
+    QtConcurrent::run(this, &ConfigImpl::asyncAddPopulateHistory, database, table, rows, columnsPluginsConfig);
+}
+
+void ConfigImpl::applyPopulateHistoryLimit()
+{
+    QtConcurrent::run(this, &ConfigImpl::asyncApplyPopulateHistoryLimit);
+}
+
+QHash<QString, QPair<QString, QVariant>> ConfigImpl::getPopulateHistory(const QString& database, const QString& table, int& rows) const
+{
+    static_qstring(initialQuery, "SELECT id, rows FROM populate_history WHERE [database] = ? AND [table] = ? ORDER BY id DESC LIMIT 1");
+    static_qstring(columnsQuery, "SELECT column_name, plugin_name, plugin_config FROM populate_column_history WHERE populate_history_id = ?");
+
+    QHash<QString, QPair<QString, QVariant>> historyEntry;
+    SqlQueryPtr results = db->exec(initialQuery, {database, table});
+    if (results->isError())
+    {
+        qWarning() << "Error while getting Populating history entry (1):" << db->getErrorText();
+        return historyEntry;
+    }
+
+    if (!results->hasNext())
+        return historyEntry;
+
+    SqlResultsRowPtr row = results->next();
+    qint64 historyEntryId = row->value("id").toLongLong();
+    rows = row->value("rows").toInt();
+
+    results = db->exec(columnsQuery, {historyEntryId});
+    QVariant value;
+    while (results->hasNext())
+    {
+        row = results->next();
+        value = deserializeValue(row->value("plugin_config"));
+        historyEntry[row->value("column_name").toString()] = QPair<QString, QVariant>(row->value("plugin_name").toString(), value);
+    }
+
+    return historyEntry;
+}
+
+QVariant ConfigImpl::getPopulateHistory(const QString& pluginName) const
+{
+    static_qstring(columnsQuery, "SELECT plugin_config FROM populate_column_history WHERE plugin_name = ? ORDER BY id DESC LiMIT 1");
+
+    SqlQueryPtr results = db->exec(columnsQuery, {pluginName});
+    if (results->isError())
+    {
+        qWarning() << "Error while getting Populating history entry (2):" << db->getErrorText();
+        return QVariant();
+    }
+
+    return deserializeValue(results->getSingleCell());
+}
+
 void ConfigImpl::addDdlHistory(const QString& queries, const QString& dbName, const QString& dbFile)
 {
     QtConcurrent::run(this, &ConfigImpl::asyncAddDdlHistory, queries, dbName, dbFile);
@@ -642,6 +694,18 @@ void ConfigImpl::initTables()
         db->exec("CREATE INDEX bind_param_values_fk_idx ON bind_param_values (bind_params_id);");
     }
 
+    if (!tables.contains("populate_history"))
+    {
+        db->exec("CREATE TABLE populate_history (id INTEGER PRIMARY KEY AUTOINCREMENT, [database] TEXT NOT NULL, [table] TEXT NOT NULL, rows INTEGER NOT NULL)");
+    }
+
+    if (!tables.contains("populate_column_history"))
+    {
+        db->exec("CREATE TABLE populate_column_history (id INTEGER PRIMARY KEY AUTOINCREMENT, populate_history_id INTEGER REFERENCES populate_history (id) "
+                 "ON DELETE CASCADE ON UPDATE CASCADE NOT NULL, column_name TEXT NOT NULL, plugin_name TEXT NOT NULL, plugin_config BLOB)");
+        db->exec("CREATE INDEX populate_plugin_history_idx ON populate_column_history (plugin_name)");
+    }
+
     if (!tables.contains("reports_history"))
         db->exec("CREATE TABLE reports_history (id INTEGER PRIMARY KEY AUTOINCREMENT, timestamp INTEGER, feature_request BOOLEAN, title TEXT, url TEXT)");
 }
@@ -736,7 +800,15 @@ bool ConfigImpl::tryInitDbFile(const QPair<QString, bool> &dbPath)
     return true;
 }
 
-QVariant ConfigImpl::deserializeValue(const QVariant &value)
+QByteArray ConfigImpl::serializeValue(const QVariant& value) const
+{
+    QByteArray bytes;
+    QDataStream stream(&bytes, QIODevice::WriteOnly);
+    stream << value;
+    return bytes;
+}
+
+QVariant ConfigImpl::deserializeValue(const QVariant &value) const
 {
     if (!value.isValid())
         return QVariant();
@@ -898,6 +970,50 @@ void ConfigImpl::asyncApplyBindParamHistoryLimit()
     results = db->exec(limitBindParamsQuery, {bindParamId});
     if (results->isError())
         qWarning() << "Error while limiting BindParam history (step 2):" << db->getErrorText();
+}
+
+void ConfigImpl::asyncAddPopulateHistory(const QString& database, const QString& table, int rows, const QHash<QString, QPair<QString, QVariant>>& columnsPluginsConfig)
+{
+    static_qstring(insertQuery, "INSERT INTO populate_history ([database], [table], rows) VALUES (?, ?, ?)");
+    static_qstring(insertColumnQuery, "INSERT INTO populate_column_history (populate_history_id, column_name, plugin_name, plugin_config) VALUES (?, ?, ?, ?)");
+
+    if (!db->begin())
+    {
+        qWarning() << "Failed to store Populating history entry, because could not begin SQL transaction. Details:" << db->getErrorText();
+        return;
+    }
+
+    SqlQueryPtr results = db->exec(insertQuery, {database, table, rows});
+    RowId rowId = results->getInsertRowId();
+    qint64 populateHistoryId = rowId["ROWID"].toLongLong();
+
+    for (QHash<QString, QPair<QString, QVariant>>::const_iterator colIt = columnsPluginsConfig.begin(); colIt != columnsPluginsConfig.end(); colIt++)
+    {
+        results = db->exec(insertColumnQuery, {populateHistoryId, colIt.key(), colIt.value().first, serializeValue(colIt.value().second)});
+        if (results->isError())
+        {
+            qWarning() << "Failed to store Populating history entry, due to SQL error:" << db->getErrorText();
+            db->rollback();
+            return;
+        }
+    }
+
+    if (!db->commit())
+    {
+        qWarning() << "Failed to store Populating history entry, because could not commit SQL transaction. Details:" << db->getErrorText();
+        db->rollback();
+    }
+
+    asyncApplyPopulateHistoryLimit();
+}
+
+void ConfigImpl::asyncApplyPopulateHistoryLimit()
+{
+    static_qstring(limitQuery, "DELETE FROM populate_history WHERE id <= (SELECT id FROM populate_history ORDER BY id DESC LIMIT 1 OFFSET %1)");
+
+    SqlQueryPtr results = db->exec(limitQuery.arg(CFG_CORE.General.PopulateHistorySize.get()));
+    if (results->isError())
+        qWarning() << "Error while limiting Populating history:" << db->getErrorText();
 }
 
 void ConfigImpl::asyncAddDdlHistory(const QString& queries, const QString& dbName, const QString& dbFile)

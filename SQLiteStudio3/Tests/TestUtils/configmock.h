@@ -40,6 +40,10 @@ class ConfigMock : public Config
         void addBindParamHistory(const QVector<QPair<QString, QVariant>>&);
         void applyBindParamHistoryLimit();
         QVector<QPair<QString, QVariant>> getBindParamHistory(const QStringList&) const;
+        void addPopulateHistory(const QString&, const QString&, int, const QHash<QString, QPair<QString, QVariant>>&);
+        void applyPopulateHistoryLimit();
+        QHash<QString, QPair<QString, QVariant>> getPopulateHistory(const QString&, const QString&, int&) const;
+        QVariant getPopulateHistory(const QString&) const;
         void addDdlHistory(const QString&, const QString&, const QString&);
         QList<DdlHistoryEntryPtr> getDdlHistoryFor(const QString&, const QString&, const QDate&);
         DdlHistoryModel* getDdlHistoryModel();

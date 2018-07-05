@@ -2,6 +2,7 @@
 #include "config_builder/cfgcategory.h"
 #include "config_builder/cfgentry.h"
 #include "common/global.h"
+#include <QDebug>
 
 CfgMain* lastCreatedCfgMain = nullptr;
 QList<CfgMain*>* CfgMain::instances = nullptr;
@@ -153,6 +154,39 @@ QList<CfgEntry *> CfgMain::getEntries() const
     return entries;
 }
 
+void CfgMain::setValuesFromQVariant(const QVariant& cfgMainHash)
+{
+    QHash<QString, QVariant> mainHash = cfgMainHash.toHash();
+    if (mainHash.isEmpty())
+        return;
+
+    QHash<QString, QVariant>::const_iterator mainIt = mainHash.begin();
+    if (mainIt.key() != name)
+    {
+        qWarning() << "Tried to set CfgMain values from QVariant which does not have such main in its registry.";
+        return;
+    }
+
+    QHash<QString, QVariant> categoriesHash = mainIt.value().toHash();
+    QHash<QString, QVariant> entriesHash;
+    QHash<QString, CfgEntry*> entries;
+    for (QHash<QString, CfgCategory*>::const_iterator categoryIt = childs.begin(); categoryIt != childs.end(); categoryIt++)
+    {
+        if (!categoriesHash.contains(categoryIt.key()))
+            continue;
+
+        entriesHash = categoriesHash[categoryIt.key()].toHash();
+        entries = categoryIt.value()->getEntries();
+        for (QHash<QString, CfgEntry*>::const_iterator entryIt = entries.begin(); entryIt != entries.end(); entryIt++)
+        {
+            if (!entriesHash.contains(entryIt.key()))
+                continue;
+
+            entryIt.value()->set(entriesHash[entryIt.key()]);
+        }
+    }
+}
+
 bool CfgMain::isPersistable() const
 {
     return persistable;
@@ -171,6 +205,26 @@ const char *CfgMain::getMetaName() const
 QString CfgMain::getTitle() const
 {
     return title;
+}
+
+QVariant CfgMain::toQVariant() const
+{
+    QHash<QString, QVariant> categoriesVariant;
+    QHash<QString, QVariant> entriesVariant;
+    QHash<QString, CfgEntry*> entries;
+    for (QHash<QString, CfgCategory*>::const_iterator categoryIt = childs.begin(); categoryIt != childs.end(); categoryIt++)
+    {
+        entries = categoryIt.value()->getEntries();
+        entriesVariant.clear();
+        for (QHash<QString, CfgEntry*>::const_iterator entryIt = entries.begin(); entryIt != entries.end(); entryIt++)
+            entriesVariant[entryIt.key()] = entryIt.value()->get();
+
+        categoriesVariant[categoryIt.key()] = entriesVariant;
+    }
+
+    QHash<QString, QVariant> mainVariant;
+    mainVariant[name] = categoriesVariant;
+    return mainVariant;
 }
 
 CfgMain::operator CfgMain*()

@@ -37,11 +37,26 @@ class API_EXPORT CfgMain
         QStringList getPaths() const;
         QList<CfgEntry*> getEntries() const;
 
+        /**
+         * @brief Accepts QVariant produced by toQVariant().
+         *
+         * This method assumes that the QVariant is actually a multi-level QHash
+         * produced by toQVariant() method.
+         * It sets all values recursivly using values from provided QVariant.
+         */
+        void setValuesFromQVariant(const QVariant& cfgMainHash);
+
         bool isPersistable() const;
         QString getName() const;
         const char* getMetaName() const;
         QString getTitle() const;
         operator CfgMain*();
+
+        /**
+         * @brief Serializes this CfgMain to recursive QHash.
+         * @return Recursive QHash, where top level has one entry (name of CfgMain), then next level has keys as CfgCategory names, and last one has keys as CfgEntry names.
+         */
+        QVariant toQVariant() const;
 
     private:
         QString name;

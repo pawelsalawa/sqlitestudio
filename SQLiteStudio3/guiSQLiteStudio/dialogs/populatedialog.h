@@ -3,6 +3,7 @@
 
 #include "guiSQLiteStudio_global.h"
 #include <QDialog>
+#include <QVariant>
 
 namespace Ui {
     class PopulateDialog;
@@ -32,19 +33,21 @@ class GUI_API_EXPORT PopulateDialog : public QDialog
     private:
         struct GUI_API_EXPORT ColumnEntry
         {
-            ColumnEntry(QCheckBox* check, QComboBox* combo, QToolButton* button);
+            ColumnEntry(const QString& column, QCheckBox* check, QComboBox* combo, QToolButton* button);
             ~ColumnEntry();
 
+            QString column;
             QCheckBox* check = nullptr;
             QComboBox* combo = nullptr;
             QToolButton* button = nullptr;
             PopulateEngine* engine = nullptr;
+            PopulatePlugin* plugin = nullptr;
         };
 
         void init();
         PopulateEngine* getEngine(int selectedPluginIndex);
         void deleteEngines(const QList<PopulateEngine*>& engines);
-        void rebuildEngines();
+        void rebuildEngines(const QHash<QString, QPair<QString, QVariant> >& columnConfig);
 
         Ui::PopulateDialog *ui = nullptr;
         QGridLayout* columnsGrid = nullptr;
@@ -53,6 +56,7 @@ class GUI_API_EXPORT PopulateDialog : public QDialog
         Db* db = nullptr;
         QStringList pluginTitles;
         QList<PopulatePlugin*> plugins;
+        QHash<QString,PopulatePlugin*> pluginByName;
         QList<ColumnEntry> columnEntries;
         QSignalMapper* checkMapper = nullptr;
         QSignalMapper* buttonMapper = nullptr;
@@ -64,7 +68,7 @@ class GUI_API_EXPORT PopulateDialog : public QDialog
         void refreshTables();
         void refreshColumns();
         void pluginSelected(int index);
-        void pluginSelected(QComboBox* combo, int index);
+        void pluginSelected(QComboBox* combo, int index, const QVariant& config);
         void configurePlugin(int index);
         void updateColumnState(int index, bool updateGlobalState = true);
         void updateState();

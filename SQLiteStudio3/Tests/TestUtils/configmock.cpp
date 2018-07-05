@@ -146,6 +146,24 @@ QVector<QPair<QString, QVariant> > ConfigMock::getBindParamHistory(const QString
     return QVector<QPair<QString, QVariant>>();
 }
 
+void ConfigMock::addPopulateHistory(const QString&, const QString&, int, const QHash<QString, QPair<QString, QVariant> >&)
+{
+}
+
+void ConfigMock::applyPopulateHistoryLimit()
+{
+}
+
+QHash<QString, QPair<QString, QVariant>> ConfigMock::getPopulateHistory(const QString&, const QString&, int&) const
+{
+    return QHash<QString, QPair<QString, QVariant>>();
+}
+
+QVariant ConfigMock::getPopulateHistory(const QString&) const
+{
+    return QVariant();
+}
+
 void ConfigMock::addDdlHistory(const QString&, const QString&, const QString&)
 {
 }
