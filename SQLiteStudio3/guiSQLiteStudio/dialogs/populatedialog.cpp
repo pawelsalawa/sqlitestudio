@@ -178,11 +178,11 @@ void PopulateDialog::refreshColumns()
     for (const QString& column : columns)
     {
         check = new QCheckBox(column);
-        connect(check, SIGNAL(toggled(bool)), checkMapper, SLOT(map()));
-        checkMapper->setMapping(check, row);
-
         if (columnConfig.contains(column))
             check->setChecked(true);
+
+        connect(check, SIGNAL(toggled(bool)), checkMapper, SLOT(map()));
+        checkMapper->setMapping(check, row);
 
         combo = new QComboBox();
         combo->addItems(pluginTitles);
