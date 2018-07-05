@@ -30,6 +30,7 @@
 #include <QMimeData>
 #include <QCryptographicHash>
 #include <QMessageBox>
+#include <QScrollBar>
 
 CFG_KEYS_DEFINE(SqlQueryView)
 
@@ -512,11 +513,15 @@ void SqlQueryView::updateFont()
 
 void SqlQueryView::executionStarted()
 {
+    beforeExecutionHorizontalPosition = horizontalScrollBar()->sliderPosition();
     widgetCover->show();
 }
 
 void SqlQueryView::executionEnded()
 {
+    if (beforeExecutionHorizontalPosition > -1)
+        horizontalScrollBar()->setSliderPosition(beforeExecutionHorizontalPosition);
+
     widgetCover->hide();
 }
 
