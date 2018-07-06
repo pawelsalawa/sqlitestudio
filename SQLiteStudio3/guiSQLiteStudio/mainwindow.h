@@ -143,7 +143,6 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         FunctionsEditor* openFunctionEditor();
         CollationsEditor* openCollationEditor();
         SqliteExtensionEditor* openExtensionManager();
-        BugReportHistoryWindow* openReportHistory();
         void fixFonts();
 
         template <class T>

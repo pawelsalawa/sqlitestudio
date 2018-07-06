@@ -31,7 +31,6 @@
 #include "plugins/scriptingsql.h"
 #include "plugins/importplugin.h"
 #include "plugins/populateplugin.h"
-#include "services/bugreporter.h"
 #include "services/extralicensemanager.h"
 #include "services/sqliteextensionmanager.h"
 #include "translations.h"
@@ -101,16 +100,6 @@ void SQLiteStudio::setUpdateManager(UpdateManager* value)
 }
 #endif
 
-BugReporter* SQLiteStudio::getBugReporter() const
-{
-    return bugReporter;
-}
-
-void SQLiteStudio::setBugReporter(BugReporter* value)
-{
-    bugReporter = value;
-}
-
 PopulateManager* SQLiteStudio::getPopulateManager() const
 {
     return populateManager;
@@ -133,25 +122,37 @@ void SQLiteStudio::setCodeFormatter(CodeFormatter* codeFormatter)
 
 QString SQLiteStudio::getHomePage() const
 {
-    static const QString url = QStringLiteral("http://sqlitestudio.pl");
+    static_qstring(url, "http://sqlitestudio.pl");
     return url;
 }
 
 QString SQLiteStudio::getForumPage() const
 {
-    static const QString url = QStringLiteral("http://forum.sqlitestudio.pl");
+    static_qstring(url, "http://forum.sqlitestudio.pl");
     return url;
 }
 
 QString SQLiteStudio::getUserManualPage() const
 {
-    static const QString url = QStringLiteral("https://github.com/pawelsalawa/sqlitestudio/wiki/User_Manual");
+    static_qstring(url, "https://github.com/pawelsalawa/sqlitestudio/wiki/User_Manual");
     return url;
 }
 
 QString SQLiteStudio::getSqliteDocsPage() const
 {
-    static const QString url = QStringLiteral("http://sqlite.org/lang.html");
+    static_qstring(url, "http://sqlite.org/lang.html");
+    return url;
+}
+
+QString SQLiteStudio::getIssuesPage() const
+{
+    static_qstring(url, "https://github.com/pawelsalawa/sqlitestudio/issues");
+    return url;
+}
+
+QString SQLiteStudio::getNewIssuePage() const
+{
+    static_qstring(url, "https://github.com/pawelsalawa/sqlitestudio/issues/new");
     return url;
 }
 
@@ -334,7 +335,6 @@ void SQLiteStudio::init(const QStringList& cmdListArguments, bool guiAvailable)
     exportManager = new ExportManager();
     importManager = new ImportManager();
     populateManager = new PopulateManager();
-    bugReporter = new BugReporter();
 #ifdef PORTABLE_CONFIG
     updateManager = new UpdateManager();
 #endif
@@ -371,7 +371,6 @@ void SQLiteStudio::cleanUp()
 #ifdef PORTABLE_CONFIG
         safe_delete(updateManager);
 #endif
-        safe_delete(bugReporter);
         safe_delete(populateManager);
         safe_delete(importManager);
         safe_delete(exportManager);

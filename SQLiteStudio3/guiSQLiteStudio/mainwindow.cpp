@@ -33,8 +33,6 @@
 #include "services/dbmanager.h"
 #include "services/updatemanager.h"
 #include "dialogs/aboutdialog.h"
-#include "dialogs/bugdialog.h"
-#include "windows/bugreporthistorywindow.h"
 #include "dialogs/newversiondialog.h"
 #include "dialogs/quitconfirmdialog.h"
 #include "common/widgetcover.h"
@@ -265,7 +263,7 @@ void MainWindow::createActions()
     createAction(FORUM, ICONS.OPEN_FORUM, tr("Open fo&rum page"), this, SLOT(forum()), this);
     createAction(USER_MANUAL, ICONS.USER_MANUAL, tr("User &Manual"), this, SLOT(userManual()), this);
     createAction(SQLITE_DOCS, ICONS.SQLITE_DOCS, tr("SQLite &documentation"), this, SLOT(sqliteDocs()), this);
-    createAction(BUG_REPORT_HISTORY, ICONS.BUG_LIST, tr("Report &history"), this, SLOT(reportHistory()), this);
+    createAction(BUG_REPORT_HISTORY, ICONS.BUG_LIST, tr("Bugs and feature &requests"), this, SLOT(reportHistory()), this);
 #ifdef PORTABLE_CONFIG
     createAction(CHECK_FOR_UPDATES, ICONS.GET_UPDATE, tr("Check for &updates"), this, SLOT(checkForUpdates()), this);
 #endif
@@ -720,15 +718,12 @@ void MainWindow::openCssConsole()
 
 void MainWindow::reportBug()
 {
-    BugDialog dialog(this);
-    dialog.exec();
+    QDesktopServices::openUrl(QUrl(SQLITESTUDIO->getNewIssuePage()));
 }
 
 void MainWindow::requestFeature()
 {
-    BugDialog dialog(this);
-    dialog.setFeatureRequestMode(true);
-    dialog.exec();
+    QDesktopServices::openUrl(QUrl(SQLITESTUDIO->getNewIssuePage()));
 }
 
 void MainWindow::aboutSqlitestudio()
@@ -765,7 +760,7 @@ void MainWindow::sqliteDocs()
 
 void MainWindow::reportHistory()
 {
-    openReportHistory();
+    QDesktopServices::openUrl(QUrl(SQLITESTUDIO->getIssuesPage()));
 }
 
 void MainWindow::statusFieldLinkClicked(const QString& link)
@@ -838,11 +833,6 @@ CollationsEditor* MainWindow::openCollationEditor()
 SqliteExtensionEditor* MainWindow::openExtensionManager()
 {
     return openMdiWindow<SqliteExtensionEditor>();
-}
-
-BugReportHistoryWindow* MainWindow::openReportHistory()
-{
-    return openMdiWindow<BugReportHistoryWindow>();
 }
 
 void MainWindow::fixFonts()

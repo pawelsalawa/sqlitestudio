@@ -24,7 +24,6 @@ class ExportManager;
 class ImportManager;
 class PopulateManager;
 class PluginLoadingHandler;
-class BugReporter;
 #ifdef PORTABLE_CONFIG
 class UpdateManager;
 #endif
@@ -136,13 +135,12 @@ class API_EXPORT SQLiteStudio : public QObject
         CodeFormatter* getCodeFormatter() const;
         void setCodeFormatter(CodeFormatter* codeFormatter);
 
-        BugReporter* getBugReporter() const;
-        void setBugReporter(BugReporter* value);
-
         QString getHomePage() const;
         QString getForumPage() const;
         QString getUserManualPage() const;
         QString getSqliteDocsPage() const;
+        QString getIssuesPage() const;
+        QString getNewIssuePage() const;
 
 #ifdef PORTABLE_CONFIG
         UpdateManager* getUpdateManager() const;
@@ -208,7 +206,6 @@ class API_EXPORT SQLiteStudio : public QObject
         ExportManager* exportManager = nullptr;
         ImportManager* importManager = nullptr;
         PopulateManager* populateManager = nullptr;
-        BugReporter* bugReporter = nullptr;
 #ifdef PORTABLE_CONFIG
         UpdateManager* updateManager = nullptr;
 #endif

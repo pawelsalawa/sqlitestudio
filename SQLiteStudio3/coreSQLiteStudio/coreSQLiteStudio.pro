@@ -207,7 +207,6 @@ SOURCES += sqlitestudio.cpp \
     plugins/builtinplugin.cpp \
     plugins/scriptingqtdbproxy.cpp \
     plugins/sqlformatterplugin.cpp \
-    services/bugreporter.cpp \
     services/updatemanager.cpp \
     config_builder/cfgmain.cpp \
     config_builder/cfgcategory.cpp \
@@ -401,7 +400,6 @@ HEADERS += sqlitestudio.h\
     plugins/builtinplugin.h \
     plugins/scriptingqtdbproxy.h \
     plugins/codeformatterplugin.h \
-    services/bugreporter.h \
     services/updatemanager.h \
     config_builder/cfgmain.h \
     config_builder/cfgcategory.h \

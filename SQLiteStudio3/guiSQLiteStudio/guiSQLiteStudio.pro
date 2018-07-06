@@ -173,10 +173,7 @@ SOURCES +=\
     uidebug.cpp \
     debugconsole.cpp \
     common/extactionprototype.cpp \
-    dialogs/bugdialog.cpp \
     dialogs/aboutdialog.cpp \
-    dialogs/bugreportlogindialog.cpp \
-    windows/bugreporthistorywindow.cpp \
     dialogs/newversiondialog.cpp \
     dialogs/quitconfirmdialog.cpp \
     common/datawidgetmapper.cpp \
@@ -327,10 +324,7 @@ HEADERS  += mainwindow.h \
     uidebug.h \
     debugconsole.h \
     common/extactionprototype.h \
-    dialogs/bugdialog.h \
     dialogs/aboutdialog.h \
-    dialogs/bugreportlogindialog.h \
-    windows/bugreporthistorywindow.h \
     dialogs/newversiondialog.h \
     guiSQLiteStudio_global.h \
     dialogs/quitconfirmdialog.h \
@@ -389,10 +383,7 @@ FORMS    += mainwindow.ui \
     dialogs/dbconverterdialog.ui \
     dialogs/dbdialog.ui \
     debugconsole.ui \
-    dialogs/bugdialog.ui \
     dialogs/aboutdialog.ui \
-    dialogs/bugreportlogindialog.ui \
-    windows/bugreporthistorywindow.ui \
     dialogs/newversiondialog.ui \
     dialogs/quitconfirmdialog.ui \
     dialogs/languagedialog.ui \
