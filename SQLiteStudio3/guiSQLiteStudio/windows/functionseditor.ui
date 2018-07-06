@@ -294,7 +294,11 @@
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_4">
               <item>
-               <widget class="QPlainTextEdit" name="initCodeEdit"/>
+               <widget class="QPlainTextEdit" name="initCodeEdit">
+                <property name="lineWrapMode">
+                 <enum>QPlainTextEdit::NoWrap</enum>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>
@@ -310,7 +314,11 @@
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_6">
               <item>
-               <widget class="QPlainTextEdit" name="mainCodeEdit"/>
+               <widget class="QPlainTextEdit" name="mainCodeEdit">
+                <property name="lineWrapMode">
+                 <enum>QPlainTextEdit::NoWrap</enum>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>
@@ -326,7 +334,11 @@
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_7">
               <item>
-               <widget class="QPlainTextEdit" name="finalCodeEdit"/>
+               <widget class="QPlainTextEdit" name="finalCodeEdit">
+                <property name="lineWrapMode">
+                 <enum>QPlainTextEdit::NoWrap</enum>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>

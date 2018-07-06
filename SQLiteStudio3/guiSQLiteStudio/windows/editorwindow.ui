@@ -51,6 +51,9 @@
           <property name="contextMenuPolicy">
            <enum>Qt::CustomContextMenu</enum>
           </property>
+          <property name="lineWrapMode">
+           <enum>QPlainTextEdit::NoWrap</enum>
+          </property>
          </widget>
          <widget class="QWidget" name="resultsContainer" native="true">
           <layout class="QVBoxLayout" name="verticalLayout_5">

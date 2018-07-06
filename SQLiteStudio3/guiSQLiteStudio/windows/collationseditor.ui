@@ -167,7 +167,11 @@
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_4">
                  <item>
-                  <widget class="QPlainTextEdit" name="codeEdit"/>
+                  <widget class="QPlainTextEdit" name="codeEdit">
+                   <property name="lineWrapMode">
+                    <enum>QPlainTextEdit::NoWrap</enum>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </widget>

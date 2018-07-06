@@ -110,6 +110,9 @@
          <property name="toolTip">
           <string>Trigger statements to be executed.</string>
          </property>
+         <property name="lineWrapMode">
+          <enum>QPlainTextEdit::NoWrap</enum>
+         </property>
         </widget>
        </item>
        <item row="7" column="0" colspan="3">
@@ -122,6 +125,9 @@
          </property>
          <property name="toolTip">
           <string>&lt;p&gt;SQL condition that will be evaluated before the actual trigger code. In case the condition returns false, the trigger will not be fired for that row.&lt;/p&gt;</string>
+         </property>
+         <property name="lineWrapMode">
+          <enum>QPlainTextEdit::NoWrap</enum>
          </property>
         </widget>
        </item>
