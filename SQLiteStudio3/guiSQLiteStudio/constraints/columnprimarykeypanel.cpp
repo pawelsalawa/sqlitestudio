@@ -94,13 +94,7 @@ void ColumnPrimaryKeyPanel::constraintAvailable()
     if (constraint.isNull())
         return;
 
-    SqliteCreateTable::Column* column = dynamic_cast<SqliteCreateTable::Column*>(constraint->parent());
     ui->autoIncrCheck->setVisible(constraint->dialect == Dialect::Sqlite3);
-    ui->autoIncrCheck->setEnabled(column->type &&
-        DataType::fromString(column->type->detokenize().trimmed(), Qt::CaseInsensitive) == DataType::INTEGER);
-
-    if (!ui->autoIncrCheck->isEnabled())
-        ui->autoIncrCheck->setText(tr("Autoincrement (only for %1 type columns)", "column primary key").arg("INTEGER"));
 
     readConstraint();
 }

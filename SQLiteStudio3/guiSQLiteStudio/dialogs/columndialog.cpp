@@ -149,6 +149,7 @@ void ColumnDialog::addConstraint(ConstraintDialog::Constraint mode)
     constraintsModel->appendConstraint(constr);
     ui->constraintsView->resizeColumnToContents(0);
     ui->constraintsView->resizeColumnToContents(1);
+    updateTypeForAutoIncr();
 }
 
 void ColumnDialog::setupConstraintCheckBoxes()
@@ -218,6 +219,7 @@ void ColumnDialog::editConstraint(SqliteCreateTable::Column::Constraint* constra
     ui->constraintsView->resizeColumnToContents(0);
     ui->constraintsView->resizeColumnToContents(1);
     updateValidations();
+    updateTypeForAutoIncr();
 }
 
 void ColumnDialog::delConstraint(const QModelIndex& idx)
@@ -384,6 +386,8 @@ void ColumnDialog::updateTypeValidations()
 {
     QString scaleErrorMsg = tr("Scale is not allowed for INTEGER PRIMARY KEY columns.");
     QString precisionErrorMsg = tr("Precision cannot be defined without the scale.");
+    QString typeErrorMsg = tr("Cannot use type other than INTEGER if AUTOINCREMENT is enabled in PRIMARY KEY.");
+    QString integerEnforcedMsg = tr("INTEGER type was enforced due to enabled AUTOINCREMENT in PRIMARY KEY.");
 
     QVariant scale = ui->scale->getValue();
     QVariant precision = ui->precision->getValue();
@@ -393,6 +397,7 @@ void ColumnDialog::updateTypeValidations()
 
     bool precisionOk = !(precisionDefined && !scaleDefined);
     bool scaleOk = true;
+    bool typeOk = true;
 
     bool hasPk = column->getConstraint(SqliteCreateTable::Column::Constraint::PRIMARY_KEY) != nullptr;
     bool isInteger = ui->typeCombo->currentText().toUpper() == "INTEGER";
@@ -408,14 +413,46 @@ void ColumnDialog::updateTypeValidations()
         }
     }
 
+    if (!isInteger && hasAutoIncr())
+        typeOk = false;
+
     setValidState(ui->scale, scaleOk, scaleErrorMsg);
     setValidState(ui->precision, precisionOk, precisionErrorMsg);
+    setValidState(ui->typeCombo, typeOk, typeErrorMsg);
 
-    if (!scaleOk || !precisionOk)
+    if (typeOk && integerTypeEnforced)
+        setValidStateTooltip(ui->typeCombo, integerEnforcedMsg);
+
+    if (!scaleOk || !precisionOk || !typeOk)
     {
         QPushButton* btn = ui->buttonBox->button(QDialogButtonBox::Ok);
         btn->setEnabled(false);
     }
+}
+
+void ColumnDialog::updateTypeForAutoIncr()
+{
+    bool hasAuto = hasAutoIncr();
+    if (hasAuto && ui->typeCombo->currentText().toUpper() != "INTEGER")
+    {
+        ui->typeCombo->setCurrentText("INTEGER");
+        integerTypeEnforced = true;
+    }
+    else if (!hasAuto)
+        integerTypeEnforced = false;
+
+    updateTypeValidations();
+}
+
+bool ColumnDialog::hasAutoIncr() const
+{
+    for (SqliteCreateTable::Column::Constraint* constr : column->getConstraints(SqliteCreateTable::Column::Constraint::PRIMARY_KEY))
+    {
+        if (constr->autoincrKw)
+            return true;
+    }
+
+    return false;
 }
 
 void ColumnDialog::moveConstraintUp()
@@ -509,6 +546,7 @@ void ColumnDialog::configureDefault()
 void ColumnDialog::pkToggled(bool enabled)
 {
     constraintToggled(SqliteCreateTable::Column::Constraint::PRIMARY_KEY, enabled);
+    updateTypeForAutoIncr();
 }
 
 void ColumnDialog::fkToggled(bool enabled)
@@ -630,6 +668,7 @@ void ColumnDialog::updateDataType()
     if (!column)
         return;
 
+    integerTypeEnforced = false;
     QString typeTxt = ui->typeCombo->currentText();
     QString scaleTxt = ui->scale->getValue().toString();
     QString precisionTxt = ui->precision->getValue().toString();
