@@ -340,7 +340,15 @@ void SqlQueryView::paste(const QList<QList<QVariant> >& data)
         return;
     }
 
-    qSort(selectedItems);
+    if (data.size() == 1 && data[0].size() == 1)
+    {
+        QVariant theValue = data[0][0];
+        for (SqlQueryItem* item : selectedItems)
+            item->setValue(theValue, false, false);
+
+        return;
+    }
+
     SqlQueryItem* topLeft = selectedItems.first();
 
     int columnCount = getModel()->columnCount();
@@ -350,7 +358,7 @@ void SqlQueryView::paste(const QList<QList<QVariant> >& data)
 
     SqlQueryItem* item = nullptr;
 
-    foreach (const QList<QVariant>& cells, data)
+    for (const QList<QVariant>& cells : data)
     {
         // Check if we're out of rows range
         if (rowIdx >= rowCount)
@@ -360,7 +368,7 @@ void SqlQueryView::paste(const QList<QList<QVariant> >& data)
             break;
         }
 
-        foreach (const QVariant& cell, cells)
+        for (const QVariant& cell : cells)
         {
             // Get current cell
             if (colIdx >= columnCount)
