@@ -90,6 +90,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
             GENERATE_UPDATE,
             GENERATE_INSERT,
             GENERATE_DELETE,
+            OPEN_DB_DIRECTORY,
             _separator // Never use it directly, it's just for menu setup
         };
 
@@ -221,6 +222,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void generateInsertForTable();
         void generateUpdateForTable();
         void generateDeleteForTable();
+        void openDbDirectory();
 };
 
 int qHash(DbTree::Action action);

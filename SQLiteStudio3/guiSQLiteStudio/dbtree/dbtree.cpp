@@ -38,6 +38,8 @@
 #include <QKeyEvent>
 #include <QMimeData>
 #include <QDebug>
+#include <QDesktopServices>
+#include <QDir>
 
 CFG_KEYS_DEFINE(DbTree)
 QHash<DbTreeItem::Type,QList<DbTreeItem::Type>> DbTree::allowedTypesInside;
@@ -146,6 +148,7 @@ void DbTree::createActions()
     createAction(GENERATE_INSERT, "INSERT", this, SLOT(generateInsertForTable()), this);
     createAction(GENERATE_UPDATE, "UPDATE", this, SLOT(generateUpdateForTable()), this);
     createAction(GENERATE_DELETE, "DELETE", this, SLOT(generateDeleteForTable()), this);
+    createAction(OPEN_DB_DIRECTORY, ICONS.DIRECTORY_OPEN_WITH_DB, tr("Open file's directory"), this, SLOT(openDbDirectory()), this);
 }
 
 void DbTree::updateActionStates(const QStandardItem *item)
@@ -181,6 +184,10 @@ void DbTree::updateActionStates(const QStandardItem *item)
             }
             else
                 enabled << CONNECT_TO_DB;
+
+            QUrl url = QUrl::fromLocalFile(dbTreeItem->getDb()->getPath());
+            if (url.isValid())
+                enabled << OPEN_DB_DIRECTORY;
         }
 
         if (isDbOpen)
@@ -380,6 +387,7 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
                     actions += ActionEntry(CONVERT_DB);
                     actions += ActionEntry(VACUUM_DB);
                     actions += ActionEntry(INTEGRITY_CHECK);
+                    actions += ActionEntry(OPEN_DB_DIRECTORY);
                     actions += ActionEntry(_separator);
                 }
                 else
@@ -1779,6 +1787,21 @@ void DbTree::generateDeleteForTable()
     QueryGenerator generator;
     QString sql = generator.generateDeleteFromTable(db, table);
     MAINWINDOW->openSqlEditor(db, sql);
+}
+
+void DbTree::openDbDirectory()
+{
+    Db* db = getSelectedDb();
+    if (!db)
+        return;
+
+    QFileInfo fi(db->getPath());
+    if (!fi.exists())
+        return;
+
+    QUrl url = QUrl::fromLocalFile(fi.dir().path());
+    if (url.isValid())
+        QDesktopServices::openUrl(url);
 }
 
 void DbTree::setupDefShortcuts()
