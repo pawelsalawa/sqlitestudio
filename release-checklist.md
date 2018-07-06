@@ -10,6 +10,7 @@
 - [x] Prepare updates repository files
 - [x] Upload packages to download page
 - [x] Upload update packages to online repository
+- [x] Update file checksums on the page.
 - [x] Regenerate ChangeLog on website
 - [x] Update News on homepage
 - [x] Post news on FB
