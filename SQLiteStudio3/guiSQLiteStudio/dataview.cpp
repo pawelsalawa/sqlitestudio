@@ -946,7 +946,7 @@ void DataView::recreateFilterInputs()
         edit = new QLineEdit(perColumnWidget);
         edit->setPlaceholderText(tr("Filter"));
         edit->setClearButtonEnabled(true);
-        edit->setFixedWidth(gridView->columnWidth(i)/* + (i == 0 || i == (total - 1) ? 1 : 0)*/);
+        edit->setFixedWidth(gridView->columnWidth(i));
         edit->setToolTip(tr("Hit Enter key or press \"Apply filter\" button on toolbar to apply new value."));
         if (filterValues.size() > i)
             edit->setText(filterValues[i]);
