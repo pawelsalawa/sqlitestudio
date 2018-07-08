@@ -13,6 +13,7 @@
 #include "uiconfig.h"
 #include "datagrid/sqlqueryitem.h"
 #include "common/widgetcover.h"
+#include "common/unused.h"
 #include <QDebug>
 #include <QHeaderView>
 #include <QVBoxLayout>
@@ -21,12 +22,15 @@
 #include <QAction>
 #include <QTime>
 #include <QStyleFactory>
+#include <QLineEdit>
+#include <QSizePolicy>
+#include <QScrollBar>
 
 CFG_KEYS_DEFINE(DataView)
-DataView::FilterMode DataView::filterMode;
 DataView::TabsPosition DataView::tabsPosition;
 QHash<DataView::Action,QAction*> DataView::staticActions;
 QHash<DataView::ActionGroup,QActionGroup*> DataView::staticActionGroups;
+static const char* DATA_VIEW_FILTER_PROP = "filter";
 
 DataView::DataView(QWidget *parent) :
     QTabWidget(parent)
@@ -76,6 +80,8 @@ void DataView::initSlots()
     connect(gridView->horizontalHeader(), SIGNAL(sectionClicked(int)), this, SLOT(columnsHeaderClicked(int)));
     connect(this, SIGNAL(currentChanged(int)), this, SLOT(tabChanged(int)));
     connect(model, SIGNAL(itemEditionEnded(SqlQueryItem*)), this, SLOT(adjustColumnWidth(SqlQueryItem*)));
+    connect(gridView, SIGNAL(scrolledBy(int, int)), this, SLOT(syncFilterScrollPosition()));
+    connect(gridView->horizontalHeader(), SIGNAL(sectionResized(int, int, int)), this, SLOT(resizeFilter(int, int, int)));
 }
 
 void DataView::initFormView()
@@ -119,6 +125,9 @@ void DataView::createContents()
     gridWidget->layout()->addWidget(gridToolBar);
     formWidget->layout()->addWidget(formToolBar);
 
+    createFilterPanel();
+    gridWidget->layout()->addWidget(perColumnAreaParent);
+
     THEME_TUNER->manageCompactLayout({
                                          gridWidget,
                                          formWidget
@@ -134,6 +143,37 @@ void DataView::createContents()
     gridView->setCornerButtonEnabled(true);
     gridView->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
     gridWidget->layout()->addWidget(gridView);
+}
+
+void DataView::createFilterPanel()
+{
+    perColumnAreaParent = new QWidget();
+    perColumnAreaParent->setVisible(false);
+    perColumnAreaParent->setLayout(new QHBoxLayout());
+    perColumnAreaParent->layout()->setSpacing(0);
+    perColumnAreaParent->layout()->setMargin(0);
+    perColumnAreaParent->setFixedHeight(0);
+
+    filterLeftSpacer = new QWidget();
+    perColumnAreaParent->layout()->addWidget(filterLeftSpacer);
+
+    perColumnFilterArea = new QScrollArea();
+    perColumnFilterArea->setFixedHeight(0);
+    perColumnFilterArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    perColumnFilterArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    perColumnFilterArea->setFrameShape(QFrame::NoFrame);
+    perColumnWidget = new QWidget();
+    perColumnWidget->setLayout(new QHBoxLayout());
+    perColumnWidget->layout()->setSizeConstraint(QLayout::SetFixedSize);
+    perColumnWidget->layout()->setSpacing(0);
+    perColumnWidget->layout()->setMargin(0);
+    perColumnWidget->setAutoFillBackground(true);
+    perColumnWidget->setBackgroundRole(QPalette::Window);
+    perColumnFilterArea->setWidget(perColumnWidget);
+    perColumnAreaParent->layout()->addWidget(perColumnFilterArea);
+
+    filterRightSpacer = new QWidget();
+    perColumnAreaParent->layout()->addWidget(filterRightSpacer);
 }
 
 void DataView::initPageEdit()
@@ -187,19 +227,8 @@ void DataView::createActions()
     createAction(LAST_PAGE, ICONS.PAGE_LAST, tr("Last page", "data view"), this, SLOT(lastPage()), gridToolBar);
     gridToolBar->addSeparator();
     if (model->features().testFlag(SqlQueryModel::FILTERING))
-    {
-        actionMap[FILTER_VALUE] = gridToolBar->addWidget(filterEdit);
-        createAction(FILTER, tr("Apply filter", "data view"), this, SLOT(applyFilter()), gridToolBar);
-        attachActionInMenu(FILTER, staticActions[FILTER_STRING], gridToolBar);
-        attachActionInMenu(FILTER, staticActions[FILTER_REGEXP], gridToolBar);
-        attachActionInMenu(FILTER, staticActions[FILTER_SQL], gridToolBar);
-        gridToolBar->addSeparator();
-        updateFilterIcon();
+        createFilteringActions();
 
-        connect(staticActions[FILTER_STRING], SIGNAL(triggered()), this, SLOT(filterModeSelected()));
-        connect(staticActions[FILTER_REGEXP], SIGNAL(triggered()), this, SLOT(filterModeSelected()));
-        connect(staticActions[FILTER_SQL], SIGNAL(triggered()), this, SLOT(filterModeSelected()));
-    }
     actionMap[GRID_TOTAL_ROWS] = gridToolBar->addWidget(rowCountLabel);
 
     noConfigShortcutActions << GRID_TOTAL_ROWS << FILTER_VALUE;
@@ -291,39 +320,6 @@ void DataView::resizeColumnsInitiallyToContents()
 
 void DataView::createStaticActions()
 {
-    // Filtering actions
-    staticActions[FILTER_STRING] = new ExtAction(ICONS.APPLY_FILTER_TXT, tr("Filter by text", "data view"), MainWindow::getInstance());
-    staticActions[FILTER_REGEXP] = new ExtAction(ICONS.APPLY_FILTER_RE, tr("Filter by the Regular Expression", "data view"), MainWindow::getInstance());
-    staticActions[FILTER_SQL] = new ExtAction(ICONS.APPLY_FILTER_SQL, tr("Filter by SQL expression", "data view"), MainWindow::getInstance());
-
-    staticActionGroups[ActionGroup::FILTER_MODE] = new QActionGroup(MainWindow::getInstance());
-    staticActionGroups[ActionGroup::FILTER_MODE]->addAction(staticActions[FILTER_STRING]);
-    staticActionGroups[ActionGroup::FILTER_MODE]->addAction(staticActions[FILTER_SQL]);
-    staticActionGroups[ActionGroup::FILTER_MODE]->addAction(staticActions[FILTER_REGEXP]);
-
-    connect(staticActions[FILTER_STRING], &QAction::triggered, [=]()
-    {
-        filterMode = FilterMode::STRING;
-    });
-    connect(staticActions[FILTER_SQL], &QAction::triggered, [=]()
-    {
-        filterMode = FilterMode::SQL;
-    });
-    connect(staticActions[FILTER_REGEXP], &QAction::triggered, [=]()
-    {
-        filterMode = FilterMode::REGEXP;
-    });
-
-    staticActions[FILTER_STRING]->setCheckable(true);
-    staticActions[FILTER_REGEXP]->setCheckable(true);
-    staticActions[FILTER_SQL]->setCheckable(true);
-    if (filterMode == FilterMode::STRING)
-        staticActions[FILTER_STRING]->setChecked(true);
-    else if (filterMode == FilterMode::REGEXP)
-        staticActions[FILTER_REGEXP]->setChecked(true);
-    else
-        staticActions[FILTER_SQL]->setChecked(true);
-
     // Tabs position actions
     staticActions[TABS_ON_TOP] = new ExtAction(ICONS.TABS_ON_TOP, tr("Tabs on top", "data view"), MainWindow::getInstance());
     staticActions[TABS_AT_BOTTOM] = new ExtAction(ICONS.TABS_AT_BOTTOM, tr("Tabs at bottom", "data view"), MainWindow::getInstance());
@@ -510,6 +506,7 @@ void DataView::updateTabsMode()
 void DataView::filterModeSelected()
 {
     QAction* modeAction = dynamic_cast<QAction*>(sender());
+    filterMode = static_cast<FilterMode>(modeAction->property(DATA_VIEW_FILTER_PROP).toInt());
     actionMap[FILTER]->setIcon(modeAction->icon());
 }
 
@@ -550,6 +547,41 @@ void DataView::adjustColumnWidth(SqlQueryItem* item)
     gridView->resizeColumnToContents(col);
     if (gridView->columnWidth(col) > CFG_UI.General.MaxInitialColumnWith.get())
         gridView->setColumnWidth(col, CFG_UI.General.MaxInitialColumnWith.get());
+}
+
+void DataView::syncFilterScrollPosition()
+{
+    perColumnFilterArea->horizontalScrollBar()->setValue(gridView->horizontalScrollBar()->value());
+}
+
+void DataView::resizeFilter(int section, int oldSize, int newSize)
+{
+    UNUSED(oldSize);
+    if (filterInputs.isEmpty())
+        return;
+
+    if (filterInputs.size() <= section)
+    {
+        qCritical() << "Tried to adjust per-column filter input edit according to resized value, but section index is out of bounds:"
+                    << section << ", while edit widgets count is:" << filterInputs.size();
+        return;
+    }
+
+    filterInputs[section]->setFixedWidth(newSize);
+}
+
+void DataView::togglePerColumnFiltering()
+{
+    bool enable = actionMap[FILTER_PER_COLUMN]->isChecked();
+
+    filterEdit->setEnabled(!enable);
+    if (actionMap[FILTER_SQL]->isChecked())
+        actionMap[FILTER_STRING]->setChecked(true);
+
+    actionMap[FILTER_SQL]->setEnabled(!enable);
+    perColumnAreaParent->setVisible(enable);
+
+    recreateFilterInputs();
 }
 
 void DataView::updateCommitRollbackActions(bool enabled)
@@ -649,18 +681,6 @@ void DataView::readData()
     model->executeQuery();
 }
 
-void DataView::updateFilterIcon()
-{
-    for (Action act : {FILTER_STRING, FILTER_SQL, FILTER_REGEXP})
-    {
-        if (staticActions[act]->isChecked())
-        {
-            actionMap[FILTER]->setIcon(staticActions[act]->icon());
-            break;
-        }
-    }
-}
-
 bool DataView::isUncommitted() const
 {
     return uncommittedGrid || uncommittedForm;
@@ -672,6 +692,7 @@ void DataView::dataLoadingEnded(bool successful)
     {
         updatePageEdit();
         resizeColumnsInitiallyToContents();
+        recreateFilterInputs();
     }
 
     setNavigationState(true);
@@ -789,18 +810,47 @@ void DataView::applyFilter()
         return;
     }
 
-    QString value = filterEdit->text();
-    switch (filterMode)
+    if (actionMap[FILTER_PER_COLUMN]->isChecked())
     {
-        case DataView::FilterMode::STRING:
-            model->applyStringFilter(value);
-            break;
-        case DataView::FilterMode::SQL:
-            model->applySqlFilter(value);
-            break;
-        case DataView::FilterMode::REGEXP:
-            model->applyRegExpFilter(value);
-            break;
+        filterValues.clear();
+        for (QLineEdit* edit : filterInputs)
+            filterValues << edit->text();
+
+        if (filterValues.join("").isEmpty())
+        {
+            model->resetFilter();
+            return;
+        }
+
+        switch (filterMode)
+        {
+            case DataView::FilterMode::STRING:
+                model->applyStringFilter(filterValues);
+                break;
+            case DataView::FilterMode::SQL:
+                // Should never happen.
+                qWarning() << "Requested to filter by SQL for filtering per-column. This should not be possible.";
+                break;
+            case DataView::FilterMode::REGEXP:
+                model->applyRegExpFilter(filterValues);
+                break;
+        }
+    }
+    else
+    {
+        QString value = filterEdit->text();
+        switch (filterMode)
+        {
+            case DataView::FilterMode::STRING:
+                model->applyStringFilter(value);
+                break;
+            case DataView::FilterMode::SQL:
+                model->applySqlFilter(value);
+                break;
+            case DataView::FilterMode::REGEXP:
+                model->applyRegExpFilter(value);
+                break;
+        }
     }
 }
 
@@ -879,6 +929,87 @@ void DataView::formViewFocusFirstEditor()
         formView->focusFirstEditor();
 }
 
+void DataView::recreateFilterInputs()
+{
+    qApp->processEvents();
+
+    for (QLineEdit* edit : filterInputs)
+        delete edit;
+
+    filterInputs.clear();
+
+    filterLeftSpacer->setFixedSize(gridView->verticalHeader()->width() + 1, 1);
+
+    QLineEdit* edit = nullptr;
+    for (int i = 0, total = gridView->horizontalHeader()->count(); i < total; ++i)
+    {
+        edit = new QLineEdit(perColumnWidget);
+        edit->setPlaceholderText(tr("Filter"));
+        edit->setClearButtonEnabled(true);
+        edit->setFixedWidth(gridView->columnWidth(i)/* + (i == 0 || i == (total - 1) ? 1 : 0)*/);
+        edit->setToolTip(tr("Hit Enter key or press \"Apply filter\" button on toolbar to apply new value."));
+        if (filterValues.size() > i)
+            edit->setText(filterValues[i]);
+
+        connect(edit, SIGNAL(returnPressed()), this, SLOT(applyFilter()));
+        perColumnWidget->layout()->addWidget(edit);
+        filterInputs << edit;
+    }
+
+    int rightSpacerWd = gridView->verticalScrollBar()->isVisible() ? gridView->verticalScrollBar()->width() : 0;
+    filterRightSpacer->setFixedSize(rightSpacerWd + 1, 1);
+
+    perColumnAreaParent->setFixedWidth(gridView->width());
+
+    if (edit)
+    {
+        int hg = edit->sizeHint().height();
+        perColumnFilterArea->setFixedHeight(hg);
+        perColumnAreaParent->setFixedHeight(hg);
+    }
+
+    qApp->processEvents();
+
+    syncFilterScrollPosition();
+}
+
+void DataView::createFilteringActions()
+{
+    createAction(FILTER_STRING, ICONS.APPLY_FILTER_TXT, tr("Filter by text", "data view"), this, SLOT(filterModeSelected()), this);
+    createAction(FILTER_REGEXP, ICONS.APPLY_FILTER_RE, tr("Filter by the Regular Expression", "data view"), this, SLOT(filterModeSelected()), this);
+    createAction(FILTER_SQL, ICONS.APPLY_FILTER_SQL, tr("Filter by SQL expression", "data view"), this, SLOT(filterModeSelected()), this);
+
+    actionMap[FILTER_STRING]->setProperty(DATA_VIEW_FILTER_PROP, static_cast<int>(FilterMode::STRING));
+    actionMap[FILTER_REGEXP]->setProperty(DATA_VIEW_FILTER_PROP, static_cast<int>(FilterMode::REGEXP));
+    actionMap[FILTER_SQL]->setProperty(DATA_VIEW_FILTER_PROP, static_cast<int>(FilterMode::SQL));
+
+    QActionGroup* filterGroup = new QActionGroup(gridToolBar);
+    filterGroup->addAction(actionMap[FILTER_STRING]);
+    filterGroup->addAction(actionMap[FILTER_SQL]);
+    filterGroup->addAction(actionMap[FILTER_REGEXP]);
+
+    actionMap[FILTER_STRING]->setCheckable(true);
+    actionMap[FILTER_REGEXP]->setCheckable(true);
+    actionMap[FILTER_SQL]->setCheckable(true);
+    actionMap[FILTER_STRING]->setChecked(true);
+
+    createAction(FILTER_PER_COLUMN, tr("Show filter inputs per column", "data view"), this, SLOT(togglePerColumnFiltering()), this);
+    actionMap[FILTER_PER_COLUMN]->setCheckable(true);
+
+    actionMap[FILTER_VALUE] = gridToolBar->addWidget(filterEdit);
+    createAction(FILTER, tr("Apply filter", "data view"), this, SLOT(applyFilter()), gridToolBar);
+    attachActionInMenu(FILTER, actionMap[FILTER_STRING], gridToolBar);
+    attachActionInMenu(FILTER, actionMap[FILTER_REGEXP], gridToolBar);
+    attachActionInMenu(FILTER, actionMap[FILTER_SQL], gridToolBar);
+    addSeparatorInMenu(FILTER, gridToolBar);
+    attachActionInMenu(FILTER, actionMap[FILTER_PER_COLUMN], gridToolBar);
+    gridToolBar->addSeparator();
+
+    actionMap[FILTER]->setIcon(actionMap[FILTER_STRING]->icon());
+
+    gridView->getHeaderContextMenu()->addAction(actionMap[FILTER_PER_COLUMN]);
+}
+
 void DataView::columnsHeaderClicked(int columnIdx)
 {
     model->changeSorting(columnIdx);
@@ -932,7 +1063,6 @@ QToolBar* DataView::getToolBar(int toolbar) const
 
 void DataView::staticInit()
 {
-    filterMode = FilterMode::STRING;
     tabsPosition = TabsPosition::TOP;
     loadTabsMode();
     createStaticActions();

@@ -15,6 +15,8 @@ class ExtLineEdit;
 class QLabel;
 class IntValidator;
 class WidgetCover;
+class QScrollArea;
+class QLineEdit;
 
 CFG_KEY_LIST(DataView, QObject::tr("Data view (both grid and form)"),
      CFG_KEY_ENTRY(REFRESH_DATA,    Qt::Key_F5,                   QObject::tr("Refresh data"))
@@ -46,6 +48,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
             FILTER_STRING,
             FILTER_SQL,
             FILTER_REGEXP,
+            FILTER_PER_COLUMN,
             GRID_TOTAL_ROWS,
             SELECTIVE_COMMIT,
             SELECTIVE_ROLLBACK,
@@ -123,6 +126,7 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         void initPageEdit();
         void initWidgetCover();
         void createContents();
+        void createFilterPanel();
         void goToFormRow(IndexModifier idxMod);
         void setNavigationState(bool enabled);
         void updateNavigationState();
@@ -133,15 +137,16 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         void updateCurrentFormViewRow();
         void setFormViewEnabled(bool enabled);
         void readData();
-        void updateFilterIcon();
         void initFormViewForNewRow();
         void formViewFocusFirstEditor();
+        void recreateFilterInputs();
+        void createFilteringActions();
 
-        static FilterMode filterMode;
         static TabsPosition tabsPosition;
         static QHash<Action,QAction*> staticActions;
         static QHash<ActionGroup,QActionGroup*> staticActionGroups;
 
+        FilterMode filterMode = FilterMode::STRING;
         QToolBar* gridToolBar = nullptr;
         QToolBar* formToolBar = nullptr;
         SqlQueryView* gridView = nullptr;
@@ -149,6 +154,9 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         FormView* formView = nullptr;
         QWidget* gridWidget = nullptr;
         QWidget* formWidget = nullptr;
+        QScrollArea* perColumnFilterArea = nullptr;
+        QWidget* perColumnWidget = nullptr;
+        QWidget* perColumnAreaParent = nullptr;
         ExtLineEdit* filterEdit = nullptr;
         QLabel* rowCountLabel = nullptr;
         QLabel* formViewRowCountLabel = nullptr;
@@ -161,6 +169,10 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         bool uncommittedGrid = false;
         bool uncommittedForm = false;
         WidgetCover* widgetCover = nullptr;
+        QList<QLineEdit*> filterInputs;
+        QStringList filterValues;
+        QWidget* filterLeftSpacer = nullptr;
+        QWidget* filterRightSpacer = nullptr;
 
     signals:
 
@@ -205,6 +217,9 @@ class GUI_API_EXPORT DataView : public QTabWidget, public ExtActionContainer
         void updateGridCommitCover(int value);
         void hideGridCommitCover();
         void adjustColumnWidth(SqlQueryItem* item);
+        void syncFilterScrollPosition();
+        void resizeFilter(int section, int oldSize, int newSize);
+        void togglePerColumnFiltering();
 };
 
 int qHash(DataView::ActionGroup action);

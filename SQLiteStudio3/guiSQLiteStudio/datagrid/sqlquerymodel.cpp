@@ -1748,6 +1748,18 @@ void SqlQueryModel::applyRegExpFilter(const QString& value)
     // For custom query this is not supported.
 }
 
+void SqlQueryModel::applyStringFilter(const QStringList& values)
+{
+    UNUSED(values);
+    // For custom query this is not supported.
+}
+
+void SqlQueryModel::applyRegExpFilter(const QStringList& values)
+{
+    UNUSED(values);
+    // For custom query this is not supported.
+}
+
 void SqlQueryModel::resetFilter()
 {
     // For custom query this is not supported.

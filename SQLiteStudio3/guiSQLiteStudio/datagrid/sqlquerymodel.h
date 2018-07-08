@@ -83,7 +83,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         virtual Features features() const;
 
         /**
-         * @brief applySqlFilter
+         * @brief Request for applying SQL expression filtering on a dataset.
          * @param value Filter expression.
          * Default implementation does nothing. Working implementation (i.e. for a table)
          * should set the query to temporary value which respects given filter and reload the data.
@@ -92,7 +92,7 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         virtual void applySqlFilter(const QString& value);
 
         /**
-         * @brief applyStringFilter
+         * @brief Request for applying "LIKE" filtering on a dataset.
          * @param value Filter expression.
          * Default implementation does nothing. Working implementation (i.e. for a table)
          * should set the query to temporary value which respects given filter and reload the data.
@@ -101,13 +101,29 @@ class GUI_API_EXPORT SqlQueryModel : public QStandardItemModel
         virtual void applyStringFilter(const QString& value);
 
         /**
-         * @brief applyStringFilter
+         * @brief Request for applying Regular Expression filtering on a dataset.
          * @param value Filter expression.
          * Default implementation does nothing. Working implementation (i.e. for a table)
          * should set the query to temporary value which respects given filter and reload the data.
          * Filter passed to this method is meant to be treated as regular expression to be matched in any column.
          */
         virtual void applyRegExpFilter(const QString& value);
+
+        /**
+         * @brief Request for applying "LIKE" filtering on a dataset.
+         * @param values Filter expressions per column.
+         * This is the same as applyStringFilter(const QString&), but is used for per-column filtering,
+         * when user enters filtering expressions for each column sparately.
+         */
+        virtual void applyStringFilter(const QStringList& values);
+
+        /**
+         * @brief Request for applying Regular Expression filtering on a dataset.
+         * @param values Filter expressions per column.
+         * This is the same as applyRegExpFilter(const QString&), but is used for per-column filtering,
+         * when user enters filtering expressions for each column sparately.
+         */
+        virtual void applyRegExpFilter(const QStringList& values);
 
         /**
          * @brief resetFilter

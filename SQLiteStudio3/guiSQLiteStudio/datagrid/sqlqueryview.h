@@ -81,6 +81,10 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         bool getSimpleBrowserMode() const;
         void setSimpleBrowserMode(bool value);
         void setIgnoreColumnWidthChanges(bool ignore);
+        QMenu* getHeaderContextMenu() const;
+
+    protected:
+        void scrollContentsBy(int dx, int dy);
 
     private:
         class Header : public QHeaderView
@@ -156,6 +160,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void requestForRowInsert();
         void requestForMultipleRowInsert();
         void requestForRowDelete();
+        void scrolledBy(int dx, int dy);
 };
 
 GUI_API_EXPORT int qHash(SqlQueryView::Action action);

@@ -135,6 +135,7 @@ class GUI_API_EXPORT ExtActionContainer
         void attachActionInMenu(int parentAction, int childAction, QToolBar* toolbar);
         void attachActionInMenu(int parentAction, QAction* childAction, QToolBar* toolbar);
         void attachActionInMenu(QAction* parentAction, QAction* childAction, QToolBar* toolbar);
+        void addSeparatorInMenu(int parentAction, QToolBar* toolbar);
         void addSeparatorInMenu(QAction* parentAction, QToolBar *toolbar);
         void updateShortcutTips();
 

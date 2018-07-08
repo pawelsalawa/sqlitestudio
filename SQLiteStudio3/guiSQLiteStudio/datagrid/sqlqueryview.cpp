@@ -529,6 +529,17 @@ void SqlQueryView::setIgnoreColumnWidthChanges(bool ignore)
     ignoreColumnWidthChanges = ignore;
 }
 
+QMenu* SqlQueryView::getHeaderContextMenu() const
+{
+    return headerContextMenu;
+}
+
+void SqlQueryView::scrollContentsBy(int dx, int dy)
+{
+    QTableView::scrollContentsBy(dx, dy);
+    emit scrolledBy(dx, dy);
+}
+
 void SqlQueryView::updateCommitRollbackActions(bool enabled)
 {
     actionMap[COMMIT]->setEnabled(enabled);
@@ -603,7 +614,10 @@ void SqlQueryView::executionStarted()
 void SqlQueryView::executionEnded()
 {
     if (beforeExecutionHorizontalPosition > -1)
+    {
         horizontalScrollBar()->setSliderPosition(beforeExecutionHorizontalPosition);
+        emit scrolledBy(beforeExecutionHorizontalPosition, 0);
+    }
 
     widgetCover->hide();
 }

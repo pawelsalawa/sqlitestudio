@@ -17,7 +17,9 @@ class GUI_API_EXPORT SqlTableModel : public SqlQueryModel
         Features features() const;
         void applySqlFilter(const QString& value);
         void applyStringFilter(const QString& value);
+        void applyStringFilter(const QStringList& values);
         void applyRegExpFilter(const QString& value);
+        void applyRegExpFilter(const QStringList& values);
         void resetFilter();
         QString generateSelectQueryForItems(const QList<SqlQueryItem*>& items);
         QString generateInsertQueryForItems(const QList<SqlQueryItem*>& items);
@@ -43,7 +45,13 @@ class GUI_API_EXPORT SqlTableModel : public SqlQueryModel
                 void addColumn(const QString& col);
         };
 
+        typedef std::function<QString(const QString&)> FilterValueProcessor;
 
+        static QString stringFilterValueProcessor(const QString& value);
+        static QString regExpFilterValueProcessor(const QString& value);
+
+        void applyFilter(const QString& value, FilterValueProcessor valueProc);
+        void applyFilter(const QStringList& values, FilterValueProcessor valueProc);
         void updateColumnsAndValuesWithDefaultValues(const QList<SqlQueryModelColumnPtr>& modelColumns, QStringList& colNameList,
                                                      QStringList& sqlValues, QList<QVariant>& args);
         void updateColumnsAndValues(const QList<SqlQueryItem*>& itemsInRow, const QList<SqlQueryModelColumnPtr>& modelColumns,

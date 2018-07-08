@@ -100,6 +100,11 @@ void ExtActionContainer::attachActionInMenu(QAction* parentAction, QAction* chil
     menu->addAction(childAction);
 }
 
+void ExtActionContainer::addSeparatorInMenu(int parentAction, QToolBar* toolbar)
+{
+    addSeparatorInMenu(actionMap[parentAction], toolbar);
+}
+
 void ExtActionContainer::addSeparatorInMenu(QAction *parentAction, QToolBar* toolbar)
 {
     QMenu* menu = getMenuForAction(parentAction, toolbar);
