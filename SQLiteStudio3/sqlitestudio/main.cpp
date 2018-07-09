@@ -99,7 +99,7 @@ QString uiHandleCmdLineArgs(bool applyOptions = true)
 
 int main(int argc, char *argv[])
 {
-    SingleApplication a(argc, argv, true);
+    SingleApplication a(argc, argv, true, SingleApplication::ExcludeAppPath|SingleApplication::ExcludeAppVersion);
 
     if (a.isSecondary()) {
 #ifdef Q_OS_WIN
