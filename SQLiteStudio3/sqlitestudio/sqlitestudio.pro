@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui widgets
+QT       += core gui widgets network
 
 include($$PWD/../dirs.pri)
 include($$PWD/../utils.pri)
@@ -23,6 +23,13 @@ TEMPLATE = app
 CONFIG   += c++11
 QMAKE_CXXFLAGS += -pedantic
 
+DEFINES += QAPPLICATION_CLASS=QApplication
+
+win32 {
+    msvc:LIBS += Advapi32.lib
+    gcc:LIBS += -lAdvapi32
+}
+
 portable {
     DEFINES += PORTABLE_CONFIG
     linux {
@@ -32,7 +39,8 @@ portable {
 
 LIBS += -lcoreSQLiteStudio -lguiSQLiteStudio
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    singleapplication/singleapplication.cpp
 
 TRANSLATIONS += translations/sqlitestudio_ro_RO.ts \
 		translations/sqlitestudio_de.ts \
@@ -47,6 +55,8 @@ TRANSLATIONS += translations/sqlitestudio_ro_RO.ts \
 
 win32 {
     RC_FILE = windows.rc
+    msvc:LIBS += User32.lib
+    gcc:LIBS += -lUser32
 }
 
 macx {
@@ -64,6 +74,10 @@ unix {
 
 RESOURCES += \
     sqlitestudio.qrc
+
+HEADERS += \
+    singleapplication/singleapplication.h \
+    singleapplication/singleapplication_p.h
 
 
 

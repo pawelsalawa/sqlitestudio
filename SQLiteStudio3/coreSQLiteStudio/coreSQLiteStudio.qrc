@@ -17,6 +17,7 @@
         <file>licenses/lgpl.txt</file>
         <file>licenses/diff_match.txt</file>
         <file>licenses/gpl.txt</file>
+        <file>licenses/mit.txt</file>
     </qresource>
     <qresource prefix="/msg">
         <file>translations/coreSQLiteStudio_ro_RO.qm</file>
@@ -28,7 +29,3 @@
         <file>translations/coreSQLiteStudio_de.qm</file>
     </qresource>
 </RCC>
-
-
-
-

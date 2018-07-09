@@ -26,6 +26,7 @@
 #include "dialogs/languagedialog.h"
 #include "dialogs/triggerdialog.h"
 #include "services/pluginmanager.h"
+#include "singleapplication/singleapplication.h"
 #include <QCommandLineParser>
 #include <QCommandLineOption>
 #include <QApplication>
@@ -35,10 +36,14 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QProcess>
+#ifdef Q_OS_WIN
+#   include <windef.h>
+#   include <windows.h>
+#endif
 
 static bool listPlugins = false;
 
-QString uiHandleCmdLineArgs()
+QString uiHandleCmdLineArgs(bool applyOptions = true)
 {
     QCommandLineParser parser;
     parser.setApplicationDescription(QObject::tr("GUI interface to SQLiteStudio, a SQLite manager."));
@@ -68,19 +73,22 @@ QString uiHandleCmdLineArgs()
 
     parser.process(qApp->arguments());
 
-    bool enableDebug = parser.isSet(debugOption) || parser.isSet(debugStdOutOption) || parser.isSet(sqlDebugOption) || parser.isSet(debugFileOption);
-    setUiDebug(enableDebug, !parser.isSet(debugStdOutOption), parser.value(debugFileOption));
-    CompletionHelper::enableLemonDebug = parser.isSet(lemonDebugOption);
-    setSqlLoggingEnabled(parser.isSet(sqlDebugOption));
-    setExecutorLoggingEnabled(parser.isSet(executorDebugOption));
-    if (parser.isSet(sqlDebugDbNameOption))
-        setSqlLoggingFilter(parser.value(sqlDebugDbNameOption));
+    if (applyOptions)
+    {
+        bool enableDebug = parser.isSet(debugOption) || parser.isSet(debugStdOutOption) || parser.isSet(sqlDebugOption) || parser.isSet(debugFileOption);
+        setUiDebug(enableDebug, !parser.isSet(debugStdOutOption), parser.value(debugFileOption));
+        CompletionHelper::enableLemonDebug = parser.isSet(lemonDebugOption);
+        setSqlLoggingEnabled(parser.isSet(sqlDebugOption));
+        setExecutorLoggingEnabled(parser.isSet(executorDebugOption));
+        if (parser.isSet(sqlDebugDbNameOption))
+            setSqlLoggingFilter(parser.value(sqlDebugDbNameOption));
 
-    if (parser.isSet(listPluginsOption))
-        listPlugins = true;
+        if (parser.isSet(listPluginsOption))
+            listPlugins = true;
 
-    if (parser.isSet(masterConfigOption))
-        Config::setMasterConfigFile(parser.value(masterConfigOption));
+        if (parser.isSet(masterConfigOption))
+            Config::setMasterConfigFile(parser.value(masterConfigOption));
+    }
 
     QStringList args = parser.positionalArguments();
     if (args.size() > 0)
@@ -91,7 +99,16 @@ QString uiHandleCmdLineArgs()
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    SingleApplication a(argc, argv, true);
+
+    if (a.isSecondary()) {
+#ifdef Q_OS_WIN
+        AllowSetForegroundWindow(DWORD( a.primaryPid()));
+#endif
+        QString dbToOpen = uiHandleCmdLineArgs();
+        a.sendMessage(serializeToBytes(dbToOpen));
+        return 0;
+    }
 
     qInstallMessageHandler(uiMessageHandler);
 
@@ -115,7 +132,9 @@ int main(int argc, char *argv[])
     MultiEditorBool::staticInit();
     TriggerDialog::staticInit();
 
-    MainWindow::getInstance();
+    MainWindow* mainWin = MAINWINDOW;
+
+    QObject::connect(&a, &SingleApplication::receivedMessage, mainWin, &MainWindow::messageFromSecondaryInstance);
 
     SQLITESTUDIO->initPlugins();
 

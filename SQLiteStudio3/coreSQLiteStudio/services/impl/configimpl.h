@@ -105,7 +105,6 @@ class API_EXPORT ConfigImpl : public Config
         void initTables();
         void initDbFile();
         bool tryInitDbFile(const QPair<QString, bool>& dbPath);
-        QByteArray serializeValue(const QVariant& value) const;
         QVariant deserializeValue(const QVariant& value) const;
 
         void asyncAddSqlHistory(qint64 id, const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected);

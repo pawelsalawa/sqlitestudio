@@ -957,3 +957,22 @@ void sortWithReferenceList(QList<QString>& listToSort, const QList<QString>& ref
         return (idx1 > idx2);
     });
 }
+
+QByteArray serializeToBytes(const QVariant& value)
+{
+    QByteArray bytes;
+    QDataStream stream(&bytes, QIODevice::WriteOnly);
+    stream << value;
+    return bytes;
+}
+
+QVariant deserializeFromBytes(const QByteArray& bytes)
+{
+    if (bytes.isNull())
+        return QVariant();
+
+    QVariant deserializedValue;
+    QDataStream stream(bytes);
+    stream >> deserializedValue;
+    return deserializedValue;
+}

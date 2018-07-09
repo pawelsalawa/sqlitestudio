@@ -9,6 +9,8 @@
 #include <QStringList>
 #include <QFileInfo>
 #include <functional>
+#include <QVariant>
+#include <QDataStream>
 
 class QTextCodec;
 
@@ -288,6 +290,10 @@ void removeDuplicates(QList<T>& list)
             set << i.value();
     }
 }
+
+API_EXPORT QByteArray serializeToBytes(const QVariant& value);
+
+API_EXPORT QVariant deserializeFromBytes(const QByteArray& bytes);
 
 Q_DECLARE_METATYPE(QList<int>)
 

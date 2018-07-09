@@ -467,6 +467,9 @@ FORMS += \
 RESOURCES += \
     coreSQLiteStudio.qrc
 
+DISTFILES += \
+    licenses/mit.txt
+
 
 
 

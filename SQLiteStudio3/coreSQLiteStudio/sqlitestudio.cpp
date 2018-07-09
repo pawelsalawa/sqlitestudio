@@ -122,13 +122,13 @@ void SQLiteStudio::setCodeFormatter(CodeFormatter* codeFormatter)
 
 QString SQLiteStudio::getHomePage() const
 {
-    static_qstring(url, "http://sqlitestudio.pl");
+    static_qstring(url, "https://sqlitestudio.pl");
     return url;
 }
 
 QString SQLiteStudio::getForumPage() const
 {
-    static_qstring(url, "http://forum.sqlitestudio.pl");
+    static_qstring(url, "https://forum.sqlitestudio.pl");
     return url;
 }
 
@@ -345,7 +345,7 @@ void SQLiteStudio::init(const QStringList& cmdListArguments, bool guiAvailable)
     extraLicenseManager->addLicense("Qt, QHexEdit (LGPL v2.1)", ":/docs/licenses/lgpl.txt");
     extraLicenseManager->addLicense("diff_match (Apache License v2.0)", ":/docs/licenses/diff_match.txt");
     extraLicenseManager->addLicense("RSA library (GPL v3)", ":/docs/licenses/gpl.txt");
-
+    extraLicenseManager->addLicense("SingleApplication (The MIT License)", ":/docs/licenses/mit.txt");
 }
 
 void SQLiteStudio::initPlugins()

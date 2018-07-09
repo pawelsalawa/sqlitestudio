@@ -176,6 +176,7 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         EditorWindow* openSqlEditor();
         void updateWindowActions();
         void updateCornerDocking();
+        void messageFromSecondaryInstance(quint32 instanceId, QByteArray message);
 
     private slots:
         void notifyAboutLanguageChange();

@@ -4,6 +4,7 @@
 #include "services/notifymanager.h"
 #include "sqlitestudio.h"
 #include "db/dbsqlite3.h"
+#include "common/utils.h"
 #include <QtGlobal>
 #include <QDebug>
 #include <QList>
@@ -94,7 +95,7 @@ bool ConfigImpl::isMassSaving() const
 
 void ConfigImpl::set(const QString &group, const QString &key, const QVariant &value)
 {
-    db->exec("INSERT OR REPLACE INTO settings VALUES (?, ?, ?)", {group, key, serializeValue(value)});
+    db->exec("INSERT OR REPLACE INTO settings VALUES (?, ?, ?)", {group, key, serializeToBytes(value)});
 }
 
 QVariant ConfigImpl::get(const QString &group, const QString &key)
@@ -800,27 +801,13 @@ bool ConfigImpl::tryInitDbFile(const QPair<QString, bool> &dbPath)
     return true;
 }
 
-QByteArray ConfigImpl::serializeValue(const QVariant& value) const
-{
-    QByteArray bytes;
-    QDataStream stream(&bytes, QIODevice::WriteOnly);
-    stream << value;
-    return bytes;
-}
-
 QVariant ConfigImpl::deserializeValue(const QVariant &value) const
 {
     if (!value.isValid())
         return QVariant();
 
     QByteArray bytes = value.toByteArray();
-    if (bytes.isNull())
-        return QVariant();
-
-    QVariant deserializedValue;
-    QDataStream stream(bytes);
-    stream >> deserializedValue;
-    return deserializedValue;
+    return deserializeFromBytes(bytes);
 }
 
 void ConfigImpl::asyncAddSqlHistory(qint64 id, const QString& sql, const QString& dbName, int timeSpentMillis, int rowsAffected)
@@ -989,7 +976,7 @@ void ConfigImpl::asyncAddPopulateHistory(const QString& database, const QString&
 
     for (QHash<QString, QPair<QString, QVariant>>::const_iterator colIt = columnsPluginsConfig.begin(); colIt != columnsPluginsConfig.end(); colIt++)
     {
-        results = db->exec(insertColumnQuery, {populateHistoryId, colIt.key(), colIt.value().first, serializeValue(colIt.value().second)});
+        results = db->exec(insertColumnQuery, {populateHistoryId, colIt.key(), colIt.value().first, serializeToBytes(colIt.value().second)});
         if (results->isError())
         {
             qWarning() << "Failed to store Populating history entry, due to SQL error:" << db->getErrorText();

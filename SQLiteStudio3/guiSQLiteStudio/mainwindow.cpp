@@ -47,6 +47,7 @@
 #include <QProgressBar>
 #include <QLabel>
 #include <QStyle>
+#include <QApplication>
 
 CFG_KEYS_DEFINE(MainWindow)
 MainWindow* MainWindow::instance = nullptr;
@@ -813,6 +814,16 @@ void MainWindow::updateCornerDocking()
         setCorner(Qt::BottomLeftCorner, Qt::BottomDockWidgetArea);
         setCorner(Qt::BottomRightCorner, Qt::BottomDockWidgetArea);
     }
+}
+
+void MainWindow::messageFromSecondaryInstance(quint32 instanceId, QByteArray message)
+{
+    UNUSED(instanceId);
+    QApplication::setActiveWindow(this);
+    raise();
+    QString dbToOpen = deserializeFromBytes(message).toString();
+    if (!dbToOpen.isNull())
+        openDb(dbToOpen);
 }
 
 DdlHistoryWindow* MainWindow::openDdlHistory()
