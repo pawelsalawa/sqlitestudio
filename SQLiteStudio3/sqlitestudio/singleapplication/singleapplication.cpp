@@ -209,7 +209,7 @@ void SingleApplicationPrivate::connectToPrimary( int msecs, ConnectionType conne
         // Notify the parent that a new instance had been started;
         QByteArray initMsg;
         QDataStream writeStream(&initMsg, QIODevice::WriteOnly);
-        writeStream.setVersion(QDataStream::Qt_5_6);
+        writeStream.setVersion(QDataStream::Qt_5_3);
         writeStream << blockServerName.toLatin1();
         writeStream << static_cast<quint8>(connectionType);
         writeStream << instanceNumber;
