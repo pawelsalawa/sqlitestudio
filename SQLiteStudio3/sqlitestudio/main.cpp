@@ -107,7 +107,7 @@ int main(int argc, char *argv[])
 #endif
         QString dbToOpen = uiHandleCmdLineArgs();
         a.sendMessage(serializeToBytes(dbToOpen));
-        return 0;
+        a.exit(0);
     }
 
     qInstallMessageHandler(uiMessageHandler);

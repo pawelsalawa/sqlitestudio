@@ -32,6 +32,13 @@
 #include <QtCore/QDataStream>
 #include <QtNetwork/QLocalServer>
 #include <QtNetwork/QLocalSocket>
+#include <QtGlobal>
+#if QT_VERSION < 0x050603
+#  include <QThrad>
+#  define SINGLE_APP_STREAM_VERSION QDataStream::Qt_5_3
+#else
+#  define SINGLE_APP_STREAM_VERSION QDataStream::Qt_5_6
+#endif
 
 #ifdef Q_OS_UNIX
     #include <signal.h>
@@ -209,7 +216,7 @@ void SingleApplicationPrivate::connectToPrimary( int msecs, ConnectionType conne
         // Notify the parent that a new instance had been started;
         QByteArray initMsg;
         QDataStream writeStream(&initMsg, QIODevice::WriteOnly);
-        writeStream.setVersion(QDataStream::Qt_5_3);
+        writeStream.setVersion(SINGLE_APP_STREAM_VERSION);
         writeStream << blockServerName.toLatin1();
         writeStream << static_cast<quint8>(connectionType);
         writeStream << instanceNumber;
@@ -278,7 +285,7 @@ void SingleApplicationPrivate::slotConnectionEstablished()
         QByteArray msgBytes = nextConnSocket->read(nextConnSocket->bytesAvailable() - static_cast<qint64>(sizeof(quint16)));
         QByteArray checksumBytes = nextConnSocket->read(sizeof(quint16));
         QDataStream readStream(msgBytes);
-        readStream.setVersion(QDataStream::Qt_5_3);
+        readStream.setVersion(SINGLE_APP_STREAM_VERSION);
 
         // server name
         QByteArray latin1Name;
@@ -292,7 +299,7 @@ void SingleApplicationPrivate::slotConnectionEstablished()
         // checksum
         quint16 msgChecksum = 0;
         QDataStream checksumStream(checksumBytes);
-        checksumStream.setVersion(QDataStream::Qt_5_3);
+        checksumStream.setVersion(SINGLE_APP_STREAM_VERSION);
         checksumStream >> msgChecksum;
 
         const quint16 actualChecksum = qChecksum(msgBytes.constData(), static_cast<quint32>(msgBytes.length()));
@@ -460,6 +467,9 @@ bool SingleApplication::sendMessage( QByteArray message, int timeout )
 
     // Make sure the socket is connected
     d->connectToPrimary( timeout,  SingleApplicationPrivate::Reconnect );
+#if QT_VERSION < 0x050603
+     QThread::msleep(100);
+#endif
 
     d->socket->write( message );
     bool dataWritten = d->socket->flush();
