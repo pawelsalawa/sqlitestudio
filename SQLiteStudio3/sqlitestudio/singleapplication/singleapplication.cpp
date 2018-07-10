@@ -34,7 +34,7 @@
 #include <QtNetwork/QLocalSocket>
 #include <QtGlobal>
 #if QT_VERSION < 0x050603
-#  include <QThrad>
+#  include <QThread>
 #  define SINGLE_APP_STREAM_VERSION QDataStream::Qt_5_3
 #else
 #  define SINGLE_APP_STREAM_VERSION QDataStream::Qt_5_6
