@@ -33,12 +33,8 @@
 #include <QtNetwork/QLocalServer>
 #include <QtNetwork/QLocalSocket>
 #include <QtGlobal>
-#if QT_VERSION < 0x050603
-#  include <QThread>
-#  define SINGLE_APP_STREAM_VERSION QDataStream::Qt_5_3
-#else
-#  define SINGLE_APP_STREAM_VERSION QDataStream::Qt_5_6
-#endif
+#include <QThread>
+#define SINGLE_APP_STREAM_VERSION QDataStream::Qt_5_3
 
 #ifdef Q_OS_UNIX
     #include <signal.h>
@@ -467,9 +463,7 @@ bool SingleApplication::sendMessage( QByteArray message, int timeout )
 
     // Make sure the socket is connected
     d->connectToPrimary( timeout,  SingleApplicationPrivate::Reconnect );
-#if QT_VERSION < 0x050603
-     QThread::msleep(100);
-#endif
+    QThread::msleep(100);
 
     d->socket->write( message );
     bool dataWritten = d->socket->flush();
