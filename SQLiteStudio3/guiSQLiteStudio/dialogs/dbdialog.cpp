@@ -144,7 +144,7 @@ void DbDialog::updateOptions()
     setUpdatesEnabled(false);
 
     // Remove olds
-    foreach (QWidget* w, optionWidgets)
+    for (QWidget* w : optionWidgets)
     {
         ui->optionsGrid->removeWidget(w);
         delete w;

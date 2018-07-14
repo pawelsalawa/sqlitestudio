@@ -655,7 +655,7 @@ bool AbstractDb2<T>::Query::execInternal(const QHash<QString, QVariant>& args)
         return false;
 
     int paramIdx = 1;
-    foreach (const QString& paramName, queryWithParams.second)
+    for (const QString& paramName : queryWithParams.second)
     {
         if (!args.contains(paramName))
         {

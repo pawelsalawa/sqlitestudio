@@ -315,7 +315,7 @@ void DbTree::updateActionStates(const QStandardItem *item)
 
     enabled << REFRESH_SCHEMAS;
 
-    foreach (int action, actionMap.keys())
+    for (int action : actionMap.keys())
         setActionEnabled(action, enabled.contains(action));
 }
 
@@ -567,7 +567,7 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
     actions += ActionEntry(REFRESH_SCHEMAS);
 
     QMenu* subMenu = nullptr;
-    foreach (ActionEntry actionEntry, actions)
+    for (ActionEntry actionEntry : actions)
     {
         switch (actionEntry.type)
         {
@@ -584,7 +584,7 @@ void DbTree::setupActionsForMenu(DbTreeItem* currItem, QMenu* contextMenu)
             case ActionEntry::Type::SUB_MENU:
             {
                 subMenu = contextMenu->addMenu(actionEntry.subMenuIcon, actionEntry.subMenuLabel);
-                foreach (Action action, actionEntry.actions)
+                for (Action action : actionEntry.actions)
                 {
                     if (action == DbTree::_separator)
                     {
@@ -870,11 +870,10 @@ void DbTree::filterItemsWithParentInList(QList<DbTreeItem*>& items)
 {
     QMutableListIterator<DbTreeItem*> it(items);
     DbTreeItem* item = nullptr;
-    DbTreeItem* pathItem = nullptr;
     while (it.hasNext())
     {
         item = it.next();
-        foreach (pathItem, item->getPathToRoot().mid(1))
+        for (DbTreeItem* pathItem : item->getPathToRoot().mid(1))
         {
             if (items.contains(pathItem) && pathItem->getType() != DbTreeItem::Type::DIR)
             {
@@ -1651,7 +1650,7 @@ void DbTree::deleteItems(const QList<DbTreeItem*>& itemsToDelete)
     QStringList databasesToRemove;
     QString itemStr;
     int groupItems = 0;
-    foreach (DbTreeItem* item, items)
+    for (DbTreeItem* item : items)
     {
         itemStr = itemTmp.arg(item->getIcon()->toUrl()).arg(item->text().left(ITEM_TEXT_LIMIT));
 
@@ -1703,7 +1702,7 @@ void DbTree::deleteItems(const QList<DbTreeItem*>& itemsToDelete)
 
 void DbTree::refreshSchemas()
 {
-    foreach (Db* db, DBLIST->getDbList())
+    for (Db* db : DBLIST->getDbList())
         treeModel->refreshSchema(db);
 
     updateActionsForCurrent();

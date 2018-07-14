@@ -76,7 +76,7 @@ void DdlHistoryWindow::activated(const QModelIndex& current, const QModelIndex& 
 
     QStringList contentEntries;
     QList<Config::DdlHistoryEntryPtr> entries = CFG->getDdlHistoryFor(dbName, dbFile, date);
-    foreach (Config::DdlHistoryEntryPtr entry, entries)
+    for (Config::DdlHistoryEntryPtr entry : entries)
     {
         contentEntries << templ.arg(entry->dbName).arg(entry->dbFile)
                           .arg(entry->timestamp.toString("yyyy-MM-dd HH:mm:ss"))

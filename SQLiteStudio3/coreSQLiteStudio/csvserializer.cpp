@@ -187,7 +187,7 @@ QString CsvSerializer::serialize(const QList<QStringList>& data, const CsvFormat
 {
     QStringList outputRows;
 
-    foreach (const QStringList& dataRow, data)
+    for (const QStringList& dataRow : data)
         outputRows << serialize(dataRow, format);
 
     return outputRows.join(format.rowSeparator);
@@ -198,7 +198,7 @@ QString CsvSerializer::serialize(const QStringList& data, const CsvFormat& forma
     QString value;
     bool hasQuote;
     QStringList outputCells;
-    foreach (const QString& rowValue, data)
+    for (const QString& rowValue : data)
     {
         value = rowValue;
 

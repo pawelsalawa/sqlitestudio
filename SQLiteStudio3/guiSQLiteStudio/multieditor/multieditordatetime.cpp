@@ -106,7 +106,7 @@ QList<QWidget*> MultiEditorDateTime::getNoScrollWidgets()
 QDateTime MultiEditorDateTime::fromString(const QString& value)
 {
     QDateTime dateTime;
-    foreach (const QString& format, getParsingFormats())
+    for (const QString& format : getParsingFormats())
     {
         dateTime = QDateTime::fromString(value, format);
         if (dateTime.isValid())

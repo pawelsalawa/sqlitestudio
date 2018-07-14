@@ -78,7 +78,7 @@ void CliCommandFactory::registerCommand(CliCommandCreatorFunc func)
     cmd->defineSyntax();
 
     mapping[cmd->getName()] = func;
-    foreach (const QString& alias, cmd->aliases())
+    for (const QString& alias : cmd->aliases())
         mapping[alias] = func;
 
     delete cmd;

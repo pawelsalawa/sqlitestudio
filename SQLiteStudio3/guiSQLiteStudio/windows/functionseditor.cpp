@@ -140,13 +140,13 @@ void FunctionsEditor::init()
     model->setData(FUNCTIONS->getAllScriptFunctions());
 
     // Language plugins
-    foreach (ScriptingPlugin* plugin, PLUGINS->getLoadedPlugins<ScriptingPlugin>())
+    for (ScriptingPlugin* plugin : PLUGINS->getLoadedPlugins<ScriptingPlugin>())
         scriptingPlugins[plugin->getLanguage()] = plugin;
 
     ui->langCombo->addItems(scriptingPlugins.keys());
 
     // Syntax highlighting plugins
-    foreach (SyntaxHighlighterPlugin* plugin, PLUGINS->getLoadedPlugins<SyntaxHighlighterPlugin>())
+    for (SyntaxHighlighterPlugin* plugin : PLUGINS->getLoadedPlugins<SyntaxHighlighterPlugin>())
         highlighterPlugins[plugin->getLanguageName()] = plugin;
 
     updateState();
@@ -204,7 +204,7 @@ void FunctionsEditor::functionSelected(int row)
     // Arguments
     ui->argsList->clear();
     QListWidgetItem* item = nullptr;
-    foreach (const QString& arg, model->getArguments(row))
+    for (const QString& arg : model->getArguments(row))
     {
         item = new QListWidgetItem(arg);
         item->setFlags(item->flags() | Qt::ItemIsEditable);

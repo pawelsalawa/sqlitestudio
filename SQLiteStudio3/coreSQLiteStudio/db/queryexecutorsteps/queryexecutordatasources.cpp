@@ -19,7 +19,7 @@ bool QueryExecutorDataSources::exec()
 
     SqliteSelect::Core* core = select->coreSelects.first();
     QSet<SelectResolver::Table> tables = resolver.resolveTables(core);
-    foreach (SelectResolver::Table resolvedTable, tables)
+    for (SelectResolver::Table resolvedTable : tables)
     {
         QueryExecutor::SourceTablePtr table = QueryExecutor::SourceTablePtr::create();
         table->database = resolvedTable.database;

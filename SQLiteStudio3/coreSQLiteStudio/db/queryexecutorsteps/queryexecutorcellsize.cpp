@@ -10,7 +10,7 @@ bool QueryExecutorCellSize::exec()
     if (!select || select->explain)
         return true;
 
-    foreach (SqliteSelect::Core* core, select->coreSelects)
+    for (SqliteSelect::Core* core : select->coreSelects)
     {
         if (!applyDataLimit(select.data(), core))
             return false;
@@ -31,7 +31,7 @@ bool QueryExecutorCellSize::applyDataLimit(SqliteSelect* select, SqliteSelect::C
     bool first = true;
     TokenList tokens;
 
-    foreach (const QueryExecutor::ResultColumnPtr& col, context->resultColumns)
+    for (const QueryExecutor::ResultColumnPtr& col : context->resultColumns)
     {
         if (!first)
             tokens += getSeparatorTokens();
@@ -40,7 +40,7 @@ bool QueryExecutorCellSize::applyDataLimit(SqliteSelect* select, SqliteSelect::C
         first = false;
     }
 
-    foreach (const QueryExecutor::ResultRowIdColumnPtr& col, context->rowIdColumns)
+    for (const QueryExecutor::ResultRowIdColumnPtr& col : context->rowIdColumns)
     {
         if (!first)
             tokens += getSeparatorTokens();
@@ -112,7 +112,7 @@ TokenList QueryExecutorCellSize::getNoLimitTokens(const QueryExecutor::ResultRow
 {
     TokenList newTokens;
     bool first = true;
-    foreach (const QString& col, resCol->queryExecutorAliasToColumn.keys())
+    for (const QString& col : resCol->queryExecutorAliasToColumn.keys())
     {
         if (!first)
             newTokens += getSeparatorTokens();

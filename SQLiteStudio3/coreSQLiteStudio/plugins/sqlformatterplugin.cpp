@@ -17,7 +17,7 @@ QString SqlFormatterPlugin::format(const QString& code, Db* contextDb)
     }
 
     QStringList formattedQueries;
-    foreach (SqliteQueryPtr query, parser.getQueries())
+    for (SqliteQueryPtr query : parser.getQueries())
         formattedQueries << format(query);
 
     return formattedQueries.join("\n");

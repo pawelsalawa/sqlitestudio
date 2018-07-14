@@ -311,7 +311,7 @@ QStringList tokenizeArgs(const QString& str)
 QStringList prefixEach(const QString& prefix, const QStringList& list)
 {
     QStringList result;
-    foreach (const QString& item, list)
+    for (const QString& item : list)
         result << (prefix + item);
 
     return result;
@@ -385,7 +385,7 @@ QString longest(const QStringList& strList)
 {
     int max = 0;
     QString result;
-    foreach (const QString str, strList)
+    for (const QString str : strList)
     {
         if (str.size() > max)
         {
@@ -400,7 +400,7 @@ QString shortest(const QStringList& strList)
 {
     int max = INT_MAX;
     QString result;
-    foreach (const QString str, strList)
+    for (const QString str : strList)
     {
         if (str.size() < max)
         {
@@ -421,7 +421,7 @@ QString longestCommonPart(const QStringList& strList)
    for (int i = 0; i < first.length(); i++)
    {
        common += first[i];
-       foreach (const QString& str, strList)
+       for (const QString& str : strList)
        {
            if (!str.startsWith(common))
                return common.left(i);
@@ -434,7 +434,7 @@ QStringList applyMargin(const QString& str, int margin)
 {
     QStringList lines;
     QString line;
-    foreach (QString word, str.split(" "))
+    for (QString word : str.split(" "))
     {
         if (((line + word).length() + 1) > margin)
         {

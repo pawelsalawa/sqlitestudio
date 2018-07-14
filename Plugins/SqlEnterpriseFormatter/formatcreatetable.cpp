@@ -48,7 +48,7 @@ void FormatCreateTable::formatColumns(const QList<SqliteCreateTable::Column*>& c
     int maxColNameIndent = 0;
     int maxColTypeIndent = 0;
     FormatColumnType* formatColType = nullptr;
-    foreach (SqliteCreateTable::Column* stmt, columns)
+    for (SqliteCreateTable::Column* stmt : columns)
     {
         maxColNameIndent = qMax(getColNameLength(stmt->name), maxColNameIndent);
 

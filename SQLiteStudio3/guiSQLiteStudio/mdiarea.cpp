@@ -72,7 +72,7 @@ QAction* MdiArea::getTaskByWindow(MdiWindow* window)
 QList<MdiWindow*> MdiArea::getWindows() const
 {
     QList<MdiWindow*> windowList;
-    foreach(QAction* action, taskBar->getTasks())
+    for (QAction* action : taskBar->getTasks())
         windowList << actionToWinMap[action];
 
     return windowList;
@@ -90,7 +90,7 @@ QList<MdiChild*> MdiArea::getMdiChilds() const
 QList<MdiWindow*> MdiArea::getWindowsToTile() const
 {
     QList<MdiWindow*> list;
-    foreach (MdiWindow *window, getWindows())
+    for (MdiWindow *window : getWindows())
     {
         if (window->isMinimized())
             continue;
@@ -162,7 +162,7 @@ void MdiArea::tileHorizontally()
     QPoint position(0, 0);
     QList<MdiWindow*> windowsToTile = getWindowsToTile();
     int winCnt = windowsToTile.count();
-    foreach (MdiWindow *window, windowsToTile)
+    for (MdiWindow *window : windowsToTile)
     {
         if (window->isMaximized())
             window->showNormal();
@@ -189,7 +189,7 @@ void MdiArea::tileVertically()
     QPoint position(0, 0);
     QList<MdiWindow*> windowsToTile = getWindowsToTile();
     int winCnt = windowsToTile.count();
-    foreach (MdiWindow *window, windowsToTile)
+    for (MdiWindow *window : windowsToTile)
     {
         if (window->isMaximized())
             window->showNormal();
@@ -212,7 +212,7 @@ void MdiArea::closeAllButActive()
     QList<QMdiSubWindow*> allButActive = subWindowList();
     allButActive.removeOne(activeSubWindow());
 
-    foreach (QMdiSubWindow *window, allButActive)
+    for (QMdiSubWindow *window : allButActive)
         window->close();
 }
 
@@ -221,7 +221,7 @@ MdiWindow* MdiArea::getWindowByChild(MdiChild *child)
     if (!child)
         return nullptr;
 
-    foreach (QMdiSubWindow *window, subWindowList())
+    for (QMdiSubWindow *window : subWindowList())
         if (window->widget() == child)
             return dynamic_cast<MdiWindow*>(window);
 
@@ -261,7 +261,7 @@ bool MdiArea::isActiveSubWindow(MdiChild *child)
 QStringList MdiArea::getWindowTitles()
 {
     QStringList titles;
-    foreach (QMdiSubWindow *subWin, subWindowList())
+    for (QMdiSubWindow *subWin : subWindowList())
         titles << subWin->windowTitle();
 
     return titles;
@@ -269,7 +269,7 @@ QStringList MdiArea::getWindowTitles()
 
 MdiWindow *MdiArea::getWindowByTitle(const QString &title)
 {
-    foreach (QMdiSubWindow *subWin, subWindowList())
+    for (QMdiSubWindow *subWin : subWindowList())
     {
         QString t = subWin->windowTitle();
         if (subWin->windowTitle() == title)

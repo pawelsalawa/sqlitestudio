@@ -121,7 +121,7 @@ void AbstractDb::registerAllFunctions()
 
 void AbstractDb::registerAllCollations()
 {
-    foreach (const QString& name, registeredCollations)
+    for (const QString& name : registeredCollations)
     {
         if (!deregisterCollation(name))
             qWarning() << "Failed to deregister custom collation:" << name;
@@ -129,7 +129,7 @@ void AbstractDb::registerAllCollations()
 
     registeredCollations.clear();
 
-    foreach (const CollationManager::CollationPtr& collPtr, COLLATIONS->getCollationsForDatabase(getName()))
+    for (const CollationManager::CollationPtr& collPtr : COLLATIONS->getCollationsForDatabase(getName()))
         registerCollation(collPtr->name);
 
     disconnect(COLLATIONS, SIGNAL(collationListChanged()), this, SLOT(registerAllCollations()));
@@ -203,7 +203,7 @@ QString AbstractDb::generateUniqueDbNameNoLock()
     }
 
     QStringList existingDatabases;
-    foreach (SqlResultsRowPtr row, results->getAll())
+    for (SqlResultsRowPtr row : results->getAll())
         existingDatabases << row->value("name").toString();
 
     return generateUniqueName("attached", existingDatabases);
@@ -698,7 +698,7 @@ void AbstractDb::detachAll()
     if (!isOpenInternal())
         return;
 
-    foreach (Db* db, attachedDbMap.rightValues())
+    for (Db* db : attachedDbMap.rightValues())
         detachInternal(db);
 }
 
@@ -723,7 +723,7 @@ QString AbstractDb::getUniqueNewObjectName(const QString &attachedDbName)
     QSet<QString> existingNames;
     SqlQueryPtr results = exec(QString("SELECT name FROM %1.sqlite_master").arg(dbName));
 
-    foreach (SqlResultsRowPtr row, results->getAll())
+    for (SqlResultsRowPtr row : results->getAll())
         existingNames << row->value(0).toString();
 
     return randStrNotIn(16, existingNames, false);

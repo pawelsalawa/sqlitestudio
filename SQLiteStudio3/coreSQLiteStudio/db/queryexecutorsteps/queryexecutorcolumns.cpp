@@ -203,7 +203,7 @@ QString QueryExecutorColumns::resolveAttachedDatabases(const QString &dbName)
 
 bool QueryExecutorColumns::isRowIdColumnAlias(const QString& alias)
 {
-    foreach (QueryExecutor::ResultRowIdColumnPtr rowIdColumn, context->rowIdColumns)
+    for (QueryExecutor::ResultRowIdColumnPtr rowIdColumn : context->rowIdColumns)
     {
         if (rowIdColumn->queryExecutorAliasToColumn.keys().contains(alias))
             return true;

@@ -99,7 +99,7 @@ void DbTreeModel::deleteGroup(QStandardItem *groupItem)
     if (!parentItem)
         parentItem = root();
 
-    foreach (QStandardItem* child, dynamic_cast<DbTreeItem*>(groupItem)->childs())
+    for (QStandardItem* child : dynamic_cast<DbTreeItem*>(groupItem)->childs())
         move(child, parentItem);
 
     parentItem->removeRow(groupItem->row());
@@ -163,12 +163,12 @@ void DbTreeModel::storeGroups()
 void DbTreeModel::readGroups(QList<Db*> dbList)
 {
     QList<Config::DbGroupPtr> groups = CFG->getGroups();
-    foreach (const Config::DbGroupPtr& group, groups)
+    for (const Config::DbGroupPtr& group : groups)
         restoreGroup(group, &dbList);
 
     // Add rest of databases, not mentioned in groups
     Config::DbGroupPtr group;
-    foreach (Db* db, dbList)
+    for (Db* db : dbList)
     {
         group = Config::DbGroupPtr::create();
         group->referencedDbName = db->getName();
@@ -243,7 +243,7 @@ void DbTreeModel::restoreGroup(const Config::DbGroupPtr& group, QList<Db*>* dbLi
 
     if (item->getType() == DbTreeItem::Type::DIR)
     {
-        foreach (const Config::DbGroupPtr& childGroup, group->childs)
+        for (const Config::DbGroupPtr& childGroup : group->childs)
             restoreGroup(childGroup, dbList, item);
     }
 
@@ -538,7 +538,7 @@ QList<QStandardItem *> DbTreeModel::refreshSchemaTables(const QStringList &table
         sortedTables.sort(Qt::CaseInsensitive);
 
     QList<QStandardItem *> items;
-    foreach (const QString& table, sortedTables)
+    for (const QString& table : sortedTables)
     {
         if (virtualTables.contains(table))
             items += DbTreeItemFactory::createVirtualTable(table, this);
@@ -605,7 +605,7 @@ QList<QStandardItem *> DbTreeModel::refreshSchemaViews(const QStringList &views,
         sortedViews.sort(Qt::CaseInsensitive);
 
     QList<QStandardItem *> items;
-    foreach (const QString& view, sortedViews)
+    for (const QString& view : sortedViews)
         items += DbTreeItemFactory::createView(view, this);
 
     return items;
@@ -638,7 +638,7 @@ void DbTreeModel::refreshSchemaBuild(QStandardItem *dbItem,
     DbTreeItem* columnsItem = nullptr;
     DbTreeItem* indexesItem = nullptr;
     DbTreeItem* triggersItem = nullptr;
-    foreach (QStandardItem* tableItem, tables)
+    for (QStandardItem* tableItem : tables)
     {
         tablesItem->appendRow(tableItem);
 
@@ -650,22 +650,22 @@ void DbTreeModel::refreshSchemaBuild(QStandardItem *dbItem,
         tableItem->appendRow(indexesItem);
         tableItem->appendRow(triggersItem);
 
-        foreach (QStandardItem* columnItem, allTableColumns[tableItem->text()])
+        for (QStandardItem* columnItem : allTableColumns[tableItem->text()])
             columnsItem->appendRow(columnItem);
 
-        foreach (QStandardItem* indexItem, indexes[tableItem->text()])
+        for (QStandardItem* indexItem : indexes[tableItem->text()])
             indexesItem->appendRow(indexItem);
 
-        foreach (QStandardItem* triggerItem, triggers[tableItem->text()])
+        for (QStandardItem* triggerItem : triggers[tableItem->text()])
             triggersItem->appendRow(triggerItem);
     }
-    foreach (QStandardItem* viewItem, views)
+    for (QStandardItem* viewItem : views)
     {
         viewsItem->appendRow(viewItem);
 
         triggersItem = DbTreeItemFactory::createTriggers(this);
         viewItem->appendRow(triggersItem);
-        foreach (QStandardItem* triggerItem, triggers[viewItem->text()])
+        for (QStandardItem* triggerItem : triggers[viewItem->text()])
             triggersItem->appendRow(triggerItem);
     }
 }
@@ -677,7 +677,7 @@ void DbTreeModel::restoreExpandedState(const QHash<QString, bool>& expandedState
     if (expandedState.contains(sig) && expandedState[sig])
         treeView->expand(parentItem->index());
 
-    foreach (QStandardItem* child, parentDbTreeItem->childs())
+    for (QStandardItem* child : parentDbTreeItem->childs())
         restoreExpandedState(expandedState, child);
 }
 

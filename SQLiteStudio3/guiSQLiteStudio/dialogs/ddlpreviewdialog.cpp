@@ -28,7 +28,7 @@ void DdlPreviewDialog::setDdl(const QStringList& ddlList)
 {
     QStringList fixedList;
     QString newDdl;
-    foreach (const QString& ddl, ddlList)
+    for (const QString& ddl : ddlList)
     {
         newDdl = ddl.trimmed();
         if (!newDdl.endsWith(";"))

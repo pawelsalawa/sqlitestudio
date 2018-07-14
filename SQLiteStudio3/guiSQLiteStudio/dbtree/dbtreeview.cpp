@@ -54,7 +54,7 @@ QList<DbTreeItem *> DbTreeView::selectionItems()
 {
     QList<DbTreeItem*> items;
     QModelIndexList selectedIndexes = selectionModel()->selectedIndexes();
-    foreach (QModelIndex modIdx, selectedIndexes)
+    for (QModelIndex modIdx : selectedIndexes)
         items += dynamic_cast<DbTreeItem*>(model()->itemFromIndex(modIdx));
 
     return items;

@@ -219,7 +219,7 @@ template <class T>
 T* MainWindow::openMdiWindow()
 {
     T* win = nullptr;
-    foreach (MdiWindow* mdiWin, ui->mdiArea->getWindows())
+    for (MdiWindow* mdiWin : ui->mdiArea->getWindows())
     {
         win = dynamic_cast<T*>(mdiWin->getMdiChild());
         if (win)

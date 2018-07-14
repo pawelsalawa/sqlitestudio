@@ -15,7 +15,7 @@ void CliCommandDir::execute()
         entries = dir.entryInfoList(QDir::AllEntries|QDir::NoDotAndDotDot, QDir::DirsFirst|QDir::LocaleAware|QDir::Name);
 
     QString name;
-    foreach (const QFileInfo& entry, entries)
+    for (const QFileInfo& entry : entries)
     {
         name = entry.fileName();
         if (entry.isDir())

@@ -191,7 +191,7 @@ void TablePrimaryKeyAndUniquePanel::storeConfiguration()
         constr->onConflict = sqliteConflictAlgo(ui->conflictComboBox->currentText());
 
     // Columns
-    foreach (SqliteIndexedColumn* idxCol, constr->indexedColumns)
+    for (SqliteIndexedColumn* idxCol : constr->indexedColumns)
         delete idxCol;
 
     constr->indexedColumns.clear();
@@ -257,7 +257,7 @@ void TablePrimaryKeyAndUniquePanel::readConstraint()
     int idx;
     QCheckBox* check = nullptr;
     QComboBox* combo = nullptr;
-    foreach (SqliteIndexedColumn* idxCol, constr->indexedColumns)
+    for (SqliteIndexedColumn* idxCol : constr->indexedColumns)
     {
         idx = getColumnIndex(idxCol->name);
         if (idx < 0)
@@ -295,6 +295,6 @@ void TablePrimaryKeyAndUniquePanel::buildColumns()
 
     SqliteCreateTable* createTable = dynamic_cast<SqliteCreateTable*>(constraint->parentStatement());
     int row = 0;
-    foreach (SqliteCreateTable::Column* column, createTable->columns)
+    for (SqliteCreateTable::Column* column : createTable->columns)
         buildColumn(column, row++);
 }

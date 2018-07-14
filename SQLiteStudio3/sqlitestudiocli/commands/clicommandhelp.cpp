@@ -77,7 +77,7 @@ void CliCommandHelp::printHelp()
 
     names.sort();
     QStringList msgList;
-    foreach (const QString& cmd, names)
+    for (const QString& cmd : names)
     {
         msgList << (CFG_CLI.Console.CommandPrefixChar.get() + pad(cmd, width, ' ') + " - " + allCommands[cmd]->shortHelp());
         delete allCommands[cmd];

@@ -55,7 +55,7 @@ void ViewModifier::handleTriggers()
 {
     SchemaResolver resolver(db);
     QList<SqliteCreateTriggerPtr> triggers = resolver.getParsedTriggersForView(view, true);
-    foreach (SqliteCreateTriggerPtr trigger, triggers)
+    for (SqliteCreateTriggerPtr trigger : triggers)
     {
         addOptionalSql(QString("DROP TRIGGER %1").arg(wrapObjIfNeeded(trigger->trigger, dialect)));
 
@@ -84,7 +84,7 @@ void ViewModifier::collectNewColumns()
         return;
     }
 
-    foreach (const SelectResolver::Column& col, multiColumns.first())
+    for (const SelectResolver::Column& col : multiColumns.first())
         newColumns << col.column;
 }
 

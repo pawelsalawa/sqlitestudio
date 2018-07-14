@@ -338,10 +338,10 @@ void TableWindow::executeStructureChanges()
             MessageListDialog dialog(tr("Following problems will take place while modifying the table.\n"
                                         "Would you like to proceed?", "table window"));
             dialog.setWindowTitle(tr("Table modification", "table window"));
-            foreach (const QString& error, tableModifier->getErrors())
+            for (const QString& error : tableModifier->getErrors())
                 dialog.addError(error);
 
-            foreach (const QString& warn, tableModifier->getWarnings())
+            for (const QString& warn : tableModifier->getWarnings())
                 dialog.addWarning(warn);
 
             if (dialog.exec() != QDialog::Accepted)
@@ -844,9 +844,9 @@ void TableWindow::changesSuccessfullyCommitted()
             tableModifier->getModifiedTriggers(),
             tableModifier->getModifiedViews()
         };
-        foreach (const QStringList& objList, modifiedObjects)
+        for (const QStringList& objList : modifiedObjects)
         {
-            foreach (const QString& obj, objList)
+            for (const QString& obj : objList)
             {
                 if (obj.compare(oldTable, Qt::CaseInsensitive) == 0)
                     continue;
@@ -996,7 +996,7 @@ bool TableWindow::validate(bool skipWarning)
             hasPk = true;
 
         SqliteCreateTable::Column::Constraint* colConstraint = nullptr;
-        foreach (SqliteCreateTable::Column* column, createTable->columns)
+        for (SqliteCreateTable::Column* column : createTable->columns)
         {
             colConstraint = column->getConstraint(SqliteCreateTable::Column::Constraint::PRIMARY_KEY);
             if (colConstraint)
@@ -1466,7 +1466,7 @@ void TableWindow::updateIndexes()
 
     QTableWidgetItem* item = nullptr;
     int row = 0;
-    foreach (SqliteCreateIndexPtr index, indexes)
+    for (SqliteCreateIndexPtr index : indexes)
     {
         item = new QTableWidgetItem(index->index);
         item->setFlags(Qt::ItemIsEnabled|Qt::ItemIsSelectable);
@@ -1518,7 +1518,7 @@ void TableWindow::updateTriggers()
     QTableWidgetItem* item = nullptr;
     QString timeAndEvent;
     int row = 0;
-    foreach (SqliteCreateTriggerPtr trig, triggers)
+    for (SqliteCreateTriggerPtr trig : triggers)
     {
         item = new QTableWidgetItem(trig->trigger);
         item->setFlags(Qt::ItemIsEnabled|Qt::ItemIsSelectable);

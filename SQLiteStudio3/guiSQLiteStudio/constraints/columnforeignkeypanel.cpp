@@ -138,7 +138,7 @@ void ColumnForeignKeyPanel::readConstraint()
         ui->fkTableCombo->setCurrentText(constr->foreignKey->foreignTable);
 
     // Conditions
-    foreach (SqliteForeignKey::Condition* condition, constr->foreignKey->conditions)
+    for (SqliteForeignKey::Condition* condition : constr->foreignKey->conditions)
         readCondition(condition);
 
     // Initially, Deferrable

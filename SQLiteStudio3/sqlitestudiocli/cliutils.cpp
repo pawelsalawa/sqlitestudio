@@ -55,7 +55,7 @@ QStringList toAsciiTree(const AsciiTree& tree, const QList<bool>& indents, bool 
     if (!topLevel)
     {
         // Draw indent before this node
-        foreach (bool indent, indents)
+        for (bool indent : indents)
             line += (indent ? indentStr : indentStrEmpty);
 
         // Draw node prefix
@@ -77,7 +77,7 @@ QStringList toAsciiTree(const AsciiTree& tree, const QList<bool>& indents, bool 
     if (!topLevel)
         subIndents << (lastNode ? false : true);
 
-    foreach (const AsciiTree& subTree, tree.childs)
+    for (const AsciiTree& subTree : tree.childs)
     {
         lines += toAsciiTree(subTree, subIndents, false, i == lastIdx);
         i++;

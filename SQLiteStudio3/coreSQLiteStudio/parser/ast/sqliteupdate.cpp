@@ -59,7 +59,7 @@ SqliteUpdate::SqliteUpdate(SqliteConflictAlgo onConflict, const QString &name1, 
     if (with)
         with->setParent(this);
 
-    foreach (const ColumnAndValue& keyValue, keyValueMap)
+    for (const ColumnAndValue& keyValue : keyValueMap)
         keyValue.second->setParent(this);
 }
 

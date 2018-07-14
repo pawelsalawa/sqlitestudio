@@ -395,7 +395,7 @@ QString TableConstraintsModel::getConstrDetails(SqliteCreateTable::Constraint* c
 
 void TableConstraintsModel::columnRenamed(SqliteCreateTable::Constraint* constr, const QString& oldColumn, const QString& newColumn)
 {
-    foreach (SqliteIndexedColumn* idxCol, constr->indexedColumns)
+    for (SqliteIndexedColumn* idxCol : constr->indexedColumns)
     {
         if (idxCol->name.compare(oldColumn, Qt::CaseInsensitive) == 0)
         {
@@ -444,7 +444,7 @@ void TableConstraintsModel::columnModified(const QString& oldColumn, SqliteCreat
         return;
 
     int idx = 0;
-    foreach (SqliteCreateTable::Constraint* constr, createTable->constraints)
+    for (SqliteCreateTable::Constraint* constr : createTable->constraints)
     {
         if (constr->doesAffectColumn(oldColumn))
         {
@@ -461,7 +461,7 @@ void TableConstraintsModel::columnDeleted(const QString& column)
 {
     QList<int> toDelete;
     int idx = 0;
-    foreach (SqliteCreateTable::Constraint* constr, createTable->constraints)
+    for (SqliteCreateTable::Constraint* constr : createTable->constraints)
     {
         if (constr->doesAffectColumn(column))
         {
@@ -477,6 +477,6 @@ void TableConstraintsModel::columnDeleted(const QString& column)
         idx++;
     }
 
-    foreach (int idx, toDelete)
+    for (int idx : toDelete)
         delConstraint(idx);
 }

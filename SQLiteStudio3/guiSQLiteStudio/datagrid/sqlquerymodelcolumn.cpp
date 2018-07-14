@@ -9,13 +9,13 @@ SqlQueryModelColumn::SqlQueryModelColumn(const QueryExecutor::ResultColumnPtr& r
     table = resultColumn->table;
     tableAlias = resultColumn->tableAlias;
     database = resultColumn->database.isEmpty() ? "main": resultColumn->database;
-    foreach (QueryExecutor::ColumnEditionForbiddenReason reason, resultColumn->editionForbiddenReasons)
+    for (QueryExecutor::ColumnEditionForbiddenReason reason : resultColumn->editionForbiddenReasons)
         editionForbiddenReason << SqlQueryModelColumn::convert(reason);
 }
 
 SqlQueryModelColumn::~SqlQueryModelColumn()
 {
-    foreach (Constraint* constr, constraints)
+    for (Constraint* constr : constraints)
         delete constr;
 
     constraints.clear();
@@ -116,7 +116,7 @@ bool SqlQueryModelColumn::isRowIdPk() const
     if (dataType.getType() != DataType::INTEGER)
         return false;
 
-    foreach (ConstraintPk* pk, getConstraints<ConstraintPk*>())
+    for (ConstraintPk* pk : getConstraints<ConstraintPk*>())
         if (pk->scope == Constraint::Scope::COLUMN)
             return true;
 
@@ -125,7 +125,7 @@ bool SqlQueryModelColumn::isRowIdPk() const
 
 bool SqlQueryModelColumn::isAutoIncr() const
 {
-    foreach (ConstraintPk* pk, getConstraints<ConstraintPk*>())
+    for (ConstraintPk* pk : getConstraints<ConstraintPk*>())
         if (pk->autoIncrement)
             return true;
 
@@ -334,7 +334,7 @@ template <class T>
 QList<T> SqlQueryModelColumn::getConstraints() const
 {
     QList<T> results;
-    foreach (Constraint* constr, constraints)
+    for (Constraint* constr : constraints)
         if (dynamic_cast<T>(constr))
             results << dynamic_cast<T>(constr);
 

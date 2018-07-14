@@ -61,7 +61,7 @@ bool DbAttacherImpl::attachDatabases()
 TokenList DbAttacherImpl::getDbTokens()
 {
     TokenList dbTokens;
-    foreach (SqliteQueryPtr query, queries)
+    for (SqliteQueryPtr query : queries)
         dbTokens += query->getContextDatabaseTokens();
 
     return dbTokens;
@@ -78,7 +78,7 @@ void DbAttacherImpl::detachAttached()
 
 void DbAttacherImpl::prepareNameToDbMap()
 {
-    foreach (Db* db, DBLIST->getValidDbList())
+    for (Db* db : DBLIST->getValidDbList())
         nameToDbMap[db->getName()] = db;
 }
 
@@ -153,7 +153,7 @@ void DbAttacherImpl::replaceTokensInQueries(const QHash<TokenPtr, TokenPtr>& tok
     while (it.hasNext())
     {
         it.next();
-        foreach (SqliteQueryPtr query, queries)
+        for (SqliteQueryPtr query : queries)
         {
             idx = query->tokens.indexOf(it.key());
             if (idx < 0)
@@ -177,7 +177,7 @@ BiStrHash DbAttacherImpl::getDbNameToAttach() const
 QString DbAttacherImpl::getQuery() const
 {
     QStringList queryStrings;
-    foreach (SqliteQueryPtr query, queries)
+    for (SqliteQueryPtr query : queries)
         queryStrings << query->detokenize();
 
     return queryStrings.join(";");

@@ -24,7 +24,7 @@ DbManagerImpl::DbManagerImpl(QObject *parent) :
 DbManagerImpl::~DbManagerImpl()
 {
 //    qDebug() << "DbManagerImpl::~DbManagerImpl()";
-    foreach (Db* db, dbList)
+    for (Db* db : dbList)
     {
         disconnect(db, SIGNAL(disconnected()), this, SLOT(dbDisconnectedSlot()));
         disconnect(db, SIGNAL(aboutToDisconnect(bool&)), this, SLOT(dbAboutToDisconnect(bool&)));
@@ -346,7 +346,7 @@ void DbManagerImpl::loadInitialDbList()
 {
     QUrl url;
     InvalidDb* db = nullptr;
-    foreach (const Config::CfgDbPtr& cfgDb, CFG->dbList())
+    for (const Config::CfgDbPtr& cfgDb : CFG->dbList())
     {
         db = new InvalidDb(cfgDb->name, cfgDb->path, cfgDb->options);
 

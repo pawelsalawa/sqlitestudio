@@ -47,9 +47,9 @@ void CliCommandTables::execute()
     println(pad(tr("Database"), width, ' ') + " " + tr("Table"));
     println(pad("", width, '-') + "-------------------");
 
-    foreach (const QString& dbName, dbList)
+    for (const QString& dbName : dbList)
     {
-        foreach (const QString& table, resolver.getTables(dbName))
+        for (const QString& table : resolver.getTables(dbName))
             println(pad(dbName, width, ' ') + " " + table);
     }
 

@@ -238,7 +238,7 @@ class StatementTokenBuilder
         StatementTokenBuilder& withStatementList(QList<T*> stmtList, const QString& separator = ",")
         {
             bool first = true;
-            foreach (T* stmt, stmtList)
+            for (T* stmt : stmtList)
             {
                 if (!first)
                 {

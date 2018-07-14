@@ -26,7 +26,7 @@ void CliCommandHistory::execute()
 
     int cols = getCliColumns();
     QString hline = pad("", cols, '-');
-    foreach (const QString& line, cli->getHistory())
+    for (const QString& line : cli->getHistory())
     {
         print(hline);
         println(line);

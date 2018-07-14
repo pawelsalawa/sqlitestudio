@@ -214,7 +214,7 @@ void TriggerDialog::readTrigger()
     if (createTrigger->queries.size() > 0)
     {
         QStringList sqls;
-        foreach (SqliteQuery* query, createTrigger->queries)
+        for (SqliteQuery* query : createTrigger->queries)
             sqls << query->detokenize();
 
         ui->codeEdit->setPlainText(sqls.join(";\n")+";");
@@ -307,7 +307,7 @@ void TriggerDialog::rebuildTrigger()
     if (actionType == SqliteCreateTrigger::Event::UPDATE_OF)
     {
         QStringList colNames;
-        foreach (const QString& colName, selectedColumns)
+        for (const QString& colName : selectedColumns)
             colNames << wrapObjIfNeeded(colName, dialect);
 
         columns = " "+colNames.join(", ");
@@ -363,7 +363,7 @@ void TriggerDialog::showColumnsDialog()
     QPoint topRight = ui->actionColumns->mapToGlobal(ui->actionColumns->rect().topRight());
 
     TriggerColumnsDialog dialog(this, topRight.x(), topRight.y());
-    foreach (const QString& colName, targetColumns)
+    for (const QString& colName : targetColumns)
         dialog.addColumn(colName, selectedColumns.contains(colName, Qt::CaseInsensitive));
 
     if (dialog.exec() != QDialog::Accepted)

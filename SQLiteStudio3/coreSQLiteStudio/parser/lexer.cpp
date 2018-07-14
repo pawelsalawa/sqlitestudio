@@ -282,7 +282,7 @@ QString Lexer::detokenize(const TokenList& tokens)
         return "";
 
     QString str;
-    foreach (TokenPtr token, tokens)
+    for (TokenPtr token : tokens)
         str += detokenize(token);
 
     return str;

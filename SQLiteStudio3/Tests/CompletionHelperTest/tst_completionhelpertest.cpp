@@ -63,7 +63,7 @@ CompletionHelperTest::CompletionHelperTest()
 QList<ExpectedToken *> CompletionHelperTest::getEntryList(QList<ExpectedTokenPtr> tokens)
 {
     QList<ExpectedToken*> entries;
-    foreach (ExpectedTokenPtr expectedToken, tokens)
+    for (ExpectedTokenPtr expectedToken : tokens)
         entries += expectedToken.data();
 
     return entries;
@@ -72,7 +72,7 @@ QList<ExpectedToken *> CompletionHelperTest::getEntryList(QList<ExpectedTokenPtr
 QSet<ExpectedToken::Type> CompletionHelperTest::getTypeList(QList<ExpectedTokenPtr> tokens)
 {
     QSet<ExpectedToken::Type> entries;
-    foreach (ExpectedTokenPtr expectedToken, tokens)
+    for (ExpectedTokenPtr expectedToken : tokens)
         entries += expectedToken->type;
 
     return entries;
@@ -101,7 +101,7 @@ bool CompletionHelperTest::contains(const QList<ExpectedTokenPtr> &tokens, Expec
 int CompletionHelperTest::find(const QList<ExpectedTokenPtr> &tokens, ExpectedToken::Type type)
 {
     int i = 0;
-    foreach (ExpectedTokenPtr token, tokens)
+    for (ExpectedTokenPtr token : tokens)
     {
         if (token->type == type)
             return i;
@@ -114,7 +114,7 @@ int CompletionHelperTest::find(const QList<ExpectedTokenPtr> &tokens, ExpectedTo
 int CompletionHelperTest::find(const QList<ExpectedTokenPtr> &tokens, ExpectedToken::Type type, const QString &value)
 {
     int i = -1;
-    foreach (ExpectedTokenPtr token, tokens)
+    for (ExpectedTokenPtr token : tokens)
     {
         i++;
         if (token->type != type)
@@ -129,7 +129,7 @@ int CompletionHelperTest::find(const QList<ExpectedTokenPtr> &tokens, ExpectedTo
 int CompletionHelperTest::find(const QList<ExpectedTokenPtr> &tokens, ExpectedToken::Type type, const QString &value, const QString &prefix)
 {
     int i = -1;
-    foreach (ExpectedTokenPtr token, tokens)
+    for (ExpectedTokenPtr token : tokens)
     {
         i++;
         if (token->type != type)
@@ -147,7 +147,7 @@ int CompletionHelperTest::find(const QList<ExpectedTokenPtr> &tokens, ExpectedTo
 int CompletionHelperTest::find(const QList<ExpectedTokenPtr> &tokens, ExpectedToken::Type type, const QString &value, const QString &prefix, const QString &contextInfo)
 {
     int i = -1;
-    foreach (ExpectedTokenPtr token, tokens)
+    for (ExpectedTokenPtr token : tokens)
     {
         i++;
         if (token->type != type)

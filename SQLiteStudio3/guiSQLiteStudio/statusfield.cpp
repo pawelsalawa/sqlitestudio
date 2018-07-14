@@ -178,13 +178,13 @@ void StatusField::setupMenu()
 void StatusField::readRecentMessages()
 {
     noFlashing = true;
-    foreach (const QString& msg, NotifyManager::getInstance()->getRecentInfos())
+    for (const QString& msg : NotifyManager::getInstance()->getRecentInfos())
         info(msg);
 
-    foreach (const QString& msg, NotifyManager::getInstance()->getRecentWarnings())
+    for (const QString& msg : NotifyManager::getInstance()->getRecentWarnings())
         warn(msg);
 
-    foreach (const QString& msg, NotifyManager::getInstance()->getRecentErrors())
+    for (const QString& msg : NotifyManager::getInstance()->getRecentErrors())
         error(msg);
 
     noFlashing = false;

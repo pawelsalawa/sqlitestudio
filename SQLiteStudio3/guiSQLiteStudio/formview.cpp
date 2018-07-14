@@ -85,7 +85,7 @@ void FormView::reloadInternal()
 {
     // Cleanup
     dataMapper->clearMapping();
-    foreach (QWidget* widget, widgets)
+    for (QWidget* widget : widgets)
     {
         contents->layout()->removeWidget(widget);
         delete widget;
@@ -97,7 +97,7 @@ void FormView::reloadInternal()
     // Recreate
     dataMapper->setModel(model.data());
     int i = 0;
-    foreach (SqlQueryModelColumnPtr column, model->getColumns())
+    for (SqlQueryModelColumnPtr column : model->getColumns())
         addColumn(i++, column->displayName, column->dataType, (column->editionForbiddenReason.size() > 0));
 }
 

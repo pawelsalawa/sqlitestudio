@@ -264,7 +264,7 @@ class API_EXPORT SQLiteStudio : public QObject
    void someFunction()
    {
        QList<Db*> dblist = SQLITESTUDIO->getDbManager()->getDbList();
-       foreach (Db* db, dblist)
+       for (Db* db : dblist)
        {
            qOut << db->getName();
        }

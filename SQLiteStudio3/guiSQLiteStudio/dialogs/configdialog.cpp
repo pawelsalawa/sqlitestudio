@@ -63,7 +63,7 @@ ConfigDialog::~ConfigDialog()
 
     // Notify plugins about dialog being closed
     UiConfiguredPlugin* cfgPlugin = nullptr;
-    foreach (Plugin* plugin, PLUGINS->getLoadedPlugins())
+    for (Plugin* plugin : PLUGINS->getLoadedPlugins())
     {
         cfgPlugin = dynamic_cast<UiConfiguredPlugin*>(plugin);
         if (!cfgPlugin)
@@ -133,7 +133,7 @@ QString ConfigDialog::getFilterString(QTreeWidget *widget)
 {
     QList<QTreeWidgetItem*> items = widget->findItems("*", Qt::MatchWildcard|Qt::MatchRecursive);
     QStringList strList;
-    foreach (QTreeWidgetItem* item, items)
+    for (QTreeWidgetItem* item : items)
         for (int i = 0; i < widget->columnCount(); i++)
             strList << item->text(i) + " " + item->toolTip(0);
 
@@ -144,7 +144,7 @@ QString ConfigDialog::getFilterString(QListWidget *widget)
 {
     QList<QListWidgetItem*> items = widget->findItems("*", Qt::MatchWildcard|Qt::MatchRecursive);
     QStringList strList;
-    foreach (QListWidgetItem* item, items)
+    for (QListWidgetItem* item : items)
         strList << item->text() + " " + item->toolTip();
 
     return strList.join(" ");
@@ -154,7 +154,7 @@ QString ConfigDialog::getFilterString(QTableWidget *widget)
 {
     QList<QTableWidgetItem*> items = widget->findItems("*", Qt::MatchWildcard|Qt::MatchRecursive);
     QStringList strList;
-    foreach (QTableWidgetItem* item, items)
+    for (QTableWidgetItem* item : items)
          strList << item->text() + " " + item->toolTip();
 
     return strList.join(" ");
@@ -299,7 +299,7 @@ void ConfigDialog::applyFilter(const QString &filter)
     QColor disabledColor = ui->categoriesTree->palette().color(QPalette::Disabled, QPalette::WindowText);
     if (filter.isEmpty())
     {
-        foreach (QTreeWidgetItem* item, getAllCategoryItems())
+        for (QTreeWidgetItem* item : getAllCategoryItems())
             item->setForeground(0, normalColor);
 
         return;
@@ -307,7 +307,7 @@ void ConfigDialog::applyFilter(const QString &filter)
 
     QList<QWidget*> widgets = ui->stackedWidget->findChildren<QWidget*>();
     QList<QWidget*> matchedWidgets;
-    foreach (QWidget* widget, widgets)
+    for (QWidget* widget : widgets)
     {
         if (getFilterString(widget).contains(filter, Qt::CaseInsensitive))
             matchedWidgets << widget;
@@ -315,9 +315,9 @@ void ConfigDialog::applyFilter(const QString &filter)
 
     QHash<QWidget*, QTreeWidgetItem*> pageToCategoryItem = buildPageToCategoryItemMap();
     QSet<QTreeWidgetItem*> matchedCategories;
-    foreach (QWidget* page, pageToCategoryItem.keys())
+    for (QWidget* page : pageToCategoryItem.keys())
     {
-        foreach (QWidget* matched, matchedWidgets)
+        for (QWidget* matched : matchedWidgets)
         {
             if (page->isAncestorOf(matched))
             {
@@ -333,10 +333,10 @@ void ConfigDialog::applyFilter(const QString &filter)
         }
     }
 
-    foreach (QTreeWidgetItem* item, getAllCategoryItems())
+    for (QTreeWidgetItem* item : getAllCategoryItems())
         item->setForeground(0, disabledColor);
 
-    foreach (QTreeWidgetItem* item, matchedCategories)
+    for (QTreeWidgetItem* item : matchedCategories)
     {
         item->setForeground(0, normalColor);
         while ((item = item->parent()) != nullptr)
@@ -347,7 +347,7 @@ void ConfigDialog::applyFilter(const QString &filter)
 QHash<QWidget*, QTreeWidgetItem*> ConfigDialog::buildPageToCategoryItemMap() const
 {
     QHash<QString,QTreeWidgetItem*> pageNameToCategoryItem;
-    foreach (QTreeWidgetItem* item, getAllCategoryItems())
+    for (QTreeWidgetItem* item : getAllCategoryItems())
         pageNameToCategoryItem[item->statusTip(0)] = item;
 
     QWidget* page = nullptr;
@@ -1092,7 +1092,7 @@ void ConfigDialog::refreshFormattersPage()
 void ConfigDialog::applyStyle(QWidget *widget, QStyle *style)
 {
     widget->setStyle(style);
-    foreach (QObject* child, widget->children())
+    for (QObject* child : widget->children())
     {
         if (!qobject_cast<QWidget*>(child))
             continue;
@@ -1191,7 +1191,7 @@ void ConfigDialog::initPlugins()
 
     // Recreate
     QTreeWidgetItem *typeItem = nullptr;
-    foreach (PluginType* pluginType, PLUGINS->getPluginTypes())
+    for (PluginType* pluginType : PLUGINS->getPluginTypes())
     {
         typeItem = createPluginsTypeItem(pluginType->getConfigUiForm(), pluginType->getTitle());
         if (!typeItem)
@@ -1200,7 +1200,7 @@ void ConfigDialog::initPlugins()
         item->addChild(typeItem);
         pluginTypeToItemMap[pluginType] = typeItem;
 
-        foreach (Plugin* plugin, pluginType->getLoadedPlugins())
+        for (Plugin* plugin : pluginType->getLoadedPlugins())
             pluginLoaded(plugin, pluginType, true);
     }
 
@@ -1251,7 +1251,7 @@ void ConfigDialog::initPluginsPage()
     categoryRow = 0;
     QList<PluginType*> pluginTypes = PLUGINS->getPluginTypes();
     qSort(pluginTypes.begin(), pluginTypes.end(), PluginType::nameLessThan);
-    foreach (PluginType* pluginType, pluginTypes)
+    for (PluginType* pluginType : pluginTypes)
     {
         category = new QTreeWidgetItem({pluginType->getTitle()});
         font.setItalic(false);
@@ -1271,7 +1271,7 @@ void ConfigDialog::initPluginsPage()
         itemRow = 0;
         pluginNames = pluginType->getAllPluginNames();
         qSort(pluginNames);
-        foreach (const QString& pluginName, pluginNames)
+        for (const QString& pluginName : pluginNames)
         {
             builtIn = PLUGINS->isBuiltIn(pluginName);
             title = PLUGINS->getTitle(pluginName);
@@ -1504,7 +1504,7 @@ void ConfigDialog::initShortcuts(CfgCategory *cfgCategory)
     int itemRow = 0;
     QStringList entryNames = cfgCategory->getEntries().keys();
     qSort(entryNames);
-    foreach (const QString& entryName, entryNames)
+    for (const QString& entryName : entryNames)
     {
         // Title
         title = cfgCategory->getEntries()[entryName]->getTitle();

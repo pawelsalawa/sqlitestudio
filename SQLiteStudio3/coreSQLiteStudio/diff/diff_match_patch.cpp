@@ -142,7 +142,7 @@ QString Patch::toString() {
   text = QString("@@ -") + coords1 + QString(" +") + coords2
       + QString(" @@\n");
   // Escape the body of the patch with %xx notation.
-  foreach (Diff aDiff, diffs) {
+  for (Diff aDiff : diffs) {
     switch (aDiff.operation) {
       case INSERT:
         text += QString('+');
@@ -1251,7 +1251,7 @@ int diff_match_patch::diff_xIndex(const QList<Diff> &diffs, int loc) {
   int last_chars1 = 0;
   int last_chars2 = 0;
   Diff lastDiff;
-  foreach(Diff aDiff, diffs) {
+  for (Diff aDiff : diffs) {
     if (aDiff.operation != INSERT) {
       // Equality or deletion.
       chars1 += aDiff.text.length();
@@ -1280,7 +1280,7 @@ int diff_match_patch::diff_xIndex(const QList<Diff> &diffs, int loc) {
 QString diff_match_patch::diff_prettyHtml(const QList<Diff> &diffs) {
   QString html;
   QString text;
-  foreach(Diff aDiff, diffs) {
+  for (Diff aDiff : diffs) {
     text = aDiff.text;
     text.replace("&", "&amp;").replace("<", "&lt;")
         .replace(">", "&gt;").replace("\n", "&para;<br>");
@@ -1304,7 +1304,7 @@ QString diff_match_patch::diff_prettyHtml(const QList<Diff> &diffs) {
 
 QString diff_match_patch::diff_text1(const QList<Diff> &diffs) {
   QString text;
-  foreach(Diff aDiff, diffs) {
+  for (Diff aDiff : diffs) {
     if (aDiff.operation != INSERT) {
       text += aDiff.text;
     }
@@ -1315,7 +1315,7 @@ QString diff_match_patch::diff_text1(const QList<Diff> &diffs) {
 
 QString diff_match_patch::diff_text2(const QList<Diff> &diffs) {
   QString text;
-  foreach(Diff aDiff, diffs) {
+  for (Diff aDiff : diffs) {
     if (aDiff.operation != DELETE) {
       text += aDiff.text;
     }
@@ -1328,7 +1328,7 @@ int diff_match_patch::diff_levenshtein(const QList<Diff> &diffs) {
   int levenshtein = 0;
   int insertions = 0;
   int deletions = 0;
-  foreach(Diff aDiff, diffs) {
+  for (Diff aDiff : diffs) {
     switch (aDiff.operation) {
       case INSERT:
         insertions += aDiff.text.length();
@@ -1351,7 +1351,7 @@ int diff_match_patch::diff_levenshtein(const QList<Diff> &diffs) {
 
 QString diff_match_patch::diff_toDelta(const QList<Diff> &diffs) {
   QString text;
-  foreach(Diff aDiff, diffs) {
+  for (Diff aDiff : diffs) {
     switch (aDiff.operation) {
       case INSERT: {
         QString encoded = QString(QUrl::toPercentEncoding(aDiff.text,
@@ -1382,7 +1382,7 @@ QList<Diff> diff_match_patch::diff_fromDelta(const QString &text1,
   QList<Diff> diffs;
   int pointer = 0;  // Cursor in text1
   QStringList tokens = delta.split("\t");
-  foreach(QString token, tokens) {
+  for (QString token : tokens) {
     if (token.isEmpty()) {
       // Blank tokens are ok (from a trailing \t).
       continue;
@@ -1682,7 +1682,7 @@ QList<Patch> diff_match_patch::patch_make(const QString &text1,
   // context info.
   QString prepatch_text = text1;
   QString postpatch_text = text1;
-  foreach(Diff aDiff, diffs) {
+  for (Diff aDiff : diffs) {
     if (patch.diffs.isEmpty() && aDiff.operation != EQUAL) {
       // A new patch starts here.
       patch.start1 = char_count1;
@@ -1748,9 +1748,9 @@ QList<Patch> diff_match_patch::patch_make(const QString &text1,
 
 QList<Patch> diff_match_patch::patch_deepCopy(QList<Patch> &patches) {
   QList<Patch> patchesCopy;
-  foreach(Patch aPatch, patches) {
+  for (Patch aPatch : patches) {
     Patch patchCopy = Patch();
-    foreach(Diff aDiff, aPatch.diffs) {
+    for (Diff aDiff : aPatch.diffs) {
       Diff diffCopy = Diff(aDiff.operation, aDiff.text);
       patchCopy.diffs.append(diffCopy);
     }
@@ -1785,7 +1785,7 @@ QPair<QString, QVector<bool> > diff_match_patch::patch_apply(
   // has an effective expected position of 22.
   int delta = 0;
   QVector<bool> results(patchesCopy.size());
-  foreach(Patch aPatch, patchesCopy) {
+  for (Patch aPatch : patchesCopy) {
     int expected_loc = aPatch.start2 + delta;
     QString text1 = diff_text1(aPatch.diffs);
     int start_loc;
@@ -1836,7 +1836,7 @@ QPair<QString, QVector<bool> > diff_match_patch::patch_apply(
         } else {
           diff_cleanupSemanticLossless(diffs);
           int index1 = 0;
-          foreach(Diff aDiff, aPatch.diffs) {
+          for (Diff aDiff : aPatch.diffs) {
             if (aDiff.operation != EQUAL) {
               int index2 = diff_xIndex(diffs, index1);
               if (aDiff.operation == INSERT) {
@@ -2030,7 +2030,7 @@ void diff_match_patch::patch_splitMax(QList<Patch> &patches) {
 
 QString diff_match_patch::patch_toText(const QList<Patch> &patches) {
   QString text;
-  foreach(Patch aPatch, patches) {
+  for (Patch aPatch : patches) {
     text.append(aPatch.toString());
   }
   return text;

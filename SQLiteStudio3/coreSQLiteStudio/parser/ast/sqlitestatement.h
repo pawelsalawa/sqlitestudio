@@ -249,7 +249,7 @@ class API_EXPORT SqliteStatement : public QObject
             if (casted)
                 results << casted;
 
-            foreach (SqliteStatement* stmt, getContextStatements(this, false, true))
+            for (SqliteStatement* stmt : getContextStatements(this, false, true))
                 results += stmt->getAllTypedStatements<T>();
 
             return results;

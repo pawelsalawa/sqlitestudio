@@ -23,7 +23,7 @@ class ParserError;
  * {
  *     QList<SqliteQueryPtr> queries = parser.getQueries();
  *     qDebug() << "number of queries parsed:" << queries.size();
- *     foreach (SqliteQueryPtr query, queries)
+ *     for (SqliteQueryPtr query : queries)
  *     {
  *         // do stuff with parsed queries
  *         // ...

@@ -475,7 +475,7 @@ FormatStatement& FormatStatement::withIdList(const QStringList& names, const QSt
         markAndKeepIndent(indentName);
 
     bool first = true;
-    foreach (const QString& name, names)
+    for (const QString& name : names)
     {
         if (!first)
             withSeparator(sep);

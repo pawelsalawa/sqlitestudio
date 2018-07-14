@@ -425,7 +425,7 @@ void MainWindow::saveSession(MdiWindow* currWindow)
     if (CFG_UI.General.RestoreSession.get())
     {
         QList<QVariant> windowSessions;
-        foreach (MdiWindow* window, ui->mdiArea->getWindows())
+        for (MdiWindow* window : ui->mdiArea->getWindows())
             if (window->restoreSessionNextTime())
                 windowSessions << window->saveSession();
 
@@ -493,7 +493,7 @@ void MainWindow::restoreWindowSessions(const QList<QVariant>& windowSessions)
     if (windowSessions.size() == 0)
         return;
 
-    foreach (const QVariant& winSession, windowSessions)
+    for (const QVariant& winSession : windowSessions)
         restoreWindowSession(winSession);
 }
 
@@ -575,7 +575,7 @@ EditorWindow* MainWindow::openSqlEditor(Db* dbToSet, const QString& sql)
 
 void MainWindow::closeNonSessionWindows()
 {
-    foreach (MdiWindow* window, ui->mdiArea->getWindows())
+    for (MdiWindow* window : ui->mdiArea->getWindows())
         if (!window->restoreSessionNextTime())
             window->close();
 }

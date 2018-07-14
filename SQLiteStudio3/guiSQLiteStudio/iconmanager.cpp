@@ -48,7 +48,7 @@ void IconManager::init()
     iconFileExtensions << "*.png" << "*.PNG" << "*.jpg" << "*.JPG" << "*.svg" << "*.SVG";
     movieFileExtensions << "*.gif" << "*.GIF" << "*.mng" << "*.MNG";
 
-    foreach (QString dirPath, iconDirs)
+    for (QString dirPath : iconDirs)
     {
         loadRecurently(dirPath, "", false);
         loadRecurently(dirPath, "", true);
@@ -115,7 +115,7 @@ void IconManager::loadRecurently(QString dirPath, const QString& prefix, bool mo
     QString path;
     QString name;
     QDir dir(dirPath);
-    foreach (QFileInfo entry, dir.entryInfoList(extensions, QDir::AllDirs|QDir::Files|QDir::NoDotAndDotDot|QDir::Readable))
+    for (QFileInfo entry : dir.entryInfoList(extensions, QDir::AllDirs|QDir::Files|QDir::NoDotAndDotDot|QDir::Readable))
     {
         if (entry.isDir())
         {

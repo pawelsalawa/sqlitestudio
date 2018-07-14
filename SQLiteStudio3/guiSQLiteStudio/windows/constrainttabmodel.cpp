@@ -16,7 +16,7 @@ int ConstraintTabModel::rowCount(const QModelIndex& parent) const
         return 0;
 
     int cnt = 0;
-    foreach (SqliteCreateTable::Column* col, createTable->columns)
+    for (SqliteCreateTable::Column* col : createTable->columns)
         cnt += col->constraints.size();
 
     cnt += createTable->constraints.size();
@@ -36,9 +36,9 @@ QVariant ConstraintTabModel::data(const QModelIndex& index, int role) const
 
     int constrIdx = index.row();
     int currIdx = -1;
-    foreach (SqliteCreateTable::Column* column, createTable->columns)
+    for (SqliteCreateTable::Column* column : createTable->columns)
     {
-        foreach (SqliteCreateTable::Column::Constraint* constr, column->constraints)
+        for (SqliteCreateTable::Column::Constraint* constr : column->constraints)
         {
             currIdx++;
 
@@ -47,7 +47,7 @@ QVariant ConstraintTabModel::data(const QModelIndex& index, int role) const
         }
     }
 
-    foreach (SqliteCreateTable::Constraint* constr, createTable->constraints)
+    for (SqliteCreateTable::Constraint* constr : createTable->constraints)
     {
         currIdx++;
 

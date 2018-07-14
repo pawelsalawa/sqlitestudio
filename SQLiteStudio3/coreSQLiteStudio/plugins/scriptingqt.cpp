@@ -221,7 +221,7 @@ bool ScriptingQt::init()
 
 void ScriptingQt::deinit()
 {
-    foreach (Context* ctx, contexts)
+    for (Context* ctx : contexts)
         delete ctx;
 
     contexts.clear();

@@ -22,7 +22,7 @@ void CliCommandDbList::execute()
 
     int maxNameLength = tr("Name", "CLI db name column").length();
     int lgt = 0;
-    foreach (Db* db, dbList)
+    for (Db* db : dbList)
     {
         lgt = db->getName().length() + 1;
         maxNameLength = qMax(maxNameLength, lgt);
@@ -46,7 +46,7 @@ void CliCommandDbList::execute()
     println(msg);
 
     QString name;
-    foreach (Db* db, dbList)
+    for (Db* db : dbList)
     {
         bool open = db->isOpen();
         path = db->getPath();

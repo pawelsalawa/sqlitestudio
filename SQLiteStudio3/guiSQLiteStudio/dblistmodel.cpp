@@ -179,7 +179,7 @@ DbListModel::DbTreeComparer::DbTreeComparer()
     // TODO when sorting or D&D databases in the tree, this should be updated
     QList<DbTreeItem*> allItems = DBTREE->getModel()->getAllItemsAsFlatList();
     dbTreeOrder.clear();
-    foreach (DbTreeItem* item, allItems)
+    for (DbTreeItem* item : allItems)
     {
         if (item->getType() != DbTreeItem::Type::DB)
             continue;

@@ -283,7 +283,7 @@ void TableStructureModel::moveColumnTo(int colIdx, int newIdx)
 QModelIndex TableStructureModel::findColumn(const QString& columnName, Qt::CaseSensitivity cs) const
 {
     int row = 0;
-    foreach (SqliteCreateTable::Column* col, createTable->columns)
+    for (SqliteCreateTable::Column* col : createTable->columns)
     {
         if (col->name.compare(columnName, cs) == 0)
             return createIndex(row, 0);
@@ -432,7 +432,7 @@ bool TableStructureModel::isColumnPk(SqliteCreateTable::Column* column) const
         return true;
 
     QList<SqliteCreateTable::Constraint*> constraints = createTable->getConstraints(SqliteCreateTable::Constraint::PRIMARY_KEY);
-    foreach (SqliteCreateTable::Constraint* constr, constraints)
+    for (SqliteCreateTable::Constraint* constr : constraints)
         if (constr->doesAffectColumn(column->name))
             return true;
 
@@ -445,7 +445,7 @@ bool TableStructureModel::isColumnFk(SqliteCreateTable::Column* column) const
         return true;
 
     QList<SqliteCreateTable::Constraint*> constraints = createTable->getConstraints(SqliteCreateTable::Constraint::FOREIGN_KEY);
-    foreach (SqliteCreateTable::Constraint* constr, constraints)
+    for (SqliteCreateTable::Constraint* constr : constraints)
         if (constr->doesAffectColumn(column->name))
             return true;
 
@@ -458,7 +458,7 @@ bool TableStructureModel::isColumnUnique(SqliteCreateTable::Column* column) cons
         return true;
 
     QList<SqliteCreateTable::Constraint*> constraints = createTable->getConstraints(SqliteCreateTable::Constraint::UNIQUE);
-    foreach (SqliteCreateTable::Constraint* constr, constraints)
+    for (SqliteCreateTable::Constraint* constr : constraints)
         if (constr->doesAffectColumn(column->name))
             return true;
 
@@ -471,7 +471,7 @@ bool TableStructureModel::isColumnCheck(SqliteCreateTable::Column* column) const
         return true;
 
     QList<SqliteCreateTable::Constraint*> constraints = createTable->getConstraints(SqliteCreateTable::Constraint::CHECK);
-    foreach (SqliteCreateTable::Constraint* constr, constraints)
+    for (SqliteCreateTable::Constraint* constr : constraints)
         if (constr->expr->getContextColumns(false).contains(column->name, Qt::CaseInsensitive))
             return true;
 

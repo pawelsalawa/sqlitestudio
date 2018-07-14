@@ -22,11 +22,10 @@ SqliteCreateTable::SqliteCreateTable(bool ifNotExistsKw, int temp, const QString
 {
     init(ifNotExistsKw, temp, name1, name2);
     this->columns = columns;
-    foreach (Column* column, columns)
+    for (Column* column : columns)
         column->setParent(this);
 
-    SqliteCreateTable::Constraint* constr = nullptr;
-    foreach (constr, constraints)
+    for (SqliteCreateTable::Constraint* constr : constraints)
     {
         if (this->constraints.size() > 0 &&
             this->constraints.last()->type == SqliteCreateTable::Constraint::NAME_ONLY)
@@ -66,7 +65,7 @@ SqliteStatement*SqliteCreateTable::clone()
 QList<SqliteCreateTable::Constraint*> SqliteCreateTable::getConstraints(SqliteCreateTable::Constraint::Type type) const
 {
     QList<SqliteCreateTable::Constraint*> results;
-    foreach (Constraint* constr, constraints)
+    for (Constraint* constr : constraints)
         if (constr->type == type)
             results << constr;
 
@@ -75,11 +74,11 @@ QList<SqliteCreateTable::Constraint*> SqliteCreateTable::getConstraints(SqliteCr
 
 SqliteStatement* SqliteCreateTable::getPrimaryKey() const
 {
-    foreach (Constraint* constr, getConstraints(Constraint::PRIMARY_KEY))
+    for (Constraint* constr : getConstraints(Constraint::PRIMARY_KEY))
         return constr;
 
     Column::Constraint* colConstr = nullptr;
-    foreach (Column* col, columns)
+    for (Column* col : columns)
     {
         colConstr = col->getConstraint(Column::Constraint::PRIMARY_KEY);
         if (colConstr)
@@ -106,7 +105,7 @@ QStringList SqliteCreateTable::getPrimaryKeyColumns() const
     SqliteCreateTable::Constraint* tableConstr = dynamic_cast<SqliteCreateTable::Constraint*>(primaryKey);
     if (tableConstr)
     {
-        foreach (SqliteIndexedColumn* idxCol, tableConstr->indexedColumns)
+        for (SqliteIndexedColumn* idxCol : tableConstr->indexedColumns)
             colNames << idxCol->name;
     }
     return colNames;
@@ -114,7 +113,7 @@ QStringList SqliteCreateTable::getPrimaryKeyColumns() const
 
 SqliteCreateTable::Column* SqliteCreateTable::getColumn(const QString& colName)
 {
-    foreach (Column* col, columns)
+    for (Column* col : columns)
     {
         if (col->name.compare(colName, Qt::CaseInsensitive) == 0)
             return col;
@@ -125,7 +124,7 @@ SqliteCreateTable::Column* SqliteCreateTable::getColumn(const QString& colName)
 QList<SqliteCreateTable::Constraint*> SqliteCreateTable::getForeignKeysByTable(const QString& foreignTable) const
 {
     QList<Constraint*> results;
-    foreach (Constraint* constr, constraints)
+    for (Constraint* constr : constraints)
         if (constr->type == Constraint::FOREIGN_KEY && constr->foreignKey->foreignTable.compare(foreignTable, Qt::CaseInsensitive) == 0)
             results << constr;
 
@@ -135,7 +134,7 @@ QList<SqliteCreateTable::Constraint*> SqliteCreateTable::getForeignKeysByTable(c
 QList<SqliteCreateTable::Column::Constraint*> SqliteCreateTable::getColumnForeignKeysByTable(const QString& foreignTable) const
 {
     QList<Column::Constraint*> results;
-    foreach (Column* col, columns)
+    for (Column* col : columns)
         results += col->getForeignKeysByTable(foreignTable);
 
     return results;
@@ -144,7 +143,7 @@ QList<SqliteCreateTable::Column::Constraint*> SqliteCreateTable::getColumnForeig
 QStringList SqliteCreateTable::getColumnNames() const
 {
     QStringList names;
-    foreach (Column* col, columns)
+    for (Column* col : columns)
         names << col->name;
 
     return names;
@@ -154,7 +153,7 @@ QHash<QString, QString> SqliteCreateTable::getModifiedColumnsMap(bool lowercaseK
 {
     QHash<QString, QString> colMap;
     QString key;
-    foreach (Column* col, columns)
+    for (Column* col : columns)
     {
         key = lowercaseKeys ? col->originalName.toLower() : col->originalName;
         if (col->name.compare(col->originalName, cs) != 0)
@@ -385,10 +384,10 @@ void SqliteCreateTable::Column::Constraint::initFk(const QString& table, const Q
     foreignKey = fk;
     fk->setParent(this);
 
-    foreach (SqliteIndexedColumn* idxCol, indexedColumns)
+    for (SqliteIndexedColumn* idxCol : indexedColumns)
         idxCol->setParent(fk);
 
-    foreach (SqliteForeignKey::Condition* cond, conditions)
+    for (SqliteForeignKey::Condition* cond : conditions)
         cond->setParent(fk);
 }
 
@@ -466,7 +465,7 @@ void SqliteCreateTable::Constraint::initPk(const QList<SqliteIndexedColumn *> &i
     autoincrKw = autoincr;
     onConflict = algo;
 
-    foreach (SqliteIndexedColumn* idxCol, indexedColumns)
+    for (SqliteIndexedColumn* idxCol : indexedColumns)
         idxCol->setParent(this);
 }
 
@@ -476,7 +475,7 @@ void SqliteCreateTable::Constraint::initUnique(const QList<SqliteIndexedColumn *
     this->indexedColumns = indexedColumns;
     onConflict = algo;
 
-    foreach (SqliteIndexedColumn* idxCol, indexedColumns)
+    for (SqliteIndexedColumn* idxCol : indexedColumns)
         idxCol->setParent(this);
 }
 
@@ -499,7 +498,7 @@ void SqliteCreateTable::Constraint::initFk(const QList<SqliteIndexedColumn *> &i
     this->type = SqliteCreateTable::Constraint::FOREIGN_KEY;
     this->indexedColumns = indexedColumns;
 
-    foreach (SqliteIndexedColumn* idxCol, indexedColumns)
+    for (SqliteIndexedColumn* idxCol : indexedColumns)
         idxCol->setParent(this);
 
     SqliteForeignKey* fk = new SqliteForeignKey();
@@ -511,10 +510,10 @@ void SqliteCreateTable::Constraint::initFk(const QList<SqliteIndexedColumn *> &i
 
     fk->setParent(this);
 
-    foreach (SqliteIndexedColumn* idxCol, fkColumns)
+    for (SqliteIndexedColumn* idxCol : fkColumns)
         idxCol->setParent(fk);
 
-    foreach (SqliteForeignKey::Condition* cond, conditions)
+    for (SqliteForeignKey::Condition* cond : conditions)
         cond->setParent(fk);
 
     this->foreignKey = fk;
@@ -528,7 +527,7 @@ bool SqliteCreateTable::Constraint::doesAffectColumn(const QString& columnName)
 int SqliteCreateTable::Constraint::getAffectedColumnIdx(const QString& columnName)
 {
     int i = 0;
-    foreach (SqliteIndexedColumn* idxCol, indexedColumns)
+    for (SqliteIndexedColumn* idxCol : indexedColumns)
     {
         if (idxCol->name.compare(columnName, Qt::CaseInsensitive) == 0)
             return i;
@@ -619,8 +618,7 @@ SqliteCreateTable::Column::Column(const QString &name, SqliteColumnType *type, c
     if (type)
         type->setParent(this);
 
-    SqliteCreateTable::Column::Constraint* constr = nullptr;
-    foreach (constr, constraints)
+    for (SqliteCreateTable::Column::Constraint* constr : constraints)
     {
         // If last constraint on list is NAME_ONLY we apply the name
         // to current constraint and remove NAME_ONLY.
@@ -689,7 +687,7 @@ QList<SqliteCreateTable::Column::Constraint*> SqliteCreateTable::Column::getCons
 QList<SqliteCreateTable::Column::Constraint*> SqliteCreateTable::Column::getForeignKeysByTable(const QString& foreignTable) const
 {
     QList<Constraint*> results;
-    foreach (Constraint* constr, constraints)
+    for (Constraint* constr : constraints)
         if (constr->type == Constraint::FOREIGN_KEY && constr->foreignKey->foreignTable.compare(foreignTable, Qt::CaseInsensitive) == 0)
             results << constr;
 

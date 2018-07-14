@@ -262,7 +262,7 @@ QHash<AliasedTable, QList<SqlQueryItem*> > SqlQueryModel::groupItemsByTable(cons
 {
     QHash<AliasedTable,QList<SqlQueryItem*>> itemsByTable;
     AliasedTable table;
-    foreach (SqlQueryItem* item, items)
+    for (SqlQueryItem* item : items)
     {
         if (item->getColumn())
         {
@@ -284,7 +284,7 @@ QList<SqlQueryItem*> SqlQueryModel::filterOutCommittedItems(const QList<SqlQuery
     // because it would require list in argument to drop 'const' keyword and it's already
     // there in calling methods, so it's easier to copy list and filter on the fly.
     QList<SqlQueryItem*> newList;
-    foreach (SqlQueryItem* item, items)
+    for (SqlQueryItem* item : items)
         if (item->isUncommitted())
             newList << item;
 
@@ -308,7 +308,7 @@ SqlQueryModel::Features SqlQueryModel::features() const
 QList<SqlQueryItem*> SqlQueryModel::toItemList(const QModelIndexList& indexes) const
 {
     QList<SqlQueryItem*> list;
-    foreach (const QModelIndex& idx, indexes)
+    for (const QModelIndex& idx : indexes)
         list << itemFromIndex(idx);
 
     return list;
@@ -472,7 +472,7 @@ void SqlQueryModel::commitInternal(const QList<SqlQueryItem*>& items)
 void SqlQueryModel::rollbackInternal(const QList<SqlQueryItem*>& items)
 {
     QList<QList<SqlQueryItem*> > groupedItems = groupItemsByRows(items);
-    foreach (const QList<SqlQueryItem*>& itemsInRow, groupedItems)
+    for (const QList<SqlQueryItem*>& itemsInRow : groupedItems)
         rollbackRow(itemsInRow);
 
     emit commitStatusChanged(getUncommittedItems().size() > 0);
@@ -712,13 +712,13 @@ void SqlQueryModel::rollbackAddedRow(const QList<SqlQueryItem*>& itemsInRow)
 
 void SqlQueryModel::rollbackEditedRow(const QList<SqlQueryItem*>& itemsInRow)
 {
-    foreach (SqlQueryItem* item, itemsInRow)
+    for (SqlQueryItem* item : itemsInRow)
         item->rollback();
 }
 
 void SqlQueryModel::rollbackDeletedRow(const QList<SqlQueryItem*>& itemsInRow)
 {
-    foreach (SqlQueryItem* item, itemsInRow)
+    for (SqlQueryItem* item : itemsInRow)
         item->rollback();
 }
 
@@ -739,7 +739,7 @@ SqlQueryModelColumnPtr SqlQueryModel::getColumnModel(const QString& table, const
 QList<SqlQueryModelColumnPtr> SqlQueryModel::getTableColumnModels(const QString& database, const QString& table)
 {
     QList<SqlQueryModelColumnPtr> results;
-    foreach (SqlQueryModelColumnPtr modelColumn, columns)
+    for (SqlQueryModelColumnPtr modelColumn : columns)
     {
         if (modelColumn->database.compare(database, Qt::CaseInsensitive) != 0)
             continue;
@@ -995,7 +995,7 @@ void SqlQueryModel::readColumnDetails()
 {
     // Preparing global (table oriented) edition forbidden reasons
     QSet<SqlQueryModelColumn::EditionForbiddenReason> editionForbiddenGlobalReasons;
-    foreach (QueryExecutor::EditionForbiddenReason reason, queryExecutor->getEditionForbiddenGlobalReasons())
+    for (QueryExecutor::EditionForbiddenReason reason : queryExecutor->getEditionForbiddenGlobalReasons())
         editionForbiddenGlobalReasons << SqlQueryModelColumn::convert(reason);
 
     // Reading all the details from query executor source tables
@@ -1011,7 +1011,7 @@ void SqlQueryModel::readColumnDetails()
     SqliteColumnTypePtr modelColumnType;
     SqlQueryModelColumn::Constraint* modelConstraint = nullptr;
 
-    foreach (const QueryExecutor::ResultColumnPtr& resCol, queryExecutor->getResultColumns())
+    for (const QueryExecutor::ResultColumnPtr& resCol : queryExecutor->getResultColumns())
     {
         // Creating new column for the model (this includes column oriented forbidden reasons)
         modelColumn = SqlQueryModelColumnPtr::create(resCol);
@@ -1032,7 +1032,7 @@ void SqlQueryModel::readColumnDetails()
             modelColumn->dataType = DataType(modelColumnType->name, modelColumnType->precision, modelColumnType->scale);
 
         // Column constraints
-        foreach (SqliteCreateTable::Column::ConstraintPtr constrPtr, colDetails.constraints)
+        for (SqliteCreateTable::Column::ConstraintPtr constrPtr : colDetails.constraints)
         {
             modelConstraint = SqlQueryModelColumn::Constraint::create(constrPtr);
             if (modelConstraint)
@@ -1040,7 +1040,7 @@ void SqlQueryModel::readColumnDetails()
         }
 
         // Table constraints
-        foreach (SqliteCreateTable::ConstraintPtr constrPtr, details.constraints)
+        for (SqliteCreateTable::ConstraintPtr constrPtr : details.constraints)
         {
             modelConstraint = SqlQueryModelColumn::Constraint::create(modelColumn->column, constrPtr);
             if (modelConstraint)
@@ -1066,7 +1066,7 @@ QHash<AliasedTable, SqlQueryModel::TableDetails> SqlQueryModel::readTableDetails
     AliasedTable table;
     QString columnName;
 
-    foreach (const QueryExecutor::SourceTablePtr& srcTable, queryExecutor->getSourceTables())
+    for (const QueryExecutor::SourceTablePtr& srcTable : queryExecutor->getSourceTables())
     {
         database = srcTable->database.isEmpty() ? "main" : srcTable->database;
 
@@ -1084,11 +1084,11 @@ QHash<AliasedTable, SqlQueryModel::TableDetails> SqlQueryModel::readTableDetails
         table = {database, srcTable->table, srcTable->alias};
 
         // Table constraints
-        foreach (SqliteCreateTable::Constraint* tableConstr, createTable->constraints)
+        for (SqliteCreateTable::Constraint* tableConstr : createTable->constraints)
             tableDetails.constraints << tableConstr->detach<SqliteCreateTable::Constraint>();
 
         // Table columns
-        foreach (SqliteCreateTable::Column* columnStmt, createTable->columns)
+        for (SqliteCreateTable::Column* columnStmt : createTable->columns)
         {
             // Column details
             TableDetails::ColumnDetails columnDetails;
@@ -1101,7 +1101,7 @@ QHash<AliasedTable, SqlQueryModel::TableDetails> SqlQueryModel::readTableDetails
                 columnDetails.type = SqliteColumnTypePtr();
 
             // Column constraints
-            foreach (SqliteCreateTable::Column::Constraint* columnConstr, columnStmt->constraints)
+            for (SqliteCreateTable::Column::Constraint* columnConstr : columnStmt->constraints)
                 columnDetails.constraints << columnConstr->detach<SqliteCreateTable::Column::Constraint>();
 
             tableDetails.columns[columnName] = columnDetails;
@@ -1118,7 +1118,7 @@ QList<AliasedTable> SqlQueryModel::getTablesForColumns()
 {
     QList<AliasedTable> columnTables;
     AliasedTable table;
-    foreach (SqlQueryModelColumnPtr column, columns)
+    for (SqlQueryModelColumnPtr column : columns)
     {
         if (column->editionForbiddenReason.size() > 0)
         {
@@ -1134,7 +1134,7 @@ QList<AliasedTable> SqlQueryModel::getTablesForColumns()
 QList<bool> SqlQueryModel::getColumnEditionEnabledList()
 {
     QList<bool> columnEditionEnabled;
-    foreach (SqlQueryModelColumnPtr column, columns)
+    for (SqlQueryModelColumnPtr column : columns)
         columnEditionEnabled << (column->editionForbiddenReason.size() == 0);
 
     return columnEditionEnabled;
@@ -1150,7 +1150,7 @@ void SqlQueryModel::updateColumnsHeader()
 void SqlQueryModel::updateColumnHeaderLabels()
 {
     headerColumns.clear();
-    foreach (SqlQueryModelColumnPtr column, columns)
+    for (SqlQueryModelColumnPtr column : columns)
     {
         headerColumns << column->displayName;
     }
@@ -1429,7 +1429,7 @@ void SqlQueryModel::updateSelectiveCommitRollbackActions(const QItemSelection& s
     bool result = false;
     if (selectedItems.size() > 0)
     {
-        foreach (SqlQueryItem* item, selectedItems)
+        for (SqlQueryItem* item : selectedItems)
         {
             if (item->isUncommitted())
             {
@@ -1593,7 +1593,7 @@ void SqlQueryModel::insertCustomRow(const QList<QVariant> &values, int insertion
     SqlQueryItem* cellItem = nullptr;
     int colIdx = 0;
     QList<QStandardItem*> row;
-    foreach (const QVariant& value, values)
+    for (const QVariant& value : values)
     {
         cellItem = new SqlQueryItem();
         updateItem(cellItem, value, colIdx++, RowId());
@@ -1683,7 +1683,7 @@ void SqlQueryModel::deleteSelectedRows()
 {
     QList<SqlQueryItem*> selectedItems = view->getSelectedItems();
     QSet<int> rows;
-    foreach (SqlQueryItem* item, selectedItems)
+    for (SqlQueryItem* item : selectedItems)
         rows << item->index().row();
 
     QList<int> rowList = rows.toList();
@@ -1691,7 +1691,7 @@ void SqlQueryModel::deleteSelectedRows()
 
     QList<SqlQueryItem*> newItemsToDelete;
     int cols = columnCount();
-    foreach (int row, rowList)
+    for (int row : rowList)
     {
         for (int colIdx = 0; colIdx < cols; colIdx++)
         {
@@ -1707,7 +1707,7 @@ void SqlQueryModel::deleteSelectedRows()
         }
     }
 
-    foreach (SqlQueryItem* item, newItemsToDelete)
+    for (SqlQueryItem* item : newItemsToDelete)
         removeRow(item->index().row());
 
     emit commitStatusChanged(getUncommittedItems().size() > 0);

@@ -208,7 +208,7 @@ bool CLI::isComplete(const QString& contents) const
 
 void CLI::loadHistory()
 {
-    foreach (const QString& line, CFG->getCliHistory())
+    for (const QString& line : CFG->getCliHistory())
     {
         if (!line.isEmpty())
             add_history(line.toLocal8Bit().data());

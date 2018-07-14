@@ -130,7 +130,7 @@ TokenPtr ParserContext::getTokenPtr(Token* token)
 TokenList ParserContext::getTokenPtrList(const QList<Token*>& tokens)
 {
     TokenList resList;
-    foreach (Token* token, tokens)
+    for (Token* token : tokens)
         resList << getTokenPtr(token);
 
     return resList;
@@ -196,7 +196,7 @@ bool ParserContext::isCandidateForMaxNegativeNumber() const
 
 void ParserContext::cleanUp()
 {
-    foreach (ParserError* err, errors)
+    for (ParserError* err : errors)
         delete err;
 
     parsedQueries.clear();

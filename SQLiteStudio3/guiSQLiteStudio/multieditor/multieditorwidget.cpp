@@ -8,7 +8,7 @@ MultiEditorWidget::MultiEditorWidget(QWidget *parent) :
 void MultiEditorWidget::installEventFilter(QObject* filterObj)
 {
     QObject::installEventFilter(filterObj);
-    foreach (QWidget* w, getNoScrollWidgets())
+    for (QWidget* w : getNoScrollWidgets())
         w->installEventFilter(filterObj);
 }
 

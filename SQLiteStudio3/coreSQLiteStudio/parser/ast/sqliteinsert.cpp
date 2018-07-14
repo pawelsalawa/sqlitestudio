@@ -35,7 +35,7 @@ SqliteInsert::SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QS
     if (with)
         with->setParent(this);
 
-    foreach (SqliteExpr* expr, row)
+    for (SqliteExpr* expr : row)
         expr->setParent(this);
 }
 

@@ -143,7 +143,7 @@ void ParserTest::testGetFullObjects()
     QList<SqliteStatement::FullObject> fullObjects = query->getContextFullObjects();
     QVERIFY(fullObjects.size() == 2);
 
-    foreach (const SqliteStatement::FullObject& fullObj, fullObjects)
+    for (const SqliteStatement::FullObject& fullObj : fullObjects)
     {
         switch (fullObj.type)
         {
@@ -171,7 +171,7 @@ void ParserTest::testGetFullObjects2()
     QList<SqliteStatement::FullObject> fullObjects = query->getContextFullObjects();
     QVERIFY(fullObjects.size() == 5);
 
-    foreach (const SqliteStatement::FullObject& fullObj, fullObjects)
+    for (const SqliteStatement::FullObject& fullObj : fullObjects)
     {
         switch (fullObj.type)
         {

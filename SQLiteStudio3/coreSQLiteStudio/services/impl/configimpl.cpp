@@ -231,7 +231,7 @@ void ConfigImpl::storeGroups(const QList<DbGroupPtr>& groups)
     db->begin();
     db->exec("DELETE FROM groups");
 
-    foreach (const DbGroupPtr& group, groups)
+    for (const DbGroupPtr& group : groups)
         storeGroup(group);
 
     db->commit();
@@ -247,7 +247,7 @@ void ConfigImpl::storeGroup(const ConfigImpl::DbGroupPtr &group, qint64 parentId
                                     {group->name, group->order, parent, group->open, group->referencedDbName});
 
     qint64 newParentId = results->getRegularInsertRowId();
-    foreach (const DbGroupPtr& childGroup, group->childs)
+    for (const DbGroupPtr& childGroup : group->childs)
         storeGroup(childGroup, newParentId);
 }
 
@@ -630,9 +630,9 @@ QString ConfigImpl::getPortableConfigPath()
         if (!file.isDir() || !file.isReadable() || !file.isWritable())
             continue;
 
-        foreach (file, dir.entryInfoList())
+        for (const QFileInfo& entryFile : dir.entryInfoList())
         {
-            if (!file.isReadable() || !file.isWritable())
+            if (!entryFile.isReadable() || !entryFile.isWritable())
                 continue;
         }
 
@@ -649,8 +649,7 @@ void ConfigImpl::initTables()
 
     if (!tables.contains("version"))
     {
-        QString table;
-        foreach (table, tables)
+        for (const QString& table : tables)
             db->exec("DROP TABLE "+table);
 
         tables.clear();

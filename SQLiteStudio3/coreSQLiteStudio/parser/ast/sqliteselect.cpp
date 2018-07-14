@@ -117,7 +117,7 @@ SqliteSelect::CompoundOperator SqliteSelect::compoundOperator(const QString& op)
 
 void SqliteSelect::reset()
 {
-    foreach (Core* core, coreSelects)
+    for (Core* core : coreSelects)
         delete core;
 
     coreSelects.clear();
@@ -173,13 +173,13 @@ SqliteSelect::Core::Core(int distinct, const QList<ResultColumn *> &resCols, Sql
     if (limit)
         limit->setParent(this);
 
-    foreach (SqliteOrderBy* order, orderBy)
+    for (SqliteOrderBy* order : orderBy)
         order->setParent(this);
 
-    foreach (SqliteExpr* expr, groupBy)
+    for (SqliteExpr* expr : groupBy)
         expr->setParent(this);
 
-    foreach (SqliteSelect::Core::ResultColumn* resCol, resCols)
+    for (SqliteSelect::Core::ResultColumn* resCol : resCols)
         resCol->setParent(this);
 }
 
@@ -558,7 +558,7 @@ SqliteSelect::Core::JoinSource::JoinSource(SqliteSelect::Core::SingleSource *sin
     if (singleSource)
         singleSource->setParent(this);
 
-    foreach (JoinSourceOther* other, otherSources)
+    for (JoinSourceOther* other : otherSources)
         other->setParent(this);
 }
 
@@ -801,7 +801,7 @@ TokenList SqliteSelect::rebuildTokensFromContents()
     if (with)
         builder.withStatement(with);
 
-    foreach (SqliteSelect::Core* core, coreSelects)
+    for (SqliteSelect::Core* core : coreSelects)
     {
         if (core->compoundOp == CompoundOperator::UNION_ALL)
         {

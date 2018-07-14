@@ -74,7 +74,7 @@ class SortedHash : public QHash<Key, T>
         QList<Key> keys(const T& value) const
         {
             QList<Key> results;
-            foreach (const Key& k, sortedKeys)
+            for (const Key& k : sortedKeys)
                 if (value(k) == value)
                     results << k;
 
@@ -98,7 +98,7 @@ class SortedHash : public QHash<Key, T>
         QList<T> values() const
         {
             QList<T> results;
-            foreach (const Key& k, sortedKeys)
+            for (const Key& k : sortedKeys)
                 results << value(k);
 
             return results;

@@ -284,7 +284,7 @@ QString SqlQueryItem::getToolTip() const
     {
         rows << emptyRow;
         rows << hdrRowTmp.arg(ICONS.COLUMN_CONSTRAINT.getPath()).arg(tr("Constraints:", "data view tooltip")).arg("");
-        foreach (SqlQueryModelColumn::Constraint* constr, col->constraints)
+        for (SqlQueryModelColumn::Constraint* constr : col->constraints)
             rows << constrRowTmp.arg(constr->getIcon()->toUrl()).arg(constr->getTypeString()).arg(constr->getDetails());
     }
 

@@ -64,7 +64,7 @@ QStringList CliCommand::complete(const QStringList& args)
 
     QStringList results;
     results += syntax.getStrictArgumentCandidates();
-    foreach (int id, syntax.getRegularArgumentCandidates())
+    for (int id : syntax.getRegularArgumentCandidates())
         results += getCompletionValuesFor(id, args.last());
 
     return results;
@@ -93,9 +93,9 @@ void CliCommand::printBox(const QString& str)
 
     QStringList lines = str.split("\n");
     println(".---------------------------");
-    foreach (const QString& line, lines)
+    for (const QString& line : lines)
     {
-        foreach (const QString& lineWithMargin, applyMargin(line, cols - 3)) // 2 for "| " and 1 for final new line character
+        for (const QString& lineWithMargin : applyMargin(line, cols - 3)) // 2 for "| " and 1 for final new line character
             println("| " + lineWithMargin);
     }
 
@@ -153,7 +153,7 @@ QStringList CliCommand::getCompletionTables()
     resolver.setIgnoreSystemObjects(true);
     results += wrapObjNamesIfNeeded(resolver.getTables(), dialect);
     results += prefixEach("temp.", wrapObjNamesIfNeeded(resolver.getTables("temp"), dialect));
-    foreach (const QString& database, resolver.getDatabases())
+    for (const QString& database : resolver.getDatabases())
         results += prefixEach(wrapObjIfNeeded(database, Dialect::Sqlite3)+".", wrapObjNamesIfNeeded(resolver.getTables(database), dialect));
 
     return results;
@@ -171,7 +171,7 @@ QStringList CliCommand::getCompletionIndexes()
     resolver.setIgnoreSystemObjects(true);
     results += wrapObjNamesIfNeeded(resolver.getIndexes(), dialect);
     results += prefixEach("temp.", wrapObjNamesIfNeeded(resolver.getIndexes("temp"), dialect));
-    foreach (const QString& database, resolver.getDatabases())
+    for (const QString& database : resolver.getDatabases())
         results += prefixEach(wrapObjIfNeeded(database, Dialect::Sqlite3)+".", wrapObjNamesIfNeeded(resolver.getIndexes(database), dialect));
 
     return results;
@@ -189,7 +189,7 @@ QStringList CliCommand::getCompletionTriggers()
     resolver.setIgnoreSystemObjects(true);
     results += wrapObjNamesIfNeeded(resolver.getTriggers(), dialect);
     results += prefixEach("temp.", wrapObjNamesIfNeeded(resolver.getTriggers("temp"), dialect));
-    foreach (const QString& database, resolver.getDatabases())
+    for (const QString& database : resolver.getDatabases())
         results += prefixEach(wrapObjIfNeeded(database, Dialect::Sqlite3)+".", wrapObjNamesIfNeeded(resolver.getTriggers(database), dialect));
 
     return results;
@@ -207,7 +207,7 @@ QStringList CliCommand::getCompletionViews()
     resolver.setIgnoreSystemObjects(true);
     results += wrapObjNamesIfNeeded(resolver.getViews(), dialect);
     results += prefixEach("temp.", wrapObjNamesIfNeeded(resolver.getViews("temp"), dialect));
-    foreach (const QString& database, resolver.getDatabases())
+    for (const QString& database : resolver.getDatabases())
         results += prefixEach(wrapObjIfNeeded(database, Dialect::Sqlite3)+".", wrapObjNamesIfNeeded(resolver.getViews(database), dialect));
 
     return results;
@@ -228,7 +228,7 @@ QStringList CliCommand::getCompletionFiles(const QString& partialValue)
 
     QStringList results;
     QString name;
-    foreach (const QFileInfo& entry, entries)
+    for (const QFileInfo& entry : entries)
     {
         name = entry.fileName();
         if (dir != QDir::current())
@@ -248,7 +248,7 @@ QStringList CliCommand::getCompletionDirs(const QString& partialValue)
 
     QStringList results;
     QString name;
-    foreach (const QFileInfo& entry, entries)
+    for (const QFileInfo& entry : entries)
     {
         name = entry.fileName();
         if (dir != QDir::current())

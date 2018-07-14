@@ -11,7 +11,7 @@ QString TsvSerializer::serialize(const QList<QStringList>& data)
 {
     QStringList outputRows;
 
-    foreach (const QStringList& dataRow, data)
+    for (const QStringList& dataRow : data)
         outputRows << serialize(dataRow);
 
     return outputRows.join(rowSeparator);
@@ -22,7 +22,7 @@ QString TsvSerializer::serialize(const QStringList& data)
     QString value;
     bool hasQuote;
     QStringList outputCells;
-    foreach (const QString& rowValue, data)
+    for (const QString& rowValue : data)
     {
         value = rowValue;
 

@@ -279,7 +279,7 @@ bool SqliteSyntaxHighlighter::isError(int start, int lgt, bool* limitedDamage)
 {
     start += currentBlock().position();
     int end = start + lgt - 1;
-    foreach (const Error& error, errors)
+    for (const Error& error : errors)
     {
         if (error.from <= start && error.to >= end)
         {
@@ -294,7 +294,7 @@ bool SqliteSyntaxHighlighter::isValid(int start, int lgt)
 {
     start += currentBlock().position();
     int end = start + lgt - 1;
-    foreach (const DbObject& obj, dbObjects)
+    for (const DbObject& obj : dbObjects)
     {
         if (obj.from <= start && obj.to >= end)
             return true;
@@ -379,7 +379,7 @@ SqliteSyntaxHighlighter::DbObject::DbObject(int from, int to) :
 QList<const TextBlockData::Parenthesis*> TextBlockData::parentheses()
 {
     QList<const TextBlockData::Parenthesis*> list;
-    foreach (const TextBlockData::Parenthesis& par, parData)
+    for (const TextBlockData::Parenthesis& par : parData)
         list << &par;
 
     return list;
@@ -395,7 +395,7 @@ void TextBlockData::insertParenthesis(int pos, char c)
 
 const TextBlockData::Parenthesis* TextBlockData::parenthesisForPosision(int pos)
 {
-    foreach (const Parenthesis& par, parData)
+    for (const Parenthesis& par : parData)
     {
         if (par.position == pos)
             return &par;

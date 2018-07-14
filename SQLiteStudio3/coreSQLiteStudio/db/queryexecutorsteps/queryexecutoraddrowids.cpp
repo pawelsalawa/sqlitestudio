@@ -54,7 +54,7 @@ QHash<SelectResolver::Table,QHash<QString,QString>> QueryExecutorAddRowIds::addR
         return rowIdColsMap;
 
     // Go trough subselects to add ROWID result columns there and collect rowId mapping to use here.
-    foreach (SqliteSelect* subSelect, getSubSelects(core))
+    for (SqliteSelect* subSelect : getSubSelects(core))
     {
         rowIdColsMap.unite(addRowIdForTables(subSelect, ok, false));
         if (!ok)
@@ -92,7 +92,7 @@ QList<SqliteSelect*> QueryExecutorAddRowIds::getSubSelects(SqliteSelect::Core* c
     if (core->from->singleSource && core->from->singleSource->select)
         selects << core->from->singleSource->select;
 
-    foreach (SqliteSelect::Core::JoinSourceOther* otherSource, core->from->otherSources)
+    for (SqliteSelect::Core::JoinSourceOther* otherSource : core->from->otherSources)
     {
         if (!otherSource->singleSource->select)
             continue;
@@ -140,7 +140,7 @@ QHash<QString,QString> QueryExecutorAddRowIds::getNextColNames(const SelectResol
     SqliteCreateTable::Constraint* tableConstr = dynamic_cast<SqliteCreateTable::Constraint*>(primaryKey);
     if (tableConstr)
     {
-        foreach (SqliteIndexedColumn* idxCol, tableConstr->indexedColumns)
+        for (SqliteIndexedColumn* idxCol : tableConstr->indexedColumns)
             colNames[getNextColName()] = idxCol->name;
 
         return colNames;

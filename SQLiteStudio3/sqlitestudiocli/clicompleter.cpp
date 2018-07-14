@@ -106,7 +106,7 @@ QStringList CliCompleter::completeCommand(const QString& str, int curPos)
     {
         QStringList cmdNames = CliCommandFactory::getCommandNames().filter(QRegExp("^"+cmdStr+".*"));
         cmdNames.sort(Qt::CaseInsensitive);
-        foreach (const QString& cmdName, cmdNames)
+        for (const QString& cmdName : cmdNames)
             results << CFG_CLI.Console.CommandPrefixChar.get() + cmdName;
     }
 
@@ -124,7 +124,7 @@ QStringList CliCompleter::completeQuery(const QString& toBeReplaced, const QStri
     CompletionHelper completer(str, curPos, cli->getCurrentDb());
     QList<ExpectedTokenPtr> expectedTokens = completer.getExpectedTokens().filtered();
 
-    foreach (const ExpectedTokenPtr& token, expectedTokens)
+    for (const ExpectedTokenPtr& token : expectedTokens)
         list << token->value;
 
     list.removeAll("");
@@ -162,7 +162,7 @@ char** CliCompleter::toCharArray(const QStringList& list)
     array[list.size()] = nullptr;
 
     int i = 0;
-    foreach (const QString& str, list)
+    for (const QString& str : list)
 #if defined(Q_OS_WIN)
         array[i++] = _strdup(str.toLocal8Bit().data());
 #elif defined(Q_OS_UNIX)

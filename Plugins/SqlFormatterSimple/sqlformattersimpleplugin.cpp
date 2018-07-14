@@ -8,7 +8,7 @@ QString SqlFormatterSimplePlugin::format(SqliteQueryPtr query)
 {
     TokenList tokens = query->tokens;
     tokens.trimRight();
-    foreach (TokenPtr token, tokens)
+    for (TokenPtr token : tokens)
     {
         if (token->type == Token::KEYWORD && cfg.SqlFormatterSimple.UpperCaseKeywords.get())
             token->value = token->value.toUpper();

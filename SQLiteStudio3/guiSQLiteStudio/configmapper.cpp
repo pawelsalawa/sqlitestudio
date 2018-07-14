@@ -195,12 +195,11 @@ QVariant ConfigMapper::getCommonConfigValueFromWidget(QWidget* widget, CfgEntry*
 
 QVariant ConfigMapper::getCustomConfigValueFromWidget(QWidget* widget, CfgEntry* key, bool& ok)
 {
-    CustomConfigWidgetPlugin* plugin = nullptr;
     QList<CustomConfigWidgetPlugin*> handlers;
     handlers += internalCustomConfigWidgets;
     handlers += PLUGINS->getLoadedPlugins<CustomConfigWidgetPlugin>();
 
-    foreach (plugin, handlers)
+    for (CustomConfigWidgetPlugin* plugin : handlers)
     {
         if (plugin->isConfigForWidget(key, widget))
             return plugin->getWidgetConfigValue(widget, ok);
@@ -275,7 +274,7 @@ void ConfigMapper::saveFromWidget(QWidget *widget, bool noTransaction)
     if (!noTransaction && isPersistant())
         CFG->beginMassSave();
 
-    foreach (QWidget* w, allConfigWidgets)
+    for (QWidget* w : allConfigWidgets)
         saveWidget(w, allConfigEntries);
 
     if (!noTransaction && isPersistant())
@@ -369,12 +368,11 @@ void ConfigMapper::handleConfigComboBox(QWidget* widget, const QHash<QString, Cf
 
 bool ConfigMapper::applyCustomConfigToWidget(CfgEntry* key, QWidget* widget, const QVariant& value)
 {
-    CustomConfigWidgetPlugin* handler = nullptr;
     QList<CustomConfigWidgetPlugin*> handlers;
     handlers += internalCustomConfigWidgets;
     handlers += PLUGINS->getLoadedPlugins<CustomConfigWidgetPlugin>();
 
-    foreach (handler, handlers)
+    for (CustomConfigWidgetPlugin* handler : handlers)
     {
         if (handler->isConfigForWidget(key, widget))
         {
@@ -387,12 +385,11 @@ bool ConfigMapper::applyCustomConfigToWidget(CfgEntry* key, QWidget* widget, con
 
 bool ConfigMapper::connectCustomNotifierToWidget(QWidget* widget, CfgEntry* cfgEntry)
 {
-    CustomConfigWidgetPlugin* handler = nullptr;
     QList<CustomConfigWidgetPlugin*> handlers;
     handlers += internalCustomConfigWidgets;
     handlers += PLUGINS->getLoadedPlugins<CustomConfigWidgetPlugin>();
 
-    foreach (handler, handlers)
+    for (CustomConfigWidgetPlugin* handler : handlers)
     {
         if (handler->isConfigForWidget(cfgEntry, widget))
         {
@@ -429,12 +426,11 @@ void ConfigMapper::saveFromWidget(QWidget* widget, CfgEntry* cfgEntry)
 
 bool ConfigMapper::saveCustomConfigFromWidget(QWidget* widget, CfgEntry* key)
 {
-    CustomConfigWidgetPlugin* plugin = nullptr;
     QList<CustomConfigWidgetPlugin*> handlers;
     handlers += internalCustomConfigWidgets;
     handlers += PLUGINS->getLoadedPlugins<CustomConfigWidgetPlugin>();
 
-    foreach (plugin, handlers)
+    for (CustomConfigWidgetPlugin* plugin : handlers)
     {
         if (plugin->isConfigForWidget(key, widget))
         {

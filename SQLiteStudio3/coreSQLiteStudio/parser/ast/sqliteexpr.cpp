@@ -269,7 +269,7 @@ void SqliteExpr::initIn(SqliteExpr *expr, bool notKw, const QList<SqliteExpr*>& 
     expr1 = expr;
     this->notKw = notKw;
     this->exprList = exprList;
-    foreach (SqliteExpr* expr, exprList)
+    for (SqliteExpr* expr : exprList)
         expr->setParent(this);
 }
 
@@ -331,7 +331,7 @@ void SqliteExpr::initCase(SqliteExpr *expr1, const QList<SqliteExpr*>& exprList,
     if (expr2)
         expr2->setParent(this);
 
-    foreach (SqliteExpr* expr, exprList)
+    for (SqliteExpr* expr : exprList)
         expr->setParent(this);
 }
 
@@ -669,7 +669,7 @@ TokenList SqliteExpr::rebuildCase()
     builder.withSpace();
 
     bool then = false;
-    foreach (SqliteExpr* expr, exprList)
+    for (SqliteExpr* expr : exprList)
     {
         if (then)
             builder.withKeyword("THEN");

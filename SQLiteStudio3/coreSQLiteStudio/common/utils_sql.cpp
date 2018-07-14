@@ -135,7 +135,7 @@ QPair<QChar,QChar> getQuoteCharacter(QString& obj, Dialect dialect, NameWrapper 
     }
 
     QPair<QChar,QChar> wrapChars;
-    foreach (NameWrapper wrapper, wrappers)
+    for (NameWrapper wrapper : wrappers)
     {
         wrapChars = wrapperChars[wrapper];
         if (obj.indexOf(wrapChars.first) > -1)
@@ -329,7 +329,7 @@ bool isWrapperChar(const QChar& c, Dialect dialect)
     else
         wrappers = sqlite3Wrappers;
 
-    foreach (NameWrapper wrapper, wrappers)
+    for (NameWrapper wrapper : wrappers)
     {
         QPair<QChar,QChar> chars = wrapperChars[wrapper];
         if (c == chars.first || c == chars.second)
@@ -412,7 +412,7 @@ QList<TokenList> splitQueries(const TokenList& tokenizedQuery, bool* complete)
     int createTriggerMeter = 0;
     bool insideTrigger = false;
     bool completeQuery = false;
-    foreach (const TokenPtr& token, tokenizedQuery)
+    for (const TokenPtr& token : tokenizedQuery)
     {
         value = token->value.toUpper();
         if (!token->isWhitespace())
@@ -579,7 +579,7 @@ QStringList splitQueries(const QString& sql, Dialect dialect, bool keepEmptyQuer
 
     QString query;
     QStringList queries;
-    foreach (const TokenList& queryTokens, tokenizedQueries)
+    for (const TokenList& queryTokens : tokenizedQueries)
     {
         query = queryTokens.detokenize();
         if (keepEmptyQueries || (!query.trimmed().isEmpty() && query.trimmed() != ";"))
@@ -650,10 +650,10 @@ QList<QueryWithParamNames> getQueriesWithParamNames(const QString& query, Dialec
 
     QString queryStr;
     QStringList paramNames;
-    foreach (const TokenList& tokens, queries)
+    for (const TokenList& tokens : queries)
     {
         paramNames.clear();
-        foreach (const TokenPtr& token, tokens.filter(Token::BIND_PARAM))
+        for (const TokenPtr& token : tokens.filter(Token::BIND_PARAM))
             paramNames << token->value;
 
         queryStr = tokens.detokenize().trimmed();
@@ -671,7 +671,7 @@ QList<QueryWithParamCount> getQueriesWithParamCount(const QString& query, Dialec
     QList<TokenList> queries = splitQueries(allTokens);
 
     QString queryStr;
-    foreach (const TokenList& tokens, queries)
+    for (const TokenList& tokens : queries)
     {
         queryStr = tokens.detokenize().trimmed();
         if (!queryStr.isEmpty())
@@ -686,7 +686,7 @@ QueryWithParamNames getQueryWithParamNames(const QString& query, Dialect dialect
     TokenList allTokens = Lexer::tokenize(query, dialect);
 
     QStringList paramNames;
-    foreach (const TokenPtr& token, allTokens.filter(Token::BIND_PARAM))
+    for (const TokenPtr& token : allTokens.filter(Token::BIND_PARAM))
         paramNames << token->value;
 
     return QueryWithParamNames(query, paramNames);

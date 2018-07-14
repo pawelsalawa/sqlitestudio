@@ -29,7 +29,7 @@ StatementTokenBuilder&StatementTokenBuilder::withStringPossiblyOther(const QStri
 StatementTokenBuilder& StatementTokenBuilder::withOtherList(const QList<QString>& value, Dialect dialect, const QString& separator)
 {
     bool first = true;
-    foreach (const QString& str, value)
+    for (const QString& str : value)
     {
         if (!first)
         {
@@ -47,7 +47,7 @@ StatementTokenBuilder& StatementTokenBuilder::withOtherList(const QList<QString>
 StatementTokenBuilder& StatementTokenBuilder::withOtherList(const QList<QString>& value, const QString& separator)
 {
     bool first = true;
-    foreach (const QString& str, value)
+    for (const QString& str : value)
     {
         if (!first)
         {

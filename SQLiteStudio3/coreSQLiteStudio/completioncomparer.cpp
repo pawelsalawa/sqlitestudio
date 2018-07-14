@@ -72,7 +72,7 @@ void CompletionComparer::init()
             contextDatabases = helper->originalParsedQuery->getContextDatabases(false);
         }
 
-        foreach (SelectResolver::Table table, helper->selectAvailableTables + helper->parentSelectAvailableTables)
+        for (SelectResolver::Table table : helper->selectAvailableTables + helper->parentSelectAvailableTables)
             availableTableNames += table.table;
     }
 }
@@ -88,7 +88,7 @@ bool CompletionComparer::initSelect()
     contextTables = helper->originalCurrentSelectCore->getContextTables(false);
     contextDatabases = helper->originalCurrentSelectCore->getContextDatabases(false);
 
-    foreach (SqliteSelect::Core* core, helper->parentSelectCores)
+    for (SqliteSelect::Core* core : helper->parentSelectCores)
     {
         parentContextColumns += core->getContextColumns(false);
         parentContextTables += core->getContextTables(false);
@@ -403,7 +403,7 @@ bool CompletionComparer::isTokenOnResultColumns(const ExpectedTokenPtr &token)
 
 bool CompletionComparer::isTokenOnColumnList(const ExpectedTokenPtr &token, const QList<SelectResolver::Column> &columnList)
 {
-    foreach (SelectResolver::Column column, columnList)
+    for (SelectResolver::Column column : columnList)
     {
         // If column name doesn't match, then it's not this column
         if (token->value.compare(column.column, Qt::CaseInsensitive) != 0)

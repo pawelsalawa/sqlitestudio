@@ -123,7 +123,7 @@ void FormManager::load()
     formDirs += STRINGIFY(FORMS_DIR);
 #endif
 
-    foreach (QString dirPath, formDirs)
+    for (QString dirPath : formDirs)
         loadRecurently(dirPath, "");
 }
 
@@ -134,7 +134,7 @@ void FormManager::loadRecurently(const QString& path, const QString& prefix)
     QDir dir(path);
     QString fullPath;
     QString widgetName;
-    foreach (QFileInfo entry, dir.entryInfoList(fileExtensions, QDir::AllDirs|QDir::Files|QDir::NoDotAndDotDot|QDir::Readable))
+    for (const QFileInfo& entry : dir.entryInfoList(fileExtensions, QDir::AllDirs|QDir::Files|QDir::NoDotAndDotDot|QDir::Readable))
     {
         fullPath = entry.absoluteFilePath();
         if (entry.isDir())

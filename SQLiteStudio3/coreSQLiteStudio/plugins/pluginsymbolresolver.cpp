@@ -19,14 +19,14 @@ void PluginSymbolResolver::addLookupSubFolder(const QString &name)
 bool PluginSymbolResolver::load()
 {
     QStringList paths = qApp->libraryPaths();
-    foreach (QString path, paths)
-        foreach (QString subFolder, subFolders)
+    for (QString path : paths)
+        for (QString subFolder : subFolders)
             paths << path + "/" + subFolder;
 
-    foreach (QString path, paths)
+    for (QString path : paths)
     {
         QDir dir(path);
-        foreach (QString file, dir.entryList(nameFilters))
+        for (QString file : dir.entryList(nameFilters))
         {
             lib.setFileName(path+"/"+file);
             if (lib.load())

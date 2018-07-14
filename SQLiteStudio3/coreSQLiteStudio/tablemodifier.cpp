@@ -89,7 +89,7 @@ void TableModifier::copyDataTo(const QString& targetTable)
     SchemaResolver resolver(db);
     QStringList targetColumns = resolver.getTableColumns(targetTable);
     QStringList colsToCopy;
-    foreach (SqliteCreateTable::Column* column, createTable->columns)
+    for (SqliteCreateTable::Column* column : createTable->columns)
         if (targetColumns.contains(column->name, Qt::CaseInsensitive))
             colsToCopy << wrapObjIfNeeded(column->name, dialect);
 
@@ -403,7 +403,7 @@ void TableModifier::copyDataTo(SqliteCreateTablePtr newCreateTable)
 
     QStringList srcCols;
     QStringList dstCols;
-    foreach (SqliteCreateTable::Column* column, newCreateTable->columns)
+    for (SqliteCreateTable::Column* column : newCreateTable->columns)
     {
         if (!existingColumns.contains(column->originalName))
             continue; // not copying columns that didn't exist before
@@ -419,7 +419,7 @@ void TableModifier::handleIndexes()
 {
     SchemaResolver resolver(db);
     QList<SqliteCreateIndexPtr> parsedIndexesForTable = resolver.getParsedIndexesForTable(originalTable);
-    foreach (SqliteCreateIndexPtr index, parsedIndexesForTable)
+    for (SqliteCreateIndexPtr index : parsedIndexesForTable)
         handleIndex(index);
 }
 
@@ -445,7 +445,7 @@ void TableModifier::handleTriggers()
 {
     SchemaResolver resolver(db);
     QList<SqliteCreateTriggerPtr> parsedTriggersForTable = resolver.getParsedTriggersForTable(originalTable, true);
-    foreach (SqliteCreateTriggerPtr trig, parsedTriggersForTable)
+    for (SqliteCreateTriggerPtr trig : parsedTriggersForTable)
         handleTrigger(trig);
 }
 
@@ -518,7 +518,7 @@ void TableModifier::handleTriggerQueries(SqliteCreateTriggerPtr trigger)
 {
     SqliteQuery* newQuery = nullptr;
     QList<SqliteQuery*> newQueries;
-    foreach (SqliteQuery* query, trigger->queries)
+    for (SqliteQuery* query : trigger->queries)
     {
         // The handleTriggerQuery() may delete the input query object. Don't refer to it later.
         newQuery = handleTriggerQuery(query, trigger->trigger, trigger->table);
@@ -534,7 +534,7 @@ void TableModifier::handleViews()
 {
     SchemaResolver resolver(db);
     QList<SqliteCreateViewPtr> parsedViewsForTable = resolver.getParsedViewsForTable(originalTable);
-    foreach (SqliteCreateViewPtr view, parsedViewsForTable)
+    for (SqliteCreateViewPtr view : parsedViewsForTable)
         handleView(view);
 }
 
@@ -603,7 +603,7 @@ SqliteSelect* TableModifier::handleSelect(SqliteSelect* select, const QString& t
         resolvedTables = tablesAsNameHash(selectResolver.resolveTables(core));
 
         tableTokens = core->getContextTableTokens(false);
-        foreach (TokenPtr token, tableTokens)
+        for (TokenPtr token : tableTokens)
         {
             if (token->value.compare(originalTable, Qt::CaseInsensitive) != 0)
                 continue;
@@ -761,7 +761,7 @@ bool TableModifier::handleSubSelects(SqliteStatement* stmt, const QString& trigT
     bool embedSelectsOk = true;
     QList<SqliteSelect*> selects = stmt->getAllTypedStatements<SqliteSelect>();
     SqliteExpr* expr = nullptr;
-    foreach (SqliteSelect* select, selects)
+    for (SqliteSelect* select : selects)
     {
         if (select->coreSelects.size() >= 1 && select->coreSelects.first()->valuesMode)
         {
@@ -895,7 +895,7 @@ void TableModifier::simpleHandleIndexes()
 {
     SchemaResolver resolver(db);
     QList<SqliteCreateIndexPtr> parsedIndexesForTable = resolver.getParsedIndexesForTable(originalTable);
-    foreach (SqliteCreateIndexPtr index, parsedIndexesForTable)
+    for (SqliteCreateIndexPtr index : parsedIndexesForTable)
         sqls << index->detokenize();
 }
 
@@ -908,7 +908,7 @@ void TableModifier::simpleHandleTriggers(const QString& view)
     else
         parsedTriggers = resolver.getParsedTriggersForTable(originalTable);
 
-    foreach (SqliteCreateTriggerPtr trig, parsedTriggers)
+    for (SqliteCreateTriggerPtr trig : parsedTriggers)
         sqls << trig->detokenize();
 }
 

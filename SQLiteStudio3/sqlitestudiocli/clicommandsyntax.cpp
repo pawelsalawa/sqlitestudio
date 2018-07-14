@@ -10,13 +10,13 @@ CliCommandSyntax::CliCommandSyntax()
 
 CliCommandSyntax::~CliCommandSyntax()
 {
-    foreach (Argument* arg, arguments)
+    for (Argument* arg : arguments)
         delete arg;
 
     arguments.clear();
     argumentMap.clear();
 
-    foreach (Option* opt, options)
+    for (Option* opt : options)
         delete opt;
 
     optionMap.clear();
@@ -172,7 +172,7 @@ QStringList CliCommandSyntax::getStrictArgumentCandidates()
         if (lastParsedOption && !lastParsedOption->argName.isEmpty())
             return results; // this case is covered by getRegularArgumentCandidates()
 
-        foreach (Option* opt, options)
+        for (Option* opt : options)
         {
             if (opt->requested)
                 continue;
@@ -248,7 +248,7 @@ QString CliCommandSyntax::getSyntaxDefinition(const QString& usedName) const
 
     QString optName;
     QStringList optNameParts;
-    foreach (Option* opt, options)
+    for (Option* opt : options)
     {
         optNameParts.clear();;
         if (!opt->shortName.isEmpty())
@@ -264,7 +264,7 @@ QString CliCommandSyntax::getSyntaxDefinition(const QString& usedName) const
 
     QString templ;
     QString argName;
-    foreach (Argument* arg, arguments)
+    for (Argument* arg : arguments)
     {
         templ = (arg->mandatory ? mandatoryArgTempl : optionalArgTempl);
         switch (arg->type)
@@ -404,7 +404,7 @@ bool CliCommandSyntax::parseOpt(const QString& arg, const QStringList& args, int
 int CliCommandSyntax::requiredArguments() const
 {
     int cnt = 0;
-    foreach (Argument* arg, arguments)
+    for (Argument* arg : arguments)
     {
         if (arg->mandatory)
             cnt++;

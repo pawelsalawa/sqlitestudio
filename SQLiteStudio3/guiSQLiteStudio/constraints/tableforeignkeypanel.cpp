@@ -191,7 +191,7 @@ void TableForeignKeyPanel::buildColumns()
 
     SqliteCreateTable* createTable = dynamic_cast<SqliteCreateTable*>(constraint->parentStatement());
     int row = 0;
-    foreach (SqliteCreateTable::Column* column, createTable->columns)
+    for (SqliteCreateTable::Column* column : createTable->columns)
         buildColumn(column, row++);
 }
 
@@ -229,7 +229,7 @@ void TableForeignKeyPanel::readConstraint()
     if (!constr->foreignKey->foreignTable.isNull())
         ui->fkTableCombo->setCurrentText(constr->foreignKey->foreignTable);
 
-    foreach (SqliteForeignKey::Condition* condition, constr->foreignKey->conditions)
+    for (SqliteForeignKey::Condition* condition : constr->foreignKey->conditions)
         readCondition(condition);
 
     ui->deferrableCombo->setCurrentText(sqliteDeferrable(constr->foreignKey->deferrable));
@@ -246,10 +246,9 @@ void TableForeignKeyPanel::readConstraint()
     int idx;
     QCheckBox* check = nullptr;
     QComboBox* combo = nullptr;
-    SqliteIndexedColumn* localCol = nullptr;
     SqliteIndexedColumn* foreignCol = nullptr;
     int i = 0;
-    foreach (localCol, constr->indexedColumns)
+    for (SqliteIndexedColumn* localCol : constr->indexedColumns)
     {
         // Foreign col
         if (i < constr->foreignKey->indexedColumns.size())
@@ -313,7 +312,7 @@ void TableForeignKeyPanel::storeConfiguration()
     if (constr->foreignKey)
         delete constr->foreignKey;
 
-    foreach (SqliteIndexedColumn* idxCol, constr->indexedColumns)
+    for (SqliteIndexedColumn* idxCol : constr->indexedColumns)
         delete idxCol;
 
     constr->indexedColumns.clear();

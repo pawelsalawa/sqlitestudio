@@ -32,7 +32,7 @@ void CliCommandTree::execute()
 
     AsciiTree tree;
     tree.label = cli->getCurrentDb()->getName();
-    foreach (const QString& database, databases)
+    for (const QString& database : databases)
     {
         tree.childs << getDatabaseTree(database, resolver, printColumns);
     }
@@ -52,11 +52,11 @@ AsciiTree CliCommandTree::getDatabaseTree(const QString& database, SchemaResolve
     AsciiTree viewsTree;
 
     tablesTree.label = metaNodeNameTemplate.arg(tr("Tables"));
-    foreach (const QString& table, tables)
+    for (const QString& table : tables)
         tablesTree.childs << getTableTree(database, table, resolver, printColumns);
 
     viewsTree.label = metaNodeNameTemplate.arg(tr("Views"));
-    foreach (const QString& view, views)
+    for (const QString& view : views)
         viewsTree.childs << getViewTree(database, view, resolver);
 
     tree.label = database;
@@ -81,16 +81,16 @@ AsciiTree CliCommandTree::getTableTree(const QString& database, const QString& t
     if (printColumns)
     {
         columnsTree.label = metaNodeNameTemplate.arg(tr("Columns"));
-        foreach (const QString& column, columns)
+        for (const QString& column : columns)
             columnsTree.childs << getTreeLeaf(column);
     }
 
     indexesTree.label = metaNodeNameTemplate.arg(tr("Indexes"));
-    foreach (const QString& index, indexes)
+    for (const QString& index : indexes)
         indexesTree.childs << getTreeLeaf(index);
 
     triggersTree.label = metaNodeNameTemplate.arg(tr("Triggers"));
-    foreach (const QString& trig, triggers)
+    for (const QString& trig : triggers)
         triggersTree.childs << getTreeLeaf(trig);
 
     if (printColumns)
@@ -111,7 +111,7 @@ AsciiTree CliCommandTree::getViewTree(const QString& database, const QString& vi
     AsciiTree triggersTree;
 
     triggersTree.label = metaNodeNameTemplate.arg(tr("Triggers"));
-    foreach (const QString& trig, triggers)
+    for (const QString& trig : triggers)
         triggersTree.childs << getTreeLeaf(trig);
 
     tree.label = view;

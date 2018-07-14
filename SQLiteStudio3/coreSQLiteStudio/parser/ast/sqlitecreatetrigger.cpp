@@ -95,7 +95,7 @@ SqliteCreateTrigger::SqliteCreateTrigger(int temp, bool ifNotExists, const QStri
     if (when)
         when->setParent(this);
 
-    foreach (SqliteQuery* q, queries)
+    for (SqliteQuery* q : queries)
         q->setParent(this);
 }
 

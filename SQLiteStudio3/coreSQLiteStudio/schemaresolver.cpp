@@ -76,7 +76,7 @@ StrHash< QStringList> SchemaResolver::getGroupedObjects(const QString &database,
     SqliteQueryPtr parsedQuery;
     SqliteTableRelatedDdlPtr tableRelatedDdl;
 
-    foreach (QString object, inputList)
+    for (QString object : inputList)
     {
         parsedQuery = getParsedObject(database, object, ANY);
         if (!parsedQuery)
@@ -150,7 +150,7 @@ QStringList SchemaResolver::getTableColumns(const QString &database, const QStri
     }
 
     // Now we have a regular table, let's extract columns.
-    foreach (SqliteCreateTable::Column* column, createTable->columns)
+    for (SqliteCreateTable::Column* column : createTable->columns)
         columns << column->name;
 
     return columns;
@@ -193,7 +193,7 @@ QList<DataType> SchemaResolver::getTableColumnDataTypes(const QString& database,
 StrHash<QStringList> SchemaResolver::getAllTableColumns(const QString &database)
 {
     StrHash< QStringList> tableColumns;
-    foreach (QString table, getTables(database))
+    for (QString table : getTables(database))
         tableColumns[table] = getTableColumns(database, table);
 
     return tableColumns;
@@ -208,7 +208,7 @@ QStringList SchemaResolver::getViewColumns(const QString& database, const QStrin
 {
     QList<SelectResolver::Column> resolvedColumns = getViewColumnObjects(database, view);
     QStringList columns;
-    foreach (const SelectResolver::Column& col, resolvedColumns)
+    for (const SelectResolver::Column& col : resolvedColumns)
         columns << col.displayName;
 
     return columns;
@@ -555,7 +555,7 @@ SqliteQueryPtr SchemaResolver::getParsedDdl(const QString& ddl)
     if (!parser->parse(ddl))
     {
         qDebug() << "Could not parse DDL for parsing object by SchemaResolver. Errors are:";
-        foreach (ParserError* err, parser->getErrors())
+        for (ParserError* err : parser->getErrors())
             qDebug() << err->getMessage();
 
         return SqliteQueryPtr();
@@ -591,7 +591,7 @@ QStringList SchemaResolver::getObjects(const QString &database, const QString &t
     SqlQueryPtr results = db->exec(QString("SELECT name FROM %1.sqlite_master WHERE type = ?;").arg(dbName), {type}, dbFlags);
 
     QString value;
-    foreach (SqlResultsRowPtr row, results->getAll())
+    for (SqlResultsRowPtr row : results->getAll())
     {
         value = row->value(0).toString();
         if (!isFilteredOut(value, type))
@@ -623,7 +623,7 @@ QStringList SchemaResolver::getAllObjects(const QString& database)
 
     QString value;
     QString type;
-    foreach (SqlResultsRowPtr row, results->getAll())
+    for (SqlResultsRowPtr row : results->getAll())
     {
         value = row->value("name").toString();
         type = row->value("type").toString();
@@ -720,7 +720,7 @@ QStringList SchemaResolver::getFkReferencingTables(const QString& table, const Q
 QStringList SchemaResolver::getIndexesForTable(const QString& database, const QString& table)
 {
     QStringList names;
-    foreach (SqliteCreateIndexPtr idx, getParsedIndexesForTable(database, table))
+    for (SqliteCreateIndexPtr idx : getParsedIndexesForTable(database, table))
         names << idx->index;
 
     return names;
@@ -734,7 +734,7 @@ QStringList SchemaResolver::getIndexesForTable(const QString& table)
 QStringList SchemaResolver::getTriggersForTable(const QString& database, const QString& table)
 {
     QStringList names;
-    foreach (SqliteCreateTriggerPtr trig, getParsedTriggersForTable(database, table))
+    for (SqliteCreateTriggerPtr trig : getParsedTriggersForTable(database, table))
         names << trig->trigger;
 
     return names;
@@ -748,7 +748,7 @@ QStringList SchemaResolver::getTriggersForTable(const QString& table)
 QStringList SchemaResolver::getTriggersForView(const QString& database, const QString& view)
 {
     QStringList names;
-    foreach (SqliteCreateTriggerPtr trig, getParsedTriggersForView(database, view))
+    for (SqliteCreateTriggerPtr trig : getParsedTriggersForView(database, view))
         names << trig->trigger;
 
     return names;
@@ -762,7 +762,7 @@ QStringList SchemaResolver::getTriggersForView(const QString& view)
 QStringList SchemaResolver::getViewsForTable(const QString& database, const QString& table)
 {
     QStringList names;
-    foreach (SqliteCreateViewPtr view, getParsedViewsForTable(database, table))
+    for (SqliteCreateViewPtr view : getParsedViewsForTable(database, table))
         names << view->view;
 
     return names;
@@ -885,7 +885,7 @@ QList<SqliteCreateTriggerPtr> SchemaResolver::getParsedTriggersForTableOrView(co
     QStringList triggers = getTriggers(database);
     SqliteQueryPtr query;
     SqliteCreateTriggerPtr createTrigger;
-    foreach (const QString& trig, triggers)
+    for (const QString& trig : triggers)
     {
         query = getParsedObject(database, trig, TRIGGER);
         if (!query)
@@ -963,7 +963,7 @@ QList<SqliteCreateViewPtr> SchemaResolver::getParsedViewsForTable(const QString&
     QStringList views = getViews(database);
     SqliteQueryPtr query;
     SqliteCreateViewPtr createView;
-    foreach (const QString& view, views)
+    for (const QString& view : views)
     {
         query = getParsedObject(database, view, VIEW);
         if (!query)

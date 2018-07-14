@@ -90,7 +90,7 @@ QList<SqliteStatement::FullObject> SqliteStatement::getContextFullObjects(bool c
 void SqliteStatement::setSqliteDialect(Dialect dialect)
 {
     this->dialect = dialect;
-    foreach (SqliteStatement* stmt, childStatements())
+    for (SqliteStatement* stmt : childStatements())
         stmt->setSqliteDialect(dialect);
 }
 
@@ -106,14 +106,14 @@ SqliteStatementPtr SqliteStatement::detach()
 void SqliteStatement::processPostParsing()
 {
     evaluatePostParsing();
-    foreach (SqliteStatement* stmt, childStatements())
+    for (SqliteStatement* stmt : childStatements())
         stmt->processPostParsing();
 }
 
 QStringList SqliteStatement::getContextColumns(SqliteStatement *caller, bool checkParent, bool checkChilds)
 {
     QStringList results = getColumnsInStatement();
-    foreach (SqliteStatement* stmt, getContextStatements(caller, checkParent, checkChilds))
+    for (SqliteStatement* stmt : getContextStatements(caller, checkParent, checkChilds))
         results += stmt->getContextColumns(this, checkParent, checkChilds);
 
     return results;
@@ -122,7 +122,7 @@ QStringList SqliteStatement::getContextColumns(SqliteStatement *caller, bool che
 QStringList SqliteStatement::getContextTables(SqliteStatement *caller, bool checkParent, bool checkChilds)
 {
     QStringList results = getTablesInStatement();
-    foreach (SqliteStatement* stmt, getContextStatements(caller, checkParent, checkChilds))
+    for (SqliteStatement* stmt : getContextStatements(caller, checkParent, checkChilds))
         results += stmt->getContextTables(this, checkParent, checkChilds);
 
     return results;
@@ -131,7 +131,7 @@ QStringList SqliteStatement::getContextTables(SqliteStatement *caller, bool chec
 QStringList SqliteStatement::getContextDatabases(SqliteStatement *caller, bool checkParent, bool checkChilds)
 {
     QStringList results = getDatabasesInStatement();
-    foreach (SqliteStatement* stmt, getContextStatements(caller, checkParent, checkChilds))
+    for (SqliteStatement* stmt : getContextStatements(caller, checkParent, checkChilds))
         results += stmt->getContextDatabases(this, checkParent, checkChilds);
 
     return results;
@@ -140,7 +140,7 @@ QStringList SqliteStatement::getContextDatabases(SqliteStatement *caller, bool c
 TokenList SqliteStatement::getContextColumnTokens(SqliteStatement *caller, bool checkParent, bool checkChilds)
 {
     TokenList results = getColumnTokensInStatement();
-    foreach (SqliteStatement* stmt, getContextStatements(caller, checkParent, checkChilds))
+    for (SqliteStatement* stmt : getContextStatements(caller, checkParent, checkChilds))
         results += stmt->getContextColumnTokens(this, checkParent, checkChilds);
 
     return results;
@@ -149,7 +149,7 @@ TokenList SqliteStatement::getContextColumnTokens(SqliteStatement *caller, bool 
 TokenList SqliteStatement::getContextTableTokens(SqliteStatement *caller, bool checkParent, bool checkChilds)
 {
     TokenList results = getTableTokensInStatement();
-    foreach (SqliteStatement* stmt, getContextStatements(caller, checkParent, checkChilds))
+    for (SqliteStatement* stmt : getContextStatements(caller, checkParent, checkChilds))
         results += stmt->getContextTableTokens(this, checkParent, checkChilds);
 
     return results;
@@ -158,7 +158,7 @@ TokenList SqliteStatement::getContextTableTokens(SqliteStatement *caller, bool c
 TokenList SqliteStatement::getContextDatabaseTokens(SqliteStatement *caller, bool checkParent, bool checkChilds)
 {
     TokenList results = getDatabaseTokensInStatement();
-    foreach (SqliteStatement* stmt, getContextStatements(caller, checkParent, checkChilds))
+    for (SqliteStatement* stmt : getContextStatements(caller, checkParent, checkChilds))
         results += stmt->getContextDatabaseTokens(this, checkParent, checkChilds);
 
     return results;
@@ -167,7 +167,7 @@ TokenList SqliteStatement::getContextDatabaseTokens(SqliteStatement *caller, boo
 QList<SqliteStatement::FullObject> SqliteStatement::getContextFullObjects(SqliteStatement* caller, bool checkParent, bool checkChilds)
 {
     QList<SqliteStatement::FullObject> results = getFullObjectsInStatement();
-    foreach (SqliteStatement* stmt, getContextStatements(caller, checkParent, checkChilds))
+    for (SqliteStatement* stmt : getContextStatements(caller, checkParent, checkChilds))
     {
         stmt->setContextDbForFullObject(dbTokenForFullObjects);
         results += stmt->getContextFullObjects(this, checkParent, checkChilds);
@@ -231,12 +231,12 @@ QList<SqliteStatement *> SqliteStatement::getContextStatements(SqliteStatement *
 
     if (checkChilds)
     {
-        foreach (stmt, childStatements())
+        for (SqliteStatement* childStmt : childStatements())
         {
-            if (stmt == caller)
+            if (childStmt == caller)
                 continue;
 
-            results += stmt;
+            results += childStmt;
         }
     }
 
@@ -246,7 +246,7 @@ QList<SqliteStatement *> SqliteStatement::getContextStatements(SqliteStatement *
 TokenList SqliteStatement::extractPrintableTokens(const TokenList &tokens, bool skipMeaningless)
 {
     TokenList list;
-    foreach (TokenPtr token, tokens)
+    for (TokenPtr token : tokens)
     {
         switch (token->type)
         {
@@ -488,7 +488,7 @@ Range SqliteStatement::getRange()
 SqliteStatement *SqliteStatement::findStatementWithToken(TokenPtr token)
 {
     SqliteStatement* stmtWithToken = nullptr;
-    foreach (SqliteStatement* stmt, childStatements())
+    for (SqliteStatement* stmt : childStatements())
     {
         stmtWithToken = stmt->findStatementWithToken(token);
         if (stmtWithToken)
@@ -521,7 +521,7 @@ SqliteStatement *SqliteStatement::parentStatement()
 QList<SqliteStatement *> SqliteStatement::childStatements()
 {
     QList<SqliteStatement*> results;
-    foreach (QObject* obj, children())
+    for (QObject* obj : children())
         results += dynamic_cast<SqliteStatement*>(obj);
 
     return results;

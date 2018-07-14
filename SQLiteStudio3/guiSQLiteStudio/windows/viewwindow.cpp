@@ -882,7 +882,7 @@ void ViewWindow::refreshTriggers()
     QTableWidgetItem* item = nullptr;
     QString event;
     int row = 0;
-    foreach (SqliteCreateTriggerPtr trig, triggers)
+    for (SqliteCreateTriggerPtr trig : triggers)
     {
         item = new QTableWidgetItem(trig->trigger);
         item->setFlags(Qt::ItemIsEnabled|Qt::ItemIsSelectable);
@@ -1025,10 +1025,10 @@ void ViewWindow::executeStructureChanges()
             MessageListDialog dialog(tr("Following problems will take place while modifying the view.\n"
                                         "Would you like to proceed?", "view window"));
             dialog.setWindowTitle(tr("View modification", "view window"));
-            foreach (const QString& error, viewModifier->getErrors())
+            for (const QString& error : viewModifier->getErrors())
                 dialog.addError(error);
 
-            foreach (const QString& warn, viewModifier->getWarnings())
+            for (const QString& warn : viewModifier->getWarnings())
                 dialog.addWarning(warn);
 
             if (dialog.exec() != QDialog::Accepted)

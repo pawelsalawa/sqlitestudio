@@ -140,7 +140,7 @@ void SqlQueryView::setupActionsForMenu(SqlQueryItem* currentItem, const QList<Sq
 
     // Uncommitted & selected items count
     int uncommittedSelCount = 0;
-    foreach (SqlQueryItem* item, uncommittedItems)
+    for (SqlQueryItem* item : uncommittedItems)
         if (selectedItems.contains(item))
             uncommittedSelCount++;
 
@@ -198,7 +198,7 @@ void SqlQueryView::setupActionsForMenu(SqlQueryItem* currentItem, const QList<Sq
     if (additionalActions.size() > 0)
     {
         contextMenu->addSeparator();
-        foreach (QAction* action, additionalActions)
+        for (QAction* action : additionalActions)
             contextMenu->addAction(action);
     }
 }
@@ -225,7 +225,7 @@ QList<SqlQueryItem*> SqlQueryView::getSelectedItems()
 
     qSort(idxList);
     const SqlQueryModel* model = dynamic_cast<const SqlQueryModel*>(idxList.first().model());
-    foreach (const QModelIndex& idx, idxList)
+    for (const QModelIndex& idx : idxList)
         items << model->itemFromIndex(idx);
 
     return items;

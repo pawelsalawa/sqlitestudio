@@ -12,7 +12,7 @@
 
 #define DEEP_COPY_COLLECTION(T, F) \
     T* _new##T; \
-    foreach (T* _element, other.F) \
+    for (T* _element : other.F) \
     { \
         _new##T = new T(*_element); \
         _new##T->setParent(this); \

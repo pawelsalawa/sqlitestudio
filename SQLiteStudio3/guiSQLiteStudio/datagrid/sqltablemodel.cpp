@@ -76,7 +76,7 @@ bool SqlTableModel::commitAddedRow(const QList<SqlQueryItem*>& itemsInRow)
     // Handle error
     if (result->isError())
     {
-        foreach (SqlQueryItem* item, itemsInRow)
+        for (SqlQueryItem* item : itemsInRow)
             item->setCommittingError(true);
 
         notifyError(tr("Error while committing new row: %1").arg(result->getErrorText()));
@@ -441,7 +441,7 @@ void SqlTableModel::updateColumnsAndValues(const QList<SqlQueryItem*>& itemsInRo
 
     SqlQueryItem* item = nullptr;
     int i = 0;
-    foreach (SqlQueryModelColumnPtr modelColumn, modelColumns)
+    for (SqlQueryModelColumnPtr modelColumn : modelColumns)
     {
         item = itemsInRow[i++];
         if (item->getValue().isNull())
@@ -468,7 +468,7 @@ void SqlTableModel::updateColumnsAndValuesWithDefaultValues(const QList<SqlQuery
     Dialect dialect = db->getDialect();
 
     // First try to find the one with DEFAULT value
-    foreach (SqlQueryModelColumnPtr modelColumn, modelColumns)
+    for (SqlQueryModelColumnPtr modelColumn : modelColumns)
     {
         if (modelColumn->isDefault())
         {
@@ -480,7 +480,7 @@ void SqlTableModel::updateColumnsAndValuesWithDefaultValues(const QList<SqlQuery
     }
 
     // No DEFAULT, try with AUTOINCR
-    foreach (SqlQueryModelColumnPtr modelColumn, modelColumns)
+    for (SqlQueryModelColumnPtr modelColumn : modelColumns)
     {
         if (modelColumn->isPk() && modelColumn->isAutoIncr())
         {

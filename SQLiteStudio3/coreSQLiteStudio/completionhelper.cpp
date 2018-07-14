@@ -149,7 +149,7 @@ CompletionHelper::Results CompletionHelper::getExpectedTokens()
 
     // Convert accepted tokens to expected tokens
     QList<ExpectedTokenPtr> results;
-    foreach (TokenPtr token, tokens)
+    for (TokenPtr token : tokens)
         results += getExpectedTokens(token);
 
     // Filter redundant tokens from results
@@ -233,7 +233,7 @@ QList<ExpectedTokenPtr> CompletionHelper::getExpectedTokens(TokenPtr token)
             break;
         case Token::CTX_FK_MATCH:
         {
-            foreach (QString kw, getFkMatchKeywords())
+            for (QString kw : getFkMatchKeywords())
                 results += getExpectedToken(ExpectedToken::KEYWORD, kw);
 
             break;
@@ -296,7 +296,7 @@ QList<ExpectedTokenPtr> CompletionHelper::getExpectedTokens(TokenPtr token)
         }
         case Token::CTX_JOIN_OPTS:
         {
-            foreach (QString joinKw, getJoinKeywords())
+            for (QString joinKw : getJoinKeywords())
                 results += getExpectedToken(ExpectedToken::KEYWORD, joinKw);
             break;
         }
@@ -486,7 +486,7 @@ QList<ExpectedTokenPtr> CompletionHelper::getDatabases()
     results += getExpectedToken(ExpectedToken::DATABASE, "temp", "temp", tr("Temporary objects database"));
 
     QSet<QString> databases = schemaResolver->getDatabases();
-    foreach (QString dbName, databases)
+    for (QString dbName : databases)
     {
         if (dbAttacher->getDbNameToAttach().containsRight(dbName, Qt::CaseInsensitive))
             continue;
@@ -496,7 +496,7 @@ QList<ExpectedTokenPtr> CompletionHelper::getDatabases()
 
     Dialect dialect = db->getDialect();
 
-    foreach (Db* otherDb, DBLIST->getValidDbList())
+    for (Db* otherDb : DBLIST->getValidDbList())
     {
         if (otherDb->getDialect() != dialect)
             continue;
@@ -546,7 +546,7 @@ QList<ExpectedTokenPtr> CompletionHelper::getObjects(ExpectedToken::Type type, c
     }
 
     QList<ExpectedTokenPtr> results;
-    foreach (QString object, schemaResolver->getObjects(dbName, typeStr))
+    for (QString object : schemaResolver->getObjects(dbName, typeStr))
         results << getExpectedToken(type, object, originalDbName);
 
     return results;
@@ -599,8 +599,8 @@ QList<ExpectedTokenPtr> CompletionHelper::getColumnsNoPrefix()
 
     // Getting all tables for main db. If any column repeats in many tables,
     // then tables are stored as a list for the same column.
-    foreach (QString table, schemaResolver->getTables(QString::null))
-        foreach (QString column, schemaResolver->getTableColumns(table))
+    for (QString table : schemaResolver->getTables(QString::null))
+        for (QString column : schemaResolver->getTableColumns(table))
             columnList[column] += table;
 
     // Now, for each column the expected token is created.
@@ -621,7 +621,7 @@ QList<ExpectedTokenPtr> CompletionHelper::getColumnsNoPrefix(const QString& colu
     QList<ExpectedTokenPtr> results;
 
     QStringList availableTableNames;
-    foreach (SelectResolver::Table resolverTable, selectAvailableTables + parentSelectAvailableTables)
+    for (SelectResolver::Table resolverTable : selectAvailableTables + parentSelectAvailableTables)
     {
         // This method is called only when collecting columns of tables in "main" database.
         // If here we have resolved table from other database, we don't compare it.
@@ -632,11 +632,11 @@ QList<ExpectedTokenPtr> CompletionHelper::getColumnsNoPrefix(const QString& colu
     }
 
     int availableTableCount = 0;
-    foreach (QString availTable, availableTableNames)
+    for (QString availTable : availableTableNames)
         if (tables.contains(availTable))
             availableTableCount++;
 
-    foreach (QString table, tables)
+    for (QString table : tables)
     {
         // Table prefix is used only if there is more than one table in FROM clause
         // that has this column, or table alias was used.
@@ -649,10 +649,10 @@ QList<ExpectedTokenPtr> CompletionHelper::getColumnsNoPrefix(const QString& colu
             QString label = table;
             if (tableToAlias.contains(prefix))
             {
-                foreach (prefix, tableToAlias[prefix])
+                for (const QString& resolvedPrefix : tableToAlias[prefix])
                 {
-                    label = prefix+" = "+table;
-                    results << getExpectedToken(ExpectedToken::COLUMN, column, table, label, prefix);
+                    label = resolvedPrefix+" = "+table;
+                    results << getExpectedToken(ExpectedToken::COLUMN, column, table, label, resolvedPrefix);
                 }
             }
             else
@@ -700,7 +700,7 @@ QList<ExpectedTokenPtr> CompletionHelper::getColumns(const QString &prefixTable)
     }
 
     // Get columns for given table in main db.
-    foreach (const QString& column, schemaResolver->getTableColumns(dbName, table))
+    for (const QString& column : schemaResolver->getTableColumns(dbName, table))
         results << getExpectedToken(ExpectedToken::COLUMN, column, table, label);
 
     return results;
@@ -712,7 +712,7 @@ QList<ExpectedTokenPtr> CompletionHelper::getColumns(const QString &prefixDb, co
 
     // Get columns for given table in given db.
     QString context = prefixDb+"."+prefixTable;
-    foreach (const QString& column, schemaResolver->getTableColumns(translateDatabase(prefixDb), prefixTable))
+    for (const QString& column : schemaResolver->getTableColumns(translateDatabase(prefixDb), prefixTable))
         results << getExpectedToken(ExpectedToken::COLUMN, column, context);
 
     return results;
@@ -724,7 +724,7 @@ QList<ExpectedTokenPtr> CompletionHelper::getFavoredColumns(const QList<Expected
     // Since results so far have more chance to provide context into, we will keep the original ones
     // from results so far and avoid adding then from favored list.
     QStringList columnsToAdd = favoredColumnNames;
-    foreach (const ExpectedTokenPtr& token, resultsSoFar)
+    for (const ExpectedTokenPtr& token : resultsSoFar)
     {
         if (token->prefix.isNull() && columnsToAdd.contains(token->value))
             columnsToAdd.removeOne(token->value);
@@ -735,7 +735,7 @@ QList<ExpectedTokenPtr> CompletionHelper::getFavoredColumns(const QList<Expected
         ctxInfo = parsedQuery.dynamicCast<SqliteCreateTable>()->table;
 
     QList<ExpectedTokenPtr> results;
-    foreach (const QString& column, columnsToAdd)
+    for (const QString& column : columnsToAdd)
         results << getExpectedToken(ExpectedToken::COLUMN, column, ctxInfo);
 
     return results;
@@ -760,7 +760,7 @@ QList<ExpectedTokenPtr> CompletionHelper::getFunctions(Db* db)
         functions << fn->toString();
 
     QList<ExpectedTokenPtr> expectedTokens;
-    foreach (QString function, functions)
+    for (QString function : functions)
         expectedTokens += getExpectedToken(ExpectedToken::FUNCTION, function);
 
     return expectedTokens;
@@ -775,7 +775,7 @@ QList<ExpectedTokenPtr> CompletionHelper::getPragmas(Dialect dialect)
         pragmas = sqlite3Pragmas;
 
     QList<ExpectedTokenPtr> expectedTokens;
-    foreach (QString pragma, pragmas)
+    for (QString pragma : pragmas)
         expectedTokens += getExpectedToken(ExpectedToken::PRAGMA, pragma);
 
     return expectedTokens;
@@ -790,7 +790,7 @@ QList<ExpectedTokenPtr> CompletionHelper::getCollations()
                    << results->getErrorText();
     }
     QList<ExpectedTokenPtr> expectedTokens;
-    foreach (SqlResultsRowPtr row, results->getAll())
+    for (SqlResultsRowPtr row : results->getAll())
         expectedTokens += getExpectedToken(ExpectedToken::COLLATION, row->value("name").toString());
 
     return expectedTokens;
@@ -911,7 +911,7 @@ void CompletionHelper::filterContextKeywords(QList<ExpectedTokenPtr> &resultsSoF
 {
     bool wasJoinKw = false;
     bool wasFkMatchKw = false;
-    foreach (TokenPtr token, tokens)
+    for (TokenPtr token : tokens)
     {
         if (token->type == Token::CTX_JOIN_OPTS)
             wasJoinKw = true;
@@ -941,7 +941,7 @@ void CompletionHelper::filterContextKeywords(QList<ExpectedTokenPtr> &resultsSoF
 void CompletionHelper::filterOtherId(QList<ExpectedTokenPtr> &resultsSoFar, const TokenList &tokens)
 {
     bool wasCtx = false;
-    foreach (TokenPtr token, tokens)
+    for (TokenPtr token : tokens)
     {
         switch (token->type)
         {
@@ -1273,7 +1273,7 @@ bool CompletionHelper::testQueryToken(int tokenPosition, Token::Type type, const
 bool CompletionHelper::cursorAfterTokenMaps(SqliteStatement* stmt, const QStringList& mapNames)
 {
     TokenList tokens;
-    foreach (const QString& name, mapNames)
+    for (const QString& name : mapNames)
     {
         if (!stmt->tokensMap.contains(name) || stmt->tokensMap[name].size() == 0)
             continue;
@@ -1292,7 +1292,7 @@ bool CompletionHelper::cursorAfterTokenMaps(SqliteStatement* stmt, const QString
 bool CompletionHelper::cursorBeforeTokenMaps(SqliteStatement* stmt, const QStringList& mapNames)
 {
     TokenList tokens;
-    foreach (const QString& name, mapNames)
+    for (const QString& name : mapNames)
     {
         if (!stmt->tokensMap.contains(name) || stmt->tokensMap[name].size() == 0)
             continue;
@@ -1391,7 +1391,7 @@ void CompletionHelper::extractSelectAvailableColumnsAndTables()
 
 void CompletionHelper::extractTableAliasMap()
 {
-    foreach (SelectResolver::Column column, selectAvailableColumns)
+    for (SelectResolver::Column column : selectAvailableColumns)
     {
         if (column.type != SelectResolver::Column::COLUMN)
             continue;
@@ -1407,7 +1407,7 @@ void CompletionHelper::extractTableAliasMap()
     // Given the above, we can extract table aliases in an order from deepest
     // to shallowest, skipping any duplicates, becase the deeper alias is mentioned,
     // the higher is its priority.
-    foreach (SelectResolver::Column column, parentSelectAvailableColumns)
+    for (SelectResolver::Column column : parentSelectAvailableColumns)
     {
         if (column.type != SelectResolver::Column::COLUMN)
             continue;
@@ -1429,7 +1429,7 @@ void CompletionHelper::extractCreateTableColumns()
         return;
 
     SqliteCreateTablePtr createTable = parsedQuery.dynamicCast<SqliteCreateTable>();
-    foreach (SqliteCreateTable::Column* col, createTable->columns)
+    for (SqliteCreateTable::Column* col : createTable->columns)
         favoredColumnNames << col->name;
 }
 

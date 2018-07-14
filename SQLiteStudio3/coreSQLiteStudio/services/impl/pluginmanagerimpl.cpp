@@ -50,7 +50,7 @@ void PluginManagerImpl::deinit()
     emit aboutToQuit();
 
     // Plugin containers and their plugins
-    foreach (PluginContainer* container, pluginContainer.values())
+    for (PluginContainer* container : pluginContainer.values())
     {
         if (container->builtIn)
         {
@@ -61,13 +61,13 @@ void PluginManagerImpl::deinit()
             unload(container->name);
     }
 
-    foreach (PluginContainer* container, pluginContainer.values())
+    for (PluginContainer* container : pluginContainer.values())
         delete container;
 
     pluginContainer.clear();
 
     // Types
-    foreach (PluginType* type, registeredPluginTypes)
+    for (PluginType* type : registeredPluginTypes)
         delete type;
 
     registeredPluginTypes.clear();
@@ -113,10 +113,10 @@ void PluginManagerImpl::scanPlugins()
     nameFilters << "*.so" << "*.dll" << "*.dylib";
 
     QPluginLoader* loader = nullptr;
-    foreach (QString pluginDirPath, pluginDirs)
+    for (QString pluginDirPath : pluginDirs)
     {
         QDir pluginDir(pluginDirPath);
-        foreach (QString fileName, pluginDir.entryList(nameFilters, QDir::Files))
+        for (QString fileName : pluginDir.entryList(nameFilters, QDir::Files))
         {
             fileName = pluginDir.absoluteFilePath(fileName);
             loader = new QPluginLoader(fileName);
@@ -158,7 +158,7 @@ bool PluginManagerImpl::initPlugin(QPluginLoader* loader, const QString& fileNam
     QJsonObject pluginMetaData = loader->metaData();
     QString pluginTypeName = pluginMetaData.value("MetaData").toObject().value("type").toString();
     PluginType* pluginType = nullptr;
-    foreach (PluginType* type, registeredPluginTypes)
+    for (PluginType* type : registeredPluginTypes)
     {
         if (type->getName() == pluginTypeName)
         {
@@ -305,7 +305,7 @@ bool PluginManagerImpl::initPlugin(Plugin* plugin)
 {
     QString pluginName = plugin->getName();
     PluginType* pluginType = nullptr;
-    foreach (PluginType* type, registeredPluginTypes)
+    for (PluginType* type : registeredPluginTypes)
     {
         if (type->test(plugin))
         {
@@ -363,7 +363,7 @@ QStringList PluginManagerImpl::getAllPluginNames(PluginType* type) const
     if (!pluginCategories.contains(type))
         return names;
 
-    foreach (PluginContainer* container, pluginCategories[type])
+    for (PluginContainer* container : pluginCategories[type])
         names << container->name;
 
     return names;
@@ -685,7 +685,7 @@ QList<Plugin*> PluginManagerImpl::getLoadedPlugins(PluginType* type) const
     if (!pluginCategories.contains(type))
         return list;
 
-    foreach (PluginContainer* container, pluginCategories[type])
+    for (PluginContainer* container : pluginCategories[type])
     {
         if (container->loaded)
             list << container->plugin;
@@ -769,7 +769,7 @@ bool PluginManagerImpl::arePluginsInitiallyLoaded() const
 QList<Plugin*> PluginManagerImpl::getLoadedPlugins() const
 {
     QList<Plugin*> plugins;
-    foreach (PluginContainer* container, pluginContainer.values())
+    for (PluginContainer* container : pluginContainer.values())
     {
         if (container->loaded)
             plugins << container->plugin;
@@ -780,7 +780,7 @@ QList<Plugin*> PluginManagerImpl::getLoadedPlugins() const
 QStringList PluginManagerImpl::getLoadedPluginNames() const
 {
     QStringList names;
-    foreach (PluginContainer* container, pluginContainer.values())
+    for (PluginContainer* container : pluginContainer.values())
     {
         if (container->loaded)
             names << container->name;
@@ -792,7 +792,7 @@ QList<PluginManager::PluginDetails> PluginManagerImpl::getAllPluginDetails() con
 {
     QList<PluginManager::PluginDetails> results;
     PluginManager::PluginDetails details;
-    foreach (PluginContainer* container, pluginContainer.values())
+    for (PluginContainer* container : pluginContainer.values())
     {
         details.name = container->name;
         details.title = container->title;

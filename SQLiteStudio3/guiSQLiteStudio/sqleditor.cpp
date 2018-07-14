@@ -538,7 +538,7 @@ void SqlEditor::refreshValidObjects()
         QSet<QString> databases = resolver.getDatabases();
         databases << "main";
         QStringList objects;
-        foreach (const QString& dbName, databases)
+        for (const QString& dbName : databases)
         {
             objects = resolver.getAllObjects(dbName);
             objectsInNamedDb[dbName] << objects;
@@ -874,9 +874,9 @@ void SqlEditor::checkForSyntaxErrors()
 
     // Marking invalid tokens, like in "SELECT * from test] t" - the "]" token is invalid.
     // Such tokens don't cause parser to fail.
-    foreach (SqliteQueryPtr query, queryParser->getQueries())
+    for (SqliteQueryPtr query : queryParser->getQueries())
     {
-        foreach (TokenPtr token, query->tokens)
+        for (TokenPtr token : query->tokens)
         {
             if (token->type == Token::INVALID)
                 markErrorAt(token->start, token->end, true);
@@ -890,7 +890,7 @@ void SqlEditor::checkForSyntaxErrors()
     }
 
     // Setting new markers when errors were detected
-    foreach (ParserError* error, queryParser->getErrors())
+    for (ParserError* error : queryParser->getErrors())
         markErrorAt(sqlIndex(error->getFrom()), sqlIndex(error->getTo()));
 
     emit errorsChecked(true);
@@ -906,10 +906,10 @@ void SqlEditor::checkForValidObjects()
     Dialect dialect = db->getDialect();
     QList<SqliteStatement::FullObject> fullObjects;
     QString dbName;
-    foreach (SqliteQueryPtr query, queryParser->getQueries())
+    for (SqliteQueryPtr query : queryParser->getQueries())
     {
         fullObjects = query->getContextFullObjects();
-        foreach (const SqliteStatement::FullObject& fullObj, fullObjects)
+        for (const SqliteStatement::FullObject& fullObj : fullObjects)
         {
             dbName = fullObj.database ? stripObjName(fullObj.database->value, dialect) : "main";
             if (!objectsInNamedDb.contains(dbName))
@@ -1624,7 +1624,7 @@ const SqlEditor::DbObject* SqlEditor::getValidObjectForPosition(const QPoint& po
 
 const SqlEditor::DbObject* SqlEditor::getValidObjectForPosition(int position, bool movedLeft)
 {
-    foreach (const DbObject& obj, validDbObjects)
+    for (const DbObject& obj : validDbObjects)
     {
         if ((!movedLeft && position > obj.from && position-1 <= obj.to) ||
             (movedLeft && position >= obj.from && position <= obj.to))

@@ -380,7 +380,7 @@ class API_EXPORT PluginManager : public QObject
         template <class T>
         PluginType* getPluginType() const
         {
-            foreach (PluginType* type, getPluginTypes())
+            for (PluginType* type : getPluginTypes())
             {
                 if (!dynamic_cast<DefinedPluginType<T>*>(type))
                     continue;
@@ -406,7 +406,7 @@ class API_EXPORT PluginManager : public QObject
             if (!type)
                 return typedPlugins;
 
-            foreach (Plugin* plugin, getLoadedPlugins(type))
+            for (Plugin* plugin : getLoadedPlugins(type))
                 typedPlugins << dynamic_cast<T*>(plugin);
 
             return typedPlugins;
@@ -427,7 +427,7 @@ class API_EXPORT PluginManager : public QObject
             if (!type)
                 return names;
 
-            foreach (Plugin* plugin, getLoadedPlugins(type))
+            for (Plugin* plugin : getLoadedPlugins(type))
                 names << plugin->getName();
 
             return names;

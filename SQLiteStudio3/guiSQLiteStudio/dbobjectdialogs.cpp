@@ -97,7 +97,7 @@ ViewWindow* DbObjectDialogs::addView(const QString &initialSelect)
 ViewWindow* DbObjectDialogs::editView(const QString& database, const QString& view)
 {
     ViewWindow* win = nullptr;
-    foreach (MdiWindow* mdiWin, mdiArea->getWindows())
+    for (MdiWindow* mdiWin : mdiArea->getWindows())
     {
         win = dynamic_cast<ViewWindow*>(mdiWin->getMdiChild());
         if (!win)
@@ -376,7 +376,7 @@ void DbObjectDialogs::setNoConfirmation(bool value)
 TableWindow* DbObjectDialogs::editTable(const QString& database, const QString& table)
 {
     TableWindow* win = nullptr;
-    foreach (MdiWindow* mdiWin, mdiArea->getWindows())
+    for (MdiWindow* mdiWin : mdiArea->getWindows())
     {
         win = dynamic_cast<TableWindow*>(mdiWin->getMdiChild());
         if (!win)

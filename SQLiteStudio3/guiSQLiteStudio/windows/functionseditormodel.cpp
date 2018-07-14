@@ -28,7 +28,7 @@ FunctionsEditorModel::FunctionsEditorModel(QObject *parent) :
 void FunctionsEditorModel::clearModified()
 {
     beginResetModel();
-    foreach (Function* func, functionList)
+    for (Function* func : functionList)
         func->modified = false;
 
     listModified = false;
@@ -42,7 +42,7 @@ bool FunctionsEditorModel::isModified() const
     if (functionList != originalFunctionList)
         return true;
 
-    foreach (Function* func, functionList)
+    for (Function* func : functionList)
     {
         if (func->modified)
             return true;
@@ -62,7 +62,7 @@ void FunctionsEditorModel::setModified(int row, bool modified)
 
 bool FunctionsEditorModel::isValid() const
 {
-    foreach (Function* func, functionList)
+    for (Function* func : functionList)
     {
         if (!func->valid)
             return false;
@@ -199,7 +199,7 @@ void FunctionsEditorModel::setData(const QList<FunctionManager::ScriptFunction*>
 
     functionList.clear();
 
-    foreach (FunctionManager::ScriptFunction* func, functions)
+    for (FunctionManager::ScriptFunction* func : functions)
         functionList << new Function(func);
 
     listModified = false;
@@ -239,7 +239,7 @@ QList<FunctionManager::ScriptFunction*> FunctionsEditorModel::generateFunctions(
 {
     QList<FunctionManager::ScriptFunction*> results;
 
-    foreach (Function* func, functionList)
+    for (Function* func : functionList)
         results << new FunctionManager::ScriptFunction(func->data);
 
     return results;
@@ -248,7 +248,7 @@ QList<FunctionManager::ScriptFunction*> FunctionsEditorModel::generateFunctions(
 QStringList FunctionsEditorModel::getFunctionNames() const
 {
     QStringList names;
-    foreach (Function* func, functionList)
+    for (Function* func : functionList)
         names << func->data.name;
 
     return names;
@@ -259,7 +259,7 @@ void FunctionsEditorModel::validateNames()
     StrHash<QList<int>> counter;
 
     int row = 0;
-    foreach (Function* func, functionList)
+    for (Function* func : functionList)
     {
         func->valid &= true;
         counter[func->data.name] << row++;
@@ -271,7 +271,7 @@ void FunctionsEditorModel::validateNames()
         cntIt.next();
         if (cntIt.value().size() > 1)
         {
-            foreach (int cntRow, cntIt.value())
+            for (int cntRow : cntIt.value())
                 setValid(cntRow, false);
         }
     }
@@ -322,7 +322,7 @@ QVariant FunctionsEditorModel::data(const QModelIndex& index, int role) const
 
 void FunctionsEditorModel::init()
 {
-    foreach (ScriptingPlugin* plugin, PLUGINS->getLoadedPlugins<ScriptingPlugin>())
+    for (ScriptingPlugin* plugin : PLUGINS->getLoadedPlugins<ScriptingPlugin>())
         langToIcon[plugin->getLanguage()] = QIcon(plugin->getIconPath());
 }
 

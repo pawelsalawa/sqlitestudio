@@ -234,7 +234,7 @@ StrHash<QSharedPointer<T>> SchemaResolver::getAllParsedObjectsForType(const QStr
      QString name;
      SqliteQueryPtr parsedObject;
      QSharedPointer<T> castedObject;
-     foreach (SqlResultsRowPtr row, results->getAll())
+     for (SqlResultsRowPtr row : results->getAll())
      {
          name = row->value("name").toString();
          parsedObject = getParsedDdl(row->value("sql").toString());

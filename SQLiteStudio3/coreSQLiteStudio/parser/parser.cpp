@@ -55,7 +55,7 @@ void Parser::cleanUp()
 
 void Parser::fillSqliteDialect()
 {
-    foreach (SqliteQueryPtr query, context->parsedQueries)
+    for (SqliteQueryPtr query : context->parsedQueries)
         query->setSqliteDialect(dialect);
 }
 
@@ -263,7 +263,7 @@ void Parser::expectedTokenLookup(void* pParser)
                 Token::CTX_ROWID_KW, Token::INVALID
             });
 
-    foreach (TokenPtr token, tokenSet)
+    for (TokenPtr token : tokenSet)
     {
         parse(pParser, token->lemonType, token, &tempContext);
 
@@ -290,7 +290,7 @@ const QList<ParserError *> &Parser::getErrors()
 QString Parser::getErrorString()
 {
     QStringList msgs;
-    foreach (ParserError* error, getErrors())
+    for (ParserError* error : getErrors())
     {
         msgs += error->getMessage();
     }

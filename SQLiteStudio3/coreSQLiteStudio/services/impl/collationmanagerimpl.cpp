@@ -120,6 +120,6 @@ void CollationManagerImpl::loadFromConfig()
 void CollationManagerImpl::refreshCollationsByKey()
 {
     collationsByKey.clear();
-    foreach (CollationPtr collation, collations)
+    for (CollationPtr collation : collations)
         collationsByKey[collation->name] = collation;
 }

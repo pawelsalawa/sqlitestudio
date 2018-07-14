@@ -40,7 +40,7 @@ QList<FunctionManager::ScriptFunction*> FunctionManagerImpl::getAllScriptFunctio
 QList<FunctionManager::ScriptFunction*> FunctionManagerImpl::getScriptFunctionsForDatabase(const QString& dbName) const
 {
     QList<ScriptFunction*> results;
-    foreach (ScriptFunction* func, functions)
+    for (ScriptFunction* func : functions)
     {
         if (func->allDatabases || func->databases.contains(dbName, Qt::CaseInsensitive))
             results << func;
@@ -280,10 +280,10 @@ void FunctionManagerImpl::initNativeFunctions()
 void FunctionManagerImpl::refreshFunctionsByKey()
 {
     functionsByKey.clear();
-    foreach (ScriptFunction* func, functions)
+    for (ScriptFunction* func : functions)
         functionsByKey[Key(func)] = func;
 
-    foreach (NativeFunction* func, nativeFunctions)
+    for (NativeFunction* func : nativeFunctions)
         nativeFunctionsByKey[Key(func)] = func;
 }
 
@@ -291,7 +291,7 @@ void FunctionManagerImpl::storeInConfig()
 {
     QVariantList list;
     QHash<QString,QVariant> fnHash;
-    foreach (ScriptFunction* func, functions)
+    for (ScriptFunction* func : functions)
     {
         fnHash["name"] = func->name;
         fnHash["lang"] = func->lang;

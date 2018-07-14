@@ -18,7 +18,7 @@ void QueryExecutorStep::init(QueryExecutor *queryExecutor, QueryExecutor::Contex
 void QueryExecutorStep::updateQueries()
 {
     QString newQuery;
-    foreach (SqliteQueryPtr query, context->parsedQueries)
+    for (SqliteQueryPtr query : context->parsedQueries)
     {
         newQuery += query->detokenize();
         newQuery += "\n";
