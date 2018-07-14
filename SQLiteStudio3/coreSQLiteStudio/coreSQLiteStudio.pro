@@ -230,7 +230,8 @@ SOURCES += sqlitestudio.cpp \
     plugins/dbpluginstdfilebase.cpp \
     common/xmldeserializer.cpp \
     services/impl/sqliteextensionmanagerimpl.cpp \
-    common/lazytrigger.cpp
+    common/lazytrigger.cpp \
+    parser/ast/sqliteupsert.cpp
 
 HEADERS += sqlitestudio.h\
         coreSQLiteStudio_global.h \
@@ -431,7 +432,8 @@ HEADERS += sqlitestudio.h\
     common/valuelocker.h \
     services/sqliteextensionmanager.h \
     services/impl/sqliteextensionmanagerimpl.h \
-    common/lazytrigger.h
+    common/lazytrigger.h \
+    parser/ast/sqliteupsert.h
 
 unix: {
     target.path = $$LIBDIR

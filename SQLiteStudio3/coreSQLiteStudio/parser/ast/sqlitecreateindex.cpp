@@ -57,7 +57,7 @@ SqliteCreateIndex::SqliteCreateIndex(bool unique, bool ifNotExists, const QStrin
     table = name3;
     this->indexedColumns = columns;
 
-    foreach (SqliteOrderBy* idxCol, columns)
+    for (SqliteOrderBy* idxCol : columns)
         idxCol->setParent(this);
 
     this->where = where;

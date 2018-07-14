@@ -299,28 +299,77 @@ bool TableModifier::handleUpdateColumns(SqliteUpdate* update)
 {
     bool modified = false;
     QString lowerName;
+    QVariant colName;
+    QString newName;
+    QStringList newNames;
     QMutableListIterator<SqliteUpdate::ColumnAndValue> it(update->keyValueMap);
     while (it.hasNext())
     {
         it.next();
 
-        // If column was modified, assign new name
-        lowerName = it.value().first.toLower();
-        if (tableColMap.contains(lowerName))
+        colName = it.value().first;
+        if (colName.type() == QVariant::StringList)
         {
-            it.value().first = tableColMap[lowerName];
-            modified = true;
+            // List of columns set to a single value
+            newNames = handleUpdateColumns(colName.toStringList(), modified);
+            if (!modified)
+                continue;
+
+            if (newNames.isEmpty())
+            {
+                it.remove();
+                continue;
+            }
+
+            // If any column was modified, assign new list
+            it.value().first = newNames;
             continue;
         }
 
-        // It wasn't modified, but it's not on existing columns list? Remove it.
-        if (indexOf(existingColumns, it.value().first, Qt::CaseInsensitive) == -1)
+        // Single column case
+        newName = handleUpdateColumn(colName.toString(), modified);
+        if (!modified)
+            continue;
+
+        if (newName.isNull())
         {
             it.remove();
-            modified = true;
+            continue;
         }
+
+        // If column was modified, assign new name
+        it.value().first = newName;
     }
     return modified;
+}
+
+QStringList TableModifier::handleUpdateColumns(const QStringList& colNames, bool& modified)
+{
+    QStringList newNames;
+    for (const QString& colName : colNames)
+        newNames << handleUpdateColumn(colName, modified);
+
+    return newNames;
+}
+
+QString TableModifier::handleUpdateColumn(const QString& colName, bool& modified)
+{
+    // If column was modified, assign new name
+    QString lowerName = colName.toLower();
+    if (tableColMap.contains(lowerName))
+    {
+        modified = true;
+        return tableColMap[lowerName];
+    }
+
+    // It wasn't modified, but it's not on existing columns list? Remove it.
+    if (indexOf(existingColumns, colName, Qt::CaseInsensitive) == -1)
+    {
+        modified = true;
+        return QString();
+    }
+
+    return colName;
 }
 
 QStringList TableModifier::getModifiedViews() const

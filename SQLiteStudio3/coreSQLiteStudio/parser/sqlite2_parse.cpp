@@ -120,6 +120,7 @@ typedef union {
   QVariant* yy69;
   SqliteCreateTrigger::Scope* yy83;
   ParserStubExplain* yy91;
+  QStringList* yy95;
   ParserFullName* yy120;
   SqliteSelect::Core::SingleSource* yy121;
   ParserOtherSourceList* yy131;
@@ -131,7 +132,6 @@ typedef union {
   SqliteExpr* yy192;
   ParserSetValueList* yy201;
   SqliteQuery* yy203;
-  ParserStringList* yy207;
   ParserResultColumnList* yy213;
   SqliteSelect::Core::JoinOp* yy221;
   int* yy226;
@@ -347,7 +347,7 @@ static const YYACTIONTYPE yy_action[] = {
  /*  1050 */   523,  328,  523,  570,   65,  531,  500,   13,  523,  101,
  /*  1060 */   185,  184,   35,  570,  172,  171,  170,  197,  290,  503,
  /*  1070 */   328,  523,   75,  570,  531,  301,   13,  523,   32,   33,
- /*  1080 */   380,   35,   10,  568,  567,  479,   34,  489,  540,  539,
+ /*  1080 */   380,   35,   10,  568,  567,  479,   34,  490,  540,  539,
  /*  1090 */   568,  567,  570,  325,    7,  211,  666,   32,   33,  523,
  /*  1100 */   179,  423,  336,  335,  570,   34,  549,  548,  550,   80,
  /*  1110 */   569,  570,  490,    7,  480,  489,  391,  570,  523,  568,
@@ -983,9 +983,9 @@ static const char *const yyTokenName[] = {
   "from",          "where_opt",     "groupby_opt",   "having_opt",  
   "orderby_opt",   "limit_opt",     "sclp",          "as",          
   "joinsrc",       "singlesrc",     "seltablist",    "joinop",      
-  "joinconstr_opt",  "dbnm",          "inscollist",    "sortlist",    
+  "joinconstr_opt",  "dbnm",          "idlist",        "sortlist",    
   "collate",       "nexprlist",     "delete_stmt",   "update_stmt", 
-  "setlist",       "insert_stmt",   "insert_cmd",    "inscollist_opt",
+  "setlist",       "insert_stmt",   "insert_cmd",    "idlist_opt",  
   "exprlist",      "exprx",         "not_opt",       "likeop",      
   "case_operand",  "case_exprlist",  "case_else",     "raisetype",   
   "uniqueflag",    "idxlist_single",  "nmnum",         "number",      
@@ -1151,7 +1151,7 @@ static const char *const yyRuleName[] = {
  /* 150 */ "singlesrc ::= nm DOT ID_VIEW",
  /* 151 */ "singlesrc ::= ID_DB|ID_VIEW",
  /* 152 */ "joinconstr_opt ::= ON expr",
- /* 153 */ "joinconstr_opt ::= USING LP inscollist RP",
+ /* 153 */ "joinconstr_opt ::= USING LP idlist RP",
  /* 154 */ "joinconstr_opt ::=",
  /* 155 */ "dbnm ::=",
  /* 156 */ "dbnm ::= DOT nm",
@@ -1202,21 +1202,21 @@ static const char *const yyRuleName[] = {
  /* 201 */ "setlist ::= setlist COMMA ID_COL",
  /* 202 */ "setlist ::= ID_COL",
  /* 203 */ "cmd ::= insert_stmt",
- /* 204 */ "insert_stmt ::= insert_cmd INTO fullname inscollist_opt VALUES LP exprlist RP",
- /* 205 */ "insert_stmt ::= insert_cmd INTO fullname inscollist_opt select",
+ /* 204 */ "insert_stmt ::= insert_cmd INTO fullname idlist_opt VALUES LP exprlist RP",
+ /* 205 */ "insert_stmt ::= insert_cmd INTO fullname idlist_opt select",
  /* 206 */ "insert_stmt ::= insert_cmd INTO",
  /* 207 */ "insert_stmt ::= insert_cmd INTO nm DOT",
  /* 208 */ "insert_stmt ::= insert_cmd INTO ID_DB|ID_TAB",
  /* 209 */ "insert_stmt ::= insert_cmd INTO nm DOT ID_TAB",
  /* 210 */ "insert_cmd ::= INSERT orconf",
  /* 211 */ "insert_cmd ::= REPLACE",
- /* 212 */ "inscollist_opt ::=",
- /* 213 */ "inscollist_opt ::= LP inscollist RP",
- /* 214 */ "inscollist ::= inscollist COMMA nm",
- /* 215 */ "inscollist ::= nm",
- /* 216 */ "inscollist ::=",
- /* 217 */ "inscollist ::= inscollist COMMA ID_COL",
- /* 218 */ "inscollist ::= ID_COL",
+ /* 212 */ "idlist_opt ::=",
+ /* 213 */ "idlist_opt ::= LP idlist RP",
+ /* 214 */ "idlist ::= idlist COMMA nm",
+ /* 215 */ "idlist ::= nm",
+ /* 216 */ "idlist ::=",
+ /* 217 */ "idlist ::= idlist COMMA ID_COL",
+ /* 218 */ "idlist ::= ID_COL",
  /* 219 */ "exprx ::= NULL",
  /* 220 */ "exprx ::= INTEGER",
  /* 221 */ "exprx ::= FLOAT",
@@ -1328,7 +1328,7 @@ static const char *const yyRuleName[] = {
  /* 327 */ "trigger_event ::= DELETE",
  /* 328 */ "trigger_event ::= INSERT",
  /* 329 */ "trigger_event ::= UPDATE",
- /* 330 */ "trigger_event ::= UPDATE OF inscollist",
+ /* 330 */ "trigger_event ::= UPDATE OF idlist",
  /* 331 */ "foreach_clause ::=",
  /* 332 */ "foreach_clause ::= FOR EACH ROW",
  /* 333 */ "foreach_clause ::= FOR EACH STATEMENT",
@@ -1654,10 +1654,10 @@ delete (yypminor->yy221);
 delete (yypminor->yy455);
 }
       break;
-    case 210: /* inscollist */
-    case 219: /* inscollist_opt */
+    case 210: /* idlist */
+    case 219: /* idlist_opt */
 {
-delete (yypminor->yy207);
+delete (yypminor->yy95);
 }
       break;
     case 212: /* collate */
@@ -3223,10 +3223,10 @@ static void yy_reduce(
                                                 objectForTokens = yygotominor.yy455;
                                             }
         break;
-      case 153: /* joinconstr_opt ::= USING LP inscollist RP */
+      case 153: /* joinconstr_opt ::= USING LP idlist RP */
 {
-                                                yygotominor.yy455 = new SqliteSelect::Core::JoinConstraint(*(yymsp[-1].minor.yy207));
-                                                delete yymsp[-1].minor.yy207;
+                                                yygotominor.yy455 = new SqliteSelect::Core::JoinConstraint(*(yymsp[-1].minor.yy95));
+                                                delete yymsp[-1].minor.yy95;
                                                 objectForTokens = yygotominor.yy455;
                                             }
         break;
@@ -3540,39 +3540,39 @@ static void yy_reduce(
 {  yy_destructor(yypParser,216,&yymsp[-2].minor);
 }
         break;
-      case 204: /* insert_stmt ::= insert_cmd INTO fullname inscollist_opt VALUES LP exprlist RP */
+      case 204: /* insert_stmt ::= insert_cmd INTO fullname idlist_opt VALUES LP exprlist RP */
 {
                                                 yygotominor.yy203 = new SqliteInsert(
                                                         yymsp[-7].minor.yy344->replace,
                                                         yymsp[-7].minor.yy344->orConflict,
                                                         yymsp[-5].minor.yy120->name1,
                                                         yymsp[-5].minor.yy120->name2,
-                                                        *(yymsp[-4].minor.yy207),
+                                                        *(yymsp[-4].minor.yy95),
                                                         *(yymsp[-1].minor.yy231),
                                                         nullptr
                                                     );
                                                 delete yymsp[-5].minor.yy120;
                                                 delete yymsp[-7].minor.yy344;
                                                 delete yymsp[-1].minor.yy231;
-                                                delete yymsp[-4].minor.yy207;
+                                                delete yymsp[-4].minor.yy95;
                                                 // since it's used in trigger:
                                                 objectForTokens = yygotominor.yy203;
                                             }
         break;
-      case 205: /* insert_stmt ::= insert_cmd INTO fullname inscollist_opt select */
+      case 205: /* insert_stmt ::= insert_cmd INTO fullname idlist_opt select */
 {
                                                 yygotominor.yy203 = new SqliteInsert(
                                                         yymsp[-4].minor.yy344->replace,
                                                         yymsp[-4].minor.yy344->orConflict,
                                                         yymsp[-2].minor.yy120->name1,
                                                         yymsp[-2].minor.yy120->name2,
-                                                        *(yymsp[-1].minor.yy207),
+                                                        *(yymsp[-1].minor.yy95),
                                                         yymsp[0].minor.yy153,
                                                         nullptr
                                                     );
                                                 delete yymsp[-2].minor.yy120;
                                                 delete yymsp[-4].minor.yy344;
-                                                delete yymsp[-1].minor.yy207;
+                                                delete yymsp[-1].minor.yy95;
                                                 // since it's used in trigger:
                                                 objectForTokens = yygotominor.yy203;
                                             }
@@ -3619,35 +3619,35 @@ static void yy_reduce(
       case 211: /* insert_cmd ::= REPLACE */
 {yygotominor.yy344 = new ParserStubInsertOrReplace(true);}
         break;
-      case 212: /* inscollist_opt ::= */
-{yygotominor.yy207 = new ParserStringList();}
+      case 212: /* idlist_opt ::= */
+{yygotominor.yy95 = new QStringList();}
         break;
-      case 213: /* inscollist_opt ::= LP inscollist RP */
-{yygotominor.yy207 = yymsp[-1].minor.yy207;}
+      case 213: /* idlist_opt ::= LP idlist RP */
+{yygotominor.yy95 = yymsp[-1].minor.yy95;}
         break;
-      case 214: /* inscollist ::= inscollist COMMA nm */
+      case 214: /* idlist ::= idlist COMMA nm */
 {
-                                                yymsp[-2].minor.yy207->append(*(yymsp[0].minor.yy319));
-                                                yygotominor.yy207 = yymsp[-2].minor.yy207;
+                                                yymsp[-2].minor.yy95->append(*(yymsp[0].minor.yy319));
+                                                yygotominor.yy95 = yymsp[-2].minor.yy95;
                                                 delete yymsp[0].minor.yy319;
-                                                DONT_INHERIT_TOKENS("inscollist");
+                                                DONT_INHERIT_TOKENS("idlist");
                                             }
         break;
-      case 215: /* inscollist ::= nm */
+      case 215: /* idlist ::= nm */
 {
-                                                yygotominor.yy207 = new ParserStringList();
-                                                yygotominor.yy207->append(*(yymsp[0].minor.yy319));
+                                                yygotominor.yy95 = new QStringList();
+                                                yygotominor.yy95->append(*(yymsp[0].minor.yy319));
                                                 delete yymsp[0].minor.yy319;
                                             }
         break;
-      case 216: /* inscollist ::= */
+      case 216: /* idlist ::= */
 {
                                                 parserContext->minorErrorBeforeNextToken("Syntax error");
-                                                yygotominor.yy207 = new ParserStringList();
+                                                yygotominor.yy95 = new QStringList();
                                             }
         break;
-      case 217: /* inscollist ::= inscollist COMMA ID_COL */
-      case 218: /* inscollist ::= ID_COL */ yytestcase(yyruleno==218);
+      case 217: /* idlist ::= idlist COMMA ID_COL */
+      case 218: /* idlist ::= ID_COL */ yytestcase(yyruleno==218);
 {  yy_destructor(yypParser,210,&yymsp[-2].minor);
 }
         break;
@@ -4256,10 +4256,10 @@ static void yy_reduce(
                                                 objectForTokens = yygotominor.yy151;
                                             }
         break;
-      case 330: /* trigger_event ::= UPDATE OF inscollist */
+      case 330: /* trigger_event ::= UPDATE OF idlist */
 {
-                                                yygotominor.yy151 = new SqliteCreateTrigger::Event(*(yymsp[0].minor.yy207));
-                                                delete yymsp[0].minor.yy207;
+                                                yygotominor.yy151 = new SqliteCreateTrigger::Event(*(yymsp[0].minor.yy95));
+                                                delete yymsp[0].minor.yy95;
                                                 objectForTokens = yygotominor.yy151;
                                             }
         break;

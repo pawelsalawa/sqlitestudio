@@ -34,12 +34,16 @@ void FormatUpdate::formatInternal()
     markAndKeepIndent("updateColumns");
 
     bool first = true;
-    foreach (const SqliteUpdate::ColumnAndValue& keyVal, upd->keyValueMap)
+    for (const SqliteUpdate::ColumnAndValue& keyVal : upd->keyValueMap)
     {
         if (!first)
             withListComma();
 
-        withId(keyVal.first).withOperator("=").withStatement(keyVal.second);
+        if (keyVal.first.type() == QVariant::StringList)
+            withParDefLeft().withIdList(keyVal.first.toStringList()).withParDefRight().withOperator("=").withStatement(keyVal.second);
+        else
+            withId(keyVal.first.toString()).withOperator("=").withStatement(keyVal.second);
+
         first = false;
     }
 

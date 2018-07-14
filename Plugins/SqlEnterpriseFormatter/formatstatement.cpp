@@ -28,6 +28,7 @@
 #include "formatdroptrigger.h"
 #include "formatdropview.h"
 #include "formatorderby.h"
+#include "formatupsert.h"
 #include "parser/ast/sqliteselect.h"
 #include "parser/ast/sqliteexpr.h"
 #include "parser/ast/sqlitelimit.h"
@@ -57,6 +58,7 @@
 #include "parser/ast/sqlitedropview.h"
 #include "parser/ast/sqliteorderby.h"
 #include "parser/ast/sqlitepragma.h"
+#include "parser/ast/sqliteupsert.h"
 #include "sqlenterpriseformatter.h"
 #include "common/utils_sql.h"
 #include "common/global.h"
@@ -132,6 +134,7 @@ FormatStatement *FormatStatement::forQuery(SqliteStatement *query)
     FORMATTER_FACTORY_ENTRY(query, SqliteColumnType, FormatColumnType);
     FORMATTER_FACTORY_ENTRY(query, SqliteIndexedColumn, FormatIndexedColumn);
     FORMATTER_FACTORY_ENTRY(query, SqliteInsert, FormatInsert);
+    FORMATTER_FACTORY_ENTRY(query, SqliteUpsert, FormatUpsert);
     FORMATTER_FACTORY_ENTRY(query, SqliteEmptyQuery, FormatEmpty);
     FORMATTER_FACTORY_ENTRY(query, SqliteAlterTable, FormatAlterTable);
     FORMATTER_FACTORY_ENTRY(query, SqliteAnalyze, FormatAnalyze);

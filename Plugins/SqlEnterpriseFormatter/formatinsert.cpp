@@ -1,6 +1,7 @@
 #include "formatinsert.h"
 #include "parser/ast/sqliteselect.h"
 #include "parser/ast/sqliteinsert.h"
+#include "parser/ast/sqliteupsert.h"
 #include "formatwith.h"
 
 FormatInsert::FormatInsert(SqliteInsert* insert) :
@@ -49,7 +50,11 @@ void FormatInsert::formatInternal()
         {
             withKeyword("VALUES").withParDefLeft().withStatementList(insert->values).withParDefRight();
         }
+        if (insert->upsert)
+            withStatement(insert->upsert);
+
         withDecrIndent();
     }
+
     withSemicolon();
 }

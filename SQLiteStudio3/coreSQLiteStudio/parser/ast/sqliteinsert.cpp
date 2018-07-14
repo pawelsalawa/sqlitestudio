@@ -5,6 +5,7 @@
 #include "parser/statementtokenbuilder.h"
 #include "common/global.h"
 #include "sqlitewith.h"
+#include "sqliteupsert.h"
 
 SqliteInsert::SqliteInsert()
 {
@@ -18,6 +19,7 @@ SqliteInsert::SqliteInsert(const SqliteInsert& other) :
     DEEP_COPY_COLLECTION(SqliteExpr, values);
     DEEP_COPY_FIELD(SqliteSelect, select);
     DEEP_COPY_FIELD(SqliteWith, with);
+    DEEP_COPY_FIELD(SqliteUpsert, upsert);
 }
 
 SqliteInsert::SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QString &name1, const QString &name2, const QList<QString> &columns,
@@ -38,7 +40,7 @@ SqliteInsert::SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QS
 }
 
 SqliteInsert::SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QString &name1, const QString &name2, const QList<QString> &columns,
-                           SqliteSelect *select, SqliteWith* with) :
+                           SqliteSelect *select, SqliteWith* with, SqliteUpsert* upsert) :
     SqliteInsert()
 {
     initName(name1, name2);
@@ -47,6 +49,10 @@ SqliteInsert::SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QS
     this->with = with;
     if (with)
         with->setParent(this);
+
+    this->upsert = upsert;
+    if (upsert)
+        upsert->setParent(this);
 
     columnNames = columns;
     this->select = select;
@@ -98,7 +104,7 @@ QStringList SqliteInsert::getDatabasesInStatement()
 TokenList SqliteInsert::getColumnTokensInStatement()
 {
     TokenList list;
-    foreach (TokenPtr token, getTokenListFromNamedKey("inscollist_opt", -1))
+    for (TokenPtr token : getTokenListFromNamedKey("idlist_opt", -1))
     {
         if (token->type != Token::OTHER && token->type != Token::KEYWORD)
             continue;
@@ -201,6 +207,8 @@ TokenList SqliteInsert::rebuildTokensFromContents()
         if (select)
         {
             builder.withStatement(select);
+            if (upsert)
+                builder.withSpace().withStatement(upsert);
         }
         else if (dialect == Dialect::Sqlite2) // Sqlite2 uses classic single row values
         {

@@ -23,6 +23,7 @@
 #include "parser/ast/sqlitesavepoint.h"
 #include "parser/ast/sqliteupdate.h"
 #include "parser/ast/sqlitevacuum.h"
+#include "parser/ast/sqliteupsert.h"
 #include "services/pluginmanager.h"
 #include "plugins/dbplugin.h"
 #include "services/dbmanager.h"
@@ -207,7 +208,8 @@ SqliteQueryPtr DbVersionConverter::convert3To2(SqliteQueryPtr query)
             if (!modifyDeleteForVersion2(newQuery.dynamicCast<SqliteDelete>().data()))
             {
                 newQuery = SqliteEmptyQueryPtr::create();
-                storeErrorDiff(query.data());
+                if (diffsForNonDDL)
+                    storeErrorDiff(query.data());
             }
             break;
         case SqliteQueryType::Detach:
@@ -230,7 +232,8 @@ SqliteQueryPtr DbVersionConverter::convert3To2(SqliteQueryPtr query)
             if (!modifyInsertForVersion2(newQuery.dynamicCast<SqliteInsert>().data()))
             {
                 newQuery = SqliteEmptyQueryPtr::create();
-                storeErrorDiff(query.data());
+                if (diffsForNonDDL)
+                    storeErrorDiff(query.data());
             }
             break;
         case SqliteQueryType::Pragma:
@@ -260,7 +263,8 @@ SqliteQueryPtr DbVersionConverter::convert3To2(SqliteQueryPtr query)
             if (!modifySelectForVersion2(newQuery.dynamicCast<SqliteSelect>().data()))
             {
                 newQuery = SqliteEmptyQueryPtr::create();
-                storeErrorDiff(query.data());
+                if (diffsForNonDDL)
+                    storeErrorDiff(query.data());
             }
             break;
         }
@@ -269,7 +273,8 @@ SqliteQueryPtr DbVersionConverter::convert3To2(SqliteQueryPtr query)
             if (!modifyUpdateForVersion2(newQuery.dynamicCast<SqliteUpdate>().data()))
             {
                 newQuery = SqliteEmptyQueryPtr::create();
-                storeErrorDiff(query.data());
+                if (diffsForNonDDL)
+                    storeErrorDiff(query.data());
             }
             break;
         case SqliteQueryType::Vacuum:
@@ -450,7 +455,9 @@ bool DbVersionConverter::modifySelectForVersion2(SqliteSelect* select)
     if (!modifyAllExprsForVersion2(select))
         return false;
 
-    storeDiff(sql1, select);
+    if (diffsForNonDDL)
+        storeDiff(sql1, select);
+
     return true;
 }
 
@@ -471,7 +478,9 @@ bool DbVersionConverter::modifyDeleteForVersion2(SqliteDelete* del)
     if (!modifyAllExprsForVersion2(del))
         return false;
 
-    storeDiff(sql1, del);
+    if (diffsForNonDDL)
+        storeDiff(sql1, del);
+
     return true;
 }
 
@@ -497,6 +506,9 @@ bool DbVersionConverter::modifyInsertForVersion2(SqliteInsert* insert)
 
     QString sql1 = getSqlForDiff(insert);
 
+    if (insert->upsert)
+        safe_delete(insert->upsert);
+
     // Modifying SELECT deals with "VALUES" completely.
     if (!modifySelectForVersion2(insert->select))
         return false;
@@ -504,7 +516,9 @@ bool DbVersionConverter::modifyInsertForVersion2(SqliteInsert* insert)
     if (!modifyAllExprsForVersion2(insert))
         return false;
 
-    storeDiff(sql1, insert);
+    if (diffsForNonDDL)
+        storeDiff(sql1, insert);
+
     return true;
 }
 
@@ -525,7 +539,9 @@ bool DbVersionConverter::modifyUpdateForVersion2(SqliteUpdate* update)
     update->indexedByKw = false;
     update->notIndexedKw = false;
 
-    storeDiff(sql1, update);
+    if (diffsForNonDDL)
+        storeDiff(sql1, update);
+
     return true;
 }
 

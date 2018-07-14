@@ -127,6 +127,21 @@ class API_EXPORT DbVersionConverter : public QObject
         bool interrupted = false;
         QMutex interruptMutex;
 
+        /**
+         * @brief Whether to include non-DDL statements in diff list.
+         *
+         * The non-DDL statements are INSERTs, SELECTs, etc.
+         * Normally, for DB conversion we only care about DDL modifications,
+         * that is for CREATE statements. Other statements may appear inside of
+         * triggers or views, but we don't need their diffs separately.
+         *
+         * This variable is not used currently, but may be in future,
+         * when for example individual INSERT statement would need to be converted.
+         * Right now there's no such need, but it would be pity to remove the code
+         * from that non-DDL statements.
+         */
+        bool diffsForNonDDL = false;
+
     private slots:
         void conversionError(Db* db, const QString& errMsg);
         void confirmConversion();

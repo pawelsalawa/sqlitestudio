@@ -49,7 +49,8 @@ SOURCES += sqlenterpriseformatter.cpp \
     formatrollback.cpp \
     formatsavepoint.cpp \
     formatvacuum.cpp \
-    formatorderby.cpp
+    formatorderby.cpp \
+    formatupsert.cpp
 
 HEADERS += sqlenterpriseformatter.h\
         sqlenterpriseformatter_global.h \
@@ -88,7 +89,8 @@ HEADERS += sqlenterpriseformatter.h\
     formatrollback.h \
     formatsavepoint.h \
     formatvacuum.h \
-    formatorderby.h
+    formatorderby.h \
+    formatupsert.h
 
 OTHER_FILES += \
     sqlenterpriseformatter.json

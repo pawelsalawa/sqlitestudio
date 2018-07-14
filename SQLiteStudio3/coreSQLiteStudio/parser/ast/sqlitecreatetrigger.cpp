@@ -22,7 +22,7 @@ SqliteCreateTrigger::SqliteCreateTrigger(const SqliteCreateTrigger& other) :
 
     // Special case of deep collection copy
     SqliteQuery* newQuery = nullptr;
-    foreach (SqliteQuery* query, other.queries)
+    for (SqliteQuery* query : other.queries)
     {
         switch (query->queryType)
         {

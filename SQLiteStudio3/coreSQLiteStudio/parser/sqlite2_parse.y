@@ -907,7 +907,7 @@ joinconstr_opt(X) ::= ON expr(E).           {
                                                 objectForTokens = X;
                                             }
 joinconstr_opt(X) ::= USING LP
-                    inscollist(L) RP.       {
+                    idlist(L) RP.       {
                                                 X = new SqliteSelect::Core::JoinConstraint(*(L));
                                                 delete L;
                                                 objectForTokens = X;
@@ -1227,7 +1227,7 @@ cmd(X) ::= insert_stmt(S).                  {
 %type insert_stmt {SqliteQuery*}
 %destructor insert_stmt {delete $$;}
 insert_stmt(X) ::= insert_cmd(C) INTO
-            fullname(N) inscollist_opt(I)
+            fullname(N) idlist_opt(I)
             VALUES LP exprlist(L) RP.       {
                                                 X = new SqliteInsert(
                                                         C->replace,
@@ -1246,7 +1246,7 @@ insert_stmt(X) ::= insert_cmd(C) INTO
                                                 objectForTokens = X;
                                             }
 insert_stmt(X) ::= insert_cmd(C) INTO
-            fullname(N) inscollist_opt(I)
+            fullname(N) idlist_opt(I)
             select(S).                      {
                                                 X = new SqliteInsert(
                                                         C->replace,
@@ -1298,32 +1298,32 @@ insert_cmd(X) ::= INSERT orconf(C).         {
                                             }
 insert_cmd(X) ::= REPLACE.                  {X = new ParserStubInsertOrReplace(true);}
 
-%type inscollist_opt {ParserStringList*}
-%destructor inscollist_opt {delete $$;}
-inscollist_opt(X) ::= .                     {X = new ParserStringList();}
-inscollist_opt(X) ::= LP inscollist(L) RP.  {X = L;}
+%type idlist_opt {QStringList*}
+%destructor idlist_opt {delete $$;}
+idlist_opt(X) ::= .                     {X = new QStringList();}
+idlist_opt(X) ::= LP idlist(L) RP.  {X = L;}
 
-%type inscollist {ParserStringList*}
-%destructor inscollist {delete $$;}
-inscollist(X) ::= inscollist(L) COMMA
+%type idlist {QStringList*}
+%destructor idlist {delete $$;}
+idlist(X) ::= idlist(L) COMMA
                     nm(N).                  {
                                                 L->append(*(N));
                                                 X = L;
                                                 delete N;
-                                                DONT_INHERIT_TOKENS("inscollist");
+                                                DONT_INHERIT_TOKENS("idlist");
                                             }
-inscollist(X) ::= nm(N).                    {
-                                                X = new ParserStringList();
+idlist(X) ::= nm(N).                    {
+                                                X = new QStringList();
                                                 X->append(*(N));
                                                 delete N;
                                             }
-inscollist(X) ::= .                         {
+idlist(X) ::= .                         {
                                                 parserContext->minorErrorBeforeNextToken("Syntax error");
-                                                X = new ParserStringList();
+                                                X = new QStringList();
                                             }
 
-inscollist ::= inscollist COMMA ID_COL.     {}
-inscollist ::= ID_COL.                      {}
+idlist ::= idlist COMMA ID_COL.     {}
+idlist ::= ID_COL.                      {}
 
 /////////////////////////// Expression Processing /////////////////////////////
 
@@ -1984,7 +1984,7 @@ trigger_event(X) ::= UPDATE.                {
                                                 objectForTokens = X;
                                             }
 trigger_event(X) ::= UPDATE OF
-                    inscollist(L).          {
+                    idlist(L).          {
                                                 X = new SqliteCreateTrigger::Event(*(L));
                                                 delete L;
                                                 objectForTokens = X;

@@ -13,13 +13,13 @@ class SqliteWith;
 class API_EXPORT SqliteUpdate : public SqliteQuery
 {
     public:
-        typedef QPair<QString,SqliteExpr*> ColumnAndValue;
+        typedef QPair<QVariant,SqliteExpr*> ColumnAndValue;
 
         SqliteUpdate();
         SqliteUpdate(const SqliteUpdate& other);
         ~SqliteUpdate();
         SqliteUpdate(SqliteConflictAlgo onConflict, const QString& name1, const QString& name2,
-                     bool notIndexedKw, const QString& indexedBy, const QList<QPair<QString,SqliteExpr*> > values,
+                     bool notIndexedKw, const QString& indexedBy, const QList<ColumnAndValue>& values,
                      SqliteExpr* where, SqliteWith* with);
 
         SqliteStatement* clone();

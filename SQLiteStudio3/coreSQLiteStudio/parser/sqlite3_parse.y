@@ -55,6 +55,7 @@
 #include "parser/ast/sqliteindexedcolumn.h"
 #include "parser/ast/sqliteforeignkey.h"
 #include "parser/ast/sqlitewith.h"
+#include "parser/ast/sqliteupsert.h"
 #include <QObject>
 #include <QDebug>
 #include <limits.h>
@@ -1046,7 +1047,7 @@ joinconstr_opt(X) ::= ON expr(E).           {
                                                 objectForTokens = X;
                                             }
 joinconstr_opt(X) ::= USING LP
-                    inscollist(L) RP.       {
+                        idlist(L) RP.       {
                                                 X = new SqliteSelect::Core::JoinConstraint(*(L));
                                                 delete L;
                                                 objectForTokens = X;
@@ -1337,9 +1338,19 @@ setlist(X) ::= setlist(L) COMMA nm(N) EQ
                                                 L->append(ParserSetValue(*(N), E));
                                                 X = L;
                                                 delete N;
-                                                DONT_INHERIT_TOKENS("setlist");
+                                            }
+setlist(X) ::= setlist(L) COMMA LP
+                idlist(N) RP EQ expr(E).    {
+                                                L->append(ParserSetValue(*(N), E));
+                                                X = L;
+                                                delete N;
                                             }
 setlist(X) ::= nm(N) EQ expr(E).            {
+                                                X = new ParserSetValueList();
+                                                X->append(ParserSetValue(*(N), E));
+                                                delete N;
+                                            }
+setlist(X) ::= LP idlist(N) RP EQ expr(E).  {
                                                 X = new ParserSetValueList();
                                                 X->append(ParserSetValue(*(N), E));
                                                 delete N;
@@ -1356,6 +1367,31 @@ setlist(X) ::= setlist(L) COMMA.            {
 setlist ::= setlist COMMA ID_COL.           {}
 setlist ::= ID_COL.                         {}
 
+%type idlist_opt {QStringList*}
+%destructor idlist_opt {delete $$;}
+idlist_opt(X) ::= .                         {X = new QStringList();}
+idlist_opt(X) ::= LP idlist(L) RP.          {X = L;}
+
+%type idlist {QStringList*}
+%destructor idlist {delete $$;}
+idlist(X) ::= idlist(L) COMMA nm(N).        {
+                                                X = L;
+                                                *(X) << *(N);
+                                                delete N;
+                                            }
+idlist(X) ::= nm(N).                        {
+                                                X = new QStringList();
+                                                *(X) << *(N);
+                                                delete N;
+                                            }
+idlist(X) ::= .                             {
+                                                parserContext->minorErrorBeforeNextToken("Syntax error");
+                                                X = new QStringList();
+                                            }
+
+idlist ::= idlist COMMA ID_COL.             {}
+idlist ::= ID_COL.                          {}
+
 ////////////////////////// The INSERT command /////////////////////////////////
 
 cmd(X) ::= insert_stmt(S).                  {
@@ -1368,7 +1404,8 @@ cmd(X) ::= insert_stmt(S).                  {
 
 insert_stmt(X) ::= with(W) insert_cmd(C)
             INTO fullname(N)
-            inscollist_opt(I) select(S).    {
+            idlist_opt(I) select(S)
+            upsert(U).                      {
                                                 X = new SqliteInsert(
                                                         C->replace,
                                                         C->orConflict,
@@ -1376,7 +1413,8 @@ insert_stmt(X) ::= with(W) insert_cmd(C)
                                                         N->name2,
                                                         *(I),
                                                         S,
-                                                        W
+                                                        W,
+                                                        U
                                                     );
                                                 delete N;
                                                 delete C;
@@ -1386,7 +1424,7 @@ insert_stmt(X) ::= with(W) insert_cmd(C)
                                             }
 insert_stmt(X) ::= with(W) insert_cmd(C)
             INTO fullname(N)
-            inscollist_opt(I) DEFAULT
+            idlist_opt(I) DEFAULT
             VALUES.                         {
                                                 X = new SqliteInsert(
                                                         C->replace,
@@ -1440,32 +1478,33 @@ insert_cmd(X) ::= INSERT orconf(C).         {
                                             }
 insert_cmd(X) ::= REPLACE.                  {X = new ParserStubInsertOrReplace(true);}
 
-%type inscollist_opt {ParserStringList*}
-%destructor inscollist_opt {delete $$;}
-inscollist_opt(X) ::= .                     {X = new ParserStringList();}
-inscollist_opt(X) ::= LP inscollist(L) RP.  {X = L;}
 
-%type inscollist {ParserStringList*}
-%destructor inscollist {delete $$;}
-inscollist(X) ::= inscollist(L) COMMA
-                    nm(N).                  {
-                                                L->append(*(N));
-                                                X = L;
-                                                delete N;
-                                                DONT_INHERIT_TOKENS("inscollist");
-                                            }
-inscollist(X) ::= nm(N).                    {
-                                                X = new ParserStringList();
-                                                X->append(*(N));
-                                                delete N;
-                                            }
-inscollist(X) ::= .                         {
-                                                parserContext->minorErrorBeforeNextToken("Syntax error");
-                                                X = new ParserStringList();
-                                            }
+%type upsert {SqliteUpsert*}
+%destructor upsert {delete $$;}
 
-inscollist ::= inscollist COMMA ID_COL.     {}
-inscollist ::= ID_COL.                      {}
+upsert(X) ::= .                             {
+                                                X = nullptr;
+                                            }
+upsert(X) ::= ON CONFLICT LP sortlist(C) RP
+              where_opt(CW)
+              DO UPDATE SET setlist(S)
+              where_opt(SW).
+                                            {
+                                                X = new SqliteUpsert(*(C), CW, *(S), SW);
+                                                delete C;
+                                                delete S;
+                                                objectForTokens = X;
+                                            }
+upsert(X) ::= ON CONFLICT LP sortlist(C) RP
+              where_opt(CW) DO NOTHING.     {
+                                                X = new SqliteUpsert(*(C), CW);
+                                                delete C;
+                                                objectForTokens = X;
+                                            }
+upsert(X) ::= ON CONFLICT DO NOTHING.       {
+                                                X = new SqliteUpsert();
+                                                objectForTokens = X;
+                                            }
 
 /////////////////////////// Expression Processing /////////////////////////////
 
@@ -2165,7 +2204,7 @@ trigger_event(X) ::= UPDATE.                {
                                                 objectForTokens = X;
                                             }
 trigger_event(X) ::= UPDATE OF
-                    inscollist(L).          {
+                     idlist(L).             {
                                                 X = new SqliteCreateTrigger::Event(*(L));
                                                 delete L;
                                                 objectForTokens = X;
@@ -2357,10 +2396,10 @@ create_vtab ::= CREATE VIRTUAL TABLE
                     ifnotexists
                     ID_DB|ID_TAB_NEW.       {}
 
-%type vtabarglist {ParserStringList*}
+%type vtabarglist {QStringList*}
 %destructor vtabarglist {delete $$;}
 vtabarglist(X) ::= vtabarg(A).              {
-                                                X = new ParserStringList();
+                                                X = new QStringList();
                                                 X->append((A)->mid(1)); // mid(1) to skip the first whitespace added in vtabarg
                                                 delete A;
                                             }

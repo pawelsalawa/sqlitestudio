@@ -106,6 +106,8 @@ void initKeywords()
     keywords3["NOTNULL"] = TK3_NOTNULL;
     keywords3["NOT"] = TK3_NOT;
     keywords3["NO"] = TK3_NO;
+    keywords3["DO"] = TK3_DO;
+    keywords3["NOTHING"] = TK3_NOTHING;
     keywords3["NULL"] = TK3_NULL;
     keywords3["LIKE"] = TK3_LIKE_KW;
     keywords3["CASCADE"] = TK3_CASCADE;

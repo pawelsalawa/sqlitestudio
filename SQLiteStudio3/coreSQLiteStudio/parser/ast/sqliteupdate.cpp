@@ -17,7 +17,7 @@ SqliteUpdate::SqliteUpdate(const SqliteUpdate& other) :
 {
     // Special case of deep collection copy
     SqliteExpr* newExpr = nullptr;
-    foreach (const ColumnAndValue& keyValue, other.keyValueMap)
+    for (const ColumnAndValue& keyValue : other.keyValueMap)
     {
         newExpr = new SqliteExpr(*keyValue.second);
         newExpr->setParent(this);
@@ -33,7 +33,7 @@ SqliteUpdate::~SqliteUpdate()
 }
 
 SqliteUpdate::SqliteUpdate(SqliteConflictAlgo onConflict, const QString &name1, const QString &name2, bool notIndexedKw, const QString &indexedBy,
-                           const QList<QPair<QString,SqliteExpr*> > values, SqliteExpr *where, SqliteWith* with)
+                           const QList<ColumnAndValue>& values, SqliteExpr *where, SqliteWith* with)
     : SqliteUpdate()
 {
     this->onConflict = onConflict;
@@ -70,7 +70,7 @@ SqliteStatement*SqliteUpdate::clone()
 
 SqliteExpr* SqliteUpdate::getValueForColumnSet(const QString& column)
 {
-    foreach (const ColumnAndValue& keyValue, keyValueMap)
+    for (const ColumnAndValue& keyValue : keyValueMap)
     {
         if (keyValue.first == column)
             return keyValue.second;
@@ -81,8 +81,13 @@ SqliteExpr* SqliteUpdate::getValueForColumnSet(const QString& column)
 QStringList SqliteUpdate::getColumnsInStatement()
 {
     QStringList columns;
-    foreach (const ColumnAndValue& keyValue, keyValueMap)
-        columns += keyValue.first;
+    for (const ColumnAndValue& keyValue : keyValueMap)
+    {
+        if (keyValue.first.type() == QVariant::StringList)
+            columns += keyValue.first.toStringList();
+        else
+            columns += keyValue.first.toString();
+    }
 
     return columns;
 }
@@ -105,20 +110,26 @@ TokenList SqliteUpdate::getColumnTokensInStatement()
     // for each 'expr' we get its first token, then locate it
     // in entire "setlist", get back 2 tokens to get what's before "=".
     TokenList list;
-    TokenList setListTokens = getTokenListFromNamedKey("setlist");
+    TokenList setListTokens = getTokenListFromNamedKey("setlist", -1);
     int setListTokensSize = setListTokens.size();
-    int colNameTokenIdx;
+    int end;
+    int start = 0;
     SqliteExpr* expr = nullptr;
-    foreach (const ColumnAndValue& keyValue, keyValueMap)
+    for (const ColumnAndValue& keyValue : keyValueMap)
     {
         expr = keyValue.second;
-        colNameTokenIdx = setListTokens.indexOf(expr->tokens[0]) - 2;
-        if (colNameTokenIdx < 0 || colNameTokenIdx > setListTokensSize)
+        end = setListTokens.indexOf(expr->tokens[0]);
+        if (end < 0 || end >= setListTokensSize)
         {
             qCritical() << "Went out of bounds while looking for column tokens in SqliteUpdate::getColumnTokensInStatement().";
             continue;
         }
-        list << setListTokens[colNameTokenIdx];
+
+        // Before expression tokens there will be only column(s) token(s)
+        // and commans, and equal operator. Let's take only ID tokens, which are columns.
+        list += setListTokens.mid(start, end - start - 1).filter(Token::OTHER);
+
+        start = end + expr->tokens.size();
     }
     return list;
 }
@@ -189,12 +200,17 @@ TokenList SqliteUpdate::rebuildTokensFromContents()
     builder.withKeyword("SET").withSpace();
 
     bool first = true;
-    foreach (const ColumnAndValue& keyVal, keyValueMap)
+    for (const ColumnAndValue& keyVal : keyValueMap)
     {
         if (!first)
             builder.withOperator(",").withSpace();
 
-        builder.withOther(keyVal.first, dialect).withSpace().withOperator("=").withStatement(keyVal.second);
+        if (keyVal.first.type() == QVariant::StringList)
+            builder.withParLeft().withOtherList(keyVal.first.toStringList(), dialect).withParRight();
+        else
+            builder.withOther(keyVal.first.toString(), dialect);
+
+        builder.withSpace().withOperator("=").withStatement(keyVal.second);
         first = false;
     }
 

@@ -428,7 +428,7 @@ QStringList SqliteSelect::Core::JoinConstraint::getColumnsInStatement()
 TokenList SqliteSelect::Core::JoinConstraint::getColumnTokensInStatement()
 {
     TokenList list;
-    foreach (TokenPtr token, getTokenListFromNamedKey("inscollist", -1))
+    for (TokenPtr token : getTokenListFromNamedKey("idlist", -1))
     {
         if (token->type == Token::OPERATOR) // a COMMA
             continue;

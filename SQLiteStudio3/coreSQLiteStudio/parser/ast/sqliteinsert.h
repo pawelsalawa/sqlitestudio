@@ -9,6 +9,7 @@
 class SqliteSelect;
 class SqliteExpr;
 class SqliteWith;
+class SqliteUpsert;
 
 class API_EXPORT SqliteInsert : public SqliteQuery
 {
@@ -19,7 +20,7 @@ class API_EXPORT SqliteInsert : public SqliteQuery
                      const QString& name2, const QList<QString>& columns,
                      const QList<SqliteExpr*>& row, SqliteWith* with);
         SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QString& name1,
-                     const QString& name2, const QList<QString>& columns, SqliteSelect* select, SqliteWith* with);
+                     const QString& name2, const QList<QString>& columns, SqliteSelect* select, SqliteWith* with, SqliteUpsert* upsert = nullptr);
         SqliteInsert(bool replace, SqliteConflictAlgo onConflict, const QString& name1,
                      const QString& name2, const QList<QString>& columns, SqliteWith* with);
         ~SqliteInsert();
@@ -50,6 +51,7 @@ class API_EXPORT SqliteInsert : public SqliteQuery
         QList<SqliteExpr*> values;
         SqliteSelect* select = nullptr;
         SqliteWith* with = nullptr;
+        SqliteUpsert* upsert = nullptr;
 };
 
 typedef QSharedPointer<SqliteInsert> SqliteInsertPtr;

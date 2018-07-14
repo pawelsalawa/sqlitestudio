@@ -82,6 +82,8 @@ class API_EXPORT TableModifier
         bool handleColumnNames(QStringList& columnsToUpdate);
         bool handleColumnTokens(TokenList& columnsToUpdate);
         bool handleUpdateColumns(SqliteUpdate* update);
+        QStringList handleUpdateColumns(const QStringList& colNames, bool& modified);
+        QString handleUpdateColumn(const QString& colName, bool& modified);
 
 
         template <class T>
