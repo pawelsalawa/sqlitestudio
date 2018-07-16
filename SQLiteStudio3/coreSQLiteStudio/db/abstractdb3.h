@@ -45,6 +45,7 @@ class AbstractDb3 : public AbstractDb
         ~AbstractDb3();
 
         bool loadExtension(const QString& filePath, const QString& initFunc = QString());
+        bool isComplete(const QString& sql) const;
 
     protected:
         bool isOpenInternal();
@@ -334,6 +335,12 @@ bool AbstractDb3<T>::loadExtension(const QString& filePath, const QString& initF
         return false;
     }
     return true;
+}
+
+template<class T>
+bool AbstractDb3<T>::isComplete(const QString& sql) const
+{
+    return T::complete(sql.toUtf8().constData());
 }
 
 template <class T>

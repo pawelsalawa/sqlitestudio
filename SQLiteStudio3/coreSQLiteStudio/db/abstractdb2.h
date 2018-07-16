@@ -47,6 +47,7 @@ class AbstractDb2 : public AbstractDb
         ~AbstractDb2();
 
         bool loadExtension(const QString& filePath, const QString& initFunc = QString());
+        bool isComplete(const QString& sql) const;
 
     protected:
         bool isOpenInternal();
@@ -162,6 +163,12 @@ bool AbstractDb2<T>::loadExtension(const QString& filePath, const QString& initF
     UNUSED(filePath);
     UNUSED(initFunc);
     return false;
+}
+
+template<class T>
+bool AbstractDb2<T>::isComplete(const QString& sql) const
+{
+    return sqlite_complete(sql.toUtf8().constData());
 }
 
 template <class T>

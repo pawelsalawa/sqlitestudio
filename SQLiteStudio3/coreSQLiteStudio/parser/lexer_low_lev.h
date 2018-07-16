@@ -3,6 +3,7 @@
 
 #include "parser/token.h"
 #include <QString>
+#include <QTextStream>
 
 /** @file */
 

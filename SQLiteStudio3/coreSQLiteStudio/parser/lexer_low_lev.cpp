@@ -51,7 +51,7 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
         {
             if (charAt(z, 1) == '-')
             {
-                for (i=2; (c = charAt(z, i)) != 0 && c != '\n'; i++) {}
+                for (i=2; !(c = charAt(z, i)).isNull() && c != '\n'; i++) {}
                 token->lemonType = v3 ? TK3_COMMENT : TK2_COMMENT;
                 token->type = Token::COMMENT;
                 return i;
@@ -99,7 +99,7 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
                 return 1;
             }
 
-            if ( charAt(z, 2) == 0 )
+            if ( charAt(z, 2).isNull() )
             {
                 token->lemonType = v3 ? TK3_COMMENT : TK2_COMMENT;
                 token->type = Token::COMMENT;
@@ -108,7 +108,7 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
 
                 return 2;
             }
-            for (i = 3, c = charAt(z, 2); (c != '*' || charAt(z, i) != '/') && (c = charAt(z, i)) != 0; i++) {}
+            for (i = 3, c = charAt(z, 2); (c != '*' || charAt(z, i) != '/') && !(c = charAt(z, i)).isNull(); i++) {}
 
             if (tolerant && (c != '*' || charAt(z, i) != '/'))
                 token.dynamicCast<TolerantToken>()->invalid = true;
@@ -236,7 +236,7 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
             z0 == '"')
         {
             QChar delim = z0;
-            for (i = 1; (c = charAt(z, i)) != 0; i++)
+            for (i = 1; !(c = charAt(z, i)).isNull(); i++)
             {
                 if ( c == delim )
                 {
@@ -252,7 +252,7 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
                 token->type = Token::STRING;
                 return i+1;
             }
-            else if ( c != 0 )
+            else if ( !c.isNull() )
             {
                 token->lemonType = v3 ? TK3_ID : TK2_ID;
                 token->type = Token::OTHER;
@@ -293,7 +293,7 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
              * number that begins with ".".  Fall thru into the next case
              */
         }
-        if (z0.isDigit())
+        if (z0.isDigit() || z0 == '.')
         {
             token->lemonType = v3 ? TK3_INTEGER : TK2_INTEGER;
             token->type = Token::INTEGER;
@@ -335,7 +335,7 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
         }
         if (z0 == '[')
         {
-            for (i = 1, c = z0; c!=']' && (c = charAt(z, i)) != 0; i++) {}
+            for (i = 1, c = z0; c!=']' && !(c = charAt(z, i)).isNull(); i++) {}
             if (c == ']')
             {
                 token->lemonType = v3 ? TK3_ID : TK2_ID;
@@ -368,7 +368,7 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
             int n = 0;
             token->lemonType = v3 ? TK3_VARIABLE : TK2_VARIABLE;
             token->type = Token::BIND_PARAM;
-            for (i = 1; (c = charAt(z, i)) != 0; i++)
+            for (i = 1; !(c = charAt(z, i)).isNull(); i++)
             {
                 if ( isIdChar(c) )
                 {
@@ -380,7 +380,7 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
                     {
                         i++;
                     }
-                    while ( (c = charAt(z, i)) != 0 && !c.isSpace() && c != ')' );
+                    while ( !(c = charAt(z, i)).isNull() && !c.isSpace() && c != ')' );
 
                     if ( c==')' )
                     {

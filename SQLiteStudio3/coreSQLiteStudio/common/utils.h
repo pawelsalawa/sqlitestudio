@@ -238,6 +238,8 @@ API_EXPORT int sum(const QList<int>& integers);
 API_EXPORT QString getOsString();
 API_EXPORT bool validateEmail(const QString& email);
 API_EXPORT bool isHex(const QString& str);
+API_EXPORT bool isHex(const QChar& c);
+API_EXPORT bool isHex(const char c);
 API_EXPORT QString formatVersion(int version);
 API_EXPORT bool copyRecursively(const QString& src, const QString& dst);
 API_EXPORT bool renameBetweenPartitions(const QString& src, const QString& dst);
@@ -294,6 +296,8 @@ void removeDuplicates(QList<T>& list)
 API_EXPORT QByteArray serializeToBytes(const QVariant& value);
 
 API_EXPORT QVariant deserializeFromBytes(const QByteArray& bytes);
+
+API_EXPORT QString readFileContents(const QString& path, QString* err);
 
 Q_DECLARE_METATYPE(QList<int>)
 

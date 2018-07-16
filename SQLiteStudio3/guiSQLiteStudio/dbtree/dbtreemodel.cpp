@@ -975,7 +975,7 @@ bool DbTreeModel::pasteData(const QMimeData* data, int row, int column, const QM
 void DbTreeModel::interruptableStarted(Interruptable* obj)
 {
     if (interruptables.size() == 0)
-        treeView->getDbTree()->showWidgetCover();
+        treeView->getDbTree()->showRefreshWidgetCover();
 
     interruptables << obj;
 }
@@ -984,7 +984,7 @@ void DbTreeModel::interruptableFinished(Interruptable* obj)
 {
     interruptables.removeOne(obj);
     if (interruptables.size() == 0)
-        treeView->getDbTree()->hideWidgetCover();
+        treeView->getDbTree()->hideRefreshWidgetCover();
 }
 
 QList<DbTreeItem*> DbTreeModel::getDragItems(const QMimeData* data)

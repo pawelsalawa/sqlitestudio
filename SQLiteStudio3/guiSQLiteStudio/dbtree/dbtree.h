@@ -8,6 +8,7 @@
 #include "guiSQLiteStudio_global.h"
 #include <QDockWidget>
 #include <QSet>
+#include <QAtomicInt>
 
 class WidgetCover;
 class QAction;
@@ -91,6 +92,7 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
             GENERATE_INSERT,
             GENERATE_DELETE,
             OPEN_DB_DIRECTORY,
+            EXEC_SQL_FROM_FILE,
             _separator // Never use it directly, it's just for menu setup
         };
 
@@ -110,8 +112,8 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void restoreSession(const QVariant& sessionValue);
         DbTreeModel* getModel() const;
         DbTreeView* getView() const;
-        void showWidgetCover();
-        void hideWidgetCover();
+        void showRefreshWidgetCover();
+        void hideRefreshWidgetCover();
         void setSelectedItem(DbTreeItem* item);
         bool isMimeDataValidForItem(const QMimeData* mimeData, const DbTreeItem* item, bool forPasting = false);
         QToolBar* getToolBar(int toolbar) const;
@@ -150,6 +152,10 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         QString getSelectedViewName() const;
         QList<DbTreeItem*> getSelectedItems(DbTreeItem::Type itemType);
         QList<DbTreeItem*> getSelectedItems(ItemFilterFunc filterFunc = nullptr);
+        void execFromFileAsync(const QString& path, Db* db, bool ignoreErrors, const QString& codec);
+        bool execQueryFromFile(Db* db, const QString& sql);
+        void handleFileQueryExecution(Db* db, int executed, int attemptedExecutions, bool ok, bool ignoreErrors, int millis);
+        QList<QPair<QString, QString>> executeFileQueries(Db* db, QTextStream& stream, int& executed, int& attemptedExecutions, bool& ok, bool ignoreErrors, qint64 fileSize);
 
         static bool areDbTreeItemsValidForItem(QList<DbTreeItem*> srcItems, const DbTreeItem* dstItem, bool forPasting = false);
         static bool areUrlsValidForItem(const QList<QUrl>& srcUrls, const DbTreeItem* dstItem);
@@ -157,7 +163,10 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
 
         Ui::DbTree *ui = nullptr;
         DbTreeModel* treeModel = nullptr;
-        WidgetCover* widgetCover = nullptr;
+        WidgetCover* treeRefreshWidgetCover = nullptr;
+        WidgetCover* fileExecWidgetCover = nullptr;
+        QAtomicInt executingQueriesFromFile = 0;
+        Db* executingQueriesFromFileDb = nullptr;
 
         static QHash<DbTreeItem::Type,QList<DbTreeItem::Type>> allowedTypesInside;
         static QSet<DbTreeItem::Type> draggableTypes;
@@ -223,6 +232,15 @@ class GUI_API_EXPORT DbTree : public QDockWidget, public ExtActionContainer
         void generateUpdateForTable();
         void generateDeleteForTable();
         void openDbDirectory();
+        void execSqlFromFile();
+        void setFileExecProgress(int newValue);
+        void hideFileExecCover();
+        void showFileExecErrors(const QList<QPair<QString, QString>>& errors, bool rolledBack);
+
+    signals:
+        void updateFileExecProgress(int value);
+        void fileExecCoverToBeClosed();
+        void fileExecErrors(const QList<QPair<QString, QString>>& errors, bool rolledBack);
 };
 
 int qHash(DbTree::Action action);

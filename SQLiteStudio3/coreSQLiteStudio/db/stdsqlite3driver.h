@@ -2,7 +2,7 @@
 #define STDSQLITE3DRIVER_H
 
 #define STD_SQLITE3_DRIVER(Name, Label, Prefix, UppercasePrefix) \
-    struct Name \
+    struct API_EXPORT Name \
     { \
         static_char* label = Label; \
         \
@@ -82,6 +82,7 @@
             {return Prefix##sqlite3_create_function_v2(a1, a2, a3, a4, a5, a6, a7, a8, a9);} \
         static int create_collation_v2(handle* a1, const char *a2, int a3, void *a4, int(*a5)(void*,int,const void*,int,const void*), void(*a6)(void*)) \
             {return Prefix##sqlite3_create_collation_v2(a1, a2, a3, a4, a5, a6);} \
+        static int complete(const char* arg) {return Prefix##sqlite3_complete(arg);} \
     };
 
 #endif // STDSQLITE3DRIVER_H

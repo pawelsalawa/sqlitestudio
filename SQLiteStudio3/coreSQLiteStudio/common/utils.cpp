@@ -823,6 +823,42 @@ bool isHex(const QString& str)
     return ok;
 }
 
+bool isHex(const QChar& c)
+{
+    return isHex(c.toLatin1());
+}
+
+bool isHex(const char c)
+{
+    switch (c)
+    {
+        case 'a':
+        case 'A':
+        case 'b':
+        case 'B':
+        case 'c':
+        case 'C':
+        case 'd':
+        case 'D':
+        case 'e':
+        case 'E':
+        case 'f':
+        case 'F':
+        case '0':
+        case '1':
+        case '2':
+        case '3':
+        case '4':
+        case '5':
+        case '6':
+        case '7':
+        case '8':
+        case '9':
+            return true;
+    }
+    return false;
+}
+
 QString formatVersion(int version)
 {
     int majorVer = version / 10000;
@@ -975,4 +1011,23 @@ QVariant deserializeFromBytes(const QByteArray& bytes)
     QDataStream stream(bytes);
     stream >> deserializedValue;
     return deserializedValue;
+}
+
+QString readFileContents(const QString& path, QString* err)
+{
+    QFile file(path);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        if (err)
+            *err = QObject::tr("Could not open file '%1' for reading: %2").arg(path).arg(file.errorString());
+
+        return QString();
+    }
+
+    QTextStream stream(&file);
+    stream.setCodec("UTF-8");
+    QString contents = stream.readAll();
+    file.close();
+
+    return contents;
 }

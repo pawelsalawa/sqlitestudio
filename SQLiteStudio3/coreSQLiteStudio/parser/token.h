@@ -253,7 +253,7 @@ struct API_EXPORT Token
     /**
      * @brief Literal value of the token, captured directly from the query.
      */
-    QString value = QString::null;
+    QString value;
 
     /**
      * @brief Start position (first character index) of the token in the query.

@@ -1101,17 +1101,14 @@ void SqlEditor::loadFromFile()
 
     setFileDialogInitPathByFile(fName);
 
-    QFile file(fName);
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    QString err;
+    QString sql = readFileContents(fName, &err);
+    if (sql.isNull() && !err.isNull())
     {
-        notifyError(tr("Could not open file '%1' for reading: %2").arg(fName).arg(file.errorString()));
+        notifyError(tr("Could not open file '%1' for reading: %2").arg(fName).arg(err));
         return;
     }
 
-    QTextStream stream(&file);
-    stream.setCodec("UTF-8");
-    QString sql = stream.readAll();
-    file.close();
     setPlainText(sql);
 
     loadedFile = fName;

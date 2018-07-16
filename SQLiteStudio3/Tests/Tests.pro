@@ -32,4 +32,5 @@ SUBDIRS += \
     hash_tables \
     db_ver_conv \
     dsv \
-    UtilsTest
+    UtilsTest \
+    LexerTest

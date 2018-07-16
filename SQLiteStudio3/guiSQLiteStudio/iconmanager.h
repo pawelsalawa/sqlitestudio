@@ -109,6 +109,7 @@ class GUI_API_EXPORT IconManager : public QObject
             DEF_ICON(ERASE,                             "erase")
             DEF_ICON(ERASE_TABLE_DATA,                  "erase_table_data")
             DEF_ICON(EXEC_QUERY,                        "exec_query")
+            DEF_ICON(EXEC_SQL_FROM_FILE,                "execute_sql_from_file")
             DEF_ICON(EXPLAIN_QUERY,                     "explain_query")
             DEF_ICON(EXPORT,                            "export")
             DEF_ICON(EXPORT_FILE_BROWSE,                "export_file_browse")

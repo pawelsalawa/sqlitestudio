@@ -28,6 +28,8 @@ class API_EXPORT DbSqlite3 : public AbstractDb3<Sqlite3>
          * @overload
          */
         DbSqlite3(const QString& name, const QString& path);
+
+        static bool complete(const QString& sql);
 };
 
 #endif // DBSQLITE3_H

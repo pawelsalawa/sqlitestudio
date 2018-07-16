@@ -485,6 +485,12 @@ class API_EXPORT Db : public QObject, public Interruptable
         virtual bool isReadable() = 0;
 
         /**
+         * @brief Tells whether given SQL is a complete statement or not.
+         * @return true if given SQL is complete SQL (or more), or it misses some part.
+         */
+        virtual bool isComplete(const QString& sql) const = 0;
+
+        /**
          * @brief Checks if the database is writable at the moment.
          * @return true if the database is writable, or false otherwise.
          *

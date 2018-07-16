@@ -210,5 +210,6 @@
         <file>img/brick_delete.png</file>
         <file>img/brick_error.png</file>
         <file>img/brick_folder.png</file>
+        <file>img/execute_sql_from_file.png</file>
     </qresource>
 </RCC>

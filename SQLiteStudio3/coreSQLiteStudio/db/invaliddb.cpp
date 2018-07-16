@@ -332,6 +332,11 @@ bool InvalidDb::loadExtension(const QString& filePath, const QString& initFunc)
     return false;
 }
 
+bool InvalidDb::isComplete(const QString& sql) const
+{
+    UNUSED(sql);
+    return false;
+}
 
 void InvalidDb::interrupt()
 {
