@@ -1,6 +1,6 @@
 #!/usr/bin/env tclsh
 
-# tclsh assemble.tcl c:/tmp/installer
+# tclsh assemble.tcl c:/tmp/installer [--repo]
 
 package require platform
 lassign [split [platform::generic] -] OS ARCH

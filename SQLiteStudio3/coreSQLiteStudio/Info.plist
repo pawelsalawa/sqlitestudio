@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
+    <dict>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>CFBundleIconFile</key>
@@ -18,5 +18,32 @@
 	<string>SQLiteStudio</string>
 	<key>CFBundleIdentifier</key>
 	<string>pl.com.salsoft.SQLiteStudio</string>
-</dict>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+	    <dict>
+		<key>CFBundleTypeExtensions</key>
+		<array>
+		    <string>db</string>
+		    <string>sdb</string>
+		    <string>sqlite</string>
+		    <string>db3</string>
+		    <string>s3db</string>
+		    <string>sqlite3</string>
+		    <string>sl3</string>
+		    <string>db2</string>
+		    <string>s2db</string>
+		    <string>sqlite2</string>
+		    <string>sl2</string>
+		</array>
+		<key>CFBundleTypeName</key>
+		<string>SQLite Database Document</string>
+		<key>CFBundleTypeOSTypes</key>
+		<array>
+		    <string>****</string>
+		</array>
+		<key>CFBundleTypeRole</key>
+		<string>Editor</string>
+	    </dict>
+	</array>
+    </dict>
 </plist>
