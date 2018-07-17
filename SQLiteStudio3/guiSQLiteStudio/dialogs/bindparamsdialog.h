@@ -7,7 +7,7 @@ namespace Ui {
     class BindParamsDialog;
 }
 
-class BindParam;
+struct BindParam;
 class MultiEditor;
 
 class BindParamsDialog : public QDialog
