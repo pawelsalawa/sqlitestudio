@@ -14,7 +14,15 @@ TARGET = DbSqliteWx
 TEMPLATE = lib
 
 SOURCES += dbsqlitewx.cpp \
-    dbsqlitewxinstance.cpp
+    dbsqlitewxinstance.cpp \
+    chacha20poly1305.c \
+    fastpbkdf2.c \
+    fileio.c \
+    md5.c \
+    rekeyvacuum.c \
+    sha1.c \
+    shathree.c \
+    test_windirent.c
 
 !unix|isEmpty(WXSQLITE_LIB) {
     SOURCES += carray.c \
@@ -35,7 +43,11 @@ HEADERS += dbsqlitewx.h \
     sqlite3ext.h \
     sqlite3userauth.h \
     dbsqlitewx_global.h \
-    dbsqlitewxinstance.h
+    dbsqlitewxinstance.h \
+    fastpbkdf2.h \
+    sha1.h \
+    sqlite3secure.h \
+    test_windirent.h
 
 DISTFILES += DbSqliteWx.json
 

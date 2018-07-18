@@ -13,11 +13,11 @@
 ** shared libraries that want to be imported as extensions into
 ** an SQLite instance.  Shared libraries that intend to be loaded
 ** as extensions by SQLite should #include this file instead of 
-** wx_sqlite3.h.
+** wxsqlite3.h.
 */
 #ifndef SQLITE3EXT_H
 #define SQLITE3EXT_H
-#include "wx_sqlite3.h"
+#include "wxsqlite3.h"
 
 /*
 ** The following structure holds pointers to all of the SQLite API
@@ -295,6 +295,21 @@ struct wx_sqlite3_api_routines {
   int (*vtab_nochange)(wx_sqlite3_context*);
   int (*value_nochange)(wx_sqlite3_value*);
   const char *(*vtab_collation)(wx_sqlite3_index_info*,int);
+  /* Version 3.24.0 and later */
+  int (*keyword_count)(void);
+  int (*keyword_name)(int,const char**,int*);
+  int (*keyword_check)(const char*,int);
+  wx_sqlite3_str *(*str_new)(wx_sqlite3*);
+  char *(*str_finish)(wx_sqlite3_str*);
+  void (*str_appendf)(wx_sqlite3_str*, const char *zFormat, ...);
+  void (*str_vappendf)(wx_sqlite3_str*, const char *zFormat, va_list);
+  void (*str_append)(wx_sqlite3_str*, const char *zIn, int N);
+  void (*str_appendall)(wx_sqlite3_str*, const char *zIn);
+  void (*str_appendchar)(wx_sqlite3_str*, int N, char C);
+  void (*str_reset)(wx_sqlite3_str*);
+  int (*str_errcode)(wx_sqlite3_str*);
+  int (*str_length)(wx_sqlite3_str*);
+  char *(*str_value)(wx_sqlite3_str*);
 };
 
 /*
@@ -563,8 +578,23 @@ typedef int (*wx_sqlite3_loadext_entry)(
 #define wx_sqlite3_value_pointer          wx_sqlite3_api->value_pointer
 /* Version 3.22.0 and later */
 #define wx_sqlite3_vtab_nochange          wx_sqlite3_api->vtab_nochange
-#define wx_sqlite3_value_nochange         sqltie3_api->value_nochange
-#define wx_sqlite3_vtab_collation         sqltie3_api->vtab_collation
+#define wx_sqlite3_value_nochange         wx_sqlite3_api->value_nochange
+#define wx_sqlite3_vtab_collation         wx_sqlite3_api->vtab_collation
+/* Version 3.24.0 and later */
+#define wx_sqlite3_keyword_count          wx_sqlite3_api->keyword_count
+#define wx_sqlite3_keyword_name           wx_sqlite3_api->keyword_name
+#define wx_sqlite3_keyword_check          wx_sqlite3_api->keyword_check
+#define wx_sqlite3_str_new                wx_sqlite3_api->str_new
+#define wx_sqlite3_str_finish             wx_sqlite3_api->str_finish
+#define wx_sqlite3_str_appendf            wx_sqlite3_api->str_appendf
+#define wx_sqlite3_str_vappendf           wx_sqlite3_api->str_vappendf
+#define wx_sqlite3_str_append             wx_sqlite3_api->str_append
+#define wx_sqlite3_str_appendall          wx_sqlite3_api->str_appendall
+#define wx_sqlite3_str_appendchar         wx_sqlite3_api->str_appendchar
+#define wx_sqlite3_str_reset              wx_sqlite3_api->str_reset
+#define wx_sqlite3_str_errcode            wx_sqlite3_api->str_errcode
+#define wx_sqlite3_str_length             wx_sqlite3_api->str_length
+#define wx_sqlite3_str_value              wx_sqlite3_api->str_value
 #endif /* !defined(SQLITE_CORE) && !defined(SQLITE_OMIT_LOAD_EXTENSION) */
 
 #if !defined(SQLITE_CORE) && !defined(SQLITE_OMIT_LOAD_EXTENSION)
@@ -583,5 +613,4 @@ typedef int (*wx_sqlite3_loadext_entry)(
 #endif
 
 #endif /* SQLITE3EXT_H */
-
 

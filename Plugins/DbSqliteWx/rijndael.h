@@ -1,16 +1,17 @@
 /*
-///////////////////////////////////////////////////////////////////////////////
-// Name:        rijndael.h
-// Purpose:     
-// Author:      Ulrich Telle
-// Modified by:
-// Created:     2006-12-06
-// Copyright:   (c) Ulrich Telle (Copyright for original code see below)
-// Licence:     wxWindows licence
-//
-// The original code is unchanged
-///////////////////////////////////////////////////////////////////////////////
+** Name:        rijndael.h
+** Purpose:     Header file for the Rijndael cipher
+** Author:      Ulrich Telle
+** Created:     2006-12-06
+** Copyright:   (c) 2006-2018 Ulrich Telle
+** License:     LGPL-3.0+ WITH WxWindows-exception-3.1
+**
+** Adjustments were made to make this code work with the wxSQLite3's
+** SQLite encryption extension.
+** The original code is public domain (see comments below).
+*/
 
+/*
 /// \file rijndael.h Interface of the Rijndael cipher
 */
 
@@ -191,5 +192,4 @@ void RijndaelEncrypt(Rijndael* rijndael, UINT8 a[16], UINT8 b[16]);
 void RijndaelDecrypt(Rijndael* rijndael, UINT8 a[16], UINT8 b[16]);
 	
 #endif /* _RIJNDAEL_H_ */
-
 

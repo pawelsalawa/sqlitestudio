@@ -14,7 +14,7 @@
 ** user-authentication extension feature.
 **
 ** To compile with the user-authentication feature, append this file to
-** end of an SQLite amalgamation header file ("wx_sqlite3.h"), then add
+** end of an SQLite amalgamation header file ("wxsqlite3.h"), then add
 ** the SQLITE_USER_AUTHENTICATION compile-time option.  See the
 ** user-auth.txt file in the same source directory as this file for
 ** additional information.
@@ -94,5 +94,4 @@ int wx_sqlite3_user_delete(
 #endif
 
 #endif /* SQLITE_USER_AUTHENTICATION */
-
 

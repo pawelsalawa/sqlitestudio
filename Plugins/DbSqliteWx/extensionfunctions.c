@@ -130,7 +130,7 @@ Original code 2006 June 05 by relicoder.
 #include "wx_sqlite3ext.h"
 SQLITE_EXTENSION_INIT1
 #else
-#include "wx_sqlite3.h"
+#include "wxsqlite3.h"
 #endif
 
 #include <ctype.h>
@@ -1971,6 +1971,5 @@ void print_elem(void *e, i64 c, void* p){
   int ee = *(int*)(e);
   printf("%d => %lld\n", ee,c);
 }
-
 
 

@@ -1,5 +1,19 @@
+/*
+** Name:        codecext.c
+** Purpose:     Implementation of SQLite codec API
+** Author:      Ulrich Telle
+** Created:     2006-12-06
+** Copyright:   (c) 2006-2018 Ulrich Telle
+** License:     LGPL-3.0+ WITH WxWindows-exception-3.1
+*/
+
 #ifndef SQLITE_OMIT_DISKIO
 #ifdef SQLITE_HAS_CODEC
+
+/*
+** Include a "special" version of the VACUUM command
+*/
+#include "rekeyvacuum.c"
 
 #include "codec.h"
 
@@ -23,6 +37,16 @@ void wx_sqlite3CodecFree(void *pCodecArg)
 
 void wx_sqlite3CodecSizeChange(void *pArg, int pageSize, int reservedSize)
 {
+  Codec* pCodec = (Codec*) pArg;
+  pCodec->m_pageSize = pageSize;
+  pCodec->m_reserved = reservedSize;
+}
+
+static void reportCodecError(Btree* pBt, int error)
+{
+  pBt->pBt->pPager->errCode = error;
+  setGetterMethod(pBt->pBt->pPager);
+  pBt->pBt->db->errCode = error;
 }
 
 /*
@@ -30,6 +54,7 @@ void wx_sqlite3CodecSizeChange(void *pArg, int pageSize, int reservedSize)
 */
 void* wx_sqlite3Codec(void* pCodecArg, void* data, Pgno nPageNum, int nMode)
 {
+  int rc = SQLITE_OK;
   Codec* codec = NULL;
   int pageSize;
   if (pCodecArg == NULL)
@@ -49,19 +74,21 @@ void* wx_sqlite3Codec(void* pCodecArg, void* data, Pgno nPageNum, int nMode)
     case 0: /* Undo a "case 7" journal file encryption */
     case 2: /* Reload a page */
     case 3: /* Load a page */
-      if (CodecHasReadKey(codec))
+      if (CodecHasReadCipher(codec))
       {
-        CodecDecrypt(codec, nPageNum, (unsigned char*) data, pageSize);
+        rc = CodecDecrypt(codec, nPageNum, (unsigned char*) data, pageSize);
+        if (rc != SQLITE_OK) reportCodecError(CodecGetBtree(codec), rc);
       }
       break;
 
     case 6: /* Encrypt a page for the main database file */
-      if (CodecHasWriteKey(codec))
+      if (CodecHasWriteCipher(codec))
       {
         unsigned char* pageBuffer = CodecGetPageBuffer(codec);
         memcpy(pageBuffer, data, pageSize);
         data = pageBuffer;
-        CodecEncrypt(codec, nPageNum, (unsigned char*) data, pageSize, 1);
+        rc = CodecEncrypt(codec, nPageNum, (unsigned char*) data, pageSize, 1);
+        if (rc != SQLITE_OK) reportCodecError(CodecGetBtree(codec), rc);
       }
       break;
 
@@ -74,12 +101,13 @@ void* wx_sqlite3Codec(void* pCodecArg, void* data, Pgno nPageNum, int nMode)
          the database's readkey, which is guaranteed to be the same key that was used to
          read the original data.
       */
-      if (CodecHasReadKey(codec))
+      if (CodecHasReadCipher(codec))
       {
         unsigned char* pageBuffer = CodecGetPageBuffer(codec);
         memcpy(pageBuffer, data, pageSize);
         data = pageBuffer;
-        CodecEncrypt(codec, nPageNum, (unsigned char*) data, pageSize, 0);
+        rc = CodecEncrypt(codec, nPageNum, (unsigned char*) data, pageSize, 0);
+        if (rc != SQLITE_OK) reportCodecError(CodecGetBtree(codec), rc);
       }
       break;
   }
@@ -98,13 +126,42 @@ void mySqlite3PagerSetCodec(
   void *pCodec
 );
 
+static int mySqlite3AdjustBtree(Btree* pBt, int nPageSize, int nReserved, int isLegacy)
+{
+  int rc = SQLITE_OK;
+  Pager* pager = wx_sqlite3BtreePager(pBt);
+  int pagesize = wx_sqlite3BtreeGetPageSize(pBt);
+  wx_sqlite3BtreeSecureDelete(pBt, 1);
+  if (nPageSize > 0)
+  {
+    pagesize = nPageSize;
+  }
+
+  /* Adjust the page size and the reserved area */
+  if (pager->nReserve != nReserved)
+  {
+    if (isLegacy != 0)
+    {
+      pBt->pBt->btsFlags &= ~BTS_PAGESIZE_FIXED;
+    }
+    rc = wx_sqlite3BtreeSetPageSize(pBt, pagesize, nReserved, 0);
+  }
+  return rc;
+}
+
 int wx_sqlite3CodecAttach(wx_sqlite3* db, int nDb, const void* zKey, int nKey)
 {
   /* Attach a key to a database. */
   Codec* codec = (Codec*) wx_sqlite3_malloc(sizeof(Codec));
-  CodecInit(codec);
+  int rc = (codec != NULL) ? CodecInit(codec) : SQLITE_NOMEM;
+  if (rc != SQLITE_OK)
+  {
+    /* Unable to allocate memory for the codec base structure */
+    return rc;
+  }
 
   wx_sqlite3_mutex_enter(db->mutex);
+  CodecSetDb(codec, db);
 
   /* No key specified, could mean either use the main db's encryption or no encryption */
   if (zKey == NULL || nKey <= 0)
@@ -112,61 +169,76 @@ int wx_sqlite3CodecAttach(wx_sqlite3* db, int nDb, const void* zKey, int nKey)
     /* No key specified */
     if (nDb != 0 && nKey > 0)
     {
+      /* Main database possibly encrypted, no key explicitly given for attached database */
       Codec* mainCodec = (Codec*) mySqlite3PagerGetCodec(wx_sqlite3BtreePager(db->aDb[0].pBt));
       /* Attached database, therefore use the key of main database, if main database is encrypted */
       if (mainCodec != NULL && CodecIsEncrypted(mainCodec))
       {
-        CodecCopy(codec, mainCodec);
-        CodecSetBtree(codec, db->aDb[nDb].pBt);
+        rc = CodecCopy(codec, mainCodec);
+        if (rc == SQLITE_OK)
+        {
+          CodecSetBtree(codec, db->aDb[nDb].pBt);
+          mySqlite3AdjustBtree(db->aDb[nDb].pBt, CodecGetPageSizeReadCipher(codec), CodecGetReservedReadCipher(codec), CodecGetLegacyReadCipher(codec));
 #if (SQLITE_VERSION_NUMBER >= 3006016)
-        mySqlite3PagerSetCodec(wx_sqlite3BtreePager(db->aDb[nDb].pBt), wx_sqlite3Codec, wx_sqlite3CodecSizeChange, wx_sqlite3CodecFree, codec);
+          mySqlite3PagerSetCodec(wx_sqlite3BtreePager(db->aDb[nDb].pBt), wx_sqlite3Codec, wx_sqlite3CodecSizeChange, wx_sqlite3CodecFree, codec);
 #else
 #if (SQLITE_VERSION_NUMBER >= 3003014)
-        wx_sqlite3PagerSetCodec(wx_sqlite3BtreePager(db->aDb[nDb].pBt), wx_sqlite3Codec, codec);
+          wx_sqlite3PagerSetCodec(wx_sqlite3BtreePager(db->aDb[nDb].pBt), wx_sqlite3Codec, codec);
 #else
-        wx_sqlite3pager_set_codec(wx_sqlite3BtreePager(db->aDb[nDb].pBt), wx_sqlite3Codec, codec);
+          wx_sqlite3pager_set_codec(wx_sqlite3BtreePager(db->aDb[nDb].pBt), wx_sqlite3Codec, codec);
 #endif
-        db->aDb[nDb].pAux = codec;
-        db->aDb[nDb].xFreeAux = wx_sqlite3CodecFree;
+          db->aDb[nDb].pAux = codec;
+          db->aDb[nDb].xFreeAux = wx_sqlite3CodecFree;
 #endif
+        }
+        else
+        {
+          /* Replicating main codec failed, do not attach incomplete codec */
+          wx_sqlite3CodecFree(codec);
+        }
       }
       else
       {
-        CodecSetIsEncrypted(codec, 0);
+        /* Main database not encrypted */
         wx_sqlite3CodecFree(codec);
       }
     }
     else
     {
-      CodecSetIsEncrypted(codec, 0);
+      /* Main database not encrypted, no key given for attached database */
       wx_sqlite3CodecFree(codec);
     }
   }
   else
   {
     /* Key specified, setup encryption key for database */
-    CodecSetIsEncrypted(codec, 1);
-    CodecSetHasReadKey(codec, 1);
-    CodecSetHasWriteKey(codec, 1);
-    CodecGenerateReadKey(codec, (char*) zKey, nKey);
-    CodecCopyKey(codec, 1);
     CodecSetBtree(codec, db->aDb[nDb].pBt);
+    rc = CodecSetup(codec, GetCipherType(db), (char*) zKey, nKey);
+    if (rc == SQLITE_OK)
+    {
+      mySqlite3AdjustBtree(db->aDb[nDb].pBt, CodecGetPageSizeReadCipher(codec), CodecGetReservedReadCipher(codec), CodecGetLegacyReadCipher(codec));
 #if (SQLITE_VERSION_NUMBER >= 3006016)
-    mySqlite3PagerSetCodec(wx_sqlite3BtreePager(db->aDb[nDb].pBt), wx_sqlite3Codec, wx_sqlite3CodecSizeChange, wx_sqlite3CodecFree, codec);
+      mySqlite3PagerSetCodec(wx_sqlite3BtreePager(db->aDb[nDb].pBt), wx_sqlite3Codec, wx_sqlite3CodecSizeChange, wx_sqlite3CodecFree, codec);
 #else
 #if (SQLITE_VERSION_NUMBER >= 3003014)
-    wx_sqlite3PagerSetCodec(wx_sqlite3BtreePager(db->aDb[nDb].pBt), wx_sqlite3Codec, codec);
+      wx_sqlite3PagerSetCodec(wx_sqlite3BtreePager(db->aDb[nDb].pBt), wx_sqlite3Codec, codec);
 #else
-    wx_sqlite3pager_set_codec(wx_sqlite3BtreePager(db->aDb[nDb].pBt), wx_sqlite3Codec, codec);
+      wx_sqlite3pager_set_codec(wx_sqlite3BtreePager(db->aDb[nDb].pBt), wx_sqlite3Codec, codec);
 #endif
-    db->aDb[nDb].pAux = codec;
-    db->aDb[nDb].xFreeAux = wx_sqlite3CodecFree;
+      db->aDb[nDb].pAux = codec;
+      db->aDb[nDb].xFreeAux = wx_sqlite3CodecFree;
 #endif
+    }
+    else
+    {
+      /* Setting up codec failed, do not attach incomplete codec */
+      wx_sqlite3CodecFree(codec);
+    }
   }
 
   wx_sqlite3_mutex_leave(db->mutex);
 
-  return SQLITE_OK;
+  return rc;
 }
 
 void wx_sqlite3CodecGetKey(wx_sqlite3* db, int nDb, void** zKey, int* nKey)
@@ -217,9 +289,14 @@ int wx_sqlite3_key(wx_sqlite3 *db, const void *zKey, int nKey)
 
 int wx_sqlite3_key_v2(wx_sqlite3 *db, const char *zDbName, const void *zKey, int nKey)
 {
-  /* The key is only set for the main database, not the temp database  */
-  int dbIndex = dbFindIndex(db, zDbName);
-  return wx_sqlite3CodecAttach(db, dbIndex, zKey, nKey);
+  int rc = SQLITE_ERROR;
+  if ((db != NULL) && (zKey != NULL) && (nKey > 0))
+  {
+    /* The key is only set for the main database, not the temp database  */
+    int dbIndex = dbFindIndex(db, zDbName);
+    rc = wx_sqlite3CodecAttach(db, dbIndex, zKey, nKey);
+  }
+  return rc;
 }
 
 int wx_sqlite3_rekey_v2(wx_sqlite3 *db, const char *zDbName, const void *zKey, int nKey)
@@ -227,75 +304,111 @@ int wx_sqlite3_rekey_v2(wx_sqlite3 *db, const char *zDbName, const void *zKey, i
   /* Changes the encryption key for an existing database. */
   int dbIndex = dbFindIndex(db, zDbName);
   int rc = SQLITE_ERROR;
-  Btree* pbt = db->aDb[dbIndex].pBt;
-  Pager* pPager = wx_sqlite3BtreePager(pbt);
-  Codec* codec = (Codec*) mySqlite3PagerGetCodec(pPager);
+  Btree* pBt = db->aDb[dbIndex].pBt;
+  int nReserved;
+  Pager* pPager;
+  Codec* codec;
+
+  wx_sqlite3BtreeEnter(pBt);
+  nReserved = wx_sqlite3BtreeGetReserveNoMutex(pBt);
+  wx_sqlite3BtreeLeave(pBt);
+
+  pPager = wx_sqlite3BtreePager(pBt);
+  codec = (Codec*) mySqlite3PagerGetCodec(pPager);
 
   if ((zKey == NULL || nKey == 0) && (codec == NULL || !CodecIsEncrypted(codec)))
   {
-    /*
-    // Database not encrypted and key not specified
-    // therefore do nothing
-	*/
+    /* Database not encrypted and key not specified, therefore do nothing	*/
     return SQLITE_OK;
-  }
-
-  if (codec == NULL || !CodecIsEncrypted(codec))
-  {
-    /*
-    // Database not encrypted, but key specified
-    // therefore encrypt database
-	*/
-    if (codec == NULL)
-    {
-      codec = (Codec*) wx_sqlite3_malloc(sizeof(Codec));
-	    CodecInit(codec);
-    }
-
-    CodecSetIsEncrypted(codec, 1);
-    CodecSetHasReadKey(codec, 0); /* Original database is not encrypted */
-    CodecSetHasWriteKey(codec, 1);
-    CodecGenerateWriteKey(codec, (char*) zKey, nKey);
-    CodecSetBtree(codec, pbt);
-#if (SQLITE_VERSION_NUMBER >= 3006016)
-    mySqlite3PagerSetCodec(pPager, wx_sqlite3Codec, wx_sqlite3CodecSizeChange, wx_sqlite3CodecFree, codec);
-#else
-#if (SQLITE_VERSION_NUMBER >= 3003014)
-    wx_sqlite3PagerSetCodec(pPager, wx_sqlite3Codec, codec);
-#else
-    wx_sqlite3pager_set_codec(pPager, wx_sqlite3Codec, codec);
-#endif
-    db->aDb[dbIndex].pAux = codec;
-    db->aDb[dbIndex].xFreeAux = wx_sqlite3CodecFree;
-#endif
-  }
-  else if (zKey == NULL || nKey == 0)
-  {
-    /*
-    // Database encrypted, but key not specified
-    // therefore decrypt database
-    // Keep read key, drop write key
-	*/
-    CodecSetHasWriteKey(codec, 0);
-  }
-  else
-  {
-    /*
-    // Database encrypted and key specified
-    // therefore re-encrypt database with new key
-    // Keep read key, change write key to new key
-	*/
-    CodecGenerateWriteKey(codec, (char*) zKey, nKey);
-    CodecSetHasWriteKey(codec, 1);
   }
 
   wx_sqlite3_mutex_enter(db->mutex);
 
+  if (codec == NULL || !CodecIsEncrypted(codec))
+  {
+    /* Database not encrypted, but key specified, therefore encrypt database	*/
+    if (codec == NULL)
+    {
+      codec = (Codec*) wx_sqlite3_malloc(sizeof(Codec));
+      rc = (codec != NULL) ? CodecInit(codec) : SQLITE_NOMEM;
+    }
+    if (rc == SQLITE_OK)
+    {
+      CodecSetDb(codec, db);
+      CodecSetBtree(codec, pBt);
+      rc = CodecSetupWriteCipher(codec, GetCipherType(db), (char*) zKey, nKey);
+    }
+    if (rc == SQLITE_OK)
+    {
+      int nReservedWriteCipher;
+
+      CodecSetHasReadCipher(codec, 0); /* Original database is not encrypted */
+      mySqlite3AdjustBtree(pBt, CodecGetPageSizeWriteCipher(codec), CodecGetReservedWriteCipher(codec), CodecGetLegacyWriteCipher(codec));
+#if (SQLITE_VERSION_NUMBER >= 3006016)
+      mySqlite3PagerSetCodec(pPager, wx_sqlite3Codec, wx_sqlite3CodecSizeChange, wx_sqlite3CodecFree, codec);
+#else
+#if (SQLITE_VERSION_NUMBER >= 3003014)
+      wx_sqlite3PagerSetCodec(pPager, wx_sqlite3Codec, codec);
+#else
+      wx_sqlite3pager_set_codec(pPager, wx_sqlite3Codec, codec);
+#endif
+      db->aDb[dbIndex].pAux = codec;
+      db->aDb[dbIndex].xFreeAux = wx_sqlite3CodecFree;
+#endif
+      nReservedWriteCipher = CodecGetReservedWriteCipher(codec);
+      if (nReserved != nReservedWriteCipher)
+      {
+        /* Use VACUUM to change the number of reserved bytes */
+        char* err;
+        rc = wx_sqlite3RunVacuumForRekey(&err, db, dbIndex, nReservedWriteCipher);
+        goto leave_rekey;
+      }
+    }
+    else
+    {
+      return rc;
+    }
+  }
+  else if (zKey == NULL || nKey == 0)
+  {
+    /* Database encrypted, but key not specified, therefore decrypt database */
+    /* Keep read key, drop write key */
+    CodecSetHasWriteCipher(codec, 0);
+    if (nReserved > 0)
+    {
+      /* Use VACUUM to change the number of reserved bytes */
+      char* err;
+      rc = wx_sqlite3RunVacuumForRekey(&err, db, dbIndex, 0);
+      goto leave_rekey;
+    }
+  }
+  else
+  {
+    /* Database encrypted and key specified, therefore re-encrypt database with new key */
+    /* Keep read key, change write key to new key */
+    rc = CodecSetupWriteCipher(codec, GetCipherType(db), (char*) zKey, nKey);
+    if (rc == SQLITE_OK)
+    {
+      int nReservedWriteCipher = CodecGetReservedWriteCipher(codec);
+      if (nReserved != nReservedWriteCipher)
+      {
+        /* Use VACUUM to change the number of reserved bytes */
+        char* err;
+        rc = wx_sqlite3RunVacuumForRekey(&err, db, dbIndex, nReservedWriteCipher);
+        goto leave_rekey;
+      }
+    }
+    else
+    {
+      goto leave_rekey;
+    }
+  }
+
   /* Start transaction */
-  rc = wx_sqlite3BtreeBeginTrans(pbt, 1);
+  rc = wx_sqlite3BtreeBeginTrans(pBt, 1);
   if (!rc)
   {
-    int pageSize = wx_sqlite3BtreeGetPageSize(pbt);
+    int pageSize = wx_sqlite3BtreeGetPageSize(pBt);
     Pgno nSkip = WX_PAGER_MJ_PGNO(pageSize);
 #if (SQLITE_VERSION_NUMBER >= 3003014)
     DbPage *pPage;
@@ -345,7 +458,7 @@ int wx_sqlite3_rekey_v2(wx_sqlite3 *db, const char *zDbName, const void *zKey, i
   if (rc == SQLITE_OK)
   {
     /* Commit transaction if all pages could be rewritten */
-    rc = wx_sqlite3BtreeCommit(pbt);
+    rc = wx_sqlite3BtreeCommit(pBt);
   }
   if (rc != SQLITE_OK)
   {
@@ -353,7 +466,7 @@ int wx_sqlite3_rekey_v2(wx_sqlite3 *db, const char *zDbName, const void *zKey, i
 #if (SQLITE_VERSION_NUMBER >= 3008007)
     /* Unfortunately this change was introduced in version 3.8.7.2 which cannot be detected using the SQLITE_VERSION_NUMBER */
     /* That is, compilation will fail for version 3.8.7 or 3.8.7.1  ==> Please change manually ... or upgrade to 3.8.7.2 or higher */
-    wx_sqlite3BtreeRollback(pbt, SQLITE_OK, 0);
+    wx_sqlite3BtreeRollback(pBt, SQLITE_OK, 0);
 #elif (SQLITE_VERSION_NUMBER >= 3007011)
     wx_sqlite3BtreeRollback(pbt, SQLITE_OK);
 #else
@@ -361,15 +474,17 @@ int wx_sqlite3_rekey_v2(wx_sqlite3 *db, const char *zDbName, const void *zKey, i
 #endif
   }
 
+leave_rekey:
   wx_sqlite3_mutex_leave(db->mutex);
 
+/*leave_final:*/
   if (rc == SQLITE_OK)
   {
     /* Set read key equal to write key if necessary */
-    if (CodecHasWriteKey(codec))
+    if (CodecHasWriteCipher(codec))
     {
-      CodecCopyKey(codec, 0);
-      CodecSetHasReadKey(codec, 1);
+      CodecCopyCipher(codec, 0);
+      CodecSetHasReadCipher(codec, 1);
     }
     else
     {
@@ -379,9 +494,9 @@ int wx_sqlite3_rekey_v2(wx_sqlite3 *db, const char *zDbName, const void *zKey, i
   else
   {
     /* Restore write key if necessary */
-    if (CodecHasReadKey(codec))
+    if (CodecHasReadCipher(codec))
     {
-      CodecCopyKey(codec, 1);
+      CodecCopyCipher(codec, 1);
     }
     else
     {
@@ -416,5 +531,4 @@ int wx_sqlite3_rekey(wx_sqlite3 *db, const void *zKey, int nKey)
 #endif /* SQLITE_HAS_CODEC */
 
 #endif /* SQLITE_OMIT_DISKIO */
-
 

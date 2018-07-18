@@ -1,18 +1,19 @@
 /*
-///////////////////////////////////////////////////////////////////////////////
-// Name:        rijndael.cpp
-// Purpose:     
-// Author:      Ulrich Telle
-// Modified by:
-// Created:     2006-12-06
-// Copyright:   (c) Ulrich Telle (Copyright for original code see below)
-// Licence:     wxWindows licence
-//
-// The original code is unchanged
-///////////////////////////////////////////////////////////////////////////////
+** Name:        rijndael.c
+** Purpose:     Implementation of the Rijndael cipher
+** Author:      Ulrich Telle
+** Created:     2006-12-06
+** Copyright:   (c) 2006-2018 Ulrich Telle
+** License:     LGPL-3.0+ WITH WxWindows-exception-3.1
+**
+** Adjustments were made to make this code work with the wxSQLite3's
+** SQLite encryption extension.
+** The original code is public domain (see comments below).
+*/
 
+/*
 /// \file rijndael.cpp Implementation of the Rijndael cipher
-
+//
 // File : rijndael.cpp
 // Creation date : Sun Nov 5 2000 03:22:10 CEST
 // Author : Szymon Stefanek (stefanek@tin.it)
@@ -38,11 +39,8 @@
 //
 //    This code is placed in the public domain.
 //
-
-//
 // This implementation works on 128 , 192 , 256 bit keys
 // and on 128 bit blocks
-//
 */
 
 #define _RIJNDAEL_CPP_
@@ -1052,7 +1050,7 @@ int RijndaelInit(Rijndael* rijndael, int mode, int dir, UINT8* key, int keyLen, 
 
 int RijndaelBlockEncrypt(Rijndael* rijndael, UINT8 *input,int inputLen,UINT8 *outBuffer)
 {
-  int i, k, numBlocks;
+  int i, k, numBlocks, lenFrag;
   UINT8 block[16], iv[4][4];
 
   if (rijndael->m_state != RIJNDAEL_State_Valid) return RIJNDAEL_NOT_INITIALIZED;
@@ -1061,6 +1059,7 @@ int RijndaelBlockEncrypt(Rijndael* rijndael, UINT8 *input,int inputLen,UINT8 *ou
   if (input == 0 || inputLen <= 0) return 0;
 
   numBlocks = inputLen/128;
+  lenFrag = (inputLen % 128) / 8;
   
   switch (rijndael->m_mode)
   {
@@ -1088,6 +1087,21 @@ int RijndaelBlockEncrypt(Rijndael* rijndael, UINT8 *input,int inputLen,UINT8 *ou
         outBuffer += 16;
         RijndaelEncrypt(rijndael, block,outBuffer);
         input += 16;
+      }
+      /**/
+      if (lenFrag > 0)
+      {
+        UINT8 lastblock[16];
+        /* Adjust the second last plainblock. */
+        memcpy(lastblock, outBuffer, lenFrag);
+        /* Encrypt the last plainblock. */
+        memcpy(block, outBuffer, 16);
+        for (i = 0; i < lenFrag; i++)
+        {
+          block[i] ^= input[i];
+        }
+        RijndaelEncrypt(rijndael, block, outBuffer);
+        memcpy(outBuffer + 16, lastblock, lenFrag);
       }
     break;
     case RIJNDAEL_Direction_Mode_CFB1:
@@ -1199,7 +1213,7 @@ int RijndaelPadEncrypt(Rijndael* rijndael, UINT8 *input, int inputOctets, UINT8 
   
 int RijndaelBlockDecrypt(Rijndael* rijndael, UINT8 *input, int inputLen, UINT8 *outBuffer)
 {
-  int i, k, numBlocks;
+  int i, k, numBlocks, lenFrag;
   UINT8 block[16], iv[4][4];
 
   if (rijndael->m_state != RIJNDAEL_State_Valid) return RIJNDAEL_NOT_INITIALIZED;
@@ -1208,6 +1222,7 @@ int RijndaelBlockDecrypt(Rijndael* rijndael, UINT8 *input, int inputLen, UINT8 *
   if (input == 0 || inputLen <= 0)return 0;
 
   numBlocks = inputLen/128;
+  lenFrag = (inputLen % 128) / 8;
 
   switch (rijndael->m_mode)
   {
@@ -1220,6 +1235,37 @@ int RijndaelBlockDecrypt(Rijndael* rijndael, UINT8 *input, int inputLen, UINT8 *
       }
     break;
     case RIJNDAEL_Direction_Mode_CBC:
+      if (lenFrag > 0)
+      {
+        UINT8 lastblock[16];
+        int offset;
+        --numBlocks;
+        offset = numBlocks * 16;
+        /* Decrypt the last plainblock. */
+        RijndaelDecrypt(rijndael, input + offset, block);
+        for (i = 0; i < lenFrag; i++)
+        {
+          lastblock[i] = block[i] ^ (input + offset + 16)[i];
+        }
+        /* Decrypt the second last block. */
+        memcpy(block, input + offset + 16, lenFrag);
+        RijndaelDecrypt(rijndael, block, outBuffer + offset);
+        memcpy(outBuffer + offset + 16, lastblock, lenFrag);
+        if (offset == 0)
+        {
+          for (i = 0; i < 16; i++)
+          {
+            (outBuffer + offset)[i] ^= rijndael->m_initVector[i];
+          }
+        }
+        else
+        {
+          for (i = 0; i < 16; i++)
+          {
+            (outBuffer + offset)[i] ^= (input + offset - 16)[i];
+          }
+        }
+      }
 #if STRICT_ALIGN 
       memcpy(iv,rijndael->m_initVector,16); 
 #else
@@ -1628,5 +1674,4 @@ void RijndaelInvalidate(Rijndael* rijndael)
 {
   rijndael->m_state = RIJNDAEL_State_Invalid;
 }
-
 

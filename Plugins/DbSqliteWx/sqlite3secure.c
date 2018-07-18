@@ -1,4 +1,13 @@
 /*
+** Name:        wx_sqlite3secure.c
+** Purpose:     Amalgamation of the wxSQLite3 encryption extension for SQLite
+** Author:      Ulrich Telle
+** Created:     2006-12-06
+** Copyright:   (c) 2006-2018 Ulrich Telle
+** License:     LGPL-3.0+ WITH WxWindows-exception-3.1
+*/
+
+/*
 ** Enable SQLite debug assertions if requested
 */
 #ifndef SQLITE_DEBUG
@@ -29,9 +38,17 @@
 #endif
 
 #include "wxsqlite3.c"
-#ifdef SQLITE_USER_AUTHENTICATION
-#include "sha2.h"
+
+/*
+** Crypto algorithms
+*/
+#include "md5.c"
+#include "sha1.c"
 #include "sha2.c"
+#include "fastpbkdf2.c"
+#include "chacha20poly1305.c"
+
+#ifdef SQLITE_USER_AUTHENTICATION
 #include "userauth.c"
 #endif
 
@@ -140,26 +157,70 @@ void mySqlite3PagerSetCodec(
 #if defined(SQLITE_ENABLE_EXTFUNC) || defined(SQLITE_ENABLE_CSV) || defined(SQLITE_ENABLE_SHA3) || defined(SQLITE_ENABLE_CARRAY) || defined(SQLITE_ENABLE_FILEIO) || defined(SQLITE_ENABLE_SERIES)
 
 static
-void registerAllExtensions(wx_sqlite3 *db, char **pzErrMsg, const wx_sqlite3_api_routines *pApi)
+int registerAllExtensions(wx_sqlite3 *db, char **pzErrMsg, const wx_sqlite3_api_routines *pApi)
 {
+  int rc = SQLITE_OK;
+#ifdef SQLITE_HAS_CODEC
+  CodecParameter* codecParameterTable = CloneCodecParameterTable();
+  rc = (codecParameterTable != NULL) ? SQLITE_OK : SQLITE_NOMEM;
+  if (rc == SQLITE_OK)
+  {
+    rc = wx_sqlite3_create_function_v2(db, "wxwx_sqlite3_config_table", 0, SQLITE_UTF8 | SQLITE_DETERMINISTIC,
+                                    codecParameterTable, wxwx_sqlite3_config_table, 0, 0, (void(*)(void*)) FreeCodecParameterTable);
+  }
+  if (rc == SQLITE_OK)
+  {
+    rc = wx_sqlite3_create_function(db, "wxwx_sqlite3_config", 1, SQLITE_UTF8 | SQLITE_DETERMINISTIC,
+                                 codecParameterTable, wxwx_sqlite3_config_params, 0, 0);
+  }
+  if (rc == SQLITE_OK)
+  {
+    rc = wx_sqlite3_create_function(db, "wxwx_sqlite3_config", 2, SQLITE_UTF8 | SQLITE_DETERMINISTIC,
+                                 codecParameterTable, wxwx_sqlite3_config_params, 0, 0);
+  }
+  if (rc == SQLITE_OK)
+  {
+    rc = wx_sqlite3_create_function(db, "wxwx_sqlite3_config", 3, SQLITE_UTF8 | SQLITE_DETERMINISTIC,
+                                 codecParameterTable, wxwx_sqlite3_config_params, 0, 0);
+  }
+#endif
 #ifdef SQLITE_ENABLE_EXTFUNC
-    RegisterExtensionFunctions(db);
+  if (rc == SQLITE_OK)
+  {
+    rc = RegisterExtensionFunctions(db);
+  }
 #endif
 #ifdef SQLITE_ENABLE_CSV
-    wx_sqlite3_csv_init(db, NULL, NULL);
+  if (rc == SQLITE_OK)
+  {
+    rc = wx_sqlite3_csv_init(db, NULL, NULL);
+  }
 #endif
 #ifdef SQLITE_ENABLE_SHA3
-    wx_sqlite3_shathree_init(db, NULL, NULL);
+  if (rc == SQLITE_OK)
+  {
+    rc = wx_sqlite3_shathree_init(db, NULL, NULL);
+  }
 #endif
 #ifdef SQLITE_ENABLE_CARRAY
-    wx_sqlite3_carray_init(db, NULL, NULL);
+  if (rc == SQLITE_OK)
+  {
+    rc = wx_sqlite3_carray_init(db, NULL, NULL);
+  }
 #endif
 #ifdef SQLITE_ENABLE_FILEIO
-    wx_sqlite3_fileio_init(db, NULL, NULL);
+  if (rc == SQLITE_OK)
+  {
+    rc = wx_sqlite3_fileio_init(db, NULL, NULL);
+  }
 #endif
 #ifdef SQLITE_ENABLE_SERIES
-    wx_sqlite3_series_init(db, NULL, NULL);
+  if (rc == SQLITE_OK)
+  {
+    rc = wx_sqlite3_series_init(db, NULL, NULL);
+  }
 #endif
+  return rc;
 }
 
 SQLITE_API int wx_sqlite3_open(
@@ -170,7 +231,7 @@ SQLITE_API int wx_sqlite3_open(
   int ret = wx_sqlite3_open_internal(filename, ppDb);
   if (ret == 0)
   {
-    registerAllExtensions(*ppDb, NULL, NULL);
+    ret = registerAllExtensions(*ppDb, NULL, NULL);
   }
   return ret;
 }
@@ -183,7 +244,7 @@ SQLITE_API int wx_sqlite3_open16(
   int ret = wx_sqlite3_open16_internal(filename, ppDb);
   if (ret == 0)
   {
-    registerAllExtensions(*ppDb, NULL, NULL);
+    ret = registerAllExtensions(*ppDb, NULL, NULL);
   }
   return ret;
 }
@@ -198,11 +259,10 @@ SQLITE_API int wx_sqlite3_open_v2(
   int ret = wx_sqlite3_open_v2_internal(filename, ppDb, flags, zVfs);
   if (ret == 0)
   {
-    registerAllExtensions(*ppDb, NULL, NULL);
+    ret = registerAllExtensions(*ppDb, NULL, NULL);
   }
   return ret;
 }
 
 #endif
-
 

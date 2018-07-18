@@ -7,28 +7,23 @@ proc process {f} {
   
   set data [string map [list sqlite3 wx_sqlite3] $data]
   set data [string map [list wx_sqlite3.c wxsqlite3.c] $data]
+  set data [string map [list wx_sqlite3.h wxsqlite3.h] $data]
   
   set fd [open $f w]
   puts $fd $data
   close $fd
 }
 
-foreach f {
-	wxsqlite3.c
-	wxsqlite3.h
-	sqlite3ext.h
-	sqlite3secure.c
-	sqlite3userauth.h
-	userauth.c
-	extensionfunctions.c
-	codec.c
-	codec.h
-	codecext.c
-	csv.c
-	rijndael.c
-	rijndael.h
-	sha2.h
-	sha2.c
-} {
+if {[file exists sqlite3.c]} {
+	file rename -force sqlite3.c wxsqlite3.c
+}
+
+if {[file exists sqlite3.h]} {
+	file rename -force sqlite3.h wxsqlite3.h
+	file copy -force wxsqlite3.h wxsqlite3_unmodified.h
+}
+
+foreach f [concat [glob -nocomplain *.c] [glob -nocomplain *.h]] {
+	if {[string match -nocase "dbsqlitewx*" $f]} continue
 	process $f
 }

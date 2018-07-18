@@ -31,7 +31,7 @@
  * SUCH DAMAGE.
  */
 
-#if 0
+#if 1
 #define UNROLL_LOOPS /* Enable loops unrolling */
 #endif
 
@@ -324,6 +324,11 @@ void sha256_transf(sha256_ctx *ctx, const unsigned char *message,
     }
 }
 
+void sha256_transform(sha256_ctx *ctx, const unsigned char *message)
+{
+  sha256_transf(ctx, message, 1);
+}
+
 void sha256(const unsigned char *message, unsigned int len, unsigned char *digest)
 {
     sha256_ctx ctx;
@@ -518,6 +523,11 @@ void sha512_transf(sha512_ctx *ctx, const unsigned char *message,
         ctx->h[6] += wv[6]; ctx->h[7] += wv[7];
 #endif /* !UNROLL_LOOPS */
     }
+}
+
+void sha512_transform(sha512_ctx *ctx, const unsigned char *message)
+{
+  sha512_transf(ctx, message, 1);
 }
 
 void sha512(const unsigned char *message, unsigned int len,
@@ -947,6 +957,5 @@ int main()
 }
 
 #endif /* TEST_VECTORS */
-
 
 

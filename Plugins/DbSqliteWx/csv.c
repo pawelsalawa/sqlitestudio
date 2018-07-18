@@ -132,6 +132,7 @@ static int csv_reader_open(
     }
     p->in = fopen(zFilename, "rb");
     if( p->in==0 ){
+      wx_sqlite3_free(p->zIn);
       csv_reader_reset(p);
       csv_errmsg(p, "cannot open '%s' for reading", zFilename);
       return 1;
@@ -204,7 +205,8 @@ static int csv_append(CsvReader *p, char c){
 **   +  Store the character that terminates the field in p->cTerm.  Store
 **      EOF on end-of-file.
 **
-** Return "" at EOF.  Return 0 on an OOM error.
+** Return 0 at EOF or on OOM.  On EOF, the p->cTerm character will have
+** been set to EOF.
 */
 static char *csv_read_one_field(CsvReader *p){
   int c;
@@ -212,7 +214,7 @@ static char *csv_read_one_field(CsvReader *p){
   c = csv_getc(p);
   if( c==EOF ){
     p->cTerm = EOF;
-    return "";
+    return 0;
   }
   if( c=='"' ){
     int pc, ppc;
@@ -543,8 +545,7 @@ static int csvtabConnect(
     pNew->nCol = nCol;
   }else{
     do{
-      const char *z = csv_read_one_field(&sRdr);
-      if( z==0 ) goto csvtab_connect_oom;
+      csv_read_one_field(&sRdr);
       pNew->nCol++;
     }while( sRdr.cTerm==',' );
   }
@@ -662,7 +663,6 @@ static int csvtabNext(wx_sqlite3_vtab_cursor *cur){
   do{
     z = csv_read_one_field(&pCur->rdr);
     if( z==0 ){
-      csv_xfer_error(pTab, &pCur->rdr);
       break;
     }
     if( i<pTab->nCol ){
@@ -885,5 +885,4 @@ int wx_sqlite3_csv_init(
   return SQLITE_OK;
 #endif
 }
-
 
