@@ -4,22 +4,14 @@
 <context>
     <name>AbstractDb</name>
     <message>
-        <location filename="../db/abstractdb.cpp" line="306"/>
-        <location filename="../db/abstractdb.cpp" line="323"/>
+        <location filename="../db/abstractdb.cpp" line="343"/>
+        <location filename="../db/abstractdb.cpp" line="360"/>
         <source>Cannot execute query on closed database.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../db/abstractdb.cpp" line="603"/>
+        <location filename="../db/abstractdb.cpp" line="643"/>
         <source>Error attaching database %1: %2</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>BugReporter</name>
-    <message>
-        <location filename="../services/bugreporter.cpp" line="46"/>
-        <source>Invalid login or password</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -148,12 +140,12 @@
 <context>
     <name>ConfigImpl</name>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="729"/>
+        <location filename="../services/impl/configimpl.cpp" line="863"/>
         <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="736"/>
+        <location filename="../services/impl/configimpl.cpp" line="870"/>
         <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -171,25 +163,25 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="351"/>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="380"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="355"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="384"/>
         <source>Database file doesn&apos;t exist.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="353"/>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="382"/>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="605"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="357"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="386"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="609"/>
         <source>No supporting plugin loaded.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="523"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="527"/>
         <source>Database could not be initialized.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/impl/dbmanagerimpl.cpp" line="533"/>
+        <location filename="../services/impl/dbmanagerimpl.cpp" line="537"/>
         <source>No suitable database driver plugin found.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -256,17 +248,17 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
 <context>
     <name>DbVersionConverter</name>
     <message>
-        <location filename="../dbversionconverter.cpp" line="916"/>
+        <location filename="../dbversionconverter.cpp" line="932"/>
         <source>Target file exists, but could not be overwritten.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbversionconverter.cpp" line="935"/>
+        <location filename="../dbversionconverter.cpp" line="951"/>
         <source>Could not find proper database plugin to create target database.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbversionconverter.cpp" line="1169"/>
+        <location filename="../dbversionconverter.cpp" line="1185"/>
         <source>Error while converting database: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -789,71 +781,77 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../db/abstractdb2.h" line="206"/>
-        <location filename="../db/abstractdb3.h" line="356"/>
+        <location filename="../db/abstractdb2.h" line="222"/>
+        <location filename="../db/abstractdb3.h" line="384"/>
         <source>Could not open database: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../db/abstractdb2.h" line="817"/>
-        <location filename="../db/abstractdb3.h" line="1104"/>
+        <location filename="../db/abstractdb2.h" line="833"/>
+        <location filename="../db/abstractdb3.h" line="1132"/>
         <source>Result set expired or no row available.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../db/abstractdb3.h" line="376"/>
+        <location filename="../db/abstractdb3.h" line="328"/>
+        <location filename="../db/abstractdb3.h" line="332"/>
+        <source>Could not load extension %1: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../db/abstractdb3.h" line="405"/>
         <source>Could not close database: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbversionconverter.cpp" line="137"/>
-        <location filename="../dbversionconverter.cpp" line="142"/>
-        <location filename="../dbversionconverter.cpp" line="195"/>
-        <location filename="../dbversionconverter.cpp" line="240"/>
-        <location filename="../dbversionconverter.cpp" line="245"/>
-        <location filename="../dbversionconverter.cpp" line="253"/>
-        <location filename="../dbversionconverter.cpp" line="331"/>
+        <location filename="../dbversionconverter.cpp" line="138"/>
+        <location filename="../dbversionconverter.cpp" line="143"/>
+        <location filename="../dbversionconverter.cpp" line="196"/>
+        <location filename="../dbversionconverter.cpp" line="243"/>
+        <location filename="../dbversionconverter.cpp" line="248"/>
+        <location filename="../dbversionconverter.cpp" line="256"/>
+        <location filename="../dbversionconverter.cpp" line="336"/>
         <source>SQLite %1 does not support &apos;%2&apos; statement.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbversionconverter.cpp" line="201"/>
+        <location filename="../dbversionconverter.cpp" line="202"/>
         <source>SQLite %1 does not support &apos;%2&apos; statement, but the regular table can be created instead if you proceed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbversionconverter.cpp" line="424"/>
+        <location filename="../dbversionconverter.cpp" line="429"/>
         <source>Could not parse statement: %1
 Error details: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbversionconverter.cpp" line="435"/>
-        <location filename="../dbversionconverter.cpp" line="461"/>
-        <location filename="../dbversionconverter.cpp" line="482"/>
-        <location filename="../dbversionconverter.cpp" line="515"/>
+        <location filename="../dbversionconverter.cpp" line="440"/>
+        <location filename="../dbversionconverter.cpp" line="468"/>
+        <location filename="../dbversionconverter.cpp" line="491"/>
+        <location filename="../dbversionconverter.cpp" line="529"/>
         <source>SQLite %1 does not support the &apos;%2&apos; clause. Cannot convert &apos;%3&apos; statement with that clause.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbversionconverter.cpp" line="488"/>
+        <location filename="../dbversionconverter.cpp" line="497"/>
         <source>SQLite %1 does not support the &apos;%2&apos; clause in the &apos;%3&apos; statement.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbversionconverter.cpp" line="756"/>
+        <location filename="../dbversionconverter.cpp" line="772"/>
         <source>SQLite %1 does not support current date or time clauses in expressions.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbversionconverter.cpp" line="759"/>
+        <location filename="../dbversionconverter.cpp" line="775"/>
         <source>SQLite %1 does not support row value clauses in expressions.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../dbversionconverter.cpp" line="770"/>
-        <location filename="../dbversionconverter.cpp" line="773"/>
-        <location filename="../dbversionconverter.cpp" line="784"/>
+        <location filename="../dbversionconverter.cpp" line="786"/>
+        <location filename="../dbversionconverter.cpp" line="789"/>
+        <location filename="../dbversionconverter.cpp" line="800"/>
         <source>SQLite %1 does not support &apos;%2&apos; clause in expressions.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -870,13 +868,13 @@ Error details: %2</source>
     </message>
     <message>
         <location filename="../parser/sqlite2_parse.cpp" line="1904"/>
-        <location filename="../parser/sqlite3_parse.cpp" line="2170"/>
+        <location filename="../parser/sqlite3_parse.cpp" line="2212"/>
         <source>Parser stack overflow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../parser/sqlite2_parse.cpp" line="4465"/>
-        <location filename="../parser/sqlite3_parse.cpp" line="5108"/>
+        <location filename="../parser/sqlite3_parse.cpp" line="5195"/>
         <source>Syntax error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -941,48 +939,48 @@ Error details: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="628"/>
+        <location filename="../services/impl/configimpl.cpp" line="768"/>
         <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Tried to initialize the file at following localizations: %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="291"/>
+        <location filename="../sqlitestudio.cpp" line="305"/>
         <source>General purpose</source>
         <comment>plugin category name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="292"/>
+        <location filename="../sqlitestudio.cpp" line="306"/>
         <source>Database support</source>
         <comment>plugin category name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="293"/>
+        <location filename="../sqlitestudio.cpp" line="307"/>
         <source>Code formatter</source>
         <comment>plugin category name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="294"/>
+        <location filename="../sqlitestudio.cpp" line="308"/>
         <source>Scripting languages</source>
         <comment>plugin category name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="295"/>
+        <location filename="../sqlitestudio.cpp" line="309"/>
         <source>Exporting</source>
         <comment>plugin category name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="296"/>
+        <location filename="../sqlitestudio.cpp" line="310"/>
         <source>Importing</source>
         <comment>plugin category name</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sqlitestudio.cpp" line="297"/>
+        <location filename="../sqlitestudio.cpp" line="311"/>
         <source>Table populating</source>
         <comment>plugin category name</comment>
         <translation type="unfinished"></translation>
@@ -993,35 +991,35 @@ Error details: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="389"/>
+        <location filename="../tablemodifier.cpp" line="438"/>
         <source>All columns indexed by the index %1 are gone. The index will not be recreated after table modification.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="432"/>
+        <location filename="../tablemodifier.cpp" line="481"/>
         <source>There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="447"/>
+        <location filename="../tablemodifier.cpp" line="496"/>
         <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="479"/>
+        <location filename="../tablemodifier.cpp" line="528"/>
         <source>Cannot not update trigger %1 according to table %2 modification.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="497"/>
+        <location filename="../tablemodifier.cpp" line="546"/>
         <source>Cannot not update view %1 according to table %2 modifications.
 The view will remain as it is.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../tablemodifier.cpp" line="659"/>
-        <location filename="../tablemodifier.cpp" line="683"/>
-        <location filename="../tablemodifier.cpp" line="702"/>
+        <location filename="../tablemodifier.cpp" line="708"/>
+        <location filename="../tablemodifier.cpp" line="732"/>
+        <location filename="../tablemodifier.cpp" line="751"/>
         <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1038,6 +1036,11 @@ The view will remain as it is.</source>
     <message>
         <location filename="../viewmodifier.cpp" line="82"/>
         <source>SQLiteStudio was unable to resolve columns returned by the new view, therefore it won&apos;t be able to tell which triggers might fail during the recreation process.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../common/utils.cpp" line="1022"/>
+        <source>Could not open file &apos;%1&apos; for reading: %2</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1059,13 +1062,13 @@ The view will remain as it is.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="338"/>
-        <location filename="../db/queryexecutor.cpp" line="612"/>
+        <location filename="../db/queryexecutor.cpp" line="339"/>
+        <location filename="../db/queryexecutor.cpp" line="618"/>
         <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../db/queryexecutor.cpp" line="523"/>
+        <location filename="../db/queryexecutor.cpp" line="529"/>
         <source>SQLiteStudio was unable to extract metadata from the query. Results won&apos;t be editable.</source>
         <translation type="unfinished"></translation>
     </message>

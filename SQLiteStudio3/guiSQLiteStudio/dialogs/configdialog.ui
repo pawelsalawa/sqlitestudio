@@ -229,7 +229,7 @@
           </sizepolicy>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>3</number>
          </property>
          <widget class="QWidget" name="databaseListPage">
           <layout class="QVBoxLayout" name="verticalLayout_36">
@@ -437,7 +437,7 @@
                      <number>999999</number>
                     </property>
                     <property name="cfg" stdset="0">
-                     <string>General.PopulateHistorySize</string>
+                     <string notr="true">General.PopulateHistorySize</string>
                     </property>
                    </widget>
                   </item>
@@ -869,7 +869,7 @@
                  <number>999999</number>
                 </property>
                 <property name="cfg" stdset="0">
-                 <string>General.BindParamsCacheSize</string>
+                 <string notr="true">General.BindParamsCacheSize</string>
                 </property>
                </widget>
               </item>

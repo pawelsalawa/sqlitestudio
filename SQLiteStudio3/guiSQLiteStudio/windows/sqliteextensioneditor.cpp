@@ -69,8 +69,8 @@ void SqliteExtensionEditor::createActions()
     createAction(COMMIT, ICONS.COMMIT, tr("Commit all extension changes"), this, SLOT(commit()), ui->toolbar);
     createAction(ROLLBACK, ICONS.ROLLBACK, tr("Rollback all extension changes"), this, SLOT(rollback()), ui->toolbar);
     ui->toolbar->addSeparator();
-    createAction(ADD, ICONS.EXTENSION_ADD, tr("Create new extension"), this, SLOT(newExtension()), ui->toolbar);
-    createAction(DELETE, ICONS.EXTENSION_DELETE, tr("Delete selected extension"), this, SLOT(deleteExtension()), ui->toolbar);
+    createAction(ADD, ICONS.EXTENSION_ADD, tr("Add new extension"), this, SLOT(newExtension()), ui->toolbar);
+    createAction(DELETE, ICONS.EXTENSION_DELETE, tr("Remove selected extension"), this, SLOT(deleteExtension()), ui->toolbar);
     ui->toolbar->addSeparator();
     createAction(HELP, ICONS.HELP, tr("Editing extensions manual"), this, SLOT(help()), ui->toolbar);
 }
