@@ -7,6 +7,7 @@
 #include "collationmanagermock.h"
 #include "dbattachermock.h"
 #include "dbmanagermock.h"
+#include "extensionmanagermock.h"
 
 MockRepository* mockRepository = nullptr;
 
@@ -34,4 +35,5 @@ void initMocks()
     SQLITESTUDIO->setDbAttacherFactory(new DbAttacherFactoryMock());
     SQLITESTUDIO->setDbManager(new DbManagerMock());
     SQLITESTUDIO->setCollationManager(new CollationManagerMock());
+    SQLITESTUDIO->setSqliteExtensionManager(new ExtensionManagerMock());
 }
