@@ -1,7 +1,66 @@
 [3.2.0]
-        * [BUGFIX]: Fixed random crashes at application close (when saving session). Most frequend on Windows platform.
+        * [NEW]: #3188 New plugin to have images stored in database being visible as another tab in the Form View or cell's editor dialog window.
+        * [NEW]: #3207 #1444 #2547 Export, Import & Populate dialog settings are remembered, even after application restart.
+        * [NEW]: #3268 Query bind parameters are now supported by the query editor while execution - user will be asked for values for these parameters in a dedicated dialog.
+        * [NEW]: #3267 Added Extension Manager window, where all SQLite extensions can be registered for loading into databases.
+        * [NEW]: #3161 Added support for table-valued functions (https://sqlite.org/vtab.html#tabfunc2)
+        * [NEW]: #3349 Added support for UPSERT syntax from SQLite 3.24.0.
+        * [NEW]: #3292 Added possibility to execute huge SQL files directly from disk, without loading them to SQL Editor.
+        * [NEW]: #3265 Completely new installer for SQLiteStudio is introduced. It bases on Qt Installer Framework. This addresses numerous issues with automatic updates that SQLiteStudio had. It also allows for some new features, like automatic file association under Windows (#3178). Portable (download & run, without installation) distribution continues to be available.
+        * [NEW]: #2659 AutoIncrement option is now always available in PK configuration dialog. When AutoIncrement is enabled, a datatype will be enforced to INTEGER type.
+        * [NEW]: #2798 Added filter inputs per column as an option.
+        * [NEW]: #3224 Added context menu for SQL history tab to delete individual (or a range of selected) entries. Also a "delete" key can be used.
+        * [NEW]: #2651 Only a single instance of SQLiteStudio can be running at the time. If another instance is requested, the first one will be brought to the front of windows stack. If another instance was requested due to associated file being open, then the first instance will not only be raised, but also the requested file will be added to database list as temporary, volatile database (not added permanently to configuration).
+        * [NEW]: #3033 Ctrl+Shift+c copies data including headers. Also context menu entry added for the same.
+        * [NEW]: #2962 Pasting single value to multiple cells results in pasting the value into all selected cells, not just to first one.
+        * [NEW]: #2907 The "Open file's directory" menu item added to database list for database nodes.
+        * [NEW]: #3388 Added file association entries in the plist for MacOSX
+        * [NEW]: #3163 Added menubar accelerator keys.
+        * [CHANGE]: #3257 #3260 #3271 Bug/Feature reports are now completely managed by GitHub. Bug report dialog is no longer present in the application, but instead the menu entry opens web browser on project's GitHub page.
+        * [CHANGE]: #3285 SQLCipher and wxSQLite3 plugins can now be linked to system-provided libraries, which is especially useful under Linux. Instructions were added to the wiki page: https://github.com/pawelsalawa/sqlitestudio/wiki/Instructions_for_compilation_under_Linux#linking-with-system-provided-libraries
+        * [CHANGE]: #3284 SQLite3 upgraded to version 3.24.0 (excluding SQLCipher plugin, which is still on 3.20.1).
+        * [CHANGE]: API of QueryExecutor enhanced to provide custom steps at certain stages of execution. Steps can be injected by plugins.
+        * [CHANGE]: #3121 Column widths are kept between data reloads.
+        * [CHANGE]: #3024 Edit in editor action in cell's context menu stands now "show in viewer" if clicked on read-only cell. Also "set null" and "erase" are not displayed if none of selected cells is editable.
+        * [CHANGE]: #3142 Horizontal scroll position is now preserved between sort request on a data view.
+        * [CHANGE]: #2971 Column width is now mostly based on data width, not header width, but if there is little columns to be displayed, the header width is also considered.
+        * [CHANGE]: #3323 Disabled automatic line wrapping in SQL editor and all other code edition fields in the application.
+        * [BUGFIX]: #3259 #3215 #3327 Stop interpreting "+3" or "0010" as numeric types if entered to TEXT column (or any other column not declared as numeric-ish).
+        * [BUGFIX]: #3191 CSV import speed improved. It's 1400 times faster. It's not a joke. The bug used to cause the import to be terribly slow. Also other importing plugins gained around 400% of speed.
+        * [BUGFIX]: #3119 Fixed extra "empty" row of data when importing from CSV with a new, empty line at the end.
         * [BUGFIX]: #3235 Crash when opening DB dialog, but file was moved.
-        * [BUGFIX]: #3116 Fixed compliation errors for Qt 5.8.
+        * [BUGFIX]: #3185 Fixed creation of new tables/views if "Data" tab is configured as first.
+        * [BUGFIX]: #3279 Fixed reporting rows affected with DELETE statement for SQLite2.
+        * [BUGFIX]: #3023 Optimized SQL editor widget to work with huge contents.
+        * [BUGFIX]: Fixed random crashes at application close (when saving session). Most frequend on Windows platform.
+        * [BUGFIX]: #3252 Fixed first character input when starting to edit FK column data.
+        * [BUGFIX]: #3251 Fixed DEFAULT constraint dialog to work wit "literal values in double-quotes"
+        * [BUGFIX]: #3084 #3085 Fixed beeps under MacOSX when editing FK cell.
+        * [BUGFIX]: #3293 Fixed deault shortcut for code assistant under MacOSX from Cmd-Space to Ctrl-Space, so it does not conflict with Spotlight
+        * [BUGFIX]: #3190 Fixed handling WITHOUT ROWID and unusual column name.
+        * [BUGFIX]: #3177 Fixed tab indentations when selecting even part of a line.
+        * [BUGFIX]: #3171 Pasting object to same database is prevented.
+        * [BUGFIX]: #3176 Fixed exporting with Common Table Expression (the WITH statement).
+        * [BUGFIX]: #3162 Fixed order of column headers in Index Dialog
+        * [BUGFIX]: #3159 Fixed dictionary populating plugin to recognize different new-line characters.
+        * [BUGFIX]: #3156 Fixed recognition of double-quoted values.
+        * [BUGFIX]: #3093 Columns with AUTOINCREMENT statement are defaulted to null for new rows in Form View, so they get committed this way (unless manually changed) and they become an auto generated values.
+        * [BUGFIX]: #3086 #3187 Fixed internal task ordering when drag&dropping tasks on the taskbar, so switching between tasks with keyboard shortcut reflects order of tasks on the taskbar.
+        * [BUGFIX]: #3173 Added support for detecting and trimming whitespace in pasted text (thanks to nishanthkarthik for contributing this)
+        * [BUGFIX]: #2922 Fixed CTE execution by QueryExecutor, so it understands columns from CTE (not editable columns for now, maybe will become editable in future).
+        * [BUGFIX]: #2964 SQL history tab shows now local time of execution, not UTC.
+        * [BUGFIX]: #3290 Fixed querying data for FK dropdown from tables/columns with unusual characters in name. Also fixed name-wrapping for objects that have unescaped wrapper character inside of their name.
+        * [BUGFIX]: #3305 Introduced dynamic limit for number of rows per page - based on number of columns, so it's less likely to hit the memory limit.
+        * [BUGFIX]: #3311 Fixed floating point numbers handling.
+        * [BUGFIX]: #3383 Fixed JSON export plugin for quoted names.
+        * [BUGFIX]: #3347 #3351 Fixed QCheckBox in several places, so text() of it is not used as a valid data. This is to address issues with automatic accelerator keys.
+        * [BUGFIX]: Addressed some concurrency erorrs in SQLite 2 plugin
+        * [BUGFIX]: #3139 #3116 #3326 #3341 Various code compiling issues addressed.
+        * [BUGFIX]: #3145 #3165 #3179 Fixed various typos in messages/interface.
+        * [BUGFIX]: #3333 Fixed unit test to honor new features of TableModifier, but also fixed few bugs in TableModifier.
+        * [BUGFIX]: #3277 Open Source license issues addressed (specific exceptions for OpenSSL and icons)
+        * [BUGFIX]: #2966 Application icon added to package.
+        * [BUGFIX]: Few other bugfixes made on the fly, while working on other issues.
 
 [3.1.1]
         * [ADDED]: WxSQLite3 plugin (with encryption support).
