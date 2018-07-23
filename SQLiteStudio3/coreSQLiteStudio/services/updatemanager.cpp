@@ -7,6 +7,7 @@
 #include <QRegularExpression>
 #include <QCoreApplication>
 #include <QFileInfo>
+#include <QtConcurrent/QtConcurrentRun>
 
 UpdateManager::UpdateManager(QObject *parent) :
     QObject(parent)
@@ -51,6 +52,11 @@ void UpdateManager::checkForUpdates()
         return;
     }
 
+    QtConcurrent::run(this, &UpdateManager::checkForUpdatesAsync);
+}
+
+void UpdateManager::checkForUpdatesAsync()
+{
     QProcess proc;
     proc.start(updateBinaryAbsolutePath, {"--checkupdates"});
     if (!waitForProcess(proc))

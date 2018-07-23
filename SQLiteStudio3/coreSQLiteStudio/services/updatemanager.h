@@ -34,6 +34,7 @@ class API_EXPORT UpdateManager : public QObject
     private:
         QString updateBinaryAbsolutePath;
 
+        void checkForUpdatesAsync();
         bool waitForProcess(QProcess& proc);
         void processCheckResults(const QByteArray& results);
 
