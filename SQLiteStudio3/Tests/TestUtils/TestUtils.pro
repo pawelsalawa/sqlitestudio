@@ -23,7 +23,8 @@ SOURCES += \
     mocks.cpp \
     dbattachermock.cpp \
     dbmanagermock.cpp \
-    collationmanagermock.cpp
+    collationmanagermock.cpp \
+    extensionmanagermock.cpp
 
 HEADERS +=\
         testutils_global.h \
@@ -35,7 +36,8 @@ HEADERS +=\
     mocks.h \
     dbattachermock.h \
     dbmanagermock.h \
-    collationmanagermock.h
+    collationmanagermock.h \
+    extensionmanagermock.h
 
 unix:!symbian {
     maemo5 {
