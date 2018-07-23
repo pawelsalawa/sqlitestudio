@@ -1,4 +1,4 @@
-- [x] Upgrade SQLCipher and WxSqlite versions.
+- [x] Upgrade SQLCipher, System.Data.SQLite and WxSqlite versions.
 - [x] Check if app compiles for different Qt versions
 - [x] Verify final release version
 - [x] Update ChangeLog
