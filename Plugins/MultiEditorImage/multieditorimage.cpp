@@ -107,7 +107,7 @@ void MultiEditorImage::openFile()
     QFile file(fileName);
     if (!file.open(QIODevice::ReadOnly))
     {
-        notifyError(tr("Could not nopen file %1 for reading.").arg(fileName));
+        notifyError(tr("Could not open file %1 for reading.").arg(fileName));
         return;
     }
 

@@ -73,7 +73,12 @@ Would you like to select another one, or leave it unconfigured?</source>
 <context>
     <name>DbAndroidInstance</name>
     <message>
-        <location filename="dbandroidinstance.cpp" line="141"/>
+        <location filename="dbandroidinstance.cpp" line="74"/>
+        <source>Android SQLite driver does not support loadable extensions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="dbandroidinstance.cpp" line="156"/>
         <source>Connection with Android database &apos;%1&apos; lost.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -205,83 +210,83 @@ Would you like to select another one, or leave it unconfigured?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dbandroidpathdialog.cpp" line="382"/>
+        <location filename="dbandroidpathdialog.cpp" line="362"/>
         <source>Enter valid IP address.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dbandroidpathdialog.cpp" line="387"/>
+        <location filename="dbandroidpathdialog.cpp" line="367"/>
         <source>Pick Android device.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dbandroidpathdialog.cpp" line="391"/>
+        <location filename="dbandroidpathdialog.cpp" line="371"/>
         <source>Pick Android database.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dbandroidpathdialog.cpp" line="415"/>
+        <location filename="dbandroidpathdialog.cpp" line="395"/>
         <source>Selected Android application is unknown, or not debuggable.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dbandroidpathdialog.cpp" line="442"/>
+        <location filename="dbandroidpathdialog.cpp" line="422"/>
         <source>Create new database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dbandroidpathdialog.cpp" line="442"/>
+        <location filename="dbandroidpathdialog.cpp" line="422"/>
         <source>Please provide name for the new database.
 It&apos;s the name which Android application will use to connect to the database:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dbandroidpathdialog.cpp" line="450"/>
-        <location filename="dbandroidpathdialog.cpp" line="459"/>
-        <location filename="dbandroidpathdialog.cpp" line="468"/>
+        <location filename="dbandroidpathdialog.cpp" line="430"/>
+        <location filename="dbandroidpathdialog.cpp" line="439"/>
+        <location filename="dbandroidpathdialog.cpp" line="448"/>
         <source>Invalid name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dbandroidpathdialog.cpp" line="450"/>
+        <location filename="dbandroidpathdialog.cpp" line="430"/>
         <source>Database with the same name (%1) already exists on the device.
 The name must be unique.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dbandroidpathdialog.cpp" line="459"/>
+        <location filename="dbandroidpathdialog.cpp" line="439"/>
         <source>Could not create database &apos;%1&apos;, because could not connect to the device.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dbandroidpathdialog.cpp" line="468"/>
+        <location filename="dbandroidpathdialog.cpp" line="448"/>
         <source>Could not create database &apos;%1&apos;.
 Details: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dbandroidpathdialog.cpp" line="483"/>
+        <location filename="dbandroidpathdialog.cpp" line="463"/>
         <source>Delete database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dbandroidpathdialog.cpp" line="483"/>
+        <location filename="dbandroidpathdialog.cpp" line="463"/>
         <source>Are you sure you want to delete database &apos;%1&apos; from %2?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dbandroidpathdialog.cpp" line="504"/>
-        <location filename="dbandroidpathdialog.cpp" line="510"/>
+        <location filename="dbandroidpathdialog.cpp" line="484"/>
+        <location filename="dbandroidpathdialog.cpp" line="490"/>
         <source>Error deleting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dbandroidpathdialog.cpp" line="504"/>
+        <location filename="dbandroidpathdialog.cpp" line="484"/>
         <source>Could not connect to %1 in order to delete database &apos;%2&apos;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="dbandroidpathdialog.cpp" line="510"/>
+        <location filename="dbandroidpathdialog.cpp" line="490"/>
         <source>Could not delete database named &apos;%1&apos; from the device.
 Android device refused deletion, or it was impossible.</source>
         <translation type="unfinished"></translation>
