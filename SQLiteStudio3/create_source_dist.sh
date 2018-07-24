@@ -10,10 +10,11 @@ OLDDIR=`pwd`
 TEMP=`mktemp -d`
 cd $TEMP
 
-svn co svn://sqlitestudio.pl/sqlitestudio3/$path sqlitestudio
+#svn co svn://sqlitestudio.pl/sqlitestudio3/$path sqlitestudio
+git clone https://github.com/pawelsalawa/sqlitestudio.git sqlitestudio
 
 cd sqlitestudio
-rm -rf .svn
+rm -rf .git .gitignore
 
 VERSION_INT=`cat SQLiteStudio3/coreSQLiteStudio/sqlitestudio.cpp | grep static | grep sqlitestudioVersion | sed 's/\;//'`
 VERSION=`echo $VERSION_INT | awk '{print int($6/10000) "." int($6/100%100) "." int($6%100)}'`
