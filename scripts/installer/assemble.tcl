@@ -151,7 +151,7 @@ proc defineGlobalVars {} {
 			set ::libPref "lib"
 			set ::dirsToSkipInPathBeginning 1
 			set qtCoreFile "$::portableDir/SQLiteStudio/SQLiteStudio.app/Contents/Frameworks/QtCore.framework/QtCore"
-			set ::output [file normalize $::targetDir/InstallSQLiteStudio-${::sqliteStudioVersion}.dmg]
+			set ::output [file normalize $::targetDir/InstallSQLiteStudio-${::sqliteStudioVersion}]
 		}
 		"win32" {
 			set ::portableDir [file normalize ../../output/portable]
@@ -302,8 +302,15 @@ proc copyConfig {targetDir} {
 }
 
 proc createOutputBinary {targetDir} {
-	puts "Creating installer binary: $::output"
-	exec binarycreator -f -p $targetDir/packages -c $targetDir/config/config.xml $::output
+	if {$::OS == "macosx"} {
+	    puts "Creating installer binary: $::output.dmg"
+	    exec binarycreator -f -p $targetDir/packages -c $targetDir/config/config.xml $::output.dmg
+	    puts "Creating installer binary: $::output"
+	    exec binarycreator -f -p $targetDir/packages -c $targetDir/config/config.xml $::output
+	} else {
+	    puts "Creating installer binary: $::output"
+	    exec binarycreator -f -p $targetDir/packages -c $targetDir/config/config.xml $::output
+	}
 }
 
 proc createOutputRepo {targetDir} {
