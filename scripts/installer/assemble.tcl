@@ -151,7 +151,7 @@ proc defineGlobalVars {} {
 			set ::libPref "lib"
 			set ::dirsToSkipInPathBeginning 1
 			set qtCoreFile "$::portableDir/SQLiteStudio/SQLiteStudio.app/Contents/Frameworks/QtCore.framework/QtCore"
-			set ::output [file normalize $::targetDir/InstallSQLiteStudio-${::sqliteStudioVersion}]
+			set ::output [file normalize $::targetDir/InstallSQLiteStudio-${::sqliteStudioVersion}.dmg]
 		}
 		"win32" {
 			set ::portableDir [file normalize ../../output/portable]

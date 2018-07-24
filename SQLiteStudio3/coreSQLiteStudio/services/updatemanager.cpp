@@ -12,6 +12,8 @@
 UpdateManager::UpdateManager(QObject *parent) :
     QObject(parent)
 {
+    qRegisterMetaType<QList<UpdateManager::UpdateEntry>>();
+
     connect(this, SIGNAL(updatingError(QString)), NOTIFY_MANAGER, SLOT(error(QString)));
 
     QString updateBinary =

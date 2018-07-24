@@ -44,6 +44,8 @@ class API_EXPORT UpdateManager : public QObject
         void updatingError(const QString& errorMessage);
 };
 
+Q_DECLARE_METATYPE(QList<UpdateManager::UpdateEntry>)
+
 #define UPDATES SQLITESTUDIO->getUpdateManager()
 
 #endif // PORTABLE_CONFIG
