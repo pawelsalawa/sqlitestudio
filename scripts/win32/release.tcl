@@ -7,7 +7,7 @@ file delete -force ../../output
 puts "Compiling app."
 exec tclsh ./compile.tcl
 puts "Creating portable distro."
-exec tclsh ./create_dist_pkg.tcl
+puts [exec tclsh ./create_dist_pkg.tcl]
 
 cd ../../output/portable/SQLiteStudio
 set VER [lindex [exec sqlitestudiocli --version] 1]
@@ -16,7 +16,7 @@ cd $OLDDIR
 puts "Generating installator file."
 cd ../installer
 file delete -force $TARGET_DIR
-exec tclsh assemble.tcl $TARGET_DIR --repo
+puts [exec tclsh assemble.tcl $TARGET_DIR --repo]
 
 puts "Installing in temporary location"
 file delete -force $TMP_DIR
