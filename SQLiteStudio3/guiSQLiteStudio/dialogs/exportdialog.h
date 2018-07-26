@@ -46,7 +46,8 @@ class GUI_API_EXPORT ExportDialog : public QWizard
         ExportPlugin* getSelectedPlugin() const;
         void updatePluginOptions(ExportPlugin* plugin, int& optionsRow);
         void storeStdConfig(const ExportManager::StandardExportConfig& stdConfig);
-        void readStdConfig();
+        void readStdConfigForFirstPage();
+        void readStdConfigForLastPage();
         void doExport();
         void exportDatabase(const ExportManager::StandardExportConfig& stdConfig, const QString& format);
         void exportTable(const ExportManager::StandardExportConfig& stdConfig, const QString& format);
@@ -98,6 +99,7 @@ class GUI_API_EXPORT ExportDialog : public QWizard
 
     public slots:
         void accept();
+        int exec();
 
     signals:
         void formatPageCompleteChanged();

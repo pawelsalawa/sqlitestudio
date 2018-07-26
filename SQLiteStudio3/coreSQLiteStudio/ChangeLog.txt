@@ -1,3 +1,8 @@
+[3.2.1]
+		* [BUGFIX]: #3399 Fixed start under Linux using the pre-compiled binary distributions (it used to fail due to missing xcb dependency).
+		* [BUGFIX]: #3398 Fixed 'export data' checkbox in export dialog to not ignore it anymore.
+		* [BUGFIX]: Binary packages now include the MultiEditorImage plugin, which introduces the picture preview for BLOB values. It was introduced in 3.2.0, but missing in binary distributions.
+
 [3.2.0]
         * [NEW]: #3188 New plugin to have images stored in database being visible as another tab in the Form View or cell's editor dialog window.
         * [NEW]: #3207 #1444 #2547 Export, Import & Populate dialog settings are remembered, even after application restart.
