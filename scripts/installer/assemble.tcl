@@ -112,6 +112,7 @@ switch $::OS {
 			lib/libQt5Script.so
 			lib/libQt5Svg.so
 			lib/libQt5Widgets.so
+			lib/libQt5XcbQpa.so
 			lib/libQt5Xml.so
 			lib/libicudata.so
 			lib/libicui18n.so
