@@ -371,7 +371,7 @@ void ExportDialog::formatPageDisplayed()
 
         formatPageVisited = true;
     }
-    readStdConfig();
+    readStdConfigForLastPage();
     pluginSelected();
 
     emit formatPageCompleteChanged();
@@ -574,6 +574,12 @@ void ExportDialog::accept()
     doExport();
 }
 
+int ExportDialog::exec()
+{
+    readStdConfigForFirstPage();
+    return QDialog::exec();
+}
+
 void ExportDialog::updatePluginOptions(ExportPlugin* plugin, int& optionsRow)
 {
     safe_delete(pluginOptionsWidget);
@@ -628,7 +634,19 @@ void ExportDialog::storeStdConfig(const ExportManager::StandardExportConfig &std
     CFG->commit();
 }
 
-void ExportDialog::readStdConfig()
+void ExportDialog::readStdConfigForFirstPage()
+{
+    bool exportData = CFG->get(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_DATA, true).toBool();
+    if (exportMode == ExportManager::DATABASE)
+        ui->exportDbDataCheck->setChecked(exportData);
+    else if (exportMode == ExportManager::TABLE)
+        ui->exportTableDataCheck->setChecked(exportData);
+
+    ui->exportTableIndexesCheck->setChecked(CFG->get(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_IDX, true).toBool());
+    ui->exportTableTriggersCheck->setChecked(CFG->get(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_TRIG, true).toBool());
+}
+
+void ExportDialog::readStdConfigForLastPage()
 {
     QString format = CFG->get(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_FORMAT).toString();
     int idx = ui->formatCombo->findText(format);
@@ -639,15 +657,6 @@ void ExportDialog::readStdConfig()
     ui->exportFileRadio->setChecked(!useClipboard);
     ui->exportClipboardRadio->setChecked(useClipboard);
     ui->exportFileEdit->setText(CFG->get(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_FILE, QString()).toString());
-
-    bool exportData = CFG->get(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_DATA, true).toBool();
-    if (exportMode == ExportManager::DATABASE)
-        ui->exportDbDataCheck->setChecked(exportData);
-    else if (exportMode == ExportManager::TABLE)
-        ui->exportTableDataCheck->setChecked(exportData);
-
-    ui->exportTableIndexesCheck->setChecked(CFG->get(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_IDX, true).toBool());
-    ui->exportTableTriggersCheck->setChecked(CFG->get(EXPORT_DIALOG_CFG_GROUP, EXPORT_DIALOG_CFG_TRIG, true).toBool());
 
     // Codec is read within updateExportOutputOptions()
 }

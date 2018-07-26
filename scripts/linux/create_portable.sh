@@ -35,7 +35,7 @@ OUTPUT=`pwd`/../../output
 cd $OUTPUT
 
 required_modules="libQt5Core.so libQt5Concurrent.so libQt5DBus.so libQt5Gui.so libQt5Network.so libQt5PrintSupport.so libQt5Script.so libQt5Widgets.so libQt5Xml.so \
-  libQt5Svg.so"
+  libQt5Svg.so libQt5XcbQpa.so"
 required_plugins="platforms/libqxcb.so imageformats/libqgif.so imageformats/libqicns.so imageformats/libqico.so imageformats/libqjpeg.so \
   imageformats/libqsvg.so imageformats/libqtga.so imageformats/libqtiff.so iconengines/libqsvgicon.so printsupport/libcupsprintersupport.so"
 optional_plugins="platformthemes/libqgtk3.so"
