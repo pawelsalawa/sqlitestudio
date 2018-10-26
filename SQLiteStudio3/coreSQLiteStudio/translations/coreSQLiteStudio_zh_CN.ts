@@ -76,57 +76,57 @@
     <message>
         <location filename="../completionhelper.cpp" line="208"/>
         <source>New table name</source>
-        <translation type="unfinished">新的表名</translation>
+        <translation>新的表名</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="211"/>
         <source>New index name</source>
-        <translation type="unfinished">新的索引名</translation>
+        <translation>新的索引名</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="214"/>
         <source>New view name</source>
-        <translation type="unfinished">新的视图名</translation>
+        <translation>新的视图名</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="217"/>
         <source>New trigger name</source>
-        <translation type="unfinished">新的触发器名</translation>
+        <translation>新的触发器名</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="220"/>
         <source>Table or column alias</source>
-        <translation type="unfinished">表或字段别名</translation>
+        <translation>表或字段别名</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="223"/>
         <source>transaction name</source>
-        <translation type="unfinished">事务名</translation>
+        <translation>事务名</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="226"/>
         <source>New column name</source>
-        <translation type="unfinished">新字段名</translation>
+        <translation>新字段名</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="229"/>
         <source>Column data type</source>
-        <translation type="unfinished">字段数据类型</translation>
+        <translation>字段数据类型</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="232"/>
         <source>Constraint name</source>
-        <translation type="unfinished">约束名</translation>
+        <translation>约束名</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="245"/>
         <source>Error message</source>
-        <translation type="unfinished">错误信息</translation>
+        <translation>错误信息</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="289"/>
         <source>Collation name</source>
-        <translation type="unfinished">排序规则名</translation>
+        <translation>排序规则名</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="304"/>
@@ -136,7 +136,7 @@
     <message>
         <location filename="../completionhelper.cpp" line="485"/>
         <source>Default database</source>
-        <translation type="unfinished">默认数据库</translation>
+        <translation>默认数据库</translation>
     </message>
     <message>
         <location filename="../completionhelper.cpp" line="486"/>
@@ -185,7 +185,7 @@
     <message>
         <location filename="../services/impl/dbmanagerimpl.cpp" line="527"/>
         <source>Database could not be initialized.</source>
-        <translation>数据库没有被初始化</translation>
+        <translation>数据库无法被初始化。</translation>
     </message>
     <message>
         <location filename="../services/impl/dbmanagerimpl.cpp" line="537"/>
@@ -294,7 +294,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
         <location filename="../ddlhistorymodel.cpp" line="71"/>
         <source>Changes</source>
         <comment>ddl history header</comment>
-        <translation>影响</translation>
+        <translation type="unfinished">影响</translation>
     </message>
 </context>
 <context>
@@ -356,7 +356,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
         <location filename="../exportworker.cpp" line="346"/>
         <location filename="../exportworker.cpp" line="404"/>
         <source>Could not parse %1 in order to export it. It will be excluded from the export output.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无法为导出解析 %1。因此它将不会被包含在导出输出中。</translation>
     </message>
     <message>
         <location filename="../exportworker.cpp" line="608"/>
@@ -544,7 +544,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
         <location filename="../plugins/populatedictionary.cpp" line="15"/>
         <source>Dictionary</source>
         <comment>dictionary populating plugin name</comment>
-        <translation>字典</translation>
+        <translation type="unfinished">字典</translation>
     </message>
 </context>
 <context>
@@ -552,12 +552,12 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
         <location filename="../plugins/populatedictionary.ui" line="20"/>
         <source>Dictionary file</source>
-        <translation>字典文件</translation>
+        <translation type="unfinished">字典文件</translation>
     </message>
     <message>
         <location filename="../plugins/populatedictionary.ui" line="29"/>
         <source>Pick dictionary file</source>
-        <translation>选择字典文件</translation>
+        <translation type="unfinished">选择字典文件</translation>
     </message>
     <message>
         <location filename="../plugins/populatedictionary.ui" line="39"/>
@@ -697,7 +697,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
     <message>
         <location filename="../plugins/populaterandomtext.ui" line="106"/>
         <source>Binary</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">二进制</translation>
     </message>
     <message>
         <location filename="../plugins/populaterandomtext.ui" line="119"/>

@@ -301,7 +301,7 @@ You can pass &lt;pattern&gt; with wildcard characters to filter output.</source>
     <message>
         <location filename="../commands/clicommandhelp.cpp" line="16"/>
         <source>shows this help message</source>
-        <translation>展示这个帮助信息</translation>
+        <translation type="unfinished">显示这个帮助信息</translation>
     </message>
     <message>
         <location filename="../commands/clicommandhelp.cpp" line="21"/>
