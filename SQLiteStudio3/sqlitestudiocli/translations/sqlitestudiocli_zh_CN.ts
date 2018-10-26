@@ -57,7 +57,7 @@
     <message>
         <location filename="../commands/clicommandadd.cpp" line="19"/>
         <source>adds new database to the list</source>
-        <translation type="unfinished"></translation>
+        <translation>添加新的数据库到列表</translation>
     </message>
     <message>
         <location filename="../commands/clicommandadd.cpp" line="24"/>
@@ -74,7 +74,7 @@
         <location filename="../commands/clicommandadd.cpp" line="35"/>
         <source>path</source>
         <comment>CLI command syntax</comment>
-        <translation type="unfinished"></translation>
+        <translation>路径</translation>
     </message>
 </context>
 <context>
@@ -92,7 +92,7 @@
     <message>
         <location filename="../commands/clicommandcd.cpp" line="17"/>
         <source>changes current working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>更改当前工作目录</translation>
     </message>
     <message>
         <location filename="../commands/clicommandcd.cpp" line="22"/>
@@ -103,7 +103,7 @@
         <location filename="../commands/clicommandcd.cpp" line="33"/>
         <source>path</source>
         <comment>CLI command syntax</comment>
-        <translation type="unfinished"></translation>
+        <translation>路径</translation>
     </message>
 </context>
 <context>
@@ -117,17 +117,17 @@
         <location filename="../commands/clicommandclose.cpp" line="21"/>
         <location filename="../commands/clicommandclose.cpp" line="29"/>
         <source>Connection to database %1 closed.</source>
-        <translation type="unfinished"></translation>
+        <translation>数据库 %1 的连接已关闭。</translation>
     </message>
     <message>
         <location filename="../commands/clicommandclose.cpp" line="24"/>
         <source>No such database: %1. Use %2 to see list of known databases.</source>
-        <translation type="unfinished"></translation>
+        <translation>没有这样的数据库：%1。使用 %2 去查看已知数据库列表。</translation>
     </message>
     <message>
         <location filename="../commands/clicommandclose.cpp" line="35"/>
         <source>closes given (or current) database</source>
-        <translation type="unfinished"></translation>
+        <translation>关闭给定的（或当前）数据库</translation>
     </message>
     <message>
         <location filename="../commands/clicommandclose.cpp" line="40"/>
@@ -138,7 +138,7 @@
         <location filename="../commands/clicommandclose.cpp" line="50"/>
         <source>name</source>
         <comment>CLI command syntax</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">名称</translation>
     </message>
 </context>
 <context>
@@ -151,46 +151,46 @@
     <message>
         <location filename="../commands/clicommanddblist.cpp" line="18"/>
         <source>Databases:</source>
-        <translation type="unfinished"></translation>
+        <translation>数据库：</translation>
     </message>
     <message>
         <location filename="../commands/clicommanddblist.cpp" line="23"/>
         <location filename="../commands/clicommanddblist.cpp" line="34"/>
         <source>Name</source>
         <comment>CLI db name column</comment>
-        <translation type="unfinished"></translation>
+        <translation>名称</translation>
     </message>
     <message>
         <location filename="../commands/clicommanddblist.cpp" line="31"/>
         <location filename="../commands/clicommanddblist.cpp" line="61"/>
         <source>Open</source>
         <comment>CLI connection state column</comment>
-        <translation type="unfinished"></translation>
+        <translation>打开</translation>
     </message>
     <message>
         <location filename="../commands/clicommanddblist.cpp" line="31"/>
         <location filename="../commands/clicommanddblist.cpp" line="61"/>
         <source>Closed</source>
         <comment>CLI connection state column</comment>
-        <translation type="unfinished"></translation>
+        <translation>关闭</translation>
     </message>
     <message>
         <location filename="../commands/clicommanddblist.cpp" line="32"/>
         <location filename="../commands/clicommanddblist.cpp" line="36"/>
         <source>Connection</source>
         <comment>CLI connection state column</comment>
-        <translation type="unfinished"></translation>
+        <translation>连接</translation>
     </message>
     <message>
         <location filename="../commands/clicommanddblist.cpp" line="38"/>
         <location filename="../commands/clicommanddblist.cpp" line="45"/>
         <source>Database file path</source>
-        <translation type="unfinished"></translation>
+        <translation>数据库文件路径</translation>
     </message>
     <message>
         <location filename="../commands/clicommanddblist.cpp" line="70"/>
         <source>prints list of registered databases</source>
-        <translation type="unfinished"></translation>
+        <translation>打印已注册数据库列表</translation>
     </message>
     <message>
         <location filename="../commands/clicommanddblist.cpp" line="75"/>
@@ -210,12 +210,12 @@ Call %2 to see list of all databases.</source>
     <message>
         <location filename="../commands/clicommanddesc.cpp" line="26"/>
         <source>Database is not open.</source>
-        <translation type="unfinished"></translation>
+        <translation>数据库未被打开。</translation>
     </message>
     <message>
         <location filename="../commands/clicommanddesc.cpp" line="35"/>
         <source>Cannot find table named: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>无法找到名为 %1 的表</translation>
     </message>
     <message>
         <location filename="../commands/clicommanddesc.cpp" line="52"/>
@@ -230,22 +230,22 @@ Call %2 to see list of all databases.</source>
     <message>
         <location filename="../commands/clicommanddesc.cpp" line="70"/>
         <source>Table: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>表：%1</translation>
     </message>
     <message>
         <location filename="../commands/clicommanddesc.cpp" line="74"/>
         <source>Column name</source>
-        <translation type="unfinished"></translation>
+        <translation>字段名</translation>
     </message>
     <message>
         <location filename="../commands/clicommanddesc.cpp" line="76"/>
         <source>Data type</source>
-        <translation type="unfinished"></translation>
+        <translation>数据类型</translation>
     </message>
     <message>
         <location filename="../commands/clicommanddesc.cpp" line="80"/>
         <source>Constraints</source>
-        <translation type="unfinished"></translation>
+        <translation>约束条件</translation>
     </message>
     <message>
         <location filename="../commands/clicommanddesc.cpp" line="105"/>
@@ -268,7 +268,7 @@ Call %2 to see list of all databases.</source>
     <message>
         <location filename="../commands/clicommanddir.cpp" line="33"/>
         <source>lists directories and files in current working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>列出当前工作目录中的目录与文件</translation>
     </message>
     <message>
         <location filename="../commands/clicommanddir.cpp" line="38"/>
@@ -293,7 +293,7 @@ You can pass &lt;pattern&gt; with wildcard characters to filter output.</source>
     <message>
         <location filename="../commands/clicommandexit.cpp" line="17"/>
         <source>Quits the application. Settings are stored in configuration file and will be restored on next startup.</source>
-        <translation type="unfinished"></translation>
+        <translation>退出本程序。设置已被存储在配置文件并且会在下一次启动时恢复。</translation>
     </message>
 </context>
 <context>
@@ -301,7 +301,7 @@ You can pass &lt;pattern&gt; with wildcard characters to filter output.</source>
     <message>
         <location filename="../commands/clicommandhelp.cpp" line="16"/>
         <source>shows this help message</source>
-        <translation type="unfinished"></translation>
+        <translation>展示这个帮助信息</translation>
     </message>
     <message>
         <location filename="../commands/clicommandhelp.cpp" line="21"/>
@@ -317,27 +317,27 @@ You can always execute any command with exactly single &apos;--help&apos; option
         <location filename="../commands/clicommandhelp.cpp" line="33"/>
         <source>command</source>
         <comment>CLI command syntax</comment>
-        <translation type="unfinished"></translation>
+        <translation>命令</translation>
     </message>
     <message>
         <location filename="../commands/clicommandhelp.cpp" line="42"/>
         <source>No such command: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">没有这个命令：%1</translation>
     </message>
     <message>
         <location filename="../commands/clicommandhelp.cpp" line="43"/>
         <source>Type &apos;%1&apos; for list of available commands.</source>
-        <translation type="unfinished"></translation>
+        <translation>输入 &apos;%1&apos; 列出所有可用的命令。</translation>
     </message>
     <message>
         <location filename="../commands/clicommandhelp.cpp" line="52"/>
         <source>Usage: %1%2</source>
-        <translation type="unfinished">用法： %1%2</translation>
+        <translation>用法： %1%2</translation>
     </message>
     <message>
         <location filename="../commands/clicommandhelp.cpp" line="62"/>
         <source>Aliases: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>别名：%1</translation>
     </message>
 </context>
 <context>
@@ -350,7 +350,7 @@ You can always execute any command with exactly single &apos;--help&apos; option
     <message>
         <location filename="../commands/clicommandhistory.cpp" line="39"/>
         <source>prints history or erases it</source>
-        <translation type="unfinished"></translation>
+        <translation>打印历史或擦除它</translation>
     </message>
     <message>
         <location filename="../commands/clicommandhistory.cpp" line="44"/>
@@ -369,12 +369,12 @@ Use -ql or --querylimit option to see the current limit value.</source>
     <message>
         <location filename="../commands/clicommandhistory.cpp" line="66"/>
         <source>Console history erased.</source>
-        <translation type="unfinished"></translation>
+        <translation>控制台历史已擦除。</translation>
     </message>
     <message>
         <location filename="../commands/clicommandhistory.cpp" line="75"/>
         <source>Invalid number: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>无效的数字：%1</translation>
     </message>
     <message>
         <location filename="../commands/clicommandhistory.cpp" line="80"/>
@@ -387,17 +387,17 @@ Use -ql or --querylimit option to see the current limit value.</source>
     <message>
         <location filename="../commands/clicommandmode.cpp" line="9"/>
         <source>Current results printing mode: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>当前结果打印模式：%1</translation>
     </message>
     <message>
         <location filename="../commands/clicommandmode.cpp" line="16"/>
         <source>Invalid results printing mode: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>无效结果打印模式：%1</translation>
     </message>
     <message>
         <location filename="../commands/clicommandmode.cpp" line="21"/>
         <source>New results printing mode: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>新结果打印模式：%1</translation>
     </message>
     <message>
         <location filename="../commands/clicommandmode.cpp" line="26"/>
@@ -451,22 +451,22 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
         <location filename="../commands/clicommandopen.cpp" line="29"/>
         <source>Could not add database %1 to list.</source>
-        <translation type="unfinished">未能将数据库“%1”添加到列表。</translation>
+        <translation>未能将数据库“%1”添加到列表。</translation>
     </message>
     <message>
         <location filename="../commands/clicommandopen.cpp" line="37"/>
         <source>File %1 doesn&apos;t exist in %2. Cannot open inexisting database with %3 command. To create a new database, use %4 command.</source>
-        <translation type="unfinished"></translation>
+        <translation>文件 %1 不存在于 %2。无法使用 %3 命令打开不存在的数据库。使用 %4 命令创建一个新数据库。</translation>
     </message>
     <message>
         <location filename="../commands/clicommandopen.cpp" line="61"/>
         <source>Database %1 has been open and set as the current working database.</source>
-        <translation type="unfinished"></translation>
+        <translation>数据库 %1 已被打开并设为当前工作数据库。</translation>
     </message>
     <message>
         <location filename="../commands/clicommandopen.cpp" line="66"/>
         <source>opens database connection</source>
-        <translation type="unfinished"></translation>
+        <translation>打开数据库连接</translation>
     </message>
     <message>
         <location filename="../commands/clicommandopen.cpp" line="71"/>
@@ -477,13 +477,13 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
         <location filename="../commands/clicommandopen.cpp" line="83"/>
         <source>name</source>
         <comment>CLI command syntax</comment>
-        <translation type="unfinished"></translation>
+        <translation>名称</translation>
     </message>
     <message>
         <location filename="../commands/clicommandopen.cpp" line="83"/>
         <source>path</source>
         <comment>CLI command syntax</comment>
-        <translation type="unfinished"></translation>
+        <translation>路径</translation>
     </message>
 </context>
 <context>
@@ -491,7 +491,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
         <location filename="../commands/clicommandpwd.cpp" line="13"/>
         <source>prints the current working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>打印当前工作目录</translation>
     </message>
     <message>
         <location filename="../commands/clicommandpwd.cpp" line="18"/>
@@ -504,7 +504,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
         <location filename="../commands/clicommandremove.cpp" line="12"/>
         <source>No such database: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">没有这样一个数据库：%1</translation>
     </message>
     <message>
         <location filename="../commands/clicommandremove.cpp" line="20"/>
@@ -519,7 +519,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
     <message>
         <location filename="../commands/clicommandremove.cpp" line="35"/>
         <source>removes database from the list</source>
-        <translation type="unfinished"></translation>
+        <translation>从列表中移除数据库</translation>
     </message>
     <message>
         <location filename="../commands/clicommandremove.cpp" line="40"/>
@@ -530,7 +530,7 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
         <location filename="../commands/clicommandremove.cpp" line="50"/>
         <source>name</source>
         <comment>CLI command syntax</comment>
-        <translation type="unfinished"></translation>
+        <translation>名称</translation>
     </message>
 </context>
 <context>
@@ -540,17 +540,19 @@ The ROW mode is recommended if you need to see whole values and you don&apos;t e
         <source>No working database is set.
 Call %1 command to set working database.
 Call %2 to see list of all databases.</source>
-        <translation type="unfinished"></translation>
+        <translation>没有设置工作数据库。
+调用 %1 命令去设置工作数据库。
+调用 %2 去浏览所有数据库列表。</translation>
     </message>
     <message>
         <location filename="../commands/clicommandsql.cpp" line="29"/>
         <source>Database is not open.</source>
-        <translation type="unfinished"></translation>
+        <translation>数据库没有打开。</translation>
     </message>
     <message>
         <location filename="../commands/clicommandsql.cpp" line="64"/>
         <source>executes SQL query</source>
-        <translation type="unfinished"></translation>
+        <translation>执行 SQL 查询</translation>
     </message>
     <message>
         <location filename="../commands/clicommandsql.cpp" line="69"/>
@@ -561,7 +563,7 @@ Call %2 to see list of all databases.</source>
         <location filename="../commands/clicommandsql.cpp" line="85"/>
         <source>sql</source>
         <comment>CLI command syntax</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">sql</translation>
     </message>
     <message>
         <location filename="../commands/clicommandsql.cpp" line="134"/>
@@ -572,12 +574,12 @@ Call %2 to see list of all databases.</source>
     <message>
         <location filename="../commands/clicommandsql.cpp" line="253"/>
         <source>Row %1</source>
-        <translation type="unfinished"></translation>
+        <translation>行 %1</translation>
     </message>
     <message>
         <location filename="../commands/clicommandsql.cpp" line="403"/>
         <source>Query execution error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>查询执行错误：%1</translation>
     </message>
 </context>
 <context>
@@ -585,7 +587,7 @@ Call %2 to see list of all databases.</source>
     <message>
         <location filename="../commands/clicommandtables.cpp" line="15"/>
         <source>No such database: %1. Use %2 to see list of known databases.</source>
-        <translation type="unfinished"></translation>
+        <translation>没有这样一个数据库：%1。使用 %2 去查看已知的数据库列表。</translation>
     </message>
     <message>
         <location filename="../commands/clicommandtables.cpp" line="25"/>
@@ -595,23 +597,23 @@ Call %2 to see list of all databases.</source>
     <message>
         <location filename="../commands/clicommandtables.cpp" line="32"/>
         <source>Database %1 is closed.</source>
-        <translation type="unfinished"></translation>
+        <translation>数据库已被关闭</translation>
     </message>
     <message>
         <location filename="../commands/clicommandtables.cpp" line="45"/>
         <location filename="../commands/clicommandtables.cpp" line="47"/>
         <source>Database</source>
-        <translation type="unfinished"></translation>
+        <translation>数据库</translation>
     </message>
     <message>
         <location filename="../commands/clicommandtables.cpp" line="47"/>
         <source>Table</source>
-        <translation type="unfinished"></translation>
+        <translation>表</translation>
     </message>
     <message>
         <location filename="../commands/clicommandtables.cpp" line="61"/>
         <source>prints list of tables in the database</source>
-        <translation type="unfinished"></translation>
+        <translation>列出数据库中的所有表</translation>
     </message>
     <message>
         <location filename="../commands/clicommandtables.cpp" line="66"/>
@@ -623,7 +625,7 @@ When the -s option is given, then system tables are also listed.</source>
         <location filename="../commands/clicommandtables.cpp" line="77"/>
         <source>database</source>
         <comment>CLI command syntax</comment>
-        <translation type="unfinished"></translation>
+        <translation>数据库</translation>
     </message>
 </context>
 <context>
@@ -636,28 +638,28 @@ When the -s option is given, then system tables are also listed.</source>
     <message>
         <location filename="../commands/clicommandtree.cpp" line="54"/>
         <source>Tables</source>
-        <translation type="unfinished"></translation>
+        <translation>表</translation>
     </message>
     <message>
         <location filename="../commands/clicommandtree.cpp" line="58"/>
         <source>Views</source>
-        <translation type="unfinished"></translation>
+        <translation>视图</translation>
     </message>
     <message>
         <location filename="../commands/clicommandtree.cpp" line="83"/>
         <source>Columns</source>
-        <translation type="unfinished"></translation>
+        <translation>字段</translation>
     </message>
     <message>
         <location filename="../commands/clicommandtree.cpp" line="88"/>
         <source>Indexes</source>
-        <translation type="unfinished"></translation>
+        <translation>索引</translation>
     </message>
     <message>
         <location filename="../commands/clicommandtree.cpp" line="92"/>
         <location filename="../commands/clicommandtree.cpp" line="113"/>
         <source>Triggers</source>
-        <translation type="unfinished"></translation>
+        <translation>触发器</translation>
     </message>
     <message>
         <location filename="../commands/clicommandtree.cpp" line="132"/>
@@ -684,17 +686,17 @@ The database argument is optional and if provided, then only given database will
         <location filename="../commands/clicommanduse.cpp" line="16"/>
         <location filename="../commands/clicommanduse.cpp" line="30"/>
         <source>Current database: %1</source>
-        <translation type="unfinished">当前数据库：%1</translation>
+        <translation>当前数据库：%1</translation>
     </message>
     <message>
         <location filename="../commands/clicommanduse.cpp" line="23"/>
         <source>No such database: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">没有这样一个数据库：%1</translation>
     </message>
     <message>
         <location filename="../commands/clicommanduse.cpp" line="35"/>
         <source>changes default working database</source>
-        <translation type="unfinished"></translation>
+        <translation>更改默认工作数据库</translation>
     </message>
     <message>
         <location filename="../commands/clicommanduse.cpp" line="40"/>
@@ -715,7 +717,7 @@ The default database can be selected in various ways:
         <location filename="../commands/clicommanduse.cpp" line="63"/>
         <source>name</source>
         <comment>CLI command syntax</comment>
-        <translation type="unfinished"></translation>
+        <translation>名称</translation>
     </message>
 </context>
 <context>
@@ -728,7 +730,7 @@ The default database can be selected in various ways:
     <message>
         <location filename="../clicommandsyntax.cpp" line="325"/>
         <source>Too many arguments.</source>
-        <translation type="unfinished"></translation>
+        <translation>参数过多。</translation>
     </message>
     <message>
         <location filename="../clicommandsyntax.cpp" line="347"/>
@@ -777,7 +779,7 @@ Expected one of: %2</source>
     <message>
         <location filename="../main.cpp" line="33"/>
         <source>file</source>
-        <translation type="unfinished"></translation>
+        <translation>文件</translation>
     </message>
     <message>
         <location filename="../main.cpp" line="33"/>
