@@ -289,12 +289,16 @@ void TableWindow::editColumn(const QModelIndex& idx)
     SqliteCreateTable::Column* column = structureModel->getColumn(idx.row());
     ColumnDialog columnDialog(db, this);
     columnDialog.setColumn(column);
+    if (hasAnyPkDefined() && !column->hasConstraint(SqliteCreateTable::Column::Constraint::PRIMARY_KEY))
+        columnDialog.disableConstraint(ConstraintDialog::Constraint::PK);
+
     if (columnDialog.exec() != QDialog::Accepted)
         return;
 
     SqliteCreateTable::Column* modifiedColumn = columnDialog.getModifiedColumn();
     structureModel->replaceColumn(idx.row(), modifiedColumn);
     resizeStructureViewColumns();
+    updateTableConstraintsToolbarState();
 }
 
 void TableWindow::delColumn(const QModelIndex& idx)
@@ -314,6 +318,7 @@ void TableWindow::delColumn(const QModelIndex& idx)
 
     structureModel->delColumn(idx.row());
     resizeStructureViewColumns();
+    updateTableConstraintsToolbarState();
 }
 
 void TableWindow::executeStructureChanges()
@@ -441,6 +446,7 @@ void TableWindow::updateTableConstraintsToolbarState()
     actionMap[DEL_TABLE_CONSTRAINT]->setEnabled(anyColumn && validIdx);
     actionMap[MOVE_CONSTRAINT_UP]->setEnabled(anyColumn && validIdx && !isFirst);
     actionMap[MOVE_CONSTRAINT_DOWN]->setEnabled(anyColumn && validIdx && !isLast);
+    actionMap[ADD_TABLE_PK]->setEnabled(!hasAnyPkDefined());
 }
 
 void TableWindow::setupDefShortcuts()
@@ -904,6 +910,9 @@ void TableWindow::addColumn()
 
     ColumnDialog columnDialog(db, this);
     columnDialog.setColumn(&column);
+    if (hasAnyPkDefined())
+        columnDialog.disableConstraint(ConstraintDialog::Constraint::PK);
+
     if (columnDialog.exec() != QDialog::Accepted)
         return;
 
@@ -913,6 +922,7 @@ void TableWindow::addColumn()
 
     ui->structureView->setCurrentIndex(structureModel->index(structureModel->rowCount()-1, 0));
     resizeStructureViewColumns();
+    updateTableConstraintsToolbarState();
 }
 
 void TableWindow::editColumn()
@@ -954,6 +964,9 @@ void TableWindow::moveColumnDown()
 void TableWindow::addConstraint(ConstraintDialog::Constraint mode)
 {
     NewConstraintDialog dialog(mode, createTable.data(), db, this);
+    if (hasAnyPkDefined())
+        dialog.disableMode(ConstraintDialog::PK);
+
     if (dialog.exec() != QDialog::Accepted)
         return;
 
@@ -968,6 +981,7 @@ void TableWindow::addConstraint(ConstraintDialog::Constraint mode)
     structureConstraintsModel->appendConstraint(tableConstr);
     ui->tableConstraintsView->resizeColumnToContents(0);
     ui->tableConstraintsView->resizeColumnToContents(1);
+    updateTableConstraintsToolbarState();
 }
 
 bool TableWindow::validate(bool skipWarning)
@@ -1100,6 +1114,31 @@ int TableWindow::getStructureTabIdx() const
     return ui->tabWidget->indexOf(ui->structureTab);
 }
 
+bool TableWindow::hasAnyPkDefined() const
+{
+    if (structureConstraintsModel)
+    {
+        for (int i = 0, total = structureConstraintsModel->rowCount(); i < total; ++i)
+        {
+            SqliteCreateTable::Constraint* constraint = structureConstraintsModel->getConstraint(i);
+            if (constraint->type == SqliteCreateTable::Constraint::PRIMARY_KEY)
+                return true;
+        }
+    }
+
+    if (structureModel)
+    {
+        for (int i = 0, total = structureModel->rowCount(); i < total; ++i)
+        {
+            SqliteCreateTable::Column* column = structureModel->getColumn(i);
+            if (column->hasConstraint(SqliteCreateTable::Column::Constraint::PRIMARY_KEY))
+                return true;
+        }
+    }
+
+    return false;
+}
+
 void TableWindow::updateDdlTab()
 {
     createTable->rebuildTokens();
@@ -1173,6 +1212,7 @@ void TableWindow::delConstraint(const QModelIndex& idx)
 
     structureConstraintsModel->delConstraint(idx.row());
     ui->structureView->resizeColumnToContents(0);
+    updateTableConstraintsToolbarState();
 }
 
 void TableWindow::moveConstraintUp()

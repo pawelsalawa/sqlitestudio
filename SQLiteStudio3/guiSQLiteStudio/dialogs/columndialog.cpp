@@ -135,6 +135,9 @@ void ColumnDialog::updateState()
 void ColumnDialog::addConstraint(ConstraintDialog::Constraint mode)
 {
     NewConstraintDialog dialog(mode, column.data(), db, this);
+    for (ConstraintDialog::Constraint constraint : disabledConstraints)
+        dialog.disableMode(constraint);
+
     if (dialog.exec() != QDialog::Accepted)
         return;
 
@@ -661,6 +664,43 @@ QToolBar* ColumnDialog::getToolBar(int toolbar) const
 {
     UNUSED(toolbar);
     return nullptr;
+}
+
+void ColumnDialog::disableConstraint(ConstraintDialog::Constraint constraint)
+{
+    disabledConstraints << constraint;
+    switch (constraint) {
+        case ConstraintDialog::PK:
+            ui->pkCheck->setEnabled(false);
+            actionMap[ADD_PK]->setEnabled(false);
+            break;
+        case ConstraintDialog::FK:
+            ui->fkCheck->setEnabled(false);
+            actionMap[ADD_FK]->setEnabled(false);
+            break;
+        case ConstraintDialog::UNIQUE:
+            ui->uniqueCheck->setEnabled(false);
+            actionMap[ADD_UNIQUE]->setEnabled(false);
+            break;
+        case ConstraintDialog::NOTNULL:
+            ui->notNullCheck->setEnabled(false);
+            actionMap[ADD_NOT_NULL]->setEnabled(false);
+            break;
+        case ConstraintDialog::CHECK:
+            ui->checkCheck->setEnabled(false);
+            actionMap[ADD_CHECK]->setEnabled(false);
+            break;
+        case ConstraintDialog::COLLATE:
+            ui->collateCheck->setEnabled(false);
+            actionMap[ADD_COLLATE]->setEnabled(false);
+            break;
+        case ConstraintDialog::DEFAULT:
+            ui->defaultCheck->setEnabled(false);
+            actionMap[ADD_DEFAULT]->setEnabled(false);
+            break;
+        case ConstraintDialog::UNKNOWN:
+            break;
+    }
 }
 
 void ColumnDialog::updateDataType()

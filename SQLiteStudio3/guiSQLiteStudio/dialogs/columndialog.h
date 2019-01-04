@@ -48,6 +48,7 @@ class GUI_API_EXPORT ColumnDialog : public QDialog, public ExtActionContainer
         void setColumn(SqliteCreateTable::Column* value);
         SqliteCreateTable::Column* getModifiedColumn();
         QToolBar* getToolBar(int toolbar) const;
+        void disableConstraint(ConstraintDialog::Constraint constraint);
 
     protected:
         void changeEvent(QEvent *e);
@@ -77,6 +78,7 @@ class GUI_API_EXPORT ColumnDialog : public QDialog, public ExtActionContainer
         QCheckBox* modeCheckBox = nullptr;
         Db* db = nullptr;
         bool integerTypeEnforced = false;
+        QSet<ConstraintDialog::Constraint> disabledConstraints;
 
     private slots:
         void updateConstraintsToolbarState();

@@ -12,6 +12,7 @@
 namespace Ui {
     class NewConstraintDialog;
 }
+class QCommandLinkButton;
 
 class GUI_API_EXPORT NewConstraintDialog : public QDialog
 {
@@ -25,6 +26,7 @@ class GUI_API_EXPORT NewConstraintDialog : public QDialog
         ~NewConstraintDialog();
 
         SqliteStatement* getConstraint();
+        void disableMode(ConstraintDialog::Constraint constraintType);
         int exec();
 
     protected:
@@ -34,7 +36,7 @@ class GUI_API_EXPORT NewConstraintDialog : public QDialog
         void init();
         void initTable();
         void initColumn();
-        void addButton(const Icon& icon, const QString text, const char* slot);
+        QCommandLinkButton* addButton(const Icon& icon, const QString text, const char* slot);
         int createColumnConstraint(ConstraintDialog::Constraint constraintType);
         int createTableConstraint(ConstraintDialog::Constraint constraintType);
         int editConstraint();
@@ -47,6 +49,7 @@ class GUI_API_EXPORT NewConstraintDialog : public QDialog
         QPointer<SqliteCreateTable> createTable;
         QPointer<SqliteCreateTable::Column> columnStmt;
         ConstraintDialog* constraintDialog = nullptr;
+        QHash<ConstraintDialog::Constraint, QCommandLinkButton*> modeToButton;
 
     private slots:
         void createTablePk();
