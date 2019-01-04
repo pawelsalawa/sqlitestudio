@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ru_RU">
+<TS version="2.0" language="ru_RU">
 <context>
     <name>AbstractDb</name>
     <message>
@@ -19,7 +19,7 @@
     <name>BugReporter</name>
     <message>
         <source>Invalid login or password</source>
-        <translation type="vanished">Неправильный логин или пароль</translation>
+        <translation>Неправильный логин или пароль</translation>
     </message>
 </context>
 <context>
@@ -149,12 +149,12 @@
     <message>
         <location filename="../services/impl/configimpl.cpp" line="863"/>
         <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно начать транзакцию для удаления истории SQL, поэтому она не удалена.</translation>
     </message>
     <message>
         <location filename="../services/impl/configimpl.cpp" line="870"/>
         <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно завершить транзакцию для удаления истории SQL, поэтому она не удалена.</translation>
     </message>
 </context>
 <context>
@@ -805,7 +805,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</source>
         <location filename="../db/abstractdb3.h" line="328"/>
         <location filename="../db/abstractdb3.h" line="332"/>
         <source>Could not load extension %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно загрузить расширение %1: %2</translation>
     </message>
     <message>
         <location filename="../db/abstractdb3.h" line="405"/>
@@ -1055,7 +1055,7 @@ The view will remain as it is.</source>
     <message>
         <location filename="../common/utils.cpp" line="1022"/>
         <source>Could not open file &apos;%1&apos; for reading: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно открыть файл &apos;%1&apos; для чтения: %2</translation>
     </message>
 </context>
 <context>
@@ -1137,182 +1137,182 @@ The view will remain as it is.</source>
     <name>UpdateManager</name>
     <message>
         <source>An error occurred while checking for updates: %1.</source>
-        <translation type="vanished">При проверке обновлений возникла ошибка: %1</translation>
+        <translation>При проверке обновлений возникла ошибка: %1</translation>
     </message>
     <message>
         <source>Could not check available updates, because server responded with invalid message format. It is safe to ignore this warning.</source>
-        <translation type="vanished">Невозможно проверить наличие обновлений, так как ответ сервера имеет некорректный формат. Это предупреждение можно проигнорировать.</translation>
+        <translation>Невозможно проверить наличие обновлений, так как ответ сервера имеет некорректный формат. Это предупреждение можно проигнорировать.</translation>
     </message>
     <message>
         <source>An error occurred while reading updates metadata: %1.</source>
-        <translation type="vanished">При чтении метаданных об обновлениях возникла ошибка: %1</translation>
+        <translation>При чтении метаданных об обновлениях возникла ошибка: %1</translation>
     </message>
     <message>
         <source>Could not download updates, because server responded with invalid message format. You can try again later or download and install updates manually. See &lt;a href=&quot;%1&quot;&gt;User Manual&lt;/a&gt; for details.</source>
-        <translation type="vanished">Невозможно загрузить обновления, так как ответ сервера имеет некорректный формат. Вы можете попробовать снова позже или скачать и установить обновления вручную. Подробности смотрите в &lt;a href=&quot;%1&quot;&gt;Руководстве пользователя&lt;/a&gt;.</translation>
+        <translation>Невозможно загрузить обновления, так как ответ сервера имеет некорректный формат. Вы можете попробовать снова позже или скачать и установить обновления вручную. Подробности смотрите в &lt;a href=&quot;%1&quot;&gt;Руководстве пользователя&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>Could not create temporary directory for downloading the update. Updating aborted.</source>
-        <translation type="vanished">Невозможно создать временный каталог для загрузки обновления. Обновление прервано.</translation>
+        <translation>Невозможно создать временный каталог для загрузки обновления. Обновление прервано.</translation>
     </message>
     <message>
         <source>There was no updates to download. Updating aborted.</source>
-        <translation type="vanished">Нет обновлений для загрузки. Обновление прервано.</translation>
+        <translation>Нет обновлений для загрузки. Обновление прервано.</translation>
     </message>
     <message>
         <source>Downloading: %1</source>
-        <translation type="vanished">Загрузка: %1</translation>
+        <translation>Загрузка: %1</translation>
     </message>
     <message>
         <source>Could not determinate file name from update URL: %1. Updating aborted.</source>
-        <translation type="vanished">Невозможно определить имя файла из URL обновления. Обновление прервано.</translation>
+        <translation>Невозможно определить имя файла из URL обновления. Обновление прервано.</translation>
     </message>
     <message>
         <source>Failed to open file &apos;%1&apos; for writting: %2. Updating aborted.</source>
-        <translation type="vanished">Не удалось открыть файл %1 для записи: %2. Обновление прервано.</translation>
+        <translation>Не удалось открыть файл %1 для записи: %2. Обновление прервано.</translation>
     </message>
     <message>
         <source>Installing updates.</source>
-        <translation type="vanished">Установка обновлений.</translation>
+        <translation>Установка обновлений.</translation>
     </message>
     <message>
         <source>Could not copy current application directory into %1 directory.</source>
-        <translation type="vanished">Невозможно скопировать текущий каталог приложения в каталог %1.</translation>
+        <translation>Невозможно скопировать текущий каталог приложения в каталог %1.</translation>
     </message>
     <message>
         <source>Could not create directory %1.</source>
-        <translation type="vanished">Невозможно создать каталог %1.</translation>
+        <translation>Невозможно создать каталог %1.</translation>
     </message>
     <message>
         <source>Could not rename directory %1 to %2.
 Details: %3</source>
-        <translation type="vanished">Невозможно переименовать каталог %1 в %2.
+        <translation>Невозможно переименовать каталог %1 в %2.
 Подробности: %3</translation>
     </message>
     <message>
         <source>Cannot not rename directory %1 to %2.
 Details: %3</source>
-        <translation type="vanished">Невозможно переименовать каталог %1 в %2.
+        <translation>Невозможно переименовать каталог %1 в %2.
 Подробности: %3</translation>
     </message>
     <message>
         <source>Could not move directory %1 to %2 and also failed to restore original directory, so the original SQLiteStudio directory is now located at: %3</source>
-        <translation type="vanished">Невозможно переместить каталог %1 в %2, а также не удалось восстановить оригинальный каталог, поэтому оригинальный каталог SQLiteStudio теперь расположен в: %3</translation>
+        <translation>Невозможно переместить каталог %1 в %2, а также не удалось восстановить оригинальный каталог, поэтому оригинальный каталог SQLiteStudio теперь расположен в: %3</translation>
     </message>
     <message>
         <source>Could not rename directory %1 to %2. Rolled back to the original SQLiteStudio version.</source>
-        <translation type="vanished">Невозможно переименовать каталог %1 в %2. Восстановлена изначальная версия SQLiteStudio.</translation>
+        <translation>Невозможно переименовать каталог %1 в %2. Восстановлена изначальная версия SQLiteStudio.</translation>
     </message>
     <message>
         <source>Could not unpack component %1 into %2 directory.</source>
-        <translation type="vanished">Невозможно распаковать компонент %1 в каталог %2.</translation>
+        <translation>Невозможно распаковать компонент %1 в каталог %2.</translation>
     </message>
     <message>
         <source>Could not find permissions elevator application to run update as a root. Looked for: %1</source>
-        <translation type="vanished">Невозможно найти приложение повышения привилегий для запуска обновления с правами root. Были испробованы: %1</translation>
+        <translation>Невозможно найти приложение повышения привилегий для запуска обновления с правами root. Были испробованы: %1</translation>
     </message>
     <message>
         <source>Could not execute final updating steps as root: %1</source>
-        <translation type="vanished">Невозможно выполнить финальные шаги обновления с правами root: %1</translation>
+        <translation>Невозможно выполнить финальные шаги обновления с правами root: %1</translation>
     </message>
     <message>
         <source>Could not execute final updating steps as admin: %1</source>
-        <translation type="vanished">Невозможно выполнить финальные шаги обновления с правами администратора: %1</translation>
+        <translation>Невозможно выполнить финальные шаги обновления с правами администратора: %1</translation>
     </message>
     <message>
         <source>Cannot create temporary directory for updater.</source>
-        <translation type="vanished">Невозможно создать временный каталог для установщика обновлений.</translation>
+        <translation>Невозможно создать временный каталог для установщика обновлений.</translation>
     </message>
     <message>
         <source>Cannot create updater script file.</source>
-        <translation type="vanished">Невозможно создать файл скрипта обновления.</translation>
+        <translation>Невозможно создать файл скрипта обновления.</translation>
     </message>
     <message>
         <source>Updating canceled.</source>
-        <translation type="vanished">Обновление отменено.</translation>
+        <translation>Обновление отменено.</translation>
     </message>
     <message>
         <source>Could not execute final updating steps as administrator.</source>
-        <translation type="vanished">Невозможно выполнить финальные шаги обновления с правами администратора.</translation>
+        <translation>Невозможно выполнить финальные шаги обновления с правами администратора.</translation>
     </message>
     <message>
         <source>Could not execute final updating steps as administrator. Updater startup timed out.</source>
-        <translation type="vanished">Невозможно выполнить финальные шаги обновления с правами администратора. Превышен тайм-аут запуска программы обновления.</translation>
+        <translation>Невозможно выполнить финальные шаги обновления с правами администратора. Превышен тайм-аут запуска программы обновления.</translation>
     </message>
     <message>
         <source>Could not execute final updating steps as administrator. Updater operation timed out.</source>
-        <translation type="vanished">Невозможно выполнить финальные шаги обновления с правами администратора. Превышен тайм-аут операции программы обновления.</translation>
+        <translation>Невозможно выполнить финальные шаги обновления с правами администратора. Превышен тайм-аут операции программы обновления.</translation>
     </message>
     <message>
         <source>Could not clean up temporary directory %1. You can delete it manually at any time.</source>
-        <translation type="vanished">Невозможно очистить временный каталог %1. Вы можете удалить его вручную в любое время.</translation>
+        <translation>Невозможно очистить временный каталог %1. Вы можете удалить его вручную в любое время.</translation>
     </message>
     <message>
         <source>Could not run new version for continuing update.</source>
-        <translation type="vanished">Невозможно запустить новую версию приложения для продолжения обновления.</translation>
+        <translation>Невозможно запустить новую версию приложения для продолжения обновления.</translation>
     </message>
     <message>
         <source>Package not in tar.gz format, cannot install: %1</source>
-        <translation type="vanished">Пакет не в формате tar.gz, установка невозможна: %1</translation>
+        <translation>Пакет не в формате tar.gz, установка невозможна: %1</translation>
     </message>
     <message>
         <source>Package %1 cannot be installed, because cannot move it to directory: %2</source>
-        <translation type="vanished">Пакет %1 не может быть установлен, так как невозможно перенести его в каталог: %2</translation>
+        <translation>Пакет %1 не может быть установлен, так как невозможно перенести его в каталог: %2</translation>
     </message>
     <message>
         <source>Package %1 cannot be installed, because cannot unpack it: %2</source>
-        <translation type="vanished">Пакет %1 не может быть установлен, так как его невозможно распаковать: %2</translation>
+        <translation>Пакет %1 не может быть установлен, так как его невозможно распаковать: %2</translation>
     </message>
     <message>
         <source>Package not in zip format, cannot install: %1</source>
-        <translation type="vanished">Пакет не в формате zip, установка невозможна: %1</translation>
+        <translation>Пакет не в формате zip, установка невозможна: %1</translation>
     </message>
     <message>
         <source>Package %1 cannot be installed, because cannot unzip it to directory %2: %3</source>
-        <translation type="vanished">Пакет %1 не может быть установлен, так как его невозможно распаковать в каталог %2: %3</translation>
+        <translation>Пакет %1 не может быть установлен, так как его невозможно распаковать в каталог %2: %3</translation>
     </message>
     <message>
         <source>Package %1 cannot be installed, because cannot unzip it to directory: %2</source>
-        <translation type="vanished">Пакет %1 не может быть установлен, так как его невозможно распаковать в каталог: %2</translation>
+        <translation>Пакет %1 не может быть установлен, так как его невозможно распаковать в каталог: %2</translation>
     </message>
     <message>
         <source>Could not rename directory %1 to %2.</source>
-        <translation type="vanished">Невозможно переименовать каталог %1 в %2.</translation>
+        <translation>Невозможно переименовать каталог %1 в %2.</translation>
     </message>
     <message>
         <source>Could not delete directory %1.</source>
-        <translation type="vanished">Невозможно удалить каталог %1.</translation>
+        <translation>Невозможно удалить каталог %1.</translation>
     </message>
     <message>
         <source>Error executing update command: %1
 Error message: %2</source>
-        <translation type="vanished">Ошибка при выполнении команды обновления: %1
+        <translation>Ошибка при выполнении команды обновления: %1
 Сообщение об ошибке: %2</translation>
     </message>
     <message>
         <source>An error occurred while downloading updates: %1. Updating aborted.</source>
-        <translation type="vanished">При загрузке обновлений произошла ошибка: %1. Обновление прервано.</translation>
+        <translation>При загрузке обновлений произошла ошибка: %1. Обновление прервано.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="48"/>
         <source>Updates installer executable is missing.</source>
-        <translation type="unfinished"></translation>
+        <translation>Отсутствует исполняемый файл установщика обновлений.</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="49"/>
         <location filename="../services/updatemanager.cpp" line="68"/>
         <source>Unable to check for updates (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно проверить обновления (%1)</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="66"/>
         <source>details are unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>подробности неизвестны</translation>
     </message>
     <message>
         <location filename="../services/updatemanager.cpp" line="81"/>
         <source>Unable to run updater application (%1). Please report this.</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно запустить установщик обновлений (%1). Ссообщите пожалуйста об этом разработчику.</translation>
     </message>
 </context>
 </TS>
