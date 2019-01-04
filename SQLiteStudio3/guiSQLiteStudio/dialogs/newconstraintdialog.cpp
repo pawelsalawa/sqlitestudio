@@ -50,6 +50,23 @@ SqliteStatement* NewConstraintDialog::getConstraint()
     return constrStatement;
 }
 
+void NewConstraintDialog::disableMode(ConstraintDialog::Constraint constraintType)
+{
+    switch (constraintType) {
+        case ConstraintDialog::PK:
+        case ConstraintDialog::FK:
+        case ConstraintDialog::UNIQUE:
+        case ConstraintDialog::CHECK:
+        case ConstraintDialog::NOTNULL:
+        case ConstraintDialog::COLLATE:
+        case ConstraintDialog::DEFAULT:
+            modeToButton[constraintType]->setEnabled(false);
+            break;
+        case ConstraintDialog::UNKNOWN:
+            break;
+    }
+}
+
 void NewConstraintDialog::changeEvent(QEvent *e)
 {
     QDialog::changeEvent(e);
@@ -84,36 +101,37 @@ void NewConstraintDialog::init()
 
 void NewConstraintDialog::initTable()
 {
-    addButton(ICONS.CONSTRAINT_PRIMARY_KEY, tr("Primary Key", "new constraint dialog"), SLOT(createTablePk()));
+    modeToButton[ConstraintDialog::Constraint::PK] = addButton(ICONS.CONSTRAINT_PRIMARY_KEY, tr("Primary Key", "new constraint dialog"), SLOT(createTablePk()));
     if (createTable->dialect == Dialect::Sqlite3)
-        addButton(ICONS.CONSTRAINT_FOREIGN_KEY, tr("Foreign Key", "new constraint dialog"), SLOT(createTableFk()));
+        modeToButton[ConstraintDialog::Constraint::FK] = addButton(ICONS.CONSTRAINT_FOREIGN_KEY, tr("Foreign Key", "new constraint dialog"), SLOT(createTableFk()));
 
-    addButton(ICONS.CONSTRAINT_UNIQUE, tr("Unique", "new constraint dialog"), SLOT(createTableUnique()));
-    addButton(ICONS.CONSTRAINT_CHECK, tr("Check", "new constraint dialog"), SLOT(createTableCheck()));
+    modeToButton[ConstraintDialog::Constraint::UNIQUE] = addButton(ICONS.CONSTRAINT_UNIQUE, tr("Unique", "new constraint dialog"), SLOT(createTableUnique()));
+    modeToButton[ConstraintDialog::Constraint::CHECK] = addButton(ICONS.CONSTRAINT_CHECK, tr("Check", "new constraint dialog"), SLOT(createTableCheck()));
 }
 
 void NewConstraintDialog::initColumn()
 {
-    addButton(ICONS.CONSTRAINT_PRIMARY_KEY, tr("Primary Key", "new constraint dialog"), SLOT(createColumnPk()));
+    modeToButton[ConstraintDialog::Constraint::PK] = addButton(ICONS.CONSTRAINT_PRIMARY_KEY, tr("Primary Key", "new constraint dialog"), SLOT(createColumnPk()));
     if (createTable->dialect == Dialect::Sqlite3)
-        addButton(ICONS.CONSTRAINT_FOREIGN_KEY, tr("Foreign Key", "new constraint dialog"), SLOT(createColumnFk()));
+        modeToButton[ConstraintDialog::Constraint::FK] = addButton(ICONS.CONSTRAINT_FOREIGN_KEY, tr("Foreign Key", "new constraint dialog"), SLOT(createColumnFk()));
 
-    addButton(ICONS.CONSTRAINT_UNIQUE, tr("Unique", "new constraint dialog"), SLOT(createColumnUnique()));
-    addButton(ICONS.CONSTRAINT_CHECK, tr("Check", "new constraint dialog"), SLOT(createColumnCheck()));
-    addButton(ICONS.CONSTRAINT_NOT_NULL, tr("Not NULL", "new constraint dialog"), SLOT(createColumnNotNull()));
+    modeToButton[ConstraintDialog::Constraint::UNIQUE] = addButton(ICONS.CONSTRAINT_UNIQUE, tr("Unique", "new constraint dialog"), SLOT(createColumnUnique()));
+    modeToButton[ConstraintDialog::Constraint::CHECK] = addButton(ICONS.CONSTRAINT_CHECK, tr("Check", "new constraint dialog"), SLOT(createColumnCheck()));
+    modeToButton[ConstraintDialog::Constraint::NOTNULL] = addButton(ICONS.CONSTRAINT_NOT_NULL, tr("Not NULL", "new constraint dialog"), SLOT(createColumnNotNull()));
     if (createTable->dialect == Dialect::Sqlite3)
-        addButton(ICONS.CONSTRAINT_COLLATION, tr("Collate", "new constraint dialog"), SLOT(createColumnCollate()));
+        modeToButton[ConstraintDialog::Constraint::COLLATE] = addButton(ICONS.CONSTRAINT_COLLATION, tr("Collate", "new constraint dialog"), SLOT(createColumnCollate()));
 
-    addButton(ICONS.CONSTRAINT_DEFAULT, tr("Default", "new constraint dialog"), SLOT(createColumnDefault()));
+    modeToButton[ConstraintDialog::Constraint::DEFAULT] = addButton(ICONS.CONSTRAINT_DEFAULT, tr("Default", "new constraint dialog"), SLOT(createColumnDefault()));
 }
 
-void NewConstraintDialog::addButton(const Icon& icon, const QString text, const char* slot)
+QCommandLinkButton* NewConstraintDialog::addButton(const Icon& icon, const QString text, const char* slot)
 {
     QCommandLinkButton* btn = new QCommandLinkButton();
     btn->setIcon(icon);
     btn->setText(text);
     connect(btn, SIGNAL(clicked()), this, slot);
     ui->container->layout()->addWidget(btn);
+    return btn;
 }
 
 int NewConstraintDialog::createColumnConstraint(ConstraintDialog::Constraint constraintType)

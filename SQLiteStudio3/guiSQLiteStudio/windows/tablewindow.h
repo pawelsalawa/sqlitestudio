@@ -162,6 +162,7 @@ class GUI_API_EXPORT TableWindow : public MdiChild
         void resizeStructureViewColumns();
         int getDataTabIdx() const;
         int getStructureTabIdx() const;
+        bool hasAnyPkDefined() const;
 
         int newTableWindowNum = 1;
 
