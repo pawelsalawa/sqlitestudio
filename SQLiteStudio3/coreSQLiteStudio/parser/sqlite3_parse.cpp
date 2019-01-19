@@ -2263,7 +2263,7 @@ static void yy_shift(
 /* The following table contains information about every rule that
 ** is used during the reduce.
 */
-static const struct {
+static const struct nrhs_t{
   YYCODETYPE lhs;         /* Symbol on the left-hand side of the rule */
   unsigned char nrhs;     /* Number of right-hand side symbols in the rule */
 } yyRuleInfo[] = {
