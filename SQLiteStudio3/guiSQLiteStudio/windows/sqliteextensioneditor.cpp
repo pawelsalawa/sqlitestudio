@@ -220,7 +220,7 @@ bool SqliteExtensionEditor::validateExtension(int row)
 {
     QString filePath = model->getFilePath(row);
     QString initFunc = model->getInitFunction(row);
-    return validateExtension(filePath, initFunc);
+    return validateExtension(filePath, initFunc, nullptr, nullptr, new QString);
 }
 
 bool SqliteExtensionEditor::validateExtension(const QString& filePath, const QString& initFunc, bool* fileOk, bool* initOk, QString* fileError)
