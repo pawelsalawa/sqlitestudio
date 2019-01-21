@@ -61,9 +61,15 @@ class SqliteExtensionEditor : public MdiChild
         void selectExtension(int row);
         QStringList getCurrentDatabases() const;
         bool tryToLoad(const QString& filePath, const QString& initFunc, QString* resultError);
-        bool validateExtension(bool* fileOk = nullptr, bool* initOk = nullptr, QString* fileError = nullptr);
+        bool validateExtension(bool* fileOk = nullptr,
+                               bool* initOk = nullptr,
+                               QString* fileError = nullptr);
         bool validateExtension(int row);
-        bool validateExtension(const QString& filePath, const QString& initFunc, bool* fileOk = nullptr, bool* initOk = nullptr, QString* fileError = nullptr);
+        bool validateExtension(const QString& filePath,
+                               const QString& initFunc,
+                               bool* fileOk = nullptr,
+                               bool* initOk = nullptr,
+                               QString* fileError = nullptr);
         void initStateForAll();
 
         Ui::SqliteExtensionEditor *ui;
