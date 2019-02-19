@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 if [ "$1" == "" ]; then
     QMAKE=`which qmake`
     if [ "$QMAKE" == "" ]; then
@@ -23,7 +25,7 @@ this_dir=`dirname $absolute_path`
 this_dir=`dirname $this_dir`
 parent_dir=`dirname $this_dir`
 
-if [ "$2" == ""]; then
+if [ "$2" == "" ]; then
     read -p "Number of CPU cores to use for compiling (hit enter to use $cpu_cores): " new_cpu_cores
     case $new_cpu_cores in
 	"" ) ;;

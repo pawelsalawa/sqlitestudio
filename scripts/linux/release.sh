@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 TARGET_DIR=/tmp/sqls-installer
 QMAKE=/opt/qt/5.10.0/gcc_64/bin/qmake
 CORES=2
