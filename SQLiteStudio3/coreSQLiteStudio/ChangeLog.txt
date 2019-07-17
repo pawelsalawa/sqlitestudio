@@ -1,6 +1,7 @@
 [3.2.2]
         * [BUGFIX]: #3385 Fixed "Sort" checkbox for AUTOINCREMENT to have it disabled if AUTOINCREMENT is selected (SQLite does not allow ordering autoincremented primary keys).
         * [BUGFIX]: #3390 Number of primary keys restricted in table/column dialogs, so only one per table is allowed.
+        * [BUGFIX]: #3421 Fixed unexpected database list panel shrinking when clicking on some items from that list.
 
 [3.2.1]
         * [BUGFIX]: #3399 Fixed start under Linux using the pre-compiled binary distributions (it used to fail due to missing xcb dependency).
