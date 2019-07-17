@@ -450,6 +450,7 @@ void MainWindow::restoreSession()
     if (sessionValue.size() == 0)
     {
         THEME_TUNER->tuneCurrentTheme();
+        restoreState(saveState()); // workaround for probable Qt bug (?), reported in #3421
         return;
     }
 
@@ -463,6 +464,8 @@ void MainWindow::restoreSession()
 
     if (sessionValue.contains("state"))
         restoreState(sessionValue["state"].toByteArray());
+    else
+        restoreState(saveState()); // workaround for probable Qt bug (?), reported in #3421
 
     if (sessionValue.contains("dbTree"))
         dbTree->restoreSession(sessionValue["dbTree"]);
