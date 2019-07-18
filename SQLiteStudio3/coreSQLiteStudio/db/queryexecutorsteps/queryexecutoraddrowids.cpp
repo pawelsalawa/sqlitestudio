@@ -154,7 +154,18 @@ bool QueryExecutorAddRowIds::addResultColumns(SqliteSelect::Core* core, const Se
                                         QHash<SelectResolver::Table,QHash<QString,QString>>& rowIdColsMap, bool isTopSelect)
 {
     SelectResolver::Table keyTable = table;
-    if (!rowIdColsMap.contains(table))
+
+    // If selecting from named subselect, where table in that subselect has no alias, we need to match
+    // Table by table&database, but excluding alias.
+    if (!rowIdColsMap.contains(keyTable) && !keyTable.tableAlias.isEmpty())
+    {
+        keyTable.tableAlias = QString();
+        if (!rowIdColsMap.contains(keyTable))
+            keyTable = table;
+    }
+
+    // Aliased matching should be performed also against pushed (to old) aliases, due to multi-level subselects.
+    if (!rowIdColsMap.contains(keyTable))
     {
         for (const SelectResolver::Table& rowIdColsMapTable : rowIdColsMap.keys())
         {
