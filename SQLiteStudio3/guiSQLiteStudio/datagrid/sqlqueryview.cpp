@@ -121,8 +121,6 @@ void SqlQueryView::setupDefShortcuts()
 
 void SqlQueryView::setupActionsForMenu(SqlQueryItem* currentItem, const QList<SqlQueryItem*>& selectedItems)
 {
-    UNUSED(currentItem);
-
     // Selected items count
     int selCount = selectedItems.size();
 
@@ -136,7 +134,7 @@ void SqlQueryView::setupActionsForMenu(SqlQueryItem* currentItem, const QList<Sq
         if (selItem->getColumn()->editionForbiddenReason.size() > 0)
             editableSelCount--;
 
-    bool currentItemEditable = (getCurrentItem()->getColumn()->editionForbiddenReason.size() == 0);
+    bool currentItemEditable = (currentItem && currentItem->getColumn()->editionForbiddenReason.size() == 0);
 
     // Uncommitted & selected items count
     int uncommittedSelCount = 0;
@@ -173,7 +171,7 @@ void SqlQueryView::setupActionsForMenu(SqlQueryItem* currentItem, const QList<Sq
         contextMenu->addSeparator();
     }
 
-    if (selCount == 1 && selectedItems.first() == currentItem)
+    if (selCount == 1 && currentItem && selectedItems.first() == currentItem)
         addFkActionsToContextMenu(currentItem);
 
     if (selCount > 0)
