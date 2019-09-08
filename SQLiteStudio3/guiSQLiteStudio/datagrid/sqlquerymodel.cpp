@@ -1229,9 +1229,14 @@ void SqlQueryModel::handleExecFailed(int code, QString errorMessage)
 
 void SqlQueryModel::resultsCountingFinished(quint64 rowsAffected, quint64 rowsReturned, int totalPages)
 {
+    // TotalPages provided by QueryExecutor is wrong if there are tons of columns in results, as row limit is applied
+    // to prevent memory exhaustion. QueryExecutor is not aware of the limit at the moment of execution, so it calculates
+    // total number of pages incorrectly.
+    UNUSED(totalPages);
+
     this->rowsAffected = rowsAffected;
     this->totalRowsReturned = rowsReturned;
-    this->totalPages = totalPages;
+    this->totalPages = (int)qCeil(((double)totalRowsReturned) / ((double)getRowsPerPage()));
     detachDatabases();
     emit totalRowsAndPagesAvailable();
     emit storeExecutionInHistory();
@@ -1356,9 +1361,10 @@ void SqlQueryModel::storeStep1NumbersFromExecution()
 
     if (!queryExecutor->getSkipRowCounting())
     {
-        totalPages = queryExecutor->getTotalPages();
         if (!queryExecutor->isRowCountingRequired())
             totalRowsReturned = queryExecutor->getTotalRowsReturned();
+
+        totalPages = (int)qCeil(((double)totalRowsReturned) / ((double)getRowsPerPage()));
     }
 }
 
