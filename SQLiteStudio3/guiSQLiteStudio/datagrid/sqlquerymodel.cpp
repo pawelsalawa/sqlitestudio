@@ -105,7 +105,7 @@ void SqlQueryModel::executeQueryInternal()
         return;
     }
 
-    if (query.isEmpty())
+    if (query.trimmed().isEmpty())
     {
         notifyWarn("Cannot execute empty query.");
         internalExecutionStopped();
