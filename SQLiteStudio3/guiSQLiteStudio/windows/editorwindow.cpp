@@ -522,18 +522,29 @@ bool EditorWindow::processBindParams(QString& sql, QHash<QString, QVariant>& que
     static_qstring(paramTpl, ":arg%1");
     QString arg;
     QVector<BindParam*> bindParams;
+    QHash<QString, QString> namedBindParams;
     BindParam* bindParam = nullptr;
+    bool isNamed = false;
+    bool nameAlreadyInList = false;
     int i = 0;
     for (const TokenPtr& token : bindTokens)
     {
+        isNamed = (token->value != "?");
+        nameAlreadyInList = isNamed && namedBindParams.contains(token->value);
+
         bindParam = new BindParam();
         bindParam->position = i;
         bindParam->originalName = token->value;
-        bindParam->newName = paramTpl.arg(i);
-        bindParams << bindParam;
-        i++;
-
+        bindParam->newName = (isNamed && nameAlreadyInList) ? namedBindParams[token->value] : paramTpl.arg(i);
         token->value = bindParam->newName;
+
+        if (!isNamed || !nameAlreadyInList)
+            bindParams << bindParam;
+
+        if (isNamed && !nameAlreadyInList)
+            namedBindParams[bindParam->originalName] = bindParam->newName;
+
+        i++;
     }
 
     // Show dialog to query user for values
