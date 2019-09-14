@@ -205,8 +205,8 @@
         <source>No working database is set.
 Call %1 command to set working database.
 Call %2 to see list of all databases.</source>
-        <translation>Не указана рабочая база данных. 
-Укажите рабочую базу данных командой %1. 
+        <translation>Не указана рабочая база данных.
+Укажите рабочую базу данных командой %1.
 Для просмотра списка баз данных воспользуйтесь командой %2.</translation>
     </message>
     <message>
