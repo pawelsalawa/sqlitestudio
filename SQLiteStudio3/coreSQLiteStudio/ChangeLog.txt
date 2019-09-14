@@ -5,6 +5,7 @@
         * [BUGFIX]: #3446 Fixed ResCol_0 appearing when selecting from view that does basic SELECT * from a table.
         * [BUGFIX]: Fixed crash when selected one or more empty lines (new line characters) end executing it.
         * [BUGFIX]: #3564 Fixed inifinite loop of language choice when configuration file could not be created.
+        * [BUGFIX]: #3549 Fixed support for numbered bind parameters.
 
 [3.2.1]
         * [BUGFIX]: #3399 Fixed start under Linux using the pre-compiled binary distributions (it used to fail due to missing xcb dependency).
