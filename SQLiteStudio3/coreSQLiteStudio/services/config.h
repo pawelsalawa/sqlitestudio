@@ -114,6 +114,7 @@ class API_EXPORT Config : public QObject
         virtual void cleanUp() = 0;
         virtual const QString& getConfigDir() const = 0;
         virtual QString getConfigFilePath() const = 0;
+        virtual bool isInMemory() const = 0;
 
         virtual void beginMassSave() = 0;
         virtual void commitMassSave() = 0;

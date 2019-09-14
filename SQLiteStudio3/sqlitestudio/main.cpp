@@ -148,7 +148,7 @@ int main(int argc, char *argv[])
 
     IconManager::getInstance()->rescanResources();
 
-    if (!LanguageDialog::didAskForDefaultLanguage())
+    if (!LanguageDialog::didAskForDefaultLanguage() && !SQLITESTUDIO->getConfig()->isInMemory())
     {
         LanguageDialog::askedForDefaultLanguage();
         QMap<QString, QString> langs = getAvailableLanguages();

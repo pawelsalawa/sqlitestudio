@@ -249,3 +249,8 @@ QString ConfigMock::getSqlite3Version() const
 {
     return "3.8.8";
 }
+
+bool ConfigMock::isInMemory() const
+{
+    return true;
+}

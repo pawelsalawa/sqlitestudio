@@ -61,6 +61,7 @@ class ConfigMock : public Config
         void deleteReport(int);
         void clearReportHistory();
         QString getSqlite3Version() const;
+        bool isInMemory() const;
 
     public slots:
         void refreshSqlHistory();
