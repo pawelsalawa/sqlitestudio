@@ -19,6 +19,7 @@
 
 static_qstring(DB_FILE_NAME, "settings3");
 qint64 ConfigImpl::sqlHistoryId = -1;
+QString ConfigImpl::memoryDbName = QStringLiteral(":memory:");
 
 ConfigImpl::~ConfigImpl()
 {
@@ -43,7 +44,7 @@ void ConfigImpl::cleanUp()
     if (db->isOpen())
         db->close();
 
-    safe_delete(db);
+    safe_delete(db)
 }
 
 const QString &ConfigImpl::getConfigDir() const
@@ -57,6 +58,11 @@ QString ConfigImpl::getConfigFilePath() const
         return QString();
 
     return db->getPath();
+}
+
+bool ConfigImpl::isInMemory() const
+{
+    return db->getPath() == memoryDbName;
 }
 
 void ConfigImpl::beginMassSave()
@@ -740,14 +746,14 @@ void ConfigImpl::initDbFile()
     }
 
     // A fallback to in-memory db
-    paths << QPair<QString,bool>(":memory:", false);
+    paths << QPair<QString,bool>(memoryDbName, false);
 
     // Go through all candidates and pick one
     QDir dir;
     for (const QPair<QString,bool>& path : paths)
     {
         dir = QDir(path.first);
-        if (path.first != ":memory:")
+        if (path.first != memoryDbName)
             dir.cdUp();
 
         if (tryInitDbFile(path))
@@ -758,7 +764,7 @@ void ConfigImpl::initDbFile()
     }
 
     // We ended up with in-memory one? That's not good.
-    if (configDir == ":memory:")
+    if (configDir == memoryDbName)
     {
         paths.removeLast();
         QStringList pathStrings;
@@ -766,7 +772,7 @@ void ConfigImpl::initDbFile()
             pathStrings << path.first;
 
         notifyError(QObject::tr("Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart."
-                       " Tried to initialize the file at following localizations: %1.").arg(pathStrings.join(", ")));
+                       " Unable to create a file at following locations: %1.").arg(pathStrings.join(", ")));
     }
 
     qDebug() << "Using configuration directory:" << configDir;

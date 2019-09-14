@@ -22,6 +22,7 @@ class API_EXPORT ConfigImpl : public Config
         void cleanUp();
         const QString& getConfigDir() const;
         QString getConfigFilePath() const;
+        bool isInMemory() const;
 
         void beginMassSave();
         void commitMassSave();
@@ -134,6 +135,7 @@ class API_EXPORT ConfigImpl : public Config
 
         static Config* instance;
         static qint64 sqlHistoryId;
+        static QString memoryDbName;
 
         Db* db = nullptr;
         QString configDir;
