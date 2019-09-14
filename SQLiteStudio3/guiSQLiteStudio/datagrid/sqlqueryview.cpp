@@ -338,11 +338,24 @@ void SqlQueryView::paste(const QList<QList<QVariant> >& data)
         return;
     }
 
+    if (getModel()->isStructureOutOfDate())
+    {
+        notifyWarn(tr("Cannot paste data. Details: %1").arg(tr("Structure of at least one table used has changed since last data was loaded. Reload the data to proceed.")));
+        return;
+    }
+
+    QSet<QString> warnedColumns;
+    bool warnedRowDeletion = false;
     if (data.size() == 1 && data[0].size() == 1)
     {
         QVariant theValue = data[0][0];
         for (SqlQueryItem* item : selectedItems)
+        {
+            if (!validatePasting(warnedColumns, warnedRowDeletion, item))
+                continue;
+
             item->setValue(theValue, false, false);
+        }
 
         return;
     }
@@ -375,19 +388,45 @@ void SqlQueryView::paste(const QList<QList<QVariant> >& data)
                 qDebug() << "Tried to paste more columns than available in the grid.";
                 break;
             }
-            item = getModel()->itemFromIndex(rowIdx, colIdx);
+            item = getModel()->itemFromIndex(rowIdx, colIdx++);
 
-            // Set value to the cell
+            // Set value to the cell, if possible
+            if (!validatePasting(warnedColumns, warnedRowDeletion, item))
+                continue;
+
             item->setValue(cell, false, false);
-
-            // Go to next cell
-            colIdx++;
         }
 
-        // Go to next row, first cell
+        // Go to next row, first column
         rowIdx++;
         colIdx = topLeft->column();
     }
+}
+
+bool SqlQueryView::validatePasting(QSet<QString>& warnedColumns, bool& warnedRowDeletion, SqlQueryItem* item)
+{
+    if (item->isDeletedRow())
+    {
+        if (!warnedRowDeletion)
+        {
+            warnedRowDeletion = true;
+            notifyWarn(tr("Cannot paste to a cell. Details: %1").arg(tr("The row is marked for deletion.")));
+        }
+        return false;
+    }
+
+    if (!item->getColumn()->canEdit())
+    {
+        QString colName = item->getColumn()->displayName;
+        if (!warnedColumns.contains(colName))
+        {
+            warnedColumns << colName;
+            notifyWarn(tr("Cannot paste to column %1. Details: %2").arg(colName).arg(item->getColumn()->getEditionForbiddenReason()));
+        }
+        return false;
+    }
+
+    return true;
 }
 
 void SqlQueryView::addFkActionsToContextMenu(SqlQueryItem* currentItem)
