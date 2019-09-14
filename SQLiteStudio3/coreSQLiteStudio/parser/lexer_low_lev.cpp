@@ -358,7 +358,7 @@ int lexerGetToken(const QString& z, TokenPtr token, int sqliteVersion, bool tole
         {
             token->lemonType = v3 ? TK3_VARIABLE : TK2_VARIABLE;
             token->type = Token::BIND_PARAM;
-            for (i=1; charAt(z, i+2).isDigit(); i++) {}
+            for (i=1; charAt(z, i).isDigit(); i++) {}
             return i;
         }
         if (z0 == '$' ||

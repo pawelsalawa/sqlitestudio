@@ -104,6 +104,7 @@ class GUI_API_EXPORT SqlQueryView : public QTableView, public ExtActionContainer
         void setupHeaderMenu();
         bool editInEditorIfNecessary(SqlQueryItem* item);
         void paste(const QList<QList<QVariant>>& data);
+        bool validatePasting(QSet<QString>& warnedColumns, bool& warnedRowDeletion, SqlQueryItem* item);
         void addFkActionsToContextMenu(SqlQueryItem* currentItem);
         void goToReferencedRow(const QString& table, const QString& column, const QVariant& value);
         void copy(bool withHeaders);

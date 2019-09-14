@@ -55,7 +55,7 @@ void MultiEditor::init(TabsMode tabsMode)
     QFont font = cornerLabel->font();
     font.setBold(true);
     cornerLabel->setFont(font);
-    cornerLabel->setFrameStyle(QFrame::StyledPanel|QFrame::Plain);
+    cornerLabel->setFrameStyle(QFrame::NoFrame);
     hbox->addWidget(cornerLabel);
     cornerLabel->setVisible(false);
 

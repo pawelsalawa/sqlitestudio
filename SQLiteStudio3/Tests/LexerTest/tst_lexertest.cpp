@@ -14,6 +14,7 @@ class LexerTest : public QObject
         void testFloat();
         void testHex1();
         void testHex2();
+        void testBindParam1();
 };
 
 LexerTest::LexerTest()
@@ -59,6 +60,21 @@ void LexerTest::testHex2()
     QVERIFY(tokens[2]->type == Token::INTEGER);
     QVERIFY(tokens[3]->type == Token::OTHER);
     QVERIFY(tokens[3]->value == "zzz");
+}
+
+void LexerTest::testBindParam1()
+{
+    QString sql = "SELECT * FROM test WHERE id = ?1 OR id = ?123 OR id = ? OR id = :id OR id = @id";
+
+    Lexer lex(Dialect::Sqlite3);
+    TokenList tokens = lex.tokenize(sql);
+    TokenList bindTokens = tokens.filter(Token::BIND_PARAM);
+    QVERIFY(bindTokens.size() == 5);
+    QVERIFY(bindTokens[0]->value == "?1");
+    QVERIFY(bindTokens[1]->value == "?123");
+    QVERIFY(bindTokens[2]->value == "?");
+    QVERIFY(bindTokens[3]->value == ":id");
+    QVERIFY(bindTokens[4]->value == "@id");
 }
 
 QTEST_APPLESS_MAIN(LexerTest)
