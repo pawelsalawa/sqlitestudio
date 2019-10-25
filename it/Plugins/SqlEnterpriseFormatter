@@ -81,6 +81,7 @@
     <message>
       <location filename="sqlenterpriseformatter.ui" line="240"/>
       <source>After JOIN keywords in FROM clause</source>
+      <oldsource>After *JOIN keywords in FROM clause</oldsource>
       <translation type="unfinished">After JOIN keywords in FROM clause</translation>
     </message>
     <message>
