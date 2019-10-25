@@ -633,7 +633,7 @@ ale można go używać.</translation>
       <location filename="../completer/completerwindow.cpp" line="185"/>
       <source>Operator: %1</source>
       <comment>completer statusbar</comment>
-      <translation type="unfinished">Operator: %1</translation>
+      <translation>Operator: %1</translation>
     </message>
     <message>
       <location filename="../completer/completerwindow.cpp" line="187"/>
@@ -697,7 +697,7 @@ ale można go używać.</translation>
     <message>
       <location filename="../dialogs/configdialog.ui" line="129"/>
       <source>Style</source>
-      <translation type="unfinished">Style</translation>
+      <translation>Styl</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="141"/>
@@ -1218,7 +1218,7 @@ ale można go używać.</translation>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1873"/>
       <source>BLOB value foreground</source>
-      <translation type="unfinished">BLOB value foreground</translation>
+      <translation>Kolor czcionki zawartości BLOB</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1880"/>
@@ -3029,7 +3029,7 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
     <message>
       <location filename="../dialogs/fileexecerrorsdialog.ui" line="49"/>
       <source>SQL</source>
-      <translation type="unfinished">SQL</translation>
+      <translation>SQL</translation>
     </message>
     <message>
       <location filename="../dialogs/fileexecerrorsdialog.ui" line="54"/>
@@ -3267,7 +3267,7 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
       <location filename="../windows/functionseditor.cpp" line="505"/>
       <source>argument</source>
       <comment>new function argument name in function editor window</comment>
-      <translation type="unfinished">argument</translation>
+      <translation>argument</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.cpp" line="631"/>
@@ -3449,7 +3449,7 @@ Proszę podać nową, unikalną nazwę, lub nacisnąć &apos;%1&apos;, aby przer
     <message>
       <location filename="../dialogs/indexdialog.ui" line="180"/>
       <source>DDL</source>
-      <translation type="unfinished">DDL</translation>
+      <translation>DDL</translation>
     </message>
     <message>
       <location filename="../dialogs/indexdialog.cpp" line="66"/>
@@ -5341,17 +5341,17 @@ znajdź następny</translation>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="343"/>
       <source>Cannot paste data. Details: %1</source>
-      <translation type="unfinished">Cannot paste data. Details: %1</translation>
+      <translation>Nie można wkleić danych. Szczegóły: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="343"/>
       <source>Structure of at least one table used has changed since last data was loaded. Reload the data to proceed.</source>
-      <translation type="unfinished">Structure of at least one table used has changed since last data was loaded. Reload the data to proceed.</translation>
+      <translation>Zmieniła się struktura przynajmniej jednej tabeli od czasu ostatniego wczytania danych. Odśwież dane, aby kontynuować.</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="413"/>
       <source>Cannot paste to a cell. Details: %1</source>
-      <translation type="unfinished">Cannot paste to a cell. Details: %1</translation>
+      <translation>Nie można wkleić do komórki. Szczegóły: %1</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="413"/>
