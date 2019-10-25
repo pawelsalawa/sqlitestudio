@@ -16,6 +16,13 @@
     </message>
   </context>
   <context>
+    <name>BugReporter</name>
+    <message>
+      <source>Invalid login or password</source>
+      <translation type="unfinished">Invalid login or password</translation>
+    </message>
+  </context>
+  <context>
     <name>ChainExecutor</name>
     <message>
       <location filename="../db/chainexecutor.cpp" line="37"/>
@@ -1003,21 +1010,9 @@ Error details: %2</translation>
       <translation type="unfinished">There is problem with proper processing trigger %1. It may be not fully updated afterwards and will need your attention.</translation>
     </message>
     <message>
-      <location filename="../tablemodifier.cpp" line="496"/>
-      <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
-      <translation type="unfinished">All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</translation>
-    </message>
-    <message>
       <location filename="../tablemodifier.cpp" line="528"/>
       <source>Cannot not update trigger %1 according to table %2 modification.</source>
       <translation type="unfinished">Cannot not update trigger %1 according to table %2 modification.</translation>
-    </message>
-    <message>
-      <location filename="../tablemodifier.cpp" line="546"/>
-      <source>Cannot not update view %1 according to table %2 modifications.
-The view will remain as it is.</source>
-      <translation type="unfinished">Cannot not update view %1 according to table %2 modifications.
-The view will remain as it is.</translation>
     </message>
     <message>
       <location filename="../tablemodifier.cpp" line="708"/>
@@ -1025,6 +1020,18 @@ The view will remain as it is.</translation>
       <location filename="../tablemodifier.cpp" line="751"/>
       <source>There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</source>
       <translation type="unfinished">There is a problem with updating an %1 statement within %2 trigger. One of the %1 substatements which might be referring to table %3 cannot be properly modified. Manual update of the trigger may be necessary.</translation>
+    </message>
+    <message>
+      <location filename="../tablemodifier.cpp" line="496"/>
+      <source>All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</source>
+      <translation type="unfinished">All columns covered by the trigger %1 are gone. The trigger will not be recreated after table modification.</translation>
+    </message>
+    <message>
+      <location filename="../tablemodifier.cpp" line="546"/>
+      <source>Cannot not update view %1 according to table %2 modifications.
+The view will remain as it is.</source>
+      <translation type="unfinished">Cannot not update view %1 according to table %2 modifications.
+The view will remain as it is.</translation>
     </message>
     <message>
       <location filename="../viewmodifier.cpp" line="25"/>
