@@ -78,5 +78,9 @@
       <source>Database file to open</source>
       <translation type="unfinished">Database file to open</translation>
     </message>
+    <message>
+      <source>Error</source>
+      <translation type="unfinished">Error</translation>
+    </message>
   </context>
 </TS>
