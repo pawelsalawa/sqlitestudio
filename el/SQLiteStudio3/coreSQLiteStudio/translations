@@ -1102,6 +1102,7 @@ The view will remain as it is.</translation>
       <location filename="../sqlhistorymodel.cpp" line="34"/>
       <source>Database</source>
       <comment>sql history header</comment>
+      <translatorcomment>Dátum spustenia</translatorcomment>
       <translation type="unfinished">Database</translation>
     </message>
     <message>
@@ -1131,6 +1132,30 @@ The view will remain as it is.</translation>
   </context>
   <context>
     <name>UpdateManager</name>
+    <message>
+      <source>An error occurred while checking for updates: %1.</source>
+      <translation type="unfinished">An error occurred while checking for updates: %1.</translation>
+    </message>
+    <message>
+      <source>Downloading: %1</source>
+      <translation type="unfinished">Downloading: %1</translation>
+    </message>
+    <message>
+      <source>Installing updates.</source>
+      <translation type="unfinished">Installing updates.</translation>
+    </message>
+    <message>
+      <source>Could not rename directory %1 to %2.</source>
+      <translation type="unfinished">Could not rename directory %1 to %2.</translation>
+    </message>
+    <message>
+      <source>Could not delete directory %1.</source>
+      <translation type="unfinished">Could not delete directory %1.</translation>
+    </message>
+    <message>
+      <source>An error occurred while downloading updates: %1. Updating aborted.</source>
+      <translation type="unfinished">An error occurred while downloading updates: %1. Updating aborted.</translation>
+    </message>
     <message>
       <location filename="../services/updatemanager.cpp" line="48"/>
       <source>Updates installer executable is missing.</source>
