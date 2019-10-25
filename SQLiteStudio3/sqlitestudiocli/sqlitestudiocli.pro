@@ -31,7 +31,8 @@ portable {
     DEFINES += PORTABLE_CONFIG
 }
 
-TRANSLATIONS += translations/sqlitestudiocli_ro_RO.ts \
+TRANSLATIONS += translations/sqlitestudiocli.ts \
+		translations/sqlitestudiocli_ro_RO.ts \
 		translations/sqlitestudiocli_de_DE.ts \
 		translations/sqlitestudiocli_it_IT.ts \
 		translations/sqlitestudiocli_zh_CN.ts \
@@ -118,6 +119,7 @@ unix: {
 
 RESOURCES += \
     sqlitestudiocli.qrc
+
 
 
 

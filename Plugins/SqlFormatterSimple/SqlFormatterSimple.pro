@@ -28,7 +28,8 @@ RESOURCES += \
     sqlformattersimple.qrc
 
 
-TRANSLATIONS += translations/SqlFormatterSimple_ro_RO.ts \
+TRANSLATIONS += translations/SqlFormatterSimple.ts \
+		translations/SqlFormatterSimple_ro_RO.ts \
 		translations/SqlFormatterSimple_de_DE.ts \
 		translations/SqlFormatterSimple_it_IT.ts \
 		translations/SqlFormatterSimple_zh_CN.ts \
@@ -38,6 +39,7 @@ TRANSLATIONS += translations/SqlFormatterSimple_ro_RO.ts \
 		translations/SqlFormatterSimple_fr_FR.ts \
 		translations/SqlFormatterSimple_es_ES.ts \
 		translations/SqlFormatterSimple_pl_PL.ts
+
 
 
 

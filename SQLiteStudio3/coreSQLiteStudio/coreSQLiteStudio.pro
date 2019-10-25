@@ -54,7 +54,8 @@ portable {
 CONFIG   += c++11
 QMAKE_CXXFLAGS += -pedantic
 
-TRANSLATIONS += translations/coreSQLiteStudio_ro_RO.ts \
+TRANSLATIONS += translations/coreSQLiteStudio.ts \
+		translations/coreSQLiteStudio_ro_RO.ts \
 		translations/coreSQLiteStudio_de_DE.ts \
 		translations/coreSQLiteStudio_it_IT.ts \
 		translations/coreSQLiteStudio_zh_CN.ts \
@@ -471,6 +472,7 @@ RESOURCES += \
 
 DISTFILES += \
     licenses/mit.txt
+
 
 
 

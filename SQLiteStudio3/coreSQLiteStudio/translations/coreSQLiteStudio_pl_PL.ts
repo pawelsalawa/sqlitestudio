@@ -147,12 +147,12 @@
 <context>
     <name>ConfigImpl</name>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="863"/>
+        <location filename="../services/impl/configimpl.cpp" line="869"/>
         <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
         <translation>Nie można rozpocząć transakcji dla usuwania historii SQL, więc nie można usunąć historii.</translation>
     </message>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="870"/>
+        <location filename="../services/impl/configimpl.cpp" line="876"/>
         <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
         <translation>Nie można zatwierdzić transakcji dla usuwania historii SQL, więc nie można usunąć historii.</translation>
     </message>
@@ -871,7 +871,7 @@ Szczegóły błędu: %2</translation>
         <translation>Przeciążenie stosu analizatora.</translation>
     </message>
     <message>
-        <location filename="../parser/sqlite2_parse.cpp" line="4465"/>
+        <location filename="../parser/sqlite2_parse.cpp" line="4466"/>
         <location filename="../parser/sqlite3_parse.cpp" line="5195"/>
         <source>Syntax error</source>
         <translation>Błąd składni</translation>
@@ -937,9 +937,8 @@ Szczegóły błędu: %2</translation>
         <translation>Nie można ustalić tabeli lub kolumny &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="768"/>
         <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Tried to initialize the file at following localizations: %1.</source>
-        <translation>Nie udało się zainicjalizować pliku konfiguracyjnego. Jakiekolwiek zmiany w konfiguracji i historia zapytań będą utracone po zrestartowaniu aplikacji. Próbowano zainicjalizować plik konfiguracyjny w następujących lokalizacjach: %1.</translation>
+        <translation type="vanished">Nie udało się zainicjalizować pliku konfiguracyjnego. Jakiekolwiek zmiany w konfiguracji i historia zapytań będą utracone po zrestartowaniu aplikacji. Próbowano zainicjalizować plik konfiguracyjny w następujących lokalizacjach: %1.</translation>
     </message>
     <message>
         <location filename="../sqlitestudio.cpp" line="305"/>
@@ -1068,6 +1067,11 @@ Widok pozostanie nienaruszony.</translation>
         <location filename="../common/utils.cpp" line="1022"/>
         <source>Could not open file &apos;%1&apos; for reading: %2</source>
         <translation>Nie można otworzyż pliku &apos;%1&apos; do odczytu: %2</translation>
+    </message>
+    <message>
+        <location filename="../services/impl/configimpl.cpp" line="774"/>
+        <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1313,23 +1317,23 @@ Treść błędu: %2</translation>
         <translation type="vanished">Wystąpił błąd podczas pobierania aktualizacji: %1. Aktualizacja przerwana.</translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="48"/>
+        <location filename="../services/updatemanager.cpp" line="51"/>
         <source>Updates installer executable is missing.</source>
         <translation>Nie można znaleźć pliku wykonywalnego instalatora aktualizacji.</translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="49"/>
-        <location filename="../services/updatemanager.cpp" line="68"/>
+        <location filename="../services/updatemanager.cpp" line="52"/>
+        <location filename="../services/updatemanager.cpp" line="76"/>
         <source>Unable to check for updates (%1)</source>
         <translation>Nie można sprawdzić dostępnych aktualizacji (%1)</translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="66"/>
+        <location filename="../services/updatemanager.cpp" line="74"/>
         <source>details are unknown</source>
         <translation>szczegóły nieznane</translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="81"/>
+        <location filename="../services/updatemanager.cpp" line="89"/>
         <source>Unable to run updater application (%1). Please report this.</source>
         <translation>Nie można uruchomić aplikacji aktualizującej (%1). Proszę to zgłosić.</translation>
     </message>

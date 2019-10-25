@@ -270,7 +270,7 @@ switch -- $op {
 			puts "Updated $fnameOnly"
 		}
 	}
-	"2" {
+	"migrate-2" {
 		foreach p [list coreSQLiteStudio guiSQLiteStudio sqlitestudio sqlitestudiocli] {
 			# pro file
 			set fd [open $p/$p.pro r]
@@ -297,7 +297,7 @@ switch -- $op {
 
 			if {[string first "TRANSLATIONS +=" $data] == -1} continue
 
-			set ts "${d}.ts"
+			set ts "translations/${d}.ts"
 			set data [string map [list "TRANSLATIONS += " "TRANSLATIONS += $ts \\\n\t\t"] $data]
 			
 			set fd [open ../Plugins/$d/$d.pro w+]
@@ -307,7 +307,7 @@ switch -- $op {
 			puts "Updated $d.pro"
 		}
 	}
-    "1" {
+    "migrate-1" {
 		set changes [dict create \
 			de de_DE \
 			es es_ES \

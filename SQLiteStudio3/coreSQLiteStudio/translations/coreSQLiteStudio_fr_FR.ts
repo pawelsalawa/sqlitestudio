@@ -147,12 +147,12 @@
 <context>
     <name>ConfigImpl</name>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="863"/>
+        <location filename="../services/impl/configimpl.cpp" line="869"/>
         <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="870"/>
+        <location filename="../services/impl/configimpl.cpp" line="876"/>
         <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -882,7 +882,7 @@ Détails erreur: %2</translation>
         <translation>Analyse dépassement pile</translation>
     </message>
     <message>
-        <location filename="../parser/sqlite2_parse.cpp" line="4465"/>
+        <location filename="../parser/sqlite2_parse.cpp" line="4466"/>
         <location filename="../parser/sqlite3_parse.cpp" line="5195"/>
         <source>Syntax error</source>
         <translation>Erreur de syntaxe</translation>
@@ -948,9 +948,8 @@ Détails erreur: %2</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="768"/>
         <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Tried to initialize the file at following localizations: %1.</source>
-        <translation>Impossible d’initialiser le fichier de configuration.
+        <translation type="vanished">Impossible d’initialiser le fichier de configuration.
         Aucune modification et les requêtes seront perdues après redémarrage.
         Essayez d’initialiser le fichier avec cette localisation : %1.</translation>
     </message>
@@ -1057,6 +1056,11 @@ La vue restera telque.</translation>
     <message>
         <location filename="../common/utils.cpp" line="1022"/>
         <source>Could not open file &apos;%1&apos; for reading: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../services/impl/configimpl.cpp" line="774"/>
+        <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1295,23 +1299,23 @@ Message d’erreur : %2</translation>
         <translation type="vanished">Erreur lors du téléchargement de la mise à jour : %1. Mise à jour abandonnée.</translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="48"/>
+        <location filename="../services/updatemanager.cpp" line="51"/>
         <source>Updates installer executable is missing.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="49"/>
-        <location filename="../services/updatemanager.cpp" line="68"/>
+        <location filename="../services/updatemanager.cpp" line="52"/>
+        <location filename="../services/updatemanager.cpp" line="76"/>
         <source>Unable to check for updates (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="66"/>
+        <location filename="../services/updatemanager.cpp" line="74"/>
         <source>details are unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="81"/>
+        <location filename="../services/updatemanager.cpp" line="89"/>
         <source>Unable to run updater application (%1). Please report this.</source>
         <translation type="unfinished"></translation>
     </message>

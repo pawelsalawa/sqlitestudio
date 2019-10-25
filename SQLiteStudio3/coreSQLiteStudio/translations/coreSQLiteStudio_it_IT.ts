@@ -140,12 +140,12 @@
 <context>
     <name>ConfigImpl</name>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="863"/>
+        <location filename="../services/impl/configimpl.cpp" line="869"/>
         <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/impl/configimpl.cpp" line="870"/>
+        <location filename="../services/impl/configimpl.cpp" line="876"/>
         <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -873,7 +873,7 @@ Error details: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../parser/sqlite2_parse.cpp" line="4465"/>
+        <location filename="../parser/sqlite2_parse.cpp" line="4466"/>
         <location filename="../parser/sqlite3_parse.cpp" line="5195"/>
         <source>Syntax error</source>
         <translation type="unfinished"></translation>
@@ -936,11 +936,6 @@ Error details: %2</source>
     <message>
         <location filename="../selectresolver.cpp" line="431"/>
         <source>Could not resolve table for column &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../services/impl/configimpl.cpp" line="768"/>
-        <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Tried to initialize the file at following localizations: %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1043,6 +1038,11 @@ The view will remain as it is.</source>
         <source>Could not open file &apos;%1&apos; for reading: %2</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../services/impl/configimpl.cpp" line="774"/>
+        <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QueryExecutor</name>
@@ -1122,23 +1122,23 @@ The view will remain as it is.</source>
 <context>
     <name>UpdateManager</name>
     <message>
-        <location filename="../services/updatemanager.cpp" line="48"/>
+        <location filename="../services/updatemanager.cpp" line="51"/>
         <source>Updates installer executable is missing.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="49"/>
-        <location filename="../services/updatemanager.cpp" line="68"/>
+        <location filename="../services/updatemanager.cpp" line="52"/>
+        <location filename="../services/updatemanager.cpp" line="76"/>
         <source>Unable to check for updates (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="66"/>
+        <location filename="../services/updatemanager.cpp" line="74"/>
         <source>details are unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../services/updatemanager.cpp" line="81"/>
+        <location filename="../services/updatemanager.cpp" line="89"/>
         <source>Unable to run updater application (%1). Please report this.</source>
         <translation type="unfinished"></translation>
     </message>

@@ -42,7 +42,8 @@ LIBS += -lcoreSQLiteStudio -lguiSQLiteStudio
 SOURCES += main.cpp \
     singleapplication/singleapplication.cpp
 
-TRANSLATIONS += translations/sqlitestudio_ro_RO.ts \
+TRANSLATIONS += translations/sqlitestudio.ts \
+		translations/sqlitestudio_ro_RO.ts \
 		translations/sqlitestudio_de_DE.ts \
 		translations/sqlitestudio_it_IT.ts \
 		translations/sqlitestudio_zh_CN.ts \
@@ -78,6 +79,7 @@ RESOURCES += \
 HEADERS += \
     singleapplication/singleapplication.h \
     singleapplication/singleapplication_p.h
+
 
 
 

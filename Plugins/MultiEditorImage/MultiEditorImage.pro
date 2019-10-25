@@ -18,7 +18,8 @@ OTHER_FILES += \
 RESOURCES += \
     multieditorimage.qrc
 
-TRANSLATIONS += \
+TRANSLATIONS += translations/MultiEditorImage.ts \
+		\
 		translations/MultiEditorImage_ro_RO.ts\
 		translations/MultiEditorImage_de_DE.ts\
 		translations/MultiEditorImage_it_IT.ts\
@@ -29,6 +30,7 @@ TRANSLATIONS += \
 		translations/MultiEditorImage_fr_FR.ts\
 		translations/MultiEditorImage_es_ES.ts\
 		translations/MultiEditorImage_pl_PL.ts
+
 
 
 

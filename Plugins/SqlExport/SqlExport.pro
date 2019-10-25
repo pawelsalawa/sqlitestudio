@@ -29,7 +29,8 @@ RESOURCES += \
     sqlexport.qrc
 
 
-TRANSLATIONS += translations/SqlExport_ro_RO.ts \
+TRANSLATIONS += translations/SqlExport.ts \
+		translations/SqlExport_ro_RO.ts \
 		translations/SqlExport_de_DE.ts \
 		translations/SqlExport_it_IT.ts \
 		translations/SqlExport_zh_CN.ts \
@@ -39,6 +40,7 @@ TRANSLATIONS += translations/SqlExport_ro_RO.ts \
 		translations/SqlExport_fr_FR.ts \
 		translations/SqlExport_es_ES.ts \
 		translations/SqlExport_pl_PL.ts
+
 
 
 

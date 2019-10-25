@@ -4,12 +4,12 @@
 <context>
     <name>SqlFormatterSimplePlugin</name>
     <message>
-        <location filename="SqlFormatterSimple.ui" line="20"/>
+        <location filename="../SqlFormatterSimple.ui" line="20"/>
         <source>Upper case keywords</source>
         <translation>Ключевые слова в верхнем регистре</translation>
     </message>
     <message>
-        <location filename="SqlFormatterSimple.ui" line="30"/>
+        <location filename="../SqlFormatterSimple.ui" line="30"/>
         <source>Reduce multiple whitespaces to single whitespace</source>
         <translation>Сокращать несколько непечатаемых символов в один</translation>
     </message>

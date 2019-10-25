@@ -63,7 +63,8 @@ QMAKE_CFLAGS_WARN_ON = -Wall -Wno-unused-parameter -Wno-sign-compare -Wno-unused
 DISTFILES += \
     openssl_lic.txt
 
-TRANSLATIONS += translations/DbSqliteCipher_ro_RO.ts \
+TRANSLATIONS += translations/DbSqliteCipher.ts \
+		translations/DbSqliteCipher_ro_RO.ts \
 	translations/DbSqliteCipher_de_DE.ts \
 	\
 	translations/DbSqliteCipher_it_IT.ts\
@@ -74,6 +75,7 @@ TRANSLATIONS += translations/DbSqliteCipher_ro_RO.ts \
 	translations/DbSqliteCipher_fr_FR.ts\
 	translations/DbSqliteCipher_es_ES.ts\
 	translations/DbSqliteCipher_pl_PL.ts
+
 
 
 
