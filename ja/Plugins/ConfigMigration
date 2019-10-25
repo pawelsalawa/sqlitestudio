@@ -104,6 +104,7 @@
     <message>
       <location filename="configmigrationwizard.cpp" line="215"/>
       <source>Could not query for available order for containing group in new configuration file in order to migrate the database list: %1</source>
+      <oldsource>Could query for available order for containing group in new configuration file in order to migrate the database list: %1</oldsource>
       <translation type="unfinished">Could not query for available order for containing group in new configuration file in order to migrate the database list: %1</translation>
     </message>
     <message>
@@ -119,6 +120,7 @@
     <message>
       <location filename="configmigrationwizard.cpp" line="259"/>
       <source>Could not query for available order for next database in new configuration file in order to migrate the database list: %1</source>
+      <oldsource>Could query for available order for next database in new configuration file in order to migrate the database list: %1</oldsource>
       <translation type="unfinished">Could not query for available order for next database in new configuration file in order to migrate the database list: %1</translation>
     </message>
     <message>
