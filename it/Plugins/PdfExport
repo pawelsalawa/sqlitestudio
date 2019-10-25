@@ -76,7 +76,6 @@
     <message>
       <location filename="pdfexport.cpp" line="229"/>
       <source>Unique index</source>
-      <translatorcomment>Singularer Index? Fuer Unique finde ich keine richtige Übersetzung.</translatorcomment>
       <translation type="unfinished">Unique index</translation>
     </message>
     <message>
