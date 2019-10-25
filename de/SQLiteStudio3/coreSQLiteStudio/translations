@@ -16,13 +16,6 @@
     </message>
   </context>
   <context>
-    <name>BugReporter</name>
-    <message>
-      <source>Invalid login or password</source>
-      <translation type="unfinished">Invalid login or password</translation>
-    </message>
-  </context>
-  <context>
     <name>ChainExecutor</name>
     <message>
       <location filename="../db/chainexecutor.cpp" line="37"/>
