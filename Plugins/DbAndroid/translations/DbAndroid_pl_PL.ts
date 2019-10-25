@@ -173,7 +173,7 @@ Chcesz wybrać inny, czy zostawić go nieskonfigurowanego?</translation>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="93"/>
       <source>Port</source>
-      <translation type="unfinished">Port</translation>
+      <translation>Port</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="115"/>
