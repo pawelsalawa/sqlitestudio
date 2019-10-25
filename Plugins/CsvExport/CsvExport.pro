@@ -29,16 +29,26 @@ RESOURCES += \
 
 
 
-TRANSLATIONS += CsvExport_ro_RO.ts \
-		CsvExport_de.ts \
-		CsvExport_it.ts \
-		CsvExport_zh_CN.ts \
-		CsvExport_sk.ts \
-		CsvExport_ru.ts \
-		CsvExport_pt_BR.ts \
-		CsvExport_fr.ts \
-		CsvExport_es.ts \
-		CsvExport_pl.ts
+TRANSLATIONS += translations/CsvExport_ro_RO.ts \
+		translations/CsvExport_de_DE.ts \
+		translations/CsvExport_it_IT.ts \
+		translations/CsvExport_zh_CN.ts \
+		translations/CsvExport_sk_SK.ts \
+		translations/CsvExport_ru_RU.ts \
+		translations/CsvExport_pt_BR.ts \
+		translations/CsvExport_fr_FR.ts \
+		translations/CsvExport_es_ES.ts \
+		translations/CsvExport_pl_PL.ts
+
+
+
+
+
+
+
+
+
+
 
 
 

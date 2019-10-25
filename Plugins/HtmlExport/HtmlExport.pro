@@ -29,16 +29,26 @@ FORMS += \
     htmlexport.ui
 
 
-TRANSLATIONS += HtmlExport_ro_RO.ts \
-		HtmlExport_de.ts \
-		HtmlExport_it.ts \
-		HtmlExport_zh_CN.ts \
-		HtmlExport_sk.ts \
-		HtmlExport_ru.ts \
-		HtmlExport_pt_BR.ts \
-		HtmlExport_fr.ts \
-		HtmlExport_es.ts \
-		HtmlExport_pl.ts
+TRANSLATIONS += translations/HtmlExport_ro_RO.ts \
+		translations/HtmlExport_de_DE.ts \
+		translations/HtmlExport_it_IT.ts \
+		translations/HtmlExport_zh_CN.ts \
+		translations/HtmlExport_sk_SK.ts \
+		translations/HtmlExport_ru_RU.ts \
+		translations/HtmlExport_pt_BR.ts \
+		translations/HtmlExport_fr_FR.ts \
+		translations/HtmlExport_es_ES.ts \
+		translations/HtmlExport_pl_PL.ts
+
+
+
+
+
+
+
+
+
+
 
 
 

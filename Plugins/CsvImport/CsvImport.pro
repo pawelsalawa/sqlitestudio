@@ -28,16 +28,26 @@ RESOURCES += \
     csvimport.qrc
 
 
-TRANSLATIONS += CsvImport_ro_RO.ts \
-		CsvImport_de.ts \
-		CsvImport_it.ts \
-		CsvImport_zh_CN.ts \
-		CsvImport_sk.ts \
-		CsvImport_ru.ts \
-		CsvImport_pt_BR.ts \
-		CsvImport_fr.ts \
-		CsvImport_es.ts \
-		CsvImport_pl.ts
+TRANSLATIONS += translations/CsvImport_ro_RO.ts \
+		translations/CsvImport_de_DE.ts \
+		translations/CsvImport_it_IT.ts \
+		translations/CsvImport_zh_CN.ts \
+		translations/CsvImport_sk_SK.ts \
+		translations/CsvImport_ru_RU.ts \
+		translations/CsvImport_pt_BR.ts \
+		translations/CsvImport_fr_FR.ts \
+		translations/CsvImport_es_ES.ts \
+		translations/CsvImport_pl_PL.ts
+
+
+
+
+
+
+
+
+
+
 
 
 

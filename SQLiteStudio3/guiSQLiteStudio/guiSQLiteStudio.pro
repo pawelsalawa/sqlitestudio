@@ -32,15 +32,15 @@ QMAKE_CXXFLAGS += -pedantic
 DEFINES += GUISQLITESTUDIO_LIBRARY
 
 TRANSLATIONS += translations/guiSQLiteStudio_ro_RO.ts \
-		translations/guiSQLiteStudio_de.ts \
-		translations/guiSQLiteStudio_it.ts \
+		translations/guiSQLiteStudio_de_DE.ts \
+		translations/guiSQLiteStudio_it_IT.ts \
 		translations/guiSQLiteStudio_zh_CN.ts \
-		translations/guiSQLiteStudio_sk.ts \
-		translations/guiSQLiteStudio_ru.ts \
+		translations/guiSQLiteStudio_sk_SK.ts \
+		translations/guiSQLiteStudio_ru_RU.ts \
 		translations/guiSQLiteStudio_pt_BR.ts \
-		translations/guiSQLiteStudio_fr.ts \
-		translations/guiSQLiteStudio_es.ts \
-		translations/guiSQLiteStudio_pl.ts
+		translations/guiSQLiteStudio_fr_FR.ts \
+		translations/guiSQLiteStudio_es_ES.ts \
+		translations/guiSQLiteStudio_pl_PL.ts
 
 SOURCES +=\
         mainwindow.cpp \
@@ -413,6 +413,16 @@ LIBS += -lcoreSQLiteStudio
 
 DISTFILES += \
     general.css
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -3,17 +3,27 @@
         <file>config_migration.png</file>
     </qresource>
     <qresource prefix="/msg">
-        <file>ConfigMigration_ro_RO.qm</file>
-        <file>ConfigMigration_de.qm</file>
+        <file>translations/ConfigMigration_ro_RO.qm</file>
+        <file>translations/ConfigMigration_de_DE.qm</file>
 
 
-        <file>ConfigMigration_pl.qm</file>
-        <file>ConfigMigration_ru.qm</file>
-        <file>ConfigMigration_fr.qm</file>
-        <file>ConfigMigration_sk.qm</file>
-        <file>ConfigMigration_zh_CN.qm</file>
+        <file>translations/ConfigMigration_pl_PL.qm</file>
+        <file>translations/ConfigMigration_ru_RU.qm</file>
+        <file>translations/ConfigMigration_fr_FR.qm</file>
+        <file>translations/ConfigMigration_sk_SK.qm</file>
+        <file>translations/ConfigMigration_zh_CN.qm</file>
     </qresource>
 </RCC>
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -28,16 +28,26 @@ RESOURCES += \
     jsonexport.qrc
 
 
-TRANSLATIONS += JsonExport_ro_RO.ts \
-		JsonExport_de.ts \
-		JsonExport_it.ts \
-		JsonExport_zh_CN.ts \
-		JsonExport_sk.ts \
-		JsonExport_ru.ts \
-		JsonExport_pt_BR.ts \
-		JsonExport_fr.ts \
-		JsonExport_es.ts \
-		JsonExport_pl.ts
+TRANSLATIONS += translations/JsonExport_ro_RO.ts \
+		translations/JsonExport_de_DE.ts \
+		translations/JsonExport_it_IT.ts \
+		translations/JsonExport_zh_CN.ts \
+		translations/JsonExport_sk_SK.ts \
+		translations/JsonExport_ru_RU.ts \
+		translations/JsonExport_pt_BR.ts \
+		translations/JsonExport_fr_FR.ts \
+		translations/JsonExport_es_ES.ts \
+		translations/JsonExport_pl_PL.ts
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -3,17 +3,27 @@
         <file>jsonexport.ui</file>
     </qresource>
     <qresource prefix="/msg">
-        <file>JsonExport_ro_RO.qm</file>
-        <file>JsonExport_de.qm</file>
+        <file>translations/JsonExport_ro_RO.qm</file>
+        <file>translations/JsonExport_de_DE.qm</file>
 
 
-        <file>JsonExport_pl.qm</file>
-        <file>JsonExport_ru.qm</file>
-        <file>JsonExport_fr.qm</file>
-        <file>JsonExport_sk.qm</file>
-        <file>JsonExport_zh_CN.qm</file>
+        <file>translations/JsonExport_pl_PL.qm</file>
+        <file>translations/JsonExport_ru_RU.qm</file>
+        <file>translations/JsonExport_fr_FR.qm</file>
+        <file>translations/JsonExport_sk_SK.qm</file>
+        <file>translations/JsonExport_zh_CN.qm</file>
     </qresource>
 </RCC>
+
+
+
+
+
+
+
+
+
+
 
 
 

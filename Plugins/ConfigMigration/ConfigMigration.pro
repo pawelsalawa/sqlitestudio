@@ -31,16 +31,26 @@ RESOURCES += \
     configmigration.qrc
 
 
-TRANSLATIONS += ConfigMigration_ro_RO.ts \
-		ConfigMigration_de.ts \
-		ConfigMigration_it.ts \
-		ConfigMigration_zh_CN.ts \
-		ConfigMigration_sk.ts \
-		ConfigMigration_ru.ts \
-		ConfigMigration_pt_BR.ts \
-		ConfigMigration_fr.ts \
-		ConfigMigration_es.ts \
-		ConfigMigration_pl.ts
+TRANSLATIONS += translations/ConfigMigration_ro_RO.ts \
+		translations/ConfigMigration_de_DE.ts \
+		translations/ConfigMigration_it_IT.ts \
+		translations/ConfigMigration_zh_CN.ts \
+		translations/ConfigMigration_sk_SK.ts \
+		translations/ConfigMigration_ru_RU.ts \
+		translations/ConfigMigration_pt_BR.ts \
+		translations/ConfigMigration_fr_FR.ts \
+		translations/ConfigMigration_es_ES.ts \
+		translations/ConfigMigration_pl_PL.ts
+
+
+
+
+
+
+
+
+
+
 
 
 
