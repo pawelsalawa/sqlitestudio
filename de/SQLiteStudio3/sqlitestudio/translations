@@ -41,6 +41,7 @@
     <message>
       <location filename="../main.cpp" line="58"/>
       <source>Limits SQL query messages to only the given &lt;database&gt;.</source>
+      <translatorcomment>Wird &lt;database&gt; bei Ausgabe der Meldung in die aktuelle Datenbankbezeichnung umgewandelt?</translatorcomment>
       <translation type="unfinished">Limits SQL query messages to only the given &lt;database&gt;.</translation>
     </message>
     <message>
@@ -56,6 +57,7 @@
     <message>
       <location filename="../main.cpp" line="60"/>
       <source>Lists plugins installed in the SQLiteStudio and quits.</source>
+      <translatorcomment>Was wird hier beendet?</translatorcomment>
       <translation type="unfinished">Lists plugins installed in the SQLiteStudio and quits.</translation>
     </message>
     <message>
