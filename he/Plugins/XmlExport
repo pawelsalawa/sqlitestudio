@@ -6,7 +6,6 @@
     <message>
       <location filename="xmlexport.cpp" line="38"/>
       <source>Enter the namespace to use (for example: http://my.namespace.org)</source>
-      <oldsource>Enter the namespace to use (for example: http://my.namespace.org</oldsource>
       <translation type="unfinished">Enter the namespace to use (for example: http://my.namespace.org)</translation>
     </message>
   </context>
