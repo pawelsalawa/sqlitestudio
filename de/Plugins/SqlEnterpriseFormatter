@@ -210,6 +210,10 @@
       <translation type="unfinished">Preferred comment marker (where possible):</translation>
     </message>
     <message>
+      <source>SqlEnterpriseFormatter.CommentMarkers</source>
+      <translation type="unfinished">SqlEnterpriseFormatter.CommentMarkers</translation>
+    </message>
+    <message>
       <location filename="sqlenterpriseformatter.ui" line="654"/>
       <source>Move all comments to the line end</source>
       <translation type="unfinished">Move all comments to the line end</translation>
