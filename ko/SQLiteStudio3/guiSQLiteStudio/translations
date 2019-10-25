@@ -14,11 +14,6 @@
       <translation type="unfinished">About</translation>
     </message>
     <message>
-      <location filename="../dialogs/aboutdialog.ui" line="30"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;SQLiteStudio v%1&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Free, open-source, cross-platform SQLite database manager.&lt;br/&gt;&lt;a href=&quot;https://sqlitestudio.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://sqlitestudio.pl&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;%2&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Author and active maintainer:&lt;br/&gt;SalSoft (&lt;a href=&quot;https://salsoft.com.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://salsoft.com.pl&lt;/span&gt;&lt;/a&gt;)&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;SQLiteStudio v%1&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Free, open-source, cross-platform SQLite database manager.&lt;br/&gt;&lt;a href=&quot;https://sqlitestudio.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://sqlitestudio.pl&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;%2&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Author and active maintainer:&lt;br/&gt;SalSoft (&lt;a href=&quot;https://salsoft.com.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://salsoft.com.pl&lt;/span&gt;&lt;/a&gt;)&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
       <location filename="../dialogs/aboutdialog.ui" line="41"/>
       <source>Licenses</source>
       <translation type="unfinished">Licenses</translation>
@@ -44,24 +39,29 @@
       <translation type="unfinished">Plugin directories</translation>
     </message>
     <message>
-      <location filename="../dialogs/aboutdialog.ui" line="111"/>
-      <source>Configuration directory</source>
-      <translation type="unfinished">Configuration directory</translation>
-    </message>
-    <message>
       <location filename="../dialogs/aboutdialog.ui" line="121"/>
       <source>Application directory</source>
       <translation type="unfinished">Application directory</translation>
     </message>
     <message>
-      <location filename="../dialogs/aboutdialog.ui" line="148"/>
-      <source>Qt version:</source>
-      <translation type="unfinished">Qt version:</translation>
-    </message>
-    <message>
       <location filename="../dialogs/aboutdialog.ui" line="172"/>
       <source>SQLite 3 version:</source>
       <translation type="unfinished">SQLite 3 version:</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/aboutdialog.ui" line="111"/>
+      <source>Configuration directory</source>
+      <translation type="unfinished">Configuration directory</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/aboutdialog.ui" line="30"/>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;SQLiteStudio v%1&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Free, open-source, cross-platform SQLite database manager.&lt;br/&gt;&lt;a href=&quot;https://sqlitestudio.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://sqlitestudio.pl&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;%2&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Author and active maintainer:&lt;br/&gt;SalSoft (&lt;a href=&quot;https://salsoft.com.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://salsoft.com.pl&lt;/span&gt;&lt;/a&gt;)&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;SQLiteStudio v%1&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Free, open-source, cross-platform SQLite database manager.&lt;br/&gt;&lt;a href=&quot;https://sqlitestudio.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://sqlitestudio.pl&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;%2&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Author and active maintainer:&lt;br/&gt;SalSoft (&lt;a href=&quot;https://salsoft.com.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://salsoft.com.pl&lt;/span&gt;&lt;/a&gt;)&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/aboutdialog.ui" line="148"/>
+      <source>Qt version:</source>
+      <translation type="unfinished">Qt version:</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.cpp" line="39"/>
@@ -110,6 +110,16 @@
       <translation type="unfinished">Filter collations</translation>
     </message>
     <message>
+      <location filename="../windows/collationseditor.ui" line="198"/>
+      <source>Collation name:</source>
+      <translation type="unfinished">Collation name:</translation>
+    </message>
+    <message>
+      <location filename="../windows/collationseditor.ui" line="208"/>
+      <source>Implementation language:</source>
+      <translation type="unfinished">Implementation language:</translation>
+    </message>
+    <message>
       <location filename="../windows/collationseditor.ui" line="132"/>
       <source>Databases</source>
       <translation type="unfinished">Databases</translation>
@@ -128,16 +138,6 @@
       <location filename="../windows/collationseditor.ui" line="166"/>
       <source>Implementation code:</source>
       <translation type="unfinished">Implementation code:</translation>
-    </message>
-    <message>
-      <location filename="../windows/collationseditor.ui" line="198"/>
-      <source>Collation name:</source>
-      <translation type="unfinished">Collation name:</translation>
-    </message>
-    <message>
-      <location filename="../windows/collationseditor.ui" line="208"/>
-      <source>Implementation language:</source>
-      <translation type="unfinished">Implementation language:</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="52"/>
@@ -1829,31 +1829,9 @@ Browsing other pages will be possible after the row counting is done.</translati
       <translation type="unfinished">Database driver</translation>
     </message>
     <message>
-      <location filename="../dialogs/dbdialog.ui" line="42"/>
-      <location filename="../dialogs/dbdialog.cpp" line="154"/>
-      <source>File</source>
-      <translation type="unfinished">File</translation>
-    </message>
-    <message>
-      <location filename="../dialogs/dbdialog.ui" line="51"/>
-      <source>Create new database file</source>
-      <translation type="unfinished">Create new database file</translation>
-    </message>
-    <message>
-      <location filename="../dialogs/dbdialog.ui" line="79"/>
-      <source>Name (on the list)</source>
-      <translation type="unfinished">Name (on the list)</translation>
-    </message>
-    <message>
       <location filename="../dialogs/dbdialog.ui" line="91"/>
       <source>Options</source>
       <translation type="unfinished">Options</translation>
-    </message>
-    <message>
-      <location filename="../dialogs/dbdialog.ui" line="97"/>
-      <source>&lt;p&gt;Enable this if you want the database to be stored in configuration file and restored every time SQLiteStudio is started.&lt;/p&gt;</source>
-      <extracomment>aasfd</extracomment>
-      <translation type="unfinished">&lt;p&gt;Enable this if you want the database to be stored in configuration file and restored every time SQLiteStudio is started.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.ui" line="100"/>
@@ -1864,6 +1842,28 @@ Browsing other pages will be possible after the row counting is done.</translati
       <location filename="../dialogs/dbdialog.ui" line="144"/>
       <source>Test connection</source>
       <translation type="unfinished">Test connection</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/dbdialog.ui" line="51"/>
+      <source>Create new database file</source>
+      <translation type="unfinished">Create new database file</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/dbdialog.ui" line="42"/>
+      <location filename="../dialogs/dbdialog.cpp" line="154"/>
+      <source>File</source>
+      <translation type="unfinished">File</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/dbdialog.ui" line="79"/>
+      <source>Name (on the list)</source>
+      <translation type="unfinished">Name (on the list)</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/dbdialog.ui" line="97"/>
+      <source>&lt;p&gt;Enable this if you want the database to be stored in configuration file and restored every time SQLiteStudio is started.&lt;/p&gt;</source>
+      <extracomment>aasfd</extracomment>
+      <translation type="unfinished">&lt;p&gt;Enable this if you want the database to be stored in configuration file and restored every time SQLiteStudio is started.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/dbdialog.cpp" line="155"/>
@@ -3123,6 +3123,21 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation type="unfinished">Filter funtions</translation>
     </message>
     <message>
+      <location filename="../windows/functionseditor.ui" line="260"/>
+      <source>Function name:</source>
+      <translation type="unfinished">Function name:</translation>
+    </message>
+    <message>
+      <location filename="../windows/functionseditor.ui" line="273"/>
+      <source>Implementation language:</source>
+      <translation type="unfinished">Implementation language:</translation>
+    </message>
+    <message>
+      <location filename="../windows/functionseditor.ui" line="253"/>
+      <source>Type:</source>
+      <translation type="unfinished">Type:</translation>
+    </message>
+    <message>
       <location filename="../windows/functionseditor.ui" line="157"/>
       <source>Input arguments</source>
       <translation type="unfinished">Input arguments</translation>
@@ -3146,21 +3161,6 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../windows/functionseditor.ui" line="218"/>
       <source>Register in following databases:</source>
       <translation type="unfinished">Register in following databases:</translation>
-    </message>
-    <message>
-      <location filename="../windows/functionseditor.ui" line="253"/>
-      <source>Type:</source>
-      <translation type="unfinished">Type:</translation>
-    </message>
-    <message>
-      <location filename="../windows/functionseditor.ui" line="260"/>
-      <source>Function name:</source>
-      <translation type="unfinished">Function name:</translation>
-    </message>
-    <message>
-      <location filename="../windows/functionseditor.ui" line="273"/>
-      <source>Implementation language:</source>
-      <translation type="unfinished">Implementation language:</translation>
     </message>
     <message>
       <location filename="../windows/functionseditor.ui" line="293"/>
@@ -3313,14 +3313,14 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation type="unfinished">Options</translation>
     </message>
     <message>
-      <location filename="../dialogs/importdialog.ui" line="175"/>
-      <source>Text encoding:</source>
-      <translation type="unfinished">Text encoding:</translation>
-    </message>
-    <message>
       <location filename="../dialogs/importdialog.ui" line="182"/>
       <source>Input file:</source>
       <translation type="unfinished">Input file:</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/importdialog.ui" line="175"/>
+      <source>Text encoding:</source>
+      <translation type="unfinished">Text encoding:</translation>
     </message>
     <message>
       <location filename="../dialogs/importdialog.ui" line="192"/>
@@ -5046,11 +5046,6 @@ find next</translation>
       <translation type="unfinished">Toggle comment</translation>
     </message>
     <message>
-      <location filename="../sqleditor.cpp" line="249"/>
-      <source>Could not open file &apos;%1&apos; for writing: %2</source>
-      <translation type="unfinished">Could not open file &apos;%1&apos; for writing: %2</translation>
-    </message>
-    <message>
       <location filename="../sqleditor.cpp" line="259"/>
       <source>Saved SQL contents to file: %1</source>
       <translation type="unfinished">Saved SQL contents to file: %1</translation>
@@ -5069,6 +5064,11 @@ find next</translation>
       <location filename="../sqleditor.cpp" line="1085"/>
       <source>Save to file</source>
       <translation type="unfinished">Save to file</translation>
+    </message>
+    <message>
+      <location filename="../sqleditor.cpp" line="249"/>
+      <source>Could not open file &apos;%1&apos; for writing: %2</source>
+      <translation type="unfinished">Could not open file &apos;%1&apos; for writing: %2</translation>
     </message>
     <message>
       <location filename="../sqleditor.cpp" line="1097"/>
