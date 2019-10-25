@@ -1,0 +1,3 @@
+files:
+  - source: '*.ts'
+    translation: '%original_path%'
