@@ -16,6 +16,13 @@
     </message>
   </context>
   <context>
+    <name>BugReporter</name>
+    <message>
+      <source>Invalid login or password</source>
+      <translation type="unfinished">Invalid login or password</translation>
+    </message>
+  </context>
+  <context>
     <name>ChainExecutor</name>
     <message>
       <location filename="../db/chainexecutor.cpp" line="37"/>
@@ -119,6 +126,7 @@
     <message>
       <location filename="../completionhelper.cpp" line="289"/>
       <source>Collation name</source>
+      <translatorcomment>Hier weiß ich nicht wie man das sprechend übersetzen kann.</translatorcomment>
       <translation type="unfinished">Collation name</translation>
     </message>
     <message>
@@ -383,6 +391,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../services/impl/functionmanagerimpl.cpp" line="353"/>
       <source>Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</source>
+      <translatorcomment>Auch hier ist sicherlich eine Überarbeitung nötig, wenn der Kontext der Meldung bekannt ist.</translatorcomment>
       <translation type="unfinished">Function %1(%2) was registered with language %3, but the plugin supporting that language is not currently loaded.</translation>
     </message>
     <message>
@@ -521,6 +530,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <location filename="../plugins/populateconstant.cpp" line="10"/>
       <source>Constant</source>
       <comment>populate constant plugin name</comment>
+      <translatorcomment>Hier bin ich mir absolut nicht sicher was genau gemeint ist.</translatorcomment>
       <translation type="unfinished">Constant</translation>
     </message>
   </context>
@@ -706,6 +716,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../plugins/populaterandomtext.ui" line="160"/>
       <source>If you type some character multiple times, it&apos;s more likely to be used.</source>
+      <translatorcomment>Auch hier kann man besser übersetzen, wenn man den Kontext kennt.</translatorcomment>
       <translation type="unfinished">If you type some character multiple times, it&apos;s more likely to be used.</translation>
     </message>
   </context>
@@ -860,6 +871,7 @@ Error details: %2</translation>
     <message>
       <location filename="../impl/dbattacherimpl.cpp" line="115"/>
       <source>Could not attach database %1: %2</source>
+      <translatorcomment>Generell muss in den Übersetzungen das &apos;attached&apos; genauer analysiert werden.</translatorcomment>
       <translation type="unfinished">Could not attach database %1: %2</translation>
     </message>
     <message>
@@ -943,6 +955,7 @@ Error details: %2</translation>
     <message>
       <location filename="../services/impl/configimpl.cpp" line="768"/>
       <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Tried to initialize the file at following localizations: %1.</source>
+      <translatorcomment>Ich hoffe, dass ich &quot;to initialize&quot; hier richtig mit &quot;erstellt&quot; übersetzt habe.</translatorcomment>
       <translation type="unfinished">Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Tried to initialize the file at following localizations: %1.</translation>
     </message>
     <message>
@@ -1068,6 +1081,7 @@ The view will remain as it is.</translation>
       <location filename="../db/queryexecutor.cpp" line="339"/>
       <location filename="../db/queryexecutor.cpp" line="618"/>
       <source>An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</source>
+      <translatorcomment>Hier muss ggf. noch das &apos;data paging&apos; korrekt übersetzt werden.</translatorcomment>
       <translation type="unfinished">An error occured while executing the count(*) query, thus data paging will be disabled. Error details from the database: %1</translation>
     </message>
     <message>
@@ -1124,6 +1138,164 @@ The view will remain as it is.</translation>
   </context>
   <context>
     <name>UpdateManager</name>
+    <message>
+      <source>An error occurred while checking for updates: %1.</source>
+      <translation type="unfinished">An error occurred while checking for updates: %1.</translation>
+    </message>
+    <message>
+      <source>Could not check available updates, because server responded with invalid message format. It is safe to ignore this warning.</source>
+      <translation type="unfinished">Could not check available updates, because server responded with invalid message format. It is safe to ignore this warning.</translation>
+    </message>
+    <message>
+      <source>An error occurred while reading updates metadata: %1.</source>
+      <translation type="unfinished">An error occurred while reading updates metadata: %1.</translation>
+    </message>
+    <message>
+      <source>Could not download updates, because server responded with invalid message format. You can try again later or download and install updates manually. See &lt;a href=&quot;%1&quot;&gt;User Manual&lt;/a&gt; for details.</source>
+      <translation type="unfinished">Could not download updates, because server responded with invalid message format. You can try again later or download and install updates manually. See &lt;a href=&quot;%1&quot;&gt;User Manual&lt;/a&gt; for details.</translation>
+    </message>
+    <message>
+      <source>Could not create temporary directory for downloading the update. Updating aborted.</source>
+      <translation type="unfinished">Could not create temporary directory for downloading the update. Updating aborted.</translation>
+    </message>
+    <message>
+      <source>There was no updates to download. Updating aborted.</source>
+      <translation type="unfinished">There was no updates to download. Updating aborted.</translation>
+    </message>
+    <message>
+      <source>Downloading: %1</source>
+      <translation type="unfinished">Downloading: %1</translation>
+    </message>
+    <message>
+      <source>Could not determinate file name from update URL: %1. Updating aborted.</source>
+      <translation type="unfinished">Could not determinate file name from update URL: %1. Updating aborted.</translation>
+    </message>
+    <message>
+      <source>Failed to open file &apos;%1&apos; for writting: %2. Updating aborted.</source>
+      <translation type="unfinished">Failed to open file &apos;%1&apos; for writting: %2. Updating aborted.</translation>
+    </message>
+    <message>
+      <source>Installing updates.</source>
+      <translation type="unfinished">Installing updates.</translation>
+    </message>
+    <message>
+      <source>Could not copy current application directory into %1 directory.</source>
+      <translation type="unfinished">Could not copy current application directory into %1 directory.</translation>
+    </message>
+    <message>
+      <source>Could not create directory %1.</source>
+      <translation type="unfinished">Could not create directory %1.</translation>
+    </message>
+    <message>
+      <source>Could not rename directory %1 to %2.
+Details: %3</source>
+      <translation type="unfinished">Could not rename directory %1 to %2.
+Details: %3</translation>
+    </message>
+    <message>
+      <source>Cannot not rename directory %1 to %2.
+Details: %3</source>
+      <translation type="unfinished">Cannot not rename directory %1 to %2.
+Details: %3</translation>
+    </message>
+    <message>
+      <source>Could not move directory %1 to %2 and also failed to restore original directory, so the original SQLiteStudio directory is now located at: %3</source>
+      <translation type="unfinished">Could not move directory %1 to %2 and also failed to restore original directory, so the original SQLiteStudio directory is now located at: %3</translation>
+    </message>
+    <message>
+      <source>Could not rename directory %1 to %2. Rolled back to the original SQLiteStudio version.</source>
+      <translation type="unfinished">Could not rename directory %1 to %2. Rolled back to the original SQLiteStudio version.</translation>
+    </message>
+    <message>
+      <source>Could not unpack component %1 into %2 directory.</source>
+      <translation type="unfinished">Could not unpack component %1 into %2 directory.</translation>
+    </message>
+    <message>
+      <source>Could not find permissions elevator application to run update as a root. Looked for: %1</source>
+      <translation type="unfinished">Could not find permissions elevator application to run update as a root. Looked for: %1</translation>
+    </message>
+    <message>
+      <source>Could not execute final updating steps as root: %1</source>
+      <translation type="unfinished">Could not execute final updating steps as root: %1</translation>
+    </message>
+    <message>
+      <source>Could not execute final updating steps as admin: %1</source>
+      <translation type="unfinished">Could not execute final updating steps as admin: %1</translation>
+    </message>
+    <message>
+      <source>Cannot create temporary directory for updater.</source>
+      <translation type="unfinished">Cannot create temporary directory for updater.</translation>
+    </message>
+    <message>
+      <source>Cannot create updater script file.</source>
+      <translation type="unfinished">Cannot create updater script file.</translation>
+    </message>
+    <message>
+      <source>Updating canceled.</source>
+      <translation type="unfinished">Updating canceled.</translation>
+    </message>
+    <message>
+      <source>Could not execute final updating steps as administrator.</source>
+      <translation type="unfinished">Could not execute final updating steps as administrator.</translation>
+    </message>
+    <message>
+      <source>Could not execute final updating steps as administrator. Updater startup timed out.</source>
+      <translation type="unfinished">Could not execute final updating steps as administrator. Updater startup timed out.</translation>
+    </message>
+    <message>
+      <source>Could not execute final updating steps as administrator. Updater operation timed out.</source>
+      <translation type="unfinished">Could not execute final updating steps as administrator. Updater operation timed out.</translation>
+    </message>
+    <message>
+      <source>Could not clean up temporary directory %1. You can delete it manually at any time.</source>
+      <translation type="unfinished">Could not clean up temporary directory %1. You can delete it manually at any time.</translation>
+    </message>
+    <message>
+      <source>Could not run new version for continuing update.</source>
+      <translation type="unfinished">Could not run new version for continuing update.</translation>
+    </message>
+    <message>
+      <source>Package not in tar.gz format, cannot install: %1</source>
+      <translation type="unfinished">Package not in tar.gz format, cannot install: %1</translation>
+    </message>
+    <message>
+      <source>Package %1 cannot be installed, because cannot move it to directory: %2</source>
+      <translation type="unfinished">Package %1 cannot be installed, because cannot move it to directory: %2</translation>
+    </message>
+    <message>
+      <source>Package %1 cannot be installed, because cannot unpack it: %2</source>
+      <translation type="unfinished">Package %1 cannot be installed, because cannot unpack it: %2</translation>
+    </message>
+    <message>
+      <source>Package not in zip format, cannot install: %1</source>
+      <translation type="unfinished">Package not in zip format, cannot install: %1</translation>
+    </message>
+    <message>
+      <source>Package %1 cannot be installed, because cannot unzip it to directory %2: %3</source>
+      <translation type="unfinished">Package %1 cannot be installed, because cannot unzip it to directory %2: %3</translation>
+    </message>
+    <message>
+      <source>Package %1 cannot be installed, because cannot unzip it to directory: %2</source>
+      <translation type="unfinished">Package %1 cannot be installed, because cannot unzip it to directory: %2</translation>
+    </message>
+    <message>
+      <source>Could not rename directory %1 to %2.</source>
+      <translation type="unfinished">Could not rename directory %1 to %2.</translation>
+    </message>
+    <message>
+      <source>Could not delete directory %1.</source>
+      <translation type="unfinished">Could not delete directory %1.</translation>
+    </message>
+    <message>
+      <source>Error executing update command: %1
+Error message: %2</source>
+      <translation type="unfinished">Error executing update command: %1
+Error message: %2</translation>
+    </message>
+    <message>
+      <source>An error occurred while downloading updates: %1. Updating aborted.</source>
+      <translation type="unfinished">An error occurred while downloading updates: %1. Updating aborted.</translation>
+    </message>
     <message>
       <location filename="../services/updatemanager.cpp" line="48"/>
       <source>Updates installer executable is missing.</source>
