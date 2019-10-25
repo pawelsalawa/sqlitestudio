@@ -66,6 +66,10 @@
       <translation type="unfinished">First line represents CSV column names</translation>
     </message>
     <message>
+      <source>Skip first row of data</source>
+      <translation type="unfinished">Skip first row of data</translation>
+    </message>
+    <message>
       <location filename="CsvImportOptions.ui" line="65"/>
       <source>Field separator:</source>
       <translation type="unfinished">Field separator:</translation>
