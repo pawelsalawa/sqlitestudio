@@ -2,6 +2,10 @@ language: cpp
 
 compiler: gcc
 
+branches:
+  except:
+  - l10n_master
+
 before_install:
  - sudo add-apt-repository -y ppa:beineri/opt-qt-5.10.1-xenial
  - sudo apt-get update -qq
