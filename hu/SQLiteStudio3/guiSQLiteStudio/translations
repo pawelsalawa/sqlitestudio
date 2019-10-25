@@ -14,6 +14,15 @@
       <translation type="unfinished">About</translation>
     </message>
     <message>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;SQLiteStudio v%1&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Free, open-source, cross-platform SQLite database manager.&lt;br/&gt;&lt;a href=&quot;http://sqlitestudio.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://sqlitestudio.pl&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;%2&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Author and active maintainer:&lt;br/&gt;SalSoft (&lt;a href=&quot;http://salsoft.com.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://salsoft.com.pl&lt;/span&gt;&lt;/a&gt;)&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;SQLiteStudio v%1&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Free, open-source, cross-platform SQLite database manager.&lt;br/&gt;&lt;a href=&quot;http://sqlitestudio.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://sqlitestudio.pl&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;%2&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Author and active maintainer:&lt;br/&gt;SalSoft (&lt;a href=&quot;http://salsoft.com.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://salsoft.com.pl&lt;/span&gt;&lt;/a&gt;)&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/aboutdialog.ui" line="30"/>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;SQLiteStudio v%1&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Free, open-source, cross-platform SQLite database manager.&lt;br/&gt;&lt;a href=&quot;https://sqlitestudio.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://sqlitestudio.pl&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;%2&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Author and active maintainer:&lt;br/&gt;SalSoft (&lt;a href=&quot;https://salsoft.com.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://salsoft.com.pl&lt;/span&gt;&lt;/a&gt;)&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;SQLiteStudio v%1&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Free, open-source, cross-platform SQLite database manager.&lt;br/&gt;&lt;a href=&quot;https://sqlitestudio.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://sqlitestudio.pl&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;%2&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Author and active maintainer:&lt;br/&gt;SalSoft (&lt;a href=&quot;https://salsoft.com.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://salsoft.com.pl&lt;/span&gt;&lt;/a&gt;)&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
       <location filename="../dialogs/aboutdialog.ui" line="41"/>
       <source>Licenses</source>
       <translation type="unfinished">Licenses</translation>
@@ -49,14 +58,13 @@
       <translation type="unfinished">SQLite 3 version:</translation>
     </message>
     <message>
+      <source>SQLite 3 version :</source>
+      <translation type="unfinished">SQLite 3 version :</translation>
+    </message>
+    <message>
       <location filename="../dialogs/aboutdialog.ui" line="111"/>
       <source>Configuration directory</source>
       <translation type="unfinished">Configuration directory</translation>
-    </message>
-    <message>
-      <location filename="../dialogs/aboutdialog.ui" line="30"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;SQLiteStudio v%1&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Free, open-source, cross-platform SQLite database manager.&lt;br/&gt;&lt;a href=&quot;https://sqlitestudio.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://sqlitestudio.pl&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;%2&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Author and active maintainer:&lt;br/&gt;SalSoft (&lt;a href=&quot;https://salsoft.com.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://salsoft.com.pl&lt;/span&gt;&lt;/a&gt;)&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:11pt; font-weight:600;&quot;&gt;SQLiteStudio v%1&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Free, open-source, cross-platform SQLite database manager.&lt;br/&gt;&lt;a href=&quot;https://sqlitestudio.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://sqlitestudio.pl&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;%2&lt;br/&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Author and active maintainer:&lt;br/&gt;SalSoft (&lt;a href=&quot;https://salsoft.com.pl&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://salsoft.com.pl&lt;/span&gt;&lt;/a&gt;)&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../dialogs/aboutdialog.ui" line="148"/>
@@ -100,6 +108,211 @@
       <location filename="../dialogs/bindparamsdialog.ui" line="26"/>
       <source>Please provide values for query parameters</source>
       <translation type="unfinished">Please provide values for query parameters</translation>
+    </message>
+  </context>
+  <context>
+    <name>BugDialog</name>
+    <message>
+      <source>Bugs and ideas</source>
+      <translation type="unfinished">Bugs and ideas</translation>
+    </message>
+    <message>
+      <source>Reporter</source>
+      <translation type="unfinished">Reporter</translation>
+    </message>
+    <message>
+      <source>E-mail address</source>
+      <translation type="unfinished">E-mail address</translation>
+    </message>
+    <message>
+      <source>Log in</source>
+      <translation type="unfinished">Log in</translation>
+    </message>
+    <message>
+      <source>Short description</source>
+      <translation type="unfinished">Short description</translation>
+    </message>
+    <message>
+      <source>Detailed description</source>
+      <translation type="unfinished">Detailed description</translation>
+    </message>
+    <message>
+      <source>Show more details</source>
+      <translation type="unfinished">Show more details</translation>
+    </message>
+    <message>
+      <source>SQLiteStudio version</source>
+      <translation type="unfinished">SQLiteStudio version</translation>
+    </message>
+    <message>
+      <source>Operating system</source>
+      <translation type="unfinished">Operating system</translation>
+    </message>
+    <message>
+      <source>Loaded plugins</source>
+      <translation type="unfinished">Loaded plugins</translation>
+    </message>
+    <message>
+      <source>Send</source>
+      <translation type="unfinished">Send</translation>
+    </message>
+    <message>
+      <source>You can see all your reported bugs and ideas by selecting menu &apos;%1&apos; and then &apos;%2&apos;.</source>
+      <translation type="unfinished">You can see all your reported bugs and ideas by selecting menu &apos;%1&apos; and then &apos;%2&apos;.</translation>
+    </message>
+    <message>
+      <source>A bug report sent successfully.</source>
+      <translation type="unfinished">A bug report sent successfully.</translation>
+    </message>
+    <message>
+      <source>An error occurred while sending a bug report: %1
+%2</source>
+      <translation type="unfinished">An error occurred while sending a bug report: %1
+%2</translation>
+    </message>
+    <message>
+      <source>You can retry sending. The contents will be restored when you open a report dialog after an error like this.</source>
+      <translation type="unfinished">You can retry sending. The contents will be restored when you open a report dialog after an error like this.</translation>
+    </message>
+    <message>
+      <source>An idea proposal sent successfully.</source>
+      <translation type="unfinished">An idea proposal sent successfully.</translation>
+    </message>
+    <message>
+      <source>An error occurred while sending an idea proposal: %1
+%2</source>
+      <translation type="unfinished">An error occurred while sending an idea proposal: %1
+%2</translation>
+    </message>
+    <message>
+      <source>A bug report</source>
+      <translation type="unfinished">A bug report</translation>
+    </message>
+    <message>
+      <source>Describe problem in few words</source>
+      <translation type="unfinished">Describe problem in few words</translation>
+    </message>
+    <message>
+      <source>Describe problem and how to reproduce it</source>
+      <translation type="unfinished">Describe problem and how to reproduce it</translation>
+    </message>
+    <message>
+      <source>A new feature idea</source>
+      <translation type="unfinished">A new feature idea</translation>
+    </message>
+    <message>
+      <source>A title for your idea</source>
+      <translation type="unfinished">A title for your idea</translation>
+    </message>
+    <message>
+      <source>Describe your idea in more details</source>
+      <translation type="unfinished">Describe your idea in more details</translation>
+    </message>
+    <message>
+      <source>Reporting as an unregistered user, using e-mail address.</source>
+      <translation type="unfinished">Reporting as an unregistered user, using e-mail address.</translation>
+    </message>
+    <message>
+      <source>Reporting as a registered user.</source>
+      <translation type="unfinished">Reporting as a registered user.</translation>
+    </message>
+    <message>
+      <source>Log out</source>
+      <translation type="unfinished">Log out</translation>
+    </message>
+    <message>
+      <source>Providing true email address will make it possible to contact you regarding your report. To learn more, press &apos;help&apos; button on the right side.</source>
+      <translation type="unfinished">Providing true email address will make it possible to contact you regarding your report. To learn more, press &apos;help&apos; button on the right side.</translation>
+    </message>
+    <message>
+      <source>Enter vaild e-mail address, or log in.</source>
+      <translation type="unfinished">Enter vaild e-mail address, or log in.</translation>
+    </message>
+    <message>
+      <source>Short description requires at least 10 characters, but not more than 100. Longer description can be entered in the field below.</source>
+      <translation type="unfinished">Short description requires at least 10 characters, but not more than 100. Longer description can be entered in the field below.</translation>
+    </message>
+    <message>
+      <source>Long description requires at least 30 characters.</source>
+      <translation type="unfinished">Long description requires at least 30 characters.</translation>
+    </message>
+  </context>
+  <context>
+    <name>BugReportHistoryWindow</name>
+    <message>
+      <source>Title</source>
+      <translation type="unfinished">Title</translation>
+    </message>
+    <message>
+      <source>Reported at</source>
+      <translation type="unfinished">Reported at</translation>
+    </message>
+    <message>
+      <source>URL</source>
+      <translation type="unfinished">URL</translation>
+    </message>
+    <message>
+      <source>Reports history</source>
+      <translation type="unfinished">Reports history</translation>
+    </message>
+    <message>
+      <source>Clear reports history</source>
+      <translation type="unfinished">Clear reports history</translation>
+    </message>
+    <message>
+      <source>Delete selected entry</source>
+      <translation type="unfinished">Delete selected entry</translation>
+    </message>
+    <message>
+      <source>Invalid response from server.</source>
+      <translation type="unfinished">Invalid response from server.</translation>
+    </message>
+  </context>
+  <context>
+    <name>BugReportLoginDialog</name>
+    <message>
+      <source>Log in</source>
+      <translation type="unfinished">Log in</translation>
+    </message>
+    <message>
+      <source>Credentials</source>
+      <translation type="unfinished">Credentials</translation>
+    </message>
+    <message>
+      <source>Login:</source>
+      <translation type="unfinished">Login:</translation>
+    </message>
+    <message>
+      <source>Password:</source>
+      <translation type="unfinished">Password:</translation>
+    </message>
+    <message>
+      <source>Validation</source>
+      <translation type="unfinished">Validation</translation>
+    </message>
+    <message>
+      <source>Validate</source>
+      <translation type="unfinished">Validate</translation>
+    </message>
+    <message>
+      <source>Validation result message</source>
+      <translation type="unfinished">Validation result message</translation>
+    </message>
+    <message>
+      <source>Abort</source>
+      <translation type="unfinished">Abort</translation>
+    </message>
+    <message>
+      <source>A login must be at least 2 characters long.</source>
+      <translation type="unfinished">A login must be at least 2 characters long.</translation>
+    </message>
+    <message>
+      <source>A password must be at least 5 characters long.</source>
+      <translation type="unfinished">A password must be at least 5 characters long.</translation>
+    </message>
+    <message>
+      <source>Valid</source>
+      <translation type="unfinished">Valid</translation>
     </message>
   </context>
   <context>
@@ -247,6 +460,10 @@
       <location filename="../constraints/columndefaultpanel.cpp" line="89"/>
       <source>Invalid default value expression. If you want to use simple string as value, remember to surround it with quote characters.</source>
       <translation type="unfinished">Invalid default value expression. If you want to use simple string as value, remember to surround it with quote characters.</translation>
+    </message>
+    <message>
+      <source>Invalid default value expression: %1</source>
+      <translation type="unfinished">Invalid default value expression: %1</translation>
     </message>
     <message>
       <location filename="../constraints/columndefaultpanel.cpp" line="92"/>
@@ -560,6 +777,11 @@ but it&apos;s okay to use it.</translation>
       <source>Enter a name of the constraint.</source>
       <translation type="unfinished">Enter a name of the constraint.</translation>
     </message>
+    <message>
+      <source>Autoincrement (only for %1 type columns)</source>
+      <comment>column primary key</comment>
+      <translation type="unfinished">Autoincrement (only for %1 type columns)</translation>
+    </message>
   </context>
   <context>
     <name>ColumnUniqueAndNotNullPanel</name>
@@ -730,31 +952,6 @@ but it&apos;s okay to use it.</translation>
       <translation type="unfinished">Data editors</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="351"/>
-      <source>Database dialog window</source>
-      <translation type="unfinished">Database dialog window</translation>
-    </message>
-    <message>
-      <location filename="../dialogs/configdialog.ui" line="357"/>
-      <source>&lt;p&gt;When adding new database it is marked to be &quot;permanent&quot; (stored in configuration) by default. Checking this option makes every new database to NOT be &quot;permanent&quot; by default.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When adding new database it is marked to be &quot;permanent&quot; (stored in configuration) by default. Checking this option makes every new database to NOT be &quot;permanent&quot; by default.&lt;/p&gt;</translation>
-    </message>
-    <message>
-      <location filename="../dialogs/configdialog.ui" line="360"/>
-      <source>Do not mark database to be &quot;permanent&quot; by default</source>
-      <translation type="unfinished">Do not mark database to be &quot;permanent&quot; by default</translation>
-    </message>
-    <message>
-      <location filename="../dialogs/configdialog.ui" line="370"/>
-      <source>&lt;p&gt;When this option is enabled, then files dropped from file manager onto database list will be automatically added to the list, bypassing standard database dialog. If for various reasons automatic process fails, then standard dialog will be presented to the user.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When this option is enabled, then files dropped from file manager onto database list will be automatically added to the list, bypassing standard database dialog. If for various reasons automatic process fails, then standard dialog will be presented to the user.&lt;/p&gt;</translation>
-    </message>
-    <message>
-      <location filename="../dialogs/configdialog.ui" line="373"/>
-      <source>Try to bypass dialog completly when dropping database file onto the list</source>
-      <translation type="unfinished">Try to bypass dialog completly when dropping database file onto the list</translation>
-    </message>
-    <message>
       <location filename="../dialogs/configdialog.ui" line="418"/>
       <source>Data browsing and editing</source>
       <translation type="unfinished">Data browsing and editing</translation>
@@ -776,19 +973,19 @@ but it&apos;s okay to use it.</translation>
       <translation type="unfinished">Limit initial data column width to (in pixels):</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="502"/>
-      <source>&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</translation>
-    </message>
-    <message>
-      <location filename="../dialogs/configdialog.ui" line="505"/>
-      <source>Show column and row details tooltip in data view</source>
-      <translation type="unfinished">Show column and row details tooltip in data view</translation>
-    </message>
-    <message>
       <location filename="../dialogs/configdialog.ui" line="515"/>
       <source>&lt;p&gt;When editing a cell which used to have NULL value and entering empty string as new value, then this option determinates whether the new value should remain NULL (have this option enabled), or should it be overwritten with empty string value (have this option disabled).&lt;/p&gt;</source>
       <translation type="unfinished">&lt;p&gt;When editing a cell which used to have NULL value and entering empty string as new value, then this option determinates whether the new value should remain NULL (have this option enabled), or should it be overwritten with empty string value (have this option disabled).&lt;/p&gt;</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/configdialog.ui" line="528"/>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when committing a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is committed for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when committing a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is committed for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/configdialog.ui" line="531"/>
+      <source>Use DEFAULT value (if defined), when committing NULL value</source>
+      <translation type="unfinished">Use DEFAULT value (if defined), when committing NULL value</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="544"/>
@@ -829,16 +1026,6 @@ but it&apos;s okay to use it.</translation>
       <location filename="../dialogs/configdialog.ui" line="636"/>
       <source>&lt;p&gt;When enabled, View Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</source>
       <translation type="unfinished">&lt;p&gt;When enabled, View Windows will show up with the data tab, instead of the structure tab.&lt;/p&gt;</translation>
-    </message>
-    <message>
-      <location filename="../dialogs/configdialog.ui" line="649"/>
-      <source>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every View Window, instead of being at second place.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every View Window, instead of being at second place.&lt;/p&gt;</translation>
-    </message>
-    <message>
-      <location filename="../dialogs/configdialog.ui" line="652"/>
-      <source>Place data tab as first tab in a View Window</source>
-      <translation type="unfinished">Place data tab as first tab in a View Window</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="696"/>
@@ -915,21 +1102,6 @@ but it&apos;s okay to use it.</translation>
       <location filename="../dialogs/configdialog.ui" line="930"/>
       <source>Restore last session (active MDI windows) after startup</source>
       <translation type="unfinished">Restore last session (active MDI windows) after startup</translation>
-    </message>
-    <message>
-      <location filename="../dialogs/configdialog.ui" line="943"/>
-      <source>Status Field</source>
-      <translation type="unfinished">Status Field</translation>
-    </message>
-    <message>
-      <location filename="../dialogs/configdialog.ui" line="949"/>
-      <source>&lt;p&gt;When user manually closes the Status panel, this option makes sure that if any new message is printed in the Status panel it will be reopened. If it&apos;s disabled, then Status panel can only be open manually by the user from the &quot;View&quot; menu.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When user manually closes the Status panel, this option makes sure that if any new message is printed in the Status panel it will be reopened. If it&apos;s disabled, then Status panel can only be open manually by the user from the &quot;View&quot; menu.&lt;/p&gt;</translation>
-    </message>
-    <message>
-      <location filename="../dialogs/configdialog.ui" line="952"/>
-      <source>Always open Status panel when new message is printed</source>
-      <translation type="unfinished">Always open Status panel when new message is printed</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="994"/>
@@ -1044,6 +1216,41 @@ but it&apos;s okay to use it.</translation>
       <translation type="unfinished">Display system tables and indexes on the list</translation>
     </message>
     <message>
+      <location filename="../dialogs/configdialog.ui" line="351"/>
+      <source>Database dialog window</source>
+      <translation type="unfinished">Database dialog window</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/configdialog.ui" line="357"/>
+      <source>&lt;p&gt;When adding new database it is marked to be &quot;permanent&quot; (stored in configuration) by default. Checking this option makes every new database to NOT be &quot;permanent&quot; by default.&lt;/p&gt;</source>
+      <translation type="unfinished">&lt;p&gt;When adding new database it is marked to be &quot;permanent&quot; (stored in configuration) by default. Checking this option makes every new database to NOT be &quot;permanent&quot; by default.&lt;/p&gt;</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/configdialog.ui" line="360"/>
+      <source>Do not mark database to be &quot;permanent&quot; by default</source>
+      <translation type="unfinished">Do not mark database to be &quot;permanent&quot; by default</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/configdialog.ui" line="370"/>
+      <source>&lt;p&gt;When this option is enabled, then files dropped from file manager onto database list will be automatically added to the list, bypassing standard database dialog. If for various reasons automatic process fails, then standard dialog will be presented to the user.&lt;/p&gt;</source>
+      <translation type="unfinished">&lt;p&gt;When this option is enabled, then files dropped from file manager onto database list will be automatically added to the list, bypassing standard database dialog. If for various reasons automatic process fails, then standard dialog will be presented to the user.&lt;/p&gt;</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/configdialog.ui" line="373"/>
+      <source>Try to bypass dialog completly when dropping database file onto the list</source>
+      <translation type="unfinished">Try to bypass dialog completly when dropping database file onto the list</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/configdialog.ui" line="518"/>
+      <source>Keep NULL value when entering empty value</source>
+      <translation type="unfinished">Keep NULL value when entering empty value</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/configdialog.ui" line="502"/>
+      <source>&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</source>
+      <translation type="unfinished">&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</translation>
+    </message>
+    <message>
       <location filename="../dialogs/configdialog.ui" line="424"/>
       <location filename="../dialogs/configdialog.ui" line="434"/>
       <source>&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</source>
@@ -1055,19 +1262,9 @@ but it&apos;s okay to use it.</translation>
       <translation type="unfinished">Number of memorized table populating configurations</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="518"/>
-      <source>Keep NULL value when entering empty value</source>
-      <translation type="unfinished">Keep NULL value when entering empty value</translation>
-    </message>
-    <message>
-      <location filename="../dialogs/configdialog.ui" line="528"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when committing a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is committed for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when committing a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is committed for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-      <location filename="../dialogs/configdialog.ui" line="531"/>
-      <source>Use DEFAULT value (if defined), when committing NULL value</source>
-      <translation type="unfinished">Use DEFAULT value (if defined), when committing NULL value</translation>
+      <location filename="../dialogs/configdialog.ui" line="505"/>
+      <source>Show column and row details tooltip in data view</source>
+      <translation type="unfinished">Show column and row details tooltip in data view</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="595"/>
@@ -1090,6 +1287,16 @@ but it&apos;s okay to use it.</translation>
       <translation type="unfinished">Open View Windows with the data tab for start</translation>
     </message>
     <message>
+      <location filename="../dialogs/configdialog.ui" line="649"/>
+      <source>&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every View Window, instead of being at second place.&lt;/p&gt;</source>
+      <translation type="unfinished">&lt;p&gt;When enabled the &quot;Data&quot; tab will be placed as first tab in every View Window, instead of being at second place.&lt;/p&gt;</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/configdialog.ui" line="652"/>
+      <source>Place data tab as first tab in a View Window</source>
+      <translation type="unfinished">Place data tab as first tab in a View Window</translation>
+    </message>
+    <message>
       <location filename="../dialogs/configdialog.ui" line="818"/>
       <source>Don&apos;t show DDL preview dialog when committing schema changes</source>
       <translation type="unfinished">Don&apos;t show DDL preview dialog when committing schema changes</translation>
@@ -1104,6 +1311,21 @@ but it&apos;s okay to use it.</translation>
       <location filename="../dialogs/configdialog.ui" line="895"/>
       <source>Number of memorized query parameters</source>
       <translation type="unfinished">Number of memorized query parameters</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/configdialog.ui" line="943"/>
+      <source>Status Field</source>
+      <translation type="unfinished">Status Field</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/configdialog.ui" line="949"/>
+      <source>&lt;p&gt;When user manually closes the Status panel, this option makes sure that if any new message is printed in the Status panel it will be reopened. If it&apos;s disabled, then Status panel can only be open manually by the user from the &quot;View&quot; menu.&lt;/p&gt;</source>
+      <translation type="unfinished">&lt;p&gt;When user manually closes the Status panel, this option makes sure that if any new message is printed in the Status panel it will be reopened. If it&apos;s disabled, then Status panel can only be open manually by the user from the &quot;View&quot; menu.&lt;/p&gt;</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/configdialog.ui" line="952"/>
+      <source>Always open Status panel when new message is printed</source>
+      <translation type="unfinished">Always open Status panel when new message is printed</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="1132"/>
@@ -1844,6 +2066,10 @@ Browsing other pages will be possible after the row counting is done.</translati
       <translation type="unfinished">Test connection</translation>
     </message>
     <message>
+      <source>Browse for database file on local computer</source>
+      <translation type="unfinished">Browse for database file on local computer</translation>
+    </message>
+    <message>
       <location filename="../dialogs/dbdialog.ui" line="51"/>
       <source>Create new database file</source>
       <translation type="unfinished">Create new database file</translation>
@@ -2020,9 +2246,57 @@ Browsing other pages will be possible after the row counting is done.</translati
       <translation type="unfinished">Rename the group</translation>
     </message>
     <message>
+      <source>Add a database</source>
+      <translation type="unfinished">Add a database</translation>
+    </message>
+    <message>
+      <source>Edit the database</source>
+      <translation type="unfinished">Edit the database</translation>
+    </message>
+    <message>
+      <source>Remove the database</source>
+      <translation type="unfinished">Remove the database</translation>
+    </message>
+    <message>
+      <source>Connect to the database</source>
+      <translation type="unfinished">Connect to the database</translation>
+    </message>
+    <message>
+      <source>Disconnect from the database</source>
+      <translation type="unfinished">Disconnect from the database</translation>
+    </message>
+    <message>
       <location filename="../dbtree/dbtree.cpp" line="145"/>
       <source>Import</source>
       <translation type="unfinished">Import</translation>
+    </message>
+    <message>
+      <source>Export the database</source>
+      <translation type="unfinished">Export the database</translation>
+    </message>
+    <message>
+      <source>Convert database type</source>
+      <translation type="unfinished">Convert database type</translation>
+    </message>
+    <message>
+      <source>Vacuum</source>
+      <translation type="unfinished">Vacuum</translation>
+    </message>
+    <message>
+      <source>Integrity check</source>
+      <translation type="unfinished">Integrity check</translation>
+    </message>
+    <message>
+      <source>Create a table</source>
+      <translation type="unfinished">Create a table</translation>
+    </message>
+    <message>
+      <source>Edit the table</source>
+      <translation type="unfinished">Edit the table</translation>
+    </message>
+    <message>
+      <source>Delete the table</source>
+      <translation type="unfinished">Delete the table</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="153"/>
@@ -2050,6 +2324,42 @@ Browsing other pages will be possible after the row counting is done.</translati
       <translation type="unfinished">Reset autoincrement sequence</translation>
     </message>
     <message>
+      <source>Create an index</source>
+      <translation type="unfinished">Create an index</translation>
+    </message>
+    <message>
+      <source>Edit the index</source>
+      <translation type="unfinished">Edit the index</translation>
+    </message>
+    <message>
+      <source>Delete the index</source>
+      <translation type="unfinished">Delete the index</translation>
+    </message>
+    <message>
+      <source>Create a trigger</source>
+      <translation type="unfinished">Create a trigger</translation>
+    </message>
+    <message>
+      <source>Edit the trigger</source>
+      <translation type="unfinished">Edit the trigger</translation>
+    </message>
+    <message>
+      <source>Delete the trigger</source>
+      <translation type="unfinished">Delete the trigger</translation>
+    </message>
+    <message>
+      <source>Create a view</source>
+      <translation type="unfinished">Create a view</translation>
+    </message>
+    <message>
+      <source>Edit the view</source>
+      <translation type="unfinished">Edit the view</translation>
+    </message>
+    <message>
+      <source>Delete the view</source>
+      <translation type="unfinished">Delete the view</translation>
+    </message>
+    <message>
       <location filename="../dbtree/dbtree.cpp" line="167"/>
       <source>Add a column</source>
       <translation type="unfinished">Add a column</translation>
@@ -2073,6 +2383,14 @@ Browsing other pages will be possible after the row counting is done.</translati
       <location filename="../dbtree/dbtree.cpp" line="171"/>
       <source>Clear filter</source>
       <translation type="unfinished">Clear filter</translation>
+    </message>
+    <message>
+      <source>Refresh all database schemas</source>
+      <translation type="unfinished">Refresh all database schemas</translation>
+    </message>
+    <message>
+      <source>Refresh selected database schema</source>
+      <translation type="unfinished">Refresh selected database schema</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="174"/>
@@ -3627,6 +3945,50 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation type="unfinished">You need to restart application to make the language change take effect.</translation>
     </message>
     <message>
+      <source>Open SQL editor</source>
+      <translation type="unfinished">Open SQL editor</translation>
+    </message>
+    <message>
+      <source>Open DDL history</source>
+      <translation type="unfinished">Open DDL history</translation>
+    </message>
+    <message>
+      <source>Open SQL functions editor</source>
+      <translation type="unfinished">Open SQL functions editor</translation>
+    </message>
+    <message>
+      <source>Open collations editor</source>
+      <translation type="unfinished">Open collations editor</translation>
+    </message>
+    <message>
+      <source>Import</source>
+      <translation type="unfinished">Import</translation>
+    </message>
+    <message>
+      <source>Export</source>
+      <translation type="unfinished">Export</translation>
+    </message>
+    <message>
+      <source>Open configuration dialog</source>
+      <translation type="unfinished">Open configuration dialog</translation>
+    </message>
+    <message>
+      <source>Tile windows</source>
+      <translation type="unfinished">Tile windows</translation>
+    </message>
+    <message>
+      <source>Tile windows horizontally</source>
+      <translation type="unfinished">Tile windows horizontally</translation>
+    </message>
+    <message>
+      <source>Tile windows vertically</source>
+      <translation type="unfinished">Tile windows vertically</translation>
+    </message>
+    <message>
+      <source>Cascade windows</source>
+      <translation type="unfinished">Cascade windows</translation>
+    </message>
+    <message>
       <location filename="../mainwindow.cpp" line="247"/>
       <source>Next window</source>
       <translation type="unfinished">Next window</translation>
@@ -3642,6 +4004,26 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation type="unfinished">Hide status field</translation>
     </message>
     <message>
+      <source>Close selected window</source>
+      <translation type="unfinished">Close selected window</translation>
+    </message>
+    <message>
+      <source>Close all windows but selected</source>
+      <translation type="unfinished">Close all windows but selected</translation>
+    </message>
+    <message>
+      <source>Close all windows</source>
+      <translation type="unfinished">Close all windows</translation>
+    </message>
+    <message>
+      <source>Restore recently closed window</source>
+      <translation type="unfinished">Restore recently closed window</translation>
+    </message>
+    <message>
+      <source>Rename selected window</source>
+      <translation type="unfinished">Rename selected window</translation>
+    </message>
+    <message>
       <location filename="../mainwindow.cpp" line="257"/>
       <source>Open Debug Console</source>
       <translation type="unfinished">Open Debug Console</translation>
@@ -3652,15 +4034,74 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation type="unfinished">Open CSS Console</translation>
     </message>
     <message>
-      <location filename="../mainwindow.cpp" line="267"/>
-      <source>Bugs and feature &amp;requests</source>
-      <translation type="unfinished">Bugs and feature &amp;requests</translation>
+      <source>Report a bug</source>
+      <translation type="unfinished">Report a bug</translation>
+    </message>
+    <message>
+      <source>Propose a new feature</source>
+      <translation type="unfinished">Propose a new feature</translation>
+    </message>
+    <message>
+      <source>About</source>
+      <translation type="unfinished">About</translation>
+    </message>
+    <message>
+      <source>Licenses</source>
+      <translation type="unfinished">Licenses</translation>
+    </message>
+    <message>
+      <source>Open home page</source>
+      <translation type="unfinished">Open home page</translation>
+    </message>
+    <message>
+      <source>Open forum page</source>
+      <translation type="unfinished">Open forum page</translation>
+    </message>
+    <message>
+      <source>User Manual</source>
+      <translation type="unfinished">User Manual</translation>
+    </message>
+    <message>
+      <source>SQLite documentation</source>
+      <translation type="unfinished">SQLite documentation</translation>
+    </message>
+    <message>
+      <source>Report history</source>
+      <translation type="unfinished">Report history</translation>
+    </message>
+    <message>
+      <source>Check for updates</source>
+      <translation type="unfinished">Check for updates</translation>
+    </message>
+    <message>
+      <source>Database</source>
+      <comment>menubar</comment>
+      <translation type="unfinished">Database</translation>
+    </message>
+    <message>
+      <source>Structure</source>
+      <comment>menubar</comment>
+      <translation type="unfinished">Structure</translation>
+    </message>
+    <message>
+      <source>View</source>
+      <comment>menubar</comment>
+      <translation type="unfinished">View</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="352"/>
       <source>Window list</source>
       <comment>menubar view menu</comment>
       <translation type="unfinished">Window list</translation>
+    </message>
+    <message>
+      <source>Tools</source>
+      <comment>menubar</comment>
+      <translation type="unfinished">Tools</translation>
+    </message>
+    <message>
+      <source>Help</source>
+      <translation type="unfinished">Help</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="233"/>
@@ -3786,6 +4227,11 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../mainwindow.cpp" line="266"/>
       <source>SQLite &amp;documentation</source>
       <translation type="unfinished">SQLite &amp;documentation</translation>
+    </message>
+    <message>
+      <location filename="../mainwindow.cpp" line="267"/>
+      <source>Bugs and feature &amp;requests</source>
+      <translation type="unfinished">Bugs and feature &amp;requests</translation>
     </message>
     <message>
       <location filename="../mainwindow.cpp" line="269"/>
@@ -3928,11 +4374,25 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     </message>
   </context>
   <context>
+    <name>MultiEditorBool</name>
+    <message>
+      <source>Boolean</source>
+      <translation type="unfinished">Boolean</translation>
+    </message>
+  </context>
+  <context>
     <name>MultiEditorBoolPlugin</name>
     <message>
       <location filename="../multieditor/multieditorbool.cpp" line="214"/>
       <source>Boolean</source>
       <translation type="unfinished">Boolean</translation>
+    </message>
+  </context>
+  <context>
+    <name>MultiEditorDate</name>
+    <message>
+      <source>Date</source>
+      <translation type="unfinished">Date</translation>
     </message>
   </context>
   <context>
@@ -3944,6 +4404,13 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     </message>
   </context>
   <context>
+    <name>MultiEditorDateTime</name>
+    <message>
+      <source>Date &amp; time</source>
+      <translation type="unfinished">Date &amp; time</translation>
+    </message>
+  </context>
+  <context>
     <name>MultiEditorDateTimePlugin</name>
     <message>
       <location filename="../multieditor/multieditordatetime.cpp" line="274"/>
@@ -3952,11 +4419,26 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     </message>
   </context>
   <context>
+    <name>MultiEditorHex</name>
+    <message>
+      <source>Hex</source>
+      <translation type="unfinished">Hex</translation>
+    </message>
+  </context>
+  <context>
     <name>MultiEditorHexPlugin</name>
     <message>
       <location filename="../multieditor/multieditorhex.cpp" line="91"/>
       <source>Hex</source>
       <translation type="unfinished">Hex</translation>
+    </message>
+  </context>
+  <context>
+    <name>MultiEditorNumeric</name>
+    <message>
+      <source>Number</source>
+      <comment>numeric multi editor tab name</comment>
+      <translation type="unfinished">Number</translation>
     </message>
   </context>
   <context>
@@ -3970,6 +4452,10 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
   </context>
   <context>
     <name>MultiEditorText</name>
+    <message>
+      <source>Text</source>
+      <translation type="unfinished">Text</translation>
+    </message>
     <message>
       <location filename="../multieditor/multieditortext.cpp" line="102"/>
       <source>Tab changes focus</source>
@@ -4012,6 +4498,13 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../multieditor/multieditortext.cpp" line="184"/>
       <source>Text</source>
       <translation type="unfinished">Text</translation>
+    </message>
+  </context>
+  <context>
+    <name>MultiEditorTime</name>
+    <message>
+      <source>Time</source>
+      <translation type="unfinished">Time</translation>
     </message>
   </context>
   <context>
@@ -4099,6 +4592,10 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <translation type="unfinished">This application will be closed and the update installer will start to download and install all the updates.</translation>
     </message>
     <message>
+      <source>Current version</source>
+      <translation type="unfinished">Current version</translation>
+    </message>
+    <message>
       <location filename="../dialogs/newversiondialog.ui" line="75"/>
       <source>Update version</source>
       <translation type="unfinished">Update version</translation>
@@ -4112,6 +4609,10 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../dialogs/newversiondialog.ui" line="96"/>
       <source>Update to new version!</source>
       <translation type="unfinished">Update to new version!</translation>
+    </message>
+    <message>
+      <source>The update will be automatically downloaded and installed. This will also restart application at the end.</source>
+      <translation type="unfinished">The update will be automatically downloaded and installed. This will also restart application at the end.</translation>
     </message>
     <message>
       <location filename="../dialogs/newversiondialog.ui" line="116"/>
@@ -4642,6 +5143,14 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../uiutils.cpp" line="41"/>
       <source>Database file</source>
       <translation type="unfinished">Database file</translation>
+    </message>
+    <message>
+      <source>Reports history window</source>
+      <translation type="unfinished">Reports history window</translation>
+    </message>
+    <message>
+      <source>Delete selected entry</source>
+      <translation type="unfinished">Delete selected entry</translation>
     </message>
     <message>
       <location filename="../windows/editorwindow.h" line="26"/>
@@ -6013,12 +6522,6 @@ Would you like to proceed?</translation>
       <translation type="unfinished">Could not restore window &apos;%1&apos;&apos;, because the table %2 doesn&apos;t exist in the database %3.</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="699"/>
-      <location filename="../windows/tablewindow.cpp" line="701"/>
-      <source>New table %1</source>
-      <translation type="unfinished">New table %1</translation>
-    </message>
-    <message>
       <location filename="../windows/tablewindow.cpp" line="828"/>
       <source>Committed changes for table &apos;%1&apos; successfully.</source>
       <translation type="unfinished">Committed changes for table &apos;%1&apos; successfully.</translation>
@@ -6059,6 +6562,12 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../windows/tablewindow.cpp" line="1620"/>
       <source>Table window &quot;%1&quot; has uncommitted structure modifications.</source>
       <translation type="unfinished">Table window &quot;%1&quot; has uncommitted structure modifications.</translation>
+    </message>
+    <message>
+      <location filename="../windows/tablewindow.cpp" line="699"/>
+      <location filename="../windows/tablewindow.cpp" line="701"/>
+      <source>New table %1</source>
+      <translation type="unfinished">New table %1</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="866"/>
