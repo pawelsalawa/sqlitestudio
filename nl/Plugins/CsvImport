@@ -19,6 +19,10 @@
       <translation type="unfinished">Enter the custom separator character.</translation>
     </message>
     <message>
+      <source>Enter the value that will be interpreted as a NULL.</source>
+      <translation type="unfinished">Enter the value that will be interpreted as a NULL.</translation>
+    </message>
+    <message>
       <location filename="csvimport.cpp" line="190"/>
       <source>CSV files (*.csv);;Text files (*.txt);;All files (*)</source>
       <translation type="unfinished">CSV files (*.csv);;Text files (*.txt);;All files (*)</translation>
@@ -60,6 +64,14 @@
       <location filename="CsvImportOptions.ui" line="55"/>
       <source>First line represents CSV column names</source>
       <translation type="unfinished">First line represents CSV column names</translation>
+    </message>
+    <message>
+      <source>Skip first row of data</source>
+      <translation type="unfinished">Skip first row of data</translation>
+    </message>
+    <message>
+      <source>First row represents column names</source>
+      <translation type="unfinished">First row represents column names</translation>
     </message>
     <message>
       <location filename="CsvImportOptions.ui" line="65"/>
