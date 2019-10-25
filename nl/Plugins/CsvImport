@@ -19,6 +19,10 @@
       <translation type="unfinished">Enter the custom separator character.</translation>
     </message>
     <message>
+      <source>Enter the value that will be interpreted as a NULL.</source>
+      <translation type="unfinished">Enter the value that will be interpreted as a NULL.</translation>
+    </message>
+    <message>
       <location filename="csvimport.cpp" line="190"/>
       <source>CSV files (*.csv);;Text files (*.txt);;All files (*)</source>
       <translation type="unfinished">CSV files (*.csv);;Text files (*.txt);;All files (*)</translation>
