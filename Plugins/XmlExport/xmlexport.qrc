@@ -3,17 +3,27 @@
         <file>XmlExport.ui</file>
     </qresource>
     <qresource prefix="/msg">
-        <file>XmlExport_ro_RO.qm</file>
-        <file>XmlExport_de.qm</file>
+        <file>translations/XmlExport_ro_RO.qm</file>
+        <file>translations/XmlExport_de_DE.qm</file>
 
 
-        <file>XmlExport_pl.qm</file>
-        <file>XmlExport_ru.qm</file>
-        <file>XmlExport_fr.qm</file>
-        <file>XmlExport_sk.qm</file>
-        <file>XmlExport_zh_CN.qm</file>
+        <file>translations/XmlExport_pl_PL.qm</file>
+        <file>translations/XmlExport_ru_RU.qm</file>
+        <file>translations/XmlExport_fr_FR.qm</file>
+        <file>translations/XmlExport_sk_SK.qm</file>
+        <file>translations/XmlExport_zh_CN.qm</file>
     </qresource>
 </RCC>
+
+
+
+
+
+
+
+
+
+
 
 
 

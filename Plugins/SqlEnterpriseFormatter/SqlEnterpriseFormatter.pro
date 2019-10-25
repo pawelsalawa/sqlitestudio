@@ -102,16 +102,28 @@ RESOURCES += \
     sqlenterpriseformatter.qrc
 
 
-TRANSLATIONS += SqlEnterpriseFormatter_ro_RO.ts \
-		SqlEnterpriseFormatter_de.ts \
-		SqlEnterpriseFormatter_it.ts \
-		SqlEnterpriseFormatter_zh_CN.ts \
-		SqlEnterpriseFormatter_sk.ts \
-		SqlEnterpriseFormatter_ru.ts \
-		SqlEnterpriseFormatter_pt_BR.ts \
-		SqlEnterpriseFormatter_fr.ts \
-		SqlEnterpriseFormatter_es.ts \
-		SqlEnterpriseFormatter_pl.ts
+TRANSLATIONS += translations/SqlEnterpriseFormatter.ts \
+		translations/SqlEnterpriseFormatter_ro_RO.ts \
+		translations/SqlEnterpriseFormatter_de_DE.ts \
+		translations/SqlEnterpriseFormatter_it_IT.ts \
+		translations/SqlEnterpriseFormatter_zh_CN.ts \
+		translations/SqlEnterpriseFormatter_sk_SK.ts \
+		translations/SqlEnterpriseFormatter_ru_RU.ts \
+		translations/SqlEnterpriseFormatter_pt_BR.ts \
+		translations/SqlEnterpriseFormatter_fr_FR.ts \
+		translations/SqlEnterpriseFormatter_es_ES.ts \
+		translations/SqlEnterpriseFormatter_pl_PL.ts
+
+
+
+
+
+
+
+
+
+
+
 
 
 

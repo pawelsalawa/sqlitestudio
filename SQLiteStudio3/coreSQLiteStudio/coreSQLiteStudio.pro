@@ -54,16 +54,17 @@ portable {
 CONFIG   += c++11
 QMAKE_CXXFLAGS += -pedantic
 
-TRANSLATIONS += translations/coreSQLiteStudio_ro_RO.ts \
-		translations/coreSQLiteStudio_de.ts \
-		translations/coreSQLiteStudio_it.ts \
+TRANSLATIONS += translations/coreSQLiteStudio.ts \
+		translations/coreSQLiteStudio_ro_RO.ts \
+		translations/coreSQLiteStudio_de_DE.ts \
+		translations/coreSQLiteStudio_it_IT.ts \
 		translations/coreSQLiteStudio_zh_CN.ts \
-		translations/coreSQLiteStudio_sk.ts \
-		translations/coreSQLiteStudio_ru.ts \
+		translations/coreSQLiteStudio_sk_SK.ts \
+		translations/coreSQLiteStudio_ru_RU.ts \
 		translations/coreSQLiteStudio_pt_BR.ts \
-		translations/coreSQLiteStudio_fr.ts \
-		translations/coreSQLiteStudio_es.ts \
-		translations/coreSQLiteStudio_pl.ts
+		translations/coreSQLiteStudio_fr_FR.ts \
+		translations/coreSQLiteStudio_es_ES.ts \
+		translations/coreSQLiteStudio_pl_PL.ts
 
 SOURCES += sqlitestudio.cpp \
     returncode.cpp \
@@ -471,6 +472,17 @@ RESOURCES += \
 
 DISTFILES += \
     licenses/mit.txt
+
+
+
+
+
+
+
+
+
+
+
 
 
 

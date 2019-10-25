@@ -205,7 +205,9 @@
         <source>No working database is set.
 Call %1 command to set working database.
 Call %2 to see list of all databases.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">没有设置工作数据库。
+调用 %1 命令去设置工作数据库。
+调用 %2 去浏览所有数据库列表。</translation>
     </message>
     <message>
         <location filename="../commands/clicommanddesc.cpp" line="26"/>

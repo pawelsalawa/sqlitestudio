@@ -52,17 +52,29 @@ FORMS += \
 RESOURCES += \
     dbandroid.qrc
 
-TRANSLATIONS += DbAndroid_ro_RO.ts \
-		DbAndroid_de.ts \
+TRANSLATIONS += translations/DbAndroid.ts \
+		translations/DbAndroid_ro_RO.ts \
+		translations/DbAndroid_de_DE.ts \
 		\
-		DbAndroid_it.ts\
-		DbAndroid_zh_CN.ts\
-		DbAndroid_sk.ts\
-		DbAndroid_ru.ts\
-		DbAndroid_pt_BR.ts\
-		DbAndroid_fr.ts\
-		DbAndroid_es.ts\
-		DbAndroid_pl.ts
+		translations/DbAndroid_it_IT.ts\
+		translations/DbAndroid_zh_CN.ts\
+		translations/DbAndroid_sk_SK.ts\
+		translations/DbAndroid_ru_RU.ts\
+		translations/DbAndroid_pt_BR.ts\
+		translations/DbAndroid_fr_FR.ts\
+		translations/DbAndroid_es_ES.ts\
+		translations/DbAndroid_pl_PL.ts
+
+
+
+
+
+
+
+
+
+
+
 
 
 

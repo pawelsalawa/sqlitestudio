@@ -3,17 +3,27 @@
         <file>scriptingtcl.png</file>
     </qresource>
     <qresource prefix="/msg">
-        <file>ScriptingTcl_ro_RO.qm</file>
-        <file>ScriptingTcl_de.qm</file>
+        <file>translations/ScriptingTcl_ro_RO.qm</file>
+        <file>translations/ScriptingTcl_de_DE.qm</file>
 
 
-        <file>ScriptingTcl_pl.qm</file>
-        <file>ScriptingTcl_ru.qm</file>
-        <file>ScriptingTcl_fr.qm</file>
-        <file>ScriptingTcl_sk.qm</file>
-        <file>ScriptingTcl_zh_CN.qm</file>
+        <file>translations/ScriptingTcl_pl_PL.qm</file>
+        <file>translations/ScriptingTcl_ru_RU.qm</file>
+        <file>translations/ScriptingTcl_fr_FR.qm</file>
+        <file>translations/ScriptingTcl_sk_SK.qm</file>
+        <file>translations/ScriptingTcl_zh_CN.qm</file>
     </qresource>
 </RCC>
+
+
+
+
+
+
+
+
+
+
 
 
 

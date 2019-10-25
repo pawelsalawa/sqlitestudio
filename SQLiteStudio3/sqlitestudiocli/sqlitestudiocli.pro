@@ -31,16 +31,17 @@ portable {
     DEFINES += PORTABLE_CONFIG
 }
 
-TRANSLATIONS += translations/sqlitestudiocli_ro_RO.ts \
-		translations/sqlitestudiocli_de.ts \
-		translations/sqlitestudiocli_it.ts \
+TRANSLATIONS += translations/sqlitestudiocli.ts \
+		translations/sqlitestudiocli_ro_RO.ts \
+		translations/sqlitestudiocli_de_DE.ts \
+		translations/sqlitestudiocli_it_IT.ts \
 		translations/sqlitestudiocli_zh_CN.ts \
-		translations/sqlitestudiocli_sk.ts \
-		translations/sqlitestudiocli_ru.ts \
+		translations/sqlitestudiocli_sk_SK.ts \
+		translations/sqlitestudiocli_ru_RU.ts \
 		translations/sqlitestudiocli_pt_BR.ts \
-		translations/sqlitestudiocli_fr.ts \
-		translations/sqlitestudiocli_es.ts \
-		translations/sqlitestudiocli_pl.ts
+		translations/sqlitestudiocli_fr_FR.ts \
+		translations/sqlitestudiocli_es_ES.ts \
+		translations/sqlitestudiocli_pl_PL.ts
 
 SOURCES += main.cpp \
     cli.cpp \
@@ -118,6 +119,17 @@ unix: {
 
 RESOURCES += \
     sqlitestudiocli.qrc
+
+
+
+
+
+
+
+
+
+
+
 
 
 

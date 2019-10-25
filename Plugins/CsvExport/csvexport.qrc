@@ -3,16 +3,26 @@
         <file>CsvExport.ui</file>
     </qresource>
     <qresource prefix="/msg">
-        <file>CsvExport_ro_RO.qm</file>
+        <file>translations/CsvExport_ro_RO.qm</file>
 
-        <file>CsvExport_de.qm</file>
-        <file>CsvExport_pl.qm</file>
-        <file>CsvExport_ru.qm</file>
-        <file>CsvExport_fr.qm</file>
-        <file>CsvExport_sk.qm</file>
-        <file>CsvExport_zh_CN.qm</file>
+        <file>translations/CsvExport_de_DE.qm</file>
+        <file>translations/CsvExport_pl_PL.qm</file>
+        <file>translations/CsvExport_ru_RU.qm</file>
+        <file>translations/CsvExport_fr_FR.qm</file>
+        <file>translations/CsvExport_sk_SK.qm</file>
+        <file>translations/CsvExport_zh_CN.qm</file>
     </qresource>
 </RCC>
+
+
+
+
+
+
+
+
+
+
 
 
 
