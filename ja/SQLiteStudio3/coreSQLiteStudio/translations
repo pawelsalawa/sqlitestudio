@@ -340,10 +340,6 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <source>Could not export to file %1. File cannot be open for writting.</source>
       <translation type="unfinished">Could not export to file %1. File cannot be open for writting.</translation>
     </message>
-    <message>
-      <source>Export to was successful.</source>
-      <translation type="unfinished">Export to was successful.</translation>
-    </message>
   </context>
   <context>
     <name>ExportWorker</name>
@@ -351,10 +347,6 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
       <location filename="../exportworker.cpp" line="122"/>
       <source>Error while exporting query results: %1</source>
       <translation type="unfinished">Error while exporting query results: %1</translation>
-    </message>
-    <message>
-      <source>Error while counting data column width to export from query results: %2</source>
-      <translation type="unfinished">Error while counting data column width to export from query results: %2</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="202"/>
@@ -797,6 +789,29 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
   <context>
     <name>QObject</name>
     <message>
+      <location filename="../db/abstractdb2.h" line="222"/>
+      <location filename="../db/abstractdb3.h" line="384"/>
+      <source>Could not open database: %1</source>
+      <translation type="unfinished">Could not open database: %1</translation>
+    </message>
+    <message>
+      <location filename="../db/abstractdb2.h" line="833"/>
+      <location filename="../db/abstractdb3.h" line="1132"/>
+      <source>Result set expired or no row available.</source>
+      <translation type="unfinished">Result set expired or no row available.</translation>
+    </message>
+    <message>
+      <location filename="../db/abstractdb3.h" line="328"/>
+      <location filename="../db/abstractdb3.h" line="332"/>
+      <source>Could not load extension %1: %2</source>
+      <translation type="unfinished">Could not load extension %1: %2</translation>
+    </message>
+    <message>
+      <location filename="../db/abstractdb3.h" line="405"/>
+      <source>Could not close database: %1</source>
+      <translation type="unfinished">Could not close database: %1</translation>
+    </message>
+    <message>
       <location filename="../dbversionconverter.cpp" line="138"/>
       <location filename="../dbversionconverter.cpp" line="143"/>
       <location filename="../dbversionconverter.cpp" line="196"/>
@@ -831,10 +846,6 @@ Error details: %2</translation>
       <location filename="../dbversionconverter.cpp" line="497"/>
       <source>SQLite %1 does not support the &apos;%2&apos; clause in the &apos;%3&apos; statement.</source>
       <translation type="unfinished">SQLite %1 does not support the &apos;%2&apos; clause in the &apos;%3&apos; statement.</translation>
-    </message>
-    <message>
-      <source>SQLite %1 does not support the &apos;%2&apos; clause. Cannot convert &apos;%1&apos; statement with that clause.</source>
-      <translation type="unfinished">SQLite %1 does not support the &apos;%2&apos; clause. Cannot convert &apos;%1&apos; statement with that clause.</translation>
     </message>
     <message>
       <location filename="../dbversionconverter.cpp" line="772"/>
@@ -1042,39 +1053,9 @@ The view will remain as it is.</translation>
       <translation type="unfinished">SQLiteStudio was unable to resolve columns returned by the new view, therefore it won&apos;t be able to tell which triggers might fail during the recreation process.</translation>
     </message>
     <message>
-      <location filename="../db/abstractdb2.h" line="222"/>
-      <location filename="../db/abstractdb3.h" line="384"/>
-      <source>Could not open database: %1</source>
-      <translation type="unfinished">Could not open database: %1</translation>
-    </message>
-    <message>
-      <location filename="../db/abstractdb3.h" line="328"/>
-      <location filename="../db/abstractdb3.h" line="332"/>
-      <source>Could not load extension %1: %2</source>
-      <translation type="unfinished">Could not load extension %1: %2</translation>
-    </message>
-    <message>
-      <location filename="../db/abstractdb3.h" line="405"/>
-      <source>Could not close database: %1</source>
-      <translation type="unfinished">Could not close database: %1</translation>
-    </message>
-    <message>
-      <location filename="../db/abstractdb2.h" line="833"/>
-      <location filename="../db/abstractdb3.h" line="1132"/>
-      <source>Result set expired or no row available.</source>
-      <translation type="unfinished">Result set expired or no row available.</translation>
-    </message>
-    <message>
       <location filename="../common/utils.cpp" line="1022"/>
       <source>Could not open file &apos;%1&apos; for reading: %2</source>
       <translation type="unfinished">Could not open file &apos;%1&apos; for reading: %2</translation>
-    </message>
-  </context>
-  <context>
-    <name>Query</name>
-    <message>
-      <source>Result set expired or no row available.</source>
-      <translation type="unfinished">Result set expired or no row available.</translation>
     </message>
   </context>
   <context>
