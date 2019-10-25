@@ -1,1 +1,5 @@
-files: []
+files:
+  - source: /**/*.ts
+    ignore:
+      - /**/*_*.ts
+    translation: /**/%file_name%_%locale_with_underscore%.%file_extension%
