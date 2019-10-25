@@ -72,6 +72,7 @@
     <message>
       <location filename="SqlExportQuery.ui" line="30"/>
       <source>Table name to use for INSERT statements:</source>
+      <oldsource>Table name to use for insert statements:</oldsource>
       <translation type="unfinished">Table name to use for INSERT statements:</translation>
     </message>
     <message>
