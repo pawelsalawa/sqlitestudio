@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="de" sourcelanguage="en">
+<TS version="2.0" language="de" sourcelanguage="en">
   <context>
     <name>AboutDialog</name>
     <message>
@@ -460,6 +460,10 @@
       <location filename="../constraints/columndefaultpanel.cpp" line="89"/>
       <source>Invalid default value expression. If you want to use simple string as value, remember to surround it with quote characters.</source>
       <translation type="unfinished">Invalid default value expression. If you want to use simple string as value, remember to surround it with quote characters.</translation>
+    </message>
+    <message>
+      <source>Invalid default value expression: %1</source>
+      <translation type="unfinished">Invalid default value expression: %1</translation>
     </message>
     <message>
       <location filename="../constraints/columndefaultpanel.cpp" line="92"/>
@@ -994,9 +998,17 @@ but it&apos;s okay to use it.</translation>
       <translation type="unfinished">Limit initial data column width to (in pixels):</translation>
     </message>
     <message>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&amp;lt;p&amp;gt;When editing a cell which used to have NULL value and entering empty string as new value, then this option determinates whether the new value should remain NULL (have this option enabled), or should it be overwritten with empty string value (have this option disabled).&amp;lt;/p&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&amp;lt;p&amp;gt;When editing a cell which used to have NULL value and entering empty string as new value, then this option determinates whether the new value should remain NULL (have this option enabled), or should it be overwritten with empty string value (have this option disabled).&amp;lt;/p&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
       <location filename="../dialogs/configdialog.ui" line="518"/>
       <source>Keep NULL value when entering empty value</source>
       <translation type="unfinished">Keep NULL value when entering empty value</translation>
+    </message>
+    <message>
+      <source>General.KeepNullWhenEmptyValue</source>
+      <translation type="unfinished">General.KeepNullWhenEmptyValue</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="502"/>
@@ -1004,35 +1016,9 @@ but it&apos;s okay to use it.</translation>
       <translation type="unfinished">&lt;p&gt;When this is enabled and user holds mouse pointer over a cell in any data view (query results, a table data, a view data) a tooltip will appear with details about the cell - it includes details like column data type, constraints, ROWID and others.&lt;/p&gt;</translation>
     </message>
     <message>
-      <location filename="../dialogs/configdialog.ui" line="424"/>
-      <location filename="../dialogs/configdialog.ui" line="434"/>
-      <source>&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</translation>
-    </message>
-    <message>
-      <location filename="../dialogs/configdialog.ui" line="427"/>
-      <source>Number of memorized table populating configurations</source>
-      <translation type="unfinished">Number of memorized table populating configurations</translation>
-    </message>
-    <message>
       <location filename="../dialogs/configdialog.ui" line="505"/>
       <source>Show column and row details tooltip in data view</source>
       <translation type="unfinished">Show column and row details tooltip in data view</translation>
-    </message>
-    <message>
-      <location filename="../dialogs/configdialog.ui" line="515"/>
-      <source>&lt;p&gt;When editing a cell which used to have NULL value and entering empty string as new value, then this option determinates whether the new value should remain NULL (have this option enabled), or should it be overwritten with empty string value (have this option disabled).&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;When editing a cell which used to have NULL value and entering empty string as new value, then this option determinates whether the new value should remain NULL (have this option enabled), or should it be overwritten with empty string value (have this option disabled).&lt;/p&gt;</translation>
-    </message>
-    <message>
-      <location filename="../dialogs/configdialog.ui" line="528"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when committing a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is committed for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when committing a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is committed for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-      <location filename="../dialogs/configdialog.ui" line="531"/>
-      <source>Use DEFAULT value (if defined), when committing NULL value</source>
-      <translation type="unfinished">Use DEFAULT value (if defined), when committing NULL value</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="544"/>
@@ -1043,6 +1029,10 @@ but it&apos;s okay to use it.</translation>
       <location filename="../dialogs/configdialog.ui" line="550"/>
       <source>Before currently selected row</source>
       <translation type="unfinished">Before currently selected row</translation>
+    </message>
+    <message>
+      <source>General.InsertRowPlacement</source>
+      <translation type="unfinished">General.InsertRowPlacement</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="566"/>
@@ -1221,6 +1211,10 @@ but it&apos;s okay to use it.</translation>
       <translation type="unfinished">Use compact layout</translation>
     </message>
     <message>
+      <source>General.CompactLayout</source>
+      <translation type="unfinished">General.CompactLayout</translation>
+    </message>
+    <message>
       <location filename="../dialogs/configdialog.ui" line="166"/>
       <location filename="../dialogs/configdialog.ui" line="239"/>
       <source>Database list</source>
@@ -1290,6 +1284,32 @@ but it&apos;s okay to use it.</translation>
       <location filename="../dialogs/configdialog.ui" line="338"/>
       <source>Display system tables and indexes on the list</source>
       <translation type="unfinished">Display system tables and indexes on the list</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/configdialog.ui" line="424"/>
+      <location filename="../dialogs/configdialog.ui" line="434"/>
+      <source>&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</source>
+      <translation type="unfinished">&lt;p&gt;Maximum number of configurations of Populate Table dialog stored in configuration. Value of 100 should be sufficient.&lt;/p&gt;</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/configdialog.ui" line="427"/>
+      <source>Number of memorized table populating configurations</source>
+      <translation type="unfinished">Number of memorized table populating configurations</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/configdialog.ui" line="515"/>
+      <source>&lt;p&gt;When editing a cell which used to have NULL value and entering empty string as new value, then this option determinates whether the new value should remain NULL (have this option enabled), or should it be overwritten with empty string value (have this option disabled).&lt;/p&gt;</source>
+      <translation type="unfinished">&lt;p&gt;When editing a cell which used to have NULL value and entering empty string as new value, then this option determinates whether the new value should remain NULL (have this option enabled), or should it be overwritten with empty string value (have this option disabled).&lt;/p&gt;</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/configdialog.ui" line="528"/>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when committing a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is committed for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable this to always enforce DEFAULT value when committing a NULL value for a column that has DEFAULT value defined, even though the column is allowed to contain NULL values.&lt;/p&gt;&lt;p&gt;Disable this option to use DEFAULT value exclusively when NULL value is committed for column with NOT NULL constraint.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+      <location filename="../dialogs/configdialog.ui" line="531"/>
+      <source>Use DEFAULT value (if defined), when committing NULL value</source>
+      <translation type="unfinished">Use DEFAULT value (if defined), when committing NULL value</translation>
     </message>
     <message>
       <location filename="../dialogs/configdialog.ui" line="595"/>
@@ -2161,6 +2181,10 @@ Browsing other pages will be possible after the row counting is done.</translati
       <translation type="unfinished">&lt;p&gt;Automatic name generation was disabled, because the name was edited manually. To restore automatic generation please erase contents of the name field.&lt;/p&gt;</translation>
     </message>
     <message>
+      <source>&lt;p&gt;Automatic name generation was disabled, becuase the name was edited manually. To restore automatic generation please erase contents of the name field.&lt;/p&gt;</source>
+      <translation type="unfinished">&lt;p&gt;Automatic name generation was disabled, becuase the name was edited manually. To restore automatic generation please erase contents of the name field.&lt;/p&gt;</translation>
+    </message>
+    <message>
       <location filename="../dialogs/dbdialog.cpp" line="493"/>
       <source>Enter a database file path.</source>
       <translation type="unfinished">Enter a database file path.</translation>
@@ -2228,7 +2252,6 @@ Browsing other pages will be possible after the row counting is done.</translati
     <message>
       <location filename="../dbobjectdialogs.cpp" line="190"/>
       <source>Are you sure you want to delete view %1?</source>
-      <translatorcomment>Ste si istý, že chcete vymazať pohľad %1?</translatorcomment>
       <translation type="unfinished">Are you sure you want to delete view %1?</translation>
     </message>
     <message>
@@ -2738,6 +2761,10 @@ All objects from this group will be moved to parent group.</translation>
       <location filename="../dbtree/dbtree.cpp" line="1544"/>
       <source>An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</source>
       <translation type="unfinished">An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</translation>
+    </message>
+    <message>
+      <source>Autoincrement value for table &apos;%1&apos; has been reset successfly.</source>
+      <translation type="unfinished">Autoincrement value for table &apos;%1&apos; has been reset successfly.</translation>
     </message>
     <message>
       <source>Are you sure you want to delete all data from table &apos;%1&apos;?</source>
@@ -3678,6 +3705,10 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <source>Functions editor window has uncommitted modifications.</source>
       <translation type="unfinished">Functions editor window has uncommitted modifications.</translation>
     </message>
+    <message>
+      <source>Functions editor window has uncommited modifications.</source>
+      <translation type="unfinished">Functions editor window has uncommited modifications.</translation>
+    </message>
   </context>
   <context>
     <name>ImportDialog</name>
@@ -4464,6 +4495,13 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     </message>
   </context>
   <context>
+    <name>MultiEditorBool</name>
+    <message>
+      <source>Boolean</source>
+      <translation type="unfinished">Boolean</translation>
+    </message>
+  </context>
+  <context>
     <name>MultiEditorBoolPlugin</name>
     <message>
       <location filename="../multieditor/multieditorbool.cpp" line="214"/>
@@ -4502,6 +4540,13 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     </message>
   </context>
   <context>
+    <name>MultiEditorHex</name>
+    <message>
+      <source>Hex</source>
+      <translation type="unfinished">Hex</translation>
+    </message>
+  </context>
+  <context>
     <name>MultiEditorHexPlugin</name>
     <message>
       <location filename="../multieditor/multieditorhex.cpp" line="91"/>
@@ -4528,6 +4573,10 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
   </context>
   <context>
     <name>MultiEditorText</name>
+    <message>
+      <source>Text</source>
+      <translation type="unfinished">Text</translation>
+    </message>
     <message>
       <location filename="../multieditor/multieditortext.cpp" line="102"/>
       <source>Tab changes focus</source>
@@ -4570,6 +4619,13 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
       <location filename="../multieditor/multieditortext.cpp" line="184"/>
       <source>Text</source>
       <translation type="unfinished">Text</translation>
+    </message>
+  </context>
+  <context>
+    <name>MultiEditorTime</name>
+    <message>
+      <source>Time</source>
+      <translation type="unfinished">Time</translation>
     </message>
   </context>
   <context>
@@ -5708,6 +5764,10 @@ find next</translation>
   <context>
     <name>SqlQueryItemDelegate</name>
     <message>
+      <source>Cannot edit this cell. Details: %2</source>
+      <translation type="unfinished">Cannot edit this cell. Details: %2</translation>
+    </message>
+    <message>
       <location filename="../datagrid/sqlqueryitemdelegate.cpp" line="53"/>
       <source>The row is marked for deletion.</source>
       <translation type="unfinished">The row is marked for deletion.</translation>
@@ -6615,12 +6675,6 @@ Would you like to proceed?</translation>
       <translation type="unfinished">Could not restore window &apos;%1&apos;&apos;, because the table %2 doesn&apos;t exist in the database %3.</translation>
     </message>
     <message>
-      <location filename="../windows/tablewindow.cpp" line="699"/>
-      <location filename="../windows/tablewindow.cpp" line="701"/>
-      <source>New table %1</source>
-      <translation type="unfinished">New table %1</translation>
-    </message>
-    <message>
       <location filename="../windows/tablewindow.cpp" line="828"/>
       <source>Committed changes for table &apos;%1&apos; successfully.</source>
       <translation type="unfinished">Committed changes for table &apos;%1&apos; successfully.</translation>
@@ -6663,6 +6717,28 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <translation type="unfinished">Table window &quot;%1&quot; has uncommitted structure modifications.</translation>
     </message>
     <message>
+      <source>Could not restore window, because database %1 could not be resolved.</source>
+      <translation type="unfinished">Could not restore window, because database %1 could not be resolved.</translation>
+    </message>
+    <message>
+      <source>Could not restore window, because the table %1 doesn&apos;t exist in the database %2.</source>
+      <translation type="unfinished">Could not restore window, because the table %1 doesn&apos;t exist in the database %2.</translation>
+    </message>
+    <message>
+      <location filename="../windows/tablewindow.cpp" line="699"/>
+      <location filename="../windows/tablewindow.cpp" line="701"/>
+      <source>New table %1</source>
+      <translation type="unfinished">New table %1</translation>
+    </message>
+    <message>
+      <source>Commited changes for table &apos;%1&apos; successfly.</source>
+      <translation type="unfinished">Commited changes for table &apos;%1&apos; successfly.</translation>
+    </message>
+    <message>
+      <source>Commited changes for table &apos;%1&apos; (named before &apos;%2&apos;) successfly.</source>
+      <translation type="unfinished">Commited changes for table &apos;%1&apos; (named before &apos;%2&apos;) successfly.</translation>
+    </message>
+    <message>
       <location filename="../windows/tablewindow.cpp" line="866"/>
       <source>Could not commit table structure. Error message: %1</source>
       <comment>table window</comment>
@@ -6682,6 +6758,10 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../windows/tablewindow.cpp" line="895"/>
       <source>An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</source>
       <translation type="unfinished">An error occurred while trying to reset autoincrement value for table &apos;%1&apos;: %2</translation>
+    </message>
+    <message>
+      <source>Autoincrement value for table &apos;%1&apos; has been reset successfly.</source>
+      <translation type="unfinished">Autoincrement value for table &apos;%1&apos; has been reset successfly.</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="977"/>
@@ -6996,6 +7076,18 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <translation type="unfinished">DDL</translation>
     </message>
     <message>
+      <source>Could not restore window, because database %1 could not be resolved.</source>
+      <translation type="unfinished">Could not restore window, because database %1 could not be resolved.</translation>
+    </message>
+    <message>
+      <source>Could not restore window, because database %1 could not be open.</source>
+      <translation type="unfinished">Could not restore window, because database %1 could not be open.</translation>
+    </message>
+    <message>
+      <source>Could not restore window, because the view %1 doesn&apos;t exist in the database %2.</source>
+      <translation type="unfinished">Could not restore window, because the view %1 doesn&apos;t exist in the database %2.</translation>
+    </message>
+    <message>
       <location filename="../windows/viewwindow.cpp" line="108"/>
       <location filename="../windows/viewwindow.cpp" line="114"/>
       <source>Could not restore window &apos;%1&apos;, because no database or view was stored in session for this window.</source>
@@ -7177,6 +7269,14 @@ Do you want to commit the structure, or do you want to go back to the structure 
       <location filename="../windows/viewwindow.cpp" line="585"/>
       <source>Commit modifications and browse data.</source>
       <translation type="unfinished">Commit modifications and browse data.</translation>
+    </message>
+    <message>
+      <source>Commited changes for view &apos;%1&apos; successfly.</source>
+      <translation type="unfinished">Commited changes for view &apos;%1&apos; successfly.</translation>
+    </message>
+    <message>
+      <source>Commited changes for view &apos;%1&apos; (named before &apos;%2&apos;) successfly.</source>
+      <translation type="unfinished">Commited changes for view &apos;%1&apos; (named before &apos;%2&apos;) successfly.</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="650"/>
