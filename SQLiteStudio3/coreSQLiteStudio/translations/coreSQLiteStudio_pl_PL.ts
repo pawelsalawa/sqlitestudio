@@ -506,7 +506,7 @@ Tabele, indeksy, wyzwalacze i widoki skopiowane do bazy danych %3 pozostaną na 
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="731"/>
       <source>min: %1</source>
       <comment>plugin dependency version</comment>
-      <translation type="unfinished">min: %1</translation>
+      <translation>min: %1</translation>
     </message>
     <message>
       <location filename="../services/impl/pluginmanagerimpl.cpp" line="732"/>
@@ -948,7 +948,7 @@ Szczegóły błędu: %2</translation>
     <message>
       <location filename="../services/impl/configimpl.cpp" line="774"/>
       <source>Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</source>
-      <translation type="unfinished">Could not initialize configuration file. Any configuration changes and queries history will be lost after application restart. Unable to create a file at following locations: %1.</translation>
+      <translation>Nie udało się zainicjalizować pliku konfiguracyjnego. Wszelkie zmiany w konfiguracji i historia zapytań zostaną utracone po restarcie aplikacji. Nie udało się utworzyć pliku w lokalizacji: %1.</translation>
     </message>
     <message>
       <location filename="../sqlitestudio.cpp" line="305"/>
@@ -1119,7 +1119,7 @@ Widok pozostanie nienaruszony.</translation>
       <location filename="../sqlhistorymodel.cpp" line="42"/>
       <source>SQL</source>
       <comment>sql history header</comment>
-      <translation type="unfinished">SQL</translation>
+      <translation>SQL</translation>
     </message>
   </context>
   <context>
