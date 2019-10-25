@@ -5361,7 +5361,7 @@ znajdź następny</translation>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="424"/>
       <source>Cannot paste to column %1. Details: %2</source>
-      <translation type="unfinished">Cannot paste to column %1. Details: %2</translation>
+      <translation>Nie można wkleić do kolumny %1. Szczegóły: %2</translation>
     </message>
     <message>
       <location filename="../datagrid/sqlqueryview.cpp" line="442"/>
@@ -5525,7 +5525,7 @@ znajdź następny</translation>
     <message>
       <location filename="../statusfield.ui" line="14"/>
       <source>Status</source>
-      <translation type="unfinished">Status</translation>
+      <translation>Status</translation>
     </message>
     <message>
       <location filename="../statusfield.cpp" line="164"/>
@@ -5804,7 +5804,7 @@ NULL</source>
     <message>
       <location filename="../windows/tablewindow.ui" line="282"/>
       <source>DDL</source>
-      <translation type="unfinished">DDL</translation>
+      <translation>DDL</translation>
     </message>
     <message>
       <location filename="../windows/tablewindow.cpp" line="202"/>
@@ -6304,7 +6304,7 @@ Czy chcesz zatwierdzić strukturę, czy jednak chcesz wrócić do karty struktur
     <message>
       <location filename="../dialogs/triggerdialog.ui" line="138"/>
       <source>DDL</source>
-      <translation type="unfinished">DDL</translation>
+      <translation>DDL</translation>
     </message>
     <message>
       <location filename="../dialogs/triggerdialog.cpp" line="159"/>
@@ -6394,7 +6394,7 @@ Czy chcesz zatwierdzić strukturę, czy jednak chcesz wrócić do karty struktur
     <message>
       <location filename="../windows/viewwindow.ui" line="202"/>
       <source>DDL</source>
-      <translation type="unfinished">DDL</translation>
+      <translation>DDL</translation>
     </message>
     <message>
       <location filename="../windows/viewwindow.cpp" line="108"/>

@@ -483,12 +483,12 @@ Tryb ROW jest zalecane, kiedy musisz widzieć całe wartości i nie spodziewasz 
     <message>
       <location filename="../commands/clicommandopen.cpp" line="37"/>
       <source>File %1 doesn&apos;t exist in %2. Cannot open inexisting database with %3 command. To create a new database, use %4 command.</source>
-      <translation type="unfinished">File %1 doesn&apos;t exist in %2. Cannot open inexisting database with %3 command. To create a new database, use %4 command.</translation>
+      <translation>Plik %1 nie istnieje w %2. Nie można otworzyć nieistniejącej bazy poleceniem %3. Aby utworzyć nową bazę danych, użyj polecenia %4.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="61"/>
       <source>Database %1 has been open and set as the current working database.</source>
-      <translation type="unfinished">Database %1 has been open and set as the current working database.</translation>
+      <translation>Baza %1 została otwarta i ustawiona jako bieżąca baza robocza.</translation>
     </message>
     <message>
       <location filename="../commands/clicommandopen.cpp" line="66"/>
@@ -590,7 +590,7 @@ Użyj polecenie %2, aby wypisać listę wszystkich baz.</translation>
       <location filename="../commands/clicommandsql.cpp" line="85"/>
       <source>sql</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">sql</translation>
+      <translation>sql</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="134"/>
