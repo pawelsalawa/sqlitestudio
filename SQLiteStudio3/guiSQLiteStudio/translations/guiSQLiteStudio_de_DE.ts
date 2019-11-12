@@ -2026,22 +2026,22 @@ Das Aufrufen anderer Seiten ist erst nach Abschluss der Zählung möglich.</tran
     <message>
       <location filename="../dbtree/dbtree.cpp" line="140"/>
       <source>&amp;Add a database</source>
-      <translation type="unfinished">&amp;Add a database</translation>
+      <translation>&amp;Datenbank hinzufügen</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="141"/>
       <source>&amp;Edit the database</source>
-      <translation type="unfinished">&amp;Edit the database</translation>
+      <translation>Datenbank bearbeiten</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="142"/>
       <source>&amp;Remove the database</source>
-      <translation type="unfinished">&amp;Remove the database</translation>
+      <translation>&amp;Datenbank entfernen</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="143"/>
       <source>&amp;Connect to the database</source>
-      <translation type="unfinished">&amp;Connect to the database</translation>
+      <translation>Verbindung mit der Datenbank</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="144"/>
@@ -2071,22 +2071,22 @@ Das Aufrufen anderer Seiten ist erst nach Abschluss der Zählung möglich.</tran
     <message>
       <location filename="../dbtree/dbtree.cpp" line="149"/>
       <source>&amp;Integrity check</source>
-      <translation type="unfinished">&amp;Integrity check</translation>
+      <translation>&amp;Integritätsprüfung</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="150"/>
       <source>Create a &amp;table</source>
-      <translation type="unfinished">Create a &amp;table</translation>
+      <translation>Erstellt eine Tabelle</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="151"/>
       <source>Edit the t&amp;able</source>
-      <translation type="unfinished">Edit the t&amp;able</translation>
+      <translation>&amp;Table bearbeiten</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="152"/>
       <source>Delete the ta&amp;ble</source>
-      <translation type="unfinished">Delete the ta&amp;ble</translation>
+      <translation>Tabelle löschen</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="153"/>
@@ -2116,37 +2116,37 @@ Das Aufrufen anderer Seiten ist erst nach Abschluss der Zählung möglich.</tran
     <message>
       <location filename="../dbtree/dbtree.cpp" line="158"/>
       <source>Create an &amp;index</source>
-      <translation type="unfinished">Create an &amp;index</translation>
+      <translation>Neuen Index anlegen</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="159"/>
       <source>Edit the i&amp;ndex</source>
-      <translation type="unfinished">Edit the i&amp;ndex</translation>
+      <translation>Bearbeite den I&amp;ndex</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="160"/>
       <source>Delete the in&amp;dex</source>
-      <translation type="unfinished">Delete the in&amp;dex</translation>
+      <translation>Index löschen</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="161"/>
       <source>Create a trig&amp;ger</source>
-      <translation type="unfinished">Create a trig&amp;ger</translation>
+      <translation>Trigger erstellen</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="162"/>
       <source>Edit the trigg&amp;er</source>
-      <translation type="unfinished">Edit the trigg&amp;er</translation>
+      <translation>Trigg&amp;er bearbeiten</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="163"/>
       <source>Delete the trigge&amp;r</source>
-      <translation type="unfinished">Delete the trigge&amp;r</translation>
+      <translation>Trigger löschen</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="164"/>
       <source>Create a &amp;view</source>
-      <translation type="unfinished">Create a &amp;view</translation>
+      <translation>Ansicht erstellen</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="165"/>
@@ -2186,12 +2186,12 @@ Das Aufrufen anderer Seiten ist erst nach Abschluss der Zählung möglich.</tran
     <message>
       <location filename="../dbtree/dbtree.cpp" line="172"/>
       <source>&amp;Refresh all database schemas</source>
-      <translation type="unfinished">&amp;Refresh all database schemas</translation>
+      <translation>&amp;Alle Datenbankschemen aktualisieren</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="173"/>
       <source>Re&amp;fresh selected database schema</source>
-      <translation type="unfinished">Re&amp;fresh selected database schema</translation>
+      <translation>Alle Datenbankschemen aktualisieren</translation>
     </message>
     <message>
       <location filename="../dbtree/dbtree.cpp" line="174"/>
