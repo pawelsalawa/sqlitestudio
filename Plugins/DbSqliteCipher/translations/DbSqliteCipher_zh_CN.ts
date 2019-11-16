@@ -6,12 +6,12 @@
     <message>
       <location filename="../dbsqlitecipher.cpp" line="43"/>
       <source>Password (key)</source>
-      <translation type="unfinished">Password (key)</translation>
+      <translation>密码 (密钥)</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="44"/>
       <source>Leave empty to create or connect to decrypted database.</source>
-      <translation type="unfinished">Leave empty to create or connect to decrypted database.</translation>
+      <translation>留空以创建或连接到解密的数据库。</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="45"/>
@@ -26,7 +26,7 @@
     <message>
       <location filename="../dbsqlitecipher.cpp" line="51"/>
       <source>Must be the same as the one used when creating the database. %1 is the default one.</source>
-      <translation type="unfinished">Must be the same as the one used when creating the database. %1 is the default one.</translation>
+      <translation>必须与创建数据库时使用的相同。 %1 是默认值。</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="59"/>
@@ -37,7 +37,7 @@
       <location filename="../dbsqlitecipher.cpp" line="63"/>
       <location filename="../dbsqlitecipher.cpp" line="72"/>
       <source>Must be the same as the one used when creating the database. %1 is the default.</source>
-      <translation type="unfinished">Must be the same as the one used when creating the database. %1 is the default.</translation>
+      <translation>必须与创建数据库时使用的相同。 %1 是默认值。</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="68"/>
@@ -47,12 +47,12 @@
     <message>
       <location filename="../dbsqlitecipher.cpp" line="77"/>
       <source>1.1 compatibility</source>
-      <translation type="unfinished">1.1 compatibility</translation>
+      <translation>1.1 兼容性</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="79"/>
       <source>Enabling this option disables HMAC checks introduced in SQLCipher 2.0, thus making the connection compatible with SQLCipher 1.1.x.</source>
-      <translation type="unfinished">Enabling this option disables HMAC checks introduced in SQLCipher 2.0, thus making the connection compatible with SQLCipher 1.1.x.</translation>
+      <translation>启用此选项将禁用 SQLCipher 2.0 中引入的 HMAC检查，从而使连接与 SQLCipher 1.1.x 兼容。</translation>
     </message>
   </context>
 </TS>
