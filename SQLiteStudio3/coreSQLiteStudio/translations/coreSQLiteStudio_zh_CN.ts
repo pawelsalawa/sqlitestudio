@@ -355,7 +355,7 @@ Tables, indexes, triggers and views copied to database %3 will remain.</translat
     <message>
       <location filename="../exportworker.cpp" line="608"/>
       <source>Error while reading data to export from table %1: %2</source>
-      <translation type="unfinished">Error while reading data to export from table %1: %2</translation>
+      <translation>从表 %1读取数据并导出时出错： %2</translation>
     </message>
     <message>
       <location filename="../exportworker.cpp" line="616"/>
@@ -871,7 +871,7 @@ Error details: %2</translation>
       <location filename="../parser/parsercontext.cpp" line="108"/>
       <location filename="../parser/parsercontext.cpp" line="110"/>
       <source>Incomplete query.</source>
-      <translation type="unfinished">Incomplete query.</translation>
+      <translation>不完整的查询</translation>
     </message>
     <message>
       <location filename="../parser/sqlite2_parse.cpp" line="1904"/>
