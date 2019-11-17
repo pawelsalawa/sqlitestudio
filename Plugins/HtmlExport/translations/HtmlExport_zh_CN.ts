@@ -6,7 +6,7 @@
     <message>
       <location filename="../htmlexport.cpp" line="46"/>
       <source>SQL query results</source>
-      <translation type="unfinished">SQL query results</translation>
+      <translation>SQL 查询结果</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="78"/>
@@ -24,7 +24,7 @@
       <location filename="../htmlexport.cpp" line="127"/>
       <location filename="../htmlexport.cpp" line="255"/>
       <source>Table: %1</source>
-      <translation type="unfinished">Table: %1</translation>
+      <translation>表：%1</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="255"/>
@@ -39,7 +39,7 @@
     <message>
       <location filename="../htmlexport.cpp" line="324"/>
       <source>Index: %1</source>
-      <translation type="unfinished">Index: %1</translation>
+      <translation>索引: %1</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="330"/>
@@ -54,17 +54,17 @@
     <message>
       <location filename="../htmlexport.cpp" line="338"/>
       <source>Yes</source>
-      <translation type="unfinished">Yes</translation>
+      <translation>是</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="338"/>
       <source>No</source>
-      <translation type="unfinished">No</translation>
+      <translation>否</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="344"/>
       <source>Column</source>
-      <translation type="unfinished">Column</translation>
+      <translation>字段</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="345"/>
@@ -74,12 +74,12 @@
     <message>
       <location filename="../htmlexport.cpp" line="346"/>
       <source>Sort order</source>
-      <translation type="unfinished">Sort order</translation>
+      <translation>排列顺序</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="380"/>
       <source>Trigger: %1</source>
-      <translation type="unfinished">Trigger: %1</translation>
+      <translation>触发器：%1</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="386"/>
@@ -114,7 +114,7 @@
     <message>
       <location filename="../htmlexport.cpp" line="455"/>
       <source>View: %1</source>
-      <translation type="unfinished">View: %1</translation>
+      <translation>视图：%1</translation>
     </message>
     <message>
       <location filename="../htmlexport.cpp" line="480"/>
@@ -127,7 +127,7 @@
     <message>
       <location filename="../htmlexport.ui" line="36"/>
       <source>Maximum number of characters per cell:</source>
-      <translation type="unfinished">Maximum number of characters per cell:</translation>
+      <translation>每个单元的最大字符数：</translation>
     </message>
     <message>
       <location filename="../htmlexport.ui" line="43"/>
@@ -147,17 +147,17 @@
     <message>
       <location filename="../htmlexport.ui" line="73"/>
       <source>Output format</source>
-      <translation type="unfinished">Output format</translation>
+      <translation>输出格式</translation>
     </message>
     <message>
       <location filename="../htmlexport.ui" line="79"/>
       <source>Format document (new lines, indentation)</source>
-      <translation type="unfinished">Format document (new lines, indentation)</translation>
+      <translation>格式文档 (新行，缩进)</translation>
     </message>
     <message>
       <location filename="../htmlexport.ui" line="92"/>
       <source>Compress (everything in one line)</source>
-      <translation type="unfinished">Compress (everything in one line)</translation>
+      <translation>压缩（所有数据都将在一行内）</translation>
     </message>
     <message>
       <location filename="../htmlexport.ui" line="108"/>
