@@ -11,7 +11,7 @@
     <message>
       <location filename="../scriptingtcl.cpp" line="433"/>
       <source>Invalid &apos;%1&apos; command sytax. Should be: %2</source>
-      <translation type="unfinished">Invalid &apos;%1&apos; command sytax. Should be: %2</translation>
+      <translation>&apos;%1&apos; 命令格式无效。应为： %2</translation>
     </message>
     <message>
       <location filename="../scriptingtcl.cpp" line="445"/>
