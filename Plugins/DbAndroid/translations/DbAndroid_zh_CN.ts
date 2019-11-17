@@ -228,7 +228,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="395"/>
       <source>Selected Android application is unknown, or not debuggable.</source>
-      <translation type="unfinished">Selected Android application is unknown, or not debuggable.</translation>
+      <translation>所选的 Android 应用程序未知或无法调试。</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="422"/>
@@ -239,15 +239,15 @@ Would you like to select another one, or leave it unconfigured?</translation>
       <location filename="../dbandroidpathdialog.cpp" line="422"/>
       <source>Please provide name for the new database.
 It&apos;s the name which Android application will use to connect to the database:</source>
-      <translation type="unfinished">Please provide name for the new database.
-It&apos;s the name which Android application will use to connect to the database:</translation>
+      <translation>请提供新数据库的名称。
+它是安卓应用程序将用来连接到数据库的名称：</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="430"/>
       <location filename="../dbandroidpathdialog.cpp" line="439"/>
       <location filename="../dbandroidpathdialog.cpp" line="448"/>
       <source>Invalid name</source>
-      <translation type="unfinished">Invalid name</translation>
+      <translation>无效的名称</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="430"/>
@@ -259,14 +259,14 @@ The name must be unique.</source>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="439"/>
       <source>Could not create database &apos;%1&apos;, because could not connect to the device.</source>
-      <translation type="unfinished">Could not create database &apos;%1&apos;, because could not connect to the device.</translation>
+      <translation>无法创建数据库 &apos;%1&apos;，因为无法连接到设备。</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="448"/>
       <source>Could not create database &apos;%1&apos;.
 Details: %2</source>
-      <translation type="unfinished">Could not create database &apos;%1&apos;.
-Details: %2</translation>
+      <translation>无法创建数据库 &apos;%1&apos;。
+详情： %2</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="463"/>
