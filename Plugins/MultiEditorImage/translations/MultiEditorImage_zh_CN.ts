@@ -41,7 +41,7 @@
     <message>
       <location filename="../multieditorimage.cpp" line="110"/>
       <source>Could not open file %1 for reading.</source>
-      <translation type="unfinished">Could not open file %1 for reading.</translation>
+      <translation>无法以读模式打开文件 %1。</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="130"/>
@@ -56,12 +56,12 @@
     <message>
       <location filename="../multieditorimage.cpp" line="143"/>
       <source>Tried to save image under different format (%1) than original (%2), but application failed to convert it. The image with unchanged format (%3) will be saved under the given name (%4)</source>
-      <translation type="unfinished">Tried to save image under different format (%1) than original (%2), but application failed to convert it. The image with unchanged format (%3) will be saved under the given name (%4)</translation>
+      <translation>试图以与原始格式 (%2) 不同的格式 (%1) 保存图像，但应用程序转换失败。 图像将以未改变的格式 (%3) 保存在给定名称下 (%4)</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="154"/>
       <source>Could not nopen file %1 for writting.</source>
-      <translation type="unfinished">Could not nopen file %1 for writting.</translation>
+      <translation>无法以写模式打开文件 %1：</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="159"/>
