@@ -6,12 +6,12 @@
     <message>
       <location filename="../multieditorimage.cpp" line="26"/>
       <source>Load from file</source>
-      <translation type="unfinished">Load from file</translation>
+      <translation>从文件加载</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="27"/>
       <source>Store in a file</source>
-      <translation type="unfinished">Store in a file</translation>
+      <translation>保存为文件</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="28"/>
@@ -26,17 +26,17 @@
     <message>
       <location filename="../multieditorimage.cpp" line="30"/>
       <source>Reset zoom</source>
-      <translation type="unfinished">Reset zoom</translation>
+      <translation>重置缩放</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="100"/>
       <source>Images (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng);;All files (*)</source>
-      <translation type="unfinished">Images (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng);;All files (*)</translation>
+      <translation>图片 (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng);;所有文件 (*)</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="101"/>
       <source>Open image</source>
-      <translation type="unfinished">Open image</translation>
+      <translation>打开图片</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="110"/>
@@ -46,12 +46,12 @@
     <message>
       <location filename="../multieditorimage.cpp" line="130"/>
       <source>All files (*)</source>
-      <translation type="unfinished">All files (*)</translation>
+      <translation>所有文件 (*)</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="132"/>
       <source>Save image</source>
-      <translation type="unfinished">Save image</translation>
+      <translation>保存图片</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="143"/>
@@ -66,7 +66,7 @@
     <message>
       <location filename="../multieditorimage.cpp" line="159"/>
       <source>Could not write image into the file %1</source>
-      <translation type="unfinished">Could not write image into the file %1</translation>
+      <translation>无法将图像写入文件 %1</translation>
     </message>
   </context>
   <context>
@@ -74,7 +74,7 @@
     <message>
       <location filename="../multieditorimage.cpp" line="250"/>
       <source>Image</source>
-      <translation type="unfinished">Image</translation>
+      <translation>图片</translation>
     </message>
   </context>
 </TS>
