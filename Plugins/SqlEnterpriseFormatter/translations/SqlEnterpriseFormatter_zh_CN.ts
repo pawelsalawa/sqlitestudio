@@ -8,7 +8,7 @@
       <location filename="../sqlenterpriseformatter.cpp" line="98"/>
       <source>name</source>
       <comment>example name wrapper</comment>
-      <translation type="unfinished">name</translation>
+      <translation>名称</translation>
     </message>
   </context>
   <context>
@@ -16,7 +16,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="46"/>
       <source>Indentation</source>
-      <translation type="unfinished">Indentation</translation>
+      <translation>缩进</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="58"/>
@@ -36,7 +36,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="106"/>
       <source>New lines</source>
-      <translation type="unfinished">New lines</translation>
+      <translation>新行</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="160"/>
@@ -112,7 +112,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="338"/>
       <source>White spaces</source>
-      <translation type="unfinished">White spaces</translation>
+      <translation>空格</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="392"/>
@@ -222,7 +222,7 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="695"/>
       <source>Preview</source>
-      <translation type="unfinished">Preview</translation>
+      <translation>预览</translation>
     </message>
   </context>
 </TS>
