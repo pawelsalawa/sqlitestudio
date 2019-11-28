@@ -6,12 +6,12 @@
     <message>
       <location filename="../pdfexport.cpp" line="28"/>
       <source>SQLiteStudio v%1</source>
-      <translation type="unfinished">SQLiteStudio v%1</translation>
+      <translation>SQLiteStudio v%1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="61"/>
       <source>SQL query results</source>
-      <translation type="unfinished">SQL query results</translation>
+      <translation>SQL 查询结果</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="90"/>
@@ -23,28 +23,28 @@
       <location filename="../pdfexport.cpp" line="93"/>
       <location filename="../pdfexport.cpp" line="159"/>
       <source>Table: %1</source>
-      <translation type="unfinished">Table: %1</translation>
+      <translation>表：%1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="95"/>
       <location filename="../pdfexport.cpp" line="231"/>
       <source>Column</source>
-      <translation type="unfinished">Column</translation>
+      <translation>字段</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="95"/>
       <source>Data type</source>
-      <translation type="unfinished">Data type</translation>
+      <translation>数据类型</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="95"/>
       <source>Constraints</source>
-      <translation type="unfinished">Constraints</translation>
+      <translation>约束条件</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="126"/>
       <source>Global table constraints</source>
-      <translation type="unfinished">Global table constraints</translation>
+      <translation>全局表约束条件</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="215"/>
@@ -54,19 +54,19 @@
     <message>
       <location filename="../pdfexport.cpp" line="223"/>
       <source>Index: %1</source>
-      <translation type="unfinished">Index: %1</translation>
+      <translation>索引：%1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="225"/>
       <source>Property</source>
       <comment>index header</comment>
-      <translation type="unfinished">Property</translation>
+      <translation>属性</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="225"/>
       <source>Value</source>
       <comment>index header</comment>
-      <translation type="unfinished">Value</translation>
+      <translation>值</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="228"/>
@@ -81,17 +81,17 @@
     <message>
       <location filename="../pdfexport.cpp" line="229"/>
       <source>Yes</source>
-      <translation type="unfinished">Yes</translation>
+      <translation>是</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="229"/>
       <source>No</source>
-      <translation type="unfinished">No</translation>
+      <translation>否</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="231"/>
       <source>Collation</source>
-      <translation type="unfinished">Collation</translation>
+      <translation>排序规则</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="231"/>
@@ -106,19 +106,19 @@
     <message>
       <location filename="../pdfexport.cpp" line="261"/>
       <source>Trigger: %1</source>
-      <translation type="unfinished">Trigger: %1</translation>
+      <translation>触发器：%1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="263"/>
       <source>Property</source>
       <comment>trigger header</comment>
-      <translation type="unfinished">Property</translation>
+      <translation>属性</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="263"/>
       <source>Value</source>
       <comment>trigger header</comment>
-      <translation type="unfinished">Value</translation>
+      <translation>值</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="265"/>
@@ -158,12 +158,12 @@
     <message>
       <location filename="../pdfexport.cpp" line="298"/>
       <source>Query:</source>
-      <translation type="unfinished">Query:</translation>
+      <translation>查询：</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="654"/>
       <source>Document generated with SQLiteStudio v%1</source>
-      <translation type="unfinished">Document generated with SQLiteStudio v%1</translation>
+      <translation>使用 SQLiteStudio v%1 生成的文档</translation>
     </message>
   </context>
   <context>
@@ -171,27 +171,27 @@
     <message>
       <location filename="../pdfexport.ui" line="20"/>
       <source>Size and layout</source>
-      <translation type="unfinished">Size and layout</translation>
+      <translation>大小与布局</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="36"/>
       <source>Page size:</source>
-      <translation type="unfinished">Page size:</translation>
+      <translation>页面大小：</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="63"/>
       <source>Right margin:</source>
-      <translation type="unfinished">Right margin:</translation>
+      <translation>右边距：</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="70"/>
       <source>Left margin:</source>
-      <translation type="unfinished">Left margin:</translation>
+      <translation>左边距：</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="77"/>
       <source>Cell padding:</source>
-      <translation type="unfinished">Cell padding:</translation>
+      <translation>单元格间距：</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="84"/>
@@ -210,22 +210,22 @@
     <message>
       <location filename="../pdfexport.ui" line="139"/>
       <source>Bottom margin:</source>
-      <translation type="unfinished">Bottom margin:</translation>
+      <translation>下边距：</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="163"/>
       <source>Top margin:</source>
-      <translation type="unfinished">Top margin:</translation>
+      <translation>上边距：</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="183"/>
       <source>Font</source>
-      <translation type="unfinished">Font</translation>
+      <translation>字体</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="206"/>
       <source>Colors</source>
-      <translation type="unfinished">Colors</translation>
+      <translation>颜色</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="212"/>
@@ -235,22 +235,22 @@
     <message>
       <location filename="../pdfexport.ui" line="235"/>
       <source>NULL value color:</source>
-      <translation type="unfinished">NULL value color:</translation>
+      <translation>NULL 值颜色：</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="261"/>
       <source>Other settings</source>
-      <translation type="unfinished">Other settings</translation>
+      <translation>其他设置</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="267"/>
       <source>Print row numbers for data</source>
-      <translation type="unfinished">Print row numbers for data</translation>
+      <translation>为数据打印行号</translation>
     </message>
     <message>
       <location filename="../pdfexport.ui" line="277"/>
       <source>Print page numbers</source>
-      <translation type="unfinished">Print page numbers</translation>
+      <translation>打印页码</translation>
     </message>
   </context>
 </TS>

@@ -6,12 +6,12 @@
     <message>
       <location filename="../regexpimport.cpp" line="37"/>
       <source>Text files (*.txt);;All files (*)</source>
-      <translation type="unfinished">Text files (*.txt);;All files (*)</translation>
+      <translation>文本文件 (*.txt);;所有文件 (*)</translation>
     </message>
     <message>
       <location filename="../regexpimport.cpp" line="53"/>
       <source>Cannot read file %1</source>
-      <translation type="unfinished">Cannot read file %1</translation>
+      <translation>无法读取文件 %1</translation>
     </message>
     <message>
       <location filename="../regexpimport.cpp" line="161"/>
@@ -39,7 +39,7 @@
     <message>
       <location filename="../regexpimport.ui" line="20"/>
       <source>Capture groups</source>
-      <translation type="unfinished">Capture groups</translation>
+      <translation>捕获组</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="26"/>
@@ -61,7 +61,7 @@
     <message>
       <location filename="../regexpimport.ui" line="56"/>
       <source>Example: 1, 3, 4</source>
-      <translation type="unfinished">Example: 1, 3, 4</translation>
+      <translation>示例：1, 3, 4</translation>
     </message>
     <message>
       <location filename="../regexpimport.ui" line="69"/>
@@ -80,7 +80,7 @@ You can use named groups and refer to them in group list below. To name a group 
     <message>
       <location filename="../regexpimport.ui" line="81"/>
       <source>Example: (\d+)\s+((\d+)\w+)\s+(\w+)</source>
-      <translation type="unfinished">Example: (\d+)\s+((\d+)\w+)\s+(\w+)</translation>
+      <translation>示例：(\d+)\s+((\d+)\w+)\s+(\w+)</translation>
     </message>
   </context>
 </TS>

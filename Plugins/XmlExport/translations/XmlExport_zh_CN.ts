@@ -6,7 +6,7 @@
     <message>
       <location filename="../xmlexport.cpp" line="38"/>
       <source>Enter the namespace to use (for example: http://my.namespace.org)</source>
-      <translation type="unfinished">Enter the namespace to use (for example: http://my.namespace.org)</translation>
+      <translation>输入要使用的命名空间 (例如：http://my.namespace.org)</translation>
     </message>
   </context>
   <context>
@@ -14,7 +14,7 @@
     <message>
       <location filename="../XmlExport.ui" line="20"/>
       <source>Output format</source>
-      <translation type="unfinished">Output format</translation>
+      <translation>输出格式</translation>
     </message>
     <message>
       <location filename="../XmlExport.ui" line="26"/>
@@ -24,12 +24,12 @@
     <message>
       <location filename="../XmlExport.ui" line="42"/>
       <source>Compress (everything in one line)</source>
-      <translation type="unfinished">Compress (everything in one line)</translation>
+      <translation>压缩（所有数据都将在一行内）</translation>
     </message>
     <message>
       <location filename="../XmlExport.ui" line="58"/>
       <source>Special characters escaping</source>
-      <translation type="unfinished">Special characters escaping</translation>
+      <translation>特殊字符脱离</translation>
     </message>
     <message>
       <location filename="../XmlExport.ui" line="64"/>
@@ -49,7 +49,7 @@
     <message>
       <location filename="../XmlExport.ui" line="86"/>
       <source>Always use CDATA</source>
-      <translation type="unfinished">Always use CDATA</translation>
+      <translation>总是使用 CDATA</translation>
     </message>
     <message>
       <location filename="../XmlExport.ui" line="99"/>
@@ -64,7 +64,7 @@
     <message>
       <location filename="../XmlExport.ui" line="118"/>
       <source>Define XML namespace</source>
-      <translation type="unfinished">Define XML namespace</translation>
+      <translation>定义 XML 命名空间</translation>
     </message>
   </context>
 </TS>

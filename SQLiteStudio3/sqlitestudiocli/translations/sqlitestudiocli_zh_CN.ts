@@ -589,7 +589,7 @@ Call %2 to see list of all databases.</source>
       <location filename="../commands/clicommandsql.cpp" line="85"/>
       <source>sql</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">sql</translation>
+      <translation>sql</translation>
     </message>
     <message>
       <location filename="../commands/clicommandsql.cpp" line="134"/>
