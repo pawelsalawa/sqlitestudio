@@ -210,6 +210,7 @@ QString QueryGenerator::getAlias(const QString& name, QSet<QString>& usedAliases
 
 QStringList QueryGenerator::valuesToConditionList(const StrHash<QVariantList>& values, Dialect dialect)
 {
+    static_qstring(conditionTpl0, "%1 IS NULL");
     static_qstring(conditionTpl1, "%1 = %2");
     static_qstring(conditionTpl2, "%1 IN (%2)");
 
@@ -220,7 +221,12 @@ QStringList QueryGenerator::valuesToConditionList(const StrHash<QVariantList>& v
         conditionValues = valueListToSqlList(values[col], dialect);
         conditionValues.removeDuplicates();
         if (conditionValues.size() == 1)
-            conditions << conditionTpl1.arg(wrapObjIfNeeded(col, dialect), conditionValues.first());
+        {
+            if (conditionValues.first() == "NULL")
+                conditions << conditionTpl0.arg(wrapObjIfNeeded(col, dialect));
+            else
+                conditions << conditionTpl1.arg(wrapObjIfNeeded(col, dialect), conditionValues.first());
+        }
         else
             conditions << conditionTpl2.arg(wrapObjIfNeeded(col, dialect), conditionValues.join(", "));
     }
