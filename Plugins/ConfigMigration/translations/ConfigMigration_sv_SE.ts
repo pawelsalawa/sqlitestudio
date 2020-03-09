@@ -89,7 +89,7 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="163"/>
       <source>Could not read bug reports history from old configuration file in order to migrate it: %1</source>
-      <translation type="unfinished">Could not read bug reports history from old configuration file in order to migrate it: %1</translation>
+      <translation>Kunde inte läsa felrapporterings historik från gammal konfigurationsfil för att migrera den: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="180"/>
@@ -144,7 +144,7 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="346"/>
       <source>Could not insert SQL history entry into new configuration file: %1</source>
-      <translation type="unfinished">Could not insert SQL history entry into new configuration file: %1</translation>
+      <translation>Kunde inte infoga SQL-historik i ny konfigurationsfil: %1</translation>
     </message>
   </context>
 </TS>
