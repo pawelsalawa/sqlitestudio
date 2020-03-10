@@ -10,7 +10,7 @@ before_install:
  - sudo apt-get install -qq mesa-common-dev libgl1-mesa-dev qt510base qt510imageformats qt510script qt510svg qt510tools
  - mkdir deps
  - cd deps
- - wget https://www.dropbox.com/s/y2emwb4jjeethlm/sqlite-2.8.17.tar.gz?dl=1
+ - wget https://www.dropbox.com/s/y2emwb4jjeethlm/sqlite-2.8.17.tar.gz?dl=1 -O sqlite-2.8.17.tar.gz
  - tar xzf sqlite-2.8.17.tar.gz
  - cd sqlite-2.8.17
  - ./configure
