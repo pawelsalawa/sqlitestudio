@@ -6,27 +6,27 @@
     <message>
       <location filename="../configmigration.cpp" line="36"/>
       <source>A configuration from old SQLiteStudio 2.x.x has been detected. Would you like to migrate old settings into the current version? &lt;a href=&quot;%1&quot;&gt;Click here to do that&lt;/a&gt;.</source>
-      <translation type="unfinished">A configuration from old SQLiteStudio 2.x.x has been detected. Would you like to migrate old settings into the current version? &lt;a href=&quot;%1&quot;&gt;Click here to do that&lt;/a&gt;.</translation>
+      <translation>Se ha detectado una configuración de la antigua SQLiteStudio 2.x.x. ¿Quieres migrar la configuración antigua a la versión actual? &lt;a href=&quot;%1&quot;&gt;Haz clic aquí para hacer eso&lt;/a&gt;.</translation>
     </message>
     <message>
       <location filename="../configmigration.cpp" line="136"/>
       <source>Bug reports history (%1)</source>
-      <translation type="unfinished">Bug reports history (%1)</translation>
+      <translation>Historial de informes de errores (%1)</translation>
     </message>
     <message>
       <location filename="../configmigration.cpp" line="145"/>
       <source>Database list (%1)</source>
-      <translation type="unfinished">Database list (%1)</translation>
+      <translation>Lista de base de datos (%1)</translation>
     </message>
     <message>
       <location filename="../configmigration.cpp" line="154"/>
       <source>Custom SQL functions (%1)</source>
-      <translation type="unfinished">Custom SQL functions (%1)</translation>
+      <translation>Funciones SQL personalizadas (%1)</translation>
     </message>
     <message>
       <location filename="../configmigration.cpp" line="163"/>
       <source>SQL queries history (%1)</source>
-      <translation type="unfinished">SQL queries history (%1)</translation>
+      <translation>Historial SQL queries (%1)</translation>
     </message>
   </context>
   <context>
@@ -34,42 +34,42 @@
     <message>
       <location filename="../configmigrationwizard.ui" line="14"/>
       <source>Configuration migration</source>
-      <translation type="unfinished">Configuration migration</translation>
+      <translation>Migración de configuración</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="24"/>
       <source>Items to migrate</source>
-      <translation type="unfinished">Items to migrate</translation>
+      <translation>Elementos a migrar</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="27"/>
       <source>This is a list of items found in the old configuration file, which can be migrated into the current configuration.</source>
-      <translation type="unfinished">This is a list of items found in the old configuration file, which can be migrated into the current configuration.</translation>
+      <translation>Esta es una lista de elementos encontrados en el antiguo archivo de configuración, que puede migrarse a la configuración actual.</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="58"/>
       <source>Options</source>
-      <translation type="unfinished">Options</translation>
+      <translation>Opciones</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="64"/>
       <source>Put imported databases into separate group</source>
-      <translation type="unfinished">Put imported databases into separate group</translation>
+      <translation>Colocar bases de datos importadas en un grupo separado</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="76"/>
       <source>Group name</source>
-      <translation type="unfinished">Group name</translation>
+      <translation>Nombre del Grupo</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="60"/>
       <source>Enter a non-empty name.</source>
-      <translation type="unfinished">Enter a non-empty name.</translation>
+      <translation>Introduzca un nombre no vacío.</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="68"/>
       <source>Top level group named &apos;%1&apos; already exists. Enter a group name that does not exist yet.</source>
-      <translation type="unfinished">Top level group named &apos;%1&apos; already exists. Enter a group name that does not exist yet.</translation>
+      <translation>Grupo de nivel superior llamado &apos;%1&apos; ya existe. Introduzca un nombre de grupo que aún no exista.</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="102"/>
@@ -84,12 +84,12 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="119"/>
       <source>Could not commit migrated data into new configuration file: %1</source>
-      <translation type="unfinished">Could not commit migrated data into new configuration file: %1</translation>
+      <translation>No se pudo enviar los datos migrados hacia nuevo archivo de configuración: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="163"/>
       <source>Could not read bug reports history from old configuration file in order to migrate it: %1</source>
-      <translation type="unfinished">Could not read bug reports history from old configuration file in order to migrate it: %1</translation>
+      <translation>No se pudo leer el historial de informes de errores del antiguo archivo de configuración para migrarlo: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="180"/>

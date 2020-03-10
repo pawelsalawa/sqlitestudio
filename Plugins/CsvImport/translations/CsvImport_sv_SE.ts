@@ -6,22 +6,22 @@
     <message>
       <location filename="../csvimport.cpp" line="30"/>
       <source>Cannot read file %1</source>
-      <translation type="unfinished">Cannot read file %1</translation>
+      <translation>Kan inte läsa filen %1</translation>
     </message>
     <message>
       <location filename="../csvimport.cpp" line="62"/>
       <source>Could not find any data in the file %1.</source>
-      <translation type="unfinished">Could not find any data in the file %1.</translation>
+      <translation>Kunde inte hitta någon data i filen %1.</translation>
     </message>
     <message>
       <location filename="../csvimport.cpp" line="167"/>
       <source>Enter the custom separator character.</source>
-      <translation type="unfinished">Enter the custom separator character.</translation>
+      <translation>Ange det anpassade separatortecknet.</translation>
     </message>
     <message>
       <location filename="../csvimport.cpp" line="190"/>
       <source>CSV files (*.csv);;Text files (*.txt);;All files (*)</source>
-      <translation type="unfinished">CSV files (*.csv);;Text files (*.txt);;All files (*)</translation>
+      <translation>CSV-filer (*.csv);;Textfiler (*.txt);;Alla filer (*)</translation>
     </message>
   </context>
   <context>
@@ -29,27 +29,27 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="24"/>
       <source>, (comma)</source>
-      <translation type="unfinished">, (comma)</translation>
+      <translation> (Kommatecken)</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="29"/>
       <source>; (semicolon)</source>
-      <translation type="unfinished">; (semicolon)</translation>
+      <translation>; (semicolon)</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="34"/>
       <source>\t (tab)</source>
-      <translation type="unfinished">\t (tab)</translation>
+      <translation>\t (tab)</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="39"/>
       <source>  (whitespace)</source>
-      <translation type="unfinished">  (whitespace)</translation>
+      <translation>  (blankt)</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="44"/>
       <source>Custom:</source>
-      <translation type="unfinished">Custom:</translation>
+      <translation>Anpassad:</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="52"/>
@@ -59,27 +59,27 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="55"/>
       <source>First line represents CSV column names</source>
-      <translation type="unfinished">First line represents CSV column names</translation>
+      <translation>Första raden representerar CSV-kolumnnamn</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="65"/>
       <source>Field separator:</source>
-      <translation type="unfinished">Field separator:</translation>
+      <translation>Fältseparator:</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="85"/>
       <source>If enabled, then text value provided on the right will be interpreted as NULL</source>
-      <translation type="unfinished">If enabled, then text value provided on the right will be interpreted as NULL</translation>
+      <translation>Om aktiverad, kommer textvärdet till höger att tolkas som NULL</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="88"/>
       <source>NULL values:</source>
-      <translation type="unfinished">NULL values:</translation>
+      <translation>NULL-värden:</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="98"/>
       <source>If your CSV data contains null values, define how are they represented in the CSV.</source>
-      <translation type="unfinished">If your CSV data contains null values, define how are they represented in the CSV.</translation>
+      <translation>Om dina CSV-data innehåller noll värden, ange hur de representeras i CSV.</translation>
     </message>
   </context>
 </TS>

@@ -11,22 +11,22 @@
     <message>
       <location filename="../configmigration.cpp" line="136"/>
       <source>Bug reports history (%1)</source>
-      <translation type="unfinished">Bug reports history (%1)</translation>
+      <translation>Felrapporterings Historik (%1)</translation>
     </message>
     <message>
       <location filename="../configmigration.cpp" line="145"/>
       <source>Database list (%1)</source>
-      <translation type="unfinished">Database list (%1)</translation>
+      <translation>Databaslista (%1)</translation>
     </message>
     <message>
       <location filename="../configmigration.cpp" line="154"/>
       <source>Custom SQL functions (%1)</source>
-      <translation type="unfinished">Custom SQL functions (%1)</translation>
+      <translation>Anpassade SQL-funktioner (%1)</translation>
     </message>
     <message>
       <location filename="../configmigration.cpp" line="163"/>
       <source>SQL queries history (%1)</source>
-      <translation type="unfinished">SQL queries history (%1)</translation>
+      <translation>SQL frågehistorik (%1)</translation>
     </message>
   </context>
   <context>
@@ -34,12 +34,12 @@
     <message>
       <location filename="../configmigrationwizard.ui" line="14"/>
       <source>Configuration migration</source>
-      <translation type="unfinished">Configuration migration</translation>
+      <translation>Migrering av konfiguration</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="24"/>
       <source>Items to migrate</source>
-      <translation type="unfinished">Items to migrate</translation>
+      <translation>Objekt att migrera</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="27"/>
@@ -49,37 +49,37 @@
     <message>
       <location filename="../configmigrationwizard.ui" line="58"/>
       <source>Options</source>
-      <translation type="unfinished">Options</translation>
+      <translation>Alternativ</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="64"/>
       <source>Put imported databases into separate group</source>
-      <translation type="unfinished">Put imported databases into separate group</translation>
+      <translation>Sätt importerade databaser i separat grupp</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="76"/>
       <source>Group name</source>
-      <translation type="unfinished">Group name</translation>
+      <translation>Gruppnamn</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="60"/>
       <source>Enter a non-empty name.</source>
-      <translation type="unfinished">Enter a non-empty name.</translation>
+      <translation>Ange ett icke-tomt namn.</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="68"/>
       <source>Top level group named &apos;%1&apos; already exists. Enter a group name that does not exist yet.</source>
-      <translation type="unfinished">Top level group named &apos;%1&apos; already exists. Enter a group name that does not exist yet.</translation>
+      <translation>Högnivågruppen heter &apos;%1&apos; finns redan. Ange ett gruppnamn som inte finns ännu.</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="102"/>
       <source>Could not open old configuration file in order to migrate settings from it.</source>
-      <translation type="unfinished">Could not open old configuration file in order to migrate settings from it.</translation>
+      <translation>Kunde inte öppna gamla konfigurationsfilen för att migrera inställningar från den.</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="110"/>
       <source>Could not open current configuration file in order to migrate settings from old configuration file.</source>
-      <translation type="unfinished">Could not open current configuration file in order to migrate settings from old configuration file.</translation>
+      <translation>Kunde inte öppna nuvarande konfigurationsfil för att migrera inställningar från gamla konfigurationsfilen.</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="119"/>
@@ -89,7 +89,7 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="163"/>
       <source>Could not read bug reports history from old configuration file in order to migrate it: %1</source>
-      <translation type="unfinished">Could not read bug reports history from old configuration file in order to migrate it: %1</translation>
+      <translation>Kunde inte läsa felrapporterings historik från gammal konfigurationsfil för att migrera den: %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="180"/>
@@ -144,7 +144,7 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="346"/>
       <source>Could not insert SQL history entry into new configuration file: %1</source>
-      <translation type="unfinished">Could not insert SQL history entry into new configuration file: %1</translation>
+      <translation>Kunde inte infoga SQL-historik i ny konfigurationsfil: %1</translation>
     </message>
   </context>
 </TS>

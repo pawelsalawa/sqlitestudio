@@ -6,7 +6,7 @@
     <message>
       <location filename="../dbandroid.cpp" line="39"/>
       <source>Invalid or incomplete Android Database URL.</source>
-      <translation type="unfinished">Invalid or incomplete Android Database URL.</translation>
+      <translation>URL de base de datos Android inválida o incompleta.</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="54"/>
@@ -16,32 +16,32 @@
     <message>
       <location filename="../dbandroid.cpp" line="55"/>
       <source>Select Android database</source>
-      <translation type="unfinished">Select Android database</translation>
+      <translation>Seleccionar base de datos de Android</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="151"/>
       <source>Select ADB</source>
-      <translation type="unfinished">Select ADB</translation>
+      <translation>Seleccionar ADB</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="173"/>
       <source>Using Android Debug Bridge: %1</source>
-      <translation type="unfinished">Using Android Debug Bridge: %1</translation>
+      <translation>Usando Android Debug Bridge: %1</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="183"/>
       <source>You can grab Android connector JAR file from Tools menu. It&apos;s required for 2 of 3 connections supported by the Android plugin. For more details read plugin&apos;s documentation on &lt;a href=&quot;%1&quot;&gt;SQLiteStudio&apos;s wiki page.&lt;/a&gt;</source>
-      <translation type="unfinished">You can grab Android connector JAR file from Tools menu. It&apos;s required for 2 of 3 connections supported by the Android plugin. For more details read plugin&apos;s documentation on &lt;a href=&quot;%1&quot;&gt;SQLiteStudio&apos;s wiki page.&lt;/a&gt;</translation>
+      <translation>Puede coger el archivo JAR del conector Android desde el menú Herramientas.&apos;s requeridos para 2 de 3 conexiones soportadas por el plugin de Android. Para más detalles, lea el plugin&apos;s documentación en &lt;a href=&quot;%1&quot;&gt;SQLiteStudio&apos;s página wiki.&lt;/a&gt;</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="191"/>
       <source>Could not find Android Debug Bridge application. &lt;a href=&quot;%1&quot;&gt;Click here&lt;/a&gt; to point out the location of the ADB application, otherwise the %2 plugin will not support USB cable connections, only the network connection..</source>
-      <translation type="unfinished">Could not find Android Debug Bridge application. &lt;a href=&quot;%1&quot;&gt;Click here&lt;/a&gt; to point out the location of the ADB application, otherwise the %2 plugin will not support USB cable connections, only the network connection..</translation>
+      <translation>No se pudo encontrar la aplicación Android Debug Bridge. &lt;a href=&quot;%1&quot;&gt;Haga clic aquí&lt;/a&gt; para indicar la ubicación de la aplicación ADB. de lo contrario el plugin %2 no soportará conexiones de cable USB, sólo la conexión de red..</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="209"/>
       <source>Invalid ADB</source>
-      <translation type="unfinished">Invalid ADB</translation>
+      <translation>ADB inválido</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="209"/>
@@ -53,22 +53,22 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroid.cpp" line="211"/>
       <source>Select another ADB</source>
-      <translation type="unfinished">Select another ADB</translation>
+      <translation>Seleccionar otro ADB</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="211"/>
       <source>Leave unconfigured</source>
-      <translation type="unfinished">Leave unconfigured</translation>
+      <translation>Dejar sin configurar</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="232"/>
       <source>Save jar file</source>
-      <translation type="unfinished">Save jar file</translation>
+      <translation>Guardar archivo jar</translation>
     </message>
     <message>
       <location filename="../dbandroid.cpp" line="251"/>
       <source>Get Android connector JAR file</source>
-      <translation type="unfinished">Get Android connector JAR file</translation>
+      <translation>Obtener archivo JAR conector Android</translation>
     </message>
   </context>
   <context>
@@ -109,7 +109,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="301"/>
       <source>Unable to execute query on Android device (connection was closed): %1</source>
-      <translation type="unfinished">Unable to execute query on Android device (connection was closed): %1</translation>
+      <translation>No se puede ejecutar la consulta en el dispositivo Android (la conexión fue cerrada): %1</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="313"/>
