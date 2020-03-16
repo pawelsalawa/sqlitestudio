@@ -76,7 +76,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidinstance.cpp" line="74"/>
       <source>Android SQLite driver does not support loadable extensions.</source>
-      <translation type="unfinished">Android SQLite driver does not support loadable extensions.</translation>
+      <translation>Android SQLite 驱动不支持可加载扩展。</translation>
     </message>
     <message>
       <location filename="../dbandroidinstance.cpp" line="156"/>
@@ -125,12 +125,12 @@ Would you like to select another one, or leave it unconfigured?</translation>
       <location filename="../dbandroidjsonconnection.cpp" line="335"/>
       <location filename="../dbandroidjsonconnection.cpp" line="342"/>
       <source>Missing &apos;columns&apos; in response from Android.</source>
-      <translation type="unfinished">Missing &apos;columns&apos; in response from Android.</translation>
+      <translation>在 Android 响应中缺少 &apos;columns&apos;。</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="363"/>
       <source>Response from Android has missing data for column &apos;%1&apos; in row %2.</source>
-      <translation type="unfinished">Response from Android has missing data for column &apos;%1&apos; in row %2.</translation>
+      <translation>来自 Android 的响应的数据行 %2 中缺少列&apos; %1 &apos;</translation>
     </message>
   </context>
   <context>
@@ -183,7 +183,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="127"/>
       <source>&lt;p&gt;This is password configured in the SQLiteStudio service being embeded in the Android application.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;This is password configured in the SQLiteStudio service being embeded in the Android application.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;这是在 SQLiteStudio 服务中配置的密码。&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="140"/>
@@ -276,25 +276,25 @@ Details: %2</source>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="463"/>
       <source>Are you sure you want to delete database &apos;%1&apos; from %2?</source>
-      <translation type="unfinished">Are you sure you want to delete database &apos;%1&apos; from %2?</translation>
+      <translation>您确定要从%2中删除数据库&apos; %1&apos; 吗?</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="484"/>
       <location filename="../dbandroidpathdialog.cpp" line="490"/>
       <source>Error deleting</source>
-      <translation type="unfinished">Error deleting</translation>
+      <translation>删除时出现错误</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="484"/>
       <source>Could not connect to %1 in order to delete database &apos;%2&apos;.</source>
-      <translation type="unfinished">Could not connect to %1 in order to delete database &apos;%2&apos;.</translation>
+      <translation>无法连接到 %1 以删除数据库 &apos;%2&apos;。</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="490"/>
       <source>Could not delete database named &apos;%1&apos; from the device.
 Android device refused deletion, or it was impossible.</source>
-      <translation type="unfinished">Could not delete database named &apos;%1&apos; from the device.
-Android device refused deletion, or it was impossible.</translation>
+      <translation>无法从设备中删除名为 &apos;%1&apos; 的数据库。
+Android 设备拒绝删除，或无法删除。</translation>
     </message>
   </context>
   <context>
@@ -346,7 +346,7 @@ Android device refused deletion, or it was impossible.</translation>
     <message>
       <location filename="../sqlqueryandroid.cpp" line="101"/>
       <source>Cannot bind argument &apos;%1&apos; of the query, because it&apos;s value is missing.</source>
-      <translation type="unfinished">Cannot bind argument &apos;%1&apos; of the query, because it&apos;s value is missing.</translation>
+      <translation>无法绑定参数 &apos;%1&apos; 查询，因为丢失了它的值。</translation>
     </message>
   </context>
 </TS>
