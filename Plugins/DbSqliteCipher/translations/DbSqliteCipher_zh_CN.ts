@@ -16,12 +16,12 @@
     <message>
       <location filename="../dbsqlitecipher.cpp" line="45"/>
       <source>Encryption password</source>
-      <translation type="unfinished">Encryption password</translation>
+      <translation>加密密码</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="50"/>
       <source>Cipher</source>
-      <translation type="unfinished">Cipher</translation>
+      <translation>密文类型</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="51"/>
@@ -31,7 +31,7 @@
     <message>
       <location filename="../dbsqlitecipher.cpp" line="59"/>
       <source>KDF iterations</source>
-      <translation type="unfinished">KDF iterations</translation>
+      <translation>KDF 迭代</translation>
     </message>
     <message>
       <location filename="../dbsqlitecipher.cpp" line="63"/>
