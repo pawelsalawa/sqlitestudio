@@ -302,43 +302,43 @@ Android device refused deletion, or it was impossible.</translation>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="31"/>
       <source>Cannot connect to device %1, because it&apos;s not visible to your computer.</source>
-      <translation type="unfinished">Cannot connect to device %1, because it&apos;s not visible to your computer.</translation>
+      <translation>无法连接到设备 %1，因为它对您的计算机不可见。</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="46"/>
       <source>Cannot connect to device %1, because the application %2 doesn&apos;t seem to be installed on the device.</source>
-      <translation type="unfinished">Cannot connect to device %1, because the application %2 doesn&apos;t seem to be installed on the device.</translation>
+      <translation>无法连接到设备 %1，因为应用程序 %2 似乎没有安装在设备上。</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="56"/>
       <source>Cannot connect to device %1, because the application %2 is not debuggable.</source>
-      <translation type="unfinished">Cannot connect to device %1, because the application %2 is not debuggable.</translation>
+      <translation>无法连接到设备 %1，因为应用程序 %2 不可调试。</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="65"/>
       <source>Cannot connect to device %1, because &apos;%2&apos; command doesn&apos;t seem to be available on the device.</source>
-      <translation type="unfinished">Cannot connect to device %1, because &apos;%2&apos; command doesn&apos;t seem to be available on the device.</translation>
+      <translation>无法连接到设备 %1，因为命令 &apos;%2&apos; 似乎在设备上不可用。</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="77"/>
       <source>Cannot connect to device %1, because &apos;%2&apos; database cannot be accessed on the device.</source>
-      <translation type="unfinished">Cannot connect to device %1, because &apos;%2&apos; database cannot be accessed on the device.</translation>
+      <translation>无法连接到设备 %1，因为 &apos;%2&apos; 数据库无法在设备上访问。</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="90"/>
       <source>Cannot connect to device %1, because &apos;%2&apos; database cannot be accessed on the device. Details: %3</source>
-      <translation type="unfinished">Cannot connect to device %1, because &apos;%2&apos; database cannot be accessed on the device. Details: %3</translation>
+      <translation>无法连接到设备 %1，因为 &apos;%2&apos; 数据库无法在设备上访问。详细信息: %3</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="126"/>
       <source>Cannot get list of databases for application %1. Details: %2</source>
-      <translation type="unfinished">Cannot get list of databases for application %1. Details: %2</translation>
+      <translation>无法获取应用程序 %1的数据库列表。详细信息: %2</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="207"/>
       <location filename="../dbandroidshellconnection.cpp" line="214"/>
       <source>Could not execute query on database &apos;%1&apos;: %2</source>
-      <translation type="unfinished">Could not execute query on database &apos;%1&apos;: %2</translation>
+      <translation>无法在数据库 &apos; %1 &apos; 上执行查询: %2</translation>
     </message>
   </context>
   <context>
