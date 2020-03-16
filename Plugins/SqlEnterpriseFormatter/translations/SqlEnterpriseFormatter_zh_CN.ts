@@ -91,17 +91,17 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="260"/>
       <source>After comma</source>
-      <translation type="unfinished">After comma</translation>
+      <translation>逗号之后</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="270"/>
       <source>After comma in expressions</source>
-      <translation type="unfinished">After comma in expressions</translation>
+      <translation>在表达式中的逗号之后</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="280"/>
       <source>After semicolon</source>
-      <translation type="unfinished">After semicolon</translation>
+      <translation>分号后</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="290"/>
@@ -122,32 +122,32 @@
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="402"/>
       <source>After comma in lists</source>
-      <translation type="unfinished">After comma in lists</translation>
+      <translation>在列表中的逗号之后</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="412"/>
       <source>Before opening parenthesis</source>
-      <translation type="unfinished">Before opening parenthesis</translation>
+      <translation>在左小括号之前</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="422"/>
       <source>After opening parenthesis</source>
-      <translation type="unfinished">After opening parenthesis</translation>
+      <translation>在左小括号之后</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="432"/>
       <source>Before closing parenthesis</source>
-      <translation type="unfinished">Before closing parenthesis</translation>
+      <translation>在右小括号之前</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="442"/>
       <source>After closing parenthesis</source>
-      <translation type="unfinished">After closing parenthesis</translation>
+      <translation>在右小括号之后</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="452"/>
       <source>No space between SQL function name and opening parenthesis</source>
-      <translation type="unfinished">No space between SQL function name and opening parenthesis</translation>
+      <translation>SQL 函数名称和左括号之间没有空格</translation>
     </message>
     <message>
       <location filename="../sqlenterpriseformatter.ui" line="462"/>
