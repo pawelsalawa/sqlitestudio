@@ -139,7 +139,7 @@
     <message>
       <location filename="../configmigrationwizard.cpp" line="330"/>
       <source>Could not read next ID for SQL queries history in new configuration file: %1</source>
-      <translation type="unfinished">Could not read next ID for SQL queries history in new configuration file: %1</translation>
+      <translation>无法在新配置文件中读取 SQL 查询历史的下一个ID： %1</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="346"/>
