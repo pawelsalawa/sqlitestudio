@@ -64,7 +64,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="65"/>
       <source>Field separator:</source>
-      <translation type="unfinished">Field separator:</translation>
+      <translation>字段分隔符：</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="85"/>
