@@ -76,7 +76,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidinstance.cpp" line="74"/>
       <source>Android SQLite driver does not support loadable extensions.</source>
-      <translation type="unfinished">Android SQLite driver does not support loadable extensions.</translation>
+      <translation>Android SQLite 驱动不支持可加载扩展。</translation>
     </message>
     <message>
       <location filename="../dbandroidinstance.cpp" line="156"/>
@@ -125,12 +125,12 @@ Would you like to select another one, or leave it unconfigured?</translation>
       <location filename="../dbandroidjsonconnection.cpp" line="335"/>
       <location filename="../dbandroidjsonconnection.cpp" line="342"/>
       <source>Missing &apos;columns&apos; in response from Android.</source>
-      <translation type="unfinished">Missing &apos;columns&apos; in response from Android.</translation>
+      <translation>在 Android 响应中缺少 &apos;columns&apos;。</translation>
     </message>
     <message>
       <location filename="../dbandroidjsonconnection.cpp" line="363"/>
       <source>Response from Android has missing data for column &apos;%1&apos; in row %2.</source>
-      <translation type="unfinished">Response from Android has missing data for column &apos;%1&apos; in row %2.</translation>
+      <translation>来自 Android 的响应的数据行 %2 中缺少列&apos; %1 &apos;</translation>
     </message>
   </context>
   <context>
@@ -138,7 +138,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="20"/>
       <source>Android database URL</source>
-      <translation type="unfinished">Android database URL</translation>
+      <translation>Android 数据库 URL</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="26"/>
@@ -183,7 +183,7 @@ Would you like to select another one, or leave it unconfigured?</translation>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="127"/>
       <source>&lt;p&gt;This is password configured in the SQLiteStudio service being embeded in the Android application.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;This is password configured in the SQLiteStudio service being embeded in the Android application.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;这是在 SQLiteStudio 服务中配置的密码。&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.ui" line="140"/>
@@ -276,25 +276,25 @@ Details: %2</source>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="463"/>
       <source>Are you sure you want to delete database &apos;%1&apos; from %2?</source>
-      <translation type="unfinished">Are you sure you want to delete database &apos;%1&apos; from %2?</translation>
+      <translation>您确定要从%2中删除数据库&apos; %1&apos; 吗?</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="484"/>
       <location filename="../dbandroidpathdialog.cpp" line="490"/>
       <source>Error deleting</source>
-      <translation type="unfinished">Error deleting</translation>
+      <translation>删除时出现错误</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="484"/>
       <source>Could not connect to %1 in order to delete database &apos;%2&apos;.</source>
-      <translation type="unfinished">Could not connect to %1 in order to delete database &apos;%2&apos;.</translation>
+      <translation>无法连接到 %1 以删除数据库 &apos;%2&apos;。</translation>
     </message>
     <message>
       <location filename="../dbandroidpathdialog.cpp" line="490"/>
       <source>Could not delete database named &apos;%1&apos; from the device.
 Android device refused deletion, or it was impossible.</source>
-      <translation type="unfinished">Could not delete database named &apos;%1&apos; from the device.
-Android device refused deletion, or it was impossible.</translation>
+      <translation>无法从设备中删除名为 &apos;%1&apos; 的数据库。
+Android 设备拒绝删除，或无法删除。</translation>
     </message>
   </context>
   <context>
@@ -302,43 +302,43 @@ Android device refused deletion, or it was impossible.</translation>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="31"/>
       <source>Cannot connect to device %1, because it&apos;s not visible to your computer.</source>
-      <translation type="unfinished">Cannot connect to device %1, because it&apos;s not visible to your computer.</translation>
+      <translation>无法连接到设备 %1，因为它对您的计算机不可见。</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="46"/>
       <source>Cannot connect to device %1, because the application %2 doesn&apos;t seem to be installed on the device.</source>
-      <translation type="unfinished">Cannot connect to device %1, because the application %2 doesn&apos;t seem to be installed on the device.</translation>
+      <translation>无法连接到设备 %1，因为应用程序 %2 似乎没有安装在设备上。</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="56"/>
       <source>Cannot connect to device %1, because the application %2 is not debuggable.</source>
-      <translation type="unfinished">Cannot connect to device %1, because the application %2 is not debuggable.</translation>
+      <translation>无法连接到设备 %1，因为应用程序 %2 不可调试。</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="65"/>
       <source>Cannot connect to device %1, because &apos;%2&apos; command doesn&apos;t seem to be available on the device.</source>
-      <translation type="unfinished">Cannot connect to device %1, because &apos;%2&apos; command doesn&apos;t seem to be available on the device.</translation>
+      <translation>无法连接到设备 %1，因为命令 &apos;%2&apos; 似乎在设备上不可用。</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="77"/>
       <source>Cannot connect to device %1, because &apos;%2&apos; database cannot be accessed on the device.</source>
-      <translation type="unfinished">Cannot connect to device %1, because &apos;%2&apos; database cannot be accessed on the device.</translation>
+      <translation>无法连接到设备 %1，因为 &apos;%2&apos; 数据库无法在设备上访问。</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="90"/>
       <source>Cannot connect to device %1, because &apos;%2&apos; database cannot be accessed on the device. Details: %3</source>
-      <translation type="unfinished">Cannot connect to device %1, because &apos;%2&apos; database cannot be accessed on the device. Details: %3</translation>
+      <translation>无法连接到设备 %1，因为 &apos;%2&apos; 数据库无法在设备上访问。详细信息: %3</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="126"/>
       <source>Cannot get list of databases for application %1. Details: %2</source>
-      <translation type="unfinished">Cannot get list of databases for application %1. Details: %2</translation>
+      <translation>无法获取应用程序 %1的数据库列表。详细信息: %2</translation>
     </message>
     <message>
       <location filename="../dbandroidshellconnection.cpp" line="207"/>
       <location filename="../dbandroidshellconnection.cpp" line="214"/>
       <source>Could not execute query on database &apos;%1&apos;: %2</source>
-      <translation type="unfinished">Could not execute query on database &apos;%1&apos;: %2</translation>
+      <translation>无法在数据库 &apos; %1 &apos; 上执行查询: %2</translation>
     </message>
   </context>
   <context>
@@ -346,7 +346,7 @@ Android device refused deletion, or it was impossible.</translation>
     <message>
       <location filename="../sqlqueryandroid.cpp" line="101"/>
       <source>Cannot bind argument &apos;%1&apos; of the query, because it&apos;s value is missing.</source>
-      <translation type="unfinished">Cannot bind argument &apos;%1&apos; of the query, because it&apos;s value is missing.</translation>
+      <translation>无法绑定参数 &apos;%1&apos; 查询，因为丢失了它的值。</translation>
     </message>
   </context>
 </TS>

@@ -16,12 +16,12 @@
     <message>
       <location filename="../multieditorimage.cpp" line="28"/>
       <source>Zoom in by 25%</source>
-      <translation type="unfinished">Zoom in by 25%</translation>
+      <translation>放大25%</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="29"/>
       <source>Zoom out by 25%</source>
-      <translation type="unfinished">Zoom out by 25%</translation>
+      <translation>缩小25%</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="30"/>

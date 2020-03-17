@@ -17,7 +17,7 @@
       <location filename="../pdfexport.cpp" line="90"/>
       <location filename="../pdfexport.cpp" line="144"/>
       <source>Exported table: %1</source>
-      <translation type="unfinished">Exported table: %1</translation>
+      <translation>导出的表： %1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="93"/>
@@ -49,7 +49,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="215"/>
       <source>Exported database: %1</source>
-      <translation type="unfinished">Exported database: %1</translation>
+      <translation>导出的数据库： %1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="223"/>
@@ -76,7 +76,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="229"/>
       <source>Unique index</source>
-      <translation type="unfinished">Unique index</translation>
+      <translation>唯一索引</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="229"/>
@@ -96,7 +96,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="231"/>
       <source>Sort order</source>
-      <translation type="unfinished">Sort order</translation>
+      <translation>排序方式</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="247"/>
@@ -123,7 +123,7 @@
     <message>
       <location filename="../pdfexport.cpp" line="265"/>
       <source>Activation time</source>
-      <translation type="unfinished">Activation time</translation>
+      <translation>激活时间</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="268"/>
