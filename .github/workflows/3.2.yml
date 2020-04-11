@@ -1,12 +1,10 @@
 name: 3.2 branch Windows snapshot
 
 on:
-    - push:
+    push:
         branches:
-            - master
+            - 3.2
 
-    - repository_dispatch:
-        types: [build_win64_snapshot]
 jobs:
     build:
         runs-on: windows-2019
