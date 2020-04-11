@@ -24,7 +24,7 @@ QString FunctionManager::FunctionBase::typeString(Type type)
         case ScriptFunction::AGGREGATE:
             return "AGGREGATE";
     }
-    return QString::null;
+    return QString();
 }
 
 FunctionManager::ScriptFunction::Type FunctionManager::FunctionBase::typeString(const QString& type)

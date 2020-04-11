@@ -414,7 +414,7 @@ QString shortest(const QStringList& strList)
 QString longestCommonPart(const QStringList& strList)
 {
    if (strList.size() == 0)
-       return QString::null;
+       return QString();
 
    QString common;
    QString first = strList.first();

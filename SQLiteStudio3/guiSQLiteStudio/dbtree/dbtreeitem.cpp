@@ -85,7 +85,7 @@ QString DbTreeItem::getTable() const
 {
     const DbTreeItem* item = getParentItem(Type::TABLE);
     if (!item)
-        return QString::null;
+        return QString();
 
     return item->text();
 }
@@ -93,7 +93,7 @@ QString DbTreeItem::getTable() const
 QString DbTreeItem::getColumn() const
 {
     if (getType() != Type::COLUMN)
-        return QString::null;
+        return QString();
 
     return text();
 }
@@ -102,7 +102,7 @@ QString DbTreeItem::getIndex() const
 {
     const DbTreeItem* item = getParentItem(Type::INDEX);
     if (!item)
-        return QString::null;
+        return QString();
 
     return item->text();
 }
@@ -111,7 +111,7 @@ QString DbTreeItem::getTrigger() const
 {
     const DbTreeItem* item = getParentItem(Type::TRIGGER);
     if (!item)
-        return QString::null;
+        return QString();
 
     return item->text();
 }
@@ -120,7 +120,7 @@ QString DbTreeItem::getView() const
 {
     const DbTreeItem* item = getParentItem(Type::VIEW);
     if (!item)
-        return QString::null;
+        return QString();
 
     return item->text();
 }

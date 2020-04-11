@@ -121,7 +121,7 @@ CompletionHelper::Results CompletionHelper::getExpectedTokens()
     // If asked for completion when being in the middle of keyword or ID,
     // then remove that unfinished keyword/ID from sql and put it into
     // the final filter - to be used at the end of this method.
-    QString finalFilter = QString::null;
+    QString finalFilter = QString();
     bool wrappedFilter = false;
     adjustedSql = removeStartedToken(adjustedSql, finalFilter, wrappedFilter);
 
@@ -193,43 +193,43 @@ QList<ExpectedTokenPtr> CompletionHelper::getExpectedTokens(TokenPtr token)
         case Token::CTX_NEW_KW:
         {
             if (context == Context::CREATE_TRIGGER)
-                results += getExpectedToken(ExpectedToken::TABLE, "new", QString::null, tr("New row reference"), 1);
+                results += getExpectedToken(ExpectedToken::TABLE, "new", QString(), tr("New row reference"), 1);
 
             break;
         }
         case Token::CTX_OLD_KW:
         {
             if (context == Context::CREATE_TRIGGER)
-                results += getExpectedToken(ExpectedToken::TABLE, "old", QString::null, tr("Old row reference"), 1);
+                results += getExpectedToken(ExpectedToken::TABLE, "old", QString(), tr("Old row reference"), 1);
 
             break;
         }
         case Token::CTX_TABLE_NEW:
-            results += getExpectedToken(ExpectedToken::NO_VALUE, QString::null, QString::null, tr("New table name"));
+            results += getExpectedToken(ExpectedToken::NO_VALUE, QString(), QString(), tr("New table name"));
             break;
         case Token::CTX_INDEX_NEW:
-            results += getExpectedToken(ExpectedToken::NO_VALUE, QString::null, QString::null, tr("New index name"));
+            results += getExpectedToken(ExpectedToken::NO_VALUE, QString(), QString(), tr("New index name"));
             break;
         case Token::CTX_VIEW_NEW:
-            results += getExpectedToken(ExpectedToken::NO_VALUE, QString::null, QString::null, tr("New view name"));
+            results += getExpectedToken(ExpectedToken::NO_VALUE, QString(), QString(), tr("New view name"));
             break;
         case Token::CTX_TRIGGER_NEW:
-            results += getExpectedToken(ExpectedToken::NO_VALUE, QString::null, QString::null, tr("New trigger name"));
+            results += getExpectedToken(ExpectedToken::NO_VALUE, QString(), QString(), tr("New trigger name"));
             break;
         case Token::CTX_ALIAS:
-            results += getExpectedToken(ExpectedToken::NO_VALUE, QString::null, QString::null, tr("Table or column alias"));
+            results += getExpectedToken(ExpectedToken::NO_VALUE, QString(), QString(), tr("Table or column alias"));
             break;
         case Token::CTX_TRANSACTION:
-            results += getExpectedToken(ExpectedToken::NO_VALUE, QString::null, QString::null, tr("transaction name"));
+            results += getExpectedToken(ExpectedToken::NO_VALUE, QString(), QString(), tr("transaction name"));
             break;
         case Token::CTX_COLUMN_NEW:
-            results += getExpectedToken(ExpectedToken::NO_VALUE, QString::null, QString::null, tr("New column name"));
+            results += getExpectedToken(ExpectedToken::NO_VALUE, QString(), QString(), tr("New column name"));
             break;
         case Token::CTX_COLUMN_TYPE:
-            results += getExpectedToken(ExpectedToken::NO_VALUE, QString::null, QString::null, tr("Column data type"));
+            results += getExpectedToken(ExpectedToken::NO_VALUE, QString(), QString(), tr("Column data type"));
             break;
         case Token::CTX_CONSTRAINT:
-            results += getExpectedToken(ExpectedToken::NO_VALUE, QString::null, QString::null, tr("Constraint name"));
+            results += getExpectedToken(ExpectedToken::NO_VALUE, QString(), QString(), tr("Constraint name"));
             break;
         case Token::CTX_FK_MATCH:
         {
@@ -242,7 +242,7 @@ QList<ExpectedTokenPtr> CompletionHelper::getExpectedTokens(TokenPtr token)
             results += getPragmas(db->getDialect());
             break;
         case Token::CTX_ERROR_MESSAGE:
-            results += getExpectedToken(ExpectedToken::NO_VALUE, QString::null, QString::null, tr("Error message"));
+            results += getExpectedToken(ExpectedToken::NO_VALUE, QString(), QString(), tr("Error message"));
             break;
         case Token::CTX_COLUMN:
         {
@@ -286,7 +286,7 @@ QList<ExpectedTokenPtr> CompletionHelper::getExpectedTokens(TokenPtr token)
                 // SQLite 2 doesn't really support collation. It has collations
                 // in grammar, but doesn't make use of them. There's no list
                 // of collations to be suggested.
-                results += getExpectedToken(ExpectedToken::NO_VALUE, QString::null, QString::null, tr("Collation name"));
+                results += getExpectedToken(ExpectedToken::NO_VALUE, QString(), QString(), tr("Collation name"));
             }
             else
             {
@@ -301,7 +301,7 @@ QList<ExpectedTokenPtr> CompletionHelper::getExpectedTokens(TokenPtr token)
             break;
         }
         case Token::OTHER:
-            results += getExpectedToken(ExpectedToken::OTHER, QString::null, QString::null, tr("Any word"));
+            results += getExpectedToken(ExpectedToken::OTHER, QString(), QString(), tr("Any word"));
             break;
         case Token::STRING:
             results += getExpectedToken(ExpectedToken::STRING);
@@ -599,7 +599,7 @@ QList<ExpectedTokenPtr> CompletionHelper::getColumnsNoPrefix()
 
     // Getting all tables for main db. If any column repeats in many tables,
     // then tables are stored as a list for the same column.
-    for (QString table : schemaResolver->getTables(QString::null))
+    for (QString table : schemaResolver->getTables(QString()))
         for (QString column : schemaResolver->getTableColumns(table))
             columnList[column] += table;
 

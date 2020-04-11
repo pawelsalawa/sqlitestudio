@@ -27,7 +27,7 @@ class API_EXPORT SqliteRaise : public SqliteStatement
         static QString raiseType(Type value);
 
         Type type = Type::null;
-        QString message = QString::null;
+        QString message = QString();
 
     protected:
         TokenList rebuildTokensFromContents();

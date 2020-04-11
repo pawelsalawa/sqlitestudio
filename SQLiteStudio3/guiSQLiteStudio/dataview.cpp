@@ -643,8 +643,8 @@ void DataView::updateResultsCount(int resultsCount)
         QString msg = QObject::tr("Total rows loaded: %1").arg(resultsCount);
         rowCountLabel->setText(msg);
         formViewRowCountLabel->setText(msg);
-        rowCountLabel->setToolTip(QString::null);
-        formViewRowCountLabel->setToolTip(QString::null);
+        rowCountLabel->setToolTip(QString());
+        formViewRowCountLabel->setToolTip(QString());
     }
     else
     {

@@ -297,7 +297,7 @@ bool CliCommandSyntax::isArgumentSet(int id) const
 QString CliCommandSyntax::getArgument(int id) const
 {
     if (!argumentMap.contains(id))
-        return QString::null;
+        return QString();
 
     return argumentMap[id]->value;
 }
@@ -313,7 +313,7 @@ bool CliCommandSyntax::isOptionSet(int id) const
 QString CliCommandSyntax::getOptionValue(int id) const
 {
     if (!optionMap.contains(id))
-        return QString::null;
+        return QString();
 
     return optionMap[id]->value;
 }

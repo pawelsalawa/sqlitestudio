@@ -17,7 +17,7 @@ class API_EXPORT SqliteRollback : public SqliteQuery
         bool transactionKw = false;
         bool toKw = false;
         bool savepointKw = false;
-        QString name = QString::null;
+        QString name = QString();
 
     protected:
         TokenList rebuildTokensFromContents();

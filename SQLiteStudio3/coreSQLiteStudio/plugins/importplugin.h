@@ -37,7 +37,7 @@ class ImportPlugin : virtual public Plugin
          * @brief Provides file name filter for file dialog.
          * @return Filter compliant with QFileDialog documentation.
          *
-         * If your plugin does not return ImportManager::FILE_NAME, this method can simply return QString::null.
+         * If your plugin does not return ImportManager::FILE_NAME, this method can simply return QString().
          * If your plugin does use input file name, then this method can (but don't have to) return file name filter
          * to match expected files when user browses for the input file.
          *
@@ -102,7 +102,7 @@ class ImportPlugin : virtual public Plugin
          *
          * If importing with this plugin is not configurable (i.e. getConfig() returns null),
          * then this method is not even called, so it can return anything, just to satisfy method
-         * return type. In that case good idea is to always return QString::null.
+         * return type. In that case good idea is to always return QString().
          *
          * @see FormManager
          */

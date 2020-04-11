@@ -62,7 +62,7 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbC
                         QString typeString() const;
 
                         Type type;
-                        QString name = QString::null;
+                        QString name = QString();
                         SqliteSortOrder sortOrder = SqliteSortOrder::null;
                         SqliteConflictAlgo onConflict = SqliteConflictAlgo::null;
                         bool autoincrKw = false;
@@ -71,7 +71,7 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbC
                         bool literalNull = false;
                         QString ctime;
                         QString id;
-                        QString collationName = QString::null;
+                        QString collationName = QString();
                         SqliteForeignKey* foreignKey = nullptr;
 
                     protected:
@@ -97,7 +97,7 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbC
                 QList<Constraint*> getConstraints(Constraint::Type type) const;
                 QList<Constraint*> getForeignKeysByTable(const QString& foreignTable) const;
 
-                QString name = QString::null;
+                QString name = QString();
                 SqliteColumnType* type = nullptr;
                 QList<Constraint*> constraints;
 
@@ -106,7 +106,7 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbC
                  * Used to remember original name when column was edited and the name was changed.
                  * It's defined in the constructor to the same value as the name member.
                  */
-                QString originalName = QString::null;
+                QString originalName = QString();
 
             protected:
                 QStringList getColumnsInStatement();
@@ -149,7 +149,7 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbC
                 QString typeString() const;
 
                 Type type;
-                QString name = QString::null;
+                QString name = QString();
                 bool autoincrKw = false; // not in docs, but needs to be supported
                 SqliteConflictAlgo onConflict = SqliteConflictAlgo::null;
                 SqliteForeignKey* foreignKey = nullptr;
@@ -189,12 +189,12 @@ class API_EXPORT SqliteCreateTable : public SqliteQuery, public SqliteDdlWithDbC
         bool ifNotExistsKw = false;
         bool tempKw = false;
         bool temporaryKw = false;
-        QString database = QString::null;
-        QString table = QString::null;
+        QString database = QString();
+        QString table = QString();
         QList<Column*> columns;
         QList<Constraint*> constraints;
         SqliteSelect* select = nullptr;
-        QString withOutRowId = QString::null;
+        QString withOutRowId = QString();
 
     protected:
         QStringList getTablesInStatement();

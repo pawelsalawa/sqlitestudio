@@ -361,7 +361,7 @@ void TableForeignKeyPanel::storeConfiguration()
     constr->foreignKey->initially = sqliteInitially(ui->initiallyCombo->currentText());
 
     // Name
-    constr->name = QString::null;
+    constr->name = QString();
     if (ui->namedCheckBox->isChecked())
         constr->name = ui->nameEdit->text();
 }

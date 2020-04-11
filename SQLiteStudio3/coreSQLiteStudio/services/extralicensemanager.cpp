@@ -55,7 +55,7 @@ bool ExtraLicenseManager::isViolatedLicense(const QString& title)
 QString ExtraLicenseManager::getViolationMessage(const QString& title)
 {
     if (!licenses.contains(title))
-        return QString::null;
+        return QString();
 
     return licenses[title]->violationMessage;
 }
@@ -109,7 +109,7 @@ QString ExtraLicenseManager::readLicenseFile(const QString& path) const
     if (!file.open(QIODevice::ReadOnly))
     {
         qCritical() << "Error opening" << file.fileName();
-        return QString::null;
+        return QString();
     }
     QString contents = QString::fromLatin1(file.readAll());
     file.close();

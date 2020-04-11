@@ -42,12 +42,12 @@ void CompleterWindow::init()
 void CompleterWindow::reset()
 {
     model->clear();
-    ui->status->showMessage(QString::null);
+    ui->status->showMessage(QString());
 }
 
 void CompleterWindow::setData(const CompletionHelper::Results& completionResults)
 {
-    ui->status->showMessage(QString::null);
+    ui->status->showMessage(QString());
     model->setData(completionResults.expectedTokens);
     filter = completionResults.partialToken;
     wrappedFilter = completionResults.wrappedToken;

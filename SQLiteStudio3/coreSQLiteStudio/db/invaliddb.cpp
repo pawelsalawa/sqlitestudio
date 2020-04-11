@@ -34,7 +34,7 @@ Dialect InvalidDb::getDialect() const
 
 QString InvalidDb::getEncoding()
 {
-    return QString::null;
+    return QString();
 }
 
 QHash<QString, QVariant>& InvalidDb::getConnectionOptions()
@@ -196,13 +196,13 @@ QString InvalidDb::attach(Db* otherDb, bool silent)
 {
     UNUSED(otherDb);
     UNUSED(silent);
-    return QString::null;
+    return QString();
 }
 
 AttachGuard InvalidDb::guardedAttach(Db* otherDb, bool silent)
 {
     UNUSED(silent);
-    return AttachGuard::create(this, otherDb, QString::null);
+    return AttachGuard::create(this, otherDb, QString());
 }
 
 void InvalidDb::detach(Db* otherDb)
@@ -227,12 +227,12 @@ QSet<QString> InvalidDb::getAllAttaches()
 QString InvalidDb::getUniqueNewObjectName(const QString& attachedDbName)
 {
     UNUSED(attachedDbName);
-    return QString::null;
+    return QString();
 }
 
 QString InvalidDb::getErrorText()
 {
-    return QString::null;
+    return QString();
 }
 
 int InvalidDb::getErrorCode()

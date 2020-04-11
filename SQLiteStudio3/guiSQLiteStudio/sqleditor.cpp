@@ -918,7 +918,7 @@ void SqlEditor::checkForValidObjects()
             if (fullObj.type == SqliteStatement::FullObject::DATABASE)
             {
                 // Valid db name
-                addDbObject(sqlIndex(fullObj.database->start), sqlIndex(fullObj.database->end), QString::null);
+                addDbObject(sqlIndex(fullObj.database->start), sqlIndex(fullObj.database->end), QString());
                 continue;
             }
 
@@ -1597,7 +1597,7 @@ void SqlEditor::setVirtualSqlExpression(const QString& value)
     if (virtualSqlOffset == -1)
     {
         virtualSqlOffset = 0;
-        virtualSqlExpression = QString::null;
+        virtualSqlExpression = QString();
         qWarning() << "Tried to set invalid virtualSqlExpression for SqlEditor. Ignored.";
         return;
     }

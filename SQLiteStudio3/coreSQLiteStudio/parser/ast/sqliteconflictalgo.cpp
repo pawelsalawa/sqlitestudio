@@ -32,6 +32,6 @@ QString sqliteConflictAlgo(SqliteConflictAlgo value)
         case SqliteConflictAlgo::REPLACE:
             return "REPLACE";
         default:
-            return QString::null;
+            return QString();
     }
 }

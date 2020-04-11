@@ -44,8 +44,8 @@ class API_EXPORT SqliteSelect : public SqliteQuery
                         SqliteExpr* expr = nullptr;
                         bool star = false;
                         bool asKw = false;
-                        QString alias = QString::null;
-                        QString table = QString::null;
+                        QString alias = QString();
+                        QString table = QString();
 
                     protected:
                         QStringList getTablesInStatement();
@@ -70,15 +70,15 @@ class API_EXPORT SqliteSelect : public SqliteQuery
 
                         SqliteStatement* clone();
 
-                        QString database = QString::null;
-                        QString table = QString::null;
-                        QString alias = QString::null;
-                        QString funcName = QString::null;
+                        QString database = QString();
+                        QString table = QString();
+                        QString alias = QString();
+                        QString funcName = QString();
                         QList<SqliteExpr*> funcParams;
                         bool asKw = false;
                         bool indexedByKw = false;
                         bool notIndexedKw = false;
-                        QString indexedBy = QString::null;
+                        QString indexedBy = QString();
                         SqliteSelect* select = nullptr;
                         JoinSource* joinSource = nullptr;
 
@@ -116,9 +116,9 @@ class API_EXPORT SqliteSelect : public SqliteQuery
                         bool crossKw = false;
                         bool rightKw = false;
                         bool fullKw = false;
-                        QString customKw1 = QString::null;
-                        QString customKw2 = QString::null;
-                        QString customKw3 = QString::null;
+                        QString customKw1 = QString();
+                        QString customKw2 = QString();
+                        QString customKw3 = QString();
 
                     protected:
                         TokenList rebuildTokensFromContents();

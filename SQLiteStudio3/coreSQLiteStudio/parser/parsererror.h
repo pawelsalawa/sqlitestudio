@@ -64,7 +64,7 @@ class API_EXPORT ParserError
         /**
          * @brief Error message.
          */
-        QString message = QString::null;
+        QString message = QString();
 
         /**
          * @brief Error start position.

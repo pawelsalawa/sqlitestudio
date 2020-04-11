@@ -29,8 +29,8 @@ class API_EXPORT SqlitePragma : public SqliteQuery
         void initName(const QString& name1, const QString& name2);
 
     public:
-        QString database = QString::null;
-        QString pragmaName = QString::null;
+        QString database = QString();
+        QString pragmaName = QString();
         QVariant value = QVariant();
         bool equalsOp = false;
         bool parenthesis = false;

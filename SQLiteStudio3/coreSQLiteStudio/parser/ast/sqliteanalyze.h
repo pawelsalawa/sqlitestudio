@@ -12,8 +12,8 @@ class API_EXPORT SqliteAnalyze : public SqliteQuery
         SqliteAnalyze(const QString& name1, const QString& name2);
         SqliteStatement* clone();
 
-        QString database = QString::null;
-        QString table = QString::null;
+        QString database = QString();
+        QString table = QString();
 
     protected:
         QStringList getTablesInStatement();

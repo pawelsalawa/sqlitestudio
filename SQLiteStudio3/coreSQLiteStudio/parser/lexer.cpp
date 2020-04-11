@@ -16,7 +16,7 @@ TokenPtr Lexer::semicolonTokenSqlite2;
 TokenPtr Lexer::semicolonTokenSqlite3;
 
 Lexer::Lexer(Dialect dialect)
-    : dialect(dialect), sqlToTokenize(QString::null)
+    : dialect(dialect), sqlToTokenize(QString())
 {
 }
 

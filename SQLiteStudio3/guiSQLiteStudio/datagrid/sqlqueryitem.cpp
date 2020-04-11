@@ -242,11 +242,11 @@ QString SqlQueryItem::getToolTip() const
     static const QString emptyRow = "<tr><td colspan=3></td></tr>";
 
     if (!index().isValid())
-        return QString::null;
+        return QString();
 
     SqlQueryModelColumn* col = getColumn();
     if (!col)
-        return QString::null; // happens when simple execution method was performed
+        return QString(); // happens when simple execution method was performed
 
     QStringList rows;
     rows << hdrRowTmp.arg(ICONS.COLUMN.getPath()).arg(tr("Column:", "data view tooltip")).arg(col->column);
@@ -461,7 +461,7 @@ QString SqlQueryItem::loadFullData()
         return results->getErrorText();
 
     setValue(results->getSingleCell(), false, true);
-    return QString::null;
+    return QString();
 }
 
 QVariant SqlQueryItem::getFullValue()

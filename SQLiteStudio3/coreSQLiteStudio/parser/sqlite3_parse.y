@@ -875,7 +875,7 @@ selcollist(X) ::= sclp(L) expr(E) as(N).    {
                                                     new SqliteSelect::Core::ResultColumn(
                                                         E,
                                                         N ? N->asKw : false,
-                                                        N ? N->name : QString::null
+                                                        N ? N->name : QString()
                                                     );
 
                                                 L->append(obj);
@@ -976,9 +976,9 @@ singlesrc(X) ::= nm(N1) dbnm(N2) as(A)
                                                         *(N1),
                                                         *(N2),
                                                         A ? A->asKw : false,
-                                                        A ? A->name : QString::null,
+                                                        A ? A->name : QString(),
                                                         I ? I->notIndexedKw : false,
-                                                        I ? I->indexedBy : QString::null
+                                                        I ? I->indexedBy : QString()
                                                     );
                                                 delete N1;
                                                 delete N2;
@@ -991,7 +991,7 @@ singlesrc(X) ::= LP select(S) RP as(A).     {
                                                 X = new SqliteSelect::Core::SingleSource(
                                                         S,
                                                         A ? A->asKw : false,
-                                                        A ? A->name : QString::null
+                                                        A ? A->name : QString()
                                                     );
                                                 delete A;
                                                 objectForTokens = X;
@@ -1000,7 +1000,7 @@ singlesrc(X) ::= LP joinsrc(J) RP as(A).    {
                                                 X = new SqliteSelect::Core::SingleSource(
                                                         J,
                                                         A ? A->asKw : false,
-                                                        A ? A->name : QString::null
+                                                        A ? A->name : QString()
                                                     );
                                                 delete A;
                                                 objectForTokens = X;
@@ -1011,7 +1011,7 @@ singlesrc(X) ::= nm(N1) dbnm(N2)
                                                         *(N1),
                                                         *(N2),
                                                         A ? A->asKw : false,
-                                                        A ? A->name : QString::null,
+                                                        A ? A->name : QString(),
                                                         *(E)
                                                     );
                                                 delete N1;
@@ -1291,7 +1291,7 @@ update_stmt(X) ::= with(WI) UPDATE orconf(C)
                                                         N->name1,
                                                         N->name2,
                                                         I ? I->notIndexedKw : false,
-                                                        I ? I->indexedBy : QString::null,
+                                                        I ? I->indexedBy : QString(),
                                                         *(L),
                                                         W,
                                                         WI
@@ -1513,14 +1513,14 @@ upsert(X) ::= ON CONFLICT DO NOTHING.       {
 
 exprx(X) ::= nm(N1) DOT.                    {
                                                 X = new SqliteExpr();
-                                                X->initId(*(N1), QString::null, QString::null);
+                                                X->initId(*(N1), QString(), QString());
                                                 delete N1;
                                                 objectForTokens = X;
                                                 parserContext->minorErrorBeforeNextToken("Syntax error <exprx: nm.>");
                                             }
 exprx(X) ::= nm(N1) DOT nm(N2) DOT.         {
                                                 X = new SqliteExpr();
-                                                X->initId(*(N1), *(N2), QString::null);
+                                                X->initId(*(N1), *(N2), QString());
                                                 delete N1;
                                                 delete N2;
                                                 objectForTokens = X;

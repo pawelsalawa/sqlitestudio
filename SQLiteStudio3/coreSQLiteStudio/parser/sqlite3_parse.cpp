@@ -3582,7 +3582,7 @@ static void yy_reduce(
                                                     new SqliteSelect::Core::ResultColumn(
                                                         yymsp[-1].minor.yy352,
                                                         yymsp[0].minor.yy200 ? yymsp[0].minor.yy200->asKw : false,
-                                                        yymsp[0].minor.yy200 ? yymsp[0].minor.yy200->name : QString::null
+                                                        yymsp[0].minor.yy200 ? yymsp[0].minor.yy200->name : QString()
                                                     );
 
                                                 yymsp[-2].minor.yy373->append(obj);
@@ -3686,9 +3686,9 @@ static void yy_reduce(
                                                         *(yymsp[-3].minor.yy399),
                                                         *(yymsp[-2].minor.yy399),
                                                         yymsp[-1].minor.yy200 ? yymsp[-1].minor.yy200->asKw : false,
-                                                        yymsp[-1].minor.yy200 ? yymsp[-1].minor.yy200->name : QString::null,
+                                                        yymsp[-1].minor.yy200 ? yymsp[-1].minor.yy200->name : QString(),
                                                         yymsp[0].minor.yy192 ? yymsp[0].minor.yy192->notIndexedKw : false,
-                                                        yymsp[0].minor.yy192 ? yymsp[0].minor.yy192->indexedBy : QString::null
+                                                        yymsp[0].minor.yy192 ? yymsp[0].minor.yy192->indexedBy : QString()
                                                     );
                                                 delete yymsp[-3].minor.yy399;
                                                 delete yymsp[-2].minor.yy399;
@@ -3703,7 +3703,7 @@ static void yy_reduce(
                                                 yygotominor.yy201 = new SqliteSelect::Core::SingleSource(
                                                         yymsp[-2].minor.yy473,
                                                         yymsp[0].minor.yy200 ? yymsp[0].minor.yy200->asKw : false,
-                                                        yymsp[0].minor.yy200 ? yymsp[0].minor.yy200->name : QString::null
+                                                        yymsp[0].minor.yy200 ? yymsp[0].minor.yy200->name : QString()
                                                     );
                                                 delete yymsp[0].minor.yy200;
                                                 objectForTokens = yygotominor.yy201;
@@ -3714,7 +3714,7 @@ static void yy_reduce(
                                                 yygotominor.yy201 = new SqliteSelect::Core::SingleSource(
                                                         yymsp[-2].minor.yy511,
                                                         yymsp[0].minor.yy200 ? yymsp[0].minor.yy200->asKw : false,
-                                                        yymsp[0].minor.yy200 ? yymsp[0].minor.yy200->name : QString::null
+                                                        yymsp[0].minor.yy200 ? yymsp[0].minor.yy200->name : QString()
                                                     );
                                                 delete yymsp[0].minor.yy200;
                                                 objectForTokens = yygotominor.yy201;
@@ -3726,7 +3726,7 @@ static void yy_reduce(
                                                         *(yymsp[-5].minor.yy399),
                                                         *(yymsp[-4].minor.yy399),
                                                         yymsp[0].minor.yy200 ? yymsp[0].minor.yy200->asKw : false,
-                                                        yymsp[0].minor.yy200 ? yymsp[0].minor.yy200->name : QString::null,
+                                                        yymsp[0].minor.yy200 ? yymsp[0].minor.yy200->name : QString(),
                                                         *(yymsp[-2].minor.yy551)
                                                     );
                                                 delete yymsp[-5].minor.yy399;
@@ -3997,7 +3997,7 @@ static void yy_reduce(
                                                         yymsp[-4].minor.yy360->name1,
                                                         yymsp[-4].minor.yy360->name2,
                                                         yymsp[-3].minor.yy192 ? yymsp[-3].minor.yy192->notIndexedKw : false,
-                                                        yymsp[-3].minor.yy192 ? yymsp[-3].minor.yy192->indexedBy : QString::null,
+                                                        yymsp[-3].minor.yy192 ? yymsp[-3].minor.yy192->indexedBy : QString(),
                                                         *(yymsp[-1].minor.yy521),
                                                         yymsp[0].minor.yy352,
                                                         yymsp[-7].minor.yy321
@@ -4220,7 +4220,7 @@ static void yy_reduce(
       case 258: /* exprx ::= nm DOT */
 {
                                                 yygotominor.yy352 = new SqliteExpr();
-                                                yygotominor.yy352->initId(*(yymsp[-1].minor.yy399), QString::null, QString::null);
+                                                yygotominor.yy352->initId(*(yymsp[-1].minor.yy399), QString(), QString());
                                                 delete yymsp[-1].minor.yy399;
                                                 objectForTokens = yygotominor.yy352;
                                                 parserContext->minorErrorBeforeNextToken("Syntax error <exprx: nm.>");
@@ -4229,7 +4229,7 @@ static void yy_reduce(
       case 259: /* exprx ::= nm DOT nm DOT */
 {
                                                 yygotominor.yy352 = new SqliteExpr();
-                                                yygotominor.yy352->initId(*(yymsp[-3].minor.yy399), *(yymsp[-1].minor.yy399), QString::null);
+                                                yygotominor.yy352->initId(*(yymsp[-3].minor.yy399), *(yymsp[-1].minor.yy399), QString());
                                                 delete yymsp[-3].minor.yy399;
                                                 delete yymsp[-1].minor.yy399;
                                                 objectForTokens = yygotominor.yy352;

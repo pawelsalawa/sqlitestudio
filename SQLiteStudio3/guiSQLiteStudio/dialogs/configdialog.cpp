@@ -117,7 +117,7 @@ QString ConfigDialog::getFilterString(QWidget *widget)
     GET_FILTER_STRING2(widget, QListWidget);
     GET_FILTER_STRING2(widget, QTableWidget);
 
-    return QString::null;
+    return QString();
 }
 
 QString ConfigDialog::getFilterString(QComboBox *widget)

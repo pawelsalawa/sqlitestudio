@@ -52,12 +52,12 @@ void DbObjectDialogs::editIndex(const QString& index)
 
 void DbObjectDialogs::addTriggerOnTable(const QString& table)
 {
-    addTrigger(table, QString::null);
+    addTrigger(table, QString());
 }
 
 void DbObjectDialogs::addTriggerOnView(const QString& view)
 {
-    addTrigger(QString::null, view);
+    addTrigger(QString(), view);
 }
 
 void DbObjectDialogs::addTrigger(const QString& table, const QString& view)

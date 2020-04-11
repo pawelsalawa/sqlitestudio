@@ -59,7 +59,7 @@ QString SqliteExpr::likeOp(SqliteExpr::LikeOp value)
         case SqliteExpr::LikeOp::MATCH:
             return "MATCH";
         default:
-            return QString::null;
+            return QString();
     }
 }
 
@@ -87,7 +87,7 @@ QString SqliteExpr::notNullOp(SqliteExpr::NotNull value)
         case SqliteExpr::NotNull::NOTNULL:
             return "NOTNULL";
         default:
-            return QString::null;
+            return QString();
     }
 }
 

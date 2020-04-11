@@ -37,8 +37,6 @@ class DBANDROIDSHARED_EXPORT DbAndroid : public GenericPlugin, public DbPlugin
         bool isAdbValid() const;
         DbAndroidConnectionFactory* getConnectionFactory() const;
 
-        static_char* PASSWORD_OPT = "remote_access_password";
-
     private:
         void initAdb();
         QString askForAdbPath();

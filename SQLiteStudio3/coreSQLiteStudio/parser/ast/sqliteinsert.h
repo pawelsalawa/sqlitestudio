@@ -45,8 +45,8 @@ class API_EXPORT SqliteInsert : public SqliteQuery
         bool replaceKw = false;
         bool defaultValuesKw = false;
         SqliteConflictAlgo onConflict = SqliteConflictAlgo::null;
-        QString database = QString::null;
-        QString table = QString::null;
+        QString database = QString();
+        QString table = QString();
         QStringList columnNames;
         QList<SqliteExpr*> values;
         SqliteSelect* select = nullptr;

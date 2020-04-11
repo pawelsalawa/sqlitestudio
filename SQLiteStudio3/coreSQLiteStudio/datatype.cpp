@@ -164,7 +164,7 @@ QString DataType::toString(DataType::Enum e)
     QMetaEnum metaEnum = staticMetaObject.enumerator(0);
     const char* key = metaEnum.valueToKey(e);
     if (!key)
-        return QString::null;
+        return QString();
 
     return key;
 }

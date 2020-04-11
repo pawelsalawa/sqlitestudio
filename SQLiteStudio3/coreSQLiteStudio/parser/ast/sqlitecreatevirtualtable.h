@@ -31,9 +31,9 @@ class API_EXPORT SqliteCreateVirtualTable : public SqliteQuery
 
     public:
         bool ifNotExistsKw = false;
-        QString database = QString::null;
-        QString table = QString::null;
-        QString module = QString::null;
+        QString database = QString();
+        QString table = QString();
+        QString module = QString();
         QList<QString> args;
 };
 

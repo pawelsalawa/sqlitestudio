@@ -14,7 +14,7 @@ class API_EXPORT SqliteSavepoint : public SqliteQuery
 
         SqliteStatement* clone();
 
-        QString name = QString::null;
+        QString name = QString();
 
     protected:
         TokenList rebuildTokensFromContents();

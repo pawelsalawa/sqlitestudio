@@ -87,7 +87,7 @@ void FunctionsEditorModel::setCode(int row, const QString& code)
 
 QString FunctionsEditorModel::getCode(int row) const
 {
-    GETTER(functionList[row]->data.code, QString::null);
+    GETTER(functionList[row]->data.code, QString());
 }
 
 void FunctionsEditorModel::setFinalCode(int row, const QString& code)
@@ -97,7 +97,7 @@ void FunctionsEditorModel::setFinalCode(int row, const QString& code)
 
 QString FunctionsEditorModel::getFinalCode(int row) const
 {
-    GETTER(functionList[row]->data.finalCode, QString::null);
+    GETTER(functionList[row]->data.finalCode, QString());
 }
 
 void FunctionsEditorModel::setInitCode(int row, const QString& code)
@@ -107,7 +107,7 @@ void FunctionsEditorModel::setInitCode(int row, const QString& code)
 
 QString FunctionsEditorModel::getInitCode(int row) const
 {
-    GETTER(functionList[row]->data.initCode, QString::null);
+    GETTER(functionList[row]->data.initCode, QString());
 }
 
 void FunctionsEditorModel::setName(int row, const QString& newName)
@@ -117,7 +117,7 @@ void FunctionsEditorModel::setName(int row, const QString& newName)
 
 QString FunctionsEditorModel::getName(int row) const
 {
-    GETTER(functionList[row]->data.name, QString::null);
+    GETTER(functionList[row]->data.name, QString());
 }
 
 void FunctionsEditorModel::setLang(int row, const QString& lang)
@@ -127,7 +127,7 @@ void FunctionsEditorModel::setLang(int row, const QString& lang)
 
 QString FunctionsEditorModel::getLang(int row) const
 {
-    GETTER(functionList[row]->data.lang, QString::null);
+    GETTER(functionList[row]->data.lang, QString());
 }
 
 bool FunctionsEditorModel::getUndefinedArgs(int row) const

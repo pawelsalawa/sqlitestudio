@@ -21,9 +21,9 @@ class API_EXPORT SqliteIndexedColumn : public SqliteStatement, public SqliteExte
         QString getCollation() const;
         void clearCollation();
 
-        QString name = QString::null;
+        QString name = QString();
         SqliteSortOrder sortOrder = SqliteSortOrder::null;
-        QString collate = QString::null;
+        QString collate = QString();
 
     protected:
         QStringList getColumnsInStatement();

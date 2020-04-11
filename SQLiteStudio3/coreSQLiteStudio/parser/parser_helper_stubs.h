@@ -27,8 +27,8 @@
  */
 struct ParserFullName
 {
-    QString name1 = QString::null;
-    QString name2 = QString::null;
+    QString name1 = QString();
+    QString name2 = QString();
 };
 
 /**
@@ -59,7 +59,7 @@ struct ParserStubInsertOrReplace
  */
 struct ParserStubTransDetails
 {
-    QString name = QString::null;
+    QString name = QString();
     SqliteBeginTrans::Type type = SqliteBeginTrans::Type::null;
     bool transactionKw = false;
     bool toKw = false;
@@ -98,7 +98,7 @@ struct ParserStubAlias
 {
     ParserStubAlias(const QString& name, bool asKw);
 
-    QString name = QString::null;
+    QString name = QString();
     bool asKw = false;
 };
 
@@ -111,7 +111,7 @@ struct ParserIndexedBy
     explicit ParserIndexedBy(bool indexedBy);
 
     bool notIndexedKw = false;
-    QString indexedBy = QString::null;
+    QString indexedBy = QString();
 };
 
 #endif // PARSER_HELPER_STUBS_H

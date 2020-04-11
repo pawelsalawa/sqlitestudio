@@ -71,9 +71,9 @@ class API_EXPORT SqliteCreateTrigger : public SqliteQuery, public SqliteTableRel
         bool temporaryKw = false;
         bool ifNotExistsKw = false;
         // The database refers to the trigger name in Sqlite3, but in Sqlite2 it refers to the table.
-        QString database = QString::null;
-        QString trigger = QString::null;
-        QString table = QString::null; // can also be a view name
+        QString database = QString();
+        QString trigger = QString();
+        QString table = QString(); // can also be a view name
         Event* event = nullptr;
         Time eventTime = Time::null;
         Scope scope = Scope::null;

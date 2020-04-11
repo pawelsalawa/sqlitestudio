@@ -11,7 +11,7 @@ QString sqliteDeferrable(SqliteDeferrable deferrable)
         case SqliteDeferrable::null:
             break;
     }
-    return QString::null;
+    return QString();
 }
 
 SqliteDeferrable sqliteDeferrable(const QString& deferrable)
@@ -38,7 +38,7 @@ QString sqliteInitially(SqliteInitially initially)
         case SqliteInitially::null:
             break;
     }
-    return QString::null;
+    return QString();
 }
 
 SqliteInitially sqliteInitially(const QString& initially)

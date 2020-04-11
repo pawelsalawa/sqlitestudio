@@ -243,7 +243,7 @@ QString AbstractDb::getEncoding()
     if (!isOpen())
     {
         if (!openQuiet())
-            return QString::null;
+            return QString();
 
         doClose = true;
     }
@@ -627,7 +627,7 @@ QString AbstractDb::attach(Db* otherDb, bool silent)
 {
     QWriteLocker locker(&dbOperLock);
     if (!isOpenInternal())
-        return QString::null;
+        return QString();
 
     if (attachedDbMap.containsRight(otherDb))
     {
@@ -644,7 +644,7 @@ QString AbstractDb::attach(Db* otherDb, bool silent)
         else
             qDebug() << QString("Error attaching database %1: %2").arg(otherDb->getName()).arg(results->getErrorText());
 
-        return QString::null;
+        return QString();
     }
 
     attachedDbMap.insert(attName, otherDb);

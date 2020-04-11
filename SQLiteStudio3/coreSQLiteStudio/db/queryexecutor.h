@@ -699,7 +699,7 @@ class API_EXPORT QueryExecutor : public QObject, public QRunnable
          * @param query Optional query to execute. If not provided, it has to be defined later with setQuery().
          * @param parent Parent QObject.
          */
-        QueryExecutor(Db* db = nullptr, const QString& query = QString::null, QObject *parent = 0);
+        QueryExecutor(Db* db = nullptr, const QString& query = QString(), QObject *parent = 0);
 
         /**
          * @brief Releases internal resources.

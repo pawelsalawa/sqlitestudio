@@ -109,7 +109,7 @@ void ParserContext::flushErrors()
         else
             error(QObject::tr("Incomplete query."));
 
-        nextTokenError = QString::null;
+        nextTokenError = QString();
         raiseErrorBeforeNextToken = false;
     }
 }
@@ -144,7 +144,7 @@ void ParserContext::addManagedToken(TokenPtr token)
     if (raiseErrorBeforeNextToken)
     {
         error(token, nextTokenError);
-        nextTokenError = QString::null;
+        nextTokenError = QString();
         raiseErrorBeforeNextToken = false;
     }
 }

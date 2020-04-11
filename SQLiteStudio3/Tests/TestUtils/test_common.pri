@@ -1,6 +1,6 @@
 include($$PWD/../../dirs.pri)
 include($$PWD/../testdirs.pri)
 
-CONFIG += c++11
+CONFIG += c++17
 
 LIBS += -lTestUtils -lcoreSQLiteStudio

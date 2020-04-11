@@ -1,0 +1,40 @@
+name: 3.2 branch Windows snapshot
+
+on:
+    push:
+        branches:
+            - master
+
+jobs:
+    build:
+        runs-on: windows-2019
+
+        steps:
+            - name: Cache Qt
+              id: cache-qt
+              uses: actions/cache@v1
+              with:
+                path: ${{ github.workspace }}/Qt/
+                key: ${{ runner.os }}-QtCache
+                
+            - name: Install Qt
+              uses: jurplel/install-qt-action@v2
+              with:
+                cached: ${{ steps.cache-qt.outputs.cache-hit }}
+                version: '5.14.2'
+                host: 'windows'
+                arch: 'win64_mingw73'
+                dir: '${{ github.workspace }}/Qt/'
+                modules: 'qtscript'
+
+            - name: Clone repo
+              uses: actions/checkout@v2
+              with:
+                ref: 3.2
+
+            - name: Download dependencies
+              shell: pwsh
+              run (new-object System.Net.WebClient).DownloadFile('https://www.dropbox.com/s/b5t6lb9e7riytq1/win64_deps.zip?dl=1', '.\win64_deps.zip')
+            
+            - name: Decompress dependencies
+              run: 7z x win64_deps.zip

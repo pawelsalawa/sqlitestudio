@@ -110,7 +110,7 @@ QString DbObjListModel::typeString() const
         case ObjectType::null:
             break;
     }
-    return QString::null;
+    return QString();
 }
 bool DbObjListModel::getIncludeSystemObjects() const
 {

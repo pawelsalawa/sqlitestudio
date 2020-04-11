@@ -427,7 +427,7 @@ QString SqliteCreateTable::Column::Constraint::typeString() const
         case SqliteCreateTable::Column::Constraint::DEFERRABLE_ONLY:
             break;
     }
-    return QString::null;
+    return QString();
 }
 
 SqliteCreateTable::Constraint::Constraint()
@@ -551,9 +551,9 @@ QString SqliteCreateTable::Constraint::typeString() const
         case SqliteCreateTable::Constraint::FOREIGN_KEY:
             return "FOREIGN KEY";
         case SqliteCreateTable::Constraint::NAME_ONLY:
-            return QString::null;
+            return QString();
     }
-    return QString::null;
+    return QString();
 }
 
 TokenList SqliteCreateTable::Constraint::rebuildTokensFromContents()

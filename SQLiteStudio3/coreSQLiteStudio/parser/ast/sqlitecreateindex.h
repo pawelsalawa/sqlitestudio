@@ -34,9 +34,9 @@ class API_EXPORT SqliteCreateIndex : public SqliteQuery, public SqliteTableRelat
         bool ifNotExistsKw = false;
         QList<SqliteOrderBy*> indexedColumns;
         // The database refers to index name in Sqlite3, but in Sqlite2 it refers to the table.
-        QString database = QString::null;
-        QString index = QString::null;
-        QString table = QString::null;
+        QString database = QString();
+        QString index = QString();
+        QString table = QString();
         SqliteConflictAlgo onConflict = SqliteConflictAlgo::null;
         SqliteExpr* where = nullptr;
 

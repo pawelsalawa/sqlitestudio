@@ -76,7 +76,7 @@ void ConstraintCheckPanel::storeConfiguration()
     newExpr->setParent(constraint.data());
     storeExpr(newExpr);
 
-    QString name = QString::null;
+    QString name = QString();
     if (ui->namedCheck->isChecked())
         name = ui->namedEdit->text();
 

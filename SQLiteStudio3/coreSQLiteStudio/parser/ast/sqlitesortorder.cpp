@@ -19,7 +19,7 @@ QString sqliteSortOrder(SqliteSortOrder value)
         case SqliteSortOrder::DESC:
             return "DESC";
         default:
-            return QString::null;
+            return QString();
 
     }
 }

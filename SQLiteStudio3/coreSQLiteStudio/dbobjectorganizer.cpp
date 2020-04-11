@@ -94,7 +94,7 @@ void DbObjectOrganizer::reset()
     srcTriggers.clear();
     srcViews.clear();
     renamed.clear();
-    srcTable = QString::null;
+    srcTable = QString();
     includeData = false;
     includeIndexes = false;
     includeTriggers = false;

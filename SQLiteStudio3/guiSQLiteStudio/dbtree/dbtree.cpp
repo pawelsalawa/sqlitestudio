@@ -794,7 +794,7 @@ Db* DbTree::getSelectedOpenDb()
 
 TableWindow* DbTree::openTable(DbTreeItem* item)
 {
-    QString database = QString::null; // TODO implement this when named databases (attached) are handled by dbtree.
+    QString database = QString(); // TODO implement this when named databases (attached) are handled by dbtree.
     Db* db = item->getDb();
     return openTable(db, database, item->text());
 }
@@ -807,7 +807,7 @@ TableWindow* DbTree::openTable(Db* db, const QString& database, const QString& t
 
 void DbTree::editIndex(DbTreeItem* item)
 {
-    //QString database = QString::null; // TODO implement this when named databases (attached) are handled by dbtree.
+    //QString database = QString(); // TODO implement this when named databases (attached) are handled by dbtree.
     Db* db = item->getDb();
 
     DbObjectDialogs dialogs(db);
@@ -816,7 +816,7 @@ void DbTree::editIndex(DbTreeItem* item)
 
 ViewWindow* DbTree::openView(DbTreeItem* item)
 {
-    QString database = QString::null; // TODO implement this when named databases (attached) are handled by dbtree.
+    QString database = QString(); // TODO implement this when named databases (attached) are handled by dbtree.
     Db* db = item->getDb();
     return openView(db, database, item->text());
 }
@@ -845,7 +845,7 @@ ViewWindow* DbTree::newView(DbTreeItem* item)
 
 void DbTree::editTrigger(DbTreeItem* item)
 {
-    //QString database = QString::null; // TODO implement this when named databases (attached) are handled by dbtree.
+    //QString database = QString(); // TODO implement this when named databases (attached) are handled by dbtree.
     Db* db = item->getDb();
 
     DbObjectDialogs dialogs(db);
@@ -1267,7 +1267,7 @@ void DbTree::editTable()
         return;
     }
 
-    openTable(db, QString::null, table); // TODO put database name when supported
+    openTable(db, QString(), table); // TODO put database name when supported
 }
 
 void DbTree::delTable()

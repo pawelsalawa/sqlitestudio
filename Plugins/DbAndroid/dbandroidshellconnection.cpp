@@ -355,7 +355,7 @@ QVariant DbAndroidShellConnection::valueFromString(const QByteArray& bytes, cons
             qCritical() << "Unknown type passed to DbAndroidShellConnection::valueFromString():" << type;
             break;
     }
-    return QVariant(QString::null);
+    return QVariant(QString());
 }
 
 void DbAndroidShellConnection::checkForDisconnection(const QStringList& devices)

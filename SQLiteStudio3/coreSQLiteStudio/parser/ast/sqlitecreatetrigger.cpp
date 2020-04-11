@@ -126,7 +126,7 @@ QString SqliteCreateTrigger::time(SqliteCreateTrigger::Time eventTime)
         case SqliteCreateTrigger::Time::null:
             break;
     }
-    return QString::null;
+    return QString();
 }
 
 SqliteCreateTrigger::Time SqliteCreateTrigger::time(const QString& eventTime)
@@ -154,7 +154,7 @@ QString SqliteCreateTrigger::scopeToString(SqliteCreateTrigger::Scope scope)
         case SqliteCreateTrigger::Scope::null:
             break;
     }
-    return QString::null;
+    return QString();
 }
 
 SqliteCreateTrigger::Scope SqliteCreateTrigger::stringToScope(const QString& scope)
@@ -299,7 +299,7 @@ QString SqliteCreateTrigger::Event::typeToString(SqliteCreateTrigger::Event::Typ
         case SqliteCreateTrigger::Event::null:
             break;
     }
-    return QString::null;
+    return QString();
 }
 
 SqliteCreateTrigger::Event::Type SqliteCreateTrigger::Event::stringToType(const QString& type)

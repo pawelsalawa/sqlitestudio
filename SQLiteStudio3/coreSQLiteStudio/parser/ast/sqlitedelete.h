@@ -31,11 +31,11 @@ class API_EXPORT SqliteDelete : public SqliteQuery
         void init(const QString& name1, const QString& name2, SqliteExpr* where, SqliteWith* with);
 
     public:
-        QString database = QString::null;
-        QString table = QString::null;
+        QString database = QString();
+        QString table = QString();
         bool indexedByKw = false;
         bool notIndexedKw = false;
-        QString indexedBy = QString::null;
+        QString indexedBy = QString();
         SqliteExpr* where = nullptr;
         SqliteWith* with = nullptr;
 };

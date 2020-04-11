@@ -621,7 +621,7 @@ QString getQueryWithPosition(const QStringList& queries, int position, int* star
     if (startPos)
         *startPos = -1;
 
-    return QString::null;
+    return QString();
 }
 
 QString getQueryWithPosition(const QString& queries, int position, int* startPos)

@@ -749,7 +749,7 @@ void SqlQueryView::setNull()
         if (selItem->getColumn()->editionForbiddenReason.size() > 0)
             continue;
 
-        selItem->setValue(QVariant(QString::null), false, false);
+        selItem->setValue(QVariant(QString()), false, false);
     }
 }
 

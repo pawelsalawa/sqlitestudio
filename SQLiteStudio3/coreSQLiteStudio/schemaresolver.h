@@ -60,19 +60,19 @@ class API_EXPORT SchemaResolver
         explicit SchemaResolver(Db* db);
         virtual ~SchemaResolver();
 
-        QStringList getTables(const QString& database = QString::null);
-        QStringList getIndexes(const QString& database = QString::null);
-        QStringList getTriggers(const QString& database = QString::null);
-        QStringList getViews(const QString& database = QString::null);
-        StrHash<QStringList> getGroupedIndexes(const QString& database = QString::null);
-        StrHash<QStringList> getGroupedTriggers(const QString& database = QString::null);
+        QStringList getTables(const QString& database = QString());
+        QStringList getIndexes(const QString& database = QString());
+        QStringList getTriggers(const QString& database = QString());
+        QStringList getViews(const QString& database = QString());
+        StrHash<QStringList> getGroupedIndexes(const QString& database = QString());
+        StrHash<QStringList> getGroupedTriggers(const QString& database = QString());
         QSet<QString> getDatabases();
         QStringList getObjects(const QString& type);
         QStringList getObjects(const QString& database, const QString& type);
         QStringList getAllObjects();
         QStringList getAllObjects(const QString& database);
         QString getUniqueName(const QString& database, const QString& namePrefix, const QStringList& forbiddenNames = QStringList());
-        QString getUniqueName(const QString& namePrefix = QString::null, const QStringList& forbiddenNames = QStringList());
+        QString getUniqueName(const QString& namePrefix = QString(), const QStringList& forbiddenNames = QStringList());
         QStringList getFkReferencingTables(const QString& table);
         QStringList getFkReferencingTables(const QString& database, const QString& table);
 
@@ -131,7 +131,7 @@ class API_EXPORT SchemaResolver
         QList<DataType> getTableColumnDataTypes(const QString& table, int expectedNumberOfTypes = -1);
         QList<DataType> getTableColumnDataTypes(const QString& database, const QString& table, int expectedNumberOfTypes = -1);
 
-        StrHash<QStringList> getAllTableColumns(const QString& database = QString::null);
+        StrHash<QStringList> getAllTableColumns(const QString& database = QString());
 
         QStringList getViewColumns(const QString& view);
         QStringList getViewColumns(const QString& database, const QString& view);

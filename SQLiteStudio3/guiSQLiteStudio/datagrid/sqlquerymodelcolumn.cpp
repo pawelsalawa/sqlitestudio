@@ -82,7 +82,7 @@ QString SqlQueryModelColumn::resolveMessage(SqlQueryModelColumn::EditionForbidde
             return QObject::tr("Cannot edit columns that are result of common table expression statement (%1).").arg("WITH ... SELECT ...");
     }
     qCritical() << "Reached null text message for SqlQueryModel::EditionForbiddenReason. This should not happen!";
-    return QString::null;
+    return QString();
 }
 
 bool SqlQueryModelColumn::isNumeric()
@@ -98,7 +98,7 @@ bool SqlQueryModelColumn::canEdit()
 QString SqlQueryModelColumn::getEditionForbiddenReason()
 {
     if (canEdit())
-        return QString::null;
+        return QString();
 
     // We sort reasons to get most significant reason at first position.
     QList<EditionForbiddenReason> list = editionForbiddenReason.toList();
@@ -392,7 +392,7 @@ QString SqlQueryModelColumn::ConstraintUnique::getDetails() const
     if (onConflict != SqliteConflictAlgo::null)
         return "("+QObject::tr("on conflict: %1", "data view tooltip").arg(sqliteConflictAlgo(onConflict))+")";
 
-    return QString::null;
+    return QString();
 }
 
 Icon* SqlQueryModelColumn::ConstraintUnique::getIcon() const
@@ -410,7 +410,7 @@ QString SqlQueryModelColumn::ConstraintNotNull::getDetails() const
     if (onConflict != SqliteConflictAlgo::null)
         return "("+QObject::tr("on conflict: %1", "data view tooltip").arg(sqliteConflictAlgo(onConflict))+")";
 
-    return QString::null;
+    return QString();
 }
 
 Icon* SqlQueryModelColumn::ConstraintNotNull::getIcon() const

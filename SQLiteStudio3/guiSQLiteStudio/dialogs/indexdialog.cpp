@@ -91,7 +91,7 @@ void IndexDialog::init()
     connect(columnStateSignalMapping, SIGNAL(mapped(QString)), this, SLOT(updateColumnState(QString)));
 
     SchemaResolver resolver(db);
-    ui->tableCombo->addItem(QString::null);
+    ui->tableCombo->addItem(QString());
     ui->tableCombo->addItems(resolver.getTables());
     connect(ui->tableCombo, SIGNAL(currentTextChanged(QString)), this, SLOT(updateTable(QString)));
     connect(ui->tableCombo, SIGNAL(currentTextChanged(QString)), this, SLOT(updateValidation()));

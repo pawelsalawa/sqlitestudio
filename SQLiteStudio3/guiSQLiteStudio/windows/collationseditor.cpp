@@ -163,9 +163,9 @@ void CollationsEditor::collationSelected(int row)
 
 void CollationsEditor::clearEdits()
 {
-    ui->nameEdit->setText(QString::null);
-    ui->codeEdit->setPlainText(QString::null);
-    ui->langCombo->setCurrentText(QString::null);
+    ui->nameEdit->setText(QString());
+    ui->codeEdit->setPlainText(QString());
+    ui->langCombo->setCurrentText(QString());
     ui->allDatabasesRadio->setChecked(true);
     ui->langCombo->setCurrentIndex(-1);
 }

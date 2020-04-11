@@ -35,7 +35,7 @@ class API_EXPORT PopulateEngine
          *
          * If populating with this plugin is not configurable (i.e. getConfig() returns null),
          * then this method is not even called, so it can return anything, just to satisfy method
-         * return type. In that case good idea is to always return QString::null.
+         * return type. In that case good idea is to always return QString().
          *
          * @see FormManager
          */

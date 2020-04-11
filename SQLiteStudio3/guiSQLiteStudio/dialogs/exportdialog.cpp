@@ -718,7 +718,7 @@ void ExportDialog::exportTable(const ExportManager::StandardExportConfig& stdCon
 
     EXPORT_MANAGER->configure(format, stdConfig);
     // TODO when dbnames are fully supported, pass the dbname below
-    EXPORT_MANAGER->exportTable(db, QString::null, ui->exportTableNameCombo->currentText());
+    EXPORT_MANAGER->exportTable(db, QString(), ui->exportTableNameCombo->currentText());
 }
 
 void ExportDialog::exportQuery(const ExportManager::StandardExportConfig& stdConfig, const QString& format)
@@ -741,7 +741,7 @@ ExportManager::StandardExportConfig ExportDialog::getExportConfig() const
     stdConfig.intoClipboard = clipboard;
 
     if (clipboard)
-        stdConfig.outputFileName = QString::null;
+        stdConfig.outputFileName = QString();
     else if (outputFileSupported)
         stdConfig.outputFileName = ui->exportFileEdit->text();
 

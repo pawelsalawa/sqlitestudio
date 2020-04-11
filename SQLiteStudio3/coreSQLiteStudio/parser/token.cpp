@@ -4,7 +4,7 @@
 #include <QStringList>
 
 Token::Token()
-    : lemonType(0), type(INVALID), value(QString::null), start(-1), end(-1)
+    : lemonType(0), type(INVALID), value(QString()), start(-1), end(-1)
 {
 }
 

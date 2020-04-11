@@ -16,6 +16,8 @@
 #include <QDesktopServices>
 #include <QtConcurrent/QtConcurrent>
 
+//constexpr const char* DbAndroid::SELECT_ADB_URL;
+
 DbAndroid::DbAndroid()
 {
 }
