@@ -1,0 +1,3 @@
+buttons:
+  - title: Build 3.2 Windows snapshot
+    action: "build_win64_snapshot"
