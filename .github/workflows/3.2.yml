@@ -5,6 +5,9 @@ on:
         branches:
             - 3.2
 
+    repository_dispatch:
+        types: [build_win64_snapshot]
+
 jobs:
     build:
         runs-on: windows-2019
@@ -38,3 +41,9 @@ jobs:
             
             - name: Decompress dependencies
               run: 7z x win64_deps.zip
+
+            - name: Debug tree
+              run: tree
+              
+            - name: QMake
+              run: qmake
