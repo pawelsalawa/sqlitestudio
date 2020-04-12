@@ -34,16 +34,13 @@ jobs:
               if: steps.cache-qt.outputs.cache-hit != 'true'
               shell: bash
               run: curl -L https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw730/7.3.0-1x86_64-7.3.0-release-posix-seh-rt_v5-rev0.7z --output ../mingw.7z
- 
-            - name: Debug dir
-              run: dir ..
-              
-            - name: Debug dir2
-              run: dir
               
             - name: Decompress mingw
               if: steps.cache-qt.outputs.cache-hit != 'true'
               run: 7z x -o"${{ github.workspace }}\..\Qt" ..\mingw.7z
+ 
+            - name: Add mingw to PATH
+              run: echo "::add-path::${{ github.workspace }}\..\Qt\Tools\mingw730_64\bin"
  
             - name: Clone repo
               uses: actions/checkout@v2
@@ -52,13 +49,10 @@ jobs:
 
             - name: Download dependencies
               shell: bash
-              run: curl https://www.dropbox.com/s/b5t6lb9e7riytq1/win64_deps.zip?dl=1 --output ..\win64_deps.zip
+              run: curl https://www.dropbox.com/s/b5t6lb9e7riytq1/win64_deps.zip?dl=1 --output ../win64_deps.zip
             
             - name: Decompress dependencies
               run: 7z x -o".." ..\win64_deps.zip
-
-            - name: Debug pwd
-              run: pwd
               
             - name: Debug tree
               run: tree .. /A
@@ -80,4 +74,7 @@ jobs:
 
             - name: Make
               run: ${{ github.workspace }}\..\Qt\Tools\mingw730_64\bin\mingw32-make.exe --help
+
+            - name: Make1
+              run: mingw32-make.exe --help
               
