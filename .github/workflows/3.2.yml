@@ -49,7 +49,7 @@ jobs:
               run: tree
               
             - name: QMake
-              run: qmake.exe --help
+              run: ${{ github.workspace }}\Qt\5.14.2\mingw73_64\bin\qmake.exe --help
               
             - name: Make
               run: ${{ github.workspace }}\Qt\Tools\mingw730_64\bin\mingw32-make.exe --help
