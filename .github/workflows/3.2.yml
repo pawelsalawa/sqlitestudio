@@ -16,9 +16,6 @@ jobs:
             - name: Debug pwd
               run: pwd
 
-            - name: Debug tree
-              run: tree /A
-
             - name: Cache Qt
               id: cache-qt
               uses: actions/cache@v1
