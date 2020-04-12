@@ -98,23 +98,23 @@ jobs:
               shell: bash
               working-directory: ${{ env.Qt5_Dir }}
               run: |
-                for f in Qt5Core Qt5Gui Qt5Network Qt5PrintSupport Qt5Script Qt5Svg Qt5Widgets Qt5Xml; do cp bin/f.dll ${{ env.PORTABLE_DIR }}; done
+                for f in Qt5Core Qt5Gui Qt5Network Qt5PrintSupport Qt5Script Qt5Svg Qt5Widgets Qt5Xml; do cp bin/$f.dll "${{ env.PORTABLE_DIR }}"; done
                 cp qt.conf ${{ env.PORTABLE_DIR }}
-                mkdir ${{ env.PORTABLE_DIR }}/iconengines
-                mkdir ${{ env.PORTABLE_DIR }}/platforms
-                mkdir ${{ env.PORTABLE_DIR }}/printsupport
-                mkdir ${{ env.PORTABLE_DIR }}/styles
-                mkdir ${{ env.PORTABLE_DIR }}/imageformats
-                cp plugins/iconengines/qsvgicon.dll ${{ env.PORTABLE_DIR }}/iconengines
-                cp plugins/platforms/qwindows.dll ${{ env.PORTABLE_DIR }}/platforms
-                cp plugins/styles/qwindowsvistastyle.dll ${{ env.PORTABLE_DIR }}/styles
-                cp plugins/printsupport/windowsprintersupport.dll ${{ env.PORTABLE_DIR }}/printsupport
-                for f in qgif qicns qico qjpeg qsvg qtga qtiff qwbmp; do cp plugins/imageformats/$f.dll ${{ env.PORTABLE_DIR }}/imageformats; done
+                mkdir "${{ env.PORTABLE_DIR }}/iconengines"
+                mkdir "${{ env.PORTABLE_DIR }}/platforms"
+                mkdir "${{ env.PORTABLE_DIR }}/printsupport"
+                mkdir "${{ env.PORTABLE_DIR }}/styles"
+                mkdir "${{ env.PORTABLE_DIR }}/imageformats"
+                cp plugins/iconengines/qsvgicon.dll "${{ env.PORTABLE_DIR }}/iconengines"
+                cp plugins/platforms/qwindows.dll "${{ env.PORTABLE_DIR }}/platforms"
+                cp plugins/styles/qwindowsvistastyle.dll "${{ env.PORTABLE_DIR }}/styles"
+                cp plugins/printsupport/windowsprintersupport.dll "${{ env.PORTABLE_DIR }}/printsupport"
+                for f in qgif qicns qico qjpeg qsvg qtga qtiff qwbmp; do cp plugins/imageformats/$f.dll "${{ env.PORTABLE_DIR }}/imageformats"; done
 
             - name: Prepare portable distro (Deps)
               shell: bash
               working-directory: ${{ github.workspace }}/../lib
-              run: cp *.dll ${{ env.PORTABLE_DIR }}
+              run: cp *.dll "${{ env.PORTABLE_DIR }}"
 
             - name: Assemble portable package
               shell: bash
