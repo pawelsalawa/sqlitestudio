@@ -60,7 +60,7 @@ jobs:
             
             - name: QMake SQLiteStudio3
               working-directory: output/build
-              run: qmake.exe ..\..\SQLiteStudio3
+              run: qmake.exe DEFINES+=tests ..\..\SQLiteStudio3
             
             - name: Make SQLiteStudio3
               working-directory: output/build
@@ -68,7 +68,7 @@ jobs:
             
             - name: QMake Plugins
               working-directory: output/build/Plugins
-              run: qmake.exe ..\..\..\Plugins
+              run: qmake.exe DEFINES+=tests ..\..\..\Plugins
             
             - name: Make Plugins
               working-directory: output/build/Plugins
