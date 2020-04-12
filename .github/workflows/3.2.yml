@@ -29,7 +29,7 @@ jobs:
                 arch: 'win64_mingw73'
                 dir: '${{ github.workspace }}\..'
                 modules: 'qtscript'
-
+                
             - name: Clone repo
               uses: actions/checkout@v2
               with:
@@ -47,6 +47,9 @@ jobs:
               
             - name: Debug tree
               run: tree .. /A
+              
+            - name: Debug path
+              run: echo ${env:Path}
               
             - name: Debug dir
               run: dir ..
