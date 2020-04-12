@@ -1,7 +1,6 @@
 env:
     SQLITESTUDIO_BRANCH: 3.2
     QT_VERSION: '5.14.2'
-    QT_DIR: ${{ github.workspace }}/../Qt/5.14.2/mingw73_64
     QT_ARCH: 'win64_mingw73'
     MINGW_DIR: ${{ github.workspace }}/../Qt/Tools/mingw730_64
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
@@ -97,20 +96,20 @@ jobs:
 
             - name: Prepare portable distro (Qt)
               shell: bash
-              working-directory: ${{ env.QT_DIR }}/bin
+              working-directory: ${{ env.Qt5_Dir }}
               run: |
-                for f in Qt5Core Qt5Gui Qt5Network Qt5PrintSupport Qt5Script Qt5Svg Qt5Widgets Qt5Xml; do cp $f.dll ${{ env.PORTABLE_DIR }}; done
+                for f in Qt5Core Qt5Gui Qt5Network Qt5PrintSupport Qt5Script Qt5Svg Qt5Widgets Qt5Xml; do cp bin/f.dll ${{ env.PORTABLE_DIR }}; done
                 cp qt.conf ${{ env.PORTABLE_DIR }}
                 mkdir ${{ env.PORTABLE_DIR }}/iconengines
                 mkdir ${{ env.PORTABLE_DIR }}/platforms
                 mkdir ${{ env.PORTABLE_DIR }}/printsupport
                 mkdir ${{ env.PORTABLE_DIR }}/styles
-                cp iconengines/qsvgicon.dll ${{ env.PORTABLE_DIR }}/iconengines
-                cp platforms/qwindows.dll ${{ env.PORTABLE_DIR }}/platforms
-                cp styles/qwindowsvistastyle.dll ${{ env.PORTABLE_DIR }}/styles
-                cp printsupport/windowsprintersupport.dll ${{ env.PORTABLE_DIR }}/printsupport
                 mkdir ${{ env.PORTABLE_DIR }}/imageformats
-                for f in qgif qicns qico qjpeg qsvg qtga qtiff qwbmp; do cp imageformats/$f.dll ${{ env.PORTABLE_DIR }}/imageformats/; done
+                cp plugins/iconengines/qsvgicon.dll ${{ env.PORTABLE_DIR }}/iconengines
+                cp plugins/platforms/qwindows.dll ${{ env.PORTABLE_DIR }}/platforms
+                cp plugins/styles/qwindowsvistastyle.dll ${{ env.PORTABLE_DIR }}/styles
+                cp plugins/printsupport/windowsprintersupport.dll ${{ env.PORTABLE_DIR }}/printsupport
+                for f in qgif qicns qico qjpeg qsvg qtga qtiff qwbmp; do cp plugins/imageformats/$f.dll ${{ env.PORTABLE_DIR }}/imageformats; done
 
             - name: Prepare portable distro (Deps)
               shell: bash
