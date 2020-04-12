@@ -73,3 +73,8 @@ jobs:
             - name: Make Plugins
               working-directory: output/build/Plugins
               run: mingw32-make.exe -j 2
+              
+            - name: Tests
+              shell: bash
+              working-directory: output/SQLiteStudio
+              run: for f in `ls tst_*`; do echo $f; done

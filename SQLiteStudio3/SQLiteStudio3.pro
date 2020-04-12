@@ -30,7 +30,7 @@ SUBDIRS += \
     cli \
     gui_app
 
-if(contains(DEFINES,tests)) {
+contains(DEFINES, tests) {
     SUBDIRS += tests
 }
 

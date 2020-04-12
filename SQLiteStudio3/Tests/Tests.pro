@@ -23,6 +23,12 @@ db_ver_conv.depends = test_utils
 dsv.subdir = DsvFormatsTest
 dsv.depends = test_utils
 
+utils_test.subdir = UtilsTest
+utils_test.depends = test_utils
+
+lexer_test.subdir = LexerTest
+lexer_test.depends = test_utils
+
 SUBDIRS += \
     test_utils \
     completion_helper \
@@ -32,5 +38,5 @@ SUBDIRS += \
     hash_tables \
     db_ver_conv \
     dsv \
-    UtilsTest \
-    LexerTest
+    utils_test \
+    lexer_test
