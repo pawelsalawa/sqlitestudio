@@ -42,7 +42,9 @@ jobs:
             - name: Download mingw
 #              run: aqt tool windows tools_mingw 7.3.0-1-201903151311 qt.tools.win64_mingw730
               if: steps.cache-qt.outputs.cache-hit != 'true'
-              run: start https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw730/7.3.0-1x86_64-7.3.0-release-posix-seh-rt_v5-rev0.7z
+ #             run: start https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw730/7.3.0-1x86_64-7.3.0-release-posix-seh-rt_v5-rev0.7z
+              shell: bash
+              run: curl https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw730/7.3.0-1x86_64-7.3.0-release-posix-seh-rt_v5-rev0.7z --output mingw.7z
  
             # - name: Decompress mingw
               # if: steps.cache-qt.outputs.cache-hit != 'true'
