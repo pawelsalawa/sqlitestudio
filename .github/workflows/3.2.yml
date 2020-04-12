@@ -1,9 +1,18 @@
-name: 3.2 branch Windows snapshot
+env:
+    SQLITESTUDIO_BRANCH: 3.2
+    QT_VERSION: '5.14.2'
+    QT_DIR: ${{ github.workspace }}/../Qt/${{ QT_VERSION }}/mingw73_64
+    MINGW_DIR: ${{ github.workspace }}/../Qt/Tools/mingw730_64
+    PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
+    MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw730/7.3.0-1x86_64-7.3.0-release-posix-seh-rt_v5-rev0.7z
+    DEPS_URL: https://www.dropbox.com/s/9ulp1w82826966i/win64_deps.zip?dl=1
+
+name: ${{ SQLITESTUDIO_BRANCH }} Windows build
 
 on:
     push:
         branches:
-            - 3.2
+            - ${{ SQLITESTUDIO_BRANCH }}
 
     repository_dispatch:
         types: [build_win64_snapshot]
@@ -24,60 +33,95 @@ jobs:
               uses: jurplel/install-qt-action@v2
               with:
                 cached: ${{ steps.cache-qt.outputs.cache-hit }}
-                version: '5.14.2'
+                version: ${{ QT_VERSION }}
                 host: 'windows'
                 arch: 'win64_mingw73'
                 dir: '${{ github.workspace }}\..'
                 modules: 'qtscript'
                 
-            - name: Download mingw
+            - name: Install mingw
               if: steps.cache-qt.outputs.cache-hit != 'true'
               shell: bash
-              run: curl -L https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw730/7.3.0-1x86_64-7.3.0-release-posix-seh-rt_v5-rev0.7z --output ../mingw.7z
-              
-            - name: Decompress mingw
-              if: steps.cache-qt.outputs.cache-hit != 'true'
-              run: 7z x -o"${{ github.workspace }}\..\Qt" ..\mingw.7z
- 
-            - name: Add mingw to PATH
-              run: echo "::add-path::${{ github.workspace }}\..\Qt\Tools\mingw730_64\bin"
+              run: |
+                curl -L ${{ MINGW_URL }} --output ../mingw.7z
+                7z x -o"${{ github.workspace }}\..\Qt" ..\mingw.7z
+                echo "::add-path::${{ MINGW_DIR }}\bin"
  
             - name: Clone repo
               uses: actions/checkout@v2
               with:
-                ref: 3.2
+                ref: ${{ SQLITESTUDIO_BRANCH }}
 
-            - name: Download dependencies
+            - name: Install dependencies
               shell: bash
-              run: curl -L https://www.dropbox.com/s/9ulp1w82826966i/win64_deps.zip?dl=1 --output ../win64_deps.zip
-            
-            - name: Decompress dependencies
-              run: 7z x -o".." ..\win64_deps.zip
-              
-            - name: Add dependencies to PATH
-              run: echo "::add-path::${{ github.workspace }}\..\lib"
+              run: |
+                curl -L ${{ DEPS_URL }} --output ../win64_deps.zip
+                7z x -o".." ..\win64_deps.zip
+                echo "::add-path::${{ github.workspace }}/../lib"
  
             - name: Prepare output dir
               shell: bash
               run: mkdir output output/build output/build/Plugins
             
-            - name: QMake SQLiteStudio3
+            - name: Compile SQLiteStudio3
               working-directory: output/build
-              run: qmake.exe DEFINES+=tests CONFIG+=debug CONFIG+=portable ..\..\SQLiteStudio3
+              run: |
+                qmake.exe DEFINES+=tests CONFIG+=debug CONFIG+=portable ..\..\SQLiteStudio3
+                mingw32-make.exe -j 2
             
-            - name: Make SQLiteStudio3
-              working-directory: output/build
-              run: mingw32-make.exe -j 2
-            
-            - name: QMake Plugins
+            - name: Compile Plugins
               working-directory: output/build/Plugins
-              run: qmake.exe DEFINES+=tests CONFIG+=debug CONFIG+=portable ..\..\..\Plugins
-            
-            - name: Make Plugins
-              working-directory: output/build/Plugins
-              run: mingw32-make.exe -j 2
+              run: |
+                qmake.exe DEFINES+=tests CONFIG+=debug CONFIG+=portable ..\..\..\Plugins
+                mingw32-make.exe -j 2
               
-            - name: Tests
+            - name: Run tests
               shell: bash
               working-directory: output/SQLiteStudio
               run: for f in tst_*; do ./$f; done
+              
+            - name: Prepare portable dir
+              shell: bash
+              working-directory: output
+              run: |
+                mkdir portable
+                cp -R SQLiteStudio portable/
+
+            - name: Clean-up portable dir
+              shell: bash
+              working-directory: ${{ PORTABLE_DIR }}
+              run: |
+                rm -f *.a
+                rm -f plugins/*.a
+
+            - name: Prepare portable distro (Qt)
+              shell: bash
+              working-directory: ${{ QT_DIR }}/bin
+              run: |
+                for f in Qt5Core Qt5Gui Qt5Network Qt5PrintSupport Qt5Script Qt5Svg Qt5Widgets Qt5Xml; do cp $f.dll ${{ PORTABLE_DIR }}; done
+                cp qt.conf ${{ PORTABLE_DIR }}
+                mkdir ${{ PORTABLE_DIR }}/iconengines
+                mkdir ${{ PORTABLE_DIR }}/platforms
+                mkdir ${{ PORTABLE_DIR }}/printsupport
+                mkdir ${{ PORTABLE_DIR }}/styles
+                cp iconengines/qsvgicon.dll ${{ PORTABLE_DIR }}/iconengines
+                cp platforms/qwindows.dll ${{ PORTABLE_DIR }}/platforms
+                cp styles/qwindowsvistastyle.dll ${{ PORTABLE_DIR }}/styles
+                cp printsupport/windowsprintersupport.dll ${{ PORTABLE_DIR }}/printsupport
+                mkdir ${{ PORTABLE_DIR }}/imageformats
+                for f in qgif qicns qico qjpeg qsvg qtga qtiff qwbmp; do cp imageformats/$f.dll ${{ PORTABLE_DIR }}/imageformats/; done
+
+            - name: Prepare portable distro (Deps)
+                shell: bash
+                working-directory: ${{ github.workspace }}/../lib
+                run: cp *.dll ${{ PORTABLE_DIR }}
+
+            - name: Assemble portable package
+              shell: bash
+              working-directory: ${{ PORTABLE_DIR }}
+              run: 7z a -r ../sqlitestudio-`sqlitestudiocli --version | cut -f 2 -d ' '`.zip .
+
+            - name: See results
+              shell: bash
+              working-directory: ${{ PORTABLE_DIR }}/..
+              run: ls -l
