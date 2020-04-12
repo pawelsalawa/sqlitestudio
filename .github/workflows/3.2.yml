@@ -33,10 +33,13 @@ jobs:
             - name: Download mingw
               if: steps.cache-qt.outputs.cache-hit != 'true'
               shell: bash
-              run: curl https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw730/7.3.0-1x86_64-7.3.0-release-posix-seh-rt_v5-rev0.7z --output ..\mingw.7z
+              run: curl https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw730/7.3.0-1x86_64-7.3.0-release-posix-seh-rt_v5-rev0.7z --output ../mingw.7z
  
             - name: Debug dir
               run: dir ..
+              
+            - name: Debug dir2
+              run: dir
               
             - name: Decompress mingw
               if: steps.cache-qt.outputs.cache-hit != 'true'
