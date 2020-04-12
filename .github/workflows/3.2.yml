@@ -51,33 +51,15 @@ jobs:
               shell: bash
               run: curl -L https://www.dropbox.com/s/b5t6lb9e7riytq1/win64_deps.zip?dl=1 --output ../win64_deps.zip
             
-            - name: Debug dir
-              run: dir ..
-              
             - name: Decompress dependencies
               run: 7z x -o".." ..\win64_deps.zip
               
-            - name: Debug tree
-              run: tree .. /A
-              
-            - name: Debug path
-              run: echo ${env:Path}
-              
-            - name: Debug dir
-              run: dir ..
-              
-            - name: Debug qmake
-              run: dir D:\a\sqlitestudio\Qt\5.14.2\mingw73_64\bin
-              
+            # - name: Add Qt to PATH
+              # run: echo "::add-path::${{ github.workspace }}\..\Qt\5.14.2\mingw73_64\bin"
+ 
             - name: QMake
-              run: ${{ github.workspace }}\..\Qt\5.14.2\mingw73_64\bin\qmake.exe --help
+              run: qmake.exe --help
               
-            - name: Debug make1
-              run: dir ${{ github.workspace }}\..\Qt\Tools\mingw730_64\bin
-
             - name: Make
-              run: ${{ github.workspace }}\..\Qt\Tools\mingw730_64\bin\mingw32-make.exe --help
-
-            - name: Make1
               run: mingw32-make.exe --help
               
