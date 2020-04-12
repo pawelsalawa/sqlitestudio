@@ -58,23 +58,18 @@ jobs:
               shell: bash
               run: mkdir output output/build output/build/Plugins
             
-            - name: Go to build dir
-              run: cd output\build
-            
-            - name: Debug tree
-              run: tree ..\.. /A
-            
             - name: QMake SQLiteStudio3
+              working-directory: output/build
               run: qmake.exe ..\..\SQLiteStudio3
             
             - name: Make SQLiteStudio3
+              working-directory: output/build
               run: mingw32-make.exe -j 2
             
-            - name: Go to Plugins build dir
-              run: cd Plugins
-            
             - name: QMake Plugins
+              working-directory: output/build/Plugins
               run: qmake.exe ..\..\..\Plugins
             
             - name: Make Plugins
+              working-directory: output/build/Plugins
               run: mingw32-make.exe -j 2
