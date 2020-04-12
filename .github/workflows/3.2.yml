@@ -12,7 +12,7 @@ name: ${{ env.SQLITESTUDIO_BRANCH }} branch Windows build
 on:
     push:
         branches:
-            - ${{ env.SQLITESTUDIO_BRANCH }}
+            - 3.2
 
     repository_dispatch:
         types: [build_win64_snapshot]
