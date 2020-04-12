@@ -17,7 +17,7 @@ jobs:
               id: cache-qt
               uses: actions/cache@v1
               with:
-                path: ${{ github.workspace }}\Qt
+                path: ${{ github.workspace }}\..\Qt
                 key: ${{ runner.os }}-Qt-Cache
                 
             - name: Install Qt
@@ -27,7 +27,7 @@ jobs:
                 version: '5.14.2'
                 host: 'windows'
                 arch: 'win64_mingw73'
-                dir: '${{ github.workspace }}'
+                dir: '${{ github.workspace }}\..'
                 modules: 'qtscript'
 
             - name: Clone repo
