@@ -80,4 +80,4 @@ jobs:
             - name: Tests
               shell: bash
               working-directory: output/SQLiteStudio
-              run: for f in `ls tst_*`; do echo $f; done
+              run: for f in `ls tst_*`; do ./$f; done
