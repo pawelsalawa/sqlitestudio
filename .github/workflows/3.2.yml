@@ -32,7 +32,7 @@ jobs:
               uses: jurplel/install-qt-action@v2
               with:
                 cached: ${{ steps.cache-qt.outputs.cache-hit }}
-                version: ${{ QT_VERSION }}
+                version: ${{ env.QT_VERSION }}
                 host: 'windows'
                 arch: 'win64_mingw73'
                 dir: '${{ github.workspace }}\..'
