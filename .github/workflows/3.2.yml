@@ -99,7 +99,7 @@ jobs:
               working-directory: ${{ env.Qt5_Dir }}
               run: |
                 for f in Qt5Core Qt5Gui Qt5Network Qt5PrintSupport Qt5Script Qt5Svg Qt5Widgets Qt5Xml; do cp bin/$f.dll "${{ env.PORTABLE_DIR }}"; done
-                cp qt.conf ${{ env.PORTABLE_DIR }}
+                cp bin/qt.conf ${{ env.PORTABLE_DIR }}
                 mkdir "${{ env.PORTABLE_DIR }}/iconengines"
                 mkdir "${{ env.PORTABLE_DIR }}/platforms"
                 mkdir "${{ env.PORTABLE_DIR }}/printsupport"
