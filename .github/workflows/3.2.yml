@@ -71,13 +71,10 @@ jobs:
               run: mingw32-make.exe -j 2
             
             - name: Go to Plugins build dir
-              shell: bash
               run: cd Plugins
             
             - name: QMake Plugins
-              shell: bash
               run: qmake.exe ..\..\..\Plugins
             
             - name: Make Plugins
-              shell: bash
               run: mingw32-make.exe -j 2
