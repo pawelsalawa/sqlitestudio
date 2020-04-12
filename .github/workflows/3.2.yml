@@ -85,7 +85,8 @@ jobs:
               working-directory: output
               run: |
                 mkdir portable
-                cp -R SQLiteStudio portable/
+                # cp -R SQLiteStudio portable/
+                mkdir portable/SQLiteStudio
 
             - name: Clean-up portable dir
               shell: bash
