@@ -18,7 +18,7 @@ jobs:
               uses: actions/cache@v1
               with:
                 path: ${{ github.workspace }}\Qt
-                key: ${{ runner.os }}-QtCache
+                key: ${{ runner.os }}-Qt-Cache
                 
             - name: Install Qt
               uses: jurplel/install-qt-action@v2
@@ -42,8 +42,15 @@ jobs:
             - name: Decompress dependencies
               run: 7z x win64_deps.zip
 
+            - name: Debug pwd
+              run: pwd
+              
             - name: Debug tree
               run: tree
               
             - name: QMake
-              run: qmake
+              run: ${env:Qt5_Dir}\bin\qmake.exe
+              
+            - name: Make
+              run: ${env:Qt5_Dir}\..\..\..\Tools\mingw730_64\bin\mingw32-make.exe --help
+              
