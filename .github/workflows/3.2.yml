@@ -36,7 +36,7 @@ jobs:
                 cached: ${{ steps.cache-qt.outputs.cache-hit }}
                 version: ${{ env.QT_VERSION }}
                 host: 'windows'
-                arch: ${{ QT_ARCH }}
+                arch: ${{ env.QT_ARCH }}
                 dir: '${{ github.workspace }}\..'
                 modules: 'qtscript'
                 
