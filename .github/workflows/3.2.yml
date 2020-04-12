@@ -16,62 +16,67 @@ jobs:
             - name: Debug pwd
               run: pwd
 
-            - name: Cache Qt
-              id: cache-qt
-              uses: actions/cache@v1
-              with:
-                path: ${{ github.workspace }}\..\Qt
-                key: ${{ runner.os }}-Qt-Cache
+            - name: Debug dir
+              run: dir
+
+            - name: Debug tree
+              run: tree /A
+
+            # - name: Cache Qt
+              # id: cache-qt
+              # uses: actions/cache@v1
+              # with:
+                # path: ${{ github.workspace }}\..\Qt
+                # key: ${{ runner.os }}-Qt-Cache
                 
-            - name: Install Qt
-              uses: jurplel/install-qt-action@v2
-              with:
-                cached: ${{ steps.cache-qt.outputs.cache-hit }}
-                version: '5.14.2'
-                host: 'windows'
-                arch: 'win64_mingw73'
-                dir: '${{ github.workspace }}\..'
-                modules: 'qtscript'
+            # - name: Install Qt
+              # uses: jurplel/install-qt-action@v2
+              # with:
+                # cached: ${{ steps.cache-qt.outputs.cache-hit }}
+                # version: '5.14.2'
+                # host: 'windows'
+                # arch: 'win64_mingw73'
+                # dir: '${{ github.workspace }}\..'
+                # modules: 'qtscript'
                 
             - name: Download mingw
 #              run: aqt tool windows tools_mingw 7.3.0-1-201903151311 qt.tools.win64_mingw730
               if: steps.cache-qt.outputs.cache-hit != 'true'
-              shell: pwsh
-              run: (new-object System.Net.WebClient).DownloadFile('https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw730/7.3.0-1x86_64-7.3.0-release-posix-seh-rt_v5-rev0.7z', '${{ github.workspace }}\..\mingw.7z')
+              run: (new-object System.Net.WebClient).DownloadFile('https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw730/7.3.0-1x86_64-7.3.0-release-posix-seh-rt_v5-rev0.7z', 'mingw.7z')
  
             - name: Decompress mingw
               if: steps.cache-qt.outputs.cache-hit != 'true'
-              run: 7z x -o"${{ github.workspace }}\..\Qt" ${{ github.workspace }}\..\mingw.7z
+              run: 7z x -o"${{ github.workspace }}\..\Qt" mingw.7z
  
-            - name: Clone repo
-              uses: actions/checkout@v2
-              with:
-                ref: 3.2
+            # - name: Clone repo
+              # uses: actions/checkout@v2
+              # with:
+                # ref: 3.2
 
-            - name: Download dependencies
-              shell: pwsh
-              run: (new-object System.Net.WebClient).DownloadFile('https://www.dropbox.com/s/b5t6lb9e7riytq1/win64_deps.zip?dl=1', '..\win64_deps.zip')
+            # - name: Download dependencies
+              # shell: pwsh
+              # run: (new-object System.Net.WebClient).DownloadFile('https://www.dropbox.com/s/b5t6lb9e7riytq1/win64_deps.zip?dl=1', '..\win64_deps.zip')
             
-            - name: Decompress dependencies
-              run: 7z x -o".." ..\win64_deps.zip
+            # - name: Decompress dependencies
+              # run: 7z x -o".." ..\win64_deps.zip
 
-            - name: Debug pwd
-              run: pwd
+            # - name: Debug pwd
+              # run: pwd
               
-            - name: Debug tree
-              run: tree .. /A
+            # - name: Debug tree
+              # run: tree .. /A
               
-            - name: Debug path
-              run: echo ${env:Path}
+            # - name: Debug path
+              # run: echo ${env:Path}
               
-            - name: Debug dir
-              run: dir ..
+            # - name: Debug dir
+              # run: dir ..
               
-            - name: Debug qmake
-              run: dir D:\a\sqlitestudio\Qt\5.14.2\mingw73_64\bin
+            # - name: Debug qmake
+              # run: dir D:\a\sqlitestudio\Qt\5.14.2\mingw73_64\bin
               
-            - name: QMake
-              run: ${{ github.workspace }}\..\Qt\5.14.2\mingw73_64\bin\qmake.exe --help
+            # - name: QMake
+              # run: ${{ github.workspace }}\..\Qt\5.14.2\mingw73_64\bin\qmake.exe --help
               
 #            - name: Debug make1
 #              run: dir C:\Program Files\Git\mingw64\bin
