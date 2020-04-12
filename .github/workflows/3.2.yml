@@ -43,9 +43,9 @@ jobs:
               if: steps.cache-qt.outputs.cache-hit != 'true'
               shell: bash
               run: |
-                curl -L ${{ MINGW_URL }} --output ../mingw.7z
+                curl -L ${{ env.MINGW_URL }} --output ../mingw.7z
                 7z x -o"${{ github.workspace }}\..\Qt" ..\mingw.7z
-                echo "::add-path::${{ MINGW_DIR }}\bin"
+                echo "::add-path::${{ env.MINGW_DIR }}\bin"
  
             - name: Clone repo
               uses: actions/checkout@v2
@@ -55,7 +55,7 @@ jobs:
             - name: Install dependencies
               shell: bash
               run: |
-                curl -L ${{ DEPS_URL }} --output ../win64_deps.zip
+                curl -L ${{ env.DEPS_URL }} --output ../win64_deps.zip
                 7z x -o".." ..\win64_deps.zip
                 echo "::add-path::${{ github.workspace }}/../lib"
  
@@ -89,39 +89,39 @@ jobs:
 
             - name: Clean-up portable dir
               shell: bash
-              working-directory: ${{ PORTABLE_DIR }}
+              working-directory: ${{ env.PORTABLE_DIR }}
               run: |
                 rm -f *.a
                 rm -f plugins/*.a
 
             - name: Prepare portable distro (Qt)
               shell: bash
-              working-directory: ${{ QT_DIR }}/bin
+              working-directory: ${{ env.QT_DIR }}/bin
               run: |
-                for f in Qt5Core Qt5Gui Qt5Network Qt5PrintSupport Qt5Script Qt5Svg Qt5Widgets Qt5Xml; do cp $f.dll ${{ PORTABLE_DIR }}; done
-                cp qt.conf ${{ PORTABLE_DIR }}
-                mkdir ${{ PORTABLE_DIR }}/iconengines
-                mkdir ${{ PORTABLE_DIR }}/platforms
-                mkdir ${{ PORTABLE_DIR }}/printsupport
-                mkdir ${{ PORTABLE_DIR }}/styles
-                cp iconengines/qsvgicon.dll ${{ PORTABLE_DIR }}/iconengines
-                cp platforms/qwindows.dll ${{ PORTABLE_DIR }}/platforms
-                cp styles/qwindowsvistastyle.dll ${{ PORTABLE_DIR }}/styles
-                cp printsupport/windowsprintersupport.dll ${{ PORTABLE_DIR }}/printsupport
-                mkdir ${{ PORTABLE_DIR }}/imageformats
-                for f in qgif qicns qico qjpeg qsvg qtga qtiff qwbmp; do cp imageformats/$f.dll ${{ PORTABLE_DIR }}/imageformats/; done
+                for f in Qt5Core Qt5Gui Qt5Network Qt5PrintSupport Qt5Script Qt5Svg Qt5Widgets Qt5Xml; do cp $f.dll ${{ env.PORTABLE_DIR }}; done
+                cp qt.conf ${{ env.PORTABLE_DIR }}
+                mkdir ${{ env.PORTABLE_DIR }}/iconengines
+                mkdir ${{ env.PORTABLE_DIR }}/platforms
+                mkdir ${{ env.PORTABLE_DIR }}/printsupport
+                mkdir ${{ env.PORTABLE_DIR }}/styles
+                cp iconengines/qsvgicon.dll ${{ env.PORTABLE_DIR }}/iconengines
+                cp platforms/qwindows.dll ${{ env.PORTABLE_DIR }}/platforms
+                cp styles/qwindowsvistastyle.dll ${{ env.PORTABLE_DIR }}/styles
+                cp printsupport/windowsprintersupport.dll ${{ env.PORTABLE_DIR }}/printsupport
+                mkdir ${{ env.PORTABLE_DIR }}/imageformats
+                for f in qgif qicns qico qjpeg qsvg qtga qtiff qwbmp; do cp imageformats/$f.dll ${{ env.PORTABLE_DIR }}/imageformats/; done
 
             - name: Prepare portable distro (Deps)
               shell: bash
               working-directory: ${{ github.workspace }}/../lib
-              run: cp *.dll ${{ PORTABLE_DIR }}
+              run: cp *.dll ${{ env.PORTABLE_DIR }}
 
             - name: Assemble portable package
               shell: bash
-              working-directory: ${{ PORTABLE_DIR }}
+              working-directory: ${{ env.PORTABLE_DIR }}
               run: 7z a -r ../sqlitestudio-`sqlitestudiocli --version | cut -f 2 -d ' '`.zip .
 
             - name: See results
               shell: bash
-              working-directory: ${{ PORTABLE_DIR }}/..
+              working-directory: ${{ env.PORTABLE_DIR }}/..
               run: ls -l
