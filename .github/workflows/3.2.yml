@@ -30,9 +30,16 @@ jobs:
                 dir: '${{ github.workspace }}\..'
                 modules: 'qtscript'
                 
-            - name: Install mingw
-              run: aqt tool windows tools_mingw 7.3.0-1-201903151311 qt.tools.win64_mingw730
-                
+            - name: Download mingw
+#              run: aqt tool windows tools_mingw 7.3.0-1-201903151311 qt.tools.win64_mingw730
+              if: steps.cache-qt.outputs.cache-hit != 'true'
+              shell: pwsh
+              run: (new-object System.Net.WebClient).DownloadFile('https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw730/7.3.0-1x86_64-7.3.0-release-posix-seh-rt_v5-rev0.7z', '..\mingw.7z')
+ 
+            - name: Decompress mingw
+              if: steps.cache-qt.outputs.cache-hit != 'true'
+              run: 7z x -o"..\Qt" ..\mingw.7z
+ 
             - name: Clone repo
               uses: actions/checkout@v2
               with:
