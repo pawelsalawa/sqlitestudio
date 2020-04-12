@@ -49,8 +49,11 @@ jobs:
 
             - name: Download dependencies
               shell: bash
-              run: curl https://www.dropbox.com/s/b5t6lb9e7riytq1/win64_deps.zip?dl=1 --output ../win64_deps.zip
+              run: curl -L https://www.dropbox.com/s/b5t6lb9e7riytq1/win64_deps.zip?dl=1 --output ../win64_deps.zip
             
+            - name: Debug dir
+              run: dir ..
+              
             - name: Decompress dependencies
               run: 7z x -o".." ..\win64_deps.zip
               
