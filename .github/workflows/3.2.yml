@@ -57,6 +57,15 @@ jobs:
             - name: QMake
               run: ${{ github.workspace }}\..\Qt\5.14.2\mingw73_64\bin\qmake.exe --help
               
+            - name: Debug make1
+              run: dir ${{ github.workspace }}\..\Qt\Tools
+              
+            - name: Debug make2
+              run: dir ${{ github.workspace }}\..\Qt\Tools\mingw730_64
+              
+            - name: Debug make3
+              run: dir ${{ github.workspace }}\..\Qt\Tools\mingw730_64\bin
+              
             - name: Make
               run: ${{ github.workspace }}\..\Qt\Tools\mingw730_64\bin\mingw32-make.exe --help
               
