@@ -20,7 +20,7 @@ jobs:
               run: dir
 
             - name: Debug tree
-              run: tree /A
+              run: tree ..\.. /A
 
             # - name: Cache Qt
               # id: cache-qt
