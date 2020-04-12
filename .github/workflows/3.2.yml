@@ -119,7 +119,7 @@ jobs:
             - name: Assemble portable package
               shell: bash
               working-directory: ${{ env.PORTABLE_DIR }}
-              run: 7z a -r ../sqlitestudio-`sqlitestudiocli --version | cut -f 2 -d ' '`.zip .
+              run: 7z a -r ../sqlitestudio-`./sqlitestudiocli.exe --version | cut -f 2 -d ' '`.zip .
 
             - name: See results
               shell: bash
