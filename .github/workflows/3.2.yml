@@ -1,6 +1,6 @@
 env:
     QT_VERSION: '5.14.2'
-    QT_DIR: ${{ github.workspace }}/../Qt/${{ QT_VERSION }}/mingw73_64
+    QT_DIR: ${{ github.workspace }}/../Qt/5.14.2/mingw73_64
     MINGW_DIR: ${{ github.workspace }}/../Qt/Tools/mingw730_64
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
     MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw730/7.3.0-1x86_64-7.3.0-release-posix-seh-rt_v5-rev0.7z
