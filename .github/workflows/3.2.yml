@@ -54,6 +54,9 @@ jobs:
             - name: Decompress dependencies
               run: 7z x -o".." ..\win64_deps.zip
               
+            - name: Add dependencies to PATH
+              run: echo "::add-path::${{ github.workspace }}\..\lib"
+ 
             - name: Prepare output dir
               shell: bash
               run: mkdir output output/build output/build/Plugins
