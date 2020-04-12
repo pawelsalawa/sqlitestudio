@@ -31,7 +31,7 @@ jobs:
                 modules: 'qtscript'
                 
             - name: Install mingw
-              run: aqt tool windows tools_mingw 7.3.0 qt.tools.win64_mingw730
+              run: aqt tool windows tools_mingw 7.3.0-1-201903151311 qt.tools.win64_mingw730
                 
             - name: Clone repo
               uses: actions/checkout@v2
@@ -63,8 +63,8 @@ jobs:
             - name: QMake
               run: ${{ github.workspace }}\..\Qt\5.14.2\mingw73_64\bin\qmake.exe --help
               
-            - name: Debug make1
-              run: dir C:\Program Files\Git\mingw64\bin
+#            - name: Debug make1
+#              run: dir C:\Program Files\Git\mingw64\bin
               
              
 #            - name: Make
