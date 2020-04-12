@@ -54,12 +54,30 @@ jobs:
             - name: Decompress dependencies
               run: 7z x -o".." ..\win64_deps.zip
               
-            # - name: Add Qt to PATH
-              # run: echo "::add-path::${{ github.workspace }}\..\Qt\5.14.2\mingw73_64\bin"
- 
-            - name: QMake
-              run: qmake.exe --help
-              
-            - name: Make
-              run: mingw32-make.exe --help
-              
+            - name: Prepare output dir
+              shell: bash
+              run: mkdir output output/build output/build/Plugins
+            
+            - name: Go to build dir
+              shell: bash
+              run: cd output/build
+            
+            - name: QMake SQLiteStudio3
+              shell: bash
+              run: qmake.exe ../../SQLiteStudio3
+            
+            - name: Make SQLiteStudio3
+              shell: bash
+              run: mingw32-make.exe -j 2
+            
+            - name: Go to Plugins build dir
+              shell: bash
+              run: cd Plugins
+            
+            - name: QMake Plugins
+              shell: bash
+              run: qmake.exe ../../../Plugins
+            
+            - name: Make Plugins
+              shell: bash
+              run: mingw32-make.exe -j 2
