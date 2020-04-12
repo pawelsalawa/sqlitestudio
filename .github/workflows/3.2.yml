@@ -46,7 +46,13 @@ jobs:
               run: pwd
               
             - name: Debug tree
-              run: tree
+              run: tree ..
+              
+            - name: Debug dir
+              run: dir ..
+              
+            - name: Debug qmake
+              run: dir D:\a\sqlitestudio\sqlitestudio\Qt\5.14.2\mingw73_64\bin
               
             - name: QMake
               run: ${{ github.workspace }}\Qt\5.14.2\mingw73_64\bin\qmake.exe --help
