@@ -7,7 +7,7 @@ env:
     MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw730/7.3.0-1x86_64-7.3.0-release-posix-seh-rt_v5-rev0.7z
     DEPS_URL: https://www.dropbox.com/s/9ulp1w82826966i/win64_deps.zip?dl=1
 
-name: ${{ env.SQLITESTUDIO_BRANCH }} branch Windows build
+name: 3.2 branch Windows build
 
 on:
     push:
