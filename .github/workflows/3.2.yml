@@ -1,5 +1,4 @@
 env:
-    SQLITESTUDIO_BRANCH: 3.2
     QT_VERSION: '5.14.2'
     QT_DIR: ${{ github.workspace }}/../Qt/${{ QT_VERSION }}/mingw73_64
     MINGW_DIR: ${{ github.workspace }}/../Qt/Tools/mingw730_64
@@ -7,12 +6,12 @@ env:
     MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw730/7.3.0-1x86_64-7.3.0-release-posix-seh-rt_v5-rev0.7z
     DEPS_URL: https://www.dropbox.com/s/9ulp1w82826966i/win64_deps.zip?dl=1
 
-name: ${{ SQLITESTUDIO_BRANCH }} Windows build
+name: 3.2 branch Windows build
 
 on:
     push:
         branches:
-            - ${{ SQLITESTUDIO_BRANCH }}
+            - 3.2
 
     repository_dispatch:
         types: [build_win64_snapshot]
@@ -50,7 +49,7 @@ jobs:
             - name: Clone repo
               uses: actions/checkout@v2
               with:
-                ref: ${{ SQLITESTUDIO_BRANCH }}
+                ref: 3.2
 
             - name: Install dependencies
               shell: bash
