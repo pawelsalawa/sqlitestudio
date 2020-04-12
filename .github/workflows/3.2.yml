@@ -112,9 +112,9 @@ jobs:
                 for f in qgif qicns qico qjpeg qsvg qtga qtiff qwbmp; do cp imageformats/$f.dll ${{ PORTABLE_DIR }}/imageformats/; done
 
             - name: Prepare portable distro (Deps)
-                shell: bash
-                working-directory: ${{ github.workspace }}/../lib
-                run: cp *.dll ${{ PORTABLE_DIR }}
+              shell: bash
+              working-directory: ${{ github.workspace }}/../lib
+              run: cp *.dll ${{ PORTABLE_DIR }}
 
             - name: Assemble portable package
               shell: bash
