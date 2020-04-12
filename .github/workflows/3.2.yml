@@ -49,7 +49,7 @@ jobs:
 
             - name: Download dependencies
               shell: bash
-              run: curl -L https://www.dropbox.com/s/b5t6lb9e7riytq1/win64_deps.zip?dl=1 --output ../win64_deps.zip
+              run: curl -L https://www.dropbox.com/s/9ulp1w82826966i/win64_deps.zip?dl=1 --output ../win64_deps.zip
             
             - name: Decompress dependencies
               run: 7z x -o".." ..\win64_deps.zip
@@ -63,7 +63,7 @@ jobs:
             
             - name: QMake SQLiteStudio3
               working-directory: output/build
-              run: qmake.exe DEFINES+=tests ..\..\SQLiteStudio3
+              run: qmake.exe DEFINES+=tests CONFIG+=debug CONFIG+=portable ..\..\SQLiteStudio3
             
             - name: Make SQLiteStudio3
               working-directory: output/build
@@ -71,7 +71,7 @@ jobs:
             
             - name: QMake Plugins
               working-directory: output/build/Plugins
-              run: qmake.exe DEFINES+=tests ..\..\..\Plugins
+              run: qmake.exe DEFINES+=tests CONFIG+=debug CONFIG+=portable ..\..\..\Plugins
             
             - name: Make Plugins
               working-directory: output/build/Plugins
@@ -80,4 +80,4 @@ jobs:
             - name: Tests
               shell: bash
               working-directory: output/SQLiteStudio
-              run: for f in `ls tst_*`; do ./$f; done
+              run: for f in tst_*; do ./$f; done
