@@ -63,22 +63,22 @@ jobs:
               shell: bash
               run: mkdir output output/build output/build/Plugins
             
-            - name: Compile SQLiteStudio3
-              working-directory: output/build
-              run: |
-                qmake.exe DEFINES+=tests CONFIG+=debug CONFIG+=portable ..\..\SQLiteStudio3
-                mingw32-make.exe -j 2
+            # - name: Compile SQLiteStudio3
+              # working-directory: output/build
+              # run: |
+                # qmake.exe DEFINES+=tests CONFIG+=debug CONFIG+=portable ..\..\SQLiteStudio3
+                # mingw32-make.exe -j 2
             
-            - name: Compile Plugins
-              working-directory: output/build/Plugins
-              run: |
-                qmake.exe DEFINES+=tests CONFIG+=debug CONFIG+=portable ..\..\..\Plugins
-                mingw32-make.exe -j 2
+            # - name: Compile Plugins
+              # working-directory: output/build/Plugins
+              # run: |
+                # qmake.exe DEFINES+=tests CONFIG+=debug CONFIG+=portable ..\..\..\Plugins
+                # mingw32-make.exe -j 2
               
-            - name: Run tests
-              shell: bash
-              working-directory: output/SQLiteStudio
-              run: for f in tst_*; do ./$f; done
+            # - name: Run tests
+              # shell: bash
+              # working-directory: output/SQLiteStudio
+              # run: for f in tst_*; do ./$f; done
               
             - name: Prepare portable dir
               shell: bash
@@ -98,30 +98,43 @@ jobs:
               shell: bash
               working-directory: ${{ env.Qt5_Dir }}
               run: |
+                echo 1
                 for f in Qt5Core Qt5Gui Qt5Network Qt5PrintSupport Qt5Script Qt5Svg Qt5Widgets Qt5Xml; do cp bin/$f.dll "${{ env.PORTABLE_DIR }}"; done
+                echo 2
                 cp bin/qt.conf ${{ env.PORTABLE_DIR }}
+                echo 3
                 mkdir "${{ env.PORTABLE_DIR }}/iconengines"
+                echo 4
                 mkdir "${{ env.PORTABLE_DIR }}/platforms"
+                echo 5
                 mkdir "${{ env.PORTABLE_DIR }}/printsupport"
+                echo 6
                 mkdir "${{ env.PORTABLE_DIR }}/styles"
+                echo 7
                 mkdir "${{ env.PORTABLE_DIR }}/imageformats"
+                echo 8
                 cp plugins/iconengines/qsvgicon.dll "${{ env.PORTABLE_DIR }}/iconengines"
+                echo 9
                 cp plugins/platforms/qwindows.dll "${{ env.PORTABLE_DIR }}/platforms"
+                echo 10
                 cp plugins/styles/qwindowsvistastyle.dll "${{ env.PORTABLE_DIR }}/styles"
+                echo 11
                 cp plugins/printsupport/windowsprintersupport.dll "${{ env.PORTABLE_DIR }}/printsupport"
+                echo 12
                 for f in qgif qicns qico qjpeg qsvg qtga qtiff qwbmp; do cp plugins/imageformats/$f.dll "${{ env.PORTABLE_DIR }}/imageformats"; done
+                echo 13
 
             - name: Prepare portable distro (Deps)
               shell: bash
               working-directory: ${{ github.workspace }}/../lib
               run: cp *.dll "${{ env.PORTABLE_DIR }}"
 
-            - name: Assemble portable package
-              shell: bash
-              working-directory: ${{ env.PORTABLE_DIR }}
-              run: 7z a -r ../sqlitestudio-`sqlitestudiocli --version | cut -f 2 -d ' '`.zip .
+            # - name: Assemble portable package
+              # shell: bash
+              # working-directory: ${{ env.PORTABLE_DIR }}
+              # run: 7z a -r ../sqlitestudio-`sqlitestudiocli --version | cut -f 2 -d ' '`.zip .
 
-            - name: See results
-              shell: bash
-              working-directory: ${{ env.PORTABLE_DIR }}/..
-              run: ls -l
+            # - name: See results
+              # shell: bash
+              # working-directory: ${{ env.PORTABLE_DIR }}/..
+              # run: ls -l
