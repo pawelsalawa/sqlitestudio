@@ -13,6 +13,8 @@ on:
     # push:
         # branches:
             # - 3.2
+    project:
+        types: [deleted]
 
 jobs:
     build:
@@ -112,14 +114,6 @@ jobs:
               shell: bash
               working-directory: ${{ env.PORTABLE_DIR }}
               run: echo ::set-env name=SQLITESTUDIO_VERSION::$(./sqlitestudiocli.exe --version | cut -f 2 -d ' ')
-
-            # - name: Assemble portable package
-              # shell: bash
-              # working-directory: ${{ env.PORTABLE_DIR }}/..
-              # run: |
-                # 7z a -r sqlitestudio-$SQLITESTUDIO_VERSION.zip SQLiteStudio
-                # pwd
-                # ls -l
 
             - name: Upload package artifact
               uses: actions/upload-artifact@v1
