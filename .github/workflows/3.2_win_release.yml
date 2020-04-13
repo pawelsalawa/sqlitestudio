@@ -124,5 +124,5 @@ jobs:
             - name: Upload package artifact
               uses: actions/upload-artifact@v1
               with:
-                name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.zip
-                path: output/portable/SQLiteStudio
+                name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}
+                path: output/portable
