@@ -1,0 +1,4 @@
+buttons:
+  - title: Build 3.2 Windows release
+    action: "3.2_win_release"
+    description: Build Windows release from 3.2 branch
