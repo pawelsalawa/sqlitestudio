@@ -10,9 +10,9 @@ env:
 name: 3.2 branch Windows release build
 
 on:
-    push:
-        branches:
-            - 3.2
+    # push:
+        # branches:
+            # - 3.2
 
 jobs:
     build:

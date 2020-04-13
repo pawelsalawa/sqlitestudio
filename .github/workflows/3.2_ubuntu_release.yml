@@ -54,7 +54,7 @@ jobs:
               
             - name: Install other tools/dependencies
               run: |
-                sudo apt install chrpath libreadline-dev 
+                sudo apt install libreadline-dev libncurses5-dev
                 echo "::add-path::${{ github.workspace }}/../Qt/${{ env.QT_VERSION }}/gcc_64/bin"
  
             - name: Prepare output dir
