@@ -79,14 +79,14 @@ jobs:
                 cp -R SQLiteStudio portable/
 
             - name: Copy SQLite3 to portable dir
-              working-directory: ${{ PORTABLE_DIR }}
+              working-directory: ${{ env.PORTABLE_DIR }}
               run: |
                 sqlite3_lib=/usr/local/lib/libsqlite3.so.0.8.6
                 sqlite3_lib_target=`ldd lib/libcoreSQLiteStudio.so | grep libsqlite | awk '{print $3;}'`
                 cp $sqlite3_lib lib/`basename $sqlite3_lib_target`
 
             - name: Copy Qt to portable dir
-              working-directory: ${{ PORTABLE_DIR }}
+              working-directory: ${{ env.PORTABLE_DIR }}
               run: |
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5Core.so* lib/
                 cp -P ${{ env.Qt5_Dir }}/lib/libQt5Concurrent.so* lib/
@@ -103,7 +103,7 @@ jobs:
                 cp -P ${{ env.Qt5_Dir }}/lib/libicudata.so* lib/
 
             - name: Copy Qt plugins to portable dir
-              working-directory: ${{ PORTABLE_DIR }}
+              working-directory: ${{ env.PORTABLE_DIR }}
               run: |
                 mkdir platforms imageformats iconengines printsupport platformthemes
                 cp -P ${{ env.Qt5_Dir }}/plugins/platforms/libqxcb.so platforms/libqxcb.so
@@ -119,7 +119,7 @@ jobs:
                 cp -P ${{ env.Qt5_Dir }}/plugins/platformthemes/libqgtk3.so platformthemes/libqgtk3.so
 
             - name: Fix dependency paths
-              working-directory: ${{ PORTABLE_DIR }}
+              working-directory: ${{ env.PORTABLE_DIR }}
               run: |
                 chrpath -r \$ORIGIN/../lib lib/* platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so
                 chrpath -r \$ORIGIN/lib sqlitestudio
