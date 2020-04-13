@@ -5,8 +5,6 @@ env:
     SQLITE_RELEASE_YEAR: '2020'
     TCL_VERSION: '8.6'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
-    REQUIRED_PLUGINS="platforms/libqxcb.so imageformats/libqgif.so imageformats/libqicns.so imageformats/libqico.so imageformats/libqjpeg.so imageformats/libqsvg.so imageformats/libqtga.so imageformats/libqtiff.so iconengines/libqsvgicon.so printsupport/libcupsprintersupport.so"
-    OPTIONAL_PLUGINS="platformthemes/libqgtk3.so"
 
 name: 3.2 branch Linux release build
 
