@@ -115,11 +115,14 @@ jobs:
 
             - name: Assemble portable package
               shell: bash
-              working-directory: ${{ env.PORTABLE_DIR }}
-              run: 7z a -r ../sqlitestudio-$SQLITESTUDIO_VERSION.zip .
+              working-directory: ${{ env.PORTABLE_DIR }}/..
+              run: |
+                7z a -r sqlitestudio-$SQLITESTUDIO_VERSION.zip SQLiteStudio
+                pwd
+                ls -l
 
             - name: Upload package artifact
               uses: actions/upload-artifact@v1
               with:
-                name: sqlitestudio-$SQLITESTUDIO_VERSION.zip
-                path: output/portable/sqlitestudio-$SQLITESTUDIO_VERSION.zip
+                name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.zip
+                path: output/portable/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.zip
