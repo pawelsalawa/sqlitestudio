@@ -22,7 +22,7 @@ jobs:
               id: cache-qt
               uses: actions/cache@v1
               with:
-                path: ${{ github.workspace }}\..\Qt
+                path: ${{ github.workspace }}/../Qt
                 key: ${{ runner.os }}-Qt-Linux-Cache
                 
             - name: Install Qt
@@ -31,7 +31,7 @@ jobs:
                 cached: ${{ steps.cache-qt.outputs.cache-hit }}
                 version: ${{ env.QT_VERSION }}
                 host: 'linux'
-                dir: '${{ github.workspace }}\..'
+                dir: '${{ github.workspace }}/..'
                 modules: 'qtscript'
                 
             - name: Clone repo
@@ -55,6 +55,7 @@ jobs:
             - name: Install other tools/dependencies
               run: |
                 sudo apt install chrpath
+                echo "::add-path::${{ github.workspace }}/../Qt/${{ env.QT_VERSION }}/gcc_64/bin"
  
             - name: Prepare output dir
               run: mkdir output output/build output/build/Plugins
@@ -62,13 +63,13 @@ jobs:
             - name: Compile SQLiteStudio3
               working-directory: output/build
               run: |
-                qmake CONFIG+=portable ..\..\SQLiteStudio3
+                qmake CONFIG+=portable ../../SQLiteStudio3
                 make -j 2
             
             - name: Compile Plugins
               working-directory: output/build/Plugins
               run: |
-                qmake CONFIG+=portable ..\..\..\Plugins
+                qmake CONFIG+=portable ../../../Plugins
                 make -j 2
               
             - name: Prepare portable dir
