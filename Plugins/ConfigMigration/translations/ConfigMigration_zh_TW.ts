@@ -6,27 +6,27 @@
     <message>
       <location filename="../configmigration.cpp" line="36"/>
       <source>A configuration from old SQLiteStudio 2.x.x has been detected. Would you like to migrate old settings into the current version? &lt;a href=&quot;%1&quot;&gt;Click here to do that&lt;/a&gt;.</source>
-      <translation type="unfinished">A configuration from old SQLiteStudio 2.x.x has been detected. Would you like to migrate old settings into the current version? &lt;a href=&quot;%1&quot;&gt;Click here to do that&lt;/a&gt;.</translation>
+      <translation>偵測到舊版 SQLiteStudio 2.x.x 版的設定檔。 您有打算將舊版的設定檔轉換成當前版本嗎？&lt;a href=&quot;%1&quot;&gt;按此進行轉換&lt;/a&gt;</translation>
     </message>
     <message>
       <location filename="../configmigration.cpp" line="136"/>
       <source>Bug reports history (%1)</source>
-      <translation type="unfinished">Bug reports history (%1)</translation>
+      <translation>臭蟲回報紀錄(%1)</translation>
     </message>
     <message>
       <location filename="../configmigration.cpp" line="145"/>
       <source>Database list (%1)</source>
-      <translation type="unfinished">Database list (%1)</translation>
+      <translation>資料庫清單 (%1)</translation>
     </message>
     <message>
       <location filename="../configmigration.cpp" line="154"/>
       <source>Custom SQL functions (%1)</source>
-      <translation type="unfinished">Custom SQL functions (%1)</translation>
+      <translation>自訂 SQL functions (%1)</translation>
     </message>
     <message>
       <location filename="../configmigration.cpp" line="163"/>
       <source>SQL queries history (%1)</source>
-      <translation type="unfinished">SQL queries history (%1)</translation>
+      <translation>SQL 查詢紀錄 (%1)</translation>
     </message>
   </context>
   <context>
@@ -34,7 +34,7 @@
     <message>
       <location filename="../configmigrationwizard.ui" line="14"/>
       <source>Configuration migration</source>
-      <translation type="unfinished">Configuration migration</translation>
+      <translation>設定檔移轉</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="24"/>
@@ -49,17 +49,17 @@
     <message>
       <location filename="../configmigrationwizard.ui" line="58"/>
       <source>Options</source>
-      <translation type="unfinished">Options</translation>
+      <translation>選項</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="64"/>
       <source>Put imported databases into separate group</source>
-      <translation type="unfinished">Put imported databases into separate group</translation>
+      <translation>將匯入的資料庫放置到不同的群組之中</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="76"/>
       <source>Group name</source>
-      <translation type="unfinished">Group name</translation>
+      <translation>群組名稱</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.cpp" line="60"/>
