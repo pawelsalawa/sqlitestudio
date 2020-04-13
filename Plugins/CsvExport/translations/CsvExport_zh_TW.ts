@@ -6,52 +6,52 @@
     <message>
       <location filename="../CsvExport.ui" line="20"/>
       <source>Column names in first row</source>
-      <translation type="unfinished">Column names in first row</translation>
+      <translation>第一列的欄位名稱</translation>
     </message>
     <message>
       <location filename="../CsvExport.ui" line="30"/>
       <source>Column separator:</source>
-      <translation type="unfinished">Column separator:</translation>
+      <translation>資料行分隔符號：</translation>
     </message>
     <message>
       <location filename="../CsvExport.ui" line="41"/>
       <source>, (comma)</source>
-      <translation type="unfinished">, (comma)</translation>
+      <translation>, (逗號)</translation>
     </message>
     <message>
       <location filename="../CsvExport.ui" line="46"/>
       <source>; (semicolon)</source>
-      <translation type="unfinished">; (semicolon)</translation>
+      <translation>; (分號)</translation>
     </message>
     <message>
       <location filename="../CsvExport.ui" line="51"/>
       <source>\t (tab)</source>
-      <translation type="unfinished">\t (tab)</translation>
+      <translation>\t (Tab 鍵)</translation>
     </message>
     <message>
       <location filename="../CsvExport.ui" line="56"/>
       <source>  (whitespace)</source>
-      <translation type="unfinished">  (whitespace)</translation>
+      <translation>  (空格)</translation>
     </message>
     <message>
       <location filename="../CsvExport.ui" line="61"/>
       <source>Custom:</source>
-      <translation type="unfinished">Custom:</translation>
+      <translation>自訂：</translation>
     </message>
     <message>
       <location filename="../CsvExport.ui" line="82"/>
       <source>Export NULL values as:</source>
-      <translation type="unfinished">Export NULL values as:</translation>
+      <translation>匯出 NULL 值為：</translation>
     </message>
     <message>
       <location filename="../CsvExport.ui" line="89"/>
       <source>Empty string</source>
-      <translation type="unfinished">Empty string</translation>
+      <translation>空字串</translation>
     </message>
     <message>
       <location filename="../csvexport.cpp" line="42"/>
       <source>Enter the custom separator character.</source>
-      <translation type="unfinished">Enter the custom separator character.</translation>
+      <translation>設定自訂分隔字元</translation>
     </message>
   </context>
 </TS>
