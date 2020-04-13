@@ -1,0 +1,122 @@
+env:
+    SQLITESTUDIO_BRANCH: 3.2
+    QT_VERSION: '5.14.2'
+    SQLITE_VERSION: '3310100'
+    TCL_VERSION: '8.6'
+    PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
+    DEPS_URL: https://www.dropbox.com/s/9ulp1w82826966i/win64_deps.zip?dl=1
+
+name: 3.2 branch Windows release build
+
+on:
+    push:
+        branches:
+            - 3.2
+
+jobs:
+    build:
+        runs-on: ubuntu-18.04
+
+        steps:
+            - name: Remove conflicting packages
+              run: |
+                sudo apt-get remove sqlite3 libsqlite3-0
+                sudo apt-get purge sqlite3 libsqlite3-0
+                
+            - name: Cache Qt
+              id: cache-qt
+              uses: actions/cache@v1
+              with:
+                path: ${{ github.workspace }}\..\Qt
+                key: ${{ runner.os }}-Qt-Linux-Cache
+                
+            - name: Install Qt
+              uses: jurplel/install-qt-action@v2
+              with:
+                cached: ${{ steps.cache-qt.outputs.cache-hit }}
+                version: ${{ env.QT_VERSION }}
+                host: 'linux'
+                dir: '${{ github.workspace }}\..'
+                modules: 'qtscript'
+                
+            - name: Clone repo
+              uses: actions/checkout@v2
+              with:
+                ref: ${{ env.SQLITESTUDIO_BRANCH }}
+
+            - name: Install SQLite3
+              run: |
+                wget http://sqlite.org/2018/sqlite-autoconf-$SQLITE_VERSION.tar.gz
+                tar xzf sqlite-autoconf-$SQLITE_VERSION.tar.gz
+                cd sqlite-autoconf-$SQLITE_VERSION
+                ./configure --enable-fts5 --enable-json1 --enable-session
+                make
+                sudo make install
+                sqlite3 --version
+            
+            - name: Install Tcl
+              run: sudo apt-get install -qq libtcl$TCL_VERSION tcl$TCL_VERSION-dev
+              
+            - name: Install other tools/dependencies
+              run: |
+                sudo apt install chrpath
+ 
+            - name: Prepare output dir
+              run: mkdir output output/build output/build/Plugins
+            
+            - name: Compile SQLiteStudio3
+              working-directory: output/build
+              run: |
+                qmake CONFIG+=portable ..\..\SQLiteStudio3
+                make -j 2
+            
+            - name: Compile Plugins
+              working-directory: output/build/Plugins
+              run: |
+                qmake CONFIG+=portable ..\..\..\Plugins
+                make -j 2
+              
+            # - name: Prepare portable dir
+              # working-directory: output
+              # run: |
+                # mkdir portable
+                # cp -R SQLiteStudio portable/
+
+            # - name: Clean-up portable dir
+              # working-directory: ${{ env.PORTABLE_DIR }}
+              # run: |
+                # rm -f *.a
+                # rm -f plugins/*.a
+
+            # - name: Prepare portable distro (Qt)
+              # working-directory: ${{ env.Qt5_Dir }}
+              # run: |
+                # for f in Qt5Core Qt5Gui Qt5Network Qt5PrintSupport Qt5Script Qt5Svg Qt5Widgets Qt5Xml libgcc_s_seh-1 libstdc++-6 libwinpthread-1; do cp bin/$f.dll "${{ env.PORTABLE_DIR }}"; done
+                # cp bin/qt.conf "${{ env.PORTABLE_DIR }}"
+                # mkdir "${{ env.PORTABLE_DIR }}/iconengines"
+                # mkdir "${{ env.PORTABLE_DIR }}/platforms"
+                # mkdir "${{ env.PORTABLE_DIR }}/printsupport"
+                # mkdir "${{ env.PORTABLE_DIR }}/styles"
+                # mkdir "${{ env.PORTABLE_DIR }}/imageformats"
+                # cp plugins/iconengines/qsvgicon.dll "${{ env.PORTABLE_DIR }}/iconengines"
+                # cp plugins/platforms/qwindows.dll "${{ env.PORTABLE_DIR }}/platforms"
+                # cp plugins/styles/qwindowsvistastyle.dll "${{ env.PORTABLE_DIR }}/styles"
+                # cp plugins/printsupport/windowsprintersupport.dll "${{ env.PORTABLE_DIR }}/printsupport"
+                # for f in qgif qicns qico qjpeg qsvg qtga qtiff qwbmp; do cp plugins/imageformats/$f.dll "${{ env.PORTABLE_DIR }}/imageformats"; done
+
+            # - name: Prepare portable distro (Deps)
+              # working-directory: ${{ github.workspace }}/../lib
+              # run: cp *.dll "${{ env.PORTABLE_DIR }}"
+
+            # - name: Determine SQLiteStudio version
+              # run: echo ::set-env name=SQLITESTUDIO_VERSION::$(./sqlitestudiocli.exe --version | cut -f 2 -d ' ')
+
+            # - name: Assemble portable package
+              # working-directory: ${{ env.PORTABLE_DIR }}
+              # run: 7z a -r ../sqlitestudio-$SQLITESTUDIO_VERSION.zip .
+
+            # - name: Upload package artifact
+              # uses: actions/upload-artifact@v1
+              # with:
+                # name: sqlitestudio-$SQLITESTUDIO_VERSION.zip
+                # path: output/portable/sqlitestudio-$SQLITESTUDIO_VERSION.zip
