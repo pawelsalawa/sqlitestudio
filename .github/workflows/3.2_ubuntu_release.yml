@@ -4,9 +4,8 @@ env:
     SQLITE_VERSION: '3310100'
     TCL_VERSION: '8.6'
     PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
-    DEPS_URL: https://www.dropbox.com/s/9ulp1w82826966i/win64_deps.zip?dl=1
 
-name: 3.2 branch Windows release build
+name: 3.2 branch Linux release build
 
 on:
     push:
@@ -18,11 +17,6 @@ jobs:
         runs-on: ubuntu-18.04
 
         steps:
-            - name: Remove conflicting packages
-              run: |
-                sudo apt-get remove sqlite3 libsqlite3-0
-                sudo apt-get purge sqlite3 libsqlite3-0
-                
             - name: Cache Qt
               id: cache-qt
               uses: actions/cache@v1
