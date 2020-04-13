@@ -39,12 +39,12 @@
     <message>
       <location filename="../configmigrationwizard.ui" line="24"/>
       <source>Items to migrate</source>
-      <translation type="unfinished">Items to migrate</translation>
+      <translation>可移轉的項目</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="27"/>
       <source>This is a list of items found in the old configuration file, which can be migrated into the current configuration.</source>
-      <translation type="unfinished">This is a list of items found in the old configuration file, which can be migrated into the current configuration.</translation>
+      <translation>這是在舊設定檔中發現的項目清單，都可以移轉到當前版本的設定檔之中</translation>
     </message>
     <message>
       <location filename="../configmigrationwizard.ui" line="58"/>
