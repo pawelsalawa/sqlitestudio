@@ -61,7 +61,7 @@ class API_EXPORT TableModifier
         bool handleExprWithTrigTable(SqliteExpr* expr);
         bool handleExpr(SqliteExpr* expr);
         void simpleHandleIndexes();
-        void simpleHandleTriggers(const QString& view = QString::null);
+        void simpleHandleTriggers(const QString& view = QString());
         SqliteQueryPtr parseQuery(const QString& ddl);
 
         /**

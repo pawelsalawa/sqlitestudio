@@ -454,7 +454,7 @@ QString ViewWindow::getCurrentTrigger() const
     int row = ui->triggersList->currentRow();
     QTableWidgetItem* item = ui->triggersList->item(row, 0);
     if (!item)
-        return QString::null;
+        return QString();
 
     return item->text();
 }

@@ -14,8 +14,8 @@ class API_EXPORT SqliteReindex : public SqliteQuery
 
         SqliteStatement* clone();
 
-        QString database = QString::null;
-        QString table = QString::null;
+        QString database = QString();
+        QString table = QString();
 
     protected:
         QStringList getTablesInStatement();

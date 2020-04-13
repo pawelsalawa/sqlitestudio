@@ -170,7 +170,7 @@ QString FormManager::getWidgetName(const QString& path)
     if (!file.open(QIODevice::ReadOnly))
     {
         qWarning() << "Could not open" << path << "for reading. Form file ignored.";
-        return QString::null;
+        return QString();
     }
 
     QString contents = file.readAll();
@@ -180,7 +180,7 @@ QString FormManager::getWidgetName(const QString& path)
     if (!match.hasMatch())
     {
         qWarning() << "Could not match widget in" << path << " document. File ignored.";
-        return QString::null;
+        return QString();
     }
 
     QString widgetName = match.captured(1);

@@ -1074,7 +1074,7 @@ QString TableWindow::getCurrentIndex() const
     int row = ui->indexList->currentRow();
     QTableWidgetItem* item = ui->indexList->item(row, 0);
     if (!item)
-        return QString::null;
+        return QString();
 
     return item->text();
 }
@@ -1084,7 +1084,7 @@ QString TableWindow::getCurrentTrigger() const
     int row = ui->triggerList->currentRow();
     QTableWidgetItem* item = ui->triggerList->item(row, 0);
     if (!item)
-        return QString::null;
+        return QString();
 
     return item->text();
 }
@@ -1349,7 +1349,7 @@ void TableWindow::withOutRowIdChanged()
     if (!createTable)
         return;
 
-    createTable->withOutRowId = ui->withoutRowIdCheck->isChecked() ? QStringLiteral("ROWID") : QString::null;
+    createTable->withOutRowId = ui->withoutRowIdCheck->isChecked() ? QStringLiteral("ROWID") : QString();
     updateDdlTab();
     emit modifyStatusChanged();
 }

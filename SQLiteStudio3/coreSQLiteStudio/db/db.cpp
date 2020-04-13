@@ -23,7 +23,7 @@ QString Db::flagsToString(Db::Flags flags)
 {
     int idx = staticMetaObject.indexOfEnumerator("Flag");
     if (idx == -1)
-        return QString::null;
+        return QString();
 
     QMetaEnum en = staticMetaObject.enumerator(idx);
     return en.valueToKeys(static_cast<int>(flags));

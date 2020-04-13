@@ -46,7 +46,7 @@ QString cliHandleCmdLineArgs()
     if (args.size() > 0)
         return args[0];
 
-    return QString::null;
+    return QString();
 }
 
 int main(int argc, char *argv[])

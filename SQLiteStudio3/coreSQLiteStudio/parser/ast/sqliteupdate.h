@@ -26,11 +26,11 @@ class API_EXPORT SqliteUpdate : public SqliteQuery
         SqliteExpr* getValueForColumnSet(const QString& column);
 
         SqliteConflictAlgo onConflict = SqliteConflictAlgo::null;
-        QString database = QString::null;
-        QString table = QString::null;
+        QString database = QString();
+        QString table = QString();
         bool indexedByKw = false;
         bool notIndexedKw = false;
-        QString indexedBy = QString::null;
+        QString indexedBy = QString();
         QList<ColumnAndValue> keyValueMap;
         SqliteExpr* where = nullptr;
         SqliteWith* with = nullptr;

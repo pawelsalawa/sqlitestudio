@@ -316,7 +316,7 @@ QString TableStructureModel::columnLabel(int column) const
         case Columns::DEFAULT:
             return tr("Default value", "table structure columns");
     }
-    return QString::null;
+    return QString();
 }
 
 QVariant TableStructureModel::getColumnName(int row) const

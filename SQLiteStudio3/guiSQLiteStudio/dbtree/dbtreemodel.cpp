@@ -394,7 +394,7 @@ QVariant DbTreeModel::data(const QModelIndex &index, int role) const
 QString DbTreeModel::getToolTip(DbTreeItem* item) const
 {
     if (!item)
-        return QString::null;
+        return QString();
 
     switch (item->getType())
     {
@@ -405,7 +405,7 @@ QString DbTreeModel::getToolTip(DbTreeItem* item) const
         default:
             break;
     }
-    return QString::null;
+    return QString();
 }
 
 QString DbTreeModel::getDbToolTip(DbTreeItem* item) const

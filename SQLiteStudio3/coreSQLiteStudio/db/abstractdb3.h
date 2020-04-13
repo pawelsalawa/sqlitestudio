@@ -534,7 +534,7 @@ template <class T>
 void AbstractDb3<T>::resetError()
 {
     dbErrorCode = 0;
-    dbErrorMessage = QString::null;
+    dbErrorMessage = QString();
 }
 
 template <class T>
@@ -868,7 +868,7 @@ template <class T>
 int AbstractDb3<T>::Query::resetStmt()
 {
     errorCode = 0;
-    errorMessage = QString::null;
+    errorMessage = QString();
     affected = 0;
     colCount = -1;
     rowAvailable = false;

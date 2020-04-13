@@ -1,8 +1,6 @@
 include($$PWD/dirs.pri)
 
-CONFIG += c++11 plugin
-
-QMAKE_CFLAGS += -std=c11
+CONFIG += c++17 plugin
 
 DESTDIR = $$PWD/../$$OUTPUT_DIR_NAME/SQLiteStudio/plugins
 OBJECTS_DIR = $$PWD/../$$OUTPUT_DIR_NAME/build

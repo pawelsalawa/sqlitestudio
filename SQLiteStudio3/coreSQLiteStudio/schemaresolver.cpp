@@ -278,7 +278,7 @@ QString SchemaResolver::getObjectDdl(const QString& name, ObjectType type)
 QString SchemaResolver::getObjectDdl(const QString &database, const QString &name, ObjectType type)
 {
     if (name.isNull())
-        return QString::null;
+        return QString();
 
     Dialect dialect = db->getDialect();
     // In case of sqlite_master or sqlite_temp_master we have static definitions
@@ -346,7 +346,7 @@ QString SchemaResolver::getObjectDdlWithDifficultName(const QString &dbName, con
     if (queryResults->isError())
     {
         qDebug() << "Could not get object's DDL:" << dbName << "." << lowerName << ", details:" << queryResults->getErrorText();
-        return QString::null;
+        return QString();
     }
 
     // The DDL string
@@ -387,7 +387,7 @@ QString SchemaResolver::getObjectDdlWithSimpleName(const QString &dbName, const 
     if (queryResults->isError())
     {
         qDebug() << "Could not get object's DDL:" << dbName << "." << lowerName << ", details:" << queryResults->getErrorText();
-        return QString::null;
+        return QString();
     }
 
     // The DDL string
@@ -507,7 +507,7 @@ StrHash< SqliteQueryPtr> SchemaResolver::getAllParsedObjects()
 
 StrHash< SqliteQueryPtr> SchemaResolver::getAllParsedObjects(const QString& database)
 {
-    return getAllParsedObjectsForType<SqliteQuery>(database, QString::null);
+    return getAllParsedObjectsForType<SqliteQuery>(database, QString());
 }
 
 StrHash< SqliteCreateTablePtr> SchemaResolver::getAllParsedTables()
@@ -575,7 +575,7 @@ SqliteQueryPtr SchemaResolver::getParsedDdl(const QString& ddl)
 
 QStringList SchemaResolver::getObjects(const QString &type)
 {
-    return getObjects(QString::null, type);
+    return getObjects(QString(), type);
 }
 
 QStringList SchemaResolver::getObjects(const QString &database, const QString &type)
@@ -606,7 +606,7 @@ QStringList SchemaResolver::getObjects(const QString &database, const QString &t
 
 QStringList SchemaResolver::getAllObjects()
 {
-    return getAllObjects(QString::null);
+    return getAllObjects(QString());
 }
 
 QStringList SchemaResolver::getAllObjects(const QString& database)

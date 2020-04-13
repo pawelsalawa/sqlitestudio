@@ -37,7 +37,7 @@ QString ReturnCode::message()
     if (errorMessages.size() > 0)
         return errorMessages.at(0);
     else
-        return QString::null;
+        return QString();
 }
 
 void ReturnCode::setCode(quint16 code)

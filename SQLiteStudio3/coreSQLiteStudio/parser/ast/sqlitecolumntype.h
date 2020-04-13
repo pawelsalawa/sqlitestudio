@@ -20,7 +20,7 @@ class API_EXPORT SqliteColumnType : public SqliteStatement
         TokenList rebuildTokensFromContents();
         DataType toDataType() const;
 
-        QString name = QString::null;
+        QString name = QString();
         QVariant scale = QVariant(); // first size number
         QVariant precision = QVariant(); // second size number
 };

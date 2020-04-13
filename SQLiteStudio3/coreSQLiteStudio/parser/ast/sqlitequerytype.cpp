@@ -61,6 +61,6 @@ QString sqliteQueryTypeToString(const SqliteQueryType& type)
         case SqliteQueryType::Vacuum:
             return "Vacuum";
         default:
-            return QString::null;
+            return QString();
     }
 }

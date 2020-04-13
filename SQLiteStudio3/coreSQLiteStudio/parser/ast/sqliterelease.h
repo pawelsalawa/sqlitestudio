@@ -14,7 +14,7 @@ class API_EXPORT SqliteRelease : public SqliteQuery
 
         SqliteStatement* clone();
 
-        QString name = QString::null;
+        QString name = QString();
         bool savepointKw = false;
 
     protected:

@@ -173,8 +173,8 @@ void SqliteExtensionEditor::extensionSelected(int row)
 
 void SqliteExtensionEditor::clearEdits()
 {
-    ui->fileEdit->setText(QString::null);
-    ui->initEdit->setText(QString::null);
+    ui->fileEdit->setText(QString());
+    ui->initEdit->setText(QString());
     ui->allDatabasesRadio->setChecked(true);
 }
 

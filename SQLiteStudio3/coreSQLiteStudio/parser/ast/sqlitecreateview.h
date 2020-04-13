@@ -25,8 +25,8 @@ class API_EXPORT SqliteCreateView : public SqliteQuery, public SqliteDdlWithDbCo
         bool tempKw = false;
         bool temporaryKw = false;
         bool ifNotExists = false;
-        QString database = QString::null;
-        QString view = QString::null;
+        QString database = QString();
+        QString view = QString();
         SqliteSelect* select = nullptr;
         QList<SqliteIndexedColumn*> columns;
 

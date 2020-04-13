@@ -54,7 +54,7 @@ QString SqliteRaise::raiseType(SqliteRaise::Type value)
         case SqliteRaise::Type::FAIL:
             return "FAIL";
         default:
-            return QString::null;
+            return QString();
     }
 }
 

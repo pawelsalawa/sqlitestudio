@@ -66,7 +66,7 @@ SqliteSelect* SqliteSelect::append(SqliteSelect* select, SqliteSelect::CompoundO
         resColList.clear();
         for (SqliteExpr* value : singleValues)
         {
-            resCol = new Core::ResultColumn(value, false, QString::null);
+            resCol = new Core::ResultColumn(value, false, QString());
             value->detectDoubleQuotes(); // invoke explicitly before rebuilding tokens not to lose this information
             resCol->rebuildTokens();
             resCol->setParent(core);
@@ -97,7 +97,7 @@ QString SqliteSelect::compoundOperator(SqliteSelect::CompoundOperator op)
         case SqliteSelect::CompoundOperator::null:
             break;
     }
-    return QString::null;
+    return QString();
 }
 
 SqliteSelect::CompoundOperator SqliteSelect::compoundOperator(const QString& op)

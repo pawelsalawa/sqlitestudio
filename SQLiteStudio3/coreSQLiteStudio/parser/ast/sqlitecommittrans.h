@@ -13,7 +13,7 @@ class API_EXPORT SqliteCommitTrans : public SqliteQuery
         SqliteStatement* clone();
 
         bool endKw = false;
-        QString name = QString::null;
+        QString name = QString();
         bool transactionKw = false;
 
     protected:

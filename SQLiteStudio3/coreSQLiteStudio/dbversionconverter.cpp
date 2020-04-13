@@ -471,7 +471,7 @@ bool DbVersionConverter::modifyDeleteForVersion2(SqliteDelete* del)
 
     QString sql1 = getSqlForDiff(del);
 
-    del->indexedBy = QString::null;
+    del->indexedBy = QString();
     del->indexedByKw = false;
     del->notIndexedKw = false;
 
@@ -535,7 +535,7 @@ bool DbVersionConverter::modifyUpdateForVersion2(SqliteUpdate* update)
     if (!modifyAllExprsForVersion2(update))
         return false;
 
-    update->indexedBy = QString::null;
+    update->indexedBy = QString();
     update->indexedByKw = false;
     update->notIndexedKw = false;
 
@@ -550,7 +550,7 @@ bool DbVersionConverter::modifyCreateTableForVersion2(SqliteCreateTable* createT
     QString sql1 = getSqlForDiff(createTable);
 
     if (!createTable->database.isNull())
-        createTable->database = QString::null;
+        createTable->database = QString();
 
     // Subselect
     if (createTable->select)
@@ -594,7 +594,7 @@ bool DbVersionConverter::modifyCreateTableForVersion2(SqliteCreateTable* createT
                         tableColConstrIt.remove();
                     }
                     else
-                        tableColConstrIt.value()->name = QString::null;
+                        tableColConstrIt.value()->name = QString();
 
                     break;
                 }
@@ -632,7 +632,7 @@ bool DbVersionConverter::modifyCreateTableForVersion2(SqliteCreateTable* createT
 
     // WITHOUT ROWID
     if (!createTable->withOutRowId.isNull())
-        createTable->withOutRowId = QString::null;
+        createTable->withOutRowId = QString();
 
     storeDiff(sql1, createTable);
     return true;
@@ -643,7 +643,7 @@ bool DbVersionConverter::modifyCreateTriggerForVersion2(SqliteCreateTrigger* cre
     QString sql = getSqlForDiff(createTrigger);
 
     if (!createTrigger->database.isNull())
-        createTrigger->database = QString::null;
+        createTrigger->database = QString();
 
     for (SqliteQuery* query : createTrigger->queries)
     {
@@ -692,7 +692,7 @@ bool DbVersionConverter::modifyCreateIndexForVersion2(SqliteCreateIndex* createI
     QString sql1 = getSqlForDiff(createIndex);
 
     if (!createIndex->database.isNull())
-        createIndex->database = QString::null;
+        createIndex->database = QString();
 
     if (createIndex->where)
     {
@@ -712,7 +712,7 @@ bool DbVersionConverter::modifyCreateViewForVersion2(SqliteCreateView* createVie
     QString sql1 = getSqlForDiff(createView);
 
     if (!createView->database.isNull())
-        createView->database = QString::null;
+        createView->database = QString();
 
     if (!modifySelectForVersion2(createView->select))
         return false;

@@ -26,7 +26,7 @@ portable: {
 TARGET = guiSQLiteStudio
 TEMPLATE = lib
 
-CONFIG += c++11
+CONFIG += c++17
 QMAKE_CXXFLAGS += -pedantic
 
 DEFINES += GUISQLITESTUDIO_LIBRARY

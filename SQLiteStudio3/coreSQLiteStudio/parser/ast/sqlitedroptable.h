@@ -14,8 +14,8 @@ class API_EXPORT SqliteDropTable : public SqliteQuery
         SqliteStatement* clone();
 
         bool ifExistsKw = false;
-        QString database = QString::null;
-        QString table = QString::null;
+        QString database = QString();
+        QString table = QString();
 
     protected:
         QStringList getTablesInStatement();

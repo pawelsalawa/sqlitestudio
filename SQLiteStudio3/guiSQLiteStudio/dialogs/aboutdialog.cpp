@@ -120,7 +120,7 @@ QString AboutDialog::readFile(const QString& path)
     if (!file.open(QIODevice::ReadOnly))
     {
         qCritical() << "Error opening" << file.fileName();
-        return QString::null;
+        return QString();
     }
     QString contents = QString::fromLatin1(file.readAll()).toHtmlEscaped();
     file.close();

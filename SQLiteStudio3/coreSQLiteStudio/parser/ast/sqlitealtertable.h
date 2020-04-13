@@ -34,9 +34,9 @@ class API_EXPORT SqliteAlterTable : public SqliteQuery
 
     public:
         Command command = Command::null;
-        QString newName = QString::null;
-        QString database = QString::null;
-        QString table = QString::null;
+        QString newName = QString();
+        QString database = QString();
+        QString table = QString();
         bool columnKw = false;
         SqliteCreateTable::Column* newColumn = nullptr;
 };

@@ -7,7 +7,7 @@
 
 CFG_CATEGORIES(SqlExportConfig,
      CFG_CATEGORY(SqlExport,
-         CFG_ENTRY(QString, QueryTable,             QString::null)
+         CFG_ENTRY(QString, QueryTable,             QString())
          CFG_ENTRY(bool,    GenerateCreateTable,    false)
          CFG_ENTRY(bool,    IncludeQueryInComments, true)
          CFG_ENTRY(bool,    UseFormatter,           false)

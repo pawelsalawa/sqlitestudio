@@ -87,7 +87,7 @@ QString convertPageSize(QPagedPaintDevice::PageSize size)
     if (idx < 0 || idx >= pageSizesSize)
     {
         qDebug() << "Asked to convertPageSize() with page side enum value out of range:" << idx;
-        return QString::null;
+        return QString();
     }
 
     return pageSizes[idx];

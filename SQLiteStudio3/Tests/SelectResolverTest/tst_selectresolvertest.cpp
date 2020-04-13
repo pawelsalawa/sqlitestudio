@@ -52,7 +52,7 @@ void SelectResolverTest::testTableHash()
     SelectResolver::Table t2;
     t2.database = "d2";
     t2.table = "t1";
-    t2.tableAlias = QString::null;
+    t2.tableAlias = QString();
     tables << t2;
 
     // different database

@@ -284,7 +284,7 @@ QString DbManagerImpl::quickAddDb(const QString& path, const QHash<QString, QVar
     QString newName = DbManager::generateDbName(path);
     newName = generateUniqueName(newName, DBLIST->getDbNames());
     if (!DBLIST->addDb(newName, path, options, false))
-        return QString::null;
+        return QString();
 
     return newName;
 }

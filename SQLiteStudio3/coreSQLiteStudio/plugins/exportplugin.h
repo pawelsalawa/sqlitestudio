@@ -87,7 +87,7 @@ class ExportPlugin : virtual public Plugin
          *
          * If exporting with this plugin is not configurable (i.e. getConfig() returns null),
          * then this method is not even called, so it can return anything, just to satisfy method
-         * return type. In that case good idea is to always return QString::null.
+         * return type. In that case good idea is to always return QString().
          *
          * @see FormManager
          */
@@ -137,7 +137,7 @@ class ExportPlugin : virtual public Plugin
          *
          * See details http://qt-project.org/doc/qt-5/qmimedata.html#setData
          *
-         * If the plugin exports just a string, then this method can return QString::null and SqliteStudio will assume
+         * If the plugin exports just a string, then this method can return QString() and SqliteStudio will assume
          * that the data is of "text/plain" type.
          */
         virtual QString getMimeType() const = 0;

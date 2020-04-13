@@ -35,7 +35,7 @@ QString SqliteForeignKey::Condition::toString(SqliteForeignKey::Condition::React
         case SqliteForeignKey::Condition::NO_ACTION:
             return "NO ACTION";
     }
-    return QString::null;
+    return QString();
 }
 
 SqliteForeignKey::Condition::Reaction SqliteForeignKey::Condition::toEnum(const QString& reaction)

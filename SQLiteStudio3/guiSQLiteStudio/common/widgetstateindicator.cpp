@@ -129,7 +129,7 @@ void WidgetStateIndicator::setMessage(const QString& msg)
 
 void WidgetStateIndicator::clearMessage()
 {
-    message = QString::null;
+    message = QString();
     label->setToolTip(message);
     label->unsetCursor();
 }

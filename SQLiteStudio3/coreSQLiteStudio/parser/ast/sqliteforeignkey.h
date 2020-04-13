@@ -41,7 +41,7 @@ class API_EXPORT SqliteForeignKey : public SqliteStatement
                 SqliteStatement* clone();
 
                 Action action;
-                QString name = QString::null;
+                QString name = QString();
                 Reaction reaction = NO_ACTION;
 
             protected:
@@ -57,7 +57,7 @@ class API_EXPORT SqliteForeignKey : public SqliteStatement
 
         SqliteStatement* clone();
 
-        QString foreignTable = QString::null;
+        QString foreignTable = QString();
         QList<SqliteIndexedColumn*> indexedColumns;
         QList<Condition*> conditions;
         SqliteDeferrable deferrable = SqliteDeferrable::null; // Those two are for table constraint only,

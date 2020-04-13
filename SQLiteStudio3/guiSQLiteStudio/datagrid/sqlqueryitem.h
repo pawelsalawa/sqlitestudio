@@ -67,7 +67,7 @@ class GUI_API_EXPORT SqlQueryItem : public QObject, public QStandardItem
 
         /**
          * @brief loadFullData Reloads entire value of the cell from database.
-         * @return QString::null on sucess, or error string on failure.
+         * @return QString() on sucess, or error string on failure.
          */
         QString loadFullData();
 

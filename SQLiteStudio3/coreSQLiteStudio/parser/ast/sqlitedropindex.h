@@ -14,8 +14,8 @@ class API_EXPORT SqliteDropIndex : public SqliteQuery
         SqliteStatement* clone();
 
         bool ifExistsKw = false;
-        QString database = QString::null;
-        QString index = QString::null;
+        QString database = QString();
+        QString index = QString();
 
     protected:
         QStringList getDatabasesInStatement();

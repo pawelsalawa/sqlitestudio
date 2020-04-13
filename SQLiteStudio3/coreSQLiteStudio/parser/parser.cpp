@@ -191,7 +191,7 @@ bool Parser::parseInternal(const QString &sql, bool lookForExpectedToken)
         }
 
         qint64 endIdx = sql.length();
-        TokenPtr endToken = TokenPtr::create(0, Token::INVALID, QString::null, endIdx, endIdx);
+        TokenPtr endToken = TokenPtr::create(0, Token::INVALID, QString(), endIdx, endIdx);
         parse(pParser, 0, endToken, context);
     }
 

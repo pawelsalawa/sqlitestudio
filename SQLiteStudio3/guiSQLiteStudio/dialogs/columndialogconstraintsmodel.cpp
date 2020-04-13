@@ -187,7 +187,7 @@ QString ColumnDialogConstraintsModel::getType(int rowIdx) const
         case SqliteCreateTable::Column::Constraint::DEFERRABLE_ONLY:
             break;
     }
-    return QString::null;
+    return QString();
 }
 
 QString ColumnDialogConstraintsModel::getDetails(int rowIdx) const
@@ -214,7 +214,7 @@ QString ColumnDialogConstraintsModel::getDetails(int rowIdx) const
         case SqliteCreateTable::Column::Constraint::DEFERRABLE_ONLY:
             break;
     }
-    return QString::null;
+    return QString();
 }
 
 QString ColumnDialogConstraintsModel::getPkDetails(SqliteCreateTable::Column::Constraint* constr) const

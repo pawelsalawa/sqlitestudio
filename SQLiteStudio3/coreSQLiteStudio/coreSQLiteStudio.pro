@@ -51,7 +51,7 @@ portable {
     DEFINES += PORTABLE_CONFIG
 }
 
-CONFIG   += c++11
+CONFIG  += c++17
 QMAKE_CXXFLAGS += -pedantic
 
 TRANSLATIONS += translations/coreSQLiteStudio.ts \

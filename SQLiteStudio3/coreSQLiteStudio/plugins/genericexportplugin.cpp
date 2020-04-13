@@ -47,12 +47,12 @@ CfgMain* GenericExportPlugin::getConfig()
 QString GenericExportPlugin::getConfigFormName(ExportManager::ExportMode mode) const
 {
     UNUSED(mode);
-    return QString::null;
+    return QString();
 }
 
 QString GenericExportPlugin::getMimeType() const
 {
-    return QString::null;
+    return QString();
 }
 
 QString GenericExportPlugin::getDefaultEncoding() const

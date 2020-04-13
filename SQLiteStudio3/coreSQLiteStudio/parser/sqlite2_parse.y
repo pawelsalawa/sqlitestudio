@@ -657,7 +657,7 @@ cmd ::= DROP TABLE ID_DB|ID_TAB.   {}
 cmd(X) ::= CREATE temp(T) VIEW
             nm(N)
             AS select(S).                   {
-                                                X = new SqliteCreateView(*(T), false, *(N), QString::null, S);
+                                                X = new SqliteCreateView(*(T), false, *(N), QString(), S);
                                                 delete T;
                                                 delete N;
                                                 objectForTokens = X;
@@ -666,7 +666,7 @@ cmd(X) ::= CREATE temp(T) VIEW
 cmd ::= CREATE temp VIEW ID_VIEW_NEW.       {}
 
 cmd(X) ::= DROP VIEW nm(N).                 {
-                                                X = new SqliteDropView(false, *(N), QString::null);
+                                                X = new SqliteDropView(false, *(N), QString());
                                                 delete N;
                                                 objectForTokens = X;
                                             }
@@ -756,7 +756,7 @@ selcollist(X) ::= sclp(L) expr(E) as(N).    {
                                                     new SqliteSelect::Core::ResultColumn(
                                                         E,
                                                         N ? N->asKw : false,
-                                                        N ? N->name : QString::null
+                                                        N ? N->name : QString()
                                                     );
 
                                                 L->append(obj);
@@ -855,9 +855,9 @@ singlesrc(X) ::= nm(N1) dbnm(N2) as(A).     {
                                                         *(N1),
                                                         *(N2),
                                                         A ? A->asKw : false,
-                                                        A ? A->name : QString::null,
+                                                        A ? A->name : QString(),
                                                         false,
-                                                        QString::null
+                                                        QString()
                                                     );
                                                 delete N1;
                                                 delete N2;
@@ -868,7 +868,7 @@ singlesrc(X) ::= LP select(S) RP as(A).     {
                                                 X = new SqliteSelect::Core::SingleSource(
                                                         S,
                                                         A ? A->asKw : false,
-                                                        A ? A->name : QString::null
+                                                        A ? A->name : QString()
                                                     );
                                                 delete A;
                                                 objectForTokens = X;
@@ -877,7 +877,7 @@ singlesrc(X) ::= LP joinsrc(J) RP as(A).    {
                                                 X = new SqliteSelect::Core::SingleSource(
                                                         J,
                                                         A ? A->asKw : false,
-                                                        A ? A->name : QString::null
+                                                        A ? A->name : QString()
                                                     );
                                                 delete A;
                                                 objectForTokens = X;
@@ -1158,7 +1158,7 @@ update_stmt(X) ::= UPDATE orconf(C)
                                                         N->name1,
                                                         N->name2,
                                                         false,
-                                                        QString::null,
+                                                        QString(),
                                                         *(L),
                                                         W,
                                                         nullptr
@@ -1545,14 +1545,14 @@ exprx(X) ::= RAISE LP IGNORE(R) RP.         {
                                             }
 exprx(X) ::= nm(N1) DOT.                    {
                                                 X = new SqliteExpr();
-                                                X->initId(*(N1), QString::null, QString::null);
+                                                X->initId(*(N1), QString(), QString());
                                                 delete N1;
                                                 objectForTokens = X;
                                                 parserContext->minorErrorBeforeNextToken("Syntax error");
                                             }
 exprx(X) ::= nm(N1) DOT nm(N2) DOT.         {
                                                 X = new SqliteExpr();
-                                                X->initId(*(N1), *(N2), QString::null);
+                                                X->initId(*(N1), *(N2), QString());
                                                 delete N1;
                                                 delete N2;
                                                 objectForTokens = X;
@@ -1724,7 +1724,7 @@ idxlist_single(X) ::= nm(N) sortorder(S).   {
                                                 SqliteIndexedColumn* obj =
                                                     new SqliteIndexedColumn(
                                                         *(N),
-                                                        QString::null,
+                                                        QString(),
                                                         *(S)
                                                     );
                                                 X = obj;
@@ -1794,31 +1794,31 @@ cmd(X) ::= VACUUM nm(N).                    {
 ///////////////////////////// The PRAGMA command /////////////////////////////
 
 cmd(X) ::= PRAGMA ids(I).                   {
-                                                X = new SqlitePragma(*(I), QString::null);
+                                                X = new SqlitePragma(*(I), QString());
                                                 delete I;
                                                 objectForTokens = X;
                                             }
 
 cmd(X) ::= PRAGMA nm(N) EQ nmnum(V).        {
-                                                X = new SqlitePragma(*(N), QString::null, *(V), true);
+                                                X = new SqlitePragma(*(N), QString(), *(V), true);
                                                 delete N;
                                                 delete V;
                                                 objectForTokens = X;
                                             }
 cmd(X) ::= PRAGMA nm(N) LP nmnum(V) RP.     {
-                                                X = new SqlitePragma(*(N), QString::null, *(V), false);
+                                                X = new SqlitePragma(*(N), QString(), *(V), false);
                                                 delete N;
                                                 delete V;
                                                 objectForTokens = X;
                                             }
 cmd(X) ::= PRAGMA nm(N) EQ minus_num(V).    {
-                                                X = new SqlitePragma(*(N), QString::null, *(V), true);
+                                                X = new SqlitePragma(*(N), QString(), *(V), true);
                                                 delete N;
                                                 delete V;
                                                 objectForTokens = X;
                                             }
 cmd(X) ::= PRAGMA nm(N) LP minus_num(V) RP. {
-                                                X = new SqlitePragma(*(N), QString::null, *(V), false);
+                                                X = new SqlitePragma(*(N), QString(), *(V), false);
                                                 delete N;
                                                 delete V;
                                                 objectForTokens = X;

@@ -232,8 +232,8 @@ void CompletionHelperTest::testResCol2()
     QVERIFY(contains(tokens, ExpectedToken::DATABASE));
     QVERIFY(contains(tokens, ExpectedToken::FUNCTION));
     QVERIFY(contains(tokens, ExpectedToken::TABLE, "sqlite_master"));
-    QVERIFY(contains(tokens, ExpectedToken::COLUMN, "name", QString::null));
-    QVERIFY(contains(tokens, ExpectedToken::COLUMN, "id", QString::null));
+    QVERIFY(contains(tokens, ExpectedToken::COLUMN, "name", QString()));
+    QVERIFY(contains(tokens, ExpectedToken::COLUMN, "id", QString()));
 }
 
 void CompletionHelperTest::testResCol3()
@@ -247,18 +247,18 @@ void CompletionHelperTest::testResCol3()
     QVERIFY(contains(tokens, ExpectedToken::TABLE));
     QVERIFY(contains(tokens, ExpectedToken::DATABASE));
     QVERIFY(contains(tokens, ExpectedToken::FUNCTION));
-    QVERIFY(contains(tokens, ExpectedToken::COLUMN, "id", QString::null));
-    QVERIFY(contains(tokens, ExpectedToken::COLUMN, "val", QString::null));
+    QVERIFY(contains(tokens, ExpectedToken::COLUMN, "id", QString()));
+    QVERIFY(contains(tokens, ExpectedToken::COLUMN, "val", QString()));
 
     // Order should be:
     // id - test (no prefix value)
     // val - test (default, no prefix value)
     // val2 - test (default, no prefix value)
     // id - abc (no prefix, we didn't mention other table in from clause)
-    QVERIFY(find(tokens, ExpectedToken::COLUMN, "id", QString::null, "test") == 0);
-    QVERIFY(find(tokens, ExpectedToken::COLUMN, "val", QString::null, "test") == 1);
-    QVERIFY(find(tokens, ExpectedToken::COLUMN, "val2", QString::null, "test") == 2);
-    QVERIFY(find(tokens, ExpectedToken::COLUMN, "id", QString::null, "abc") == 3);
+    QVERIFY(find(tokens, ExpectedToken::COLUMN, "id", QString(), "test") == 0);
+    QVERIFY(find(tokens, ExpectedToken::COLUMN, "val", QString(), "test") == 1);
+    QVERIFY(find(tokens, ExpectedToken::COLUMN, "val2", QString(), "test") == 2);
+    QVERIFY(find(tokens, ExpectedToken::COLUMN, "id", QString(), "abc") == 3);
 }
 
 void CompletionHelperTest::testResCol4()
@@ -278,10 +278,10 @@ void CompletionHelperTest::testResCol4()
     // val2 - test (default, no prefix value)
     // id - test (no prefix, only one table in FROM)
     // id - abc (no prefix, only one table in FROM)
-    QVERIFY(find(tokens, ExpectedToken::COLUMN, "val", QString::null, "test") == 0);
-    QVERIFY(find(tokens, ExpectedToken::COLUMN, "val2", QString::null, "test") == 1);
-    QVERIFY(find(tokens, ExpectedToken::COLUMN, "id", QString::null, "test") == 2);
-    QVERIFY(find(tokens, ExpectedToken::COLUMN, "id", QString::null, "abc") == 3);
+    QVERIFY(find(tokens, ExpectedToken::COLUMN, "val", QString(), "test") == 0);
+    QVERIFY(find(tokens, ExpectedToken::COLUMN, "val2", QString(), "test") == 1);
+    QVERIFY(find(tokens, ExpectedToken::COLUMN, "id", QString(), "test") == 2);
+    QVERIFY(find(tokens, ExpectedToken::COLUMN, "id", QString(), "abc") == 3);
 }
 
 void CompletionHelperTest::testResCol5()
@@ -302,9 +302,9 @@ void CompletionHelperTest::testResCol5()
     // val - test (default, no prefix value)
     // id - abc (no prefix, only one table in FROM)
     QVERIFY(find(tokens, ExpectedToken::COLUMN, "val2") == 0);
-    QVERIFY(find(tokens, ExpectedToken::COLUMN, "id", QString::null, "test") == 1);
+    QVERIFY(find(tokens, ExpectedToken::COLUMN, "id", QString(), "test") == 1);
     QVERIFY(find(tokens, ExpectedToken::COLUMN, "val") == 2);
-    QVERIFY(find(tokens, ExpectedToken::COLUMN, "id", QString::null, "abc") == 3);
+    QVERIFY(find(tokens, ExpectedToken::COLUMN, "id", QString(), "abc") == 3);
 }
 
 void CompletionHelperTest::testResCol6()
@@ -330,7 +330,7 @@ void CompletionHelperTest::testResCol6()
     int s_sqlite_master_name = find(tokens, ExpectedToken::COLUMN, "name", "S", "sqlite_master");
     int s2_sqlite_master_name = find(tokens, ExpectedToken::COLUMN, "name", "S2", "sqlite_master");
     int test_id = find(tokens, ExpectedToken::COLUMN, "id", "A", "test");
-    int abc_id = find(tokens, ExpectedToken::COLUMN, "id", QString::null, "abc");
+    int abc_id = find(tokens, ExpectedToken::COLUMN, "id", QString(), "abc");
     QVERIFY(s_sqlite_master_name <= 1);
     QVERIFY(s2_sqlite_master_name <= 1);
     QVERIFY(test_id > s2_sqlite_master_name);
@@ -366,10 +366,10 @@ void CompletionHelperTest::testUpdateCols1()
     // TODO if table is provided and there is at least one column in proposal for it, then skip columns from other tables.
     // TODO Make the context more precise - distinguish between left side column from right side expression
 
-    QVERIFY(find(tokens, ExpectedToken::COLUMN, "id", QString::null, "test") == 0);
-    QVERIFY(find(tokens, ExpectedToken::COLUMN, "val", QString::null, "test") == 1);
-    QVERIFY(find(tokens, ExpectedToken::COLUMN, "val2", QString::null, "test") == 2);
-    //QVERIFY(!contains(tokens, ExpectedToken::COLUMN, "id", QString::null, "abc")); // TODO
+    QVERIFY(find(tokens, ExpectedToken::COLUMN, "id", QString(), "test") == 0);
+    QVERIFY(find(tokens, ExpectedToken::COLUMN, "val", QString(), "test") == 1);
+    QVERIFY(find(tokens, ExpectedToken::COLUMN, "val2", QString(), "test") == 2);
+    //QVERIFY(!contains(tokens, ExpectedToken::COLUMN, "id", QString(), "abc")); // TODO
 }
 
 void CompletionHelperTest::initTestCase()

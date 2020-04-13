@@ -182,7 +182,7 @@ void TablePrimaryKeyAndUniquePanel::storeConfiguration()
     SqliteCreateTable::Constraint* constr = dynamic_cast<SqliteCreateTable::Constraint*>(constraint.data());
 
     // Name
-    constr->name = QString::null;
+    constr->name = QString();
     if (ui->namedCheckBox->isChecked())
         constr->name = ui->namedLineEdit->text();
 
@@ -215,7 +215,7 @@ void TablePrimaryKeyAndUniquePanel::storeConfiguration()
             combo = dynamic_cast<QComboBox*>(columnsLayout->itemAtPosition(i, 1)->widget());
             collate = combo->currentText();
             if (collate.isEmpty())
-                collate = QString::null;
+                collate = QString();
 
             combo = dynamic_cast<QComboBox*>(columnsLayout->itemAtPosition(i, 2)->widget());
             sortOrder = sqliteSortOrder(combo->currentText());

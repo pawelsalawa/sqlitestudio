@@ -14,8 +14,8 @@ class API_EXPORT SqliteDropTrigger : public SqliteQuery
         SqliteStatement* clone();
 
         bool ifExistsKw = false;
-        QString database = QString::null;
-        QString trigger = QString::null;
+        QString database = QString();
+        QString trigger = QString();
 
     protected:
         QStringList getDatabasesInStatement();

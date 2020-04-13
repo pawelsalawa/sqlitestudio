@@ -186,9 +186,9 @@ QString ConstraintTabModel::getTypeLabel(SqliteCreateTable::Constraint::Type typ
         case SqliteCreateTable::Constraint::FOREIGN_KEY:
             return "FOREIGN KEY";
         case SqliteCreateTable::Constraint::NAME_ONLY:
-            return QString::null;
+            return QString();
     }
-    return QString::null;
+    return QString();
 }
 
 QString ConstraintTabModel::getTypeLabel(SqliteCreateTable::Column::Constraint::Type type) const
@@ -214,7 +214,7 @@ QString ConstraintTabModel::getTypeLabel(SqliteCreateTable::Column::Constraint::
         case SqliteCreateTable::Column::Constraint::DEFERRABLE_ONLY:
             break;
     }
-    return QString::null;
+    return QString();
 }
 
 QIcon ConstraintTabModel::getTypeIcon(SqliteCreateTable::Constraint::Type type) const
@@ -274,9 +274,9 @@ QString ConstraintTabModel::getDetails(SqliteCreateTable::Constraint* constr) co
         case SqliteCreateTable::Constraint::FOREIGN_KEY:
             return getFkDetails(constr);
         case SqliteCreateTable::Constraint::NAME_ONLY:
-            return QString::null;
+            return QString();
     }
-    return QString::null;
+    return QString();
 }
 
 QString ConstraintTabModel::getDetails(SqliteCreateTable::Column::Constraint* constr) const
@@ -302,7 +302,7 @@ QString ConstraintTabModel::getDetails(SqliteCreateTable::Column::Constraint* co
         case SqliteCreateTable::Column::Constraint::DEFERRABLE_ONLY:
             break;
     }
-    return QString::null;
+    return QString();
 }
 
 QString ConstraintTabModel::getPkDetails(SqliteCreateTable::Constraint* constr) const

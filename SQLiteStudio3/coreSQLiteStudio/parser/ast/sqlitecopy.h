@@ -9,14 +9,14 @@ class API_EXPORT SqliteCopy : public SqliteQuery
     public:
         SqliteCopy();
         SqliteCopy(const SqliteCopy& other);
-        SqliteCopy(SqliteConflictAlgo onConflict, const QString& name1, const QString& name2, const QString& name3, const QString& delim = QString::null);
+        SqliteCopy(SqliteConflictAlgo onConflict, const QString& name1, const QString& name2, const QString& name3, const QString& delim = QString());
         SqliteStatement* clone();
 
         SqliteConflictAlgo onConflict = SqliteConflictAlgo::null;
-        QString database = QString::null;
-        QString table = QString::null;
-        QString file = QString::null;
-        QString delimiter = QString::null;
+        QString database = QString();
+        QString table = QString();
+        QString file = QString();
+        QString delimiter = QString();
 
     protected:
         QStringList getTablesInStatement();

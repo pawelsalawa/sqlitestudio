@@ -321,9 +321,9 @@ QString TableConstraintsModel::getTypeLabel(SqliteCreateTable::Constraint::Type 
         case SqliteCreateTable::Constraint::FOREIGN_KEY:
             return "FOREIGN KEY";
         case SqliteCreateTable::Constraint::NAME_ONLY:
-            return QString::null;
+            return QString();
     }
-    return QString::null;
+    return QString();
 }
 
 QIcon TableConstraintsModel::getTypeIcon(SqliteCreateTable::Constraint::Type type) const
@@ -357,9 +357,9 @@ QString TableConstraintsModel::getDetails(SqliteCreateTable::Constraint* constr)
         case SqliteCreateTable::Constraint::FOREIGN_KEY:
             return getFkDetails(constr);
         case SqliteCreateTable::Constraint::NAME_ONLY:
-            return QString::null;
+            return QString();
     }
-    return QString::null;
+    return QString();
 }
 
 QString TableConstraintsModel::getPkDetails(SqliteCreateTable::Constraint* constr) const

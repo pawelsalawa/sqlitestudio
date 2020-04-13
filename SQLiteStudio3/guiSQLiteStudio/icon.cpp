@@ -321,7 +321,7 @@ QString Icon::getIconNameForAttribute(Icon::Attributes attr)
         default:
             qWarning() << "Unhandled icon attribute:" << attr;
     }
-    return QString::null;
+    return QString();
 }
 
 QIcon Icon::mergeAttribute(const QIcon* icon, Icon::Attributes attr)

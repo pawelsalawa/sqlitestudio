@@ -87,7 +87,7 @@ QStringList PluginManagerImpl::getPluginDirs() const
 QString PluginManagerImpl::getFilePath(Plugin* plugin) const
 {
     if (!pluginContainer.contains(plugin->getName()))
-        return QString::null;
+        return QString();
 
     return pluginContainer[plugin->getName()]->filePath;
 }
@@ -385,7 +385,7 @@ PluginType* PluginManagerImpl::getPluginType(const QString& pluginName) const
 QString PluginManagerImpl::getAuthor(const QString& pluginName) const
 {
     if (!pluginContainer.contains(pluginName))
-        return QString::null;
+        return QString();
 
     return pluginContainer[pluginName]->author;
 }
@@ -393,7 +393,7 @@ QString PluginManagerImpl::getAuthor(const QString& pluginName) const
 QString PluginManagerImpl::getTitle(const QString& pluginName) const
 {
     if (!pluginContainer.contains(pluginName))
-        return QString::null;
+        return QString();
 
     return pluginContainer[pluginName]->title;
 }
@@ -401,7 +401,7 @@ QString PluginManagerImpl::getTitle(const QString& pluginName) const
 QString PluginManagerImpl::getPrintableVersion(const QString& pluginName) const
 {
     if (!pluginContainer.contains(pluginName))
-        return QString::null;
+        return QString();
 
     return pluginContainer[pluginName]->printableVersion;
 }
@@ -417,7 +417,7 @@ int PluginManagerImpl::getVersion(const QString& pluginName) const
 QString PluginManagerImpl::getDescription(const QString& pluginName) const
 {
     if (!pluginContainer.contains(pluginName))
-        return QString::null;
+        return QString();
 
     return pluginContainer[pluginName]->description;
 }

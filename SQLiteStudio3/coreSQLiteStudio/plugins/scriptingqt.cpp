@@ -202,7 +202,7 @@ QString ScriptingQt::getErrorMessage(ScriptingPlugin::Context* context) const
 {
     ContextQt* ctx = getContext(context);
     if (!ctx)
-        return QString::null;
+        return QString();
 
     return ctx->error;
 }

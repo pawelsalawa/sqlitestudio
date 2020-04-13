@@ -178,8 +178,8 @@ void FunctionsEditor::functionDeselected(int row)
     }
     else
     {
-        model->setInitCode(row, QString::null);
-        model->setFinalCode(row, QString::null);
+        model->setInitCode(row, QString());
+        model->setFinalCode(row, QString());
     }
 
     if (!ui->undefArgsCheck->isChecked())
@@ -239,9 +239,9 @@ void FunctionsEditor::functionSelected(int row)
 
 void FunctionsEditor::clearEdits()
 {
-    ui->nameEdit->setText(QString::null);
-    ui->mainCodeEdit->setPlainText(QString::null);
-    ui->langCombo->setCurrentText(QString::null);
+    ui->nameEdit->setText(QString());
+    ui->mainCodeEdit->setPlainText(QString());
+    ui->langCombo->setCurrentText(QString());
     ui->undefArgsCheck->setChecked(true);
     ui->argsList->clear();
     ui->allDatabasesRadio->setChecked(true);
