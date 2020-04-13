@@ -10,8 +10,9 @@ env:
 name: 3.2 branch Windows release build
 
 on:
-    repository_dispatch:
-        types: [3.2_win_release]
+    push:
+        branches:
+            - 3.2
 
 jobs:
     build:
@@ -40,8 +41,8 @@ jobs:
               shell: bash
               run: |
                 curl -L ${{ env.MINGW_URL }} --output ../mingw.7z
-                7z x -o"${{ github.workspace }}\..\Qt" ..\mingw.7z
-                echo "::add-path::${{ env.MINGW_DIR }}\bin"
+                7z x -o"${{ github.workspace }}/../Qt" ../mingw.7z
+                echo "::add-path::${{ env.MINGW_DIR }}/bin"
  
             - name: Clone repo
               uses: actions/checkout@v2
