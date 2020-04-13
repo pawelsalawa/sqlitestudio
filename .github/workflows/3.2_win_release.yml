@@ -122,7 +122,6 @@ jobs:
               run: ls -l
               
             - uses: actions/upload-artifact@v1
-              working-directory: ${{ env.PORTABLE_DIR }}/..
               with:
                 name: sqlitestudio-$SQLITESTUDIO_VERSION.zip
-                path: sqlitestudio-$SQLITESTUDIO_VERSION.zip
+                path: ${{ env.PORTABLE_DIR }}/../sqlitestudio-$SQLITESTUDIO_VERSION.zip
