@@ -121,19 +121,12 @@ jobs:
             - name: Fix dependency paths
               working-directory: ${{ env.PORTABLE_DIR }}
               run: |
-                ls -l
-                ls -l lib/*
-                ls -l platforms/*.so
-                ls -l imageformats/*.so
-                ls -l iconengines/*.so
-                ls -l printsupport/*.so
-                ls -l platformthemes/*.so
-                chrpath -k -r \$ORIGIN/../lib lib/* platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so 2>&1 >/dev/null
+                chrpath -k -r \$ORIGIN/../lib platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so 2>&1 >/dev/null
                 chrpath -k -r \$ORIGIN/lib sqlitestudio 2>&1 >/dev/null
                 chrpath -k -r \$ORIGIN/lib sqlitestudiocli 2>&1 >/dev/null
-                chrpath -l lib/* platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so 2>&1 >/dev/null
-                chrpath -l sqlitestudio 2>&1 >/dev/null
-                chrpath -l sqlitestudiocli 2>&1 >/dev/null
+                chrpath -l platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so
+                chrpath -l sqlitestudio
+                chrpath -l sqlitestudiocli
 
             - name: Determine SQLiteStudio version
               working-directory: ${{ env.PORTABLE_DIR }}
