@@ -123,4 +123,4 @@ jobs:
               uses: actions/upload-artifact@v1
               with:
                 name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.zip
-                path: output/portable/${{ env.SQLITESTUDIO_VERSION }}.zip
+                path: output/portable/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.zip
