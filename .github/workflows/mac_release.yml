@@ -18,64 +18,75 @@ jobs:
         runs-on: macos-latest
 
         steps:
-            - name: Cache Qt
-              id: cache-qt
-              uses: actions/cache@v1
-              with:
-                path: ${{ github.workspace }}/../Qt
-                key: ${{ runner.os }}-Qt-Mac-Cache
+            - name: Debug
+              run: |
+                locate rand.h
+                ls -l /usr/local/
+                ls -l /usr/local/include
+                ls -l /usr/local/opt/
+                ls -l /usr/local/opt/openssl/include/
+                ls -l /usr/local/opt/expat/include
+        
+            # - name: Cache Qt
+              # id: cache-qt
+              # uses: actions/cache@v1
+              # with:
+                # path: ${{ github.workspace }}/../Qt
+                # key: ${{ runner.os }}-Qt-Mac-Cache
                 
-            - name: Install Qt
-              uses: jurplel/install-qt-action@v2
-              with:
-                cached: ${{ steps.cache-qt.outputs.cache-hit }}
-                version: ${{ env.QT_VERSION }}
-                host: 'mac'
-                dir: '${{ github.workspace }}/..'
-                modules: 'qtscript'
+            # - name: Install Qt
+              # uses: jurplel/install-qt-action@v2
+              # with:
+                # cached: ${{ steps.cache-qt.outputs.cache-hit }}
+                # version: ${{ env.QT_VERSION }}
+                # host: 'mac'
+                # dir: '${{ github.workspace }}/..'
+                # modules: 'qtscript'
                 
-            - name: Clone repo
-              uses: actions/checkout@v2
-              with:
-                ref: ${{ github.event.client_payload.branch }}
+            # - name: Clone repo
+              # uses: actions/checkout@v2
+              # with:
+                # ref: ${{ github.event.client_payload.branch }}
 
-            - name: Install SQLite3
-              run: |
-                wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-autoconf-$SQLITE_VERSION.tar.gz
-                tar xzf sqlite-autoconf-$SQLITE_VERSION.tar.gz
-                cd sqlite-autoconf-$SQLITE_VERSION
-                ./configure --enable-fts5 --enable-json1 --enable-session
-                make
-                sudo make install
-                sqlite3 --version
+            # - name: Install SQLite3
+              # run: |
+                # wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-autoconf-$SQLITE_VERSION.tar.gz
+                # tar xzf sqlite-autoconf-$SQLITE_VERSION.tar.gz
+                # cd sqlite-autoconf-$SQLITE_VERSION
+                # ./configure --enable-fts5 --enable-json1 --enable-session
+                # make
+                # sudo make install
+                # sqlite3 --version
 
-            - name: Prepare deps
-              run: |
-                mkdir ../lib ../include
-                cp /usr/local/lib/libsqlite3* ../lib
-                cp /usr/local/include/sqlite3* ../include
+            # - name: Prepare deps
+              # run: |
+                # mkdir ../lib ../include
+                # cp /usr/local/lib/libsqlite3* ../lib
+                # cp /usr/local/include/sqlite3* ../include
             
-            - name: Prepare output dir
-              run: mkdir output output/build output/build/Plugins
+            # - name: Prepare output dir
+              # run: mkdir output output/build output/build/Plugins
             
-            - name: Compile SQLiteStudio3
-              working-directory: output/build
-              run: |
-                qmake CONFIG+=portable ../../SQLiteStudio3
-                make -j 2
+            # - name: Compile SQLiteStudio3
+              # working-directory: output/build
+              # run: |
+                # qmake CONFIG+=portable ../../SQLiteStudio3
+                # make -j 2
             
-            - name: Compile Plugins
-              working-directory: output/build/Plugins
-              run: |
-                qmake CONFIG+=portable ../../../Plugins
-                make -j 2
+            # - name: Compile Plugins
+              # working-directory: output/build/Plugins
+              # run: |
+                # qmake CONFIG+=portable ../../../Plugins
+                # make -j 2
               
-            - name: Build packages
-              working-directory: output/build
-              run: |
-                make bundle
-                make pkg
-                ls -l
+            # - name: Build packages
+              # working-directory: output/build
+              # run: |
+                # make bundle
+                # make pkg
+                # ls -l
+
+
 
             # - name: Determine SQLiteStudio version
               # working-directory: ${{ env.PORTABLE_DIR }}
