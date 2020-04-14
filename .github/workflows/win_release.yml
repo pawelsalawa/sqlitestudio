@@ -1,5 +1,4 @@
 env:
-    SQLITESTUDIO_BRANCH: 3.2
     QT_VERSION: '5.14.2'
     QT_ARCH: 'win64_mingw73'
     MINGW_DIR: ${{ github.workspace }}/../Qt/Tools/mingw730_64
@@ -7,14 +6,11 @@ env:
     MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw730/7.3.0-1x86_64-7.3.0-release-posix-seh-rt_v5-rev0.7z
     DEPS_URL: https://www.dropbox.com/s/9ulp1w82826966i/win64_deps.zip?dl=1
 
-name: 3.2 branch Windows release build
+name: Windows release build
 
 on:
-    # push:
-        # branches:
-            # - 3.2
-    project:
-        types: [deleted]
+    repository_dispatch:
+        types: [win_release]
 
 jobs:
     build:
@@ -49,7 +45,7 @@ jobs:
             - name: Clone repo
               uses: actions/checkout@v2
               with:
-                ref: ${{ env.SQLITESTUDIO_BRANCH }}
+                ref: ${{ github.event.client_payload.branch }}
 
             - name: Install dependencies
               shell: bash
@@ -115,8 +111,16 @@ jobs:
               working-directory: ${{ env.PORTABLE_DIR }}
               run: echo ::set-env name=SQLITESTUDIO_VERSION::$(./sqlitestudiocli.exe --version | cut -f 2 -d ' ')
 
+            - name: Assemble portable package
+              shell: bash
+              working-directory: ${{ env.PORTABLE_DIR }}/..
+              run: |
+                7z a -r sqlitestudio-$SQLITESTUDIO_VERSION.zip SQLiteStudio
+                pwd
+                ls -l
+
             - name: Upload package artifact
               uses: actions/upload-artifact@v1
               with:
-                name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}
-                path: output/portable
+                name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.zip
+                path: output/portable/${{ env.SQLITESTUDIO_VERSION }}.zip
