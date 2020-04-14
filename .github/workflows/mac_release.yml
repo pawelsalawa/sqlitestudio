@@ -48,6 +48,12 @@ jobs:
                 make
                 sudo make install
                 sqlite3 --version
+
+            - name: Prepare deps
+              run: |
+                mkdir ../lib ../include
+                cp /usr/local/lib/libsqlite3* ../lib
+                cp /usr/local/include/sqlite3* ../include
             
             - name: Prepare output dir
               run: mkdir output output/build output/build/Plugins
