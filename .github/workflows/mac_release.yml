@@ -20,9 +20,8 @@ jobs:
         steps:
              - name: debug
                run: |
-                SDK_PATH=$(xcrun --show-sdk-path)
-                TCL_CONFIG=$SDK_PATH/System/Library/Frameworks/Tcl.framework/Versions/Current/tclConfig.sh
-                cat $TCL_CONFIG
+                which sqlite3
+                sqlite3 --version
         
             # - name: Cache Qt
               # id: cache-qt
