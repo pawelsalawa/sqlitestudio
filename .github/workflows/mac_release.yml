@@ -20,6 +20,7 @@ jobs:
         steps:
             - name: Debug
               run: |
+                sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist
                 locate rand.h
                 ls -l /usr/local/
                 ls -l /usr/local/include
