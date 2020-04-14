@@ -51,6 +51,10 @@ HEADERS += dbsqlitewx.h \
 
 DISTFILES += DbSqliteWx.json
 
+max: {
+    INCLUDEPATH += /usr/local/opt/openssl/include
+    LIBS += -L/usr/local/opt/openssl/lib
+}
 !macx: {
     LIBS += -L$${PWD}/../deps/lib/$${PLATFORM}/
 }
