@@ -18,11 +18,6 @@ jobs:
         runs-on: macos-latest
 
         steps:
-             - name: debug
-               run: |
-                which sqlite3
-                sqlite3 --version
-        
             # - name: Cache Qt
               # id: cache-qt
               # uses: actions/cache@v1
@@ -44,16 +39,21 @@ jobs:
               # with:
                 # ref: ${{ github.event.client_payload.branch }}
 
-            # - name: Install SQLite3
-              # run: |
-                # wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-autoconf-$SQLITE_VERSION.tar.gz
-                # tar xzf sqlite-autoconf-$SQLITE_VERSION.tar.gz
-                # cd sqlite-autoconf-$SQLITE_VERSION
-                # ./configure --enable-fts5 --enable-json1 --enable-session
-                # make
-                # sudo make install
-                # sqlite3 --version
+            - name: Install SQLite3
+              run: |
+                wget http://sqlite.org/$SQLITE_RELEASE_YEAR/sqlite-autoconf-$SQLITE_VERSION.tar.gz
+                tar xzf sqlite-autoconf-$SQLITE_VERSION.tar.gz
+                cd sqlite-autoconf-$SQLITE_VERSION
+                ./configure --enable-fts5 --enable-json1 --enable-session
+                make
+                sudo make install
+                sqlite3 --version
             
+            - name: debug
+              run: |
+               which sqlite3
+               sqlite3 --version
+        
             # - name: Install Tcl
               # run: sudo apt-get install -qq libtcl$TCL_VERSION tcl$TCL_VERSION-dev
               
