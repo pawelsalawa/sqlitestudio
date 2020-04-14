@@ -1,5 +1,4 @@
 env:
-    SQLITESTUDIO_BRANCH: 3.2
     QT_VERSION: '5.14.2'
     QT_ARCH: 'win64_mingw73'
     MINGW_DIR: ${{ github.workspace }}/../Qt/Tools/mingw730_64
@@ -7,12 +6,11 @@ env:
     MINGW_URL: https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/tools_mingw/qt.tools.win64_mingw730/7.3.0-1x86_64-7.3.0-release-posix-seh-rt_v5-rev0.7z
     DEPS_URL: https://www.dropbox.com/s/9ulp1w82826966i/win64_deps.zip?dl=1
 
-name: 3.2 branch Windows tests build
+name: Windows release build
 
 on:
-    push:
-        branches:
-            - aaaaa
+    repository_dispatch:
+        types: [win_release]
 
 jobs:
     build:
@@ -41,13 +39,13 @@ jobs:
               shell: bash
               run: |
                 curl -L ${{ env.MINGW_URL }} --output ../mingw.7z
-                7z x -o"${{ github.workspace }}\..\Qt" ..\mingw.7z
-                echo "::add-path::${{ env.MINGW_DIR }}\bin"
+                7z x -o"${{ github.workspace }}/../Qt" ../mingw.7z
+                echo "::add-path::${{ env.MINGW_DIR }}/bin"
  
             - name: Clone repo
               uses: actions/checkout@v2
               with:
-                ref: ${{ env.SQLITESTUDIO_BRANCH }}
+                ref: ${{ github.event.client_payload.branch }}
 
             - name: Install dependencies
               shell: bash
@@ -63,19 +61,14 @@ jobs:
             - name: Compile SQLiteStudio3
               working-directory: output/build
               run: |
-                qmake.exe DEFINES+=tests CONFIG+=debug CONFIG+=portable ..\..\SQLiteStudio3
+                qmake.exe CONFIG+=portable ..\..\SQLiteStudio3
                 mingw32-make.exe -j 2
             
             - name: Compile Plugins
               working-directory: output/build/Plugins
               run: |
-                qmake.exe DEFINES+=tests CONFIG+=debug CONFIG+=portable ..\..\..\Plugins
+                qmake.exe CONFIG+=portable ..\..\..\Plugins
                 mingw32-make.exe -j 2
-              
-            - name: Run tests
-              shell: bash
-              working-directory: output/SQLiteStudio
-              run: for f in tst_*; do ./$f; done
               
             - name: Prepare portable dir
               shell: bash
@@ -113,12 +106,21 @@ jobs:
               working-directory: ${{ github.workspace }}/../lib
               run: cp *.dll "${{ env.PORTABLE_DIR }}"
 
-            - name: Assemble portable package
+            - name: Determine SQLiteStudio version
               shell: bash
               working-directory: ${{ env.PORTABLE_DIR }}
-              run: 7z a -r ../sqlitestudio-`./sqlitestudiocli.exe --version | cut -f 2 -d ' '`.zip .
+              run: echo ::set-env name=SQLITESTUDIO_VERSION::$(./sqlitestudiocli.exe --version | cut -f 2 -d ' ')
 
-            - name: See results
+            - name: Assemble portable package
               shell: bash
               working-directory: ${{ env.PORTABLE_DIR }}/..
-              run: ls -l
+              run: |
+                7z a -r sqlitestudio-$SQLITESTUDIO_VERSION.zip SQLiteStudio
+                pwd
+                ls -l
+
+            - name: Upload package artifact
+              uses: actions/upload-artifact@v1
+              with:
+                name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.zip
+                path: output/portable/${{ env.SQLITESTUDIO_VERSION }}.zip
