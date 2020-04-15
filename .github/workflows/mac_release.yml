@@ -85,18 +85,18 @@ jobs:
                 make pkg
                 
             - name: Determine SQLiteStudio version
-              working-directory: output
+              working-directory: output/SQLiteStudio
               run: |
-                brew install tree
-                tree
-#                echo ::set-env name=SQLITESTUDIO_VERSION::$(SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}')
+#                brew install tree
+#                tree
+                echo ::set-env name=SQLITESTUDIO_VERSION::$(SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}')
                 
 
-#            - name: Upload package artifact
-#              uses: actions/upload-artifact@v1
-#              with:
-#                name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg
-#                path: output/portable/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg
+            - name: Upload package artifact
+              uses: actions/upload-artifact@v1
+              with:
+                name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg
+                path: output/SQLiteStudio/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg
 
 
             # - name: Determine SQLiteStudio version
