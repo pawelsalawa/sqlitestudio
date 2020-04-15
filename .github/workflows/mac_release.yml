@@ -87,7 +87,7 @@ jobs:
             - name: Determine SQLiteStudio version
               working-directory: output
               run: |
-                sudo apt install tree
+                brew install tree
                 tree
 #                echo ::set-env name=SQLITESTUDIO_VERSION::$(SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}')
                 
