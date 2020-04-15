@@ -85,12 +85,9 @@ jobs:
                 make pkg
                 
             - name: Determine SQLiteStudio version
-              working-directory: output/portable
+              working-directory: output
               run: |
-                pwd
-                ls -l
-                echo One up
-                ls -l ..
+                tree
 #                echo ::set-env name=SQLITESTUDIO_VERSION::$(SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}')
                 
 
