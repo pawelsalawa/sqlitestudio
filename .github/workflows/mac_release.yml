@@ -85,9 +85,14 @@ jobs:
                 make pkg
                 
             - name: Upload package artifact
-              working-directory: output
-              run: ls -l SQLiteStudio
+              working-directory: output/portable
+              run: echo ::set-env name=SQLITESTUDIO_VERSION::$(SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}')
 
+            - name: Upload package artifact
+              uses: actions/upload-artifact@v1
+              with:
+                name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg
+                path: output/portable/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg
 
 
             # - name: Determine SQLiteStudio version
