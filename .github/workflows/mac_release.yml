@@ -87,17 +87,18 @@ jobs:
             - name: Determine SQLiteStudio version
               working-directory: output/portable
               run: |
+                pwd
                 ls -l
                 echo One up
                 ls -l ..
-                echo ::set-env name=SQLITESTUDIO_VERSION::$(SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}')
+#                echo ::set-env name=SQLITESTUDIO_VERSION::$(SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}')
                 
 
-            - name: Upload package artifact
-              uses: actions/upload-artifact@v1
-              with:
-                name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg
-                path: output/portable/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg
+#            - name: Upload package artifact
+#              uses: actions/upload-artifact@v1
+#              with:
+#                name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg
+#                path: output/portable/sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}.dmg
 
 
             # - name: Determine SQLiteStudio version
