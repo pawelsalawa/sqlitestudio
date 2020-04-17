@@ -25,6 +25,10 @@ HEADERS += dbsqlitecipher.h \
     dbsqlitecipherinstance.h
     sqlcipher.h
 
+mac: {
+    INCLUDEPATH += /usr/local/opt/openssl/include
+    LIBS += -L/usr/local/opt/openssl/lib
+}
 !macx: {
     LIBS += -L$${PWD}/../deps/lib/$${PLATFORM}/
 }
