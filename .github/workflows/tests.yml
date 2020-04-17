@@ -1,16 +1,15 @@
 env:
-    SQLITESTUDIO_BRANCH: 3.2
     QT_VERSION: '5.14.2'
     SQLITE_VERSION: '3310100'
     SQLITE_RELEASE_YEAR: '2020'
     TCL_VERSION: '8.6'
-    PORTABLE_DIR: ${{ github.workspace }}/output/portable/SQLiteStudio
 
-name: 3.2 branch Linux release build
+name: Unit tests
 
 on:
     push:
         branches:
+            - master
             - 3.2
 
 jobs:
@@ -37,7 +36,7 @@ jobs:
             - name: Clone repo
               uses: actions/checkout@v2
               with:
-                ref: ${{ env.SQLITESTUDIO_BRANCH }}
+                ref: ${{ env.GITHUB_REF }}
 
             - name: Install SQLite3
               run: |
@@ -73,71 +72,63 @@ jobs:
                 make -j 2
 
             - name: Prepare portable dir
+              working-directory: output
+              run: |
+                mkdir portable
+                cp -R SQLiteStudio portable/
+
+            - name: Copy SQLite3 to portable dir
+              working-directory: ${{ env.PORTABLE_DIR }}
+              run: |
+                sqlite3_lib=/usr/local/lib/libsqlite3.so.0.8.6
+                sqlite3_lib_target=`ldd lib/libcoreSQLiteStudio.so | grep libsqlite | awk '{print $3;}'`
+                cp $sqlite3_lib lib/`basename $sqlite3_lib_target`
+
+            - name: Copy Qt to portable dir
+              working-directory: ${{ env.PORTABLE_DIR }}
+              run: |
+                cp -P ${{ env.Qt5_Dir }}/lib/libQt5Core.so* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libQt5Concurrent.so* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libQt5Gui.so* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libQt5Network.so* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libQt5PrintSupport.so* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libQt5Script.so* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libQt5Widgets.so* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libQt5Xml.so* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libQt5Svg.so* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libQt5XcbQpa.so* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libicui18n.so* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libicuuc.so* lib/
+                cp -P ${{ env.Qt5_Dir }}/lib/libicudata.so* lib/
+
+            - name: Copy Qt plugins to portable dir
+              working-directory: ${{ env.PORTABLE_DIR }}
+              run: |
+                mkdir platforms imageformats iconengines printsupport platformthemes
+                cp -P ${{ env.Qt5_Dir }}/plugins/platforms/libqxcb.so platforms/libqxcb.so
+                cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqgif.so imageformats/libqgif.so
+                cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqicns.so imageformats/libqicns.so
+                cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqico.so imageformats/libqico.so
+                cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqjpeg.so imageformats/libqjpeg.so
+                cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqsvg.so imageformats/libqsvg.so
+                cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqtga.so imageformats/libqtga.so
+                cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqtiff.so imageformats/libqtiff.so
+                cp -P ${{ env.Qt5_Dir }}/plugins/iconengines/libqsvgicon.so iconengines/libqsvgicon.so
+                cp -P ${{ env.Qt5_Dir }}/plugins/printsupport/libcupsprintersupport.so printsupport/libcupsprintersupport.so
+                cp -P ${{ env.Qt5_Dir }}/plugins/platformthemes/libqgtk3.so platformthemes/libqgtk3.so
+
+            - name: Fix dependency paths
+              working-directory: ${{ env.PORTABLE_DIR }}
+              run: |
+                chrpath -k -r \$ORIGIN/../lib platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so 2>&1 >/dev/null
+                chrpath -k -r \$ORIGIN/lib sqlitestudio 2>&1 >/dev/null
+                chrpath -k -r \$ORIGIN/lib sqlitestudiocli 2>&1 >/dev/null
+                chrpath -l platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so
+                chrpath -l sqlitestudio
+                chrpath -l sqlitestudiocli
+                
+            - name: Run tests
               working-directory: output/SQLiteStudio
-              run: for f in tst_*; do ./$f; done
-
-            # - name: Prepare portable dir
-              # working-directory: output
-              # run: |
-                # mkdir portable
-                # cp -R SQLiteStudio portable/
-
-            # - name: Copy SQLite3 to portable dir
-              # working-directory: ${{ env.PORTABLE_DIR }}
-              # run: |
-                # sqlite3_lib=/usr/local/lib/libsqlite3.so.0.8.6
-                # sqlite3_lib_target=`ldd lib/libcoreSQLiteStudio.so | grep libsqlite | awk '{print $3;}'`
-                # cp $sqlite3_lib lib/`basename $sqlite3_lib_target`
-
-            # - name: Copy Qt to portable dir
-              # working-directory: ${{ env.PORTABLE_DIR }}
-              # run: |
-                # cp -P ${{ env.Qt5_Dir }}/lib/libQt5Core.so* lib/
-                # cp -P ${{ env.Qt5_Dir }}/lib/libQt5Concurrent.so* lib/
-                # cp -P ${{ env.Qt5_Dir }}/lib/libQt5Gui.so* lib/
-                # cp -P ${{ env.Qt5_Dir }}/lib/libQt5Network.so* lib/
-                # cp -P ${{ env.Qt5_Dir }}/lib/libQt5PrintSupport.so* lib/
-                # cp -P ${{ env.Qt5_Dir }}/lib/libQt5Script.so* lib/
-                # cp -P ${{ env.Qt5_Dir }}/lib/libQt5Widgets.so* lib/
-                # cp -P ${{ env.Qt5_Dir }}/lib/libQt5Xml.so* lib/
-                # cp -P ${{ env.Qt5_Dir }}/lib/libQt5Svg.so* lib/
-                # cp -P ${{ env.Qt5_Dir }}/lib/libQt5XcbQpa.so* lib/
-                # cp -P ${{ env.Qt5_Dir }}/lib/libicui18n.so* lib/
-                # cp -P ${{ env.Qt5_Dir }}/lib/libicuuc.so* lib/
-                # cp -P ${{ env.Qt5_Dir }}/lib/libicudata.so* lib/
-
-            # - name: Copy Qt plugins to portable dir
-              # working-directory: ${{ env.PORTABLE_DIR }}
-              # run: |
-                # mkdir platforms imageformats iconengines printsupport platformthemes
-                # cp -P ${{ env.Qt5_Dir }}/plugins/platforms/libqxcb.so platforms/libqxcb.so
-                # cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqgif.so imageformats/libqgif.so
-                # cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqicns.so imageformats/libqicns.so
-                # cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqico.so imageformats/libqico.so
-                # cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqjpeg.so imageformats/libqjpeg.so
-                # cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqsvg.so imageformats/libqsvg.so
-                # cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqtga.so imageformats/libqtga.so
-                # cp -P ${{ env.Qt5_Dir }}/plugins/imageformats/libqtiff.so imageformats/libqtiff.so
-                # cp -P ${{ env.Qt5_Dir }}/plugins/iconengines/libqsvgicon.so iconengines/libqsvgicon.so
-                # cp -P ${{ env.Qt5_Dir }}/plugins/printsupport/libcupsprintersupport.so printsupport/libcupsprintersupport.so
-                # cp -P ${{ env.Qt5_Dir }}/plugins/platformthemes/libqgtk3.so platformthemes/libqgtk3.so
-
-            # - name: Fix dependency paths
-              # working-directory: ${{ env.PORTABLE_DIR }}
-              # run: |
-                # chrpath -k -r \$ORIGIN/../lib platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so 2>&1 >/dev/null
-                # chrpath -k -r \$ORIGIN/lib sqlitestudio 2>&1 >/dev/null
-                # chrpath -k -r \$ORIGIN/lib sqlitestudiocli 2>&1 >/dev/null
-                # chrpath -l platforms/*.so imageformats/*.so iconengines/*.so printsupport/*.so platformthemes/*.so
-                # chrpath -l sqlitestudio
-                # chrpath -l sqlitestudiocli
-
-            # - name: Determine SQLiteStudio version
-              # working-directory: ${{ env.PORTABLE_DIR }}
-              # run: echo ::set-env name=SQLITESTUDIO_VERSION::$(./sqlitestudiocli --version | cut -f 2 -d ' ')
-
-            # - name: Upload package artifact
-              # uses: actions/upload-artifact@v1
-              # with:
-                # name: sqlitestudio-${{ env.SQLITESTUDIO_VERSION }}
-                # path: output/portable
+              run: |
+                export LD_LIBRARY_PATH="./lib"
+                for f in tst_*; do ./$f; done

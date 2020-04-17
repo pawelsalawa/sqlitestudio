@@ -8,11 +8,9 @@ env:
 name: MaxOSX release build
 
 on:
-    # repository_dispatch:
-        # types: [lin_release]
-    push:
-        branches:
-            - 3.2
+    repository_dispatch:
+        types: [mac_release]
+
 jobs:
     build:
         runs-on: macos-latest
@@ -86,8 +84,6 @@ jobs:
                 
             - name: Determine SQLiteStudio version
               working-directory: output/SQLiteStudio
-#                brew install tree
-#                tree
               run: |
                 echo ::set-env name=SQLITESTUDIO_VERSION::$(SQLiteStudio.app/Contents/MacOS/sqlitestudiocli -v | awk '{print $2}')
                 
