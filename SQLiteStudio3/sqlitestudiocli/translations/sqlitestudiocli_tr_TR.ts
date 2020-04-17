@@ -227,22 +227,22 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="63"/>
       <source>table</source>
-      <translation type="unfinished">table</translation>
+      <translation>tablo</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="70"/>
       <source>Table: %1</source>
-      <translation type="unfinished">Table: %1</translation>
+      <translation>Tablo: %1</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="74"/>
       <source>Column name</source>
-      <translation type="unfinished">Column name</translation>
+      <translation>Kolon adı</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="76"/>
       <source>Data type</source>
-      <translation type="unfinished">Data type</translation>
+      <translation>Veri tipi</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="80"/>
