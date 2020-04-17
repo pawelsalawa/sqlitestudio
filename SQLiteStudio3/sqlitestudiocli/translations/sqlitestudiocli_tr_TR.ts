@@ -6,17 +6,17 @@
     <message>
       <location filename="../cli.cpp" line="98"/>
       <source>Current database: %1</source>
-      <translation type="unfinished">Current database: %1</translation>
+      <translation>Geçerli veritabanı: %1</translation>
     </message>
     <message>
       <location filename="../cli.cpp" line="100"/>
       <source>No current working database is set.</source>
-      <translation type="unfinished">No current working database is set.</translation>
+      <translation>Geçerli bir çalışma veritabanı ayarlanmamış.</translation>
     </message>
     <message>
       <location filename="../cli.cpp" line="102"/>
       <source>Type %1 for help</source>
-      <translation type="unfinished">Type %1 for help</translation>
+      <translation>Yardım için %1'e basın</translation>
     </message>
     <message>
       <location filename="../cli.cpp" line="257"/>
@@ -138,7 +138,7 @@
       <location filename="../commands/clicommandclose.cpp" line="50"/>
       <source>name</source>
       <comment>CLI command syntax</comment>
-      <translation type="unfinished">name</translation>
+      <translation>adı</translation>
     </message>
   </context>
   <context>
@@ -151,46 +151,46 @@
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="18"/>
       <source>Databases:</source>
-      <translation type="unfinished">Databases:</translation>
+      <translation>Veritabanları:</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="23"/>
       <location filename="../commands/clicommanddblist.cpp" line="34"/>
       <source>Name</source>
       <comment>CLI db name column</comment>
-      <translation type="unfinished">Name</translation>
+      <translation>Adı</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="31"/>
       <location filename="../commands/clicommanddblist.cpp" line="61"/>
       <source>Open</source>
       <comment>CLI connection state column</comment>
-      <translation type="unfinished">Open</translation>
+      <translation>Açık</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="31"/>
       <location filename="../commands/clicommanddblist.cpp" line="61"/>
       <source>Closed</source>
       <comment>CLI connection state column</comment>
-      <translation type="unfinished">Closed</translation>
+      <translation>Kapalı</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="32"/>
       <location filename="../commands/clicommanddblist.cpp" line="36"/>
       <source>Connection</source>
       <comment>CLI connection state column</comment>
-      <translation type="unfinished">Connection</translation>
+      <translation>Bağlantı</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="38"/>
       <location filename="../commands/clicommanddblist.cpp" line="45"/>
       <source>Database file path</source>
-      <translation type="unfinished">Database file path</translation>
+      <translation>Veritabanı dosyası dizini</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="70"/>
       <source>prints list of registered databases</source>
-      <translation type="unfinished">prints list of registered databases</translation>
+      <translation>kayıtlı veritabanlarının listesini yazdırır</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddblist.cpp" line="75"/>
@@ -212,17 +212,17 @@ Call %2 to see list of all databases.</translation>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="26"/>
       <source>Database is not open.</source>
-      <translation type="unfinished">Database is not open.</translation>
+      <translation>Veritabanı açık değil.</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="35"/>
       <source>Cannot find table named: %1</source>
-      <translation type="unfinished">Cannot find table named: %1</translation>
+      <translation>%1 isimli tablo bulunamadı</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="52"/>
       <source>shows details about the table</source>
-      <translation type="unfinished">shows details about the table</translation>
+      <translation>tablo hakkında detayları gösterir</translation>
     </message>
     <message>
       <location filename="../commands/clicommanddesc.cpp" line="63"/>
