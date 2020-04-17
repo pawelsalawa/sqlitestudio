@@ -1573,7 +1573,7 @@ but it&apos;s okay to use it.</source>
     <message>
       <location filename="../dataview.cpp" line="115"/>
       <source>Form view</source>
-      <translation>表格视图</translation>
+      <translation>表单视图</translation>
     </message>
     <message>
       <location filename="../dataview.cpp" line="206"/>
@@ -4428,7 +4428,7 @@ Please enter new, unique name, or press &apos;%1&apos; to abort the operation:</
     <message>
       <location filename="../formview.h" line="16"/>
       <source>Data form view</source>
-      <translation>数据表格视图</translation>
+      <translation>数据表单视图</translation>
     </message>
     <message>
       <location filename="../formview.h" line="17"/>
