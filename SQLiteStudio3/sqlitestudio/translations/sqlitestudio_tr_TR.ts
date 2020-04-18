@@ -36,7 +36,7 @@
     <message>
       <location filename="../main.cpp" line="57"/>
       <source>Enables debugging of every single SQL query being sent to any database.</source>
-      <translation type="unfinished">Enables debugging of every single SQL query being sent to any database.</translation>
+      <translation>Veritabanına gönderilen her SQL sorgusu için debug yapabilmeyi aktif hale getirir.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="58"/>
