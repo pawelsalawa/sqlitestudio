@@ -65,8 +65,13 @@ proc copy {file} {
 	close $fd
 
 	set data [string map [list sqlite3 wx_sqlite3] $data]
-	set data [string map [list wx_sqlite3.c wxsqlite3.c] $data]
-	set data [string map [list wx_sqlite3.h wxsqlite3.h] $data]
+	set data [string map [list \
+			wx_sqlite3secure. sqlite3secure. \
+			wx_sqlite3ext.h sqlite3ext.h \
+			wx_sqlite3userauth.h sqlite3userauth.h \
+			wx_sqlite3.c wxsqlite3.c \
+			wx_sqlite3.h wxsqlite3.h \
+		] $data]
  
 	set outFile [file tail $file]
 	puts "Copying $outFile"

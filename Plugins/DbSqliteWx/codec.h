@@ -34,7 +34,7 @@ extern "C" {
 
 #include "rijndael.h"
 
-#include "wx_sqlite3secure.h"
+#include "sqlite3secure.h"
 
 #define CODEC_TYPE_DEFAULT CODEC_TYPE_CHACHA20
 

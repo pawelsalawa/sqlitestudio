@@ -73,7 +73,7 @@
 **   And the paths returned in the "name" column of the table are also 
 **   relative to directory $dir.
 */
-#include "wx_sqlite3ext.h"
+#include "sqlite3ext.h"
 SQLITE_EXTENSION_INIT1
 #include <stdio.h>
 #include <string.h>

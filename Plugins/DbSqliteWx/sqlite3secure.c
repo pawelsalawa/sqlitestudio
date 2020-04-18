@@ -1,5 +1,5 @@
 /*
-** Name:        wx_sqlite3secure.c
+** Name:        sqlite3secure.c
 ** Purpose:     Amalgamation of the wxSQLite3 encryption extension for SQLite
 ** Author:      Ulrich Telle
 ** Created:     2006-12-06
@@ -59,7 +59,7 @@ extern LPWSTR wx_sqlite3_win32_utf8_to_unicode(const char *);
 #endif
 
 #include "wxsqlite3.c"
-#include "wx_sqlite3secure.h"
+#include "sqlite3secure.h"
 
 /*
 ** Crypto algorithms
@@ -81,7 +81,7 @@ void chacha20_rng(void* out, size_t n);
 #endif
 
 #ifdef SQLITE_USER_AUTHENTICATION
-#include "wx_sqlite3userauth.h"
+#include "sqlite3userauth.h"
 #include "userauth.c"
 #endif
 

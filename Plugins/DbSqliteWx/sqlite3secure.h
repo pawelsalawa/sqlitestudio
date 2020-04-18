@@ -1,5 +1,5 @@
 /*
-** Name:        wx_sqlite3secure.h
+** Name:        sqlite3secure.h
 ** Purpose:     Header file for SQLite codecs
 ** Author:      Ulrich Telle
 ** Created:     2018-03-30

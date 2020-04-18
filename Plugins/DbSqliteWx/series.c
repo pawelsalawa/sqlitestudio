@@ -68,7 +68,7 @@
 ** encourages the query planner to order joins such that the bounds of the
 ** series are well-defined.
 */
-#include "wx_sqlite3ext.h"
+#include "sqlite3ext.h"
 SQLITE_EXTENSION_INIT1
 #include <assert.h>
 #include <string.h>

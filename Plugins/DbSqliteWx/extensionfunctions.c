@@ -34,7 +34,7 @@ Compilation instructions:
    installation!)
   3. compile:
    gcc -shared -I "path" -o libsqlitefunctions.so extension-functions.c
-   (path = path of wx_sqlite3ext.h; i.e. C:\programs\sqlite)
+   (path = path of sqlite3ext.h; i.e. C:\programs\sqlite)
 
 Usage instructions for applications calling the wx_sqlite3 API functions:
   In your application, call wx_sqlite3_enable_load_extension(db,1) to
@@ -127,7 +127,7 @@ Original code 2006 June 05 by relicoder.
 #define HAVE_TRIM 1		/* LMH 2007-03-25 if sqlite has trim functions */
 
 #ifdef COMPILE_SQLITE_EXTENSIONS_AS_LOADABLE_MODULE
-#include "wx_sqlite3ext.h"
+#include "sqlite3ext.h"
 SQLITE_EXTENSION_INIT1
 #else
 #include "wxsqlite3.h"

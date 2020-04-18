@@ -39,7 +39,7 @@
 ** Some extra debugging features (used for testing virtual tables) are available
 ** if this module is compiled with -DSQLITE_TEST.
 */
-#include "wx_sqlite3ext.h"
+#include "sqlite3ext.h"
 SQLITE_EXTENSION_INIT1
 #include <string.h>
 #include <stdlib.h>
