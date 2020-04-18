@@ -192,7 +192,7 @@
       <location filename="../dbobjectorganizer.cpp" line="380"/>
       <location filename="../dbobjectorganizer.cpp" line="412"/>
       <source>Error while creating table in target database: %1</source>
-      <translation type="unfinished">Error while creating table in target database: %1</translation>
+      <translation>Hedef veritabanında tablo yaratırken hata: %1</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="380"/>
