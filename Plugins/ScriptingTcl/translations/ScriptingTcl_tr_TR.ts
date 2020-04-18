@@ -11,13 +11,13 @@
     <message>
       <location filename="../scriptingtcl.cpp" line="433"/>
       <source>Invalid &apos;%1&apos; command sytax. Should be: %2</source>
-      <translation type="unfinished">Invalid &apos;%1&apos; command sytax. Should be: %2</translation>
+      <translation>Geçersiz &apos;%1&apos; komut söz dizimi. %2 şeklinde olmalı</translation>
     </message>
     <message>
       <location filename="../scriptingtcl.cpp" line="445"/>
       <location filename="../scriptingtcl.cpp" line="576"/>
       <source>Error from Tcl&apos;s&apos; &apos;%1&apos; command: %2</source>
-      <translation type="unfinished">Error from Tcl&apos;s&apos; &apos;%1&apos; command: %2</translation>
+      <translation>Tcl&apos;s&apos; &apos;%1&apos;komutunda hata komut: %2</translation>
     </message>
   </context>
 </TS>
