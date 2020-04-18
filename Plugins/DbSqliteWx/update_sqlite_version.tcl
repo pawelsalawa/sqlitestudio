@@ -36,6 +36,7 @@ set FILES [list \
     sha1.h \
     sqlite3secure.h \
     test_windirent.h \
+	mystdint.h \
 ]
 
 proc process {} {
