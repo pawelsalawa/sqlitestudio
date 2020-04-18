@@ -183,7 +183,7 @@
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="537"/>
       <source>No suitable database driver plugin found.</source>
-      <translation type="unfinished">No suitable database driver plugin found.</translation>
+      <translation>Hiçbir veritabanı sürücü eklentisi bulunamadı.</translation>
     </message>
   </context>
   <context>
@@ -197,7 +197,7 @@
     <message>
       <location filename="../dbobjectorganizer.cpp" line="380"/>
       <source>Could not parse table.</source>
-      <translation type="unfinished">Could not parse table.</translation>
+      <translation>Tablo ayrıştırılamadı.</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="426"/>
