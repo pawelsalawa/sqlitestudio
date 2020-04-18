@@ -7,12 +7,12 @@
       <location filename="../db/abstractdb.cpp" line="343"/>
       <location filename="../db/abstractdb.cpp" line="360"/>
       <source>Cannot execute query on closed database.</source>
-      <translation type="unfinished">Cannot execute query on closed database.</translation>
+      <translation>Kapalı veritabanında sorgu çalıştırılamaz.</translation>
     </message>
     <message>
       <location filename="../db/abstractdb.cpp" line="643"/>
       <source>Error attaching database %1: %2</source>
-      <translation type="unfinished">Error attaching database %1: %2</translation>
+      <translation>Veritabanına eklenirken hata %1: %2</translation>
     </message>
   </context>
   <context>
@@ -21,37 +21,37 @@
       <location filename="../db/chainexecutor.cpp" line="37"/>
       <source>The database for executing queries was not defined.</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">The database for executing queries was not defined.</translation>
+      <translation>Sorgu çalıştırılacak veritabanı belirtilmemiş.</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="44"/>
       <source>The database for executing queries was not open.</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">The database for executing queries was not open.</translation>
+      <translation>Sorgu çalıştırılacak veritabanı açılmamış.</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="54"/>
       <source>Could not disable foreign keys in the database. Details: %1</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">Could not disable foreign keys in the database. Details: %1</translation>
+      <translation>Veritabanındaki ikincil anahtar devredışı bırakılamadı. Detaylar: %1</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="62"/>
       <source>Could not start a database transaction. Details: %1</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">Could not start a database transaction. Details: %1</translation>
+      <translation>Veritabanı işlemi başlatılamadı. Detaylar: %1</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="89"/>
       <source>Interrupted</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">Interrupted</translation>
+      <translation>Yarıda kesildi</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="151"/>
       <source>Could not commit a database transaction. Details: %1</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">Could not commit a database transaction. Details: %1</translation>
+      <translation>Veritabanı işlemi başarılı bitirilemedi. Detaylar: %1</translation>
     </message>
   </context>
   <context>
@@ -59,82 +59,82 @@
     <message>
       <location filename="../completionhelper.cpp" line="196"/>
       <source>New row reference</source>
-      <translation type="unfinished">New row reference</translation>
+      <translation>Yeni satır referansı</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="203"/>
       <source>Old row reference</source>
-      <translation type="unfinished">Old row reference</translation>
+      <translation>Eski satır referansı</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="208"/>
       <source>New table name</source>
-      <translation type="unfinished">New table name</translation>
+      <translation>Yeni tablo adı</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="211"/>
       <source>New index name</source>
-      <translation type="unfinished">New index name</translation>
+      <translation>Yeni indeks</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="214"/>
       <source>New view name</source>
-      <translation type="unfinished">New view name</translation>
+      <translation>Yeni view adı</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="217"/>
       <source>New trigger name</source>
-      <translation type="unfinished">New trigger name</translation>
+      <translation>Yeni trigger adı</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="220"/>
       <source>Table or column alias</source>
-      <translation type="unfinished">Table or column alias</translation>
+      <translation>Tablo ya da kolon takma adı</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="223"/>
       <source>transaction name</source>
-      <translation type="unfinished">transaction name</translation>
+      <translation>işlem adı</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="226"/>
       <source>New column name</source>
-      <translation type="unfinished">New column name</translation>
+      <translation>Yeni kolon adı</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="229"/>
       <source>Column data type</source>
-      <translation type="unfinished">Column data type</translation>
+      <translation>Kolon veri tipi</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="232"/>
       <source>Constraint name</source>
-      <translation type="unfinished">Constraint name</translation>
+      <translation>Constraint adı</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="245"/>
       <source>Error message</source>
-      <translation type="unfinished">Error message</translation>
+      <translation>Hata mesajı</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="289"/>
       <source>Collation name</source>
-      <translation type="unfinished">Collation name</translation>
+      <translation>Collacation adı</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="304"/>
       <source>Any word</source>
-      <translation type="unfinished">Any word</translation>
+      <translation>Herhangi bir kelime</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="485"/>
       <source>Default database</source>
-      <translation type="unfinished">Default database</translation>
+      <translation>Varsayılan veritabanı</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="486"/>
       <source>Temporary objects database</source>
-      <translation type="unfinished">Temporary objects database</translation>
+      <translation>Geçici nesneler veritabanı</translation>
     </message>
   </context>
   <context>
@@ -142,12 +142,12 @@
     <message>
       <location filename="../services/impl/configimpl.cpp" line="869"/>
       <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
-      <translation type="unfinished">Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
+      <translation>SQL geçmişini silme işlemi başlatılamadı, bu sebeple silinemedi.</translation>
     </message>
     <message>
       <location filename="../services/impl/configimpl.cpp" line="876"/>
       <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
-      <translation type="unfinished">Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
+      <translation>SQL geçmişini silme işlemi commitlenemedi, bu sebeple silinmedi.</translation>
     </message>
   </context>
   <context>
@@ -155,35 +155,35 @@
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="64"/>
       <source>Could not add database %1: %2</source>
-      <translation type="unfinished">Could not add database %1: %2</translation>
+      <translation>%1 veritabanı eklenemedi: %2</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="139"/>
       <source>Database %1 could not be updated, because of an error: %2</source>
-      <translation type="unfinished">Database %1 could not be updated, because of an error: %2</translation>
+      <translation>%2 hatası sebebiyle %1 veritabanı güncellenemedi</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="355"/>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="384"/>
       <source>Database file doesn&apos;t exist.</source>
-      <translation type="unfinished">Database file doesn&apos;t exist.</translation>
+      <translation>Veritabanı dosyası bulunamadı.</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="357"/>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="386"/>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="609"/>
       <source>No supporting plugin loaded.</source>
-      <translation type="unfinished">No supporting plugin loaded.</translation>
+      <translation>Hiçbir destekleyen eklenti yüklenmedi.</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="527"/>
       <source>Database could not be initialized.</source>
-      <translation type="unfinished">Database could not be initialized.</translation>
+      <translation>Veritabanı açılamadı.</translation>
     </message>
     <message>
       <location filename="../services/impl/dbmanagerimpl.cpp" line="537"/>
       <source>No suitable database driver plugin found.</source>
-      <translation type="unfinished">No suitable database driver plugin found.</translation>
+      <translation>Hiçbir veritabanı sürücü eklentisi bulunamadı.</translation>
     </message>
   </context>
   <context>
@@ -192,12 +192,12 @@
       <location filename="../dbobjectorganizer.cpp" line="380"/>
       <location filename="../dbobjectorganizer.cpp" line="412"/>
       <source>Error while creating table in target database: %1</source>
-      <translation type="unfinished">Error while creating table in target database: %1</translation>
+      <translation>Hedef veritabanında tablo yaratırken hata: %1</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="380"/>
       <source>Could not parse table.</source>
-      <translation type="unfinished">Could not parse table.</translation>
+      <translation>Tablo ayrıştırılamadı.</translation>
     </message>
     <message>
       <location filename="../dbobjectorganizer.cpp" line="426"/>

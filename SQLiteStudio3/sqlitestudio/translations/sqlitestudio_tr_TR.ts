@@ -6,77 +6,77 @@
     <message>
       <location filename="../main.cpp" line="49"/>
       <source>GUI interface to SQLiteStudio, a SQLite manager.</source>
-      <translation type="unfinished">GUI interface to SQLiteStudio, a SQLite manager.</translation>
+      <translation>SQLite yöneticisi, SQLiteStudio için kullanıcı arayüzü</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="53"/>
       <source>Enables debug messages in console (accessible with F12).</source>
-      <translation type="unfinished">Enables debug messages in console (accessible with F12).</translation>
+      <translation>Konsolda debug mesajlarını aktif hale getirir (F12 ile de ulaşılabilir).</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="54"/>
       <source>Redirects debug messages into standard output (forces debug mode).</source>
-      <translation type="unfinished">Redirects debug messages into standard output (forces debug mode).</translation>
+      <translation>Debug mesajlarını standart konsola yönlendirir (debug modunu zorunludur).</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="55"/>
       <source>Redirects debug messages into given file (forces debug mode).</source>
-      <translation type="unfinished">Redirects debug messages into given file (forces debug mode).</translation>
+      <translation>Debug mesajlarını belirtilen dosyaya yönlendirir (debug modunu zorunludur).</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="55"/>
       <source>log file</source>
-      <translation type="unfinished">log file</translation>
+      <translation>log dosyası</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="56"/>
       <source>Enables Lemon parser debug messages for SQL code assistant.</source>
-      <translation type="unfinished">Enables Lemon parser debug messages for SQL code assistant.</translation>
+      <translation>SQL kod asistanı olarak mesajları debug etmek için Lemon parser&apos;ı aktif hale getirir.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="57"/>
       <source>Enables debugging of every single SQL query being sent to any database.</source>
-      <translation type="unfinished">Enables debugging of every single SQL query being sent to any database.</translation>
+      <translation>Veritabanına gönderilen her SQL sorgusu için debug yapabilmeyi aktif hale getirir.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="58"/>
       <source>Limits SQL query messages to only the given &lt;database&gt;.</source>
-      <translation type="unfinished">Limits SQL query messages to only the given &lt;database&gt;.</translation>
+      <translation>Sadece &lt;veritabanı&gt; için verilen SQL sorgu mesajlarını sınırlar.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="58"/>
       <source>database</source>
-      <translation type="unfinished">database</translation>
+      <translation>veritabanı</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="59"/>
       <source>Enables debugging of SQLiteStudio&apos;s query executor.</source>
-      <translation type="unfinished">Enables debugging of SQLiteStudio&apos;s query executor.</translation>
+      <translation>SQLiteStudio&apos;nun sorgu çalıştırıcısının debugging özelliğini aktif hale getirir.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="60"/>
       <source>Lists plugins installed in the SQLiteStudio and quits.</source>
-      <translation type="unfinished">Lists plugins installed in the SQLiteStudio and quits.</translation>
+      <translation>SQLiteStudio içinde yüklü olan eklentileri listeler ve çıkış yapar.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="61"/>
       <source>Points to the master configuration file. Read manual at wiki page for more details.</source>
-      <translation type="unfinished">Points to the master configuration file. Read manual at wiki page for more details.</translation>
+      <translation>Ana konfigürasyon dosyasını gösterir. Daha fazla detay için wiki sayfasındaki kullanım kılavuzunu okuyun.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="61"/>
       <source>SQLiteStudio settings file</source>
-      <translation type="unfinished">SQLiteStudio settings file</translation>
+      <translation>SQLiteStudio ayarlar dosyası</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="72"/>
       <source>file</source>
-      <translation type="unfinished">file</translation>
+      <translation>dosya</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="72"/>
       <source>Database file to open</source>
-      <translation type="unfinished">Database file to open</translation>
+      <translation>Açılacak veritabanı dosyası</translation>
     </message>
   </context>
 </TS>
