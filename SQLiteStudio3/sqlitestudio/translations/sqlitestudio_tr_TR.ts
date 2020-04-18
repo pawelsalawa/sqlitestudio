@@ -56,27 +56,27 @@
     <message>
       <location filename="../main.cpp" line="60"/>
       <source>Lists plugins installed in the SQLiteStudio and quits.</source>
-      <translation type="unfinished">Lists plugins installed in the SQLiteStudio and quits.</translation>
+      <translation>SQLiteStudio içinde yüklü olan eklentileri listeler ve çıkış yapar.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="61"/>
       <source>Points to the master configuration file. Read manual at wiki page for more details.</source>
-      <translation type="unfinished">Points to the master configuration file. Read manual at wiki page for more details.</translation>
+      <translation>Ana konfigürasyon dosyasını gösterir. Daha fazla detay için wiki sayfasındaki kullanım kılavuzunu okuyun.</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="61"/>
       <source>SQLiteStudio settings file</source>
-      <translation type="unfinished">SQLiteStudio settings file</translation>
+      <translation>SQLiteStudio ayarlar dosyası</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="72"/>
       <source>file</source>
-      <translation type="unfinished">file</translation>
+      <translation>dosya</translation>
     </message>
     <message>
       <location filename="../main.cpp" line="72"/>
       <source>Database file to open</source>
-      <translation type="unfinished">Database file to open</translation>
+      <translation>Açılacak veritabanı dosyası</translation>
     </message>
   </context>
 </TS>
