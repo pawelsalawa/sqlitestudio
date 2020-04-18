@@ -6,7 +6,7 @@
     <message>
       <location filename="../scriptingtcl.cpp" line="411"/>
       <source>No database available in current context, while called Tcl&apos;s &apos;%1&apos; command.</source>
-      <translation type="unfinished">No database available in current context, while called Tcl&apos;s &apos;%1&apos; command.</translation>
+      <translation>Tcl&apos;s &apos;%1&apos; komutu sonucunda, uygun bir veritabanı bulunmuyor.</translation>
     </message>
     <message>
       <location filename="../scriptingtcl.cpp" line="433"/>
