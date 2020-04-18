@@ -119,22 +119,22 @@
     <message>
       <location filename="../completionhelper.cpp" line="289"/>
       <source>Collation name</source>
-      <translation type="unfinished">Collation name</translation>
+      <translation>Collacation adı</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="304"/>
       <source>Any word</source>
-      <translation type="unfinished">Any word</translation>
+      <translation>Herhangi bir kelime</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="485"/>
       <source>Default database</source>
-      <translation type="unfinished">Default database</translation>
+      <translation>Varsayılan veritabanı</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="486"/>
       <source>Temporary objects database</source>
-      <translation type="unfinished">Temporary objects database</translation>
+      <translation>Geçici nesneler veritabanı</translation>
     </message>
   </context>
   <context>
@@ -142,12 +142,12 @@
     <message>
       <location filename="../services/impl/configimpl.cpp" line="869"/>
       <source>Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
-      <translation type="unfinished">Could not start database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
+      <translation>SQL geçmişini silme işlemi başlatılamadı, bu sebeple silinemedi.</translation>
     </message>
     <message>
       <location filename="../services/impl/configimpl.cpp" line="876"/>
       <source>Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</source>
-      <translation type="unfinished">Could not commit database transaction for deleting SQL history, therefore it&apos;s not deleted.</translation>
+      <translation>SQL geçmişini silme işlemi commitlenemedi, bu sebeple silinmedi.</translation>
     </message>
   </context>
   <context>
