@@ -51,8 +51,8 @@ proc wget {url {filename {}}} {
 
 	package require http
 	if {[catch {package require twapi_crypto}]} {
-		package require tls 1.7
-		http::register https 443 [list ::tls::socket -autoservername true]
+		package require tls
+		http::register https 443 [list ::tls::socket]
 	} else {
 		http::register https 443 [list ::twapi::tls_socket]
 	}
