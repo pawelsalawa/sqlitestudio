@@ -20,6 +20,10 @@
 #endif
 #endif
 
+#if defined(INTEROP_INCLUDE_SEE)
+#include "systemdata_see-prefix.txt"
+#endif
+
 #include "systemdata_sqlite3.c"
 
 #if !SQLITE_OS_WIN
@@ -27,20 +31,23 @@
 #endif
 
 #if defined(INTEROP_INCLUDE_EXTRA)
-#include "../ext/extra.c"
+#include "systemdata_extra.c"
 #endif
 
 #if defined(INTEROP_INCLUDE_CEROD)
-#include "../ext/cerod.c"
+#include "systemdata_cerod.c"
 #endif
 
 #if defined(INTEROP_INCLUDE_SEE)
-#include "../ext/see.c"
+#include "systemdata_see.c"
 #endif
 
 #if defined(INTEROP_INCLUDE_ZIPVFS)
-#include "../ext/zipvfs.c"
-#include "../ext/algorithms.c"
+#include "systemdata_zipvfs.c"
+#if defined(SQLITE_ENABLE_ZIPVFS_VTAB)
+#include "systemdata_zipvfs_vtab.c"
+#endif
+#include "systemdata_algorithms.c"
 #endif
 
 #if defined(INTEROP_EXTENSION_FUNCTIONS)
@@ -200,7 +207,11 @@ SQLITE_API const char *WINAPI interop_compileoption_get(int N){
 #if defined(INTEROP_DEBUG) || defined(INTEROP_LOG)
 SQLITE_PRIVATE void systemdata_sqlite3InteropDebug(const char *zFormat, ...){
   va_list ap;                         /* Vararg list */
-  StrAccum acc;                       /* String accumulator */
+#if SQLITE_VERSION_NUMBER >= 3024000
+  systemdata_sqlite3_str acc;                    /* Post 3.24 String accumulator */
+#else
+  StrAccum acc;                       /* Pre 3.24 string accumulator */
+#endif
   char zMsg[SQLITE_PRINT_BUF_SIZE*3]; /* Complete log message */
   va_start(ap, zFormat);
 #if SQLITE_VERSION_NUMBER >= 3008010
@@ -209,7 +220,9 @@ SQLITE_PRIVATE void systemdata_sqlite3InteropDebug(const char *zFormat, ...){
   systemdata_sqlite3StrAccumInit(&acc, zMsg, sizeof(zMsg), 0);
   acc.useMalloc = 0;
 #endif
-#if SQLITE_VERSION_NUMBER >= 3011000
+#if SQLITE_VERSION_NUMBER >= 3024000
+  systemdata_sqlite3_str_vappendf(&acc, zFormat, ap);
+#elif SQLITE_VERSION_NUMBER >= 3011000
   systemdata_sqlite3VXPrintf(&acc, zFormat, ap);
 #else
   systemdata_sqlite3VXPrintf(&acc, 0, zFormat, ap);
@@ -243,6 +256,12 @@ SQLITE_PRIVATE void systemdata_sqlite3InteropLogCallback(void *pArg, int iCode, 
 
 SQLITE_API int WINAPI systemdata_sqlite3_malloc_size_interop(void *p){
   return systemdata_sqlite3MallocSize(p);
+}
+
+SQLITE_API void WINAPI systemdata_sqlite3_msize_interop(void *p, sqlite_uint64 *pN)
+{
+  if (!pN) return;
+  *pN = systemdata_sqlite3_msize(p);
 }
 
 #if defined(INTEROP_LEGACY_CLOSE) || SQLITE_VERSION_NUMBER < 3007014
@@ -371,7 +390,7 @@ SQLITE_API int WINAPI systemdata_sqlite3_config_log_interop()
       systemdata_sqlite3InteropDebug("systemdata_sqlite3_config_log_interop(): systemdata_sqlite3_config(SQLITE_CONFIG_LOG) returned %d.\n", ret);
     }
   }else{
-    ret = SQLITE_OK;
+    ret = SQLITE_DONE;
   }
   return ret;
 }
@@ -1111,31 +1130,31 @@ SQLITE_API int WINAPI systemdata_sqlite3_cursor_rowid_interop(systemdata_sqlite3
 #endif
 
 #if defined(INTEROP_VIRTUAL_TABLE) && SQLITE_VERSION_NUMBER >= 3004001
-#include "../ext/vtshim.c"
+#include "systemdata_vtshim.c"
 #endif
 
 #if defined(INTEROP_FTS5_EXTENSION)
-#include "../ext/fts5.c"
+#include "systemdata_fts5.c"
 #endif
 
 #if defined(INTEROP_JSON1_EXTENSION)
-#include "../ext/json1.c"
+#include "systemdata_json1.c"
 #endif
 
 #if defined(INTEROP_PERCENTILE_EXTENSION)
-#include "../ext/percentile.c"
+#include "systemdata_percentile.c"
 #endif
 
 #if defined(INTEROP_REGEXP_EXTENSION)
-#include "../ext/regexp.c"
+#include "systemdata_regexp.c"
 #endif
 
 #if defined(INTEROP_SHA1_EXTENSION)
-#include "../ext/sha1.c"
+#include "systemdata_sha1.c"
 #endif
 
 #if defined(INTEROP_TOTYPE_EXTENSION)
-#include "../ext/totype.c"
+#include "systemdata_totype.c"
 #endif
 
 /*****************************************************************************/
@@ -1153,6 +1172,24 @@ SQLITE_API int WINAPI systemdata_sqlite3_cursor_rowid_interop(systemdata_sqlite3
 
 #include "systemdata_sqlite3ext.h"
 SQLITE_EXTENSION_INIT1
+
+/*
+** The interopError() SQL function treats its first argument as an integer
+** error code to return.
+*/
+SQLITE_PRIVATE void interopErrorFunc(
+  systemdata_sqlite3_context *context,
+  int argc,
+  systemdata_sqlite3_value **argv
+){
+  int rc;
+  if( argc!=1 ){
+    systemdata_sqlite3_result_error(context, "need exactly one argument", -1);
+    return;
+  }
+  rc = systemdata_sqlite3_value_int(argv[0]);
+  systemdata_sqlite3_result_error_code(context, rc);
+}
 
 /*
 ** The interopTest() SQL function returns its first argument or raises an
@@ -1219,8 +1256,12 @@ SQLITE_API int interop_test_extension_init(
 ){
   int rc;
   SQLITE_EXTENSION_INIT2(pApi)
-  rc = systemdata_sqlite3_create_function(db, "interopTest", -1, SQLITE_ANY, 0,
-      interopTestFunc, 0, 0);
+  rc = systemdata_sqlite3_create_function(db, "interopError", -1, SQLITE_ANY, 0,
+      interopErrorFunc, 0, 0);
+  if( rc==SQLITE_OK ){
+    rc = systemdata_sqlite3_create_function(db, "interopTest", -1, SQLITE_ANY, 0,
+        interopTestFunc, 0, 0);
+  }
   if( rc==SQLITE_OK ){
     rc = systemdata_sqlite3_create_function(db, "interopSleep", 1, SQLITE_ANY, 0,
         interopSleepFunc, 0, 0);

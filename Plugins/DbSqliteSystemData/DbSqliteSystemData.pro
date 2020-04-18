@@ -15,12 +15,24 @@ TEMPLATE = lib
 
 SOURCES += dbsqlitesystemdata.cpp \
     dbsqlitesystemdatainstance.cpp \
-    systemdata_interop.c
+    systemdata_crypt.c \
+    systemdata_extension-functions.c \
+    systemdata_fts5.c \
+    systemdata_interop.c \
+    systemdata_json1.c \
+    systemdata_percentile.c \
+    systemdata_regexp.c \
+    systemdata_sha1.c \
+    systemdata_sqlite3.c \
+    systemdata_totype.c \
+    systemdata_vtshim.c
 
 HEADERS += dbsqlitesystemdata.h \
-    dbsqlitesystemdata_global.h \
     dbsqlitesystemdatainstance.h \
-    systemdata_interop.h
+    dbsqlitesystemdata_global.h \
+    systemdata_interop.h \
+    systemdata_sqlite3.h \
+    systemdata_sqlite3ext.h
 
 DISTFILES += DbSqliteSystemData.json
 
@@ -37,3 +49,5 @@ QMAKE_CFLAGS_WARN_ON = -Wall -Wno-unused-parameter -Wno-sign-compare -Wno-unused
 
 OTHER_FILES += \
     dbsqlitesystemdata.json
+
+

@@ -40,7 +40,7 @@ static wx_sqlite3_stmt *wx_sqlite3UserAuthPrepare(
   char *zSql;
   int rc;
   va_list ap;
-  int savedFlags = db->flags;
+  u64 savedFlags = db->flags;
 
   va_start(ap, zFormat);
   zSql = wx_sqlite3_vmprintf(zFormat, ap);
@@ -214,7 +214,11 @@ int wx_sqlite3_user_authenticate(
   db->auth.nAuthPW = nPW;
   rc = wx_sqlite3UserAuthCheckLogin(db, "main", &authLevel);
   db->auth.authLevel = authLevel;
+#if (SQLITE_VERSION_NUMBER >= 3025000)
+  wx_sqlite3ExpirePreparedStatements(db, 0);
+#else
   wx_sqlite3ExpirePreparedStatements(db);
+#endif
   if( rc ){
     return rc;           /* OOM error, I/O error, etc. */
   }
@@ -289,7 +293,7 @@ int wx_sqlite3_user_change(
   int isAdmin            /* Modified admin privilege for the user */
 ){
   wx_sqlite3_stmt *pStmt;
-  int rc;
+  int rc = SQLITE_OK;
   u8 authLevel;
 
   authLevel = db->auth.authLevel;

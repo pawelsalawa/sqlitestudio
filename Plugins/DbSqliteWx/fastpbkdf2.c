@@ -418,15 +418,49 @@ void fastpbkdf2_hmac_sha512(const uint8_t *pw, size_t npw,
   PBKDF2(sha512)(pw, npw, salt, nsalt, iterations, out, nout);
 }
 
-void sqlcipher_hmac(unsigned char* key, int nkey, unsigned char* in, int in_sz, unsigned char* in2, int in2_sz, unsigned char* out)
+void sqlcipher_hmac(int algorithm, unsigned char* key, int nkey, unsigned char* in, int in_sz, unsigned char* in2, int in2_sz, unsigned char* out)
 {
-  HMAC_sha1_ctx hctx;
-  HMAC_sha1_init(&hctx, key, nkey);
-  HMAC_sha1_update(&hctx, in, in_sz);
-  if (in2 != NULL)
+  switch (algorithm)
   {
-    HMAC_sha1_update(&hctx, in2, in2_sz);
+    case 0:
+    {
+      HMAC_sha1_ctx hctx;
+      HMAC_sha1_init(&hctx, key, nkey);
+      HMAC_sha1_update(&hctx, in, in_sz);
+      if (in2 != NULL)
+      {
+        HMAC_sha1_update(&hctx, in2, in2_sz);
+      }
+      HMAC_sha1_final(&hctx, out);
+    }
+    break;
+
+    case 1:
+    {
+      HMAC_sha256_ctx hctx;
+      HMAC_sha256_init(&hctx, key, nkey);
+      HMAC_sha256_update(&hctx, in, in_sz);
+      if (in2 != NULL)
+      {
+        HMAC_sha256_update(&hctx, in2, in2_sz);
+      }
+      HMAC_sha256_final(&hctx, out);
+    }
+    break;
+
+    case 2:
+    default:
+    {
+      HMAC_sha512_ctx hctx;
+      HMAC_sha512_init(&hctx, key, nkey);
+      HMAC_sha512_update(&hctx, in, in_sz);
+      if (in2 != NULL)
+      {
+        HMAC_sha512_update(&hctx, in2, in2_sz);
+      }
+      HMAC_sha512_final(&hctx, out);
+    }
+    break;
   }
-  HMAC_sha1_final(&hctx, out);
 }
 

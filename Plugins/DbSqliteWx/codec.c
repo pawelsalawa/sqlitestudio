@@ -3,7 +3,7 @@
 ** Purpose:     Implementation of SQLite codecs
 ** Author:      Ulrich Telle
 ** Created:     2006-12-06
-** Copyright:   (c) 2006-2018 Ulrich Telle
+** Copyright:   (c) 2006-2019 Ulrich Telle
 ** License:     LGPL-3.0+ WITH WxWindows-exception-3.1
 */
 
@@ -13,7 +13,7 @@
 ** RC4 implementation
 */
 
-void
+static void
 CodecRC4(unsigned char* key, int keylen,
          unsigned char* textin, int textlen,
          unsigned char* textout)
@@ -52,7 +52,7 @@ CodecRC4(unsigned char* key, int keylen,
   }
 }
 
-void
+static void
 CodecGetMD5Binary(unsigned char* data, int length, unsigned char* digest)
 {
   MD5_CTX ctx;
@@ -61,7 +61,7 @@ CodecGetMD5Binary(unsigned char* data, int length, unsigned char* digest)
   MD5_Final(digest,&ctx);
 }
 
-void
+static void
 CodecGetSHABinary(unsigned char* data, int length, unsigned char* digest)
 {
   sha256(data, (unsigned int) length, digest);
@@ -69,7 +69,7 @@ CodecGetSHABinary(unsigned char* data, int length, unsigned char* digest)
 
 #define MODMULT(a, b, c, m, s) q = s / a; s = b * (s - a * q) - c * q; if (s < 0) s += m
 
-void
+static void
 CodecGenerateInitialVector(int seed, unsigned char iv[16])
 {
   unsigned char initkey[16];
@@ -86,7 +86,7 @@ CodecGenerateInitialVector(int seed, unsigned char iv[16])
   CodecGetMD5Binary((unsigned char*) initkey, 16, iv);
 }
 
-int
+static int
 CodecAES128(Rijndael* aesCtx, int page, int encrypt, unsigned char encryptionKey[KEYLENGTH_AES128],
             unsigned char* datain, int datalen, unsigned char* dataout)
 {
@@ -136,7 +136,7 @@ CodecAES128(Rijndael* aesCtx, int page, int encrypt, unsigned char encryptionKey
   return rc;
 }
 
-int
+static int
 CodecAES256(Rijndael* aesCtx, int page, int encrypt, unsigned char encryptionKey[KEYLENGTH_AES256],
             unsigned char* datain, int datalen, unsigned char* dataout)
 {
@@ -186,6 +186,42 @@ CodecAES256(Rijndael* aesCtx, int page, int encrypt, unsigned char encryptionKey
   return rc;
 }
 
+/* Check hex encoding */
+static int
+IsHexKey(const unsigned char* hex, int len)
+{
+  int j;
+  for (j = 0; j < len; ++j)
+  {
+    unsigned char c = hex[j];
+    if ((c < '0' || c > '9') && (c < 'A' || c > 'F') && (c < 'a' || c > 'f'))
+    {
+      return 0;
+    }
+  }
+  return 1;
+}
+
+/* Convert single hex digit */
+static int
+ConvertHex2Int(char c)
+{
+  return (c >= '0' && c <= '9') ? (c)-'0' :
+    (c >= 'A' && c <= 'F') ? (c)-'A' + 10 :
+    (c >= 'a' && c <= 'f') ? (c)-'a' + 10 : 0;
+}
+
+/* Convert hex encoded string to binary */
+static void
+ConvertHex2Bin(const unsigned char* hex, int len, unsigned char* bin)
+{
+  int j;
+  for (j = 0; j < len; j += 2)
+  {
+    bin[j / 2] = (ConvertHex2Int(hex[j]) << 4) | ConvertHex2Int(hex[j + 1]);
+  }
+}
+
 static unsigned char padding[] =
   "\x28\xBF\x4E\x5E\x4E\x75\x8A\x41\x64\x00\x4E\x56\xFF\xFA\x01\x08\x2E\x2E\x00\xB6\xD0\x68\x3E\x80\x2F\x0C\xA9\xFE\x64\x53\x69\x7A";
 
@@ -206,12 +242,14 @@ typedef struct _CipherParams
 /*
 ** Common configuration parameters
 **
-** - cipher : default cipher type
+** - cipher     : default cipher type
+** - hmac_check : flag whether page hmac should be verified on read
 */
 
-CipherParams commonParams[] =
+static CipherParams commonParams[] =
 {
-  { "cipher", CODEC_TYPE, CODEC_TYPE, 1, CODEC_TYPE_MAX },
+  { "cipher",     CODEC_TYPE, CODEC_TYPE, 1, CODEC_TYPE_MAX },
+  { "hmac_check",          1,          1, 0,              1 },
   CIPHER_PARAMS_SENTINEL
 };
 
@@ -228,7 +266,7 @@ CipherParams commonParams[] =
 #define AES128_LEGACY_DEFAULT 0
 #endif
 
-CipherParams aes128Params[] =
+static CipherParams aes128Params[] =
 {
   { "legacy",            AES128_LEGACY_DEFAULT, AES128_LEGACY_DEFAULT, 0, 1 },
   { "legacy_page_size",  0,                     0,                     0, SQLITE_MAX_PAGE_SIZE },
@@ -249,7 +287,7 @@ CipherParams aes128Params[] =
 #define AES256_LEGACY_DEFAULT 0
 #endif
 
-CipherParams aes256Params[] =
+static CipherParams aes256Params[] =
 {
   { "legacy",            AES256_LEGACY_DEFAULT, AES256_LEGACY_DEFAULT, 0, 1 },
   { "legacy_page_size",  0,                     0,                     0, SQLITE_MAX_PAGE_SIZE },
@@ -276,7 +314,7 @@ CipherParams aes256Params[] =
 #define SQLEET_KDF_ITER           12345
 #define CHACHA20_LEGACY_PAGE_SIZE 4096
 
-CipherParams chacha20Params[] =
+static CipherParams chacha20Params[] =
 {
   { "legacy",            CHACHA20_LEGACY_DEFAULT,   CHACHA20_LEGACY_DEFAULT,   0, 1 },
   { "legacy_page_size",  CHACHA20_LEGACY_PAGE_SIZE, CHACHA20_LEGACY_PAGE_SIZE, 0, SQLITE_MAX_PAGE_SIZE },
@@ -294,34 +332,65 @@ CipherParams chacha20Params[] =
 ** - hmac_salt_mask  : mask byte for hmac salt
 */
 
-#ifdef WXSQLITE3_USE_SQLCIPHER_LEGACY
-#define SQLCIPHER_LEGACY_DEFAULT   1
-#else
-#define SQLCIPHER_LEGACY_DEFAULT   0
-#endif
-
-#define SQLCIPHER_KDF_ITER          64000
 #define SQLCIPHER_FAST_KDF_ITER     2
 #define SQLCIPHER_HMAC_USE          1
 #define SQLCIPHER_HMAC_PGNO_LE      1
 #define SQLCIPHER_HMAC_PGNO_BE      2
 #define SQLCIPHER_HMAC_PGNO_NATIVE  0
 #define SQLCIPHER_HMAC_SALT_MASK    0x3a
-#define SQLCIPHER_LEGACY_PAGE_SIZE  1024
 
-CipherParams sqlCipherParams[] =
+#define SQLCIPHER_KDF_ALGORITHM_SHA1   0
+#define SQLCIPHER_KDF_ALGORITHM_SHA256 1
+#define SQLCIPHER_KDF_ALGORITHM_SHA512 2
+
+#define SQLCIPHER_HMAC_ALGORITHM_SHA1   0
+#define SQLCIPHER_HMAC_ALGORITHM_SHA256 1
+#define SQLCIPHER_HMAC_ALGORITHM_SHA512 2
+
+#define SQLCIPHER_VERSION_1   1
+#define SQLCIPHER_VERSION_2   2
+#define SQLCIPHER_VERSION_3   3
+#define SQLCIPHER_VERSION_4   4
+#define SQLCIPHER_VERSION_MAX SQLCIPHER_VERSION_4
+
+#ifndef SQLCIPHER_VERSION_DEFAULT
+#define SQLCIPHER_VERSION_DEFAULT SQLCIPHER_VERSION_4
+#endif
+
+#ifdef WXSQLITE3_USE_SQLCIPHER_LEGACY
+#define SQLCIPHER_LEGACY_DEFAULT   SQLCIPHER_VERSION_DEFAULT
+#else
+#define SQLCIPHER_LEGACY_DEFAULT   0
+#endif
+
+#if SQLCIPHER_VERSION_DEFAULT < SQLCIPHER_VERSION_4
+#define SQLCIPHER_KDF_ITER          64000
+#define SQLCIPHER_LEGACY_PAGE_SIZE  1024
+#define SQLCIPHER_KDF_ALGORITHM     SQLCIPHER_KDF_ALGORITHM_SHA1
+#define SQLCIPHER_HMAC_ALGORITHM    SQLCIPHER_HMAC_ALGORITHM_SHA1
+#else
+#define SQLCIPHER_KDF_ITER          256000
+#define SQLCIPHER_LEGACY_PAGE_SIZE  4096
+#define SQLCIPHER_KDF_ALGORITHM  SQLCIPHER_KDF_ALGORITHM_SHA512
+#define SQLCIPHER_HMAC_ALGORITHM SQLCIPHER_HMAC_ALGORITHM_SHA512
+#endif
+
+static CipherParams sqlCipherParams[] =
 {
-  { "legacy",            SQLCIPHER_LEGACY_DEFAULT,   SQLCIPHER_LEGACY_DEFAULT,   0, 1 },
-  { "legacy_page_size",  SQLCIPHER_LEGACY_PAGE_SIZE, SQLCIPHER_LEGACY_PAGE_SIZE, 0, SQLITE_MAX_PAGE_SIZE },
-  { "kdf_iter",          SQLCIPHER_KDF_ITER,         SQLCIPHER_KDF_ITER,         1, 0x7fffffff },
-  { "fast_kdf_iter",     SQLCIPHER_FAST_KDF_ITER,    SQLCIPHER_FAST_KDF_ITER,    1, 0x7fffffff },
-  { "hmac_use",          SQLCIPHER_HMAC_USE,         SQLCIPHER_HMAC_USE,         0, 1 },
-  { "hmac_pgno",         SQLCIPHER_HMAC_PGNO_LE,     SQLCIPHER_HMAC_PGNO_LE,     0, 2 },
-  { "hmac_salt_mask",    SQLCIPHER_HMAC_SALT_MASK,   SQLCIPHER_HMAC_SALT_MASK,   0x00, 0xff },
+  { "legacy",                SQLCIPHER_LEGACY_DEFAULT,   SQLCIPHER_LEGACY_DEFAULT,   0, SQLCIPHER_VERSION_MAX },
+  { "legacy_page_size",      SQLCIPHER_LEGACY_PAGE_SIZE, SQLCIPHER_LEGACY_PAGE_SIZE, 0, SQLITE_MAX_PAGE_SIZE },
+  { "kdf_iter",              SQLCIPHER_KDF_ITER,         SQLCIPHER_KDF_ITER,         1, 0x7fffffff },
+  { "fast_kdf_iter",         SQLCIPHER_FAST_KDF_ITER,    SQLCIPHER_FAST_KDF_ITER,    1, 0x7fffffff },
+  { "hmac_use",              SQLCIPHER_HMAC_USE,         SQLCIPHER_HMAC_USE,         0, 1 },
+  { "hmac_pgno",             SQLCIPHER_HMAC_PGNO_LE,     SQLCIPHER_HMAC_PGNO_LE,     0, 2 },
+  { "hmac_salt_mask",        SQLCIPHER_HMAC_SALT_MASK,   SQLCIPHER_HMAC_SALT_MASK,   0x00, 0xff },
+  { "kdf_algorithm",         SQLCIPHER_KDF_ALGORITHM,    SQLCIPHER_KDF_ALGORITHM,    0, 2 },
+  { "hmac_algorithm",        SQLCIPHER_HMAC_ALGORITHM,   SQLCIPHER_HMAC_ALGORITHM,   0, 2 },
+  { "plaintext_header_size", 0,                          0,                          0, 100 /* restrict to db header size */ },
   CIPHER_PARAMS_SENTINEL
 };
 
-int
+static int
 GetCipherParameter(CipherParams* cipherParams, const char* paramName)
 {
   int value = -1;
@@ -338,17 +407,17 @@ GetCipherParameter(CipherParams* cipherParams, const char* paramName)
 }
 
 /* --- AES 128-bit cipher (wxSQLite3) --- */
-
+#if HAVE_CIPHER_AES_128_CBC
 typedef struct _AES128Cipher
 {
-  int           m_legacy;
-  int           m_legacyPageSize;
-  int           m_keyLength;
-  unsigned char m_key[KEYLENGTH_AES128];
-  Rijndael*     m_aes;
+  int       m_legacy;
+  int       m_legacyPageSize;
+  int       m_keyLength;
+  uint8_t   m_key[KEYLENGTH_AES128];
+  Rijndael* m_aes;
 } AES128Cipher;
 
-void*
+static void*
 AllocateAES128Cipher(wx_sqlite3* db)
 {
   AES128Cipher* aesCipher = (AES128Cipher*) wx_sqlite3_malloc(sizeof(AES128Cipher));
@@ -376,7 +445,7 @@ AllocateAES128Cipher(wx_sqlite3* db)
   return aesCipher;
 }
 
-void
+static void
 FreeAES128Cipher(void* cipher)
 {
   AES128Cipher* localCipher = (AES128Cipher*) cipher;
@@ -386,7 +455,7 @@ FreeAES128Cipher(void* cipher)
   wx_sqlite3_free(localCipher);
 }
 
-void
+static void
 CloneAES128Cipher(void* cipherTo, void* cipherFrom)
 {
   AES128Cipher* aesCipherTo = (AES128Cipher*) cipherTo;
@@ -399,14 +468,14 @@ CloneAES128Cipher(void* cipherTo, void* cipherFrom)
   RijndaelInvalidate(aesCipherFrom->m_aes);
 }
 
-int
+static int
 GetLegacyAES128Cipher(void* cipher)
 {
   AES128Cipher* aesCipher = (AES128Cipher*)cipher;
   return aesCipher->m_legacy;
 }
 
-int
+static int
 GetPageSizeAES128Cipher(void* cipher)
 {
   AES128Cipher* aesCipher = (AES128Cipher*) cipher;
@@ -422,14 +491,20 @@ GetPageSizeAES128Cipher(void* cipher)
   return pageSize;
 }
 
-int
+static int
 GetReservedAES128Cipher(void* cipher)
 {
   return 0;
 }
 
-void
-GenerateKeyAES128Cipher(void* cipher, Btree* pBt, char* userPassword, int passwordLength, int rekey)
+static unsigned char*
+GetSaltAES128Cipher(void* cipher)
+{
+  return NULL;
+}
+
+static void
+GenerateKeyAES128Cipher(void* cipher, BtShared* pBt, char* userPassword, int passwordLength, int rekey, unsigned char* cipherSalt)
 {
   AES128Cipher* aesCipher = (AES128Cipher*) cipher;
   unsigned char userPad[32];
@@ -486,7 +561,7 @@ GenerateKeyAES128Cipher(void* cipher, Btree* pBt, char* userPassword, int passwo
   memcpy(aesCipher->m_key, digest, aesCipher->m_keyLength);
 }
 
-int
+static int
 EncryptPageAES128Cipher(void* cipher, int page, unsigned char* data, int len, int reserved)
 {
   AES128Cipher* aesCipher = (AES128Cipher*) cipher;
@@ -521,8 +596,8 @@ EncryptPageAES128Cipher(void* cipher, int page, unsigned char* data, int len, in
   return rc;
 }
 
-int
-DecryptPageAES128Cipher(void* cipher, int page, unsigned char* data, int len, int reserved)
+static int
+DecryptPageAES128Cipher(void* cipher, int page, unsigned char* data, int len, int reserved, int hmacCheck)
 {
   AES128Cipher* aesCipher = (AES128Cipher*) cipher;
   int rc = SQLITE_OK;
@@ -564,20 +639,20 @@ DecryptPageAES128Cipher(void* cipher, int page, unsigned char* data, int len, in
   }
   return rc;
 }
-
+#endif
 /* --- AES 256-bit cipher (wxSQLite3) --- */
-
+#if HAVE_CIPHER_AES_256_CBC
 typedef struct _AES256Cipher
 {
-  int           m_legacy;
-  int           m_legacyPageSize;
-  int           m_kdfIter;
-  int           m_keyLength;
-  unsigned char m_key[KEYLENGTH_AES256];
-  Rijndael*     m_aes;
+  int       m_legacy;
+  int       m_legacyPageSize;
+  int       m_kdfIter;
+  int       m_keyLength;
+  uint8_t   m_key[KEYLENGTH_AES256];
+  Rijndael* m_aes;
 } AES256Cipher;
 
-void*
+static void*
 AllocateAES256Cipher(wx_sqlite3* db)
 {
   AES256Cipher* aesCipher = (AES256Cipher*) wx_sqlite3_malloc(sizeof(AES256Cipher));
@@ -606,7 +681,7 @@ AllocateAES256Cipher(wx_sqlite3* db)
   return aesCipher;
 }
 
-void
+static void
 FreeAES256Cipher(void* cipher)
 {
   AES256Cipher* aesCipher = (AES256Cipher*) cipher;
@@ -616,7 +691,7 @@ FreeAES256Cipher(void* cipher)
   wx_sqlite3_free(aesCipher);
 }
 
-void
+static void
 CloneAES256Cipher(void* cipherTo, void* cipherFrom)
 {
   AES256Cipher* aesCipherTo = (AES256Cipher*) cipherTo;
@@ -630,14 +705,14 @@ CloneAES256Cipher(void* cipherTo, void* cipherFrom)
   RijndaelInvalidate(aesCipherFrom->m_aes);
 }
 
-int
+static int
 GetLegacyAES256Cipher(void* cipher)
 {
   AES256Cipher* aesCipher = (AES256Cipher*)cipher;
   return aesCipher->m_legacy;
 }
 
-int
+static int
 GetPageSizeAES256Cipher(void* cipher)
 {
   AES256Cipher* aesCipher = (AES256Cipher*) cipher;
@@ -653,14 +728,20 @@ GetPageSizeAES256Cipher(void* cipher)
   return pageSize;
 }
 
-int
+static int
 GetReservedAES256Cipher(void* cipher)
 {
   return 0;
 }
 
-void
-GenerateKeyAES256Cipher(void* cipher, Btree* pBt, char* userPassword, int passwordLength, int rekey)
+static unsigned char*
+GetSaltAES256Cipher(void* cipher)
+{
+  return NULL;
+}
+
+static void
+GenerateKeyAES256Cipher(void* cipher, BtShared* pBt, char* userPassword, int passwordLength, int rekey, unsigned char* cipherSalt)
 {
   AES256Cipher* aesCipher = (AES256Cipher*) cipher;
   unsigned char userPad[32];
@@ -679,7 +760,7 @@ GenerateKeyAES256Cipher(void* cipher, Btree* pBt, char* userPassword, int passwo
   memcpy(aesCipher->m_key, digest, aesCipher->m_keyLength);
 }
 
-int
+static int
 EncryptPageAES256Cipher(void* cipher, int page, unsigned char* data, int len, int reserved)
 {
   AES256Cipher* aesCipher = (AES256Cipher*) cipher;
@@ -714,8 +795,8 @@ EncryptPageAES256Cipher(void* cipher, int page, unsigned char* data, int len, in
   return rc;
 }
 
-int
-DecryptPageAES256Cipher(void* cipher, int page, unsigned char* data, int len, int reserved)
+static int
+DecryptPageAES256Cipher(void* cipher, int page, unsigned char* data, int len, int reserved, int hmacCheck)
 {
   AES256Cipher* aesCipher = (AES256Cipher*) cipher;
   int rc = SQLITE_OK;
@@ -757,9 +838,9 @@ DecryptPageAES256Cipher(void* cipher, int page, unsigned char* data, int len, in
   }
   return rc;
 }
-
+#endif
 /* --- ChaCha20-Poly1305 cipher (plus sqleet variant) --- */
-
+#if HAVE_CIPHER_CHACHA20 || HAVE_CIPHER_SQLCIPHER
 #define KEYLENGTH_CHACHA20       32
 #define SALTLENGTH_CHACHA20      16
 #define PAGE_NONCE_LEN_CHACHA20  16
@@ -768,20 +849,21 @@ DecryptPageAES256Cipher(void* cipher, int page, unsigned char* data, int len, in
 
 typedef struct _chacha20Cipher
 {
-  int           m_legacy;
-  int           m_legacyPageSize;
-  int           m_kdfIter;
-  int           m_keyLength;
-  unsigned char m_key[KEYLENGTH_CHACHA20];
-  unsigned char m_salt[SALTLENGTH_CHACHA20];
+  int     m_legacy;
+  int     m_legacyPageSize;
+  int     m_kdfIter;
+  int     m_keyLength;
+  uint8_t m_key[KEYLENGTH_CHACHA20];
+  uint8_t m_salt[SALTLENGTH_CHACHA20];
 } ChaCha20Cipher;
 
-void*
+static void*
 AllocateChaCha20Cipher(wx_sqlite3* db)
 {
   ChaCha20Cipher* chacha20Cipher = (ChaCha20Cipher*) wx_sqlite3_malloc(sizeof(ChaCha20Cipher));
   if (chacha20Cipher != NULL)
   {
+    memset(chacha20Cipher, 0, sizeof(ChaCha20Cipher));
     chacha20Cipher->m_keyLength = KEYLENGTH_CHACHA20;
     memset(chacha20Cipher->m_key, 0, KEYLENGTH_CHACHA20);
     memset(chacha20Cipher->m_salt, 0, SALTLENGTH_CHACHA20);
@@ -800,7 +882,7 @@ AllocateChaCha20Cipher(wx_sqlite3* db)
   return chacha20Cipher;
 }
 
-void
+static void
 FreeChaCha20Cipher(void* cipher)
 {
   ChaCha20Cipher* chacha20Cipher = (ChaCha20Cipher*) cipher;
@@ -808,7 +890,7 @@ FreeChaCha20Cipher(void* cipher)
   wx_sqlite3_free(chacha20Cipher);
 }
 
-void
+static void
 CloneChaCha20Cipher(void* cipherTo, void* cipherFrom)
 {
   ChaCha20Cipher* chacha20CipherTo = (ChaCha20Cipher*) cipherTo;
@@ -821,14 +903,14 @@ CloneChaCha20Cipher(void* cipherTo, void* cipherFrom)
   memcpy(chacha20CipherTo->m_salt, chacha20CipherFrom->m_salt, SALTLENGTH_CHACHA20);
 }
 
-int
+static int
 GetLegacyChaCha20Cipher(void* cipher)
 {
   ChaCha20Cipher* chacha20Cipher = (ChaCha20Cipher*)cipher;
   return chacha20Cipher->m_legacy;
 }
 
-int
+static int
 GetPageSizeChaCha20Cipher(void* cipher)
 {
   ChaCha20Cipher* chacha20Cipher = (ChaCha20Cipher*) cipher;
@@ -844,31 +926,91 @@ GetPageSizeChaCha20Cipher(void* cipher)
   return pageSize;
 }
 
-int
+static int
 GetReservedChaCha20Cipher(void* cipher)
 {
   return PAGE_RESERVED_CHACHA20;
 }
 
-void
-GenerateKeyChaCha20Cipher(void* cipher, Btree* pBt, char* userPassword, int passwordLength, int rekey)
+static unsigned char*
+GetSaltChaCha20Cipher(void* cipher)
 {
   ChaCha20Cipher* chacha20Cipher = (ChaCha20Cipher*) cipher;
+  return chacha20Cipher->m_salt;
+}
 
-  Pager *pPager = pBt->pBt->pPager;
+static void
+GenerateKeyChaCha20Cipher(void* cipher, BtShared* pBt, char* userPassword, int passwordLength, int rekey, unsigned char* cipherSalt)
+{
+  ChaCha20Cipher* chacha20Cipher = (ChaCha20Cipher*) cipher;
+  int bypass = 0;
+
+  Pager *pPager = pBt->pPager;
   wx_sqlite3_file* fd = (isOpen(pPager->fd)) ? pPager->fd : NULL;
 
+  int keyOnly = 1;
   if (rekey || fd == NULL || wx_sqlite3OsRead(fd, chacha20Cipher->m_salt, SALTLENGTH_CHACHA20, 0) != SQLITE_OK)
   {
     chacha20_rng(chacha20Cipher->m_salt, SALTLENGTH_CHACHA20);
+    keyOnly = 0;
   }
-  fastpbkdf2_hmac_sha256((unsigned char*) userPassword, passwordLength, 
-                         chacha20Cipher->m_salt, SALTLENGTH_CHACHA20,
-                         chacha20Cipher->m_kdfIter, 
-                         chacha20Cipher->m_key, KEYLENGTH_CHACHA20);
+
+  /* Bypass key derivation if the key string starts with "raw:" */
+  if (passwordLength > 4 && !memcmp(userPassword, "raw:", 4))
+  {
+    const int nRaw = passwordLength - 4;
+    const unsigned char* zRaw = (const unsigned char*) userPassword + 4;
+    switch (nRaw)
+    {
+      /* Binary key (and salt) */
+      case KEYLENGTH_CHACHA20 + SALTLENGTH_CHACHA20:
+        if (!keyOnly)
+        {
+          memcpy(chacha20Cipher->m_salt, zRaw + KEYLENGTH_CHACHA20, SALTLENGTH_CHACHA20);
+        }
+        /* fall-through */
+      case KEYLENGTH_CHACHA20:
+        memcpy(chacha20Cipher->m_key, zRaw, KEYLENGTH_CHACHA20);
+        bypass = 1;
+        break;
+
+      /* Hex-encoded key */
+      case 2 * KEYLENGTH_CHACHA20:
+        if (IsHexKey(zRaw, nRaw) != 0)
+        {
+          ConvertHex2Bin(zRaw, nRaw, chacha20Cipher->m_key);
+          bypass = 1;
+        }
+        break;
+
+      /* Hex-encoded key and salt */
+      case 2 * (KEYLENGTH_CHACHA20 + SALTLENGTH_CHACHA20):
+        if (IsHexKey(zRaw, nRaw) != 0)
+        {
+          ConvertHex2Bin(zRaw, 2 * KEYLENGTH_CHACHA20, chacha20Cipher->m_key);
+          if (!keyOnly)
+          {
+            ConvertHex2Bin(zRaw + 2 * KEYLENGTH_CHACHA20, 2 * SALTLENGTH_CHACHA20, chacha20Cipher->m_salt);
+          }
+          bypass = 1;
+        }
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  if (!bypass)
+  {
+    fastpbkdf2_hmac_sha256((unsigned char*)userPassword, passwordLength,
+                           chacha20Cipher->m_salt, SALTLENGTH_CHACHA20,
+                           chacha20Cipher->m_kdfIter,
+                           chacha20Cipher->m_key, KEYLENGTH_CHACHA20);
+  }
 }
 
-int
+static int
 EncryptPageChaCha20Cipher(void* cipher, int page, unsigned char* data, int len, int reserved)
 {
   ChaCha20Cipher* chacha20Cipher = (ChaCha20Cipher*) cipher;
@@ -878,7 +1020,7 @@ EncryptPageChaCha20Cipher(void* cipher, int page, unsigned char* data, int len, 
   int n = len - nReserved;
 
   /* Generate one-time keys */
-  unsigned char otk[64];
+  uint8_t otk[64];
   uint32_t counter;
   int offset;
 
@@ -907,7 +1049,7 @@ EncryptPageChaCha20Cipher(void* cipher, int page, unsigned char* data, int len, 
   else
   {
     /* Encrypt only */
-    unsigned char nonce[PAGE_NONCE_LEN_CHACHA20];
+    uint8_t nonce[PAGE_NONCE_LEN_CHACHA20];
     memset(otk, 0, 64);
     CodecGenerateInitialVector(page, nonce);
     counter = LOAD32_LE(&nonce[PAGE_NONCE_LEN_CHACHA20 - 4]) ^ page;
@@ -925,8 +1067,8 @@ EncryptPageChaCha20Cipher(void* cipher, int page, unsigned char* data, int len, 
   return rc;
 }
 
-int
-DecryptPageChaCha20Cipher(void* cipher, int page, unsigned char* data, int len, int reserved)
+static int
+DecryptPageChaCha20Cipher(void* cipher, int page, unsigned char* data, int len, int reserved, int hmacCheck)
 {
   ChaCha20Cipher* chacha20Cipher = (ChaCha20Cipher*) cipher;
   int rc = SQLITE_OK;
@@ -935,9 +1077,9 @@ DecryptPageChaCha20Cipher(void* cipher, int page, unsigned char* data, int len, 
   int n = len - nReserved;
 
   /* Generate one-time keys */
-  unsigned char otk[64];
+  uint8_t otk[64];
   uint32_t counter;
-  unsigned char tag[16];
+  uint8_t tag[16];
   int offset;
 
   /* Check whether number of required reserved bytes and actually reserved bytes match */
@@ -953,28 +1095,29 @@ DecryptPageChaCha20Cipher(void* cipher, int page, unsigned char* data, int len, 
     counter = LOAD32_LE(data + n + PAGE_NONCE_LEN_CHACHA20 - 4) ^ page;
     chacha20_xor(otk, 64, chacha20Cipher->m_key, data + n, counter);
 
-    /* Verify the MAC */
+    /* Determine MAC and decrypt */
     poly1305(data, n + PAGE_NONCE_LEN_CHACHA20, otk, tag);
-    if (!poly1305_tagcmp(data + n + PAGE_NONCE_LEN_CHACHA20, tag))
+    offset = (page == 1) ? (chacha20Cipher->m_legacy != 0) ? 0 : CIPHER_PAGE1_OFFSET : 0;
+    chacha20_xor(data + offset, n - offset, otk + 32, data + n, counter + 1);
+
+    if (hmacCheck != 0)
     {
-      /* Decrypt */
-      offset = (page == 1) ? (chacha20Cipher->m_legacy != 0) ? 0 : CIPHER_PAGE1_OFFSET : 0;
-      chacha20_xor(data + offset, n - offset, otk + 32, data + n, counter + 1);
-      if (page == 1)
+      /* Verify the MAC */
+      if (poly1305_tagcmp(data + n + PAGE_NONCE_LEN_CHACHA20, tag))
       {
-        memcpy(data, SQLITE_FILE_HEADER, 16);
+        /* Bad MAC */
+        rc = SQLITE_CORRUPT;
       }
     }
-    else
+    if (page == 1 && rc == SQLITE_OK)
     {
-      /* Bad MAC */
-      rc = SQLITE_CORRUPT;
+      memcpy(data, SQLITE_FILE_HEADER, 16);
     }
   }
   else
   {
     /* Decrypt only */
-    unsigned char nonce[PAGE_NONCE_LEN_CHACHA20];
+    uint8_t nonce[PAGE_NONCE_LEN_CHACHA20];
     memset(otk, 0, 64);
     CodecGenerateInitialVector(page, nonce);
     counter = LOAD32_LE(&nonce[PAGE_NONCE_LEN_CHACHA20 - 4]) ^ page;
@@ -991,31 +1134,34 @@ DecryptPageChaCha20Cipher(void* cipher, int page, unsigned char* data, int len, 
 
   return rc;
 }
-
+#endif
 /* --- SQLCipher AES256CBC-HMAC cipher --- */
-
-#define KEYLENGTH_SQLCIPHER      32
-#define SALTLENGTH_SQLCIPHER     16
-#define HMAC_LENGTH_SQLCIPHER    SHA1_DIGEST_SIZE
-#define PAGE_NONCE_LEN_SQLCIPHER 16
+#if HAVE_CIPHER_SQLCIPHER || HAVE_CIPHER_CHACHA20
+#define KEYLENGTH_SQLCIPHER       32
+#define SALTLENGTH_SQLCIPHER      16
+#define MAX_HMAC_LENGTH_SQLCIPHER SHA512_DIGEST_SIZE
+#define PAGE_NONCE_LEN_SQLCIPHER  16
 
 typedef struct _sqlCipherCipher
 {
-  int           m_legacy;
-  int           m_legacyPageSize;
-  int           m_kdfIter;
-  int           m_fastKdfIter;
-  int           m_hmacUse;
-  int           m_hmacPgno;
-  int           m_hmacSaltMask;
-  int           m_keyLength;
-  unsigned char m_key[KEYLENGTH_SQLCIPHER];
-  unsigned char m_salt[SALTLENGTH_SQLCIPHER];
-  unsigned char m_hmacKey[KEYLENGTH_SQLCIPHER];
-  Rijndael*     m_aes;
+  int       m_legacy;
+  int       m_legacyPageSize;
+  int       m_kdfIter;
+  int       m_fastKdfIter;
+  int       m_hmacUse;
+  int       m_hmacPgno;
+  int       m_hmacSaltMask;
+  int       m_kdfAlgorithm;
+  int       m_hmacAlgorithm;
+  int       m_plaintextHeaderSize;
+  int       m_keyLength;
+  uint8_t   m_key[KEYLENGTH_SQLCIPHER];
+  uint8_t   m_salt[SALTLENGTH_SQLCIPHER];
+  uint8_t   m_hmacKey[KEYLENGTH_SQLCIPHER];
+  Rijndael* m_aes;
 } SQLCipherCipher;
 
-void*
+static void*
 AllocateSQLCipherCipher(wx_sqlite3* db)
 {
   SQLCipherCipher* sqlCipherCipher = (SQLCipherCipher*) wx_sqlite3_malloc(sizeof(SQLCipherCipher));
@@ -1027,7 +1173,7 @@ AllocateSQLCipherCipher(wx_sqlite3* db)
       sqlCipherCipher->m_keyLength = KEYLENGTH_SQLCIPHER;
       memset(sqlCipherCipher->m_key, 0, KEYLENGTH_SQLCIPHER);
       memset(sqlCipherCipher->m_salt, 0, SALTLENGTH_SQLCIPHER);
-      memset(sqlCipherCipher->m_hmacKey, 0, KEYLENGTH_AES256);
+      memset(sqlCipherCipher->m_hmacKey, 0, KEYLENGTH_SQLCIPHER);
       RijndaelCreate(sqlCipherCipher->m_aes);
     }
     else
@@ -1046,11 +1192,22 @@ AllocateSQLCipherCipher(wx_sqlite3* db)
     sqlCipherCipher->m_hmacUse = GetCipherParameter(cipherParams, "hmac_use");
     sqlCipherCipher->m_hmacPgno = GetCipherParameter(cipherParams, "hmac_pgno");
     sqlCipherCipher->m_hmacSaltMask = GetCipherParameter(cipherParams, "hmac_salt_mask");
+    sqlCipherCipher->m_kdfAlgorithm = GetCipherParameter(cipherParams, "kdf_algorithm");
+    sqlCipherCipher->m_hmacAlgorithm = GetCipherParameter(cipherParams, "hmac_algorithm");
+    if (sqlCipherCipher->m_legacy >= SQLCIPHER_VERSION_4)
+    {
+      int plaintextHeaderSize = GetCipherParameter(cipherParams, "plaintext_header_size");
+      sqlCipherCipher->m_plaintextHeaderSize = (plaintextHeaderSize >=0 && plaintextHeaderSize <= 100 && plaintextHeaderSize % 16 == 0) ? plaintextHeaderSize : 0;
+    }
+    else
+    {
+      sqlCipherCipher->m_plaintextHeaderSize = 0;
+    }
   }
   return sqlCipherCipher;
 }
 
-void
+static void
 FreeSQLCipherCipher(void* cipher)
 {
   SQLCipherCipher* sqlCipherCipher = (SQLCipherCipher*) cipher;
@@ -1060,7 +1217,7 @@ FreeSQLCipherCipher(void* cipher)
   wx_sqlite3_free(sqlCipherCipher);
 }
 
-void
+static void
 CloneSQLCipherCipher(void* cipherTo, void* cipherFrom)
 {
   SQLCipherCipher* sqlCipherCipherTo = (SQLCipherCipher*) cipherTo;
@@ -1072,6 +1229,9 @@ CloneSQLCipherCipher(void* cipherTo, void* cipherFrom)
   sqlCipherCipherTo->m_hmacUse = sqlCipherCipherFrom->m_hmacUse;
   sqlCipherCipherTo->m_hmacPgno = sqlCipherCipherFrom->m_hmacPgno;
   sqlCipherCipherTo->m_hmacSaltMask = sqlCipherCipherFrom->m_hmacSaltMask;
+  sqlCipherCipherTo->m_kdfAlgorithm = sqlCipherCipherFrom->m_kdfAlgorithm;
+  sqlCipherCipherTo->m_hmacAlgorithm = sqlCipherCipherFrom->m_hmacAlgorithm;
+  sqlCipherCipherTo->m_plaintextHeaderSize = sqlCipherCipherFrom->m_plaintextHeaderSize;
   sqlCipherCipherTo->m_keyLength = sqlCipherCipherFrom->m_keyLength;
   memcpy(sqlCipherCipherTo->m_key, sqlCipherCipherFrom->m_key, KEYLENGTH_SQLCIPHER);
   memcpy(sqlCipherCipherTo->m_salt, sqlCipherCipherFrom->m_salt, SALTLENGTH_SQLCIPHER);
@@ -1080,14 +1240,14 @@ CloneSQLCipherCipher(void* cipherTo, void* cipherFrom)
   RijndaelInvalidate(sqlCipherCipherFrom->m_aes);
 }
 
-int
+static int
 GetLegacySQLCipherCipher(void* cipher)
 {
   SQLCipherCipher* sqlCipherCipher = (SQLCipherCipher*)cipher;
   return sqlCipherCipher->m_legacy;
 }
 
-int
+static int
 GetPageSizeSQLCipherCipher(void* cipher)
 {
   SQLCipherCipher* sqlCipherCipher = (SQLCipherCipher*) cipher;
@@ -1103,80 +1263,89 @@ GetPageSizeSQLCipherCipher(void* cipher)
   return pageSize;
 }
 
-int
+static int
 GetReservedSQLCipherCipher(void* cipher)
 {
   SQLCipherCipher* sqlCipherCipher = (SQLCipherCipher*) cipher;
   int reserved = SALTLENGTH_SQLCIPHER;
   if (sqlCipherCipher->m_hmacUse != 0)
   {
-    reserved += 32;
+    switch (sqlCipherCipher->m_hmacAlgorithm)
+    {
+      case SQLCIPHER_HMAC_ALGORITHM_SHA1:
+      case SQLCIPHER_HMAC_ALGORITHM_SHA256:
+        reserved += SHA256_DIGEST_SIZE;
+        break;
+      case SQLCIPHER_HMAC_ALGORITHM_SHA512:
+      default:
+        reserved += SHA512_DIGEST_SIZE;
+        break;
+    }
   }
   return reserved;
 }
 
-static int IsHexKey(const unsigned char* hex, int len)
+static unsigned char*
+GetSaltSQLCipherCipher(void* cipher)
 {
-  int j;
-  for (j = 0; j < len; ++j)
-  {
-    unsigned char c = hex[j];
-    if ((c < '0' || c > '9') && (c < 'A' || c > 'F') && (c < 'a' || c > 'f'))
-    {
-      return 0;
-    }
-  }
-  return 1;
+  SQLCipherCipher* sqlCipherCipher = (SQLCipherCipher*) cipher;
+  return sqlCipherCipher->m_salt;
 }
 
-static int ConvertHex2Int(char c)
-{
-  return (c >= '0' && c <= '9') ? (c)-'0' :
-         (c >= 'A' && c <= 'F') ? (c)-'A' + 10 :
-         (c >= 'a' && c <= 'f') ? (c)-'a' + 10 : 0;
-}
-
-static void ConvertHex2Bin(const unsigned char* hex, int len, unsigned char* bin)
-{
-  int j;
-  for (j = 0; j < len; j += 2)
-  {
-    bin[j / 2] = (ConvertHex2Int(hex[j]) << 4) | ConvertHex2Int(hex[j + 1]);
-  }
-}
-
-void
-GenerateKeySQLCipherCipher(void* cipher, Btree* pBt, char* userPassword, int passwordLength, int rekey)
+static void
+GenerateKeySQLCipherCipher(void* cipher, BtShared* pBt, char* userPassword, int passwordLength, int rekey, unsigned char* cipherSalt)
 {
   SQLCipherCipher* sqlCipherCipher = (SQLCipherCipher*) cipher;
 
-  Pager *pPager = pBt->pBt->pPager;
+  Pager *pPager = pBt->pPager;
   wx_sqlite3_file* fd = (isOpen(pPager->fd)) ? pPager->fd : NULL;
 
   if (rekey || fd == NULL || wx_sqlite3OsRead(fd, sqlCipherCipher->m_salt, SALTLENGTH_SQLCIPHER, 0) != SQLITE_OK)
   {
     chacha20_rng(sqlCipherCipher->m_salt, SALTLENGTH_SQLCIPHER);
   }
+  else if (cipherSalt != NULL)
+  {
+    memcpy(sqlCipherCipher->m_salt, cipherSalt, SALTLENGTH_SQLCIPHER);
+  }
 
   if (passwordLength == ((KEYLENGTH_SQLCIPHER * 2) + 3) &&
-    wx_sqlite3_strnicmp(userPassword, "x'", 2) == 0 &&
-    IsHexKey((unsigned char*) (userPassword + 2), KEYLENGTH_SQLCIPHER * 2) != 0)
+      wx_sqlite3_strnicmp(userPassword, "x'", 2) == 0 &&
+      IsHexKey((unsigned char*) (userPassword + 2), KEYLENGTH_SQLCIPHER * 2) != 0)
   {
     ConvertHex2Bin((unsigned char*) (userPassword + 2), passwordLength - 3, sqlCipherCipher->m_key);
   }
   else if (passwordLength == (((KEYLENGTH_SQLCIPHER + SALTLENGTH_SQLCIPHER) * 2) + 3) &&
-    wx_sqlite3_strnicmp(userPassword, "x'", 2) == 0 &&
-    IsHexKey((unsigned char*) (userPassword + 2), (KEYLENGTH_SQLCIPHER + SALTLENGTH_SQLCIPHER) * 2) != 0)
+           wx_sqlite3_strnicmp(userPassword, "x'", 2) == 0 &&
+           IsHexKey((unsigned char*) (userPassword + 2), (KEYLENGTH_SQLCIPHER + SALTLENGTH_SQLCIPHER) * 2) != 0)
   {
     ConvertHex2Bin((unsigned char*) (userPassword + 2), KEYLENGTH_SQLCIPHER * 2, sqlCipherCipher->m_key);
     ConvertHex2Bin((unsigned char*) (userPassword + 2 + KEYLENGTH_SQLCIPHER * 2), SALTLENGTH_SQLCIPHER * 2, sqlCipherCipher->m_salt);
   }
   else
   {
-    fastpbkdf2_hmac_sha1((unsigned char*) userPassword, passwordLength,
-                         sqlCipherCipher->m_salt, SALTLENGTH_SQLCIPHER,
-                         sqlCipherCipher->m_kdfIter,
-                         sqlCipherCipher->m_key, KEYLENGTH_SQLCIPHER);
+    switch (sqlCipherCipher->m_kdfAlgorithm)
+    {
+      case SQLCIPHER_KDF_ALGORITHM_SHA1:
+        fastpbkdf2_hmac_sha1((unsigned char*) userPassword, passwordLength,
+                             sqlCipherCipher->m_salt, SALTLENGTH_SQLCIPHER,
+                             sqlCipherCipher->m_kdfIter,
+                             sqlCipherCipher->m_key, KEYLENGTH_SQLCIPHER);
+        break;
+      case SQLCIPHER_KDF_ALGORITHM_SHA256:
+        fastpbkdf2_hmac_sha256((unsigned char*) userPassword, passwordLength,
+                               sqlCipherCipher->m_salt, SALTLENGTH_SQLCIPHER,
+                               sqlCipherCipher->m_kdfIter,
+                               sqlCipherCipher->m_key, KEYLENGTH_SQLCIPHER);
+        break;
+      case SQLCIPHER_KDF_ALGORITHM_SHA512:
+      default:
+        fastpbkdf2_hmac_sha512((unsigned char*) userPassword, passwordLength,
+                               sqlCipherCipher->m_salt, SALTLENGTH_SQLCIPHER,
+                               sqlCipherCipher->m_kdfIter,
+                               sqlCipherCipher->m_key, KEYLENGTH_SQLCIPHER);
+        break;
+    }
   }
 
   if (sqlCipherCipher->m_hmacUse != 0)
@@ -1189,14 +1358,50 @@ GenerateKeySQLCipherCipher(void* cipher, Btree* pBt, char* userPassword, int pas
     {
       hmacSalt[j] ^= hmacSaltMask;
     }
-    fastpbkdf2_hmac_sha1(sqlCipherCipher->m_key, KEYLENGTH_SQLCIPHER,
-                         hmacSalt, SALTLENGTH_SQLCIPHER,
-                         sqlCipherCipher->m_fastKdfIter,
-                         sqlCipherCipher->m_hmacKey, KEYLENGTH_SQLCIPHER);
+    switch (sqlCipherCipher->m_hmacAlgorithm)
+    {
+      case SQLCIPHER_HMAC_ALGORITHM_SHA1:
+        fastpbkdf2_hmac_sha1(sqlCipherCipher->m_key, KEYLENGTH_SQLCIPHER,
+                             hmacSalt, SALTLENGTH_SQLCIPHER,
+                             sqlCipherCipher->m_fastKdfIter,
+                             sqlCipherCipher->m_hmacKey, KEYLENGTH_SQLCIPHER);
+      break;
+      case SQLCIPHER_HMAC_ALGORITHM_SHA256:
+        fastpbkdf2_hmac_sha256(sqlCipherCipher->m_key, KEYLENGTH_SQLCIPHER,
+                               hmacSalt, SALTLENGTH_SQLCIPHER,
+                               sqlCipherCipher->m_fastKdfIter,
+                               sqlCipherCipher->m_hmacKey, KEYLENGTH_SQLCIPHER);
+        break;
+      case SQLCIPHER_HMAC_ALGORITHM_SHA512:
+      default:
+        fastpbkdf2_hmac_sha512(sqlCipherCipher->m_key, KEYLENGTH_SQLCIPHER,
+                               hmacSalt, SALTLENGTH_SQLCIPHER,
+                               sqlCipherCipher->m_fastKdfIter,
+                               sqlCipherCipher->m_hmacKey, KEYLENGTH_SQLCIPHER);
+        break;
+    }
   }
 }
 
-int
+static int
+GetHmacSizeSQLCipherCipher(int algorithm)
+{
+  int hmacSize = SHA512_DIGEST_SIZE;
+  switch (algorithm)
+  {
+    case SQLCIPHER_HMAC_ALGORITHM_SHA1:
+      hmacSize = SHA1_DIGEST_SIZE;
+      break;
+    case SQLCIPHER_HMAC_ALGORITHM_SHA256:
+    case SQLCIPHER_HMAC_ALGORITHM_SHA512:
+    default:
+      hmacSize = SHA512_DIGEST_SIZE;
+      break;
+  }
+  return hmacSize;
+}
+
+static int
 EncryptPageSQLCipherCipher(void* cipher, int page, unsigned char* data, int len, int reserved)
 {
   SQLCipherCipher* sqlCipherCipher = (SQLCipherCipher*) cipher;
@@ -1207,6 +1412,14 @@ EncryptPageSQLCipherCipher(void* cipher, int page, unsigned char* data, int len,
   int offset = (page == 1) ? (sqlCipherCipher->m_legacy != 0) ? 16 : 24 : 0;
   int blen;
   unsigned char iv[64];
+  int usePlaintextHeader = 0;
+
+  /* Check whether a plaintext header should be used */
+  if (page == 1 && sqlCipherCipher->m_legacy >= SQLCIPHER_VERSION_4 && sqlCipherCipher->m_plaintextHeaderSize > 0)
+  {
+    usePlaintextHeader = 1;
+    offset = sqlCipherCipher->m_plaintextHeaderSize;
+  }
 
   /* Check whether number of required reserved bytes and actually reserved bytes match */
   if ((legacy == 0 && nReserved > reserved) || ((legacy != 0 && nReserved != reserved)))
@@ -1231,7 +1444,7 @@ EncryptPageSQLCipherCipher(void* cipher, int page, unsigned char* data, int len,
   {
     memcpy(data + n, iv, nReserved);
   }
-  if (page == 1)
+  if (page == 1 && usePlaintextHeader == 0)
   {
     memcpy(data, sqlCipherCipher->m_salt, SALTLENGTH_SQLCIPHER);
   }
@@ -1241,6 +1454,8 @@ EncryptPageSQLCipherCipher(void* cipher, int page, unsigned char* data, int len,
   {
     unsigned char pgno_raw[4];
     unsigned char hmac_out[64];
+    int hmac_size = GetHmacSizeSQLCipherCipher(sqlCipherCipher->m_hmacAlgorithm);
+
     if (sqlCipherCipher->m_hmacPgno == SQLCIPHER_HMAC_PGNO_LE)
     {
       STORE32_LE(pgno_raw, page);
@@ -1253,15 +1468,15 @@ EncryptPageSQLCipherCipher(void* cipher, int page, unsigned char* data, int len,
     {
       memcpy(pgno_raw, &page, 4);
     }
-    sqlcipher_hmac(sqlCipherCipher->m_hmacKey, KEYLENGTH_SQLCIPHER, data + offset, n + PAGE_NONCE_LEN_SQLCIPHER - offset, pgno_raw, 4, hmac_out);
-    memcpy(data + n + PAGE_NONCE_LEN_SQLCIPHER, hmac_out, HMAC_LENGTH_SQLCIPHER);
+    sqlcipher_hmac(sqlCipherCipher->m_hmacAlgorithm, sqlCipherCipher->m_hmacKey, KEYLENGTH_SQLCIPHER, data + offset, n + PAGE_NONCE_LEN_SQLCIPHER - offset, pgno_raw, 4, hmac_out);
+    memcpy(data + n + PAGE_NONCE_LEN_SQLCIPHER, hmac_out, hmac_size);
   }
 
   return rc;
 }
 
-int
-DecryptPageSQLCipherCipher(void* cipher, int page, unsigned char* data, int len, int reserved)
+static int
+DecryptPageSQLCipherCipher(void* cipher, int page, unsigned char* data, int len, int reserved, int hmacCheck)
 {
   SQLCipherCipher* sqlCipherCipher = (SQLCipherCipher*) cipher;
   int rc = SQLITE_OK;
@@ -1271,7 +1486,15 @@ DecryptPageSQLCipherCipher(void* cipher, int page, unsigned char* data, int len,
   int offset = (page == 1) ? (sqlCipherCipher->m_legacy != 0) ? 16 : 24 : 0;
   int hmacOk = 1;
   int blen;
-  unsigned char iv[64];
+  unsigned char iv[128];
+  int usePlaintextHeader = 0;
+
+  /* Check whether a plaintext header should be used */
+  if (page == 1 && sqlCipherCipher->m_legacy >= SQLCIPHER_VERSION_4 && sqlCipherCipher->m_plaintextHeaderSize > 0)
+  {
+    usePlaintextHeader = 1;
+    offset = sqlCipherCipher->m_plaintextHeaderSize;
+  }
 
   /* Check whether number of required reserved bytes and actually reserved bytes match */
   if ((legacy == 0 && nReserved > reserved) || ((legacy != 0 && nReserved != reserved)))
@@ -1290,10 +1513,11 @@ DecryptPageSQLCipherCipher(void* cipher, int page, unsigned char* data, int len,
   }
 
   /* hmac check */
-  if (sqlCipherCipher->m_hmacUse == 1 && nReserved > 0)
+  if (sqlCipherCipher->m_hmacUse == 1 && nReserved > 0 && hmacCheck != 0)
   {
     unsigned char pgno_raw[4];
     unsigned char hmac_out[64];
+    int hmac_size = GetHmacSizeSQLCipherCipher(sqlCipherCipher->m_hmacAlgorithm);
     if (sqlCipherCipher->m_hmacPgno == SQLCIPHER_HMAC_PGNO_LE)
     {
       STORE32_LE(pgno_raw, page);
@@ -1306,8 +1530,8 @@ DecryptPageSQLCipherCipher(void* cipher, int page, unsigned char* data, int len,
     {
       memcpy(pgno_raw, &page, 4);
     }
-    sqlcipher_hmac(sqlCipherCipher->m_hmacKey, KEYLENGTH_SQLCIPHER, data + offset, n + PAGE_NONCE_LEN_SQLCIPHER - offset, pgno_raw, 4, hmac_out);
-    hmacOk = (memcmp(data + n + PAGE_NONCE_LEN_SQLCIPHER, hmac_out, HMAC_LENGTH_SQLCIPHER) == 0);
+    sqlcipher_hmac(sqlCipherCipher->m_hmacAlgorithm, sqlCipherCipher->m_hmacKey, KEYLENGTH_SQLCIPHER, data + offset, n + PAGE_NONCE_LEN_SQLCIPHER - offset, pgno_raw, 4, hmac_out);
+    hmacOk = (memcmp(data + n + PAGE_NONCE_LEN_SQLCIPHER, hmac_out, hmac_size) == 0);
   }
 
   if (hmacOk != 0)
@@ -1318,7 +1542,7 @@ DecryptPageSQLCipherCipher(void* cipher, int page, unsigned char* data, int len,
     {
       memcpy(data + n, iv, nReserved);
     }
-    if (page == 1)
+    if (page == 1 && usePlaintextHeader == 0)
     {
       memcpy(data, SQLITE_FILE_HEADER, 16);
     }
@@ -1331,7 +1555,7 @@ DecryptPageSQLCipherCipher(void* cipher, int page, unsigned char* data, int len,
 
   return rc;
 }
-
+#endif
 
 typedef struct _CodecParameter
 {
@@ -1339,17 +1563,23 @@ typedef struct _CodecParameter
   CipherParams* m_params;
 } CodecParameter;
 
-CodecParameter codecParameterTable[] =
+static CodecParameter globalCodecParameterTable[] =
 {
   { "global",    commonParams },
+#if HAVE_CIPHER_AES_128_CBC
   { "aes128cbc", aes128Params },
+#endif
+#if HAVE_CIPHER_AES_128_CBC
   { "aes256cbc", aes256Params },
+#endif
+#if HAVE_CIPHER_CHACHA20 || HAVE_CIPHER_SQLCIPHER
   { "chacha20",  chacha20Params },
   { "sqlcipher", sqlCipherParams },
+#endif
   { "",          NULL }
 };
 
-CodecParameter*
+static CodecParameter*
 CloneCodecParameterTable()
 {
   /* Count number of codecs and cipher parameters */
@@ -1359,9 +1589,9 @@ CloneCodecParameterTable()
   CipherParams* cloneCipherParams;
   CodecParameter* cloneCodecParams;
 
-  for (j = 0; strlen(codecParameterTable[j].m_name) > 0; ++j)
+  for (j = 0; strlen(globalCodecParameterTable[j].m_name) > 0; ++j)
   {
-    CipherParams* params = codecParameterTable[j].m_params;
+    CipherParams* params = globalCodecParameterTable[j].m_params;
     for (k = 0; strlen(params[k].m_name) > 0; ++k);
     nParams += k;
   }
@@ -1377,8 +1607,8 @@ CloneCodecParameterTable()
     int offset = 0;
     for (j = 0; j < nTables; ++j)
     {
-      CipherParams* params = codecParameterTable[j].m_params;
-      cloneCodecParams[j].m_name = codecParameterTable[j].m_name;
+      CipherParams* params = globalCodecParameterTable[j].m_params;
+      cloneCodecParams[j].m_name = globalCodecParameterTable[j].m_name;
       cloneCodecParams[j].m_params = &cloneCipherParams[offset];
       for (n = 0; strlen(params[n].m_name) > 0; ++n);
       /* Copy all parameters of the current table (including sentinel) */
@@ -1392,7 +1622,7 @@ CloneCodecParameterTable()
       }
       offset += (n + 1);
     }
-    cloneCodecParams[nTables].m_name = codecParameterTable[nTables].m_name;
+    cloneCodecParams[nTables].m_name = globalCodecParameterTable[nTables].m_name;
     cloneCodecParams[nTables].m_params = NULL;
   }
   else
@@ -1402,7 +1632,7 @@ CloneCodecParameterTable()
   return cloneCodecParams;
 }
 
-void
+static void
 FreeCodecParameterTable(CodecParameter* codecParams)
 {
   wx_sqlite3_free(codecParams[0].m_params);
@@ -1415,9 +1645,10 @@ typedef void  (*CloneCipher_t)(void* cipherTo, void* cipherFrom);
 typedef int   (*GetLegacy_t)(void* cipher);
 typedef int   (*GetPageSize_t)(void* cipher);
 typedef int   (*GetReserved_t)(void* cipher);
-typedef void  (*GenerateKey_t)(void* cipher, Btree* pBt, char* userPassword, int passwordLength, int rekey);
+typedef unsigned char* (*GetSalt_t)(void* cipher);
+typedef void  (*GenerateKey_t)(void* cipher, BtShared* pBt, char* userPassword, int passwordLength, int rekey, unsigned char* cipherSalt);
 typedef int   (*EncryptPage_t)(void* cipher, int page, unsigned char* data, int len, int reserved);
-typedef int   (*DecryptPage_t)(void* cipher, int page, unsigned char* data, int len, int reserved);
+typedef int   (*DecryptPage_t)(void* cipher, int page, unsigned char* data, int len, int reserved, int hmacCheck);
 
 typedef struct _CodecDescriptor
 {
@@ -1428,13 +1659,15 @@ typedef struct _CodecDescriptor
   GetLegacy_t      m_getLegacy;
   GetPageSize_t    m_getPageSize;
   GetReserved_t    m_getReserved;
+  GetSalt_t        m_getSalt;
   GenerateKey_t    m_generateKey;
   EncryptPage_t    m_encryptPage;
   DecryptPage_t    m_decryptPage;
 } CodecDescriptor;
 
-CodecDescriptor codecDescriptorTable[] =
+static CodecDescriptor codecDescriptorTable[] =
 {
+#if HAVE_CIPHER_AES_128_CBC
   /* wxSQLite3 AES 128 bit CBC */
   { "aes128cbc", AllocateAES128Cipher,
                  FreeAES128Cipher,
@@ -1442,9 +1675,12 @@ CodecDescriptor codecDescriptorTable[] =
                  GetLegacyAES128Cipher,
                  GetPageSizeAES128Cipher,
                  GetReservedAES128Cipher,
+                 GetSaltAES128Cipher,
                  GenerateKeyAES128Cipher,
                  EncryptPageAES128Cipher,
                  DecryptPageAES128Cipher },
+#endif
+#if HAVE_CIPHER_AES_256_CBC
   /* wxSQLite3 AES 128 bit CBC */
   { "aes256cbc", AllocateAES256Cipher,
                  FreeAES256Cipher,
@@ -1452,9 +1688,12 @@ CodecDescriptor codecDescriptorTable[] =
                  GetLegacyAES256Cipher,
                  GetPageSizeAES256Cipher,
                  GetReservedAES256Cipher,
+                 GetSaltAES256Cipher,
                  GenerateKeyAES256Cipher,
                  EncryptPageAES256Cipher,
                  DecryptPageAES256Cipher },
+#endif
+#if HAVE_CIPHER_CHACHA20 || HAVE_CIPHER_SQLCIPHER
   /* ChaCha20 - Poly1305 (including sqleet legacy */
   { "chacha20",  AllocateChaCha20Cipher,
                  FreeChaCha20Cipher,
@@ -1462,6 +1701,7 @@ CodecDescriptor codecDescriptorTable[] =
                  GetLegacyChaCha20Cipher,
                  GetPageSizeChaCha20Cipher,
                  GetReservedChaCha20Cipher,
+                 GetSaltChaCha20Cipher,
                  GenerateKeyChaCha20Cipher,
                  EncryptPageChaCha20Cipher,
                  DecryptPageChaCha20Cipher },
@@ -1472,15 +1712,20 @@ CodecDescriptor codecDescriptorTable[] =
                  GetLegacySQLCipherCipher,
                  GetPageSizeSQLCipherCipher,
                  GetReservedSQLCipherCipher,
+                 GetSaltSQLCipherCipher,
                  GenerateKeySQLCipherCipher,
                  EncryptPageSQLCipherCipher,
                  DecryptPageSQLCipherCipher },
+#endif
   { "", NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL }
 };
 
 /* --- Codec --- */
 
-void
+static void
+CodecConfigureSQLCipherVersion(wx_sqlite3* db, int configDefault, int legacyVersion);
+
+static void
 wxwx_sqlite3_config_table(wx_sqlite3_context* context, int argc, wx_sqlite3_value** argv)
 {
   CodecParameter* codecParams = (CodecParameter*) wx_sqlite3_user_data(context);
@@ -1488,10 +1733,7 @@ wxwx_sqlite3_config_table(wx_sqlite3_context* context, int argc, wx_sqlite3_valu
   wx_sqlite3_result_pointer(context, codecParams, "wxwx_sqlite3_codec_params", 0);
 }
 
-/*
-** smallest integer value not less than argument
-*/
-void
+static void
 wxwx_sqlite3_config_params(wx_sqlite3_context* context, int argc, wx_sqlite3_value** argv)
 {
   CodecParameter* codecParams;
@@ -1621,6 +1863,7 @@ wxwx_sqlite3_config_params(wx_sqlite3_context* context, int argc, wx_sqlite3_val
   }
   else
   {
+    /* 2 or more arguments */
     int arg2Type = wx_sqlite3_value_type(argv[1]);
     if (argc == 2 && isCommonParam1)
     {
@@ -1663,7 +1906,8 @@ wxwx_sqlite3_config_params(wx_sqlite3_context* context, int argc, wx_sqlite3_val
         int value = wx_sqlite3_value_int(argv[1]);
         if (value >= param1->m_minValue && value <= param1->m_maxValue)
         {
-          if (hasDefaultPrefix)
+          /* Do not allow to change the default value for parameter "hmac_check" */
+          if (hasDefaultPrefix && (wx_sqlite3_stricmp(nameParam1, "hmac_check") != 0))
           {
             param1->m_default = value;
           }
@@ -1683,6 +1927,7 @@ wxwx_sqlite3_config_params(wx_sqlite3_context* context, int argc, wx_sqlite3_val
     }
     else if (isCipherParam1 && arg2Type == SQLITE_TEXT)
     {
+      /* get or set cipher parameter */
       const char* nameParam2 = (const char*) wx_sqlite3_value_text(argv[1]);
       CipherParams* param2 = cipherParamTable;
       hasDefaultPrefix = 0;
@@ -1707,6 +1952,23 @@ wxwx_sqlite3_config_params(wx_sqlite3_context* context, int argc, wx_sqlite3_val
       {
         if (wx_sqlite3_stricmp(nameParam2, param2->m_name) == 0) break;
       }
+
+      /* Special handling for SQLCipher legacy mode */
+      if (argc == 3 && 
+          wx_sqlite3_stricmp(nameParam1, "sqlcipher") == 0 &&
+          wx_sqlite3_stricmp(nameParam2, "legacy") == 0)
+      {
+        if (!hasMinPrefix && !hasMaxPrefix && wx_sqlite3_value_type(argv[2]) == SQLITE_INTEGER)
+        {
+          int legacy = wx_sqlite3_value_int(argv[2]);
+          if (legacy > 0 && legacy <= SQLCIPHER_VERSION_MAX)
+          {
+            wx_sqlite3* db = wx_sqlite3_context_db_handle(context);
+            CodecConfigureSQLCipherVersion(db, hasDefaultPrefix, legacy);
+          }
+        }
+      }
+
       if (strlen(param2->m_name) > 0)
       {
         if (argc == 2)
@@ -1754,7 +2016,7 @@ wxwx_sqlite3_config_params(wx_sqlite3_context* context, int argc, wx_sqlite3_val
   }
 }
 
-CodecParameter*
+static CodecParameter*
 GetCodecParams(wx_sqlite3* db)
 {
 #if 0
@@ -1793,7 +2055,7 @@ wxwx_sqlite3_config(wx_sqlite3* db, const char* paramName, int newValue)
     return value;
   }
 
-  codecParams = (db != NULL) ? GetCodecParams(db) : codecParameterTable;
+  codecParams = (db != NULL) ? GetCodecParams(db) : globalCodecParameterTable;
   if (codecParams == NULL)
   {
     return value;
@@ -1833,7 +2095,8 @@ wxwx_sqlite3_config(wx_sqlite3* db, const char* paramName, int newValue)
     value = (hasDefaultPrefix) ? param->m_default : (hasMinPrefix) ? param->m_minValue : (hasMaxPrefix) ? param->m_maxValue : param->m_value;
     if (!hasMinPrefix && !hasMaxPrefix && newValue >= 0 && newValue >= param->m_minValue && newValue <= param->m_maxValue)
     {
-      if (hasDefaultPrefix)
+      /* Do not allow to change the default value for parameter "hmac_check" */
+      if (hasDefaultPrefix && (wx_sqlite3_stricmp(paramName, "hmac_check") != 0))
       {
         param->m_default = newValue;
       }
@@ -1860,14 +2123,26 @@ wxwx_sqlite3_config_cipher(wx_sqlite3* db, const char* cipherName, const char* p
   CipherParams* cipherParamTable = NULL;
   int j = 0;
 
-  if (cipherName == NULL || paramName == NULL || (db == NULL && newValue >= 0))
+  if (cipherName == NULL || paramName == NULL)
   {
+    wx_sqlite3_log(SQLITE_WARNING,
+                "wxwx_sqlite3_config_cipher: cipher name ('%s*) or parameter ('%s*) missing",
+                (cipherName == NULL) ? "" : cipherName, (paramName == NULL) ? "" : paramName);
+    return value;
+  }
+  else if (db == NULL && newValue >= 0)
+  {
+    wx_sqlite3_log(SQLITE_WARNING,
+                "wxwx_sqlite3_config_cipher: global change of parameter '%s' for cipher '%s' not supported",
+                paramName, cipherName);
     return value;
   }
 
-  codecParams = (db != NULL) ? GetCodecParams(db) : codecParameterTable;
+  codecParams = (db != NULL) ? GetCodecParams(db) : globalCodecParameterTable;
   if (codecParams == NULL)
   {
+    wx_sqlite3_log(SQLITE_WARNING,
+                "wxwx_sqlite3_config_cipher: codec parameter table not found");
     return value;
   }
 
@@ -1903,6 +2178,26 @@ wxwx_sqlite3_config_cipher(wx_sqlite3* db, const char* cipherName, const char* p
       paramName += 4;
     }
 
+    /* Special handling for SQLCipher legacy mode */
+    if (db != NULL &&
+        wx_sqlite3_stricmp(cipherName, "sqlcipher") == 0 &&
+        wx_sqlite3_stricmp(paramName, "legacy") == 0)
+    {
+      if (!hasMinPrefix && !hasMaxPrefix)
+      {
+        if (newValue > 0 && newValue <= SQLCIPHER_VERSION_MAX)
+        {
+          CodecConfigureSQLCipherVersion(db, hasDefaultPrefix, newValue);
+        }
+        else
+        {
+          wx_sqlite3_log(SQLITE_WARNING,
+                      "wxwx_sqlite3_config_cipher: SQLCipher legacy version %d out of range [%d..%d]",
+                      newValue, 1, SQLCIPHER_VERSION_MAX);
+        }
+      }
+    }
+
     for (; strlen(param->m_name) > 0; ++param)
     {
       if (wx_sqlite3_stricmp(paramName, param->m_name) == 0) break;
@@ -1918,14 +2213,23 @@ wxwx_sqlite3_config_cipher(wx_sqlite3* db, const char* cipherName, const char* p
         wx_sqlite3_mutex_enter(wx_sqlite3_mutex_alloc(SQLITE_MUTEX_STATIC_MASTER));
       }
       value = (hasDefaultPrefix) ? param->m_default : (hasMinPrefix) ? param->m_minValue : (hasMaxPrefix) ? param->m_maxValue : param->m_value;
-      if (!hasMinPrefix && !hasMaxPrefix && newValue >= 0 && newValue >= param->m_minValue && newValue <= param->m_maxValue)
+      if (!hasMinPrefix && !hasMaxPrefix)
       {
-        if (hasDefaultPrefix)
+        if (newValue >= 0 && newValue >= param->m_minValue && newValue <= param->m_maxValue)
         {
-          param->m_default = newValue;
+          if (hasDefaultPrefix)
+          {
+            param->m_default = newValue;
+          }
+          param->m_value = newValue;
+          value = newValue;
         }
-        param->m_value = newValue;
-        value = newValue;
+        else
+        {
+          wx_sqlite3_log(SQLITE_WARNING,
+                      "wxwx_sqlite3_config_cipher: Value %d for parameter '%s' of cipher '%s' out of range [%d..%d]",
+                      newValue, paramName, cipherName, param->m_minValue, param->m_maxValue);
+        }
       }
       if (db != NULL)
       {
@@ -1940,28 +2244,104 @@ wxwx_sqlite3_config_cipher(wx_sqlite3* db, const char* cipherName, const char* p
   return value;
 }
 
-int
+/* Forward declaration */
+static unsigned char* CodecGetSaltWriteCipher(Codec* codec);
+
+unsigned char*
+wxwx_sqlite3_codec_data(wx_sqlite3* db, const char* zDbName, const char* paramName)
+{
+  unsigned char* result = NULL;
+  if (db != NULL && paramName != NULL)
+  {
+    int iDb = (zDbName != NULL) ? wx_sqlite3FindDbName(db, zDbName) : 0;
+    int toRaw = 0;
+    if (wx_sqlite3_strnicmp(paramName, "raw:", 4) == 0)
+    {
+      toRaw = 1;
+      paramName += 4;
+    }
+    if ((wx_sqlite3_stricmp(paramName, "cipher_salt") == 0) && (iDb >= 0))
+    {
+      /* Check whether database is encrypted */
+      Codec* codec = (Codec*) mySqlite3PagerGetCodec(wx_sqlite3BtreePager(db->aDb[iDb].pBt));
+      if (codec != NULL && CodecIsEncrypted(codec) && CodecHasWriteCipher(codec))
+      {
+        unsigned char* salt = CodecGetSaltWriteCipher(codec);
+        if (salt != NULL)
+        {
+          if (!toRaw)
+          {
+            int j;
+            result = wx_sqlite3_malloc(32 + 1);
+            for (j = 0; j < 16; ++j)
+            {
+              result[j * 2] = hexdigits[(salt[j] >> 4) & 0x0F];
+              result[j * 2 + 1] = hexdigits[(salt[j]) & 0x0F];
+            }
+            result[32] = '\0';
+          }
+          else
+          {
+            result = wx_sqlite3_malloc(16 + 1);
+            memcpy(result, salt, 16);
+            result[16] = '\0';
+          }
+        }
+      }
+    }
+  }
+  return result;
+}
+
+static void
+wxwx_sqlite3_codec_data_sql(wx_sqlite3_context* context, int argc, wx_sqlite3_value** argv)
+{
+  const char* nameParam1 = NULL;
+  const char* nameParam2 = NULL;
+
+  assert(argc == 1 || argc == 2);
+  /* NULL values are not allowed for the first 2 arguments */
+  if (SQLITE_NULL == wx_sqlite3_value_type(argv[0]) || (argc > 1 && SQLITE_NULL == wx_sqlite3_value_type(argv[1])))
+  {
+    wx_sqlite3_result_null(context);
+    return;
+  }
+
+  /* Determine parameter name */
+  nameParam1 = (const char*) wx_sqlite3_value_text(argv[0]);
+
+  /* Determine schema name if given */
+  if (argc == 2)
+  {
+    nameParam2 = (const char*) wx_sqlite3_value_text(argv[1]);
+  }
+
+  /* Check for known parameter name(s) */
+  if (wx_sqlite3_stricmp(nameParam1, "cipher_salt") == 0)
+  {
+    /* Determine key salt */
+    wx_sqlite3* db = wx_sqlite3_context_db_handle(context);
+    const char* salt = (const char*)wxwx_sqlite3_codec_data(db, nameParam2, "cipher_salt");
+    if (salt != NULL)
+    {
+      wx_sqlite3_result_text(context, salt, -1, wx_sqlite3_free);
+    }
+    else
+    {
+      wx_sqlite3_result_null(context);
+    }
+  }
+  else
+  {
+    wx_sqlite3_result_null(context);
+  }
+}
+
+static int
 GetCipherType(wx_sqlite3* db)
 {
-  CodecParameter* codecParams = (db != NULL) ? GetCodecParams(db) : codecParameterTable;
+  CodecParameter* codecParams = (db != NULL) ? GetCodecParams(db) : globalCodecParameterTable;
   CipherParams* cipherParamTable = (codecParams != NULL) ? codecParams[0].m_params : commonParams;
-#if 0
-  if (codecParams == NULL)
-  {
-    return value;
-  }
-
-  int j = 0;
-  for (j = 0; strlen(codecParams[j].m_name) > 0; ++j)
-  {
-    if (wx_sqlite3_stricmp(cipherName, codecParams[j].m_name) == 0) break;
-  }
-  if (strlen(codecParams[j].m_name) > 0)
-  {
-    cipherParamTable = codecParams[j].m_params;
-  }
-#endif
-
   int cipherType = CODEC_TYPE;
   CipherParams* cipher = cipherParamTable;
   for (; strlen(cipher->m_name) > 0; ++cipher)
@@ -1976,32 +2356,41 @@ GetCipherType(wx_sqlite3* db)
   return cipherType;
 }
 
-void*
+static void*
 GetCipherParams(wx_sqlite3* db, int cypherType)
 {
-  CodecParameter* codecParams = (db != NULL) ? GetCodecParams(db) : codecParameterTable;
-  CipherParams* cipherParamTable = (codecParams != NULL) ? codecParams[cypherType].m_params : codecParameterTable[cypherType].m_params;
+  CodecParameter* codecParams = (db != NULL) ? GetCodecParams(db) : globalCodecParameterTable;
+  CipherParams* cipherParamTable = (codecParams != NULL) ? codecParams[cypherType].m_params : globalCodecParameterTable[cypherType].m_params;
   return cipherParamTable;
 }
 
-int
+static int
 CodecInit(Codec* codec)
 {
   int rc = SQLITE_OK;
   if (codec != NULL)
   {
     codec->m_isEncrypted = 0;
+    codec->m_hmacCheck = 1;
+
     codec->m_hasReadCipher = 0;
     codec->m_readCipherType = CODEC_TYPE_UNKNOWN;
     codec->m_readCipher = NULL;
+    codec->m_readReserved = -1;
+
     codec->m_hasWriteCipher = 0;
     codec->m_writeCipherType = CODEC_TYPE_UNKNOWN;
     codec->m_writeCipher = NULL;
+    codec->m_writeReserved = -1;
+
     codec->m_db = NULL;
     codec->m_bt = NULL;
+    codec->m_btShared = NULL;
     memset(codec->m_page, 0, sizeof(codec->m_page));
     codec->m_pageSize = 0;
     codec->m_reserved = 0;
+    codec->m_hasKeySalt = 0;
+    memset(codec->m_keySalt, 0, sizeof(codec->m_keySalt));
   }
   else
   {
@@ -2010,34 +2399,46 @@ CodecInit(Codec* codec)
   return rc;
 }
 
-void
+static void
 CodecTerm(Codec* codec)
 {
+#ifndef TEST_CODEC_NOFREE
   if (codec->m_readCipher != NULL)
   {
-    codecDescriptorTable[codec->m_readCipherType-1].m_freeCipher(codec->m_readCipher);
+    codecDescriptorTable[codec->m_readCipherType - 1].m_freeCipher(codec->m_readCipher);
     codec->m_readCipher = NULL;
   }
   if (codec->m_writeCipher != NULL)
   {
-    codecDescriptorTable[codec->m_writeCipherType-1].m_freeCipher(codec->m_writeCipher);
+    codecDescriptorTable[codec->m_writeCipherType - 1].m_freeCipher(codec->m_writeCipher);
     codec->m_writeCipher = NULL;
   }
   memset(codec, 0, sizeof(Codec));
+#endif
 }
 
-int
+static void
+CodecClearKeySalt(Codec* codec)
+{
+  codec->m_hasKeySalt = 0;
+  memset(codec->m_keySalt, 0, sizeof(codec->m_keySalt));
+}
+
+static int
 CodecSetup(Codec* codec, int cipherType, char* userPassword, int passwordLength)
 {
   int rc = SQLITE_OK;
+  CipherParams* globalParams = (CipherParams*) GetCipherParams(codec->m_db, 0);
   codec->m_isEncrypted = 1;
+  codec->m_hmacCheck = GetCipherParameter(globalParams, "hmac_check");
   codec->m_hasReadCipher = 1;
   codec->m_hasWriteCipher = 1;
   codec->m_readCipherType = cipherType;
   codec->m_readCipher = codecDescriptorTable[codec->m_readCipherType-1].m_allocateCipher(codec->m_db);
   if (codec->m_readCipher != NULL)
   {
-    CodecGenerateReadKey(codec, userPassword, passwordLength);
+    unsigned char* keySalt = (codec->m_hasKeySalt != 0) ? codec->m_keySalt : NULL;
+    CodecGenerateReadKey(codec, userPassword, passwordLength, keySalt);
     rc = CodecCopyCipher(codec, 1);
   }
   else
@@ -2047,21 +2448,24 @@ CodecSetup(Codec* codec, int cipherType, char* userPassword, int passwordLength)
   return rc;
 }
 
-int
+static int
 CodecSetupWriteCipher(Codec* codec, int cipherType, char* userPassword, int passwordLength)
 {
   int rc = SQLITE_OK;
+  CipherParams* globalParams = (CipherParams*) GetCipherParams(codec->m_db, 0);
   if (codec->m_writeCipher != NULL)
   {
     codecDescriptorTable[codec->m_writeCipherType-1].m_freeCipher(codec->m_writeCipher);
   }
   codec->m_isEncrypted = 1;
+  codec->m_hmacCheck = GetCipherParameter(globalParams, "hmac_check");
   codec->m_hasWriteCipher = 1;
   codec->m_writeCipherType = cipherType;
   codec->m_writeCipher = codecDescriptorTable[codec->m_writeCipherType-1].m_allocateCipher(codec->m_db);
   if (codec->m_writeCipher != NULL)
   {
-    CodecGenerateWriteKey(codec, userPassword, passwordLength);
+    unsigned char* keySalt = (codec->m_hasKeySalt != 0) ? codec->m_keySalt : NULL;
+    CodecGenerateWriteKey(codec, userPassword, passwordLength, keySalt);
   }
   else
   {
@@ -2070,105 +2474,144 @@ CodecSetupWriteCipher(Codec* codec, int cipherType, char* userPassword, int pass
   return rc;
 }
 
-void
+static void
 CodecSetIsEncrypted(Codec* codec, int isEncrypted)
 {
   codec->m_isEncrypted = isEncrypted;
 }
 
-void
+static void
 CodecSetReadCipherType(Codec* codec, int cipherType)
 {
   codec->m_readCipherType = cipherType;
 }
 
-void
+static void
 CodecSetWriteCipherType(Codec* codec, int cipherType)
 {
   codec->m_writeCipherType = cipherType;
 }
 
-void
+static void
 CodecSetHasReadCipher(Codec* codec, int hasReadCipher)
 {
   codec->m_hasReadCipher = hasReadCipher;
 }
 
-void
+static void
 CodecSetHasWriteCipher(Codec* codec, int hasWriteCipher)
 {
   codec->m_hasWriteCipher = hasWriteCipher;
 }
 
-void
+static void
 CodecSetDb(Codec* codec, wx_sqlite3* db)
 {
   codec->m_db = db;
 }
 
-void
+static void
 CodecSetBtree(Codec* codec, Btree* bt)
 {
   codec->m_bt = bt;
+  codec->m_btShared = bt->pBt;
 }
 
-int
+static void
+CodecSetReadReserved(Codec* codec, int reserved)
+{
+  codec->m_readReserved = reserved;
+}
+
+static void
+CodecSetWriteReserved(Codec* codec, int reserved)
+{
+  codec->m_writeReserved = reserved;
+}
+
+static int
 CodecIsEncrypted(Codec* codec)
 {
   return codec->m_isEncrypted;
 }
 
-int
+static int
 CodecHasReadCipher(Codec* codec)
 {
   return codec->m_hasReadCipher;
 }
 
-int
+static int
 CodecHasWriteCipher(Codec* codec)
 {
   return codec->m_hasWriteCipher;
 }
 
-Btree*
+static Btree*
 CodecGetBtree(Codec* codec)
 {
   return codec->m_bt;
 }
 
-unsigned char*
+static BtShared*
+CodecGetBtShared(Codec* codec)
+{
+  return codec->m_btShared;
+}
+
+static int
+CodecGetPageSize(Codec* codec)
+{
+  return codec->m_btShared->pageSize;
+}
+
+static int
+CodecGetReadReserved(Codec* codec)
+{
+  return codec->m_readReserved;
+}
+
+static int
+CodecGetWriteReserved(Codec* codec)
+{
+  return codec->m_writeReserved;
+}
+
+static unsigned char*
 CodecGetPageBuffer(Codec* codec)
 {
   return &codec->m_page[4];
 }
 
-int CodecGetLegacyReadCipher(Codec* codec)
+static int
+CodecGetLegacyReadCipher(Codec* codec)
 {
   int legacy = (codec->m_hasReadCipher  && codec->m_readCipher != NULL) ? codecDescriptorTable[codec->m_readCipherType - 1].m_getLegacy(codec->m_readCipher) : 0;
   return legacy;
 }
 
-int CodecGetLegacyWriteCipher(Codec* codec)
+static int
+CodecGetLegacyWriteCipher(Codec* codec)
 {
   int legacy = (codec->m_hasWriteCipher && codec->m_writeCipher != NULL) ? codecDescriptorTable[codec->m_writeCipherType - 1].m_getLegacy(codec->m_writeCipher) : -1;
   return legacy;
 }
 
-int
+static int
 CodecGetPageSizeReadCipher(Codec* codec)
 {
   int pageSize = (codec->m_hasReadCipher  && codec->m_readCipher != NULL) ? codecDescriptorTable[codec->m_readCipherType - 1].m_getPageSize(codec->m_readCipher) : 0;
   return pageSize;
 }
 
-int
+static int
 CodecGetPageSizeWriteCipher(Codec* codec)
 {
   int pageSize = (codec->m_hasWriteCipher && codec->m_writeCipher != NULL) ? codecDescriptorTable[codec->m_writeCipherType - 1].m_getPageSize(codec->m_writeCipher) : -1;
   return pageSize;
 }
 
-int
+static int
 CodecGetReservedReadCipher(Codec* codec)
 {
   int reserved = (codec->m_hasReadCipher  && codec->m_readCipher != NULL) ? codecDescriptorTable[codec->m_readCipherType-1].m_getReserved(codec->m_readCipher) : -1;
@@ -2182,7 +2625,7 @@ CodecGetReservedWriteCipher(Codec* codec)
   return reserved;
 }
 
-int
+static int
 CodecReservedEqual(Codec* codec)
 {
   int readReserved  = (codec->m_hasReadCipher  && codec->m_readCipher  != NULL) ? codecDescriptorTable[codec->m_readCipherType-1].m_getReserved(codec->m_readCipher)   : -1;
@@ -2190,17 +2633,27 @@ CodecReservedEqual(Codec* codec)
   return (readReserved == writeReserved);
 }
 
-int
+static unsigned char*
+CodecGetSaltWriteCipher(Codec* codec)
+{
+  unsigned char* salt = (codec->m_hasWriteCipher && codec->m_writeCipher != NULL) ? codecDescriptorTable[codec->m_writeCipherType - 1].m_getSalt(codec->m_writeCipher) : NULL;
+  return salt;
+}
+
+static int
 CodecCopy(Codec* codec, Codec* other)
 {
   int rc = SQLITE_OK;
   codec->m_isEncrypted = other->m_isEncrypted;
+  codec->m_hmacCheck = other->m_hmacCheck;
   codec->m_hasReadCipher = other->m_hasReadCipher;
   codec->m_hasWriteCipher = other->m_hasWriteCipher;
   codec->m_readCipherType = other->m_readCipherType;
   codec->m_writeCipherType = other->m_writeCipherType;
   codec->m_readCipher = NULL;
   codec->m_writeCipher = NULL;
+  codec->m_readReserved = other->m_readReserved;
+  codec->m_writeReserved = other->m_writeReserved;
 
   if (codec->m_hasReadCipher)
   {
@@ -2229,10 +2682,11 @@ CodecCopy(Codec* codec, Codec* other)
   }
   codec->m_db = other->m_db;
   codec->m_bt = other->m_bt;
+  codec->m_btShared = other->m_btShared;
   return rc;
 }
 
-int
+static int
 CodecCopyCipher(Codec* codec, int read2write)
 {
   int rc = SQLITE_OK;
@@ -2281,7 +2735,7 @@ CodecCopyCipher(Codec* codec, int read2write)
   return rc;
 }
 
-void
+static void
 CodecPadPassword(char* password, int pswdlen, unsigned char pswd[32])
 {
   int j;
@@ -2299,31 +2753,138 @@ CodecPadPassword(char* password, int pswdlen, unsigned char pswd[32])
   }
 }
 
-void
-CodecGenerateReadKey(Codec* codec, char* userPassword, int passwordLength)
+static void
+CodecGenerateReadKey(Codec* codec, char* userPassword, int passwordLength, unsigned char* cipherSalt)
 {
-  codecDescriptorTable[codec->m_readCipherType-1].m_generateKey(codec->m_readCipher, codec->m_bt, userPassword, passwordLength, 0);
+  codecDescriptorTable[codec->m_readCipherType-1].m_generateKey(codec->m_readCipher, codec->m_btShared, userPassword, passwordLength, 0, cipherSalt);
 }
 
-void
-CodecGenerateWriteKey(Codec* codec, char* userPassword, int passwordLength)
+static void
+CodecGenerateWriteKey(Codec* codec, char* userPassword, int passwordLength, unsigned char* cipherSalt)
 {
-  codecDescriptorTable[codec->m_writeCipherType-1].m_generateKey(codec->m_writeCipher, codec->m_bt, userPassword, passwordLength, 1);
+  codecDescriptorTable[codec->m_writeCipherType-1].m_generateKey(codec->m_writeCipher, codec->m_btShared, userPassword, passwordLength, 1, cipherSalt);
 }
 
-int
+static int
 CodecEncrypt(Codec* codec, int page, unsigned char* data, int len, int useWriteKey)
 {
   int cipherType = (useWriteKey) ? codec->m_writeCipherType : codec->m_readCipherType;
   void* cipher = (useWriteKey) ? codec->m_writeCipher : codec->m_readCipher;
-  return codecDescriptorTable[cipherType-1].m_encryptPage(cipher, page, data, len, codec->m_reserved);
+  int reserved = (useWriteKey) ? (codec->m_writeReserved >= 0) ? codec->m_writeReserved : codec->m_reserved
+                               : (codec->m_readReserved >= 0) ? codec->m_readReserved : codec->m_reserved;
+  return codecDescriptorTable[cipherType-1].m_encryptPage(cipher, page, data, len, reserved);
 }
 
-int
+static int
 CodecDecrypt(Codec* codec, int page, unsigned char* data, int len)
 {
   int cipherType = codec->m_readCipherType;
   void* cipher = codec->m_readCipher;
-  return codecDescriptorTable[cipherType-1].m_decryptPage(cipher, page, data, len, codec->m_reserved);
+  int reserved = (codec->m_readReserved >= 0) ? codec->m_readReserved : codec->m_reserved;
+  return codecDescriptorTable[cipherType-1].m_decryptPage(cipher, page, data, len, reserved, codec->m_hmacCheck);
+}
+
+static void
+CodecConfigureSQLCipherVersion(wx_sqlite3* db, int configDefault, int legacyVersion)
+{
+  static char* stdNames[] = { "legacy_page_size",         "kdf_iter",         "hmac_use",         "kdf_algorithm",         "hmac_algorithm",         NULL };
+  static char* defNames[] = { "default:legacy_page_size", "default:kdf_iter", "default:hmac_use", "default:kdf_algorithm", "default:hmac_algorithm", NULL };
+  static int versionParams[SQLCIPHER_VERSION_MAX][5] =
+  {
+    { 1024,   4000, 0, SQLCIPHER_KDF_ALGORITHM_SHA1,   SQLCIPHER_HMAC_ALGORITHM_SHA1   }, 
+    { 1024,   4000, 1, SQLCIPHER_KDF_ALGORITHM_SHA1,   SQLCIPHER_HMAC_ALGORITHM_SHA1   },
+    { 1024,  64000, 1, SQLCIPHER_KDF_ALGORITHM_SHA1,   SQLCIPHER_HMAC_ALGORITHM_SHA1   },
+    { 4096, 256000, 1, SQLCIPHER_KDF_ALGORITHM_SHA512, SQLCIPHER_HMAC_ALGORITHM_SHA512 }
+  };
+  if (legacyVersion > 0 && legacyVersion <= SQLCIPHER_VERSION_MAX)
+  {
+    char** names = (configDefault != 0) ? defNames : stdNames;
+    int* values = &versionParams[legacyVersion - 1][0];
+    int j;
+    for (j = 0; names[j] != NULL; ++j)
+    {
+      wxwx_sqlite3_config_cipher(db, "sqlcipher", names[j], values[j]);
+    }
+  }
+}
+
+static int
+CodecConfigureFromUri(wx_sqlite3* db, const char *zDbName, int configDefault)
+{
+  /* Register codec extensions if necessary */
+  int rc = registerCodecExtensions(db, NULL, NULL);
+  if (rc == SQLITE_OK)
+  {
+    /* Check URI parameters if database filename is available */
+    const char* dbFileName = wx_sqlite3_db_filename(db, zDbName);
+    if (dbFileName != NULL)
+    {
+      /* Check whether cipher is specified */
+      const char* cipherName = wx_sqlite3_uri_parameter(dbFileName, "cipher");
+      if (cipherName != NULL)
+      {
+        int j = 0;
+        CipherParams* cipherParams = NULL;
+
+        /* Try to locate the cipher name */
+        for (j = 1; strlen(globalCodecParameterTable[j].m_name) > 0; ++j)
+        {
+          if (wx_sqlite3_stricmp(cipherName, globalCodecParameterTable[j].m_name) == 0) break;
+        }
+
+        /* j is the index of the cipher name, if found */
+        cipherParams = (strlen(globalCodecParameterTable[j].m_name) > 0) ? globalCodecParameterTable[j].m_params : NULL;
+        if (cipherParams != NULL)
+        {
+          /* Set global parameters (cipher and hmac_check) */
+          int hmacCheck = wx_sqlite3_uri_boolean(dbFileName, "hmac_check", 1);
+          if (configDefault)
+          {
+            wxwx_sqlite3_config(db, "default:cipher", j);
+          }
+          else
+          {
+            wxwx_sqlite3_config(db, "cipher", j);
+          }
+          if (!hmacCheck)
+          {
+            wxwx_sqlite3_config(db, "hmac_check", hmacCheck);
+          }
+
+          /* Special handling for SQLCipher */
+          if (wx_sqlite3_stricmp(cipherName, "sqlcipher") == 0)
+          {
+            int legacy = (int) wx_sqlite3_uri_int64(dbFileName, "legacy", 0);
+            if (legacy > 0 && legacy <= SQLCIPHER_VERSION_MAX)
+            {
+              CodecConfigureSQLCipherVersion(db, configDefault, legacy);
+            }
+          }
+
+          /* Check all cipher specific parameters */
+          for (j = 0; strlen(cipherParams[j].m_name) > 0; ++j)
+          {
+            int value = (int) wx_sqlite3_uri_int64(dbFileName, cipherParams[j].m_name, -1);
+            if (value >= 0)
+            {
+              /* Configure cipher parameter if it was given in the URI */
+              char* param = (configDefault) ? wx_sqlite3_mprintf("default:%s", cipherParams[j].m_name) : cipherParams[j].m_name;
+              wxwx_sqlite3_config_cipher(db, cipherName, param, value);
+              if (configDefault)
+              {
+                wx_sqlite3_free(param);
+              }
+            }
+          }
+        }
+        else
+        {
+          rc = SQLITE_ERROR;
+          wx_sqlite3ErrorWithMsg(db, rc, "unknown cipher '%s'", cipherName);
+        }
+      }
+    }
+  }
+  return rc;
 }
 

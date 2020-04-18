@@ -637,7 +637,7 @@ static void ceilFunc(wx_sqlite3_context *context, int argc, wx_sqlite3_value **a
   assert( argc==1 );
   switch( wx_sqlite3_value_type(argv[0]) ){
     case SQLITE_INTEGER: {
-      i64 iVal = wx_sqlite3_value_int64(argv[0]);
+      iVal = wx_sqlite3_value_int64(argv[0]);
       wx_sqlite3_result_int64(context, iVal);
       break;
     }
@@ -662,7 +662,7 @@ static void floorFunc(wx_sqlite3_context *context, int argc, wx_sqlite3_value **
   assert( argc==1 );
   switch( wx_sqlite3_value_type(argv[0]) ){
     case SQLITE_INTEGER: {
-      i64 iVal = wx_sqlite3_value_int64(argv[0]);
+      iVal = wx_sqlite3_value_int64(argv[0]);
       wx_sqlite3_result_int64(context, iVal);
       break;
     }
@@ -1878,15 +1878,18 @@ map map_make(cmp_func cmp){
   return r;
 }
 
+static
 void* xcalloc(size_t nmemb, size_t size, char* s){
   void* ret = calloc(nmemb, size);
   return ret;
 }
 
+static
 void xfree(void* p){
   free(p);
 }
 
+static
 void node_insert(node** n, cmp_func cmp, void *e){
   int c;
   node* nn;
@@ -1913,6 +1916,7 @@ void map_insert(map *m, void *e){
   node_insert(&(m->base), m->cmp, e);
 }
 
+static
 void node_iterate(node *n, map_iterator iter, void* p){
   if(n){
     if(n->l)
@@ -1927,6 +1931,7 @@ void map_iterate(map *m, map_iterator iter, void* p){
   node_iterate(m->base, iter, p);
 }
 
+static
 void node_destroy(node *n){
   if(0!=n){
     xfree(n->data);
@@ -1967,9 +1972,10 @@ int double_cmp(const void *a, const void *b){
     return 1;
 }
 
+#if 0
 void print_elem(void *e, i64 c, void* p){
   int ee = *(int*)(e);
   printf("%d => %lld\n", ee,c);
 }
-
+#endif
 
