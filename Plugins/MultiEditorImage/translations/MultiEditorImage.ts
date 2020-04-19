@@ -60,7 +60,7 @@
     </message>
     <message>
         <location filename="../multieditorimage.cpp" line="154"/>
-        <source>Could not nopen file %1 for writting.</source>
+        <source>Could not open file %1 for writting.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
