@@ -56,7 +56,7 @@
     <message>
       <location filename="../multieditorimage.cpp" line="143"/>
       <source>Tried to save image under different format (%1) than original (%2), but application failed to convert it. The image with unchanged format (%3) will be saved under the given name (%4)</source>
-      <translation type="unfinished">Tried to save image under different format (%1) than original (%2), but application failed to convert it. The image with unchanged format (%3) will be saved under the given name (%4)</translation>
+      <translation>Görüntüyü orjinalinden (%2) farklı bir formatta kaydetmeye çalıştı (%1), fakat uygulama dönüştürürken hata aldı. Değiştirilmemiş formattaki görüntü (%3) verilen isimde kaydedilecek (%4)</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="154"/>
