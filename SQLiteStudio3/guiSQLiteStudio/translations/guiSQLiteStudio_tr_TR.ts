@@ -172,22 +172,22 @@
     <message>
       <location filename="../windows/collationseditor.cpp" line="283"/>
       <source>Enter a non-empty, unique name of the collation.</source>
-      <translation type="unfinished">Enter a non-empty, unique name of the collation.</translation>
+      <translation>Yeni bir karşılaştırma adı giriniz.</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="291"/>
       <source>Pick the implementation language.</source>
-      <translation type="unfinished">Pick the implementation language.</translation>
+      <translation>Uygulama dilini seçiniz.</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="294"/>
       <source>Enter a non-empty implementation code.</source>
-      <translation type="unfinished">Enter a non-empty implementation code.</translation>
+      <translation>Implementasyon kodu giriniz.</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="388"/>
       <source>Collations editor window has uncommitted modifications.</source>
-      <translation type="unfinished">Collations editor window has uncommitted modifications.</translation>
+      <translation>Karşılaştırma editöründe kaydedilmemiş değişiklikler var.</translation>
     </message>
   </context>
   <context>
