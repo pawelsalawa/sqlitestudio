@@ -6,40 +6,40 @@
     <message>
       <location filename="../pdfexport.cpp" line="28"/>
       <source>SQLiteStudio v%1</source>
-      <translation type="unfinished">SQLiteStudio v%1</translation>
+      <translation>SQLiteStudio v%1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="61"/>
       <source>SQL query results</source>
-      <translation type="unfinished">SQL query results</translation>
+      <translation>SQL sorgu sonuçları</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="90"/>
       <location filename="../pdfexport.cpp" line="144"/>
       <source>Exported table: %1</source>
-      <translation type="unfinished">Exported table: %1</translation>
+      <translation>Çıkartılan tablo: %1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="93"/>
       <location filename="../pdfexport.cpp" line="159"/>
       <source>Table: %1</source>
-      <translation type="unfinished">Table: %1</translation>
+      <translation>Tablo: %1</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="95"/>
       <location filename="../pdfexport.cpp" line="231"/>
       <source>Column</source>
-      <translation type="unfinished">Column</translation>
+      <translation>Kolon</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="95"/>
       <source>Data type</source>
-      <translation type="unfinished">Data type</translation>
+      <translation>Veri tipi</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="95"/>
       <source>Constraints</source>
-      <translation type="unfinished">Constraints</translation>
+      <translation>Constraints</translation>
     </message>
     <message>
       <location filename="../pdfexport.cpp" line="126"/>
