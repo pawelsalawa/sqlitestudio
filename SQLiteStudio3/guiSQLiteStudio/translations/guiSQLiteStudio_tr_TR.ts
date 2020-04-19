@@ -137,37 +137,37 @@
     <message>
       <location filename="../windows/collationseditor.ui" line="208"/>
       <source>Implementation language:</source>
-      <translation type="unfinished">Implementation language:</translation>
+      <translation>Implementasyon dili:</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="52"/>
       <source>Collations editor</source>
-      <translation type="unfinished">Collations editor</translation>
+      <translation>Karşılaştırma editörü</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="57"/>
       <source>Commit all collation changes</source>
-      <translation type="unfinished">Commit all collation changes</translation>
+      <translation>Bütün değişiklikleri işle</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="58"/>
       <source>Rollback all collation changes</source>
-      <translation type="unfinished">Rollback all collation changes</translation>
+      <translation>Bütün karşılaştırma değişikliklerini geri al</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="60"/>
       <source>Create new collation</source>
-      <translation type="unfinished">Create new collation</translation>
+      <translation>Yeni karşılaştırma yarat</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="61"/>
       <source>Delete selected collation</source>
-      <translation type="unfinished">Delete selected collation</translation>
+      <translation>Seçili karşılaştırmayı sil</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="63"/>
       <source>Editing collations manual</source>
-      <translation type="unfinished">Editing collations manual</translation>
+      <translation>Karşılaştırmaları düzenleme kılavuzu</translation>
     </message>
     <message>
       <location filename="../windows/collationseditor.cpp" line="283"/>
