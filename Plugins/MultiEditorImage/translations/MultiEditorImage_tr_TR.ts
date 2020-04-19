@@ -6,52 +6,52 @@
     <message>
       <location filename="../multieditorimage.cpp" line="26"/>
       <source>Load from file</source>
-      <translation type="unfinished">Load from file</translation>
+      <translation>Dosyadan yükle</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="27"/>
       <source>Store in a file</source>
-      <translation type="unfinished">Store in a file</translation>
+      <translation>Dosyada sakla</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="28"/>
       <source>Zoom in by 25%</source>
-      <translation type="unfinished">Zoom in by 25%</translation>
+      <translation>%25 yakınlaştır</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="29"/>
       <source>Zoom out by 25%</source>
-      <translation type="unfinished">Zoom out by 25%</translation>
+      <translation>%25 uzaklaştır</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="30"/>
       <source>Reset zoom</source>
-      <translation type="unfinished">Reset zoom</translation>
+      <translation>Zoom Sıfırla</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="100"/>
       <source>Images (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng);;All files (*)</source>
-      <translation type="unfinished">Images (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng);;All files (*)</translation>
+      <translation>Resimler (*.jpeg *.jpg *.png *.bmp *.gif *.tiff *.jp2 *.svg *.tga *.icns *.webp *.wbmp *.mng);;Diğer dosyalar (*)</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="101"/>
       <source>Open image</source>
-      <translation type="unfinished">Open image</translation>
+      <translation>Resmi aç</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="110"/>
       <source>Could not open file %1 for reading.</source>
-      <translation type="unfinished">Could not open file %1 for reading.</translation>
+      <translation>%1 dosyası okumak için açılamadı.</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="130"/>
       <source>All files (*)</source>
-      <translation type="unfinished">All files (*)</translation>
+      <translation>Tüm Dosyalar (*)</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="132"/>
       <source>Save image</source>
-      <translation type="unfinished">Save image</translation>
+      <translation>Resmi kaydet</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="143"/>
@@ -66,7 +66,7 @@
     <message>
       <location filename="../multieditorimage.cpp" line="159"/>
       <source>Could not write image into the file %1</source>
-      <translation type="unfinished">Could not write image into the file %1</translation>
+      <translation>%1 dosyasına resim yazılamadı</translation>
     </message>
   </context>
   <context>
@@ -74,7 +74,7 @@
     <message>
       <location filename="../multieditorimage.cpp" line="250"/>
       <source>Image</source>
-      <translation type="unfinished">Image</translation>
+      <translation>Resim</translation>
     </message>
   </context>
 </TS>
