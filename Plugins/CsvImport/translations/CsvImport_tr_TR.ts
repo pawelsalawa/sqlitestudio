@@ -54,7 +54,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="52"/>
       <source>&lt;p&gt;Enable this if the first data line in your CSV file represents column names. You don&apos;t want column names to be imported into the table as a regular data.&lt;/p&gt;</source>
-      <translation type="unfinished">&lt;p&gt;Enable this if the first data line in your CSV file represents column names. You don&apos;t want column names to be imported into the table as a regular data.&lt;/p&gt;</translation>
+      <translation>&lt;p&gt;Eğer CSV dosyanızın ilk satırı kolon isimlerini belirtiyorsa bunu aktif hale getiriniz. Kolon isimlerinizin normal veri gibi değerlendirilmesini istemezsiniz.&lt;/p&gt;</translation>
     </message>
     <message>
       <location filename="../CsvImportOptions.ui" line="55"/>
@@ -79,7 +79,7 @@
     <message>
       <location filename="../CsvImportOptions.ui" line="98"/>
       <source>If your CSV data contains null values, define how are they represented in the CSV.</source>
-      <translation type="unfinished">If your CSV data contains null values, define how are they represented in the CSV.</translation>
+      <translation>Eğer CSV dosyanız null değerler içeriyorsa, CSV içinde nasıl gösterilmesi gerektiğini düzenleyiniz.</translation>
     </message>
   </context>
 </TS>
