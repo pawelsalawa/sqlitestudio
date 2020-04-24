@@ -60,8 +60,8 @@
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="154"/>
-      <source>Could not nopen file %1 for writting.</source>
-      <translation>无法以写模式打开文件 %1：</translation>
+      <source>Could not open file %1 for writting.</source>
+      <translation type="unfinished">Could not open file %1 for writting.</translation>
     </message>
     <message>
       <location filename="../multieditorimage.cpp" line="159"/>
