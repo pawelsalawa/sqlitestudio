@@ -59,9 +59,9 @@
         <translation>Осуществлена попытка сохранить изображение в формате (%1), отличном от исходного (%2), однако приложению не удалось произвести конвертацию. Изображение в исходном формате (%3) будет сохранено с указанным именем (%4)</translation>
     </message>
     <message>
-        <location filename="../multieditorimage.cpp" line="154"/>
-        <source>Could not open file %1 for writting.</source>
-        <translation type="unfinished"></translation>
+      <location filename="../multieditorimage.cpp" line="154"/>
+      <source>Could not open file %1 for writting.</source>
+      <translation type="unfinished">Could not open file %1 for writting.</translation>
     </message>
     <message>
         <source>Could not nopen file %1 for writting.</source>

@@ -59,9 +59,9 @@
         <translation>Próbowano zapisać obraz używając innego formatu (%1) niż oryginał (%2), lecz aplikacji nie udało się dokonać konwersji. Obraz z niezmienionym formacie (%3) zostanie zapisany pod podaną nazwą (%4)</translation>
     </message>
     <message>
-        <location filename="../multieditorimage.cpp" line="154"/>
-        <source>Could not open file %1 for writting.</source>
-        <translation type="unfinished"></translation>
+      <location filename="../multieditorimage.cpp" line="154"/>
+      <source>Could not open file %1 for writting.</source>
+      <translation type="unfinished">Could not open file %1 for writting.</translation>
     </message>
     <message>
         <source>Could not nopen file %1 for writting.</source>
