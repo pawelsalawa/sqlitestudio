@@ -151,7 +151,7 @@ void MultiEditorImage::saveFile()
     QFile file(fileName);
     if (!file.open(QIODevice::WriteOnly))
     {
-        notifyError(tr("Could not nopen file %1 for writting.").arg(fileName));
+        notifyError(tr("Could not open file %1 for writting.").arg(fileName));
         return;
     }
 
