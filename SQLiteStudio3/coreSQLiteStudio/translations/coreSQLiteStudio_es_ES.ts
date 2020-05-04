@@ -7,12 +7,12 @@
       <location filename="../db/abstractdb.cpp" line="343"/>
       <location filename="../db/abstractdb.cpp" line="360"/>
       <source>Cannot execute query on closed database.</source>
-      <translation type="unfinished">Cannot execute query on closed database.</translation>
+      <translation>No se puede ejecutar la consulta en una base de datos desconectada.</translation>
     </message>
     <message>
       <location filename="../db/abstractdb.cpp" line="643"/>
       <source>Error attaching database %1: %2</source>
-      <translation type="unfinished">Error attaching database %1: %2</translation>
+      <translation>Error al adjuntar la base de datos %1: %2</translation>
     </message>
   </context>
   <context>
@@ -21,37 +21,37 @@
       <location filename="../db/chainexecutor.cpp" line="37"/>
       <source>The database for executing queries was not defined.</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">The database for executing queries was not defined.</translation>
+      <translation>No se definió una base de datos sobre la cual ejecutar las consultas.</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="44"/>
       <source>The database for executing queries was not open.</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">The database for executing queries was not open.</translation>
+      <translation>La base de datos usada para ejecutar las consultas no estaba abierta.</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="54"/>
       <source>Could not disable foreign keys in the database. Details: %1</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">Could not disable foreign keys in the database. Details: %1</translation>
+      <translation>No se pudieron desactivar las claves foráneas en la base de datos. Detalles: %1</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="62"/>
       <source>Could not start a database transaction. Details: %1</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">Could not start a database transaction. Details: %1</translation>
+      <translation>No se pudo iniciar una transacción en la base de datos. Detalles: %1</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="89"/>
       <source>Interrupted</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">Interrupted</translation>
+      <translation>Interrumpido</translation>
     </message>
     <message>
       <location filename="../db/chainexecutor.cpp" line="151"/>
       <source>Could not commit a database transaction. Details: %1</source>
       <comment>chain executor</comment>
-      <translation type="unfinished">Could not commit a database transaction. Details: %1</translation>
+      <translation>No se pudo confirmar una transacción a la base de datos. Detalles: %1</translation>
     </message>
   </context>
   <context>
@@ -59,47 +59,47 @@
     <message>
       <location filename="../completionhelper.cpp" line="196"/>
       <source>New row reference</source>
-      <translation type="unfinished">New row reference</translation>
+      <translation>Referencia a nueva fila</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="203"/>
       <source>Old row reference</source>
-      <translation type="unfinished">Old row reference</translation>
+      <translation>Referencia a antigua fila</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="208"/>
       <source>New table name</source>
-      <translation type="unfinished">New table name</translation>
+      <translation>Nuevo nombre de tabla</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="211"/>
       <source>New index name</source>
-      <translation type="unfinished">New index name</translation>
+      <translation>Nuevo nombre de índice</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="214"/>
       <source>New view name</source>
-      <translation type="unfinished">New view name</translation>
+      <translation>Nuevo nombre de vista</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="217"/>
       <source>New trigger name</source>
-      <translation type="unfinished">New trigger name</translation>
+      <translation>Nuevo nombre de disparador</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="220"/>
       <source>Table or column alias</source>
-      <translation type="unfinished">Table or column alias</translation>
+      <translation>Alias de tabla o columna</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="223"/>
       <source>transaction name</source>
-      <translation type="unfinished">transaction name</translation>
+      <translation>nombre de transacción</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="226"/>
       <source>New column name</source>
-      <translation type="unfinished">New column name</translation>
+      <translation>Nuevo nombre de columna</translation>
     </message>
     <message>
       <location filename="../completionhelper.cpp" line="229"/>
