@@ -64,10 +64,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Could not nopen file %1 for writting.</source>
-        <translation type="obsolete">Could not nopen file %1 for writting.</translation>
-    </message>
-    <message>
         <location filename="../multieditorimage.cpp" line="159"/>
         <source>Could not write image into the file %1</source>
         <translation type="unfinished">Could not write image into the file %1</translation>

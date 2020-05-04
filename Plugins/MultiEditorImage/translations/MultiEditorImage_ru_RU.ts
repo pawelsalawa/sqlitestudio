@@ -61,11 +61,7 @@
     <message>
         <location filename="../multieditorimage.cpp" line="154"/>
         <source>Could not open file %1 for writting.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Could not nopen file %1 for writting.</source>
-        <translation type="vanished">Невозможно открыть файл %1 для записи.</translation>
+        <translation>Невозможно открыть файл %1 для записи.</translation>
     </message>
     <message>
         <location filename="../multieditorimage.cpp" line="159"/>
