@@ -139,6 +139,7 @@ class GUI_API_EXPORT SqlQueryModelColumn
         static EditionForbiddenReason convert(QueryExecutor::ColumnEditionForbiddenReason reason);
         static QString resolveMessage(EditionForbiddenReason reason);
         bool isNumeric();
+        bool isNull();
         bool canEdit();
         QString getEditionForbiddenReason();
         bool isPk() const;

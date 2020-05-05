@@ -852,7 +852,7 @@ void SqlQueryModel::updateItem(SqlQueryItem* item, const QVariant& value, int co
     SqlQueryModelColumnPtr column = columns[columnIndex];
     Qt::Alignment alignment;
 
-    if (column->isNumeric() && isNumeric(value))
+    if ((column->isNumeric() || column->isNull()) && isNumeric(value))
         alignment = Qt::AlignRight|Qt::AlignVCenter;
     else
         alignment = Qt::AlignLeft|Qt::AlignVCenter;
