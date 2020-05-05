@@ -19,7 +19,7 @@ class GUI_API_EXPORT NewVersionDialog : public QDialog
         explicit NewVersionDialog(QWidget *parent = 0);
         ~NewVersionDialog();
 
-        void setUpdates(const QList<UpdateManager::UpdateEntry>& updates);
+        void setUpdate(const QString& version, const QString& url);
 
     protected:
         void showEvent(QShowEvent*);
@@ -27,10 +27,13 @@ class GUI_API_EXPORT NewVersionDialog : public QDialog
     private:
         void init();
 
+        QString downloadUrl;
+
         Ui::NewVersionDialog *ui = nullptr;
 
     private slots:
-        void installUpdates();
+        void downloadUpdates();
+        void openHomePage();
 };
 
 #endif // PORTABLE_CONFIG

@@ -177,6 +177,13 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void updateWindowActions();
         void updateCornerDocking();
         void messageFromSecondaryInstance(quint32 instanceId, QByteArray message);
+        void licenses();
+        void homepage();
+        void githubReleases();
+        void forum();
+        void userManual();
+        void sqliteDocs();
+        void reportHistory();
 
     private slots:
         void notifyAboutLanguageChange();
@@ -201,14 +208,8 @@ class GUI_API_EXPORT MainWindow : public QMainWindow, public ExtActionContainer
         void reportBug();
         void requestFeature();
         void aboutSqlitestudio();
-        void licenses();
-        void homepage();
-        void forum();
-        void userManual();
-        void sqliteDocs();
-        void reportHistory();
 #ifdef PORTABLE_CONFIG
-        void updatesAvailable(const QList<UpdateManager::UpdateEntry>& updates);
+        void updateAvailable(const QString& version, const QString& url);
         void noUpdatesAvailable();
         void checkForUpdates();
 #endif

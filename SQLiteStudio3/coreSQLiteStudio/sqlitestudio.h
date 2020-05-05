@@ -136,6 +136,7 @@ class API_EXPORT SQLiteStudio : public QObject
         void setCodeFormatter(CodeFormatter* codeFormatter);
 
         QString getHomePage() const;
+        QString getGitHubReleases() const;
         QString getForumPage() const;
         QString getUserManualPage() const;
         QString getSqliteDocsPage() const;

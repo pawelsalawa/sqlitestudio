@@ -126,7 +126,7 @@ void MainWindow::init()
     }
 
 #ifdef PORTABLE_CONFIG
-    connect(UPDATES, SIGNAL(updatesAvailable(QList<UpdateManager::UpdateEntry>)), this, SLOT(updatesAvailable(QList<UpdateManager::UpdateEntry>)));
+    connect(UPDATES, SIGNAL(updateAvailable(QString, QString)), this, SLOT(updateAvailable(QString, QString)));
     connect(UPDATES, SIGNAL(noUpdatesAvailable()), this, SLOT(noUpdatesAvailable()));
 #endif
     connect(statusField, SIGNAL(linkActivated(QString)), this, SLOT(statusFieldLinkClicked(QString)));
@@ -747,6 +747,11 @@ void MainWindow::homepage()
     QDesktopServices::openUrl(QUrl(SQLITESTUDIO->getHomePage()));
 }
 
+void MainWindow::githubReleases()
+{
+    QDesktopServices::openUrl(QUrl(SQLITESTUDIO->getGitHubReleases()));
+}
+
 void MainWindow::forum()
 {
     QDesktopServices::openUrl(QUrl(SQLITESTUDIO->getForumPage()));
@@ -779,11 +784,11 @@ void MainWindow::statusFieldLinkClicked(const QString& link)
 }
 
 #ifdef PORTABLE_CONFIG
-void MainWindow::updatesAvailable(const QList<UpdateManager::UpdateEntry>& updates)
+void MainWindow::updateAvailable(const QString& version, const QString& url)
 {
     manualUpdatesChecking = false;
     newVersionDialog = new NewVersionDialog(this);
-    newVersionDialog->setUpdates(updates);
+    newVersionDialog->setUpdate(version, url);
     notifyInfo(tr("New updates are available. <a href=\"%1\">Click here for details</a>.").arg(openUpdatesUrl));
 }
 

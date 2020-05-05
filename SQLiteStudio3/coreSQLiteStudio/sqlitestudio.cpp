@@ -126,6 +126,12 @@ QString SQLiteStudio::getHomePage() const
     return url;
 }
 
+QString SQLiteStudio::getGitHubReleases() const
+{
+    static_qstring(url, "https://github.com/pawelsalawa/sqlitestudio/releases");
+    return url;
+}
+
 QString SQLiteStudio::getForumPage() const
 {
     static_qstring(url, "https://forum.sqlitestudio.pl");

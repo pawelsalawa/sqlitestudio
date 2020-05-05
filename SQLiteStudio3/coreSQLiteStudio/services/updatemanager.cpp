@@ -7,29 +7,17 @@
 #include <QRegularExpression>
 #include <QCoreApplication>
 #include <QFileInfo>
+#include <QNetworkRequest>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QJsonDocument>
 #include <QtConcurrent/QtConcurrentRun>
 
 UpdateManager::UpdateManager(QObject *parent) :
     QObject(parent)
 {
-    qRegisterMetaType<QList<UpdateManager::UpdateEntry>>();
-
     connect(this, SIGNAL(updatingError(QString)), NOTIFY_MANAGER, SLOT(error(QString)));
-
-    QString updateBinary =
-#if defined(Q_OS_WIN)
-        "UpdateSQLiteStudio.exe";
-#elif defined(Q_OS_LINUX)
-        "UpdateSQLiteStudio";
-#elif defined(Q_OS_OSX)
-        "../../UpdateSQLiteStudio.app/Contents/MacOS/UpdateSQLiteStudio";
-#else
-        "";
-#endif
-
-    if (!updateBinary.isEmpty()) {
-        updateBinaryAbsolutePath = QFileInfo(QCoreApplication::applicationDirPath() + "/" + updateBinary).absoluteFilePath();
-    }
+    netManager = new QNetworkAccessManager(this);
 }
 
 UpdateManager::~UpdateManager()
@@ -42,54 +30,14 @@ void UpdateManager::checkForUpdates()
     if (!CFG_CORE.General.CheckUpdatesOnStartup.get())
         return;
 
-    if (updateBinaryAbsolutePath.isEmpty()) {
-        qDebug() << "Updater binary not defined. Skipping updates checking.";
-        return;
-    }
-
-    if (!QFileInfo(updateBinaryAbsolutePath).exists()) {
-        QString errorDetails = tr("Updates installer executable is missing.");
-        emit updatingError(tr("Unable to check for updates (%1)").arg(errorDetails.trimmed()));
-        qWarning() << "Error while checking for updates: " << errorDetails;
-        return;
-    }
-
-    QtConcurrent::run(this, &UpdateManager::checkForUpdatesAsync);
-}
-
-void UpdateManager::checkForUpdatesAsync()
-{
-    QProcess proc;
-    proc.start(updateBinaryAbsolutePath, {"--checkupdates"});
-    if (!waitForProcess(proc))
+    static_qstring(url, "https://sqlitestudio.pl/rest/updates");
+    QNetworkRequest request(url);
+    QNetworkReply* response = netManager->get(request);
+    connect(response, &QNetworkReply::finished, [this, response]()
     {
-        QString errorDetails = QString::fromLocal8Bit(proc.readAllStandardError());
-
-        if (errorDetails.toLower().contains("no updates")) {
-            emit noUpdatesAvailable();
-            return;
-        }
-
-        if (errorDetails.isEmpty())
-            errorDetails = tr("details are unknown");
-
-        emit updatingError(tr("Unable to check for updates (%1)").arg(errorDetails.trimmed()));
-        qWarning() << "Error while checking for updates: " << errorDetails;
-        return;
-    }
-
-    processCheckResults(proc.readAllStandardOutput());
-}
-
-void UpdateManager::update()
-{
-    bool success = QProcess::startDetached(updateBinaryAbsolutePath, {"--updater"});
-    if (!success)
-    {
-        emit updatingError(tr("Unable to run updater application (%1). Please report this.").arg(updateBinaryAbsolutePath));
-        return;
-    }
-    qApp->exit(0);
+        response->deleteLater();
+        handleUpdatesResponse(response);
+    });
 }
 
 bool UpdateManager::isPlatformEligibleForUpdate() const
@@ -97,56 +45,46 @@ bool UpdateManager::isPlatformEligibleForUpdate() const
     return getDistributionType() != DistributionType::OS_MANAGED;
 }
 
-bool UpdateManager::waitForProcess(QProcess& proc)
+void UpdateManager::handleUpdatesResponse(QNetworkReply* response)
 {
-    if (!proc.waitForFinished(-1))
+    if (response->error() != QNetworkReply::NoError)
     {
-        qDebug() << "Update QProcess timed out.";
-        return false;
+        emit updatingError(response->errorString());
+        return;
     }
 
-    if (proc.exitStatus() == QProcess::CrashExit)
+    QJsonParseError parsingError;
+    QJsonDocument json = QJsonDocument::fromJson(response->readAll(), &parsingError);
+
+    if (parsingError.error != QJsonParseError::NoError)
     {
-        qDebug() << "Update QProcess finished by crashing.";
-        return false;
+        emit updatingError(parsingError.errorString());
+        return;
     }
 
-    if (proc.exitCode() != 0)
+    QString version = json["version"].toString();
+    QStringList versionParts = version.split(".");
+    QString alignedVersion = versionParts[0] + versionParts[1].rightJustified(2, '0') + versionParts[2].rightJustified(2, '0');
+    int versionNumber = alignedVersion.toInt();
+
+    if (SQLITESTUDIO->getVersion() >= versionNumber)
     {
-        qDebug() << "Update QProcess finished with code:" << proc.exitCode();
-        return false;
-    }
-
-    return true;
-}
-
-void UpdateManager::processCheckResults(const QByteArray &results)
-{
-    if (results.trimmed().isEmpty()) {
         emit noUpdatesAvailable();
         return;
     }
 
-    QRegularExpression re(R"(\<update\s+([^\>]+)\>)");
-    QRegularExpression versionRe(R"(version\=\"([\d\.]+)\")");
-    QRegularExpression nameRe(R"(name\=\"([^\"]+)\")");
+    QString url =
+#if defined(Q_OS_WIN)
+        json["win"].toString();
+#elif defined(Q_OS_LINUX)
+        json["lin"].toString();
+#elif defined(Q_OS_OSX)
+        json["mac"].toString();
+#else
+        QString();
+#endif
 
-    QRegularExpressionMatchIterator reIter = re.globalMatch(results);
-    QString updateNode;
-    UpdateEntry theUpdate;
-    QList<UpdateEntry> updates;
-    while (reIter.hasNext())
-    {
-        updateNode = reIter.next().captured(1);
-        theUpdate.version = versionRe.match(updateNode).captured(1);
-        theUpdate.compontent = nameRe.match(updateNode).captured(1);
-        updates << theUpdate;
-    }
-
-    if (updates.isEmpty())
-        emit noUpdatesAvailable();
-    else
-        emit updatesAvailable(updates);
+    emit updateAvailable(version, url);
 }
 
 #endif // PORTABLE_CONFIG
